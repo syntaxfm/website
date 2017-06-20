@@ -9,10 +9,11 @@
     "express": "^4.15.3",
     "glob": "^7.1.2",
     "meta-marked": "^0.4.2",
-    "next": "^2.4.4",
+    "next": "^3.0.0-beta16",
     "next-url-prettifier": "^1.0.2",
     "prop-types": "^15.5.6",
     "react": "^15.4.2",
+    "react-audioplayer": "^0.2.3",
     "react-dom": "^15.4.2",
     "speakingurl": "^13.0.0"
   }

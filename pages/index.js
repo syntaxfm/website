@@ -13,7 +13,6 @@ export default class IndexPage extends React.Component {
     super();
     const currentShow = props.url.query.number || props.shows[0].displayNumber;
 
-    console.log(props.url.query);
     this.state = {
       shows: props.shows,
       currentShow,
@@ -45,7 +44,7 @@ export default class IndexPage extends React.Component {
       <div>
         <h1>Syntax.</h1>
         <ShowList shows={this.state.shows} />
-        <ShowNotes show={show} />
+        <ShowNotes show={show} setCurrentPlaying={this.setCurrentPlaying} />
         <Player show={current} />
       </div>
     )
