@@ -3,6 +3,8 @@ import axios from 'axios';
 import ShowList from '../components/ShowList';
 import ShowNotes from '../components/ShowNotes';
 import Player from '../components/Player';
+import Meta from '../components/meta';
+
 
 const prod = process.env.NODE_ENV === 'production'
 const backend =  prod ? 'https://syntax.fm' : 'http://localhost:3000'
@@ -42,6 +44,7 @@ export default class IndexPage extends React.Component {
     const current = shows.find(show => show.displayNumber === currentPlaying)
     return (
       <div>
+        <Meta />
         <h1>Syntax.</h1>
         <ShowList shows={this.state.shows} />
         <ShowNotes show={show} setCurrentPlaying={this.setCurrentPlaying} />
