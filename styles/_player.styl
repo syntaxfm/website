@@ -9,6 +9,8 @@
     &--middle
       flex 1 0 auto
       border-right 1px solid rgba(0,0,0,0.6)
+      display flex
+      flex-direction column
     &--right
       display flex
       & > *
@@ -19,11 +21,15 @@
   &__title
     font-size 1.5rem
     margin 0
+    flex 1 0 auto
+    display flex
+    align-items center
     padding-left 2rem
   button
     background black
     border 0
     color white
+    padding 1rem
     border-right 1px solid rgba(0,0,0,0.6)
   &__speed
     flex 0 1 auto
@@ -46,7 +52,7 @@
     flex-wrap wrap
     flex 1 0 auto
     input
-      display none
+      display inline
     p
       width 100%
       margin 0

@@ -50,7 +50,7 @@ export default class IndexPage extends React.Component {
           <Header />
           <div className="show-wrap">
             <Player show={current} />
-            <ShowList shows={this.state.shows} />
+            <ShowList shows={this.state.shows} currentShow={currentShow} currentPlaying={currentPlaying} />
             <ShowNotes show={show} setCurrentPlaying={this.setCurrentPlaying} />
           </div>
         </div>

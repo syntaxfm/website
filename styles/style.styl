@@ -25,12 +25,60 @@ a
 
 .showList
   width 38%
-  border-right 1px solid grey
+  display flex
+  flex-direction column
 
 .show
   padding 10px
+  border-right 1px solid grey
   border-bottom 1px solid grey
+  border-left 10px solid grey
+  background lightgrey
+  position relative
+  &--dummy
+    flex 1 0 auto
+  &--active
+    border-right-color white
+    background white
+  &--playing
+    border-left 0
+    padding-left 2rem
+    &:before
+      display block
+      background: linear-gradient(30deg, #d2ff52 0%, green 100%);
+      width 10px
+      height 100%
+      content ''
+      position absolute
+      top 0
+      left 0
+  &__displayNumber
+    text-transform uppercase
+    color green
+    margin 0
+    color grey2
+  &__title
+    color black
+    font-size 1.5rem
+    margin 0
 
 .showNotes
   padding 2rem
+  padding-left 7rem
   width 62%
+  font-size 1.5rem
+  max-height 800px
+  overflow scroll
+  h1,h2,h3,h4,h5,h6
+    font-family 'courier'
+    font-weight 100
+    &:before
+      padding-right 1rem
+  pre
+    background lightgrey
+    padding 1rem
+  h1,h2
+    margin-left -4rem
+    font-size 2.5rem
+    &:before
+      content '##'
