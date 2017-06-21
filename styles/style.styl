@@ -5,7 +5,7 @@
 @import '_header.styl'
 @import '_person.styl'
 @import '_player.styl'
-
+@import '_bars.styl'
 
 html
   font-size 10px
@@ -29,23 +29,36 @@ a
   flex-direction column
 
 .show
-  padding 10px
   border-right 1px solid grey
   border-bottom 1px solid grey
   border-left 10px solid grey
   background lightgrey
   position relative
+  display flex
+  a
+    flex 1 1 auto
+    padding 10px
+  &__playcontrols
+    display flex
+    align-items center
+    justify-content center
+    width 5rem
+    padding 1rem
+    button
+      background none
+      border 0
+      &:hover
+        color yellow
   &--dummy
     flex 1 0 auto
   &--active
     border-right-color white
     background white
-  &--playing
     border-left 0
-    padding-left 2rem
+    padding-left 1rem
     &:before
       display block
-      background: linear-gradient(30deg, #d2ff52 0%, green 100%);
+      background grad
       width 10px
       height 100%
       content ''

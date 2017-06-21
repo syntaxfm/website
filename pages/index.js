@@ -35,7 +35,9 @@ export default class IndexPage extends React.Component {
     }
   }
 
-  setCurrentPlaying = (currentPlaying) => this.setState({ currentPlaying })
+  setCurrentPlaying = (currentPlaying) => {
+    this.setState({ currentPlaying });
+  }
 
   render() {
     const { shows = [], currentShow, currentPlaying } = this.state;
@@ -50,7 +52,7 @@ export default class IndexPage extends React.Component {
           <Header />
           <div className="show-wrap">
             <Player show={current} />
-            <ShowList shows={this.state.shows} currentShow={currentShow} currentPlaying={currentPlaying} />
+            <ShowList shows={this.state.shows} currentShow={currentShow} currentPlaying={currentPlaying} setCurrentPlaying={this.setCurrentPlaying} />
             <ShowNotes show={show} setCurrentPlaying={this.setCurrentPlaying} />
           </div>
         </div>

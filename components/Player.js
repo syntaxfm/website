@@ -15,8 +15,11 @@ export default class Player extends React.Component {
   }
 
   timeUpdate = (e) => {
-    const { currentTime, duration } = e.currentTarget;
+
+    const { currentTime = 0, duration = 0 } = e.currentTarget;
     const progressTime = (currentTime / duration) * 100;
+    if (Number.isNaN(progressTime)) return;
+    console.log({progressTime});
     this.setState({ progressTime, currentTime, duration });
   }
 
