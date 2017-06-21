@@ -1,4 +1,36 @@
 @import '_normalize.styl'
+@import '_variables.styl'
+@import '_type.styl'
+@import '_layout.styl'
+@import '_header.styl'
+@import '_person.styl'
+@import '_player.styl'
+
+
+html
+  font-size 10px
 
 body
-  background blue
+  background black url('/static/background.jpg')
+  border-top 3px solid yellow
+
+a
+  color yellow
+  text-decoration none
+
+.show-wrap
+  background white
+  display flex
+  flex-wrap wrap
+
+.showList
+  width 38%
+  border-right 1px solid grey
+
+.show
+  padding 10px
+  border-bottom 1px solid grey
+
+.showNotes
+  padding 2rem
+  width 62%

@@ -4,6 +4,7 @@ import ShowList from '../components/ShowList';
 import ShowNotes from '../components/ShowNotes';
 import Player from '../components/Player';
 import Meta from '../components/meta';
+import Header from '../components/Header';
 
 
 const prod = process.env.NODE_ENV === 'production'
@@ -45,10 +46,14 @@ export default class IndexPage extends React.Component {
     return (
       <div>
         <Meta />
-        <h1>Syntax.</h1>
-        <ShowList shows={this.state.shows} />
-        <ShowNotes show={show} setCurrentPlaying={this.setCurrentPlaying} />
-        <Player show={current} />
+        <div className="wrapper">
+          <Header />
+          <div className="show-wrap">
+            <Player show={current} />
+            <ShowList shows={this.state.shows} />
+            <ShowNotes show={show} setCurrentPlaying={this.setCurrentPlaying} />
+          </div>
+        </div>
       </div>
     )
   }
