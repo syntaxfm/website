@@ -217,9 +217,12 @@ This paragraph has some `code` in it.
 * [Scott Tolinski personal site](https://leveluptutorials.com)
 * [Wes Bos personal site](https://wesbos.com)
 * [Cloudflare](https://www.cloudflare.com/)
-* [:question: B Boys tools]() `//Couldn't find the link`
+* [B Boys tools]() :question:`//Couldn't find the link`
 * [Next.js](https://learnnextjs.com/)
-* []()
+* [Hacker News Example in Next.js](https://github.com/now-examples/next-news) :question:
+* [GraphQL](http://graphql.org/learn/)
+* [Graphcool](https://www.graph.cool/)
+* [create-react-app](https://github.com/facebookincubator/create-react-app)
 
 ## Shameless Plugs
 
