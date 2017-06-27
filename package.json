@@ -1,9 +1,16 @@
 {
+  "engines": {
+    "node" : ">=8.1.2"
+  },
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
-    "deploy": "now"
+    "deploy": "now",
+    "alias": "now alias"
+  },
+  "now": {
+    "alias": "syntax"
   },
   "dependencies": {
     "autoprefixer": "6.7.6",
