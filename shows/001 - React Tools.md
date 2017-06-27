@@ -212,7 +212,9 @@ This paragraph has some `code` in it.
 
 * <https://wesbos.com>
 * <https://styntax.fm>
-* [Some Link](Another Link)
+* [Level Up Tutorials site](https://leveluptutorials.com/)
+* [Level Up Tutorials YouTube channel](https://www.youtube.com/user/LevelUpTuts)
+* [Scott Tolinski personal site](https://leveluptutorials.com)
 
 ## Shameless Plugs
 
