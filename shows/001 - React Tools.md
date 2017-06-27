@@ -215,7 +215,6 @@ This paragraph has some `code` in it.
 * [Level Up Tutorials site](https://leveluptutorials.com/)
 * [Level Up Tutorials YouTube channel](https://www.youtube.com/user/LevelUpTuts)
 * [Scott Tolinski personal site](https://leveluptutorials.com)
-* [Wes Bos personal site](https://wesbos.com)
 * [Cloudflare](https://www.cloudflare.com/)
 * [B Boys tools]() :question:`//Couldn't find the link`
 * [Next.js](https://learnnextjs.com/)
