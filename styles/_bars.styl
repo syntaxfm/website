@@ -1,4 +1,4 @@
-#bars {
+.bars {
   height: 30px;
   width: 40px;
   position relative
@@ -11,6 +11,10 @@
   position: absolute;
   width: 3px;
   animation: sound 0ms -800ms linear infinite alternate;
+}
+
+.bar--paused > * {
+  animation-play-state: paused;
 }
 
 @keyframes sound {

@@ -19,7 +19,6 @@ export default class Player extends React.Component {
     const { currentTime = 0, duration = 0 } = e.currentTarget;
     const progressTime = (currentTime / duration) * 100;
     if (Number.isNaN(progressTime)) return;
-    console.log({progressTime});
     this.setState({ progressTime, currentTime, duration });
   }
 
@@ -47,6 +46,12 @@ export default class Player extends React.Component {
 
   componentWillUpdate(nextProps, nextState) {
     this.audio.playbackRate = nextState.playbackRate;
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if(this.props.show.number !== prevProps.show.number) {
+      this.audio.play();
+    }
   }
 
   render() {
@@ -78,26 +83,28 @@ export default class Player extends React.Component {
 
           <div className="player__volume">
             <p>LOUDNESS</p>
-            <input type="radio" name="volume" value="0.1" id="vol10" />
-            <label htmlFor="vol10">Volume Level 10/100</label>
-            <input type="radio" name="volume" value="0.2" id="vol20" />
-            <label htmlFor="vol20">Volume Level 20/100</label>
-            <input type="radio" name="volume" value="0.3" id="vol30" />
-            <label htmlFor="vol30">Volume Level 30/100</label>
-            <input type="radio" name="volume" value="0.4" id="vol40" />
-            <label htmlFor="vol40">Volume Level 40/100</label>
-            <input type="radio" name="volume" value="0.5" id="vol50" />
-            <label htmlFor="vol50">Volume Level 50/100</label>
-            <input type="radio" name="volume" value="0.6" id="vol60" />
-            <label htmlFor="vol60">Volume Level 60/100</label>
-            <input type="radio" name="volume" value="0.7" id="vol70" />
-            <label htmlFor="vol70">Volume Level 70/100</label>
-            <input type="radio" name="volume" value="0.8" id="vol80" />
-            <label htmlFor="vol80">Volume Level 80/100</label>
-            <input checked type="radio" name="volume" value="0.9" id="vol90" />
-            <label htmlFor="vol90">Volume Level 90/100</label>
-            <input type="radio" name="volume" value="1" id="vol100" />
-            <label htmlFor="vol100">Volume Level 100/100</label>
+            <div className="player__inputs">
+              <input type="radio" name="volume" value="0.1" id="vol10" />
+              <label htmlFor="vol10">Volume Level 10/100</label>
+              <input type="radio" name="volume" value="0.2" id="vol20" />
+              <label htmlFor="vol20">Volume Level 20/100</label>
+              <input type="radio" name="volume" value="0.3" id="vol30" />
+              <label htmlFor="vol30">Volume Level 30/100</label>
+              <input type="radio" name="volume" value="0.4" id="vol40" />
+              <label htmlFor="vol40">Volume Level 40/100</label>
+              <input type="radio" name="volume" value="0.5" id="vol50" />
+              <label htmlFor="vol50">Volume Level 50/100</label>
+              <input type="radio" name="volume" value="0.6" id="vol60" />
+              <label htmlFor="vol60">Volume Level 60/100</label>
+              <input type="radio" name="volume" value="0.7" id="vol70" />
+              <label htmlFor="vol70">Volume Level 70/100</label>
+              <input type="radio" name="volume" value="0.8" id="vol80" />
+              <label htmlFor="vol80">Volume Level 80/100</label>
+              <input defaultChecked type="radio" name="volume" value="0.9" id="vol90" />
+              <label htmlFor="vol90">Volume Level 90/100</label>
+              <input type="radio" name="volume" value="1" id="vol100" />
+              <label htmlFor="vol100">Volume Level 100/100</label>
+            </div>
           </div>
 
         </div>

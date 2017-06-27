@@ -1,13 +1,12 @@
 import React from 'react'
 import Show from './Show';
 
-const yolo = (__html) => ({ __html })
-
 export default ({ show, setCurrentPlaying }) =>
   <div className="showNotes">
     <p>{show.date}</p>
-    <button onClick={() => setCurrentPlaying(show.displayNumber)}>Play Episode {show.displayNumber}</button>
-    <button>Download</button>
-    <button>Edit Show Notes</button>
+    <button className="button" onClick={() => setCurrentPlaying(show.displayNumber)}><span className="icon">🎵</span> Play Episode {show.displayNumber}</button>
+    <a className="button" download href={show.url}><span className="icon">👇</span> Download Show</a>
+    <a className="button" href={`https://github.com/wesbos/Syntax/edit/master/${show.notesFile}`} target='_blank'><span className="icon">✏️</span> Edit Show Notes</a>
     <div dangerouslySetInnerHTML={{ __html: show.html }}></div>
   </div>
+

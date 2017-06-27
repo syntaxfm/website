@@ -1,7 +1,7 @@
 export default () => (
   <header className="header">
     <div className="header__left">
-      <img src="/static/logo.png" alt="Syntax"/>
+      <img className="header__logo" src="/static/logo.png" alt="Syntax"/>
     </div>
     <div className="header__right">
 

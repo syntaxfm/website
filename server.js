@@ -23,9 +23,7 @@ app.prepare()
       res.json(show);
       return;
     }
-
     res.status(404).json({ message: 'Sorry not found' });
-
   });
 
 

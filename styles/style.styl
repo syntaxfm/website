@@ -18,6 +18,25 @@ a
   color yellow
   text-decoration none
 
+.button
+  border 0
+  background lightgrey
+  color black
+  padding 0
+  line-height 1
+  font-size 1.5rem
+  padding 1rem
+  display inline-block
+  transition all 0.2s
+  &:hover
+    background darken(lightgrey, 3%)
+  & + .button
+    margin-left 1rem
+  .icon
+    border-right 1px solid grey
+    padding-right 0.5rem
+    margin-right 0.5rem
+
 .show-wrap
   background white
   display flex
@@ -77,7 +96,6 @@ a
 
 .showNotes
   padding 2rem
-  padding-left 7rem
   width 62%
   font-size 1.5rem
   max-height 800px
@@ -91,7 +109,6 @@ a
     background lightgrey
     padding 1rem
   h1,h2
-    margin-left -4rem
     font-size 2.5rem
     &:before
       content '##'
