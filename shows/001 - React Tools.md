@@ -7,7 +7,6 @@ url: https://audio.simplecast.com/73298.mp3
 
 ## Show Notes
 
-[View raw (TEST.md)](https://raw.github.com/adamschwartz/github-markdown-kitchen-sink/master/README.md)
 * [Level Up Tutorials site](https://leveluptutorials.com/)
 * [Level Up Tutorials YouTube channel](https://www.youtube.com/user/LevelUpTuts)
 * [Scott Tolinski personal site](https://leveluptutorials.com)
@@ -25,9 +24,11 @@ url: https://audio.simplecast.com/73298.mp3
 * [Blaze](http://blazejs.org/)
 
 ## Sick Picks
+
 * Wes: [Parcel App](https://parcelapp.net/)
 * Scott: [Fish shell](https://fishshell.com/)
 
 ## Shameless Plugs
+
 * [Learn Node](http://wesbos.com/learn-node/)
 * [React Native for everyone](https://store.leveluptutorials.com/products/tutorials/lut-dd014)
