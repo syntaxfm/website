@@ -20,6 +20,7 @@ export default class IndexPage extends React.Component {
   }
 
   static async getInitialProps({ req }) {
+    if (!req) return {};
     const backend = `${req.protocol}://${req.headers.host}`;
     const { data:shows } = await axios.get(`${backend}/api/shows`);
     return { shows, backend };
