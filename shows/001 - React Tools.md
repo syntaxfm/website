@@ -222,6 +222,14 @@ This paragraph has some `code` in it.
 * [GraphQL](http://graphql.org/learn/)
 * [Graphcool](https://www.graph.cool/)
 * [create-react-app](https://github.com/facebookincubator/create-react-app)
+* [React dev-tools](https://github.com/facebook/react-devtools)
+* [Redux dev-tools](https://github.com/gaearon/redux-devtools)
+* [Preact.js](https://preactjs.com/)
+* [React Storybook](https://github.com/storybooks/storybook)
+* []()
+* []()
+* []()
+* []()
 
 ## Shameless Plugs
 
