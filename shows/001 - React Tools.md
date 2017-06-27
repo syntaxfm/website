@@ -8,6 +8,23 @@ url: https://audio.simplecast.com/73298.mp3
 ## Show Notes
 
 [View raw (TEST.md)](https://raw.github.com/adamschwartz/github-markdown-kitchen-sink/master/README.md)
+* [Level Up Tutorials site](https://leveluptutorials.com/)
+* [Level Up Tutorials YouTube channel](https://www.youtube.com/user/LevelUpTuts)
+* [Scott Tolinski personal site](https://leveluptutorials.com)
+* [Cloudflare](https://www.cloudflare.com/)
+* [B Boys tools]() :question:`//Couldn't find the link`
+* [Next.js](https://learnnextjs.com/)
+* [Hacker News Example in Next.js](https://github.com/now-examples/next-news) :question:
+* [GraphQL](http://graphql.org/learn/)
+* [Graphcool](https://www.graph.cool/)
+* [create-react-app](https://github.com/facebookincubator/create-react-app)
+* [React dev-tools](https://github.com/facebook/react-devtools)
+* [Redux dev-tools](https://github.com/gaearon/redux-devtools)
+* [Preact.js](https://preactjs.com/)
+* [React Storybook](https://github.com/storybooks/storybook)
+* [Media?]() `//Minute 34...
+* [Blaze](http://blazejs.org/)
+------
 
 This is a paragraph.
 
@@ -212,8 +229,10 @@ This paragraph has some `code` in it.
 
 * <https://wesbos.com>
 * <https://styntax.fm>
-* [Some Link](Another Link)
+* [Parcel](https://parcelapp.net/)
+* [Fish shell](https://fishshell.com/)
 
 ## Shameless Plugs
-
+* [Learn Node](http://wesbos.com/learn-node/)
+* [React Native for everyone](https://store.leveluptutorials.com/products/tutorials/lut-dd014)
 
