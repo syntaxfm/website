@@ -6,10 +6,6 @@ import Player from '../components/Player';
 import Meta from '../components/meta';
 import Header from '../components/Header';
 
-
-const prod = process.env.NODE_ENV === 'production'
-const backend =  prod ? 'https://syntax.fm' : 'http://localhost:3000'
-
 export default class IndexPage extends React.Component {
 
   constructor(props) {
@@ -24,8 +20,9 @@ export default class IndexPage extends React.Component {
   }
 
   static async getInitialProps({ req }) {
+    const backend = `${req.protocol}://${req.headers.host}`;
     const { data:shows } = await axios.get(`${backend}/api/shows`);
-    return { shows };
+    return { shows, backend };
   }
 
   componentWillReceiveProps(nextProps) {
@@ -36,6 +33,7 @@ export default class IndexPage extends React.Component {
   }
 
   setCurrentPlaying = (currentPlaying) => {
+    console.log('Setting current playing');
     this.setState({ currentPlaying });
   }
 

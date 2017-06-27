@@ -24,12 +24,19 @@ export default class Player extends React.Component {
 
   togglePlay = () => {
     const method = this.state.playing ? 'pause' : 'play';
+    const classMethod = this.state.playing ? 'add' : 'remove';
     this.audio[method]();
   }
 
   scrub = (e) => {
     const scrubTime = (e.nativeEvent.offsetX / this.progress.offsetWidth) * this.audio.duration;
     this.audio.currentTime = scrubTime;
+  }
+
+  onPlayPause = (e) => {
+    this.setState({ playing: !this.audio.paused });
+    const method = this.audio.paused ? 'add' : 'remove';
+    document.querySelector('.bars').classList[method]('bars--paused'); // 💩
   }
 
   volume = (e) => {
@@ -113,8 +120,8 @@ export default class Player extends React.Component {
 
         <audio
           ref={(audio) => this.audio = audio}
-          onPlay={() => this.setState({ playing: true })}
-          onPause={() => this.setState({ playing: false })}
+          onPlay={this.onPlayPause}
+          onPause={this.onPlayPause}
           onTimeUpdate={this.timeUpdate}
           onLoadedMetadata={this.timeUpdate}
           src={show.url}

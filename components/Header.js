@@ -31,7 +31,7 @@ export default () => (
           <li className="subscribe__link subscribe__link--overcast"><a href="itunes">Overcast</a></li>
           <li className="subscribe__link subscribe__link--stitcher"><a href="itunes">Stitcher</a></li>
           <li className="subscribe__link subscribe__link--breaker"><a href="itunes">Breaker</a></li>
-          <li className="subscribe__link subscribe__link--rss"><a href="itunes">RSS</a></li>
+          <li className="subscribe__link subscribe__link--rss"><a href="https://feed.syntax.fm/rss">RSS</a></li>
         </ul>
       </div>
 
