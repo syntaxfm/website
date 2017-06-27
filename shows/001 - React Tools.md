@@ -233,5 +233,6 @@ This paragraph has some `code` in it.
 * [Fish shell](https://fishshell.com/)
 
 ## Shameless Plugs
-
+* [Learn Node](http://wesbos.com/learn-node/)
+* [React Native for everyone](https://store.leveluptutorials.com/products/tutorials/lut-dd014)
 
