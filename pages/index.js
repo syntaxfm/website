@@ -15,15 +15,15 @@ export default class IndexPage extends React.Component {
     this.state = {
       shows: props.shows,
       currentShow,
-      currentPlaying: currentShow
+      currentPlaying: currentShow,
+      baseURL: props.baseURL
     }
   }
 
   static async getInitialProps({ req }) {
-    if (!req) return {};
-    const backend = `${req.protocol}://${req.headers.host}`;
-    const { data:shows } = await axios.get(`${backend}/api/shows`);
-    return { shows, backend };
+    const baseURL = req ? `${req.protocol}://${req.headers.host}` : window.location.origin;
+    const { data:shows } = await axios.get(`${baseURL}/api/shows`);
+    return { shows, baseURL };
   }
 
   componentWillReceiveProps(nextProps) {
@@ -39,14 +39,14 @@ export default class IndexPage extends React.Component {
   }
 
   render() {
-    const { shows = [], currentShow, currentPlaying } = this.state;
+    const { shows = [], currentShow, currentPlaying, baseURL } = this.state;
     // Currently Shown shownotes
     const show = shows.find(show => show.displayNumber === currentShow);
     // Currently Playing
     const current = shows.find(show => show.displayNumber === currentPlaying)
     return (
       <div>
-        <Meta />
+        <Meta show={show} baseURL={baseURL} />
         <div className="wrapper">
           <Header />
           <div className="show-wrap">
