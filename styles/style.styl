@@ -18,7 +18,7 @@ a
   color yellow
   text-decoration none
 
-.button
+.button, a.button
   border 0
   background lightgrey
   color black
@@ -46,6 +46,8 @@ a
   width 38%
   display flex
   flex-direction column
+  @media (max-width: 650px)
+    width 100%
 
 .show
   border-right 1px solid grey
@@ -93,6 +95,11 @@ a
     color black
     font-size 1.5rem
     margin 0
+  &__date
+    margin-top 0
+    text-align right
+    color darkgrey
+    font-size 1.2rem
 
 .showNotes
   padding 2rem
@@ -100,9 +107,18 @@ a
   font-size 1.5rem
   max-height 800px
   overflow scroll
+  .button
+    border-bottom 0
+  ul
+    padding-left 2rem
+    list-style-type circle
+  li
+    margin 10px 0
   h1,h2,h3,h4,h5,h6
     font-family 'courier'
     font-weight 100
+    border-bottom 1px solid grey
+    padding-bottom 1rem
     &:before
       padding-right 1rem
   pre
@@ -110,5 +126,8 @@ a
     padding 1rem
   h1,h2
     font-size 2.5rem
-    &:before
-      content '##'
+  a
+    color lighten(black, 20%)
+    border-bottom 1px solid yellow
+    text-decoration none
+

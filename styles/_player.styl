@@ -5,18 +5,29 @@
   border-top 1px solid yellow
   color white
   display flex
+  flex-wrap wrap
+  // flex-wrap wrap
   &__section
+    order 2
     &--left
       width 100px
+      min-width 80px
+      @media (max-width: 650px)
+        flex 1
       & > *
         width 100%
     &--middle
-      flex 1 0 auto
+      flex 1 1 auto
       border-right 1px solid rgba(0,0,0,0.6)
       display flex
       flex-direction column
+      @media (max-width: 650px)
+        order 1
+        width 100%
     &--right
       display flex
+      @media (max-width: 650px)
+        flex 2
       & > *
         width 100%
   &__icon
@@ -29,6 +40,8 @@
     display flex
     align-items center
     padding-left 2rem
+    @media (max-width: 650px)
+      padding 1rem
   button
     background black
     border 0

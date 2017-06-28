@@ -9,8 +9,8 @@ h1,h2,h3,h4,h5,h6
 
 @font-face {
   font-family: 'rad';
-  src:  url('/static/fonts/Radnika-Bold.woff2') format('woff2'),
-        url('/static/fonts/Radnika-Bold.woff') format('woff');
+  src:  url('/static/fonts/Radnika-Light.woff2') format('woff2'),
+        url('/static/fonts/Radnika-Light.woff') format('woff');
 }
 
 body
@@ -23,3 +23,6 @@ body
 .tagline
   font-size 2.5rem
   margin 0
+  @media (max-width: 800px)
+    text-align center
+    font-size 1.5rem

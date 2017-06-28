@@ -2,7 +2,7 @@
 number: 002
 title: Webcam and audio access with WebRTC and getUserMedia()
 date: 1499875200000
-url: https://audio.simplecast.com/72712.mp3
+url: soon.mp3
 ---
 
 ## Show Notes

@@ -2,7 +2,7 @@
 number: 003
 title: CSS Preprocessors and Structuring CSS
 date: 1500480000000
-url: https://audio.simplecast.com/71984.mp3
+url: soon.mp3
 ---
 
 ## Show Notes
