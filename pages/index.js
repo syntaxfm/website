@@ -5,6 +5,7 @@ import ShowNotes from '../components/ShowNotes';
 import Player from '../components/Player';
 import Meta from '../components/meta';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 export default class IndexPage extends React.Component {
 
@@ -55,6 +56,7 @@ export default class IndexPage extends React.Component {
             <ShowNotes show={show} setCurrentPlaying={this.setCurrentPlaying} />
           </div>
         </div>
+        <Footer />
       </div>
     )
   }
