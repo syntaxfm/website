@@ -14,10 +14,8 @@ export default class IndexPage extends React.Component {
     const currentShow = props.url.query.number || props.shows[0].displayNumber;
 
     this.state = {
-      shows: props.shows,
       currentShow,
       currentPlaying: currentShow,
-      baseURL: props.baseURL
     }
   }
 
@@ -40,7 +38,8 @@ export default class IndexPage extends React.Component {
   }
 
   render() {
-    const { shows = [], currentShow, currentPlaying, baseURL } = this.state;
+    const { shows = [], baseURL } = this.props;
+    const { currentShow, currentPlaying } = this.state;
     // Currently Shown shownotes
     const show = shows.find(show => show.displayNumber === currentShow);
     // Currently Playing
@@ -52,7 +51,7 @@ export default class IndexPage extends React.Component {
           <Header />
           <div className="show-wrap">
             <Player show={current} />
-            <ShowList shows={this.state.shows} currentShow={currentShow} currentPlaying={currentPlaying} setCurrentPlaying={this.setCurrentPlaying} />
+            <ShowList shows={shows} currentShow={currentShow} currentPlaying={currentPlaying} setCurrentPlaying={this.setCurrentPlaying} />
             <ShowNotes show={show} setCurrentPlaying={this.setCurrentPlaying} />
           </div>
         </div>
