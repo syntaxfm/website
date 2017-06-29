@@ -21,7 +21,7 @@ This one is all about how much we love Stylus 🍀
 * [BEM Methodology](https://en.bem.info/methodology/)
 * [Stylus](http://stylus-lang.com)
 * [Rupture](http://jescalan.github.io/rupture/)
-* [less](http://lesscss.org)
+* [Less](http://lesscss.org)
 * [Sass](http://sass-lang.com)
 * [PostCSS](http://postcss.org)
 * [PostCSS Autoprefixer](https://github.com/postcss/autoprefixer)
@@ -45,7 +45,7 @@ Lets you organize your menu bar apps, by hiding them, rearranging them, or movin
 Hide menu bar icons on your Mac.
 
 #### [Power Blocks](http://www.powerblock.com)
-One set of Power Blocks replaces racts of dumb bells
+One set of Power Block replaces racks of dumbbells
 
 ## Shameless Plugs
 
@@ -61,3 +61,7 @@ Learn the new industry standard for web design. Become an expert in the app that
 **_Animate Your Ideas, Design Better Apps_**
 
 Principle makes it easy to design animated and interactive user interfaces. Whether you're designing the flow of a multi-screen app, or new interactions and animations, Principle lets you create designs that look and feel amazing.
+
+## Twitter
+* [Wes Bos](https://twitter.com/wesbos)
+* [Scott Tolinski](https://twitter.com/stolinski)
