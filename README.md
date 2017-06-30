@@ -8,6 +8,8 @@
 
 1. Then you run `npm run dev`.
 
+1. Open `http://localhost:3000` in your favourite browser.
+
 1. Then you do some work.
 
 1. When you are ready for prime time, you can just submit a `PR` to this repo and it will be deployed once it's accepted.
