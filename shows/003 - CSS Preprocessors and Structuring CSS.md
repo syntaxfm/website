@@ -1,15 +1,11 @@
 ---
 number: 003
 title: CSS Preprocessors and Structuring CSS
-date: 1500480000000
-url: soon.mp3
+date: 1500465600000
+url: https://traffic.libsyn.com/syntax/Syntax003.mp3
 ---
 
 ## Show Notes
-
-This one is all about how much we love Stylus 🍀
-
-## Links
 
 * [WesBos Website](http://wesbos.com)
 * [Level Up Tutorials](https://leveluptutorials.com)

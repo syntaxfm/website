@@ -1,8 +1,8 @@
 ---
 number: 001
 title: React Tools
-date: 1499270400000
-url: soon.mp3
+date: 1499256000000
+url: https://traffic.libsyn.com/syntax/syntax001_4.mp3
 ---
 
 ## Show Notes
