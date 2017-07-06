@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import React from 'react'
-import Router from 'next/router'
+import React from 'react';
+import Router from 'next/router';
 import slug from 'speakingurl';
 
 import Bars from './Bars';
