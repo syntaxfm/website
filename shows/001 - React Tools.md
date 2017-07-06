@@ -7,9 +7,9 @@ url: https://traffic.libsyn.com/syntax/syntax001_4.mp3
 
 ## Show Notes
 * [Wes Bos' Site](https://wesbos.com)
-* [Level Up Tutorials site](https://leveluptutorials.com/)
+* [Level Up Tutorials site](https://www.leveluptutorials.com/)
 * [Level Up Tutorials YouTube channel](https://www.youtube.com/user/LevelUpTuts)
-* [Scott Tolinski personal site](https://leveluptutorials.com)
+* [Scott Tolinski personal site](http://www.scotttolinski.com/)
 * [Cloudflare](https://www.cloudflare.com/)
 * [Next.js](https://learnnextjs.com/)
 * [Hacker News Example in Next.js](https://github.com/now-examples/next-news)
@@ -31,4 +31,4 @@ url: https://traffic.libsyn.com/syntax/syntax001_4.mp3
 ## Shameless Plugs
 
 * [Learn Node](http://wesbos.com/learn-node/)
-* [React Native for everyone](https://store.leveluptutorials.com/products/tutorials/lut-dd014)
+* [React Native for everyone](https://www.leveluptutorials.com/store/products/tutorials/lut-dd014)
