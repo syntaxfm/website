@@ -13,6 +13,8 @@ export default class Player extends React.Component {
     progress: 50,
   };
 
+  volumes = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+
   componentDidUpdate = ({ show }) => {
     if (this.props.show.number !== show.number) this.audio.play();
   };
@@ -72,7 +74,7 @@ export default class Player extends React.Component {
           <div className="progress" onClick={this.handleScrub} ref={(p) => this.progress = p}>
             <div className="progress__time" style={{ width: `${progress}%` }} />
           </div>
-          <h3 className="player__title">Playing {show.displayNumber}: {show.title}</h3>
+          <h3 className="player__title">Playing: {show.displayNumber}: {show.title}</h3>
         </div>
         <div className="player__section player__section--right">
           <button onClick={this.handleSpeed} className="player__speed">
