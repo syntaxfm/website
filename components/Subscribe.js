@@ -5,7 +5,7 @@ export default ({ className, link, provider }) => {
 
   return (
     <li className={`subscribe__link subscribe__link--${slug}`}>
-      <a href={link} target="_blank">{provider}</a>
+      <a href={link} rel="noopener noreferrer" target="_blank">{provider}</a>
     </li>
   );
 };

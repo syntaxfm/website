@@ -13,8 +13,6 @@ export default class Player extends React.Component {
     progress: 50,
   };
 
-  volumes = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
-
   componentDidUpdate = ({ show }) => {
     if (this.props.show.number !== show.number) this.audio.play();
   };
