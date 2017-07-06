@@ -1,3 +1,7 @@
+import React from "react";
+
+import Subscribe from "./Subscribe";
+
 export default () => (
   <header className="header">
     <div className="header__left">
@@ -25,36 +29,30 @@ export default () => (
       </div>
       <div className="subscribe">
         <ul className="subscribe__links">
-          <li className="subscribe__link subscribe__link--itunes">
-            <a href="https://itunes.apple.com/ca/podcast/syntax-tasty-web-development-treats/id1253186678?mt=2" target="_blank">
-              iTunes
-            </a>
-          </li>
-          <li className="subscribe__link subscribe__link--overcast">
-            <a href="https://overcast.fm/itunes1253186678/syntax-tasty-web-development-treats" target="_blank">
-              Overcast
-            </a>
-          </li>
-          <li className="subscribe__link subscribe__link--stitcher">
-            <a href="http://www.stitcher.com/s?fid=142440&refid=stpr" target="_blank">
-              Stitcher
-            </a>
-          </li>
-          <li className="subscribe__link subscribe__link--pocketcasts">
-            <a target="_blank" href="http://pca.st/fmx9">
-              PocketCasts
-            </a>
-          </li>
-          <li className="subscribe__link subscribe__link--googleplay">
-            <a target="_blank" href="https://playmusic.app.goo.gl/?ibi=com.google.PlayMusic&isi=691797987&ius=googleplaymusic&link=https://play.google.com/music/m/Ityd325x5s5ivr3fc74hvvgeztu?t%3DSyntax_-_Tasty_Web_Development_Treats%26pcampaignid%3DMKT-na-all-co-pr-mu-pod-16">
-              Google Play
-            </a>
-          </li>
-          <li className="subscribe__link subscribe__link--rss">
-            <a target="_blank" href="https://feed.syntax.fm/rss">
-              RSS
-            </a>
-          </li>
+          <Subscribe
+            link="https://itunes.apple.com/us/podcast/syntax-tasty-web-development-treats/id1253186678"
+            provider="iTunes"
+          />
+          <Subscribe
+            link="https://overcast.fm/itunes1253186678/syntax-tasty-web-development-treats"
+            provider="Overcast"
+          />
+          <Subscribe
+            link="https://stitcher.com/s?fid=142440"
+            provider="Stitcher"
+          />
+          <Subscribe
+            link="http://pca.st/fmx9"
+            provider="PocketCasts"
+          />
+          <Subscribe
+            link="https://play.google.com/music/m/Ityd325x5s5ivr3fc74hvvgeztu"
+            provider="Google Play"
+          />
+          <Subscribe
+            link="https://feed.syntax.fm/rss"
+            provider="RSS"
+          />
         </ul>
       </div>
     </div>

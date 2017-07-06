@@ -1,3 +1,5 @@
+import React from 'react';
+
 export default () => (
   <footer className="bottom">
     <p>&copy; Wes Bos && Scott Tolinkski {(new Date()).getFullYear()}</p>

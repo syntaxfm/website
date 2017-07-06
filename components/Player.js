@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 import classes from '../lib/classes';
 import formatTime from '../lib/formatTime';
