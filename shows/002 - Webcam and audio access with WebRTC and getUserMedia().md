@@ -5,7 +5,6 @@ date: 1499860800000
 url: https://traffic.libsyn.com/syntax/syntax002.mp3
 ---
 
-## Show Notes
 * [WebRTC](https://webrtc.org/)
 * [Apple WebRTC Support](https://www.theregister.co.uk/2016/04/13/apple_rolling_webrtc_into_webkit/)
 * [GetUserMedia](https://w3c.github.io/mediacapture-main/getusermedia.html)

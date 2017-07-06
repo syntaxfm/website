@@ -5,8 +5,6 @@ date: 1500465600000
 url: https://traffic.libsyn.com/syntax/Syntax003.mp3
 ---
 
-## Show Notes
-
 * [WesBos Website](http://wesbos.com)
 * [Level Up Tutorials](https://leveluptutorials.com)
 * [GraphQL](http://graphql.org)

@@ -1,30 +1,50 @@
-import React from 'react'
 import Link from 'next/link';
-import slug from 'speakingurl';
+import React from 'react'
 import Router from 'next/router'
-import Bars from './bars';
+import slug from 'speakingurl';
+
+import Bars from './Bars';
+import classes from '../lib/classes';
 
 export default class Show extends React.Component {
-  changeURL = (e, show) => {
+  handleChange = (e) => {
     e.preventDefault();
-    const href = e.currentTarget.href;
-    Router.push(`/?number=${show.displayNumber}`, href, { shallow: true })
-  }
 
-  render() {
-    const { show, currentPlaying, currentShow, setCurrentPlaying } = this.props;
+    const href = e.currentTarget.href;
+    const { show } = this.props;
+
+    Router.push(`/?number=${show.displayNumber}`, href, { shallow: true });
+  };
+
+  setPlaying = () => {
+    const { show } = this.props;
+    this.props.setPlaying(show.displayNumber);
+  };
+
+  render = () => {
+    const { playing, selected, show } = this.props;
+    const list = {
+      show: true,
+      'show--active': selected === show.displayNumber,
+      'show--playing': playing === show.displayNumber,
+    };
+
     return (
-      <div className={`show ${currentPlaying === show.displayNumber ? 'show--playing' : '' } ${currentShow === show.displayNumber ? 'show--active' : '' }
-      `}>
-        <a className="show__link" href={`/show/${show.displayNumber}/${slug(show.title)}`} onClick={(e) => this.changeURL(e, show)}>
+      <div className={classes(list)}>
+        <a
+          className="show__link"
+          href={`/show/${show.displayNumber}/${slug(show.title)}`}
+          onClick={this.handleChange}
+        >
           <p className="show__displayNumber">Episode {show.displayNumber}</p>
           <h3 className="show__title">{show.title}</h3>
         </a>
-
         <div className="show__playcontrols">
-          {currentPlaying === show.displayNumber ? <Bars/ > : <button onClick={() => setCurrentPlaying(show.displayNumber)} className="show__play">►</button> }
+          {playing === show.displayNumber ? <Bars /> : (
+            <button className="show__play" onClick={this.setPlaying}>►</button>
+          )}
         </div>
       </div>
-    )
+    );
   }
-}
+};

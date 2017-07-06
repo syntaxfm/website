@@ -29,6 +29,7 @@ app.prepare().then(() => {
   });
 
   // everything else
-  server.get('*', handle);
+  // server.get('*', handle); – this doesn't work, throws errors on static files
+  server.get('*', (req, res) => handle(req, res));
   server.listen(port);
 });
