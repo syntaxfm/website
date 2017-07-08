@@ -9,5 +9,5 @@
 5. **Please mention your:** 
     - Node.js version (`node -v`), 
     - package manager (`npm` or `yarn`),
-    - package manager version (`npm -v` or `yarn version`), 
+    - package manager version (`npm -v` or `yarn --version`), 
     - OS version
