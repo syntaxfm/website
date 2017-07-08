@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import classes from '../lib/classes';
 import formatTime from '../lib/formatTime';
 import Show from './Show';
 
-export default class Player extends React.Component {
+export default class Player extends Component {
   state = {
     current: 0,
     duration: 0,
@@ -17,7 +17,7 @@ export default class Player extends React.Component {
     if (this.props.show.number !== show.number) this.audio.play();
   };
 
-  componentWillUpdate = (nextProps, { fastness }) => {
+  componentWillUpdate = ({}, { fastness }) => {
     this.audio.playbackRate = fastness;
   };
 

@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default ({ className, link, provider }) => {
-  const slug = className || provider.replace(/\s/, '').toLowerCase();
+  const slug = className || provider.replace(/\s/g, '').toLowerCase();
 
   return (
     <li className={`subscribe__link subscribe__link--${slug}`}>

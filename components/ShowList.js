@@ -2,14 +2,12 @@ import React from 'react';
 
 import Show from './Show';
 
-export default ({ playing, selected, setPlaying, shows }) => (
+export default ({ ...props, shows }) => (
   <div className="showList">
     {shows.map((show) => (
       <Show
+        {...props}
         key={show.number}
-        playing={playing}
-        selected={selected}
-        setPlaying={setPlaying}
         show={show}
       />
     ))}

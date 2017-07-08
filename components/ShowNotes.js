@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import Show from './Show';
 
-export default class ShowNotes extends React.Component {
+export default class ShowNotes extends Component {
   setPlaying = () => {
     const { setPlaying, show } = this.props;
     setPlaying(show.displayNumber);

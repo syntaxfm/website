@@ -1,12 +1,12 @@
 import Link from 'next/link';
-import React from 'react';
+import React, { Component } from 'react';
 import Router from 'next/router';
 import slug from 'speakingurl';
 
 import Bars from './Bars';
 import classes from '../lib/classes';
 
-export default class Show extends React.Component {
+export default class Show extends Component {
   handleChange = (e) => {
     e.preventDefault();
 

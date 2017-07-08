@@ -4,7 +4,7 @@ import slug from 'speakingurl';
 
 import stylesheet from '../styles/style.styl';
 
-export default ({ show, baseURL }) => (
+export default ({ baseURL, show }) => (
   <Head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charSet="utf-8" />
