@@ -1,8 +1,6 @@
-import React from 'react';
-
 import Show from './Show';
 
-export default ({ ...props, shows }) => (
+const ShowList = ({ ...props, shows }) => (
   <div className="showList">
     {shows.map((show) => (
       <Show
@@ -14,3 +12,5 @@ export default ({ ...props, shows }) => (
     <div className="show show--dummy" />
   </div>
 );
+
+export default ShowList;

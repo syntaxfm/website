@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default ({ className, link, provider }) => {
+const Subscribe = ({ className, link, provider }) => {
   const slug = className || provider.replace(/\s/g, '').toLowerCase();
 
   return (
@@ -9,3 +9,5 @@ export default ({ className, link, provider }) => {
     </li>
   );
 };
+
+export default Subscribe;

@@ -1,10 +1,9 @@
 import Head from 'next/head';
-import React from 'react';
 import slug from 'speakingurl';
 
 import stylesheet from '../styles/style.styl';
 
-export default ({ baseURL, show }) => (
+const Meta = ({ baseURL, show }) => (
   <Head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charSet="utf-8" />
@@ -21,3 +20,5 @@ export default ({ baseURL, show }) => (
     <style dangerouslySetInnerHTML={{ __html: stylesheet.replace(/\n/g, '') }} />
   </Head>
 );
+
+export default Meta;

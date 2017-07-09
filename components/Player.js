@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 
-import classes from '../lib/classes';
 import formatTime from '../lib/formatTime';
 import Show from './Show';
 
-export default class Player extends Component {
+class Player extends Component {
   state = {
     current: 0,
     duration: 0,
@@ -36,7 +35,7 @@ export default class Player extends Component {
   handleScrub = ({ nativeEvent: { offsetX } }) => {
     const time = (offsetX / this.progress.offsetWidth) * this.audio.duration;
     this.audio.currentTime = time;
-  }
+  };
 
   handleSpeed = () => {
     const fastness = this.state.fastness;
@@ -117,3 +116,5 @@ export default class Player extends Component {
     );
   };
 }
+
+export default Player;

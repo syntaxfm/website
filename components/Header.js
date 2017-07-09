@@ -1,8 +1,6 @@
-import React from "react";
-
 import Subscribe from "./Subscribe";
 
-export default () => (
+const Header = () => (
   <header className="header">
     <div className="header__left">
       <img
@@ -58,3 +56,5 @@ export default () => (
     </div>
   </header>
 );
+
+export default Header;
