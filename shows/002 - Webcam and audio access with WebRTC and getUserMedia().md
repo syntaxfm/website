@@ -12,12 +12,12 @@ url: https://traffic.libsyn.com/syntax/syntax002.mp3
 * [Slack](https://slack.com)
 * [WebTorrent](https://webtorrent.io)
   * https://github.com/webtorrent/webtorrent
-* [Soctt WebRtc Mirror - TBC](TBC)
+* [Soctt WebRtc Mirror](https://github.com/stolinski/bboy-tools/blob/master/client/tools/Timemachine.js)
 * [MediaRecorder](https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder)
 * [Electron](https://electron.atom.io/)
 * [Kap](https://getkap.co/)
 * [Wes Security Cam](https://github.com/wesbos/HTML5-Security-Camera)
-* [Scott Colorbars YouTube - TBC](TBC)
+* [Scott Colorbars YouTube](https://www.youtube.com/watch?v=4cuqYDnekpg)
 * [Wes Face Detection](https://github.com/wesbos/HTML5-Face-Detection)
 * [Fluent Conf](https://conferences.oreilly.com/fluent/fl-ca)
 
