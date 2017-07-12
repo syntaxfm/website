@@ -5,7 +5,6 @@ date: 1499256000000
 url: https://traffic.libsyn.com/syntax/syntax001_4.mp3
 ---
 
-## Show Notes
 * [Wes Bos' Site](https://wesbos.com)
 * [Level Up Tutorials site](https://www.leveluptutorials.com/)
 * [Level Up Tutorials YouTube channel](https://www.youtube.com/user/LevelUpTuts)

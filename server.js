@@ -1,33 +1,27 @@
-const express = require('express')
-const next = require('next')
-const Router = require('./routes').Router
+const express = require('express');
+const next = require('next');
 
-const dev = process.env.NODE_ENV !== 'production'
-const port = parseInt(process.env.PORT, 10) || 3000
-const app = next({ dev });
-const handle = app.getRequestHandler();
 const { getShows, getShow } = require('./lib/getShows');
+const { Router } = require('./routes');
 
-app.prepare()
-.then(() => {
-  const server = express()
+const app = next({ dev: process.env.NODE_ENV !== 'production' });
+const handle = app.getRequestHandler();
+const port = process.env.PORT || 3000;
 
-  // API endpoints
+app.prepare().then(() => {
+  const server = express();
+
   server.get('/api/shows', (req, res) => {
-    res.json(getShows());
+    res.status(200).json(getShows());
   });
 
   server.get('/api/shows/:number', (req, res) => {
     const show = getShow(req.params.number);
-    if (show) {
-      res.json(show);
-      return;
-    }
-    res.status(404).json({ message: 'Sorry not found' });
+    res.status(show ? 200 : 404).json(show || { message: 'Sorry not found' });
   });
 
 
-  // Custom Next.js URLs
+  // custom Next.js URLs
   Router.forEachPattern((page, pattern, defaultParams) => {
     server.get(pattern, (req, res) => {
       app.render(req, res, `/${page}`, Object.assign({}, defaultParams, req.query, req.params));
@@ -35,6 +29,7 @@ app.prepare()
   });
 
   // everything else
+  // server.get('*', handle); – this doesn't work, throws errors on static files
   server.get('*', (req, res) => handle(req, res));
   server.listen(port);
 });

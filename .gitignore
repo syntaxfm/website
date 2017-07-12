@@ -1,5 +1,5 @@
-.next/
-node_modules/
 .DS_store
-*.log
+.next/
 haters/
+node_modules/
+*.log
