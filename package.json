@@ -1,4 +1,9 @@
 {
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/wesbos/Syntax.git"
+  },
+  "license": "MIT",
   "engines": {
     "node": ">=8.1.2"
   },
@@ -7,10 +12,14 @@
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
     "deploy": "now",
-    "alias": "now alias"
+    "alias": "now alias",
+    "lint": "lint-staged"
   },
   "now": {
-    "alias": ["syntax", "syntax.fm"]
+    "alias": [
+      "syntax",
+      "syntax.fm"
+    ]
   },
   "dependencies": {
     "autoprefixer": "6.7.6",
@@ -33,7 +42,18 @@
     "speakingurl": "^13.0.0"
   },
   "devDependencies": {
+    "eslint": "3.19.0",
+    "eslint-config-airbnb": "15.0.2",
+    "eslint-plugin-import": "2.7.0",
+    "eslint-plugin-jsx-a11y": "5.1.1",
+    "eslint-plugin-react": "7.1.0",
+    "lint-staged": "4.0.1",
+    "pre-commit": "1.2.2",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1"
-  }
+  },
+  "lint-staged": {
+    "*.js": "eslint"
+  },
+  "pre-commit": "lint"
 }
