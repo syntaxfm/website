@@ -10,7 +10,10 @@
     "alias": "now alias"
   },
   "now": {
-    "alias": ["syntax", "syntax.fm"]
+    "alias": [
+      "syntax",
+      "syntax.fm"
+    ]
   },
   "dependencies": {
     "autoprefixer": "6.7.6",
