@@ -5,9 +5,12 @@ date: 1501020859844
 url: https://traffic.libsyn.com/syntax/Syntax004.mp3
 ---
 
+## Sponsor
+
+* [Deliciousbrains WP Migrate DB Pro](https://deliciousbrains.com/syntax) - Use the code SYNTAX for 20% off
+
 ## Show Notes
 
-* [Deliciousbrains WP Migrate DB Pro](https://deliciousbrains.com/wp-migrate-db-pro/)
 * [WesBos Website](http://wesbos.com)
 * [Level Up Tutorials](https://leveluptutorials.com)
 * [WHY USE WWW?](http://www.yes-www.org/why-use-www/)
