@@ -17,7 +17,7 @@ export default () => (
         </div>
 
         <div className="person">
-          <img src="https://pbs.twimg.com/profile_images/430383711448625153/P4yD2jvY_400x400.jpeg" alt="" className="avatar"/>
+          <img src="https://pbs.twimg.com/profile_images/895046840361525248/_ulRKC5e_400x400.jpg" alt="" className="avatar"/>
           <h3>Scott Tolinski</h3>
           <a target="_blank" href="https://twitter.com/stolinski" className="person__social person__social--twitter">@stolinski</a>
           <p>Web Developer, Creator of <a href="https://leveluptutorials.com/">Level Up Tuts</a>, Bboy, Robotops Crew and <a target="_blank" href="https://www.youtube.com/c/leveluptuts">Youtuber</a></p>
