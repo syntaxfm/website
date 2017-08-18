@@ -33,7 +33,6 @@ In this episode, Scott talks about his unconventional career path and how to gro
 ## Shameless Plugs
 * [Wes' Courses](https://wesbos.com/courses)
 * [Level UP Tutorials Youtube](https://www.youtube.com/user/LevelUpTuts)
-* [How to GraphQL](https://www.howtographql.com)
 
 ## Twitter
 * [Wes Bos](https://twitter.com/wesbos)
