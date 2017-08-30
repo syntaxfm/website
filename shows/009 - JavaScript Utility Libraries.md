@@ -39,11 +39,12 @@ Scott and talk all about different JavaScript utility libraries that make you sa
 ## Sick Picks
 * [Essentialism Book](http://amzn.to/2vqp77J)
 * [Essentialism Audiobook](http://amzn.to/2xLolPn)
-* [Satechi Docks](https://satechi.net/collections/hubs-docks)
+* [Satechi Aluminum Multi-Port Adapter](http://amzn.to/2xwiy0W)
+* [Satechi all Docks](http://amzn.to/2xwuGPm)
 
 ## Shameless Plugs
 * [Dhanish Gajjar's Instagram](https://www.instagram.com/dhanishgajjar/)
-* [Pavel Tsiukhtsiayeu's Snippet Tool]()
+* [Paweł Grzybek's Snippet Generator](https://pawelgrzybek.com/snippet-generator/)
 
 ## Twitter
 * [Wes Bos](https://twitter.com/wesbos)
