@@ -12,7 +12,7 @@ export default () => (
         <div className="person">
           <img src="https://pbs.twimg.com/profile_images/877525007185858562/7G9vGTca_400x400.jpg" alt="" className="avatar"/>
           <h3>Wes Bos</h3>
-          <a href="https://twitter.com/wesbos" className="person__social person__social--twitter">@wesbos</a>
+          <a target="_blank" href="https://twitter.com/wesbos" className="person__social person__social--twitter">@wesbos</a>
           <p>Full Stack JavaScript Developer. Creator of really good <a target="_blank" href="https://wesbos.com/courses">web development courses</a>. BBQ enthusiast.</p>
         </div>
 
