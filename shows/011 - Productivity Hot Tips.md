@@ -36,7 +36,7 @@ Scott and Wes - Do you sleep? How do you get so much done? You replied to me way
 * [Text Expander](https://smilesoftware.com/textexpander)
 * [aText](https://www.trankynam.com/atext/)
 * [Evernote](https://evernote.com/)
-* [Video Speed Controller]https://chrome.google.com/webstore/detail/video-speed-controller/nffaoalbilbmmfgbnbgppjihopabppdk?hl=en()
+* [Video Speed Controller](https://chrome.google.com/webstore/detail/video-speed-controller/nffaoalbilbmmfgbnbgppjihopabppdk?hl=en)
 * [Karabiner Elements](https://github.com/tekezo/Karabiner-Elements/)
 * [Better Touch Tool](https://www.boastr.net/)
 * [Focus App](https://heyfocus.com/)
