@@ -58,7 +58,7 @@ Sorry windows users.
 * Add Shift to select those itesm
 * `⌘+option+Arrow` to switch tabs
 * `⌘ + Number` to go to that tab #
-* [Enable tabbing on OSX dialog Boxes](wesbos.com/osx-dialog-boxes-keyboard-tab/)
+* [Enable tabbing on OSX dialog Boxes](http://wesbos.com/osx-dialog-boxes-keyboard-tab/)
 * Press question mark in any google app to get a list of shortcuts
 
 ## Sick Picks
