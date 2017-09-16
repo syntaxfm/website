@@ -55,7 +55,7 @@ Sorry windows users.
 * `⌘ + Shift + T` to reopen a closed tab
 * Crank up **Key Repeat** in your keyboard setting
 * `Option + ←/→` to move word-by-word
-* Add Shift to select those itesm
+* Add Shift to select those items
 * `⌘+option+Arrow` to switch tabs
 * `⌘ + Number` to go to that tab #
 * [Enable tabbing on OSX dialog Boxes](wesbos.com/osx-dialog-boxes-keyboard-tab/)
