@@ -55,7 +55,7 @@ Sorry windows users.
 * `⌘ + Shift + T` to reopen a closed tab
 * Crank up **Key Repeat** in your keyboard setting
 * `Option + ←/→` to move word-by-word
-* Add Shift to select those itesm
+* Add Shift to select those items
 * `⌘+option+Arrow` to switch tabs
 * `⌘ + Number` to go to that tab #
   * [Scott's gist with keybindings for VSCode](https://gist.github.com/stolinski/f49adedf7053b76634f437e824188a70)
