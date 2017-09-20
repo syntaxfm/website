@@ -68,5 +68,5 @@ Sorry windows users.
 
 ## Shameless Plugs
 * [Level Up Tuts](https://www.leveluptutorials.com/)
-* [Wes' Courses](https://wesbos.com/coursres)
+* [Wes' Courses](https://wesbos.com/courses)
 
