@@ -1,7 +1,7 @@
 ---
 number: 014
 title: Our Stacks Explained
-date: 0
+date: 1507122874000
 url: https://traffic.libsyn.com/syntax/Syntax014.mp3
 ---
 
