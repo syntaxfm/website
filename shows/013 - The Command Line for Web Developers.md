@@ -29,6 +29,7 @@ Need to learn Docker? Check out Nick Janetakis' [Dive into Docker](http://wes.io
 * [ZSH Syntax Highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
 * [z Frecent](https://github.com/rupa/z) (GET THIS)
 * [Tree](http://brewformulas.org/Tree)
+* [Wes Custom Tree](https://gist.github.com/wesbos/1432b08749e3cd2aea22fcea2628e2ed)
 * [Brew](https://brew.sh/)
 * [Brew Cask](https://caskroom.github.io/)
 * [Trash CLI](https://github.com/sindresorhus/trash-cli)
