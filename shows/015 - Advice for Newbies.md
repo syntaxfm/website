@@ -1,7 +1,7 @@
 ---
 number: 015
 title: Advice for New Developers, Imposter Syndrome and Interviewing at Google
-date: 0
+date: 1507727231000
 url: https://traffic.libsyn.com/syntax/Syntax016.mp3
 ---
 
