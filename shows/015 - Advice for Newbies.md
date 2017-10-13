@@ -18,7 +18,7 @@ Scott and Wes dish out some tasty advice to developers who are new to web develo
 This show is light on links :)
 
 * [The Gap by Ira Glass](https://vimeo.com/85040589)
-* [Hackathon Stater](https://github.com/sahat/hackathon-starter)
+* [Hackathon Starter](https://github.com/sahat/hackathon-starter)
 
 ## Sick Picks
 
