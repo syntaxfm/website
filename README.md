@@ -1,10 +1,13 @@
 # Syntax.
 
+## Requirements
+- Node 8.1.2 or higher
+
 ## Development
 
 First you `npm install`
 
-Then you `npm run dev`
+Then you `npm run dev` and visit `http://localhost:3000`.
 
 Then you do some work.
 
