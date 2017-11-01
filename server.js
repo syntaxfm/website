@@ -1,16 +1,15 @@
-const express = require('express')
-const next = require('next')
-const Router = require('./routes').Router
+const express = require('express');
+const next = require('next');
+const Router = require('./routes').Router;
 
-const dev = process.env.NODE_ENV !== 'production'
-const port = parseInt(process.env.PORT, 10) || 3000
+const dev = process.env.NODE_ENV !== 'production';
+const port = parseInt(process.env.PORT, 10) || 6969;
 const app = next({ dev });
 const handle = app.getRequestHandler();
 const { getShows, getShow } = require('./lib/getShows');
 
-app.prepare()
-.then(() => {
-  const server = express()
+app.prepare().then(() => {
+  const server = express();
 
   // API endpoints
   server.get('/api/shows', (req, res) => {
@@ -25,7 +24,6 @@ app.prepare()
     }
     res.status(404).json({ message: 'Sorry not found' });
   });
-
 
   // Custom Next.js URLs
   Router.forEachPattern((page, pattern, defaultParams) => {
