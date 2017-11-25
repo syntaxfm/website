@@ -47,6 +47,7 @@ Need to learn Docker? Check out Nick Janetakis' [Dive into Docker](https://divei
 * [Scott's VS Code Series on YouTube](https://www.youtube.com/watch?v=4q1tD39Mk_A)
 * [Sublime Keymap for VS Code](https://marketplace.visualstudio.com/items?itemName=ms-vscode.sublime-keybindings)
 * [ES6 Absolute Imports with Webpack](https://moduscreate.com/es6-es2015-import-no-relative-path-webpack/)
+* [Autorename Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag)
 
 ## Sick Picks
 * Scott: [Moonwalking with Einstein](http://amzn.to/2ycbnul)
