@@ -27,7 +27,7 @@ They are currently offering Personal Training and Nutrition Plans for $149 (Regu
 * [Starting Strength](https://startingstrength.com/)
 * 28:00 - All About [Dev Lifts](https://devlifts.io)
 * [Jeff Nippard Youtube](https://www.youtube.com/channel/UC68TLK0mAEzUyHx5x5k-S1Q)
-* 34:00 — Nurition
+* 34:00 — Nutrition
 * 36:00 — Wes' Keto Nutrition Plan
 * [Dom D'Agostino Keto Interview](https://www.youtube.com/watch?v=keSoSyu9m7c)
 * [MyFitnessPal](https://www.myfitnesspal.com/)
