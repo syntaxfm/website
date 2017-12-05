@@ -20,7 +20,7 @@ export default class SponsorPage extends React.Component {
           <h1>Syntax Sponsorship</h1>
           <p>
             Interested in getting your message to thousands of developers? We're interested in helping! If you think our
-            audience is a good fit for your, let's chat about how we can make this sponsorship worth it for you.
+            audience may be a good fit, let's chat about how we can make this sponsorship worth it for you.
           </p>
           <figure style={{ float: 'left', marginRight: 35 }}>
             <img
@@ -34,10 +34,10 @@ export default class SponsorPage extends React.Component {
           <p>
             Syntax is a fun — and sometimes funny — Podcast for Web Developers hosted by{' '}
             <a href="https://wesbos.com">Wes Bos</a> and <a href="http://scotttolinski.com/">Scott Tolinkski</a>, two
-            independent full stack developers who create online training courses. Each episode Scott and Wes break down topics to provide <em>"Tasty Treats"</em> to the audience — applicable tips and nuggets of information to help Web Developers in their careers.
+            independent full stack developers who create online training courses. In each episode Scott and Wes break down topics to provide <em>"Tasty Treats"</em> to the audience — applicable tips and nuggets of information to help Web Developers in their careers.
           </p>
           <p>
-            Sponsoring the Syntax podcast is ideal for anyone looking to reach a engaged, technical, high income
+            Sponsoring the Syntax podcast is ideal for anyone who is looking to reach a engaged, technical, high income
             audience. This may include:
           </p>
           <ul>
@@ -51,23 +51,23 @@ export default class SponsorPage extends React.Component {
             </li>
           </ul>
           <h2>Audience Size && Breakdown</h2>
-          <p>Each Sponsorship spot will receive an average of 28,000 downloads. Each spot will receive at least 23,000 downloads and some of the shows reach 40-50,000 after a few months of listening.</p>
+          <p>Each Sponsorship spot will receive an average of 28,000 downloads. Each spot will receive at least 23,000 downloads and some of the shows reach 40-50,000 downloads just months after being launched.</p>
 
-          <p>While exact numbers are hard to get, we can tell you this about our audience</p>
+          <p>While exact numbers are hard to get, here are a few nuggets of information about our audience that should give you an idea of who is listening:</p>
           <ul>
             <li>Syntax has been in the Overcast <strong>top 20</strong> Technology podcasts since launch</li>
             <li>
-              The geographic makeup of the audience 44% USA, 8% Canada, 8% Unitedy Kingdom, 4% Germany, 4% Australia, 2%
+              The geographic makeup of the audience consists of 44% USA, 8% Canada, 8% United Kingdom, 4% Germany, 4% Australia, 2%
               Sweden, 2% Netherlands.
             </li>
             <li>The rest of the audience is fairly well distributed between the rest of Europe, Brazil and India.</li>
             <li>Of those who listen in the browser, 80% use Chrome, 13% Safari and 7% Firefox</li>
-            <li>Of those who listen on phones, it's about 80% iPhone and 20% Android</li>
+            <li>Of those who listen on phones, it's roughly 80% iPhone users and 20% Android users</li>
             <li>
               According to Twitter's Analytic tools, 48% of Wes' U.S. audience has an income of $75,000 or greater.
             </li>
-            <li>51% are aged 18 to 24 and 22% 25 to 34</li>
-            <li>The top "lifestyle type" is Online Buyers</li>
+            <li>51% of Wes' followers are aged 18 to 24 and 22% 25 to 34</li>
+            <li>The top computed "lifestyle type" is Online Buyers</li>
           </ul>
 
           <figure style={{ float: 'right', marginLeft: 20 }}>
@@ -79,10 +79,10 @@ export default class SponsorPage extends React.Component {
 
           <h2>Audience Interests</h2>
           <p>
-            The Syntax audience is primarily developers, about half the shows focus on hard technocal skills while the other half is focused on soft skills or topics tangentaly related to web development.
+            The Syntax audience is primarily web developers, about half of the shows focus on hard technical skills while the other half on soft skills or topics tangentially related to web development.
           </p>
 
-          <p>The audience's technical interests include:</p>
+          <p>The audience's technical interests include but are not limited to:</p>
 
           <ul>
             <li>CSS Libraries, Frameworks</li>
@@ -100,7 +100,7 @@ export default class SponsorPage extends React.Component {
             <li>Marketing & Passive Income</li>
             <li>Work / Life Balance</li>
             <li>Fitness and Nutrition</li>
-            <li>Premium Products — Scott and Wes weekly have a "Sick Pick", which is a product or service that they have been enjoying lately.</li>
+            <li>Premium Products — Scott and Wes have a weekly have a "Sick Pick", which is a product or service that they have been enjoying lately.</li>
           </ul>
 
           <h2>What You'll Get && Pricing</h2>
@@ -111,9 +111,9 @@ export default class SponsorPage extends React.Component {
           <p>As part of the sponsorship package, you'll get:</p>
 
           <ol>
-            <li>A sponsorship section at the top of the episode show notes. These notes are listed on both the Syntax.fm website as well as on each user's mobile device when they listen to the podcast. This is a great opportunity to list any coupon codes or unique links you'd like listeners to click on.</li>
+            <li>A sponsorship section at the top of the episode show notes. These notes will be listed on both the Syntax.fm website as well as on each user's mobile device as they listen to the podcast. This is a great opportunity to list any coupon codes or unique links you'd like listeners to click on.</li>
             <li>A mention and single line at the top of the show. For Example, Wes might say <em>This episode is sponsored by Freshbooks — They are my favourite cloud accounting software and we will talk about why part way through the show.</em></li>
-            <li>A 1-2 min sponsor spot part way through the show. While we can do a regular ad read, we have found that having Scott or Wes talk about the product or service and their experience with it works really well.</li>
+            <li>A 1-2 min sponsor spot mid way during the the episode. While we can do a regular ad read, we have found that having Scott or Wes talk about the product or service and their experience which gives it an added personal touch.</li>
             <li>A thank-you tweet from <a href="">@SyntaxFM</a> with a link to your product or service from the show's twitter account.</li>
           </ol>
 
@@ -123,7 +123,7 @@ export default class SponsorPage extends React.Component {
 
           <p>As part of their company launch, Dev Lifts sponsored Syntax for a single episode, offering a $50 off coupon to Syntax listeners.</p>
 
-          <p>Within 10 days of sponsoring the episode, Dev Lifts had generated over $9,500 USD in revenue that was directly tied to Syntax listeners, getting more than 10× return on their sponsorship investment.</p>
+          <p>Within 10 days of sponsoring the episode, Dev Lifts had generated over $9,500 USD in revenue which was directly tied to Syntax listeners, resulting in more than 10× return on their sponsorship investment.</p>
 
           <p>DevLifts is now a sponsoring multiple episodes and will be using Syntax as an ongoing revenue and leads source.</p>
         </div>
