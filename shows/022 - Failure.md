@@ -9,7 +9,7 @@ Failure. How do you deal with it? How to learn from it? How do you know when you
 
 ## Snipcart — Sponsor
 
-Snipcart allows you to create online shopping carts without any backend work. It's entirely client-side which means it's the perfect fit for anyone building a SPA in React, Angular or any other framework. Check out the full list of features over at [Snipcart.com/syntax](https://snipcart.com/syntax) and sign up for three months free!
+Snipcart allows you to create online shopping carts without any backend work. It's entirely client-side which means it's the perfect fit for anyone building a SPA in React, Angular or any other framework. Check out the full list of features over at [Snipcart.com/syntax](https://snipcart.com/syntax?utm_source=syntax&utm_medium=podcast&utm_campaign=syntax1) and sign up for three months free!
 
 ## Get In Shape with DevLifts — Sponsor
 
