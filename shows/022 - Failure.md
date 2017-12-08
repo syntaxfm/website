@@ -84,4 +84,4 @@ Snipcart allows you to create online shopping carts without any backend work. It
 * [Wes' Facebook](https://www.facebook.com/wesbos.developer)
 * [Scott's Twitter](https://twitter.com/stolinski)
 * [Scott's Instagram](https://www.instagram.com/stolinski/)
-* Make sure to include [@SynaxFM](https://twitter.com/SyntaxFM) in your tweets
+* Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets
