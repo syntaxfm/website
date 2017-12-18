@@ -13,7 +13,7 @@ Snipcart allows you to create online shopping carts without any backend work. It
 
 ## Freshbooks — Sponsor
 
-If you are a small business or freelancer check out[Freshbooks.com Cloud Accounting](https://freshbooks.com/syntax) and get 30 days free. Make sure to enter SYNTAX into the "How did you hear about us" section.
+If you are a small business or freelancer check out [Freshbooks.com Cloud Accounting](https://freshbooks.com/syntax) and get 30 days free. Make sure to enter SYNTAX into the "How did you hear about us" section.
 
 ## The Show Notes!
 
@@ -52,7 +52,7 @@ If you are a small business or freelancer check out[Freshbooks.com Cloud Account
 
 * Wes launched his [Learn Node](https://LearnNode.com) Course
 * Wes updated his [ES6 for Everyone](https://ES6.io) Course
-* Lots of feedback on Wes' [JavaScript30](https://JavaSCript30.com) course
+* Lots of feedback on Wes' [JavaScript30](https://JavaScript30.com) course
 * Stickers!
 
 16:20
@@ -75,7 +75,7 @@ If you are a small business or freelancer check out[Freshbooks.com Cloud Account
 * Releasing lots and lots of Content
 * CSS Grid
 * VS Code
-* Some ideas around JavaScript and CSS Courses (tweet Wes your feedback)
+* Some ideas around JavaScript and CSS Courses [tweet Wes your feedback](https://twitter.com/wesbos)
 * If it's not a Hell Yes, it's a no
 * Double down on what works
 * New Checkout Experience
