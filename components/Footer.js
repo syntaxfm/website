@@ -1,7 +1,7 @@
 export default () => (
   <footer className="bottom">
     <p>
-      Want to <a href="/sponor">Sponsor the Podcast?</a>
+      Want to <a href="/sponsor">Sponsor the Podcast?</a>
     </p>
     <p>&copy; Wes Bos && Scott Tolinkski {new Date().getFullYear()}</p>
     <p>
