@@ -9,7 +9,7 @@ Scott and Wes dive into CSS BEM — What is it? Why do you need it? How does it 
 
 ## Sign up for D3 in 5 Days — Sponsor
 
-D3 has a bit of a bad reputation for being hard to learn so Ben Clinkinbeard has put together this awesome 5 day email course that will get you comfortable with the 3 or 4 fundamental concepts that are needed to create amazing data visualizations with D3.js. [Get it now]([D3 in 5 Days](http://d3in5days.com/syntax/))
+D3 has a bit of a bad reputation for being hard to learn so Ben Clinkinbeard has put together this awesome 5 day email course that will get you comfortable with the 3 or 4 fundamental concepts that are needed to create amazing data visualizations with D3.js. [Get it now](http://d3in5days.com/syntax/)
 
 ## The Show Notes!
 
