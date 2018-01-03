@@ -1,7 +1,7 @@
 ---
 number: 026
 title: All About Redux && Cookies vs JWT
-date: 1414988000000
+date: 1514988000000
 url: https://traffic.libsyn.com/syntax/Syntax026.mp3
 ---
 
