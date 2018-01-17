@@ -36,7 +36,7 @@ If you are a small business or freelancer check out [Freshbooks.com Cloud Accoun
 
 * Performance Considerations
 * MEGA PROMISES
-* Promise.all()
+* `Promise.all()`
 * Here is an example:
 * const [weather, store] = Promise.all(getWeather(), getStores());
 
@@ -46,9 +46,9 @@ If you are a small business or freelancer check out [Freshbooks.com Cloud Accoun
 * Most new Browser APIs are build on Promises
 * [Fetch()](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
 * Some examples:
-* await fetch('https://api.github.com/users/wesbos').then(data => data.json())
+* `await fetch('https://api.github.com/users/wesbos').then(data => data.json())`
 * OR
-* await (await fetch('https://api.github.com/users/wesbos')).json()
+* `await (await fetch('https://api.github.com/users/wesbos')).json()`
 * [Axios](https://github.com/axios/axios)
 
 22:48
@@ -75,8 +75,8 @@ If you are a small business or freelancer check out [Freshbooks.com Cloud Accoun
 * View [my slides](wesbos.github.io/Async-Await-Talk/) for some code examples.
 * Try/Catch
 * High Order Function
-* Just handle the error when you callIt().catch(dealWithIt);
-* Node's process.on('unhandledRejection') event
+* Just handle the error when you `callIt().catch(dealWithIt);`
+* Node's `process.on('unhandledRejection')` event
 
 36:00
 
