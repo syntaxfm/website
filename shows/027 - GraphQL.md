@@ -13,7 +13,7 @@ Snipcart allows you to create online shopping carts without any backend work. It
 
 If you are a small business or freelancer check out [Freshbooks.com Cloud Accounting](https://freshbooks.com/syntax) and get 30 days free. Make sure to enter SYNTAX into the "How did you hear about us" section.
 
-## { show(id: 027) { notes }}
+## The Show Notes!
 
 02:40
 
