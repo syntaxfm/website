@@ -72,7 +72,7 @@ If you are a small business or freelancer check out [Freshbooks.com Cloud Accoun
 30:00
 
 * Error Handling Methods
-* View [my slides](wesbos.github.io/Async-Await-Talk/) for some code examples.
+* View [my slides](https://wesbos.github.io/Async-Await-Talk/) for some code examples.
 * Try/Catch
 * High Order Function
 * Just handle the error when you callIt().catch(dealWithIt);
