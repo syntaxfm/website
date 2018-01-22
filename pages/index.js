@@ -16,6 +16,7 @@ export default class IndexPage extends React.Component {
     this.state = {
       currentShow,
       currentPlaying: currentShow,
+      currentTime: 0
     };
   }
 
@@ -33,12 +34,23 @@ export default class IndexPage extends React.Component {
     }
   }
 
+  componentDidMount() {
+    console.log('mounted main!');
+    if(!localStorage.lastPlayed) return
+      const {podcast, lastPlayed} = JSON.parse(localStorage.getItem('lastPlayed'))
+      this.setState({
+        currentPlaying: podcast,
+        currentShow: podcast
+      })
+  }
+
   setCurrentPlaying = currentPlaying => {
     console.log('Setting current playing');
     this.setState({ currentPlaying });
   };
 
   render() {
+    console.log('main render being called!!');
     const { shows = [], baseURL } = this.props;
     const { currentShow, currentPlaying } = this.state;
     // Currently Shown shownotes
@@ -50,7 +62,7 @@ export default class IndexPage extends React.Component {
         <Meta show={show} baseURL={baseURL} />
         <div className="wrapper">
           <div className="show-wrap">
-            <Player show={current} />
+            <Player show={current} time={this.state.currentTime}/>
             <ShowList
               shows={shows}
               currentShow={currentShow}

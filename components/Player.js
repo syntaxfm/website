@@ -3,13 +3,13 @@ import Show from './Show';
 import formatTime from '../lib/formatTime';
 
 export default class Player extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       progressTime: 50,
       playing: false,
       duration: 0,
-      currentTime: 0,
+      currentTime: this.props.time,
       playbackRate: 1
     }
   }
@@ -30,10 +30,12 @@ export default class Player extends React.Component {
 
   scrub = (e) => {
     const scrubTime = (e.nativeEvent.offsetX / this.progress.offsetWidth) * this.audio.duration;
+    localStorage.setItem('lastPlayed', JSON.stringify({podcast: this.props.show.displayNumber, lastPlayed: scrubTime}))
     this.audio.currentTime = scrubTime;
   }
 
   onPlayPause = (e) => {
+    // localStorage.setItem('lastPlayed', JSON.stringify({podcast: this.props.show.displayNumber, lastPlayed: this.state.currentTime}))
     this.setState({ playing: !this.audio.paused });
     const method = this.audio.paused ? 'add' : 'remove';
     document.querySelector('.bars').classList[method]('bars--paused'); // 💩
@@ -56,12 +58,25 @@ export default class Player extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    localStorage.setItem('lastPlayed', JSON.stringify({podcast: this.props.show.displayNumber, lastPlayed: this.state.currentTime}))
     if(this.props.show.number !== prevProps.show.number) {
+      this.audio.currentTime = this.state.currentTime
       this.audio.play();
     }
   }
 
+  componentDidMount() {
+    console.log('mounted player');
+    if(!localStorage.lastPlayed) return
+      const data = JSON.parse(localStorage.getItem('lastPlayed'))
+      this.setState({
+        currentTime: data.lastPlayed
+      })
+      console.log(this.state);
+  }
+
   render() {
+    console.log('player being rendered! ' + this.state.currentTime)
     const { show } = this.props;
     const { playing, progressTime, currentTime, duration } = this.state;
     return (
