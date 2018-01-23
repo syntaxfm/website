@@ -9,8 +9,8 @@ export default class Player extends React.Component {
     var lastPlayed = 0;
 
     if (typeof window !== 'undefined') {
-     const lp = localStorage.getItem('lastPlayed' + this.props.show.number);
-     if(lp) lastPlayed = JSON.parse(lp).lastPlayed;
+      const lp = localStorage.getItem('lastPlayed' + this.props.show.number);
+      if(lp) lastPlayed = JSON.parse(lp).lastPlayed;
     }
 
     this.state = {
@@ -51,7 +51,6 @@ export default class Player extends React.Component {
 
   scrub = (e) => {
     const scrubTime = (e.nativeEvent.offsetX / this.progress.offsetWidth) * this.audio.duration;
-    //localStorage.setItem('lastPlayed', JSON.stringify({podcast: this.props.show.displayNumber, lastPlayed: scrubTime}))
     this.audio.currentTime = scrubTime;
   }
 

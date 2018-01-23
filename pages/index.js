@@ -13,17 +13,9 @@ export default class IndexPage extends React.Component {
     super(props);
     const currentShow = props.url.query.number || props.shows[0].displayNumber;
 
-    var lastPlayed = 0;
-
-    if (typeof window !== 'undefined') {
-     const lp = localStorage.getItem('lastPlayed' + parseInt(currentShow));
-     if(lp) lastPlayed = JSON.parse(lp).lastPlayed;
-    }
-
     this.state = {
       currentShow,
-      currentPlaying: currentShow,
-      currentTime: lastPlayed
+      currentPlaying: currentShow
     };
   }
 
@@ -59,7 +51,7 @@ export default class IndexPage extends React.Component {
         <Meta show={show} baseURL={baseURL} />
         <div className="wrapper">
           <div className="show-wrap">
-            <Player show={current} time={this.state.currentTime}/>
+            <Player show={current} />
             <ShowList
               shows={shows}
               currentShow={currentShow}
