@@ -10,13 +10,20 @@ import Page from '../components/Page';
 
 export default class IndexPage extends React.Component {
   constructor(props) {
-    super();
+    super(props);
     const currentShow = props.url.query.number || props.shows[0].displayNumber;
+
+    var lastPlayed = 0;
+
+    if (typeof window !== 'undefined') {
+     const lp = localStorage.getItem('lastPlayed' + parseInt(currentShow));
+     if(lp) lastPlayed = JSON.parse(lp).lastPlayed;
+    }
 
     this.state = {
       currentShow,
       currentPlaying: currentShow,
-      currentTime: 0
+      currentTime: lastPlayed
     };
   }
 
@@ -32,16 +39,6 @@ export default class IndexPage extends React.Component {
     if (query.number) {
       this.setState({ currentShow: query.number });
     }
-  }
-
-  componentDidMount() {
-    console.log('mounted main!');
-    if(!localStorage.lastPlayed) return
-      const {podcast, lastPlayed} = JSON.parse(localStorage.getItem('lastPlayed'))
-      this.setState({
-        currentPlaying: podcast,
-        currentShow: podcast
-      })
   }
 
   setCurrentPlaying = currentPlaying => {
