@@ -10,7 +10,7 @@ import Page from '../components/Page';
 
 export default class IndexPage extends React.Component {
   constructor(props) {
-    super(props);
+    super();
     const currentShow = props.url.query.number || props.shows[0].displayNumber;
 
     this.state = {
@@ -39,7 +39,6 @@ export default class IndexPage extends React.Component {
   };
 
   render() {
-    console.log('main render being called!!');
     const { shows = [], baseURL } = this.props;
     const { currentShow, currentPlaying } = this.state;
     // Currently Shown shownotes
