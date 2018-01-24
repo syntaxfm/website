@@ -2,7 +2,7 @@
 number: 029
 title: Hosting & Servers — Heroku, Now, Galaxy, Digital Ocean, Linode, Docker, Netlify and more!
 date: 1516803199637
-url: https://traffic.libsyn.com/syntax/Syntax028.mp3
+url: https://traffic.libsyn.com/syntax/Syntax029.mp3
 ---
 
 ## Xojo — Sponsor
