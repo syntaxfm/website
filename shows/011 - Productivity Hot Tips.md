@@ -63,7 +63,7 @@ Sorry windows users.
 * Press question mark in any google app to get a list of shortcuts
 
 ## Sick Picks
-* Scott: [Rhino Sheild Case](http://amzn.to/2iXXxZE)
+* Scott: [Rhino Shield Case](http://amzn.to/2iXXxZE)
 * Wes: [Deep Work](https://www.amazon.ca/Deep-Work-Focused-Success-Distracted/dp/1455586692)
 
 ## Shameless Plugs
