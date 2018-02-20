@@ -39,7 +39,7 @@ export default class SponsorPage extends React.Component {
             to help Web Developers in their careers.
           </p>
           <p>
-            Sponsoring the Syntax podcast is ideal for anyone who is looking to reach a engaged, technical, high income
+            Sponsoring the Syntax podcast is ideal for anyone who is looking to reach an engaged, technical, high income
             audience. This may include:
           </p>
           <ul>
