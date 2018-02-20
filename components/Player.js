@@ -3,23 +3,44 @@ import Show from './Show';
 import formatTime from '../lib/formatTime';
 
 export default class Player extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
+    var lastPlayed = 0;
+
+    if (typeof window !== 'undefined') {
+      const lp = localStorage.getItem('lastPlayed' + this.props.show.number);
+      if(lp) lastPlayed = JSON.parse(lp).lastPlayed;
+    }
+
     this.state = {
       progressTime: 50,
       playing: false,
       duration: 0,
-      currentTime: 0,
-      playbackRate: 1
+      currentTime: lastPlayed,
+      playbackRate: 1,
+      timeWasLoaded: lastPlayed !== 0,
     }
+
   }
 
   timeUpdate = (e) => {
+    // Check if the user already had a curent time
+    if(this.state.timeWasLoaded) {
+      const lp = localStorage.getItem('lastPlayed' + this.props.show.number);
+      if(lp) {
+        currentTime = JSON.parse(lp).lastPlayed;
+      }
+      this.state.timeWasLoaded = false;
+      e.currentTarget.currentTime = currentTime;
+    }
+    else {
+      var { currentTime = 0, duration = 0 } = e.currentTarget;
 
-    const { currentTime = 0, duration = 0 } = e.currentTarget;
-    const progressTime = (currentTime / duration) * 100;
-    if (Number.isNaN(progressTime)) return;
-    this.setState({ progressTime, currentTime, duration });
+      const progressTime = (currentTime / duration) * 100;
+      if (Number.isNaN(progressTime)) return;
+      this.setState({ progressTime, currentTime, duration });
+    }
   }
 
   togglePlay = () => {
@@ -57,13 +78,34 @@ export default class Player extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if(this.props.show.number !== prevProps.show.number) {
+
+      const lp = localStorage.getItem('lastPlayed' + this.props.show.number);
+      if(lp) {
+        const data = JSON.parse(lp);
+        this.setState({
+          currentTime: data.lastPlayed
+        });
+        this.audio.currentTime = data.lastPlayed;
+      }
       this.audio.play();
     }
+    else {
+      localStorage.setItem('lastPlayed' + this.props.show.number, JSON.stringify({ lastPlayed: this.state.currentTime}));
+    }
+  }
+
+  componentDidMount() {
+    if(!localStorage.getItem('lastPlayed' + this.props.show.number)) return
+      const data = JSON.parse(localStorage.getItem('lastPlayed' + this.props.show.number))
+      this.setState({
+        currentTime: data.lastPlayed
+      })
   }
 
   render() {
     const { show } = this.props;
     const { playing, progressTime, currentTime, duration } = this.state;
+
     return (
       <div className="player">
 

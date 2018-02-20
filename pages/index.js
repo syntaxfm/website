@@ -15,7 +15,7 @@ export default class IndexPage extends React.Component {
 
     this.state = {
       currentShow,
-      currentPlaying: currentShow,
+      currentPlaying: currentShow
     };
   }
 
