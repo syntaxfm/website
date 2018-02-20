@@ -1,54 +1,27 @@
-import React from 'react'
+import React from 'react';
 import Show from './Show';
 import formatTime from '../lib/formatTime';
 
 export default class Player extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
+    let lastPlayed = 0;
+
+    // for SSR
+    if (typeof window !== 'undefined') {
+      const lp = localStorage.getItem(`lastPlayed${this.props.show.number}`);
+      if (lp) lastPlayed = JSON.parse(lp).lastPlayed;
+    }
+
     this.state = {
       progressTime: 50,
       playing: false,
       duration: 0,
-      currentTime: 0,
-      playbackRate: 1
-    }
-  }
-
-  timeUpdate = (e) => {
-
-    const { currentTime = 0, duration = 0 } = e.currentTarget;
-    const progressTime = (currentTime / duration) * 100;
-    if (Number.isNaN(progressTime)) return;
-    this.setState({ progressTime, currentTime, duration });
-  }
-
-  togglePlay = () => {
-    const method = this.state.playing ? 'pause' : 'play';
-    const classMethod = this.state.playing ? 'add' : 'remove';
-    this.audio[method]();
-  }
-
-  scrub = (e) => {
-    const scrubTime = (e.nativeEvent.offsetX / this.progress.offsetWidth) * this.audio.duration;
-    this.audio.currentTime = scrubTime;
-  }
-
-  onPlayPause = (e) => {
-    this.setState({ playing: !this.audio.paused });
-    const method = this.audio.paused ? 'add' : 'remove';
-    document.querySelector('.bars').classList[method]('bars--paused'); // 💩
-  }
-
-  volume = (e) => {
-    this.audio.volume = e.currentTarget.value;
-  }
-
-  speed = (e) => {
-    let playbackRate = this.state.playbackRate + 0.25;
-    if (playbackRate > 2.5) {
-      playbackRate = 0.75;
-    }
-    this.setState({ playbackRate });
+      currentTime: lastPlayed,
+      playbackRate: 1,
+      timeWasLoaded: lastPlayed !== 0,
+    };
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -56,33 +29,95 @@ export default class Player extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if(this.props.show.number !== prevProps.show.number) {
+    if (this.props.show.number !== prevProps.show.number) {
+      const lp = localStorage.getItem(`lastPlayed${this.props.show.number}`);
+      if (lp) {
+        const data = JSON.parse(lp);
+        this.setState({
+          currentTime: data.lastPlayed,
+        });
+        this.audio.currentTime = data.lastPlayed;
+      }
       this.audio.play();
+    } else {
+      localStorage.setItem(
+        `lastPlayed${this.props.show.number}`,
+        JSON.stringify({ lastPlayed: this.state.currentTime })
+      );
     }
   }
+
+  timeUpdate = e => {
+    console.log('Updating Time');
+    // Check if the user already had a curent time
+    if (this.state.timeWasLoaded) {
+      const lp = localStorage.getItem(`lastPlayed${this.props.show.number}`);
+      if (lp) {
+        e.currentTarget.currentTime = JSON.parse(lp).lastPlayed;
+      }
+      this.setState({ timeWasLoaded: false });
+    } else {
+      const { currentTime = 0, duration = 0 } = e.currentTarget;
+
+      const progressTime = currentTime / duration * 100;
+      if (Number.isNaN(progressTime)) return;
+      this.setState({ progressTime, currentTime, duration });
+    }
+  };
+
+  togglePlay = () => {
+    const method = this.state.playing ? 'pause' : 'play';
+    this.audio[method]();
+  };
+
+  scrub = e => {
+    const scrubTime = e.nativeEvent.offsetX / this.progress.offsetWidth * this.audio.duration;
+    this.audio.currentTime = scrubTime;
+  };
+
+  playPause = () => {
+    this.setState({ playing: !this.audio.paused });
+    const method = this.audio.paused ? 'add' : 'remove';
+    document.querySelector('.bars').classList[method]('bars--paused'); // 💩
+  };
+
+  volume = e => {
+    this.audio.volume = e.currentTarget.value;
+  };
+
+  speed = () => {
+    let playbackRate = this.state.playbackRate + 0.25;
+    if (playbackRate > 2.5) {
+      playbackRate = 0.75;
+    }
+    this.setState({ playbackRate });
+  };
 
   render() {
     const { show } = this.props;
     const { playing, progressTime, currentTime, duration } = this.state;
+
     return (
       <div className="player">
-
         <div className="player__section player__section--left">
           <button onClick={this.togglePlay}>
-            <p className="player__icon">{ playing ? '❚❚' : '►' }</p>
-            <p>{formatTime(currentTime)} / {formatTime(duration)}</p>
+            <p className="player__icon">{playing ? '❚❚' : '►'}</p>
+            <p>
+              {formatTime(currentTime)} / {formatTime(duration)}
+            </p>
           </button>
         </div>
 
         <div className="player__section player__section--middle">
-          <div className="progress" onClick={this.scrub} ref={(x) => this.progress = x} >
-            <div className="progress__time" style={{ width: progressTime + '%'}}></div>
+          <div className="progress" onClick={this.scrub} ref={x => (this.progress = x)}>
+            <div className="progress__time" style={{ width: `${progressTime}%` }} />
           </div>
-          <h3 className="player__title">Playing: {show.displayNumber}: {show.title}</h3>
+          <h3 className="player__title">
+            Playing: {show.displayNumber}: {show.title}
+          </h3>
         </div>
 
         <div className="player__section player__section--right">
-
           <button onClick={this.speed} className="player__speed">
             <p>FASTNESS</p>
             <span className="player__speeddisplay">{this.state.playbackRate} &times; </span>
@@ -113,20 +148,16 @@ export default class Player extends React.Component {
               <label htmlFor="vol100">Volume Level 100/100</label>
             </div>
           </div>
-
         </div>
 
-
-
         <audio
-          ref={(audio) => this.audio = audio}
-          onPlay={this.onPlayPause}
-          onPause={this.onPlayPause}
+          ref={audio => (this.audio = audio)}
+          onPlay={this.playPause}
+          onPause={this.playPause}
           onTimeUpdate={this.timeUpdate}
           onLoadedMetadata={this.timeUpdate}
           src={show.url}
-        ></audio>
-
+        />
       </div>
     );
   }
