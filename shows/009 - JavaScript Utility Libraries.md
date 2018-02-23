@@ -5,7 +5,7 @@ date: 1504098731000
 url: https://traffic.libsyn.com/syntax/Syntax009.mp3
 ---
 
-Scott and talk all about different JavaScript utility libraries that make you say "Dang, that's handy!"
+Scott and Wes talk all about different JavaScript utility libraries that make you say "Dang, that's handy!"
 
 ## Sponsor
 
