@@ -93,7 +93,7 @@ Listeners of this show get 20% off with the coupon code SYNTAX over at [xojo.com
 * Designing Emails
 * CSS is very limited
 * [MJML React Email Templating](https://mjml.io/)
-* [Tony](https://twitter.com/TonyRanieri/status/963591591159099393) from Twitter also told me about [HTML](https://heml.io/)
+* [Tony](https://twitter.com/TonyRanieri/status/963591591159099393) from Twitter also told me about [HEML](https://heml.io/)
 
 37:22
 
