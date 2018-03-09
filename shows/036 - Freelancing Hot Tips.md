@@ -9,7 +9,7 @@ In this Hasty Treat (Short episode) we answer your questions about Freelancing -
 
 ## Sign up for the Value Pricing Bootcamp - Sponsor
 
-Get Jonathan Stark's free 6 day email course on value based pricing for freelancers over at [http://valuepricingbootcamp.com](valuepricingbootcamp.com).
+Get Jonathan Stark's free 6 day email course on value based pricing for freelancers over at [valuepricingbootcamp.com](http://valuepricingbootcamp.com).
 
 Jonathan Stark is the author of [Hourly Billing is Nuts](https://expensiveproblem.com/hbin) and has worked with companies such as Staples, Time and T-Mobile. These days he routinely commands an effective hourly rate of $2000+ per hour, so I'd say you should check his course out.
 
