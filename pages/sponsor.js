@@ -122,9 +122,10 @@ export default class SponsorPage extends React.Component {
           </ul>
 
           <h2>What You'll Get && Pricing</h2>
+          <p>We have found that we get the best results for our advertisers when they sponsor at least 3 shows.</p>
           <p>
-            Currently each Sponsor spot is $800 USD per episode, though this price will increase as our audience reach
-            does. If you are booking 3 or more episodes, we will offer you a discount on the sponsorship package.
+            Currently each Sponsor spot is $800 USD per episode with a minimum of 3 episodes, though this price will
+            increase as our audience does. Single show sponsorships are $900.
           </p>
 
           <p>As part of the sponsorship package, you'll get:</p>
