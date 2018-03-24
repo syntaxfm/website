@@ -69,7 +69,7 @@ So many perf tips came in over twitter, so in addition to this podcast I'd recom
 19:00
 
 * Picture, picturefill and srcset=""
-* Article on [srcsrc and Picture](https://www.smashingmagazine.com/2014/05/responsive-images-done-right-guide-picture-srcset/)
+* Article on [srcset and Picture](https://www.smashingmagazine.com/2014/05/responsive-images-done-right-guide-picture-srcset/)
 * srcset vs picture/source elements
 
 25:00
@@ -113,7 +113,7 @@ So many perf tips came in over twitter, so in addition to this podcast I'd recom
 
 42:00
 
-* Async ans defer attributes on your script tags
+* Async and defer attributes on your script tags
 * [Amazing site that visualizes async and defer](http://www.growingwiththeweb.com/2014/02/async-vs-defer-attributes.html)
 
 
