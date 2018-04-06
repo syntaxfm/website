@@ -60,7 +60,7 @@ Developers, software engineers, designers, and web performance professionals flo
 33:00
 
 * Test Runners vs Assertion Libraries
-* [Jest](https://mochajs.org/)
+* [Jest](https://facebook.github.io/jest/)
 * [Mocha](https://mochajs.org/)
 * [Cucumber](https://cucumber.io/)
 * BBD (Big Black Dog)
