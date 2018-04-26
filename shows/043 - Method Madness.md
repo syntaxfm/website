@@ -5,7 +5,7 @@ date: 1524654511142
 url: https://traffic.libsyn.com/syntax/Syntax043.mp3
 ---
 
-Wes and Scott rattle through ~20 different Object and Arra Methods that will make you a better JavaScript developer.
+Wes and Scott rattle through ~20 different Object and Array Methods that will make you a better JavaScript developer.
 
 ## Freshbooks - Sponsor
 
