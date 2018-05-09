@@ -58,8 +58,8 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 
 27:19
 
-* What’s the best use case for JWP?
-* [JWP](https://jwt.io/)
+* What’s the best use case for JWT?
+* [JWT](https://jwt.io/)
 
 29:50
 
