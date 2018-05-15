@@ -2,7 +2,7 @@
 number: 046
 title: What's New in Javascript
 date: 1526475600202
-url: https://traffic.libsyn.com/syntax/Syntax045.mp3
+url: https://traffic.libsyn.com/syntax/Syntax046.mp3
 ---
 
 Scott and West talk about what’s new in JavaScript. 
@@ -38,7 +38,7 @@ They are also hiring! [netlify.com/careers](https://netlify.com/careers)
 * Browser-based API based on observables
 * Example uses: Tell me when this element is on the page, goes off the page or is halfway down the page
 
-10: 32 - [MDX](https://github.com/jamesknelson/mdx-loader)
+10: 32 - [MDX](https://github.com/mdx-js/mdx)
 
 * Webpack loader for MDX (i.e. JSX-infused Markdown) using mdx-it
 * Turns MarkDown files into components in Webpack
