@@ -89,7 +89,7 @@ They are also hiring! [netlify.com/careers](https://netlify.com/careers)
 ## ××× SIIIIICK ××× PIIIICKS ×××
 
 * Scott:[Dank Mono](https://dank.sh/)
-* Wes:[Video Doorbell Pro from Ring](https://parcelapp.net/)
+* Wes:[Video Doorbell Pro from Ring](https://shop.ring.com/products/video-doorbell-pro)
 
 ## Tweet us your tasty treats!
 
