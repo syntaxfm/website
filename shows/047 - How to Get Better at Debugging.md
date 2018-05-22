@@ -33,7 +33,7 @@ Check out Coffeecup's [CSS Grid.cc](https://cssgrid.cc/) builder tool and resour
 12:04
 
 * Use debugger commands in the browser
-* Set breakpoints (race conditions
+* Set breakpoints (race conditions)
 
 13:40
 
@@ -101,7 +101,7 @@ Check out Coffeecup's [CSS Grid.cc](https://cssgrid.cc/) builder tool and resour
   * 39:41 - Chrome & FF Layers for 3d and full view of canvas & window
   * 40:51 - Sensors for overriding fake devices sensors
     * Hot tip: Use Instagram on the desktop - Go to [Instagram](https://instagram.com) and set the user agent to iPad and it will work as it does on that actual device
-    * Hot tip: Get free internet on a plane - If the airplane offers free internet for a certain device, change your user agent to that device and then switch back
+    * Hot tip: Get free internet on a plane ;) - If the airplane offers free internet for a certain device, change your user agent to that device and then switch back
   * 43:12 - Favorite DevTools extensions
     * [Apollo](https://chrome.google.com/webstore/detail/apollo-client-developer-t/jdkknkkbebbapilgoeccciglkfbmbnfm?hl=en)
     * [React](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)
