@@ -115,7 +115,7 @@ Check out Coffeecup's [CSS Grid.cc](https://cssgrid.cc/) builder tool and resour
 ## ××× SIIIIICK ××× PIIIICKS ×××
 
 * Scott: [Hotel Tonight App](https://www.hoteltonight.com/)
-* Wes: Coffee table - If you're trying to build an outdoor coffee table, use a peice of granite
+* Wes: Coffee table - If you're trying to build an outdoor coffee table, use a piece of granite
 
 ## Shameless Plugs
 
