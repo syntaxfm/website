@@ -5,7 +5,7 @@ date: 1527080400561
 url: https://traffic.libsyn.com/syntax/Syntax047.mp3
 ---
 
-Scott and West detail the tips and tools you need to get better at debugging.
+Scott and Wes detail the tips and tools you need to get better at debugging.
 
 ## Freshbooks - Sponsor
 
