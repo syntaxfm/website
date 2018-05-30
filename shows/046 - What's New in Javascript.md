@@ -55,7 +55,7 @@ They are also hiring! [netlify.com/careers](https://netlify.com/careers)
 * [Web-Animation-JS Polyfill](https://github.com/web-animations/web-animations-js)
 * [Can I use](https://caniuse.com/)
 
-18:00 - [Window Face Detector API]()
+18:00 - [Window Face Detector API](https://twitter.com/wesbos/status/976097163834019842)
 
 * Create a new window.face detector and pass it an image tag and it returns an array of faces.
 
