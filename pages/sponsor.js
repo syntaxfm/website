@@ -24,7 +24,7 @@ export default class SponsorPage extends React.Component {
           </p>
           <figure style={{ float: 'left', marginRight: 35 }}>
             <img
-              src="https://scontent-cdt1-1.cdninstagram.com/t51.2885-15/e35/21296117_363593310764072_4619537012486045696_n.jpg"
+              src="https://instagram.fybz1-1.fna.fbcdn.net/vp/e04b7e1e1d5a28cb370b25bac0192b24/5BB284DA/t51.2885-15/e35/27576683_675183752871920_1707794213682282496_n.jpg"
               width="400"
             />
             <figcaption>
