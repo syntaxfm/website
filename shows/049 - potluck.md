@@ -11,7 +11,7 @@ It's a Potluck episode - you bring the questions and we turn them into tasty tre
 
 Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbooks.com/syntax) and put **SYNTAX** in the "How did you hear about us?" section.
 
-## Cofeecup's CSS Grid Builder Tool
+## CoffeeCup's CSS Grid Builder Tool
 
 Check out Coffeecup's [CSS Grid.cc](https://cssgrid.cc/) builder tool and resources to learn, prototype and build next gen layouts with CSS Grid!
 
