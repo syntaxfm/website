@@ -65,6 +65,8 @@ Check out Coffeecup's [CSS Grid.cc](https://cssgrid.cc/) builder tool and resour
 
 * What are other programming podcasts you listen to?
 
+__Want to submit a question for our next potluck episode?__ [Check out our tasty Listener Questions form](https://docs.google.com/forms/d/e/1FAIpQLSfQlAo1wXHiJMySdU-h8QMtfoz92aMS9eycEHXB6eRCLh8KHA/viewform).
+
 ## ××× SIIIIICK ××× PIIIICKS ×××
 
 * Wes: [SpikeBall](https://amzn.to/2kzAjXO) / [Slammo](https://amzn.to/2shGaVM)
