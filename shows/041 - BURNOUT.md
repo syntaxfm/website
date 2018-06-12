@@ -45,7 +45,7 @@ Developers, software engineers, designers, and web performance professionals flo
 
 * Aggressively turn down meetings
 * Work to cut out busy work
-* [Locus on Control](https://en.wikipedia.org/wiki/Locus_of_control)
+* [Locus of Control](https://en.wikipedia.org/wiki/Locus_of_control)
 * Managing Email and Notifications
 * Scrubbing Plates
 
