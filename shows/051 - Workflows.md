@@ -7,7 +7,7 @@ url: https://traffic.libsyn.com/syntax/Syntax051.mp3
 
 It's a workflow extravaganza! Scott and Wes talk about their development workflows, covering everything from design to deployment.
 
-## Cofeecup's CSS Grid Builder Tool
+## Coffeecup's CSS Grid Builder Tool
 
 Check out Coffeecup's [CSS Grid.cc](https://cssgrid.cc/) builder tool and resources to learn, prototype and build next gen layouts with CSS Grid!
 
