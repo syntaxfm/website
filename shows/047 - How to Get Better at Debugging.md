@@ -11,7 +11,7 @@ Scott and Wes detail the tips and tools you need to get better at debugging.
 
 Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbooks.com/syntax) and put **SYNTAX** in the "How did you hear about us?" section.
 
-## Cofeecup's CSS Grid Builder Tool
+## Coffeecup's CSS Grid Builder Tool
 
 Check out Coffeecup's [CSS Grid.cc](https://cssgrid.cc/) builder tool and resources to learn, prototype and build next gen layouts with CSS Grid!
 
