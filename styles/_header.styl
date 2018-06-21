@@ -35,6 +35,7 @@
       justify-content space-between
   &__link
     flex 0 1 auto
+    margin-bottom 1rem
     @media (max-width: 570px)
       flex 1 1 auto
       margin-right 1rem
@@ -107,4 +108,7 @@
       &:before
         background-image  url('/static/icons/googleplay.png')
         background-color white
-
+    &--spotify a
+        background-color #1db954
+        &:before
+          background-image url('/static/icons/spotify.svg')
