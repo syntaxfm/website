@@ -33,7 +33,7 @@ export default () => (
           <li className="subscribe__link subscribe__link--googleplay"><a target="_blank" href="https://playmusic.app.goo.gl/?ibi=com.google.PlayMusic&isi=691797987&ius=googleplaymusic&link=https://play.google.com/music/m/Ityd325x5s5ivr3fc74hvvgeztu?t%3DSyntax_-_Tasty_Web_Development_Treats%26pcampaignid%3DMKT-na-all-co-pr-mu-pod-16">Google Play</a></li>
           <li className="subscribe__link subscribe__link--rss"><a target="_blank" href="http://feed.syntax.fm/rss">RSS</a></li>
           <li className="subscribe__link subscribe__link--spotify"><a target="_blank" href="https://open.spotify.com/show/4kYCRYJ3yK5DQbP5tbfZby?si=bOe7-kl6RnOHapMsVnFWgw">Spotify</a></li>
-          <li className="subscribe__link subscribe__link--google"><a target="_blank" href="https://open.spotify.com/show/4kYCRYJ3yK5DQbP5tbfZby?si=bOe7-kl6RnOHapMsVnFWgw">Spotify</a></li>
+          <li className="subscribe__link subscribe__link--google"><a target="_blank" href="https://open.spotify.com/show/4kYCRYJ3yK5DQbP5tbfZby?si=bOe7-kl6RnOHapMsVnFWgw">Google Podcast</a></li>
         </ul>
       </div>
 
