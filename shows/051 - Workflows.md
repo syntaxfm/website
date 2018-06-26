@@ -1,17 +1,17 @@
 ---
 number: 051
-title: Our Workflows: Design, Development, Git, Deployment
+title: Our Workflows — Design, Development, Git and Deployment
 date: 1529499600620
 url: https://traffic.libsyn.com/syntax/Syntax051.mp3
 ---
 
 It's a workflow extravaganza! Scott and Wes talk about their development workflows, covering everything from design to deployment.
 
-## Coffeecup's CSS Grid Builder Tool
+## Cofeecup's CSS Grid Builder Tool — Sponsor
 
 Check out Coffeecup's [CSS Grid.cc](https://cssgrid.cc/) builder tool and resources to learn, prototype and build next gen layouts with CSS Grid!
 
-## VueSchool.io's Vue.js Masterclass
+## VueSchool.io's Vue.js Masterclass — Sponsor
 Check out [VueSchool.io's new Vue.js Masterclass](https://vueschool.io/) taught by Alex Kyriakidis. Learn Vue.js along with best practices, modern Javascript, and other exciting technologies, by building a real-world application - a forum. The first 50 people to visit [VueSchool.io/syntax](https://vueschool.io/syntax) to get 25% off.
 
 ## Show Notes
@@ -85,7 +85,7 @@ Check out [VueSchool.io's new Vue.js Masterclass](https://vueschool.io/) taught 
 
 49:53 - Project Folder Structure
 
-* Wes: 
+* Wes:
   * Folder Structure - 0100, 0101…
 
 * Scott:
