@@ -6,7 +6,13 @@ export default () => (
     <div className="header__right">
       <div class="title">
         <h2 className="tagline">A Tasty Treats Podcast for Web Developers.</h2>
-        <a href="#" class="title__potluck-btn">Ask us a question</a>
+        <a
+          href="https://docs.google.com/forms/d/e/1FAIpQLSfQlAo1wXHiJMySdU-h8QMtfoz92aMS9eycEHXB6eRCLh8KHA/viewform"
+          target="_blank"
+          class="title__potluck-btn"
+        >
+          Ask us a question
+        </a>
       </div>
 
       <div className="people">
