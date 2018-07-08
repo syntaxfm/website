@@ -1,3 +1,15 @@
+// accessible way of hiding inputs and labels
+.sr-only 
+  border 0 !important
+  clip rect(1px, 1px, 1px, 1px) !important
+  clip-path inset(50%) !important
+  height 1px !important
+  overflow hidden !important
+  padding 0 !important
+  position absolute !important
+  width 1px !important
+  white-space nowrap !important
+
 .player
   bottom 0
   width 100%
@@ -8,7 +20,7 @@
   flex-wrap wrap
   position relative
   position sticky
-  top: -1px
+  top -1px
   z-index 2
   // flex-wrap wrap
   &__section
@@ -87,8 +99,6 @@
     &:hover
       label
         border-top 1px solid yellow
-    input
-      display none
     label
       border-top 1px solid green
       &:hover
@@ -101,7 +111,6 @@
       background green
       border-right 2px solid black
       display inline-block
-      font-size 0
       width 8px
       height 2.5rem
     input:checked ~ label
