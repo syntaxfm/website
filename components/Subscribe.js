@@ -1,3 +1,22 @@
+//Copies the the rss feed so you don't have to
+const feedCopy = () => {
+  const copyText = document
+    .getElementById("feedLink")
+    .getAttribute("href")
+    .toString();
+  // Create a dummy input to copy the string array inside it
+  var dummy = document.createElement("input");
+  document.body.appendChild(dummy);
+  dummy.setAttribute("id", "dummy_id");
+  document.getElementById("dummy_id").value = copyText;
+  dummy.select();
+
+  document.execCommand("copy");
+  alert(
+    "Please add this this link to your Rss Reader.\nCopied the text: " +
+      copyText
+  );
+};
 const Subscribe = props => (
   <div className="subscribe">
     <ul className="subscribe__links">
@@ -26,7 +45,10 @@ const Subscribe = props => (
         </a>
       </li>
       <li className="subscribe__link subscribe__link--stitcher">
-        <a target="_blank" href="http://www.stitcher.com/s?fid=142440&refid=stpr">
+        <a
+          target="_blank"
+          href="http://www.stitcher.com/s?fid=142440&refid=stpr"
+        >
           Stitcher
         </a>
       </li>
@@ -52,7 +74,12 @@ const Subscribe = props => (
         </a>
       </li>
       <li className="subscribe__link subscribe__link--rss">
-        <a target="_blank" href="http://feed.syntax.fm/rss">
+        <a
+          target="_blank"
+          href="http://feed.syntax.fm/rss"
+          id="feedLink"
+          onClick={feedCopy}
+        >
           RSS
         </a>
       </li>
