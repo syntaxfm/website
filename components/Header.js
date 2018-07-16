@@ -19,7 +19,7 @@ const Header = () => (
       <div className="people">
         <div className="person">
           <img
-            src="https://pbs.twimg.com/profile_images/877525007185858562/7G9vGTca_400x400.jpg"
+            src="../static/wes400x400.jpg"
             alt=""
             className="avatar"
           />
