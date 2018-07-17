@@ -19,7 +19,7 @@ const Header = () => (
       <div className="people">
         <div className="person">
           <img
-            src="../static/wes400x400.jpg"
+            src="/static/wes400x400.jpg"
             alt=""
             className="avatar"
           />
