@@ -1,6 +1,6 @@
 ---
 number: 058
-title: Advice for Beginners 
+title: Advice For Beginners - Tech Skills, Applying for Jobs, Focus, Imposter Syndrome + More
 date: 1531918800645
 url: https://traffic.libsyn.com/syntax/Syntax058.mp3
 ---
