@@ -33,6 +33,7 @@
     "raw-loader": "^0.5.1",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
+    "smoothscroll-polyfill": "^0.4.3",
     "speakingurl": "^14.0.1"
   },
   "devDependencies": {
