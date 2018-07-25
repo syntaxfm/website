@@ -40,7 +40,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 
 23:52 - Scraping
 
-* What is craping?
+* What is scraping?
 * [Cheerio](https://github.com/cheeriojs/cheerio) - jQuery like node package
 
 27:30 - Automation
