@@ -9,7 +9,7 @@ What is the undocumented web? Scott and Wes dive into it, discussing APIs, fakin
 
 ## Kyle Prinsloo's Freelancing & Beyond — Sponsor
 
-Kyle Prinsloo teaches you everything you need to know about freelancing, including how to quit your job, earn a side-income and start taking control of your life. Check it out at [https://studywebdevelopment.com/freelancing/](https://studywebdevelopment.com/freelancing/) and use the coupon code "syntax" at checkout to get 25% off.
+Kyle Prinsloo teaches you everything you need to know about freelancing, including how to quit your job, earn a side-income and start taking control of your life. Check it out at [https://studywebdevelopment.com/freelancing](https://studywebdevelopment.com/freelancing.html) and use the coupon code "syntax" at checkout to get 25% off.
 
 ## Freshbooks - Sponsor
 
