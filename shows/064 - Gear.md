@@ -31,9 +31,9 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 17:39 - Monitors
 
 * Wes:
-  * [22" vertical Cheap Acer: https://amzn.to/2vkXomG
-  * [27" Dell 4k - https://amzn.to/2Mo3NnO
-  * [Ergotron Monitor Arms - https://amzn.to/2voS9CF
+  * [22" vertical Cheap Acer](https://amzn.to/2vkXomG)
+  * [27" Dell 4k[(https://amzn.to/2Mo3NnO)
+  * [Ergotron Monitor Arms](https://amzn.to/2voS9CF)
 
 * Scott: 
   * [LG 34UC88-B 34-Inch 21:9 Curved UltraWide](http://amzn.to/2F0sLsU)
