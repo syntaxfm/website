@@ -1,6 +1,6 @@
 ---
 number: 060
-title: The Undocumented Web: scraping, private APIs, proxies and “alternative solutions”
+title: The Undocumented Web - scraping, private APIs, proxies and “alternative solutions”
 date: 1532437200084
 url: https://traffic.libsyn.com/syntax/Syntax060.mp3
 ---
@@ -9,7 +9,7 @@ What is the undocumented web? Scott and Wes dive into it, discussing APIs, fakin
 
 ## Kyle Prinsloo's Freelancing & Beyond — Sponsor
 
-Kyle Prinsloo teaches you everything you need to know about freelancing, including how to quit your job, earn a side-income and start taking control of your life. Check it out at [https://studywebdevelopment.com/freelancing/](https://studywebdevelopment.com/freelancing/) and use the coupon code "syntax" at checkout to get 25% off.
+Kyle Prinsloo teaches you everything you need to know about freelancing, including how to quit your job, earn a side-income and start taking control of your life. Check it out at [https://studywebdevelopment.com/freelancing](https://studywebdevelopment.com/freelancing.html) and use the coupon code "syntax" at checkout to get 25% off.
 
 ## Freshbooks - Sponsor
 
@@ -19,7 +19,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 
 3:05 - What Is the undocumented web?
 
-* When traditional methods don’t give you what you want 
+* When traditional methods don’t give you what you want
 * Wild West
 
 6:10 - Undocumented APIS
@@ -40,7 +40,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 
 23:52 - Scraping
 
-* What is craping?
+* What is scraping?
 * [Cheerio](https://github.com/cheeriojs/cheerio) - jQuery like node package
 
 27:30 - Automation
@@ -54,9 +54,9 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 33:30 - Proxies
 
 * Need a fresh IP address
-* Need a different country 
+* Need a different country
 * Side note: Canadians buying stuff in USA M4S1P1 === 41100
-* API throttling 
+* API throttling
 
 39:00 - Tips and Tricks
 
@@ -68,7 +68,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 
 44:45 - Stories
 
-* Photo Voting 
+* Photo Voting
 * MLS Listing
 * Top Entrepreneur voting cheating
 * Vanity Plate Checker

@@ -20,7 +20,7 @@ export default class Player extends React.Component {
       duration: 0,
       currentTime: lastPlayed,
       playbackRate: 1,
-      timeWasLoaded: lastPlayed !== 0,
+      timeWasLoaded: lastPlayed !== 0
     };
   }
 
@@ -34,7 +34,7 @@ export default class Player extends React.Component {
       if (lp) {
         const data = JSON.parse(lp);
         this.setState({
-          currentTime: data.lastPlayed,
+          currentTime: data.lastPlayed
         });
         this.audio.currentTime = data.lastPlayed;
       }
@@ -59,7 +59,7 @@ export default class Player extends React.Component {
     } else {
       const { currentTime = 0, duration = 0 } = e.currentTarget;
 
-      const progressTime = currentTime / duration * 100;
+      const progressTime = (currentTime / duration) * 100;
       if (Number.isNaN(progressTime)) return;
       this.setState({ progressTime, currentTime, duration });
     }
@@ -71,7 +71,8 @@ export default class Player extends React.Component {
   };
 
   scrub = e => {
-    const scrubTime = e.nativeEvent.offsetX / this.progress.offsetWidth * this.audio.duration;
+    const scrubTime =
+      (e.nativeEvent.offsetX / this.progress.offsetWidth) * this.audio.duration;
     this.audio.currentTime = scrubTime;
   };
 
@@ -100,7 +101,10 @@ export default class Player extends React.Component {
     return (
       <div className="player">
         <div className="player__section player__section--left">
-          <button onClick={this.togglePlay}>
+          <button
+            onClick={this.togglePlay}
+            aria-label={playing ? 'pause' : 'play'}
+          >
             <p className="player__icon">{playing ? '❚❚' : '►'}</p>
             <p>
               {formatTime(currentTime)} / {formatTime(duration)}
@@ -109,8 +113,15 @@ export default class Player extends React.Component {
         </div>
 
         <div className="player__section player__section--middle">
-          <div className="progress" onClick={this.scrub} ref={x => (this.progress = x)}>
-            <div className="progress__time" style={{ width: `${progressTime}%` }} />
+          <div
+            className="progress"
+            onClick={this.scrub}
+            ref={x => (this.progress = x)}
+          >
+            <div
+              className="progress__time"
+              style={{ width: `${progressTime}%` }}
+            />
           </div>
           <h3 className="player__title">
             Playing: {show.displayNumber}: {show.title}
@@ -120,32 +131,125 @@ export default class Player extends React.Component {
         <div className="player__section player__section--right">
           <button onClick={this.speed} className="player__speed">
             <p>FASTNESS</p>
-            <span className="player__speeddisplay">{this.state.playbackRate} &times; </span>
+            <span className="player__speeddisplay">
+              {this.state.playbackRate} &times;{' '}
+            </span>
           </button>
 
           <div className="player__volume">
             <p>LOUDNESS</p>
             <div className="player__inputs">
-              <input onChange={this.volume} type="radio" name="volume" value="0.1" id="vol10" />
-              <label htmlFor="vol10">Volume Level 10/100</label>
-              <input onChange={this.volume} type="radio" name="volume" value="0.2" id="vol20" />
-              <label htmlFor="vol20">Volume Level 20/100</label>
-              <input onChange={this.volume} type="radio" name="volume" value="0.3" id="vol30" />
-              <label htmlFor="vol30">Volume Level 30/100</label>
-              <input onChange={this.volume} type="radio" name="volume" value="0.4" id="vol40" />
-              <label htmlFor="vol40">Volume Level 40/100</label>
-              <input onChange={this.volume} type="radio" name="volume" value="0.5" id="vol50" />
-              <label htmlFor="vol50">Volume Level 50/100</label>
-              <input onChange={this.volume} type="radio" name="volume" value="0.6" id="vol60" />
-              <label htmlFor="vol60">Volume Level 60/100</label>
-              <input onChange={this.volume} type="radio" name="volume" value="0.7" id="vol70" />
-              <label htmlFor="vol70">Volume Level 70/100</label>
-              <input onChange={this.volume} type="radio" name="volume" value="0.8" id="vol80" />
-              <label htmlFor="vol80">Volume Level 80/100</label>
-              <input onChange={this.volume} defaultChecked type="radio" name="volume" value="0.9" id="vol90" />
-              <label htmlFor="vol90">Volume Level 90/100</label>
-              <input onChange={this.volume} type="radio" name="volume" value="1" id="vol100" />
-              <label htmlFor="vol100">Volume Level 100/100</label>
+              <input
+                onChange={this.volume}
+                type="radio"
+                name="volume"
+                value="0.1"
+                id="vol10"
+                className="sr-only"
+              />
+              <label htmlFor="vol10">
+                <span className="sr-only">Volume Level 10/100</span>
+              </label>
+              <input
+                onChange={this.volume}
+                type="radio"
+                name="volume"
+                value="0.2"
+                id="vol20"
+                className="sr-only"
+              />
+              <label htmlFor="vol20">
+                <span className="sr-only">Volume Level 20/100</span>
+              </label>
+              <input
+                onChange={this.volume}
+                type="radio"
+                name="volume"
+                value="0.3"
+                id="vol30"
+                className="sr-only"
+              />
+              <label htmlFor="vol30">
+                <span className="sr-only">Volume Level 30/100</span>
+              </label>
+              <input
+                onChange={this.volume}
+                type="radio"
+                name="volume"
+                value="0.4"
+                id="vol40"
+                className="sr-only"
+              />
+              <label htmlFor="vol40">
+                <span className="sr-only">Volume Level 40/100</span>
+              </label>
+              <input
+                onChange={this.volume}
+                type="radio"
+                name="volume"
+                value="0.5"
+                id="vol50"
+                className="sr-only"
+              />
+              <label htmlFor="vol50">
+                <span className="sr-only">Volume Level 50/100</span>
+              </label>
+              <input
+                onChange={this.volume}
+                type="radio"
+                name="volume"
+                value="0.6"
+                id="vol60"
+                className="sr-only"
+              />
+              <label htmlFor="vol60">
+                <span className="sr-only">Volume Level 60/100</span>
+              </label>
+              <input
+                onChange={this.volume}
+                type="radio"
+                name="volume"
+                value="0.7"
+                id="vol70"
+                className="sr-only"
+              />
+              <label htmlFor="vol70">
+                <span className="sr-only">Volume Level 70/100</span>
+              </label>
+              <input
+                onChange={this.volume}
+                type="radio"
+                name="volume"
+                value="0.8"
+                id="vol80"
+                className="sr-only"
+              />
+              <label htmlFor="vol80">
+                <span className="sr-only">Volume Level 80/100</span>
+              </label>
+              <input
+                onChange={this.volume}
+                defaultChecked
+                type="radio"
+                name="volume"
+                value="0.9"
+                id="vol90"
+                className="sr-only"
+              />
+              <label htmlFor="vol90">
+                <span className="sr-only">Volume Level 90/100</span>
+              </label>
+              <input
+                onChange={this.volume}
+                type="radio"
+                name="volume"
+                value="1"
+                id="vol100"
+                className="sr-only"
+              />
+              <label htmlFor="vol100">
+                <span className="sr-only">Volume Level 100/100</span>
+              </label>
             </div>
           </div>
         </div>

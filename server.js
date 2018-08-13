@@ -34,5 +34,5 @@ app.prepare().then(() => {
 
   // everything else
   server.get('*', (req, res) => handle(req, res));
-  server.listen(port);
+  server.listen(port, () => `Listening on ${port}`);
 });
