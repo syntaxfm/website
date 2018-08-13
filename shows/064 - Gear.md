@@ -20,7 +20,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 11:00
 
 * [Wes' gear](https://wesbos.com/uses)
-* [Scott' gear](https://www.leveluptutorials.com/mygear)
+* [Scott' gear](https://www.leveluptutorials.com/my-gear)
 * [Scott's podcasting/screencasting gear](https://kit.com/leveluptutorials/podcasting-screencasting-gear)
 
 13:30 - Computer
