@@ -11,6 +11,9 @@ In this episode Wes and Scott do a deep dive into React - what it is, best pract
 
 [Dev Lifts](https://devlifts.io/) - Thad and JC are on a mission to make web developers healthy. They're currently offering Personal Training and Nutrition Plans as well as a new program called [Fit.Start](https://devlifts.io/join/fitstart-lean). Get 50% off with the coupon code "tasty". Check it out today!
 
+
+[DevLifts](https://devlifts.io/) - Thad and JC are on a mission to make web developers healthy. They’re currently offering Personal Training and Nutrition Plans as well as a new program called [fit.start()](https://devlifts.io/join/fitStart). Get 50% off fit.start() with the coupon code “SYNTAX”. Additionally, the first 10 people to use the code "TASTY" get 50% off your [DevLifts Premium](https://devlifts.io/join/premium) subscription. Check it out today! 
+
 ## Mlab - Sponsor
 
 mLab is the leading Database-as-a-Service for MongoDB, powering over half a million deployments worldwide. Wes and Scott use mLab to host their own databases as well as take care of backups, security, scaling and performance. Try out a sandbox database on your next mongoDB project → [https://mlab.com](https://mlab.com/) 
