@@ -1,5 +1,5 @@
 // accessible way of hiding inputs and labels
-.sr-only 
+.sr-only
   border 0 !important
   clip rect(1px, 1px, 1px, 1px) !important
   clip-path inset(50%) !important
@@ -34,6 +34,7 @@
       & > *
         width 100%
     &--middle
+      position relative
       flex 1 1 auto
       border-right 1px solid rgba(0,0,0,0.6)
       display flex
@@ -60,6 +61,20 @@
     max-width 650px
     @media (max-width: 650px)
       padding 1rem
+  &__tooltip
+    position absolute
+    top 22px
+    transform translate(-50%)
+    opacity 0
+    &:after
+      content " "
+      position absolute
+      bottom 94%
+      left 50%
+      margin-left -2px
+      border-width 2px
+      border-style solid
+      border-color transparent transparent white transparent
   button
     background black
     border 0
