@@ -1,5 +1,5 @@
 // accessible way of hiding inputs and labels
-.sr-only 
+.sr-only
   border 0 !important
   clip rect(1px, 1px, 1px, 1px) !important
   clip-path inset(50%) !important
@@ -97,6 +97,8 @@
     padding 1rem
     flex-wrap wrap
     flex 1 0 auto
+    &:focus-within
+      outline: -webkit-focus-ring-color auto 5px;
     &:hover
       label
         border-top 1px solid yellow
