@@ -435,6 +435,14 @@ export default class Player extends React.Component {
                     </div>
                 </div>
 
+                <div className="player__section player__section--bottom">
+                    {/* <div>Keyboard Sortcuts:</div>  */}
+                    <div>Play/Pause - K</div>
+                    <div>Forward/Backward - L/J</div>
+                    <div>Speed Up/Down - ]/[</div>
+                    <div>Volume Up/Down - I/O</div>
+                </div>
+
                 <audio
                     ref={audio => (this.audio = audio)}
                     onPlay={this.playPause}
