@@ -10,6 +10,7 @@ export default class Show extends React.Component {
     e.preventDefault();
     const href = e.currentTarget.href;
     Router.push(`/?number=${show.displayNumber}`, href, { shallow: true })
+    this.props.highlightSearch(show, this.props.query);
   }
 
   render() {
