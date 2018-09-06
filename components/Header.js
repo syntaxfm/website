@@ -1,5 +1,50 @@
 import Subscribe from './Subscribe';
 
+const people = [
+  {
+    name: 'Wes Bos',
+    description: (
+      <p>
+        Full Stack JavaScript Developer. Creator of really good{' '}
+        <a target="_blank" href="https://wesbos.com/courses">
+          web development courses
+        </a>. BBQ enthusiast.
+      </p>
+    ),
+    imageUrl: '/static/wes400x400.jpg',
+    twitterUsername: 'wesbos',
+  },
+  {
+    name: 'Scott Tolinski',
+    description: (
+      <p>
+        Web Developer, Creator of <a href="https://leveluptutorials.com/">Level Up Tuts</a>,
+        Bboy, Robotops Crew and{' '}
+        <a target="_blank" href="https://www.youtube.com/c/leveluptuts">
+          Youtuber
+        </a>
+      </p>
+    ),
+    imageUrl: 'https://avatars2.githubusercontent.com/u/669383?s=460&v=4',
+    twitterUsername: 'stolinski',
+  }
+];
+
+const Person = ({ name, imageUrl, twitterUsername, description }) => (
+  <div className="person">
+    <img src={imageUrl} alt="" className="avatar" />
+    <h3>{name}</h3>
+    <a
+      target="_blank"
+      href={`https://twitter.com/${twitterUsername}`}
+      className="person__social person__social--twitter"
+    >
+      @{twitterUsername}
+    </a>
+    {description}
+  </div>
+);
+
 const Header = () => (
   <header className="header">
     <div className="header__left">
@@ -17,50 +62,7 @@ const Header = () => (
         </a>
       </div>
       <div className="people">
-        <div className="person">
-          <img
-            src="/static/wes400x400.jpg"
-            alt=""
-            className="avatar"
-          />
-          <h3>Wes Bos</h3>
-          <a
-            target="_blank"
-            href="https://twitter.com/wesbos"
-            className="person__social person__social--twitter"
-          >
-            @wesbos
-          </a>
-          <p>
-            Full Stack JavaScript Developer. Creator of really good{' '}
-            <a target="_blank" href="https://wesbos.com/courses">
-              web development courses
-            </a>. BBQ enthusiast.
-          </p>
-        </div>
-
-        <div className="person">
-          <img
-            src="https://avatars2.githubusercontent.com/u/669383?s=460&v=4"
-            alt=""
-            className="avatar"
-          />
-          <h3>Scott Tolinski</h3>
-          <a
-            target="_blank"
-            href="https://twitter.com/stolinski"
-            className="person__social person__social--twitter"
-          >
-            @stolinski
-          </a>
-          <p>
-            Web Developer, Creator of <a href="https://leveluptutorials.com/">Level Up Tuts</a>,
-            Bboy, Robotops Crew and{' '}
-            <a target="_blank" href="https://www.youtube.com/c/leveluptuts">
-              Youtuber
-            </a>
-          </p>
-        </div>
+        {people.map(person => <Person key={person.twitterUsername} {...person} />)}
       </div>
     </div>
     <Subscribe />

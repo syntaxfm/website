@@ -13,16 +13,17 @@ export default class Show extends React.Component {
 
   render() {
     const { show, currentPlaying, currentShow, setCurrentPlaying } = this.props;
+    const isPlaying = currentPlaying === show.displayNumber;
+
     return (
-      <div className={`show ${currentPlaying === show.displayNumber ? 'show--playing' : '' } ${currentShow === show.displayNumber ? 'show--active' : '' }
-      `}>
+      <div className={`show ${isPlaying ? 'show--playing show--active' : '' }`}>
         <a className="show__link" href={`/show/${show.displayNumber}/${slug(show.title)}`} onClick={(e) => this.changeURL(e, show)}>
           <p className="show__displayNumber">Episode {show.displayNumber}</p>
           <h3 className="show__title">{show.title}</h3>
         </a>
 
         <div className="show__playcontrols">
-          {currentPlaying === show.displayNumber ? <Bars/ > : <button onClick={() => setCurrentPlaying(show.displayNumber)} className="show__play">►</button> }
+          {isPlaying ? <Bars/> : <button onClick={() => setCurrentPlaying(show.displayNumber)} className="show__play">►</button>}
         </div>
       </div>
     )
