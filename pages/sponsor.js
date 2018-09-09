@@ -53,6 +53,19 @@ export default class SponsorPage extends React.Component {
             </li>
           </ul>
           <h2>Audience Size && Breakdown</h2>
+          <figure style={{ float: 'right', marginLeft: 20 }}>
+            <img
+              src="/static/sponsor/39099033_270538757113294_5127531635289358336_n.jpg"
+              width="400"
+              alt="iPhone showing a Syntax Episode"
+            />
+            <figcaption>
+              Photo by{' '}
+              <a href="https://www.instagram.com/dhanishgajjar/">
+                Dhanish Gajjar
+              </a>
+            </figcaption>
+          </figure>
           <p>
             Each sponsorship spot will receive an average of 28,000 downloads. Each spot will receive at least 23,000
             downloads, and some of the shows reach 40-50,000 downloads just months after being launched.
@@ -79,17 +92,6 @@ export default class SponsorPage extends React.Component {
             <li>51% of Wes's followers are aged 18 to 24 and 22% 25 to 34.</li>
             <li>The top computed "lifestyle type" is Online Buyers.</li>
           </ul>
-
-          <figure style={{ float: 'right', marginLeft: 20 }}>
-            <img
-              src="/static/sponsor/39099033_270538757113294_5127531635289358336_n.jpg"
-              width="400"
-              alt="iPhone showing a Syntax Episode"
-            />
-            <figcaption>
-              Photo by <a href="https://www.instagram.com/dhanishgajjar/">Dhanish Gajjar</a>
-            </figcaption>
-          </figure>
 
           <h2>Audience Interests</h2>
           <p>
