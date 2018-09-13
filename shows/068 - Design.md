@@ -65,7 +65,7 @@ mLab is the leading Database-as-a-Service for MongoDB, powering over half a mill
 ## ××× SIIIIICK ××× PIIIICKS ×××
 
 * Scott: [Louis Cole](https://open.spotify.com/album/0WbNyHNpkxpqscNWiiEhZS?si=j5iT085_Rc-weuwF3OxeGQ)
-* Wes: [r/posthardcore Spotify Playlist](https://open.spotify.com/user/1255701728/playlist/6BfAztwZlUkOuIo4tYpYYL)
+* Wes: [r/posthardcore Spotify Playlist](https://open.spotify.com/user/v9iqfai0ejp8rgcb2sx9n6yis/playlist/5JTDyts3BDNzlBzemtw5zc)
 
 ## Shameless Plugs
 
