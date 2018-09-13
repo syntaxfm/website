@@ -3,6 +3,7 @@ import Link from 'next/link';
 import slug from 'speakingurl';
 import Router from 'next/router'
 import Bars from './bars';
+import { FaPlay } from "react-icons/fa";
 
 export default class Show extends React.Component {
   changeURL = (e, show) => {
@@ -22,7 +23,7 @@ export default class Show extends React.Component {
         </a>
 
         <div className="show__playcontrols">
-          {currentPlaying === show.displayNumber ? <Bars/ > : <button onClick={() => setCurrentPlaying(show.displayNumber)} className="show__play">►</button> }
+          {currentPlaying === show.displayNumber ? <Bars/ > : <button onClick={() => setCurrentPlaying(show.displayNumber)} className="show__play" title="play button" ><FaPlay/></button> }
         </div>
       </div>
     )

@@ -5,6 +5,7 @@ import slug from 'speakingurl';
 export default ({ show, baseURL }) => (
   <div>
     <Head>
+      <html lang="en"/>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta charSet="utf-8" />
       <meta property="og:audio" content={show.url} />
