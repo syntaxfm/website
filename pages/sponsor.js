@@ -9,10 +9,6 @@ import Footer from '../components/Footer';
 import Page from '../components/Page';
 
 export default class SponsorPage extends React.Component {
-  componentDidCatch = e => {
-    console.log('ERRORRRRR');
-    console.log(e);
-  };
   render() {
     return (
       <Page>
@@ -67,7 +63,7 @@ export default class SponsorPage extends React.Component {
             </figcaption>
           </figure>
           <p>
-            Each sponsorship spot will receive an average of 28,000 downloads. Each spot will receive at least 23,000
+            Each sponsorship spot will receive an average of 30,000 downloads. Each spot will receive at least 23,000
             downloads, and some of the shows reach 40-50,000 downloads just months after being launched.
           </p>
 
@@ -126,8 +122,8 @@ export default class SponsorPage extends React.Component {
           <h2>What You'll Get && Pricing</h2>
           <p>We have found that we get the best results for our advertisers when they sponsor at least three shows.</p>
           <p>
-            Currently each sponsor spot is $800 USD per episode with a minimum of three episodes, though this price will
-            increase as our audience does. Single show sponsorships are $900.
+            Currently each sponsor spot is $1,000 USD per episode with a minimum of three episodes, though this price will
+            increase as our audience does. Single show sponsorships are $1,200. 
           </p>
 
           <p>As part of the sponsorship package, you'll get:</p>
