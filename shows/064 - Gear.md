@@ -20,7 +20,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 11:00
 
 * [Wes' gear](https://wesbos.com/uses)
-* [Scott' gear](https://www.leveluptutorials.com/mygear)
+* [Scott' gear](https://www.leveluptutorials.com/my-gear)
 * [Scott's podcasting/screencasting gear](https://kit.com/leveluptutorials/podcasting-screencasting-gear)
 
 13:30 - Computer
@@ -32,7 +32,8 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 
 * Wes:
   * [22" vertical Cheap Acer](https://amzn.to/2vkXomG)
-  * [27" Dell 4k[(https://amzn.to/2Mo3NnO)
+
+  * [27" Dell 4k](https://amzn.to/2Mo3NnO)
   * [Ergotron Monitor Arms](https://amzn.to/2voS9CF)
 
 * Scott: 
