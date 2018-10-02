@@ -21,8 +21,26 @@
     text-align center
     @media (max-width: 800px)
       margin-left -2rem
-
+.title
+  position relative
+  &__potluck-btn
+    border 1px solid yellow
+    border-radius 3px
+    padding 5px 10px
+    position absolute
+    right 0
+    top 5px
+    font-size 12px
+    &:hover
+      border 1px dotted
+    @media (max-width: 1000px)
+      position relative
+      margin 10px 0
+      text-align center
+      display block
+      top 0
 .subscribe
+  width 100%
   &__links
     margin 0
     padding 0
@@ -35,6 +53,7 @@
       justify-content space-between
   &__link
     flex 0 1 auto
+    margin-bottom 1rem
     @media (max-width: 570px)
       flex 1 1 auto
       margin-right 1rem
@@ -107,4 +126,11 @@
       &:before
         background-image  url('/static/icons/googleplay.png')
         background-color white
-
+    &--spotify a
+        background: linear-gradient(to bottom, rgb(4, 160, 59) 0%, rgb(16, 172, 71) 100%);
+        &:before
+          background-image url('/static/icons/spotify.svg')
+    &--google a
+        background: linear-gradient(to bottom, rgb(245, 121, 23) 0%, rgb(254, 185, 90) 100%);
+        &:before
+          background-image url('/static/icons/google_podcasts.svg')

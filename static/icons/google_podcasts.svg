@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>F01_listen_on_icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="F01_listen_on_icon" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group">
+            <g id="logo_google_search_round_48dp">
+                <polygon id="Shape" points="0 0 64 0 64 64 0 64"></polygon>
+                <circle id="Oval" fill="#FFFFFF" fill-rule="nonzero" cx="32" cy="32" r="30.9450549"></circle>
+                <path d="M32,1.37846154 C49.0338462,1.37846154 62.8606593,15.149011 62.9450549,32.1687912 L62.9450549,32.0140659 C62.9450549,14.923956 49.0901099,1.06901099 32,1.06901099 C14.9098901,1.05494505 1.05494505,14.9098901 1.05494505,32 L1.05494505,32.1547253 C1.13934066,15.149011 14.9661538,1.37846154 32,1.37846154 Z" id="Shape" fill-opacity="0.2" fill="#FFFFFF" fill-rule="nonzero"></path>
+                <path d="M32,62.6215385 C49.0338462,62.6215385 62.8606593,48.850989 62.9450549,31.8312088 L62.9450549,31.9859341 C62.9450549,49.076044 49.0901099,62.930989 32,62.930989 C14.9098901,62.9450549 1.05494505,49.0901099 1.05494505,32 L1.05494505,31.8452747 C1.13934066,48.850989 14.9661538,62.6215385 32,62.6215385 Z" id="Shape" fill-opacity="0.15" fill="#263238" fill-rule="nonzero"></path>
+            </g>
+            <g id="_logo_Podcasts_192px" transform="translate(10.901099, 10.901099)" fill-rule="nonzero">
+                <polygon id="Shape" fill="#FAB908" points="18.4615385 13.4265734 18.4615385 19.820979 18.4615385 22.3768232 18.4615385 28.7712288 23.7362637 28.7712288 23.7362637 22.3768232 23.7362637 19.820979 23.7362637 13.4265734"></polygon>
+                <circle id="Oval" fill="#0066D9" cx="2.63736264" cy="19.6603397" r="2.63736264"></circle>
+                <circle id="Oval" fill="#0066D9" cx="2.63736264" cy="22.5374625" r="2.63736264"></circle>
+                <rect id="Rectangle-path" fill="#0066D9" x="0" y="19.6603397" width="5.27472527" height="2.87712288"></rect>
+                <circle id="Oval" fill="#4285F4" cx="39.5604396" cy="22.5374625" r="2.63736264"></circle>
+                <circle id="Oval" fill="#4285F4" cx="39.5604396" cy="19.6603397" r="2.63736264"></circle>
+                <rect id="Rectangle-path" fill="#4285F4" transform="translate(39.560440, 21.098901) rotate(180.000000) translate(-39.560440, -21.098901) " x="36.9230769" y="19.6603397" width="5.27472527" height="2.87712288"></rect>
+                <circle id="Oval" fill="#EA4335" cx="11.7482517" cy="28.2917083" r="2.63736264"></circle>
+                <circle id="Oval" fill="#EA4335" cx="11.7482517" cy="31.1688312" r="2.63736264"></circle>
+                <rect id="Rectangle-path" fill="#EA4335" x="9.11088911" y="28.2917083" width="5.27472527" height="2.87712288"></rect>
+                <circle id="Oval" fill="#EA4335" cx="11.7482517" cy="11.028971" r="2.63736264"></circle>
+                <circle id="Oval" fill="#EA4335" cx="11.7482517" cy="20.3796204" r="2.63736264"></circle>
+                <rect id="Rectangle-path" fill="#EA4335" x="9.11088911" y="11.028971" width="5.27472527" height="9.41058941"></rect>
+                <circle id="Oval" fill="#34A853" cx="30.4495504" cy="13.9060939" r="2.63736264"></circle>
+                <circle id="Oval" fill="#34A853" cx="30.4495504" cy="11.028971" r="2.63736264"></circle>
+                <rect id="Rectangle-path" fill="#34A853" transform="translate(30.449550, 12.467532) rotate(180.000000) translate(-30.449550, -12.467532) " x="27.8121878" y="11.028971" width="5.27472527" height="2.87712288"></rect>
+                <circle id="Oval" fill="#FAB908" cx="21.0989011" cy="5.51448551" r="2.63736264"></circle>
+                <circle id="Oval" fill="#FAB908" cx="21.0989011" cy="2.63736264" r="2.63736264"></circle>
+                <rect id="Rectangle-path" fill="#FAB908" transform="translate(21.098901, 4.075924) rotate(180.000000) translate(-21.098901, -4.075924) " x="18.4615385" y="2.63736264" width="5.27472527" height="2.87712288"></rect>
+                <circle id="Oval" fill="#FAB908" cx="21.0989011" cy="39.5604396" r="2.63736264"></circle>
+                <circle id="Oval" fill="#FAB908" cx="21.0989011" cy="36.6833167" r="2.63736264"></circle>
+                <rect id="Rectangle-path" fill="#FAB908" transform="translate(21.098901, 38.121878) rotate(180.000000) translate(-21.098901, -38.121878) " x="18.4615385" y="36.6833167" width="5.27472527" height="2.87712288"></rect>
+                <circle id="Oval" fill="#34A853" cx="30.4495504" cy="31.1688312" r="2.63736264"></circle>
+                <circle id="Oval" fill="#34A853" cx="30.4495504" cy="21.8181818" r="2.63736264"></circle>
+                <rect id="Rectangle-path" fill="#34A853" transform="translate(30.449550, 26.493506) rotate(180.000000) translate(-30.449550, -26.493506) " x="27.8121878" y="21.8181818" width="5.27472527" height="9.35064935"></rect>
+                <circle id="Oval" fill="#FAB908" cx="21.0989011" cy="13.4265734" r="2.63736264"></circle>
+                <circle id="Oval" fill="#FAB908" cx="21.0989011" cy="28.7712288" r="2.63736264"></circle>
+            </g>
+        </g>
+    </g>
+</svg>

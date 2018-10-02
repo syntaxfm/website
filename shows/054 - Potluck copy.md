@@ -1,6 +1,6 @@
 ---
 number: 054
-title: Potluck EP × Remote Work ×  × Headless WordPress × Good Client Questions × Alternate Careers × React API Credentials
+title: Potluck EP × Remote Work × Headless WordPress × Good Client Questions × Alternate Careers × React API Credentials
 date: 1530709200341
 url: https://traffic.libsyn.com/syntax/Syntax054.mp3
 ---

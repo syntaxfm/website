@@ -1,6 +1,6 @@
 ---
 number: 049
-title: SSR, SEO, Tips for Students, music, security and GraphQL
+title: Potluck EP × SSR × SEO × Tips for Students × Music × Security × GraphQL
 date: 1528290000736
 url: https://traffic.libsyn.com/syntax/Syntax049.mp3
 ---
