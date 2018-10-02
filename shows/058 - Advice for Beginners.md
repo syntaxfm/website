@@ -67,7 +67,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 ## Shameless Plugs
 
 * [Scott's Level Up Tuts Pro](https://LevelUpTutorials.com/pro)
-* [Wes' Stickers](https://wesbos.com/courses)
+* [Wes' Stickers](https://bos.af/)
 
 ## Tweet us your tasty treats!
 
