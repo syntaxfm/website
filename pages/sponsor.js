@@ -67,6 +67,11 @@ export default class SponsorPage extends React.Component {
             downloads, and some of the shows reach 40-50,000 downloads just months after being launched.
           </p>
 
+          <blockquote class="twitter-tweet">
+            <p lang="en" dir="ltr">To be honest <a href="https://twitter.com/syntaxfm?ref_src=twsrc%5Etfw">@syntaxfm</a> is the only podcast where I listen to the sponsor adds, they don’t event feel like adds</p>&mdash; Omar Aguinaga (@Soyoag) <a href="https://twitter.com/Soyoag/status/988205788794572800?ref_src=twsrc%5Etfw">April 22, 2018</a>
+          </blockquote> 
+          <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+
           <p>
             While exact numbers are hard to get, here are a few nuggets of information about our audience that should
             give you an idea of who is listening:
