@@ -49,7 +49,7 @@ export default class IndexPage extends React.Component {
       <Page>
         <Meta show={show} baseURL={baseURL} />
         <div className="wrapper">
-          <div className="show-wrap">
+          <main className="show-wrap" id="main" tabIndex="-1">
             <Player show={current} />
             <ShowList
               shows={shows}
@@ -58,7 +58,7 @@ export default class IndexPage extends React.Component {
               setCurrentPlaying={this.setCurrentPlaying}
             />
             <ShowNotes show={show} setCurrentPlaying={this.setCurrentPlaying} />
-          </div>
+          </main>
         </div>
       </Page>
     );
