@@ -8,6 +8,7 @@ export default class Page extends React.Component {
   render() {
     return (
       <div className="page">
+        <a href="#main" className="skip-link">Skip to content</a>
         <Header />
         <style dangerouslySetInnerHTML={{ __html: stylesheet.replace(/\n/g, '') }} />
         {this.props.children}
