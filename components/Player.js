@@ -20,16 +20,19 @@ export default class Player extends React.Component {
       duration: 0,
       currentTime: lastPlayed,
       playbackRate: 1,
-      timeWasLoaded: lastPlayed !== 0
+      timeWasLoaded: lastPlayed !== 0,
+      interval : 0
     };
   }
 
   componentDidMount() {
-    window.addEventListener("keyup", this.handleLeftRightKeyPress);
+    window.addEventListener("keyup", this.handleLeftRightKeyPress, false);
+    window.addEventListener("keydown", this.handleLeftRightKeyHold, false);
   }
 
   componentWillUnmount() {
-    window.removeEventListener("keyup", this.handleLeftRightKeyPress);
+    window.removeEventListener("keyup", this.handleLeftRightKeyPress, false);
+    window.removeEventListener("keydown", this.handleLeftRightKeyHold, false);
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -56,17 +59,39 @@ export default class Player extends React.Component {
   }
 
   handleLeftRightKeyPress = e => {
+    const {currentTime, playing} = this.state;
     const key = e.keyCode;
-    if (key === 39) {
-        this.audio.currentTime = this.state.currentTime + 10;
+    if(playing) {
+      if (key === 39) {
+        this.audio.currentTime = currentTime + 15;
+      }
+      if (key === 37) {
+        this.audio.currentTime = currentTime - 15;
+      }
     }
-    if (key === 37) {
-        this.audio.currentTime = this.state.currentTime - 10;
+  }
+
+  handleLeftRightKeyHold = e => {
+    const {currentTime, playing, interval} = this.state;
+    const key = e.keyCode;
+    if(playing) {
+      if (key === 39) {
+        this.setState({interval: interval + 1});
+        if(interval !== 0 && interval % 20 === 0) {
+          this.audio.currentTime = currentTime + 60;
+        }
+      } 
+      if (key === 37) {
+        this.setState({interval: interval - 1});
+        if(interval !== 0 && interval % 20 === 0) {
+          this.audio.currentTime = currentTime - 60;
+        }
+      }
     }
   }
 
   timeUpdate = e => {
-    console.log("Updating Time");
+    // console.log("Updating Time");
     // Check if the user already had a curent time
     if (this.state.timeWasLoaded) {
       const lp = localStorage.getItem(`lastPlayed${this.props.show.number}`);
