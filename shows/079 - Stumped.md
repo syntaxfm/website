@@ -35,7 +35,7 @@ NativeScript is an open source framework for building truly native mobile apps w
 * [Syntax Ep 023](https://syntax.fm/show/023/web-development-in-2017-and-and-a-look-ahead-at-2018)
 
 14:02
-
+ 
 * What is Big O Notation?
 
 15:28
