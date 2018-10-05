@@ -16,12 +16,20 @@ export default class IndexPage extends React.Component {
       currentShow,
       currentPlaying: currentShow,
     };
+
+    this.setCurrentPlaying = this.setCurrentPlaying.bind(this);
   }
 
   static async getInitialProps({ req }) {
-    const protocol = req && req.headers.host.indexOf('syntax.fm') > -1
-      ? 'https'
-      : req && req.protocol && '';
+    let protocol;
+    if (req && req.headers.host.indexOf('syntax.fm') > -1) {
+      protocol = 'https';
+    } else if (req) {
+      // eslint-disable-next-line prefer-destructuring
+      protocol = req.protocol;
+    } else {
+      protocol = '';
+    }
     const baseURL = req
       ? `${protocol}://${req.headers.host}`
       : window.location.origin;

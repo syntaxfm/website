@@ -27,6 +27,13 @@ export default class Player extends React.Component {
       playbackRate: 1,
       timeWasLoaded: lastPlayed !== 0,
     };
+
+    this.timeUpdate = this.timeUpdate.bind(this);
+    this.togglePlay = this.togglePlay.bind(this);
+    this.scrub = this.scrub.bind(this);
+    this.playPause = this.playPause.bind(this);
+    this.volume = this.volume.bind(this);
+    this.speed = this.speed.bind(this);
   }
 
   componentWillUpdate(nextProps, nextState) {
