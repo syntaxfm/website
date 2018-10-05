@@ -1,11 +1,10 @@
 import React from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import ShowList from '../components/ShowList';
 import ShowNotes from '../components/ShowNotes';
 import Player from '../components/Player';
 import Meta from '../components/meta';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
 import Page from '../components/Page';
 
 export default class IndexPage extends React.Component {
@@ -15,36 +14,40 @@ export default class IndexPage extends React.Component {
 
     this.state = {
       currentShow,
-      currentPlaying: currentShow
+      currentPlaying: currentShow,
     };
   }
 
   static async getInitialProps({ req }) {
-    const protocol = req && req.headers.host.indexOf('syntax.fm') > -1 ? 'https' : req ? req.protocol : '';
-    const baseURL = req ? `${protocol}://${req.headers.host}` : window.location.origin;
+    const protocol = req && req.headers.host.indexOf('syntax.fm') > -1
+      ? 'https'
+      : req && req.protocol && '';
+    const baseURL = req
+      ? `${protocol}://${req.headers.host}`
+      : window.location.origin;
     const { data: shows } = await axios.get(`${baseURL}/api/shows`);
     return { shows, baseURL };
   }
 
   componentWillReceiveProps(nextProps) {
-    const { pathname, query } = nextProps.url;
+    const { query } = nextProps.url;
     if (query.number) {
       this.setState({ currentShow: query.number });
     }
   }
 
-  setCurrentPlaying = currentPlaying => {
+  setCurrentPlaying(currentPlaying) {
     console.log('Setting current playing');
     this.setState({ currentPlaying });
-  };
+  }
 
   render() {
     const { shows = [], baseURL } = this.props;
     const { currentShow, currentPlaying } = this.state;
     // Currently Shown shownotes
-    const show = shows.find(show => show.displayNumber === currentShow);
+    const show = shows.find(showItem => showItem.displayNumber === currentShow);
     // Currently Playing
-    const current = shows.find(show => show.displayNumber === currentPlaying);
+    const current = shows.find(showItem => showItem.displayNumber === currentPlaying);
     return (
       <Page>
         <Meta show={show} baseURL={baseURL} />
@@ -64,3 +67,15 @@ export default class IndexPage extends React.Component {
     );
   }
 }
+
+IndexPage.propTypes = {
+  url: PropTypes.string,
+  shows: PropTypes.arrayOf(PropTypes.object),
+  baseURL: PropTypes.string,
+};
+
+IndexPage.defaultProps = {
+  url: '',
+  shows: [],
+  baseURL: '',
+};

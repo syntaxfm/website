@@ -15,38 +15,38 @@ If you want to know what's happening with your errors, track them with [Sentry](
 
 4:00 - Getting Feedback
 
-* Don't assume malice - tone is easily lost in digital communication
-* Don't take it personally
-* Evaluate the feedback through the eyes of who it's coming from
-* Look for the truth in the feedback
-* Be open to feedback
+- Don't assume malice - tone is easily lost in digital communication
+- Don't take it personally
+- Evaluate the feedback through the eyes of who it's coming from
+- Look for the truth in the feedback
+- Be open to feedback
 
 15:15 - Giving Feedback
 
-* Don't be negative - phrase your feedback in positives
-* Don’t give unrequested feedback
-* Explain the why behind your feedback
-* Don’t be rude or an asshole
-* Use Tools and Standards for Code Quality
-* Give an opportunity to improve
-* Explain the "why" behind the feedback
-* Sandwich criticism with something positive
-* When things are heated, try to diffuse the situation
-* Give frequent positive feedback
+- Don't be negative - phrase your feedback in positives
+- Don’t give unrequested feedback
+- Explain the why behind your feedback
+- Don’t be rude or an asshole
+- Use Tools and Standards for Code Quality
+- Give an opportunity to improve
+- Explain the "why" behind the feedback
+- Sandwich criticism with something positive
+- When things are heated, try to diffuse the situation
+- Give frequent positive feedback
 
 ## Links
 
-* [Tweet from Dan Blundell](https://twitter.com/danblundell/status/1039537984394211328)
-* [Tweet from Dan vs Code](https://twitter.com/daveVScode/status/1039525792206741504)
-* [Manager Tools’ Feedback Model](http://www.rightattitudes.com/2008/02/23/manager-tools-feedback-model/)
-* [Elon Musk on The Joe Rogan Experience](https://www.youtube.com/watch?v=ycPr5-27vSI)
+- [Tweet from Dan Blundell](https://twitter.com/danblundell/status/1039537984394211328)
+- [Tweet from Dan vs Code](https://twitter.com/daveVScode/status/1039525792206741504)
+- [Manager Tools’ Feedback Model](http://www.rightattitudes.com/2008/02/23/manager-tools-feedback-model/)
+- [Elon Musk on The Joe Rogan Experience](https://www.youtube.com/watch?v=ycPr5-27vSI)
 
 ## Tweet us your tasty treats!
 
-* [Scott's Instagram](https://www.instagram.com/stolinski/)
-* [LevelUpTutorials Instagram](https://www.instagram.com/LevelUpTutorials/)
-* [Wes' Instagram](https://www.instagram.com/wesbos/)
-* [Wes' Twitter](https://twitter.com/wesbos)
-* [Wes' Facebook](https://www.facebook.com/wesbos.developer)
-* [Scott's Twitter](https://twitter.com/stolinski)
-* Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets
+- [Scott's Instagram](https://www.instagram.com/stolinski/)
+- [LevelUpTutorials Instagram](https://www.instagram.com/LevelUpTutorials/)
+- [Wes' Instagram](https://www.instagram.com/wesbos/)
+- [Wes' Twitter](https://twitter.com/wesbos)
+- [Wes' Facebook](https://www.facebook.com/wesbos.developer)
+- [Scott's Twitter](https://twitter.com/stolinski)
+- Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets

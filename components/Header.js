@@ -1,3 +1,4 @@
+import React from 'react';
 import Subscribe from './Subscribe';
 
 const Header = () => (
@@ -12,6 +13,7 @@ const Header = () => (
         <h2 className="tagline">A Tasty Treats Podcast for Web Developers.</h2>
         <a
           target="_blank"
+          rel="noopener noreferrer"
           href="https://docs.google.com/forms/d/e/1FAIpQLSfQlAo1wXHiJMySdU-h8QMtfoz92aMS9eycEHXB6eRCLh8KHA/viewform"
           className="title__potluck-btn"
         >
@@ -28,16 +30,19 @@ const Header = () => (
           <h3>Wes Bos</h3>
           <a
             target="_blank"
+            rel="noopener noreferrer"
             href="https://twitter.com/wesbos"
             className="person__social person__social--twitter"
           >
             @wesbos
           </a>
           <p>
-            Full Stack JavaScript Developer. Creator of really good{' '}
-            <a target="_blank" href="https://wesbos.com/courses">
+            Full Stack JavaScript Developer. Creator of really good
+            {' '}
+            <a target="_blank" rel="noopener noreferrer" href="https://wesbos.com/courses">
               web development courses
-            </a>. BBQ enthusiast.
+            </a>
+            . BBQ enthusiast.
           </p>
         </div>
 
@@ -50,15 +55,18 @@ const Header = () => (
           <h3>Scott Tolinski</h3>
           <a
             target="_blank"
+            rel="noopener noreferrer"
             href="https://twitter.com/stolinski"
             className="person__social person__social--twitter"
           >
             @stolinski
           </a>
           <p>
-            Web Developer, Creator of <a href="https://leveluptutorials.com/">Level Up Tuts</a>,
-            Bboy, Robotops Crew and{' '}
-            <a target="_blank" href="https://www.youtube.com/c/leveluptuts">
+            Web Developer, Creator of
+            <a href="https://leveluptutorials.com/">Level Up Tuts</a>
+            , Bboy, Robotops Crew and
+            {' '}
+            <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/c/leveluptuts">
               Youtuber
             </a>
           </p>

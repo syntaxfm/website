@@ -15,51 +15,51 @@ If you want to know what's happening with your errors, track them with [Sentry](
 
 5:10 - What are the different kinds of documentation?
 
-* Tutorials
-* Docs
-* API references
-* Video docs
+- Tutorials
+- Docs
+- API references
+- Video docs
 
-* Examples of good documentation
-  * [Stripe](https://stripe.com/docs)
-  * [Next.js Examples](https://github.com/zeit/next.js/tree/canary/examples)
-  * [New PayPal Docs](https://developer.paypal.com/docs/)
-  * [Gatsby](https://www.gatsbyjs.org/tutorial/part-two/)
-  * [Jest](https://jestjs.io/docs/en/getting-started)
-  * [Meteor](https://docs.meteor.com/#/basic/)
-  
+- Examples of good documentation
+
+  - [Stripe](https://stripe.com/docs)
+  - [Next.js Examples](https://github.com/zeit/next.js/tree/canary/examples)
+  - [New PayPal Docs](https://developer.paypal.com/docs/)
+  - [Gatsby](https://www.gatsbyjs.org/tutorial/part-two/)
+  - [Jest](https://jestjs.io/docs/en/getting-started)
+  - [Meteor](https://docs.meteor.com/#/basic/)
 
 14:34 - How to read documentation
 
-* Understanding how you learn will save you lots of time
+- Understanding how you learn will save you lots of time
 
 16:03 - Understanding Parameters
 
-* Parameter types
-* Required / Optional
-* Parameter order
+- Parameter types
+- Required / Optional
+- Parameter order
 
 22:45 - How do you tackle learning something new?
 
-* Look at some examples
-* Scan the entire docs to get an idea of the surface area
-* Have something specific in mind that you want to build
+- Look at some examples
+- Scan the entire docs to get an idea of the surface area
+- Have something specific in mind that you want to build
 
 27:34 - What to do when the docs suck?
 
-* Look at other people's code
-* Chat rooms
-* Tests for examples
-* Read the source code
-* Github search
-* Contribute
+- Look at other people's code
+- Chat rooms
+- Tests for examples
+- Read the source code
+- Github search
+- Contribute
 
 ## Tweet us your tasty treats!
 
-* [Scott's Instagram](https://www.instagram.com/stolinski/)
-* [LevelUpTutorials Instagram](https://www.instagram.com/LevelUpTutorials/)
-* [Wes' Instagram](https://www.instagram.com/wesbos/)
-* [Wes' Twitter](https://twitter.com/wesbos)
-* [Wes' Facebook](https://www.facebook.com/wesbos.developer)
-* [Scott's Twitter](https://twitter.com/stolinski)
-* Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets
+- [Scott's Instagram](https://www.instagram.com/stolinski/)
+- [LevelUpTutorials Instagram](https://www.instagram.com/LevelUpTutorials/)
+- [Wes' Instagram](https://www.instagram.com/wesbos/)
+- [Wes' Twitter](https://twitter.com/wesbos)
+- [Wes' Facebook](https://www.facebook.com/wesbos.developer)
+- [Scott's Twitter](https://twitter.com/stolinski)
+- Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets

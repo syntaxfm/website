@@ -19,93 +19,93 @@ Listeners of this show get 20% off with the coupon code SYNTAX over at [xojo.com
 
 ## Show Notes
 
-* Take a drink every time Wes says exactly
+- Take a drink every time Wes says exactly
 
 01:10
 
-* [CSS Grid course is out!](https://CSSGrid.io)
+- [CSS Grid course is out!](https://CSSGrid.io)
 
 03:50
 
-* The most basic hosting / services
-* WordPress.org, Medium, Wix, Squarespace
+- The most basic hosting / services
+- WordPress.org, Medium, Wix, Squarespace
 
 05:00
 
-* Your Cheap PHP/Apache Hosts
-* Endurance International Group owns most of the cheap web hosting world
-* cPanel
-* Bluehost doing shady stuff
-* Siteground seems p good
+- Your Cheap PHP/Apache Hosts
+- Endurance International Group owns most of the cheap web hosting world
+- cPanel
+- Bluehost doing shady stuff
+- Siteground seems p good
 
 13:20
 
-* Service Based Hosting
-* [Heroku](http://heroku.com/)
-* [Zeit's Now](https://zeit.co/now)
-* [Galaxy](https://www.meteor.com/hosting)
+- Service Based Hosting
+- [Heroku](http://heroku.com/)
+- [Zeit's Now](https://zeit.co/now)
+- [Galaxy](https://www.meteor.com/hosting)
 
 15:00
 
-* What does "spinning down" mean?
-* Deploying to these services
+- What does "spinning down" mean?
+- Deploying to these services
 
 17:20
 
-* How these services do instant cut-overs to new servers
-* SSL Certificates
+- How these services do instant cut-overs to new servers
+- SSL Certificates
 
 20:00
 
-* You should listen to the [Our Stacks Explained](https://syntax.fm/show/014/our-stacks-explained) episode.
-* [Zeit's Now Alias](https://zeit.co/blog/now-alias)
-* [mLab MongoDB Hosting](https://mlab.com/)
-* [Compose MongoDB Hosting](https://www.compose.com/)
+- You should listen to the [Our Stacks Explained](https://syntax.fm/show/014/our-stacks-explained) episode.
+- [Zeit's Now Alias](https://zeit.co/blog/now-alias)
+- [mLab MongoDB Hosting](https://mlab.com/)
+- [Compose MongoDB Hosting](https://www.compose.com/)
 
 29:00
 
-* Raw Server Space
-* [Linode](https://www.linode.com/)
-* [Digital Ocean](https://m.do.co/c/0c736d39efbc)
-* [Rackspace](https://www.rackspace.com/)
-* Digital Ocean Droplets
-* Digital Ocean's docs are 👌👌👌👌
+- Raw Server Space
+- [Linode](https://www.linode.com/)
+- [Digital Ocean](https://m.do.co/c/0c736d39efbc)
+- [Rackspace](https://www.rackspace.com/)
+- Digital Ocean Droplets
+- Digital Ocean's docs are 👌👌👌👌
 
 32:00
 
-* What is Nginx?!
-* [Let's Encrypt](https://letsencrypt.org/)
-* [Mozilla's SSL config generator](https://mozilla.github.io/server-side-tls/ssl-config-generator/)
-* [Caddy Server](https://caddyserver.com/)
+- What is Nginx?!
+- [Let's Encrypt](https://letsencrypt.org/)
+- [Mozilla's SSL config generator](https://mozilla.github.io/server-side-tls/ssl-config-generator/)
+- [Caddy Server](https://caddyserver.com/)
 
 38:20
 
-* [Docker](https://www.docker.com/)
+- [Docker](https://www.docker.com/)
 
 40:00
 
-* SPA Apps - React, Angular, Vue...
-* How to handle Routing
-* [Netlify](https://netlify.com)
+- SPA Apps - React, Angular, Vue...
+- How to handle Routing
+- [Netlify](https://netlify.com)
 
 ## SICK PICKS
 
-* Wes: [Magnetic Magsafe-life USB cable for micro USB, USB-c and Lightning](http://amzn.to/2Dqe3KY)
-* Wes: [Magsafe-like USB that can handle a 87w Macbook Pro](http://amzn.to/2DwPz3s)
-* Wow: [MONGOOSE VS SNAKE VIDEO](https://www.youtube.com/watch?v=OyuIAUlL5IU)
-* Scott: [Bulk Supplements](http://amzn.to/2DzGGq9)
+- Wes: [Magnetic Magsafe-life USB cable for micro USB, USB-c and Lightning](http://amzn.to/2Dqe3KY)
+- Wes: [Magsafe-like USB that can handle a 87w Macbook Pro](http://amzn.to/2DwPz3s)
+- Wow: [MONGOOSE VS SNAKE VIDEO](https://www.youtube.com/watch?v=OyuIAUlL5IU)
+- Scott: [Bulk Supplements](http://amzn.to/2DzGGq9)
 
 ## Shameless Plugs
 
-* Scott: [Levelup Tutorials Pro](http://leveluptutorials.com/pro)
-* Wes: [CSS Grid Course](https://CSSGrid.io)
+- Scott: [Levelup Tutorials Pro](http://leveluptutorials.com/pro)
+- Wes: [CSS Grid Course](https://CSSGrid.io)
 
 ## Tweet us your tasty treats!
 
-* [Scott's Instagram](https://www.instagram.com/stolinski/)
-* [LevelUpTutorials Instagram](https://www.instagram.com/LevelUpTutorials/)
-* [Wes' Instagram](https://www.instagram.com/wesbos/)
-* [Wes' Twitter](https://twitter.com/wesbos)
-* [Wes' Facebook](https://www.facebook.com/wesbos.developer)
-* [Scott's Twitter](https://twitter.com/stolinski)
-* Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets
+- [Scott's Instagram](https://www.instagram.com/stolinski/)
+- [LevelUpTutorials Instagram](https://www.instagram.com/LevelUpTutorials/)
+- [Wes' Instagram](https://www.instagram.com/wesbos/)
+- [Wes' Twitter](https://twitter.com/wesbos)
+- [Wes' Facebook](https://www.facebook.com/wesbos.developer)
+- [Scott's Twitter](https://twitter.com/stolinski)
+- Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets

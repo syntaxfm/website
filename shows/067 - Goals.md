@@ -13,40 +13,41 @@ If you want to know what's happening with your errors, track them with [Sentry](
 
 ## Show Notes
 
- 4:14 
+4:14
 
-* Setting SMART goals (Specific, Measurable, Attainable, Relevant, Time)
+- Setting SMART goals (Specific, Measurable, Attainable, Relevant, Time)
 
 7:45
 
-* What kinds of thing should you set goals for?
+- What kinds of thing should you set goals for?
 
 10:49
 
-* Business goals
+- Business goals
 
 16:50
 
-* Visualizing Goals
+- Visualizing Goals
 
 22:58
 
-* When should you set goals?
+- When should you set goals?
 
 27:42
 
-* Accountability
+- Accountability
 
 ## Links
-* [ProfitWell](https://www.profitwell.com/)
-* [Forever Jobless Goals Worksheet](https://foreverjobless.com/fj-goals-worksheet.pdf)
+
+- [ProfitWell](https://www.profitwell.com/)
+- [Forever Jobless Goals Worksheet](https://foreverjobless.com/fj-goals-worksheet.pdf)
 
 ## Tweet us your tasty treats!
 
-* [Scott's Instagram](https://www.instagram.com/stolinski/)
-* [LevelUpTutorials Instagram](https://www.instagram.com/LevelUpTutorials/)
-* [Wes' Instagram](https://www.instagram.com/wesbos/)
-* [Wes' Twitter](https://twitter.com/wesbos)
-* [Wes' Facebook](https://www.facebook.com/wesbos.developer)
-* [Scott's Twitter](https://twitter.com/stolinski)
-* Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets
+- [Scott's Instagram](https://www.instagram.com/stolinski/)
+- [LevelUpTutorials Instagram](https://www.instagram.com/LevelUpTutorials/)
+- [Wes' Instagram](https://www.instagram.com/wesbos/)
+- [Wes' Twitter](https://twitter.com/wesbos)
+- [Wes' Facebook](https://www.facebook.com/wesbos.developer)
+- [Scott's Twitter](https://twitter.com/stolinski)
+- Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets

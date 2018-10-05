@@ -1,6 +1,6 @@
 const express = require('express');
 const next = require('next');
-const Router = require('./routes').Router;
+const { Router } = require('./routes');
 
 const dev = process.env.NODE_ENV !== 'production';
 const port = parseInt(process.env.PORT, 10) || 6969;

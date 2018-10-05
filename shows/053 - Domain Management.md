@@ -15,41 +15,41 @@ In this Hasty Treat (Short episode) Scott and Wes discus all things domains. Whe
 
 3:30
 
-* What is a domain?
+- What is a domain?
 
-4:59 
+4:59
 
-* What is DNS?
+- What is DNS?
 
-6:00 
+6:00
 
-* Nameservers
+- Nameservers
 
 8:30
 
-* What is a DNS provider?
-  * [DNS Simple](https://dnsimple.com/)
-  * [Cloudflare](https://www.cloudflare.com/)
-  * [Hover](https://www.hover.com/)
-  * [Name](https://www.name.com/)
-  * [Domainr](https://domainr.com/)
-  * [iwantmyname](https://iwantmyname.com/)
+- What is a DNS provider?
+  - [DNS Simple](https://dnsimple.com/)
+  - [Cloudflare](https://www.cloudflare.com/)
+  - [Hover](https://www.hover.com/)
+  - [Name](https://www.name.com/)
+  - [Domainr](https://domainr.com/)
+  - [iwantmyname](https://iwantmyname.com/)
 
-13:30 
+13:30
 
-* Different types of DNS records
+- Different types of DNS records
 
 17:00
 
-* Different kinds of domains
-  * .com, .tv, .io, etc.
+- Different kinds of domains
+  - .com, .tv, .io, etc.
 
 ## Tweet us your tasty treats!
 
-* [Scott's Instagram](https://www.instagram.com/stolinski/)
-* [LevelUpTutorials Instagram](https://www.instagram.com/LevelUpTutorials/)
-* [Wes' Instagram](https://www.instagram.com/wesbos/)
-* [Wes' Twitter](https://twitter.com/wesbos)
-* [Wes' Facebook](https://www.facebook.com/wesbos.developer)
-* [Scott's Twitter](https://twitter.com/stolinski)
-* Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets
+- [Scott's Instagram](https://www.instagram.com/stolinski/)
+- [LevelUpTutorials Instagram](https://www.instagram.com/LevelUpTutorials/)
+- [Wes' Instagram](https://www.instagram.com/wesbos/)
+- [Wes' Twitter](https://twitter.com/wesbos)
+- [Wes' Facebook](https://www.facebook.com/wesbos.developer)
+- [Scott's Twitter](https://twitter.com/stolinski)
+- Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets

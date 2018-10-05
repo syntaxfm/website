@@ -17,37 +17,38 @@ Enter each other's email address as the coupon code and your discount will be ap
 
 01:00
 
-* [Scott's New Redux Course](https://www.leveluptutorials.com/store/products/tutorials/lut-dd018)
-* [Redux Docs](https://redux.js.org/)
-* What is Redux? Why do we need it?
+- [Scott's New Redux Course](https://www.leveluptutorials.com/store/products/tutorials/lut-dd018)
+- [Redux Docs](https://redux.js.org/)
+- What is Redux? Why do we need it?
 
 06:00
 
-* Modifying Your State
-* Immutability
+- Modifying Your State
+- Immutability
 
 07:15
 
-* Actions + Actions Creators
-* Dispatching
+- Actions + Actions Creators
+- Dispatching
 
 09:00
 
-* Reducers
+- Reducers
 
 14:00
 
-* [Wes' Redux Tutorial](https://LearnRedux.com)
+- [Wes' Redux Tutorial](https://LearnRedux.com)
 
 18:30
 
-* What is the difference between Cookies and JWT?
+- What is the difference between Cookies and JWT?
 
 ## Tweet us your tasty treats!
-* [Scott's Instagram](https://www.instagram.com/stolinski/)
-* [LevelUpTutorials Instagram](https://www.instagram.com/LevelUpTutorials/)
-* [Wes' Instagram](https://www.instagram.com/wesbos/)
-* [Wes' Twitter](https://twitter.com/wesbos)
-* [Wes' Facebook](https://www.facebook.com/wesbos.developer)
-* [Scott's Twitter](https://twitter.com/stolinski)
-* Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets
+
+- [Scott's Instagram](https://www.instagram.com/stolinski/)
+- [LevelUpTutorials Instagram](https://www.instagram.com/LevelUpTutorials/)
+- [Wes' Instagram](https://www.instagram.com/wesbos/)
+- [Wes' Twitter](https://twitter.com/wesbos)
+- [Wes' Facebook](https://www.facebook.com/wesbos.developer)
+- [Scott's Twitter](https://twitter.com/stolinski)
+- Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets

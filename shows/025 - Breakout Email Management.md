@@ -11,81 +11,81 @@ Wes details "Breakout" — his email management strategy for overwhelmed creativ
 
 If you are a small business or freelancer check out [Freshbooks.com Cloud Accounting](https://freshbooks.com/syntax) and get 30 days free. Make sure to enter SYNTAX into the "How did you hear about us" section.
 
-
 ## The Show Notes!
 
 01:00
 
-* [Wes' notes on the Breakout Email Management System](http://wesbos.com/breakout-email/)
+- [Wes' notes on the Breakout Email Management System](http://wesbos.com/breakout-email/)
 
 02:00
 
-* Do you like minisode or snackisode?
-* Any other ideas for names for these short episodes?
+- Do you like minisode or snackisode?
+- Any other ideas for names for these short episodes?
 
 04:00
 
-* Email is often busywork
+- Email is often busywork
 
 04:30
 
-* You likely have a decision problem
+- You likely have a decision problem
 
 06:00
 
-* Kill it at the source! How do you stop email from getting to you in the first place?
+- Kill it at the source! How do you stop email from getting to you in the first place?
 
 08:00
 
-* Your inbox is not the world's TODO list
-* Process it when you get it
-* Getting Things Done
+- Your inbox is not the world's TODO list
+- Process it when you get it
+- Getting Things Done
 
 09:30
 
-* Filter! Filter! Filter!
+- Filter! Filter! Filter!
 
 10:30
 
-* Germans sure do get a lot of vacation time!
+- Germans sure do get a lot of vacation time!
 
 13:00
 
-* Expansions
-* Using Robots for empathy
-* [Text Expander](https://smilesoftware.com/textexpander)
-* [aText](https://www.trankynam.com/atext/)
+- Expansions
+- Using Robots for empathy
+- [Text Expander](https://smilesoftware.com/textexpander)
+- [aText](https://www.trankynam.com/atext/)
 
 15:30
 
-* Dictation is great!
+- Dictation is great!
 
 17:30
 
-* Video responses
+- Video responses
 
 18:30
 
-* Defer
+- Defer
 
 19:19
 
-* Batch Processing Email
-* Send + Archive
+- Batch Processing Email
+- Send + Archive
 
 20:31
 
-* Stop emailing yourself
+- Stop emailing yourself
 
 24:00
 
-* Listener Question: How do you use Prettier?
+- Listener Question: How do you use Prettier?
 
 ## Tweet us your tasty treats!
-* [Scott's Instagram](https://www.instagram.com/stolinski/)
-* [LevelUpTutorials Instagram](https://www.instagram.com/LevelUpTutorials/)
-* [Wes' Instagram](https://www.instagram.com/wesbos/)
-* [Wes' Twitter](https://twitter.com/wesbos)
-* [Wes' Facebook](https://www.facebook.com/wesbos.developer)
-* [Scott's Twitter](https://twitter.com/stolinski)
-* Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets
+
+- [Scott's Instagram](https://www.instagram.com/stolinski/)
+- [LevelUpTutorials Instagram](https://www.instagram.com/LevelUpTutorials/)
+- [Wes' Instagram](https://www.instagram.com/wesbos/)
+- [Wes' Twitter](https://twitter.com/wesbos)
+- [Wes' Facebook](https://www.facebook.com/wesbos.developer)
+- [Scott's Twitter](https://twitter.com/stolinski)
+- Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets

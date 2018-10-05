@@ -15,24 +15,24 @@ In this Hasty Treat (Short episode) Scott and Wes discuss user roles, what to th
 
 3:30
 
-* How to manage user role systems
+- How to manage user role systems
 
 11:30
 
-* Client side best practices
-* Don't rely on front-end role systems as a security measure
+- Client side best practices
+- Don't rely on front-end role systems as a security measure
 
 14:13
 
-* Where to store your roles 
-* Start simple and get more complex as needed 
+- Where to store your roles
+- Start simple and get more complex as needed
 
 ## Tweet us your tasty treats!
 
-* [Scott's Instagram](https://www.instagram.com/stolinski/)
-* [LevelUpTutorials Instagram](https://www.instagram.com/LevelUpTutorials/)
-* [Wes' Instagram](https://www.instagram.com/wesbos/)
-* [Wes' Twitter](https://twitter.com/wesbos)
-* [Wes' Facebook](https://www.facebook.com/wesbos.developer)
-* [Scott's Twitter](https://twitter.com/stolinski)
-* Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets
+- [Scott's Instagram](https://www.instagram.com/stolinski/)
+- [LevelUpTutorials Instagram](https://www.instagram.com/LevelUpTutorials/)
+- [Wes' Instagram](https://www.instagram.com/wesbos/)
+- [Wes' Twitter](https://twitter.com/wesbos)
+- [Wes' Facebook](https://www.facebook.com/wesbos.developer)
+- [Scott's Twitter](https://twitter.com/stolinski)
+- Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets

@@ -17,101 +17,101 @@ This is episode Wes mentions the free book [Breaking The Time Barrier](https://w
 
 They are also hiring! [netlify.com/careers](https://netlify.com/careers)
 
-
 ## Show Notes
 
 For the docs for all these, just google `mdn` and the method you are looking for 😃
 
 3:00
 
-* Why are these great?
-* They are chainable
-* Immutable
+- Why are these great?
+- They are chainable
+- Immutable
 
 5:30
 
-* .filter()
-* Truthy or Falsy
+- .filter()
+- Truthy or Falsy
 
 8:00
 
-* .map()
+- .map()
 
 10:00
 
-* .reduce() - returns any shape! filter, create a new shape, add up numbers...
+- .reduce() - returns any shape! filter, create a new shape, add up numbers...
 
 14:30
 
-* .forEach()
-* Side effects
+- .forEach()
+- Side effects
 
 16:00
 
-* .some()
-* can be used as a short circuit forEach
+- .some()
+- can be used as a short circuit forEach
 
 25:00
 
-* .every()
-* .includes() (why not contains?)
+- .every()
+- .includes() (why not contains?)
 
 26:00
 
-* Array.from()
-* Array.from() takes a secondary map arg
-* Array.of()
+- Array.from()
+- Array.from() takes a secondary map arg
+- Array.of()
 
 29:00
 
-* Object.values()
-* Object.keys()
-* Object.entries()
+- Object.values()
+- Object.keys()
+- Object.entries()
 
 32:00
 
-* Array spread - converts iterable to array
-* Array spread - Concats arrays
-* Array Spread + Slice. Don't splice - remove an item from an array.
+- Array spread - converts iterable to array
+- Array spread - Concats arrays
+- Array Spread + Slice. Don't splice - remove an item from an array.
 
 34:00
 
-* Object Spread
+- Object Spread
 
 37:00
 
-* Function Rest
+- Function Rest
 
 39:00
 
-* Object.freeze()
+- Object.freeze()
 
 40:00
 
-* Object.seal()
+- Object.seal()
 
 41:00
 
-* Object.assign() - no longer needed because you can object spread
-* [Reference vs Copy in JavaScript](https://www.youtube.com/watch?v=YnfwDQ5XYF4)
+- Object.assign() - no longer needed because you can object spread
+- [Reference vs Copy in JavaScript](https://www.youtube.com/watch?v=YnfwDQ5XYF4)
+
 ## ×SICK×PICKS×
 
-* Scott: [Tea Haus](https://theteahaus.com/)
-* Wes:[SOG Folding Knife](https://amzn.to/2qZHrzk)
-* Wes: [Sharpening Stone](https://amzn.to/2HGNeob)
+- Scott: [Tea Haus](https://theteahaus.com/)
+- Wes:[SOG Folding Knife](https://amzn.to/2qZHrzk)
+- Wes: [Sharpening Stone](https://amzn.to/2HGNeob)
 
 ## Shameless Plugs
 
-* [Vue.js for Everyone](https://LevelUpTutorials.com/store)
-* [Wes' Course](https://wesbos.com/courses)
-* [SMASH that Subscribe Button on Wes' YouTube](https://www.youtube.com/wesbos)
+- [Vue.js for Everyone](https://LevelUpTutorials.com/store)
+- [Wes' Course](https://wesbos.com/courses)
+- [SMASH that Subscribe Button on Wes' YouTube](https://www.youtube.com/wesbos)
 
 ## Tweet us your tasty treats!
 
-* [Scott's Instagram](https://www.instagram.com/stolinski/)
-* [LevelUpTutorials Instagram](https://www.instagram.com/LevelUpTutorials/)
-* [Wes' Instagram](https://www.instagram.com/wesbos/)
-* [Wes' Twitter](https://twitter.com/wesbos)
-* [Wes' Facebook](https://www.facebook.com/wesbos.developer)
-* [Scott's Twitter](https://twitter.com/stolinski)
-* Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets
+- [Scott's Instagram](https://www.instagram.com/stolinski/)
+- [LevelUpTutorials Instagram](https://www.instagram.com/LevelUpTutorials/)
+- [Wes' Instagram](https://www.instagram.com/wesbos/)
+- [Wes' Twitter](https://twitter.com/wesbos)
+- [Wes' Facebook](https://www.facebook.com/wesbos.developer)
+- [Scott's Twitter](https://twitter.com/stolinski)
+- Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets

@@ -19,62 +19,62 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 
 4:46 - Advice for gaining new skills
 
-* Patience and momentum are key
-* You likely won’t get anywhere significant in two months
-* Think about where you want to be in five years
-* Start small
-* Start with was excites you and let that drive your exploration
-* Start writing code ASAP. Don't worry about the right way, just get started.
+- Patience and momentum are key
+- You likely won’t get anywhere significant in two months
+- Think about where you want to be in five years
+- Start small
+- Start with was excites you and let that drive your exploration
+- Start writing code ASAP. Don't worry about the right way, just get started.
 
 17:15 - Advice for applying to jobs
 
-* Apply for everything. Failing an interview is no big deal.
-* Each interview is an opportunity to gain experience
-* Putting yourself out there is huge - one blog post, YouTube video, or open source project will put you miles ahead 
-* Have an entrepreneurial mindset - you can negotiate money, hardware, vacation time, flexible schedule, etc. Don’t just google “average salary”
-* Negotiate salaries and perks. 
+- Apply for everything. Failing an interview is no big deal.
+- Each interview is an opportunity to gain experience
+- Putting yourself out there is huge - one blog post, YouTube video, or open source project will put you miles ahead
+- Have an entrepreneurial mindset - you can negotiate money, hardware, vacation time, flexible schedule, etc. Don’t just google “average salary”
+- Negotiate salaries and perks.
 
 29:32 - Advice for knowing what to focus on
 
-* What gets you jazzed? Find something cool and figure out how to recreate it.
-* Find a problem and figure out how to solve it - build real things.
-* Don’t focus on tech - tech is just a tool.
+- What gets you jazzed? Find something cool and figure out how to recreate it.
+- Find a problem and figure out how to solve it - build real things.
+- Don’t focus on tech - tech is just a tool.
 
 38:32 - Advice for impostor syndrome
 
-* Listen to this podcast! ;)
-* Almost everyone has it. 
-* Don’t worry about other people’s progress.
-* You don't need to know how to do everything, but you should be able to figure out how to learn. 
+- Listen to this podcast! ;)
+- Almost everyone has it.
+- Don’t worry about other people’s progress.
+- You don't need to know how to do everything, but you should be able to figure out how to learn.
 
 46:45 - Misc advice
 
-* Evaluate things for yourself - don't blindly follow the loudest voices on the internet
-* Focus on soft skills as well - time management, communication
-* Get a mentor
-* Health and Hobbies - don't let yourself burnout
+- Evaluate things for yourself - don't blindly follow the loudest voices on the internet
+- Focus on soft skills as well - time management, communication
+- Get a mentor
+- Health and Hobbies - don't let yourself burnout
 
 ## Links
 
-* [Ep 044 - How to Learn New Things Quickly](https://syntax.fm/show/044/how-to-learn-new-things-quickly)
-* [Javascript30](https://javascript30.com/)
+- [Ep 044 - How to Learn New Things Quickly](https://syntax.fm/show/044/how-to-learn-new-things-quickly)
+- [Javascript30](https://javascript30.com/)
 
 ## ××× SIIIIICK ××× PIIIICKS ×××
 
-* Scott: [Sony A7iii](https://amzn.to/2NhCls4)
-* Wes: [Zevia](https://www.zevia.com/)
+- Scott: [Sony A7iii](https://amzn.to/2NhCls4)
+- Wes: [Zevia](https://www.zevia.com/)
 
 ## Shameless Plugs
 
-* [Scott's Level Up Tuts Pro](https://LevelUpTutorials.com/pro)
-* [Wes' Stickers](https://bos.af/)
+- [Scott's Level Up Tuts Pro](https://LevelUpTutorials.com/pro)
+- [Wes' Stickers](https://bos.af/)
 
 ## Tweet us your tasty treats!
 
-* [Scott's Instagram](https://www.instagram.com/stolinski/)
-* [LevelUpTutorials Instagram](https://www.instagram.com/LevelUpTutorials/)
-* [Wes' Instagram](https://www.instagram.com/wesbos/)
-* [Wes' Twitter](https://twitter.com/wesbos)
-* [Wes' Facebook](https://www.facebook.com/wesbos.developer)
-* [Scott's Twitter](https://twitter.com/stolinski)
-* Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets
+- [Scott's Instagram](https://www.instagram.com/stolinski/)
+- [LevelUpTutorials Instagram](https://www.instagram.com/LevelUpTutorials/)
+- [Wes' Instagram](https://www.instagram.com/wesbos/)
+- [Wes' Twitter](https://twitter.com/wesbos)
+- [Wes' Facebook](https://www.facebook.com/wesbos.developer)
+- [Scott's Twitter](https://twitter.com/stolinski)
+- Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets

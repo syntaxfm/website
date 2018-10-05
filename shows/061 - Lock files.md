@@ -15,33 +15,33 @@ In this Hasty Treat, Scott and Wes discuss npm, yarn, lock files, why they're us
 
 4:10
 
-* What is npm and yarn?
+- What is npm and yarn?
 
 8:00
 
-* What's the difference between npm and yarn?
+- What's the difference between npm and yarn?
 
 12:00
 
-* What is semver?
+- What is semver?
 
 16:40
 
-* What is the dependency tree?
-* This is the problem that lock files solve
+- What is the dependency tree?
+- This is the problem that lock files solve
 
 20:32
 
-* Cool new features of npm and yarn
-  * npx
-  * security warnings
+- Cool new features of npm and yarn
+  - npx
+  - security warnings
 
 ## Tweet us your tasty treats!
 
-* [Scott's Instagram](https://www.instagram.com/stolinski/)
-* [LevelUpTutorials Instagram](https://www.instagram.com/LevelUpTutorials/)
-* [Wes' Instagram](https://www.instagram.com/wesbos/)
-* [Wes' Twitter](https://twitter.com/wesbos)
-* [Wes' Facebook](https://www.facebook.com/wesbos.developer)
-* [Scott's Twitter](https://twitter.com/stolinski)
-* Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets
+- [Scott's Instagram](https://www.instagram.com/stolinski/)
+- [LevelUpTutorials Instagram](https://www.instagram.com/LevelUpTutorials/)
+- [Wes' Instagram](https://www.instagram.com/wesbos/)
+- [Wes' Twitter](https://twitter.com/wesbos)
+- [Wes' Facebook](https://www.facebook.com/wesbos.developer)
+- [Scott's Twitter](https://twitter.com/stolinski)
+- Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets

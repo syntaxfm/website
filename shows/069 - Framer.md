@@ -5,7 +5,7 @@ date: 1535374800304
 url: https://traffic.libsyn.com/syntax/Syntax069.mp3
 ---
 
-In this Hasty Treat, Scott and Wes talk about prototyping and design tools in the development space, specifically Framer X - what it is, what it isn't, and some cool stuff coming down the pipeline. 
+In this Hasty Treat, Scott and Wes talk about prototyping and design tools in the development space, specifically Framer X - what it is, what it isn't, and some cool stuff coming down the pipeline.
 
 ## Sentry - Sponsor
 
@@ -13,33 +13,33 @@ If you want to know what's happening with your errors, track them with [Sentry](
 
 ## Show Notes
 
-3:35 
+3:35
 
-* Framer X - What it is and what it isn't
+- Framer X - What it is and what it isn't
 
 13:20
 
-* What it means for other prototyping and design tools
+- What it means for other prototyping and design tools
 
 17:00
 
-* Future of prototyping and design and development
+- Future of prototyping and design and development
 
 21:40
 
-* Final thoughts
+- Final thoughts
 
 ## Links
 
-* [Scott's Framer X Fist Look Video](https://youtu.be/oUhoBus1nn0)
-* [Sign up for Framer X Beta](https://framer.com/x/)
+- [Scott's Framer X Fist Look Video](https://youtu.be/oUhoBus1nn0)
+- [Sign up for Framer X Beta](https://framer.com/x/)
 
 ## Tweet us your tasty treats!
 
-* [Scott's Instagram](https://www.instagram.com/stolinski/)
-* [LevelUpTutorials Instagram](https://www.instagram.com/LevelUpTutorials/)
-* [Wes' Instagram](https://www.instagram.com/wesbos/)
-* [Wes' Twitter](https://twitter.com/wesbos)
-* [Wes' Facebook](https://www.facebook.com/wesbos.developer)
-* [Scott's Twitter](https://twitter.com/stolinski)
-* Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets
+- [Scott's Instagram](https://www.instagram.com/stolinski/)
+- [LevelUpTutorials Instagram](https://www.instagram.com/LevelUpTutorials/)
+- [Wes' Instagram](https://www.instagram.com/wesbos/)
+- [Wes' Twitter](https://twitter.com/wesbos)
+- [Wes' Facebook](https://www.facebook.com/wesbos.developer)
+- [Scott's Twitter](https://twitter.com/stolinski)
+- Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets

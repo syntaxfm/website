@@ -13,29 +13,29 @@ If you want to know what's happening with your errors, track them with [Sentry](
 
 ## Show Notes
 
- 4:32 - Wes' process
+4:32 - Wes' process
 
-* Figure out what to make
-* Build the thing you're teaching in the course
-* Have it reviewed by experts
-* Simplify and create a linear flow for what you're teaching
+- Figure out what to make
+- Build the thing you're teaching in the course
+- Have it reviewed by experts
+- Simplify and create a linear flow for what you're teaching
 
-16:25 -  Scott's process
+16:25 - Scott's process
 
-* Chose a topic
-* Build the thing
-* Create the outline as you go
-* Have goals in mind, for individual topics
-* Record with final code open
+- Chose a topic
+- Build the thing
+- Create the outline as you go
+- Have goals in mind, for individual topics
+- Record with final code open
 
 28:25 - How to get started
 
 ## Tweet us your tasty treats!
 
-* [Scott's Instagram](https://www.instagram.com/stolinski/)
-* [LevelUpTutorials Instagram](https://www.instagram.com/LevelUpTutorials/)
-* [Wes' Instagram](https://www.instagram.com/wesbos/)
-* [Wes' Twitter](https://twitter.com/wesbos)
-* [Wes' Facebook](https://www.facebook.com/wesbos.developer)
-* [Scott's Twitter](https://twitter.com/stolinski)
-* Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets
+- [Scott's Instagram](https://www.instagram.com/stolinski/)
+- [LevelUpTutorials Instagram](https://www.instagram.com/LevelUpTutorials/)
+- [Wes' Instagram](https://www.instagram.com/wesbos/)
+- [Wes' Twitter](https://twitter.com/wesbos)
+- [Wes' Facebook](https://www.facebook.com/wesbos.developer)
+- [Scott's Twitter](https://twitter.com/stolinski)
+- Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets

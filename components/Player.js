@@ -1,7 +1,8 @@
-import React from "react";
-import Show from "./Show";
-import formatTime from "../lib/formatTime";
-import { FaPlay,FaPause } from "react-icons/fa";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { FaPlay, FaPause } from 'react-icons/fa';
+import formatTime from '../lib/formatTime';
+
 export default class Player extends React.Component {
   constructor(props) {
     super(props);
@@ -9,9 +10,13 @@ export default class Player extends React.Component {
     let lastPlayed = 0;
 
     // for SSR
-    if (typeof window !== "undefined") {
-      const lp = localStorage.getItem(`lastPlayed${this.props.show.number}`);
-      if (lp) lastPlayed = JSON.parse(lp).lastPlayed;
+    if (typeof window !== 'undefined') {
+      const { show } = this.props;
+      const lp = localStorage.getItem(`lastPlayed${show.number}`);
+      if (lp) {
+        // eslint-disable-next-line prefer-destructuring
+        lastPlayed = JSON.parse(lp).lastPlayed;
+      }
     }
 
     this.state = {
@@ -20,7 +25,7 @@ export default class Player extends React.Component {
       duration: 0,
       currentTime: lastPlayed,
       playbackRate: 1,
-      timeWasLoaded: lastPlayed !== 0
+      timeWasLoaded: lastPlayed !== 0,
     };
   }
 
@@ -28,30 +33,37 @@ export default class Player extends React.Component {
     this.audio.playbackRate = nextState.playbackRate;
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (this.props.show.number !== prevProps.show.number) {
-      const lp = localStorage.getItem(`lastPlayed${this.props.show.number}`);
+  componentDidUpdate(prevProps) {
+    const { show } = this.props;
+    const { currentTime } = this.state;
+
+    if (show.number !== prevProps.show.number) {
+      const lp = localStorage.getItem(`lastPlayed${show.number}`);
       if (lp) {
         const data = JSON.parse(lp);
+        // eslint-disable-next-line react/no-did-update-set-state
         this.setState({
-          currentTime: data.lastPlayed
+          currentTime: data.lastPlayed,
         });
         this.audio.currentTime = data.lastPlayed;
       }
       this.audio.play();
     } else {
       localStorage.setItem(
-        `lastPlayed${this.props.show.number}`,
-        JSON.stringify({ lastPlayed: this.state.currentTime })
+        `lastPlayed${show.number}`,
+        JSON.stringify({ lastPlayed: currentTime }),
       );
     }
   }
 
-  timeUpdate = e => {
-    console.log("Updating Time");
+  timeUpdate(e) {
+    const { timeWasLoaded } = this.state;
+    const { show } = this.props;
+
+    console.log('Updating Time');
     // Check if the user already had a curent time
-    if (this.state.timeWasLoaded) {
-      const lp = localStorage.getItem(`lastPlayed${this.props.show.number}`);
+    if (timeWasLoaded) {
+      const lp = localStorage.getItem(`lastPlayed${show.number}`);
       if (lp) {
         e.currentTarget.currentTime = JSON.parse(lp).lastPlayed;
       }
@@ -63,60 +75,69 @@ export default class Player extends React.Component {
       if (Number.isNaN(progressTime)) return;
       this.setState({ progressTime, currentTime, duration });
     }
-  };
+  }
 
-  togglePlay = () => {
-    const method = this.state.playing ? "pause" : "play";
+  togglePlay() {
+    const { playing } = this.state;
+    const method = playing ? 'pause' : 'play';
     this.audio[method]();
-  };
+  }
 
-  scrub = e => {
-    const scrubTime =
-      (e.nativeEvent.offsetX / this.progress.offsetWidth) * this.audio.duration;
+  scrub(e) {
+    const scrubTime = (e.nativeEvent.offsetX / this.progress.offsetWidth) * this.audio.duration;
     this.audio.currentTime = scrubTime;
-  };
+  }
 
-  playPause = () => {
+  playPause() {
     this.setState({ playing: !this.audio.paused });
-    const method = this.audio.paused ? "add" : "remove";
-    document.querySelector(".bars").classList[method]("bars--paused"); // 💩
-  };
+    const method = this.audio.paused ? 'add' : 'remove';
+    document.querySelector('.bars').classList[method]('bars--paused'); // 💩
+  }
 
-  volume = e => {
+  volume(e) {
     this.audio.volume = e.currentTarget.value;
-  };
+  }
 
-  speed = () => {
-    let playbackRate = this.state.playbackRate + 0.25;
+  speed() {
+    const { playbackRate: playback } = this.state;
+    let playbackRate = playback + 0.25;
     if (playbackRate > 2.5) {
       playbackRate = 0.75;
     }
     this.setState({ playbackRate });
-  };
+  }
 
   render() {
     const { show } = this.props;
-    const { playing, progressTime, currentTime, duration } = this.state;
+    const {
+      playing, progressTime, currentTime, duration, playbackRate,
+    } = this.state;
 
     return (
       <div className="player">
         <div className="player__section player__section--left">
           <button
             onClick={this.togglePlay}
-            aria-label={playing ? "pause" : "play"}
+            aria-label={playing ? 'pause' : 'play'}
+            type="button"
           >
-            <p className="player__icon">{playing ? <FaPause /> : <FaPlay/>}</p>
+            <p className="player__icon">{playing ? <FaPause /> : <FaPlay />}</p>
             <p>
-              {formatTime(currentTime)} / {formatTime(duration)}
+              {formatTime(currentTime)}
+              {' '}
+              /
+              {' '}
+              {formatTime(duration)}
             </p>
           </button>
         </div>
-
         <div className="player__section player__section--middle">
           <div
             className="progress"
             onClick={this.scrub}
-            ref={x => (this.progress = x)}
+            ref={(x) => {
+              this.progress = x;
+            }}
           >
             <div
               className="progress__time"
@@ -124,18 +145,24 @@ export default class Player extends React.Component {
             />
           </div>
           <h3 className="player__title">
-            Playing: {show.displayNumber}: {show.title}
+            Playing:
+            {' '}
+            {show.displayNumber}
+            :
+            {' '}
+            {show.title}
           </h3>
         </div>
-
         <div className="player__section player__section--right">
-          <button onClick={this.speed} className="player__speed">
+          <button onClick={this.speed} className="player__speed" type="button">
             <p>FASTNESS</p>
             <span className="player__speeddisplay">
-              {this.state.playbackRate} &times;{" "}
+              {playbackRate}
+              {' '}
+              &times;
+              {' '}
             </span>
           </button>
-
           <div className="player__volume">
             <p>LOUDNESS</p>
             <div className="player__inputs">
@@ -253,9 +280,10 @@ export default class Player extends React.Component {
             </div>
           </div>
         </div>
-
         <audio
-          ref={audio => (this.audio = audio)}
+          ref={(audio) => {
+            this.audio = audio;
+          }}
           onPlay={this.playPause}
           onPause={this.playPause}
           onTimeUpdate={this.timeUpdate}
@@ -266,3 +294,15 @@ export default class Player extends React.Component {
     );
   }
 }
+
+Player.propTypes = {
+  show: PropTypes.shape({
+    url: PropTypes.string,
+    displayNumber: PropTypes.string,
+    title: PropTypes.string,
+  }),
+};
+
+Player.defaultProps = {
+  show: {},
+};

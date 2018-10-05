@@ -15,37 +15,37 @@ D3 has a bit of a bad reputation for being hard to learn so Ben Clinkinbeard has
 
 01:00
 
-* Minisode! What do you think?
-* Meijer is the best!
+- Minisode! What do you think?
+- Meijer is the best!
 
 05:00
 
-* What is CSS BEM?
-* What problems does CSS BEM solve?
-* Block, Element, Modifier!
+- What is CSS BEM?
+- What problems does CSS BEM solve?
+- Block, Element, Modifier!
 
 8:00
 
-* What about really long class names?
+- What about really long class names?
 
 9:00
 
-* Use with Sass/Stylus
+- Use with Sass/Stylus
 
 12:00
 
-* What about styled components?!
+- What about styled components?!
 
 15:00
 
-* Listener Question: Do / should you use Dropbox for a website with Git and node_modules?
-
+- Listener Question: Do / should you use Dropbox for a website with Git and node_modules?
 
 ## Tweet us your tasty treats!
-* [Scott's Instagram](https://www.instagram.com/stolinski/)
-* [LevelUpTutorials Instagram](https://www.instagram.com/LevelUpTutorials/)
-* [Wes' Instagram](https://www.instagram.com/wesbos/)
-* [Wes' Twitter](https://twitter.com/wesbos)
-* [Wes' Facebook](https://www.facebook.com/wesbos.developer)
-* [Scott's Twitter](https://twitter.com/stolinski)
-* Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets
+
+- [Scott's Instagram](https://www.instagram.com/stolinski/)
+- [LevelUpTutorials Instagram](https://www.instagram.com/LevelUpTutorials/)
+- [Wes' Instagram](https://www.instagram.com/wesbos/)
+- [Wes' Twitter](https://twitter.com/wesbos)
+- [Wes' Facebook](https://www.facebook.com/wesbos.developer)
+- [Scott's Twitter](https://twitter.com/stolinski)
+- Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets
