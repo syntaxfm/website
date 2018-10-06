@@ -86,11 +86,26 @@ export default class Player extends React.Component {
     this.audio.volume = e.currentTarget.value;
   };
 
-  speed = () => {
-    let playbackRate = this.state.playbackRate + 0.25;
+  speedUp = () => {
+    this.speed(0.25);
+  };
+
+  speedDown = e => {
+    e.preventDefault();
+    this.speed(-0.25);
+  };
+
+  speed = change => {
+    let playbackRate = this.state.playbackRate + change;
+
     if (playbackRate > 2.5) {
       playbackRate = 0.75;
     }
+
+    if (playbackRate <= 0) {
+      playbackRate = 2.5;
+    }
+
     this.setState({ playbackRate });
   };
 
@@ -129,7 +144,7 @@ export default class Player extends React.Component {
         </div>
 
         <div className="player__section player__section--right">
-          <button onClick={this.speed} className="player__speed">
+          <button onClick={this.speedUp} onContextMenu={this.speedDown} className="player__speed">
             <p>FASTNESS</p>
             <span className="player__speeddisplay">
               {this.state.playbackRate} &times;{" "}
