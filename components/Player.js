@@ -96,14 +96,16 @@ export default class Player extends React.Component {
   };
 
   speed = change => {
+    const playbackRateMax = 2.5;
+    const playbackRateMin = 0.75;
     let playbackRate = this.state.playbackRate + change;
 
-    if (playbackRate > 2.5) {
-      playbackRate = 0.75;
+    if (playbackRate > playbackRateMax) {
+      playbackRate = playbackRateMin;
     }
 
-    if (playbackRate <= 0) {
-      playbackRate = 2.5;
+    if (playbackRate < playbackRateMin) {
+      playbackRate = playbackRateMax;
     }
 
     this.setState({ playbackRate });
