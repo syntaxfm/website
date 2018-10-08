@@ -36,6 +36,11 @@ export default class IndexPage extends React.Component {
   setCurrentPlaying = currentPlaying => {
     console.log('Setting current playing');
     this.setState({ currentPlaying });
+    
+    window.scroll({
+      top: 0,
+      behavior: 'smooth',
+    });
   };
 
   render() {
