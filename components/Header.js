@@ -14,6 +14,7 @@ const Header = () => (
           target="_blank"
           href="https://docs.google.com/forms/d/e/1FAIpQLSfQlAo1wXHiJMySdU-h8QMtfoz92aMS9eycEHXB6eRCLh8KHA/viewform"
           className="title__potluck-btn"
+          rel="noopener noreferrer"
         >
           Ask a Potluck Question →
         </a>
@@ -30,12 +31,13 @@ const Header = () => (
             target="_blank"
             href="https://twitter.com/wesbos"
             className="person__social person__social--twitter"
+            rel="noopener noreferrer"
           >
             @wesbos
           </a>
           <p>
             Full Stack JavaScript Developer. Creator of really good{' '}
-            <a target="_blank" href="https://wesbos.com/courses">
+            <a target="_blank" href="https://wesbos.com/courses" rel="noopener noreferrer">
               web development courses
             </a>. BBQ enthusiast.
           </p>
@@ -46,19 +48,21 @@ const Header = () => (
             src="https://avatars2.githubusercontent.com/u/669383?s=460&v=4"
             alt=""
             className="avatar"
+            rel="noopener noreferrer"
           />
           <h3>Scott Tolinski</h3>
           <a
             target="_blank"
             href="https://twitter.com/stolinski"
             className="person__social person__social--twitter"
+            rel="noopener noreferrer"
           >
             @stolinski
           </a>
           <p>
             Web Developer, Creator of <a href="https://leveluptutorials.com/">Level Up Tuts</a>,
             Bboy, Robotops Crew and{' '}
-            <a target="_blank" href="https://www.youtube.com/c/leveluptuts">
+            <a target="_blank" href="https://www.youtube.com/c/leveluptuts" rel="noopener noreferrer">
               Youtuber
             </a>
           </p>
