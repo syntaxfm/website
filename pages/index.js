@@ -37,11 +37,16 @@ export default class IndexPage extends React.Component {
     console.log('Setting current playing');
     this.setState({ currentPlaying });
     
-    window.scroll({
-      top: 0,
-      behavior: 'smooth',
-    });
-  };
+    const topOfPlayer = document.getElementById("main").offsetTop;
+
+    if (window.scrollY > topOfPlayer || topOfPlayer > window.screen.height) {
+        window.scroll({
+        top: topOfPlayer,
+        left: 0,
+        behavior: 'smooth',
+      });
+    };
+  }
 
   render() {
     const { shows = [], baseURL } = this.props;

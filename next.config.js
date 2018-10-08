@@ -3,6 +3,15 @@ const glob = require('glob');
 
 module.exports = {
   webpack: (config, { dev }) => {
+    const originalEntry = config.entry
+    config.entry = async () => {
+      const entries = await originalEntry()
+       if (entries['main.js'] && !entries['main.js'].includes('./lib/polyfills.js')) {
+        entries['main.js'].unshift('./lib/polyfills.js')
+      }
+       return entries
+    }
+
     config.module.rules.push(
       {
         test: /\.(css|styl)/,
