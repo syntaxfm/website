@@ -9,10 +9,6 @@ import Footer from '../components/Footer';
 import Page from '../components/Page';
 
 export default class SponsorPage extends React.Component {
-  componentDidCatch = e => {
-    console.log('ERRORRRRR');
-    console.log(e);
-  };
   render() {
     return (
       <Page>
@@ -24,7 +20,7 @@ export default class SponsorPage extends React.Component {
           </p>
           <figure style={{ float: 'left', marginRight: 35 }}>
             <img
-              src="https://instagram.fybz1-1.fna.fbcdn.net/vp/e04b7e1e1d5a28cb370b25bac0192b24/5BB284DA/t51.2885-15/e35/27576683_675183752871920_1707794213682282496_n.jpg"
+              src="/static/sponsor/27576683_675183752871920_1707794213682282496_n.jpg"
               width="400"
             />
             <figcaption>
@@ -53,10 +49,28 @@ export default class SponsorPage extends React.Component {
             </li>
           </ul>
           <h2>Audience Size && Breakdown</h2>
+          <figure style={{ float: 'right', marginLeft: 20 }}>
+            <img
+              src="/static/sponsor/39099033_270538757113294_5127531635289358336_n.jpg"
+              width="400"
+              alt="iPhone showing a Syntax Episode"
+            />
+            <figcaption>
+              Photo by{' '}
+              <a href="https://www.instagram.com/dhanishgajjar/">
+                Dhanish Gajjar
+              </a>
+            </figcaption>
+          </figure>
           <p>
-            Each sponsorship spot will receive an average of 28,000 downloads. Each spot will receive at least 23,000
+            Each sponsorship spot will receive an average of 30,000 downloads. Each spot will receive at least 23,000
             downloads, and some of the shows reach 40-50,000 downloads just months after being launched.
           </p>
+
+          <blockquote class="twitter-tweet">
+            <p lang="en" dir="ltr">To be honest <a href="https://twitter.com/syntaxfm?ref_src=twsrc%5Etfw">@syntaxfm</a> is the only podcast where I listen to the sponsor adds, they don’t event feel like adds</p>&mdash; Omar Aguinaga (@Soyoag) <a href="https://twitter.com/Soyoag/status/988205788794572800?ref_src=twsrc%5Etfw">April 22, 2018</a>
+          </blockquote> 
+          <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
 
           <p>
             While exact numbers are hard to get, here are a few nuggets of information about our audience that should
@@ -79,17 +93,6 @@ export default class SponsorPage extends React.Component {
             <li>51% of Wes's followers are aged 18 to 24 and 22% 25 to 34.</li>
             <li>The top computed "lifestyle type" is Online Buyers.</li>
           </ul>
-
-          <figure style={{ float: 'right', marginLeft: 20 }}>
-            <img
-              src="https://instagram.fybz1-1.fna.fbcdn.net/t51.2885-15/e35/22157944_396029214150820_7452835776976388096_n.jpg"
-              width="400"
-              alt="iPhone showing a Syntax Episode"
-            />
-            <figcaption>
-              Photo by <a href="https://www.instagram.com/dhanishgajjar/">Dhanish Gajjar</a>
-            </figcaption>
-          </figure>
 
           <h2>Audience Interests</h2>
           <p>
@@ -124,8 +127,8 @@ export default class SponsorPage extends React.Component {
           <h2>What You'll Get && Pricing</h2>
           <p>We have found that we get the best results for our advertisers when they sponsor at least three shows.</p>
           <p>
-            Currently each sponsor spot is $800 USD per episode with a minimum of three episodes, though this price will
-            increase as our audience does. Single show sponsorships are $900.
+            Currently each sponsor spot is $1,000 USD per episode with a minimum of three episodes, though this price will
+            increase as our audience does. Single show sponsorships are $1,200. 
           </p>
 
           <p>As part of the sponsorship package, you'll get:</p>

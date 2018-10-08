@@ -3,7 +3,9 @@ import Subscribe from './Subscribe';
 const Header = () => (
   <header className="header">
     <div className="header__left">
-      <img className="header__logo" src="/static/logo.png" alt="Syntax" />
+      <h1 aria-label="Syntax.FM">
+        <img className="header__logo" src="/static/logo.png" alt="Syntax" />
+      </h1>
     </div>
     <div className="header__right">
       <div className="title">
