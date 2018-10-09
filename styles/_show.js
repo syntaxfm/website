@@ -1,38 +1,8 @@
-import React from 'react'
-import styled from 'styled-components';
-import Link from 'next/link';
-import slug from 'speakingurl';
-import Router from 'next/router'
-import Bars from './bars';
-import { FaPlay } from "react-icons/fa";
-import { black, yellow, green, grey, grey3, lightgrey } from '../styles/variables'
+import { injectGlobal } from 'styled-components';
 
-export default class Show extends React.Component {
-  changeURL = (e, show) => {
-    e.preventDefault();
-    const href = e.currentTarget.href;
-    Router.push(`/?number=${show.displayNumber}`, href, { shallow: true })
-  }
+import { black, yellow, green, grey, grey3, lightgrey } from './variables'
 
-  render() {
-    const { show, currentPlaying, currentShow, setCurrentPlaying } = this.props;
-    return (
-      <ShowWrapper className={`show ${currentPlaying === show.displayNumber ? 'show--playing' : '' } ${currentShow === show.displayNumber ? 'show--active' : '' }
-      `}>
-        <a className="show__link" href={`/show/${show.displayNumber}/${slug(show.title)}`} onClick={(e) => this.changeURL(e, show)}>
-          <p className="show__displayNumber">Episode {show.displayNumber}</p>
-          <h3 className="show__title">{show.title}</h3>
-        </a>
-
-        <div className="show__playcontrols">
-          {currentPlaying === show.displayNumber ? <Bars/ > : <button onClick={() => setCurrentPlaying(show.displayNumber)} className="show__play" title="play button" ><FaPlay/></button> }
-        </div>
-      </ShowWrapper>
-    )
-  }
-}
-
-const ShowWrapper = styled.div`
+export default injectGlobal`
   .show {
     border-right: 1px solid ${grey};
     border-bottom: 1px solid ${grey};
@@ -124,5 +94,67 @@ const ShowWrapper = styled.div`
     .showList {
       width: 100%;
     }
+  }
+
+  .showNotes {
+    padding: 2rem;
+    width: 62%;
+    font-size: 1.5rem;
+  }
+
+  @media (max-width: 650px) {
+    .showNotes {
+      width: 100%;
+    }
+  }
+
+  .showNotes .button {
+    border-bottom: 0;
+  }
+
+  .showNotes ul {
+    padding-left: 2rem;
+    list-style-type: circle;
+  }
+
+  .showNotes li {
+    margin: 10px 0;
+  }
+
+  .showNotes h1,
+  .showNotes h2,
+  .showNotes h3,
+  .showNotes h4,
+  .showNotes h5,
+  .showNotes h6 {
+    font-family: 'courier';
+    font-weight: 100;
+    border-bottom: 1px solid ${grey};
+    padding-bottom: 1rem;
+  }
+
+  .showNotes h1:before,
+  .showNotes h2:before,
+  .showNotes h3:before,
+  .showNotes h4:before,
+  .showNotes h5:before,
+  .showNotes h6:before {
+    padding-right: 1rem;
+  }
+
+  .showNotes pre {
+    background: ${lightgrey};
+    padding: 1rem;
+  }
+
+  .showNotes h1,
+  .showNotes h2 {
+    font-size: 2.5rem;
+  }
+
+  .showNotes a {
+    color: #4a4a4a;
+    border-bottom: 1px solid ${yellow};
+    text-decoration: none;
   }
 `;
