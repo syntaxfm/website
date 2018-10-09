@@ -12,7 +12,6 @@ export default class highContrast extends React.Component{
     }));
     let html = document.querySelector('html');
     html.classList.toggle('highcontrast');
-    console.log(html.classList);
   }
 
   render() {
