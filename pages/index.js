@@ -7,6 +7,7 @@ import Meta from '../components/meta';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Page from '../components/Page';
+import Provider from '../components/Provider';
 
 export default class IndexPage extends React.Component {
   constructor(props) {
@@ -36,7 +37,7 @@ export default class IndexPage extends React.Component {
   setCurrentPlaying = currentPlaying => {
     console.log('Setting current playing');
     this.setState({ currentPlaying });
-  };
+  }
 
   render() {
     const { shows = [], baseURL } = this.props;
@@ -48,18 +49,20 @@ export default class IndexPage extends React.Component {
     return (
       <Page>
         <Meta show={show} baseURL={baseURL} />
-        <div className="wrapper">
-          <main className="show-wrap" id="main" tabIndex="-1">
-            <Player show={current} />
-            <ShowList
-              shows={shows}
-              currentShow={currentShow}
-              currentPlaying={currentPlaying}
-              setCurrentPlaying={this.setCurrentPlaying}
-            />
-            <ShowNotes show={show} setCurrentPlaying={this.setCurrentPlaying} />
-          </main>
-        </div>
+        <Provider>
+          <div className="wrapper">
+            <main className="show-wrap" id="main" tabIndex="-1">
+              <Player show={current} />
+              <ShowList
+                shows={shows}
+                currentShow={currentShow}
+                currentPlaying={currentPlaying}
+                setCurrentPlaying={this.setCurrentPlaying}
+                />
+              <ShowNotes show={show} setCurrentPlaying={this.setCurrentPlaying} />
+            </main>
+          </div>
+        </Provider>
       </Page>
     );
   }

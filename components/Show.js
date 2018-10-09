@@ -4,6 +4,7 @@ import slug from 'speakingurl';
 import Router from 'next/router'
 import Bars from './bars';
 import { FaPlay } from "react-icons/fa";
+import { Context } from './Provider'
 
 export default class Show extends React.Component {
   changeURL = (e, show) => {
@@ -15,17 +16,21 @@ export default class Show extends React.Component {
   render() {
     const { show, currentPlaying, currentShow, setCurrentPlaying } = this.props;
     return (
-      <div className={`show ${currentPlaying === show.displayNumber ? 'show--playing' : '' } ${currentShow === show.displayNumber ? 'show--active' : '' }
-      `}>
-        <a className="show__link" href={`/show/${show.displayNumber}/${slug(show.title)}`} onClick={(e) => this.changeURL(e, show)}>
-          <p className="show__displayNumber">Episode {show.displayNumber}</p>
-          <h3 className="show__title">{show.title}</h3>
-        </a>
+      <Context.Consumer>
+        {(context) => (
+          <div className={`show ${currentPlaying === show.displayNumber ? 'show--playing' : '' } ${currentShow === show.displayNumber ? 'show--active' : '' }
+          `} ref={(show) => this.show = show} onClick={() => context.showClicked(this.show)}>
+            <a className="show__link" href={`/show/${show.displayNumber}/${slug(show.title)}`} onClick={(e) => this.changeURL(e, show)}>
+              <p className="show__displayNumber">Episode {show.displayNumber}</p>
+              <h3 className="show__title">{show.title}</h3>
+            </a>
 
-        <div className="show__playcontrols">
-          {currentPlaying === show.displayNumber ? <Bars/ > : <button onClick={() => setCurrentPlaying(show.displayNumber)} className="show__play" title="play button" ><FaPlay/></button> }
-        </div>
-      </div>
+            <div className="show__playcontrols">
+              {currentPlaying === show.displayNumber ? <Bars/ > : <button onClick={() => setCurrentPlaying(show.displayNumber)} className="show__play" title="play button" ><FaPlay/></button> }
+            </div>
+          </div>
+        )}
+      </Context.Consumer>
     )
   }
 }
