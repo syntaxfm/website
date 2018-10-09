@@ -1,5 +1,7 @@
+import styled from 'styled-components';
+
 export default () => (
-  <footer className="bottom">
+  <Footer className="bottom">
     <p>
       Want to <a href="/sponsor">Sponsor the Podcast?</a>
     </p>
@@ -10,5 +12,10 @@ export default () => (
         GitHub
       </a>.
     </p>
-  </footer>
+  </Footer>
 );
+
+const Footer = styled.footer`
+  text-align: center;
+  color: #fff;
+`;
