@@ -8,6 +8,20 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Page from '../components/Page';
 
+import '../styles/index';
+import '../styles/_normalize';
+import '../styles/_type';
+import '../styles/_layout';
+import '../styles/_skiplink';
+import '../styles/_header';
+import '../styles/_person';
+import '../styles/_player';
+import '../styles/_bars';
+import '../styles/_footer';
+import '../styles/_show';
+import '../styles/_button';
+import '../styles/_sponsor';
+
 export default class IndexPage extends React.Component {
   constructor(props) {
     super();
@@ -36,17 +50,7 @@ export default class IndexPage extends React.Component {
   setCurrentPlaying = currentPlaying => {
     console.log('Setting current playing');
     this.setState({ currentPlaying });
-    
-    const topOfPlayer = document.getElementById("main").offsetTop;
-
-    if (window.scrollY > topOfPlayer || topOfPlayer > window.screen.height) {
-        window.scroll({
-        top: topOfPlayer,
-        left: 0,
-        behavior: 'smooth',
-      });
-    };
-  }
+  };
 
   render() {
     const { shows = [], baseURL } = this.props;
