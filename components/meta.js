@@ -8,6 +8,7 @@ export default ({ show, baseURL }) => (
       <html lang="en"/>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta charSet="utf-8" />
+      <meta name="Description" content="A Tasty Treats Podcast for Web Developers." />
       <meta property="og:audio" content={show.url} />
       <meta property="og:audio:secure_url" content={show.url} />
       <meta property="og:audio:type" content="audio/mp3" />
