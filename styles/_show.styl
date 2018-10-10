@@ -52,10 +52,26 @@
     color gray3
     font-size 1.2rem
 
+
 .show-wrap
   background white
   display flex
   flex-wrap wrap
+
+.show-search
+  height: 75px;
+  width: 100%;
+  border: none;
+  font-size: 2.5rem;
+  padding-left: 8px
+  transition: all .7s
+
+  &:focus {
+    height: 95px;
+    font-size: 2.8rem;
+    background:rgba(0,0,0,.05);
+  }
+ 
 
 .showList
   width 38%
