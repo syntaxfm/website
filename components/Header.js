@@ -1,11 +1,11 @@
-import Subscribe from './Subscribe';
+import Subscribe from "./Subscribe";
 
 const Header = () => (
   <header className="header">
     <div className="header__left">
-      <h1 aria-label="Syntax.FM">
+      <a aria-label="Syntax.FM" href="/">
         <img className="header__logo" src="/static/logo.png" alt="Syntax" />
-      </h1>
+      </a>
     </div>
     <div className="header__right">
       <div className="title">
