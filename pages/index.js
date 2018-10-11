@@ -1,3 +1,4 @@
+import { withRouter } from "next/router";
 import React from 'react';
 import axios from 'axios';
 import ShowList from '../components/ShowList';
@@ -8,10 +9,10 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Page from '../components/Page';
 
-export default class IndexPage extends React.Component {
+export default withRouter(class IndexPage extends React.Component {
   constructor(props) {
     super();
-    const currentShow = props.url.query.number || props.shows[0].displayNumber;
+    const currentShow = props.router.query.number || props.shows[0].displayNumber;
 
     this.state = {
       currentShow,
@@ -27,7 +28,7 @@ export default class IndexPage extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { pathname, query } = nextProps.url;
+    const { pathname, query } = nextProps.router;
     if (query.number) {
       this.setState({ currentShow: query.number });
     }
@@ -63,4 +64,4 @@ export default class IndexPage extends React.Component {
       </Page>
     );
   }
-}
+});
