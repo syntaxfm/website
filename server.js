@@ -7,11 +7,17 @@ const port = parseInt(process.env.PORT, 10) || 6969;
 const app = next({ dev });
 const handle = app.getRequestHandler();
 const { getShows, getShow } = require('./lib/getShows');
+const { getBooks } = require('./lib/getBooks');
 
 app.prepare().then(() => {
   const server = express();
 
   // API endpoints
+
+  server.get('/api/books', (req, res) => {
+    res.json(getBooks());
+  });
+
   server.get('/api/shows', (req, res) => {
     res.json(getShows());
   });
