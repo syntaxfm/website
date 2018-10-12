@@ -19,7 +19,7 @@ export default class SponsorPage extends React.Component {
     const { books = {} } = this.props;
     return (
       <Page>
-        <div className="wrapper wrapper--text center">
+        <div className="wrapper wrapper--text">
           <h1>Sick Books</h1>
           <div dangerouslySetInnerHTML={{ __html: books.html }}></div>
         </div>
