@@ -17,6 +17,13 @@ const Header = () => (
         >
           Ask a Potluck Question →
         </a>
+        <a
+          target="_blank"
+          href="/sickbooks"
+          className="title__sickbooks-btn"
+        >
+          Sick books →
+        </a>
       </div>
       <div className="people">
         <div className="person">
