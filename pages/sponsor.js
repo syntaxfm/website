@@ -1,7 +1,9 @@
 import React from 'react';
 import Page from '../components/Page';
+import Meta from '../components/meta'
 
 export default () => <Page>
+  <Meta title="Sponsor - Syntax Podcast" />
 <div className="wrapper wrapper--text">
   <h1>Syntax Sponsorship</h1>
   <p>
