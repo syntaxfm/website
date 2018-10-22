@@ -20,7 +20,10 @@ export default class Player extends React.Component {
       duration: 0,
       currentTime: lastPlayed,
       playbackRate: 1,
-      timeWasLoaded: lastPlayed !== 0
+      timeWasLoaded: lastPlayed !== 0,
+      showTooltip: false,
+      tooltipPosition: 0,
+      tooltipTime: '0:00'
     };
   }
 
@@ -70,10 +73,22 @@ export default class Player extends React.Component {
     this.audio[method]();
   };
 
+  scrubTime = eventData => {
+    return (
+      (eventData.nativeEvent.offsetX / this.progress.offsetWidth) *
+      this.audio.duration
+    );
+  };
+
   scrub = e => {
-    const scrubTime =
-      (e.nativeEvent.offsetX / this.progress.offsetWidth) * this.audio.duration;
-    this.audio.currentTime = scrubTime;
+    this.audio.currentTime = this.scrubTime(e);
+  };
+
+  seekTime = e => {
+    this.setState({
+      tooltipPosition: e.nativeEvent.offsetX,
+      tooltipTime: formatTime(this.scrubTime(e))
+    });
   };
 
   playPause = () => {
@@ -96,7 +111,15 @@ export default class Player extends React.Component {
 
   render() {
     const { show } = this.props;
-    const { playing, progressTime, currentTime, duration } = this.state;
+    const {
+      playing,
+      progressTime,
+      currentTime,
+      duration,
+      showTooltip,
+      tooltipPosition,
+      tooltipTime
+    } = this.state;
 
     return (
       <div className="player">
@@ -116,6 +139,13 @@ export default class Player extends React.Component {
           <div
             className="progress"
             onClick={this.scrub}
+            onMouseMove={this.seekTime}
+            onMouseEnter={() => {
+              this.setState({ showTooltip: true });
+            }}
+            onMouseLeave={() => {
+              this.setState({ showTooltip: false });
+            }}
             ref={x => (this.progress = x)}
           >
             <div
@@ -126,6 +156,15 @@ export default class Player extends React.Component {
           <h3 className="player__title">
             Playing: {show.displayNumber}: {show.title}
           </h3>
+          <div
+            className="player__tooltip"
+            style={{
+              left: `${tooltipPosition}px`,
+              opacity: `${showTooltip ? '1' : '0'}`
+            }}
+          >
+            {tooltipTime}
+          </div>
         </div>
 
         <div className="player__section player__section--right">
