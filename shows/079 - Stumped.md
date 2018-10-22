@@ -31,7 +31,7 @@ NativeScript is an open source framework for building truly native mobile apps w
 
 12:06 
 
-* What is the difference between the array methods map() and forEach()?
+* What is the difference between the array methods [map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) and [forEach()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)?
 * [Syntax Ep 023](https://syntax.fm/show/023/web-development-in-2017-and-and-a-look-ahead-at-2018)
 
 14:02
