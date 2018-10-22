@@ -62,7 +62,7 @@ mLab is the leading Database-as-a-Service for MongoDB, powering over half a mill
 
 ## ××× SIIIIICK ××× PIIIICKS ×××
 
-* Scott: [Red Bull VC One World Final 2018](https://www.youtube.com/watch?v=N3jwdh-6Bi0)
+* Scott: [Red Bull BC One World Final 2018](https://www.youtube.com/watch?v=N3jwdh-6Bi0)
 * Wes: [Jura Impressa](https://us.jura.com/en)
 
 ## Shameless Plugs
