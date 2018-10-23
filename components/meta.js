@@ -2,7 +2,7 @@ import Head from 'next/head';
 import PropTypes from 'prop-types';
 import slug from 'speakingurl';
 import stylesheet from '../styles/style.styl';
-import {description} from '../package.json';
+import { description } from '../package.json';
 
 const Meta = ({show, baseURL = '', title}) => (
   <div>
@@ -39,12 +39,12 @@ const Meta = ({show, baseURL = '', title}) => (
 );
 
 Meta.defaultProps = {
-  show: {}
+  show: {},
 };
 
 Meta.propTypes = {
   show: PropTypes.object,
-  baseURL: PropTypes.string.isRequired
+  baseURL: PropTypes.string.isRequired,
 };
 
 export default Meta;
