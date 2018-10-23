@@ -10,7 +10,7 @@ const Meta = ({ show, baseURL, title }) => (
       <html lang="en" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta name="description" content={description} />
-      <title>{title}</title>
+      <title>{title ? title : `${show.title} — Syntax Podcast ${show.displayNumber}`}</title>
       <meta charSet="utf-8" />
       <link rel="shortcut icon" href={`${baseURL}/static/favicon.png`} />
       <style
@@ -18,9 +18,6 @@ const Meta = ({ show, baseURL, title }) => (
       />
     </Head>
     {show && <Head>
-      <title>
-        {show.title} — Syntax Podcast {show.displayNumber}
-      </title>
       <meta property="og:audio" content={show.url} />
       <meta property="og:audio:secure_url" content={show.url} />
       <meta property="og:audio:type" content="audio/mp3" />
