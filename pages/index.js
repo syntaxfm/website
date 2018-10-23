@@ -68,7 +68,7 @@ export default withRouter(
       );
       return (
         <Page>
-          <Meta show={show} baseURL={baseURL} />
+          <Meta show={show} baseURL={/*baseURL*/} />
           <div className="wrapper">
             <main className="show-wrap" id="main" tabIndex="-1">
               <Player show={current} />
