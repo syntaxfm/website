@@ -4,13 +4,23 @@ import slug from 'speakingurl';
 import stylesheet from '../styles/style.styl';
 import { description } from '../package.json';
 
-const Meta = ({ show, baseURL }) => (
+const Meta = ({ show, baseURL, title }) => (
   <div>
     <Head>
       <html lang="en" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta name="description" content={description} />
+      <title>{title}</title>
       <meta charSet="utf-8" />
+      <link rel="shortcut icon" href={`${baseURL}/static/favicon.png`} />
+      <style
+        dangerouslySetInnerHTML={{ __html: stylesheet.replace(/\n/g, '') }}
+      />
+    </Head>
+    {show && <Head>
+      <title>
+        {show.title} — Syntax Podcast {show.displayNumber}
+      </title>
       <meta property="og:audio" content={show.url} />
       <meta property="og:audio:secure_url" content={show.url} />
       <meta property="og:audio:type" content="audio/mp3" />
@@ -28,14 +38,8 @@ const Meta = ({ show, baseURL }) => (
         property="og:image"
         content={`${baseURL}/static/syntax-banner.png`}
       />
-      <link rel="shortcut icon" href={`${baseURL}/static/favicon.png`} />
-      <title>
-        {show.title} — Syntax Podcast {show.displayNumber}
-      </title>
-      <style
-        dangerouslySetInnerHTML={{ __html: stylesheet.replace(/\n/g, '') }}
-      />
-    </Head>
+      
+    </Head>}
   </div>
 );
 
