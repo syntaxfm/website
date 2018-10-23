@@ -1,11 +1,47 @@
 import React from 'react';
 import Page from '../components/Page';
+import styled from 'styled-components';
+import { theme, StyledWrapper } from '../styles';
 
-export default class SponsorPage extends React.Component {
+const SponsorContainer = styled(StyledWrapper)`
+  background: ${theme.colors.white};
+  padding: 2rem;
+  font-size: 1.7rem;
+
+  figure,
+  figcaption {
+    font-size: 10px;
+    text-align: right;
+  }
+  ul, ol {
+    list-style: square;
+  }
+  strong {
+    font-weight: 900;
+  }
+  h1 {
+    font-size: 50px;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  h2 {
+    font-size: 40px;
+  }
+  h1, h2 {
+    padding-bottom: 10px;
+    border-bottom: 2px solid ${theme.colors.yellow};
+  }
+  a {
+    color: black;
+    border-bottom: 1px solid ${theme.colors.yellow};
+  }
+`;
+
+class SponsorPage extends React.Component {
   render() {
     return (
       <Page>
-        <div className="wrapper wrapper--text">
+        <SponsorContainer>
           <h1>Syntax Sponsorship</h1>
           <p>
             Interested in getting your message to thousands of developers? We're
@@ -235,8 +271,10 @@ export default class SponsorPage extends React.Component {
             if you are interested in working together and sponsoring the
             podcast.
           </p>
-        </div>
+        </SponsorContainer>
       </Page>
     );
   }
 }
+
+export default SponsorPage;
