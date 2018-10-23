@@ -33,8 +33,8 @@ const Subscribe = props => (
           target="_blank"
           href="http://www.stitcher.com/s?fid=142440&refid=stpr"
           rel="noopener noreferrer"
-          >
-            Stitcher
+        >
+          Stitcher
         </a>
       </li>
       <li className="subscribe__link subscribe__link--pocketcasts">
@@ -61,7 +61,11 @@ const Subscribe = props => (
         </a>
       </li>
       <li className="subscribe__link subscribe__link--rss">
-        <a target="_blank" href="http://feed.syntax.fm/rss" rel="noopener noreferrer">
+        <a
+          target="_blank"
+          href="http://feed.syntax.fm/rss"
+          rel="noopener noreferrer"
+        >
           RSS
         </a>
       </li>

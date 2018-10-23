@@ -21,11 +21,7 @@ const Header = () => (
       </div>
       <div className="people">
         <div className="person">
-          <img
-            src="/static/wes400x400.jpg"
-            alt=""
-            className="avatar"
-          />
+          <img src="/static/wes400x400.jpg" alt="Wes Bos" className="avatar" />
           <h3>Wes Bos</h3>
           <a
             target="_blank"
@@ -37,16 +33,21 @@ const Header = () => (
           </a>
           <p>
             Full Stack JavaScript Developer. Creator of really good{' '}
-            <a target="_blank" href="https://wesbos.com/courses" rel="noopener noreferrer">
+            <a
+              target="_blank"
+              href="https://wesbos.com/courses"
+              rel="noopener noreferrer"
+            >
               web development courses
-            </a>. BBQ enthusiast.
+            </a>
+            . BBQ enthusiast.
           </p>
         </div>
 
         <div className="person">
           <img
             src="https://avatars2.githubusercontent.com/u/669383?s=460&v=4"
-            alt=""
+            alt="Scott Tolinski"
             className="avatar"
             rel="noopener noreferrer"
           />
@@ -60,9 +61,14 @@ const Header = () => (
             @stolinski
           </a>
           <p>
-            Web Developer, Creator of <a href="https://leveluptutorials.com/">Level Up Tuts</a>,
-            Bboy, Robotops Crew and{' '}
-            <a target="_blank" href="https://www.youtube.com/c/leveluptuts" rel="noopener noreferrer">
+            Web Developer, Creator of{' '}
+            <a href="https://leveluptutorials.com/">Level Up Tuts</a>, Bboy,
+            Robotops Crew and{' '}
+            <a
+              target="_blank"
+              href="https://www.youtube.com/c/leveluptuts"
+              rel="noopener noreferrer"
+            >
               Youtuber
             </a>
           </p>
