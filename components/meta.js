@@ -10,6 +10,7 @@ const Meta = ({ show, baseURL }) => (
       <html lang="en" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta name="description" content={description} />
+      <meta name="theme-color" content="#F1C15D" />
       <meta charSet="utf-8" />
       <meta property="og:audio" content={show.url} />
       <meta property="og:audio:secure_url" content={show.url} />
