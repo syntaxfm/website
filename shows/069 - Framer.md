@@ -31,7 +31,7 @@ If you want to know what's happening with your errors, track them with [Sentry](
 
 ## Links
 
-* [Scott's Framer X Fist Look Video](https://youtu.be/oUhoBus1nn0)
+* [Scott's Framer X First Look Video](https://youtu.be/oUhoBus1nn0)
 * [Sign up for Framer X Beta](https://framer.com/x/)
 
 ## Tweet us your tasty treats!
