@@ -122,7 +122,7 @@ export default class IndexPage extends React.Component {
                 query={query}
               />
             </div>
-            <ShowNotes show={show} setCurrentPlaying={this.setCurrentPlaying} />
+            <ShowNotes show={(query && !filteredShows.length) ? '' : show} setCurrentPlaying={this.setCurrentPlaying} />
           </main>
         </div>
       </Page>
