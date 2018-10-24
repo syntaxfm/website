@@ -251,7 +251,6 @@ class Player extends React.Component {
   }
 
   timeUpdate = e => {
-    console.log('Updating Time');
     const { show } = this.props;
     const { timeWasLoaded } = this.state;
     // Check if the user already had a curent time
@@ -285,8 +284,6 @@ class Player extends React.Component {
   };
 
   seekTime = e => {
-    console.log( e);
-
     this.setState({
       tooltipPosition: e.nativeEvent.offsetX,
       tooltipTime: formatTime(this.scrubTime(e)),
