@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Page from '../components/Page';
+import Meta from '../components/meta';
 import styled from 'styled-components';
 import { theme, StyledWrapper } from '../styles';
 
@@ -38,9 +40,31 @@ const SponsorContainer = styled(StyledWrapper)`
 `;
 
 class SponsorPage extends React.Component {
+  static propTypes = {
+    baseURL: PropTypes.string.isRequired,
+  };
+
+  static async getInitialProps({ req }) {
+    /*eslint-disable */
+    const protocol =
+      req && req.headers.host.indexOf('syntax.fm') > -1
+        ? 'https'
+        : req
+          ? req.protocol
+          : '';
+    /* eslint-enable */
+    const baseURL = req
+      ? `${protocol}://${req.headers.host}`
+      : window.location.origin;
+    return { baseURL };
+  }
+
   render() {
+    const { baseURL } = this.props;
+
     return (
       <Page>
+        <Meta baseURL={baseURL} />
         <SponsorContainer>
           <h1>Syntax Sponsorship</h1>
           <p>

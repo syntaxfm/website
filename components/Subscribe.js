@@ -58,6 +58,9 @@ const SubscribeLink = styled.li`
     &:hover {
       box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.4);
     }
+    &:focus {
+      outline-color: ${theme.colors.yellow};
+    }
     &:before {
       content: '';
       display: inline-block;

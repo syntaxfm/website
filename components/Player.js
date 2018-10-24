@@ -156,7 +156,7 @@ const PlayerVolume = styled.div`
   `};
 
   &:focus-within {
-    outline: -webkit-focus-ring-color auto 5px;
+    outline: ${theme.colors.yellow} auto 5px;
   }
   &:hover {
     label {

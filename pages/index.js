@@ -53,7 +53,7 @@ export default withRouter(
     }
 
     componentWillReceiveProps(nextProps) {
-      const { pathname, query } = nextProps.router;
+      const { query } = nextProps.router;
       if (query.number) {
         this.setState({ currentShow: query.number });
       }
