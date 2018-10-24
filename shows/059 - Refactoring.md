@@ -28,7 +28,7 @@ In this Hasty Treat, Scott and Wes discuss refactoring, what it is, why you shou
 12:54 - When to refactor
 
 * When it's stopping your from progressing
-* When brining someone new on to your team
+* When bringing someone new on to your team
 * When you can see a more elegant solution
 * When you're having performance issues
 * When you're sharing or presenting code

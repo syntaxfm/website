@@ -23,7 +23,7 @@ Sanity.io is a real-time headless CMS with a fully customizable Content Studio b
 
 4:31 - What are your thoughts on Flutter? Does React Native have some solid competition now?
 
-* Google's answer to React Native.
+* Google's answer to [React Native](https://facebook.github.io/react-native/).
 * [Flutter](https://flutter.io/)
 * [NativeScript](https://www.nativescript.org/)
 
@@ -68,7 +68,7 @@ Sanity.io is a real-time headless CMS with a fully customizable Content Studio b
 40:16 - I'm a nervous newbie who's concerned about doing a web app that accepts payments or sensitive information. How can I know I've done everything to create a secure website and also protect myself from being sued by the client if their website gets hacked? I'm trying to be a jam stack developer so I'm looking at things like [Snipcart](https://snipcart.com/) and [Stripe](https://stripe.com/)
 
 * Don’t save sensitive info in plain text. Use services that make it tough to do that until you are confident.
-* Look up PIPEDIA
+* Look up [PIPEDIA compliance](https://www.google.com/search?q=pipeda+compliance)
 
 43:23 - What is a JavaScript generator? I heard that async/await creates a “generator” under the hood.
 
