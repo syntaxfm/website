@@ -2,12 +2,12 @@ import { withRouter } from 'next/router';
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import ShowList from '../components/ShowList';
 import ShowNotes from '../components/ShowNotes';
 import Player from '../components/Player';
 import Meta from '../components/meta';
 import Page from '../components/Page';
+import styled from 'styled-components';
 import { theme, StyledWrapper } from '../styles';
 
 const ShowWrap = styled.div`

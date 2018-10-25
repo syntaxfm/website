@@ -129,7 +129,7 @@ const Header = () => (
       <People>
         <Person>
           <PersonName>
-            <Avatar src="/static/wes400x400.jpg" alt="" />
+            <Avatar src="/static/wes400x400.jpg" alt="Wes Bos" />
             <div>
               <Name>Wes Bos</Name>
               <a
@@ -157,7 +157,7 @@ const Header = () => (
           <PersonName>
             <Avatar
               src="https://avatars2.githubusercontent.com/u/669383?s=460&v=4"
-              alt=""
+              alt="Scott Tolinski"
             />
             <div>
               <Name>Scott Tolinski</Name>
