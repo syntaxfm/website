@@ -1,7 +1,7 @@
 ---
 number: 086
 title: Potluck - Working with designers × Is WordPress Crap? × When to stop working × More
-date: 1537966800879
+date: 1540558800879
 url: https://traffic.libsyn.com/syntax/Syntax086.mp3
 ---
 
