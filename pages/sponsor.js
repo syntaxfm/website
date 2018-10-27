@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Page from '../components/Page';
 import Meta from '../components/meta';
+import getBaseURL from '../lib/getBaseURL';
 
 export default class SponsorPage extends React.Component {
   static propTypes = {
@@ -9,17 +10,7 @@ export default class SponsorPage extends React.Component {
   };
 
   static async getInitialProps({ req }) {
-    /*eslint-disable */
-    const protocol =
-      req && req.headers.host.indexOf('syntax.fm') > -1
-        ? 'https'
-        : req
-          ? req.protocol
-          : '';
-    /* eslint-enable */
-    const baseURL = req
-      ? `${protocol}://${req.headers.host}`
-      : window.location.origin;
+    const baseURL = getBaseURL(req);
     return { baseURL };
   }
 
@@ -27,7 +18,7 @@ export default class SponsorPage extends React.Component {
     const { baseURL } = this.props;
     return (
       <Page>
-        <Meta baseURL={baseURL} />
+        <Meta baseURL={baseURL} staticPage={{ title: 'Sponsors' }} />
         <div className="wrapper wrapper--text">
           <h1>Syntax Sponsorship</h1>
           <p>
