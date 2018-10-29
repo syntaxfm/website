@@ -10,6 +10,9 @@ const ShowListContainer = styled.div`
   flex-direction: column;
   ${media.phablet`
     width: 100%;
+    height: 300px;
+    overflow-x: auto;
+    overflow-y: scroll;
   `};
 `;
 const DummyShow = styled.div`

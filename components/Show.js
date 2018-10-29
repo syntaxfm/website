@@ -5,7 +5,7 @@ import Router from 'next/router';
 import { FaPlay } from 'react-icons/fa';
 import Bars from './bars';
 import styled from 'styled-components';
-import { theme, mixins } from '../styles';
+import { theme, mixins, media } from '../styles';
 
 const ShowContainer = styled.div`
   display: flex;
@@ -18,7 +18,11 @@ const ShowContainer = styled.div`
     props.active ? 0 : `10px solid ${theme.colors.grey}`};
   border-right-color: ${props =>
     props.active ? theme.colors.white : theme.colors.grey};
-  padding-left: ${props => (props.active ? `1rem` : ``)};
+  padding-left: ${props => (props.active ? `1rem` : `0`)};
+
+  ${media.phablet`
+    flex: 1 0 auto;
+  `};
 
   &:before {
     content: '';

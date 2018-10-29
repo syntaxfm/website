@@ -1,6 +1,7 @@
 import Subscribe from './Subscribe';
 import styled from 'styled-components';
 import { theme, media, StyledHeader } from '../styles';
+import Link from 'next/link';
 
 const HeaderContainer = styled(StyledHeader)`
   display: flex;
@@ -111,9 +112,11 @@ const PersonDetails = styled.p`
 const Header = () => (
   <HeaderContainer>
     <HeaderLeft>
-      <h1 aria-label="Syntax.FM">
-        <Logo src="/static/logo.png" alt="Syntax Logo" />
-      </h1>
+    <Link href="/">
+      <a aria-label="Syntax.FM">
+      <Logo src="/static/logo.png" alt="Syntax" />
+      </a>
+    </Link>
     </HeaderLeft>
     <HeaderRight>
       <Title>
