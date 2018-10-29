@@ -9,7 +9,8 @@
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
     "deploy": "now",
-    "alias": "now alias"
+    "alias": "now alias",
+    "test": "node ./scripts/test.js --env=jsdom"
   },
   "now": {
     "alias": [
@@ -39,6 +40,8 @@
     "speakingurl": "^14.0.1"
   },
   "devDependencies": {
+    "babel-jest": "^23.6.0",
+    "jest": "^23.6.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2"
   }
