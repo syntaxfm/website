@@ -40,6 +40,9 @@
     "speakingurl": "^14.0.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/runtime": "^7.1.2",
+    "babel-core": "^7.0.0-bridge",
     "babel-jest": "^23.6.0",
     "jest": "^23.6.0",
     "stylus": "^0.54.5",
