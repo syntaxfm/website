@@ -13,7 +13,7 @@ If you want to know what's happening with your errors, track them with [Sentry](
 
 ## .tech Domains - Sponsor
 
-Finding a great domain name is tough with so many names already taken. If you're looking for a domain name for your startup, side project, or anything at all, check out [.tech Domains](https://get.tech). Syntax listeners can get 90% off both one-year and five-year registration by visiting [go.tech/syntax](https://go.tech/syntax) and using the coupon code "syntax".
+Finding a great domain name is tough with so many names already taken. If you're looking for a domain name for your startup, side project, or anything at all, check out [.tech Domains](https://get.tech). Syntax listeners can get 90% off both one-year, five-year and ten-year registration by visiting [go.tech/syntax](https://go.tech/syntax) and using the coupon code "syntax".
 
 ## Show Notes
 
