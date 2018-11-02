@@ -41,7 +41,10 @@ const Meta = ({ show, staticPage, baseURL }) => (
           {show.title} — Syntax Podcast {show.displayNumber}
         </title>
       ) : (
-        <title>{staticPage.title} — Syntax Podcast</title>
+        <title>
+          {staticPage && staticPage.title && `${staticPage.title} – `}Syntax
+          Podcast
+        </title>
       )}
       <style
         dangerouslySetInnerHTML={{ __html: stylesheet.replace(/\n/g, '') }}
