@@ -41,7 +41,10 @@ const Meta = ({ show, staticPage, baseURL, styleTags }) => (
           {show.title} — Syntax Podcast {show.displayNumber}
         </title>
       ) : (
-        <title>{staticPage.title} — Syntax Podcast</title>
+        <title>
+          {staticPage && staticPage.title && `${staticPage.title} – `}Syntax
+          Podcast
+        </title>
       )}
 
       {styleTags}
@@ -49,10 +52,29 @@ const Meta = ({ show, staticPage, baseURL, styleTags }) => (
   </div>
 );
 
+const requiredPropsCheck = (props, propName, componentName) => {
+  if (!props.show && !props.staticPage) {
+    return new Error(
+      `One of 'show' or 'staticPage' is required by '${componentName}' component.`
+    );
+  }
+  if (props.show && props.staticPage) {
+    return new Error(
+      `Only one of 'show' or 'staticPage' should be passed to '${componentName}' component, not both.`
+    );
+  }
+  if (props[propName]) {
+    const myPropType = {
+      [propName]: PropTypes.shape({
+        title: PropTypes.string.isRequired,
+      }),
+    };
+    PropTypes.checkPropTypes(myPropType, props, propName, componentName);
+  }
+};
+
 Meta.propTypes = {
-  show: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-  }),
+  show: requiredPropsCheck,
   staticPage: PropTypes.shape({
     title: PropTypes.string.isRequired,
   }),

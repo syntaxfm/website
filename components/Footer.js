@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import styled from 'styled-components';
 import { StyledFooter } from '../styles';
 
@@ -11,7 +12,7 @@ const FooterContainer = styled(StyledFooter)`
 const Footer = () => (
   <FooterContainer>
     <p>
-      Want to <a href="/sponsor">Sponsor the Podcast?</a>
+      Want to <Link href="/sponsor"><a>Sponsor the Podcast?</a></Link>
     </p>
     <p>&copy; Wes Bos && Scott Tolinski {new Date().getFullYear()}</p>
     <p>
