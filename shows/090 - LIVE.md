@@ -13,7 +13,7 @@ This week Scott and Wes are live at JAMstack_conf with games, Spicy JAM Tips, Q&
 
 ## Show Notes
 
-6:20 - Spicy JAM Tips
+7:14 - Spicy JAM Tips
 
 * Set default headers in your request library - this way it comes along for the ride on every request
 * Don’t get hung up on “static” - static sites can be as dynamic as needed
@@ -21,7 +21,7 @@ This week Scott and Wes are live at JAMstack_conf with games, Spicy JAM Tips, Q&
 * There are many JAMStack libraries in the sea - there are many different approaches so don't be afraid to experiment
 * Side projects are key to learning - test out new tech on smaller projects first and get comfortable with it
 
-9:07 - This, That or Both?
+10:10 - This, That or Both?
 
 * Evo RX - High end Carbon Fibre Road Bike or Library for composing asynchronous and event-based operations in JavaScript?
 * Jumpsuit - A rap/rock group from Flint Michigan or a minimal React/Redux Framework?
@@ -35,9 +35,10 @@ This week Scott and Wes are live at JAMstack_conf with games, Spicy JAM Tips, Q&
 * Gort - A 1980’s animated series cartoon villain or a CLI Toolkit for RobotOps written in Go?
 * Raptorize - A jQuery plugin that plays a Velociraptor screech or A popular DIY spray on truck bed liner?
 
-14:58 - Stumped!
+21:13 - Stumped!
 
 * Question 1: What does "age" console.log to and why?
+
   let age = 26;
   age /= 2;
   console.log(age); // ?? 
@@ -50,10 +51,11 @@ This week Scott and Wes are live at JAMstack_conf with games, Spicy JAM Tips, Q&
 * Question 7: What is the difference between .slice() and .splice()?
 * Question 8: How would you calculate the number of milliseconds since midnight of January 1, 1970? 
 * Question 9: What does "age" console.log to and why?
+
   const age = console.log(100) || 200;
   console.log(age);
 
-14:58 - Overrated or Underrated?
+31:26 - Overrated or Underrated?
 
 * Arrow Functions
 * Downtown scooters
@@ -71,7 +73,7 @@ This week Scott and Wes are live at JAMstack_conf with games, Spicy JAM Tips, Q&
 * Decorators
 * Optional Chaining Proposal
 
-32:52 - Q+A with Scott and Wes
+42:35 - Q+A with Scott and Wes
 
 * Since this is your first time meeting, what was the thing that surprised you the most?
 * If you could create any Tycoon game, what would you create?
