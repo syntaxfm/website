@@ -24,13 +24,13 @@ class VolumeBars extends Component {
         {this.state.volumeBarList.map((item, index) => (
           <Fragment key={item.integer}>
             <input
-              onChange={this.volume}
+              onChange={this.props.volume}
               type="radio"
               name="volume"
               value={item.deci}
               id={item.vol}
               className="sr-only"
-              checked={this.checked}
+              checked={this.props.checked}
             />
             <label htmlFor={item.vol}>
               <span className="sr-only">{item.level}</span>

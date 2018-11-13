@@ -125,6 +125,7 @@ export default class Player extends React.Component {
     this.timeUpdate(e);
     this.volumeUpdate(e);
   };
+
   togglePlay = () => {
     const { playing } = this.state;
     const method = playing ? 'pause' : 'play';
@@ -261,7 +262,7 @@ export default class Player extends React.Component {
           <div className="player__volume">
             <p>LOUDNESS</p>
             <div className="player__inputs">
-              <VolumeBars />
+              <VolumeBars volume={this.volume} />
             </div>
           </div>
         </div>
