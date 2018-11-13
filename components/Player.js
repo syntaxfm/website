@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FaPlay, FaPause } from 'react-icons/fa';
 import formatTime from '../lib/formatTime';
+import VolumeBars from './VolumeBars';
 
 // TODO Fix all eslint issues
 
@@ -16,15 +17,6 @@ export default class Player extends React.Component {
     let lastPlayed = 0;
     let lastVolumePref = 0;
 
-    // for SSR
-    // if (typeof window !== 'undefined') {
-    //   const { show } = this.props;
-    //   const lp = localStorage.getItem(`lastPlayed${show.number}`);
-
-    //   // eslint-disable-next-line
-    //   if (lp) lastPlayed = JSON.parse(lp).lastPlayed;
-    // }
-
     // for Server Side Rendering
     if (typeof window !== 'undefined') {
       const { show } = this.props;
@@ -33,7 +25,6 @@ export default class Player extends React.Component {
         `lastVolumeSetting${show.number}`
       );
 
-      // eslint-disable-next-line
       if (lp) lastPlayed = JSON.parse(lp).lastPlayed;
       if (lastVolume) lastVolumePref = JSON.parse(lastVolume).lastVolumePref;
     }
@@ -57,39 +48,6 @@ export default class Player extends React.Component {
     this.audio.playbackRate = nextState.playbackRate;
   }
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   const { show } = this.props;
-  //   const { currentTime, currentVolume } = this.state;
-  //   if (show.number !== prevProps.show.number) {
-  //     const lp = localStorage.getItem(`lastPlayed${show.number}`);
-  //     // const lastVolume = localStorage.getItem(
-  //     //   `lastVolumeSetting${show.number}`
-  //     // );
-  //     if (lp) {
-  //       const data = JSON.parse(lp);
-  //       // const data2 = JSON.parse(lastVolume);
-  //       // eslint-disable-next-line
-
-  //       this.setState({
-  //         currentTime: data.lastPlayed,
-  //         currentVolume: data2.currentVolume
-  //       });
-  //       this.audio.currentTime = data.lastPlayed;
-  //       // this.audio.volume = data2.currentVolume;
-  //     }
-  //     this.audio.play();
-  //   } else {
-  //     localStorage.setItem(
-  //       `lastPlayed${show.number}`,
-  //       JSON.stringify({ lastPlayed: currentTime })
-  //     );
-  //     // localStorage.setItem(
-  //     //   `lastVolumeSetting${show.number}`,
-  //     //   JSON.stringify({ currentVolume: currentVolume })
-  //     // );
-  //   }
-  // }
-
   componentDidUpdate(prevProps, prevState) {
     const { show } = this.props;
     const { currentTime, currentVolume } = this.state;
@@ -101,7 +59,6 @@ export default class Player extends React.Component {
       if (lp) {
         const data = JSON.parse(lp);
         const data2 = JSON.parse(lastVolume);
-        // eslint-disable-next-line
 
         this.setState({
           currentTime: data.lastPlayed,
@@ -123,32 +80,6 @@ export default class Player extends React.Component {
     }
   }
 
-  // timeUpdate = e => {
-  //   console.log('Updating Time');
-  //   const { show } = this.props;
-  //   const { timeWasLoaded } = this.state;
-  //   console.log(`🌈 ${timeWasLoaded}`);
-  //   // Check if the user already had a curent time
-  //   if (timeWasLoaded) {
-  //     const lp = localStorage.getItem(`lastPlayed${show.number}`);
-  //     const lastVolume = localStorage.getItem(
-  //       `lastVolumeSetting${show.number}`
-  //     );
-  //     if (lp) {
-  //       console.log(`💎💎💎💎💎💎💎💎💎💎💎💎💎💎💎💎 ${lp}`);
-  //       console.log(`🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖 ${lastVolume}`);
-  //       e.currentTarget.currentTime = JSON.parse(lp).lastPlayed;
-  //       e.currentTarget.volume = JSON.parse(lastVolume).currentVolume;
-  //     }
-  //     this.setState({ timeWasLoaded: false });
-  //   } else {
-  //     const { currentTime = 0, duration = 0 } = e.currentTarget;
-
-  //     const progressTime = (currentTime / duration) * 100;
-  //     if (Number.isNaN(progressTime)) return;
-  //     this.setState({ progressTime, currentTime, duration });
-  //   }
-  // };
   timeUpdate = e => {
     console.log('Updating Time');
     const { show } = this.props;
@@ -179,7 +110,6 @@ export default class Player extends React.Component {
     console.log(`🌈🌈 ${timeWasLoaded}`);
     // Check if the user already had a curent volume
     if (timeWasLoaded) {
-      // const lp = localStorage.getItem(`lastPlayed${show.number}`);
       const lastVolume = localStorage.getItem(
         `lastVolumeSetting${show.number}`
       );
@@ -242,7 +172,7 @@ export default class Player extends React.Component {
   speed = change => {
     const playbackRateMax = 2.5;
     const playbackRateMin = 0.75;
-    // eslint-disable-next-line
+
     let playbackRate = this.state.playbackRate + change;
 
     if (playbackRate > playbackRateMax) {
@@ -286,7 +216,6 @@ export default class Player extends React.Component {
         </div>
 
         <div className="player__section player__section--middle">
-          {/* eslint-disable */}
           <div
             className="progress"
             onClick={this.scrub}
@@ -299,7 +228,6 @@ export default class Player extends React.Component {
             }}
             ref={x => (this.progress = x)}
           >
-            {/* eslint-enable */}
             <div
               className="progress__time"
               style={{ width: `${progressTime}%` }}
@@ -333,141 +261,11 @@ export default class Player extends React.Component {
           <div className="player__volume">
             <p>LOUDNESS</p>
             <div className="player__inputs">
-              <input
-                onChange={this.volume}
-                type="radio"
-                name="volume"
-                value="0.1"
-                id="vol10"
-                className="sr-only"
-                checked={this.checked}
-              />
-              <label htmlFor="vol10">
-                {/* eslint-disable-line */}
-                <span className="sr-only">Volume Level 10/100</span>
-              </label>
-              <input
-                onChange={this.volume}
-                type="radio"
-                name="volume"
-                value="0.2"
-                id="vol20"
-                className="sr-only"
-                checked={this.checked}
-              />
-              <label htmlFor="vol20">
-                {/* eslint-disable-line */}
-                <span className="sr-only">Volume Level 20/100</span>
-              </label>
-              <input
-                onChange={this.volume}
-                type="radio"
-                name="volume"
-                value="0.3"
-                id="vol30"
-                className="sr-only"
-                checked={this.checked}
-              />
-              <label htmlFor="vol30">
-                {/* eslint-disable-line */}
-                <span className="sr-only">Volume Level 30/100</span>
-              </label>
-              <input
-                onChange={this.volume}
-                type="radio"
-                name="volume"
-                value="0.4"
-                id="vol40"
-                className="sr-only"
-                checked={this.checked}
-              />
-              <label htmlFor="vol40">
-                {/* eslint-disable-line */}
-                <span className="sr-only">Volume Level 40/100</span>
-              </label>
-              <input
-                onChange={this.volume}
-                type="radio"
-                name="volume"
-                value="0.5"
-                id="vol50"
-                className="sr-only"
-                checked={this.checked}
-              />
-              <label htmlFor="vol50">
-                {/* eslint-disable-line */}
-                <span className="sr-only">Volume Level 50/100</span>
-              </label>
-              <input
-                onChange={this.volume}
-                type="radio"
-                name="volume"
-                value="0.6"
-                id="vol60"
-                className="sr-only"
-                checked={this.checked}
-              />
-              <label htmlFor="vol60">
-                {/* eslint-disable-line */}
-                <span className="sr-only">Volume Level 60/100</span>
-              </label>
-              <input
-                onChange={this.volume}
-                type="radio"
-                name="volume"
-                value="0.7"
-                id="vol70"
-                className="sr-only"
-                checked={this.checked}
-              />
-              <label htmlFor="vol70">
-                {/* eslint-disable-line */}
-                <span className="sr-only">Volume Level 70/100</span>
-              </label>
-              <input
-                onChange={this.volume}
-                type="radio"
-                name="volume"
-                value="0.8"
-                id="vol80"
-                className="sr-only"
-                checked={this.checked}
-              />
-              <label htmlFor="vol80">
-                {/* eslint-disable-line */}
-                <span className="sr-only">Volume Level 80/100</span>
-              </label>
-
-              <input
-                onChange={this.volume}
-                type="radio"
-                name="volume"
-                value="0.9"
-                id="vol90"
-                className="sr-only"
-                checked={this.checked}
-              />
-              <label htmlFor="vol90">
-                {/* eslint-disable-line */}
-                <span className="sr-only">Volume Level 90/100</span>
-              </label>
-
-              <input
-                onChange={this.volume}
-                type="radio"
-                name="volume"
-                value="1"
-                id="vol100"
-                className="sr-only"
-                checked={this.checked}
-              />
-              <label htmlFor="vol100">
-                <span className="sr-only">Volume Level 100/100</span>
-              </label>
+              <VolumeBars />
             </div>
           </div>
         </div>
-        {/* eslint-disable */}
+
         <audio
           ref={audio => (this.audio = audio)}
           onPlay={this.playPause}
@@ -477,7 +275,6 @@ export default class Player extends React.Component {
           onLoadedMetadata={this.groupUpdates}
           src={show.url}
         />
-        {/* eslint-enable */}
       </div>
     );
   }
