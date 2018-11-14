@@ -15,7 +15,7 @@ export default class Player extends React.Component {
     super(props);
 
     let lastPlayed = 0;
-    let lastVolumePref = 1; //--- SET DEFAULT ?
+    let lastVolumePref = 1;
     let lastPlaybackRate = 1;
 
     // for Server Side Rendering
@@ -26,9 +26,7 @@ export default class Player extends React.Component {
       const lastPlayback = localStorage.getItem(`lastPlaybackSetting`);
 
       if (lp) lastPlayed = JSON.parse(lp).lastPlayed;
-      // Without this bottom line - on refresh its then its not saved
       if (lastVolume) lastVolumePref = JSON.parse(lastVolume).lastVolumePref;
-      //
       if (lastPlayback)
         lastPlaybackRate = JSON.parse(lastPlayback).lastPlaybackRate;
     }
@@ -90,7 +88,7 @@ export default class Player extends React.Component {
   }
 
   timeUpdate = e => {
-    console.log('Updating Time');
+    // console.log('Updating Time');
     const { show } = this.props;
     const { timeWasLoaded } = this.state;
     console.log(`🌈 ${timeWasLoaded}`);

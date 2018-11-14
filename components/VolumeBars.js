@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 
-// data generator
+// data generator -> to create 10 volume bars
 const getItems = count => {
   return Array.from({ length: count }, (v, i) => (i + 1) * 10).map(k => {
     let decimal = k / 100;
@@ -22,42 +22,29 @@ class VolumeBars extends Component {
   componentDidMount() {
     const localKey = `lastVolumeBarsOn`;
     const localStorageRef = localStorage.getItem(localKey);
-
-    console.log('🔥🔥');
-    console.log(localStorageRef);
-    //
     if (localStorageRef) {
       this.setState({ volumeBarList: JSON.parse(localStorageRef) });
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log('YOOOOO4444');
-    // console.log(this.state.volumeBarList);
-    //
     const localKey = `lastVolumeBarsOn`;
     const localValue = JSON.stringify(this.state.volumeBarList);
     localStorage.setItem(localKey, localValue);
   }
 
-  //We are going to add "checked" to our array of objects - on click
+  //We are going to track which volume bars are "checked"
   handleOnClick = index => {
     // make a copy of state
     const volumeBarList = [...this.state.volumeBarList];
-    //
-    console.log(`INDEX CLICKED IS ==> ${index}`);
-    //
-    //--- Get the index positions from 0 till index (index clicked)
+    // Get the index positions from 0 till index (index clicked)
     for (let i = 0; i <= index; i++) {
-      console.log(`🍎🍎🍎🍎🍎🍎🍎 ==> ${i}`);
       volumeBarList[i].checked = true;
     }
-    // --- Get the index positions that are leftover from aboves range
+    // Get the index positions of the remaining non-checked
     for (let i = index + 1; i < 10; i++) {
-      console.log(`⭐️⭐️⭐️⭐️⭐️  ${i}`);
       volumeBarList[i].checked = null;
     }
-
     // Update State
     this.setState({
       volumeBarList
