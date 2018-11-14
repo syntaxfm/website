@@ -20,10 +20,7 @@ class VolumeBars extends Component {
   };
 
   componentDidMount() {
-    //
-    const { show } = this.props;
-    //
-    const localKey = `lastVolumeBarsOn${show.number}`;
+    const localKey = `lastVolumeBarsOn`;
     const localStorageRef = localStorage.getItem(localKey);
 
     console.log('🔥🔥');
@@ -38,9 +35,7 @@ class VolumeBars extends Component {
     console.log('YOOOOO4444');
     // console.log(this.state.volumeBarList);
     //
-    const { show } = this.props;
-    //
-    const localKey = `lastVolumeBarsOn${show.number}`;
+    const localKey = `lastVolumeBarsOn`;
     const localValue = JSON.stringify(this.state.volumeBarList);
     localStorage.setItem(localKey, localValue);
   }
