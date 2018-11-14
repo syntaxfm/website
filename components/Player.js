@@ -21,9 +21,7 @@ export default class Player extends React.Component {
     if (typeof window !== 'undefined') {
       const { show } = this.props;
       const lp = localStorage.getItem(`lastPlayed${show.number}`);
-      const lastVolume = localStorage.getItem(
-        `lastVolumeSetting${show.number}`
-      );
+      const lastVolume = localStorage.getItem(`lastVolumeSetting`);
 
       if (lp) lastPlayed = JSON.parse(lp).lastPlayed;
       // Without this bottom line - on refresh its then its not saved
@@ -55,9 +53,7 @@ export default class Player extends React.Component {
     if (show.number !== prevProps.show.number) {
       const lp = localStorage.getItem(`lastPlayed${show.number}`);
       if (lp) {
-        const lastVolume = localStorage.getItem(
-          `lastVolumeSetting${show.number}`
-        );
+        const lastVolume = localStorage.getItem(`lastVolumeSetting`);
         const data = JSON.parse(lp);
         const data2 = JSON.parse(lastVolume);
 
@@ -75,7 +71,7 @@ export default class Player extends React.Component {
         JSON.stringify({ lastPlayed: currentTime })
       );
       localStorage.setItem(
-        `lastVolumeSetting${show.number}`,
+        `lastVolumeSetting`,
         JSON.stringify({ lastVolumePref: currentVolume })
       );
     }
@@ -111,9 +107,7 @@ export default class Player extends React.Component {
     console.log(`🌈🌈 ${timeWasLoaded}`);
     // Check if the user already had a curent volume
     if (timeWasLoaded) {
-      const lastVolume = localStorage.getItem(
-        `lastVolumeSetting${show.number}`
-      );
+      const lastVolume = localStorage.getItem(`lastVolumeSetting`);
       if (lastVolume) {
         console.log(`🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖 ${lastVolume}`);
         e.currentTarget.volume = JSON.parse(lastVolume).lastVolumePref;
