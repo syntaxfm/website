@@ -124,25 +124,9 @@ export default class Player extends React.Component {
     }
   };
 
-  playbackRateUpdate = e => {
-    console.log(' 🌈🌈 Updating PlaybackRate');
-    const { timeWasLoaded } = this.state;
-    if (timeWasLoaded) {
-      const lastPlaybackRate = localStorage.getItem(`lastPlaybackSetting`);
-      if (lastPlaybackRate) {
-        console.log(`🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖 ${lastPlaybackRate}`);
-        e.currentTarget.playbackRate = JSON.parse(
-          lastPlaybackRate
-        ).lastPlaybackRate;
-      }
-      this.setState({ timeWasLoaded: false });
-    }
-  };
-
   groupUpdates = e => {
     this.timeUpdate(e);
     this.volumeUpdate(e);
-    // this.playbackRateUpdate(e);
   };
 
   togglePlay = () => {
