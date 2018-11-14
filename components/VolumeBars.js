@@ -9,7 +9,7 @@ const getItems = count => {
       deci: `${decimal}`,
       vol: `vol${k}`,
       level: `Volume Level ${k}/100`,
-      checked: false
+      checked: null
     };
   }); // END MAP
 }; // END ARROW
@@ -19,6 +19,10 @@ class VolumeBars extends Component {
     volumeBarList: getItems(10)
   };
 
+  componentDidUpdate(prevProps, prevState) {
+    console.log('YOOOOO4444');
+  }
+
   //We are going to add "checked" to our array of objects - on click
   handleOnClick = index => {
     // make a copy of state
@@ -26,7 +30,7 @@ class VolumeBars extends Component {
     //
     console.log(`INDEX CLICKED IS ==> ${index}`);
     //
-    // --- Get the index positions from 0 till index (index clicked)
+    //--- Get the index positions from 0 till index (index clicked)
     for (let i = 0; i <= index; i++) {
       console.log(`🍎🍎🍎🍎🍎🍎🍎 ==> ${i}`);
       volumeBarList[i].checked = true;
@@ -34,7 +38,7 @@ class VolumeBars extends Component {
     // --- Get the index positions that are leftover from aboves range
     for (let i = index + 1; i < 10; i++) {
       console.log(`⭐️⭐️⭐️⭐️⭐️  ${i}`);
-      volumeBarList[i].checked = false;
+      volumeBarList[i].checked = null;
     }
 
     // Update State
@@ -68,7 +72,5 @@ class VolumeBars extends Component {
     );
   }
 }
-// TO DO
-// remove checked stuff from player.js
 
 export default VolumeBars;

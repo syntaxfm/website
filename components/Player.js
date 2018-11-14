@@ -15,7 +15,7 @@ export default class Player extends React.Component {
     super(props);
 
     let lastPlayed = 0;
-    let lastVolumePref = 0;
+    let lastVolumePref = 0; // ---- I can set the default value here?
 
     // for Server Side Rendering
     if (typeof window !== 'undefined') {
@@ -26,6 +26,7 @@ export default class Player extends React.Component {
       );
 
       if (lp) lastPlayed = JSON.parse(lp).lastPlayed;
+      // Without this bottom line - on refresh its then its not saved
       if (lastVolume) lastVolumePref = JSON.parse(lastVolume).lastVolumePref;
     }
 
@@ -35,14 +36,13 @@ export default class Player extends React.Component {
       duration: 0,
       currentTime: lastPlayed,
       currentVolume: lastVolumePref,
-      checked: false,
       playbackRate: 1,
       timeWasLoaded: lastPlayed !== 0,
       showTooltip: false,
       tooltipPosition: 0,
       tooltipTime: '0:00'
     };
-  }
+  } // END Constructor
 
   componentWillUpdate(nextProps, nextState) {
     this.audio.playbackRate = nextState.playbackRate;
@@ -156,8 +156,7 @@ export default class Player extends React.Component {
   volume = e => {
     this.audio.volume = e.currentTarget.value;
     this.setState({
-      currentVolume: `${e.currentTarget.value}`,
-      checked: !this.state.checked
+      currentVolume: `${e.currentTarget.value}`
     });
   };
 
@@ -194,7 +193,6 @@ export default class Player extends React.Component {
       playbackRate,
       progressTime,
       currentTime,
-      checked,
       duration,
       showTooltip,
       tooltipPosition,
@@ -258,7 +256,6 @@ export default class Player extends React.Component {
             <p>FASTNESS</p>
             <span className="player__speeddisplay">{playbackRate} &times;</span>
           </button>
-
           <div className="player__volume">
             <p>LOUDNESS</p>
             <div className="player__inputs">
@@ -266,7 +263,6 @@ export default class Player extends React.Component {
             </div>
           </div>
         </div>
-
         <audio
           ref={audio => (this.audio = audio)}
           onPlay={this.playPause}
