@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react';
 
+// TODO Fix all eslint issues
+
 // data generator -> to create 10 volume bars
 const getItems = count => {
   return Array.from({ length: count }, (v, i) => (i + 1) * 10).map(k => {
