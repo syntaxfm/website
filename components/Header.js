@@ -65,7 +65,7 @@ const Header = () => (
           </a>
           <p>
             Web Developer, Creator of{' '}
-            <a href="https://leveluptutorials.com/">Level Up Tuts</a>, Bboy,
+            <a href="https://leveluptutorials.com/" target="_blank">Level Up Tuts</a>, Bboy,
             Robotops Crew and{' '}
             <a
               target="_blank"
