@@ -9,7 +9,7 @@ const getItems = count => {
       deci: `${decimal}`,
       vol: `vol${k}`,
       level: `Volume Level ${k}/100`,
-      checked: null
+      checked: true
     };
   }); // END MAP
 }; // END ARROW
@@ -21,6 +21,7 @@ class VolumeBars extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     console.log('YOOOOO4444');
+    console.log(this.state.volumeBarList);
   }
 
   //We are going to add "checked" to our array of objects - on click
@@ -63,7 +64,14 @@ class VolumeBars extends Component {
               id={item.vol}
               className="sr-only"
             />
-            <label htmlFor={item.vol}>
+            <label
+              htmlFor={item.vol}
+              style={
+                item.checked
+                  ? { background: '#03fff3' }
+                  : { background: '#e4e4e4' }
+              }
+            >
               <span className="sr-only">{item.level}</span>
             </label>
           </Fragment>
