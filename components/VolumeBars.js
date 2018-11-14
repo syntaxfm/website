@@ -19,9 +19,30 @@ class VolumeBars extends Component {
     volumeBarList: getItems(10)
   };
 
+  componentDidMount() {
+    //
+    const { show } = this.props;
+    //
+    const localKey = `lastVolumeBarsOn${show.number}`;
+    const localStorageRef = localStorage.getItem(localKey);
+
+    console.log('🔥🔥');
+    console.log(localStorageRef);
+    //
+    if (localStorageRef) {
+      this.setState({ volumeBarList: JSON.parse(localStorageRef) });
+    }
+  }
+
   componentDidUpdate(prevProps, prevState) {
     console.log('YOOOOO4444');
-    console.log(this.state.volumeBarList);
+    // console.log(this.state.volumeBarList);
+    //
+    const { show } = this.props;
+    //
+    const localKey = `lastVolumeBarsOn${show.number}`;
+    const localValue = JSON.stringify(this.state.volumeBarList);
+    localStorage.setItem(localKey, localValue);
   }
 
   //We are going to add "checked" to our array of objects - on click

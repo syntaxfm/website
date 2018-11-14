@@ -259,7 +259,7 @@ export default class Player extends React.Component {
           <div className="player__volume">
             <p>LOUDNESS</p>
             <div className="player__inputs">
-              <VolumeBars volume={this.volume} />
+              <VolumeBars volume={this.volume} show={show} />
             </div>
           </div>
         </div>
