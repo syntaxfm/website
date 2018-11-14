@@ -15,7 +15,7 @@ export default class Player extends React.Component {
     super(props);
 
     let lastPlayed = 0;
-    let lastVolumePref = 0; // ---- I can set the default value here?
+    let lastVolumePref = 1; //-------------- SET DEFAULT ?
 
     // for Server Side Rendering
     if (typeof window !== 'undefined') {
@@ -49,14 +49,15 @@ export default class Player extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    console.log('Hollar1111');
     const { show } = this.props;
     const { currentTime, currentVolume } = this.state;
     if (show.number !== prevProps.show.number) {
       const lp = localStorage.getItem(`lastPlayed${show.number}`);
-      // const lastVolume = localStorage.getItem(
-      //   `lastVolumeSetting${show.number}`
-      // );
       if (lp) {
+        const lastVolume = localStorage.getItem(
+          `lastVolumeSetting${show.number}`
+        );
         const data = JSON.parse(lp);
         const data2 = JSON.parse(lastVolume);
 
