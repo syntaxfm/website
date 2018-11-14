@@ -15,17 +15,22 @@ export default class Player extends React.Component {
     super(props);
 
     let lastPlayed = 0;
-    let lastVolumePref = 1; //-------------- SET DEFAULT ?
+    let lastVolumePref = 1; //--- SET DEFAULT ?
+    let lastPlaybackRate = 1;
 
     // for Server Side Rendering
     if (typeof window !== 'undefined') {
       const { show } = this.props;
       const lp = localStorage.getItem(`lastPlayed${show.number}`);
       const lastVolume = localStorage.getItem(`lastVolumeSetting`);
+      const lastPlayback = localStorage.getItem(`lastPlaybackSetting`);
 
       if (lp) lastPlayed = JSON.parse(lp).lastPlayed;
       // Without this bottom line - on refresh its then its not saved
       if (lastVolume) lastVolumePref = JSON.parse(lastVolume).lastVolumePref;
+      //
+      if (lastPlayback)
+        lastPlaybackRate = JSON.parse(lastPlayback).lastPlaybackRate;
     }
 
     this.state = {
@@ -34,7 +39,7 @@ export default class Player extends React.Component {
       duration: 0,
       currentTime: lastPlayed,
       currentVolume: lastVolumePref,
-      playbackRate: 1,
+      playbackRate: lastPlaybackRate,
       timeWasLoaded: lastPlayed !== 0,
       showTooltip: false,
       tooltipPosition: 0,
@@ -47,22 +52,25 @@ export default class Player extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log('Hollar1111');
     const { show } = this.props;
-    const { currentTime, currentVolume } = this.state;
+    const { currentTime, currentVolume, playbackRate } = this.state;
     if (show.number !== prevProps.show.number) {
       const lp = localStorage.getItem(`lastPlayed${show.number}`);
       if (lp) {
         const lastVolume = localStorage.getItem(`lastVolumeSetting`);
+        const lastPlayback = localStorage.getItem(`lastPlaybackSetting`);
         const data = JSON.parse(lp);
         const data2 = JSON.parse(lastVolume);
+        const data3 = JSON.parse(lastPlayback);
 
         this.setState({
           currentTime: data.lastPlayed,
-          currentVolume: data2.lastVolumePref
+          currentVolume: data2.lastVolumePref,
+          playbackRate: data3.lastPlaybackRate
         });
         this.audio.currentTime = data.lastPlayed;
         this.audio.volume = data2.lastVolumePref;
+        this.audio.playbackRate = data3.lastPlaybackRate;
       }
       this.audio.play();
     } else {
@@ -73,6 +81,10 @@ export default class Player extends React.Component {
       localStorage.setItem(
         `lastVolumeSetting`,
         JSON.stringify({ lastVolumePref: currentVolume })
+      );
+      localStorage.setItem(
+        `lastPlaybackSetting`,
+        JSON.stringify({ lastPlaybackRate: playbackRate })
       );
     }
   }
@@ -101,16 +113,27 @@ export default class Player extends React.Component {
   };
 
   volumeUpdate = e => {
-    console.log('Updating Volume');
-    const { show } = this.props;
     const { timeWasLoaded } = this.state;
-    console.log(`🌈🌈 ${timeWasLoaded}`);
     // Check if the user already had a curent volume
     if (timeWasLoaded) {
       const lastVolume = localStorage.getItem(`lastVolumeSetting`);
       if (lastVolume) {
-        console.log(`🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖 ${lastVolume}`);
         e.currentTarget.volume = JSON.parse(lastVolume).lastVolumePref;
+      }
+      this.setState({ timeWasLoaded: false });
+    }
+  };
+
+  playbackRateUpdate = e => {
+    console.log(' 🌈🌈 Updating PlaybackRate');
+    const { timeWasLoaded } = this.state;
+    if (timeWasLoaded) {
+      const lastPlaybackRate = localStorage.getItem(`lastPlaybackSetting`);
+      if (lastPlaybackRate) {
+        console.log(`🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖 ${lastPlaybackRate}`);
+        e.currentTarget.playbackRate = JSON.parse(
+          lastPlaybackRate
+        ).lastPlaybackRate;
       }
       this.setState({ timeWasLoaded: false });
     }
@@ -119,6 +142,7 @@ export default class Player extends React.Component {
   groupUpdates = e => {
     this.timeUpdate(e);
     this.volumeUpdate(e);
+    // this.playbackRateUpdate(e);
   };
 
   togglePlay = () => {
