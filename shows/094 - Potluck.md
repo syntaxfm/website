@@ -13,7 +13,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 
 ## React in Action - Sponsor
 
-[React in Action by Mark Thomas from Manning Publications](https://www.manning.com/books/react-in-action) is a great way to learn React. It's a clearly written, example-rich book, introducing front-end developers to the React framework and related tools. Not everyone likes learning from a video. If that's you, [React In Action](https://www.manning.com/books/react-in-action) is a great book that covers everything you need to know.
+[React in Action by Mark Thomas from Manning Publications](https://www.manning.com/books/react-in-action) is a great way to learn React. It's a clearly written, example-rich book, introducing front-end developers to the React framework and related tools. Not everyone likes learning from a video. If that's you, [React In Action](https://www.manning.com/books/react-in-action) is a great book that covers everything you need to know. Also be sure to check out this page for [40% off all manning books and videos](http://deals.manning.com/webdev/).
 
 ## Show Notes
 
