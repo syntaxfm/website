@@ -1,5 +1,6 @@
 import { css } from 'styled-components';
 import theme from './theme';
+const { colors } = theme;
 
 const mixins = {
   flexCenter: css`
@@ -22,7 +23,7 @@ const mixins = {
     display: inline-block;
     padding: 1rem;
     border: 0;
-    background: ${theme.colors.lightgrey};
+    background: ${colors.lightgrey};
     color: black;
     font-size: 1.5rem;
     line-height: 1;

@@ -1,10 +1,11 @@
 import Link from 'next/link';
 import styled from 'styled-components';
-import { StyledFooter } from '../styles';
+import { theme, StyledFooter } from '../styles';
+const { colors } = theme;
 
 const FooterContainer = styled(StyledFooter)`
   text-align: center;
-  color: white;
+  color: ${colors.white};
   max-width: 1000px;
   padding-top: 1rem;
 `;

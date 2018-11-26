@@ -1,5 +1,6 @@
 import { injectGlobal } from 'styled-components';
 import theme from './theme';
+const { colors } = theme;
 
 const base = injectGlobal`
   @font-face {
@@ -33,7 +34,7 @@ const base = injectGlobal`
     font-size: 10px;
     line-height: 1.5;
     background: black url('/static/background.jpg');
-    border-top: 3px solid ${theme.colors.yellow};
+    border-top: 3px solid ${colors.yellow};
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
   }
@@ -61,7 +62,7 @@ const base = injectGlobal`
   }
 
   a {
-    color: ${theme.colors.yellow};
+    color: ${colors.yellow};
     text-decoration: none;
     &:active,
     &:hover {
@@ -92,8 +93,8 @@ const base = injectGlobal`
   }
   button {
     border: 0;
-    background: ${theme.colors.lightgrey};
-    color: ${theme.colors.black};
+    background: ${colors.lightgrey};
+    color: ${colors.black};
     line-height: 1;
     padding: 1rem;
     display: inline-block;

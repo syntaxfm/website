@@ -10,9 +10,10 @@ import Page from '../components/Page';
 import getBaseURL from '../lib/getBaseURL';
 import styled from 'styled-components';
 import { theme, StyledWrapper } from '../styles';
+const { colors } = theme;
 
 const ShowWrap = styled.div`
-  background: ${theme.colors.white};
+  background: ${colors.white};
   display: flex;
   flex-wrap: wrap;
 `;

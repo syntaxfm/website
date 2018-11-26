@@ -6,18 +6,19 @@ import { FaPlay } from 'react-icons/fa';
 import Bars from './bars';
 import styled from 'styled-components';
 import { theme, mixins, media } from '../styles';
+const { colors } = theme;
 
 const ShowContainer = styled.div`
   display: flex;
   position: relative;
   background-color: ${props =>
-    props.active ? theme.colors.white : theme.colors.lightgrey};
-  border-bottom: 1px solid ${theme.colors.grey};
-  border-right: 1px solid ${theme.colors.grey};
+    props.active ? colors.white : colors.lightgrey};
+  border-bottom: 1px solid ${colors.grey};
+  border-right: 1px solid ${colors.grey};
   border-left: ${props =>
-    props.active ? 0 : `10px solid ${theme.colors.grey}`};
+    props.active ? 0 : `10px solid ${colors.grey}`};
   border-right-color: ${props =>
-    props.active ? theme.colors.white : theme.colors.grey};
+    props.active ? colors.white : colors.grey};
   padding-left: ${props => (props.active ? `1rem` : `0`)};
 
   ${media.phablet`
@@ -27,7 +28,7 @@ const ShowContainer = styled.div`
   &:before {
     content: '';
     display: ${props => (props.active ? `block` : `none`)};
-    background: ${theme.colors.grad};
+    background: ${colors.grad};
     position: absolute;
     top: 0;
     left: 0;
@@ -42,11 +43,11 @@ const ShowLink = styled.a`
 const ShowNumber = styled.p`
   text-transform: uppercase;
   margin: 0;
-  color: ${theme.colors.grey3};
+  color: ${colors.grey3};
   font-size: 11px;
 `;
 const ShowTitle = styled.h3`
-  color: ${theme.colors.black};
+  color: ${colors.black};
   font-size: 1.5rem;
   margin: 0;
 `;
@@ -59,10 +60,10 @@ const ShowPlayControls = styled.div`
 const PlayButton = styled.button`
   background: none;
   border: 0;
-  outline-color: ${theme.colors.yellow};
+  outline-color: ${colors.yellow};
   padding: 0.5rem;
   &:hover {
-    color: ${theme.colors.yellow};
+    color: ${colors.yellow};
   }
 `;
 

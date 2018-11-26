@@ -1,13 +1,14 @@
 import Subscribe from './Subscribe';
 import styled from 'styled-components';
-import { theme, media, StyledHeader } from '../styles';
 import Link from 'next/link';
+import { theme, media, StyledHeader } from '../styles';
+const { colors } = theme;
 
 const HeaderContainer = styled(StyledHeader)`
   display: flex;
   flex-wrap: wrap;
   margin: 2rem auto;
-  color: ${theme.colors.white};
+  color: ${colors.white};
 `;
 const HeaderLeft = styled.div`
   width: 30%;
@@ -51,7 +52,7 @@ const PotluckButton = styled.a`
   top: 5px;
   right: 0;
   padding: 5px 10px;
-  border: 1px solid ${theme.colors.yellow};
+  border: 1px solid ${colors.yellow};
   border-radius: 3px;
   font-size: 12px;
   text-decoration: none;
@@ -87,7 +88,7 @@ const Avatar = styled.img`
   width: 80px;
   height: 80px;
   margin-right: 20px;
-  border: 3px solid ${theme.colors.white};
+  border: 3px solid ${colors.white};
   box-shadow: inset 0 0 10px red;
   ${media.tablet`
     width: 50px;

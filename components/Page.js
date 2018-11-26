@@ -4,6 +4,7 @@ import Header from './Header';
 import Footer from './Footer';
 import styled from 'styled-components';
 import { theme } from '../styles';
+const { colors } = theme;
 
 const SkipLink = styled.a`
   position: absolute;
@@ -12,7 +13,7 @@ const SkipLink = styled.a`
   width: 1px;
   height: 1px;
   overflow: hidden;
-  border: 2px solid ${theme.colors.yellow};
+  border: 2px solid ${colors.yellow};
   padding: 10px 15px;
   font-size: 16px;
   background: #000;

@@ -5,9 +5,10 @@ import Meta from '../components/meta';
 import getBaseURL from '../lib/getBaseURL';
 import styled from 'styled-components';
 import { theme, StyledWrapper } from '../styles';
+const { colors } = theme;
 
 const SponsorContainer = styled(StyledWrapper)`
-  background: ${theme.colors.white};
+  background: ${colors.white};
   padding: 2rem;
   font-size: 1.7rem;
 
@@ -32,11 +33,11 @@ const SponsorContainer = styled(StyledWrapper)`
   }
   h1, h2 {
     padding-bottom: 10px;
-    border-bottom: 2px solid ${theme.colors.yellow};
+    border-bottom: 2px solid ${colors.yellow};
   }
   a {
     color: black;
-    border-bottom: 1px solid ${theme.colors.yellow};
+    border-bottom: 1px solid ${colors.yellow};
   }
 `;
 

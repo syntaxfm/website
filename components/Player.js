@@ -4,6 +4,7 @@ import { FaPlay, FaPause } from 'react-icons/fa';
 import formatTime from '../lib/formatTime';
 import styled from 'styled-components';
 import { theme, mixins, media } from '../styles';
+const { colors } = theme;
 
 const PlayerContainer = styled.div`
   display: flex;
@@ -12,26 +13,26 @@ const PlayerContainer = styled.div`
   top: -1px;
   bottom: 0;
   width: 100%;
-  background: ${theme.colors.black};
-  border-top: 1px solid ${theme.colors.yellow};
-  color: ${theme.colors.white};
+  background: ${colors.black};
+  border-top: 1px solid ${colors.yellow};
+  color: ${colors.white};
   z-index: 2;
   button {
     ${mixins.flexCenter};
     justify-content: space-around;
     flex-direction: column;
-    background: ${theme.colors.black};
-    color: ${theme.colors.white};
+    background: ${colors.black};
+    color: ${colors.white};
     border: 0;
     padding: 1rem;
     border-right: 1px solid rgba(0, 0, 0, 0.6);
-    outline-color: ${theme.colors.yellow};
+    outline-color: ${colors.yellow};
     font-size: 10px;
   }
 `;
 const PlayerSection = styled.div`
   order: 2;
-  background: ${theme.colors.black};
+  background: ${colors.black};
 `;
 const PlayerLeft = styled(PlayerSection)`
   width: 100px;
@@ -96,8 +97,8 @@ const ProgressTime = styled.div`
   height: 100%;
   transition: width 0.1s;
   border-right: 1px solid rgba(0, 0, 0, 0.1);
-  background: ${theme.colors.green};
-  background: ${theme.colors.grad};
+  background: ${colors.green};
+  background: ${colors.grad};
 `;
 const PlayerTitle = styled.h3`
   display: flex;
@@ -125,7 +126,7 @@ const PlayerTooltip = styled.div`
     margin-left: -2px;
     border-width: 2px;
     border-style: solid;
-    border-color: transparent transparent ${theme.colors.white} transparent;
+    border-color: transparent transparent ${colors.white} transparent;
   }
 `;
 const PlayerInputs = styled.div`
@@ -147,7 +148,7 @@ const PlayerVolume = styled.div`
   width: 120px;
   padding: 1rem;
   text-align: center;
-  outline-color: ${theme.colors.yellow};
+  outline-color: ${colors.yellow};
   font-weight: normal;
   letter-spacing: 0px;
 
@@ -156,35 +157,35 @@ const PlayerVolume = styled.div`
   `};
 
   &:focus-within {
-    outline: ${theme.colors.yellow} auto 5px;
+    outline: ${colors.yellow} auto 5px;
   }
   &:hover {
     label {
-      border-top: 1px solid ${theme.colors.yellow};
+      border-top: 1px solid ${colors.yellow};
     }
   }
   label {
-    border-top: 1px solid ${theme.colors.green};
+    border-top: 1px solid ${colors.green};
     &:hover {
       & ~ label {
-        border-top: 1px solid ${theme.colors.black};
+        border-top: 1px solid ${colors.black};
       }
     }
   }
   input {
     ~ label {
-      background: ${theme.colors.green};
-      border-right: 2px solid ${theme.colors.black};
+      background: ${colors.green};
+      border-right: 2px solid ${colors.black};
       display: inline-block;
       width: 8px;
       height: 2.5rem;
     }
     &:checked {
       ~ label {
-        background: ${theme.colors.grey};
+        background: ${colors.grey};
       }
       + label {
-        background: ${theme.colors.green};
+        background: ${colors.green};
       }
     }
   }

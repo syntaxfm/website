@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { theme, media } from '../styles';
+const { colors, gradients } = theme;
 
 const SubscribeContainer = styled.div`
   width: 100%;
@@ -44,7 +45,7 @@ const SubscribeLink = styled.li`
   a {
     display: flex;
     align-items: center;
-    background: ${theme.colors.yellow};
+    background: ${colors.yellow};
     color: rgba(0, 0, 0, 0.8);
     text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.2);
     box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.05);
@@ -59,7 +60,7 @@ const SubscribeLink = styled.li`
       box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.4);
     }
     &:focus {
-      outline-color: ${theme.colors.yellow};
+      outline-color: ${colors.yellow};
     }
     &:before {
       content: '';
@@ -75,7 +76,7 @@ const SubscribeLink = styled.li`
 `;
 const Itunes = styled(SubscribeLink)`
   a {
-    background: ${theme.gradients.itunes};
+    background: ${gradients.itunes};
     &:before {
       background-image: url('/static/icons/iTunes.jpg');
     }
@@ -83,7 +84,7 @@ const Itunes = styled(SubscribeLink)`
 `;
 const Overcast = styled(SubscribeLink)`
   a {
-    background: ${theme.gradients.overcast};
+    background: ${gradients.overcast};
     &:before {
       background-image: url('/static/icons/overcast.jpg');
     }
@@ -91,7 +92,7 @@ const Overcast = styled(SubscribeLink)`
 `;
 const GooglePodcast = styled(SubscribeLink)`
   a {
-    background: ${theme.gradients.googlePodcast};
+    background: ${gradients.googlePodcast};
     &:before {
       background-image: url('/static/icons/google_podcasts.svg');
     }
@@ -99,7 +100,7 @@ const GooglePodcast = styled(SubscribeLink)`
 `;
 const Stitcher = styled(SubscribeLink)`
   a {
-    background: ${theme.gradients.stitcher};
+    background: ${gradients.stitcher};
     &:before {
       background-image: url('/static/icons/stitcher.jpg');
     }
@@ -107,7 +108,7 @@ const Stitcher = styled(SubscribeLink)`
 `;
 const PocketCasts = styled(SubscribeLink)`
   a {
-    background: ${theme.gradients.pocketCasts};
+    background: ${gradients.pocketCasts};
     &:before {
       background-image: url('/static/icons/pocketcasts.jpg');
     }
@@ -115,7 +116,7 @@ const PocketCasts = styled(SubscribeLink)`
 `;
 const GooglePlay = styled(SubscribeLink)`
   a {
-    background: ${theme.gradients.googlePlay};
+    background: ${gradients.googlePlay};
     &:before {
       background-image: url('/static/icons/googleplay.png');
       background-color: white;
@@ -124,7 +125,7 @@ const GooglePlay = styled(SubscribeLink)`
 `;
 const Spotify = styled(SubscribeLink)`
   a {
-    background: ${theme.gradients.spotify};
+    background: ${gradients.spotify};
     &:before {
       background-image: url('/static/icons/spotify.svg');
     }
@@ -132,7 +133,7 @@ const Spotify = styled(SubscribeLink)`
 `;
 const RSS = styled(SubscribeLink)`
   a {
-    background: ${theme.gradients.rss};
+    background: ${gradients.rss};
     &:before {
       background-image: url('/static/icons/rss.svg');
     }

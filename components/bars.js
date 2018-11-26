@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 import { theme } from '../styles';
+const { colors } = theme;
 
 const sound = keyframes`
   0% {
     opacity: .35;
-    background: ${theme.colors.yellow};
+    background: ${colors.yellow};
     height: 3px;
   }
   100% {
@@ -19,7 +20,7 @@ const Bar = styled.div`
   bottom: 1px;
   width: 3px;
   height: 3px;
-  background: ${theme.colors.green};
+  background: ${colors.green};
   animation: ${sound} 0ms -800ms linear infinite alternate;
 
   &:nth-child(1) {

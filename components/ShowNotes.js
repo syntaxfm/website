@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { theme, mixins, media, StyledButton } from '../styles';
+const { colors } = theme;
 
 const ShowNotesContainer = styled.div`
   padding: 2rem;
@@ -11,7 +12,7 @@ const ShowNotesContainer = styled.div`
     width: 100%;
   `};
   pre {
-    background: ${theme.colors.lightgrey};
+    background: ${colors.lightgrey};
     padding: 1rem;
   }
   ul {
@@ -29,36 +30,36 @@ const ShowNotesContainer = styled.div`
   h6 {
     font-family: 'courier';
     font-weight: 100;
-    border-bottom: 1px solid ${theme.colors.grey};
+    border-bottom: 1px solid ${colors.grey};
     padding-bottom: 1rem;
     &:before {
       padding-right: 1rem;
     }
   }
   a {
-    color: ${theme.colors.black};
-    border-bottom: 1px solid ${theme.colors.yellow};
+    color: ${colors.black};
+    border-bottom: 1px solid ${colors.yellow};
     text-decoration: none;
   }
 `;
 const ShowDate = styled.p`
   margin-top: 0;
   text-align: right;
-  color: ${theme.colors.grey3};
+  color: ${colors.grey3};
   font-size: 1.2rem;
 `;
 const ShowTitle = styled.h2`
   font-family: 'courier';
   font-weight: 100;
   font-size: 2.5rem;
-  border-bottom: 1px solid ${theme.colors.grey};
+  border-bottom: 1px solid ${colors.grey};
   padding-bottom: 1rem;
   &:before {
     padding-right: 1rem;
   }
 `;
 const ButtonIcon = styled.span`
-  border-right: 1px solid ${theme.colors.grey};
+  border-right: 1px solid ${colors.grey};
   padding-right: 0.5rem;
   margin-right: 0.5rem;
 `;

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Show from './Show';
 import styled from 'styled-components';
 import { theme, media } from '../styles';
+const { colors } = theme;
 
 const ShowListContainer = styled.div`
   width: 38%;
@@ -18,9 +19,9 @@ const ShowListContainer = styled.div`
 const DummyShow = styled.div`
   display: flex;
   flex: 10 auto;
-  border: 1px solid ${theme.colors.grey};
-  border-left: 10px solid ${theme.colors.grey};
-  background: ${theme.colors.lightgrey};
+  border: 1px solid ${colors.grey};
+  border-left: 10px solid ${colors.grey};
+  background: ${colors.lightgrey};
   position: relative;
 `;
 
