@@ -87,7 +87,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
   - [Original Wayfarer Sunglasses](https://rstyle.me/n/dby832cdguf)
 - [Under Armour Boxer Jock Underwear](https://rstyle.me/n/dby98jcdguf)
 - [Reebok Boxer Brief Underwear](https://amzn.to/2DwNGTc)
-- [dvlpr.io Merch](dvlpr.io)
+- [dvlpr.io Merch](https://dvlpr.io)
 
 39:08 - Gadgets
 
