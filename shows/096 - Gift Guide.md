@@ -9,7 +9,7 @@ In this episode Wes and Scott bring you their holiday gift guide - things, ideas
 
 ## Contentful - Sponsor
 
-Contentful is a great way to manage your data. Update once and publish everywhere. Contentful gives you a ton of flexibility and reliability and everything you need to build excellent front-end content without having to worry about the back-end of your site. Check out [contentful.com/syntax](https://www.contentful.com/sytax/) and get a free pair of socks!
+Contentful is a great way to manage your data. Update once and publish everywhere. Contentful gives you a ton of flexibility and reliability and everything you need to build excellent front-end content without having to worry about the back-end of your site. Check out [contentful.com/syntaxfm](https://www.contentful.com/syntaxfm) and get a free pair of socks!
 
 ## Freshbooks - Sponsor
 
