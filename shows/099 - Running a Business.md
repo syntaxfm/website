@@ -5,7 +5,7 @@ date: 1544450400837
 url: https://traffic.libsyn.com/syntax/Syntax099.mp3
 ---
 
-In this Hasty Treat, Scott and Wes talk about the costs of running a business when you're a solopreneur or solo founder. 
+In this Hasty Treat, Scott and Wes talk about the costs of running a business when you're a solopreneur or solo founder.
 
 ## Contentful - Sponsor
 
@@ -66,7 +66,7 @@ Contentful is a great way to manage your data. Update once and publish everywher
 22:12 - Labor
 
 * Assistant
-* Part-time developer 
+* Part-time developer
 * Contractors for projects
 
 24:53 - Insurance
