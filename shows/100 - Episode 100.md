@@ -124,6 +124,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 
 * [Netlify](https://netlify.com/)
 * [Podcast Royale](https://podcastroyale.net)
+* [Adam Clark](https://avclark.com)
 * [Libsyn](https://libsyn.com/)
 * [Dropbox Paper](https://paper.dropbox.com)
 * [Studio 3T](https://studio3t.com/)
