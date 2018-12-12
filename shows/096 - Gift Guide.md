@@ -104,7 +104,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 - [Koomus Car CD Slot Magnet Mount for your phone](https://amzn.to/2Fx1q35)
 - [Anker Portable Battery](https://amzn.to/2DN0Yw3)
 - Extra Long Braided Phone Cables
-  - [Lighting](https://amzn.to/2KnsX5Q)
+  - [Lightning](https://amzn.to/2KnsX5Q)
   - [Micro USB](https://amzn.to/2S56wVM)
   - [USB-c](https://amzn.to/2Fyg620)
 - Anker USB Power Block
