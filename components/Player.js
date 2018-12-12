@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { FaPlay, FaPause } from 'react-icons/fa';
 import formatTime from '../lib/formatTime';
 
-// TODO Fix all eslint issues
-
 export default class Player extends React.Component {
   static propTypes = {
     show: PropTypes.object.isRequired,
@@ -181,7 +179,7 @@ export default class Player extends React.Component {
             }}
             ref={x => (this.progress = x)}
           >
-          {/* eslint-enable */}
+            {/* eslint-enable */}
             <div
               className="progress__time"
               style={{ width: `${progressTime}%` }}
@@ -225,7 +223,9 @@ export default class Player extends React.Component {
                 id="vol10"
                 className="sr-only"
               />
-              <label htmlFor="vol10"> {/* eslint-disable-line */}
+              <label htmlFor="vol10">
+                {' '}
+                {/* eslint-disable-line */}
                 <span className="sr-only">Volume Level 10/100</span>
               </label>
               <input
@@ -236,7 +236,9 @@ export default class Player extends React.Component {
                 id="vol20"
                 className="sr-only"
               />
-              <label htmlFor="vol20"> {/* eslint-disable-line */}
+              <label htmlFor="vol20">
+                {' '}
+                {/* eslint-disable-line */}
                 <span className="sr-only">Volume Level 20/100</span>
               </label>
               <input
@@ -247,7 +249,9 @@ export default class Player extends React.Component {
                 id="vol30"
                 className="sr-only"
               />
-              <label htmlFor="vol30"> {/* eslint-disable-line */}
+              <label htmlFor="vol30">
+                {' '}
+                {/* eslint-disable-line */}
                 <span className="sr-only">Volume Level 30/100</span>
               </label>
               <input
@@ -258,7 +262,9 @@ export default class Player extends React.Component {
                 id="vol40"
                 className="sr-only"
               />
-              <label htmlFor="vol40"> {/* eslint-disable-line */}
+              <label htmlFor="vol40">
+                {' '}
+                {/* eslint-disable-line */}
                 <span className="sr-only">Volume Level 40/100</span>
               </label>
               <input
@@ -269,7 +275,9 @@ export default class Player extends React.Component {
                 id="vol50"
                 className="sr-only"
               />
-              <label htmlFor="vol50"> {/* eslint-disable-line */}
+              <label htmlFor="vol50">
+                {' '}
+                {/* eslint-disable-line */}
                 <span className="sr-only">Volume Level 50/100</span>
               </label>
               <input
@@ -280,7 +288,9 @@ export default class Player extends React.Component {
                 id="vol60"
                 className="sr-only"
               />
-              <label htmlFor="vol60"> {/* eslint-disable-line */}
+              <label htmlFor="vol60">
+                {' '}
+                {/* eslint-disable-line */}
                 <span className="sr-only">Volume Level 60/100</span>
               </label>
               <input
@@ -291,7 +301,9 @@ export default class Player extends React.Component {
                 id="vol70"
                 className="sr-only"
               />
-              <label htmlFor="vol70"> {/* eslint-disable-line */}
+              <label htmlFor="vol70">
+                {' '}
+                {/* eslint-disable-line */}
                 <span className="sr-only">Volume Level 70/100</span>
               </label>
               <input
@@ -302,7 +314,9 @@ export default class Player extends React.Component {
                 id="vol80"
                 className="sr-only"
               />
-              <label htmlFor="vol80"> {/* eslint-disable-line */}
+              <label htmlFor="vol80">
+                {' '}
+                {/* eslint-disable-line */}
                 <span className="sr-only">Volume Level 80/100</span>
               </label>
               <input
@@ -314,7 +328,9 @@ export default class Player extends React.Component {
                 id="vol90"
                 className="sr-only"
               />
-              <label htmlFor="vol90"> {/* eslint-disable-line */}
+              <label htmlFor="vol90">
+                {' '}
+                {/* eslint-disable-line */}
                 <span className="sr-only">Volume Level 90/100</span>
               </label>
               <input
@@ -325,7 +341,9 @@ export default class Player extends React.Component {
                 id="vol100"
                 className="sr-only"
               />
-              <label htmlFor="vol100"> {/* eslint-disable-line */}
+              <label htmlFor="vol100">
+                {' '}
+                {/* eslint-disable-line */}
                 <span className="sr-only">Volume Level 100/100</span>
               </label>
             </div>

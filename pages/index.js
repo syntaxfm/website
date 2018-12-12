@@ -50,13 +50,14 @@ export default withRouter(
       const { shows = [], baseURL } = this.props;
       const { currentShow, currentPlaying } = this.state;
       // Currently Shown shownotes
-      const show = shows.find(
-        showItem => showItem.displayNumber === currentShow
-      );
+      const show =
+        shows.find(showItem => showItem.displayNumber === currentShow) ||
+        shows[0];
       // Currently Playing
-      const current = shows.find(
-        showItem => showItem.displayNumber === currentPlaying
-      );
+      const current =
+        shows.find(showItem => showItem.displayNumber === currentPlaying) ||
+        shows[0];
+
       return (
         <Page>
           <Meta show={show} baseURL={baseURL} />
