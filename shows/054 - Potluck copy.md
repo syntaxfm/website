@@ -1,11 +1,11 @@
 ---
-number: 054
+number: 54
 title: Potluck EP × Remote Work × Headless WordPress × Good Client Questions × Alternate Careers × React API Credentials
 date: 1530709200341
 url: https://traffic.libsyn.com/syntax/Syntax054.mp3
 ---
 
-It's another potluck episode in which Wes and Scott talk about freelancing best practices, tips for working remotely, what they would do if they had to pick a different career, and much more! 
+It's another potluck episode in which Wes and Scott talk about freelancing best practices, tips for working remotely, what they would do if they had to pick a different career, and much more!
 
 ## Freshbooks - Sponsor
 
@@ -66,7 +66,7 @@ Check out Coffeecup's [CSS Grid.cc](https://cssgrid.cc/) builder tool and resour
 * If you were forced to change your career (and it had to be something you've never done professionally in the past), what would it be?
   * Wes: Some sort of buying and selling (eBay, Amazon, etc,)
   * Example: Buying things at wholesale prices and selling them with a markup
-  * Scott: Could go a lot of different directions. 
+  * Scott: Could go a lot of different directions.
   * Example: DJ, Snowboarding instructor, develop a video game that is a sequel to [Cruis'n USA](https://en.wikipedia.org/wiki/Cruis%27n_USA)
 
 50:14

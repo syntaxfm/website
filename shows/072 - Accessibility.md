@@ -1,5 +1,5 @@
 ---
-number: 072
+number: 72
 title: Accessibility
 date: 1536152400467
 url: https://traffic.libsyn.com/syntax/Syntax072.mp3
@@ -9,15 +9,15 @@ In this episode Wes and Scott dive into the very big topic of accessibility, fro
 
 ## Cloudinary - Sponsor
 
-[Cloudinary](https://cloudinary.com?utm_source=Syntax.fm&utm_medium=Podcast&utm_content=Accessibility_Syntax_podcast) is a heavy duty media hosting stack for your websites and applications. 
+[Cloudinary](https://cloudinary.com?utm_source=Syntax.fm&utm_medium=Podcast&utm_content=Accessibility_Syntax_podcast) is a heavy duty media hosting stack for your websites and applications.
 
 Also, check out [Making Media Accessible: How to Automatically Generate alt Text for Images](https://cloudinary.com/blog/making_media_accessible_how_to_automatically_generate_alt_text_for_images?utm_source=Syntax.fm&utm_medium=Podcast&utm_content=Accessibility_Syntax_podcast). In the first part of the series, Cloudinary will demonstrate how you can integrate machine learning tools into your image management pipeline to automatically generate alt text for your assets.
 
 ## Deque - Sponsor
 
-[Deque](https://www.deque.com/) is the amazing company behind the [aXe](https://www.deque.com/axe/) accessibility testing tool that over 200,000 people use to ensure their websites are accessible.  
+[Deque](https://www.deque.com/) is the amazing company behind the [aXe](https://www.deque.com/axe/) accessibility testing tool that over 200,000 people use to ensure their websites are accessible.
 
-For users looking to scale accessibility, export issues and collaborate with colleagues, Deque offers an enterprise toolset called [Attest](https://www.deque.com/tools/worldspace-attest/). Attest also allows you to select accessibility custom rules, offers a more robust API and more integrations AND can test the accessibility of your iOS and Android applications. 
+For users looking to scale accessibility, export issues and collaborate with colleagues, Deque offers an enterprise toolset called [Attest](https://www.deque.com/tools/worldspace-attest/). Attest also allows you to select accessibility custom rules, offers a more robust API and more integrations AND can test the accessibility of your iOS and Android applications.
 
 ## Show Notes
 
@@ -26,7 +26,7 @@ For users looking to scale accessibility, export issues and collaborate with col
 * What is accessibility?
 * [Amy Carney Tweet](https://twitter.com/click2carney/status/1027601637156610048)
 * [Tim Berners Lee Quote](https://www.w3.org/standards/webdesign/accessibility)
-* a11y 
+* a11y
 * What types of disabilities are there?
   * [Temporary, situational, and permanent](https://medium.com/valtech-design/inclusive-design-dd4e03f82094)
 * [Tweet thread with lots of info](https://twitter.com/wesbos/status/1027187967243309057)
@@ -37,7 +37,7 @@ For users looking to scale accessibility, export issues and collaborate with col
 * Semantic elements
 * Use the alt attribute on images
 * HTML5 (article, section, header, footer, aside)
-* Proper inputs types - number, text,  
+* Proper inputs types - number, text,
 * CSS order property on Flexbox and Grid
 * Colors and proper contrast
 * Use links and buttons properly

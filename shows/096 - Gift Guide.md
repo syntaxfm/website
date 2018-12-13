@@ -1,5 +1,5 @@
 ---
-number: 096
+number: 96
 title: Holiday Gift Guide
 date: 1543413600637
 url: https://traffic.libsyn.com/syntax/Syntax096.mp3

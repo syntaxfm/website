@@ -1,5 +1,5 @@
 ---
-number: 048
+number: 48
 title: VS Code Round Two
 date: 1527685200617
 url: https://traffic.libsyn.com/syntax/Syntax048.mp3
@@ -49,9 +49,9 @@ Scott and Wes are back with another round of tips, tricks and tasty treats for t
 * [Night Owl](https://marketplace.visualstudio.com/items?itemName=sdras.night-owl)
 * [Cobalt2](https://marketplace.visualstudio.com/items?itemName=wesbos.theme-cobalt2)
 
-40:35 - Tips and Tricks 
+40:35 - Tips and Tricks
 
-* Learn how to jump and select by letter, word, line, etc. 
+* Learn how to jump and select by letter, word, line, etc.
 * Move a line (or Line Bubbling) - Use this for rearranging and/or moving lines of code quickly.
 * Cycling through multiple windows of the same app - If you have multiple VS Code windows open, "Cmd + backtick" will cycle through them, so you don't have to drag them in and out of view.
 * Adjust MacOS keyboard settings - change Key Repeat to "fast" and Delay Until Repeat to "short". This will make your editor super fast when holding down arrow keys.

@@ -1,5 +1,5 @@
 ---
-number: 060
+number: 60
 title: The Undocumented Web - scraping, private APIs, proxies and “alternative solutions”
 date: 1532437200084
 url: https://traffic.libsyn.com/syntax/Syntax060.mp3

@@ -1,11 +1,11 @@
 ---
-number: 066
+number: 66
 title: The React Episode
 date: 1534338000260
 url: https://traffic.libsyn.com/syntax/Syntax066.mp3
 ---
 
-In this episode Wes and Scott do a deep dive into React - what it is, best practices and all the ins and outs of how the framework works. 
+In this episode Wes and Scott do a deep dive into React - what it is, best practices and all the ins and outs of how the framework works.
 
 ## Dev Lifts — Sponsor
 
@@ -13,7 +13,7 @@ In this episode Wes and Scott do a deep dive into React - what it is, best pract
 
 ## Mlab - Sponsor
 
-mLab is the leading Database-as-a-Service for MongoDB, powering over half a million deployments worldwide. Wes and Scott use mLab to host their own databases as well as take care of backups, security, scaling and performance. Try out a sandbox database on your next mongoDB project → [https://mlab.com](https://mlab.com/) 
+mLab is the leading Database-as-a-Service for MongoDB, powering over half a million deployments worldwide. Wes and Scott use mLab to host their own databases as well as take care of backups, security, scaling and performance. Try out a sandbox database on your next mongoDB project → [https://mlab.com](https://mlab.com/)
 
 ## Show Notes
 

@@ -1,5 +1,5 @@
 ---
-number: 050
+number: 50
 title: Progressive Web Apps
 date: 1528894800021
 url: https://traffic.libsyn.com/syntax/Syntax050.mp3
@@ -78,7 +78,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 
 * Canonical URLs are provided when necessary
 
-### User experience 
+### User experience
 
 31:43
 

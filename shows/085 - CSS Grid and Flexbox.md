@@ -1,11 +1,11 @@
 ---
-number: 085
+number: 85
 title: Hasty Treat - Old Browsers, Fallbacks and Polyfills - Part 2
 date: 1540213200399
 url: https://traffic.libsyn.com/syntax/Syntax085.mp3
 ---
 
-In this Hasty Treat, Scott and Wes continue a three-part series about old browsers, fallbacks and polyfills. In part two, they talk specifically about CSS Grid, Flexbox, new features and fallbacks, and how to use them. 
+In this Hasty Treat, Scott and Wes continue a three-part series about old browsers, fallbacks and polyfills. In part two, they talk specifically about CSS Grid, Flexbox, new features and fallbacks, and how to use them.
 
 ## VueSchool.io — Sponsor
 
@@ -38,7 +38,7 @@ Check out [VueSchool.io's](https://vueschool.io/) new subscription plans. Get ac
 
 * @supports
 * Display block then display grid
-* Feature Testing 
+* Feature Testing
 * Detect the browser as a last resort
 
 ## Tweet us your tasty treats!
