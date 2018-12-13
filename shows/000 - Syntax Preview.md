@@ -1,5 +1,5 @@
 ---
-number: 000
+number: 0
 title: Preview
 date: 1498579200000
 url: https://traffic.libsyn.com/syntax/Syntax000.mp3?dest-id=532671

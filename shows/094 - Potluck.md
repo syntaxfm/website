@@ -1,5 +1,5 @@
 ---
-number: 094
+number: 94
 title: Potluck - $100/hr × Redux Replacements × Full Stack Designers × JWT × VS Code Tips × More
 date: 1542808800053
 url: https://traffic.libsyn.com/syntax/Syntax094.mp3
@@ -47,15 +47,15 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 
 35:34
 
-* How do you move selected text horizontally (or vertically) in VSCode? I've seen it in Wes' videos and I tried to ask him on Twitter, but I'm sure that is a chore to keep up with. I've googled a ton, but the only thing I found was an extension that adjusts indentation, which is not really what I'm after. 
+* How do you move selected text horizontally (or vertically) in VSCode? I've seen it in Wes' videos and I tried to ask him on Twitter, but I'm sure that is a chore to keep up with. I've googled a ton, but the only thing I found was an extension that adjusts indentation, which is not really what I'm after.
 
 38:57
 
-* How do you recommend providing feedback on "bad" code to a developer more experienced than you, without coming off as an uppity, know-it-all junior who just read a bunch of textbooks?? 
+* How do you recommend providing feedback on "bad" code to a developer more experienced than you, without coming off as an uppity, know-it-all junior who just read a bunch of textbooks??
 
 42:39
 
-* How do you set up an IP whitelist? I am just getting started managing databases and I am using Mongo Atlas. They require an IP whitelist for all connections. Developing from my computer is fine because I can just add my IP to the whitelist, but what do I do if I actually want to make my API or website public? Just whitelist everything? That sounds like a terrible idea...    
+* How do you set up an IP whitelist? I am just getting started managing databases and I am using Mongo Atlas. They require an IP whitelist for all connections. Developing from my computer is fine because I can just add my IP to the whitelist, but what do I do if I actually want to make my API or website public? Just whitelist everything? That sounds like a terrible idea...
 
 ## Links
 * [useReducer](https://reactjs.org/docs/hooks-reference.html#usereducer)

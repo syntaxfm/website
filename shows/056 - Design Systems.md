@@ -1,6 +1,6 @@
 ---
-number: 056
-title: Design Systems 
+number: 56
+title: Design Systems
 date: 1531314000456
 url: https://traffic.libsyn.com/syntax/Syntax056.mp3
 ---
@@ -21,7 +21,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 * Design Systems 101
   * [Wes' Tweet about Design Systems](https://twitter.com/wesbos/status/1012325994437529600)
 
-9:40 
+9:40
 
 * Organizational elements of design systems
   * It's all about consistency

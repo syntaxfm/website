@@ -1,5 +1,5 @@
 ---
-number: 005
+number: 5
 title: How to Slam Dunk Freelancing
 date: 1501684018000
 url: https://traffic.libsyn.com/syntax/Syntax005.mp3

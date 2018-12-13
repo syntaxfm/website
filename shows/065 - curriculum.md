@@ -1,5 +1,5 @@
 ---
-number: 065
+number: 65
 title: Hasty Treat - Building Curriculum for Courses
 date: 1534165200725
 url: https://traffic.libsyn.com/syntax/Syntax065.mp3

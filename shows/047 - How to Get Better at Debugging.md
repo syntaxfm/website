@@ -1,5 +1,5 @@
 ---
-number: 047
+number: 47
 title: How to Get Better at Debugging
 date: 1527080400561
 url: https://traffic.libsyn.com/syntax/Syntax047.mp3

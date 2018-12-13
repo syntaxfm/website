@@ -1,5 +1,5 @@
 ---
-number: 073
+number: 73
 title: Hasty Treat - Reading Documentation
 date: 1536584400827
 url: https://traffic.libsyn.com/syntax/Syntax073.mp3
@@ -27,7 +27,7 @@ If you want to know what's happening with your errors, track them with [Sentry](
   * [Gatsby](https://www.gatsbyjs.org/tutorial/part-two/)
   * [Jest](https://jestjs.io/docs/en/getting-started)
   * [Meteor](https://docs.meteor.com/#/basic/)
-  
+
 
 14:34 - How to read documentation
 

@@ -1,11 +1,11 @@
 ---
-number: 008
+number: 8
 title: Wes Bos Origin Story 🎸💼💻🔥🐷
 date: 1503493200000
 url: https://traffic.libsyn.com/syntax/Syntax008.mp3
 ---
 
-In this episode, Wes talks about his career path from a MySpace customizer to where he is now. 
+In this episode, Wes talks about his career path from a MySpace customizer to where he is now.
 
 ## Sponsor
 

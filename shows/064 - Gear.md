@@ -1,5 +1,5 @@
 ---
-number: 064
+number: 64
 title: Our Office Setups (Gotta Get The Gear)
 date: 1533733200987
 url: https://traffic.libsyn.com/syntax/Syntax064.mp3
@@ -36,7 +36,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
   * [27" Dell 4k](https://amzn.to/2Mo3NnO)
   * [Ergotron Monitor Arms](https://amzn.to/2voS9CF)
 
-* Scott: 
+* Scott:
   * [LG 34UC88-B 34-Inch 21:9 Curved UltraWide](http://amzn.to/2F0sLsU)
   * [VIVO Dual stand](https://amzn.to/2AREOI2)
 
@@ -100,12 +100,12 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 
 * Wes:
   * [CalDigit TS3 Plus](https://amzn.to/2voCKSP)
-  * [Amazon Basics USB 3 Hub](https://amzn.to/2AMPHLo) 
+  * [Amazon Basics USB 3 Hub](https://amzn.to/2AMPHLo)
 
 * Scott:
   * [CalDigit TS3 Plus](https://amzn.to/2voCKSP)
 
-50:35 - Wifi 
+50:35 - Wifi
 
 * Wes:
   * [Amplifi HD Mesh](https://amzn.to/2AMQrQG)
@@ -113,7 +113,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 * Scott:
   * [Google Wifi Mesh](https://www.amazon.com/Google-WiFi-system-3-Pack-replacement/dp/B01MAW2294/ref=sr_1_1_sspa?s=electronics&ie=UTF8&qid=1533697191&sr=1-1-spons&keywords=Google+Wifi+Mesh&psc=1)
 
-54:26 - Recording Gear 
+54:26 - Recording Gear
 
 * Check out [episode 037](https://syntax.fm/show/037/recording-screencasts-hardware-software-dos-and-don-ts) for a full rundown of all of our recording gear
 

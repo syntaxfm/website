@@ -1,11 +1,11 @@
 ---
-number: 097
+number: 97
 title: Hasty Treat - Uses for CSS Variables
 date: 1543845600958
 url: https://traffic.libsyn.com/syntax/Syntax097.mp3
 ---
 
-In this Hasty Treat, Scott and Wes talk about CSS variables, a.k.a CSS Custom Properties - why you might want to use them, why they're better than various preprocessor's variables, and pitfalls to watch out for and avoid. 
+In this Hasty Treat, Scott and Wes talk about CSS variables, a.k.a CSS Custom Properties - why you might want to use them, why they're better than various preprocessor's variables, and pitfalls to watch out for and avoid.
 
 
 ## Kyle Prinsloo's Freelancing & Beyond — Sponsor
@@ -17,7 +17,7 @@ Kyle Prinsloo teaches you everything you need to know about freelancing, includi
 3:25 - What
 
 * `--example-name`, represent custom properties
-* called using `var()` 
+* called using `var()`
 * Overwrite with a more specific style
 * Use JavaScript to append .style.setPropert(
 

@@ -1,11 +1,11 @@
 ---
-number: 092
+number: 92
 title: React Hooks
 date: 1542204000772
 url: https://traffic.libsyn.com/syntax/Syntax092.mp3
 ---
 
-In this episode Wes and Scott discuss React Hooks - what they are, why you might want to use them, their differences with regular classes, and more. 
+In this episode Wes and Scott discuss React Hooks - what they are, why you might want to use them, their differences with regular classes, and more.
 
 ## Freshbooks - Sponsor
 
@@ -17,15 +17,15 @@ If you want to know what's happening with your errors, track them with [Sentry](
 
 ## Show Notes
 
-2:30 
+2:30
 
 * Function components
 
-4:50 
+4:50
 
 * What are React hooks?
 
-8:12 
+8:12
 
 * What problem does this solve?
 
