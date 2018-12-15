@@ -74,7 +74,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 
 35:10 - Favorite episodes
 
-* Wes - [Syntax043 - 20 JavaScript Array and Object Methods to make you a better developer](https://syntax.fm/show/035/20-javascript-array-and-object-methods-to-make-you-a-better-developer)
+* Wes - [Syntax043 - 20 JavaScript Array and Object Methods to make you a better developer](https://syntax.fm/show/043/20-javascript-array-and-object-methods-to-make-you-a-better-developer)
 * Scott - [Syntax044 - How to Learn New Things Quickly](https://syntax.fm/show/036/how-to-learn-new-things-quickly)
 
 38:49 - Q&A 
