@@ -1,19 +1,19 @@
-import { withRouter } from "next/router";
-import React from "react";
-import axios from "axios";
-import PropTypes from "prop-types";
-import ShowList from "../components/ShowList";
-import Player from "../components/Player";
-import Meta from "../components/meta";
-import Page from "../components/Page";
-import getBaseURL from "../lib/getBaseURL";
+import { withRouter } from 'next/router';
+import React from 'react';
+import axios from 'axios';
+import PropTypes from 'prop-types';
+import ShowList from '../components/ShowList';
+import Player from '../components/Player';
+import Meta from '../components/meta';
+import Page from '../components/Page';
+import getBaseURL from '../lib/getBaseURL';
 
 export default withRouter(
   class IndexPage extends React.Component {
     static propTypes = {
       router: PropTypes.object.isRequired,
       shows: PropTypes.array.isRequired,
-      baseURL: PropTypes.string.isRequired
+      baseURL: PropTypes.string.isRequired,
     };
 
     constructor(props) {
@@ -23,7 +23,7 @@ export default withRouter(
 
       this.state = {
         currentShow,
-        currentPlaying: currentShow
+        currentPlaying: currentShow,
       };
     }
 
@@ -41,7 +41,7 @@ export default withRouter(
     }
 
     setCurrentPlaying = currentPlaying => {
-      console.log("Setting current playing");
+      console.log('Setting current playing');
       this.setState({ currentPlaying });
     };
 

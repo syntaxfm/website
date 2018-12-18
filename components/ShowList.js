@@ -1,14 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
-import {
-  Configure,
-  InstantSearch,
-  SearchBox,
-  InfiniteHits,
-  PoweredBy
-} from "react-instantsearch-dom";
-import Show from "../components/Show";
-import ShowNotes from "../components/ShowNotes";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Configure,   InstantSearch,   SearchBox, InfiniteHits, PoweredBy } from 'react-instantsearch-dom';
+import Show from '../components/Show';
+import ShowNotes from '../components/ShowNotes';
 
 const ShowList = ({ show, currentPlaying, currentShow, setCurrentPlaying }) => {
   return (
@@ -19,7 +13,7 @@ const ShowList = ({ show, currentPlaying, currentShow, setCurrentPlaying }) => {
     >
       <Configure hitsPerPage={25} />
       <div className="ais-search">
-        <SearchBox translations={{ placeholder: "Search for episodes..." }} />
+        <SearchBox translations={{ placeholder: 'Search for episodes...' }} />
         <PoweredBy />
       </div>
       <div className="ais-instantSearch">
@@ -43,7 +37,7 @@ ShowList.propTypes = {
   show: PropTypes.any.isRequired,
   currentPlaying: PropTypes.string.isRequired,
   currentShow: PropTypes.string.isRequired,
-  setCurrentPlaying: PropTypes.func.isRequired
+  setCurrentPlaying: PropTypes.func.isRequired,
 };
 
 export default ShowList;
