@@ -1,29 +1,3 @@
-// import React from "react";
-// import { Highlight } from "react-instantsearch-dom";
-
-// /*
-// hit
-// ============
-// date
-// link
-// objectID
-// hitNotes
-// showNumber
-// subtitle
-// title
-// */
-
-// const hithit = ({ hit }) => {
-//   return (
-//     <div style={{ marginBottom: 9 }}>
-//       <div>{hit.showNumber}</div>
-//       <Highlight attribute="title" hit={hit} />
-//     </div>
-//   );
-// };
-
-// export default hithit;
-
 import React from "react";
 import PropTypes from "prop-types";
 import slug from "speakingurl";
