@@ -15,11 +15,12 @@
 
 .ais-search
   position relative
+  display flex
   border-bottom 1px solid grey
   .ais-PoweredBy
     position absolute
     top 4px
-    right 20px
+    right 60px
     display flex
     flex-direction column
     &-logo
@@ -28,7 +29,22 @@
     &-text
       font-family sans-serif
 
+.ais-microphone
+  appearance none
+  -webkit-appearance none
+  border none
+  border-left 1px solid grey
+  width 48px
+  font-size 2rem
+  svg
+    margin-top 6px
+    pointer-events none
+  &-on
+    background #5468ff
+    color white
+
 .ais-SearchBox
+  flex 1
   &-form
     display flex
     flex-direction row
