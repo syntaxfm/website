@@ -31,7 +31,6 @@ export default class ShowList extends Component {
         supportsSpeech: true,
       });
     }
-    console.log(this.state.supportsSpeech)
   };
 
   handleSpeech = event => {
