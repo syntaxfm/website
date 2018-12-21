@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import getConfig from 'next/config'
 import { Configure,   InstantSearch,   SearchBox, InfiniteHits, PoweredBy } from 'react-instantsearch-dom';
-import { FaMicrophone, FaMicrophoneSlash } from "react-icons/fa";
+import { FaMicrophone } from "react-icons/fa";
 import Show from '../components/Show';
 import ShowNotes from '../components/ShowNotes';
 
@@ -35,13 +35,18 @@ export default class ShowList extends Component {
 
   handleSpeech = event => {
     event.preventDefault();
-    this.setState({
-      isTalking: true,
-    })
 
     if (this.state.supportsSpeech) {
       const recognition = new webkitSpeechRecognition();
       recognition.interimResults = true;
+
+      recognition.start();
+
+      recognition.onstart = () => {
+        this.setState({
+          isTalking: true,
+        })
+      }
 
       recognition.onresult = e => {
         let query = e.results[0][0].transcript;
@@ -52,15 +57,7 @@ export default class ShowList extends Component {
         this.setState({
           isTalking: false,
         });
-      }
-
-      if (this.state.isTalking) {
         recognition.stop();
-        this.setState({
-          isTalking: false,
-        })
-      } else {
-        recognition.start();
       }
     }
   }
@@ -78,14 +75,11 @@ export default class ShowList extends Component {
             <SearchBox translations={{ placeholder: 'Search for episodes...' }} ref={node => this.search = node} />
             <PoweredBy />
           </div>
-          {this.state.supportsSpeech && (this.state.isTalking
-            ? <button className={`ais-microphone ${speechClasses}`} onClick={this.handleSpeech}>
-                <FaMicrophoneSlash />
-              </button>
-            : <button className={`ais-microphone ${speechClasses}`} onClick={this.handleSpeech}>
-                <FaMicrophone />
-              </button>)
-          }
+          {this.state.supportsSpeech && (
+            <button className={`ais-microphone ${speechClasses}`} onClick={this.handleSpeech}>
+              <FaMicrophone />
+            </button>
+          )}
         </div>
         <div className="ais-instantSearch">
           <InfiniteHits
