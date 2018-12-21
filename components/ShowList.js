@@ -30,37 +30,34 @@ export default class ShowList extends Component {
       this.setState({
         supportsSpeech: true,
       });
-    }
+    };
   };
 
   handleSpeech = event => {
     event.preventDefault();
+    const recognition = new webkitSpeechRecognition();
+    recognition.interimResults = true;
 
-    if (this.state.supportsSpeech) {
-      const recognition = new webkitSpeechRecognition();
-      recognition.interimResults = true;
+    recognition.start();
 
-      recognition.start();
+    recognition.onstart = () => {
+      this.setState({
+        isTalking: true,
+      })
+    };
 
-      recognition.onstart = () => {
-        this.setState({
-          isTalking: true,
-        })
-      }
+    recognition.onresult = e => {
+      let query = e.results[0][0].transcript;
+      this.search.refine(query);
+    };
 
-      recognition.onresult = e => {
-        let query = e.results[0][0].transcript;
-        this.search.refine(query);
-      }
-
-      recognition.onsoundend = () => {
-        this.setState({
-          isTalking: false,
-        });
-        recognition.stop();
-      }
-    }
-  }
+    recognition.onsoundend = () => {
+      this.setState({
+        isTalking: false,
+      });
+      recognition.stop();
+    };
+  };
 
   render() {
     const { show, currentPlaying, currentShow, setCurrentPlaying } = this.props;
