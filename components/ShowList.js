@@ -24,18 +24,20 @@ export default class ShowList extends Component {
 
   componentDidMount = () => {
     window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
-    if ('SpeechRecognition' in window) {
-      console.log('Speech recognition Chrome API supported');
+    if (typeof window.SpeechRecognition === 'undefined') {
+      console.log("Speech recognition Chrome API not supported");
+    } else {
       this.setState({
         supportsSpeech: true,
       });
     }
+    console.log(this.state.supportsSpeech)
   };
 
   handleSpeech = event => {
     event.preventDefault();
     this.setState({
-      isTalking: !this.state.isTalking,
+      isTalking: true,
     })
 
     if (this.state.supportsSpeech) {
@@ -47,50 +49,59 @@ export default class ShowList extends Component {
         this.search.refine(query);
       }
 
+      recognition.onsoundend = () => {
+        this.setState({
+          isTalking: false,
+        });
+      }
+
       if (this.state.isTalking) {
         recognition.stop();
+        this.setState({
+          isTalking: false,
+        })
       } else {
         recognition.start();
       }
-    } else {
-      console.log("Speech recognition Chrome API not supported");
     }
   }
 
   render() {
-  const { show, currentPlaying, currentShow, setCurrentPlaying } = this.props;
-  const { ALGOLIA_APP_ID, ALGOLIA_API_KEY, ALGOLIA_INDEX_NAME } = getConfig().publicRuntimeConfig;
-  const speechClasses = this.state.isTalking ? 'ais-microphone-on' : '';
+    const { show, currentPlaying, currentShow, setCurrentPlaying } = this.props;
+    const { ALGOLIA_APP_ID, ALGOLIA_API_KEY, ALGOLIA_INDEX_NAME } = getConfig().publicRuntimeConfig;
+    const speechClasses = this.state.isTalking ? 'ais-microphone-on' : '';
 
-  return (
-    <InstantSearch appId={ALGOLIA_APP_ID} apiKey={ALGOLIA_API_KEY} indexName={ALGOLIA_INDEX_NAME}>
-      <Configure hitsPerPage={25} />
-      <div className="ais-search">
-        <SearchBox translations={{ placeholder: 'Search for episodes...' }} ref={node => this.search = node} />
-        <PoweredBy />
-        {this.state.supportsSpeech && this.state.isTalking
-          ? <button className={`ais-microphone ${speechClasses}`} onClick={this.handleSpeech}>
-              <FaMicrophoneSlash />
-            </button>
-          : <button className={`ais-microphone ${speechClasses}`} onClick={this.handleSpeech}>
-              <FaMicrophone />
-            </button>
-        }
-      </div>
-      <div className="ais-instantSearch">
-        <InfiniteHits
-          hitComponent={hit => (
-            <Show
-              show={hit}
-              currentPlaying={currentPlaying}
-              currentShow={currentShow}
-              setCurrentPlaying={setCurrentPlaying}
-            />
-          )}
-        />
-        <ShowNotes show={show} setCurrentPlaying={setCurrentPlaying} />
-      </div>
-    </InstantSearch>
-  );
+    return (
+      <InstantSearch appId={ALGOLIA_APP_ID} apiKey={ALGOLIA_API_KEY} indexName={ALGOLIA_INDEX_NAME}>
+        <Configure hitsPerPage={25} />
+        <div className="ais-search">
+          <div className="ais-search-container">
+            <SearchBox translations={{ placeholder: 'Search for episodes...' }} ref={node => this.search = node} />
+            <PoweredBy />
+          </div>
+          {this.state.supportsSpeech && (this.state.isTalking
+            ? <button className={`ais-microphone ${speechClasses}`} onClick={this.handleSpeech}>
+                <FaMicrophoneSlash />
+              </button>
+            : <button className={`ais-microphone ${speechClasses}`} onClick={this.handleSpeech}>
+                <FaMicrophone />
+              </button>)
+          }
+        </div>
+        <div className="ais-instantSearch">
+          <InfiniteHits
+            hitComponent={hit => (
+              <Show
+                show={hit}
+                currentPlaying={currentPlaying}
+                currentShow={currentShow}
+                setCurrentPlaying={setCurrentPlaying}
+              />
+            )}
+          />
+          <ShowNotes show={show} setCurrentPlaying={setCurrentPlaying} />
+        </div>
+      </InstantSearch>
+    );
   }
 };
