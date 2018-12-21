@@ -11,34 +11,34 @@ const Show = ({ show, currentPlaying, currentShow, setCurrentPlaying }) => {
   const changeURL = (e, hit) => {
     e.preventDefault();
     const { href } = e.currentTarget;
-    Router.push(`/?number=${hit.showNumber}`, href, { shallow: true });
+    Router.push(`/?number=${hit.displayNumber}`, href, { shallow: true });
   };
 
   return (
     <div
       className={`show ${
-        currentPlaying === hit.showNumber ? "show--playing" : ""
-      } ${currentShow === hit.showNumber ? "show--active" : ""}
+        currentPlaying === hit.displayNumber ? "show--playing" : ""
+      } ${currentShow === hit.displayNumber ? "show--active" : ""}
       `}
     >
       <a
         className="show__link"
-        href={`/show/${hit.showNumber}/${slug(hit.title)}`}
+        href={`/show/${hit.displayNumber}/${slug(hit.title)}`}
         onClick={e => changeURL(e, hit)}
       >
-        <p className="show__displayNumber">Episode {hit.showNumber}</p>
+        <p className="show__displayNumber">Episode {hit.displayNumber}</p>
         <h3 className="show__title">
           <Highlight attribute="title" hit={hit} />
         </h3>
       </a>
 
       <div className="show__playcontrols">
-        {currentPlaying === hit.showNumber ? (
+        {currentPlaying === hit.displayNumber ? (
           <Bars />
         ) : (
           <button
             type="button"
-            onClick={() => setCurrentPlaying(hit.showNumber)}
+            onClick={() => setCurrentPlaying(hit.displayNumber)}
             className="show__play"
             title="play button"
           >
