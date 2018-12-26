@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import getConfig from 'next/config'
 import { Configure,   InstantSearch,   SearchBox, InfiniteHits, PoweredBy } from 'react-instantsearch-dom';
-import { FaMicrophone } from "react-icons/fa";
+import { FaMicrophone } from 'react-icons/fa';
 import Show from '../components/Show';
 import ShowNotes from '../components/ShowNotes';
 
@@ -25,7 +25,7 @@ export default class ShowList extends Component {
   componentDidMount = () => {
     window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
     if (typeof window.SpeechRecognition === 'undefined') {
-      console.log("Speech recognition Chrome API not supported");
+      console.log('Speech recognition Chrome API not supported');
     } else {
       this.setState({
         supportsSpeech: true,
