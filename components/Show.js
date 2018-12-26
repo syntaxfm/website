@@ -1,10 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
-import slug from "speakingurl";
-import Router from "next/router";
-import { Highlight } from "react-instantsearch-dom";
-import { FaPlay } from "react-icons/fa";
-import Bars from "./bars";
+import React from 'react';
+import PropTypes from 'prop-types';
+import slug from 'speakingurl';
+import Router from 'next/router';
+import { Highlight } from 'react-instantsearch-dom';
+import { FaPlay } from 'react-icons/fa';
+import Bars from './bars';
 
 const Show = ({ show, currentPlaying, currentShow, setCurrentPlaying }) => {
   const { hit } = show;
@@ -17,8 +17,8 @@ const Show = ({ show, currentPlaying, currentShow, setCurrentPlaying }) => {
   return (
     <div
       className={`show ${
-        currentPlaying === hit.displayNumber ? "show--playing" : ""
-      } ${currentShow === hit.displayNumber ? "show--active" : ""}
+        currentPlaying === hit.displayNumber ? 'show--playing' : ''
+      } ${currentShow === hit.displayNumber ? 'show--active' : ''}
       `}
     >
       <a
