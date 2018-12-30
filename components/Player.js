@@ -4,8 +4,6 @@ import { FaPlay, FaPause } from 'react-icons/fa';
 import formatTime from '../lib/formatTime';
 import VolumeBars from './VolumeBars';
 
-// TODO Fix all eslint issues
-
 export default class Player extends React.Component {
   static propTypes = {
     show: PropTypes.object.isRequired
@@ -226,6 +224,9 @@ export default class Player extends React.Component {
             }}
             ref={x => (this.progress = x)}
           >
+
+            {/* eslint-enable */}
+
             <div
               className="progress__time"
               style={{ width: `${progressTime}%` }}
@@ -258,7 +259,9 @@ export default class Player extends React.Component {
           <div className="player__volume">
             <p>LOUDNESS</p>
             <div className="player__inputs">
+
               <VolumeBars volume={this.volume} />
+
             </div>
           </div>
         </div>

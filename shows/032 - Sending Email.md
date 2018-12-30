@@ -1,5 +1,5 @@
 ---
-number: 032
+number: 32
 title: Designing, Templating, Inlining and Sending Email.
 date: 1518616928511
 url: https://traffic.libsyn.com/syntax/Syntax032.mp3

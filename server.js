@@ -28,7 +28,12 @@ app.prepare().then(() => {
   // Custom Next.js URLs
   Router.forEachPattern((page, pattern, defaultParams) => {
     server.get(pattern, (req, res) => {
-      app.render(req, res, `/${page}`, Object.assign({}, defaultParams, req.query, req.params));
+      app.render(
+        req,
+        res,
+        `/${page}`,
+        Object.assign({}, defaultParams, req.query, req.params)
+      );
     });
   });
 

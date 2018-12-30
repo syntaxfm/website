@@ -1,5 +1,5 @@
 ---
-number: 036
+number: 36
 title: Hasty Treat — Freelancing Hot Tips 🔥
 date: 1520615390261
 url: https://traffic.libsyn.com/syntax/Syntax036.mp3

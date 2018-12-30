@@ -1,5 +1,5 @@
 ---
-number: 077
+number: 77
 title: Hasty Treat - Positivity and Web Development
 date: 1537794000377
 url: https://traffic.libsyn.com/syntax/Syntax077.mp3
@@ -13,7 +13,7 @@ NativeScript is an open source framework for building truly native mobile apps w
 
 ## Show Notes
 
-The tech industry is always on the cutting edge and we’re starting to see a shift in how we deal with positivity and negativity. 
+The tech industry is always on the cutting edge and we’re starting to see a shift in how we deal with positivity and negativity.
 
 3:18 - The effects of negativity and how the web industry is improving
 

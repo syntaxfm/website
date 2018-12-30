@@ -1,11 +1,11 @@
 ---
-number: 087
+number: 87
 title: Hasty Treat - Old Browsers, Fallbacks and Polyfills - Part 3
 date: 1540818000720
 url: https://traffic.libsyn.com/syntax/Syntax087.mp3
 ---
 
-In this Hasty Treat, Scott and Wes conclude a three-part series about old browsers, fallbacks and polyfills. In part three, they talk specifically about transpiling and polyfilling.  
+In this Hasty Treat, Scott and Wes conclude a three-part series about old browsers, fallbacks and polyfills. In part three, they talk specifically about transpiling and polyfilling.
 
 ## VueSchool.io — Sponsor
 
@@ -34,14 +34,14 @@ Check out [VueSchool.io's](https://vueschool.io/) new subscription plans. Get ac
 
   * Syntax is transpiled
   * babel-preset-env
-  * Babel has plugins and presets 
+  * Babel has plugins and presets
   * Meteor bundle to different browsers on demand
 * There are polyfills for most things, but performance can be an issue
   * Resize observer
   * Intersection Observer
 * Some things can’t be done with either
   * New browser APIs
-  * Service workers, device access, inline video on old iOS, etc. 
+  * Service workers, device access, inline video on old iOS, etc.
 
 ## Tweet us your tasty treats!
 

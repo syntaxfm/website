@@ -1,5 +1,5 @@
 ---
-number: 090
+number: 90
 title: Live at JAMstack_conf
 date: 1541599200956
 url: https://traffic.libsyn.com/syntax/Syntax090.mp3
@@ -41,15 +41,15 @@ This week Scott and Wes are live at JAMstack_conf with games, Spicy JAM Tips, Q&
 
   let age = 26;
   age /= 2;
-  console.log(age); // ?? 
+  console.log(age); // ??
 
 * Question 2: What are all seven types in JS?
 * Question 3: How do you pronounce "specificity"?
-* Question 4: What is event delegation and when might you want to use it? 
-* Question 5: What is CSS @supports for? 
-* Question 6: An arrow function takes in an unlimited number of arguments - how would you capture them? 
+* Question 4: What is event delegation and when might you want to use it?
+* Question 5: What is CSS @supports for?
+* Question 6: An arrow function takes in an unlimited number of arguments - how would you capture them?
 * Question 7: What is the difference between .slice() and .splice()?
-* Question 8: How would you calculate the number of milliseconds since midnight of January 1, 1970? 
+* Question 8: How would you calculate the number of milliseconds since midnight of January 1, 1970?
 * Question 9: What does "age" console.log to and why?
 
   const age = console.log(100) || 200;
@@ -86,7 +86,7 @@ This week Scott and Wes are live at JAMstack_conf with games, Spicy JAM Tips, Q&
 * How will the future look for component-based design?
 * What's your least favorite jam?
 * What would be your goto headless CMS?
-* What do you disagree on? 
+* What do you disagree on?
 
 ## Shameless Plugs
 

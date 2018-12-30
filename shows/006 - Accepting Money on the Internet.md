@@ -1,5 +1,5 @@
 ---
-number: 006
+number: 6
 title: Accepting Money on the Internet 💰💸
 date: 1502292600000
 url: https://traffic.libsyn.com/syntax/Syntax006.mp3

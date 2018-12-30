@@ -1,5 +1,5 @@
 ---
-number: 070
+number: 70
 title: Potluck - Programming Languages × Soft Skills × PHP vs JS × Breakdancing x Spice Blends
 date: 1535547600798
 url: https://traffic.libsyn.com/syntax/Syntax070.mp3
@@ -13,7 +13,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 
 ## Mlab - Sponsor
 
-mLab is the leading Database-as-a-Service for MongoDB, powering over half a million deployments worldwide. Wes and Scott use mLab to host their own databases as well as take care of backups, security, scaling and performance. Try out a sandbox database on your next mongoDB project → [https://mlab.com](https://mlab.com/). 
+mLab is the leading Database-as-a-Service for MongoDB, powering over half a million deployments worldwide. Wes and Scott use mLab to host their own databases as well as take care of backups, security, scaling and performance. Try out a sandbox database on your next mongoDB project → [https://mlab.com](https://mlab.com/).
 
 ## Show Notes
 
@@ -23,7 +23,7 @@ mLab is the leading Database-as-a-Service for MongoDB, powering over half a mill
 
 10:52
 
-* How do you recommend working with APIs/libraries that compete with the DOM (e.g. d3 + react, react + google maps)? 
+* How do you recommend working with APIs/libraries that compete with the DOM (e.g. d3 + react, react + google maps)?
 
 13:40
 
@@ -56,11 +56,11 @@ mLab is the leading Database-as-a-Service for MongoDB, powering over half a mill
 
 51:16
 
-* How do you handle high level page layout when using styled components? 
+* How do you handle high level page layout when using styled components?
 
 53:13
 
-* As a junior dev, should I switch from PHP and Laravel to full stack JS? I love PHP, but JS is taking over. 
+* As a junior dev, should I switch from PHP and Laravel to full stack JS? I love PHP, but JS is taking over.
 
 ## Links
 

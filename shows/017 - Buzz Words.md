@@ -1,5 +1,5 @@
 ---
-number: 017
+number: 17
 title: 22 Buzz Words Explained — Mutations, Pure Functions , Serverless, Hoisting, MVC + More
 date: 1509540868534
 url: https://traffic.libsyn.com/syntax/Syntax017.mp3

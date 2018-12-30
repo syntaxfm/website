@@ -1,11 +1,11 @@
 ---
-number: 076
+number: 76
 title: Specialization vs Generalization
 date: 1537362000095
 url: https://traffic.libsyn.com/syntax/Syntax076.mp3
 ---
 
-In this episode Wes and Scott discuss specialization vs generalization - the different ways one can be a generalist or a specialist, advantages and disadvantages to both, and, ultimately, which is the better career path. 
+In this episode Wes and Scott discuss specialization vs generalization - the different ways one can be a generalist or a specialist, advantages and disadvantages to both, and, ultimately, which is the better career path.
 
 ## Freshbooks - Sponsor
 
@@ -33,7 +33,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 
 * Frontend
   * Frameworks (React, Vue, etc.)
-  * CSS 
+  * CSS
   * Performance
   * Animations
 
@@ -45,7 +45,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
   * Performance
   * Databases
   * Docker
-  * CI 
+  * CI
 
 26:50 - When to widen your focus
 
@@ -58,7 +58,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 
 * You don’t feel control over your skills
 * You are missing out on employment because a lack of skills in one department
-* You feel overwhelmed by the options available 
+* You feel overwhelmed by the options available
 * You want to be the "go to person”
 * For fun
 
@@ -71,13 +71,13 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 
 42:31 - Wes' journey
 
-44:55 - How to know where to focus 
+44:55 - How to know where to focus
 
 * Necessity will dictate a lot - what do you need right now?
 * Job postings - you can stack the deck in your favor by learning React. Once you are in, you're can lean anything you want.
 * Follow your heart - but have a plan
 
-51:03 - Should I be a generalist or a specialist? 
+51:03 - Should I be a generalist or a specialist?
 
 * Wes: There is nothing wrong with having a large skillset as long as you aren’t mediocre at everything. If you're optimizing for hire-ability I think having a defined focus on either front-end or back-end is best, but still an understanding of how the other works. Ideally you have 1) Very good JS skills, 2) an understanding of how things work on both ends.
 

@@ -1,5 +1,5 @@
 ---
-number: 007
+number: 7
 title: Scott Tolinski Origin Story 🎧 📹 💻 🕺
 date: 1502292600000
 url: https://traffic.libsyn.com/syntax/Syntax007.mp3

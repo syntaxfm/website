@@ -1,5 +1,5 @@
 ---
-number: 003
+number: 3
 title: CSS Preprocessors and Structuring CSS
 date: 1500465600000
 url: https://traffic.libsyn.com/syntax/Syntax003.mp3
