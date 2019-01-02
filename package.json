@@ -22,7 +22,7 @@
     "axios": "^0.18.0",
     "babel-plugin-module-resolver": "3.1.1",
     "babel-plugin-wrap-in-js": "^1.1.1",
-    "date-fns": "^2.0.0-alpha.1",
+    "date-fns": "^2.0.0-alpha.26",
     "express": "^4.16.3",
     "glob": "7.1.2",
     "meta-marked": "^0.4.2",
