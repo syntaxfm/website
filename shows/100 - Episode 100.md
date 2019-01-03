@@ -29,16 +29,16 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 
 09:37 - Most popular episodes
 
-* 10 - [Syntax074 - 11 Habits of Highly Effective Developers](https://syntax.fm/show/060/11-habits-of-highly-effective-developers)
+* 10 - [Syntax074 - 11 Habits of Highly Effective Developers](https://syntax.fm/show/074/11-habits-of-highly-effective-developers)
 * 09 - [Syntax039 - Is jQuery Dead?](https://syntax.fm/show/039/is-jquery-dead)
-* 08 - [Syntax046 - What's New in Javascript](https://syntax.fm/show/038/what-s-new-in-javascript)
+* 08 - [Syntax046 - What's New in Javascript](https://syntax.fm/show/046/what-s-new-in-javascript)
 * 07 - [Syntax048 - VS Code Round Two](https://syntax.fm/show/048/vs-code-round-two)
-* 06 - [Syntax050 - Progressive Web Apps](https://syntax.fm/show/040/progressive-web-apps)
+* 06 - [Syntax050 - Progressive Web Apps](https://syntax.fm/show/050/progressive-web-apps)
 * 05 - [Syntax018 - All About CSS Grid](https://syntax.fm/show/018/all-about-css-grid)
-* 04 - [Syntax051 - Our Workflows: Design, Development, Git, Deployment](https://syntax.fm/show/041/our-workflows-design-development-git-and-deployment)
-* 03 - [Syntax066 - The React Episode](https://syntax.fm/show/054/the-react-episode)
-* 02 - [Syntax043 - 20 JavaScript Array and Object Methods to make you a better developer](https://syntax.fm/show/035/20-javascript-array-and-object-methods-to-make-you-a-better-developer)
-* 01 - [Syntax044 - How to Learn New Things Quickly](https://syntax.fm/show/036/how-to-learn-new-things-quickly)
+* 04 - [Syntax051 - Our Workflows: Design, Development, Git, Deployment](https://syntax.fm/show/051/our-workflows-design-development-git-and-deployment)
+* 03 - [Syntax066 - The React Episode](https://syntax.fm/show/066/the-react-episode)
+* 02 - [Syntax043 - 20 JavaScript Array and Object Methods to make you a better developer](https://syntax.fm/show/043/20-javascript-array-and-object-methods-to-make-you-a-better-developer)
+* 01 - [Syntax044 - How to Learn New Things Quickly](https://syntax.fm/show/044/how-to-learn-new-things-quickly)
 
 21:35 - Top countries
 
@@ -74,8 +74,8 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 
 35:10 - Favorite episodes
 
-* Wes - [Syntax043 - 20 JavaScript Array and Object Methods to make you a better developer](https://syntax.fm/show/035/20-javascript-array-and-object-methods-to-make-you-a-better-developer)
-* Scott - [Syntax044 - How to Learn New Things Quickly](https://syntax.fm/show/036/how-to-learn-new-things-quickly)
+* Wes - [Syntax043 - 20 JavaScript Array and Object Methods to make you a better developer](https://syntax.fm/show/043/20-javascript-array-and-object-methods-to-make-you-a-better-developer)
+* Scott - [Syntax044 - How to Learn New Things Quickly](https://syntax.fm/show/044/how-to-learn-new-things-quickly)
 
 38:49 - Q&A 
 
