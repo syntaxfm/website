@@ -4,7 +4,13 @@ import Logo from './Logo';
 const Header = () => (
   <header className="header">
     <div className="header__left">
-      <Logo />
+      <Logo 
+        shouldRedirect 
+        redirectOn={{
+          click: 'right',
+          url: 'https://ssl-static.libsyn.com/p/assets/7/9/0/7/790703531a3c8eca/iTunes_Artwork.png'
+        }} 
+      />
     </div>
     <div className="header__right">
       <div className="title">
