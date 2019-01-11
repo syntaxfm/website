@@ -20,7 +20,8 @@ export default class Logo extends Component {
 
   handleClick = (event) => {
 
-    event.preventDefault() // To not open the context menu
+    const leftClick = event.type === 'click' || event.button === 0 || event.nativeEvent.which === 1
+    const rightClick = event.type === 'contextmenu' || event.button === 2 || event.nativeEvent.which === 3
 
     const checkClick = () => {
       if(this.props.redirectOn.click == 'left')
@@ -30,6 +31,7 @@ export default class Logo extends Component {
     }
 
     if (this.props.shouldRedirect && this.props.redirectOn && checkClick())
+      event.preventDefault() // To not open the context menu
       Router.push(this.props.redirectOn.url)
 
   }
@@ -37,7 +39,10 @@ export default class Logo extends Component {
   render() {
     return (
       <Link href="/">
-        <a aria-label="Syntax.FM" onClick={this.handleClick} onContextMenu={this.handleClick}>
+        <a 
+          aria-label="Syntax.FM" 
+          onClick={this.props.redirectOn.click === 'left' ? this.handleClick : ""} 
+          onContextMenu={this.props.redirectOn.click === 'right' ? this.handleClick : ""}>
           <img className="header__logo" src="/static/logo.png" alt="Syntax" />
         </a>
       </Link>
