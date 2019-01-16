@@ -7,9 +7,9 @@ url: https://traffic.libsyn.com/syntax/Syntax110.mp3
 
 In this episode Scott and Wes talk about work life balance. These tips aren't hard-and-fast - part of the beauty of being a web developer is that you do get to enjoy some flexibility. Work is a big part of our live and these are tips that will hopefully allow you to get the most enjoyment out of both work and life.
 
-## Freshbooks - Sponsor
+## Sanity.io - Sponsor
 
-Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbooks.com/syntax) and put **SYNTAX** in the "How did you hear about us?" section.
+[Sanity.io](https://www.sanity.io) is a real-time headless CMS with a fully customizable Content Studio built in React. Get up and running by typing `npm i -g @sanity/cli && sanity init` in your command line. Get an awesome supercharged free developer plan on [sanity.io/syntax](https://www.sanity.io/syntax).
 
 ## Sentry - Sponsor
 
