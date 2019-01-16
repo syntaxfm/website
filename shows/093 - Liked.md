@@ -1,11 +1,11 @@
 ---
-number: 093
+number: 93
 title: Hasty Treat - How to become well liked at work
 date: 1542636000892
 url: https://traffic.libsyn.com/syntax/Syntax093.mp3
 ---
 
-In this Hasty Treat, Scott and Wes talk about how to be well liked at work - dealing with difficult co-workers, being a better co-worker yourself, and general tips for improving your people skills. 
+In this Hasty Treat, Scott and Wes talk about how to be well liked at work - dealing with difficult co-workers, being a better co-worker yourself, and general tips for improving your people skills.
 
 ## LogRocket - Sponsor
 
@@ -24,7 +24,7 @@ In this Hasty Treat, Scott and Wes talk about how to be well liked at work - dea
 13:10 - Don’t take up other people’s time
 
 15:40 - Be nice
-  
+
 15:57 - Share things
 
 16:50 - Respect personal space
@@ -33,14 +33,14 @@ In this Hasty Treat, Scott and Wes talk about how to be well liked at work - dea
 
 ## Links
 
-* [Adam Grant - Give and Take: Why Helping Others Drives Our Success](https://www.amazon.com/dp/B00AFPTSI0/)
+- [Adam Grant - Give and Take: Why Helping Others Drives Our Success](https://www.amazon.com/dp/B00AFPTSI0/)
 
 ## Tweet us your tasty treats!
 
-* [Scott's Instagram](https://www.instagram.com/stolinski/)
-* [LevelUpTutorials Instagram](https://www.instagram.com/LevelUpTutorials/)
-* [Wes' Instagram](https://www.instagram.com/wesbos/)
-* [Wes' Twitter](https://twitter.com/wesbos)
-* [Wes' Facebook](https://www.facebook.com/wesbos.developer)
-* [Scott's Twitter](https://twitter.com/stolinski)
-* Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets
+- [Scott's Instagram](https://www.instagram.com/stolinski/)
+- [LevelUpTutorials Instagram](https://www.instagram.com/LevelUpTutorials/)
+- [Wes' Instagram](https://www.instagram.com/wesbos/)
+- [Wes' Twitter](https://twitter.com/wesbos)
+- [Wes' Facebook](https://www.facebook.com/wesbos.developer)
+- [Scott's Twitter](https://twitter.com/stolinski)
+- Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets

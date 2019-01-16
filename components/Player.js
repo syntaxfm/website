@@ -191,8 +191,6 @@ const PlayerVolume = styled.div`
   }
 `;
 
-// TODO Fix all eslint issues
-
 class Player extends React.Component {
   static propTypes = {
     show: PropTypes.object.isRequired,

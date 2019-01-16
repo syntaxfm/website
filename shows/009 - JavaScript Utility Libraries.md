@@ -1,5 +1,5 @@
 ---
-number: 009
+number: 9
 title: Dang, that's handy! JavaScript Utility Libraries 🛠️
 date: 1504098731000
 url: https://traffic.libsyn.com/syntax/Syntax009.mp3

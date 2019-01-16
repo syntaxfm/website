@@ -1,5 +1,5 @@
 ---
-number: 083
+number: 83
 title: Hasty Treat - Old Browsers, Fallbacks and Polyfills - Part 1
 date: 1539608400808
 url: https://traffic.libsyn.com/syntax/Syntax083.mp3
@@ -32,9 +32,9 @@ Check out [VueSchool.io's](https://vueschool.io/) new subscription plans. Get ac
 
 * Resize your browser
 * Build a device lab
-* Remote Debugging 
+* Remote Debugging
 * Browser device view
-* Faking Geolocation 
+* Faking Geolocation
 * Emulators in XCode / Android dev tools
 * [Browsersync](https://browsersync.io/)
 * [Ghostlab](https://www.vanamco.com/ghostlab/)

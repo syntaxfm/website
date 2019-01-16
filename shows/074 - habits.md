@@ -1,11 +1,11 @@
 ---
-number: 074
+number: 74
 title: 11 Habits of Highly Effective Developers
 date: 1536757200069
 url: https://traffic.libsyn.com/syntax/Syntax074.mp3
 ---
 
-In this episode Wes and Scott discuss 11 habits that will make you a better developer - everything from understanding the business goals behind your projects to maintaining work-life balance, staying curious, and developing empathy. 
+In this episode Wes and Scott discuss 11 habits that will make you a better developer - everything from understanding the business goals behind your projects to maintaining work-life balance, staying curious, and developing empathy.
 
 ## Freshbooks - Sponsor
 
@@ -13,7 +13,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 
 ## Sanity.io - Sponsor
 
-Sanity.io is a real-time headless CMS with a fully customizable Content Studio built in React. Get up and running by typing `npm i -g @sanity/cli && sanity init` in your command line. Get an awesome supercharged free developer plan on [sanity.io/syntax](https://sanity.io/syntax?utm_source=syntax-fm&utm_campaign=syntax1). 
+Sanity.io is a real-time headless CMS with a fully customizable Content Studio built in React. Get up and running by typing `npm i -g @sanity/cli && sanity init` in your command line. Get an awesome supercharged free developer plan on [sanity.io/syntax](https://sanity.io/syntax?utm_source=syntax-fm&utm_campaign=syntax1).
 
 ## Show Notes
 
@@ -34,7 +34,7 @@ Sanity.io is a real-time headless CMS with a fully customizable Content Studio b
 
 9:57 - You ask for help
 
-* #LifeHack - most people know more than you 
+* #LifeHack - most people know more than you
 * Be comfortable with NOT knowing
 * Be comfortable with failing and with how others might perceive that
 * Check your ego at the door
@@ -77,7 +77,7 @@ Sanity.io is a real-time headless CMS with a fully customizable Content Studio b
 
 * Think about edge cases
 
-39:03 - You're part of the community 
+39:03 - You're part of the community
 
 * Local meetups / lunch and learn
 * Twitter #100daysofcode

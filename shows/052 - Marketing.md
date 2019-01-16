@@ -1,5 +1,5 @@
 ---
-number: 052
+number: 52
 title: Marketing for Developers
 date: 1530104400172
 url: https://traffic.libsyn.com/syntax/Syntax052.mp3
@@ -20,7 +20,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 7:58 - Personal Branding
 
 * Build trust and reciprocity
-* Be authentic to yourself and let that carry through in your work. 
+* Be authentic to yourself and let that carry through in your work.
 * Have the guts to put yourself out there and establish yourself as an expert.
   * Speak at conferences
   * Write blog posts
@@ -30,9 +30,9 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 
 14:50 - Running a Business
 
-* Treat people well. 
-* Reward your customers. 
-* Don't punish your users. 
+* Treat people well.
+* Reward your customers.
+* Don't punish your users.
 * Have a refund policy.
 
 19:26 - Social Media
@@ -48,11 +48,11 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 
 * Twitter
   * Be helpful - small, digestible tips and tricks and great for growing a Twitter following.
-  * Quality is still the key. 
+  * Quality is still the key.
   * [Steve Schoger](https://twitter.com/steveschoger) is a great example of consistent, high quality content.
 
 * Facebook
-  * People have other interests besides web development. People like to see into your life. 
+  * People have other interests besides web development. People like to see into your life.
   * Use Facebook to give people a window into who you are.
 
 * Reddit
@@ -72,7 +72,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 
 * Wes: Email is probably responsible for most of my sales.
 * Keeps people up to date and helpful for promoting new courses.
-* Helpful for figuring out what people want. 
+* Helpful for figuring out what people want.
 
 59:17 - Partnerships
 
@@ -82,7 +82,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 
 67:30 - Freebies
 
-* Giving away free content is a surefire way to get people to pay attention. 
+* Giving away free content is a surefire way to get people to pay attention.
 * It's about giving back to the community as much as marketing your products.
 
 ## ××× SIIIIICK ××× PIIIICKS ×××

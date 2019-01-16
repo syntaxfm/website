@@ -1,5 +1,5 @@
 ---
-number: 078
+number: 78
 title: Potluck - JS × Web Components × Security × They took our jobs!
 date: 1537966800879
 url: https://traffic.libsyn.com/syntax/Syntax078.mp3
@@ -9,11 +9,11 @@ It's another potluck episode in which Wes and Scott answer your questions! This 
 
 ## Mlab - Sponsor
 
-mLab is the leading Database-as-a-Service for MongoDB, powering over half a million deployments worldwide. Wes and Scott use mLab to host their own databases as well as take care of backups, security, scaling and performance. Try out a sandbox database on your next mongoDB project → [https://mlab.com](https://mlab.com/). 
+mLab is the leading Database-as-a-Service for MongoDB, powering over half a million deployments worldwide. Wes and Scott use mLab to host their own databases as well as take care of backups, security, scaling and performance. Try out a sandbox database on your next mongoDB project → [https://mlab.com](https://mlab.com/).
 
 ## Sanity.io - Sponsor
 
-Sanity.io is a real-time headless CMS with a fully customizable Content Studio built in React. Get up and running by typing `npm i -g @sanity/cli && sanity init` in your command line. Get an awesome supercharged free developer plan on [sanity.io/syntax](https://sanity.io/syntax?utm_source=syntax-fm&utm_campaign=syntax1). 
+Sanity.io is a real-time headless CMS with a fully customizable Content Studio built in React. Get up and running by typing `npm i -g @sanity/cli && sanity init` in your command line. Get an awesome supercharged free developer plan on [sanity.io/syntax](https://sanity.io/syntax?utm_source=syntax-fm&utm_campaign=syntax1).
 
 ## Show Notes
 
@@ -50,7 +50,7 @@ Sanity.io is a real-time headless CMS with a fully customizable Content Studio b
 * [Next.js](https://nextjs.org/)
   * Use for dynamic needs
   * It can do static exports too
-  * Convert to markdown 
+  * Convert to markdown
   * Nothing special other than Routing and SSR (Server request getInitialProps)
 
 * [Gatsby.js](https://www.gatsbyjs.org/)
@@ -86,7 +86,7 @@ Sanity.io is a real-time headless CMS with a fully customizable Content Studio b
 * Your job is changing and will continually change
 * [SouthPark - They Took Our Jobs!](https://www.youtube.com/watch?v=DEiWU1MbBfk)
 
-56:52 - Have you, or anyone you know ever thought of quitting the industry because of difficulties you have run into? 
+56:52 - Have you, or anyone you know ever thought of quitting the industry because of difficulties you have run into?
 
 ## ××× SIIIIICK ××× PIIIICKS ×××
 

@@ -1,5 +1,5 @@
 ---
-number: 082
+number: 82
 title: Top 18 New Things in JS - Part 2
 date: 1539176400685
 url: https://traffic.libsyn.com/syntax/Syntax082.mp3
