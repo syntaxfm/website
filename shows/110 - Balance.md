@@ -7,13 +7,13 @@ url: https://traffic.libsyn.com/syntax/Syntax110.mp3
 
 In this episode Scott and Wes talk about work life balance. These tips aren't hard-and-fast - part of the beauty of being a web developer is that you do get to enjoy some flexibility. Work is a big part of our live and these are tips that will hopefully allow you to get the most enjoyment out of both work and life.
 
+## Sanity.io - Sponsor
+
+Sanity.io is a real-time headless CMS with a fully customizable Content Studio built in React. Get up and running by typing `npm i -g @sanity/cli && sanity init` in your command line. Get an awesome supercharged free developer plan on [sanity.io/syntax](https://sanity.io/syntax?utm_source=syntax-fm&utm_campaign=syntax1). 
+
 ## Freshbooks - Sponsor
 
 Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbooks.com/syntax) and put **SYNTAX** in the "How did you hear about us?" section.
-
-## Sentry - Sponsor
-
-If you want to know what's happening with your errors, track them with [Sentry](https://sentry.io/). Sentry is open-source error tracking that helps developers monitor and fix crashes in real time. Cut your time on error resolution from five hours to five minutes. It works with any language and integrates with dozens of other services. Syntax listeners can get two months for free by visiting [Sentry.io](https://sentry.io/) and using the coupon code "tastytreat".
 
 ## Show Notes
 
