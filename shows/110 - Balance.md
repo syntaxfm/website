@@ -9,7 +9,7 @@ In this episode Scott and Wes talk about work life balance. These tips aren't ha
 
 ## Sanity.io - Sponsor
 
-[Sanity.io](https://www.sanity.io) is a real-time headless CMS with a fully customizable Content Studio built in React. Get up and running by typing `npm i -g @sanity/cli && sanity init` in your command line. Get an awesome supercharged free developer plan on [sanity.io/syntax](https://www.sanity.io/syntax).
+Sanity.io is a real-time headless CMS with a fully customizable Content Studio built in React. Get up and running by typing `npm i -g @sanity/cli && sanity init` in your command line. Get an awesome supercharged free developer plan on [sanity.io/syntax](https://sanity.io/syntax?utm_source=syntax-fm&utm_campaign=syntax1). 
 
 ## Freshbooks - Sponsor
 
