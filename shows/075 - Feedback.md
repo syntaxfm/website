@@ -1,5 +1,5 @@
 ---
-number: 075
+number: 75
 title: Hasty Treat - Feedback and Criticism
 date: 1537189200983
 url: https://traffic.libsyn.com/syntax/Syntax075.mp3

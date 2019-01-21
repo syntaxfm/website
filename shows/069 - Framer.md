@@ -1,11 +1,11 @@
 ---
-number: 069
+number: 69
 title: Hasty Treat - Framer X and Prototyping Tools
 date: 1535374800304
 url: https://traffic.libsyn.com/syntax/Syntax069.mp3
 ---
 
-In this Hasty Treat, Scott and Wes talk about prototyping and design tools in the development space, specifically Framer X - what it is, what it isn't, and some cool stuff coming down the pipeline. 
+In this Hasty Treat, Scott and Wes talk about prototyping and design tools in the development space, specifically Framer X - what it is, what it isn't, and some cool stuff coming down the pipeline.
 
 ## Sentry - Sponsor
 
@@ -13,7 +13,7 @@ If you want to know what's happening with your errors, track them with [Sentry](
 
 ## Show Notes
 
-3:35 
+3:35
 
 * Framer X - What it is and what it isn't
 
@@ -31,7 +31,7 @@ If you want to know what's happening with your errors, track them with [Sentry](
 
 ## Links
 
-* [Scott's Framer X Fist Look Video](https://youtu.be/oUhoBus1nn0)
+* [Scott's Framer X First Look Video](https://youtu.be/oUhoBus1nn0)
 * [Sign up for Framer X Beta](https://framer.com/x/)
 
 ## Tweet us your tasty treats!

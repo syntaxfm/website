@@ -1,7 +1,7 @@
 ---
-number: 086
+number: 86
 title: Potluck - Working with designers × Is WordPress Crap? × When to stop working × More
-date: 1537966800879
+date: 1540558800879
 url: https://traffic.libsyn.com/syntax/Syntax086.mp3
 ---
 
@@ -13,7 +13,7 @@ If you want to know what's happening with your errors, track them with [Sentry](
 
 ## .tech Domains - Sponsor
 
-Finding a great domain name is tough with so many names already taken. If you're looking for a domain name for your startup, side project, or anything at all, check out [.tech Domains](https://get.tech). Syntax listeners can get 90% off both one-year and five-year registration by visiting [go.tech/syntax](https://go.tech/syntax) and using the coupon code "syntax".
+Finding a great domain name is tough with so many names already taken. If you're looking for a domain name for your startup, side project, or anything at all, check out [.tech Domains](https://get.tech). Syntax listeners can get 90% off both one-year, five-year and ten-year registration by visiting [go.tech/syntax](https://go.tech/syntax) and using the coupon code "syntax".
 
 ## Show Notes
 
@@ -28,7 +28,7 @@ Finding a great domain name is tough with so many names already taken. If you're
 
 13:23 - How do you manage your time for learning new things when you have children and a daily full-time job?
 
-* Those who figure out how to make it a priority will win out 
+* Those who figure out how to make it a priority will win out
 * Family first - talk to your spouse
 * Ask your boss for time to learn and grow
 * Find ways to get paid for learning
@@ -56,7 +56,7 @@ Finding a great domain name is tough with so many names already taken. If you're
 
 33:10 - It seems like in the web dev community, a lot of people give WordPress crap. Any idea why?
 
-* WordPress is dope - people just like to complain. 
+* WordPress is dope - people just like to complain.
 * WordPress is often one of the first things people learn and have bad memories of it
 * It's easy to write bad code with WordPress
 * It can be slow

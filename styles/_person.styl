@@ -3,7 +3,7 @@
   justify-content space-between
   margin 1rem 0
   flex-wrap wrap
-
+  font-size 1.4rem
 
 .person
   background rgba(255,255,255,0.07)
@@ -14,9 +14,13 @@
     margin-bottom 1rem
   p
     margin-bottom 0
+    clear left
   h3
     margin 0
+    margin-top 10px
     font-size 2rem
+    @media (max-width: 800px)
+      margin-top 0
     em
       font-size 1rem
 
@@ -25,6 +29,7 @@
   width 80px
   float left
   margin-right 20px
+  margin-bottom 15px
   border 3px solid white
   box-shadow inset 0 0 10px red
   @media (max-width: 800px)

@@ -1,5 +1,5 @@
 ---
-number: 002
+number: 2
 title: Webcam and audio access with WebRTC and getUserMedia()
 date: 1499860800000
 url: https://traffic.libsyn.com/syntax/syntax002.mp3
