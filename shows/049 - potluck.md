@@ -1,5 +1,5 @@
 ---
-number: 049
+number: 49
 title: Potluck EP × SSR × SEO × Tips for Students × Music × Security × GraphQL
 date: 1528290000736
 url: https://traffic.libsyn.com/syntax/Syntax049.mp3
@@ -47,7 +47,7 @@ Check out Coffeecup's [CSS Grid.cc](https://cssgrid.cc/) builder tool and resour
 
 28:17
 
-* How can you build your network when you're too tired or busy to go to a bunch of meetups? 
+* How can you build your network when you're too tired or busy to go to a bunch of meetups?
 
 32:55
 

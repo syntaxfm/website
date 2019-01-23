@@ -1,5 +1,5 @@
 ---
-number: 029
+number: 29
 title: Hosting & Servers — Heroku, Now, Galaxy, Digital Ocean, Linode, Docker, Netlify and more!
 date: 1516803199637
 url: https://traffic.libsyn.com/syntax/Syntax029.mp3

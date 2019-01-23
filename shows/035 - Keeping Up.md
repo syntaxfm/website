@@ -1,5 +1,5 @@
 ---
-number: 035
+number: 35
 title: Keeping Up with the Codeashians. Dealing with our fast paced industry.
 date: 1520431956331
 url: https://traffic.libsyn.com/syntax/Syntax035.mp3

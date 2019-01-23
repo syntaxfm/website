@@ -1,5 +1,5 @@
 ---
-number: 010
+number: 10
 title: CSS in JS 💅👩‍🎤💁🚒 (Drama Free!)
 date: 1504705105555
 url: https://traffic.libsyn.com/syntax/Syntax010.mp3

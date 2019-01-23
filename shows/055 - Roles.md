@@ -1,5 +1,5 @@
 ---
-number: 055
+number: 55
 title: Hasty Treat - User Role Systems
 date: 1531141200658
 url: https://traffic.libsyn.com/syntax/Syntax055.mp3
@@ -24,8 +24,8 @@ In this Hasty Treat (Short episode) Scott and Wes discuss user roles, what to th
 
 14:13
 
-* Where to store your roles 
-* Start simple and get more complex as needed 
+* Where to store your roles
+* Start simple and get more complex as needed
 
 ## Tweet us your tasty treats!
 

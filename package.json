@@ -1,4 +1,6 @@
 {
+  "name": "Syntax",
+  "description": "Full Stack Developers Wes Bos and Scott Tolinski dive deep into web development topics, explaining how they work and talking about their own experiences. They cover from JavaScript frameworks like React, to the latest advancements in CSS to simplifying web tooling.",
   "engines": {
     "node": ">=8.1.2"
   },
@@ -20,7 +22,7 @@
     "axios": "^0.18.0",
     "babel-plugin-module-resolver": "3.1.1",
     "babel-plugin-wrap-in-js": "^1.1.1",
-    "date-fns": "^2.0.0-alpha.1",
+    "date-fns": "^2.0.0-alpha.26",
     "express": "^4.16.3",
     "glob": "7.1.2",
     "meta-marked": "^0.4.2",
@@ -33,6 +35,7 @@
     "raw-loader": "^0.5.1",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
+    "react-icons": "^3.0.5",
     "speakingurl": "^14.0.1"
   },
   "devDependencies": {

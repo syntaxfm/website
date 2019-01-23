@@ -1,5 +1,5 @@
 ---
-number: 068
+number: 68
 title: Design Tips for Developers
 date: 1534942800119
 url: https://traffic.libsyn.com/syntax/Syntax068.mp3
@@ -13,7 +13,7 @@ Sanity.io is a real-time headless CMS with a fully customizable Content Studio b
 
 ## Mlab - Sponsor
 
-mLab is the leading Database-as-a-Service for MongoDB, powering over half a million deployments worldwide. Wes and Scott use mLab to host their own databases as well as take care of backups, security, scaling and performance. Try out a sandbox database on your next mongoDB project → [https://mlab.com](https://mlab.com/). 
+mLab is the leading Database-as-a-Service for MongoDB, powering over half a million deployments worldwide. Wes and Scott use mLab to host their own databases as well as take care of backups, security, scaling and performance. Try out a sandbox database on your next mongoDB project → [https://mlab.com](https://mlab.com/).
 
 ## Show Notes
 
@@ -28,7 +28,7 @@ mLab is the leading Database-as-a-Service for MongoDB, powering over half a mill
   * [True Grit Texture Supply](https://www.truegrittexturesupply.com/)
   * [Steve Schoger](https://twitter.com/steveschoger)
 
-* Use subtle gradients 
+* Use subtle gradients
   * [ColorSpace](https://mycolor.space/gradient)
 
 * Use subtle drop shadows
@@ -37,7 +37,7 @@ mLab is the leading Database-as-a-Service for MongoDB, powering over half a mill
 * Don't use true black and white (e.g. #000 or #fff) - use softer variation of black and white
   * Use CSS Variables for custom blacks and whites
   * CSS default colors are almost always too harsh
-  
+
 * Default browser UI is almost never the best UI
   * Select elements, radio buttons, checkboxes, etc. can all be styled - it's no fun, but way better than it’s ever been
 
@@ -48,7 +48,7 @@ mLab is the leading Database-as-a-Service for MongoDB, powering over half a mill
 * [Particles.js](https://vincentgarreau.com/particles.js/)
 * [Patagonia's Bears Ears](http://bearsears.patagonia.com/)
 
-* CSS transitions vs Physics based 
+* CSS transitions vs Physics based
 
 51:30 - How To Get Better
 
@@ -65,7 +65,7 @@ mLab is the leading Database-as-a-Service for MongoDB, powering over half a mill
 ## ××× SIIIIICK ××× PIIIICKS ×××
 
 * Scott: [Louis Cole](https://open.spotify.com/album/0WbNyHNpkxpqscNWiiEhZS?si=j5iT085_Rc-weuwF3OxeGQ)
-* Wes: [r/posthardcore Spotify Playlist](https://open.spotify.com/user/1255701728/playlist/6BfAztwZlUkOuIo4tYpYYL)
+* Wes: [r/posthardcore Spotify Playlist](https://open.spotify.com/user/v9iqfai0ejp8rgcb2sx9n6yis/playlist/5JTDyts3BDNzlBzemtw5zc)
 
 ## Shameless Plugs
 

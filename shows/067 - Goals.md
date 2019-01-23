@@ -1,5 +1,5 @@
 ---
-number: 067
+number: 67
 title: Hasty Treat - Goal Setting
 date: 1534770000249
 url: https://traffic.libsyn.com/syntax/Syntax067.mp3
@@ -13,7 +13,7 @@ If you want to know what's happening with your errors, track them with [Sentry](
 
 ## Show Notes
 
- 4:14 
+ 4:14
 
 * Setting SMART goals (Specific, Measurable, Attainable, Relevant, Time)
 

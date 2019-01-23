@@ -1,5 +1,5 @@
 ---
-number: 096
+number: 96
 title: Holiday Gift Guide
 date: 1543413600637
 url: https://traffic.libsyn.com/syntax/Syntax096.mp3
@@ -9,7 +9,7 @@ In this episode Wes and Scott bring you their holiday gift guide - things, ideas
 
 ## Contentful - Sponsor
 
-Contentful is a great way to manage your data. Update once and publish everywhere. Contentful gives you a ton of flexibility and reliability and everything you need to build excellent front-end content without having to worry about the back-end of your site. Check out [contentful.com/syntax](https://www.contentful.com/sytax/) and get a free pair of socks!
+Contentful is a great way to manage your data. Update once and publish everywhere. Contentful gives you a ton of flexibility and reliability and everything you need to build excellent front-end content without having to worry about the back-end of your site. Check out [contentful.com/syntaxfm](https://www.contentful.com/syntaxfm) and get a free pair of socks!
 
 ## Freshbooks - Sponsor
 
@@ -87,7 +87,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
   - [Original Wayfarer Sunglasses](https://rstyle.me/n/dby832cdguf)
 - [Under Armour Boxer Jock Underwear](https://rstyle.me/n/dby98jcdguf)
 - [Reebok Boxer Brief Underwear](https://amzn.to/2DwNGTc)
-- [dvlpr.io Merch](dvlpr.io)
+- [dvlpr.io Merch](https://dvlpr.io)
 
 39:08 - Gadgets
 
@@ -104,7 +104,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 - [Koomus Car CD Slot Magnet Mount for your phone](https://amzn.to/2Fx1q35)
 - [Anker Portable Battery](https://amzn.to/2DN0Yw3)
 - Extra Long Braided Phone Cables
-  - [Lighting](https://amzn.to/2KnsX5Q)
+  - [Lightning](https://amzn.to/2KnsX5Q)
   - [Micro USB](https://amzn.to/2S56wVM)
   - [USB-c](https://amzn.to/2Fyg620)
 - Anker USB Power Block

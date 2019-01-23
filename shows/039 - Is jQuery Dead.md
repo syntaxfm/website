@@ -1,5 +1,5 @@
 ---
-number: 039
+number: 39
 title: Is jQuery Dead?
 date: 1522239820413
 url: https://traffic.libsyn.com/syntax/Syntax039.mp3

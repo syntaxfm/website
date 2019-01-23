@@ -1,5 +1,5 @@
 ---
-number: 062
+number: 62
 title: Potluck - Editor Fonts × Portfolios × Meetup Tips × Switching to Windows × Freelancing Sources
 date: 1533128400841
 url: https://traffic.libsyn.com/syntax/Syntax062.mp3
@@ -19,7 +19,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 
 2:37
 
-* Question: Maaz Syed Adeeb - Are editor fonts worth the investment (if yes, why)? Why are they such a big deal in the first place? 
+* Question: Maaz Syed Adeeb - Are editor fonts worth the investment (if yes, why)? Why are they such a big deal in the first place?
 * [Operator Mono](https://www.typography.com/fonts/operator/styles/)
 * [Dank Mono](https://dank.sh/)
 * [Fira Code](https://github.com/tonsky/FiraCode)
@@ -30,21 +30,21 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 
 9:10
 
-* Question: JavaScript Joe - If I only have two hours per week to work on coding projects, do I spend it building a side project or do I spend it contributing to open source? What's your experience contributing to open source?  
+* Question: JavaScript Joe - If I only have two hours per week to work on coding projects, do I spend it building a side project or do I spend it contributing to open source? What's your experience contributing to open source?
 
 10:45
 
 * Question: Diane - Why is Git so hard to grasp in team projects? What are the best resources to master it?
 * [Try Github](https://try.github.io/)
 
-13:35 
+13:35
 
-* Question: Grant Chambers - What are some tips for going to your first meetup? 
-* [React Meetups](https://www.meetup.com/topics/reactjs/?_cookie-check=PJfretbVZR3XexRA) 
+* Question: Grant Chambers - What are some tips for going to your first meetup?
+* [React Meetups](https://www.meetup.com/topics/reactjs/?_cookie-check=PJfretbVZR3XexRA)
 
-20:23 
+20:23
 
-* Question: Michael Hoffman - Have you ever thought about using Linux or Windows as your main operating system? 
+* Question: Michael Hoffman - Have you ever thought about using Linux or Windows as your main operating system?
 * [Google Pixelbook](https://store.google.com/us/product/google_pixelbook)
 * [Microsoft Surface Pro](https://www.microsoft.com/en-us/p/surface-pro/8nkt9wttrbjk/lhl3?activetab=pivot%3aoverviewtab)
 * [Figma](https://www.figma.com/)
@@ -55,18 +55,18 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 
 27:39
 
-* Question: Would you recommend using [Upwork](http://upwork.com) for starting out freelancing or something similar? 
+* Question: Would you recommend using [Upwork](http://upwork.com) for starting out freelancing or something similar?
 
 31:18
 
-* Question: Mike C. - What do you guys think about sites like [Codewars](https://www.codewars.com/) and [Code Fights](https://codefights.net/#/)? Being new to web development, I find the problems hard to solve. Is it important to know how to solve all these problems? If so, how do I get better at developing the mindset to solve them? 
+* Question: Mike C. - What do you guys think about sites like [Codewars](https://www.codewars.com/) and [Code Fights](https://codefights.net/#/)? Being new to web development, I find the problems hard to solve. Is it important to know how to solve all these problems? If so, how do I get better at developing the mindset to solve them?
 * [JavaScript 30](https://javascript30.com/)
 * [Level Up Tutorials](https://www.leveluptutorials.com/)
 
 38:47
 
-- Question: When I work on a website, I need to record user names, passwords, URLs, keys, logins, cPanel, WordPress, ftp, MySQL for each and every website, local and remote. 
-  Currently, I use a text file to save all that information. How are you storing all this info? How others do it? How the pros are managing this? Pros and cons? 
+- Question: When I work on a website, I need to record user names, passwords, URLs, keys, logins, cPanel, WordPress, ftp, MySQL for each and every website, local and remote.
+  Currently, I use a text file to save all that information. How are you storing all this info? How others do it? How the pros are managing this? Pros and cons?
 - [SSH Key](https://wiki.archlinux.org/index.php/SSH_keys)
 - [LastPass](https://www.lastpass.com/)
 - [1Password](https://1password.com/)

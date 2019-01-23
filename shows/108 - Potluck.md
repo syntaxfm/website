@@ -61,7 +61,7 @@ Kyle Prinsloo teaches you everything you need to know about freelancing, includi
 ## ××× SIIIIICK ××× PIIIICKS ×××
 
 * Scott: [Tiding Up on Netflix](https://www.netflix.com/title/80209379)
-* Wes 1: [Capital Gaines by Chip Gaines](https://www.amazon.com/Capital-Gaines-Things-Learned-Stupid/dp/0785216308)
+* Wes: [Capital Gaines by Chip Gaines](https://www.amazon.com/Capital-Gaines-Things-Learned-Stupid/dp/0785216308)
 
 ## Shameless Plugs
 

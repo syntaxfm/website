@@ -1,5 +1,5 @@
 ---
-number: 088
+number: 88
 title: Pre-launch Checklist
 date: 1540990800680
 url: https://traffic.libsyn.com/syntax/Syntax088.mp3
@@ -13,7 +13,7 @@ If you want to know what's happening with your errors, track them with [Sentry](
 
 ## .tech Domains - Sponsor
 
-Finding a great domain name is tough with so many names already taken. If you're looking for a domain name for your startup, side project, or anything at all, check out [.tech Domains](https://get.tech). Syntax listeners can get 90% off both one-year and five-year registration by visiting [go.tech/syntax](https://go.tech/syntax) and using the coupon code "syntax".
+Finding a great domain name is tough with so many names already taken. If you're looking for a domain name for your startup, side project, or anything at all, check out [.tech Domains](https://get.tech). Syntax listeners can get 90% off both one-year, five-year and ten-year registration by visiting [go.tech/syntax](https://go.tech/syntax) and using the coupon code "syntax".
 
 ## Show Notes
 
@@ -58,9 +58,9 @@ Finding a great domain name is tough with so many names already taken. If you're
 
 * Secure API endpoints
 * Scale up server just in case
-* Early access 
+* Early access
 * Soft launch
-* Make sure URLs are correct - no "localhost:3000", etc. 
+* Make sure URLs are correct - no "localhost:3000", etc.
 
 31:25 - Content
 
@@ -70,7 +70,7 @@ Finding a great domain name is tough with so many names already taken. If you're
 
 34:39 - Accessibility
 
-* Alt text 
+* Alt text
 * Run color contrast checker
 * Run Lighthouse
 * Correct tab order
@@ -94,7 +94,7 @@ Finding a great domain name is tough with so many names already taken. If you're
 
 * .htaccess
   * redirects where needed
-* robots.txt 
+* robots.txt
   * prevent indexing of some pages
 * Enable GZIP
 * Caching
