@@ -44,6 +44,7 @@ export default withRouter(
     setCurrentPlaying = (currentPlaying) => {
       console.log('Setting current playing');
       this.setState({ currentPlaying });
+      this.mainEl.scrollIntoView();
     };
 
     render() {
