@@ -122,7 +122,7 @@ Build modern JAMStack websites in minutes. Stackbit lets you combine any theme, 
 * [Sanity](https://sanity.io/syntax?utm_source=syntax-fm&utm_campaign=syntax1)
 * [Stackbit](https://www.stackbit.com/syntaxfm)
 * [Google Home Mini](https://store.google.com/us/product/google_home_mini?hl=en-US)
-* [Amazon Echo](https://store.google.com/us/product/google_home_mini?hl=en-US)
+* [Amazon Echo](https://www.amazon.com/all-new-amazon-echo-speaker-with-wifi-alexa-dark-charcoal/dp/B06XCM9LJ4)
 * [Google Pixel](https://store.google.com/product/pixel_3)
 * [Apple Homepod](https://www.apple.com/ios/home/)
 * [Raspberry Pi](https://www.raspberrypi.org/)
