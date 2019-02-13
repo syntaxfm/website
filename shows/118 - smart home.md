@@ -120,7 +120,7 @@ Build modern JAMStack websites in minutes. Stackbit lets you combine any theme, 
 ## Links
 
 * [Sanity](https://sanity.io/syntax?utm_source=syntax-fm&utm_campaign=syntax1)
-* [Stackbit](https://itunes.apple.com/us/podcast/techmeme-ride-home/id1355212895)
+* [Stackbit](https://www.stackbit.com/syntaxfm)
 * [Google Home Mini](https://store.google.com/us/product/google_home_mini?hl=en-US)
 * [Amazon Echo](https://store.google.com/us/product/google_home_mini?hl=en-US)
 * [Google Pixel](https://store.google.com/product/pixel_3)
