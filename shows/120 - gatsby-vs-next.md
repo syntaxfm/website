@@ -65,7 +65,7 @@ The Armoury is a men's clothing and accessories retailer that provides some of t
 
 ## Links
 
-* [LogRocket](https://sanity.io/syntax?utm_source=syntax-fm&utm_campaign=syntax1)
+* [LogRocket](https://logrocket.com/syntax)
 * [The Armoury](https://thearmoury.com/)
 * [Next.js](https://nextjs.org/)
 * [Gatsby](https://www.gatsbyjs.org/)
