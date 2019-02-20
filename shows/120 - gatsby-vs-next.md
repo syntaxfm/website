@@ -61,7 +61,7 @@ The Armoury is a men's clothing and accessories retailer that provides some of t
 
 44:41 - The verdict?
 
-* Us Next.js for Apps, Gatsby for Websites
+* Use Next.js for Apps, Gatsby for Websites
 
 ## Links
 
