@@ -9,7 +9,7 @@ In this episode, Wes and Scott talk about the Smart Home — all the different t
 
 ## Sanity.io - Sponsor
 
-Sanity.io is a real-time headless CMS with a fully customizable Content Studio built in React. Get up and running by typing `npm i -g @sanity/cli && sanity init` in your command line. Get an awesome supercharged free developer plan on [sanity.io/syntax](https://sanity.io/syntax?utm_source=syntax-fm&utm_campaign=syntax1). 
+Sanity.io is a real-time headless CMS with a fully customizable Content Studio built in React. Get up and running by typing `npm i -g @sanity/cli && sanity init` in your command line. Get an awesome supercharged free developer plan on [sanity.io/syntax](https://sanity.io/syntax?utm_source=syntax-fm&utm_campaign=syntax1).
 
 ## Stackbit - Sponsor
 
@@ -97,6 +97,7 @@ Build modern JAMStack websites in minutes. Stackbit lets you combine any theme, 
   * Solar powered lights on a timer. No app needed, no WiFi connection needed
   * [Roomba](https://store.irobot.com/default/home) - meh. We play "find the body" when it comes home.
   * Locks - Code based lights
+  * [Motion Sensor LED Lights](https://www.amazon.com/gp/product/B01HO1FLDI/ref=ppx_od_dt_b_asin_title_s00?ie=UTF8&psc=1)
 
 67:32 - What we want in the future
 
