@@ -112,6 +112,7 @@ The Armoury is a men's clothing and accessories retailer that provides some of t
 ## Links
 
 * [Notion](https://www.notion.so)
+* [MindNode](https://mindnode.com/)
 
 ## ××× SIIIIICK ××× PIIIICKS ×××
 
