@@ -1,106 +1,106 @@
 .show
-  position relative
-  display flex
-  background lightgray
-  border-right 1px solid gray
-  border-bottom 1px solid gray
-  border-left 10px solid gray
-  @media (max-width: 650px)
-    flex 1 0 auto
-  a
-    flex 1 1 auto
-    padding 10px
-  &__playcontrols
-    display flex
-    align-items center
-    justify-content center
-    flex-shrink 0
-    width 5rem
-    padding 1rem
-    button
-      background none
-      border 0
-      outline-color yellow
-      &:hover
-        color yellow
-  &--dummy
-    flex 1 0 auto
-  &--active
-    border-right-color white
-    background white
-    border-left 0
-    padding-left 1rem
-    &:before
-      display block
-      width 10px
-      height 100%
-      content ''
-      position absolute
-      top 0
-      left 0
-      background grad
-  &__displayNumber
-    margin 0
-    font-size 11px
-    text-transform uppercase
-    color mediumgray
-  &__title
-    margin 0
-    font-size 1.5rem
-    color black
-  &__date
-    margin-top 0
-    font-size 1.2rem
-    text-align right
-    color mediumgray
+	position relative
+	display flex
+	background lightgray
+	border-right 1px solid gray
+	border-bottom 1px solid gray
+	border-left 10px solid gray
+	@media (max-width: 650px)
+		flex 1 0 auto
+	a
+		flex 1 1 auto
+		padding 10px
+	&__playcontrols
+		display flex
+		align-items center
+		justify-content center
+		flex-shrink 0
+		width 5rem
+		padding 1rem
+		button
+			background none
+			border 0
+			outline-color yellow
+			&:hover
+				color yellow
+	&--dummy
+		flex 1 0 auto
+	&--active
+		border-right-color white
+		background white
+		border-left 0
+		padding-left 1rem
+		&:before
+			display block
+			width 10px
+			height 100%
+			content ''
+			position absolute
+			top 0
+			left 0
+			background grad
+	&__displayNumber
+		margin 0
+		font-size 11px
+		text-transform uppercase
+		color mediumgray
+	&__title
+		margin 0
+		font-size 1.5rem
+		color black
+	&__date
+		margin-top 0
+		font-size 1.2rem
+		text-align right
+		color mediumgray
 
 .show-wrap
-  display flex
-  flex-wrap wrap
-  background white
+	display flex
+	flex-wrap wrap
+	background white
 
 .showList
-  width 38%
-  display flex
-  flex-direction column
-  @media (max-width: 650px)
-    height 300px
-    width 100%
-    overflow-x auto
-    overflow-y scroll
+	width 38%
+	display flex
+	flex-direction column
+	@media (max-width: 650px)
+		height 300px
+		width 100%
+		overflow-x auto
+		overflow-y scroll
 
 .showNotes
-  padding 2rem
-  width 62%
-  font-size 1.5rem
-  @media (max-width: 650px)
-    width 100%
-  .button
-    border-bottom 0
-  ul
-    padding-left 2rem
-    list-style-type circle
-  li
-    margin 10px 0
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6
-    font-family 'courier'
-    font-weight 100
-    padding-bottom 1rem
-    border-bottom 1px solid gray
-    &:before
-      padding-right 1rem
-  pre
-    padding 1rem
-    background lightgray
-  h1,
-  h2
-    font-size 2.5rem
-  a
-    text-decoration none
-    color lighten(black, 20%)
-    border-bottom 1px solid yellow
+	padding 2rem
+	width 62%
+	font-size 1.5rem
+	@media (max-width: 650px)
+		width 100%
+	.button
+		border-bottom 0
+	ul
+		padding-left 2rem
+		list-style-type circle
+	li
+		margin 10px 0
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6
+		font-family 'courier'
+		font-weight 100
+		padding-bottom 1rem
+		border-bottom 1px solid gray
+		&:before
+			padding-right 1rem
+	pre
+		padding 1rem
+		background lightgray
+	h1,
+	h2
+		font-size 2.5rem
+	a
+		text-decoration none
+		color lighten(black, 20%)
+		border-bottom 1px solid yellow
