@@ -1,10 +1,10 @@
 .show
-  border-right 1px solid grey
-  border-bottom 1px solid grey
-  border-left 10px solid grey
-  background lightgrey
   position relative
   display flex
+  background lightgray
+  border-right 1px solid gray
+  border-bottom 1px solid gray
+  border-left 10px solid gray
   @media (max-width: 650px)
     flex 1 0 auto
   a
@@ -14,8 +14,8 @@
     display flex
     align-items center
     justify-content center
-    width 5rem
     flex-shrink 0
+    width 5rem
     padding 1rem
     button
       background none
@@ -32,32 +32,32 @@
     padding-left 1rem
     &:before
       display block
-      background grad
       width 10px
       height 100%
       content ''
       position absolute
       top 0
       left 0
+      background grad
   &__displayNumber
-    text-transform uppercase
     margin 0
-    color gray3
     font-size 11px
+    text-transform uppercase
+    color mediumgray
   &__title
-    color black
-    font-size 1.5rem
     margin 0
+    font-size 1.5rem
+    color black
   &__date
     margin-top 0
-    text-align right
-    color gray3
     font-size 1.2rem
+    text-align right
+    color mediumgray
 
 .show-wrap
-  background white
   display flex
   flex-wrap wrap
+  background white
 
 .showList
   width 38%
@@ -82,20 +82,25 @@
     list-style-type circle
   li
     margin 10px 0
-  h1,h2,h3,h4,h5,h6
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6
     font-family 'courier'
     font-weight 100
-    border-bottom 1px solid grey
     padding-bottom 1rem
+    border-bottom 1px solid gray
     &:before
       padding-right 1rem
   pre
-    background lightgrey
     padding 1rem
-  h1,h2
+    background lightgray
+  h1,
+  h2
     font-size 2.5rem
   a
+    text-decoration none
     color lighten(black, 20%)
     border-bottom 1px solid yellow
-    text-decoration none
-
