@@ -1,6 +1,12 @@
 version: 2.1
 orbs:
   aws-ecr: circleci/aws-ecr@0.0.2
+jobs:
+  ping:
+    docker:
+      - image: node:8.15.1-jessie
+    steps:
+      - run: echo "sup"
 workflows:
   build-and-deploy:
     jobs:
@@ -9,3 +15,6 @@ workflows:
           repo: "${AWS_RESOURCE_NAME_PREFIX}"
           region: ${AWS_DEFAULT_REGION}
           tag: "${CIRCLE_SHA1}"
+      - ping:
+          requires:
+            - aws-ecr/build_and_push_image
