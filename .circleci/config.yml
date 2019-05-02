@@ -1,14 +1,7 @@
 version: 2.1
 orbs:
   aws-ecr: circleci/aws-ecr@0.0.2
-jobs:
-  ping_featurepeek:
-    docker:
-      - image: node:8.15.1-jessie
-    steps:
-      - checkout
-      - run: yarn
-      - run: yarn featurepeek
+  featurepeek: featurepeek/ping@dev:first
 workflows:
   build-and-deploy:
     jobs:
@@ -17,6 +10,6 @@ workflows:
           repo: "${AWS_RESOURCE_NAME_PREFIX}"
           region: ${AWS_DEFAULT_REGION}
           tag: "${CIRCLE_SHA1}"
-      - ping_featurepeek:
+      - featurepeek/ping:
           requires:
             - aws-ecr/build_and_push_image
