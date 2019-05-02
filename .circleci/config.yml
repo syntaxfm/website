@@ -10,6 +10,6 @@ workflows:
           repo: "${AWS_RESOURCE_NAME_PREFIX}"
           region: ${AWS_DEFAULT_REGION}
           tag: "${CIRCLE_SHA1}"
-      - featurepeek/featurepeek:
+      - featurepeek/ping:
           requires:
             - aws-ecr/build_and_push_image
