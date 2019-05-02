@@ -6,7 +6,7 @@ jobs:
     docker:
       - image: node:8.15.1-jessie
     steps:
-      - run: echo ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${AWS_RESOURCE_NAME_PREFIX}:${CIRCLE_SHA1}
+      - run: yarn featurepeek
 workflows:
   build-and-deploy:
     jobs:
