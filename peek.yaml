@@ -1,0 +1,6 @@
+---
+services:
+- name: frontend
+  dockerfile: ./Dockerfile
+  ports:
+  - 6969
