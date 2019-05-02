@@ -6,6 +6,8 @@ jobs:
     docker:
       - image: node:8.15.1-jessie
     steps:
+      - checkout
+      - run: yarn
       - run: yarn featurepeek
 workflows:
   build-and-deploy:
