@@ -34,7 +34,7 @@ The Armoury is a men's clothing and accessories retailer that provides some of t
 11:09 - Data
 
 * Next.js is unopinionated. Like React, it doesn't care where your data comes from.
-  * getInitalProps();
+  * getInitialProps();
 * Gatsby has a number of "source" plugins which will pull in data from sources — markdown, WordPress, API, file system. Once you have that data sourced, you can query it with GraphQL.
 
 22:50 - Routing and Creating Pages
