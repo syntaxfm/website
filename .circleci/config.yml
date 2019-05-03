@@ -1,7 +1,7 @@
 version: 2.1
 orbs:
   aws-ecr: circleci/aws-ecr@0.0.2
-  featurepeek: featurepeek/ping@dev:npx
+  featurepeek: featurepeek/ping@dev:0.1.2
 workflows:
   build-and-deploy:
     jobs:
