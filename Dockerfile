@@ -16,6 +16,6 @@ ENV NODE_ENV production
 
 # build
 RUN npm run build
-EXPOSE 6969
+EXPOSE 3000
 
 CMD [ "node", "server.js" ]
