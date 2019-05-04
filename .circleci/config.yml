@@ -13,4 +13,3 @@ workflows:
       - featurepeek/ping_featurepeek:
           requires:
             - aws-ecr/build_and_push_image
-          env: dev
