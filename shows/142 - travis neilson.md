@@ -1,7 +1,7 @@
 ---
 number: 142
 title: Travis Neilson on Skills Gap, Design, Focus and Working at Google
-date: 1557925200522
+date: 1557320400042
 url: https://traffic.libsyn.com/syntax/Syntax142.mp3
 ---
 
