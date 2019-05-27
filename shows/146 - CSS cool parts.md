@@ -60,8 +60,8 @@ Sanity.io is a real-time headless CMS with a fully customizable Content Studio b
 * Wes: [Digital Calipers](https://amzn.to/2JkucEn)
 
 ## Shameless Plugs
-* Wes: [Wes' Courses](wesbos.com/courses) — use coupon code "syntax" at checkout and get and extra $10 off.
-* Scott: [Animating React](leveluptutorials.com/pro)
+* Wes: [Wes' Courses](https://wesbos.com/courses) — use coupon code "syntax" at checkout and get and extra $10 off.
+* Scott: [Animating React](https://leveluptutorials.com/pro)
 
 ## Tweet us your tasty treats!
 * [Scott's Instagram](https://www.instagram.com/stolinski/)
