@@ -68,8 +68,8 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 * Wes: [DeWalt Oscillating Tool](https://amzn.to/2Iz7jNQ)
 
 ## Shameless Plugs
-* Wes: [Wes' Courses](wesbos.com/courses) — use coupon code "syntax" at checkout and get and extra $10 off.
-* Scott: [Animating React](leveluptutorials.com/pro)
+* Wes: [Wes' Courses](https://wesbos.com/courses) — use coupon code "syntax" at checkout and get and extra $10 off.
+* Scott: [Animating React](https://leveluptutorials.com/pro)
 
 ## Tweet us your tasty treats!
 * [Scott's Instagram](https://www.instagram.com/stolinski/)
