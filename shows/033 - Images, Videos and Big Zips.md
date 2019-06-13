@@ -1,5 +1,5 @@
 ---
-number: 033
+number: 33
 title: Large Files - CDNs, Image Compression, Video Hosting, and Big Zips
 date: 1519222248753
 url: https://traffic.libsyn.com/syntax/Syntax033.mp3

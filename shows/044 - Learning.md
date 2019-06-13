@@ -1,5 +1,5 @@
 ---
-number: 044
+number: 44
 title: How to Learn New Things Quickly
 date: 1525266395740
 url: https://traffic.libsyn.com/syntax/Syntax044.mp3

@@ -7,6 +7,7 @@ import ShowNotes from '../components/ShowNotes';
 import Player from '../components/Player';
 import Meta from '../components/meta';
 import Page from '../components/Page';
+import getBaseURL from '../lib/getBaseURL';
 
 export default withRouter(
   class IndexPage extends React.Component {
@@ -28,29 +29,19 @@ export default withRouter(
     }
 
     static async getInitialProps({ req }) {
-      /*eslint-disable */
-      const protocol =
-        req && req.headers.host.indexOf('syntax.fm') > -1
-          ? 'https'
-          : req
-            ? req.protocol
-            : '';
-      /* eslint-enable */
-      const baseURL = req
-        ? `${protocol}://${req.headers.host}`
-        : window.location.origin;
+      const baseURL = getBaseURL(req);
       const { data: shows } = await axios.get(`${baseURL}/api/shows`);
       return { shows, baseURL };
     }
 
     componentWillReceiveProps(nextProps) {
-      const { pathname, query } = nextProps.router;
+      const { query } = nextProps.router;
       if (query.number) {
         this.setState({ currentShow: query.number });
       }
     }
 
-    setCurrentPlaying = currentPlaying => {
+    setCurrentPlaying = (currentPlaying) => {
       console.log('Setting current playing');
       this.setState({ currentPlaying });
     };
@@ -59,13 +50,14 @@ export default withRouter(
       const { shows = [], baseURL } = this.props;
       const { currentShow, currentPlaying } = this.state;
       // Currently Shown shownotes
-      const show = shows.find(
-        showItem => showItem.displayNumber === currentShow
-      );
+      const show =
+        shows.find(showItem => showItem.displayNumber === currentShow) ||
+        shows[0];
       // Currently Playing
-      const current = shows.find(
-        showItem => showItem.displayNumber === currentPlaying
-      );
+      const current =
+        shows.find(showItem => showItem.displayNumber === currentPlaying) ||
+        shows[0];
+
       return (
         <Page>
           <Meta show={show} baseURL={baseURL} />

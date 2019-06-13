@@ -2,25 +2,31 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FaPlay, FaPause } from 'react-icons/fa';
 import formatTime from '../lib/formatTime';
-
-// TODO Fix all eslint issues
+import VolumeBars from './VolumeBars';
 
 export default class Player extends React.Component {
   static propTypes = {
-    show: PropTypes.object.isRequired,
+    show: PropTypes.object.isRequired
   };
 
   constructor(props) {
     super(props);
 
     let lastPlayed = 0;
+    let lastVolumePref = 1;
+    let lastPlaybackRate = 1;
 
-    // for SSR
+    // for Server Side Rendering
     if (typeof window !== 'undefined') {
       const { show } = this.props;
       const lp = localStorage.getItem(`lastPlayed${show.number}`);
-      // eslint-disable-next-line
+      const lastVolume = localStorage.getItem(`lastVolumeSetting`);
+      const lastPlayback = localStorage.getItem(`lastPlaybackSetting`);
+
       if (lp) lastPlayed = JSON.parse(lp).lastPlayed;
+      if (lastVolume) lastVolumePref = JSON.parse(lastVolume).lastVolumePref;
+      if (lastPlayback)
+        lastPlaybackRate = JSON.parse(lastPlayback).lastPlaybackRate;
     }
 
     this.state = {
@@ -28,13 +34,14 @@ export default class Player extends React.Component {
       playing: false,
       duration: 0,
       currentTime: lastPlayed,
-      playbackRate: 1,
+      currentVolume: lastVolumePref,
+      playbackRate: lastPlaybackRate,
       timeWasLoaded: lastPlayed !== 0,
       showTooltip: false,
       tooltipPosition: 0,
-      tooltipTime: '0:00',
+      tooltipTime: '0:00'
     };
-  }
+  } // END Constructor
 
   componentWillUpdate(nextProps, nextState) {
     this.audio.playbackRate = nextState.playbackRate;
@@ -42,16 +49,24 @@ export default class Player extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     const { show } = this.props;
-    const { currentTime } = this.state;
+    const { currentTime, currentVolume, playbackRate } = this.state;
     if (show.number !== prevProps.show.number) {
       const lp = localStorage.getItem(`lastPlayed${show.number}`);
       if (lp) {
+        const lastVolume = localStorage.getItem(`lastVolumeSetting`);
+        const lastPlayback = localStorage.getItem(`lastPlaybackSetting`);
         const data = JSON.parse(lp);
-        // eslint-disable-next-line
+        const data2 = JSON.parse(lastVolume);
+        const data3 = JSON.parse(lastPlayback);
+
         this.setState({
           currentTime: data.lastPlayed,
+          currentVolume: data2.lastVolumePref,
+          playbackRate: data3.lastPlaybackRate
         });
         this.audio.currentTime = data.lastPlayed;
+        this.audio.volume = data2.lastVolumePref;
+        this.audio.playbackRate = data3.lastPlaybackRate;
       }
       this.audio.play();
     } else {
@@ -59,16 +74,25 @@ export default class Player extends React.Component {
         `lastPlayed${show.number}`,
         JSON.stringify({ lastPlayed: currentTime })
       );
+      localStorage.setItem(
+        `lastVolumeSetting`,
+        JSON.stringify({ lastVolumePref: currentVolume })
+      );
+      localStorage.setItem(
+        `lastPlaybackSetting`,
+        JSON.stringify({ lastPlaybackRate: playbackRate })
+      );
     }
   }
 
   timeUpdate = e => {
-    console.log('Updating Time');
+    // console.log('Updating Time');
     const { show } = this.props;
     const { timeWasLoaded } = this.state;
     // Check if the user already had a curent time
     if (timeWasLoaded) {
       const lp = localStorage.getItem(`lastPlayed${show.number}`);
+
       if (lp) {
         e.currentTarget.currentTime = JSON.parse(lp).lastPlayed;
       }
@@ -80,6 +104,23 @@ export default class Player extends React.Component {
       if (Number.isNaN(progressTime)) return;
       this.setState({ progressTime, currentTime, duration });
     }
+  };
+
+  volumeUpdate = e => {
+    const { timeWasLoaded } = this.state;
+    // Check if the user already had a curent volume
+    if (timeWasLoaded) {
+      const lastVolume = localStorage.getItem(`lastVolumeSetting`);
+      if (lastVolume) {
+        e.currentTarget.volume = JSON.parse(lastVolume).lastVolumePref;
+      }
+      this.setState({ timeWasLoaded: false });
+    }
+  };
+
+  groupUpdates = e => {
+    this.timeUpdate(e);
+    this.volumeUpdate(e);
   };
 
   togglePlay = () => {
@@ -99,7 +140,7 @@ export default class Player extends React.Component {
   seekTime = e => {
     this.setState({
       tooltipPosition: e.nativeEvent.offsetX,
-      tooltipTime: formatTime(this.scrubTime(e)),
+      tooltipTime: formatTime(this.scrubTime(e))
     });
   };
 
@@ -111,6 +152,9 @@ export default class Player extends React.Component {
 
   volume = e => {
     this.audio.volume = e.currentTarget.value;
+    this.setState({
+      currentVolume: `${e.currentTarget.value}`
+    });
   };
 
   speedUp = () => {
@@ -125,7 +169,7 @@ export default class Player extends React.Component {
   speed = change => {
     const playbackRateMax = 2.5;
     const playbackRateMin = 0.75;
-    // eslint-disable-next-line
+
     let playbackRate = this.state.playbackRate + change;
 
     if (playbackRate > playbackRateMax) {
@@ -149,7 +193,7 @@ export default class Player extends React.Component {
       duration,
       showTooltip,
       tooltipPosition,
-      tooltipTime,
+      tooltipTime
     } = this.state;
 
     return (
@@ -168,7 +212,6 @@ export default class Player extends React.Component {
         </div>
 
         <div className="player__section player__section--middle">
-          {/* eslint-disable */}
           <div
             className="progress"
             onClick={this.scrub}
@@ -181,7 +224,9 @@ export default class Player extends React.Component {
             }}
             ref={x => (this.progress = x)}
           >
-          {/* eslint-enable */}
+
+            {/* eslint-enable */}
+
             <div
               className="progress__time"
               style={{ width: `${progressTime}%` }}
@@ -194,7 +239,7 @@ export default class Player extends React.Component {
             className="player__tooltip"
             style={{
               left: `${tooltipPosition}px`,
-              opacity: `${showTooltip ? '1' : '0'}`,
+              opacity: `${showTooltip ? '1' : '0'}`
             }}
           >
             {tooltipTime}
@@ -209,138 +254,26 @@ export default class Player extends React.Component {
             type="button"
           >
             <p>FASTNESS</p>
-            <span className="player__speeddisplay">
-              {playbackRate} &times;{' '}
-            </span>
+            <span className="player__speeddisplay">{playbackRate} &times;</span>
           </button>
-
           <div className="player__volume">
             <p>LOUDNESS</p>
             <div className="player__inputs">
-              <input
-                onChange={this.volume}
-                type="radio"
-                name="volume"
-                value="0.1"
-                id="vol10"
-                className="sr-only"
-              />
-              <label htmlFor="vol10"> {/* eslint-disable-line */}
-                <span className="sr-only">Volume Level 10/100</span>
-              </label>
-              <input
-                onChange={this.volume}
-                type="radio"
-                name="volume"
-                value="0.2"
-                id="vol20"
-                className="sr-only"
-              />
-              <label htmlFor="vol20"> {/* eslint-disable-line */}
-                <span className="sr-only">Volume Level 20/100</span>
-              </label>
-              <input
-                onChange={this.volume}
-                type="radio"
-                name="volume"
-                value="0.3"
-                id="vol30"
-                className="sr-only"
-              />
-              <label htmlFor="vol30"> {/* eslint-disable-line */}
-                <span className="sr-only">Volume Level 30/100</span>
-              </label>
-              <input
-                onChange={this.volume}
-                type="radio"
-                name="volume"
-                value="0.4"
-                id="vol40"
-                className="sr-only"
-              />
-              <label htmlFor="vol40"> {/* eslint-disable-line */}
-                <span className="sr-only">Volume Level 40/100</span>
-              </label>
-              <input
-                onChange={this.volume}
-                type="radio"
-                name="volume"
-                value="0.5"
-                id="vol50"
-                className="sr-only"
-              />
-              <label htmlFor="vol50"> {/* eslint-disable-line */}
-                <span className="sr-only">Volume Level 50/100</span>
-              </label>
-              <input
-                onChange={this.volume}
-                type="radio"
-                name="volume"
-                value="0.6"
-                id="vol60"
-                className="sr-only"
-              />
-              <label htmlFor="vol60"> {/* eslint-disable-line */}
-                <span className="sr-only">Volume Level 60/100</span>
-              </label>
-              <input
-                onChange={this.volume}
-                type="radio"
-                name="volume"
-                value="0.7"
-                id="vol70"
-                className="sr-only"
-              />
-              <label htmlFor="vol70"> {/* eslint-disable-line */}
-                <span className="sr-only">Volume Level 70/100</span>
-              </label>
-              <input
-                onChange={this.volume}
-                type="radio"
-                name="volume"
-                value="0.8"
-                id="vol80"
-                className="sr-only"
-              />
-              <label htmlFor="vol80"> {/* eslint-disable-line */}
-                <span className="sr-only">Volume Level 80/100</span>
-              </label>
-              <input
-                onChange={this.volume}
-                defaultChecked
-                type="radio"
-                name="volume"
-                value="0.9"
-                id="vol90"
-                className="sr-only"
-              />
-              <label htmlFor="vol90"> {/* eslint-disable-line */}
-                <span className="sr-only">Volume Level 90/100</span>
-              </label>
-              <input
-                onChange={this.volume}
-                type="radio"
-                name="volume"
-                value="1"
-                id="vol100"
-                className="sr-only"
-              />
-              <label htmlFor="vol100"> {/* eslint-disable-line */}
-                <span className="sr-only">Volume Level 100/100</span>
-              </label>
+
+              <VolumeBars volume={this.volume} />
+
             </div>
           </div>
         </div>
-        {/* eslint-disable */}
         <audio
           ref={audio => (this.audio = audio)}
           onPlay={this.playPause}
           onPause={this.playPause}
           onTimeUpdate={this.timeUpdate}
-          onLoadedMetadata={this.timeUpdate}
+          onVolumeChange={this.volumeUpdate}
+          onLoadedMetadata={this.groupUpdates}
           src={show.url}
         />
-        {/* eslint-enable */}
       </div>
     );
   }

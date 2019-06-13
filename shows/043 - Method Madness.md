@@ -1,5 +1,5 @@
 ---
-number: 043
+number: 43
 title: 20 JavaScript Array and Object Methods to make you a better developer
 date: 1524654511142
 url: https://traffic.libsyn.com/syntax/Syntax043.mp3

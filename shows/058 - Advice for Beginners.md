@@ -1,5 +1,5 @@
 ---
-number: 058
+number: 58
 title: Advice For Beginners - Tech Skills, Applying for Jobs, Focus, Imposter Syndrome + More
 date: 1531918800645
 url: https://traffic.libsyn.com/syntax/Syntax058.mp3
@@ -30,9 +30,9 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 
 * Apply for everything. Failing an interview is no big deal.
 * Each interview is an opportunity to gain experience
-* Putting yourself out there is huge - one blog post, YouTube video, or open source project will put you miles ahead 
+* Putting yourself out there is huge - one blog post, YouTube video, or open source project will put you miles ahead
 * Have an entrepreneurial mindset - you can negotiate money, hardware, vacation time, flexible schedule, etc. Don’t just google “average salary”
-* Negotiate salaries and perks. 
+* Negotiate salaries and perks.
 
 29:32 - Advice for knowing what to focus on
 
@@ -43,9 +43,9 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 38:32 - Advice for impostor syndrome
 
 * Listen to this podcast! ;)
-* Almost everyone has it. 
+* Almost everyone has it.
 * Don’t worry about other people’s progress.
-* You don't need to know how to do everything, but you should be able to figure out how to learn. 
+* You don't need to know how to do everything, but you should be able to figure out how to learn.
 
 46:45 - Misc advice
 

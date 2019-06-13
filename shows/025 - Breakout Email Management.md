@@ -1,5 +1,5 @@
 ---
-number: 025
+number: 25
 title: Dealing With Email Overload && Prettier Setups
 date: 1514383200000
 url: https://traffic.libsyn.com/syntax/Syntax025.mp3

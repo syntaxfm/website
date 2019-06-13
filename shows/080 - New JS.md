@@ -1,5 +1,5 @@
 ---
-number: 080
+number: 80
 title: Top 18 New Things in JS - Part 1
 date: 1538571600270
 url: https://traffic.libsyn.com/syntax/Syntax080.mp3
@@ -13,7 +13,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 
 ## Mlab - Sponsor
 
-mLab is the leading Database-as-a-Service for MongoDB, powering over half a million deployments worldwide. Wes and Scott use mLab to host their own databases as well as take care of backups, security, scaling and performance. Try out a sandbox database on your next mongoDB project → [https://mlab.com](https://mlab.com/). 
+mLab is the leading Database-as-a-Service for MongoDB, powering over half a million deployments worldwide. Wes and Scott use mLab to host their own databases as well as take care of backups, security, scaling and performance. Try out a sandbox database on your next mongoDB project → [https://mlab.com](https://mlab.com/).
 
 ## Show Notes
 

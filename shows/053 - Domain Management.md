@@ -1,5 +1,5 @@
 ---
-number: 053
+number: 53
 title: Hasty Treat - Domain Management
 date: 1530536400092
 url: https://traffic.libsyn.com/syntax/Syntax053.mp3
@@ -17,11 +17,11 @@ In this Hasty Treat (Short episode) Scott and Wes discus all things domains. Whe
 
 * What is a domain?
 
-4:59 
+4:59
 
 * What is DNS?
 
-6:00 
+6:00
 
 * Nameservers
 
@@ -35,7 +35,7 @@ In this Hasty Treat (Short episode) Scott and Wes discus all things domains. Whe
   * [Domainr](https://domainr.com/)
   * [iwantmyname](https://iwantmyname.com/)
 
-13:30 
+13:30
 
 * Different types of DNS records
 

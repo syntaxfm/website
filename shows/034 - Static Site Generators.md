@@ -1,5 +1,5 @@
 ---
-number: 034
+number: 34
 title: Why Static Site Generators are Awesome
 date: 1519785998881
 url: https://traffic.libsyn.com/syntax/Syntax034.mp3

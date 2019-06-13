@@ -1,5 +1,5 @@
 ---
-number: 045
+number: 45
 title: Potluck EP × Is Redux Dead × Learning Quickly × Developing Solo × Specialist vs Generalist × Funnest Projects × Wes’ BBQ Course
 date: 1525870800364
 url: https://traffic.libsyn.com/syntax/Syntax045.mp3
@@ -76,7 +76,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 
 39:41
 
-* Would you use single page application vs SSR for large reactor view apps? 
+* Would you use single page application vs SSR for large reactor view apps?
 * [SSR](https://www.npmjs.com/package/react-ssr)
 * [Next.js](https://nextjs.org/)
 

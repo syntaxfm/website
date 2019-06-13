@@ -1,11 +1,11 @@
 ---
-number: 057
+number: 57
 title: Hasty Treat - Dot Files
 date: 1531746000805
 url: https://traffic.libsyn.com/syntax/Syntax057.mp3
 ---
 
-In this Hasty Treat (Short episode) Scott and Wes discuss dot files, what they are, how to use and manage them as well as best practices and more. 
+In this Hasty Treat (Short episode) Scott and Wes discuss dot files, what they are, how to use and manage them as well as best practices and more.
 
 ## Netlify — Sponsor
 
@@ -16,13 +16,13 @@ In this Hasty Treat (Short episode) Scott and Wes discuss dot files, what they a
 3:15 - What is a dot file?
 
 * Access tokens
-* Settings for editors, etc. 
+* Settings for editors, etc.
 
 4:40 - Dot file examples
-  
+
   * .gitignore
-  * .gitkeep 
-  * .rc 
+  * .gitkeep
+  * .rc
     * .babelrc
     * .bashrc
     * .eslintrc
