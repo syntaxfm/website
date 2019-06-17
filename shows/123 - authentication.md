@@ -1,6 +1,6 @@
 ---
 number: 123
-title: Hasty Treat - Authentication: LocalStorage vs Cookies vs Sessions vs Tokens
+title: Hasty Treat - Authentication - LocalStorage vs Cookies vs Sessions vs Tokens
 date: 1551708000946
 url: https://traffic.libsyn.com/syntax/Syntax123.mp3
 ---
