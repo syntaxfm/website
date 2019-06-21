@@ -29,7 +29,7 @@ If you want to know what's happening with your errors, track them with [Sentry](
 
 * `process.on('unhandledRejectionEvent', callback)`
 
-9:40 - What do do with those errors
+9:40 - What to do with those errors
 
 * Send to error tracking service
 * Possible to give the user a reference number
