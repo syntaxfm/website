@@ -7,7 +7,7 @@ url: https://traffic.libsyn.com/syntax/Syntax135.mp3
 
 In this Hasty Treat, Scott and Wes talk about cranky developers — those devs who never seem happy about anything, always mad about tech choices, and constantly writing off any new tech as simply a "fad" or unnecessary. 
 
-## Sponsor
+## Sentry - Sponsor
 If you want to know what's happening with your errors, track them with [Sentry](https://sentry.io/). Sentry is open-source error tracking that helps developers monitor and fix crashes in real time. Cut your time on error resolution from five hours to five minutes. It works with any language and integrates with dozens of other services. Syntax listeners can get two months for free by visiting [Sentry.io](https://sentry.io/) and using the coupon code "tastytreat".
 
 ## Show Notes
