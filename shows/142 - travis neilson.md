@@ -51,10 +51,9 @@ Sanity.io is a real-time headless CMS with a fully customizable Content Studio b
 - Wes: [Little People Big Dreams Book Series](https://amzn.to/2DfA0Lk)
 
 ## Shameless Plugs
-
-- [Wes' Courses](wesbos.com/courses) & [Wes' Youtube](https://www.youtube.com/user/wesbos)
-- [Animating React](https://www.leveluptutorials.com/tutorials/animating-react)
-- [How to Use Adobe XD](https://www.leveluptutorials.com/tutorials/adobe-xd-crash-course)
+* [Wes' Courses](https://wesbos.com/courses) & [Wes' Youtube](https://www.youtube.com/user/wesbos)
+* [Animating React](https://www.leveluptutorials.com/tutorials/animating-react)
+* [How to Use Adobe XD](https://leveluptutorials.com/pro)
 
 ## Tweet us your tasty treats!
 
