@@ -46,7 +46,7 @@ If you want to know what's happening with your errors, track them with [Sentry](
 * [ES6](https://es6.io/)
 * [React for Beginners](https://reactforbeginners.com/)
 * [Missive](https://missiveapp.com/)
-* [Swix](https://www.swixsport.com/)
+* [Swix](https://www.swixsport.com/) --> [Getting Closure on Hooks](https://youtu.be/Wt4kuspJIxY?t=3184)
 * [React](https://reactjs.org/)
 * [Flux](https://justgetflux.com/)
 * [Glamorous](https://glamorous.rocks/)
