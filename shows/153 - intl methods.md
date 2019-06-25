@@ -7,7 +7,7 @@ url: https://traffic.libsyn.com/syntax/Syntax153.mp3
 
 In this Hasty Treat, Scott and Wes talk about internationalization - how to deal with different languages, different currencies, and more!
 
-## Log Rocket - Sponsor
+## LogRocket - Sponsor
 
 LogRocket lets you replay what users do on your site, helping you reproduce bugs and fix issues faster. It's an exception tracker, a session re-player and a performance monitor. Get 14 days free at [logrocket.com/syntax](https://logrocket.com/syntax).
 
