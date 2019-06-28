@@ -13,7 +13,7 @@ Netlify is the best way to deploy and host a front-end website. All the features
 
 ## Show Notes
 
-3:50 - CCS Preprocessor parable
+3:50 - CSS Preprocessor parable
 
 6:09 - Efficiency
 
