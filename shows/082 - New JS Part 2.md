@@ -20,6 +20,7 @@ GraphCMS is trying to be the world’s most developer friendly CMS. It's a great
 3:30
 
 * Spread
+
 ```javascript
 const array1 = [1, 2, 3]
 const array2 = [0, ...array1]
@@ -28,6 +29,7 @@ const array2 = [0, ...array1]
 8:40
 
 * Rests
+
 ```javascript
 const teams = [player1, player2, player3]
 const [leader, ...members] = teams
@@ -36,6 +38,7 @@ const [leader, ...members] = teams
 11:54
 
 * Arrow Functions
+
 ```javascript
 const add = (x, y) => {
   return x + y
@@ -47,6 +50,7 @@ const add = (x, y) => x + y
 15:48
 
 * Default Function Arguments
+
 ```javascript
 function mul(x, y = 1) {
   return x * y
@@ -58,6 +62,7 @@ mul(2) // 2 * 1 = 2
 19:47
 
 * Named params
+
 ```javascript
 function ({ array, element }) {
   return [element, ...array]
@@ -67,6 +72,7 @@ function ({ array, element }) {
 21:26
 
 * Modules
+
 ```javascript
 // @ a.js
 export const param = 1
@@ -84,6 +90,7 @@ import { param as newParam} from './a' // use `as` for rename
 35:35
 
 * Classes
+
 ```javascript
 class Polygon {
   constructor(height, width) {
@@ -108,6 +115,7 @@ class Square extends Polygon {
 41:54
 
 * Things we never use
+
 ```javascript
 await const users = fetchUser().catch(e => ...)
 
