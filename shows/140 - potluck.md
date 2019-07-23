@@ -37,7 +37,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 
 * Q: Any SICK TIPS on career change? I'm a full-time employee with two kids and a lovely wife, who wants a fulfilling career. I throw as much time in as I can to study, but I feel like it isn't enough to apply for jobs.
 
-20:49
+24:01
 
 * Q: Within the next two years, how well do you think WebVR and WebXR technologies would fit within mainstream web development (think A-Frame, SparkAR, React 360 in normal websites and applications)?
 
@@ -68,8 +68,8 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 * Wes: [DeWalt Oscillating Tool](https://amzn.to/2Iz7jNQ)
 
 ## Shameless Plugs
-* Wes: [Wes' Courses](wesbos.com/courses) — use coupon code "syntax" at checkout and get and extra $10 off.
-* Scott: [Animating React](leveluptutorials.com/pro)
+* Wes: [Wes' Courses](https://wesbos.com/courses) — use coupon code "syntax" at checkout and get and extra $10 off.
+* Scott: [Animating React](https://leveluptutorials.com/pro)
 
 ## Tweet us your tasty treats!
 * [Scott's Instagram](https://www.instagram.com/stolinski/)

@@ -53,7 +53,7 @@ Guess which of these websites have their homepage partially or fully built in Re
 
 26:22 - Tag Team Coding React
 
-* Fetch Data from the data jokes API
+* Fetch data from the dad jokes API
 * Show a loading indicator
 * Have a button to fetch a new joke
 

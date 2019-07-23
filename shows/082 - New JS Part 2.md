@@ -21,36 +21,112 @@ GraphCMS is trying to be the world’s most developer friendly CMS. It's a great
 
 * Spread
 
+```javascript
+const array1 = [1, 2, 3]
+const array2 = [0, ...array1]
+```
+
 8:40
 
 * Rests
+
+```javascript
+const teams = [player1, player2, player3]
+const [leader, ...members] = teams
+```
 
 11:54
 
 * Arrow Functions
 
+```javascript
+const add = (x, y) => {
+  return x + y
+}
+// equal to
+const add = (x, y) => x + y
+```
+
 15:48
 
 * Default Function Arguments
+
+```javascript
+function mul(x, y = 1) {
+  return x * y
+}
+mul(2, 3) // 2 * 3 = 6
+mul(2) // 2 * 1 = 2
+```
 
 19:47
 
 * Named params
 
+```javascript
+function ({ array, element }) {
+  return [element, ...array]
+}
+```
+
 21:26
 
 * Modules
+
+```javascript
+// @ a.js
+export const param = 1
+const defaultParam = 2
+export default defaultParam
+
+// @ b.js
+import defaultParam, { param } from './a'
+
+// rename import module
+import newDefaultParam from './a' // rename default export directly
+import { param as newParam} from './a' // use `as` for rename
+```
 
 35:35
 
 * Classes
 
+```javascript
+class Polygon {
+  constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+
+  get area() {
+    return this.calcArea();
+  }
+  
+  calcArea() {
+    return this.height * this.width;
+  }
+}
+
+class Square extends Polygon {
+  ...
+}
+```
+
 41:54
 
 * Things we never use
 
+```javascript
+await const users = fetchUser().catch(e => ...)
+
+for(let element of array) { ... }
+
+const set1 = new Set([1, 2, 3, 4, 5]);
+```
+
 ## Links
 * [Jake’s Minesweeper](https://twitter.com/jaffathecake/status/1045055482933768194)
+* [parcel](https://parceljs.org/)
 
 ## ××× SIIIIICK ××× PIIIICKS ×××
 

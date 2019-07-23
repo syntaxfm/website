@@ -57,7 +57,7 @@ Get a 30 day free trial of Freshbooks at [Freshbooks.com](http://freshbooks.com/
 * Scott: [Cold Brew Coffee Maker](https://amzn.to/2HuzCv8)
 
 ## Shameless Plugs
-* [Wes' Courses](wesbos.com/courses) - Use the coupon code 'Syntax' for $10 off!
+* [Wes' Courses](https://wesbos.com/courses) - Use the coupon code 'Syntax' for $10 off!
 * [Level 2 React Native with GraphQL](https://www.leveluptutorials.com/tutorials/level-2-react-native-with-graphql/connecting-apollo-to-our-auth-system)
 
 ## Tweet us your tasty treats!

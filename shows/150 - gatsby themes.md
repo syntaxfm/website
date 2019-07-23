@@ -68,9 +68,9 @@ Get a 30 day free trial of Freshbooks at [Freshbook](https://freshbooks.com/synt
 * Wes: [Waterproof Digital Instant Read Meat Thermometer](https://amzn.to/2Yxy09R)
 
 ## Shameless Plugs
-* [Jason's Weekly Live stream](twitch.tv/jlinksdorf)
-* [Scott's Courses](leveluptutorials.com/pro)
-* [Wes' Courses](wesbos.com/courses) - Use the coupon code 'Syntax' for $10 off!
+* [Jason's Weekly Live stream](https://twitch.tv/jlengstorf)
+* [Scott's Courses](https://leveluptutorials.com/pro)
+* [Wes' Courses](https://wesbos.com/courses) - Use the coupon code 'Syntax' for $10 off!
 
 ## Tweet us your tasty treats!
 * [Scott's Instagram](https://www.instagram.com/stolinski/)
