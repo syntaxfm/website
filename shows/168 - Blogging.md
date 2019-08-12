@@ -34,7 +34,7 @@ Sanity.io is a real-time headless CMS with a fully customizable Content Studio b
 * [Medium](https://medium.com/)
 * [Hacker Noon](https://hackernoon.com/)
 * [Freedcamp](https://freedcamp.com/)
-* [Devtoo](https://www.crunchbase.com/organization/devtoo)
+* [Devtoo](https://dev.to/)
 * [Smashing Magazine](https://www.smashingmagazine.com/)
 * [Net Magazine](https://www.creativebloq.com/net-magazine)
 * [Gridsome](https://gridsome.org/)
