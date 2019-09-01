@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import slug from 'speakingurl';
 import Router from 'next/router';
-import { FaPlay } from 'react-icons/fa';
+import { FaPlay, FaPlus } from 'react-icons/fa';
 import Bars from './bars';
 
 export default class Show extends React.Component {
@@ -11,6 +11,7 @@ export default class Show extends React.Component {
     currentPlaying: PropTypes.string.isRequired,
     currentShow: PropTypes.string.isRequired,
     setCurrentPlaying: PropTypes.func.isRequired,
+    addShowToQueue: PropTypes.func.isRequired,
   };
 
   changeURL = (e, show) => {
@@ -20,7 +21,7 @@ export default class Show extends React.Component {
   };
 
   render() {
-    const { show, currentPlaying, currentShow, setCurrentPlaying } = this.props;
+    const { show, currentPlaying, currentShow, setCurrentPlaying, addShowToQueue } = this.props;
     return (
       <div
         className={`show ${
@@ -41,6 +42,15 @@ export default class Show extends React.Component {
           {currentPlaying === show.displayNumber ? (
             <Bars />
           ) : (
+            <>
+            <button
+              type="button"
+              onClick={() => addShowToQueue(show.displayNumber)}
+              className="show__play"
+              title="add to queue"
+            >
+              <FaPlus />
+            </button>
             <button
               type="button"
               onClick={() => setCurrentPlaying(show.displayNumber)}
@@ -49,6 +59,7 @@ export default class Show extends React.Component {
             >
               <FaPlay />
             </button>
+            </>
           )}
         </div>
       </div>

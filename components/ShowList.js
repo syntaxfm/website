@@ -7,11 +7,13 @@ const ShowList = ({
   currentPlaying,
   currentShow,
   setCurrentPlaying,
+  addShowToQueue
 }) => (
   <div className="showList">
     {shows.map(show => (
       <Show
         setCurrentPlaying={setCurrentPlaying}
+        addShowToQueue={addShowToQueue}
         currentPlaying={currentPlaying}
         currentShow={currentShow}
         key={show.number}

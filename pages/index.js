@@ -46,6 +46,10 @@ export default withRouter(
       this.setState({ currentPlaying });
     };
 
+    addShowToQueue = (show) => {
+      console.log(`Added ${show} to queue!`)
+    }
+
     render() {
       const { shows = [], baseURL } = this.props;
       const { currentShow, currentPlaying } = this.state;
@@ -69,6 +73,7 @@ export default withRouter(
                 currentShow={currentShow}
                 currentPlaying={currentPlaying}
                 setCurrentPlaying={this.setCurrentPlaying}
+                addShowToQueue={this.addShowToQueue}
               />
               <ShowNotes
                 show={show}
