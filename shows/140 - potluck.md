@@ -29,6 +29,10 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 
 * Q: Should I worry about the critical vulnerabilities when installing an NPM package?
 
+14:40
+
+I specifically use an external NPM package called [npm-check-updates](https://www.npmjs.com/package/npm-check-updates) and then I just run `ncu`...
+
 15:06
 
 * Q: I've had the idea for styling one site two different ways (professional/artistic) and giving visitors a button to toggle between the two. Too gimmicky? Secondary: how did you pick your brand colors?
