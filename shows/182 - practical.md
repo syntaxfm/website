@@ -1,6 +1,6 @@
 ---
 number: 182
-title: Practical: How would we build Airbnb, Twitter, or Reddit?
+title: Practical - How would we build Airbnb, Twitter, or Reddit?
 date: 1569416400529
 url: https://traffic.libsyn.com/syntax/Syntax182.mp3
 ---
