@@ -59,7 +59,6 @@ class ShowList extends React.Component {
     const newVal = parseInt(event.target.value);
     this.setState(state => {
       const { currentStart } = state;
-      debugger;
       const newEnd = currentStart + newVal;
       return { pageSize: newVal, currentEnd: newEnd };
     });
@@ -98,7 +97,7 @@ class ShowList extends React.Component {
       let newEnd =
         currentEnd + state.pageSize <= maxPosts
           ? currentEnd + state.pageSize
-          : maxPosts - 1;
+          : maxPosts;
 
       return { currentStart: newStart, currentEnd: newEnd };
     });
