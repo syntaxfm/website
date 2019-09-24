@@ -24,7 +24,7 @@ class ShowList extends React.Component {
     return (
       <div className="showList">
         <div className="paginationControls">
-          <span className="pageUpDown" onClick={this.pageDown}>
+          <span id="pgDwnSpan" className="pageUpDown" onClick={this.pageDown}>
             &lt;&lt; Previous{" "}
           </span>
           <input
@@ -36,7 +36,7 @@ class ShowList extends React.Component {
             value={this.state.pageSize}
             onChange={this.pageSizeChanged}
           ></input>
-          <span className="pageUpDown" onClick={this.pageUp}>
+          <span id="nextSpan" className="pageUpDown" onClick={this.pageUp}>
             {" "}
             Next &gt;&gt;
           </span>
@@ -56,7 +56,14 @@ class ShowList extends React.Component {
   }
 
   pageSizeChanged = event => {
-    const newVal = parseInt(event.target.value);
+    let newVal = parseInt(event.target.value);
+    //limit the values on how many files we page by...
+    if (newVal > 25) {
+      newVal = 25;
+    }
+    if (newVal < 1) {
+      newVal = 1; //be reasonable now...
+    }
     this.setState(state => {
       const { currentStart } = state;
       const newEnd = currentStart + newVal;
@@ -74,15 +81,15 @@ class ShowList extends React.Component {
   pageDown = () => {
     const state = this.state;
     this.setState(state => {
-      const { currentStart, currentEnd } = state;
-      let newStart =
-        currentStart - state.pageSize >= 0 ? currentStart - state.pageSize : 0;
-      let newEnd =
-        currentEnd - state.pageSize >= state.pageSize
-          ? currentEnd - state.pageSize
-          : state.pageSize;
+      const { currentStart, pageSize } = state;
+      if (newStart !== 0) {
+        let newEnd = currentStart - 1;
+        let newStart = newEnd - pageSize > 0 ? newEnd - pageSize : 0;
 
-      return { currentStart: newStart, currentEnd: newEnd };
+        return { currentStart: newStart, currentEnd: newEnd };
+      }
+
+      return null;
     });
   };
 
@@ -90,16 +97,17 @@ class ShowList extends React.Component {
     this.setState((state, props) => {
       const maxPosts = props.shows.length - 1;
       const { currentStart, currentEnd } = state;
-      let newStart =
-        currentStart + state.pageSize <= maxPosts
-          ? currentStart + state.pageSize
-          : maxPosts - state.pageSize;
-      let newEnd =
-        currentEnd + state.pageSize <= maxPosts
-          ? currentEnd + state.pageSize
-          : maxPosts;
+      if (currentEnd !== maxPosts) {
+        let newStart = currentEnd + 1;
+        let newEnd =
+          newStart + state.pageSize <= maxPosts
+            ? newStart + state.pageSize
+            : maxPosts;
 
-      return { currentStart: newStart, currentEnd: newEnd };
+        return { currentStart: newStart, currentEnd: newEnd };
+      }
+
+      return null;
     });
   };
 }
