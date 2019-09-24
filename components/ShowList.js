@@ -5,7 +5,12 @@ import Show from "./Show";
 class ShowList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { beginSliceAt: 0, pageSize: 10, numOfShows: 0 };
+    this.state = {
+      currentStart: 0,
+      currentEnd: 10,
+      pageSize: 10,
+      numOfShows: 0
+    };
   }
 
   render() {
@@ -18,15 +23,6 @@ class ShowList extends React.Component {
 
     return (
       <div className="showList">
-        {this.getShortList(shows).map(show => (
-          <Show
-            setCurrentPlaying={setCurrentPlaying}
-            currentPlaying={currentPlaying}
-            currentShow={currentShow}
-            key={show.number}
-            show={show}
-          />
-        ))}
         <div className="paginationControls">
           <span className="pageUpDown" onClick={this.pageDown}>
             &lt;&lt; Previous{" "}
@@ -38,8 +34,20 @@ class ShowList extends React.Component {
             max="25"
             value={this.state.pageSize}
           ></input>
-          <span className="pageUpDown"> Next &gt;&gt;</span>
+          <span className="pageUpDown" onClick={this.pageUp}>
+            {" "}
+            Next &gt;&gt;
+          </span>
         </div>
+        {this.getShortList(shows).map(show => (
+          <Show
+            setCurrentPlaying={setCurrentPlaying}
+            currentPlaying={currentPlaying}
+            currentShow={currentShow}
+            key={show.number}
+            show={show}
+          />
+        ))}
         <div className="show show--dummy" />
       </div>
     );
@@ -49,25 +57,42 @@ class ShowList extends React.Component {
     if (shows.length !== this.state.numOfShows) {
       this.setState({ numOfShows: shows.length });
     }
-    return shows.slice(this.state.beginSliceAt, this.state.pageSize + 1);
+    return shows.slice(this.state.currentStart, this.state.currentEnd);
   };
 
   pageDown = () => {
-    let newBeginning = this.state.beginSliceAt - this.state.pageSize;
+    const state = this.state;
+    const propse = this.props;
+    this.setState((state, props) => {
+      const { currentStart, currentEnd } = state;
+      let newStart =
+        currentStart - state.pageSize >= 0 ? currentStart - state.pageSize : 0;
+      let newEnd =
+        currentEnd - state.pageSize >= state.pageSize
+          ? currentEnd - state.pageSize
+          : state.pageSize;
 
-    if (newBeginning < 0) {
-      newBeginning = 0;
-    }
-
-    this.setState({ beginSliceAt: newBeginning });
+      return { currentStart: newStart, currentEnd: newEnd };
+    });
   };
 
   pageUp = () => {
-    let newBeginning = this.state.beginSliceAt + this.state.pageSize;
+    const state = this.state;
+    const propse = this.props;
+    this.setState((state, props) => {
+      const maxPosts = props.shows.length - 1;
+      const { currentStart, currentEnd } = state;
+      let newStart =
+        currentStart + state.pageSize <= maxPosts
+          ? currentStart + state.pageSize
+          : maxPosts - state.pageSize;
+      let newEnd =
+        currentEnd + state.pageSize <= maxPosts
+          ? currentEnd + state.pageSize
+          : maxPosts - 1;
 
-    if (newBeginning <= this.state.numOfShows) {
-      this.setState({ beginSliceAt: newBeginning });
-    }
+      return { currentStart: newStart, currentEnd: newEnd };
+    });
   };
 }
 
