@@ -32,7 +32,9 @@ class ShowList extends React.Component {
             name="pageSize"
             min="1"
             max="25"
+            step="1"
             value={this.state.pageSize}
+            onChange={this.pageSizeChanged}
           ></input>
           <span className="pageUpDown" onClick={this.pageUp}>
             {" "}
@@ -53,6 +55,13 @@ class ShowList extends React.Component {
     );
   }
 
+  pageSizeChanged = event => {
+    const newVal = event.target.value;
+    this.setState(state => {
+      return { pageSize: newVal };
+    });
+  };
+
   getShortList = shows => {
     if (shows.length !== this.state.numOfShows) {
       this.setState({ numOfShows: shows.length });
@@ -62,8 +71,7 @@ class ShowList extends React.Component {
 
   pageDown = () => {
     const state = this.state;
-    const propse = this.props;
-    this.setState((state, props) => {
+    this.setState(state => {
       const { currentStart, currentEnd } = state;
       let newStart =
         currentStart - state.pageSize >= 0 ? currentStart - state.pageSize : 0;
@@ -77,8 +85,6 @@ class ShowList extends React.Component {
   };
 
   pageUp = () => {
-    const state = this.state;
-    const propse = this.props;
     this.setState((state, props) => {
       const maxPosts = props.shows.length - 1;
       const { currentStart, currentEnd } = state;
