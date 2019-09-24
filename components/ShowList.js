@@ -56,9 +56,12 @@ class ShowList extends React.Component {
   }
 
   pageSizeChanged = event => {
-    const newVal = event.target.value;
+    const newVal = parseInt(event.target.value);
     this.setState(state => {
-      return { pageSize: newVal };
+      const { currentStart } = state;
+      debugger;
+      const newEnd = currentStart + newVal;
+      return { pageSize: newVal, currentEnd: newEnd };
     });
   };
 
