@@ -32,3 +32,8 @@ url: https://traffic.libsyn.com/syntax/syntax001_4.mp3
 
 * [Learn Node](http://wesbos.com/learn-node/)
 * [React Native for everyone](https://www.leveluptutorials.com/store/products/tutorials/lut-dd014)
+
+#### Twitter
+ * [@wesbos](https://twitter.com/wesbos)
+ * [@stolinski](https://twitter.com/stolinski)
+ * Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets

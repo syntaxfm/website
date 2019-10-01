@@ -36,6 +36,6 @@ No Frameworks No Compilers No Libraries No Boilerplate. Join 101,746 others.
 Over 860 free video tutorials for beginners, intermediate and expert web professionals. Level Up your skills with clear, high production, free video tutorials.
 
 #### Twitter
- * [@Syntax](https://twitter.com/syntaxfm)
  * [@wesbos](https://twitter.com/wesbos)
  * [@stolinski](https://twitter.com/stolinski)
+ * Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets
