@@ -45,7 +45,7 @@ In this episode, Wes talks about his career path from a MySpace customizer to wh
 * [Wes' Courses](https://wesbos.com/courses)
 * [Level UP Tutorials Youtube](https://www.youtube.com/user/LevelUpTuts)
 
-## Twitter
-* [Wes Bos](https://twitter.com/wesbos)
-* [Scott Tolinski](https://twitter.com/stolinski)
-* [Syntax](https://twitter.com/SyntaxFM)
+#### Twitter
+ * [@wesbos](https://twitter.com/wesbos)
+ * [@stolinski](https://twitter.com/stolinski)
+ * Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets

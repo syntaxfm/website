@@ -29,7 +29,7 @@ url: https://traffic.libsyn.com/syntax/Syntax005.mp3
 * [Better Touch Tool](https://www.boastr.net/)
 * [King of the Road](https://www.viceland.com/en_us/show/king-of-the-road)
 
-## Twitter
-* [Wes Bos](https://twitter.com/wesbos)
-* [Scott Tolinski](https://twitter.com/stolinski)
-* [Syntax](https://twitter.com/SyntaxFM)
+#### Twitter
+ * [@wesbos](https://twitter.com/wesbos)
+ * [@stolinski](https://twitter.com/stolinski)
+ * Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets
