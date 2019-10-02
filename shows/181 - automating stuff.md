@@ -26,6 +26,8 @@ If you want to know what's happening with your errors, track them with [Sentry](
 * [Google Home](https://store.google.com/gb/product/google_home)
 * [Drip](https://www.drip.com/)
 * [Divvy](https://mizage.com/divvy/)
+* [Z](https://github.com/rupa/z)
+* [Wes' Video on Z](https://www.youtube.com/watch?v=qbNn5zJLZU0)
 
 ## Tweet us your tasty treats!
 * [Scott's Instagram](https://www.instagram.com/stolinski/)
