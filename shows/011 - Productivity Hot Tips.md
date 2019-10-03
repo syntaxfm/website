@@ -10,11 +10,6 @@ Scott and Wes - Do you sleep? How do you get so much done? You replied to me way
 ## Sponsor
 * [Freshbooks](https://freshbooks.com/syntax) - Get 30 days free. Make sure to enter SYNTAX into the "How did you hear about us" section.
 
-## Follow us on twitter!
-* [Wes Bos](https://twitter.com/wesbos)
-* [Scott Tolinski](https://twitter.com/stolinski)
-* [Syntax](https://twitter.com/SyntaxFM)
-
 ## Show Notes
 
 * [Alfred](https://www.alfredapp.com/)
@@ -69,4 +64,9 @@ Sorry windows users.
 ## Shameless Plugs
 * [Level Up Tuts](https://www.leveluptutorials.com/)
 * [Wes' Courses](https://wesbos.com/courses)
+
+#### Tweet us your tips
+ * [@wesbos](https://twitter.com/wesbos)
+ * [@stolinski](https://twitter.com/stolinski)
+ * Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets
 

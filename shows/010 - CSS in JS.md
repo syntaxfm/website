@@ -33,3 +33,7 @@ The most requested syntax episode ever! We break down CSS in JavaScript. Pros/Co
 * [Grab Level Up Tuts before the price goes up!](https://www.leveluptutorials.com/)
 * [Modern Dev Tools](https://moderndevtools.com/)
 
+#### Twitter
+ * [@wesbos](https://twitter.com/wesbos)
+ * [@stolinski](https://twitter.com/stolinski)
+ * Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets
