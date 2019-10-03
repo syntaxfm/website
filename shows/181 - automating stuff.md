@@ -18,6 +18,10 @@ If you want to know what's happening with your errors, track them with [Sentry](
 
 13:16 - Bash scripts & aliases
 
+17:06 - Remove node_modules
+
+* `find . -name "node_modules" -type d -prune -exec rm -rf '{}' +`
+
 18:43 - Other
 
 ## Links
