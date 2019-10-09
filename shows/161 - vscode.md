@@ -16,7 +16,7 @@ Netlify is the best way to deploy and host a front-end website. All the features
 3:18 - Theme
 
 * [Cobalt 2](https://marketplace.visualstudio.com/items?itemName=wesbos.theme-cobalt2)
-* [SyntWave '84](https://marketplace.visualstudio.com/items?itemName=RobbOwen.synthwave-vscode)
+* [SynthWave '84](https://marketplace.visualstudio.com/items?itemName=RobbOwen.synthwave-vscode)
 
 4:58 - Fonts
 
@@ -35,7 +35,7 @@ Netlify is the best way to deploy and host a front-end website. All the features
 * Scott: 
 	* [Better Comments](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments)
 	* [Import Cost](https://marketplace.visualstudio.com/items?itemName=wix.vscode-import-cost)
-	* [Ctrl+Click Go To Definition](https://marketplace.visualstudio.com/items?itemName=VisualStudioPlatformTeam.CtrlClickGoToDefinition)
+	* [Ctrl+Click Go To Definition](https://code.visualstudio.com/docs/editor/editingevolved#_go-to-definition)
 	* [Wrap Console Log Simple](https://marketplace.visualstudio.com/items?itemName=WooodHead.vscode-wrap-console-log-simple)
 	* [Git History](https://marketplace.visualstudio.com/items?itemName=donjayamanne.githistory)
 
