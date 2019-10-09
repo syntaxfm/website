@@ -24,7 +24,7 @@ const Header = () => (
       </div>
       <div className="people">
         <div className="person">
-          <img src="/static/wes400x400.jpg" alt="Wes Bos" className="avatar" />
+          <img src="https://avatars.githubusercontent.com/wesbos?size=200" alt="Wes Bos" className="avatar" />
           <h3>Wes Bos</h3>
           <a
             target="_blank"
@@ -49,7 +49,7 @@ const Header = () => (
 
         <div className="person">
           <img
-            src="https://avatars2.githubusercontent.com/u/669383?s=460&v=4"
+            src="https://avatars.githubusercontent.com/stolinski?size=200"
             alt="Scott Tolinski"
             className="avatar"
             rel="noopener noreferrer"
