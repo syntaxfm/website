@@ -50,8 +50,8 @@ Netlify is the best way to deploy and host a front-end website. All the features
 * [The Indicator](https://www.npr.org/podcasts/510325/the-indicator-from-planet-money)
 
 ## ××× SIIIIICK ××× PIIIICKS ×××
-* Scott: [Garmin vivoactive 3](https://amzn.to/2oyCuA3)
-* Wes: [Untitled Goose Game](https://www.youtube.com/watch?v=9LL2AtHo1gk)
+* Scott: [Untitled Goose Game](https://www.youtube.com/watch?v=9LL2AtHo1gk)
+* Wes: [Garmin vivoactive 3](https://amzn.to/2oyCuA3)
 
 ## Shameless Plugs
 * Scott: [Svelte For Beginners](https://www.leveluptutorials.com/pro) - Sign up for the year and save 25%!
