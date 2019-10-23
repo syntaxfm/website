@@ -10,9 +10,6 @@ function Page({children}) {
         Skip to content
       </a>
       <Header />
-      <style
-        dangerouslySetInnerHTML={{ __html: stylesheet.replace(/\n/g, '') }}
-      />
       {children}
       <Footer />
     </div>
