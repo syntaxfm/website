@@ -1,4 +1,3 @@
-import { withRouter } from 'next/router';
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
@@ -25,9 +24,14 @@ export default class SickPicksPage extends React.Component {
       <Page>
         <Meta baseURL={baseURL} staticPage={{ title: 'Sick Picks' }} />
         <div className="wrapper wrapper--text">
-          {sickPicks.map(sickPick => <div key={sickPick.id} dangerouslySetInnerHTML={{ __html: sickPick.html }} />)}
+          {sickPicks.map(sickPick => (
+            <div
+              key={sickPick.id}
+              dangerouslySetInnerHTML={{ __html: sickPick.html }} //eslint-disable-line
+            />
+          ))}
         </div>
       </Page>
     );
   }
-};
+}

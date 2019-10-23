@@ -1,5 +1,5 @@
-import Subscribe from './Subscribe';
 import Link from 'next/link';
+import Subscribe from './Subscribe';
 
 const Header = () => (
   <header className="header">
@@ -24,7 +24,11 @@ const Header = () => (
       </div>
       <div className="people">
         <div className="person">
-          <img src="https://avatars.githubusercontent.com/wesbos?size=200" alt="Wes Bos" className="avatar" />
+          <img
+            src="https://avatars.githubusercontent.com/wesbos?size=200"
+            alt="Wes Bos"
+            className="avatar"
+          />
           <h3>Wes Bos</h3>
           <a
             target="_blank"

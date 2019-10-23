@@ -1,10 +1,10 @@
-import React, {useEffect} from 'react';
+/* eslint-disable react/no-danger */
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 const ShowNotes = ({ show, setCurrentPlaying }) => {
-
   useEffect(() => {
-    document.querySelector(".showNotes").scrollTop = 0;
+    document.querySelector('.showNotes').scrollTop = 0;
   });
 
   return (
