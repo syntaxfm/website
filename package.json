@@ -9,7 +9,9 @@
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
     "deploy": "now",
-    "alias": "now alias"
+    "alias": "now alias",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "now": {
     "alias": [
@@ -39,6 +41,18 @@
     "speakingurl": "^14.0.1"
   },
   "devDependencies": {
+    "babel-eslint": "^9.0.0",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.1",
+    "eslint-config-prettier": "^4.3.0",
+    "eslint-config-wesbos": "0.0.19",
+    "eslint-plugin-html": "^5.0.5",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-react-hooks": "^1.7.0",
+    "prettier": "^1.18.2",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2"
   }

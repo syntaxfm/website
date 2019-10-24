@@ -5,15 +5,15 @@ import getBaseURL from '../lib/getBaseURL';
 
 class SyntaxDocument extends Document {
   static async getInitialProps(ctx) {
-    const {req} = ctx;
+    const { req } = ctx;
     const baseURL = getBaseURL(req);
-    console.log(baseURL)
-    const initialProps = await Document.getInitialProps(ctx)
-    return { ...initialProps, baseURL }
+    console.log(baseURL);
+    const initialProps = await Document.getInitialProps(ctx);
+    return { ...initialProps, baseURL };
   }
 
   render() {
-    const {baseURL} = this.props;
+    const { baseURL } = this.props;
     return (
       <Html lang="en">
         <Head>
@@ -28,6 +28,7 @@ class SyntaxDocument extends Document {
           />
           <link rel="shortcut icon" href={`${baseURL}/static/favicon.png`} />
           <style
+            // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{ __html: stylesheet.replace(/\n/g, '') }}
           />
         </Head>
@@ -36,7 +37,7 @@ class SyntaxDocument extends Document {
           <NextScript />
         </body>
       </Html>
-    )
+    );
   }
 }
 

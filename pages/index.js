@@ -41,7 +41,7 @@ export default withRouter(
       }
     }
 
-    setCurrentPlaying = (currentPlaying) => {
+    setCurrentPlaying = currentPlaying => {
       console.log('Setting current playing');
       this.setState({ currentPlaying });
     };

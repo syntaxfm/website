@@ -6,7 +6,7 @@ import VolumeBars from './VolumeBars';
 
 export default class Player extends React.Component {
   static propTypes = {
-    show: PropTypes.object.isRequired
+    show: PropTypes.object.isRequired,
   };
 
   constructor(props) {
@@ -23,10 +23,10 @@ export default class Player extends React.Component {
       const lastVolume = localStorage.getItem(`lastVolumeSetting`);
       const lastPlayback = localStorage.getItem(`lastPlaybackSetting`);
 
-      if (lp) lastPlayed = JSON.parse(lp).lastPlayed;
-      if (lastVolume) lastVolumePref = JSON.parse(lastVolume).lastVolumePref;
+      if (lp) lastPlayed = JSON.parse(lp).lastPlayed; //eslint-disable-line
+      if (lastVolume) lastVolumePref = JSON.parse(lastVolume).lastVolumePref; //eslint-disable-line
       if (lastPlayback)
-        lastPlaybackRate = JSON.parse(lastPlayback).lastPlaybackRate;
+        lastPlaybackRate = JSON.parse(lastPlayback).lastPlaybackRate; //eslint-disable-line
     }
 
     this.state = {
@@ -39,15 +39,15 @@ export default class Player extends React.Component {
       timeWasLoaded: lastPlayed !== 0,
       showTooltip: false,
       tooltipPosition: 0,
-      tooltipTime: '0:00'
+      tooltipTime: '0:00',
     };
   } // END Constructor
 
-  componentWillUpdate(nextProps, nextState) {
+  componentWillUpdate(nextProps, nextState) { //eslint-disable-line
     this.audio.playbackRate = nextState.playbackRate;
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps, prevState) { //eslint-disable-line
     const { show } = this.props;
     const { currentTime, currentVolume, playbackRate } = this.state;
     if (show.number !== prevProps.show.number) {
@@ -58,11 +58,11 @@ export default class Player extends React.Component {
         const data = JSON.parse(lp);
         const data2 = JSON.parse(lastVolume);
         const data3 = JSON.parse(lastPlayback);
-
+        // eslint-disable-next-line
         this.setState({
           currentTime: data.lastPlayed,
           currentVolume: data2.lastVolumePref,
-          playbackRate: data3.lastPlaybackRate
+          playbackRate: data3.lastPlaybackRate,
         });
         this.audio.currentTime = data.lastPlayed;
         this.audio.volume = data2.lastVolumePref;
@@ -140,7 +140,7 @@ export default class Player extends React.Component {
   seekTime = e => {
     this.setState({
       tooltipPosition: e.nativeEvent.offsetX,
-      tooltipTime: formatTime(this.scrubTime(e))
+      tooltipTime: formatTime(this.scrubTime(e)),
     });
   };
 
@@ -153,7 +153,7 @@ export default class Player extends React.Component {
   volume = e => {
     this.audio.volume = e.currentTarget.value;
     this.setState({
-      currentVolume: `${e.currentTarget.value}`
+      currentVolume: `${e.currentTarget.value}`,
     });
   };
 
@@ -170,7 +170,7 @@ export default class Player extends React.Component {
     const playbackRateMax = 2.5;
     const playbackRateMin = 0.75;
 
-    let playbackRate = this.state.playbackRate + change;
+    let playbackRate = this.state.playbackRate + change; //eslint-disable-line
 
     if (playbackRate > playbackRateMax) {
       playbackRate = playbackRateMin;
@@ -193,7 +193,7 @@ export default class Player extends React.Component {
       duration,
       showTooltip,
       tooltipPosition,
-      tooltipTime
+      tooltipTime,
     } = this.state;
 
     return (
@@ -212,6 +212,7 @@ export default class Player extends React.Component {
         </div>
 
         <div className="player__section player__section--middle">
+          {/* eslint-disable */}
           <div
             className="progress"
             onClick={this.scrub}
@@ -224,7 +225,6 @@ export default class Player extends React.Component {
             }}
             ref={x => (this.progress = x)}
           >
-
             {/* eslint-enable */}
 
             <div
@@ -239,7 +239,7 @@ export default class Player extends React.Component {
             className="player__tooltip"
             style={{
               left: `${tooltipPosition}px`,
-              opacity: `${showTooltip ? '1' : '0'}`
+              opacity: `${showTooltip ? '1' : '0'}`,
             }}
           >
             {tooltipTime}
@@ -259,12 +259,11 @@ export default class Player extends React.Component {
           <div className="player__volume">
             <p>LOUDNESS</p>
             <div className="player__inputs">
-
               <VolumeBars volume={this.volume} />
-
             </div>
           </div>
         </div>
+        {/* eslint-disable */}
         <audio
           ref={audio => (this.audio = audio)}
           onPlay={this.playPause}
@@ -274,6 +273,7 @@ export default class Player extends React.Component {
           onLoadedMetadata={this.groupUpdates}
           src={show.url}
         />
+        {/* eslint-enable */}
       </div>
     );
   }
