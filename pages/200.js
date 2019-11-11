@@ -27,31 +27,7 @@ export default class TwoHundy extends React.Component {
             Ask us anything in the form below and tune in around 11:30ET for a
             live stream!
           </p>
-          <div
-            style={{
-              left: 0,
-              width: '100%',
-              height: 0,
-              position: 'relative',
-              paddingBottom: '56.25%',
-            }}
-          >
-            <iframe
-              title="Live Stream"
-              src="https://www.youtube.com/embed/live_stream?channel=UCyU5wkjgQYGRB0hIHMwm2Sg"
-              style={{
-                border: '0',
-                top: '0',
-                left: '0',
-                width: '100%',
-                height: '100%',
-                position: 'absolute',
-              }}
-              allowFullScreen
-              scrolling="no"
-              allow="encrypted-media; accelerometer; gyroscope; picture-in-picture"
-            ></iframe>
-          </div>
+
           <p>
             Huge thanks to{' '}
             <a href="https://pigeonhole.at" target="_blank">
