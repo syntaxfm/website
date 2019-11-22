@@ -7,8 +7,12 @@ const ShowList = ({
   currentPlaying,
   currentShow,
   setCurrentPlaying,
-  addShowToQueue
-}) => (
+  addShowToQueue,
+  currentQueue,
+  removeShowFromQueue
+}) => {
+
+  return(
   <div className="showList">
     {shows.map(show => (
       <Show
@@ -16,6 +20,8 @@ const ShowList = ({
         addShowToQueue={addShowToQueue}
         currentPlaying={currentPlaying}
         currentShow={currentShow}
+        currentQueue={currentQueue}
+        removeShowFromQueue={removeShowFromQueue}
         key={show.number}
         show={show}
       />
@@ -23,6 +29,7 @@ const ShowList = ({
     <div className="show show--dummy" />
   </div>
 );
+}
 
 ShowList.propTypes = {
   shows: PropTypes.array.isRequired,

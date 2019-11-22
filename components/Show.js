@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import slug from 'speakingurl';
 import Router from 'next/router';
-import { FaPlay, FaPlus } from 'react-icons/fa';
+import { FaPlay, FaPlus, FaMinus } from 'react-icons/fa';
 import Bars from './bars';
 
 export default class Show extends React.Component {
@@ -12,6 +12,8 @@ export default class Show extends React.Component {
     currentShow: PropTypes.string.isRequired,
     setCurrentPlaying: PropTypes.func.isRequired,
     addShowToQueue: PropTypes.func.isRequired,
+    currentQueue: PropTypes.array.isRequired,
+    removeShowFromQueue: PropTypes.func.isRequired
   };
 
   changeURL = (e, show) => {
@@ -21,7 +23,7 @@ export default class Show extends React.Component {
   };
 
   render() {
-    const { show, currentPlaying, currentShow, setCurrentPlaying, addShowToQueue } = this.props;
+    const { show, currentPlaying, currentShow, setCurrentPlaying, addShowToQueue, currentQueue, removeShowFromQueue } = this.props;
     return (
       <div
         className={`show ${
@@ -43,14 +45,25 @@ export default class Show extends React.Component {
             <Bars />
           ) : (
             <>
-            <button
-              type="button"
-              onClick={() => addShowToQueue(show.displayNumber)}
-              className="show__play"
-              title="add to queue"
-            >
-              <FaPlus />
-            </button>
+            { !currentQueue.includes(show.displayNumber) ? (
+              <button
+                type="button"
+                onClick={() => addShowToQueue(show.displayNumber)}
+                className="show__play"
+                title="add to queue"
+              >
+                <FaPlus />
+              </button>
+            ) : (
+              <button
+                type="button"
+                onClick={() => removeShowFromQueue(show.displayNumber)}
+                className="show__play"
+                title="remove frome queue"
+              >
+                <FaMinus />
+              </button>
+            )}
             <button
               type="button"
               onClick={() => setCurrentPlaying(show.displayNumber)}

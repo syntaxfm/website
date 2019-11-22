@@ -21,10 +21,14 @@ export default withRouter(
       super();
       const currentShow =
         props.router.query.number || props.shows[0].displayNumber;
+      // Get the current episode queue or initialize it if it doesnt exist
+      const episodeQueueString = localStorage.getItem("episodeQueue")
+      const currentQueue = episodeQueueString ? JSON.parse(episodeQueueString) : []
 
       this.state = {
         currentShow,
         currentPlaying: currentShow,
+        currentQueue,
       };
     }
 
@@ -47,7 +51,25 @@ export default withRouter(
     };
 
     addShowToQueue = (show) => {
-      console.log(`Added ${show} to queue!`)
+      console.log(`Added ${show} to queue`)
+      const newQueue = [...this.state.currentQueue, show]
+      this.setState({
+        currentQueue: newQueue
+      })
+      if (typeof window !== 'undefined') {
+        localStorage.setItem("episodeQueue", JSON.stringify(newQueue));
+      }
+    }
+
+    removeShowFromQueue = (show) => {
+      console.log(`Removing ${show} from queue`)
+      const newQueue = this.state.currentQueue.filter(queueItem => queueItem !== show);
+      this.setState({
+        currentQueue: newQueue
+      })
+      if (typeof window !== 'undefined') {
+        localStorage.setItem("episodeQueue", JSON.stringify(newQueue));
+      }
     }
 
     render() {
@@ -74,6 +96,8 @@ export default withRouter(
                 currentPlaying={currentPlaying}
                 setCurrentPlaying={this.setCurrentPlaying}
                 addShowToQueue={this.addShowToQueue}
+                currentQueue={this.state.currentQueue}
+                removeShowFromQueue={this.removeShowFromQueue}
               />
               <ShowNotes
                 show={show}
