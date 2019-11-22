@@ -21,9 +21,13 @@ export default withRouter(
       super();
       const currentShow =
         props.router.query.number || props.shows[0].displayNumber;
+
       // Get the current episode queue or initialize it if it doesnt exist
-      const episodeQueueString = localStorage.getItem("episodeQueue")
-      const currentQueue = episodeQueueString ? JSON.parse(episodeQueueString) : []
+      let currentQueue = []
+      if(typeof window !== "undefined") {
+        const episodeQueueString = localStorage.getItem("episodeQueue")
+        currentQueue = JSON.parse(episodeQueueString)
+      }
 
       this.state = {
         currentShow,
@@ -89,7 +93,12 @@ export default withRouter(
           <Meta show={show} baseURL={baseURL} />
           <div className="wrapper">
             <main className="show-wrap" id="main" tabIndex="-1">
-              <Player show={current} />
+              <Player
+               show={current}
+               currentQueue={this.state.currentQueue}
+               removeShowFromQueue={this.removeShowFromQueue}
+               setCurrentPlaying={this.setCurrentPlaying}
+              />
               <ShowList
                 shows={shows}
                 currentShow={currentShow}

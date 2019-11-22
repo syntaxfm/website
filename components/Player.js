@@ -6,7 +6,10 @@ import VolumeBars from './VolumeBars';
 
 export default class Player extends React.Component {
   static propTypes = {
-    show: PropTypes.object.isRequired
+    show: PropTypes.object.isRequired,
+    currentQueue: PropTypes.array.isRequired,
+    removeShowFromQueue: PropTypes.func.isRequired,
+    setCurrentPlaying: PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -183,6 +186,17 @@ export default class Player extends React.Component {
     this.setState({ playbackRate });
   };
 
+  // Play next episode in the queue
+  playNext = () => {
+    console.log("starting next!!")
+    const { currentQueue, removeShowFromQueue, setCurrentPlaying } = this.props
+    if(currentQueue.length) {
+      const nextEpisode = currentQueue[0];
+      removeShowFromQueue(nextEpisode);
+      setCurrentPlaying(nextEpisode);
+    }
+  }
+
   render() {
     const { show } = this.props;
     const {
@@ -269,6 +283,7 @@ export default class Player extends React.Component {
           ref={audio => (this.audio = audio)}
           onPlay={this.playPause}
           onPause={this.playPause}
+          onEnded={this.playNext}
           onTimeUpdate={this.timeUpdate}
           onVolumeChange={this.volumeUpdate}
           onLoadedMetadata={this.groupUpdates}
