@@ -23,8 +23,10 @@ export default class SponsorPage extends React.Component {
           <h1>Syntax Sponsorship</h1>
           <p>
             Interested in getting your message to thousands of developers? We're
-            interested in helping! If you think our audience may be a good fit,
-            let's chat about how we can make this sponsorship worth it for you.
+            interested in helping! Syntax is one of most listened to web
+            development podcasts out there (we think it's the most listened
+            to!). If you think our audience may be a good fit, let's chat about
+            how we can make this sponsorship worth it for you.
           </p>
           <figure style={{ float: 'left', marginRight: 35 }}>
             <img
@@ -77,9 +79,9 @@ export default class SponsorPage extends React.Component {
             </figcaption>
           </figure>
           <p>
-            Each sponsorship spot will receive an average of 30,000 downloads.
-            Each spot will receive at least 23,000 downloads, and some of the
-            shows reach 40-50,000 downloads just months after being launched.
+            Each sponsorship spot will receive an average of 45,000 downloads.
+            We get between 80-90,000 downloads per week with some of our top
+            shows receiving more than 70,000 downloads.
           </p>
 
           <blockquote className="twitter-tweet">
@@ -110,11 +112,11 @@ export default class SponsorPage extends React.Component {
           <ul>
             <li>
               Syntax has been in the Overcast <strong>top 20</strong> Technology
-              podcasts since launch
+              podcasts since launch. #10 as of September 2019!
             </li>
             <li>
-              The geographic makeup of the audience consists of 44% USA, 8%
-              Canada, 8% United Kingdom, 4% Germany, 4% Australia, 2% Sweden, 2%
+              The geographic makeup of the audience consists of 49% USA, 8%
+              United Kingdom, 5% Canada, 4% Germany, 3% Australia, 2% Sweden, 2%
               Netherlands.
             </li>
             <li>
@@ -122,8 +124,8 @@ export default class SponsorPage extends React.Component {
               rest of Europe, Brazil, and India.
             </li>
             <li>
-              Of those who listen in the browser, 80% use Chrome, 13% Safari,
-              and 7% Firefox.
+              Of those who listen in the browser, 83% use Chrome, 9% Safari, and
+              8% Firefox.
             </li>
             <li>
               Of those who listen on phones, it's roughly 80% iPhone users and
@@ -176,12 +178,34 @@ export default class SponsorPage extends React.Component {
           <h2>What You'll Get && Pricing</h2>
           <p>
             We have found that we get the best results for our advertisers when
-            they sponsor at least three shows.
+            they sponsor at least three shows and Scott and Wes are able to test
+            out the product prior to giving the ad read.
           </p>
+
+          <ul>
+            <li>Single Show — $2,200 USD</li>
+            <li>3+ Shows — $2,000 USD</li>
+            <li>10+ Shows — $1,850 USD</li>
+          </ul>
+
           <p>
-            Currently each sponsor spot is $1,000 USD per episode with a minimum
-            of three episodes, though this price will increase as our audience
-            does. Single show sponsorships are $1,200.
+            There are two types of shows. The price is the same regardless of
+            which type of show.
+          </p>
+
+          <p>
+            <strong>
+              Hasty Treat — our 10-20 min Monday show. Sponsor is read at the
+              top of the show. One sponsor per show.
+            </strong>
+          </p>
+
+          <p>
+            <strong>
+              Tasty Treat — our hour long Wednesday show. Sponsors are mentioned
+              at the top of the show, and ad read is done part-way through the
+              show. Two sponsors per show.
+            </strong>
           </p>
 
           <p>As part of the sponsorship package, you'll get:</p>
@@ -195,8 +219,8 @@ export default class SponsorPage extends React.Component {
               like listeners to click on.
             </li>
             <li>
-              A mention and single line at the top of the show. For example, Wes
-              might say{' '}
+              Tasty: A mention and single line at the top of the show. For
+              example, Wes might say{' '}
               <em>
                 This episode is sponsored by FreshBooks. They are my favourite
                 cloud accounting software, and we will talk about why partway
@@ -204,15 +228,11 @@ export default class SponsorPage extends React.Component {
               </em>
             </li>
             <li>
-              A 1-2 min sponsor spot midway during the episode. While we can do
-              a regular ad read, we have found that having Scott or Wes talk
-              about the product or service and their experience with it gives it
-              an added personal touch.
-            </li>
-            <li>
-              A thank-you tweet from{' '}
-              <a href="https://twitter.com/syntaxfm">@SyntaxFM</a> with a link
-              to your product or service from the show's Twitter account.
+              A 1-2 min sponsor spot at the start (hasty treat) or midway
+              (tasty) during the episode. While we can do a regular ad read, we
+              have found that having Scott or Wes talk about the product or
+              service and their experience with it gives it an added personal
+              touch and converts better for the advertiser.
             </li>
           </ol>
 

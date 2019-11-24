@@ -1,6 +1,6 @@
 ---
 number: 158
-title: The Fundamentals: HTML + CSS
+title: The Fundamentals - HTML + CSS
 date: 1562158800933
 url: https://traffic.libsyn.com/syntax/Syntax158.mp3
 ---

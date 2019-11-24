@@ -1,5 +1,5 @@
-const Bars = () => (
-  <div className="bars bars--paused">
+const Bars = ({isPlaying}) => (
+  <div className={`bars ${isPlaying ? '' : 'bars--paused'}`}>
     <div className="bar" />
     <div className="bar" />
     <div className="bar" />

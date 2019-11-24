@@ -5,7 +5,7 @@ date: 1530536400092
 url: https://traffic.libsyn.com/syntax/Syntax053.mp3
 ---
 
-In this Hasty Treat (Short episode) Scott and Wes discus all things domains. Where to get them, how to set them up and how to safe time managing them all in one place.
+In this Hasty Treat (Short episode) Scott and Wes discus all things domains. Where to get them, how to set them up and how to save time managing them all in one place.
 
 ## Netlify — Sponsor
 

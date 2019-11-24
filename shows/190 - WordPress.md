@@ -15,7 +15,7 @@ Hasura is an open-source GraphQL engine that helps you instantly setup a scalabl
 
 ## Show Notes
 
-3:50 - Why did start Delicious Brains?
+3:50 - Why did Brad start Delicious Brains?
 
 5:25 - What plugins does Delicious Brains make?
 

@@ -38,6 +38,7 @@ No Frameworks No Compilers No Libraries No Boilerplate. Join 101,746 others.
 
 #### [React Native for everyone](https://www.leveluptutorials.com/store/products/tutorials/lut-dd014)
 
-## Twitter
-* [Wes Bos](https://twitter.com/wesbos)
-* [Scott Tolinski](https://twitter.com/stolinski)
+#### Twitter
+ * [@wesbos](https://twitter.com/wesbos)
+ * [@stolinski](https://twitter.com/stolinski)
+ * Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets

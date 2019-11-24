@@ -36,7 +36,7 @@ In this episode we talk about how to accept money on the internet including the 
 * [Level UP Tutorials Youtube](https://www.youtube.com/user/LevelUpTuts)
 * [How to GraphQL](https://www.howtographql.com)
 
-## Twitter
-* [Wes Bos](https://twitter.com/wesbos)
-* [Scott Tolinski](https://twitter.com/stolinski)
-* [Syntax](https://twitter.com/SyntaxFM)
+#### Twitter
+ * [@wesbos](https://twitter.com/wesbos)
+ * [@stolinski](https://twitter.com/stolinski)
+ * Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets

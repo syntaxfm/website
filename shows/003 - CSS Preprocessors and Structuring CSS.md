@@ -58,6 +58,7 @@ Learn the new industry standard for web design. Become an expert in the app that
 
 Principle makes it easy to design animated and interactive user interfaces. Whether you're designing the flow of a multi-screen app, or new interactions and animations, Principle lets you create designs that look and feel amazing.
 
-## Twitter
-* [Wes Bos](https://twitter.com/wesbos)
-* [Scott Tolinski](https://twitter.com/stolinski)
+#### Twitter
+ * [@wesbos](https://twitter.com/wesbos)
+ * [@stolinski](https://twitter.com/stolinski)
+ * Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets

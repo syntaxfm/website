@@ -3,7 +3,16 @@ import Link from 'next/link';
 const Footer = () => (
   <footer className="bottom">
     <p>
-      Want to <Link href="/sponsor"><a>Sponsor the Podcast?</a></Link>
+      Want to{' '}
+      <Link href="/sponsor">
+        <a>Sponsor the Podcast?</a>
+      </Link>
+    </p>
+    <p>
+      Looking for some{' '}
+      <Link href="/sickpicks">
+        <a>Sick Picks?</a>
+      </Link>
     </p>
     <p>&copy; Wes Bos && Scott Tolinski {new Date().getFullYear()}</p>
     <p>

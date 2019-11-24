@@ -1,24 +1,29 @@
+/* eslint-disable no-plusplus */
+/* eslint-disable jsx-a11y/label-has-for */
 import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
 
 // TODO Fix all eslint issues
 
 // data generator -> to create 10 volume bars
-const getItems = count => {
-  return Array.from({ length: count }, (v, i) => (i + 1) * 10).map(k => {
-    let decimal = k / 100;
+const getItems = count =>
+  Array.from({ length: count }, (v, i) => (i + 1) * 10).map(k => {
+    const decimal = k / 100;
     return {
       integer: `${k}`,
       deci: `${decimal}`,
       vol: `vol${k}`,
       level: `Volume Level ${k}/100`,
-      checked: true
+      checked: true,
     };
-  }); // END MAP
-}; // END ARROW
-
+  }); // END MAP // END ARROW
 class VolumeBars extends Component {
   state = {
-    volumeBarList: getItems(10)
+    volumeBarList: getItems(10),
+  };
+
+  static propTypes = {
+    volume: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
@@ -29,40 +34,44 @@ class VolumeBars extends Component {
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate() {
     const localKey = `lastVolumeBarsOn`;
-    const localValue = JSON.stringify(this.state.volumeBarList);
+    const { volumeBarList } = this.state;
+    const localValue = JSON.stringify(volumeBarList);
     localStorage.setItem(localKey, localValue);
   }
 
-  //We are going to track which volume bars are "checked"
+  // We are going to track which volume bars are "checked"
   handleOnClick = index => {
     // make a copy of state
-    const volumeBarList = [...this.state.volumeBarList];
+    const { volumeBarList } = this.state;
+    const volumeBarListCopy = [...volumeBarList];
     // Get the index positions from 0 till index (index clicked)
     for (let i = 0; i <= index; i++) {
-      volumeBarList[i].checked = true;
+      volumeBarListCopy[i].checked = true;
     }
     // Get the index positions of the remaining non-checked
     for (let i = index + 1; i < 10; i++) {
-      volumeBarList[i].checked = null;
+      volumeBarListCopy[i].checked = null;
     }
     // Update State
     this.setState({
-      volumeBarList
+      volumeBarList: volumeBarListCopy,
     });
   };
 
   render() {
+    const { volume } = this.props;
+    const { volumeBarList } = this.state;
     return (
       <Fragment>
-        {this.state.volumeBarList.map((item, index) => (
+        {volumeBarList.map((item, index) => (
           <Fragment key={item.integer}>
             <input
               onClick={() => {
                 this.handleOnClick(index);
               }}
-              onChange={this.props.volume}
+              onChange={volume}
               type="radio"
               name="volume"
               value={item.deci}

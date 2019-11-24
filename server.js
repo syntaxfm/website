@@ -1,12 +1,12 @@
 const express = require('express');
 const next = require('next');
-const Router = require('./routes').Router;
+const { Router } = require('./routes');
 
 const dev = process.env.NODE_ENV !== 'production';
 const port = parseInt(process.env.PORT, 10) || 6969;
 const app = next({ dev });
 const handle = app.getRequestHandler();
-const { getShows, getShow } = require('./lib/getShows');
+const { getShows, getShow, getAllShowSickPicks } = require('./lib/getShows');
 
 app.prepare().then(() => {
   const server = express();
@@ -23,6 +23,10 @@ app.prepare().then(() => {
       return;
     }
     res.status(404).json({ message: 'Sorry not found' });
+  });
+
+  server.get('/api/sickpicks', (req, res) => {
+    res.json(getAllShowSickPicks());
   });
 
   // Custom Next.js URLs

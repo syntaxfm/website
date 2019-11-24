@@ -49,7 +49,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 * [prismic](https://prismic.io/)
 * [Sanity](https://www.sanity.io/)
 * [Contentful](https://www.contentful.com/)
-* [Tiny CMS](http://www.tinycms.eu/)
+* [Tina CMS](https://tinacms.org/)
 * [Forestry](https://forestry.io/)
 * [Airdale Chemical](http://www.airedalechemical.com/)
 * [Material](https://material.io/)
