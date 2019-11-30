@@ -11,6 +11,7 @@ export default class Show extends React.Component {
     currentPlaying: PropTypes.string.isRequired,
     currentShow: PropTypes.string.isRequired,
     setCurrentPlaying: PropTypes.func.isRequired,
+    isPlaying: PropTypes.bool
   };
 
   changeURL = (e, show) => {
@@ -20,7 +21,7 @@ export default class Show extends React.Component {
   };
 
   render() {
-    const { show, currentPlaying, currentShow, setCurrentPlaying } = this.props;
+    const { show, currentPlaying, currentShow, setCurrentPlaying, isPlaying } = this.props;
     return (
       <div
         className={`show ${
@@ -39,7 +40,7 @@ export default class Show extends React.Component {
 
         <div className="show__playcontrols">
           {currentPlaying === show.displayNumber ? (
-            <Bars />
+            <Bars isPlaying={isPlaying}/>
           ) : (
             <button
               type="button"

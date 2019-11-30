@@ -49,7 +49,7 @@ Sanity.io is a real-time headless CMS with a fully customizable Content Studio b
 
 33:32 - Users / Auth / Cookies / Permissions 
 
-* Use something a pre-existing package or service rather than role your own (though it can get expensive quickly)
+* Use something like a pre-existing package or service rather than roll your own (though it can get expensive quickly)
 * [Passport](http://www.passportjs.org/)
 * [Auth0](https://auth0.com/)
 * [accounts-js](https://accounts-js.netlify.com/)

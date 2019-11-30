@@ -25,7 +25,7 @@ url: https://traffic.libsyn.com/syntax/syntax002.mp3
 * [Peak Design Everyday Backpack](https://www.peakdesign.com/everyday-backpack)
  * [Everyday Backpack Video](https://www.youtube.com/watch?v=Wf8US4LJp1w)
 * [Quik by GoPro](https://quik.gopro.com)
-* [Splice](https://spliceapp.com/)
+* [Splice](https://splice.com/)
 
 ## Shameless Plugs
 #### [JavaScript30](https://javascript30.com)
@@ -36,6 +36,6 @@ No Frameworks No Compilers No Libraries No Boilerplate. Join 101,746 others.
 Over 860 free video tutorials for beginners, intermediate and expert web professionals. Level Up your skills with clear, high production, free video tutorials.
 
 #### Twitter
- * [@Syntax](https://twitter.com/syntaxfm)
  * [@wesbos](https://twitter.com/wesbos)
  * [@stolinski](https://twitter.com/stolinski)
+ * Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets
