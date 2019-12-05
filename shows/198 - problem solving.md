@@ -11,7 +11,7 @@ In this episode of Syntax, Scott and Wes talk about how to get better at problem
 Netlify is the best way to deploy and host a front-end website. All the features developers need right out of the box: Global CDN, Continuous Deployment, one click HTTPS and more. Hit up [netlify.com/syntax](https://netlify.com/syntax) for more info.
 
 ## Prismic - Sponsor
-Prismic is a Headless CMS for your next front end project. Create complex content type, relate data, and have your clients edit it all with the Prismic UI. Then pull the data into your project with their JSON or GraphQL API. Try it out with your next project - Gatsby, React + Apollo, or any other language. Check out their examples to get you started at [Prismic.io/syntax](https://prismic.io/syntax). 
+Prismic is a Headless CMS for your next front end project. Create complex content type, relate data, and have your clients edit it all with the Prismic UI. Then pull the data into your project with their JSON or GraphQL API. Try it out with your next project - Gatsby, React + Apollo, or any other language. Check out their examples to get you started at [prismic.io/syntax](https://prismic.io/syntax). 
 
 ## Show Notes
 
