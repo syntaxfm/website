@@ -8,7 +8,7 @@ url: https://traffic.libsyn.com/syntax/Syntax210.mp3
 It's another potluck! In this episode, Scott and Wes answer your questions about fonts, frameworks vs custom, drinking tea, learning to code, client work, and more!
 
 ## Kyle Prinsloo Freelancing - Sponsor
-Kyle Prinsloo teaches you everything you need to know about freelancing, including how to quit your job, earn a side-income and start taking control of your life. Check it out at [studywebdevelopment.com/freelancing](https://studywebdevelopment.com/freelancing).
+Kyle Prinsloo teaches you everything you need to know about freelancing, including how to quit your job, earn a side-income and start taking control of your life. Check it out at [studywebdevelopment.com/freelaning](https://studywebdevelopment.com/freelancing). Use the coupon "SYNTAX" and get 25%.
 
 ## LogRocket - Sponsor
 LogRocket lets you replay what users do on your site, helping you reproduce bugs and fix issues faster. It's an exception tracker, a session re-player and a performance monitor. Get 14 days free at [logrocket.com/syntax](https://logrocket.com/syntax).
