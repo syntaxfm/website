@@ -25,17 +25,17 @@ LogRocket lets you replay what users do on your site, helping you reproduce bugs
 
 15:30 - Q: Is it worth bundling JavaScript for websites that aren't using a framework (i.e. WordPress / CMS websites)? The company I work for uses a large enterprise CMS and our JavaScript is just a minified mash of several different JS files, most of which are several hundred lines of spaghetti code. It would be nice to break up all these files in some sort of modular way, plus have the added benefit of using Babel so we can write modern JS. However, the output of the bundled JS file seems massive. Won't that hurt performance and page load?
 
-22:12 - Q: I know both of you put out a ton of content, both together and individually. I’m just curious to hear if you listen to any other podcasts out there in the land, or any other types of content that you consume to hone your skillz to pay the billz. Thanks!
+21:17 - Q: I know both of you put out a ton of content, both together and individually. I’m just curious to hear if you listen to any other podcasts out there in the land, or any other types of content that you consume to hone your skillz to pay the billz. Thanks!
 
-26:09 - Q: What are your thoughts on Blazor? Is it a good move to be an early adopter of a framework like this, or should you focus on the ones that are already in a fully released state like React, Vue etc.?
+25:14 - Q: What are your thoughts on Blazor? Is it a good move to be an early adopter of a framework like this, or should you focus on the ones that are already in a fully released state like React, Vue etc.?
 
-29:45 - Q: I would like to ask Scott how you make subscriptions in a website? Also, how you give users a lifetime locked yearly subscription?
+28:51 - Q: I would like to ask Scott how you make subscriptions in a website? Also, how you give users a lifetime locked yearly subscription?
 
-40:49 - Q: I feel like other developers' code is always shorter, better structured, and easier to read than mine. Any tips (or resources) on writing clean, 'good' javascript code (or any other functional programming language)?
+39:53 - Q: I feel like other developers' code is always shorter, better structured, and easier to read than mine. Any tips (or resources) on writing clean, 'good' javascript code (or any other functional programming language)?
 
-44:57 - Q: Both of you have CMS backgrounds, Scott with Drupal and Wes with WordPress. When you moved to freelancing, did you build for clients using a CMS? Or did you create custom admin interfaces for clients to manage their own site? You've mentioned some headless WordPress in the past, but was that the norm?
+44:02 - Q: Both of you have CMS backgrounds, Scott with Drupal and Wes with WordPress. When you moved to freelancing, did you build for clients using a CMS? Or did you create custom admin interfaces for clients to manage their own site? You've mentioned some headless WordPress in the past, but was that the norm?
 
-47:58 - Q: Hey Scott + Wes, you're obviously very successful with your course creation careers, but do you miss client work? If people for some reason ever stopped buying your courses, would you go back to client work?
+47:02 - Q: Hey Scott + Wes, you're obviously very successful with your course creation careers, but do you miss client work? If people for some reason ever stopped buying your courses, would you go back to client work?
 
 ## Links
 * [Lighthouse](https://github.com/GoogleChrome/lighthouse)
