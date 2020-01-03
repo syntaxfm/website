@@ -59,7 +59,7 @@ If you want to know what's happening with your errors, track them with [Sentry](
 * [Keyframe.rs](https://keyframe.rs/)
 * [Babel](https://babeljs.io/)
 * [Twitch](https://www.twitch.tv/)
-* [Keygrame.rs Patreon](https://www.patreon.com/keyframers)
+* [Keyframe.rs Patreon](https://www.patreon.com/keyframers)
 
 ## ××× SIIIIICK ××× PIIIICKS ×××
 * David: [Lynn Fisher](https://lynnandtonic.com/)
