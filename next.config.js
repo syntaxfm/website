@@ -1,7 +1,21 @@
 const path = require('path');
 const glob = require('glob');
+const { Router } = require('./routes');
 
 module.exports = {
+  experimental: {
+    rewrites() {
+      const rewrites = []
+      Router.forEachPrettyPattern((page, pattern) => {
+        rewrites.push({
+          source: pattern,
+          destination: `/${page}`
+        })
+      });
+
+      return rewrites
+    }
+  },
   webpack: config => {
     config.module.rules.push(
       {

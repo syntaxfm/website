@@ -5,9 +5,9 @@
     "node": ">=8.1.2"
   },
   "scripts": {
-    "dev": "node server.js",
+    "dev": "next dev",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js",
+    "start": "next start",
     "deploy": "now",
     "alias": "now alias",
     "lint": "eslint .",
@@ -28,7 +28,7 @@
     "express": "^4.17.1",
     "glob": "7.1.6",
     "meta-marked": "^0.4.2",
-    "next": "^9.1.3",
+    "next": "^9.1.8-canary.5",
     "next-url-prettifier": "^1.4.0",
     "now": "^16.4.4",
     "postcss-easy-import": "3.0.0",

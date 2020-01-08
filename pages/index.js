@@ -32,6 +32,7 @@ export default withRouter(
     static async getInitialProps({ req }) {
       const baseURL = getBaseURL(req);
       const { data: shows } = await axios.get(`${baseURL}/api/shows`);
+      console.log(shows)
       return { shows, baseURL };
     }
 
