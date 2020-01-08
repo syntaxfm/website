@@ -30,7 +30,7 @@
     "meta-marked": "^0.4.2",
     "next": "^9.1.8-canary.5",
     "next-url-prettifier": "^1.4.0",
-    "now": "^16.4.4",
+    "now": "^16.7.2",
     "postcss-easy-import": "3.0.0",
     "postcss-loader": "3.0.0",
     "prop-types": "^15.7.2",
