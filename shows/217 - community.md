@@ -28,6 +28,7 @@ If you want to know what's happening with your errors, track them with [Sentry](
 * Spectrum
 * Facebook groups
 * Reddit
+* [SyntaxFM Reddit](https://www.reddit.com/r/SyntaxFM/)
 
 27:27 - Commenting systems
 
