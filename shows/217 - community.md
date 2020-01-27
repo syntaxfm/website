@@ -16,6 +16,7 @@ If you want to know what's happening with your errors, track them with [Sentry](
 
 * Slack
 * Discord
+* [Level Up Tutorials Discord](https://discord.gg/ccMC6kB) 
 * Faster communication
 
 9:00 - Forum based
