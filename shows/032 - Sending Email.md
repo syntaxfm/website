@@ -111,7 +111,7 @@ Listeners of this show get 20% off with the coupon code SYNTAX over at [xojo.com
 52:00
 
 * Host your own Platforms
-* [Sendy](http://wes.io/bvN7)
+* [Sendy](https://sendy.co/)
 * [Email Octopus](https://emailoctopus.com/)
 * [Mautic](http://mautic.org/)
 * [MailTrain](https://github.com/Mailtrain-org/mailtrain)
