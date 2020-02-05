@@ -26,7 +26,7 @@ export default class Show extends React.Component {
       <div
         className={`show ${
           currentPlaying === show.displayNumber ? 'show--playing' : ''
-        } ${currentShow === show.displayNumber ? 'show--active' : ''}
+          } ${currentShow === show.displayNumber ? 'show--active' : ''}
       `}
       >
         <a
@@ -35,22 +35,23 @@ export default class Show extends React.Component {
           onClick={e => this.changeURL(e, show)}
         >
           <p className="show__displayNumber">Episode {show.displayNumber}</p>
+          <p className="show__modifiedDate">{show.displayDate}</p>
           <h3 className="show__title">{show.title}</h3>
         </a>
 
         <div className="show__playcontrols">
           {currentPlaying === show.displayNumber ? (
-            <Bars isPlaying={isPlaying}/>
+            <Bars isPlaying={isPlaying} />
           ) : (
-            <button
-              type="button"
-              onClick={() => setCurrentPlaying(show.displayNumber)}
-              className="show__play"
-              title="play button"
-            >
-              <FaPlay />
-            </button>
-          )}
+              <button
+                type="button"
+                onClick={() => setCurrentPlaying(show.displayNumber)}
+                className="show__play"
+                title="play button"
+              >
+                <FaPlay />
+              </button>
+            )}
         </div>
       </div>
     );
