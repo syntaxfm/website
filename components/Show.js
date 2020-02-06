@@ -33,9 +33,12 @@ export default class Show extends React.Component {
           className="show__link"
           href={`/show/${show.displayNumber}/${slug(show.title)}`}
           onClick={e => this.changeURL(e, show)}
-        >
-          <p className="show__displayNumber">Episode {show.displayNumber}</p>
-          <p className="show__modifiedDate">{show.displayDate}</p>
+        > 
+          <div className="show__container">
+            <p className="show__displayNumber">Episode {show.displayNumber}</p>
+            <span className="show__seperator">{" | "}</span>
+            <p className="show__modifiedDate">{show.displayDate}</p>
+          </div>
           <h3 className="show__title">{show.title}</h3>
         </a>
 
