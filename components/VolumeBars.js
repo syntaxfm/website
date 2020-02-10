@@ -5,21 +5,21 @@ import PropTypes from 'prop-types';
 
 // TODO Fix all eslint issues
 
-// data generator -> to create 10 volume bars
+// data generator -> to create 11 volume bars
 const getItems = count =>
   Array.from({ length: count }, (v, i) => (i + 1) * 10).map(k => {
-    const decimal = k / 100;
+    const decimal = k / 110;
     return {
       integer: `${k}`,
       deci: `${decimal}`,
       vol: `vol${k}`,
-      level: `Volume Level ${k}/100`,
+      level: `Volume Level ${k}/110`,
       checked: true,
     };
   }); // END MAP // END ARROW
 class VolumeBars extends Component {
   state = {
-    volumeBarList: getItems(10),
+    volumeBarList: getItems(11),
   };
 
   static propTypes = {
@@ -51,7 +51,7 @@ class VolumeBars extends Component {
       volumeBarListCopy[i].checked = true;
     }
     // Get the index positions of the remaining non-checked
-    for (let i = index + 1; i < 10; i++) {
+    for (let i = index + 1; i < 11; i++) {
       volumeBarListCopy[i].checked = null;
     }
     // Update State
@@ -81,15 +81,15 @@ class VolumeBars extends Component {
             <label
               htmlFor={item.vol}
               style={
-                item.checked
-                  ? { background: '#03fff3' }
+                item.integer > 100 && item.checked ? { background: '#f1c15d' }
+                  : item.checked ? { background: '#03fff3' }
                   : { background: '#e4e4e4' }
               }
             >
               <span className="sr-only">{item.level}</span>
             </label>
           </Fragment>
-        ))}
+    ))}
       </Fragment>
     );
   }
