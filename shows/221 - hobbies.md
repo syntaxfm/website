@@ -2,7 +2,7 @@
 number: 221
 title: Hasty Treat - The Power of Hobbies
 date: 1581343200789
-url: https://traffic.libsyn.com/syntax/Syntax221mp3
+url: https://traffic.libsyn.com/syntax/Syntax221.mp3
 ---
 
 In this Hasty Treat, Scott and Wes talk about hobbies — how they can improve your life and make you a better developer, as well as the hobbies they enjoy.
