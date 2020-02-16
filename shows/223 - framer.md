@@ -2,7 +2,7 @@
 number: 223
 title: Hasty Treat - Get Movin' With Framer Motion
 date: 1581948000347
-url: https://traffic.libsyn.com/syntax/Syntax223mp3
+url: https://traffic.libsyn.com/syntax/Syntax223.mp3
 ---
 
 In this Hasty Treat, Scott and Wes talk about Framer Motion — why it is so cool, and how it can improve animations in your projects.
