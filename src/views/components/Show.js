@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import slug from 'speakingurl';
-import Router from 'next/router';
+//import Router from 'next/router';
 import { FaPlay } from 'react-icons/fa';
 import Bars from './bars';
 
@@ -17,7 +17,8 @@ export default class Show extends React.Component {
   changeURL = (e, show) => {
     e.preventDefault();
     const { href } = e.currentTarget;
-    Router.push(`/?number=${show.displayNumber}`, href, { shallow: true });
+    //Router.push(`/?number=${show.displayNumber}`, href, { shallow: true });
+    console.log('changeURL called with', show) 
   };
 
   render() {

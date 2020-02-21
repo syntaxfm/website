@@ -1,53 +1,57 @@
 const { promisify } = require('util');
-const glob = promisify(require('glob'));
-const marked = require('meta-marked');
 const { readFile } = require('fs');
 
+const glob = promisify(require('glob'));
+const marked = require('meta-marked');
+const spacetime = require('spacetime');
+
 const readAFile = promisify(readFile);
-const format = require('date-fns/format');
-
+const format = (epoc, fmt) => spacetime(epoc).unixFmt(fmt);
 const pad = num => `000${num}`.substr(-3);
-
-let shows = [];
 
 const renderer = new marked.Renderer();
 renderer.link = function(href, title, text) {
   return `<a rel="noopener noreferrer" target="_blank" href="${href}"> ${text}</a>`;
 };
 
-const loadShows = async () => {
-  const files = await glob('shows/*.md');
-  const markdownPromises = files.map(file => readAFile(file, 'utf-8'));
-  const showMarkdown = await Promise.all(markdownPromises);
+const cache = false
 
-  shows = showMarkdown
-    .map(md => marked(md, { renderer })) // convert to markdown
-    .map((show, i) => {
-      const { number } = show.meta;
+async function loadShows () {
+  if (cache === false) {
+    const files = await glob('shows/*.md');
+    const markdownPromises = files.map(file => readAFile(file, 'utf-8'));
+    const showMarkdown = await Promise.all(markdownPromises);
 
-      return {
-        ...show.meta,
-        html: show.html,
-        notesFile: files[i],
-        displayDate: format(parseFloat(show.meta.date), 'MMM do, yyyy'),
-        number,
-      };
-    }) // flatten
-    .map(show => ({ ...show, displayNumber: pad(show.number) })) // pad zeros
-    .reverse();
+    cache = showMarkdown.map(md => marked(md, { renderer })).map((show, i) => {
+              const { number } = show.meta;
+              return {
+                ...show.meta,
+                html: show.html,
+                notesFile: files[i],
+                displayDate: format(parseFloat(show.meta.date), 'MMM do, yyyy'),
+                number,
+              };
+            }) // flatten
+            .map(show => ({ ...show, displayNumber: pad(show.number) })) // pad zeros
+            .reverse();
+  }
+  return cache
 };
 
-exports.getShows = () => {
+async function getShows() {
+  let shows = await loadShows()
   const now = Date.now();
   return shows.filter(show => show.date < now);
 };
 
-exports.getShow = number => {
+async function getShow(number) {
+  let shows = await loadShows()
   const show = shows.find(showItem => showItem.displayNumber === number);
   return show;
 };
 
-exports.getAllShowSickPicks = () => {
+async function getSickPicks() {
+  let shows = await loadShows()
   // Since the sick picks parsed markdown id is not consistent,
   // this RegEx finds the first <h2> tag with an id that contains
   // the sequential characters "icks" from "picks" and selects
@@ -74,4 +78,4 @@ exports.getAllShowSickPicks = () => {
   }, []);
 };
 
-loadShows();
+module.exports = {getShow, getShows, getSickPicks}
