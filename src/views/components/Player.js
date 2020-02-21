@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FaPlay, FaPause } from 'react-icons/fa';
-import formatTime from '../lib/formatTime';
+import formatTime from './lib/formatTime';
 import VolumeBars from './VolumeBars';
 
 export default class Player extends React.Component {

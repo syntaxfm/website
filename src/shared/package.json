@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "glob": "^7.1.6",
+    "meta-marked": "^0.4.2",
+    "spacetime": "^6.4.1"
+  }
+}

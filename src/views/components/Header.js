@@ -1,5 +1,6 @@
-import Link from 'next/link';
 import Subscribe from './Subscribe';
+
+let Link = props=> <a href={props.href}>{props.children}</a>
 
 const Header = () => (
   <header className="header">
