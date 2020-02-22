@@ -1,5 +1,6 @@
 const { promisify } = require('util');
 const { readFile } = require('fs');
+const { join } = require('path');
 
 const glob = promisify(require('glob'));
 const marked = require('meta-marked');
@@ -14,11 +15,12 @@ renderer.link = function(href, title, text) {
   return `<a rel="noopener noreferrer" target="_blank" href="${href}"> ${text}</a>`;
 };
 
-const cache = false
+// deliberate let!
+let cache = false
 
 async function loadShows () {
   if (cache === false) {
-    const files = await glob('shows/*.md');
+    const files = await glob(join(__dirname, 'shows', '*.md'));
     const markdownPromises = files.map(file => readAFile(file, 'utf-8'));
     const showMarkdown = await Promise.all(markdownPromises);
 
@@ -46,12 +48,13 @@ async function getShows() {
 
 async function getShow(number) {
   let shows = await loadShows()
-  const show = shows.find(showItem => showItem.displayNumber === number);
+  let show = shows.find(showItem => showItem.displayNumber === Number(number));
+  if (!show)
+    show = shows.find(showItem => showItem.number === Number(number));
   return show;
 };
 
 async function getSickPicks() {
-  let shows = await loadShows()
   // Since the sick picks parsed markdown id is not consistent,
   // this RegEx finds the first <h2> tag with an id that contains
   // the sequential characters "icks" from "picks" and selects
@@ -60,7 +63,7 @@ async function getSickPicks() {
   const sickPickRegex = /(<h2 id=".*(icks).*">*[\s\S]*?(?=<h2))/g;
   const headerRegex = /[\s\S]*(?=<\/h2)/; // finds all characters up until the first closing </h2>
 
-  return this.getShows().reduce((sickPicksAcc, show) => {
+  return (await getShows()).reduce((sickPicksAcc, show) => {
     const episode = `<h2>Episode Number: ${show.number} - Sick Picks`;
     const sickPickMatch = show.html.match(sickPickRegex);
 
