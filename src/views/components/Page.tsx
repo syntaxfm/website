@@ -1,8 +1,8 @@
-import PropTypes from 'prop-types';
+import React from 'react'
 import Header from './Header';
 import Footer from './Footer';
 
-function Page({ children }) {
+export default function Page({ children }) {
   return (
     <div className="page">
       <a href="#main" className="skip-link">
@@ -14,12 +14,3 @@ function Page({ children }) {
     </div>
   );
 }
-
-Page.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]).isRequired,
-};
-
-export default Page;

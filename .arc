@@ -1,11 +1,8 @@
 @app
 syntaxfm
 
-@domain
-syntax.fm
-
 @static
-dist
+folder public
 
 @http
 get /

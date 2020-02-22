@@ -1,5 +1,5 @@
 const { http } = require('@architect/functions')
-const { getAllShowSickPicks } = require('@architect/shared/shows')
+const { getSickPicks } = require('@architect/shared/shows')
 
 async function sickpicks(req) {
   return { 

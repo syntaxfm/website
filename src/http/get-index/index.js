@@ -1,4 +1,4 @@
-let arc = require('@architect/functions')
-let ssr = require('@architect/shared/dist/render')
+let { http } = require('@architect/functions')
+let { render } = require('@architect/views/dist/ssr')
 
-exports.handler = arc.http.async(ssr) 
+exports.handler = http.async(render) 

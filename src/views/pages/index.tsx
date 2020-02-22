@@ -1,24 +1,28 @@
-//import { withRouter } from 'next/router';
 import React from 'react';
-//import axios from 'axios';
-import PropTypes from 'prop-types';
-import ShowList from './components/ShowList';
-import ShowNotes from './components/ShowNotes';
-import Player from './components/Player';
-import Meta from './components/meta';
-import Page from './components/Page';
-import getBaseURL from './lib/getBaseURL';
+import ShowList from '../components/ShowList';
+import ShowNotes from '../components/ShowNotes';
+import Player from '../components/Player';
+import Page from '../components/Page';
 
-export class IndexPage extends React.Component {
-  
-  static propTypes = {
-    // router: PropTypes.object.isRequired,
-    shows: PropTypes.array.isRequired,
-    baseURL: PropTypes.string.isRequired,
-  };
+interface IndexProps {
+  show: string;
+  shows: Array<Show>;
+}
+
+interface Show {
+  displayNumber: string;
+}
+
+interface State {
+  currentShow: string;
+  currentPlaying: string,
+  isPlaying: Boolean;
+}
+
+export default class IndexPage extends React.Component<IndexProps, State> {
 
   constructor(props) {
-    super();
+    super(props);
     const currentShow = props.show || props.shows[0].displayNumber;
 
     this.state = {
@@ -27,20 +31,6 @@ export class IndexPage extends React.Component {
       isPlaying: false,
     };
   }
-
-  /*
-  static async getInitialProps({ req }) {
-    const baseURL = getBaseURL(req);
-    const { data: shows } = await axios.get(`${baseURL}/api/shows`);
-    return { shows, baseURL };
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const { query } = nextProps.router;
-    if (query.number) {
-      this.setState({ currentShow: query.number });
-    }
-  }*/
 
   setCurrentPlaying = currentPlaying => {
     console.log('Setting current playing');
@@ -52,7 +42,7 @@ export class IndexPage extends React.Component {
   }
 
   render() {
-    const { shows = [], baseURL } = this.props;
+    const { shows = [] } = this.props;
     const { currentShow, currentPlaying, isPlaying } = this.state;
     // Currently Shown shownotes
     const show =
@@ -65,9 +55,8 @@ export class IndexPage extends React.Component {
 
     return (
       <Page>
-        <Meta show={show} baseURL={baseURL} />
         <div className="wrapper">
-          <main className="show-wrap" id="main" tabIndex="-1">
+          <main className="show-wrap" id="main">
             <Player show={current} onPlayPause={a => this.setIsPlaying(!a.paused)}/>
             <ShowList
               shows={shows}
