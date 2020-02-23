@@ -13,7 +13,7 @@ const routes = {
 }
 
 export default function App(props) {
-  console.log(props)
+  console.log(props.path)
   if (!routes[props.path])
     return <NotFound/>
   return new routes[props.path](props)

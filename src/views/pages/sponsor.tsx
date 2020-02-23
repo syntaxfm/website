@@ -17,7 +17,7 @@ export default class SponsorPage extends React.Component {
           </p>
           <figure style={{ float: 'left', marginRight: 35 }}>
             <img
-              src="/static/sponsor/27576683_675183752871920_1707794213682282496_n.jpg"
+              src="/_static/static/sponsor/27576683_675183752871920_1707794213682282496_n.jpg"
               alt="Syntax"
               width="400"
             />
@@ -54,7 +54,7 @@ export default class SponsorPage extends React.Component {
           <h2>Audience Size && Breakdown</h2>
           <figure style={{ float: 'right', marginLeft: 20 }}>
             <img
-              src="/static/sponsor/39099033_270538757113294_5127531635289358336_n.jpg"
+              src="/_static/static/sponsor/39099033_270538757113294_5127531635289358336_n.jpg"
               width="400"
               alt="iPhone showing a Syntax Episode"
             />

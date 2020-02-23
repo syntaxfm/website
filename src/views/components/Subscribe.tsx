@@ -1,3 +1,5 @@
+import React from 'react'
+
 function Subscribe() {
   return (
     <div className="subscribe">

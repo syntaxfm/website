@@ -11,7 +11,9 @@ import slug from 'speakingurl'
 //@ts-ignore
 import style from './styles/style.styl' 
 import App from './app'
-import { getShow, getShows, getSickPicks } from '../shared/shows'
+
+// use cjs to grab the data modules
+let { getShow, getShows, getSickPicks } = require('@architect/shared/shows')
 
 // lambda function renderer logic
 export async function render(req) {
@@ -49,8 +51,8 @@ ${ meta }
 <meta name=theme-color content=#F1C15D>
 <meta charSet=utf-8>
 <meta property=og:description content="${ description }">
-<meta property=og:image content=/static/syntax-banner.png>
-<link rel="shortcut icon" href=/static/favicon.png>
+<meta property=og:image content=/_static/static/syntax-banner.png>
+<link rel="shortcut icon" href=/_static/static/favicon.png>
 <style>${ style }</style>
 </head>
 <body>

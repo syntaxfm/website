@@ -2,7 +2,7 @@
 syntaxfm
 
 @static
-folder public
+folder dist 
 
 @http
 get /
