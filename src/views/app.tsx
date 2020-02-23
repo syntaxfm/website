@@ -12,8 +12,11 @@ const routes = {
   '/200': TwoHundy
 }
 
+// path, params, query, show, shows
 export default function App(props) {
-  console.log(props.path)
+  //console.log(props)
+  if (props.params.number) 
+    return <IndexPage {...props} />
   if (!routes[props.path])
     return <NotFound/>
   return new routes[props.path](props)

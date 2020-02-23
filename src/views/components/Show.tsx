@@ -25,9 +25,9 @@ export default class Show extends React.Component<ShowProps> {
 
   changeURL = (e, show) => {
     e.preventDefault();
-    const { href } = e.currentTarget;
-    //Router.push(`/?number=${show.displayNumber}`, href, { shallow: true });
-    console.log('changeURL called with', show) 
+    let url = '/show/' + e.currentTarget.href.split('/show/')[1] 
+    history.pushState(null, null, url) 
+    window.dispatchEvent(new Event('popstate'))
   };
 
   render() {

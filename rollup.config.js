@@ -18,14 +18,19 @@ const cjs = {
     'react-dom': Object.keys(reactDom),
     'react-is': Object.keys(reactIs),
   },
-}
+};
 
 // minimal typescript config
-const tsconfig = { 
-  jsx: 'react', 
-  target: 'ES2018', 
-  allowSyntheticDefaultImports: true 
-}
+const tsconfig = {
+  jsx: 'react',
+  target: 'ES2018',
+  allowSyntheticDefaultImports: true,
+};
+
+const onwarn = (msg, warn) => {
+  if (msg.code === 'THIS_IS_UNDEFINED') return;
+  warn(msg);
+};
 
 // compiles the render function
 const server = {
@@ -37,9 +42,9 @@ const server = {
   external: ['stream', 'fs', 'util', 'path'],
   plugins: [
     postcss(),
-    resolve({ 
-      browser: false, 
-      preferBuiltins: true 
+    resolve({
+      browser: false,
+      preferBuiltins: true,
     }),
     commonjs(cjs),
     typescript(tsconfig),
@@ -48,28 +53,26 @@ const server = {
     }),
     terser(),
   ],
-  onwarn(msg, warn) {
-    if (msg.code === 'THIS_IS_UNDEFINED') return
-    warn(msg)
-  }
-}
+  onwarn,
+};
 
 // browser build
-let client = {
+const client = {
   input: 'src/views/csr.tsx',
   output: {
     dir: 'dist',
     format: 'iife',
   },
   plugins: [
-    resolve({ 
-      browser: true 
-    }), 
+    resolve({
+      browser: true,
+    }),
     commonjs(cjs),
     typescript(tsconfig),
-    replace({'process.env.NODE_ENV': JSON.stringify('production')}),
-    terser()
-  ]
-}
+    replace({ 'process.env.NODE_ENV': JSON.stringify('production') }),
+    terser(),
+  ],
+  onwarn,
+};
 
-export default [server, client]
+export default [server, client];
