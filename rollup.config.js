@@ -18,7 +18,14 @@ const cjs = {
     'react-dom': Object.keys(reactDom),
     'react-is': Object.keys(reactIs),
   },
-};
+}
+
+// minimal typescript config
+const tsconfig = { 
+  jsx: 'react', 
+  target: 'ES2018', 
+  allowSyntheticDefaultImports: true 
+}
 
 // compiles the render function
 const server = {
@@ -30,55 +37,39 @@ const server = {
   external: ['stream', 'fs', 'util', 'path'],
   plugins: [
     postcss(),
-    resolve({ browser: false, preferBuiltins: true }),
-    commonjs(cjs),
-    typescript({
-      jsx: 'react',
-      target: 'ES2018',
-      allowSyntheticDefaultImports: true,
+    resolve({ 
+      browser: false, 
+      preferBuiltins: true 
     }),
+    commonjs(cjs),
+    typescript(tsconfig),
     replace({
       'process.env.NODE_ENV': JSON.stringify('production'),
     }),
     terser(),
   ],
-};
+  onwarn(msg, warn) {
+    if (msg.code === 'THIS_IS_UNDEFINED') return
+    warn(msg)
+  }
+}
 
-export default [server /* client, */];
-
-/*
+// browser build
 let client = {
-  input: 'src/views/client.tsx',
+  input: 'src/views/csr.tsx',
   output: {
     dir: 'dist',
     format: 'iife',
   },
   plugins: [
-    resolve({ browser: true }), 
+    resolve({ 
+      browser: true 
+    }), 
     commonjs(cjs),
-    typescript({ jsx: 'react' }),
-    replace({
-      'process.env.NODE_ENV': JSON.stringify('production'),
-    }),
+    typescript(tsconfig),
+    replace({'process.env.NODE_ENV': JSON.stringify('production')}),
     terser()
   ]
 }
 
-let server = {
-  input: 'src/views/render.tsx',
-  output: {
-    dir: 'src/views/dist',
-    format: 'cjs'
-  },
-  external: ['isomorphic-fetch', 'stream'],
-  plugins: [
-    resolve({ browser: false, preferBuiltins: true }), 
-    commonjs(cjs), 
-    typescript({ jsx: 'react', target: 'ES2018' }),
-    replace({
-      'process.env.NODE_ENV': JSON.stringify('production'),
-    })
-  ]
-}
-
-*/
+export default [server, client]
