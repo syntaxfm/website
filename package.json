@@ -8,7 +8,7 @@
     "start": "run-p dev sandbox",
     "sandbox": "sandbox",
     "dev": "rollup -c -w",
-    "lint": "eslint . --fix",
+    "lint": "eslint src --fix",
     "build": "mkdir -p dist && cp -r static dist/static && rollup -c ",
     "test": "NODE_ENV=testing QUIET=1 jest --ci test/*.test.js"
   },
