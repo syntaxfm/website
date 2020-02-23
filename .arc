@@ -1,5 +1,5 @@
 @app
-syntaxfm
+syntaxfm-tsx
 
 @static
 folder dist 

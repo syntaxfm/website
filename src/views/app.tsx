@@ -14,7 +14,7 @@ const routes = {
 
 // path, params, query, show, shows
 export default function App(props) {
-  //console.log(props)
+  //console.log('app received props:', props.show.number)
   if (props.params.number) 
     return <IndexPage {...props} />
   if (!routes[props.path])

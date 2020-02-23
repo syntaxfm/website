@@ -35,8 +35,8 @@ export default class Show extends React.Component<ShowProps> {
     return (
       <div
         className={`show ${
-          currentPlaying === show.displayNumber ? 'show--playing' : ''
-          } ${currentShow === show.displayNumber ? 'show--active' : ''}
+          currentPlaying == show.displayNumber ? 'show--playing' : ''
+          } ${currentShow == show.displayNumber ? 'show--active' : ''}
       `}
       >
         <a
@@ -58,7 +58,7 @@ export default class Show extends React.Component<ShowProps> {
           ) : (
               <button
                 type="button"
-                onClick={() => setCurrentPlaying(show.displayNumber)}
+                onClick={() => setCurrentPlaying(show.displayNumber, true)}
                 className="show__play"
                 title="play button"
               >
