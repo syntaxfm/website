@@ -12,23 +12,24 @@ import slug from 'speakingurl'
 import style from './styles/style.styl' 
 import App from './app'
 
-// use cjs to grab the data modules
-let { getShow, getShows, getSickPicks } = require('@architect/shared/shows')
+// use cjs to grab the data modules; rollup ignores it
+let { getShow, getShows, getShowsSparse, getSickPicks } = require('@architect/shared/shows')
 
 // lambda function renderer logic
 export async function render(req) {
   const shows = await getShows()
+  const sparse = await getShowsSparse()
   const jsx = <App path={req.path} params={req.params} query={req.query} shows={shows} />
   const title = 'my tmp title here'
   const show = 'my tmp show here'
   const main = ReactDOMServer.renderToString(jsx)
   return { 
-    html:  await syntaxfm({ title, show, main })
+    html:  await syntaxfm({ title, show, shows: sparse, main })
   }
 }
 
 // heler to render the html envelope
-async function syntaxfm({ title, main, show }) {
+async function syntaxfm({ title, main, show, shows }) {
   let description = "Full Stack Developers Wes Bos and Scott Tolinski dive deep into web development topics, explaining how they work and talking about their own experiences. They cover from JavaScript frameworks like React, to the latest advancements in CSS to simplifying web tooling."
   //if (css.length === 0)
   //  css = (await promisify(readFile)(join(__dirname, 'ssr.css'))).toString().replace(/\n/g, '')
@@ -56,8 +57,11 @@ ${ meta }
 <style>${ style }</style>
 </head>
 <body>
-<main>${ main }<main>
-<script type=module src=/_static/index.js></script>
+<main id=js-main>${ main }<main>
+<script>
+window.STATE = ${JSON.stringify(shows)}
+</script>
+<script type=module src=/_static/csr.js></script>
 </body>
 </html>`
 }
