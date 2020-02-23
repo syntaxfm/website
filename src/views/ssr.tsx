@@ -27,7 +27,7 @@ export async function render(req) {
     show = shows.find(s=> s.number == req.params.number) || show
   }
 
-  // remove the html prop from all other shows
+  // remove the html prop from all other shows; we can fetch that later
   let sparse = []
   for (let s of shows) {
     if (show.number == s.number)
@@ -41,13 +41,16 @@ export async function render(req) {
 
   const title = show? show.title : ''
   const jsx = <App path={req.path} params={req.params} show={show} shows={sparse} />
-  const main = ReactDOMServer.renderToString(jsx)
-  const html = await syntaxfm({ title, main, show, shows: sparse, path: req.path, params: req.params })
-  return { html } // todo: set cache to one day if if req.params.number defined
+  const main = ReactDOMServer.renderToString(jsx) 
+
+  // todo: set cache to one day if if req.params.number defined
+  return { 
+    html: syntaxfm({ title, main, show, shows: sparse, path: req.path, params: req.params })
+  }
 }
 
-// heler to render the html envelope
-async function syntaxfm({ title, main, show, shows, path, params }) {
+// helper buddy to render the html envelope
+function syntaxfm({ title, main, show, shows, path, params }) {
   let description = "Full Stack Developers Wes Bos and Scott Tolinski dive deep into web development topics, explaining how they work and talking about their own experiences. They cover from JavaScript frameworks like React, to the latest advancements in CSS to simplifying web tooling."
   let meta = ''
   if (show) {

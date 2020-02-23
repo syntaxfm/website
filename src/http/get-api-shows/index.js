@@ -1,10 +1,10 @@
-const { http } = require('@architect/functions')
-const { getShows } = require('@architect/shared/shows')
+const { http } = require('@architect/functions');
+const { getShows } = require('@architect/shared/shows'); // eslint-disable-line
 
 async function shows() {
-  return { 
-    json: await getShows()
-  }
+  return {
+    json: await getShows(),
+  };
 }
 
-exports.handler = http.async(shows)
+exports.handler = http.async(shows);

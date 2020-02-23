@@ -1,10 +1,10 @@
-const { http } = require('@architect/functions')
-const { getSickPicks } = require('@architect/shared/shows')
+const { http } = require('@architect/functions');
+const { getSickPicks } = require('@architect/shared/shows'); // eslint-disable-line
 
-async function sickpicks(req) {
-  return { 
-    json: await getSickPicks()
-  }
+async function sickpicks() {
+  return {
+    json: await getSickPicks(),
+  };
 }
 
-exports.handler = http.async(sickpicks)
+exports.handler = http.async(sickpicks);

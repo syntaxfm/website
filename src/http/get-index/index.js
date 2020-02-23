@@ -1,4 +1,4 @@
-let { http } = require('@architect/functions')
-let { render } = require('@architect/views/dist/ssr')
+const { http } = require('@architect/functions');
+const { render } = require('@architect/views/dist/ssr'); // eslint-disable-line
 
-exports.handler = http.async(render) 
+exports.handler = http.async(render);

@@ -16,43 +16,44 @@ renderer.link = function(href, title, text) {
 };
 
 // deliberate let!
-let cache = false
+let cache = false;
 
-async function loadShows () {
+async function loadShows() {
   if (cache === false) {
     const files = await glob(join(__dirname, 'shows', '*.md'));
     const markdownPromises = files.map(file => readAFile(file, 'utf-8'));
     const showMarkdown = await Promise.all(markdownPromises);
 
-    cache = showMarkdown.map(md => marked(md, { renderer })).map((show, i) => {
-              const { number } = show.meta;
-              return {
-                ...show.meta,
-                html: show.html,
-                notesFile: files[i],
-                displayDate: format(parseFloat(show.meta.date), 'MMM do, yyyy'),
-                number,
-              };
-            }) // flatten
-            .map(show => ({ ...show, displayNumber: pad(show.number) })) // pad zeros
-            .reverse();
+    cache = showMarkdown
+      .map(md => marked(md, { renderer }))
+      .map((show, i) => {
+        const { number } = show.meta;
+        return {
+          ...show.meta,
+          html: show.html,
+          notesFile: files[i],
+          displayDate: format(parseFloat(show.meta.date), 'MMM do, yyyy'),
+          number,
+        };
+      }) // flatten
+      .map(show => ({ ...show, displayNumber: pad(show.number) })) // pad zeros
+      .reverse();
   }
-  return cache
-};
+  return cache;
+}
 
 async function getShows() {
-  let shows = await loadShows()
+  const shows = await loadShows();
   const now = Date.now();
   return shows.filter(show => show.date < now);
-};
+}
 
 async function getShow(number) {
-  let shows = await loadShows()
+  const shows = await loadShows();
   let show = shows.find(showItem => showItem.displayNumber === Number(number));
-  if (!show)
-    show = shows.find(showItem => showItem.number === Number(number));
+  if (!show) show = shows.find(showItem => showItem.number === Number(number));
   return show;
-};
+}
 
 async function getSickPicks() {
   // Since the sick picks parsed markdown id is not consistent,
@@ -79,6 +80,6 @@ async function getSickPicks() {
 
     return sickPicksAcc;
   }, []);
-};
+}
 
-module.exports = {getShow, getShows, getSickPicks}
+module.exports = { getShow, getShows, getSickPicks };
