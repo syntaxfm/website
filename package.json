@@ -2,12 +2,14 @@
   "name": "Syntax",
   "description": "Full Stack Developers Wes Bos and Scott Tolinski dive deep into web development topics, explaining how they work and talking about their own experiences. They cover from JavaScript frameworks like React, to the latest advancements in CSS to simplifying web tooling.",
   "engines": {
-    "node": ">=8.1.2"
+    "node": ">=10.0.0"
   },
   "scripts": {
-    "start": "npm run build && sandbox",
+    "start": "run-p dev sandbox",
+    "sandbox": "sandbox",
+    "dev": "rollup -c -w",
     "lint": "eslint . --fix",
-    "build": "cp -r static dist/static && rollup -c ",
+    "build": "mkdir -p dist && cp -r static dist/static && rollup -c ",
     "test": "NODE_ENV=testing QUIET=1 jest --ci test/*.test.js"
   },
   "dependencies": {
@@ -31,6 +33,7 @@
     "eslint-plugin-react": "^7.16.0",
     "eslint-plugin-react-hooks": "^2.2.0",
     "jest": "^25.1.0",
+    "npm-run-all": "^4.1.5",
     "postcss-easy-import": "^3.0.0",
     "prettier": "^1.19.1",
     "prop-types": "^15.7.2",

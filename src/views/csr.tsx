@@ -2,9 +2,9 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './app'
 
-let main = document.getElementById('js-main')
-let path = window.location.pathname
 // @ts-ignore
-let shows = window.STATE 
+let {shows, show, params, path} = window.STATE
 
-ReactDOM.hydrate(<App path={path} shows={shows}/>, main)
+// first render
+let main = document.getElementById('js-main')
+ReactDOM.hydrate(<App path={path} params={params} shows={shows} show={show} />, main)

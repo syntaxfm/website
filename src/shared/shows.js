@@ -81,13 +81,4 @@ async function getSickPicks() {
   }, []);
 };
 
-async function getShowsSparse() {
-  let shows = await loadShows()
-  return shows.map(show=> {
-    delete show.html
-    delete show.notesFile
-    return show
-  })
-}
-
-module.exports = {getShow, getShows, getShowsSparse, getSickPicks}
+module.exports = {getShow, getShows, getSickPicks}

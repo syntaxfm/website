@@ -13,26 +13,42 @@ import style from './styles/style.styl'
 import App from './app'
 
 // use cjs to grab the data modules; rollup ignores it
-let { getShow, getShows, getShowsSparse, getSickPicks } = require('@architect/shared/shows')
+let { getShows } = require('@architect/shared/shows')
 
 // lambda function renderer logic
 export async function render(req) {
+
   const shows = await getShows()
-  const sparse = await getShowsSparse()
-  const jsx = <App path={req.path} params={req.params} query={req.query} shows={shows} />
-  const title = 'my tmp title here'
-  const show = 'my tmp show here'
-  const main = ReactDOMServer.renderToString(jsx)
-  return { 
-    html:  await syntaxfm({ title, show, shows: sparse, main })
+
+  // show last show first
+  let show = shows.slice(0).shift()
+  if (req.params.number) {
+    // unless we have another show
+    show = shows.find(s=> s.number == req.params.number) || show
   }
+
+  // remove the html prop from all other shows
+  let sparse = []
+  for (let s of shows) {
+    if (show.number == s.number)
+      sparse.push(show)
+    else {
+      let copy = {...s}
+      delete copy.html
+      sparse.push(copy)
+    }
+  }
+
+  const title = show? show.title : ''
+  const jsx = <App path={req.path} params={req.params} show={show} shows={sparse} />
+  const main = ReactDOMServer.renderToString(jsx)
+  const html = await syntaxfm({ title, main, show, shows: sparse, path: req.path, params: req.params })
+  return { html } // todo: set cache to one day if if req.params.number defined
 }
 
 // heler to render the html envelope
-async function syntaxfm({ title, main, show, shows }) {
+async function syntaxfm({ title, main, show, shows, path, params }) {
   let description = "Full Stack Developers Wes Bos and Scott Tolinski dive deep into web development topics, explaining how they work and talking about their own experiences. They cover from JavaScript frameworks like React, to the latest advancements in CSS to simplifying web tooling."
-  //if (css.length === 0)
-  //  css = (await promisify(readFile)(join(__dirname, 'ssr.css'))).toString().replace(/\n/g, '')
   let meta = ''
   if (show) {
     meta += `<meta property=og:audio content=${ show.url }>`
@@ -57,9 +73,10 @@ ${ meta }
 <style>${ style }</style>
 </head>
 <body>
-<main id=js-main>${ main }<main>
+<section id=js-main>${ main }</section>
+
 <script>
-window.STATE = ${JSON.stringify(shows)}
+window.STATE = ${JSON.stringify({path, params, show, shows})}
 </script>
 <script type=module src=/_static/csr.js></script>
 </body>
