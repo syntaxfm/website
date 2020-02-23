@@ -1,3 +1,4 @@
+import React from 'react'
 import Subscribe from './Subscribe';
 
 let Link = props=> <a href={props.href}>{props.children}</a>
@@ -7,7 +8,7 @@ const Header = () => (
     <div className="header__left">
       <Link href="/">
         <a aria-label="Syntax.FM">
-          <img className="header__logo" src="/static/logo.png" alt="Syntax" />
+          <img className="header__logo" src="/_static/static/logo.png" alt="Syntax" />
         </a>
       </Link>
     </div>
@@ -57,7 +58,6 @@ const Header = () => (
             src="https://avatars.githubusercontent.com/stolinski?size=200"
             alt="Scott Tolinski"
             className="avatar"
-            rel="noopener noreferrer"
           />
           <h3>Scott Tolinski</h3>
           <a
@@ -66,7 +66,7 @@ const Header = () => (
             className="person__social person__social--twitter"
             rel="noopener noreferrer"
           >
-            @stolinski
+            &#64;@stolinski
           </a>
           <p>
             Web Developer, Creator of{' '}

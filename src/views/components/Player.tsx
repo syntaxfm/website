@@ -3,11 +3,31 @@ import PropTypes from 'prop-types';
 import { FaPlay, FaPause } from 'react-icons/fa';
 import VolumeBars from './VolumeBars';
 
-export default class Player extends React.Component {
-  static propTypes = {
-    show: PropTypes.object.isRequired,
-    onPlayPause: PropTypes.func,
-  };
+interface PlayerProps {
+  show: Show;
+  onPlayPause: Function;
+}
+
+interface PlayerState {
+  currentTime: number;
+  currentVolume: string;
+  playbackRate: number;
+  progressTime: number;
+  playing: boolean;
+  duration: number;
+  timeWasLoaded: boolean;
+  showTooltip: boolean;
+  tooltipPosition: number;
+  tooltipTime: string;
+}
+
+interface Show {
+  number: string;
+  displayNumber: string;
+  title: string;
+}
+
+export default class Player extends React.Component<PlayerProps, PlayerState> {
 
   constructor(props) {
     super(props);
@@ -22,7 +42,6 @@ export default class Player extends React.Component {
       const lp = localStorage.getItem(`lastPlayed${show.number}`);
       const lastVolume = localStorage.getItem(`lastVolumeSetting`);
       const lastPlayback = localStorage.getItem(`lastPlaybackSetting`);
-
       if (lp) lastPlayed = JSON.parse(lp).lastPlayed; //eslint-disable-line
       if (lastVolume) lastVolumePref = JSON.parse(lastVolume).lastVolumePref; //eslint-disable-line
       if (lastPlayback)
@@ -34,7 +53,7 @@ export default class Player extends React.Component {
       playing: false,
       duration: 0,
       currentTime: lastPlayed,
-      currentVolume: lastVolumePref,
+      currentVolume: ""+lastVolumePref,
       playbackRate: lastPlaybackRate,
       timeWasLoaded: lastPlayed !== 0,
       showTooltip: false,
@@ -44,6 +63,7 @@ export default class Player extends React.Component {
   } // END Constructor
 
   componentWillUpdate(nextProps, nextState) { //eslint-disable-line
+    //@ts-ignore
     this.audio.playbackRate = nextState.playbackRate;
   }
 
@@ -64,10 +84,14 @@ export default class Player extends React.Component {
           currentVolume: data2.lastVolumePref,
           playbackRate: data3.lastPlaybackRate,
         });
+        //@ts-ignore
         this.audio.currentTime = data.lastPlayed;
+        //@ts-ignore
         this.audio.volume = data2.lastVolumePref;
+        //@ts-ignore
         this.audio.playbackRate = data3.lastPlaybackRate;
       }
+      //@ts-ignore
       this.audio.play();
     } else {
       localStorage.setItem(
@@ -126,14 +150,18 @@ export default class Player extends React.Component {
   togglePlay = () => {
     const { playing } = this.state;
     const method = playing ? 'pause' : 'play';
+      //@ts-ignore
     this.audio[method]();
   };
 
   scrubTime = eventData =>
+    // @ts-ignore
     (eventData.nativeEvent.offsetX / this.progress.offsetWidth) *
+    // @ts-ignore
     this.audio.duration;
 
   scrub = e => {
+      //@ts-ignore
     this.audio.currentTime = this.scrubTime(e);
   };
 
@@ -145,11 +173,14 @@ export default class Player extends React.Component {
   };
 
   playPause = () => {
+      //@ts-ignore
     this.setState({ playing: !this.audio.paused });
+      //@ts-ignore
     this.props.onPlayPause(this.audio)
   };
 
   volume = e => {
+      //@ts-ignore
     this.audio.volume = e.currentTarget.value;
     this.setState({
       currentVolume: `${e.currentTarget.value}`,
@@ -222,6 +253,7 @@ export default class Player extends React.Component {
             onMouseLeave={() => {
               this.setState({ showTooltip: false });
             }}
+      //@ts-ignore
             ref={x => (this.progress = x)}
           >
             {/* eslint-enable */}
@@ -264,12 +296,19 @@ export default class Player extends React.Component {
         </div>
         {/* eslint-disable */}
         <audio
+      //@ts-ignore
           ref={audio => (this.audio = audio)}
+      //@ts-ignore
           onPlay={this.playPause}
+      //@ts-ignore
           onPause={this.playPause}
+      //@ts-ignore
           onTimeUpdate={this.timeUpdate}
+      //@ts-ignore
           onVolumeChange={this.volumeUpdate}
+      //@ts-ignore
           onLoadedMetadata={this.groupUpdates}
+      //@ts-ignore
           src={show.url}
         />
         {/* eslint-enable */}

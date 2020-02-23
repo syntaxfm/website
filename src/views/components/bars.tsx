@@ -1,3 +1,5 @@
+import React from 'react'
+
 const Bars = ({isPlaying}) => (
   <div className={`bars ${isPlaying ? '' : 'bars--paused'}`}>
     <div className="bar" />

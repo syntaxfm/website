@@ -32,6 +32,7 @@ notes:
 - added tests
 - removed webpack/babel and replaced with rollup/typescript
 - removed proptypes and used typescript interfaces instead (functioncs components don't need this)
+- no point in devDeps vs deps in the root of an achitect project. we deploy the functions code and generate the package-locks on the way up. so no need for those either (unless you want to be explicit..then generate it yourself directly and we use that)
 
     "autoprefixer": "9.7.1",
     "axios": "^0.19.0",

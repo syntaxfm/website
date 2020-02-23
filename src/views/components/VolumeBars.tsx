@@ -10,14 +10,31 @@ const getItems = count =>
   Array.from({ length: count }, (v, i) => (i + 1) * 10).map(k => {
     const decimal = k / 110;
     return {
-      integer: `${k}`,
+      integer: k,
       deci: `${decimal}`,
       vol: `vol${k}`,
       level: `Volume Level ${k}/110`,
       checked: true,
     };
   }); // END MAP // END ARROW
-class VolumeBars extends Component {
+
+interface VolumeProps {
+  volume: Function;
+}
+
+interface VolumeState {
+  volumeBarList: Array<Bar>;
+}
+
+interface Bar {
+  integer: number;
+  deci: string;
+  vol: string;
+  level: string;
+  checked: boolean;
+}
+
+class VolumeBars extends Component<VolumeProps, VolumeState> {
   state = {
     volumeBarList: getItems(11),
   };
@@ -71,6 +88,7 @@ class VolumeBars extends Component {
               onClick={() => {
                 this.handleOnClick(index);
               }}
+          // @ts-ignore
               onChange={volume}
               type="radio"
               name="volume"

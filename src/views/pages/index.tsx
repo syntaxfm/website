@@ -10,6 +10,8 @@ interface IndexProps {
 }
 
 interface Show {
+  title: string;
+  number: string;
   displayNumber: string;
 }
 

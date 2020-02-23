@@ -1,18 +1,27 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import slug from 'speakingurl';
-//import Router from 'next/router';
 import { FaPlay } from 'react-icons/fa';
 import Bars from './bars';
 
-export default class Show extends React.Component {
-  static propTypes = {
-    show: PropTypes.object.isRequired,
-    currentPlaying: PropTypes.string.isRequired,
-    currentShow: PropTypes.string.isRequired,
-    setCurrentPlaying: PropTypes.func.isRequired,
-    isPlaying: PropTypes.bool
-  };
+interface ShowProps {
+  show: ShowPayload;
+  currentPlaying: string;
+  currentShow: string
+  setCurrentPlaying: Function;
+  isPlaying: Boolean;
+}
+
+interface ShowPayload {
+  title: string;
+  displayNumber: string;
+  displayDate; string;
+}
+
+export default class Show extends React.Component<ShowProps> {
+  
+  constructor(props) {
+    super(props);
+  }
 
   changeURL = (e, show) => {
     e.preventDefault();
