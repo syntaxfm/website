@@ -1,6 +1,7 @@
 @app
 syntaxfm-tsx
 
+@cdn 
 @static
 folder dist 
 
