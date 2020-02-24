@@ -7,6 +7,7 @@ folder dist
 
 @http
 get /
+get /robots.txt
 get /show/:number/:title
 get /api/shows
 get /api/shows/:number
