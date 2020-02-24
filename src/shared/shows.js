@@ -93,9 +93,12 @@ async function getShowsSparse(number) {
   }
   // remove the html prop from all other shows; we can fetch that later
   const sparse = [];
+  let fewback = show.number - 3;
+  if (fewback < 0) fewback = 0;
   for (const s of shows) {
-    if (show.number === s.number) sparse.push(show);
-    else {
+    if (s.number >= fewback) {
+      sparse.push(s);
+    } else {
       const copy = { ...s };
       delete copy.html;
       sparse.push(copy);
