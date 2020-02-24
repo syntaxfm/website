@@ -7,7 +7,6 @@ const marked = require('meta-marked');
 const spacetime = require('spacetime');
 
 const readAFile = promisify(readFile);
-const format = (epoc, fmt) => spacetime(epoc).unixFmt(fmt);
 const pad = num => `000${num}`.substr(-3);
 
 const renderer = new marked.Renderer();
@@ -31,8 +30,13 @@ async function loadShows() {
         return {
           ...show.meta,
           html: show.html,
-          notesFile: files[i],
-          displayDate: format(parseFloat(show.meta.date), 'MMM do, yyyy'),
+          notesFile: files[i].replace(
+            __dirname,
+            join('src', 'shared', 'shows')
+          ),
+          displayDate: spacetime(show.meta.date).format(
+            '{month-short} {date-ordinal}, {year}'
+          ),
           number,
         };
       }) // flatten
