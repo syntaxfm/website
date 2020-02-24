@@ -12,6 +12,7 @@ interface ShowProps {
 }
 
 interface ShowPayload {
+  number: number;
   title: string;
   displayNumber: string;
   displayDate; string;
@@ -32,6 +33,7 @@ export default class Show extends React.Component<ShowProps> {
 
   render() {
     const { show, currentPlaying, currentShow, setCurrentPlaying, isPlaying } = this.props;
+
     return (
       <div
         className={`show ${
@@ -53,7 +55,7 @@ export default class Show extends React.Component<ShowProps> {
         </a>
 
         <div className="show__playcontrols">
-          {currentPlaying === show.displayNumber ? (
+          {currentPlaying == show.displayNumber ? (
             <Bars isPlaying={isPlaying} />
           ) : (
               <button

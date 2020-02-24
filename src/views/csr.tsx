@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom'
 import App from './app'
 
 // @ts-ignore
-let {shows, show, params, path} = window.STATE
+const { shows, show, params, path } = window.STATE
+const main = document.getElementById('js-main')
+const jsx = <App path={path} params={params} shows={shows} show={show} />
 
-// first render
-let main = document.getElementById('js-main')
-ReactDOM.hydrate(<App path={path} params={params} shows={shows} show={show} />, main)
+ReactDOM.hydrate(jsx, main)
