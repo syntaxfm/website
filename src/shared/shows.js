@@ -88,7 +88,7 @@ async function getShowsSparse(number) {
   let show = shows.slice(0).shift();
   if (number) {
     // unless we have another show
-    show = shows.find(s => s.number === number) || show;
+    show = shows.find(s => s.number === Number(number)) || show;
   }
   // remove the html prop from all other shows; we can fetch that later
   const sparse = [];
