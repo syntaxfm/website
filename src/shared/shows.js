@@ -82,4 +82,25 @@ async function getSickPicks() {
   }, []);
 }
 
-module.exports = { getShow, getShows, getSickPicks };
+async function getShowsSparse(number) {
+  const shows = await getShows();
+  // show last show first
+  let show = shows.slice(0).shift();
+  if (number) {
+    // unless we have another show
+    show = shows.find(s => s.number === number) || show;
+  }
+  // remove the html prop from all other shows; we can fetch that later
+  const sparse = [];
+  for (const s of shows) {
+    if (show.number === s.number) sparse.push(show);
+    else {
+      const copy = { ...s };
+      delete copy.html;
+      sparse.push(copy);
+    }
+  }
+  return { shows: sparse, show };
+}
+
+module.exports = { getShow, getShows, getShowsSparse, getSickPicks };

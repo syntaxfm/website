@@ -13,39 +13,19 @@ import style from './styles/style.styl'
 import App from './app'
 
 // use cjs to grab the data modules; rollup ignores it
-let { getShows } = require('@architect/shared/shows')
+let { getShowsSparse } = require('@architect/shared/shows')
 
 // lambda function renderer logic
 export async function render(req) {
 
-  const shows = await getShows()
-
-  // show last show first
-  let show = shows.slice(0).shift()
-  if (req.params.number) {
-    // unless we have another show
-    show = shows.find(s=> s.number == req.params.number) || show
-  }
-
-  // remove the html prop from all other shows; we can fetch that later
-  let sparse = []
-  for (let s of shows) {
-    if (show.number == s.number)
-      sparse.push(show)
-    else {
-      let copy = {...s}
-      delete copy.html
-      sparse.push(copy)
-    }
-  }
-
+  const { shows, show } = await getShowsSparse(req.params.number)
   const title = show? show.title : ''
-  const jsx = <App path={req.path} params={req.params} show={show} shows={sparse} />
+  const jsx = <App path={req.path} params={req.params} show={show} shows={shows} />
   const main = ReactDOMServer.renderToString(jsx) 
 
   // todo: set cache to one day if if req.params.number defined
   return { 
-    html: syntaxfm({ title, main, show, shows: sparse, path: req.path, params: req.params })
+    html: syntaxfm({ title, main, show, shows, path: req.path, params: req.params })
   }
 }
 
