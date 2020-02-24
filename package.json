@@ -7,7 +7,7 @@
   "scripts": {
     "start": "run-p dev sandbox",
     "sandbox": "sandbox",
-    "dev": "rollup -c -w",
+    "dev": "mkdir -p dist && cp -r static dist/static && rollup -c -w",
     "lint": "eslint src --fix",
     "build": "mkdir -p dist && cp -r static dist/static && rollup -c ",
     "test": "NODE_ENV=testing QUIET=1 jest --ci test/*.test.js"
@@ -47,6 +47,7 @@
     "speakingurl": "^14.0.1",
     "stylus": "^0.54.7",
     "tiny-json-http": "^7.1.2",
-    "tslib": "^1.11.0"
+    "tslib": "^1.11.0",
+    "typescript": "^3.8.2"
   }
 }
