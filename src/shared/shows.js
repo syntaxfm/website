@@ -30,10 +30,7 @@ async function loadShows() {
         return {
           ...show.meta,
           html: show.html,
-          notesFile: files[i].replace(
-            __dirname,
-            join('src', 'shared', 'shows')
-          ),
+          notesFile: files[i].replace(__dirname, join('src', 'shared')),
           displayDate: spacetime(show.meta.date).format(
             '{month-short} {date-ordinal}, {year}'
           ),
