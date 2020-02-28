@@ -1,0 +1,3 @@
+@aws
+runtime nodejs12.x
+memory 3008

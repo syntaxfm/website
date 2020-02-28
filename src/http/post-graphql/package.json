@@ -1,0 +1,17 @@
+{
+  "name": "post-graphql",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@architect/functions": "^3.7.6",
+    "graphql": "^14.6.0",
+    "graphql-tools": "^4.0.7"
+  }
+}

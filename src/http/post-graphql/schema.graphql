@@ -1,0 +1,9 @@
+type Show {
+  displayNumber: ID!
+  title: String
+  html: String
+}
+
+type Query {
+  shows: [Show] 
+}
