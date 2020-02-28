@@ -7,6 +7,7 @@ This is the site that runs [Syntax.fm](https://syntax.fm) — go there to listen
 ## Requirements
 
 - Node 10.x or higher
+- OpenJS Architect `npm i -g @architect`
 
 ## Development
 

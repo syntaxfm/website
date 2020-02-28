@@ -6,14 +6,13 @@
   },
   "scripts": {
     "start": "run-p dev sandbox",
-    "sandbox": "sandbox",
+    "sandbox": "arc sandbox",
     "dev": "mkdir -p dist && cp -r static dist/static && rollup -c -w",
     "lint": "eslint src --fix",
     "build": "mkdir -p dist && cp -r static dist/static && rollup -c ",
     "test": "NODE_ENV=testing QUIET=1 jest --ci test/*.test.js"
   },
   "dependencies": {
-    "@architect/sandbox": "^1.7.1",
     "@rollup/plugin-commonjs": "^11.0.2",
     "@rollup/plugin-node-resolve": "^7.1.1",
     "@rollup/plugin-replace": "^2.3.1",
