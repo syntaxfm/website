@@ -107,6 +107,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 * [Amazon S3](https://aws.amazon.com/s3/)
 * [Backblaze B2](https://www.backblaze.com/b2/cloud-storage.html)
 * [Cloudinary](https://cloudinary.com/)
+* [Fauna](https://fauna.com/)
 
 ## ××× SIIIIICK ××× PIIIICKS ×××
 * Scott: [The Power of Bad by John Tierney](https://www.amazon.com/Power-Bad-Negativity-Effect-Rules-ebook/dp/B07Q3NHPGZ)
