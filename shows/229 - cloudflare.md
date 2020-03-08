@@ -37,7 +37,7 @@ LogRocket lets you replay what users do on your site, helping you reproduce bugs
 
 ## Links
 * [Cloudflare](https://www.cloudflare.com/)
-* [Beginner Javascipt](https://beginnerjavascript.com/)
+* [Beginner Javascript](https://beginnerjavascript.com/)
 * [Digital Ocean](https://www.digitalocean.com/)
 * [DNS Simple](https://dnsimple.com/)
 * [Let's Encrypt](https://letsencrypt.org/)
