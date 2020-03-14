@@ -82,7 +82,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 * [Cloudflare Workers](https://workers.cloudflare.com/)
 * [Begin](https://begin.com/)
 * [Arc.codes](https://arc.codes/)
-* [Severless](https://serverless.com/)
+* [Serverless](https://serverless.com/)
 * [Netlify](https://www.netlify.com/)
 * [AWS Amplify](https://aws.amazon.com/amplify/)
 * [Apex Up](https://apex.sh/docs/up/)

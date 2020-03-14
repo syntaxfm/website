@@ -1,6 +1,6 @@
 ---
 number: 228
-title: More on Severless - Databases × Files × Secrets × Auth × More!
+title: More on Serverless - Databases × Files × Secrets × Auth × More!
 date: 1583330400634
 url: https://traffic.libsyn.com/syntax/Syntax228.mp3
 ---
