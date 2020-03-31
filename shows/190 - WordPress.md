@@ -73,7 +73,9 @@ Hasura is an open-source GraphQL engine that helps you instantly setup a scalabl
 
 ## ××× SIIIIICK ××× PIIIICKS ×××
 * Brad: [Teppanyaki Grill](https://amzn.to/2ATU6sY)
-* Scott: [Succession](https://www.hbo.com/succession) and [The Righteous Gemstones](https://www.hbo.com/the-righteous-gemstones)
+* Scott:
+  * [Succession](https://www.hbo.com/succession)
+  * [The Righteous Gemstones](https://www.hbo.com/the-righteous-gemstones)
 * Wes: [Magnatiles](https://amzn.to/3336kMa)
 
 ## Shameless Plugs

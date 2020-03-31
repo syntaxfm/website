@@ -90,8 +90,9 @@ Listeners of this show get 20% off with the coupon code SYNTAX over at [xojo.com
 
 ## SICK PICKS
 
-* Wes: [Magnetic Magsafe-life USB cable for micro USB, USB-c and Lightning](http://amzn.to/2Dqe3KY)
-* Wes: [Magsafe-like USB that can handle a 87w Macbook Pro](http://amzn.to/2DwPz3s)
+* Wes:
+  * [Magnetic Magsafe-life USB cable for micro USB, USB-c and Lightning](http://amzn.to/2Dqe3KY)
+  * [Magsafe-like USB that can handle a 87w Macbook Pro](http://amzn.to/2DwPz3s)
 * Wow: [MONGOOSE VS SNAKE VIDEO](https://www.youtube.com/watch?v=OyuIAUlL5IU)
 * Scott: [Bulk Supplements](http://amzn.to/2DzGGq9)
 

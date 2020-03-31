@@ -50,7 +50,9 @@ Sanity.io is a real-time headless CMS with a fully customizable Content Studio b
 
 ## ××× SIIIIICK ××× PIIIICKS ×××
 
-- Travis: [Cults and Extreme Belief](https://www.hulu.com/series/cults-and-extreme-belief-732b89b1-7af0-4bed-9a28-6ca51d2b1e69) and [Google Method Podcast](https://design.google/library/method-podcast-episode-1/)
+- Travis: 
+  * [Cults and Extreme Belief](https://www.hulu.com/series/cults-and-extreme-belief-732b89b1-7af0-4bed-9a28-6ca51d2b1e69)
+  * [Google Method Podcast](https://design.google/library/method-podcast-episode-1/)
 - Scott: [Sony Noise Canceling Headphones WH1000XM3](https://amzn.to/2Gqc7Tt)
 - Wes: [Little People Big Dreams Book Series](https://amzn.to/2DfA0Lk)
 

@@ -90,14 +90,11 @@ If you are a small business or freelancer check out [Freshbooks.com Cloud Accoun
 
 ## SIIIIICK PICKS
 
-42:00
-
 * Scott: [Ring Doorbell](http://amzn.to/2DEUJaL)
 * Wes: [The Indicator Podcast](https://www.npr.org/sections/money/567724614/the-indicator)
 
-47:00
+## SICK TIP
 
-* Sick Tip
 * Chrome's Autoplay is changing
 * [Details on this](https://developers.google.com/web/updates/2017/09/autoplay-policy-changes)
 * Visit chrome://media-engagement to see your scores

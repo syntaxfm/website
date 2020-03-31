@@ -58,8 +58,9 @@ Sanity.io is a real-time headless CMS with a fully customizable Content Studio b
 ## ××× SIIIIICK ××× PIIIICKS ×××
 * Scott: [BattleBots](https://battlebots.com/)
 * Wes: [Logitech MX Master 2S Wireless Mouse](https://amzn.to/2RKtPVU)
-* Harry: [Twitter Demetricator](https://bengrosser.com/projects/twitter-demetricator/)
-* Harry: [CAMP LIFE: BIG JOHN FURY GIVES TOUR OF VINTAGE CARAVAN](https://www.youtube.com/watch?v=MX58yJt1170)
+* Harry:
+  * [Twitter Demetricator](https://bengrosser.com/projects/twitter-demetricator/)
+  * [CAMP LIFE: BIG JOHN FURY GIVES TOUR OF VINTAGE CARAVAN](https://www.youtube.com/watch?v=MX58yJt1170)
 
 ## Shameless Plugs
 * Wes: [All Courses](https://wesbos.com/courses) - Use the coupon code 'Syntax' for $10 off!

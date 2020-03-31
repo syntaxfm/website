@@ -39,7 +39,7 @@ In this episode, Wes talks about his career path from a MySpace customizer to wh
 * [This Podcast](https://syntax.fm)
 
 ## Sick Picks
-* [MotoRead](https://motoread.com/)
+* Wes: [MotoRead](https://motoread.com/)
 
 ## Shameless Plugs
 * [Wes' Courses](https://wesbos.com/courses)

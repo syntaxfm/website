@@ -34,14 +34,10 @@ url: https://traffic.libsyn.com/syntax/Syntax003.mp3
 
 ## Sick Picks
 
-#### [Bartender 2](https://www.macbartender.com)
-Lets you organize your menu bar apps, by hiding them, rearranging them, or moving them to the Bartender Bar.
-
-#### [Vanilla](http://matthewpalmer.net/vanilla/)
-Hide menu bar icons on your Mac.
-
-#### [Power Blocks](http://www.powerblock.com)
-One set of Power Block replaces racks of dumbbells
+* Wes:
+  * [Bartender 2](https://www.macbartender.com)
+  * [Vanilla](http://matthewpalmer.net/vanilla/)
+* Scott: [Power Blocks](http://www.powerblock.com)
 
 ## Shameless Plugs
 

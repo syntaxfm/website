@@ -81,9 +81,10 @@ Developers, software engineers, designers, and web performance professionals flo
 
 ## ×SICK×PICKS×
 
-* Wes: [Dewalt 20v Drill Set](https://amzn.to/2GPYlLL)
-* Wes: [Dewalt 20v Cordless Web/Dry Vac](https://amzn.to/2qoZE9f)
-* MERU
+* Wes: 
+  * [Dewalt 20v Drill Set](https://amzn.to/2GPYlLL)
+  * [Dewalt 20v Cordless Wet/Dry Vac](https://amzn.to/2qoZE9f)
+* Scott: [MERU](https://www.imdb.com/title/tt2545428/)
 
 ## Shameless Plugs
 

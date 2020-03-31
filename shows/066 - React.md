@@ -71,7 +71,9 @@ mLab is the leading Database-as-a-Service for MongoDB, powering over half a mill
 ## ××× SIIIIICK ××× PIIIICKS ×××
 
 * Scott: [Dark Net Diaries Podcast](https://darknetdiaries.com/)
-* Wes: Any suggestions for key management products? + [Iliza Shlesigner Stand-Up](https://www.netflix.com/title/80213658)
+* Wes: 
+  * Any suggestions for key management products?
+  * [Iliza Shlesigner Stand-Up](https://www.netflix.com/title/80213658)
 
 ## Shameless Plugs
 

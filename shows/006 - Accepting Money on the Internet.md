@@ -28,8 +28,8 @@ In this episode we talk about how to accept money on the internet including the 
 * [Stripe Bitcoin](https://stripe.com/bitcoin)
 
 ## Sick Picks
-* [ChefSteps](https://www.youtube.com/user/chefsteps)
-* [What Cha Tea](http://what-cha.com/)
+* Wes: [ChefSteps](https://www.youtube.com/user/chefsteps)
+* Scott: [What Cha Tea](http://what-cha.com/)
 
 ## Shameless Plugs
 * [Wes' Courses](https://wesbos.com/courses)

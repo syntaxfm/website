@@ -55,7 +55,9 @@ Get a 30 day free trial of Freshbooks at [Freshbooks](https://freshbooks.com/syn
 * [Stripe](https://stripe.com/)
 
 ## ××× SIIIIICK ××× PIIIICKS ×××
-* Courtland: [Post-it Notes](https://www.post-it.com/3M/en_US/post-it/) and [Poor Charlie's Almanack: The Wit and Wisdom of Charles T. Munger](https://www.amazon.com/Poor-Charlies-Almanack-Charles-Expanded/dp/1578645018)
+* Courtland:
+  * [Post-it Notes](https://www.post-it.com/3M/en_US/post-it/)
+  * [Poor Charlie's Almanack: The Wit and Wisdom of Charles T. Munger](https://www.amazon.com/Poor-Charlies-Almanack-Charles-Expanded/dp/1578645018)
 * Scott: [Akimbo](https://www.akimbo.me/)
 * Wes: [Elastic Wallet](https://www.amazon.com/s?k=elastic+wallets)
 
