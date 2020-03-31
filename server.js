@@ -1,5 +1,6 @@
 const express = require('express');
 const next = require('next');
+const cors = require('cors');
 const { Router } = require('./routes');
 
 const dev = process.env.NODE_ENV !== 'production';
@@ -10,10 +11,20 @@ const { getShows, getShow, getAllShowSickPicks } = require('./lib/getShows');
 
 app.prepare().then(() => {
   const server = express();
+  server.use(cors());
 
   // API endpoints
   server.get('/api/shows', (req, res) => {
     res.json(getShows());
+  });
+
+  server.get('/api/shows/latest', (req, res) => {
+    const show = getShows()[0];
+    if (show) {
+      res.json(show);
+      return;
+    }
+    res.status(404).json({ message: 'Sorry not found' });
   });
 
   server.get('/api/shows/:number', (req, res) => {
@@ -32,12 +43,11 @@ app.prepare().then(() => {
   // Custom Next.js URLs
   Router.forEachPrettyPattern((page, pattern, defaultParams) => {
     server.get(pattern, (req, res) => {
-      app.render(
-        req,
-        res,
-        `/${page}`,
-        Object.assign({}, defaultParams, req.query, req.params)
-      );
+      app.render(req, res, `/${page}`, {
+        ...defaultParams,
+        ...req.query,
+        ...req.params,
+      });
     });
   });
 
