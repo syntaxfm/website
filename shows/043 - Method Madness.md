@@ -94,11 +94,13 @@ For the docs for all these, just google `mdn` and the method you are looking for
 
 * Object.assign() - no longer needed because you can object spread
 * [Reference vs Copy in JavaScript](https://www.youtube.com/watch?v=YnfwDQ5XYF4)
+
 ## ×SICK×PICKS×
 
 * Scott: [Tea Haus](https://theteahaus.com/)
-* Wes:[SOG Folding Knife](https://amzn.to/2qZHrzk)
-* Wes: [Sharpening Stone](https://amzn.to/2HGNeob)
+* Wes:
+  * [SOG Folding Knife](https://amzn.to/2qZHrzk)
+  * [Sharpening Stone](https://amzn.to/2HGNeob)
 
 ## Shameless Plugs
 

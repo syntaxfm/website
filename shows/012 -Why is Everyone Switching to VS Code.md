@@ -50,10 +50,12 @@ Need to learn Docker? Check out Nick Janetakis' [Dive into Docker](https://divei
 * [Autorename Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag)
 
 ## Sick Picks
-* Scott: [Moonwalking with Einstein](http://amzn.to/2ycbnul)
-* Wes: [Yeti Rambler](http://yeti.com/rambler)
-* Wes: [Ozark Trail 20oz](https://www.walmart.com/ip/Ozark-Trail-20-Ounce-Double-Wall-Vacuum-Sealed-Tumbler/178742177)
-* Scott outdoes Wes by 3oz: [Bottl](https://www.amazon.com/BOTTL-Stainless-Bottle-Growler-Bigger/dp/B01ICB6N90)
+* Scott: 
+  * [Moonwalking with Einstein](http://amzn.to/2ycbnul)
+  * Outdoes Wes by 3oz: [Bottl](https://www.amazon.com/BOTTL-Stainless-Bottle-Growler-Bigger/dp/B01ICB6N90)
+* Wes:
+  * [Yeti Rambler](http://yeti.com/rambler)
+  * [Ozark Trail 20oz](https://www.walmart.com/ip/Ozark-Trail-20-Ounce-Double-Wall-Vacuum-Sealed-Tumbler/178742177)
 
 ## Shameless Plugs
 * [Level Up Tuts](https://www.leveluptutorials.com/) - check out scott's new shopping cart!

@@ -13,6 +13,10 @@ LogRocket lets you replay what users do on your site, helping you reproduce bugs
 ## Freshbooks - Sponsor
 Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbooks.com/syntax) and put SYNTAX in the "How did you hear about us?" section.
 
+## Guests
+
+* [Drew Conley](https://twitter.com/drewconley13)
+
 ## Show Notes
 
 1:58 - What is Danger Crew?

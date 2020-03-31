@@ -13,6 +13,10 @@ LogRocket lets you replay what users do on your site, helping you reproduce bugs
 ## Freshbooks - Sponsor
 Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbooks.com/syntax) and put SYNTAX in the "How did you hear about us?" section.
 
+## Guests
+
+* [Etienne Lemay](https://twitter.com/EtienneLem)
+
 ## Show Notes
 
 0:57 - What is Missive?

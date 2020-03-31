@@ -13,6 +13,10 @@ Sanity.io is a real-time headless CMS with a fully customizable Content Studio b
 ## Sentry - Sponsor
 If you want to know what's happening with your errors, track them with [Sentry](https://sentry.io/). Sentry is open-source error tracking that helps developers monitor and fix crashes in real time. Cut your time on error resolution from five hours to five minutes. It works with any language and integrates with dozens of other services. Syntax listeners can get two months for free by visiting [Sentry.io](https://sentry.io/) and using the coupon code "tastytreat".
 
+## Guests
+
+* [David K Piano](https://twitter.com/davidkpiano)
+
 ## Show Notes
 
 2:30 - Who is David K Piano?

@@ -15,6 +15,10 @@ Build modern JAMStack websites in minutes. Stackbit lets you combine any theme, 
 
 Sanity.io is a real-time headless CMS with a fully customizable Content Studio built in React. Get up and running by typing `npm i -g @sanity/cli && sanity init` in your command line. Get an awesome supercharged free developer plan on [sanity.io/syntax](https://sanity.io/syntax?utm_source=syntax-fm&utm_campaign=syntax1).
 
+## Guests
+
+* [Travis Neilson](https://twitter.com/travisneilson)
+
 ## Show Notes
 
 2:43 - Career path
@@ -46,7 +50,9 @@ Sanity.io is a real-time headless CMS with a fully customizable Content Studio b
 
 ## ××× SIIIIICK ××× PIIIICKS ×××
 
-- Travis: [Cults and Extreme Belief](https://www.hulu.com/series/cults-and-extreme-belief-732b89b1-7af0-4bed-9a28-6ca51d2b1e69) and [Google Method Podcast](https://design.google/library/method-podcast-episode-1/)
+- Travis: 
+  * [Cults and Extreme Belief](https://www.hulu.com/series/cults-and-extreme-belief-732b89b1-7af0-4bed-9a28-6ca51d2b1e69)
+  * [Google Method Podcast](https://design.google/library/method-podcast-episode-1/)
 - Scott: [Sony Noise Canceling Headphones WH1000XM3](https://amzn.to/2Gqc7Tt)
 - Wes: [Little People Big Dreams Book Series](https://amzn.to/2DfA0Lk)
 

@@ -25,9 +25,10 @@ url: https://traffic.libsyn.com/syntax/Syntax005.mp3
 * [Wave](https://www.waveapps.com/)
 
 ## Sick Picks
-* [Hyper Key + Karabiner Elements](https://github.com/tekezo/Karabiner-Elements/)
-* [Better Touch Tool](https://www.boastr.net/)
-* [King of the Road](https://www.viceland.com/en_us/show/king-of-the-road)
+* Wes:
+  * [Hyper Key + Karabiner Elements](https://github.com/tekezo/Karabiner-Elements/)
+  * [Better Touch Tool](https://www.boastr.net/)
+* Scott: [King of the Road](https://www.viceland.com/en_us/show/king-of-the-road)
 
 #### Twitter
  * [@wesbos](https://twitter.com/wesbos)

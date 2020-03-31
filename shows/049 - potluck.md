@@ -69,7 +69,9 @@ __Want to submit a question for our next potluck episode?__ [Check out our tasty
 
 ## ××× SIIIIICK ××× PIIIICKS ×××
 
-* Wes: [SpikeBall](https://amzn.to/2kzAjXO) / [Slammo](https://amzn.to/2shGaVM)
+* Wes: 
+  * [SpikeBall](https://amzn.to/2kzAjXO)
+  * [Slammo](https://amzn.to/2shGaVM)
 * Scott: [Stance](https://www.youtube.com/user/stanceelements)
 
 ## Shameless Plugs

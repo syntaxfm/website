@@ -37,10 +37,12 @@ Scott and Wes talk all about different JavaScript utility libraries that make yo
 
 
 ## Sick Picks
-* [Essentialism Book](http://amzn.to/2vqp77J)
-* [Essentialism Audiobook](http://amzn.to/2xLolPn)
-* [Satechi Aluminum Multi-Port Adapter](http://amzn.to/2xwiy0W)
-* [Satechi all Docks](http://amzn.to/2xwuGPm)
+* Wes: 
+  * [Essentialism Book](http://amzn.to/2vqp77J)
+  * [Essentialism Audiobook](http://amzn.to/2xLolPn)
+* Scott:
+  * [Satechi Aluminum Multi-Port Adapter](http://amzn.to/2xwiy0W)
+  * [Satechi all Docks](http://amzn.to/2xwuGPm)
 
 ## Shameless Plugs
 * [Dhanish Gajjar's Instagram](https://www.instagram.com/dhanishgajjar/)

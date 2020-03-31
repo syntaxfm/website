@@ -15,6 +15,10 @@ In this episode of Syntax, Scott and Wes talk with Jason Lengstorf from the Gats
 
 Get a 30 day free trial of Freshbooks at [Freshbook](https://freshbooks.com/syntax) and put SYNTAX in the "How did you hear about us?" section.
 
+## Guests
+
+* [Jason Lengstorf](https://twitter.com/jlengstorf)
+
 ## Show Notes
 
 2:18 - Jason Lengstorf - What do you do?

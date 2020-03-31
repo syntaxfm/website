@@ -74,8 +74,9 @@ Developers, software engineers, designers, and web performance professionals flo
 
 ## ××× SIIIIICK ××× PIIIICKS ×××
 
-* Wes:[Crushing It Book](https://amzn.to/2FC4PIv)
-* Wes:[Crushing It AudioBook](https://amzn.to/2JL8ZQQ)
+* Wes:
+  * [Crushing It Book](https://amzn.to/2FC4PIv)
+  * [Crushing It AudioBook](https://amzn.to/2JL8ZQQ)
 * Scott: [Popmotion Pose](https://popmotion.io/pose/)
 
 

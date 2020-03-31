@@ -90,7 +90,9 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 ## ××× SIIIIICK ××× PIIIICKS ×××
 
 * Scott: [Great British Baking Show](https://www.pbs.org/show/great-british-baking-show/)
-* Wes: 1 [Pointless Packaging Instagram](https://instagram.com/pointless_packaging) / 2 [Ozark Season 2](https://www.netflix.com/title/80117552)
+* Wes:
+  * [Pointless Packaging Instagram](https://instagram.com/pointless_packaging)
+  * [Ozark Season 2](https://www.netflix.com/title/80117552)
 
 ## Shameless Plugs
 
