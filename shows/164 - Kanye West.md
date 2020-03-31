@@ -15,6 +15,10 @@ If you want to know what's happening with your errors, track them with [Sentry](
 
 Sanity.io is a real-time headless CMS with a fully customizable Content Studio built in React. Get a Sanity powered site up and running in minutes at [sanity.io/create](https://www.sanity.io/create). Get an awesome supercharged free developer plan on [sanity.io/syntax](https://www.sanity.io/syntax).
 
+## Guests
+
+* [Harry Dry](https://twitter.com/harrydry)
+
 ## Show Notes
 
 2:30 - How did you get into web dev and come up with the idea for the Kanye West dating website?

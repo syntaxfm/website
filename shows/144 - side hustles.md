@@ -15,6 +15,10 @@ In this episode of Syntax, Scott and Wes talk all about side hustles with specia
 
 Get a 30 day free trial of Freshbooks at [Freshbooks](https://freshbooks.com/syntax) and put SYNTAX in the "How did you hear about us?" section.
 
+## Guests
+
+* [Courtland Allen](https://twitter.com/csallen)
+
 ## Show Notes
 
 1:05 - What's the back story behind Indie Hackers? 

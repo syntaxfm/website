@@ -15,6 +15,10 @@ Sanity.io is a real-time headless CMS with a fully customizable Content Studio b
 
 LogRocket lets you replay what users do on your site, helping you reproduce bugs and fix issues faster. It's an exception tracker, a session re-player and a performance monitor. Get 14 days free at [LogRocket](https://logrocket.com/syntax).
 
+## Guests
+
+* [Jason Bahl](https://twitter.com/jasonbahl)
+
 ## Show Notes
 
 4:55 - Data in WordPress

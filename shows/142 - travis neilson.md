@@ -15,6 +15,10 @@ Build modern JAMStack websites in minutes. Stackbit lets you combine any theme, 
 
 Sanity.io is a real-time headless CMS with a fully customizable Content Studio built in React. Get up and running by typing `npm i -g @sanity/cli && sanity init` in your command line. Get an awesome supercharged free developer plan on [sanity.io/syntax](https://sanity.io/syntax?utm_source=syntax-fm&utm_campaign=syntax1).
 
+## Guests
+
+* [Travis Neilson](https://twitter.com/travisneilson)
+
 ## Show Notes
 
 2:43 - Career path
