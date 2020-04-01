@@ -1,11 +1,11 @@
 ---
 number: 236
-title: Mental Health and Dev - Depression, Anxiety, Imposter Syndrome, Focus, Motivation, Burnout
+title: Mental Health and Dev ft Dr. Courtney Tolinski - Depression, Anxiety, Imposter Syndrome, Focus, Motivation, Burnout
 date: 1585746000493
 url: https://traffic.libsyn.com/syntax/Syntax236.mp3
 ---
 
-In this episode of Syntax, Scott and Wes talk with Courtney Tolinski about mental health and web development.
+In this episode of Syntax, Scott and Wes talk with Dr. Courtney Tolinski PhD about mental health and web development.
 
 ## Sanity - Sponsor
 Sanity.io is a real-time headless CMS with a fully customizable Content Studio built in React. Get a Sanity powered site up and running in minutes at [sanity.io/create](https://www.sanity.io/create). Get an awesome supercharged free developer plan on [sanity.io/syntax](https://www.sanity.io/syntax).
