@@ -13,6 +13,10 @@ Sanity.io is a real-time headless CMS with a fully customizable Content Studio b
 ## Freshbooks - Sponsor
 Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbooks.com/syntax) and put SYNTAX in the "How did you hear about us?" section.
 
+## Guests
+
+* [Courtney Tolinski](https://twitter.com/DrTolinski)
+
 ## Show Notes
 
 3:20 - Depression
@@ -59,7 +63,10 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 * [How to Talk so Little Kids Will Listen: A Survival Guide to Life with Children Ages 2-7](https://amzn.to/39gWV6i)
 
 ## ××× SIIIIICK ××× PIIIICKS ×××
-* Courtney: [Animal Crossing: New Horizons](https://www.nintendo.com/games/detail/animal-crossing-new-horizons-switch/), [How to Talk So Kids Will Listen & Listen So Kids Will Talk](https://amzn.to/39cX1Mb), [The Whole-Brain Child: 12 Revolutionary Strategies to Nurture Your Child's Developing Mind](https://amzn.to/2xheeH6)
+* Courtney: 
+  * [Animal Crossing: New Horizons](https://www.nintendo.com/games/detail/animal-crossing-new-horizons-switch/)
+  * [How to Talk So Kids Will Listen & Listen So Kids Will Talk](https://amzn.to/39cX1Mb)
+  * [The Whole-Brain Child: 12 Revolutionary Strategies to Nurture Your Child's Developing Mind](https://amzn.to/2xheeH6)
 * Scott: [The Engineering Mindset YouTube Channel](https://www.youtube.com/channel/UCk0fGHsCEzGig-rSzkfCjMw)
 * Wes: [Toca Boca](https://tocaboca.com/)
 
