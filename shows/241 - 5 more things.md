@@ -31,7 +31,7 @@ If you want to know what's happening with your errors, track them with [Sentry](
 
 11:45 - Loading JS asynchronously
 
-* [Where should I put <script> tags in HTML markup?](https://stackoverflow.com/questions/436411/where-should-i-put-script-tags-in-html-markup)
+* [Where should I put script tags in HTML markup?](https://stackoverflow.com/questions/436411/where-should-i-put-script-tags-in-html-markup)
 * Solution: Lazy load JS as needed
 * Solution: Show HTML first, load JS in the footer
 * Solution: Use Async + Defer
