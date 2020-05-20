@@ -26,8 +26,8 @@ Build modern JAMStack websites in minutes. Stackbit lets you combine any theme, 
 07:57 - Svelte 101
 
 * .svelte files
-* Files can include <script>, <style>, and straight-up CSS
-* Variables are used in templates via {var} - <img {src} /> even works
+* Files can include `<script>`, `<style>`, and straight-up CSS
+* Variables are used in templates via {var} - `<img {src} />` even works
 * Import component and use just like React and Vue
 
 10:49 - Stylin'
