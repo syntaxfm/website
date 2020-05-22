@@ -11,7 +11,7 @@ In this episode of Syntax, Scott teaches Wes about Svelte and Sapper — general
 Sanity.io is a real-time headless CMS with a fully customizable Content Studio built in React. Get a Sanity powered site up and running in minutes at [sanity.io/create](https://www.sanity.io/create). Get an awesome supercharged free developer plan on [sanity.io/syntax](https://www.sanity.io/syntax).
 
 ## Stackbit - Sponsor
-Build modern JAMStack websites in minutes. Stackbit lets you combine any theme, site generator and CMS without complicated integrations. Join the beta today by visiting [stackbit.com/syntaxfm](https://www.stackbit.com/syntaxfm/).
+Stackbit offers developers tools that enable things like inline content editing, live previewing of content changes, and collaboration features on your Jamstack site, without code changes. That's why Stackbit is the best way to Jamstack. [stackbit.com](stackbit.com)
 
 ## Show Notes
 
