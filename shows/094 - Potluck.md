@@ -64,8 +64,9 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 ## ××× SIIIIICK ××× PIIIICKS ×××
 
 * Scott: [Jelle’s Marble Runs](https://www.youtube.com/channel/UCYJdpnjuSWVOLgGT9fIzL0g)
-* Wes 1: [Good Quality Baking Sheet Pans](https://amzn.to/2FjrQVW)
-* Wes 2: [Pre-cut Parchment Paper Sheets](https://amzn.to/2Dzli3F)
+* Wes:
+  * [Good Quality Baking Sheet Pans](https://amzn.to/2FjrQVW)
+  * [Pre-cut Parchment Paper Sheets](https://amzn.to/2Dzli3F)
 
 ## Shameless Plugs
 

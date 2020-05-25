@@ -79,8 +79,9 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 ## ××× SIIIIICK ××× PIIIICKS ×××
 
 * Scott: [Octopath Traveler & OST](https://amzn.to/2mvECnS)
-* Wes 1: [AvE Youtube Channel](https://www.youtube.com/channel/UChWv6Pn_zP0rI6lgGt3MyfA)
-* Wes 2: [Mustie1 Youtube Channel](https://www.youtube.com/channel/UCcSeeATlWJJbXpOZRYOfaDg)
+* Wes:
+  * [AvE Youtube Channel](https://www.youtube.com/channel/UChWv6Pn_zP0rI6lgGt3MyfA)
+  * [Mustie1 Youtube Channel](https://www.youtube.com/channel/UCcSeeATlWJJbXpOZRYOfaDg)
 
 ## Shameless Plugs
 

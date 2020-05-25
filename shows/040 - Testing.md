@@ -87,10 +87,6 @@ Developers, software engineers, designers, and web performance professionals flo
 * [Travis CI](https://travis-ci.org/)
 
 
-## ×SICK×PICKS×
-
-* None today!
-
 ## Shameless Plugs
 
 * [Vue.js for Everyone](https://LevelUpTutorials.com/store)

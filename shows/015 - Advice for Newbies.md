@@ -22,8 +22,8 @@ This show is light on links :)
 
 ## Sick Picks
 
-* [Nintendo Switch](https://www.nintendo.com/switch/)
-* [Creative Market Fonts](https://creativemarket.com/fonts)
+* Scott: [Nintendo Switch](https://www.nintendo.com/switch/)
+* Wes: [Creative Market Fonts](https://creativemarket.com/fonts)
 
 ## Tweet us your tips!
 * [Wes Bos](https://twitter.com/wesbos)

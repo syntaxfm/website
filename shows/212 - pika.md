@@ -13,6 +13,10 @@ Sanity.io is a real-time headless CMS with a fully customizable Content Studio b
 ## Freshbooks - Sponsor
 Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbooks.com/syntax) and put SYNTAX in the "How did you hear about us?" section.
 
+## Guests
+
+* [Fred Schott](http://fredkschott.com/)
+
 ## Show Notes
 
 3:24 - What is Pika?

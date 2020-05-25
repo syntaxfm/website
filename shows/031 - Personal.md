@@ -99,9 +99,10 @@ If you are a small business or freelancer check out [Freshbooks.com Cloud Accoun
 * Doing a downtown job
 
 ## Quuuuuiiiiiick SIIIIIIICK PICKS
-* [Dan Carlin's Hardcore History: Addendum](https://dchhaddendum.libsyn.com/)
-* Scott: [Whatever You Think, Think the Opposite](http://amzn.to/2GybLbh)
-* Wes: Tracy Osbourne's [Hello Web Design](http://amzn.to/2Er7JDq)
+* Scott:
+  * [Dan Carlin's Hardcore History: Addendum](https://dchhaddendum.libsyn.com/)
+  * [Whatever You Think, Think the Opposite](http://amzn.to/2GybLbh)
+* Wes: [Tracy Osbourne's Hello Web Design](http://amzn.to/2Er7JDq)
 
 ## Tweet us your tasty treats!
 

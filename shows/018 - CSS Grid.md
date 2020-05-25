@@ -42,7 +42,7 @@ It's a long awaited CSS Grid show! How does it work? When do you use it? What's 
 
 ## Sick Picks
 * Scott: [Just My Type](https://www.amazon.com/gp/product/1592407463/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1592407463&linkCode=as2&tag=leveluptuts01-20&linkId=cda796c9ea5df1225e445ff4d0368cb1)
-* Wes: Sick Update on the [Caldigit TS3 Dock](http://www.caldigit.com/)
+* Wes: [Sick Update on the Caldigit TS3 Dock](http://www.caldigit.com/)
 
 ## Tweet us your tasty treats!
 * [Wes Bos](https://twitter.com/wesbos)

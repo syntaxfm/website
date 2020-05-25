@@ -15,6 +15,10 @@ If you want to know what's happening with your errors, track them with [Sentry](
 
 Sanity.io is a real-time headless CMS with a fully customizable Content Studio built in React. Get a Sanity powered site up and running in minutes at [sanity.io/create](https://www.sanity.io/create). Get an awesome supercharged free developer plan on [sanity.io/syntax](https://www.sanity.io/syntax).
 
+## Guests
+
+* [Harry Dry](https://twitter.com/harrydry)
+
 ## Show Notes
 
 2:30 - How did you get into web dev and come up with the idea for the Kanye West dating website?
@@ -54,8 +58,9 @@ Sanity.io is a real-time headless CMS with a fully customizable Content Studio b
 ## ××× SIIIIICK ××× PIIIICKS ×××
 * Scott: [BattleBots](https://battlebots.com/)
 * Wes: [Logitech MX Master 2S Wireless Mouse](https://amzn.to/2RKtPVU)
-* Harry: [Twitter Demetricator](https://bengrosser.com/projects/twitter-demetricator/)
-* Harry: [CAMP LIFE: BIG JOHN FURY GIVES TOUR OF VINTAGE CARAVAN](https://www.youtube.com/watch?v=MX58yJt1170)
+* Harry:
+  * [Twitter Demetricator](https://bengrosser.com/projects/twitter-demetricator/)
+  * [CAMP LIFE: BIG JOHN FURY GIVES TOUR OF VINTAGE CARAVAN](https://www.youtube.com/watch?v=MX58yJt1170)
 
 ## Shameless Plugs
 * Wes: [All Courses](https://wesbos.com/courses) - Use the coupon code 'Syntax' for $10 off!

@@ -93,10 +93,12 @@ Finding a great domain name is tough with so many names already taken. If you're
 
 ## ××× SIIIIICK ××× PIIIICKS ×××
 
-* Scott 1: [Drillbrush Bathroom Surfaces Tub, Shower, Tile and Grout All Purpose Power Scrubber Cleaning Kit](https://amzn.to/2PASzxK)
-* Scott 2: [iOttie](https://amzn.to/2yOj2B5)
-* Wes 1: [Sabrent Wireless Charger](https://amzn.to/2Eng8ce)
-* Wes 2: [CD Player Mount](https://amzn.to/2pWCB5P)
+* Scott:
+  * [Drillbrush Bathroom Surfaces Tub, Shower, Tile and Grout All Purpose Power Scrubber Cleaning Kit](https://amzn.to/2PASzxK)
+  * [iOttie](https://amzn.to/2yOj2B5)
+* Wes:
+  * [Sabrent Wireless Charger](https://amzn.to/2Eng8ce)
+  * [CD Player Mount](https://amzn.to/2pWCB5P)
 
 ## Shameless Plugs
 

@@ -79,8 +79,9 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 
 ## ××× SIIIIICK ××× PIIIICKS ×××
 
-* Scott 1: [Todoist](https://todoist.com/)
-* Scott 2: [Notion](https://www.notion.so)
+* Scott: 
+  * [Todoist](https://todoist.com/)
+  * [Notion](https://www.notion.so)
 * Wes: [PassSource](https://www.passsource.com/)
 
 ## Shameless Plugs

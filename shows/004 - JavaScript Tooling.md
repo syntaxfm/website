@@ -23,12 +23,8 @@ url: https://traffic.libsyn.com/syntax/Syntax004.mp3
 
 ## Sick Picks
 
-#### [Figma](https://www.figma.com)
-Turn Ideas into Products Faster
-Design, prototype, and gather feedback all in one place with Figma.
-
-#### [CalDigit TS3 Dock](http://www.caldigit.com/thunderbolt-3-dock/#TS3)
-The TS3 is designed for users who require their Thunderbolt™ dock to act as the main charging hub for their laptop. Delivering the reality of single cable charging, ONE Thunderbolt™ 3 cable is all it takes for a clean, elegant and streamlined workspace.
+* Scott: [Figma](https://www.figma.com)
+* Wes: [CalDigit TS3 Dock](http://www.caldigit.com/thunderbolt-3-dock/#TS3)
 
 ## Shameless Plugs
 

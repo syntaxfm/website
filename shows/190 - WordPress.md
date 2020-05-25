@@ -13,6 +13,10 @@ Netlify is the best way to deploy and host a front-end website. All the features
 ## Hasura - Sponsor
 Hasura is an open-source GraphQL engine that helps you instantly setup a scalable and realtime GraphQL backend. Hasura makes your team super productive by dynamically composing a schema backed by databases and services that you can securely query from frontend clients. Get started at [hasura.io](https://hasura.io/) to try it out in 30 seconds!
 
+## Guests
+
+* [Brad Touesnard](https://twitter.com/bradt)
+
 ## Show Notes
 
 3:50 - Why did Brad start Delicious Brains?
@@ -69,7 +73,9 @@ Hasura is an open-source GraphQL engine that helps you instantly setup a scalabl
 
 ## ××× SIIIIICK ××× PIIIICKS ×××
 * Brad: [Teppanyaki Grill](https://amzn.to/2ATU6sY)
-* Scott: [Succession](https://www.hbo.com/succession) and [The Righteous Gemstones](https://www.hbo.com/the-righteous-gemstones)
+* Scott:
+  * [Succession](https://www.hbo.com/succession)
+  * [The Righteous Gemstones](https://www.hbo.com/the-righteous-gemstones)
 * Wes: [Magnatiles](https://amzn.to/3336kMa)
 
 ## Shameless Plugs
