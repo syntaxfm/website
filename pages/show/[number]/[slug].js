@@ -13,23 +13,26 @@ import slug from 'speakingurl';
 export async function getStaticPaths() {
   const shows = await getShows()
 
-  return [
-    // Homepage
-    {
-      params: {
-        number: 'latest',
-        slug: 'latest'
-      }
-    },
-    ...shows.map((show) => {
-      return {
+  return {
+    fallback: false,
+    paths: [
+      // Homepage
+      {
         params: {
-          number: show.displayNumber,
-          slug: slug(show.title)
+          number: 'latest',
+          slug: 'latest'
         }
-      }
-    })
-  ]
+      },
+      ...shows.map((show) => {
+        return {
+          params: {
+            number: show.displayNumber,
+            slug: slug(show.title)
+          }
+        }
+      })
+    ]
+  }
 }
 
 export async function getStaticProps({params}) {
