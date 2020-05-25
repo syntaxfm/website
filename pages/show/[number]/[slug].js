@@ -10,7 +10,7 @@ import { getShows } from '../../../lib/getShows'
 import slug from 'speakingurl';
 
 
-export async function unstable_getStaticPaths() {
+export async function getStaticPaths() {
   const shows = await getShows()
 
   return [
@@ -32,10 +32,11 @@ export async function unstable_getStaticPaths() {
   ]
 }
 
-export async function unstable_getStaticProps({params}) {
+export async function getStaticProps({params}) {
   const shows = await getShows()
 
   return {
+    unstable_revalidate: 1,
     props: {
       shows,
       showNumber: params.number === 'latest' ? shows[0].displayNumber : params.number

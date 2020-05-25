@@ -4,10 +4,11 @@ import Meta from '../components/meta';
 import Page from '../components/Page';
 import { getAllShowSickPicks } from '../lib/getShows'
 
-export async function unstable_getStaticProps() {
+export async function getStaticProps() {
   const sickPicks = await getAllShowSickPicks()
 
   return {
+    unstable_revalidate: 1,
     props: {
       sickPicks
     }
