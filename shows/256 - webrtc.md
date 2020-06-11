@@ -11,7 +11,7 @@ In this episode of Syntax, Scott and Wes talk with Ian Ramzy about ZipCall.io â€
 If you want to know what's happening with your errors, track them with [Sentry](https://sentry.io/). Sentry is open-source error tracking that helps developers monitor and fix crashes in real time. Cut your time on error resolution from five hours to five minutes. It works with any language and integrates with dozens of other services. Syntax listeners can get two months for free by visiting [Sentry.io](https://sentry.io/) and using the coupon code "tastytreat".
 
 ## Stackbit - Sponsor
-Build modern JAMStack websites in minutes. Stackbit lets you combine any theme, site generator and CMS without complicated integrations. Join the beta today by visiting [stackbit.com/syntaxfm](https://www.stackbit.com/syntaxfm/).
+Stackbit offers developers tools that enable things like inline content editing, live previewing of content changes, and collaboration features on your Jamstack site, without code changes. That's why Stackbit is the best way to Jamstack. [stackbit.com](https://stackbit.com)
 
 ## Guests
 * [Ian Ramzy](https://ianramzy.com/)
