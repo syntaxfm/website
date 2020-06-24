@@ -8,7 +8,7 @@ url: https://traffic.libsyn.com/syntax/Syntax255.mp3
 In this Hasty Treat, Scott and Wes are back with part 2 on how to develop for slow internet connections. 
 
 ## Kyle Prinsloo Freelancing - Sponsor
-Kyle Prinsloo teaches you everything you need to know about freelancing, including how to quit your job, earn a side-income and start taking control of your life. Check it out at [studywebdevelopment.com/freelaning](https://studywebdevelopment.com/freelancing). Use the coupon "SYNTAX" and get 25%.
+Kyle Prinsloo teaches you everything you need to know about freelancing, including how to quit your job, earn a side-income and start taking control of your life. Check it out at [studywebdevelopment.com/freelancing](https://studywebdevelopment.com/freelancing). Use the coupon "SYNTAX" and get 25%.
 
 ## Show Notes
 
