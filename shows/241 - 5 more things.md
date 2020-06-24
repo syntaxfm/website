@@ -44,7 +44,7 @@ If you want to know what's happening with your errors, track them with [Sentry](
 
 ## Links
 * [Syntax 239: Hasty Treat - 5 Things That Make Your Site Slow](https://syntax.fm/show/239/hasty-treat-5-things-that-make-your-site-slow)
-* [Google PageSpped](https://developers.google.com/speed/pagespeed/module)
+* [Google PageSpeed](https://developers.google.com/speed/pagespeed/module)
 
 ## Tweet us your tasty treats!
 * [Scott's Instagram](https://www.instagram.com/stolinski/)
