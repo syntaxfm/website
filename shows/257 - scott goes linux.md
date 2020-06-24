@@ -28,7 +28,7 @@ LogRocket lets you replay what users do on your site, helping you reproduce bugs
 
 10:07 - I can still run:
 
-* [Alfred](https://www.alfredapp.com/)
+* [Albert (alfred)](https://github.com/albertlauncher/albert)
 * [Figma](https://www.figma.com/)
 * [VSCode](https://code.visualstudio.com/)
 * [DaVinci Resolve](https://www.blackmagicdesign.com/products/davinciresolve/)
