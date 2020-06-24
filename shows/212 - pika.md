@@ -15,7 +15,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 
 ## Guests
 
-* [Fred Schott](http://fredkschott.com/)
+* [Fred Schott](https://twitter.com/FredKSchott)
 
 ## Show Notes
 
