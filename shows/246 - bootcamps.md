@@ -22,7 +22,7 @@ If you want to know what's happening with your errors, track them with [Sentry](
 
 * What do you teach in the bootcamp? 
 * How long is it? 
-* SHow do you validate and pick topics?
+* How do you validate and pick topics?
 * What makes a good bootcamp student?
 * Do bootcamps work?
 * How do you get the most out of a bootcamp?
