@@ -1,6 +1,6 @@
 ---
 number: 260
-title: Potluck - Libraries vs Frameworks × Firefox × Career Advice For Teenagers × Who Would Win a Thumb War × More!
+title: Potluck - Libraries vs Frameworks × Firefox × Career Advice For Teenagers × Who Would Win a Thumb War? × More!
 date: 1593003600219
 url: https://traffic.libsyn.com/syntax/Syntax260.mp3
 ---
@@ -15,11 +15,11 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 
 ## Show Notes
 
-01:37 - Q: Why does React bill itself as a library instead of a framework?	
+01:37 - Q: Why does React bill itself as a library instead of a framework?
 
 03:14 - Q: Are y'all still using Firefox now that it has been six months?
 
-06:30 - Q: Is it possible to do a hasty treat regarding the Brave browser? Would love to hear your opinion on the tech, view on the approach and why we could need another browser in 2020. Peace!	
+06:30 - Q: Is it possible to do a hasty treat regarding the Brave browser? Would love to hear your opinion on the tech, view on the approach and why we could need another browser in 2020. Peace!
 
 09:34 - Q: Who would win in a thumb war, Wes or Scott?
 
@@ -33,7 +33,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 
 24:28 - Q: I have a question regarding Figma design to HTML/CSS conversion. When translating the design into code, do you keep the font-size, padding, height of images the same as defined in design or do you take something different? Let's suppose top nav bar is 115px, then do you make it the same as well, or something else?
 
-29:03 - Q: You both are great at technical communication — how do you get better at technical communication when self-learning?	
+29:03 - Q: You both are great at technical communication — how do you get better at technical communication when self-learning?
 
 33:06 - Q: What tools (or other methods) do y'all use to manage spinning up new projects with all the assorted directory structures, tools, and configs, you prefer? For example, when I start a new project, these days I like TS, Prettier, ESLint, and want those to play nicely together. I find I'm constantly copying files from one project to the other but haven't found a good abstraction that allows me to setup a new project with the assorted files. Bonus points for a solution that can keep shared configs and deps up to date.
 
@@ -54,7 +54,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 * [Figma Auto Layout](https://www.figma.com/blog/announcing-auto-layout/)
 
 ## ××× SIIIIICK ××× PIIIICKS ×××
-* Scott: 
+* Scott:
   * 1: [Myths and Legends Podcast](https://www.mythpodcast.com/)
   * 2: [Fictional Podcast](https://www.fictional.fm/)
 * Wes: [Parchment Paper Baking Sheets](https://amzn.to/2A9c5P0)
