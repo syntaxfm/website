@@ -7,12 +7,12 @@ import ShowNotes from '../../../components/ShowNotes';
 import Player from '../../../components/Player';
 import Meta from '../../../components/meta';
 import Page from '../../../components/Page';
-import { loadShows } from '../../../lib/getShows'
+import { getShows, getShow } from '../../../lib/getShows'
 import slug from 'speakingurl';
 
 
 export async function getStaticPaths() {
-  const shows = await loadShows()
+  const shows = await getShows('all')
 
   return {
     fallback: false,
@@ -37,12 +37,10 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({params}) {
-  const allShows = await loadShows()
-  const now = Date.now()
-  const shows = allShows.filter(show => show.date < now);
-  const showNumber = params.number === 'latest' ? shows[0].displayNumber : params.number
-  const show = allShows.find(showItem => showItem.displayNumber === showNumber)
-  const props = show.date > now ? {} : { shows, showNumber }
+  const shows = await getShows();
+  const showNumber = params.number === 'latest' ? shows[0].displayNumber : params.number;
+  const show = getShow(showNumber);
+  const props = show.date > Date.now() ? {} : { shows, showNumber };
 
   return {
     unstable_revalidate: 1,
