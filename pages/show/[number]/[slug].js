@@ -39,7 +39,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({params}) {
   const shows = await getShows();
   const showNumber = params.number === 'latest' ? shows[0].displayNumber : params.number;
-  const show = getShow(showNumber);
+  const show = await getShow(showNumber);
   const props = show.date > Date.now() ? {} : { shows, showNumber };
 
   return {
