@@ -21,12 +21,12 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 
 06:20 - Suspense with SSR released (or not because I think they are shelving it)
 
-* Dan's tweet: [https://twitter.com/dan_abramov/status/1259614150386425858](https://twitter.com/dan_abramov/status/1259614150386425858) 
+* Dan's tweet: [https://twitter.com/dan_abramov/status/1259614150386425858](https://twitter.com/dan_abramov/status/1259614150386425858)
 
 09:24 - File based components
 
 * Like Svelte and Vue
-* This would look like a file with a special scoped <style> tag per page. 
+* This would look like a file with a special scoped `<style>` tag per page.
 
 11:50 - Prevent Default shortcuts
 
@@ -42,7 +42,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 
 18:25 - A good form strategy
 
-* Bind inputs to state directly without any change handlers 
+* Bind inputs to state directly without any change handlers
 * Inputs and forms all around need more magic - it's painful
 
 20:43 - Write once deploy everywhere
@@ -52,7 +52,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 
 22:28 - Compile time directives
 
-* [https://github.com/bukharim96/directive-x](https://github.com/bukharim96/directive-x) 
+* [https://github.com/bukharim96/directive-x](https://github.com/bukharim96/directive-x)
 
 25:11 - Slots instead of children
 
@@ -100,7 +100,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 * [NativeScript](https://nativescript.org/)
 * [react-spring](https://www.react-spring.io/)
 * [Paul Henschel](https://twitter.com/0xca0a)
-* Scream Sneeze: [https://twitter.com/morganc_smith/status/1235332301044801538](https://twitter.com/morganc_smith/status/1235332301044801538) 
+* Scream Sneeze: [https://twitter.com/morganc_smith/status/1235332301044801538](https://twitter.com/morganc_smith/status/1235332301044801538)
 
 ## ××× SIIIIICK ××× PIIIICKS ×××
 * Scott: [Software Engineering Daily Podcast](https://softwareengineeringdaily.com/)
