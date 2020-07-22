@@ -1,11 +1,11 @@
 ---
-number: 268
+number: 269
 title: Hasty Treat - Target=_blank security issue? What's the deal with noopener and noreferrer?
 date: 1595854800426
 url: https://traffic.libsyn.com/syntax/Syntax268.mp3
 ---
 
-In this Hasty Treat, Scott and Wes talk about noopener and noreferrer and why you should use them with links that have blank targets. 
+In this Hasty Treat, Scott and Wes talk about noopener and noreferrer and why you should use them with links that have blank targets.
 
 ## Sentry - Sponsor
 If you want to know what's happening with your errors, track them with [Sentry](https://sentry.io/). Sentry is open-source error tracking that helps developers monitor and fix crashes in real time. Cut your time on error resolution from five hours to five minutes. It works with any language and integrates with dozens of other services. Syntax listeners can get two months for free by visiting [Sentry.io](https://sentry.io/) and using the coupon code "tastytreat".
@@ -14,14 +14,14 @@ If you want to know what's happening with your errors, track them with [Sentry](
 
 03:35 - What's the big deal?
 
-* If you have a link that is target="_blank" you should add rel="noopener" and rel="noreferrer" 
+* If you have a link that is target="_blank" you should add rel="noopener" and rel="noreferrer"
 * Retail Me Not uses it
 * Valid use cases:
   * Same domain change the page from a popup
   * Cross domain changing page data
 * Example: [https://mathiasbynens.github.io/rel-noopener/](https://mathiasbynens.github.io/rel-noopener/)
 
-05:39 - Why doesn't the browser just fix it? 
+05:39 - Why doesn't the browser just fix it?
 
 * Safari did - You can use rel="opener" to allow it
 * Firefox did
