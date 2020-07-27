@@ -22,10 +22,12 @@ url: https://traffic.libsyn.com/syntax/syntax002.mp3
 * [Fluent Conf](https://conferences.oreilly.com/fluent/fl-ca)
 
 ## Sick Picks
-* [Peak Design Everyday Backpack](https://www.peakdesign.com/everyday-backpack)
- * [Everyday Backpack Video](https://www.youtube.com/watch?v=Wf8US4LJp1w)
-* [Quik by GoPro](https://quik.gopro.com)
-* [Splice](https://spliceapp.com/)
+* Wes:
+  * [Peak Design Everyday Backpack](https://www.peakdesign.com/everyday-backpack)
+  * [Everyday Backpack Video](https://www.youtube.com/watch?v=Wf8US4LJp1w)
+  * [Splice](https://splice.com/)
+* Scott:
+  * [Quik by GoPro](https://quik.gopro.com)
 
 ## Shameless Plugs
 #### [JavaScript30](https://javascript30.com)

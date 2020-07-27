@@ -69,8 +69,9 @@ If you want to know what's happening with your errors, track them with [Sentry](
 ## ××× SIIIIICK ××× PIIIICKS ×××
 
 * Scott: [Bad Blood](https://amzn.to/2JMfowo)
-* Wes 1: [Swindled Podcast](http://swindledpodcast.com/)
-* Wes 2: [Scrub Brush Drill](https://amzn.to/2JMEpHV)
+* Wes:
+  * [Swindled Podcast](http://swindledpodcast.com/)
+  * [Scrub Brush Drill](https://amzn.to/2JMEpHV)
 
 ## Shameless Plugs
 

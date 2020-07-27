@@ -28,7 +28,7 @@ In this episode, Scott talks about his unconventional career path and how to gro
 * [Atya](https://getatya.com)
 
 ## Sick Picks
-* [Good Hertz](https://goodhertz.co/)
+* Scott: [Good Hertz](https://goodhertz.co/)
 
 ## Shameless Plugs
 * [Wes' Courses](https://wesbos.com/courses)

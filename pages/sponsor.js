@@ -1,28 +1,21 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Page from '../components/Page';
 import Meta from '../components/meta';
-import getBaseURL from '../lib/getBaseURL';
 
 export default class SponsorPage extends React.Component {
-  static propTypes = {
-    baseURL: PropTypes.string.isRequired,
-  };
-
-  static async getInitialProps({ req }) {
-    const baseURL = getBaseURL(req);
-    return { baseURL };
-  }
 
   render() {
-    const { baseURL } = this.props;
     return (
       <Page>
-        <Meta baseURL={baseURL} staticPage={{ title: 'Sponsors' }} />
+        <Meta staticPage={{ title: 'Sponsors' }} />
         <div className="wrapper wrapper--text">
           <h1>Syntax Sponsorship</h1>
           <p>
-            Interested in getting your message to thousands of developers? We're interested in helping! Syntax is one of most listened to web development podcasts out there (we think it's the most listened to!). If you think our audience may be a good fit, let's chat about how we can make this sponsorship worth it for you.
+            Interested in getting your message to thousands of developers? We're
+            interested in helping! Syntax is one of most listened to web
+            development podcasts out there (we think it's the most listened
+            to!). If you think our audience may be a good fit, let's chat about
+            how we can make this sponsorship worth it for you.
           </p>
           <figure style={{ float: 'left', marginRight: 35 }}>
             <img
@@ -75,7 +68,9 @@ export default class SponsorPage extends React.Component {
             </figcaption>
           </figure>
           <p>
-            Each sponsorship spot will receive an average of 45,000 downloads. We get between 80-90,000 downloads per week with some of our top shows receiving more than 70,000 downloads.
+            Each sponsorship spot will receive an average of 45,000 downloads.
+            We get between 80-90,000 downloads per week with some of our top
+            shows receiving more than 70,000 downloads.
           </p>
 
           <blockquote className="twitter-tweet">
@@ -105,16 +100,21 @@ export default class SponsorPage extends React.Component {
           </p>
           <ul>
             <li>
-              Syntax has been in the Overcast <strong>top 20</strong> Technology podcasts since launch. #10 as of September 2019!
+              Syntax has been in the Overcast <strong>top 20</strong> Technology
+              podcasts since launch. #10 as of September 2019!
             </li>
             <li>
-              The geographic makeup of the audience consists of 49% USA, 8% United Kingdom, 5% Canada, 4% Germany, 3% Australia, 2% Sweden, 2% Netherlands.
+              The geographic makeup of the audience consists of 49% USA, 8%
+              United Kingdom, 5% Canada, 4% Germany, 3% Australia, 2% Sweden, 2%
+              Netherlands.
             </li>
             <li>
-              The rest of the audience is fairly well distributed between the rest of Europe, Brazil, and India.
+              The rest of the audience is fairly well distributed between the
+              rest of Europe, Brazil, and India.
             </li>
             <li>
-              Of those who listen in the browser, 83% use Chrome, 9% Safari, and 8% Firefox.
+              Of those who listen in the browser, 83% use Chrome, 9% Safari, and
+              8% Firefox.
             </li>
             <li>
               Of those who listen on phones, it's roughly 80% iPhone users and
@@ -130,7 +130,9 @@ export default class SponsorPage extends React.Component {
 
           <h2>Audience Interests</h2>
           <p>
-            The Syntax audience is primarily web developers. About half of the shows focus on hard technical skills, while the other half focus on soft skills or topics tangentially related to web development.
+            The Syntax audience is primarily web developers. About half of the
+            shows focus on hard technical skills, while the other half focus on
+            soft skills or topics tangentially related to web development.
           </p>
 
           <p>
@@ -164,7 +166,9 @@ export default class SponsorPage extends React.Component {
 
           <h2>What You'll Get && Pricing</h2>
           <p>
-            We have found that we get the best results for our advertisers when they sponsor at least three shows and Scott and Wes are able to test out the product prior to giving the ad read.
+            We have found that we get the best results for our advertisers when
+            they sponsor at least three shows and Scott and Wes are able to test
+            out the product prior to giving the ad read.
           </p>
 
           <ul>
@@ -173,27 +177,51 @@ export default class SponsorPage extends React.Component {
             <li>10+ Shows — $1,850 USD</li>
           </ul>
 
-          <p>There are two types of shows. The price is the same regardless of which type of show.</p>
+          <p>
+            There are two types of shows. The price is the same regardless of
+            which type of show.
+          </p>
 
-          <p><strong>Hasty Treat — our 10-20 min Monday show. Sponsor is read at the top of the show. One sponsor per show.</strong></p>
+          <p>
+            <strong>
+              Hasty Treat — our 10-20 min Monday show. Sponsor is read at the
+              top of the show. One sponsor per show.
+            </strong>
+          </p>
 
-          <p><strong>Tasty Treat — our hour long Wednesday show. Sponsors are mentioned at the top of the show, and ad read is done part-way through the show. Two sponsors per show.</strong></p>
+          <p>
+            <strong>
+              Tasty Treat — our hour long Wednesday show. Sponsors are mentioned
+              at the top of the show, and ad read is done part-way through the
+              show. Two sponsors per show.
+            </strong>
+          </p>
 
           <p>As part of the sponsorship package, you'll get:</p>
 
           <ol>
             <li>
-              A sponsorship section at the top of the episode show notes. These notes will be listed on both the Syntax.fm website as well as on each user's mobile device as they listen to the podcast. This is a great opportunity to list any coupon codes or unique links you'd like listeners to click on.
+              A sponsorship section at the top of the episode show notes. These
+              notes will be listed on both the Syntax.fm website as well as on
+              each user's mobile device as they listen to the podcast. This is a
+              great opportunity to list any coupon codes or unique links you'd
+              like listeners to click on.
             </li>
             <li>
-              Tasty: A mention and single line at the top of the show. For example, Wes
-              might say{' '}
+              Tasty: A mention and single line at the top of the show. For
+              example, Wes might say{' '}
               <em>
-                This episode is sponsored by FreshBooks. They are my favourite cloud accounting software, and we will talk about why partway through the show.
+                This episode is sponsored by FreshBooks. They are my favourite
+                cloud accounting software, and we will talk about why partway
+                through the show.
               </em>
             </li>
             <li>
-              A 1-2 min sponsor spot at the start (hasty treat) or midway (tasty) during the episode. While we can do a regular ad read, we have found that having Scott or Wes talk about the product or service and their experience with it gives it an added personal touch and converts better for the advertiser.
+              A 1-2 min sponsor spot at the start (hasty treat) or midway
+              (tasty) during the episode. While we can do a regular ad read, we
+              have found that having Scott or Wes talk about the product or
+              service and their experience with it gives it an added personal
+              touch and converts better for the advertiser.
             </li>
           </ol>
 
@@ -226,7 +254,9 @@ export default class SponsorPage extends React.Component {
             Please{' '}
             <a href="mailto:wes@wesbos.com,scotttolinski@gmail.com">
               send us an email
-            </a> if you are interested in working together and sponsoring the podcast.
+            </a>{' '}
+            if you are interested in working together and sponsoring the
+            podcast.
           </p>
         </div>
       </Page>

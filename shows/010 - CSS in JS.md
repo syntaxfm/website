@@ -26,8 +26,8 @@ The most requested syntax episode ever! We break down CSS in JavaScript. Pros/Co
 * [Styled JSX](https://github.com/zeit/styled-jsx)
 
 ## Sick Picks
-* [Boxyapp Mail Client](http://www.boxyapp.co/)
-* [Airpods](http://amzn.to/2wFYNpc)
+* Scott: [Boxyapp Mail Client](http://www.boxyapp.co/)
+* Wes: [Airpods](http://amzn.to/2wFYNpc)
 
 ## Shameless Plugs
 * [Grab Level Up Tuts before the price goes up!](https://www.leveluptutorials.com/)

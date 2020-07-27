@@ -15,6 +15,10 @@ If you want to know what's happening with your errors, track them with [Sentry](
 
 Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbooks.com/syntax) and put **SYNTAX** in the "How did you hear about us?" section.
 
+## Guests
+
+* [Sacha Greif](https://twitter.com/SachaGreif)
+
 ## Show Notes
 
 1:48

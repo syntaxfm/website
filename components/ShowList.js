@@ -7,6 +7,7 @@ const ShowList = ({
   currentPlaying,
   currentShow,
   setCurrentPlaying,
+  isPlaying,
 }) => (
   <div className="showList">
     {shows.map(show => (
@@ -16,6 +17,7 @@ const ShowList = ({
         currentShow={currentShow}
         key={show.number}
         show={show}
+        isPlaying={isPlaying}
       />
     ))}
     <div className="show show--dummy" />
