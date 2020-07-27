@@ -16,14 +16,19 @@ If you want to know what's happening with your errors, track them with [Sentry](
 ## Show Notes
 
 1:26 - Hooks vs Render Props
-
 * Hooks win hands down
-* useState
-* useReducer
-* useRef 
-* useContext
-* useEffect
-* Custom hooks to hide and encapsulate functionality
+
+3:40 - useState
+
+9:18 - useReducer
+
+12:12 - useRef
+
+15:30 - useContext
+
+21:55 - useEffect
+
+29:35 -  Custom hooks to hide and encapsulate functionality
 
 35:06 - How we use them
 
