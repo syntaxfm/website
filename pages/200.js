@@ -14,7 +14,11 @@ const TwoHundy = () => (
 
       <p>
         Huge thanks to{' '}
-        <a href="https://pigeonhole.at" target="_blank">
+        <a
+          href="https://pigeonhole.at"
+          target="_blank"
+          rel="noreferrer noopener"
+        >
           Pigeon Hole
         </a>{' '}
         for supplying the software for this Q+A. 👇🏻
