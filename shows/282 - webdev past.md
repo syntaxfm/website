@@ -1,6 +1,6 @@
 ---
 number: 282
-title: Tales from Webdev Past - Cleafix × Floats × Cufon × Guestbooks × PNG Fix × More!
+title: Tales from Webdev Past - Clearfix × Floats × Cufon × Guestbooks × PNG Fix × More!
 date: 1599656400709
 url: https://traffic.libsyn.com/syntax/Syntax282.mp3
 ---
