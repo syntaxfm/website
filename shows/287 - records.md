@@ -12,8 +12,6 @@ LogRocket lets you replay what users do on your site, helping you reproduce bugs
 
 ## Show Notes
 
-???? - 
-
 02:42 - Immutability
 
 05:08 - Records
