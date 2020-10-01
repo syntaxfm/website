@@ -36,7 +36,7 @@ export async function getStaticPaths() {
   }
 }
 
-export async function getStaticProps({params}) {
+export async function getStaticProps({ params }) {
   const shows = await getShows();
   const showNumber = params.number === 'latest' ? shows[0].displayNumber : params.number;
   const show = await getShow(showNumber);
@@ -66,7 +66,7 @@ export default withRouter(
       };
     }
 
-    componentWillReceiveProps(nextProps) {
+    UNSAFE_componentWillReceiveProps(nextProps) {
       const { query } = nextProps.router;
       if (query.number) {
         this.setState({ currentShow: query.number });
@@ -79,7 +79,7 @@ export default withRouter(
     };
 
     setIsPlaying = (isPlaying) => {
-      this.setState({isPlaying})
+      this.setState({ isPlaying })
     }
 
     render() {
@@ -97,7 +97,7 @@ export default withRouter(
           <Meta show={show} />
           <div className="wrapper">
             <main className="show-wrap" id="main" tabIndex="-1">
-              <Player show={current} onPlayPause={a => this.setIsPlaying(!a.paused)}/>
+              <Player show={current} onPlayPause={a => this.setIsPlaying(!a.paused)} />
               <ShowList
                 shows={shows}
                 currentShow={currentShow}
