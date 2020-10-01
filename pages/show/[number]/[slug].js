@@ -10,6 +10,7 @@ import Page from '../../../components/Page';
 import { getShows, getShow } from '../../../lib/getShows'
 import slug from 'speakingurl';
 
+const LATEST = 'latest';
 
 export async function getStaticPaths() {
   const shows = await getShows('all')
@@ -20,8 +21,8 @@ export async function getStaticPaths() {
       // Homepage
       {
         params: {
-          number: 'latest',
-          slug: 'latest'
+          number: LATEST,
+          slug: LATEST
         }
       },
       ...shows.map((show) => {
@@ -38,7 +39,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const shows = await getShows();
-  const showNumber = params.number === 'latest' ? shows[0].displayNumber : params.number;
+  const showNumber = params.number === LATEST ? shows[0].displayNumber : params.number;
   const show = await getShow(showNumber);
   const props = show.date > Date.now() ? {} : { shows, showNumber };
 
