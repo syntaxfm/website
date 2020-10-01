@@ -69,8 +69,10 @@ export default withRouter(
 
     UNSAFE_componentWillReceiveProps(nextProps) {
       const { query } = nextProps.router;
+      const { shows } = this.props;
       if (query.number) {
-        this.setState({ currentShow: query.number });
+        const currentShow = query.number === LATEST ? shows[0].displayNumber : query.number;
+        this.setState({ currentShow });
       }
     }
 
