@@ -29,6 +29,7 @@ ShowList.propTypes = {
   currentPlaying: PropTypes.string.isRequired,
   currentShow: PropTypes.string.isRequired,
   setCurrentPlaying: PropTypes.func.isRequired,
+  isPlaying: PropTypes.bool.isRequired,
 };
 
 export default ShowList;

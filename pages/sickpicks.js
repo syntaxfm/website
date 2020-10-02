@@ -2,24 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Meta from '../components/meta';
 import Page from '../components/Page';
-import { getAllShowSickPicks } from '../lib/getShows'
+import { getAllShowSickPicks } from '../lib/getShows';
 
 export async function getStaticProps() {
-  const sickPicks = await getAllShowSickPicks()
+  const sickPicks = await getAllShowSickPicks();
 
   return {
     unstable_revalidate: 1,
     props: {
-      sickPicks
-    }
-  }
+      sickPicks,
+    },
+  };
 }
 
 export default class SickPicksPage extends React.Component {
-  static propTypes = {
-    sickPicks: PropTypes.array.isRequired
-  };
-
   render() {
     const { sickPicks = [] } = this.props;
 
@@ -38,3 +34,7 @@ export default class SickPicksPage extends React.Component {
     );
   }
 }
+
+SickPicksPage.propTypes = {
+  sickPicks: PropTypes.array.isRequired,
+};
