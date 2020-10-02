@@ -1,6 +1,6 @@
 {
   "functions": {
-    "api/shows/*.js": {
+    "shows/*.js": {
       "includeFiles": "shows/**"
     }
   }
