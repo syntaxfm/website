@@ -7,7 +7,7 @@ const readdir = promisify(fs.readdir);
 
 export default async function sickPicks(req, res) {
   // readdir(path.join(__dirname, 'shows'), null, (err, files) => {
-  readdir('./', null, (err, files) => {
+  readdir('/', null, (err, files) => {
     res.json({
       files,
       __dirname,
