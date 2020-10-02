@@ -58,7 +58,6 @@ export default withRouter(
     constructor(props) {
       super();
       const currentShow = props.showNumber
-
       this.state = {
         currentShow,
         currentPlaying: currentShow,
@@ -68,7 +67,7 @@ export default withRouter(
 
     componentWillReceiveProps(nextProps) {
       const { query } = nextProps.router;
-      if (query.number) {
+      if (query.number && query.number !== 'latest') {
         this.setState({ currentShow: query.number });
       }
     }
