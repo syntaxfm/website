@@ -1,11 +1,13 @@
 import glob from 'glob';
 import fs from 'fs';
 import { promisify } from 'util';
+import path from 'path';
 
 const readdir = promisify(fs.readdir);
 
 export default async function sickPicks(req, res) {
-  readdir('./shows/', null, (err, files) => {
+  // readdir(path.join(__dirname, 'shows'), null, (err, files) => {
+  readdir('./', null, (err, files) => {
     res.json({
       files,
       __dirname,
