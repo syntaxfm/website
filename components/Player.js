@@ -5,11 +5,6 @@ import formatTime from '../lib/formatTime';
 import VolumeBars from './VolumeBars';
 
 export default class Player extends React.Component {
-  static propTypes = {
-    show: PropTypes.object.isRequired,
-    onPlayPause: PropTypes.func,
-  };
-
   constructor(props) {
     super(props);
 
@@ -146,8 +141,9 @@ export default class Player extends React.Component {
   };
 
   playPause = () => {
+    const { onPlayPause } = this.props;
     this.setState({ playing: !this.audio.paused });
-    this.props.onPlayPause(this.audio)
+    onPlayPause(this.audio);
   };
 
   volume = e => {
@@ -278,3 +274,8 @@ export default class Player extends React.Component {
     );
   }
 }
+
+Player.propTypes = {
+  show: PropTypes.object.isRequired,
+  onPlayPause: PropTypes.func,
+};

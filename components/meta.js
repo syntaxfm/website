@@ -19,7 +19,9 @@ const Meta = ({ show, staticPage }) => (
         />
         <meta
           property="og:url"
-          content={`https://syntax.fm/show/${show.displayNumber}/${slug(show.title)}`}
+          content={`https://syntax.fm/show/${show.displayNumber}/${slug(
+            show.title
+          )}`}
         />
       </>
     ) : (
@@ -56,7 +58,7 @@ Meta.propTypes = {
   show: requiredPropsCheck,
   staticPage: PropTypes.shape({
     title: PropTypes.string.isRequired,
-  })
+  }),
 };
 
 export default Meta;

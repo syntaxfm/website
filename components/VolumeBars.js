@@ -18,13 +18,12 @@ const getItems = count =>
     };
   }); // END MAP // END ARROW
 class VolumeBars extends Component {
-  state = {
-    volumeBarList: getItems(11),
-  };
-
-  static propTypes = {
-    volume: PropTypes.func.isRequired,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      volumeBarList: getItems(11),
+    };
+  }
 
   componentDidMount() {
     const localKey = `lastVolumeBarsOn`;
@@ -64,7 +63,7 @@ class VolumeBars extends Component {
     const { volume } = this.props;
     const { volumeBarList } = this.state;
     return (
-      <Fragment>
+      <>
         {volumeBarList.map((item, index) => (
           <Fragment key={item.integer}>
             <input
@@ -81,18 +80,25 @@ class VolumeBars extends Component {
             <label
               htmlFor={item.vol}
               style={
-                item.integer > 100 && item.checked ? { background: '#f1c15d' }
-                  : item.checked ? { background: '#03fff3' }
+                // eslint-disable-next-line no-nested-ternary
+                item.integer > 100 && item.checked
+                  ? { background: '#f1c15d' }
+                  : item.checked
+                  ? { background: '#03fff3' }
                   : { background: '#e4e4e4' }
               }
             >
               <span className="sr-only">{item.level}</span>
             </label>
           </Fragment>
-    ))}
-      </Fragment>
+        ))}
+      </>
     );
   }
 }
+
+VolumeBars.propTypes = {
+  volume: PropTypes.func.isRequired,
+};
 
 export default VolumeBars;

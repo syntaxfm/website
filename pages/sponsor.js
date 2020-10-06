@@ -3,7 +3,6 @@ import Page from '../components/Page';
 import Meta from '../components/meta';
 
 export default class SponsorPage extends React.Component {
-
   render() {
     return (
       <Page>
