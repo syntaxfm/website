@@ -55,18 +55,18 @@ mLab is the leading Database-as-a-Service for MongoDB, powering over half a mill
 
 ## Links
 
-[Preact](https://preactjs.com/)
-[Inferno](https://infernojs.org/)
-[How to Comment in JSX (article)](https://wesbos.com/react-jsx-comments/)
-[Apollo](https://www.apollographql.com/)
-[Redux](https://redux.js.org/)
-[LevelUpTutorials.com Level II React Course](https://www.leveluptutorials.com/tutorials/level-2-react)
-[React Informed (forms)](https://www.npmjs.com/package/informed)
-[Meteor](https://www.meteor.com/)
-[Axios](https://www.npmjs.com/package/axios)
-[Firebase](https://firebase.google.com/)
-[Gatsby](https://www.gatsbyjs.org/)
-[Here's how React's new Context API works](https://youtu.be/XLJN4JfniH4)
+* [Preact](https://preactjs.com/)
+* [Inferno](https://infernojs.org/)
+* [How to Comment in JSX (article)](https://wesbos.com/react-jsx-comments/)
+* [Apollo](https://www.apollographql.com/)
+* [Redux](https://redux.js.org/)
+* [LevelUpTutorials.com Level II React Course](https://www.leveluptutorials.com/tutorials/level-2-react)
+* [React Informed (forms)](https://www.npmjs.com/package/informed)
+* [Meteor](https://www.meteor.com/)
+* [Axios](https://www.npmjs.com/package/axios)
+* [Firebase](https://firebase.google.com/)
+* [Gatsby](https://www.gatsbyjs.org/)
+* [Here's how React's new Context API works](https://youtu.be/XLJN4JfniH4)
 
 ## ××× SIIIIICK ××× PIIIICKS ×××
 
