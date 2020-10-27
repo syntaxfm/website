@@ -40,6 +40,7 @@
     "raw-loader": "^3.1.0",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
+    "react-hls-player": "^1.1.0",
     "react-icons": "^3.8.0",
     "speakingurl": "^14.0.1"
   },
