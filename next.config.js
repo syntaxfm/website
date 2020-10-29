@@ -2,15 +2,13 @@ const path = require('path');
 const glob = require('glob');
 
 module.exports = {
-  experimental: {
-    rewrites() {
-      return [
-        {
-          source: '/',
-          destination: '/show/latest/latest',
-        },
-      ];
-    },
+  rewrites() {
+    return [
+      {
+        source: '/',
+        destination: '/show/latest/latest',
+      },
+    ];
   },
   webpack: config => {
     config.module.rules.push(
@@ -34,10 +32,12 @@ module.exports = {
           {
             loader: 'stylus-loader',
             options: {
-              includePaths: ['styles', 'node_modules']
-                .map(d => path.join(__dirname, d))
-                .map(g => glob.sync(g))
-                .reduce((a, c) => a.concat(c), []),
+              stylusOptions: {
+                includePaths: ['styles', 'node_modules']
+                  .map(d => path.join(__dirname, d))
+                  .map(g => glob.sync(g))
+                  .reduce((a, c) => a.concat(c), []),
+              },
             },
           },
         ],
