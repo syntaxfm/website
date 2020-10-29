@@ -11,7 +11,21 @@ export default function Live() {
     <Page>
       <Meta staticPage={{ title: 'Syntax Live 🎙️🔴' }} />
       <div className="wrapper">
-        <main className="show-wrap" id="main" tabIndex="-1">
+        <main className="live-wrap" id="main" tabIndex="-1">
+          <div className="live__callin-callout">
+            <p className="live__callin-alert">
+              Join the fun & call into the show!
+            </p>
+            <a href="https://discord.gg/ccMC6kB" className="live__callin-btn">
+              Join the Discord
+            </a>
+            <p>
+              Friday Oct 30th, 10:30am PST, 1:30 EST.{' '}
+              <a href="https://everytimezone.com/s/b5906524">
+                Find your timezone
+              </a>
+            </p>
+          </div>
           <VideoPlayer />
         </main>
       </div>
