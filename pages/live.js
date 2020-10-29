@@ -17,8 +17,8 @@ export default function Live() {
               Join the fun & call into the show!
             </p>
             <p>
-              Ask a potluck question, give us your sick pick, do a shamless plug
-              or have us ask you a Stump'd question!
+              Ask a potluck question, give us your sick pick, do a shameless
+              plug or have us ask you a Stump'd question!
             </p>
             <a href="https://discord.gg/ccMC6kB" className="live__callin-btn">
               Join the Discord Chat to get on!
