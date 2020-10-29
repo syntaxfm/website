@@ -1,5 +1,3 @@
-/* eslint-disable no-plusplus */
-/* eslint-disable jsx-a11y/label-has-for */
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
