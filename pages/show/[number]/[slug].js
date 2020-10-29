@@ -8,7 +8,9 @@ import ShowNotes from '../../../components/ShowNotes';
 import Player from '../../../components/Player';
 import Meta from '../../../components/meta';
 import Page from '../../../components/Page';
-import { getShows, getShow } from '../../../lib/getShows';
+import { getShows, getShow } from '../../../lib/getShows'
+
+const LATEST = 'latest';
 
 export async function getStaticPaths() {
   const shows = await getShows('all');
@@ -19,9 +21,10 @@ export async function getStaticPaths() {
       // Homepage
       {
         params: {
-          number: 'latest',
-          slug: 'latest',
-        },
+
+          number: LATEST,
+          slug: LATEST
+        }
       },
       ...shows.map(show => ({
         params: {
@@ -35,8 +38,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const shows = await getShows();
-  const showNumber =
-    params.number === 'latest' ? shows[0].displayNumber : params.number;
+  const showNumber = params.number === LATEST ? shows[0].displayNumber : params.number;
   const show = await getShow(showNumber);
   const props = show.date > Date.now() ? {} : { shows, showNumber };
 
@@ -66,11 +68,12 @@ export default withRouter(
       };
     }
 
-    // eslint-disable-next-line react/no-deprecated
-    componentWillReceiveProps(nextProps) {
+    UNSAFE_componentWillReceiveProps(nextProps) {
       const { query } = nextProps.router;
+      const { shows } = this.props;
       if (query.number) {
-        this.setState({ currentShow: query.number });
+        const currentShow = query.number === LATEST ? shows[0].displayNumber : query.number;
+        this.setState({ currentShow });
       }
     }
 
@@ -79,9 +82,9 @@ export default withRouter(
       this.setState({ currentPlaying });
     };
 
-    setIsPlaying = isPlaying => {
-      this.setState({ isPlaying });
-    };
+    setIsPlaying = (isPlaying) => {
+      this.setState({ isPlaying })
+    }
 
     render() {
       const { shows } = this.props;
@@ -102,10 +105,7 @@ export default withRouter(
           <Meta show={show} />
           <div className="wrapper">
             <main className="show-wrap" id="main" tabIndex="-1">
-              <Player
-                show={current}
-                onPlayPause={a => this.setIsPlaying(!a.paused)}
-              />
+              <Player show={current} onPlayPause={a => this.setIsPlaying(!a.paused)} />
               <ShowList
                 shows={shows}
                 currentShow={currentShow}
