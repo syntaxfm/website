@@ -23,7 +23,7 @@ const ShowNotes = ({ show, setCurrentPlaying }) => {
       </a>
       <a
         className="button"
-        href={`https://github.com/wesbos/Syntax/edit/master/${show.notesFile}`}
+        href={`https://github.com/wesbos/Syntax/edit/master/shows/${show.notesFile}`}
         target="_blank"
         rel="noopener noreferrer"
       >

@@ -16,7 +16,11 @@ export default class TwoHundy extends React.Component {
 
           <p>
             Huge thanks to{' '}
-            <a href="https://pigeonhole.at" target="_blank">
+            <a
+              href="https://pigeonhole.at"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Pigeon Hole
             </a>{' '}
             for supplying the software for this Q+A. 👇🏻
@@ -29,7 +33,7 @@ export default class TwoHundy extends React.Component {
               width: '100%',
               height: '1000px',
             }}
-          ></iframe>
+          />
         </div>
       </Page>
     );

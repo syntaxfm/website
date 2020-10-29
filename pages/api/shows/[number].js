@@ -16,5 +16,7 @@ export default async function showByNumber(req, res) {
     res.json(show);
     return;
   }
-  res.status(404).json({ message: 'Sorry not found' });
+  res
+    .status(404)
+    .json({ message: `Sorry, we could not find show #${req.query.number}` });
 }

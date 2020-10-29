@@ -1,19 +1,19 @@
 import { withRouter } from 'next/router';
-import ErrorPage from 'next/error'
+import ErrorPage from 'next/error';
 import React from 'react';
 import PropTypes from 'prop-types';
+import slug from 'speakingurl';
 import ShowList from '../../../components/ShowList';
 import ShowNotes from '../../../components/ShowNotes';
 import Player from '../../../components/Player';
 import Meta from '../../../components/meta';
 import Page from '../../../components/Page';
 import { getShows, getShow } from '../../../lib/getShows'
-import slug from 'speakingurl';
 
 const LATEST = 'latest';
 
 export async function getStaticPaths() {
-  const shows = await getShows('all')
+  const shows = await getShows('all');
 
   return {
     fallback: false,
@@ -21,20 +21,19 @@ export async function getStaticPaths() {
       // Homepage
       {
         params: {
+
           number: LATEST,
           slug: LATEST
         }
       },
-      ...shows.map((show) => {
-        return {
-          params: {
-            number: show.displayNumber,
-            slug: slug(show.title)
-          }
-        }
-      })
-    ]
-  }
+      ...shows.map(show => ({
+        params: {
+          number: show.displayNumber,
+          slug: slug(show.title),
+        },
+      })),
+    ],
+  };
 }
 
 export async function getStaticProps({ params }) {
@@ -45,20 +44,22 @@ export async function getStaticProps({ params }) {
 
   return {
     unstable_revalidate: 1,
-    props
-  }
+    props,
+  };
 }
 
 export default withRouter(
   class IndexPage extends React.Component {
+    // eslint-disable-next-line react/static-property-placement
     static propTypes = {
       router: PropTypes.object.isRequired,
-      shows: PropTypes.array
+      shows: PropTypes.array,
+      showNumber: PropTypes.number,
     };
 
     constructor(props) {
       super();
-      const currentShow = props.showNumber
+      const currentShow = props.showNumber;
 
       this.state = {
         currentShow,
@@ -89,12 +90,16 @@ export default withRouter(
       const { shows } = this.props;
 
       if (!shows) {
-        return <ErrorPage statusCode={404} />
+        return <ErrorPage statusCode={404} />;
       }
 
       const { currentShow, currentPlaying, isPlaying } = this.state;
-      const show = shows.find(showItem => showItem.displayNumber === currentShow)
-      const current = shows.find(showItem => showItem.displayNumber === currentPlaying)
+      const show = shows.find(
+        showItem => showItem.displayNumber === currentShow
+      );
+      const current = shows.find(
+        showItem => showItem.displayNumber === currentPlaying
+      );
       return (
         <Page>
           <Meta show={show} />

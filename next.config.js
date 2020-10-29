@@ -7,10 +7,10 @@ module.exports = {
       return [
         {
           source: '/',
-          destination: '/show/latest/latest'
-        }
-      ]
-    }
+          destination: '/show/latest/latest',
+        },
+      ];
+    },
   },
   webpack: config => {
     config.module.rules.push(
