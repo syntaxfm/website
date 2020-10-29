@@ -1,7 +1,0 @@
-{
-  "functions": {
-    "shows/*.js": {
-      "includeFiles": "shows/**"
-    }
-  }
-}

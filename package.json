@@ -5,7 +5,7 @@
     "node": ">=8.1.2"
   },
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --port 6969",
     "build": "next build",
     "start": "next start",
     "deploy": "now",
