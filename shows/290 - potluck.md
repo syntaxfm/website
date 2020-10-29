@@ -70,7 +70,7 @@ export class MyComponent {
 * [8 Mile](https://www.imdb.com/title/tt0298203/)
 * [Syntax 286: Git Fundamentals](https://syntax.fm/show/286/git-fundamentals)
 * [Rev](https://www.rev.com/)
-* [Angular](https://angularjs.org/)
+* [Angular](https://angular.io/)
 * [React](https://reactjs.org/)
 * [Svelte](https://svelte.dev/)
 * [SVGR](https://react-svgr.com/)
