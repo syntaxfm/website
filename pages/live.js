@@ -16,8 +16,12 @@ export default function Live() {
             <p className="live__callin-alert">
               Join the fun & call into the show!
             </p>
+            <p>
+              Ask a potluck question, give us your sick pick, do a shamless plug
+              or have us ask you a Stump'd question!
+            </p>
             <a href="https://discord.gg/ccMC6kB" className="live__callin-btn">
-              Join the Discord
+              Join the Discord Chat to get on!
             </a>
             <p>
               Friday Oct 30th, 10:30am PST, 1:30 EST.{' '}
