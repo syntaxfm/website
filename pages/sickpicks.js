@@ -8,7 +8,7 @@ export async function getStaticProps() {
   const sickPicks = await getAllShowSickPicks();
 
   return {
-    unstable_revalidate: 1,
+    revalidate: 1,
     props: {
       sickPicks,
     },

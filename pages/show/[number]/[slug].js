@@ -8,9 +8,7 @@ import ShowNotes from '../../../components/ShowNotes';
 import Player from '../../../components/Player';
 import Meta from '../../../components/meta';
 import Page from '../../../components/Page';
-import { getShows, getShow } from '../../../lib/getShows'
-
-const LATEST = 'latest';
+import { getShows, getShow } from '../../../lib/getShows';
 
 export async function getStaticPaths() {
   const shows = await getShows('all');
@@ -21,10 +19,9 @@ export async function getStaticPaths() {
       // Homepage
       {
         params: {
-
-          number: LATEST,
-          slug: LATEST
-        }
+          number: 'latest',
+          slug: 'latest',
+        },
       },
       ...shows.map(show => ({
         params: {
@@ -38,12 +35,13 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const shows = await getShows();
-  const showNumber = params.number === LATEST ? shows[0].displayNumber : params.number;
+  const showNumber =
+    params.number === 'latest' ? shows[0].displayNumber : params.number;
   const show = await getShow(showNumber);
   const props = show.date > Date.now() ? {} : { shows, showNumber };
 
   return {
-    unstable_revalidate: 1,
+    revalidate: 1,
     props,
   };
 }
@@ -72,7 +70,8 @@ export default withRouter(
       const { query } = nextProps.router;
       const { shows } = this.props;
       if (query.number) {
-        const currentShow = query.number === LATEST ? shows[0].displayNumber : query.number;
+        const currentShow =
+          query.number === 'latest' ? shows[0].displayNumber : query.number;
         this.setState({ currentShow });
       }
     }
@@ -82,9 +81,9 @@ export default withRouter(
       this.setState({ currentPlaying });
     };
 
-    setIsPlaying = (isPlaying) => {
-      this.setState({ isPlaying })
-    }
+    setIsPlaying = isPlaying => {
+      this.setState({ isPlaying });
+    };
 
     render() {
       const { shows } = this.props;
@@ -105,7 +104,10 @@ export default withRouter(
           <Meta show={show} />
           <div className="wrapper">
             <main className="show-wrap" id="main" tabIndex="-1">
-              <Player show={current} onPlayPause={a => this.setIsPlaying(!a.paused)} />
+              <Player
+                show={current}
+                onPlayPause={a => this.setIsPlaying(!a.paused)}
+              />
               <ShowList
                 shows={shows}
                 currentShow={currentShow}
