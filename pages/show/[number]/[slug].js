@@ -1,6 +1,6 @@
-import { withRouter } from 'next/router';
+import { useRouter, withRouter } from 'next/router';
 import ErrorPage from 'next/error';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import slug from 'speakingurl';
 import ShowList from '../../../components/ShowList';
@@ -46,83 +46,57 @@ export async function getStaticProps({ params }) {
   };
 }
 
-export default withRouter(
-  class IndexPage extends React.Component {
-    // eslint-disable-next-line react/static-property-placement
-    static propTypes = {
-      router: PropTypes.object.isRequired,
-      shows: PropTypes.array,
-      showNumber: PropTypes.number,
-    };
+export default function IndexPage({ showNumber, shows }) {
+  const router = useRouter();
+  const [currentShow, setCurrentShow] = useState(showNumber);
+  const [currentPlaying, setCurrentPlaying] = useState(showNumber);
+  const [isPlaying, setIsPlaying] = useState(false);
 
-    constructor(props) {
-      super();
-      const currentShow = props.showNumber;
-
-      this.state = {
-        currentShow,
-        currentPlaying: currentShow,
-        isPlaying: false,
-      };
-    }
-
-    UNSAFE_componentWillReceiveProps(nextProps) {
-      const { query } = nextProps.router;
-      const { shows } = this.props;
+  useEffect(
+    function() {
+      const { query } = router;
       if (query.number) {
-        const currentShow =
-          query.number === 'latest' ? shows[0].displayNumber : query.number;
-        this.setState({ currentShow });
+        setCurrentShow(
+          query.number === 'latest' ? shows[0].displayNumber : query.number
+        );
       }
-    }
+    },
+    // watch the router for changes, and when it does, the above code will change
+    [router]
+  );
 
-    setCurrentPlaying = currentPlaying => {
-      console.log('Setting current playing');
-      this.setState({ currentPlaying });
-    };
+  // When the page changes...
 
-    setIsPlaying = isPlaying => {
-      this.setState({ isPlaying });
-    };
-
-    render() {
-      const { shows } = this.props;
-
-      if (!shows) {
-        return <ErrorPage statusCode={404} />;
-      }
-
-      const { currentShow, currentPlaying, isPlaying } = this.state;
-      const show = shows.find(
-        showItem => showItem.displayNumber === currentShow
-      );
-      const current = shows.find(
-        showItem => showItem.displayNumber === currentPlaying
-      );
-      return (
-        <Page>
-          <Meta show={show} />
-          <div className="wrapper">
-            <main className="show-wrap" id="main" tabIndex="-1">
-              <Player
-                show={current}
-                onPlayPause={a => this.setIsPlaying(!a.paused)}
-              />
-              <ShowList
-                shows={shows}
-                currentShow={currentShow}
-                currentPlaying={currentPlaying}
-                setCurrentPlaying={this.setCurrentPlaying}
-                isPlaying={isPlaying}
-              />
-              <ShowNotes
-                show={show}
-                setCurrentPlaying={this.setCurrentPlaying}
-              />
-            </main>
-          </div>
-        </Page>
-      );
-    }
+  if (!shows) {
+    return <ErrorPage statusCode={404} />;
   }
-);
+
+  const show = shows.find(showItem => showItem.displayNumber === currentShow);
+
+  const current = shows.find(
+    showItem => showItem.displayNumber === currentPlaying
+  );
+  return (
+    <Page>
+      <Meta show={show} />
+      <div className="wrapper">
+        <main className="show-wrap" id="main" tabIndex="-1">
+          <Player show={current} onPlayPause={a => setIsPlaying(!a.paused)} />
+          <ShowList
+            shows={shows}
+            currentShow={currentShow}
+            currentPlaying={currentPlaying}
+            setCurrentPlaying={setCurrentPlaying}
+            isPlaying={isPlaying}
+          />
+          <ShowNotes show={show} setCurrentPlaying={setCurrentPlaying} />
+        </main>
+      </div>
+    </Page>
+  );
+}
+
+IndexPage.propTypes = {
+  shows: PropTypes.array,
+  showNumber: PropTypes.string,
+};
