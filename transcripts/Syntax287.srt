@@ -1,0 +1,152 @@
+1
+00:00:00,359 --> 00:00:24,480
+Announcer: Monday, Monday, Monday, open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing, soft skill web development hasty, as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob, and Scott Taylor. Totally in ski,
+
+2
+00:00:25,950 --> 00:01:00,000
+Scott Tolinski: oh, come to syntax in this Monday hasty, we're going to be talking all about records and tuples in JavaScript, and what they are, why you might need to know about them and what their status is because they're coming. And they're going to be really, really cool allow us to do some stuff that we've wanted to do in JavaScript for a long time, and really will help some of those situations where you want data to be the same thing all the time. So my name is Scott solinsky. I'm a full stack developer from Denver, Colorado, and with me, as always, is D. Wes Bos. 
+
+3
+00:01:00,060 --> 00:01:00,720
+Wes Bos: Hey, everybody. 
+
+4
+00:01:00,750 --> 00:01:33,750
+Scott Tolinski: Hey, Wes. And this episode is sponsored by log rocket to know you're gonna want to check out log rocket, because it's one of those services that is just totally cool. And it's totally different than what you're used to. And you can head over to log rocket.com forward slash syntax to check it out. Now, what is this? Well, lock rocket is an error and Exception Handling service that lets you see the errors and bugs happen in real time. It's so fantastic. You know what I would love log rocket for I would love log rocket to keep track of the knobs and dials on my audio compressor, because my kids always come in here and change it.
+
+5
+00:01:34,140 --> 00:01:35,280
+Wes Bos:  They always change it. 
+
+6
+00:01:35,540 --> 00:02:15,950
+Scott Tolinski: And what I what would I kill to have a scrubbable replay video to show me exactly what's happening as those kids are turning those knobs. And that's what you get with a log rocket. It's a video replay of the errors and bugs happening including the network store, the Redux store, works with all of your stuff you know, and love. And it is just one of these fantastic tools that will really eliminate bugs for you. So check it out log record.com forward slash index. All right, records in tuples, or records. Now let's start with the first and foremost thing about this topic, which is a big big thing, which is immutability, which is a big scary word. Do you want to talk about immutability? 
+
+7
+00:02:16,160 --> 00:02:20,330
+Wes Bos:  Yeah, all of these words are scary things records tuple. 
+
+8
+00:02:20,330 --> 00:02:27,710
+Scott Tolinski:  Yes, he's just that these sound like programming topic. might as well throw mon ads. And yeah, Scott, this is a scary angle. It's sick.
+
+9
+00:02:27,980 --> 00:04:40,880
+Wes Bos:  It's, it's funny, like even sometimes I see these like tuples. I'm like, Oh, what's that? And then I didn't even know what it was when Scott made it. And I just did a quick little reading. I was like, This is awesome. It's just objects in arrays. So don't turn us off because it's gonna be good. So Scott said, let's start off with immutability. immutability means when you have some data, whether that's an array or an object, or a variable that is a Boolean, or any of the different types that we have, it means that you cannot change them. Meaning that you can, if you have an array that is immutable, you can't just add an item to an array. And generally the way around that is that you just create a new version of that. So if you ever do need the original piece, you're not accidentally just adding and removing things. And that can mutability is the opposite of that the ability to mutate data can sometimes get you into hot water, where you accidentally remove something when you didn't think it was like probably the most popular one is I think, is it pop is pop mutable. Yeah. Like if you pop an item off the end of an array, you're just sometimes people use that because they just want to get the last item of the array really quickly. And rather than doing the whole array dot length minus one to reference it, they just pop it. And what you might not have known is that you actually took that out of the original array, and then that can lead to confusion down the road. So that's my short and sweet of what immutability is and why it's important. It is people always talk, you hear a lot of developers talk about immutability, and you might not get it. But once you start having your like data, assume that it doesn't change, and you then have to then create something new anytime you're making any modifications for it. That was just a huge breakthrough for me in code in general, it made me write better JavaScript. So I once I embraced immutability, I really, really loved it. Now the bummer about immutability, as we've talked about before, or at least in JavaScript currently, is okay, you could define a const string, write a const string of text, and then you go to change that string doesn't let you do it. Now let's say we have an object and it's a constant object. And you go to add something to that object. Unless you do it. It will Yeah.
+
+10
+00:04:41,940 --> 00:06:18,990
+Scott Tolinski: And there's like this weird sort of thing where objects are essentially they're tied to their identity of this thing, right? It's this this object, right? But not their data. The data inside of an object doesn't necessarily determine whether or not it's the same thing. There's there's some weird stuff right? Round two objects there. And so records and tuples are going to help us relieve some of that pain in all sorts of ways. So let's first talk about records and then go into tuples. And then we're going to talk about all of the things that they do because they're very similar. And the only real difference is that a tuple is an array. So a record is you could think of a record as a immutable object, right? Hey, we have object now we have an immutable odd Well, not yet. But we have, we could have an immutable object. And the syntax as proposed is just a pound, and then the normal object syntax, and that point to the object is a record. And all of the things you know and love, like object dot property, whatever you have in your object are going to work the exact same. So by all means, this is extremely similar to just defining an object, you just put a pound sign in front of the brackets. Now, likewise, tuples are the same thing. But for arrays, and immutable array is going to be a tuple. And the syntax for that is the exact same, where you just put a pound sign in front of the normal array brackets. So these things are really simple to get up and running with if you're already using arrays or objects. The only difference is, is that they are immutable.
+
+11
+00:06:19,650 --> 00:07:04,470
+Wes Bos: One question I had immediately when I when you start talking about something like how is that different than object dot freeze, because right now object freeze, if you wrap an object in that, I think it will return a new immutable version of that object. And that's kind of the same idea as this, right? But the object dot freeze does not go deep. Same with like copying an object, it does not do a deep copy, it just does the first level. So if you have an object within an object, the nested object will not be copied, it will, it will only be a reference to the original one. Same with freezing, it will, it will still you'll still be able to modify the nested object, which kind of defeats the whole purpose, immutability. Yeah, right.
+
+12
+00:07:04,680 --> 00:07:05,220
+Yeah, that's,
+
+13
+00:07:05,220 --> 00:07:06,570
+it looks like this is doing it properly.
+
+14
+00:07:06,570 --> 00:07:55,440
+Scott Tolinski: That's the whole thing with the current Java, that's like some people's complaints about the const variables that it's not totally constant. Yeah, okay. Well, this will help alleviate some of that pain is something that you said there was really important, it's not just immutable, it's deeply immutable. It's deeply in all these things. So basically, they're calling this a compound primitive. And it can only contain other primitives. It cannot contain objects. So what are other primitives? Well, string number, those types of things, right. And it can also since these records in tuples, are compound permitted, if it can contain other records and tuples. So you can have records and tuples nested with inside of each other, just by specifying that with the pound sign.
+
+15
+00:07:55,560 --> 00:07:56,310
+Wes Bos: Wait, hold on, let
+
+16
+00:07:56,310 --> 00:08:15,750
+me let me go through that. Again, you just said it can't be nested, but it can be nested. So can you only primitives can be nested? So an object cannot be nested, but a tuple? Or a record? Because a tuple? No record are a type of thing they're calling a compound primitive, not a object.
+
+17
+00:08:16,169 --> 00:08:29,940
+Okay. Okay. Makes sense. So our records in tuple is going to be a new type, like number, or are they just going to be just something that we have, because like when we got symbol, that was a new type, but when we got maps
+
+18
+00:08:29,940 --> 00:09:01,230
+Scott Tolinski: and sets that was not a new, so they are defining this as a new type. Okay, so here's the thing values, which will act. So I'm reading from the proposal itself, values, which act like other JavaScript primitives that are composed of other constituent values. This document proposes the first two compound primitive types, which are record in tuple. Alongside the simple primitive types of string number, Boolean, undefined, no symbol and big hint, notice how object is not there. Does that make sense?
+
+19
+00:09:01,470 --> 00:09:11,070
+Wes Bos: Yes, absolutely. This is this is so cool. I'm so excited about this. It's one of those things like, I feel like I've got a pretty good ear to the ground with what's going on with JavaScript. I had no idea that this was
+
+20
+00:09:11,250 --> 00:11:03,270
+Scott Tolinski: proposed. Yeah, this is my favorite proposal currently, because I would love to use some of this stuff. And he Okay, if none of these features so far sound like a killer feature to you or anything like that. You might be thinking, Okay, this is fine, whatever. Let me blow your mind with what could be the killer feature of these things is that they are comparable deeply. They're deeply comparable. Right? Now, if you create two separate objects, the object just simply has a name name property is equal to Wes. And then the other one named property is equal to Wes. Those are the same exact data structures within those objects. And you say, is object A equals object B? No, they're not. Because in typical objects, what it's doing is it's comparing them by their identity, not by the contents of them with records and tuples. You will be able to use the The triple equals two simply compare them deeply. That is, if you had a record that was an A record record, that was just one property of name, Wes, and then another record that was defined separately with a property of name West and you compare them, the result would be true. That is so dang cool for people who have been wanting to do this for a long time. So even the coolest part is it works for the tuples as well. So if you have an array with the exact same contents in it as another array with the exact same constants, if they are both tuples, they will compare to be equal to true, if they are raised, they will compare it to be equal to false. So this is so exciting to me, I think this is a killer use cases, this is got like the stuff that we would love to do written all over it. I think we had a pilot question on this, where we talked about different solutions for this. And I think that the solution was to use lodash. And essentially, essentially, like recursively go through the tree to compare the values of everything, I forget what it was because converting it out to a JSON string wouldn't work.
+
+21
+00:11:03,540 --> 00:11:30,870
+Wes Bos: Yeah, there's not a good solution other than bringing in additional library. And even then, if it's 40 levels deep of an object, then that gets really expensive to do that. That's cool that this is gonna be doable. I was just looking at the GitHub, it looks like they have a little playground where you can actually try some of this code out. Because there's already a polyfill. I know this is a new syntax. So yeah, can't be polyfilled. It's more of a transpile. Right, like something like Babel?
+
+22
+00:11:30,870 --> 00:11:35,970
+Scott Tolinski: It's a great question. Yeah, I would imagine you would think, yeah, you'd have to transpile it
+
+23
+00:11:36,000 --> 00:11:48,840
+Wes Bos: that's in maps could be polyfilled. Because it's a it's not syntax, it's just new capital S SCT. But this is literally new syntax where you put a pound in front of your objects and arrays to make them a record or a tuple.
+
+24
+00:11:48,870 --> 00:12:43,620
+Scott Tolinski: Yeah. And so some other little things here are that they're saying that there's some potential for optimizations in terms of how the browser's do equality checks, manipulating data structures, all these things should be able to be done faster because of how these things are kept track of, again, these are potential optimizations, that assured optimizations. Next is going to work really well with TypeScript, or any of your type systems, it also is going to work better than with your debugger than using an external library. So if you're using an external library to do this, like him or something like that, this is going to play much nicer with the debugger. And lastly, again, as I mentioned, the coolest thing is that they're basically functioning just like objects with slightly different functionality. So that that way, you don't have to learn Mr. Richie. Yeah, you don't have to learn any weird new techniques or whatever, API's or anything, just put a pound in front of it. Yeah. And then you do object dot property. And it works.
+
+25
+00:12:43,740 --> 00:13:36,630
+Wes Bos: Yet, it's funny that there is no API because you literally cannot do anything with them. Yeah, right. Add stuff, you can't take stuff out, you just reference either the properties like an object or you reference the indexes, like with the square bracket notation, the only new API that I did see on this proposal is convert a object or an array to a record or a tuple, with the record in tuple dot from methods. And then there's also a new method on JSON, which will allow you to parse so if you've got JSON coming in, and you want to parse it into a record or a tuple, instead of a, an object or an array there is there's a proposal for JSON parse immutable, which is interesting, because maps and sets don't have any support for JSON right now. So but it's interesting that they are going I guess this is much more closer to arrays and objects, then.
+
+26
+00:13:37,080 --> 00:13:57,840
+Scott Tolinski: Yeah. So this is at currently in the proposal stage, it is that of the TC 39 process. It is currently at stage two. Now there are five stages, stages zero, which is like nothing really, I don't even know why this thing says, Have you ever even heard of stage there? I have not?
+
+27
+00:13:58,140 --> 00:14:04,800
+Wes Bos: Yes, stage zeroes in that's just somebody throwing their hat into the ring, we need to do a show on how to stuff get added to JavaScript. Yes,
+
+28
+00:14:04,800 --> 00:15:07,860
+Scott Tolinski: we did it for CSS, and I was super good. I don't know very much about it. So this is in stage two, which is the draft stage, which is basically where they're going to precisely define the syntax and semantics used for the formal spec saying like, Alright, let's we got this little strawberry. Now let's do a little chocolate suit on that strawberry. Let's dress it up. Let's make it ready to go to the ball here, getting us ready to go. And it basically everybody starts weighing in on it, where people start developing the actual things that make its way into the standard. And then after that, it will move into a stage three as a candidate or implementation and then a finished once it's in the browsers. So stage two, it doesn't look like it's going to be in browser browser world super soon, but I like to if something's that stage three, that means it's like really moving along. And at that point, stage three, I feel comfortable adding it to my programs with a Babel plugin or something like that. How do you feel about the different stages and when you can start to use something,
+
+29
+00:15:08,340 --> 00:16:15,900
+Wes Bos: I'll usually wait for it to be a little further along just because I've been burned in the past. But for something like the nested equality, I just like sometimes you just look at a proposal and then you say, there's no way that's not going to be added. Because that is so needed. And even though there all the caveats of this might change, definitely some of those I'll throw in earlier just to, to get them so optional chaining. Yeah, yeah, probably wait for it to gain a little bit more momentum. And also, like, when these things become more popular, then you start to see a lot of like, really neat use cases for them little tips and tricks you can use them for, and then they become a lot more like, Okay, this is starting to become that's like, um, what was it backticks like, when when backticks first came out, obviously, you can interpolate data, but the tagged template literals. When that first came out, everyone's like, cool, but like, no one could think of a good idea. I remember like going high and low looking for ideas. And now today, there's probably five or six really good use cases of it. So you gotta wait. Let people sort of chew on it for a bit. Yeah,
+
+30
+00:16:15,900 --> 00:16:16,920
+Announcer: yeah,
+
+31
+00:16:16,920 --> 00:16:19,680
+Scott Tolinski: we all need some time to masticate here.
+
+32
+00:16:22,800 --> 00:16:24,780
+Wes Bos: All right. Anything else to add to this?
+
+33
+00:16:24,800 --> 00:16:26,130
+Scott Tolinski: Ah, no, I
+
+34
+00:16:26,130 --> 00:16:30,720
+don't I don't have nothing else. This is very exciting. I'm into it. And I hope it moves along.
+
+35
+00:16:30,959 --> 00:16:52,980
+Wes Bos: Awesome. I'm glad you brought this up. It's funny, we, I had thought of a show on doing talking about what enums are. I thought that was Scott's idea. And I just started doing the show notes and Scott's like, Oh, no, this is not what I was thinking of. So we just got this whole entire show out of out of that. So I think next Monday, we'll do another show on what enums are in graph. qL, TypeScript and maybe JavaScript.
+
+36
+00:16:53,130 --> 00:16:53,760
+Scott Tolinski: Yeah,
+
+37
+00:16:54,150 --> 00:16:59,070
+Wes Bos: let's do it. Beautiful. All right. Thanks for tuning in. Catch you on Wednesday, Bs, eight.
+
+38
+00:17:00,900 --> 00:17:10,650
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
