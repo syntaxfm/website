@@ -1,0 +1,364 @@
+1
+00:00:01,319 --> 00:00:02,820
+Unknown: You're listening to syntax,
+
+2
+00:00:02,849 --> 00:00:04,590
+the podcast with the tastiest web
+
+3
+00:00:04,590 --> 00:00:10,560
+development treats out there. strap yourself in and get ready. Here is Scott, ski and West boss.
+
+4
+00:00:10,589 --> 00:00:38,040
+Wes Bos: Welcome to syntax. This is a podcast with the tastiest web development treats. Today we are going down memory lane. Just talk about Tales from web dev past. So we're going to talk about all of the hot tech in web development that we had to use. And that is like totally obsoleted or killed off or not as popular anymore. Because Scott and I have been developers for what, like 15 years,
+
+5
+00:00:38,279 --> 00:00:42,540
+Scott Tolinski: something like that very long time. Probably longer than that at this point.
+
+6
+00:00:43,019 --> 00:00:55,650
+Wes Bos: Actually, I have Wes bos.com forward slash about I have been a wiki websites for 20 years. Yeah, exit and then I have the number of milliseconds I've been making making websites for and its accounting.
+
+7
+00:00:55,679 --> 00:00:58,979
+Scott Tolinski: Have you been making websites as well? Is that Is that a thing?
+
+8
+00:00:59,009 --> 00:01:32,310
+Wes Bos: not been meeting websites? Now? That's not when I asked on Twitter, like what were the things from a long, long time, like what were the things from like 1015 years ago, and then I realized that some of this this stuff is way older than 10 years old. 10 years ago was 2010. I feel like that was just yesterday. Anyways, we are sponsored by Sanity, which is a structured content, CMS, and Sentry, which does all of your error and exception tracking in your application. We'll talk about them partway through the episode. How you doing today, Scott?
+
+9
+00:01:32,760 --> 00:02:04,680
+Scott Tolinski: I'm doing good. Just you know, just hanging out doing the same thing as normal. Going a little bit crazy. I have a code release today. I'm pushing a new version of level up up. So that's inherently stressful. Series released today. So that's also stressful. And we're recording a couple episodes of syntax. So my I got a full plate. I got a big old heaping plate. Wes Bos just did some barbecue. He he said how much you want. I said, Give me at all give me everything he got here. So I got a big plate of barbecue chicken here. But yeah, no.
+
+10
+00:02:04,680 --> 00:02:05,610
+Wes Bos: All right. I'm
+
+11
+00:02:05,610 --> 00:02:06,870
+Scott Tolinski: feeling pretty good. How about you?
+
+12
+00:02:07,770 --> 00:02:36,300
+Wes Bos: I'm doing pretty good. I'm finally back from a cottage which we were up there for pretty much six months came back once or twice to pick some stuff up. But we're back in downtown Hamilton, which is the exact Office of being in a woods and very happy to have amenities. Again, there was not not a lot of stores up there. And I hadn't had like sushi or kimchi or anything delicious in six months, which is funny.
+
+13
+00:02:36,330 --> 00:03:13,979
+Scott Tolinski: Yeah, that is funny. Like some of our favorite places are starting to be the ones that have like really died down are starting to come back to the point where you can go get curbside or whatever. So you know, just the other day Voodoo Doughnuts. Finally, we got like a food who doughnuts but walking distance from our house. And oh, it was, you know, only open for like a month before COVID head and then they closed it down just because they didn't need the operating costs. And they just opened it and it was like the first day it was open. We're like, Alright, I know they're over there overhyped, and whatever, but they are very delicious. So we've been gorging on 10 Voodoo Doughnuts now that they're open. Again,
+
+14
+00:03:14,400 --> 00:03:18,900
+Wes Bos: a bunch of restaurants around here are starting up what are called ghost kitchens, if you're heard of that,
+
+15
+00:03:19,139 --> 00:03:19,919
+Scott Tolinski: no.
+
+16
+00:03:20,160 --> 00:03:59,370
+Wes Bos: So like, instead of just like being like a bar, or like a pretty popular sit down restaurant that, like never did take out and their takeout was kind of hurting, because it's not really that but they a lot of them just opened up like secondary businesses that were only on Uber Eats and skim the dishes and all these like delivery apps. But they would just say create an entirely new like, pizza place or fried chicken place and like it would still be made in the kitchen of the restaurant. But they would just focus on like doing one thing and being like, kind of this specialty fried chicken place. And apparently it's doing pretty well for them, hopefully keep them afloat until they can open up again.
+
+17
+00:03:59,490 --> 00:04:05,280
+Scott Tolinski: Oh, totally. Right. That's the that's the goal. Everybody's got to find some way to make it happen. And hopefully, yeah,
+
+18
+00:04:05,310 --> 00:04:20,100
+Wes Bos: that was kind of interesting. I think we'll see a lot more of that where there's these like, there's no storefronts to these these businesses that you order from on Uber Eats it's just a some commercial kitchen somewhere that's has nice branding.
+
+19
+00:04:20,130 --> 00:04:22,320
+Scott Tolinski: Yeah, yeah. walkover pop it in.
+
+20
+00:04:22,320 --> 00:04:23,040
+Unknown: Alright,
+
+21
+00:04:23,040 --> 00:04:56,700
+Scott Tolinski: let's get into this episode here. We're talking about Tales from web dev past. Now, the first and maybe one of the most biggest things that was involved in code we wrote every single day all day every day was doing first layouts and tables, and then layouts with floats, and tables. Yes, table layouts were older than float based layouts. Remember, when used to throw everything in a table, that was the whole thing, tables upon tables upon tables. If you look at HTML email today, that's sort of what all the layouts were like.
+
+22
+00:04:56,820 --> 00:05:03,890
+Wes Bos: Yeah, just lots of nested tables inside of each other and it's extremely frustrating if you were to ever forget a closing,
+
+23
+00:05:04,260 --> 00:05:05,430
+Scott Tolinski: Miss A call span
+
+24
+00:05:05,570 --> 00:05:12,180
+Wes Bos: table markup themselves is already confusing by itself and nesting them six or seven levels. Steep is a world of hurt.
+
+25
+00:05:12,180 --> 00:05:41,580
+Scott Tolinski: It's a world of hurt. Now, if you've ever done HTML emails, you probably know what that pain feels like. It's not great. But then came along float based layouts and float based layouts were primarily using something like the float property. So I don't know if it was exclusively intended for just floating images was that Do you know if that was the exclusive intention of floats in general was to float an image to either side and let text wrap around it?
+
+26
+00:05:42,180 --> 00:06:01,650
+Wes Bos: Not just images, but like it was meant to take inline block elements and have text wrap around it. So whether that's a div with like, a little Did you know tip or something like that off to the right or to the left? Or whether that's most likely an image where you have text sort of wrapped around it? That was the original use case for it?
+
+27
+00:06:01,890 --> 00:07:02,910
+Scott Tolinski: Yeah. So that was really the whole thing. And all sudden, somebody said, Hey, you know what, if we just take a div and we put a float on it, well, then you can accomplish this kind of layout, where you have the modern two column layout where you had a sidebar, that was like 27% of the total width, or 33% of the total width or whatever, the golden ratio, somebody wanted to make up to say that would work out perfectly, you'd have the sidebar of the specific, there's definitely stuff like maybe your blog archive would in the sidebar. And that's still a very common layout today, don't get me wrong. But the way to accomplish it or anything, was with floats. I mean, just think about how crazy it is that we used to do like your header, the logo float to the left, the navigation float to the right, you know, those kinds of things inside of a container. And then, because of this, you had to implement what is one of the next things on our list, which is clear fix, did you want to talk about what clear fix is and why we needed it?
+
+28
+00:07:03,330 --> 00:08:25,380
+Wes Bos: Yeah, just because when you have a container, and all of the elements inside that container are floated, the container doesn't know about its its height, because there are no actual non floated elements inside of it. And because of that, that that entire container will just collapse. So if you've got like a wrapper, and you've got a sidebar, and you got your content, and those two things are 20% 80%, both floated left, so that they go snug up right beside each other, let alone, this is actually not even on our list. But remember, when we had to add up percentages, and then you also could you, you would have to use margin and padding, and you have to add that up to the entire width of it would add up perfectly. That was before box sizing border box. So we would have these two things and but if you float them both left, the wrapper would collapse on itself. And then the content that came after the wrapper, like the footer would just go like underneath all of your content. So what you had to do is to put like, an element that was not floated at the very end of it. And we it was commonly done by just saying dot clearfix, you would add a classic clearfix onto your elements. And what that would do is it would usually use as a CSS pseudo after element. And that would just add a block element at the end. And it would make sure it snaps down to its its rightful height.
+
+29
+00:08:25,470 --> 00:09:43,440
+Scott Tolinski: Yeah. And there was also people found that woman and find out its intended use was that you could use overflow hidden on a container to clean up fixes as well, there was a whole lot of different several different clear fix until like the clear fix, which was what you're talking about the just class of clear fix. That was like the eventual, like the de facto way of doing it. But for a long time, a decent portion of your web development time within CSS was figuring out where the flow issues were with your floats what was a flowing out of document what was actually a part of the document. Remember that being a very difficult concept to teach, I would have to do a lot of background if coloring. This was killed by Flexbox, first and foremost. And then later on it double killed by the addition of CSS Grid, giving us tools that are actually meant to build complex layouts and make it way, way better and easier than floats. And we don't have to deal with things like a clear fix to clear the floats. All right. Next one is going to be loading screens, hey, you remember loading screens. I know we used to have a loading screen specifically on our flash website when I did a band and it was like, you know, yeah, it had a percentage and everything, progress bar and all that stuff.
+
+30
+00:09:43,980 --> 00:10:17,070
+Wes Bos: Click to enter. What was really popular was having like like a buttons you can like enter the flash site or enter the like low bandwidth site or the HTML site like you would you would purposely have two websites, depending on your users. If they were on like a or like a dial up site, I think they called it at some point because it was like you couldn't handle it with a download. Yeah, something like that. Click to enter. So funny. And then someone figured out that you could Oh, you could just enter. Well, they didn't have to click enter.
+
+31
+00:10:17,250 --> 00:11:00,450
+Scott Tolinski: They were called splash screens, which are very common in mobile app development. Now, well, things are loading. It's just like a loading screen or whatever. And you still see them on top. But there was like a, for people who don't know there was a literal trend for a while where it was to say, like a solid fullscreen page, and you'd be like, welcome desktop site, collect, enter, and Yoda click and then it took you to the Index page, which is really kind of ridiculous. I don't know why it really came about in the free like, I don't know if it was like video games or what the influence there was. But I remember for a little while splash screens were the thing. You had to have a splash screen until somebody said, Wait a second. Why are we making our users click? I think there was maybe some data that came out around like people leaving your site when they get to a splash screen or something. Yeah, yeah.
+
+32
+00:11:00,450 --> 00:11:16,710
+Wes Bos: I remember record labels and bands would have like seven or eight. clicked enters. Yeah, they would like want to like slam you with all this, like new stuff that came out? Yeah. It's just hilarious. I never see a click to enter anymore. Except for beer and cannabis websites in Canada.
+
+33
+00:11:16,710 --> 00:11:52,140
+Scott Tolinski: Yes. Are you 19? Are you idea? Yes. Obviously, hit counters. This was a big one. And you largely saw these in, let's just say sometimes they were on fire, or sometimes they look like an odometer. But they would let you know, just how many people had been to this web page be that way. If you stumbled upon somebody page in a web ring, and it been like visited by like, 20 people, you were like, Well, no, that's fine. I don't know if this information is any good or not. But then if you had some that had thousands, you'd be like, all right, this this one's poppin. Right? Like mad x dot x mission or one of those be problematics
+
+34
+00:11:52,140 --> 00:12:03,720
+Wes Bos: forgot about that. I actually coded it counter. And I did it with serverless functions. And what what's the Amazon database then deny mo Dinamo, dynamic Dynamo
+
+35
+00:12:03,750 --> 00:12:04,860
+Scott Tolinski: Dynamo Dynamo, what
+
+36
+00:12:04,860 --> 00:12:36,059
+Wes Bos: I always say wrong. I nammo. Yeah, and we, I coded one up, you can go to West boss or sorry, get up comm Ford slash Wes Bos Ford slash hit das counter. And you can see the oldest part of the web, which has hit counters and the newest part of the web, which is serverless functions come together Collision Course. Yes, we also along the same line had guest books. Yes, books were really fun. Super fun. We I think we should add that back. That was really fun.
+
+37
+00:12:36,120 --> 00:13:24,000
+Scott Tolinski: I would like to describe what they were with. With guest books, I think people might be a little bit more malicious now than they were in the past. Like in the past. I don't remember getting that much. I mean, there was maybe some spam, but I don't remember getting that much like spam or things you would moderate. Like, oh, you today if you put up a guestbook it would be filled with people, you know, posting racist things or, you know, being jerks to everybody else. Nowadays, it would not work that but I remember our band had a guestbook on our band's website. And that was like the message board for our high school people like actually, like they were using our guestbook to chat to each other instead of like a pre chat. I mean, I CQ existed at that time, but like, it was so funny that like people would actually utilize that to, you know, communicate.
+
+38
+00:13:26,100 --> 00:13:45,840
+Wes Bos: So true. Next up, we have just generals just flash websites where we're super popular back in the day. I never really coded a bunch of flash websites myself, I changed a few here or there, and I definitely had it and I was more of a iframes. Guy. Were you into flash? Yeah,
+
+39
+00:13:45,840 --> 00:16:28,289
+Scott Tolinski: I was into flash. I did a lot of flash arbenz website, because I mean, we didn't just have our stuff on MySpace. And to do audio on the web at that given point in time. It was like flash or bust. So like, you had to do flash audio. So we were like, oh, man, I'm very cool of the song started playing right when you load to the side. Yeah, that's what I do. And players. Oh, well, we did it more of like the entire site was built in Flash. Where? Yeah, now as in, we wanted to do animations. We wanted to do some interesting things. I had like a video game like select screen where you could like pick the band member to click to go to their page. And it was really cool. We did a lot of flash stuff like that. And I honestly I did flash all the way up until 2011 when I even applied for a flash job in Tokyo that I luckily did not get. But my my portfolio was all done in Flash. I did quite a bit of full flash site work. And this was largely killed off by a couple of things. Flash sites were the way to give me these really dynamic, interesting experiences that you couldn't get on the web even for a long time after flash sites died, but at some point Steve Jobs said hey, flash flash, you know, it opens up some security holes. It's maybe not necessarily the best experience at all time. And you know what, we don't want those on our apple phones. So Steve Jobs put lay down the ban hammer on flash on the Apple phone and what that basically killed flash, which is unfortunate in some ways I don't want to I don't want to be too fond about flash because it certainly was a nightmare in some regards, especially performance and security issues. Their flash definitely had its pitfalls, but I will say that I owned Android phones for for many years that ran flash video players, no problem. And it was always a blessing, especially when you're trying to watch maybe live sports or something like that you're trying to watch something in a flash player. And that always was nice. When there was a video player on your phone in the browser. you clicked it and it just worked. And I always hated that about the iPod or the iPhone at the time. This flash video player doesn't work. Why doesn't it work? Well, what's the better option and maybe nothing right now. But yeah, eventually html5 video came along and made that work. I remember even like YouTube was in Flash for a long time, you know, the video player itself, not YouTube itself. But the YouTube video player was in Flash, and it worked fine on my Android phone, I could go to YouTube's website and watch a video. And I remember that being a big reason why I chose Android initially over iOS is that and copy and paste those those are the two things that Android had that I really wanted. But for the most part, flashes is gone. And I don't really miss it at all. So now that we have html5 video and better ways of doing all this stuff, flash it,
+
+40
+00:16:28,620 --> 00:17:29,060
+Wes Bos: it took a long time we got like html5 audio and video and it it probably took like a good three years or four years for it to like, totally be replaced. I remember like tons of websites were just dragging their feet on replacing their players with whatever and it just wouldn't work or like Oh, it was really popular at the time. It's like a restaurant menus were all in Flash. Yeah. And you couldn't Couldn't you couldn't look it up on your phone. You couldn't, which was really fun. No, I couldn't. I had actually I had I had an Android phone way back then. But like maybe we should just say like flash was never maybe for people who don't know this a flash was never part of the web, it was always just like a third party app that ran on your computer, it was just embedded into your embedded into a website. So every time that you ran flash, it was actually running an app on your computer. And that's why it had to be like installed on your computer every single time and half the time it didn't work. Silverlight was the same
+
+41
+00:17:29,070 --> 00:17:31,310
+Scott Tolinski: thing. So you remember Silverlight, oh, then
+
+42
+00:17:32,700 --> 00:17:34,170
+Wes Bos: Silverlight forever. It was
+
+43
+00:17:34,170 --> 00:17:43,170
+Scott Tolinski: like he's like, you know, this thing that Apple's trying to kill off. Let's just make another one of them. And that like everyone's gonna roll their eyes every time they see, you must use Silverlight.
+
+44
+00:17:43,680 --> 00:17:54,210
+Wes Bos: I just remember sitting down, like every Friday night for dinner and walk trying to watch Netflix with my wife. And then it would be like Silverlight needs to be out good. And we're like, damn it, and it was
+
+45
+00:17:54,660 --> 00:18:02,190
+Scott Tolinski: even let you play it. That was the only one that used it. It's actually amazing that Netflix survived after their usage of silver light.
+
+46
+00:18:02,969 --> 00:18:08,160
+Wes Bos: Yeah, it is because they we didn't have DRM in html5. Yeah,
+
+47
+00:18:08,160 --> 00:19:50,520
+Scott Tolinski: absolutely. And then finally they added it, which was most people didn't want that. But you kind of have to have it otherwise people aren't going to use it. Especially for media. Anybody who's worked in any sort of licensing or media space knows that that stuff is expensive. I mean, wow. Licensing media or if any regards, especially once you get into actual major motion pictures is banana. So yes, they are going to protect it with DRM even if you believe the web should be open and free. Which you know, yes, you do sir component. But like yes, the movie producers are not going to sign on to any web technology that does not allow them protect their their property. No kidding. Okay. So next one is going to be how we did fonts free everything. So you youngsters have it easy nowadays, you get your font face. And at the very least, your biggest trouble is trying to figure out if the local which font the if the actual add on faces loaded or if the local font added or what. And now we have dev tools that even solve that for us for a long time. That was the biggest or I mean, nowadays, that's the biggest pain before we jump through a lot of hoops to do some fonts. No, I did not use a two of these. I don't know if you did. So I'll let you speak on those. But I used primarily, this is gonna sound crazy to some people, I just use PNGs. Anytime I wanted a custom font, I used a PNG with an alt tag a PNG, throw some box shadow on there, then I get access to all the fonts you've never had. He's like you open up Photoshop, you design the thing in PNG, export it with a little bit of transparency, just slap it on their nerves and image and I actually cringe when I think about how happy those sites were. I didn't even think about it just because it was like oh, I want this font loaded up loaded up as an image Ping. Wow, there it is.
+
+48
+00:19:50,910 --> 00:20:22,500
+Wes Bos: Yeah, I did that a lot. And I don't ever remember once hearing and people cry about accessibility. And now you tweet people just ignorant. To descendants of text as a screenshot, you 400 people saying it's not accessible. So accessibility is one thing that has come a long way come in that but the ones that I use was coupon and suffer. And what these would be is they were actually flash replacements. Was that flash replacements? One of them was was flash and I think
+
+49
+00:20:22,500 --> 00:20:28,410
+Scott Tolinski: one of them I thought coupon coupon was flash, but I don't know I'm not positive because I didn't use any of them.
+
+50
+00:20:28,950 --> 00:21:19,350
+Wes Bos: Yeah, it's it's I'm just looking at they have a stats of a hit its peak partway through 2011 was when it was pretty popular. Basically, what it was, is that you would take your, your, your font face, and it would convert that to I believe it was to a Flash file, and then it would go through all of your page and anywhere that you used an image or anywhere that use like an h1 or h2 or whatever it is that you're selecting, would go out and replace those with the Flash version of that. And it actually worked really, really well. And that was huge. Because you are not able to use anything past websites, fonts, for years for the entire web, but forever and then all sudden you're like, how is somebody just using this font that's custom. And it's not an image? It was it was so cool, dude. So web safe fonts.
+
+51
+00:21:19,350 --> 00:21:25,530
+Scott Tolinski: Let's see. I have them pulled up here. Can you list eight web safe fonts?
+
+52
+00:21:26,010 --> 00:21:37,850
+Wes Bos: Verdana. Arial, too? Yeah. courier? Three. I don't know. That's, that's only three I know. Yeah. And Arial and courier.
+
+53
+00:21:37,890 --> 00:22:24,570
+Scott Tolinski: So it's funny because my go to was always Georgia. So Georgia was? Yeah, I really leaned hard on Georgia. Arial. Obviously, you couldn't even use Helvetica Really? Helvetica was only in a fallback because only Mac users had it. I don't even know if there are Yeah, there's probably only let's see 1-234-567-8910 11 there's less than 20 website fonts. So you were really pretty limited at that time in choosing your fonts. It was like, okay, which of these three Sans Serif fonts are you gonna go with? I'll go with this one. I don't know. It was actually so funny. When I worked at the University of Michigan, they actually had Georgia and part of their official branding in the hospital. So I was like, Yeah, I can use a lot. That's actually the real to their branding.
+
+54
+00:22:25,230 --> 00:22:28,350
+Wes Bos: Was it was Comic Sans. I think Comic Sans was not web
+
+55
+00:22:28,350 --> 00:22:36,510
+Scott Tolinski: safe. But it was installed on every according to those computer. W three schools. Comic Sans was one of the websites. Oh,
+
+56
+00:22:36,510 --> 00:22:42,960
+Wes Bos: no, that was a good old time. Good. I'll say fonts. There was also web safe colors at some point.
+
+57
+00:22:42,990 --> 00:22:47,790
+Scott Tolinski: Yeah, that I don't remember when that was, but I don't remember having to do too much.
+
+58
+00:22:48,150 --> 00:24:12,570
+Wes Bos: But one thing that somebody I asked on Twitter, like, what were the things and one of the things that were super hot, 1015 years ago, were custom CMS is, you know, everybody made their own PHP, MySQL CMS? Oh, yeah. Today Oh, yeah, that is not much of a thing anymore. Obviously, people still can make a custom CMS. But one of them. This is me transitioning to an ad, one of the popular CMS is that you can use is called sanity@sanity.io. Sanity, io is a structured content, CMS, it's really cool. Because you can npm install the CMS, you can go ahead and use it, you can create your own back end, they give you this thing called Sanity Studio, which is the actual CMS itself. And it communicates with Sanity via their API's. But if you want to create your own custom react components for the CMS, you can still use Sanity. But you can you can create your own custom react components, and even still hosted on Sanity Studio, which is pretty nifty. So you have control over the back end of your CMS control over your front end, but you're still using this awesome service that comes along with everything you'd know and expect from CMS. So if you want to check it out for your next project, go to sanity.io forward slash syntax, that's gonna get you double the free usage tier that gives you more assets, more API requests more bandwidth. pretty sick. Check it out, send it yeah, i
+
+59
+00:24:12,570 --> 00:24:38,340
+Scott Tolinski: o. d sick. Cool. So let's get into the next one. Which is, this is kind of a joke because it wasn't an official topic. Like this wasn't an official thing. But the what I called it was folder based version control, where you share folders at like old with the like public dash old published dash dash old old publish dash, February 2010,
+
+60
+00:24:38,580 --> 00:24:40,920
+Wes Bos: you know, public final 10 public,
+
+61
+00:24:41,430 --> 00:25:00,330
+Scott Tolinski: what am I? What am I go to techniques, which I'm sure you've done before, as well, it says that like on your FTP, you're about to upload a new version of the public folder. What do you do before you do that? Well, you duplicate the old one and then overwrite the one that was there. So you duplicate it, you rename it and then you overwrite the one that was there. And that's how you deploy to a website. Ladies and gentlemen. That was
+
+62
+00:25:00,330 --> 00:25:09,960
+Wes Bos: that was like the original seamless cutover was the Rename of the full effect the Rename it to do is just rename the folder and everything would work.
+
+63
+00:25:09,990 --> 00:25:24,030
+Scott Tolinski: That is something that we did you know, in professional work. That's just not how it worked. That's what that's what people did. I mean, sure enough the big guns still had whether it was SP anything SPN that the Yep, yes vn
+
+64
+00:25:24,030 --> 00:25:28,200
+Wes Bos: that's the one that WordPress uses that one subversion it's called Yeah,
+
+65
+00:25:28,260 --> 00:26:57,870
+Scott Tolinski: and get really wasn't a thing and when Git came out real software people were like, finally, this thing exists in a way for the web that people are going to use it. And those of us who were normal web developers and webmasters were like, I don't understand this. Like, I don't get why, like, remember Chris, Chris coyier had that whole series it's like me learning get in that that was like, the way I first saw him get where he was just like, I don't know, get so I'm gonna just like have some videos or lessons that it's like me struggling to learn, get or whatever. And and that was like, blew it open. To me. It's like, Oh, yeah, the people who are actually using this stuff are pros. You know, the people who you consider pros were they're having to learn at the same time. But this was killed. I love this folder based version controls killed by actual version control, and Git and GitHub, and all those wonderful things that we use today, along with this next one, which was also killed by Git as well as many other things, which would be FTP, which granted FTP is the technology is not it's not gone anywhere, but FTP as a means of deploying your websites. And the total is the primary way, was this ever a thing that you did? Because we did this? Was it sublime, even text me had this, where you rig up your your code to be connected directly via FTP or SFTP. And then you edit and save a file, and then the text editor would automatically just upload that file to FTP. Therefore, if you broke anything, you'd get all sorts of stuff. Yeah,
+
+66
+00:26:58,170 --> 00:28:05,010
+Wes Bos: I did a good probably a couple years of that. I can't even believe that I did that, like nobody had local development setup, especially for WordPress, they would just login. And this is what this is why people could not move off of coda forever, because they were so dependent on the Save and upload process. Imagine how slow that was you edit a CSS file, you save it in the uploads to and then you have to go back and refresh. And now we have like hot reloading and you just instantly see it. But that was, surprisingly, a very popular way to work, where it would just upload it. And if you accidentally deleted some code, then you would as you better hope you have a backup dash one folder, otherwise you were poached from working off the live version of it. And then when people I I at least for me, I saw a lot of people move away from it when they move to Sublime Text. Yes, there certainly was plugins for it, but it didn't come out of the box. And it wasn't so married to it. And then people said, Okay, well, how are other people? I think they're working locally. Yeah, it was called sublime. SFTP. FTP. So yeah,
+
+67
+00:28:05,010 --> 00:31:02,040
+Scott Tolinski: that was it. Yeah. Yep. No, no, you're very right. I think local development. I remember when people were like, there, they would call it like cowboy coding or something. arrows, are editing files live on the server. Why don't you work on this locally. And I remember at the time, it was even after I had my first dev job, just being like, that seems like it would be so much harder to maintain two versions of the files, maintaining two versions of the same files. Good. Like, that's hilarious think of now. But I was like, I gotta have a local and production. And that seems kind of weird. But now it's just it's so ridiculous to think of that was even the thing. Totally. Next one we have this has been of a throwback, a CSS Zen Garden, the idea of CSS Zen garden was they would give you a bunch of HTML and be the same HTML for everybody. And then you would code the CSS for that specific HTML. And you would have all kinds of different websites, they would look different. They have different backgrounds, different fonts. And it was just a perfect showcase for the power of CSS. And this whole idea of separation of concerns where you have valid HTML markup, and on one hand, and then you have CSS that lays it out and designs the thing, based on on however you want. And unfortunately, what a lot of people would do is they would absolute position everything. Because the one thing you couldn't do in CSS at the time was reorder content. And you can do that now with with grid and Flexbox. But I thought that was pretty funny. He had the coolest thing about CSS and garden for me was being able to see like the amount of things people could do with it. Because before I really got, I actually had a book, I'm trying to think of what the name was, but I got it like clearance somewhere. And it really like all I was was different CSS and gardens explained like that. That was the entire book. It's like here's, here's all these different, really cool CSS Zen garden. And here is how they did it. How are they able to accomplish some of this stuff because before CSS Zen Garden, really for me, I had done things in a very ugly way. It looked very, like very early web, like very early web until CSS and garden to me CSS Zen garden was what took my websites away from being early web to being like, actually look, none not good design wise, but like, actually look somewhat more interesting than just were really, really archaic stuff. And CSS Zen garden was awesome. And it was most likely killed just by CSS getting easier, because like, when CSS got easier, and you got access to doing more interesting things, while all of the sudden, completely transforming this HTML doesn't seem like that crazy of a thing anymore, because it didn't require interesting or useful techniques, it required techniques that were just based baked into CSS itself. So I think that's probably why it doesn't exist anymore. You still see things that are, like similar to it, but not really.
+
+68
+00:31:02,850 --> 00:31:18,180
+Wes Bos: It does still exist. And a lot of stuff is absolutely positioned. Yeah. And it's got all those web font classes on the HTML, which was from was the Adobe font display, or what was that called? Oh, they're still a thing. I'm
+
+69
+00:31:18,180 --> 00:31:27,420
+Scott Tolinski: still a thing. That was a really font replacement. That was the first one type, type, type that type deck type note, type cat type. Good.
+
+70
+00:31:27,749 --> 00:31:32,360
+Wes Bos: That was the one yeah, that was big, where you could pay for fonts. And just like load them. It
+
+71
+00:31:32,360 --> 00:32:01,800
+Scott Tolinski: didn't used to be owned by Adobe, either. When it first came out, it was a known thing. Yeah, I remember that's when I learned the one pixel highlight trick where if you had a button, and you put like a one pixel line of CSS, like a border top of whatever that background color is just slightly lighter than it looked like a gave it this embossing and then maybe throw a little gradient on there. And then all about that really embossed buttons. I was all about that, too. And typekit was a really excellent CSS. I remember diving into that CSS and being like, yes, this is my jam.
+
+72
+00:32:02,310 --> 00:32:30,390
+Wes Bos: Next, we have just like, text editors in general. So textmate was the big one. At the time. That's like I think like, at least for me, a lot of people started in Dreamweaver. And then they switched over to textmate. Along with text me there was coda, which is still has a very loyal fan following. They were working on coda to notepad plus plus, I think they still have a pretty loyal fan following, but it's not nearly what it is. First, I need like a sublime text. And
+
+73
+00:32:30,390 --> 00:34:10,290
+Scott Tolinski: now what is vs. code? Yeah, and even in a different category, you mentioned Dreamweaver, back when it was Macromedia Dreamweaver is when I first started using it. And then there was also Adobe had their own called go live. And then there was Microsoft front page. And those were the three sort of visual editors that were were working in Kota really sort of straddled the line between a true visual editor like front page and in Dreamweaver, and still gave you a bunch of the tech stuff, but like some hand holding stuff, or like neat look, instead of having to write CSS hexes that gave you you know, the ability to quickly pick a color or something like that. I did go Dreamweaver to textmate. I skipped over Kota, and then went from textmate, to sublime and then to VS code. So this was largely killed by editors getting a lot better. And front page got killed by Adobe buying Macromedia Adobe about Macromedia. They're not front page go live. Go Live was Adobe's version of essentially Dreamweaver, before Dreamweaver, it like tried to simplify a lot of things. Either way, Adobe bought Macromedia and then Dreamweaver became their product. And they kept them both side by side for a little while. And it's really unfortunate that my child, my college curriculum, web development course was like, basically, here's how to use Adobe go live. That's what the course was. It wasn't about HTML, it wasn't about anything else was like, here's how to use Adobe go live, which, of course, became obsolete, like one year later. So this is definitely something that's been killed off by modern tooling. Now, the next one is going to be sliding doors now. I don't actually is sliding doors. I'm gonna take a guess on this is that where you had a horizontal layout where they were sort of like sideways accordions that opened is that sliding doors Oh,
+
+74
+00:34:10,319 --> 00:35:15,330
+Wes Bos: okay. Oh, that's, that was good gas. But sliding doors was a technique for buttons, where if you had like, imagine a button with rounded corners on either end and a gradient in the background, you couldn't do border radius, you couldn't do gradients, you couldn't do any sort of custom buttons with CSS. So what you would do is you would take your button design, he was slice it into two pieces, and the left hand side would be your rounded corners, your gradient and it would be like 2000 pixels long, and then you would have a right image that would you would just overlap and then absolute position, a couple of pixels over top of it. And the idea is is that you could have dynamically sized buttons that had cool backgrounds and borders and all that stuff without having to make any custom size button for every single thing. And it would just the idea is that the left is super long. And the right is just the end cap and the end cap would just overlap the edge of it. So it looks like dynamically size button, just Google says sliding doors, CSS to visually see it.
+
+75
+00:35:15,480 --> 00:36:40,610
+Scott Tolinski: We did that all the time. That was definitely a because if you want to fancy buttons, there's no other way to do it. I mean, there were like a lot of techniques there around around those types of things. All right. Next one would be the PNG fix. Now the PNG fix, I don't know technically how it worked. But back in the days of I believe IE six Western, I kind of chatted about this before, you couldn't use transparency and images. That's a funny thing is that even in Dreamweaver, so Dreamweaver is internal browser, whatever it may have been, allowed you to do transparency and images. And the browser that I was using at home, whether it was Firefox or whatever, at the time, allows you to see transparency and images. But I was working on some sites. And I had people saying, hey, why does this look so weird? in my browser, these images look very odd. And I say, ah, aren't thinking about that. It looks fine. For me. That was my probably the first instance of it looks fine for me in my entire web development career was finding out that Internet Explorer six did not have transparency and images, because all of a sudden, people were like, these images look like crap. And I should be like, it doesn't it looks fine. This looks fine to be so on safari, whatever, it looks fine. And it took a little while before I figured it out. So you could not do image transparency to do transparent images, you need it to have a one pixel by one pixel transparent GIF. Do you know how this actually worked in practice was,
+
+76
+00:36:40,920 --> 00:37:44,310
+Wes Bos: I'm just I just looked it up. Because I was like now that I actually understand web development, I bet I could figure it out. So it was a HTC file, which was some sort of like special, ie specific proposal. Well, that never went through, but I implemented it anyway. Classic eight. Yeah, it looks like it's just a JavaScript file that loops all over the image and creates an element and sets it to be the color of the background of the thing that is it is on. And I don't really know how that worked. But I guess just by Oh, it was a VML. There's some VML thing in IE would make it transparent and make it show through whatever was behind it. So it looks like it's just 200 lines of JavaScript, which I totally understand. Now, I could probably sit down and totally get how this works. But at the time, it was just magic, or you just throw this hdc in there and your images would be transparent.
+
+77
+00:37:44,730 --> 00:37:52,050
+Scott Tolinski: It felt like magic. All I knew is that like the first time I figured it out, it was it was pretty awesome. So big fan of that technique in the time.
+
+78
+00:37:52,050 --> 00:39:05,940
+Wes Bos: This one is kind of like the sliding doors technique is called the nine panel layout. So if you had a div where you wanted to put a custom border around it, or really anything like, like a pretty popular thing, on band websites would put a B to put a grunge border around the entire, like an entire thing of text. And if you wanted that you don't necessarily know the width or the height of that thing, you probably knew the width of it because everything was fixed width, but the height of it would be depending on how much content was written. And the thing that you would do is you do, you would make a nine panel square. So if you think of a square, the center is most of your content. And then top right bottom left is your corners. And then top right bottom left is the the filled out pieces. And then the piece in the middle is where your actual content would go. And you'd have repeating backgrounds on all of those, except for the top right bottom left corners, those would be your actual border corners. And that was very, very hard to do. Because you would also combine that with a table and repeating background images and luckily that thing is not we just have CSS now we don't have to worry about any of that.
+
+79
+00:39:06,269 --> 00:40:52,080
+Scott Tolinski: Yeah, and the Android It was called a nine patch and actual Android development cuz I remember I had to do quite a bit of that to do rounded borders and stuff in Android development when I did some level of tutorials videos on that. Next up is going to be CSS three please CSS three please was this really awesome site that came out at the time when CSS three was just starting to take off and this was a Paul Irish joint right yeah, yeah, so this was done by oh it's dude that is it this is actually freaky I said the Paul Irish joint just like you know going like a spike lee thing and then I I kid you not I meant CSS three please calm and it says Copyright 2012 A Paul Irish and Jonathan Neil join. They use the things that I've ever said that before and I just said it. So this thing is so cool, because, man we had all these vendor presets. It's right when CSS three came out, it was like you couldn't just do a box shadow, you had to do a hyphen, WebKit, box shadow, whatever, you have to do all these things. And each time you wanted to do it, you had to have all the prefixes. Well, there's no autoprefixer to just add them for you. There was there was no, there was like, no real good way of doing this. Especially if you weren't using things like sass at the time. So right at this time, mad, here's what here's what you would do, you would say, I want a box shadow, you would go to CSS three, please calm, you would edit the line of snippet they have for box shadow, then you'd copy and paste all of the Chrome extensions with comments letting your other developers know which browsers those comment or those things are supporting. And then you paste it into your site. Wow, I cannot imagine working like this. But I did. I did it every day, man that just seems like so extraneous. Yeah. So a Paul Irish Jonathan Neil, for that.
+
+80
+00:40:52,130 --> 00:41:12,110
+Wes Bos: It was it was it was only 10 years ago that this was the thing. Yeah. The modern web as we know, it has just been built in 10 years. 12 years. It's pretty incredible. Yeah, see that? That was a I guess that is a long time. But there's probably people listening to this podcast, who were like five years old.
+
+81
+00:41:13,190 --> 00:41:15,360
+Scott Tolinski: Right? Get off my lawn episode.
+
+82
+00:41:15,540 --> 00:41:41,310
+Wes Bos: Yeah, absolutely. All right. So Scott, and I are just looking at the list here. And there's probably 20 more things that we have. So we're going to pause it here and pick it up on the next show. And we've got a whole bunch of interesting things from from times past as to how we used to do things. And hopefully you're finding even if you are at Warren, a developer, back then you're probably finding this interesting about how we did in the olden days. I think
+
+83
+00:41:41,310 --> 00:41:58,380
+Scott Tolinski: it also provides some context to you know, some context to where these solutions are and why people are so happy to have the solutions we have nowadays. Most people know that hey, well, we we couldn't be building these really complex things because you just even just simply getting a border radius on something was a complex endeavor. So
+
+84
+00:41:59,420 --> 00:42:04,230
+Wes Bos: so true, was was very tough. No, it also was tough. Scott,
+
+85
+00:42:04,590 --> 00:43:21,710
+Scott Tolinski: trying to find out where your errors and bugs are happening in came from. So our sponsor, our sponsor, our sponsor, this week is century. It's great West is wearing a century t shirt today. I'm so hyped about that, because it's really nice shirt. So century, it's century.io is the place to track all of your errors and exceptions. Let me tell you century has a lot of these really great features from being able to tag each of your releases. So let's say hey, I fixed this bug. I can say, You know what? I fixed this bug. I know I fixed this bug. I'm really good at coding. I typed the right words, the words to fix the bug, and then I deployed it, and then you could click Yes, I fixed that. And then all of a sudden, you get an email from Sentry saying hey, yeah, this bug that you marked as being fixed in version 10.5 Well, it's still there in 10.6. So you need to get back to work so so that is what Sentry does for me and I absolutely love it Sentry is like a pal that is always got your back then you know, whenever you made some mistakes in your code and you weren't there to see it. It's fantastic that head over to sentry.io use the coupon code tasty treat all lowercase all one word to get two months for free. It's a tool that you are going to want to use because I want to use it and I've been using it for years and I still want to use it so that's the sign of a good tool. So thank you so much for century or sponsoring
+
+86
+00:43:22,260 --> 00:45:37,920
+Wes Bos: awesome let's get into some sick pics. I got a good sick pick for you today. What I like this summer I became a small engines mechanic I noticed worked on all kinds of Yeah, I worked on all kinds of really fun stuff I got an old CD that I've been fixing up and I think I worked on like four or five and one thing that I noticed is that there is a lot of Allen bolts on these things hmm and the frustrating thing about allen keys is that they are very slow to write and also usually people don't have both metric and imperial allen keys so they use the closest one and then they end up stripping out the inside of the allen key because a lot allen key stuff is like aluminum So I did that myself and I was finally like I have I have all the proper allen keys but it's really slow. So I finally got allen key bits for my drill impact driver and you can certainly destroy furniture with these because he shouldn't like if you put together IKEA furniture and you can you can certainly racket but if you know what you're doing and you're careful having all the sizes of proper allen keys for your drill is key and I was just like why did I not have this before it was like 15 bucks for a set of every single one ever. And now I can can move much quicker. So I've been I've been on like a serious tool kick for the last couple years just finding like the proper tools for for doing the job. And this is definitely one of them that I, I wish I had got it earlier. So I'll put a link to the one I got, specifically. And I think that it doesn't matter all that much. They say they're super hard. But the thing I got them on Amazon, the thing you have to worry about sometimes Amazon tools is that they're very soft metal, and they'll just wreck easily. But for the case of this is that you kind of want your bolts and your your things to be the same hardness, otherwise, you're going to strip them out if you go too quick. So with that sort of caveat, be careful. definitely pick yourself upset. Cool,
+
+87
+00:45:37,920 --> 00:48:21,420
+Scott Tolinski: I am going to sic pick something for those of us who have been working from home and maybe want to step up your lighting game for your just your your home studio. In general, a lot of people are getting into these types of things where it's like actually being on camera or twitch streaming or whatever. And one of the things that can really take your setup to be a little bit less amateurish is a good lighting setup. Yeah, sure you want a better webcam, but a better webcam and crappy light is still not going to look great. So I am going to sic pick these LED lights that I got it's 130 bucks for a two lights set, which is really, really reasonable for studio lamps. Especially considering these studio lamps will blow your face off. They're so bright if you want them to be. So I love these little amps there. It's just a panel of LEDs. It's very cool. It gives you gels to change the color, you just plug them in, there's big tall stands, I set them up on the side of my desk. And let me tell you, even on the lowest brightness, brightness settings, these things still totally fill my space. And imagine if I were to use them elsewhere that they would be just totally as effective. It's funny, we use these for family pictures and stuff, let's say where we're going to be doing a family portrait in the living room. I'm not just bringing my camera, my tripod, I'm hustling these lights, and I'm gonna get a nice full light LED lighting setup. So these are really fantastic lights. I am the type of person who had originally bought these giant light boxes in the past. So I've had like several iterations of like lighting setups, and nothing has been cheaper, easier, better, faster than LED lights. And these LED lights are definitely at the point where like the technology has gotten there. I think the only only place they could go from here is to be cheaper. But these ones have barn doors. They're really nice. They don't get hot. You might not have been in this world, but I used to have to do lighting setups. And it'd be for different rock musicians, right X, Y and Z guitarist would come into the studio, I would have to do the entire setup eyesores for this magazine Guitar World. So let's say Trey Anastasio, the guitarist of fish he comes in right he's a big rock star, he's sitting down. And then like while I'm setting up the audio, I'm setting up the backdrop I'm setting up the camera I also have to set up the lighting and you had these like super powerful lamps that had these things called barn doors, these big metal barn doors which although I have in the barn doors would get so hot it would burn your entire finger off if you were to touch it so you had to use like a broom handle and like whack it to kind of get in the right spot. Just like tap it a little bit so that used to be a thing thing of the past now these things stay super cool. So big fan of these lights. Check it out if you are into needing any sort of lighting setup. These are been my go twos of choice. Shameless plugs, Wes, you have anything to plug.
+
+88
+00:48:21,870 --> 00:48:43,710
+Wes Bos: I'm going to shamelessly plug my upcoming course it probably won't be out by the time you listen to this but might be Master gatsby.com. It's going to be my course on mastering Gatsby we use Sanity as CMS on the back end. Lots of CSS little tricks we're gonna learn along the way custom reactor is going to be a good one. So get ready for that
+
+89
+00:48:43,890 --> 00:49:23,610
+Scott Tolinski: cool I am going to plug my latest two courses I just did a course on react 3d easing Rick three fiber in JavaScript talk all about things like the new stripe website maybe transmits website things like that, that are utilizing 3d on the web. This is something that you're going to see happening more and more often. So you want to check out my course on level up tutorials comm forward slash pro and also out this month is animating, react with framer motion to it's the follow up to the critically acclaimed previous animation course with Kramer motion. So it's very cool. We do all sorts of practical examples. It is non stop practicality in that course. So check those out at level up tutorials.com
+
+90
+00:49:23,790 --> 00:49:29,520
+Wes Bos: Awesome. Thanks so much for tuning in and we will catch you on Monday. Peace, peace.
+
+91
+00:49:31,320 --> 00:49:41,100
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
