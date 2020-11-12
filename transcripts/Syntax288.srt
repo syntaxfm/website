@@ -1,0 +1,528 @@
+1
+00:00:01,319 --> 00:00:06,120
+Unknown: You're listening to syntax the podcast with the tastiest web development treats out there.
+
+2
+00:00:06,149 --> 00:00:10,530
+strap yourself in and get ready. Here is Scott Lansky and West boss.
+
+3
+00:00:10,559 --> 00:00:50,040
+Wes Bos: Welcome to syntax. This is the podcast that has the development treats that are the tastiest, we measured them all every podcasts out there, and we have the tastiest web development treats. Thank you for tuning in. Today, we've got a part two of our Tales from web dev pass people love the last one that we did, basically just talking about tack that was so hot 1015 years ago, and why we had it and what we had to do and what we have now and instead of it and sort of why I got killed off or died or, or became less popular with me as always is Mr. Scott to linsky. How you doing today, Scott?
+
+4
+00:00:50,489 --> 00:01:21,120
+Scott Tolinski: Hey, yo, I'm doing good. Just just hanging out. Trying to record my next course i'm recording my react beginners course, which was just, I mean, the course was in was an old but it was, you know, built to be classes first and all this stuff. And there's been so many changes in react. So I'm recording it to be hooks first. But I'm also really looking at like the types of things and teaching in the order and everything like that. And I'm awesome. I'm very into it. Yeah, just having a good time having a good time recording, which is way we want to be you know,
+
+5
+00:01:21,389 --> 00:02:20,580
+Wes Bos: that's funny, I'm looking at, I'm redoing my react for beginners course right now as well or not now, but it's coming up. It's on the slate to be recorded. And I'm like, I don't want to, obviously is going to be hooks and classes first. But I also need to keep a lot of that class stuff in not a lot of it, but enough that you can teach people classes because right, I went into an app that was next jass. And it was version two. And I think the most recent version is eight. And I could not for the life of me figure find any docs on for 2.0. And I had no idea how to use the things I had an entire thing. And I was like oh man like this is probably what people run into all the time, where the thing has been sitting for a year and a half and all sudden, none of the docs none of the tutorials cover any of the stuff and you don't really know what these lifecycle methods are. So that stuff's kind of important, especially in real world where stuff's not updated every three minutes. And
+
+6
+00:02:20,969 --> 00:02:35,490
+Scott Tolinski: the good news for me is that like, because my course platform allows for it, I can just keep the old one. So the old one is classes first. And what I can say is, hey, if you want to learn classes, just go watch this other run. It's the same stuff, just with classes. Beautiful.
+
+7
+00:02:35,549 --> 00:02:56,789
+Wes Bos: So today, we are sponsored by two awesome companies. First one is Sanity, which is a structured content, CMS and second one is Prismic. Which a headless CMS kind of in the same space, we will note that certainly I want to check them both out. I will talk about them partway through the episode. Cool when did past.
+
+8
+00:02:56,789 --> 00:03:36,930
+Scott Tolinski: These are a lot of fun things is in effect this first one which is iframes iframe still exist, obviously. And we still use them to embed things. But if you weren't around at this time, you really don't know just how everywhere iframes were an iframe being your own stuff in your own site was just so common. It was like the technique, especially for add headers, and sidebars, you'd have a sidebar navigation. That was an iframe or a top that was iframe, and it was your navigation or your web ring or something like that. I use this technique 24 seven, like absolutely 24 I love this technique.
+
+9
+00:03:37,259 --> 00:04:40,800
+Wes Bos: Yeah, if you've never built an entire website and iframes the way that it worked is that you had like like Scott said, you had a header dot html, you had a sidebar dot html. And then every single page that you had didn't include a header or sidebar, it just included the actual content for that, and you would just iframe it in. And then when you click together, your website's very funny. It's very much like components today, you give a name to your like content, then when you click on a link, you give it a target so that when you click on the link that target you know, like Target equals underscore blank or whatever people think that's the only thing you can set a target to be any any name of any iframe, and it will not open in the current iframe, it will open in another iframe on the page that matches that name, which was, which is unbelievable. And I still remember learning PHP for the first time. And somebody showed me the like, include header dot html, and I was blown away. That could include it because what we did before then is if you didn't use iframes, you just copy pasted the HTML over and over again, that was the whole thing. You had like six
+
+10
+00:04:40,800 --> 00:04:50,370
+Scott Tolinski: pages. You had a header, you made a change to the header, you selected the header you copied and pasted in all the other pages, and then sometimes you forgot, and then the header was wrong on one page, or,
+
+11
+00:04:50,969 --> 00:05:08,550
+Wes Bos: you know, the bummer of that is that there was no like URLs. Well, you I guess you could have have URLs but the way that most people used it as they just have Look at.com. And they just dynamically switched out the content of the content iframe, which is funny because it was like the original no reload.
+
+12
+00:05:10,170 --> 00:05:41,550
+Scott Tolinski: But you know what people didn't think about at the time nobody thought of, and nobody needed to think about was SEO, because Google wasn't around. So there wasn't this algorithm, and everybody relied on keywords for your search. And even then, I don't like beyond, like, in the personal personal capacity, I don't know how much like thought was ever put into, oh, people gotta find this thing. These people didn't find these things through Google, they found them through web rings, or related links, or whatever. So it was a it was a different world with iframes.
+
+13
+00:05:42,179 --> 00:07:11,940
+Wes Bos: Next up, we have here is JavaScript image hovers. So before, we had CSS, hover states, and I guess even I don't even know when we got CSS hover states, but when you had Dreamweaver, you'd have this mm underscore image hover, where you would hover over like a link, and that link would not be taxed, it would be like a about dot GIF. And then you would hover over top of it. And it would literally replace the source of that image with like, underscore have GIF. Yeah. And that would be like, like you some people do this manually. But mostly what would happen is you would design it in Photoshop, you would use I think it was image ready? Was that what it was image ready, would x export all of the hover styles for you. So it would happen automatically, where you'd have a slice, like you'd slice up your website, you pop an iframe into where you wanted the text to go. And then all of your entire navigation was and I actually did, if you just go to my YouTube channel, I did, I found a website that was still generated from image from Dreamweaver, like 20 years ago. And I like, and now that I know JavaScript, I took the whole thing apart and looked at the code behind how the image hover worked. And it was kind of fun, because it's like looking at this nostalgic JavaScript. That was magic to me. And now I actually know JavaScript. And I was like, Oh, it's just replacing the source. And it was like caching them in an object. So it's pretty neat. Yeah, I
+
+14
+00:07:11,940 --> 00:08:24,000
+Scott Tolinski: have all of my old work. So I like really what I should go through some of that stuff, I'm sure it's amazing in terms of like, what it's doing and how bad the code is, and whatever, but I gotta get on, I gotta get on that and check some of that out. And along the same lines, I know you talked a little bit about this, but that the one of the main techniques for designing and building websites was to design the entire thing in Photoshop, right, you design the entire thing, drop shadows, sidebars, effects, whatever in Photoshop, then you'd use the slice tool, which shout out to anyone still using using the slice tool, because everything is so vector based right now. But you'd use the slice tool to segment up your website into different sections, then you'd export all of the images, you'd put them in a folder, and you fire up the background image on all of those images, so that your website actually looked cool, rather than just being basic shapes and colors, because that was the only way to get drop shadows or textures or any of that stuff. So you would just slice like crazy. And I remember throwing, like just hundreds of images, just laced up background images, whatever. And that was just the technique. That's just what people did.
+
+15
+00:08:24,420 --> 00:09:13,380
+Wes Bos: Next one we have here is CSS pie. This, we talked about this with the transparent one in the last episodes very similar to that where it was iecex didn't have transparent GIFs. And CSS py sort of took CSS three features border radius, box shadow linear gradients. And that's it. And it used this like weird, Internet Explorer specific language called HTC files very similar to JavaScript. And it would literally like kind of just polyfill them in. ie was like way ahead of its time. It was not standard or anything like that. But it allowed us to do things that were part of CSS three and backport them to iE 6789, which was key when some of the CSS three stuff was starting to come out.
+
+16
+00:09:13,890 --> 00:09:21,840
+Scott Tolinski: I use this pipe into admission of buying and we used it. I remember the site, I looked at it. I don't remember, I don't think
+
+17
+00:09:22,740 --> 00:09:41,610
+Wes Bos: there was like a CSS gradient website that would gender wise. Yeah, the gradient tax. It would also give you the like, ie specific alpha, whatever. So you probably used it and around about way, but CSS pie, sort of just put it all into one little library. Yeah, one little thing.
+
+18
+00:09:41,820 --> 00:09:51,750
+Scott Tolinski: Next one is, this is funny because you have another one here, but I'm gonna skip skip for his animated GIFs of people in construction.
+
+19
+00:09:51,750 --> 00:09:53,039
+Wes Bos: What was that site
+
+20
+00:09:53,039 --> 00:10:44,520
+Scott Tolinski: that had all of the animated GIFs there was one site that had thousands and thousands and thousands of animated GIFs And I used to love that there would be like the little 3d people that were just like poorly 3d animated, and they'd be chopping away or with a jackhammer construction made, you just put it all over it, it says, like under construction. And it's funny I, one of my libraries that I was writing the fresh forms library wrote a forms library for react. And it's definitely usable. But when it was like super experimental, still in the early sign, I couldn't find any of those gifts. So I just on the GitHub page wrote construction dot GIF in there, because it's like, that's just like what you did anytime anything was under development whatsoever. You put a little construction guy on there, and yeah, this really great 3d. I wish I could remember what that site was. But
+
+21
+00:10:44,539 --> 00:10:52,549
+Wes Bos: there was sharkey.com, I think was one. That was Yep. But yeah, there was tons of them at the time.
+
+22
+00:10:52,909 --> 00:11:19,799
+Scott Tolinski: Yeah, there was when I was in high school, I took a web development class, which is funny to think about, that was my wasn't my introduction to HTML. But it was like, here's the HTML basics. And that's what they taught you how to make an HTML page and link and whatever. And so I, I like, filled my site with animated GIFs from that site, because I think they even I think they even taught us how to use that site in, in the class,
+
+23
+00:11:20,309 --> 00:12:21,240
+Wes Bos: I'm gonna loop the next two in as the same thing, just because they're both related to old IE, Oh, God, the first one is the zoom property, where you just have zoom one on a lot of your stuff, you have no idea what that was for, I didn't even know what it was for, until I looked into it now. And it's when you have floats and layouts. Sometimes I would just choke and the whole layout would be all goofed up. So by putting zoom one on that stuff, it would just magically fix it in IE, yes. And then along with that, just fix it targeting, ie, in IE six in CSS. If you put a star in front of your like, in the one in front of your properties, like color, or anything, it would target IE six and IE seven, or have you put an underscore in front of one of your properties, it would only target iecex I use that a lot because I would do the whole website and then crack it open and iecex. And then you just go around adding additional properties just for iecex. With the underscore in front of it.
+
+24
+00:12:22,049 --> 00:13:19,020
+Scott Tolinski: I was so unaware of browser compatibility stuff at that era. Like when I first started, I designed and built things for hilariously enough like IE seven oblivious that it would look terrible in IE six, and then somebody was like, Yo, I opened up your website looks really bad. He talking about and it looks great. Only that's like my first experience with understanding that there is IE problems there. Another thing is funny that around the same regard, like image sizes, like I was not aware of image sizes being a thing. And so I used to load up these huge image sizes. And I had a friend of my brother, my brother's a couple years older than me and a friend of my brother, who had a little bit understanding about this. He's like, yo, here's what you got to do. You go to Dreamweaver, you click on the image, and then you click optimize. Do you remember that button? Yeah, yeah, hey, like it re it just remade the image so that it was the actual size we're using, rather than the thousands of pixel version that you are loading up unknowingly?
+
+25
+00:13:19,320 --> 00:13:54,419
+Wes Bos: Yeah, that that was the best and when we could do that, because before then, like, a lot of people didn't even have like image editing software, or batch workflow yet. 5060 images. Luckily, like my digital camera at the time, I would put what pictures of my friends on my website, the images are so small coming off the digital camera that it It never mattered. What else we have here, just layout Gen trends in general, like, do you remember websites? You we used to be like 800 by 600? Like you would specify the height of your image or your website, and then you would just add a scroll to the content area?
+
+26
+00:13:54,419 --> 00:13:55,649
+Unknown: I don't know why.
+
+27
+00:13:57,960 --> 00:13:59,340
+Wes Bos: Didn't scroll before then
+
+28
+00:13:59,610 --> 00:14:00,480
+Scott Tolinski: iframes. Man, I
+
+29
+00:14:00,480 --> 00:14:02,700
+Unknown: just, we just threw everything at iframe.
+
+30
+00:14:04,200 --> 00:14:57,179
+Scott Tolinski: I remember like when grid systems got hot. Yeah, 960 gs was the one that was probably in some of those like a list apart articles about like, I remember the golden grid, I 960. Gs, the 12 called grids. There was so many and then it went crazy. And there was like 24 call grids. Shout out to this theme back in the day for Drupal called omega. This is built primarily on the grid system. And it was really nice to us in that in that kind of CMS environment. So shout out to omega that was one of my favorite themes back in the Drupal days. But this 960 grid, this was such a thing, even to the point where one of my first money making ideas was like, here's here's my money making idea. I'm gonna make a notepad paper. That's just the 960 grid, but like sure enough, like that already existed. Like I like game over that I was like, Oh, this is gonna be so good, because then you can sketch a site on the 960 grid.
+
+31
+00:14:57,630 --> 00:15:04,529
+Wes Bos: Yeah, that was the thing with nine six See it came with a PDF, I think yes, that's what you printed out.
+
+32
+00:15:04,770 --> 00:15:17,640
+Scott Tolinski: I thought I made that up. And I did not. The 960 grid was 960 pixels wide. And it was what like eight columns 12 with 12 columns with some grid with some gap and btn 20 pX
+
+33
+00:15:17,640 --> 00:15:50,760
+Wes Bos: in between each one. And there was some like magic math where you could do combos of every single con like 333 columns, no, that would be 9243 columns, or three, four columns, and everything added up, and there was this bookmarklet that you clicked, and it would overlay these red bars on top of your website. And you would just look at these websites. And there would be no text or images or anything that would be outside of in the gutters of these things. You're just like, Oh, I remember that. That was so good.
+
+34
+00:15:51,539 --> 00:16:25,110
+Scott Tolinski: Yeah, that was very good. I really like that. And I remember like our designers, like when they when they got a hold of the 960 grid, we're just like, throw it all on the grid and never think about it. And this was before responsive. So it didn't it wasn't responsive, it didn't have and once these things turned to responsive, that was like the big, big deal. I remember the very first responsive site our agency did, it was for a local restaurant. And their menu was responsive. And I remember just like being in awe of the work that my my coworker did just been like, dang, this is Yeah, this is really cool.
+
+35
+00:16:25,620 --> 00:17:08,760
+Wes Bos: Next, we have sprite maps. Yes, you're popular. So if you've had like a bunch of buttons or something like that, and those buttons like like the big one was you'd have like a Twitter button. Even I am icon. That's what I'm looking for Twitter icon, Facebook icon, buy it now custom button that couldn't be done in CSS, what you would do is you would export all of those two individual PNGs and Jake Archibald made this website called sprite cow. And he would just drag and drop all of your images up to sprite cow, and it would kick out which is crazy to me like the thing like all of the work that went into sprite cow all those years ago, like that was cutting edge tech.
+
+36
+00:17:09,630 --> 00:17:10,920
+Scott Tolinski: Like it was so good.
+
+37
+00:17:11,189 --> 00:17:36,750
+Wes Bos: And then it would give you all the CSS classes. And the idea was that you would put a background position on each of your icons and it would perfectly line up with where the icon was on the thing that was sort of killed. That was high res displays, because you couldn't take an icon and double it up or have it and it would just be pixelated on these high rez his iPhone I think was the first one that did that.
+
+38
+00:17:37,140 --> 00:17:44,810
+Scott Tolinski: You know what actually killed it first, but Well, well that killed it. But the technique that we used was icon fonts.
+
+39
+00:17:44,910 --> 00:17:46,820
+Wes Bos: Oh, yeah, like Font Awesome. I forgot about that.
+
+40
+00:17:46,820 --> 00:18:55,170
+Scott Tolinski: Yeah, Font Awesome showed up and all of a sudden is like you can just use a font and get access to tons of icons. And then you have to deal with images. You don't have to deal with sprite cow which by all means love sprite cow. But you didn't have to deal with any of that stuff. And you just got an icon font and, and I remember specifically it was working at one job in the designer gave me this design and it was these crappy as pixelated icons. And I was just thinking like, you have got to be kidding me. Like there are icon fonts and these are going to look terrible. So I replaced all the icons and then he got mad at me and I had to go in and be like listen, like you don't know what this is lucky you have your your checked out. You're just tossing in generic work every day. So like, yeah, you gotta you gotta get with it. And yeah, icon fonts, killed it. And then SVG icons killed icon fun. So here we are with SVG icons, and I'm all about it. Next up is Firebug and Firebug. Lite. So Firebug and Firebug. lite, were the old g dev tools. These were extensions, you could call them extensions. They were sort of weird, because I don't understand why they were they installed as normal extensions, because I don't remember that browser extensions, even though
+
+41
+00:18:55,290 --> 00:19:22,740
+Wes Bos: I don't I don't even know. No, it was a bookmarklet, which a bookmarklet was some JavaScript that you dragged into your your bar. And when you click it, the browser thought it was a URL, and it would just run some arbitrary JavaScript, which is a huge security issue. And what that arbitrary JavaScript would do is it would inject all of the JavaScript needed for having Dev Tools Firebug into your website, and that would just run.
+
+42
+00:19:23,190 --> 00:19:45,930
+Scott Tolinski: Well, I don't know why not. It was like the way of debugging. I mean, it was the way of debugging at the time, you didn't have the normal dev tools that you were used to. And now I remember like people talking about Firebug and I'm just being like, well, I can just, you know, save a file refresh and see if it worked. So that's good enough for me. Yeah, that was like really the alternative. Yeah.
+
+43
+00:19:46,680 --> 00:20:06,560
+Wes Bos: Yeah, there are no, we had no console log and we had no like Inspect Element before that. And then Firebug eventually got integrated into Firefox. Chrome Dev Tools came out with their own version. And then eventually Firefox came out with their own dev tools and Firebug was arrest. Yeah,
+
+44
+00:20:07,070 --> 00:20:12,750
+Scott Tolinski: yeah, but we Oh, we Oh Firebug I still remember that icon, I can see it. In my mind. So
+
+45
+00:20:12,750 --> 00:20:41,060
+Wes Bos: good. Next up we have here is image maps. Actually, I'm gonna, I'm gonna loop two things together image maps, and like background gradients. So image maps, or like just an actual image that you would give the pixel values of where links were. So if you wanted a circle link, you couldn't do that. Unless you were to use an image map, you'd overlay it on top of it, and you specify links to it. I might have even covered that one in the last episode.
+
+46
+00:20:41,330 --> 00:20:43,500
+Scott Tolinski: Yeah, we might have missed the Space Jam website.
+
+47
+00:20:43,550 --> 00:20:46,200
+Wes Bos: Yes, yes. Very, almost for the Unreal. So and
+
+48
+00:20:47,040 --> 00:20:48,750
+Scott Tolinski: two unrelated, I think, Okay, well,
+
+49
+00:20:48,750 --> 00:21:24,720
+Wes Bos: we'll talk about the other one, which was just like, repeating gradients. So if you wanted a background image on anything, you would have to do like a one pixel wide gradient by like, 2000 pixels high. And you just hoped that no one would ever make a div higher than 2000 pixels. Yes. Otherwise, it would it would start to repeat, or you would you would see it because we didn't have I don't think we had like background position. No, no text or contain. What else? really much later. Yeah, no. Cover. I
+
+50
+00:21:24,720 --> 00:21:26,280
+Scott Tolinski: remember when containing cover drop.
+
+51
+00:21:26,300 --> 00:21:29,550
+Wes Bos: Yeah. Like, for now six years ago?
+
+52
+00:21:29,910 --> 00:22:39,960
+Scott Tolinski: Yeah, yeah. And I mean, this was super useful technique. Because, you know, you make one pixel, whatever. And I was always really impressed to make a one pixel or even like, like you said, a one pixel wide, and whatever. 200 tall, there's also the opposite of that, where you do one pixel tall and a billion wide, and then repeat that up and down. And then you can get gradients that way, too. But there's also the the idea of having background images being such a huge thing, because there's no real way to to get a lot of separation of or interesting design without background images. So people did a lot of background, a lot of background position fixed because that that definitely existed containing covered did not but fixed did, you could have a fixed background, I remember the first time that there was like that I use personally an image that you could repeat x and y, you could repeat X and Y or just repeat one or the other. But when it actually made it seamless, rather than like for a long time, people were just using these textures that had like no seamless transitions. And then when they would repeat, you would see the actual horizontal and vertical line or segment. So it was like these like square repeated squares repeatedly in the background of the image that was like people started getting creative with their techniques. Yeah,
+
+53
+00:22:39,960 --> 00:23:02,520
+Wes Bos: squid fingers was the website that had those repeating patterns. Yeah, that was my like my go to and then this has been around for a long time. Subtle patterns, calm, subtle patterns. Yeah, still around. Like I tweeted it out the other day, and the original creator of it said like, oh, maybe it's it was bought by top towel, but they're still adding new patterns.
+
+54
+00:23:02,610 --> 00:23:07,470
+Scott Tolinski: Subtle patterns is still in my bookmarks. I just typed in s and it was like little patterns.
+
+55
+00:23:09,330 --> 00:23:16,860
+Wes Bos: It's still awesome resource. It's most of them are still let me see the most of them are still PNGs which bums me out. Let me open it up.
+
+56
+00:23:16,890 --> 00:23:19,230
+Scott Tolinski: I really relied on that site. That's for me.
+
+57
+00:23:19,320 --> 00:23:39,720
+Wes Bos: I just downloaded the latest one. Yes. Is there still PNGs which drives you crazy because clearly whoever made these pattern, built it in like a vector, and then they don't ship the SVG file. That's why I like Steve sugars, Hero patterns, because he gives you the SVG and you can go and modify the colors of that pattern.
+
+58
+00:23:40,110 --> 00:23:42,180
+Scott Tolinski: And a lot of them could be CSS today, you know?
+
+59
+00:23:42,450 --> 00:23:54,750
+Wes Bos: Yeah, you're right, actually, because laya voru came came out swinging with the CSS patterns website. Oh, yeah. Oh, yeah. Unreal, that you can make patterns with gradients. You know, what else is unreal, Scott?
+
+60
+00:23:54,750 --> 00:23:55,830
+Unknown: Oh, but
+
+61
+00:24:02,400 --> 00:24:03,990
+Wes Bos: you got a good transition. Okay.
+
+62
+00:24:04,830 --> 00:24:20,640
+Scott Tolinski: Okay, we're talking about geometric patterns in the sponsor. Which use that like prisms, and there's like, such a good connection there. I don't have a good transition ready, but I feel like it was sitting it was sitting right there. Like it was sitting there. You went with unreal.
+
+63
+00:24:22,650 --> 00:24:26,070
+Wes Bos: That's my only transition is you know, what else is blank? Yeah,
+
+64
+00:24:26,070 --> 00:24:27,570
+Scott Tolinski: that is Yeah.
+
+65
+00:24:28,620 --> 00:25:41,550
+Wes Bos: It's okay. So let's talk about our sponsor today, which is Prismic available@prismic.io. It's a headless CMS that basically the way that it works is you log in, you create your entire back end, you don't have to write any code. To get it up and running. You just create your types. You create your fields, you create relationships between them. It handles images and image resizing all for you talked about earlier, we're talking about resizing images, it works seamlessly inside of Prismic. And then you can have your your users or clients yourself, login out all of your content. And then on the other end you the developer gets an API REST API or a graph qL API most likely, or Gatsby plug in that will consume all of that data and throw it into your Gatsby graph. qL API. It's awesome. So next time, you need to build a website, and you need some sort of headless CMS, check out prismic.io forward slash, you're gonna want to go to this website forward slash syntax. And they have a hilarious landing page. That explains it, it gives you a bunch of starters. And then it also sort of pits Scott and me against each other as team view versus team react.
+
+66
+00:25:41,880 --> 00:25:42,930
+Unknown: It's great. It's
+
+67
+00:25:43,590 --> 00:25:47,760
+Wes Bos: prismic.io, four slash syntax. Thanks so much to Prismic for sponsoring this point, maybe
+
+68
+00:25:47,760 --> 00:25:48,990
+Scott Tolinski: I should be team spelt.
+
+69
+00:25:51,090 --> 00:25:53,430
+Wes Bos: Well, if the update that, okay,
+
+70
+00:25:53,460 --> 00:26:37,290
+Scott Tolinski: let's talk about web rings, so web rings, despite their name is not any sort of like a circular ring. Although it is kind of in theory, or concept. Web rings essentially, are your links that you would have two sites that you would want to connect to each other. So you would say web ring, these are like basically, my suggested sites that you visit, or a web ring itself is like sort of a grouping of sites that are all banded together in a ring to share each other's content in a way that's like, Oh, you want to learn more about web development? Well, here's the ultimate web development web ring, where you can click through several different sites that will teach you all these different things about about web development, all owned by different people, sort of the original MySpace, top eight, if you think about it,
+
+71
+00:26:37,470 --> 00:27:21,090
+Wes Bos: yeah, I, I always think about web rings. Because I think that would be such an easy like, talk about using a headless CMS, I think it'd be such a fun project, where you use one of these headless CMS to just input a bunch of URLs, or you can even you can even use a GitHub repo. And then you write like some sort of serverless function that would consume all of those. And then whenever somebody hits, hits a point, like hits a URL, like the web ring, cool dotnet. what it would do is it would take the like, refer and just refer you to the next person in the list or like pick a random website and refer you to them. So I think web brings need to have a comeback.
+
+72
+00:27:21,450 --> 00:28:08,760
+Scott Tolinski: I really liked web ranks I, I remember, like, my memory of web rings is like all about like gaming sites, right? You go to gaming sites, and you'd be like, Oh, I need the ogre battles. 64 walkthroughs. And you click on it, and you click on another one and learn more about it. It's like one of my favorite things. Another one would be glossy buttons definitely had their day and they still do you still see glossy buttons, there's a new skeuomorphism buttons coming around that are very glossy, and the glossy buttons were primarily like a thing, even before bootstrap came out with their gradient buttons, glossy buttons were straight up image buttons, gradient, glossy doubt, you got little light sheen on there. They look like they were slick, like glossy buttons. I definitely use those.
+
+73
+00:28:08,999 --> 00:28:37,020
+Wes Bos: Another design trend was flaming tax. So the website flaming texts calm was the place where you go to get all of your headlines and everything, which I still don't know, like, like, how did they do that all that that time ago? Like if you were to ask me to make server generated images. I did it like once with the server list hit counter example that I did, with some some NPM package, but like, how did they dynamically make flaming tax on demand?
+
+74
+00:28:37,380 --> 00:28:50,220
+Scott Tolinski: Lv, great, deep dive because that sounds like that would be a real difficult challenge. To do. So back then. I mean, even now, I don't even know what I'd reach for now. I mean, there's a lot of image processing stuff, but I don't know what I would reach for first.
+
+75
+00:28:50,820 --> 00:29:10,050
+Wes Bos: Yeah, yeah. Because you would like what would you do now is you probably just do it in CSS, or maybe Canvas generated on the fly, but like, what were they doing? Like, if anyone knows, maybe someone can like deep dive who made flaming text? And how do we get them on the podcast? Oh, that would be really cool.
+
+76
+00:29:10,110 --> 00:29:17,760
+Scott Tolinski: Oh, yeah. Very into that. need all those construction gifts who made this mistake? Right? Like
+
+77
+00:29:17,760 --> 00:29:25,650
+Wes Bos: we all about it, but like that, I couldn't do that today. And like the tools 25 years ago were or totally different.
+
+78
+00:29:25,979 --> 00:30:34,500
+Scott Tolinski: I experimented heavily with animated GIFs when I was a teen I you know, AOL remember Instant Messenger, how you get those little animated little like, they can only be like 20 frames or something a little animated GIF of the little AOL guy doing something. I used to make those and share them on one of those AOL gift shot sites that where people could download them. And they'd be like, I had one. There's somebody jumping off a diving board. And that was like the whole thing. The little AOL logo. I used to love experimenting with that stuff. But you drew each frame frame by frame and it was very difficult. So yeah, it was it was a Not a lot of fun. Next one is a classic. And this is like sort of like if there is a web dev, classic tag Hall of Fame, marquee tag, really, really, really just the marquee tag for those of you don't know, it basically made text goes along the horizontal line, like a marquee. And, man, this is a classic tag everybody uses thing. It was not a joke back in the day as people laugh about it now, it was the type of thing that you would see literally everywhere. It was like attention. There are some stuff here along with the blink blink tag.
+
+79
+00:30:35,190 --> 00:31:23,580
+Wes Bos: Yeah, it was, it was pretty cool that you could control it, how fast it went, how big it went. They removed it from Chrome, or something like that. But I'm just looking at an example right now. And it works just fine. Yeah, so I think I remember some, they removed it from the browser, and then somebody like re implemented it entirely in, in JavaScript, because it was it was such an old feature. And I'm just looking at it on Firefox and on Chrome, and it's so smooth on Chrome. And so it's the same like jerky like six frames per second that you get used to get on marquee. So that's actually kind of interesting. Look up marquee tag on Chrome and, and Firefox and see how readable it is on Chrome.
+
+80
+00:31:24,180 --> 00:31:36,780
+Scott Tolinski: Man, I missed the mark. The next one is going to be spacer gifts. Now I didn't Oh, are you talking about like horas horizontal or like little look horizontal rules that were like better styled that what you're talking about here?
+
+81
+00:31:36,780 --> 00:31:53,610
+Wes Bos: I'm talking about before we even had CSS, we had just a one pixel by one pixel GIF, that you would, it was transparent. And you would just stretch it with the width and height attribute to give yourself the space that you needed. So
+
+82
+00:31:53,880 --> 00:31:57,210
+Scott Tolinski: before your dad invented CSS? Yeah, before my dad and
+
+83
+00:31:58,260 --> 00:32:13,500
+Wes Bos: the funny story for those that don't know, Scott, my dad invented CSS. CSS is like Bert boss. A joke that that was my dad. For like, six months.
+
+84
+00:32:13,500 --> 00:32:25,530
+Scott Tolinski: I brought it up. Yeah, I legit thought that was your dad. I thought that was your dad. And it was thinking like, Oh, yeah, you got what is that called? Were you nepotism? I was like, Oh, this is like web dev nepotism. Barabbas. Bringing.
+
+85
+00:32:31,980 --> 00:32:42,690
+Wes Bos: My dad did not make daddy awesome. If he did. No, I don't have any imagine, like, Oh, this guy's selling a CSS course. Because his dad made Yes. Oh, my God. That's it.
+
+86
+00:32:43,080 --> 00:32:46,680
+Scott Tolinski: I mean, yes. That is very funny. And it is very funny that I thought that.
+
+87
+00:32:47,640 --> 00:33:24,860
+Wes Bos: Oh, maybe we should try get Bert boss on. He's only 56 years old. He's younger than my dad. Were even baser gifts. Um, they were just spaced. And the only reason I think people know about spacer gifts, unless you've been a web developer for 20 plus years is that HTML email has always lagged behind browsers. So if you wanted a space, in an email for the longest time, you had to add a spacer GIF in there, especially when you did table layout in emails.
+
+88
+00:33:25,229 --> 00:33:27,210
+Scott Tolinski: Yeah, HTML emails, man. That is a
+
+89
+00:33:28,620 --> 00:33:29,310
+Unknown: not my favorite. That's
+
+90
+00:33:29,310 --> 00:33:40,740
+Wes Bos: that's another I think we did a podcast on HTML emails, but like, maybe we should get somebody on who does emails. I wouldn't. Personally now like the word. Yeah, well, yeah.
+
+91
+00:33:40,770 --> 00:33:50,310
+Scott Tolinski: What's the responsive? What's the thing? Like, I just let MailChimp do it all for me. So I'm really interested in in what the status of that is. That's a great idea for a guest.
+
+92
+00:33:50,910 --> 00:34:00,000
+Wes Bos: Yeah, so shout us out if you know somebody. Yeah. Who can can come on and give us like the people that run? What's that testing? Email testing. So
+
+93
+00:34:00,000 --> 00:34:03,570
+Scott Tolinski: money warm the email on acid is one of them. super
+
+94
+00:34:03,570 --> 00:34:09,600
+Wes Bos: expensive. Litmus. Litmus is like the email. It's like the browser testing. But for email, see, I
+
+95
+00:34:09,600 --> 00:34:23,940
+Scott Tolinski: use email on acid or I used to, which is a crazy name for a company, but they would run your emails through hundreds of different providers and then tell you what issues Yeah, that's the one I used. Oh, man. check that one out.
+
+96
+00:34:23,940 --> 00:34:33,210
+Wes Bos: It's been probably three or four years since I've written a custom email layout. I did. Like I still use the same one I wrote three or four years ago.
+
+97
+00:34:33,230 --> 00:35:19,560
+Scott Tolinski: Yeah, I just dive in lately, and it was just deleting things. I was like, why do I need this? Get rid of it, get rid of it. Okay, next step is Angel fire or geo cities, which is the way that you hosted a website for free online. It basically was just like, click a button, sign up for the service, get a website. It was so cool. I personally used Angel fire. I did not use geo cities and I believe that I had a bit of like a Angel fire is the best It used to be sucks kind of attitude for no reason. Like I had no reason to say that because I think they were probably very similar. But they offered like really neat functionality like click one click copy and paste. And you could get the matrix code on your site, or ladybugs, you want ladybugs crawling on your site. Just copy and paste this JavaScript now you got bugs on your site.
+
+98
+00:35:21,780 --> 00:35:29,880
+Wes Bos: Oh, man, I remember that. I remember putting snow on my website. And I like I think back to them. I think they were Java applets. They might have been
+
+99
+00:35:29,880 --> 00:35:33,650
+Scott Tolinski: applets. Yeah, I thought it was Java. But it might have been Java applets. Yeah,
+
+100
+00:35:33,959 --> 00:35:52,980
+Wes Bos: I think it was Java applet. Because I remember it like taking a second look. I had also had a clock that ticked. And it was like I like actual face clock. And I'm thinking about that. Now. I'm like, Well, I actually have that in one of my courses. But that was an easy, yeah. And it probably would have been easy for us. We just copy it,
+
+101
+00:35:53,399 --> 00:36:15,570
+Scott Tolinski: put it in there. These were free servers to host your stuff on and it was just so cool and so easy and very, like this is where web brings lived. They lived on Angel fire geo cities. Forget creating a an accountant spinning up your own server or whatever that didn't exist. There was there was no cloud. This was the cloud. Next step is Zenga in live journal. Did you use either of these because I had both of them.
+
+102
+00:36:16,439 --> 00:36:53,960
+Wes Bos: Um, I remember my sister's friends had a lot. Everybody had a live journal. And I went with some random like, I had a geo city's website, but I went with the free servers, I think to create like a tax free create the website. And then I remember learning HTML and I hosted it myself. And use the.tk domain name. It was like a it was like Wes bos.tk. And I am really bummed that it was not. I don't know where that website went. And the.tk was never, it was just iframed in so none of them wherever cash. But that was my very first like, hand coded website. Man.
+
+103
+00:36:54,380 --> 00:38:37,050
+Scott Tolinski: I would love to find my old Zynga and my old live journal, because I'm sure they're so embarrassing. I'm sure they are super embarrassing. I would like man, I fear for the kid to have Facebook today and all that stuff, because I put probably like the most emo stuff on there all the time. Oh, yeah, probably very embarrassing. And I wish that kind of stuff existed. I wish I would have like found some sort of a lug to keep that. But yeah, I had a lot of journalists. And those were those were both very popular. I had lots of friends on there, who were friends from high school, whatever, and people post on each other stuff. Same with AOL Instant Messenger, that was such a world. Next is above the fold, which drives me crazy Oh, good, because you occasionally a get the designer who's just coming out of the cave and 2020 in like organic carpet content above the fold. Where is the fold anymore? So X hundred px. So the fold for those of you don't know is a concept that comes from a newspaper. When you fold a newspaper, there is a fold and everything on top of the fold is the stuff that people see first. So the concept above the fold came from newspapers. And so they were thinking everything on the site before you scroll is called above the scroll or above the fold. So you gotta shove as much important stuff in there as possible. Yeah, the fold. If you got one line of text or a button that's peeking below the fold, your users will never know it's there, they're not gonna find it. It's gone slots. Nobody knows that all of a sudden, somebody is like, Wait a second. Everybody knows to scroll websites and to everybody's fold is different. So this is the dumbest concept in 20, whatever. So yeah, above the fold with the way of the dodo. For most people, hopefully,
+
+104
+00:38:37,130 --> 00:39:32,210
+Wes Bos: the above the fold was tough for me, because about 10 years ago, people started rallying against the whole idea of the fold, because at that time, everybody had he probably 15 or 17, or a 19 inch monitor. And a lot of the times they were all the same resolution. So it didn't even matter at the end of the day. And the fold was generally you would code it to your clients computer, because you want it to look good on their computer. And you'd have to tell them like, Look, not everybody has the same monitor. And we're starting to get these mobile devices as well. And you don't have to really worry about Blackberry. Yeah, there was some really good websites, and blog posts. And it's above the fold that FYI has a list of all of them. And they're basically just a really good resource that you could link people to and be like, Look, don't Don't worry. Don't have this. The above the fold thing is not not a thing anymore. Yeah.
+
+105
+00:39:32,340 --> 00:40:11,040
+Scott Tolinski: Mm hmm. Totally. Yep. Yep. Yep. Lastly, this is the last one on our list here. This is homestar runner, which at I personally was late to homestar runner, my brother was on it like my friends are on it, and I like didn't get it. But then I saw the truck door thing. homestar runner was flash based, right. It was flash animations. And you could click on it, you could interact with them. It was very, very cool. They were funny they did they had all this stuff and everything. But uh, you knew at one point was quoting a truck door thing. And the all of them the homestar runner thing. So some people got very into it, I was never superduper into it, but that's definitely into it.
+
+106
+00:40:11,550 --> 00:40:29,010
+Wes Bos: I had a computer teacher in high school that we would he would play one every single class. And we would just say like, burn and a ting all the people. And like, I know what, 20 years later, I still know probably know all the words to that song verse you drawn us, then you draw another s.
+
+107
+00:40:30,030 --> 00:40:32,210
+Scott Tolinski: Like I have more different s,
+
+108
+00:40:32,280 --> 00:40:57,150
+Wes Bos: it didn't have that much to do with web development. And then I had a lot to do with internet culture. And I think homestar runner played a huge part in me wanting to make stuff on the internet, because it was one of the first times that you saw like, ah, like, there's like entertainment on the internet. And it's it's almost like a movie and like it was super high quality. So that was that was big in my past. Yeah,
+
+109
+00:40:57,170 --> 00:41:35,150
+Scott Tolinski: definitely add me to it, because I got it pretty heavy into flash stuff. So like, for me, I saw that flash. And I was like, I gotta learn how to do this. It's animation is very cool. And I was working in Flash. So I was always in awe of the technical aspect of it. It definitely made me go crazy. Unlike one of our sponsors, which doesn't make me go crazy. It brings me Sanity. And I'm talking about Sanity. io is super cool. b y O, see, I was thinking you'd bring your own content to the Content Manager. But you want to talk about today, we usually switch off on the head, but you just did a big course using Sanity. So you're you're like in it?
+
+110
+00:41:35,360 --> 00:42:53,460
+Wes Bos: Yeah, I've been in it for last couple of months. So it just lot actually launched it like three hours ago, my master Gatsby course. And in it, we use the Sanity, CMS to be our headless CMS. And what that means is that we go into Sanity, we create all of our content types. In our case, it's slice masters, which is people content type, we got pizzas, we've got toppings, and then pizzas have many toppings. And then we pull all that data into your front end. And we do it two two ways. Actually, we do once we pull it all into mostly pull it all into Gatsby. But then also we want like data to be real time. Which in terms of Gatsby, you have to rebuild the site every single time you want the data to change. So what we did is we just went straight to the Sanity graph qL API and pulled the data in client side, it was really good, really enjoyable to work with. I always say it's like the perfect mix of like, easy to get up and running. But also like it's got the it's got what you need for when you're you're two years into a project and you need something really custom. It's not just this very simple CMS it gets pretty deep so check it out sanity.io forward slash syntax you're gonna get double the free usage tier if you check it out there thanks so much to Sanity for sponsoring.
+
+111
+00:42:54,230 --> 00:44:13,530
+Scott Tolinski: Cool so well that is the episode and take you for taking this a walk down memory lane with us I think this was like I'm and I love this you could tell I absolutely love this stuff. Now we're getting into a section of stuff that we do love to which is sick pics. This is the the part where we pick the sickest things that we like and I am going to come at you with another podcast I got lots of podcasts. But this podcast is for those of you who are interested in learning a little bit about the rust programming language now This podcast is not currently running, but there are cool 103 episodes. It's called New rust station. And it's been going on for a long time. It's not currently running but I started at the very beginning and I thought it was very fantastic. You can breathe breeze through these if you're learning rust. So if you're the type of person who wants to learn a language like rust, check out new rust station. Again, it's not currently active, it's finished the podcast is complete. But what it is, is it's somebody who comes from other programming languages learning rust and then writing an episode about the basic fundamentals of it as they learn it. So you can like really get those wheels turning moments in your in your brain and if you're learning along and thinking about the things that this person's thinking with, I just think it's a fantastic podcast. So numerous station is a great pick if you are looking to learn a new language something like rest,
+
+112
+00:44:13,530 --> 00:44:44,040
+Wes Bos: I'm going to sick pic slash sick review a chair so I got this for free full disclosure, and it's the autonomous AI Ergo chair too. So it's a desk chair. That is extremely comfortable. So you probably know I have both at my cottage in here. I've got Herman Miller Aaron and that's like, in my opinion, probably the best chair you can get but yeah, which one do you have? Again?
+
+113
+00:44:44,040 --> 00:45:06,150
+Scott Tolinski: I have the Aaron um, I have since my tailbone injury. This the Aaron has been like listen, I like since the tailbone. I fractured my tailbone if you don't know, since the tailbone injury. I can tell you which seats are very comfortable because I sit on one seat. I can tell you when If it's if it's good or not, and this thing kills my tailbone way more than anything else.
+
+114
+00:45:06,150 --> 00:45:07,110
+Wes Bos: Oh man, so
+
+115
+00:45:07,110 --> 00:45:09,300
+Scott Tolinski: maybe I should get one of these autonomous ones.
+
+116
+00:45:09,450 --> 00:46:34,470
+Wes Bos: Yeah, I'll tell you what I like about it is super solid because like, like they said, Okay, we're gonna send you a chair. I'm like, Alright, is it gonna be like just like a staples chair that's like super rickety. It's like made out of aluminum. And most of the places it's super solid, you could probably throw that rollerblade wheels on it, if you want to as well. It's nice mesh has a headrest on it. The support and everything super comfy really like it the things I don't like about it is only two things as one I'm used to the air on having mesh on my butt, as well as the back. And this has a big big cushion, which you might like Scott actually. Yeah, and I find it to the cushion gets a little hot compared to the actual mesh of the air on. The other thing I don't like is the the actual chair base where everything screws into his plywood, which I don't know if that will will last like 20 years or whatever. But I've never heard of anyone's anyone's extra breaking and I asked on Twitter as well. So it's like, much cheaper probably a third or fourth of the cost of an Aeron. And it seems to be like a pretty decent chair. I sat in it for a month or so just to give it the give it all of the the tests and whatnot. I am back to my Aaron, just because I love it. And it's my favorite chair ever. But if you are looking for a decent chair, check it out. It's called the Ergo chair to cool.
+
+117
+00:46:34,560 --> 00:46:35,640
+Scott Tolinski: Maybe I'll check that out.
+
+118
+00:46:35,640 --> 00:46:37,230
+Unknown: Shameless plugs
+
+119
+00:46:37,230 --> 00:46:38,550
+I am.
+
+120
+00:46:38,550 --> 00:47:04,500
+Scott Tolinski: I got a course on react animation with framer motion that just came out and it is very cool. We talk a lot about gesture based style for doing draggable drawers very like native feeling things. And because it's very rare emotion, it's all pretty slick. We talked about abstracting your animations into reusable animation components, even just dropping a fade component and it just hashtag just works. So check it out at level up tutorials a.com forward slash Pro.
+
+121
+00:47:04,859 --> 00:47:27,000
+Wes Bos: I'm going to shamelessly plug my master Gatsby course. Which is out a lot. Morning a couple hours ago. Super stoked. Thank you. It's available at master Gatsby calm. It's to learn to build and style websites with Gatsby react. You learn basically it's like a sort of a tip to tail. What do you say that? saying? Yeah, I
+
+122
+00:47:27,000 --> 00:47:27,840
+Scott Tolinski: think that's the thing.
+
+123
+00:47:27,870 --> 00:47:29,610
+Wes Bos: It's like a hog like Yeah, yeah.
+
+124
+00:47:29,640 --> 00:47:31,050
+Scott Tolinski: Yeah. nose to tail.
+
+125
+00:47:31,080 --> 00:47:32,460
+Wes Bos: No, sit down. That's what I want. Yeah,
+
+126
+00:47:32,460 --> 00:47:33,450
+Scott Tolinski: nose to tail.
+
+127
+00:47:33,450 --> 00:47:35,100
+Wes Bos: Yeah. nose to tail.
+
+128
+00:47:35,250 --> 00:47:36,030
+Scott Tolinski: It makes more sense
+
+129
+00:47:36,210 --> 00:48:29,790
+Wes Bos: explanation of building a modern website. So he uses Gatsby react graph. qL headless CMS, which is Sanity, progressive images, scoped CSS, serverless functions, all of that stuff includes all of the CSS because a lot of people are like, hey, Wes, we want you want, we want to see how you actually style it too. And a lot of my other courses, they don't include that because it would take forever. But in this course I made room for and I made the design like simple enough that we could do it in the course but not simple enough that it's just really basic. So check it out. Master gatsby.com. A lot of people already signed up for it. I'm hearing some I had a bunch of people go through it last week or so just to make sure all the rough edges were more edited out and whatnot. So they're really enjoying it Use coupon code syntax for 10 bucks off, and by the time you hear this a will still be on the launch price. So combine those together for master savings.
+
+130
+00:48:32,190 --> 00:48:33,990
+Scott Tolinski: Love it, love it. Love it. Love it.
+
+131
+00:48:34,110 --> 00:48:40,260
+Wes Bos: That's it for today. Thanks so much for tuning in and we will catch you on Monday. Peace, peace.
+
+132
+00:48:43,800 --> 00:48:53,580
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
