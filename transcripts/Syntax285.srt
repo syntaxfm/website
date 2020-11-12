@@ -1,0 +1,172 @@
+1
+00:00:00,359 --> 00:00:01,350
+Unknown: Monday, Monday,
+
+2
+00:00:01,350 --> 00:00:02,160
+Monday,
+
+3
+00:00:02,160 --> 00:00:21,660
+open wide dev fans yet ready to stuff your face with JavaScript CSS node module, BBQ Tip Get workflow breakdancing, soft skill web development hasty, as crazy as tasty as web development treats coming in hot here is Sarah CUDA and Scott Taylor.
+
+4
+00:00:23,610 --> 00:00:24,450
+Totally at ski.
+
+5
+00:00:25,920 --> 00:02:20,160
+Scott Tolinski: Oh, come to syntax and this Monday hasty treat, we're going to be talking about the first buck we made from web development, amongst other things just sort of little first steps into the world of both entrepreneurial ism as well as web development professionally for both Western AI. So we're going to be talking all about the first buck made from web dev. And this episode is sponsored by one of those software's that you're going to want to have in your tool belt anytime you're working with client facing code, because a tool like sentry@sentry.io allows you to see all of your errors and bugs in a trackable interface so that you can quickly and easily attach them to GitHub issues. You can check performance, you can attach them to specific resources, or let's say, Jim, sorry, for all you gems out there. Let's say Jim introduced a bug in version 10. And well, always Jim. It's always Jim, he just made he just goofed it up, he did some really dumb stuff. And sure enough, there's a bug. And so what we now have is, we now have the ability to say, hey, this bug was introduced by Jim in release 10.4. And we can make a little GitHub issue for it. And just to rub Jim's face, his nose and a little bit, we can make Jim fix it himself. So this is all possible with Sentry at Sentry dot i o is one of our favorite tools that we use all the time over here at syntax. And if use the coupon code, a tasty treat all lowercase all one word, you will get two months for free. So thank you so much for century for sponsoring. So first buck made from web dev. Now this is hard for me to quantify in a lot of the things I was doing a lot of like, rework for friends and times here and I may have gotten paid for it may have not gotten paid for some of it. So for me personally, I'm gonna be talking about some of my projects that I definitively did get paid for early on in my dev career. Your first check, Wes, for doing this just this is just straight up client work. Right? What is your first check look like from client work?
+
+6
+00:02:20,490 --> 00:03:03,390
+Wes Bos: Yeah, I very clearly remember this one. Because it was it was before even MySpace got super popular. myspace was certainly there. But it was for a local band called The district. And I built them a website. And I remember it was iframe, we sliced it up, and you did the whole thing where you export it via imageready. And they got me 300 bucks for that, which I thought was I think also included a couple of T shirt designs as well. Nice. And I remember the check came in from like the drummer's mom, which is hilarious. Yeah. And I had to like go to the bank and, and deposit it. I think that was really funny. Nice.
+
+7
+00:03:03,450 --> 00:03:58,560
+Scott Tolinski: Yeah, believe it or not, my first dev check would have come from my parents, because my parents were opening up a T store blooming t.com, they were opening up a T store and did not know what to do. And I said, Well, I think I could do that. So I put together a Magento website for them, which was really a little bit beat on my, beyond my skill level. To be honest, I wasn't necessarily knowing what I was doing in PHP and everything. At that point, I was just sort of struggling through it. But it worked. And they were able to accept payment via credit cards and stuff. So that was really it because it was like, you know, my parents tea store or whatever, it was a nice first introduction. I didn't have to be a good good entrepreneur or good business owner in that regard. I didn't have to, to hunt them for money. I didn't have to like it was all just like a nice and relaxed experience to get my feet wet and what would be an actual client facing real world thing that people would use.
+
+8
+00:03:58,800 --> 00:04:36,540
+Wes Bos: I was just thinking about that. And I also did a website for a pool company and I don't know if this was before the the band one, but that was my first like, client outside of just friends doing music, you know, like that. It was some It was a drummers dad actually had a pool company and I went ahead and built a website for them. And that was like, I remember that because like they literally paid me for it and we got it online for them. And that was like my first time being like, oh, wow, like this. There's like there's businesses out there that are past bands that don't have any money and I can make some money off of them.
+
+9
+00:04:36,630 --> 00:06:55,680
+Scott Tolinski: Yeah, my first one for that was a client I got off of whiteboard. Craigslist. Yeah, classic. Just hunting for clients on Craigslist. I just responded somebody posted an ad saying that they needed development for a store that they were doing at some design stuff, and I really fancied myself as being an all around all around her at that point, even though I definitely wasn't but I came up with this logo, believe it or not, I actually got paid to do a logo was one of my first things that I did. And it actually was on a building in downtown Ann Arbor for many, many years. So it was very cool. I got to drive by and see my logo up there and say, Hey, I did that logo. And then I built a website in a little actually wonder how much you can find out about this tech right today. But this tech is called Magento. Go I believe in it was like, What would we what would happen if you know Magento, which was definitely not a lot of fun to work in was like, very, very easy. Like we didn't we hide, we hit all the code stuff for you, it was sort of just like a very early version of the, like e commerce as a service type of thing. And honestly, I think if they would have kept with it and kept evolving it, it would have succeeded in today's world. But like, at the time, it was just sort of like, oh, Magento is hard, hey, we'll make it not hard. But the problem is, is that they really limited you from working on any sort of CSS in like, they limited you to get access to the code. So you could only do CSS. This is actually great. You could only do CSS through upgrades in in like a single like text field. So what I would do is I had my CSS, I would do all of the CSS in the dev tools to sort of update it that basically copy and paste my CSS from that and then paste it into the text box and click Save and then see if it worked. And then refresh. It was just like an absolute nightmare to do anything in in terms of like custom aesthetic, and I somehow was able to, like really, really themed some of these sites with even image backgrounds and all sorts of interesting stuff. But it was such a giant pain in the butt to theme outside of one of their themes that it was ultimately probably not worth it. But I did a ecommerce store, and I did a logo that appeared on a building and that's not too bad for your first client. And I didn't know them at all when they were no Woody's dad. Okay, there were nobodies relations.
+
+10
+00:06:57,870 --> 00:07:55,860
+Wes Bos: That's great. There's no drummers dad there. Alright, let's talk about I'm not sure if you have this or not, but first AdSense income. So yes, I know maybe 1515 years ago, it was like the thing to create a blog and put ads on it and just like rake in all the all the money and I remember being part of this website called young go getter. years ago, it was like a forum of people who were sort of trying to do this type of thing. And the one person I actually remember from that was derrius monster who he created this website called color lovers, and then went on to create creative market. Oh, wow, it didn't Wow, it didn't click to like a couple years later, I'm like, Oh, that was the guy from the forum. Wow. He's like, like multi millionaire. I think he had this big deal anyways, so I was really excited about that. And at the same time, I was flipping blackberries. So I would buy blackberries, that's
+
+11
+00:07:55,860 --> 00:07:58,740
+Scott Tolinski: honestly legal. Whatever you're doing, it sounds like it could have.
+
+12
+00:07:59,790 --> 00:08:48,020
+Wes Bos: No, I was I was buying like, like cell phones off of Craigslist, and then reselling them. And what I would do is I would unlock them and I would buy a cheap case and a SD card. And I would just like put it up for 150 bucks more, because often there were people that had like at&t blackberries in Toronto, they moved from the States and they couldn't use them. So I would buy them and unlock them and flip them. And so I made this website called Craig nomics, where it was like a blog about flipping stuff. And I wrote like four posts, and it never panned out, because I didn't immediately read from it. Yes, right. Yeah. But I did make, like $17 or something. I remember getting a check from Google. And it had like, 17 bucks on it. And I thought that was so cool that you can make money on the internet. Like that.
+
+13
+00:08:48,270 --> 00:09:40,650
+Scott Tolinski: Yeah, that is so cool. My first AdSense income was my first AdSense income was something very similar. I heard tell of similar tales of being able to make a lot of money on doing AdSense. And of course, I published a blog and I, one of the first things I did is I wrote a post on I could even tell you from memory, this is just straight up for memory because this don't have access to this anymore. But the the name of the blog post was six sites to get your music heard. Now, how is that for a cookie cutter blog post, and it actually I posted on Reddit and did not get murdered at the time. So that was like, and that was a long, long, long, long time ago. That would have been like 2000. And oh, man, I would have probably posted that on Digg too. That's how long ago that was.
+
+14
+00:09:40,740 --> 00:09:43,320
+Wes Bos: Oh, yeah. So yeah, that Doug
+
+15
+00:09:43,350 --> 00:09:55,890
+Scott Tolinski: site got dug right in it. Actually. It made me like it like he said, like 10 bucks or something. I was like, Huh. And then I never had another blog post. Rival it at all. So I eventually got tired with that just like you did.
+
+16
+00:09:58,670 --> 00:11:11,220
+Wes Bos: What about first YouTube video. So like that you made money off of. And I just went back on my YouTube channel and looked for my very first programming video. And that was nine years ago. So 20 in 2010. And that was a programming video about I had a couple of videos before them. But the first one that got really popular was how to import a large SQL database with big dump. So at the time, were pressed databases, sometimes they got pretty big because some of these websites had a WordPress with thousands of posts, thousands of comments, and they would get pretty big and the like servers would only allow you to upload like six Meg's at a time or something like that. So there was this tool called Big dump. And what it would do is jump up, upload your database in, in like smaller bits, I think. And I made a little video on how to do that. And that just looked as almost 60,000 views on it. And I remember that was before YouTube had any, like, minimums in order to get paid. So like I had ads on all my videos. And I remember getting a check or direct deposit from them. I thought that was pretty cool to make some money off of a YouTube video.
+
+17
+00:11:11,250 --> 00:12:45,390
+Scott Tolinski: Yeah, my first ever YouTube video you can find on YouTube right now. I am very surprised that this thing is still published. It's from February 7 2012. Okay, so this is February 7 2012 premiere tutorials number one starting a project how to start a project in Adobe Premiere. It has three, three comments and one person wrote first video lol. It has four thumbs up, one of which is my own. And I know this because it's blue on my end. And that means thumbs up on it like in 2012. So this is very funny that this thing still exists. It only has 986 views on it. That's it. And in my very first video tutorial, the first one that made me money, because I had some decent traction. Maybe not super quick, but my first video video video was from February 9 2012 SAS tutorials number one how to install so Wow, that video has 235,000 views. And really a 97.6 thumbs up ratio might I add? That's good people really liked it. And that was my first one it got shared by some of the folks behind SAS and Chris Epstein of compass. So it like really it blew up my channel pretty early in a way that like allowed me to to make a couple bucks off it to say Oh hey, maybe I could maybe I could do this too. which then led lit into compass tutorials and then eventually Drupal tutorials. And yeah,
+
+18
+00:12:45,390 --> 00:12:59,970
+Wes Bos: I just watched your first premiere tutorial. Yeah, and you started with Hey, what's up this is level two tourists like like how did you have that all so down pat, right out of the gate like my first four years of tutorials and even now we're just kind of like Hey
+
+19
+00:12:59,970 --> 00:13:58,080
+Scott Tolinski: guys, was that? I used to watch a lot of video tutorials both paid and free. And oh yeah, it was just very I don't know what it was about it. Like to be honest. I don't know if I've ever watched this. I don't know if I've ever watched it even after I recorded it maybe like once I edited it. I don't know like what this thing looks like to me. So I'm going to give this a go to and see how many of my my carryovers have stayed from this very first one but it's very funny to hear you say that because I don't think I knew what I was doing and it just sort of easily became a flow that I fell into Not to mention that I only did like a handful maybe like two or three of these premiere tutorials anyways before quitting Adobe Premiere because I just like most things in my career, I looked at this I was like, why am I doing this premiere tutorial like web development, what I'm interested in and like better at whatever. I think I started with premiere tutorials because there was 1000 of them on YouTube already and I knew that there wouldn't be a lot of traffic I released them and they were bad.
+
+20
+00:13:58,080 --> 00:13:58,740
+Wes Bos: Oh yeah.
+
+21
+00:13:59,010 --> 00:14:05,010
+Scott Tolinski: Oh, but yeah, so SAS definitely was the first one that made me money but it was only like my fourth tutorial or something so that's pretty sick.
+
+22
+00:14:05,490 --> 00:14:40,290
+Wes Bos: Let's go on to the next one which is a first online product or first like dollar made from creating a training something. Oh, yeah. So mine was my sublime text book was the first thing that I ever put out. I was paid. And I remember Ryan Christiani who was teaching with me at hacker you he bought it immediately. Oh, that was really cool. sound cool. If I look if I sort customers by like oldest to newest. It just shows Ryan's name as the very first person who ever gave me $1 for learning something which is really cool.
+
+23
+00:14:40,949 --> 00:15:39,990
+Scott Tolinski: My first one it's funny because Ed must have bookmarked this stuff because I started to google it to see if I could find it anywhere. I have the the actual files for this, but this was from tuts plus.com marketplace that tut's plus calm I sold a series called sass mastery that actually did fairly decent For me, basically, this is a little a little secret here. I basically took the free course I had on YouTube and rerecorded it not exactly the same. I definitely got rid of a lot of the ohms and ahhs and I made it like a more pro thing right I just redid it yeah and like a better way sold it on marketplace dot tut's plus.com. And it felt pretty decent for me to the point where I was able to include it as like a add on to people subscribing to level up pro later on to say, oh, here's this extra course you may not have seen. That was like a more premium course that I had done. So I actually kept that one around. And I used to sell a couple things. I sold some like audio loops on audio jungle to Oh, I
+
+24
+00:15:39,990 --> 00:15:47,250
+Wes Bos: remember trying I made a couple themes. For like that. That was another thing that is funny. It was in the back at all the dreams to get rich. Yes,
+
+25
+00:15:47,250 --> 00:15:48,900
+Scott Tolinski: themes were definitely one of those
+
+26
+00:15:48,930 --> 00:16:25,020
+Wes Bos: the themed everybody was making a theme marketplace because like there was a couple people out there that were cleaning up. I remember there was like, cap cosy KUZ why he was like the number one theme dev on themeforest at the time, and he had like 15 themes, and they all sold hundreds of thousands or something like that. Yeah. And I don't remember, if anyone knows who I'm talking about. I would love to get him on the podcast to talk about that. Because that was another thing. I tried and failed that before I stumbled. Finally, upon being able to sell my courses we do. I developed
+
+27
+00:16:25,020 --> 00:16:41,760
+Scott Tolinski: like two or three themes. Unfortunately, I never got a single one on the market because I kept pivoting from the I'm going to do a Magento theme now I'm gonna do a WordPress theme. Oh, you know, so for me, that was always a big thing, too. I always wanted to make a big theme, but I don't think I was a good enough designer to make it happen for being entirely honest.
+
+28
+00:16:41,760 --> 00:16:44,400
+Wes Bos: Mine just got rejected because
+
+29
+00:16:46,770 --> 00:16:59,760
+Scott Tolinski: yeah, I think one of my audio loops got rejected because it just didn't sound nice, even though like I'm just into dissonant music. So to me, it was like, What do you mean? Of course, it doesn't sound nice. It's not supposed to sound nice. And the people who buy it aren't gonna buy it because it sounds nice. You know?
+
+30
+00:17:00,090 --> 00:17:32,300
+Wes Bos: Yeah, yeah. I last one I have here is just like, first in person teaching money made. And for me, that was I got a gift card at ladies learning code after I did like three or four of them, which I thought was really cool. And then after you, which I've talked about on this podcast before, which is a boot camp, part time, Career College, I taught there, which was seven or eight years ago, and I got paid for that as well, which is was really cool.
+
+31
+00:17:32,880 --> 00:18:45,560
+Scott Tolinski: This goal, I don't have this same sort of category. I've never done any real teaching still to this day. I probably could. I mean, I think I've done workshops and stuff, but nothing really major. My first what I've decided to supplement this with is my first project at an ad agency and my first agency project, which was what's the word for this? It's a like a recumbent cross chain trainer. It's like a trainer for people who have joint problems with disabilities, or maybe just, you know, unable to do certain exercises. So it's like a, like a lay down sort of move thing that moves your arms and your legs that where you use it. They used to run the show The Biggest Loser for a long time. And so that was my first client and the codebase was one of those ones that had been authored by like 20 different developers over the course of 20 different years and is like just filled with patches over patches over patches. So it's like anytime you make a new file. Well, you just duplicate another HTML file. And then well you just write a custom CSS file specifically for that, just because like to avoid overrides, and it was one of those things where it's just like, give the new guy that the worst project. That's what I did. Yeah, for a little while. And it was a it was fine. It was my first agency project got my feet wet. And
+
+32
+00:18:45,930 --> 00:19:22,680
+Wes Bos: that's a good one. I'm gonna do mine as well. My first agency project was with this company called jet Cooper, which is they got bought by Shopify. And I was working with vernons at Tisch. And they had me do some word custom WordPress, Dev for them. And it was for like a pillow company, I think, oh, and I remember thinking that was so cool that they had this like wicked office. We went out for lunch. And that was like, really opened my eyes to like, how cool working in web development can be versus like my other experience, which is working at a bank.
+
+33
+00:19:23,190 --> 00:19:48,930
+Scott Tolinski: Yeah, well, mine Mine was more along the lines of your bank experience, because it was just sort of like well, we get the new guide the crappy code base and the the the crappy looking site that's super old. And because the company won't pay for a redesign when they need it, you know? So that was my, my experience different, just a little bit there. But it took me how many similar experiences we had, especially around stealing stuff in those markets and trying to do to get kids like that. fascinated by that.
+
+34
+00:19:49,170 --> 00:20:23,970
+Wes Bos: Yeah, it's kind of fun to look back at it. Because like, if you were to ask me, I'm like, Oh, yeah, I was always making courses, but like, now that I think about them. No, no, I did a lot of different stuff. Until I stumbled upon what worked for me and I also asked us on Twitter, like what was your first buck made? And I'll link up the tweet thread in the show notes because there's some really, some really interesting ones of people saying, like, I got Steve sugar, who was a designer behind tailwinds. $400 for designing and coding a site for a miniature horse farm. Yeah. Cool. Hopefully, those are the real horses,
+
+35
+00:20:23,970 --> 00:20:29,970
+Scott Tolinski: you know, like, like plastic miniature horses? Do you know what I mean? Oh, yeah, cuz that'd be pretty cool to
+
+36
+00:20:31,020 --> 00:20:46,170
+Wes Bos: me, we need to do some sort of, like call in show where people tell us they're like, I we need to figure some way for people to like call in. Because like, I would love to hear a little clips of people and their stories about how things went and whatnot.
+
+37
+00:20:46,200 --> 00:20:55,650
+Scott Tolinski: I think that's a great idea. It would be a lot of fun to do. I think I think we should definitely do that. I have a quick question for you. Oh, what is the first buck you made on a course for somebody else?
+
+38
+00:20:56,090 --> 00:20:57,990
+Wes Bos: a course for something. What do you mean by that? You
+
+39
+00:20:57,990 --> 00:21:10,530
+Scott Tolinski: get paid to do a course or a company or not even a course maybe even just tutorial video. Does that ever happen to you? Oh, because I know you've done at least one. Have I? Didn't you do one for Mozilla?
+
+40
+00:21:10,980 --> 00:21:50,640
+Wes Bos: Oh, ah, well, no, I Mozilla paid me to do my own course. That was the CSS Grid, they sponsored it. I have been approached a couple times by companies to make internal trading videos. So like, I would like learn they're like, just so they have good videos to give their own staff members. And either didn't do them. And some of them I was like, yeah, I'll do it. And it never panned out. But no, I've actually never, I've certainly written for like smashing mag and CSS tricks and a couple of those other blogs I've written for them, and you get paid for that as well. So maybe that don't get a good enough answer there. That counts.
+
+41
+00:21:50,670 --> 00:22:25,980
+Scott Tolinski: Cool. I think my first one was, I did a course for packt Publishing on Magento. Back when I was doing a lot of Magento did Oh yeah. Not necessarily worth the time. But you know, that's how publishing goes. So that is it. A lot of fresh books being made. Let us know what your first book was outside or in that if you want to get it linked up in that Wes Bos tweet, link it up in that Wes Bos tree. We reply to that, let's maybe start that thing up again, or you can just share it with us on twitter yourselves. So as always, this is Scott to Lynskey and Wes Bos Wes Bos signing
+
+42
+00:22:26,400 --> 00:22:28,440
+Wes Bos: off be head
+
+43
+00:22:30,330 --> 00:22:39,600
+Scott Tolinski: on over to syntax.fm for a full archive of all of our shows, and don't forget to subscribe in your podcast player or drop a review if you like this show.
+
