@@ -1,0 +1,128 @@
+1
+00:00:00,359 --> 00:00:24,450
+Announcer: Monday, Monday, Monday, open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA bombs and Scott Taylor. Totally in ski.
+
+2
+00:00:25,980 --> 00:00:57,900
+Scott Tolinski: Oh, welcome to syntax in this Monday tasty treat, we're going to be talking about enums. in JavaScript, this might be a word that you've seen before and don't know, or maybe it's a word that you don't know, and have no idea or maybe you are up on enums. But we're going to be talking all about itams what they are, how you can use them and a little bit about what their situation is in JavaScript. I personally use them in TypeScript. So my name is Scott Tolinksi. I'm a developer from Denver, Colorado, and with me, as always, is the one and only Wes Bos.
+
+3
+00:00:58,019 --> 00:00:59,100
+Wes Bos: Hey, everybody.
+
+4
+00:00:59,190 --> 00:02:33,750
+Scott Tolinski: Hey, Wes. This episode is sponsored by Log Rocket. Now Log Rocket is the air an exception handling tool that will allow you to see the errors and exceptions and anything that happens on your site happen in real time. It's very cool. What it does is it records a, what they call a session replay of the error happening in real time, your user clicked on that button, and the thing didn't work. And you know what, maybe they just left, they're gonna say, I'm gonna, I'm gonna buy Johnson special sauce, I'm gonna buy it, I click the button, it doesn't work. And I say, you know what, I don't need John's special sauce, I don't need it. So I'm gonna see you later. And you might not know about that error, because they didn't contact you. There was nothing popping up in your emails, let you know. But what Log Rocket does is allows you to see them click on the button and actually see the error. The Network tab, it allows you to see the console allows you to see everything that you would expect to see me the Redux store, it works with all of these tools that you know and love, it is so very cool. You're gonna want to head over to Log rocket.com forward slash syntax, sign up, and you'll get 14 days for free. Again, this is one of those services that is very, very cool, super, super into it. So check it out Log rocket.com forward slash syntax enums. So you crafted this episode, and it's funny. You're putting this episode together. And the whole time I thought you're you're making an episode on the addition of tuples and records in JavaScript. And so like when we came to the table, we went to record it. We're like, wait, there's two episodes here. Yeah, these are obviously not the same thing. And we both had a different idea about so Wes, put this episode together. So do you want to kick it off?
+
+5
+00:02:33,989 --> 00:02:51,060
+Wes Bos: Yeah, I thought we do this episode just because this is a word that gets thrown around. It's probably a word that will get asked in an interview. And it really isn't all that it sounds scary, but it's just a list of possible options. You can turn it off. Thanks for coming.
+
+6
+00:02:52,140 --> 00:03:02,760
+Scott Tolinski: Do you know what the core of the word enum is? enumeration? Yes. enumeration, the definition of an enumeration is the action of mentioning a number of things one by one.
+
+7
+00:03:03,090 --> 00:03:07,770
+Wes Bos: Ah, interesting. A complete enumeration of all possible genetic states
+
+8
+00:03:07,920 --> 00:03:09,360
+Scott Tolinski: give you some context there.
+
+9
+00:03:09,690 --> 00:04:51,450
+Wes Bos: Let's get into it. So itams are a type. And we're going to talk about enums in graph qL, TypeScript and JavaScript to just sort of I will go through each one. But we'll talk about them in general, because they're pretty much not every programming language, but a lot of programming languages have enums in them. So they are a type where only possible options are from a set of predefined options. So that makes it easier to document all possible options and make sure that you don't run into weird edge cases. So misspelling, for example, I'll give you an example out of my own life, I was working on a course platform. And when I add a new course, I created like a product code with my master Gatsby courses ga t get. And when somebody sign up for the course it for whatever reason, because I hadn't filled out all that with the right things, they signed up for it and the product code was wrong. But it still sent them an email still signed them up. And then when they went to watch the course, the course platform broke. So if I would have had the list of possible courses in an email them, that type would have that would have failed that check there and said, hey, that's that's not an actual, like, a really good example. undefined is not a possible option. Out of this enough of courses. So a couple other examples. We have here, directions Up, down, left, right, those are the only possible options, a roll, I've used a rolling up under my courses where we have admin, editor, author and viewer. Those are the only four possible roles that someone can have day of the week, there's only seven days in a week, you can't make up your own name. And if somebody tries to set it to son instead of Sunday, then that will throw up an error and say hey, that's not one of the possible options.
+
+10
+00:04:51,540 --> 00:05:05,910
+Scott Tolinski: Everybody gets your roll on. Everybody get yours. I you know what the thing that helps me visualize the best just about every single Time I have an enum the way it manifests itself on the front end of the site is in a select list, right?
+
+11
+00:05:06,180 --> 00:05:46,980
+Wes Bos: Yeah, you're right, that's, that's a perfect way to to visualize it. So enums can be in graph qL, the way that you do that is just enough roll. So if you're creating a type, in graph, qL, you create a type called role. And you say, it's an enum type, and then the possible options are admin, editor, author, viewer. And then when you go and define your data type, like a user, you can just say the role is not an object or a string of of the role, the role is actually a type of roll. And then then then when you go ahead and set it, it will yell at you if if something goes wrong. That's sort of the beauty of of having a type system in general, though, isn't it? Totally.
+
+12
+00:05:47,340 --> 00:06:45,360
+Scott Tolinski: Yeah, right. Once you get into type system, like at first, you're like on guard. But once you get into type systems overall, you you, you finally understand what real developers have been talking about all this time about types being very, very, very good. Now my whole system is typed very TypeScript on the back end TypeScript on the front end, we got graph qL, typed our queries, and you know what it is so fantastic. When the thing yells at you, when the when you didn't do the right thing, instead of it just ignoring the fact that you didn't do the right thing. So for me, types up and down the systems and enums are one of those things that I really, really do love in my graph, qL and my TypeScript system, because they they are suddenly the same thing. The only problem I have here is like, when you get into JavaScript, and you you have to look for something as like a string of any num, do you know what I mean? It's like you use the all uppercase, and then all of a sudden, it's a string. So to me that, like always feels very weird.
+
+13
+00:06:45,870 --> 00:07:06,750
+Wes Bos: Yeah, totally, I have run into situations like that, or I've done it in JavaScript before where you have to import the thing from a package, and then compare it against like, if it is this thing that you've imported from a package, then then it is true, you can't just use a string, in order to check in that's I don't think that is true in TypeScript is it,
+
+14
+00:07:07,080 --> 00:07:45,870
+Scott Tolinski: you can do them a couple of different ways where you can do like an enum, like you said, Direction is Up, down, left, right, whatever, all caps, but then you can also do an enum. This is a string em, which is how I do them. Because to me, it makes more sense, but I don't know. So you do enough direction. And it's like, up is equal to all uppercase string of Up, down is equal to all uppercase string and you you write it like that instead of the enum object thing. And that's how you type that. So that's typically how I'm doing it. Or you can do some like weirder ones where like, no is equal to zero, yes, is equal to one that kind of thing or something. Oh, yeah,
+
+15
+00:07:45,900 --> 00:07:57,420
+Wes Bos: yeah, that's more like a like a dictionary where you set it to this like heart value. And then if you want, like the user displayable value, or if you want to be able to look that up in an object or a map, or something like that, you can
+
+16
+00:07:57,450 --> 00:08:21,660
+Scott Tolinski: and I wonder, like, how does this fit in with the new additions that we're getting with records and tuples? Were like a record? For those of you who remember the last week's episode, a record is an array where the things are always the same thing, right? So like, part of my brain says, like, Is this enough? The same thing as a record? I mean, I don't think so. No, is it the same as I don't know,
+
+17
+00:08:21,660 --> 00:08:22,350
+Unknown: I don't, I don't
+
+18
+00:08:22,350 --> 00:08:36,289
+Scott Tolinski: know, maybe? Can you use a tuple as an enum? I don't really know, I guess I need to get some of that programming, like really dive into languages that have some of this stuff a little bit better. Like I said, I've been learning rust in there, there's like 1000 different data types. So
+
+19
+00:08:36,799 --> 00:09:31,790
+Wes Bos: yeah, the I guess the like declaration of the e&m could be done in a tuple or record, and then the, the lookup of the possible values is still that needs to be checked, right? Like so we should say JavaScript, it's not in JavaScript, yet, there are ways you can do it, you can use a case switch, that's probably the most popular way to do it now where case switch will go through all that or even just an FL statement will go through all the possible options. And then if it if it's not in one of those options, then either have a default or a throw an error or something like that. There are proposals in stage one, so very early days, for adding enums to JavaScript, which is kind of interesting. We'll link that up in the show notes, as well as there's a Babel plugin, which I probably would not throw into your $51,000 a week. So it's a pretty popular Babel plugin. So people are using these already in their JavaScript.
+
+20
+00:09:32,100 --> 00:10:10,350
+Scott Tolinski: Yeah, it's interesting. Like as somebody who's been writing TypeScript for the past a little bit, it's, it's we're sort of in this weird world where, like, so many people are using TypeScript right now. And like TypeScript has, you know, like, so is JavaScript going to adopt, like everything that TypeScript adopts? Does that lag behind? Is it like, what does that connection look like in the future between TypeScript and JavaScript as TypeScript evolves, and continue To like improve or change or whatever, like, what happens to JavaScript, like, how much of it does it adopt? And how much of it does it? You know, let it be a TypeScript thing.
+
+21
+00:10:10,380 --> 00:10:31,230
+Wes Bos: Yeah, I hope that it does adopt some just like, like, vanilla JavaScript adopted, almost everything good out of jQuery. Probably will say, All right, we've had this TypeScript thing for three or four years, people love the way that you use enums, or whatever in in TypeScript. So how do we add that then to to regular JavaScript,
+
+22
+00:10:31,280 --> 00:10:55,200
+Scott Tolinski: and I went from somebody who largely ignored TypeScript, mostly because I wanted to see who the quote unquote winner was between flow TypeScript and reason and whatever. And it's clear, TypeScript has gotten the market share, right? So like, now TypeScript is the quote, unquote, winner. So now that I'm so interested in TypeScript, I've gone from somebody who doesn't necessarily care too much about it to somebody who's like, TypeScript should just be JavaScript, you know, like, it
+
+23
+00:10:55,200 --> 00:10:57,420
+Wes Bos: should just build it into the browser. JavaScript
+
+24
+00:10:57,420 --> 00:11:11,340
+Scott Tolinski: should get tights and it should get nubs. And it should get all this stuff. And what What a weird transition that's been for me to not be like that, because it's funny to look back. I'm sure I would cringe pretty hard on some things. I said, in all their syntax episodes. Oh, yeah,
+
+25
+00:11:11,340 --> 00:11:15,000
+Wes Bos: we all do. Yeah, that's like just that things you said no.
+
+26
+00:11:16,440 --> 00:11:31,320
+Scott Tolinski: To laugh about that specific point that we said, we were like, well, maybe we should do an episode about things we were wrong about in West is like, I'm not wrong about anything. So then the episode has been sitting in our episode list of potential episodes to do is just titled stuff Scott was wrong about
+
+27
+00:11:32,850 --> 00:12:05,910
+Wes Bos: thinking about me is I'm never, I'm never super opinionated about things. Like I obviously have my opinions. But like, if somebody wants to do something else, then I say, yeah, that must make sense for you go for it. You know, like, Am I not one of these people that goes on these, like, I remember when observables came out, there were some super strong opinions on either end, and people are fighting about it. And I was just like, like reading these tweets being like, wow, wow. Imagine, like I care about it. But imagine being that angry when somebody else doesn't care about it.
+
+28
+00:12:06,090 --> 00:12:24,810
+Scott Tolinski: Yeah, I know. It is weird, the fever in which people will defend some of these things. And it's like, You're insulting their children or something. Like, I mean, the only thing that I'm gonna be getting that fired up about is these black widows I got in my backyard, they were threatening my kids right now. Like, that is what I'm fired up about
+
+29
+00:12:24,840 --> 00:12:26,070
+Wes Bos: something that's gonna be a sponsor transition
+
+30
+00:12:26,070 --> 00:12:27,750
+Scott Tolinski: or something it could have been.
+
+31
+00:12:28,830 --> 00:12:42,450
+Wes Bos: Alright, so that is enough in JavaScript. Hopefully that helps you with a thing or two in your next interview or whatnot. And we will catch you on Wednesday. Peace, peace.
+
+32
+00:12:44,400 --> 00:12:54,180
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you liked this show.
+
