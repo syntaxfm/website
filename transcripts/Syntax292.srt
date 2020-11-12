@@ -1,0 +1,336 @@
+1
+00:00:01,320 --> 00:00:10,560
+Announcer: You're listening to syntax, the podcast with the tastiest web development treats out there, strap yourself in and get ready. Here is Scott, ski and West boss. 
+
+2
+00:00:10,560 --> 00:00:56,310
+Wes Bos: Welcome to syntax. This is the podcast with the tastiest web development treats out there today we've got a freelancing show for you. We haven't done a show on freelancing and I don't know, maybe six months or so. So we're gonna talk about how to make freelancing easier because, like, honestly, I've seen a lot of developers go into freelancing. And then six months later, they're they throw their hands up and say, yeah, screw it. It's too much for me, there's too much going on and, and that's fine. But I see a lot of people quit for the reasons of, it's too hard to like run the business. And so we're gonna we're gonna talk today about some tips and tricks that you can do to make actually freelancing easier both in terms of like coding as well as the business part of it. With me as always is Mr. Scott Delinski. How you doing today, Scott?
+
+3
+00:00:56,729 --> 00:01:31,020
+Scott Tolinski: He I'm doing good. Just hanging out here just got back from trip we went into Grand Lake, Colorado, which is like, the biggest natural lake in Colorado. So big, big lake with mountains all around it and hikes. And we were able to take the dog ease, which was a lot of fun, because there's not a ton of vacations where you get to take the dogs and go on hikes and stuff. So yeah, it was it was a nice, nice little getaway, although there were wildfires. And we were sort of hacking in some smoky air. Sometimes it was a lot of fun. And feeling refreshed, ready to get back to back to work here.
+
+4
+00:01:31,049 --> 00:01:35,070
+Wes Bos: So awesome. It looks beautiful. Can't believe Colorado's got some views, man.
+
+5
+00:01:35,369 --> 00:01:57,060
+Scott Tolinski: Yeah, it has some views just about everywhere you get. And the cool thing is, is that there's like maybe about 100 more of these little little nooks and crannies in Colorado that we've never been to obviously not being native from here. So there's just so much to do. And there's so many more places to see there's some great sand dunes in the middle of the mountains. We're trying to get to two that just look like you're in the middle of the desert in the middle of mountains. It
+
+6
+00:01:57,060 --> 00:02:24,500
+Wes Bos: looks pretty sick. Awesome. Wow. That's interesting. Yeah. So today, we are sponsored by two awesome companies. First one is Sentry and second one is Netlify. We'll talk about both of those companies partway through the show. All right, so let's let's kick it off. We're going to start with code because like if you're being a freelance developer, or freelance designer, that's actually the thing that you need to do at the end of the day. So we'll start off with tips on nylon kick it off, Scott.
+
+7
+00:02:24,659 --> 00:03:15,990
+Scott Tolinski: Yeah, let's let's tip it off here. The first one is going to be to assemble a basically a set of reusable starters, resets component libraries, things that you're used to using and things that you know and like using, because there's nothing better than dropping in your your custom grid component or your grid class that you created, that you know exactly how it works. And you use it 100 times and you're very familiar with it. So really, as you're working as a freelancer compile code, snippets, starters, resets anything that you might have to make your code time a little bit easier. So you're not having to have the cognitive load of all right now, which grid framework should I use for this one? Which one would I shoot at? What should I use for this one? What browsers Do I have to support now assemble your tools, have them ready and know exactly what they do.
+
+8
+00:03:16,589 --> 00:05:02,040
+Wes Bos: The next one we have here is, I often see a lot of stress around getting things done in time for what you've quoted the client. So a lot of times, people will bill, we'll talk about billing hourly versus project. But essentially, sometimes you have in your head, this thing should take me five hours, and you're three and a half hours into it. And you're almost ready to scrap all of it. And there's a lot of stress that comes from that. And I think it's fine. To go completely over your budget at time, you obviously can't build a client for that extra time. But it's fine to go over that time knowing that you know what I'm just learning as I go, I'm getting really I'm getting much faster at it. So if you go into a shop for your car with a mechanic, mechanic, always, I would say almost every mechanic does what's called book time. So I had what did I have the airbag struts replaced on our car. And they they look it up in the manual and say this is a two hour job to replace it. The so what they do is they charge you for two hours worth of your time. And it could take the guy like 26 minutes. Why? Because he's done 100 of them in the past. And he's super good. He knows exactly what to do. He's got all the right tools, and just bing bang, boom, he's not gonna charge you last for that. By the same means if it's his first time doing a specific project, replacing a head gasket or something like that. It might take them an extra five hours over what the book time is on something like that. And that's okay, because you're you're learning you don't charge the client more. And I think that that also applies to web development as well because there's going to be times where you're super efficient and there's going to be times where you just need to take a bit longer to learn something like that and don't stress Either way, yeah,
+
+9
+00:05:02,249 --> 00:05:21,240
+Scott Tolinski: that's definitely a big thing. Because I mean, in addition to, like you mentioned being so proficient at some things that you can get them done really quickly. This is this is sort of on the topic of audible automobile repair, rather than on web development. But there's a really good Reddit, which is just rolled into Oh,
+
+10
+00:05:21,240 --> 00:05:24,380
+Wes Bos: I love it. I was hoping you're gonna say that. Yeah.
+
+11
+00:05:24,419 --> 00:06:23,580
+Scott Tolinski: Which is, totally reminds me of this. Because you might, you might also think that you you can, you know, just slam dunk this one, you, you got it all lined up. And you might not know that when you open the car door, that there's just going to be, you know, 10 fish in the, in the front seat, how those 10 fish get there, I don't know. But now you get to deal with it. That's just how things work sometimes, right? So even if you can slam dunk something you never know exactly if that time is going to be there. So giving yourself that bumper time is is a big thing. I never heard it called book time. Kind of an interesting concept. So definitely an important thing. Another one is going to be unless you're planning on having extra time, right? If you're if your schedule is tight, tight, tight, don't pick something that you've never built in before. Because if you've never built something in something before, it's really difficult to gauge time, and I am, I've been described as quixotic. I believe that's the pronunciation of that word, you know, quixotic?
+
+12
+00:06:23,729 --> 00:06:24,360
+Wes Bos: No,
+
+13
+00:06:24,899 --> 00:06:36,150
+Scott Tolinski: quixotic means exceedingly idealistic, unrealistic, and impractical. So it's like, it's basically idealistic to default. And I definitely am the type to be like,
+
+14
+00:06:36,209 --> 00:06:37,020
+Wes Bos: Well, yeah, not
+
+15
+00:06:37,020 --> 00:07:08,730
+Scott Tolinski: that I'm minutes, let me just use this brand new nasm thing that I've never touched before. That's not a great recipe for success. When you're running a business. Keep in mind as a freelancer, you are running a business and part of running a successful business is knowing when to be practical, and when to be adventurous. So don't build on something that you don't know, if you don't have the time to do it. For the most part, WordPress is good enough for just about most projects that you're going to encounter that are basic websites write No need to get fancy, fancy,
+
+16
+00:07:09,029 --> 00:08:08,310
+Wes Bos: it totally. And it's probably super tempting to always go for whatever is the latest and greatest. But honestly, being like a year behind hot tack, or two years behind tack when you're doing client facing projects is super key, because all the bugs have been ironed out. There's thousands of Stack Overflow questions and blog posts and YouTube videos and, and things like that. And you're not the person running into the issue is like all the time, when I'm making courses, I'll always take the beta version of whatever it is, they're working, like, example, Apollo three, I was working at it in beta. And I hit all kinds of roadblocks, as I was one of the first dozen people to actually use that feature. And like, that's why it's in beta, so people could test it out and report bugs. And that's frustrating, because like, if you need to get something done at a certain amount of time, it's hard to go back to the client be like, hey, like, waiting for this open source pull request to be merged, in order to support this feature that you want.
+
+17
+00:08:08,669 --> 00:08:50,220
+Scott Tolinski: It's such a good point. And that's not necessarily even something that I thought about. But like, if you do think about it, again, this project is for your client at the end of the day. And it's bad enough that when you might overestimate your abilities to get things done faster. But like you mentioned, you have no ability or capacity to understand if there is like a bug in something new and fresh and open source or whatever, that I wonder like, how many aggressive GitHub issues or whatever could be avoided if people people just use what was appropriate for their project? Because I'm sure that people are under stress for times and deadlines. And then they go to the issue. And they're like, Well, are you an open source?
+
+18
+00:08:50,580 --> 00:09:41,610
+Wes Bos: Yeah, I, I had that with my my personal website. So my personal website has been up for six months, and I went to go fix something the other day, and the darn thing, I could not get it running. And I reinstall x code, reboot the computer a couple times, and npm install and switch my node versions. And I'm just like, oh, like, this was a WordPress website running for 10 years. Yeah. Never never had a problem. And now I'm like six months into this, like new node react Gatsby stack. And this stuff changes so quickly. It's such hot new technology that like it's it's frustrating that it just obviously got orky again, but I was just like sitting there thinking about, man, there's something to be said for tack that you know, just works.
+
+19
+00:09:41,760 --> 00:09:50,419
+Scott Tolinski: Yeah, absolutely. And in tech that you're going to be able to predict is going to work under a deadline when you totally work tight, tight, tight. Yeah, totally.
+
+20
+00:09:51,120 --> 00:10:47,730
+Wes Bos: Another tip we have here for code is just for using code. So this obviously has to go into a contract. Meaning that like, if you've write code. I've talked about this on the podcast before, but like, what I would do previously is things like a store locator, I would write the code once. And then like five or six different clients would want that implemented on their website, and you can reuse, like at least 80% of that base code from project to project. That's key, because you can go really, really fast if you're billing them 20 hours for that thing, and it only takes you five to implement it. That's totally okay. As long as you're doing value based billing, I would feel a little bit weird about that, if you just like, yeah, it took me 20 hours, and then the next person took me 20 hours. But that's why we really like like value based billing on this thing, because you're like, Alright, this is worth 2000 bucks to you. And then the next guy, it's still worth 2000 bucks, even if it takes you a quarter of the time to implement it,
+
+21
+00:10:48,240 --> 00:11:54,539
+Scott Tolinski: right? Because in those two scenarios, right, that you laid out where you know, you're billing 20 hours for something that took you five hours, or you're building based on one of those is ethical, and one of those is not ethical. That's where project based billing can save your butt and help you out a little bit. Leslie we have here is target similar types of clients, if you become the dude who's building everybody's interactive, restaurant menus or something like that, or the dude or dudette, sorry, if you are implementing specific types of websites over and over again, you're going to get really good at those websites, you're going to understand what the pitfalls are, you're going to be able to speak from a place of authority on those websites, or those types of things where you're saying, Hey, I have encountered so many different aspects of these things that you may not have thought about. In fact, one of your competitors revealed to us that they had these issues not not not sharing trade secrets here, but one of our one of our competitors had these issues, perhaps you might have these issues, too. Let's go ahead and build this in ahead of time. So that way you don't run into these issues down the line, it makes your work that much more bulletproof.
+
+22
+00:11:54,870 --> 00:12:44,610
+Wes Bos: Yeah, that's so key if you can just like target a specific little niche of clients like, like one aspect that I heard a lot about him, since a pandemic hit is green houses needed the ability to sell direct to consumer, my dad makes websites and he got hammered by all these people that own greenhouses in the area, because, like literally no one was set up with a website. And then he figured out all of the sort of nuances of how to use specific software for their specific use case. Because like, you can take some like yoga booking software and try to apply that to a greenhouse. But it's not exactly the same, right? So I always think that's really interesting. When people are like, Yeah, I did a website for like this one time type of client. And now I'm down a rabbit hole, and I just work in this one single industry.
+
+23
+00:12:45,240 --> 00:14:40,200
+Scott Tolinski: Yeah, I think that's really important. We, when I used to work in agency, we we did a lot of conference websites. And that was the same thing. It's like, we know what kind of things you're going to hit. When you're building a site for a conference. We know all of the the tools and plugins to use, we know the ins and outs, and we can get you set up for that in absolutely no time. And it's going to be custom. Right. So again, lots to say there. Next up is a big, big, big piece of this pie, which it's it's one of the harder things for developers, typically, US developers, we're good at code, right? We're good at the logical stuff, but we're not necessarily as good at with the communication base things. And I'm personally had been on teams that struggled with communication and I myself have struggled with communication on numerous times. I know if you've emailed me, you probably know that I am not super great at getting back to you that fast. But in more addition to communication might have been the most difficult aspect of freelancing for me personally. And what I needed to do for myself to make it easier would be to really make sure that I'm communicating often, clearly and frequently, often and frequent being the exact same thing here. I read it twice, people aren't going to be mad at being too informed, but just know when to leave all of the technical crap out that they don't care about, right. They don't care about whether or not you built it on wide angle lens dot j s or cloudlifter. j, I'm just looking at stuff around my office. But whether or not you build it on various tech, they don't care about that. They just care about the blazing speeds. Talk to your clients often maybe set up like a schedule to talk to them. I've heard that like, you know, maybe saying like, okay, Friday morning is update day, and I'm just gonna send you a little update, put it in your calendar, put it in your time block planning, whatever, make it happen, and update them every week, even if it's just Hey, no progress this week. Just wanted to give you a shout out hope everything's all right. A key component is making sure everyone's on the same page right about things.
+
+24
+00:14:40,799 --> 00:16:13,200
+Wes Bos: But another tip I have here is kind of the flip side is like also don't overwhelm them. Like kind of what Scott was saying, like don't tell them about every little technical change that you're making. They just care about, like their website coming to fruition and building it. And like I was just thinking about an example with the guy who handles our retirement. investments and whatnot. And I was getting like, four or five different emails from him and these pin codes to login and all this stuff. And I basically just shut down and stopped emailing him back because I was just not that I was like, oh, screw this guy, but I was just like, Okay, this seems like a lot I'm gonna, I'm gonna do with do this later, because I had to sit down and get a coffee and figure it all out. And this is now a big thing. Whereas it used to just used to be an email. And I can tell that he noticed that because I just, I just stopped emailing back. And now when he emails me, it's very clearly bullet points, things that are black are action items that I actually need to get back to them other things, there's just information that I can reference. And I was like, Oh, good, like, what a good skill set on his end, because I'm sure he has clients who love the constant communication. But for me, it was too much. He was able to to adjust how he communicates with me so that he can get replies from me as well. Because that's, that's the other thing is sometimes you're you're a freelancer and you've got deadlines, and you tell him, you're gonna launch by specific time, and you email them and say, Hey, can I get approval, and you don't hear from them for a week? And that's frustrating for us developer? Because you got lots of stuff to work on. Right?
+
+25
+00:16:13,649 --> 00:16:18,149
+Scott Tolinski: I think the goal should be to reduce the cognitive overhead.
+
+26
+00:16:18,179 --> 00:16:19,409
+Wes Bos: Yes, that's key.
+
+27
+00:16:19,409 --> 00:17:07,920
+Scott Tolinski: The one thing that I really hate in emails is when like, there's a huge long paragraph, and then like one tiny little simple question at the end when the email could have just been the question. So like, for me, it would be really hard to parse and find that there's even a question in that email. So like, keep your emails to the point. Like if you don't need to ask a question and don't ask a question. Like if you can figure it out, like Oh, do you think good this blue is better than this slightly other blue? No, you make it you're the expert. And don't increase your clients amount of decisions they have to make I don't know if how much decision fatigue you get West, but I have to make so many decisions. Totally a, like Courtney will ask me like, hey, should I leave this door open or close it like I don't care? Do whatever you want. I do not care here. I have so many other things to worry about this.
+
+28
+00:17:08,159 --> 00:17:24,030
+Wes Bos: Totally. If you want to go back to Episode 117 of syntax Pacey treat how to email busy people. We talked a lot about how to write a good email. It's funny because I often get emails from people. And it's very clear that they listened to that podcast, and
+
+29
+00:17:24,080 --> 00:17:25,740
+Scott Tolinski: oh, yeah, I love it.
+
+30
+00:17:26,219 --> 00:17:35,840
+Wes Bos: And I'm just like, Oh, thank you, I feel kind of bad. Because I'm like, Don't email me unless you listen to this podcast. But they get replies because they do a good job.
+
+31
+00:17:36,390 --> 00:19:39,510
+Scott Tolinski: What am I say? And it along the lines of that same thing is one of my favorite email types that I get is when somebody emails me and they just say, Hey, I know you're busy. So just respond with a number one, two or three. One I'm interested and would like to talk more to I'm not interested in three, like, you know, go to hell or something. So I I really appreciate that as long as that makes it so easy. And you know, what else makes your life easy? What Netlify it makes shipping and deploying your code extremely easy. And Netlify was one of our first sponsors. And before they were a sponsor, they were a company that I admired very much for the ease of use. In fact, you've probably heard me talking just about how easy Netlify is to use before on the show. So what is Netlify? Well, Netlify is a host, or your front end at jamstack code, they say it's the fastest way to build the fastest sites. And that's such a great tagline. Because if your site's on git, GitHub, whatever, oh my gosh, you just select the repo, you click go and it usually just builds it or you type in the build command. And then you get all sorts of awesome stuff like automatic deployment. And let me tell you that since we started working with Netlify, they have just grown and grown and grown, they now have a ton of additional features like the ability to log in via their identify platform, dealing with large media in certain easier ways. split testing, have you used the split testing stuff, because that's been one of the a&b testing than something that I've been interested in checking out where you can serve up two different versions of your site to different people, new DNS based analytics, serverless functions and more. So check it out@netlify.com forward slash syntax and sign up today. It's free to get started free, free, free, free, free to play your site and see it going. I know anytime I have a site like, you know, my personal site is hosted on Netlify. Anytime I don't need a server side, server database, whatever, I'm just jumping right for now if I immediately
+
+32
+00:19:40,049 --> 00:21:17,730
+Wes Bos: Yeah, they're they're really working on all of the like, sort of gotchas with a static site or you don't have a server side. They have I think they have an answer to almost everything. The analytics, split testing, media, contact forms, serverless, functions, plugins, all kinds of stuff. It's pretty good. I got My own website on Netlify. So definitely recommend it. Alright, um, one more thing about just that communication is training your clients that you aren't available 24 seven. So sometimes if you're trying to please your client, email them back immediately, or send them back an email four or five times a day, because some clients are like that, where they just are, they're super involved in the project, and then doesn't really leave you as much time to actually do the development. So just like sort of training them that I'm not replying emails outside of working hours, or I'll send you one email a day, so don't email me, like I use that I, I've told the story before, but I had a client who had like a Blackberry. And every single thought they had, they would just type into the subject line of an email and fire it off. So I'd have like, 20 emails of just like, don't forget about this, and what about this, and I'm just like, you need to put this or like, when it came to site review, where I'm just like, okay, like, here's the website, give me your feedback, it all needs to come at once. And you need to, like, we need to go over it together before we go and fix these things. Not every single time, something flies into your head or your significant other doesn't like the color and he sent an email about it at 4am. That's no way to live your life. So you have to train them that they can't do that.
+
+33
+00:21:17,990 --> 00:21:59,060
+Scott Tolinski: Yeah, that is it is a big thing. And I had, I had a client one time who was like, he did this similar thing. It wasn't as bad as what you're describing, but it was definitely similar. And then I would send him an email like once every two or three days, like, I didn't ever come out and say like, Hi, I'm doing X, Y and Z. Like, I'm blocked, like, whatever. And then he sent me one email. I just remember, oh, I see why you're not emailing me. Constantly back. You're doing time blocking or something like a realization, he sent me emails like I see you're doing batching? Yeah, yes. stay productive. What do you do all day? Do you just email all day? Is that all you do? There's some
+
+34
+00:21:59,060 --> 00:22:17,240
+Wes Bos: people that do that, like project managers, or realtors and people like that their job is to be in contact with people and to always be sending stuff off. And our job as developers is to spend as little time as possible. Not doing banging on a thing and writing code.
+
+35
+00:22:17,630 --> 00:23:11,600
+Yeah, right. All right, let's get in the next one, which is time management. This is super key. Similarly, related to communication, because like, honestly, this pretty much goes for anything in life. But if you are a good communicator, you can get what you say you're gonna do done on time, you will be incredibly wealthy. Because like, honestly, like you think about like, a web developer designer, or even just like somebody working on your house, it's so hard to find reputable people that give you a good communication, and get it done. When they say or close at least close to when they're going to get it done. Or if they're not going to get it done on time, then there's the communication about something like that happening. It's so frustrating in life, because people are just flaky and don't do what they say they're going to do. So honestly, those are the two, the two keys to freelancing.
+
+36
+00:23:11,760 --> 00:24:07,020
+Scott Tolinski: Yes, the two keys, besides actually getting a website that works is time management tip that we had for time management would be to set up alerts for yourself and your own calendar. Like if you have specific dates, a specific times that were discussed, if you establish some sort of calendar, add it to your actual calendar, put alerts on there, put put day alerts the day before week before whatever, give yourself that time, and those internal tools, fire alarms, whatever to make sure that you know exactly what the deadlines are 24 seven, because if you say you're gonna deliver it on Friday, and you deliver it next Monday, it's a small change, but it's still a hit to your reputation, your ability to get things done on time, and overall, their likeliness to refer to you to someone else, which is really what this is all about. Right? You do the good work so that you can get more good work, right?
+
+37
+00:24:07,290 --> 00:25:25,020
+Wes Bos: Yeah, sometimes I have. My Captain says, Hey, I'm gonna, I'm gonna send you the numbers by 5pm. And then like, they don't come and are to email me like, Hey, where's the numbers? I'm like, Don't make me manage you. That's so frustrating to me. Because like, I want to do my thing, which is coding. I'm hiring you to do it. If you're gonna be off fine to at least Just tell me like what's going on and when to expect it and things like that. So yeah, don't make the person your client have to like micromanage you. I remember just this is totally unrelated, but I once had a meeting with a client and it was at a brewery like up the street for me maybe like a 15 minute walk or something like that. And I was just sitting at my computer and I get a text like, hey, are we still good? And I was like, Oh man, I totally totally spaced on it. So I just like Gundam like I ran to The brewery and it was Iran there and like seven minutes and I just like came in huffing and puffing. I just owned up to it because like, what else are you gonna say coming in like panting like, I totally forgot. But here I am. I'm ready to God. I was like 15 minutes late, but like checking your calendar often is key, because so often I've done that with calls where I'm was totally unprepared because I forgot the 10 minutes beforehand is never enough time.
+
+38
+00:25:25,470 --> 00:26:21,570
+Scott Tolinski: Yeah, it is. This is something that I have like really, really learned in, it's like taken me 30 years to learn this. My calendar is the best tool in the world. For me, I have a bad memory, I have clinically a bad memory. In fact, my memory is so bad. It invalidates my IQ test. That is real. And so my memory is so bad that I like if I don't put it in the calendar, I'm not gonna I'm not going to be on it. I'm not going to remember it. Despite my best intentions. Again, remember quixotic? I'm always thinking like, Oh, yeah, it's gonna be totally cool. I'll remember and then I never, ever do. In fact, one time, Courtney and I had dinner at the same place two nights in a row, because the first night we showed up, and we're like, hey, our guests ever going to get here. And then I looked at my phone, and it was supposed to be the next night, and I just put in my calendar. So yeah, that stuff just happens, right? It just happens.
+
+39
+00:26:21,900 --> 00:27:02,790
+Wes Bos: Next one we have here, it's just block off large amounts of time for Dev, you're not going to get any meaningful work done in one hour slots. And I see this all the time where devs will screenshot their day. And they've got like 16 different meetings that they need to come in. Even if you're not a freelancer, that this happens all the time, which is sucks. So literally just go into your calendar, block off five hours of your afternoon and don't allow anyone to book you in that time. I always schedule my meetings for like 9am. And that is awesome. Because if I do like 930, or 945, or 10am, I find that like hour beforehand, I'm kind of like, I'm not gonna get too deep into anything, because I know got something else coming up.
+
+40
+00:27:03,330 --> 00:28:54,660
+Scott Tolinski: That's a good one I i've been recently I made my calendar public, not like public public, but for the people like on my team, like so it's not just coordinate, who can look at my calendar, but it's everybody who I'm working with. So that way, it forces me to keep my calendar up to date. And people will be able to see what time is available, what time is not available. If they messaged me, they can see that I'm doing something specifically and they'll they'll know to wait an hour or two or whatever, until I'm actually going to reply just to make it as transparent as possible. So you can always have a specific calendar that your client can see that's like blocked off time or whatever, like open available communication time or whatever, just just to free it up a little bit. So they know exactly what the expectations are half of every all of this is just managing expectations. Okay, so next is going to be contracts and quoting, this is a big one, because a lot of times we hit a new project, and we're like, oh, gotta go fire up. contract and quoting template, what you should have is you should really have boiler plates for all of this stuff. Just have these things ready that you can do an easy Find and Replace to replace all of the things that you know and love one time, you know, what I actually did for myself was is as a fun project for myself, just as a side project, I built a contract generator using rust because I wanted to learn rust. And it's like, oh, okay, I can read a file, I can write a file, I can replace some values. It's all basic techniques, right? But it's it's neat, because you just deleted the command line and I say, oh, give me contract and says who contract for I say contract for Wes. And this is how much I paid. Okay, Wes, get paid Enter. And then it spits out a PDF of the contract. It's perfectly okay to think about it. Right? So this is a big thing. Do you have any tools or anything you recommend for writing contracts or having those boiler plates?
+
+41
+00:28:55,050 --> 00:29:57,000
+Wes Bos: Yeah, had a website that had a bunch of like free ones. But what most of my freelancing friends recommend is just go and get like a lawyer, like get like a boilerplate one they find online, bring it to a lawyer and have them look over it. And then that's a good, that's a good like sort of place to start from. And then like I just had one in the Google Doc every time I wanted a new both for quoting as well as for like a contract is just like, just type what you're going to deliver when you hope to deliver it, what it includes what it doesn't include, and have them sign off on it. I didn't have this huge 40 page legalese type of thing. It's just that this is what I'm giving you for how much and this is also what it does not include in the things that is not included usually is like inputting content or designing images that go into it or things like that is pretty simple, but definitely helps me speed up that process because again, you don't want to be spending a whole lot of time on that.
+
+42
+00:29:57,450 --> 00:30:21,810
+Scott Tolinski: I'm also going to double your Call to have a lawyer look at it. I'm lucky that my neighbor is a lawyer. So I could just like shoot him an email saying, Hey, I, you know, take you out for a beer and whatever, and you look over something. So I have a little bit of a nice, nice connection there. But again, if you know anybody that's a lawyer, pay them for their time, just get them to look at it's a one time expense, BINGO, BINGO, you've got the contract, good to go.
+
+43
+00:30:22,440 --> 00:32:11,640
+Wes Bos: Next thing we'll touch upon is just like value based billing. So what this is, if you're if you're new to it is that instead of charging somebody 10 hours for a website, you you look at the website and say, all right, like, what's this worth to them? Or I also, like, would look at that. But I also would like to look at approximately how much work is this going to take me at the end of the day, and then you give your client a quote for three grand for a website, and they approve it, and then you just go off and build the website. And that's really great for projects that are very cut and dry. Meaning that this is what you get this is when it's going to be delivered. And all that I did do hourly billing, when it was more, another technical team would bring me on as just like another hired gun. But the value based billing was, was really great. Because a, you can make a lot of money that way. Because you can get very fast, you can use all of the stuff we talked up until right now, in making your skills as fast as possible. You still get the same amount of money at the end of the day. And also the clients loved it because they knew what they were getting and that they don't like, like if you tell them like yeah, it's gonna take me 20 hours to build this thing there. There'll be like, is that? Is that good? I have no concept for it. They don't how long? Right? Like that shouldn't be something that they have to really think about. So there's a book from Freshbooks called breaking the time barrier. And it's all it's all about this tiny little quick read, you can download it as a PDF online. It just puts you in that mindset of how you should be approaching selling your skills and not just trading. I always call it acid seat time, right? Like, you ideally don't want to just be trading your time for money, because then you'll never be able to stop that. Yeah,
+
+44
+00:32:11,910 --> 00:34:03,240
+Scott Tolinski: yes. Yeah, right. Exactly. Yeah. And then this episode is not sponsored by Freshbooks. But we will not mention them again at another point. However, if we want to talk value, let's talk value. And I'm talking about one of our sponsors, that gives you so much value for your money. And that is Sentry. This is a tool that I've used for a very long time myself, and I'm constantly getting value out of it. For instance, one of the newer things they added was performance metrics, that gives you a user misery score that tells you which of your routes are the slowest and giving you the the average times so that you can investigate if there's one particular route that it looks like it's making your user upset, because it's taking too long to load. And then you can discover what the performance issues are. Now there's a lot of really neat stuff here in century century is the error and Exception Handling tool that allows you to keep track of all of the bugs, errors and exceptions on your site, tag them to releases, commits, users, specifically, you get all the information about their browser information, what they did the breadcrumbs when it happened, and you can attach it directly to issues in your Git project management, for instance, I've issue I want to track it, I click the issue, I click Add to GitHub, I fill in the information, I click Go. And all of a sudden, the issue is not only tracked and GitHub but GitHub, the GitHub issue contains a backlink into century so we can investigate for more issues. So if you want to check out century check it out at Sentry dot i o use the coupon code, tasty treats all lowercase and all one word and you will get two months for free talking about values or two good months, you're going to get out of that. Let's get into billing. And I have something to say about billing. First and foremost is that too often times, especially new freelancers, a real good sign of a new Freelancer is somebody who's afraid to talk about money. They'll get into the meeting, they'll be like, so what's it gonna cost me? They'll say, well,
+
+45
+00:34:04,860 --> 00:34:07,560
+it's maybe not just them thinking they just don't want to say,
+
+46
+00:34:07,610 --> 00:34:08,150
+Wes Bos: yeah,
+
+47
+00:34:08,630 --> 00:35:15,690
+Scott Tolinski: the best book I ever read on this topic was Mike Ontario's design is a job. That's the book. That was such a good book. Yeah, if you're if you're interested more in this billing and billing stuff, read design is a job. It's so very, very good. And so one of his big things was just that like, and this is this may even be too aggressive. But if you're not getting a no on your first quote, like if you say I'm gonna, I'm gonna bill you 10 grand for this, they're like Not a chance. If you're not getting to know on that first one, then you went too low, because that means that they that they were getting too much value out of what you are giving them. It not to say you want to be screwing your clients out of money because that's absolutely not the point here. The point is, is that you should value your services that you do good services, the value in what your services bring costs, money and your clients. No one understand that they're running a business right? They see Numbers, you as a freelancer need to see those numbers as well and understand. It's all just a business. And these are business conversations and people talk about money all the time. So talk about money. Don't be shy about it. Get it out in the open, clear the air, make sure everybody's on the same page.
+
+48
+00:35:15,860 --> 00:36:10,730
+Wes Bos: Yeah, it's funny, because a lot of times I see like freelancers who maybe aren't like they weren't raised talking about money, things like that. And they see their skill as a bit of an art. Yes, but you also have to charge money for it, because you need to be able to live and I see a lot of people undervaluing themselves or just saying like, I don't know, like, what how much would you like to pay? And yes, exactly, right. Yeah, unfortunately, you have to be a little bit aggressive. And, and the only way to get better at that is just doing it and you probably will have some some awkward conversations. At some point where people go, Whoa, I was totally not expecting that. But in my experience, in most cases, it was just okay, I can see that. Or could you explain like, why it's going to cost that much like not that I'm saying it's too much I just like would like to understand as to, to where that comes from and whatnot. So yeah, it like Scott said, don't be shy,
+
+49
+00:36:11,210 --> 00:36:25,710
+Scott Tolinski: it's your job to tell them why it's costing so much. It is your job to bring home the bait to deliver, right, it's your job to get that little parcel, that ribbon now repetative ribbon and deliver it right, make the work happen.
+
+50
+00:36:26,280 --> 00:37:50,250
+Wes Bos: Exactly. Also, once you do get paid, you obviously have to hold on to the town, maybe this is not obvious, that's actually something I've seen in the past is that when you get paid, the government does not come and take the taxes out of that money. So you need to hold withhold a certain amount. And this depends on which country you live in, and what type of if you're a corporation, or if you're just a sole proprietor, but generally, you'll have some sort of tax rate, that you need to withhold a certain amount, let's say 20%, you need to withhold 20% of that bill and put it away for taxes. And on top of that, if you're charging local taxes, so in Ontario, here, we have HST, and if I'm billing somebody else from Ontario, I have to tack an extra 13% on there. And I got to hold on to that. And then at the end of the year, I have to give it back to the government or give it to the government say, Hey, I collected this for you. And also, here's your chunk of my own hard earned money that you use to build rows and things like that. And I see a lot of people just like, eat all the money that comes in, and then eat it. Yeah. And then when it comes time for taxes, they are in the hole, which is always funny, because at tax time All my friends are going out for beers and buying buying clothes, because they get a rebate, right? They get the tax rebate back and then it's just me I'm here I am sitting right
+
+51
+00:37:51,300 --> 00:38:37,800
+Scott Tolinski: here. $50,000. Yeah, that's not such a position to ever want to be in I think I got some good advice early on. That was like when you're taking money as a freelancer without tax being withheld. What you should do is, besides one have well, to make it easy on yourself and taxes in general, you should have a business bank account, the bank account specifically for the freelance business, all the funds come into there, and then you can filter it into your own personal accounts, but to have a business savings account, and every single time that money comes in, automatically put that 15 20% into the savings account when the money comes in. And it just never take anything out of the savings account until tax time. Because that money is there for taxes. It's not yours. It's just there to live there.
+
+52
+00:38:38,210 --> 00:40:00,920
+Wes Bos: Totally. That's that's so key because I saw a bunch of my Freelancer friends when Coronavirus hit, government rolled out this plan for small businesses. And it was a pretty good deal. Like they would give small businesses 40 grand and 25% of that was forgivable. So you can get 10 grand for free, but you had to have your own business account. And a lot of the sole proprietors were like was just putting the checks into my personal bank account and like that was my money. And then if that was the case that you weren't able you wouldn't you didn't qualify it there was other programs but this is a pretty sweet program. And it's too bad because like the another thing you're mixing your finances and if you're married to somebody, then like there's like money coming in and like you want to buy a piece of equipment you want to buy a new monitor for your business. But like that's coming out of personal funds like that's it gets kind of weird being like, should I spent $1,000 on this like our car needs new tires on it and then now you're like, Okay, like you're you're not really running a business there because you're you're weighing business purchases with personal purchases and having a separate bank account makes things so much easier. It's so nice to cut and dry. You pay yourself from the business, even if you're a sole proprietor where none of that matters, Ellis still do it. Like Scott said,
+
+53
+00:40:01,320 --> 00:40:45,440
+Scott Tolinski: Yeah, and also it makes accounting really easy at the end of the year, because a lot of these tools that we're going to mention in a second here, whether any of your accounting software, in modern times, you can link your checking account here, whatever account your credit card account, you can link all of those directly to these accounting services. And if you do all business transactions through these, these individual accounts, and credit cards, then your books in accounting simply just become essentially, the statements on your credit card or bank account, it makes it all very, very easy. There's also this whole concept of piercing the corporate veil, which I you know, involves if you're getting sued, they can't go after your personal stuff. But if you're using your personal accounts, they can go after your personal stuff. I don't know too much about that. I am not a lawyer, do not hold me to that.
+
+54
+00:40:45,710 --> 00:41:14,100
+Wes Bos: Yeah, that's that's a question I get a lot is like do I need if you get if you register a corporation, then money that's in the corporation, like if somebody Sue's your company, they can't come and take your house because you personally own your house, and you as a corporation would own the business. So that's something to think about as well. Like, I've never really necessarily heard of that happening. like no one's no one's slipping and falling on a website. Yes, it probably can happen.
+
+55
+00:41:14,210 --> 00:42:03,360
+Scott Tolinski: Didn't Domino's get sued for accessibility? So yeah, yeah, you're right. Maybe that's something that we'll see happen more and more. Totally, I mentioned some of these tools I should go into a little bit more in depth, we you know, are one of our sponsors is fresh books is great cloud accounting software that will make your life easier, again, not an ad transition, that's just generally what they are. But if you're looking for a couple of free options I've used in the past both wave apps and zero, wave ABS is much prettier. Zero, is what my current accountant uses. I that's why I'm not using fresh books currently is because I have an accountant in my accountant uses zero, so I have to spend quite a bit of time just pawing through zero if I want to whether I know generating invoices or something. But so wave app sins are actually known as zeros free, I think it is. But I know wave apps is definitively free for their free use, which is pretty darn good. Alright,
+
+56
+00:42:03,380 --> 00:43:18,710
+Wes Bos: let's move on to the final topic here is just like marketing, like getting known. That's another downside I hear of a lot of people who can't kick it freelancing is they just don't have enough clients coming in for what they want. And generally, the way that I see it happen is, if somebody is good at what they do, like we talked about, if you're if you have good communication, you get things done. After a couple of years, those people are booked up rock solid, and they've got lots of lots of work. It's that initial 510 clients that you need to get. And because of that, you need to be good at marketing. Like you don't have to be amazing running Facebook ads and things like this, but you just need to let people know what you do. And when I, I used to teach freelancing at Packer, you and I would always just tell people, like if you were to go up to like literally anyone on your Facebook list or go up to an uncle at a Christmas party and say like, What do I do? And if he's not able to say like you're making websites, right, like you're doing something on a computer. If they're not able to say that, then you're probably not doing a good enough job letting people know what you need to do. Because almost all of this good stuff comes from just word of mouth, people going from recommending one person to another. No, you have some more points on that.
+
+57
+00:43:19,110 --> 00:45:19,890
+Scott Tolinski: Yeah, it's very fun. I have a realtor. Let me tell you this, if anyone is in Colorado, looking for a house, get at me because this guy is so good that I want to be on a podcast and tell everybody how good he is. Every single time I get any friends asking me In fact, this is a actual story, a friend of mine, let me know that he's actually moving to Colorado. And he didn't even say anything about a realtor. And I was just like, That's amazing. If you're looking to buy a house, get me first I have the best realtor. He didn't have to say anything. And the first thing that popped into my head was I knew a guy who can help you. Because this realtor was so good for us. And he did so many awesome things for us. And at the end of the day, he asked for referrals. He says, By the way, he I think he like sent us a card like right after we move in and it was just like, the best thing you can possibly do for me as a friend is send referrals my way because that's how my business stays afloat. And then sure enough, we sent him a referral and he sent us $100 gift card to the fanciest steak restaurant in Amarillo. And then so we said Oh, that was pretty, pretty sweet. Let's uh, let's send him another referral. We did got another gift card and every single time we get to go to the nicest restaurant in in in Denver here and get some fancy steaks, right? So it's like, Okay, I think I like this relationship. But not only that his work was really good. We've never had anybody disappointed with him. And I suggest him all the time not because he's giving me the steak with gift cards. But because he does such amazing things. And every once in a while we get this weird letter in the mail from him that just be like just thinking about you guys. And here's like a Starbucks gift card for 15 bucks. We're just like, do you sleep man? What do you like? Like it like he must have all of these things like set up on timers? Yeah, check in with all of his friends. Whatever but he's also the type of guy who's who's like, hey, how's your family doing? Let's just go out for drinks and we just got drinks for chitchat, you know, whatever. It's not like, it's not like always a reciprocal relationship there. But like, be that person like that. To me it was such an eye opening experience because like I you know, that's the type of Freelancer you could be.
+
+58
+00:45:20,370 --> 00:45:50,490
+Wes Bos: Yeah, that's. So behind the scenes, he's he's running some sort of software called a CRM software. So Salesforce, probably the biggest one, there's tons of them out there. And they'll just let you know when to follow up. Or if you haven't had an email from somebody in so long, then send them send them a gift card, or whatever it is, and systems like that can can really pan out because like, especially for selling a house, like what does a realtor get? Like $40 million for selling
+
+59
+00:45:50,490 --> 00:45:53,520
+Scott Tolinski: a house? And currently in Denver, you get that bit? Yeah,
+
+60
+00:45:53,520 --> 00:45:58,800
+Wes Bos: take a couple of photos. Throw it online. Yeah. So like, it's worth it for them to send that out
+
+61
+00:45:59,010 --> 00:46:02,280
+Scott Tolinski: with a CRM and any of these things. It has to be personal.
+
+62
+00:46:03,540 --> 00:46:04,380
+Wes Bos: so cheesy,
+
+63
+00:46:04,440 --> 00:46:13,350
+Scott Tolinski: he writes the cards by hand when they're sent. It's like, it's it's not just like some some generated email that I know, he just set up on a timer or something.
+
+64
+00:46:13,410 --> 00:46:34,020
+Wes Bos: You know, when I got life insurance, like a couple years ago, or 10 years ago, the guy who sold it to me had this, like the hardest follow up after he sold it to me. He says, who are three people you can recommend to me right now? And I was like, first of all, yikes. And second of all, I also read that book and I
+
+65
+00:46:35,550 --> 00:46:36,420
+Scott Tolinski: transparent
+
+66
+00:46:36,450 --> 00:46:57,330
+Wes Bos: Yeah, like I also listened to the audiobook or, like, I see this all the time with an emails as well, where like, sometimes you can tell people are using a technique, but they're genuinely good. And then other times you can tell people are using a technique and you're just like, oh, like you literally copy pasted that out of the book, like, come on, have a little finesse. Yeah,
+
+67
+00:46:57,359 --> 00:47:42,990
+Scott Tolinski: right. Yes. And that is the right word there. For those of you don't know, I'm a B boy. breakdance. For a long time, when we judge competitions, I've been a judge for maybe, you know, 3040 competitions. When you judge for competition, I remember, I used to lose. And I always wonder why I lose that man, I did the coolest stuff. And then when I became a judge, I understand that it's all about finesse. It's not that this person did something harder, it's that they made it look, the NES right, FNS is such a difficult thing to tack down exactly what it means. But at the end of the day, finesse is really what makes it smooth, what makes it look good, what makes it work, essentially. And that's what my realtor, Chris has his finance, right. He finesses the way he does all of that.
+
+68
+00:47:43,650 --> 00:48:18,510
+Wes Bos: On the last point I have here is just show people that you're excited about what it is that you're working on. That's really how I got a lot of my early dev work as well as that. I was going to conferences and doing YouTube videos and writing blog posts. And I was like, legitimately excited about the tech that I was working with. And and that just shows very clearly to to other people. And they say wow, like, we need to hire you to do that for us. Because you clearly know what you're talking about. And also you love this stuff so much that you spend your free time writing a blog post about it.
+
+69
+00:48:18,720 --> 00:49:34,560
+Scott Tolinski: Yeah. Cool. So that is tips on how to make freelancing easier. My final thoughts here are, don't be upset. If freelancing isn't for you, there's two aspects to this one, everybody is not great at everything, the first time they do it, chances are your first time working with a client may not be the most amazing thing ever, that doesn't necessarily mean that you're going to be bad at it forever. You can learn all of these skills, you can practice them, you can hone them, you can be the sharpest knife in the drawer, you can be Wes Bos of freelancing if you want, you just have to work at it. On the other hand, if you don't like it, and you've done it several times, and it's not working out for you, there is no shame in that game and saying, hey, this just isn't for me, I can say very specifically, I worked my butt off as a freelancer. And I was probably way happier one working in an office or to owning my own business, which I am now that's not doing client work. So despite the fact that I was capable of freelancing, it was not my favorite thing in the whole world. And just because I was making more money doing it didn't mean I had to do it. I found ways to make myself much happier doing different types of work. So again, you don't have to be good at freelancing. You don't have to love freelancing. You don't have to do it. You can always work for a company and there is no shame in that game.
+
+70
+00:49:34,590 --> 00:50:58,590
+Wes Bos: Yeah, I would go as far to say most people probably aren't going to be good freelancers, most people rather be on a team that can learn from more senior devs. They don't have to worry about billing, they can just sit down and do their work. And like honestly, when we we saw people coming out of the boot camp early on, we thought like oh, a lot of people are going to be freelancers. And it turned out that almost none of them were going to be freelancers and everybody much preferred to to Go and get just a regular job. So my last thoughts, I guess just like a like a little tip is that like freelancing can also be a filler or a stepping stone. So if you are in between jobs, or if you've, sometimes if you got a little bit of a chaotic time going on in your life, or you, you can't hold down a regular nine to five, because of whatever's going on in your life, then freelancing is good for that. Or if you're just saying, like, Look, I'm trying to launch a business for me, it was I'm trying to move over to entirely selling web development courses. And freelancing was was great, because then I could spend more and more time on making my courses as they made more money and less and less time on client work. And then eventually, I was able to hop off that boat onto the dock, as we like to say on this podcast. So it's it's just sometimes it's a great a great stop gap. And hopefully, some of the tips we had for you today will make that go a bit smoother.
+
+71
+00:50:59,190 --> 00:53:12,960
+Scott Tolinski: Sick. Do you have any sick pics? I have one that is for those of you who are programming fans and who it's a YouTube channel, Wes, you're going to like this, if you haven't heard of this, because this is right up your alley. It's It's It's almost like the technology connections in a less produced way for I don't want to say video game development, but it is things video game development. So for instance, there's a 10 minute video on the aspect ratio changes of Super Nintendo talking about the various ways that it outputs, the graphics and why why these things existed. What was my favorite? It's called a displaced gamers, I don't know. And I don't necessarily understand the title, but they're all man, they are also fantastic. So for instance, they he does this series called behind the code. And I just watched the video last night that came out two days ago is Zelda two behind the code. And they talk about like the differences between the CD version and the Nintendo version of Zelda two, and why they couldn't do tiling this and how the background repeater actually works well, okay, well, we only have in the very coolest thing that this guy does was is he steps into the RAM. So since these games are just, you know, there's so little data involved in whatever compared to modern games, and whatever everything is done on like a, like hex value in RAM a situation. And so he'll be like, this is where this is stored in this particular Bank of RAM, you can see that value to 00. Then watch us the screen updates like so he has like a ram editor with the game thing open. And he's like, watch how Zelda tries to exit the screen here. And this is why this very particular glitch works because the code does this and these values are stored in RAM. And oh my gosh, is some of the stuff he does with manipulating RAM is just so interesting. I've never seen anything like it to that degree. And I absolutely love it. There's a whole video on dithering of PlayStation and stuff that is just fantastic. I really, really have been into this channel specifically just because of like the ram stuff they talks about is just so very, very good. I know you didn't play a ton of games. Do you have any of the systems growing up?
+
+72
+00:53:12,990 --> 00:53:15,150
+Wes Bos: Yeah, I had a Nintendo.
+
+73
+00:53:15,330 --> 00:53:18,210
+Scott Tolinski: Oh, did you have a Game Genie for your Nintendo?
+
+74
+00:53:18,570 --> 00:53:23,670
+Wes Bos: Ah, my neighbor did. That was the thing like you put the game into before I went through?
+
+75
+00:53:24,060 --> 00:53:57,720
+Scott Tolinski: Yeah. And then you put in a code and then like gave Mario super jumping ability or something? Yeah, get this because he goes into Game Genie in this series. And it's so good. All that Game Genie is doing is overriding ram values, or it's overriding ram value. So I use Mario's jump velocity is stored in this bank of RAM. Let me just overwrite to that ram value. And when you have the Game Genie is you would enter codes like FA for whatever you were actually just adding hexadecimal overrides to the RAM, which caused to happen is so cool.
+
+76
+00:53:57,900 --> 00:54:21,390
+Wes Bos: Yeah, my my neighbor had the game shark. Where Ooh, yeah, we will play GoldenEye on n 64. And he had the game shark that it pop on top of it. And man that was like I love like actually being technical, like older now because I understand, like what is actually happening. And it's fun to go back to these these types of channels and actually understand how it all works.
+
+77
+00:54:21,870 --> 00:54:28,740
+Scott Tolinski: Yeah, so check this channel out is very, like the explanations are fantastic. And I really, really enjoy it.
+
+78
+00:54:29,370 --> 00:56:16,650
+Wes Bos: I'm going to sic pick some tool battery hacks. So Oh, I've got DeWalt tools where you forget that these 20 volt batteries. They're great because I've got all these these batteries and I've used many times before I've used the batteries in little projects, whether it's firing up my kids Power Wheels, and juicing it to go a little bit higher, things like that. And those kinds of projects are really, really fun. But sort of a downside to it is that you have to have you still have to have something to create The battery into you got to be able to slot it in and press the button. And on eBay, they sell these things. They're just these ones aren't 3d printed, but you can make your own if you have a 3d printer, but they're pretty cheap on eBay, it's called the D 20. V, that's for the wall, they sell them for all the different types of batteries. So I just ordered a couple of them and they basically your battery just clicks into this thing. And then it gives you a positive and a negative lead. And you can just attach them to whatever I'm thinking about building my own little floodlight where the battery can go into. And with the with the DeWalt batteries, at least the the circuitry for what are you laughing, this is the West This is so West, I love I love love hacking my own stuff. The great thing about the DeWalt batteries is the there's like over and undercharged protection on the battery itself. So you don't have to worry about running the battery too low and actually damaging the lithium cells aside because with Milwaukee tools, the the chips to do that are in the tool itself. So it's kind of harder to use those batteries in anything, you can still do it. But with the DeWalt ones it's a little easier. So check it out. It's called just go on eBay search for D 20. v. Buy a couple of them because you never know when you'll need them.
+
+79
+00:56:16,650 --> 00:56:17,820
+Unknown: Sick.
+
+80
+00:56:18,000 --> 00:56:57,570
+Scott Tolinski: Alright shameless plugs, I'm going to shamelessly plug our latest course which is react for everyone. If you're interested in learning react one on one and I'm talking one on one here. This is definitely a beginner's guide to react, you are not going to become a react pro from this course. But you will understand react and understand what's going on and understand why you do things specific ways. And it's all hooks based. It's brand new, it is 100%. Ready for react 17. And this is available at level up tutorials a.com forward slash pro and if you sign up for the year you save 25%
+
+81
+00:56:57,990 --> 00:57:33,870
+Wes Bos: beautiful I am going to shamelessly plug my master Gatsby courses a premium JavaScript and CSS training courses. My latest one, we cover all the different parts about making a modern website. So pre loading your JavaScript. Obviously Gatsby does that all for you writing the scope CSS graph QL. We use Sanity as a headless CMS inside of it. We do a little bit of customization there we write serverless functions to send an email, all kinds of really neat stuff, check it out Master gatsby.com. You can use the coupon code syntax for an extra 10 bucks off sick.
+
+82
+00:57:34,110 --> 00:57:51,870
+Scott Tolinski: I think that's great, you know, theoretically somebody could not know react whatsoever. They could take my course and learn what the heck react is. And then they could take your course and build some blazingly fast awesome sites. Or they could take your react for beginners course as well. Or my guest because as well. Beautiful.
+
+83
+00:57:52,350 --> 00:58:12,780
+Wes Bos: Take them all folks support us. Come home. Yeah, take a mom there actually. It's funny. There is a lot of people that listen this podcast that will take anything either of us or both of us put out which is really cool to see that support from everybody. That's amazing. Thank you. Alright, that's it. Thanks for tuning in. Catch you on Monday. Please.
+
+84
+00:58:14,640 --> 00:58:24,390
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
