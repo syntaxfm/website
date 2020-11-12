@@ -1,0 +1,376 @@
+1
+00:00:01,319 --> 00:00:10,560
+Unknown: You're listening to syntax the podcast with the tastiest web development treats out there. strap yourself in and get ready to live ski and West boss.
+
+2
+00:00:12,059 --> 00:00:56,670
+Wes Bos: To syntax Scott just tried to start the show there. I start the tasty Scott starts to hastiness. This is a show we're gonna do another fundamentals episode and I can't believe this is not one that we thought about Scott just messaged music. Hey, we've never really done like a good episode on. What are the fundamentals really just doing an explainer episode. So that's what we got for you. today. We are sponsored by two awesome companies. First one is century, which is gonna do all of your error and exception tracking and fresh books, which is cloud accounting. My name is Wes Bos. I'm a developer from the hammer. And Scott is with me How you doing? Hey, Scott. Hey,
+
+3
+00:00:57,360 --> 00:01:05,090
+Scott Tolinski: I am doing good. I was trying to think of a cool nickname for a while Hi, yeah.
+
+4
+00:01:05,189 --> 00:01:06,060
+Wes Bos: Oh, really? Yeah, that's
+
+5
+00:01:06,060 --> 00:01:59,790
+Scott Tolinski: what they called Denver, because it's a mile high in elevation. Yeah, our football stadium was the mile high for a long time. And now it's something else. But yes, I am here. And I'm with Weston the hammer, ready, ready to talk about get because if there's something that any beginner web developer knows is, there's nothing more likely to make you want to run and grab your hammer from the garage and smash your computer, then some good old fashioned confusion within Git. Because this is a topic that trips up a lot of people, especially when they've never used any kind of version control in the past. So I'm really excited to talk about Git fundamentals. And I'm also excited to chat with you about it, Wes, because I don't know. We don't talk about good stuff that much, even when we're just chit chatting. So chatting. Yeah, Chad. Yeah, this will be some good chat. And I'm excited to just get a little bit of Wes Bos get action, whatever you're doing here and you know, do the same.
+
+6
+00:02:00,300 --> 00:02:11,880
+Wes Bos: So I just googled the highest cities in North America, and Denver is the second highest city in Northern metallization. element in more than one way, actually. Well,
+
+7
+00:02:11,880 --> 00:03:03,419
+Scott Tolinski: yes, in many ways. That's unreal. So does water take longer to boil up there? Absolutely. In fact, my mother in law, whenever she comes here, she's always like having to adjust all of her recipes, things baked at different different lengths. Wow. There's all sorts of stuff. In fact, when you get here, one of the first things that happens to some people is they get really bad headaches, because they're getting tired really quickly. For the first like, month we lived here, you would have a beer, and you'd be like, you'd be drunk. Just because you get drunk faster. There's all sorts of like weird little things. Oh, wow. Yeah, that's why actually, the Olympic Training Center is here and everything the athletes train in elevation, so that you can perform better. at normal elevations, the babies are even born with a different amount of like, like the blood count is different within the babies, there's like a whole thing about that,
+
+8
+00:03:03,539 --> 00:04:15,180
+Wes Bos: wow. Alright, so you probably have used get if you're, if you're listening to this, but we're gonna start from the fundamental. So bear with us, a Git is a version control system. And what that means is that you set up what's called the Git repository. And as you write your code in a git repository, you're able to track changes for like, let's say you're working on a new feature, you write the code for that feature. And then generally, when we maybe can talk about this a little bit later is like, when do you commit something, but generally, like when you're done that feature, you'll go ahead and commit that feature. And then if something breaks, or you need to go back to and reference what you had in the past, you don't have to make another folder of that you're able to roll it back, you're able to view previous commits, it's sort of like little snapshots in time. And that's very important because of accidentally deleting code or whatnot. But also, just the code bases do get fairly large. And if you were just to copy paste the entire folder, every single time, it would be way too large. And there is no way for you to track who what and when changed at a certain point in time.
+
+9
+00:04:15,600 --> 00:06:48,900
+Scott Tolinski: Yeah, the who, what, when what has changed that is really the core concepts here is that this is a thing that allows you to in an organized fashion, keep versions of your, your code, and that's pretty much it right? It is here to allow you to have various versions and different pathways for your code to exist in the world. And this is important for two major reasons for working by yourself the history of your code, having your code stay organized in a way that if you goof up, you can go back to write maybe perhaps you installed a version of a package that is no longer compatible with your system and you want to go back. Well, this is an easy way to go exactly back to where you were before, right It's like a save state in a video game, you can just start over right? Another cool thing about it is the ease of which it makes working within teams. Because a lot of times when we're working in teams, we all know the word that the workflows that can happen with if some people are in the same file, and you're saving over a file. I mean, I know that when we were doing occasional cowboy coding, where you're editing files live on FTP, you know, like, 20 years ago, there would be a situation where somebody would save a file and somebody else had a different local copy of that file, they saved it, they both upload it, one of them is good, one of them is not good. And you just blew away all of the work that somebody else just did. I remember that happening. And what this allows you to do more than just that, though, it allows you to understand exactly how the code was written, and by who, and when, and where and what. And there's all sorts of extensions, and whatever in your code editor. In fact, I can hover in a hover over any line in my code, and it's going to tell me who wrote that line when they wrote it. So for me, that is like a very, very crucial skill. And anytime you have teams of people, even like two or more people working on code, these features really start to be important. So it's funny, because those things are all important for individuals. But I think Git enters like a whole nother realm, the moment you start working in teams, because there's so many cool, different flows and ways that people can commit code and share code and add code to repo open source or closed source wise, I thought we would maybe breeze through this UI verse command line thing, maybe talk about why Git can be a little bit scary here. And then we'll come back to the Git UI thing a little bit later in the episode. So we wanted to first and foremost say, Well, I guess for first and foremost, do you use a git client,
+
+10
+00:06:49,140 --> 00:07:16,620
+Wes Bos: I don't, the closest thing that I come to using a git client and I have used a couple in the past, but I've always come back to just using the command line. But the closest thing I used to gooey is, when I have merges that need to happen, I will jump into VS code and, and yours use their GUI for that, although I have used better, I've had to have better experiences in other applications. We'll talk about that. But I'm primarily I'd say 98% in the command line.
+
+11
+00:07:16,980 --> 00:08:25,320
+Scott Tolinski: Yeah, I would say I am just about the exact same VS code specifically is really the only GUI that I use for Git. And I do have a handful of extensions installed, whether it's get lens to see, you know, who committed what, or there's some good history ones where you can get that neat little subway graph looking type thing of your code. So you can see where exactly, you know, branches happen and things like that. So I do have a lot of extensions there. But when it comes to committing, staging, and all those things, which will define later in this episode, I'm pretty much doing it all through the command line. The version control tab in VS code is very good, though. If you ever are interested in using it, there are some things they can't do. But I do occasionally come to the the what's changed panel in VS code to sort of see which files have been recently changed, or, Hey, I just did this thing. And I didn't intend for a to hit this file. But there it is. It's in the files that's been changed. Right? And git commit messages. Sometimes I do use this because it's, it's easy, but I almost always just default back to the terminal because of straight up muscle memory.
+
+12
+00:08:25,800 --> 00:08:34,909
+Wes Bos: Yeah, I was thinking the other day, probably about like a week ago, like I would love somebody asked me like, Hey, can you do a git course. And I was like, like, what I do in a git course. Because like,
+
+13
+00:08:35,340 --> 00:08:35,999
+Scott Tolinski: I thought about that
+
+14
+00:08:36,119 --> 00:08:52,320
+Wes Bos: almost all of my my good stuff is like the stuff we're going to talk about today. And then when it comes to complicated rebasing and squashes and enrolling back things, I usually have to do a little bit of googling here there to find out what I'm actually doing.
+
+15
+00:08:52,669 --> 00:09:19,789
+Scott Tolinski: Yeah, there's a lot of, like, complex get that scares me still, because I don't need it yet. I haven't found the times where I'm, like, really needing it. Cool. So let's get into get 101. Actually, before we even get to this is get oh one. I don't think that's a thing. But I'm talking about like installing git, do you have to install Git? What do you do to get get up and running? How do you get running?
+
+16
+00:09:20,070 --> 00:09:21,690
+Wes Bos: Man? That's a good question.
+
+17
+00:09:22,020 --> 00:09:27,090
+Scott Tolinski: Because it feels like a whole other lifetime ago that I lasted dealt with this.
+
+18
+00:09:27,149 --> 00:09:37,740
+Wes Bos: I've probably installed git, like twice over my entire last 10 years. And that's because that's when you get a new laptop. You have to install it. It doesn't come with Xcode, I don't even know on a Mac. See,
+
+19
+00:09:37,740 --> 00:09:57,690
+Scott Tolinski: that's a great question. You need Xcode. If you're on a Mac, you need the Xcode command line tools, but I don't believe it does come with it. I believe you do need to install it from Git hyphen SCM Comm. All the link in the show notes. It's like a click installer. It's, if you're on Mac or Windows. I remember this. It's just been so
+
+20
+00:09:57,690 --> 00:10:06,020
+Wes Bos: long The first time you use it, it says I need Xcode developer tools. And you have to download a 90 gig file from Apple.
+
+21
+00:10:07,500 --> 00:10:16,020
+Scott Tolinski: It takes an entire day. So just like if you're like sitting down to play video game, make sure you turn the Council on early so that I can install the latest updates.
+
+22
+00:10:16,380 --> 00:10:35,130
+Wes Bos: Just like that. I believe it probably does come with most Linux distros. Just because that is something that you do in Linux is you live in the command line to get it and Windows definitely doesn't come with it. But again, it's just a click through installer, I believe that processes pretty simple on Windows as well.
+
+23
+00:10:35,610 --> 00:11:12,929
+Scott Tolinski: Yeah, yeah. So the first thing we need to do if we are going to be starting a repo or as Wes, Wes mentioned, it's a repository right, you often heard that hear them referred to as repos, just because it's easier to say. So to initialize a repo, let's say you have a folder full of your code, and you want this code to be tracked by this version control system, you would have to be in that directory. And you would type in your command line, once gets installed, get space in it for get initialize, do you know what get in, it actually does what's
+
+24
+00:11:13,350 --> 00:12:24,960
+Wes Bos: in the folder that you're working in. Generally, it's the root of your actual project, when you type that it will create a hidden folder, that's called dot get. And usually you don't see that folder because most editors as well as most by default, your finder and Windows Explorer will hide hidden folders from you. And if you enable your I recommend turning it on if you're a new developer, so you can see them, but it'll still make it sort of grayed out. So you know that it's a hidden folder. And inside of that dot Git folder, it contains information about your repository, so that that tracks things like where are you currently in your thing? So like, Have you made any commits? Have you made any changes have there been new files added since since you've, you've done the last commit, it also keeps all of the changes that you've done in a very small fashion. So it tracks all of the changes that went through. And then also tracks origins, which is, we'll talk about that. But generally, if you want to push your your Git repo to somebody else you want to you want to get it from your computer to another computer, most likely, that's like GitHub, then you it will keep track of different spots where you can you can put that in those are called origins.
+
+25
+00:12:25,439 --> 00:13:10,799
+Scott Tolinski: Yeah, cool. So we have our folder. And if your code is not living anywhere else, as in, you haven't pushed it to a remote location, like GitHub or Bitbucket, or whatever. If you delete that dot Git folder, there goes your whole history, that thing, that's all if you're only keeping it in one location, whatever, all of the information, your your entire application needs to have that version controls in that Git folder. So if you don't have it remotely saved anywhere, that history is going to be all gone. The moment you you delete that, which might be helpful if you're trying to declare bankruptcy. And yet, maybe you've like, goofed it up enough, where you're just like, you know, what, screw it starting over. Because that's the only thing I feel like that can happen at the end. You know, the beginning
+
+26
+00:13:10,860 --> 00:13:12,000
+Wes Bos: lots of times. Yeah,
+
+27
+00:13:12,480 --> 00:14:13,320
+Scott Tolinski: yeah, definitely. Especially when you're learning I think people, people often forget just, if you've never worked in a version control system, how different or weird it can feel at first, when you're first learning, especially if you've worked in different ways prior to that, if you're coming brand new to programming, maybe gets just embedded as something you've done, because if your bootcamp taught you or something, but for a lot of us we had done many other means of working in files are even version control before this. So now we have the next major command, which you're going to need to know is add. So we would like to say git, add. Now git add has a whole bunch of options. And the funniest thing about Git adds options are as I feel like everybody kind of tells you to use different ones in different tutorials, which is funny people just be like, Alright, we're gonna do git, add space, then dot, and then today's and also we're gonna git add space hyphen, a. Now what do you do specifically Wes with your git add in and then maybe you can talk about what does git add do?
+
+28
+00:14:13,380 --> 00:14:30,059
+Wes Bos: So what I'll do is if I want to add absolutely everything that is in the current folder, I do git add space a and that will add absolutely everything. When I've made changes after commit. We'll talk about what that is in a second. I use git add dash p
+
+29
+00:14:30,209 --> 00:14:33,990
+Unknown: Have you ever used that? That's not to use oh boy
+
+30
+00:14:34,020 --> 00:16:27,539
+Wes Bos: the best so that I don't know what the P stands for progressive maybe. par Sharky mine, porcupine. It basically what it does is it takes every single change that you've done, since you last did a commit. And it will allow you too Yes, no, each of those changes. So it shows you the deaf writing your command line and you put your fingers on the y and the N keys. And you just go through every single change that you've done. Cool. It will just show you because sometimes, like I've done this many times is you just blindly add everything that has changed. And then maybe you accidentally made a change or put a console log in somewhere that you shouldn't have. And this allows you to have a quick little review of all the changes you've made before you go and send that off to a team members, something like that. Cool. So by default, when you do a get in it, none of your files are being tracked. And if you want to track changes to those files, you have to first add them to the repo. And then you also when they've changed, you have to add them as well. A really important part to remember before you do your first git add is make sure you create a dot Git ignore file. And in that, in that file, you list all of the folders and files that you do not wish to be part of your Git repo because you don't want everything to be part of a Git repo, like what are some ideas, some things that shouldn't be part of repo like passwords, environmental variables, aisles, DS stores, one that always pops up on a Mac, for some reason, large files, like videos, sometimes, even if you've got lots of images, that's not necessarily a good spot for putting them in a Git repo, because it gets it gets really, really big. So generally, you want to ignore all of those those things, and they will still live on your computer, but they will not be part of your Git repo, and they will not be pushed to other people who use that Git repo. And then, also, if you lose those files, you're kind of out of luck as well, because they're not, they're not backed up in any way.
+
+31
+00:16:28,200 --> 00:16:40,980
+Scott Tolinski: Yeah, cool. So I actually pretty much always do git add and then period, which, to my understanding just adds everything that has been changed. It's just like a blanket add,
+
+32
+00:16:41,010 --> 00:17:07,890
+Wes Bos: yeah, the difference between dash capital A and dash period is that if you are in a sub folder, add dash a will add everything that is tracked by the repo, and the period will add everything that is in that current folder, so that my home is usually not a difference. But actually, it might be something that you want you But yeah, I only want to add the changes to this controllers folder, not not the package JSON or whatever I did to to upgrade that.
+
+33
+00:17:08,669 --> 00:18:12,780
+Scott Tolinski: Yeah, well, here's a good little tip. What I would do if I were you is, is probably do what Wes is doing with the hyphen, a flag the git add hyphen, a, and then just alias that in your your bash to like git add or just add or something so that you never have to think about it again. Because it's not one of those things. You I mean, there are features in here, like such as the the patch prompt that Wes is saying, but like, I don't ever, you know, day to day, I don't need to look, if I needed these, I would look them up. So I almost always alias might get add to something else. So like Wes mentioned, anytime you add a file to your project, or anytime a file has been changed, you need to add it as like saying, hey, these changes have happened. Once those changes have happened, you need to commit those changes. Now that commit is where you're basically solidifying those changes as something that has happened, where the ad, it's not putting it, it's not writing it into history, yet, it's just sort of thing. All right, these are these files have been added, but two rights to history to the Grand docs, to the Library of Alexandria,
+
+34
+00:18:12,989 --> 00:18:14,300
+Wes Bos: you have a great way to put it,
+
+35
+00:18:14,330 --> 00:19:22,230
+Scott Tolinski: yes, you have to get commit. Now you do that by typing git commit. And if you just type git commit get is going to yell at you. Because all commits need what is called a commit message. Now a commit message is a simple sentence that defines what has happened in this commit. This way, when you're reading over your past commits, you don't see a list of all k 10 files change to whatever you see those nicest simple sentences. Now the upside to this is that you can write really nice commit messages and commit messages can even be used to generate change logs and things like that. Or you could just write, get commit messages that are helpful, such as adds new protections to this feature, blah, blah, blah. And it doesn't have to be a in depth or whatever. But it should be descriptive about what the code contains. So that way, when you're looking at back on it later, you can say, Alright, this is the one I want to go to, this is the specific commit I want to go to. So you do that with git commit hyphen, M, and then you have the string or the text of your commit message.
+
+36
+00:19:22,500 --> 00:19:53,640
+Wes Bos: Yeah, and generally those those commit message will be something like, add support for iecex or fixes. Often what will happen is you you have like a bug tracker, whether that's GitHub or like a JIRA or something like that. And sometimes in that commit message, you'll put a reference to an issue number. And that way, if you want more information about what this thing was adding or fixing or removing, you can always look that up and reference it in your your project management software.
+
+37
+00:19:54,350 --> 00:20:04,410
+Scott Tolinski: Yeah, yeah, there there is like do's and don'ts with commit messages and sometimes you'll see people that don't That'll post a commit message just just like, fix it bug.
+
+38
+00:20:04,620 --> 00:20:06,720
+Wes Bos: Well, that's my commit messages.
+
+39
+00:20:07,020 --> 00:20:09,000
+Scott Tolinski: No, I hate that.
+
+40
+00:20:09,830 --> 00:21:18,690
+Wes Bos: Match the keyboard. Yeah, no, I like important stuff, I will. But sometimes it's just like I'm building a course. And I just need to make sure that what is up and I'll just match the keyboard or whatever, I know, that's not the best. But like when it's when it's professional stuff, I will do a good message, I should add this, sometimes I'll be working. And maybe I'll upgrade my NPM package JSON. And then I'll also fix something on the homepage. And then I'll also change a price right there kind of just did three different things that are totally unrelated. So if that's the case, what you can do is you can get add, package, JSON package lock, and then git commit updated dependencies, okay, those two are done, then git add index dot HTML, get commit, change the homepage, and then get add prices, dot j. s, commit, change the prices and that way, if you ever looking back at like what happened, you know, like, it's not just like, I did these three things, and I loop a bunch of them all up into one, you're able to pick them and not case you don't get add dash a you just get add the files that have changed.
+
+41
+00:21:18,900 --> 00:23:05,670
+Scott Tolinski: Yeah, word next to so we have we've created the repository, we've added things to the repository, we've written them into stone with commit, now we're ready to go put those up somewhere else. Because if code is living just on your computer, then it is basically at any any given point subject to the ticking time bomb that, you know, hardware tech is if you dump your computer, or your daughter spill something on it, or whatever your son decides to, I don't know, pick it up and slam it down, you are then lost it and all that work you just did was lost. So what we then have next is going to be pushing the code. Now you can push a code to any remote location, it has to be specified as an origin. So what we first want to do is to get remote add origin and then paste in the long string, that either GitHub or any of these other clients may give you these on the web cloud hosting services, right? They GitHub is really just a service to host your code on the cloud. That's all it is just like some of its competitors. So we do Git remote add origin, then the long string. And that sets the origin of our code to be living elsewhere out in get land. And then we do git push origin, and then the branch name where there is git push origin main push the main branch, then it all goes up to your origin. And it will live there where you can then have other people pull it down, or you can pull it down from another computer or whatever it is then basically out there living on the cloud.
+
+42
+00:23:06,330 --> 00:25:25,710
+Wes Bos: The origins are just other Git repos somewhere else. So the whole idea with Git repos is that they're decentralized, meaning that, of course, you have your your repo on your computer. But that's not the main repo out there. That's not the end all repo, you could have another repo on another computer. And if those are origins, and if they have the same Git history, you're able to push code from your repo to another. And generally you're not pushing, you theoretically could push code from your laptop to your coworkers laptop. But generally, that doesn't happen because the items are not network accessible. Like there's firewalls and stuff in the way but things like GitHub are our network accessible. So you can, you can push it up. So there's people that like, always get like bent out of shape when we talk about this whole, like, commit, and then push to GitHub, because that's where it lives. But that is pretty much how most of us use it at the end of the day. So you it's no problem thinking about it in that regard. Yeah, totally. Let's talk about the next one, which is pulling you you wrote your code, you push it up to GitHub, and then you have a co worker, or maybe you you went home and your laptop is not same as your work laptop, but you want to work on the same project, because you are overworked and you have to do evening work as well. So what are you doing that in that case, it will now the you got to think about Okay, like where's the most recent version of my code? Well, you hopefully Remember to push to GitHub, but at the end of the day, and then you can go on your laptop and if you have the same repo on your computer, if you don't, you can just clone it. We'll talk about that in a second. But you just get pull, and then you specify where you'd like to pull it from. And it will bring down all of the changes and that's key because it's not like downloading the entire repo again and that can get very, very large. Especially if you've got Like, look, your Git repo has a list of every single change that has ever happened. So if you've got six years worth of it, and if some guy and marketing accidentally get committed 500 meg video at one point in time, that's going to be in your Git repo. And it's going to be in your Git history. But by Git pulling, it will only pull down the very small actual changes that happened to your computer
+
+43
+00:25:26,009 --> 00:28:26,220
+Scott Tolinski: word. Let's say you pulled some code in, you fire up that, that that project and all of a sudden, things start breaking in production. This is perhaps you want to, yes, perhaps you want to be able to pinpoint the exact commit, hey, there's that word commit, perhaps you want to pinpoint that exact commit where things went so wrong. And so you could do that with one of our sponsors today, which is century now century@sentry.io is a perfect place to keep track of all your errors and exceptions. And all of those errors and exceptions is very one of these cool, cool services that I've been personally using for a long time and couldn't get along without, basically what this thing allows you to do is see every error that your users hitting on your site, allows you to categorize them, see how many times in the past, given amount of time span, this thing is even happened, right is the thing happened once in the past, you know, 100 days, maybe it's not something you need to worry about as much. Maybe it was just somebody extension going wrong. Either way, we have the ability to see categorize track, log all of our errors and exceptions and see how they're doing. And it's even connected to GitHub or any of your favorite version control managers. So I can create an issue in GitHub from century, then a, somebody else can come in and fix it, push that code up to GitHub, fix it, we can mark it as change and say, Hey, it was fixed in this particular commit. That way, when it breaks, again, we know who blame so head on over to century at.io, use the coupon code tasty treat all lowercase all one word, and you will get two months for free, highly recommend. So let's say you had and by the way, this is no longer the Add transition. So let's say that you do longer, or let's say you wanted to work on some code that already exists in GitHub, and you were wondering, or Git lab or any of these ordering, and you say, Hmm, I want to like, play around with this, I want to try it out, or I have some some improvements to help them out with it. What do I do? Well, this is where the next one comes in, which is clone. Now people who are new to GitHub may head to a specific repositories page, they may see the download button and say, ooh, download, let me click download, they click the Download button and presents them with a modal that shows clone with HTTPS along with open and GitHub, and then download zip, you're like, Okay, well, I'll do the download zip. But before you do that, this is the better way, which is to clone the repo. And we can clone the repo using this string, which is basically the URL to the repo, and you run a git clone, you copy and paste the string and you paste it in there, which is the address to the repo. And what does it do? It fetches the entire history as well as the entire repo. So that way, you can make modifications to it, add them, commit them, and push them back up. And then then we get to do some of the cool fun stuff that we're going to be talking about next.
+
+44
+00:28:26,819 --> 00:29:13,290
+Wes Bos: So next, we have branches. branches are key for working on features. Or if you want to like right now I'm working on my master Gatsby website. And I'm at the same time I'm also upgrading a couple of the back end components I'm I'm doing a little bit to the the bundlers and the whole site is sort of in development right now. However, I need to keep like a working copy of the website, because sometimes what happens is I'm in the middle of building a feature. And then I have to jump back to the main website and fix something really quickly. So if I was right now, the current branch that you get by default in Git is called master. But they are talking about changing it to main,
+
+45
+00:29:13,410 --> 00:29:15,150
+Scott Tolinski: I think they're you did, did they?
+
+46
+00:29:15,719 --> 00:29:16,410
+Wes Bos: I haven't seen it
+
+47
+00:29:16,410 --> 00:29:22,170
+Scott Tolinski: yet. Maybe they haven't. But I had my mineral, well, at least my current reposer I mean, Oh, cool.
+
+48
+00:29:22,229 --> 00:30:35,880
+Wes Bos: Yeah, it was just there's a github.com for slash GitHub for slash renaming, just showing some some stuff about some tips on how to actually change to your main repo instead of master. Okay, cool. So if I have everything in my main branch, and I want to work on this feature, I will switch branches and that will allow me to edit all the files and whatnot and in by switching to a new branch, it basically it doesn't take a copy but it gives you your entire website. You can make changes to it. You can add you can commit you can even push to your branch on GitHub, wherever if you need to go back to What the website was at any time and work on that you can it's called checking out. So you can check out your your master branch again, and then you do a quick fix. And you can jump back to the feature that you're working on, you can check out that branch, and you can go back and forth. And then the whole idea is that at a certain point, that feature will be done. And you will merge, which we haven't talked about yet. But you basically you'll take those changes, and sort of feather them in on top of your your main branch that you have. Does that make sense? I think so. Yeah, to me, that
+
+49
+00:30:35,880 --> 00:32:47,670
+Scott Tolinski: definitely makes a lot of sense. So you way you can think about it is like they often illustrate this in train tracks or whatever, maybe you're going in one specific direction, you want to branch out, you go slightly different direction, right. So you're now on a whole other train track. And then you can bring that other previous train track, or any sort of changes that's happened to your code, you can bring that into the current one, or you can bring the current one into the other one. There's some fancier stuff with rebase, or whatever. But I think for good fundamentals, we should stay away from rebase. So this is really the standard flow that you'll see a lot of people working with is merging of code and checking out branches. Okay. Actually, I aliased my checkout to be branch, and I aliased git checkout hyphen, B to be new branch, and I've never used them. I made these aliases thinking they'd be like, Oh, yeah, this makes so much more sense. Unfortunately, I just never remember. So always just do get checkout be whatever. So we have the ability to check out create new branches, we have the ability to then merge code with Git merge. Now, sometimes, you end up having what are called merge conflicts, that's when the two lines of code or perhaps many more than that, they're butting heads in terms of maybe these two things were changed at a similar time, and they're not compatible. And whatever it is, is that the code, the computer cannot understand the correct way to merge this code together and have it work or make sense, right? It just doesn't understand. Yes, thing is the most recent version, in terms of like, correct everything, it's not a perfect system. So it's not always going to magically understand exactly what you want to merge. And you will have these things where you have to go essentially line by line to determine or group by group, which code you would like to use. And sometimes you want to use both. So you end up doing a little bit of merge both or let's, let's merge both of the lines or whatever, and then modify it by hand. It's not always a perfect system and merge conflicts can be the bane of one's existence when working in git, especially for those who are brand new to this.
+
+50
+00:32:48,180 --> 00:34:16,830
+Wes Bos: Yeah, we should say like, I don't know if this is obvious or not to people that are new to get but get literally tracks every single character that has changed inside of files, not just what files change. And if you like, let's say you crack open a 30, line CSS file, and right in the middle of that CSS file, you add a new selector with some new properties and values get a smart enough to know Oh, you added this, let me just slip that in. If you were to merge it, it's that's all Yeah, I'm, you're just gonna slip this in, whoever if you had like, like, let's go back to the example I was just talking about with branches where I'm working on a feature, I changed the background of the homepage to red. And then, well, while I was doing that somebody else or even myself went to the master branch or the main branch, and change the background to be blue. And then I tried to merge that branch into my main branch, then it's going to say, okay, there's two changes here. You want read? It's currently blue, but it was green initially. What do you want to? Do you want to keep making up your mind? Oh, yeah. Or do you want to keep it and if that's the case, then you have to manually jump in there or open up those Diff Files in your text editor. And you have to select which ones you want. Or, in my case, usually just open it up in VS code, and you just delete the parts that you don't want and you keep the parts you do want. And then you you committed again, saying I fixed the merge conflict and then that will then go away?
+
+51
+00:34:16,940 --> 00:34:34,860
+Scott Tolinski: Yeah, definitely a very common flow things that you you hit. Okay, so next we have is Git fetch. Now when might you use a git fetch? Well, git fetch is usually used to it just gets all all everything, right. That's what it does.
+
+52
+00:34:35,040 --> 00:34:58,980
+Wes Bos: Git fetch is kind of like get Paul, except when you do a git pull, you're pulling the changes into whatever you're currently working on whatever branch you're on, with a with a git fetch, it will stage it will pull all of the things from that origin, but it won't switch your branch. It won't make any change. They'll just, it sort of puts them in a staging area. So if you want them Yeah, good.
+
+53
+00:34:58,980 --> 00:35:34,460
+Scott Tolinski: A good use case for this might be, let's say you have a coworker who's working on a specific branch, they might push that branch to origin, and then maybe you want to modify that branch yourself with them, you could then get fetch, then you would then have access to that branch on your then local. So then at that point, you could then get check out that branch name and have access to that code and push to that origin. And then from there, you'll have access to that branch itself. So that is Git fetch. It's not something I use a ton. I do use it occasionally. But I think the larger your team gets, the more likely you might have to use this.
+
+54
+00:35:34,830 --> 00:36:26,480
+Wes Bos: Yeah, that's it's almost like, you can also use to just cherry pick things that you want. So maybe, like, sometimes what happens is you're working on a feature, and you run into a bug. So somebody else will go and fix that feature. And then they say, Okay, can you test this with whatever it is you're working on. So now you're in a weird spot where your main or master branch is not up to date as the bug, the code you're working on, your branch doesn't have the bug. And you don't want to merge, you don't want your coworker doesn't want to merge it until you test it. So if that was the case, then you'd go ahead and fetch their branch and either merge it into what you're working on, or make another branch where you're just playing around with it. And then you run it and test it. And sometimes that's the case, you can just merge one or two of those files that are needed. Or you can you can merge the entire thing.
+
+55
+00:36:26,520 --> 00:37:26,480
+Scott Tolinski: But I think that's that's a pretty advanced use case, totally. Next is going to be Git stash, which is basically commonly used with people, I, it's funny, I have not used Git stash in a very long time. Because it's the kind of thing that I felt like I used a lot more when I was first learning git, and you're just like getting made some modifications to some code. And then you wanted to pull in some other code. And it's like, Wait a second, you have files that have been modified, but they have not been added. And they've not been committed. What What do you want us to do with these files? Because if you pull this in, or whatever, there's a chance that this these files are going to be deleted, you're gonna lose your changes, what do you want to do with them? And sometimes you just want to say, I don't I don't really care about these changes I made maybe these changes I made were superfluous. Maybe they're just like, not necessary. So I could do Git stash. And get stash does exactly like what it sounds like. And it pulls up the corner, the rug, grabs your little dust bucket sweeps rug,
+
+56
+00:37:26,790 --> 00:38:43,260
+Wes Bos: I like to think of Marvis putting on the shelf for a quick second. And then, if you want, so what I use this a lot for is sometimes you, you clone a repo, somebody says Oh, can you take a look at this, okay, you fork or clone the repo under your thing, you open it up and you start working on it in the go, Oh, I just added some more code. I just pushed it up and go. Okay, so now I need to pull their most recent version down. But you can't pull when you have what I refer to as dirty changes, which is code that has changed on your computer, but has not yet been added or committed in any way. So if that's the case, then you just get stash. And that will take all of your changes that you did and bring it right back to the step where you had it before you typed a single character, then you can do a git pull and get their latest changes. And then you do Git stash, apply, and then that will take it back off the shelf and try to put it back on top of whatever you were doing. And in some cases, that that makes a merge conflict. But in many cases, it just is great. So you, you sort of just like rewind a second, bring it up to date, and then go Okay, good. Now Now let's bring in those changes that I was working on.
+
+57
+00:38:43,320 --> 00:38:47,760
+Scott Tolinski: Yeah, that's a try. I have not used it that way. But that that makes a lot of sense.
+
+58
+00:38:48,030 --> 00:40:21,380
+Wes Bos: Alright, the last one we have here is Git fork. This is actually not part of Git. So if you just type Git fork, it won't do anything. But the whole idea is that with GitHub, somebody has like a repo like for example, I I submitted a change to Gatsby the other day, so that it would fix something that was breaking something on Windows. So what I had to do is I needed my own copy of Gatsby. And if I wanted to to work on it, I could certainly just get clone it. But then if I wanted to push my changes back up to GitHub, I don't have I'm not part of the Gatsby team. I'm not allowed to push changes to Gatsby. So I need my own version of the of that Git repo. So that's called Wes Bos Ford slash Gatsby. So I made all my changes. I get out of them, I get committed them, I get pushed them, but when I get pushed them, they go up to my own Gatsby repo. And then I guess the last thing we have here is that I can now take my fork. And the difference between a fork and a branch is that a fork is its is an entire repository that can have many branches, or as a branch is just one branch and from fork, you can make a pull request onto the main In my case, it was the main Gatsby repo saying, okay, here are my changes in my repo, here is your repo, I'm suggesting that we take my master branch and apply these changes onto your master branch. Or you can obviously change which what the brains are.
+
+59
+00:40:21,630 --> 00:43:09,270
+Scott Tolinski: Cool. That's a I think that's important piece to cover here, you're often hear people talking about forking. And another thing you're also going to hear people talking about is pull requests. This is not an add transition, even though it sounded like it was. And so we have two different types of ways of getting code from one branch into another branch, or even one fork into another fork. And that is going to be the merge or pull request. Now a merge is what happens when you run the Git merge command on two different branches of code. And it tries to merge them. What Git pull request does Git pull requests, there's no command Git pull requests. What pull request does is it basically allows you to request code to be added. And is this the same? Do they use pull request in Git lab as well? Is this like universal? Because I'm assuming Yes, I haven't used Git lab in a while. But when I did, it was the same process. So basically, what it's doing is it's creating an issue in the repository that says, hey, I have some code here. And I would like it to be added, and whatever your Git client is, whether it's GitHub, Bitbucket, whatever they give you tools to be able to look at the code and see what the files have changed, maybe do a little review, GitHub has some really neat stuff where you can do a line by line code review, and someone can look at it and say, I like this, but I hate this now change this, because this is no good. You could do all this and then request for changes to be made. People can make those changes, they can submit it again to be pulled. And then with the click of a button, you can say yes, please merge this code into this particular branch. So a pull request is a bit more formalized version, a bit more of a way to have proper authorization and proper eyes on the code before it is brought into the actual code base, you'll often see pull requests as being the primary way in which people merge code in large or team based code bases. We use the words Git and GitHub. And oftentimes, I think beginners may conflate this as being the exact same thing, right? Git is just the, the interface for working with GitHub. And no, GitHub is a service online for your code to live, it can do a lot of fancy stuff, of which we don't have the time to get into too much here. But there are lots of other ones of these such as Git lab, and Bitbucket are the two biggest ones. Git lab is an open source project a bit bucket is from Atlassian. I never say their name correctly. And so there's alternatives here. And they function very similarly to GitHub, and they have very similar features. So if you aren't down with a GitHub, and they're Microsoft ownership or whatever, feel free to use any of these other ones. I have used all three. Personally, I think I'm the only reason I drop bitlis Bitbucket in general is because they don't have labels for their issues. What's up with that?
+
+60
+00:43:09,860 --> 00:43:51,840
+Wes Bos: Oh, man, yes, I use Git lab for almost everything that I do, just because my stuff lab or GitHub, sorry, GitHub, for everything I do, just because like that's where the community is. And that's where most open source is, whoever I believe Git lab allows you to have on site. Yes, they do. Because that's, that's huge for a lot of these companies don't want to push their entire business, and all of the code behind it on to a server owned by Microsoft, they want to own all of their code in house. So if that's the case, they have to Yeah, they have to host their own version of the Git GitHub type thing.
+
+61
+00:43:52,350 --> 00:44:01,140
+Scott Tolinski: In house on their own, it's relatively easy. In fact, I think I'm not positive at this. I'm pretty sure digitalocean is like a one click Install there. So definitely something you can do.
+
+62
+00:44:01,530 --> 00:44:18,600
+Wes Bos: GitHub does it too. It's called GitHub enterprises. Often your real here the big bucks talking about as on prem, which means on premises, that's like, just like, I want to use GitHub, but I want to use that on my own servers, I got racks of servers that we can
+
+63
+00:44:18,600 --> 00:45:09,660
+Scott Tolinski: racks of servers and racks of cash. Let's go ahead and get that enterprise going. Let's talk about common issues. Really quick stuff that people hit, we talked about merge conflicts already, they can be confusing, sometimes a GUI is a nice thing to step in there and help you understand what's changed Exactly. Again, we talked about it a little bit about the VS code interface for that. Not great, not always the easiest to parse exactly what what changed. Another one is going to be files tracked unintentionally. And this goes all the way back to the beginning of the episode where we talked about using a git ignore file. Too often, you create a repo you do get in it, whatever and you're all just like jazz done creating the project. And next thing you know, you got DS stores and who knows what in your repo and unfortunately, those are Hard to get rid of. Once you once you track them, they're not great to get rid of. So Wes, Next comes, the next question is how do I delete this particular file from GitHub?
+
+64
+00:45:09,780 --> 00:45:11,910
+Unknown: Yeah, I have to google it
+
+65
+00:45:12,120 --> 00:46:27,840
+Wes Bos: every time for like five years, yeah, I have a little alias in my sh file called g ri, which means get removed. Just because sometimes I'll commit and then go, oh, it didn't get into my Git ignore. And that can also be a security issue, if you accidentally, because even if you delete it, from your Git repo, it's still your history. And anyone that has access to that can see it especially like, like, let's say, three years ago, you accidentally committed a password to your environmental variable. And then three years later, you hire a contractor and give them access to your your Git repo. Well, that contractor can go back into your Git ID history and and see that type of thing. So you need to be very sure. And how do you do that? It's use Git RM dash R. And I have a little little thing g ri, it does get LS files, dash dash, ignore dash dash exclude standards, pipe x Rs. It's this massive thing, I'll paste it in, it doesn't work all the time. But in a lot of cases, I just had to run Jri. And it will remove the files from the repo and all history without removing them from your local file system.
+
+66
+00:46:27,960 --> 00:47:45,750
+Scott Tolinski: That sounds great. Another question people often ask is about like maybe along the lines of WordPress, or Drupal or like or you have these CMS base sites, where people are they they're used to working in a different flow, they get into git, and they say, Well, wait a second, there's so much information in my database, how the heck do I how do I get that into my Git repo? You don't? You don't? That is not the place for get there are? Well, unless, of course, there are certain solutions baked into WordPress, or Drupal and Drupal has one called, I believe, is called features where you can basically take all of your database stuff and throw them into a written code modules of which then you can commit, push out and then pull down in your your production version of your site and have that just work. So you don't store database and get, you probably could try it. I don't think it's a good idea in any regard. So I would never do that. So that that's a those are common questions that people often hit when they're first running into this stuff. Because you want to make sure that your database the data is always the freshest. That's why you have to find some better way to track it or export it or whatever. And this is an ad transitioning to fresh books. I'm talking about fresh books, cloud accounting software West Do you want to talk more about fresh money?
+
+67
+00:47:47,070 --> 00:49:07,860
+Wes Bos: Yes, fresh books is the small business accounting software that makes billing painless. It's funny actually, I have a call with my accountant next week, because taxes in Canada got pushed Hmm, yeah, but they got pushed because of Coronavirus. And so I've I've, I've put off making my payments because I owe a bunch of taxes and I'd rather it sit in my account, it's like didn't trust then then there. So I have a call next week with my accountant and I don't know, in February or January, I already gave him all of my invoices, all of my revenue, all of my expenses, all of my different taxes all of the different currencies that I built in because that's like another thing is I have to say, Okay, I made this much in us I made this much in Canadian I made this much in pounds. And then he has to report those as as income to the government in Canadian dollars using some posted rates and whatnot. So it's just just a lot going on running a business. It's very complicated and like the one thing you don't want us to be in trouble with your taxes. So having nice clean books is key. So check out fresh books comm forward slash syntax, make sure you syntax in the How did you hear about a section for the next time that you need to send an invoice or track your time or any expense that you have.
+
+68
+00:49:07,919 --> 00:50:04,860
+Scott Tolinski: So maybe you need to track one of these expenses to buy get get client because a lot of these you have to buy because they're nice software. Now get client or get UI is going to be a software that could help you with all of these things, whether it is seeing your project better in terms of what's committed and not or just simply giving you really neat little graphics into the path and branches and all those things that happen within your code, the history of it. Now there is a massive amount of Git clients. I've included a link from gits own website sharing some of these and some of them are prettier than others. Some of them are intentionally not like pretty pretty pretty. But if I'm going to go away from the command line get declined. I want a pretty I want a pretty app and for me, I think the the prettiest one is going to be the get cracking although I see you have under get clients you also have c li so you're you're thinking that A good client is also a CLA, I am pretty sure you're accurate on that I'm not.
+
+69
+00:50:05,310 --> 00:50:59,070
+Wes Bos: Yeah, any client is something that adds additional ease of use or features on top of what the Git command line already already has. So there was a popular one called hub for the longest time, but get a probably about a year ago, released their own COI. It's called gh or GitHub, and you can brew install, or I don't know, windows, CD ROM or something like that Windows and install it. And it allows you to do the stuff that's not part of get like board requests and issues and repos. And all that stuff. It allows you to do all of that via your command line. I've actually installed it and never used it, because they just Yes, use the website. But like, some of the stuff is old habits die hard. And I should probably be checking it out. Same with me. In fact, as we're doing this episode, and not as like, right, right now now,
+
+70
+00:50:59,070 --> 00:51:01,830
+Scott Tolinski: I just downloaded get cracking because,
+
+71
+00:51:01,830 --> 00:51:03,000
+Unknown: hey, whoa,
+
+72
+00:51:03,000 --> 00:51:03,600
+whoa,
+
+73
+00:51:03,600 --> 00:51:06,720
+Scott Tolinski: did you ever realize that that name, like let's get cracking Oh,
+
+74
+00:51:06,720 --> 00:51:08,130
+Wes Bos: I didn't realize that. Yeah,
+
+75
+00:51:08,130 --> 00:51:26,580
+Scott Tolinski: cuz it's spelled cracking with a K, just like the, the Seattle hockey team, which I'm wearing their hat of currently, currently wearing the Seattle racquet head, wow, this is a lot of layers deep here. So I, I'm gonna give cracking a try, because it is the prettiest of the bunch. And there's a whole bunch of these Man, these things go all out.
+
+76
+00:51:26,850 --> 00:51:51,840
+Wes Bos: GitHub desktop is super good. I use that for a while. And we also use that when we're we're teaching. Because it's super easy for beginners to just visualize what's going on. There's a sync button as long as if I could remember. Because like, pull and push and all that it's kind of hard. But if you just press a single, it'll ask you for a general to the internet. Yeah, check that one out as well.
+
+77
+00:51:52,050 --> 00:52:23,100
+Scott Tolinski: These are all cool. I'm gonna I'm going to try to give some of these a try. And if you type in get into vs codes, extensions, there's just about a gazillion of them. So there is a lot of options out there. For people who are visual workers. I personally would say hey, if you are the type of person who really likes a good at GE why still try to try the command line because the command line is where it's at. For this stuff. I really think that you'll want to deal you'll want to spend the time to learn the command line stuff.
+
+78
+00:52:23,370 --> 00:52:40,620
+Wes Bos: Oh, the one command I forgot is git status that if you want to like know, where am I at any given time, git status that will tell you like, what's changed and whatnot? I always just use the goi in VS code for that personally Oh, cuz it'll tell you what has changed and well yeah,
+
+79
+00:52:40,620 --> 00:52:56,820
+Scott Tolinski: cool, but I think that's a good one because that that is crucial to understanding what exactly has happened here. Cool, so that is it for get Do you have any additional anything or should we hop into sick pics?
+
+80
+00:52:56,850 --> 00:52:59,190
+Wes Bos: Let's hop into some sick pics.
+
+81
+00:52:59,310 --> 00:53:10,080
+Scott Tolinski: Cool sick big swell sick pics are the section of this show where we get to talk about things that we find to be sick. Do you have any sick pics that you are just dying to talk about?
+
+82
+00:53:10,230 --> 00:53:39,420
+Wes Bos: I do and I sick pick this this is another one of my sick follow ups. I don't know maybe like two years ago, I sick pick my Yeti Rambler or whatever it's called. It's like a it's a mug a coffee mug with a nice handle made by Yeti and whenever anyone buys anything Yeti people always roll our eyes because it's super expensive and it seems unnecessary given that the alternatives are often a third of the price.
+
+83
+00:53:39,660 --> 00:53:41,640
+Scott Tolinski: The culture is kind of bro a to them right yeah,
+
+84
+00:53:41,940 --> 00:54:57,600
+Wes Bos: yeah, the there's quite a bit there's actually there's this the Instagram called I won't say it because there's kids listening but sh i ti and it's like get the SEC badge that you can get for your crappy Coleman cooler and slap it on it looks like a Yeti. No, that's fine. Their cups are like double wall stainless and they keep your drink hot for for absolutely ever. And that's not like you can go to Target and this is 100 of these things like sucking air out of two stainless steel things is not new. But I was just looking at our entire cupboard of these cups. And every single one the Ozark Trail ones the ones that I got out of conference, the whatever like the knockoff ones that you get, all of them are peeling and faded and the paint on them just doesn't hold up at all. And I put them all in the dishwasher because I don't have time to hand wash it. And the Yeti one is the only one that looks almost brand new aside for a couple scrapes that I've had just from dropping it and whatnot. So I'm going to go out on a limb and the coolers might not be worth your money versus the knockoffs but the the drink word absolutely is.
+
+85
+00:54:57,600 --> 00:54:59,250
+Scott Tolinski: That's pretty sick.
+
+86
+00:54:59,370 --> 00:55:01,470
+Wes Bos: Yeah Yeah, cool.
+
+87
+00:55:01,470 --> 00:56:59,400
+Scott Tolinski: My sick pick is going to be a podcast. I love me some podcasts. I'm a big, big fan. This is a podcast for music fans. And I'm gonna have a lot of podcasts picks here. So if you're not a music fan, don't worry. I'll catch you next week. So this podcast is I've been I've been discovering a lot is called what had happened was, and it is featuring the legendary Prince Paul, along with open Mike Eagle. And if you're into music of any kind, this is a really, really fascinating podcast, because if you've never heard of Prince Paul, he's a famous rap producer. But he's been around for a long time and been a part of some very, very, very influential projects. And even is like crossed over not necessarily crossed over. But he like really, or he really took that like the sample based music to a place that it hasn't been. He's extremely influential from all of the de la solo albums, he won some Grammys doing the Chris Rock albums. And he's done so many so many great thing handsome boy modeling school was like a really huge project with a bunch of mainstream rock artists and a whole bunch of cool stuff. But this podcast is called what it had, what had happened was and it's each one is like sort of an hour or so on different moments in music history of some of the biggest, most influential albums that existed in Prince Paul is just like the most humble down to earth guy, the personalities really make this podcast because he can talk about these events. And he just seems so grounded and normal and humble and whatever, into the point where it's like, it's absolutely fascinating to hear somebody who who has like, originated so many different things. Just be like, Oh, yeah, that was just sort of my style. So I was just doing like this and do like this. And these, these do, we did this and we just wouldn't tried this. It was just it's very fascinating look into the music industry. He has a lot of thoughts on so I had what what had happened was my new favorite podcast, and it's like a limited one kind of thing. So I think there's only gonna be 10 episodes. so shameless plugs, what do you have for me,
+
+88
+00:56:59,669 --> 00:57:25,860
+Wes Bos: I'm going to shamelessly plug either my current or upcoming course. There. gatsby.com is going to be my next course which is learning react Gatsby, we do all the CSS in it, which a lot of people have been asking for for a while. serverless functions, lots of custom react hooks, things like that. It's a really fun one. I'm really excited about it. I'm pretty proud. So check it out, Master gatsby.com. Cool,
+
+89
+00:57:25,860 --> 00:58:02,130
+Scott Tolinski: I'm gonna shamelessly plug my latest course which is going to be react 101 essentially, it's going to be react for everybody but it's going to be brand new from the ground up for 2020 and beyond. For as far beyond as possible. We're going to be doing a hooks first approach. We're going to be teaching react to brand new people. So if you are interested in learning react from me, this will be like my fifth time doing a react basics course. I'm very excited. I have a lot of material and a lot to say about the basics of react head on over to level up tutorials.com forward slash pro sign up for the year save 25%
+
+90
+00:58:02,369 --> 00:58:05,700
+Wes Bos: beautiful I still appreciate you not calling it rack for beginners.
+
+91
+00:58:06,509 --> 00:58:16,830
+Scott Tolinski: Yes, yes, that is yes. That is the story of how Wes and I met react react for everybody. That's my brand. Now when anybody stamps on the everybody brand, I'm gonna be like grumble about it.
+
+92
+00:58:18,510 --> 00:58:24,630
+Wes Bos: Awesome. All right. I think that's it. Thanks so much for tuning in and we'll catch you on Monday. Please
+
+93
+00:58:26,490 --> 00:58:27,300
+Unknown: head on over to syntax.fm
+
+94
+00:58:27,300 --> 00:58:36,270
+Scott Tolinski: for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
