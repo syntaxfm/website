@@ -1,0 +1,324 @@
+1
+00:00:01,319 --> 00:00:02,820
+Unknown: You're listening to syntax
+
+2
+00:00:02,849 --> 00:00:04,590
+the podcast with the tastiest web
+
+3
+00:00:04,590 --> 00:00:10,560
+development treats out there. strap yourself in and get ready. Here is Scott solinsky and West boss. Welcome
+
+4
+00:00:10,560 --> 00:00:53,310
+Wes Bos: to syntax. This is a podcast with the tastiest web development treats out there today we've got a potluck for you some really good questions, some stuff that I'm really excited about in node modules, custom loaders, in ES modules in node, which is going to be really cool. Talking about salaries, get l Fs, a bunch of really neat stuff. So stay tuned for some tasty treats today, we're sponsored by two awesome companies. First one is Sentry that does all of your error and exception tracking. And the second one is Stackbit which is the best way to jam stack. We'll talk about both of them partway through the episode. How you did today, Scott,
+
+5
+00:00:53,639 --> 00:01:09,090
+Scott Tolinski: the good I'm watching you know, doing as good as I could be doing. Just Just get grinding down working on my stuff as always and yeah, I don't know doing all right, guys. It's scatterbrained nonetheless. Yeah,
+
+6
+00:01:09,120 --> 00:01:11,840
+Wes Bos: yeah, getting a little sick of the lockdown a
+
+7
+00:01:12,330 --> 00:01:42,300
+Scott Tolinski: little is just, yeah, it's difficult to make it all work. I know, we know, we both have those experiences. But man I've been I've been doing a lot of work to refine sort of how I think about being productive and what you know what needs to fall into place the systems I have in place for making myself productive. And yeah, oh, man really like having a an off day in those regards. really hurts a lot more. hurts a lot more. Now.
+
+8
+00:01:42,330 --> 00:01:57,660
+Wes Bos: Yeah. You only have so much time and you have a bad day. Like, the other day I had, like something went wrong. And my whole plans for the day went out the window and I had to spend time fixing something. And it's just a bummer to waste that time. Especially just I mean, right now,
+
+9
+00:01:57,690 --> 00:02:10,800
+Scott Tolinski: there's just there's just so many things to do 24 seven, you know, so yeah, when you when you have one off one or a couple off ones, it really really hurts. So yeah, ready to ready to get into this a potluck?
+
+10
+00:02:11,190 --> 00:03:53,400
+Wes Bos: First question we got here is from Mark Haslam. What are subscriptions in react or programming in general, the React docs mentioned that setting up a subscription in an example is a side effect. But what exactly is a subscription? And when do you set one up? So this idea here is not a react specific thing. And it's it's more of just a programming thing. So in react, we know that sometimes we have to go off and listen for events, or get some data from a database, or in this case, it's talking about a subscription, which is generally what's gonna happen is you're going to add like an event listener to something some sort of data being streamed in, or most likely, you're going to have like a database that is sending live data in over a WebSocket. So because that is going outside of the React component, and setting up event listeners, that is what is referred to as a side effect in a react component, because it doesn't just take in data and return some some JSX and whatnot, it actually goes outside of it and makes a connection with the database or makes a connection with something else on the website. So that is what they mean by a subscription. And how do you set one up with depends on on what it is, it might be as simple as doing an add event listener on the window resize method, that would be a subscription to that event. Or it might be setting up like a WebSocket connection event, or you're listening for specific messages and then piping them into state. So it's it's one of those world words where you see it, and you go, is that actually a thing? Or is that just a general programming idea? And that's, it's, it's the second of those,
+
+11
+00:03:53,430 --> 00:04:56,820
+Scott Tolinski: right? Yeah. And there's oftentimes to the whole idea of you might hear it referred to as pub sub. And there's the idea of publishing and subscribing to information, whether that is being passed over a WebSocket, whatever, where anytime information gets updated, that publish happens of whatever the data and since you're subscribed to it, the new data will come in. What's funny is that the entirety of like Meteor, my platform that I work on, not one that I've created, obviously, but Meteor is all pub sub, basically out of the box. It doesn't have to be but it makes it super easy. So I've been working in subscriptions with react and otherwise for a long time, I think. And it made some things very easy when you everything's a subscription and made other things very difficult. So sometimes I think that obviously his subscriptions aren't for everything, right? You can subscribe to specific types of data and it can work really well. Other times. It's just going to get in the way. You know what I mean?
+
+12
+00:04:57,360 --> 00:05:17,910
+Wes Bos: Yeah, I just googled pub sub on Google. images just to get at one of those visuals as to what it is as we were talking about it, and it suggests Publix, so it's like Publix is like the grocery store in like, Florida. I don't think we have those. So I clicked on it and there's like these amazing subs that you can get at Publix. So I want that kind of pub sub.
+
+13
+00:05:18,000 --> 00:05:26,970
+Scott Tolinski: Yeah. Or like, what about like, it'd be like a really good bar like a you go to go to the pub and get a sub at the bar to get a sub?
+
+14
+00:05:27,000 --> 00:05:32,400
+Wes Bos: Yeah, nice pub sub. Yeah, sure. Like a real man. Ricky's pub has the best subs.
+
+15
+00:05:33,150 --> 00:05:36,000
+Scott Tolinski: Is that a real thing? I couldn't tell you me out. brickies pub.
+
+16
+00:05:36,060 --> 00:05:40,770
+Wes Bos: Oh, no, no, Rick is is not a real thing. Oh, that sounds like I'm sure it is. Yeah, sure.
+
+17
+00:05:41,970 --> 00:06:43,380
+Scott Tolinski: Okay, next question here is from jack. The question is using the latest node ESM imports? Is it possible to use aliases using the old require syntax, I use the NPM package module alias. But I cannot seem to find a solution for node v 14 imports, and a deeply nested file, I find that the import dot dot forward slash forward slash forward slash blah, blah, blah, really awful compared to at some folder with a an alias. And actually, I'm jack, I'm gonna say, I absolutely agree with you, I really, really cannot stand relative imports in that sort of sense. And I will go to great lengths to avoid that kind of thing, just because again, that that is so hard for me to parse to see that dot dot forward like into try to have some sort of understanding of what nested structure I'm actually and so I'm right there with you. Once you actually have a solution for this here that you found, I have not used this myself, considering I just do everything through Babel. So
+
+18
+00:06:43,710 --> 00:08:38,700
+Wes Bos: yeah, so I've played with the ES modules in Node quite a bit, because I'm really excited for them to be added. There's a couple like things that aren't there yet. And when I was looking into if they're coming, they mentioned these things called loaders. And I dug a little bit more into loaders. And it turns out that node is implementing the ability to add custom loaders similar to like a web pack plug in that will, or a Babel plugin that would handle specific files, or specific loading a requires in a certain way, or I even think it's kind of like a ServiceWorker or it jumps, it jumps in before the actual module is loaded. And you can write some custom logic in there. So I was just looking into that and like, Oh, yeah, I know, they're, they're working on loaders for node. I wonder if you can write your own in it, it turns out, you can write your own. And they have an example on the node docks, I'll put a link in the show notes for a transpiler loader. So that if you wanted to require TypeScript, or CoffeeScript, or sass files, if you wanted to import them into your node, you could write a loader that sits in between intercepts those requests, and then returns the actual formatted and in parse JavaScript. So in your case, I'm betting I don't know if this is true or not. But I'm betting what you can do is you can you can write a loader and then intercept all of those and say, if it starts with like a, what is that the at? The alias module uses it uses that then replace that with the relative path, which sometimes this dot dot forward slash dot dot forward slash dot.so. Kind of cool. I probably wouldn't use that just yet. I would probably just run your code through Babel, and then use the Babel plugin for that. That's probably what I'd recommend if you're using if you're using ES modules in general right now, because they're, they're not ready and no, just yet.
+
+19
+00:08:38,940 --> 00:09:17,190
+Scott Tolinski: Yeah, I think that's sometimes a key thing is that if something's feeling like, maybe the tooling isn't the same place, or isn't there quite yet, maybe you don't have to start using it. Especially, I mean, not even just the tooling, but in this case, the actual thing. And I mean, I see this with like, demo, or Dino, sorry, Dino, I'm so used to saying demo, where people will be like, I want to use Dino, and then they they go to the right. And they'll be like, what's the expressive Dino? Well, I mean, it's, it's, it's people are still working on stuff, you know, the the landscape and everything is going to change. It's gonna grow, it's going to evolve. So with anything new, I'm sure there'll be a solution here.
+
+20
+00:09:17,580 --> 00:10:52,470
+Wes Bos: Absolutely. Next question we have here is from Laura. I've been a full time developer for 10 years, and my company has a fairly flat hierarchy. I want to take on more responsibility and salary. But my company doesn't have anything like a lead developer position. Any ideas on how to move up without switching companies. I know my boss would be receptive if I came to him with a pitch, but we work full stack so it feels like I'm already doing it all. So this is cool. It sounds like you're pretty happy and you're happy in your job. You just want to move up a little bit more and thus make more money without having to switch jobs, which I think is really cool. So it sounds like your boss is pretty receptive to this type of thing. So if that was me, I would at a certain point, I think you sort of reach the top with being a developer. And in order to maybe make more money, you have to take on more responsibility. And if this was me, I would talk to the boss about how does the business actually make money. And then that goes from just being a dev, and building the things that needs to be built and taking care of all of the code to how can we push this business a little bit forward. And I'm going to come to the table with technology as my special weapon. So I don't know what that looks like in your specific company, but taking on some sort of special project where maybe we can make this process more efficient. Or maybe we can bring in more customers by by building something that would would do that a customer machine or something like that.
+
+21
+00:10:52,649 --> 00:13:12,720
+Scott Tolinski: Yeah, you know, I mean, I think you hit some really good points here, especially because I worked at a small agency before and at some point, the only way to insert you know, make more money or move up was to get more ownership in the company. So I think that's really definitely a place that you could look at, if that's where you want to go, maybe even more responsibility, more ownership. But again, like Wes mentioned, technologies, you're going to be your superpower here, even if it's something simple, like understanding the internet requirements, and maybe you can save $100 a month on internet services, you know, just like little things like that you have an expertise in this, that other people just aren't going to have by the nature of your background and training. And maybe you can find some cheaper, or maybe some more interesting or more productive solutions for the company. And, you know, companies value, that kind of thing. And they'll most likely be not only willing to renegotiate a new job, title, new kind of thing. But you're probably not going to make a ton more money as a developer developer, just building, you know, widgets and websites. Without, I don't know, without, without moving into a different location. Like, I don't mean, like physically moving moving into a different like physical skill set, where you're using your skills to maybe a little bit more like a big picture bigger picture stuff with this business. How is like you said, How is this business making money? How can you assist in that? And what does that look like for you, to me, if you are looking to remain writing code, and I mean, writing code full time not writing code at all, like if you want to write code full time via a full time Dev and make more money, who probably opening your own agency or, you know, working for a bigger employer is your ticket to making more money. But in terms of getting more responsibility outside of that space, maybe you can use some your code skills to request a higher rate. Next question here is from Rami. He says in Wess website episode, he mentioned using a Gatsby parallels for images, not l Fs. West, do you want to talk a little bit about your decision here?
+
+22
+00:13:13,079 --> 00:15:06,029
+Wes Bos: Yeah, for those who didn't listen to that one, the problem was that I have, I don't know, maybe four or five 400 images on my website. And each of those images needs to be resized and compressed and put into several different sizes, making it a couple thousand images. And that was initially very slow. So I use this thing called Gatsby parallel runner, which uses Google Cloud to resize and do all of that all in parallel. So it runs them all at the same time. And that made it much faster. So the question was, why not deal get l Fs, so get l Fs is large file system, it's an add on ticket will allow you to put lots of large images or videos or things like that in your Git repo without like making it too big. Like you can put images in a in a Git repo. And I actually have all the images from my website, but I don't keep all of the compressed and resize versions in the Git repo, because that would make it way too big. So the question is, why not that and the reason to that is that the the output of Gatsby is done into a build directory, and you're generally your build output is not included in your Git repo, just your source files are along with instructions on how to build that specific thing. Because if you included your entire build your entire build directory, and yet every single time you've built a website, you'd have like 1000, change deaths, that and that would both make your your Git repo huge, but also it's it's unnecessary, and it gets messy. So that's not what Git lfls is for. It's not for the output of the build. And I bet like if I ever got into a position where the images and videos on my website were too large for just a regular Git repo that actually would be good solution for holding the original images and the uncompressed versions of that
+
+23
+00:15:07,350 --> 00:15:43,380
+Scott Tolinski: have a small little aside. Yeah. Do you ever have git commit issues? I mean, conflicts, not issues. But do you ever have conflicts with your package lock file? I seem to have them all the time. And I'm not quite sure if this is like a mean problem. Am I updating things too much, I end up getting these, you know, where one person installs a package, and then somebody else updates a package. And then when you do the, the merge, the yarn lock always complains, then we have to dump that yarn lock. And it's like, Why you? What is this even doing for me? If I'm dumping it all the time, you know?
+
+24
+00:15:44,159 --> 00:16:38,299
+Wes Bos: Yeah, it's, it's because the lock file contains the version of the package that you're using, not just the, like, 15 dependencies that you have for your, your project, but it has the, like, 20,000 dependencies that those dependencies have, and those dependencies, and those tells you every single one all the way down. And like those change so quickly, that like if you run an npm install, you're not technically changing anything about your codebase. But because those things have changed since you've done it, that does come in. So I do run into those not as frequently because I don't have as many people working on my codebase. But I even run like depend a bot on GitHub always changes that. And then yours is out of date. And I to do that, like I either just take whatever was coming in from GitHub, or just nuke the entire thing and, and start again, because it is frustrating.
+
+25
+00:16:38,299 --> 00:17:01,500
+Scott Tolinski: Yeah, I almost always nuke the yarn lock file whenever it gets a conflict, because I'm like, I don't want to pursue this and try to figure it out. It's just uh, yeah, yeah, I wasn't sure if that was a pain point. That was I was, you know, experiencing just me. That's really interesting about Gatsby, you know, it's funny because I, I don't do a ton of static, like big projects with images in static sites,
+
+26
+00:17:02,130 --> 00:17:49,650
+you know. So it's definitely a, there's so many. It's so funny, you get these new approaches, and they're always so easy at the small level. But at the once once you get into any sort of large level, or more complex, anything, there's always going to be pain points. It's just fascinating to me, what your pain points are with the images and how you solve that sort of stuff. It's It's really cool. All right, next question here is from Nate Norberg. This is another question for Wes. It's any Big Green Egg tips. For here for beginners. I ordered a command a tomato. Is that a lot? Oh, yeah. Come on. Oh, style grill. And I'd appreciate any tasty tips you forgot. I would too. We don't have a green egg or anything. But look, I get some barbecue tips about time.
+
+27
+00:17:50,520 --> 00:18:31,680
+Wes Bos: Yeah, so a kamado grill is just a ceramic grill that is shaped like an egg. And there's all kinds of benefits to heat retention. And it's kind of like an oven and whatnot. I love mine. So I have two big green eggs. Tomato Joe is another really popular really nice one. And then there's lots of like, hardware store versions that are a little bit cheaper but still pretty good. I love using mine. I have three of them. That's awesome. My tips are chicken thighs that's like yes and easiest thing to cook on there. They don't dry out you can't it's hard to overcook a chicken thigh and it just tastes so good. Chicken brass is so overrated do chicken thigh is the best
+
+28
+00:18:31,710 --> 00:18:53,360
+Scott Tolinski: we moved recently to like just about all chicken die instead of pressed for like everything like and let me tell you every meal that we make is better like I make beat them up with chicken and better I make crispy chicken ramen. It's better so much better every everything It's so good
+
+29
+00:18:53,940 --> 00:18:58,380
+Wes Bos: to and it's usually cheaper to be and it's so much better I don't understand like
+
+30
+00:18:58,380 --> 00:19:01,580
+Scott Tolinski: what is it just because it's less meat is that why people
+
+31
+00:19:01,610 --> 00:19:31,950
+Wes Bos: think less desirable as like people think like oh it has fat in it. So it's like not as good for you but it's it's super good for you. It's a good food it is good for so I chicken thighs. You can't goof it up. My favorite one is a little bit of sesame oil, a little bit of fish sauce, a little bit of salt. Toss it in a bowl, grill that sucker over charcoal. My chef's kiss. My other tips are I just learned this one like a month ago and it blew my mind so do you know what spatchcocking Chicken is?
+
+32
+00:19:32,600 --> 00:19:38,600
+Scott Tolinski: I have heard the term I think I've had it described at least once before but it's not something that sticks in my brain.
+
+33
+00:19:39,000 --> 00:20:37,610
+Wes Bos: Yeah, so if you like by like an entire chicken. My favorite way to cook it is you cut the backbone out on so on either side of the the backbone. You cut it out and you have this strip you throw that in a pot you make soup out of it later. And then you flip it over and then crack the breastbone and then it lays flat. We know it cooks both faster as well as Better. And then I just learned like a month ago that you can cut it horizontally. So like it vertically is where the the backbone is you can also cut it horizontally so that the thighs and drumsticks and all of that is is separated from the breasts and the wings. And then you can cook the breast and all of that at a different rate than the lower half like the dark and the white meat because they cook differently so you can pull the you can pull them when they're ready. And I thought that was genius. I had never done that myself. Yeah, that's just like another way to have it dialed in.
+
+34
+00:20:38,010 --> 00:20:59,570
+Scott Tolinski: Yeah, that is a very cool. I've seen Gordon Ramsay do that on top or not on Top Chef on Master Chef before where they hit the hammer. They punch it, they punch the bird. Right. And then the spine. Yeah, I've seen that before. But no, I've never heard of this horizontal splitting. technique was we need like a Cooking Corner with was. That'd be?
+
+35
+00:21:01,020 --> 00:21:13,680
+Wes Bos: That would be a good one. I got lots. I won't bore everybody here. I've got a Yeah, we'll do an entire cooking show at one point what little tips that we have. So we'll move on to the next one. But yeah, thanks for sending that one in.
+
+36
+00:21:13,800 --> 00:21:14,360
+Unknown: Yeah,
+
+37
+00:21:14,400 --> 00:24:45,540
+Scott Tolinski: well, moving on from cooking tips to bug finding tips and bug finding tips on talking about our sponsor today, which is sentry.io. And the sick tip I have for you with sentry.io is to use it, guys. You know, there was a time when I had a century and it was all set up. And I just, oh, I saw some issues coming in there and just say, you know, that close injury? I just don't see the issues, right. But no, no, I use Sentry to my fullest capabilities. Nowadays. He like we talked briefly about this when we were first starting, but really needing to make the most of your time and century allows me to do that by finding an issue. Right? How many users is this affecting? How important is this issue? Is this a one off kind of thing? Okay, maybe this is caused by some of these extensions. If it's a problem, if it's something that we have to fix just based on seeing it, I can quickly and easily create a GitHub issue, I can tag Eric who's working on level up tutorials, and he can take a look or I can tag myself and I can get there and and fix the problem. So for me century is the quintessential tool for things like this that I like it keeps everything of one specific classification in one spot, ie every single error and exception that you have keeps them all in one spot and allows you a really awesome interface for finding fixing, and really keeping track of those bugs. So check it out@sentry.io use the coupon code tasty treat all lowercase all one word, and you'll get two months for free. All right, next question here from Matt. Matt asks, inline code is considered harmful because of Xs s attacks. But for those of you at home, it's cross site scripting attacks. lighthouse recommends inlining critical CSS to improve page speed. What do you think of this trade off? I don't necessarily know too much about this, I was doing some reading. And it's like some browsers could allow some JavaScript to be executed inside of a URL inside of an inline CSS. I don't know I don't I mean, obviously, just simply having inline CSS on your website is not going to, it's not going to open you up for cross site scripting attacks. Because just just about thousands and thousands of websites, more than that would be exposed to that because for a long time, people just man, people used inline styles for all sorts of stuff just because of maybe ignorance in the past. But nowadays, inline styles are seen as something that can be added on were needed in a way that the browser can utilize those inline styles. So there's two, two sides of this. Sometimes, people will refer to inline CSS as CSS that's actually on the elements themselves. And other times, writing CSS inside of a style tag in an HTML document. So either of those could be considered inline code. I, personally have not thought too much about cross site scripting here. I've written CSS a long time. And I just kind of let the tools handle it for me right now styled components sort of creates generates classes for me, but we do have that bad CSS, the critical server side rendered CSS coming in from the server, about cross site scripting attacks request, you know anything specifically about this, because I've seen that it was possible, but the article that I was reading was like very old and it was talking about opera. So I don't know anything about if this is an actual issue.
+
+38
+00:24:46,170 --> 00:25:02,700
+Wes Bos: I feel like this is one of those. Like, I heard it once and I just believe it until until I'm dead. Like I have no idea. I might be wrong here but I have no idea. Like why would inline code be a potential Xs s attack i saw i don't understand
+
+39
+00:25:02,760 --> 00:25:31,050
+Scott Tolinski: is that anytime that there is a URL in the CSS that led to some JavaScript could be executed there. But again, the only thing I saw in relation to that was about like an old like opera version one, you know, I mean, it was it was in the it was back when you know, I eat it. So I don't really know if this is a current problem. I can't imagine it is just because of how many things use inline CSS? I've never Yeah, I can't imagine it's an issue.
+
+40
+00:25:32,070 --> 00:26:27,480
+Wes Bos: No, I don't think that is an issue either like, No, there's nothing wrong with using either a script tag and then JavaScript inside of that go to facebook.com and view source, you'll see that they use that pretty much every website will have a script tag on it. And there's nothing wrong with using style tags in CSS to put it on. So I don't think that that is actually issue I'd probably whenever you hear like a rule like that, push back and ask why it's probably a very valid rule, you definitely need to ask, like, why is that actual thing and understand what the the idea is behind it? Because it might not apply to you rather than you just like sort of blocking it entirely. inlining CSS to improve PageSpeed? Absolutely. Like, that's kind of a hard thing to do. And that's why we love Gatsby so much, because they they do that for you. But absolutely you should you should be doing that if your setup allows you to do it.
+
+41
+00:26:27,750 --> 00:26:28,590
+Scott Tolinski: Yeah, totally.
+
+42
+00:26:28,980 --> 00:26:57,270
+Wes Bos: Next question we have here is from Mark Haslam. What advice would both of you have for being a first time father? And how can I best prepare, my wife is pregnant, and we are both very excited to congratulations. I want to do the best I can at being a good father a baby is due in January. Both of you are fathers multiple times. I would love your thoughts. Oh, yeah, that's that's a good question. I made sure prep some of this. Why don't you go ahead and I'll think of some of my points.
+
+43
+00:26:57,390 --> 00:26:58,200
+Unknown: And
+
+44
+00:26:59,940 --> 00:29:14,580
+Scott Tolinski: my my points are get a partner who is the child psychologist and just refer to them for everything because that's, that is what I do. Know, I say something in the cornea says, Oh, you need to reread that book. And we're referring to like the other talks a little kids will listen, she's like, you clearly don't remember the book. So I, I honestly, I differ a lot. And maybe it's just because like, I think I had a good good model, like my dad was, you know, he was really great. And I don't know, I just I, for me, I'm grennan instincts here, I have no real training here. I don't know what I'm doing. Just about never know what I'm doing. And for a long time, I was actually pretty uncomfortable as a as a father, if I you know, can say that correctly. And for a long time, I was feeling kind of, you know, uncomfortable as a father, because when they're first born, they want my mom for everything. And if you hold the baby, the baby cries and you know, you can run through the checklist of things that could be wrong, and the baby could still cry at the end of the day, just because you aren't mom. And so it was a little while before. I was feeling competent and comfortable as a father because, again, it feels like for a little while, like no matter what you're doing isn't working. So it released that that could be the case, right? So for me, it wasn't until Landon started being able to play more and not not like a little boy play. But like even just like very simple stuff. We're like Brooklyn's just getting to that age right now. Right? She's just over a year old. So we can do a little bit more involved games. She showed me thing she's climbing the stairs, we're playing outside where we're doing those kind of things, she responds better to things like tickle, or just those little things like that, that make it a little bit easier for me to to really feel comfortable as a father because you get to play more once it got into play territory, like I can play all day, I can do that. That's fun. So that that, for me was a bit of a learning experience. And I felt pretty useless for a little bit. Just make yourself available early on in those early days.
+
+45
+00:29:14,940 --> 00:29:32,250
+Wes Bos: Oh, that's good advice. I just jotted down a few things here. That is important. I think like one of the best ways you can be a good father is supporting your partner. So I learned very early on early on, that my sister actually told us this is nobody wins the who's more tire game.
+
+46
+00:29:32,729 --> 00:29:34,200
+Scott Tolinski: You're broken. You're both mark.
+
+47
+00:29:34,229 --> 00:31:17,760
+Wes Bos: Yes. When you're both up all night and you're miserable and kids aren't sleeping and everything is awful. Nobody's going to win the I'm more tired game. So that's that's what I try to support your partner and think about them as much as possible. Take time for the kids. So like I take a lot of time off in both in the summer as well as I could pretty easily we'll just ditch work and go home. With my kids, as hard as that is for me, because I would just love to sit on my ass for a couple more hours and hack away on things, and there's always more projects. Um, you can you can tell, like my, my daughter gave me a, like a card the other day that says, I love when we go fishing. Man, I'm so glad that we we ditched work and went fishing with you the other day. And I was thinking I didn't want it. But I did write like, yeah, time for the kids. And it's cliche everyone says that, but like, no one, sort of, like, own that. And then also, I think, like, try, like one thing I'm thinking a lot about now is just like, how do you be a role model to your kids? And how are you treat other people. So just like, whether that's people in your family, or just people on the street, or people that you run into? And I'm starting to see that through my kids, they just talk to people, the stores all the time. And that's something I always do I always whenever at the, at the grocery store, I always asked like, what's the most expensive bill you've ever seen? And I love hearing that. And like, I'm super curious, like, like, what happened? Or like, if somebody you know, sometimes you have to grocery store and there's somebody checking out with like, 40 pineapples in a cart. You're like, What's going on there? What do you do?
+
+48
+00:31:17,760 --> 00:31:18,480
+Unknown: What do you do?
+
+49
+00:31:21,480 --> 00:31:33,420
+Wes Bos: Like my kids are starting to, like, take that on and like just talk to cashiers and stuff like that. And I think that's, I think that's probably the best way instead of just telling them treat people nicely that you have to show them that. That's how you do that.
+
+50
+00:31:33,600 --> 00:32:15,860
+Scott Tolinski: Yeah, when did it I really learned I mean, you hear it but you hear that kid soak up everything. But man, kids soak up everything Landon says the funniest stuff, like he don't even you don't even not know that he's paying attention, right? He's he's doing something else. And all of a sudden, he'll be like, Hmm, I really need to go to my office to work on my work. What am I doing? I need to go well, my work and he's like saying the same stuff that you're you're saying or doing or whatever. He's just like, mimicking you and those sort of ways. And it'll just make you think, oh, man, I gotta be 100% careful all the time about exactly what I'm modeling because then that modeling aspect is so key.
+
+51
+00:32:16,470 --> 00:32:18,900
+Wes Bos: Oh, absolutely. Whenever it gets dropped a swear word the other day.
+
+52
+00:32:23,130 --> 00:32:47,100
+Scott Tolinski: Yeah, that's funny. I cannot imagine we've, it's funny because in everyday life, I'm dropping them way more than Courtney. But Courtney definitely has the skill to drop them in front of the kids way more comparatively. It's like I'm pretty good at setting up that filter from the good. Yeah, there's Courtney's are a little bit more emotive words. Like, I cannot stop this from coming out.
+
+53
+00:32:47,999 --> 00:32:53,730
+Wes Bos: Oh, man, that's so funny. All right. I just added that to the the Pollak title as father ship.
+
+54
+00:32:54,180 --> 00:32:55,260
+Unknown: Yeah, yes.
+
+55
+00:32:56,760 --> 00:33:38,580
+Scott Tolinski: Next question is from talaq Mati, our present web developers merely crud bastards for corporate culture, if not what entrepreneurial opportunities are open with JavaScript and hooking up react with back end node layer volt, and reading Google Maps, Docs. Of course, the list isn't exhaustive. But you get my point. Right? Note, I'm not interested in selling courses or creating frameworks there. Okay. This is a weird question. It's basically saying in the correct me if I'm wrong here, but it's basically saying like, what are their what are the interesting career possibilities with this stuff? Right? Is these skills
+
+56
+00:33:38,580 --> 00:33:47,360
+Wes Bos: right? Am I just gonna be updating text boxes for the rest of my life? Or is there something a little bit more interesting? And also, no, I'm not going to create a course.
+
+57
+00:33:47,400 --> 00:35:14,960
+Scott Tolinski: So they're looking for job advice, or job information, like what are the types of jobs but there seems, you know, the cool thing about this this platform, the web, specifically is that the browser can do so many different things. So if you're really interested in doing it different, more exciting things. There's a lot of opportunities out there, if you can think about it, just think about how many different things right? So if you want to work on some more challenging problems are some more interesting problems. We have what we have web graphics, we have 3d on the web, we have video for web, we have torrent for web, we have a ton of very difficult problems, where you could do all sorts of cool stuff. Maybe you just like building animations and interfaces. Or maybe you like creating portraits with CSS. So I would not describe it. Any of the work as being like just inherently just crud. I think crud makes up a very small percentage of my development time. A lot of my development time is building interesting interfaces, and getting around really complex interaction problems and understanding how people are using things in a little bit more way than that. Writing just like database updates or or that sort of stuff. But if you're on the the server side of things, I don't know, maybe a little bit more difficult, because that's not my specialty. But there is there's a lot of really interesting stuff going on. That's not just crud in my mind.
+
+58
+00:35:15,570 --> 00:36:36,330
+Wes Bos: Yeah, I agree. Um, I think, oh, if you have that sort of base set of skills, then then those are the type of jobs you're going to find. And if you want to steer clear of that, and there's certainly nothing wrong with that, like, I built a lot of, I build a lot of crud apps in my day to day and there's always new and interesting stuff that comes up and building you eyes around them, and the data validation, all that. But if that's the case, what you need to do is you need to like find whatever corner of the internet, like Scott was just saying, whether it's animation, or video, or building desktop ABS or anything like that, and you need to find out what that thing is, and dive deep into that and start writing blog posts and making YouTube videos and because like the jobs that are doing that really, really niche and interesting things, the people that get those jobs are usually the people that are diving deep into them, and they're, they're sort of known for it. I don't think anyone's just gonna hire you off the street and saying, like, yeah, we need to start like 3d modeling this DNA samples. Do you think you could do that? I know that you're really good at like mapping state to props. You know, I think like, you probably can get some really cool jobs. But you need to start showing that you have those skills first.
+
+59
+00:36:36,359 --> 00:37:04,860
+Scott Tolinski: Yeah, I think that's the I've been such a key thing is that you can get good at anything and probably get a job. I mean, if on the web right now, unless it's like, well, I've mastered Netscape, you know, if you get really good at anything in 2020, on the web, there's going to be job opportunities out there, somebody's gonna need those crazy video manipulation skills you can do somebody's going to need those crazy animation skills. And if you're showing it off, and you're doing the work, then people are going to come to you first, right?
+
+60
+00:37:05,399 --> 00:39:08,520
+Wes Bos: Yes. Next question we have here from code finity. Have you used any of the ESX generators and the yield keyword? It seems like their mechanism for a sink await under the hood. Thank you. So using a sink await is probably sufficient? I like this question. Because when I did my ESX, we didn't have a sink await. And I taught generators inside of that. And since then, I've not actually found a use case for them in my day to day work. So a sink away, will will compile down to generators, if if that works out with the browser support. But they're, they're not the exact same same thing I kind of a cool thing about generators is that they can sort of be like long running, they don't just have to be a waiting inside of a function. So like, the example that I had in my course was, I think it was like a barber shop, or at the start of the day, you have an empty array. And you can take your iterator and call next on it, and you get the next customer. But as people are, as people come in the shop, they get added to the end of that array. So you just keep you just keep calling next. And oh, it was it wasn't a barbershop it was the deli counter at the you know, le Yeah, Marcel, you know, you get the little ticket at the deli counter, and then they're like, next number is 47. Right and get your return. Exactly. And if there's like nobody in line any more than they stop changing the number. But if there's lots of people, then you just push next after after the next customer. So that was like my one example. A very good example. Yeah, it was it was I was proud of it. But who and honestly, I have not found a good use case for for using January's in the wild. I think that a sink await does meet most of my use cases not to say that it's not a good part of JavaScript. It's just not my I have not run it into into it myself. So just tweet us if you have a good use case for generators. I'd love to see that same.
+
+61
+00:39:09,230 --> 00:40:56,520
+Scott Tolinski: Cool. Next question is from Anthony, with a legacy project that has all the builds dependencies, how do you decide when to retool and when to fix all of the NPM audit issues? Now? This is a question that, huh? So it really depends on the project at hand, and what the life cycle of this project is going to be and what these audit issues actually are. Me personally, if this is a project, that's going to be yes, it is a legacy project, but it doesn't have like a, it's not going to go away anytime soon. I'm going to invest that time. I'm going to rip it out. I'm going to start you know refactoring things. I'm going to update dependencies and I'm going to do it one at a time until it's all done. And that's just the type of person I am but I'm also going to make sure that we have tests in place so that things don't break, I'm going to not worry about doing it all and fell in one fell swoop just doing a little bit at a time. Of course, there's some things that you can do that with, Eat That Frog take care of some of the big ones and then refactor down that way. As long as you have those tests, and you have the time, I would go for it. If you if you don't have the time, or this project is like not going to survive for too long, then maybe that that changes the discussion a little bit. So how do you decide when to retool and fix all the NPM? audit issues? For me, it's like, really, what is the lifespan of this project? Am I going to be the one maintaining and working on it forever, because if I am, then I'm going to fix it. If it's somebody else, I would probably recommend that that person does all those updating, because I don't want to update a bunch of stuff I'm not gonna fix essentially,
+
+62
+00:40:57,060 --> 00:43:07,530
+Wes Bos: I've some somewhat of a similar approach to this type of thing. first thing I'll do is, I'll look at the actual security issues that pop up and see if they're actually security issues for my application. So you run it and it says you have 300 security issues. Usually what the case is, there's like one or two or three dependencies in there that are being triggered over and over again. So take a look into like, what is the actual security issue. And usually what will happen is they will show you how how the security issue will arise. And then you can reference that with your code to say, am I using it in that way? Or do I have to really worry about that? And almost always, it's like, if you use this thing, but you also have a regex, that interpolates a variable, there's a slim chance that somebody might do something like that, and you're like, oh, okay, well, I'm not doing that at all. So that's, that's not really an issue for me, it'll be fine. My next thing I'll do is, sometimes I'll just try what I call a YOLO. Update, or I just, I run ncu, which is NPM, check updates, and then dash, you will just update the package JSON. So I'll just go blown away, update the entire thing and try start the app, and then run any tests that have it and see, like, Can I can I work through any issues that are popping up in the next half an hour an hour? In most cases, it's just a matter of, Okay, I'm running into these ever running into these errors. Let me just Google those errors. Oh, here's a GitHub issue. Or somebody else hit that error when upgrading, and here's what to do to to fix it. But if honestly, if it seems like too much work, roll that sucker back and just live with the versions you have. There's there's nothing wrong with or if there's no security issues, then just just keep running the thing that you have, I have apps that run on like node eight right now. And until my hosting platform will no longer run node eight, until there's a major security issues with node eight, then I'm not going to spend the time updating this thing just yet. Because in some cases, it's just not worth your time. And the potential things breaking and whatnot.
+
+63
+00:43:08,070 --> 00:43:37,770
+Scott Tolinski: Yeah, make sure you commit back up all that stuff before running a yellow update or so it's easy to jump back in time and fix everything up. In case it's not working. I do that too. I use yarn upgrade interactive. And I want to more than one read dependency at a time. If it's a read dependency, I'll give it a try sometimes and read it like a full version bump. Correct. The full version bump of five to six. That was actually an intro five to six. Was that the original name of Babel?
+
+64
+00:43:38,010 --> 00:43:41,130
+Wes Bos: Yeah. 665 6250. Yeah,
+
+65
+00:43:41,130 --> 00:44:38,760
+Scott Tolinski: that makes more sense. So yeah, no, I will do that YOLO update as well. But again, not just doing it willy nilly. Sometimes when they do a major version of it, absolutely nothing. There's no breaking changes. And if you see that in the documentation, that's the perfect use case for this thing. Go ahead and do do it. Run all your tests, make sure everything's still working, visually confirm it yourself. And then then pat yourself on the back for fixing some sort of an update there. So yeah, I update very frequently. In fact, I, I know this is about legacy projects. But sometimes people ask me, you know about keeping things up to date. And if there's like a non breaking change in a package, I'm updating all the time. I mean, we have our test in place for a reason. And I don't want to get too far behind me to get too far behind, everything gets a little bit more difficult. So I'm trying my update stuff at least once a week, which sounds crazy. But man, every single time I run it, there's a ton of new updates, that's for sure. And I'm addicted to updates. It's
+
+66
+00:44:38,760 --> 00:45:31,410
+Wes Bos: like a dopamine hit for me even though I'm not getting anything. My main apps I'll run it once a week, no problem. Just because it's so much more manageable. You can usually read the change log of the new app thing that updated. If it's just a point release, like 1.0 point one to 1.0 point two I'll just I'll just update that because that's bug fixes a 1.1 To like a 1.0 to a 1.1 is usually not breaking changes as well might be but they're usually just adding features and fixing bugs and then a full version button and that's when you got to really read the read the changelog. But like some good like especially mongoose does this is the though the wait like two years, if they remove a method, the wait like two years and just throw warnings in your console for two years, but while you fix it, and then finally deprecate it, which is really cool of them,
+
+67
+00:45:31,710 --> 00:45:54,180
+Scott Tolinski: right, give you that time before and the biller you in the console, like react does that says hey, don't use this unsafe method or whatever. Those things are definitely helpful. Is it just the NPM version, whatever the npu? Is that what it is or and, and see you does ncu not color code? Because one of the things I love is a it does, or does not?
+
+68
+00:45:54,600 --> 00:45:56,340
+Wes Bos: It does color coat? Okay. Yeah, yeah,
+
+69
+00:45:56,550 --> 00:46:06,540
+Scott Tolinski: cuz that's why I really like about that yarn upgrade interactive. Is that like red for major version, yellow for minor version? Green for patch? I mean, really easy to see at a glance what's good and what's not?
+
+70
+00:46:06,810 --> 00:48:45,270
+Wes Bos: Yeah, that's key. Next question we have here is from Muhammad Taleb, in what instances Do you prefer to use ram versus them versus pixels for size? I usually like to think of it. So if I'm okay with n elements, font size being based on the parent, and then I'll use m, if not, I'll use a REM almost never use pixels anymore, except for on the HTML element. I'm assuming that's the set the base font size, but even then I usually use a percentage. If you set the HTML element, this is me jumping in. If you say HTML into what 260 2.5% that gives it a base of 10. In practice, I yeah, I mean, I just said 10 px. In practice, I found it a bit hard to gauge what to expect FM's have because of nesting issues. So I've been leaning towards using ram though, I thought, understanding the Rams can be less modular Can you might make some decision on that. So we've talked about this a lot and on the podcast, but we can we can do it again. So sizing things, what I usually do is I'll set a base font size on my HTML element, usually just a 10 px. And then I set most of my other stuff to be rems. And that's going to be based off of 10. And that way, if you ever need to scale up the entire website or down the entire website, then you can simply just set the change the base font size off of that. So at the end of the day, I'm still calculating in my head, how many pixels things should be because at the end of the day, our screens still are in in pixels, right? For AMS, a very rarely use AMS but their use case is for exactly what you said, when you have when you want to size something based on its parent font size, then you use an M. So in my latest course, we did the logo entirely in CSS, and everything, the border size, the padding, the font size, the amount of tilt on each of the things, all of those things were based on how big it was. And if I want to scale up or down the logo accordingly, all you have to do is change the font size of the logo root. And then everything else will will scale exactly the same amount up and down, which is cool. You could you could do that with calc calc as well. But it's pretty easy to do with AMS. And same with my, if you go to Wes Bos comm and go to one of my blog posts. There's like a little yellow square in the top right hand corner of all of my h1 through h6 elements. Those are M's because I said make this like two M by two M and then regardless of how big the font sizes, it's always scaled up proportionally.
+
+71
+00:48:45,900 --> 00:50:13,560
+Scott Tolinski: Yeah, for me, okay, so for me with font sizes, I think everything things that made me a better CSS developer when I was learning CSS, font sizes, I just about never declare a font size on a container ever, I am trying to think of a situation where I would do that. And that's made it working with M's way easier. Now granted, if you're not declaring a font size on the container, and they're just relative to the body, you might as well use ram anyways. So there's not really too much of a benefit there but maybe leaves the opportunity open. I think they the key distinction is that you know when and why? But like, you know, what I'm not doing is I'm not saying you know, my, my header, font size is 16 pixels when I really mean the nav is, you know, if I if I have a nav item, that styling is going to be attached to essentially that element itself, whether it is the list item or whatever. And then that way you don't have to worry about those weird issues that you encounter when you're first learning M's, or rems, where this thing is not the correct size that you're expecting into I'll because of the route is not what you're expecting it to be whatever it's relative to. So I don't define any font sizes on containers. I basically set up my new Higher typography system as font sizes on elements. And then I also also set all of those font sizes as custom properties. So I have like an h4 customer via CSS variable,
+
+72
+00:50:13,560 --> 00:50:14,280
+Unknown: sorry,
+
+73
+00:50:14,280 --> 00:51:10,110
+Scott Tolinski: I think they're actually like legit called CSS variables now custom properties anymore, either, right? Because I've been calling them custom properties to try to stay like legit. And then I think they're in Can I use as CSS variables. Now, either way, I set up like an email have an h2, as that's my CSS variable, just in case I need to reset an h3 to be the size of an h2 or somewhere in the code, right. But again, I'm only ever updating the font size on the thing itself, and not the container to avoid any sort of weird root issues. But in your use case, that is where you have like the squares being relative to the parent, that is such a good use case. But unfortunately, that that type of thing, like doesn't pop up that much. So me personally, I use EMS, but for no good reason. Really. I functionally use them the same as it as rems, and most likely use them interchangeably just because of my practices and CSS.
+
+74
+00:51:10,560 --> 00:51:14,730
+Wes Bos: Speaking of fonts, which have stacks, font stacks,
+
+75
+00:51:15,720 --> 00:51:19,470
+Scott Tolinski: that's the right word. But no, no. That was a good transition. Yeah,
+
+76
+00:51:19,530 --> 00:55:31,590
+Wes Bos: yeah, no fonts, which have font stacks. Another type of stack that we should take about is one of our sponsors, which is stack bit. So Stackbit offers developer tools that enable things like inline content, editing, live previewing of content changes, and collaboration features on your jamstack website. So if you've got a jamstack website already, so whether that's a Gatsby website, or next jass or nuxt, and you've already hooked it up with whatever CMS you're using, on the back end, they they support all kinds of different CMS is like Sanity, contentful, dado, CMS Netlify, CMS forestry. So you use still use both of those things. But you as the developer can take jamstack to allow you to do things like real time editing, real time previews, all kinds of tools, it's really cool. It gives you that extra, like I think, like, if you're building a website, a lot of marketers are really going to appreciate this, this features to add it onto your jam stack website, because it it fixes a lot of the little downsides that we have with the gem stack. So check it out@stackbit.com it's the best way to jam stack. Thanks so much, Stackbit for sponsoring. Let's grab one more question here. And we will pick it up from from there. Actually, this is this is a perfect question from talking about jam stack and things like that. headless CMS is. Hello, chaps. Hey, hey, Billy. Thanks so much for the show, I learned an awful lot listening through. I've been dabbling in development for some time now. And I've taken on a project for an express site, which aside from a few past static pages will include a shop with a number of small items, a customer dashboard for order tracking, submitting supplementary info, and image center journal blog section. I've listened and re listened to your CMS Roundup, which is great. But having worked through Wess node course, I'm kind of thinking, why would I spend time integrating a CMS when I can just build an add post page for admin users, save the posts in MongoDB, upload the images to my server and use CloudFlare. Free CDN tier. Please explain to me why this or this isn't a bad idea, or more generally, share your wisdom on what scms is actually necessary pace. I think this is a really interesting question. Because like, that's the answer is like, why would I use a x external package or a service, when I can just build that myself, like Wes, his course showed me how we can make an admin area, we can edit the thing, we can create a forum, we can update the update it and you're up and running. So like, first of all, good on you for doing that. Because I think in a world of slap all these services together, and all sudden your website costs for the hundred dollars a month, being able to just do it all yourself is key. But why would you want to use a CMS over just building it all yourself? Because reinventing the wheel? Quite honestly, there's a lot of finesse that like last 10% of building a UI, hitting all the different edge cases of being able to do something like your clients gonna come in and say, Alright, I have these two lists of content. How do I reorder them? And then also, I have one in the wrong list. I want to drag it out of that list into the other list. How do I move How do I do that? You go like, Oh, well, you can't like I didn't build this like amazing drag and drop UI, where you can cross data paths and relate content and things like that. I just gave you a text box where you can type it in and that's where it's at. messes really tend to shine because that like example I just gave like that would might take a developer two weeks to build that thing, when it's just like a small percentage of the little UI that you get for free. In a CMS plus things like an API data validation, maybe a graph qL API comes already with it. There's a lot to gain in terms of speed, and not having to reinvent the wheel when you reach for CMS. But then there's also a lot of control that you can have when you do go ahead and build the whole thing yourself.
+
+77
+00:55:32,190 --> 00:57:22,830
+Scott Tolinski: Yeah, I think I experienced this firsthand myself just about all the time, because I, you know, cut in my own back end entirely for level up tutorials. And we had to do just about every single basic, basic CMS feature that you can imagine in my platform, right? Anytime I need it, I got to build it, drag and drop to reorder whatever, I got to build it. And it's both a strength and a weakness because at the same time, some of the things I'm most proud of in the level of tutorials, codebase are some of the Admin Tools, as in my like, tutorial builder, the Course Builder, the the series, importer, all those things are really cool that I've made, and I really spent the time to make them cool. But imagine how many hours I spent building that stuff that I could have been spending doing other things, you know, adding more functionality, recording more, just all sorts of things. And now granted, I really like building Admin Tools. It's a lot of fun, that like basic CMS sort of stuff is fun for me to work on. But at the end of the day, sometimes is just like hedging, like, how much do you need to do yourself verse? What is the actual cost of making these decisions in time? Right? I don't know it's a tough because at the time that I made level up tutorials, there probably wasn't any good option to do all this stuff. Now there's like things like reaction, commerce, or ghost or some of these other platforms that could have done all this stuff for me in ways that are probably a little bit better, because there's more manpower working on it. So there's definitely trade offs to think about there. And custom tools are really sweet, but they are definitely a big, heavy chunk of your time. That's for sure. All right, great
+
+78
+00:57:22,830 --> 00:57:27,930
+Wes Bos: question. Thanks so much for asking that. Let's move into some sick pics.
+
+79
+00:57:28,290 --> 00:57:33,960
+Scott Tolinski: So this is kind of interesting. Have you ever heard of foam? Wes?
+
+80
+00:57:34,980 --> 00:57:38,550
+Wes Bos: I've heard of foam. foam, what's foam, foam
+
+81
+00:57:38,550 --> 01:00:52,230
+Scott Tolinski: bubble.github.io forward slash bump. That's not the best URL. This is totally unrelated. I was listening to a podcast just for fun to to hear what kind of other tech podcasts are out there, you know, just to give a listen. And this person's like, I'll have it in the show notes. They didn't. So it wasn't in the show notes. For a link for this thing I really wanted to check up on and then they were like, or you can just visit blank blank for slash blank forward slash blank, blank blank. And I was just like, Oh, just like the longest URL. It was like not even related to anything. I was just like, come on, I'm not gonna type this in correctly. Okay. So fall. So foam is really interesting. foam is a personal management sharing solution, inspired by Roma research built on Visual Studio code and GitHub. Now, if those if any of those words sounded familiar to you, you might even that give yourself a pat on the back. Some of the stuff is really cool. I don't use Rome myself. I use something called obsidian. obsidian is an application for taking connected notes, where you can easily link between things and I found it to be a better fit for my notes than something like notion. I use notional for databases and tracking and all sorts of stuff. But I don't use it for my notes. Because obsidian is a really nice with this whole math, there's a method, it starts with the Z. It's a long word, I'm sorry, I'm blanking on this method, methods name. Oh, the zettelkasten Oh my gosh, zettelkasten. That is not a word that I'm going to be able to say correctly without hearing somebody else say it. But it's the whole building a second brain thing where you can do this sort of really neat little linking syntax and have all of your documents be linked in this giant graph of connected information. And it's fantastic. So I've been using obsidian to do this because it writes to markdown files. And then these these cool people created foam, which is basically a Visual Studio Code version of this exact same thing where you can work in markdown apps, you get the graph view, you can link between things, it's all markdown. It's all connected. So instead of having to have some third party app that is like essentially mimicking Visual Studio Code You just got it all in Visual Studio code. And it's really cool. It's very, very cool. So check it out here, it's still early days. So a lot of the install stuff is, is a little rough, I found, there was like some interesting things where it's like oh t To get started, just clone this GitHub template, and then you clone the template. And the problem is, is the template has like a bunch of like, like custom VS code, extensions and configuration. But for some reason, it's like they felt the need to define a theme and define a font and stuff like that. It's like, I don't want you to change my font or theme I want, I want to use my theme font. So just little things like that. But it's still early days, it's very cool. If you're looking for a free notetaking open source application that uses sort of like the Rome research ideas, then you're gonna want to check out foam, it's very cool. I'm very into it, beauty,
+
