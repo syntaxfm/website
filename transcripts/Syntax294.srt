@@ -1,0 +1,432 @@
+1
+00:00:01,319 --> 00:00:10,560
+Announcer: You're listening to syntax, the podcast with the tastiest web development treats out there. strap yourself in and get ready to live ski and West boss.
+
+2
+00:00:11,399 --> 00:00:12,720
+Wes Bos: Calm dude.
+
+3
+00:00:15,750 --> 00:00:18,510
+Scott Tolinski: I'm very glad you did hint that you were going to do that.
+
+4
+00:00:21,090 --> 00:00:42,960
+Wes Bos: We started. Welcome to syntax today we have the spookiest syntax. We will tell you stories from web developers, where it all went wrong. With me today is spooky Delinski?
+
+5
+00:00:43,559 --> 00:00:44,850
+Unknown: Whoo, whoo.
+
+6
+00:00:46,290 --> 00:01:06,900
+Scott Tolinski: Welcome to the DAX everyone. We're doing spooky web dev stories. I am very happy because I think the closest Wes has ever come to quitting the podcast was when I did a spooky voices for half of the podcast. And he asked me to stop. So this has made me very happy was I'm very you've totally made my day. Thank you so much for doing a spooky voice here.
+
+7
+00:01:06,950 --> 00:01:07,530
+Unknown: Okay,
+
+8
+00:01:07,530 --> 00:01:28,350
+Scott Tolinski: this is our spooky web dev stories episode, where we are going to be reading to you stories sent into an sent into us anonymously about various a spooky web dev situations that have taken place in the depths of the that is our career choice sometimes.
+
+9
+00:01:28,380 --> 00:01:35,310
+Wes Bos: So today, what we have to spooky sponsor, Scott. Okay, who
+
+10
+00:01:35,310 --> 00:01:39,210
+Scott Tolinski: are spooky sponsors? Who was boo boss?
+
+11
+00:01:39,390 --> 00:02:00,900
+Wes Bos: Well, if you if you have a headless CMS, a CMS without a heart It was cut off. Where might you host your jam stack? Not only at Netlify. So like a grandma now. I know. I love your voice because it's
+
+12
+00:02:01,890 --> 00:02:05,220
+Scott Tolinski: just like it's like, yeah, it's like which voice is that? choice.
+
+13
+00:02:05,670 --> 00:03:00,270
+Wes Bos: And the other spooky thing could be bugs. Imagine having bugs in your application, or rebuild track those with century. We'll talk about them partway through the episode. All right, I'm back to normal voice now. All right. So these are stories that we asked you, the general public to submit. And man, we got a ton of them. So these are just stories where people are working in web development and you accidentally delete a database or send out an email that you shouldn't have or just like these, like stories that you hear in web development where something went wrong, and you just want to stick your head in the sand or, or say Ooh, ooh, that was that was rough. So it's funny. Unfortunately, a lot of these stories could have been avoided with a lot of testing or proper, proper staging environments. Maybe this is both spooky as well as like, cautionary tale of what to do with production.
+
+14
+00:03:00,840 --> 00:03:07,319
+Scott Tolinski: Yes, a cautionary tale. All right. Do we want to get into the first one? Do you want to do it? Are you would you like
+
+15
+00:03:07,319 --> 00:03:11,190
+Wes Bos: me to do it? Because this, the second one is one of my favorites. And I want to read that one.
+
+16
+00:03:11,280 --> 00:06:13,050
+Scott Tolinski: Okay, so this one was titled The most expensive Boolean ever, I might have some alternate titles for these as well. Early in my career, I was working at an online casino company. As with all paid services, it was crucial to make it easy for our customers to pay us. Yes. Many payment providers, however, such as PayPal chose not to work with the companies in the gambling industry. So as a big part of our job was to implement more niche payment providers for customers and various countries that we served. Yeah, this all seems like one of those issues so far that you hit you're like, Oh, great. Nobody wants to support gambling. Okay. Yeah. So while I was still new at the company, our CTO integrated one such payment provider, everything went smoothly for a couple of weeks until one tiny but also important error surface. You see, most providers offer some sort of way of testing their integration service without having to make any real money transaction. Here each transaction will be initiated with among all the usual payment information such as credit card number, a Boolean flag called the test right. So a money deposit with this flag set to true would act like any other transaction except for a small details that the card would not actually be charged, right. This is very common, or they might have test cards or things like that to to run the payment. At deploy time our CTO forgot about this flag and its value remained hard coded as true. This one bit of information enabled customers customers to make free deposits than withdraw actual money. As we discovered the error, a big salvaging operation began our operational staff deducted credits from affected customers who still had them and halted withdrawal requests. West's, but with most times, it was simply too late. With no reasonable way of asking individual customers deposit money that they owed us, we had to accept a massive loss. our CTO handled the situation by letting the dev team know what happened and humbly took blame without attempts to minimize his role, a gesture that turned out to be valuable for me as soon thereafter assumed responsibility for our payment provider integrations and good sleep easier knowing that mistakes happen to everyone. I'm happy to report I made it through without collecting one of these stories for myself. So this is a non self issue. This is this person. Luckily, the CTO did it because that would be a spicy meatball for any individual small employee to make at a company like that. Wow. So basically, if you didn't get it from what happened is they went live with their test payment processor, but this payment processor, it didn't use fake credit cards for their test surface, it uses real information for their test surface, allowing them to make deposits for free and pull out real money is the big, big one. That is an expensive, expensive bug, holy cow. That might be the most if we're doing this in dollar signs, like elbow signs, that's like a $5 sign bailed
+
+17
+00:06:13,560 --> 00:09:17,010
+Wes Bos: out early. He didn't say how many but like, sounds like it was was quite a bit. Yeah. Next one we have here is I've titled it an actual logging issue. One thing we should say is that we are have made all of these anonymous, most people requested, obviously, please keep me anonymous, but just keeping absolutely everybody anonymous for this. So thank you, if you did submit one, but we don't want anyone to get fired. Yes, I work for a logistic company in Johannesburg. And about a month ago, we were rolling out a new system for clients who deal in timber, like trees and pieces of wood and stuff like that. Our system was simple on paper track timber logs using QR codes as they move around the world. Each time a QR code was scan, you could see one logs entire journey on our app, as well as the entire containers details, kind of like tracking for logs, right? We had spent a year working on system with just about all done all we had to do is generate production QR codes and ship them off to our men, men on the ground in Durban, I was given that task my duty was to write up a script and generate the QR codes, print them onto an a4 file and eventually they'd be printed and laminate each QR code was basically what we call a log ID. That when you wrote data to it would update the database with whatever details you put in. how it would work was the QR code was generated. The log ID was written to a database as well as the QR code. That way we would know how many logs were scanned and could keep track of all the other information like dimensions and so on. So I wrote the script overnight fixing some bugs and seeing if it was populating in the database which I clearly remember it was important part note. As the daylight sailed in, I ran one last test and the QR codes were generated. I ran a quick print and voila, there they were. I pushed the code went home Three days later, the team were on the ground celebrating the 2000 logs scanned into the system. The first, the first batch was ready to go to China. But deep in the tech department, there was a secret. And somehow, I had commented out the code that was supposed to write the log IDs to the database, meaning only one log was actually ever saved to our database. Because of an issue with the QR code that log was discarded, which brings us down to 00. Needless to say, the client eventually spotted the issue. And we had to fly down to the depot before the logs were packed and replace every QR code with a new one. It was hot and humid. The average temperature was 41 degrees Celsius. It took us two full days of working nonstop to fix the issue. And we delayed departure by a full week. The only saving grace was we had a good time. Their band was has some really beautiful beaches and some awesome spots. So if you didn't catch it, this guy commented out a line of code and resulted in him flying around the world and stapling pieces of paper
+
+18
+00:09:20,520 --> 00:10:25,980
+Scott Tolinski: flying around the world because of a little messed up bug. Oh take a big trip that is rough. That is definitely some some real world results from just a tiny little mistake. Oh, interesting. Oh, man. Oh, man. All right, this next one it says here's my worst coding story. I was working in Adobe Experience manager, a pm and it was getting to the end of my nerves. I was adding some comments so I could quickly get back to the next day. The comment was if this code ever ships and I am not around, tell my wife that I love her. And that tell my son snitches get stitches. He was on the site for six months before I got an email asking about it. the plus side of that was I had to learn at get hooks to make sure this would not happen again. So with this content This made it to the actual like live site I you know, is a, like a CMS. Like that's a lot of things so so this content made it to the site that is amazing.
+
+19
+00:10:27,480 --> 00:10:35,970
+Wes Bos: What I wonder is like, what what type of good hook did you have to add that like if the word snitches ever gets in, just remove all
+
+20
+00:10:36,000 --> 00:10:38,370
+Scott Tolinski: Yeah, right. That's hilarious. Oh, that is
+
+21
+00:10:38,370 --> 00:11:29,159
+Wes Bos: funny. All right, next one is the spooky office skeleton. This one made me laugh super hard. At a previous job, I was just laughing. At a previous job, I was working on a scheduled email task that went to a mailing list of a given organization. Now when I was running my integration test, our staging database only had test data how I was wrong. We had pulled in production into staging very early into the company's history, and had emailed several of our longest standing most loyal customers and a quote Hello, I'm redacted name of the oldest man in the office. Let's call him Phil. Hello, Phil. The spooky office skeleton. Animated GIF of a skeleton play Trump.
+
+22
+00:11:29,970 --> 00:11:33,419
+Scott Tolinski: Oh my god. That's a trumpet. trumpet.
+
+23
+00:11:33,870 --> 00:11:50,549
+Wes Bos: Yeah. So I own up to the failure with the one on one emails to each of these customers who thought they are we in fact not great. Not only did he like goof it up with his customers, but he also like called out the oldest guy in the in the eye which
+
+24
+00:11:50,549 --> 00:13:12,149
+Scott Tolinski: is that that might be the funniest part to me is that like, and then the the gift is fantastic. It's very spooky very skeleton and is right at home on the web. That is great. Oh my gosh. Next one is prevent the default of making money. I have one horror story. Three years ago, I was starting my new job. A few weeks into it, I was asked to create an ROI return on investment calculator for the company website. I had a simple onClick function for a button. It all worked. And I published it. One week later, my CEO and marketing team were panicking because there were no inbound form submissions from any of the forms, newsletter or website, I quickly checked everything and realize that I had grabbed the elements using input and then the attribute selector type submit without any specific class. So it ended up on all forms. And since the function had prevented default, one of the forms worked for one whole week. This is a specificity issue with vectors. That's great. Oh, so basically, they just prevented all of the forms from on their entire site from working. And that could have been a very costly mistake. I know there's a lot of industries really, really heavily rely on their forms for intake and customer acquisition.
+
+25
+00:13:12,149 --> 00:13:12,840
+Wes Bos: Oh kidding.
+
+26
+00:13:12,870 --> 00:13:22,890
+Scott Tolinski: Don't matter what we're learning. A lot of the A lot of people have made some very expensive mistakes. I've made mistakes in my career, but I don't get paid in a way expensive mistakes like this holy cow.
+
+27
+00:13:23,279 --> 00:13:24,120
+Unknown: Oh, man, he
+
+28
+00:13:24,120 --> 00:13:33,480
+Wes Bos: imagined stick my head like I would. I would just like stick my head in the sand and be like, this is not even me. And I can hardly read this.
+
+29
+00:13:33,510 --> 00:13:49,230
+Scott Tolinski: I know. Yeah, I know. It's funny, because non non devs. You know, people might not cringe that hard. But knowing that like what goes into these things, and how they end up being pushed live and who the stakeholders are, like, well, I cannot I cannot imagine experiencing the shame of
+
+30
+00:13:49,529 --> 00:14:27,120
+Wes Bos: some of these. Alright, next one. This is one that we got computer magic trick way early on, I set up an endpoint in PHP that took an argument to delete a directory, so like, probably URL forward slash remove Dir. And then as a parameter says dirname equals whatever. I want to hit it with no argument and the computer disappeared. entire computer because it's probably running in like root. And then if you run RM, whatever, and it just deletes the entire computer.
+
+31
+00:14:27,360 --> 00:14:34,710
+Scott Tolinski: Oh my gosh. Oh, man. Yeah, that is a lesson in API design. Definitely less than an API design.
+
+32
+00:14:34,860 --> 00:14:38,789
+Wes Bos: sane defaults are checking for required arguments.
+
+33
+00:14:38,789 --> 00:15:22,049
+Scott Tolinski: Base base cases. Yeah. This next one is updated user set score equals new score where I forgot where Id so this is a database operation here where the person updated the user's score without specifying a user ID, which I don't I'm not an SQL person myself, this SQL code doesn't mean a whole lot to me. But the root result here is, every time I was updating the score for one user, I overridden for everyone else's score as well. So basically, that's great. Imagine doing any sort of database operation, instead of performing it on one user, you're performing it on all users, every user,
+
+34
+00:15:22,049 --> 00:15:22,830
+Wes Bos: how do
+
+35
+00:15:22,830 --> 00:15:30,630
+Scott Tolinski: you recover from that? Well, hopefully, you keep in backups and you roll back the database, because yeah, there's not a whole lot of hope from fixing that one. Otherwise,
+
+36
+00:15:30,720 --> 00:15:48,299
+Wes Bos: we got that story probably five times from people I'm not we're not going to read every single one. But pretty much people forgot the where clause in SQL. And I guess that that seems like a design flaw in the line in SQL in general, where if you don't provide a where it just assumes all of
+
+37
+00:15:48,299 --> 00:15:52,380
+Scott Tolinski: them? Is that Yeah, is that I don't know, SQL enough to
+
+38
+00:15:52,549 --> 00:18:04,200
+Wes Bos: it? Is it? That's how it works? Yeah. Hi. sling some SQL myself, and I never know. All right. Next one is called change reaction. It was the second year of me working at a company full time doing PHP, we managed to get a big project, which is way over our heads, we still managed to get most of it right. I don't know how we did it, fake it till you make it. One part of the system that we did was a newsletter, there was first a newsletter software, which we use through an API, there was the new website that we built, there was the client IT infrastructure, where we had an old and crappy API. And there was a middleware which communicated between the new website the old and the old client IT infrastructure. As a result, those systems were all connected, and a change on the website needed to trigger a change on the client data side, etc. Long story short, when I was testing a new feature, and triggered a new newsletter was which was sent to all 30,000 production users of my clutch. But it didn't end here. Because of the bug, half of those users received this email every minute for about an hour, an hour because I was at a conference. And I needed to drive back to the office to find a way to fix this horror loop, which I was responsible for. Because of some hooks, one change triggered another and resulted in an endless horror loop. Also, since it was just some emails I accidentally sent, but I felt like people were dying because of me, what I learned is so much or else I could have prevented it somehow being better at what I do, but being careful. But in the end, this stuff happens to everyone. This is true. I, the other day sent a black friday email. Oh, and this is during November, or no, sorry, this was in September, and I sent out a black friday email, which is. And the worst part about it, is that you can't stop it because it goes out to everybody. And then you start getting phone calls and emails from everybody being like, Hey, did you know yeah, I knew I know what happens. So Oh, my gosh,
+
+39
+00:18:04,200 --> 00:19:28,770
+Scott Tolinski: before we get into this next one, I do I want to I wanted to bring in a personal one. Yeah, this isn't a mistake I had made. But one one time we had worked for this conference, and we were is a major conference. It was at the anime convention, a big, big, big conference, I'm not going to reveal the name of said conference. But we were tasked with building a scheduler app, we built it. However, there was like the whole real time scheduler thing. And somebody we didn't even know like the time to do it. So we contracted it out to like a third party. And this is somebody that we knew. And he built basically like, it was really not a whole lot of stuff. But it was just JavaScript for like infinite loading when you scrolled on the calendar. And we did not check his code well enough. Because if we would have we would have seen that he had a an infinite loop in there. And just about every single person that hit if you basically you're imagine this you're at a conference, you're like, let me go check schedule, you open up the scheduler, every single person that logs onto that thing is just hammering our server, yourself. DDoS ourselves took down the conference scheduler for an entire day during everybody had to use the pamphlet once we were in crap pants mode. Needless to say, unfortunately, it was not my project. Well, fortunately, it was not my project. So all I had to do was just sort of stand there and watch and Horace everybody else had to freak out about it.
+
+40
+00:19:28,800 --> 00:19:30,960
+Wes Bos: That's hilarious. All right, next one is personal
+
+41
+00:19:30,960 --> 00:20:11,760
+Scott Tolinski: MongoDB I once left. Oh, man, this is so good. I read this one already bought a company. then a month later went into my MongoDB Atlas account and cleared up some old cluster. So Well, it turns out at some point, I used a personal cluster for a work project that previous company he had even gotten to use in production. Needless to say, I got a call from my old boss. So basically, this is the exact type of thing that I would do being like I am a big fan of deleting things and getting rid of things that I no longer want or use. And sometimes I'm just like, Oh, right. I actually did need that like, oh, oh,
+
+42
+00:20:11,789 --> 00:20:12,390
+Unknown: great.
+
+43
+00:20:12,449 --> 00:20:22,440
+Scott Tolinski: This is like basically you come in, you start nuking clearing out old stuff, only to find out that one of them was used in production by a client application. Ruff
+
+44
+00:20:22,469 --> 00:21:06,180
+Wes Bos: ruff nightmare. Next one is called Hello, Rob. While working on the BBC I player well, rubber duck debugging to a colleague that's just sort of talking to a colleague about what's broken and how you're fixing it. I stuck a log message into the site wide all text helper. Hello, Rob. And I forgot to take it out and made it into production. And every single image on the website had an alt text of Hello Rob. That reminds me of remember last year there was the someone that crashed their server by writing a 10 gig file of success. Oh, that's good. That's very good.
+
+45
+00:21:06,180 --> 00:22:53,100
+Scott Tolinski: You know what else is good Wes. What's good? The move is the word who solve all of your spooky bugs. You're creepy crawly bugs on your side. I'm talking about sentry@sentry.io century is the perfect place to keep track of log and really just manage any errors and exceptions that happen in your application. You got creepy collies, you got ghouls you got what else got skeletons in there, they're marching in with their pitchforks. Well, we can assign those skeletons and say, well, that skeleton really only showed up once I started committing the line of code about awakening the dead so maybe I should create an issue that says please remove code that awakens the dead and then that will allow us to track that as we then vanquish the undead from our site. So head on over to sentry@sentry.io use the coupon code tasty treat all lowercase all one word and you will get two spooky months for free on Sentry dot i O. Okay, next one is SSN regex, I was writing a regex function to validate a social security number before being hashed into a DB or see you want to tell me a spooky story you start with I was writing regex because that's me. However, before doing validation, I forgot to unhashed the SSN numbers and ended up deleting close to 10,000 patient SSN numbers from our production dB. I spent the next two days recovering and re inserting 10,000 patients social security numbers yikes because they look what are you think if you don't have backups or whatever you end up just being like he please reenter your social security number into this. Like Yeah, we'd lost your socialist
+
+46
+00:22:53,130 --> 00:23:36,420
+Wes Bos: that's one of the most interesting thing about all these stories is how people had to get the data back Well, once your emails or logs or because in a lot of these cases people don't have proper backups running. Next one is called WordPress plugins. I deleted the WordPress plugins directory on the server not tracked and get before going on vacation for two weeks. Sounds like a good idea. Yeah, I fixed the white screen of death and then left. I couldn't push updates to the site until I reinitialize the repo and tracked plugins especially odd because of how what WP Engine did get at the time so it sounds like a website was down like even if you throw them in you have to login and set them up and stuff like that.
+
+47
+00:23:36,420 --> 00:24:04,830
+Scott Tolinski: So for two weeks, no thanks. No thanks. Taking the website down right before you go on vacation. always the best thing promo? Yeah, it's a part one it's a promo to it's the best way to have a super relaxing vacation. Alright, locking you in that yet effin dummy. I had this is quote logging you in your fn dummy. And I don't know if this was actually fn or the full word here. Once it was
+
+48
+00:24:04,830 --> 00:24:06,600
+Wes Bos: the word I amended it,
+
+49
+00:24:06,989 --> 00:24:56,730
+Scott Tolinski: Wes amended it we are a PG podcast I had I had locking in your fn dummy. Once go to prod he was the test auth stuff I was working on and I never got rid of it until the client side. Yeah, so dropping f bombs in your site, right? Yeah, probably not something you want to do. I actually I used to be like very, very liberal with my use of not not like f bombs, but like just slang or funny things or a little little blips and blurbs in the code that that like would not be considered to be professional. And you definitely learn your lesson when this happens to everybody. You You don't do that. Just keep it pro KEEP IT Pro and then if you make a mistake, at least the mistake is Pro.
+
+50
+00:24:57,120 --> 00:25:07,710
+Wes Bos: Next one is called a hostile coding environment. launched a site a day before I went on a two month backpacking trip in 2009. So yeah,
+
+51
+00:25:07,740 --> 00:25:10,980
+Scott Tolinski: good idea is another useful theme here to pick up on.
+
+52
+00:25:11,160 --> 00:25:38,280
+Wes Bos: Yeah, well in a hostel on the first night I checked my email only to find out there was a major bug. I spent the next five hours writing PHP in a non mobile friendly editor on safari on my first gen iPod Touch fixed it was a long time ago, like I guess I had a laptop at the time, but doesn't sound like he took it along. Writing PHP and a non mobile friendly editor on iPod Touch. Amazing.
+
+53
+00:25:38,310 --> 00:25:45,150
+Scott Tolinski: Yeah, iPod Touch, it'd be imagine what if you did it and like a click wheel? I brought this app back up and the click wheel iPod,
+
+54
+00:25:45,210 --> 00:25:45,900
+Wes Bos: it would Tina?
+
+55
+00:25:48,180 --> 00:25:48,720
+Unknown: Tina,
+
+56
+00:25:49,410 --> 00:26:32,970
+Scott Tolinski: I used to be fast at night. I was very quickly. I mean, I remember when it broke when it went to the full size keyboards, I was like, definitely got slower. All right, a graceful exit. I took up the master PSD template for a monthly email blast and destroyed it while building out assets back when slicing was commonplace. Yeah, the good background, this is what you did, because we had largely largely raster based sites, right? So you would do the site in Photoshop, you'd slice it all up. And then the process of that, oh, I don't know about us. But I would like do what this user is saying. And I would I would actually destructively manipulate this thing to get at like a rat getting at the cheese. I'm scratching and claw until I get all of the graphics I need to the site.
+
+57
+00:26:33,029 --> 00:26:37,110
+Wes Bos: Yeah, cuz you sometimes you had to, like rearrange people's like folders and stuff like that.
+
+58
+00:26:37,259 --> 00:27:05,010
+Scott Tolinski: Yeah, you had to get to that content. And it wasn't as easy as getting the CSS to just do it. So this this user, they basically destroyed the master email PSD template, no biggie until I hit save on the master quietly close the file and hopes no one figured out it was me. I left the company a few weeks later, so they basically destroyed the master PSD template and was just like, Alright, I'm out.
+
+59
+00:27:06,120 --> 00:27:12,810
+Wes Bos: This was like big back then like back. A lot of companies just use Dropbox or like a local file server to sync files and there was
+
+60
+00:27:12,810 --> 00:27:14,460
+Scott Tolinski: no Wildstar Yeah,
+
+61
+00:27:14,489 --> 00:27:18,390
+Wes Bos: there was no backup or version control. And if you goof something up,
+
+62
+00:27:18,479 --> 00:27:25,620
+Scott Tolinski: it was gone. Backup and version control is final, final master PSD underscore final to you know,
+
+63
+00:27:25,710 --> 00:28:03,540
+Wes Bos: so good. Next one is a fav icon DDoS DDoS, our own website when I forgot to include a fav icon back in 2010. This in turn gave a fully fledged 404 page on every fav icon request increasing bandwidth needed to serve the site in an order of gigabits per second. So this one, this one puzzled me a little because I don't remember having this issue. But like when a favicon is not there, it obviously serves up your 404 page. If your 404 page had significant resources on it that then requested more resources, you could DDoS yourself Ruff,
+
+64
+00:28:04,110 --> 00:28:41,640
+Scott Tolinski: ruff ruff at self DDoS not so good. All right, next one common sense. I didn't use it since it's a store how much a client should be charged accounting was trying to figure out why we're only getting a 10% of what we were owed for months. So this is what do they call this like a shifting decimal error or something like that, where like, in fact, this was the plot point of the movie office space when they were trying to steal pennies, or fractions of a penny. And they accidentally shifted a mundane detail like a decimal point a couple of places, yeah, resulting in a much different figure than that was accounted for.
+
+65
+00:28:41,640 --> 00:30:53,550
+Wes Bos: Or they stored it with like a, like you're using like a sword as a string. And you're trying to parse that into a number and the base is not 10, but eight. And whenever there's a lot, a lot of bad things that can happen when you don't serve, you don't store how much things cost in a non decimal value. Next one is I got permission. This one's for all the Canadians out there got permission to say which company this was, because I'll tell you why it was hilarious in just a second because of people and get it I will know who this is. So indigo.ca, which is indigo.ca is the biggest bookstore in Canada. They've got bookstores everywhere and online. They're there. They're huge for that indigo.ca once went down because the CloudFlare CDN j s had a bug that served a random piece of content instead of whatever you're requesting. So before we had like bundlers and stuff, it was popular to load in your libraries in via a CDN URL. And the reason behind that is because if somebody loaded jQuery from the same URL that your website then they would already have it in their cache and it would go quicker. So people use the CDN JS website for a long time. In our case, we were requesting require j s since this request was valid. In HTTP 200, there was no easy way to know if it was failing aside from checking the contents of the of the module that worked. The entire site failed to load white page. So like, the whole thing just didn't work at all. And Heather, yes, that Heather, so this is only funny to Canadians. But if you go into indigo, there'll be a sticker on the books, right? When you come in, there's a there's a, there's books, like right there, and this has Heather's pic. And it's this big gold sticker. I have one of my laptop because I think it's hilarious. It says Heather's Heather. Yes, that Heather wanted to know which vendor was responsible for taking down her site. Oh, only imagine the CTO and VPS at that time trying to explain open source CDN to her. Needless to say, we change this to a local copy and check this contents after that,
+
+66
+00:30:53,640 --> 00:31:00,300
+Scott Tolinski: oh, that's the thing that people say you could get burned by, but I'd never actually heard somebody getting burned by this. So that's great.
+
+67
+00:31:00,570 --> 00:31:12,000
+Wes Bos: Yeah, although I'm just gonna say out there for one of our sponsors today, if they had century, they wouldn't be able to see the actual syntax error that happened when they tried to load required jazz
+
+68
+00:31:12,000 --> 00:31:40,170
+Scott Tolinski: to bring in our sponsor background. Yeah. Well, if we want to maybe maybe do another Mukesh bounty producer on one of our sponsors, today, we'll give you some very spooky behavior, when you push to your Git repo from your site did automatically build it without having just added up. And I'm talking about netlify@netlify.com. Netlify is the host for all of your front end content. And more. Wes, do you want to talk about Netlify?
+
+69
+00:31:40,440 --> 00:33:02,100
+Wes Bos: Yeah, so Netlify is the host for your jamstack website. And what's kind of cool is that Netlify also has a whole host of other features that it gives you alongside the building and deploying and caching and all that good stuff that we probably know about, but they do things like contact forms. So like that's, that's a tricky thing. If you're doing a jamstack website, how do you do a contact form, right? So they offer that they've got plugins for amp algolia, if you want to, if you want to implement search in a jam sec website, you can use golia. They've got plugins for all of that stuff. They've got all kinds of really neat analytics stuff built in. So it's kind of cool. Like, because whenever you mentioned the amazingness, of jam stack, inevitably, that comes along, people say what about contact form serverless functions, search all of these things, login, CMS, all of that. And nella phi gives you offers all of that as well, which is pretty cool. So check it out. netlify.com forward slash syntax, you can sign up and check it out right on there, whether you're using a Gatsby or a next or it's kind of cool, they have Sanity, stripe 11 D, which is a really cool static site generator. So check it out. netlify.com forward slash syntax.
+
+70
+00:33:02,360 --> 00:33:13,290
+Scott Tolinski: Sick. All right, next one is don't leave the country. Hey, Wes. I'm going to put in Scott in here because he didn't say and Scott and uh, oh, yeah, no, this
+
+71
+00:33:13,470 --> 00:33:17,670
+Wes Bos: one, specifically a friend of mine, which I was so surprised to hear the story.
+
+72
+00:33:17,910 --> 00:34:25,190
+Scott Tolinski: That's great. They should also say, hey, Scott, it'd be nice to stop. Here we go. Hey, Wes. I saw your post about horror stories. Oh, yeah. was just added Scott with an exclamation point. And I appreciate that. Hey, listen, Scott, I saw your post about horror stories. A few years ago, my clients husband was arrested for embezzling. He was a high up at a Canadian telecom company. And the feds called me in to and told me the website I built were being paid with illegal money. So my business was under investigation for wandering. I had to hire a criminal lawyer and was told not to leave the country or I could face unrest. Needless to say they were additional clauses that I added to my contracts after that, if we want to have like a tear of you know, how big of an eff up or I guess this isn't on the user's part or whatever you want it like yeah, consequences for a building our websites and stuff. This is all very high up there on the very extreme consequences being investigated by the feds. Oh, yeah, that is a scary situation.
+
+73
+00:34:25,650 --> 00:34:54,420
+Wes Bos: I ended up following up with my contact with the story and I said, Oh, like like, what did you add to your contracts to say like, Don't involve me in your embezzlement. And they said, I added that if the client does anything that requires me to pay any professionals like legal fees, they will be charged back to them. And they said ultimately, it was okay because I had all of my books in order could prove my sources of income from two years prior. Who lesson learned books in order.
+
+74
+00:34:54,569 --> 00:34:56,040
+Scott Tolinski: Oh, my gosh,
+
+75
+00:34:56,339 --> 00:35:03,570
+Wes Bos: that's a good story for Freshbooks ad transition. Are you involved in investment. Well,
+
+76
+00:35:04,290 --> 00:35:05,360
+Unknown: finances around.
+
+77
+00:35:07,680 --> 00:35:23,610
+Wes Bos: Oh, that's good. All right, next one we have here is called the apostrophe catastrophe. I ran a contest for a radio show created a form for users to submit answers to a weekly question. One week answer included an apostrophe. No entries are recorded that
+
+78
+00:35:23,610 --> 00:35:25,440
+Scott Tolinski: week. Oh, no.
+
+79
+00:35:27,420 --> 00:35:35,960
+Wes Bos: Oh, that's something you don't even think to write in your tests. Right? That's the kind of test that you write after you after the error pops up.
+
+80
+00:35:36,480 --> 00:36:03,110
+Scott Tolinski: Yeah, there's a lot of tests that are over right after the error pops up. Oh, boy sees the second one's an oopsie. It's called envy. I posted a dot E and V file one time. Nuff said. So yeah, they put in a dot E and V file to GitHub, I would assume or somewhere public. And oh, they posted it. So when they posted in like Reddit, or Twitter or discord or something either way, Daddy envy lots of secrets. No, thanks.
+
+81
+00:36:04,110 --> 00:36:33,710
+Wes Bos: Next one, a Christmas miracle. I'm not sure if I told you on this last year, which didn't. I told I took down a production server at Christmas time with some poorly optimized SQL and stored procs. The app was for low income families to get assistance purchasing holiday dinner, the production server hosted over a dozen database all that which became unavailable. Imagine taking away Christmas dinner, from families in need to Yeah,
+
+82
+00:36:33,710 --> 00:38:20,580
+Scott Tolinski: some of these the stakes are so high on these it's just it's very unlike a cringed into the back of my my chair here, the $1 million bill when I'm interviewing a candidate, I like to ask them tell me about a time they made a mistake and how they resolved it. To make that vulnerability easier for a nervous candidate. I tell them a time where I wrote in a SQL UPDATE statement without the where argument which destroyed 13 records on production. one candidate we interviewed shared his story, he was configuring a utility that would spool up an AWS server, upload a video transcoded transmit the video and then delete the server. It was going well until one Friday, he pushed some code that broke the Delete server step. He got back to work on Monday with a $1 million bill from Amazon. So let me tell you, I also woke up one day with a very, very costly AWS bill. I don't know if this has ever happened to you. But I don't I don't know what happened if it was a an access issue or something. But I had been and I don't know if it was like hacked, necessarily. But somebody got access to an API key that allowed them to spool up new servers on my AWS account, and I woke up and there were hundreds of servers doing mining Bitcoin or something. Who knows? Yeah, zaneta bill froze like $30,000. And I email them and be like, Oh, so they were like, well, if you can get rid of these and secure your stuff, then we can we can move on. And that happened to me a few years ago, but it was a scary situation. I was like looking at that bill like holy cow. And luckily, AWS is reasonable enough that if you Yeah, fix up your stuff. They rescind any of that,
+
+83
+00:38:20,690 --> 00:40:16,110
+Wes Bos: that just goes to show the power of the cloud. Really? Yes, you can spin up a million dollars worth of equipment over a weekend and obviously, so they he kept those servers running, which means that no one else can use those servers. So you're buying Yeah, usually with the serverless function, you pay for three seconds, and then they shut the server down. But if you're especially with like video servers that probably have graphics cards hooked up to them, and you're running them for like 50 hours, instead of like 12 seconds, that's gonna be expensive. Yeah, $1 million, 1 million. Next one, the hacker who dropped the DB. So I was around two to three months into my first web dev job and was meaning to truncate the order table for a pretty big shop locally. Instead, I did it on production. Oh, two minutes later, my boss walks in and tells me that there's a bug in the admin interface, and orders are not showing up. That's when I realized what I had done. I got so scared I command queued the sequel pro and acted like I didn't know anything. Didn't see we were in the office until 11pm fixing it up. And luckily, we could restore all data since we had query logs enabled for replication. So that's, that's how a lot of times people like fix these database issues as they go back into emails that were sent or logs and they have to parse the data out of those log files and put them back into the database. Then they assumed it was a hacking attempt and malicious scripts. And spent quite some time to try to find the hacker. Well, I acted like I didn't know anything. Oh, I never confessed except to very close colleagues. I quit the job after three otherwise wonderful years sweat emoji. Oh, yeah.
+
+84
+00:40:16,110 --> 00:44:47,250
+Scott Tolinski: All right, we got a hefty one here. So my story takes place in 2016 to 2017. I was hired by a consulting company to work on a server, it's a CMS implementation. I've never heard of that server. No, my skill level at the time was probably just barely above mid level, but mainly C sharp and dotnet. Tech, well, maybe why I haven't heard of it. Not so much JavaScript. I was a pretty fair hand with the internals of the CMS though. So I thought I could figure it out. Also, I reasoned a bit that my tech lead had a decade of experience, so I could lean on him a bit. arriving on site was the first thing the client told us was no frameworks playing that js, or jQuery only. But then we'll be Ajax ng in the widgets from the CMS to other projects. So the JavaScript can't conflict. So okay, so you got immediately got to deal with a whole bunch of versions stuff going on here. So when I asked what version of jQuery the other projects were using, he said, Oh, various, some version two others on version 1.9. That's not a problem, right? sounded bad to me. Wouldn't that be rough to know whether your code will work? Yes. That sounds rough to me as well. My other tech lead thought, no problem, we can do it. Okay for you. At least my tech lead had the goods over the next week or so while we familiarized ourselves with the project, the client would make some more restrictions around the JavaScript and CSS to use, like no build steps, no jQuery plugins, etc, etc. The tech lead would sagely not as had no problem, okay, this tech lead, no, not a lot of problems with this tech lead. So we start working, and a few weeks and I'm struggling with a problem trying to reason through code should work verse, the written requirements, I asked my tech lead to come over, and I'm explaining the code. And he says, What is this tool you're using here? I had a dual monitor setup with one screen that had Chrome dev tools on the other. And I had the web page I was working on. He was gesturing at the dev tools. I didn't have any fancy plugins or anything. It was standard dev tools. I mean, this the console, know, what's this tool? It seems pretty useful. You mean, the dev tools? Oh, yes. that's built into Oh, oh, my heart wasn't in my stomach. Oh, he doesn't know Chrome Dev Tools. What else? Might he not know? Am I the one who's strong? Or am I the one who's wrong? Maybe Dev Tools aren't standard tooling? Oh, no. My place in pure self doubt without holding judgment on the expert tools I have. So what do you use, and he shows me his setup. He's This is an elaborate system of alert statements to debug his code. I keep a straight face. But internally, I know I'm in danger. I soon learn this is this is very good. This is like spooky stories. So when you're when you're a dev lead, who's been saying yes to everything does not debugs through alert statements. I soon learned that he doesn't know a lot about certain tech that was necessary for the project like Ajax or MVC pattern, what sorts of things I started picking up more and more user stories as he struggles with his work. Pretty soon the client is asking me to plan and implement these features. And that's when the real horror begins. I start writing JavaScript, I the junior level coder who starts writing a lot of JavaScript, I need to have reactive components. But I can't use a framework for libraries. I can count on jQuery because the I can't use plugins. And we're not even sure what jQuery is be used at any given time. Oh, no, I think I get it get through this. I'm so sorry. I think I can reliably use the AJAX functions, jQuery, sorry, start to set something up reasonable for the AJAX and that's about it. I then I read about this regular JavaScript called a mutation observer. So I start working, writing a custom framework, I can create functional representations of components and start overloading the prototypes with these functions. I feed into an engine in quotes that has mutation observer at its heart. It's not as bad as you're imagining. It's worse things happen on the site. But we don't know why race conditions are bound one off by hairs off by one errors. And then I realized my errors are fundamental to the architecture of the framework that I wrote. I work long hours, I become bitter.
+
+85
+00:44:48,630 --> 00:44:49,950
+Wes Bos: so beautifully written.
+
+86
+00:44:51,060 --> 00:45:31,830
+Scott Tolinski: I work long hours, I become bitter. Yeah, it's very funny. And I oh my god desperate. I start introducing Vici So the project knowing that the framework is not used elsewhere, maybe I can get away with it. And I do get away with it. Technically, things work over budget and out of time we released to production. I roll off the project one month later, but I hear stories, the company spends months and thousands of dollars to fix the project. They formally adopt Vue js and everything to that. I am so sorry, but I learned a lot and thank you. So there was just so many train wreck,
+
+87
+00:45:32,399 --> 00:45:41,610
+what a train wreck, you can't look away. Mini. Like once you get to the mini versions of jQuery, and you don't even know which one is like useful. Yeah, yeah.
+
+88
+00:45:41,999 --> 00:45:58,020
+Wes Bos: Oh, man, that is just like every possible thing to go wrong. The tech lead who uses alert statements? And like, yeah, normally, I wouldn't rip on somebody for not knowing how to do something. But the guy was a tech lead of a large JavaScript project,
+
+89
+00:45:58,320 --> 00:46:02,610
+Scott Tolinski: and having other people underneath you and just been like, Yeah, sure. Yeah.
+
+90
+00:46:05,190 --> 00:46:12,960
+Wes Bos: Oh, that was a good one. So thank you to whoever wrote that in. He said, I'm inspired to write a blog post about myself. So please, please do that.
+
+91
+00:46:13,320 --> 00:46:13,890
+Scott Tolinski: Yes.
+
+92
+00:46:14,370 --> 00:46:54,960
+Wes Bos: lorem ipsum. The horror story comes from when I was working on a feature to break a cache on our customers RSS feeds stored in s3 to reduce the delay when polling for updates. So this is pretty common thing. You have an RSS feed, they probably just save the save the RSS feed to a text file instead of having to do all the maybe hundreds of database queries underneath. I found out the hard way that our development environments also wrote to the same s3 buckets at the same time. And instead of just breaking cache files, I rewrote production records with lorem ipsum. Oh, doesn't say how they fixed it here. But that was probably at the rerun that script with the production.
+
+93
+00:46:55,440 --> 00:47:03,540
+Scott Tolinski: Oh, yikes. Big gags, malicious compliance. I once had to embed an ember app into an iframe in a react.
+
+94
+00:47:06,000 --> 00:47:07,920
+Wes Bos: React. So real world,
+
+95
+00:47:08,100 --> 00:48:16,920
+Scott Tolinski: Eddie Yes, I know, and implemented browser side pub sub so they could interact with each other. To make matters worse, the OAuth sign in modal opened from an element in the eyes. One day, our author randomly stopped working because of a major browser implement his giridih update to block events originating from the iframe. So we hastily added an Add button to the React app that published an event so that the Ember app could subscribe to it. This was the outline of this. We quickly shipped a fix, but our leadership said it was unacceptably ugly in order for us to undo it. We warned them that undoing it would prevent users from being able to log in, they didn't believe us. We reverted the fix and within minutes of the deploy, completing our support team started receiving reports of the login being broken after a couple of hours of broken log reports. The leadership told us to put it back so this this is a major Frankenstein right here like this is this is you know 10 neck bolts that are 10 neck bolts Frankenstein. This is
+
+96
+00:48:17,519 --> 00:48:29,820
+Wes Bos: this is horrifying. Oh, that is there's a whole Reddit called malicious compliance. And it's just stories like that where people are like, Alright, I'm telling you, it's not gonna work, but I'll comply.
+
+97
+00:48:30,240 --> 00:48:32,820
+Scott Tolinski: Whatever, do it cool. ship it
+
+98
+00:48:32,850 --> 00:48:48,300
+Wes Bos: all right. Um, we're actually actually it's pretty good. We're about halfway through the stories now. So we are going to put a cap on that and pick it up next week with a whole nother hours of additional stories and let me tell you, there is some good ones in there. Yeah.
+
+99
+00:48:48,810 --> 00:48:58,350
+Scott Tolinski: Oh my gosh, I'm very excited. Sick pics. This is the part of the show where we talk about things that we find to be sick. West. Do you have any sick pics for us?
+
+100
+00:48:58,560 --> 00:49:06,540
+Wes Bos: I do. And this has this is actually something I saw on one of Adam savages one day builds a couple
+
+101
+00:49:06,810 --> 00:49:09,750
+Scott Tolinski: years ago, here and savaging the sick pics,
+
+102
+00:49:09,840 --> 00:50:30,480
+Wes Bos: like this is Adam Savage last week as well. So this is a LED flame effect light bulb. So this is just a light bulb that goes into any regular light fixture, and it has a actual flame effect. And it actually looks real like I'm this you think it looks cheesy, but like this looks like a real candle are a real campfire. And what I'm doing is I'm going to put it into the light that is on the front of our porch because like if you've ever been to New Orleans, you know how they have these like gas lanterns that are sort of flickering. I love the love the look of that. So what I ended up doing, you can get them in just like a regular light bulb, which is called a 62 or you can get them in the really small sockets that go into our porch light has a small socket so I got a couple have each of them because I think it looks really cool that kids love it. And it just gives a really nice like ambience without having the danger of real flame. So the one you can just go on Amazon and search for the one I got was called hand sang led flame light effect. And also the cool thing about it is it if your light fixture is upside down, it's smart enough to know that it's upside down, and it will revert the effect. So that claim isn't going downwards, but up. That's cool. That's very cool. Yeah,
+
+103
+00:50:30,780 --> 00:52:56,850
+Scott Tolinski: my sick pick is going to be a video game that I've been playing almost obsessively joy. I play games, and I play games on the weekly like I like Sunday is my game night right where I play video games. But this game is just so fantastic. It's called Hades. It's by Supergiant Games, I've played several of their other games before and I've always been a fan. And this is a, they call it a roguelike game, I don't even really even I've never played with roguelikes before, I don't know very much about that. But let's say Hades is this this game that's themed out of like Greek mythology, right. And you play a character who is stuck in basically hell and their father is Hades and you're attempting to escape that's like the long and short of it, you're attempting to escape these like layers of hell, essentially, to get out into the world. And so the way it works is that there's like, you play the first time and you maybe make it to like level level 10 or something, and then you die. And then you have to start at the beginning. And the next time you're a little bit better at the game you you've gotten a couple more power ups, you get to like level 15. And you keep going and you end up playing almost in like a loop. But the coolest thing about this game, and I urge you as a computer programmer to play this game. And like think about it in a programming sense. There are so many variables at play here. So like as you go, there's just like 1000 there's there's five different weapons, there's hundreds of different upgrades and whatever, and you use the Greek gods to empower yourself in various ways. But as you end up going, it is so finely balanced. So so incredible that like you can tweak your setup, and play the same game. I've maybe made like 50 attempts to escape, maybe even more than that I've escaped, you know, at all times. And I still want to pick it up again, just because every single time you play, it's like, permeated, and it's different. And it's random enough that like you can have just entirely different experiences, even amongst the weapons like you could have like a sword. And there's like four different variations of the sword. And each one substantially changes the gameplay. And what I found to be just absolutely fascinating about this game programming wise as how the heck do they get so many different variations and permutations and random ability without breaking like the challenge of the game at some point. It's always very challenging no matter what you do, and it's always very engaging. So haiti's been my favorite game of the year, so far in to this game. So check it out, it's on switch PC, and that, that kind of stuff. So
+
+104
+00:52:57,000 --> 00:53:15,690
+Wes Bos: that's my spec, sec. Shameless plugs, Master gatsby.com. My latest course on learning to build websites with Gatsby and friends. And we do all the CSS in it. We use a headless CMS, it's pretty good people are really enjoying it use. It's at Master gatsby.com use the coupon code syntax for 10 bucks off
+
+105
+00:53:16,020 --> 00:53:44,100
+Scott Tolinski: sick. My shameless plug is going to be my animating spells course which is coming out in it's going to teach you how to animate things and spelt normally that we get into the gesture stuff and we show you how to write really neat custom animations and really take control of the look and feel of your site using spelt. It's fantastic. So if you are interested in learning spelt, we have courses for that and if you are interested in really stepping up that Polish meter check out animating spelt only on level up tutorials comm
+
+106
+00:53:44,550 --> 00:53:54,150
+Wes Bos: All right, thank you so much for tuning in. And thank you everybody who submitted their spooky office story. Hopefully you have a good Halloween and we will catch you on Monday. Peace.
+
+107
+00:53:56,580 --> 00:53:57,390
+Unknown: Head on over to syntax.fm
+
+108
+00:53:57,390 --> 00:54:06,360
+Scott Tolinski: for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
