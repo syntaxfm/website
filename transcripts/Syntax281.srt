@@ -1,0 +1,156 @@
+1
+00:00:00,359 --> 00:00:24,480
+Announcer: Monday Monday Monday open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob and Scott Taylor. Totally at ski.
+
+2
+00:00:25,950 --> 00:01:04,890
+Scott Tolinski: Oh, come to syntax in this Monday hasty Street, we are kicking off season 1.5. Here, we're not quite in season two yet, we are going to be talking all about home offices, and building an office in your backyard. Now I've seen quite a people do this. Lately, there's been a lot of cool home offices popping up ever since this whole pandemic started. You've seen all sorts of neat stuff. Now we have a nice little shed in our backyard that could be turned into one. But it is a complicated and complex situation. So as somebody who's built their own home office in their backyard, we have on the show, our very own West boss, how's it going west?
+
+3
+00:01:05,040 --> 00:02:14,910
+Wes Bos: Hey, good, good. Yeah, this is kind of something cool. Because I set off at the about six months ago, at the beginning of this pandemic, we went up to our cottage and I didn't have a good spot to work. And I had always thought about turning one of these sheds into an office. And I did that, and I'm gonna talk about that today. And then I also just by posting stuff on Twitter, I've got, I don't know, probably seven or eight different people send me photos of their own setups of what they've been working on. If you have like photos of your backyard office, tweet us at syntax FM. So I'd love to share photos of other people's setups. I have one link right here to Brad Westfall on Twitter, he just built the most beautiful one in his backyard as a palm tree over it. So we're just gonna, just gonna kind of go through, like the steps and what you need to know about and think about before you go ahead and build one of these because like, it looks like a lot of people are going to go be going remote full time. And if that's the case, and you need some sort of good setup, if you don't actually aren't as lucky to have a room in your house for that, then this is a good option. If you have something in your backyard or you have some space you can build.
+
+4
+00:02:15,060 --> 00:03:21,480
+Scott Tolinski: Yeah. So just like we want to see your home setups, I want to see all of my errors and exceptions handling in real time with the video, scribble replay, and my Redux store. And yeah, let's see what else my error tab, my Network tab and all that. And that's why I like to use Log Rocket. Now Log Rocket is a error and exception handling and finding bug finding service, I guess you could call it that allows you to see the bugs and errors happen in a real time. scrubbable video, as I just mentioned, it is really something cool. And for those of you who have just been piling your way through text errors and you know, log messages and whatever, just to find out what happened when somebody did something or how the heck did that user do this thing? Well, now you can see exactly how this user did that thing by seeing it in a scribble video replay. So head on over to Log rocket.com forward slash syntax and he will hit 14 days for free. It's one of those services that you need to see to believe. Alright, let's get into this. Wes, let's get into the the whole shed office shed chic shake. Yes.
+
+5
+00:03:21,480 --> 00:05:17,220
+Wes Bos: You know, I just thought of another one is Brad frost converted a shed in his backyard to like the ultimate jam space workspace really cool. If you go to his blog, or just Google Brad frost office. It's really awesome. So let's talk about structure first. So you if you want to build something in your backyard, you need something to put your office in. And for a lot of people there is probably some sort of existing shed or you put in the wheelbarrow in and that's what I did is we had this shed in our backyard which is 10 by 12. That's a feat for for all y'all. That's not in meters. And that would be a very big office, it was in meters. And we weren't really using it for much just storing fakes and stuff in here. So decided to to go ahead with that and convert it over things you sort of need to look at is like is it sound, so it's not worth putting a bunch of money into something that was will fall over or maybe rotten or is is sort of sitting in the dirt you got to make sure it's like not going to be sitting in the dirt otherwise that will go wrong. Other people said that they're getting quotes to just build something by themselves sort of the hard part about that is if you want to erect some sort of shed or some sort of building on your property, there's likely some bylaws in your area that will allow not allow you to do that because if you have something existing that's usually grandfathered in, but if it's if you don't have something that's existing, usually the rules are like has to be five feet from all fences, which is really hard for most people's backyards or can't go above a certain height, which is not a whole thing or putting bringing electricals to that is really tough. So before you get too excited about it, definitely look up any building code that is in your area to make sure that you can do that
+
+6
+00:05:17,250 --> 00:05:54,870
+Scott Tolinski: we quite a bit looked into some additional school we have like a one car garage that we're using as a gym in our backyard. And we've looked into what that would take to convert it into an existing structure. And Dang, every contractor we reached out to said like, Hey, can we make this bigger? Can we turn this into this? They just say, we can't, we can't even we can't even touch it in those ways. You know, you could drywall it, whatever you can't add on to it. You can't do anything with that. Otherwise, it's against zoning. So we unfortunately, we had plans to turn that what is now the gym into my office and it just could not work out because of zoning man zoning, zoning kill Yeah,
+
+7
+00:05:55,260 --> 00:09:28,550
+Wes Bos: yeah, I have a bunch of friends that are in Toronto and Toronto, super expensive. So a lot of people don't have room for for a bigger house. And a lot of people are doing this in the backyard. And I've talked to a few people, that guy, I think they're called variances. I don't know a whole lot about this. But you can apply for sort of like, oh, but can I be the exception. And that is sometimes approved. So that is an option in some cases, but then you have to like, I think you had a post one of those big billboards and have a meeting or your neighbors can come and things like that I don't think it's super noisy. Yeah. Also popular are just these like drop in offices. So almost like a tiny little shipping container. There's lots of companies out there that will drop these like matte black really sleek, little boxes in your backyard that have like a big door glass door built into them, you just pop those in, which is pretty cool. And then the last thing I think is probably like the most affordable depending on where you live is that at Costco, they have these like huge Rubbermaid sheds, that you can just put together yourself, if you were to like, like, pour a little concrete pad and slap one of those on that, that would actually make for a pretty affordable structure to start off of, because I think they're only like 1000 bucks or something like that to get up and running. And there there were pretty big when I saw them at Costco, once you have your structure I got think about electrical, so that's something I had to do is likely there is no electrical being run to your, your office. So you have to get, I had to get permits for that. And then you also have to pay an electrician to run electrical and that can greatly vary depending on how far you need to go. For me in order to get electrical run. It had to be buried, and then brought in and all the outlets and everything like that. I think it was about two grand for me to get it all wired up, which is much more than I was expecting. But I I don't really know much about how much plugs cost. So after electrical, you think about insulation, so these little office was luckily it was already watertight. And it was just reroofed a couple years ago. So I didn't have to worry about any of that. But I did have to worry about insulation because where I am it gets very, very cold and very, very hot. And I've been here for both. And a way to sort of combat both of those is to insulate it so I ended up getting the entire thing spray foamed which is just someone comes apparently in Europe they don't have this people have been at were asking me like what is that it's just somebody comes with a gun and sprays this foam on all of the joists and and all of the beams and everything like that. And then it expands and sort of seals up the entire the entire thing. By doing that I didn't have to have any sort of external venting, because it was 100% sealed. If you use that like batting insulation, then you do need to have some sort of venting otherwise, you can have issues with moisture and mold and things like that. Yeah. Um, what else heating. So how to heat it was it was a big one. So I started I got a 1500 watt little oil heater. And there's all kinds of different heaters out there. But at the end of the day, they're all exactly the same. In terms of efficiency. There's a really good article on or not really good YouTube video from technology connections on space heaters, and how they all work exactly the same because they're all taking electricity and converting them to heat at
+
+8
+00:09:28,550 --> 00:09:31,110
+Scott Tolinski: the end of the day was so good. It was so good.
+
+9
+00:09:31,160 --> 00:09:35,970
+Wes Bos: There's no tricks, and there's no efficiencies to be gained and doing that, which I thought was really cool.
+
+10
+00:09:36,020 --> 00:09:51,050
+Scott Tolinski: That video was so good. And we watched another technology connections video last night while we were eating dinner, and Courtney hasn't seen she's seen him before but hasn't enthused, it's like what does this guy do for a living? I was like, Oh, this is this is what he does. He makes these really
+
+11
+00:09:51,050 --> 00:09:54,270
+Wes Bos: awesome videos. The color brown watch shows like the
+
+12
+00:09:54,270 --> 00:10:09,800
+Scott Tolinski: color brown in LA. And it was so good. It was so fascinating. I mean I absolutely love this channel anyways, but Like, man, yeah, that is some some seriously good content the one on space heaters and on the one on portable AC units, both fantastic episodes, especially in the context of this
+
+13
+00:10:10,040 --> 00:10:27,630
+Wes Bos: and the one on how those tape deck to auxilary things worldliness is so fascinating tape deck to accelerate. Oh man, how do you remember when you got your first car and you wanted to? You wanted to plug in or Yeah. You had to get that like tape deck with
+
+14
+00:10:27,630 --> 00:10:38,730
+Scott Tolinski: the cord is like a fake fake tape. I always felt bad for the tape player. And I put that thing in. I'm like, you know, this is fake. We all know this is fake. But get my music out of here. Oh, that was good. Yeah,
+
+15
+00:10:38,730 --> 00:12:15,780
+Wes Bos: anyways, that's an awesome one. So some sort of space heater, that one was more than enough for my space. It did take a couple hours to actually heat up. But it did. So what I ended up doing is I put it on a Wi Fi plug and turned it on, at like 5am. And by the time I started working or 6am. And by time I started working at 9am it was like super toasty and I could almost I would turn it off at about 1230. And this was like when it was snowing. And it would stay warm the entire the entire rest of the day. So the insulation was doing its job and retaining that heat that I was used. A lot of people gave me hack for putting it on a Wi Fi plug but it was a 1500 watt heater and they're rated at 1.8 watts. I think those plugs so I did my homework Dory. What else cooling? So then in like Canada, if people are like what you're just weren't you just heating that thing like two weeks ago, now you're looking into air conditioners. So when I want it to get air conditioner, it was the pandemic and everybody was buying air conditioners. So I got one of the last air like portable ACS that I could find. And that was like a 1300 bt EU. Portable, higher. And it works great. It cools it down super fast. But there's a problem with it. And that it's super loud. And I can't record and when it's on I also had a ceiling fan put in as well. And I can't record what the ceiling fan on either because it the air buffets against the mic in it. You can hear it. So even right now I'm just like, super hot because I can't turn any of those on.
+
+16
+00:12:15,870 --> 00:12:17,340
+Scott Tolinski: Yeah, that is wrong with recording.
+
+17
+00:12:18,000 --> 00:14:55,770
+Wes Bos: Yeah, it's frustrating. So luckily, one thing happened with air conditioning is it showed up with a tiny little clip that holds the air intake hose on, and that clip is broken. So I contacted them and I said, Hey, can you send me another clip? I'll fix it. And they're like, Okay, let me check. And they're like, no, there's no parts available for this. So we're just going to give you your money back, huh? And I was like, uh, okay, and I can't keep it. They're like, yeah, we don't like we don't want you to ship it back. It's broken. I was like, Well, okay, like, I guess so. And I like I bet. If I opened it up, I find the broken clip, and I could just glue it back on. So they let me keep it and it was 600 bucks. So I thought, Okay, well, I'm gonna, I'm gonna go a step further and may get one of these things called a mini split. And a mini split is where you put the compressor unit outside, like a tiny little air conditioner. And then there's a hose. And then there's an indoor unit that goes above like a door. It's like, like one foot high by like three feet wide. It's great. And I installed our I haven't used the house a while, but I installed it in the office. And then I had unfortunately the only one that was available was a 240 unit, which in North America, we run on, like 115 110 or 120. So I didn't I couldn't power it. And I was a dummy because I just paid an electrician to wire this whole thing up. And I didn't have the foresight to the to run 240 feet beefy power, we could run it but we had to install an extra circuit breaker. And then we also and then like all the walls were already finished and everything like that. So I couldn't I we had to run it outside and then dig again, which which kind of sucked but he came in and did that. And then I was about to hook it up myself. But it turns out you need a special vacuum pump to release the gases into the unit. And I don't have that and I couldn't find anybody to do it. And I ended up just saying you know what, I'll wait till next year I still got this broken one and even further. The first one showed up broken again. It had like a dead big dent in the side. And one of the like the valves rehook it up was dented. And I took a picture and sent it to wayfair and said hey, this is broken. Can I return it? And they said sure we'll send you another one. And then don't return. So now I have three air conditioners that I paid for one. And I I don't know if if the one that is dented is broken or not. I'm gonna have to test it. You're not allowed to sell it because they make you sign something but it's kind of funny that I follow these air conditionings now
+
+18
+00:14:55,800 --> 00:14:59,160
+Scott Tolinski: that is that is very lucky in a awesome way.
+
+19
+00:15:01,380 --> 00:15:07,650
+Wes Bos: That's all kind of stuff always happens to me so my wife is like of course that have you while you buy one air conditioner? Well, my my caldigit
+
+20
+00:15:07,650 --> 00:15:15,660
+Scott Tolinski: just died and they're just like, yeah, you have to pay us to get a new one. Yeah, really ship it back. Yeah. No.
+
+21
+00:15:15,750 --> 00:15:16,920
+Announcer: Oh,
+
+22
+00:15:17,550 --> 00:15:33,570
+Scott Tolinski: I tried to sweet talk and I liked I like was trying to try to do a little talking to see if I could at least get them to cover the cost to ship it and and if our if our standard error process does not work for you I'm just going to cancel the RMA. I'm canceling it.
+
+23
+00:15:33,990 --> 00:15:35,280
+Wes Bos: Just like me like
+
+24
+00:15:36,180 --> 00:15:41,010
+Scott Tolinski: wait like he made me like apologize essentially for asking for them to pay.
+
+25
+00:15:42,000 --> 00:15:47,820
+Wes Bos: Oh, Cal Digi I have such a high. High thought I know me too. That's a bummer, too. I
+
+26
+00:15:47,820 --> 00:15:49,260
+Scott Tolinski: was really I was really upset. I
+
+27
+00:15:49,980 --> 00:15:59,220
+definitely upset about it. I'm looking for alternatives now just because it's like do I wanna? Yeah, sure. I'll have them fixed the one dish ship it back. But like, I don't know, he goes somebody else.
+
+28
+00:16:01,710 --> 00:16:19,740
+Wes Bos: Inside I ended up paneling the whole thing with pine wood, which gives a very rustic cottagey feel. Yes. Nice. And then I put a lot of people told me to do this luxury vinyl plank, which is just a fancy word for vinyl that's got spins on when he does this break. But
+
+29
+00:16:20,880 --> 00:16:28,950
+Scott Tolinski: I went to Home Depot and I said give me a giant roll of linoleum. And yeah, that's my, my linoleum looks like a floor. Yeah.
+
+30
+00:16:30,240 --> 00:18:20,520
+Wes Bos: So this came in, like in planks that you install, like hard. But it's awesome. It's like really floppy. So it all sits down really nice. And it's been been super nice. And then what else Wi Fi I ended up people told me to like trench for running like Ethernet or running fiber. But I didn't feel like doing that. It was so much work, especially how rocky it is here. So I just used a ubiquity outdoor access point. And mounted that somewhere between the house and here. And that gives us actually really good Wi Fi in the entire property, which is which is awesome. And I believe that is it. So all in people always ask me like how much is something like that cost? Given that we had the most expensive part, which was the shed, it was about 4000 bucks to get it wired up, do all the flooring, all the paneling, an air conditioner, oh, that mini split also heats I should tell you what the heat pump, which does the opposite of air conditioning, but it just sprays the hot air into the room instead of outside the room. I can get rid of my little space heater now because the the mini split will also heat it in the winter, which is pretty cool. So about four grand Canadian, which is that's three grand us and how many in euros, 2.56 euro, so 20 2500 euros to do something like that. So like not cheap. But definitely if that's if you're going to be like working from home full time. Especially I know some some companies give like a couple thousand dollars to their employees for something like a chair or whatever. So definitely have enjoyed building this thing and having my own space in my backyard. And I wish that my place at home, I could build a backyard office as well.
+
+31
+00:18:20,700 --> 00:18:29,520
+Scott Tolinski: You know it also if you own a business, the business can pay for a portion of that. So about the construction and you know, tax whatever. So just keep that in Luckily,
+
+32
+00:18:29,520 --> 00:18:34,310
+Wes Bos: our unfortunately for me, I can't because it's not our primary residence.
+
+33
+00:18:34,530 --> 00:18:36,270
+Scott Tolinski: So primary residence would interesting.
+
+34
+00:18:36,720 --> 00:19:10,980
+Wes Bos: Yeah, like even before we bought this place, I was asking my accountants like, could I build something on the property and hundred percent expense it? He said he's like, not really you can make the argument that you're going to be there three months a year. And so you could you could expense one third of it, or sorry, not three months or one fourth of it. But it's it's kind of hard to do something especially when you are increasing the value of your something that you personally own with business funds. It gets a little bit murky, but if it was your primary residence, I think that you probably could definitely check with an account. Yeah,
+
+35
+00:19:10,980 --> 00:19:15,210
+Scott Tolinski: yeah. As with anything, check with the accountant or your lawyer. Yeah.
+
+36
+00:19:17,700 --> 00:19:37,820
+Wes Bos: So that is it. If you have your own little backyard office, I'd love to see what you've built. such cool little cozy places. And they're different all around the world. The Brad Westfall is one he's in I think, Arizona, so he's got like a pool outside a little palm tree. That looks unreal now. Yeah, yeah.
+
+37
+00:19:37,890 --> 00:19:42,210
+Scott Tolinski: Yeah. TJ and on that way and hard TJ over here.
+
+38
+00:19:43,920 --> 00:19:50,130
+Wes Bos: Cool. Alright, that's it. Thanks so much for tuning in. And we'll catch you on Wednesday. Peace, peace bass.
+
+39
+00:19:51,930 --> 00:20:01,709
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or Dropbox. View If you liked this show
+
