@@ -1,0 +1,408 @@
+1
+00:00:01,319 --> 00:00:02,820
+Unknown: You're listening to syntax
+
+2
+00:00:02,849 --> 00:00:04,590
+the podcast with the tastiest web
+
+3
+00:00:04,590 --> 00:00:10,530
+development treats out there. strap yourself in and get ready. Here is Scott solinsky and West boss.
+
+4
+00:00:10,559 --> 00:01:12,750
+Wes Bos: Welcome to syntax. This is the podcast with the tastiest web development treats today we got for you another potluck. We are just wrapping up the summer Scott and I are just recording like crazy sort of going ahead so we can take the summer off of recording. And we're like, wow, we've got a lot of potluck questions that we have yet to answer. So we thought we'd throw another potluck in some really good questions to talk about MDX today, ordering CSS? Do you ever use the second property of our second parameter JSON stringify some really neat ones today. So stay tuned for that. We are sponsored today by Oh, this is funny to companies that I am using in my next course. But totally unrelated to being a sponsor. First one Sanity, they are a structured content CMS. Second one is Netlify. They are the hosting for your jam stack and serverless functions and all that good stuff. We'll talk about them partway through this episode. How are you doing today, Mr. szalinski? Hey, I'm
+
+5
+00:01:12,750 --> 00:01:48,720
+Scott Tolinski: doing good. Getting getting some dev work done, get my next course planned out. And for the first time in a long time, I like eight or nine course options that I wanted to do, which sounds ridiculous, but I keep a long road map of all the courses I want to do and then it's like yeah, okay, if I ever need a rainy day that I have this list of courses to pick from or whatever if there's not one I'm super excited about. But the problem for me right now is that there's just five or six I know I said more than that a second ago, but things that I really want to do. So I'm like having a tough time picking which one not because I don't have options because I got too many good options.
+
+6
+00:01:48,809 --> 00:01:51,480
+Wes Bos: What are the options you can use? Can you share the secret?
+
+7
+00:01:51,480 --> 00:02:04,590
+Scott Tolinski: It's a secret? Unfortunately I don't want well i would i don't want I don't want too many good good course ideas here. Wes if you need some if you need some good course ideas. We can talk after the show.
+
+8
+00:02:05,039 --> 00:02:09,240
+Wes Bos: Oh yeah, I've got thousands but I'd love to hear what you what you think.
+
+9
+00:02:09,529 --> 00:02:12,470
+Scott Tolinski: Yeah, no, that was that was simply just a joke because I know you have.
+
+10
+00:02:15,410 --> 00:03:53,759
+Wes Bos: Alright, let's dive into the questions here. First one is from Vinny Howdy, I'm curious to know what you guys think of MDX, MDX, jazz calm, I'd love to learn more about the pros and cons if you guys have had a chance to use it. So MDX is marked down. And jazz sax sort of put together. So what it allows you to do is, if you have a website and you want to write content, you can write your content in markdown. But then you can also just use regular react components right inside of your markdown file. So if you wanted to embed a YouTube video or you wanted to throw in a react component, or you want it to it sky's the limit, right? Like I like a graph is probably a really good example where if you wanted to put a graph in the middle of a blog post or something like that, you could do that with with MDX and I personally used it for my own website. And it's awesome. It's very easy to work with huge plugin ecosystem available for MDX. So, if you want to do what's the underlying layer for it, there's there's like a, there's like a package underneath MDX that allows you to use all of these different markdown plugins for it, which is really cool. It's one of those things where in order to get it working, you need like 15 different packages, which could be a downside, but because of all the packages that surround the ecosystem, you can get it to do literally anything that you want layouts for your website, things like that. So big, big fan of MDX myself have used it, Scott. Yeah. Hey,
+
+11
+00:03:53,759 --> 00:04:42,930
+Scott Tolinski: I don't know if you notice I was there when they announced it at zite day as Oh, yeah. I wonder if it's gonna be versaille day now. But it's a zite day, I was speaking at Site day. And they had a really great initial like, was the keynote, they had like a really great keynote, where Guillermo and all sorts of Tim and all sorts of the people from the next team, we're all sort of launching a whole bunch of cool stuff. So it was it was a really cool thing. I was almost instantly excited about MDX because, when you first hear about it, you think, Okay, well, is that really that special? But then you think, Wow, actually, the possibilities for working with us are very, very large. I don't know if you have ever written slides in code. Do you write your slides in code you do you write your slides in slide software? Okay,
+
+12
+00:04:43,170 --> 00:04:47,910
+Wes Bos: I've written every slide deck I've ever done has been in encode as well.
+
+13
+00:04:47,940 --> 00:04:51,060
+Scott Tolinski: What do you use typically for that, because I typically use spectacle.
+
+14
+00:04:51,300 --> 00:05:37,410
+Wes Bos: Oh, cool. Yeah. I like for four years. I've used just html5 slides. jass, which came out like I think like it came out of Google. It In like 2012, or something like that, and I've just been building off of that forever. And I've tried using a couple different like frameworks and plugins. And I always get like, an hour into trying to like make it work and to get it to work properly. And I don't know what I'm always get frustrated with it. And I just scrap it and say, Look, I also just want my old thing back. Because I have like this thing where I write the the slides in, in Jade, I have a markdown plugin in there. If I want to, if I want to write markdown, it will convert it for me, but maybe I should revisit that at some point.
+
+15
+00:05:37,470 --> 00:07:46,350
+Scott Tolinski: Yeah, the reason why I bring it up at all is because one of my favorite projects using MDX is MDX deck, which is basically creating a slide deck in MDX. And this was one of the first projects that made me say, Oh, this is so good. Because you do you have the ability to quickly and easily delineate a new slide just by like three, what is it m dashes or three dashes by three dashes? It creates a new sign Oh, cool. Yeah. And create some your entire slide deck just like absolutely nothing. And sometimes when people think about writing code and didn't make a slide deck, they get like, Oh, I don't want to do that. But, man, this is simpler to me than writing it in an actual spy program, because all of your data sort of lives separate from the, the visual presentation of it. So you can look very plainly at all of the words and see if the words are what you want them to be. So I really like MDX deck. I've been using this for a little bit. And one of the things I really like about MDX overall, is that it seems to have like caught on conceptually, where it's not just a react thing anymore. So there is a smelt MDX, called m d specs. And it's every bit as cool as you'd expect it to be. It's fantastic. There's also from what I saw, there was Vue JS versions, but I have not used Eve, I have not used Vue JS with MDX before. But I think that's like the perfect use case for these new classes, static site generators, where you're writing everything in markdown, and it's like your whole blog post, and then Oh, crap, I need a chart. Whoo, this gets really tough when I need a chart in this page, right? Oh, now you can just drop in your chart react component directly in your MD file. So no, I'm a huge fan of MDX and typically use it whenever I can. In fact, when I first created the new Scott Tolinksi comm at this MV specs was not in its current state. So I couldn't necessarily just use it. And I was really bummed out because I wanted to use MDX in my blog. So big fan big. Yeah.
+
+16
+00:07:46,680 --> 00:08:47,070
+Wes Bos: But one of the thing I really like about MDX is you can pass it your own components. So as markdown renders out code blocks, and h1, through h6, and pre tags, and block quotes and all that stuff. In most markdown parsers, they'll just give you like a class of code or something on that. And with this, it allows you to step in and say, when somebody renders out a paragraph tag or a code block or a blockquote, let me step in and use this component instead of it. And then you can, the component will give you all the props of that component, it will give you the actual content of the component. And then it's just a react component from there and you can return whatever HTML and CSS you want from that specific thing. And I use that a lot in my own website, because I don't have to, like, add classes when I'm offering something, or I don't have to I don't have to add extra markup when I'm trying to author something. It just it just gets swapped out on the render.
+
+17
+00:08:47,490 --> 00:08:57,529
+Scott Tolinski: Yeah. Cool. So next question is from Johan Shaka. Hello, Mr. Wes Bos and Mr. Scott Tolinksi. Hello, Mr. yohann.
+
+18
+00:08:57,960 --> 00:08:59,029
+Unknown: Great podcast,
+
+19
+00:08:59,039 --> 00:10:35,539
+Scott Tolinski: I learned so much from it. Where would you go to put the business logic in Vue js, middle or large scale applications. I try to put business logic in a store, but it makes it hard to maintain such a store even with spinning actions, getters, mutations and files, I end up using vanilla JavaScript files where each file is a class Singleton. I was wondering if this is a good solution, or do you have a better alternative? Now, Wes, I know you don't do a ton of view work. But I included this question specifically because the answer is there Durston. There's nothing really different here from the React world comparatively, right? You still have components, you still have business logic and you still have like state and all those things. So that said, Johan I usually when I think about this stuff, I'm not creating that many abstractions. I guess I am occasionally but I cannot. I look at class single 10 just to manage business logic for things I don't know to depart from the whole componentized universe that we're living in now allows you to sort of write your business logic right there near the template, especially with this latest class of frameworks, whether it's view or react, right? You write your business logic sort of right there in the component, and then you can reuse that component wherever you want. So granted, that's a very simplistic look at it once you start to think about things like, like we have Redux, right, Redux has a calls an action, that action, what
+
+20
+00:10:35,539 --> 00:10:36,059
+Unknown: is it called
+
+21
+00:10:36,059 --> 00:12:02,279
+Scott Tolinski: a dispatch, dispatch an action? Sorry, you don't run an action, you dispatch an action, then, and then that performs another operation, which in turn will return a new set of data? I mean, it's like this is abstraction, abstract universe kind of thing. Right? So the answer here is like, where do you put this kind of business logic? The answer is to follow community guidelines in terms of how people are doing it in view. And so what I said what I mean by this is, because this sounds like a cop out answer, what I mean is, is there it just look at the React world has 1000 different state libraries, there's 1000 different places to put your application state manager state and your business logic. And one of the main ones is view x view x, exactly as it sounds, view, x view j s.org. And view x is sort of like their their Redux style, state management, right view action state. So what I would do is I would follow something like this, and not really try to invent the wheel yourself here, by creating class Singleton's or whatever, I wouldn't try to reinvent any sort of wheel here and just go ahead and use some of the large examples of large scale Vue JS apps that exist out there, or at least those sort of guidelines in terms of how to build that.
+
+22
+00:12:02,760 --> 00:13:54,600
+Wes Bos: Beautiful, I have nothing out there, I think you nailed it. Next question we have here from amber Williams, I commonly find myself engineering complex programs and left flabbergasted on how to express these ideas to other people when the need arises, I need to explain to them and remember why I did it in a specific way. How can I get better at conceptualizing intricate design patterns or functions? as well as have a better recall for these abstractions? That's, that's, that's a great question. Because sometimes, like you come back to codebase, like, a year and a half later, and you're like, Wait, where? Where was this, like, when you you're following around functions for 20 minutes, just to sort of understand what's going on. And honestly, there, I think the important thing, and Scott Scott has it here is just write lots of comments. There seems to be this, like, anti comment wave going around lately, where people say like, your code should speak for itself. And I get this like on Instagram. I've gotten this question from newbies, like many times in the last couple of months, and just say, like, no, like, comments are absolutely fine. It's, it's important to be able to write down how these things work. And if it if it is even even larger than that, like you have this idea of where you have, you have one function that generates a bunch of stuff and the business logic in that act gets passed into it, that will should probably live inside of a wiki, especially when your head is in it, just because it might make sense to you right now. But if you come back to it a year later, or even more, somebody else has to come back to it a year later. It's important to have that documented. So stick it in a comment or an or and or stick it in a GitHub wiki or notion or something like that, that will explain how it all works.
+
+23
+00:13:55,110 --> 00:16:05,970
+Scott Tolinski: Yeah. And sometimes those comments, they seem unnecessary at the time, like specifically comments around maybe failed attempts to solve a problem. I don't know about us. But have you ever had a situation where you're you chose not to do one thing one way specifically because you realized it was a bad idea at some point, right? You chose not so Okay, I'm gonna do this a different way. And then you leave the code or you come back to it and you say, Oh, hey, this other abstraction of this idea seems like it would make a lot more sense. Why don't I just do it that way? Then you start to do it that way, refactoring or whatever, and then run into the exact same use case that you had already solved before. You're like, Oh, yeah, this is why I couldn't do it this way. This is why and sometimes I leave comments like that into my into my code. This is like, by the way, a future you might try to do this. This is why you don't want to do this. I understand this code looks weird. But until you know full rewrite is in order. It needs to be done this way. Specifically, you know So, don't don't be like, I'm pretty busy with my comments. Like I write very, like very direct and explicit comments. This is what this thing does, whatever. But sometimes you can be a little fun with it too. And in fact, one of my favorite VS code extensions, which is better comments, allows you to have comments that have different coloring, right? Yeah. And so the cool thing about that is if you do like double forward slash, and then maybe I think one of them says a question mark for questions, or an asterisk turns green. So I'll use things like the asterisks to be like, notes to user, this is why this does this way. Or, you know, there's an exclamation point for danger to dues, but I only used to do for actual to dues in code. So I would recommend using just better comments, but writing more comments, better comments overall. And don't be, don't be afraid to write notes to yourself in the code. That's not just, oh, this is you know, the this component goes and fetches the data, whatever explaining what the code Yeah, maybe explain a little bit more conceptually, to
+
+24
+00:16:06,869 --> 00:16:59,850
+Wes Bos: even like, this is not something I've done. But maybe even just a quick little, little video, grab the, there's a free app called cap, k AP. And as just record your microphone and your screen really quickly, throw that up to Dropbox or even, I'm not sure where else you would host it somewhere, you can host videos, YouTube private video, when your head is in it record a quick little video. And that will probably be super helpful. I do that for a lot of like my clients that build websites for I would just throw a screen recorder on and go through the entire website showing how to do something. Because I might forget specifically how to update us content type or something like that. And it's so much easier just to throw them a video Two years later, then have to like, get on a call and screen share with them and all that annoying ness. Yeah,
+
+25
+00:17:00,149 --> 00:20:08,040
+Scott Tolinski: yeah, I did this for a little while. And I still do this on your level of tutorials, code or blogs, or I do like a video just explaining one small section of the code base and why we're doing things a certain way, or why it's cooler and awful, or whatever. But it does make it really easy. And I've started to lean on this a little bit more heavily knowing that I like have the ability to quickly and easily record screencasts. So it's like, oh, man, that's like a core competency of mine. Why don't I just record a screencast of something that I am having a hard time with or want to really explain if I want to explain some code to somebody else. Like it makes more sense for me to screen, record that video and share that video with them. Like let's say, Eric wants to work on a new feature in this one part of the code base that he hasn't touched before, hey, it might make more sense for me to record the like a walkthrough of the code and what's important and what's not important because that that will save people a ton of time getting up and running with it. Yeah, definitely. Something cool thought there was. So next question is from Rafael Davis Hernandez. And he asks, Can I get some recommendations for a junior dev who has mid experience, but has not managed to complete projects and desperately needs a portfolio? What are five projects that you would recommend to build that would significantly help getting a job as a front end developer and why? Okay, so the actual end result of the project whether or not this is like a video, movie catalog, the database or a store, whatever the actual end result, what is the theme of this thing does not matter if somebody does like a Reddit clone or something like that, I don't care. I don't care about like what the actual site is. But what I care to look at is like the core skills involved in the application. So something that hits an API, something that does basic CRUD operations, something that needs to look nice on mobile, something that has UI refinement, whether or not these are animations, or good looking CSS, or like a pixel perfect implementation of a design. Those are all the skills you're going to be using day to day, right. Especially I know this, it seems like kind of ridiculous, but pixel perfect refinement of a design that somebody else created. Hey, I've worked with so many devs who will spit out a code and I'll look at the Photoshop you look at their their their version, the web version, just say do these look the same to you? Like I don't don't mean to be rude. But these do not look the same to me like what this you know, this line this pixels like four, four pixels here where it's three in this one, like sometimes I wonder if people just take a look at the P PSD and or the sketch file and just like guess when that information is all right, they're in those files. So I would care less about whether or not this app is a calculator or something like that, but I would care more to really just show those foundations. In API, basic crud, nice on mobile, UI refinement, doesn't run like total dog. Sh it. That's it.
+
+26
+00:20:08,190 --> 00:20:43,890
+Wes Bos: I love it. That's super key. I think those are great suggestions. Just the most important one is just finish something, take on something small, and make it polished and done. And then that's, that's way better than the 40, the graveyard of 40 projects you started but had to quit. Because for whatever reason, it got too hard. You, you ran out of motivation, because like, I know, sometimes I look at at people, and they just finish all of their projects. It seems like they're super productive, but it's just that they're able to push through that last 10% and actually finish the whole thing.
+
+27
+00:20:44,300 --> 00:21:08,880
+Scott Tolinski: Yeah, it's actually, it is funny to think about that, because I'm like, historically, not a project finisher. Like I get to that 90%. I'm like, Okay, let's get on to something more exciting. But that's like one of the things that like level up tutorials has allowed me to do, it's allowed me to get that feeling while maintain actually shipping stuff because I have to ship something new each month. So it's like, Okay, well, if I get through this little bit, I get the reward of getting to do something new next month.
+
+28
+00:21:11,160 --> 00:21:19,380
+Wes Bos: Next question we have here from Andrew, thank you for a phenomenal podcast, you're adding an incredible value to the community day in and day out. Wow. Thank you.
+
+29
+00:21:19,410 --> 00:21:21,350
+Scott Tolinski: Thank you for an incredible question, Andrew.
+
+30
+00:21:21,560 --> 00:21:38,220
+Wes Bos: Yeah, I am now working on building a Minesweeper game with react. You know how on the computer, you right click a flag to disable the cell. I'm just thinking about that. Like, I don't actually think I know how Minesweeper works. I played it a whole lot when I was a kid. But do you want to click stuff?
+
+31
+00:21:38,330 --> 00:22:12,990
+Scott Tolinski: Yes, tell me. So the whole goal of Minesweeper is to find the mines to find these bombs that are hidden, right? So you click one square, and that tells you like a number that number whatever, I'd say it's one, that means that that square is touching one bomb. Touching another bomb, it like gives you a whole bunch of more squares depressed for free until one of them is touching the bomb. So you have to use these sort of logic and deduction to sift find, where are all the bombs based on these like sort of numeric rules, you're given up the landscape?
+
+32
+00:22:13,770 --> 00:24:22,230
+Wes Bos: bomb explanation? So the question is, you know how you hold a computer, you right click a flag to disable a cell. I am thinking about doing a press and hold on mobile instead. This is I'm really glad that like you're building or thinking about mobile as well, because sometimes like you build saying, like, yeah, it doesn't work on mobile. But you could probably get it working. I'm not sure how to do either right click logic, or press and hold, how can you listen for these events in react and need some help and guidance? Well, the present hold is is pretty simple in JavaScript. So the way that it works is you create like a, a flag Boolean, where it's called like is pressed. And and you set that to false. And then when somebody does a mouse down event, so not not just listening for a click, but listen for mouse down event, when that happens, you turn that flag Boolean to true, then you set a timeout, where like, maybe 400 milliseconds, and then you say after 400 milliseconds, if that flag Boolean is still true, then that means that they're still holding their finger down, because the flip side of that is you listen for a mouse up event as well. And when somebody does a mouse up event or a touch end event, I guess in your case, you would set that flag Boolean to, to false. So when somebody touchstart, set it to true, set a timer, after 400 milliseconds a second check if that is still true, then if that is true, then then the user is obviously still holding their finger down. And then you can go ahead and fire off like I would probably just fire off a custom event called long press or something like that. I'm sure there's a JavaScript polyfill that you can you can add in and you can just listen for the long press event. But that's that's kind of how it will work. The other flip side is how do you listen for a right click that is an event called context menu. So instead of listening for click listen for the map called context menu, and that will give you a right click event. Hmm,
+
+33
+00:24:22,950 --> 00:25:10,800
+Scott Tolinski: yeah, I think like mouse and pointer events in terms of like, clicking or touching or whatever. Those things are underrated skills in the moment, you need to pick them up. I think they're, they're exclusively done in modern frameworks, right? I think that's one of the better things that you can do is write custom stuff, especially specifically I think about like using react spring or something to do like dragging animations or those types of things. Are you in frame or motion, right? And I think that like having those type of interaction skills are definitely something that you'll get a lot more use of as you Get into more and more interesting developer problems. So very cool. I highly recommend you, you checking that out man that Minesweeper sounds a lot of fun, share it with us when it's done.
+
+34
+00:25:11,340 --> 00:26:00,840
+Wes Bos: kind of want to build it. Now, one more thing about that I just remembered is use pointer events instead of mouse and touch events. Point events are the new speck in JavaScript that cover both touch, and mouse and we controller and all of that things. And then one more thing is one, like little gotcha you have with that is if you press down, and then drag your finger off of the the thing and lift up. Oh, yeah, yeah, it won't trigger a pointer up event on that element. So you often have to listen for a pointer out event. And that is when the the pointer the finger, or the mouse has been moved out of the box. So if that's the case, then you also set the is pressing to false because they've essentially move their finger off of it. So they're no longer pressing
+
+35
+00:26:00,840 --> 00:26:05,310
+Scott Tolinski: it. Or you could have like a pointer up on the container, right? Yeah,
+
+36
+00:26:05,340 --> 00:26:09,420
+Wes Bos: yeah, as long as the container goes all the way to the edge of the screen,
+
+37
+00:26:09,450 --> 00:26:12,900
+Scott Tolinski: right, or the body, if you want, if you want to have that on the body.
+
+38
+00:26:13,350 --> 00:26:27,330
+Wes Bos: If you were to like click down in Canvas, and then drag your mouse out of the out of the even out of the browser, and then click up, then you come back and the browser still thinks that you're looking down because you know, you never fired that. pointer up event.
+
+39
+00:26:27,510 --> 00:26:56,850
+Scott Tolinski: Yeah, there is. It's funny, I actually just hit this same same thing when I was building my own gesture based stuff in spelt. because there wasn't like a, I don't know if there's like a felt gestures library, because you can do so much just straight up stuff is felt. So either way, I was just doing like, the gesture stuff with it. And it was building one of those like, swipers, where you not like, not like the Tinder swiper. But like, more or less, like when you want to delete kind of swiper that kind of swiper Oh, yeah. Oh, that's
+
+40
+00:26:56,850 --> 00:26:59,160
+Wes Bos: one I like, Yeah, I know,
+
+41
+00:26:59,160 --> 00:27:41,640
+Scott Tolinski: those projects are needed way easier than you would expect them to be. Given that, you know, it's a complex functionality, but it's really pretty easy, you just trigger that, that press down, animate the value, and then determine how far you've moved it and use that value to trigger an event. Very simple. Okay, so building these kind of complex things. It's just, it's, it's a lot of fun. And what can you imagine a service request? Can you imagine a service that is gives you the ability to create custom content types, and custom forms? using your own cool react stuff? Like maybe gestures, or any of those things? Can you think of a service like that?
+
+42
+00:27:42,210 --> 00:28:53,760
+Wes Bos: I can, I can think that you would use Sanity for that. So if you want to build a headless CMS, you can go ahead and grab Sanity. And the cool thing about Sanity is that Sanity Studio is their, the the CMS that you'd expect to interact with and change your data types and update and delete and things like that. But it's a react application that you have access to. So if you want to be able to make your own custom, swipe and delete on specific elements, because that doesn't exist in in the cmms. And you can go ahead and make your own custom inputs, which is really cool. I just recorded the video yesterday for my upcoming Gatsby core. So us creating our own custom input. It's really cool because they give you all the handlers and the helper functions and the the input values. And you just have to handle binding the input due to these methods yourself. So check it out your next project. If you need a headless CMS for your project, check it out@sanity.io forward slash syntax. And that's going to get you double the free usage tier. Thanks so much to Sanity for sponsoring. Cool,
+
+43
+00:28:53,790 --> 00:29:06,570
+Scott Tolinski: yeah, I want to build my own interface for Sanity, where if I do like a two finger swipe on a component, then it will just delete all the collections that I have a be cool.
+
+44
+00:29:08,340 --> 00:29:26,880
+Wes Bos: Yeah, that you could totally do that. I could use pointer events. I think pointer events tells you how many What do they call it? Like not fingers? Because you could use your toes? How many appendages digits are on the digits? That sound like four digits, man
+
+45
+00:29:26,880 --> 00:29:48,860
+Scott Tolinski: digits, hey, well, I wouldn't when I was in biology. In high school, I had to do a report on extra and missing digits. So digits, sometimes sometimes you have more digits than five. And maybe that that should be something to think about. Okay. Don't implement it. Like a
+
+46
+00:29:49,710 --> 00:29:53,040
+Wes Bos: secret trick, like a little easter egg in your application, a six
+
+47
+00:29:53,040 --> 00:31:11,340
+Scott Tolinski: finger swipe where you have to actually use your toe if you don't have an extra digit. Cool. So next time question here comes from Matt divaris says, what are your thoughts on sales j s as a Rails equivalent framework in JavaScript? I recently they recently released a version 1.0. And I'm wondering if I should start using it in projects are wait to see if it pans out. So the reason why I picked this project, this question in particular is that sales has been around since like, the start of note, pretty much. So when I read this, I was like, Wait a second, I just had version one and ensure Nova did I have not really had sales on the radar for a very long time, because it was like sort of along with happy and express and sales were like, different versions of the the like node, quote unquote, framework that you could use, despite the fact that Express is just like routing, right? So I personally, am very surprised to hear that this just hit 1.0. And I have not looked at it in several years, because I just figured it was its own thing. its own little community of people using it. And I was surprised to see that the progress is still been going on, but that it was only at version one. What do you think was? Yeah, I
+
+48
+00:31:11,340 --> 00:31:19,260
+Wes Bos: think it's it's probably fairly stable. I don't think that it's going to change on you anytime. anytime soon, which is good.
+
+49
+00:31:20,220 --> 00:31:29,400
+Scott Tolinski: So got 21,000 stars on GitHub. So it's certainly not a Oh, yeah, it's a it's not a no young young pup here.
+
+50
+00:31:29,610 --> 00:31:37,230
+Wes Bos: So it, this doesn't do like, this is not like a front end focus framework. This is the node framework, right?
+
+51
+00:31:37,860 --> 00:31:44,850
+Scott Tolinski: It is the rails of JavaScript, hence the name. Oh, yeah. sales. So it does do a front end.
+
+52
+00:31:45,540 --> 00:32:05,400
+Wes Bos: But it's not like it doesn't have like a specific like front end like in react or anything like that. It'll just spit out a it does the back end logic, your REST API, your database interactions, your controllers, MVC, pattern, all that, but it doesn't do it doesn't care what you use on the front end in terms of your, your react application. Is that right?
+
+53
+00:32:05,430 --> 00:32:10,440
+Scott Tolinski: My understanding is that you can use anything with it that could be wrong. Because IDC
+
+54
+00:32:11,430 --> 00:32:13,200
+Wes Bos: exam from an agnostic?
+
+55
+00:32:13,230 --> 00:32:48,240
+Scott Tolinski: Yeah, so they don't care what you use. I would use sales. It is mature. It has existed for a long time. There's a large community that that I don't know, I know surprisingly little about this, despite the fact that I've probably tried it at some point in my life, maybe, you know, four or five years ago, whatever. I probably tried it at some point. So would I use it? Sure, I would absolutely use it. There are other options available for this type of thing. In case you're wondering, what is it? What's the new one right would is that the new one or Blitz? Which is next? Jesse's an extra
+
+56
+00:32:48,360 --> 00:32:55,470
+Wes Bos: sticker in the mail the other day from them who got wrecked put stickers? Yeah. Well, they're just had like a form on their website. And I filled it out. And they came.
+
+57
+00:32:55,950 --> 00:33:01,500
+Scott Tolinski: Oh, man. So what is it? Like? Little pine cone? Is that what it is? You got? Yeah,
+
+58
+00:33:01,770 --> 00:33:05,460
+Wes Bos: it was a I thought it was a hop, hop.
+
+59
+00:33:05,520 --> 00:33:13,610
+Scott Tolinski: Well, that doesn't make any sense with the redwood. jL it's not hopping. It's not it's not hop t j. s. That sounds pretty dope, though.
+
+60
+00:33:14,190 --> 00:33:32,820
+Wes Bos: It's check. Yeah, you're right. That's cool. Um, the only thing I would say about the sales is that it doesn't look like it has a graph qL API. So you don't absolutely need that for your application. But if you are going full hipster, you're gonna need a graph qL API for that.
+
+61
+00:33:34,140 --> 00:33:54,780
+Scott Tolinski: Excuse me, this project is okay. But you're gonna need a full graph. qL API and graph QL. All the way. By the way, if somebody wants to take hop d.js it's available valable project namespace II hop D you've never had hop d? No. hlp ta that seems like something that would be right up your alley, Mr. Buddha.
+
+62
+00:33:55,080 --> 00:33:59,670
+Wes Bos: Like I feel like craft beer brewed like tea. Ooh. So it's,
+
+63
+00:33:59,759 --> 00:34:21,330
+Scott Tolinski: well, it's Yeah, it's not an alcoholic, or at least not really 00. Like it basically is tea but it tastes like hoppy. So it's kind of like tea. If you can think about it. I've had a, I don't know, I've had a couple of brands here that they sell it at one of our favorite poker places. So I'm not saying I'm into this, this
+
+64
+00:34:21,330 --> 00:34:24,690
+Wes Bos: looks like it will cost $11 for a can and I would love it,
+
+65
+00:34:24,779 --> 00:34:31,190
+Scott Tolinski: you know, walk over to Whole Foods, you're gonna go to that small little refrigerator. You're gonna pick yourself up that? Happy.
+
+66
+00:34:32,360 --> 00:35:12,980
+Wes Bos: Happy. Alright, I'm in. Next question we have here is from Kenneth lyerly. Thank you for the pronounciation there again, how do you go about creating reusable react components reusable from project to project? Do you create packages and publish them to NPM? Or do you have another method for storing code or components that you will likely need to use again, so if it's a reusable component that I need in multiple cases, projects, I will either just copy paste it. Or if it's like, I'm like, Okay, this needs to be properly done across all the projects, then I'll go ahead and just bundle it up and publish that to NPM.
+
+67
+00:35:13,560 --> 00:39:37,880
+Scott Tolinski: Hmm, that's a, that's a little simple for me Why? So I got to do it. And what you need here is you need to learn a mana repo. And then you need Yeah, actually, so I've been down this road so many times, because I have such a hard time with this. And I still haven't found the best solution. I know saying this people will have their best solutions. I've tried a lot of different solutions. Because somewhere along the line, I realized I make really, really helpful modules for myself that can be reused across projects. And I've started doing that, for instance, we open sourced instead of like, open sourcing level up tutorials, comm we started to open sourcing aspects of it. So we open sourced our forums library called fresh, and so people can use fresh and then we open sourced our dragon dropper, which called dropping, I have one called animated elements. That is that actually, animated elements is a package of mine that I really should make a little bit more robust. But you know, it's timing here. And everything is difficult to do these kind of projects to move this up, especially when it's such a pain in the butt to do exactly what you're talking about. Here. I've found this to be such a tremendous pain to work on a project locally, use that version, in your application, whatever the up to date, modern version is, and still keep everything separate GitHub repos, those kind of things. I do it right now through separate repos using NPM link, or in my case, the yarn link. And it's just not good. I like occasionally run into some issues where the linking gets all messed up. And it's like, not transparent. There's nothing in your package. json, you have no idea but it's being linked or not. And it can just get really, really super annoying. So then I tried the whole learning thing, and man learning is not fun. I'll tell you that right now. Props to the learner people. People out there working on mono repos, man, this stuff is tough, tough, tough. It at least in terms of like getting everything the way you want it. Specifically, I have a bunch of like custom Babel config stuff that I, I really want to hold on to that it makes some of that a little bit difficult. So what's the best way right now the best way for me is unfortunately, using yarn link. Another thing I've started to do recently is in Meteor, you can have local packages just by creating a package director and writing a package dot j. s file not package JSON, it's like a meteor thing. And then you can publish them separately, I've been doing those as a git sub module where you just don't commit anything in the packages folder. And then you keep an entirely separate Git tree as a sub tree of your other one, it is just, it's also not a lot of fun. But they're both requires a bunch of a bunch of, you know, running Git commands until everything works. And then you can be on your way I'm interested in whatever people have for their best workflows around creating local packages. I typically use TST X to create my local react packages are my, my react packages, but I'm interested in seeing what people do beyond the the sort of yarn link or NPM link. And don't just learn a nap because it's not good, but because I've already been down that route. Alright, next question is from trick PR. What are your thoughts on the Shadow DOM custom elements? would you use them in your own projects, I'm getting more likely to use them in my own projects as time goes on here. But that said, you know, React is still more useful, spelt is still more useful. And probably what I find at the end of the day, is that I would prefer to build something in spelt compared to Web Components right now. And, you know, remember, do you remember like, way back? When you first started learning react, when there was like, sort of, Oh, and by the time web components are ready, maybe this can even output to Web Components? You know? Yeah, that was like going on, because polymer was was growing at that point. And Angular had the same sort of idea. But it never really happened, because Web Components just never got to the level of usefulness that reacted, or any of these things, and not that the React team was ever planning on doing that. But that was always sort of this idea that loomed in people's heads. It's like, Oh, well, we write our things in components. Maybe we can just convert these to web components one day.
+
+68
+00:39:38,210 --> 00:40:03,380
+Wes Bos: Yeah, that was kind of a bummer that I'm not necessarily a bummer. But I think like the people have spoken. The fact that we're not all using web components, and we're all using some sort of framework is that the framework figured it out and how to do it better. And as someone who loves vanilla JavaScript and the standard of the web that that hurts me, but I'm not also using it myself. So yeah, cool, but I just rather use react. Do
+
+69
+00:40:03,380 --> 00:40:46,530
+Scott Tolinski: you know what I would use if I wanted to use web components? I would use lit HTML, which is part of just polymer lit is basically a templating syntax that allows for, like, individual updates. And it outputs to because it's polymer outputs to web components. You have to use polymer with it. But Hmm, it's just not. It's just not like, great, great for me, I don't know why it just, it's just not there to the level of ease of use. And in whatever maybe it will be, maybe they'll be this like, perfect framework, polymer kinda does a little bit of these things. It's just a polyfill. But maybe, maybe this lit HTML, which seems to be picking up steam will actually have, you know, some some energy behind it and those sort of ways.
+
+70
+00:40:46,859 --> 00:41:52,710
+Wes Bos: Next question from Mark volkman. Seems like a lot of questions come from Mark volkman. Very good ones. Um, yeah, I feel like we've said that name a couple times. So yeah. Good On your mark volkman. Next question from Mark volkman. is how do you organize CSS properties within a rule? And why random alphabetical, logical grouping, etc? we've answered this a couple times, but I thought we'd answer it one more time. I don't have any sort of system. I'd like to keep my CSS Grid stuff together. I like to keep my positioning, trouble, top right, bottom left together, like to keep my margin and padding together, and pass that that that's it. I've seen people who do it all alphabetical, or it doesn't make a whole lot of sense to me, I've never had a like a, like, they always say like, oh, there's cognitive overload, where you look at something and you have to figure out where it is in the selector. I'm like, No, I just look at the selector and I add it to beside the property that makes sense. So I don't really have a system other than just try to keep like things together. And everything we're usually works out.
+
+71
+00:41:52,859 --> 00:42:03,030
+Scott Tolinski: Yeah. I use. I don't know, is this built? You tell me Wes? Because I'm can't remember if this is an extension, or if this is built into vs. Code, the sort ascending?
+
+72
+00:42:03,650 --> 00:42:13,860
+Wes Bos: Yeah, it that is built into vs. Code. If you select the lines, yeah, it will do it. But I'm sure there's like a prettier plugin that will automatically do that for you as well. Yeah, that's
+
+73
+00:42:14,069 --> 00:44:57,360
+Scott Tolinski: a good point. I wonder if there is because that's something that ever so often, I'll not like have a kick of but look, if I'm in a component, and I'm like, buttoning it up, and I'm straightening its tie, and I'm, you know, tucking in its shirt, coattails. When I'm doing those kind of things, I will find a big list of things, whether it's CSS, or maybe it's like props being destructured, or something like that. And I will select those lines, and I will do what is a command? Or what Sorry, it's a, you know, command P and then do sort and or Command Shift P and then sort lines descending, in fact, a no joke, Wes, if I just do Command Shift p, the very first recently used command is sort ascending, because I just use it all the time. So when I'm like going through my code, go through use this sort of sending, and it probably makes absolutely no difference at all, but it makes me feel good. So that's why I do it. No one else makes you feel good as far as my website and Netlify. Because it's so easy. Let me tell you. I'm an original Netlify fanboy over here. And it absolutely shows we talk about Netlify all the time on this show. And I'm so glad to be talking about Netlify. Again, I host everything on Netlify. So if you want to host any of your front end code or code with serverless functions or anything like that, you want to check out netlify.com forward slash syntax and sign up. And people often tell us that like Dang, I had no idea Netlify was so easy it is so very easy. Whether or not you need to get a GitHub project just up and running in no time you got a sapper statically generated site or Gatsby site, any of that stuff, maybe just have a straight up HTML file. You know what I put on Netlify I put my my slides my MDX deck, I put that on Netlify just to have it available, right, you know, don't have to host it somewhere else or whatever, just throw it up on Netlify. It's so fantastically easy and free to get going that you won't want to throw up everything on Netlify that you have yourself just to just to experience it just to have it up someplace just to test it in production. And check it out. I mean, they work with just about anything. Not to mention, they have some very fantastic tools that I had to make some really more complex applications whether or not that's like super, super simple serverless functions, DNS based analytics, or a split testing, forms, media. It's just endless, the kind of stuff they're adding there. They're one of these companies that is constantly innovating on the web. And it shows because everyone who tries Netlify doesn't stop talking about it. So check it out. netlify.com forward slash syntax.
+
+74
+00:44:58,350 --> 00:45:44,460
+Wes Bos: Just a quick note on the left Last thing that we had prettier does not order your CSS properties, either logically or alphabetically. Because there's a whole, like, lot of little edge cases where nested or Yeah, or if you like, re if you have a mixin, or you have like flex flow and flex direction. And then, like the order of your CSS properties often matters, especially like if you've got like, like, you have your regular margin, and then you want to override just one of them the margin dash, right, and like, what if they, they've reversed and there's a lot of little cases like that. So not under the scope of prettier to do and like I would do it if a tool did it for me properly. But I'm not gonna spend any time doing that.
+
+75
+00:45:44,580 --> 00:45:48,810
+Scott Tolinski: So tool makers out there make Wes a tool that does it automatically?
+
+76
+00:45:49,320 --> 00:47:22,440
+Wes Bos: Yeah, I don't know that. There's I think there's like, a probably be really easy to make a proof of concept. And then the like, it would be death by edge cases, death by edge cases. Right. Yeah, totally. Next question from code finity. Also, another big submitter of questions. Have you ever used a second parameter of JSON string of five for anything useful, so I had to look it up. I was like, Oh, no, I the JSON stringify has the first pram is obviously the object that you wish to stringify. The second premise is called the replacer. I'll talk about that in a second. Then the third parameter is a string or a number for what you want when you want to use to indent. So you generally you could pass a space or a tab or you could you could do an arrow or pupilage if you want. And that's that that will neatly format your JSON based on indentations and what you pass it. The second argument of JSON string of phi is a sort of like a map function where it takes in the object value in the property value. And then you can return whatever you want for that. And quite honestly, I've never used it myself. And I was just like, looking at what would you use that for? And what it seems to be is if you want to filter values out before you string a file, and send it over the wire, so if for whatever reason, before you string a FIDE something, you needed to clean up an object, you could do it that way. And then also like Remember, we're looking at like, there's now function to string where you can convert a functions actual code to a string.
+
+77
+00:47:22,740 --> 00:47:24,930
+Scott Tolinski: Yes, yeah. Yeah.
+
+78
+00:47:25,200 --> 00:47:41,040
+Wes Bos: So like, I'm thinking like, Okay, well, like JSON stringify. Doesn't, doesn't parse methods. It just removes them. But I was like, well, maybe you could use a replacer function to add in the code of a method now, so maybe,
+
+79
+00:47:42,300 --> 00:47:47,100
+Scott Tolinski: yeah, I've not used this for anything useful. I didn't even know it existed. Yeah, I
+
+80
+00:47:47,100 --> 00:47:49,860
+Wes Bos: didn't know what it was until 20 minutes ago.
+
+81
+00:47:49,890 --> 00:50:36,450
+Scott Tolinski: Yeah. So no, I have not used it for anything useful. But it seems like it is possibly useful. I'm interested in hearing if anybody else has actually used this for anything in their day to day. Last question is from Nate Spillman here. He says, Hey, Scott, and Wes, my getting my first web dev job at an actual software company a year ago opened my eyes to the vast difference between educational repos and the absolute jungle, that can be enterprise basis. You see, Nate's dead on here, so Safari out there. So if I've also learned the importance of writing code that can be readable, later, ensuring any hacky workaround is replaced with a pattern seen elsewhere in the codebase, etc. My question is, are the resources, these sorts of topics for folks trying to break into the industry, a lot of tech topics are revolve around how to get your code to run, which feels like half the battle, where can juniors find more resources on robustness? And okay, so I think the reason why you're not going to see a ton of this, Nate is because it's, I want to say, a bigger problem than the JavaScript, right? These are conceptual issues, these are our planning things. So you, you most likely won't find this, this information around, like here, like take this JavaScript course. And all of a sudden, you're gonna learn how to write dry code, or correctly abstract code, whatever even that means. My my suggestions to you is to one get good at commenting to get good at functional programming. Three, read a bunch of books on programming. So there's, there's even one a repo that I always suggest called clean code, JavaScript, this is going to teach you a lot about writing, like maintainable code in terms of like, Hey, you know, these patterns, follow these patterns. Oh, naming things follow this kind of naming pattern in I don't want to like toot my own horn here. But I made a course called better JavaScript that really focused on a lot of these principles. It's like how do we name things in JavaScript to make them readable? Right. How do we, how do we name things? What do we do here? Where do we go? Where do we write things? What are the best ways to declare a function to make it readable? Last of all expendable, workable? I'm going to add a bunch more bowls here, but like, where do we go for this stuff? And I think that clean code reading some of those those classic programming books like the pragmatic programmer, those types of things will get you a long way. And don't just look in your bubble of web stuff, because a lot of the good information has already been solved by computer scientists who have been doing this stuff in a lot larger context for a long time.
+
+82
+00:50:36,690 --> 00:50:57,360
+Wes Bos: Yeah, I think you nailed it there. Not much else to say there. Let's move into some sick pics. I've got a really sick pic for you today. And it's a pool noodle. So like, these are pool noodles, like a thing like are in Europe, like always Euro
+
+83
+00:50:58,530 --> 00:51:02,400
+Scott Tolinski: in it. Yeah, I don't I do not know. No idea. I'm sure they've been around for
+
+84
+00:51:02,400 --> 00:51:45,630
+Wes Bos: a long time float. Like in Paris, they're swimming in the river. They're under the Eiffel Tower. They probably have a pool noodle. Anyways, pool noodle for I'm not sure if everybody around the oral nose. It's just usually what it is, is this big piece of foam that you throw in the water and you can you can float on it and play with it. And they often have holes in the middle. And they are awful because they they rip they get waterlogged. And we had a couple just like a couple years ago and we had just throw them out and I was like this is kind of a waste that we're buying new pool noodles every year. And we're at Costco, like three or four. But you're enjoying this
+
+85
+00:51:45,660 --> 00:51:54,540
+Scott Tolinski: I am I've just like dying that you're like it's kind of a waste that we're buying new pool noodles every year who's buying new pool? I can't even say that word pool noodle pool noodle
+
+86
+00:51:55,379 --> 00:53:06,060
+Wes Bos: so if you like we have got it so every day we go swimming and they're just always in the water things like that. So like I don't know maybe maybe three or four years ago we bought these these massive super heavy duty pool noodles and they are I'm not sure what's inside I would like that YouTube channel to cut one open and see what's inside but it's just like, like plastic dipped pool noodle and they're super super comfy. It's called the just Google fluid pool noodle and you can see what it is and we've had them for three or four years now and they are still perfect. They like support your weight like I can I can float on one as an adult and have my kids on my back and still be supported and I don't know it's just like the best pool noodle ever and we are won't be throwing them out every every single year. So seems like a really silly silly sick pic but I was like looking at them yesterday and I was like these things are awesome. And if you look them up online, they're like silly expensive. They were like I see them online for like 80 bucks and noodle which is silly but I thought we got all of ours at Costco for like 30 bucks which is still a lot but
+
+87
+00:53:06,180 --> 00:53:07,860
+Scott Tolinski: did you say in noodle
+
+88
+00:53:07,950 --> 00:53:13,950
+Wes Bos: fluid pool noodle or they're also called wow wow watersports dipped noodle.
+
+89
+00:53:14,010 --> 00:53:19,140
+Scott Tolinski: No, I'm sorry. You said I'm like looking them up in and then said a word that sounded like noodle.
+
+90
+00:53:19,980 --> 00:53:24,030
+Wes Bos: Oh, no. Okay, so yeah, cool.
+
+91
+00:53:24,060 --> 00:53:50,220
+Scott Tolinski: Well, that is a sick. I've never heard of these at all. Never heard of them. Um, we have a you know, in this little tiny kiddie pools like little kiddie pool that has like this giant whale, whale tail and the whale tail, you hook the hose up to it. And it sprays water out of it. And Landon has been loving it. Maybe he needs a giant pool noodle that's larger than the pool itself. But that's as much like action as we're getting this year. That's for sure.
+
+92
+00:53:50,820 --> 00:53:51,390
+Unknown: Alright,
+
+93
+00:53:51,390 --> 00:54:10,800
+Scott Tolinski: my sick pick here. Is there going to be a VS code extension? I'm going there. I'm going there. And it is easy snippet. I love snippets. I create snippet libraries for myself all the time whenever I do things. And I don't know why I never took the time to say,
+
+94
+00:54:10,800 --> 00:54:11,580
+Unknown: Hmm,
+
+95
+00:54:11,580 --> 00:55:58,230
+Scott Tolinski: this could be an extension. So it was just yesterday, I was like writing out some very specific comments. And I was like, I'd like to have this common be used on the page in various ways and different pages to have the same sort of comment sort of denoting locations of things. Only I don't want it to type every time. So I made an extension. And well, I made a snippet board, because why not? Right? Why not make a snippet. So what this extension allows you to do is just highlight, select a bunch of code and then do the command shift P and then type in great snippet or just snippet? Oh, that's great. You do create snippet. It just asked you to give it a name. And you hit type in the name and hit enter. BINGO, BINGO. It's there. And since it already knows what type of file you're in, it knows what type of file to use this in and therefore making the entire process extremely easy. You never even have to touch a config. You never even have to Leave your file, and then all of a sudden you have a snippet for it. So I've been using this for the past week here and and really like it, I have been making a whole ton of snippets, probably more than I'm even going to remember later. And that's why, let me tell you part two of this is the little toolbar that it gives you. So it gives you a toolbar of all of your snippets telling you split up based on file type. So if you pop up into your react JavaScript, or JSX, or TypeScript react, you can see, see I have a UI, ts react component, It even gives them your names, you can click on them, and when you click on them, it takes you right to the snippet so you can see exactly what the snippet is. So if you if you're not good at naming things, you can always see what they're named. So I think this is fantastic, easy snippet. I've been using it a lot and a big fan of this when in fact this this sick pic was so sick that it overrode the SEC that I was going to do so I'm a big fan. And I wanted to shout this one out.
+
+96
+00:55:58,800 --> 00:56:00,870
+Wes Bos: Ah, that's awesome. That's a sick pic.
+
+97
+00:56:01,440 --> 00:56:12,390
+Scott Tolinski: And it's not a hugely it's only 21 21,000 installs. So get in get it on the ground floor here. It's a sleeper. It's a sleeper pick here. The sleeper
+
+98
+00:56:13,980 --> 00:56:28,680
+Wes Bos: shameless plugs, I'm going to shamelessly plug all my courses Wes Bos comm forward slash courses check it out. And by the time you're listening, my guest of course might be out we'll see. And it will be listed on that page you syntax for 10 bucks off cool,
+
+99
+00:56:28,710 --> 00:57:05,370
+Scott Tolinski: I release new courses every single month. I have not selected this most courses you've heard me talk about already. But by the time you're listening to us this course that I have not selected yet will be already out so whatever that course may be. I'm excited I'm excited to be in the time machine here and see ended up what I what I went with and created a course around so level up tutorials comm forward slash pro we have a new course every single month. The most recent one was on modern CSS design systems using CSS variables to create really, really, really small design system. So it's fantastic level of tutorials.com
+
+100
+00:57:06,150 --> 00:57:10,710
+Wes Bos: beautiful. Thank you so much for tuning in. We'll catch you on Monday, base pace.
+
+101
+00:57:12,540 --> 00:57:13,320
+Unknown: Head on over to syntax.fm
+
+102
+00:57:13,320 --> 00:57:22,290
+Scott Tolinski: for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
