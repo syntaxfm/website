@@ -1,0 +1,140 @@
+1
+00:00:00,359 --> 00:00:21,660
+Unknown: Monday, Monday, Monday, open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob and Scott Taylor.
+
+2
+00:00:23,580 --> 00:00:24,450
+Totally at ski.
+
+3
+00:00:25,890 --> 00:00:49,500
+Whoo, welcome to syntax and this Monday, we're gonna be playing a game of stumped. Now this is a game that we probably haven't played in like a year. So maybe it was a game that Wes and I made up to try to stump each other with internet question. Yeah, it's been a long time. It has been a long time. It's been too long. And too long since I've been embarrassed.
+
+4
+00:00:50,610 --> 00:04:18,810
+On a popular podcast, so let's go. I forgot about it. Somebody somebody like said, Hey, you should do a stumped and I was like, Oh, yeah, I forgot about doing stumped. Oh, yeah, that exists. Yeah, we should do that. So my name is Scott, TELUS gamma developer from Denver, Colorado. And with me, as always, is the West boss. How you doing? Wes? I'm doing okay. It's like 38 degrees here, which is 100.4 Fahrenheit, which Americans get much hotter. I know. But it's hot for a Canadian here. I'm used to snow. Yeah, yeah, it's been in the hundreds up here to well, down here. I'm way far down compared to you. But yeah, so this episode sponsor is a Log Rocket. Now, if you've never used Log Rocket, you're gonna check it out at Log rocket.com forward slash syntax. And you're going to be blown away by some of the cool stuff it does. Basically, it gives you a session replay of a bug error exception happening as it happened. So that means you can scroll scrub through the video, you can get your network request as they happen. You can get the console log as it happens, the Redux store, or any of those cool things that you have never seen from an error and Exception Handling tool. This is not just like some breadcrumbs to try to find the problem. This is literally how the problem happened, giving you an unprecedented access to solve this problem. So check it out at Log rocket.com forward slash syntax and try it out today, you're going to get 14 days for free with that Log Rocket URL. So check it out. stumped. Yeah. So that we are using this 30 seconds of interviews.org, which has a whole bunch of like, like little, little like, quick little gotcha questions, and not necessarily gotcha questions, but just interesting things. And they vary from easy all the way up to hard they are, what are the categories HTML, CSS, JavaScript, react, node and security. And we just wrote a little snippet that we paste into the console that will randomly grab one of the 300 questions on here, and the other person has to attempt to answer it, we'll make fools of ourselves, fool. So that's it. Do you want to rock paper scissors? For whoever wins gets asked the first question, I win a paper to his rock so hard with the latency, what happens? each end up going slower each consecutive time because we're both trying to account for the latency. Okay. My brain skills are really firing on all cylinders today, as you can tell. All right, my question here is an intermediate one, it says what is the difference between HTML and react event handling? And I went into the answer just to get a little bit more clarity on this. But the mean, what is the difference between inline event handlers on a button and inline event handlers in react? JSX. So on, click on Submit things like that, what's the difference? Well, name a couple differences between the two. Aren't they not the same? Like aren't the React ones just their own things, synthetic events that are like, their own event system that like mirrors the DOM one, is that correct? That is correct. It's not that's not on here. But you're right about that. But that's that's not what it says here. There are there are some actual physical, yeah, let me go and we keep going here. Because who
+
+5
+00:04:19,950 --> 00:05:00,000
+I'm gonna get I'm gonna give you a fail on that. And a, that's okay. Because like, like, how often do you write inline event handlers on age like a button, right? Very, probably never, never know, before that I use jQuery. There you go. One difference is that react camel cases, its event handlers. So it would be on click with a capital C and react and on HTML, it's all lowercase. The other difference is that HTML uses double quotes on the attribute, or you can also use single quotes as well. And then also react, you pass it reference
+
+6
+00:05:00,000 --> 00:05:54,270
+To the function without parentheses and in HTML, you actually, inside the quotes, you put the parentheses on the end. That's a sort of a gotcha that that people have. Yeah, otherwise it runs in the JSX. Yeah. Yeah. I think that's true. Any function though, not just a inline event handler 30 seconds of interviews.com or.org. So, okay, but But no, that's not true in HTML elements. Like, if you put a handle click parentheses, in an attribute in HTML, it's not going to run until the event handler Oh, no, I know. I'm saying like, I'm sorry, what I what I meant is that react, no matter what, what way you put a function on anything, it's Oh, yeah, that's true. Regardless and react. Yeah. Okay. So that's big, big F for me, Wes, Ma, got to get you one here, popping it open.
+
+7
+00:05:55,320 --> 00:06:03,780
+This is an intermediate one. But this doesn't seem, this seems like an easy one. What are JavaScript data types?
+
+8
+00:06:05,580 --> 00:06:09,030
+Not like what are they? But like? What, like, what is the data type?
+
+9
+00:06:10,500 --> 00:06:40,890
+What is the data type? Because it doesn't say what are the although, sorry, like, is asking what the what the types are in JavaScript, D. It's F, it just is what our JavaScript data types. But it looks like it's looking for what seven data types are. Oh, okay. All right. This is I always like doing this one. I always screwed up. Number, string. object. undefined. No, go to more symbol.
+
+10
+00:06:42,000 --> 00:06:42,990
+And
+
+11
+00:06:44,370 --> 00:06:55,110
+Boolean? Aha, that was not as hard not as, um, I've asked you that on the podcast and you rattle them off. No problem. I had to really think about that. Hmm.
+
+12
+00:06:57,450 --> 00:07:03,780
+All right. Next question. For Scott, in which states can a promise be?
+
+13
+00:07:04,830 --> 00:09:17,160
+So I'm trying to think if there's like, any hidden gotchas with this. What states can I promise be can be resolved? rejected? can be? I don't know. It's like, if you throw does that just that just rejects it? Yeah. They're resolved rejected. initialized? I don't know the language here. Yeah. Is I'll give it to you. Yeah. So that's, it's it's pending, which it says initial state. So that's initialized, it's, like, fulfilled, which is resolved and rejected, which is rejected, nailed it. I'll give you a 10 out of 10. Even though I got the words wrong, let's go ahead and do it. That's fine. Okay, we have an intermediate question for us. And this is the topic of HTML that discuss the differences between an HTML specification and a browser's implementation thereof. Oh, difference between the HTML specification and a browser's implementation thereof? Mm hmm. I think you I think this one might be easier than you're putting on your brain. So this, the spec is just what the standards body and the people from the browsers have come together and proposed and very much like the CSS, so we haven't and it's all been approved as to how it should work. And then the browser implementation is actually how they've implemented it. And those are supposed to line up, but sometimes they don't. And there's cross browser in consistencies. Is that good? Yes. I think that's perfect. I don't know. I mean, I mean, there's the buyer, and then how it's the spec, and then how its implemented? I don't know. It's not really too deep of a Yeah. No, that was I thought that was gonna be like, much harder. I guess this does have some things that say, like, define the roles that must adhere to an honor be valid. According to this specification, it's like, a lot of words to basically say the same thing. Come on, that's a silly question. It's a silly question. Come on, who is it? Who's asking that in an interview, you know, like, Oh, do you really know HTML? Because you know, this weird thing? Oh, this is a easy react question. What is a stateless component,
+
+14
+00:09:18,330 --> 00:09:41,190
+a component that does not have state in the past, a stateless functional component would have just been on a function component, but now with hooks, they have a state. So a stateless component is literally just a component that has no state. And it's a function without a hook, say, a dog without a collar. It's, uh, you know, so mason jar without some cold brew in it.
+
+15
+00:09:43,440 --> 00:10:00,000
+I, um, I'll give you that. Um, I think the one of the keys there if you're getting as an interview question is, it's a function that takes in props and returns the same outfit, hundred percent of the time guaranteed regardless of anything else.
+
+16
+00:10:00,000 --> 00:10:21,540
+So given that it's it's a pure function, right? Yeah, given that it takes in data, it always returns. Exactly. Yeah, I'm gonna give you that correct. There's no side effects. Okay, this is a good one to go along with this. I don't think this one's particularly difficult even though it's listed, it's hard. But it's a good good one to go along with the last one, we just add in, what is a pure function?
+
+17
+00:10:22,650 --> 00:11:26,880
+Oh, there you go. A pure function is a function that given its inputs, will hundred percent of the time always return the exact same output and that function does not have any side effects, which mean that it goes outside of the function to update stuff or to fetch data or anything like that, it simply just depends on what's handed to it, and always returns the same thing. Yep, always returns the same thing. That's it, nailed it. So this is an intermediate one, it's gonna be a bit a little bit of mouth coding, but you just have to tell me what the output of it is. So you've got three variables, A, B, and C. The first variable a is is an array, where the items are 123. The second, B is also an array, same one items are 123. So so far, you have two variables, both of them are their own arrays with one, two and three items in it. And then you have C variable c, where it is a string of one comma two comma three.
+
+18
+00:11:27,960 --> 00:12:00,270
+So you've got an array of 123, another array of 123. And then the third string of one comma two comma three. Got it? Got it. Now, the question is here, there's it's a two parter. What is the output of a equals equals c? And what is the output of a equals equals b? So do you want me to know I got it? I think they're both false. I think they're both false. So your final answer? I, you know, I don't.
+
+19
+00:12:01,620 --> 00:12:03,330
+So, yeah,
+
+20
+00:12:04,620 --> 00:12:10,890
+I would, I would think that they are both false just offhand. In my brain space. When I tried to visualize this.
+
+21
+00:12:12,030 --> 00:12:22,440
+Obviously, the way that this is all presented is lining up for the the first one to be true. And the second one to be false for some reason, but I'm going to go with false false, because that's what my heart's telling me.
+
+22
+00:12:23,550 --> 00:12:38,280
+All right. Incorrect. The first one is true, false is true. So it is true false, and I get bonus points for at least guessing that that would be the downfall you should have. You should have answered it that way.
+
+23
+00:12:40,080 --> 00:12:47,880
+Why it was double equals, and double equals only performs, doubling the values and not
+
+24
+00:12:48,900 --> 00:13:16,800
+there you go. Who knows type, so it converts the array to a string before it before comparison, n double equals, and it'll get the second one is false, because two arrays, even though the values are the same, it doesn't do a deep check. It just checks for reference of objects. Yeah, they weren't you go in you're learning double equals that Oh, gotcha. And you may just be on a podcast doing a game show. And that's when it gets
+
+25
+00:13:18,330 --> 00:13:51,300
+it. Gotcha. But that this is, I think the reason you got that wrong is because you probably don't use double equals. And so you don't even know the inconsistencies of using double equals, because you just don't ever use it ever. Yeah, no. Yeah, this is a good one. Although, man, a lot of these hard ones. They just don't feel hard enough for us. I'm trying to stump you. And I know you're not going to get stumped by this. So here's one. What is Nemo ization? Oh, that's where a function remembers the values.
+
+26
+00:13:52,380 --> 00:13:59,100
+So that when it runs the second time, it doesn't have to re compute those values. Yeah. What's a good word for that? That?
+
+27
+00:14:00,540 --> 00:14:57,330
+I would like to it's in the good to hear sections. Something that's good. Good for me to hear to make sure you understand this concept. Yeah. So like, maybe we should give an example for people listening. If you've got like, I want to hear a word. There's a specific word I'm looking for. So word, like if you had like a function that does some sort of heavy process of doing some math, or even like, I've done it in the past, where you have like a, like a fetch request. And if somebody does a fetch request for product ABC, and then someone does another fetch request for product, e fg, and then the third person comes along and ask for ABC again, if you know oh, I already have that. I memorized it. I remember it. And you can like store that in like a map or an object or something like that. You are just dancing around this word. You're, it's like it's like the word what's the word is on the floor and you're just like leaping over it every single time. It's directly in front of the caching.
+
+28
+00:14:58,620 --> 00:15:00,000
+caching Yeah, Yes, you will.
+
+29
+00:15:00,000 --> 00:15:02,909
+You're on point. Yes. Your answer, describe define.
+
+30
+00:15:04,200 --> 00:15:28,980
+But they wanted to hear that word caching. And I know Wes I just did in New York. But no, you got it. You got it. Right. So Alright, next question for Mr. To Lynskey react question, how do you pass an argument to an event handler in react? So you have like a click handler and you want to pass an argument to a method, you have to kind of comes back to the Yeah.
+
+31
+00:15:30,630 --> 00:16:46,830
+But if you just have params, at the end of your function it runs. So you've got a, there's several ways you can, the way that I'm doing it is I'm writing an inline arrow function, inline anonymous arrow arrow functions to just simply call because that will only run when clicked. Beautiful. Do you know another way? That is very not so popular anymore? bind to that now that Yeah, I got a hard HTML question for you. And that is, what is html5 web storage? Explain local storage and session storage. So what is they're looking for the differences between local storage and session storage? Oh, I've looked this up once. I've never used session storage. I remember like finding it in the dev tools. I was like, Oh, what's that? I'm gonna guess that the difference between local storage and session stories, they're both key value stores. However, local storage will stay with the browser. But session storage will be cleared on, like, on like a restart of the browser or something like that. You're just about there. But I'm going to need some clarification on when exactly a session storage
+
+32
+00:16:47,880 --> 00:18:17,190
+is clearly or is it when the browser is closed? When the tab is closed? I'm going to say, so when the tab is closed, now when the browser is closed, no, when new window when the entire browser is closed, like when you quit the you quit the browser. you reboot your computer, you do something like let's say you're smiling, let's say you have a chrome rendering bug preventing you from looking at the screen. No, the answer is, well, man, yeah, when the tab is closed, you're very close. Not when the browser is closed, although that will do it. It's just not the, you know, the main one No, no, but like if you so if you close the browser, you go close the website and go back that session storage will be will no longer be there just when the just when the tab itself is closed. And that's probably also handy. I wonder if you have two different tabs of a website open. If that would be separate session started. Great question. Very well, maybe that I bet we shouldn't. Oh, cool. Well, I learned something. I got stumped, though. stumped. dumped. All right. Is that it? That's it. All right. That was fun. We should we should do that again. No, we should do this. Maybe we should actually do this again. That'd be fun. Yeah. I feel like we need some more like real hard ones. Yeah, we need to find a new pool. Because just about all of these. I was like, Oh, he can answer this. I've heard him talk about this before. So yeah, we need some like expert level, like intentionally malicious questions. So.
+
+33
+00:18:19,560 --> 00:19:05,700
+Yeah. So in Douglas Crockford, uh, you know, JavaScript, he or eloquent JavaScript on page 34. He says, What stones eloquent job wasn't that story. And Stephen? Oh, look, well. Well, yeah. Crockford did, what did he do? JavaScript. I O. eloquent JavaScript is Martin paperback. I didn't know that. What book did stoyan stefanov JavaScript design patterns? That was it? You know what, it's funny when I was saying that I was like, JavaScript the good parts was coming out of my mouth and I was like, no way that's not JavaScript. The good parts eloquent. Yes, I corrected myself into that not the first time you second guess yourself today, Scott, I trusted my heart twice in my heart has led me astray.
+
+34
+00:19:08,250 --> 00:19:15,210
+Alright, let's wrap it up here. Thanks so much for tuning in. And we'll catch you on Wednesday. He's face
+
+35
+00:19:17,040 --> 00:19:26,820
+head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
