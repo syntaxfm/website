@@ -1,0 +1,192 @@
+1
+00:00:25,680 --> 00:00:44,670
+Scott Tolinski: Oh, come to syntax on this Monday tasty treat, we're gonna be going all down the list of bundlers and 2020 bundles and tools that you can use in your projects, we're going to be going into them quite a bit. Personally, I'm dealing out a couple of Scott's picks, which is something that I just made up for this episode. 
+
+2
+00:00:44,670 --> 00:00:49,980
+So my name is Scott Tolinski. I'm a full stack developer from Denver, Colorado and with me, as always, is the West Bos.
+
+3
+00:00:52,680 --> 00:00:53,790
+Wes Bos:  That's it. That's all I got. 
+
+4
+00:00:53,820 --> 00:00:57,390
+Scott Tolinski: Yeah, I know. We, we both had sort of rough nights last kids. 
+
+5
+00:00:57,390 --> 00:01:04,140
+Wes Bos: Oh, man. It's amazing that there's still people on the planet, given how rough kids can be sometimes 
+
+6
+00:01:04,560 --> 00:01:07,710
+Scott Tolinski: is very rough, especially when they come up in the middle of the night wake you up 
+
+7
+00:01:07,710 --> 00:01:09,360
+Wes Bos: exactly what we had to Yeah
+
+8
+00:01:10,170 --> 00:01:22,680
+Scott Tolinski:  it is hard. It is hard with Guardian a both woke up this morning. And we're just like, uh, she says something about going to work. And I was like, you don't have to go to work. It's Sunday, he's like is on Sunday. It's like, Oh, no.
+
+9
+00:01:25,270 --> 00:02:35,680
+However, let's just say if you had a child coming into your room in the middle of the night to wake you up, that might be conceived as a bug in your program. And you might want to be able to see that while it happens. So you can prevent it in the future. And you might be able to do that with one of our sponsors today. And I'm talking about log rocket. Now log rocket is the perfect place for you to see your bugs and errors happen as they happen in a real browser, scrubbable window. It's so fascinating to me, I'm such a visual person. So when a tool like this pops up in my radar, and it allows you to solve bugs by having a scrollable video with the Network tab and all that stuff that all of the tools that you know and use for your own debugging flow, man, it really catches my eye. So you're gonna want to check this out at log rocket.com. They works with all the stuff you know and love. There's an on premise or in cloud version of this thing. And it is a fantastic tool. So check it out that log rocket.com forward slash syntax, sign up and you will get 14 days for free. So bundler, you want to start off, you have a nice little what is a bundler little business here, we can start off there. And then yeah, get into him 
+
+10
+00:02:35,720 --> 00:04:06,980
+Wes Bos: real quick. For anyone who doesn't necessarily know like, I got to actually it's funny, I got an Instagram message this weekend, someone was just like, what do I do to make my code go live? Like, what is the process and generally, you have a bundler that will help you both in development mode while you're working on the website. And as well as when you get ready to ship that thing for production and send it out to the masses. So what does a bundler do? On one hand, you can just write HTML, CSS, and plain JavaScript to open it up in the browser. And that's certainly one really great way to do things. But as you get into more complicated apps, you generally need a tool that will handle all of the JavaScript that you write. And often, in many cases, they will also handle all the templating and CSS that you write. So like what goes into a bundler, you got to configure it, right, you got to choose what language you're using, whether you're templating in JSX, or pug or view or any of these other things out there. Those need to be converted into the templates that they're used in, whether that's just HTML, or whether that's a react application, and need to choose what JavaScript you're writing in. And what you're compiling to. So whether you are writing in modern JavaScript, es 678 910. And compiling to ES5 is pretty common right now. See support older browsers, TypeScript CoffeeScript, you're using different features decorators, nested prop drilling, what's that one called again? 
+
+11
+00:04:07,490 --> 00:04:08,660
+Scott Tolinski: Oh, optional chaining, 
+
+12
+00:04:08,690 --> 00:04:33,320
+Wes Bos: optional chaining, there you go. So if you're gonna use that, you need to convert that to something that's going to work in all the browsers, polyfills environmental variables, loading CSS, compressing images, and the probably the two the most important one is asset chunking. So chunking down into smaller JavaScript bundles that you can load as you need them, and tree shaking, which is it will take out
+
+13
+00:04:34,340 --> 00:04:44,270
+unused JavaScript. So if you import something from a library, you don't use all the methods, it will just cut out those unused methods for you. So that's kind of all the work that a bundler does for you. 
+
+14
+00:04:44,480 --> 00:04:59,960
+Scott Tolinski: Yeah, tree shaking to me is one of the ones that I think is a killer feature that people should be looking for right now specifically, because totally you can import one little thing. I mean, just think about the possibilities of having like something like lodash in your project and I know lodash exports
+
+15
+00:05:00,170 --> 00:05:47,420
+to individual function, but maybe you could just like not even think about that library at all, just be like, Oh, I just want this one little tiny piece and not have to worry about the size of anything like that. I mean, you, you get those kind of benefits. So to get into it Webpack. The first and foremost one we want to be talking about specifically because one, version five just came out. And two, it's probably the most used between all of the different frameworks that use it. And, you know, I think there was a time when Webpack was the sort of de facto, so everybody jumped on it. This one to me is the hardest to learn. But it is also the most used now I wonder if it's the most used because it's used in so many libraries or individual projects are really going hog wild with this. But to me, Webpack is just, it's very difficult to grok you know, the word grok? 
+
+16
+00:05:47,660 --> 00:05:53,330
+Wes Bos: Yeah, to understand to kind of get the idea of everything it encompasses.
+
+17
+00:05:54,380 --> 00:07:11,690
+I would say it's by far the most popular one out there, it was first on the scene, not very first, but it was first on the scene when we when we sort of moved to these bigger builds, and they did a whole lot. It can do absolutely anything you want. It's a Swiss Army Knife of this type of thing. I think the frustration with it comes with that the fact that it can do everything is it's very hard to configure, because almost all of us are just doing the same stuff. Like we're all writing, react or view or spell apps. And we're all bundling them. And we're all kicking them out the other side. And yeah, on some cases, there are some edge cases. But I think like just regular developers like Scott and I, and probably a lot of you listen to this podcast, we're all just writing the same type of JavaScript at the end of the day. So it doesn't make sense for us to actually have to configure it. So because of that, I haven't written a web pack config in probably two years now. And that's no shade on Webpack. That's just because either other packaging tooling is much easier to get up and running with or if you look at something like next.js or Gatsby, they just use Webpack under the hood for you. And they have somebody much smarter than us that knows how to configure this thing. And they just do it for you. It's part of the build step of whatever framework you're using. 
+
+18
+00:07:12,020 --> 00:08:45,260
+Scott Tolinski: Yeah, I'm gonna go in the same way I don't think I've ever written once. Not single time written a web pack config file from scratch, is certainly I've usually just copied and paste one or exported from Create react app or something like that to actually use it. So yeah, Webpack is there it is very powerful, very used. And there will be a lot of blog posts and stuff teaching you how to do it. It's just again, a lot a lot to pick up. Alright, next up is a roll up. Now roll up is Scott's pick for the best option of most features verse ease of use, as in roll up can do just about everything that exists just like Webpack it is definitely a Swiss Army knife. Roll up gives you you know, the all the hot module reloading the ESM stuff, the tree shaking, it gives you just about every single major feature that you could possibly want. And in fact, I think quite a bit of projects are starting to use roll up now I know spelt uses roll up. I know, PSD x Are you familiar with t s dx was like a starter for creating react libraries. It's, you can think of it as like the Create react app for creating libraries and push publishing them to NPM. It's very, very good. And it's TypeScript primarily. But that uses roll up Ed very successfully because it gives you the smallest bundle sizes possible. So I really like roll up myself. And if I was like picking a Swiss Army knife, one to go with and I would most likely pick roll up myself. So this is a Scott's pick for most features or ease of use. 
+
+19
+00:08:45,540 --> 00:08:59,040
+Wes Bos: Yeah, I've actually never used roll up directly. Like I'm sure I've used it in some sort of underlying build command. But I've never went in and did it myself. Is there a chi roll up config? Or how does that work? 
+
+20
+00:08:59,460 --> 00:09:16,530
+Scott Tolinski: Yeah, there's a roll up config and the roll up config. See the thing with roll up is that by default, it's it's meant to just be a bundler. So by default, it's just going to be a bundler. And then there's plugins to do all sorts of transpiling in whatever of your code as needed. 
+
+21
+00:09:16,830 --> 00:09:17,400
+Wes Bos: Oh, yeah. 
+
+22
+00:09:17,520 --> 00:09:50,730
+Scott Tolinski: So it's, it's really neat. Basically, the config file can just be like a JavaScript object that you're exporting where you give it an input and an output and what that format should be. And then you can toss around plugins along the way, whether or not those plugins are analyzing your code, maybe it's analyzing your CSS, maybe it's transpiling. It maybe it's testing it, whatever. But you can have as many outputs or inputs as you want, which makes bundling really nice and easy. If you wanted to have multiple builds of your project based on necessary features, browser requirements, whatever. It's neat. I like roll up. 
+
+23
+00:09:51,230 --> 00:11:37,130
+Wes Bos: Next one we have here is parcel parcels my favorite out there, and it is a bundler. It supports all of the popular things out of the box, TypeScript, CoffeeScript, all of your CSS, all of your react view, pug. And then you can just go and add plugins for for any other languages that it doesn't support. But I've never run into anything that it doesn't support for me, which is awesome. It just works. So you the way that it works is you install the partial CLI. And then you just give it your URL of index dot HTML or a react application or JavaScript file. And it will run both it also is a bundler. But it also is like a whole development environment. So it does hot reloading and environmental variable injection and local server, whenever I need to just quickly work on something like even if it's just HTML and CSS, I will quickly just say parcel index dot HTML. And then you can type a link source equals, and you can link to SASS files, you can link to TypeScript files, and it will just detect those and load them all in and you can you can run the build. And it's just so easy. I've never had to configure it with a custom parcel config, I don't even know if that exists. You just use your package JSON for things like which browsers you're supporting. Or if you have a custom Babel config, you can just pop that into your, your package JSON or Babel config tool, which is great. So big fan of parcel personal two is going to come out at some point. And I think that's going to make it even even easier. I'm not sure what the features are for parcel two. But a big fan of parcel one. 
+
+24
+00:11:37,640 --> 00:12:00,200
+Scott Tolinski: Yeah, parcel is my pick. This is the parcel is Scott's simplicity winner pick of the week. So I do I like I like parcel. It's the easiest to get started with by far, it just makes things nice and easy. I have found some issues sometimes where I hit like a bug with it. And I'm like, I don't know what to do next. And then you have to start diving into the config or something. But for the most part, I think it's very, very solid. 
+
+25
+00:12:00,500 --> 00:12:37,370
+All right, next one is going to be NPM yarn and yarn two. Now these are not bundlers themselves, you can certainly use them as part of your build process by writing custom scripts yourself. And I remember when like Gulp started coming out, there was like a an audience that was just like, I don't get why you would use the tool for this. Why don't you just use NPM scripts. And that's certainly possible to have the scripts to do these types of things for you. I don't know if I'd personally recommend it as the standard now that things are so complicated with browser support modules and tree shaking and all this stuff, I would pick a bundler If I were you, but certainly try to do it. 
+
+26
+00:12:37,520 --> 00:13:23,000
+Wes Bos: Your NPM and yarn are just for installing your dependencies. And then having just like agnostic commands like NPM start and then under the hood, it will run parcel or roll up or whatever. It's funny that you said Gulp though, I forgot I took 160 line Gulp file and just converted it. It was for the slides for the talk that I do. Yeah, I just converted it just to parcel justtyped the word parcel index dot pug. And it worked. I was like, Holy smokes, I have to convert my wife's WordPress website over to parcel and I think I'm gonna do a video on how to do it because she has a pretty big gulp file behind it as well. And I'm pretty sure I can get it down to no config was parcel. 
+
+27
+00:13:23,480 --> 00:14:49,850
+Scott Tolinski: That's nice. Yeah, I definitely take that approach. So the next one I have in here is going to be snowpack. Now, snowpack is Scott's speedy pick of the week. And it's sort of like Sonic after he's had three espressos. snowpack is very fast, because by default, it's only compiling the actual code file that you're touching at any given point, because it uses the ESM imports. By default, everything is very, very fast. So like most of these bundlers, when you save a file, it's going to be alright, scanning your project, compiling all the files as fast as possible than performing that rate, hot refresh. What snow pack does, if you modify header dot j s, it transformed or even header.ts. It transforms header.ts and transforms it into whatever it needs to be. And then hot module reloads that into your browser as fast as possible. I want you to just have it there just about instantly. In terms of like save file c update. I think snowpack is by far the fastest, especially for dev builds, at least out of the ones that I've tried and recently swell to just announced that they are going to be moving their main bundler for death mode to be in snowpack. So it's definitely reached the big time and I think that's a good sign of things to come for snowpack is very nice. Remember, we had Fred on the show, and that was a great episode. So I don't have the the numbers pulled up in front of me. Maybe Maybe I can do that. 
+
+28
+00:14:49,000 --> 00:15:44,200
+Wes Bos: Yeah, this snowpack is from like, like Scott says the devs behind pika package Frederick k shot Episode 212 beauty he ha Go back and listen to that one because this is like definitely like a next gen piece of JavaScript tooling. Because what it does is it just goes it does away with common j. s modules and possibly even NPM. And just says, Okay, what if everything was a URL and everything is an es module? What can we do there? And so along with snowpack, there is snowpack CDN sky pack, which allows you just to load in your dependencies from URLs, which is the same approach that Dino is taking as well. We'll talk about that in just a second. So I would definitely keep an eye on if there's any one of these that you want to check out in terms of like, I want to see the future of JavaScript, I would say snowpack, is it? 
+
+29
+00:15:44,740 --> 00:18:40,570
+Scott Tolinski: Yeah, yeah, snowpack, very cool. You can also do production bundles with it, although I have not tried it myself. Next one is going to be ISO build. If you haven't heard of ISO build, that's because it's the name of the bundler that's built into Meteor. And Meteor version two, which I want to do a whole episode on. Wes is about to drop soonish. And so ISO build is gaining two really important features that most people might not know, tree shaking and hot module reloading, hot module refresher, whatever. So Meteor is a build times are going to be way faster with those two new tools. I have it in my codebase. Right now, it's really nice. You might be wondering if I need to use meteors, a whole bunch of stuff to use this. You don't. In fact, basically, level up tutorials is just about only using ISO build as a build tool. And just about none that house of Meteor currently. So this is my underdog pick of the litter. I like these picks. Yes, thank you very much. This is ISO build, or Meteor, again, hot module, reloading, all that stuff is dropping in Meteor too. So I'm really psyched about this. And to me, the build times. At one point were not super great. So now they're getting better and better. Next one we have here is Rome. This is pretty cool. This is a project that is a bundler. But it also is going to be a linter, which replaces es lint, a compiler which replaces your Webpack. Replace your Babel prettier. So it's a format or it's a replaces jest. So it is a test runner. And that this is really interesting. So it's like a one tool to rule them all, just to replace all of the stuff that we have. And that seems very appealing to me, because I can definitely get a little overwhelmed with all of the tooling that is necessary. Sometimes you open up a project, and there's like 400 dot config files. And you're like holy smokes, like what is going on in here. And obviously, like, we've done that to ourselves, because I rather do a project with things like prettier, nice lint. But sometimes the config needed to get up and running with these things is really frustrating. So it looks like Rome is just going to replace all of that. And I was talking to some folks on Twitter about this, because Dino is taking the the same approach. Dino is Ryan Dahl who created no jazz, he's creating this new JavaScript runtime that is TypeScript from the beginning. It's built on rust, it's kind of cool. But it does the same thing. It gives you a linter. It gives you a format or it gives you a bundler. It's all in one. And I was like, oh, man, like Will that work? where somebody just comes along and says, here's all the tooling. Are we going to start to see people being like, cool, but can I have a config for x, y, and z? And a couple of people said in in like go world go is another programming language. They just use the tooling that's given to them. And you don't fuss with it either. Standard. Yeah, you just it's sort of like when prettier came out. You're like, just use what prettier gives you and be happy.
+
+30
+00:18:41,790 --> 00:19:18,360
+That's what rust is like to in fact, one of the things I love so much about rust is that there is a way to do everything and explicit way to do everything. And I like that you can write your tests directly below your code and each individual file and there is no config to do it. You just do all she doesn't write your test right below it. Okay, that's done. Oh, yeah. Also, guess what? Since there's a standard for everything, it auto documents your code to Oh, okay, great. It's like it all works together in a very cohesive manner. It is really depressing when you think about just all of the hoops and mental challenges we have to you know, go through to figure out exactly what to pick here.
+
+31
+00:19:18,360 --> 00:19:18,990
+Yeah, I
+
+32
+00:19:18,990 --> 00:19:48,780
+have not used a dino yet, or demo or dyno and I noticed you know, we had that whole thing before this callback. I have not used this myself but it seems pretty neat. It's one of those ones it's like once the community's there maybe in a little while I'll take a stronger look at it. But like right now there's like no reason for me to dive too deeply into it. It is it is pretty fast. I listened to an episode of software engineering daily about Dino if you can find it is very good.
+
+33
+00:19:49,070 --> 00:20:01,890
+Wes Bos: I built a couple things here in the air. We'll do a whole show on you know, but what we're talking about I don't see like the killer feature yet. And also, yeah, I think I kind of like NPM installing rather than having import from the URL?
+
+34
+00:20:02,360 --> 00:20:04,410
+Scott Tolinski: I do. I'm gonna be honest, ideally, yeah,
+
+35
+00:20:04,470 --> 00:20:39,390
+Wes Bos: yeah. Because like you just import whatever from react and not HTTP, whatever. cdn.com forward slash 1517. Point 0.14. It's a, because like, I'm like, What? How do you update that? Or like do the copy paste that every time I'm sure that that will that will be solved? I'm like, I'm probably being silly here. And they also are mapping all of the Node JS API, so that you bet you probably can run node modules in, in Dino at some point, which is kind of cool. We'll do a whole show on it. I think it's kind of interesting. But I don't think it's time you should jump on just yet.
+
+36
+00:20:39,990 --> 00:21:41,330
+Scott Tolinski: Yeah, we should get a dino show on the books, I would love to do a deep dive in it myself. All right. Lastly is going to be the let the tool take care of it for you as in, hey, we have a lot of these projects that are whether it's using some of the other view projects, like a grid, some but there's also Gatsby index j s, a lot of these things just use Webpack under the hood, or they just use roll up under the hood. And these are just projects that are layered on top of the framework and layers on top of the bundler, so that you don't have to think about it at all. And to me personally, this is the best way to go because you don't have to think about it. Now granted, I used the ISO build setup, which for the large part doesn't require any config files, and you can start throwing them in there when you need them. Kind of like parcel, right? Yeah. But these kind of tools, like almost the config even happens about like a plugin layer on top of that, like you're doing a Gatsby plugin to get that kind of functionality that you need, not a Webpack plugin. So these tools do use this bundlers However, they just sit on top of them and hope to make them a little bit easier. So you don't have to touch those monster config files.
+
+37
+00:21:41,670 --> 00:22:00,990
+Wes Bos: Yeah, it's it's pretty nice that in most cases, it can just be tucked away for you. And it does all the hard work for you. So that's pretty awesome. So I don't know. Hopefully, that was a good little primer on bundler. There's also Oh, there's one more I forgot, which is broccoli. I don't know if that one is still think I was still under development.
+
+38
+00:22:01,380 --> 00:22:02,880
+Scott Tolinski: Broccoli is a compressor, I
+
+39
+00:22:02,880 --> 00:22:08,850
+Wes Bos: think fast, reliable asset pipeline, supporting constraint time rebuilds.
+
+40
+00:22:09,390 --> 00:22:10,710
+Scott Tolinski: It's hard to Google broccoli,
+
+41
+00:22:10,980 --> 00:22:12,300
+Wes Bos: broccoli dot build.
+
+42
+00:22:12,840 --> 00:22:24,660
+Scott Tolinski: I just ended up getting a Google image of broccoli popping up here. How about this one? Beat it. What about beat Veit?
+
+43
+00:22:25,140 --> 00:23:19,500
+Yeah, there's a handful of people here, a minute there. b i, t e, it is created by evernew, the creator of view and it is built on roll up. It's an opinionated web dev build tool that serves your code via es module imports. So Veit, I want to I want to say if there is a Scotts speedy pick of the week, pick of the week, part two, this is the number two in that line. Like if there's a race, I'm going to pick snowpack to come in first, and then I'm going to pick vite, beat whatever it is, I'm going to pick that to come in second. It is a very fast has all those things like hot module reloading, and I've used this on a self project myself too. And I really enjoyed the speed of which also there's like a neat, create react to template from here. So you could do like creates v tap template react, and it basically spits out the exact same template as create react app, except for the dev experience is much better.
+
+44
+00:23:19,560 --> 00:23:35,670
+Wes Bos: Okay, you know, this V looks like parcel parcel is the bundler. But it's also the tooling and feet looks like the same thing as parcel where it just uses roll up under the hood, but then it adds all this tooling on top. So this is awesome. I would say if you're gonna try roll up, probably just go for this then.
+
+45
+00:23:36,150 --> 00:23:39,600
+Scott Tolinski: It's very good. Yeah, it's very, very good. Beautiful.
+
+46
+00:23:39,810 --> 00:23:41,250
+Wes Bos: All right. Should we ended again.
+
+47
+00:23:42,360 --> 00:23:57,360
+Scott Tolinski: Let's end it again. My apologies. I thought about that one. I knew we were going to get some comments. So well, thank you so much for tuning in to this Monday hasty treat in the next episode on Wednesday. Oh, what are we going to be getting into with? We're going to be getting into
+
+48
+00:23:57,750 --> 00:24:25,830
+100 300 gonna be our 300th episode. And by the time you're listening to us, we would have already recorded it. We'redoing the live call-in show. It's going to be a lot of fun. So yeah, we'll see you on Wednesday for number 300. All right bases. Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
