@@ -1,0 +1,164 @@
+1
+00:00:00,360 --> 00:00:24,450
+Unknown: Monday, Monday, Monday, open wide dev fans yet ready to stuff your face with JavaScript  CSS node modules, barbecue tip workflow breakdancing, soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Wes Baracuda Bos and Scott El Toro Loco Tolinski.
+
+2
+00:00:25,920 --> 00:01:01,140
+Scott Tolinski: Oh, welcome to syntax in this Monday, tasty treats. We're going to be taking some time to talk about time and I'm talking about the brand new date time stuff in JavaScript. This is really, really fascinating and a huge topic. So we're going to be getting deep into this stuff. And I'm referring to the temporal proposal for JavaScript. This is currently in stage two and we have a whole lot to say about this. Before we do so though, let's introduce ourselves. My name is Scott winsky. I'm a developer from Denver Colorado and with me as always is the West boss.
+
+3
+00:01:01,200 --> 00:01:02,280
+Wes Bos: Hey everybody.
+
+4
+00:01:02,580 --> 00:01:09,420
+Scott Tolinski: Hey, Wes. Wes and Kitt he's got his son kit on his lap here and it's it's fantastic I love it.
+
+5
+00:01:09,660 --> 00:01:18,590
+Wes Bos: Yeah, he's been quiet for now. So I'm just trying to play some Arthur without sound mastic what a man. Can we just say the Arthur's the best show ever? I love ours are growing up. Do you watch it?
+
+6
+00:01:18,630 --> 00:03:15,330
+Scott Tolinski: Yeah, I used to watch it before school. Absolutely love that aardvark man. Yeah, he's a he's a champion. So good. This episode is sponsored by a another champion in our industry. And that is century had Sentry.io. Now century is the perfect place to keep track of all of your errors and exceptions. Since we're gonna be talking about JavaScript dates. Imagine this, you write some JavaScript date code, and something breaks and you're you're trying to figure it out, because the JavaScript Data API is very difficult to work with. Or maybe you've brought in some third party library. And that's caused more issues. Well, century is here to help because it's the perfect place to bug all of your errors, exceptions, track them, and find them in your application to fix them. You can then select it, you can create a GitHub issue can mark it as resolved, you can mark it as ignore, but you can see exactly how many people this particular error is affecting. Maybe you were trying to work with timezones, which is something that is notoriously difficult than you goof something up. And now somebody on the other side of the world is having a bug due to your ignorance and the problems in the date API with JavaScript. Well, Sentry is there to help. So if you want to give it a try, test out century AD century.io, use the coupon code tasty treat all lowercase and all one word, you'll get two months for free. So let's get into it. We're talking about the temporal API, the temporal proposal, there was a link in the proposal. First of all, we're linking the proposal in the show notes here. So please click on that. But did you see this? Maggie pint.com link, it was called fixing JavaScript date. This was a really great blog post. And if you want a little bit of background on some of this stuff, I would pop through this blog post too, because she goes into some of the problems here, like what are the problems with JavaScript a while no support for timezones, parser behavior is unreliable, the date object is mutable. There's a lot of like little issues here. And it just goes through and talks about why the JavaScript a date API sucks.
+
+7
+00:03:15,480 --> 00:04:05,580
+Wes Bos: Yeah. It's like I was just going through this whole proposal. And by the way, it's massive. Like there's so many different parts to it. Basically, I'm saying it's a wicked awesome API for working with dates and times and relative time zones and durations, and basically anything to work with time or dates or calendars and be able to convert them to different types of calendars and different types of time zones and not get anything lost in between there. So I assume once this is shipped to the browser, we'll do away with, like, it was obviously still be there. But like the whole new date will just be like deprecated. And we'll use the new temporal, which is a capital T temporal, global namespace in all of our JavaScript, which is
+
+8
+00:04:05,630 --> 00:05:10,580
+Scott Tolinski: very cool. You know, it's great that there's this big problem that we all know, because we know that it's a problem, because I mean, how many times have you done a JavaScript project and not reached for something like date FNS or moment j s in the past like me, never I pretty much though that's like a day one installed for me in terms of like libraries that I'm interested in using date. FNS right now is always going to be something I'm going to use. So the fact that there are people out there who they're doing something about this, rather than just authoring a library and say, you know what we can fix the JavaScript date by introducing this new temporal proposal. And one neat thing here is that it's polyfilled as well. It says the polyfill specification documentation or under continuing development, it should be understood as unstable. So with that in mind, it's neat that you can actually use the polyfill today and at least try these things out to have a handle on them. I always love that when, when that exists so that we're not just going to be dropped this brand new date thing in our labs and been like, Alright, now it's now it's the new new, we're gonna have the ability to polyfill it.
+
+9
+00:05:11,159 --> 00:05:45,120
+Wes Bos: It's true, like we can both test it now. And also like, what's really cool about that is, once this thing drops, if you read the readme, it says that they are very close to going into stage three, at which point it will be considerably harder to add and remove stuff. So like, maybe in like a white like a year or a year, two years, we'll have this and then we can just start using it because we'll have a polyfill. We can drop that polyfill in and just go nuts. It's not it's not one of these things, we have to wait for all the browsers to support it, because it's, it's easily supported. Sorry, he's been No, no, he's
+
+10
+00:05:45,120 --> 00:06:20,580
+Scott Tolinski: fine. I think the moment they said stage three is the moment when I would consider to start to drop this in with a polyfill and try it out and use it over a library because you won't have to bring in a library to do date manipulation stuff in the way that we were before. So the principles here are that all temporal objects are immutable. So that's fantastic. bringing some immutability, their date values can be represented in a local calendar system. But they should be convertible to in from the Gregorian calendar. Well, it's the pro lepic Gregorian calendar, which I'm not familiar with. But
+
+11
+00:06:20,580 --> 00:06:22,020
+Wes Bos: what is that, sir? It's
+
+12
+00:06:22,020 --> 00:06:29,520
+Scott Tolinski: important. It's a link to Wikipedia. Let me see. The proleptic. Good boy, Korean calendar.
+
+13
+00:06:29,549 --> 00:06:34,080
+Wes Bos: Oh, that's the calendar that we use is yes. In Canada in the US
+
+14
+00:06:34,109 --> 00:06:37,380
+Scott Tolinski: is just the Gregorian calendar. It's just the fancier name for
+
+15
+00:06:37,409 --> 00:06:39,480
+Wes Bos: Yeah, very nice. Very nice.
+
+16
+00:06:39,959 --> 00:06:55,830
+Scott Tolinski: And it's also all date time values are based on the standard 24 hour clock, and that leap seconds are not represented. So there's no leap seconds, which are leap seconds in the current one, I'm not positive. I don't know anything about No, I've ever thought says
+
+17
+00:06:55,830 --> 00:07:03,390
+Wes Bos: in this packet, as regular Java as JavaScript is now it does not account for leap seconds, doesn't count for leap years.
+
+18
+00:07:03,630 --> 00:08:11,250
+Scott Tolinski: Yeah, this is absolutely massive. But there's some really neat stuff in here. So if you do go to the GitHub page for this, at the very bottom, in the documentation section, there's a cookbook to help you get started learning the ins and outs of temporal is available here. And if you select that, it takes you to a neat little cookbook documentation, which allows you to see in like FAQ frequently asked questions, but also like really standard stuff. Here's how to convert between particular types, converting between temporal dates of legacy dates, serialization sorting, rounding timezone, conversion arithmetic with dates. So what does this syntax look like this, you mentioned that it's a capital T, temporal, but you can think of it as like, temporal, now date, date, to string, whatever. But from then we have temporal. Now that instant, there's a whole lot of different classes inside of here. And it seems all very nice. I don't know if I have any, like, I haven't obviously used this at all, but just by looking at it, it seems like the kind of stuff that you'd expect from having a library.
+
+19
+00:08:11,270 --> 00:08:30,660
+Wes Bos: Yeah, like, you know, like when you have a date object in JavaScript, and you want to grab like the month. And you also want to grab the number of milliseconds or like the day of the week, and you got to remember if it's offset by if it's zero based, or if it's not, like I think days of the week are zero based, whereas days is a month or like what Yes,
+
+20
+00:08:30,660 --> 00:08:32,730
+Scott Tolinski: oh my god, that is the worst.
+
+21
+00:08:33,629 --> 00:09:43,710
+Wes Bos: This is just a really nice API that has like properties, you can just say, like dot minute. So you take your date and access the dot minute or date or anything like that. There's this temporal instant Scott array mentioned, that is the pretty much just like data. Now. That's a nano Actually, it's nanosecond representation of a fixed point in time. Whereas the link data now it's just millisecond milliseconds from sometime in 1970 or something. Yeah, January 1, midnight, January 1 1970. That's when time was created. So I guess we get nanoseconds now, which gives us even even more down to the wire, which is pretty cool. And then those those is just like Unix timestamps are right now as they can, you can move that anywhere and regardless of timezone or calendar or anything that can always be that is just a time. Whereas like, if you were to use like, January 5 2007 8am, you Okay, okay, but which timezone, right? So instance are across the board the same. And there's just so much stuff in here, I just have this open and just pulling through all the different properties.
+
+22
+00:09:43,710 --> 00:09:56,150
+Scott Tolinski: I think I'm gonna have to spend some major, major time on this, I think is just one of those things that's going to eventually just replace the way that we entirely do JavaScript dates in our applications. And I am here for it.
+
+23
+00:09:56,660 --> 00:10:43,400
+Wes Bos: It's cool because you can like the calendar API is just something we don't have in JavaScript at all, you can make a new calendar, you pass it a date. And then from that you can ask what year it is, what month it is, how many days are in that current month? what day of the week? Is it? One thing I'm wondering is, can you get and I'm assuming you can is can you get a list of all the weekdays and months of the year, that's one thing I've never been able to do. There was like a trick you can do in JavaScript that I figured out one time, but I really want it to be able to just like, just give me an array of all of the months of the year, so I can loop over them and put them in a drop down or something like that. And I bet there's something in here like this, there's probably there's probably like 200 methods in this entire spec for different things. So it's massive, its massive. And yeah,
+
+24
+00:10:43,410 --> 00:11:39,030
+Scott Tolinski: that's what I'm saying. I'm just like clicking through this nonstop and finding neat things. And it is funny that you mentioned that like building like date pickers. One of the reasons why date pickers are really terrible is because of things like this, like you mentioned, having to create an array with all of the month names, and whatever. It's like, yeah, I can't I just get that information from JavaScript itself in an easy way that is predictable. I don't know if you work too much with a calendar. There's like a react project react big calendar, that was it's really super cool react component for building calendar stuff, I worked with him pretty heavily in that one startup I was working for. And I just remember just fighting that library, I had to build my own like extended version of it. I remember fighting that library, how dates worked in JavaScript, and everything just felt like just insurmountably annoying, just like, this is like the worst, worst thing I'm doing in my day to day job. So well.
+
+25
+00:11:40,620 --> 00:12:05,520
+Wes Bos: What else we have here durations. So if you have like four days and you say oh, I need to add a day to that, there's add and subtract methods from durations. And then I'm assuming you can take that duration and then add and subtract that from a specific date, much like date functions will allow you to do which is really cool. So you can just maintain this running unit that's not a number. It's literally a duration. And
+
+26
+00:12:05,850 --> 00:12:46,530
+Scott Tolinski: this is this recipes thing is like really super good. If you haven't popped up in the recipes, one, Schedule A reminder ahead of a matching a record setting duration, push back a launch date. And so like actually gives you code to show you how if you need to push back a launch date, here's how you write that code using this new temporal. And to me, this is the most interesting aspect of all of these docks, because this shows what real practical code is going to look like flight arrival departure duration. So you, you can get the instance from the incident, like there's a difference method. Gosh, you get the difference in hours, and it gives you the difference in hours. Look, imagine that it's just it's very cool.
+
+27
+00:12:47,520 --> 00:13:31,560
+Wes Bos: One other really kind of neat thing I saw I saw in here, and I hadn't even thought of this is temporal that year, month and temporal month day. And this allows you to specify a month of a year and a day of a month without having to actually make a date for it. And I thought that was kind of interesting, because like, like for me when I do my affiliates. I have like, affiliates earned in February 2020. And then like, I have to represent February, in like a specific date. Right? And like, he was like, Okay, oh, I could I could choose like, February 1 at 12 o'clock. But then, in some time zones, that's January 31. And just
+
+28
+00:13:31,560 --> 00:13:33,240
+Scott Tolinski: do it for your own time zone.
+
+29
+00:13:33,330 --> 00:14:00,480
+Wes Bos: Yeah. And then you hope. Yeah. And it's like, oh, well, like, Why do I have to set a time for the rest of this, I just want to say, the month in the year, and they have a good example of like the November 2010 meeting or the 14th of July where like, you just want to specify a day or a month. And this will allow you to do that. And then you can then go ahead and translate that to other ways you want to represent it in different types of calendars. And yeah,
+
+30
+00:14:00,510 --> 00:14:24,630
+Scott Tolinski: I am very much looking forward to that exact thing. Sometimes I like I'll do to my like my sales manager, it's not a human being my sales manager dashboard that I built that shows, you know, my graphs and stuff and all. That's like the worst part about it. Anyway, I got to set gotta create your date and set the time to 00000. And then you get to take the other day instead of the last day of the month, the end of the day. Make sure you get in that zone and then just like, Ah,
+
+31
+00:14:24,839 --> 00:14:25,350
+yeah,
+
+32
+00:14:26,550 --> 00:14:39,720
+Wes Bos: my my own sales dashboard right now. If I travel, it's off by however many hours in my mind. I'm like, Oh, I should fix that. And I never do. It's fixed when I go home. Yeah, exactly.
+
+33
+00:14:40,530 --> 00:14:48,510
+Scott Tolinski: The location or something, if you want to get the right ones, cuz that's I mean, yeah, I mean, if you're the only person looking it's not like you got 100 people looking at it or something.
+
+34
+00:14:48,750 --> 00:14:55,950
+Wes Bos: Yeah, so good. I think that's it. I'm gonna try out this polyfill because it's obviously not done. Don't put it in your app yet, but
+
+35
+00:14:55,950 --> 00:14:58,680
+Scott Tolinski: I'm gonna put it into my app, pushing it alive. Right now.
+
+36
+00:14:59,670 --> 00:15:15,840
+Wes Bos: Do it That's that actually happened with, um, date functions 2.0. I like I just put the beta into production. And then they released and I updated and it broke because like, why was not lower, but they had it, they caught it in their warning message, which I was super happy about.
+
+37
+00:15:16,380 --> 00:16:12,800
+Scott Tolinski: I know I was very happy about that. That was a fun conversion. So that's really all I have on this you got anything else? Or is that I love this. So that's it from visual, you got to see these code examples. So read this blog post fixing the JavaScript date is from 2017, then check out the proposal, then check out some of those recipes. We'll link all of that stuff in the show notes. These recipes are really super good to check out. This is the new temporal proposals. So it's stage two, it's not quite in, it's still possible to change but it looks like it's moving Full speed ahead. And hopefully you get that in soon. So that's all we have for this tasty treat. We'll be back on Monday or Wednesday. What are we doing? Um, I had so much time to think about that. And I still goofed it up. We will be back on Wednesday with some UI web dev stories again. If we even might have a guest reading a spooky story for us.
+
+38
+00:16:12,840 --> 00:16:15,050
+Wes Bos: You gotta listen this one it's gonna be a banger.
+
+39
+00:16:15,090 --> 00:16:17,340
+Scott Tolinski: Must Watch. Listen. Now watch.
+
+40
+00:16:17,400 --> 00:16:20,730
+Wes Bos: Thanks again for tuning in and catch you later. Peace, peace.
+
+41
+00:16:22,640 --> 00:16:32,420
+Scott Tolinski: Head on over to syntax.fm for a fullarchive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you liked this show.
+
