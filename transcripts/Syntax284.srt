@@ -1,0 +1,464 @@
+1
+00:00:01,319 --> 00:00:02,820
+Unknown: You're listening to syntax,
+
+2
+00:00:02,849 --> 00:00:09,000
+the podcast with the tastiest web development treats out there, strap yourself in and get ready to live ski
+
+3
+00:00:09,000 --> 00:00:10,560
+and West boss.
+
+4
+00:00:10,619 --> 00:01:07,230
+Wes Bos: Welcome to syntax. This is the podcast with the tastiest web development treats. Today we've got a banger of a show for you. We're gonna call it good CSS. And we're just going to go through we did I don't know maybe two years ago, we did a sort of like a roundup of frameworks, tools, scoping, CSS, writing, maintainable, CSS, all these different tools and things that you can use to write good CSS. And we did like two years ago. And we're just like, we should do an update on that show, because so much has changed in tooling and frameworks and things like that. So buckle up for that. Today, we are sponsored by Log Rocket, which is JavaScript session replay, and Netlify, which is a platform for automating the build and hosting of your websites, the new analytics, they can host your react application. pretty wicked. I'm using them in my upcoming course. So we'll talk about them partway through the episode. With me today is Mr. Scott Delinski. How you doing today, Scott?
+
+5
+00:01:07,469 --> 00:01:16,920
+Scott Tolinski: Hey, I'm doing good. Doing good. Good. Good, good. Good. We're at the combination wildfire and winter snowstorm is going on in Colorado right now. Yeah, we have snow.
+
+6
+00:01:18,560 --> 00:01:41,580
+So I was like yesterday, is outside mowing the lawn, it was up 100 degrees out and get a winter alert. A WINTER STORM alert notification. Honestly, I do not know if there was any snow last night, definitely moisture and flurries this morning. It's just kind of rain. But we're like we went from 100 to you, this isn't gonna mean anything to you with your fancy units. But
+
+7
+00:01:41,730 --> 00:01:45,840
+Wes Bos: 100 Fahrenheit is 38 Celsius, which is hot.
+
+8
+00:01:45,930 --> 00:02:09,469
+Scott Tolinski: So we went from that to 32 degrees Fahrenheit, which is zero Celsius. Yes, that's freezing in just about, I don't know, 12 hours or so. So it was pretty nuts. Although this morning, definitely not as wild winter weather as they expect it to be. But let's get out of the weather talk for a little bit and get into some CSS talk, which is a quite a bit more fun and a little bit more interesting. So
+
+9
+00:02:09,630 --> 00:03:15,060
+Wes Bos: yeah, let's talk about frameworks first. And then we'll get into some of these new tools. Because I think some of these tools are helpful with frameworks. So let's just talk about the different types of frameworks. And then as we go into each category, we'll mention some of the popular ones that are in the area. Probably since we recorded this, the most popular sort of area that's that's come up is utility frameworks. and myself included, I think that people initially saw these utility frameworks. And the way that they work is that you add classes to your HTML. And those clauses are for everything for like, m be 40. And that's that's a class for margin bottom 40 pX, and you just go ahead and start adding them and people say like, Oh, it's ugly. It's awful. It's what about separations of concerns, but they're becoming super popular and the the types of people that are working on them? tail winds is probably the biggest ones. There's take ons, Boma, I don't think that it's just a trend. I definitely see people try it out and go, Oh, this is actually awesome. So utility frameworks are becoming super popular lately. What do you think about that, Scott?
+
+10
+00:03:15,539 --> 00:04:21,510
+Scott Tolinski: Yeah, used to be like a thing to write your own, like tons of utility classes in basically end up building your own utility framework. And now what we're seeing is just the explosion of these different types of ones. And I personally, I don't love it for a few reasons. I think they're they're really good for writing really organized, actual design, not not actual CSS, because you're not really writing CSS in that regard. You're writing these classes, but like, the design that it produces is very organized in the sense that it follows a specific system. Yeah. And that system can be very powerful, which is one of the reasons why people find them to be so handy is that you start adding these classes, and it just looks good without a ton of effort, right? I don't love it. Because it's almost like learning a language on top of CSS, right? You have to memorize all of those little utility classes. What exactly there are sure there's a system but you still have to register that in your brain space? Where if you were just learning CSS and maybe doing your own, yes, you're doing your own? I don't know, I'm what I'm turning into one of those people that you know, those like JavaScript people that are just like, I'm not we're gonna use a framework. I'll just write write my own job.
+
+11
+00:04:21,540 --> 00:04:24,080
+Wes Bos: Yeah, you have to know what's going on under the hood.
+
+12
+00:04:24,140 --> 00:04:41,370
+Scott Tolinski: Right, exactly. The more I listen to my arguments on this, the more I'm rolling my eyes at myself. So I think these things are awesome. I think they're, they're fantastic for writing really great CSS, or really great styles in a way, but at the same regard. I don't know if I'll find myself using them anytime soon, because I just don't love the approach approach.
+
+13
+00:04:41,999 --> 00:06:02,220
+Wes Bos: Yeah, I think I need to redesign my the back end of my course viewer and I actually built that on Foundation, maybe four or five years ago. And the course viewers, I think, a perfect use case for something like this because you've got cards, you've got aligned text, you've got your colors. scheme that you're working with. And being able to just quickly bam, bam, bam, put these classes on your HTML and have it sort of snap together. I think that's a perfect use case for that. But if I think about like maybe one of my like, course websites where I've got tons of gradients and animations and things overlapping each other and whatnot, I don't think maybe I'm wrong about this, I don't think that would be a good use case for that. But when I redo my, like the admin, like, if I was billing admin dashboard, I would probably reach for something like this, because it seems like it's very efficient. And also, it seems like if you're not good at design, this gives you a really good base for for cranking out something that looks really good. And then also like, I haven't, I don't have that same like, Oh, this is another tailwind or balma CSS site, where I did with with bootstrap, bootstrap, like, this is another bootstrap site site. So they're obviously doing something right there where not everything looks like the same site over and over again.
+
+14
+00:06:02,880 --> 00:06:51,240
+Scott Tolinski: Yeah. And I think you nailed it there. It does, it makes writing like code or design that looks nice, really insanely easy. And again, it is a little bit more personalized, are a little bit more unique. There's that telltale sign of the was the bootstrap a button with the hero section. That right there was like you could spot up from a mile away. And so that brings us kind of into the next framework type, which would be the foundation or bootstrap type, which is a little bit more heavy handed in terms of what what the classes are doing. It's not like these micro utility classes, but more or less like classes that are bringing on a lot more intent, like a hero or something like that. Now, these are still very popular, but I haven't used. I haven't used either of them in a long, long time. But I'm curious about like Foundation, specifically, where it's at nowadays.
+
+15
+00:06:51,720 --> 00:09:22,669
+Wes Bos: Yeah, so it looks like foundation six is out and still looks like it's it's being actively developed. I just haven't heard of a ton of people using it as of late, I think it's more one of those things where, like, if you make the decision to build on Foundation, you are probably in that for seven years or so until you decide to do an entire entire site redesign, right, and certainly was a very good choice. And it still is. So it's not like, if you chose that a couple of years ago, you need to rip it out. Because I think regardless of which framework or approach that you choose, it's important that you do choose some way to approach writing your CSS and your HTML. Otherwise, it's just going to be a mash of whatever is hot at the time. And certainly I've had websites like that as well, where I go from using dashes to camel case. So yeah, some of it is scoped CSS and react and, and it's just like, oh, wow, I just sort of followed the trends for all these things. And it's much more important to pick one thing and go with it. bootstrap is also still pretty popular, but probably not as popular as I as it used to be. What's the latest version of bootstrap 4.5, they have full NPM in support, which is kind of cool. And we should say, for people who haven't used either of these, they generally come with a bunch of different components for things like, you get cards, you get a slider, you get grids, and that's probably the reason for the falling out of the the popularity of these things, is because we got Flexbox and grid, because yeah, I would say like 90% of the people that were using it, myself included, were using it for a really good base styles and be the layout because layout before we had grid, and Flexbox was super tough, and nesting layouts inside of each other and trying to work with all the margins, padding, and things wouldn't line up perfectly. And you had to use negative margin to boot things over. Like I don't think that you need a layout framework anymore. Now that we have CSS Grid and Flexbox like when when Flexbox first came out, there was this like this massive race for building a Flexbox framework. Yeah, yeah. And like they never really like caught on because most people go like, Oh, I don't actually need that. I just need it like a couple properties and you're up and running.
+
+16
+00:09:22,890 --> 00:09:36,510
+Scott Tolinski: So what was your go to like if you if you were tasked with like a grid based design, and somebody was saying all right. Oh, hi, my Glen. My daughter saying hi to Wes.
+
+17
+00:09:38,190 --> 00:09:52,110
+Wes Bos: My go to was foundation for sure. I did use bootstrap quite a bit. I actually I think I initially got into bootstrap because it had the slider and the buttons and everything that you wanted, but I had a couple
+
+18
+00:09:52,110 --> 00:12:24,120
+Scott Tolinski: major projects at the time of their popularity and all of them went foundation and that that wasn't just My choice that was more of a team choice. So that's kind of where my expertise lies. So for me, I think once like sass, grid frameworks really took off. I remembered like, Foundation was the first one of them to really do not in Foundation, as in itself, but like foundation when sass before bootstrap when sass, but I was always using Yeah, maybe that was it. So it was really interesting for me, the first grid framework I really, really, really loved Besides, I think I use, like compass and stuff for doing layout before. But my favorite favorite layout framework for SAS at the time was called Suzy. And it was so good I, you always used to say like, I forget the syntax, exactly. But it was just like, calls. And then like a function, and you pass it in like two divided by 12, or whatever. And it just like took care of everything. It was just like such a zero nonsense anything, you didn't have to write extraneous classes to do anything, you just got to drop in a little function or whatever from SAS directly into your code. And it just worked work work. And it was so good. So the next one of these types of frameworks here would be this is like a, it's so funny that people are referring to this as like a new thing. But it's like classlist CSS frameworks. And classless CSS frameworks is basically just like different restarts, or resets, where you can make a nice looking CSS theme by out of the box without adding any classes. So no, like fancy components, essentially. But really just like a different reset, if they're they're meant to be not used as is but meant to be used as a starting point. For a nice design Overall, we actually taught when we taught our we taught our design systems course we talked a lot about classless CSS and how you should write as essentially as much of your CSS in base CSS as possible. That way, everything just looks nice, right? You're ready to table, it just looks nice. You don't have to do any weird classes on it, whatever, no 800 classes to do one thing or something. But like, you just do your classes as is or do your CSS as is styling all of the elements, then you have a nice little base. And then you can build on top of that with your classes, or your components or whatever your system is. And I found that to be really, really nice, because then you can just type things without having to worry about if it's going to look nice, it just does look nice. As long as you're using any of these HTML elements in context. Yeah,
+
+19
+00:12:24,120 --> 00:13:20,429
+Wes Bos: I would do that on I used to have this like theme that it would start every single WordPress project. And I called it my, like, 10 hour Head Start. And part of that was that I had the base CSS or hit the ground running dot CSS. And it did it selected all of my articles, it selected all my common classes like wrapper, and I guess that was sort of utility based as well, it would center it, it would put the base font size. And that was really cool. Because then you would just like start with like a really good base. And also, like, what would happen before I did that is you would style like your demo content. But then like a client would throw like a blockquote in there or a table and you're like, Oh, totally didn't think that you would use a blockquote. And then it looks like right. So at the time there was this like, HTML, kitchen sink, where they would give you like one of everything. And you would just dump that into it. And that honestly, that's like some good practice still today.
+
+20
+00:13:20,490 --> 00:13:22,649
+Scott Tolinski: We talk about that in our design systems course. Yeah.
+
+21
+00:13:22,649 --> 00:13:24,899
+Wes Bos: Just make sure you've got a good base covered.
+
+22
+00:13:24,899 --> 00:13:35,820
+Scott Tolinski: Yeah, kitchen sinks a big I think that's a really killer technique still, that people don't utilize enough is like, what can I do before I get into adding any specific classwork there.
+
+23
+00:13:36,480 --> 00:14:11,820
+Wes Bos: Alright, so pre processors, they are something where you write your CSS and you go through a compile step. And generally a preprocessor will give you the ability to use things like functions or mix ins or variables or generate CSS doing for loops, things like that. And that can be very helpful to generate CSS rather than having to do it by hand. Often, I see people on Twitter anytime I'm talking about like a new CSS feature. People are like, Yeah, but I still like sass. I'm like, well, that's they're not like, like, what
+
+24
+00:14:11,820 --> 00:14:12,330
+Unknown: was I talked
+
+25
+00:14:12,360 --> 00:14:56,640
+Wes Bos: about the other day, CSS clamp. I said, Oh, yeah, clamp, you can, you can set your min and your max. And you can set your ideal size in between, and it will scale up or down. And a couple people were like, Yeah, but I still like sass better. And I said, like, well, that's not that's not what the replacement is sass was just meant for things that need to be computed before the build time. And then a lot of this news, CSS stuff that we're talking about that like variables and whatnot, that actually happens in the browser. So you can still use both of those together if you like. So what are the popular ones? sass, or SCSS are probably the two most popular ones out there. They allow you to do probably like, like, what would you say are the most popular features of sass like variables? nesting, nesting?
+
+26
+00:14:56,669 --> 00:14:57,419
+Unknown: Yeah.
+
+27
+00:14:57,419 --> 00:15:48,899
+Wes Bos: Those are the two that a lot of people Use it for quite honestly, I had a couple of projects that used, used it a little too much. And I always got exhausted when I had to change something because I didn't realize where I had to change it. And it's really frustrating to do that. So there sass stylist is another really good one. It does pretty much all the exact same things, except it was indentation based. The curly brackets and semicolons and colons were optional. Variables could be overwritten, which is one thing I really liked. So like, if you have the word yellow, you can just set the word yellow to the be your specific yellow. I still write styles on my own website just because like, that's what my site is built in. And I'm not going to rewrite it for no apparent reason, because I'm very good at writing styles. And I can jump in no problem. So
+
+28
+00:15:49,320 --> 00:15:50,010
+Unknown: yeah, well, it's
+
+29
+00:15:50,010 --> 00:16:19,590
+Scott Tolinski: funny that you mentioned that thing in SAS, where people will use that as a fire off to say like, well, I still like using sass, I get that all the time. I just had somebody in my Instagram, Instagram about places, I'd like posted something about CSS variables, and they're like, I still like sass variables. It's like, yo, that's a different feature. And it's like a different type of feature. Sure, there are variables, but like, they're not the same thing. You can't just say I like this instead, because it's not the same thing. Right?
+
+30
+00:16:19,860 --> 00:16:38,279
+Wes Bos: Yeah. And because, like we should clarify, like CSS variables are dynamic, meaning they can be accessed and updated in the browser. So if you change a variable, like via JavaScript, then everything else on the page will update whereas variables disappear in SAS world, right?
+
+31
+00:16:38,820 --> 00:18:00,270
+Scott Tolinski: Yes, yeah, totally. In as far as using like, sass, or whatever it goes, I actually personally use sass for our global CSS instead of CSS, just because it's very easy to add to a project in 2020. You know, and 2020. For me, especially even in Meteor, because I just do Meteor add CSS package or whatever. And it just works. But like I know it, the same thing will go probably in like parcel or any of these other do compilers, it's trivial to add sass. So you get the the nesting and whatever. And within that just for essentially, free free of cost for to you. So I personally always reach for something like sass or stylus when I'm starting you right, there is less which gained popularity because it could be added at client side client time rather than compile time. And so like adding a build step, for a lot of developers was a huge challenge at first, right, there was this big movement to adding a build step, and I'll send people didn't understand what that even meant with their web code. And sure enough, les was just like, I'll just drop the script on your page. And let's just work. So that attracted a lot of people first and foremost. But as things went on, less kind of saw much less features than sass and did not exactly really continue to evolve in the same way we want like stylist I always felt like had the most amount of features, but the smallest maybe community size, maybe it was because it was so radical without needing the brackets and all that stuff.
+
+32
+00:18:00,540 --> 00:18:38,970
+Wes Bos: Yeah, I always wondered that myself as well. I was like, This is awesome. But But I think also, one of the reasons SAS was so popular is because it sort of came up at the same time as Ruby on Rails. And the compile step was initially done in Ruby, meaning that your entire application could be done in, in Ruby, and most people had had no JavaScript build step at all. That was before Gulp and all that came along. And then when Gulp came along, and no jazz started becoming more popular, then a lot of the tooling moved over to being done in JavaScript. And then a lot of the websites also started to be to be built in JavaScript.
+
+33
+00:18:39,320 --> 00:18:41,360
+Scott Tolinski: Yeah, even grunt, do you remember grunt?
+
+34
+00:18:41,820 --> 00:19:40,650
+Wes Bos: Oh, yeah. grunt was way before. We're a before called. Yeah. I just have here, just regular CSS. So certainly, one of the options that people are choosing now is not to use any sort of preprocessor. And just going with with regular CSS, and I don't think it's at a point now where you could you can just write regular CSS if you want, but I don't think like the one thing we're we're really missing right now is nesting, as well as scoping, I guess. So what a lot of people do is they will just write, I'm using air quotes here, regular CSS, and then they'll use the next thing we're going to talk about, which is post CSS. And then you sort of pick and choose your features that you want to add to it. So instead of just saying like sass, it just works. It has all the features. You grab post CSS, and then you start adding in. I want the plugin for nesting. I want the plugin for color functions. I want the plugin for variable fallbacks, things like that.
+
+35
+00:19:41,300 --> 00:20:48,720
+Scott Tolinski: Yeah. And I've always loved post CSS. And in fact, that's one of my biggest downsides of styled components, which is a react component based CSS and j s framework that I use on level up tutorials. My biggest bummer about styled components is that you can't use post CSS with it very easily or at all because They have their own own thing, which I forget what it's called off the top of my head. But it doesn't really much matter because, well, post CSS has such a large community with all of these plugins, that man, I would really love to take advantage of some of these. And what I think is cropped up is this really interesting, different class of CSS and JS frameworks where you have, essentially, the exact same foot not necessarily like KB footprint, the exact same code footprint, essentially, as styled components, you import, you know, styled from this other framework rather than styled components. The only difference is that they do support things like autoprefixer. And well, not just autoprefixer post CSS. Have you seen any of these other ones? I had a little roundup here in the hasty episodes. Have you seen some of these other ones? Wes?
+
+36
+00:20:49,020 --> 00:20:50,220
+Wes Bos: I don't think I have no,
+
+37
+00:20:50,250 --> 00:21:25,500
+Scott Tolinski: there's one called linaria. Although just going to their website, which worked a couple days ago now says this deployment is no longer available, because it was on now version 1.0. Man that now thing killem call that sucks. Yeah, let's see linaria CSS and j. s, it is very small. And it allows you to use things like post CSS, there's another one called astroturf, there's a whole bunch coming out that are just sort of basically stealth components, smaller bundle size, and allows you to use post CSS, and I'm pretty interested in this little community of new CSS ones. I think
+
+38
+00:21:25,500 --> 00:22:31,080
+Wes Bos: we said this on the show before, but like, I think we'll start seeing people saying, Oh, I don't actually need a full blown framework for this, I just essentially need, like template strings, so I can use my JavaScript inside of it. Yes, and, and, and a few other little things like that. So I think that's, that's one of the benefits of post CSS is that because the whole community is built up into tiny little plugins very much like Babel is, right now. You can have people just grab little pieces and build their own thing, rather than it being a sometimes to me, that's often very frustrating, because I'm like, I don't want to build this thing myself. And we'll talk about solution to that in a second. But you see a lot of people just going out and making they're making new packages and testing out ideas and pushing the boundaries, which I really love. I love a good boundary push a big fan. And if you are pushing boundaries, you are likely to break your code. So if you would like to push your boundaries, but not intentionally, your error boundaries, let's say you just want to push the data.
+
+39
+00:22:32,400 --> 00:22:54,270
+Scott Tolinski: Yeah, there we go. Then you're gonna want to need a tool like Log Rocket just to be there in case you do accidentally push your error boundaries. What Log Rocket does is it allows you to see your errors and exceptions happening in a video scrubbable instant replay, could think of it as like a video to watch a crime happen, and be able to solve that crime a lot easier if you could see exactly how the crime was perpetrated
+
+40
+00:22:54,390 --> 00:22:55,860
+Wes Bos: in the worst TV show ever.
+
+41
+00:22:57,150 --> 00:23:21,120
+Scott Tolinski: So if you want to try all of this out and more head on over to Log rocket.com forward slash syntax where you're going to get 14 days for free. And you're going to be able to see an instant video replay of all of your errors and exceptions happening along with the Network tab, the error console, and all sorts of anything that would you would ever possibly need to use to solve a front end bug. So check it out at Log rocket.com forward slash syntax. Cool. So let's get into it.
+
+42
+00:23:21,690 --> 00:24:59,220
+Wes Bos: Yeah, so post CSS, kind of let that last section bleed into it. That's kind of like Babel for CSS. And it has a whole bunch of plugins, probably the most popular plugin that people will know is autoprefixer. So the idea is that post CSS will take in your CSS, and then it will break it down into all of its little bits. And then the plugins will allow you to transform the CSS from what you've wrote into what you have. And the simplest version is autoprefixer. So if you write something like what is actually there's very few things actually have a prefix anymore. What's something that does have a prefix Flexbox. If you want Flexbox, to work in IE 11, you have to use like the iE 11 version of Flexbox, which is not totally the finished version. But like it's good enough. And in most cases, if you if you shipped the dash ns dash fluxbox prefixes on it, it will, it'll look pretty good. So just use feed your code through autoprefixer. And then I'll kick it back to you. And most of those vendor prefixes are a thing of the past. But like another another good use case is if you're using CSS Grid, and you are using like a grid gap, or if you're sorry, the other way around if you're using gap, which is the new property in both Flexbox and grid in order to specify gap. Some of the older browsers and even some of the current don't know about gap yet it's grid dash gap. So what will happen is that it will convert your gap into grid gap. And then and then it will work in all the older of the browser. So it just takes what you wrote converts it into what it should be.
+
+43
+00:25:00,000 --> 00:25:11,190
+Scott Tolinski: Yep, yeah, that's a that's a perfect use case right there. You can use tomorrow, CSS today or in some cases today, CSS today, because yesterday's browser did not support today's CSS.
+
+44
+00:25:12,330 --> 00:25:37,830
+Wes Bos: There's also like place content in CSS Grid, which is shorthand for align content and justify content. So if you want to shorthand on both axes, you can with place content. And again, that was added after most of the browser's implemented initial Flexbox. So not all of them support it, right. So you can just you can still write future CSS, and then it will, it'll bring it back to what it was. How do
+
+45
+00:25:37,830 --> 00:26:24,360
+Scott Tolinski: you feel about like, non real future syntax, and like accurate, like, some interesting syntax, for instance, let's say a little shorthand I like to have, I used to write in stylist with their, like transparent mix ins that you can't really do a whole lot of ways without writing a post CSS plugin would be something like, instead of like the property would be fixed, and then the values would be their position. So you could say fixed, you know, 00 for top left, or put fixed, left, and then it would automatically add position fixed top zero, left, zero. That's something that I really like. But I don't know how it fits in here. Because it is so personalized, it almost feels like the kind of thing that your team would hate. Because nobody would be on the same page with it. Except for you. And it's not like a standard. I don't know how you feel about those things.
+
+46
+00:26:24,390 --> 00:27:15,180
+Wes Bos: It's funny because like, if that was a mixin, nobody would complain, right? If you did fixed parentheses and pass your values, everybody be like, Oh, yeah. Oh, cool. That's great. If you were to write your own thing, but like, we are going to be able to write our own with Houdini Houdini. Yeah. So I don't know how I feel about that. I've not come across some CSS where I had to dig into it. So I don't know how angry I would have been. But like, again, then again, like if you're on a team, and you build this like framework, you say, like, Look, we do this a lot, or this makes it really easy to make consistent branded pop ups, or consistently branded cards. And it's this like, weird, whole bunch of CSS that we need to add to every single one, then yeah, maybe maybe stick it in a mixin. or stick it in its own custom CSS property in and see how you feel about that.
+
+47
+00:27:15,570 --> 00:28:06,840
+Scott Tolinski: Yeah, totally. I love stuff like that. But in the same regard, now that I'm working more with other people, I'm getting more and more concerned that my love of things like that is going to have to come to an end. Because Yeah, it's so easy when you're doing yourself to do all those things. And of course, I was the type of developer who like wacky class names back when I was first starting, you know, it's all these like dumb things that you, you learn at some point, or like a really bad idea. But like, sometimes, sometimes whatever can keep you interested is really what's up. I don't use any post CSS plugins anymore. But I really did love a lot of this stuff. When I was in post CSS lint, I really did like having the ability to use the Babel type of thing where you get to write tomorrow's syntax and just not have to worry about it. I mean, that was such a revelation for any of us who whoever wrote prefixes by hand before because it was just such a giant pain in the butt. And so now it's a fantastic non pain in the butt that we never think about.
+
+48
+00:28:07,200 --> 00:28:15,780
+Wes Bos: Another popular one is post CSS clamp. So we've talked on the podcast about clamp before, although I think we need to do like a dedicated show to clamp because
+
+49
+00:28:15,810 --> 00:28:17,460
+Unknown: Glenn Yeah, everybody, every
+
+50
+00:28:17,460 --> 00:29:04,380
+Wes Bos: time I tweet it, everyone's like, wait, what. And one thing about clamp is that it doesn't work on all the browsers. But min max functions are very well supported on all the browsers. So if instead of using clamp, your men your flex value and your max value, you can just use this weird combo with Max and you pass it your min, and then you pass a min, it's I super confusing to me to read it. That's why they came up with a clamp function. But that is well supported min and max function. So you can essentially make clamp work with min and max functions. So instead of having to figure out what the syntax is, in the min max equivalent, just write a clamp function. And the post CSS clamp will convert it to the equivalent and min max
+
+51
+00:29:04,860 --> 00:29:11,940
+Scott Tolinski: clamp is one of those things that I have not used in any real capacity, but would absolutely love to given the right situation.
+
+52
+00:29:12,000 --> 00:29:59,070
+Wes Bos: Yeah, I used it on my latest Gatsby course. And then like one of the very final videos was we're just like making it responsive. And we ran into a weird Firefox bug. It was working on safari, which it wasn't like the start of the course. But it wasn't working in Firefox. It's supportive. But there was like a weird like thing where you resized it, and it didn't trigger reflow. So we had to end up taking it out. But I think it's gonna be a bit before we can use it in like, our actual client websites and not real real developer only websites. Yeah, that's something people ask me all the time there. Anytime I tweet something that's neat. They're like, Oh, but like, what do you do about older browsers? I'm like, well, hundred percent of my audience is people on the latest browser so I can use it. And you get to use it in like two years.
+
+53
+00:29:59,460 --> 00:30:00,630
+Scott Tolinski: Yeah, right. Exactly,
+
+54
+00:30:00,990 --> 00:30:27,420
+Wes Bos: we'll put a list of all the different plugins for post CSS in there. Because it's kind of fun just to look at them. There's post CSS simple variables. So you can just use the dollar sign variable like you're used to in sass, and it will swap them out with regular CSS variables, which is pretty nifty. I'm kind of used to CSS variables now. But I would like to go back at some point to just using the dollar sign variables and CSS. What about you?
+
+55
+00:30:27,900 --> 00:30:42,780
+Scott Tolinski: For me? As long as they get output to a CSS variable that functions the same way? Then I'm in if they don't? I don't know. I don't see it in their documentation. I don't see this outputting to var anywhere,
+
+56
+00:30:42,810 --> 00:30:46,560
+Wes Bos: do you? Oh, is it just it just outputs to text?
+
+57
+00:30:46,650 --> 00:30:52,380
+Scott Tolinski: I think it just outputs the text, which would be a huge bummer. Because I've gotten so used to the dynamic ability.
+
+58
+00:30:52,860 --> 00:31:15,930
+Wes Bos: There's another plugin called post CSS custom properties. But that just that just takes regular post CSS, or sorry, that takes regular CSS custom properties, and converts them to whatever their color was, or it'll fall back to so you could say like color var dash red, and then it will both give you the dynamic variable, but also provide you a fallback to read.
+
+59
+00:31:16,200 --> 00:32:00,030
+Scott Tolinski: That's nice. I think I would, I would like that. I was thinking that there could be some situations you have to be careful about. But to be honest, I think as long as it provides that fallback, because the way CSS variables work, if you don't know, if you have a CSS variable defined, and then you have essentially the fall back behind it, whatever bar the same exact thing, just duplicating the property, the way the browser reads that if it hits that CSS variable, it doesn't understand the CSS variable. So it just moves up. And the next one is going to be the next definition anyways. So you can do any kind of CSS variable sort of on ramping that way. And it's usually a giant pain in the butt because that means you'd have to type anytime you did a color property, you'd have to type out the CSS line twice. Oh, Brooklyn, how much trouble
+
+60
+00:32:02,280 --> 00:32:02,940
+Unknown: huh?
+
+61
+00:32:03,240 --> 00:32:21,240
+Wes Bos: next one we have here is called sugar SS sugar SS is a plugin that allows you to write CSS as if it were indentation based. So if you just for whatever reason, if you can't leave your stylist Levin ways behind. You can use sugar as S.
+
+62
+00:32:21,630 --> 00:32:22,470
+Scott Tolinski: Oh, that's fun.
+
+63
+00:32:22,470 --> 00:32:33,930
+Wes Bos: Yeah, it's kind of cool, because you can still use all the other post CSS stuff with it. But then you can still use your indentation based CSS so I wonder if it's like parody with with stylists. Like I wonder
+
+64
+00:32:33,930 --> 00:32:40,380
+Scott Tolinski: if I could feed my recreate stylist with post CSS? That sounds like a fun, fun project.
+
+65
+00:32:40,410 --> 00:32:42,480
+Wes Bos: That sounds like edge case nightmare.
+
+66
+00:32:43,380 --> 00:32:44,790
+Scott Tolinski: edge cases case nightmare.
+
+67
+00:32:45,270 --> 00:32:47,400
+Wes Bos: That's a good name for a bad actually. Yeah,
+
+68
+00:32:47,400 --> 00:32:48,480
+Scott Tolinski: that is a great name for a
+
+69
+00:32:51,780 --> 00:33:44,100
+Wes Bos: last one, we have years post CSS preset envy. So you might know if you're using Babel, you don't need to go figure out what plugins you need. And Babel, you just use one plugin. It's called preset envy. And you tell it, what environments you're supporting. So if you're supporting node, or if you're supporting IE six, or you're only supporting the latest two browsers, there is the same thing for CSS. It's called post CSS preset envy. So at a certain point, you'll tell it, I'm supporting these browsers, and it will say, okay, those all support custom variables, so we don't need to transform them or follow them back. Because we're you, we know that your all of your browsers are supported and will no longer use that. So it will look up via Can I use, what things are supported? And then it will load the plugins that it needs dynamically, which is great. Cool. Yeah,
+
+70
+00:33:44,360 --> 00:34:16,460
+Scott Tolinski: I have it man. I've been so out of this this world, because I've just been in the styled components land. Now I really want to move to one of these frameworks. I don't know which of them will actually have a community that lasts or grows because they're so yeah, so many little ones. But I'm if it was, like, if it was as simple as replacing the import styled from blank and having, you know, server side rendered CSS and everything, but you also get autoprefixer. will maybe I should look into if that is actually a thing or if that's just me, swapping out the deck chairs again to waste a little bit of time. Yeah.
+
+71
+00:34:18,090 --> 00:34:18,780
+Wes Bos: That's good.
+
+72
+00:34:19,080 --> 00:36:18,510
+Scott Tolinski: Yeah. So another tool along these maybe not necessarily these lines, but that you may have heard of, or maybe not have heard of, in some capacity is called style lint. There's actually two different style lint. One is it for stylists in one is St YL e lint.io. And the other one is like, you know, staat stty lint, you know, so this is style Lind s style lint. And what it is is basically a linter for CSS but it's capable of doing a lot of really interesting things. And I haven't used this before, but I was just talking with a friend who works on a large team and they were saying that they do some really interesting things with stylelint. For instance, if you will Adding CSS to a specific group of files and you are not using a CSS variable to do a color definition as in you, you've defined a hex value or an RGBA value somewhere, it will actually not allow your code to be merged. Because it says, Hey, you didn't follow our coding guidelines within CSS. And they were telling me about a whole bunch of really interesting little rules they had set up. And they were a fairly complex rules to be able to say, Alright, you can do this, but you can't do this within your CSS, you could add this to your continuous integration pipeline, you could probably add this to your editor fairly well. I'm gonna start checking it out in a bit more of a way, because it seems like it's really interesting. There's a handful of plugins and everything, it seems to work really well. There's formatters, plugins, processors, system tests. So hey, stylelint sounds very fantastic. A lot of like, really interesting people working on it. And there is a big community. And it seems like yeah, look at his downloads per month, 7.9 million downloads per month. That's a lot. So a lot of people are using this thing. And I'm not not using it right now. And I've never used it, but I've heard of it before. So I'm gonna have my eye on it, just to check it out to see what kind of like cool stuff you can do out of the box without having to get into the weeds of writing your own. Just because, you know, I don't have the time to do that. But I want to, I want to check it out regardless, because it seems really fantastic.
+
+73
+00:36:18,660 --> 00:36:33,110
+Wes Bos: Yeah, I like that. It's little things like that, like I first I never liked using es lint, because it was I felt it was too picky. But over using it over the years, it's made me become a much better JavaScript developer. So I bet that they will do the same thing for my CSS,
+
+74
+00:36:33,300 --> 00:36:35,690
+Scott Tolinski: and it can work with styled components. So
+
+75
+00:36:36,150 --> 00:37:50,190
+Wes Bos: I'm in next one we have here is just like removing unwanted CSS and the one that seems to be super popular, and the one to go with is called purge CSS. I've previously recommended purify CSS. But one of the things about using a a framework whether it's bootstrap or foundation or something, a utility framework like tailwind is that generally, Tillman's would ship all every single possible CSS thing, every single CSS selector and properties along with it. And you might only be using like five or 10% of the things that are in that library. So what you do is you feed, you use something like purge CSS, you feed it your, your HTML, and then it looks at your CSS, it looks at your HTML, and it will remove all of the unused selectors from that. So that might be a little bit to get up and running. If you have lots of dynamic pages. I've not used it myself. But I know that it's pretty popular in those worlds, because you certainly can't ship. I don't know how big these libraries are. But you can't ship 300 k of CSS down the pipe for what you need.
+
+76
+00:37:50,460 --> 00:38:03,510
+Scott Tolinski: I wonder how that works with like a scoped CSS and J's land with like code splitting. Like, for instance, we have CSS code that is shipped with specific code split bundles. So like how can it determine if that code is used or not?
+
+77
+00:38:03,780 --> 00:38:33,600
+Wes Bos: Yeah, that's a good question. I don't I don't know the answer to that. I would imagine that would be kind of tough. But you could probably also, actually, I probably I bet. The way that it works is that you don't give it your like output at HTML, you give it your your templates, and it can figure out what the classes are in your templates. And then probably anywhere where you're dynamically generating a template that will probably get a little bit hairy like sorry, anywhere, you're dynamically generating a class name. I bet that is where it gets hairy.
+
+78
+00:38:33,600 --> 00:38:34,190
+Unknown: Mm hmm.
+
+79
+00:38:34,530 --> 00:38:47,670
+Wes Bos: But in most cases, you're just slapping regular class names on it. So if it sees mb 40, it knows Oh, I should keep the margin bottom 40 selector and get rid of the other 100? Because they're not using it.
+
+80
+00:38:48,210 --> 00:39:38,100
+Scott Tolinski: Yeah, that seems to me, like it would not work with my setup. But it's another one of these things I would love to use. And you know, getting that getting those feelings of who is this the right thing that I'm on? You know, really bad feelings dab. So you're typically wanting to not only just add these things to your, your process, but also your build process and a tool that makes deploying via your build process, really simple. As well as hosting your code anywhere really simple. This is not not my that's not my best work. But I'm talking about Netlify Netlify is the modern hosting platform that allows you to very easily quickly get up and running with your code on the web in no time at all. And on top of that makes working on all of your projects. Fan tastic. So a little bit more about what Netlify is doing. Here's Wes.
+
+81
+00:39:38,480 --> 00:40:55,730
+Wes Bos: Yes. So Netlify is the jam stack hosting platform. And I guess like over time, even since they've started sponsoring this podcast, what they offer has continued to grow. So obviously you can host your your jam stack based website on them. So if you've got a Gatsby or a neck site or react or something like that, you can host that up. On Netlify, they have this really cool edge network where they make it super fast on everything that you have there, but they also do the builds of your website. So in my upcoming Gatsby course, they didn't sponsor my Gatsby course, this is just, I just, it was the best use case for hosting the thing. We just hook it up to our GitHub Git repo. And it finds the Gatsby website, it can go ahead and build the sucker for you. It does all of our serverless functions. So a bunch of the parts of the the course that I'm working on there is like, we need to send email and things like that. And if you need that, you need to dip into serverless functions because there is no real back end. And they make that really easy both locally and on the server. So check it out for your next jamstack base website. netlify.com It's net LIFFE I somebody was saying that's Scott says nullify, but I've never heard you say that.
+
+82
+00:40:56,009 --> 00:41:05,070
+Scott Tolinski: Never once Netlify Netlify maybe you're listening to me at turbo speed and under the No no, no, no, no, no, no, then Yeah, no
+
+83
+00:41:05,070 --> 00:41:07,460
+Wes Bos: problem yet. Turbo Delinski slow.
+
+84
+00:41:07,460 --> 00:41:11,670
+Scott Tolinski: slow me down a little bit slow me down. Here is a net LIFFE? I
+
+85
+00:41:11,690 --> 00:41:16,230
+Wes Bos: yeah, there's no race. Cool. Thanks so much to Netlify for sponsoring.
+
+86
+00:41:16,730 --> 00:42:59,010
+Scott Tolinski: So last part of here is talking all about writing, maintainable and scoping CSS. So a lot of the history of writing good CSS has been about how do you how do you write things in a way that's going to allow you to scope them when you want to be scoped and not scoped when you don't want them to be scoped is really just the the crux of every major CSS argument besides various syntax things. But in terms of like writing and organizing your CSS, there are several different ways that people have really solved this solution to writing maintainable CSS. And more recently, there's been a component based CSS solutions that are all sort of geared towards people using front end frameworks. And specifically, we use something called styled components, which is basically just a, you create a styled component, which is essentially just a container for classes, and it automatically generates a class name for you that way, there's going to be no collisions, you get scoping where you need it. And then you can use normal classes in debase CSS where you don't. So you get that that scoping where you need it based where you don't. And that's why I really liked this approach. But any time I'm getting into this, I feel like more and more my brain goes towards just any sort of ability to turn on scoping or turn it off is really the solution that I want, I want to be able to say when did this is when is this scoped and when it's not, in fact, spelt approaches this in a very different way where everything is scoped by default, as it's written in the component. And if you want to make it global, you just there's this little global wrapper that you put around it. So there's definitely a lot of different approaches in here. I don't know exactly what's popular in the angular world of things. But there is CSS modules Do you want to give a little bit of talk about those?
+
+87
+00:42:59,340 --> 00:44:42,750
+Wes Bos: Yeah, CSS modules are a little bit different. So you have just your regular dot CSS files, and I'd imagine you can use all of your post CSS stuff in it. And then at the end of the day, you have like classes like dot card, and then you can say, dot card, space, h2, and things like that. And what you do is that will then be fed through a unique a fire, and then it will give you a class like card for nine, h seven, four, and you take that unique class. And in general, if you're using a JavaScript framework, you just import it directly from your CSS file. And then you apply that class name to your div or whatever it is that you want. And that will give you a unique class on your wrapper. And then it will also target all of your child selectors that are inside of that. So that's how I found that out to be a little bit clunky, I much prefer just to use the stock component approach, or the the spelt approach where you just write the CSS in the same file. And it just works rather than having to figure out what the class names are going to be for everything. But one thing I really like about writing something like style components is that you can just say like, h2, or you can give things classes or you can just grab an image, you don't have to like think of a class for absolutely everything. Right? It just selects it. And this is sort of the no no have before, which was don't just select elements and style them becomes the Oh, this is easy. I just have to grab the h2 off of something. And there's no other h2 in this component. So it will style it upgraded.
+
+88
+00:44:42,930 --> 00:44:44,640
+Scott Tolinski: its scope. I love it.
+
+89
+00:44:47,220 --> 00:45:55,950
+Wes Bos: We also have been very popular for a long time before we got a lot of these tools. And this is still a really good approach. It's just use a naming convention to do your scoping of CSS. So Bem is a pretty popular one, it stands for block element modifier. So your block would be your card, your element would be your card header. And a modifier would be like card header, big or card header read, or something like that is like oh, yeah, I already have this element, but I want it to be a little bit different. And I want to, I want to bump up the font size or card header underlined. So I still really like them. I use it in a couple websites that have been going on for a couple years. And every time I jump back into our MCI this was this was nice and simple. Generally people pair that with CSS files, where you you write your CSS for, like each block and in its own file, and then you use some sort of post CSS or some sort of Gulp tool to build it all together. smax is another popular one. I never use Mac's if you
+
+90
+00:45:56,250 --> 00:46:03,210
+Scott Tolinski: I haven't? Well, I don't want to say never. Because I feel like I've dis max website has been around since I started developing pretty much. So like I feel
+
+91
+00:46:03,210 --> 00:46:04,710
+Wes Bos: like Jonathan snuck.
+
+92
+00:46:05,040 --> 00:47:25,530
+Scott Tolinski: Yeah, I feel like I have used it at some point. But I pretty much read for Ben, because Ben is the one that you see. Oh, because Ben is the one that you see more often. And I do I do like them. But I've never really liked the flow of the hyphens and underscores, I don't know what it is, to me, these some of these newer tools solve scoping in a way that's a little bit nicer for me. So I do reach for it when I'm writing straight up CSS, but I almost never, never do any more anyways, one of the things that I've been really relying on for running, maintainable CSS that's outside of like naming and properties, attaching styles, selectors, those types of things, for me has been the use of CSS variables. To do a lot of things. For instance, like, you could define a variable at the root of a particular element, let's say you would say this thing has a width of, or you maybe give this element a size, right, you're making a circle, you could say size is equal to 25. And then you could say height is equal to 25. width is equal to or height is equal to size, width is equal to size and the border radius is equal to, you know, the size divided by two or something like that, if you want to Yeah, I love that. Brooklyn is she's got a truck to train and she just slam it into the ground over here.
+
+93
+00:47:25,950 --> 00:47:27,690
+Wes Bos: So in our life, Leon or life
+
+94
+00:47:28,320 --> 00:47:36,690
+Scott Tolinski: Yellin Yeah, so I've been using CSS variables a lot for writing, like a maintainable CSS, you hear a lot about the concept of design tokens.
+
+95
+00:47:37,260 --> 00:47:38,910
+Wes Bos: No, what is that.
+
+96
+00:47:39,330 --> 00:48:47,370
+Scott Tolinski: So I don't want to miss represented here, because people have very specific ideas about what design tokens are and how they can be used. So forgive me if this is not the perfect thing to say here. But you could think of design tokens as basically tokens that you would set the properties of to style everything on a particular aspect of your site or the entire thing. So if you're writing like a framework, you could imagine, you could have a single variable to say, Alright, this is the large one, the small one, whatever, instead of having to deal with pixel sizes, or those types of things. So I rely on a lot of design token, like things within my application, so that you can write essentially tokens to style things. This is this color, this is this size, I do that specifically with my elevations, z index, box, Shadow, those types of things. Again, there is definitely like a larger component to this, like the CSS variables, does not equal design tokens. They're they're not necessarily the same thing. But you can use them to do a design token like thing. So design tokens is definitely more of a, like a strategy and a thought process. And it's not like a technology specifically
+
+97
+00:48:47,400 --> 00:49:07,830
+Wes Bos: Oh, it's like, I'm just looking at this thing from Amazon called style dictionary. There's an article on CSS tricks. And they're just they're just declaring things like small, medium, large font sides, gray, different gray colors, primary secondary colors, like you said, to me, that just sounds like variables.
+
+98
+00:49:08,400 --> 00:49:12,570
+Scott Tolinski: There is a dislike using it as people get angry when you say that they're just variables. Cool.
+
+99
+00:49:12,600 --> 00:49:16,110
+Wes Bos: I'll take a look a little bit more into that. Yeah,
+
+100
+00:49:16,110 --> 00:49:59,520
+Scott Tolinski: it's an interesting concept. And it's something that I really like, because I've always been a fan of like, smart defaults, you know, smart defaults, things that just work. And then instead of having to fish around with syntax, and whatever, to just dive in and say, Alright, this is the color or whatever. And I get utility classes in a way to bring us all the way back around to the front of the episode. I think utility classes in a way are almost like micro design tokens in this sort of way. I don't know that that's like a educated outlook on this. But if you think about it, you're just adding these little tiny tokens to style the whole thing. I don't know if either camp would be happy with me saying that so I'll leave that as just like a pontificating thing and not like a actual hardpoint. One day.
+
+101
+00:49:59,609 --> 00:50:04,620
+Wes Bos: We will have Have a syntax where Scott and I love utilities frameworks love it.
+
+102
+00:50:04,890 --> 00:50:09,660
+Scott Tolinski: It's gonna be the one that I write. That's that's the whole thing. Oh, I love this thing. I wrote it. I know what it does.
+
+103
+00:50:10,889 --> 00:50:22,620
+Wes Bos: Scott, you're doing talking about how you didn't like that for the longest time. It's anytime we mentioned that stuff people like, why don't you like it? It's not that I don't like it. It's that it? I don't have a super good use case.
+
+104
+00:50:22,620 --> 00:50:34,710
+Scott Tolinski: It's not for me now that it's not good, or I think it's fantastic. And I think it's good for a lot of people. It's just not for me, I don't know, I want to reach for other tools, whether or not I could be more productive with it or not. That's not a great argument. But
+
+105
+00:50:35,519 --> 00:52:27,990
+Wes Bos: Alright, we're getting into a new section of syntax called the syntax highlight. This is where we excited? Yeah, we need a bumper for it. Yes, it got sick. We sorry. This is where we highlight somebody who is in the community doing really cool stuff that you should know about. And our first ever syntax highlight is Denise getjar. I've known Denise for, I don't know, probably four years or so. And he's the type of guy who has always been very supportive of the community so supportive of my courses of Scotts courses. He is one of one of the very few good devs on Instagram developer Instagram is very bizarre, because it's a lot of people holding laptops and odd locations where you would never write code. And he has a thing called build up devs where he essentially does that builds up devs he's always shouting out other developers on both on Twitter and Instagram. So just just a good vibe to the community from from Dinesh so big fan of him. You can check him out. I would probably check him out on on his Instagram first. It's d h a NISHGAJJR. We'll link it up in the show notes. You can hit that up. He also posts lots of like really nice desk photos. He lives in Lisbon, and has like beautiful photos of the water often, so shout out to Denise. And if you guys have other devs Do you think we should do a syntax highlight on? Shout us out on Twitter at syntax FM? Because we're gonna be doing one of these every single week. All right, let's move into some sick pics. You got a sick pick for me today? Maybe rollerblade worthy?
+
+106
+00:52:28,079 --> 00:54:19,020
+Scott Tolinski: Yeah, I did buy those rollerblade wheels from I would say that would be gratuitous to sick pick something you did in the very last episode. Go for it. No, no, no. I've been learning rust lately. It's a programming languages systems programming language. I decided that I don't know enough programming languages like for real to have like a different. I didn't and I feel like I had like enough context in programming. And a lot of people recommend to learn new languages frequently to understand just sort of how things are done in different worlds. So I felt like hey, you know, it'd be a good opportunity for me to learn something new. So I picked up rust and I want to shout out to rust willings. Now rustlings is it's an interactive tutorial. So it's not a video, it's not whatever it it's just in code, you clone the repo, you run the command, and it says, All right, error is found on this particular file, you go to the file, you know, it starts very easy. You don't have to know any rest and they're all like attached to sections in essentially rust documentation. So if you want to go and research these things, you can go and research them. They have hints, wonderful things. But again, if you are used to, you know, video tutorials or whatever tutorials give, Wrestling's a try if you are interested in learning rust as a supplement to other learnings, because I found this thing to just be absolutely fantastic in terms of getting me engaged, you complete the tasks that that you know, pass the tests and whatever. It tells you which line like okay, solve this, but don't change this line at all, whatever. And so I've been so into it because it really gives me a good sense of drive to say what gotta get this next one. I'm one more just one more mom. I'm gonna be there soon. One second. You know, that kind of thing. So I love I love rustlings. I've been a big fan of this. So check it out. I'll have the sentence in the official rustling repo. I'll have this link in the description of this podcast.
+
+107
+00:54:19,259 --> 00:54:24,330
+Wes Bos: I'm in a sick pay a documentary called class action Park. Oh, yes. It's so good.
+
+108
+00:54:24,330 --> 00:54:26,580
+Scott Tolinski: Have you watched it? Oh, yeah, you bought
+
+109
+00:54:27,029 --> 00:54:31,920
+Wes Bos: it. So it's a documentary on about this Amusement Park in New Jersey. I
+
+110
+00:54:32,009 --> 00:54:41,460
+Scott Tolinski: believe that that park is is pretty well known at this point in the States. Oh, really? Action Park. Yeah. Because there Johnny Knoxville even made a movie about it. Oh, man,
+
+111
+00:54:41,460 --> 00:55:09,150
+Wes Bos: I had never heard of it. But basically, it was this amusement park with these waterslides and things like that, that were like, not built by engineers, but just by some wealthy guy who had fake liability insurance. And like people would get like super hurt on all these rides and it's just unreal. story. So it's from HBO max. So I'm not sure how you get that, but check it out class action Park.
+
+112
+00:55:09,540 --> 00:55:19,110
+Scott Tolinski: Yeah, very good. Very interesting. And I had already seen like little features on this park and I was like very into it. So I thought this was super cool. Somebody who's not from that area.
+
+113
+00:55:19,800 --> 00:55:40,680
+Wes Bos: Super cool. Shameless plugs, I will shamelessly plug my upcoming Gatsby course it's going to have serverless functions and CSS and of course Gatsby custom hooks, all of that. It's just like building a well rounded website. And it's going to be available at Master gatsby.com. Use coupon code syntax for 10 bucks off
+
+114
+00:55:40,950 --> 00:56:24,360
+Scott Tolinski: sick sick sick, I am going to shamelessly plug my latest course on advanced animating react with framer motion. We do a lot of gestural stuff as well as dive into the new layout prop quite a bit. The gestural stuff is really fantastic because we build the types of interfaces used to on mobile, where you have like a swipe up drawer that you can swipe down or you can scroll within or you could you know, have like a little bit of a feedback in terms of like, Oh, did I swipe down hard enough, but it's not just like a trigger event time swipe. It's like full on gesture support the type of stuff that you see all over the place on native applications. And now it's available to you superduper easily within framer motion and react. So check it out at level up tutorials.com. All right, thank
+
+115
+00:56:24,360 --> 00:56:28,680
+Wes Bos: you so much for tuning in. We'll catch you on Monday. Please
+
+116
+00:56:30,960 --> 00:56:40,710
+Scott Tolinski: head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
