@@ -1,0 +1,576 @@
+1
+00:00:01,320 --> 00:00:10,530
+Unknown: You're listening to syntax podcast with the tastiest web development treats out there. strap yourself in and get ready. Here is Scott Tolinksi, and Wes Bos.
+
+2
+00:00:11,219 --> 00:00:44,070
+Wes Bos: Welcome to syntax today we've got part two of a spooky web development stories. These are stories that people have sent in, and we're gonna read them off to you just horror stories of deleting the database or accidentally pushing something into production or like cringe worthy stories of web development where it all went wrong. Today, we are sponsored by two awesome companies. First one is Log Rocket. And second one is Netlify. We'll talk about them partway through the episode. Oh, I forgot to do spooky voices. Oh, I didn't today's got
+
+3
+00:00:44,580 --> 00:00:56,700
+Scott Tolinski: to good, tired, tired style. I had meetings because I have meetings. Now. I don't know if you notice I have meetings because there's people on my dev team that we meet. And so I've been just tucking into a microphone all day.
+
+4
+00:00:56,850 --> 00:00:59,970
+Wes Bos: Just meetings for the rest of your life. Yeah,
+
+5
+00:01:00,059 --> 00:01:00,960
+Scott Tolinski: I know, right?
+
+6
+00:01:02,070 --> 00:01:09,030
+Wes Bos: I just went to the dentist. And they use like a little mini sandblaster on my teeth ever had that happen? Yeah,
+
+7
+00:01:09,180 --> 00:01:28,920
+Scott Tolinski: my dentist is. So like, hypermodern they do x rays with this thing that looks like a literal 1950s depiction of a ray gun. Like it looks just like that. And they just like click it on the side of your head and you're done. It takes like two seconds. But the cleaning they do almost entirely via a like a water like water sprayer. Is that weird? Like a water blaster? I
+
+8
+00:01:28,920 --> 00:01:33,060
+Wes Bos: was much for that over the scratching with a little pick, right?
+
+9
+00:01:33,930 --> 00:02:02,670
+Scott Tolinski: Oh my gosh, it's so efficient and so good. I have like a receding gum on the inside. Because I used to have a towel. Yeah. So it like receded my gum and I hate going to the dead rate me all day long at the dentist. Oh, can't take it. They don't burn me. They use me as a shining example because I started flossing in the past like five or six years more more routinely. And I used an app to do it. And they said now they tell all of their other clients. They're like, he used an app. I gotta use an app
+
+10
+00:02:04,890 --> 00:02:18,330
+Wes Bos: to get me to buy an electric toothbrush. So Oh, yeah, dude, you gotta get an electric toothbrush. Sonicare all the way day, all day may get ready for some sick pics in the future. I think I'm gonna pull the trigger. Yeah, we got the
+
+11
+00:02:18,380 --> 00:02:26,750
+Scott Tolinski: latest Sonic care. Got the wireless charging, you just pop it in. It buzzes on your teeth that tells you when you're done. It couldn't be any easier. And my teeth have
+
+12
+00:02:26,750 --> 00:02:29,160
+Wes Bos: been waiting for I'm doing it. I'm doing it.
+
+13
+00:02:29,370 --> 00:02:29,880
+Scott Tolinski: Yeah,
+
+14
+00:02:29,880 --> 00:02:34,160
+Wes Bos: I'm an adult now. All right. Oh, wow. So we've got the stories for you today. banter,
+
+15
+00:02:34,350 --> 00:02:35,220
+Scott Tolinski: lots of banter.
+
+16
+00:02:35,310 --> 00:03:25,770
+Wes Bos: You want banter? We got it. And none of it is about the weather. So you're welcome. Listen to this. We've Scott was chit chatting with his bud, jack reciter. Over on Twitter. And as you know, jack reciter runs the Darknet diaries podcast, which is probably one of my favorite podcasts. And so he just talks about like, like, what, like security issues, dark web breaches, things like that. And he just like tells it. My favorite ones are the pen testers were people like the pen tester into like real world situations. And it's just an awesome podcast. And he agreed to take one of these stories and read it. And like, he stayed true to the story. But he just the way he embellished upon it. And it's amazing. So we are going to play that for you right now. And then we'll come back with just regular scotton West, which is not as good.
+
+17
+00:03:28,680 --> 00:06:07,110
+Unknown: Have you ever thought about email storms? Like for instance, suppose you have your out of office reply on and you send an email to someone who also has her out of office reply on soon as you send them an email, they're auto replies sends you an email right back saying they're out of office. But wait, you also have the same auto reply on to. So shouldn't your inbox respond saying, Hey, I'm out of office, too. And then as soon as that email gets sent to them, they responders comes back saying I'm still out of office, why are you trying to email me, and so on and so on? Well, luckily, that doesn't happen, because someone must have made a mistake at some point in the past. But this is a story about an email store. That didn't end so well. I was working on an app, which included email integration, and I needed to test sendgrid email API. And I needed to see what was in the notification, which triggered when something was sent through the API. So I wrote a web hook for sendgrid to send a POST request, and that would forward the contents of the post request to myself and another developer by email using sendgrid. So I sent the post request and got the email notification. But then I got two more, and then four more, and then eight more than 1632 64 128 256 512 1020 14 emails just showed up in my inbox and so on and so on. It only took me a minute or so to realize my mistake. But by that time, my mistake had triggered more than 75,000 emails. See every time me or that other developer would get an email sendgrid would trigger that notification email and tell me that emails were sent successfully. So for every email sent to us, two more notifications were generated and also sent to us by email, this email storm ripped through our office like a category four hurricane. See our email servers were hosted on premises in our offices. So not only did I knock out email for everyone in our office, but the exponential growth of inbound emails, dost that offices internet connection for the rest of the day, immediately, we called the IT support company who managed this email server. But every time they would try to remote into it and clear the queue, the remote session would just freeze up over and over, they desperately tried to weather the storm, but they couldn't. Eventually they had to get in the car and come do an on site visit and fix the problem. For a few days after that, our offices still didn't have a functional email server. This was a nightmare scenario, which has haunted me for years after. I'm jack reciter. And I hope you enjoyed the story.
+
+18
+00:06:07,769 --> 00:06:11,040
+Scott Tolinski: Thanks, jack, for recording this for us. By the way, it's fantastic.
+
+19
+00:06:11,369 --> 00:07:23,270
+Wes Bos: Yeah, definitely check out dark net diaries, I really appreciate it. Let's get going with the different stories. In almost all of these, we didn't actually mention the name of the company or the person, it's just that we get known in trouble. But this person, it's kind of important, which company was and they said it was fine. This one is called dirty dicks JSON, which is from Dick's Sporting Goods. I worked for Dick's Sporting Goods for several years. While I was there, the structure of the engineering here was a bit odd to say the least the backend engineering team and the front end engineering team were completely separate teams. They didn't have any direct interaction and didn't even touch some of the codebase do the separation. My team has front end engineers often had no clue how about the back end was actually set up. It sounds ridiculous, but it's true. Well, one day I was monitoring x HR requests on the website inside odd JSON called banned words dot JSON get loaded in so I opened up that bad boy to see what was inside. And to my surprise, it was hundreds of words that I simply cannot repeat on this platform. I actually have used that JSON file before there, there is a file on the web of every bad word you could possibly ever imagine. indexes in there, they probably had to do a custom.
+
+20
+00:07:23,489 --> 00:07:24,450
+Scott Tolinski: They probably had to
+
+21
+00:07:26,700 --> 00:07:44,070
+Wes Bos: say in a real, fork it and release their own bad words that JSON. I was absolutely shocked. It turns out the back end team was using this to filter out search requests that had bad words listed in the file. I couldn't believe what was in this list was loaded into the client side. What if somebody found it a month later? So
+
+22
+00:07:44,580 --> 00:07:45,480
+Scott Tolinski: I did? Yeah.
+
+23
+00:07:47,340 --> 00:07:55,560
+Wes Bos: Sure enough, a month later, I pop open Reddit and I see trending on our web dev, Dick's Sporting Goods bad words, dot JSON. It was an interesting day.
+
+24
+00:07:58,230 --> 00:08:44,730
+Scott Tolinski: That's very funny. I have a close relationship with the ex. I think I've been there a bunch of times because I bought all my workout equipment there on Black Friday. So I've been I pop into Dick's all the time in that place or at it's a cheap workout equipment there. So shout out to Dick's Sporting Goods. If you are looking to buy a squat rack on the cheap, ours is held up really nicely. So advertisement for Derek's shout out fix. All right, next question. CMS does or next story, SEO move through those or I moved at from design to engineering. So I had some code experience but never really dealt with environments after a grueling few hours setting up the app stack natively on my machine httpd.com. And all I got expression engine up and running
+
+25
+00:08:44,760 --> 00:08:50,490
+Wes Bos: app is Apache, MySQL and PHP, not the Google attempt to control the web not
+
+26
+00:08:50,520 --> 00:09:51,120
+Scott Tolinski: Yes, yeah. And pages or whatever that is shout out to expression engines to I haven't I haven't used that in a little bit. The last step is to replace some global fires the local points of the dev URL instead of prod URL, but not yet being trained to pay close attention. If I was looking at the site, that dev rather than site comm I swapped them out on prod, the site completely tanked. The marketing site was the main login for the app. So support blew up. The company basically stopped senior leadership team was doing rounds trying to get to the bottom of it, because the break happened via fields inside of the CMS down as well a senior eventually had to go in and manually change the values from the database to get things up and running again, pure live edit the database style. Again as my first day moving into engineering, I was mortified and certain they were going to boot me right in back into design forever. Yes. I think this one's very relatable.
+
+27
+00:09:51,120 --> 00:09:51,899
+Wes Bos: I've done this.
+
+28
+00:09:51,899 --> 00:10:06,409
+Scott Tolinski: I don't know if I've done this. I feel like I've done this in WordPress, or maybe even expressionengine but like, there is like a lot of specific situations when you can edit something in a wiziwig and bring down the whole site. Like, that's very scary you
+
+29
+00:10:06,409 --> 00:10:52,080
+Wes Bos: want me to tell you a good UI for this is I've done it on WordPress before you change the site URL on WordPress and then you save it and it's just white screen. And like you can't you have to email the database to fix it. Yeah, router has an awesome UI for this. And when you hit save, and it makes a possibly a breaking change, like you change the, the the URL of or you change the firewall rules or something like that, it will save. And then if it doesn't get a ping back from the browser, within a minute, it will revert the change back because obviously, you went missing to the browser, and it will roll back that change for you. Which I thought was was awesome. That's neat. It's sort of like that, you know, when you change the resolution. That's it. Like,
+
+30
+00:10:52,110 --> 00:10:54,270
+Scott Tolinski: do you want to keep this resolution? Yeah.
+
+31
+00:10:54,330 --> 00:11:15,870
+Wes Bos: Or are Am I upside down right now? Yes. Ah, next one is the oh no hotel? Oh, no. Oh, God, I accidentally managed an endpoint in production that pointed to a staging route for hotel reservations. I think about 400 people made a reservation that was wiped after a database cleanse. That was a bad day, not sure how I get my job.
+
+32
+00:11:17,549 --> 00:11:59,250
+Scott Tolinski: Oh, my God. Next one, FTP. Once in my career, I needed to create an FTP user for a client's website. Due to some wonky permissions, I had set up their home directory to the root of the site so I could FTP into the web root. Once I was done, I removed the FTP user and left the also delete user home directory. About 15 minutes later, it dawned on me what I did. And thankfully, the server host had a very decent backup. So So what they left this bit that deletes the user's home directory, but they is when you have deleted the FTP user. So what did it do it like went to the admin or something.
+
+33
+00:11:59,520 --> 00:12:13,590
+Wes Bos: When you add a FTP user usually what it does is it gives that new user its own like subdirectory but he created an FTP for the root and then when you delete it, it says, Hey, your delete their files, but it was the root of got rid of the
+
+34
+00:12:14,640 --> 00:12:16,980
+Scott Tolinski: bad. Yeah, seems like there should be some protection.
+
+35
+00:12:17,039 --> 00:12:55,140
+Wes Bos: Yeah, rough. Next one push notification how I knew to me code base was working on some push notification issues. And there was a difference between the local setup and the production setup. While doing that, I sent a dozen increasingly more frustrated test push notifications. Turns out, it wasn't just me that was getting the messages and the entire team was notified. I notified everyone on the team that was just getting text messages. Oh, shoot, not a big deal. It's a tech company. And sh it happens until the tweets start coming in and emails from investors that not only was it but the entire user base.
+
+36
+00:12:55,799 --> 00:12:57,000
+Scott Tolinski: Whoa,
+
+37
+00:12:57,899 --> 00:13:12,120
+Wes Bos: whoa, I swore wrote witty, despising push notification messages. I think that's sort of a trend of these is. Don't ever write a swear in any of your console logs or images, or you just never know. ban.
+
+38
+00:13:12,330 --> 00:14:10,169
+Scott Tolinski: Yeah, you never know when people are gonna see it. Back in 2005, I worked on a web app for a DVD retail chain. Moving on from server plus client apps required by dial up to a single full time online app. On the launch day, I discovered that the central DB sync from the client DBS was completely broken. Nobody tested data integrity. Yeah, yeah. oopsies people from branches just called we see people from different cities in our system, and ours are missing. Hashtag go. Nice little hashtag there. I spent the day bn seeing two local PC's dumping the databases through my sequel, Edmunds and compiling the central DB manually, all that after a brutal two day launch. All of those three days I listened to David Bowie's album must answer 70 Times wrote a bad product. Yeah,
+
+39
+00:14:10,169 --> 00:14:17,130
+Wes Bos: he probably whenever you hear that music, you just, it's true. I remember I have that with Owl City. Remember our city?
+
+40
+00:14:17,370 --> 00:15:01,620
+Scott Tolinski: You know what, actually, back when I was trying to become a musician. I had a lot of context with the LSAT guy because we were doing similar types of music. And there was a website. It was called the if this now what it's called, let me let me know the 16th you might not have ever heard of this called the 61. all lowercase letters, the 61. I don't know if it still exists, it looks like it's closed. But this was like a music streaming app where people would upvote songs until you could enter them under hashtags and people upvote them or whatever. In the Alamo city guy he like kind of blew up on there. First and foremost. Wow. And we were in the same communities of making songs and he sent me a couple messages because he liked some of my music and He got really popular and I never heard.
+
+41
+00:15:02,939 --> 00:15:09,899
+Wes Bos: That's awesome. I just associated that music with learning to code my spaces. And every time I hear it brings me right back.
+
+42
+00:15:10,139 --> 00:15:11,909
+Scott Tolinski: Yeah, that's very MySpace era music. That's
+
+43
+00:15:11,909 --> 00:16:18,779
+Wes Bos: funny how music can do that. Next one is called bad words again. So this is another one. I wrote a bad regex to check for bad words and a modal and it alerted the user humorously of bad words. And they said not to say it. Unfortunately, it matched substrings in words and alerted banking HR managers that they were saying ass and tip when they're writing assistant. I remember when I kid, I was writing a Microsoft Word shopping list for my mom. And one of the things on the list was fruit cocktail. And every time I wrote it, this huge thing would pop up on my computer. And I would be what, like, What's bad about root cocktail? What about this is just fruit cod No, it just it just like it was like matching part of the world. It obviously wasn't it wasn't the software probably wasn't smart enough to i thought i or maybe it's because I was thinking as I was typing it, it realized the word and I hadn't had time to finish it. That's why we need AI.
+
+44
+00:16:20,130 --> 00:16:46,529
+Scott Tolinski: But this next story is Mo Money. As a junior dev in my first web dev job I left a variable as zero instead of one in the payment gateway. This stops certain cards from being allowed to pay no one noticed for a year. Yeah, I got a final written warning and confidence destroyed. Don't assume it worked. Which is a great point.
+
+45
+00:16:46,770 --> 00:16:51,799
+Wes Bos: Yeah, check that this is the first time I heard of someone actually getting canned for a mistake like that a
+
+46
+00:16:51,799 --> 00:16:59,190
+Scott Tolinski: year. They left it in for a year and how did know me? That's very year. That seems like an operational issue. Yeah,
+
+47
+00:16:59,279 --> 00:17:41,790
+Wes Bos: yeah. That's crazy. Ah, next one bass ackwards. My first job out of college was that a prominent review and feedback management company. If someone bought a product from one of our clients, we would send them an email asking them for feedback in a review. In other words, we spam people with emails, we were having a formatting issue in some of our templates, a senior dev pushed up a change, and we mark the bug as fixed. The next day, we receive several frustrated calls. When they found out all their emails are being sent backwards, every single word backwards. So example dear customer became REM OS. It's it's like not just like, customer dears. The actual word was backwards,
+
+48
+00:17:41,810 --> 00:17:43,020
+Scott Tolinski: remote, suck read.
+
+49
+00:17:44,670 --> 00:18:03,270
+Wes Bos: Write mode separately. The commit was reverted. But thousands of emails had already been sent. It was an interesting day. And always remember watching our senior dev furiously revert code for the first time. I love the show yells course. That's I wonder what that was. Do you think that was like a? What do you think like a CSS right to left?
+
+50
+00:18:03,539 --> 00:18:07,920
+Scott Tolinski: I have no idea. Yeah, don't think CSS right to left. That's it.
+
+51
+00:18:08,009 --> 00:18:09,320
+Wes Bos: Does it reverse the?
+
+52
+00:18:09,630 --> 00:18:12,750
+Scott Tolinski: No, I don't think it does. Well, I guess it does. Yeah, I don't know.
+
+53
+00:18:12,750 --> 00:18:14,310
+Wes Bos: I don't know, man.
+
+54
+00:18:14,310 --> 00:19:19,200
+Scott Tolinski: I don't know. I have no idea on this one. All right, excellent. One taxi coding. I made any electron game to run on in store screens in five major brand stores for the launch of a new flagship device. Installation happened the night before. So I went to the first store with the crew to oversee, I found a breaking bug and spent the next 12 hours coding in a taxi next to the client on 3g, so much pressure, I couldn't remember if a j s filter removed or kept values in a true condition, dancing with the devil with 5% battery and three Docker images to build and publish but manage to find a pub at 8am to celebrate the job well done. Yeah. Yeah. I've had actually my share of pull over I had to once one time I was on the ski hill. I was on Winter Park, Mary Jane and I had to ski all the way down the hill to my car to go get my computer to fix a bug that was in production at that very moment that I'd gotten an email about while I was on the chairlift. So yeah, shout out to you. I had a similar so
+
+55
+00:19:19,259 --> 00:19:34,920
+Wes Bos: man, I this one I thought about all weekend. It's just I just kept thinking back to the poor guy sitting in the back of a cab. That's probably just sitting there running and fixing it. Wow, that's, that's rough God that you can find a public idiom that would not happen in Canada.
+
+56
+00:19:35,060 --> 00:19:36,150
+Scott Tolinski: Yeah.
+
+57
+00:19:36,660 --> 00:20:22,770
+Wes Bos: Next one is bad envy. Not sure if that's the kind of story you're after. But in a company I work for we had an absolute madness of packages was weird dependencies to each other. So every time we had to switch between projects, which is regular because we worked on six different sites, we had to yarn unlink rm rf, the whole yarn link directory, yarn install, and you're link again, this on average should take at least half an hour out of each devs day. Oh, and another nightmare that there was was there is no hot reloading for the sites every time you made a change, even if it was just a change of margin and a sass issue, it would take 40 to 50 seconds to rebuild. I miss the Ruby sass times where the refresh took less than 10 seconds. Oh,
+
+58
+00:20:22,920 --> 00:20:39,210
+Scott Tolinski: yeah. Let me describe to you a nightmare. Here's the nightmare. Yarn link. That's it. That's the nightmare. That's the whole nightmare. It is very hard. And you never know if what you're doing is working or not working. I don't know if you've done any yarn linking or
+
+59
+00:20:39,450 --> 00:21:19,200
+Wes Bos: you have been in a lot of cases. If I have to edit a like a module that I'm using. I just go into node modules and start hacking away at it. And they're hacking. Yeah, it's usually you're working on the bundled version, not on the main version. But it's it's a pain. And that's exactly what I do. Yeah, I just had to node module because yeah, especially if the parent repo is like a mono repo. And then you're just like, asking to make yourself very frustrated. Those are probably the biggest pains to me is like when development is slow. You're like, I can code and think much faster. But this thing is getting in my way. And it's I'm so slow and frustrated with it. Yeah,
+
+60
+00:21:19,230 --> 00:21:49,530
+Scott Tolinski: I know. I'm spending some time implementing snowpack right now. And I'm just I'm very looking forward to the feature where I say something and it's just updated that next instant. Alright, next story is logged in as I once left, some debug code in when checking and error for a user that logged everybody into his account. So that account has been compromised, I would say I think that's safe to say that accounts been compromised. Everybody get to log in as Oh, that sounds that sucks.
+
+61
+00:21:49,650 --> 00:22:27,300
+Wes Bos: email subscribers plugin. So my task was transferring a WordPress site from one server to another we were pretty rookie sir setting it all up manually. We set up all the plugins and then imported the content years worth of pull posts. Unfortunately, we didn't notice there was an email subscribers plugin that emails a subscriber every single time that a post is published. So this is pretty common. People say yeah, I want to get an email when there's a new blog post. There's a plugin, you throw it in, and it works like that. So when we imported 100 plus posts, it ended up sending an email for every single post to every single subscriber. Oh, you think it would detect that?
+
+62
+00:22:27,420 --> 00:23:41,160
+Scott Tolinski: There's a lot of like, a man there should be check some some systems nowadays. Yeah. All right, next one, one in the 300 chance of the C word. I once wrote a pro mountable password generator. The theory being that generated passwords made up of random vowels, combined with consonant pairs would create a string which wasn't a real word but could be pronounced and therefore would be easier to remember. It was used during the password reset flow of a web app whose demographics skewed towards very non tech savvy, many of which would have problems even copy and pasting. It was in production for several months, and had generated thousands of passwords before another dev received a new password, which had contained the C word. And then he wrote, yes, that C word. One of the consonant pairs I had used was NT, the function had roughly a one in 300 chance of including the C word somewhere within the generated sorry, one in 300. Yet not great odds for that's both funny get the word. You're probably your generator. That's pretty good.
+
+63
+00:23:41,160 --> 00:24:04,410
+Wes Bos: I got some I have random store names and one of my courses and it just takes like a adjective and a couple vowels. And someone got angry, unsightly women. And she's like, Oh, you should probably check this. I'm like, Oh, yeah, I probably shouldn't. possibility but it's also random. So ha, yeah.
+
+64
+00:24:04,410 --> 00:24:09,690
+Scott Tolinski: Like what? Yeah, yeah. How do companies like Heroku? Or, you know, how did they do that stuff? I
+
+65
+00:24:09,690 --> 00:24:50,610
+Wes Bos: don't know. That's, that's a good question. Like Netlify does that as well? Are they like generate random possible pairs? And like, how do you go through all the permutations because there's millions of possible combos? I don't know. That's, that's a good question. Next one, production target. When I joined as a new grad, I was asked to learn about load testing and load testing our staging servers, I learned about Gatling which I just looked that up, and that is an open source load testing framework. And after I figured out how it works, I ran my Gatling load test script. I think I said it about 100,000 concurrent users. That's kind of cool. Actually. Maybe we should do a show about that. I think that'd be kind of a cool tool.
+
+66
+00:24:50,610 --> 00:24:51,990
+Scott Tolinski: I'm interested. Yeah.
+
+67
+00:24:52,350 --> 00:25:08,490
+Wes Bos: Three minutes later, we all start getting alert emails and calls saying someone was trying to take our servers down. I also didn't realize that It was me until I noticed that I set the production script to be target the production servers, I did not get fired, thankfully.
+
+68
+00:25:09,840 --> 00:28:17,550
+Scott Tolinski: Hey, that's great. And let me tell you, you also will not get fired. If you use one of our sponsors. I'm talking about Log Rocket, because Log Rocket allows you to find bugs in your application very easily and very quickly by giving you a session replay. Now, what is the session replay? Well, it's a video scrubbable video that gives you the network tabs and shows you the user's mouse where they clicked on how they were able to do all this stuff. This way, you would have seen potentially somebody firing off this Gatling and seeing that it was your mouse, who is the killer is coming from inside of the house, that whole thing. So you'll want to check out Log Rocket at Log rocket.com forward slash syntax and you'll get 14 days for free. Again, you get a scrubbable video replay that includes not only the video of what happened, but also the Network tab and the console and all sorts of fantastic things to help you find and solve those bugs. So thank you so much for Log Rocket for sponsoring this spooky episode. Who This next one is our happy SEO and then there are definitely worse things to read from others. But the worst thing in my career was to block all search engines from Europe's largest cooking community by accident. Oh, yeah. In the good old days, let's deploy those changes, meant to login to a server by SSH run 30 commands and check to see if everything is fine. I remember those days. days, there was no physical problem on the website. So we all left it for the weekend. Yeah, I know not to deploy large changes on a Friday, the source of all bad things that happened was the idea of a colleague to remove our testing installations from Google. Sadly, he pushed it to the wrong branch. As I was already thinking about the weekend, I skipped the check every file of all commits, if they're reasonable on the checklist, or each go live, because you know, it always just kind of happens to me too, like you get complacent with things working all the time. And that you laxer guard a little bit something breaks. So setting deny all in the robots, that txt did not only lead to 50% velocity of visibility in Google measured by sistrix. And millions of pages removed from the index, but also lost revenue from it. If you block Google's crawler, it will not deliver content related ads on websites and this burned thousands of euros per day. Luckily, SEO saw that something was wrong on Monday, and we could fix it very fast. But it burned lots of money. And I was in fear for a full week until we figured out that it was a good accident. Google started to crawl the new content that was better than the old one and rankings had been higher. After two weeks than it had been before. Press one line of code. A lot of money burned a horrible week to wait for a new search result measurements. And the day that we started to implement automated deployments with security checks that prevented some of the possible mistakes.
+
+69
+00:28:18,630 --> 00:28:31,350
+Wes Bos: So you just ran the like probably the largest SEO test. Yes, yes, that's just hilarious. I'm glad it worked out the next one I call it just I couldn't even think of a name for this one horror story.
+
+70
+00:28:31,469 --> 00:28:38,160
+Scott Tolinski: I surprised you named all these I named a whole bunch from last time. I did not get a chance to name any of these all i think is probably for the better because your names are all
+
+71
+00:28:39,240 --> 00:29:49,110
+Wes Bos: I got the names. You got the add transitions. Yes. So this one horror story. I wrote masquerade comm command line tool to anonymize databases with in one of the earliest versions, I did an array merge, but got the order of the arrays wrong. The content of these arrays was database connection config, the one from a config file and the other from CSI params passed to the binary I meant for it to have the CSI params to take precedence. So cron would run to anonymize a replica of the database. But alas, the config file from the production application took precedence and I anonymized my clients production database on a nightly basis. Oh, we found out a few days later, that we had to parse order confirmation emails from sendgrid. In order to retrieve the data. I said, not to run a process like this on a production machine. And now we all use Git lab runners with a scheduled task to anonymize who those ones are. You can screw it up by accidentally typing the wrong thing or hitting the wrong button or running a command in the wrong directory. Spooky Uchi I fell in and I can't get up.
+
+72
+00:29:49,140 --> 00:30:38,040
+Scott Tolinski: All right, this one. This one is pretty good. At my first job, I worked for a company that built a system for monitoring vulnerable folks in their homes. It worked too. motion sensors placed on the wall of the house. I push to change the charts that I thought fixed a bug. Two days later, we received a call that a woman was convinced her elderly father had fallen in the bathroom. She had called him in a panic at 1am. Oh, gosh, that's scary. Turns out because of a time. So here are the charts. were missing data from 12am to 1am. Certainly my most painful and costly bug. Yeah, that is frightening. That's very frightening to know that you could write some software that would have that kind of consequence. Very, very scary.
+
+73
+00:30:38,070 --> 00:30:44,400
+Wes Bos: Yeah. Like, that's, that's that's real, man. I can't even laugh at that one. I'm glad that
+
+74
+00:30:44,520 --> 00:30:45,930
+Scott Tolinski: right. I know. Mike.
+
+75
+00:30:47,010 --> 00:30:50,670
+Wes Bos: says it like that hurts like that person was probably super rattled. So
+
+76
+00:30:50,970 --> 00:30:54,660
+Scott Tolinski: good story. Yeah, real. Woody. Yeah. Thanks.
+
+77
+00:30:55,560 --> 00:32:08,430
+Wes Bos: Chris crypto used to work for a startup company that had an Ico back when it was a thing tm So, Icos initial coin offerings, so when like a new type of crypto comes out, they have an Ico where people can buy in. launch day is coming and we're preparing for months. The smart contract is already out there on the Ethereum network, no going back, our website had a countdown and everything for all the investors we spent months acquiring, and the potential big ones we had on our list. Big day finally comes. And I finally get the wallet address just before launch. Hmm. It's a QR code I uploaded to the website in time, just hot and the countdown and excitement. We did it. Not long after I'm informed the QR code was a placeholder, and nobody was able to pay. He likes the crypto craze died right after that. So who cares about how much quote unquote money we lost in those few hours, the company went under the next year before I left, they still owe me some money. So just under the same Yanks as deploying that last one where you have the gambling and you forgot the Boolean of tests. True. There's
+
+78
+00:32:08,460 --> 00:32:14,400
+Scott Tolinski: so many like money ones like that, like lots of money lost or potential for money.
+
+79
+00:32:14,400 --> 00:32:28,020
+Wes Bos: I still do like when I launched my courses, I still even though I test on stripe all day long, I still generate myself a coupon. I set it for like $1. And then I buy the course myself just to make sure actually works with a real
+
+80
+00:32:28,020 --> 00:33:39,960
+Scott Tolinski: buy the course yourself. I refund yourself whatever. Yeah, I do that. rm rf, my Halloween Horror Story, Friday afternoon in the office working on a Magento site. frightening enough in itself. I love that note that this author added because it is very thing working on Magento. But anyway, we used to do beer Fridays, but I'm a woman who doesn't drink. So I sat at my desk drinking a glass of Prosecco and ran rm rf, RM, hyphen RF to for those of you don't know that command removes recursively all directories they have what you specified command to delete a folder. So I could read, compile and accidentally left out the forward slash. Somehow I deleted that the company's entire development server which contained it d hU seven D website. The poor DevOps guy spent the entire weekend trying to recover it by some miracle. I still work for the company five years later, have a va 60 to 70. home. I will delete like one development site in freakout 60 to 70 production sites Yay.
+
+81
+00:33:41,100 --> 00:34:42,540
+Wes Bos: Next one we have is never deploy on Fridays, I work for an e commerce agency at the time, I made some small updates to our site, I forget exactly what it was. And I thought I'd update the project's dependencies at the same time. So I made an update and deployed on a Friday afternoon. I know I know. Yeah. So this is what I refer to as a YOLO update where you're like 400 updates to my package JSON sure fine, as you should after any deployment I went ahead and check the site for any possible issues search for some products added to the basket went through the checkout all seemed while I go through the test a second time just to be sure I deployed on a Friday after all better make sure it works, right. No issues spotted. I close up my laptop and headed home for the weekend. Monday. I arrived at my desk. The mood in the office is more somber than usual. I'm grabbing whatever preferred choice of caffeine was for the day. And the team lead pulls me aside he does not look like a happy chap. Props to whoever wrote this. This is very well done.
+
+82
+00:34:42,540 --> 00:34:43,110
+Scott Tolinski: Happy Jaffe, can
+
+83
+00:34:43,110 --> 00:35:16,500
+Wes Bos: I see you in the meeting room, please? Oh no. It turns out that the update updates I so bravely deployed cause a basket issue that prevented customers from adding more than one item to the basket anytime. Of course I never spotted it as they only added one item during my test the issue was not reported until Sunday. I never got told how much money my this cost my client only that I really really did not want to know. Deployment had been done in pairs from there on out, never deploy on Fridays Ooh.
+
+84
+00:35:17,400 --> 00:35:19,610
+Scott Tolinski: Yeah, a lot of these people ever deployed on Fridays,
+
+85
+00:35:19,800 --> 00:35:27,150
+Wes Bos: or have a like a good set of tests would have earned pretty basic test would have caught that I'm sure they have a test for now.
+
+86
+00:35:27,650 --> 00:36:15,980
+Scott Tolinski: Yeah, yeah, that's how you learn. Excellent billion dollar scramble. Hey, you know what, I'd like the million dollar scrambled eggs. I know. That sounds good. These aren't scrambled eggs. Okay. We were demoing a product, we were building to a potential client, our first ever demo of the product, and it was for a deal worth millions of dollars. So we got a million dollar deal here. A DevOps engineer just so happened to be going through what they thought were our old clusters and deleting them. Our deployment got deleted about an hour before the demo. It was the maddest scramble I've ever seen to try to recover a Yeah. So if there's any major appointments, don't start deleting stuff. Just don't just wait, just wait. You never know what you're
+
+87
+00:36:16,050 --> 00:37:08,690
+Wes Bos: never know, we literally probably had like three or four stories like that so far. Speaking of deleting production, I deleted the production database thinking it was my local because my database client and prod local look the same. The most recent backup was at 10am. I deleted it at 4pm. And there was around 600 ORDERS WE HAD without a backup. The manager covered 99% of these using email logs, spreadsheets, and bulk inserting the process of deleting to recovering was from 4pm to 2am was for engineers who, to this day, I use two database clients, one for local database, and one for production staging. And I will only use a read only access for production thankfully didn't get me fired. My work handled it very professionally or understanding who spicey that's a spicy one.
+
+88
+00:37:09,300 --> 00:38:22,830
+Scott Tolinski: less spicy. All right, 500,000 concurrent problems. A lot of problems. A couple years ago, I was working for a well known company that offers a very widely used website chat widget. Hmm. I was working on a few subtle UX changes to the widget that would give users a much more intuitive interactions in the behavior of the chat. For emerging and deploying the changes, we started to see a couple small errors. Turns out that anytime anybody clicked on the chat widget, even if there was a friendly message, notification inviting them to join the conversation, it would just disappear completely. At this point in the company, we had around 500,000 concurrent users, and around 5% of them would engage with the widget. Upon my discovery of this bug, my heart sank into my stomach and a cold sweat started. I had deployed this and then gone into an hour long meeting. Resolution early on, the company decided that deploys and rollback would be easy and instant. Luckily, for me, rolling back was is instantaneous and only required clicking a button. I made sure to test my code more thoroughly from now on. Do you have any rollback setup in your in your deployment process? Because I do and it's it like saves my butt all? I
+
+89
+00:38:22,830 --> 00:38:29,760
+Wes Bos: don't on my Digital Ocean? Like I could just rollback a commit and and redeploy, and it would fix it.
+
+90
+00:38:29,960 --> 00:38:31,440
+Scott Tolinski: You'd have to read them. Yeah.
+
+91
+00:38:31,830 --> 00:38:35,420
+Wes Bos: But no, I think I would like to have something like that.
+
+92
+00:38:36,780 --> 00:39:00,210
+Scott Tolinski: Yeah, I host on a meteor galaxy, right? Because it's the meteor host. And they have like, just like a history of every version you've ever deployed. And so at any given point, it'll tell you, I'll use the current version, whatever. There's the past version, at any given point, if I have a mistake, I just click the old version and click, you know, go back to this one. And I can go back to any prior version, and it just plays it for free in like instantly,
+
+93
+00:39:00,380 --> 00:40:17,070
+Wes Bos: it just cut cuts over the domain now like now, fi's I, they'll all do that as well, because they just have multiple versions of your app, instead of one where they can take different data. Yeah. That's good to know. Next one deleting a government website. Many years ago, I worked for a company that ran the state of and I've blanked this out already website. So this person asked to for us to anonymize it because they're worried about the government getting litigious. I that's such a good word. Listen to just I was trying to debug an error on our staging server. And anytime I touch the files on the server, the changes didn't seem to be reflected on the staging website. So I figured let me just delete everything quickly. So I rm rf, the home directory, and still the website was there. I bounced the server thinking cash still nothing. Finally my office make make goes hey, did you know the whole website is down which website site, the production website as far as storing everything facepalm Oh, and this this sounds like this was done way back before version control and things like that where if you if you deleted it, it's gone.
+
+94
+00:40:17,630 --> 00:40:24,030
+Scott Tolinski: Also our rm rf is just so dangerous. Didn't you have something where you use something? I feel like you had this. It's trash
+
+95
+00:40:24,030 --> 00:40:35,310
+Wes Bos: or something Jim install dash g trash dash D Li. And that will put it in your trash instead of RM. I never use rm rf. Just because it's scary.
+
+96
+00:40:35,849 --> 00:40:54,270
+Scott Tolinski: Interesting. Next story youever on this surprise, my worst production related ex offense happened while I was at a startup in LA. They were trying to become a more modern he fight. What does he fight? Do? They Oh, they do? Like they do like gift cards and stuff. Like they're not great. Like it's
+
+97
+00:40:54,270 --> 00:41:08,280
+Wes Bos: like if you get invited to like a birthday party or like a wedding, you can RSVP and like it comes in over the email. It was pretty popular. Like 510 years ago, did you get my invite to the Halloween party to get my
+
+98
+00:41:08,339 --> 00:41:16,650
+Scott Tolinski: Yeah. Basically, if you were having a party, wedding, whatever you wanted to have a digital experience, you would use us or a paperless post
+
+99
+00:41:17,399 --> 00:41:20,280
+Wes Bos: paperless post, like So anyways,
+
+100
+00:41:20,280 --> 00:43:06,300
+Scott Tolinski: I had this pretty amateur rails web app API that we had built typical MVC architecture, using active model, we had a bunch of callback methods into models themselves that would fire uncreate save events, actually thought this was pretty slick at the time. And yeah, that's pretty sick. We had just deployed a change to run a bunch of dB migrations, and it went off without a hitch. We then had a migration script that would walk the DB and upgrade each record with default fields. This script failed to skip the permission callbacks and basically firing off emails left and right for every single event attendee in the system. female. Yeah, so Oh, that is so funny. That is very funny. So for those of you who aren't picking it up, basically, they had a hook on DB change that would send an email or something, and their crawling script just fired off against every record. Now imagine the horror when you're in the middle of America planning a surprise birthday party for your father's 50th with over 100 people, and you're waiting to announce until two weeks before, and all of a sudden a bunch of emails start going out to everyone attending, or you're a bride planning a wedding and you send out a bunch of emails to your attendees list prematurely. Or you just had a funeral for a family member a month ago. And you send out a please attend to Ted's funeral email to everybody again, Oh, that one is very painful, very painful. It was all out. pandemonium company was freaking out. I won't say for certain that this was the final nail in the coffin for the company. But it certainly didn't help. Oh, gosh, to this day. I'm hyper vigilant when it comes when and where backend code sends emails, I hope this is what you're looking for. This person may have single handedly killed Eve.
+
+101
+00:43:09,710 --> 00:43:26,550
+Wes Bos: Oh, that's that's even why like when I use, like a local development, I'll make sure that I'm using like mail catcher or temporal email something just because if you accidentally trigger 500,000 emails, that's kind of a nightmare to come back from.
+
+102
+00:43:27,030 --> 00:43:28,290
+Scott Tolinski: Kind of a nightmare. Yeah.
+
+103
+00:43:29,880 --> 00:43:30,780
+Wes Bos: What's not a nightmare that
+
+104
+00:43:30,900 --> 00:45:09,690
+Scott Tolinski: was got a is it Netlify. Our sponsor for this episode. Netlify is certainly not a nightmare West, I don't know why you put them in the same sentence. It was actually funny a little bit ago, you you started one of these and you're like, you know what, I thought you're gonna do a transition. And then you thought started reading the next story. So you've got me Netlify now@netlify.com is the fastest way to build the fastest sites as in, you can deploy your front end code on this thing. And just with a git push a look at that risk to nugget push your entire site builds and is constantly deploying. And anytime you push a commit to a specific branch, all for free, easy to use. There's awesome awesome, awesome features that are added to nullify constantly over a million developers currently using nullify isn't that crazy million developers. So out a lot of people using this thing, there is just a ton of features that allow you to really, really gain productivity, like crazy. I host my site in Netlify. I know Wes hosts his his site and Netlify and it is fantastic. You can do all sorts of things like serverless functions, or or DNS based analytics, which are actually very, very nice compared to normal script base analytics. l There is even an identity platform that allows you to create a login user accounts on your front end code site, all just through Netlify itself All this and more. So check out Netlify dot com forward slash syntax and see what everyone's talking about. because trust me, this is the place to host your front end code. It is so dang easy and simple. You know what?
+
+105
+00:45:09,810 --> 00:45:24,150
+Wes Bos: Now if I had just checked if you go to one of your commits, and you can view that commit that's already built, you can just publish it. roll it back, if you accidentally screw it up. Hey, cool. Mr. D whole,
+
+106
+00:45:25,650 --> 00:45:26,250
+Unknown: the whole
+
+107
+00:45:27,150 --> 00:46:12,030
+Wes Bos: one time, I was working on a client site and running tests to try to debug some email template issues going out for my CMS. Again, I had a mail trap installed locally, so no real emails got sent from PHP mail function. Okay. Okay, so good. Okay. Okay. Unfortunately, oh, the module I was using uses its own SMTP implementation and bypasses the PHP mail function. So it was funny, when the client called her office and asked if my business partner if he thought his order for Mr. De Hall was real or not. Stop Stop putting bad words in testing.
+
+108
+00:46:16,530 --> 00:46:25,020
+Scott Tolinski: Oh, it was not. So what the what's kind of lost here is that the word is actually spelled out if they're not already do it's
+
+109
+00:46:26,100 --> 00:46:27,990
+Wes Bos: a sporting goods store from earlier which
+
+110
+00:46:27,990 --> 00:47:46,350
+Scott Tolinski: we weren't allowed to say. So that that is much funnier. That is another bad word. It seems hilarious that so many people have made this very same mistake. Very funny. Also, these kind of things are a little more harmless than like, you know, sending out a notification about funerals not not exactly harmless. Alright, one expensive race condition. This just happened today. So it's fresh in my mind who freshman, I had to build a samples request wizard for an international flooring company on WordPress using jQuery steps and Gravity Forms. At the end of the wizard, you submit the form by clicking the Finish button on the wizard. My code in a WordPress template catches the form finish event submits the form, then location dot href equals thank you very much page, I come to find out that I had built a race condition that sometimes made the page change without submitting the form. Client misses 60% of their leads boss is furious and choose me out over slack. So glad I wasn't in the office test reforms in all browsers at all network speeds. So the form was firing an event early and submitting the form without collecting all of the information. Yeah, people people don't like that. Especially any sales teams that need to keep track of their their their ba Sinhala Yeah,
+
+111
+00:47:46,410 --> 00:48:02,430
+Wes Bos: I like it when you take away like huge loss in sales. Like sometimes I submit a form on a website. That's like a local business. I'm like, I'm never getting replied to this. And sometimes you feel that way. Sometimes when you're filling out these like, yeah, janky forums, that was rough. Like
+
+112
+00:48:02,430 --> 00:48:03,990
+Scott Tolinski: this is definitely a waste of mine. That's a
+
+113
+00:48:03,990 --> 00:48:29,970
+Wes Bos: prime example. People always asked like, what's a race condition like that is a perfect example where they hit submit and then the code after submit the form was just window dot location, and they didn't wait for the Submit to come back properly. So you could forget one one away, or you put a you don't put the winner location in a callback, you're poached, and poached. And it also works hundred percent of time in development because as fast as out,
+
+114
+00:48:30,120 --> 00:48:42,690
+Scott Tolinski: right. Right. That is actually that is the big problem there is that it does it works. Always work like race conditions that are so often not apparent in development, just because it's super fast. The
+
+115
+00:48:42,900 --> 00:50:58,860
+Wes Bos: next one is just called Yikes. That's all I could say to some of these questions, these stories that came in. I am a developer in a consulting firm in Sweden, writing C sharp on the back end and using react with either JavaScript or TypeScript and hosting everything in Azure 99% of the time 1% SharePoint. I was in my last week at my last job and I was due to start my new job. I worked a 12 hour day to keep up with all the handovers etc. So colleagues could have a chance to continue working on the solutions that I'd taken care of one project was a process tool hosted in SharePoint Online, the guy who would oversee it had negative 1% experience with SharePoint which I pointed out to my bosses. But to make things easier, I made it a play script. To ease things a bit starts with the terminal and runs the script towards the acceptance environment. umpteen million error errors occurred appeared, which is strange because there should only be about 20 commands. I log into the environment and double check if I accidentally entered the wrong values in the script, which is located according to me, but I get a 404 error when trying to reach the environment. I log into the admin interface and I discovered the site is gone. Also checking the trashcan there are no things they're very strange. I find that I'm in a different folder than the one where I saved my script. in that folder there is an old deploy script that was used when the project was started 1000 years ago, which was not used after this project was finished. The first thing the script does is force, delete the site and then try to create a new empty site. Oh, no, the site is gone with lists and everything lists are like a SharePoint thing. Sort of like SQL Lite. There are no backups of the acceptance environment, although that is very important. I feel just a little bit panicked. How am I going to solve this. However, I remember testing a tool six months ago to copy entire environments, where my first attempt was made. Here in the acceptance environment, I find the clone environment it can be used, and the same tool to clone it back. It only took eight to 12 hours of work to create all the new things done in the environment in the last six months instead of x number of hours rebuild everything from scratch. Oh,
+
+116
+00:50:59,310 --> 00:51:04,620
+Scott Tolinski: yeah. This is a great use case for delete your old stuff. If you don't need it.
+
+117
+00:51:04,620 --> 00:51:09,960
+Wes Bos: No kidding. You can get it back from you can get it back if you need to
+
+118
+00:51:10,410 --> 00:51:37,320
+Scott Tolinski: go next one always be closing. When I was in my 20s I forgot a closing table tag and the mail shot that went to thousands. This resulted in the first mail containing one males content. The second mail contained it to the mail servers of the multinational company crashed as a result. Yeah, so can dangers of recursive Yeah. And like possibly
+
+119
+00:51:37,320 --> 00:51:41,970
+Wes Bos: leaking sensitive information from one email to another right?
+
+120
+00:51:42,270 --> 00:51:44,040
+Scott Tolinski: Yeah, makes a big,
+
+121
+00:51:44,130 --> 00:52:26,250
+Wes Bos: big. All right. Last one we have here is a data's all day I delete a site. I deleted the Adidas Facebook page at 8pm the night before a $3 million spend for ESPN and YouTube homepage takeover. This was back when Facebook apps were big and there was no tiered permissions. I was a tech director and clearing out all the designer project manager accounts. So no one would delete anything, accidentally deleted all the accounts and then deleted the entire page. Our sister media agency called Facebook in the UK, and some engineer found the deleted page and re added it in Crisis averted my boss did not fire me.
+
+122
+00:52:27,600 --> 00:52:28,800
+Unknown: Ah,
+
+123
+00:52:29,670 --> 00:52:30,660
+Wes Bos: he likes
+
+124
+00:52:31,740 --> 00:53:25,710
+Scott Tolinski: high it's it's days like this, where I am very happy that my job is this low stakes as it is. I can spend a month working on a course and I get that course out I get it I get a chance to review and watch it 800 times before it goes out. If I do by chance happen to release that course with a tiny little typo in it. That is not a problem of the magnitude of any of the oh that we have read on this show. I just man be safe and be careful y'all write tests do not run rm rf unless you are very, very sure of it. Although I did that once where I ran get clean in a non get directory and deleted half the computer. I talked about that last year. So don't do those things. And make sure you take good backups, man good backups, good tests. Be very careful. Don't push on Friday, any other parting pieces of advice that you've gained? Man, I just
+
+125
+00:53:25,740 --> 00:54:02,640
+Wes Bos: I just keep thinking about the one with the 500,000 concurrent users, because you like do an image tag incorrectly and all sudden your support team blows up. And like you're you're causing support extra work or maybe have to bring in more people in that you have to pay them and it's just the mistakes in those environments are just so high stakes. So that's what I saw. And obviously like backups and automated testing, and like maybe two keys to deploy sites probably whatever a lot of these but then we wouldn't have the show every Halloween so
+
+126
+00:54:05,130 --> 00:54:19,110
+Scott Tolinski: so please continue to make major mistakes of course none that will result in the permanent harm anybody but if 800 people get the whole sent to them and their text messages, then I think that's probably okay. That's a bug. That's That's pretty good.
+
+127
+00:54:20,280 --> 00:55:55,470
+Wes Bos: Oh, that's great. All right, let's move into some sick pics. I'm gonna pick pick something I've picked in the past but I just got a second one of them and I was just reminiscing about how much I love this thing. So this is a instant read meat thermometer. Really not necessarily just like you said this last day. And so if you want to be a good cook, and part of why people aren't good cooks is because they don't know when something is cooked all the way through. So they overcook it so they don't die of seminar poisoning or something like that. And you can for like 15 bucks, you can go get a really good Good thermometer that you just poke into your food that you're working and it tells you what it is and like I feel like it made me a better cook when I got a really not not necessarily like a really nice version because there's like thermal pens that are like $100. But I got this one. It's called Mr. Scheffer, which is hilarious to me but has backlight the the numbers are huge. Most importantly, it reads very fast. So some of these cheap ones you get at the grocery store, you got to leave it stuck in for 15 seconds before it actually reads accurately. And that's too hot. If you're on the barbecue or something because you can't you have to keep your hand on it or you got this plastic thing in the way of the heat. So go get yourself a nice thermometer. I have got two of these now I've the Mr. Scheffer I had at the cottage, I left it outside it poured rain on it for days, I dropped it off the deck going strong. So I really liked it. I'll put a link for it in the show notes.
+
+128
+00:55:56,220 --> 00:56:16,260
+Scott Tolinski: Mr. Scheffer will be coming to Mr. Tolin. Because I, I said that at some point. And like, Yeah, I do need to get one. And just like it was like two days ago, we were cooking some pork. And we were using the stick and get away for air. And it just is like, you're looking at it. You're like, I don't even know if this is and yet, like, I have no idea what is the best
+
+129
+00:56:16,260 --> 00:57:02,280
+Wes Bos: one because at least in Canada, a couple years ago, they changed the safe temperature for eating pork to 145. And if you if you pull up a piece, nice piece of pork off the barbecue at 145 it'll go up to 150 45. Or sorry, you pull it off at 140 goes up to 145 after resting, you cut it open you think that that is still raw and it's like there's red in it and it doesn't look like it's cooked all the way through. But just like knowing like yes, it's it's cooked. I'm did the temperature on it. It is safe for my family to eat. And it's funny because something like I have my like parents over there like are you sure that's cooked all the way because they grew up in this the age of the higher pork temperature and they probably went over that because they didn't have thermometers at that time.
+
+130
+00:57:02,520 --> 00:57:16,320
+Scott Tolinski: I kind of I gotta get me a good meat thermometer, especially Mr. Shepherd. Sometimes I just buy things based on the name and that is a great name. I'm very into the name of the Mr. Scheffer. So what am I gonna stick pick today?
+
+131
+00:57:18,900 --> 00:57:23,790
+Wes Bos: Oh, man, I'm just looking online. And it's not called Mr. Schaeffer in the states
+
+132
+00:57:23,850 --> 00:57:27,780
+Scott Tolinski: away. Why should they do that to us? Why would they possibly do that to us?
+
+133
+00:57:28,020 --> 00:57:31,410
+Wes Bos: Can I get the Canadian version of the American version comes with a bottle opener.
+
+134
+00:57:31,680 --> 00:57:36,480
+Scott Tolinski: I would rather get the Mr. Scheffer than the one with the bottle. Oh, no, I
+
+135
+00:57:36,480 --> 00:57:41,280
+Wes Bos: found the exact one that I have. It's not called Mr. Schaeffer, unfortunately,
+
+136
+00:57:41,970 --> 00:59:43,800
+Scott Tolinski: that's a huge disappointment was a very big disappointment. Okay, I am going to a sick peg, a library, JavaScript library. And I'm talking about FASTA phi. Have you heard of FASTA? phi FST phi.io. But no. So I've been diving into the world of node servers lately, because I want to see like what's changed since the last time I looked, I know a lot of people talk about nest, j s next but nest and there's like nest, there's happy, there's Express, there's koa. Fast. If I was the one, this kept on popping up over and over again for me. And I started looking into this and I don't really need server. So I will stick pick this I've been given it a test out just to see there's some really neat graph qL stuff in here too. And they basically did some neat little benchmarking against Express and Apollo for this graph qL thing to find that it's like, very, very fast. Okay, so here's, here's how fast this thing is. So on their benchmarks page, and this is their own benchmark. So take take that for what it is. But according to this, they have some code here, and they got 76 835 requests per second, nearly 77,000 requests per second, on FASTA phi, were expressed with the same code was only able to get 38510. So nearly double the amount of requests per second that it was expressed, was able to deliver with the same code. And same with happy co was a little bit more but fast if I was still like 20,000 requests a second more. So obviously, this is their benchmark. So you know, take that with a grain of salt, do your own benchmarks, but testify for me it's been not only very fast, but very easy. The logging all this stuff, set up the plugin, the whole environment has been very cool. There's a lot of neat plugins involved here. So check this out. If you're looking for a node server, right now check out testify.io it's one that I've been having my eyeballs on quite a bit lately.
+
+137
+00:59:43,920 --> 00:59:58,230
+Wes Bos: Cool. Check that it looks like they have a lot of middleware as well, which is something you want to you want to think about if you're picking a new server like you probably are going to need a bunch of plugins or middleware it looks like they've got hundreds of community what's so sick,
+
+138
+00:59:58,379 --> 01:01:08,850
+Scott Tolinski: and there's some that like are like me Not only graph qL servers easy but also make, I don't know, if you've ever gotten into Data Loader, know, there's like an issue in graph qL, where like, let's use level up tutorials. As an example, I say I want all of the playlists on the site. And then I want all of the tutorials on the site. And if you set up your graph qL server in a normal way, where you have your resolver, and then another resolver, and then one call to the other, you could end up in a situation where you're getting like 500 database queries, because let's say you have 20 tutorials, each tutorial has 20 videos and in like, the way your system might be set up, it's not going to do all of those requests in one fell swoop, it's gonna do the one and then the individuals and loop and whatever. So Data Loader is like a caching mechanism that prevents large queries for like that from being a problem. It's basically a caching solution that will make your n plus one queries way more performant like exceedingly more performant. And so there's a really neat graph qL server in here that has like Data Loader essentially built into it, they make it like part like a first class citizen. And it really solves a lot of the pain points I was having personally with Data Loader. So I'm into this. It's very cool,
+
+139
+01:01:08,910 --> 01:01:18,980
+Wes Bos: sweet. I'll have to check that out. They'd be I look similar to lamda instead of Express like, which is kind of cool. It's not that much different. But yeah, I just noted that
+
+140
+01:01:18,980 --> 01:01:20,610
+Unknown: cool, shameless plugs,
+
+141
+01:01:20,760 --> 01:01:35,370
+Wes Bos: I am going to shamelessly plug all of my courses West boss.com, which is my new website. Check it out. Ford slash courses has a list of all my courses most recent one being master Gatsby, make sure you use a coupon code syntax for 10 bucks off
+
+142
+01:01:35,790 --> 01:02:16,320
+Scott Tolinski: deck, I'm gonna shamelessly plug level up tutorials.com where you can sign up to become a pro member and gain access to a new tutorial series every single month along with our entire catalog which is constantly growing and let me tell you, I am really excited for the next upcoming year we have three or four guest teachers lined up that you are all going to be very excited about. I can't talk too much about it just yet. But we have some guest creators coming on. I have some new courses coming out. I have one that just came out on stealth animations that is fantastic. We have new course every single month. It's sort of like a magazine subscription check out what the latest courses. So level up tutorials.com forward slash pro sign up for the year and save 25%
+
+143
+01:02:16,380 --> 01:02:23,580
+Wes Bos: beautiful Alright, thanks so much for tuning in. We'll catch you on Monday. Have a spooky Halloween.
+
+144
+01:02:25,530 --> 01:02:35,310
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
