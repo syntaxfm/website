@@ -1,0 +1,620 @@
+1
+00:00:01,319 --> 00:00:02,820
+Josh Comeau: You're listening to syntax,
+
+2
+00:00:02,849 --> 00:00:04,590
+Wes Bos: the podcast with the tastiest web
+
+3
+00:00:04,590 --> 00:00:06,120
+Josh Comeau: development treats out there,
+
+4
+00:00:06,149 --> 00:00:10,560
+Scott Tolinski: strap yourself in and get ready to live ski and West boss. Welcome
+
+5
+00:00:10,560 --> 00:00:40,610
+Wes Bos: to syntax. This is the podcast with the tastiest Web Development Series. Today, we've got a guest that we haven't had a guest on. And in a while we've got Josh komu on who's here to talk to us about a bunch of stuff. But the one thing I'm really interested in is he is doing voice coding, where he can't use necessarily always be using a mouse and typing on a keyboard. So that's all I know about it. I intentionally didn't ask any questions because I I want to put it on the podcast. So thanks so much for coming on, Josh.
+
+6
+00:00:40,769 --> 00:00:42,240
+Josh Comeau: Yes, my pleasure. Thanks for having me. This
+
+7
+00:00:42,240 --> 00:00:58,500
+Wes Bos: is super exciting. Awesome. today. We're sponsored by two awesome companies. First one is sanity, which is a structure content CMS. Second one is century sanity and century century does all of your error and exception tracking Scott to linsky as always, is with us. How you doing this, Scott?
+
+8
+00:00:58,649 --> 00:01:02,759
+Scott Tolinski: Hey, I'm doing good. Just live in that cold brew life and
+
+9
+00:01:03,389 --> 00:01:11,450
+Wes Bos: getting coked up? Yeah, we're recording on a Tuesday we record on Monday, but yesterday was Canadian Thanksgiving. And Josh here from Montreal.
+
+10
+00:01:11,510 --> 00:01:20,400
+Josh Comeau: Yeah, that's right. It's a weird, you know, like, family holidays in the time of COVID is always a bit strange, because it was kind of just like any other day, but yeah, Canadian Thanksgiving.
+
+11
+00:01:20,810 --> 00:01:59,330
+Wes Bos: Cool. Happy Thanksgiving. It's funny because we've had other guests from Montreal as well. And we made a joke last time that we only have guests from Montreal on it. I think you're the third Do you remember who everyone from Montreal was? It was the the missive folks. Etienne. Yeah. And there was somebody else that was from Montreal, I forget. But anyways, we only have guests on that are from Montreal. So why don't we get started, you just tell us who you are. You've got like a background over handsome some pretty cool companies who you are what you do kind of what you're interested in. And then we'll dive into the voice coding stuff.
+
+12
+00:01:59,460 --> 00:02:29,250
+Josh Comeau: Yeah. So my name is Josh. I've been a software developer slash web developer for going on seven or eight years now in a formal capacity a bit longer than that just for me hacking around and doing stuff for fun. Worked recently for companies like digitalocean, Gatsby, Khan Academy unsplash. And I recently left a job at Gatsby to pursue my own thing. So excited about that. I've also, as mentioned been using a microphone and an eye tracker is my primary input mechanisms for coatings. It's about March or April.
+
+13
+00:02:29,550 --> 00:02:31,680
+Wes Bos: So yeah, eye tracker. And
+
+14
+00:02:31,740 --> 00:02:37,220
+Scott Tolinski: yeah, we're definitely in support of doing your own thing over here. We're big fans of it.
+
+15
+00:02:37,250 --> 00:02:44,639
+Wes Bos: Yeah, that's awesome. Congrats. that's a that's a big leap to take. So like your own thing. You mean like, like, what is your own thing,
+
+16
+00:02:44,640 --> 00:04:03,539
+Josh Comeau: then? Yeah, I mean, pretty similar to what both of you do. It's been kind of a dream of mine to focus more on education. I should also mention, for my bio, I've been teaching at a local boot camp for the past couple years, I do the part time program. So I've been juggling that with my day job. And I mean, I used to work at Khan Academy, which is like a super education focused organization. It's always been kind of a dream. But it's always been like, you know, I'm still getting experience in the industry. And it's always been like a thing in the future. So I have a repetitive stress injury, which is why I don't use a keyboard. And that has kind of like flipped a switch in my head, where I had the realization that even though what I have isn't supposed to be a long term thing, who knows, right? Like, and who knows what else is around the corner, I don't have an unlimited amount of time to do whatever I want. And so if there's something that I want to do, I shouldn't assume that I have all the time in the world to do it. I should do it now. Hmm. And I'm in a very fortunate position where I have enough saved up. But I'm not under a ton of financial stress. So I have, like all of the circumstances are in my benefit, aside from not being able to use a keyboard. So I figure like, why not do it now. So yeah, the idea is, I'm going to create some online courses. I also I write on a blog, I do a lot of like experimental stuff, where I create interactive widgets to help explain concepts. And I really want to pursue that idea further. So it's going to be kind of like a multi modality kind of thing where there's going to be videos, but there's also going to be interactive widgets, code snippets, just like ways to get your feet dirty, or your hands dirty and play with ideas.
+
+17
+00:04:03,569 --> 00:04:05,460
+Scott Tolinski: You can get your feet and your hands dirty.
+
+18
+00:04:07,380 --> 00:04:08,669
+Josh Comeau: Just get the whole body in there.
+
+19
+00:04:08,699 --> 00:04:40,070
+Wes Bos: Yeah, yeah, we should say that you have like an awesome twitter feed and blog. So we'll do shameless plugs later. But right now go follow me is Josh w. komu. co m EA you on Twitter, and it's the same calm. You got a really, really awesome blog, lots of like, like, like you said, lots of like good interactive examples. There's lots of animation stuff. Maybe we'll we'll cover some of that as well. Let's jump into the coding with your voice. So you said you have a repetitive stress injury is that from just banging on the keyboard all day long.
+
+20
+00:04:41,250 --> 00:05:14,370
+Josh Comeau: That's the theory. It is it's kind of ironic, where the initial thing happened. I had some I've been playing beat Sabre, which is a VR video game I was playing and I hurt my wrist. So I went to a physiotherapist. I mean, I had already seen one for a couple other things. Yeah. And one of the exercises he gave me for my wrist wound up injuring my elbow and it's that elbow. injury. I'm still I don't actually think it's the physiotherapists fault, though, like what I think happened is I was like a ticking time bomb, right, like it was gonna go off at some point. And the reason I think that is that my left arm was the one that was injured, my right arm started acting up a couple months later.
+
+21
+00:05:14,609 --> 00:05:53,040
+Scott Tolinski: So you know, really interesting because I've been going to the physical therapist now for a little bit too for my back. And like one thing that I've learned greatly from what they say is that, like, the problems that appear are like I'm dealing with similar issues, right, I had a problem with one side and one part of my back and now it's like a whole nother side and a whole nother part of my back is hurting. And it's because your your body tries to accommodate for whatever thing is happening at that given time. And you fix one thing, and while you're fixing another thing, it could lead to the uncovering of like you said, like a ticking time bomb, something that was bound to be going wrong at some point. Anyways, it's fascinating to hear you having a similar experience.
+
+22
+00:05:53,129 --> 00:06:43,170
+Josh Comeau: Yeah, I mean, I think that part of it, too, was that I'm right handed, and it was my left arm that started acting up initially. So what it meant is that now my right arm, which was already doing most of the work was now doing everything. So I was doing everything on my right. That was part of it, too, that I overused that arm, and then it started having the same issue. And yeah, the issue is, it's called cubital Tunnel Syndrome. It's the lesser known cousin of carpal tunnel syndrome, it can manifest in a whole bunch of different ways. The way that it manifests for me is like a burning and tingling in the elbow. It's gotten better and worse, kind of fluctuating. Where it is now is I can type for about two or three minutes at a time. But as you'd imagine, it's like super hard to get anything done with that amount of limit. And if I, if I have like, maybe 10 of these two or three minute snippets in a day, the next day, I'll feel worse. So really, it's like I can use it for like 15 minutes a day. Oh, man in small in small bursts, which makes it really hard to program. Right?
+
+23
+00:06:43,949 --> 00:06:52,380
+Scott Tolinski: So so like carpal tunnel, is it? Is it like a inflammation of like tendons or something that's causing nerve, nerve pain, nerve damage kind of thing? Yeah.
+
+24
+00:06:52,380 --> 00:07:48,750
+Josh Comeau: So there's a tunnel. There's two tunnels in your elbow that a nerve runs through. And essentially what happens is the nerve gets irritated if it rubs up against whatever that tunnel is made of cartilage or whatever. So yeah, it's a nerve inflammation issue. And the idea is something like 15% of people, when you bend your arm, something shifts out of place, at dislocate. That's the nerve moving. And it happened to me. And if you if you are one of these 15% of people, it makes you more prone to have this happen. I should also say that something like 85% of people who get this issue, it recovers spontaneously in six weeks. So like, if you aren't one of the people who has experienced signs of this, please don't get too panicked. For most people, it doesn't actually become this like month long saga, it usually goes away on its own in a few weeks. But in my case, I'm in that unlucky 10% which it turns out is really frustrating because you always go see these professionals. And they're like, Oh, yeah, that'll go away and eggs, and you're always given this like false hope of like, okay, I must be right around the corner, then.
+
+25
+00:07:48,750 --> 00:07:49,410
+Wes Bos: Mm hmm.
+
+26
+00:07:49,439 --> 00:07:58,770
+Josh Comeau: Yeah. I mean, it's still it's still supposed to go away on its own at some point, but there's also a surgery they can do, which essentially just moves the nerves so it doesn't get as aggravated. Oh, man, I'm
+
+27
+00:07:58,770 --> 00:08:07,800
+Wes Bos: getting damn Yeah. And I'm getting the mouse over here. I, whenever anyone talks about nerves, or organs, or anything like that, I'm just gonna fall over. That's why I
+
+28
+00:08:10,200 --> 00:08:11,580
+Josh Comeau: probably should have thrown a warning in there.
+
+29
+00:08:12,150 --> 00:08:23,730
+Scott Tolinski: I feel like we were talking about something a couple episodes ago was when I was like mentioning an injury Landon had. And I could tell you a little meltdown. there and I was like, Okay, I'm, I'm not gonna go into any more detail. That's fine.
+
+30
+00:08:23,730 --> 00:08:27,270
+Wes Bos: You guys go and do it for the sake of the podcast. But if I fall over that,
+
+31
+00:08:30,210 --> 00:08:31,860
+Josh Comeau: listener discretion is advised.
+
+32
+00:08:32,100 --> 00:08:41,580
+Wes Bos: So you obviously write code for a living? So like, tell us about this is the most interesting part. Like how do you do that when you you can only code for a couple of minutes every single day.
+
+33
+00:08:41,820 --> 00:09:50,610
+Josh Comeau: Yeah, so that's where and one of my co workers amberley mentioned this, essentially, like there is a community that has either similar issues or other motor issues that use this as their primary input mechanism. And it's powered by a software called Talon Talon voice. So the idea is I discord has a speech recognition engine, you can use its own built in one or dragon or any of the other ones that it supports what it does differently, because like most voice recognition just transcribes what you say. And that's great if you're writing a letter, but like, as you would imagine, it gets super tedious when you have grammar and different casings and stuff. So it comes with a bunch of built in commands. So for example, if I want to write in camel case, you just say camel hello world and it'll camel case, it'll output hello world with a W capitalized and smushed together. You can do snake hello world. And it's snake cases it. So it has all these built in formatters. It also has built in syntactical things, so I can say dub arrow and it'll put like an equals and a greater than sign. Oh, yeah, greater than sign to make a double arrow. So there's a bunch of these like little shortcuts that spit out common common things that you need. I can go like much deeper into all of the things that it can do. Is it worthwhile?
+
+34
+00:09:50,880 --> 00:09:52,159
+Wes Bos: Let's do that. Yeah,
+
+35
+00:09:52,200 --> 00:09:53,730
+Scott Tolinski: I'm very interested. Cool. So
+
+36
+00:09:53,730 --> 00:11:43,950
+Josh Comeau: why should the first thing is you have to learn like an alphabet. because English is like a really annoying language. Right. Like p V and T and B, like all these letters sound way too much alike. And that's why like, whenever you're on the phone, it's always like, okay, t like Thomas and V like Victor. And it's always like, it's so hard to understand. So it has its own alphabet. And all of the words that it uses are single, like most of them are single syllable. So it's like air bat cap drum each. It's like all these short words that when you say this word, it puts that letter there. And granted, like, usually, you're not just, you know, like, it's rare that you need to reach for that, because usually, you just say the sentence that you want, you don't go letter by letter. But of course, like there's times where you have like a weird word or some technical thing, but the dictionary doesn't know the next thing about it that's really cool is navigation. So you can say go left, go right go up, just to move the cursor by a single position. But you can also use ordinals. So if I say go left fifth, it goes left by five places, and actually the ordinals work for any command. So like, if I wanted to save the number 1000, I would say one, zero third, because it's one zero. And then the third means like, repeat the zero character three times, ah, so you'd wind up with 1000. That's lots of like little tricks like that make it it makes all the difference in the world, because it would be way too tedious. Otherwise, just so the other thing too, is that all of this stuff that I've mentioned, like all of the commands are Python scripts that come with the software, so you can change any of them, you can add any additional ones that you want. So being a JavaScript react developer, I've added a whole bunch. So I can say, Elm image, and it'll make a JSX image tag, I can say, styled image, hero image, and it'll say const image with a capital image equals style dot IMG, tick, tick. And he puts like, it does all the formatting for me. So I say like three words, and I get like a styled style tag ready to go.
+
+37
+00:11:44,309 --> 00:11:47,850
+Scott Tolinski: So is it almost like snippets, or voice?
+
+38
+00:11:47,880 --> 00:12:36,450
+Josh Comeau: Yeah, it can be thought of that way. And in fact, I already had some VS code snippets. And so for those ones, I've just left them alone. And I'll just like, say, the letters that I require for this snippet, and then say the word tab, and it drops that in, which is actually kind of like an easier. But one thing that's kind of annoying about that is it takes VS code a couple seconds to like evaluate that. One of the things telling voice gets right is they understand the difference between like 300 milliseconds and 100 milliseconds is huge when you're trying to rattle off a bunch of rapid commands. So like small intervals in time, make a much bigger difference when you're voice coding than when you're typing. So I've tried to move most of them, even though it's like much faster just to add a snippet in VS code, because I don't I'm not super comfortable with Python. Yeah. And it's like, you have to touch more file. It's like more work. But you get this like, super snappy response when
+
+39
+00:12:36,450 --> 00:12:56,399
+Wes Bos: you do it. Insurance. And that's, that's really cool. It's it's almost like you are like, you're talking about all these little like tricks and stuff that you have. And I'm like, that sounds a lot like, like JavaScript and or any programming language language in general is that like, as you get better at this thing, you just like learn lots of little tips and tricks to be able to be be productive and whatnot.
+
+40
+00:12:57,210 --> 00:13:32,760
+Josh Comeau: Well, I was initially super skeptical of this, because you just think like, all of the experience I've had doing voice transcription. First of all, it gets it wrong half the time. Yeah. And I just I couldn't imagine how this would be anything but a super frustrating experience. And like truthfully, it is frustrating. Sometimes there are times where it's like, I'll try to say something and it gets it wrong. So I'll try to modify it and then I see the modification wrong, and I get this big mess. And I'll just wind up like pulling out a keyboard and like Angry typing it in and keyboard away and then trying it again. So like that's totally something that happens, but overall like 80% of the time, and it's getting better and better the more I do it. It's pretty smooth sailing.
+
+41
+00:13:33,299 --> 00:14:13,289
+Scott Tolinski: It's just fascinating to me. I do a lot of voice typing, I suffer from a dyslexia. So like, for me writing is very challenging in general. So it's not like a mechanical issue. It's a it's like a processing issue. So I do a lot of voice dictation overall, pretty much any text message or anything I send is voice dictation. And so I have varying degrees of experience and tolerance for levels of accuracy in voice dictation, as I'm sure you've really experienced. This is just so I've downloaded Talon Talon voice comm it looks really interesting here. Talent is is the primary tool. Do you use this for everything? Or just coding specifically?
+
+42
+00:14:13,320 --> 00:14:38,010
+Josh Comeau: Yeah, it's so I use it for everything. It's honestly not the best for just doing straight text, I probably should get a second thing when I just want to like, you know, write a blog post or tweet something. Like you wind up having to specify a lot of things that other software would do for you. Like periods and capitalizing the starts of sentences. You have to do that all manually with Alan, but it works just fine. And it's like good enough at this point that I've just stuck with it.
+
+43
+00:14:38,250 --> 00:15:30,960
+Wes Bos: That That makes me think about, like, I wonder how AI will will play into tools like this because like, you would imagine after doing it for 300 hours, it would it would like well, like what's the VS code extension? I'm using kite. So what kite does is it? It went out? They went to GitHub and they downloaded every line of JavaScript ever And then they also, as you're coding, it will suggest things that like, hey, given your past and every line of JavaScript ever put on GitHub, will you maybe you want something like this. And I just think about that, or even like, like, just voice to text, when you're doing like Siri or something like that is they will go back and correct previous words based on words that you've written in the future. And it gets better as it has more context. I'm like, Oh, that's kind of interesting. I wonder if AI will start to play into tools like this, to make them even better,
+
+44
+00:15:31,200 --> 00:15:43,500
+Scott Tolinski: you have to imagine it well, because especially because like Google, Google voice dictation is way better than the apple one. And I would imagine they have a little bit more juice, they're involved in like natural language,
+
+45
+00:15:43,950 --> 00:15:50,520
+Josh Comeau: there is like a lot of room for improvement. And I should say that I'm a super big fan of talent, I'm very, I've talked to the person who's written it, you know, I
+
+46
+00:15:50,520 --> 00:16:51,600
+Scott Tolinski: so I should also say that it's a paid software, there's a free version and a paid version and the paid version, you get the latest version. And there's a lot of like, other little things. So I'm a big fan of it. But it doesn't really, as far as I know, do anything like what we're talking about, like, it'll make the same mistake over and over and over again, and it never learns from the fact that I keep autocorrect, or re correcting it in the same way. But it's totally like it's going in that direction, right? It has to, and it's exciting to see how it, it kind of feels like we're very early into this thing. And it's there's like more potential, there's so much more potential ahead from where it is now, I wonder, like to like how far brain signal processing would help in those regards to because there's a lot of those, like, experiments where you see, you know, nodes connected to different spots of your brain measuring your electrical signals in your brain. So like, like, at what point does it become you're not even speaking, but you're, you're thinking about things or you're moving windows around that way, and it just becomes a little bit more, you know, sci fi where your mind is controlling everything, in addition to your voice.
+
+47
+00:16:52,080 --> 00:17:03,799
+Josh Comeau: Yeah, there was I mean, I tweeted about this a couple days ago, and a couple people mentioned some company called neural link neural link, and they're essentially working on this. And it does seem like that would be even better. So hopefully, they they Hurry up with that.
+
+48
+00:17:04,649 --> 00:17:12,690
+Scott Tolinski: Yeah, yeah, I remember seeing a TED talk a while ago is just like, just think about moving a box and the box moves. And it's like, Wow, that's amazing. Yeah, that's
+
+49
+00:17:14,070 --> 00:18:13,820
+Josh Comeau: one of the things I should talk about, too, that I neglected to mention is it also features eye tracking. And the way that works is you have to buy a separate thing. So I have this bar that just sticks at the front of my computer. And it essentially just reflects light off your eyes. So we can tell roughly where you're looking, it's not super precise, but they account for that. So the way that it works is you make a popping sound with your mouth like up, and it essentially zooms in on roughly where it thinks you are. So like your entire screen becomes like maybe four inch of orange box. And then it's like super accurate because like you know, you can tell like within maybe an inch of where you were only everyone it blows it up. So you pop wants to open the window roughly where you're looking. And then you move your eyes slightly to like pick the specific area, you make the popping noise again, and it clicks on that thing. And you can make you can say right, if you want it to right click, you can pop twice if you want to double click. And that works super, super, like surprisingly well. I still haven't found a way to click and drag. So like that's the only interaction I don't have a workaround for I have to pull up the mouse when like I want to drag a file from one window to another or whatever.
+
+50
+00:18:13,820 --> 00:18:26,520
+Wes Bos: But yeah, it's pretty cool. Like if you want to like move your cursor or select some text or like anything you'd normally do with the mouse, you can just and you can move around. That's unreal. That's so cool.
+
+51
+00:18:26,550 --> 00:18:48,590
+Josh Comeau: Yeah, it's pretty cool. It uses a device called the Toby five, I think it was like a few hundred bucks. The irony is the device. It's like a Windows device that is meant for like Windows Hello. Like it's not actually meant to be a mouse replacement, but Talon voice built their own drivers for it. So it's controlled by Talon, even though when you go to the Toby website doesn't mention any of this stuff. It's just like, it has like a couple little tricks that can do
+
+52
+00:18:48,590 --> 00:18:52,100
+Scott Tolinski: so like but yeah, it's eye tracking for PC games.
+
+53
+00:18:52,530 --> 00:19:13,800
+Wes Bos: Because Yeah, cuz I'm a Windows computer and you just open it and it looks at your eyes and logs you in, like kind of like face ID right. And I was thinking like, how does that work? And like, I don't know what the technology is under the hood? I don't know. It's like a like an Xbox Kinect, I guess was like the very early version of that and it seems to be beginning better. That's so cool. I love that.
+
+54
+00:19:14,300 --> 00:19:19,200
+Scott Tolinski: This says that infrared optical Okay, so it's using something infrared.
+
+55
+00:19:19,470 --> 00:19:33,690
+Josh Comeau: And I know that you can it does have a video camera in it because you can toggle it on to see what it sees. And it's just like this low rez monochromic monochromatic thing. But yeah, it works like it works better than I expected it to. Wow. And
+
+56
+00:19:33,690 --> 00:19:40,290
+Wes Bos: how much was that the talents offered? Like I kind of want to get an idea of like, How much money do you have to to get into this?
+
+57
+00:19:40,310 --> 00:19:44,430
+Josh Comeau: It's I think it's 20 bucks a month. Join the person's Patreon.
+
+58
+00:19:44,490 --> 00:20:04,470
+Wes Bos: Oh, yeah, I'm just looking that up that's that's surprisingly affordable to get into something like this. Like I'm just wondering myself like, even if you don't have any issues like is this something you could just layer on top of all of the others. workflow that you have just to add a little bit more productivity would be kind of cool to try.
+
+59
+00:20:04,500 --> 00:20:19,200
+Josh Comeau: Yeah, I would say. So I know that there are a few tasks now that definitely feel faster with voice. Like I mentioned, the styled components, snippet. Yeah. And creating elements like it's so much faster just to rattle off a couple words. So I could totally Imagine that. Yeah,
+
+60
+00:20:19,290 --> 00:20:36,930
+Scott Tolinski: yeah. That seems like a really neat, neat avenue to explore, especially if you like, haven't explored that kind of Avenue before. I've never I've never even considered something like this. And I think it's it does seem to be a little bit, like less barrier to entry than I had probably assumed.
+
+61
+00:20:37,260 --> 00:21:08,430
+Josh Comeau: Yeah, I will also say that and I'm struggling, I'm blanking on his name. But there was a conference given a few years ago by someone who uses because talent voice has been around for a while it's not brand new. And he was saying that he developed I think the same issue, I have a similar issue. He got used to coding with his voice, his injury healed, and he still spends about half his time voluntarily coding by voice just because, I mean, maybe it's that he wants to prevent a future issue. But I the impression I got was that he actually enjoys it enough that it's and has gotten productive enough with it, that it's kind of a wash. Like he's happy to do that. Instead of using a mouse and keyboard.
+
+62
+00:21:08,700 --> 00:21:16,290
+Scott Tolinski: I watched that one from by using Python code by voice TV is read. Yeah, I think that's it. Yeah. Emacs.
+
+63
+00:21:16,350 --> 00:21:24,320
+Wes Bos: Yeah. He like made his own little commands where he could like, cuz I think he was using vim at the time. Emacs. Emacs is badass.
+
+64
+00:21:25,740 --> 00:21:30,450
+Josh Comeau: I may be misheard, like, maybe he wasn't using Talon voice. But yeah, that's that's the guy. And that's cool.
+
+65
+00:21:30,510 --> 00:21:32,490
+Wes Bos: And like, how long have you been doing this?
+
+66
+00:21:32,940 --> 00:21:55,980
+Josh Comeau: I started in Well, my injury happened in March. I probably started in May or so like I you know, because I spent a couple of months just trying a whole bunch of other things like seeing occupational therapy yet. And various specialists and various keyboards and various mice, and I got a standing desk. So it took me a couple months to like, work my way to that in my list of alternatives. But yeah, so it's been probably about four or five, five months, five months or so now.
+
+67
+00:21:56,070 --> 00:22:01,380
+Wes Bos: Oh, where would you say your your productivity is at right now versus where you were before?
+
+68
+00:22:01,980 --> 00:22:16,950
+Josh Comeau: Yeah. So there's a couple thing I was, it's hard to estimate, right? Because I don't have like doing the same task. I would say my typing speed is about a quarter what it was, but my overall development speed is probably about 50%. Because you know, like, all the time where you're thinking about things, that's still the same style? Yeah, you're right.
+
+69
+00:22:16,980 --> 00:22:19,140
+Wes Bos: Yeah, the typing is only a small portion of it.
+
+70
+00:22:19,410 --> 00:22:37,830
+Josh Comeau: It doesn't slow you down as much as you might think, based on typing speed. The issue though, is I'm not you know, I'm an introverted person that's worked remotely for years. I don't spend eight hours a day speaking. So my throat is bothering me. And I have to take breaks for that. So it's like, you can't put that much pressure on your voice. At least I can't yet maybe with a bit of practice, I'll get to it.
+
+71
+00:22:38,310 --> 00:23:00,600
+Wes Bos: Yeah, you should start a podcast for you to do two episodes a week and all day long. What about like things? Like, I'm not sure if you use any of these, but just like TypeScript types language, does that make it any easier? Because the editor possibly knows what you want to type as well?
+
+72
+00:23:00,750 --> 00:23:19,710
+Josh Comeau: Yeah. So I haven't in the past few months, I've just been working with plain JavaScript. I have worked a fair bit with both TypeScript and flow, but I haven't tried it with this. I imagine it would be you know, I mean, even with just straight JavaScript is VS code has gotten better. Yeah, it is. You import an object, it knows the key. So often, it's like I'll say the first word and then just say tab and it'll fill it in for
+
+73
+00:23:19,800 --> 00:23:39,180
+Wes Bos: me. I imagined that would help quite a bit. Cool. Man, you got to do a YouTube video of you building something without like, like, tie your hands around your back or something like hilarious like that. Just to show. How cool is Houdini? Yeah. And what about like switching to the browser and refreshing the browser or things like that? Do? Does that cover that? Or is that just coding?
+
+74
+00:23:39,420 --> 00:24:01,680
+Josh Comeau: Yeah, so the cool thing is that it's not actually specific to any program. So there's a focus, I say, focus Chrome, and it moves me to Chrome. Okay, I do command tildy. To move between windows command tab to move between it, they all have the same keyboard shortcuts, you can just vocalize them. So like if I want to refresh this command, read and read is the word for R. So yeah, you get it gets pretty convenient with that. If I want to open the dev tools. It's Command Option set, because
+
+75
+00:24:02,430 --> 00:24:03,690
+Wes Bos: I that's cool.
+
+76
+00:24:03,960 --> 00:24:36,600
+Scott Tolinski: Very cool. Like one of our sponsors, says, I don't know it's not as good. Oh, my goodness, not my best work here. And I'm talking about sanity. sanity.io is the B y o runtime. Bring Your Own front ed to structured content in the back end. Wes, do you want to talk more about sanity here? I every time I say BYU, I want to do BYU Oh, content. And then I realized while technically correct, it is not really that doesn't really make that much sense. So
+
+77
+00:24:37,110 --> 00:26:05,220
+Wes Bos: yes, so sanity says structure content, CMS, you probably know what they do by now, since they've sponsored so many of our podcasts. So I thought I would use this sponsor spot to talk about one of their most recent, they're just they're cranking out features. Like I wonder how many developers work at sanity because it seems like every couple of weeks or they're bringing out some sort of new thing. feature and a lot of the features lately, because I think they have a lot of the developer experience nailed. They're rolling out a lot of the end user UI updates. So things like multiple people can edit things or review things. Like, they have an example, if you go to their blog posts, you can see a visual example. But they'll say like, Oh, no, cross out this word and use this word and stand or I want to add a comment on this thing. And just like an awesome editing experience at the end of the day, because when you're picking like a headless CMS, there's a lot to think about in terms of like, will it work with Gatsby and things like that? And is there a graph qL API, but then there's the whole other side of it is, is the person who's going to use this thing at the end of the day from marketing? Or are my client going to actually enjoy this thing, and they spent all the I think, as much time on that as they do the developer experience. So highly recommended, I used it in my latest Gatsby course as well. sannidhi.io four slash syntax, that's gonna get you double the free usage tier, they already have a really generous free tier as well, if you want to try it out on any of your your next projects. Thanks so much just entity for sponsoring. And
+
+78
+00:26:05,220 --> 00:26:57,750
+Josh Comeau: the one thing I did want to talk about was the perspective that it's given me, like, you know, we talk a lot on the web about accessibility. Yeah. And it's so so easy to think of accessibility as something you do for other people, right, like people who are blind. And you tend to think of people who are like, in a separate category permanently. I know that like Jen, Luca and others have talked a lot about this idea that most people will experience a disability at some point in their life. And so it's not like something you do for other people, something that you do for everybody. It's something that benefits yourself and a lot of accessibility stuff, This experience has taught me just how inaccessible A lot of things are, now that I have the eye trackers, it's, you know, I can have a mouse replacement. But before I got the eye tracker, and after my right arm started, I had to use tab navigation to get through things. And it made me realize just how inaccessible so much stuff is. So it's been like a really interesting, involuntary case study. Yeah, still, like, see what that experience is like a little bit
+
+79
+00:26:57,810 --> 00:27:13,860
+Wes Bos: is a chi like, I want to see a conference talk from you a YouTube video on that, like, I think there's so much to be learned from from this type of experience, just because like, you're the guy who makes the stuff as well as you're now the guy who had to experience it all yourself. That's really cool.
+
+80
+00:27:14,220 --> 00:27:59,580
+Scott Tolinski: I'm interested about maybe like, the eye tracker, like, I wonder how good those eye trackers could be, you know, it'd be my dream to be able to look at something, make a pop noise with my mouth and have it read it to me. I'm terrible at reading, right. So like that is a challenge of mine is that I'm trying frequently trying to find ways to have the web read to me in better ways. Like you mentioned, people, they don't think about many of these disabilities until it hits them. And then then it becomes a priority. We talked about it in our episode on accessibility, that there are several categories of disabilities, whether it's temporary, and whatever, I mean, even just holding a baby in one arm is a disability for that given period of time. So definitely will make you you reevaluate things once a once a hit like that.
+
+81
+00:27:59,940 --> 00:28:36,030
+Wes Bos: You know, one kind of cool thing is I saw the other day is air pods have accelerometers in them. And somebody figured out how to pipe the data out of the air pod into a web socket. And you just turn your head and it it knows where you are. So I'm thinking like, man, I think the air pods are gonna are gonna start disrupting the whole hearing aid industry, like my opa has a hearing aid and it's like $3,000 and here I am with my air pods, which is probably better. For 300 bucks. I'm thinking like, man, like this consumer technology is gonna be huge for for accessibility devices.
+
+82
+00:28:36,450 --> 00:28:47,580
+Scott Tolinski: My dad has a hearing aid and his hearing aid is pretty sick. What is it? He Bluetooth? He Bluetooth into the TV he Bluetooth? Oh, yeah. Oh, yeah. Yeah, they're fancy.
+
+83
+00:28:48,210 --> 00:28:49,140
+Wes Bos: I didn't know that.
+
+84
+00:28:49,529 --> 00:29:13,470
+Josh Comeau: That's cool. I know, Adam Savage from Mythbusters has talked about how he has hearing loss and the hearing aids are fantastic. But they're, like $8,000. And he's, you know, and he was looking into it. He was very aware that like he has the privilege to afford these things. But there's, there's, you know, you there's no reason that it shouldn't be an order of magnitude cheaper, because it's not like there's any special it's not super expensive hardware. It's just that it's so specialized. They don't make it that many of them.
+
+85
+00:29:13,529 --> 00:29:14,700
+Wes Bos: Yeah, right.
+
+86
+00:29:14,729 --> 00:29:23,640
+Scott Tolinski: I think that that same same coin point could be applied to just about 1000 things in our healthcare situation across the globe right now. Yeah.
+
+87
+00:29:24,479 --> 00:29:28,860
+Wes Bos: All right. Let's switch topics. What do you Let's ask you what do you want to talk about?
+
+88
+00:29:29,340 --> 00:29:36,810
+Josh Comeau: I would say that the thing that I'm probably most known for online is whimsy and animation, so I'm happy to chat about that. That's like right up my alley.
+
+89
+00:29:37,289 --> 00:29:45,900
+Scott Tolinski: Your wimzie is very on display. Your little 3d guy love your little 3d avatar. Did you make your 3d avatar I did
+
+90
+00:29:45,900 --> 00:29:52,140
+Josh Comeau: not. I have experimented with Blender but I very quickly realized that goodness this is like a you know it's a whole skill but I don't have
+
+91
+00:29:53,670 --> 00:30:18,600
+Scott Tolinski: I bought a course on doing 3d with blender with the anticipation of doing it and I it remains unwatched, and my my cue still? That actually it's funny that I did a course on 3d using three js. And was it react three fiber? Have you explored around at all with because you have your 3d model? Have you played around with making that 3d model like actually rendered in browser,
+
+92
+00:30:18,630 --> 00:31:32,670
+Josh Comeau: that has been the idea. The problem is that the so I commissioned an artist in Spain to do it. And from what I understand, I don't actually have the model assets. But what he explained is that, like, the rendering takes, like half an hour and all of the lighting and that, like, he could send me the model, but all of the environment stuff, like there is certainly a way to do it. But I have not, not gotten to that, I will say that I have used react fiber quite a bit, one of the things I made was a beat Sabre editor. So you can like import your own song. And for that all of the editors that exist, you know, it's a simulation of the game. So you have blocks moving in 3d space, and you have a grid, and you click to place them. And like, all of that immediately was like, This is gonna be like, a bit of an S show if I tried to do it with the DOM, like, just with that. So yeah, I reached for reactive fiber and found it super, super cool. And that was part of the idea. Cool. It's very cool. We have all these like amazing tools for animating models, but you need those models in the first place. So yeah, it's totally like, there's so many things. Whenever I talk about like animation and wimzie, I have to like, add the disclaimer that there's like 100 different subcategories, like it's huge, right? Like there could just be, it could just be CSS animation. It could be SVG stuff. It could be 2d canvas. It could be Web GL, it could be three js. So there's like all kinds of like, directions, you can go with it. And they're all super interesting. Not enough time.
+
+93
+00:31:33,060 --> 00:32:18,600
+Scott Tolinski: Yeah, one more thing, you know, on your site, you have that neat little like mouse follow thing, or it's as simple as so to describe the listeners. It's what lines and as your mouse moves, they they move towards your mouse. And it's sort of like a grid in it is these small little touches like this, that I think they do a lot for an application. And I don't know how long that took you to put together. But I can't imagine it's much more than just looking at the mouse position and rotating an object in a grid, right? So like, the amount of the the amount of effectiveness you can get out of that is pretty impressive. Do you want to go in a little bit more in depth about that, that whimsy style, what your approaches are to even like dreaming up? like fun little windy things to add?
+
+94
+00:32:18,780 --> 00:32:44,760
+Josh Comeau: Yeah, a lot of the time, a lot of the questions I get are like, why would I do this? Right? Like what is the what is the goal? What is the purpose? Yeah, because a lot of the times I think people like they remember the animations of the early web and all of the like dark UX patterns like the the shoot the monkey game that like vibrates around your screen to get your attention. It's important to recognize why you're doing something and that like that animation you're describing, I call it like the iron filings because it reminds me of like, when you have a magnet and you move it over the is
+
+95
+00:32:44,760 --> 00:32:47,220
+Scott Tolinski: that's exactly that's a perfect way this I was modeling
+
+96
+00:32:47,220 --> 00:34:11,940
+Josh Comeau: it after that. It took me Yeah, like a couple of hours, like a good maybe like, you know, one morning, and it adds so much of like a little unexpected Spark. And I'm a big believer of this like idea of emotional design, right? Like, you can build something that can elicit an emotion. And that emotion will make your product slash website much more memorable and much more engaging. This is like, you know, there's like the dark version of this, which is why everything on your Facebook feed is frustrating and enraging, because that's what people click on. But there's like the happy version of it too, which is like if you can do something that sparks a bit of joy or catches someone by surprise, they will become more engaged in your thing. So there is there is a strategy to this, right, which is that like, I want people to come in and join my website. And these little details really help, like sell that as a thing and make them remember that my site exists when they're looking for something to do next week. I know that Sarah dresner had an article in defense of fussy websites, which talks a lot about this. And I was super privileged to be featured in this article, which is just like she really enjoys when it's clear that the website creator puts time into these kinds of details. And it is like Yeah, can I do this because I am totally this person as well. But if I see someone has put time and attention and care into those little details, it's so much more engaging. Like I just enjoy the experience so much more than just someone throwing up like a standard theme. And even if the content is the same, right? Like it enhances the content, in my opinion. Yeah,
+
+97
+00:34:11,960 --> 00:34:18,480
+Scott Tolinski: I frequently am shoving interfaces in my my wife's face saying Look at this. I'm like, Okay,
+
+98
+00:34:19,400 --> 00:34:44,960
+Wes Bos: yeah, cool. I love that. That's like, like, why would you do that? Because it adds that like we were talking before the show how you have a yellow microphone cable, and you spray painted your, your monitor on pink. Yeah. And like, people were like, why would you do that? Like, it doesn't add any functionality. But like, I'm gonna remember that now. And I think that's really cool and adds just a bit of like, extra fun to your day, I think.
+
+99
+00:34:45,480 --> 00:35:27,960
+Josh Comeau: Yeah. And that's the thing is it doesn't take long, right? Like neither one of the things that I'm talking about, that we're talking about, like I find that it's one of the great frustrations of my life as an Icee. An individual contributor is we're working On some feature, and inevitably, we have underestimated how long it takes. And now we have to cut some stuff from scope. And the thing that always gets cut from scope is the like little details and polish. So, yeah, I'm a big fan of advocating to doing that stuff, even every 10 teams. Yeah, like, even if it means shipping a little bit later, or putting in, you know, like, maybe just like pushing a post launch, but then still actually doing it. All those little details make a huge difference.
+
+100
+00:35:28,530 --> 00:35:36,240
+Scott Tolinski: Do you have an app or apps that you would say are your favorite? For those small touches?
+
+101
+00:35:36,240 --> 00:35:36,840
+Josh Comeau: Goodness? Is
+
+102
+00:35:36,840 --> 00:35:42,980
+Scott Tolinski: there any off the top of your head that you can be like, Oh, yeah, I loved when I popped open this app. And it did this little thing.
+
+103
+00:35:43,130 --> 00:36:31,650
+Josh Comeau: I will say that mobile apps tend to get this better than web apps. And a lot of the time, it's nothing that you would necessarily like it's not necessarily wimzie. But it's like transitions between screens, right? Like in pretty much like in the calendar iOS app, when you click on an event, like five different things happen all at once that are all part of like one giant structured bit of motion, right? Like the header gets shorter, and the thing slides and something else comes up. And it just gives you the impression of like you are interacting with a tangible thing. It's not just like, this stuff was painted. And now this stuff is painted. Yeah. In terms of examples, there was a calendar app by moleskin. The binder, the notebook company, yeah, that had like a bunch of these little details, but I haven't actually used it in a couple years. It just I thought it was neat. Sadly, I don't actually have that many examples that I can reach for it. Because I have one
+
+104
+00:36:32,210 --> 00:37:00,420
+Wes Bos: go forth. VLC puts a Santa hat on. Although didn't VS code, but a Santa hat on something. And then people got bent out of shape on celebrates Christmas, so they added a switch here with the snowflake Oh, oh god, I think that that was unintentionally a troll. But then someone took the bait, and then they actually switched it out with the snowflake.
+
+105
+00:37:02,160 --> 00:37:06,000
+Scott Tolinski: definitely appreciate the Wednesday in general. Totally.
+
+106
+00:37:06,300 --> 00:37:59,670
+Josh Comeau: Yeah. And that's like, I do think especially when it comes to personal sites, right? Like, I can understand that when you're working for a company. It's the realm of the designers, right? Although I will say also, like having these skills. Like, I've been in so many conversations where design has an idea. And the developer will say it's non trivial, right? That's the term non trivial that we use. And what non trivial means is like, I haven't done that before, so it's going to take me some time to learn how to do that thing. Yeah, if you have the skills, and also all kinds of things become trivial. So it's, it's totally worth investing. But I was gonna say that like for your own personal site. I've just every time I have like a wacky idea, I go for it. Because there's Yeah, I don't have to worry about getting like an approval on anything. I don't have to worry about consistency, right? Like, it doesn't matter if it doesn't fit. If it's a fun idea. I'm going to do it. See of it. Yeah, I think personal sites are such a great way to experiment with that kind of stuff.
+
+107
+00:38:00,150 --> 00:38:16,020
+Wes Bos: I remember Paul Irish in the background of his website, would it just as you moved your mouse, it would just like, it just gets the background of the website. And I was just like, like, that was like 10 years ago, and I still still, like sit there sometimes be like, that was the good. That was great. That was good.
+
+108
+00:38:16,860 --> 00:40:10,380
+Scott Tolinski: Yeah, that's my favorite types of stuff. I've used my personal site like this for a long time, like just as a playground. Like that animation transition between my pages right now, I was like just trying to see if I could do the transition from the video game Doom, like the first one where everything like sort of melts on the screen. And like, who cares, just go for it and try to make stuff like that happen. If it happens, then you know, whatever. But it's your it's your personal site. And I think I think that always will reflect positively on you, even if it is and like as polished as some other things. I think people love to see that kind of stuff where you're really going for it. I do want to quickly move into a transition to century. And my transition game not on point today it says okay, but my errors and exceptions will be on point because they will be logged in century@century.io. Now century is the perfect place to track all of your errors and exceptions. This is a tool that both Western I've used for a long time. And we we personally use it in a way that allows us to track all of our releases to each bug. So if a bug pops up, I can see when this bug was introduced, potentially even who is really you know, who you know, most likely me but who did it. So usually me and if I did this bug, I can see what release I did this bug in and maybe even what commit I did this bug in I could push this directly to a GitHub issue and track it along there. I could say hey, this bug shouldn't even be here. Let me click it. This was resolved. And then watch in horror as I get an email 20 minutes later saying that there was a regression because a resolved bug had been found again. So if you want to have all of your errors and exceptions, tracked and handled, In this kind of way, heading over to century at century debt I owe you use the coupon code tasty treat all lowercase all one word, and you will get two months for free. So thank you so much for century for sponsoring.
+
+109
+00:40:10,980 --> 00:40:23,580
+Wes Bos: Alright, let's let's talk about teaching now. So you are doing a part time boot camp, which is funding us. That's how exactly how I got into the whole teaching game as well. What sort of stuff are you teaching? Yeah, so
+
+110
+00:40:23,580 --> 00:41:41,130
+Josh Comeau: I teach, it's actually pretty cool because I teach at Concordia University. So I get to say that I teach out of universal. It's in partnership with a company called journey education. So how it started was there was a local boot camp in Montreal called decode MTL, yeah. And they formed this partnership with Concordia, where Concordia really liked as part of their continuing education department to like, get into this space. And what's neat about it is it's a part time course that runs for eight months, it works out to be I think, a little over 400 hours. So it's about the same as like a 12 week boot camp. But it's all of the same kind of stuff. So it's HTML, CSS, vanilla, JavaScript, React Redux node and Mongo. So it's a really big, like, it's pretty much the full gamut. I was the I started by just being what they call a technical coach, which is you're there, and you're just helping students one on one with any questions that they have. Yeah. And then for the past, almost eight months, I've been the head instructor of that part time course. And I also helped develop some of the curriculum. And it's just been super satisfying and super fun. I mean, I know that it's I've heard you talk about this is how it helps you build that intuition for where the questions are. And just what the frustrations where the frustration lie. Yeah, because it is, it's so hard to remember what it's like not to know something, especially like I learned react four or five years ago now. So it's been it's been in my toolset for so long that I forget, just like how tricky props are at first. Yeah, you're not used to them?
+
+111
+00:41:42,000 --> 00:42:01,680
+Wes Bos: Yeah, that's awesome. I, one thing I get all the time people ask me say, is it worth going to a boot camp? Because obviously, it's a lot of money? Is it worth going through boot camp versus just learning yourself? And is it worth going to a boot camp versus going to a traditional university? What are your thoughts on that? Yeah,
+
+112
+00:42:01,710 --> 00:43:35,150
+Josh Comeau: oh, I have strong opinions. I would say that the reason not to do a boot camp is for the curriculum, or the knowledge that they have, right? Like, everywhere has like Free Code Camp has an amazing curriculum, and it's free. Yeah, the two benefits I see to doing a boot camp one is accountability. So like you are with a bunch of people, you invested a lot of money in it. And you are like, held accountable, right? Like, when I do we actually have grades. And in order to get the diploma, you have to submit all I think we allow you to miss six or seven of the assignments, and you have to do all the projects. And they have to be like, at a certain standard. If you are the like, I am this kind of person myself, where it's just so hard to motivate yourself, you know, it's like you're at home, you have the option of like, I can go play Rocket League, or I can like work on my education. It's so much harder to come up with that motivation. So that's one accountability to his staff. So like the technical coaches and the instructor, you have a person who is paid, that you can ask questions to and the students who I think, take advantage of this the most are the ones who are getting the most value out of it. So there are like, I'd say, like being we I teach a class of 25. And there's probably like five or six students that I hear from non stop. And then like five or six students that if I don't reach out to them, I would just never hear from them. Again, like it's totally like everyone. I i'm not saying that either of those is better or worse, just the people who aren't afraid to like ask a bunch of questions, for sure are getting more value out of it. Because that's what I think the main value proposition is, is when you're doing online courses or online tutorials. It's just hard to come up. You know, if you're stuck somewhere, you can ask online, but no one is dedicated to helping you with that. Yeah,
+
+113
+00:43:35,550 --> 00:43:46,830
+Wes Bos: yeah. Oh, yeah. That that's that's a huge frustration. Even mine right now, is that like, I have this problem right now. I need somebody to help me right now. You know, and that's the huge benefit.
+
+114
+00:43:46,890 --> 00:43:56,850
+Scott Tolinski: But you go to the IRC room, and you start freaking out at everybody until they kick you out. You know,
+
+115
+00:43:58,830 --> 00:44:36,120
+Josh Comeau: I do think that a lot of people look into boot camps, because they think they have like special knowledge, like, you know, like, you can only learn stuff there. And I don't think that's true. So I think that for plenty of folks, if you have that intrinsic motivation, and you're resourceful enough to answer your own questions, might not be worth it. There. The other thing too, is that like at our boot camp, we have Career Services. So after you finish, we pair you with a career coach, we help you do interview training, and LinkedIn reviews, all of that, like technical practice interviews, all that stuff is super valuable, too. I kind of think, though, that if you build a portfolio of projects, and are willing to be a little bit more patient, I don't think that stuff is critical. I can just help you get there a little faster.
+
+116
+00:44:36,390 --> 00:44:52,920
+Wes Bos: Yeah, yeah, we did an entire show about that. That whole thing like learning in boot camp, but also the after, like getting a job and interview prep. If you want to listen to that. It's Episode 246 boot camps, getting a job income share agreements with Heather Payne. That was a pretty interesting one as well.
+
+117
+00:44:53,310 --> 00:45:49,380
+Scott Tolinski: Yeah, one thing I wanted to just touch on real briefly is one thing I really like. So I posted a link in the show notes of one of your blog posts on the CSS full bleed article, and one of the things I just wanted to draw attention to and have people go check out especially complimenting you on here is your usage of like interactivity and teaching. So like one of the coolest things is that you have these content resizeable areas to show layout stuff in CSS. And I think that is just the most fantastic way in the world to show some of these layouts was I don't know if you've checked this out, but go to the article I have linked here. And so the way he does it is basically he shows, let's say, like CSS Grid, one example has like a one fraction and then a 65 character with then a one fraction zone. And these zones are inside of a div that is content draggable. Is it what is that property called?
+
+118
+00:45:49,470 --> 00:46:00,300
+Josh Comeau: It's just resize. If you had to resize horizontal, you also have to set overflow to something other than the default. But yeah, essentially, it turns any HTML element into a text area kind of thing, where you in the bottom right corner, you have a handle, you can drag.
+
+119
+00:46:00,780 --> 00:46:22,410
+Scott Tolinski: Yeah. And so you do that in combination with colored zones. And it's so effective in teaching these layout things. I just wanted to, like, draw attention to that for our listeners to go check this out. Because this is like one of the most effective, I think, articles I've seen on these types of layouts, these fluid layouts, I think he's just do a really great job. But that I wanted to shout that out.
+
+120
+00:46:22,770 --> 00:46:35,280
+Josh Comeau: I appreciate that. Yeah, it comes back to like, I think there's so much potential for you know, the nice thing about my blog is it's done in MDX, which means if I have an idea for like an arbitrary widget, I can just write a react component and then drop it right there in the blog post. So
+
+121
+00:46:35,280 --> 00:46:37,410
+Wes Bos: it's trivial. Just gonna ask that Yeah,
+
+122
+00:46:37,410 --> 00:46:43,590
+Josh Comeau: MDX makes this possible. Like if my data was in pure markdown, there's probably still ways to do it. But it probably wouldn't be as straightforward.
+
+123
+00:46:43,890 --> 00:47:03,420
+Wes Bos: I think it's so much smoother that it's like, embedded rather than embedding like a code pen or whatever. And like, there's certainly a good use cases for embedding code pen. But this is just like, just okay, I'm understanding how this layout works. And let me drag it to different sizes, see how it how it reacts? It's not like overly engineered? Yeah,
+
+124
+00:47:03,510 --> 00:47:27,060
+Josh Comeau: I think there's a big difference when it like, if it's just an article that's passive, right, you're reading and it's like, on the reader to do that work in their head to visualize it, you have this thing you can drag even if you know, it's not, it's not like this wildly interactive thing, but it makes it active. So like, you're actually experiencing the thing. And I find it really helps that concept. It's like, the best way to build an intuition for something is to be able to play with it and see how it reacts when you do different things.
+
+125
+00:47:27,120 --> 00:47:40,110
+Wes Bos: There are so many goodies on your website, I just keep finding, I definitely have to go to his website and click around folks, it's my favorite is the sound effects. When you click on nav items, yeah, oh, I
+
+126
+00:47:40,110 --> 00:47:56,340
+Scott Tolinski: don't have sound up. So I've not heard sound effects. But I will less than I famously, both advocated for more sound effects in website in one of our episodes where we were trying to disagree on things, and we both ended up agreeing. For me, it's
+
+127
+00:47:56,340 --> 00:48:33,930
+Josh Comeau: so so similar to what we were talking about earlier with, like animations where so many people have just been burned by the like, 90s. Yeah, like a media is playing in the background when you visit a website. So it's like, no website uses sound. I actually I published a package use sound, it's just a react hook that lets you like drop sound effects really easily. Oh, nice. It's super, super useful. And I find that this is another area that mobile apps, right, like a mobile, your phone will interact with three of your senses, right? You can see it, you can hear it, and it vibrates, you can feel it. Whereas the web, you have one, all you do normally is you can see what's happening. And the more senses you can reach out into the more it becomes like a tactile real thing and not just pixels on a screen.
+
+128
+00:48:34,440 --> 00:48:36,330
+Scott Tolinski: Do you have a Nintendo Switch?
+
+129
+00:48:36,450 --> 00:48:38,160
+Josh Comeau: I do? Yes. And
+
+130
+00:48:38,220 --> 00:48:41,490
+Scott Tolinski: yeah. I'm going to talk about the haptic feedback is that or is that
+
+131
+00:48:41,490 --> 00:48:46,380
+Josh Comeau: I thought you were gonna talk about all the little sound effects, like when you go to the store, and it makes it like do to do to do sound effects like,
+
+132
+00:48:46,740 --> 00:49:05,850
+Scott Tolinski: Yes, all that all that stuff's fantastic. But what I did want to talk about was that, like, you mentioned that the phone vibrates, right, that haptic engine in the Nintendo Switch. joi cons is so good that you can, you know, shake a glass of ice in your hand and feel how many ice cubes are in the remote, right? How many ice cubes are in this remote?
+
+133
+00:49:05,880 --> 00:49:06,480
+Wes Bos: Right? Like,
+
+134
+00:49:06,480 --> 00:49:31,080
+Scott Tolinski: we don't have anything like that? I A lot of my studies in college were about like using accelerometers to pick up things and interact with them in sort of interesting ways. And it's just so amazing how many of these browser API's go unused or ignored? Wouldn't it be really cool if we had some like 3d haptic abilities on on the browser to do some really neat haptic haptic feedback stuff? I don't know. Just got the wheels turning.
+
+135
+00:49:31,110 --> 00:49:34,650
+Wes Bos: There's a vibrate API in I think it's always supported in Android though.
+
+136
+00:49:34,920 --> 00:49:58,530
+Josh Comeau: That was gonna be my thought is there probably is some like really fancy API, but it's probably like not super widely supported. But yeah, I mean, it's, I played what what's called this game on the switch where it's like, the controls are you have this plank and you move either side up and down and a bowl run you have to like roll the ball and detect it feedback. But haptic feedback makes that possible because you can feel it rolling down the log. And yes, it totally changes the experience.
+
+137
+00:49:58,830 --> 00:50:10,860
+Wes Bos: The vibration API navigator vibrate, and it's currently under recommendation. And implemented in Chrome, edge, Firefox, Android and Samsung internet. So just not
+
+138
+00:50:11,550 --> 00:50:25,950
+Scott Tolinski: Safari, which is cool. I'm gonna put a little snippet in the show notes here, go ahead here. Actually, no, this isn't gonna work, I was gonna say head to your console and paste this in and check it out. But of course, we're on desktop, you just have to Peter's not gonna start vibrating.
+
+139
+00:50:28,320 --> 00:50:58,560
+Wes Bos: There was some way back like 10 years ago, actually, my very first YouTube video was, there was a accelerometer API in the Old mac books, because they had like spinning hard drives. And they would sense when you dropped it, and they would suck the arm in on the hard drive. So it didn't damage the platters. And that was always a fun little demo to show people that you could, you could do it, and then they got rid of the accelerometer because all MacBooks have SSDs in them. So that was kind of a bummer. Anything else you you want to share? Or, you know, like, I
+
+140
+00:50:58,560 --> 00:51:17,100
+Josh Comeau: think the main takeaway that I hope people have is, this is a viable option, right? So like, I know, I've heard from a bunch of folks recently, like people have arthritis, whatever issue that you have that makes it difficult to use a keyboard or mouse, there are alternatives that are surprisingly feasible and will only get better with time. So it's just it's cool to know that stuff exists.
+
+141
+00:51:17,340 --> 00:51:24,960
+Scott Tolinski: Are there any good blogs or resources or communities around this type of work that people are doing where you can learn more?
+
+142
+00:51:25,080 --> 00:51:57,510
+Josh Comeau: So there is a slack, the Talon has a slack room, and I believe you can join that for free as well. So that's where I've had the most. I've spoken with the most folks. There's also a conference talk by an author, first name is Emily, I forget her last name. Okay, maybe I can try to find that. And it'll show up in the show notes if I can. Yeah, yeah. Because there's that was it. I mean, a lot of what we talked about is it overlaps. But that was my first moment of like, Oh, this is a thing people do. And there's a lot of really good, really cool stuff you can do with it. Emily Shea. Yes, that's the one.
+
+143
+00:51:57,780 --> 00:52:06,360
+Scott Tolinski: Cool. Well, I think that did. Okay. Well, this is the part of the show where we talk about things that are sick. Josh, did you come with a sick pic?
+
+144
+00:52:06,419 --> 00:52:54,870
+Josh Comeau: I did. And I struggled because you know, this is I have one. I should also say I've been a syntax listener for quite a while. So I've heard a lot of things. And I you know, I there's all kinds of stuff that I've wanted to share. What I will share is a book that I've listened to an audiobook called the utterly uninteresting and unadventurous tales of Fred the vampire accountant. It's a mouthful of a science fiction book. And it's amazing. It's essentially an accountant who gets turned into a vampire. And all he wants, he's like this quiet, introverted person. All he wants is to have a quiet accounting life, and he keeps getting unwittingly pulled into adventures. So it's like, opposite of every other kind of kind of story like that, where like, he like he has some friend that gets kidnapped by a werewolf and he has to go rescue them. And it's always like, he solves things by becoming friends with people and using his accounting skills. So it's like, unbelievable, it's
+
+145
+00:52:54,870 --> 00:52:57,840
+Scott Tolinski: such a fun, Beth. Great. Cool, Wes.
+
+146
+00:52:58,230 --> 00:54:25,590
+Wes Bos: I am. It's funny, you mentioned Adam Savage earlier, because I am going to sick pick his book, which is every tools a hammer, I'm gonna recommend that you do the audiobook of this, I do audiobook for every book I read, but I'm gonna recommend specifically the audio book for this. He released this like, I don't know, maybe a year or two ago. And I'm only just recently got around to actually getting through it. I'm not totally done yet. But I've really, really been enjoying it. So Adam Savage is the guy from Mythbusters. And I've always really liked him because of his approach to learning and sharing what he knows and mastering his craft and putting it in a place where he can he can charge money for it. And just like understanding and hearing how he sort of went through life and the obstacles that he hit, and just at the end of the day, he's just a maker, and he loves to share what he knows and loves to to be in community. And I think specifically, the best part I've got out of it so far is just like how does he tackle a large project by breaking it down into smaller parts and making lists and stuff like that. And I think that I was listening to him like man, like a web developers need to listen to this book because he really shows you how he can take something that is just mammoth, which is all the projects on Mythbusters as well as his own personal projects, and be able to tackle it and do a good job. So it's called Adam Savage, every tools a hammer. Cool.
+
+147
+00:54:25,860 --> 00:55:42,540
+Scott Tolinski: I'll check that out. I have a podcast that I'm going to sic pick and it's a fun podcast. I listen to a lot of comedy podcasts. If you are have ever been a fan of Paul F. Tompkins who is the voice of Mr. Peanut butter on bojack horseman. He has a podcast called the neighborhood Listen, which is fascinating and awesome because there's a little intersection here with apps where they are basically what they're doing is they're reading posts from a neighborhood app, whatever is most likely next door they don't name what it is, but they're they're reading posts from next door and then they're basically you proffering as long as they live in the community in which that post was posted, so they have a fictional town that they live in. And they're just two citizens of this town, read a post about coyotes or whatever. And then they're just, they're just elaborating on it. And every single episode, they have a guest, on who's another comedian. And that guest will play the part of the author of a specific post. And then so they'll get to interview the author of this neighborhood post to see exactly like, what were you thinking when you were, you know, you're giving away used toilet paper or something? Who knows? But they're very, very funny. And I've been loving this podcast. So check it out the neighborhood that listen. Beautiful. Alright, let's
+
+148
+00:55:42,540 --> 00:55:48,090
+Wes Bos: get into shameless plugs. Now the name speaks for itself. Do you have anything to shamelessly plug Josh?
+
+149
+00:55:48,510 --> 00:55:49,140
+Josh Comeau: Yeah, so
+
+150
+00:55:49,140 --> 00:56:12,450
+we talked a little earlier about how I'm kind of pursuing my own thing, I very quickly threw together a landing page. So the first course I want to create is about CSS, because I think that so many, especially JavaScript developers struggle with it. So you can find out more about it if you go to CSS for j s, CSS dash fo r dash j s dot Dev. So it's like a play on CSS and j s. And there's a bit of information there. You can also sign up to get updates about it and I'll be sharing more about that soon.
+
+151
+00:56:12,450 --> 00:57:09,240
+Scott Tolinski: Very cool. And that lots of touches of wimzie I'm seeing on this already just little, little drawing things and explosions and whatever 11 I'm going to shamelessly plug my course that is going to be up by the time you're listening to this on. Another way you can add whimsy to your spelt applications called animating spelt is the name of the course and we go through just showing you how awesome and easy animations can be in spelt. If you've ever struggled with animations Let me tell you we make it really super easy because spelt makes it really super easy especially because they can they bake in so much functionality into core spelled so we cover a whole host of practical animations stuff that you need to do every single day in your job building things like slideshows and draggable sections and menus and whatever and we do so with ease in spelt with animating cells on level up tutorials comm forward slash pro 10 up to the year and save 25%
+
+152
+00:57:10,050 --> 00:58:09,870
+Wes Bos: I'm gonna shamelessly plug my master Gatsby course. This is a course where we learn to build websites with Gatsby react graph, qL headless CMS sanity, progressive images all that I'm going to read one quick review I got on Twitter the other day. He says I'm about halfway through the fantastic master Gatsby course by Wes, Bos West is always great at not only explaining the technologies and frameworks, but also including practical tips for efficient development in your local environment. So let's let's one thing I sort of went hard on this course is just like lots of extra little tasty treats, if you will, lots of extra little tips in building websites, local dev things that that it's not related to Gatsby, but it's just things for developers to know. So check it out. Master Gatsby. com use the code syntax for extra 10 bucks off. All right, thank you so much for coming on Josh. Really appreciate it. This was super cool. I think this is gonna be super popular episode that we can also just point people to and they want to learn about voice coding.
+
+153
+00:58:10,200 --> 00:58:14,340
+Josh Comeau: Yeah, it's been an absolute pleasure and a privilege. Thanks so much for having me. Josh,
+
+154
+00:58:14,340 --> 00:58:15,750
+Wes Bos: thanks a lot. Talk to you later.
+
+155
+00:58:15,750 --> 00:58:28,950
+Scott Tolinski: Please, please head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
