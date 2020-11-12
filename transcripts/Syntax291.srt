@@ -1,0 +1,104 @@
+1
+00:00:00,359 --> 00:00:24,480
+Unknown: Monday, Monday, Monday, open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing, soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob, and Scott Tolinksi ski.
+
+2
+00:00:26,010 --> 00:01:51,000
+Scott Tolinski: Oh, welcome to syntax and this Monday tasty treats, we're going to be talking about updating applications or web apps that have been running for any bit of time. This is definitely a concern that many people are having as we move more and more into the world of web applications that have persistent data and all sorts of neat things that you might expect a modern web app to have. Now, this episode is sponsored by a service that you're going to have to have if you have any of these types of applications that I'm talking about Log Rocket at Log rocket.com, forward slash syntax. What is Log Rocket? Well, Log Rocket is the service that allows you to see your bugs happen as they happen, as in a user goes on your phone to click a thing and the thing breaks. And then you might be left to try to figure it out or piece together what happened through error logs, which is, as we know, not that much fun. What Log Rocket does is it gives you a scrubbable video replay of the user actually clicking the thing along with the Network tab, the console, or any of those things that you're typically used to when solving the bugs in your local environment. It's very, very cool. And something that you're going to need to see to believe. So head on over to Log rocket.com forward slash syntax and get 14 days for free. I gotta introduce my co host, who am I? As always, my name is Scott Phillips. Okay, let's just get that out of the way first, now with me, as always, is the West boss.
+
+3
+00:01:51,030 --> 00:03:21,870
+Wes Bos: Hey, everybody. Hey, what's up? All right. So this is a sign that just popped up the other day for me, I don't have anything like this in place. And I'll tell you like what happened to make me start talking about this as I rolled out a new version of my course player. And it fix some bugs like I was in my my century, and I had a couple bugs in there, I fix them all, and mark them as resolved. And then I started getting emails about the same bugs coming back. And I was like, That's weird. I just fix this. And I was like, Oh, it's because people are still on the old version of the app. Because like, they're, they're sitting there, they're watching their course, they're not going to refresh the page. They'll pause it, come back to it in three days and keep going. So they're running the code. And luckily, it wasn't like a breaking error is just a little warning that kept popping up. And I was like, oh, like, well, I guess I gotta wait for all these people to refresh the page, so that they can get the new version of of the the course viewer. But until then I just kind of have to sit on my hands and know that these things will roll in for probably a couple of weeks. Because people I don't know people, some people are tab monsters and keep those tabs open forever. So I started I went on Twitter, I was like, like, what do you do when you release a new version of this app? And you want people to to get that new code and stop running the old code. So I don't have anything for this. I thought I'd asked you, Scott, like do you do anything of us before we go into the solution?
+
+4
+00:03:21,870 --> 00:03:47,730
+Scott Tolinski: I do. In fact, let me tell you what I do for this, I use a platform that has a baked in, which is Meteor. Meteor basically when you do a new deploy. If you're using all of Meteor zone data stuff, and you're using Meteor, it just pushes everything live. In fact, it's so interesting, if I were to make a code change, people in the past have been like using the site and they'll be like, hey, the background changed. It just pushes it really pushes it via WebSockets.
+
+5
+00:03:47,730 --> 00:03:48,630
+Wes Bos: Hot reloads. It
+
+6
+00:03:48,630 --> 00:03:55,500
+Scott Tolinski: Hot reloads. It's amazing, right into the users thing, and it's done it since day one, and people don't talk about it. But it's fantastic.
+
+7
+00:03:55,530 --> 00:04:04,170
+Wes Bos: No kidding. That's amazing. Wow. So this is not a problem Scott has ever had, nope, because he had this like next level thing for many years. Although you
+
+8
+00:04:04,170 --> 00:04:49,620
+Scott Tolinski: could consider it to be a problem if the users code is just changing in front of them. But if it's like minor things or whatever, just pop it in here. They're like, yeah, that's I think that's, that's fine. You probably wouldn't want some like substantial update to like, come in. And with that. And also like if you have platforms like you think about like notion notion is a platform that we use for note taking and planning it with like a database. Yeah, like whenever they have a pop up to tell you to reload the app, it actually, it gives them an opportunity to introduce new features, which I find to be really neat, because they're always like, oh, click the Refresh. But also here's what's new. So that way, actually, I'm trying to refresh where for me I wouldn't I don't know what the solution would that be for me, but that it wouldn't be something that would be super easy for me to accomplish?
+
+9
+00:04:49,680 --> 00:05:06,000
+Wes Bos: Can we at least appreciate that? releasing a new application on the web is refreshing and not downloading, updating rebooting your computer like how good Do we have as developers that the problem we are facing right now is how do you get users to refresh the page? Right?
+
+10
+00:05:06,000 --> 00:05:21,510
+Scott Tolinski: I know, I know. It's funny that we say that because it's like, what was it? We were we have like an issue with Safari not supporting something in clamp or something. And like a safari dev was like, update your computer? And like, yeah. Oh, so I have to reboot my computer.
+
+11
+00:05:23,330 --> 00:06:25,530
+Wes Bos: Yeah, so it's, it's a good life. So what we're going to do now is just go through some of the solutions that people I asked on Twitter, what are the solutions that you have? So the first solution which I have taken is do nothing and hope the history refreshes. Second one we have here and this is seems to be a lot of what people do is they have a list of assets, or like commit hashes. So every time that you build a version of your website, you'll often get like a hash. This is pretty popular in like a web pack build or something like that, you can pull the server because you could have like an assets JSON file, and you could just pull the server periodically or have a web socket that would push Hey, new version available. And your your code will know when there's a new version available. And you could do a couple things. Probably the easiest is just throw up a toaster. a toaster is that could bottom right hand corner, a little pop up that says new version available, refreshed update, I think they're just called toast. Toast toast message. Toast messages. Yeah, the toaster would be the thing that pushes the message up the toast would be the actual message itself, right?
+
+12
+00:06:25,739 --> 00:06:34,800
+Scott Tolinski: I have never heard of the word toaster being used in this. That sounds like pretty sweet, though, like pushes it up. I like that. If that is real, then I always imagined
+
+13
+00:06:34,800 --> 00:06:41,190
+Wes Bos: that if I were to monkey with the CSS, there would be a toaster. Just below where those messages come up, I
+
+14
+00:06:41,190 --> 00:06:48,120
+Scott Tolinski: guess you're right, I'm seeing I'm seeing the thing in dojo, elite, remember, dojo, dojo calls, there's a toaster. Okay.
+
+15
+00:06:48,479 --> 00:07:42,450
+Wes Bos: So you could prompt the user to refresh, you could just manually refresh the user. So that's probably not the best idea. But you could if especially if you're using some sort of state management library, if the user is partway through some sort of action, where they've typed some, some video ox Yeah, watching video, you save all that state to local storage, refresh the page, and then try to apply that state back into your thing. So it'll just put them back to where they are, that would probably be a good idea where to count and wait for some period of inactivity. So like, if the user hasn't done anything in 10 minutes, they're probably not on that tab or, or you could even listen for the focus state of the window, knowing that the user is no longer on that. And then once the focus state is lost, start a timer and wait for like a minute or something like that. And then, and then go ahead and refresh the user.
+
+16
+00:07:42,599 --> 00:07:58,290
+Scott Tolinski: I would say that that's probably not a great solution for people who are on the video site, or have a video site. Because refreshing in the middle of a video like that would that would make some people upset. I know, I would be upset if I was watching a video and all of a sudden, I stopped talking and it refreshed.
+
+17
+00:07:58,620 --> 00:09:38,900
+Wes Bos: Yeah, yeah, you'd probably have to make sure that no media play in a playing state or Siam anyways, it's probably not a good idea. Because the next one, which a couple of people said, and this is genius is so all of your links on your application, if you're using a react or view or or Angular, your links are probably pushed date, meaning that you click on a link, it changes the URL bar, and it loads in the new video or whatever. But you're not actually doing a full page reload that's just happening in the browser. And a few people said, Kota custom link component that checks if there's an update. And if there is an update, just make it a regular link, and just have the page to a form, reload, and otherwise return the regular react router or next Yes, link. And I thought that was genius, because like, What a way to update a website is just turn your links into regular links. How do you pull that off, though, technically, like you would make a new component that imports like let's use react router imports the link from react router, and then inside of that component, you could have something that periodically will pull the back end for a new version, or maybe even just run a timer that says Like, when has this application last been reloaded, if it's more than 24 hours or something like that, then you can dynamically either render out react router link, or render out just a anchor link. They render out to the same thing at the end of the day, just one of them has pushed it and one of them doesn't. And because it's it's all dynamic, it will just render, you can change out a react router link to a regular anchor link and the user will have no no idea that that happens. There will be nothing that visually changes. Neat.
+
+18
+00:09:39,390 --> 00:09:40,620
+Scott Tolinski: That's pretty slick. Yeah,
+
+19
+00:09:40,650 --> 00:09:49,080
+Wes Bos: yeah. Yeah. I thought that one was there was somebody like that posted that I haven't they're like, I haven't tried this, but this is what I'm thinking. And everyone's like, Oh my gosh, yes. Like,
+
+20
+00:09:49,110 --> 00:09:51,120
+Scott Tolinski: yes. The link lid open. Yeah,
+
+21
+00:09:51,150 --> 00:10:58,860
+Wes Bos: yeah. Because like the user will continue to interact with your application. And the next interaction they have that changes the world. Which is a lot of interactions will load the new app for you. Neat, very neat. Next one is just use a service worker. So service workers have this built in the way that a service worker works is that you register your scripts that j s. And then the next time somebody comes to that website, it will, it'll say, Oh, I have a cached version of scripts. Yes. So load that script j s in. But part of what ServiceWorker will do is, while it loads up the cached version, it will also check in the background, if there's a new version of that scripts that j s available to you. And then there will be there's an event that's fired when there's a new version of that, that scripts available to you. That's a perfect use case, you don't have to write any custom code, because service workers already do the checking and alerting that happens. And then you just have to do one of the things that we talked about earlier, swap out a regular anchor link, provide a toaster do a hard refresh, whatever it is you choose to do for your app.
+
+22
+00:10:58,860 --> 00:10:59,820
+Unknown: Hmm,
+
+23
+00:11:00,119 --> 00:11:26,820
+Wes Bos: what else? It's just hot reloading baked in. So I jokingly said just run development in production. And hot reloading will work. But I didn't even realize that Meteor has that already. And it looks like view press also has that where it will, it'll do a hot reload of your application right in front of the user. And that won't work for every use case. But I would wager to say that will work in a lot of cases.
+
+24
+00:11:27,119 --> 00:11:49,650
+Scott Tolinski: Yeah. And the cool news about the the meteor version of it if you're using Meteor zone pub sub system is it sends data along the way. And that works. Like that's one of my favorite things about Meteor, since it's all data subscriptions. When you're pushing new code in and make changes to the database. Man you get you get basically that free user refresh with nothing with absolutely no skill involved. Really.
+
+25
+00:11:49,859 --> 00:12:39,270
+Wes Bos: That's pretty sweet. And finally, someone said, I know it's not an app, but I like how chrome handles it with an ever present icon that gets more ominously covered colored, the further you are behind. Yeah, at a certain point, people will start ignoring them. I do that on OSX. All the time pop songs currently, reboot. Yeah, it just turns a different color. At a certain point, the user will have to refresh the page to get the new version of your app. Sick. Yeah, that was cool. I'm happy I started go down that hole because I learned a whole lot about how to do something like that. Hopefully you learned a thing or two as well. If you have your own thing that we didn't cover today, make sure you tweet us at syntax FM, and we'll retweet your solutions as well. Alright, that's it. Thanks for tuning in and catch you on Wednesday. He's, please
+
+26
+00:12:41,100 --> 00:12:50,850
+Scott Tolinski: head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
