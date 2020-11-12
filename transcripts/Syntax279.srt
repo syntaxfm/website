@@ -1,0 +1,200 @@
+1
+00:00:00,359 --> 00:00:24,000
+Unknown: Monday, Monday Monday, open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA boss and Scott Taylor. Totally.
+
+2
+00:00:25,890 --> 00:00:47,610
+Scott Tolinski: Welcome to syntax. In this Monday hasty treat, we are going to be wrapping up Season One of syntax and this is episode 279. This is the last episode of season one. I think this is hilarious. So my name is Scott Tolinksi. And I'm a full stack developer from Denver, Colorado and with me, as always is v Wes Bos. Hey, everybody,
+
+3
+00:00:47,610 --> 00:01:01,650
+Wes Bos: I think Don't Don't be afraid, everybody we back on Wednesday. What is that right now? It's June July eight, and we've recorded up to September right now. So we're a little had taken some time to swim.
+
+4
+00:01:02,070 --> 00:01:52,530
+Scott Tolinski: Yes, we're taking some time to swim in the nuts I'm gonna be doing in the kiddie pool in the backyard underneath the peach tree, that's gonna be a lot of fun. End of the season wrap up, that's what we're talking about. We're going to be starting Season Two of syntax, which is going to bring some tremendous changes. That's right. Huge, huge changes, such as maybe, maybe adding one segment and getting a bumpers. I don't think we're exactly changing a whole lot. But I do want to talk a little bit about maybe some of the plans here for the fall. So bumpers, this also commonly known as bumpers in the industry are the audio bits in the show. Now, Wes, I don't know what your thoughts are. Because we haven't really talked too too much about this, but I would love to get some bumpers from the different segments like shameless plugs in sickbay as long as they're fast. I don't need like a song for each one. But just like
+
+5
+00:01:53,790 --> 00:01:55,920
+Wes Bos: the shameless plugs.
+
+6
+00:01:56,190 --> 00:02:11,100
+Scott Tolinski: Yeah, I here's my here's my request, though. Only one of them can be grunge. Because, like we don't want to like Okay, we got the grunch and by grunge, I mean like, like screamo or something.
+
+7
+00:02:11,430 --> 00:02:24,960
+Wes Bos: Oh, yeah. Yeah, I don't think that would know do well. That's a good. a downside to liking, like hardcore music is that you can never, ever play it around your friends or family or anything like that. Nobody else understands.
+
+8
+00:02:25,380 --> 00:02:25,970
+Unknown: And it's like,
+
+9
+00:02:26,030 --> 00:02:47,730
+Wes Bos: Yeah, when you see people like blasting their music, and you're just like, ah, like, I'm not impressed by you, you know? Yeah. Doesn't do for me. So we're gonna get some new intros for the podcast as well. We'll be getting rid of the two intros that we have because Scott is transitioning from El Toro loco to turbo to linsky turbo to Lenski,
+
+10
+00:02:47,730 --> 00:03:25,830
+Scott Tolinski: it's about time because like, El Toro loco is somebody else's nickname. Okay, it's a it's a monster truck. And I really I don't want to compete with a monster truck granted me the monster truck we share some. We share some some some some tight bonds. Courtney actually got Landon a remote controlled El Toro loco for his birthday, which is pretty sweet. It's huge. It's a big remote control car. So I think turbo is the right way to go. There's alliteration there it's faster. It is not shared with anybody else. I like it but it's a it's up so here's the question.
+
+11
+00:03:25,920 --> 00:03:33,720
+Wes Bos: Yes, Wes Barracuda boss needs to be renamed to should I should I do some introspection on maybe a new a new handle?
+
+12
+00:03:34,260 --> 00:03:51,840
+Scott Tolinski: I mean it depends if you want a new handle that could be part of season two new new new season new us for season two as syntax we could add some really fun stuff I don't know yeah, maybe what would some other good be words West the boss with two s's boss?
+
+13
+00:03:53,070 --> 00:03:54,780
+Wes Bos: Yeah, sounds like that.
+
+14
+00:03:55,290 --> 00:04:00,570
+Scott Tolinski: What about the West the boss baby? You're not really a bad baby but there's the movie boss baby.
+
+15
+00:04:02,460 --> 00:04:07,880
+Wes Bos: So talking about intros I had this amazing idea. Scott doesn't like it
+
+16
+00:04:07,920 --> 00:04:14,040
+Scott Tolinski: well it's gonna get banned I don't want to get banned if let's say oh, let's say look no West here you hear me out here
+
+17
+00:04:14,070 --> 00:04:15,930
+Wes Bos: banned from what this is the internet.
+
+18
+00:04:16,380 --> 00:04:31,170
+Scott Tolinski: If that if Okay, let's let's paint a picture for you here you're sitting at home all of a sudden you get a knock on the door. You open that door Who is it? It's Tom DeLonge bada phi and they got a pickle wheel feral wheelbarrow full of money for you. And they say welfare
+
+19
+00:04:31,170 --> 00:04:32,730
+Wes Bos: awful a meal
+
+20
+00:04:32,790 --> 00:04:52,500
+Scott Tolinski: wheelbarrow full of money for you. And they say hey, Wes, this is Joe Rogan money you want that Joe Rogan money? Well, let's uh let's sign a contract with Spotify. Oh, wait, your theme song is a is a blatant copyright abuse of a blink 182 song. We will not give you the wheelbarrow full of cash.
+
+21
+00:04:52,740 --> 00:05:34,800
+Wes Bos: Can I at least say what the lyrics were because I felt like this was just gold. It goes to the tune of blink 182 What's my age again? It says took out my phone. It was a Monday morning, I scroll alone to find that podcast link. And that's about the time that I turned on my PC. Nobody likes you when you j query LS TDD this bug makes me want to rage. And then I just this is just partial. I'm not done yet. Sure, my friend say I should know I don't that's not the part. And that's about the time that I drank coffee. Nobody likes that. Wes Lee, are you sure? Do you love your Freshbooks now and that damn Santa do my century says I should give up? And that's as far as
+
+22
+00:05:36,690 --> 00:06:34,710
+Scott Tolinski: Oh my God, I found a guy. What? I have not. Oh my gosh, no, we're gonna get banned. They're gonna be two Live Crew, USA for that, that's for sure. Okay, so we're gonna get new bumpers, some new songs, maybe a new intros for all the episodes and maybe new outros? Who knows, we have time to think about this. While we take our slight summer break, we're also gonna be adding a sweet new segment, which at the start of this new segment was hilarious. So the new segments called the syntax highlight, we're going to highlight people in our community who are doing really great work, who, who do not have a platform are not being elevated or not being, you know, shown off as being this really cool project. So we're gonna elevate people doing awesome work. And I think it's a great way to really help the community learn about really interesting developers projects, and hopefully even get get some eyes on their work if that's a thing that needs to happen, right.
+
+23
+00:06:34,710 --> 00:06:35,910
+Wes Bos: Totally, totally.
+
+24
+00:06:36,210 --> 00:06:56,520
+Scott Tolinski: So we came up with this a while ago, and we asked on Twitter, what would be a good name for this not realizing that it was just staring us in the face that syntax highlight was like the best best name ever for it was like the biggest dull moment in the world for me, like, how could we not think of that we're so clever, and we thought about these other things, but not syntax highlight.
+
+25
+00:06:56,909 --> 00:07:15,780
+Wes Bos: So awesome. Let's move on to we'll talk about our favorite hay season tacs of the year so far, because we're kind of halfway through the year. And then we'll end it off with the top episodes of this year so far, just to give you an idea of what people are loving. So what was your favorite hasty and tasty there, Scott?
+
+26
+00:07:15,900 --> 00:07:51,150
+Scott Tolinski: Ooh, yeah. So my favorite, hasty, I really think that my favorite hasty was, man, we did this like series where we did like, vs. Code tips, there was like multiple tasties I don't know if that's, that's cheating, because it's technically the length of a tasty, but I really like those VS code episodes. 123. I think we probably even had one more a little bit later. But those were an August one t 19. So just about as far away as we can from right now. But are we talking about season one entirely, which is all 270 episodes. Just here.
+
+27
+00:07:51,330 --> 00:07:53,130
+Wes Bos: Just 2020 so far?
+
+28
+00:07:53,310 --> 00:07:58,110
+Scott Tolinski: Oh, just 2020 Oh, I went to 2019 because it was still calendar year.
+
+29
+00:07:58,470 --> 00:08:59,640
+Wes Bos: My hasty is sort of a tie between the server list episode, which I thought was like we've been working on that one for a long time. And that was a really good explainer episode. I really liked doing the explainer episodes, they take a lot of research, but it's it's an enjoyable to put out a nice valuable piece of content like that. And the web RTC one with Ian Ramsey, where he talked about his IP called IO. And it was just like a is awesome chat with him because he just like, just kind of hacked the thing together. And it really took off. And he had a really good like approach to just doing it which, which I really liked. So a lot of people also really enjoyed that they found it kind of motivational. They go, oh, that guy just kind of made stuff work and it panned out or you don't have to like do everything absolutely perfect. So that was my favorite tasty here at hasty was maybe the modules in node one that was another good explainer as to what's going on because there's a lot of misinformation as to what's going on with it. So that was a good one.
+
+30
+00:09:00,150 --> 00:10:20,490
+Scott Tolinski: I think my favorite hasty was the CRA I'm going to series for some reason. I like the series, but it's the the ones that are like, reasons why your website is slow. I think there's three yeah. Oh, yeah. Yeah, yeah. And those were all really good, helpful, helpful tips. And it's something that I really spend a lot of time on myself. It's also something that I have a bit of a sore spot with, with people on YouTube who continue to leave me comments on my video that expresses good information. Like I have a video on how to reduce HTTP requests and people get angry at it. So I think I think that this low website hasty treats are fantastic. I have I'm gonna break the rules here and do two favorite tasties, one of which is the episode where my lovely wife came on the show mental health and death featuring Dr. Courtney kolinsky. She talked about depression anxiety, imposter syndrome answered a bunch of questions from people and sort of anonymous ways and we just talked through some mental health stuff. It was really great to have her on the show because I get to live with her and pick her brain 24 seven about this kind of stuff. So it's really great for her to come on and share some of that knowledge that she's gained. My other favorite one is the one where I taught Wes felt because I get to talk about spelt the whole episode. So I like that.
+
+31
+00:10:21,530 --> 00:10:53,540
+Wes Bos: Awesome. And then let's let's wrap it up here, we'll just talk about the top 10 episodes of 2020. So far, these are ranked by download. So we'll stop at the start of the 10th most popular episodes away, we got six, we've had six months in, we do eight episodes, we've had 48 episodes so far. So this is the top 10 out of 48. And number 10 was 2020 fitness, which is a little update as to where we're at with our fitness goals. And just the benefits of fitness in general as being a web developer.
+
+32
+00:10:53,579 --> 00:11:13,140
+Scott Tolinski: Yeah, number nine, here is more on serverless, where we talked a lot about databases, secrets, often more all sorts of serverless stuff here, which is, it's not super surprising to me that this one is popular. But again, it just goes to show you I mean, there's there's hype around serverless in general.
+
+33
+00:11:13,589 --> 00:11:46,740
+Wes Bos: Next number eight was, I'm really glad to see this one up there as the Synology show. So this has nothing to do with web development and 100% of just Scott and I geeking out about tech hardware and backup solutions and local home servers. And that was that was a really big show long show. And we just talked about all kinds of stuff that it can do. And that's I'm really glad to see that that was one of our most popular episodes, because that was a fun one to do. So we should do more of those just like I want to do like a networking show, maybe like a home video show thing like that. Yeah.
+
+34
+00:11:46,740 --> 00:12:17,400
+Scott Tolinski: Next one is going to be our web dev G, who is going to replace us all about the sort of Nope, not necessarily the no code movement, but the movement to be able to build things without code. So the age old question is, is Dreamweaver going to make my job obsolete? And obviously we talk about the whys and what's in just all of the somewhat controversial topics around that. And surrounding that. That'd be point six, the
+
+35
+00:12:17,400 --> 00:12:31,890
+Wes Bos: most popular one was a potluck where we talked about fonts, frameworks, tease coding, subscriptions, client work, and more. It's funny, I'm looking at the top ones, a lot of them are potlucks. I'm glad to see that everybody loves the potlucks.
+
+36
+00:12:31,979 --> 00:12:48,840
+Scott Tolinski: Yeah, this potlucks are great. There's some of my favorite episodes to record. Number five is pika package, which was the really great episode was Is this the only one with a guest on that we had in this in this top view?
+
+37
+00:12:48,870 --> 00:12:50,520
+Wes Bos: Yeah, yeah, you're right.
+
+38
+00:12:50,550 --> 00:13:20,520
+Scott Tolinski: Yeah. So this episode was really, really cool. Because we learned all about this, this new thing, Fred, Fred shot came on and talked about pika package. And it was really cool. Basically, this this new type of package registry, really fast bundle rebel, we talked about some of his projects that has since gained not only quite a bit of growth in their theme, but they've also evolved quite a bit, we have snow pack v2, we talked about a bunch of that stuff in this episode. And that was the first time I'd ever heard about the snowpack project. So really
+
+39
+00:13:20,520 --> 00:13:43,920
+Wes Bos: cool stuff. Number four is serverless and Cloud Functions. So both of our serverless shows are up here. And they're just within a couple thousand downloads each in the top 10. So again, that was my favorite. I didn't even look at this before. But my favorite episodes were in the top one. So we talked about serverless and Cloud Functions and all the different providers and sort of the ideas behind it all that was a good one.
+
+40
+00:13:44,099 --> 00:14:08,970
+Scott Tolinski: Next up, we have a potluck, which is the one where we talked about it's Episode 218, where we talk about developer culture, we talk about slack communities, we talk about backpacks, which we are want to do, also vanilla j s and some other stuff these pod liquid you know this, these are great. We cover a lot of ground in these episodes, and I think it like really gives us an opportunity to to share a lot of what we've picked up in our time in this industry.
+
+41
+00:14:09,510 --> 00:14:24,330
+Wes Bos: Absolutely. The number one episode and this is I guarantee this is clickbait headline. Next versus Gatsby headless CMS Vue. js is Ruby on Rails still good and more. So that was our most popular episode
+
+42
+00:14:25,020 --> 00:15:09,360
+Scott Tolinski: to blow your mind here. But when you copied and pasted this list, it added to the true number one to the heading of the columns and not actually in the one you just listed off was actually number two, not even number one, which I'm sorry, I thought that one would have been number one, so I told you I was saving a banger to blow your mind and I was the number one covered and uncovered right the number one episode of the past 2020 so far is tech to watch in 2020, which was our episode released on January 8, And it has almost 10,000 more downloads than the previous the next one in line. So by far our most popular episode.
+
+43
+00:15:10,050 --> 00:15:10,740
+Wes Bos: Wow,
+
+44
+00:15:10,890 --> 00:15:12,900
+Scott Tolinski: very good one very good episode two.
+
+45
+00:15:13,200 --> 00:15:19,710
+Wes Bos: The other ones were like hundreds apart. And then the number one episode was like 10,000 apart. Yeah, right. Yeah.
+
+46
+00:15:20,190 --> 00:15:47,820
+Scott Tolinski: So that's the end of season one of syntax. Oh, we will join you next season for syntax where we dive into topics like web development, barbecue tips, breakdancing soft skills when I'm trying to remember all of them but we're not changing the content, the content is going to remain the same and we're going to continue to bring you education 24 seven, or at least Mondays and Wednesdays for an hour and a
+
+47
+00:15:48,840 --> 00:15:57,210
+Wes Bos: beautiful Alright, thanks so much for tuning in. And we are off for a couple months but you will not miss us because we'll be back on Wednesday.
+
+48
+00:15:57,240 --> 00:15:58,980
+Scott Tolinski: We will catch you next season.
+
+49
+00:16:00,090 --> 00:16:00,720
+Unknown: Please
+
+50
+00:16:02,610 --> 00:16:12,390
+Scott Tolinski: head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
