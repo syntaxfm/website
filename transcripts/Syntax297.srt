@@ -1,0 +1,124 @@
+1
+00:00:00,359 --> 00:00:01,350
+Unknown: Monday, Monday,
+
+2
+00:00:01,379 --> 00:00:02,580
+Monday, open wide
+
+3
+00:00:02,580 --> 00:00:08,820
+Scott Tolinski: dev fans yet ready to stuff your face with JavaScript CSS node module, BBQ Tip
+
+4
+00:00:09,059 --> 00:00:09,769
+Unknown: Get workflow
+
+5
+00:00:09,769 --> 00:00:10,440
+Wes Bos: breakdancing,
+
+6
+00:00:10,440 --> 00:00:11,609
+Unknown: soft skill web development
+
+7
+00:00:11,609 --> 00:00:21,660
+Scott Tolinski: hasty, as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob, and Scott Taylor.
+
+8
+00:00:23,610 --> 00:00:24,480
+Unknown: Totally in ski,
+
+9
+00:00:25,920 --> 00:02:17,310
+Scott Tolinski: or Welcome to syntax, and this Monday, his teacher, we're going to be talking all about certifications. And we're going to be talking about not the type of certification that you'd find in the lock symbol in the URL bar, we're going to be talking about certifications for completing training completing some sort of test that shows that you are certified in X, Y, and Z skill. My name is Scotland's gamma developer for the Colorado and with me, as always, is the West balls. Hey, hey, Wes. This episode is sponsored by century the perfect place to find all of your errors and exceptions, bugs as creepy crawlies in your code. Let me talk a little bit about century the coolest thing for me is to be able to come in at any given point and have a full like, full understanding of what the issues are in my site at any given point. Because sometimes you have bugs that are bugs, bugs that you got to fix right now. And other times you have things that pop up here or there, maybe you're affecting one or two people that are not crucial. And the cool thing is that century puts all of those things in a nice table that makes it really easy for you to see just how much of an issue something is right? Maybe did one particular user have a single, failed WebSocket message that did not reach it to its intended target? Well, that's maybe not something you need to drop everything and fix that 25 users get a message saying that the site's on fire, maybe that's not what you need to pay attention to allows you to track all of that and store it in a GitHub issue. And then fix it whatever is causing your site to be on fire. So check it out as century.io use the coupon code at tasty treat all lowercase all one word, and you will get two months for free. All right certificates. Yeah, of the non SSL type. Let's talk about him.
+
+10
+00:02:17,600 --> 00:04:37,850
+Wes Bos: Yeah, we're talking about like, like skill certificates, web development certificates. And this sort of came about because we first we got one question in the potluck. That was Node.js. The open JS foundation offers a couple hundred bucks, you can get a no jazz certificate. And then we got another someone tweeted this link at me which we'll put the link in the show notes. It's a it's a good blog post. It's called imposter syndrome, how display on the front end, it's just a blog post about this person's sort of journey in front end development and learning from all these different online resources. And in one part of that was like battling with imposter syndrome I'm just gonna read the part is is so how do you as a front end developer figure out what a specific team is made up? And how can you contribute the most proper definition of a skill set is the answer to both questions. The problem is that there are no set of degrees or certifications in the front end world that are universally known and accepted as proof of skill in different areas. This also fuels that pesky imposter syndrome says it's kind of interesting coming from the the other not necessarily a hiring point of view, but it's coming from someone who's learning and the question is like how do I know if I have the skills that are enough for a job and then later on the blog post goes on to say I will end with a plea towards educators out there specifically tagged me as well as if you perhaps even to the organizations who create these open source frameworks, Please agree on a format that will let us show off our skills back Enders get official Computer Science degrees from Microsoft Amazon etc. front ends Get YouTube courses certified on the honor system there is more than enough information craftsmanship and variety to warrant a full University front end degrees official react or Angular certificate a solidified job titles with defined skill sets attached to them. Let's display front end Okay, so that was that was kind of interesting to say someone saying like look, I as someone who's learning like we need to standardize this stuff. So you know if you're good enough, like if you want to be a lawyer, you have to pass the bar exam if you want to be an engineer who builds who builds buildings, you need to have specific certifications even if you you want to install a fireplace in somebody's house. Yeah, you need to have at least in Canada we have this Wet Wet certified which is wood energy transfer technology,
+
+11
+00:04:38,010 --> 00:05:24,750
+Scott Tolinski: something like that. It's funny because accordion I just had this conversation the the I think it was like two nights ago where somebody was saying it was like one of those new shows on Netflix what they were doing home stuff. And the one guy's like, yeah, I moved the electrical box or whatever. And I was like if I moved an electrical box in my house, I would never sleep at night because I would be afraid that the house would burn down. I mean, those certifications, whether or not I'm not like asking to see an electricians certification when they're going to do this thing, or if they were to move an electrical box, but just the fact that that certification exists, in my mind takes that out of a space of being, like, a trust from non trustworthy to trustworthy. And it's so funny to see this in a totally different context in our industry.
+
+12
+00:05:25,760 --> 00:07:21,900
+Wes Bos: Yeah, totally. The thing about standards is, as soon as you make a standard, people will sort of go around that and make their own. That's, that's the hilarious XKCD cartoon where as soon as you come up with a standard, now, congratulations, you have to battling standards and different ones. And I personally think the the reality of this is that, especially in tech and front end development, in general, is that this stuff moves way faster than any standard should probably track on. So like, the reason we had jQuery is because like we had standards, in web development, it just wasn't good enough. So people went around that and made their own libraries for that. The reason why TypeScript is much preferred, in some some cases over regular JavaScript is because people say like, we need more out of the standard we need, we need a little bit more, we have universities, and this is probably the best example of all is, there's lots of universities that offer web development certifications out there. And in most cases, they are deemed as sort of a joke, or they're super behind. And everybody has stories about learning from a university where it just wasn't good enough. So in my opinion, I'd love to get your thoughts on this is that programming and front end development, and I actually asked this on Twitter. So we'll go into some specific tech in just a second. But I think in web development, in general, it's far too broad. There's so many different areas, it's far it moves far too fast, to try to fit us into a box of a certification. And the reality is, is that I think being a web developer, the proof is in the pudding, it's if you are a good developer, you'll be able to show that through projects that you've done through past work through through all kinds of stuff like that, you know, it's easy to show somebody if you're a good developer, or if you have the skill sets that are needed, as you'd literally just show them the stuff that you've been working on in your skills, and that should speak for itself. Yeah.
+
+13
+00:07:21,990 --> 00:08:31,980
+Scott Tolinski: And I mean, I think you really nailed it. I think the the biggest one, can you imagine like a browser API certification where, like, you know, whatever, chrome version 57 Yes, out and completely invalidates the one thing you just learned, because all sudden, the middie API is no longer available. And you spent all this time learning of this this thing? Man, you're right. I mean, the stuff changes way too fast to have any sort of valid certification as somebody who has a hard enough time keeping up the like versions in video courses, right. Can you imagine just exactly how difficult keeping up what ever the expected knowledge of a certification would be in our in our industry right now, in terms of front end stuff? I feel like that would be exhausting, full time position, because of all the new stuff that is changing constantly. Yeah, I largely agree with you that a certification that you got on react 15 is going to be toast by the time react 16 comes out, I guess it's a standard fare, right. But at the same regard, I think this stuff just just changes way too quickly right now.
+
+14
+00:08:32,340 --> 00:09:25,350
+Wes Bos: Yeah, I asked this on Twitter. And I got lots of really good replies. The one thing where people said they are valid is with specific vendors. So this a kind of went outside web development and more into sysadmin. And Ops, a lot of people said, yeah, if you want to if you want to hire someone that's good with all the Amazon products, or Google Cloud, or IBM certified or Burnett, yeah. All that stuff, then in that case, yeah, that's a very specific tack. In a lot of cases, like Amazon will have a list of people that have their cert. And if somebody comes to them and say, Hey, we need we need to work with serverless functions or whatever, or we need to be able to scale up, then they can say, yeah, go to these people that have those specific certifications. So I think that's probably the one area in our industry where they may make sense to have a certification.
+
+15
+00:09:25,830 --> 00:10:18,270
+Scott Tolinski: Yeah, because when I was looking to like way better at AWS stuff, that was something that I noticed pretty heavily and that's in that scene, more so than other scenes was like, you're looking to get good at AWS, all of the courses that exist for getting good at AWS. do so with the premise that you are going to be able to master certification at the end. So like we will teach you to be able to pass this aid of x y, I forget what it's called that whatever x y and z AWS certification. If you take this course we will set you up to be able to pass that exam and to me it's such a funny way. world because last time I did something like that was when I was getting certified in skis, key bindings, and not not actual code. But I just did all these tests with the premise that I was going to pass this ski bindings test so that I would not hurt little kids when they went out on the mountain. And so
+
+16
+00:10:19,140 --> 00:11:23,100
+Wes Bos: I have my CPR certification. I would not want to YouTube and say, Oh, yeah, I got it. So what else we got here? just let's just go through some of the replies to the tweets because I tweeted a question for folks who are hiring, do certifications mean anything to you? overwhelmingly, the replies were, it doesn't hurt. You're like, if I'm hiring, and I see it on the resume. It doesn't hurt you. But I much rather see what you've actually built. I'd much rather see past projects past employers you've worked for. So one really good reply was from Richard Davey, no, it's not a sausage. I was funny. experiences the key indicator or if it's a junior role where experience isn't available, We absolutely do look at the thing you've built in your own time. These things help you get an inner interview. So like that gets you in the door. A couple of good projects in your thing after that is 100% personality and aptitude. I thought that was that was really interesting, because obviously, in some cases, you if you're brand new to this, you can't you don't have five years experience somewhere else. Next one, it
+
+17
+00:11:23,100 --> 00:11:35,640
+Scott Tolinski: says Nope. Eg the Java certification exam has the most up to sc code you can imagine. I know people who passed it without have a written Java code by studying the sample questions and answers.
+
+18
+00:11:37,410 --> 00:12:36,540
+Wes Bos: This one I thought was really interesting. From my buddy, Arlene MacLean, he says depends on the cert at car pages. So in Canada, I don't it's might be in the states as well basically, like, selling used cars online. We hired a lot of devs. That straight from hacker u, which is the bootcamp I used to teach at. And that meant a lot to us, mostly because Heather Payne, she was on podcast, does such a great job of screening. Every grad I met from there not only had skills, but was winsome, and really wanted to make stuff. So that's kind of interesting as well, is that like, specific schools or boot camps or something? might be a bit of a Honey Hole? Because like I know, a Honey Hole of good developers, because they're already pre screened. Like, I think that Heather said only like, what 10% of the people that apply make it in? So they're already doing the filtering for you plus, then you know, like, the content there. So in that case, yeah, it probably would be a good thing if you are an employer and you know where to where to go get these good grads.
+
+19
+00:12:39,840 --> 00:14:25,800
+Scott Tolinski: So glad that made its appearance back in the show. Notes. Okay, here's, here's the last one here at Nope, just like a number of years of experience. They do not guarantee expertise. I think that's a great point. I know a lot of men maybe not a lot. I've known a lot of developers in my past who'd be the the webmaster who never moved their skills beyond modifying HTML files in Dreamweaver. And it just because they've been doing it for 20 years does not mean they know how to build a modern site. So yeah, just like just like number of years of experience, right, a certification can be passed or failed. I'm maybe a prime example of this not that certification wise, but like, I am not good at exams. So like for me to pass an exam it like, I feel like I don't learn things. If I'm studying for an exam, I feel like I am learning how to pass the exam, I think you will get a subset of those types of people who have no practical or real experiences. Yeah, yeah. And that's just not gonna fly. I think the one that, to me, the one that resonated the most was basically just saying that, like, the things that are most important are aptitude, and personality, in addition to your code, because the best developers are those who can take the time to grow themselves in a project. And with a project, it may be not necessarily the types of developers who already have it all figured out at the start. Anytime I worked at any agencies or whatever the people who were the best, or who got their stuff done that most efficiently were not necessarily the most proficient it developers overall, but the types that would be willing to fully dive into projects and really understand those the types of personal qualities that you're just not going to get from whatever the results of a certificate
+
+20
+00:14:25,800 --> 00:14:57,270
+Wes Bos: are. I like that a lot. Oh, one question I have for you is the initial blog post we read came from the learners point of view. They said like I need some sort of like bar, where I know that if I'm, I have the skills to be hired or not. And since we don't have some sort of checkmark to say, yes, you have passed this certification. You are now hireable by these companies. What do you think like how what do you say to somebody who's that situation? How do I know if I have the skills? Am I good enough to start go out and job searching? Oh,
+
+21
+00:14:57,270 --> 00:16:26,940
+Scott Tolinski: how do you know you're good enough to me it It's just all about doing it, every single job that I got that I was like really happy in, and like a job I grew up in was a job, I maybe did not feel qualified enough to get at the job. So I either had to be convinced to apply to these jobs, or I did. So with the idea. Well, if I if I get an interview, that'd be pretty cool, then you get the job, then you feel a little bit like Oh, crap, I'm a little over my head, and then work really hard. And then you grow as a developer to human and all of those things. So yeah, I don't know. that's a that's a tough question for me, because I've always, always had sort of the mentality of apply for everything, you know, write the cover letters do do the work, you know, really show up and do your best and try to get the gig even if you feel like you're probably not good enough for it. I remember one of the first jobs I interviewed for was like, some manager position at the University of Michigan, and they were just like, do you have any experience scheduling or management? And I'm like, nope, how hard can it be, you know, I can do it, whatever. So having, it's maybe not, it's like that blind confidence sometimes can really come in handy. But really, it's just, you have to believe in yourself that you can accomplish anything. And you can do these things. And given the opportunity. So just apply for stuff that you might not feel that you have the capabilities of doing. And then who knows, you could potentially grow into those roles and positions. And
+
+22
+00:16:27,090 --> 00:17:09,030
+Wes Bos: I totally agree with you, I think we should do a show on. These are the things you should be able to do before you you apply for a job. And it should be things like, Oh, yeah, fetch some data and display it make a layout. We should let's do show on that. Because I think that'd be we could come up with a list of like 20 things. And then after that, it's up to the person who's hiring you to decide if you have the skill sets or not. And I think like up imposter syndrome probably will come into play here, where you think you don't necessarily have it. But honestly, like, like that one tweet said personality aptitude. You can learn the technical skill sets, a lot of the times from there, and that's what people are looking for. They're like, Yeah, I don't mind investing in this person a little bit if I really liked them.
+
+23
+00:17:09,479 --> 00:17:11,330
+Scott Tolinski: Yeah, totally. Totally. Totally.
+
+24
+00:17:11,790 --> 00:17:13,380
+Wes Bos: Yeah. Good show. Good show.
+
+25
+00:17:13,380 --> 00:17:20,160
+Scott Tolinski: Good show us. We just had our we should have a new segment where we just pat ourselves on the back. Gosh.
+
+26
+00:17:22,050 --> 00:18:28,290
+Wes Bos: We did good. Yeah, no, that was a that was an interesting one. I had seen it pop up a couple times. And you often see this like, frustration of we need the government to step in and standardize our skills and make it some sort of like thing where you have to graduate from an academy and then you are good enough, but unfortunately, and fortunately for like, people like Scott and I who are don't do well at tests, and we just sort of sling that we just go out there and start slinging code and building stuff. And it's worked out we're able to make a living off this web development stuff. Because certainly, if it was up to, like, I remember I don't know, this is totally unrelated. But like every Sunday night, not every Sunday night, but still, every couple Sunday nights, I still get a feeling of I have no homework. Because my entire university in high school and in grade school, I will get this like, I hate homework, oh, just want to go on computer and make stuff. And just that feeling of I don't need to do homework anymore. Oh, my
+
+27
+00:18:28,290 --> 00:18:53,810
+Scott Tolinski: God is the best. I spent all of my college life doing coding in most of my classes, musicology. Yeah, just sitting in the back coding, coding and stuff. And that's just how I always was to, it's just like, I just got to get my homework done so that I can you know, work on this video and editing or work on this code. And that's something that very firmly resonates with me.
+
+28
+00:18:54,180 --> 00:19:05,460
+Wes Bos: Beautiful. All right, I think that's it. Thanks for tuning in. If you've got thoughts of your own, I've linked a Twitter thread, but also tweet us at syntax of m. What's your thoughts on third certifications? Oh, before we go, I
+
+29
+00:19:05,460 --> 00:19:33,050
+Scott Tolinski: maybe have one more small point to make, ya know, if the type of job you are applying for is going to require a certification because some do like just because we say that certifications aren't, you know, the the bee's knees and all sorts of regards. There are some jobs specifically like like you mentioned, AWS, Google, whatever that will say like straight up do need the certifications to be considered for this job. So just last little thing, have that in mind.
+
+30
+00:19:33,660 --> 00:20:02,550
+Wes Bos: Totally. I should also say like, I'm probably being a little hypocritical here because I do offer certifications for all of my courses. And the reason why I do that is because some employers in order to get paid back or in order to take a course or whatever, you have to actually have some sort of certification. So like you do sometimes have to play in that ballpark as well. I just don't see it all that often for real hiring of jobs. Yeah. Cool. All right. That's it. That's it.
+
+31
+00:20:04,100 --> 00:20:16,170
+Scott Tolinski: Please head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
