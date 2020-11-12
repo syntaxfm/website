@@ -1,0 +1,112 @@
+1
+00:00:00,359 --> 00:00:21,660
+Unknown: Monday, Monday, Monday, open wide dev fans yet ready to stuff your face with JavaScript CSS node module, BBQ Tip Get workflow breakdancing, soft skill web development hasty, as crazy as tasty as web development treats coming in hot here is Sarah CUDA boss and Scott Taylor,
+
+2
+00:00:26,040 --> 00:00:52,650
+Scott Tolinski: who come to syntax in this Monday hasty treat, we're gonna be talking about your body and stretching. And I'm talking about how to feel better, because as developers, there are a host of issues that can happen from staring at your computer, and most likely sitting in a chair all day long. So my name is Scott Tolinksi. I'm a full stack developer from Denver, Colorado, and with me, as always, is the West boss. Hey, I'm
+
+3
+00:00:52,650 --> 00:01:03,030
+Wes Bos: excited for this one, because I'm not very flexible at all. And whenever I do do some little bit of stretching, I feel amazing. And I think that I need to do more of it.
+
+4
+00:01:03,240 --> 00:01:17,640
+Scott Tolinski: Yeah, well, let me just say, first and foremost, off the jump, I am not a physical therapist, I have no training. In this regard. I have been seeing a physical therapist for quite a bit of time. But I've also been a stretching enthusiast for a very, very long time catching a disease.
+
+5
+00:01:18,200 --> 00:01:47,190
+Seriously, dude, I have read so many books, I even sic picked in one of our first episodes how to become a supple leopard, which is like a physical therapists favorite book. And so I've been very into this scene for a very long time. And as a developer, and also somebody who has a lot of tight muscle issues, I can tell you, I've done a lot of research. So if you disagree, or your physical therapist disagrees that that's cool, too. This is going to be just general guidelines for most people. This episode is sponsored by Log Rocket,
+
+6
+00:01:47,190 --> 00:01:47,910
+Unknown: pay West, do
+
+7
+00:01:47,910 --> 00:01:50,250
+Scott Tolinski: you want to try the Log Rocket ad read this time?
+
+8
+00:01:50,280 --> 00:03:05,070
+Wes Bos: Yeah, Log Rocket, I think their tagline puts it best Stop guessing why bugs happen. So you install Log Rocket into your JavaScript application. And it gives you sort of this thing called session replay. So when a bug happens on your website, it's going to show you exactly what happened. So they give you pixel perfect replay of what the user saw for that bug to actually happen. You get all the network activity for something like that. And I imagine that'd be super helpful to see like, this network request failed, for whatever reason. And we didn't show the user or we didn't try again, or it didn't show the user any sort of UI, and the thing just broke that happens to me all the time where I'm on a website, and like it's not showing the right thing, are you clicking a button that doesn't do something right, like they should have handled that failed request a little bit better, you get to see the user's console, all the errors that happen and like I'm guilty of this myself is if something happens on my website, ask the user, okay, can you send me a screenshot of your console, right, and you shouldn't have to go back and forth with with your user. So check it out. If you want it for your JavaScript application. Pretty nifty. Check it out at Log rocket.com forward slash syntax, you can try out the free demo on there. Thanks so much to Log Rocket for sponsoring.
+
+9
+00:03:05,400 --> 00:03:57,540
+Scott Tolinski: Cool, so I shouldn't say first and foremost, some of these will be pretty visual, I will do my best. If I am unable to make a video I will link videos showing you how to do these things. I've considered making a bunch of little just short giftable videos of me doing some of these exercises. I think that might be nice. So first and foremost, what are the issues that developers primarily face? Well, we we sit in our chairs we type, we look at screens, I don't know about you, but I like to get my face right up in that screen. I just shove it right in there really jutting my head forward. I don't know about us, but I'm pretty addicted to my phone. I know a lot of developers spend a lot of time on their technology and their devices specifically because we work on these things. You're on your phone a lot. And when you're on your phone another thing that happens is this new like they're calling it like a like a pigeon neck phenomenon. We got jet your chin out forward, you can imagine you're trying to chin somebody could you see
+
+10
+00:03:57,540 --> 00:04:03,180
+Wes Bos: the videos got trying to show me what he's talking about right now. It's hilarious. He looks like a chicken.
+
+11
+00:04:06,270 --> 00:07:18,540
+Scott Tolinski: And so what you end up happening is you end up having your shoulders forward, your neck forward, and all of that stuff just pulling on your back. I know me personally, I've been having a conversation with my brother about this. He's not a developer, but he works on a computer all day long. And he's saying, I need to actively focus on pulling my head back and my shoulders back or else I have back pain all day long. And if you are a you know, a young and you're not not in the 30s and upper category, you might not even notice some of these things until you're our age and when you do, it sucks. I'm definitely in muscular pain all the time. Now another thing that can happen in generally from sitting too much is anterior pelvic tilt, which is something I suffered from before even using a computer too much where you end up having a comparatively a weak underactive core, an overactive lower back, and so your lower back hurts all the time and simultaneously, it's pulling on that muscle and it also can cause some issues with what your glutes and your quads are not working in the correct way as well, your glutes become weak from sitting all day long. And even if you have, you know, abs in the leg, maybe that ABS a nice, but that does not mean that they are working correctly. Right. So let's talk about one more thing too, which is carpal tunnel, which is something that I've personally suffered from, because I thought it too. Yeah, I love to use the trackpad, trackpad, not great for carpal tunnel, you doing all these little micro movements with your fingers. And what a carpal tunnel really is, sorry, medical people, if you is, you know, explaining correctly, but I'm pretty sure that carpal tunnel is, is those individual tendons, they're being inflamed because of the way that they're rubbing in these sort of patterns in ways that the tendons themselves become inflamed. And that inflammation can damage all sorts of things in your your hand long term. So let's talk about before we get into the actual stretches and the actual fixes for a lot of these things. Let's talk about misconceptions about stretching, people think, wrongly. So I don't know if your high school or middle school or elementary school gym class was like this, but I know mine was everybody, let's send a circle in Houston, you bend over and touch your toes kind of stretches where you're just holding a static stretch for a given amount of 10 seconds, I can still tell you the sequence in which my gym teacher counted in elementary school, which is one drew by Bob 6789 and 10. And then we did the neck stretch. I mean, it was just every day, right. And so that was like how a lot of people learned how to stretch was like, Alright, let's just hold these stretches. Let's just hold this, that whatever, and then I'm going to be more flexible. And then when I started. Now, unfortunately, your muscles don't really work like that. And first and foremost, the structures that is going to help the most for any of us that have a tight back, tight wrist, carpal tunnel, the exercises and structures that are going to help the most are going to be more dynamic. And I don't mean like rapid, I don't mean hard, I mean slow, controlled movements. So you could think of like a solution that they talk about for carpal tunnel is like wrist rolls, right, you're just rolling your wrist, or you're you're doing like shoulder rolls, shoulder surgery,
+
+12
+00:07:18,540 --> 00:07:21,120
+Wes Bos: like I need to do this as I'm listening to you
+
+13
+00:07:21,210 --> 00:09:04,980
+Scott Tolinski: forwards and backwards shoulder rolls. And you might not even think of those as being stretches. But those are the most important stretches you've got. And you shouldn't do static holds like touch your toes and don't move for 10 seconds, you shouldn't do that without being warm, have muscles. Not only that, but those those things aren't going to give you the type of bang for your buck that some of these things are. So when I'm talking about these stretches and stretching to help your back and only these things, a lot of these are going to be straight up dynamic movements. Okay, so the first one dynamic movement that can help you the most, and this one is through your lower back entirely. You put your arms up at like shoulder level, you can make fists, you can have your elbows like a 90 degree angle, I have my arms and like almost like a T pose with bent elbows, my fists facing forward, and then you just rotate left and right, you just do a twist. And these are just like trunk twists or you're twisting your core, your back everything left and right back and forth. And the goal for these should not be to like really slam it or do it hard. It's just like slow and low, right? Like you're doing some barbecue fully controlled all the way through, twisting and twisting back and forth and back and forth. This one helps me so much. I do it every morning. Dynamic twists are a great one to get your back muscles warmed up. I've been having just a tremendous amount of back issues lately. So just being able to warm all those muscles up is just really, really important. It also gets your core nice and engaged and you wanted to do it nice and slow. Now the next one that's probably going to get you the most bang for your buck. Is cat cow. Are you familiar with cat cow oS?
+
+14
+00:09:05,030 --> 00:09:10,400
+Wes Bos: No, I would go as far to say as I'm not familiar with any of these. Tell me about cat Cow.
+
+15
+00:09:10,790 --> 00:09:43,440
+Scott Tolinski: Cow. I cannot tell you cat cow because you what you do is you on your hands and your knees. You're in like a tabletop position hands and knees on the ground. And what you do is you do a fully rounded spine and then a fully arch spine. So like I think about it in your back and you got to be on the hands and knees and you're doing it a cap position where your your butts up in your Oh yeah. And then a cow position where your chest is in and you have a rounded back the other way and it's important to know your what's that
+
+16
+00:09:43,620 --> 00:09:45,900
+Wes Bos: to make sounds when you do these?
+
+17
+00:09:45,900 --> 00:11:59,430
+Scott Tolinski: I bet you this. We recently started watching a child yoga videos with linen I bet if we started doing cat cow noises while we did this, the kids would get involved a lot more. So I might start doing that. Yeah case you wanted an example of cat and cow noises. So this one is important for your neck to do the same thing. So if you're doing like that the cat position with your you know, your your butt up whatever is that you tilt your head back was well, you want to complete the the concave and convex shapes. And likewise, when you do the cow position, you're going to want to move all your head in. So you want to convex and concave. And the most important things about these positions isn't until like hold any of them for particular amount of time, it's to, to go slow and controlled through each of them back and forth. Because what that does is it's warming up your muscles, it's actually making long term changes to those fibers. And it's going to help you build the antagonist muscles for those positions. Because what a lot of people don't think about is like what stretching, it's not just lengthening, even if that had been a be like a scientifically accurate term. But it's not just lengthening the muscles that you're trying to stretch, also increasing the strength of the antagonist muscle, the muscle that's on the opposite side. Because if you increase the strength of the antagonist muscle, then it is going to do much more work for you long, long term. Another one here is that we do we sit a lot, right. And one of the things that can happen with sitting is you get this like real compressed feeling in your back your spine, everything feels compressed, right? It just feels like you're you're been squished. And so for me, in addition, a lot of people love. My dad at one point had rented an infill, and I rented borrowed an inversion table from one of his friends, it's one of those things where you hang upside down, I was supposed to Yeah, it's supposed to pull you apart? Well, it turns out, you can, you can do the exact same thing just hanging from a pull up bar or hanging from literally anything. And this is me when I'm having a rough back day, one of the best things I can possibly do is go into the backyard, grab onto something overhead, hands kind of closest and just
+
+18
+00:11:59,579 --> 00:12:00,420
+Wes Bos: hang
+
+19
+00:12:00,449 --> 00:16:38,880
+Scott Tolinski: like your whole body decompress and just do a straight up hang. You don't have to do it for super long. But it really will really help you pulling apart so that hanging is definitely like a great thing to help relieve some of that compression that happens. Another one is going to be this flat down, curl up spine. This is like sort of like straight up yoga, essentially, what you're doing is you keep your back as flat as possible, while you hinge at the hips and try to touch your toes, right, you go as far down as you possibly can with the flattest of back, you cannot lay your back curb. And then on the way up, you do it vertebrae by vertebrae, and then unwind yourself and round your back all the way up. This is going to get the two effects of having both a flat back as also the curled up spine that by vertebrae thing that you do in yoga is just so fantastic. Because again, it hits all of those vertebrae and hits your back in so many different ways. I know none of that a lot of these things that we're talking about is back related, that is going to be like the primary hitter for a lot of these people is both lower back, upper back mid back. So a lot of these things is going to really, really help you there. carpal tunnel, we talked about doing wrist rolls. Another thing I like to do specifically for carpal tunnel, I'll often make a video for this, you can get any sort of like weighted anything, what I use is a dumbbell with a weight on the end, low weight, but you could use any stick that has any bit of weight to it. And you do these three exercises, one of which, which is just a rope, like if you're hold your hand in a fist straight out in front of you. And you were to go back and up and down with your wrist without moving the rest of your arm. So up and down with the wrist and then holding on to a pole that it maybe has some weight, there's another one where you do the opposite where you hold on and you do like ski poles with it. So it's like your ski pulling back at these are going to be hard without visuals off to do a visual for these. And then the other one would be windshield wipers where you hold both your wrists like this. And you do so without moving your hands. And you rotate them in it looks like when you first once you're holding on. Yeah, try not to rotate your arms as much just wrist action as much as you're gonna rotate your forearms. But those things will help I used to it's funny, I played the drums a lot, which is also a carpal tunnel thing, right, you know, for playing drums, and on a flight. My family is going somewhere. I don't remember why. But I got stuck being the one person who had to sit next to some random person was the youngest person in the family. I don't know why that worked. They were just like, Oh yeah, we'll put Scott next to the random person, I guess as seniority got screwed. But the guy ended up being a semi famous drummer. He was like a drummer in this jazz group that traveled the world. And he found out I played the drums. So besides giving me sticks, he also taught me all these like wrist warmups, where you make a fist and you do the loop, they do the other loop. If you do your hand out, you do the other hand out. And so there's all these like rituals and all of these things will help you so much, make your wrist feel a little bit better. Another one which is really fun. This is for a lot of things. Your back, but also legs is horses stance. Now horse stance is something that comes from martial arts. And what horse stance is if you stand, you pivot your feet out, once you pivot your feet out, again, you pivot. And your, your feet end up being a little bit wider than shoulder width apart. So you're standing there with your feet a little bit wider than shoulder width apart. And then you bend at the hips and the knees, and you try to keep your shin bones perpendicular to that. Yeah, so you like some areas really deep, like you're riding a horse, right? So you're just, you're standing like you're riding a horse, you're standing like you're riding a horse. And at first, this would like really atrophy me after a little bit. And like I started doing core stance, when I was working at my standing desk, rather than standing, I can stand in horse stands for a long time. And the cool thing about it is, is like the more you do it, it takes him that pressure off your lower back, it brings it into your glutes, which are neglected from sitting into a chair, it definitely helps with your core muscles, which are neglected from sitting in a chair. And it overall is a great strength builder that you can do. And it might be a little bit harder at first, but it's a great strength and a great stretch that you can do while you're working. And one of them which is going to be shoulder circles. Again, this really follows along with the dynamic things that we were talking about before. There's a lot of different ways you can do shoulder circles, you can have your arms just down by your side, and just do shoulder circles. The important thing to do shoulder circles is do a one way, then do them the other way. And you can do it with your arms out like you're like yeah, like a bird and Jim Carr, that
+
+20
+00:16:38,880 --> 00:16:40,260
+Wes Bos: one from school. Yeah,
+
+21
+00:16:40,350 --> 00:18:12,780
+Scott Tolinski: you big circles, a little circles, all of those things, let me tell you, if you're sitting at a desk in your back hurts, you do the twist, you do some cat cow, you do some shoulder circles, you're going to be feeling a lot better afterwards. Another one is going to be doorway stretches to open up your shoulders more. Anytime you have a doorway, you can grab the doorway, with a straight arm, or whatever, yeah, and you use the door as leverage, and you push against it to pull your arms back in open. And this works for open like this, it works like this. It works down here, here, here. And even above if you grab the top of a door handle or the top of the doorframe and push your head through. And what the key component is, to all of these is to not let your back arch. You don't want an arch to lower back, but you want is your pelvis tucked under you want a tight core, and you want to push it through that way you're not stretching your lower back or whatever you're stretching the actual shoulder. Yeah, so all of those are really good when I'm gymnastics tip that I had for these is to make three different letters. So you do the a position where your arms are down at your sides wider than hips, and you're pulling in the door like that in a position. So your, your body makes an A, then you make a t that is the standard t pose where your arms are out to the side, right, and you're doing the same thing. And then the last one is the y. So you do a t and y and between all three of those arm shapes, you really hit all of the muscles in your shoulder, and it helps a lot.
+
+22
+00:18:12,900 --> 00:18:13,550
+Unknown: Ah,
+
+23
+00:18:14,550 --> 00:18:31,680
+Scott Tolinski: so that has been stretching with Scott, I am going to try to make some videos of all of these, I realized is a very visual thing. These are things that I do all the time almost every day to help myself feel better work better and not be in pain when I'm working. Or after I'm working for that matter.
+
+24
+00:18:31,920 --> 00:18:45,450
+Wes Bos: Yeah, I like it. I'm gonna try to do these every day for the rest of October just to see Dude, what does doing a month of have this dude cuz like, yeah, I've got I'm getting old. I got I got pains. I got aches, love to see what this does for me.
+
+25
+00:18:45,660 --> 00:19:31,290
+Scott Tolinski: And just like the gain of like how bad it feels over time. For instance, like doesn't feel bad overnight. It feels bad after years of abuse, right? Yeah, yeah, the same thing will happen with fixing it fixing it doesn't happen overnight. Yeah, and I have so many different tight, tight areas that I need to work on all the time to make them better. So yeah, this has been stretching with Scott, I hope I hope y'all got something fun out of this. I think this is a good one. This is one that we've been wanting to do for a long time I've been thinking about it. I've been standing in horse stance, constantly thinking about this. So we might do another one of these I have so much stretching as so many different stretches, so many different stretching tips for various things. And maybe next time we can get to some more leg stuff. This one's definitely back shoulder heavy.
+
+26
+00:19:31,770 --> 00:19:36,690
+Wes Bos: Alright, thanks so much for tuning in. We'll catch you on Wednesday, please
+
+27
+00:19:38,550 --> 00:19:41,600
+Unknown: head on over to syntax.fm for a full
+
+28
+00:19:41,600 --> 00:19:48,300
+Scott Tolinski: archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
