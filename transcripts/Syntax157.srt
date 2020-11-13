@@ -1,0 +1,96 @@
+1
+00:00:00,359 --> 00:00:24,480
+Announcer: Monday, Monday, Monday, open wide dev fans yet ready to stuff your face with JavaScript CSS node module, BBQ Tip Get workflow breakdancing, soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA boss and Scott Taylor. Totally in ski.
+
+2
+00:00:25,890 --> 00:00:37,140
+Scott Tolinski: Whoo, welcome to syntax in this Monday tasty treat, we're gonna be talking all about what is a headless CMS? Because this is one of those things that you might think,
+
+3
+00:00:37,140 --> 00:00:37,950
+Unknown: well,
+
+4
+00:00:38,100 --> 00:02:14,720
+Scott Tolinski: I knew what a headless CMS is. Or maybe you're like, I've heard this thing over and over and over and over again, and I really just don't get what it is or why you'd want to use it. So we're gonna go over what does it mean? We're gonna use some examples, we're going to talk a little bit about the why you might want to use it. We're gonna be talking about static generation versus live sites and how we can even do a headless site at all. My name is Scott klinsky. I'm a developer from Denver, Colorado with me as always, this West boss. Hey, everybody. Hey, Wes. This episode is sponsored by century now century is a longtime sponsor of syntax, and they are the place to go if you want to make sure that you can track record, keep record of every single bug that happens in the front end back end, or any end of your sight century is one of the services that I used long before we started syntax. And when they approached us to be a sponsor for syntax, I was just an instant. Yes, absolutely, yes. Because this is one of those services I can gush on because I use, and I've used it for a long time at this point, and essentially keeps a record of all your bugs allows you to check them as resolved, it allows you to ignore the ones you should ignore, and allows you to basically know exactly the status of errors that are happening on your site, right now, as they're happening before your users send you an email saying, Hey, I clicked this button and it didn't work. So head on over to century@sentry.io. Use the coupon code at tasty treat all lowercase all one word, get two months for free. And find out why I use and love century myself and have for a long time. So let's get into it. Let's talk about headless CMS. What the heck is a headless CMS? Yeah, we
+
+5
+00:02:14,720 --> 00:03:38,130
+Wes Bos: get this question every now and then it's funny because we have sponsors. And we say they're a headless CMS. And we sometimes explain what it is. But like I thought we just dedicated an entire show to what a headless CMS is. So the whole term headless and software means that there is no no head, no visual front end to the thing that is you're working on. So we hear like headless chrome means that you can actually run a chrome instance via the command line without actually having to open up the entire GUI of Chrome and see the website from have it actually running, it would just sort of run in the background without a head, right. It's just like walking around without a head on. And a headless CMS is sort of the same idea where you have a back end where you can log into, and you can have all your different content types. And you can manage all of you can do all of your crud, just create, read, update and delete operations on your data. But there is no templating to that that whole system, like traditionally, we're used to like a, like a rail stack or server rendered node stack or something like that. And part of having that stack is the templating side where when you visit a URL, you go off and render the data. So a headless CMS doesn't have that website portion to it. It just spits out the data via an API. So that a good fair way to describe it.
+
+6
+00:03:38,430 --> 00:05:45,060
+Scott Tolinski: Yeah, I mean, headless front endless. Yeah, that I mean, I find it much less. Yeah, it's a CMS that spits out an API. And that's, you know, for the large part we're used to CMS is doing all the work for us, right, the CMS handles the front end of the site, as well as handling the data, the relations, that sort of thing. But I think some of the things that the CMS is do typically best is handled the data. And sure enough, some of the front end stuff is great. But I know specifically, in some systems like in Drupal, people will like go to great lengths to have all these plugins to avoid having to write any sort of PHP code. And they're using all these sort of visual editors and things like that. And I think this headless CMS is really the opposite approach of that is that instead of having to not worry about the front end at all, you're worrying much more about the front end and you're able to use anything, you might possibly want to give you a ton of freedom flexibility, to not be sort of stuck into these systems and stuck into how they're doing it. So let's talk about some examples here of headless CMS is, and I think one of the most commonly ways to use a headless CMS is to take WordPress, and those of you who don't know WordPress has by default, an API spitting out JSON. And so since WordPress by default hasn't JSON API set up with no additional work makes it really super simple to use. As the back end for a headless CMS, because all you have to do is connect to that API. And BINGO, BINGO, you now have what is a basically a back end service that can do all of the data relations. And all of these things. Not only that, but it's going to give your clients the interface they're known and familiar with for all of the hundreds of WordPress sites they probably seen before. And again, allows you to use any sort of front end. So one popular combination is WordPress, and Gatsby, it's one that I've used numerous times where Gatsby is a static site, that's going to be built from the data coming from your headless CMS. Now we're gonna get into the difference between live and static sites and a little bit, but this is just sort of one static option for the front end, and WordPress on the back end.
+
+7
+00:05:45,419 --> 00:07:01,560
+Wes Bos: A bunch of other examples that we have here, you could grab any hosted service that you have, obviously, we've had some sponsor of the podcast, Sanity is a sponsor, we've had contentful sponsor, there's other ones Netlify has a CMS, you can you can use pretty much any CMS that you are already using, they will likely have some sort of plugin or baked in, like WordPress has JSON API baked in, we're also going to have the creator of WP graph qL on the show just to talk about that, because that's a that's a huge spot. Also, like people have 1015 years worth of content in a WordPress, yeah, right. That would be a huge undertaking to move it to something that like might not be just as good and you have to retrain people. So like, it's totally fine just to keep your data in one of these systems. And then to do your front end. In Gatsby, you can do it in react, you could do it in in PHP, or cobalt or anything you want. Like, it doesn't have to be a JavaScript front end. And it also doesn't have to be a static site generator, it could be a dynamic thing, that on every request to it that in turn will make another request to your CMS, which you would have to do with the database anyways, pull back the data and then render it out. However it is that you want to display that data.
+
+8
+00:07:02,400 --> 00:07:53,160
+Scott Tolinski: Yeah, definitely. And I think you're even getting into some of the next section, which is like the whys. Why would you do this? What's the purpose of that? And I think you nailed it really quickly with? Well, all of your data might live somewhere. And who wants to migrate all of that data out of there? Sure. Now you can export it into two csvs. You can do all that stuff. But like, do you want to do that? I don't really want to do that. Wouldn't it be super cool. If you could use all these things and not have to do that it would be just by using the API instead of moving it to some other service. So again, I think that is a key point is that a lot of the times it's a legacy system, but people want to take advantage of all of the new cool things. And not just because they're new and cool, but because they're cool and new for a reason, because they do all these excellent things for you make JavaScript really just a first class citizen of your application there. So yeah,
+
+9
+00:07:53,220 --> 00:08:39,870
+Wes Bos: yeah, oh, we also have like the separation of concerns. So if you have all of your data in a CMS, that data can then be pulled into multiple places. So it's likely that you'll have like an app, a mobile app, maybe an iOS app and an Android app, and you have a website for whatever it is that you're working on, but maybe also have like a micro site that you're working on. That's like a totally different stack. And the idea here is that whoever is implementing the thing in whatever platform or whatever language is able to pull all of the data from a central spot. And you don't have to worry about like updating it in this CMS and then also in this CMS, as long as it spits out some sort of API at the end of the day, whether it's JSON API, whether it's graph qL, or maybe even XML, if you want to
+
+10
+00:08:40,080 --> 00:08:42,900
+Unknown: do that to yourself, whatever you want to do. Yeah, yeah.
+
+11
+00:08:44,910 --> 00:09:11,520
+Wes Bos: What other things, you can optimize a site for performance. So one of the huge benefits to a statically rendered site like something like Gatsby is that you get huge performance wins, and you don't have to hit the API, every single time that someone requests something, you just hit the API at build time, and then it renders the day out to static HTML with that data. And then that that goes into the next one, which Scott has here, which is security, right? That's huge security.
+
+12
+00:09:11,939 --> 00:10:14,730
+Scott Tolinski: Yeah. And the security is just an important one. Because I remember in the Drupal scene, like such a huge amount of effort was going into hiding the fact that your site was Drupal, because there's a whole bunch of not necessarily exploits in any of these systems. But the moment that you know, your attacker knows that you're on a WordPress site or a Drupal site, they're going to approach it very differently. And they're going to hit it with some WordPress specific attacks or some Drupal based attacks. But let's say your front end is entirely separated, your, you know, potential attacker is going to have no clue with the back end of your site is in and therefore because they have no clue. Unless, of course, you're giving them access to seeing that it's WordPress in some sort of way. And they're going to look at this thing and say, mmm hmm, not only do I not know where the back end lives necessarily without doing a little bit more work, but I don't even know what the back end Does or the attack, it just throws off potential attackers. And it's also going to throw off potential, like robots that are going to get in there and just look for some little hints and little hints and tricks and tasty treats to snack on and your site
+
+13
+00:10:16,830 --> 00:10:48,510
+Wes Bos: will probably get a lot of questions about like, what's the benefit and downside to a live site, which would hit your API on every single request, or you could put some sort of caching in there, if you like, and maybe expire those and regenerate them every single time versus a static generate. And that is the we did an entire episode on next gen versus Gatsby. And that just dives into really not even just next versus Gatsby but a dynamic website versus a statically rendered website. What are the pros and cons to each of those. So will will point you to that episode, if you want to know more?
+
+14
+00:10:48,900 --> 00:12:50,010
+Scott Tolinski: Yeah, definitely, I think just listening to that episode would be a better show isn't trying to recreate it in a mini form here. The next is going to be the how do you do this? Well, there are some considerations that you need to take, basically, and I think some of the hardest parts of the How are really wrapped around hosting because if you think about it, now you have a database, and you have a back end service and your front end service. And they're separate, right? You don't have the separation of concerns, but they're separate. So you need to host your back end somewhere. So the options would be to either host it as a service, or either I mean, not host as a service, but to use a service like content full sanity, or any of those, right? Or you're going to need a host for your database. So where are you going to host that database, if it's a static site, well, then you don't really need a high performing host, you can go host that on a shared Blue Host for two bucks a month, or whatever it is. And it's just seeing that API in generating at once. So the performance of your server is not really connected to the performance of your front end. So there's a little bit of a cool thing there. But you do need to consider that you do need to have a host. Now what about the front end? Well, you also need to host your front end somewhere. And this is for production specifically, because in development, all this stuff's going to be local, you're running at a local, you're connecting a local whatever, but in production, your friend and also has to live somewhere. So again, you could potentially keep it on the same host and do a bunch of server side stuff, not server side stuff, but server configuration to get both your API and your front end up and running on the same server. Or you can defer to a service that specializes in this sort of thing you can use. Now as a host, you could use Netlify as a host. And those are going to be specialized hosts that specialize in hosting front end software. I'm personally a fan of using Netlify. And for like a really cheap option. What I've gone and done is I do like a Bluehost. For I know, West isn't a fan of Bluehost. But I use the host because it's cheap for hosting WordPress, JSON APIs. And then I use Netlify, for hosting all my front end code. That's just how I do it.
+
+15
+00:12:50,340 --> 00:13:53,730
+Wes Bos: Yeah, yeah, it's it's not the simplest thing out there. And you can certainly like write proxies that could host both of them on a like a digitalocean. droplet, you could save yourself an extra five bucks a month. But then you also have to manage an nginx server and you've got SSL certs that you need to renew yourself or set up a cron job to do that yourself. So in the simplicity, that is having a headless CMS, there definitely is a lot more overhead in terms of having to manage two things at once and learn where to host them and, and whatnot. So I definitely think that headless CMS is a good idea. Definitely something worth building a website on and seeing if it's a specific if it's good for you, and if it meets your your use case. Because at the end of the day, I think a lot of us are moving to building these websites or apps in JavaScript frameworks anyways. So if that's the case, you do need to have some sort of API to pull your data from. So it would be worth looking into some of the different headless CMS 's that are out there. Work.
+
+16
+00:13:53,940 --> 00:15:36,090
+Scott Tolinski: Yeah, that's really good. It's one of those things that like in the headless CMS space, it gives you so much freedom and in a lot of different options, right, you can use view, you can use react, you can create some really great interactive things. But at the end of the day, it does add a layer of complexity. So if you are budgeting time and trying to figure out keep in mind that you will need to budget time for that additional layer of complexity because it exists. And once you are new to the game, sort of it's going to take extra long your first time, and it's really easy to look at it and say, Hmm, you know, why am I doing it this way? Why, why can't I just go back to the way I was doing it before, and then you might want to give up and just go back to the straight up WordPress, whatever way of doing it before but a lot like things like coming from jQuery to react, you're going to really notice the benefit the second third time around when you're really building something totally interactive. I had a client who was they needed this slideshow and this slideshow was like, supreme being like, this thing was wild. It was sort of had a lot of different things and it's not like a I could just take a existing slideshow and modify it specifically in WordPress, I feel like that would have been a nightmare, I would have needed like a jQuery plugin, and then I would have needed to modify the jQuery plugin, or just write it from scratch. And so it seemed like to me that the headless was the best option. I wrote the slideshow in like, two hours in an afternoon when it would have probably taken me a few days in any other sort of way. So once you get really comfortable and see the benefits there, there is different, you know, I'm not going to act like it's all a rose garden here, but it well, it is a rose garden, other sense that there are some thorns that you need to watch out.
+
+17
+00:15:37,530 --> 00:15:38,820
+Unknown: That's a that's good.
+
+18
+00:15:39,150 --> 00:15:50,730
+Scott Tolinski: Yes. So maybe it is a rose garden. And it's beautiful, but at the same time, thorny. Who knows? Cool. Yeah, I don't really have anything else to add any other metaphors to try to shoehorn in here? No,
+
+19
+00:15:50,760 --> 00:16:21,000
+Wes Bos: I think that's it. If you are running on the headless CMS specific, I'd love to hear like different types of applications, because he always got like, you have like a personal website, you have a micro site, you have a like a marketing website, you have your full blown content website, you have e commerce, there's all kinds of things that could happen with a headless CMS. And there's certainly no shortage of companies that are trying to provide services in that as well. So let us know what you're using a twist at syntax FM, via case to hear what you're using.
+
+20
+00:16:21,329 --> 00:16:21,870
+Unknown: Yeah. And
+
+21
+00:16:21,959 --> 00:16:51,960
+Scott Tolinski: specifically, I want to hear about API's to like how you are connecting with your API's. Are you connecting with graph qL? Are you connecting with the rest? Are you are you connecting with graph qL? Through Gatsby specifically, or something else like WP graph qL to serve a graph qL API directly from WordPress, I'm really interested to hear what kind of things people are using in this space, because there's a lot of possibilities. There's a lot of open ground to use all sorts of different stuff. So again, let us know what you're using. We want to hear all about it.
+
+22
+00:16:52,590 --> 00:16:57,630
+Wes Bos: Alright, that's it for today. Thanks for tuning in. We'll catch on Wednesday. Dude, please
+
+23
+00:16:59,520 --> 00:17:02,100
+Scott Tolinski: head on over to syntax.fm for a full
+
+24
+00:17:02,100 --> 00:17:09,300
+Unknown: archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
