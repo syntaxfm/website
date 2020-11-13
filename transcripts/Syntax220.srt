@@ -1,0 +1,548 @@
+1
+00:00:01,319 --> 00:00:06,120
+Unknown: You're listening to syntax the podcast with the tastiest web development treats out there
+
+2
+00:00:06,149 --> 00:00:10,530
+strap yourself in and get ready here is got to live ski and West boss.
+
+3
+00:00:10,559 --> 00:00:43,830
+Wes Bos: Welcome to syntax. This is the podcast with the tastiest treats on running backups at home server today we're gonna be talking about specifically Scott and I both use a Synology are However, there's lots of different things that will do what we're we're talking about today. So basically this big box that you've put in your office or your home somewhere, and it will run backups for you, as well as you can run apps on it that are it's pretty cool. It looks some apps for home server use, which is pretty nifty with me, as always is Mr. Scott to linsky. How you doing today, Scott?
+
+4
+00:00:44,009 --> 00:01:24,420
+Scott Tolinski: Hey, I'm doing good. I've just I'm going to be in the editing booth all day editing the next level of tutorial series I did on ScreenFlow this time, so things are a little different for me the editing process, I'm actually doing myself this time and it is feeling a little bit occasionally difficult. But yeah, yeah, it's it's feeling a little difficult. ScreenFlow is definitely a learning curve for me. So you know, getting used to it. And I feel good about the the content though. That's the good part is that that's good my performance, so to say, or the recordings all went really super well. So like I'm not having to do a ton of editing. But when I am I'm like, Whoa, what's that keyboard shortcut? Again? What am I supposed to do here? Whatever. Yeah, yeah, definitely getting used to it.
+
+5
+00:01:24,749 --> 00:01:44,340
+Wes Bos: What about? Or maybe we should do an entire Hastie on this because people always ask like, should I use like a pro software more? Should I use ScreenFlow? Which is more geared towards screencap? Maybe let's let's stop this right now. And we'll have a whole because you have experienced with both? I do, we should do a little hasty on it kind of did the the benefits the pros and cons?
+
+6
+00:01:44,699 --> 00:01:50,370
+Scott Tolinski: Yeah, definitely. And I have some choice words to say about ScreenFlow as social media presence.
+
+7
+00:01:52,770 --> 00:02:38,750
+Wes Bos: I'll save for another time. All right, cool. Um, today, we're sponsored by Sanity, which is a structured content, CMS and Freshbooks, which is beautiful cloud accounting. So let's get into it. So basically, these Synology and I think Scott, I both have the exact same one, I have the Synology diskstation 918 Plus, and it's essentially just a little computer without a monitor on it. And it's got four drive bays, which you can fill with hard drives, we'll talk about that in just a second. You boot the thing up, and it runs its own proprietary Linux OS. And it does all of the backing up and and raid for you. But then there's also some kind of fun stuff you can do on it. So that's kind of what this whole show is about. It's got you the same one, right?
+
+8
+00:02:38,940 --> 00:03:09,990
+Scott Tolinski: I do. And I love it. I've had it for a little bit. I've had it for a while. Yeah, I had even I even though this is my first NAS This is my first trip down the NAS lane, I had the like a my cloud EAX. It was like their business, it was like Western Digital's business solution. And it was about the exact same size and the back exact same structure as the Synology. One that we have here, in fact that the disks that I'm using in this are actually from that drive before, so I even migrated the disks from my previous NAS to this current one.
+
+9
+00:03:10,530 --> 00:04:32,250
+Wes Bos: Awesome, we should say NAS is both a wicked artist and also network attached storage, which is that you, you plug this thing directly into your router or switch or something like that. And you have it available on your network as well as Synology does some pretty cool stuff where you can access the thing when you're not on your local network. But you don't have to do like port forwarding or dynamic DNS or any any of that stuff like membership backup, if you want to access a home server from outside of that, you usually have to first you have to port forward something. So when somebody visits your IP address for your home, then you have to forward that to this specific device. But the other thing is that most internet home internet connections will change your IP address when you reboot the router or something like that. And if that changes, then you're out of luck safe to run something called dynamic DNS, which will constantly be pinging the outside world to ask what is my IP address? What is my IP address, and when that changes, it will just change the DNS settings of your domain name. So you have like a domain name for your your your Synology Synology does that all under the hood for you, which is called I don't know they have some sort of product, which is pretty cool. Because you can just use all of the apps just work outside of the house without you having to configure them.
+
+10
+00:04:32,550 --> 00:05:06,810
+Scott Tolinski: Yeah, that was actually one of my favorite things about the Synology especially compared to the Western Digital version of this sort of thing where I felt like Synology does a lot for you in those aspects that I don't have to manage that stuff. I'm not I didn't get a NAS drive to become a system administrator or something like this. I got it to help me backup my data helped me Orca orchestrate some things. So overall, the Synology product side of things. I'm very sad. With in terms of the differences between all of the different nazz or network area storage options out there.
+
+11
+00:05:06,890 --> 00:06:06,480
+Wes Bos: So when you buy this thing, the first thing you have to do is slap it full of hard drives. And there's kind of two big hard drives that you go for in this space. Because you have to get a hard drive, you don't have to, but you get a hard drive that is made for NAS because they are almost constantly reading, writing and checking the data on the discs. So they need to be rated for a lot of use. And the two big ones out there are Western Digital read or Seagate iron Wolf, I opted for the Seagate iron Wolf, just because they were about 20 bucks cheaper a drive and I did my fair share of Reddit. And you know who else has it has good stats on Drive failure is backblaze, because they've got millions of hard drives. And they have to swap them out whenever they die. So they keep stats on how often they're different types of drives fail. And the Seagate iron wolf looked pretty good on their stats.
+
+12
+00:06:06,630 --> 00:06:23,130
+Scott Tolinski: That's fascinating. I wouldn't have expected that. But it makes total sense. I have the WD red drives, because like I mentioned, I previously owned a WD nazz. And it came with two and then when I bought two more, it mirrored those. So I have four four terabyte drives.
+
+13
+00:06:23,340 --> 00:06:29,070
+Wes Bos: Yeah, that's exactly what I did as well. So you slap them in. Just stop saying Yeah, man. Yeah, I
+
+14
+00:06:29,070 --> 00:06:33,960
+Scott Tolinski: don't know. How many of you slept a lot of drives in your in your lifetime here.
+
+15
+00:06:33,960 --> 00:07:25,020
+Wes Bos: I've definitely dropped a few and a lot. Yeah. So I got four, four terabytes as well, which I run them in raid five, which means that you get 10 and a half terabytes of actual usable space. And then if one of the drives were to die, you would not lose any data. And the idea is, you can actually even prep them beforehand. It's called a hot swap. So you prep it to ready to go. And then if one I should actually do this, maybe today, I'll order another one. Because if one dies, then you slap a new one in and it will just rebuild your file structure based on that you won't lose any data. So that's, I probably shouldn't have done raid five, because I don't need 10 and a half terabytes, I'm looking at it right now have 1.3 terabytes use and you did raid No, you use something else, right?
+
+16
+00:07:25,290 --> 00:07:57,090
+Scott Tolinski: I used Synology. Hybrid raid s h r. It's an automated rage management management system from Synology. Designed to make storage volume deployment quick and easy. Wow. To be honest, I watched a lot of YouTube before this, which is you know if the case of a lot of things. Yeah, and I don't, I knew the details at one point. But since then, I have sort of lost the details of why I chose this hybrid option. From my understanding is, let me see.
+
+17
+00:07:57,330 --> 00:08:10,920
+Wes Bos: I watched the video before and apparently the speed is a bit better on the speed and the retrieval is a bit faster on raid five. So I think that's that's kind of why I went that way. I
+
+18
+00:08:10,920 --> 00:08:59,779
+Scott Tolinski: think there was also another reason I've totally forgot, though, I know it's funny because their option is Synology specific. And I think that's what turned people off of this hybrid raid sh er is that it's proprietary to them. I think that is the major downside of it. But I again, have redundancy in my backups. So I again, have I have four drives, they're hot swappable, and likewise, I can switch them out in case there's any sort of issues in that direction. So I mean, I only have a terabytes of usable space. But again, it's a terabytes. I'm not using that. It's amazing how cheap this storage is. Do you remember how much you spent for a 250 gigabyte USB drive at some point, I remember buying LSC that lasted like one year and it was like 200 and some dollars for it.
+
+19
+00:08:59,940 --> 00:10:10,500
+Wes Bos: I remember, I was so excited. I remember like very vividly riding my bike back from the computer store because hard drives were a bucket gig. And I went out and bought like a 256 gig. Or no, they weren't even they were like 200 gig hard drive and I was so excited for all the movies I was gonna download and put on that thing, which is so funny that now they're super cheap. Like I to give you some comparison, I bought the entire Synology and slapped it full of drives 16 terabytes for I think like 1200 Canadian, which is 910 us which is like more than a computer for more. Most people I realized that some people got mad when we talked about our expensive MacBook Pros, but I'm running a business here and my entire business is built on saving video files. So I definitely need to have some sort of system where I could absolutely not lose them. By the way, one more thing I just looked at a blog post here a difference between sh R and raid SSA. ushr Synology is you can mix drives. So if you've got, oh yes, that's a two terabyte, one from your uncle and four terabyte random other one, you
+
+20
+00:10:10,500 --> 00:10:45,649
+Scott Tolinski: can't do that with raid, you have to write the exact size and I think type of drives if you use raid. And the reason specifically I wanted to do that was because I bought these four terabyte drives. And I thought, you know what, in the future, if I ever wanted to upgrade, I would want to get, you know, like an eight terabyte drive or something, whatever, whatever is the new hotness, one, and you just put one in, right? And then yeah, all that extra storage, or you get two of them. And now you have two, four terabytes, and when whatever either way it handles that raid for you. So yes. Oh, nice, nice find on that one. I read this page over like eight times. And I did not see that.
+
+21
+00:10:45,720 --> 00:11:14,970
+Wes Bos: Yeah, also, there's a couple more if a drive fails, you can still access your data while you wait for the like, let's say you have to Amazon, or you have to wait till tomorrow to drive and you still need access to your data with raid you can't. With Synology, you can still get access to your data before you do. So I think there's some huge benefits there at the downside of it's a bit slower. And you can't just pop one of those drives into another computer and access the raw files right away. Yeah,
+
+22
+00:11:15,000 --> 00:11:15,809
+Unknown: yeah, totally.
+
+23
+00:11:16,260 --> 00:11:52,110
+Wes Bos: Next thing I wanna talk about is power. This is not something I have right now. But I learned the hard way. So they're obviously just plug it into your your wall. But if you don't shut it down properly, it has to do the it has to do an entire check of your entire file system. So I accidentally unplugged the power bar when I was redoing my computer and I shut it down improperly. And it went for about four days of these things are loud it goes and like the little hard drive arm be bopping around. And I was like, This is super annoying. It really
+
+24
+00:11:52,110 --> 00:11:54,179
+Scott Tolinski: does that. Yeah, it does be bounced around, I
+
+25
+00:11:54,179 --> 00:12:40,649
+Wes Bos: mean I am. This very, very simple solution to that is there's a lot of battery backup systems that you can buy that have a USB port on them. And that USB port will tell the Synology I'm on battery power shut down either in 10 minutes or immediately. And I was just looking on Facebook marketplace and there's, this has been a thing for a long time. So for 100 bucks, 50 bucks, you can buy a battery backup solution from a PC, and it will work with your Synology over USB and it will shut itself down properly. Because it's dangerous to shut down. A hard drive mid right. So you this this is proper for you is something that you need to do. So I don't have to go through that again. Mm hmm.
+
+26
+00:12:41,070 --> 00:13:13,409
+Scott Tolinski: Yeah, and that is a tough one because you never know when the power is going to drop out in any sort of way. So how did they do all have those like double plugs? Right? I mean, that's a really nice feature to have bad need a battery backup. Like my friend used to always have a battery backup on his computer back when it was a PC PC. And it was just for like when he was doing audio and I always just remember thinking like, so cool. This batteries. You know, your power can be out in your house and the battery I guess that's a really nerdy thought to think that's really cool that he could use his computer when the power's out. How cool is that?
+
+27
+00:13:15,210 --> 00:13:16,260
+Wes Bos: Yeah, that'd be good.
+
+28
+00:13:16,649 --> 00:14:04,770
+Scott Tolinski: Another cool thing about these is if you have automated backups going, if you have this thing on your network, you can set up some automated backup software to have it just backup backup backup whenever you want. You can I think a lot of them you can even like schedule To be honest, I use time machine but I do through a not through the network I do through a little plugin drive. Yeah, simply just because it's faster. And you know, there is some weirdness, especially with time machine, network, sometimes the whole time machine can get invalidated the new guy just start the whole thing from scratch. Yeah. And time machines. Like I don't know what this is. And you're like, Okay, yes, you do. You backed up here all the time, like a 1015 year old product, you should know better by now you shouldn't be pooping your pants anymore. You're 15 years old, or whatever you should get it figured out.
+
+29
+00:14:04,980 --> 00:15:04,380
+Wes Bos: So I do the exact same thing. I've not used my Synology for time machine because I've had a bad experience with a network based time machine in the past. Yeah, where it's working fine for an entire year. And then all sudden, it's like boom, can't figure it out. And you have to start all the way from scratch, which sucks. So I've just been using these little passport, two terabyte USB drives, and just putting them in although what happened to me with that is when I was I was having trouble with my Thunderbolt three cable, it goes into my caldigit dock and it quickly mounted and unmounted my hard drives like 1000 times. And I thought I just pushed my entire time machine drive, which is not bad because I've got backup backups but somebody on Twitter was like just leave it and it will come back and I just left it for whatever however long and it was just doing the repair in the back Background and it totally came back. So a little tip if that happens to you.
+
+30
+00:15:05,010 --> 00:15:31,260
+Scott Tolinski: Yeah, totally. Another cool thing about these things is that you mean their little computers. And yeah, unlike Mac's, which are also little computers, you can upgrade them in various ways. So you can upgrade the RAM on it if let's say you needed to do a little bit more heavy lifting as a computer, things that would might require more RAM, you can upgrade that Ram. And that's really nice. It's really nice that you have this little computer and it is it's just like a little computer without a monitor without like a
+
+31
+00:15:31,289 --> 00:15:33,029
+Wes Bos: it's standard PC parts.
+
+32
+00:15:33,179 --> 00:15:34,470
+Scott Tolinski: Yeah, standard PC part. A lot
+
+33
+00:15:34,470 --> 00:15:38,399
+Wes Bos: of people put quieter fans in them. Although I haven't noticed the fan being loud at all.
+
+34
+00:15:38,399 --> 00:15:41,010
+Scott Tolinski: There is a modding scene for these Absolutely.
+
+35
+00:15:41,279 --> 00:15:50,159
+Wes Bos: water cooled. Water cool makes me scared imagine having pipes of water near your most valuable data? Yeah,
+
+36
+00:15:50,190 --> 00:16:36,899
+Scott Tolinski: there's phones now that are starting to come out that are water cooled. And I think really neat. Yeah, they were there. There's this really interesting new technology. I don't know how new This is. So don't don't take me up on a manufacturer or something. But there's this new interesting technology. There are these like really thin heat pipes, it looks like what it looks like, not like pipes, they call them pipes. But what it actually looks like is it looks like a tin foil pouch, or like a copper foil pouch. And the thing is filled with water, or some kind of liquid, maybe not water that evaporates and cools and runs through essentially a loop. And it cools to something like there's these I don't know who makes this new phone. There's like some phone that is ridiculously like 64 gigs of RAM or something absurd. Sorry, let me
+
+37
+00:16:36,929 --> 00:16:38,340
+Unknown: pull up this phone. I get this data.
+
+38
+00:16:38,370 --> 00:16:39,750
+Wes Bos: Yes, it's cool. Find it.
+
+39
+00:16:41,250 --> 00:17:11,640
+Scott Tolinski: Oh, interesting. It looks like the the gala or the note, Galaxy Note nine actually even has water cooling. So it looks like it's something that is even getting to be a little bit more mainstream. I thought it was just in some of these high powered gaming phones, as they're called that do it. But it's not just these gaming phones, it looks like it's starting to be in more mainstream devices. So I think that's a technology that whether or not it works correctly, or works at all is maybe yet to be seen. But I think they're at least adopting that in different ways.
+
+40
+00:17:12,000 --> 00:18:36,780
+Wes Bos: That's really cool. I haven't noticed the memory going anywhere near 100%. So they give you this really nice dashboard, you can see where your memory is at. Yeah, and I've never go close to 100%. So I don't think I need to and I'm doing a lot. We'll talk about that in just a bit. But I don't think it's necessary to upgrade it just yet. One other thing I should say is that Kent C, Dodds was saying on Twitter that he got the same one we did after we were talking about it. And then he said it was too loud for him and his wife, especially when it's checking, it's loud, it's like so he swapped them out with SSDs, which you can do, it just I priced it out to put like, I think a couple terabytes ssts was, I forget how much it was like $3,000 to fill this thing with SSDs. So that's a good solution if you have a lot of money. But if it's a bit loud for you, another option you can do is you can set it to not check itself until you're away. So I find it annoying when I'm sitting here at my desk. So you can put a schedule in there so that only at night, will it start to do this thing or only during the day. Although I am considering moving mine to a closet because all it requires is a power and ethernet cord. But I think I'm going to move it with a closet where our printer is just because it's sometimes is a little bit too loud for me.
+
+41
+00:18:37,100 --> 00:19:37,140
+Scott Tolinski: Yeah, and actually, this might be a good opportunity to talk about the sick pic I had a couple weeks ago or maybe even last week with those little thermostats that might be a good option for your server closet. As of now we would become because you don't want that area, especially if it's a closet. You don't want that getting too hot frying your drives. And then yeah, well, yeah, keep a little Bluetooth thermostat in there, that one that I recommended. And you'll always get to know what the temperature is in that room just to make sure it's not toasted in there. Because that is a thing. I had my buddy again, who's an audio engineer, it's like having your studio essentially be Uber quiet is of utmost importance, right, obviously. And so he always had soundproof rooms and soundproof closets that not only would his things like his backup drives living, but his his Mac Pro would actually live in there and they would come through some heavy cables coming in. So that's definitely a consideration to have that sort of room just making sure it's properly cooled and temperature controlled. Is that big improvements.
+
+42
+00:19:37,469 --> 00:20:31,530
+Wes Bos: Yeah, that's a great point. Um, one other thing I didn't talk about is you can set up different mounts for it so you don't have like one big folder on your Synology for everything. What I do is I sort of slice it up into different volumes. So I've got one huge volume that I put every single course that I've ever worked on. I put it on there. As a backup, as well as an archive, and then I also have another one just for like family photos and things like that. And I've got another volume for TV shows and, and movies and things like that. It's kind of nice because you can mount them and have different security preferences for each of those. And then you you don't have to worry about your Plex getting hacked and then having access to all your family photos or something like that, because they are separate, separate volumes at the end of the day, which is pretty nifty.
+
+43
+00:20:31,850 --> 00:20:32,790
+Scott Tolinski: Super nifty.
+
+44
+00:20:33,240 --> 00:20:35,010
+Wes Bos: You know what else is nifty Scott?
+
+45
+00:20:35,430 --> 00:20:37,610
+Unknown: Hey, I do it.
+
+46
+00:20:39,180 --> 00:20:40,610
+Sanity sanity.io
+
+47
+00:20:40,650 --> 00:20:41,430
+How did I know that? I
+
+48
+00:20:41,430 --> 00:20:42,420
+Scott Tolinski: don't know how I knew that.
+
+49
+00:20:42,860 --> 00:22:40,590
+Wes Bos: Very impressive sky. Yeah, so Sanity is the structured content CMS, you want to check it out at Sanity. sh and it y.io forward slash syntax, that's gonna actually give you double the free usage tier which is pretty cool. So. So Sanity is a structure content, CMS, it's the back end to your front end. It's a it was fits in the headless CMS space. And they're always kind of doing some some really cool stuff over at Sanity. We've talked about them a lot. One thing I want to focus in on for this ad read is squizzy. Do you know what Kahoot is? Scott Kahoot. Kahoot is like this like quizzing thing that they use in a lot of classrooms. When when you want to like or gather responses from the classroom, we had something called quiz dumb. Okay. So what Sanity did is they made squizzy, which is a serverless Kahoot clone powered by sanity.io, which is so cool, because like this is a full blown application. And then they've open sourced it so you can see all of the code behind it. And it's obviously real time because you need to see all of that data being pulled in at real time. And I think that's so cool. Like, if you want to learn how to build a real time application, take a look at squizzy and see how that's done. You can use Sanity for all the heavy lifting back end stuff. And I'm not sure what is the front end, it's hosted on sites. Now the front end, let's see what language they used. They use view beauty. That would be a fun little project to dig into to learn both view and headless CMS Sanity, more like beautiful viewtiful. So just go to their blog for link to squizzy. But make sure when you do sign up, go to sanity.io forward slash syntax to get double the free usage tier. Thanks so much to Sanity for sponsoring. Cool.
+
+50
+00:22:40,830 --> 00:22:50,430
+Scott Tolinski: So let's talk about willards back it up for a second here. Did that talk about backing up our backups? About backing up the backups? Can I say that anymore?
+
+51
+00:22:50,489 --> 00:22:51,510
+Wes Bos: Yes. Okay, this
+
+52
+00:22:51,510 --> 00:23:25,650
+Scott Tolinski: is an interesting topic to me. Because right now, guess what I don't do I don't do any sort of backup your backing. Backing up of my backups? Nope, I only have the raid. So all of my data lives inside of my household, which is a recipe for disaster. If there was a fire disaster of any time, you know, maybe both drives crashed at the same time. Anything that is beyond my control, I could lose every single video, except for the while I have I have all this stuff, I could lose all my project files, I have all of the everything else backed up on s3, but I don't have my drives backed up anywhere.
+
+53
+00:23:25,920 --> 00:24:02,880
+Wes Bos: Yeah, so there's a couple options you can have for this year, you really want a copy of your data on site and a copy of your data off site to prevent from fire and theft, things like that. And one thing I looked at was just you can get another Synology and slap a full of drives and put it at a friend's house or like maybe it's gotten I if I had decent internet, we could just say we could give each other a couple terabytes each. And this guy would back his up on mine. And I went back mine up on his and you can encrypt it. So like Scott wouldn't be able to go ahead and release my next course. So I like that,
+
+54
+00:24:02,910 --> 00:24:15,240
+Scott Tolinski: which I would and I would I would actually just here's what I would do. I would Photoshop in the video my face on top of yours, and then run into some vocal modifications. And then that's my next course. What do you mean your next course,
+
+55
+00:24:15,600 --> 00:25:04,620
+Wes Bos: I'll take yours. Hey, what's up? This is Wes Bos from level up tutorials. Oh, that would be great. So that's an option. My option that I went with is you can there's two apps on the Synology that will allow you to sync your data. I'm using one called Cloud Sync. And then there's also another one that allows you to just straight up mirror your data from one to another. So the same quote what the sync will do is if your data changes on either side, it's kind of like Dropbox, it will sync with the other side. And then the other the mirroring one will just straight up mirror it and then you can hook up these apps to anywhere that will give you disk space. They have things for all Amazon SEO Yes, Amazon glacier, which is there, I think it's tape backup
+
+56
+00:25:04,620 --> 00:25:05,280
+Unknown: crazy.
+
+57
+00:25:05,310 --> 00:25:09,540
+Wes Bos: Have you ever looked into tape, I watched a video on how tape storage works.
+
+58
+00:25:09,750 --> 00:25:15,720
+Scott Tolinski: I know how tape storage works just from a music sense, because a lot of stuff is backed up to tape in the audio world, but
+
+59
+00:25:15,750 --> 00:26:24,870
+Wes Bos: Okay, yeah, man tape is cool. But I'm not backed up to tape because glacier is like that it's slow. And I think if you want lots of data, it's very expensive to get off. So what I opted to do is to use backblaze, b two, which is some of the cheapest raw data storage that you can possibly get. And I take the volume on my Synology, that I think is just under a terabyte of videos that I have all the project files and everything. And then I just mirrored that to backblaze b two. And then the way that it works is that you pay for data transfer into backblaze. b two, I think you pay for getting it out. And then the big cost is you pay for it just sitting on their servers. So one terabyte of sitting data is five bucks a month. So it comes down to every hundred gigs that you want to put on backblaze to just have it sit there is five bucks. But the kind of cool thing about backblaze is if you ever do need to get that data, you can obviously download it from them, but they'll also send you like a hard drive, or they'll send you like a NAS if you have, like 20 terabytes.
+
+60
+00:26:25,110 --> 00:26:26,310
+Unknown: Yeah, I didn't know that.
+
+61
+00:26:26,340 --> 00:27:30,780
+Wes Bos: Yeah, it's it's pretty cool. So if you ever like, in some cases, if you've got a lot of data, the fastest way to move that data is by a truck or a plane, and they'll ship it to you. So it's pretty cool. I'm, I'm doing five bucks a month to, to backup every single thing that is important to me on the backblaze v2, it did just stop, which makes me worried. So I have to look into that. And I did have an an earlier issue where I was playing with the there's two Gigabit Ethernet ports on the back and I was trying to like bridge them on to different ISP to make faster upload. And I think I did something goofy during that it just stopped Oh, no, I just I just read it. And the whole thing. It took me like, I don't know, maybe two or three weeks to upload all the data. But once that was done, then I know that I have a copy of everything on backblaze v2, and I'm really big on backup being passive. You shouldn't have to remember to back anything up, oh, you should just be able to drop it on a drive and the processes will do their thing and back them up for you.
+
+62
+00:27:31,200 --> 00:28:05,850
+Scott Tolinski: Yeah, because if you are the bottleneck there, it's not going to get done. Totally. Yeah, I know myself well enough to know that like, even though I'm very cognizant of this stuff, if I don't make it a process, it's not going to get done. I actually I take an automating as many things as possible in my life approach to everything in life, whether that's personal finances, or whatever, you know, automate deposits into savings accounts, automate, obviously, all your retirement stuff, automate all your bills paid, automate any of that stuff that you possibly can, because you're gonna forget about it.
+
+63
+00:28:06,120 --> 00:28:54,810
+Wes Bos: One other thing I should say is a lot of people say like, why did you spend almost $1,000 on this, when you probably could have just uploaded this to backblaze, for five bucks a month, like $1,000, five bucks a month, I would have got 200 months. That's one and a half years worth, right. So I guess once you pass one and a half years, the thing pays for itself. And also, I need my stuff locally. Because if I ever need to work on something, I need it really quickly. And if I need to download, like my last course, I think was 300 gigs of video files. If I need to do that I need it on my computer as fast as possible. And I've got wired Gigabit Ethernet locally here, I can have that on my hard drive in a couple minutes versus downloading that my internet is not that fast, I wouldn't be able to download it that quickly.
+
+64
+00:28:55,110 --> 00:30:04,710
+Scott Tolinski: Yeah, now, having everything locally accessible is a big deal. I also like it because it's in your house. It's your it's your data, it's your stuff, it lives in your house, not on somebody else's computer. You don't have to worry about anything, if backblaze goes bankrupt tomorrow, and all of a sudden your data is gone. Or they suffer some sort of catastrophe. You have still at the end of the day, some hard drives in your living room, or wherever you keep this thing, you know, got to keep mine in my living room. But no, I really agree with that. I think these things are very important not to mention, your data is worth the cost to back it up, especially if your data is important. If you're doing the types of things that we're doing where you know, your whole business or whatever relies on these things. It's important. And I know many small businesses and most small businesses do require some sort of a network storage for collaboration amongst documents and all sorts of other things. And then we get into a second. I think these apps are a killer feature of this thing, as well, because a lot of these apps and this really replace functionality of many cloud services that you've come to use, and maybe feel a little bit irked about some of the privacy things going on with these cloud companies in 2020.
+
+65
+00:30:05,100 --> 00:30:51,930
+Wes Bos: Yeah, you can run your own cloud services, pretty much on all of these things. There's always a self hosted version. Now, that obviously takes a lot more work to self host it, but it certainly is an option and having a Synology. I bought it as a backup thing. And I was surprised at how happy I was at all of the apps that you could put on it, because it's fantastic. It's like having a laptop that never accidentally gets closed. Like I did run a home server on like old MacBook for a while. And it was hooked up to our TV. But every now and then the kids will kick the power cord on it, and it would die. And you have to like, open the thing again, and sometimes it needed updates and things like that. So it's so much easier running it on the Synology NAS.
+
+66
+00:30:52,050 --> 00:30:52,920
+Unknown: Yeah, totally.
+
+67
+00:30:52,920 --> 00:30:55,140
+Wes Bos: So what apps do you use?
+
+68
+00:30:55,470 --> 00:31:02,010
+Scott Tolinski: So I use a lot of apps. Do you want to get the first one? Or do you want me because I have the second one here that I really like that you might not know about?
+
+69
+00:31:02,520 --> 00:31:16,260
+Wes Bos: Okay, the two apps that I use a lot are Plex and MB. And I actually ended up going I've talked about this before I ended up going full on MB. Oh, yeah, Plex is Plex, and MB are like home.
+
+70
+00:31:16,610 --> 00:31:19,620
+Scott Tolinski: I don't know, how do you describe them? Home media solutions?
+
+71
+00:31:19,650 --> 00:33:09,720
+Wes Bos: Yeah, how many solutions. So essentially, you've got all of these movies that you've ripped from your DVD collection, and put onto your computer Plex will take all of those movies and give you a nice interface, as well as you can view them anywhere in the world, just from your home server. So like I have a whole bunch of kids shows on ours. And I can open up the Plex or the MB app on my phone, when I'm at my parents and Chromecast it to my parents TV for my kids. And that's awesome. Because frickin Netflix takes off the shows that my kids like because of some licensing thing. And then the kids are like, Well, where's the show, but if you have it on your own server, you know that data is not going anywhere, you can just play it directly from your thing, you obviously have to have a fast upload speed and unlimited bandwidth to do that, but I've got 10 megabit up, and it's never been an issue for me. Yeah, and they also transcode. So MB is like Plex, except it also does live TV. So you can pipe in either what's called the HD homerun which will take us which will take an antenna signal. Or you can pipe in what's called IPTV, which is like a digital list of live TV channels. And then you can get guides that will show you what channels are on when. And then just like TiVo or something like that you can record shows in the future and record all of a series. And then MB or plaques, both of them will automatically put those into folders and download album art and figure out the characters in the show and give you descriptions of each of the show. And it's so cool to be able to do that. And I never had a TiVo before. This is kind of the first time I've had something like this. And I'm a big fan of that.
+
+72
+00:33:10,110 --> 00:33:59,100
+Scott Tolinski: Yeah, I think these things are fantastic. Because again, the you're owning the information essentially on your, your storage, you're not requiring any sort of service. And again, I use Plex, myself, I like that I can dump a bunch of media in there. I'm a collector of old kung fu movies, many of which are impossible to get. So I have like a collection of a Neato 200 some kung fu movies, and wow, it's does a fantastic job of pulling in all the artwork, and sometimes it goofs up and you got to tell it whatever. I have an extensive also an extensive collection of B boy or breakdancing DVDs that I've acquired through many small competitions that I showed up, I have a whole bunch of stuff, actually, one of which I'm on. Yeah, and I want to keep all that stuff nice in a place where I can look and watch it anytime. Because who has a DVD player handy anymore? I don't even have an optical CD drive anywhere handy that I don't
+
+73
+00:33:59,130 --> 00:33:59,910
+Wes Bos: I don't either.
+
+74
+00:34:00,060 --> 00:34:14,460
+Scott Tolinski: I have one external that I can plug in if I want to rip something. But to be honest, I don't really have anything super available. One app that I've really come to really appreciate recently is this storage analyzer. Have you seen this?
+
+75
+00:34:14,690 --> 00:34:19,500
+Wes Bos: No. What is it was this late night TV shows host Scott.
+
+76
+00:34:19,710 --> 00:35:36,380
+Scott Tolinski: So storage analyzer its name suggests exactly what it is it allows you to analyze the storage of any of your volumes. And the cool thing is you generate these reports and you can generate reports on a schedule. So you can say, hey, go ahead and generate this report every single day, first thing and then save the report to a specific thing. And these reports are sort of like you could imagine like with Daisy disk or something where it's telling you really like what your files are, where your files are living, how much storage they're taking up. And one of the cooler things for me is that I know I have a whole bunch of files that I've just collected over the years on various drives, right? I've had several different computers whatever Chances are, I don't want to overshoot this number too much. But I would say maybe 30% of my files on my NAS are probably duplicate files in some sort of way, right? Maybe it's a video that's been uploaded twice or something. And that's a ton of redundant space. And if you're paying for backups and backblaze, or something that's a bunch of wasted money, so it can also analyze for duplicate files. And I find that to be super duper, duper handy. I've also ran a Linux utility before for finding duplicate files. But this was a little bit nicer. I think. They said, yeah, this is a really cool app. This is made by Plex or made by Synology.
+
+77
+00:35:36,749 --> 00:35:49,290
+Wes Bos: Cool. Yeah, the Synology apps that they ship are really good, which is pretty cool. You know, what else is really good? Scott backblaze makes sure all of your backups are fresh, right? It's got it does,
+
+78
+00:35:49,499 --> 00:37:20,580
+Scott Tolinski: we recommend that you check out the other fresh service that we love over here at syntaxin being a fresh books. Now fresh books is not a NAS and it's not a network area storage drive. But what it is, is a cloud accounting software. And if you run any sort of small business, which we know a lot of you do, whether or not your freelancers or your developer for a small business, have a few people or even you know a decent sized agency, you probably have books, you probably have invoices to send you probably have accounting to do and let's face it, who really likes doing accounting? We're developers, we're not accountants, I worked as an accountant for one year, let me tell you don't love it. So if you want to have easy accounting, you're gonna want to check out freshbooks.com because they work with everything that you could possibly utilize already. We're talking stripe, we're talking gussto. We're talking Shopify, we're talking about Google G Suite, all those things that you already use within your workflows. And not to mention, there's a whole host of amazing features that come along with Freshbooks that we talked about just about every single ad rate. So that includes time tracking, expense tracking, payments, reporting, notifications for invoices, all sorts of stuff, you're going to want to check out fresh books@freshbooks.com forward slash syntax, and then tear syntax, and how did you hear about us in the whole getting started business. So check out fresh books, we're big, big fans of this cloud accounting software over here on the podcast,
+
+79
+00:37:20,850 --> 00:38:10,530
+Wes Bos: beautiful, nothing you can run on your Synology NASS is Docker. So Docker is it's really nice to be able to do that. Because obviously, the NAS itself is a Linux server, where you can run anything you want. But if you want to run a couple different applications, it's probably better to put them in their own container. So that first of all, they they can't talk to each other. That's a big security thing. But also, it's really easy to blow away things or restart a certain Docker image and things like that, or assign a certain port to an image. It's really neat. And there are tons of different Docker images for all kinds of different application. In fact, I think a lot of the apps that are in the Synology App Store are just Docker images under the hood, which is pretty cool.
+
+80
+00:38:10,880 --> 00:38:38,130
+Scott Tolinski: Yeah. And along with that, you can run and install Node j s on here, Hey, you got a node app, you want to run, install the node app, throw it up on a port and get that thing up and running. And all of a sudden, BINGO, BINGO, you have your own locally accessible application, maybe you're building some like home utility. Maybe you have like a Raspberry Pi, and you want to build an app that talks to it. Maybe Yeah, like home automation tablets that are up around the house or something. You can have your own application running on your own server,
+
+81
+00:38:38,150 --> 00:38:41,760
+Wes Bos: you could put a database on there to save, like home stuff,
+
+82
+00:38:41,760 --> 00:38:43,560
+Scott Tolinski: you can put a database. Yeah.
+
+83
+00:38:44,100 --> 00:39:16,110
+Wes Bos: So there's this thing called Doku Doku, which is a Docker based clone of Heroku. And I tried getting this running on digitalocean A while ago, and I couldn't for the life of me figure out how to make it work like just nicely. But maybe I'll give it another shot. Because I would sometimes I just want to host silly little apps that aren't for the entire world but or just internally for me or for a couple friends. If that's the case, and you could this thing could be a little web server for you. Yeah,
+
+84
+00:39:16,130 --> 00:39:23,040
+Scott Tolinski: I think that the possibilities are so endless and I haven't done anything with that other than their apps. I'm so excited to try out some more of this stuff.
+
+85
+00:39:23,609 --> 00:39:49,980
+Wes Bos: One kind of cool thing I learned from you is that they have a security camera software, which is cool because you can buy any IP camera including the wise cams that we like. And you can put them in rtsp mode, which is real time streaming protocol, and any camera that supports rtsp which is almost all of them except for your like custom nest ones or twice out of the box without their
+
+86
+00:39:49,980 --> 00:39:51,170
+Unknown: custom firmware.
+
+87
+00:39:51,209 --> 00:40:18,690
+Wes Bos: Yeah, why is that a box won't do it but you can flash it with the rtsp firmware. And then you could just hook it up. I used it myself. I flashed a wise cam and set this up, and you can record unlimited. I've got like friggin how many terabytes of space you could record, like a wise camera on 32 gigs will record for an entire week. So imagine how much a terabyte you can record for. Yeah, long time you try this out as well.
+
+88
+00:40:19,440 --> 00:40:44,630
+Scott Tolinski: I have not tried it out, I have it installed. I have it sitting there is one of those things on my to do list. And once I got I mean, I got so far into I got the y's cam running rtsp mode, I thought this was like, I thought it was gonna be really cool and easy. And I just never did the Synology part of it. So I'm gonna have to set it up the Synology because I have the the camera running and it would be really super cool to have a neat little, you know, home security system doing that. But no, I haven't done that.
+
+89
+00:40:44,880 --> 00:41:21,210
+Wes Bos: Yeah, it's expensive. Yep. I think they give you one camera or two cameras for free. And then you have to pay. Let's look it up. Because this is this is kind of cool. But this is the solution to people who are scared to put cameras in their house, because you are exposing them to the internet. Yep. So if you want to have IP cameras, but only available on your local network, that's the sort of the solution is it's called surveillance station. And there's also another one that you can run on there. And it's called Blue Iris, which seems to be a lot cheaper. I have not yet tried it out yet myself though.
+
+90
+00:41:21,210 --> 00:41:29,010
+Scott Tolinski: Yeah, I wonder if maybe we should do a comparison. Blue Iris verse. Surveillance station.
+
+91
+00:41:29,630 --> 00:41:42,030
+Wes Bos: It's cool because they have like iPhone apps. Synology has iPhone apps for their surveillance cameras they have Android or for like they have a moments app that's like a Google Photos replacement.
+
+92
+00:41:42,060 --> 00:42:00,300
+Scott Tolinski: Yeah, can I talk about those for a bit because I don't use those. I use the moments app and the drive apps. And let me tell you, they're great, they do a good job of taking up that functionality. The moments app, I mean, by no means is it as good as Google Photos. But it's done really, really good for what you'd expect it to be.
+
+93
+00:42:00,440 --> 00:42:11,670
+Wes Bos: It's way better than I thought it would be. You can search, it does machine learning on your thing. So you can search for flower, snow snowboarding, and it will find it if you do face tagging.
+
+94
+00:42:11,880 --> 00:43:32,010
+Scott Tolinski: Yeah, and it mean they totally ripped off Google Photos. So it's not like you're having to learn some sort of interface here. But you can also have it save every photo that you take on your phone to automatically upload to your NASS automatically upload in your moments, you can do all sorts of sharing options, just like you do with Google Photos. And so if you're the type of person who's like, I don't want Google to have every single photo I take of my family and whatever and use it for their algorithms, you can set up your own moment system on this, it's going to be really nice. And likewise with that, you also have the ability to do the same thing with folders all on Google Drive. And this one ripped off Google Drive so much that they even called a drive, which is fun. And it's just as good, you can set the same sort of backup and sync functionality that you have with Google Drive on your desktop. Yeah, you can have like a Synology Drive folder on your computer that automatically backs up or is available in the cloud. I use this for sharing all my files with my video editor. As opposed to paying for that storage space on Dropbox or something. What I do is I basically just say, Hey, here's the folder, I shared with him. And I say this folder is only available via URL. You know, it's publicly accessible via this URL, but you know, only those of you who have the URL can access it. And then just like any sort of Google Drive shared link or Dropbox, shared link, they can access that stuff. And it's not living on anybody else's servers at the end of the day. It's all mine.
+
+95
+00:43:32,400 --> 00:43:42,480
+Wes Bos: Yeah, that's beautiful. So I'm just looking at license first Synology surveillance station is about 50 bucks a camera. Wow. So
+
+96
+00:43:42,510 --> 00:43:43,980
+Scott Tolinski: that is a one time payment.
+
+97
+00:43:44,160 --> 00:43:58,170
+Wes Bos: It looks like it's one time payment for them blue Iris seems yearly. And I think you get unlimited cameras. I can't find it on their website, which is like that's the one thing that people want to be able to use right? Mm hmm.
+
+98
+00:43:58,170 --> 00:44:21,450
+Scott Tolinski: I found that this home defense right it and a post called us opinion on Synology vers blue Iris and their most uploaded one it says I was definitely go with blue Iris. But then they link to a site called IP cam talk. And it says that you will find some strong opinions on that here. So that might be a good place to at least dive into a little bit more the
+
+99
+00:44:21,600 --> 00:45:23,640
+Wes Bos: looks like blue Iris is about 100 bucks a year and you get up to 64 cameras. So I think either way, like I think about like my ring camera. I think ring camera is three bucks a month per camera. So that's 36 bucks a year. And then the ring doesn't even allow you it doesn't constantly record. So if you want to like look back at a certain point in time, then you're poached. The wise cams are totally free and you can put an SD card in which is cool, but but then you open it up to the internet, which they did have a security issue a couple of weeks ago so it's not that expensive. If you want to run your own Show, which is pretty cool. Yeah, certainly anyway, I even look at Costco. And like Costco has these like old AV cams, and like they have this like box at the cameras go into. And those things are a couple hundred bucks as well. And I look at him like, come on, you could go buy a IP camera and run this thing on a Synology instead of like this, like random box that is proprietary.
+
+100
+00:45:23,789 --> 00:45:25,830
+Scott Tolinski: Totally. Yeah, yeah, I know.
+
+101
+00:45:26,189 --> 00:45:27,450
+Wes Bos: I like this one. It's fun.
+
+102
+00:45:27,809 --> 00:46:34,290
+Scott Tolinski: I'm interested, I'm really interested in this stuff, you know, especially because I feel like I have this thing. And it's so capable of doing so many things. And I feel like I'm only scratching the surface of how capable it actually is. So I think to me, this is particularly fascinating just because of those aspects. One fun thing is that the Synology, if you're getting a NAS drive, okay, so we're talking a lot about Synology. Here, the Synology, they're definitely a little bit more expensive. But if you're getting a NAS drive, and you want to be doing any sort of this kind of stuff, you're gonna want to make sure it's at least powerful enough to do it. Because not all NAS drives are created equal in that regard. For instance, I my previous NAS drive functioned very appropriately as a network area storage, I could drag files on it, I could back them up, I could do all sorts of stuff. But the moment I wanted to do anything, any kind of heavy lifting, running servers, running apps, anything like that the whole thing just came to a crashing down because it wasn't made for that. I mean, you could there is a whole marketplace where you could install Plex on it. But guess what Plex requires processing and RAM to process the transcode the video, right? If you want to Chromecast or do
+
+103
+00:46:34,409 --> 00:46:36,090
+Wes Bos: yeah, if you want 4k streaming,
+
+104
+00:46:36,269 --> 00:47:03,360
+Scott Tolinski: yeah, you want to stream you want to do anything like that the NAS it needs to be able to be powerful enough to do it. And so I had this whole library of movies that I wanted to watch. And then half of them wouldn't work because they needed to be transcoded to work. And the NAS was just sort of like, Hey, I can't do it. I'm not I'm not a powerful enough computer, I'm not a, you know, beefy enough, you know, processor to take care of that. So it's something to keep in mind when you're looking at these different products.
+
+105
+00:47:03,599 --> 00:49:39,810
+Wes Bos: Other one that I tried is this thing called piehole, which is a it's meant to be run on a Raspberry Pi. And it's a custom DNS server. So real quick how DNS works is that when you go to a website, like Wes bos.com, a DNS server will line up Wes Bos calm with the IP address of the server that actually runs West boss calm. And that's that's what people mean when they say DNS propagation, because when you change the name servers on a domain name, they need to propagate through everybody who offers the DNS service. So Google offers one CloudFlare offers one, your ISP will offer one by default, if you don't set any custom ones. And what's cool about this is that you can run your own DNS server in front of an existing one. And you can use that to do ad blocking. So the piehole will run on a Raspberry Pi, or you could just, it's just a, it's just a Linux application. So you can just run it on a, I ran it on my Synology. And then you set your DNS of either your router, if you want your entire house to be done like this, or on the device by device. So you put it on your TV or on your phone or your computer. And then what will happen is it will first talk to piehole. And say is this an ad request, because they know they have known lists of IP addresses that are used for serving ads, and it will just block it at the DNS level. So it will never resolve in the browser and, and how that's better than an ad blocker is that if you have ads on your TV, or you have ads on your phone, or your inside of an iOS app that has like one of those annoying pop up ads, all of those will be blocked in the app itself, which is pretty cool. And then if it's not blocked, it will just pass it along to your custom DNS. So I have use CloudFlare one dot one dot one dot one, have you had any issues. So I was having issues, I think I went a little heavy handed with the block list. So you have to compile your own list of blocks. And there's these popular lists out there. And I added, I think I just used the recommended ones or something like that. And it was a little too heavy handed, where it was blocking stuff that it actually needed. So I think most people say just like go easy on it. And I just turned it off. And I just use ad blocker and my thing and it's kind of annoying when you're in apps. And certainly it's more than just blocking ads. It's privacy and tracking as well. How hard was it all to set up?
+
+106
+00:49:39,839 --> 00:49:41,670
+Scott Tolinski: was it was it a pain to set up?
+
+107
+00:49:41,819 --> 00:50:49,590
+Wes Bos: Yes. Yeah, it was like there's a Docker image for it. And that didn't work. And there are no sorry, I did use the Docker image. But there's there's like a blog post that I found. And it took me about an hour. I think if I read it more carefully, it would have been quicker, but I I sort of skim Over being like, I know what I'm doing. And then I was really frustrated with it. But I was pretty cool. I would probably try it out and stall it, I still have it running. I'm just not using it. So there's also another one that Synology offers is called custom DNS server. And that will work just as well. It just I don't think it gives you stats like piehole does, though. And piehole gives you a whole web interface where you can you can allow things and block things and set timers and things like that, which is cool. I'm very fascinated by I haven't not dove into any of this stuff. I'm gonna have to start watching some YouTube. Yeah, it's fun like some sometimes on like a Friday afternoon I'll like finish something about noon. I was like, Alright, I'm gonna do something fun this afternoon. What is it gonna be? and fun for me is installing piehole on my total. Yeah. We're gonna
+
+108
+00:50:49,590 --> 00:50:55,320
+Scott Tolinski: have Yeah, it's it's an piehole game. Am I trippin or is that that's cornhole? That'd be fun if pi,
+
+109
+00:50:55,320 --> 00:50:58,170
+Wes Bos: the cornhole close all high
+
+110
+00:50:58,170 --> 00:51:01,200
+Unknown: in the face. Cornel body in the face? Yeah.
+
+111
+00:51:01,560 --> 00:51:16,830
+Wes Bos: Yeah. piehole is just a thing that runs I was about ready to, to buy all the Raspberry Pi stuff, because you can get it done for about 30 bucks. But then I was like, Oh, this is just a Linux thing. I could just run this on my Synology.
+
+112
+00:51:17,160 --> 00:51:25,260
+Scott Tolinski: That's the whole thing about Synology. I saw like, there's a one click Install for discourse. You know, you could install any of the stuff that you can install on a server,
+
+113
+00:51:25,590 --> 00:51:27,270
+Wes Bos: you could host your own discourse,
+
+114
+00:51:27,360 --> 00:52:09,840
+Scott Tolinski: right host your own discourse, host your own anything, you could do that. It's really interesting and fascinating to me. I really interested to hear from our audience. Because I know a lot of a lot of you have nazz storage, Nas storage, and storage, a redundant whatever. I know a lot of you have network area storage drives. So I want to hear what you're doing with them. Some of the fascinating stuff that we haven't touched on or we're not doing. I want to get inspired here. So hit us up at us up on Twitter at syntax FM let us know what you are doing with your network area storage. And if there's any cool mods, anybody put some underglow on there, anything like that? I want to see it some spoilers, whatever your vehicles are. Yeah, I want to see it.
+
+115
+00:52:09,960 --> 00:52:39,240
+Wes Bos: Yeah, that I Twitter was so helpful in all of this stuff. Because I had no, aside from knowing that you had the Hatice analogy. I didn't know which one, I just asked on Twitter, like I need something to back it up. And people were so helpful with App recommendations and hardware recommendations. And I was like, This is great. And I just drove right to the store and went and bought one. Yeah. And I've been I've been I've had it for I don't three, three months so far. And I've, I've been so happy with it.
+
+116
+00:52:39,360 --> 00:53:11,550
+Scott Tolinski: Yeah, fantastic. And if you're on the fence of this type of thing, in my opinion, they are well worth the cost, like there is an entry fee to this kind of thing. But if you have any sort of data that you need backed up, this is such a good solution for that. And if the difference is a couple hundred bucks in my mind, it's worth saving up that extra couple hundred bucks to get the Synology verse, maybe a cheaper one as somebody who had the cheaper one, and then had to try to sell it later on and stuff like that. It was not worth it to go with the cheaper option.
+
+117
+00:53:11,910 --> 00:53:54,990
+Wes Bos: Oh, one more thing is they sell expansion drives that you can just hook up via one of the ports in the back which port it what's it called Ethernet. It's called a eSATA port is dead. Yeah. So you can get the like to drive one and just get up and running. Because like most people are not gonna have as much video as us. But like the two port one will be fine in almost all cases. Totally. And then that's 400 Canadian right now, which is probably like 353 25 American. And then you can if you really need to expand in the future, you can just buy the expansion thing and dad plug it in, slap it full of drive, you're good to go. Just start slapping drives in there. Yeah,
+
+118
+00:53:54,990 --> 00:53:57,810
+Scott Tolinski: you get the 10 drive one or whatever they have. Yeah, they
+
+119
+00:53:57,810 --> 00:54:01,860
+Wes Bos: have some really big ones. All right, uh, anything else to add?
+
+120
+00:54:02,130 --> 00:54:08,070
+Scott Tolinski: I don't think so. Yeah, no, I can. I'm just curious to see what kind of mods people are doing here. I'm fascinated by this stuff. It's all really interesting.
+
+121
+00:54:08,340 --> 00:54:14,820
+Wes Bos: Cool. All right. Let us know. Tweet us at syntax FM. We would love to hear your Synology and NAS tips. Oh,
+
+122
+00:54:15,210 --> 00:54:56,550
+Scott Tolinski: yeah. NASS tips. Cool. So now is the time in the show in which we talk about our sick pics, which are going to be things that we find to be sick, like totally sick, like superduper sick stuff that we really, really like. Now, I have something that's a little interesting today. Unfortunately, it's gender specific here. However, I will say I was never sold on the brand Lulu lemon because they have that whole controversy where the pants were too thin the materials too thin, right? And there was like some quality issues. But then I listened to the how I built this on Lulu lemon and it was like really fascinating to me. That the the way they created the company and Courtney for Christmas.
+
+123
+00:54:56,550 --> 00:55:00,450
+Wes Bos: They're Canadian. is a Canadian. Yeah, that's a Canadian. company.
+
+124
+00:55:00,690 --> 00:55:21,840
+Scott Tolinski: So Courtney got me these athletic pants. They're like jogger pants. Let me pull them up here. And they are the single best pair of pants I've ever owned. I'm gonna say that I absolutely love these things. I can't You can't get them off me. I'm just, I absolutely love these pants. They're just slim. Where are these? Whatever. Let me find these ones.
+
+125
+00:55:22,140 --> 00:55:29,220
+Wes Bos: While you're finding those. I'm can't wait to tell kailyn because we always rip on guys who were Lulu. Let me tell you about this.
+
+126
+00:55:30,030 --> 00:56:21,150
+Scott Tolinski: This is this is my first pair of blue lemon anything because Courtney's had a bunch of she's got shorts, she's got the pants and she loves it all. And the quality for her is really kept up. I don't I like that was one of the things is the stuffs expensive, and for her, but the quality really, really, really kept up for her. So, gosh, they have a lot of pants on here. Um, so she knew that at least that I would like it. So I I got these pants. They're stretchy. They look nice. I do my stretches in them. I do my workouts in them. Um, I can like I like really want to wear them to breaking practice, but I know I don't want to destroy them. So I absolutely love these things. They are my sick pic. If you did not know that they make excellent men's clothes as well. The quality is pretty darn amazing. So I'm pretty happy with them.
+
+127
+00:56:21,450 --> 00:56:38,070
+Wes Bos: That's cool. I so my wife went to school for fashion and Canadian fashion. So a lot of her friends went to work at Lulu lemon and there's another another one arcteryx you ever heard of arcteryx? They make like nice outdoor gear. Yeah, this is
+
+128
+00:56:38,100 --> 00:56:46,980
+Scott Tolinski: I know the logo. It's like a dinosaur bird thing. Yeah, yeah. Totally. died. a pterodactyl skeleton dinosaur bird. Whatever.
+
+129
+00:56:47,190 --> 00:56:57,750
+Wes Bos: Dinosaur bird. Yeah, that's a it's a cool company. I've never bought any Lulu for myself, though. Didn't didn't want to venture down that. I know. I know.
+
+130
+00:56:57,810 --> 00:57:01,950
+Scott Tolinski: I was I was really impressed. I let's just say that. I'm very impressed. I'm sold.
+
+131
+00:57:03,180 --> 00:57:23,820
+Wes Bos: Um, I don't have a sick pick. Why do my sick pick is the NASS station that we're talking about today. I don't have anything else. New or interesting that I thought of lately, but big fan of this this NASS station. So check it out the ds 19. Or I'll link the smaller one as well. In case you're interested just dipping your toes into NASA land,
+
+132
+00:57:24,120 --> 00:58:26,100
+Scott Tolinski: NASA and cool. So now is the part of the show where we do shameless plugs, we shamelessly plug some stuff, we get a little bit silly. Here, I'm gonna shamelessly plug my latest course on level up tutorials. It's called How to build a graph qL API. And a lot of the times you get these graph qL courses or, you know, you get these Apollo courses. The ones that I've done personally are ones that you see around, and they teach you the magic of graph QL. But they maybe use an existing API or something, something just already exists. And this course is designed to really focus on the server side aspects of creating a graph qL API specifically, all we do in the course, is get a graph qL API up and running with a database. And we talk about maybe creating a static API, we talk about mutations and schemas and subscriptions and all that stuff that you need to know to build the API itself, and we stay away from the front end. So it's a pretty darn cool course. It's heavily focused. And we use Apollo server really, really awesome stuff. So level up tutorials.com forward slash Pro.
+
+133
+00:58:26,550 --> 00:59:10,440
+Wes Bos: Beautiful is sick pick all of my courses. Wes Bos comm forward slash courses, you can grab my new beginner JavaScript course or any of the existing ones, the advanced react and graph qL is currently being recorded. I'm just waiting on a couple things like I want to record it, but Apollo client three is not out yet. And I'm hoping suspense will be released, but maybe not. There's a couple like things that are not totally finished just yet. And I can't release it until we're trying to get the Apollo dev tools to work in Firefox again. So I can use Firefox in the course. So there's a couple little things that that need to be done. But that one will be recorded listener deep pretty soon. Yeah. All right, and use coupon code syntax for 10 bucks off and that is it.
+
+134
+00:59:10,710 --> 00:59:11,520
+Unknown: Cool. Well, we
+
+135
+00:59:11,520 --> 00:59:14,400
+Scott Tolinski: will catch you on Monday.
+
+136
+00:59:15,149 --> 00:59:16,470
+Unknown: face, please.
+
+137
+00:59:18,390 --> 00:59:28,170
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
