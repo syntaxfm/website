@@ -1,0 +1,176 @@
+1
+00:00:00,359 --> 00:00:24,450
+Announcer: Monday, Monday, Monday, open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob and Scott Tolinksi ski.
+
+2
+00:00:25,950 --> 00:01:26,730
+Scott Tolinski: Oh, welcome to syntax. It's that time again for a another Monday heastie treat the syntax episode where we like to take things, maybe a little bit smaller chunks and talk about them for anywhere from you know, 22 to maybe like 26.5 minutes or something like that. But we take these small topics, and we break them down. And in this episode, we're going to be continuing the we did in the part one of last week, which was talking all about old browsers polyfills and fallbacks. And that said, we're going to continue that talk. And we're going to be talking a little bit more about CSS features, because CSS has evolved in all sorts of ways that we all know have made our lives so much easier. But not all of these ways have great fallbacks not all of them have just have a one liner that you can just drop in and have your code working. So we're going to be talking about various CSS Grid Flexbox. Other new features fallbacks old browser support and what you need to know about that. So my name is Scott Tolinksi. I'm a full stack developer from Denver, Colorado. And with me, as always, is Wes Bos.
+
+3
+00:01:27,090 --> 00:02:53,010
+Wes Bos: Hello, everybody. Today, we are sponsored by view school and view school is a awesome, they sponsored a couple times before but and that's when they had the Vue JS masterclass. They since transitioned into doing sort of a subscription where they have tons and tons of content all related to view, which I think is pretty cool. So you can get access to the entire catalogue, which has over 160 lessons, for only 12 bucks a month, new lessons are published every week, you can learn real world practices, proper form validation, advanced component pattern designs, all that kind of good stuff is from industry expert and core team members. So you can trust that the content is going to be good, if you are a syntax listener get the first month for only five bucks. And they also just mentioned to me that they are offering parody purchasing power discount boom, which is something that I rolled out a couple years ago and seems like almost every every course creator now is now doing that. And then what that is, is if you come from a country that doesn't have the purchasing power of something like Canada, or the US or UK or Europe or even parts of Europe, the the wages just aren't as high as they are over here in North America. So if that's the case, they offer a bit of a discount, depending on which country you are coming from. That's that's pretty cool of them. Check it out at view school.io forward slash syntax, and thanks so much to them for sponsoring sick.
+
+4
+00:02:53,040 --> 00:04:30,260
+Scott Tolinski: So let's get into it with talking about our browsers. What do we do with all these hot new features? And all these old crappy browsers? What What do we do about this? So I think the first thing that I want to talk about was a little bit about CSS Grid and Flexbox. So like with any of this stuff, the first thing I do is I open up a can I use? And so if you haven't ever done this, I highly recommend if you're at a computer, just pop open, can I use calm? And we mentioned this in the last episode, but it again, it's it's important to reiterate and we just Google in Can I use CSS Grid, okay. And if you look that up, it pops out to grid layout. Now, here is a table of everything that supports CSS Grid. Now, some of these are more important than others. And some of them have partial support and full support. And all that stuff. For instance, like a situation where support isn't even important is mobile browsers because well, chances are, you're not doing a whole lot of grid stuff. And maybe like the fallback is just that it falls into a single column in these mobile browsers. But for the most part, we see our support for CSS Grid, we got a green and edge as of 17, a green and Firefox as a 52. And 53. I'm sorry, edge headed at 16. Chrome has had it since version 57, which is a long time ago, Safari is headed since version 10.1. OPERS, had it since version 45. And so on and so forth with the big, you know, issue being Internet Explorer, as I feel like that sentence could have been said, anytime in web development history, except for after Yeah, Internet Explorer first came out.
+
+5
+00:04:30,360 --> 00:06:41,880
+Wes Bos: Yeah, I think it's kind of interesting. I get emails about this stuff all the time. And people are asking, like, Is there a polyfill for grid and or is there a something for for Flexbox? And the answer at the end of the day is not really because grid grid does so much crit is massive. There's so much that goes into grid. And same thing with Flexbox. There is nothing like a JavaScript library that you can just include on your page that will just recreate the ability to do that just because this is very low level and how the browser Actually renders these things out. That said, there are some little things you can do where if you have a very simple grid layout, you can try to recreate that in Flexbox, or recreate as close as you possibly can. In Flexbox. That certainly is an option. I think some of the the popular options for when you can't use Flexbox, or grid. So first of all, if you are supporting grid in an older browser, if that is IE, you can just use the old grid spec. So Microsoft was actually on the forefront of trying to push grid forward and get it into the browser. And there was a sort of an initial spec for grid that was totally abandoned. And it was under browser prefixes, which is what the point of browser prefixes are, because we're just testing it out and putting it into the browser to see if it will work. But it never worked out. But if you want to use grid and some of these older browsers, it's not the exact same grid. But if you use autoprefixer, it will try to convert as much as the possible new syntax to the old dash ms syntax. And that will give you pretty good support in in IE 10 in IE 11. But if you don't want that, or for some reason, are still supporting a browser that is older than iE 10. What are some of your options for supporting grid and supporting Flexbox? Some people say just serve the mobile layout to them. So like Scott said, just put a whole stack on there. You can just display block on all your content. I don't know if that's really a good good layout. Yeah. Especially like, it sounds good, because they're like, screw you for using our website. Yeah. But like, we have a business to run and you don't want to give a middle finger to everyone, especially if they're trying to China actually use the website and get information from it. Right? Yeah, I
+
+6
+00:06:41,970 --> 00:07:02,010
+Scott Tolinski: did. I think users are the enemy is like, it's an idea that I think can sometime perpetuate, right? It's like, dumb Internet Explorer users using their old Internet Explorer browsers are so dumb, but like, if they're using your thing, man, like, I don't know, for me, it's their users, not the enemy. So don't punish them for for no reason.
+
+7
+00:07:02,190 --> 00:08:41,580
+Wes Bos: Yeah. Another one is you can just code a separate layout that you'll eventually delete. So using CSS at supports, you can check if CSS Grid is supported, or you can if add supports isn't supported, which is kind of its own thing, you can use some JavaScript that detects which browser it is, you can have a separate layout that if it sometimes it's just like, maybe an extra 20 minutes to to get a layout working. It doesn't have to be perfect, but it can look close enough. And that's a separate layout that you code, maybe a code it up and floats, it looks pretty similar. And you can eventually delete that once you actually go ahead and drop it. At the end of the day. I always tell people, if you don't want to create an entirely separate layout, then just don't use these things until you are able to actually go ahead and support it. Because it seems in some cases, a little bit more more work than it's worth. Another thing I should say is, there's always this like question of does a website need to look exactly the same in every browser? I think there's even like one of those funny websites. Does website need to look? That's a long URL, find it? There we go. Yeah, the website is do websites need to look exactly the same in every browser.com? And the answer is always No. So you have all of these different targets, which are different browsers, you don't have to make it look exactly pixel perfect. In every single browser, every single device, all of our devices are different different capabilities. They have different screen sizes, and, and whatnot. So it doesn't need to look exactly the same, especially for someone who's is coming in on an older browser. They're probably used to the web not working exactly how they want it. It has to work. It just doesn't have to look a pixel perfect in every browser.
+
+8
+00:08:41,610 --> 00:09:41,220
+Scott Tolinski: Yeah. And so okay, you briefly mentioned using JavaScript to detect if at the port, yeah, doesn't work. So many times people think that is like, I should be using a code to determine whether or not this is Internet Explorer. If this isn't an explorer, I'm going to do X, Y, and Z. In fact, that's how it was done for a long time. I remember looking at style sheets, and there'd be a little comment, be like this is the Add IE six stuff. This is the Add IE seven stuff. But nowadays, and for a long time now we've had something called moderniser, which allows us to essentially add classes for feature flags essential is that what features are supported. So if you can't use add supports, and my recommendation there, instead of looking at what browser is, is supported, or what browser your users are using, look at what features their browsers load to have. So then you can have a dot Flexbox or whatever, and then use your Flexbox code inside of there. Rather than is not Explorer, Internet Explorer or whatever.
+
+9
+00:09:41,340 --> 00:11:34,890
+Wes Bos: Yeah, moderniser will append a class of like supports Flexbox or supports grid to the usually to the body or the HTML tag. And then you can you can write conditional CSS that will be only applied in those specific cases because like Scott says, that's that's a game that you will for sure lose is trying to chase down browsers because like, it's fine, you think, Oh, we got Safari, Firefox, Chrome and IE. But then you open up the world of her, when you look into all of the different mobile browsers which have, sometimes the user agents of them are being faked, because they don't want websites didn't intentionally block them. Which is funny though, when opera had its own engine, there was this massive list of JavaScript fixes that would intentionally trick browsers into thinking it was chrome or intentionally trick browsers into thinking it because what people would do is they would test to see if it was Chrome or Firefox. And if it was anything else, it would just block and say, Please use a different browser. Lots of bank websites did this. And opera was sad, because like we can support it just no one, no one knew about opera no one knew to test it in opera, or they didn't feel like supporting offer, even though it was really good. So they had this like huge JavaScript file that would intentionally trick websites into thinking they were Chrome or Firefox or that they had specific features. Even Firefox did that they they now support a lot of the dash WebKit browser prefixes because people were coding only in web prefixes. And then it wasn't working in the standard, which is why their browser prefixes are almost a thing of the past. Now, yeah, new features are always behind flags in browsers now. And then once they're done, they're done. And then they're released to the general public. So if you want to test it, you don't use a browser prefix anymore, you turn on a flag in your browser, I think there was like, it was a very, like frustrated time in web development,
+
+10
+00:11:34,890 --> 00:12:36,120
+Scott Tolinski: when you'd go to a Stack Overflow post or a tutorial. And they would only include the WebKit prefix in their solution. And I just wanted to be like, there are more browsers than WebKit browsers like remember, Paul Irish, this site, CSS three, please was allowed you to basically copy and paste all of the prefixes for any given CSS three property when it came out the site was an absolute lifesaver for me. But nowadays, we have things like autoprefixer, which this is a good argument for never not using autoprefixer. Because honestly, autoprefixer has taken some aspect of coding for me, which was browser prefixes, and turned it into an absolute non concern. And something I don't even think about ever. I just have autoprefixer thinking about it for me. And then now I've never ever ever writing another browser prefix. It doesn't show up in my code. So it's not as messy. If you're not using autoprefixer. in some regard in your CSS, you should be doing that. Absolutely.
+
+11
+00:12:36,149 --> 00:13:02,670
+Wes Bos: Let's talk about CSS variables. So this is another feature that is in CSS, how do you support something that like sometimes with JavaScript, and we're going to be talking about this in the next episode, you can polyfill something mean that you can you can make it work in older browsers. But often in CSS, you can't make these things work, just because it has to be added to the browser before you can use it. Although we should do an episode on CSS Houdini, have you been been looking into this at all seen
+
+12
+00:13:02,670 --> 00:13:03,390
+Scott Tolinski: the words?
+
+13
+00:13:04,139 --> 00:13:36,420
+Wes Bos: Yeah, it's like the ability. Real quick aside, CSS. Houdini is the ability to code your own CSS API with JavaScript and less sort of a Canvas API. And then you'd be able to be like, display Scott or display triangle, or you can create any anything in CSS. And then if it's not a natively supported feature, it will then look in your custom JavaScript, because you basically get access to the lower level paint API school in the browser is very well done. Well, maybe we'll build something and do an episode. I
+
+14
+00:13:36,420 --> 00:14:16,230
+Scott Tolinski: really liked this aspect of stylist that was one of like, the main reasons why I use stylist because because you'd have these transparent mix ins, which essentially just ended up being custom properties. Like I had a position, was it? No, I'd have a fixed property and fixed would automatically output position fixed, and then top and left or whatever, based on the values that I gave it. So I could just say, in my CSS, I could JS say fixed 00 and then do position fixed top zero left zero, it was like an awesome shorthand that I really missed about not using styles anymore. No, I do it with like a function instead of this component, or styled components, but having that as like a property with my own custom CSS Houdini JavaScript. Mom, I'm into that I'm very into that.
+
+15
+00:14:16,259 --> 00:14:29,220
+Wes Bos: Yeah. And And plus, you'd be able to do stuff that's not possible. Like it's not just syntax as well. It's It's the ability to code anything you want, obviously, slant, yeah, slant 40 degrees and or like,
+
+16
+00:14:29,399 --> 00:14:32,550
+Scott Tolinski: you know, your, your platform. So
+
+17
+00:14:33,000 --> 00:14:50,730
+Wes Bos: yes, you have full access to JavaScript be pretty cool. I can imagine somebody releasing, like, their own version of CSS that you code in. And as long as you include this Houdini script in your website, you can just code in that CSS, right? people complaining about CSS, no more. Make your own CSS. You can. Yeah, with Houdini.
+
+18
+00:14:50,760 --> 00:14:55,770
+Scott Tolinski: It's just like what like post CSS had the Canadian style sheets. You could have Canadian style sheets.
+
+19
+00:14:58,560 --> 00:16:03,570
+Wes Bos: That's Yeah, that was great. So next CSS variables, how do you deal with something that is totally unsupported? Like CSS variables. In this case, you do like what I like to call a double defined well defined, double defined. So you can either just use sass variables and not allow them to be changed. They aren't the same, yeah, they're not the same. Because a CSS variables can be changed in the browser, they can be changed with JavaScript. So if you were to change, like a color or a slider, or anything like that, it would automatically update in in the browser. Whereas with sass, it's done at compile time, and then you're out of luck. So it's not really a feature that you can take advantage of, until all of the browsers support it that you're targeting. But if you are doing it like something like grid, or Flexbox, you can do what's called a double define, where you simply just display block, and then you display grid, when the browser hits display block, it will be set, and then it will hit the next line over hit display grid. And if the browser supports grid, it will work. If it doesn't support grid, it will just puke that line up and move on to the next line. And you just fall back to that display block. Yeah,
+
+20
+00:16:03,840 --> 00:16:25,710
+Scott Tolinski: I use this in production. I use CSS variables in production, and I do so via the double define. It's not the greatest thing in the world to double define. I don't love that. But I love that when I don't have to worry about CSS variables being supported anymore, I can just remove any of my double defines. And then I'll have all the benefits of the CSS custom properties, which is I think that's the official name is custom properties.
+
+21
+00:16:25,740 --> 00:16:26,550
+Unknown: Yeah, yeah. I
+
+22
+00:16:26,550 --> 00:16:28,440
+Scott Tolinski: always want to call them variables, even though they're
+
+23
+00:16:28,590 --> 00:16:48,360
+Wes Bos: custom properties. custom properties. Yeah, we should do a little. We've done a couple episodes on CSS variables. But we should do like a hasty treat on like, Here's 10 cool things, you can do a CSS variable. Yeah. Because I would be seeing people come out with new use cases for them. I'd be very into them. Yeah. All right. Let's do it. I'll put on the list. Cool.
+
+24
+00:16:48,600 --> 00:17:58,470
+Scott Tolinski: Okay, so we did mention that we could have like a JavaScript callback, adding classes based on browser features and stuff like that. But we also briefly mentioned at supports. And so let's take some time to dive into add supports a little bit. So for those of you who don't know, add support is is the closest thing you could consider it as like a media query, right? We've all used media queries, where we've been able to define that that browser width, or I mean, defined CSS based on a browser width, well, at supports functions the exact same way where you have an app sign, then supports, and then you have the CSS properties. So for instance, if you wanted to check to see if the browser supports flex, or maybe, let's say grid, because we've been talking about grid, you could say app supports, and then the parentheses display colon grid. And then inside of there, it wraps around your CSS. So just like a media query, any CSS that you have inside of there is going to be processed in a browsers that support grid. And then there's also a nice little flag that says not. So if you want to target anything that doesn't support grid, you can say, app supports space, not space, parentheses, your properties, and then wrap that around just the immediate query, right?
+
+25
+00:17:58,770 --> 00:19:01,610
+Wes Bos: Yeah, it's, it's pretty helpful when you want to check in it goes in just in properties, like display grid, or you can go pretty deep like, transform style, preserve, or display table. So I'm just looking at the docks right here, if you want to check if if you're able to set a specific unit of something, if you want to use the new ch unit on something, you could add supports font size to ch and if it doesn't support it, it will just not go ahead and use it. You can chain them together using the and or or ones that you have, you can test for specific animations that you have. If it is prefix, you have to check for all of the different prefixed versions, but I imagine that something that you could automate real quickly with autoprefixer. And then finally, if you want to check for CSS variables, you can just say at supports dash dash name, or dash dash age colon 10. And that will check if you're able to set a variable and it will go ahead and use so it's kind of a weird because you have to wait until supports is in the browser.
+
+26
+00:19:01,770 --> 00:19:04,380
+Scott Tolinski: Which Guess who doesn't support supports?
+
+27
+00:19:04,529 --> 00:19:20,490
+Wes Bos: Yeah, ie doesn't support it, but it looks like pretty good support otherwise. So I think at this point, we're almost close to maybe we should have like a little a podcast to celebrate when iE 11 officially dies because I feel like we're gonna be flying. Once that happens.
+
+28
+00:19:20,550 --> 00:19:41,490
+Scott Tolinski: What is the usage percentage? I remember there was a website that we used to just like I all the time for when it was IE sevens time to go. And we were just like, Okay, once it hits below this, we can make the correct pitch to our agency to stop using it. Alright, it dipped below. Let's pitch it. All right. We don't use it anymore. It was like, it was like, let's celebrate at the office kind of day.
+
+29
+00:19:42,420 --> 00:20:18,180
+Wes Bos: Yeah, ie 11 is globally 2.53%. And then iE 10 is 0.07% which is amazing. Amazing. Again, this this has to do with who your customers are. Don't take these numbers. Take your own Google Analytics for your website. Because like I even A couple years ago, I met somebody who was developing a game and they had to make it work on IE six min cousin, it was huge in China. And everyone in China had hacked Windows XP running on these old computers. And it was just like this weird situation where they needed to still support iecex. And I was like, that's
+
+30
+00:20:18,480 --> 00:20:20,970
+Unknown: a nightmare. Not said that is my Yeah,
+
+31
+00:20:21,080 --> 00:20:35,190
+Wes Bos: but they did x, they're making lots and lots of money off of the game. Right? So props to developers who are still in the trenches doing that, but like, 2.53% that's not nothing but i think it's it's it's almost gone. Whereas what is what is edge right now? Let's look oh,
+
+32
+00:20:35,220 --> 00:20:38,190
+Scott Tolinski: shoot my hands like not loading for some reason. Edge
+
+33
+00:20:38,220 --> 00:20:44,310
+Wes Bos: edge is 1.6%. So more people still use iE 11. Then use edge. Wow.
+
+34
+00:20:44,310 --> 00:20:45,590
+Unknown: What is?
+
+35
+00:20:45,960 --> 00:20:48,390
+Yeah, that's a bit of a bummer to find out as a bit of a bummer.
+
+36
+00:20:48,630 --> 00:20:51,560
+Scott Tolinski: Because the edge team has been working so hard on edge.
+
+37
+00:20:51,590 --> 00:21:35,360
+Wes Bos: Yeah, they've been killing it. But it's it's only a matter of time. It's just you just have to wait until those people get their new computers, right, which I could see as a problem. Because I think a lot I know a lot of people who are who have computers that are five, six years old, and they're still good, you know, like, yeah, the processors are still getting better, but the needs of people are not still growing. So I think the being able to go on Facebook and do whatever it is you need to do your QuickBooks for your business is is all people need to do is find your business. Yes. Yes, use your I'm thinking of my all of my friends who have like desktop software, and are very old and antiquated, which I will quickly transform them over to using fresh books.
+
+38
+00:21:37,950 --> 00:21:39,720
+Unknown: Oh, cool. Well, yeah,
+
+39
+00:21:39,830 --> 00:21:43,770
+Wes Bos: um, anything else to add for supporting older browsers?
+
+40
+00:21:43,820 --> 00:22:09,540
+Scott Tolinski: I don't have anything on this topic. We do have a whole nother episode of awesome old browser stuff to talk about. And I'm excited for that stuff. So yeah, no, I think that's pretty much it. Right. Your fallbacks if you don't have any or don't use the stuff. And again, I think one of the important things that we've said a couple times in other episodes is know who is using your site and how they're using it, have your analytics and work towards those people and know what maybe percentages of those people you want to support now important that is
+
+41
+00:22:09,779 --> 00:22:22,830
+Wes Bos: totally in the next episode, we'll be talking about supporting older JavaScript in the browser. And it's actually pretty good. It's pretty easy to support both new API's as well as new syntax in older version, so get ready for that. You're
+
+42
+00:22:22,830 --> 00:22:25,140
+Unknown: ready. Monday, Monday,
+
+43
+00:22:25,740 --> 00:22:33,090
+Wes Bos: Monday, Monday, Monday. Alright, have a good weekend. We'll see on Wednesday. All right, who's please
+
+44
+00:22:34,950 --> 00:22:44,700
+Scott Tolinski: head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
