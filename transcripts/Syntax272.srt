@@ -1,0 +1,456 @@
+1
+00:00:01,320 --> 00:00:10,530
+Announcer: You're listening to syntax,the podcast with the tastiest web development treats out there. strap yourself in and get ready. Here is Scott, ski and West boss.
+
+2
+00:00:10,589 --> 00:00:11,190
+Unknown: Whoo. Welcome
+
+3
+00:00:11,190 --> 00:00:19,710
+Wes Bos: to syntax. This podcast is the tastiest web development treat podcast in the world. Wow. Yeah, just switching it up a little
+
+4
+00:00:19,710 --> 00:00:20,670
+Unknown: but didn't know.
+
+5
+00:00:20,699 --> 00:00:58,259
+Wes Bos: Yeah. Today we're talking about react state, we're gonna do a round up. So Scott and I both have a big bag of Arby's that we're challenged down on right now we're gonna do a roundup of all of the different not all of them, but a handful of different react state libraries. Would you use them? Why would you need to use them? What's the pros? What's the cons? I think it's gonna be a good one. We are sponsored today by Sanity, which is a structured content, CMS and centuries error and exception tracking. I'll talk about them partway through the episode. My name is Wes Bos. I'm a developer from Canada. And with me as always, it's Mr. Scott Tolinksi. How you doing? Hey, Scott. Hey, I'm
+
+6
+00:00:58,259 --> 00:01:20,150
+Scott Tolinski: doing good. I got a dog barking in the background. That's how you know it's uh, it's gonna be a great episode, right? No, I am doing good. You know, I'm I'm, I'm jazzed up and ready for the week, I got a course coming out this week. So I'm in that mode. I gotta edit a whole ton of videos tonight. And I'm really excited about getting this course out. Because I'm really into it. So
+
+7
+00:01:20,190 --> 00:01:27,420
+Wes Bos: yeah. Awesome. That's great. Well, let's just get on into it. You, you want to kick it off there with the first library?
+
+8
+00:01:27,630 --> 00:02:40,220
+Scott Tolinski: Yeah, let's get it going here. First library is not a library, but it's part of react. And that's context. Now, I figured we would do this like this, we would first start off with like a little bit of have we each used it and what our experiences are with it said technology and then maybe get into pros and cons. So I should state first and foremost that I absolutely have used react context. In fact, that's currently how we do all of our like application state, not like the data state. But all the application state in our level of tutorials is done via react context, using the fabulous use context hooks as well as several contexts. I think we have like five or six different contexts that we have. And they're all maybe split up in terms of like what their use cases. So we have a context for the checkout, we have a context for you know, the navigation is the nav open that kind of thing we have a context for. Okay, I have one for the login window, if the application is currently loading, I have one for alerts, I have one for user information, I have one for the search context for the checkout experience. So you've broken those up into a whole bunch of different react context. And that's what reason
+
+9
+00:02:40,910 --> 00:03:42,600
+Wes Bos: awesome that I use react context myself in we should say that, like react context is not actually a state does not actually hold any data context is simply just a way to get something that is higher up in your application to a and inject it into wherever it is that you need a generally a lower place. And it's sort of an alternative to using props, where you'd have to pass the data down every single time. So the actual like state, part of react context is just plain old react state, or really, you could put it anywhere, but likely you put your state in react state, and then you also have your updater functions and any other logic functions that that need to come along with that. And then you can export those things and sort of ship them off via contacts, or you put them in context. And then wherever it is that you need them, you can you can access them with a use context hook, which is pretty nifty.
+
+10
+00:03:43,020 --> 00:04:46,230
+Scott Tolinski: Or or check this out. Here's what we do. This is fantastic. I'm gonna blow some minds here of people who haven't done this before, maybe yourself included was what we do. And by we, I mean, I myself, because I made this, what we do is that we take for all of our contexts, we basically just export a function that returns the use context of the context itself. So here's the line of code, the x, like for my alert context, I export a function called use alert, which is really just a function that returns us context with the alert context in it. So therefore, we now have a use alert. So I never need to import use context itself. When I'm using anything, all I do is import use alert and then can pull out the things. So what it saves you is it saves you from having to import the context and import use context and allows you just to import one thing, ie one thing, and it's it's a little bit more explicit, it's more readable. And to me, it's just a nice nice little shortcut. Yeah,
+
+11
+00:04:46,230 --> 00:05:42,900
+Wes Bos: we we do that in my upcoming events react pre recorded. So we have like a use cart. And it's great because you can you don't even have to understand that it's context after you're done building that hook and you can simply just say like const cart items equals use cart. Yeah. And it will return to you the data and then you can use that you can go ahead and just use that data, it almost seems like magic. So yeah, big fan of that. I'm glad you said that, because you can tuck it away nicely like that. Yeah. So pros to that that's built into react, it can be as simple or as complex as you want. There's no like sort of best practices around this. There's a couple libraries out there that sort of teach you to do that. I've never used a library for it. Because I've not seen the use case, I've just stuck my state in context, which is cool. And then the cons to that it takes effort to optimize. And as Scott wrote that you want to explain what does that mean, and why it takes effort to optimize?
+
+12
+00:05:43,350 --> 00:06:15,600
+Scott Tolinski: Yeah, if you just go ham with context, and throw everything into one context, or you just start keeping everything sort of willy nilly into a context that could be re rendered, when any of its values change, you got to keep in mind that those are basically, you know, a react component that is going to again, rerender, when anything, triggers a rerender that so if you if you're keeping too much state or unrelated state into various providers, you can trigger a rerender is when you are unintended, too.
+
+13
+00:06:16,020 --> 00:06:32,310
+Wes Bos: So it's it's sort of a best practice, then you would say don't put too much stuff. That's why why you you say I have like three or four states in my application, instead of just putting it all into one global context, you have multiple and that avoids those unnecessary re renders because you're only using it where you need
+
+14
+00:06:32,310 --> 00:06:56,790
+Scott Tolinski: it. As far as I understand. Yes, I there. There seems to be a lot of like, posts around optimizing context. And some of them talk about using use memo and whatever. But I personally haven't had a need to do anything beyond splitting up my content. Yes into like things that would, you know, actually make sense. And being together as in like, the alert context only cares about the alert stuff. And can checkout only cares about the checkout? Yeah,
+
+15
+00:06:56,790 --> 00:07:18,210
+Wes Bos: that seems like one of those like, those things that I wish react would just take care of for me. Yeah. Because it's just such a simple, beautiful API. You stick your stuff in, in a context, he access it via hook or you make your own. And it just works and like and then and then you get people come and be like, well, you should wrap us memo on that sometimes. And here's why. And I'm like, Well,
+
+16
+00:07:20,250 --> 00:07:31,110
+Scott Tolinski: people don't like, yeah, this is exactly why people. It's funny because like, if you look at spell, I hate I hate doing this. Because this is like now that I've learned spelt, I'm gonna just keep our
+
+17
+00:07:32,700 --> 00:07:33,540
+Wes Bos: bone over here. I
+
+18
+00:07:33,540 --> 00:08:00,000
+Scott Tolinski: person. So I know. I really hate this. And I hate that it's a noxious that I'm even doing this. But if you look at how they manage state it is it's like its own thing. You don't have to worry about providers, you don't have to worry about wrapping stuff. You just get something you said something, yep, date something or whatever. And it still is. And it can still be as robust as you want it to, but they don't like, I don't know, they don't make you think about these optimizations. They don't make you think about this kind of stuff.
+
+19
+00:08:00,390 --> 00:08:15,390
+Wes Bos: Yeah, I like that as well. I wish react would do a little bit more than that. But then again, like I don't run into that issue, all that often or ever really, I've never run into performance issues or re rendering issues with context. So maybe I'm properly.
+
+20
+00:08:16,170 --> 00:09:01,830
+Scott Tolinski: Yeah, right. I know, I have run into issues myself personally, where it was like, doing things that I wasn't intending it to do, because of that loading order, or whether or not there were like, for instance, I threw my checkout stuff into a context. And then all of a sudden, it was loading my API keys, you know, on every page load, not on every page load, but on the initial page load even when somebody wasn't accessing the checkout. Oh, yeah. So then you have to put in like a US lazy query into Apollo to to get the right query happening and stuff like that. So I mean, there's definitely foot guns possible. flipkens. So next step is Redux. Now Redux is, you know, King of the Hill, it's been around for well, forever at this point in terms of in web developer years. It's been around for a very long time. We have both used it correct? Yeah. Yeah. I
+
+21
+00:09:01,830 --> 00:09:06,330
+Wes Bos: did a whole course on on unredacts. Myself, and they did a couple little on it.
+
+22
+00:09:06,770 --> 00:10:35,130
+Scott Tolinski: Yeah, we both did courses on Redux. That's why jokingly mentioned that we used it. So we got we both got experienced with Redux. It has a huge user base. It has a huge legacy of growth and improvements and changing with the times it's not like one of those stagnant libraries that was just created. And who knows when it was last updated. Redux has evolved. It, you know, has a hooks interface and those kinds of things. So it does have a modern API. I used to have level up tutorials on Redux. Before we moved to straight up context. Actually, we might have moved to Apollo state at some point, you got to realize that I use a lot of these libraries as like testing grounds for learning them. So when I say level up tutorials was on Apollo state, yes, sure. Our entire application was on Apollo state. And then when it was on, or is on Redux before, yes, it was on these things. But I'm rewriting this application because it's code I really know. And if I get to try Try this library in the context of code, I really know it really helps me understand it. So I'm not just like that crazy about switching libraries, I just like to use my own code is like a playground for learning new things. So the level of tutorials at one point was in Redux. And the things I like most about the Redux, were the dev tool. So it was fantastic to be able to see everything yeah, that was great, what they call that that with the time time travel time travel, where you can see every single state that sort of ever existed in your application, and you can go back and forth between them love that.
+
+23
+00:10:35,399 --> 00:11:51,929
+Wes Bos: Yeah, it was, it was really cool. And you can also like, turn ones off. So if you did, if you did five changes to state, you could go and turn the third one off, and your application would rerender as if that one piece of updated state never happened, which like that, you don't need that every single day. But it is kind of interesting. If you're debugging something, you know, sometimes where you get into these issues where it only happens when, like right now I'm, we have a trouble with the suspension on our car, it only happens when you leave the car for 24 hours and you go to it and you turn it off, you turn it on, and then off and then come back and turn it on within 10 minutes. And then I'm like, this is such a weird sequence of events that it needs to that it happens. And if I had Redux dev tools for that, I could just like look at the like, turn it on, wait 10 minutes, turn it back off. I could like look at all of that. And then just turn things on and off and be able to see which of these things contributed to the actual bug that was happening. Yeah, I always really like that. Yeah, it's it's pretty cool. I am. What Another thing I really like about Redux. And this is also something I don't like about it. But so when you have Redux, you have to have I forget the what are the names of all of them, you have your reducer, you have your action,
+
+24
+00:11:52,320 --> 00:12:10,020
+Scott Tolinski: your actions, reducer action. It's been a while like, my, my biggest pet peeves about using Redux is dispatch, your dispatch, it had all those terms and lingo you had to learn. And I think that just made it tough to learn.
+
+25
+00:12:10,020 --> 00:12:54,480
+Wes Bos: There's all those things, which is frustrating to learn. And often you find yourself like with three or four different files in order, just update one simple little thing. But a lot of people really like that, because there was a very clear way on how to do this. And that's something you don't often get with in the React world is like, oh, here's a couple different ways you can possibly do it. This is just like you make a reducer, you have an action, it has a payload, you dispatch that action, your reducer will take in some data and return it. And that's like a very clear, crisp way forward. Which is pretty cool. For a lot of people who want like a just a recipe. That's what I'm looking for you I just want a recipe on how to add data to my application, how to update that data.
+
+26
+00:12:54,990 --> 00:13:24,390
+Scott Tolinski: Yeah, I always left that. It was like the thing that calls the thing that calls. Yeah, you know. And I think for users are like beginners coming to Redux specifically, they don't understand why am I doing this? Like, what, like, why is this? Why is this needed? When it seems like it would be so easy to just update a variable or run use state but then you have the whole situation of actions and dis you know, dispatch and all that stuff that just very confusing
+
+27
+00:13:24,390 --> 00:13:47,760
+Wes Bos: immutability thrown in there. It's usually their first run in with the this concept of immutability and not overriding things, and they have to spread the object into it or no, I also think like that was people's first introduction three or four years ago, a lot of this immutable functional programming. So you threw that in as well. And it probably confused more people than it actually helped.
+
+28
+00:13:48,149 --> 00:14:14,279
+Scott Tolinski: Yeah, a lot of new concepts, a lot of language, a lot of syntax in seven, that stuff, to me feels like it could have just been swept under the rug made a little bit easier. That's type of the API's that I like is when things get swept under the rug just a little bit. But of course, you know, different strokes for different folks. I think there was also a bit of confusion around like, what additional packages you need, because when people talk about using Redux, they're always like I use Redux with Redux ducks and Redux Ranga, Tang and
+
+29
+00:14:14,340 --> 00:14:15,659
+Wes Bos: router bagage,
+
+30
+00:14:15,659 --> 00:14:16,980
+Scott Tolinski: Redux tree thing
+
+31
+00:14:16,980 --> 00:14:19,980
+Wes Bos: and achieved data was like a whole nother thing.
+
+32
+00:14:20,340 --> 00:14:55,020
+Scott Tolinski: Redux snake plant. And I use them all together to do you know, just very simple. So it's like very like weird to me to know when to use, you know, whether it is saga or and I can't even remember all of the different Redux additions or Redux modifications or something, right. But it is very confusing for new people. Oh, yes. Oh, yeah. Come on. Like when you get into Redux, you're like, Oh, I have this problem with Redux. This is annoying. Then you Google the problem and somebody like us bunk and then you use them, right? But then you're like, Wait, what? Why isn't this part of it? Or why is this just
+
+33
+00:14:55,020 --> 00:15:07,440
+Wes Bos: like, that's weird that there is no like data fetching story built into Redux, and I can Got that that's not what it's for. But yeah, anybody that was using it was fetching data from a server and throwing it into to Redux.
+
+34
+00:15:08,159 --> 00:15:30,570
+Scott Tolinski: Yeah, so Redux has a lot of positives. And at the same time, there are a fair amount of negatives too. But it's a it's a fantastic choice. If you're looking to build your application on Redux, there's really no reason not to. Especially if you're good with Redux. It is a fantastic library. Even in 2020. There's, there's really not a ton of reasons other than it is confusing and hard to learn. Those are pretty much the big ones.
+
+35
+00:15:30,899 --> 00:16:20,460
+Wes Bos: Well, it's sort of fallen out of love in the last year or so. And I think the reasoning behind that is like when Redux came out, it seemed to be like, people thought, like, I remember people saying, like, React state is dead, like don't put anything in state. Everything goes in Redux, weird and it was like a weird time. And and then I think over the over the years, a lot of people were sort of looking at it and going like, Oh, you know, we don't we don't actually need this for our application. There's certainly lots of applications that do need a very robust state management library like this, but we can get away with just using state, especially once context came out. That was available to absolutely everybody. That was huge, because then you like, I think a lot of people were just using Redux just for the ability to inject state at whatever level that they need it.
+
+36
+00:16:20,909 --> 00:16:24,480
+Scott Tolinski: Yeah. Which to me, seems crazy. But that's just the way it is, you know,
+
+37
+00:16:24,510 --> 00:16:30,450
+Wes Bos: yeah, there wasn't any other way to do that in react before Redux, or sorry, before context came along.
+
+38
+00:16:30,990 --> 00:16:43,649
+Scott Tolinski: I did it via Meteor Meteor stuff, which is funny. We'll talk about a little bit later on in this. So it's like I had maybe a solution to that before the rest of the React world did just because I was using a larger framework, or I thought
+
+39
+00:16:43,649 --> 00:16:45,990
+Wes Bos: Meteor was dead, Scott? Yeah, it is.
+
+40
+00:16:45,990 --> 00:16:46,890
+Unknown: It's totally dead.
+
+41
+00:16:46,890 --> 00:16:48,360
+Scott Tolinski: I mean, I
+
+42
+00:16:49,830 --> 00:16:51,779
+Wes Bos: don't tweeted that it was a joke.
+
+43
+00:16:52,260 --> 00:17:12,590
+Scott Tolinski: It's not a joke. Anytime you tweet anything about Meteor people, it's like it actually makes me Nothing will get the fists clench faster. And I like turn into a motorcycle engine. So okay, let's keep it moving here. Next up is x state x state. Wes,
+
+44
+00:17:12,750 --> 00:17:28,100
+Wes Bos: have you used x i have not, I feel like I've got a pretty good grasp on the the whys in the house and the sort of the ideas behind it, which are important, because because we had David on the podcast, but still looking for that project where I'm gonna gonna use it.
+
+45
+00:17:28,500 --> 00:18:37,170
+Scott Tolinski: I know, I thought I had found mine, because I have used it. But I have not used it in any real capacity. I've used it in like toy capacities. You know, I've built the built the some demos in it. So the thing about state is a enforces really solid design patterns, right? To use x state, you must know and understand the state machines, right. And to know and understand state machines, it inherently is going to make you follow a pattern that is going to be a little bit more strict than some of these other ones, which is I mean, that's a pro of Redux, too, right. It's more strict in how you use it. This is how you use it, it creates a very state safe state, you could say as an by not using Boolean variables to manage your UI, essentially, you are able to then have state that is a little bit more reliable in terms of not potentially producing UI bugs or errors. And it also includes some really awesome tooling. I don't know if you've ever seen the x state. Is it like a it's like a visualizer? Yeah,
+
+46
+00:18:37,170 --> 00:18:37,890
+Wes Bos: that's
+
+47
+00:18:38,010 --> 00:20:06,450
+Scott Tolinski: actually actually called the V lights. Okay, cool. I was just pulling that word out. So it is called the x state visualizer. If you haven't seen this before, just I'll put it in the show notes, the X state.js.org. forward slash vis again, I'll put that link in the show notes. It's a fantastic really, really cool, big, big fan. cons for x date or event. It includes some knowledge overhead, where like you have to know and understand what state machines are a do and why why you would need them or want them because the code is going to be a little bit more complex. The syntax is definitely a little bit more complex to parse. If you haven't worked with state machines before, you might not understand it. And to me personally, just looking at the next state code, I don't necessarily know what's going on off the bat until I really dive in to the x state itself, right? Like when I first looked at maybe even like a basic one. I'm like, Okay, I see this on fetch or whatever, like, Okay, how does this all work? So there's a little bit of mystery for for new people here. So x, it's a really interesting one. For those of you who want to learn a little bit more about x date we did an episode let's find that episode 206206 Episode 206 state machines, CSS animations with David Kay piano a good one to listen to. Also, I did a fairly decent explanation about statements In the last potluck, I think so check that out. If you want to learn a little bit more about x state,
+
+48
+00:20:06,660 --> 00:20:08,220
+Wes Bos: what else should we check out? Scott?
+
+49
+00:20:08,550 --> 00:20:34,980
+Scott Tolinski: Well, you will. Okay. So that's a good transition. But I would have gone with something like if, if your state is getting out of hand. Maybe you should bring it next day to give it a little bit more sanity or something. Oh, I like that. That's, that's maybe where I would have gone. And I'm talking about sanity@sanity.io, which is the structured content CMS that is very fantastic. Do you want to talk a little bit about Sanity West?
+
+50
+00:20:35,010 --> 00:21:47,330
+Wes Bos: I do. I do. So this is our sponsor for today, one of our sponsors, and they are they call themselves a structure content, CMS. And what that means is that it's a, it's essentially a headless CMS, where you, you start up a sanity project, you create all of your different data types, you can relate them to each other, you've created all the fields on each of those data types. And then you can fire this thing up. And one option, which I think a lot most people probably use is they also have this thing called Sanity Studio, which is a react application. It's really cool. It's like, they host it for you. But you can also hack on it. So you can like deploy Sanity Studio, either to your own or to their own hosting, which is cool. And then you can create all of your own custom inputs if you need need it. So I'm working on my Gatsby course right now. And we're using Sanity in there. And one, one input that they didn't have was a price input. They have a number of input, but not a price input. And I store all of my prices in cents. And sometimes that's this confusing for really smart. Yeah, it's because then you don't have to do decimal math. It's great.
+
+51
+00:21:47,400 --> 00:22:09,990
+Scott Tolinski: Why I store mine in strings, like a string of a price. You really know what I mean? And then I can and then I convert it. Yeah. Which I don't know if that was the right call. But it's a call I made a long time ago, when I was first starting this it was like a is a call I made several several years ago. And it was just like, okay, whatever. So I have to convert it in that that's just like the pain. Yeah, with that four cents. I wouldn't. Yeah,
+
+52
+00:22:10,230 --> 00:22:33,960
+Wes Bos: yeah, I did early on, I didn't use cents. And there's a problem where if you have decimals and decimals in JavaScript aren't easy anyways. So I personally have this in my own my own back end for my own course where the cents I like if my if my system wants to give a refund, just to mention how many cents she wants to refund. And that's confusing because like, like what's $27 and 82 cents in cents, I
+
+53
+00:22:33,960 --> 00:22:34,980
+Unknown: guess you just have no clue. It's like
+
+54
+00:22:34,980 --> 00:23:25,920
+Wes Bos: the decimal but I don't I just scary when refunding someone because you don't know if you're gonna accidentally pop an extra zero on there. So I just put like a little thing above it as you type, it will just replay it in formatted with the dollar sign and commas and things like that. And so I built that same input for Sanity. And I was like, this is great, like Sanity has like 98% of the things I want. But they didn't have this one specific input that I wanted. So I just built it myself. And I deployed it to my own Sage here. And then I pull it all in, they have a graph qL API, they have a this really cool syntax language called grok, you can pull it into your next jazz site, your Gatsby site, you name it. So check it out on your next project sanity.io forward slash syntax, that's gonna get you double the free usage tier. Thanks so much to Sanity for sponsoring. Awesome.
+
+55
+00:23:26,190 --> 00:25:08,550
+Scott Tolinski: So let's keep moving here into the next one. Now, Wes, I don't know if you've heard of this library. But I had really taken some time to evaluate this library in terms of maybe the next react State Library I should look at, not for obviously, moving my project. But the next one I should look at as being like a serious contender here. And this one is zustand. Do stand is really cool. I don't know if you've seen zustand before, but it's a small, fast, scalable, scalable, bare bones state management solutions with a comfy API based on hooks. It's not boilerplate II at all or opinionated. So it's very cool. I really like this syntax for this in terms of like, if we were to give a syntax dollar signs, you know, I would say this is like a one $1 sign syntax because like, it is very, like it's very simple. Very, okay. It's not going to take up a ton of ton of space in your code here. I'm not saying it's not it's not fancy, because it's fancy. It's It's very, it's very powerful. But it's not complex, right? It's not expensive. So to me, I like zustand. It's basically a simpler version of like, kind of what you do in Redux. It almost feels to me like a more of a, like a use state or use a reducer kind of way of just doing your entire global state. It has a fairly growing community of 2.6 thousand GitHub stars. I don't know how many how many usages it has. It's a small library and when it's m zipped it It's only 647 bytes. Yeah. Wow. So that's not exactly adding a ton of code to your application. Yeah, so
+
+56
+00:25:08,550 --> 00:25:24,150
+Wes Bos: that's uncovering that not a lot about 7000 8000 weekly downloads, which is not a ton. So maybe you're uncovering a really cool. It's from the folks at react spring. So there's some good dabs behind it. This is pretty silly. Like the API is funny.
+
+57
+00:25:24,150 --> 00:25:56,070
+Scott Tolinski: I have a little call out here. And this is a Scott's underground hot pick or underdog, hot pick, underdog or undergrad, whichever one you want. And I like this, one of the things that I really like about this more than any other of these options, you don't have any providers, you don't have to wrap your code in a provider. You know, I don't know about you, but my code looks like provider provider provider provider provider, you know, it's like a giant pyramid of providers, and then the actual application. So for that alone, I kind of like this.
+
+58
+00:25:56,100 --> 00:25:58,770
+Wes Bos: So how does it How does it surface?
+
+59
+00:25:59,370 --> 00:26:02,430
+Scott Tolinski: The just hooks, it's all hook? Oh,
+
+60
+00:26:02,430 --> 00:26:09,810
+Wes Bos: it's there? Probably? I forget. What's the pattern for this where the first time it runs?
+
+61
+00:26:10,410 --> 00:26:11,430
+Scott Tolinski: memorize? Yeah,
+
+62
+00:26:11,460 --> 00:26:18,450
+Wes Bos: yes. There you go. They're probably memorize under the hood. Oh, and they they use react Redux dev tools.
+
+63
+00:26:18,750 --> 00:26:20,550
+Scott Tolinski: Does it say that? Because I don't know if that's Yeah,
+
+64
+00:26:20,550 --> 00:26:33,870
+Wes Bos: at the very bottom Dev Tools take the store function as its first argument. and optionally, Oh, that's cool. So you can use the Redux dev tools with this? That's fine. Oh, this is a sick so got
+
+65
+00:26:34,110 --> 00:26:42,000
+Scott Tolinski: zustand. Yeah, check it out into kind of cute little bear logo. It's a bear playing a guitar. Same to stand. I don't know what that word means. But
+
+66
+00:26:44,580 --> 00:26:48,900
+Wes Bos: okay. I only only know that because I googled zustand in it. translated it for me.
+
+67
+00:26:49,770 --> 00:27:03,870
+Scott Tolinski: Oh, that's fun. Yeah. And there's a neat little demo. So yeah, check it out. It seems like a cool option. And to me like this is this is what hooks are all about. I think it's a really neat evolution of how we view state in react. Beautiful.
+
+68
+00:27:03,900 --> 00:29:24,270
+Wes Bos: Next one we have here is Apollo. So Apollo is the, we should probably say Apollo client here. So Apollo is like the graph qL company. And they have Apollo server, and they have a bunch of monitoring products. But probably when we say Apollo, a lot of you are thinking of the Apollo client, which allows you to fetch data via queries, as well as send out data mutations via queries as well, they have a really nice react API. That's all hook space use for interacting with both the queries and your mutations and variables and things like that. I've used Apollo quite a bit myself, in my advanced react course, as well as a couple other side projects. I'm a big fan of how it works, they have a really nice cache that is built in and Apollo three, which is not released yet, but will be fairly soon, has even more fine grained control over the cache. So sometimes you get into this like very aggressively cash situation, especially with pagination. And now there is a really slick API that will allow you to clear out the cache as well as reuse items in your cache throughout multiple queries. And let me explain that really quickly is, if you have previously in an Apollo is if you have a query that has something like page three in the query, and then you you query page four, and those are two separate queries. And even if the item, the items that are returned, have some overlap between those two queries. Previously, Apollo would think that those are two separate items, because they're different queries. But now they allow you to ignore specific parts of the query, and then just sort of meld them all into one. And they have this really cool API that will allow you to read and merge the items as they come in. So big fan of how Apollo works, and the lazy query to Yeah, yeah, the lazy query is great, because you don't need to use that, you know, sometimes you don't want to fire off a query on page load. You just want to fire it off when somebody clicks a button, or I specifically use my search. I don't want to fire off a query when the search loads, I want to fire it off when somebody starts typing. So you can use lazy query for that.
+
+69
+00:29:24,930 --> 00:29:30,090
+Scott Tolinski: I know I always used mutations and now it's like, oh, okay, now you can actually use what makes sense, right?
+
+70
+00:29:30,540 --> 00:29:44,640
+Wes Bos: Yeah, yeah, exactly. I what I had done in the past is like, I like queried it and then like, had like a global or not global variable, but a scoped variable that was accessible and then you store access to the client once it comes back. And it was a mess. So this is way better.
+
+71
+00:29:44,670 --> 00:29:50,070
+Scott Tolinski: Yeah, mess. And we should also mention, Paulo State, let the client state state
+
+72
+00:29:50,100 --> 00:29:51,090
+Wes Bos: Yes. Oh, yeah.
+
+73
+00:29:51,090 --> 00:30:21,300
+Scott Tolinski: So in addition to you know, with your data, because a lot of these libraries they they just you know, Apollo client is more for like pulling in your data, right? But in addition, there's also like actual, like application state features in here and the client state. And it's really nice to be able to include that with your Apollo queries. But I found in practice, it was a bit heavy handed in terms of the syntax, and it just didn't feel right to me after living with it for quite a bit of time.
+
+74
+00:30:21,720 --> 00:30:39,630
+Wes Bos: Yeah, I was the same way as well. It's just like, it was way too, too hard. And ideally, I would love to have like my like, my fetch data and my local state in the same thing. It just was, it was too much for me, and I think it's since been updated. But it still wasn't as simple as just using context for me,
+
+75
+00:30:39,960 --> 00:31:32,910
+Scott Tolinski: totally. So pros and cons works well with your graph, qL API, and they have dev tools. So those are pros for me. But the cons, it's complex for like state application, like if you're trying to just change the is the navigation open right? To do something like that is ends up being way too complex for what it is right, we're just swapping a Boolean. Also, the dev tools for me are also going under a con because half the time for me they do not work correctly. And specifically with local state. Like if I'm querying local state, you have to have the load from cache checkbox checked, or I don't know, by the time I dropped this Apollo client for my application state, my local state, it was never working correctly for me with the dev tool. So dev tools for me are always a bit hit or miss. And yeah, that's really my my negatives for Apollo.
+
+76
+00:31:33,570 --> 00:32:20,760
+Wes Bos: Awesome. Next one we have is RX js. And this is not something I've ever used myself. So I'll not do a great job at explaining it. But it is, according to the docs, a library for composing a synchronous and event based programs using the observable sequences. So an observable is not exactly but kind of similar to like an event listener where you like, say, when this thing happens, go ahead and do this. And you can do that with data as well, where you're waiting for data to come in. And when it does come in, you can go ahead and react to it. So I don't have a whole lot. I don't even know if it fits perfectly into this. But as far as I can understand from the docs, it is a state management library as well.
+
+77
+00:32:21,210 --> 00:32:33,510
+Scott Tolinski: Yeah, it's funny, because when you you asked about this, I was like, Can people use that first date? I mean, that's, that's where I'm at with RX js. I don't even know what people use it for. Which is kind of weird that I would even say that considering how popular it is. Yeah,
+
+78
+00:32:33,510 --> 00:32:34,590
+Wes Bos: it's super popular.
+
+79
+00:32:34,610 --> 00:33:05,520
+Scott Tolinski: It is popular. And I like how they say Think of it as the lodash for events. Okay, so to me, I just I don't know what the exact way of using this is in any sort of way that I would use it. But a lot of people seem to do. And it seems to be very popular for for various use cases. So maybe that's a large gap in my real got gaps in ArcGIS is a gap in my understanding of things. Next up is react query. Have you seen react query last? No, I
+
+80
+00:33:05,520 --> 00:33:07,530
+Wes Bos: haven't. What is it? Oh, come
+
+81
+00:33:07,530 --> 00:35:19,080
+Scott Tolinski: on. Come on, Wes, what's going on over there? No, it's a react query. Actually, if if we want to talk about guests, Tanner Lindsey, if you're listening to this, or if you're interested in coming on the show, we got to have Tanner on the show. Because this library is fantastic. And it's a huge growing community of 8.6 thousand stars on GitHub. And it works with a whole bunch of stuff. It's really cool. I've really thought about using react query, you can even use read query to do things like fetch from your graph qL API. So react query is basically its hooks for fetching caching and updating asynchronous data in react. So they basically you remember the library s wr from versaille. So it's similar to similar to that. What I've really found about this is that it takes a lot of stuff that you know, there's some of the API's might not be that crazy for us using Apollo, right, considering you just do use mutation pass in the whatever. But they have like a use mutation hook that you can have yourself outside of Apollo. So they have like us query use mutation, those types of things, and it passes back the status, the data, the air, just like Apollo would, in those kind of ways. But for working without outside of graph qL API's or working with whatever you want, rather than just specifically Apollo, in the cache tools are really nice, too. There's a whole bunch of stuff here, including some really, really, really fantastic dev tools. I've heard nothing but fantastic things about react query from those of those who have used it. I know that people who use it are definitely very intuitive Tanner's a pretty pretty smart dude from all of this stuff that I've seen his talks and stuff. So I'm really into learning more about react query right now. I want to give it a try. I know he's doing some rewrites of it. But the examples and everything that looks really nice. And one of the things I love about react query is their documentation is like very comprehensive. So it's very, very, very comprehensive. It gives you a ton of control over the cache. And it seems like it's a very smart cache for your data.
+
+82
+00:35:19,440 --> 00:35:30,030
+Wes Bos: Cool. I'm at that, check that out for my next little project seems neat I that the site stvr stuff is starting to become more tempting for me to try out as well.
+
+83
+00:35:30,150 --> 00:35:34,530
+Scott Tolinski: I would look at rec query first. Yeah, I'm being entirely honest. Yeah, it's pretty good.
+
+84
+00:35:34,610 --> 00:35:50,150
+Wes Bos: I'm gonna check it out. Next one we have is I think the rest of the episode is just things that I'm gonna say No, I've never tried it. So I'm not gonna say it looks cool. I'll try it out. But the next one we have is recoil. What is this Scott?
+
+85
+00:35:50,550 --> 00:38:02,130
+Scott Tolinski: recoil is a new state library from Facebook, it is not necessarily, you know, when people say something, Facebook, it's not like it's the same team that did react or something like that. So this is like a separate team that is solving a problem. And the problem that they were solving was that two corners of their application that were not in the same application tree needed to share some bit of state. And that was a very complex problem, right. So their idea ends up essentially pulling the state outside of the tree entirely, allowing you to keep track of state and have it update two entirely separate parts of your query tree, or your your react tree without having to do unnecessary renders, it's very performant. In those sort of ways. It's nice, I used it, I gave it a try. So I gave it the good old try here. And for the most part, I found that while it was nice, it worked well, the API was pretty good, it was a little bit more complex than I would want for doing anything sort of basic. And to me the use case for this in terms of, you know, application development, the the the like, the use case that they presented in the video announcing it was sort of like you could imagine like a, like figma or something, right? Like figma has a column where one column has the information about, you know, a square, and then you have the square that has the information about the square, and then maybe some other things that have some information about that square. And that though, all of those things need to know the information about the square, but the rest of the application doesn't, right. And that, to me is a very application based use case. I would never use this in a website. I'm going to say that straight up, I probably would not reach for recoil in the website creation business. You know, for me, I'm going to stick to something more basic this to me, screams application use. So to me, I didn't mind the API. I thought it was fine. I did think it was overkill, compared to a lot of the other options on this list. So it's very good for complex, splintered state. It seems overly complex for most normal use cases.
+
+86
+00:38:02,130 --> 00:38:15,840
+Wes Bos: Yeah, interesting. I'm just looking at the website right now. And if if you are shaking your head at Scott just said boxes that point to other boxes, just go to recoil j s. org, and they have a little diagram on the homepage that sort of explains
+
+87
+00:38:16,190 --> 00:38:39,570
+Scott Tolinski: that a little bit. visually. The talk to the video, the recoil state management for today. I thought the talk was really interesting. Again, I I watched the talk. I watched a couple talks I I gave it a tried. Yeah, it's pretty cool. But I don't think I'm reaching for it, I think. All right, next up is mob x. Have you used this less?
+
+88
+00:38:39,600 --> 00:38:40,230
+Wes Bos: No,
+
+89
+00:38:40,350 --> 00:40:03,170
+Scott Tolinski: I haven't used this either. So I know mob x is a huge community. And to prevent it, the mob of mob x is coming at me. I'm going to do my best not to say anything dumb about mob x. I have not used it. There's a big community, people seem to really like it. And in fact, when recoil was announced, a lot of people were like, isn't this just my backs, but I don't I honestly don't know, the nuances of that conversation. It's not just for react as and you can use mob x with just about anything. There's react versions of mob x. It's powerful. It's like Redux, powerful it uses. So this is one thing I wasn't quite sure because the docs say it has observable capabilities, but I wasn't sure if it actually used observables or if it just had observable capabilities. Maybe somebody can clarify that for us and we can retweet you. Cons here is it does seem complicated. It seems complicated. It seems like there's a lot of overhead in terms of understanding what's going on also a ton of the documentation, as well as examples and blog posts use decorators, and I got burned by decorators. So I'm not using them anymore. And I, I, I know you you can't you can use this without decorators. But like when so many of the examples are in decorators that kind of like Ooh, I'm gonna have to translate all of that. Examples now to my own use case, I'm not sure. You
+
+90
+00:40:03,170 --> 00:40:05,790
+Wes Bos: know, totally, I don't I'm sorry, I don't know what I
+
+91
+00:40:06,920 --> 00:40:26,280
+Scott Tolinski: know, I know. Yeah, my back seems like a good choice based on how many people are using it. But if I were to say any more than that, I would come off as being very ignorant, cuz I just really don't know, I've never, it's too complex for me to spend a ton of time into without making like a substantial like, you know, stamp in the ground. It's like, I'm learning mob x today. So it's not like something you could pick apart in a day,
+
+92
+00:40:26,340 --> 00:40:54,090
+Wes Bos: along with needing to do a project in x day, I also need to do one in one of these observable based state libraries. Because I think the reason a lot of people don't pick it up initially is because it looks nothing like that what we're used to. But the certainly is benefits to it, there's because if you take a look at how many people are using, as well as like, like large applications, like stuff, way bigger than, than I work on, tend to go for these types of things. So there's clearly something to it.
+
+93
+00:40:55,080 --> 00:43:14,130
+Scott Tolinski: Yeah, it's, it's funny, because like, I'll use that as like a barometer. Because like, I don't necessarily trust myself in some of those regards. So I'll be like, I don't get Redux, it seems very hard to me. But maybe I am just done. So therefore, let's see, there's a huge community of people using it, perhaps I'm just wrong about it. You know, and I like to use this community side, how many people are using it? How many people say nice things about it as a barometer? Obviously, I shouldn't, you know, should always trust yourself. But the end of the day, it seems like a good option for those of you who, who who find the syntax to be nice. Working with a management is tough, bound to create lots of bugs, lots of bugs, right? I mean, we all work with this stuff, we all know it could happen. And that's why you're gonna need a tool like sentry@sentry.io. Sentry is one of our sponsors today. And let me tell you, they do some cool, cool stuff. Sentry is always doing cool stuff. In fact, one of my favorite things is whenever Sentry pushes out something new, I get to try it. For instance, I'm currently using their performance tools right now to track performance all over my application, it's really good. In fact, it's so good that I can really find out which routes have the best speed, least amount of failure rate, for instance, I have some routes on my site that have zero percent failure rate, which is where all of them should be, you know, and when they don't have a zero percent failure rate that in century is gonna really pick up the pace there. They also give you a little bit of a user misery score, too, which tells you when a user has waited more than an X amount of time, which I love, because it gives me like a little progress bar to see if people are upset on various routes. And sometimes it's like, Okay, this particular route was accessed by only a few people. And sure, it took a long time for those people. But that's not indicative of the rest of the community where you can see that a ton of users have access this particular route, and it's fast for them. So it's very cool. I love these tools, and they're brand new, I think you have to turn them on by beta flag right now. Yes, they're in beta, I definitely recommend checking them out. If you have a Sentry account. If you don't, you're gonna want to head over to Sentry dot i o and use the coupon code tasty treat, it's all lowercase all one word, and you will get access to two months for free, which is more than enough time to really see everything that Sentry has to offer. And you'll really realize why it's such an industry staple at this point.
+
+94
+00:43:14,130 --> 00:43:15,090
+Unknown: Okay, let's
+
+95
+00:43:15,090 --> 00:43:22,350
+Scott Tolinski: keep this moving here. We don't have a ton of time, but we only have two more options left. And then we're going to give our final thoughts on
+
+96
+00:43:22,800 --> 00:43:31,800
+Wes Bos: this. This next one easy peasy is called vegetarian friendly state for react. Oh, that's fine. I wonder what makes one vegetarian. But that's good to know.
+
+97
+00:43:31,800 --> 00:43:38,150
+Scott Tolinski: Maybe they're just fans, probably. That's great. But I'm not a vegetarian. But I'm a fan of vegetarianism.
+
+98
+00:43:38,160 --> 00:44:33,570
+Wes Bos: So. There you go. So yeah, this one, I've not used it myself. But it taking a look at it, it looks similar to not actually not I wouldn't say similar to Redux, but not entirely, the way that it works is you create a store. And in that story, every data types, and in that data type, you have the actual pieces of data, which are items. And then you have methods that are used to update it. So you can define what your different actions are to add, remove, update, etc, etc. On your different types of data looks nice, because it's all packed into one. Whereas it looks easy. It's called Easy peasy. So it does look easy. I like these ones where like the updaters. And the actual data live in the same place where other versus sex like Redux where they're all over a whole bunch of different files or functions.
+
+99
+00:44:34,320 --> 00:46:20,370
+Scott Tolinski: Yeah, I think ecpc was really, really built to be like, Hey, we get react Redux, we like Redux. But like, let's reduce some of that boilerplate. Let's reduce some of that config. Let's make it a little bit more modern. This came out right after like hooks came out. So I think this was like one of the very first like, new style of, you know, state libraries that came out of the whole hooks revolution. I guess you could call it a revolution but hooks addition to the application. Next up is one that it's funny, Wes mentioned this, I didn't even think to put this in here. Wes mentioned this, but this is a very legitimate option for those of you using Meteor. Meteor has this really neat stuff called reactive dict for reactive dictionary and reactive var for reactive variable. And it's very simple. It works basically just like react, wait, what does it work like set state did where you basically just pass in a key and then a value, and it just takes care of everything. And guess what it's reactive. And then when you use it, you just use a use tracker hook from Meteor, you just wrap everything in a use tracker, and you just say, Hey, give me the value from this dictionary. Alright, that's it. So the syntax is very simple. It's basically just getting set, which is fantastic. I'm in, I'm in there for that. It's reactive without any work, you don't have to do anything to make it reactive. The cons, however, are that you have a lock into Meteor, which of course is a con because you know, our front end code, it shouldn't necessarily be too locked in. But again, locking is one of those funny things. If you're not planning on moving off the platform ever, like do you really need to care about locking? I don't know, I go back and forth of this all the time. So I've been thinking about simplifying my state and maybe using something like this is a better idea. But who knows. Final Thoughts? on state?
+
+100
+00:46:20,370 --> 00:46:21,000
+Unknown: West, you
+
+101
+00:46:21,000 --> 00:46:27,300
+Scott Tolinski: have final thoughts on state? What do you think people should use? What do you use? What do you like? What it? What are your thoughts here?
+
+102
+00:46:27,420 --> 00:47:24,690
+Wes Bos: Yeah, I tend to go for the simpler and sort of easier to get up and running solutions. So that would be context using I'm really like this easy peasy one that seems like if I can look at an example, and go, Ah, okay, I get it. Like that makes a lot of sense to me, then that's those are the ones that I like to look at. And of course, you can get more complicated, and they have the ability to get more complex. But if I can look at the initial like basic, if I'm just setting a Boolean to true and false, if I can just write it in a couple lines. That's what I go for. So contacts, if you're doing data that's being pulled in, via an API still probably reach for context or something like Apollo as well. And that's, that's where I reach for just because I don't I don't work on applications that are, are massive, or have a team on that need to. So I'd like to hear what you think. Yeah, I
+
+103
+00:47:24,690 --> 00:48:46,920
+Scott Tolinski: think that maybe I think one that you should probably think about storing your application state separately from like, the application data as in like a is the nav open is to me, like a different set of problems than like, is the tutorials in from the database. So I keep that so separate for me. And I don't know, that's just my thoughts on that. If If you think differently, obviously, that's, that's totally valid. I also think that for state applications, to mean times people go with the flow in terms of what other people are using, right? They look at Redux and say, oh, everybody's using Redux. I gotta use Redux, or everybody's using this or that. There's so many options. And it's really a pro and con of reactors that there is so many options. But there are so many options that you can find an API for you. There is many API's in the sea, and you can find one that really fits your needs and wants, just based on you know, sometimes people like syntax, sometimes people don't like syntax, some people like not the podcast, of course, everybody likes podcasts, but like, in terms of like, robustness, or, or sort of large amounts of code to do very little, some people really like that. And that's valid, and some people don't like that. And that's totally valid too. So find that API for you. You can find it out there. I'm sure it's in one of these if it's not one of these and if it's in another state library that just exists to does that will read will give you a big ol retweet. They're
+
+104
+00:48:46,920 --> 00:49:04,140
+Wes Bos: beautiful. I think we should we should also have somebody on the podcast at some point that explains why you might want to use one of these other libraries that we don't have a whole lot of information about because I would love we don't run into all of these problems that we that need solving and certainly
+
+105
+00:49:04,140 --> 00:49:09,720
+Scott Tolinski: other people do. I want an RX JS explainer episode. Yes. I don't have to do any work learning it myself.
+
+106
+00:49:09,930 --> 00:49:22,470
+Wes Bos: Alright, if somebody that's listening knows who should have on for RX JS episode, tweet us and we will have them on. Alright, that's all for today. Should we move into some sick pics?
+
+107
+00:49:22,620 --> 00:49:25,080
+Scott Tolinski: We should? Yeah, let me get my dogs to stop barking real quick.
+
+108
+00:49:26,070 --> 00:51:34,050
+Wes Bos: Hello, what are you doing? Ah, I've got a real sick pic for you right now. And is a set of pliers I didn't know I needed until I I watched some like YouTube video. And a lot of these these guys that are super into tools always talk about these knipex Cobra pliers where instead of the flyers being like straight in your hand, they sort of go to the left or to the right. It's kind of hard just google knipex Cobra while you're listening to this, and the problem is that they are silly expensive. They're like these beautifully German made tools that are you buy at once you have it for your entire life, but like I just can't convince my wife to let me spend $70 on a set of pliers. So I've always been a fan of the Irwin vise grip tools, which is weird because Irwin and vise grip were two different companies in a while, but now they're just they're one. And it looks like they've knocked them off. And I saw him in Canadian Tire the other day and I was like, ah 30 is 30 bucks for a set of two. And it's really cool because they're they're a set of pliers, they're kinda like channel locks, and that you can make the gripping the radius bigger or smaller, except that they have a button that will lock them into whatever width that you want. So if you've ever used this set of channel locks, you'll know that they like they can slip and things like that. And also channel locks put all the pressure on, not on a tip like pliers, wood, but on the entire length of the jaw. So these things are awesome. And I'm never going to use another set of pliers. Again, because these ones are there, it just grips super well the locking in like if you have to put the tool down and pick it up again, it has the same width of the jaw that you set it on before because there's a button that will allow you to lock in. So check it out. It's called the Irwin groove lock clamshell pliers. I don't know what that is just go and go to your home improvement store and take a look at them. They're pretty nifty, huh?
+
+109
+00:51:34,050 --> 00:53:11,730
+Scott Tolinski: I'm gonna Can you drop your referral link in the show notes so I can get some of those. Yeah, that's a huge problem for me with vise grips specifically, you know them changing, changing widths and all that stuff. So wait, that sounds good. I'm gonna sit pick a movie that's currently streaming on. Let's see where is this currently streaming I'm using real good to tell. It's currently streaming on Hulu. So I watch this on Hulu. If you have Hulu, go ahead and watch this. Otherwise, just put it on your list to find it some other time. This is a movie called a becoming bond. It's a documentary about the stranger than fiction the true story of George Lazenby. Now, I have always been a big James Bond fan. Since I was a little kid I used to watch all the movies. And of course, George Lazenby if you know anything about him as a person, you'll know that he became James Bond and then basically just quit after one movie because he essentially be he's kind of a hippie. It's it's really, really wild life if you want to, if you want to really, really get a feel for how insane human lives can be. Becoming bond is the perfect documentary because this guy's life is absolutely nuts. He was like a car mechanic. And he, you know, is just basically doing everything super impulsively. And he's not necessarily like a great guy, but he just makes these random impulsive decisions. And he lies his way all the way into becoming James Bond. It's a wild it's a very, very wild movie. And I think Courtney and I were just watching it the whole time out the gate just being like what the heck, it's wild. He if you want to see how far confidence can get you, that's how far confidence can get. Yes. So very, very cool movie.
+
+110
+00:53:12,090 --> 00:53:12,600
+Unknown: All right,
+
+111
+00:53:12,600 --> 00:53:38,760
+Wes Bos: I shamelessly plug I'm going to shamelessly plug all of my courses Wes Bos comm forward slash courses where you can pick up beginner JavaScript or ESX for everyone JavaScript 30 they're free, they're paid. Check it out. If you want to learn a thing or two, use the coupon code syntax for 10 bucks off thanks so much. No, I not this is not a sponsored read. Thanks so much to myself for making these courses.
+
+112
+00:53:40,830 --> 00:54:17,370
+Scott Tolinski: Thanks guys. Oh verse for sponsoring this episode. I would also like to shamelessly plug my own things which is going to be my latest course is modern CSS design systems where we use CSS variables to build a design system starting at classless CSS, just really just writing your CSS, just without classes, first and foremost, to get a nice little base in there writing a ton of CSS variables and how you can use CSS variables to really make some really super slick CSS stuff happen. So check it out at level up tutorials.com forward slash pro sign up for the year and save some cash.
+
+113
+00:54:17,850 --> 00:54:22,380
+Wes Bos: Awesome. Thanks so much for tuning in and we'll catch you on Monday these face.
+
+114
+00:54:24,240 --> 00:54:33,960
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
