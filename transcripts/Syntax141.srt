@@ -1,0 +1,96 @@
+1
+00:00:00,359 --> 00:00:24,480
+Announcer: Monday Monday Monday open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob and Scott Taylor. Totally at ski.
+
+2
+00:00:25,950 --> 00:00:40,680
+Scott Tolinski: Oh, welcome to syntax in this Monday hasty treat. We are going to be talking about a sink or a sink, await and error handling strategies. My name is Scott bliss game, a full stack dev from Denver, Colorado with me, as always is West boss. Hey, everybody.
+
+3
+00:00:40,680 --> 00:00:44,970
+Wes Bos: I'm excited to talk about error handling strategies. Yeah,
+
+4
+00:00:45,000 --> 00:00:55,400
+Scott Tolinski: this is the most fun topic in the world the error handling strategies because we all love it when stuff goes wrong. Talking about error handling strategies is going to be West with this week's sponsor is
+
+5
+00:00:56,400 --> 00:01:53,160
+Wes Bos: this is not intentional. But Sentry is sponsoring today. And part of our notes is what do you do with those errors once you've actually handled them? Or how do you handle them. And one way is you can send them off to Sentry, you don't actually have to send them to Sentry manually, Sentry will just be installed to your server or to your client side. And it will sort of just listen for any errors that happen. And then it will collect as much information about what went wrong. And compile that into a nice dashboard gives you things like breadcrumbs stack traces, a bunch of information about what browser what device who was using it, all kinds of great information and allow you to reproduce errors without actually having feedback from the user, which I think is invaluable for any website. So check it out@century.io and use the coupon code tasty treat that's going to give you two months free. And that will work for existing users as well. Go ahead and check it out. Thanks so much to Sentry for sponsoring.
+
+6
+00:01:53,220 --> 00:03:02,640
+Scott Tolinski: Thank you century. Okay, well, let's kick this off. I'm going to start off with this first one, because this is the one that I use. And I know you have a quite a bit more experience with doing different strategies for error handling. But the most common one is just a a simple try and catch. So try and catch up. Basically, you wrap your code inside of your a sync function, your async function, you wrap it in a try. And then below the try you have a catch. And that catch is going to catch if something goes wrong within the try. And then it runs the code and the catch. Therefore, you can see hey, did something happen during this this same code that is preventing it from continuing? And if so, all right, what do we do next? That is that that's how I use all of my acing functions. That's how I do all of my error handling. And for the most part, it adds some code bloat. At one point, when I was converting a lot of stuff from promises over I was having to select a bunch of code and do an extension to wrap stuff in a try and catch and it was just a little painstaking, all annoying. So I know you have some different strategies here. And I'm interested to see how they can make my read a little bit better.
+
+7
+00:03:02,910 --> 00:03:21,420
+Wes Bos: The try catch is probably the easiest and the simplest, you just wrap it, it's not great, because you take this beautiful a sink await code that you have that it's one level deep, and they have to wrap it all in trycatch. Or you have to wrap the actual call of that code when you execute the function. If there is that in a try catch. So
+
+8
+00:03:21,450 --> 00:03:28,170
+Scott Tolinski: it's like put it it's like taking like a beautiful cupcake and putting it Yeah, ugly box, you're like, Okay, totally ugly. There's
+
+9
+00:03:28,380 --> 00:07:02,700
+Wes Bos: also like a, there's also an issue with block scoping because a try catch is a block, it's curly brackets. So like, if you have like a variable inside of your inside of your try block, and you need to access that value in your in your catch, when it errors out, then you have to like either throw the error and put it in there, or you have to like let define the variable outside of the block or use a VAR variable and then be able to access so it's a bit of a pain. I don't run into that all that often. But it's certainly something that has happened a few times here there. So there's a couple different options that we have with async await error handling. And the first one and probably the nicest one, but the hardest to understand is what's called a high order function. Where a higher order function is the idea of it is that you you have a function, let's say, fetch users, and you just write that function as if nothing were to ever go wrong. And then you write a another function that's called like, handle errors. And that function takes in as an argument, your fetch users function. And then what it does is it returns a new function. The idea of a higher order function is a function that takes in a function and returns a new function from it. So I know I just said function a lot function, but again, I'll say that again. Yeah, it's a function function that takes in an argument which is a function and from that it returns a new function that is is generally the the function that got passed in and then slightly modified in some way. That's, that's how a higher order components work in react where you wrap a component in something like with state or with Apollo that what that will do is it will take your component and then add on a bunch of information or functionality into it, it works the same way with with functions. So the idea with a high order function is that you take in your, your regular function, and then you return a new function, which in turn will call your original function, but tat attach on a catch on to the end, because the thing that you need to know about a sink away is that a sync functions, they return a promise. And because a sync functions return a promise, you can just chain a dot catch onto the end of it. So you kind of pick one, you pick a sink away, but you can also use the dot catch from from regular promises to catch those specific error. So I specifically use that in my node course. Because in Express, if you have an error, you want to like pass it to an error page or something like that, you generally just call next, right? Yeah, I use this in Node all the time. Because in node, when you have an error, you have to call next with that error. And what that does is it sort of kicks it down the routing, and if you hit a certain endpoint, the last endpoint in your routes file, it will just render out like a 404 page or render out an error page if there's an error found. So one kind of cool thing you can do with this is you can catch errors with this higher order function, and then simply just pass them to the next function. And this is really cool, because you can throw your own errors and they'll just be caught. Or if you're anything that you're using accidentally throws an error, then that will also be caught in sort of pass it down to the error page. And then depending on if you are in development mode or not, you can show a stack trace and some information as to what goes on goes on. And I love this because you don't have to handle errors in every single route. You just write this higher function once and you know that it's being handled. Nice.
+
+10
+00:07:03,090 --> 00:07:13,950
+Scott Tolinski: Yeah, that seems like it would be more concise. I think part of the the main issue I have is just the amount of bloat, like reducing that bloat would be pretty, pretty nice for me.
+
+11
+00:07:14,010 --> 00:08:11,880
+Wes Bos: Yeah, yeah, absolutely. It doesn't work for everything, because the one thing you need in this case is you need to be able to handle the error, right? Same way every single time. And for a lot of people that's you want to handle the error differently every single time. But in the case of node, you almost always just want to kick it down to inchoate on an error page. And if there is some other way to handle the error, like you want to show the user an error. If that's the case, then you have to handle that in a different way. You might even have two or three different higher order functions are awesome. The other one we have here is handle the error when you call it. So like I said in the sink function can chain a catch on to the end. So if you don't use a higher order function, you can just say like const users equals await fetch users, and then just chain a dot catch and pass into an error handling function in this you need a try, then, nope, you don't need a try there. Because your errors will be handled with a dot catch.
+
+12
+00:08:11,910 --> 00:08:25,320
+Scott Tolinski: My big question here is why is this syntax not like the the main prot like the top like everyone always shows try and catch first. So why not show this is like the way to do it like this makes so much more sense to me.
+
+13
+00:08:25,680 --> 00:10:28,040
+Wes Bos: That's why I've been wanting to do this episode for a while because like, it is so much easier. I think whoever initially showed a sink away examples, they just showed a try catch around it just just to be safe. And you didn't have to get into it. I don't think a lot of people know that. an async function by default returns a promise, or it will always return a promise. And because of that you can always chain a dot catch on to the end. It's so much better like it's mix and match, right? Use a sink, or use await because that's the best syntax and then use data dot catch and pass it a function that is defined elsewhere that will handle your errors. Yeah, Love it. Love it. What else do we have here node has a unhandled rejection event. So you can use process.on unhandled rejection event. And that's important to have in your node apps. Because Pretty soon, node will just quit your process entirely. And a lot of people just don't use any error handling at all. And if something happens, you see it in your in your console. But soon that will kill your process. And that could take down your website. So sort of at a higher level. You can listen for unhandled rejections and your promises and and then handle them that way. So So if I'm under the rug, send them off to century, whatever it is that you want. Awesome. Yeah, let's wrap it up with talking about what you actually do with those errors. So obviously send them to a tracking service. One thing I do is I just have like a list of errors like that. I know what they are. So they're just made up error codes. And then if somebody emails me, like there's a bunch of error codes for when people are trying to do malicious stuff. And then people will sometimes email me being like, Hey, I got error for 980 ad. And then you know, yeah, either they're doing malicious stuff or they're using like a VPN or something that caused generally it's CloudFlare that's blocking them in between. and if cloud for blocks you, then I suppose throw a specific code to the user, and then they can tell me, okay, maybe, maybe try jump off your company's VPN, or something like that. There's a couple of workarounds we have for that.
+
+14
+00:10:28,350 --> 00:11:03,600
+Scott Tolinski: Yeah, yeah. And you'll want to make sure that you pass these along to your users, the worst thing that could happen is you click something, nothing happens, the user isn't notified in any sort of way that something broke. And if they're developer, they're going to go into your console and see like, oh, there's some some errors popping up here. And that's never a good experience for anybody. You know, I I definitely always pass these logs, I built a little error component for level up tutorials, and it makes it so easy. I use context. And I just have a context function that just says send error. And all it does is look a little toast message type thing that pops down with the color red. Well, that's such a good use
+
+15
+00:11:03,600 --> 00:11:05,430
+Wes Bos: case. Oh, yeah,
+
+16
+00:11:05,430 --> 00:11:06,270
+Scott Tolinski: it's such a good so you define
+
+17
+00:11:06,270 --> 00:11:20,400
+Wes Bos: your you define your like air UI, and handler at a very high level. And then you pass that down via contacts. And then anywhere you need your error handler function. You can just call it and then your UI will show it like the bottom right hand corner.
+
+18
+00:11:20,550 --> 00:11:25,170
+Scott Tolinski: Yeah. And it's in a portal. You just sits on top everything. Yeah, love it. Oh, even
+
+19
+00:11:25,170 --> 00:11:26,940
+Wes Bos: portals man next level.
+
+20
+00:11:27,120 --> 00:11:27,660
+Unknown: Yeah. Oh, yeah,
+
+21
+00:11:27,900 --> 00:11:43,800
+Scott Tolinski: dude, I'm on it. So yeah, I used I used not this is not an advertisement. I use injury to keep track of all these things. You know, I have it open right now. I typically go through this weekly to make sure that nothing is popping up over and over again. But
+
+22
+00:11:43,800 --> 00:12:03,120
+Wes Bos: yeah, that's it. Beautiful. I think that's it for today, hopefully learned a thing or two. It's really not all that complicated. There's just a couple possible options for handling errors, which doesn't go away. And hopefully you are better handled to handle those errors now. Nice. I am VAT. Alright, well, I'll talk to you on Wednesday. Please, please.
+
+23
+00:12:05,010 --> 00:12:08,910
+Unknown: Head on over to syntax.fm for a full archive of all of our
+
+24
+00:12:08,910 --> 00:12:14,790
+shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
