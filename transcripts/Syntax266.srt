@@ -1,0 +1,348 @@
+1
+00:00:01,319 --> 00:00:02,790
+Unknown: You're listening to syntax,
+
+2
+00:00:02,819 --> 00:00:06,120
+the podcast with the tastiest web development treats out there,
+
+3
+00:00:06,149 --> 00:00:10,560
+strap yourself in and get ready to live ski and West boss. Welcome
+
+4
+00:00:10,560 --> 00:01:07,980
+Wes Bos: to syntaxes to the podcast with the tastiest web development treats out there. Today, we've got a podcast on video for the web 2020 and beyond. So I think like flashplayer was just died the other day, I think it was like laid to rest after all these years. And we've had html5 video for maybe five or six years. And anyone couldn't put an mp4 in a video tag. But there's so much more to it specifically around transcoding and encoding and live streaming and all that good stuff. So we're gonna attempt to break it down. Scott has gone through sort of all of this in the last couple months. And he's just been collecting little tidbits of what he's learned along the way. So today we are sponsored by Sanity, which is a structured content CMS for your projects and fresh books, which is cloud accounting. I'm a West boss with me as always is Scott Tolinksi. How you doing today? Scott to linskey?
+
+5
+00:01:08,369 --> 00:01:27,210
+Scott Tolinski: Hey, I'm doing good. I went to physical therapy this morning, got some electrified needles in my back, got them moving around here and pretty good. feeling much better than I was before. So also, we just got some hey.com email addresses. Yes. Scott with three T's
+
+6
+00:01:28,079 --> 00:01:55,860
+Wes Bos: got was three C's that I got. I got Wes bos@pay.com? Because Wes i hate.com. Web 300 USA. Yeah. So for those who don't know, it seems like from the tweets, no, not a lot of people know Basecamp is sick of email, and they're attempting to roll out their own email where you can screen people whether they let them in, and it's just it just seems like a different approach. Tackling email. I don't totally understand it, sort
+
+7
+00:01:55,860 --> 00:01:57,540
+Scott Tolinski: of like what inbox was doing.
+
+8
+00:01:57,749 --> 00:02:28,650
+Wes Bos: Yeah, yeah. It's it's not just an app. It's like a whole ethos around handling email. I don't think it's gonna work for me because I have an assistant who does a lot of my email and my email problems don't resolve around like, marketers getting I guess I do get I do get quite a few marketers in my inbox trying to sell me stuff, but I'll give it a shot. But I certainly don't think I'll use the ad hey.com email address so Wow, maybe I don't know if the custom emails yet or not.
+
+9
+00:02:28,970 --> 00:02:39,560
+Scott Tolinski: I think there's like forwarding, but I don't know about custom emails. I don't know. It's interesting. Nonetheless. I just wanted to hold on to that that address, maybe squat on that for a little bit and see how it goes.
+
+10
+00:02:39,569 --> 00:02:45,030
+Wes Bos: Yeah, I had a grab Wes Bos before some Joker grabbed it before me. That's why I was trying to get on it.
+
+11
+00:02:45,030 --> 00:02:49,919
+Scott Tolinski: Luckily, no one's going to try to grab Scott's to Lynskey. So I think safe on that. Well,
+
+12
+00:02:49,919 --> 00:03:01,319
+Wes Bos: you don't know someone, someone snag the syntax FM, Instagram when we announce podcasts. So Oh, people are jerks, just because they like to be jerks. So you have to think about this stuff when new stuff comes out.
+
+13
+00:03:01,679 --> 00:05:30,690
+Scott Tolinski: Sure. That's banking on that, that could even spell my name correctly. All right, uh, let's get into a video here video for the web. For those of you who don't know, own stock, maybe a little bit about the catalyst for why I wanted to do this episode first and foremost. But the reason I I've been thinking a lot about video on the web is because I've run a video streaming service. I don't sodas West. With both of our platforms, we create video tutorials, right? So I began having these thoughts of like, hey, my entire business is video, I should probably be better about my video solution. My current video solution was hosting everything on YouTube, and keeping it all private, and then using some fancy API work to import it all into the site and then have them embedded. And that is fine. But it's not the most legitimate thing in the entire world. Not only that, I do get some complaints that people feel like the YouTube videos cheapens the experience. Right? Yeah. Even though the YouTube players great, the YouTube videos are great, still pops in. It's obviously YouTube pops in with the related videos and stuff. And it doesn't feel like a premium service, despite the fact that the streaming is pretty nice, right? So I began to think, Okay, I need a new video host. And believe it or not, switching off of YouTube has been a priority of level up tutorials for maybe a year now. It's been a year in the making, of evaluating different streaming services, different options. And there is a huge range from fully hosted fully managed CMS style video hosts all the way to 100% API driven technical based things and we're going to talk about a lot of those options in this video, or in this this podcast, but there's a huge range of basically how much you have to do as a parent. versus your abilities to drag and drop things. And I ended up trying out a whole bunch briefly landed on CloudFlare as a solution and have since moved to mux, mbu x.com. And once we go through everything, I'll talk a little bit about why I made that decision and what my stack is looking like these days. And since we have launched the new video player already with one premium series, I'd say, so far, it's been a success. And I'm very, very happy with it.
+
+14
+00:05:31,409 --> 00:07:04,920
+Wes Bos: That's awesome. Let me give a quick rundown of my setup as well. So I started on Wistia, way back many, many years ago. And that got expensive really quickly. Because Wistia is a, it's more of like a marketing video platform. So it's more like a drip or ConvertKit for video where the tools are used to capture email addresses and upsell people. So I moved off of that, because I was getting way too expensive. And then I moved to Vimeo, which was like their very free plan, or they're, like 200 bucks a month, or a year, sorry, 200 bucks a year, and it was unlimited. And it was working well, for a long, long time. And I think about a year ago, they started to crack down on tutorial creators, because there's something in their terms of service that says if you make everything private, and you don't make your videos available on vimeo.com, which is what I was doing, then you have to do a custom plan. So I have to pay six or $7,000 a year to host my video, I could actually bring that down quite a bit because my free tutorials are a majority of that. And I could have my free tutorials on a regular Vimeo plan and make them publicly available and then I'd be allowed to embed them. And then my paid ones, I would have to pay by the bandwidth for them. But I opted just to pay the bill and keep going because they sort of sprung this on me and said hey, you have like four days, which was kind of not a cool move.
+
+15
+00:07:05,220 --> 00:07:12,660
+Scott Tolinski: Let's uh, let let you redo your entire platform in four days. Yeah, something was like weird abortion. It's like a shakedown.
+
+16
+00:07:12,930 --> 00:07:44,970
+Wes Bos: Yeah, no kidding. So they said, like, Hey, you got to pay for it. So I ended up just paying for it because I have bigger fish to fry. And it works pretty well. You can customize it all you all you want. But in the process of doing this, I did go through quite a few of the these possible options as well. And I most of them, I just kind of looked at the end of them at a high level and said, That's too much work for me right now. Mm hmm. And I'm going to wait until I'm going to do what Scott is doing. And I'm glad that Scott did at first because now I get to learn from him.
+
+17
+00:07:45,360 --> 00:10:11,940
+Scott Tolinski: I can give you all of my notes. Yes, because there is a lot of notes here and I went through I really went through the ringer of trying several of these different ones and and really got my hands dirty. So we're going to be doing in this episode, I'll give you just a slight background on some of my history with video because I think that might be important, some terminology. And then we're going to talk about some of the format's and then we're going to do a roundup of players as well as services, a service Roundup, I even have a little horse emoji in here. And then we're gonna talk about the stacks. So first and foremost, my my background is I started video editing and in middle school that was like before coding before anything, we were making skate videos, I got an iMac just so I could use iMovie and edit skate videos. I work professionally as a video editor and a production assistant for Guitar World and feature music magazine. So I have work, motion graphics and video editing professionally. For one of my jobs. I created a specialty flash player that kept two videos in sync for use of slides and video feed of professors giving lectures. And we sold that as a service. And I've been hosting and recording video content ever since the start of my web career. So that's my brief background into what I've done in video. It's mostly on the production side of things rather than on the encoding and technical side of things and not having to learn a little bit more here. So some terms that we might talk about, besides the format's here transcoding, you'll hear the word transcoding. And that's really just a digital to digital conversion of one format to a another. Let's say you have a video that is produced that like an mp4 file. And then you upload it to one of the services that becomes one of these fancier formats like dash or or HLS or web M or whatever. That's going to be a transcoding operation. There's also the word ingest. If you're looking at any of these services, they frequently they all just use the word ingest everywhere and ingest apparently comes from my understanding of the history of the word. It's like when people were to bring the media from one location to another like all let me bring these canisters of film over and like the process of accepting them. is an ingest process. So they typically say like the ingest process is, is basically uploading the video file or data to a server so that it can be then transcoded and then streamed.
+
+18
+00:10:12,390 --> 00:10:15,770
+Wes Bos: So we've called that slurping up it previously,
+
+19
+00:10:16,440 --> 00:12:42,750
+Scott Tolinski: I believe we have used the technical terms slurp to describe the ingest process. And maybe we should petition to get that change because I do like search. And so you'll hear these two terms a lot, especially when you're doing the research and just know that that's sort of the process, right, the videos have to exist somewhere or they have to be ingested somewhere, then they have to be transcoded or encoded to become another file. And then they have to be served and distributed. So there's a whole lot that goes into beyond just video file on server hit play. Right. So that brings us to the next topic, which is streaming versus downloading. We've talked a lot about this in other contexts, but it should be pretty straightforward. If you think about it, right? When you stream things, you're basically sending chunks of it along down the line at a time as the user needs it, right? Where with downloading, you download the entire file the files downloaded, and then you're able to play it. That brings us to formats. And the format's here largely are about downloading verse streaming, because many times people say, Alright, I want to have a video playing on my site. It's just an mp4, whatever. Is that good enough? Well, it depends on what your goal is. If you're doing like a video tutorial streaming site or something like that, you're going to want to go with streaming. Now, if you've ever been to Scott Tolinksi, calm in the past, I had this video of me dancing B boying breaking in the background of that, and that was perfectly fine as a video file or a web m. because it's just like an asset, right? It's being used as like an image. And in those cases, sure downloaded, it's a small video. But if you're going to be doing any sort of video streaming, or you know, video hosting, to the point where people are going to be watching these videos, you're definitely going to want to stay away from like, download an mp4 or download an M web m as a process. So an mp4 is a wild format that's been around for a while now. And includes both, I believe, video as well as audio, it is a complex thing that you don't really need to know too much about other than mp4 is a video container format. It's like one of the most standard used formats, essentially, in the world.
+
+20
+00:12:43,230 --> 00:13:13,590
+Wes Bos: I watched a really good conference, talk about how mp4 works and how the compression works. It was unreal to hear and he talked about like, you know, sometimes you're watching a video and part of the screen goes green for a second. And it's usually where someone had moved. And he explained like how the why that happened and what was missing. And I'll see if I can find the link to because there's super, like, I'll never care really all that much about compressing it and befores it via code, but he explained it really well.
+
+21
+00:13:14,010 --> 00:15:13,320
+Scott Tolinski: Interesting. Yeah, I would love to have that. mp4 is again, just basically the most standard video format that exists. And if you just reference an mp4, instead of a video tag, it's just going to download and play that video, right. And likewise, there's a web M, which is a newer format. Now web m, is an open source, royalty free format. So of course, you know, Apple is not going to be on board, because that's how Apple does things. So web M is not as widely supported, but gives you much smaller file sizes. And there's probably like a good alternative to using an mp4 in certain situations. That said, again, the iOS bit of it, and not working on iOS is probably a big problem. And so that's largely why when you see videos, they're offered in multiple formats, sort of like how cloudinary does it. And in fact, cloudinary can do this where they can give you like a an mp4 on like iOS, and then a web em on Android or anything else that supports it. So those are this two sort of base formats I want to say. But we get into these these, like more adaptive streaming formats, and they're a lot more interesting, in my opinion. And we have two of them that are competing against each other one is called dash, and it's the newer format, and then there's HLS, which is Apple's own format. Now Apple owns HLS and it has been around for longer and has a much wider support. So from what I'm reading, and I'll link to this blog post in the show notes because I don't know Know how much bias is in this because they say basically, that dashes the better format. But HLS has been around longer has wider support, therefore, well, you'll see HLS in more places and dash in less places.
+
+22
+00:15:13,549 --> 00:15:57,179
+Wes Bos: If you've ever seen, like you've right clicked a video in Chrome or whatever, and the source of that video is like blob. And it says blob colon slash slash, I always wondered like, what what that was. And I was on a call with the guys from mcse, a couple months ago. And I said, like, what is blob? Like? Like, do you do that, and he said, it because a lot of browsers don't support HLS. But if the feed is being served up in HLS, what needs to happen is in the browser, you need the hot potato transcode, that from HLS into the the blob format, which then can would then can be played back in a video player, which is kind of kind of interesting.
+
+23
+00:15:57,510 --> 00:17:25,260
+Scott Tolinski: There's a lot of weird intricacies within all of these various formats, and how they all relate to each other, and what's supported and what's not supported, which is one of the reasons why Towards this end of this episode, you'll hear me recommend not rolling your entire own from scratch. There's some complications there. But yeah, so here's a little paragraph that I'm saying. HLS is the only streaming currently supported on iOS and is supported natively within Safari, as of 2016. Okay, so that may be not relevant edge could play HLS natively. So I wonder if edge still can play HLS natively. Now that it's on Chrome, let me check Can I use, by the way HLS stands for HTTP live streaming in case you wanted to know what that stood for. So it looks like HLS does not have some native support on Chrome, Firefox, edge Internet Explorer, opera, opera, mini or Firefox for Android. But it does work on safari, iOS, Safari, Android browser, and a whole bunch of others. That said, HLS is still the preferred method. Because if you look at Can I use and then type in dash, it's all red. So So obviously, neither of these are going to be the most widely supported things. The might say, Well, okay, if they're not widely supported, then how can we use them? Well, you can use them again, through essentially the use of JavaScript, just because that's not natively used doesn't mean it's not possible.
+
+24
+00:17:25,469 --> 00:17:51,050
+Wes Bos: Yeah, that that's what that hot potato thing is what I just said, right, I'm just looking at exactly what is actually doing that. And it looks like HLS j. s is the library. And, and it seems like most players like video, j, s, and flowplayer, things like that, just use this under the hood, I always say under the hood, I gotta stop saying under the hood, they just use this library to convert it in the browser. So you can play it in any browser, which is kind of cool.
+
+25
+00:17:51,509 --> 00:19:29,700
+Scott Tolinski: And there's this whole dot three u eight, file extension, which is essentially basically just giving you rules of it being like a playlist, like here's a playlist of 100 clips of a file, right. And so the way these things largely work is that they're like, with a normal download file, right, you download the file, you play it. With these streaming services, what they do is they're downloading it as it's needed. But because they're downloading as it's needed, what they can do is change the actual video file segment. So you could think of it like this, let's say we had like five video segments, one, that's a 1081. That's a 720. And this is the resolution one that's like a 400, whatever one that's like 4k. Let's say you're streaming it, you're watching it, you're at the 10, EDP and all of a sudden, the next chunk is coming up, and you're getting really good download speeds, what this can do is bump up to the next one, or the download speeds are not so good for this next one. So maybe it bumps down. Basically, you could think of it as like a series of chunks, maybe it's like a train track, right? The trains cruising on the 10 ADP, and then all sudden the there's less resistance so it can go up to 4k. And now the sudden there's more resistance in the network so it can go down and switch the track again. So it's basically these various tracks that you can jump between in a series of sequences. And that basically, it's always going to pick the highest bitrate possible in the downloaded time so so while it's downloading, it's always going to pick the best format that it can or the best resolution.
+
+26
+00:19:29,700 --> 00:19:43,020
+Wes Bos: Yeah, if you ever um, have used YouTube DL, which is a little command line thing to download youtube dl is awesome like pretty much any website that stream shows will live download them for offline
+
+27
+00:19:43,380 --> 00:19:44,880
+Scott Tolinski: YouTube dl so amazing. Yeah, specifically,
+
+28
+00:19:44,880 --> 00:20:13,550
+Wes Bos: I use HGTV me and my wife love watching, renovation, whatever House Hunters and we download them so that they don't have to like stream or buffer throw ads and things like that and I use YouTube dl and you just pointed to the Euro And it downloads that M three you. Yeah, downloads m three, eight, you opens it up and inside of there, there's hundreds of pieces, and then it downloads each of those pieces for you and then put them back together.
+
+29
+00:20:14,010 --> 00:20:49,410
+Scott Tolinski: Yeah, yeah, it's wild, right? It's very complex. And when you think about like, trying to do all of this yourself, you think, oh, boy, especially when you get into having to create those things yourself, create those manifests, create those playlists, create all those videos, all of that transcoding? What does that look like? Yeah, so we'll get into that a little bit. Before we get into players, we're going to do a quick ad break to talk about one of our sponsors that actually, believe it or not, has a video plugin that uses the service that I've mentioned mux. So with more on the sanity.io is Wes
+
+30
+00:20:49,650 --> 00:21:33,660
+Wes Bos: Yes. So we had our huge show on headless CMS a couple a couple of weeks ago, and people loved it. It's actually one of our best viewed shows lately, people loved hearing all the ins and outs of how everything works and but one thing I didn't say and didn't know about Sanity is that they have pay as you go as well as in addition to the plan. So if you're looking at you say I just want to pay for for my usage, rather than getting a specific plan, you can do that. So if you are building a project and you need a back end for it, check it out@sanity.io forward slash syntax that's gonna get you double the free usage tier. Thanks so much for Saturday for sponsoring. Cool,
+
+31
+00:21:33,780 --> 00:21:52,020
+Scott Tolinski: let's get into the players section of this. There's a lot of players on the web. So if I'm missing any, please let us know there are just so many here. Have you ever heard of Shaka player? That was when I had never heard of until I Shaka hunt? Shaka sh aka
+
+32
+00:21:52,020 --> 00:21:53,040
+Wes Bos: from Google?
+
+33
+00:21:53,220 --> 00:23:01,020
+Scott Tolinski: Yes, exactly. I was gonna say you'll notice a certain company has created Shaka player Shaka player is the dash and HLS client made by Google. It's a JavaScript based player. It has a really dope hang 10 logo, which is like the Google thing but in like, hang 10 hand, which is kind of fun, or I guess is Do people call that the Shaka hand? I guess they do. I've always just known as hang 10 paint and yeah, yeah, that's, it's pretty dope. It seems to work on just about everything. I have not used this. But I did. I saw it in a video talking about the video format that we're going to use Shaka player is like the heck of Shaka player. So this seems like a pretty cool option here. It supports just about everything you could imagine. It's boring, and it looks pretty cool. So I have a new Shaka player, but it does seem like a great option for those of you looking. There's also HLS j s HLS. J s, what I saw was maybe created by dailymotion, I saw dailymotion had a fork of it, if I'm wrong on that. There's a very well, there's a chance that this exists before that, but I did see dailymotion had some sort of a fork of this HLS.
+
+34
+00:23:01,050 --> 00:23:17,220
+Wes Bos: It looks like dailymotion made it and then they put it in their own GitHub repo, because it's, it seems like the entire industry is using HLS j. s, which I don't think that this is a player, it's just a library to stream into a video element.
+
+35
+00:23:17,580 --> 00:23:23,070
+Scott Tolinski: Yeah. Right, because they even used mcse as one of their examples here, well, MK CD player.
+
+36
+00:23:23,310 --> 00:23:33,660
+Wes Bos: But here's a question from the perspective of audience, why do you need a player? Like why can't you just use a video tag and then style it and add your buttons as you want?
+
+37
+00:23:33,900 --> 00:23:51,000
+Scott Tolinski: Because specifically, like when we were talking about those formats, the HLS and dash, they're not going to be supported in just the HTML image format. And then you're going to be stuck, essentially just downloading the video, and not getting the streaming stuff that we want to stream.
+
+38
+00:23:52,110 --> 00:24:30,330
+Wes Bos: And then things like Chromecast, and Apple play DRM, there's there's several different DRM things like if you watch Netflix, that's just the html5 video element. I almost said under the hood, I didn't it's the html5 video element under there, but they do use DRM. So you can't just save the Netflix video from there. So your player has to know how to how to work with that. So I think in in most cases, same with like, like bandwidth as well, the html5 video element won't ask for a lower quality bandwidth if the internet is being slow. That's something a custom player will do.
+
+39
+00:24:30,570 --> 00:25:59,850
+Scott Tolinski: Right. So that's really that all comes down to the formats, right? I mean, that can happen without an HLS or a dash format coming in. Yeah, the player itself under the hood is really like you mentioned a video element. Okay. So there is a video element in there. If what you do is you open the driver's side door, you reach in by the foot well and you pull the little handle in the hood kind of pops up a little bit and then you walk over to the front of the car and get your hand in there and lift the lever and then lift it up. So once you're under that hood, that's when you're going to see very specifically that there is a video element in there. So that that works, how you'd expect it. In fact, actually that video element is one of the the reasons why I had to move off of CloudFlare. We'll talk a little bit about more of that later. But some other players just to briefly these are dash dot j s, which is the dash industry forum dash dot j s. There's also video A j s, which is the one I went to video dot j s is a very mature video player that's been around for a long time has a big community, tons of plugins, tons of themes, those kind of things. Definitely a bit of a piia though to get set up as an It was a pain in the rear end it did not it was not exactly the easiest thing. There's also JW Player which has been around forever and ever and ever. And if you haven't been to JW Player lately, Wes go to JW Player comm and kind of be like, well this is different.
+
+40
+00:26:00,450 --> 00:26:06,360
+Wes Bos: Yeah, I remember JW Player being rounded corners and gradients like when that was that was really
+
+41
+00:26:06,540 --> 00:26:11,250
+Scott Tolinski: just like a player though. And now it's now there's solutions and products.
+
+42
+00:26:11,280 --> 00:26:13,350
+Wes Bos: Oh, they went corporate on a very
+
+43
+00:26:13,350 --> 00:27:01,740
+Scott Tolinski: corporate but that is pretty dang nice. In fact, JW Player, believe it or not, is one of the streaming services that we're gonna be talking about because it used to just be player tech. Now. It's a whole streaming service. They, they monetized. It looks pretty cool. Actually not one that I really checked out too much. But it definitely looks pretty, pretty cool. There's also a bit moving player Have you heard of bit move in play? I have pretty sweet and a bit moving is a big, big encoding company. They do a lot of big stuff. We'll talk about them in this services. They have a player, you have to pay for it. There's a monthly fee to use their player. It looks pretty nice though. There's also ooyala, which I didn't realize yellow is bright coves player. I don't know why great code. Here. Ooh, look. Ooh, I want to say Ooh, la la. But it's Ooh, Yala.
+
+44
+00:27:02,520 --> 00:27:04,230
+Wes Bos: ooyala. I like it.
+
+45
+00:27:04,500 --> 00:29:19,080
+Scott Tolinski: Yeah, yeah. It's a fun name. I wish I could say it better. It's not great for dyslexic folks. But yeah, ooyala is this even? Yeah, because ooyala.com redirects to bright code. So maybe it was formerly ooyala. And they made renamed to bright Cove, because I don't know, I'm speculating here. Either way, ooyala is a player, there's also a player called Theo player at eo player.com. This is not one that I had seen before, either, but looks like it's very widely used. And they make the bold claim as the number one video player worldwide, because it's used for BT Sport, and BC, CNN Vodafone, all these things. So that is the players. Now let's get into sort of the meat and potatoes of some of these services here, for cooking up a stew, we got the meat and potatoes here. And that is going to be the services round up. I feel like we need some round up sound effects that whenever we see because this is now the second round up and a little bit. And maybe we can have a little roundup thing round up. And then like, you know, you could have some horses stamping stamping around and stuff. Okay, and get off course. So, services, I have ordered these in the listing of I have technical difficulties as the header, but I've also thought about naming this user misery because I got that term from stripes, new stripe has these new performance metrics. And they, they they have like your routes, each of your routes has a user misery rating. And I think that's hilarious. It's like, Alright, if X, Y and Z number of users are having issues, then that this is a high user misery route. So rating these in terms of the easiest to get set up to the hardest to get set up. And with some caveats here. And obviously, there's a lot of these services. So we may forget some number one, you do free. Congratulations. It's free, free 99. It costs nothing to get set up. It's the least professional. It's the easiest to do. They have all the tools you could possibly need. But you're also supporting the giant behemoth that is YouTube. So yeah.
+
+46
+00:29:19,410 --> 00:29:47,040
+Wes Bos: Next one is I'll do Vimeo because I know that the cost is even like, like straight up. I know I'm paying a lot but I did all of the math. I talked to some guy on Twitter dm to me, and he works for like a massive porn site, he said, and he gave me like this like spreadsheet of all of the research that they've done. And like he looked into every single player and there was there's hundreds of players I hadn't even heard of before
+
+47
+00:29:47,040 --> 00:29:57,840
+Scott Tolinski: an academic paper. Yeah, like I found this one. I was just googling I was googling around and there were some academic paper about the cost of all these streaming services and it was a really helpful table.
+
+48
+00:29:59,700 --> 00:30:33,210
+Wes Bos: So The Vimeo still came out cheaper than the raw bandwidth from a lot of these, these companies. And that's why I ended up not doing it because even looking at something like mcse there's obviously other upsides to, to using mocks. But for me, I was just looking at the raw bandwidth cost, and then having to code my own player. And it was still cheaper to just use Vimeo, which comes with player and transcoding and everything, as well. So very affordable, especially if you are making them publicly available. And you can get in on the $200 a year plan.
+
+49
+00:30:33,269 --> 00:30:43,560
+Scott Tolinski: Yeah, that is the $1 sign option, right? Just the $1 sent option, where it's like a fixed cost, you're paying the cost. And then in that's just what it's
+
+50
+00:30:43,560 --> 00:30:46,770
+Wes Bos: not a fixed cost. For me. It's so I paid by the
+
+51
+00:30:46,919 --> 00:30:47,760
+Scott Tolinski: hour, right? Okay.
+
+52
+00:30:47,999 --> 00:30:59,340
+Wes Bos: Yeah, but most people unless you're doing private video streaming like a course like I am, you have, you have to pay for that. But if you're if you're just like uploading videos, or whatever, yeah, then it's a fixed cost.
+
+53
+00:30:59,459 --> 00:31:27,390
+Scott Tolinski: So next up is I have this as a $2. sign these things that let me tell you are kind of hard to really quantify in terms of pricing. So this is probably going to be a more expensive for you version, but most of the services will fall into this category in my my experience, and this is mcse mux is used by vair sell v s co do you call that Cisco v this V Cisco,
+
+54
+00:31:27,390 --> 00:31:28,050
+Wes Bos: you
+
+55
+00:31:28,050 --> 00:33:34,290
+Scott Tolinski: know, two people actually say that Robin Hood and level up tutorials. mcse is a pretty sweet service, you could think of it as sort of like, you could think of it as like video on demand where you ask for something, and it transcode that on demand for you. So that way, you're not like hosting a bunch of video that people are watching, right, you're not creating 1000 streams and having to pay to host those. Let's see what the pricing is. It's basically Okay, this is tough to calculate here, the pricing is five cents a minute for each video watched, or for I'm sorry for that. That's for encoding, not for watching five cents a minute for encoding, point, three cents, so point two, three cents a minute for storage per month. And then point one three cents per minute for streaming. And they have this interesting little calculator on their pricing page, where you can say how long is my average video k my videos 10 minutes long. I upload like 25 videos a month, monthly video view count, I don't know. Either way, it's calculating to end up being under the $500 range. Somewhere in between that, but this is a professional service, I probably I have not gotten a bill yet. But I'm probably not going to be paying a ton as this is I'm I'm slowly adding my library there instead of just like tossing all 2000 of my videos there at once. So we'll definitely see as the cost grow. But it's definitely a good solution. Because I think for the most part, the costs are going to be pretty close to what I'd be paying at other services to get the same sort of stuff that mcse gets me The mcse is a developer forward sort of experience that said, I did have to write my own uploader function. There's no like UI to upload a video where some of these do have a UI to upload a video. So because of that I did give this to user misery or technical difficulties used to be you have to be two crying faces. Technical to want to use this. That's not bad. But you still have to write your own uploader. Right.
+
+56
+00:33:34,500 --> 00:33:59,130
+Wes Bos: Yeah. Next one we have here is Wistia, which they have plans. The kind of person that's using Wistia is gonna be like, like a real estate agent or, like a SAS software where they have like one of those like, welcome to our stupid product. Like the end, they end The end of the animate people on the screen and things like that. Not say I don't like Wistia I think it's a it's actually an excellent Yeah,
+
+57
+00:33:59,130 --> 00:34:00,180
+Scott Tolinski: excellent product.
+
+58
+00:34:00,210 --> 00:34:18,090
+Wes Bos: Yeah. It's just very expensive. So I'm just looking at the once you go over the 200 gigs, which I will go over in a couple hours. It's 33 cents a gig were on I think Vimeo and paying six. So it's almost six times more expensive than then Vimeo is on Wistia. So,
+
+59
+00:34:18,090 --> 00:34:18,960
+Unknown: Mm hmm.
+
+60
+00:34:19,320 --> 00:34:32,360
+Wes Bos: And like I've had calls with them, and they can bring that down if you're doing them out that I'm doing but nowhere near what Wistia does, but it's great for if you're trying to collect email addresses and sign up I think even egghead uses Wistia I'm
+
+61
+00:34:32,360 --> 00:34:34,710
+Scott Tolinski: not sure if that's still true or not is bitmovin
+
+62
+00:34:34,980 --> 00:34:54,690
+Wes Bos: their news? Okay, they moved over to Tippit moving. I think if you use teachable, they use Wistia and they they foot the bill they since they tried to get me to move over there. And they said we'll put the bandwidth bill but both love Yeah, I'm not moving off of my own platform. I know. That's a pretty good option. Just expensive. Yeah. Lots of control.
+
+63
+00:34:54,710 --> 00:36:37,320
+Scott Tolinski: Yeah, totally. The players really nice to go see a lot of customizations there. Yeah, I really like to stay when I did the demo of it. But yeah, the pricing is just not possible for what we're doing. Next step is CloudFlare CloudFlare actually launched a video product, I'm not sure when. And I briefly was going to be all in on the cloud for product, because the pricing was pretty good. The technical difficulty aspect of it was pretty good. In fact, to upload your things, I actually, I actually thought the interface for uploading a bulk uploading videos was better than YouTube's. It was very fast, very simple. And you could just drag a whole bunch, there's a UI, you just drag and drop, upload, change the names, whatever. I hit the API, import the videos, and I was so close to launching with it, because all of that, and then I started to get second thoughts, because here's why CloudFlare requires you to use their stream element, which is not a real HTML element that CloudFlare has just created themselves, for some unknown reason, instead of using video elements. So you use the stream element. And guess what that means that if you want a custom player, which you do, okay, you do want a custom player because if you just use the browser's built in one, you don't get access to a Chromecast, which is number one feature I wanted or airplay, right? You don't get access to those things. So what do you have to do? Well, you have to write your own player. Why? Because they use a stream element, it makes it so it doesn't work with any of these other player options, what is the stream element, just their own thing that they made up and therefore your linter gets angry, everything gets angry, and you cannot use video JS or you cannot use these things. Because looking for the video tag,
+
+64
+00:36:37,590 --> 00:36:42,360
+Wes Bos: they got to be sent in something that can be understood by the browser made, they
+
+65
+00:36:42,360 --> 00:37:11,760
+Scott Tolinski: just don't they don't surface it, they don't. So that looks for the video streaming element. And then their JavaScript does all over the bits to turn it change. Either way, doesn't play nice with anything. So I was like coding my own player with framer motion and I spent way too long on it. I got really far. And then I just like okay, now I got a Chromecast I got to add this. And then it's getting bug reports. But now working right on some browsers. And I was thinking, What am I getting myself into? Is this something I really want to do?
+
+66
+00:37:11,790 --> 00:37:14,340
+Wes Bos: Yeah, coding your own video player is tough. I know.
+
+67
+00:37:14,820 --> 00:38:15,920
+Scott Tolinski: And I just at the end of the day is like, you know what, this is not something this is making my life more difficult. So I dropped it with mcse. So I could use player jazz and some of those. Okay, next one is going to be JW Player, which we talked a little bit about JW Player, I have no experience with them. In fact, I thought they were just a player until I started compiling this notes. And then I found out they do all of this other stuff. Now JW Player apparently has a streaming video delivery service, live streaming, hosting and management video monetization. Looks like they have like add solutions. This thing looks like pretty crazy. It seems like they have a lot of different services. But to get started for 150 gigabytes of hosting and 500 gigabytes of streaming, suddenly 10 bucks a month. And you even get password protected. Sharing to I don't know how that works with embeds or something if that's just like their own URL. This is a pretty sweet deal. I don't know enough about this to like really dive in here. But maybe you want to check it out at least jw player.com
+
+68
+00:38:15,920 --> 00:38:35,630
+Wes Bos: looks like they do they do stats as well, like that's something we're not talking about either is that a lot of these services will give you really good stats about Oh, yeah, countries and plays and where people drop off on a video and things like that. And then others solutions are just raw, raw bandwidth at the end of the day. So that's pretty cool. one layer,
+
+69
+00:38:35,940 --> 00:39:34,800
+Scott Tolinski: you'll have to like opt in to those data services. MCC says Oh, yeah, really good video data as well. It's mcse data is pretty, pretty slick. Okay, so next up is cloudinary, which I had quite a bit of difficulties getting cloudinary videos to ingest. They would or if I didn't just them, I would specifically ask for a version of the video and it would just not work. I'd be like, No, we don't have it. And so I had a lot of issues, getting the cloud in Aries video uploading to work the way I wanted it to. And there were some restrictions. It was so funny because we had found a bug I forget what it was we found a bug with our video player using cloudinary. And our developer Eric, he reached out to cloudinary to say, Hey, what's the matter with this? Why won't this reformat? Why won't this change? And they're like, well, there's some videos, like, over a certain size can only be modified in these ways. If they're uploaded via these manners. It's like Well,
+
+70
+00:39:34,800 --> 00:39:37,940
+Wes Bos: well, the documentation is don't like
+
+71
+00:39:37,940 --> 00:39:46,500
+Scott Tolinski: tell you that kind of stuff. And, and like if I get a video into cloudinary it should just work with all of the features like I shouldn't have to do things a special way to get it to work. But
+
+72
+00:39:46,590 --> 00:40:10,610
+Wes Bos: yeah, that always bums me out when like companies make something so simple. And then like like the cloudinary images just slam dunk homerun slap shot, and they killed it and then it sounds Like the video stuff is not as easy. always like, ah, like, I want you to be what you are for your other thing for the everything else in my life. It's not necessarily always the case,
+
+73
+00:40:10,650 --> 00:40:38,130
+Scott Tolinski: I looked at so many of these services only to find like some of them were just like a couple of ticks in the user friendliness side over and they would have been a home runs when Grand Slam slapshot. I mean, they would have been, there's so many of these that that like come so close to greatness in terms of like, getting the UI dead, right, or the user experience dead on. Yeah, but in this almost a touchdown, almost a touchdown, almost a double touchdown in
+
+74
+00:40:38,360 --> 00:40:39,750
+Wes Bos: the setup. Now,
+
+75
+00:40:39,840 --> 00:45:19,950
+Scott Tolinski: don't want to double that one time, I was at a UVM football game, and we're losing the Minnesota, which is crazy, considering like Michigan versus Minnesota should never be that close. Tell me, you're losing by like 40 points or something. And my my buddy, who I was with was like, not into football at all. And he was like, Whoa, we could really use a double touchdown right now. He's like, Oh, you just did one touchdown, but they give you 14 points instead. So like, so many of them, I'd be nice to contact the customer service. I'd be like, how do you do this? They're like, you don't you got a code? You're like, Okay, why don't you just go that extra step? You know, why don't you go go the extra step. Okay, we got more to go through, which is one of them is break code break code, we use that Ford, so I'm used to using them a little bit. But again, that's probably not one you're gonna want to use for anything, like what we're doing. But if you're the type of person who is looking for like a video streaming service, you could imagine like how it's being used on forbes.com, show clips of the cars go verm, then that is going to be the right kind of solution for you also expensive, but definitely a little bit more handhold II, there's also things like I have these next three, which are a little bit more technical, which is Azure bit moving in AWS. So as your is Microsoft's cloud platform, I got as far as setting up my workflow, I had the encoding processes set up. And then like their players, garbage, sure, they're trying to get you to use the Azure player, which just is trash. For the most part I had, like, I didn't want to get into the dev docs for it. But the the interface stuff was just okay. Not very good. Bit moving is very technical. So if you look at bit move in, and you say, okay, bit moving, this seems like a great, great idea. Just know that you have to basically write all of the ingest stuff yourself. Or like, for instance, if you want to connect to an s3 bucket, which is what you have to do the videos have to live somewhere like an s3 bucket, then you got to connect that to bitmovin. You got to write your own serverless function to do all of that. It's like okay, well, what maybe you could like handle this to just say, let me login. Let me give you some access keys and then select the bucket and click Go. Now I can't do it that way. So you have to do quite a bit of your your own stuff. But if you want to save money on pricing, you're a bit more technical, you're a bit more developer minded, someone like bitmovin is a really good one that they have a lot of really awesome encoding stuff, their encoding tools are really great. The that's the analytics are really great. That said it was a little bit less handhold Lee than I wanted, not that mcse was hand holding, but it was definitely easier to get up and running with and moving. Lastly, I have AWS is a whopping five crying faces on the technical difficulties side of things. And I used this VOD on demand workflow, which never ended up working. Just to give you an idea of what this video on demand workflow actually does. Because with Amazon, it's never like here, let me do this one thing, let me do this. One thing that does another thing that does another thing. So the VOD on demand, basically set you up with a s3 bucket, a elemental media convert, AWS lambda functions, notification service and a cloud watch as well as a database with Dynamo dB. And what this does is it you create a folder within s3 a bucket. So to say you put your videos in there, you have a watch service that looks for that bucket looks for anything added to that bucket if anything's been added to that bucket. It then runs through this transcoding process and spits out all of the files into their format into a another bucket with their various formats. And those formats and that manifest and metadata is all collected in a database. And then it's all served through CloudFront their CDN. I had major issues with this process. It didn't work. They made it seem like it was like a one click get up and running with professional VOD. No, and for the most part, I talked to a lot of people who had the same experience. There were definitely permissions keys issues, there's a lot of things. There's a lot of things that uh, talk to one another. So unless you're an AWS person, like if you're an AWS certified whatever, you have a lot of AWS experience, you're very comfortable. And AWS, this is probably the best one for you to use, because it's probably going to be probably the cheapest, because it's the closest to what do they call it that's closest to the doing it all individually raw chunks yourself to the metal closest to them. Yeah, that is what I want.
+
+76
+00:45:20,310 --> 00:45:28,770
+Wes Bos: I wouldn't be surprised if a lot of the services that we're we're talking about today actually just use Amazon under the hood. Yeah, it's like as a utility company. Yeah,
+
+77
+00:45:28,770 --> 00:46:04,440
+Scott Tolinski: I would imagine a lot of them do, or Azure, or Google Cloud, because I know mcse has their data stored in the gluco, Google, the Google in the Google Cloud. But their transcoding is done. I don't know by themselves or something, I'm not sure. So don't quote me on that. Either way. That's a rundown of all of these services, who there's a lot of services. Before we we get done with this. This bit, let me just talk briefly about why I chose the stack I chose. And before I let you know exactly what I chose, and why, let's talk about one of our sponsors, and that is Freshbooks. Today
+
+78
+00:46:04,769 --> 00:47:03,600
+Wes Bos: freshbooks.com. forward slash syntax is the URL that you need. If you are a small business, you're a freelancer, you're just billing someone and need to make a quick invoice, send it over and keep track of it. Don't go into Microsoft Word or whatever to make your own. And you'll never be able to keep track of that you need to sign up for fresh books, and use that to send out your invoices, it looks super professional, you can log all of your expenses in there, you can do your billable hours, you can you can input expenses, and then convert them in just immediately turn them around and build them for clients. I've done that with flights before. So like I paid for the flight myself, I put it in as an expense. And then I turn around immediately and then build the person running the conference for that thing. So pretty, pretty cool. Check it out@freshbooks.com Ford slash syntax use syntax in the How did you hear about us? That's gonna give you a 30 day unrestricted free trial. Thanks so much to Freshbooks for sponsoring, let's hear about why and what did you end up doing? What is your staff?
+
+79
+00:47:03,959 --> 00:49:29,070
+Scott Tolinski: Yeah, so through the course of this, I signed up with accounts at Vimeo, mcse, Wistia, CloudFlare, cloudinary, bitmovin, and AWS and Azure. So I've really tried all of these with the exception of Brightcove and JW. Player, I ended up going with mcse. For my host, its developer forward, it was easy it worked first try I created a video uploader with help of MCC with the help of up chunk, which is their own chunking uploader that the mocs folks created and the code was not too crazy. Basically, I just got my key from the server I was able to with with that key on the client side, basically hit mux. With up trunk I just pasted in essentially a URL with a chunk. Here's the video file went through it did its thing. And then I wrote some polling to hit the marks API to say, Alright, is the data ready yet? No. is the data ready yet? No. is the data ready yet? Yes. Okay, it is okay. Let me get that data. And that's really what I did there. You can also do it via web hooks. But the polling worked fine for me. And that, you know, it's easy, a little bit easier to troubleshoot I think because sometimes I get nervous with web hooks. For some reason, even if code hasn't stopped working like it's still have access to our cake. I don't know it's not as transparent. I also went with video j s for my player, mostly just because there's a lot of people using video j s, there's a lot of plugins, it was fairly easy to get Chromecast up and running on this thing, and includes all the goodies and all the things you'd come to expect Not to mention there is theming a lot of the CSS I found to be very, very difficult to work around. But once I figured it out, I was able to create my own theme, my own theme which by the way is actually even connected to our theming system. So it works. They'd like changes colors in dark mode and OLED mode and whatever it's actually like themed with the site. So it's pretty cool I got my own custom player looks nice all the functionality I want video dot j s and that's really it. That's all I did here mcse video j s where I went and so far so good. I launched one series with this and have not had any complaints so far. Nothing popping up in my century. So I feel like it's been a success so far.
+
+80
+00:49:29,580 --> 00:49:52,530
+Wes Bos: Cool. Well, we'll have to do like a like a six month update hasty on on how it's going and, and whatnot because I think there's a lot of people that asked these questions especially like, like you can start up a video streaming thing and use a service but then as you want more control and costs alone and it's worth looking into one of these so thanks for showing us all that what about some sick pics today
+
+81
+00:49:52,800 --> 00:51:02,730
+Scott Tolinski: sick backs. I have a sick pic. It's a podcast that I've been listening to and this is going to be not a podcasts for everyone. I'll tell you that right off the bat. But this is the podcast I really like. And it was only on Spotify before. And they have since moved to everything so I can finally recommend it. This is for those of you who are into fitness, if you're into fitness and you're into mobility, stretching flexibility, this is going to be for you. It's called flexibility focus. And it is a science based flexibility podcast. I love my science based fitness podcast. And this one is basically this very smart guy who does a lot of stretching stuff. And that is the best way I can explain them to technically distractions. This guy, he's very, very smart to basically talking about medical journals, evidence based stretching things, and it's a little dry, and it's long, and it's very technical. But if you're into flexibility, stretching, whatever I just this is one of my new favorite podcasts for those reasons specifically, he just really he has really opened my mind to some things within flexibility, which is something that I am particularly interested in.
+
+82
+00:51:03,090 --> 00:51:48,270
+Wes Bos: I'm in a sick pick a another YouTube channel. This one is mostly focused on motors, like not electric motors, but like gas motors and engines, things like that. And he does a lot of these like he'll find that go weed whacker on the side of the road and then he'll he'll break it apart and show how to fix it or like he found like this really nice fan on the side of the road the other day. And like the fan, it does like one of those where like the fan doesn't spin unless you flick the blade and then it gets going. A sure how to fix that. And like just lots of life skills to learn in there that the it's called the musty one is almost half a million subscribers I've been watching for a few years. Very enjoyable. Check it out. youtube.com forward slash must be one I think musti
+
+83
+00:51:48,270 --> 00:51:49,140
+Scott Tolinski: musti
+
+84
+00:51:49,320 --> 00:52:06,540
+Wes Bos: musti musti. Last see shameless plugs, Wes bos.com, forward slash courses. Check it out. If you want to learn JavaScript, CSS, node, react, you name it, check it out. Use syntax for 10 bucks off any of my courses.
+
+85
+00:52:06,750 --> 00:52:51,030
+Scott Tolinski: Also head on over to level up tutorials.com and you can sign up for a year save some money and the course this month is on a CSS variables and creating a design system using just CSS. We talk a lot about a CSS core concepts like things like how to properly utilize and access the cascade as well as CSS specificity all along with CSS variables, getting you up into the ability to write a really really slick classless framework as well as components and elements for your entire application. So check it out, level up tutorials comm Ford slash Pro. Alright, thank
+
+86
+00:52:51,030 --> 00:52:57,030
+Wes Bos: you so much for tuning in. We will catch you on Monday face to face.
+
+87
+00:52:58,800 --> 00:53:08,550
+Scott Tolinski: Head on over to syntax.fm for you full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
