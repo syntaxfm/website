@@ -1,0 +1,108 @@
+1
+00:00:00,359 --> 00:00:24,480
+Announcer: Monday, Monday Monday open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob and Scott Taylor. Totally at ski.
+
+2
+00:00:25,980 --> 00:00:45,360
+Scott Tolinski: Oh, welcome to syntax on this Monday, we are going to be talking all about communication, which is everybody's favorite topic, considering how well developers are known for their excellent communication skills. But the hint of sarcasm there, my name is Scott winsky. And with me, as always, is West boss.
+
+3
+00:00:45,540 --> 00:00:47,460
+Unknown: Hello, everybody. Hey, Wes.
+
+4
+00:00:47,640 --> 00:01:13,560
+Scott Tolinski: This is a tasty treat. So this is our Monday episode where we dive into a topic and give you a little quick tip or quick little burst of knowledge here on the specific situation again, today we're talking about communication. Now one of these things that can help with your communication around bugs and help your team understand what's going on. And what's going wrong in your application is today's sponsor. Now that sponsor is century had century.io.
+
+5
+00:01:13,760 --> 00:03:25,800
+Wes Bos: Yeah, so Sentry, we've talked about them a million times on this podcast they are is something you install on the front end and the back end of your website. And they will track all of your errors and exceptions. So just to give you an idea of what that looks like, I'm just looking at my dashboard right now for the React application that powers the viewer for my courses. And at a high level, I can see that I've got about six or seven different errors going on right now. Some of them I can tell are very minor, meaning that they have only happened two or three times, then it's probably not an issue, I can just ignore those safely ignore those or mark them as resolved and they will never show up again. But other things like I'm just looking at one of my issues right now I cannot read property top of undefined. So this is just a silly little issue that's come up with some scrolling logic I have in the viewer of my website. And just by taking a look at that, first, it's going to show me the actual error and the code where it happened. And the kind of cool thing about this is that even if you have you shipped minified code, you can see in a source map where the actual error is happening, in that I can see the browser the browser's name, what OS people are actually running, I additionally do some some deeper stuff. So I also track the users ID and the user's email in here. So that way I can reach out to the user or users if this is specifically happening to somebody, if you click, if you take a look at the actual issue, you'll see that this specific issue to me is that but a couple thousand times to 338 people. So it's not happened absolutely everybody but just a subset, I can click through to that and see out of those users who who's getting it the most. And sometimes it's just like, I don't know, it's happening to one person 0.5% of time, but having to another person 80% of the time, that one person is responsible for a large majority of these actual error. So I can go on and on about all of the different pieces of info. But if I just like think this is my command center for things that are going wrong on my website, I can get really quick insight as to where it's happening, what's happening, who's it's happening to what type of devices it's happening on. And then you actually the one thing century doesn't do is actually fix the bugs for me. So maybe they'll roll that out at some point someone to come write better code than I do.
+
+6
+00:03:26,190 --> 00:03:28,830
+Unknown: I thought when you click the resolve button, it just resolved.
+
+7
+00:03:30,450 --> 00:03:57,330
+Wes Bos: Pete great, it would be great. We've actually gone ahead and actually fixed your code for you. Thank you for that. Yeah, that'd be really cool. Anyways, thanks so much to century for sponsoring this episode. If you want to try it out on your own, make sure you go to century.io use the coupon code tasty treat, it's gonna get you two months for free. That also works for existing users. So if you've signed up for it at some point and didn't use that coupon code, you can still use it. So thanks so much to Sentry for sponsoring.
+
+8
+00:03:57,779 --> 00:04:49,980
+Scott Tolinski: Nice, cool. So let's get into communication skills. We're going to start with one Why are they important? communication skills can make or break a project. I mean, there besides being a good developer, good designer, good team, your communication skills can be directly responsible for a bad result in a project or anything like that. So they are extremely important, do something to constantly be striving to improve. And in my experience, I've had a lot of clients who have told me that their previous developer was bad. And then when you ask why was their developer bad? Well, I never heard from them. I messaged them, I called them it would they were hard to get ahold of. They didn't need deadlines, their communication skills were bad. Maybe their dev skills weren't bad at all. But they were seen as a bad developer simply just because their communication skills weren't good.
+
+9
+00:04:50,250 --> 00:05:25,880
+Wes Bos: Yeah, I think aside from actual coding skills, communication skills are up there with some of the top skills you can have as a developer, because if you don't know how to communicate both with your fellow developers, you can often come across as as some way you don't wish to be perceived by others as well as you can't ask good questions, you can't get good help. If you're talking to clients, they may not you might come off rough, you might come off terrible. If you're not communicating properly, they're gonna fire you, things like that. I think that that's just like, as important as developing schools are I think being able to communicate to your client to your fellow devs is just as important.
+
+10
+00:05:26,070 --> 00:06:59,670
+Scott Tolinski: Yeah, absolutely. And we all know that sometimes these project timelines are pushed back, because maybe someone's not talking about the troubles they're running into or the delays they're having. And if your problem your rear project, timelines get disrupted, then not only this project can be disrupted, but next project could be disrupted, because all of the sudden the whole team is off. There's just so many issues that can erupt from this. So let's talk about the important part, which is how do we improve our communication skills? Because we know obviously, that they they can't be a problem, right? Because they can sink your project. So how do we improve them? I think one of these things is that maybe if you're not inclined to be a good communicator, you need to have it be intentional, and you need to intentionally practice your communication skills. That's really the only way to improve anything is through intentional practice. Not only that, but through intentional practice, you and your team maybe can work together to set up systems to help make it easier, because honestly, if you if you don't have the self control and the willpower to, you know, just totally change everything and the way you you communicate, I think that the single most important thing you can do is have a system where every single person is on the same page, and everyone knows how to talk to each other, and when to talk to each other. And I think that's why things like agile got really, really popular because they were excellent ways for the team to meet communicate.
+
+11
+00:06:59,820 --> 00:07:51,270
+Wes Bos: Yeah, I think that's super important as well, having some sort of system and rules in place to how to actually communicate to someone because we can say all day long, make sure communication is important. But you sort of have to lead by example, and give your your employees and your fellow developers the tools that are needed to communicate properly. On the same process. There's there's systems but there's also rules as well as to here is how you should deliver some sort of feedback to someone some criticism, we have an entire episode, Episode 75 on feedback and criticism, you can listen to that as they get some tips as to how do you communicate feedback or bad news or something that someone will not necessarily like? Like, there's it's one thing to just like, keep the lines of communication open as to where you're at in the project. But it's another thing to be able to appropriately deliver stuff that could be perceived or taken in the wrong way.
+
+12
+00:07:51,539 --> 00:09:10,320
+Scott Tolinski: Absolutely. And sometimes I think over communicating can be annoying, right? People who are constantly like I'm doing this, I'm doing this, I'm sending lots of emails, I'm doing this, whatever. But at the end of the day, the person who's over communicating well, it may sometimes be a little annoying, it's typically very effective in terms of letting everybody know what was going on. And so I don't know if I would worry about that. I think the the big thing, setting up a system for your team to succeed, realizing that personally, as an individual, no one can read your mind. Nobody knows your thoughts about this project, or your thoughts about the timeline of how you're working. Or maybe you're concerned that the client isn't getting this information to you on time or the right way. So maybe it's important for you to really just express those things to your teammates, right? No one's going to be able to reach inside the cavities of your brain to say, oh, Scott's really a little bit concerned about the title of this project, or maybe his role in it, and how he's going to get it all done. So your managers just going to think everything is cruising along, like normal. And meanwhile, you're like, well, there's no way I'm gonna hit this. So you have to be very clear, you have to be very intentional over communicating necessarily isn't a problem. But again, your team needs to set up some sort of a system, stand up meetings, that sort of stuff.
+
+13
+00:09:10,590 --> 00:09:53,340
+Wes Bos: Next up, we have building good habits, like software development, you get better at software development, you also have to make it intentional to get better at communication with with whoever it is that you're trying to communicate. So if you find yourself like maybe I'm having trouble communicating, there's been a lot of like, I think the biggest one is just like someone tells you to do something, and you drop the ball and don't implement it properly. There's a communication lack there, whether that's a person talking to you, who didn't give you all the right info or whether if it's you who didn't ask the right questions, both sides sort of need to practice in doing that. So maybe think to yourself, okay, what questions Can I ask to squeeze the right information out of this person?
+
+14
+00:09:53,580 --> 00:11:01,740
+Scott Tolinski: Yeah, you want to make sure that you have these things in place and you want to like how do you build any habit right just by doing it. So I think that even having like a schedule, I'm going to check in with my client every Friday evening or every Friday thing, that would be the worst time to check in with a class, I'm gonna check in with that guy. And every Friday morning, I'm gonna shoot them an update. Regardless if they asked for it, I'm going to say, here's the latest, here's what you should look at, here's what you should not look at, here's the things, bla bla bla, here's the project, here's the situation, here's what I'm doing, here's what's gonna be happening next week, we're still on schedule, blah, blah, blah. So letting the client know and have those things, if you're working directly one on one with the client, if you're not saying that kind of thing to your manager, people aren't going to be upset, they're gonna be like, oh, they're Scotland, we know where he's at on this project again. So building these good habits, making systems and deciding to do this stuff on a schedule or at a particular time in a project, or maybe every single time you push to GitHub, having it automatically send a message to your boss via slack or something. I mean, there's just so many different ways that you could build these little systems and habits to improve how you talk to people and how much you talk to them. The tools
+
+15
+00:11:01,740 --> 00:11:09,630
+Wes Bos: that you use to communicate are also important. I know people's probably hate getting a text message with information about a client or something like that.
+
+16
+00:11:09,659 --> 00:11:10,500
+Scott Tolinski: Yes, no, thank you.
+
+17
+00:11:10,679 --> 00:11:20,070
+Wes Bos: It's all about what tools you use. So past things like email, and actually having like meetings and stand ups with people in person, like what are some of the tools that you use to communicate with people?
+
+18
+00:11:20,459 --> 00:13:05,040
+Scott Tolinski: Yeah, I, I personally only used a few we use slack. We have a private Slack channel for team members, we have individual slack conversations for individual conversations that need to happen about small projects that the whole team doesn't need to know about GitHub issues, assigning GitHub issues, talking through things, they're having pictures having whole system of tags, one of the things I like to do in my GitHub issues is we have a priority system, I took this from to do list, it's just p one through four. And so I'll give every single issue I create a p aka p two is or P one is like drop everything you're doing and do this. Now, p two is do this, when you have the time p3 is if you are looking for something do this P four is if you have absolutely nothing else to do do this. So having that sort of priority system to let your your devs know your other people know that this is the progress that this thing is making or this is the priority. I also used notion pretty heavily we talked about that in one of our previous episodes that we just did notion in particular for me has been very helpful for listing out bigger intentions, things that aren't small issues, right? Big intentions that the entire team can look at and talk about and say, Oh, we like this direction. We like this direction. These are the things that are priorities. This is this is sort of ideas that we're coming up with. This is the schedule, we have calendars and notion to have when when social media stuffs going out and all that sort of stuff. So for me, I personally use GitHub, I use Slack, I use notion. And then I don't use email a ton for my stuff, although typically clients like to communicate a ton via email. So obviously email is there for clients. But I know you have a nice little dual email app that I've maybe been thinking about getting it out of myself.
+
+19
+00:13:05,309 --> 00:13:11,670
+Wes Bos: Yeah, I personally use this thing called missive. This is more on the having an admin assistant side of things. But
+
+20
+00:13:11,699 --> 00:13:14,310
+Scott Tolinski: but that could be also team communication. That's your team. Yeah,
+
+21
+00:13:14,310 --> 00:14:40,380
+Wes Bos: I know that a lot of teams share an inbox and need to collaborate on emails that are going out to customers or to to clients and things like that. So that's probably a good one to look at as well. Being able to centralize discussion on a email is hard, because like, what do you do you you do move that to slack? And that gets lost? Or do you move that to like, it's not a GitHub issue, it's not about software. So that notion is awesome for that because they are not notion missive is awesome for that because they will allow you just to centralize the talking back and forth, it's kind of just like chat that's been weaved in, in and out of email threads. So as an email goes back and forth, you're able to chat with the people who you share the inbox with, in between the the sense of an email, so a big fan of that myself. For development, I use primarily GitHub issues, just as a place to dump all of it, I find that really helpful, because sometimes I'll just be thinking about a feature or problem, I want to solve six months down the line, but I'll just dump it into a GitHub issue. So we can come back to it a certain point and actually fix that thing. People use other lots of other tools out there to actually have to solve that around software that are a little bit more powerful than GitHub issues. But for me in the the amount of people that I work with GitHub issues is totally fine. And then finally, slack is what I use for real time. I don't love Slack, but it's kind of what everyone uses right now. For real time. Notice,
+
+22
+00:14:40,409 --> 00:15:28,650
+Scott Tolinski: there's so many good communication tools that we probably aren't using that big teams use, right. They're just so many things that aren't applicable to what we're doing that are applicable to big big teams and help big team communicate. So I if you are using tools to communicate with your team, I would love to hear what you're using and what works For your team and what doesn't work for your team, because again, all teams are all of various sizes. I have a small team West, you have a small team, we we want to hear about big teams, medium teams, how you will communicate what works best for you. What are your strategies, because again, this is really important. We'll retweet you out from the syntax Twitter over there. So check us out syntax FM, on Twitter, and hit us up with some of your great communication tips. This is an important thing that a lot of people don't spend enough time on.
+
+23
+00:15:28,830 --> 00:16:00,000
+Wes Bos: Yeah, I'm, I'm mostly interested in hearing if you are a developer manager, so I think what a lot of times people who are developers move up and then all sudden they have a bunch of developers underneath them. How do you balance the need to communicate with them with the letting them just work and actually get stuff done? And that's a fine balance that you need to strike. They're really curious to see. Like, any tips that you have for that tweet us at syntax FM? Yeah. All right. I think that's it for today. Anything else to add?
+
+24
+00:16:00,300 --> 00:16:03,360
+Scott Tolinski: I got nothing to talk to you people. Yeah, that's it.
+
+25
+00:16:04,320 --> 00:16:08,400
+Wes Bos: Cool. Thanks for tuning in and we'll catch you on Wednesday. Please
+
+26
+00:16:10,440 --> 00:16:14,070
+Unknown: head on over to syntax.fm for a full archive of all
+
+27
+00:16:14,070 --> 00:16:20,220
+of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
