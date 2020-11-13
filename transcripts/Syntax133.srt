@@ -1,0 +1,128 @@
+1
+00:00:00,359 --> 00:00:21,660
+Announcer: Monday, Monday Monday open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob, and Scott l.
+
+2
+00:00:25,890 --> 00:00:56,100
+Scott Tolinski: o Welcome to syntax and this Monday hasty treat, we're gonna be talking about portfolios, what you should have in your portfolio, what you might not need, how you should have it be styled how you should have it organized stuff that people are going to be looking at in your portfolio to make sure that you stand out in the right ways, and not the wrong ways when someone is checking out your work for potential job. My name is Scott, once again, my full stack developer from Denver, Colorado, and with me, as always, is West boss,
+
+3
+00:00:56,430 --> 00:00:57,450
+Unknown: everybody. Hey, Wes.
+
+4
+00:00:57,450 --> 00:01:01,590
+Scott Tolinski: Are you ready to crush this episode today?
+
+5
+00:01:01,740 --> 00:01:02,850
+Wes Bos: Totally cool.
+
+6
+00:01:03,299 --> 00:02:31,130
+Scott Tolinski: So before we crush this, let's go ahead and crush some of our bugs with sentry.io sentry.io is a longtime sponsor here at syntax and with century, you basically drop a couple lines of configuration in your code. And after that it really does an amazing job at keeping track of all of your errors and bugs that come into your website. From this allows you to manage them, see how many users are affected, see what operating system, what browser, all that amazing stuff. You can attach user data so you know exactly which user had an issue. And you can go and message and say, Hey, I fix this thing. It's all it's all good now, and or you can see some bugs, maybe there's a bug coming in. That's just a Google Analytics error. And you want to go in and say, Hey, I never want to see this again, go ahead and ignore this bug. Either way century is an amazing tool, because it gives you visibility into what's happening on your website, so your users don't have to tell you first, therefore making the experience better for everyone. So I use century over at level up tutorials. I know Wes uses century, we are both big, big fans of this service. So if you want to try out century head on over to century.io use the coupon code at tasty treat all lowercase all one word, and you'll get two weeks for free of century. So check it out, let them know that we send to you and trust me, you're not going to be disappointed. These these error tracking systems are extremely invaluable. And I've just been such a huge, huge fan of century since signing up. So check it out again century that I Oh, all right. So let's kick this off with Yes, yeah, let's kick it off.
+
+7
+00:02:31,250 --> 00:04:06,090
+Wes Bos: Alright, so portfolios, we're talking about portfolios today, what makes a good portfolio? Do you need a portfolio things like that, I would say that portfolio is probably not as important as relationships that we talked a lot about not last freelancing episode, I had a terrible portfolio for most of my career. But when I did get started, and when I did get good jobs, people were not necessarily looking at absolutely everything in my portfolio, they were just glancing over it really quickly, just clicking on a few things just to see that, oh, this person actually does know what it is that he's talking about. So what we're gonna do today is just go through a whole bunch of tips of things that we think are work well in a portfolio, as well as things that maybe necessarily don't work well, and hopefully give you just some some tasty treats as to how to make your own portfolio. So the first one we have here is to, is to take screenshots of the website when it's in its best mode, because I often what would happen is I would finish up a website, it would look really good, there'd be beautiful photos that you've picked, and then the client gets in there and then they upload like a pixelated photo or early on, I used to not disable the color picker in WordPress, I didn't know that you could disable things or like, what I would do is I would specify the brand red and the brand green. And they would be allowed to use just those colors. Because otherwise they just go with the default blue green. And it starts to look like a Microsoft Word document that they had slapped together. So take some good screenshots of it when it's in its good state. Because when the client clicks through to it, it might not look as good as you initially had hoped.
+
+8
+00:04:06,149 --> 00:05:22,110
+Scott Tolinski: Yeah, I wrote underneath this or don't, I highly recommend taking screenshots for your records of what it looked like. Because again, that, you know, you might not have access to what it looked like at its best. I have not included images in my portfolio for my latest version of the portfolio. And I'm kind of of the mind now, I haven't always been but I'm kind of of the mind now that if a project no longer looks like something that you are proud of, in its current iteration, then you should probably remove it from your portfolio entirely. So like if somebody messed it up, I would just remove it from my portfolio. That said, I have enough work that I could remove something from my portfolio or swap it out with something else and still feel like it was is fine, right? If you have a couple of items and you want to pull something out of there and you only have two items then it's a little bit different but I've gone ahead and added I've only included things in my portfolio that people can actually use and actually see and have them look nice. So I disagree slightly on that. But again, it doesn't really matter images for me, were one of those things I just didn't want to have to deal with. I did not have to clutter the space with them just here. Here's a bunch of links. Here's the stuff I use. So it's just a difference of opinion. But I think either way, you're well off.
+
+9
+00:05:22,110 --> 00:06:08,700
+Wes Bos: I should also say the idea of a private portfolio is something that a lot of people I myself had done. Yeah. Because a lot of times you're working with a company and you can't let go ahead and outright say I worked on this just because of privacy rules. Or maybe it was subcontracted through another agency, things like that. You can't just put it up on your website and say you built it. But you can have like a private or like you'd say, hey, contact me. And I'll send you a list of sites that I had worked on privately, because for me, a lot of the stuff that I had worked on was just not allowed to, or it was internal, right? Like, it's just internal tools, you can't necessarily share the link out to an application that someone's using, unless they are a paying user of it. So in that case, lots of good screenshots, maybe a little screen recording saying that you can show the client, this is how it worked in this how we solve these problems.
+
+10
+00:06:08,820 --> 00:07:04,290
+Scott Tolinski: Yeah, yeah. Because at the end of the day, you are just trying to, to show off that you are capable of doing these things, you're capable of solving these problems or handling this kind of skill stuff. So next is to include a list of technologies used. And this is something that I've been doing for a little while, because it is important, right? People, you don't want to have your person who's looking at your portfolio. You know, they look at your resume, they say you can do this and that. But then they come in and look at your portfolio, they click through something you don't want to have to them to go to build with or whatever to try to find out what the heck you actually made this with. So I always list a bunch of stuff underneath each one. So I say this is built with the following technologies. This is built with Angular, sass, this is built with node Express Mongo, SaaS, this was built with the Drupal, omega SAS, whatever. And in that way, you get a quick glance, you see all the technologies and the super easy list. And people will be able to look at the thing and say, Okay, this is built with these technologies. And here's how it functions. It gives them a context to view your work in.
+
+11
+00:07:04,590 --> 00:07:47,040
+Wes Bos: Yeah, that's really important. Also, you're playing we talked about before you're playing buzzword, bingo. People need to say like, Oh, we use Redux or Oh, we use Google Maps. This person had worked on a project exactly what that a quick scan again, people don't want to spend forever going through all of your projects, like Scott just said, they want to be able to quickly see what technology used the same same idea as well, maybe even problem solved, like, what did you do on this website. So we created a store finder with React.js and Google Maps. So customers could quickly find a store that is close to them based on input ID or geolocation. Right, just like a quick one or two lines, sentences of what problem you actually had solved with this specific technology.
+
+12
+00:07:47,190 --> 00:08:44,640
+Scott Tolinski: Next is going to be a company logos. And this is if they're allowed, if you have permission from the company to use their logo, you it's it's it's a visual treat. And if you know somebody goes to your website, and they see Google and Ford and whoever, right as these logos, then it's more likely to say, Wow, at a glance, oh, wow, this person's worked with these companies. And then they can dig in a look a little bit more. This is not something that I've done personally. But I would say I've not done this out of laziness more than anything else, just because I haven't needed to. So I like this idea. I think it's I think it's flashy without being too flashy. And I think it definitely adds that sort of what do we call it, our friends, and I used to have this term called legitimize user. So we still look at stuff and we'd be like, that's a legitimate user right there. So we always just you look at everything and that we used to classify things is what is your legitimize you're here, you need something here and those right there, you look at it, that's a legitimate Iser
+
+13
+00:08:44,880 --> 00:09:07,110
+Wes Bos: totally, I think that I did this as my mind as well. I didn't even necessarily have permission from the coming like I'm not gonna get permission from Air Canada to put their logo on my website, but they're also probably not going to come knocking on my door telling me to take down they might but in my case, you just take it down write a definite legitimize or when you show all of the different types of companies that you have, have worked with.
+
+14
+00:09:07,280 --> 00:09:08,490
+Scott Tolinski: Yeah, absolutely.
+
+15
+00:09:08,610 --> 00:09:53,640
+Wes Bos: Next one we have here and this is maybe cheesy, maybe not is mocking them up on phones and laptops. This is definitely cheesy because people don't update them. Because if you have like a photo of or like the look of your website mocked up on like an iMac from eight years ago, and like an iPhone four, then that's just immediately will date your actual websites. But I think if you can keep on top of it, especially someone who's doing a lot more design work, mocking them up on fake computers, or if you're doing like design work on actual products, showing how they would be used in the wild and that looks pretty cool. And adds a little bit of visual flair. I think it is cheesy inside the industry. But I think that maybe people are outside of it. They think it looks cool.
+
+16
+00:09:53,820 --> 00:11:06,870
+Scott Tolinski: Yeah, something I used to do not something I do anymore, but again, I'm just got away from me is out of pure sloths and I'm not I'm not afraid to admit that. Another one here is to show your work, mock sketches, layup, layouts, layups, yeah, show your layups out, mine would not be very good, wherever possible. And this one's really definitely a cool one, we did this for one of the agencies I worked at, we wanted to show off our work in a portfolio. And we wanted to really give clients an idea of the process that we went through with some of these. And we did use in addition to that, the the layouts on a device sort of image thing. But we also showed our sketches, we showed how we arrived, we showed maybe some of the additional logos that we created beforehand, or the steps it took to get to that stuff, I think these these can be very powerful. It's like show your work and math class, because well, you you end up seeing the process and some of the some of how the sausage is made, so to say. And I think that's really interesting. It's not exactly one of the things that's going to get you hired specifically. But if somebody can see that you have a clean, organized process, that you have a thoughtful process, then I think that's going to help if the work especially if the work is good,
+
+17
+00:11:06,990 --> 00:11:36,480
+Wes Bos: the process is such a sexy thing lately, if you watch any car commercial, you'll see that there's like some Italian designer sketching in a book, or like carving this car out of a piece of mahogany, or something like that. And just like the idea of like not the final product, but how you came about the final product and your process to actually solve the problems and things like post it notes and like rough wireframes, things like that, I think go a long way and showing that,
+
+18
+00:11:36,570 --> 00:11:37,800
+Unknown: yeah, definitely.
+
+19
+00:11:37,830 --> 00:12:02,580
+Wes Bos: Next up, we have keeping it updated. This is one thing I failed at myself, which is just like keeping the sometimes a website would would be redone so that you have something in your portfolio for two or three years, and maybe the website changes again. And if that's the case, you just take it out. So spend some time every six months or so keeping it updated, taking out stuff rejigging it for however, the type of work you're looking for
+
+20
+00:12:02,699 --> 00:13:40,320
+Scott Tolinski: this next one is I think this one's pretty important. This one is one that I think that people can occasionally get wrong. And one that I've gotten wrong myself, I used to have so many items in my portfolio that I built like a filtering system part. And I was like, Oh, this is really cool. I got a filtering, you got animations, you got all this, you know, masonry kind of stuff going on, or whatever, I thought it was really great to have, you know, 24 items in my portfolio are a billion items in my portfolio. And granted, it can be fine, but no one's going to look at all of those. And especially if you have 20 some items in your portfolio, then chances are not all of those are going to be your very best work. Can you imagine like thinking about this? Oh, this is funny, because we've been watching Project Runway, it can you imagine like a fashion designer showing off every single one of the looks they've ever made? No, they're gonna show off like they're five or six best works that they've ever created. And I think that's how you should go with it too, is that like I have, I don't know how many I have right now on my website, I have 123456. And one of those isn't even to show any design work. It's just the syntax website to show that I do this podcast. So for me, I keep it very minimal of the stuff that I created that I am either proud of or was proud of at some point, because I kind of fallen short on the last one, which was keep it updated. This is not super outdated for me. But then again, I've only been doing a handful of work. But for real, keep it at five or six of your best work your absolute best work. And then you can if you're feeling insecure about that, you can always have a note that says, like, please contact me to see like the rest of my portfolio or something.
+
+21
+00:13:40,710 --> 00:13:52,470
+Wes Bos: Yeah, if you need something specific, then show me I have clients asked me all the time. Have you ever done anything with X, Y, and Z? And then you either say no, or Yeah, and let me let me pull up a couple examples or let me describe it to you.
+
+22
+00:13:53,040 --> 00:14:10,650
+Scott Tolinski: Yeah, yeah, absolutely. So again, keep it simple, keep it short, keep it your very best work, curate it to be the stuff that you're super duper proud of. Let's say you're a musician, and you wanted to create a six song Greatest Hits CD. That's how you should think of this. So
+
+23
+00:14:10,860 --> 00:14:27,330
+Wes Bos: one question I have for you is what do you think about putting like, if you had like a side project that was not necessarily for clients, but you did. It's something that you work on or you're passionate about? Or maybe you went through one of your tutorials or one of my tutorials and you built a project? What do you think about that? For some reason, my
+
+24
+00:14:27,330 --> 00:15:45,800
+Scott Tolinski: brain was like going to video land. I was like, you want to put a video in your thing. You know what, if you're going to be following the West boss tutorial and not changing it at all, then I would say do not put that in there. I would not be impressed by that. I not not that your work isn't amazing. But that like that's just sort of like a paint by numbers sort of thing. So you've transformed it to the point where I can't look at that and say, Oh, hey, that's the GarageBand loop or we just talked about this in the last episode was like hey, it is instantly recognizable defaults. I think can recognize it as those instantly recognizable defaults, I'm probably not going to be that impressed with it. But if you if you change it to the point where I have no idea what the heck this thing is its origins or whatever. To me, that's very different side projects, I put side projects in my portfolio all day long. I haven't lately, I guess, level up tutorials isn't a side project. That's my career. But at some point, I had my boy tools website in here, because I was really super proud of it. It showed case a lot of my my skills because I had the ability to really experiment with it, you know, you could really do some interesting stuff with it. But at the end of the day, I think, again, it's your best work in anywhere, your best work is coming from us that if you think that following a tutorial is your best work, then I think you need to do more work. Yeah, that's my thoughts, I guess.
+
+25
+00:15:45,840 --> 00:16:49,050
+Wes Bos: Yeah, I always tell people, like take whatever we built in the tutorial, and then try to build something that is sort of based on that. But it's not you're not selling shoes on an online store are the exact same thing, trying to like model it against it. And there's no need to credit me in any of these things. I don't people always ask that. Do I need to give you credit? No, not at all. I don't, I don't care. I want you to be able to get your job. But definitely make your own thing based off of that code base. And you can you can tell people like, Oh, so I took this tutorial. And this is what we built. And I thought, Hmm, maybe I could build something, again, somewhat similar using the ideas that I learned there, but something that I can call my own. Yeah, yeah, totally. Next ones we have here is that your portfolio might not necessarily be on your website. So I think of anytime I've hired somebody, usually where I'm checking first is I check their dribble, I check their GitHub, I check their Instagram, that's where people are finding people. So don't neglect the maybe the other places that are not technically portfolios, but that's where people are explicitly looking.
+
+26
+00:16:49,200 --> 00:18:15,240
+Scott Tolinski: Yeah, I think anybody who's going to stand out to me is going to be doing a lot of work, they're going to be doing a lot of work, right. Because if you're, if you're serious about this stuff, chances are you're working on this stuff every day. And if you're working on this stuff every day, you should have a fair amount to show for it. And so for me, I like to see that and Instagram, or dribble or any of these portfolio sites, if I'm given a portfolio that has like three things on it, and maybe two of them are sort of like the same. Yeah, it's not gonna be standing out to me not to say that you'll be sunk. But the idea at the end of the day is that you want to stand out, and you don't want to stand out in bad ways you want to stand out as being impressive your work is good. Your work is it is what somebody who's hiring would look for. It doesn't have to be this like giant monument of stuff. But it has to be good. And if you have an ID profile, where you're showing off your code, or you have dribble, where you're showing off all your designs, and then you're even some of your experiments and stuff like that, it's going to show that you care about it. And I know this almost contradicts some of the what we were saying about only show your best work in your portfolio. But to me, this is a completely different space. This is like a much more personal space where your portfolio is really like, this is the cream of the crop here in my portfolio. And your social profiles should be like this is me, and this is how I work. And this is sort of my my world.
+
+27
+00:18:15,990 --> 00:18:48,110
+Wes Bos: One thing I found is I follow a lot of designers on Instagram. And what I find them to do is that they will post everything that they're working on. And after about a week or two, they'll delete the stuff that they they're not it's not their best work, but they just want to show that they are continually working on stuff. But if someone were to come to their profile, totally fresh and scroll through it, then you kind of do want to show your best work. So I thought that was kind of neat, where after two weeks you delete the stuff that you're not that's maybe a good option.
+
+28
+00:18:48,180 --> 00:18:55,440
+Scott Tolinski: Yeah, burning. And then it also shows that you're good at editing, which is I think that's a big skill that people tend to overlook is the ability to edit.
+
+29
+00:18:55,500 --> 00:19:29,400
+Wes Bos: Yeah, absolutely. I think that's all the the tips that we have here. Hopefully, those are some good tips for building your own portfolio, it's kind of interesting place, you definitely have to have something up there that we hear from people all the time where they're a freelancer, or they're even if you're just trying to get a job, you have to show your work, right, you can't just have like a list of I work on code, right. And I love clean code, and I'm good at JavaScript, you show what you like, the proof is in the pudding at the end of the day. And if you can have a good portfolio, I think that it's gonna put you above a lot of other people.
+
+30
+00:19:29,460 --> 00:20:15,110
+Scott Tolinski: So send us your pudding and ask actual putting as well as your portfolios. We want to see your portfolios, shoot your portfolio link to syntax, and we will retweet and share your portfolio. Or maybe everybody can if you want to, if you want people to workshop, your portfolio, maybe we can get like a little community workshop going on portfolios here. I think this would be an interesting thing where each people can help each other out here, maybe give some positive advice. Go ahead and listen to our episode on giving positive critiques if you need advice on how to do that, but We want to see your portfolios. I want to see him. I want to see what people are doing. I'm always interested to see how people present this stuff. There's a huge range of possibilities. You can do so much stuff with this. So yeah, send us to us at syntax FM on Twitter, and we'll retweet you. We'll give you an RT.
+
+31
+00:20:15,320 --> 00:20:19,230
+Wes Bos: That's it for today. Thanks for tuning in. We'll catch you next Wednesday.
+
+32
+00:20:19,379 --> 00:20:32,330
+Scott Tolinski: Yes, please. Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
