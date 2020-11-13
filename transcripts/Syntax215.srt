@@ -1,0 +1,228 @@
+1
+00:00:00,359 --> 00:00:24,480
+Announcer: Monday Monday Monday open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah Kuda, bars and Scott Taylor. Totally in ski.
+
+2
+00:00:25,950 --> 00:00:26,790
+Unknown: Oh, welcome
+
+3
+00:00:26,790 --> 00:01:01,979
+Scott Tolinski: to syntax on this Monday. Hey, Steve turret, we're going to be talking about this neat little site that Wes Bos, my awesome co host put together. This is on it uses dot tech. So check it out. If you haven't been there uses a dot tech, we're going to be doing the entire episode talking about the stack that Wes used to make this neat little site. And what this site does is it shows you what different members in the tech community are using. My name is Scott Tolinksi. I'm a developer from Denver, Colorado and with me, as always is Wes Bos.
+
+4
+00:01:02,010 --> 00:01:02,940
+Wes Bos: Hey everybody,
+
+5
+00:01:02,970 --> 00:01:04,200
+Scott Tolinski: how's it gone?
+
+6
+00:01:04,310 --> 00:01:08,340
+Wes Bos: Good. I'm excited to talk about this uses website.
+
+7
+00:01:08,550 --> 00:03:05,100
+Scott Tolinski: Yeah, use is. And if you have a site like uses that you want to make sure people get to and actually are able to access, you'll want to make sure that you have some sort of error and Exception Handling tracking on your application. For that we use century over@century.io. Over here, syntax we absolutely love century century is the singular place where you can keep all of your bugs, errors and exceptions for any type of project that you're using. You can categorize them, catalogue them and attach them to releases, as well as users and a whole bunch of other information. I absolutely love doing that. One of my favorite features about century specifically is that you can tag an issue as being completed and then you can be alerted if there is some sort of an issue that pops up. That's the exact same issue letting you know that there's a regression in your application and that thing that you thought you fixed Well, maybe it didn't fix it, and you need to take another look. So one of my favorite features about Sentry is that, but you know me, I never have any regression. So you know, I have never, ever used that feature, even though it's so good. So let's get into this site. If you have not been there, head over to uses a dot tech, it's again, just a neat little site that Wes put together, the first thing you want to do when you hit uses dad tech is just you know, find Scotland's key on there and just buy everything that I have. So I can give you that Amazon referral cash. But now let's let's talk a little bit about this application West. We know that you had put together this we as the you know the collective internet know that you put together a repo for stuff that people have used for a long time you just sort of had this people could just add their own, you know, I added my own. No, I assume that was the you know, the Genesis the initial idea point for this and you thought maybe it'd be cooler to be able to search and stuff through this or or is there something else?
+
+8
+00:03:05,520 --> 00:05:40,770
+Wes Bos: Yeah, well, look, I've had like a, so like, what uses is you go to your any domain name, Wes Bos calm forward slash uses, and it will display a list of things that you use. And I initially just made it because people always ask me like, what font is that? What theme is that? What monitors that? And I was like, I don't remember any of these, these numbers. So let me just direct you to a page that has everything on it. And then I don't know, a whole bunch of other people started to use the same URL, and it became sort of a thing. So I made a repo called awesome uses that had a list of all of these different pages. And then that list got to be like, I don't know, almost 8090 people. And it was just like, not useful. Because like, Who's gonna sit there and click 100 hundred different links. So I thought like, wouldn't it be cool to be able to just collect all this information and put it on a website. So a couple people had had already taken that data and put them into different types of website, a bunch of people had the idea of people say like, I've got a bunch of domain names I could give you, I already bought them, but never never went through on it. But I actually went to one of our sponsors. And I said, Hey, uses tech was a premium tech was one of our sponsors that it's a premium one. I was like, as part of our upcoming sponsorship package, will you give me this domain name for free? And they said yes. So I got uses that tech domain name from them, which was pretty cool. So the whole idea was just to create a data file. And in our case, it's just a JavaScript array with every single person is an object. And inside of that it contains a couple pieces of information, their name, obviously the link to their users page, a couple tags, whether they use an iPhone or Android, whether they're on Windows Mac or PC, or Windows Mac or Linux, and which country which country they're from as well as their their Twitter handle. So just some light, light data on that and then We're able to filter people based on the different tags. They're on which country they're from, and whether they are Mac, Windows, Linux, iPhone or Android. And then I thought, like, How hard can this be just like, get an array of data loop over it, throw some HTML on the page and call it a day. And I thought this would be like a four hour, quick little project. And I'm not doing four full days on this thing. So my idea with this, the show is just the detail the the stack behind it, and my thoughts behind picking the different things. So first of all, the site is built on Gatsby is a pre rendered site. What do you call Gatsby sites these days?
+
+9
+00:05:41,100 --> 00:05:43,260
+Unknown: static, fast.
+
+10
+00:05:43,530 --> 00:05:50,100
+Wes Bos: It is a blazingly fast Gatsby website. And the way that it works, it is very fast, though.
+
+11
+00:05:50,100 --> 00:05:52,980
+Scott Tolinski: I joke about that, but it's super fast.
+
+12
+00:05:53,190 --> 00:08:26,190
+Wes Bos: Yeah, it's it's surprisingly, alright. It's not surprisingly, because there's Yeah, there's not a lot on it. It's mostly just tech text. And it's pre rendered text, right. So it doesn't have to go out and fetch that data. It's already rendered when the user hits the page. So when all of the data lives in data dot j, s, and I did that, because I didn't want to have to, like make some sort of like database where people could log in and update their thing. It's just a file on GitHub. And people can pull request that if they want to change their data, or remove themselves, or add themselves, and then what's the repo for that, by the way, it's on github.com Ford slash Wes Bos, Ford slash awesome. Dash uses cool. And I really like this because like, it's a simple website, but it has a lot of different parts to it. And it's a great way to learn Gatsby pulling in data templating. There's some GitHub actions in there, which is the first time I've used those, which is pretty cool filtering, react, contact. It's got everything you want, when simple, right? Like you can look at the hopefully this will be a reference for how do you do these things, and probably a larger project. So Gatsby node is a file that runs during the build, and that will populate your data in the Gatsby graph. qL API. So what happens is that it obviously pulls in all of the people and loops over each person. And then you register that piece of data as a node in Gatsby. And then that's available via the graph qL API. And then I also do some light. Data aggregation is called stats dot j s that will tell me how many people are under the tag developer and how many people are from Canada, which as of time of recording, there are seven Canadians on this website 41 Americans, only one from Japan, sadly. So that's what the Gatsby node does, it pulls it in. And then I use, I go ahead and use Gatsby use static query, which currently, I could get away with you static because there was no filtering or anything like that, I just want to pull them all, I always want to pull them all the query is always the exact same, you have to use the other type of Gatsby query if you want to do it at a page level. And you want to filter although episode we're recording after this, we'll talk about some updates to that. What's next avatars was kind of a fun thing. So I didn't want to have to have people upload a file or I didn't want to have people to put in their email address. So we could use gravatar. So I just use the clear bit API ever
+
+13
+00:08:26,190 --> 00:08:31,710
+Scott Tolinski: use a Scott, I have not I've only used gravatar. For this kind of thing. Clear bit
+
+14
+00:08:32,150 --> 00:08:50,250
+Wes Bos: clear bit is this. I don't I think they're a data mining company. Basically, they've, they have information on everybody. And you can you give someone's email, they'll give you their name. And it's kind of a bit of a bummer. But they obviously have lots of information about everybody. And one of the things they have is
+
+15
+00:08:50,540 --> 00:08:54,990
+Scott Tolinski: a logo API. They also have information on stripes design system.
+
+16
+00:08:56,580 --> 00:09:23,880
+Wes Bos: Whoa. So you can you can enter in a domain name like Airbnb, or Wes Bos calm and it will return to you a picture, either a logo or an avatar for that person. And that that worked for about 90 95% of the use cases. And people who didn't have an avatar just have to put an Open Graph meta tag on their page. Now there's a pull request in for this new service called an avatar who ever heard of this?
+
+17
+00:09:24,600 --> 00:09:28,980
+Scott Tolinski: I have not heard of this. You were trying to do their late night show host here.
+
+18
+00:09:30,240 --> 00:10:01,520
+Wes Bos: Get this. So an avatar is a free service. It's hosted on now to sh and you can pull someone's avatar based on just a username doesn't matter where you use your email or from a domain name, or specifically from GitHub, gravatar Instagram, Twitter, it's so cool. So like it covers everything for your it'll try to do it from here and if not, it'll try to get it from there. And I think this is really cool for ever and ever,
+
+19
+00:10:01,550 --> 00:10:04,650
+Scott Tolinski: it was like gravatar is the option like That's it? Yeah,
+
+20
+00:10:04,650 --> 00:11:37,920
+Wes Bos: or just uses gravatar under the hood. And if someone doesn't have a gravatar, maybe it'll try their Twitter account. And if someone doesn't have a Twitter account, it'll try. It'll actually uses clearbit underneath the hood. And it's open source, so you can host your own, which is cool. So I'm, we're gonna move to this, which is, which is cool. The one thing it doesn't do is it doesn't resize images for you. So there's another service called web serve.nl. That will resize it on the fly. I'm not sure I would trust this with any sensitive information. But for the purposes of resizing avatar seems to work just fine. Yeah, yeah, what else we are filtering. So obviously, you can click on one of the tags, and it will filter list, the way that that works is you click on the tag, and it will set the current tag or the current country or the current device. And then it will just take the array of people and filter it down with a radar filter. Yeah. And then it will just that will trigger a rerender in react and it will render on the page. So that's that's pretty simple. The kind of interesting thing about that is, if you click on like the the tag CSS, it will highlight that in the profile for each person that you're currently filtering for CSS. And that had to use react contacts, because information about what is the current tag exists in two totally unrelated sibling components. So what do you do there? You had to put it in context. And I had never used context in Gatsby before, which is pretty cool. It wasn't any different was that I
+
+21
+00:11:37,920 --> 00:11:41,820
+Scott Tolinski: mean, you just had to wrap the page essentially, or
+
+22
+00:11:41,850 --> 00:12:00,990
+Wes Bos: that that was a Yeah, that was the part that I probably could have got away with just wrapping my layout, since it's only a single page website. But sure, the proper way to do it is to put it in Gatsby browser. And then I also needed to put it into Gatsby SSR. So that it would render context on the server. Yeah,
+
+23
+00:12:01,020 --> 00:12:06,570
+Scott Tolinski: that's how we do it in in my course. Oh, yeah. Gatsby course. Yeah. Yeah, good stuff.
+
+24
+00:12:06,689 --> 00:12:20,370
+Wes Bos: One kind of cool thing about that is I use the ES modules, import and export immediately. You ever done that? That's the first time I've ever had to do that. Immediately. Yeah. So you've let me let me find the code for it real quick. No,
+
+25
+00:12:20,370 --> 00:12:23,340
+Scott Tolinski: I haven't done that. Oh, no, on here today.
+
+26
+00:12:23,490 --> 00:13:48,420
+Wes Bos: I know, there's just like, it's such a silly little website. But I learned, I learned a lot of like little things, just building this thing. So the syntax export wrap root element from Gatsby browser, what that does is because I needed to wrap this context, both in Gatsby browser and in Gatsby SSR. I didn't want to duplicate that code. So the solution to that is you import it from the one module and then you just export it from the the server side render. And there's that there's a syntax in JavaScript that will allow you to export and import something in in one go, which I thought was pretty nifty. I use this cool package called country emoji. So one of the things that is required is, you have to put your country in as an emoji, not as like a country code or something like that. But then when you hover over top of the flag, I wanted to show you as a tooltip. What country that is, right? And I found out there's no way to get a description of an emoji or have a Unicode character Hmm. in JavaScript. So I use this cool little package called country emoji, where you can give it a string of a country, a country code or an emoji, and it will return to you the name or the emoji or the country code, depending on what you want. So super handy little, little package there.
+
+27
+00:13:48,510 --> 00:14:13,890
+Scott Tolinski: Yeah, by the way, I should say, I'm not seeing where you had posted the syntax for the immediately export. Yeah, I have used this I use this in my, like, my index.js files that I use when I internal modules where you export asterisk from whatever, immediately, I thought you were talking about, there's some sort of immediately keyword, oh, never heard of it my entire life. I was like, Oh, really? Hmm.
+
+28
+00:14:14,250 --> 00:14:25,560
+Wes Bos: That makes sense that you if you've got like a folder full of things, and then you want your index of that folder to be importable, then you can just import everything into your index and immediately export. Is that what you're doing?
+
+29
+00:14:25,709 --> 00:14:38,400
+Scott Tolinski: Yeah. So essentially, if you want to say let me grab every single named export from a file and just have that be included in the index. Yeah, syntax is basically export asterisk from the file. Yeah.
+
+30
+00:14:38,730 --> 00:14:46,050
+Wes Bos: Oh, so anytime you add an export to one of those files, you don't have to open up the index JS again,
+
+31
+00:14:46,230 --> 00:14:51,450
+Scott Tolinski: correct. Yeah, the only modify the index is when you add a new file to be included into that.
+
+32
+00:14:51,720 --> 00:14:54,660
+Wes Bos: That is super handy. I had not thought
+
+33
+00:14:54,660 --> 00:15:05,700
+Scott Tolinski: about that before. I use that for all of my like elements for sub components. I use that in my hooks folder, I use that in my Utilities folder, my global state folder uses a lot.
+
+34
+00:15:06,000 --> 00:15:10,110
+Wes Bos: And that way having an index, you can just import it from the folder, right?
+
+35
+00:15:10,140 --> 00:15:27,090
+Scott Tolinski: Yeah. And get this with Babel, aliases or even TypeScript aliases. Yeah, you can now just say import grid from elements. And it's almost as if elements is a package, even though it's just a index on a directory. It's very fancy.
+
+36
+00:15:27,330 --> 00:17:16,820
+Wes Bos: Oh, yeah. We should say that. That is not part of es ACMA script that's part of web pack or parcel or something like that. Or a meteor? Yeah, yeah, it would be really cool. If that was like part of the official spec. The official spec doesn't even it doesn't even support leaving the.js. file. Yeah, no, it's all it's all Babel. Babel. Taking care of a node look up. my homie Babel. GitHub actions. One thing I used here. Actually, I just sorry, I didn't code any of these. I let me give a shout out to the user who actually did it is I am Andrew Luca helped out huge on this. Because I had just like put a little issue in there to let myself know, I'd like to dive into GitHub actions at some point and figure out one, when people submit a pull request. They were submitting like incomplete data, like nobody read the instructions. So they were like, instead of doing a country emoji, they were writing the name of their country, or instead of just you're only allowed to put iPhone or Android. And then like, people were typing like, iPhone, but sometimes I switched to Android, and it was pretty good. I put a D skin on it. And like no, this. No. So we we introduced these, like data validation, essentially. So when you have a pull request, it will block the pull request or it'll fail it if you do not meet any of the the things that we want. So we said okay, your country flag must be one of these countries, right? And your your device must either say iPhone or Android, I can't say Apple iPhone or and then it will fail. And I use this package called joy j Oh II. He ever used this, Scott? Um, no, I haven't.
+
+37
+00:17:16,820 --> 00:17:18,960
+Scott Tolinski: There's too many Gosh, darn packages. Yeah. What
+
+38
+00:17:18,960 --> 00:17:48,390
+Wes Bos: am I gonna do with all these packages? I had never heard of this before. So it's a schema description language. So essentially, we just took the person object. And I described similar to how you would write like a type in TypeScript. But you describe sort of the validation steps for every single one. And you needed to make sure that their URL had the word use or uses or orkut, we allowed GitHub just as well, in it, we needed to make sure that
+
+39
+00:17:49,530 --> 00:17:59,600
+Scott Tolinski: there's a couple basically, it just validated all the data that the person pull requested. This is a made for happy, right? Yeah. Joy happy. Okay. Don't say it's the only one I can find.
+
+40
+00:18:00,030 --> 00:18:36,300
+Wes Bos: Which is like an express alternative. Yeah. But it stands alone. So you can use it for you can use it with anything. The joy stands alone. Yeah, uh, they're also Hugo, Hugo de F on GitHub submitted a pull request to check if people actually had a page. Look, we had like 40 people submit their URL, that they didn't even have a Users page. They just added them. There like Pharrell foreing. So he wrote a script that would ping all the URLs, and then block it if if it was down and then take them take them out, right? Oh,
+
+41
+00:18:36,350 --> 00:18:38,600
+Scott Tolinski: geez, man, people are resourceful.
+
+42
+00:18:38,840 --> 00:19:24,110
+Wes Bos: I know. It's like, you think it's simple. You just get an array of people loop over it. And then there's all this, like, extra steps that have stuff that needed to be added to it? Yeah, so that was the the one GitHub action and the other GitHub action was. So this started as just a awesome list. It was just a readme with a list of people. And I wanted to maintain that list. So this new GitHub action will auto generate the readme list, every single pull request, so you don't have to manually add yourself to the readme if you want to be part of the list. Yeah, like in it. The go on this repoed and look at the code. I mean, yeah, right. Yeah. Yeah, it's, it's really simple. You can use Git, as well as no j s in it. That's pretty cool.
+
+43
+00:19:24,480 --> 00:19:28,890
+Scott Tolinski: So uh, one thing that I really enjoyed here was your animated favicon.
+
+44
+00:19:29,330 --> 00:20:23,970
+Wes Bos: Yes. So if you go to the thing, the fav icon just says forward slash uses emoji poop. And it just like every 500 milliseconds, it changes the current letter. And that I thought would be just a funny joke. Because it would be simple. It'd be fun to do and ended up taking me like four hours because the way that it works is that every 500 milliseconds, I write a letter to a canvas and then export the canvas to a base 64 image and then dump that into the head of the The document. And that turns out doing set interval, as well as having like a like a side effect. a side effect is I'm literally updating the the head of the document, right? Yeah, yeah. Turns out doing that in react hooks. Why? It's not hard, but I had never done it before. And Dan Abramov has this huge post, explaining how to do intervals when Yeah,
+
+45
+00:20:23,970 --> 00:20:26,570
+Scott Tolinski: is a really good post. Definitely, we
+
+46
+00:20:26,570 --> 00:22:08,400
+Wes Bos: should like so I read that whole thing. And I learned a lot about about that as well. I learned that you can write emojis to a canvas and then export them. Which is pretty cool. The whole thing is done in installed components, which is good. Actually, I initially just wrote it in a CSS file. And then somebody else pull requests and moving it over because it was one of my like, to do things. I'm using the ESM package we talked about for doing because the sort of a bummer about Gatsby is that the Gatsby node and the Gatsby SSR has to be done in require common j s syntax. And then the Gatsby browser stuff has to be done in an ESM syntax. And then that doesn't allow you to share right wrapped components between your browser and your server side rendered one which sucks. So I just use Gatsby ESM sorry, not Gatsby, it just ESM package. And then I'm totally using ES modules all across the board, where there's a pull request in for a golia search, I don't know people are are like we should add voting and search. And some someone's like, we should standardize it into like a like a JSON where like everyone can can like structure their data. And then you can search based on like, what monitor people have and like I'm like, Okay, this was supposed to be me looping over an array. Yeah. So I don't know people want to take it a little further. I'll I'm sort of stepping back and letting some people work on some some fun stuff, and whatnot. So maybe we'll have search on it. And then finally, it's hosted on Netlify. So this is kind of like the NASCAR. We're using all our sponsors.
+
+47
+00:22:08,400 --> 00:22:09,750
+Unknown: Well, I
+
+48
+00:22:09,750 --> 00:22:26,520
+Scott Tolinski: think that just goes to show you that like, you know, the people that we have, as sponsors on the show, are there because we use and enjoy their Yeah, their material. And and given the total freedom to pick a stack, you still picked our sponsors, you know that that says?
+
+49
+00:22:27,870 --> 00:22:49,680
+Wes Bos: Yeah, that's a really good point. So it's all hooked up. Every time there's a pull request, it will run the GitHub actions, it'll populate the readme, it'll deploy to Netlify. I'm using Netlify analytics on here, which is a paid feature. But there's no like Google Analytics on here. But I can see right now, there's been 20,000, unique visitors. 30,000 pageviews.
+
+50
+00:22:49,830 --> 00:23:12,960
+Scott Tolinski: I'm really keen on dumping Google Anik analytics entirely. Yeah, I feel like I do. It just just creates extra that I don't really need and how like, I don't really look at Google Analytics that much. I don't look at it for you know what, it's, I don't know that the extra requests, even though they're at that? No, I don't know. I just don't use it enough to have it.
+
+51
+00:23:12,990 --> 00:23:54,030
+Wes Bos: Yeah. Like the actual features. I only use, like, Who were the people coming from maybe countries. It doesn't look like you can get countries or browser info on Netlify analytics. It just gives you the probably the most of the stuff that you want is how many people are visiting how many unique people where are they coming from? and other sources? Yeah, yeah. Yeah. It's pretty neat. So that is the uses dot tech uses. I should make a website detailing everything I said in this, this podcast, but I don't know. It's kind of interesting. If you want to check it out. learn a few things from it or not. It's at github.com Ford slash Wes Bos for slash awesome dash uses.
+
+52
+00:23:54,030 --> 00:23:55,620
+Scott Tolinski: Do it. Yeah. Really great.
+
+53
+00:23:56,010 --> 00:23:58,410
+Wes Bos: Cool. All right. Anything else to add? there? You done?
+
+54
+00:23:59,130 --> 00:24:03,780
+Scott Tolinski: I'm done. I'm done with the episode about your project.
+
+55
+00:24:04,350 --> 00:24:10,290
+Wes Bos: Done. Beautiful. All right. Thanks for tuning in. We'll catch you on Wednesday. Please
+
+56
+00:24:12,210 --> 00:24:13,020
+Announcer: head on over to syntax.fm
+
+57
+00:24:13,020 --> 00:24:21,990
+Scott Tolinski: for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
