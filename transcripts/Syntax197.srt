@@ -1,0 +1,176 @@
+1
+00:00:00,359 --> 00:00:01,350
+Unknown: Monday, Monday,
+
+2
+00:00:01,350 --> 00:00:02,160
+Monday,
+
+3
+00:00:02,219 --> 00:00:07,590
+open wide dev fans yet ready to stuff your face with JavaScript CSS node
+
+4
+00:00:07,590 --> 00:00:09,060
+module BBQ Tip Get
+
+5
+00:00:09,060 --> 00:00:16,730
+workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats
+
+6
+00:00:16,730 --> 00:00:21,660
+coming in hot here is Sarah CUDA, Bob and Scott Taylor.
+
+7
+00:00:23,610 --> 00:00:24,480
+Totally at ski.
+
+8
+00:00:25,890 --> 00:01:02,070
+Scott Tolinski: Oh, welcome to syntax in this Monday tasty treat, we're gonna be talking all about tips for writing good CSS, because we love CSS over here at syntax. Too often, there's this whole, you know, anti or pro CSS and everybody's too caught up in the pros and cons. Well, we just want to say that we love CSS, we want to talk a little bit about how to write good CSS. And if you want to write good one, no, sorry, let me introduce you first. My name is Scott Tolinksi. I'm a full stack developer from Denver, Colorado, Valley tried CSS with me, as always is the West boss.
+
+9
+00:01:02,340 --> 00:01:08,090
+Wes Bos: Hey, everybody, I'm excited to lay down some hot tips on writing good CSS,
+
+10
+00:01:08,370 --> 00:04:41,010
+Scott Tolinski: lay down those Hot Tips was, we're gonna be talking all about some things that we like to keep in mind when we write our CSS. Now this episode is really has the perfect sponsor for this because this is a browser that's going to help you write really excellent CSS and we say this is a browser, it's more or less like a design tool that you can use to see your application across device sizes, and I'm talking about size D at size e.co. That's si zy.co. You're gonna check this thing out. Because this is an awesome design tool, especially for all of those browser sizes and devices that you're using in your applications today. It allows you to see your application at a glance across all sorts of different devices at different orientations and navigate and use it it is super cool. It keeps them all in sync. So let's say you have your iPhone, you have your Pixel phone, you have your iPhone x, they have them all sort of right next to each other there. And when you scroll on one, they all scroll, which is such a huge thing when you're trying to use this thing in different designs too often we get into what are the devices that we have at our disposal that we're using. And that's where we prioritize this is going to allow you to ensure that your device isn't just hitting a certain subset of pixel widths, but it's going to hit every single design type that you could possibly have. And there's some really fancy built in tools such as being able to scroll to specific selectors across every single one of these device windows allows you to quickly and easily navigate a page or heading just choose a direction and your devices will navigate to it. It's so super cool. Again, it's a developer's best friend, they call it because it supports hot reloading allows you to see all the changes instantly across so many device sizes. It has your standard Chrome Developer Tools built in because this thing is based on Chrome. It is superduper awesome. any fancy tool or feature that you would expect to have when you're developing or designing a site across browser sizes. This thing has it and makes it easy to use and find again, the lassi to quickly and easily disable the network, have a touch cursor organized at your devices, add new devices based on which ones you want to be testing for manager cookies quickly and easily. It is just so super cool. And you even get to screenshot things super easily. It's $5 a month for the solo price. So you're gonna check it out at size e.co. That's si si si y.co. And give it a try because this is one of those tools that's used by a lot of companies, such as Bentley, Netflix, Comcast, Samsung sketch, duck, duck, go Gatsby Basecamp. Oh, deep going on and on for the people that are using this. for good reason. It's a really super cool tool. So sciency deco, check it out. Okay, let's get into our tips for writing excellent CSS. I think this episode is going to go along really well with the one that we just released on Wednesday, about design foundations, because really a lot of this things in both this episode. And the previous one could be summed up into use a system, make yourself have a system that allows you to write things in a way that are consistent. And that way, there's never any guessing work. And when people need to write something new with CSS, or use something that's existing, instead of inventing a way to do it, they're going to refer to the system. It's a big, big thing.
+
+11
+00:04:41,390 --> 00:05:41,160
+Wes Bos: Yeah. The next one we have here is using overrides and the cascading I always tell people embrace the cascade. There's some people out there that don't like the sea of CSS, and they rather just have SS. But the c a c and CSS stands for cascading. Meaning that you can write some CSS, have it apply to sort of a broad spectrum of things. And then I narrow in on things and override or add additional properties as you want it. And I say that not to do absolutely everything that way. Because certainly that could be a debugging nightmare. But don't rewrite the same CSS over and over again, if you don't have to. But also on the same note, I'll say like, Don't go too bananas with it, because I've certainly written some CSS there where it was much too broad. And I find myself either undoing a lot of stuff because I went that way, or having to just write multiple things over and over again,
+
+12
+00:05:41,400 --> 00:06:45,720
+Scott Tolinski: totally. It's It's so funny, because people are so aggressive about CSS on the internet. And you know, what else are they not aggressive about, but you have like, these folks who are like, embrace, the cascade cascade is everything. And you have these other folks that dog scope, everything. But I really think that CSS was designed for and works best when you utilize the cascade, and you utilize scoping. And that's the huge misconception about people who use CSS and js, like I use styled components, but I use the cascade heavy, and people will look at that CSS js, it's like, well, it's only for people who don't know how to use the cascade, that's not true. You can use the cascade in any of these ways. And it's going to make your CSS more efficient, if you can tame that cascade and tame the way it works, in addition to one off scope, if something is in fact a one off pattern, or maybe you know, an extrapolation of a pattern or something like that. So you need to embrace the cascading as you have said, but I also think you need to embrace scoping where it makes sense as well and utilize both of those techniques.
+
+13
+00:06:45,990 --> 00:08:01,140
+Wes Bos: Yeah, I have a little note here says I'm trying to understand why scoping in CSS is good. And that's just because, because CSS is global, meaning that if you write some CSS, it will apply to absolutely everything on the page. And even if you try to get good at naming conventions, and classes and things like that, all too often, some of that CSS will accidentally apply to something else on the page. So I think that's like a frustration with a lot of people that like CSS and js is that there is no scoping, or as you can, can make it extremely scoped to something like CSS and j s. So maybe dive into why that is good. And, and honestly, I think a lot of the things that we're talking about today are only things that you will understand once you've run into the trouble that they cause like, I never really understood the power of scoping, or bam, or things like that. And then I had worked on a large project that got a little bit out of hand. And it became a bit of a chore, anytime we wanted to add some new CSS to it, because there were so much like we had an entire framework. And then I had to override all that framework stuff with a bunch more stuff. And then I had, like, I it was just too much at the end of the day. And I thought like, it would be nice to to be able to chop that up into smaller components.
+
+14
+00:08:01,500 --> 00:08:45,720
+Scott Tolinski: Totally. And that is, there's so many like disasters that you can encounter over a lifetime of working on CSS stuff. And it is the thing that has weighed too much CSS way too much global and you're trying to understand and and over the course of time, maybe people have written patches in with important or things like that. And I think it's a big thing as well as you probably don't want to use important I pretty much just like one time I've used important in the past, you know, five or six years. And it's because I was overriding something that had important on it in a library that I was using, and I couldn't. So you need to understand the look the property order and what the specificity of each thing is. She just nailed that word. I didn't even hesitate on it. There was no editing
+
+15
+00:08:45,750 --> 00:08:47,580
+Wes Bos: specificity.
+
+16
+00:08:47,580 --> 00:08:50,640
+Unknown: Did I say it as you'd Got it? You got it? Wow. Yeah, specificity.
+
+17
+00:08:50,640 --> 00:08:52,790
+Wes Bos: I think I'm cured.
+
+18
+00:08:54,170 --> 00:08:56,610
+Scott Tolinski: Digital high five. Yeah.
+
+19
+00:08:58,260 --> 00:09:46,890
+Wes Bos: Oh, that's good. Um, next one we have here is nail down your typographic early revisit, it isn't what you need. So one thing I always do globally, even if I'm using this very scoped component based thing is always nail down my typos, graffiti, what fonts, what sizes, what colors, padding, spacing, things like that on all of my type. I'll nail that down globally, very early on. Yeah. And if I find myself going back, or if I find myself writing a lot more CSS to change something, then I know that I didn't do a good job early on in my typography. And I think that's really key because way too many times I've written stuff. And if you set the font family on, like 30 different things. That's a huge pain, if you ever want to change it.
+
+20
+00:09:47,150 --> 00:11:37,440
+Scott Tolinski: Yeah. I mean, yes, that's a key point is that if you notice that you are doing things like adding a lot of fun sizes to like scoped CSS or you're doing a lot of others. favourites for font sizes, then that's an indication that your system is not quite there needs to be revised. And that's totally cool. Because sometimes over the course of a project, as you get into it, you start realizing there's different use cases than maybe you'd expected. And maybe there's a different things here and there. And it is important to occasionally relook at your system and revise your system. Because type holography is one of those things that I don't find myself overriding very much specifically, because I've written this system, and the system should be able to handle it right. So another thing that we talked a little bit about systems here, I want to talk about, like, JavaScript patterns, right. And so there's a whole bunch of CSS patterns, there's a whole bunch of different patterns that you can use to develop your system, the most popular of which is most likely bem for block object modifier, element, block element, not bomb them. But with them, you have the basically you have your thing, you have your modifiers, you have your specific elements with inside of them, and you follow the system, the usage of hyphens and underscores to devise your class names to be a specific way. Now, I don't use bem myself, but I have in the past, and I really liked it. And I think what isn't important about them, what isn't important, isn't the syntax, the syntax doesn't look great. It looks a little over sometimes it looks like there's a lot of typing. But that's not important. What's important is that simply there is a system. And that single handedly made me a better CSS developer simply working within a predefined system, rather than just trying to cowboy code at all.
+
+21
+00:11:37,740 --> 00:12:12,330
+Wes Bos: Yeah, whatever pattern you pick bem functional CSS, like something like tailwind CSS, and j s, whatever it is, stick to it, and don't stray from the pack. Yes. And it's kind of funny, because like CSS by default, you can get yourself into a lot of trouble. And the same is true for JavaScript as well. There's a reason why most of us don't write large applications just in vanilla JavaScript, you reach for something like react, because it is a system. It's a way to organize your code. It's a way to write your code, it's a way to share data between it. And the same thing is true for for CSS.
+
+22
+00:12:12,480 --> 00:12:17,310
+Scott Tolinski: Yeah. And there's like that whole thing. It's like you either use a framework or you write your own, is that the same?
+
+23
+00:12:17,550 --> 00:12:18,060
+Wes Bos: Yeah,
+
+24
+00:12:18,150 --> 00:13:07,110
+Scott Tolinski: yeah, it's like, it's basically, you know, if you don't have a framework in place, by the time you're done with your own system, you've basically written one. And I think there's just a big thing, and I get I use, my pattern is a CSS and JS based pattern, it's using styled components. But that aspect doesn't really matter. But for me, you know, I have my individual elements, I have the modified versions of them, and then I have props that could go into them. And you could really think of it as block element modifiers, you could really think about it like that. And it really is sort of based on that. But at the end of the day, it's not adhering to their specific syntax. And I don't think you necessarily have to as long as again, the system works for you and works for your team. And that everybody is briefed on how to expand upon and use the system.
+
+25
+00:13:07,500 --> 00:14:36,150
+Wes Bos: You want to like give a quick example of what bem is because regardless of if you like that syntax or not, the ideas are probably apparent in any way that you're writing your CSS, right? Yeah, go for it. So Ben stands for block element modifier, and you think about like a, like, let's say we have a card, and that card has an image and a title, a description and a price selling something that might be the block there would be a sales card, and then the the elements inside of that thing may be elements that are associated with it, you can get a little bit further and you can go, you could even have like an element of an h2, but a very high level, you have a sales card, and then you'd have a sales card heading. And then if you wanted to change one of those elements a little bit, that's called a modifier. So you might have sales card heading, like sale or cheap or discount or something like that. And it's a really neat way to, to think about approaching your CSS and I would again, say it throw away all of your hate for how it looks, because who cares what it looks like, in your HTML, visitors are not viewing source on your thing. And even if they're Who cares? Certainly looks a lot better than CSS and j s with the random random classes, right. Other tips we have here is don't style based on element type. Kind of,
+
+26
+00:14:36,210 --> 00:14:37,410
+Scott Tolinski: yeah, don't do that.
+
+27
+00:14:37,470 --> 00:14:43,110
+Wes Bos: So like don't just say like h2, and then font size 100. That's good for base styles, but
+
+28
+00:14:43,170 --> 00:14:44,820
+Scott Tolinski: or scoped it's good for scoped
+
+29
+00:14:45,000 --> 00:15:52,500
+Wes Bos: Yeah, first scoped as well. That's that's something that's why I said kind of, yes. If you're styling like a banner text, just say give it a class of banner and say dot banner, there's there's no need to attach those styles only to the h2 version of it. Because often the semantic element like an h2, and what you want it to look like, are totally different. And I remember seeing somebody have a h3 with a class of h2, and doing what's going on. And I realized, like, no, they semantically need an h3, but they want it to look like an h2. And there's nothing wrong with that. You just give it a class of what you want it to look like. And I personally, now that I'm using scoped CSS, I will use element selectors inside of that. So I'll say like, I have a sales card. And then I say inside of that h2 paragraph image, and it's, it's so nice not to have to give everything its own class. Yeah, and just select it based on what type of element it is. So if it is scoped to something small enough, go ahead and use it. But at a very broad level, don't just use element selectors.
+
+30
+00:15:52,710 --> 00:17:46,950
+Scott Tolinski: Totally. You know, it's funny I have a lot of my system is based on custom properties. And then custom properties, once they're more usable within these systems, for a lot of people are going to really fill in a lot of the spaces because custom properties, unlike SAS variables, which really blew up design systems overall, and being able to set variables and have whatever change your whole design system based on changing a couple of variables, CSS custom properties are going to do the exact same thing with allow you to use them in runtime, rather than in build time, right? And so long, we've been really liking it here, too, you know, these these CSS things, but I have, how many headings Do I have, I have nine different headings, custom properties, I have heading seven, right, I went all the way to h seven, heading 654321 extra heading an extra big ass heading. And all of these heading sizes are I can use them on any element that I choose. Because like you mentioned, the visual aspect of what the headings should look like is not tied to the semantic meaning necessarily 100% of the time, sometimes even h1 and h2 the same size based on what it's actually meaning in the document flow. Right? Do you want to talk a little bit about naming techniques. I know we talked a little bit about this, but how you name things, how I named things. My general strategy is to name things as a thing, right? This is the playlist Alright, then I'm going to name it playlist. And if it's a playlist header, I'm going to name it playlist header. And then I do modifiers. And via props in react. But again, these can just be different Additions on to a class with CSS, all of these things, the vessel, whether it's CSS and j s, or it's JavaScript or whatever, it doesn't matter, as long as you follow the same types of rules. You have a message here to use a warning as a color name, rather than red. Right? Or a class name?
+
+31
+00:17:47,520 --> 00:17:59,280
+Wes Bos: Not necessarily like a Yeah, as a class name. If you I've certainly in passing, these are almost everything is this episode is me saying things I did wrong in the past. Okay?
+
+32
+00:18:00,390 --> 00:18:10,140
+Scott Tolinski: That's right. Because you make this big, unmaintainable monster, and then you say, oh, next time, I'm not going to do that. And then you do that better. And then you learn the pitfalls of your new system,
+
+33
+00:18:10,740 --> 00:19:27,560
+Wes Bos: just describing what they are instead of what they look like. So not like use banner instead of large text or use warning instead of red, because I certainly have had a class of big green text ended up being small red text in the final design. And that's, that's the worst to have to maintain that. So I've learned that. And another tip I have is you talked about saying like thing, and then inside of that thing, child and thing modifier. One thing that used to stress me out is I never knew if it would be like an element within a component or if it should be its own component itself. Mm hmm, totally. And I finally just been like, whatever, I can start it off as a component or sorry, an element of a component. Like you said, what was your heading of a card? Yeah, and then you're like, Hi, I actually need this exact thing. Somewhere else that's not inside of a card, then just move it right. Just Just take it out, make it its own, make it its own design, and, and then you can move over the classes or whatever you want. And that's very much how I approach writing react components, as well as just just put it in the same file until you don't need it in or until you need it outside of that file and then then refactor it. And that's doesn't stress me out as much anymore.
+
+34
+00:19:28,380 --> 00:21:34,070
+Scott Tolinski: Totally, the very best way to develop a CSS system is to have every single thing in every use case determined ahead of time. But there's just so many instances where that's not reality, and that can't be reality. So just assuming that you're going to have every bit of knowledge that you're going to have about this thing, when you start to develop it, it's kind of just wait to non realistic for me. And I think this is another area that variables in custom properties can kind of disrupt things right in, we've used the systems in SAS and whatever, for a little bit of time, they were like, everyone made a variable and they would make the variable blue or red. And they would set that to their brands blue color. And then people started saying, well, no wait, you actually should have your variable name to accent in brand color. And instead of blue or red, because while the, like you mentioned before those things can change? Well, what I like to do is I like to set my own root colors. And I really love this in stylist, because you could have what were called transparent variables where the variable itself had no indication It was a variable. So if we were to say red is equal to this, then anytime you used red, like the custom, the CSS text, it would just, it would just overwrite the the built. Yeah, I love that. But so that's what I really do is I set up my, my color system, I set my color system up as and here are the defaults. This is the green, this is the red, this is the blue, this is the whatever I'm going to use. And then I also have my warning color, which references the red color. And then I have my you know, success color, which references potentially the green color, but maybe I want to change it to the blue color at some point. But either way, just change that variable. So I have variables referencing variables that reference variables and build out this really nice system that obfuscates a lot of this stuff and hides it sort of beneath the surface. And again, custom properties really blow that up. And it allowed me to write like a dark mode for my site in like three lines of CSS. So these things are going to be really super cool. And until you can use them, swap them out for SAS variables are those kind of things because they they're really super effective.
+
+35
+00:21:34,070 --> 00:21:49,100
+Wes Bos: Other tips we have here is group like CSS together. So don't just willy nilly throw it into a file, wherever it is, wherever you want. It's very tempting, when you're doing a quick little, just stick it where wherever it is, you're right now
+
+36
+00:21:49,140 --> 00:21:53,280
+Scott Tolinski: it's right at the bottom of the big global CSS file. Yes, toss it in there.
+
+37
+00:21:53,520 --> 00:22:20,070
+Wes Bos: That's what you want to do, we have a sometimes you have to just spend like three or four minutes trying to figure out where it is future self will thank you, you will earn that time back in the future. So group it together, chunk it into different files, especially now as we get into things like Webpack and parcel, these tools are getting so smart about which files are and are not being used. And that makes getting rid of unused CSS much
+
+38
+00:22:20,070 --> 00:23:48,720
+Scott Tolinski: easier. Which is that's a tough thing in itself. I mean, there are tools, but as it as its own thing, getting rid of CSS or even like that, you'll occasionally stumble upon some CS and you'll you'll just be like, hmm, just been used anywhere. Is this class used anywhere? Yeah. Let me do a command. It's not being used anywhere. But it's it's been in my system for so long that you know, now I can finally delete it, because there's no, there's no point in shipping code that you're not using. And too often times there. There are times when we do that, just based on the evolution of a CSS system. I really like your your tip about you know, grouping things together. I I'm a big proponent of writing good comments within CSS. And by good comments. What I don't mean is I don't, I don't write a comment that says like, all their styles, the header when it's a class for a header, like not like that. What I mean is, if you have something hacky, maybe have a little comment that says why it's hacky have headings for grouping things together, like maybe I'll have a larger, more obnoxious heading that says, These are the layouts. And then I'll have all my layout CSS there, or these are my resets, all my reset stuff goes there, my base styles or whatever. And I keep it all very explicit. I used to write this is actually a really funny tip. But I used to do this, I haven't before anymore, because it's not maintainable. I used to write a table of contents for my CSS, and I used to update it anytime I added sections or zones to my CSS, like, hold on table of contents whenever you would arrive at my main sass file.
+
+39
+00:23:49,080 --> 00:23:50,040
+Unknown: I did that too.
+
+40
+00:23:50,220 --> 00:23:58,890
+Scott Tolinski: Yeah, it was really I spent way too much time on it thinking like, yeah, this is gonna be, it's gonna be great. And, of course, you never reference it, because you're the only person using it. But
+
+41
+00:24:00,840 --> 00:24:05,280
+Wes Bos: I think that's all I have any other tips that you have? I mean, there's, there's a lot of stuff, we
+
+42
+00:24:05,280 --> 00:24:35,700
+Scott Tolinski: could probably get more episodes out of this. So if you have CSS tips that you want to share with the community, please let us know. Tweet us out at syntax FM will we will retweet you if you have any awesome CSS properties. But at the end of the day, I think the big big pieces are have a system, make sure everybody knows what the system is that define the system. As you know, here's this organized thing that we're going to do. Name things well, and understand the cascade scoping when you should and everything's going to be gravy.
+
+43
+00:24:35,850 --> 00:25:01,290
+Wes Bos: Beautiful. Well, thanks so much for tuning in. Make sure you tweet us out your tips at syntax FM, we will retweet them I've been loving. Like I know we say this every single episode, like tweet us your tips, but we've been getting some good stuff coming in. And I'm retweet happy. It's really fun to have like a community curated source. Totally. That is the Twitter account. That's it. Thanks for tuning in. Catch you on Wednesday. All right. Hey, face.
+
+44
+00:25:03,149 --> 00:25:12,929
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows, and don't forget to subscribe in your podcast player or drop a review if you like this show
+
