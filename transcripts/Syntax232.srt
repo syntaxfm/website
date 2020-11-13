@@ -1,0 +1,492 @@
+1
+00:00:01,319 --> 00:00:10,530
+Announcer: You're listening to syntax the podcast with the tastiest web development treats out there. strap yourself in and get ready to live ski and West boss. Welcome
+
+2
+00:00:10,530 --> 00:00:22,079
+Wes Bos: to syntax a podcast with the tastiest web development treats out there today. We've got a one year later look for you at react hooks. So can you believe it's already been a year Scott that hooks have
+
+3
+00:00:22,079 --> 00:00:30,929
+Scott Tolinski: been out time just flies by my my daughter's not even a year old yet. So hooks are older than my daughter. I feel like that's crazy daughter
+
+4
+00:00:30,929 --> 00:00:34,890
+Wes Bos: was not even not even born into a world without hooks. Yeah, that's
+
+5
+00:00:34,890 --> 00:00:36,470
+Scott Tolinski: wild. Very well.
+
+6
+00:00:38,310 --> 00:00:44,159
+Wes Bos: Yeah, so yeah, that's struction. Neither, neither was my son. He'll never know a world without hooks.
+
+7
+00:00:47,159 --> 00:00:47,820
+Scott Tolinski: Over the best
+
+8
+00:00:47,850 --> 00:01:18,980
+Wes Bos: Yeah. So today, what we're gonna try to do is just kind of go through hooks again, we did a show on them when they first came out. But now Scott, and I have some some serious time using hooks under our belt. So we'll sort of go through them and talk about both what they do, as well as like our thoughts on them one year later, and whatnot. So buckle up for that. Today, we are sponsored by Sanity, which is a structure content, CMS and Sentry, which is going to do all of your error and exception tracking.
+
+9
+00:01:19,290 --> 00:01:21,200
+Unknown: Yeah. So shout out to them.
+
+10
+00:01:21,590 --> 00:01:27,840
+Wes Bos: So let's, let's get right into it. You want to start it off there, Scott? Sure. I thought this would be
+
+11
+00:01:29,100 --> 00:02:04,650
+Scott Tolinski: I thought this would be a nice way to kick it off is how do we feel about sort of what react hooks have been replacing in in functionality wise, what they've largely replaced in our code base has been render props. For me, at least most of the things that I used render props for I know, do react hooks so much. So did that. I don't know if I have too many render props left in my application at all. So I wanted to ask you, Wes, if this was a basketball game, and react hooks, were playing render props, who would be winning that game in terms of overall general satisfaction in your mind?
+
+12
+00:02:04,800 --> 00:02:42,240
+Wes Bos: Yeah, definitely react hooks have replaced, I would say, I'm tempted to say all but I did run into a situation a couple months ago, where I needed to like lazy evaluate something. And I needed to still use a render prop in that in that case, I forget exactly what it was. But almost everything I just redid my entire advanced react course, it's not out yet. I'm just waiting for library to be released. But I read it all of the code. And it's it's bananas, how much less code I had to write and how much more easy it is to actually view things. And so not all nested in each other. So big fan, big fan.
+
+13
+00:02:42,330 --> 00:04:19,050
+Scott Tolinski: Yeah, from a readability standpoint, for me, it's 100 to zero, I mean, React hooks just make your code so much more readable compared to render props, if you're sitting on that edge when you're later. And you're saying, Well, I don't know how I if I want to write some of my code this way. I don't know my code base has never been more readable. Since I've moved from render props to react hooks, especially with things like Apollo the data fetching it, just that sort of stuff to me is you just have nest within the nest or nested here. And next thing you know, you're indented, like eight layers deep when you don't need to be so I'm always of the mind to make things as simple as possible. And to me react hooks just make things more simple to read overall. So I'm a huge, huge fan of the visual aesthetic within my code base, but also the readability, the usability, all those things. And we'll get into a lot in this episode. So let's get started talking about hook number numero uno here, which is US state. Now you state is basically, in my mind, the very first hook that almost everybody picks up because it replaces some functionality that is core to using react that is state, right? We're so used to using state in our components. And here is the new defacto way essentially to use state. And that is via use state. And so this hook, well, you basically you define a couple of variables, they come out, and then array, so they're returned as the first two items from this function. Now this is made possible by the ability to return more than one thing from an array.
+
+14
+00:04:19,320 --> 00:04:51,720
+Wes Bos: Yeah, it returns an array. And it takes advantage of what the ESX destructuring where you can name the first item, something and the second item something and the reason they use an array there is because if it was an object, you'd have to destructure it based on its property name, but because it's an array, you just you can name it, whatever you want, based on the first and the second item. And generally it's the name of the piece of state and then the second one is the updater. And I how do you name your updaters I always say set and then whatever the name of the piece of state was
+
+15
+00:04:51,830 --> 00:05:09,140
+Scott Tolinski: every time Yeah, every single time I have a B set and then the you know the variable name so typically, I know this is going to upset David k piano, but I use things like is toggled and then set is toggled. That's typically how I have my, my variables named. Yeah,
+
+16
+00:05:09,180 --> 00:06:03,090
+Wes Bos: yeah, it makes sense. And then you stay also takes a initializer. So like if you want to initialize an empty state, you can just pass nothing. But if you want to pass like an object with default values and empty object, often I'll do because I know the shape of my state will be an object, it just doesn't have any properties. Or you can give it an object with undefined properties. If you want them to be on there, it could be a number, the only sort of gotcha vs knows a good one. The only gotcha you have with you state is that you have to update it all at once. So if your state is an object, previously, you just be able to update one property on the object and the rest of the state would remain unchanged. Now you need to fold in the existing state over top of what you have. And if that's the case, then you just spread it in with the three dots and the name of the existing state.
+
+17
+00:06:03,119 --> 00:06:42,960
+Scott Tolinski: Yeah, and that's largely because you're supposed to be looking at this as less of like, here's the application state and here is like this one particular things state. So like, think about it this way, instead of having this whole components state inside of a set state, you will have individual setters and getters for the individual state items within that component. So a lot of times people will look at hooks, and they'll say, Okay, I'm gonna create my my use state. And I'm going to try to put all the state for the one component on that one hook. No, I use many times several use state hooks in one component all the time. And that's largely how they're intended to be used.
+
+18
+00:06:43,200 --> 00:07:04,320
+Wes Bos: Yeah, that's, I was just gonna ask that, like, what's your? How do you decide whether you should have multiple pieces of state inside of a component? And how do you decide if you should just have an object and for me, if the pieces of state are clearly defined, before I build the component, then I'll use multiple use state hooks. So you got an example there?
+
+19
+00:07:04,679 --> 00:08:45,170
+Scott Tolinski: Well, so Okay, so I like to think about it as how just how connected they are, if if it's all of the information in the state variable is connected, and then it makes sense to put it together. But even if it's somewhat relationally, connected, but not used in a connected manner. For instance, we have like a filter in our sales thing where we have our charts, right, let's say you're setting the year and you're setting the month. Now, I have two separate state, I don't have one, one state object that contains the the year and the month inside of that object, I would have two separate use states one for the year, one for the month, if I'm updating the month, we're just simply changing the month, and that's passing it in. And to me, it's because those things aren't always changed at the same time. And largely, if you're changing the month, you want to keep the year in the same place. Not that you can't do that with any sort of an object thing to me, in my mind, it just makes more sense that these are separate values being treated separately, and they're being updated separately, so I shouldn't store them together. Obviously, you can do more. With that, you know, it's all about, I think this is maybe like a fine line, I almost always go on the edge of having separate functions. But then if I noticed that I'm calling all of our set functions, one after the next, every single time, yeah, they're probably connected and related in a way that you should be having them all in one spot. Besides, if it gets that intricate anyways, or if I'm having to deal with that kind of data, I'm always reaching for use reducer instead. So if it is one value changed, I'm pretty much always just using use state. And if it's multiple values and more complex data, I'm reaching for use reducer instead.
+
+20
+00:08:45,600 --> 00:09:15,090
+Wes Bos: Yeah, and the if I were to use an object, it would be if the keys of the object are unknown. Let's say you were counting the number of vowels in a sentence, right? Like you don't want to like go ahead and make a IOU immediately, where you could just kind of just add those as you you come into them. And that's a case where I would probably use an object or an array or something like that, to put them into that state
+
+21
+00:09:15,649 --> 00:10:43,860
+Scott Tolinski: word. So along the same lines is user reducer, which use reducer is kind of fun, because it took a lot of the ideas that you know, we learned in react from Redux. And we had this idea of, okay, you're always returning a new object, and you're being modified in this object by dispatching events, right dispatching events, and these events can have properties strung along into them. Regardless, what we're doing here is a lot more like Redux than it is like use or set state was. So typically what you're doing is you are defining a reducer, you know, it's so funny, these names exist, right? And we talk about them but to me, these names are really kind of get in the way. So Because, you know, some people will hear the word reducer, and if they've never heard it before, it might scare them off. But really all user reducer is is basically, it's, it's something that takes the previous state, and the action that you want to happen, aka, like, toggle, right? You're gonna say, toggle. And then from that you just return an entirely new object full of the new state. And because you have the previous state, you can take the previous state, you can spread it out and modify it, whatever, you can take that, and you're always returning a new object of the new state in your reducer. And typically, that's done via just a switch statement that's evaluating like a string. And a string may say the action name. Right. toggled?
+
+22
+00:10:43,890 --> 00:11:17,730
+Wes Bos: Yeah. increment. decrement. Yes, yeah. Yeah, totally. Um, I would go as I'm not going this far. But there are several people who have gone as far to say that they use use reducer for everything. That's not maybe that's taken a little bit far. Yeah, definitely use status is great. But use reducer I think it was a bit of a sleeper hook, I'm gonna go ahead and say like sleeper I in the last couple of months, you start seeing people being like, oh, wow, use reducer is awesome. Why didn't I I think people were kind of tough like a wrestling move. There's the reducer know, the sniper hook,
+
+23
+00:11:17,730 --> 00:11:19,830
+Scott Tolinski: got to get the sleeper hook.
+
+24
+00:11:21,960 --> 00:11:35,309
+Wes Bos: No, I think people were thinking it was a little bit more Redux II than it actually is. It's simply just that function that returns it's no different than a map, filter, reduce or whatever you're using. So definitely check it out.
+
+25
+00:11:35,669 --> 00:12:05,370
+Scott Tolinski: I like to think about it this way. You had to set state right set state is sort of the middle of the road, right. And then you have use state, which goes further into the side of simplicity, you're changing and updating like one value. And then use reducer goes in the other direction. It says, Okay, this is less simple, but more control. So it basically they stood on the either side of where set state was one of which is more simple, and one of which is just a little bit easier. I mean, more complex.
+
+26
+00:12:05,940 --> 00:12:09,179
+Wes Bos: That's, that's fantastic way to look at it. I like that a lot.
+
+27
+00:12:09,240 --> 00:12:10,380
+Unknown: Yeah, me too.
+
+28
+00:12:11,850 --> 00:14:12,600
+Wes Bos: Next one we have here is use Raph. So use ref. I actually just learned something the other day, I had no idea about this. So use ref is store is used for storing reference to something. And I initially had thought, Okay, this is only for DOM nodes like you You generally, the way that it works is that if you have a DOM node, and you need to access the raw DOM node for for whatever reason, maybe you're using an external library that needs the DOM node, or maybe you're using some like resize observer or, or one of these API's is not specific to react it is just DOM node, then you generally you stick a wrap on that and then pass that into like another hook that can then reference that DOM node on the page. So that's the way you do it in react versus doing like a query selector, document query selector to get that element. And that's what I thought it was for all the time. And I was just kind of, I was working on some resize observer stuff the other day, and I was like, I need a way just to like, store some data temporarily. And I was looking at some examples. And they were using use resin. And so I sent messages to you on on slack. I was like, man, did you know this test? Of course, yeah. Of course, God knows everything. Yeah. Let me find out what it is. Here we go. Use ref hook isn't just for DOM elements. The ref is a generic container, whose current property is mutable and can hold any value similar to an instance property on a class. So basically, if you ever want to like just have a variable of some sort of data, and you want to be able to just set that data as just as a normal variable, you would then use ref can can be used to hold that. So I was using it for, like the number of times that something had run. And now the questions are like, why would you use that versus state? And the reason is that set state or you state will trigger a rerender. And then the other question is like, what's the difference between that and just using a regular variable like a lead variable? it?
+
+29
+00:14:13,110 --> 00:14:18,870
+Scott Tolinski: Probably just, yeah, it's such a good question, because I almost always just use the lead or something outside.
+
+30
+00:14:19,169 --> 00:14:47,460
+Wes Bos: Yeah, I didn't know the answer to that I just looked it up. It says use raffle assign a reference for each component, while a variable is defined, while a variable defined outside a function will only be called once. So if you have a hook that is running on multiple running on multiple components, then a ref is better for that. I was thinking that too. It's like why not just use the variable because the situation I was using in it was just a single component. But if you do want to spin it
+
+31
+00:14:47,820 --> 00:14:50,760
+Scott Tolinski: is funny because I don't find myself using that that often.
+
+32
+00:14:51,000 --> 00:14:52,590
+Wes Bos: No, I mean, either
+
+33
+00:14:52,770 --> 00:15:01,260
+Scott Tolinski: needing that technique that often Yeah, I almost find myself needing to find a like a constant outside of the the function More often anyways,
+
+34
+00:15:01,440 --> 00:15:28,169
+Wes Bos: yeah, I was surprised. It's like we're one year in and I just ran across it two days ago, right? I think a lot of us use the fact that you state like every day, and then there's all these sort of like edge case sleeper functions that sleep. I don't even know a sleeper function is something that like weights it's actually like is Yeah, yeah, weights around. This is actually amazing. Yeah, use ref is just kind of like, Huh, neat. Yeah, my I might need that. I might not.
+
+35
+00:15:28,289 --> 00:16:58,830
+Scott Tolinski: Yeah, that's, that's good. Yeah, that's good. Okay. So next up is going to be use context and use context, to me is my favorite hook, we have our favorite hooks, this is my favorite hook. I love you. Because these contexts, I use context, all over the place. And really what I have is my whole darn system set up. And I'll talk a little bit about this more later on in the this episode when we talk about custom hooks. But I have this whole setup now where I just did a video on a code blog for level up tutorials showing how we do this. But let's say I want to fire off an alert, all I have to do is bring in a hook called use alert. And inside of it use alert is the setup, send alert, send error functions that I can then use and just call pass in a string and have them fire off an alert that the user then sees come in as a toast message on the top of the screen. And it's fun, because that's all made possible through use context now just do a custom hook wrapper on it. But the amount of simplicity that use context has given me in terms of modifying and using my global state for my application has just been unrivaled. It's been absolutely fantastic. I really love it. In fact, one of the things I do with this more so than anything is the application state that you could think of as the things you want to use and modify throughout the application opening and closing the shopping cart, the navigation, yeah, the login menu, those kind of things are all going to be in my global state, rather than my data, which is going to be in Apollo's cache itself.
+
+36
+00:16:59,190 --> 00:17:19,380
+Wes Bos: Yeah, that's exactly what I read did my shins exactly what you said shopping cart, whether the shopping cart is open or closed in my advanced react course, as well as a couple other pieces. And I moved it from Apollo's local state implementation, which was annoying because you had to write graph qL queries to pull it out of there.
+
+37
+00:17:19,470 --> 00:17:22,310
+Scott Tolinski: It was annoying. It was nice, but it was annoying. Yeah,
+
+38
+00:17:22,380 --> 00:17:46,020
+Wes Bos: yeah. I just like I'm like, I don't feel like reading a graph qL query to get a boot like I was literally a Boolean is the cart open or closed? Another function that would set it to be open or closed or toggle depending on what you want. So like, what two functions and a Boolean. And I was like, Ah, man, like, this is like 80 lines of code to do that, not 80. But it was too much. That sounds
+
+39
+00:17:46,020 --> 00:17:51,180
+Scott Tolinski: like these two functions and a Boolean. You could have like a three three host show.
+
+40
+00:17:51,800 --> 00:18:20,880
+Wes Bos: That's great between two functions and a Boolean, yeah, Scott to Lynskey. Anyways, big fan of it, it makes being able to access that global state really, really simple. You can stick state and updaters in your context, which is was which is what Scott was saying. One question I have is for you, how do you decide whether to use multiple use contexts? Or how do you decide to just stick it multiple things in one kind of similar to the the state discussion we had?
+
+41
+00:18:20,970 --> 00:19:52,980
+Scott Tolinski: You know, I did that. It's funny because I was going to be my answer is kind of similar to the state discussion, because the answer is really the same thing. For me. It's like, how related are these? Let me just look at my different. I have several different contexts within level of tutorials. I have 123456, no. Yes, six. Okay, so six different state contexts. So I have one for alerts, right. They're their own thing. I have one for anything related to the checkout experience. So it's not just whether or not the checkouts open, it's whether or not what you have in the cart, what the coupon value is, whether or not the checkout is open, how to open the checkout, how to close the checkout. So there's those are all one thing, right. And so even though there's several different use states use reducers. inside of this one context, they're all very related. My loading state, I have one for global loading. Now the global loading one is interesting, because all it does is a full screen loading takeover. I have one for my login. Is login open. I have one for our search. So searches are really interesting thing for us. And again, it's just is that search open? Is it close? What's the value of the search? What's the value of the filter, like those kind of things all just exist within their own context, because they're all very tightly related. And I like to keep those all in the same location. That really keeps me sane and another service that keeps me sane is Sanity. So with more about Sanity, it's an idiot I Oh, is West balls.
+
+42
+00:19:53,330 --> 00:21:57,210
+Wes Bos: Yes, we've had Sanity sponsored tons you know by now that it is a structured content CMS, it's a headless CMS. to whatever app or website that you're building, and they've been going bananas with the the features, and they recently released what's called custom workflows, which I thought was, was really interesting. So you have a piece of content in your Sanity, CMS. And generally the the way Sanity works is that you'll have your clients using Sanity Studio, which is like the, the interface to managing your data. And they just released this thing called custom workflows, which allows you to have control over what happens when somebody clicks, publish, right, like normally on a on a CMS, you just click publish, and that data is live. But with custom workflows, you can do things like notify in slack that something needs to be reviewed, you can put it in our review, in like a review queue. So somebody who needs access to that can go ahead and review it. So basically, you have control over what happens when the piece of data is published, or I'm just saying published here, because it might not go out to your website before the right people have access to it. So you have access to custom badges inside of Sanity studio with this, you get custom document actions. So you can just write your own JavaScript that says, when this thing is published, go ahead and hook into that and notify the right people send off data to the right people keep going ahead, actually, they're using studio react hooks. Yeah, is really cool. Because that's the cool thing about San Diego studios. It's built in react, and you can customize the UI with your own react components. So there's just a hook for that, which is pretty nifty. So check it out@sanity.io forward slash syntax, do a quick Google for Sanity, custom workflows. If you want to see some more examples of what they've got going on there. You're gonna get double the free usage tier if you go to sanity.io forward slash syntax. Thanks so much to Sanity for sponsoring.
+
+43
+00:21:57,480 --> 00:23:33,750
+Scott Tolinski: Cool. Yeah, thank you, Cindy. So let's get into one of the I don't know, this one is maybe one of the more mysterious hooks, even though it's like one of the most common ones. In my mind. This is, by the way, we're referring to use effect, in my mind use effect is the most difficult one for people to really wrap their head around and get used to in terms of a general usage category, because it's taking some functionality that we were so used to with our lifecycle hooks, and it's flipping it on its head and kind of a substantial way that takes a little bit of a mental shift and how you think of it. And for a long time, it was always, for me a translation back to the different lifecycle hooks and thinking about life cycle. But at the end of the day, you're not thinking about life cycle, you're thinking about variables, dependencies, and those kind of things. So okay, what is use effect? Well use effect is basically a function that is run on a certain set of parameters. So to say, like this thing is run, when you tell it to under very certain specific set of rules. Now, those rules are defined as dependencies. And those rules are really just whether or not this value has changed or not. So you, you have a function essentially, inside of your use effect that is run, whenever these things inside of an array have changed. If the array is empty, it's only going to run on a mount, right? So you have an array of something, let's say you have an ID inside of that array, if that Id changes, then that use effect is going to run,
+
+44
+00:23:34,170 --> 00:25:03,420
+Wes Bos: yeah, you get access to all the all the lifecycle methods they used to have. So when it'll run when it mounts, yep, it will run when it updates. And the kind of cool thing about use effect is the second argument of use effect is an array of things to watch. So you can pass it, some several pieces of state, another function and whenever those things change, then the use effect will know to run again. So it's not like use effect will, will run every single time that some data inside that hook updates, it will only run when its dependencies, the array of things that you pass it change. And then the third thing is that from your use effect hook, you can return another function. And that function will be run by react whenever that component is unmounted from the page. So if you ever need to do any sort of cleanup, unfortunately, that one is often just looked over. And that's generally where you run into memory issues in react. Because if you like adding event listeners or listening to database or subscribing to real time or anything that happens in in that effect, then you also need to unloosen for those things when you clean up otherwise, you're just attaching more and more event listeners. And that's going to lead to memory leaks or like weird issues with things running more than once and you're like what's going on every time I go Click this button that runs two more times than last time.
+
+45
+00:25:05,640 --> 00:26:11,130
+Scott Tolinski: Yeah, yeah, totally. And I think that is like such a mental hurdle for people to get to get over, which is just that we're taking the functionality that existed within however many things before, right? When you looked at lifecycle hooks, it was like five, or six, or I don't even know how many lifecycle hooks existed off the top of my head. At one point, there was a whole lot like eight or nine, I feel like, but we're taking all of the functionality that you typically had to duplicate and use within there. And we're boiling it down into one sort of superhero function that allows you to do so much more in the the biggest plus out of all of that is the amount of duplication within your code that you get from this, because you have this one thing that has the job of all these several different things, Mount update, you know, all these different things that existed before within lifecycle hooks, you know, don't need to have an unbound and anon update, you can do all of that within one function. And that gives you so much more control in one spot, rather than, you know, splitting that same duplicate code up into two separate multiple separate spots. I'm just
+
+46
+00:26:11,130 --> 00:26:17,010
+Wes Bos: looking at the code for Dan Abramoff wrote this use interval, hook. Oh, yeah, that's
+
+47
+00:26:17,219 --> 00:26:18,600
+Scott Tolinski: a great blog post. Yeah.
+
+48
+00:26:18,870 --> 00:26:43,350
+Wes Bos: Yeah, it was it was awesome. I'm just looking at it. And he used use ref to save reference to the callback function of the interval. So that's another another interesting use case for using use ref. Hmm, fantastic. Yeah. There's also use layered effect. So what's the difference between use effect and use layer effect? I know something to do with server side rendering, no, nothing. In fact,
+
+49
+00:26:43,950 --> 00:26:56,280
+Scott Tolinski: nothing. In fact, use layout effect is actually difficult to use an SSR. I have my own custom. I have one called use ISO layout effect for when I want to use layout effect within server side rendering. Use layout affected basically.
+
+50
+00:26:56,430 --> 00:27:09,210
+Wes Bos: Oh, you know, sorry, you know, what it was, is that there was a trick that if you don't want something to run server side, then just stick it in use layout effect? That's because because it won't run server side. Sorry. Go ahead.
+
+51
+00:27:09,300 --> 00:28:23,610
+Scott Tolinski: Yeah, because what so really, what it comes down to is that this waits for the content amount within the DOM, and then it fires. So giving you the ability, let's say you had like, think about this back in the day when we add jQuery plugins. And you'd say, here's a div with an ID on it, right? Well, let's go ahead and find element by ID and attaches jQuery plugin into this DOM element. And so that's actually where sort of that sort of world is where use layout effect comes into play. And for a lot of times, so the way I'm using use layout effect is more or less when I'm working with a library that exists outside of react. And I need to use this library within react in this library is asking for a DOM context or something like that. That's typically where or let's say, I need to modify the DOM element itself outside of react. And that's not something that you want to do too, too much. But there's definitely use cases where use layout effect comes into play. In fact, we use use layout effect, specifically in like a scroll freeze. So like, if you want to put a scroll freeze on something. So we want to trigger trigger, scroll freeze, whenever this hooks a
+
+52
+00:28:23,610 --> 00:28:26,640
+Wes Bos: scroll freeze, like it stops the patron scrolling,
+
+53
+00:28:26,820 --> 00:28:53,070
+Scott Tolinski: like, what it does is basically just an overflow hidden on the body, which stops the page from scrolling. So I have a use layout effect, custom hook that basically allows us to get the window, computed style and all that stuff without having to worry about whether the DOM has been completely mounted or not. So this is saying the DOM is mounted. Let's go ahead and do this action now. Ah,
+
+54
+00:28:53,219 --> 00:29:15,000
+Wes Bos: I'm just reading a blog post on Kent C. Dodds website. He says it runs synchronously. And then the other sentence I think is important is your code runs immediately after the DOM has been updated. But before the browser has had a chance to paint those changes, that makes sense that it's for layout based stuff, the user doesn't actually see the updates until after the browser has been repainted.
+
+55
+00:29:15,150 --> 00:29:32,610
+Scott Tolinski: Yes, we use it in coordination also to do that, like line, SVG line drawing on our courses page. And we're waiting for all of those nodes to exist, then we're measuring their position in the DOM with use layout effect, then requestAnimationFrame, and a bunch of other stuff.
+
+56
+00:29:33,029 --> 00:29:34,410
+Wes Bos: Oh, yeah. Yeah, it makes sense.
+
+57
+00:29:34,770 --> 00:32:47,220
+Scott Tolinski: And so in addition to all of this, we have the ability to I mean, obviously there we're not talking about other hooks just because there's a whole bunch of other hooks. But in addition to all of this, we have the ability to wrap up anything within a custom functionality as custom hooks. And that's really led to being able to share use custom hooks, right, you can bundle them up, you can share them, you can download them, and a lot of times you could just copy and paste them from another application. We have our huge own folder of our own custom hooks, which I'm going to talk about in this, how do we use them section. Here's how I like to think about custom hooks, custom hooks, in my mind, whether or not this is, you know, an actual perfect description for them. To me a custom hook, you could think of it as like a react component with no UI, you can use the stuff that you use within normal react components, whether or not that's used a user reducer, use context, any of those other hooks use effect, refs, whatever, you can use all of that within a custom hook. But instead of returning UI, it's returning data. So in our case, it's typically going to whether or not it accepts different parameters, it's going to return an object with parameters, or it's going to return a single value, or it's going to return this or that. Either way, it's not returning JSX is not returning UI code. And then you can encapsulate a bunch of functionality, stuff that you do elsewhere, encapsulated all into one little bit. So that way, you can drop into your components with a simple use this hook. So to me, these custom hooks are the area that I've been the most excited about. I have a whole folder of custom hooks, which I'll talk about in a little bit. But just stuff I love to I love to write these. And I love to find little situations where my code can be swept under the rug a little bit to be, you know, make my components cleaner. Yeah, I find that it, it forces me to decouple functionality from UI, whereas with react, I would just stick it in the lifecycle methods. And then if you needed to use that functionality somewhere else, then you have to use like a higher order component or render prop or something like that. And with these custom hooks, it just forces you to put them in its own, maybe in its own file or its own thing. And then you can just go ahead and use them. It's very hard. Like that's maybe another thing about reactor because it's very hard to write something that is not reusable, although it's react hooks, because it's it's hard to make it tightly bound to the actual, the component that it's being used in. Yeah, and we're not I mean, we use so to give an example of a custom hook we use, I'll talk more about a lot of them. But here's a very common one would be like a use click on outside, where let's say you have a modal, and you want to say if you click anywhere else other than within this modal to fire some sort of event. And that to us is a perfect example of functionality that you typically write within the component. Okay, here I have this modal, when I click outside this modal, I want it to close. But wait, there's a lot of other situations where we could use that like a drop down menus or this or that. Yeah, no, well, why don't you just extrapolate that out into its own thing, use click on outside, you pass it in a ref, and you say, hey, if you click outside of this ref, fire this event, boom, BINGO, BINGO, it's so easy. And so awesome. I absolutely love that.
+
+58
+00:32:47,520 --> 00:33:51,450
+Wes Bos: One other thing I mentioned, this is probably known to a lot of people, but like, you can return anything from a hook. So whether that's data, that's most likely what you're gonna be doing, you're gonna be calculating some sort of state internally in your hook, and then you return that data. And then you can just go ahead and use these live variables anywhere inside of your, your application that has or anywhere inside of your component, I should say, I guess you can, you can pass them down to anything though, you can return state updaters. So you can return functions that Yep, handle it. So whether that is returning the the setter that comes from you state directly, I've done that before, or whether it's passing, returning like a custom function that internally will use the the state updaters. And then another thing you can do is you can return reps from custom hooks. So there's two ways to start I'm talking about DOM node ref series, you can pass in a ref Hindi or Huck, or you can just create the ref inside of your hook and then return it. And then you can set that ref on any element inside of your component that you like to.
+
+59
+00:33:51,900 --> 00:35:33,170
+Scott Tolinski: Yeah, and those are all fantastic use cases for these things. Basically, the end of the day, you're writing your your own custom hook, you know, even if you just had a function that all it had inside of it was the use of state and set state and the state and return the set state in the state. That is a custom hook. And that's really like the most bare bones example that you can just take it from there and make them more complex. And once you really see it from that perspective, it's like getting eyes into the matrix you're seeing through the lines of the code. And all of a sudden you're like, Oh, yeah, I can, I can make my code so much drier this way, and only so much drier. But if you're writing these kind of functions, and utilities and custom hooks to reuse throughout your site, what you're also doing is you're reducing the amount of variability throughout your team of writing these functionality. So you have this functionality that you can share. No longer are you approaching a problem from a way that each person might address that differently. You have one source of truth for this problem. Everybody can contribute to it. Everybody can just use it. And then it's it's really probably going to make your code much easier to test right? Because you're not having a whole bunch of money. implementations of the same kind of thing. It's just allow us to share functionality and those kinds of ways. So, I want to talk a little bit about how we use hooks personally, really quick, I can just go into mine zoom thread here. The way I like to use hooks is I have a folder within my UI called hooks. in that folder I have each hook has its own. Each custom hook, I should say, has its own file, and then I have an index.ts that basically imports and exports all of them. In addition to this, I used a Babel alias. Are you familiar with Babel aliases?
+
+60
+00:35:33,300 --> 00:35:34,730
+Wes Bos: No, what's what's that?
+
+61
+00:35:34,860 --> 00:36:22,350
+Scott Tolinski: So Babel alias, I used it as a module resolver within Babel, also within TypeScript. And what that does is allows me to set an alias to a given directory. So my dot forward slash UI forward slash hooks folder, which actually points to the index file has been essentially renamed as just hooks. And it almost exists as a package within my application. Now, some people only know like this from a clarity sake, because it looks like a node module called hooks or something. But yeah, you could always assign some sort of a, you know, a signature to it to indicate that it is a local package or a local alias, rather than, you know, some people use the at sign to do that.
+
+62
+00:36:22,460 --> 00:36:32,160
+Wes Bos: Also, this is the Babel plugin module resolver correct. So that you don't have to do the whole song and dance of like, how many levels deep in my right now,
+
+63
+00:36:32,160 --> 00:37:36,380
+Scott Tolinski: how many levels do I need to go up in order to get to it. And I use that all the time. And so I use that all the time for all sorts of different things. I absolutely love it in some people who would approach our code base. Without knowing that again, it might not be the most crystal clear thing, but once you once you're used to love it, I absolutely have. So all of my hooks are imported from an index file. So all of my hooks are available application wide for me to be able to say import this hook from hooks, any hook I want. And the hooks I have I have used click on outside use, of course path withdraws the SVG path, use dimensions, which pulls the dimensions of an object based on offset scroll border box, I have a use ISO layout effect for server side rendering layer effects I have used is a store, which just tells us if the URL is a forward slash store URL, and that like allows me to just get a simple Boolean, right? I can drop that hook anywhere on the page, use a store, and then it just returns Is it a Boolean? Is it the store? True or false? Yeah, okay, we're on the store.
+
+64
+00:37:36,750 --> 00:37:46,350
+Wes Bos: might seem silly. But inside of that hook is likely, like a use context that pulls the URL down. Is that how it works? Or do you just pull the window location?
+
+65
+00:37:46,530 --> 00:37:49,110
+Scott Tolinski: It's just the React router, use location or whatever?
+
+66
+00:37:49,130 --> 00:37:50,340
+Wes Bos: Oh, yeah, yep. Okay.
+
+67
+00:37:50,360 --> 00:39:20,280
+Scott Tolinski: Yeah, simple. That's super simple. In addition, I also have the two two hooks that people aren't going to like, I have a use unmount and use mount. And I'll tell you why I have used unmount and use mount. Those are the simplest one. And people say, Hey, I don't want you to think about user effect. As you know, lifecycle hooks, well use mount unmount are so perfect for when you have code that you want to quickly convert over to react hooks. And you don't want to have to take time to really reevaluate. You just want to get into hooks, and then maybe later, once it's working, you can reevaluate it. So I use this largely as helpers more than anything, I have a use referral cookie, which just checks for cookies, somebody a referral. Let's see I have used scroll, freeze use theme, which grabs the the user's theme property and then sets a class to the body based on whether or not they have a specific theme. That's actually one of the ways we power our theme system on level up tutorials. We also have some really some some ones that you see from other place like us, why did you update that allows us to get the Why did you update thing going on? If you don't know, why did you update is a great way to get some visibility into your react components. And now you have one called use window width that just returns the window width. So just like I said, little tiny bits of functionality that I just went through on my application. Sometimes I want the window width, sometimes I want to know if it's the store. And then I want to have to do the bring in location truck, the location string on every single one. I just want to have it in one spot.
+
+68
+00:39:20,760 --> 00:39:24,960
+Wes Bos: Beauty. I think you just converted me on this bail plugin module resolver.
+
+69
+00:39:24,980 --> 00:39:25,800
+Announcer: It's so cool.
+
+70
+00:39:25,830 --> 00:39:26,430
+Wes Bos: Yeah,
+
+71
+00:39:26,430 --> 00:40:01,670
+Scott Tolinski: let me let me blow your mind on this one a little bit. Because here's what I use this for. I use this for several things. I use it for my UI folder. So if I want to pull anything out of a UI, any react component is just UI forward slash tutorials, whatever. If I want to have something in state, I have all of my context as an alias state. So I just bring in my use alert from state. I also have it for hooks like we mentioned before, and I also have it for elements if I have my styled components elements bring in card from elements that That's it. Oh my gosh, love it,
+
+72
+00:40:01,980 --> 00:40:07,110
+Wes Bos: man. For some reason I always thought you had to do this in Webpack. So I was I always just thought,
+
+73
+00:40:07,350 --> 00:40:13,980
+Scott Tolinski: nope. Yeah, we do and TypeScript and in Babel, and Meteor doesn't care. It's the same. Just babble.
+
+74
+00:40:13,980 --> 00:40:27,060
+Wes Bos: That's great. Yeah, I'm definitely gonna take this, it's there is a little bit of weirdness where people might not understand that it's local, can't beat the cleanliness. Maybe maybe even like, could you just start it with like a forward slash, like, just to
+
+75
+00:40:27,060 --> 00:40:32,820
+Scott Tolinski: show people started with an add an add sign, but you could do you could start it with anything. And I think
+
+76
+00:40:32,940 --> 00:40:41,580
+Wes Bos: add notes to me that is just the namespace package on NPM. Maybe like a, like a Unicode? What you can't use? You can pick anything. Yeah,
+
+77
+00:40:41,580 --> 00:40:43,050
+Scott Tolinski: pick up pick an emoji.
+
+78
+00:40:43,500 --> 00:43:04,670
+Wes Bos: emoji. Yeah, I don't think you can use emojis I tried. Remember, when fragments. I tried to alias react fragments to ghost emoji? Maybe, maybe it could do it now? That'd be good. Cool. Um, what do I have here? I don't have nearly as many as you. But I certainly been using them. I wrote some custom use form hooks. I know Formic has hooks and things like that. But so often, I don't necessarily need an entire library for managing my forms. Yeah, because I just need to set some state then then render that state out to the value prop of an input. So I have used form where at a forum level, you declare your, your input names. And then you can put those values into any of your child inputs, as well as have a handler for updating them as well as have a handler for submitting that entire form. So I've been been really happy with how hooks and forms work together. I've done a bunch of stuff with resize observer. So I was working on my own website, and I wrote a hook that would, what did I call it, use grid row or something. It's, it's similar to resize observer. And there's definitely a hook out there. For resize observer, I just wanted to write it myself just so I can get comfortable with how it all works. And I basically wrote this hook that will tell you which row, a wrapped flex element or grid element is on, that's something I can't do in grid is tell what row something is on. And I needed to style things differently that were on row two. Yeah, it worked out really well, big fan of it, although I did run into some render loops. Because if you change the size of something, when it's on row two, then it gets small enough to fit back onto row one, which makes sense, bigger, which makes it wrap which puts it on row two, which makes it smaller, which makes it fit on row one. So in that case, I had to write some code that would only let it render twice, based on the width. And then I said, if the width has not, if the width has not changed, stop, like you're you're out of control. And that's where I used to wrap I was counting the number of renders
+
+79
+00:43:04,730 --> 00:43:07,130
+Scott Tolinski: your cut off, you get gotta you gotta stop.
+
+80
+00:43:07,170 --> 00:44:23,250
+Wes Bos: Yeah, I was like you you're out of control, you've got two renders. And the reason I did two is because I was running into an issue where it would render once and not wrapped perfectly. So I was like, Alright, after two renders, this thing is in the right spot, stop here. And then whenever the width of the window change, then I would, I would cause that thing to reset, and it could start to render itself, which is pretty cool. I did a little video on my YouTube if you want to check out how that works. Use wicked fav icon. If you go to the uses dot tech, in your website, you notice that the fav icon is just streaming letters onto the fav icon. And that's all done via canvas. So I just basically take each letter of uses and write it to a canvas and then export from Canvas and stick that into a fav icon base 64 encoded. And if you want to use Dom API's that's considered a saw a side effect. And the entire canvas library is a DOM API. So I stuck all of that into a use effect hook and wrote my own little thing for that, which is pretty fun. So if you want to check that out, I'll link it up in the show notes. It's silly, but it shows how to use intervals and whatnot. Cool.
+
+81
+00:44:23,250 --> 00:45:14,160
+Scott Tolinski: I have one more that I want to talk about briefly. I know we're running out of time here. But so I just recently did a code blog video on this. So if you want urge that learning a little bit more, check out the level of tutorials YouTube, but I mentioned very briefly that I started writing custom hooks for my context updaters. And so to me, what this has done is it's taken typically when you write context with the use context, you bring in the context, you import the context and you say, well, you import use context as well as the context itself. Then you say use context and wrap that around your context and you can get the variables out of here. And I had This like tiny little epiphany that is like, wait, why can you just throw them into a custom hook? And then all of a sudden, you don't have to import the individual context in this stuff. And you don't need to import use context, you just need to import the one single custom hook.
+
+82
+00:45:14,370 --> 00:45:17,820
+Wes Bos: Just stick the context in the custom hook. Right? Correct.
+
+83
+00:45:17,820 --> 00:45:36,060
+Scott Tolinski: So now that too, it's so good. It's so good. So now I just have, instead of alert context, use context, whatever, I just have one single custom hook that is a use alert, and use alert, spits out set, alert, send alert, whatever. So just a minor aside there, one of my new favorite functionalities for custom hooks there.
+
+84
+00:45:36,510 --> 00:45:56,550
+Wes Bos: I did that too. And I think it was used as text I and I remember thinking like, Oh, I have to pull in the context and then pass the context to a hook. And then I go, oh, but you can use hooks in hooks in your own custom hooks. Right. And that was that was a big aha moment for me, too. I'm glad you mentioned that. That's awesome. Yeah. What about hooks that you don't use? hooks that I don't use?
+
+85
+00:45:56,550 --> 00:46:09,030
+Scott Tolinski: I do not use? Like, I don't think I don't think there's any use case for me within level of tutorials of use imperative handler? Or do you use use a parent imperative handler for anything less?
+
+86
+00:46:09,030 --> 00:46:19,950
+Wes Bos: Yeah, like, I don't even know what the hooks that I don't use r? Because I haven't run into that situation. Like I've read the docs. But that's all thing with this stuff. Yeah. No, I've
+
+87
+00:46:19,950 --> 00:46:44,790
+Scott Tolinski: what is use imperative handler do use imperative handler customizes. The instance value that is exposed to parent components when using ref. As always imperative code, using refs should be avoided in most cases, use imperative handle should be used with forward refs. So I don't know if that clears it up. For me, I haven't hit the use case where I need to use that.
+
+88
+00:46:46,500 --> 00:47:15,510
+Wes Bos: It's showing an example of focusing and input. I don't know. No, I haven't haven't run into that. And like, I think the thing is that whenever I run into a situation where I can't solve something like like, I was talking about that RAF's example, the other day I was like, then then you run into a guy. Okay, that that's what that's for. It's, it's obviously there for a use case. There's also use callback and use debug value. I've never used either of those. What does use debug value do?
+
+89
+00:47:15,510 --> 00:47:50,940
+Scott Tolinski: Use debug value basically makes it more obvious when debugging, like what the custom hook name is, because they're great. Now, if you use a custom hook, I think it comes in his state. And use debug value displays a custom label within react dev tools. So I almost never use this because the context of the data itself tells me enough, but if my data is not contextual enough, within my custom, oh, and I say use debug value to get a little bit more even just within set state or whatever, I know it exists by never needed. I don't like
+
+90
+00:47:51,060 --> 00:48:07,110
+Wes Bos: that's cool, because I think if you've got like a lot of Boolean 's that are just true or false. Yeah, right. It just says true or false, or like, what does that even mean? So if you want to say like online or offline or cart open or closed instead of true or false, that's what that's for. Totally try use that. That's pretty nifty.
+
+91
+00:48:07,380 --> 00:48:12,780
+Scott Tolinski: It's nifty. But they don't want you to leave in your code. So it's just for just for checking things that, oh, yeah,
+
+92
+00:48:12,810 --> 00:48:17,820
+Wes Bos: I've never left that debug line in my code ever. So that wouldn't be a problem for me, never,
+
+93
+00:48:17,820 --> 00:48:19,560
+Scott Tolinski: ever debuggers. And
+
+94
+00:48:22,260 --> 00:48:52,980
+Wes Bos: so the question here is, are hooks like a year later, our hooks harder to learn? I'm gonna say classes or what, but then classes and render props and things like that. I definitely think they are harder to learn, because you have to sort of understand about closures and memorization. But I think once you get over that initial, ah, this is how that works. I think it's much better to go. So I think there's definitely a little bit more of a hurdle, but definitely worth the the hurdle. Yeah,
+
+95
+00:48:52,980 --> 00:49:49,200
+Scott Tolinski: I think initially, and conceptually, hooks are more difficult, especially with use effect. It's much easier to think about lifecycle methods, especially coming from most other frameworks and things that have used life cycle type methods for so long. I mean, we've been using life cycle anything for just about, I don't know, forever and ever. So for me, initially, in conceptually, it was a little bit harder to pick up the whole use effect thing and you're just thinking about the render cycle itself, not life cycles. And I think that once you once you pick up those, those broad concepts, once you pick up the concepts, I think it's much easier to use, it's easier to use in practice, once you understand the concepts. And I think it gives you less foot guns in my mind, because you're no longer having to duplicate code for lifecycle methods. You're following some very specific patterns. I think there's less ways that you can get yourself into trouble with hooks, but that's just my own perspective on it.
+
+96
+00:49:49,620 --> 00:50:28,230
+Wes Bos: Yeah, I agree as well. Like shout out to the React team who even thought of this concept, right? I'm certainly not a good enough job. The script developer, like if you were to like, tell me, okay, Wes, I'm gonna sit you down and you think of a better way to handle everything in react, I definitely wouldn't have come up with it. So it's really cool to see the React team thinking on these concepts for so long. And that's why I'm so excited about suspense as well, when it ever comes out. It will be a game changer because of the amount of time that they've put into thinking about all this. Yeah, totally.
+
+97
+00:50:28,800 --> 00:51:57,240
+Scott Tolinski: Last question here is our classes going away? It is, which is everybody's favorite question? Are classes going away? Am I really gonna have to do I have to convert all of my components? The famous line is no, you don't have to convert your components. And no, they don't expect you to convert all of your components. I always take the the line of things is like when something comes into alpha, I got to rewrite all No, just kidding, I have to look at this as in, I really like hooks. And if I'm going to take the time to rewrite something, it's going to be for an exercise to learn something here I have a bit of code a bit of functionality that I understand really well. And by converting that to hooks, I'm not doing it because I want this to be in the new fancy thing. It's because maybe I'm taking a bit of something that I already understand. And I'm finding a way to express that in hooks teaching me quite a bit about hooks. pessoais. So if I'm rewriting code is that reason specifically, for the most part, I write everything in hooks. I don't even think I have any class components left in my site. I'm sorry, because I did do that. But I think classes are going away. I don't see any need for them. They're overly verbose at this point, that duplication and life cycle, which we talked about a bunch of times. I just think there's no reason to use them. There are some things you still can't do within react hooks, but I don't use any of that stuff. I almost dropped the swear word, but I don't use any of that. So
+
+98
+00:51:58,290 --> 00:52:15,900
+Wes Bos: yeah, there's get derive state from error gets down. Before update don't use. The component did catch is the handy one this error boundaries. You know, use it. That's probably the biggest one that error boundaries are dope. But yeah, you just don't don't use an error boundaries. Yeah.
+
+99
+00:52:15,960 --> 00:52:19,740
+Scott Tolinski: Oh, if I don't make errors, Wes, I don't write in here.
+
+100
+00:52:19,740 --> 00:52:22,110
+Wes Bos: Oh, okay. There you go. Error boundary
+
+101
+00:52:22,110 --> 00:52:23,340
+Scott Tolinski: is my brain.
+
+102
+00:52:23,550 --> 00:52:28,920
+Wes Bos: Yeah, it you don't need air brat. There's that that meme don't need air boundaries. If you don't write errors,
+
+103
+00:52:28,950 --> 00:52:55,890
+Scott Tolinski: but there's no invalid. There's no opportunities for like invalid state or for data to come in. Because I'm using TypeScript. And I'm using all of these systems. My API is all typed. Everything knows whether or not it's going to be defined or not. There's never going to be a situation where a component is erroring. out. And I say never. But yeah, that's not really. Oh, yeah, TypeScript, man. Let me just talk, do you have five minutes for me to tell you about TypeScript? Oh, my gosh,
+
+104
+00:52:56,280 --> 00:53:06,900
+Wes Bos: unsubscribe, please. We have to do that we have to do the types of screws show though I've been I've been using a lot more TypeScript lately. And I think it'd be fun to do a show on that.
+
+105
+00:53:07,019 --> 00:53:08,430
+Scott Tolinski: I don't like it, I love it.
+
+106
+00:53:08,519 --> 00:53:40,860
+Wes Bos: They love it big fan, I'd say classes are going away, I would not rush out and rewrite all of your class base code solely because some people have like many hundreds of thousands of components, or maybe just thousands of components. And that's not a good use of your time to rewrite already well tested components, right. But I definitely have not written a class new class based component in the last probably a year since they've come out. So big fan, big fan.
+
+107
+00:53:41,280 --> 00:55:03,750
+Scott Tolinski: Big, big fan. Cool. So if you want to write code without bugs, just like me, you're gonna want to go ahead and use this century at Sentry dot i O. And you're gonna want to use the coupon code tasty treat all lowercase all one word, you're gonna get two months for free. Now, Sentry is the error and Exception Handling service that? Well, when you write those error boundaries, and that error pops up in your code, you might want to know about it, right. And so maybe you can fire off a message to Sentry with that error and say, Hey, this happened. Here's the source maps, here's the release, maybe here's the user that has happened to this pourcel. And you can track all of that in one interface that is beautiful, by the way. And century, just catalogs and catalogs, all that stuff so that you can see it exactly how it happened, what happened, and then you can go ahead and solve that bug, you click that little play button, and then it's gone forever. You've you solved it and gone because that when you fix bugs, they never come back, that's for sure. So so you're gonna want to go ahead and use a service like sentry@sentry.io coupon code, tasty treat all lowercase all one word, get two months for free. Try it out throwing your codes on your error boundaries, and behold, all of the mistakes that you've made and solve those problems. So check it out. Thank you so much for century for sponsoring. Now as part of the show we get into our sick mix, the stuff that we pick that as sick the stuff that we love. Could be anything. Could be could be nothing. I don't know. What do you got? Wes.
+
+108
+00:55:04,170 --> 00:55:19,860
+Wes Bos: I have got some kids headphones. We recently updated our I think it was eight year old iPad. We've had the same like 30 pin connector iPad from well before I even had kids that like giant wide one. Yeah, yeah,
+
+109
+00:55:19,860 --> 00:55:22,140
+Scott Tolinski: I came in the doorway. It's so wide.
+
+110
+00:55:22,560 --> 00:55:36,030
+Wes Bos: It was it was hilarious because like it, it's kind of sad because it still worked great. It's just that we kept like losing all of our chargers, like the old 30 pin connectors. And every time we'd find a new one at a thrift store, we'd be like, Oh,
+
+111
+00:55:36,180 --> 00:55:41,370
+Unknown: I got another one. Got another one that has FireWire on it if you want 100
+
+112
+00:55:41,370 --> 00:55:53,160
+Wes Bos: the original iPod You bet. Had a FireWire 230 pin connector. That's where it came from. Yeah, really. Um, I
+
+113
+00:55:53,160 --> 00:56:00,480
+Scott Tolinski: have I have the iPad still I have the the white one before they was all motion based. And really touch base and then click.
+
+114
+00:56:00,630 --> 00:56:48,780
+Wes Bos: I wish I kept that. I still have I had the first iPhone too. And I sold it. kind of wish I had kept onto Oh, yeah. And like that the battery on our old iPad was just like, it would take like a day and a half to charge. And then if you were watching a video while it was plugged in, it would still drain to zero. So we've got some car trips coming up. And we bought this pack of headphones for kids that are internally limited, so they don't go too high in the volumes. And it comes with a splitter and everything. So it's pretty cool. They're m POW kids headphone, they limit them to 91 db, which is pretty cool. They look they look really nice and they stretch like crazy because my kids are so destructive with their their things and they are ready
+
+115
+00:56:49,590 --> 00:57:57,630
+Scott Tolinski: to attack. Yeah, kids, man, they are destructive. They just did everything. What can you find it they're gonna like it was so funny, like land that we were, you know, we had a really sunny day yesterday. So we were going outside gonna run about to pick up some some dog stuff that was in the yard. McClendon just stay over here and he's like what stomped through the yard. I'm just like, Oh, come on, man. And he gets poop all over shoes. It's like, if we can find something that kids are gonna break it, they're gonna step in it, they're gonna do whatever. That's just how it goes, man. So my sick pig is going to be I'm gonna want to apologize for a stick pic I had a couple weeks ago, which was that muscles YouTube channel. I really initially I watched like five or six of those videos and I really loved them. And then the more I got into them, I was like, wait, he's just like reading a Wikipedia page. And he's like, there's a very definitive formula and I want to apologize for that because the host of that show. He's I don't know him personally, I found that like, just so formulaic, and definitely kind of annoying and overly dramatic. So I'm very sorry, if you watch that and were annoyed by it because I got through like
+
+116
+00:57:57,660 --> 00:57:58,170
+Wes Bos: he just got
+
+117
+00:57:58,200 --> 00:59:55,500
+Scott Tolinski: unpicked, I unpicked I got through like five of them. I was like, This is pretty great. And then I got through 10 of them. I was like, a kind of regretting this one. So I am going to do a follow up pick, which is a better version of a similar type of thing. And this is what it's called war stories from Ars Technica. If you don't know, Ars Technica, it's a blog. It's been around forever. And these are like, you know, 20 minute 30 minute long explorations from some of the smartest developers on the planet, talking about problems that they had in the development of some essential works. And then talking about how they overcame those problems. For instance, there's a really good one, if you ever played the game missed back in the 90s. This was how missed almost couldn't run on a CD ROM. And they were talking about not only the history of Myst itself, but how these rendered rendered designs, they needed to find a way to essentially game the system on a CD to make it actually work. And so they are talking about the technology behind how c reads data and what were the some of the situations they went in. These are just extremely smart people with extremely really clever solutions. There was the this Crash Bandicoot episode and I never played Crash Bandicoot I'm not I'm not super I mean, I'm familiar ash, but I'm not super familiar. But he's talking about this, these ideas they had that are like really brilliant. And he's coming up with them. There's just like, oh, so Well, we've found these limitations with the the libraries that PlayStation gave us. So we just like wrote our own, or just started hacking away of the PlayStation official libraries that they gave us. And nobody else was doing that. Because those are the official libraries. People just assume that they were all performative. And like our performance, performance, we just assume their performance. So we just started realizing and looking into them and seeing is, wow, these could be more performant if we wrote them entirely. So the history of the hacking away like this system libraries.
+
+118
+00:59:56,100 --> 01:00:14,520
+It's really fascinating in that really in depth stories. They're all just a single developer talking no drama whatsoever. No over the top nonsense, no sound effects. I love this stuff. So check this YouTube channel out. More specifically check out this playlist, the war stories. There's 21 videos. Well worth your time.
+
+119
+01:00:14,910 --> 01:00:36,750
+Wes Bos: Awesome. Well, thank you for tuning in. Hopefully you enjoyed that. We'd love to hear what you think about reacts one year later. Make sure you tweet us at syntax FM or post up on the Reddit reddit.com for slash our forward slash syntax FM. And there's been some memes posted there lately. So these are some Mimi's mimic. Well, in Canada we call the mimic, mimic
+
+120
+01:00:38,400 --> 01:00:39,180
+Unknown: most
+
+121
+01:00:41,880 --> 01:00:45,900
+Wes Bos: Oh, all right. That's it for today. Thanks for tuning in. Catch you on Monday.
+
+122
+01:00:47,130 --> 01:00:47,580
+Unknown: Please
+
+123
+01:00:49,530 --> 01:00:59,280
+Scott Tolinski: head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
