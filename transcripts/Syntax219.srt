@@ -1,0 +1,172 @@
+1
+00:00:00,359 --> 00:00:01,350
+Unknown: Monday, Monday,
+
+2
+00:00:01,350 --> 00:00:02,580
+Monday, open wide
+
+3
+00:00:02,580 --> 00:00:04,009
+dev fans
+
+4
+00:00:04,009 --> 00:00:06,990
+yet ready to stuff your face with JavaScript CSS
+
+5
+00:00:06,990 --> 00:00:07,590
+node
+
+6
+00:00:07,590 --> 00:00:08,820
+module, BBQ Tip
+
+7
+00:00:09,059 --> 00:00:10,410
+Get workflow breakdancing,
+
+8
+00:00:10,410 --> 00:00:11,310
+soft skill web
+
+9
+00:00:11,310 --> 00:00:21,660
+development hasty, as crazy as tasty as web development treats coming in hot here is Sarah CUDA, and Scott Taylor.
+
+10
+00:00:23,610 --> 00:00:24,450
+Totally at ski.
+
+11
+00:00:25,950 --> 00:00:59,580
+Scott Tolinski: Oh, come to syntax on this Monday, hey, it's D treat, we're going to be talking about some of those non glamorous skills that will improve your life as a developer, I'm talking about some nitty gritty things that are going to really just make your life a little bit easier. We're going to be talking about the whys, the woods, and maybe some of these skills that are good to focus on for a little bit. Whenever you get some free or downtime. My name is Scott Tolinksi. I'm a developer from Denver, Colorado, with levelup tutorials. And with me, as always, is Zoo Wes Bos.
+
+12
+00:00:59,819 --> 00:01:22,290
+Wes Bos: Hey, everybody, I'm excited to talk about this. I'm big about like, maybe we should get some give some context really quickly is things like time management and command line interface and folder structure, I have a whole thing called file hygiene here. And these are things that get in your way when you're trying to code. And if you can continually get better at them. It's good for your career and life. Yeah,
+
+13
+00:01:22,710 --> 00:01:39,090
+Scott Tolinski: it's good for all of those things. And this episode is also sponsored by a company that's good for a lot of things in your life. And that is prismic@prismic.io, check them out@prismic.io forward slash syntax, and you're going to be greeted with a really neat little landing page,
+
+14
+00:01:39,540 --> 00:01:40,620
+Wes Bos: where you get this awesome, yeah,
+
+15
+00:01:40,620 --> 00:04:34,650
+Scott Tolinski: it's fun. There's some images of Western AI and you can hover over those images to get some fun gifts. You can be Team Wes or team Scott, it's really fantastic. I highly recommend checking this out. But what is Prismic? Well, Prismic is the way to make your website editable for the whole team. Now what does that mean? Well, it's a content management system, and a tool for online editing. Basically, it makes editing your content really super nice. Now, if you love really smartly designed interfaces, I mean, just check out their their homepage or landing page. And then some other examples of this CMS back end, it's all fantastic. You can choose your framework to set up works with I mean, a lot of the stuff we're talking about on the show all the time meet, no JS react yet. Next jazz Gatsby viewed next, all that good stuff. It works with a standard RESTful API, as well as a graph qL query, it's really super cool. You can quickly and easily deploy with Zeit now Netlify Heroku, or your favorite hosting platform, whatever that may be. They also do a really nice job of getting you started with the different options, whether that's with next j s, or with Gatsby or any of these tools that we love. Now, this will be one of those brand new next gen CMS tools that we have been craving over here. It's syntax. So check it out@prismic.io forward slash syntax and give it a try. Give it a look, see and see if this is the back end CMS of your dreams. Okay, let's get going on this. I wanted to start this off with maybe why some of these skills are needed. I was thinking about this, as we started getting into the new year. And like thinking about resolutions and in the genesis for this show, in my mind came from essentially non code related things. I was going to dance practice, for those of you don't know, I've been a B boy breakdancer for 1516 years now going to dance practice. And I was sort of realizing that I've been going to this practice for 1516 years. And there's stuff that I know that I'm not good at that would make me much better at that craft, that I avoid every single practice and I avoid it because it's difficult. It's a little gritty, it maybe isn't the fun flashy stuff that I like working on. Either way. There's these things in life in general, not just in dance, not just in code, whatever there are these things that we put off, because they're not as glamorous as I was thinking to sort of in my mind are not they're not as fancy or flashy or interesting. But they're going to make your life that much better every single day. So that was really sort of the general idea. And so maybe let's get into a little bit why it's needed, as a developer, a little bit more specific to developer, why some of these skills are going to be needed to make your life easier, right?
+
+16
+00:04:34,650 --> 00:05:41,820
+Wes Bos: Yeah, I think I said already. So that just gets in the way of you being a better developer. So when you're in the headspace of trying to fix a bug or trying to get something done on a certain timeline, when you don't have these like non coding skills that come along with being a web developer, they are distracting. They take headspace you only have so much brainpower to different Two things. And like I'm just thinking about like folder structure. And when I was in teaching a boot camp, I would see people all the time with bad folder structures, and they had files all over the place. And they're editing the wrong file. And they're frustrated with like, it's just a mess with things like that. And that's not something that should get in your way, when when you're a developer, right? You should be focused that you should be frustrated other things like why your code isn't working. And I just think that's a it's important to spend time on these. It's not something that I just like, sit down and work on these skills. But it is something where I continually say, Okay, I'm going to spend 15 minutes figuring out how to better do this right now.
+
+17
+00:05:41,820 --> 00:07:23,310
+Scott Tolinski: Mm hmm. Yeah, it's some of these things are, you know, I was inspired one time when I was a junior developer. And we had been given a CSV of, like, 10,000 products for a Magento site that needed to work. And I remember looking at this data and thinking, this is gonna take me forever to do in Excel. I was a junior, very junior, and this other developer there was like, Listen, I can convert this into whatever Magento needs, because they needed a CSV is just very different organization for it. And he's like, I can convert this in about an hour if you let me write a script to modify this, this database. And I was like, what that's like magic. I didn't under you know, I'm a website builder, I don't understand tools that mess with file structure duel that, you know, converted to a CSV, that'll just seems like magic to me, he whipped it up, hit a button. And this task that I thought was going to take me a whole day took him about an hour to do and it was pretty mind blowing, as somebody who was just getting into this stuff to know that, oh, yeah, we have these programming skills that allow us to do such amazing things. And if you can flex those skills to make yourself a better programmer, or have more tools in your toolbox, then you're just going to be able to accomplish more things faster. And largely, like I said, we don't do it because they're boring, sometimes, right? Like, is working on your file structure really that exciting? I don't know, sometimes, to me, I'm really geeked up about it. Like if it gets bad enough, I'm like, Oh, yeah, gotta get these folders, right? For the most part, that's pretty boring. It's not always your focus, either, right? It's not the thing that you're excited or interested about. So for those reasons, it can definitely be hard to get going on some of these skills.
+
+18
+00:07:23,669 --> 00:08:07,020
+Wes Bos: Alright, let's jump into what are the skills that we think you as a developer should have. The first one we have here is just good command line skills. And this isn't being like amazing, spin up Docker and do everything from the command line. But just being able to move around the file system to rename things to delete things to just your basic commands of being comfortable in the command line is super important. That's actually why I made my command line power user comm course. Just because like I was seeing a lot of developers sort of struggle with basic stuff. It was around the time that like, gulp and stuff was getting popular. And that was very new to people. Because before that everyone had these like nice little gooeys that would do it all for you.
+
+19
+00:08:07,080 --> 00:09:45,410
+Scott Tolinski: Yeah, code kit, this stuff like that. Yeah, I agree. And in our next episode, we're gonna be talking about backup solutions. I found out like things like this Synology. Right. The Synology is like a server, your your NAS server, I found out yeah, it's like infinitely quicker to move and manage your files via a command line than it is to do any sort of via finder or anything where you dragging and moving files. So if you have those abilities, they're going to come in handy in ways that you might not expect in family tools in particular, renaming files, batch renaming files, those kinds of things. I use that stuff all the time, I write some command line things to delete node modules to rename my file folder structure, which is going to get into our good file hygiene stuff. But again, I just, I think command line skills will go really far if you let them. So next one would be keyboardist skills. You weren't talking about like slick keyboard skills. You know, sometimes, we have a lot of things in here where you're talking about like jumping to words, lines, end of line, beginning of line, copying lines, moving the line up, those kind of things are they're definitely very code editor specific, right. But those are at the end of the day, keyboard skills to have those because a lot of that stuff's transferable, especially in programming, right? Whether or not you're in VS code, or in vim or whatever, the you have these same functions, they might not be the exact same key bindings, but getting used to using your keyboard to do lots of things is going to take you a long way. I definitely am a mouse user at some point, but like being able to navigate move around a file really quickly and easily is definitely a huge thing for being fast.
+
+20
+00:09:45,630 --> 00:10:33,050
+Wes Bos: Yeah, yeah, I think like selecting and just cursor skills in general, is so key like moving lines, selecting an entire line, jumping the cursor by word instead of just like pushing And then like drink a sip of your coffee while you wait for it to go to the front of the line. Again, like when I taught a boot camp, these were just things that people would see me just flying around on it. And it's a little bit overwhelming because you're like, oh, Wes probably knows what 300 400 shortcuts. But if you just learn one a week, and get really good at that one during that week, and every time you say like, Oh, I bet I could use that shortcut here, you have to stop and figure out what that is. But it will become just part of you. And I don't know you one week, it's like 100 a year, so you'd be fine. You get to learn tons. And
+
+21
+00:10:33,050 --> 00:11:45,990
+Scott Tolinski: I even really like using custom keyboard shortcuts for some things. I talked about this even in my like video editing practice, because video editors specifically, right, they have 1000 different keyboard shortcuts, they can do a billion different things. And chances are I don't need to do most of those things. For instance, I really have like three keyboard shortcuts, it's like blade, it's like slice the audio video file, like roll it up to and roll it up past and if those words don't mean anything, don't, don't worry about it. Either way, those are three functions that I use. And it makes a lot of sense to me to just assign them to three keys without even a modifier. So I just assign them to Z, Z on my keyboard. And now when I videoed it, it's like I'm playing the piano, which is that that that that contract, you know, just click away, because that is really in tune with my workflow. I don't really necessarily feel too bad about doing that. I know, sometimes, people don't like to change too many of the defaults. But me personally, I think that if you're finding yourself doing a specific thing a lot, it's going to be super useful for you to have a custom keyboard binding. I was just thinking about this the other day, when I was using the change case package in my VS code. Yeah. Do you use change case? I use change case all the time.
+
+22
+00:11:46,110 --> 00:11:52,200
+Wes Bos: Yeah, it allows you to like obviously go upper lower camel. Yeah. kebab, things like that. Yeah.
+
+23
+00:11:52,260 --> 00:12:18,810
+Scott Tolinski: I just started using Karabiner elements or whatever using do cat Ah, yeah, yeah. So I was just using the the caps locks modifier to do all my change case, keyboard commands. And oh, my gosh, it saves me so much time. You're never deleting, deleting, deleting, rewriting, whatever, you're just copying and pasting changing case, it's so fast and easy. And again, this really suits my workflow more than you know, everyone's but it's something that's made my life a lot better,
+
+24
+00:12:19,140 --> 00:12:24,060
+Wes Bos: man. totally unrelated. I can't I can't tell you about a VS code plugin. I just got
+
+25
+00:12:24,150 --> 00:12:26,790
+Scott Tolinski: Oh, yeah. Oh, I got time for a VS code plugin.
+
+26
+00:12:26,880 --> 00:13:23,550
+Wes Bos: Okay, good. I just so excited about it. It is called react prop types generate. And just like, you know, I hate writing prop types. Oh, yeah. ponents. And I often just don't, because I just don't feel like figuring importing the the component, which is prompt dash type, naming it as capital P prop types. And then the, the component property is lowercase prop types, like, ah, I don't want to do it. And I got this little, it's not because I don't like prop types. It's that I don't like all the scaffolding around, setting them up, and I got this little plugin, that will just be you select your react component, and it will scaffold out all of the prop types, and then allow you to it'll try to detect what type it is. And then you can just go through and set them all. And I was like, oh, man, like that was such a stopper for me in writing better code just because of how annoying it was. And this little keyboard shortcut will just immediately do it for me. Yeah,
+
+27
+00:13:23,790 --> 00:14:03,060
+Scott Tolinski: I don't want to be too funny about this. But I don't write prop types anymore since moving to TypeScript, because I have all those fancy prop types, you know, yet. Yeah. I mean, I still want to be here. I am sipping my tea. I have my pinky in the air. Talking about I'm not talking about, you know, TypeScript. But what I did is I actually wrote like a snippet library that does some stuff for for bringing the different types I typically use and I have code jenning types. So my types are generated by a code generator. And but Gosh, my life is so much better in that regard. But yeah, I totally feel if I was still writing prop types like a Neanderthal not just joking. Yeah, no. Okay.
+
+28
+00:14:03,330 --> 00:14:06,720
+Wes Bos: So we get it's got you use TypeScript. Congratulations.
+
+29
+00:14:06,750 --> 00:14:09,120
+Scott Tolinski: See, this is see it's like I'm finally get
+
+30
+00:14:09,150 --> 00:14:12,030
+Wes Bos: you're becoming one of those people. Do you do CrossFit to Scott, I
+
+31
+00:14:12,030 --> 00:14:47,370
+Scott Tolinski: don't know, because I'm across it. But now I know I get it. It's hilarious. Because it is it's one of those people and I get it, it's insufferable. So sorry about it. Next one up is going to be communication and interpersonal skills. Now, we're not going to spend any time on this one in this show, because we did a whole show on the communication skills. So you're going to want to go ahead and check that out. Let me see what episode that is so 125 125. So go ahead and listen to that one. Next up is going to be time management skills. This is a big one for those of you who are not good at figuring or getting projects done on time.
+
+32
+00:14:47,850 --> 00:16:00,870
+Wes Bos: This is something I thought we had done an entire show on I don't know if we have no I don't think we have we should do an entire show on time management because it's a important thing being both like being able to Quote how long something will take, as well as the opposite, which is being able to take your time and say, Okay, this amount of time I'm going to spend on email and GitHub issues and whatever. And this amount of time I'm going to be spending on my calendar, I actually just screenshotted my calendar this weekend, I have one thing, and that's record this podcast all week. And on top of that, I can't just like squander that beautifully open week, I have to make sure that a good chunk of it is spent on things like actually focusing on my courses and recording and writing code. And the other part is getting my actual my product like my entire course platform up and running. And then another part is just like things like taxes and accountants and things like that, that I should probably follow up with and whatnot. So being able to take a big block of time and efficiently use all of that. Because you could certainly have the opposite, where you just don't have any time to do anything that you'd like to do. Or you could have just a big block of time, you're not sure how to properly use it.
+
+33
+00:16:01,350 --> 00:16:55,770
+Scott Tolinski: Yeah, totally. And I always like, I'll have apps open like Twitter, Reddit, whatever, they'll be totally distracting for me. And I talk all the time about using an app to block things. There's numerous extensions out there that will block sites for you, social media, whatever, as well, as apps for whatever your platform is just Google it. I know, OSS, especially iOS and Android are starting to add in things like digital wellness to block certain apps for you at certain times. So those tools I need particularly to help manage my time because my self control is not so great. So next one is going to be Wes his favorite topic, as well as one of mine, which is good file hygiene. And this is one of those that can get totally out of hand, you work on your computer for a couple weeks. And next thing you know, your documents folder has 800 files in it, your downloads folder has 800 files in it. And neither of those are necessarily good things to have.
+
+34
+00:16:55,770 --> 00:18:18,080
+Wes Bos: Yeah, you should have like, whenever you start something new, you should have an idea of where does this go on my my computer is that a for me, it's a full project, we'll get a numbered folder, and then the name of the project. A just like me goofing around, will get thrown into my demos folder of me just like I'm wondering how this new version of the thing works, or I'm trying to debug something, or I'm working on a hot tip, and I need to write some code to get that, that'll I'll throw that in my demos. And then I'll, I'll have like another folder that's just called Dell me. And anything that is somewhat temporary, I'll just put it in there. And then I'll blow away everything in that folder. A lot of times that's just like, somebody is having a problem with one of my courses, I'll clone the repo, fix it, and then send him an email, but how to how to fix it or push it up. And then I can just blow that away later on. So that's really important. I see a lot of people with messy desktops and downloads folders, my rule of thumb is nothing is safe on the desktop, nothing is safe in the Downloads folder, you should be able to delete those at any time, or maybe even just run a schedule to just delete all of those things and empty your trash every now and then. Just because if you have those on your desktop and your downloads folder, you're gonna be tempted to work out of there. And then before you know it, you've lost whatever it is that you were working on. So have a proper folder structure for that as important.
+
+35
+00:18:18,270 --> 00:20:41,790
+Scott Tolinski: Yeah, I have so many interesting folder structures on my computer that are, you know, like I have the the site's folder and inside of my sites folder, like you mentioned, it's like a goof around project, I have one that's called experiments, and I just use it for straight up experiments. Here's experiments, here's client, here's personal, here's level up tutorials. These are all my main things, right? But again, downloads should not be safe. Desktop should not be safe, totally agree with either of those pictures and pictures, movies and movies, all of those things that just happen, you know, how many times do you leave a picture or movie or something on your desktop, and it just sort of sits there? I mean, why don't you just drag it to the movies folder even better, create a sort of workflow for that. Now one thing I really like to do is I use an app called clean my Mac that goes ahead and lets me know about files that I haven't been accessed in a long time, maybe extra large files that exist on my machine that maybe just shouldn't be there or whatever. And I go through and I delete a ton of stuff all the time using clean my Mac, it also does that whole like here's where your stuff is stored. There's another app I use called Daisy disk. Daisy disk shows me just about every single size of every folder. So I can see if specific folders are getting unruly or something's not sort of to the size, you're expecting it, it's important to keep an eye on just not enough for hardware harddrive space on your computer, but necessarily the just overall weight of where these things are stored because the more things that you have in many different folders and the further and further it gets away from any kind of system, the harder it is to get back to any sort of kind of actual system. And the very last one is I like to create utilities to help me make tain proper folder structures. For instance, I have a nice little utility that I wrote that creates my level up each time I have a series A creates the folder structure. For me, for instance, I want to start a new series, I create a new series just by running this utility. And that utility gives the series name and creates this whole folder structure for me, or it stores like the place to store the raw footage, the place to store all of the assets, the place to store the completed code, the place to store the actual project, all this stuff is generated for me, because the last thing that I want to do is think about that when I'm starting a new project or getting ready. So I've taken the time to create this stuff ahead of time to just help me out. And I think that's super helpful to
+
+36
+00:20:41,790 --> 00:20:53,790
+Wes Bos: have. Awesome. Yeah, I think those are some good tips, things that you can work on. And I'm curious for you, you don't really you don't set aside time in your day to focus on these do your How would you say you get better at these things?
+
+37
+00:20:54,050 --> 00:21:48,900
+Scott Tolinski: It really depends on what it is. If it's command line, utilities, stuff, that's going to be really bad. I remember when I was first learning that stuff, I set aside like an hour every day to to learn or practice those things or get better. I knew I wasn't good at it, my coworkers were able to do stuff that I wasn't able to do. You know whether that's you know, seeing the neat little tips and tricks that have advanced things with the basic commands, even like being able to see file permissions and stuff in a way that's not just the LS or whatever, right? something beyond a little bit beyond the introductory, I did set aside some time to get better at that. But a lot of these things, it can be the process of identifying what things are you not working on, because you know that they're going to be no fun for you. And you're rather just going to do this. And there's this in this light here, your normal, everyday routine, when you could even just take 1015 minutes to vary your routine a little bit and try something new and hopefully get better.
+
+38
+00:21:49,170 --> 00:22:27,570
+Wes Bos: Yeah, a lot of people say like, why would you stop what you're working on to spend 10 minutes to focus on something, because it distracts you from actually getting the job done. And I'm big on that, because I know that the next time I do this, I won't have to stop and it's going to save me time and frustration and headspace in the long run. So well worth stopping what you're doing to figure it out. Sometimes it goes down a bit of a rabbit hole. And before you know it, you're trying to figure out what the difference between Python 2.7 is but at that point, you have to just rage quit and keep going with your life the old way. But hopefully in most cases you can benefit from that.
+
+39
+00:22:27,630 --> 00:22:40,650
+Scott Tolinski: Yeah, definitely don't put off too many things in life to get get that far. But sometimes I think it is this like cost benefit analysis of how much better is this going to make my life? And is that worth that time effort usually is so
+
+40
+00:22:40,890 --> 00:22:52,500
+Wes Bos: cool. All right. Thanks for tuning in. We got a banger of a show coming up on Wednesday about backups and Synology home servers. It's gonna be pretty fun just about to record that. So make sure you tune in.
+
+41
+00:22:52,590 --> 00:22:58,740
+Scott Tolinski: We have the most exciting show on backups. It's coming Wednesday.
+
+42
+00:23:00,180 --> 00:23:02,850
+Wes Bos: Alright, catch you later. Please, please
+
+43
+00:23:04,770 --> 00:23:14,580
+Scott Tolinski: head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
