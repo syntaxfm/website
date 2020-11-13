@@ -1,0 +1,152 @@
+1
+00:00:00,359 --> 00:00:24,480
+Announcer: Monday, Monday Monday open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA bombs and Scott Taylor. Totally at ski.
+
+2
+00:00:25,950 --> 00:01:27,030
+Scott Tolinski: Whoo, welcome to syntax in this Monday tasty treat, we're gonna be talking about that SSR and I'm not talking about super sweet raspberries, I'm talking about server side rendering here. This episode is sponsored by Sentry. Now, Sentry is the amazing way that you can track and log and keep track of and just really solve any of those bugs, errors and exceptions that you have inside of your code, whether it is and react or JavaScript or Ruby, or Python or anything, you can keep track of it with Sentry, you're gonna want to head over to sentry@sentry.io use the coupon code tasty treat all lowercase all one word, you're going to get two months for free off that sweet error and Exception Handling service. Now, let me tell you, if you run any sort of software that is public facing and people are using, you're gonna want to make sure you have some way to catalog and categorize those bugs. because let me tell you, there will be bugs, and you will need to find a way to fix them. And now I know what that century is also hiring. Do you want to talk a little bit about that Wes?
+
+3
+00:01:27,179 --> 00:01:34,380
+Wes Bos: Yeah, century is hiring sentry.io forward slash careers. They just got a bunch of funding. So they are hiring like crazy. Check it out.
+
+4
+00:01:34,590 --> 00:03:16,890
+Scott Tolinski: Check it out. Okay, so this episode comes from a question that we received, I would say a good amount of time ago, this one's been sitting in our docket for a little bit. And the question is, hey, Wes, and Scott, I'm a huge fan of syntek. Thank you. And thanks for inspiring and educating everyone in the latest j s trends. My question is on server side rendering, Can you discuss what exactly SSR is and when to use it? How can a client library like be like react be rendered on the server? Are there any gotchas to know before implementing this? Yes, there are. If everything renders on the server, how are my ex HR requests handled? I also read that there is an additional step for somebody using Redux. Both next j. s and Gatsby are server side rendering. SSR is my go to option. Are there any react frameworks that do not perform SSR? Thanks in advance. And this question comes from Chai, as they say, to call them, they have Chaitanya, as the name I, they said, just to call them Chai, because they knew we would butcher it, which I most likely did. So we're largely gonna be talking about server side rendering from the perspective of a react situation. And not maybe a let's say, WordPress situation. I have a joke in here that back in my day, it was just called rendering. Because so many times in the past, you never even thought about server side rendering up until the point where we had what we had a client side frameworks like react Angular backbone, and all of those that came across where we would build applications on the client side. Okay, so before we get too deep into it, let me introduce my co host, as always, is West boss.
+
+5
+00:03:18,660 --> 00:03:19,290
+Unknown: Hey,
+
+6
+00:03:19,290 --> 00:04:06,540
+Wes Bos: I think it's probably important to sort of like, say, like, what is server side rendering? And how does it work before the time and how it worked traditionally, is that you would gather all of your data, and you would gather all everything that you need, and you render out some HTML, and then send that to the client. Now, the way that it works with react applications, etc, is that you send usually, like, an empty HTML file with just a blank div in it. And then the JavaScript loads on that page, picks it up, and then starts rendering the app. That's what's called client rendered, right. So today, we're hopefully gonna talk about like, how do you run that JavaScript client renderer on the server? And maybe like, like, would you want to talk? Like, why would you want to server side render a JavaScript application?
+
+7
+00:04:06,660 --> 00:05:18,260
+Scott Tolinski: Yeah, yeah, these are all lots of good things. And we're gonna also be talking about some of the gotchas, some of the frameworks, some of those things. So let's get started with the very first part, which is why SSR at all, if you see CSR, again, that is client side rendering. So you often see people say client side, or you might see it as CSR. Now the big thing, the reasons why you might want to use SSR is because well for endless amounts of time before this, the web crawlers, particularly those of which that work to catalog and categorize to do things like Google, right, the Google type of crawlers, the ones for search engines, they're not going to be able to render the client version of your application. Now, I should say there is other solutions to that other than server side rendering, but to keep it simple, basically, each one of these spiders is going to come crawling along your site to come crawl it and they're going to See a blank HTML page. And that's not really necessarily the best thing for the Google juice, you're not going to rank super high with a blank HTML page. So largely, that's the been the biggest driver to want to do server side rendering is that it gives you good SEO.
+
+8
+00:05:18,260 --> 00:06:41,040
+Wes Bos: Yeah, there's some stats over a Google does crawl and render, just server sorry, client rendered now applications, but the stats are poor. Yeah. And honestly, if it was my website, and if it was my business, I wouldn't trust the fact that they say, Yeah, we do, we do crawl it, because at the end of the day, it doesn't look like it's as as good. Hopefully, that changes. And that will sort of cross off. One reason why you have to do server side rendering. But right, now you have to do it for SEO, at least in my mind. The other one is speed. So like, the whole round trip works is that you you load some HTML, and then you load some JavaScript and that JavaScript will go and render the page out, and then maybe that needs to go and fetch some resources from your back end. And then that will come back and and then that can be a bit slow, because you've got a couple back and forth to the server before your pages even rendered out. With server side rendering. You can do all of that on the server, oftentimes ahead of time, which is what Gatsby will do, or, or what next JS pre loaded link will do. It will do all of that on the server, and then just render out a big string of HTML, send that to the browser, much like it has been for since the dawn of time. And then you can pick it up. That's called rehydration. Yep, you can pick it up from there, and then turn it into a client side application.
+
+9
+00:06:41,070 --> 00:07:32,250
+Scott Tolinski: Yeah, rehydration is one of those things that's really come about ever since we've had client side frameworks, they could be server side rendered. And so rehydration is a newer problem. And one of which will give you a fair bit of gotchas here. If the thing is trying to hydrate, is it necessarily the same structure might give you some guff there? There's also like you mentioned, the whole pre loading aspect of things, you could do a pre render, I think, what's the one the.io? One? Is it pre render.io, there's like services in the past that would take your client side framework, and just basically crawl them as a, not like a Google spider would do. But they would crawl them as like a user would do save that HTML, and then allow you to ship that to be a faster load. I haven't used those myself. I don't know if you have any experience there.
+
+10
+00:07:32,430 --> 00:08:15,060
+Wes Bos: No, I don't either. The other one that we have here is just like page meta. If think of facebook, facebook, descriptions, Facebook images, Twitter profile, yeah, things like that. All of the stuff around shopping, if you want to provide Google with information about stock, and prices, and if it's a video metadata around that all of those meta tags, they generally need to be server rendered so that those web crawlers can crawl that page and pull that data out of the head with the if that data happens in like a react helmet or something like that. I highly doubt that will actually work as well as similar to SEO
+
+11
+00:08:15,090 --> 00:09:13,230
+Scott Tolinski: Yeah, I think largely, you can think about it is like if a robot needs to view your page content, then maybe that's a use case for SEO, or for SSR. And there's too many darn acronyms in here. So a robot or somebody that's not a person is crawling your site and trying to get some data out of it, whether or not that is like one of those Facebook links or something like that. That is a big use case. So let's talk about some react platforms. There's platforms for all sorts of libraries that do server side rendering, this person is asking about, they say, How can a library like react be rendered on the server, and then go on to mention things like next Jason Gatsby, you know, we briefly mentioned some of these. Now, next, JS can do server side rendering on build time, or in a pre loaded way. Right. But it's primarily you could think of it as on runtime, right? You hit the server in my thinking about that correctly. I'm not an ext JS expert here.
+
+12
+00:09:13,620 --> 00:09:38,070
+Wes Bos: Yeah, it's it's done on runtime. So some when somebody makes a request, next jass is a server. It's a node app that that runs, right. And when that request happens, next, JS will intercept that request, or or take that request, and then attempt to server render your react application and fetch all that data that it needs. We'll talk about that in just a second send HTML out to the browser.
+
+13
+00:09:38,070 --> 00:11:16,500
+Scott Tolinski: Yep. And that's largely why we often you often hear us recommend next JS four times when you need a more dynamic based site, where you have something like Gatsby, which is rendering your, your application on the server on build time, aka you run a build command, and at that given point, it spits out a bunch of HTML and JavaScript right and so therefore, If you have frequently updated data, or things like that, where maybe authenticated behind user data that you want to be server side rendered, then maybe Gatsby isn't the right one. But if you have like very static content, or I mean, you can use things like Apollo with Gatsby. But if you have more like a brochure type sites, then Gatsby is going to be awesome for that stuff, because it just generates a once. And that's a faster return, you're not having to wait for the server to generate those on demand. those files are already built and already ready. And that HTML just goes boop, right over to the client. There's also basically a billion other ways you can do server side rendering with react with any sort of build tool that said, it's not a ton of fun as somebody who I have my own server side application via Meteor. Now granted, Meteor does a pretty good job of actually picking up a lot of the hard stuff for you. But you can do server side rendered react applications with Webpack, or partial or any of these build tools. You just have to know what you're doing. And it's not exactly the most fun, which is typically why if you're looking to do SSR, with react, you would pick up a static site generator, or next j s to do it for you. Because again, that's going to solve a lot of the big heavy lifting problems you might face.
+
+14
+00:11:16,830 --> 00:11:50,850
+Wes Bos: Let's move into some gotchas. So server side rendering, it's not as easy as often people will say on Twitter, like just use next Yes. And then and then it's like, super easy. It's not all that easy, because there are a whole bunch of gotchas. So the first one here is that there's no window, right? Because all of this stuff is being rendered. It's being rendered in node j. s, not in the browser, JavaScript, so you don't have access to that window, right. And that's why I always tell people don't use like window dot set timeout, and things like that, just use set timeout, because then you're going to run into issues with server side rendering.
+
+15
+00:11:51,240 --> 00:13:17,130
+Scott Tolinski: Yeah. And let me tell you, if there is a gotcha in SSR, and react, I have hit it, because you will hook them all, when you're when you're just starting with this. And you're, you know, largely trying to use some things. Another one is, if you if you've ever used use layout effect, which is one of the new react hooks, right? Use layout effect, waits for the DOM to finish loading and therefore doesn't make sense within a server side context, right. So unfortunately, use layout effect throws big fat error when you try to do it. And that's something I've only learned recently, to be honest, I had just through a use layout effect in my application a couple weeks ago, and I saw this error pop up. And I was like, Ah, this is a funny bug that I haven't really thought too much about. So what I did is I created a and I didn't create this from scratch, I got this code from somewhere else, I'll make sure I include it in the show notes here. This is a use the isometric layout effect, which basically checks to see if a window is defined. And if window is defined, then it will use layout effect in your code. And if windows not defined, it will use just a standard use effect. And so that really just solves those problems. And it really just prevents some errors, this error is one of those ones that will pop up the moment you do any just testing, because you know, you're just servers are gonna you're just test they're gonna run the node, and that's gonna hit that bug right away. So if you use use layout effect, this is one of those ones that's going to hit you.
+
+16
+00:13:17,490 --> 00:15:03,510
+Wes Bos: The next one I want to talk about is data fetching is hard. So the idea with next j. s is that you have pages and add a page level. So the very highest level, you can get index JS except for the app and the document pages. You that's where you have to define where the data that needs to be fetched and awaited, before it gets because the thing about all of your data fetching is synchronous, right? And if you have a component 11 levels deep, that is fetching data. How does your page know about that is the big question. And if you don't really want to have to fetch your data at a page level, because that should be done at a component level, right? Because right, that's the component that needs the data. So you if that's the case, then you have to like write some sort of crawler that will crawl down every single component and find any requests. And specifically with Apollo, yeah, there's a couple out there that will, that will search for them and bring those requests or bring the promises at least up to a page level and wait upon it. So it's still very hard to do that. And suspense, which is coming to react, it kind of is in react already. But the the suspense for data loading is going to change how we do data loading, and it will change all of our fetching to resources. And then the higher level page level will be able to tell when any of its children have resources that are not ready yet. And you can also like tell the browser just like Wait, wait three seconds and try to load as much data as you can in three seconds. After that be like well, the cars leaving we're going ship it to the grab as many toys as you can.
+
+17
+00:15:04,890 --> 00:17:11,360
+Scott Tolinski: But there was like an old game game show on TV where you could grab as many Nintendo cartridges from the shelf as you could. And I was like, I wish I was on that as a kid, I would have liked me in my life. But no, I yeah. So the way you do it and Apollo right now is with the, you know, Apollo just shuffled everything around into being like the different packages, they like, changed all the package names. So you now do it through the package in the app, Apollo, what are the namespace, forward slash react hyphen, SSR is the package and there's a function in there called renders to string with data that does exactly what you're talking about, where you basically you give it your provider, you give it your application, and then you just say, hey, render string to data, and you wait for it. And then it gives you your whole application with the data after the data is all complete. That's it, I had the worst time getting this up and running with react loadable, which does code splitting. So like I had, I have a thing where I could get SSR and code splitting, working, or I could get data and SSR working or you could get code splitting and date, I couldn't get all three of them. It was like a triangle of pick two of these. But I eventually got it all working with the help of some awesome, awesome people. And it was like not a ton of fun. Luckily, the meteor community has written some really excellent packages to make it super easy. But if I was doing this with Webpack, I'm pretty sure I would have thrown my computer out the window, because of just how obnoxious some of this stuff can be. But it is it is you have to it's not the most fun, you got to wait for that data. And, and that is actually much more difficult than it sounds until like people like awesome libraries like Apollo have given you those tools to do so. Another one is we mentioned that window is not available. But you have to think in addition to window, what other stuff is only on the client side that you use all the time, because there's a lot of stuff, right? A fetch to fetch. Yeah, I use something called isomorphic. Fetch. Yeah, yeah. And I polyfill with use isomorphic, or with this isomorphic. Fetch, I believe that's the package. But yes, there's so many of these things, right? They we think about all the time is being browser folk, I'm a browser folk and like, I think about the
+
+18
+00:17:11,360 --> 00:17:12,830
+Unknown: browser, like that.
+
+19
+00:17:12,830 --> 00:18:24,690
+Scott Tolinski: Yeah. So local storage, that's one of those big ones, right. So for instance, by authentication, anything in my auth only works with local storage, because that's where my tokens are said. And I'm actually rewriting that right now to be in cookies, to make that whole process just a little bit easier on myself. But because of that, I cannot send authenticated requests via server side rendering, therefore any of my user pages are not server side rendered. And so therefore, that is just something I've been living with. But it's one of those things that, you know, I'm fixing it right now. But I haven't always had, you know, the time to fix it. So no, I'm excited that I'm going to be able to actually get in there and fix it. Because again, I'm using meteors off system, which is sort of like, you know, under locking key, not totally, but like, I'm not thinking about it, it's just there, and it does its own thing. So hopefully now, I'll be able to find the time to really dive in and swap that out with a more custom login system. But again, just think about all those things that are not available in the server. And if you're not thinking about them, you will have to start SSR because your codes just gonna break anytime. It's just gonna break on the server. So let's talk about tools, kind of tools to use for this thing.
+
+20
+00:18:24,990 --> 00:18:53,130
+Wes Bos: With next js, I use this package from actually from from Lewis, who works on my platform as well, he he made it for my course. And now it's become sort of a go to for working next and Apollo together. It's a high order component for doing the thing I just talked about walking the tree, it's called next with Apollo. So that makes it a lot easier. You don't have to worry about at what level are you fetching your data? And there's this, you have this no SSR j s here.
+
+21
+00:18:53,160 --> 00:20:57,030
+Scott Tolinski: Yeah, yeah, it's funny, Aaron Oda from next, who works on next, he used to be big in the meteor scene. Back when he was around, he did a ton of the amazing like the most amazing Meteor packages before he moved to next. And he created this thing for Meteor, which was just basically a no SSR component. Now, granted, it's been several years since he created that and people have changed it up quite a bit. I've pasted one in the show notes here. That's actually from the material UI material UI ships, their own version of this package. And this one's hooked based where Aaron odos was component will mount based. So this, this one's probably the one you should use. But what this does is basically a component, or could be a higher order component that you just wrap, or an actual just normal component that you'd wrap around anything that you don't want to load via SSR. Now, I've used this a couple times. And sometimes it's really handy when you're using like a third party library that you don't have access to change. Or maybe you you just want to get like a shell of the SSR up and running. Like maybe you just want like the main layout and then the internal Have it you'll say, Okay, well we can client side render the internals, right. So this SSR, you can just wrap anything that you don't want to fire via SSR. And it's just works. It's great. All it does is basically check to see if windows defined and if so, yeah, so it yada yada yada, it works. So use a component like this, if you're having troubles getting up and running. That was like a strategy I had for taking an app that was primarily client side rendered and turning it into a server side rendered app was to say, Okay, I'm going to wrap the entire app in this no SSR component, and then I'm going to slowly slowly pyramid down the app and the component tree so that you know, okay, now the header is server side rendered, okay, it all breaks. Let me fix the header. All right now, the footer. Okay, now until I get to the main body content, and then Ah, yeah, that way. That way, you can do a sort of step by step day by day. Yeah, a little step by step and get that going.
+
+22
+00:20:57,480 --> 00:20:58,100
+Unknown: You watch
+
+23
+00:20:58,100 --> 00:21:01,740
+Wes Bos: TGF a no, what's that? Oh, man, there's
+
+24
+00:21:01,740 --> 00:21:03,590
+Unknown: a show called step thing I think
+
+25
+00:21:03,690 --> 00:21:24,420
+Wes Bos: is step by step. Day by day. Yeah. I thought that was full house for some reason. No, no, that's step by step, man. Okay. Yeah, definitely. When I was a kid, yeah. This side No, SSR II, that makes me I was thinking about that was like, it kind of sucks that it's like another component that you have to wrap it like, wouldn't it be cool if you could do it like a directive?
+
+26
+00:21:24,510 --> 00:21:28,530
+Scott Tolinski: Yeah. And you could use this as a higher order component? I mean, you could do that, too. Oh,
+
+27
+00:21:28,530 --> 00:21:30,660
+Wes Bos: can you use it via hook? Did you say,
+
+28
+00:21:30,660 --> 00:21:50,970
+Scott Tolinski: I don't know about hook? I don't know, this is this is basically like a, a component that just says, Hey, can you use state? Or can you? Can you render server side? Oh, yeah. Or I mean, is this a server? If it is, you know, pass through? If it's not the or I mean, is this the client then pass through? If it's not the server, then just throw out a spanner something?
+
+29
+00:21:51,180 --> 00:21:58,620
+Wes Bos: Oh, yeah. You could do this with the hook as well. Yeah. You could probably do with anything. Yeah. It's just checking for checking in Windows undefined or not.
+
+30
+00:21:58,980 --> 00:22:06,510
+Scott Tolinski: Oh, yeah, you could write this code. The The only thing about having a component reasonable like this is just that it's super easy to just bounce in there anywhere you want to use it.
+
+31
+00:22:06,540 --> 00:22:21,420
+Wes Bos: Yeah, the gotcha is that you can't check if there's a variable called window you have to do type of window is not equal to undefined a string of undefined. Which is annoying to have to type that every single time. That's why these these little packages are worth it. Oh, yeah. Yeah, I
+
+32
+00:22:21,420 --> 00:22:27,900
+Scott Tolinski: don't even recommend installing this as the package. I recommend just copying and pasting this, throwing it in your code. That's how I do it.
+
+33
+00:22:27,900 --> 00:22:44,400
+Wes Bos: Beautiful. I think that's good. Hopefully, you learned a little thing or two about server side rendering and how it works. It certainly has gotten a lot easier in the past, but I can't wait for suspense to come because I think it's gonna make a lot of this really, really easy. And you don't even have to really think about it after a while.
+
+34
+00:22:44,520 --> 00:23:00,870
+Scott Tolinski: Yeah, I think we're gonna have to have a do a next episode. And before the React wreck, people that say, oh, suspense is when we're talking about a suspense with data fetching and all that. We're talking about the whole shebang, like server side, render all that stuff. So yeah, once that stuff's available to us, we should make an another episode about it. There'll be a lot of fun.
+
+35
+00:23:00,960 --> 00:23:12,240
+Wes Bos: Yeah, it's Episode 127. If you want to you want to learn more about what is to come with react suspense as a good episode. It has a lot of lessons word. Cool. Alright, that's it for me. Anything else from you?
+
+36
+00:23:12,240 --> 00:23:13,230
+Unknown: Nothing.
+
+37
+00:23:13,230 --> 00:23:14,670
+All right, please.
+
+38
+00:23:17,160 --> 00:23:26,940
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
