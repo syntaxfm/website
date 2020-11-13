@@ -1,0 +1,396 @@
+1
+00:00:01,319 --> 00:00:04,590
+Unknown: You're listening to syntax the podcast with the tastiest web
+
+2
+00:00:04,590 --> 00:01:34,560
+Wes Bos: development treats out there. strap yourself in and get ready. Here is Scott, ski and West boss. Welcome to syntax. This is the podcast with the tastiest web development treats. Today we are going to be talking about how we would tackle building a modern web app front end back end CSS images, all that stuff. We got a question from Michael Gunn fallston. And he said, I would like to suggest a syntax episode. How would you implement a simple version of a website like Reddit, Twitter or Airbnb including the back end, the front end data model all kinds of interesting stuff there. Now I thought that would be kind of a cool episode. So like if we were to be building, if we were in a startup, and we had this sort of idea of one of these apps, what tech would we choose? And how would we tackle this is absolutely not like a final word on this type of stuff like certainly much smarter people than than us. But if Scott or I just regular developers were to try tackle one of these things, how would we do it? Today we are sponsored by Netlify. And Sanity Netlify is going to you can make it easy to deploy your websites and Sanity is a structured content CMS for sort of like a back end for your front end. That could be hosted on Netlify or just perfectly perfect monsters that go too well together today. With me today, Mr. Scott to Lynskey. How you doing?
+
+3
+00:01:34,769 --> 00:02:27,360
+Scott Tolinski: Hey, doing good, I'm very tired. As the parent movie I feel like this is gonna be the internet like every episode for the little while. Yeah, I can't Well, I'm tired of it. Yeah, no, I'm, uh, I'm doing good. I'm working on a spilt course right now. I've been recording it for the past. past couple weeks here. Yeah. And I love spelt man, I just want to do everything in that now. There's so many cool little things about it that we didn't even get into in that episode, like, yeah, the fact that there's like a built in physics based animation and transitions library built into it. And it's awesome and super easy. That context stuff is super easy and awesome. Man. There's, there's so many cool things about it. And I feel like, you know that the person is always bouncing back and forth between new stuff. This, this thing seems new and nice enough that like, Ah, that's just want to use it. So rewrite your entire
+
+4
+00:02:27,360 --> 00:02:28,560
+Wes Bos: platform minute,
+
+5
+00:02:28,560 --> 00:03:00,720
+Scott Tolinski: a deal, I can't, I can't, I did find something that allows you to write spelt components in react, and I have no idea how good of an idea that is. I'm gonna guess it's not probably not a great idea for me to even try to do but, man, I just really like using it. And I'm excited to do more with it. So if, if you're interested in it, check out one. There's lots of stuff about it. And I'm gonna hold back, I'm not going to say that I'm going to use Vault for this because I'm not Yeah, I'm still pretty new to it by itself. But I think this is going to be a really interesting episode for our listeners. So
+
+6
+00:03:00,720 --> 00:04:08,460
+Wes Bos: let's get into it. There are certainly some situations in here that we will just say like, I don't know what I would choose for that, because it's not something I've totally run into. But let's get going. We'll start with the back end, what would you choose for that? For me, I probably would choose a node back end. Which is, because that's probably my by far my most comfortable language. And I think that it would work as well, especially because I think if you're building something that you hope to scale this big, you definitely do want to be writing it in something that can be easily transitioned or even initially written in, they say these things that can be done in serverless functions. And I think node is a really good fit for, for something like that. In terms of back end framework, I would certainly probably initially reach for something like Express. But I probably would also take the time to evaluate what a serverless framework would do for me in that case, just because of how cheap it would be to host and how easy it is to scale something like that. What about you?
+
+7
+00:04:08,699 --> 00:05:13,070
+Scott Tolinski: Yeah, and I probably go there as well, specifically, because you're gonna find a lot of it, like if you decide to do it with node, you're going to probably find the most available developers in Express. And so if you're thinking about growing this thing, or, you know, having it be more than just a one person development flow, you're not going to want to put yourself on something that no one's ever heard of. And everyone has to learn the moment that they get into your thing, because then you're going to spend so much money and time training people on something that is like, Oh, hey, this obscure node framework that nobody uses Good luck. Now you have to go learn all the documentation, but there's enough people using Express and using node that you're most likely going to be able to find the developers out there who have those skills to be able to make this vision a little bit more. So I would probably go in the same especially because that's what I know. And I'm most familiar with I've built stuff in Ruby on Rails stuff in Django before. And to be entirely honest, I've just way more comfortable in Node than I am either of those. So totally,
+
+8
+00:05:13,260 --> 00:05:56,130
+Wes Bos: in terms of an API, I would certainly go graph qL, from the get go on something like that it's a perfect fit for it, I don't think that I would reach for one of these off the shelf done for you graph qL products right now, just because there's a lot changing in the space right now. And I don't think that anyone has absolutely nailed it just yet. So I would probably just sort of roll my own out of the gate. And what that allows you to do is that you do have control over the raw database and all the resolvers should you ever need to move to something else and get, it's not impossible, but it is sort of difficult when you buy into something a little bit too early. And then you have to switch over to it.
+
+9
+00:05:56,310 --> 00:07:03,810
+Scott Tolinski: Yeah. And it's, it's not that hard. Well, it's not as hard as you might think. Because I've I've run my own Apollo server graph qL API with, I guess it is with Express, even though it's on Meteor right now, the API, part of it is done through Express. So it's really not that intense or anything, if you you're you're scared about it, you're nervous about it. If you can do basic database queries, you can you know, write a basic express or you can get your own graph qL server up and running in in not that much time. So I would I would reach for graph qL, just because I like it. And the next one is database, you know, people are going to be mad, because I'm going to say Mongo DB, and I'm not going to say Mongo DB, because it's the right option. I'm going to say Mongo DB, because I know how to use it well. And so while a relational database might be fine, I mean, it depends. Okay, am I building this to be Airbnb? Like, one day? Or am I building this as just a project? Because if I'm building this to be, you know, an absolutely massive thing, I don't know, I might look into a more appropriate database. One that's more relational based.
+
+10
+00:07:03,840 --> 00:07:24,060
+Wes Bos: Yeah. I don't know if you need to think about scale that early on, right? Like, those are good problems to have. If you're having trouble scaling, then obviously, you can, you can work on it. But I think a lot of times people spend way too much too early on worrying about scale, versus other things like developer experience, user experience, or whatnot. Yeah. So
+
+11
+00:07:24,060 --> 00:07:41,520
+Scott Tolinski: I mean, I personally would reach for Mongo, just because again, it's the database technology that I have the most experience with, and therefore it's the one I'm going to be able to work the best in other than maybe like my sequel, and like, most of my MySQL stuff has been done with PHP anyway. So yeah,
+
+12
+00:07:41,670 --> 00:08:29,010
+Wes Bos: yeah, I would probably like, again, Mongo is my own database. I've been very happy with it. But I've certainly seen a lot of people have Growing Pains with that. And I've never heard anyone complain about choosing Postgres. So I don't really have all that much experience in it. But I have looked at some of the adapters, there's packages out there that allow you to write your queries like you, like you do in Mongo, mongoose, or MongoDB, which is pretty cool. So I would probably reach for something like that, like a Postgres or MySQL, just because they're tried and tested. They work well, they scale well. And I haven't really heard a whole lot of people being like, ah, we chose Postgres on this. And it's the worst, you know? Yeah, totally.
+
+13
+00:08:29,270 --> 00:08:46,740
+Scott Tolinski: Yeah. And I would probably, if there was, like time in the project, to say, hey, you can go get very comfortable with a database technology, I would probably pick Postgres to just for the specific reasons. And I have a little bit of experience in Postgres, because that's what I used when I did rails and Django, but I'm not like great at it. So
+
+14
+00:08:46,830 --> 00:08:52,980
+Wes Bos: yeah. Also, like, we're probably far from database experts in this situation. Yes.
+
+15
+00:08:52,980 --> 00:08:54,510
+Scott Tolinski: I yes, definitively,
+
+16
+00:08:55,039 --> 00:09:42,960
+Wes Bos: we get a lot of requests for people like, why don't you come on? And like, why don't you do an entire episode explaining all the different databases and the pros and cons? I'm like, well, we actually don't know that at all. Which is, is funny, because, like, I think that there's a whole, I don't know, cross section of developers where you don't ever like you can, you could probably pick any database and never have any trouble with any of them. But it's when you start getting into real big scale. And I think of something like drip or ConvertKit, where they track every single event. And they have like billions and billions of rows in their databases. And they have huge Growing Pains over that. Because there's just so much data and being having to be able to scale that thing up is really, really difficult. And that's just something I've never had to encounter myself.
+
+17
+00:09:43,260 --> 00:09:57,840
+Scott Tolinski: Totally. Yeah, right. Because as large as my platform gets, it's never probably going to be that large. So it's not even something that I need to personally even really think about if it is if my platform does get that large. I'm gonna hire somebody to take care of it. Somebody who's an expert, so
+
+18
+00:09:57,960 --> 00:10:36,289
+Wes Bos: yeah, that's a great problem. To have. If Right, you are running into scaling issues like that, that we had data model as a question in here, I don't really know, I guess we kind of answered that with graph QL. and whatnot, I don't know how I would probably create a new content type for every content type on the website. So if in the end, you'd have, you'd have your user, you'd have your listings, and then you might have some, like, relationships between those two. And you'd obviously have a lot more, you might have like a messages data model. And those are relational to that. So I guess that's, I think, how everybody would sort of tackle that though, right.
+
+19
+00:10:36,289 --> 00:10:50,190
+Scott Tolinski: And even with graph qL style database, or graph qL style API's to truly easy to write those relational queries anyways. And so I would just make everything relational, even though I said use MongoDB.
+
+20
+00:10:52,440 --> 00:10:57,210
+Wes Bos: You still can. Yeah, like I've I've got lots of religious vibrational stuff in mine.
+
+21
+00:10:57,360 --> 00:11:00,240
+Scott Tolinski: Oh, absolutely. Yeah. Likewise, yeah.
+
+22
+00:11:00,480 --> 00:11:10,409
+Wes Bos: What about like real time? This is a question. It's like, would you go real time right out the door? We certainly remember that. That app we use for our live syntax pigeonhole.
+
+23
+00:11:10,440 --> 00:11:11,279
+Scott Tolinski: Yes pigeonhole.
+
+24
+00:11:11,279 --> 00:11:21,149
+Wes Bos: The whole thing is built on I think, graph, qL subscriptions, it's all immediate every time you hit save, it immediately updates, the whole thing is built real time out of the gate.
+
+25
+00:11:21,299 --> 00:12:33,029
+Scott Tolinski: Yeah, level up was real time out of the gate with Meteor for a long time until I just realized I wasn't using a ton of those features. So yes, it was cool to be able to push updates and have it just pop in there for the people who are currently using it without even refreshing the page or any of that stuff or be able to that would that was actually really might have been the coolest part is that I could change the data. And it would get pushed to the users immediately without them having to do any sort of refresh. But to be honest, I was not using those features. And it's the main reason I'm moving off of Meteor right now is that I'm just not taking advantage of that stuff. So I probably wouldn't go real time unless it was like absolutely necessary. And you know, like, right, it's adding chapter whatever every every app adds chat eventually. That's the joke is that, you know, your app just keeps growing until you have to add a chat to the app, which Yeah, think about every single app that you have probably added chat to it at some point. So I wouldn't go real time unless I absolutely needed those features, or until I needed to, because I spent a long time working around that stuff. And I really enjoyed the features that I had when I had them. But once it came time to, you know, work around them, it was a little frustrating to, you know, have that be sort of the default.
+
+26
+00:12:33,149 --> 00:12:57,149
+Wes Bos: Yeah, I think I would go with something like I would think early on. Is the framework I'm using have the ability to go real time like is it as easy as just flipping a real time switch and changing over to a graph qL subscription? Or is that going to be be more difficult? Like there's I was actually looking the other day? This feathers j s is now another version for
+
+27
+00:12:57,179 --> 00:13:08,429
+Scott Tolinski: feathers came out of Meteor? I think I mean, I don't think it came directly out of Meteor, but I think some of the ideas that I know, yeah, when the meteor community talked about feathers when it first when it first dropped?
+
+28
+00:13:08,669 --> 00:13:46,380
+Wes Bos: Yeah, I remember I was doing like some WebSocket demos, and somebody from the feathers team sent me a What is this? David luuk. Probably mispronounced that as they do everything. But he like created the equivalent in like a kind of express in feathers. I thought that was pretty nifty. I think it uses MongoDB under the hood as well. So I'm similar to Scott, I probably make sure I can go real time should I need to. But for a lot of these things, maybe Twitter would be would be helpful to go real time Airbnb, probably not read it, maybe.
+
+29
+00:13:46,380 --> 00:14:12,809
+Scott Tolinski: But even like, even Twitter isn't going to be real time real time because they're like collecting, they're not going to the tweets aren't just going to pop in there, right? They're gonna collect and say, all right, there's been 15 new tweets since you know. So you would think that that would more benefit to like this batched sort of like every x amount of time, we're batching to look for something rather than having the thing pop in there in real time. Does that makes sense?
+
+30
+00:14:13,140 --> 00:15:21,690
+Wes Bos: Yeah, I think TweetDeck uses streaming. And I think that that's kind of interesting, because like, Twitter itself, like the API is, is not. But if you need to build an app, that is a different experience, like Tweet Deck, then you you can reach for the Streaming API. So again, I probably make sure I could do it if I need to. Totally. So I guess I will be the back end of what I would choose for there on we didn't I'll say didn't talk about any, any templating or anything like that, because I probably and I would do it all as a not necessarily a single page app, but I would use some sort of JavaScript framework to build the entire thing. So I would reach for react and next jass so So perfect use case for something like next. jass is a server and client rendered react JS application. So that's like it comes with a router built in, you don't have to worry about picking that does server rendering for you don't have to worry about that. Next, jazz just comes batteries included with a lot of the stuff that you need for a web app like that.
+
+31
+00:15:22,200 --> 00:16:36,720
+Scott Tolinski: Yeah, you know, I'm currently moving my platform to next JS nine. And it's funny because I'm moving my API to their API routes, which has been really super cool. And this might be a nice little option, too, if you are looking for sort of server lists, style, because you can build each of your API endpoints as a single route within next j s now, and it's really nice. I have my entire Mongo around my entire graph, qL Apollo database coming in on one next j s. Route, essentially, and it's, it's really cool, I really like it. So I'll probably use next two, I'm really enjoying using next. And, you know, if you don't want the entire thing to be server side rendered, maybe you just want the template to be server side rendered, and maybe some other information, you don't want to for whatever reason, you can take control over exactly what becomes server side rendered at that point. So you could server render your entire application, you could do just little bits here and there, you could do just none of it at all, if you really wanted it that way. But I would personally have the whole thing be server side rendered, I would use react to do so I would do so with next js, and I would use their API routes most likely.
+
+32
+00:16:36,840 --> 00:17:02,880
+Wes Bos: Yeah, as sort of an aside, I can't wait for suspense to land. Mm. Because like, even though like next JS does server side rendering, it's still hard because you have to, like at a page level, you have to know any components that are loading data, and you have to wait for them. And it's this weird dance to do when you're loading that data. So I can't wait for suspense to come out make that stuff a lot easier.
+
+33
+00:17:03,270 --> 00:17:56,810
+Scott Tolinski: Yeah, and it's hard. Now that I'm moving to next, it has been easier than what my own custom one was. Because for my own custom, when I had to really, really take control of my own code, splitting stuff, had to take care of my own. All of my own Apollo code splitting, React server side rendering stuff to the point where it was really difficult to troubleshoot all the time, things were hydrating, oddly. And the next .js definitely has just sort of standard ways that they have to do things. There's a large community of people that use it. And the best part about next in my mind is their examples folder, which shows you examples of just about every single thing you could ever possibly want to do with NEC. So I'm a big fan of that. We had in here for routers, libraries. Again, since we're both talking about using next that's built into the platform. Otherwise, I would use react router, which is what I've always used if you're using react react router is pretty much the only choice right now.
+
+34
+00:17:57,029 --> 00:18:01,310
+Wes Bos: Yeah, reach reach router is being folded back into react router.
+
+35
+00:18:01,469 --> 00:18:53,460
+Scott Tolinski: Yeah, right. So before you you say, Oh, I want to try something new here. Yeah, no, I think it's react router or next jazz or Gatsby, one of those platforms that has the router built in. As far as CSS I would personally use, I would personally use self components. And here's why. Because I have a my entire component library that I've built upon freelance projects, my own sites, client sites, whatever, I built up my own CSS and JS sort of library for my own personal use, I know how to use it. It's sort of like a component library. But you know, the best code is the code you wrote. So I'm very familiar with it. Yeah. And I know exactly how to make anything happen with my own design system. Also, my design systems largely based right now and CSS custom properties. And I love it. I'm gonna, you know, absolutely love that. So,
+
+36
+00:18:53,670 --> 00:19:53,010
+Wes Bos: yeah, I would also go with some sort of CSS and j. s platform, just because I, I love how when you stop using a component, then that CSS is immediately dropped from the build. And I love how you can easily generate critical CSS from like when your JavaScript framework knows about the CSS, doing those performance, things are so much easier. Like I did a little poll in my my Gatsby workshop last weekend, was like what are people using? And of the people that were using CSS and j. s? It was all over the place. Some people are emotions, some people style components, comfortable stuff I had never heard of so. But I think I would pick something like probably solid components or emotion where the CSS that you write is as close to regular CSS as possible. Because should you ever need to move to something else? It's not going to be a huge chore to move that thing from one to another.
+
+37
+00:19:53,279 --> 00:20:19,410
+Scott Tolinski: Yeah, that's actually a huge reason why I don't write my CSS and the object format inside of Java, even though I'm doing CSS and JS because it's like, if I need to copy and paste that move it out somewhere, that would be a huge project to move it into objects. Another reason I don't use the CSS and j. s from next JS myself personally, is because I think that ties it a little bit too closely to the platform. I mean, I think you can probably use was it styled JSX is
+
+38
+00:20:19,410 --> 00:20:34,890
+Wes Bos: what they use, yeah, that they use a package called style JSX, where you just pop a style tag, yeah, anywhere inside of your thing. And that's actually as I think, as close as you can possibly get to writing CSS, but I have never, I've never liked that as well.
+
+39
+00:20:35,160 --> 00:22:14,250
+Scott Tolinski: I don't, I don't know why I don't like it. I just, I just don't, I'm sorry. So I'm probably gonna keep it on with stuff components myself as well, that's fine. And the next thing we're going to get into is deployment process. But before we get into there, let's talk about deploying an application and just how easy it can be with Netlify. And Netlify is one of those services that allows you to host your application just so insanely easy. And have all of these features that have been typically very difficult to get set up, for instance, you get continuous integration out of the box, where Netlify just built your site automatically a push to a repo Netlify says it, no worries, I got it. You can do a B testing, you can get a free SSL certificate that is, you know what, sometimes they just say, Oh, yeah, you get a free SSL certificate with this thing. And then you still have to go through the entire process of setting up an SSL certificate. But now it's Netlify. No, you don't do anything. That's the single best part about Netlify. You don't do anything, get this all set up, it just is set up. And it just works. Which is really as you should just be nullifies. tagline in my mind is it just works. Every single person who is on the Twitter will say, dang, syntax is not lying. Netlify just works and is absolutely incredible. So you're going to want to head over to netlify.com Ford slash syntax. And you're gonna want to see all of the amazing features, so many of them that we didn't even get to talk to, like serverless functions, identity, free, global CDN, and all sorts of cool stuff. So netlify.com, forward slash syntax, sign up today, push a repo up there in about two seconds, and see why we go nuts for it over here.
+
+40
+00:22:14,460 --> 00:22:33,000
+Wes Bos: Awesome. It's funny, I'm just doing a little bit of research on our next sponsor Reed, which is Sanity. And at my workshop had a couple questions about like, how do we like how do you deploy to Netlify when your CMS changes? And I was like, that's perfect, perfect. Little iterate for the next one. So stay tuned for that.
+
+41
+00:22:34,230 --> 00:22:35,730
+Unknown: Noon for the ad read?
+
+42
+00:22:36,360 --> 00:23:06,390
+Wes Bos: Yeah, it's gonna be a good one. So next up, we have is like a deployment. So you built your back end, you build your front end, where do you put this thing that has a probably a node seems like we've chosen the same things together, you've got a node back end with some sort of graph qL API, and you have a front end. In react, you have to deploy this thing. What would your deployment process look like? using one server? two servers? I using services?
+
+43
+00:23:06,420 --> 00:23:20,760
+Scott Tolinski: Yeah, well, if we're doing next day, so I'm going to play on now. And now two is really super cool. Because Do you have different containers for a minor standings? You have different containers for every route? Is that your understanding as well?
+
+44
+00:23:21,060 --> 00:24:00,750
+Wes Bos: Yeah, well, so if you're, if you're deploying your back end to now, the whole idea is that you can ideally write your app in kind of the way that you've always written it, and then it will automatically serverless it for you, which is great, because then you don't have to, like worry about serverless, sing it yourself. But like posting just a regular note app to now is very hard to do, because they want you to modify it a little bit in the routes so that it will deploy it for you, which is great. Because like, if you're going serverless first, then you you don't have to really worry about the four serverless frameworks and all that stuff. You just kind of build your app. Yeah.
+
+45
+00:24:00,960 --> 00:24:44,100
+Scott Tolinski: If you're doing a graph qL back end, then for me, I didn't have to modify mine at all, because, well, I had to write one file. But the the API routes are just basically a folder with an API that gets a one single API route. And if you have a graph qL API, you only need one API endpoint anyway, so I have one folder that is my quote unquote, serverless function or whatever. It's my entry. It's my endpoint to my graph, qL API. But the entirety of the rest of my API, which is fairly large, is just loaded through that one page the exact same way it was when I was doing everything on Express anyway, so yeah, that's but really didn't change very much for me.
+
+46
+00:24:44,190 --> 00:25:30,270
+Wes Bos: Yeah, if you can write it, the appointment process for me, I'm, I'm not sure actually. I'm kind of like right now moving over my own platform to now which is good because like it does a lot of heavy lifting for you. It's fairly affordable for what it does for you, which is great. Just trying to think like, there's so many different options that have been going through right now. And I haven't really given them all a heavy look into. Yeah, so I think it would, I would certainly like to try to do it all in one go. Meaning that like you can deploy it just the one app handles your back end and your front end, it will handle scaling, auto scaling. And that's kind of the that's what now is trying to do for you. So I like that. But you certainly could go another option to where you host your front end somewhere and back end somewhere else.
+
+47
+00:25:30,389 --> 00:26:52,140
+Scott Tolinski: So that that's kind of interesting. So I had my my site's been in Meteor for a long time, personally, and I have always had that one push deploy does everything. For me, that's the way it's been for the past however many years, right, or five years that the my site's been on Meteor, so I'm so used to that. But I would have to have that the last thing I want to do is manage two different deployed processes or be able to like have to worry about whether or not the API went out first, before the the front end deploy completed, or even containers, I've hosted my site that had that sort of deploy process on digitalocean on my own custom droplet, on Heroku. On now Meteor galaxy, and Meteor galaxies, the most expensive, but it's also the most turnkey, I don't have to worry about it. And scaling up containers is really easily. So that's, you know, something that would be very important for me, and one of the reasons why I would pick now, but also Heroku, or any of these options, we're scaling is easy. If I'm building this as a one person or a small team, I don't want to have to go ahead and hire a system administrator or right off the bat, I don't want to have to hire anybody to worry about that. I want to be able to Hey, just scaled up really quickly if I need to, or have that addressed based on these needs that you have at the time. And again, once the application is either making money or it has the traction, you can then go ahead and build into a bit more of a managed one to save some money in that regard.
+
+48
+00:26:52,199 --> 00:27:08,340
+Wes Bos: Yeah, exactly. And that's it. We probably say it quickly. It's now it's now.sh if you want to check out the the website for that, as you know, we'll get some some emails about it. Like love love tutorials, somebody thought Scott was saying love love tutorials for like an entire year.
+
+49
+00:27:08,429 --> 00:27:10,980
+Scott Tolinski: Yes. Yes, it Now. Now.
+
+50
+00:27:12,390 --> 00:27:41,790
+Wes Bos: Another question we had here was what would you do for data on your front end? Right? I would probably do it in either Apollo. If it's all graph QL. And then it stuff that doesn't need to be in Apollo, I would use context and, and state to be able to just just throw that stuff in state. I don't think that I would reach for like a state management like Redux or something like that. I think I would try to keep it all in, in Apollo or in state.
+
+51
+00:27:41,850 --> 00:27:50,010
+Scott Tolinski: Yeah, I would pretty much just describe like, here's, here's the platform that I'm working on right now. These are like this is Yeah, this is pretty much it.
+
+52
+00:27:50,040 --> 00:27:55,530
+Wes Bos: Well, I think the stuff I'm doing is the best, like my best opinions. Right? Right.
+
+53
+00:27:55,620 --> 00:28:37,410
+Scott Tolinski: Yeah, exactly. And so I probably do the same thing. I'm using Apollo for my stuff. I like Apollo for my graph qL stuff. And again, I like context. Now. It's not overdone. You know, you missed out on some of those really nice dev tools. But if you're not doing your data loading within Redux anyways, then you're missing out a lot of that stuff anyway. So I would probably just use the context straight up data flow. Yeah, I mean, I don't like to keep my components too tightly coupled. So I would make use of context somewhat frequently. And, you know, obviously, if something's not being reused, parent, child relationships, all that stuff that you're typically used to with a react site,
+
+54
+00:28:37,650 --> 00:29:19,800
+Wes Bos: a email, sending transactional emails, a big part of the app, you you book, something, you tweet something, you get a DM, you have to send one off emails for that type of thing. We have an entire show on sending email, and what the different ones are. So you can go ahead and listen to that. That is Episode 32. is designing templating inlining in sending email. So check out that episode. If you want to hear more about sending transactional email, I would reach for probably something like, like our react base email template or, and the one that we talked about before, what's the name of that one?
+
+55
+00:29:20,009 --> 00:29:22,230
+Unknown: Oh, MJMLMJ ML,
+
+56
+00:29:22,230 --> 00:30:12,110
+Wes Bos: which allows you to like write emails with things like column and image and it's so good row. So currently, I don't do this, I write my emails in G pug, and then I template them out. But I would probably be because the entire site would be in react, why not do your emails and react as well, they obviously don't get I think some confusion is like react is not going to run in your email client. It will just at the end of the day, kick it out to HTML for you. There's a CSS inliner I've used in the past called juice and then that will allow you to write your CSS in such a way, like style tags, and then it will it'll inline all the CSS for you. So it'll it'll put it a style attribute for for that. I think that's I use something called inky right now.
+
+57
+00:30:12,210 --> 00:30:14,040
+Scott Tolinski: Yeah, that's from Foundation, right
+
+58
+00:30:14,070 --> 00:30:39,960
+Wes Bos: from zurb. Yeah. And inky is sort of the same idea as MJ ml, where you just write your own components, like row and column and image and things like that. And then it will convert it to the table equivalent. It's like, whatever you choose, you certainly should not be writing tables down yourself. And you certainly should not be inlining, the CSS yourself, those problems have been solved. Yeah. And that's an awful thing to do with your life. Yes,
+
+59
+00:30:40,260 --> 00:30:47,220
+Scott Tolinski: that was one of my, my first gigs that my first agency job was just like only doing HTML emails, and it was just like,
+
+60
+00:30:47,700 --> 00:30:48,360
+Unknown: oh,
+
+61
+00:30:49,530 --> 00:31:10,380
+Scott Tolinski: mg ml is so good. That's what I would use. Because, again, it allows you to write this stuff and react and not have to think about it too much. And just have it output in line, all that stuff right there for you. So you could again, get to use the tools and stuff that you're most used to. I personally really like it, I find it to be very, very useful, especially if you are already a react developer.
+
+62
+00:31:10,920 --> 00:31:48,480
+Wes Bos: for sending it on the server side, I use node mailer, and I would still use that I love node mailer, it's fantastic. And then I use postmark, you actually need someone to send the emails for you. And whatever you choose, use someone that will support smtp. So you just use a standard. And that way, if you ever need to choose to change mailers, then you can quickly change over your credentials, and you'll be able to keep sending email. So I personally use postmark. I absolutely love it. But there's certainly like there's mailjet, which made it mg ml. You could use them those. What other What do you use Scott?
+
+63
+00:31:48,570 --> 00:32:03,450
+Scott Tolinski: I use mandrel mandrel. Katana, I've been on it since it was free. And then I just have not moved off of it. I probably should move off of it because they goof with your URLs. And not super interested in that. Yeah,
+
+64
+00:32:03,540 --> 00:32:13,230
+Wes Bos: yeah, you can turn that off the but that that allows you to like track clicks and things like that. I think I have that turned on. No, I have it turned off with postmark postmark will do that as well.
+
+65
+00:32:13,560 --> 00:32:28,290
+Scott Tolinski: Yeah, whatever, ever since I don't know that, like that. There's this weird divide between mandrill and MailChimp, where like everything in mandro looks like it was made 20 years ago, and everything in MailChimp looks brand new. So I like really hate messing with mandrel at all.
+
+66
+00:32:28,440 --> 00:33:02,340
+Wes Bos: Yeah, I think that what happened is that they, they're kind of bullish on this whole company. And it was free. And it worked forever. And I was using it for everything. And then they they pulled the rug from everybody and said like, Oh, no, you you have to start you have to pay now and right, those are free. And I think because they have huge issues with spam and putting resources towards that thing. Like, I think that's why the best companies that do this stuff are companies that just do that stuff. And it's not like a side hustle that the email companies trying to do. So I probably wouldn't go for mandra. I know that you probably wouldn't recommend that either.
+
+67
+00:33:02,400 --> 00:33:06,540
+Scott Tolinski: Yeah, I wouldn't use it. But I would. I don't I would. I would opt to do research.
+
+68
+00:33:07,230 --> 00:33:14,130
+Wes Bos: Yeah, yeah. I also probably another tip here is get approved and sign up and get everything working with two.
+
+69
+00:33:14,250 --> 00:33:15,300
+Unknown: Oh, gosh, yeah.
+
+70
+00:33:15,330 --> 00:33:40,500
+Wes Bos: Because if something goes wrong with one of them, you need to switch quick. And you should ideally even have like a like a rollover coded into your system so that if one of them goes down, or for some reason you get blocked by one of them, you can quickly fall over to to another one. Users authentication, things like that. What would you use? Would you hand roll something like I used your system? would you use sign built in?
+
+71
+00:33:40,740 --> 00:34:48,030
+Scott Tolinski: What do you think I'm dealing with this right now? I would not handle something I'm handling mine right now. And I'm just yeah, just there's so many pieces to it. There's some my non handrolled one did for me. And now that I'm having to handle I'm like, Oh, I gotta worry about this email, I got to worry about this part of the account set up and it's just kind of a pain in the butt. So I would roll with something that is pre made, whether that's just like passport, which is just a package, you know, or an actual service like auth zero. I'm not quite sure I would probably roll with something like passport because there's a huge community of people using it. I'm not sure I'm using something right now called accounts hyphen j s, which is an Apollo, Mongo dwell, you can use all sorts of stuff with it, but it's not a huge package. And it's done by a bunch of former Meteor devs who wanted to sort of bring the meteor experience back to Apollo. And it's just not there yet. It's pretty cool. But they're, you know, I'm not turnkey and it's certainly not as easy as something like passport. So you know, I would probably go with something like passport.
+
+72
+00:34:48,600 --> 00:35:54,330
+Wes Bos: I would probably reach for passport j s. It's such a hard thing to roll your own. In even using something like passport jazz. It's still hard to build Have your own user system like that there's a lot of heavy lifting to do yourself. He had to worry about avatars and user permissions, all that kind of stuff. You could certainly go with the solution, like alt zero is probably the biggest one available out there. Just know that, like, it gets expensive really quickly, these these types of things where you're like, Oh, it's so easy. And I use like services to do almost everything. And I certainly would reach for services in some situations, but like, I'm just running the calculator on, on like, what mine would be at, like, I don't know, 50,000 people a month watching courses is 1200. dollars a month like that? Real quick, right? Yeah, I don't know, it's hard, maybe I would just go with with something like that. And then, as it gets more expensive than then move it over, I don't know, it's hard to hard to say,
+
+73
+00:35:54,650 --> 00:36:39,600
+Scott Tolinski: it is hard to say. Because there's so many of these little services that you could just be adding here that are gonna make your life a ton easier. And the next thing you know, your bill, a month is way, way too much. You know, the company might go under. So there is some you know, there's definitely some considerations, cost verse time that we're not exactly considering in this. So, cost first time, if you want to be saving a bunch of time, and you want to not spend a whole lot, you're gonna want to head to sanity@sanity.io. And check out what they have going on there for our whole back end solution. And let's talk about saving you a whole bunch of time. With more bad sanity is Wes.
+
+74
+00:36:39,980 --> 00:38:47,730
+Wes Bos: Yeah, so Sanity is a structured content, CMS, which is kind of a cool way to say you can log in, you can create all of your content types, you can do all of your relations, you can actually create your own custom react JS components and pop them into the editor. And then at the end of the day, that will kick out an API for you to consume in your front end or for your back end, which is pretty nifty. One thing cool thing I want to sort of like, say about Sanity, is that like I was teaching a workshop on Gatsby, and we were saying like, okay, like, what are your options for headless? If you want to, like build a Gatsby website, like what can you Where can your content come from? And one of the options is Sanity. And they have this really cool thing where it will update in real time, because somebody asked like, okay, cool, but like, if my client changes content, like, does it, it has, it has to rebuild, right, and then I have to go manually rebuild it. So there's kind of two things I got out of that is, first Sanity has a plugin that will show you real time updates in Gatsby so that you can have that real time feedback where the client updates the content. And they can look at your like staging site and immediately see what it looks like. And then second, there Sanity has like web hooks. So you can hook up Sanity to something like Netlify. And then say when the content changes on Sanity, immediately trigger a build on Netlify. So you, the developer don't need to sit around and always be pushing new builds, like obviously, you can you can push a new build on git, but like what about when other things change? Most likely, what about when your content changes. So Sanity is got you covered on both of those fronts. Check it out@sanity.io forward slash syntax that is going to double your free usage tier than what you normally get. So check it out. sanity.io forward slash syntax, they've got some pretty cool examples on that page as well. Thanks so much to Sanity for sponsoring. Cool.
+
+75
+00:38:47,820 --> 00:39:56,250
+Scott Tolinski: Alright, let's get into media a little bit. Let's talk about images. Now, I'm personally going to be reaching for cloudinary. Myself, because images are another thing that are very, no fun to work with. And cloudinary can really save you a ton of time generating the right images, they can also save your users a ton of bandwidth, because you can serve up Web PS or web ends, or any of that fun stuff that Safari doesn't support yet for some reason. And, yeah, that'd be really great thing to do. But again, with just like any of these, the more that you host, the more you serve, the higher your costs are going to be. So it depends on how many images you're working with here. Yeah, if you're working with a ton ton ton of images, you know, there is a decent way to roll your own cloudinary via serverless functions and just open source packages and Amazon s3 That said, it's all time versus cost here. So how much time you're gonna spend on that. If this is something you want to support, and you want to do, you know, maybe you could just build your own serverless function and not have to pay those costs of having a company do it, but you will have to pay the time and effort of getting that thing set up.
+
+76
+00:39:56,460 --> 00:41:13,670
+Wes Bos: Yeah, you know, what I would do is I would spend a day and a half Trying to make my own cloudinary with a serverless function and see how far I get because you have to use this package called sharp. And sharp is a very low level package. That's not it's not built in JavaScript, but you access it via JavaScript. And or maybe that's wrong. Maybe sharp is the JavaScript package and it access things like PNG, kuantan, mas, jpg, and image optim, all these things sort of under the hood. So I would I would give it a go. But you certainly can drop in cloudinary. There's another one I learned about I met a conference image ix Hmm, I think I might have mentioned them before. Yeah, I think Yeah, so they do similar thing to that as well. So I would certainly check that out the pricing $3 per thousand image, Master images, plus eight cents per gig of bandwidth. So I don't know if that is good or not. I'd have to like, run some calculations to be like, Alright, I've got 500 listings that each have 24. Especially like Airbnb, you need nice big photos, right? Yeah, that type of thing. So that's certainly something that can get real expensive, real quick, but also is something that could save you a ton of time. Right?
+
+77
+00:41:13,919 --> 00:41:47,630
+Scott Tolinski: Yeah, is a lot of these things, you got to run the numbers a little bit. And some of them, you could just fire up and get going as like a proof of concept. And maybe that's the whole thing, right? Maybe you just need a proof of concept together some investment, cash, and a proof of concept. You're not going to be having a ton of people using in there for something with a cloud and it would be good just to get up and running to be able to show this stuff off. It really depends on what the end result is. There's just so many different paths, all of this can go depending on what your ended goals are. If you're just trying to get this thing working as soon as possible, like cloudinary all day,
+
+78
+00:41:48,029 --> 00:41:56,360
+Wes Bos: um, other things like what are other things I just got rattled a few things here handling cash, like I would reach for stripe, for sure.
+
+79
+00:41:58,080 --> 00:42:12,980
+Scott Tolinski: But it depends on where your clients are. if everybody's USA and you don't need to support PayPal, then sure. stripe, but like, yeah, gotta start any of that stuff, then you have to go to Braintree or you have to roll your own.
+
+80
+00:42:13,440 --> 00:42:17,960
+Wes Bos: Well, I would go for stripe and PayPal. That's what I'm doing right now. stripe
+
+81
+00:42:17,960 --> 00:42:23,610
+Scott Tolinski: and PayPal. But what if you want to do reoccurring billing then you have to manage two separate reoccurring billing platforms?
+
+82
+00:42:24,030 --> 00:42:27,900
+Wes Bos: Yeah, maybe that's true, maybe maybe Braintree would be better than
+
+83
+00:42:27,920 --> 00:43:10,110
+Scott Tolinski: there's always services like recurly that handle reoccurring billing. But that's a whole thing if you need to do recurring billing, and they are going to take a much larger chunk. So depends on what your back end skills are there. If you don't have a ton of great back end skills, then you're probably going to want to reach for one of these platforms that handles reoccurring billing, I run a reoccurring billing thing myself, it's not exactly a ton of fun. So if you don't want to manage a ton of that stuff again, or no services that you can pay a little bit more for a something like recurly. That way you can do it through basically you could do it through stripe, Braintree, PayPal, all of those things, anything you'd want, and you don't even have to think about it. So just some food for thought there.
+
+84
+00:43:10,650 --> 00:43:52,290
+Wes Bos: Other things, I guess, unsure of queuing, that's never something I've had to run into before. But if you have a lot of traffic or you're doing something that's that's fairly heavy, then you have to put things into a queue. Like if a user uploads 40 images of something, you probably want to throw that into a queue and have whatever it is you're using to compress them and convert them and resize them and crop them. You probably don't want to let the user sit there and wait for these things to all come back from from an API. So that's probably one thing I would look into is queuing but it's not anything I've done before. I'm not really sure how I would handle that.
+
+85
+00:43:52,500 --> 00:43:59,250
+Scott Tolinski: I feel like there's just about 100 things that I've never done before. Yeah, I would probably come up the moment that you are at a critical impasse in this project.
+
+86
+00:43:59,760 --> 00:44:05,040
+Wes Bos: That's how you learn I guess. Hmm, anything else that I didn't cover here?
+
+87
+00:44:05,280 --> 00:44:19,050
+Scott Tolinski: I don't know. I don't think so. I think this is fascinating to just think through maybe like what I would do today if I was an open application thing that will just want to use felt for everything. I I would have a hard time resisting that. It's really good. I really like it. I'm sorry.
+
+88
+00:44:19,110 --> 00:44:28,680
+Wes Bos: Yeah, no, it's might be like worth, I don't know, like, picking up a big project like that. Grabbing a brand new. I've certainly been burned in the ass.
+
+89
+00:44:28,800 --> 00:44:39,540
+Scott Tolinski: It's not that new. I mean it. I guess spell three is new, but spelt itself isn't? Yes. Yeah, yeah. No, no, forever. The problems with this, if you can't tell it's a thing I wrestle with.
+
+90
+00:44:40,020 --> 00:45:02,340
+Wes Bos: Yeah, I've run into all kinds of things. Anytime I'm building a course I try to use something new. You run into these weird edge cases, like, even like Gatsby. Gatsby images are so hard right now where you have to like write a graph qL query. And there's there's dynamic and static queries, like that's an early pain point in Gatsby right now. And I guarantee you that The effects because it's silly how hard it is right now,
+
+91
+00:45:02,400 --> 00:45:11,310
+Scott Tolinski: you should see how grid some does it really good. Some is like total turnkey for that. It's like Oh, just pass it back, just pass an image to this component. And don't ever think about it again. Yeah,
+
+92
+00:45:11,370 --> 00:46:53,430
+Wes Bos: how it should work. Yeah, exactly. Like there should be a way to dynamically do that. But there currently isn't a really good solution for it. So yeah, that hopefully, hopefully that is helpful to you, seeing how you would tackle it. It's pretty bang on how we currently do our own platforms. But that's because we're both kind of sort of constantly tweaking and changing our own platforms, how they work. Let's jump into some sick pics. Now. I am going to sic pick a YouTube channel called bone appetit. Bone appetit is obviously the magazine has been around forever. But they've just been running a YouTube channel for a number of years now. And I think that they've absolutely nailed. Nailed it on YouTube. So they they make these cooking videos that are approachable, but they're really funny. And then they have all these different personalities that do different types of videos. So there's this guy, Brad does a lot of like fermentation, and like kombucha and all these kind of interesting things. And there's someone else that Claire, she tries to replicate, like Twizzlers and m&ms, and she tries to like remake things in the kitchen just with her own skills, which are really cool. And then they're always filming in this kitchen where there's just like hilarious people running around in the background. And it's sort of throws out the like, high quality video shifts, things that you often see, and just takes a totally different approach at it. And it's funny because my wife and I stopped watching like master chef and started watching this on YouTube at night. So is that good that it's sort of it's totally moved our TV viewing habits over to this YouTube. So check it out. Bone appetit on YouTube. Hmm,
+
+93
+00:46:53,460 --> 00:48:35,460
+Scott Tolinski: I gotta check that out. Yeah, we've been watching great bit, the great British baking show or Great British beer, whatever it is. I mean, we've been watching that forever. But the New Seasons out on Netflix right now. Oh, my favorite, my favorite cooking show. My second pick is going to be the case save. We're going to talk about this in the next episode. But this case a thing is this kitchen safe. And what this what this does is it locks anything inside of a safe for a given amount of time, upwards are under seven days, I think it is. So you can put something in here like let's say cookies. And you can say well, I have a cookie eating problems. So I'm going to lock these cookies in here. And I'm going to cook it and says I can't have these cookies for four or five days. And then the thing automatically unlocks after that time, I found this to be incredible. They they say this is really good for just enforcing accountability for things that you're trying to change our episode on Monday. That's command as I'm going to be on habit. So ram talk a little bit about this. But I've been throwing my phone inside of a K safe so that I can't use it when I want to just mindlessly pick it up. Or it's a good idea. Maybe for those of you have kids, maybe you want to say okay device times over and you can show everybody mom and dad, everybody on their phones in here, whatever, and lock them up. And yeah, you can open this thing until the time limit is up. So obviously don't set it for something they need to get open. Otherwise, you're going to be breaking your expensive low case, a fear, but I've been loving mine. It's super cool, really nicely made. And a really interesting little, I guess you'd call it a gadget. Not really a gadget. But a really, really cool thing.
+
+94
+00:48:35,520 --> 00:49:19,440
+Wes Bos: Awesome. Let's talk about shameless plugs, I'm gonna pick one of my older but extremely relevant courses. And that is my flexbox.io course. So even though grid is out, you still need to know Flexbox for a whole bunch of use cases, it's funny, I tweeted this thing the other day, which is I ordered every CSS color name by the length of the name. And then I ordered them by hue, and then by saturation, then by lightness, and then I ordered them by all three and it was kind of fun thing to do on the internet. And everybody was like nice. Did you do that with grid and I was like it's not possible in grid, you have to use Flexbox for that. So they obviously aren't. This still is a lot of use case for Flexbox. And if you want to learn it, check out flexbox.py Oh, cool.
+
+95
+00:49:19,680 --> 00:50:28,530
+Scott Tolinski: I have a new course coming this month on spelt. Like I mentioned, I'm absolutely loving it. In this course we build a quiz, the quizzes using a free open API. So in this course, you not only learned the basics of spelt itself, but all the kinds of stuff that you'd need to do in a normal app for working with scoped CSS to working with animations to working with API's. And it's really cool. I think you're gonna, you're gonna get halfway through this course. And you're gonna be like, I cannot believe what we're able to accomplish with such a little code. I'm writing like very little code here. And we're able to just make a really, really functional quiz app and absolutely no time at all. It's really really super fantastic so so if you want to learn any of those things head on over to level up tutorials, comm forward slash pro that is level up tutorials the.com forward slash pro sign up for the year and save 25% Thank you so much. And we will see you next week where we talk about building habits on Monday. And who knows we might be kicking off our our spooky, October web dev stuff very soon here. Yeah,
+
+96
+00:50:28,530 --> 00:50:31,680
+Wes Bos: that's not next week, but it will be soon. No, it's
+
+97
+00:50:31,680 --> 00:50:34,890
+Unknown: not next week. I'm saying I'm saying very soon. It's very soon,
+
+98
+00:50:34,950 --> 00:51:28,320
+Wes Bos: we're collecting all these developer horror stories, which I was reading them to Kaitlyn, my wife and I was just dying. Get ready for it. If you actually, we should say, in preparation for Halloween if you have a horror story of a developer so I'm talking deleting a database accidentally pushing a bug to production that order toilet paper to everybody's house screaming into your microphone, writing swear words in pushing into production, all these hilarious things. If you have one, tweet us or email us or send it to us any way you want. Most of the good ones are coming in via email. I'm Wes at Wes Bos calm because they want to remain anonymous. So please send those over. We're gonna do an entire show of these spooky horror stories. Yeah.
+
+99
+00:51:28,530 --> 00:51:44,640
+Scott Tolinski: Oh, yeah. Cool. Well, we will see you next one is head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
