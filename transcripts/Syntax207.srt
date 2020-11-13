@@ -1,0 +1,180 @@
+1
+00:00:00,359 --> 00:00:24,450
+Announcer: Monday, Monday, Monday, open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA and Scott Hill. Totally ski.
+
+2
+00:00:25,890 --> 00:00:26,610
+Scott Tolinski: Whoo, welcome
+
+3
+00:00:26,610 --> 00:00:48,030
+to syntax on this Monday hasty treat, we're going to be talking about how we both launch our courses, this is going to be giving you a little bit of a, you know, a little bit of a view into behind the scenes of what Wes and I both do when we launch a course you know, it's fun, because our platforms are very different. Our styles are very different, and how we release is inevitably going to be very different. So I'm excited to hear what Wes has to say.
+
+4
+00:00:48,060 --> 00:00:49,380
+Wes Bos: Yeah, vice versa.
+
+5
+00:00:49,620 --> 00:00:56,970
+Scott Tolinski: Yeah. We'll talk a little bit about those processes. My name is Scott Tolinksi. I'm a developer from Denver, Colorado, and with me, as always, is West boss.
+
+6
+00:00:57,210 --> 00:00:59,400
+Wes Bos: Hey, everybody. Hey, Wes.
+
+7
+00:00:59,610 --> 00:02:22,080
+Scott Tolinski: This episode is sponsored by Sentry. Now, Sentry is a critical part of my platform when I'm watching anything, because it lets me know if there are mistakes in my code, lets me know if there's a problem. Because what Sentry does is it It isn't an error and Exception Handling tool and it can notify you of different bugs, it can categorize them, catalog them, and allow you to attach them to various releases, commits, and so on, you'll be able to then see within your source manager exactly where these issues happen. Now, Sentry is one of those platforms that works with just about everything you could possibly use. So if you are concerned, well maybe I'm using this and this and this, maybe it's not gonna work. No, it's gonna work. But let me tell you, century just has connectors or even just ways to use with just about any language. And you'll want to give Sentry a try over@sentry.io, use the coupon code, tasty treat all lowercase all one word, and you're going to get two whole months for free to test out century, go ahead and have people use your site, have them trigger a little bit of a bug and watch into light as you have that bug catalogued, so that you can go ahead and fix it and make sure that that bug is fixed. So check it out. sentry.io coupon code, tasty treat. Okay, so let's get into it here. We're gonna talk about our course launches, the West recently launched a course, what's your course called West,
+
+8
+00:02:22,380 --> 00:02:25,880
+Wes Bos: beginner javascript.com. Thanks for the opportunity to
+
+9
+00:02:26,000 --> 00:08:46,740
+Scott Tolinski: get a little Sally got to get himself out of the way got to get it in here. Mine is a level up tutorials.com. And so the difference between Wes and I, as I release a new course every month, in my my subscription platform is mostly like a you can think of it as like a magazine subscription. It's like the way I like to describe it, right? you subscribe to the magazine, and you get a new tutorial series every month. And West, your courses are a bit longer and a bit more involved. And you release them whenever you are complete with them. So we have very different strategies and very different types of content in general, despite some of the topics being kind of similar. And so my pre release, I recently modified my platform. So I have a whole custom code platform, which is great because it allows me to build in the tools and things that I need when I need them. For instance, we had a lot of people saying, Hey, I never know what the next course is he i don't i don't have Twitter, I don't subscribe to your email list. How do I know what the next coming courses. So we started getting a little bit better about this by having a new pre release. So I have a tool that I call the series Iser, I give all my tools really fun names. So in the series Iser, there's a button that says new series. And that's the first first step I click the button. And it gives me a course creator, where it has the thumbnail images that I create, it has like a little color picker, like you'd see in figma or something. And it has all of the options that I need, I can upload an SVG background for it via drag and drop, I start to select things like the logo, the color. And so typically, I'll design the thumbnail for this course, I'll drop it in here as an SVG, I'll set the status to pre release, and then set the title and then I just click Save. And what that does is it puts the tutorial series, the upcoming one in the listing with the rest of them. But it doesn't make it a link so you can't browse to it. And it adds a little coming soon badge. That's cool. So that way you can see it in the listing with all the other ones. This is a problem that we've had. And so this is a solution that we that's the largely the cool part about owning your own platform like this is that you can make those changes to fit the needs of the audience. Right. So the series Iser is the same, basically the same form as it is when you edit it. I also have this series listing, which is a big long list of all of my series with their skews their prices, their logos, whether or not they're active, whether or not they're Pro, and that's how I reorder them as I just drag and move them around. And that's automatically responsive to the front end as well. So I put the course in the pre release I save it all up and then just sit there for a little little bit. I do some marketing, whatever. And then the course is complete, right. So I've I record all my courses I send to my video editor, Tim Smith, who does a great job editing them for me, he gets them back to me a day or two before the actual release date. Since I'm on a magazine sort of schedule, it's really easy to say, Okay, I need these by two days or a day before the end of the month, every single month, right, we're always on the same schedule. So I really will cut it, I cut it to the last second, but I do so on purpose. Since I released this content every month, I want to make sure that everything's like sort of the latest, right, so I'll record the series in the first 15 days of the month, my editor will edit it over the next 15 days. And usually I have like one day or less, and to push this thing live. So to push it live, I've been given the content, what I'll do is I'll upload it to YouTube, I'll wait for it to completely process. And then I'll use YouTube dl to download it from YouTube. Why because YouTube's compression is really good for ADP stuff. And if I'm going to be giving away downloadable versions of this, to be honest, it's actually faster for me to upload it to YouTube, have them do all the compression. And then for me to download it, it's faster to do that than it is for me to try to compress it to the same standards via Da Vinci or whatever I'm using at the time. That way, it frees up my computer processing to do something else on Google's servers to handle that one. And then, so I compress it all into zips, I upload them to both s3 and v2. And then I basically input all the data whether or not whether the keys or whatever from s3 into my series Iser, to update it. And then here's the fun part, I have to get all of the individual videos into my site, right, because right now they just live on YouTube. So what I do inside of the series Iser, there's just like a little text input box, and I paste in the ID of the playlist into YouTube, and I click import from YouTube. And then just like magic, all of the video tutorials pop in there, or they update if they already exist. I also have an import from Vimeo button, I can import from any platform and it just brings them all in, saves them into my site. And that gets the basically the whole site sort of locked and loaded ready to go. Now at this point, if you were the proper role, like if you're an admin, you could see and edit these so that way, we can go ahead and edit the titles or descriptions as we need, we can make sure that the course everything looks fine. And then when it's ready to go, basically, all I need to do is change it from pre release to active in a select list. Now at that point, I do want to make sure I have the the price and the files and every everything I could possibly want with this project or this particular series ready to go. But it's really just a flip of a switch from pre release to active, click Submit, and all of a sudden, it turns the series card into a link. And it is available for anyone with a pro subscription do watch or anyone without a pro subscription to purchase. So they're all the same thing, whether it's a product or whatever, it's all the same piece of content. And how I choose to open up that flag is whether or not you have purchased a specific one or you are a subscriber. So that's really it for me, I've really refined the process, releasing a course for me used to take a day or two. And now it takes a couple of hours, right? It takes almost like the time I need to do is like wait for the processing for YouTube, or whatever. But the actual things that I need to do are just about every single piece is is ready to go ahead of time. So that all I need to do is upload things where they need to go click go, and everything is ready to go. So this is my process. I've refined it over the course of many years here. And hopefully we'll continue to continue to refine it as we go.
+
+10
+00:08:47,130 --> 00:11:13,290
+Wes Bos: Beauty I think I'm I want to try the or trick of using Vimeo or YouTube to compress it for you. Because honestly, one of the longest things that I have to do is to run it through handbrake. For the downloadable version. I just talked about that. Let me just say so I'm gonna break mine down into pre launch, launch day and post launch. So by the time I'm done, like building a course, it comes time to, to export the videos and compress them and everything. So usually, the first thing that I'll do is I'll start to build the website. And it usually isn't from scratch, it usually is me over six months or so just kind of throwing around ideas for branding and colors and design and things like that. And I'll just have a whole bunch I should I should post on Twitter, some of the revisions of the website. And then once I have a good enough idea of the look and feel what buttons what text is going to look like I'll just jump into the code and start building, building it out from there. Probably the hardest part about that is trying to take everything that's in my head about who the course is for what they're going to learn why it's a good course, all of these things, which is essentially just copywriting and trying to get it out of my head and into text, but not just like, like, we've all seen these websites where it's just like paragraphs of text, like, no one's gonna read that, right. So trying to just to get across all that information in a visually appealing way. So that's, that's a big part of it. This time, when I launched my beginner JavaScript course, it took me two days to build the website, which was much quicker than in the past. But it definitely leaned on a lot of the existing CSS and media queries and things like that from my from my past courses. Then it comes time to I edit all of my videos as I record them, because I'm in the headspace then, and also, I hate editing videos. So just editing them immediately after I record them taking 1015 minutes to edit it really quickly. So once I've done all that, I'll put all the bumpers on them. So I'll usually just put a front bumper that's like two or three seconds anything more than that people get real mad at me about it. So just like a quick little bumper on the front of the video to let you know that you're in a new one excited about the video. And then I export them all which takes for freaking ever, maybe one now.
+
+11
+00:11:13,290 --> 00:11:15,990
+Scott Tolinski: Or did you do your exporting on your new computer,
+
+12
+00:11:16,170 --> 00:12:16,380
+Wes Bos: I did it I moved them all to my new computer and export them because I had 28 and a half hours of video, export it at 4k. So at this time, I didn't export at 10 adpi. What full 4k and they look freakin awesome. By the way, like if you go on Vimeo and just like let Vimeo figure out the quality for you that it looks so good. I'm so happy with them but it just like like a one hour video. Like some of my some of the videos are one hour because they're they're big things that we're building, like those took like 30 minutes, 45 minutes to export, because I export that at such a high bit rate. Because I need I hate it when the text is pixelated. Like I want the text to be as crisp as possible. So I export it at a very high bitrate. At 4k, it takes forever. Like I think I think the 28 hours took me something like 20 hours to export on my poor little MacBook it was
+
+13
+00:12:18,000 --> 00:12:19,440
+the entire time.
+
+14
+00:12:21,870 --> 00:12:38,190
+And then once those are exported, I'm sure there's I also think that because I use ScreenFlow. Like I don't think that that's the best video. I think if I use like a proper video editing, that would be faster. But also like i don't i don't care that much like I'm working on the website at the same time.
+
+15
+00:12:38,460 --> 00:12:53,730
+Scott Tolinski: You know what I've been considering? I've been considering getting screencast or ScreenFlow. Again, whoa, I used to use it. And one of the things I didn't like about it was like it was really slow to populate the audio waveforms and things and still is it still is
+
+16
+00:12:53,730 --> 00:13:22,530
+Wes Bos: it got a lot better in the latest release. Because what happens is they try to they try to paint the video forms first. Yeah. And then they paint the waveforms and I don't care about the video about the video always just my code so that now they they have this new thing where it will, it will render out like a 720 version of it just for you. And then when you go to export it, yeah, like a proxy. Yeah, it's a proxy. It's exactly what it's called. It's it's a bit faster. But still, I don't know, it's still kind of slow.
+
+17
+00:13:22,770 --> 00:13:52,830
+Scott Tolinski: I've been thinking about just because as good of a job as Tim has done for my video editing, he's not going to be available next year. So I need an editor and I was thinking about maybe just streamlining the process and moving it all in. Because right now I have to record it into ScreenFlow and I have to run an export compression from screen flick which is stupid that I have to do that. And then I have to would then have to import everything and it would be nice to maybe just centralize it all and I'm really not doing intense multi cam editing or something. So I don't Yeah, I go back and forth.
+
+18
+00:13:52,920 --> 00:13:59,250
+Wes Bos: does everything I need I like it a lot like I complained about it only because I want it to get better.
+
+19
+00:13:59,490 --> 00:14:07,050
+Scott Tolinski: I think I would like the simplicity. I use ScreenFlow for like two years primarily when I first started low Yeah, and it's been a while so
+
+20
+00:14:07,470 --> 00:15:42,720
+Wes Bos: yeah, you're good. You should try it out. It's it's not the best thing but like I think it's the best thing at least for me. I don't I don't want to get into anything else. It's nice and nice and quick to edit the videos which I like. So anyways, once I have that once I've exported all the videos that have them all in super high quality, then comes uploading to Vimeo. So I have 97 gigs of video for the course as high rez and then that gets compressed down to six and a half gigs. So at the same time I will or on a different computer I will upload them all to Vimeo and then I will also run them all through handbrake which compresses them down to attend ADP and does like like some sane settings on them. So it's like it's like did you can download them on for a plane ride or something like that. So I run that through handbrake and Then I compress them into a number of zip files, usually two or three zip files, depending on how big the files are. So people can download them. I'm looking at automating that right now. Because what inevitably happens is that I have six gigs of zip files, maybe it's two or three files. And then I have like, Uh, oh, I left like a one, one little false start in a video. So I have to edit that video, export it, compress it, upload it to Vimeo, remake my zip files and then upload it and I have the fastest internet upload I can get at my house, which is like downtown half a million people in my city, like I'm don't live on a farm here is 10 megabits up, and it's so slow, it kills me,
+
+21
+00:15:43,080 --> 00:15:43,980
+Scott Tolinski: I get 1000
+
+22
+00:15:44,130 --> 00:19:54,390
+Wes Bos: Yeah, like that blows my mind like I could, I could do so much more, I could release my courses so much faster. If it wasn't for that, because it takes a couple days to export and upload these, all of these videos at once. So once that's all up, I've got my zips, I put them on backblaze b two, I'm looking at trying to figure out how I can streamline the compression because there is a handbrake c li and I'm looking at how I can automatically compress them with streams. Maybe we'll have a video of me explaining what streams and buffers are again, in the future. I then once that's done, I go ahead and create all the graphics that are needed. So each package that you buy has a graphic, you always have to have like Facebook share on Twitter share graphics, five icons for each one, there's all kinds of these little graphics that need to be made for each one. So create all of those, then it comes to launch day. So once I have it all online, and we have a we have video on our each of our course platforms you can go and listen to but essentially I have I connect to the Vimeo API and pull down a list of all of my videos. And I go and add the module information to each of those videos as to usually my courses are broken up into different modules. Like this last one, I think has 15 different modules, things like the DOM events, a sink, await flow control, things like that. And that that all gets pulled into the website, it gets pulled into the video player to tell you where you're at. And then when it comes time to actually launch the thing. Usually I'll just push the website live and don't say a thing. And there's enough people that are sort of chomping at the bit to get to it, that they are refreshing it every half an hour or something like that. I believe this time, it took two minutes before somebody bought it after I pushed it. So I just be quiet for a couple hours or not a couple like an hour or so. And just make sure that nothing goes awry. Usually I try to get both people into beta test the videos and to beta test the website. But this time, I was just under way too much of a time crunch. Because of Black Friday, like I had to get this thing launched by Black Friday. So I had no choice. I couldn't do it, which is okay, there's there's still like things coming in here, here and there that are broken that I have to fix. But I'm quiet. Then about an hour later, I'll tweet it out. And then that spikes, the number of people on the website, things like that. And then I'll message My slack room, which has quite a few people in it. And that will give me another spike of people on it. And I'll get like lots of good feedback. Usually people are sending me Twitter DMS. Hey, Wes, this is broken or whatever. Things like that. Like I probably should have been vetted, proper QA process, but we'll do it live I did at this time. There's always little things like that, that pop up. Of course, I'm watching my like century, something like that, to see any errors that spike once people are on it, because there's often stuff like that that happens. And then finally, once I'm like confident bunch of people, a couple hundred people have bought it, it's looking good. Then I send it to my email list. And that's the big kahuna that then I get worried about my email my server crashing, which thankfully hasn't happened in the last couple launches. I've got that sorted. But then I sent it to my email list and I get lots of people going on that. So that's my launch day, and then post launch. So usually like I'm almost a week post launch right now and and my days look like I've keep a close eye on the slack room for little things that pop up that are confusing, like one silly little thing. But like in one of the videos I said VS code already gives you the curly brackets for your settings object. And a lot of people didn't have any settings. So they didn't have curly brackets. And like that's such a silly thing. But when people are new to programming, they don't know to put the curly brackets in there, right so I have to go back and edit that video and say like if you don't see curly brackets, make sure you put a set in there first and then paste this thing on in there. I do a bunch of small little edits. So inevitably, I'll forget to edit out a 32nd long pause of me going oh
+
+23
+00:19:55,920 --> 00:19:57,540
+Announcer: why isn't this work gang? Maybe
+
+24
+00:19:57,540 --> 00:19:58,310
+Scott Tolinski: screaming
+
+25
+00:19:59,360 --> 00:20:24,590
+Wes Bos: Yeah. So I'll edit those out, which that causes the whole trigger of me having to export it, uploaded the video, compress it, re zip it, re upload that whole thing, which is why I'm looking into to streamlining that right now because it's a bit of a pain. And then I'll just send a bunch of follow up email. So like, I don't email a lot. But when I launch a product, like it's hammer time, like I do send,
+
+26
+00:20:24,590 --> 00:20:25,860
+Scott Tolinski: guys,
+
+27
+00:20:25,860 --> 00:20:55,410
+Wes Bos: I it's hammer time, I do send like, I think Black Friday set for four emails to my which is not a lot for like Old Navy, but it's a lot for me. So send a bunch of follow up emails, which only got two f words as replies, which is amazing. Yeah, new all time all time low. And that's it. That's, that's my my launch process, I just kind of wind it down, I've got a couple more videos, I need to tack on to the end yet. But then I do it all, again, start working on the next course, tick,
+
+28
+00:20:55,820 --> 00:20:56,460
+Scott Tolinski: tick, tick, tick, tick.
+
+29
+00:20:56,460 --> 00:20:57,930
+Yeah, I had
+
+30
+00:20:57,930 --> 00:22:26,400
+one little thing I forgot about until just now when you were talking that I wanted a dimension to something that I do that I think could be really neat for people. I use figma as my main design application. And so if you're creating content, you know, typically we think about responsive content primarily being for the web, right? Because that's, you know, why you have constraints, where their app design or whatever, but I use figmas constraints to do all of my thumbnail design. So I do my thumbnails that you see on the level of tutorial sites as an SVG. But what I do is I have several other modified versions of that component in figma. I did a little finger quotes when I said that. So I have a component in figma. And when I create my thumbnail, it automatically creates an Instagram sized promo material, it automatically creates an Instagram promo material, and it creates a 4k one that I use for by video, it creates smaller ones that I use for the site. And it creates ones with coming soon banners and whatever. So that way, I can just select all of these frames and export them all at once. It would only making the design once I that was one thing that I was going, I don't know a lot of a lot of times in my process, you're like finding something that is a pain point, right? And that you want it to improve here or there. So I like to refine my process and those ways to automate things. And that's just a little extra thing I like to do to use a design app in that way. But that's really all I have on my course platform.
+
+31
+00:22:26,460 --> 00:22:27,780
+Wes Bos: Such a good idea.
+
+32
+00:22:27,780 --> 00:22:28,500
+Announcer: Thank you.
+
+33
+00:22:28,500 --> 00:23:23,280
+Wes Bos: I need to do that. Oh, and the other thing we didn't talk about is the copious amount of support email that comes my way. So whenever whenever I launch something, I get hundreds I think I think I counted. over this last launch. I got 1400 support emails from people and a lot of them are. Some of them can be fixed by UI. Like one bad thing I did on the website is I put the starter package before the master package. And people on mobile just scroll down and they say oh, there it is. I'll buy it and then they go oh, shoot. I bought the wrong one. I didn't buy the mat. I wanted it all right. And like that's bad UX on my end, right? Like that's easily terrible. Bad. Yeah, super bad. And other things are just like it's people send you their life story. Like I was I was born in West Philadelphia born and raised. I did Java for most of my days. And chillin out maxin
+
+34
+00:23:23,280 --> 00:23:24,390
+Scott Tolinski: relaxin, all cool
+
+35
+00:23:24,420 --> 00:24:15,570
+Wes Bos: chillin out Adobe max. Oh, like in real cool. Anyways, so the people give me their entire life story and say, like, what should I do, and you have to like, sort of like parse their entire life and tell them which course to take or something like that. And I one of the big ones for me is that there's overlap between my ESX course in this course. And also, I have a beginner JavaScript course already, which is JavaScript 30. And I have a huge thing on the website that explains what the differences are and how they work together, or if you shouldn't take this one or not. And that really helped as well. And then just like little things, like oops, forgot to use the coupon code, or probably 200 of those were, I spelled My name wrong and my email address, and I didn't get it, right. So like all kinds of stuff like that. And I have a system that does most of that. But the support is is a lot of work.
+
+36
+00:24:15,990 --> 00:24:17,490
+Scott Tolinski: It's a lot of work. It's tough.
+
+37
+00:24:17,700 --> 00:24:28,590
+Wes Bos: Then there's Twitter, DMS to Instagram DMS and young calls and like I put my phone number on my website, which people think I'm bonkers about, but I got three phone calls.
+
+38
+00:24:28,830 --> 00:24:33,330
+Scott Tolinski: Yeah, people thought thinking that you're too crazy for that, that you must have put my phone number there.
+
+39
+00:24:34,110 --> 00:24:34,710
+Wes Bos: I should.
+
+40
+00:24:36,060 --> 00:25:00,630
+Scott Tolinski: You know, that's something that Courtney and I do is that whenever we're interested in receiving I shouldn't say that she started this. Whenever we're interested in receiving updates about something whether it's like an email thing, but we don't want it in our own inbox or a phone number. Oh man. Yeah, put in each other's information there. So I'll be like, why did I just get a home goods email in my inbox and garden They'll be like, Oh, no.
+
+41
+00:25:00,630 --> 00:25:03,120
+Announcer: Ah,
+
+42
+00:25:03,390 --> 00:25:33,990
+Wes Bos: that's funny. Yep. Cool. Well, that's our launch process. I'm not sure if it's interesting to you or not. I know a lot of people who also have courses are interested in it. And then people just in general, just interested like, what is the process for launching this thing? Because sometimes I get people being like, hey, like, Can you just give me early access and like it literally takes me 20 hours to export this thing. I can't just like give you type of button and say early access, right, Early Access
+
+43
+00:25:33,990 --> 00:25:35,490
+Announcer: Board. Cool. Alright. Thanks
+
+44
+00:25:35,490 --> 00:25:38,640
+Wes Bos: for tuning in. We will catch you on Wednesday.
+
+45
+00:25:38,879 --> 00:25:52,380
+Scott Tolinski: Later, please. Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
