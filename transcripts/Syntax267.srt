@@ -1,0 +1,96 @@
+1
+00:00:00,359 --> 00:00:24,480
+Announcer: Monday Monday Monday open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob and Scott Tolinksi ski.
+
+2
+00:00:25,950 --> 00:00:54,930
+Scott Tolinski: Oh, welcome to syntax. And this Monday tasty treat. We're gonna be talking all about durable links. It's turbo dime. Oh, that was a terrible URL. I usually do. I'm pretty good at that. It's turbo time, we're gonna be talking about turbo links and server generated HTML, plus some juice sprinkles in there. I love that you wrote jam sprinkles In this episode, title less. My name is Scott to Lynskey. I'm a full stack developer from Denver, Colorado, and with me as always this deep West boss.
+
+3
+00:00:54,989 --> 00:00:56,900
+Wes Bos: Hey, everybody. Hey,
+
+4
+00:00:56,940 --> 00:01:40,410
+Scott Tolinski: Wes. Yeah, so this episode, we're gonna be talking all about turbolinks. At the time, we recorded this episode, the hate app comm has sort of just launched and it made a big splash with their usage of primarily server rendered HTML and usages of things like turbo links to really make sure that the experience feels fast and modern. So we're going to be talking all about turbo links, what they are, who uses them, what just a little bit about the ins and outs there. This episode is sponsored by Prismic, which is a really, really cool content management system that we talked about in our CMS roundup episode, as well as they have sponsored quite a bit of syntax. So Wes, with a little bit more about Prismic, you want to dive in?
+
+5
+00:01:40,530 --> 00:05:58,620
+Wes Bos: Yeah. So if you want a super quick up and running back end that allows you to create all of your different kinds of inputs that you want. Prismic is for you. So the way it works, you create a project, then you go ahead and create your data types. And then for each data type, maybe like a person, maybe a store, maybe a pizza. For each of those pieces of data, you can say, Well, what fields Do you like for each and there's all kinds of different fields, they have a really nice wiziwig field number input fields, plain text, input fields, image, upload fields, all of the all of the good ones, and you can sort of click together an entire back end, then, once you have all of your data, you can bring that in via the REST API or their graph qL API hooked up to Gatsby effortlessly. Like I bet you could get a Gatsby site up and running with Prismic in under half an hour. Or if you just clone their demo, it will be much less than that. But from scratch, I bet you could do it under half an hour. So if you have a project, check it out. prismic.io forward slash syntax. They also have a really funny landing page. So you want to check that out. Thanks so much to Prismic for sponsoring. Alright, let's talk about turbolinks. Like, what is it? So essentially, if you think about like how popular apps are made right now, a lot of them are built where you go to the page, that page will request a bunch of data via an API, whether it's a REST API, whether that's a graph, qL API, and then you'll use something like react or any other framework to render out all of that in the client, or you render it on the server, and then you pick it up on the front end, you render everything in your JavaScript library. So the idea with turbo links is that all of the HTML is generated on the server. And then when you need an entire page or a part of the page to be re rendered. You You still ping an API with JavaScript. But instead of it returning you JSON, which you then go ahead and template out. What it does is it just returns to you HTML from that API directly. And then you take the HTML and you dump it into the page. So a really good example of this is github.com is primarily built in turbolinks. So if you want to go from one page to another on GitHub, you'll often see you get that little bar over the top that sort of animates its way across as you're going from one page to another. And what is generally happening there is that it says, okay, someone wants to go to this page, let me first request that HTML, it comes back and then we replace the entire pages HTML. So rather than doing a full page reload, it just swaps out the HTML of the page, sort of behind the scenes, which is kind of cool. You can also use it just for parts of the website. So if you wanted to re render a comment on GitHub or something like that, you could ping the API, and it will bring back a list of that comment or all of the comments. And it won't return you an array of comments or return you the actual HTML, which you can just then stick directly into into the DOM with your JavaScript. So it's pretty cool and There's sort of like two pieces of JavaScript that are needed for it to to work. And then we'll talk about like, what about if you need to still need some JavaScript like this is not. This is not just websites that have no interaction in them and their full page reloads. But sometimes you still need like a widget or a gooey or something like that to pop up. So how do you do that? So the way that it works is that you you run this turbo links JavaScript, on your website, and then you have just regular anchor links from page to page. And then when instead of actually reloading the page, every time you click on a regular anchor link, it will prevent default, and then it behind the scenes, it will go ahead and fetch the HTML from that page, come back and swap it out right in place for you. And that gives you It gives you that same like fast refresh field that you get with a react application, but the benefit of it being rendered entirely on the server.
+
+6
+00:05:59,130 --> 00:06:05,010
+Scott Tolinski: It's funny, when I hear some of this, I think about p Jax, do you remember p Jax? Did you ever use that
+
+7
+00:06:05,010 --> 00:06:07,320
+Wes Bos: exact same thing? Yeah.
+
+8
+00:06:07,409 --> 00:06:18,810
+Scott Tolinski: So P Jax. I don't remember the technical ways of doing this. But I used it even inside of Drupal, even though PG x i think was a Ruby thing. First and foremost, wasn't it? So it was this?
+
+9
+00:06:18,810 --> 00:06:19,500
+Wes Bos: I think so.
+
+10
+00:06:19,530 --> 00:07:01,770
+Scott Tolinski: Yeah, I believe PG x came out of rails. I'm not positive about that. But it basically allowed you to get the client side style routing, where a section of your site was reloading without the let's say, navigation of the site. So like part of your site would stay where it is. And the other parts would be swapped out via JavaScript. But it was very easy to do and very much so that you just like basically included some links and had some specific nav be the PG x links, and it just worked. That's all I remember, specifically, it was jQuery based. I think he was jQuery based. I'm not positive about that. So it's funny, I'm working off a memory here, because this was 2011. That I was using p jack. So it was quite a bit A while ago.
+
+11
+00:07:01,770 --> 00:08:02,040
+Wes Bos: Yeah, it's kind of interesting. Like if you go to, like Basecamp was the sort of the people that made this popular, and they are the developers behind turbolinks, the JavaScript library. And then you obviously have to still have like a server side portion of that as well. It's, it's there's adapters, for node and for most likely for rails, because that's what base camp uses. But if you just go in the dev tools and click a page, you'll see that request and then in you can look in the response tab of that request. And instead of seeing raw JSON, you see HTML, which is kind of cool. So the question is like, Okay, first of all, maybe like, like, what's the benefit to that? I guess the benefit to that is that you don't ship as much JavaScript to the client. And also, there's no rendering delay, or you fetch the data and then render it out on the thing. And that's not really been an issue of mine in the past. But certainly, it has been for a lot of people, because there's a reason this is a thing, right?
+
+12
+00:08:02,250 --> 00:08:14,400
+Scott Tolinski: Yeah, you and I are working with much different amounts and types of data, then quite a bit of other people who are working with either larger amounts of data, or a larger amounts of people utilizing that data that that could Yeah, that's a little bit different.
+
+13
+00:08:14,610 --> 00:08:45,750
+Wes Bos: Yeah. Like, I'm just looking@hey.com. And if you want to, if you want to archive and an email or reply later, or PIN, something, all of that still happens in the browser, like each of these actions is not an entire different page. So like, that's JavaScript, right? And if that's the case, then you have a couple options there because I don't think you can use that's a good question. Actually, I don't know if you can use like a react for something like this where you just want parts of it to be dynamic. Yeah,
+
+14
+00:08:45,770 --> 00:09:08,580
+Scott Tolinski: you can. Absolutely, yeah. Yeah. It's funny, because when view teaches view, they say like, oh, here just use view for this little tiny bit. But when react teaches react, or like, you gotta use create react app. And I know that's not like how they're intending it to be, like taught but like, definitely you can you just basically you just pick a div, and you say, hey, render my react components into this div,
+
+15
+00:09:08,880 --> 00:10:19,520
+Wes Bos: and, you know, multiple react routes on a single page. Yeah, you can have as many as you want. Now, yeah. Okay, this all makes sense. But more popular for this is, there's sort of two big ones in the space, there's stimulus. And another big one is called Alpine j. s, where they refer to them as JavaScript sprinkles, where you can just add some very light JavaScript at it very much like we did with jQuery, you would just render the whole thing in WordPress or whatever. And then you'd add a little bit of JavaScript on top when that page is loaded. And I refer to those as JavaScript sprinkles and a lot of other people do as well. So stimulus was sort of the first one Alpine j. s is gaining a lot of popular seems pretty cool and have very much I view Angular one approach, where you just write your HTML in a certain way. Way and the JavaScript library will just pick it up from there and allow you to do things like looping in handling clicks, and showing and hiding and those sort of basic stuff that you might want to do in the browser. But it's all done in your HTML templating language, which is pretty nifty.
+
+16
+00:10:19,830 --> 00:10:29,900
+Scott Tolinski: Yeah, very nifty. Man. I love the term sprinkles here, thinking about how can bake some sprinkles into my cake and get a funfetti cake of web dev?
+
+17
+00:10:30,240 --> 00:11:43,770
+Wes Bos: Yeah, this is not something I've I've used myself. But if that we just do like a little show explainer on what it is, because you're gonna hear it thrown around quite a bit. I've seen back when react suspense was supposed to come out. Sorry, not when it's supposed to come out when they first demoed it, showing a demo where react was not running on the client, it was just running on the server. And then there was just a thin layer of JavaScript running on the client, and it would fetch back to the server, the different pieces that needed to be re rendered. And I'm wondering, because react is not, I have no inside information. But I wonder if react is looking at this as as an option because they haven't released suspense. They're looking at making the React server like a first class citizen server side render. And I wonder if they're looking at like, can we build something like this? Where instead of doing all of the rendering and hard stuff on the client, can we just fetch HTML diffs and then dump them into their corresponding pieces on the website or the entire page? That's why I wanted to do this, because I think that it's something that might become more popular in the next couple years.
+
+18
+00:11:43,770 --> 00:13:33,150
+Scott Tolinski: Totally. I wonder about this, too. I mean, I'm do I've been doing server side rendering with react for a very long time now? Then initial experience isn't really isn't really, I don't want to say it's not terrible, because it it's not terrible. I know. But that sounds like bad to say, I don't think it is terrible. Yeah. It creates the HTML, it creates it with all of my data, and it just spits it out on the page. And then initial page is, in fact, like, fully server side rendered, hey, that's possible. The next step becomes like, how can we bridge the gap between none the next client side bit when you click a link or you do something? What's that next bit look like in terms of how does react react to those changes? Yeah, very fascinating. To me, it's a fascinating world to explore. I'm gonna check out some of the stuff in it's funny, we didn't mention in this episode, that turbolinks is not new. It's been around for since 2015. That's it, I know, it's probably gone through several additions. In it, actually, they made it really easy to add to a Rails project. Because I used to do rails work myself. And I remember, when turbo links were, like, just coming out, it's like a thing. So it's a fascinating world. And I think we're, we're bound to see a big shake up this this next generation of frameworks whether or not react changes significantly or doesn't change at all, or goes in some of these directions, I think it's going to be a very, very interesting time for us as developers, and I'm sure there will be, you know, I don't think front end framework, people are just going to sit around and watch the the web go to, you know, primarily server rendered web and do nothing, we're gonna see evolutions, we're gonna see growth, we're gonna see advancement, I mean, heck, I just think about spelt, and all of the cool things that spelt does in some of these regards. And, wow, I'm excited for the future of web dev. So mammoth, and that's my attitude about this.
+
+19
+00:13:33,150 --> 00:14:20,970
+Wes Bos: No, it's another kind of cool thing about this. And next yas is kind of doing this already. And I wonder if they're, they're looking towards this as well, where they have like these ecstatically generated on demand pages. So it's all it's generated on the server and and then it's static, and then it will serve it up the next time as static. Yeah. But what's cool about that is you could like put raw SQL queries in a react hook, and then just ship HTML to the thing. And I realized we're kind of reinventing the wheel because that's what what Bill has been for all these years. But right, then you might not even need to worry about like having a publicly facing graph qL API, because yeah, you don't need to query it from the client. It's just done on the same server.
+
+20
+00:14:21,000 --> 00:14:36,270
+Scott Tolinski: And we only query from our API on the client on page change. I mean, on that initial page render, that they just come in, represent user data, whatever, that's all come in server side rendered. So the only time we're making those changes in that client side update. So yeah, so there's
+
+21
+00:14:36,270 --> 00:14:48,510
+Wes Bos: some here. No, we don't totally know what it is. But I thought we would do the show just to sort of keep you on it. Knowing that this is maybe something that will become popular in the next little bit are already as popular. That's about it.
+
+22
+00:14:48,540 --> 00:15:04,290
+Scott Tolinski: Yeah. Cool. Well, I had a great time pontificating some of this stuff with you. I'm really interested to hear and maybe check out more and again, see where all this goes didn't and I know it seems like the React team is on it. Or at least there's something brewing there. So, who knows extended for the future here.
+
+23
+00:15:04,920 --> 00:15:08,850
+Wes Bos: Beautiful. Alright, thanks for tuning in. We'll catch you on Wednesday at eight.
+
+24
+00:15:10,740 --> 00:15:20,490
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
