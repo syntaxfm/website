@@ -1,0 +1,252 @@
+1
+00:00:00,359 --> 00:00:26,340
+Announcer: Monday, Monday Monday, open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA and Scott Hale. Totally in ski. Oh, welcome
+
+2
+00:00:26,340 --> 00:01:02,150
+Scott Tolinski: to syntax in this Monday hasty treat, we're gonna be diving into another episode of where are they now? We had so much fun with the last one. We couldn't wait to start this one. So in this episode, we're gonna be talking all about libraries, JavaScript, CSS, and just sort of web platforms in general. And where are they now? things that were once hot in the past? And maybe they're still hot today? And or maybe they've cooled off a little bit. So my name is Scott Dylan skene. With me always is Wes Bos. In this episode, we are sponsored by sanity.ai. Oh,
+
+3
+00:01:02,490 --> 00:03:22,380
+Wes Bos: yes. So Sanity io is sponsored a bunch of episodes a couple months ago, and they are back for a whole lot more, they booked a good portion of next year already as well, because they are saying that a bunch of syntax listeners tried it. And lots of people are actually using it in their production projects a couple pretty I'm not sure how to say which companies are using it. Maybe I'll ask and talk about that later. But what is Sanity Sanity is it fits into the sort of like headless CMS space, or, as we like to say, on the podcast a boy life, which is bring your own front end. And it's basically something where you can pay for the service, you can log in. And you can create all of your different content types that you want to have, you can have relational content between the two. And then you have this whole sort of like they called the Sanity studio where you can log in, and you can be able to manage all of your content. Now, there's lots of places that do that. But the really cool thing that I like about Sanity is that you can write your own react components to manage the inputting of the data. That means, of course, you can you write your entire front end in Gatsby, or next or react or Angular or anything that can consume their API. But you can also create your own react components on their own back end, which will allow you to do custom inputs. Because Scott and I were talking about that earlier, where your data looks different to everybody, everyone's data inputs are different, they all have different needs. And if you just have your standard, like image, upload, text input description box that doesn't fit everyone's actual real world needs. So being able to kind of best of both worlds, because you could just use like an existing service that will do all of this for you. But if you need to allow your users to input this data in any special way, you can build your own. So check it out, if you want to build a project, maybe over the holidays, and you just need a back end to get you up and running check out Sanity, it's at sanity.io s a n i t y.io, you're going to get the free plan for zero dollars. It comes with two users two data sets and basic usage, you can go see what you get for that. So I'm one of those things where you need to put in a credit card, and then they'll charge you as soon as you go over. You don't need to put in a credit card to try this thing out. So check it out. Thanks so much to Sanity for sponsoring. Again. That's s a n i t y.io. forward slash syntax. Nice.
+
+4
+00:03:22,649 --> 00:04:12,120
+Scott Tolinski: Cool. So let's get into it. You remember in the last episode, all we did is talk a little bit about what these libraries are, what they did for us when they were used, maybe who authored them, and then talk about if they're still used today. And if not maybe what happened to them. So the first one that we're going to get started off in this episode, we're going to be talking about a couple of mobile frameworks. And now these mobile frameworks were sort of around the time when you people might have a separate mobile app that was like a bigger thing than responsive was, or maybe the iPhone apps all sort of looked one particular way with those gradients or whatever. And you just wanted your web app to feel like a just a native mobile app, even though it wasn't. And so some of these like specifically jQuery UI, if I still see an app with jQuery UI, I'm like, oh, boy, it's cuz Yeah, it's been a little while.
+
+5
+00:04:12,120 --> 00:05:30,960
+Wes Bos: The thing about the jQuery UI or jQuery Mobile was Oh, yes, actually. We can talk about jQuery UI as well. There was other ones like Sencha touch, I think the need for these things came out because a lot wasn't possible in the browser. When these things came out. This simple having a div that scrolled was just not possible at the time, like overflow scroll did not work position fixed. So you want to have like a bar while you scroll in the content goes over it. That didn't work in the olden days. Now all of those things are fixed. You can start to build your own UI frameworks. Performance is not so much of an issue as it used to be on these things. So I think these like purpose built mobile frameworks are not as as popular anymore because of that. I also think that we're really detaching functionality and what they look like so it To carry mobile jQuery UI, you could use them without the CSS library that it came with. But most people, what they would do is they would just use the the look and feel of it, as well as the touch events and all that stuff that came along with these these frameworks as well. And as design tastes started to change, I can always tell when I'm on a website that uses jQuery UI or jQuery Mobile, just because it just feels that certain way, and no one's stopping you from changing that. But it's just one of those things that you run into.
+
+6
+00:05:30,990 --> 00:07:14,160
+Scott Tolinski: Yeah, I mean, the whole design pattern was like, based off of like that iPhone, like the original iPhone. So they all had that very, like specific look to them. Yeah, so these things, again, I think part of the death of a lot of these mobile frameworks, again, came from just not needing it anymore. I mean, responsive design took off. And that was more of a bigger thing. People didn't have just responsive, like the dedicated mobile apps as much. And the design styles, people wanted to have it look more like their thing, or their app, or whatever, or fit into different design styles. So they just stopped being used. So I think the next one is going to be a fun one. And this is flash, which we all know is a popular, I don't even know what you would call it as a popular alternative to Java Runtime when we're on a time Yeah. Which allows you to do some really amazing things. For the time I you know, some of my introduction into web development personally was through flash development, because at the time, the way you did animations on the web, you had even things like a timeline and ability to have some sort of JavaScript like syntax, which was called ActionScript, which is based on ACMA script. So there was a lot of things that were sort of interesting about flash, there were some really gaudy, you know, futuristic tech, no bump in websites made from it. But there was a lot of like, really interesting web technologies like coupons or things that we used in our normal, or even just playing video in our normal web development world. That wasn't some flashy thing that used flash. And when the iPhone came out and announced, it wouldn't be using Flash. I think a lot of the web rolled was like, how do you even use the web without flash? I mean, that's how big flash was. How do you even use the web without flash,
+
+7
+00:07:14,220 --> 00:07:31,050
+Wes Bos: I remember seeing people with like, Android tablets being like, iPhone sucks, it doesn't even run flash. And I remember being so frustrated, trying to like view a restaurants menu on my edge, first iPhone, and it didn't work. There was no flash on the iPhone, very frustrating.
+
+8
+00:07:31,080 --> 00:07:36,600
+Scott Tolinski: My Motorola Droid, I had the original Motorola Droid, I loved that it did flash because I could do have that
+
+9
+00:07:36,600 --> 00:09:11,340
+Wes Bos: one as well I do is I could do all that stuff. And it was fine. It just ran. The reason why they didn't is because splashers proprietary is owned by Adobe. And Apple didn't like that it was a battery killer, because it had to run this entire environment to actually run flash and battery was a huge thing on your phone that that the battery was garbage already with the first iPhone. And then at the same time, we had html5 which sort of ushered in the replacement for the need of a lot of these things. So we had web fonts, we had a video tag the audio tag, because before html5 video, there was no way to embed a video without using either flash or like an embedded mo v file on a Mac only, only audio webcam access saving files to the system. All of these things are now available when html5 came around. So that sort of killed it as well. I was very happy when that thing got lost. And I know that a lot of like the good flash developers were just like, Huh, no big deal. And they just moved over to Canvas and, and JavaScript and started just building amazing stuff. So I don't think that we really lost a whole lot there. Yeah, in terms of the web, yeah, well, we also had was Microsoft Silverlight that was sort of a flash competitor that came along as well. And the only reason I think people remember Silverlight is because Netflix uses Microsoft Silverlight for the longest time. And it was so frustrating because I remember so many like I remember so many days when I was just married and we would make nachos with my wife and sit down on the couch and want to watch a movie and it was like you need to update Silverlight or
+
+10
+00:09:13,020 --> 00:09:15,960
+Scott Tolinski: whatever, sir like today.
+
+11
+00:09:16,020 --> 00:09:54,000
+Wes Bos: Yeah. Oh, come on. I have to update Silverlight. And the reason why Netflix was such a holdout for that is because there was no DRM on the web. And that was a spicy topic for a long time. Should we allow DRM which is digital rights management the ability to just like before that you could just right click save a movie or a video tag and save the source for that. But it was a huge thing. Firefox did not want DRM on the web as as a consumer I just wanted html5 video. Yeah, on Netflix without Silverlight and but can you imagine why people need DRM? Netflix without DRM
+
+12
+00:09:54,000 --> 00:09:55,440
+Scott Tolinski: like? Yeah,
+
+13
+00:09:55,440 --> 00:09:57,870
+Wes Bos: can you imagine just like Click Save?
+
+14
+00:09:58,140 --> 00:10:03,210
+Scott Tolinski: Yeah, that would have sunk Netflix. Because it would have sunk them I really or at least the the streaming portion, I
+
+15
+00:10:03,210 --> 00:10:24,240
+Wes Bos: think the big thing was I don't think Netflix probably cared that much but it was the studio the relationships with the studio, they would not be able to have a video they would not be able to get what's my favorite Adam Sandler movie? Happy Gilmore. If, unless they had DRM in it. So that was the the final dagger in Silverlight that we did that one to do.
+
+16
+00:10:24,960 --> 00:10:27,770
+Scott Tolinski: My favorite my favorite Adam Sandler movie is the Wedding Singer.
+
+17
+00:10:29,250 --> 00:10:30,060
+Wes Bos: That's a good one. Yeah,
+
+18
+00:10:30,060 --> 00:10:36,120
+Scott Tolinski: Courtney and I were just watching and we're like, I feel like this is objectively the best Adam Sandler movie, but that could just be me.
+
+19
+00:10:36,120 --> 00:10:37,170
+Wes Bos: That's great.
+
+20
+00:10:37,170 --> 00:10:39,020
+Scott Tolinski: Where are they now Adam Sandler movie?
+
+21
+00:10:39,650 --> 00:10:46,620
+Wes Bos: Where are they now? Tweet us at syntax FM with your favorite Adam Sandler movie and why make sure you explain why please don't let it be jack and jill. If
+
+22
+00:10:46,620 --> 00:12:00,030
+Scott Tolinski: If you say jack and jill, I'm just not even going to delete the tweet. Next up we have this is actually going to be for anyone who at any point worked in designing web applications or websites back in the day, when grid systems took off, these things really took off and their grid systems in all sorts of shapes and sizes. I think one of the most popular ones probably ended up being in bootstrap itself. But the grid system goes deeper than just a grid system with classes or something like that the grid system is for a long time was a whole way of designing websites, you had your Photoshop templates, with the margin setup all you know your red lines, whenever you open the document, you had your overlays, and you had your systems in code to make this easier whether or not these were CSS based frameworks or whatever. And I think one of the the first big popular ones was the 960. Gs. Yeah, which is the 960 grid system that dates it right there. Because it's back when computer monitors that 960 was the maximum width that you would go, I remember when we went wider than 960 for the first time as our like design width. Because I was like, yeah, whoa, no, not all computer monitors are that narrow anymore.
+
+23
+00:12:00,090 --> 00:12:34,710
+Wes Bos: This is so old that it was before responsive design. And it was just like you have to remember everyone was like we need to make sure our website fits on. What was it like a like a 15 inch monitor or something? I remember I remember people being dismissive of people who had 15 inch monitors and being like, whatever I'm going 11 4011 for those people that have 15 inch monitors, you know, yeah. And there, there was no no way at the time to change your grid system at the time. But yeah, here's the the big question is did you go 12 column? Or did you go 24 column,
+
+24
+00:12:34,980 --> 00:13:12,420
+Scott Tolinski: I never made those decisions. It was always the designer on the projects for our agency that was making those decisions. And we would just sort of do whatever they gave us. I believe most of the time we went 12th. That's what I remember working with mostly, there were like some systems in Drupal I had set up via the Omega theme that's dating a little bit, the the Omega theme in Drupal, that it was all just like you could set up your grid system, we had just like a default one that that went in there and and worked fine. I remember like the very first bit of CSS code that I would write would be like with 960, margin zero auto on the container div, wrapper code
+
+25
+00:13:12,420 --> 00:13:27,960
+Wes Bos: that you write. Yeah, man, that's a bit of a throwback, using the 960. That's like, I remember that's the first one I kind of got into the whole web development that was built by Nathan Smith, who was still pretty active in in the web development community now. So that's pretty fun. Looking back at that, yeah,
+
+26
+00:13:27,990 --> 00:13:35,040
+Scott Tolinski: there was also a couple of others, which you had like the golden grid system. Yeah, golden grid system. I never used the golden grid myself,
+
+27
+00:13:35,070 --> 00:13:48,090
+Wes Bos: I think it was more of like a design and thought I always use the 960 gs in code. But the golden grid system was pretty popular as well. There was Suzy, which I think was like a SAS base grid makers, he
+
+28
+00:13:48,090 --> 00:14:35,040
+Scott Tolinski: was paid like paradigm shifting, in my opinion in grid systems, especially SAS based grid systems. So you had the compass based grid system and things like that. You could do like an overlay. But the cool thing about Susie's grid system was that instead of being bound to classes, like small with the near columns is going to take out 12 columns or something like that, instead of being bound to classes, you get to use mix ins to define your grid system. So you write your own CSS, how it's normally been written, you have this main section, and then the main selector, okay, this gets a grid with, you know, 12 out of 12. And so to me, Susie was really the first framework that took that idea and made it to be something that was like, just totally different. The way you define your grids.
+
+29
+00:14:35,070 --> 00:15:38,430
+Wes Bos: Yeah, it's a pretty popular and the other obviously, the big two, which I think are still pretty widely used is the bootstrap and the foundation have grid frameworks. I personally don't use a grid framework for any of my projects. No, I do use foundation on my own course site right now just for a quick and up and running, but I never feel the need that I actually need a grid system and I find that it often would just get in the way of trying to figure out how to make it and I'm just on the The Susy website right now. And I think they explain best why you don't necessarily need a grid system anymore. It says, With the advent of Flexbox and CSS Grid, there are fewer reasons to use a grid library like Suzy. And that's wonderful grid libraries, were always a temporary fix waiting for the browser to take over. Still, not everyone can play with the latest specs and will always be edge cases that require manual grid math. I think that's perfect. Because people always ask me like, what grid framework do you use? And my answer that is I just use grid or I just use Flexbox. And you don't need a framework that uses it. Because it's so simple. It's so flexible, that you don't need something that's built on top of it to make it easy for you.
+
+30
+00:15:38,460 --> 00:16:04,170
+Scott Tolinski: Yeah, so grid systems will probably always be around in design. But in development, who knows? Shout us out if you use a grid system still, which grid system do you use currently? Because I don't think either of us are up on whatever is latest in the grid world other than CSS Grid. So I'm interested to know what what grid systems people are using if they're still using them in development. Next up, we have a fun one, which I know I use this. I don't know if you did but a coffee script.
+
+31
+00:16:04,230 --> 00:16:06,030
+Wes Bos: Yes. Huge coffee script user.
+
+32
+00:16:06,050 --> 00:16:07,020
+Scott Tolinski: Yeah. Likewise,
+
+33
+00:16:07,020 --> 00:16:17,670
+Wes Bos: my codebase still right now runs on like 2% coffees a night I there's a pull request into remove that entirely. But the code that's running today still is powered by CoffeeScript. Nice. Yeah. CoffeeScript
+
+34
+00:16:17,670 --> 00:16:53,580
+Scott Tolinski: is basically Ruby flavored JavaScript. It was a lot of the things that came out of the whole, like the Ruby explosion, right? The whole Ruby explosion of Ruby on Rails, you had sass, which was based in Ruby, or compass, which was based in Ruby, you add Hamel, I think was Ruby based as well. And because of that, I think people were liking Ruby a lot. And then Ruby still great. But the sort of JavaScript flavor of Ruby, or the I should say the Ruby flavor of JavaScript was TypeScript. So I borrowed a lot of things for Ruby, and things that you actually see in JavaScript now like arrow functions and things like that.
+
+35
+00:16:53,760 --> 00:17:27,720
+Wes Bos: Yeah, it was huge variable interpolation. Oh, yeah, keep checking. That's still something we don't have in like, if you have an object, you want to check six or seven levels deep. We are getting that hopefully in JavaScript, but we don't have it just yet. classes, all of the amazing things that CoffeeScript had, we either now have an ESX they're coming to the language, or we have something like that, like TypeScript. So CoffeeScript was amazing for for pushing the web forward, I think it's very similar to Compass we talked about last episode is that we just don't need it anymore. And we should celebrate that because that means that the language has has moved forward.
+
+36
+00:17:27,750 --> 00:17:55,470
+Scott Tolinski: Yeah, I always picked up CoffeeScript. And at least initially, because it looked so much simpler to me. There was like less of this syntax garbage. And you know, I had been working a lot in Ruby and Python myself. So I was like, Okay, well, I don't have to use some of the stuff I had to use before. And it just made my code look a little bit cleaner. And I really, I really enjoyed using CoffeeScript. For the time they did it was another tutorial series I did early on and level up tutorials was on CoffeeScript. And another one that like helped propel level up tutorials. It
+
+37
+00:17:55,470 --> 00:17:59,160
+Wes Bos: was also before like prettier, or like minifier, like
+
+38
+00:17:59,970 --> 00:18:01,020
+Scott Tolinski: along grittier. Yeah,
+
+39
+00:18:01,170 --> 00:18:37,820
+Wes Bos: yeah, so that was huge. Because I felt like I like I was terrible with my code. So sloppy with writing JavaScript, and CoffeeScript was indentation based. So you had to make it look nice. Otherwise, it would break that was really nice. It forced me to actually write nice looking code. Nice. Next one we have here from the same author of CoffeeScript is underscore j. s, the story with underscore is pretty simple. underscore was a hard dependency of backbone. js. So you couldn't use backbone unless you used underscore. And what happened is john, David Dalton came along and wrote lodash that's why it's called lodash. Cuz it's underscore.
+
+40
+00:18:37,850 --> 00:18:38,700
+Unknown: That's a lodash.
+
+41
+00:18:39,030 --> 00:18:44,520
+Wes Bos: Yeah, it's a lodash. Yeah. I hope everybody knows that. If you're doing this, if you just just found that out. That
+
+42
+00:18:44,520 --> 00:18:58,610
+Scott Tolinski: seems like that would just like cruise cruise over a little bit for a lot of people. Like, I feel like it was a decent amount of time before I realized the whole load. Like, if it wasn't, it wasn't a moment of enlightenment, it might have still been cruising over my head today.
+
+43
+00:18:59,009 --> 00:19:38,790
+Wes Bos: Yeah. So lodash was initially just a drop in replacement that was focused on performance. And he basically could just take it, it had the exact same API as underscore and but it had a little bit more focus on performance, because john David Dalton was the guy who made .js perf. It's a JavaScript perf testing tool. And he's just a wizard at building things and optimizing. So it was just a nice one. Obviously, lodash has has grown huge since then, it has a lot more. It's really popularized functional programming. It's pretty, pretty neat in what it's done. And it's sort of again, underscore is one of those things that just push the envelope and now we have because of that, we now we have even better things.
+
+44
+00:19:38,810 --> 00:20:39,780
+Scott Tolinski: Yeah, yeah. lodash was funny, because for me, it was one of those libraries that like by the time I understood why I needed it, or even did actually need it. Yeah. lodash was like already here. So so like, by the time I was just picking up underscoring being like, Oh, I get it, like, I get why I would use this. Then my coworker would be like, dude, you should be Using underscore, or I mean lodash instead. Cool. So next up, we have a fun one. And this is gonna be a fun one. Because I never used this personally, it's fun for me because I never used it. And I knew it wasn't going to stick around. So I can have a little gloating here. But this one is less, which was the CSS preprocessor that existed right around a little bit after sass started to get popular. And it largely became popular because it was bundled in with bootstrap. And because it was easy to get started with, you could just drop in a script that actually allowed you to use less and not have to compile it ahead of time. So yeah, there was like a browser
+
+45
+00:20:39,780 --> 00:20:46,440
+Wes Bos: side compiler. Yeah. And since the development, but he still abused it. And
+
+46
+00:20:47,520 --> 00:21:05,840
+Scott Tolinski: yeah, people shipped with it. I think the compilation or the pre processing of sass, scared people away from SAS, and then they went to less, and then they use less. And they're like, yeah, I'll just stick with this thing. That's not as good as SAS or any of the other offerings out there. It's my controversial opinion on unless,
+
+47
+00:21:05,880 --> 00:21:06,390
+Unknown: yeah,
+
+48
+00:21:06,450 --> 00:22:31,500
+Wes Bos: you know what, Wes Bos calm right now still runs on less. And that should that should tell you how old My website is. I'm actually working on a redesign right now. But the reason why I picked less was because it's built on WordPress. And I didn't want like a build pipeline for my own website. So what I did is I found a PHP les library that compiled my les on the fly. And then it wrote a little bit of logic in the head of my WordPress file that just compiled it. If I was logged in. And as admin and a couple other if I had a couple settings turned on it, which is recompile it on the fly, which is pretty cool, because then you could just throw up your last file. And if you're logged in, it would just kind of recompile either in development or production. Probably not a great idea. But it's still it's still trucking, like, like eight years later, or something like that. It worked pretty well. Still trucking. We talked about this on the podcast before, but less also was feature less, it didn't have as many features as SAS caught up is, it was a feature phone, let's face it, it was it's now caught up to SAS and has all the same features. But it's all about timing with these types of things. And as well as like I always know like, there's always like these like, it's like Laravel developers always use view. Yeah, I think that in that whole area, it's they're always using less as well. There's certain like pockets of different developers that are like just crazy about using less, because that's what it is sass was
+
+49
+00:22:31,500 --> 00:23:16,860
+Scott Tolinski: so heavily used in Drupal land. And I the first time I heard about sass was actually at a Drupal meetup and in, he was like the Southeast Michigan, Drupal meetup or something. But the first time I'd ever heard about sass was through a talk on SAS and Hamill, in Drupal. And there were a lot of the most popular themes in Drupal that had a whole SAS build process built into them. So it was really easy to have a theme, like a starter theme that had the whole build process already set up for you without you having to do anything. And so for me, it was really easy to pick up sass and stick with it, and then look over at the less crowd and being like, why would you use this because it has less features, and it is less good. But yeah, that's the joke that keeps on giving. It's not even funny, though. But yeah, so
+
+50
+00:23:16,860 --> 00:23:17,460
+Unknown: I mean, I
+
+51
+00:23:17,460 --> 00:23:45,420
+Scott Tolinski: appreciate sass, or I mean, I appreciate last. What I appreciate most about less, though, was the fact that I think it was needed to get CSS writers over to the preprocessor side, totally, because it was so easy to get up and running with it allowed them to see the benefits of it without getting stuck in any sort of tooling process that might make them be like, you know, this isn't worth it. So I appreciate what less than that regard, I think it did largely explode the popularity of CSS preprocessors. Overall,
+
+52
+00:23:45,540 --> 00:24:29,130
+Wes Bos: I think that can be said for almost all of these tools as they were largely a stepping stone in changing how we build apps. Like if you think about Gulp, they totally changed the fact that like if we didn't have Gulp, yes, what was it six to five, which was what Babel was called? Yeah, I don't think people would have picked up this new JavaScript syntax until years later. But because people were already writing sass, and they go, Oh, I can just pop a quick little Gulp task in there. And we can start using these new JavaScript features immediately. You might as well so it was kind of neat that we can you have all of these amazing things that were part of the our web development journey, and most of them change the way we think we're easy enough to get started and pave the way for some of the new things. Yeah,
+
+53
+00:24:29,130 --> 00:25:02,190
+Scott Tolinski: and I hope if you've never heard of some of these things, or if you never use them, at least, that you now have some of the more context to where we are today. Right? Because a lot of these things like you did, they just built up to everything where we're at. And now here we are today. And hopefully some of these things as this episode does is give you that context if you don't have it, because context is important in a lot of this stuff. You don't have to go ahead and learn less or flash or whatever. But it is important to know like why it was here or why it was popular once and why it's no longer popular. so that you can know not repeat history for whatever reasons.
+
+54
+00:25:02,520 --> 00:25:20,340
+Wes Bos: All right, I think that's enough for today. That's hasty enough. We've got I tweeted out like, what are the tech that was so hot years ago, and we've still got probably at least another shows worth. So if you enjoy this, let us know. And we'll record another one. Yeah. And if there's another thing he thought we didn't cover it was someone just tweeted, cappuccino.
+
+55
+00:25:20,490 --> 00:25:33,750
+Scott Tolinski: Yeah, that yes, cappuccino. Wait, yeah. Don't use this as an opportunity to dump on something that is actually still being used, like people. People will be like, what's the hot tech that whatever? And they'll be like Angular like, no. So
+
+56
+00:25:33,750 --> 00:25:37,170
+Wes Bos: when somebody said Angular, it's got like, 400 likes on it? Yeah.
+
+57
+00:25:37,170 --> 00:25:38,820
+Scott Tolinski: It's like, okay, we
+
+58
+00:25:38,820 --> 00:25:39,600
+Unknown: get it. We
+
+59
+00:25:39,600 --> 00:25:41,190
+Scott Tolinski: get the joke. Like,
+
+60
+00:25:41,220 --> 00:25:48,150
+Wes Bos: yeah, people are saying things like someone said, lodash. Somebody? Yeah, I was like, I use lodash. Like three seconds ago. Yeah. What did they say?
+
+61
+00:25:48,570 --> 00:25:51,540
+Scott Tolinski: Is lodash what just general JavaScript map. And one
+
+62
+00:25:52,170 --> 00:26:13,080
+Wes Bos: thing, people don't have the use cases for lodash. So they think because they can write a MapReduce filter. And we've talked about this, like till we're blue in the face on the podcast, but like, you still need lodash for many use cases that are a little bit more advanced as well as, like events throttling, whatnot. Yeah, that's it for today. Thanks for tuning in. And we'll see you next one. Yeah, we'll
+
+63
+00:26:13,080 --> 00:26:26,880
+Scott Tolinski: catch you later. Please. Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
