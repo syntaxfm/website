@@ -1,0 +1,164 @@
+1
+00:00:00,359 --> 00:00:00,870
+Unknown: Monday
+
+2
+00:00:00,899 --> 00:00:19,980
+Monday Monday open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA.
+
+3
+00:00:19,980 --> 00:00:21,300
+And Scott.
+
+4
+00:00:23,610 --> 00:00:24,450
+Totally at ski.
+
+5
+00:00:25,950 --> 00:00:26,850
+Oh, welcome.
+
+6
+00:00:28,260 --> 00:00:33,720
+Wes Bos: Oh, it's your turn. Sorry. Go ahead, Scott.
+
+7
+00:00:33,750 --> 00:01:06,060
+Scott Tolinski: Welcome. Well, yeah, let's, let's take this from the top. Welcome to syntax on this Monday hasty treat. We're gonna be talking about some cool new CSS features. And these are gonna blow your mind a little bit. You know, every time CSS comes out with something new, it blows my mind. This is CSS logical properties. And this is largely going to address some of the issues that we've had with positioning things in the current web and how it's changed to be a greater, more modern web. My name is Scott Tolan ski, and with me, as always, is Wes Bos.
+
+8
+00:01:06,300 --> 00:02:08,819
+Wes Bos: Hey, everybody. Let's talk about today's sponsor real quick. Before we get into it. Today's sponsor is Hasura, which is an open source, real time graph qL engine, so it sits on top of a Postgres database, even an existing database or a brand new one. And it allows you to create a graph qL API right on top of it, they've got all kinds of stuff for deploying to her Roku, or to AWS or Docker scan, I actually saw this at react a THON, and they did like they had, I think they had like eight minutes or something like a lightning talk. And they built an entire graph qL API in that time and, and had it up and running. And the thing scales really cool. Like they have this example where they just slam it with traffic, and it auto scales itself, which is pretty nifty. So you're looking to check out a graph qL API that sits on top of Postgres, check it out. Hasura, it's h a s, u r a.io, Hasura. io, thanks so much to them for sponsoring. Cool. So
+
+9
+00:02:08,819 --> 00:03:44,340
+Scott Tolinski: let's get into this a brand new CSS thing that has just sort of come to the attention of developers here. And this is going to be changing the way that we really think about and use properties. Within CSS, I think one of the first things you learn in CSS is the standard sort of box model, you have your top left, right bottom, and you think of those Trouble, trouble. And you larger think of those as this vertical, this space that exists in a left to right world and up to down world. And it's always margin, top margin left, or padding, left, padding, top, whatever. But if you think about it, the web has evolved in so many different ways. There's a ton of different languages, I mean, you think about Japanese can go from the top to the bottom, and you have right to left languages, you have all sorts of different ways that language and just in general content is used on the web in should be, you know, should have been used this way from the start, probably. But in 2019 2020, we're given the opportunity sort of fix some of these issues or things that prevented us. Now, I don't know about you, but I've had to work on a right to left to text website before, we didn't bother with the top to bottom text or anything like that. But I've had to work on a left to right text website. And it was not easy. We had a bunch of classes, toggling all sorts of things that, you know, we had to add a right to left class on a paragraph or whatever that would, you know, send it over to the other side, everything felt hacky, and just totally not easy.
+
+10
+00:03:44,579 --> 00:04:59,970
+Wes Bos: Yeah, I've never had to do that myself. But we said the same thing. When we talked about the new incm methods, if you use this stuff out of the gate, when it comes time to translating your website to something that reads in a different direction, it's going to be much easier to do that. And also like just thinking about, like sharing CSS as well, that the people who you're sharing the CSS with, it doesn't really matter which language they're quoting it in, because it will just work with them. I should say, for all of the the content, I'd got up and running with a sort of this blog post from elide Schechter. And he's got this amazing blog post that just like details, all of it, so we're going to link that in the show notes. Yeah, this good post. And then I also just like took a look at his medium. And man, there's some fantastic content here. So like, we talked about, like, like, How do you stay up to date? Well, I'm going to be reading elide sectors medium now. I just followed him on Twitter, which is e la de sc. And also I had found out about this initially from a tweet from Adam argall Argyle article. What How do you think you say that I dare you
+
+11
+00:05:01,319 --> 00:05:05,160
+Scott Tolinski: I don't know, embarrass myself here. you embarrass yourself.
+
+12
+00:05:05,249 --> 00:05:30,510
+Wes Bos: He's a dev REL for CSS at Google. And I just recently followed started following him on Twitter as well. And he's got some bangers banging of like how to keep up to date. So he is a rG YLEI nk arqule. Inc. on Twitter, make sure you follow those two, because that's I think that's perfect example of how do you stay up to date you find these people who are in the trenches and and surfacing it.
+
+13
+00:05:30,719 --> 00:07:37,200
+Scott Tolinski: Yeah, seriously? Well, okay, so let's talk about some of the differences here in some of these techniques and CSS properties. Because what this is, is basically new CSS properties that are going to give us a more flexible system for working with just sort of positioning spacing the box model in general, because when you let's let's look at some like little groundwork in here, if you've used Flexbox, you know, that flex box doesn't think of things as top left, right bottom, they don't think of it as that it's flex start flex end, right, whether it's a column or a row, you have the start and end properties. And so that's kind of key to thinking about some of these things, because again, your website might change left to right up to down whatever, based on what is the direction that this thing should be rendered in. So what we have here in the past, we would have something like margin, right, and so margin, right, in a left to right up to down world would now become margin inline, start, okay, so sort of like flex start flex end, margin, inline start. Now that inline bit does not correlate to left, right, it correlates to the inline flow of your document. So if you have an understanding of the standard block inline, where a block direction versus inline direction, right, you have the block start and you have the inline start. So in an up, down, left to right, you now have a margin inline start and a margin block start. So a margin block start is going to be a margin or mark or in the past would have been margin top. So margin, top becomes merchant block, start, margin left becomes margin inline start, okay. And so you're gonna want to check out this blog post, because it's a very visual thing to try to realize here. And it is a little bit more heavy, syntactically, I think, via the language. And it's not necessarily a Blissett, it's a little bit more abstract. But if you've ever encountered any of these problems, you'll you'll appreciate these changes.
+
+14
+00:07:37,439 --> 00:09:00,330
+Wes Bos: I think people are going to not like this initially, because it's there's a whole rethink think I you have to think okay, I want top. But now, how do I translate that into the new thing, and I honestly think that it will just take a little bit to sort of retrain your brain, because like, I don't think of like, flex Align Left, I just think of flex align, start flex the line. And so it's a sort of simplify this, we can break it down into two things, you have block in inline. And if we are just coming at it from an English website, block is going to be your top and bottom. And inline is going to be your left and right. So if you go and inspect an element on a page, and then add a quick CSS property that says border dash block, to px solid green, what that will do is it will put a green border on the top and the bottom. And then if you say border dash in line, it will do the same thing but put a border on the left and the right. So by default block is the top in the bottom and inline as the left in the right. And then you can also go a little bit further by using Start and End added to those by just attaching them on to the end. So border block start would be the top border, border block, bottom would be the bottom and then the opposite for in line. Yeah.
+
+15
+00:09:00,359 --> 00:09:07,670
+Scott Tolinski: So it's funny because if you're listening to this in your your car or something, I think you're at a little bit of a disadvantage, you might want to put
+
+16
+00:09:07,670 --> 00:09:09,210
+Wes Bos: your hands in the air. Yes,
+
+17
+00:09:09,390 --> 00:10:15,960
+Scott Tolinski: you might want to put this episode on, again while reading and looking at this blog post. Because again, this is such a visual thing. And it affects everything from margin, border padding, whatever. But we also end up having this block size in line size stuff in our content area. So the entire box model, as we know it is not really necessarily different. It's just not orienting it by default. In a well it's not orienting it in a top to bottom left to right manner anymore. It's orienting it in whatever that may be whatever the greater context of the the rendering of the application will be. And this will lead to all sorts of really cool application uses but it's also going to fill in for those languages in areas where Go top to bottom left to right, whatever that we're saying over and over again isn't the way that things are done. And so far, it's been very difficult to do, it's been very, very difficult to do. And hopefully this is going to make some people's applications feel much better in all parts of the world.
+
+18
+00:10:16,520 --> 00:10:45,210
+Wes Bos: So another thing that is gonna change in addition to all of the box model stuff, so box model is what padding margin and border is width and height can now be defined as inline size. Yep. And block size. So inline size would be your width. And block size would be your height, assuming it's an English thing. I'm curious, do you think like, do you think that this is gonna replace width and height? Or do you think people are like, that's too hard?
+
+19
+00:10:45,270 --> 00:11:33,270
+Scott Tolinski: I think that's the intent, right? The intent is, is to make the tools there by default. And to turn this into the way that we do things rather that like, I that's what that's what I'm getting from this. You know, it's funny, because it's mirror so closely, Flexbox and grid to me that I think that if, you know, if developers look at this as being the old way versus the new way, then they're not going to like it. But if they look at it as like, the old way versus the Flexbox way or something, then they might like it a little bit more, because they've already had that experience with the whole flexter flex and thing. I mean, this affects all sorts of things, even from text alignment, like the you can do text align, start, instead of left, right. So you're no longer thinking left to right. You're thinking text align, start text align. And this makes a
+
+20
+00:11:33,270 --> 00:11:34,170
+Wes Bos: lot of sense to me
+
+21
+00:11:34,170 --> 00:11:49,890
+Scott Tolinski: floats to Yeah, float in line start in line end. Other properties. I kind of wish I was just starting into. But you know, I don't know, I think all of this stuff is probably still fluid, that you know, the status of how buttoned down everything is here.
+
+22
+00:11:49,949 --> 00:12:04,920
+Wes Bos: I think it's I think it's pretty buttoned down. css logical properties. It's not working draft right now. So it's not done, but it is in it's in the latest edge. It's in the latest everything. Yeah.
+
+23
+00:12:05,189 --> 00:12:07,020
+Scott Tolinski: What it's in the latest everything.
+
+24
+00:12:07,020 --> 00:12:08,790
+Wes Bos: every browser has implemented this.
+
+25
+00:12:08,819 --> 00:12:22,620
+Scott Tolinski: Wow. And this is like the first time I think I've really heard of it is there was a is really this this blog post this conversations about it on Twitter, but I haven't heard about it until like a week ago.
+
+26
+00:12:22,949 --> 00:12:34,620
+Wes Bos: Yeah, Yeah, me neither I had I had not heard of it at all. I'm just trying to think like, going back to this width and height one, like, is there languages that are like rotated 90 degrees?
+
+27
+00:12:34,709 --> 00:12:36,090
+Scott Tolinski: Yeah. Japanese,
+
+28
+00:12:36,209 --> 00:12:44,940
+Wes Bos: what Japanese is topped about him. So in Japan, it's top to bottom, instead of real. Okay.
+
+29
+00:12:45,000 --> 00:13:11,160
+Scott Tolinski: It's so the bottom and right to left. In fact, the books that you have, like when you have a hardcover book in Japan, it's the opposite the spine of the book is on the right. And you flip through it Really? Yeah. Because I took Japanese for a year in college. And I've been to Tokyo a couple times. And, you know, so I have a little bit of experience reading Japanese, especially in that format. And it took a little while to get used to obviously, but once you get used to it, it's pretty neat.
+
+30
+00:13:11,640 --> 00:13:26,010
+Wes Bos: So if I have a sheet of paper in front of me, and I wrote Japanese on it, the first sentence would go from the top right, down. Correct. And then the second sentence would be top right, one over and down.
+
+31
+00:13:26,219 --> 00:13:54,360
+Scott Tolinski: Yeah. And you can wild is also I mean, you will also see Japanese written left to right, as well. And especially in situations like manga, or comic books, but you see it mostly vertical, or at least, that's the way traditionally it's always been. And that's the way you'll see a lot of books written and things like that. I honestly, I don't know what the status of what is left to right versus what is up and down. But from what I understand that it's it's typically vertical like that.
+
+32
+00:13:54,630 --> 00:13:59,910
+Wes Bos: And then, like, you have Microsoft Word in Japan, how does it decide when to wrap it?
+
+33
+00:14:00,150 --> 00:14:06,750
+Scott Tolinski: I don't know, I think Microsoft Word it in Japan probably does left to right. I don't know, though, to be honest. Wow,
+
+34
+00:14:07,020 --> 00:14:08,460
+Wes Bos: that's wild, I had no idea.
+
+35
+00:14:08,579 --> 00:14:55,710
+Scott Tolinski: We had to write a fair bit of stuff in Japanese in my class on the computer. And so you just you can write Japanese on your computer just by changing the text input right now on your MacBook Pro. Okay. And I used to have to do that all the time. And you would just type in Japanese, like, you know, if I was going to like what's, uh, I don't know, it's a good word. If I was going to, you know, just type Konnichiwa, right? Just a standard Japanese word, right? You would write that as if you were typing the English characters out and the computer translate those into the correct characters. Wow. But it doesn't do I don't think it does vertical like that. So who knows? I honestly have never tried to do anything. Web top right down ever in my entire life. I think that would be fascinating.
+
+36
+00:14:55,980 --> 00:15:17,760
+Wes Bos: I think that would be like a cool YouTube video. Just like maybe even a cool YouTube series of like, here's how someone who's blind uses a website. Here's someone who has Japanese as a first language uses a website. And here's how they switch between. Like that would be like, if you want to, like have a really cool YouTube channel, it's free. I'll let you go and take it go go and build that. That'd be really cool to see.
+
+37
+00:15:17,940 --> 00:15:18,990
+Unknown: Yeah, do it.
+
+38
+00:15:19,830 --> 00:15:59,190
+Wes Bos: So that's it. Just remember, block is top and bottom. This is very English. What's the other one? in line is left and right. Yeah. And that's that's the thing about it's the same with Flexbox is that everything changes? As soon as you change the the flex direction, right? And then everything is often because it's a column and a row or the opposite. And it's kind of confusing, but I don't know, it's I think it's pretty rare for people to have to just switch all that often unless you're doing multiple language sites. So check it out. Let us know if this will help you as a developer. I know lots of you who listen, do multi language website. So I'd love to hear what you think about this and how excited you already use it. Totally. Yeah,
+
+39
+00:15:59,490 --> 00:16:07,290
+Scott Tolinski: this is fascinating here. I'm very interested. I want to see some examples of people are using this and these sort of meaningful way already. Because that's a it's supported.
+
+40
+00:16:08,220 --> 00:16:14,400
+Wes Bos: Cool. All right. Well, thanks for tuning in. We will catch you on Wednesday. Face
+
+41
+00:16:16,290 --> 00:16:26,070
+Scott Tolinski: head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
