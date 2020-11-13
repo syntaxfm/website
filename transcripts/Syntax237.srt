@@ -1,0 +1,100 @@
+1
+00:00:00,359 --> 00:00:01,350
+Unknown: Monday, Monday,
+
+2
+00:00:01,350 --> 00:00:02,160
+Monday,
+
+3
+00:00:02,219 --> 00:00:08,820
+open wide dev fans yet ready to stuff your face with JavaScript CSS node module, BBQ Tip
+
+4
+00:00:09,059 --> 00:00:19,980
+Get workflow breakdancing, soft skill web development hasty, as crazy as tasty as web development treats coming in hot here is Sarah CUDA,
+
+5
+00:00:20,009 --> 00:00:21,660
+Bob, and Scott Taylor.
+
+6
+00:00:23,610 --> 00:00:24,480
+Totally at ski.
+
+7
+00:00:25,890 --> 00:01:38,490
+Scott Tolinski: Whoo, welcome to syntax and this Monday tasty treat. We're going to be talking all about abstraction. And if you don't know what abstraction is, so the good introduction to what it is, we're going to be talking about it in the context of both react as well as just general JavaScript programming. In general, talking about how to make things more simple for ourself. This episode is sponsored by Log Rocket, which is the perfect place to see how errors are happening on your website. And when I mean, see, I don't mean see an error log, I mean, see visually What the heck the user did to cause your site to break. Because Log Rocket gives you a session replay, which is a scrubbable video that gives you a network request Redux store. It gives you console logs, it gives you everything you could possibly see even like mouse tracking what the user did to click to break the thing. So you get all that and more with Log Rocket. So head on over to Log rocket.com forward slash syntax, sign up and get 14 days for free. And just or be able to reproduce your bugs and live in a video without having to ask your users What the heck they did to break the thing. Okay, my name is Scott Delinski. I'm a developer from Denver, Colorado with me, as always is the West boss.
+
+8
+00:01:38,819 --> 00:01:40,319
+Wes Bos: Hey, everybody. Hey,
+
+9
+00:01:40,319 --> 00:01:41,550
+Unknown: Wes. How's it going?
+
+10
+00:01:41,550 --> 00:01:44,340
+Wes Bos: I'm doing good excited to talk about abstractions,
+
+11
+00:01:44,340 --> 00:03:57,930
+Scott Tolinski: abstractions. You know, abstraction is one of those words, it's one of those terms that gets thrown around, we get so many terms and lingo and stuff. And new programmers will look at this stuff and just say, Oh, this seems scary. Just because it's a some syntax, right? It's some, some word that that we don't know about. But what is abstract in the most basic terms, so abstraction, in its most basic form, is basically hiding complexity, basically, by taking something in abstracting it and using the word and its own definition. And on to something else, that's much easier to understand, right? Because in programming, we often write these big old functions that do this thing. And maybe you've seen it before, where you have like, 100 line function does this and this and this and this and this, well, maybe it's worth it to take some of those steps and abstract them into smaller steps, things that make maybe a little bit more sense, right. So basically, what abstraction is, is taking complex things and encapsulating that into smaller ideas or smaller functions or smaller use cases. And we've largely seen this as component developers. By little Think about it, right? We talked about this all the time with react, and view and spelt and whatever, you have a component this components gotten to be like 200 lines or whatever, it's obviously a massive component, maybe this component should be broken down into something smaller, maybe we should abstract this into little tiny components and capsulated, I used to have this programming language, it was a visual programming language called max MSP for audio creation, I talk about it all the time is one of the first introductions to programming on here. And you create these little boxes, and you connect them via patch cables. One of my favorite things about max MSP is because it was all visual, you know, these little patch cables and boxes, you could click and drag and select and then click encapsulate. And it just took all of that complexity, and just shrunk it down into one little box. So instead of having 20 boxes, you now have one little box, and it has the goods and outputs, whatever. So that's really at its core, what abstraction is for taking something that's big and complex, and smashing it down into something that is a little bit more usable, pushable, whatever. And we can think about this all the time in our components.
+
+12
+00:03:58,110 --> 00:04:40,440
+Wes Bos: Yeah, like reusability is a huge benefit of, of abstraction, because, like, certainly, I have written code before where I find myself doing something like formatting money, or making a fetch request that we're only like one little one little pieces different, I say, ha, I'm doing this kind of similar in a couple pieces of my application, on on I abstract this out into its own function into its own library. Then when I want to do this piece of functionality, I can just call this one one nice, clean line. Not to mention, you probably can test that thing really nicely. Oh yeah. in isolation, without having to bring in the rest of the application into it.
+
+13
+00:04:40,640 --> 00:07:20,130
+Scott Tolinski: Totally. Those are all like key key points here. And, you know, I think the the main concepts here, it's like when do you know to abstract something right? When does something become its own thing rather than this big honkin thing and this is all comes down to in my mind personal preference so often see people Like don't do this do this take okay components should be this like. And sometimes people even give like these like arbitrary line limits saying no function should be greater than eight lines. And then you just end up with splitting everything where not doesn't, doesn't necessarily make sense. But it's it's more or less like based on some arbitrary rule. For me, I often think about this as again, like you mentioned, smaller, smaller things that are easier to test. Because it's much easier to test a function that checks the the currency, or changes the currency or whatever, it's much easier to test that than to test the entire order order thing at once, you know, processing the order, whatever. So if you have all these smaller little bits, you can test those little bits in isolation, make sure they work. And to me that that makes the whole thing easier to test. It often has this like feeling of, when you look at a component, it's too heavy, it's too much, it's too complex. And reading this thing, maybe I don't understand exactly what it's doing. And to me code should be readable. It should definitely you should have a good understanding of what it does. And one of the things recently that got me thinking about abstraction in these kind of ways was I was thinking about some animation stuff I was doing. And I've been getting into framer motion a lot lately, you know, I've done a course on it. And I had a animated routes, I built animated routes, and to do animated routes, you have an animated animate presence component, then you have your react, router, switch, then you have your route component, then you have your motion div to do the animation. That's four components. And what I did is I wrote two abstractions, one of which combines the animate presence and the switch, and one of which combines the route and the diff. And they still accept the same props. And it has really smart defaults. So by by default, it automatically doesn't opacity change. And what you get is you get a much cleaner API, you can see that I have an animated route, or an animate animated router, and then an animated route. And that's it. If you don't need to pass any props in there other than the the route path, then the whole thing just works. And not only that, it's just so much easier to read. So, to me, it comes down to is this thing difficult to parse, is it difficult to test is it difficult to read, and should I think about breaking it into smaller pieces,
+
+14
+00:07:20,519 --> 00:07:24,120
+Wes Bos: that's beautiful. I like that, that way of approaching it. Yeah,
+
+15
+00:07:24,120 --> 00:08:03,060
+Scott Tolinski: I am a big fan of this, I sometimes go a little bit overboard with it, I would definitely veer on the side of abstracting too much. But then, you know, the downsides are, if you abstract too much, you could see that there's very minimal savings, right? Like maybe you're you're saving one line of code, and having to write a whole bunch of extra files and extra things. And they have this call this call this call this call this whatever. And you get sort of a Redux II kind of mess where it's just you don't know where the source of anything is, because it's too far abstracted. So sometimes, you have to be cognizant if the savings are worth it, is the juice worth the squeeze there?
+
+16
+00:08:04,410 --> 00:08:35,539
+Wes Bos: I agree. Like I I go on the other side of things where I don't abstract until I absolutely need to, sometimes ahead of time, you can think about like, Oh, yeah, of course, I'm gonna need a another function or reusable function to do this. But I must rather serve to just write it be able to see everything, see how it all works, and then quickly abstracted out into its own package, or its own function or its own file or something like that. Once I see the the need for something like that, to
+
+17
+00:08:35,539 --> 00:10:41,420
+Scott Tolinski: me, it all comes down to usability, you know it, it all comes down to like whether or not this thing needs to exist. And I was thinking about it specifically with my animated routes thing. It's like, Oh, I have this animated routes I'm using on this one section. But if I abstracted into this component, I don't have to do any work to get animated routes throughout the rest of the entire site. Even if it's just a basic fate, I don't have to do any work, I just got to change a component here or there. I just I'm just changing the import and the name of the component. And the whole thing just works. So to me, it's like what is the benefit versus what's the cost. And you have to sort of look at that. And that comes with experience. And that comes with experimenting. So don't feel like you shouldn't abstract and don't feel like you should abstract when you're just learning just play around with it feel free. I've gotten really into much smaller single use functions lately, just in terms of like, that's like really functional programming a function should do one thing and it spits out something and that's how you were right. Yeah. So for me personally, I've been thinking a lot about that and breaking things up into smaller things. And, and sometimes abstraction is just a pointless layer. But sometimes it's really helpful. And I think there's also a difference between your personal code verse consumable libraries, right? Because if you think about it, a library that you're releasing off into the world is something that other people are using needs to really fit so many more use cases than your own right for me with my animated routes. All you have to do is pass them The routes prop and then it works. But some people will be like, Well, how do you get the route the fly in from the right? Well, with my particular abstraction, you can't. But if I was publishing this as a package, that would be a huge downside of the package that you couldn't do all that stuff. So what you end up having is when you when you have packages that are publicly and don't have these, like really strong opinions, they have a whole ton of inputs. And the more inputs you add to something, the more complex and difficult it is to understand. So I think there's a little bit of a trade off there in terms of like, who's using this thing, what it needs to do, and how that all works? Have you seen the chakra UI? Is chakra hyphen? ui.com?
+
+18
+00:10:41,730 --> 00:10:43,020
+Wes Bos: Ah, let me check it out. I
+
+19
+00:10:43,020 --> 00:11:41,430
+Scott Tolinski: heard of it. It's one of these component libraries. I think it's built. Yes, yes, I've seen that emotion. And it's really nice. There's a ton of components, and they all look great. In my mind, these things are fantastic. But I would much rather write my own version of this if I have the opportunity. Because what this has to do is it has to accept so many different use cases. And so many different configurations, that you end up having like a set of five or six props on something to change the way something looks where I would personally write my own or even take this and abstract it into my own components that have like these smart defaults. Because when you start adding inputs, you start adding props, it can get out of hand really quick in terms of usability, readability. And I don't know, the less choice you give developers, when doing design system, stuff like this, probably the better because the more cohesive, the whole thing's going to be, you don't want, you don't want people to be able to goof it up.
+
+20
+00:11:41,700 --> 00:11:42,540
+Wes Bos: Absolutely.
+
+21
+00:11:42,960 --> 00:13:29,040
+Scott Tolinski: So if you are writing components for your team, and your use cases that aren't going to be made publicly available, or even if they are going to be publicly available, like don't worry about accommodating every particular use case, people ask us about our design system all the time, and how we do things. And let me look at my some of my components. Here, I have some layout components. And I have a couple of layout components. And they're very opinionated. And, for instance, my layout, a component itself is a singular styled div. And it only accepts one prop in that prop is a string, which is either tight or wide. That's it, those are the only options to use a layout. I also have a columns, one columns, component name calls, and calls accepts one component. And that's whether or not it's reversed in our calls component gives us two evenly spaced columns, one that's like 30%, or 65%. And one's a fraction of that using CSS Grid. It's whether or not the big one is on the right, or the big ones on the left. That's the only prop it takes in. Because we have these like secure solid defaults, we just know that you can drop these things in and you don't need to configure them and you don't need to anything else. Again, our container prop one or container component, one Prop, our flex component, we have a flex component, anytime we want to use like a Flexbox container. The only thing that we accept in this is a prop for our justify content. And we do that as a prop rather than a style thing just to keep it all in. But that's the only thing and otherwise, it's just flex, right? You want to flex them, it just works. And same with our grid component, our grid component just takes an array of how many columns you want, how many equal columns. So it's just very simple. And keeping your I'm glad
+
+22
+00:13:29,040 --> 00:14:15,930
+Wes Bos: that you say that because like a lot of my components are very similar in that like, I think sometimes people ask me to open source parts of my code base. I'm like, Oh, that's specific, yeah, to what I'm doing. And it's, it only does what I need, like I don't, I'm not writing this thing, where it's gonna, every single person in the world that ever wants to use it will have have the ability to do so it's just for my use case. And if I need if I need to be able to add three columns, then I'll, I'll modify that component and add it in. I think that, especially for people who maybe haven't worked in code bases like that, they may be thinking that that's how they how people approach it. But honestly, it's just adds more complexity to the the function or the component to do more than you need it to do.
+
+23
+00:14:16,290 --> 00:16:19,170
+Scott Tolinski: And that's 100%. The reason why don't use frameworks because if you have a framework, there's just too many options and too many variables and too much learning and too many things to distract. That's like a very specific learning to like it's it's 2020 how many people are still using that bootstrap knowledge that they they spent all that time and to figure out specifically how bootstrap works well, you're gonna have a negative margin, you got to have a container like that stuff. I don't I don't even think about this stuff anymore. And that's like, almost wasted time learning that when I have my own component system that just works. And since I wrote it, you know, I didn't have to learn it. So for me that I guess it's an argument and writing your own things for your own use cases, and it's all dependent on time but to me, this saves a lot of time because I don't have to learn In these things, it took two seconds to write a flex component. So, for me, it's all about knowing when things need to be a buttoned up and pulled into to their own thing. And when to maybe look at this as being it's too complex. And a funny, funny example, I've been doing a lot of custom hooks. And so one of the things I've been doing is moving some of my graph qL calls into their own custom hooks, which is actually really kind of interesting, because I haven't done this before. But I was thinking about it, I use this particular user query to grab the user all the time. And so I have to import the user query from the graph qL file, or even worse, copy and paste the user query into each file. Depending on how you do that, then you have to do the, the whole Apollo client use query, pass, query, whatever, do all the exact same things every time. Whereas if I were to abstract that into a custom hook, that's just use user, that all happens behind the scenes, I only do one import, there's only one source of what it's grabbing, whatever, I don't have to import all those things. I just import use user, pop it in there, and I got the user. So for me react hooks is specifically custom react hooks is really changed my viewpoint on when to abstract things and how simple some things can get. And I just love it. Love it. Love it. Love it.
+
+24
+00:16:19,890 --> 00:16:35,850
+Wes Bos: All right, I think that's a good way to end it. Thanks, Scott for leading this one off on abstraction. It's a funny topic we've never covered before I saw it. I was like, we must have covered that, but certainly we haven't. So that was a good one. Thanks for tuning in. And we will catch you on Wednesday
+
+25
+00:16:36,330 --> 00:16:49,740
+Scott Tolinski: bass bass. Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
