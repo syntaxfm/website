@@ -1,0 +1,220 @@
+1
+00:00:00,359 --> 00:00:00,870
+Scott Tolinski: Monday,
+
+2
+00:00:00,899 --> 00:00:03,420
+Unknown: Monday Monday open wide dev fans
+
+3
+00:00:03,420 --> 00:00:21,660
+yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA boss and Scott Taylor.
+
+4
+00:00:23,610 --> 00:00:24,480
+Totally in ski.
+
+5
+00:00:25,890 --> 00:00:53,400
+Scott Tolinski: Welcome to syntax in this hasty treat, we're gonna be talking all about pointer events in both CSS and JavaScript, which is something you might not know that they they are a thing in both CSS and JavaScript, we're going to be talking a little bit about what and why and what the difference is and why you might want to use them. And, and sort of, you know, some of the potential pitfalls, downsides, any of that good stuff. My name is Scott winsky. And you are listening to this index podcast with me as always is Wes Bos. How you doing,
+
+6
+00:00:53,850 --> 00:01:12,900
+Wes Bos: buddy? I'm doing great. I'm excited to talk about pointer events. Yeah. Which I had no idea that they were coming to JavaScript, I knew that there was like a unified API for doing event pointer events, but I didn't realize that it was coming so soon, or is already in all of the browser. So I'm excited to talk about it.
+
+7
+00:01:12,930 --> 00:03:23,640
+Scott Tolinski: Yeah, me too. This hasty treat is sponsored by Sanity. Now your back end data and everything like that it should reflect the type of data that you have on the front end is in your data is not standard. It's not just a text box and a text area and call it quits with that your content is typically much more unique and dynamic than that insanity is the boy life as in bring your own front end data service allows you to store and use your your API as a service. That is totally gives you a full on ability to have your data in the back end reflect the uniqueness of your data in the front end. And so sanity is one of our favorite tools for bringing your data to your front end websites. Nowadays, we have things like headless sites and front end code that's totally optimized with things like Gatsby j. s, and static sites. But the whole back end piece, what do you do with all of that data? Where is that replacement for the blog post where someone can go in and edit their stuff, or even just store all of their data, let me tell you that Sanity is the the solution of that Sanity is just really super cool. They put together a little demo for us. And we became believers immediately after seeing that demo. And it's just so much fun. It allows you to use like actual components in the back end of your site to give you full end customization of the back end of your site. Again, your your front end code, your front end data is not typical. And Sanity knows and understands that and allows you too, have totally custom stuff. So check it out@sanity.io forward slash syntax, and you're going to go ahead and do you're going to get a nice little free plan here. That is free. 99 is as in zero dollars, no credit card required, it's going to give you three users, two data sets. This is the tasty plan, they put this thing together just for syntax listeners. So check it out at Sanity dot i o forward slash syntax and check it out. Seriously, this is one of those tools that when you're looking for where do I host my data with this thing, Sanity should be right at the top of your list. So you want to check this thing out as entity IO forward slash cindex.
+
+8
+00:03:23,850 --> 00:05:01,820
+Wes Bos: Awesome. So let's jump right into pointer events. pointer events are in CSS, and they are in JavaScript. So we're gonna do an explainer episode explain what both of them are. So we'll kick it off with CSS and CSS, we have this thing called pointer events. It's a property it's been around for a long time. And it's it's well supported in all of the browsers. And essentially, it allows you to just ignore the cursor or the clicks on an element. So if you have a div that is overlapping something sometimes, like let's say, for example, I've got an image tag, and that image tag is overlaying some like I'm working on my new website right now. And I'm going to overlay some grunge texture overtop of some of the text. However, I don't want to make my text not selectable, because that's not a good thing to do on your website. And if someone were to try select the text, they would actually be dragging the image instead of trying to select the text. So what you can do is you can select an element and you just say, pointer events, none. And what that will do is it will tell that it'll tell the mouse and any mouse events that you have in JavaScript, the default ones like clicking links, or selecting text or custom ones that you've built in JavaScript, it will tell it just to ignore that element as also, that's really all there is in CSS, you can say pointer events, none to allow the mouse to be totally ignored on an element. And then you also have Porter of pointer events auto, which will flip it back to the default. There's some other other ones that we have here, visible, visible painted, visible stroke, fill stroke, those are all for SVG, which I would imagine would be very helpful in doing some sort of graphing where you only want people to be able to to click on certain parts of the SVG.
+
+9
+00:05:02,250 --> 00:05:55,110
+Scott Tolinski: Yeah, I mean, I use pointer events, none a lot in animation, or just typically visual flourishes, things that are aren't like important to the site, and maybe something that is sitting on top of another div. And maybe you don't want this thing to interact or affect how you know, it is your other actually useful elements on your page, especially elements that are like transitioning outwards, right? If something's it's fading out, or whatever, maybe it's still sitting on the top of everything, you don't want your users to not be able to click something, even though you know, the opacity of this thing is at a point 05. And it's just about done. And user goes to click on it, and he can't do anything. So on transition out states, I'm almost always putting a pointer events, none on them just so the user can't interact with something that's on its way off the page. It's also useful on things like disabled buttons, right? You don't want your disabled button to register any sort of event. You just pointer events, none on button. There we go disabled.
+
+10
+00:05:55,350 --> 00:06:42,930
+Wes Bos: Yeah, I actually tweeted about this a little while ago, I'm like, why is there not a like actions event? None. Because I was I had the sweet idea to, I wanted to disable an entire form element. And I was like, oh, I'll just give it a class of disabled and say, pointer events, none on it. But then what I figured out is you can still tab through, you can still use your keyboard to submit the form. Because it's pointer fence. It's not, it's just his mouse, just mouse, it's not keyboard as well. So there's no like keyboard events, none that you can turn on to it. The solution to that is if you wrap your entire form all of the contents of your form in a field set the fields that will accept a disabled attribute. And that will stop you can use the pointer events not to stop people from from messing with it, as well as you can use the disabled attribute from stopping people from submitting the form. Hmm,
+
+11
+00:06:43,020 --> 00:06:49,860
+Scott Tolinski: interesting. I'm always taking care of that stuff with like a JavaScript to check, you know, field or something. But they had an interesting use case.
+
+12
+00:06:50,070 --> 00:08:38,460
+Wes Bos: So another use case you could have for it is if you have a pop up that you are trying to fade in the problem with trying to fade in a pop up is you generally have to have three states with a pop up, you have to display none on that pop up. And then you have to display block or grid and then set the opacity to zero. And then you have to the third point, you have to set the opacity to one and you can't go from display none to display block and opacity, zero and opacity one in the same fell swoop, you need to have that sort of three step process, which is annoying in JavaScript, because you have to like set a class of opening and then set a class of opening and open like, like two milliseconds later in order to make that transition happen. So one way you can go about it. I know there's there's lots of solutions to this. But one way I thought you could do it is if you set the opacity to zero, and by default, that will hide the entire thing. But per setting opacity, zero does not hide it from mouse clicks, meaning that it's invisible, but it's still there. And if it's overlapping your entire website, users won't be able to interact with your website. So setting a pointer events, none on something that has a zero opacity will make it so that all mouse clicks just go right through that element. So you can't see it. And no a JavaScript events will fire on it. And then when you add a class of open, you just put a pasady one on it and change the pointer events back to all Yeah, which I thought was a pretty cool, I didn't know if other people had used it. So I tweeted it out. And Benjamin de Kock, who's like stripe designer developer does all of the amazing layout said, this is pretty much what I've always been doing. So I thought that was pretty good. And this is actually how I figured out that there was a difference between JavaScript pointer events and CSS pointer events, because CSS pointer events are very well supported. And you can go ahead and use them today.
+
+13
+00:08:38,490 --> 00:08:45,570
+Scott Tolinski: Yeah, CSS pointer events have existed forever and ever seems like I don't even know when that was that was that added like CSS one?
+
+14
+00:08:45,689 --> 00:08:47,940
+Wes Bos: Yeah. Let's look it up CSS one,
+
+15
+00:08:48,870 --> 00:08:50,940
+Scott Tolinski: before CSS to the revenge.
+
+16
+00:08:51,390 --> 00:09:04,400
+Wes Bos: So if you look at pointer events on Can I use, I was disappointed to see they weren't in Safari. And that's how I found out that there. Those were JavaScript pointer events. And if you scroll down, you'll see CSS pointer events. Oh, and
+
+17
+00:09:04,439 --> 00:09:10,950
+Scott Tolinski: their little what it says, I don't know. Ie 11 was the first version to support pointer events and IE, is that
+
+18
+00:09:11,010 --> 00:09:15,480
+Wes Bos: in CSS? Yeah, yeah, so like they're not like they're not super old.
+
+19
+00:09:17,100 --> 00:09:18,690
+Scott Tolinski: See chrome version. You had them.
+
+20
+00:09:21,390 --> 00:09:24,090
+Wes Bos: Firefox three you rolled out Yeah,
+
+21
+00:09:24,210 --> 00:09:28,830
+Scott Tolinski: I can't believe that that iE 11 really took it that long to get them I'm surprised about that.
+
+22
+00:09:29,130 --> 00:09:51,840
+Wes Bos: Ooh, there's a carrot color property in CSS that's sick. Anyways, that's not a really good pointer events but they are very well supported the only thing they're not supported in is Opera Mini which is not issue just because of that's not what Opera Mini is over a mini is a stripped down text based browser. So it's not like people are always like oh up or mini but like that's not you look into Opera Mini is so you don't need those features there anyways.
+
+23
+00:09:51,870 --> 00:09:54,630
+Scott Tolinski: Yeah. And how many people are using Opera Mini anyway?
+
+24
+00:09:54,920 --> 00:10:10,550
+Wes Bos: Go 2% of the globe. So it's not nothing but those those 2% are you They're using it for a reason. It's because they're on a slow internet connection and they need something in the middle that will then strip out all of the images and or compress the images and strip out all the CSS and whatnot.
+
+25
+00:10:10,860 --> 00:10:16,260
+Scott Tolinski: Okay, well, maybe I'm, maybe I'm wrong about upper there. That does seem like a totally valid use case.
+
+26
+00:10:16,520 --> 00:10:37,110
+Wes Bos: Yeah, maybe we'll do a hasty trade on what is Opera Mini. And maybe we'll open up our but I've used browsers like this in the past, back when I had my Blackberry, where what happens is, there's a service that sits between you and the server, and it will then deliver you a compressed version and a dumbed down version, not dumbed down. But basically, people are just trying to get the content out of it.
+
+27
+00:10:37,200 --> 00:10:40,950
+Scott Tolinski: Yeah. So that's pretty cool. I wonder how that works with a single page apps?
+
+28
+00:10:41,130 --> 00:10:49,280
+Wes Bos: I don't know. Because it for me does support JavaScript. Maybe I should just download it somehow and figure out what does these websites work?
+
+29
+00:10:49,380 --> 00:11:54,390
+Scott Tolinski: Yeah. All right, cool. Well, let's get into JavaScript pointer events, which are a little bit different. Because you think is CSS Prime events is just being hate registered a click or whatever we can interact with it or not interact with it, or JavaScript pointer events are essentially sort of the modern take on the the clicker touch a mouse events that we've had for so long, right? Instead of mouse down or, or, you know, touch or whatever like that, we're now able to use pointer events, which account for things that are relevant in the year 2018, such as we have no longer just, you know, a mouse and keyboard, we have a mouse, potentially a pen, if you're on a tablet, or you know, those giant note phones, or you have touch. And so this API allows us to interact with websites using the tools that we're using in the year 2018, or 2019. That is mouse pointer touch. And I think this is pretty cool. It gives you all sorts of things like pressure and tilt, and all stuff like that. But not only that, but it encapsulates all of these things in one API, rather than having to have these separate events for different things are writing some sort of code that aggregates that.
+
+30
+00:11:54,540 --> 00:12:12,180
+Wes Bos: Yeah, I guess it's funny, because we had clicks, and then you had touch. And then you had the ability to have multi touch, which I think Safari can and I think chrome was walking track up to like, I think it's like 21 different touch points. So I haven't got my toes out to try it yet. But I was asked Should we
+
+31
+00:12:13,050 --> 00:12:14,730
+Scott Tolinski: get those piggies man, let's get them gone.
+
+32
+00:12:15,900 --> 00:13:14,640
+Wes Bos: You should be able to use the like, many, many touch points on a website. And then like, like Scott says, We have we've got pens, those pens have different pressure gum with your finger on safari, you can you can tell somebody made a scale with the touch sensitive Safari API, which I thought was amazing. Oh, cool. They figured out like like, what is the the pressure of different touch points on safari? And then if they just laid their phone flat, and they put an item on top of their phone, and they registered the amount of force with that touch? And they kind of figured out how many how many grams or whatever that thing was, which I thought was so cool. Yeah. And then there's like, there's there's game pads as well. There's the pointer events API doesn't seem to encompass gamepad, there's a separate API for using game pads. But I would imagine that like even if I think about like the Wii mote, yeah, the you know, the remote like follows you around, that would probably be encompassed under pointer events as well.
+
+33
+00:13:14,670 --> 00:14:09,390
+Scott Tolinski: I'm really interested in that. Because one of the projects I did in in school via software called max MSP was using we modes to control like, I was like video manipulation and audio manipulation software that I had written. So I made like, essentially like a drum kit. And then it was rigged up to an audio application Ableton Live. And then if I were to click the V mode trigger, and like whip the Wii mote based on like how hard I whipped it, the accelerometer data would come in, and it would like totally destroy the audio, it was like a really cool thing. And like, sometimes I wish that that stuff was more capable in the browser. So I'm really interested in exploring more of this stuff. And now, you know, maybe potentially getting some of that data. I'm sure someone's written some sort of wrapper API for the infrared data for something like a Wi Fi motor, or joi con or something like that. But I think there's like alternate interfaces are so interesting.
+
+34
+00:14:09,630 --> 00:14:19,980
+Wes Bos: Totally, there is web, Bluetooth and web USB, maybe that would be a fun little episode where we each order something that is USB base and try to build something with it. And just in the browser.
+
+35
+00:14:20,040 --> 00:14:21,720
+Scott Tolinski: Yeah, I'd be totally down for that.
+
+36
+00:14:22,830 --> 00:14:35,160
+Wes Bos: Let's talk about what events we do have here on the pointer events. So there is over which is fired when the pointer device is moved into n elements, test boundaries. And what is hit test.
+
+37
+00:14:35,160 --> 00:14:42,630
+Scott Tolinski: Let me see what seems like more of a mouse based thing or you know, does this pen does it track when the pen is hovering? That's actually an interesting point. I wonder if it does.
+
+38
+00:14:42,660 --> 00:15:31,500
+Wes Bos: Yeah, so the hit test is the process the browser used to determine a target element for a pointer event. Typically, this is determined by considering the pointers location, also the visual layout of elements in a document on a screen. I'm not sure I understand what that means. I'll look into it. This is fairly new to me. I've I've always just done in the past, I've coated it with mouse. And then I use the touch events to sort of supplement that and provide a bit of a better experience. But it looks like like I bet once Safari push it ships this thing or using the polyfill. We'll talk about that in a second like this, we won't be writing click events much longer, we're going to be using pointer events. So there's over, enter, down move. So move is what you're tagging. Because it's potential that the the stylist will move over the screen, but you're not actually touching the screen. So that you need to be able to keep track of that, right. Yeah.
+
+39
+00:15:31,550 --> 00:15:37,290
+Scott Tolinski: So move move is firing when you're hovering and not when you're clicked down or touched down or on touch?
+
+40
+00:15:37,320 --> 00:16:19,740
+Wes Bos: Yeah, well, I would imagine, with a pen, if your pen is close enough to the screen that is registering but not touching the screen, that would fire a move event, I think that would probably fire a move event when you're touching it as well. But you'd have to have a Boolean of if it's down or not, up, cancel pointer out where I guess where you if you were to pull the pull the pen totally away from the actual screen pointer leave. And then there's get pointer capture and lost pointer capture. So it's, it's a lot more complex. events themselves can can be pretty complex. But this gets a lot more complex. In most cases, you probably won't need all of these. But it's it's kind of nice to have a simple API that encompasses all of these different types of inputs.
+
+41
+00:16:19,860 --> 00:16:51,240
+Scott Tolinski: Yeah. And again, I mean, everyone's using new inputs now. And you have to account for that. And one of the cool things is that we know, have to account for them individually as one API, one API, and that I think that's the the dream right there. That's like, there's some cool stuff. I'm really excited about this, because I have an iPad with a pen. And it's like making me want to go do some experiments with this thing and see, yeah, we have this, this pen will interact with this API. Maybe it's worth, like putting together some sort of a playground for this stuff.
+
+42
+00:16:51,630 --> 00:17:29,190
+Wes Bos: Yeah, because so I've got in my JavaScript 30 course I've got like a canvas demo. And based on how long you're dragging the width of the the canvas painter gets bigger and smaller, and the color of it just changes. Like it goes through the entire rainbow. Yeah. Now I'm thinking like, could you? Could you modify that demo to take in pressure, as well as I don't know some other like, tilt? Because you're telling me or it shows me in the docs here that you can get the tilt of the pen? Yeah, based on what angle? You're tilting the pen. Could you map that to the rainbow and, and change the color based on that? That'd be pretty neat.
+
+43
+00:17:29,400 --> 00:17:35,490
+Scott Tolinski: I wish I had more time for just playing around with this stuff. Because that all sounds like a lot of fun. That sounds like a lot. Yeah,
+
+44
+00:17:35,700 --> 00:17:53,970
+Wes Bos: you should do like a hackathon day where you just put out a video of a couple things that you would love you've been meaning to try. Yeah, and make a video out of it would be pretty fun. Yeah. Cool. Um, what else about this pointer events? I think that's that's about it. It's pretty simple to understand. I think that Oh, we'll talk about support.
+
+45
+00:17:53,970 --> 00:18:40,470
+Scott Tolinski: What is the bummer? support? support? Yeah, it's actually pretty widely supported. And it's in IE 11. It's been in Chrome since like 2016, and Safari, like what's going on safari? Why? Why can't you get this together? Safari does not have support for this. However, there is a polyfill put out by the jQuery team called Pep. Pep stands for pointer events. polyfill. Yeah, thank Yeah, I mean, that makes sense. So unfortunately, it's not in everything, which you would want it to be. But no, it's not in Safari. And even in the like, the future version of Safari on Can I use is read that. So there is some caveats there. I think they're working on support for it. I think you might have a little bit more info on that was,
+
+46
+00:18:40,550 --> 00:18:50,570
+Wes Bos: yeah, if you go to web webkit.org, you can you can see the status of what they're currently working on. It says in development. So I'd imagine in the next major release of
+
+47
+00:18:50,600 --> 00:19:00,300
+Scott Tolinski: Safari, we'll get it now. Excellent. Here, according to Can I use the next major release of Safari will have it available, but only under an experimental features flag.
+
+48
+00:19:00,560 --> 00:19:50,330
+Wes Bos: Okay, so that means it's probably just about done. They want to test it out before they push it, which I don't mind because, like, what used to happen is that they would just release it and then or it would be released under like a vendor prefix. Yeah. And then people would implement it and then there'd always be like, a, you have to like it works but so far it does it in a weird way. And and now so what they're doing is they're just like, not releasing it to anyone unless you want to try it. And I think that's a better way to do it. So that it's for sure. solidify by the time it gets into all the browsers. And I don't mind because the the polyfill I've talked to a couple of people actually use this in real client facing projects. And the polyfill have worked just swimmingly, right, it's JavaScript, so you can probably fill up pretty easily. So it's, I think it's probably something that we can start using today. If you are okay with including the polyfill.
+
+49
+00:19:50,360 --> 00:20:01,470
+Scott Tolinski: Yeah, yeah, I'm excited. I'm gonna start using it. I'm gonna start trying some stuff out. I'm gonna start getting getting down with some Pen Pen action going on and some interactive stuff here and see how it works. It looks cool. Yeah,
+
+50
+00:20:01,530 --> 00:20:13,680
+Wes Bos: I've got the Surface Book here, which has a pen. And I think that that does pressure as well. So that would be maybe over the holidays if I want to have a little fun little fun with it. I'm gonna pull that thing out. A little
+
+51
+00:20:13,680 --> 00:20:17,190
+Scott Tolinski: fun with the pendant surface. I'm done for that. Awesome. Cool. All right, well, I
+
+52
+00:20:17,190 --> 00:20:28,340
+Wes Bos: think that's it for today. Hopefully you learned a thing or two. If you have any other use cases for pointer events that you have found handy. Make sure you tweet them at syntax FM and we will retweet them so that everyone's knowledge can get bigger.
+
+53
+00:20:28,380 --> 00:20:41,300
+Scott Tolinski: Yeah, I want to see some some code demos and examples too. If you've you hack together something that's like fun with this, or if you want to, if this sounds interesting to you go hack together something I want to see some fun examples of what people are doing with this cool stuff.
+
+54
+00:20:41,520 --> 00:20:47,220
+Wes Bos: Absolutely. All right. That's it for today. Thanks for tuning in and we will catch you later. Please
+
+55
+00:20:49,200 --> 00:20:58,950
+Scott Tolinski: head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
