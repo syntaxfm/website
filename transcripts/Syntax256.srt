@@ -1,0 +1,532 @@
+1
+00:00:01,319 --> 00:00:02,820
+Unknown: You're listening to syntax,
+
+2
+00:00:02,849 --> 00:00:10,530
+the podcast with the tastiest web development treats out there. strap yourself in and get ready here is Scott solinsky. And West boss.
+
+3
+00:00:10,530 --> 00:00:47,280
+Wes Bos: Welcome to syntax is the podcast with the tastiest web development treats out there. Today we've got a guest on the podcast who made this really cool app called zip call. And we just spent 10 minutes trying to get zoom working. And then this guy just built sort of a clone of it in the browser with just JavaScript and it's peer to peer and we'll talk all about it's really, really cool. But today we are sponsored by two awesome companies. First one is century. Second one is Stackbit. We'll talk about them partway through the episode. But let's let's say welcome. Welcome in how you doing?
+
+4
+00:00:47,879 --> 00:00:53,850
+Ian Ramzy: I'm not too bad. Not too bad school starting to ramp back up again. But for him now doing good.
+
+5
+00:00:54,209 --> 00:00:57,540
+Wes Bos: Oh, that's good. So where are you from? and What school do you go to?
+
+6
+00:00:58,079 --> 00:01:10,830
+Ian Ramzy: So right now I'm living in Waterloo, which is Canada. I'm studying computer science there. And I'm 19 I grew up in the us live in Kingston for a little bit. But now I'm based in Watertown. That's awesome. So
+
+7
+00:01:10,830 --> 00:01:35,130
+Wes Bos: Waterloo is pretty prestigious comp size school in Canada. That's where all the brains tend to go. I went to a school in Toronto, and everyone's like, oh, not going to Waterloo. I was like I wasn't wasn't quite smart enough. That's where Google is. That's where famously rim like the BlackBerry kind of came out of and stuff like that. Like your classmates are people who would like go work at like Google and things like that. Is that right?
+
+8
+00:01:36,240 --> 00:01:46,950
+Ian Ramzy: Yeah, I got a lot of friends that work at Google and Amazon, a couple of Facebook. What a lot of very, very big brain people there. Were very smart people man makes me feel bad.
+
+9
+00:01:48,150 --> 00:01:51,330
+Wes Bos: I bet I bet. How you doing today, Scott? Hey, I'm
+
+10
+00:01:51,330 --> 00:02:05,970
+Scott Tolinski: doing good. Just getting going. You know, doing that. The life where everybody's home all the time. And Landon just turned three yesterday. So we had a big old party. And that was a lot of fun. Just Yeah, trying to trying to get normal life back working.
+
+11
+00:02:06,300 --> 00:02:15,300
+Wes Bos: Oh, that's awesome. So I'm very curious about this comp. sigh background. I see a few more questions about that. What year are you in in comps I at Waterloo right now.
+
+12
+00:02:15,660 --> 00:02:18,810
+Ian Ramzy: So right now I'm in my second year. I'm just finishing off second year.
+
+13
+00:02:18,840 --> 00:02:24,660
+Wes Bos: Okay. Right on what kind of languages What do you even learning in comps i a second year right now.
+
+14
+00:02:24,900 --> 00:03:21,960
+Ian Ramzy: So this year, I'm taking courses where we're doing some low level stuffs, we're doing a couple of things with hardware and logic gates, still doing some stuff with myths that's kind of like baby compilers. And we're doing a little bit of c++, I believe for some algorithm stuff. But that's it. Prior to that, it's you don't go to Waterloo for what they teach you in like as far as useful programming language like no one's teaching you like JavaScript or react. In our first term, we learned something called Doctor Racket, which is based on scheme. It's functional programming. If you know what that is. It's not exactly super relevant these days, in my opinion, so much time doing Doctor Racket is pretty hellish. I don't think a lot of people liked it. But yeah, we did Dr. racket. And second term we did see in third term. So our second year we did c++, but there's really not a lot of coding outwater like I spend a very small amount of time coding most of it's just doing that really just kind of disappointing. But yeah, it's very theoretical. That's,
+
+15
+00:03:21,960 --> 00:03:30,539
+Wes Bos: that's really interesting. So the the coding skills that you do have is that just picked up in your spare time. So hacking on stuff like the SIP call project we're going to talk about,
+
+16
+00:03:30,960 --> 00:03:49,470
+Ian Ramzy: yeah, a lot of it's from I'd say, going to hackathons work with friends on stuff. What's also really nice, though, is that they have a very strong Co Op program, so they help you land internships at companies. Unfortunately, when you work there for four months, you tend to pick up a lot just from working with all these people. So I've had to calm down. That's been really great. That's why I learned a lot of my skills. Oh, yeah.
+
+17
+00:03:49,680 --> 00:03:56,970
+Scott Tolinski: Yeah. It seems like you have a lot of relevant experience when I was looking at your site. Some interesting companies and work experience there.
+
+18
+00:03:57,000 --> 00:04:27,120
+Ian Ramzy: Yeah, yeah, I've been lucky I, I work. I first worked at Deloitte for one of these club program. That was awesome. I got to work on a super cool team got to build some machine learning models, a lot of data scraping a little bit react. Pretty, pretty nice tech stock just finished up for once at Accenture where we did a lot of work with blockchain, which I have my opinions about blockchain. But I mean, like a decentralized health platform without so it's pretty neat. I'm very lucky that I haven't had to work with like dotnet, or like PHP or something like that. Yeah.
+
+19
+00:04:27,600 --> 00:04:46,230
+Wes Bos: It's funny. I'm like, like 10 years out of Co Op right now. So I went to another school in Canada, and we had co ops as well. But the Waterloo kids always got the really good co ops at Accenture and Deloitte and Google and Facebook. We were the ones that took the dotnet.
+
+20
+00:04:48,080 --> 00:04:57,200
+Ian Ramzy: everything like that. I mean, you'd be surprised most of my friends at Facebook are doing PHP, so it's not all ugly. Oh, yeah. That's true. Well, What school did you do? Did you study
+
+21
+00:04:57,540 --> 00:05:29,580
+Wes Bos: I went to Ryerson in Toronto, and I do I did a I did the information technology management course, which is now called Business Technology Management. It's a business degree focused on tech. And I majored in forget, I did a lot of Telecom, which is why I when I saw this thing that you built, I immediately was like, Damn, this is cool, because I went to school for this stuff. And it's super complicated. And then I looked at the source code of it. And I was like, this is really not all that out there anymore. It's pretty simple with with webtech.
+
+22
+00:05:29,880 --> 00:05:31,470
+Ian Ramzy: Oh, yeah, it's extracted with you.
+
+23
+00:05:32,220 --> 00:05:52,500
+Wes Bos: Alright, so let's get into talking about this. So the website that you built is called zip called.io. Essentially, what it is, is, it's a peer to peer video calling application that uses web tech and allows you to do things like a zoom call, there's a whole bunch of features in it, do you want to like give us a quick rundown of what it is and why you built it? For sure. So
+
+24
+00:05:52,500 --> 00:08:35,369
+Ian Ramzy: I guess I can kind of start with the why first. And that goes back to when I started doing a lot of this work from home. So I was at Accenture, my last month there and they're like, Alright, you know, I'll come to the office. Everything's starting to shut down from COVID. And I wanted to talk to my friends, I want to call them I was like, Okay, how do I do this? So one of them was like, I you need to download Skype need to sign in as a guide, download Skype, everything on Microsoft account. They're like a phone number. I'm like, Are you kidding me? Like a Sox? Or like, Whatever I do it, I try and call my other friend. He's like, Alright, let's use Discord. It's like, what the heck is like, why do I download all these different platforms, like I just want something that works in the web, that's like, literally just meets my needs. That was the original quote, or something that I can use with my friends. And that's really simple and will will just work. I couldn't find it. So I just started walking around the apartment. I just was like, complaining. My roommate was like, if so annoyed with this, like, why don't you just build it that's like that script maybe? Well, so we kind of had this bet that I he didn't think I could build video calling because I know it's pretty daunting from the surface because a lot of problems need to tackle to make it even just usable. Like you know, Echo reduction, auto scaling video quality stuff. That's not really trivial. Yeah. Well, clearly I want that that so. But yeah, I mean, it really just used for myself, but I wanted something that was browser base. That was number one requirement. Because I grew up my grandmother. And I kind of coined this term I want to call the grandma test. She's 80 years old, doesn't know how to use computer. No way I could get her to download zoom, change the audio input? And oh, wait, I have three, certainly, it's too much. Sounds like what's the simplest thing I could kind of go for. And that would be sending an email, having your click one link that is automatically joins automatically selects the right input automatically skills video does everything that, you know, a sensible video chat should. And that was kind of how it started. And then from there, I think the second kind of important part of it is the peer to peer aspect of things, how there's not this kind of central server that's relaying video between everyone. So if you look at a traditional solution from zoom, or Facebook Messenger, or Google Hangouts, they all have something I'll either use an SF view or an MCU, which is, as a fuse is selected 14 units to get the MCU stands for but essentially, it just acts as a central source where all the data flows into and flows out of. But those are really expensive. If you wanted to build an actual really great solution, you'd have a global cluster of these, they're all very local to users computers, then you can very fast and need to be able to be very performant because they're streaming, you know, high bandwidth video. It's not cheap. And if I built my own version of that, with, you know, the number of users that sip calls getting today, my poor little college budget would have been blown A long time ago, credit card companies would been knocking at my door AWS been like, hello.
+
+25
+00:08:35,779 --> 00:09:15,649
+Wes Bos: Yeah, because like, like, that's what zoom uses right now. Um, there's some benefits to that, because like I'm recording in the cloud right now, although I, we will talk about that. But the video has to go from my computer, which I'm in the woods in Canada right now, over to zoom, and then zoom needs to relay that over to Scott and to you and things like that. And that gets really, really expensive at the end of the day, if you need to run servers that are sort of in the middle. So the tech behind this is using web RTC, which allows you to connect directly to the person on the call from your computer to their computer, and then there's a direct line from you to them. That's right, right.
+
+26
+00:09:15,690 --> 00:09:46,620
+Ian Ramzy: Yeah, that's right on. So I use WebRTC. And I tend to people to go through a process that's called an ice candidate exchange, and then majority of the time it will succeed. So the process kind of looks like there's my IP address. There's your IP address. In between us, there's firewalls, there's different internet service providers, there's whatever country restrictions and to get people connected, you have to go through a process that's called NAT traversal. Yeah, that doesn't always succeed, but majority the time it does, and that's essentially how you create a really great peer to peer connection.
+
+27
+00:09:47,130 --> 00:10:27,390
+Wes Bos: I'm very curious about it because when get user media and WebRTC came out, this was probably seven years ago. I went whole hog on it and I thought this is so cool that you can finally access the webcam like you You were probably like 11 years old when I was trying to do this in Flash. And it was really cool. And then they finally came to the browser where you could access the user's webcam and WebRTC rolled out at the same time. And I tried to build an app, but I hit these roadblocks, which is trying to understand what, like network traversal stun TURN servers, like, do you? Do you know what those are? What are STUN and TURN servers? Like what are they for?
+
+28
+00:10:27,919 --> 00:10:34,350
+Ian Ramzy: So I'm not gonna claim to be a networking expert. I'm sure you have a lot of those that listen, so I have to be careful with my words.
+
+29
+00:10:34,470 --> 00:10:38,539
+Wes Bos: I would like go over networking. I don't understand it. So I'm sure very few people do.
+
+30
+00:10:40,159 --> 00:11:27,960
+Ian Ramzy: Okay, okay. So maybe that's how I see ya net of all this gibberish. But the key players, as you mentioned, are STUN and TURN. So stun is for a process that's called NAT traversal. That's getting people connected pastor firewalls. The problem is that that doesn't always succeed. Like, for instance, I was my friend is working at IBM. And I was at Accenture, two companies that both have like ridiculous security policies, yet, not traversal will never succeed that just because they have like peer to peer connections or strip blocked, at least on company intranet, when that fails need to have some type of backup. And in that case, that's when you use what's called a TURN server. And that's just a very lightweight server that acts as a relay between two candidates. So for that, I use a service, I pay for service with Twilio, it's like 40 cents a gigabyte, I think it's pretty expensive. But Twilio was the fastest one that I could find. And that's kind of why I chose is also very simple.
+
+31
+00:11:27,990 --> 00:11:45,210
+Wes Bos: So the video, if both of you are behind a firewall where you can't traverse the network and connect these two things, then the TURN server acts as as an in between sort of takes in the video and hot potatoes that over to the other people on the call. Is that right? Yeah, exactly.
+
+32
+00:11:45,210 --> 00:11:47,039
+Ian Ramzy: It just acts as a simple relay.
+
+33
+00:11:47,429 --> 00:11:47,970
+Unknown: Oh, that's cool.
+
+34
+00:11:47,970 --> 00:11:51,990
+Ian Ramzy: It's almost like another person in the call
+
+35
+00:11:52,020 --> 00:11:52,529
+Wes Bos: yet,
+
+36
+00:11:52,529 --> 00:11:55,559
+Ian Ramzy: but it never actually decrypt anything, it just kind of passes it along.
+
+37
+00:11:55,770 --> 00:11:57,090
+Wes Bos: And then what is ice.
+
+38
+00:11:57,659 --> 00:12:06,330
+Ian Ramzy: So ice gets a little bit more complicated. And I'm by no means an expert on it, I'm just going to give my my kind of chimp level understanding of it.
+
+39
+00:12:06,390 --> 00:12:09,870
+Scott Tolinski: I think chip level understandings work very well, on this show.
+
+40
+00:12:09,899 --> 00:12:11,309
+Wes Bos: That's kind of what we aim for,
+
+41
+00:12:11,399 --> 00:12:54,299
+Ian Ramzy: you know, you roll back the clock enough for all chips, right, some of us know how to click the clock on a keyboard. But the entire internet connectivity establishment, and you have to trade these, they're called ice candidates back and forth. And ice can essentially kind of like a path between two users, the thing is, you have to try it a couple of times to find a path that actually works. And this entire process is pretty complicated, at least when you're first getting started. To do this, you need something that's called a signaling server. Before you can actually establish the call, you both need to connect to some centralized server. For me, it's just some node server that I have deployed on Heroku. And it pretty much just shoots these ice candidates back and forth using the STUN server, and is trying to find a path between the two people. So that's what
+
+42
+00:12:54,360 --> 00:13:15,539
+Wes Bos: the role of ISIS, ah, that makes a lot of sense, man that you explained it a lot better, because I read, I don't know, 50 articles about it when this first came out. And then in preparation for this podcast, I went back into it. And I still was like, I can't kind of get it. But then there's lots of diagrams with arrows and my eyes start to glaze over. It's,
+
+43
+00:13:15,570 --> 00:13:50,309
+Ian Ramzy: I think that there's an incredible opportunity for making the whole signaling process of exchanging ice candidates and you know, stun and knock traversal. And all that stuff, I think could be done so much better. Like right now. It's like, eight steps back and forth to start a web RTC call. It's so many steps that I actually use a web socket, to go through that process. Because a web socket in my mind, which is quicker than just constantly sending like, you know, standard, like HTTP requests, when really it should just be like, you know, one and done, I think so it's almost make a service that abstracts that away even better than it is now, at the big fan. Who knows, maybe I'll make it one of these days. Yeah.
+
+44
+00:13:51,179 --> 00:13:54,450
+Scott Tolinski: Yeah, it's always good to have those ideas sitting in your back pocket. Yeah. So
+
+45
+00:13:54,450 --> 00:14:46,020
+Wes Bos: another reason why I wanted to have you on on the call was, I went and looked at it, and it's awesome. And it's open source. And I just was kind of just clicking through the code. And I was like, there's no real bundler. Here. It's almost entirely done in vanilla JavaScript. It looks like there's a little bit of jQuery in there, regrettably. And yeah. And then it leans on, unlike browser API's. So it was incredibly easy for I think, pretty much anyone who's listening to this podcast can go ahead and clone this repo and sort of read through the code in, I don't know, four hours or so and see how it works. Because there's not a whole lot of like magic being hidden in NPM, install dependencies at all. It's just I think, probably the biggest one you have is you've got an express server and WebSockets that do the talking between the two people on the call. Is that right?
+
+46
+00:14:46,350 --> 00:16:08,460
+Ian Ramzy: Yeah, it's I'm very proud of how simple it is. It's a little bit messy now, because a lot of the UI got mixed in with the kind of actual chat logic. Yeah, so I think the actual main JavaScript file commented Run under prettier, which is a file format are things like 900 lines, which is pretty baby, the entire application. Yeah, totally entire back end is like, hundred and 10 lines. So it's, it's small, right? Like you could understand an afternoon, my roommate and figure it out in like an hour or two. And he's by no means a web developer. So if you want to look at it, it's all commented decently well, he'll give me some thoughts, but it's pretty simple understand. And that's kind of when I code. I'm very much a person who likes simple things. Because I think the more complex and convoluted things get, the harder to maintain. People don't understand them. It's harder to parse, it's slower to update. So there's the people that like to do things correctly. And you know, make sure everything is you know, super maintainable, and perfect and beautiful with all these large classes and everything. I'm not that person. I'm not saying I write garbage, but I very much value to get things done as little lines as possible, which has its trade offs. But it's pretty crazy, like the entire pack. And is that is like, like 100 lines. Yeah, and lines. And like 40 of that is just serving static files, which I probably shouldn't be doing. I probably should use like an s3 bucket for that. But yeah, you did
+
+47
+00:16:08,460 --> 00:16:40,169
+Wes Bos: it. Like that's why I wanted to have you like I saw this like, this is wicked like, like the guy just made this thing and and just did it and like Never mind best practices. And the best way to approach things and all this stuff. Like you literally just made a chat j s started coding scripts source that sucker in. And it works, right. Like there's not a whole lot of Yeah, complicated stuff. And I think for anyone trying to learn or, or see how other people code, I think that's a pretty awesome way to do it.
+
+48
+00:16:40,260 --> 00:17:07,850
+Ian Ramzy: Yeah, my one regret was that I didn't make the application react, I use jQuery, which I guess is good, because it makes things like making a draggable video element like it's really easy to have. Like, it's great for prototyping and just, we just need a two line fix. It just works. But you kind of have some issues as far as like managing state that get kind of gross. But maybe I'll redo it and react one of these days. But jQuery is great for getting stuff done quickly.
+
+49
+00:17:08,429 --> 00:17:38,460
+Wes Bos: Like once you've got this done TURN server connections and everything like how do you literally send the data from from one to another. And a lot of my courses we use, get user media, the API for accessing webcam or audio. And then WebRTC is the API for sending data from point to point. It's just an RTC peer connection that allows you to send it and then and then it's simply just setting a video source to a stream object. That's right.
+
+50
+00:17:38,910 --> 00:18:45,900
+Ian Ramzy: Yeah, it's pretty crazy, you get once you get connected, you create a new pure object, and then you just send that puppy over, and the other person just has to set like some HTML video tag to be that source. It's not bad at all. Just getting just getting that web rtcpeerconnection set up is a little bit annoying. But once it's there, you can just attach whatever you want. Like, right now, it's a call there's a peer connection was one peer connection. But inside that there's a data channel. For the actual video, there's on the data channel for just sending miscellaneous commands, like when use the text chat, send over a channel, or when you turn on captions, you have to tell the other person information about that. And you no longer have a central server to relay messages through, you have to send it via peer to peer that's also done through that channel. It's it's a decently elegant, so you can have multiple data channels between a single connection. Yeah, like right now I'm working on creating another data channel not working, it's done. I'm just kind of refining a couple of things. So you can send files between two people really quickly over peer to peer. And it's the exact same concept just instead of sending a video or like text information nice and binary. Wow,
+
+51
+00:18:45,990 --> 00:18:58,170
+Wes Bos: that's like one thing that blew my mind. Because I for years, I thought WebRTC is for video, but it's for literally anything, right? Like any data that's converted to a stream can be sent over web RT to see,
+
+52
+00:18:58,740 --> 00:19:06,750
+Ian Ramzy: to my understanding, yeah, like you can send you can send files over it. So I don't see why you couldn't send anything. The big advantage is the real time aspect of it. It's really great.
+
+53
+00:19:06,780 --> 00:19:55,020
+Wes Bos: I one app that I use for totally legitimate reasons is web torrent. And web torrent is a JavaScript based torrent client that allows you to stream video as it's being downloaded. And this is awesome, because you could also like I've looked into it once before where I've a video course platform, I pay through the nose for bandwidth for streaming my videos. And a lot of people have said, like you can utilize the people that are watching the video to also upload that to other people who are trying to watch it. And that's how torrents work is torrents. There's no central service where the data lives. It's just between different peers visiting the website. I never did that because I don't think that I want to use my users bandwidth for it. But right now, it blew my mind that you could
+
+54
+00:19:55,550 --> 00:19:57,990
+Ian Ramzy: do this online video course you think 100 megabits
+
+55
+00:20:00,659 --> 00:21:40,650
+Wes Bos: Yeah, exactly. Today's sponsor is Stackbit. It's a pretty cool tool to work with your jam stack website, they've coined the term the best way to jam stack. So the sort of a couple interesting things it does with the jam stack is it does inline editing. So Stackbit integrates with your CMS to enable on page editing, no more wasted time searching for the headline within the CMS. And that's actually a big frustration with a lot of CMS is is that like, you see the page? And then you see the CMS but you don't know like, Where do I edit that? And and like, how does it work. So what Stackbit will do is it'll hook up with your existing CMS contentful, Sanity, dado Netlify, forestry, and it'll give you a UI where you can just edit it as if you were on or if you're right on the website, which is pretty cool. They also allow you to do things like preview and share changes before they go live. You can test on different devices and works with Gatsby. So Stackbit was a really cool tool. It works with your existing CMS, it works with your existing jamstack website, which is pretty nifty. We want you to go on over to stackbit.com. Check it out, they've got a whole bunch of different examples that are available to you, this might just be the tool that you need for your next jam stack website. Thanks so much to Stackbit for sponsoring. So I love seeing different things. So web torrent is the client. And then there's a library underneath. And it's implemented in JavaScript where you can just do peer to peer connections really simply, maybe it's not even a library. Maybe it's just art, this RTC connection,
+
+56
+00:21:40,980 --> 00:22:04,110
+Ian Ramzy: it could be good appears ridiculously powerful. I don't think a lot of people realize that. They can do a lot of really interesting stuff. For instance, like I think zip calls had well over 100,000 users at this point. Really? Yeah, it's pretty nuts blows my mind, a little luck with timing and all that. But in all this is running on a $7 a month Roku server that's less powerful in your iPhone, it is operating at like 20% capacity.
+
+57
+00:22:04,860 --> 00:22:07,590
+Wes Bos: Man, like how did those hundred thousand people find you?
+
+58
+00:22:07,860 --> 00:24:30,720
+Ian Ramzy: So I think I started the first place I went to was I went to Reddit and I just kind of blitzed Reddit, I just kind of was like, Alright, whatever. What's the easiest way for me to get this out? I don't have a lot of time, I'm still working full time says that I have to pick the top 20 subreddits. I think this will do well. And I posted it. Half of them got downloaded to nothing because like, stop like self promotion or whatever. Yeah, it wasn't even fully self promo. I just was like, Hey, I mean, this really cool thing to video chat with my friends, check it out, if you want those kind of prints, right said like, I mean, the front of our slash JavaScript. I mean, the front of our slash entrepreneur, made it to the front of art slash WebRTC or slash Roku, like a couple million people. As far as like people who are subscribed to different subreddit saw it for a long time. That was kind of a big first key was I gained maybe 20,000 users in two days from Reddit. Wow. But because I linked on the actual zip code website to GitHub was great is that a lot of people were then converted to go to GitHub and start like, right, nothing has 2000 stars on GitHub. It's pretty crazy. Because most of my friends don't have anything more than five. You know, five is like, oh, wow, you build something awesome. With like five of those, like three of those people, it started with just your friends. Do thousands. It's a good bit more than that. So that allowed me to do from there is I didn't skyrocket into the front page of GitHub. I was the number one. I don't know if you know this, but there's actually a trending page on GitHub that a lot of people check. Yeah. Oh, yeah. Apparently, it also shows up in kind of like that sidebar, when you log in, like, oh, like explore these repositories. That was the number one repo for I think, three days, definitely two days, and I was on the front page for like four or five days. So I got a lot of people that just kind of saw us on GitHub. But I think kind of the important lesson from that is to get to the front of these trending pages. It's not really about velocity, like it's not how quickly you're gaining users, or sorry, it's not how many users you have. Its acceleration. So if you go from 20,000, stars to 40,000 stars, that probably won't get you to the front page of GitHub, or even Reddit, right. But when you go from having three stars to 600 stars, that's a couple order of magnitude increase. And all these search algorithms like Hey, there must be something interesting going on. So this positive feedback loop starts to occur where because you got this quick influx of users, you can push the front page and you get even more users. And then Google works the exact same way, as far as it measures acceleration and change the number of hits, not necessarily just the total number of volume on
+
+59
+00:24:31,140 --> 00:24:46,950
+Scott Tolinski: your server deal with this immediate influx. Now granted, I would imagine it's not doing a crazy amount of stuff. But did you notice any sort of issues with the influx of users that sudden jump did you have to scale up or anything or was it mostly okay?
+
+60
+00:24:47,520 --> 00:26:18,900
+Ian Ramzy: So the first day I launched it, which I told my friend was to get 1000 people to use it. If I get 1000 people, I'm a static of doing like, 20,000 in two days, so I beat that by a good bit. I think in one hour, I did like five thousand five or 6000 people, which is, that's a lot for HD video calls. So the server series really two main functions. The first is serving static files, like your CSS, your JavaScript, all that good stuff. Then the other half is that once you have two people sitting in a room, waiting for the call, it acts as a signaling server. So you open up a WebSocket connection from each caller to the Heroku server. And you just pretty much just send data back and forth through about three or four seconds, saying, like, Hey, this is my IP address. Here's some ice candidates, try these out, let me know if they work. That person goes, Hmm, okay, these ice candidates didn't work. You know, here's my web RTC settings, let's try these ones and just go back and forth a couple of times till it works. That's really all the signaling server does that process is pretty quick. And once and this is something I think actually helped out a lot, is once two callers are connected, they disconnect from the server, like completely. So the server doesn't have a notion that these people are on a video call right now. Which is something that really helps if you have 6000 people on the call having 6000, open WebSocket connections, it starts to take a toll. Sure, if you have a large ABS instance, that has a lot of bandwidth to compute, no problem. But yeah, college budget, people are running this on the cheapest Heroku that I could find Roku, for those of you who don't know, is it's just a web hosting platform like AWS, but cheaper and more user friendly.
+
+61
+00:26:19,020 --> 00:26:20,970
+Scott Tolinski: Yeah, check it out. Definitely more user friendly.
+
+62
+00:26:21,540 --> 00:27:06,930
+Ian Ramzy: And the big thing that I got lucky with, I'm primarily Python, I would say I prefer Python slightly over JavaScript. But I decided to do the back end and node and express, which ended up being a godsend because of you know, it's event driven architecture, right. Yeah. And it's non blocking IO stuff. If I did this in Python, if all it was was a simple static file server, no way, there was through response times would have been through the roof, it would have been terrible. But because it didn't know, with all that async magic, it actually managed to scale pretty well. I don't think it ever hit more than 70% usage of response time was always under a second. Yeah, pretty crazy, is there's one thing I learned was note is very powerful when it comes to things like this very powerful.
+
+63
+00:27:07,620 --> 00:27:14,550
+Scott Tolinski: Well, so that's a that's a pretty, pretty sweet lesson. So do you want to talk about some of the features now, Wes, specifically,
+
+64
+00:27:14,610 --> 00:27:34,320
+Wes Bos: I'm just curious about like the browser bakes and things like echo cancellation. So if you don't have headphones on, and you have a call on the sort of the echo cancellation and that sort of infinite feedback, all of that stuff that's done by the browser. But you also said you have like auto scaling video, does the browser do that as well?
+
+65
+00:27:34,500 --> 00:27:38,910
+Ian Ramzy: They do that through web RTC. So not quite the browser. But yes, it's through web RTC.
+
+66
+00:27:39,180 --> 00:27:44,190
+Wes Bos: And how does that work? Like, because web RTC doesn't know about video streams, does it?
+
+67
+00:27:44,550 --> 00:28:46,980
+Ian Ramzy: Yeah, it does. It's it's ridiculously easy. Like just packet passing a JSON object that's like, auto scale equals true. There's like more more parameters that you can tune. And I spent a lot of time experimenting with them as far as copying max frame rates, copying max bit rate, audio, sampling frequency, all that type of stuff. Yeah. But they picked really sensible defaults. And even I spent like a week experimenting with it, trying to change stuff. They were a lot of things, right? It's kind of funny, I made this entire thing. And I didn't even realize I had echo cancellation or noise background illumination or anything like that. It wasn't until I started learning that as soon as automatically it started turning things off. I was like, oh, wow, like you really need this. Yeah, like, if you don't have echo cancellation, it's totally unusable. And if you don't get rid of that kind of background fuzz, just for people's microphones, where they get it gets introduced the network for whatever call quality sucks. But yeah, it's super accessible. They do a really great job at it. I would say it rivals like a zoom or FaceTime or anything like that, as far as audio quality.
+
+68
+00:28:47,010 --> 00:29:11,580
+Wes Bos: Yeah, like I remember when this came out, like Skype had spent, like years getting current audio cancellation and all this stuff implemented. And then they just rolled it out in the browser for free. And that's when things like slack and whatever just started adding video calling to their apps like it was no big deal, because they can lean on on using WebRTC abstraction is a beautiful thing.
+
+69
+00:29:13,980 --> 00:29:42,750
+Ian Ramzy: Think if there's one thing that I hope people can take away from this is I'm some I'm some 19 year old kid who just had an idea. Yeah. And two weeks later, with some googling, and a lot of copying, pasting, made something made decent video chat with 100,000 users. I don't claim to be a genius. I don't claim to be incredible developer. I do think I'm clever, though, as far as my ability to Google. But I think that's all anyone really needs to know. That's just, I don't know, kind of the power of all these libraries, how sophisticated all these things are.
+
+70
+00:29:42,810 --> 00:29:44,670
+Wes Bos: How long have you been coding then?
+
+71
+00:29:45,150 --> 00:31:44,490
+Ian Ramzy: So I started in high school. I was first introduced to it in grade 10. Funny story. I took this introductory programming class, we were doing Python, which was a good choice. But I took it because there was this girl that I liked. I thought she was taking the class. Alright, here's the plan, we're gonna sign this class, because if I tried this whole mastermind, classic first day, she's not there. Well, it was not the entire classes guys, like, what the hell I debated, but at this point, it's like, Alright, whatever is gonna stick it out. I start gonna start going through this class. I was lucky for whatever reason, I was did really well in high school, I knew how to check the right boxes. So I was used to, you know, getting like 9798. All those ridiculously inflated numbers at high schools give out these days. That's just really terrible in this class. Like, my first assignment, I think I got a 50 I don't think I saw anything under a 90 before. So I was just like, appalled. I was like, What the heck, I was like, what's a for loop? Like? How do you print something, I couldn't understand this idea of stepping through code instructions. And I don't really know what changed. But I kind of went from getting like 50s all these assignments and doing really terribly just like for loops and printing and like, you know, iterate through, like, like, iterate through anything just for loops, and if statements and just did not click, but I think one day, I just was working on it. It just made sense. Plasma teacher was like, Hey, can I redo all my assignments? He's like, sure, man. better use all my assignments, and actually winning the award for that class, which was pretty interesting. I don't say that to sit to clean up some genius programmer, I claim to say, I say that because it was not all you know, rainbows and sunshine. It was really frustrating for me at the beginning. Totally. Doesn't have to be it's pretty easy to pick up. Sounds great. 10 little Python? Great. 11 a course and we did flash ActionScript, which is you check out all the games I made on my website. It's just Ian ramsey.com. We made a bunch of little stupid flash games. Flash is deprecated. Don't learn flash guy.
+
+72
+00:31:44,640 --> 00:31:47,070
+Scott Tolinski: Yeah, pretty useless. Do not know right now.
+
+73
+00:31:48,360 --> 00:32:17,700
+Ian Ramzy: I'll just finish the timeline. Real quick. Great. Follow up to Java went to Waterloo for computer science. First year, we did some racket, a little bit of c++ didn't really learn how to code that much, but learned a lot about like memory and recursion, a lot of fundamentals. Did my first work term did four months at Deloitte, a lot of Python, little machine learnings AWS react JavaScript, went back to school four months, honestly learn nothing new. And in four months, at Accenture, we did some JavaScript blockchain. That's the timeline. Wow.
+
+74
+00:32:17,729 --> 00:32:59,400
+Scott Tolinski: Yeah. I think that's an definitely useful for our audience to know. Because it is it's, I don't know, like Wes. And I have both interesting trajectories into this stuff as well, I think. And, in general, it's always good to hear how people advance through their careers like this. And your career is still very early, considering you're still a student. So it's amazing to hear. I have a question about the screen sharing aspect of this. So it doesn't seem like it's all that complex is is just basically swapping the media. I mean, is there a whole lot to it other than that is like what what is the process for getting screen sharing, working, because that, to me seems like something that would have been somewhat complex. Considering the ramifications of sharing screens and all that thing.
+
+75
+00:32:59,760 --> 00:34:48,980
+Ian Ramzy: I am always shocked at how much you can do in the browser, like the fact that I could do picture in picture to me, so you could literally change to a different desktop, and still have like a UI element that floats on top of the flute and video, I couldn't believe I had that much control as a JavaScript developer. And same thing as screen sharing. It's not bad, you just call one line, you save it to an object and then you just have to swap it in with a new video feed swapping it with the new video feed. Took me a little bit of googling to figure out how to do that properly. But no, it's pretty damn easy. hardest part about it, I would say other than the swapping streams kind of dynamically in the chat. Because before when I would do this was a really naive approach is that essentially end of the pier connection, so and the comb, then create a new call. With that screen sharing video with I learned how to fix that. The hardest problem about all this is just cross browser compatibility. Some stuff works in one browser doesn't work in another when you using all these experimental things like web RTC. It's not super well supported. Yeah. You know, getting screen sharing all this stuff. They use a library called adopter dot j. s. Beautiful library. I have no clue what it does. I just know that it works. And it just makes web RTC work like 50% better. We just slap that bad boy in there. It will make your calls. Like literally get display media, it'll I think it will override them with whatever the browser specific version is. It'll do things like that. Because before when I made zip call, it was not working on safari whatsoever. I had no clue how to get working on safari, I spent like days trying to, you know, read the console logs. Like why is this failing? That's failing yet. And I couldn't figure it out, because it's the exact same code that worked perfectly on Chrome. And this is when you know, there wasn't all these fancy features. So it just was the most basic video chat, like two or 300 lines and chat.js the client JavaScript, but I just included adapter j s one day, I was like, Oh, sweet. We got iOS support. Now we got we got Safari support on desktop.
+
+76
+00:34:48,980 --> 00:34:50,690
+Wes Bos: So it does work on mobile now.
+
+77
+00:34:51,330 --> 00:35:07,320
+Ian Ramzy: Oh, yeah. Pretty well fully supported on Android as long as you like your browsers like up to date. So if it was Chrome, no problems if use iOS only caveat is you have to use Safari, because Apple will block web RTC that isn't in the native iOS browser.
+
+78
+00:35:08,280 --> 00:35:08,850
+Wes Bos: Oh, yeah.
+
+79
+00:35:08,880 --> 00:35:21,380
+Ian Ramzy: Yeah. But those are pretty reasonable restrictions for most users. Most people on iPhone, I have the statistics to back it up. Use Safari, Chrome, most people are starting to Android most people use Chrome. So support is pretty good. I
+
+80
+00:35:21,380 --> 00:35:43,130
+Wes Bos: wonder if the reason why they do that is because they don't want people making like apps in JavaScript to like sort of rival FaceTime. That's sort of why I thought they never they didn't do it for the longest time is that they wanted to get a hold on FaceTime first before they let everybody go willy nilly make their own web RTC zip call.
+
+81
+00:35:43,670 --> 00:36:09,030
+Ian Ramzy: Yeah, I think you're right. I think that's exactly their play. There's also other things like you can't have more than one or two videos. autoplaying I believe. Like, it's it's a real pain, pain in the bum to get that. Yeah. So you have to have your own video facing yourself. You're the person that's like play buttons and stuff that you have to hide. They do not make it easy, as opposed to on Android. It just worked flawlessly. Whatever worked on Chrome desktop worked on Chrome.
+
+82
+00:36:10,020 --> 00:36:13,830
+Wes Bos: Yeah, I think all of that is intentional on their end.
+
+83
+00:36:14,610 --> 00:36:55,050
+Ian Ramzy: I think there's also an argument for there's some security issues with web RTC. At least there used to be, I'm not a security researcher. But if you use it nefariously, you can figure out people's IP address. And I think Apple's a very privacy. Yeah, company. So maybe that's another kind of angle, but I don't know, you have captions. How does that work? captions are probably my favorite, most useless feature, the other person. So let's say I'm going to call with my friend, Joe. If I want to see captions of what Joe is saying, Joe has to be running Chrome, which is seems a little bit weird and convoluted. Explain why I said I did it like this. So I use the built in browser text speech. It's
+
+84
+00:36:55,440 --> 00:36:57,440
+Wes Bos: speech synthesis. I used it the other day.
+
+85
+00:36:58,190 --> 00:37:01,610
+Ian Ramzy: Yeah. Built into Chrome. I don't think it's built into other browsers.
+
+86
+00:37:02,100 --> 00:37:02,850
+Wes Bos: Firefox now.
+
+87
+00:37:02,850 --> 00:37:04,590
+Ian Ramzy: I was in Firefox. Oh,
+
+88
+00:37:04,650 --> 00:37:07,880
+Wes Bos: I don't know that. Yeah, I used it the other day in Firefox. I was surprised it was in there.
+
+89
+00:37:08,630 --> 00:38:07,080
+Ian Ramzy: Okay, well, maybe we'll have to make that work on Firefox. Right now I blocked in I just say that a person needs to use Chrome. But do some really nice stuff. But pretty much I run that on the person who's calling, and I send it over the data connection via that peer to peer data channel has talked about earlier, where you send your text chats through, I also send captions through that. The reason why I do that is because if you run text to speech on the input, as you're receiving it, text to speech adds a delay of half a second to to one second, right. So by the time those captions appear in your reading along, it's too slow, it's too delayed, it's really hard to keep up. But if you run that speech recognition on the other person's computer, and then you send it over as text out of the text, it will send much quicker than the video data will, the captions will actually arrive pretty much in real time as compared to the audio source. In fact, sometimes the captions will be the video and audio. So it's, it's quite a nice experience. I think that was the right way to do things. Yeah, captions are. They're pretty freaky.
+
+90
+00:38:07,130 --> 00:38:08,610
+Wes Bos: That's cool. It's pretty cool.
+
+91
+00:38:08,670 --> 00:38:12,960
+Ian Ramzy: I also made real time translation for that to like, auto detect language.
+
+92
+00:38:15,170 --> 00:38:15,690
+Unknown: If you want,
+
+93
+00:38:15,860 --> 00:38:29,550
+Scott Tolinski: it's amazing how much was crammed into this thing, considering how simple Yeah, how, how easy to parse all of this. This code is I mean, it's like you mentioned, Wes, it's not a lot of code here. And it's amazing how many features exist in this totally.
+
+94
+00:38:29,820 --> 00:38:40,980
+Wes Bos: One thing I should correct myself. It's not in Firefox, speech synthesis, which is text to speech is but the other way around, which is speech to tax is not in Firefox yet.
+
+95
+00:38:41,630 --> 00:38:46,290
+Ian Ramzy: I think it's called the web Speech API. That's what I use in Chrome.
+
+96
+00:38:46,560 --> 00:38:52,530
+Wes Bos: It's really simple to use as well. It's just new speech recognition. If you're looking for the API in your console.
+
+97
+00:38:54,210 --> 00:39:06,710
+Ian Ramzy: You gotta love JavaScript. User media dot get display. Yeah. New speech recognition. It's beautiful. Yeah. Or is it like, you know, trying to add two strings together and see how good luck with that? Yes,
+
+98
+00:39:06,710 --> 00:39:15,380
+Scott Tolinski: I have a fun question here. The loading animation that you have when you're waiting for people to connect. It's really nice. Did you is that did you make that? Or was that like,
+
+99
+00:39:15,650 --> 00:39:26,760
+Ian Ramzy: I found a GIF on the internet because people were telling me they weren't sure what's going on? The applications are like I need a loader. loader just and then I just spent like 10 minutes in Photoshop, removing the background. Awesome.
+
+100
+00:39:26,790 --> 00:39:27,360
+Unknown: Yeah. No, that
+
+101
+00:39:27,360 --> 00:39:35,690
+Scott Tolinski: was really nice touch. I thought it was a I don't know. It almost had like a lot of personality to it. So Bravo for picking something interesting there.
+
+102
+00:39:36,710 --> 00:39:39,540
+Wes Bos: Did you think Did you design this thing? It looks awesome.
+
+103
+00:39:39,980 --> 00:40:03,570
+Ian Ramzy: So this is something I got a little bit of criticism on Reddit, because I probably should have made this more open. But the actual landing pages I've been designed myself I use I forget the the artists name but they make really great templates. But yeah, the landing page didn't really I didn't make myself. I use premade components. Yeah, but the actual UI for the chat I made from scratch. You can look at all the Nasty CSS and jQuery. It's all there. That's cool.
+
+104
+00:40:03,900 --> 00:41:31,800
+Scott Tolinski: This episode is sponsored by our good friends over at Sentry, and I'm talking sentry.io. Now, Sentry is the perfect place to see all of the errors and exceptions that your application faces all at once in a nice, cataloged way for you to be able to tackle these issues. Now one of the coolest things that I like about Sentry is the fact that I can create a GitHub issue directly from my application on Sentry, I just click a link to GitHub issue and I can create an issue it links directly to Sentry, everybody can go ahead and see exactly what the error is you can link directly to the century error itself, you can choose the assignee directly from there, if I want to give it to you, an employee or another developer and say, Hey, this is right up your alley, I can assign it directly from Sentry, I don't have to pop back and forth between GitHub and Sentry whenever I encounter an issue. And then once that issue is complete, I can go ahead and click resolved within Sentry. And if that error pops back up again, you know what it's going to do, it's going to tell me that there was a regression and that I need to fix it. So I love tools like this, it really helps me understand exactly what's happening within my application. And if you want to try out Sentry yourself, head over to sentry.io use the coupon code tasty treat all lowercase all one word, and you're going to get two whole months for free. So check it out. That's more than enough time to experience just how cool Sentry is and just how nice it is for your application. There is a reason why so many important popular companies trust their errors and exceptions with century
+
+105
+00:41:32,100 --> 00:41:41,310
+Wes Bos: recording. Have you looked into any of the recording API's that exists out there? I've only done it with audio before. But is it possible to do that with video as well?
+
+106
+00:41:41,820 --> 00:42:09,110
+Ian Ramzy: Yeah, I saw libraries called record RTC. Yeah, I haven't experimented with it. I'd love to build it in. But to be entirely honest, I really don't have the time these days. Yeah. As far as school is kind of kicking my ass right now I have to find my next internship. That's another requirement of kind of my school program. I don't have as much time as I'd like to spend on devcon, that's for sure. But it's totally doable. If someone wants to like, make a button and make a PR for that. I'll prove that like so fast.
+
+107
+00:42:09,710 --> 00:42:47,420
+Wes Bos: That would be it'd be really cool. I'm just looking at this record RTC, and it does screen recording and everything but Safari, which is unreal if you think about it, because now you can like Scott and I are both professional screen recorders in our jobs. We make tutorials. So like, imagine you could make a browser based screen recorder, much like figma is a browser based design app. I think parts of Da Vinci. No, I don't know if that's true. DaVinci Resolve is available on Windows, Mac and Linux. And I was thinking like, maybe they're using web tech behind there to make that work.
+
+108
+00:42:47,420 --> 00:43:18,210
+Ian Ramzy: Well, applications are getting, they're getting very sophisticated. I remember there used to be a point in my life where I would look for a desktop app. When I was younger. I was like, I wish there's a Google Drive app. Yeah, cuz to me, it'd be faster. And it would like there's something faster opening an app or like, I used to use the Spotify app on my MacBook, or the notion app like, okay, now, I do everything in the browser. I live there, except for like my ID in Terminal, I have very few desktop applications. Web is really the future.
+
+109
+00:43:18,480 --> 00:43:35,730
+Wes Bos: It's funny, you say that Id in Terminal, both my ID in Terminal, our desktop apps, air quotes here, but they're both built in web tech, which is just something about having something in your dock, making it feel like a real app. But like you said, it's all it's all web tech on underneath, which is cool.
+
+110
+00:43:36,210 --> 00:45:22,800
+Ian Ramzy: It's so fast to develop, even with how quickly you know, the chrome V engine has progressed, the application themselves are also very performant now sky's the limit. I get these emails every day. And I know you you teach a lot of people how to code which I think is so awesome. That's something I think I'll probably do later in life. Yes, I get all these emails like, wow, you're 19 you've worked all these places. How did you learn to code? Oh my god, you go to Waterloo. How'd you do this? How did you that? Yeah. You don't need any of that. I'll tell you what you need. The first thing is just need to Google right? Yeah, that's like level one. Level Two is find yourself just a nice online video course. Could be a great one from Wes. It could be something you didn't mean by go it yourself a good web developer course. Or whatever course you want to do just pick a project something you want to make for me it was video call I want to make video calling. And then just build it. Make sure you ship because once you make something and you build something, it is so addictive and it is so energizing like wow, I made this and you showed off to your friends like it the first time I showed said call someone in the call actually connected. I was talking to my friend in the US I was like, No way as like as it I just couldn't stop laughing. So you got to get that aha moment really quickly. I am not special. I'm not some genius. I just can't do well. And I hope that you hear this story as far as the success of zip call. And you can do it maybe there's nothing I want to say. And again, I really don't mean this, to flex but Last month, I've probably had people offer me over a million dollars in seed capital investments. So literally, I was having venture firms every day calling me reaching out in San Francisco and New York being like, Hey, we want to give you $300,000 think this commercial product, hey, drop out of school, come come live here and come do this. This was just the most ridiculous thing ever. Because I was like, it's just a side project
+
+111
+00:45:22,890 --> 00:45:28,770
+Wes Bos: 3000 lines of JavaScript that you threw together and just people offering you hand over fist money.
+
+112
+00:45:28,800 --> 00:46:00,270
+Ian Ramzy: Oh, there's like acquisition talks and stuff like this. It really made me realize a lot of these, you know, crazy Silicon Valley founders. They're no smarter than us. Hmm. They got lucky. I got lucky in the sense that Sure, yeah. I mean, a great product had a great UI, it served its the core functionalities, it did a really great job at, but also had really great product market fit. People were fed up with zoom security issues. Were there. Yeah, people want something in the browser, everyone was desperately for video calling. And I just launched it the perfect time, I gained a lot of users really quickly.
+
+113
+00:46:01,500 --> 00:46:53,790
+Wes Bos: There's a lot of luck in that. You know, totally, I love that. Like, if anything, it's a lot like my my story where one of the first things that I did was when WebRTC came out and get using media is I figured out how to detect the face on it, which is trivial now. But back in the day, it was much harder using a library, and I overlaid glasses on it. And the people are like, wow, how did you figure that out? That your must be so smart, like, no, I literally am just hacking stuff together. And then from that, I got conference talks and like to my website, and people loved it. And it's just like, I literally just had this idea and went out and did it. It wasn't beautiful. The code was awful. But I just went out and did it. And I think that that's such a good thing to tell people who are in the code. And here's just another perfect example.
+
+114
+00:46:54,060 --> 00:47:30,720
+Ian Ramzy: Yeah, there's there's something just so mysterious about software engineering, computer science program, what do you I sit there and I write ones and zeros all day, and in a dark room. That's not at all happens. You know what I do? My friends at Facebook and Google do something doesn't work. The copy paste doesn't work into Google, we figured out fix it. People say why the code we wrote wasn't good change a little more, and they push it and get paid a lot of money to do it. It's not the most complex thing in the world. And there's a little bit of a learning curve, but it's very accessible these days, with all my learning, like, I wish more people would get in software engineering, I think that would be a net benefit for the world.
+
+115
+00:47:31,110 --> 00:47:59,520
+Wes Bos: I totally agree with you there. We see it a lot. Like I used to teach at a boot camp and you see people being like, wow, like, you must be really good at math. We must be really special and like no literally just kept chugging at it. And then you see these people five, six years later, and you look at them like Wow, you really grown and it's honestly just putting in the work for sure. Let's move over to some sick pics. Sick pics is the section of the show where we pick things that are sick. Do you have anything you'd like to sick pick? Yeah,
+
+116
+00:47:59,550 --> 00:48:43,500
+Ian Ramzy: so I'm going to talk about notion notion. So a lot of people have heard of it, they recently raised a new round of capital, I think they're valued at $2 billion. But there are a Silicon Valley startup and they're building really, really great notetaking slash organizational app. It's kind of like a markdown editor, if any of you have written markdown before, like a GitHub README or something like that, but it's like abstracted away and it's really really elegant. Like you can just type notes even like slash h3 and I'll put in an h3 heavier slash h1 and it's all in the cloud and it's just designed so beautifully. You can embed stuff you can embed PDFs it's it's what I use for pretty much all my notes these days. I don't have a notes off of my phone anymore. Yeah notion I think it's pretty awesome.
+
+117
+00:48:44,550 --> 00:49:08,190
+Wes Bos: We use notion to do this podcast some I'm looking at it right now with all of our notes things that we want to talk about to you and we we do all of our sponsors in notion we all of our calendars, all of our sick pics. Everything is is in motion. It's just awesome. And awesome. Happy. Yeah, yeah, it's it's really cool. Plus, it's it's all in web tech, right under the hood. It's just HTML, CSS and JavaScript.
+
+118
+00:49:08,879 --> 00:49:12,090
+Ian Ramzy: Yeah, tried to get a job at notion but apparently don't hire interns.
+
+119
+00:49:12,090 --> 00:49:22,800
+Wes Bos: Oh, really? Well, if maybe somebody that's there's a quite a few people listen to this podcast. So maybe somebody will want you to be an intern after hearing this.
+
+120
+00:49:23,430 --> 00:49:24,390
+Unknown: You know, obviously,
+
+121
+00:49:26,070 --> 00:50:51,930
+Wes Bos: I'm going to sick pick some hardware stuff. So we did Scott and I did a show on a smart home and things like this. And we talked about these sawn off switches where it's it's a really cheap like a $5 Wi Fi switch, and you have to code in your own you have to put in your own cord and everything like that. And I love it. And I was recently looking for something to cheaply, make my garage door smart. And my dad I was just talking my dad and he did it as well. And and there's These really cheap Wi Fi modules that will open and close or inch. Interesting. It's electronics. It's not really my wheelhouse, but I know enough to be dangerous. So you can go on Amazon you can find for 15 2025 bucks, you can find these little modules that you can power by USB or you can power it by the one I got either does seven to 32 volts AC or DC, which is amazing. So so many different situations, you can plug this thing in. And I'm going to hook up my garage doors to it and open and close it. So my dad did it. And it worked really easy. The app is called the IUI. Link, ew e li nk, some random Chinese app, which is probably great to pump pipe all of your information through but I specifically hook it up to Google Home and it works great.
+
+122
+00:50:52,530 --> 00:50:59,760
+Ian Ramzy: It's cool. A lot of integration stuff. I can just imagine, like installing that in your garage. And are you married?
+
+123
+00:50:59,790 --> 00:51:01,650
+Wes Bos: Yeah. Yeah, married three kids.
+
+124
+00:51:02,100 --> 00:51:06,270
+Ian Ramzy: Okay, just opening and closing the garage without them knowing they'll be freaking out like,
+
+125
+00:51:06,450 --> 00:51:09,990
+Unknown: oh my god. There's like What's wrong? Honey, I'm in vacation I'm in.
+
+126
+00:51:09,990 --> 00:51:16,290
+Ian Ramzy: I'm in the Caribbean, the Chrome store will start opening closed. There's a lot of nefarious things
+
+127
+00:51:16,320 --> 00:51:29,160
+Wes Bos: I do we actually do that with my kids, I tell them to say Abracadabra. And then when they say it, I push the button on my phone and it turns the light on and it just blows their mind as to how that works. They think it's really cool.
+
+128
+00:51:30,810 --> 00:53:23,610
+Scott Tolinski: Yeah, so I'll link it. I know, I didn't say what the name of it is, because it's just this random circuit board with Wi Fi chips on it. But I'll link it up in the show notes. I have a sick pick for you today. And this is going to be a YouTube channel which I have a lot of YouTube channel picks and a lot of podcast picks, which I'll have more. But I have a YouTube channel pic for a huge channel that I've been watching a lot of they don't put out a ton of ton of content because their videos are quite a bit involved. And it's not a topic that I've ever been interested in. Let me tell you this I I do play video games. But I'm not a gamer. You know, I play video games. But I'm not a gamer. And this channel is summoning a salt. Now summoning salt is a channel that documents the history of speedrunning in various video games. And what's so fascinating about this specifically is that it's not about the person. I mean, sometimes it is yes about the person who is the best at the video game. But in some situations like Mario Brothers, there's all these interesting glitches that are programming glitches within the application. And like if you land on a certain sub pixel between here and there, something goes wrong with the math and you can glitch through one walls shaving off, you know, point one milliseconds off your time, therefore giving you a new world record. It's an absolutely fascinating look. And these videos are not short. For instance, the latest one they just released was on Ninja Gaiden. And it was 44 minutes long. And it was good. It was very good. And he does these all in a very excellent documentary format. There's the one about punch out that I found to be excellent as well. And just so many of these are absolutely fascinating. I've been watching this YouTube channel for a little bit. And like I said, I've never been into speed running before. And I find these to be just so entertaining and so interesting, especially from a web developer or developer perspective. So check it out summoning salt on YouTube.
+
+129
+00:53:24,270 --> 00:53:28,470
+Wes Bos: Shameless plugs, do you have anything you'd like to shamelessly plug to the audience?
+
+130
+00:53:29,100 --> 00:54:02,250
+Ian Ramzy: I mean, obviously, zip code.io if you want free, decentralized browsing, it doesn't track you. It's fast and just works in the browser. Check it out, open up a GitHub issue. If you don't like something. Let me know what you think. And if you want to see more stuff for me, if you want to see all my crappy coding projects, you know, I'm really not that smart. Ian ramsey.com is my personal portfolio. I N ra zy.com. Have some interesting stuff there. And they don't talk to me shoot me an email, got some ideas, always down chat.
+
+131
+00:54:02,730 --> 00:54:11,220
+Wes Bos: Well, thank you so much for coming on the show that was very enjoyable to dig into it. Hopefully the audience will enjoy it as well. And that's it. Thanks again.
+
+132
+00:54:11,520 --> 00:54:12,570
+Ian Ramzy: First. Thanks for having me on.
+
+133
+00:54:14,700 --> 00:54:24,480
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
