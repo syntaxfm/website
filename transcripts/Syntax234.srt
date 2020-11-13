@@ -1,0 +1,520 @@
+1
+00:00:01,319 --> 00:00:02,820
+Unknown: You're listening to syntax
+
+2
+00:00:02,820 --> 00:00:04,590
+the podcast with the tastiest web
+
+3
+00:00:04,590 --> 00:00:10,530
+development treats out there. strap yourself in and get ready to live ski and West boss.
+
+4
+00:00:10,559 --> 00:00:47,790
+Wes Bos: Welcome to syntax today we've got me and Scott pulling up to the table, and we're ready to feast on some potluck questions. potluck is if you've never listened to a potluck before the potluck is where we answer your questions, you can submit your own questions@syntax.fm. In the top right hand corner, there is a button. Click it it says ask a potluck question. That brings you to a very generic ugly Google forum where you can type in your question. And let me say like, last potluck, we had some banger questions, this one really good questions. A few of your questions, I've been getting really really good. Don't use got
+
+5
+00:00:47,790 --> 00:00:50,520
+Scott Tolinski: super good. loving them, loving them.
+
+6
+00:00:50,609 --> 00:01:10,230
+Wes Bos: That's great. So today, we are sponsored by two awesome companies first one dot tech domains, which is going to get you literally a dot tech domain. And the other one is Log Rocket, which is all your client side session replay that you need. We'll talk about them partway through the episode. How you doing today, Mr. szalinski,
+
+7
+00:01:10,439 --> 00:01:45,450
+Scott Tolinski: boo boo, I'm doing good. I am. I'm working on some stuff. I'm trying to move some of my video streaming over to cloud flares video streaming platform. And it's pretty darn neat. I've built this neat little system for importing it sort of like what I have with my YouTube one. It's like a one click importer to import all the videos in a specific series. It's becoming a lot of fun, and I'm gonna maybe livestream a little bit today. So obviously, you're not listening to this while we're talking. So you can't tune in. But you may be watching after the fact if you're interested in some of this CloudFlare streaming stuff I'm working on
+
+8
+00:01:45,689 --> 00:01:49,830
+Wes Bos: that some of my favorite coding is scripting things,
+
+9
+00:01:49,919 --> 00:01:50,490
+Unknown: scripting, where
+
+10
+00:01:50,490 --> 00:02:10,740
+Wes Bos: you automate, like I just recently have been importing all of my Hot Tips from Twitter, and all of my blog posts into MDX on for my blog. And I had to write these gnarly, huge scripts to do it. And I have a lot of fun doing it. I don't know what it is about writing all this code to automate all the steps to that. But some of my favorite,
+
+11
+00:02:11,189 --> 00:02:33,870
+Scott Tolinski: there's something just very gratifying about being able to take things like that into your own hands and just do it. You know, it's like, here's a system that works in a specific way would be really cool if I could manipulate it this way. And then one, one, click this going in this going in this going in the next thing you know, you've got yourself some really fancy stuff working. I'm a huge fan of this kind of coating to it makes you feel very productive.
+
+12
+00:02:34,160 --> 00:02:55,830
+Wes Bos: Yeah, yeah. And very, very powerful as well. Because certainly you see people in other jobs that say, Oh, I spent my entire day moving from one CMS to another or copy pasting this or searching them like, Hmm, I probably could have scripted that in the same amount of time. But yeah, I would have did it, it would have been way more fun than copy pasting. Yeah, you
+
+13
+00:02:55,830 --> 00:02:57,120
+Scott Tolinski: could learn something, too.
+
+14
+00:02:57,479 --> 00:03:02,639
+Wes Bos: Let's jump into the first question. You want to grab it there? Yeah.
+
+15
+00:03:02,669 --> 00:03:33,330
+Scott Tolinski: So this question is from Eric. And this question is, hey, Scott, you talk a lot about your workflow with figma. As the designer going to programming, it sounds like the workflow is natural for you. As a programmer, I tried to move into design, I have no idea how to get started. Could you explain your workflow in starting a new project in figma, and starting an implementation of VS code? That's been a long time. I appreciate the positivity this show. And the it's our show, we'll do what we want attitude. It is our show. We do what we want here.
+
+16
+00:03:33,359 --> 00:03:34,410
+Unknown: It's what we want.
+
+17
+00:03:34,529 --> 00:03:41,630
+Scott Tolinski: Yeah. If we want to make some cringy comments about tasty treats and stuffing your mouth and whatever, then we're gonna do it.
+
+18
+00:03:42,059 --> 00:03:45,270
+Wes Bos: If we want to have a 45 minute hasty treat on Monday, we'll
+
+19
+00:03:45,270 --> 00:03:47,430
+Unknown: do it. We'll do it. Who cares?
+
+20
+00:03:47,519 --> 00:03:48,930
+Wes Bos: Very hasty bio cares.
+
+21
+00:03:48,930 --> 00:03:50,400
+Unknown: No tasty tasty. Okay,
+
+22
+00:03:50,400 --> 00:05:34,590
+Scott Tolinski: so this, uh, this this question is interesting, because I wouldn't necessarily say I'm adept at this, or I'm great at this or anything, but I did recently redesigned the entirety of level up tutorials, and I did so starting from scratch scratch. So if you're not starting from scratch, scratch, I would recommend grabbing a starter kit. Now there's starter kits all over the internet, depending on which application you're using. If you're using let's say figma, or sketch, or framer or whatever, you could just google blank, starter kit, and you'll find things and oftentimes, you'll see those as like kitchen sink sort of systems, or ones where they have basically every component. And those are nice to start off on but me personally, I prefer to start with a blank slate. And typically when you know, when you're building an application, you know the stuff that you're going to need, you're going to need text inputs, you're going to need cards, maybe headers, or any paragraphs, and I just start making a frame full of each of the groupings, a frame for buttons, a frame for form components, a frame for links, a frame for type systems, and then just grinding it out turning those into components and then in my actual designs, Using those components as sort of Lego pieces to assemble the designs, and doing so just a component first basis, right? Everything's all about those component components. And so if you start to look at design, while you're designing has not only HTML elements, right, the stuff that you need, but also react components, here's a card, what can a card entail? What can it have? What can it do, if you have the programming background already, just start thinking of it the exact same way you would assembling a react component, and that should help you start to assemble those things within your design system.
+
+23
+00:05:34,950 --> 00:05:44,160
+Wes Bos: Awesome. Next question we have here is from Burnham I think that's it. Baron from Stockholm,
+
+24
+00:05:44,910 --> 00:05:47,580
+Scott Tolinski: Bhutan, Rehan. He's got an online
+
+25
+00:05:47,640 --> 00:05:52,650
+Wes Bos: the dreaded monitor question. Flat, or curved?
+
+26
+00:05:52,650 --> 00:05:53,280
+Unknown: Oh,
+
+27
+00:05:53,280 --> 00:05:56,820
+Wes Bos: I'll let you you start with this one's got flat or curved.
+
+28
+00:05:57,150 --> 00:06:22,560
+Scott Tolinski: I got a curve 30 inches all day, man. This, like, man, it expands across your whole view. And the curved is amazing. It's amazing for a lot of things. And to be honest, like some people will say like, I want a flat monitor because I don't want the curve affecting how I view things. I don't think that really matters as your periphery view goes. If this thing's in front of me, the curve helps so much. It's a very slight curve. But it's a it's a decent curve. And it's fantastic.
+
+29
+00:06:22,830 --> 00:07:17,270
+Wes Bos: The curve sounds amazing. I have two four K's 132 inch and 128 inch, which I run on sideways. And the only reason I don't go curved, because I definitely think curved is is better is just because I want more of the vertical resolution. Yeah. And I want 4k, like high density pixel versus just regular 1080. So they are working on them. They have a couple out so far. But there's like more than my house costs. Yeah, but what's there is a 38 inch 4k monitor that goes more than 1440 pixels high. That seems to be the limit. Right now on the height of the resolution. I'll be all over it just like I am quite honestly, it's it's almost too much too wide for me right now, with all the different monitors that I have right now.
+
+30
+00:07:17,610 --> 00:07:23,670
+Scott Tolinski: It's so good for video editing, like, have that whole timeline span that holding so much visibility.
+
+31
+00:07:23,970 --> 00:07:50,550
+Wes Bos: Yeah. Oh, yeah. And for when render props are a thing. You could view all of your code at once. were highly nested CSS. That's a good one. Yes. Yeah, you can, you can do all of your sass. I once had a student at a boot camp. And this is not making fun of them just thought it was it was a little bit funny because we taught them like nesting and CSS. So they nested everything. They started with body and went all the way down.
+
+32
+00:07:51,020 --> 00:07:54,300
+Scott Tolinski: I think everybody has an over nested at some point in there.
+
+33
+00:07:54,390 --> 00:07:55,980
+Wes Bos: Yeah, yeah, we've all been there.
+
+34
+00:07:56,010 --> 00:07:58,830
+Scott Tolinski: Maybe not to that degree. But to some degree.
+
+35
+00:07:59,550 --> 00:08:13,110
+Wes Bos: There's like some sort of, like curve of like when you start CSS and you learn about nesting, it goes right up. And then you get better at CSS and you realize, Oh, what is the rule? never more than two? Or it's never more than three? No, no, I
+
+36
+00:08:13,110 --> 00:08:18,630
+Scott Tolinski: never even think about it. No, cuz I just think about scoping and containment, rather than like, how deep I am nested.
+
+37
+00:08:19,050 --> 00:08:30,330
+Wes Bos: Yeah, this scoping gets rid of a lot of the nesting anyway. Tony, Oh, I love talking about monitors. I'm on this 32 inch, which I think is the developer monitor right now. But
+
+38
+00:08:30,540 --> 00:08:42,240
+Scott Tolinski: that might change. Yeah, yeah. Big fan of the widescreen. Alright, this next question. They actually but they wanted you to try to butcher their name. So I'm going to give you the chance to do that. Before I read the question.
+
+39
+00:08:42,690 --> 00:08:50,130
+Wes Bos: All right. Okay. So it's spelled t s i o L i s? I think it's CLS.
+
+40
+00:08:50,419 --> 00:08:52,409
+Scott Tolinski: CLS sounds fine to me.
+
+41
+00:08:52,409 --> 00:08:53,520
+Wes Bos: I didn't butcher it.
+
+42
+00:08:53,520 --> 00:08:55,590
+Scott Tolinski: So I think you did a pretty good job.
+
+43
+00:08:55,590 --> 00:09:00,630
+Wes Bos: All right, this question is can I butcher it? Just to salgados to sylius?
+
+44
+00:09:01,470 --> 00:10:08,460
+Scott Tolinski: e soleus. Okay, so this question says it's for me, but I think you have a good perspective on this as well. It says, question for Scott. I'm relatively new to web development and have learned HTML, CSS node and Mongo. I'm planning on taking your as my Gatsby e commerce course. However, I've no experience in react. Should I learn react first. So the basics of this question, if you boil it down, is I want to learn Gatsby specifically gets being an e commerce. I'm actually wearing a Gatsby t shirt right now. Should you learn react first or react with Gatsby. Now I would say learn react first and learn it. You don't want to learn it decently? Well, you could pick up Gatsby and you could build a basic site, just with your HTML JavaScript skills. But the moment you need to do anything, you're probably going to start making bad choices right away because you don't understand the foundation. So I would say spend some decent amount of time learning react foundations. You don't got to be react Master Man or anything like that. But spend some decent time just really hammering out the basics.
+
+45
+00:10:08,820 --> 00:11:06,510
+Wes Bos: Yeah, I think I've had this question before because I have a Gatsby workshop and people email me and say, Hey, like, like, how much of react Do I need to know? And my answer to that is very little, because you need to know templating, and components and props. But if I think about even my own website that I'm working on, the amount of custom react hooks that I have in there is very minimal. And for for e commerce is probably different. Because you do need to listen for clicks and, and fire off things and show loading states and whatnot. But for a lot of Gatsby websites that are just websites that don't do anything, they just display content, you can get away If anything, I look at my own personal website and building on Gatsby, it's way more custom node work than it is actual graph. QL. Yeah, yeah, it's graph QL. It's node, it's node API's. It's writing to file system disk, all that stuff.
+
+46
+00:11:06,510 --> 00:11:07,080
+Unknown: Mm hmm.
+
+47
+00:11:07,439 --> 00:11:35,100
+Wes Bos: So yeah, I think you should know a little bit enough to template out. And then as soon as you get into that, like situation, you need to fetch some data on the client side, or I need to listen for a click, or I need to take this data from the nav of like, what page we're on and bring that much lower somewhere else. And I need to put that in context, then you need to get into react, but not a whole lot. And I think Gatsby can also be a bit of a gateway drug to react.
+
+48
+00:11:35,399 --> 00:12:31,230
+Scott Tolinski: Yeah, I agree. And I mean, I still think you should probably learn those wreck foundations and fundamentals. But I mean, I totally agree that without knowing them, you can accomplish an insane amount within Gatsby. And I think that's a testament to just how excellent, not only react is but like the power of Gatsby, some people will say like, why would you ever use react for a static site? Or why would you go, why is that overkill? But if you actually look at the code, the HTML that you're writing, or the JSX, you should say, with the react and Gatsby code, it's really simple. And it's really just basically HTML anyways, so if it's spitting out a static site, and you have some HTML, and you're not doing anything crazy, why wouldn't you use something like Gatsby, which isn't really going to give you that much overhead into your site? Anyway, so I'm a huge fan of of just using Gatsby in general, but yeah, yeah, there are there are definitely react specific things in Gatsby specific things that you may hit along the way.
+
+49
+00:12:31,710 --> 00:12:53,580
+Wes Bos: Thank you to snowless. That was a great question. Next question we have here. Sure. Mark Foster. Hello, Mark foster allows me alien, should I be using it? So amp is Google's proprietary. Now, there's a lot of like, here around what is a lot
+
+50
+00:12:53,580 --> 00:12:56,159
+Scott Tolinski: of heat. I know, I see. I could see you dancing around that heat.
+
+51
+00:12:57,539 --> 00:13:59,429
+Wes Bos: Was the basically what it is, is Google rolled out this thing called amp. And you can make amp versions of your website that are very stripped down. They've compressed images, they've got just HTML, not a lot of custom JavaScript is running on it. And the upside to that is that they load very fast. Google caches them on their own server, and they often will preload them. So by the time you tap the link, it's just immediately you're seeing the website, which is good. As a user of amp websites, I often say, Hey, this is better than having the 5000 injecting ads autoplaying video guard, like especially now like I don't I don't read a lot of news, but with this Coronavirus going along I've been like going at random websites that people have been posting on Twitter and I'm just like, this is awful to experience all these cookie pop ups and slide downs and email, signups. I'm like this, this is awful that we've done this to the web, and they don't even give you real cookies, that
+
+52
+00:14:01,740 --> 00:14:04,649
+Scott Tolinski: you're gonna get a pop up, you gotta get some cookies out of it, man.
+
+53
+00:14:04,890 --> 00:14:45,570
+Wes Bos: There you go. That's, that's pretty good. So why don't why shouldn't you be using App? Well, Google invented it. And there's some ideas that they give those websites precedence in search results over others, whether that's true or not, is still out to be seen. And it's also it's not very, like standards friendly, because like, doesn't HTML already do this? We just sort of goofed it up by putting in so much extra JavaScript and images and, and tracking and things like that. So personally, I have never gone down the app world, but I know people who work for big publications probably couldn't live without it in terms of traffic. What do you think? Yeah,
+
+54
+00:14:45,600 --> 00:15:30,510
+Scott Tolinski: it is such a slippery road because there are just fiery fiery opinions on this one. And I it depends on on what the audience is, who your audience is, and if they require it if your bosses saying we need amp, because you know, it's faster and every other news company has a thing. Yeah, implementing it. But again, the whole proprietary pneus of it in the sort of weird and it's a, it's a turn off for me in terms of using and implementing it myself. I'm not I'm not rushing to implement it in my platform, so to say, but of course, my platform is not the New York Times or something, you know. So it's, it's, it's, um, industry specific in my mind in terms of what you're trying to support and who you need to support and what your competitors are doing and all those things. But it's a it's a tough, tough road to
+
+55
+00:15:30,539 --> 00:15:53,299
+Wes Bos: and also Facebook has its own version called Facebook Instant Articles not doing that. And you're actually technically you don't get the users on your website, either you they're on like the URL. And like I see it all the time. We're like people that are not technical share the URL. And it's like Google amp content.whatever.com. And I'm just like, a, like, You're, you're breaking the internet here.
+
+56
+00:15:53,549 --> 00:17:09,080
+Scott Tolinski: Right? And I hate that I hate it so much that I just don't want to like it. You want to rebel against that kind of thing and say, I'm not gonna do that. But at the end of the day, you don't always get to make those decisions. At least idea. So yeah. So next question is from a Christian Christian asks, What are the advantages and disadvantages of building a web app using a framework such as Blitz, Blitz dot j. s. Now, we get a lot of these questions that are like, what do you think about this framework? And then all the time we're like, I've never heard of that framework. What was that? I feel like there was one fairly recently that I had never heard of. So this one I have not heard of Blitz until this question came in. So thank you, Christian, I know are aware of Blitz it says it's a framework for building monolithic, full stack serverless. Wait, monolithic, serverless feel like those are conflicting ideas. monolithic full stack probably tongue in cheek that it probably can do both of those serverless react apps with zero data fetching and zero client side state management Waitwhat zero data fetching and zero client side state management. So what
+
+57
+00:17:09,080 --> 00:17:09,750
+Unknown: is this?
+
+58
+00:17:10,820 --> 00:17:13,290
+Scott Tolinski: Is this real I I'm adding a letter
+
+59
+00:17:13,340 --> 00:17:48,080
+Wes Bos: Yeah, I'm so I'm just looking at it here. I went to the author's Twitter page, who by the way, has the most cool Twitter photo ever. So go to his thing. twitter.com forward slash fly bear. He's got a dually truck, and this massive RV, with the triple axle RV with the American flag and an eagle pulling it. That's the most bad, cool thing I've ever seen. I'm not gonna say a ss, because there's kids that listen to this, but it's the most cool thing I've ever seen. You need to see this, Scott.
+
+60
+00:17:48,080 --> 00:17:50,220
+Unknown: Oh, my gosh, I'm not
+
+61
+00:17:50,220 --> 00:17:52,820
+Wes Bos: even American. And I feel patriotic seeing that.
+
+62
+00:17:53,160 --> 00:19:16,200
+Scott Tolinski: So this is all just okay. So it's it's basically, what I'm gathering here is zero client side data fetching or state management, all data reads and writes happens server side. So it looks like rail style routing, right, Kyle? repple. Rest graph qL API optional, but not required both a C. Okay. So this is absolutely real. I was just, I don't know why I was like reading. This thing is it's so funny because their their Twitter announcement about it. Tell us more about what it is and what it does, then the website does. So it'd be cool if the website maybe had some of that information on it. Hmm, No, I've never heard of this. Would I? advantages and disadvantages, I don't know if I can necessarily say, it seems like this is wanting to be some sort of like a full stack rails thing. I personally use a framework called Meteor, which you know, is a full stack sort of thing, where I get access to the database, and node and all those things directly in my application. So I'm by no means against a full stack framework, by no means against it. In fact, I really like using full stack frameworks whenever I can, as long as they're good and work. Well. This one looks interesting. At first glance, I wasn't quite sure about it. But now, a little bit more work. I don't know. I think they need more examples. I mean, I think I think I need to see more more about this.
+
+63
+00:19:16,310 --> 00:19:30,540
+Wes Bos: Yeah. It's a hard thing when you come out with this, a new framework to clearly communicate what it is and why someone might need that. So definitely, you need to take a little bit more longer. Look at this blitzed Yes, but definitely pretty cool.
+
+64
+00:19:30,540 --> 00:19:56,400
+Scott Tolinski: I love seeing people put out new frameworks. If you've used Blitz j s, which it looks like this tweet is just from February 17. So this is very fresh. If you've used this or tried this or anything my now please let us know. I'm interested to hear what your experiences around Blitz j s RS or if you are just overwhelmed that there's another option which you shouldn't be. Then just don't tell us at all because I don't
+
+65
+00:19:56,790 --> 00:20:26,790
+Wes Bos: know why. I wonder if this I'm just looking at so An example code that's posted. And if there's like database queries, like write your react component, I think how this works is that it probably obviously renders at all server side. But since it's react, it probably just streams, the changes to the DOM. So you're not actually running react on the client side. But it's just streaming the DOM depths to the to the client.
+
+66
+00:20:27,050 --> 00:20:33,150
+Scott Tolinski: This is the Netflix do something like that, like Netflix doesn't use any client side reactor and my tripping,
+
+67
+00:20:33,240 --> 00:21:13,650
+Wes Bos: there was a demo with what is it called? What's the new thing coming out in react? That will never come out suspense. So there was a demo in Korea suspense, where it was just running react client side, and then it was just using a WebSocket to stream the changes to the client side, which is pretty nifty. So then on the client side, you just have like, a couple lines of JavaScript that just dumped the HTML into the correlated div. And you're off and running. So I bet that's what something like this does. And that, if that's the case, where it's all server side, you don't have to worry about like auth or anything like that. on the client side, which is pretty nifty. Yeah,
+
+68
+00:21:13,650 --> 00:21:28,020
+Scott Tolinski: this is actually fascinating that it's a full stack monolith. So you're writing everything in one spot, but what it deploys serverless functions. We're gonna have to take a more Look at this. I did not hear about this, but I'm going to take a little dive into this after the show. So
+
+69
+00:21:28,229 --> 00:22:23,910
+Wes Bos: Oh, wow, I love I love seeing new new frameworks like this coming up. Because these these are the types of things where it might not take off it might just have its own little thing. But that that's also have you started right and then Oh, it was totally shook up the whole industry. So big fan of so and stuff like that happens. Cool. Next question we have here is from Christopher talk, Would you ever consider moving from mongoose Mongo, slash mongoose? So I'm assuming he means like the database that we use, both of us use MongoDB on our apps, both of us use mongoose, which is a node package for interfacing with MongoDB would I ever consider moving from it? In a new project? Absolutely. Every new project that I have, I reconsider what database I should be using. I use Dynamo DB in a little toy project the other day, which is really fun, dynamic, dynamic. That's like that Amazon Web Services.
+
+70
+00:22:23,940 --> 00:22:25,500
+Scott Tolinski: I know isn't it? Dynamo.
+
+71
+00:22:25,890 --> 00:22:47,580
+Wes Bos: Dynamo Dynamo die? Yeah, you're right. Dynamo. Dynamo. By demo. I don't know. Yeah, Malmo. I'm just you know, here. I don't know why. You know why it is is because in Canada, we have this little treat called a nymo bar. In the nymo bar,
+
+72
+00:22:47,610 --> 00:22:50,580
+Unknown: I haven't. I have not have a nine nymo.
+
+73
+00:22:50,610 --> 00:23:16,950
+Wes Bos: I was thinking it was like, the nammo bar. So I would whatever, move my own platform over No way. I don't have zero problems with MongoDB. There's no way I want to rewrite all of my code for zero benefit. Big fan of how MongoDB works. So no, not on my own application. But other applications. I'm constantly looking at different databases.
+
+74
+00:23:17,370 --> 00:23:45,330
+Scott Tolinski: I feel the same way. I have no need to I have no need to change mine over I'm very satisfied with how Mongo works for us. And just like you on each project, I would assess something different. In fact, the database I'm maybe most likely these right now might even be well, it's not a database, because it's Postgres. But Hasura and Postgres together seems like a nice little treat for me, but I'm not, I'm not going to move my database, not a chance, in a way not gonna happen. I think
+
+75
+00:23:45,330 --> 00:24:36,840
+Wes Bos: that's probably the next step of the database that everyone uses is it's gonna be something that comes with another layer. Yeah, that gives you a graph qL API on top of it. Hasura Prisma. MongoDB is rolling out their own version of this, we're starting to see that become a little bit more popular because I think people are pretty happy with the solutions of databases out there. Unless you're like running Twitter, or trying to like I know like someone like drip, lift the log, millions of actions per second of just things people clicked on and hovered over and, and things like that. If that's the case, and obviously, yes, look into that. But if it's the case of me and Scott, we're, we're just saving records for people. That's a very low bar, almost any database would be able to handle that.
+
+76
+00:24:37,110 --> 00:25:11,670
+Scott Tolinski: Yeah, I feel like sometimes people they do maybe not understand exactly what our requirements are versus other other people's requirements because our at the end of the day, our requirements are really not that intense. Right. We're we're serving a fair amount, but we're not serving like streaming data, Tom, we're not doing a ton of crazy stuff. And at the end of the day, and uncle's great, I don't I know there's a lot of hate around Mongo occasionally. But I'm a huge fan. So yeah. And if you are starting a new project, you're going to want to evaluate your database. And you're also going to want to host it on a dot tech domain with more about dot tech domains is wis
+
+77
+00:25:11,880 --> 00:26:46,290
+Wes Bos: Yes. So I don't even need to explain what dot tech domains are because it's literally in the name. It's a domain name that ends with dot tech. So I teamed up with TAC are teamed up by they gave me a domain name for my uses dot tech. So I was like, I wanted to build this website where it compiles everybody's uses pages, which is just go to uses that tech, you could figure out what it is. And I needed like a short, snappy little domain name for it that clearly said what it was right? shows the technology that we use. So I reached out to .TECH as a Hey, like, you're sponsoring the podcast? Wouldn't it be cool if our ad reads were just me talking about using .TECH instead of having to go through all the regular ad reads that you have? And they said absolutely. So they hooked it up. And I thought it was just like the perfect domain name. For the type of website that I have. I love short little domain names like that. All kinds of other people use it Viacom CES, Intel, they all use tack for their technology focused domain names. If you want to check it out and grab your own tech domain, go to go dot tech, forward slash syntax 2020 and use the coupon code syntax 2020, all one word, and you are going to get 90% off one, five, or get this 10 years. If you want to register a domain name 90% off for 10 years into the future. Absolutely. You can go to go to go dot tech forward slash syntax 2020. Thanks so much to tech for sponsoring. Cool.
+
+78
+00:26:46,830 --> 00:27:55,230
+Scott Tolinski: All right, next question is from our Wheeler. Now this question says Hey guys, first of all, I really appreciate it podcast. Thank you are Wheeler, lots of great information and digging your humor. So I am very new to the dev world. I went to college for 15 years for computer science but dropped out halfway through and became an electrician long story. But I'm a wanting to change my career. And I'm very interested in software development. I've heard about modern labor's a boot camp, and I'm intrigued. I'd like to know what your take is on their program. In the last few weeks, I've listened to half your rear shows. And in the end, you say and don't forget to subscribe in your favorite podcast player. I say that. I feel like you're referring to the audience's players. And it cracks me up every time that is kind of a player. Don't forget to subscribe player. So okay, so this boot camp, this boot camp is called modern labor. Have you heard of this specific boot camp? Because there's a lot of boot camps? Yeah, being floated around? I have not heard of modern labor. There's a site called course report. And I don't know if you're familiar with course report.
+
+79
+00:27:55,440 --> 00:28:01,410
+Wes Bos: Yes. Yeah. Cuz I used to teach at boot camp. So I'm very familiar with all of these these websites. Okay.
+
+80
+00:28:01,710 --> 00:28:15,390
+Scott Tolinski: Yeah. And there's not a lot of information on this one. So, yeah, I have not heard about modern labor. And just like many other boot camps there, there seems to be just a ton of them. I have not heard about this one specifically. So I'm interested to know what you have to say about this one.
+
+81
+00:28:15,780 --> 00:28:42,960
+Wes Bos: Yeah. So if I think this, this advice I'll give applies to any any boot camp that is out there. So first of all, being an electrician. I'm not sure if modern labor is targeted at people who were in the skilled trades and are trying to now get into tech. I don't think that you need a special boot camp that is targeted at you. Like I I taught at a boot camp, and we had a guy who was at glacier. Do you know what that is? Got?
+
+82
+00:28:43,140 --> 00:28:44,970
+Scott Tolinski: He moved early, slowly.
+
+83
+00:28:45,210 --> 00:31:40,500
+Wes Bos: No, he is a glacier. I didn't know this is someone who works with custom glass. Know that now, you know, interested in hey, yeah. So we had lots of people coming from construction, electrician, plumber, things like that. And it's funny. We also see the opposite people leaving web dev and getting into skilled trades, because that's certainly a good industry to get into. So I don't think that you'd necessarily need that. Now. What should you do when you're evaluating a bootcamp? First of all, I think you need to go on Reddit, and and see what people are saying, because real people, yeah, if you go on any boot camps website, they're gonna have lots of nice shiny stories and things like that. But you need to find the actual people that actually took it and are willing to share with you firsthand experience as to how it works now, but that said, you're gonna you're gonna get people on either side. Even on Reddit, like you, you're gonna find people on Reddit that are like, awful teachers were garbage, things like that. And that's just because there's, the reality is that in every boot camp, there's a couple people that just, it's just not for them. They can't kick it or just whatever was going on in their life at that time. It didn't work out. And then at same time, you're also going to have boot camp people who are told by their boot camp. Hey, can you go talk on Reddit about About Us, something like that. So he's got to like, take in as much as you possibly can about it, it doesn't seem like there's very much information about this boot camp online. So for that reason, I would probably steer clear of it. Because these boot camps, they need yours to make really, really good content. And if you are, I actually taught the very first boot camp of the one I went to. And it was really hard to put it to make the content. And I know that like, the content that you are taught in the boot camp is probably one of the most important things along with the instructors and making sure that you enjoy the instructors and how they talk, how they explain things and whatnot to you. So there's that. Also, you need to note now know that a lot of boot camps are doing ICS, which is called income share, or ICA, income share agreement, we're generally it works in the fact that they either give you a discount to the boot camp, they give the boot camp to you for free, or they'll even pay you to go to the boot camp. And then in return for that, they will take a certain cut of your salary over the next however long and most people's initial reaction to this is that's robbery. Why would you do that? But I've talked to enough people that have gone through this. And if it's done well, definitely think that this is kind of a cool way. Because like certainly some of the good ones that do this can help you negotiate a much higher salary, because it's in their best interest to make sure you get paid well. And there's a limit of how much money they will actually take from you over the next five years and whatnot. So I don't know kind of interesting.
+
+84
+00:31:40,530 --> 00:32:09,840
+Scott Tolinski: Yeah, boot camps are fascinating. They're, they're fascinating, because it is tough to know what any of this stuff, especially if you're not going through it, you just don't know. And again, I'd like to do that, like you said, just to add Reddit to the end of things. Like if I'm searching for something and I want to get opinions, I'll be like, best blank Reddit and then they'll you'll see a common thread of a bunch of people talking about it. I think it's important. I think that that stuff does help quite a bit, at least understand real world perspectives. But who know, it could be I mean, you know, well,
+
+85
+00:32:10,140 --> 00:32:39,230
+Wes Bos: that's a Reddit is very good at filtering out. A lot of the skeezy people, it certainly still does happen. Like sometimes there's a subreddit called Hale corporate. Yeah, which is just people calling out people from like corporations trying to pose on Reddit, but it's one of the few places that haven't been tainted by sponsor money like Scott and I have, by the way, make sure you go to dot tech domain names and Log rocket.com forward slash index.com
+
+86
+00:32:39,230 --> 00:32:44,430
+Scott Tolinski: forward slash pro while you're at it, and what's possible courses and just, ya
+
+87
+00:32:44,430 --> 00:32:44,940
+Unknown: know,
+
+88
+00:32:44,940 --> 00:32:45,780
+just by me, let
+
+89
+00:32:45,960 --> 00:33:09,210
+Wes Bos: me just get a Pepsi consume. Yeah, yeah. Alright, so hopefully that answers your question. Just by doing some preliminary search, I would probably look for a different boot camp. There's so many out there that have been around for much longer than this one. And I wouldn't want to be a guinea pig in a boot camps. cage. What what are you a guinea pig in program now? Yeah.
+
+90
+00:33:10,650 --> 00:34:16,730
+Scott Tolinski: You started the guinea pig thing? I didn't. I didn't. Yeah. Okay. Next question is from bat bred gear P. He says it rhymes with therapy. And that's cool. But braids. braids is a super cool guy. And he's a he's been a longtime member on the level up tuts community and slack room. He says sup dudes loved your recent episode on serverless functions. I've implemented a few myself. But I always come back to the same question. How exactly do I secure these endpoints because you are charged for compute time. And those endpoints are publicly available? Couldn't do just have anybody send requests to them and up your bill. Okay, as bonus, talk a bit about how authentication works and serverless functions, cookies, JW, T's whatever. I know, you've been doing quite a bit of work with this sort of stuff. So I let you handle the heavy lifting. But I think one thing that you should think about here is that, you know, protecting yourself from these kind of things that shouldn't be a ton different necessarily than protecting yourself from any other DD. Oh, s DDoS. DDoS did depart denial, the
+
+91
+00:34:17,250 --> 00:34:18,360
+Wes Bos: distributed denial of service
+
+92
+00:34:18,360 --> 00:34:46,130
+Scott Tolinski: distributed denial of services, where people can fire off requests against your website or your server regardless if it's a singular serverless function. And although you like you said you're you're paid by the usage here rather than just paying for a service. But yeah, DDoS protection during something like CloudFlare in front of it. I don't I don't have any experience here is securing these serverless functions. Wes, I'm interested to hear what you would have to say about this.
+
+93
+00:34:46,319 --> 00:36:18,810
+Wes Bos: Yeah, it's no different than securing like a REST endpoint on your, your existing application. So how that works with with mine is that I generally have a middleware to all of my endpoints that are secured. And that middleware will then make sure that the person is logged in. And the way that you do that is you either there's a, there's a session ID in the cookie, or there's a JSON Web Token that's coming in, in a cookie or in a header or something like that. And in a serverless function, it's no different than that. The fact is that you just need to make sure that that user is logged in. So what that means is that you'll likely have to do a database call in front of all of your secured endpoints. There are also just lambda authorizers, this is one thing I've not looked into myself just yet, but you can even peel it back a layer before that and make sure that they you they do indeed have the correct authorization headers in the request that you have there. But honestly, if I was just doing it today, and I wasn't doing an entire website, in it, I was just doing a couple little things here or there, I would probably just take in the JW T, either via header that sent manually or via a cookie cookie that gets set when the user logs into your application. And then you just check for that JW T, you look it up in your database, and if it is good, then you allow them to go ahead and do what they want. And if it's not, then you send a response that tells users that they're authorized to do so. Hmm. Yeah,
+
+94
+00:36:18,960 --> 00:36:26,940
+Scott Tolinski: that sounds about right. I mean, at the end of the day, these are just endpoints just like you're securing anything else, regardless of if there's a one singular one or not, right?
+
+95
+00:36:27,330 --> 00:36:52,730
+Wes Bos: Yeah, I think one thing people think that is bad is looking up the user in the database on every single request. But if especially if you're using, I know Mongo DB will store stuff that you look up often in memory. So it's nice and fast. That's what Redis does, as well, where you can store things in memory. So like the the overhead of looking this up in a database is very low. And it's totally fine to do that. Cool.
+
+96
+00:36:52,730 --> 00:37:34,920
+Scott Tolinski: So next question is from Ryan Ryan. So I've decided to make a career out of coding and programming, and I'm an absolute beginner starting on HTML and CSS. It might be a weird question, but how many? Or what percentage of elements a declaratives? Do I need to memorize? It's not that the info is necessarily difficult to parse. It's the amount of tags that I'm bombarding my brain and muddying my progress. I'm more of a theory driven learner. So it's not the biggest obstacle in the world. And I'm starting to see the breadth of this endeavor. I'm not sure how to focus and my mental acuity. Thanks, guys. Brian, you got a nice a vocabulary there loved a lot of these words bombarding? us he got
+
+97
+00:37:35,040 --> 00:37:41,420
+Wes Bos: Scott can't even think of the word vocabulary, and Ryan's over here using brand new endeavor. Okay, please,
+
+98
+00:37:41,420 --> 00:39:54,000
+Scott Tolinski: I have a fantastic vocabulary and whatever. So okay, this is the tough one, because you have so many properties. And those of us who've been doing this a long time will take this for granted, because I've been writing HTML since I was, you know, in middle school or something. And, and, and because of that, I've had a long time, okay, I don't even have to think about any of the tags or any of the properties that exist on those tags, because I've just been doing it for so long. And same with CSS. For me CSS was never that difficult, because the properties just seemed to make sense, right? But there is so many properties. And when you're learning this stuff, even if you've come from anything else, you might have a different idea about what this thing should be named right. The one that always gets me is this is so stupid, because it's when you use all the time anyways, but linear gradient on top of a background image, like, Yeah, why? Like, there's that one's one of the ones that always, you know, copy and paste from somewhere else, just because I don't want to mess up the syntax. And there's so many little things like that. So how much of this stuff do you need to memorize? I would say as far as HTML, CSS goes, you're gonna want to memorize at least the stuff that you're using every day, the semantic tags, the headers, the divs, the the mains, the footer, the article, the sections, those big major tags, obviously, you don't need to memorize some of the tertiary tags, like, what is it like superscript. And those ones, you don't need to memorize those because they add tag? You don't use them that often. Right? So my mind is, goes towards write HTML code, write CSS code, and you're going to pick up on some patterns pretty quickly, in terms of like, the stuff that's used a lot the stuff that you're having to look up. And I think any sort of memorization of these tags, elements, CSS properties will happen naturally, as long as you're looking up how to do things like I want to build this layout. I want to do this color, how do I write a linear gradient? Okay, this is how I do it. I want to do this font color, how do I do it? Okay, this is how I do it. And then sure enough, over time, all those things will just fall into place. Did I ever sit down with flashcards memorizing any of this stuff? Absolutely not. And I don't know if you need to, maybe it could help if you're that type of person, but I would say don't worry about memorizing it. Just start coding, coding, more interfaces, and it will come to you.
+
+99
+00:39:54,440 --> 00:40:19,830
+Wes Bos: Yeah, honestly, I never sat down and memorize anything. If anything. The VS code article. felician makes that home way easier than it used to be. And then just use cheat sheets. So Google CSS cheat sheet printed out, put it on your wall or whatever HTML cheat sheet Flexbox cheat sheet put all these on there, like Flexbox is one that I, I looked up for probably two years before I stopped counting to reference careers, betting for
+
+100
+00:40:21,330 --> 00:40:25,290
+Scott Tolinski: CSS tricks. One, I referenced that forever and ever the
+
+101
+00:40:25,290 --> 00:40:36,810
+Wes Bos: whole Yeah, it takes forever. So just just print out cheat sheets, and look up stuff as you need it. And eventually, you'll just do that less and less. I don't think there's a certain amount that you have to memorize, and certainly never did that either.
+
+102
+00:40:37,290 --> 00:40:38,520
+Unknown: Yeah, totally.
+
+103
+00:40:39,090 --> 00:41:23,730
+Wes Bos: Next question we have here is from Luke, do you have a standard folder structure for placing utility functions, utility function j. s files, is there an industry standard, I've been using utils, utilities inside source. But curious if there is a more common way, I usually make a folder called utils. And then inside of that, I will just put, if it's a small project, I'll just have an index j s, and put them all in there. And if it is a larger project, I will do a new file for every utility function. And then I'll just export them out of there and then import them into the index j s. And that allows you just to import them directly from the utils folder. And it works really good.
+
+104
+00:41:24,000 --> 00:42:42,480
+Scott Tolinski: Yeah, I do utilities, I spell it out for some reason. And I do so I have a server side utilities and a client side. Utilities utilities, for me are always just those function single functions that have a single purpose that do one thing, and do so in many parts of the site. If it's like a specific utility function, like something related to the shopping cart, only, I'm not going to put it in my Utilities folder, that's going to go in some things more specific to the shopping cart, like maybe shopping, cart utilities within that feature folder, because if it's not being accessed outside of that section of the site, I don't really want it to be available throughout the entire site. And for no reason other than organization, I do mine, like we frequently talk about on here with an index file, an index file that imports and exports all of the things from the folder. So that way, instead of importing blank from whatever, I'm importing everything straight up from utilities. I also, as we mentioned in the last episode, I think this was one of the one of the previous episodes, I do so with a babble module of resolvers plugin so that my Utilities folder is just available under the name utilities as a module resolver. But yeah, I don't think there's any sort of industry standard. I think, you know, utilities in general, is one of those, like, just toss it in there sort of things, you know, like, everyone's is different.
+
+105
+00:42:42,570 --> 00:43:07,080
+Wes Bos: Yeah, I always, I always wish that there was a standard because when I was first starting, I was like, What do I put this? Like, what is this even? Is this a lib? Or is this u tilde? You know, and I always see people using that. And then there's a source director like, what, like, what is this? And then I realized that everyone's just making it up. And it doesn't really matter. At the end of the day, there's no there's no, like, upside or downside to that.
+
+106
+00:43:07,350 --> 00:46:48,750
+Scott Tolinski: That does matter, though. When your code is, has bugs in it. That's what matters, right? Hey, there's bugs in it. So you want to you want to fix those bugs, you can fix those bugs way easier with something like Log Rocket than without it. Now what is Log Rocket? Well, you're going to do Log rocket.com, forward slash syntax. And you're get 14 days for free of this service. Now, this is a service that does some really amazing things. It gives you a session replay of what exactly happened when the user committed a bug. So let's say I click on something it breaks. And typically you just are left to either a error log or anything to tell you what exactly happened. But now you can see visually what happened that caused this thing to break. You get a session replay scrubbable video with the Redux store console, log errors, network activity, and even more than that, it works with everything you know, and love already. GitHub, Trello, JIRA, Salesforce, Zendesk drift, intercom century bugs, yeah, just endless amount of things that works with so check it out at Log rocket.com forward slash syntax, and watch your bugs happen. All right, next question is from Andrew. Andrew says is figuring out new tech module plugins, whatever really as easy as reading the docs for most people, a common response. So what's a good way to learn is to seem Well, the docs are good. And then I opened the docs and I'm absolutely clueless. Are these people giving bad advice? Or do the ducks actually give most people enough to go on, for example, I tried to implement a user login with passport using their ducks. A lot seems to be left out, implying that you're supposed to just already know this stuff. It's a bit demoralizing to feel like I can't figure out anything on my own. I've been doing web dev for a few years now. All by now professionally. I have done some big projects and that are used regularly. So anyway, just wondering what's your take on common advice and your experience being able to figure out You're things on your own without needing an hour long tutorial and so on. I know you're both tutorial makers, but I don't get the impression that you to take have to take a course to understand something new. Okay, so this one's interesting because one of the reasons why I even created level up tutorials in the first place was that there were so many things within the Drupal community, it's like just install this Drupal module. And you're like, Okay, I've installed the module. Now what, and sure enough, you know, you need to click here and whatever. But Drupal people were never honestly the shout out to Drupal people. But he, they were a lot of people were never the best at coming up with these amazing user experiences to just know what to do. And so I agree with you here, Andrew, a lot of times, I'll hit projects, too. And I'll think, wow, these Doc's are leaving so many things out, even like leaving out the things that they just assume people know, right. And that is a really difficult situation for a lot of people to learn it. Now some people are, we have a lot of different types of learners, right, some people are going to hit up the docks, they're gonna read the docs, they're going to have an idea of what to do already. They're just going to get it done. Other people go straight to the source, they're going to look at the source, they're going to read the source, they're going to understand what exists, what the application does, and other people like myself are going to maybe go towards more exploration, you know, what I do, I just start throwing stuff, the code in and get the errors, try to solve the errors, try to figure out why it's not working. And I do so that more than reading the docs. In fact, a lot of times before I even really heavily read the docs, I just start tossing code in. And then if it breaks, then I'll go to the docks, other people, video tutorials, blog posts, whatever, there's a huge range of what really sparks people's, you know, brain correctly working to understand what these libraries and applications are doing. So don't get down on yourself about that one.
+
+107
+00:46:49,020 --> 00:48:00,450
+Wes Bos: Yeah, I agree with Andrew, most of the times, the docs are very hard for me to learn on IO much rather go into the examples directory and see how it's actually done. Or watch a tutorial from someone to see how they have implemented it themselves. So don't feel bad that the docs are, I find that the people that say, the docs are good, are very, are usually advanced developers who are good enough to just totally be able to look at it and say, Oh, I understand like, I have all of this back understanding of how this ecosystem works. So I see how I can implement it that quickly. And and that's generally what the benefit of it is. And that's also the dachser place for you to reference different options in different methods and things like that, where How do I actually implement it myself is something that a lot of Doc's will leave out, react, and Gatsby Doc's are really good at showing you how to use this. But still, a lot of people just want an entire project to be able to do it. So don't feel bad about that. I'm certainly only at the spot in my career where I can read the docs. And then there's this another level where people look at the source to figure out what's going on, you know,
+
+108
+00:48:00,810 --> 00:48:36,270
+Scott Tolinski: I occasionally will pick the source over the docks, because the docks assume you It really depends on what the source is, like, because sometimes sources really difficult to parse. And it's, it's littered, and I don't want to say littered because a lot of the stuff is important, but it's littered with a ton of like really long comments explaining things. And to me that like gets in the way of just like seeing what the code is. If it's a react component. Oh, yeah, source all day. I want to see what I writing. I want to dive right in. If it's a, you know, a 3d modeling library. No, I don't care. I don't I don't want to see Oh, really? Yeah, no, just just hide it away for me. But yeah, it really depends. I think
+
+109
+00:48:36,480 --> 00:49:37,020
+Wes Bos: that's true. I actually had a right before recording this, I had a syntax error. And it was, like cannot get from whatever. I see you. There you go. Yeah. And it was funny because I couldn't find the error anywhere online. So I finally just searched that syntax in the thing and I found the actual code in the I found the code in the source and is able to actually figure it out. So maybe I do sometimes see that as well but not not like some people I see who just immediately crack it open and say like, this is how it works. Sometimes people even send me this like chunks of the source and be like, this is how it works. I'm like what, huh? Oh, squeeze me. Yep, one. Squeeze me. Ah, next. Next up we have AJ, do you have any tips for getting over coach shyness or imposter syndrome? I find myself struggling with this from time to time and was curious to know your suggestions for dealing with it. PS I love the show and learn a ton from you guys over the last year. I think we did an entire show on imposter syndrome didn't know him.
+
+110
+00:49:37,379 --> 00:49:41,220
+Scott Tolinski: If we haven't we should. I think we did about it a few times. Okay,
+
+111
+00:49:41,399 --> 00:49:50,670
+Wes Bos: Episode 58 and Episode 15. So we haven't done one in almost two years now. Maybe it's time to do another one.
+
+112
+00:49:50,970 --> 00:49:57,390
+Scott Tolinski: It's always been like, not like the focus. It's always been just like a pinpoint in another like larger topic.
+
+113
+00:49:57,540 --> 00:50:58,710
+Wes Bos: Yeah, I think just being okay with not knowing everything, and just being able to put your code out there for the world to see, you certainly are going to get run over a few times by somebody who thinks they're trying to help us. It happens to me almost every single day when I post a screenshot of the code I'm working on. But the reality is, is that almost everybody else is in the same situation where they're, they're afraid. It's the same thing with like, when someone launches a project or a personal website, they always pre face it with it's not done yet, or I only had time to do with this or it's not perfect, I still need to redo this. And then just like kind of pre face it, like don't kill me, please. And I think that's, that's something to say to the community is when somebody is sharing something, when someone is putting their work out to the world to see, like, be nice. And try to provide providing feedback is good, but provide it in a positive manner. We have an entire show on providing feedback as well. So
+
+114
+00:50:58,889 --> 00:51:07,230
+Scott Tolinski: can we just say that as a general note, just be nice. Just be nice. Just be nice to people. Right? What's nice and having empathy? There's no harm, just do it. Yeah.
+
+115
+00:51:07,259 --> 00:51:42,960
+Wes Bos: Yeah. Everyone struggles with it. I certainly do myself, especially when I dive into different areas, like I'm doing react one day and node one day and Gatsby when I'm like, in all kinds of different areas, CSS, and certainly whenever I dive into those, the experts of those areas come out of the woodwork. And sometimes it's very intimidating, because it's like, sometimes Brendan Eich will read will tweet back at you. And he literally created JavaScript, right? Like, sometimes those people are, are very kind, sometimes they're not, but you just got to be like, you know what, I'm trying to build websites here. Who cares? Let me put my work out to the world.
+
+116
+00:51:43,259 --> 00:53:52,950
+Scott Tolinski: Totally. Totally, totally, totally. Yeah. I mean, I personally, you know, I'll have days where I'm really struggling with this, especially putting out this content just being like, Oh, I'm just like, you know, I wish this was better in these sorts of ways. And I think a lot of times, those of us who feel this way about our work, right, we don't realize is that it's important part of becoming a better developer, it's an important part of the whole process. Because if you are feeling like things should be better, or that you need to learn more, or that you need to get better in these sort of ways, or your code isn't as good, it's a driver to improve. And what you can't let it do is you can't let it put you down. And you can't let it stress you out in ways that negatively affect your life. But if you can take a step back and look at is like, Alright, I am not satisfied, or I'm nervous about my code for these reasons, you could take a step back and say, okay, that's an indication that I really value the quality of these things. And I really want it to be as best as possible. I know, my wife, Courtney, she, she's a doctor of psychology, and she tests a lot of children for different learning disabilities, and they do these big long tests. And then she does this giant write up, it's like, you know, in, I don't know, it's like, 12 page, write up these long write ups about like, the test results. And every single time she's like, I just wish it I just hope it's, it's gonna be good. I don't think the parents are gonna like it. And then every single time she gets back glowing results, I'll tell you, the reason why she gets glowing results is not because she's anxious about how it comes across or whatever. But because she has that insight to say like, I just want this to be so good. I want this to be so good. And I you know, that that like drive to like want to make things that much better, is really what turns you into a good developer. So don't don't let it consume you don't let it Don't let it rip you apart that way. But really just try to see exactly how it makes you better. Last question is from Tim Smith, if I rename my GitHub repo, will all the links that are in the wild still work, for instance, github.com, forward slash something, and I map it to github.com? forward slash new something? Wes, your answer, you googled it?
+
+117
+00:53:53,789 --> 00:54:18,090
+Wes Bos: I was actually always wondering this as well. So I finally Google that after thinking about it for years, and yes, you can rename your repo and you can rename your username, and GitHub will redirect those to other people, although there is the option that someone could register your username, if you change it on GitHub, and then make the same repo so you don't have to worry about that. But yes, you can do it. It will it will go
+
+118
+00:54:18,899 --> 00:54:23,250
+Scott Tolinski: cool. Okay, nice. Well, I think that does it for the
+
+119
+00:54:23,309 --> 00:54:25,560
+Wes Bos: Alright, let's sick pics. Yeah, let's
+
+120
+00:54:25,560 --> 00:54:34,980
+Scott Tolinski: get into some sick pics here. These are things that we pick that we find to be sick. Do you have one off the top of your dome? Or do okay, let's get it. I think
+
+121
+00:54:34,980 --> 00:55:33,900
+Wes Bos: this is something you've used for a long, long time. I have recently just got it and it's the I stats menu for OSX. Fantastic. Yeah, it's so good. So what it is is a little menu bar application where you can put your I initially got into it because I noticed my GPU was just pegged all the time. And it will tell you what is using up your GPU processes and your CPU processes and then also I use it for I constantly have my up and down bandwidth. Because I live in a country where there is no bandwidth available to me. And sometimes when I'm talking to Scott, our video will start glitching. And it's because I've got something running in the background that's hogging the bandwidth. So the question is what is hogging my bandwidth is very quickly, you can very quickly see what is hogging the bandwidth with icesat menu and there's also like weather and RAM and all that stuff. I don't care about that. It's just GPU CPU and up down bandwidth.
+
+122
+00:55:34,290 --> 00:55:42,420
+Scott Tolinski: You My favorite part about ice dam and uses that you can use the color to be whatever you want. You can you can get really in depth theming it's like
+
+123
+00:55:42,420 --> 00:55:48,450
+Wes Bos: 11 bucks, too. And it does so much. I can't believe I live with this out live without this for so long. Yeah,
+
+124
+00:55:48,660 --> 00:56:39,390
+Scott Tolinski: I'm a huge, huge fan. A big big fan. Love it. Absolutely love it. Cool. Well, my sick pick is going to be a podcast that I've been really enjoying. And it's not like a I want to be story driven podcast that I make before. But it's a fitness based podcast. I like fitness stuff. This one is a new one that I started listening to. It's called stronger by science. And it is definitely weightlifting focused, more so than anything else. But they do such a good job of really going in depth and these episodes are long. They're like hour and a half, two and a half, three hour long episodes. So if you don't have the time for this kind of podcast, I'm slowly going through it obviously because they're long, but I've found is two dudes talking about science based stuff about around lifting. So if you're an intermediate advanced weightlifter, you're starting a new podcast stronger by science isn't really nice. I've been liking it.
+
+125
+00:56:39,660 --> 00:56:44,100
+Wes Bos: Awesome. That's pretty cool. I've way too many podcasts now that you keep recommending them. But
+
+126
+00:56:44,129 --> 00:56:47,250
+Unknown: yes, I tell him sorry. I have my podcast. I love podcasts.
+
+127
+00:56:47,280 --> 00:57:06,660
+Wes Bos: Yeah. Big fan of podcasts. We run our own shout out to podcasts, especially in a syntax. Yeah, yep. All right, I'm going to shamelessly plug all of my courses at West boss comm forward slash courses, you can check out a list of all the different JavaScript and CSS based courses that I have used syntax for 10 bucks off.
+
+128
+00:57:06,660 --> 00:57:26,370
+Scott Tolinski: Cool. I'm gonna plug my latest course which is animating react with framer motion, we build all sorts of really practical application interfaces with framer motion, it's really super cool. Check it out, level up tutorials.com forward slash pro sign up for the year save 25%
+
+129
+00:57:26,640 --> 00:57:34,440
+Wes Bos: All right, I think that is it. Thank you so much for tuning in and we will catch you on Monday. These Ace
+
+130
+00:57:36,060 --> 00:57:45,810
+Scott Tolinski: head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
