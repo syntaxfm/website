@@ -1,0 +1,180 @@
+1
+00:00:00,359 --> 00:00:01,350
+Unknown: Monday, Monday,
+
+2
+00:00:01,350 --> 00:00:02,580
+Monday, open wide
+
+3
+00:00:02,580 --> 00:00:08,820
+dev fans yet ready to stuff your face with JavaScript CSS node module, BBQ Tip
+
+4
+00:00:09,059 --> 00:00:19,980
+Get workflow breakdancing, soft skill web development hasty, as crazy as tasty as web development treats coming in hot here is Sarah CUDA,
+
+5
+00:00:19,980 --> 00:00:21,660
+Bob and Scott Taylor.
+
+6
+00:00:23,579 --> 00:00:24,450
+Totally at ski.
+
+7
+00:00:25,950 --> 00:00:51,570
+Scott Tolinski: Oh, welcome to syntax. And this Monday, dare I say, hasty treat. We're going to be talking about how to make servers. So very fast. How to make these servers. We're talking about RAMs, we're talking about CPUs, we're talking about GPUs. We're talking about SSDs and hdds, and all sorts of other things. My name is Scott Tolinksi. I'm a full stack developer from Denver, Colorado, and with me, as always, is the what boss.
+
+8
+00:00:51,900 --> 00:00:54,720
+Wes Bos: Hey, everybody, it's my birthday today. Did you know that?
+
+9
+00:00:54,720 --> 00:00:55,890
+Unknown: What's today?
+
+10
+00:00:55,890 --> 00:00:58,680
+Wes Bos: Yeah, yeah. I'm 32 today. Happy birthday. I
+
+11
+00:00:58,680 --> 00:01:02,580
+Scott Tolinski: can't but we just recorded a whole episode. And you didn't tell me in the other episode?
+
+12
+00:01:03,239 --> 00:01:10,650
+Wes Bos: that it never came up. But it's my birthday. Happy birthday. Wow. Relations. Yeah, it's I tried hard. Yeah.
+
+13
+00:01:12,300 --> 00:02:46,350
+Scott Tolinski: That's, that's fantastic. Well, happy birthday to Wes. If you're on Twitter, give him a shout out belated birthday. By the time you're listening to this, it's going to be fairly belated. But yeah, this episode is sponsored by century, no century is one of those services that you absolutely need. If you are running a website that anyone uses at all. I mean, if anybody's using this thing, it's a product, you've got a half century@sentry.io and use the coupon code pasty treat all lowercase all one word to get two months for free. Now what is Sentry, it is the error and Exception Handling tool that makes it just so very easy to see exactly what's going on in your website. You can set up all sorts of alerts, you can attach issues to releases, you can attach source code to releases, and you can track things like regressions, let's say I wrote some code. There was a bug, I saw the bug on Sentry, I was able to track it down what happened to fix it, push a new release. And then that same bug pops up and it's attached to a new release. So Sentry can let me know that, hey, you just had a regression your code, you mark this as being fixed, what are you thinking it's not fixed. And then I have to go back and I got to fix that to actually fix the code. So essentially, is one of those services that make stuff like that just so incredibly easy to visualize, see all of your issues, track them and make sure that your application is bug free. You know, that's the dream right there bug free code. So check it out@sentry.io use the coupon code tasty treat to get two months for free. So acronyms,
+
+14
+00:02:46,800 --> 00:03:55,470
+Wes Bos: acronyms, I thought this would be kind of an interesting thing to talk about. Because in the light of I server lists, maybe this stuff doesn't matter all that much. But a lot of us still need to go ahead and buy a server at some point. And you sort of sit there and look at the server pricing. And they offer you the ability to upgrade ram CPU. Some of them allow you to have GPU, some of them say they're running on SSDs or hdds. So like, what does that mean? If you are running like a let's see as a node app, for example, if you're running a node app on a server, like what do these things matter to you? What What do they make faster if you pay more for at the end of the day, so that we break that down? Because like not all of us, that's a discount for this, like not all of us built a computer when we were 12. Right? Like not web development is becoming a much less of a computer nerd job, I think, or like you just might not care. Like you might you probably care a lot about JavaScript and, and development and expressive stuff like that. But you don't necessarily care about like the actual server part of it. So let's let's dive into what those things do.
+
+15
+00:03:55,800 --> 00:03:58,800
+Scott Tolinski: Sure. So you want to get started with Ram?
+
+16
+00:03:59,279 --> 00:05:58,500
+Wes Bos: Yeah, so like, what is Ram? What is memory stands for random access memory, those little sticks that you put into your computer. And whenever you run a JavaScript application, things like variables, functions, call stacks, application cash, like any cash, you have Redux cash, any any variable that's stored in your application that is stored in memory on your computer. And that's why everyone makes jokes about Chrome being like a memory hog says every time you open up a new browser, it sort of takes a little chunk of memory says okay, I'm going to use this and I won't get too much into how like garbage collection and things like that work because JavaScript is a language that you don't really have to worry about that the browser takes care of allocating memory and doing garbage collection, meaning that like, if there's no I'll just say what garbage collection is really quickly. If there's no longer reference to something like variable or a function, the browser will try to figure that out and then it will free up that space in memory. So what would eat up a large lot of memory? Well, I've certainly run out of memory before, when I tried to read in a million lines of like, I had a million coupon codes, and I needed to read them into memory and then dump them into a database. And 1 million coupon codes is too much to put into memory, and I crashed the entire thing. npm install takes up a lot of memory because they need to like temporarily store as they're downloading files, they need to be temporarily put into memory, your node application can be can be limited by memory, it will crash or it will wait up long, it'll wait longer for memory to be freed up or garbage collected. And garbage collection is just a process itself that can actually take up CPU, which we'll talk about in a second. If you're running a database, on your server, generally, what we recommend on the show is that you go to like, m lab or Mongo, what are some of the ones that host MongoDB.
+
+17
+00:05:58,740 --> 00:06:01,590
+Scott Tolinski: I use Atlas. It's fantastic.
+
+18
+00:06:01,680 --> 00:06:35,730
+Wes Bos: Atlas is the big one. Yeah, I like it, like go go somewhere that's like purpose built for hosting a database. But you certainly can just run a database on your computer, I run it locally, when I do my my development. And in order for those databases to be fast, they keep a lot of that data stored in memory. So that's sort of what memory does. If you find your application is a little bit slow, or is running out, it specifically is saying that it is running out of memory, you can increase that and it will likely speed up your application. Hmm.
+
+19
+00:06:36,000 --> 00:06:42,990
+Scott Tolinski: Okay, so I think that important thing done. Did you mention how ram itself is non persistent?
+
+20
+00:06:43,260 --> 00:06:47,370
+Wes Bos: No. Oh, that's a very good point. Good. Good. Say that? Sure. Yes.
+
+21
+00:06:47,370 --> 00:07:31,950
+Scott Tolinski: So RAM is if you're talking about memory, right? This was always the thing. I used to work at a computer store. And you dealt with a lot of people who didn't know anything about computers. And they'd be like, Well, my computer has, you know, well, at the time would have been like, my computer has 200 gigabytes of memory. And you'd be like, No, it doesn't. It has 200 gigabytes of you know, store partners. Yeah. So that they're basically your hard drive, or your SSD or your your long term storage is going to be something that persists. So when the computer is off, but memory is wiped clean, it does not store information when your computer is restarted. So nothing in memory is permanent there. It's just sort of a temporary holding space for information to be accessed quickly.
+
+22
+00:07:32,370 --> 00:08:46,620
+Wes Bos: Yes, that's such a good point. Like in Case in point, if you have a node application where you are storing like sessions in memory, that's the default that passport JS will do. And then every time you restart your server, you find yourself having to log in again, that's because memory is cleared when that process is torn down. So there's that there is that. Next one we have is CPU, so that's the little chip on your computer, it's the processor, it's sort of the brains of the computer. And CPU is used for tasks that need to be computed. So something as simple as one plus one or running the code inside of a handle a click handler, all of those take up CPU time. So the faster the processor, which is generally there like gigahertz, and the number of cores that it has, I'm not going to get into the differences of cores versus clock speed right now you can go watch a Linus tech tips video on that or something, the faster it will perform those tasks. So if you have a very resource intensive application, so big ones are video encoding are very heavily CPU, very heavy on the CPU or things like base 64 encoding, decoding, yes.
+
+23
+00:08:47,270 --> 00:08:57,210
+Scott Tolinski: Something I learned recently, is not to have 100 data URL images on a page because the CPU will go absolutely nuts because it's got a decode all that stuff.
+
+24
+00:08:57,390 --> 00:10:01,500
+Wes Bos: That's like a perfect example where like the the browser, I said, download this huge string, and then you have to change it from text into whatever that image actually is. And that's very taxing on on the CPU of the application. Same things with like starting up a node process, there's a lot of computation that needs to happen before the node process can start. And generally, the faster the CPU you have, the faster that startup will be. Next, we have a GPU so most servers don't come with a GPU that's for graphics. So that's not something you run into all that often. But generally GPUs are used for solving. Obviously, they're used for graphics, but they're used for solving complex tasks as well because I'm not sure why but turns out that graphics cards are better at doing complex things like Bitcoin mining, machine learning, very, very heavy, computational things are generally offloaded to a GPU and they're better At that, I guess so
+
+25
+00:10:01,620 --> 00:10:11,460
+Scott Tolinski: yeah, I don't know why they're better at that. But they're It's its own processor. I mean, it's its own thing and can do stuff that the CPU isn't going to be doing like everything else running your system.
+
+26
+00:10:11,730 --> 00:10:28,670
+Wes Bos: Yeah, like you can. That's actually when sometimes you have animations in the browser, and the CPU just animates them for you. But if it's going to be like a heavy graphics rendering, then the browser will often kick that off to the GPU. And it'll be much more buttery smooth. So
+
+27
+00:10:28,830 --> 00:10:50,610
+Scott Tolinski: yeah, I don't know why 3d transforms to Yeah, yeah. If you use a 3d transform, rather than a just straight up, transform, right, transform, translate x is going to use the CPU where transform translate 3d, you know, 10 pixels. 00 is going to use the GPU and is largely considered to be a better practice for animations.
+
+28
+00:10:51,210 --> 00:11:02,670
+Wes Bos: Yes, I always wondered, like, why do we have to do that? You know, like a question. That's, that's a great tip. But why doesn't the browser figure that out? For us? Maybe they will at some point.
+
+29
+00:11:02,850 --> 00:11:04,680
+Scott Tolinski: Yeah, I don't know. I don't know the answer to that.
+
+30
+00:11:04,860 --> 00:11:18,330
+Wes Bos: That's a hot tip, you just use the 3d version, and that'll offload it to your GPU. So if you know what, why is the GPU better tweet us at syntax FM, I would like to know why I just know that it's, that's just something I've always had in my head that GPUs are better.
+
+31
+00:11:18,540 --> 00:11:25,920
+Scott Tolinski: I always thought it was just because it was exclusive to processing graphics. And maybe like it didn't have any other job. And maybe that's why
+
+32
+00:11:25,920 --> 00:12:14,730
+Wes Bos: it's true. Because like your your CPU is responsible for allocating memory. And doing all the computation is responsible for absolutely everything on your computer, right? When the GPU, it only does computation for things like graphics and Bitcoin mining. Machine learning is another big one as well. Last thing we have here is disks. So are maybe 810 years ago, Digital Ocean came out swinging sayings, five bucks a month for SSD server. And now ssts are almost a standard in servers. Before that it was hard hdds hard disk drives where you have an actual spinning platters. And the reason the why SSDs are better is because the files need to be read from the hard drive. Scott's got platters in his hands right now.
+
+33
+00:12:14,820 --> 00:12:15,960
+Scott Tolinski: He's in his coasters.
+
+34
+00:12:17,130 --> 00:12:19,800
+Wes Bos: Oh, man, that's, that's actually really cool. Yeah, I know,
+
+35
+00:12:19,800 --> 00:12:31,560
+Scott Tolinski: I got tiger, I have just about 20 of them from old hard drives that I would take apart, and there'd be like, it'd be like a 200 gigabyte hard drive. And there'd be like three of these plates in there. So I have so many of them from, from old disks.
+
+36
+00:12:31,860 --> 00:14:10,440
+Wes Bos: That's really cool. So the hard drive speed determines how fast files can be read off the drive and how fast they can be written to the drive. So generally, an SSD is way better. Because if your web server has to read a JavaScript file, or render out a template, or whatever, for whatever reason, if it can go faster, that's better for the actual website. And like, almost everybody has an SSD. But like, you probably remember when your laptop went from a hard disk drive to SSD. And it was like nine day I remember I had like the old MacBook that had like a CD drive, and I put an SSD where the CD drive was, and I just ran my operating system on that. And that was great because it was so much faster. And then you you put your larger files on a cheaper, larger hard disk drive. They're generally much more expensive or much, much cheaper, but they're good for storing stuff that's not as time sensitive as your application code. So hopefully that is helpful. I was just kind of a primer on what these things do. I certainly had my website B, I found that like restarting my app sometimes used to take like 20 seconds. And then I cranked up the CPU on my box. And that restarted my app in like three seconds. Like, okay, a faster CPU on the server will make my note app restart much faster. Nice. Yeah. So let us know if you like that. I would also like to do at some point to talk about how servers are priced by the hour. This is
+
+37
+00:14:10,440 --> 00:14:13,890
+Scott Tolinski: really important with containers, all sorts of stuff.
+
+38
+00:14:13,920 --> 00:14:40,260
+Wes Bos: Yeah. containers, like you can understand five bucks a month for a server. But what does it mean where it's half a cent? per hour? Like what does that even like? How like I need them? 24 hours, right? So like they can obviously spin down and things like that. So we if you'd like to hear a show on that, tweet us at syntax FM and we will make it happen. Let's do it. Alright, that's it. Thanks for tuning in. Catch you on Wednesday.
+
+39
+00:14:40,350 --> 00:14:46,200
+Scott Tolinski: Yeah, we got a haste or no, we got a potluck. Lots of good questions. No follow to tons of good stuff.
+
+40
+00:14:46,320 --> 00:14:57,150
+Wes Bos: Yeah, it's like the next j s. No j s reactor react episode of potluck is a really good one. And we really went for it on the questions. It's a it's a we brought it a lot in.
+
+41
+00:14:57,270 --> 00:14:58,290
+Scott Tolinski: Yeah, a lot of that
+
+42
+00:14:59,580 --> 00:15:00,510
+Wes Bos: leftover Is that
+
+43
+00:15:01,620 --> 00:15:02,520
+Scott Tolinski: right? Yeah.
+
+44
+00:15:04,380 --> 00:15:07,980
+Wes Bos: Cool. All right. Thanks for tuning in, catch you later. Later. Please
+
+45
+00:15:10,500 --> 00:15:20,280
+Scott Tolinski: head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you liked this show.
+
