@@ -1,0 +1,132 @@
+1
+00:00:00,359 --> 00:00:24,480
+Announcer: Monday, Monday Monday open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob and Scott Tolinksi ski.
+
+2
+00:00:25,950 --> 00:00:33,720
+Scott Tolinski: Oh, welcome to syntax in this Monday tasty treat. We're gonna be talking about making courses. So you want
+
+3
+00:00:33,720 --> 00:00:35,430
+Wes Bos: to make a course Well, you got, you
+
+4
+00:00:35,430 --> 00:00:50,400
+Scott Tolinski: know, two course masters over here who are going to enlighten you. And that to some things to keep into consideration before you get started. My name is Scott Tillis, gamma developer from Denver, Colorado. With me, as always is Wes Bos. How's it going? Wes,
+
+5
+00:00:50,400 --> 00:01:15,950
+Wes Bos: I'm doing good. I'm excited about this topic. Because I get all the time people ask me like, hey, I want to make a course Do you think people will buy it like? And the answer is don't just ask me because I don't know. There's techniques. I see it all the time on Twitter as well. People are like, I'm thinking about making a course on X, Y and Z. Will you buy it? And then they have yes or no. And it's always like 100%. Yes. And it was like people vote with their wallets on Twitter polls.
+
+6
+00:01:15,950 --> 00:03:05,790
+Scott Tolinski: Yeah, it's really easy to click yes inside of that. And I mean, the worst is that when you see like a course that's been completed and released, and obviously took a lot of time to work on and you just know just from looking at it that it's not going to work out well for them. So we're gonna be talking about some of our tasty treats around making courses. Now this episode is sponsored by one of the tastiest sponsors in syntax history, and this is sentry@sentry.io you're gonna want to sign up using the coupon code tasty treat Now, what is Sentry? Well, Sentry is the place to keep track of all of your errors and exceptions. No matter what platform you are using seriously. Any platform you're on, you're working in node, PHP, react, whatever, literally anything, it's going to work with Sentry, and Sentry is going to help you solve your bugs. Now, let me tell you how I use Sentry, I attach each of my releases. Each of my releases within Sentry are tagged to the release name. And it's tagged to a specific git commit. And I have my whole source maps uploaded there. And anytime that I have a bug, I can check out my source maps and I can see exactly where that bug is happening in my code on production. And what release introduced that bug let's say here's the bug, I'm at a not at the office right now I got this bug, well, I can just roll back to the previous release. Because I know that's going to fix the problem. And Sentry gives me the ability to fully understand that. So if you run any kind of software that other people are using, you're gonna want to check out century@sentry.io again, use the coupon code tasty treat all lowercase all one word, and you will get yourself two months for free. But But uh, but yeah, you're gonna want to do that. Because Sentry is one of those things that we live over here. So check it out at Sentry dot i O. So let's get into it was.
+
+7
+00:03:06,359 --> 00:04:04,920
+Wes Bos: So the first thing I want to talk about is just validating and gathering ideas about what you want to build a course on. Because you have maybe you you want to build a course and you're you're an expert at something. But first, you need a couple ideas. So first, what should you build your course on If you still don't have an idea? First, you need to be like pretty good at something you need to be an expert or somewhat close to being an expert on it. You need to know a lot about it. You need to be passionate and excited about it. Because you certainly could go and make a course on like Excel tricks. Have you seen that YouTube video of the guy who is does competitive Excel? No, but that sounds awesome. That sounds great search for on YouTube. I'll put the link in the show notes. It's called the Marco Ma, KR. Oh, our macro is his name. It's like a competitive gamer. But it's just talking about like all these like hilarious things in it. God, this
+
+8
+00:04:04,920 --> 00:04:09,120
+Unknown: looks hilarious Excel stream highlights. Oh my god.
+
+9
+00:04:09,899 --> 00:05:12,450
+Wes Bos: And he talks about new releases at balmar con. And he's like, honestly, I think that Microsoft is going the wrong way it needs to get his head out of the water and and stop. Oh, man, I can't even describe how hilarious This is. So that's a bit of an aside, you need to go and watch that after this podcast. But you basically need to teach what you know, and you need to be excited about it. Because you certainly could go in the direction of something like an Excel course or something like I don't know something that is well needed, but not exciting. I don't think that that will ever result in a very good course. So once you have a list of ideas of things that you might possibly want to make a course on and I say list of ideas because you might have an idea of like, I'm really good at CSS, SVG, react, view Angular Being able to write a testing course or something like that. And those are probably good ideas, but you don't know if people are going to be receptive to them. So you have to go and validate those ideas.
+
+10
+00:05:12,569 --> 00:06:34,320
+Scott Tolinski: Well, even before validation, I do want to stand a little bit more on the, like teaching what you know, things. Because when I broke into level up tutorials, like when we first started doing that, I first I want to emphasize this, this things that you're excited about. Because the very first tutorials that I tried to do were on Adobe Premiere. And sure I knew Adobe Premiere, but I wasn't necessarily excited about it. At that time, I just felt like this is a thing I knew really well. So it would be easy for me to do tutorials on Meanwhile, I was working all day as a web dev doing Drupal stuff. And it wasn't like Drupal was that much more exciting. But I was in it at that moment in a way that was more exciting to me at that current moment than premier was. And so sure enough, my premiere tutorials were total garbage, because I wasn't really that into it, where every single day I was coding in Drupal. So one of the things that really broke through my courses into actually being good was to take something that I was working in every single day, and maybe not enough, something that I was an expert in. But something that I was so excited about at that time, and so into at that time that it was going to translate correctly into that course. So that to me was like a big thing was like, What are these topics? Right? Was it sass, Drupal, HTML, CSS, those were the things that I was really excited about that Adobe Premiere,
+
+11
+00:06:34,349 --> 00:08:04,050
+Wes Bos: right? Beautiful. That's such a good tip. So talking about validation, you basically need to throw out a bunch of content and see what sticks. And this is from a lot of people, they are kind of bummed to hear this because they just want to create a course right out of the gate, make a bunch of money off of it or sell it. And first of all, you need a whole audience to market to that that's a different show. We're not gonna talk about that here. But you need to like throw a bunch of ideas and see what sticks. So whether that's a series of YouTube videos, a series of blog posts, reading StackOverflow, going to Twitter, going to meet up see what people are having, having trouble with, basically making a bunch of content, whether that's a YouTube blog posts, Twitter tips, and after, I don't know, a couple months of putting out consistent content, something is going to spike up and for Scott, that was your sass course, right? It's something just like, wow, this is just a super needed right now. For me, it was a bunch of blog posts on Sublime Text, and they did super one. And even now, if I want to know what we should do podcasts on, it's often just like, I have a two little Twitter tip. And I either get tons of questions about it, or people are just like, wow, I had no idea you could do that. And I'm like, that's probably something we should do a blog post on because or syntax on because it's well needed in the space. So basically, you need to know that it's going to be popular, the numbers need to be there, before you go ahead and spend a whole bunch of time on creating something that you're not necessarily know will do. Well,
+
+12
+00:08:04,199 --> 00:08:30,870
+Scott Tolinski: can we talk about? If I did I wonder if you'll pick up on this? If If I say what? I don't want to give away the answer. What product in our space that has come out in the past year and a half or so do you think has done the best job of this? I wonder if you can pick this up? Because I have one in mind that I think is very obvious. We talk about it somewhat often on this podcast. We talked about it in the design episode of the podcast.
+
+13
+00:08:31,169 --> 00:08:40,620
+Wes Bos: Oh, the Adam and Steve's design. Yeah, so refactoring UI. Yeah, refactoring UI. Let's just talk about how that worked. Let's
+
+14
+00:08:40,620 --> 00:08:43,400
+Scott Tolinski: talk about it. It was good. It was very good. So
+
+15
+00:08:43,619 --> 00:09:40,740
+Wes Bos: they have Adam within and Steve sugar have this thing called refactoring UI. And day one by for me, that's for sure. It's a book on how to become a better developer from, or sorry, how to become a better designer from a developer's point of view. And like, how did they know that this would do? Well? Well, Steve was just posting Hot Tips to Twitter. Yep. And they were runaway success hot flames hot flame, and then they they got together with Adam and Steve got together, put out this book and like, that thing has done so well, and is so well praised by everybody in the community. And they started like, did they just know that right? And like, how do they know that they needed a design book for developers? Right? It's because they didn't just like make it and launch it. And it's like, wow, who knew? They knew they for sure know that this was gonna do well, yeah. Because of all of the stuff leading up to it.
+
+16
+00:09:41,129 --> 00:11:11,820
+Scott Tolinski: Totally. I, the moment I saw that they were doing a book literally, the moment I saw that book, I was like, that's gonna do well, like that's gonna be that's gonna sell gangbusters because you just knew that it was already validated. It was so validated that everybody outside of it probably couldn't tell that that idea was currently validated. I think that's an important thing to work. You know, another thing people need to verify if people are going to get onto this on board with your work, they need to verify the quality of your work. And if you're not West boss, right? How are people going to verify the quality of your work? It could be through validating it through things like this, right? By putting out those Hot Tips, right? They know that these tips are already going to be good. Or maybe you have a YouTube series that's like for free as like a prerequisite or a precursor to this right. And you can see what the reaction to the content is. It could also serve as a validator or a legitimize for your work. I love the word legitimize by the way. It's, for those of you don't know, a member of my B boy crew and I came up with this whole concept of legitimizes, which is just really validators. Right? Like, what are the things that make you legitimate, right? Like, my wife is a doctor of psychology. her PhD is a legitimize her, she could do all sorts of things that people without a PhD couldn't do just because she has the that, that certification, right, that level of Forgive me for using this word again, but legitimize her right. And so what are the legitimizes that your content has? And how can you show those off? and make those known for people?
+
+17
+00:11:11,970 --> 00:11:40,530
+Wes Bos: Yeah, it's funny you say, if you're not Wes Bos, but like, even mine, I don't give previews of my course. I just have entire free courses. Yeah. And that's my, that's my legitimate Iser Well, there's there's other things as well, that I used to be legitimize there, but that's a big one where people say, like, I don't know, if I'm gonna like it or not, like, Well, go take a couple of videos of the free course and come back and see if you really like, the way that I teach things, or the way that I describe things or the way I say JavaScript.
+
+18
+00:11:42,060 --> 00:12:05,760
+Scott Tolinski: I have I get I do the first five videos of all of my courses. As far as a preview. That way, anybody who can come, you know, you're curious about a specific course, you can at least get up and running. Yeah. And you can do like the first five videos and say, Okay, I would like to continue this, or, you know, maybe no, this one isn't for me, you know, just to give the the users that quick little view into the course,
+
+19
+00:12:06,239 --> 00:12:59,220
+Wes Bos: you may be asking like, okay, less, like, what do you do now? Okay, to figure out why Yes, I don't see you writing blog posts every single day to validate what you want. And like, one big thing that I do is I'll often send an email out to my entire email list and say, like, hey, like, what do you have in trouble with like, before my, when I was thinking about making a beginner JavaScript course, I sent an email out to like, 300,000 people and said, Hey, like, what, what's hard for you? Like, just tell me what's hard for you to learn in JavaScript? What are you struggling with right now? What do you feel? You're not that good at? And I got thousands of emails back from people and I read every single one of them. And both, that's good marketing copy, like you take it right out of the Is it the horse's mouth? Is that is that the saying? You take it right out of there, you get
+
+20
+00:12:59,220 --> 00:13:07,170
+Scott Tolinski: it from the horse's mouth, I don't think you take things away or take things out of the horse's mouth. That's a good way to lose your arm, right? There's big teeth,
+
+21
+00:13:07,620 --> 00:13:31,230
+Wes Bos: you get it straight from the horse's mouth, where what are people struggling with? And they tell you exactly like what it is. And then you could just turn around and say, Okay, good. I've, I've literally heard from thousands of people what they're struggling with. Now, let me take that and turn it into something that is easier. So that that's another great way to validate as well as you just have to talk to a lot of people. And don't ask your friends.
+
+22
+00:13:31,319 --> 00:13:34,650
+Scott Tolinski: Yeah. Hey, should I do this? Yeah, man, go for it
+
+23
+00:13:34,680 --> 00:14:01,230
+Wes Bos: totally feel like yeah, I would totally by that, yeah. That that's why we're bagging on tweeting out, should I build this thing, because you got to ask people to commit with their time with their money with their attention. And that's how they, like if somebody sent me like a, like, it probably took them 20 minutes to write some of these emails. They clearly care enough about learning JavaScript, if they take 20 minutes to type up an email to me and send it over.
+
+24
+00:14:01,380 --> 00:15:46,020
+Scott Tolinski: Yeah, you know, another thing is, is like, you have to pay attention a little bit to what some of these issues are, like, what's popping off right now. Okay. You know, this is popping off. I see in maybe a couple of Reddit posts here, check out this really cool thing that I did, check out this cool react project or check out this cool thing. Oh, you know, for instance, I knew that my spelt the three course was was going to work specifically because at the time I made it, there was a lot of chatter about spelt around people were really starting to notice how simple it was. And I myself was really enjoying it. So I took that opportunity to say, okay, a lot of people are talking about this right now, right? If I did the same course, for you four months later, who knows? But if I did that course right now, I know that there is conversation happening around this in a way that there may not be at a given point or wasn't maybe even before I have a whole List of like, you know, 10 courses that I could make right now, they're just sort of sitting there in my Kanban board, right, just like just just hanging out there in my hopefuls, and I just kind of keep an eye on them. And, and just, if something starts to really tick and move a needle a little bit, I'll start to become a little bit more interested in this particular topic. Or if I I personally have, like, the subscribers on my channel get to vote, right? for potential series, their votes don't Yeah, like one to one, determine which ones I'm going to do. But it definitely gives me a little bit of that validator to, you know, what are people who are currently on my platform interested rate right now. So just paying attention to what people are talking about, and what's popping off is a big thing as well.
+
+25
+00:15:46,320 --> 00:16:52,650
+Wes Bos: I love it. Um, anything else to put out, the last one I should say is like, collect people's email addresses. So what I did on the bottom of all of my blog posts about Sublime Text, as I said, I'm launching a book, sign up to get a coupon. And I had, like, 2000 people enter their email addresses in over a year's time. And like, to me, if somebody's willing to give you their email address, developers don't give their email address for anything. And if someone's like, honestly willing to give your email address for something like that, that is like payment enough for me, because it shows that they really want this thing and they don't want to miss it. Right? Totally. So start collecting an email address, or just like, you could you could honestly, this, this sounds a little bit weird. But you could probably put up three or four different course websites, and put, make a couple little practice YouTube videos and say, Hey, I'm building a course. Yeah, here's just a couple of videos from it. And make sure you sign up to get the next couple and then see which videos get the most views and which which websites gets the most signups it's all about testing stuff. It's almost like a B testing. Yeah, yeah, I
+
+26
+00:16:52,650 --> 00:17:34,920
+Scott Tolinski: do that with all my emails. And each time I send an email out, I always a B test the titles of the email, and I'll do two titles. And then MailChimp had I'm sure other platforms do but you just say I want to a b test the title. And then you have two different titles, MailChimp sends out a test run of like 25% of your list or something like that, whichever title gets the most amount of clicks, it then sends that title out to the rest of your audience. But it's like sort of the same thing. You're, you're validating something by giving them multiple options, and then seeing which one is the most popular. I think that's really a cool idea. And if you had a template for a course, and you could just, you know you had the ideas, it wouldn't be too difficult to maybe swap out some of those ideas and see which one is more popular. That's a pretty cool idea.
+
+27
+00:17:35,190 --> 00:18:19,020
+Wes Bos: So that's it, let us know if you like this, because we could certainly do more hasty treats on marketing and reaching people and like, to me, it's it's almost kind of too bad that launching, of course requires all of this extra work, because and let me explain is that, like, I wish that people who were experts in a certain technology could just make a course. And they're really good at explaining it. And they're really good at marketing it and they are really good at pacing it and but unfortunately, there's just like all this other stuff that comes along with also being an expert at the topic. So I don't know I got questions about this stuff all the time. And let us know if you want to hear any more about marketing or recording and things like that,
+
+28
+00:18:19,230 --> 00:18:19,980
+Unknown: where
+
+29
+00:18:20,600 --> 00:18:24,560
+Scott Tolinski: we're approaching our 200th episode Wednesday. Oh is our 200th episode.
+
+30
+00:18:24,750 --> 00:18:34,890
+Wes Bos: It will be already recorded by the time you listen to this one. But it's gonna be amazing. Make sure you sign in. Make sure you send Scott flowers as a congratulation.
+
+31
+00:18:36,350 --> 00:18:41,490
+Scott Tolinski: toss him on the whatever fictional stage just buy some flowers and toss him at a stage in your imagination.
+
+32
+00:18:41,760 --> 00:18:49,140
+Wes Bos: Yeah, or just tweet a flower emoji at syntax FM and then do it. Thanks for tuning in. Catch you later. All right,
+
+33
+00:18:49,140 --> 00:19:03,510
+Scott Tolinski: catch you later. Please, please head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
