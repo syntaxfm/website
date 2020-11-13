@@ -1,0 +1,140 @@
+1
+00:00:00,359 --> 00:00:00,870
+Scott Tolinski: Monday,
+
+2
+00:00:00,899 --> 00:00:04,009
+Unknown: Monday Monday open wide dev fans
+
+3
+00:00:04,009 --> 00:00:19,980
+yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA
+
+4
+00:00:20,609 --> 00:00:21,660
+and Scott Taylor.
+
+5
+00:00:25,950 --> 00:00:57,330
+Scott Tolinski: Oh, come to syntax and this tasty treat. We're going to be talking about VS code. Again, we love VS code so much. This is part three of our VS code love series, where we're just talking about all the things we love about VS code. In this episode, we're gonna be getting into things, to learn a little bit about how to get around VS code quicker and how to be a little bit more efficient. Some keyboard commands some snippet stuff, and I have an extension here I wanted to talk about. My name is Scott winsky. I'm a full stack developer from Denver, Colorado, and with me, as always, is West boss.
+
+6
+00:00:57,390 --> 00:00:59,190
+Wes Bos: Hey, everybody, good to be here.
+
+7
+00:00:59,250 --> 00:02:22,860
+Scott Tolinski: It is good to be here. It's good to be here, talking about VS code, because that's where I want to be in life of VS code is one of my favorite things. And I talk to people about it all the time who don't want to hear about it. So hopefully, every single one of you wants to hear about it, because that's why we like talking about it. So this episode is sponsored by sentry@sentry.io, which is one of our favorite sponsors over here at syntaxin century is the service that allows you to track and find all of your errors and exceptions. Now one of the coolest things about Sentry is all of the things that it integrates with. Now, if you ever used anything in web development, it probably integrates just fine with Sentry, which is one of the key selling points is that, hey, you know you got enough stuff to worry about to learn between languages and frameworks and whatever, when It'd be great if one of these said tools will just work with all of them with no fuss. And that's where Sentry comes in. It keeps track of all your errors and exceptions and it works with basically everything you could possibly imagine. So check it out@sentry.io use the coupon code tastytrade, all lowercase all one word and get two months for free. And find out why so many companies and developers love and use century including Wes and myself. So let's get started here talking a little bit about VS code. Let's talk about some things to learn maybe ways to be a little bit more efficient or have a little bit more fun inside of VS code while you're using it. Do you want to kick it off?
+
+8
+00:02:23,030 --> 00:03:21,840
+Wes Bos: I think one of the biggest things that I see people not taking advantage of is just moving your cursor quickly around the editor without having to touch your mouse. So if there's one thing that you just want to sit down and get really good at it's jumping by word, and jumping by line, jumping to the top of file, eo F and to F top of file and to file, these things will greatly improve the speed at which you work. So if you just have some text or maybe a paragraph tag, being able to move your cursor word by word, or being able to move your cursor and select word by word, being able to select to the end of the line being able to select to the end of a wrapped line. There's all kinds of stuff that you can get good at. And the keyboard shortcuts are different for everybody. What I recommend doing, a lot of people also don't know this, they just like Google around forever. But if you just open up your command palette and type keyboard shortcuts, you'll be able to just search for like, I don't know, jump,
+
+9
+00:03:21,989 --> 00:03:24,990
+Scott Tolinski: you want to tell the audience how to open up their command palette.
+
+10
+00:03:25,170 --> 00:04:00,330
+Wes Bos: Yeah, it's Command Shift p or Ctrl, Shift p on Windows. And that will give you access to pretty much every action in the entire editor from there. And there, you can just type keyboard shortcuts. And it'll give you a huge list of all the different keyboard shortcuts and you can filter that list for jump by word and select by word. I think that's probably something that you should invest your time in. And if you find yourself working on some on like something and you reach for the mouse, just stop, it's going to take a minute or two to to get good at it. But do that four or five times you'll get used to it and then you're good for the rest of your life.
+
+11
+00:04:00,450 --> 00:05:52,980
+Scott Tolinski: Yeah, yeah, it definitely it saves you so much time, it means you did talk about the command palette just there. But the command palette is another one of those things that I think people often neglect, because maybe they just don't know how useful it is. So if you do that little Command Shift p Ctrl. Shift p on Windows, I believe windows people tweet us out if that's not how you do it. But it basically gives you every single thing you could possibly imagine like, why would you go to the little menu up top and select you know, have to go through two little drop downs things just to change your theme when you could do Command Shift p t, H and then here preferences, color theme. All right, there you go. So that is so much faster than having to click around and try to find things any other way. I use the command palette for basically everything that I want to do in VS code, sort lines or look at Git history. Like that's actually a big one too, right? You're on a given file. You have a git history package installed that we talked about in one of the last episodes. You just type in Git history view File History. There we go. Now I'm looking at the files history. And I didn't even have to touch my keyboard and I type like three things. So I use the command palette, absolutely non stop. And this is one of those things that you do does take some muscle memory to get used to. But again, just like what you were talking about was not having to reach for the mouse to go do something. It is a huge time saver. I know people always cringe at my tutorial series, when I use the mouse for anything, once you get good at, you know, not gi T. But once you get good at? Yes, yes, yes, at navigating with the keyboard, it really just opens up a lot of doors and makes the experience that much faster and nicer. And it already is pretty awesome and nice. By the way, did you know that there's a command palette in Chrome Dev Tools, I use this myself quite a bit. And I think a large part of our audience might not be aware of that
+
+12
+00:05:53,040 --> 00:06:18,570
+Wes Bos: you can take a screenshot of a specific element from the dev tools, I don't know of any other way to do it. So yeah, the Chrome Dev Tools, command palette is amazing, you're starting to see like lots of apps do the same with them. Google Sheets, like their Excel competitor now has a command palette and send among which is great, because you shouldn't have to hunt around for a button to click, you shouldn't have a keyboard shortcut, and then just kind of fuzzy match type what you're trying to do.
+
+13
+00:06:19,080 --> 00:06:29,640
+Scott Tolinski: Yeah, so I, you know, once you once your fingers get used to the command palette, that's a skill that's going to permeate into other areas, such as your Chrome dev tools or whatever.
+
+14
+00:06:29,970 --> 00:06:43,020
+Wes Bos: Next one, I'm not sure if you put this one here or not. But it's the Find and Replace in files. Yes, I did. If you have a function that's named, get courses, how would you replace that in your entire project
+
+15
+00:06:43,200 --> 00:06:44,400
+Scott Tolinski: in my entire project?
+
+16
+00:06:44,850 --> 00:06:47,460
+Wes Bos: Yeah, or entire file, maybe, maybe say both?
+
+17
+00:06:47,460 --> 00:08:21,450
+Scott Tolinski: Well, for entire file, I would just do Command F. And then I would just look for that, that method name directly or a function name and do a Find and Replace. If I was looking at my entire project, I would do Command Shift F or B Ctrl, Shift F and I would do the whole thing I have, since I like don't, you know, work on I work on pretty much one project I have for this project files to exclude setup, so that it's not looking at any of the files that I don't want it to look at is only looking at essentially my API or UI files. Yeah. And that's pretty much how I do it, there's a couple of buttons in here that you'll want to make sure are checked if you are wanting to match only that specific function. Like for instance, you can match case is one of the buttons so like it's not going to match a lowercase a to an uppercase a and then there's match whole word if you're looking for to match the entire word itself, and not be like a partial little bit of a word to match. So that's how I do it. That said, it's a little bit different. Some of these things I uncheck, like for instance, match case, I'll leave match case unchecked. And I'll use the Replace where you replace the like if you're replacing a lowercase a with an uppercase a Oh, yeah, that same art about Yeah, I needed to change the word playlist to series throughout the course of all level up tutorials, because I'm no longer calling them playlist I'm calling them series. And so for me, it was a command f playlist for series across the entire site. And it worked pretty darn well.
+
+18
+00:08:21,450 --> 00:09:06,770
+Wes Bos: I use if you right click on like a function name. And you can click Rename symbol. No, yeah, really smart about it being a function. And I've certainly gotten bitten before, like if I've got a function called double. And then I have another function called Double Trouble. If I just select the word double, it will actually rename the function that also is double trouble. So using rename symbol, this is I often will just like Command F, until I have all of the ones I want. Because I can see everything I need. It's not a big deal. But if there is multiple files, or there is a huge file, right click Rename symbol is a little safer, because it will it knows what a function or a selector or something like that is in your actual application.
+
+19
+00:09:06,870 --> 00:10:33,750
+Scott Tolinski: Yeah, I have used that before. But I find myself going to find and replace more often because I feel like I have more control over it. But that's maybe not actually the case. And maybe I'm just ignorant as to using. Next one here we have is a move and copy lines. Now I use this all the time when you have one line of code, or even a selection of lines of code, right, let's say you have maybe like five or six lines and you want to move it a lot of PL what they'll do is they'll do command x and they'll cut it and then they'll do Command C and copy and paste it or Command V and paste it like six lines down or something like that. Or if you're not moving it to another file almost every single time what I do is I select my lines of code, I'll hold the Option key and then hit up or down on my keyboard and that moves that whole selection up or down in your lines of code I use this time Non Stop. And if you need to duplicate a line of code, which you'll do, like maybe you're working on the Select list, you wrote one option, you want several more options. If you hold shift in option, then you hit up or down, and it actually creates a copy on the next line rather than moving one. So I use these two shortcuts, I use the non stop to control maybe not even just like the layout or organization of a file, but also maybe the content sometimes this is a big one for me, I use it non stop. And I always cringe when I see people cutting and then pasting five or six lines. Yeah,
+
+20
+00:10:33,770 --> 00:11:11,070
+Wes Bos: me too. It's, it's kind of dangerous. Because like I, I have like a, like a clipboard history app that I run, if in case I accidentally copy over something that was important, but you should be I call this line bubbling, you should be just like moving your lines up and down, without having to remove them. Or if you if you select an entire function, you should be able to bubble that thing up and down and see where it's going. So yeah, absolutely should be using that one. super helpful. Yeah. Next little section, we have here keyboard commands, I will hide the sidebar with the buttons on it. I don't even know what you call that. What's that called
+
+21
+00:11:11,220 --> 00:11:23,790
+Scott Tolinski: the browser, I don't know, you hit command B or control B to show and hide it. So I show and hide it all the time, I think it is it may you might just called the sidebar, it is just called the sidebar.
+
+22
+00:11:24,000 --> 00:11:44,760
+Wes Bos: Okay, that's I hide that as well as the extensions or the the file system, all of that I hide it all, because I just want a minimal coding experience. And then when you do need to open it up, just hitting, I hit Command Shift X to open extensions, Command Shift E to open the Explorer, which is your files. There's a couple other ones
+
+23
+00:11:44,790 --> 00:12:00,990
+Scott Tolinski: Command Shift D for debug x for extensions, F for search, II for Explorer. And then yeah, it is Ctrl Shift g for version control. It might be Command G, I don't know why mine is Ctrl Shift g for version control. But
+
+24
+00:12:00,990 --> 00:12:19,230
+Wes Bos: it is Josh f g for me as well. And that's actually helpful view because it will show you in your project, what files have changed and been deleted. So if you ever just want a quick overview of what's going on, that's better than just doing a git status, because then you can click through to the actual files that have been changed. So
+
+25
+00:12:19,260 --> 00:12:35,940
+Scott Tolinski: pretty. I use that all the time myself. Actually, I think though the the sidebar, it's not actually the sidebar. The sidebar is the area that all that stuff lives in, in the activity bar. Is that the one you're talking about? Yeah, that's one of the bars the one with the icons. Yeah, I had that as well. I
+
+26
+00:12:35,940 --> 00:12:52,080
+Wes Bos: go ahead and hide that. Because there's a crutch, because you actually click on it. And I'm half joking. It's fine. If you want to click on it, go for it. But I found that when I actually hit it myself, I've forced myself to get better at finding out the shortcuts total for this things.
+
+27
+00:12:52,199 --> 00:13:55,500
+Scott Tolinski: Yeah, absolutely. right there with you. Next one is going to be actually this falls under tips, not really keyboard commands. But one of the tips I had was to check out the insiders build I know Wes, you do not run the insiders build I run the insiders build. If you just Google VS code insiders build, it's going to give you an option to download that this one basically gets an update every single day. And it occasionally has some bugs and problems that things don't work quite as expected. So if you're the type of person like me, who really relishes in having a new thing every day, even though you don't notice it ever, it's just a little dopamine hit I like to get from downloading a new update for VS code, even though it's not giving me anything. If you're that type of person. You want these features early, then check out the insiders build just know it's not always perfect. I have to reload it. I feel like more than I ever had to reload the non insiders build. That said, I have been using the insiders build for I don't know, a couple years now. And I haven't really needed to go back to the other one for any particular reason. So I'm a fan. Check it out.
+
+28
+00:13:55,740 --> 00:14:08,250
+Wes Bos: Next we just have use of snippets. What are some of your favorite snippets? I know I have like a react snippet library that I have. But I also find myself just stopping and making snippets for things that I do over and over again. What about you?
+
+29
+00:14:08,430 --> 00:15:58,620
+Scott Tolinski: Yeah, I use a few I use a JavaScript. He has six code snippets. I use HTML snippets. I use es seven react Redux graph qL, React Native snippets. And let's see a use view VS code snippets. And I think I have one for MongoDB MongoDB. I've made my own snippet library that I used for Apollo and react. However, I don't have hooks support in there. So I haven't really been using it, which I need to add back in there. I'm the maintainer of that package. So if you'd like to commit some hooks to that package, just go ahead and submit a little PR and I'll get that merged in, otherwise, I'll do it myself. I find myself creating snippets all the time to four things that I find myself doing or even just like even just things that are that are like my code base specific coding style that might not translate into something For anybody else, I'll make us Yeah, for that. And I use this snippet generator, we talked about this snippet generator on one of the older episodes of syntax. And this is by Pavel Grisha. Beck and Pavel. If you were listening, I know he's the syntax listener, tell me how I did on your name there one time, he recorded himself saying his name, like this was like two years ago. So that's out of memory there. I'm hoping that's a very Polish name. So hopefully, I got it right. This is that snippet, a hyphen generator dot app, we'll have the link in the show notes. This thing allows you to write a snippet in one place and have it automatically write the code you need in your configuration for VS code, Sublime Text and atom. So it works really well if maybe you found a package of atom snippets, or maybe you found an atom snippet in particular, or VS code, or Sublime Text snippet that you want to translate between platforms, you've just pasted it in here and then automatically converts it to each one. This thing is awesome. I use it all the time. Cool.
+
+30
+00:15:59,220 --> 00:16:53,820
+Wes Bos: I one thing I want to say about snippets is get to know defaults as well as tabs. You can you can put dollar sign one, and then curly brackets. And that will that will be where your cursor lands. When you hit Tab the first time, you can set defaults in there. So if you hit tab and don't type anything, it will just put the default in there. Get to know those because they're they're pretty powerful in snippets in general. I also put a lot of my snippets that are a little bit more simple. ones that don't need those tab controls, I put my snippets in text expander just so that I can use them in like a code pen or I have a lot of markdown snippets that I write I writes markdown snippets in GitHub, I write them in VS code, or write them in a whole bunch of different editors, and then just having them sort of like system wide, I find it very helpful as well. Totally. What else you have here, you got one more extension for us? I think that's it.
+
+31
+00:16:53,880 --> 00:18:01,050
+Scott Tolinski: Yeah. And it's actually just a snippet thing I probably should have just mentioned in the last little part, I've been working with a lot with Mongo queries. So you know, if you're into MongoDB, this Mongo snippets for node j. s, I found to be really nice. And it's named Mongo snippets for node j s. So check that one out if you are using a lot of Mongo. And I want you to share with us some of your favorite snippet libraries, or maybe even just snippets in general, maybe we could create like a syntax snippet extension or something. I don't know that's probably not going to happen. But I'd be interested to see what kind of snippets people are using. There's some always really interesting stuff like for instance, aliasing in in bash, or Z, sh, you know, people do their own personal little aliases, right for things that make sense for them. And sometimes, I think the same as with snippets, right, where people create something that makes sense for them. And I'm interested in seeing some of the creative or interesting snippets that people have created for their own code bases or work and how you've made them work for you to prevent yourself from typing the same thing over and over and over again.
+
+32
+00:18:01,410 --> 00:18:15,350
+Wes Bos: Awesome. That's another episode of vs. Code tips. We'll probably have another one in six months or so once we gather up some more tips. If you have any tips that you would like to share with us, please tweet us at syntax FM, love to retweet some of the good ones
+
+33
+00:18:15,450 --> 00:18:21,660
+Scott Tolinski: were absolutely so we will see you on Wednesday for a full on tasty treat.
+
+34
+00:18:21,860 --> 00:18:25,140
+Wes Bos: Thanks for tuning in. See you then please
+
+35
+00:18:27,000 --> 00:18:36,780
+Scott Tolinski: head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
