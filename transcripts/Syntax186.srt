@@ -1,0 +1,452 @@
+1
+00:00:01,319 --> 00:00:02,820
+Announcer: You're listening to syntax,
+
+2
+00:00:02,849 --> 00:00:06,480
+Unknown: the podcast with the tastiest web development treats out there. strap yourself
+
+3
+00:00:06,480 --> 00:00:09,000
+in and get ready to live ski
+
+4
+00:00:09,000 --> 00:00:10,590
+and West boss.
+
+5
+00:00:12,240 --> 00:00:32,179
+Wes Bos: Come to syntax. This is a podcast about web development with tasty treats. I thought I would mix it up there a little bit. We say sometimes you say the same thing every day, every single time. We are doing a potluck episode today, which means that you bring the question Scott and I will cook it.
+
+6
+00:00:32,280 --> 00:00:33,450
+Unknown: No, you don't cook, you know. Yeah,
+
+7
+00:00:33,450 --> 00:00:40,350
+Scott Tolinski: we don't we just present it. We just put it on the table. We bring the plates, we bring the napkins in the forks and we present it.
+
+8
+00:00:40,590 --> 00:01:12,330
+Wes Bos: Yeah, we are gonna cover all kinds of fun stuff. We've got some questions about couple questions about freelancing CSS reset, too much Flexbox NPM dependencies and being out of date, lots of interesting stuff. Today we are sponsored by Sanity, which is a structured content CMS, it's the back end to your headless front end, and Netlify which is actually going to host your your website specifically is really good at hosting headless websites. So welcome, Scott. How you doing today?
+
+9
+00:01:12,749 --> 00:01:36,150
+Scott Tolinski: Do very good. I'm just uh, you know, fresh ready to go. Ready. I'm releasing a course today. Today is September 30. I'm also I'm getting my first iPhone today, which is kind of wild. I was sort of like a never iPhone person but their their video features and then that iPhone pro whatever they got me. They got me they got me with a 4k video and three cameras.
+
+10
+00:01:36,330 --> 00:02:05,970
+Wes Bos: That camera like we we have the stars at our cottage, their stars there, you can see them. And I we Oh yo try to take a picture of them. But like it looks like garbage and can actually take a picture of them. And it's sort of like fireworks where there's like kind of like three things you should never post on on Instagram is no one cares about like the the band that you saw live your Instagram. No one cares about your fireworks. And the other thing is like stars, your stars photos aren't very good, because no one can see unless you have a
+
+11
+00:02:05,970 --> 00:02:07,710
+Scott Tolinski: Pixel phone. They're good.
+
+12
+00:02:07,710 --> 00:02:16,880
+Wes Bos: I've never tried that either. And I can't wait to take photos of the stars. Welcome to iPhone family. I'm glad that you're you're finally switching over to the good. So we'll
+
+13
+00:02:16,880 --> 00:02:35,430
+Scott Tolinski: see I'll give it 15 days. And if I hate iOS, as much as I hated currently then yeah, you won't I? I really don't like it, man. Why do you got to put everything in a folder? Like are like what all your apps got to be on the home screen? What can you have a nice clean, it's not good for minimalists, which is kind of surprising, because that's
+
+14
+00:02:35,910 --> 00:02:37,970
+Wes Bos: a Wait, what do you want to do with apps?
+
+15
+00:02:38,000 --> 00:02:47,190
+Scott Tolinski: Where do you want to put them if they're not on your names, right? They're in a drawer and you swipe up and you get all your apps. And then you can put the ones you want on your your homescreen. It's like your apps folder. You
+
+16
+00:02:47,190 --> 00:02:48,569
+Wes Bos: can do folders, and I Oh,
+
+17
+00:02:48,600 --> 00:03:02,400
+Scott Tolinski: yeah, but by so in an AI iOS, the all the apps live on the homescreen. And if if you owe your Android, they all live in the drawer. And then you can put the ones on the homescreen that you want on the home screen rather than having just all of
+
+18
+00:03:02,400 --> 00:03:04,470
+Unknown: them on there. So I see
+
+19
+00:03:04,500 --> 00:03:13,319
+Scott Tolinski: it's not that's not the beef I have but that but that is one of the little to me, I'm also really not looking forward to Siri over like google assistant is so nice. Siri
+
+20
+00:03:13,319 --> 00:03:14,460
+Wes Bos: sucks. Yeah.
+
+21
+00:03:14,699 --> 00:03:27,389
+Scott Tolinski: So we'll see. I don't know who knows your check back in with me 15 days, and we'll find out if I have returned it or not. It has got returned his iPhone yet. Maybe I'll make a little Netlify site for that.
+
+22
+00:03:29,069 --> 00:05:37,500
+Wes Bos: Awesome. Alright, let's jump into some of these questions that we have here. Thank you so much to everybody who has sent in their question, we asked you please send us your follow up questions go to syntax.fm in the internet, and in the top right hand corner, it says ask a potluck question. And then a link off to a little form where you can fill it out. Fill out your questions. Yeah. First question is from cam. I'm interested in freelancing full time and have some projects big and small lineup over the next few months to work on the side. How much work do you think is a good amount of work to transition into full time? freelancing is an interesting question. It's sort of like the question of like, how how do I how do I know that I have enough JavaScript skills to apply for a job. And this question is, how do I know that I have enough work lined up. And we've talked many times about the boat. Let's talk about the boat here. So when you are making the jump to freelancing full time, you have to make sure that the ship is close enough to the dock where you can jump off right if you don't have to wait until everything is perfectly tied down and whatnot because that will probably never happen. But as long as the ship is close enough to the dock where you think you can make a jump and somewhat safely make it across that's where you that's where you want to be. So how do you know where you are with freelancing and in how do you know when you can make that for me it was I was actually just working co ops at the time making minimum wage or or 20 bucks an hour and I was making much more money in as like a freelancer in the part time. So I think like when you feel like you've got some really good stuff lined up, like when you feel like you are feeling a little bit overwhelmed with your freelancing, that means that you're doing a good job. And as soon as you go full time, there's like most, I think most people don't want to work with a freelancer who has another job, because your lower priority, and as soon as you open yourself up to I'm now full time, you can have calls during the day, you can send emails at any given time, then you'll you'll start to go so how much I think like once you've consistently got a couple months of consistent part time freelancing, then I think you're in a good spot. Totally.
+
+23
+00:05:37,560 --> 00:07:57,180
+Scott Tolinski: Yeah. And to your point about the boat, I love the boat. I also have here as a note that also, you know, know if you can get wet, right? Maybe you're holding your you know, your precious heirloom that can't get wet or holding your baby or something and you're, you're stepping from one boat to the dock, you cannot get wet, you don't want to fall in the water. But let's say the you know, the the real side of that metaphor be you have a family, you have bills, you have a mortgage, you have financial responsibilities, and you don't have a safety net of savings built up to what happens if you don't end up having that, that support. And so in some cases, depending on how many responsibilities you have, you cannot get wet. And you have to make sure does a really close. So you can do that nice little, you know, easy transition. But maybe you're you know, young, you have an apartment, maybe you have enough cash saved up for several months of rent rents cheap, or maybe you're living with your parents, or maybe you just don't have those financial burdens, or you do have a large enough savings backed up that you don't necessarily have to worry about it, maybe you can take the jump a little bit sooner and get out of the dock a little bit quicker with the knowledge that you could get wet fallen and have to go crawling back to a job just to make your next bill. So by all means there is that aspect of things too, you can, you can make a riskier jump. But again, it's all risk versus reward. And whether or not you know that you can do that, I've always sort of erred on the side of caution for most things like that. And I never made the jump full Lance or full time, full length. That's why they should call it full time freelance myself full, full stack freelance now, but I never made that jump myself. But ever since quitting my job and running a business full time, you have to know that there is these tremendous peaks and valleys of income versus non income where you have to balance it out. Unlike a job where you have a paycheck coming in, there's a lot of different responsibilities that come into play. When you're supporting yourself rather than working for a company who's paying you to do that, it can get real tough. So just keep in mind that you have all of those things as well.
+
+24
+00:07:57,210 --> 00:08:31,520
+Wes Bos: One more thing I've got to add there. And sometimes what you can do is you can either ask your like your employer will maybe say like, Look, can we take three days a week of your time, or i've i've found many clients in the past who who want just like they want to reserve me for a couple days a week. And those are great clients because then you're still are freelancing, but you have that sort of like safety net. And for those clients, you offer a reduced rate, because they guarantee you that money is sometimes called a retainer, or just like a I don't know, like they call it just a contractor that's on for a couple days a week
+
+25
+00:08:31,559 --> 00:09:32,899
+Scott Tolinski: and it depends on what your relationship is like with that company too. I worked in agencies where we had people go out on their own to do freelance stuff and immediately were picking up work from their former agency and it's almost like all of a sudden you're getting paid more to do the same work with the same company but in the same regard you're taking on all that risk and all that you know they're only booking you for X amount of hours rather than a full study time paycheck. So if your relationships really good, and you could say hey, listen, I'm thinking about going full time freelance. I really want to do this. If you have any work please you know that you want to shoot out to me and if your relationships really good, you could get a lot of great work from that agency. Okay, so next question is from our good good listener. good listener of Flexi source Rex. What's your status on dinosaurs? They just have a little hole holes in the ears like birds. I guess. That's they don't they don't have yours. Yeah, our Derrick Dennis for being good hearers listeners
+
+26
+00:09:32,940 --> 00:09:39,360
+Wes Bos: do dyno dinosaurs have good listeners years of years. They do have a year
+
+27
+00:09:39,480 --> 00:09:43,020
+Scott Tolinski: and a half years do they have good ears? Do they have capable ears?
+
+28
+00:09:43,950 --> 00:09:48,919
+Wes Bos: Oh yeah, this have holes in the Yeah, okay, that sucks. Yeah, probably not great. Well, but not great.
+
+29
+00:09:49,590 --> 00:11:31,049
+Scott Tolinski: It's okay, they're down is there so flex the source rez Lex a source of Rex asks how much Flexbox is too much Flexbox is that a bad idea too. To use a dozen flex boxes for viewport filling application, or AR. And they added that raring I mean, I had to embellish a little bit, they were a rar. And there's a lot of our so like, I would go for it. So okay, what's the source Rex? How many flex boxes, I don't think there's too many flex boxes. If you've ever used React Native, you'll know that literally everything in layout for React Native is a flex container. So what I mean, that's like, the only way of doing layout really is the flex boxing. So I am of the mind that as long as it's not extraneous, I like a flex within a flex and the flex as long as it's not extraneous or unnecessary, then I don't think there's too much. That's the whole. The whole key to that statement, though, is like if you could be doing this with like a margin left auto or something stupid, that's not a flex, and then a whole bunch of additional properties omits like just smart CSS. So I don't think there's too much Flexbox unless you're throwing in Flexbox. In places where it's not appropriate to do the same thing. I don't think it's going to cause you problems, I use Flexbox, all the time, within flex within a flex to do containers, I usually end up going straight to grid, but grid and then Flexbox, where it's appropriate. But again, yeah, as long as you understand, like more or less complex CSS properties that could maybe get you there without doing it a text align and whatever, then, you know, go for it flex it up flex source.
+
+30
+00:11:31,260 --> 00:11:36,840
+Wes Bos: Yeah, I think this question could probably be said for like how much Flexbox is too much Flexbox. And how much grid is too much grid? How
+
+31
+00:11:36,840 --> 00:11:38,460
+Scott Tolinski: many cookies are too many cookies?
+
+32
+00:11:38,549 --> 00:13:11,370
+Wes Bos: Well, there's an answer to this. But I think like the Flexbox, and grid are the layout tools of the web. So it's not bad to have them nested as far as the eye can see, like a, like any one of my websites might have 20 3040 different Flexbox and grid layouts on the page, because that is pretty much the only two ways to lay things out these days, if you're not using floats, and whatnot. So I think the only thing that you need to be careful about is things that trigger like reflow or rerender on the page. And because Flexbox is flexible, the whole like content changing, like if you have an image in a Flexbox, and then that image loads, then that changes the width of the flex container. And then that will then trigger a change on the other items. And sometimes that can trigger two or three paint repaints. That can be a possible issue. But in my experience, that's that's mostly just people saying like, oh, what about this problem with Flexbox, it's a major issue. And it's a bit of a chicken in the egg thing because like Flexbox can't solve that ahead of time if it doesn't know how big your content is. So you can solve that by by setting widths and heights on your images if you like but I wouldn't sweat it all that much. So yeah, go nuts on it, go use it as much as you want. And also, I think maybe just like understanding all the ins and outs about the line like Scott said alignment properties of Flexbox. So where you're you're nesting Flexbox is sometimes you can get away with just proper use use meant use. Use min
+
+33
+00:13:12,000 --> 00:13:13,350
+Scott Tolinski: min, even though they're not a word
+
+34
+00:13:13,350 --> 00:14:54,840
+Wes Bos: proper use min of the Align and justify properties in Flexbox. Totally. Next question we have here is from definitely not Justin Trudeau, can you explain the potential benefits of resetting CSS whether it's necessary? And in any circumstances? Where should you use the approach? So this is talking about those things normalized CSS, CSS reset, where before you write any CSS, you apply some sort of like base CSS that will bring your browser's all in accordance. And so like, what's what is the benefit of that? Well, all of the browser's start off on sort of unlike uneven playing field, some of the fonts are a little bit bigger than others, some of the padding is a little bit different than others. So if you just start coding a website, you're all starting from an uneven foundation. So what a CSS reset or CSS normalized will do. And the difference between the two is that the reset will bring everything back to zero, like all the font size and whatnot, and then you have to go back, whereas a normalize will just make sure that all the browser's are starting from the same spot and leave those browser defaults. And so I personally use normalize. I know most developers use normalized now, just because those are helpful to have all of the heading tags and all the bold things set for you. Totally. Yeah, so I use them every single project. It's not an old thing they're continually updated for in consistencies in newer things like Flexbox, and video players and whatnot. So you should always use one in my opinion, and I don't see any downside. And it's also not this is a question I get a lot is you don't have to update it. People are like what happens when a new normalized comes out? And I personally just don't update it, because then you're like, What if something changes, and then you have to change your code?
+
+35
+00:14:55,169 --> 00:15:34,799
+Scott Tolinski: Yeah, at the end of resolvers. As long as your CSS looks good, right. There's no reason to update You wrote your CSS to work with one particular version. And again, I, you know, you you hit on everything there, I don't have anything to add to that. I use normalize myself. That's that is exactly why you would use reset. It's always the worst when you start a project and you haven't had reset and normalize that and then adding on the body and all sorts of funny stuff. You're like, yeah, I gotta, I gotta add a reset or normalize here. Okay, next question is from Steven Duvall. And Steven says, first off, I love the show. You guys are amazing.
+
+36
+00:15:34,799 --> 00:15:35,970
+Unknown: Thank you.
+
+37
+00:15:35,970 --> 00:16:59,340
+Scott Tolinski: Thank you. Thanks, Steven. I would love to hear an episode or a potluck segment on your shell, not shell fish, but shell forward slash fish or slash z sh configs. maybe explain the little tweaks you've made and why you've chosen to use the show you do keep up the great work. Can't wait for the episodes to come. Thank you, Steven, I use z sh. Now I was using fish for a long time. And let me explain why I went I went from bash to Z, sh to fish back to z sh. And this is over the course of you know, 15 years. So it's not like these things happen quickly. But I've been using fish for the past like five or six years. And I recently moved back to z sh, because I was getting tired of the differences between standard bash and standard z sh and fish fish has like very opinionated ways that wants you to do things, which leads to not really allowing you to copy and paste a lot of scripts from different places. If you find a script, and you paste it into fish, fish is going to complain a lot about the different syntax usage. So it's not a one to one the exact same with bash and Z. Sh you never have to worry about that because they're all the same, right? Or at least the things that you're copying and pasting typically from sites are going to work.
+
+38
+00:16:59,370 --> 00:17:16,050
+Wes Bos: Yeah, there's a couple little gotchas here. There it to put quotes in a certain spot, but nothing that's ever been been too frustrating. And also like, you can still run bash scripts, if it's like a separate like.sh file, you just have to put the little bin bash thing at the top and then or run it as a bash and
+
+39
+00:17:16,140 --> 00:18:45,150
+Scott Tolinski: then like fish, where most of the things you paste in and try to go with or even whatever type in from a blog post, you're gonna have to augment. And you're gonna have to understand well, how you're augmenting and why that's it, there were a lot of really great features I liked about fish, which was like the history and the auto completion stuff, which I have added in some capacity to Z, sh. Now, I don't like it as much still, but it's definitely pretty good. I use I turn to version three, which is confusing in itself. And it's awesome. And it worked really well with some of the cool things that csh does. And I get that nice history. Let me pull up my z sh config right now just to make sure I'm not missing any of the plugins or anything I'm using. I'm using the out of the box Robbie Russell theme. And let's see if I'm using any plugins in particular, I'm not using a ton of stuff. I wanted to get this to be feature parity with fish I just haven't had the time. The only thing I have in here in terms of plugins as I have a git plugin, I have z sh hyphen auto suggestions, which gets me close ish to the fish functionality. And then I have a VS code plug in. And then other than that, it's just aliases and things that we talked about in our aliases episode. So now I don't really have a ton of modifications to z sh outside of the OH MY csh themes that you know, use the Robbie Russell one and those plugins, but that's it for me.
+
+40
+00:18:45,450 --> 00:19:41,520
+Wes Bos: Yeah, I've I use Zed sh z sh, along with Oh, my z sh, which is the bass I have a whole course. Let me plug that here I get command line power user.com. It's a free course basically shows you how to get like it set up on your computer is that sh themes, the actual terminal, I use I turned to in that one, but I use hyper now. It'll works the same way regardless of which terminal you use. And then I have a couple plugins with there. So I have Git node NPM brew and what those plugins will do is they'll give you better tabs suggestions. So if you hit node NPM tab, it will just list out what the possible options are. Same with Git often I'll forget the name of what something is and just hitting tab will suggest it for me and you can sort of tab through them and select which one you want. I have a couple extract is a good one for for compressing and extracting.
+
+41
+00:19:41,969 --> 00:19:49,230
+Scott Tolinski: You don't have the tar Cz Cz Oh man. I had it memorized and down there on the spot I can't see
+
+42
+00:19:49,230 --> 00:19:52,410
+Wes Bos: that's why I don't have it memorized so that I can never remember it.
+
+43
+00:19:52,529 --> 00:19:56,280
+Scott Tolinski: Huh z VM now, man this is gonna kill me now.
+
+44
+00:19:56,300 --> 00:20:57,030
+Wes Bos: Yeah, it's I never could never remember though. So I think They'll have that. And then the two big ones that I highly recommend everybody suggest is set sh syntax highlighting, which will give you if you type a command like get space, it'll turn it green. And if you like spell something that's not a command, it will turn old and read this. So that tells you if what you're about to type is broken or not, before you've actually run it. It says right here fist show like syntax highlighting feature parody here trying to get to it. That's Yeah, that was the best. And I also use that sh auto suggestions which, if you type something, it will, it'll start to suggest what the last thing that you typed. So if I just type git, and then it will just like in like very faint letters, it'll, it'll say push, because that's the last like one that I use. So big fan of that. And also z. z is the thing that I used to jump to frequent directories frequent and recent, I use that like, crazy, I recommend that's in my course as well. If anyone wants to get better at the command line,
+
+45
+00:20:57,110 --> 00:20:59,160
+Scott Tolinski: it's just the letter z or
+
+46
+00:20:59,190 --> 00:21:00,000
+Wes Bos: z yet.
+
+47
+00:21:00,110 --> 00:21:06,750
+Scott Tolinski: Okay? So Americans out there when wet says that you do not type z Ed, you just type the letter Z.
+
+48
+00:21:09,060 --> 00:21:34,710
+Wes Bos: Yeah, just the the Zed keyboard type, Zed key on your keyboard said key past that. That's, that's really all I use. Like, I've got a couple little, I'm just looking here a little like, we talked about it on the past a past episode about what they are, I use my cobalt to theme there. But past that, no, no, nothing, nothing else. It's pretty out of the box. I'm surprised at how much is just good out of the box.
+
+49
+00:21:34,740 --> 00:21:46,050
+Scott Tolinski: It's great. It's been great for so long. And I think the next the next version of Mac OS, Catalina wine mixer, it's going to have the csh just the default shell.
+
+50
+00:21:46,050 --> 00:21:47,790
+Wes Bos: That's pretty sweet. Sweet.
+
+51
+00:21:47,790 --> 00:23:04,950
+Scott Tolinski: So those of you who aren't under now you're going to be on it soon. I'm gonna tell you that. And let me tell you what also you'll be on, you'll be on Netlify because it is the easiest way to host your site. Absolutely anywhere. People always tell us this, I can't believe it took me this long to try out Netlify after Scott was talking about it so positively, I thought it must have been an ad. No, it's done every day absolutely love Netlify it is the perfect place to host any front end code. And let me tell you, the experience cannot be any better. You most likely you got your code and repo already. You just log in, you select the repo, you type in your build command, or even better. Netlify recognizes the what kind of site it is and has the build command in there for you already, which is even easier. You click go and you automatically get insane features like a CDN, and you get an SSL and you get continuous deployment without having to do a darn thing. It is so stinking cool. And there is just non stop addition to new features being added to Netlify every single day. So what we want you to do is head to netlify.com forward slash syntax and sign up, let them know where you came and just tweet them out and say, Hey, we heard about Netlify syntax, we love it. So so much. So thank you to Netlify for sponsoring,
+
+52
+00:23:05,100 --> 00:23:24,870
+Wes Bos: when you tell our sponsors where you come from, they love that they really do. Yes, we've just had a whole bunch of calls. We just had a bunch of calls with sponsors for next year. And they're like, man, your your audience is crazy. They always tell us they come and they want to make sure you get credit for it and everything like that. That's awesome. We love that we absolutely do. Thank
+
+53
+00:23:24,870 --> 00:23:45,840
+Scott Tolinski: you so much for that. All right. Next up, we have a question from agno, which is I always get confused on when and how to use dot bind method. Any pointers on when I should use that bind? in what situations? Wes you have a good amount of notes. Do you just want to rock through this one? You wrote down a decent amount here?
+
+54
+00:23:45,930 --> 00:26:59,820
+Wes Bos: Sure. My answer here is methods or functions are often bound to an object. So when you are inside of like a like a method, like let's say like dot log log is a method that lives on side of console console dot log. And in order for console dot log to work, in order for the log method to work, it needs to know about what it was bound to, which in this case is console. And the way that it references that is by using the this keyword. Now, sometimes you need to move a function into its own function or if you you need to change how it works. But you still need it to be bound to that that object or you need if you need a method to be bound to something totally different. You just want to use that same method but change the context in which this is equal to and that's so that's the first way that you can use bind is is changing the the context in which it is run under. And a little A good example is if you want to make your own console log function, if you just say like const ello, double g Snoop d, o double G, if you open up your terminal right now it's a constant g g is equal to console dot log, and don't call it but just reference it. So now you have a method called l o GG. And after you try to run that actually hope that didn't change this, oh, they fixed it. Okay, this seems to be the case where you couldn't bind console dot log to its own function. And if that was the case, you'd have to do console dot log dot bind console, and you'd have to change, make sure that it is bound to that grill function. They've changed that since then. So that's not a good example. So that's, that's the first one here. And the one that you're you're you're asking about here, which is, I often see in react in react like an unclick, something like that, if you want to pass an argument, on click, there's, there's two options that we have, because you can't call the function on click like you do in vanilla JavaScript, you just give it a reference to a function. But if that function needs to pass like an ID, or any other arguments, you can't really do that, right. So your options are, you can either say like on click equals send user dot bind. And then the the first argument to dot bind is the context of this, most people will just say dot null, because it doesn't matter in react and react world. And then the subsequent arguments are when it gets called, these are the arguments that should be passed. And then you are returned a new function that has sort of like, sort of batteries included arguments, now you have this brand new function that already has the arguments built into it. And then when you call it, it will know, it will know what arguments to run out. So that's one option. And then the other way that is pretty common in react world now is just to use an arrow function in line, where you just say on click equals, and then you do that little arrow function, and then you call the function with the arguments that you want. I prefer that way, just because it looks a little cleaner. But in both cases, you are creating a brand new function, which is is what you're doing. Yeah. Makes sense. Yeah. Fantastic.
+
+55
+00:27:01,710 --> 00:27:07,110
+All right. Next question we have from Brian. And he said pronounced, Brian.
+
+56
+00:27:07,140 --> 00:27:09,930
+Scott Tolinski: Thank you, Brian. Thank you so much.
+
+57
+00:27:10,860 --> 00:27:35,820
+Wes Bos: What are your suggestions for handing off client sites for freelance work, I don't take on many contracts, I have another full time jobs, but I'll take on one here or there during the summer to supplement a little bit. Quite honestly, I love that I love that. That's what you can do as a default as you can take on a little extra work make a little bit of beer money, or, or Disneyland money or whatever it is that you're spending vape money, whatever it is, you're spending your money on, you can
+
+58
+00:27:36,720 --> 00:27:40,830
+Scott Tolinski: hopefully not vape money at this point. Okay, big thing going on.
+
+59
+00:27:42,420 --> 00:29:22,950
+Wes Bos: Anyways, I'm finding it difficult to make a clean handoff when the project is finished, the contractual requirements are met. And like anything, there are always tweaks to be made. I handle some minor deployment issues without billing, but I struggle where to draw the line or the suggestions that you have? That's a great question. Because like when you're done, you're not always done. There's always stuff that comes back. And like Who are they going to ask? Well, the person that made it and the person that we paid to actually do it? So how do you do that, usually, what I'll do in this case is I will find somebody that I trust, and say, I'm handing it off to this person right now you can deal with them for anything going forward, and know that like you have to pay them right. And if it is, if it is things like usually what I'll say is, I will cover bugs by me. But I will not cover bugs that are that are introduced because of a third party, whether that's an upgraded CMS, whether that's an API that's being deprecated, like a good examples, anytime you work with Twitter API will change things on your website might break or our new stripe API needs to be implemented. So anything that is out of my control, because they change, you have to you have to do somebody else, those bugs are mine. Hopefully, you don't have to do a whole lot, but but then set them up with somebody else. Because more often than not, they just rather go with somebody entirely going forward. So that's how I would do it, I would make myself available to the person that you pass it off to. And then finding someone to pass it off to is a whole nother problem. Because like finding a good reputable Freelancer who knows their stuff is hard. And that's why I always tell people like honestly, if you're a good developer, have good communication skills, you'll do super, super well as a freelancer. Yeah,
+
+60
+00:29:22,950 --> 00:29:32,310
+Scott Tolinski: there are there's a lot of things here, when you're handing it off to the client. And some people bill, they'll host it themselves. They'll have even like,
+
+61
+00:29:32,850 --> 00:29:35,010
+Unknown: don't do that, yeah, dedicated virtual and
+
+62
+00:29:35,010 --> 00:30:08,460
+Scott Tolinski: they'll they'll host all of their freelance client sites, and they'll pay them for hosting. And you say don't do that. But that could be a really good income stream, if you don't mind managing those servers. And it's easy for you. Because the cost of running a virtual private server is like nothing and if you charge, you know, eight bucks a month for a few clients to host or something that's a nice little steady income stream. an addition to that, but again, it's more trouble than it might be worth I've never done it personally, I've never tried them and you've done it. Okay, you can just ignore everything I'm saying because No, I haven't, I haven't done it personally.
+
+63
+00:30:08,670 --> 00:30:52,410
+Wes Bos: Well, some people like to do that. But honestly, when you like I have one client from like, 10 years ago, I bought the domain for them. And I every year to like, renew it or figure out how to transfer it and pay for their hosting. And, and when their email goes down, they email me and like, I'm like, your emails with Google. And but they're like, they don't understand that. And then like something changes like WordPress, they installed 400 WordPress plugins, and it's broken now. And like, you're the point of contact, right? Whereas like, that's why I like GoDaddy for that kind of thing. Like you hate GoDaddy all you want, but put your crappy clients on them, because they GoDaddy will pick up the phone and talk to non technical people all day long about those kinds of problems. Yeah. And
+
+64
+00:30:52,860 --> 00:32:57,450
+Scott Tolinski: like you mentioned, like, if you break something, like if the code was broken from, then you're responsible to fix that stuff, if the user comes in and breaks things, I think it's a, it's important to let your client know, obviously, that, here's what my expectations for this relationship are, I'm passing it off to you. And unless there's an emergency that I caused, then I won't be with able like to pick it up and fix it for you within you know, 48, whatever, 24 hours. And if you broke it yourself, then I you know, I'm certainly not going to be around to do that. So, as long as those expectations are met, that you know, maybe you can, like you mentioned, pass it off to another Freelancer who can be there to support it. But in reality, I think it's just making those expectations clear. Because so many times, you'll get a client who does that whole thing, I broke it, fix it. For me, it's Sunday at 10 o'clock, drop what you're doing and fix it for you. So um, be careful with what you promise, I found this aspect of things to be both hard and easy, depending on how you set the expectations between you and your client of what is you know, what needs to be done. And if they say, Hey, I'm not exactly comfortable taking off the life jacket to keep the boat metaphors going. Exactly, you know, I'm not exactly comfortable taking off the life jacket that is of having a developer on call. What else can you do for me to make it more extra robust, maybe you can pick up some extra hours at the end of a project, they're just really, really adding in some robustness to this library, if it needs a code base, whatever. So sanity is a, it's going to be that that company and experience that's going to be extra robust for you. And it's unlike your own code, your own back end, it's not gonna break because what Sanity is, it's it's a back end for the front end code that you are writing. And it is a really super cool back end. So I know Wes, you have a lot of interesting things to talk about. So you want to pick this one up with Sanity?
+
+65
+00:32:57,690 --> 00:35:17,190
+Wes Bos: Yeah, so I was just going through some of the features on Sanity the other day. And one kind of thing I want to focus on. First of all, let me tell you real quickly, it's a it's a structure content, CMS. So you can code up your JavaScript file and then deploy that or run your your Sanity command. And it will create based on the fields that you want, and the types that you want the relationships that you want, it'll create sort of a back end, that you can then hit with your API and pull that into Gatsby or, or nuxt, or next, or whatever it is that you're working with. And the thing that I want to focus on is this this asset pipeline, the image pipeline that they have. So if you upload an image to like a typical like a WordPress or something like that, it will try to resize it into the sizes that you've preset. But with sanity, what's cool about that is, when you upload an image, of course, you can get all the different sizes that you want. You can also get the the base 64 version, so you can blur it up, like kind of like how Gatsby does that. But the really cool thing is that when you upload the image, you can draw a little oval around the thing that is the focus of the photo. And then when all of the different images are cropped, then they will all crop them based on that being the center of it. And I remember clients when I had WordPress people, like how do I get it to stop cropping people's faces out and I was like, oh, there's no like, thumbnail size crop, like you could do top left, bottom right top right, there's no like face crop right. And this is the case where you can just draw a quick little oval around the thing of the image and then all of your different sizes that are generated will all be centered on that one little piece that you have. So whether that's a face or whether that's like a phone or a piece of your product, it will look good in all of the different sizes. And that just comes with Sanity. Right It's not a plugin or anything like that that you need to have that comes built into Saturday which is pretty cool. You get all the different sizes all the different compression they need. So check it out. Sanity dot o for its slash syntax. And you're going to get double your free tier that normally that you normally get go and go to that also they have a whole bunch of examples using it with Gatsby and next and Knox and that list is growing with all the different integrations that they have. So check it out.
+
+66
+00:35:17,820 --> 00:35:28,110
+Scott Tolinski: Cool. Okay, so this next question is from Brett jolin. ski. Hey, Julian ski Tolan ski. What's up my homie? bred rat Delinski
+
+67
+00:35:28,110 --> 00:35:32,210
+Wes Bos: Scott Tolinksi. I think it's a joke. Oh, or real?
+
+68
+00:35:32,550 --> 00:35:33,600
+Scott Tolinski: It's maybe a joke.
+
+69
+00:35:33,710 --> 00:35:36,920
+Wes Bos: Let's look it up. Brad szalinski Are you a real person?
+
+70
+00:35:37,260 --> 00:35:40,610
+Scott Tolinski: Are you Ah, is a joke. brat.
+
+71
+00:35:40,670 --> 00:35:42,650
+Wes Bos: I think most people give us fake rabbit.
+
+72
+00:35:42,690 --> 00:36:37,320
+Scott Tolinski: This is a joke. A people who are always goofing I don't think it's a real person. This man, people are always goofing with us without these names here. I like it. I like it one bit. Yeah, I don't think Brad is a name at all. I just thought it was maybe some Polish name that I wasn't familiar with. Okay. Okay, Brian, whoever you are. I get it. This is a question for Wes. Oh, okay. Thank you a double dosage. Brad. You really hammering me here. I live in West or Northwest. I live in Central New York. And every time I go onto the highway heading north or south, I see several Ontario license plates. Where are y'all going all the time? I don't think you're from New York brat. You saying y'all type in y'all in here? Is there a secret Canadian spot down here? Florida comma cheap beer. COMM This is weird question, Brad.
+
+73
+00:36:37,380 --> 00:36:40,400
+Wes Bos: No, that's sorry. That's, that's my answer. I'm starting to put your
+
+74
+00:36:40,800 --> 00:36:43,110
+Unknown: putting your questions and the answers man this
+
+75
+00:36:43,110 --> 00:37:57,270
+Wes Bos: question. Sorry to type Wes in front of you. Um, well, Brad, if I have a sweet Canadian spot, I'm certainly not going to tell you after you just got there. But yes, US Canadians do like to go to the States. Because of the first of all target. We had target. liquorice be a little we have Lacroix's now but they're they're unaffordable to most Canadians. So we get the What do we go down there for we go there down there for target the Lacroix's we often will go to Myrtle Beach or Florida. The beer is much cheaper down there. So a lot of people just go over for a couple days, after you've been there for 48 hours, you can take home $700 worth of goods and get just good. Pretty awesome. And you can't bring any services back. Often we'll go for less than 24 hours. And as long as you claim it to the border guard, we've found that about half the time they make you pay duty so you can bring as much as you want. You just have to be very clear about how much you're bringing back and honest and they will sometimes they'll make you pay duty and sometimes they won't. So that's where we're going. We're going down to take all of the the good things about the states without actually having to live Yeah,
+
+76
+00:37:57,270 --> 00:38:08,040
+Scott Tolinski: yeah, you get to go back piano with your health care and your Yeah, polite manners and your thank yous and your stories and all those things that you have in Canada,
+
+77
+00:38:08,040 --> 00:38:20,340
+Wes Bos: people go down there for CAT scans all the time. Because apparently for a couple hundred bucks, you can go get a CAT scan, and the line up in Canada is often months long. It's weird. Yeah. Okay,
+
+78
+00:38:20,340 --> 00:39:07,590
+Scott Tolinski: next question from Matthew M. Hey, Wes. And Scott, each time I reopen an old project, I lose so much time with NPM dependency being outdated, and it drives me mad. I'm starting to dislike NPM and everything around it. But is it only NPM? How do other languages like PHP, Python or go handle this mess of dependencies? Are we better today than yesterday? And am I complaining about nothing? Yeah. So the answer to this is lock files, lock files, lock down the versions to be exactly what you want to be. So that way, when you run npm install, it just looks at your lock file and get grabs the correct versions that you're locked into lock files became a thing in NPM. And oh, I don't know what version but a couple years ago, yeah,
+
+79
+00:39:07,590 --> 00:39:09,840
+Wes Bos: a year and a half ago. Yeah,
+
+80
+00:39:09,860 --> 00:40:34,260
+Scott Tolinski: yarn added lock files, which have been a thing in other languages for a long time. So yarn, add lock files, and then because of that, NPM added lock files just about really soon after that. And I'm pretty sure I'm right on that timeline. I could be wrong. So shout out. Yeah, I'm wrong about that. But really what the lock file does, like I mentioned it keeps your versions correct but also if your application is working, right if that's not the problem they have the problem is is that all of a sudden your your dependencies themselves, they're now have different versions or whatever. There's no reason you have to update that stuff unless there's security vulnerabilities or anything. Now I personally run yarn upgrade interactive all the time, like every other week, just because when you upgrade constantly and consistently becomes a tiny little, you know, tiny little one hour project rather than a, you know 10 hour long slog of You know, having to fix a billion different things with your, you know, tests and all that stuff. So I personally am constantly updating my stuff. But if it's a project I haven't touched for a long time, I don't, I don't even bother updating the packages Unless, of course, there's security vulnerabilities that I have to worry about. Because you don't have to upgrade this stuff. As long as it works a work then it should work. Now, as long as your lock files there and dependencies are all all lower at that I don't necessarily have this issue. I don't necessarily understand exactly what the issue is. Am I missing something here that you were reading into this? Yeah, I
+
+81
+00:40:34,260 --> 00:40:50,880
+Wes Bos: think I think part of it is around like you, you leave a project for a month, and you come back and you npm install? And it's like, well, there's 40, deprecated packages and 800 security vulnerabilities. And if you see that it's hard to just ignore it be like, well, I'm happy with like, what's working for me right now.
+
+82
+00:40:51,030 --> 00:40:53,940
+Scott Tolinski: But if it's, I guess if it's vulnerabilities, it's one thing, but
+
+83
+00:40:54,600 --> 00:42:19,710
+Wes Bos: yeah, but that's the other thing is that these vulnerabilities if every time I have a vulnerability, which is every single package every day, I look into it, and it's like, oh, that's actually not affecting me at all. And that's a huge frustration for me and all my courses as well, because you you ship a course and three days later, this, the pace at which JavaScript is moving right now is incredible. And that's great for progress in the industry and things being new features and, and things being better than they used to be. But that's it's a downside to people who are like, Oh, just let me do my work. I can't like, I can't hold on. I don't think that PHP, Python go. I don't think they're as bad as it because of, well, first of all, like JavaScript has no standard lib. So everybody is reaching for all these utility packages, which are constantly being updated. So that's, that's a huge, huge thing right there. And also, NPM is very much around small things that do one thing well, so that's the reason why we have so many packages when you install something. So are you complaining about it? Yeah. It's frustrating to everybody. I think you're not complaining about nothing. But also it's just like, I think that's part of our I think it's currently just part of being a JavaScript developer. And it is a reason why people don't like JavaScript, and they move to other languages, because it's, it's all thrashing way too quickly. So yeah, I think just either just learn to deal with it. Or like, what could I do is I just YOLO update, were like, dude, I
+
+84
+00:42:19,710 --> 00:42:21,060
+Scott Tolinski: Yo, yeah. Oh, man, we
+
+85
+00:42:21,060 --> 00:42:29,880
+Wes Bos: should make like a like a bash command or something just called YOLO update, where you just blow it away. Who cares? Major versions, minor versions, update everything?
+
+86
+00:42:29,910 --> 00:43:56,340
+Scott Tolinski: Well, okay, so this is what I do. I use yarn personally, just because I like it. And I run yarn, upgrade hyphen, interactive, hyphen, hyphen, latest, once a week, and now there's some packages like date FNS, I've been putting off updating to the latest version, because I've heard there are, I know that there are breaking changes based on sem bear. But I've heard there are modifications that go beyond something I have to I actually have to spend some time diving into seeing what those are. No, I haven't looked into that. But to be honest, if you run your update stuff often enough, and you YOLO update to the latest versions, and you have good tests, which I used, and then testings with Cypress, I have react testing library unit test, as long as you have good tests, you should be able to quickly determine if things broke, and chances are unless the package maintainer is sort of reckless things aren't going to break insanely amount. And if they are the cool thing about that upgrade interactive is that shows you in red, which are major version changes and which are not which ones you should be expecting. And maybe you want to do some research. Like if there's a huge react router update, which changes the way that react router works entirely or something, you know, you can put that off until you have the time to do it. I really like updating frequently and often just to avoid the big headaches down the line somewhere else. Okay, last question here is from Sean, do you want to take this one? Sorry, I've taken like several in a row I think.
+
+87
+00:43:56,550 --> 00:44:59,910
+Wes Bos: Yeah, I didn't I fell asleep in a rest area and subconsciously listen to three of your episodes. Which podcast player Do you use Android PC or other? And why? Where do you listen to them in the office on the road at church or PTO meetings? So I listen, I use overcast, which is a only an iOS app. Is it? Big fan of it? Yeah. Yeah, it's it's Marco arment, who's like Apple fanboy, so he just just focuses on iOS. Big fan of that. Why do I use that? Because it's good. I like it. What do I listen to them? I listen to podcasts at the gym. When I'm walking somewhere when I'm driving, and usually as I'm falling asleep I'll listen to a little like a short one like a I listen like planet money the indicator it's usually 1015 minutes Dude, that's a good podcast. Yeah, and it's daily. So in this just enough because I fall asleep and I fall asleep super quick. They usually within 1015 minutes I fall asleep and then you don't wake up at like 3am with like Joe Rogan talking about taking mushrooms in your air sound like that.
+
+88
+00:45:00,000 --> 00:47:43,950
+Scott Tolinski: Yeah, the indicator I've been really loving. There was an episode on like probiotic recently that was really good. Yeah, that was, yeah, I've been a big fan of the indicator. So I use pocket casts, which has been my podcasting app for a very long time. I've used several on Android. But pocket cast is cross platform and, and browser, it's very good, has a lot of great gesture support. When the new version launched that there was like, I think, a little bit of blowback that they'd like made it to be gesture based. But to be honest, it's been awesome. Once you learn and get used to the little, little niceties about it, it just keeps getting better and better. I love the sort of visual aesthetic of this app. So I'm a huge fan of pocket casts. Again, iOS and Android and lose the power I saw. I don't understand how falling asleep in a breast area correlates to the rest of this question. But I feel like that's kind of dangerous. I don't know about you, at least it is probably in the States. When you're at a rest area. Those aren't necessarily the coolest places to hang out. Okay, where do you listen to them in the office on there, I listened to them. I listen to him in the car. When I dropped my kids off at daycare. Of course, I have to have this where I get to listen to the like planet money indicator in some of my hockey podcast, some of them I don't listen to, but they have a selective bunch of podcasts that I only listened to in the morning when I'm dropping my kids off because they are the ones without the F bombs dropped in them. So we got to make sure you know Yeah, little ears listening. That's it. I listened at pretty high speed. So I don't think Landon's really picking up too much but never always safe than sorry. And then I also listened to them in my office. I have a a gorgo home sitting on my desk here that I can you know Chromecast to I have Do you listen to them while you're coding depends on what it is I listened to a lot of comedy casts and those aren't like ones I really have to pay attention to they're just jokes here and there and whatever they're just a little goofy things and so some of that stuff or I listen to like eight hockey podcasts. So if I've heard like the same storylines on like five or six hockey podcasts by like the seventh or eighth one comes around like if I'd let Can I listen to the Detroit redwings winged wheel podcast while I code? Absolutely. I don't really need to know that much. I'm a Red Wings fan, but I'm not a huge Red Wings fan. So they're like my second team. They're not even my first team and podcast. So I also listened to them in the gym. I put it I have a Bluetooth speaker out there I also have a Google Home out there I will put it on and I think that's I mean I listen to them all over that like if I'm mowing the lawn I have my Sony bluetooth headphones on I'll just pop those on and just listen to them all the time. Oh, no. has no podcast pretty much all the time. 24 seven, and yeah, that's pretty much it.
+
+89
+00:47:44,280 --> 00:47:45,480
+Wes Bos: Yeah, big fan.
+
+90
+00:47:45,480 --> 00:47:47,070
+Unknown: All right.
+
+91
+00:47:47,070 --> 00:49:12,810
+Wes Bos: Let's move into some sick pics. These are the times that we pick things that are sick. I've got a new one. And I've talked about a little bit here and there but I was gifted this Garmin vivoactive three which is like a like a smartwatch, right and I've never in my life worn watches Swami here in there when I was a kid. But I never wear a watch. And someone got it for me as a gift. I was like I'll give it I'll give it a shot. I've always been kind of interested in like, this smartwatch, I thought it was kind of silly to have like, you need another thing right and telling you when you have notifications. So I turn it on. And I love it. It's It's amazing. Like you you getting notifications on your wrist. By the way, I'm super aggressive with notifications, I don't get a lot of notifications on my phone, like, I don't have any Twitter or Facebook notifications, Instagram notifications, all of those are off. So if I do get a notification, it's something that's somewhat important. So it's cool because you can clear the notification, right from your your watch. So you don't want to take the phone out of your pocket. Or, like there's just so many situations where you can clear it, get it off your plate, and you know that that's done. And then the other kind of thing about it is that it's a whole fitness watch. So I take it running, I go to the gym with it. I've been checking my heart rate, it tells you how many stairs you have which having a newborn baby, we do like 40 stairs a day, it's going up and down, up and down, up and down. And the battery lasts like three, three and a half days
+
+92
+00:49:12,810 --> 00:49:14,970
+Scott Tolinski: on this day. Yeah, that's good.
+
+93
+00:49:15,030 --> 00:49:31,380
+Wes Bos: And it's it's about half the cost of an Apple Watch. So I'm thinking I'm telling myself if I still like having a smartwatch and like six months or something, I'm probably gonna go and buy Apple watch because I would like to be able to like reply to texts from it. I don't know if that's possible on the Apple Watch or not, but
+
+94
+00:49:31,560 --> 00:49:37,860
+Scott Tolinski: I'm sure yeah, it was possible on my Android watch from like, seven years ago, so I'm sure Apple's Oh, yeah,
+
+95
+00:49:38,010 --> 00:49:48,390
+Wes Bos: they're getting out though. Yeah. So I think it's like a nice entry level. Fitness watch. And I like it the Garmin vivoactive three.
+
+96
+00:49:48,660 --> 00:51:47,370
+Scott Tolinski: Yeah, that's a whole thing for me too. You know, I mentioned like, getting the iPhone was largely because of the camera. But again, it's because there's no Android wearables story like the Android ones are sort of at the mercy of the process. sesar were like apples creating their own processors. So the reason why there's no pixel watch is because everybody knows that the processor is limiting it. And it's only going to be so good. So the last thing that Google one really Yeah, because Apple can create their own. So the the pixel watch can't be any better than the fossil watch that fossil is putting out unless Google gets into the game of creating your own processors. So Ah, yeah, so that's the whole rub. And that's the main reason there, there's a report that came out that there's been a pixel watching development for like the past three or four years, and every time it comes near the time to launch it, they're just like, it's not good enough, like, this is gonna hurt the brand, because it's not, it's not at the same level as the Apple Watch, because it can't be. So that to me, was like a huge thing is that the Apple Watch is so good, that it's really enticed me to be like, Hmm, maybe I can, you know, grin and bear with iOS just to be able to have something like the iOS or the Apple Watch or something. So, yeah, okay, so my sick pic for today is untitled goose game. So I occasionally sick video games on this, in this game is just, and always been a fan of games like this. I was a fan of, there's a game called Katamari damacy, where you roll a thing and you just you pick up things and they slowly get bigger and bigger and bigger is really beautiful game. This game is kind of the same way. It's very chill. It's very, it's very fun. You play as a goose. It has this really minimalist like low color art palette, where it's it's 3d, but it's all very shaded color. It looks illustrated, and you play as a goose. And you really are just causing havoc, you can honk at people in the Hong Kong and you can
+
+97
+00:51:47,520 --> 00:51:48,060
+Wes Bos: sounds like Canada
+
+98
+00:51:48,060 --> 00:53:13,530
+Scott Tolinski: case here in this very done for Canadian geese. It's a white goose with with orange feet and uses while around, there's a button that makes you open your wings. And you pick stuff up and you just cause general chaos like I untied a little boy's shoes. And then I stole his glasses while he was bending down to tie your shoes. And then I gave him some other glasses that weren't his and he was pretty upset. So like that is the premise of the game is you're just causing mischief and you have these like little tasks, it'll be like, get the farmer to switch his hat. So you have to find some way to steal the farmers hat and you really get in the mind of a mischief causing goof goose where you're just sitting there and God Hmm, what can I do to get this farmer to take off his hat? And then you still had a lot of fun. I was having a blast with this game. And it's so dang cute that you just you just absolutely love cutting this JFS. This goose. Had a great time there was this old lady coming at me with a broom. And I was just talking at her I was flapping my wings and honking at her and I couldn't do anything. She had a broom, but haha. And like that, to me is with playing video games all about. I had a great time. Not about shooting people, or that kind of stuff. It's about honkin and old lady with the broom and big fan. So this untitled goose game check it out. I'm playing it on the Nintendo Switch. I'm not sure what other platforms it's available for. But a big fan. so shameless plugs, got anything plug.
+
+99
+00:53:14,129 --> 00:53:22,860
+Wes Bos: I'm going to plug let's do so I unplugged my Instagram. I've been loving Instagram the last like a year or so.
+
+100
+00:53:23,040 --> 00:53:23,940
+Scott Tolinski: I do love and
+
+101
+00:53:24,180 --> 00:53:43,260
+Wes Bos: yeah, and it's just a good spot. good spot to to share what's going on in my life. I've been sharing stuff that's like coding, obviously, but a lot more not coding, cooking, fixing random stuff around the house, juicing up my kids, Power Wheels, toys, all kinds of fun stuff like that.
+
+102
+00:53:43,290 --> 00:53:45,090
+Unknown: I'm loving the power rails toys stuff.
+
+103
+00:53:45,120 --> 00:54:12,690
+Wes Bos: Yeah. And it's I feel like it's such a it's just an easy way. I don't know if it's because I have so many followers on Twitter that like whenever I post something to Twitter, I have to think about it and have to like get ready for all the idiots that reply with all their stupid replies and everything like that on Twitter or on on Instagram. I just like post anything I want. And like I posted last night it's like I got this new starter jacket that has like Boston Red Sox logo on it. Oh, yeah. And I put on it like
+
+104
+00:54:12,720 --> 00:54:15,300
+Scott Tolinski: I heard you're a Big Red Sox fan. Your Big Red Sox head.
+
+105
+00:54:16,050 --> 00:54:27,630
+Wes Bos: As everybody's I put on like don't talk to me about sports. Because I don't actually know anything about it. But and then I said I don't know anything about football and the amount of people that thought I was serious.
+
+106
+00:54:29,010 --> 00:54:29,850
+Scott Tolinski: That's a good that's a
+
+107
+00:54:29,879 --> 00:54:37,230
+Wes Bos: good. Yeah, so that's kind of fun. I'm at Wes Bos w e sp OS on Instagram.
+
+108
+00:54:37,440 --> 00:55:11,220
+Scott Tolinski: Cool, man. I'm gonna plug my latest course which is spelt for beginners. Now if you don't know about spelt, this is the perfect time to check it out. Because we go over all sorts of cool stuff. We build a quiz as animations that works with an API. We talked about what happens when you build a site in spelt, which is different from what happens when you build the site in other platforms. And it is just so dang fast. Fantastic. The little amount of code you have to write to do anything cool in spelt. So check it out at level up tutorials.com forward slash Pro, sign up for the year and save 25%
+
+109
+00:55:11,220 --> 00:55:12,210
+Unknown: check it out. It's
+
+110
+00:55:12,210 --> 00:55:18,690
+Scott Tolinski: belt three or I guess it's just called spelt for beginners but it's on spelt three big fan of that one. So check it out.
+
+111
+00:55:19,140 --> 00:55:25,230
+Wes Bos: All right, thanks so much for tuning in. And we will catch you on Monday.
+
+112
+00:55:25,560 --> 00:55:26,220
+Unknown: Live it up.
+
+113
+00:55:26,730 --> 00:55:40,410
+Scott Tolinski: Get you There he is. Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
