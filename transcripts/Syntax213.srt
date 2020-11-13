@@ -1,0 +1,388 @@
+1
+00:00:00,359 --> 00:00:24,450
+Announcer: Monday Monday Monday open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA bombs and Scott Taylor. Totally in ski.
+
+2
+00:00:25,950 --> 00:00:57,570
+Scott Tolinski: Oh, welcome to syntax in this Monday tasty treat, we're gonna be talking about that Firefox, the Firefox that we know and love. It's the browser that Wes and I have been using for quite some time now just to really just acclimate ourselves into the world of Firefox, and really talk about how it's changed our development workflows and everything over the course of the past month or so. My name is Scott Delinski. I'm a developer from Denver, Colorado, and with me, as always, is Wes Bos.
+
+3
+00:00:58,049 --> 00:01:00,360
+Wes Bos: Hey, everybody. Hey, Wes.
+
+4
+00:01:00,360 --> 00:02:00,120
+Scott Tolinski: This episode is sponsored by Log Rocket. Now Log Rocket is the session replay application allows you to see why your bugs are happening. And not just not just that bugs are happening, not just that they exist, and not just that your users are experiencing them. But you'll get to experience them just like your users are. And maybe that's going to be the catalyst for you to fix some of these bugs. And what Log Rocket gives you is a pixel perfect replay of exactly what your users saw, whenever they hit a bug even shows you your Redux store. It shows you their network activity, it shows you their counsel login errors, and it works just about any sort of front end platform that you could imagine. So check out Log Rocket at Log rocket.com forward slash syntax, sign up today and get 14 days for free and check out see the magic. I feel like I'm inventing taglines for these companies, but see them the magic
+
+5
+00:02:00,150 --> 00:02:02,730
+Wes Bos: that is not approved by Log Rocket marketing. Scott.
+
+6
+00:02:02,730 --> 00:02:11,100
+Scott Tolinski: Yeah. They're there. Their slogan is stop guessing why bugs happen? It's pretty good. It's pretty good. Yeah.
+
+7
+00:02:13,260 --> 00:02:32,060
+Wes Bos: Oh, awesome. Well, let's get into it. Um, so about, I think about a month ago, I said, I'm going to use Firefox for the rest of the year. So I used to all of December and he's actually recording this on January 6. So I've been using Firefox for almost five weeks now. And I know Scott, how long have you been
+
+8
+00:02:32,060 --> 00:02:38,250
+Scott Tolinski: on it as well? Pretty much same exact amount of time, because you said I'm going to do that. And I said, me too.
+
+9
+00:02:38,489 --> 00:03:28,920
+Wes Bos: Yeah, we get an episode out about it. So I've I should just say up front, I have a course called CSS Grid, where Firefox CSS grid.io, Firefox sponsored that for for this, they paid me to make the course. And he used Firefox in the course. And I'm very clear about that they are not paying for any of this. This is just us, as developers trying to figure out like, is the switch over to Firefox worth it? I've tried it many times over the years. And this time, I thought I'd give it like an honest shot, and try to actually do development and daily browsing on it. So that's what we're going to do. We're going to go through dev tools, we're going to go through the browser experience, we're going to go over some tips for setting it up and getting switched over. And then finally, we'll talk about some of the things we didn't like about the switchover from Chrome. And finally, will we stay with it? Like is it going to be our daily browser?
+
+10
+00:03:29,100 --> 00:04:07,590
+Scott Tolinski: Yeah. Yeah. Which is, you know, I have no conflicts of interest. So just FYI. Except for that course I released called Firefox. No, I'm just kidding. I did not like Firefox. So yeah, let's get into it with the I guess you want to do you want to kick it off the dev tools? You know? Or maybe I'll kick it off with the dev tools. How about that? Yeah, yeah, the dev tools in Firefox, are better than Chrome's dev tools, I don't really have a problem saying that they're, they're better and in most ways that I, I've come to use, in fact, visually, they look nicer. They feel better.
+
+11
+00:04:07,649 --> 00:04:08,280
+Wes Bos: Totally.
+
+12
+00:04:08,399 --> 00:04:51,770
+Scott Tolinski: All of the dev tools, extensions that I use and love, like react Dev Tools did the exact same. And actually with one added benefit is every time I close the Developer Tools tab, the tabs don't reorder themselves and move react to the end of the list. So that a little bit of it is nicer to me. But for the most part, I have actually really loved these dev tools. And I didn't have to change my workflow at all because everything was exactly where I expected it to be no frills, no extras, this stuff that I use every day, the debugger, the Network tab, the general Inspector, all that stuff is as good or better than the chrome version of it. In my mind.
+
+13
+00:04:52,230 --> 00:05:21,690
+Wes Bos: The biggest switch for me was learning how to do Command Option K to open up the console instead of command r J. So I had to move my move my finger over one. One key, I just hit escape. No, like when you're like on a website, and you're just browsing and you want to open up the, you want to open up the console directly. Are you one of these people that right clicks inspect element and then clicks over to the console? Don't tell me hear them? Well, okay,
+
+14
+00:05:21,750 --> 00:05:52,830
+Scott Tolinski: yes. Let's Let's, I am doing like I for some reason, I've never ever gotten the keyboard shortcut for Inspector, any of those. But I always leave Dev Tools open. I mean, I don't use dev tools a lot on sites that are my own. And since I'm only working on one site, which is usually level up tutorials on local hosts, and I basically never close that connection, I leave that open 24 seven with a dev tools open, like I never closed that ever. So Oh, man, I'm like, it's a major hindrance in my life
+
+15
+00:05:53,039 --> 00:06:07,560
+Wes Bos: is no way to live your life, Scott. So for everyone listening command, shift C will open up the Inspect Element, so it'll immediately open it up so that you can inspect any element on the page. And Command Option J,
+
+16
+00:06:07,710 --> 00:06:09,300
+Unknown: Command. Option j,
+
+17
+00:06:09,300 --> 00:06:17,580
+Wes Bos: sorry, man Command Option K, how am I supposed to remember that but not console? You just do it like 10 times and then it will become second nature? That's I'm gonna set on my own
+
+18
+00:06:17,820 --> 00:06:18,930
+Scott Tolinski: instead of that. Oh, yeah.
+
+19
+00:06:19,109 --> 00:07:04,380
+Wes Bos: Well, that's that's actually one downside I saw is that there's not there's no like keyboard settings in in Firefox, you have to install? Like, I was gonna say there might be add ons or something like that. Yeah. So that's the first thing I was going to do is I'm just going to remap this to be like Chrome, but I got used to it over the time. Yeah. What else? CSS Grid and Flexbox inspector miles ahead of Chrome. They're Fantastic. Fantastic. If you want to visualize what's going on with your Flexbox and grid layout, visually seeing them rather than reading some code is super important. And they are there is a grid inspector on Chrome, but it's not near, not nearly as good as, like I would go is it say it's like 27 times better in Firefox?
+
+20
+00:07:04,500 --> 00:07:59,820
+Scott Tolinski: 27, I would say is 27 times better as well. I definitely agree with that. I love the little checkboxes that you can say, Okay, show me the lines, show me the numbers show me the areas like those kind of things are really nice. Yeah. For the most part, I feel like the inspector and the layout tools. And all these things within Firefox are so thoughtful. And so well done, that it makes going back to Chrome to use these kind of a huge bummer, because I love being able to select. Okay, so I'm on let's say, I'm on a div here. This is like a parent div, it will tell me all of the different layouts that exist as children within this div. And I can just use these checkboxes to click one of these individual little layouts. And then I can see the grid at the box model all that stuff directly below it. And then I can hover over and see the different zones and see how they're working. And to me, it's all just so visual and elegant that I absolutely love using this for anything like this.
+
+21
+00:08:00,179 --> 00:08:40,230
+Wes Bos: They've got this like neat little, like if you have a web font or any font really and in your in your in the Rules tab and you hover over top of the font, it will show you a quick, quick angry Fox or whatever that thing is. That will it will show you what. Yeah, if you go to the fonts tab, it will show you what fonts are system fonts and which ones are web fonts. It will show you the line height the size, you can turn the italics on and off, man. It's just there's just so much and it's not something that you use every day. But when you do have a trouble with your fonts, being able to appear in with these these tools is great.
+
+22
+00:08:40,549 --> 00:09:06,360
+Scott Tolinski: Yeah, I found the animation, like the keyframe animation stuff to be not as much fun. It's a little bit more, you can see what's going on. But it doesn't. Like the chrome version is sort of like an after effects II kind of thing where you can really work with the keyframes a little bit more. This is just sort of like okay, here's the here's how the animation plays out. Oh, yeah, maybe I'm missing something there. But I don't I don't love that aspect of it comparatively.
+
+23
+00:09:06,360 --> 00:09:18,170
+Wes Bos: I haven't actually used that in Firefox just yet. Because I know in Chrome, you can scrub back and forth. Yeah, it looks like you can do that in Firefox. Looks like you can do that. Have you tried to do it? No, I have not.
+
+24
+00:09:18,990 --> 00:09:20,490
+Scott Tolinski: Mine isn't letting me do it.
+
+25
+00:09:20,699 --> 00:09:22,290
+Wes Bos: I've got one open right now.
+
+26
+00:09:22,290 --> 00:09:26,730
+Scott Tolinski: Yeah, you can. Mine doesn't play the animation though. When I scrub.
+
+27
+00:09:26,880 --> 00:09:29,300
+Wes Bos: Go to here. Let me let me show you.
+
+28
+00:09:30,090 --> 00:09:48,750
+Scott Tolinski: So it's funny West just sent me ers doing a screen share. We see the same exact interface. And he has the ability to scrub over his animations. And I do not I'm looking at the exact same thing and my playhead exists. I see the playhead I cannot grab it. I don't know why.
+
+29
+00:09:48,770 --> 00:09:51,270
+Wes Bos: Well, we should say are you on Firefox developer?
+
+30
+00:09:51,390 --> 00:09:53,640
+Scott Tolinski: I'm on Firefox developer. Do Okay,
+
+31
+00:09:53,640 --> 00:10:01,910
+Wes Bos: that's as am I yeah. I'm just gonna go to the the Where's the animation? It's
+
+32
+00:10:01,910 --> 00:10:15,770
+Scott Tolinski: like, extra extras or whatever? extras, the three little dots. three little dots, top right, top right. three little dots, more tools. More tools, or coals?
+
+33
+00:10:16,949 --> 00:10:23,610
+Wes Bos: Oh, yeah. Oh, they're they're very similar. In, in both of them, they even use the same colors. Yeah.
+
+34
+00:10:23,729 --> 00:10:37,910
+Scott Tolinski: Well, I just wish I just wish I could scrub on mine. Who knows? It's probably just a version of my Firefox. Well, that makes me feel a little bit better about these, then I was looking a little bit bummed out that I couldn't do the scrubbing scrubbing action. Well,
+
+35
+00:10:37,919 --> 00:10:40,650
+Wes Bos: yeah, cuz you do a lot of keyframes on your website, right? I
+
+36
+00:10:40,650 --> 00:10:43,020
+Scott Tolinski: do. And I really enjoy that kind of work. So
+
+37
+00:10:43,589 --> 00:11:20,190
+Wes Bos: that's, that's an important one for you. So what else do we have here? Um, the changes tab is pretty cool. So if you are inspecting an element, and then you change a few things, you delete a property and you change the color of something. And you go, Okay, great. Now I need to mirror that to my CSS that's in my editor. If you go to the changes tab, it will show you what you have then change from that, that actual element. And you can just copy paste it over. I didn't use that. You're actually, yeah, it's pretty cool. Like there's there's a lot of stuff you have to like dig into. It's very similar to VS code in that way, where you're like, Oh, I had no idea that wasn't actually a thing.
+
+38
+00:11:20,219 --> 00:11:27,480
+Scott Tolinski: Yeah, I really liked these developer tools. And I like the way they look. I like the way it feels. I'm a big fan of this. So
+
+39
+00:11:28,500 --> 00:13:25,050
+Wes Bos: yeah, there's a couple of things that were not great, in my experience, so I was just kind of keeping tabs over the last month as to like what it was. And there's a couple first is if you throw an error in a promise, or sorry, if there is an error thrown in a promise that is not caught. The errors are not very good at all. So I had a an example, where I had the same error in both Firefox and Chrome. And in Chrome, it told me Oh, yeah, see the stack trace. It gave me the the file that had happened in the line number it happened. The network URL and the promise response, it gave me so much information about what went wrong. And Firefox gave me uncaught exception, undefined. uncaught exception. object, like not an actual object, just the word object has always helped. And yeah, yeah, so like, I've just been tweeting all this stuff. And Harold kirshen girl, kershner Kirschner probably butchering that it's not even. So if you have any qualms with the developer tools, just tweet at Harold. He's amazing. And he had he wants to see Firefox succeed, obviously. So he he linked me to some of the bugs that they're they're actually working on this. So all of the qualms I have are currently being worked on. And it looks like it will eventually, soon be in. But that was a big one for me. Because I would say maybe five times over the month, I had to open up chrome and just make the error happened in Chrome just so I could get a little bit more context into into what was happening. And this is specifically with errors that got thrown inside of promises. The other sort of thing that bit me was cross origin. errors were silent. So in Chrome, when you have a error that is like a, what was it like a blocked cores issue? So you try to do something
+
+40
+00:13:25,140 --> 00:13:33,630
+Scott Tolinski: you make sure you share these screenshots with in the the Episode Notes, because these screenshots are really helpful, because I didn't have some of these issues.
+
+41
+00:13:34,050 --> 00:14:36,720
+Wes Bos: Yeah, totally. Here, let me I'm, yeah, that's, that's why I was like, logging them as they happen, because like even a month is not necessarily enough time to run into all these issues. But luckily, I write a lot of errors to be able to get into this, this aspect, but like, so the one issue was that I had captions file on one of my videos, and that captions file was being loaded from a domain name that didn't support cores. And when something like cores issues happens in Chrome, it will tell you in the console, this this request was blocked. And this is where the request was made. And in Firefox, it just it tells me nothing in the console. And if you go to the Network tab, it doesn't necessarily show you that it was blocked. It just says that it was has not yet returned or wasn't returned. So it was very evident in Chrome, that it was blocked both in the Network tab and the console. And I probably burned half an hour trying to figure out what silly issue that was, and very clearly it was there was no course there. So that was a big one.
+
+42
+00:14:37,230 --> 00:14:46,350
+Scott Tolinski: So I see I see in your console screenshot here that you don't have the x HR and requests. Filters checked.
+
+43
+00:14:46,590 --> 00:14:49,410
+Wes Bos: Yes. Everybody said that. Okay.
+
+44
+00:14:49,470 --> 00:14:51,660
+Scott Tolinski: I only say that because those I really like those.
+
+45
+00:14:51,990 --> 00:15:08,970
+Wes Bos: Yeah, but those are ex HR and requests. Those are logging absolutely every single request. Yeah, so every single CEO SAS image. So you load the page with those on. And your console is just filled with like 100 things. Which is way too much.
+
+46
+00:15:09,240 --> 00:15:14,970
+Scott Tolinski: Yeah, but you could you could change the level from next you can now you can't change the level.
+
+47
+00:15:15,270 --> 00:15:43,170
+Wes Bos: No, I even talked to like the devs that fire because everybody's like you're an idiot, turn those on. No, that's not what they're for and Wes and like, I don't I don't necessarily want those on because every single ping to a server from like a tracking library or every single CSS or image that's loaded, then that muddies up the console. That's too much. I just want to see requests that failed in thing and there's no way to do that. Believe me, I spent lots of time trying to look into this.
+
+48
+00:15:43,380 --> 00:16:18,800
+Scott Tolinski: I believe it? Well, you know, I've been doing a lot of graph qL server work right now where I'm working on a new API feature. And I've been using the I really I don't To be honest, I don't know what Chrome is like in this regard, because I haven't done the comparison. But I've been really liking how Firefox presents the requests in the console, like just the visual way that it's throwing that in there. I'm not having to go to my Network tab. But normally that just the ability to look at them in the way they have them. Do you know me fire open chrome? Does chrome do the same thing?
+
+49
+00:16:19,020 --> 00:16:19,710
+Wes Bos: I think so.
+
+50
+00:16:19,710 --> 00:16:48,720
+Scott Tolinski: I have not ever looked. And it may be doesn't I mean, it obviously doesn't do it by default. My Firefox did it by default. Okay, here it is that log HTTP requests. Okay, so it looks like it does. Yeah. Okay. That's that's a feature that was on by default for me for Firefox developer tools, and isn't on by default in Chrome. So like, the very first thing I'm doing right now is going to Chrome and checking that box, because I really like seeing those requests while I'm debugging my API. I mean, that was a big important thing for me.
+
+51
+00:16:49,350 --> 00:16:54,720
+Wes Bos: Is there's something to be said for like good defaults in user experience. Like people don't necessarily know. Yeah,
+
+52
+00:16:54,750 --> 00:16:56,280
+Scott Tolinski: you just might not know what's even there.
+
+53
+00:16:56,400 --> 00:17:14,640
+Wes Bos: Yeah. What other console filtering? This is one I use a lot. It doesn't seem like a lot of people use it. So yeah, you know, when you get like garbage in your console from a plugin, or like, especially if you are using like an ad blocker, you'll get like errors in your console, because you blocked it,
+
+54
+00:17:14,640 --> 00:17:19,230
+Scott Tolinski: right? Yeah, the YouTube API is noisy. I'm going to tell you that.
+
+55
+00:17:19,259 --> 00:19:07,410
+Wes Bos: So so true. And often when I'm doing a course, I get these things from like, like a browser extension, or for something that's totally unrelated. And I don't want these huge errors in my console. Because then I have to say, Oh, don't worry, if you see that error, it's actually fine. So what I what I do is you you can negate those errors by filtering them out with a minus sign in front of them. So instead of filtering your errors for ones you want to see you can filter out errors that you do not want to see. And that's based on the URL or the actual text and the error or the source of the actual error. And that is not you can't do that in Firefox. But again, I talked to the folks at Firefox and I said like, hey, like, Can you do this? And it looked like within 12 hours, they said, Now you can it's not it's not in? It's in nightly, apparently. But it's not in? What's the version that we're using Developer Edition just yet. So I'm looking forward to getting that because I use that a lot to filter out and that was something that nobody else said that they use. So maybe I'm it's just a edge case for me. Finally, one is the service worker tools are not great there is there is the ability to use service workers, but the chrome ServiceWorker dev tools are fantastic. And that's something that I need to tell people how to use a lot because people always email me they've done some other course on localhost 3000. And that course, put a ServiceWorker. And then they email me they're like, what's going on? I can't see anything that you're unlike you clearly have a cached version of the last tutorial that you did on there. So that's actually why I try to use random ports for each of my courses as well. So you don't just run into things like that.
+
+56
+00:19:07,800 --> 00:19:13,200
+Scott Tolinski: Interesting. Yeah. Hmm. Another one. I haven't I don't do a lot of ServiceWorker work. So yeah,
+
+57
+00:19:13,340 --> 00:19:20,040
+Wes Bos: No, me neither. Interesting. Oh, what else? So that's like dev tools. Um, how was the browsing experience for you?
+
+58
+00:19:20,280 --> 00:20:01,470
+Scott Tolinski: Great. Fantastic. I for the most part, I really enjoyed using it as my daily and I had, I think in other upper or other times when I've gone to use Firefox, I found myself going back to Chrome after some bit of time, and I didn't really feel like I needed to do that. I mean, I think one of the biggest things for me was that I have my one password, my password manager all set up. And because of that it made logging into any site trivial. So instead of having to, you know, hunt for passwords, relog into everything. I got all that autofill coming in from one password, and I really enjoyed the fact that it all just worked for me. It was an easy transition over to Firefox, it felt like the easiest transition I've ever done. gotten to a different browser?
+
+59
+00:20:01,980 --> 00:20:48,540
+Wes Bos: Yeah, that's, that's one of my tips here is to import your history and your bookmarks. Yep. Because that just makes that initial. It's like it doesn't have all of my comforts that I had, you can import those all into Firefox, and then you're, you're ready past that, that hurdle. I really like the privacy aspect of it. So they, when you go to Facebook, they recommend that you install this Facebook container. And they have this idea of container tabs that the browser or the website runs in a container, meaning that if you're on another website, it can't then ping facebook.com, because you're not logged in. And I'm sure they're still tracking you. But you're able to like put these bad websites in a container. And they're not able to reach outside of that, or do any cross cross domain tracking things like that, which is pretty cool.
+
+60
+00:20:49,070 --> 00:20:53,490
+Scott Tolinski: You don't need a Facebook container if you don't go to Facebook and don't have a Facebook account.
+
+61
+00:20:54,960 --> 00:21:06,690
+Wes Bos: Yeah, I know. It's like a necessary evil of God. Yeah, that's like the only way I can contact most of my friends. My family, it has like a group on there. And I don't know, it's marketplace.
+
+62
+00:21:07,049 --> 00:21:14,790
+Scott Tolinski: I have an account, but I don't use it. It's it exists just to be like existing. And then, you know, I
+
+63
+00:21:14,790 --> 00:21:15,930
+Announcer: don't really know,
+
+64
+00:21:15,930 --> 00:21:18,350
+Scott Tolinski: I don't go to Facebook anymore. I really don't like it.
+
+65
+00:21:18,690 --> 00:22:39,300
+Wes Bos: Oh, yeah. Yeah, I wish, I think Facebook's days, or at least how it is are a bit numbered. I would say almost all of my friends no longer post. The only thing is private groups are pretty popular. Yeah, unfortunately, it's everyone's like, well use WhatsApp or like, please come over and convince my entire family to move over to WhatsApp, right? Like it's frustrating anyways, um, I found it extremely stable versus Chrome Canary. So maybe like once every two or three weeks, Chrome Canary would get some weird things. And you can't complain about this, because the whole point of Canary is that you are the canary. But that said, Chrome just did random crashes and stuff like that. And I like using Canary because you got the latest version of all the API's and things like that. And I like to be a couple months ahead of things that are being rolled out. But I found that it's extremely stable. There's like a bunch of little CSS bugs that I kept running into on Chrome and none of those existed. And you'd have to update the browser just to even like, confirm if it was a browser issue, or with their code. So I was always checking, trying to update constantly. And then I found like, zero chrome only experiences. So like there was I think that that whole like, This website is best viewed on Chrome. I don't think that that's a really a thing anymore. So that's, that's nothing you really have to just sweat too much about.
+
+66
+00:22:39,779 --> 00:23:11,010
+Scott Tolinski: Yeah, yeah, for the most part, it was a seamless transition in the browser experience was really nice. What else Oh, something that I really liked is that the theming in Firefox was really easy. I this is just a low hanging fruit. But I installed a plugin. And I created a level up tutorials theme that was basically, you know, matched my website really nicely. And I love it. I love having my level up theme. And I love that it took me about five seconds to make, you know, I didn't have to, you know, go into any files or do anything to to create this, right?
+
+67
+00:23:11,460 --> 00:23:49,110
+Wes Bos: You have to code it. Yeah, I immediately went on thing. And there's like four people that have made a cobalt to Firefox theme. And I tried them out. And there's one that's pretty good, I'm pretty happy with it. And that it feels neat to be able to style the tabs and everything on your browser, a big fan of that. There's some other stuff you can turn like these are setup and switch over tips. Turn compact mode on, that will just make the tabs and stuff a little smaller. I'm always big on making the GUI of an editor or something as small as possible, and giving you more room for the content. So there's a setting called compact mode.
+
+68
+00:23:49,110 --> 00:23:52,140
+Scott Tolinski: Where was that? Where was that setting? located?
+
+69
+00:23:52,140 --> 00:24:16,320
+Wes Bos: So there's not a lot of like settings settings in Firefox, you have to go to this like weird page. That is, is that about conf Yeah, about colon config. And then you have to search for the setting. And it just it's basically like you remember in in Windows days, you would edit like your H key current user or something like that. What was that that thing where you would edit it?
+
+70
+00:24:16,830 --> 00:24:23,910
+Scott Tolinski: I don't know. I don't I don't really don't remember my windows days. It's pink. So Oh, there we go.
+
+71
+00:24:24,360 --> 00:25:13,950
+Wes Bos: Yeah, it basically it's just like a, it's just like a key value editor that you can use to set your settings in there. Another one I did is I set the tab min width to zero. That's one thing that bugged me is that if you have lots of tabs, the browser gets pretty muddy. Like if I'm recording a course and I have like eight tabs open because we've got docks, you get your back end your front end your graph, qL playground and a couple other things. Chrome does a much better job at making just showing the the icon so in order to make that work, I had to set the tab min width to zero and then I had to go a little bit further and hack the CSS. So That it would just show the fav icon, which is a bit of a bummer. So that's one thing I still like a bit better from Chrome is the UI of all the tabs was just a bit cleaner. And it handled lots of tabs and little tabs and things like that a little bit better.
+
+72
+00:25:14,280 --> 00:25:23,070
+Scott Tolinski: Yeah, I yeah, I would have to agree, but only so slightly, it doesn't really hasn't really didn't really come up for me, I don't think,
+
+73
+00:25:23,580 --> 00:26:04,620
+Wes Bos: yeah. What are the things here? new new tab, just blank is really good. So when you open a new tab, they try to like suggest new stories and silly stuff like that. And I never liked that. Because when I'm recording a course, it shows like news and websites I've been on, which is annoying. So like, I have a extension in Chrome, that just gives me a blank page when you open a new tab. And you can just customize that New Tab page on Firefox and just delete everything. And it's just white, which is great. Huh? Light theme and dev tools. So light theme in your dev tools. dark theme on your editor is my way of life. I know you. You like the dark theme that for it right? Yeah, I
+
+74
+00:26:04,620 --> 00:26:13,230
+Scott Tolinski: didn't I yeah. I can't even imagine being in the mind space where I'd want a light theme on my dev tools or in an editor.
+
+75
+00:26:13,980 --> 00:26:15,090
+Wes Bos: No lighting you
+
+76
+00:26:15,120 --> 00:26:15,660
+Announcer: Yeah.
+
+77
+00:26:15,660 --> 00:26:37,890
+Wes Bos: No, not I light the my text editor is. That's that's No, you shouldn't do that. But you should use a light theme in your in your dev tools. No, come on. No. Okay, whatever. I'm so used to light theme from Chrome that I just couldn't get into the dark theme. Which is funny, because that makes no sense. I've been
+
+78
+00:26:37,890 --> 00:26:50,880
+Scott Tolinski: using dark theme on Chrome forever and ever. So really, yeah. Yeah, man. Uh, okay, what else we got here? Um, get Oh, one thing that really bugged me. Was the casting the tabs.
+
+79
+00:26:51,360 --> 00:26:52,530
+Wes Bos: Oh, Chromecast? Yeah.
+
+80
+00:26:52,890 --> 00:27:31,170
+Scott Tolinski: Yeah. So for those of you who don't know, in Colorado, if a Colorado Avalanche hockey game is not on TV, then you can't like watch it because of some dispute with Comcast. Right now. It's absurd. So I find myself pirating a lot of streams of Colorado, avalanche hockey games. And I liked it. For a lot of them, they don't have cast support in the player. So you cast to the tab, cast the tab, put it on the TV, whatever. There's no cast support for tabs in here. So I have to go out and Rob chrome and then go to the link and all that stuff. I would just prefer if this was available in Firefox to be able to cast a tab, but I understand
+
+81
+00:27:31,200 --> 00:28:27,360
+Wes Bos: why. Oh, yeah, that's Yeah, there's there is like an extension I turned on. Thankfully, I don't do a whole lot of Chrome casting for my computer. But if you are a heavy user of that, then you'll have to probably switch. Actually, as a bit of an aside, there's this awesome Chrome extension called video stream, that lets you just cast any file straight to your Chromecast and not as like a tab cast, but actually throws the file over which is awesome. introducing something like that. Other things that I didn't like, was the URL search bar. So I'm used to, I always do like t WI, and then hit tab. And then you can search within Twitter or YouTube or hit tab. And on Firefox, you have to type at Twitter, and then search it. And then somebody told me that if you are on a website, like YouTube, you can right click on the search bar, and click Add a keyword for the search.
+
+82
+00:28:27,420 --> 00:28:27,960
+Scott Tolinski: Cool.
+
+83
+00:28:27,990 --> 00:28:46,500
+Wes Bos: So you can do like YT for YouTube. And then in your browser, you just type YT space, and then go for it. So that's it's probably about 90% of what I want. But I just want it exactly like the chrome version where I can just type out any website use that has a search, hit tab and then search within that website.
+
+84
+00:28:46,650 --> 00:28:50,730
+Scott Tolinski: Yeah, I feel Yeah, I don't use that a ton. But I could see that being extremely useful.
+
+85
+00:28:51,300 --> 00:28:57,330
+Wes Bos: There's no Firefox support for Apollo Dev Tools right now, which the reasoning is good, because
+
+86
+00:28:57,330 --> 00:29:00,330
+Scott Tolinski: yeah, there was support for it, though, at one point,
+
+87
+00:29:00,540 --> 00:29:32,400
+Wes Bos: they pulled it from you, I guess you could download it, install it yourself. But apparently, Apollo Dev Tools uses a Val, which could be a security issue. So Firefox detects that extension uses eval, and pulled it in, which makes me feel good about Firefox actually scanning the code. But it makes me feel bummed as me wanting to use the dev tools. Yeah. So it's a bit of a bummer, especially as someone who uses like, I need that in my course. And I'm gonna have to tell absolutely everybody in my course, go use Chrome for this.
+
+88
+00:29:32,430 --> 00:29:53,280
+Scott Tolinski: What's funny is that, you know, as much as I love Apollo, the dev tools have never worked super well for me, like they updated or, you know, I ran, especially they launched their like, local state thing, and I would run a query and just like wouldn't work, and then you have to refresh the page or something to get it to reflect those changes. So that was always a huge bummer for me. Yeah,
+
+89
+00:29:53,280 --> 00:30:01,290
+Wes Bos: I agree. So question is, will you stay Scott, are you gonna stay on Firefox? Are you gonna go back?
+
+90
+00:30:01,530 --> 00:30:58,980
+Scott Tolinski: You know what I'm gonna stay? Yeah, I'm actually really liked I liked it so much I'm gonna stay on Firefox for the considerable feature I'd really the annoyances that I have with it are so minor in comparison for the most part, I think the privacy aspects of it, the sort of security things I think are big enough pluses for me that I don't feel like I want to go to Chrome anymore at all. And I'm really happy with Firefox, you know, I really like the dev tools, I think are probably the biggest influencer for me for wanting to stay I just really have gotten used to and really like the dev tools in a way that I don't necessarily have that same joy in Chrome. One, one little minor thing, CPU usage. Sorry, we didn't really touch on this CPU and memory usage to me has been just as high as Chrome. It has not been any better. So I thought that would be better, but it's not. Are you going to stay with? Um,
+
+91
+00:30:59,190 --> 00:31:52,230
+Wes Bos: Yes, I think so. The one thing I didn't do is switch over to the Firefox app on iOS, I haven't sometimes annoyed me, because like, my history wasn't there. And that is obviously solved. They have a good iOS app. So I just need to do that. I was sort of I think I was just sort of waiting to figure out if I was gonna gonna go for it entirely. And I'm pretty happy. There's some qualms that I have. But obviously, Firefox is listening because they want to hear like what are your your pain points with this type of thing? And they're they're listening very clearly anytime a tweet anything not even mentioning them. They swoop in and say, yeah, this has been fixed or Okay. How would you like to, to approach this? So? Yeah, I'm pretty I feel pretty good about it. It's pretty exciting that Firefox again, is that a spot where it's a really good contender? in much better in a lot of cases much
+
+92
+00:31:52,230 --> 00:31:52,740
+Announcer: better? That
+
+93
+00:31:52,740 --> 00:32:15,840
+Wes Bos: was the case in like, what like 15 years ago when I switched over and started using Firebug It was like Oh, it's so much better right and gotta have like their their back at that spot. Yeah. So I think that's it if you if you have switched over to Firefox, I'd love to hear what your thoughts on it. The pluses the minuses tweet us at syntax FM. So I think that's it.
+
+94
+00:32:16,050 --> 00:32:17,520
+Scott Tolinski: Yeah. That's cool. Yeah.
+
+95
+00:32:17,550 --> 00:32:22,710
+Wes Bos: Cool. Absolutely. Thanks for tuning in. Catch on Wednesday. Please
+
+96
+00:32:24,600 --> 00:32:25,410
+Announcer: head on over to syntax.fm
+
+97
+00:32:25,410 --> 00:32:34,380
+Scott Tolinski: for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
