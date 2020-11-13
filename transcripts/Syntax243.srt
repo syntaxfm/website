@@ -1,6 +1,6 @@
 1
 00:00:00,359 --> 00:00:21,989
-Announcer: Monday, Monday, Monday, open wide dev fans yet ready to stuff your face with JavaScript CSS node module, BBQ Tip Get workflow breakdancing, soft skill, web development hasty, as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob, and Scott L. Todd.
+Announcer: Monday, Monday, Monday, open wide dev fans yet ready to stuff your face with JavaScript CSS node module, BBQ Tip Get workflow breakdancing, soft skill, web development hasty, as crazy as tasty as web development treats coming in hot here is Wes Baracuda Bos, and Scott L. Todd.
 
 2
 00:00:25,890 --> 00:01:14,610

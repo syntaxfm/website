@@ -1,10 +1,10 @@
 1
 00:00:00,359 --> 00:00:24,480
-Announcer: Monday Monday Monday open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob and Scott Tolinksi ski.
+Announcer: Monday Monday Monday open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Wes Baracuda Bos and Scott Tolinksi ski.
 
 2
 00:00:25,950 --> 00:00:54,930
-Scott Tolinski: Oh, welcome to syntax. And this Monday tasty treat. We're gonna be talking all about durable links. It's turbo dime. Oh, that was a terrible URL. I usually do. I'm pretty good at that. It's turbo time, we're gonna be talking about turbo links and server generated HTML, plus some juice sprinkles in there. I love that you wrote jam sprinkles In this episode, title less. My name is Scott to Lynskey. I'm a full stack developer from Denver, Colorado, and with me as always this deep West boss.
+Scott Tolinski: Oh, welcome to syntax. And this Monday tasty treat. We're gonna be talking all about durable links. It's turbo dime. Oh, that was a terrible URL. I usually do. I'm pretty good at that. It's turbo time, we're gonna be talking about turbo links and server generated HTML, plus some juice sprinkles in there. I love that you wrote jam sprinkles In this episode, title less. My name is Scott to Lynskey. I'm a full stack developer from Denver, Colorado, and with me as always this deep Wes Bos.
 
 3
 00:00:54,989 --> 00:00:56,900

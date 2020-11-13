@@ -28,7 +28,7 @@ Oh, welcome
 
 8
 00:00:27,030 --> 00:00:50,040
-Scott Tolinski: to cindex. On this Monday hasty treat, we're going to be talking about JavaScript events, which is definitely a topic that can trip up a ton of people for various reasons. And so hopefully, this is going to be an extremely useful topic for you if you write JavaScript at all. My name is Scott Cohen, schema developer from Denver, Colorado, and with me, as always, is the West boss.
+Scott Tolinski: to cindex. On this Monday hasty treat, we're going to be talking about JavaScript events, which is definitely a topic that can trip up a ton of people for various reasons. And so hopefully, this is going to be an extremely useful topic for you if you write JavaScript at all. My name is Scott Cohen, schema developer from Denver, Colorado, and with me, as always, is the Wes Bos.
 
 9
 00:00:50,280 --> 00:05:39,270

@@ -1,6 +1,6 @@
 1
 00:00:01,319 --> 00:00:10,560
-Unknown: You're listening to syntax, the podcast with the tastiest web development treats out there. strap yourself in and get ready to live ski and West boss.
+Unknown: You're listening to syntax, the podcast with the tastiest web development treats out there. strap yourself in and get ready to live ski and Wes Bos.
 
 2
 00:00:10,589 --> 00:00:16,680
@@ -204,7 +204,7 @@ Unknown: okay,
 
 52
 00:21:12,420 --> 00:22:27,780
-Scott Tolinski: here's the deal. If you're applying for a job, that's mostly CSS and react stuff, maybe whatever, just some basic JavaScript, or maybe you're just doing CSS, right, let's just say you're just doing CSS. And then you took a tutorial that was maybe West bosses react tutorial, and you flipped it by making it your own custom interface that to me solves all those problems, right? It shows that you, you thought about these custom interfaces, and you thought about how to solve those things. And you didn't just paint by the number. So it to me, it's more about how you flip it for the things that interviewer would be looking for, I'm not going to say that, like, tutorial content is toxic to do a in your portfolio, it definitely not the case, definitely usable. But it has to illustrate that you solve those problems, and that you understood why they were problems. Let's say you need to get some eyes on your project. Well, you're going to need a domain for that project, you're going to need an entranceway, sort of the the the Fourier of your project is the domain. I like to think about it that way. And you're gonna want a fancy, cool domain. And that's why we have dot tech domain sponsoring us today. With a little bit more about that tech. Yes, is the man himself, Wes Bos,
+Scott Tolinski: here's the deal. If you're applying for a job, that's mostly CSS and react stuff, maybe whatever, just some basic JavaScript, or maybe you're just doing CSS, right, let's just say you're just doing CSS. And then you took a tutorial that was maybe Wes Boses react tutorial, and you flipped it by making it your own custom interface that to me solves all those problems, right? It shows that you, you thought about these custom interfaces, and you thought about how to solve those things. And you didn't just paint by the number. So it to me, it's more about how you flip it for the things that interviewer would be looking for, I'm not going to say that, like, tutorial content is toxic to do a in your portfolio, it definitely not the case, definitely usable. But it has to illustrate that you solve those problems, and that you understood why they were problems. Let's say you need to get some eyes on your project. Well, you're going to need a domain for that project, you're going to need an entranceway, sort of the the the Fourier of your project is the domain. I like to think about it that way. And you're gonna want a fancy, cool domain. And that's why we have dot tech domain sponsoring us today. With a little bit more about that tech. Yes, is the man himself, Wes Bos,
 
 53
 00:22:28,230 --> 00:23:57,750

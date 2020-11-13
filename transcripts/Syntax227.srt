@@ -1,6 +1,6 @@
 1
 00:00:00,360 --> 00:00:21,660
-Unknown: Monday Monday Monday open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob and Scott L.
+Unknown: Monday Monday Monday open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Wes Baracuda Bos and Scott L.
 
 2
 00:00:23,580 --> 00:00:24,450
@@ -12,7 +12,7 @@ Scott Tolinski: Oh,
 
 4
 00:00:27,450 --> 00:00:52,980
-Wes Bos: Welcome to syntax in this Monday hasty trick, we're going to be talking about container queries, element queries. Well, we'll talk a little bit about what the heck they are and why they might be useful what the current status of them and why it's not as easy of a problem as we would like it to be. My name is Scotland's gay. I'm a developer from Denver, Colorado and with me, as always, is the West boss.
+Wes Bos: Welcome to syntax in this Monday hasty trick, we're going to be talking about container queries, element queries. Well, we'll talk a little bit about what the heck they are and why they might be useful what the current status of them and why it's not as easy of a problem as we would like it to be. My name is Scotland's gay. I'm a developer from Denver, Colorado and with me, as always, is the Wes Bos.
 
 5
 00:00:53,010 --> 00:00:54,450
@@ -20,7 +20,7 @@ Sup everybody?
 
 6
 00:00:54,600 --> 00:00:56,400
-Scott Tolinski: Sup? Sup? Sup? Sup? Sup, Wes. 
+Scott Tolinski: Sup? Sup? Sup? Sup? Sup, Wes.
 
 7
 00:00:57,150 --> 00:01:14,580

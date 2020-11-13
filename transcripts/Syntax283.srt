@@ -1,10 +1,10 @@
 1
 00:00:00,359 --> 00:00:24,480
-Announcer: Monday, Monday, Monday, open wide dev fans yet ready to stuff your face with JavaScript CSS node modules, barbecue tip workflow breakdancing, soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob and Scott L. Totally ski.
+Announcer: Monday, Monday, Monday, open wide dev fans yet ready to stuff your face with JavaScript CSS node modules, barbecue tip workflow breakdancing, soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Wes Baracuda Bos and Scott L. Totally ski.
 
 2
 00:00:25,950 --> 00:00:51,420
-Scott Tolinski: Oh, welcome to syntax and this Monday hasty treat. We're gonna be talking all about time block planning, what it is, how it can help you and how it's helped. Well, at least myself, and I don't know if Wes has been doing it. But we're gonna be talking all about the opportunities there that you can get some sweet productivity gains while keeping yourself sane. My name is Scott Tolinksi. I'm a full stack developer from Denver, Colorado, and with me, as always, is the West boss.
+Scott Tolinski: Oh, welcome to syntax and this Monday hasty treat. We're gonna be talking all about time block planning, what it is, how it can help you and how it's helped. Well, at least myself, and I don't know if Wes has been doing it. But we're gonna be talking all about the opportunities there that you can get some sweet productivity gains while keeping yourself sane. My name is Scott Tolinksi. I'm a full stack developer from Denver, Colorado, and with me, as always, is the Wes Bos.
 
 3
 00:00:51,659 --> 00:01:00,150

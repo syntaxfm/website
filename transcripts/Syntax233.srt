@@ -4,7 +4,7 @@ Announcer: Monday, Monday Monday, open wide dev fans yet ready to stuff your fac
 
 2
 00:00:25,950 --> 00:01:04,530
-Scott Tolinski: Oh, welcome to syntax in this Monday, we're gonna be talking about something really interesting, a feature that Wes has added to his own store. And because of that, I get 1000 requests a day to edit to my own store. That is purchasing power parity. The thought and idea that you know, not every country is purchasing with the same amount of money per each cost. So charging everybody the exact same price isn't exactly the most fair way to go about it. So my name is Scott Tolinksi. I'm a developer from Denver, Colorado and with me, as always is West boss.
+Scott Tolinski: Oh, welcome to syntax in this Monday, we're gonna be talking about something really interesting, a feature that Wes has added to his own store. And because of that, I get 1000 requests a day to edit to my own store. That is purchasing power parity. The thought and idea that you know, not every country is purchasing with the same amount of money per each cost. So charging everybody the exact same price isn't exactly the most fair way to go about it. So my name is Scott Tolinksi. I'm a developer from Denver, Colorado and with me, as always is Wes Bos.
 
 3
 00:01:04,590 --> 00:01:06,180

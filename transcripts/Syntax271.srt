@@ -1,10 +1,10 @@
 1
 00:00:00,359 --> 00:00:24,480
-Announcer: Monday, Monday, Monday, open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob, and Scott Taylor. Totally in ski.
+Announcer: Monday, Monday, Monday, open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Wes Baracuda Bos, and Scott Taylor. Totally in ski.
 
 2
 00:00:25,950 --> 00:01:05,040
-Scott Tolinski: Oh, come to syntax in Episode 271. This Monday haec treat, we're going to be talking about how we upgraded our syntax.fm site to use next j. s is latest versions for everything, including now, v two, we have the site's gone through some evolution. And there's been some big changes to it with the help of the next team. And I think there's a lot of lessons to be learned here. This is a true Tales from developer lanes. So my name is Scott Tolinksi. And I'm a developer from Denver, Colorado. And that little lap you just heard with me as always is the West boss, how you doing? What's up, everybody?
+Scott Tolinski: Oh, come to syntax in Episode 271. This Monday haec treat, we're going to be talking about how we upgraded our syntax.fm site to use next j. s is latest versions for everything, including now, v two, we have the site's gone through some evolution. And there's been some big changes to it with the help of the next team. And I think there's a lot of lessons to be learned here. This is a true Tales from developer lanes. So my name is Scott Tolinksi. And I'm a developer from Denver, Colorado. And that little lap you just heard with me as always is the Wes Bos, how you doing? What's up, everybody?
 
 3
 00:01:05,610 --> 00:02:11,660

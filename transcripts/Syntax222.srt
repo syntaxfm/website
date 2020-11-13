@@ -4,7 +4,7 @@ Unknown: You're listening to syntax, the podcast with the tastiest web developme
 
 2
 00:00:09,000 --> 00:00:10,530
-and West boss.
+and Wes Bos.
 
 3
 00:00:10,559 --> 00:00:48,630
@@ -488,7 +488,7 @@ cool.
 
 123
 00:50:40,110 --> 00:51:56,190
-Scott Tolinski: I have a podcast pic today, which is going to be a podcast from wondery, which is you know, one of those, I think they did the dirty john one. And after that they just like blew up. So this is a podcast called the Baron of Botox, and it's about this famous plastic surgeon to the stars, and it goes into their life and sort of their downfall as a interesting human being and sort of the things that happen in their life. It's, it's both sad and fascinating. At the same time. I know nothing about plastic surgery, or Botox or any of that stuff. And I'm learning a lot of interesting things. And it's really fascinating about like, the history of all this stuff. And this person who created this, it's very fascinating. And this story is equal parts horrifying and interesting. So check it out. Beautiful, shamelessly plug all of my courses West boss.com, forward slash courses, grab a course or to use coupon code syntax to get 10 bucks off, learn a little CSS, JavaScript, whatever you like. Yeah, my latest course is on how to build a graph qL API. It's now available for level up pros at level up tutorials.com forward slash pro sign up to become a pro save 25% for the year. So yeah, that's all I got.
+Scott Tolinski: I have a podcast pic today, which is going to be a podcast from wondery, which is you know, one of those, I think they did the dirty john one. And after that they just like blew up. So this is a podcast called the Baron of Botox, and it's about this famous plastic surgeon to the stars, and it goes into their life and sort of their downfall as a interesting human being and sort of the things that happen in their life. It's, it's both sad and fascinating. At the same time. I know nothing about plastic surgery, or Botox or any of that stuff. And I'm learning a lot of interesting things. And it's really fascinating about like, the history of all this stuff. And this person who created this, it's very fascinating. And this story is equal parts horrifying and interesting. So check it out. Beautiful, shamelessly plug all of my courses Wes Bos.com, forward slash courses, grab a course or to use coupon code syntax to get 10 bucks off, learn a little CSS, JavaScript, whatever you like. Yeah, my latest course is on how to build a graph qL API. It's now available for level up pros at level up tutorials.com forward slash pro sign up to become a pro save 25% for the year. So yeah, that's all I got.
 
 124
 00:51:56,549 --> 00:52:00,600

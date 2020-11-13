@@ -4,7 +4,7 @@ Announcer: You're listening to syntax,
 
 2
 00:00:02,849 --> 00:00:10,530
-the podcast with the tastiest web development treats out there, strap yourself in and get ready to live ski and West boss.
+the podcast with the tastiest web development treats out there, strap yourself in and get ready to live ski and Wes Bos.
 
 3
 00:00:10,530 --> 00:00:54,630
@@ -24,7 +24,7 @@ Scott Tolinski: the pleasantries, although we can only talk about the weather so
 
 7
 00:01:07,930 --> 00:01:16,660
-Wes Bos: Yeah, I like talking about the weather. Yeah, sometimes allowed like it. Yeah. Um, so Fred, welcome. Thank you for coming on the podcast. 
+Wes Bos: Yeah, I like talking about the weather. Yeah, sometimes allowed like it. Yeah. Um, so Fred, welcome. Thank you for coming on the podcast.
 
 8
 00:01:17,110 --> 00:01:18,460

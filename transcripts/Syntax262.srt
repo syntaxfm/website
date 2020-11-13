@@ -1,6 +1,6 @@
 1
 00:00:01,319 --> 00:00:10,530
-Unknown: You're listening to syntax the podcast with the tastiest web development treats out there. strap yourself in and get ready to whiskey and West boss.
+Unknown: You're listening to syntax the podcast with the tastiest web development treats out there. strap yourself in and get ready to whiskey and Wes Bos.
 
 2
 00:00:10,589 --> 00:00:47,430
@@ -332,7 +332,7 @@ Scott Tolinski: All right, well, let's get into the shameless plugs part of the 
 
 84
 00:50:49,740 --> 00:51:29,400
-Wes Bos: I'm gonna shamelessly plug upcoming course of mine should be out in I don't know, maybe a month or so it's a Gatsby course I don't have a name for it just yet. But it's going to teach you to build websites with Gatsby talks about sourcing data from a headless API, as well as from a REST API as well as how do you do live data and Gatsby and you don't have to rebuild it, like when the page loads how to fetch that data. So pretty happy with with how this course is going. It should be out in a little bit after you listen to this. So just go to West boss comm Ford slash courses. The rest of my courses are there as well and you can grab them for 10 bucks off with the coupon code syntax.
+Wes Bos: I'm gonna shamelessly plug upcoming course of mine should be out in I don't know, maybe a month or so it's a Gatsby course I don't have a name for it just yet. But it's going to teach you to build websites with Gatsby talks about sourcing data from a headless API, as well as from a REST API as well as how do you do live data and Gatsby and you don't have to rebuild it, like when the page loads how to fetch that data. So pretty happy with with how this course is going. It should be out in a little bit after you listen to this. So just go to Wes Bos comm Ford slash courses. The rest of my courses are there as well and you can grab them for 10 bucks off with the coupon code syntax.
 
 85
 00:51:29,760 --> 00:51:35,160

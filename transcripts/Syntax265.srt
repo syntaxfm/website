@@ -1,10 +1,10 @@
 1
 00:00:00,359 --> 00:00:24,540
-Announcer: Monday Monday Monday open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob and Scott El Toro ski.
+Announcer: Monday Monday Monday open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Wes Baracuda Bos and Scott El Toro ski.
 
 2
 00:00:25,890 --> 00:03:42,030
-Scott Tolinski: Who Welcome to syntax. In this Monday hasty trick, we're going to be playing the top level domain game where we It's been a while since we've done this. So if you haven't heard a top level domain game episode, what we do basically is we pick a top level domain from a list and the other person needs to guess it will give you a better rundown on the rules right before we start, but let's get into it. My name is Scott Tolinksi. I'm a developer from Denver, Colorado, and with me, as always, is West boss. Hey, everybody. Hey, Wes. It's been a hectic morning for both of us. So this one is guaranteed to be a mess. And I'm excited about that. But you know, it won't be a mess as your website because you have a one of our sponsors, which is Log Rocket, and Log Rocket is going to be the service that allows you to visually see that mess so you can fix it. Now what is Log Rocket? Well, it is a visual tool that gives you a scrollable timeline of anytime an error, or an exception happened on your website, allowing you to have a pixel perfect replay trying to investigate some of these problems. Sometimes you become an investigator, but you can't see the problem. How do you how do you fix this? Well, this actually allows you to see the problem and see it happening in real time with the network request activity with the console log an error is no more emailing your clients saying, Hey, can you tell me what you did? When you click on this thing and what browser you're using, you'll get all of that with Log Rocket. So I don't over to Log rocket.com forward slash syntax, sign up, and you will get 14 days for free. All right, thank you Log Rocket. Now, if only Log Rocket could have saved me from last time, we played the TLD game, I really got worked. I think I had a bit of a comeback. But I think I ultimately lost out to the West was the the I'm trying to come up with a cool nickname for you. But I guess it just was better domain name master. Yeah, let's talk about how the points are. So we're gonna pick a TLD. A TLD is top level domain that means.com or whatever. And Scott has four, I have four. And the other person has to guess. Is it for a country? Or is it like a business or marketing domain name? So we'll pick one that we did before.af? Is that for a country? Or is that for a business that that can register that? The second one is what type of country business is it for? So you have to guess the country? Or you have to guess what sort of like what it's targeted at. The third thing is how much per year does it cost to register? And you may also say unregistered because there are some domain names out there that have been claimed by companies that cannot be registered by you. Like we just talked about this earlier. There's a dot Home Depot and a.tj Maxx and you can't just go register those those leaders are saved by the companies. And then finally, the last one is is Scott dot whatever and Scott, Aaron West dot whatever available so we're going to give you points for each of those. Whoever wins wins. Cool. So do you want to rock paper scissors for the first one? Whoever wins goes first.
+Scott Tolinski: Who Welcome to syntax. In this Monday hasty trick, we're going to be playing the top level domain game where we It's been a while since we've done this. So if you haven't heard a top level domain game episode, what we do basically is we pick a top level domain from a list and the other person needs to guess it will give you a better rundown on the rules right before we start, but let's get into it. My name is Scott Tolinksi. I'm a developer from Denver, Colorado, and with me, as always, is Wes Bos. Hey, everybody. Hey, Wes. It's been a hectic morning for both of us. So this one is guaranteed to be a mess. And I'm excited about that. But you know, it won't be a mess as your website because you have a one of our sponsors, which is Log Rocket, and Log Rocket is going to be the service that allows you to visually see that mess so you can fix it. Now what is Log Rocket? Well, it is a visual tool that gives you a scrollable timeline of anytime an error, or an exception happened on your website, allowing you to have a pixel perfect replay trying to investigate some of these problems. Sometimes you become an investigator, but you can't see the problem. How do you how do you fix this? Well, this actually allows you to see the problem and see it happening in real time with the network request activity with the console log an error is no more emailing your clients saying, Hey, can you tell me what you did? When you click on this thing and what browser you're using, you'll get all of that with Log Rocket. So I don't over to Log rocket.com forward slash syntax, sign up, and you will get 14 days for free. All right, thank you Log Rocket. Now, if only Log Rocket could have saved me from last time, we played the TLD game, I really got worked. I think I had a bit of a comeback. But I think I ultimately lost out to the West was the the I'm trying to come up with a cool nickname for you. But I guess it just was better domain name master. Yeah, let's talk about how the points are. So we're gonna pick a TLD. A TLD is top level domain that means.com or whatever. And Scott has four, I have four. And the other person has to guess. Is it for a country? Or is it like a business or marketing domain name? So we'll pick one that we did before.af? Is that for a country? Or is that for a business that that can register that? The second one is what type of country business is it for? So you have to guess the country? Or you have to guess what sort of like what it's targeted at. The third thing is how much per year does it cost to register? And you may also say unregistered because there are some domain names out there that have been claimed by companies that cannot be registered by you. Like we just talked about this earlier. There's a dot Home Depot and a.tj Maxx and you can't just go register those those leaders are saved by the companies. And then finally, the last one is is Scott dot whatever and Scott, Aaron West dot whatever available so we're going to give you points for each of those. Whoever wins wins. Cool. So do you want to rock paper scissors for the first one? Whoever wins goes first.
 
 3
 00:03:42,030 --> 00:03:42,570
@@ -80,35 +80,35 @@ Wow.
 
 21
 00:11:26,110 --> 00:11:27,820
-That Trinidad was an okay guess. 
+That Trinidad was an okay guess.
 
 22
 00:11:28,000 --> 00:11:32,740
-Wes Bos: What is their TLD? TT I think Trinidad and Tobago? Yeah, it's not TT 
+Wes Bos: What is their TLD? TT I think Trinidad and Tobago? Yeah, it's not TT
 
 23
 00:11:32,740 --> 00:11:35,590
-Scott Tolinski: I had I had a concern that Tobago part of this. 
+Scott Tolinski: I had I had a concern that Tobago part of this.
 
 24
 00:11:35,650 --> 00:11:40,240
-Wes Bos: uh how much does it cost to read? Sure. 
+Wes Bos: uh how much does it cost to read? Sure.
 
 25
 00:11:40,480 --> 00:11:43,780
-Scott Tolinski: They go with my, my Good old friend $49. 
+Scott Tolinski: They go with my, my Good old friend $49.
 
 26
 00:11:44,260 --> 00:11:45,700
-Wes Bos: Now that is it. 
+Wes Bos: Now that is it.
 
 27
 00:11:45,700 --> 00:11:47,350
-Scott Tolinski: Really? Yeah. 
+Scott Tolinski: Really? Yeah.
 
 28
 00:11:47,500 --> 00:11:48,130
-Cool. 
+Cool.
 
 29
 00:11:48,250 --> 00:11:50,230
@@ -144,7 +144,7 @@ Unknown: but I you you you got points for that. I'll give it to you. All right. 
 
 37
 00:13:18,040 --> 00:13:19,300
-Scott Tolinski: 19. 
+Scott Tolinski: 19.
 
 38
 00:13:19,330 --> 00:13:20,680
@@ -168,11 +168,11 @@ Unknown: this might be a little bit out of bounds, but I'm going for it. There's
 
 43
 00:14:12,010 --> 00:15:08,500
-Scott Tolinski: for five q one, one c? It is a business. Correct? Okay. Is it like a debugging type of a top level domain like an actual technical use for this top level domain? No, it's not nothing technical about it. Nothing technical about it? No. exists. company's domain. Okay. I can pronounce it for you if you want. Yeah. dot Bagua seems like it's Chinese thing. Yeah. Okay. I'll give you that. Okay. Well, you mean like to get points for it? Give me give them five points for known it's Chinese donate name. Okay. Cuz I like I think we both know right now it's a that's the ASCII representation of a Chinese character domain name, though. Okay, so that's really interesting. ASCII characters. Okay, so Bhagwat What's it? What's it for though? 
+Scott Tolinski: for five q one, one c? It is a business. Correct? Okay. Is it like a debugging type of a top level domain like an actual technical use for this top level domain? No, it's not nothing technical about it. Nothing technical about it? No. exists. company's domain. Okay. I can pronounce it for you if you want. Yeah. dot Bagua seems like it's Chinese thing. Yeah. Okay. I'll give you that. Okay. Well, you mean like to get points for it? Give me give them five points for known it's Chinese donate name. Okay. Cuz I like I think we both know right now it's a that's the ASCII representation of a Chinese character domain name, though. Okay, so that's really interesting. ASCII characters. Okay, so Bhagwat What's it? What's it for though?
 
 44
 00:15:08,680 --> 00:15:12,250
-Wes Bos: So Bhagwat converts to gossip in Chinese 
+Wes Bos: So Bhagwat converts to gossip in Chinese
 
 45
 00:15:12,280 --> 00:17:00,700

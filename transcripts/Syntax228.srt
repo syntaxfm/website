@@ -4,7 +4,7 @@ Unknown: You're listening to syntax, the podcast with the tastiest web developme
 
 2
 00:00:06,149 --> 00:00:10,500
-strap yourself in and get ready to live ski and West boss.
+strap yourself in and get ready to live ski and Wes Bos.
 
 3
 00:00:10,559 --> 00:01:00,810
@@ -496,7 +496,7 @@ Scott Tolinski: I got that on Amazon.
 
 125
 00:58:58,770 --> 00:59:12,840
-Wes Bos: Beauty. Um, shameless plugs. I'm gonna plug all my courses West boss.com forward slash courses, you want to learn JavaScript, React node CSS Grid, Flexbox, you name it, check it out. Use coupon code syntax for 10 bucks off.
+Wes Bos: Beauty. Um, shameless plugs. I'm gonna plug all my courses Wes Bos.com forward slash courses, you want to learn JavaScript, React node CSS Grid, Flexbox, you name it, check it out. Use coupon code syntax for 10 bucks off.
 
 126
 00:59:12,840 --> 01:00:14,670

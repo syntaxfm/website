@@ -4,7 +4,7 @@ Tasty Announcer: You're listening to syntax
 
 2
 00:00:02,849 --> 00:00:10,530
-the podcast with the tastiest web development treats out there. strap yourself in and get ready. Here is Scott, ski and West boss.
+the podcast with the tastiest web development treats out there. strap yourself in and get ready. Here is Scott, ski and Wes Bos.
 
 3
 00:00:10,559 --> 00:00:49,470

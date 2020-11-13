@@ -1,10 +1,10 @@
 1
 00:00:00,359 --> 00:00:24,480
-Announcer: Monday Monday Monday open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob and Scott Taylor. Totally at ski.
+Announcer: Monday Monday Monday open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Wes Baracuda Bos and Scott Taylor. Totally at ski.
 
 2
 00:00:25,950 --> 00:01:04,890
-Scott Tolinski: Oh, come to syntax in this Monday hasty Street, we are kicking off season 1.5. Here, we're not quite in season two yet, we are going to be talking all about home offices, and building an office in your backyard. Now I've seen quite a people do this. Lately, there's been a lot of cool home offices popping up ever since this whole pandemic started. You've seen all sorts of neat stuff. Now we have a nice little shed in our backyard that could be turned into one. But it is a complicated and complex situation. So as somebody who's built their own home office in their backyard, we have on the show, our very own West boss, how's it going west?
+Scott Tolinski: Oh, come to syntax in this Monday hasty Street, we are kicking off season 1.5. Here, we're not quite in season two yet, we are going to be talking all about home offices, and building an office in your backyard. Now I've seen quite a people do this. Lately, there's been a lot of cool home offices popping up ever since this whole pandemic started. You've seen all sorts of neat stuff. Now we have a nice little shed in our backyard that could be turned into one. But it is a complicated and complex situation. So as somebody who's built their own home office in their backyard, we have on the show, our very own Wes Bos, how's it going west?
 
 3
 00:01:05,040 --> 00:02:14,910

@@ -1,6 +1,6 @@
 1
 00:00:01,320 --> 00:00:10,560
-Announcer: You're listening to syntax, the podcast with the tastiest web development treats out there, strap yourself in and get ready. Here is Scott, ski and West boss.
+Announcer: You're listening to syntax, the podcast with the tastiest web development treats out there, strap yourself in and get ready. Here is Scott, ski and Wes Bos.
 
 2
 00:00:10,560 --> 00:00:56,310

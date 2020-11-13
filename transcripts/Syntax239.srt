@@ -4,7 +4,7 @@ Announcer: Monday Monday Monday open wide dev fans yet ready to stuff your face 
 
 2
 00:00:25,920 --> 00:00:47,549
-Scott Tolinski: Oh, come to syntax on this Monday. Hey c treat we are going to be talking about five things that could be potentially making your site slow. And this is going to be a series we have a whole bunch of these things. So we'll hit them in different hastiness along the way here. My name is Scott Tillis, gimme developer from Denver, Colorado and with me, as always, is West boss.
+Scott Tolinski: Oh, come to syntax on this Monday. Hey c treat we are going to be talking about five things that could be potentially making your site slow. And this is going to be a series we have a whole bunch of these things. So we'll hit them in different hastiness along the way here. My name is Scott Tillis, gimme developer from Denver, Colorado and with me, as always, is Wes Bos.
 
 3
 00:00:47,700 --> 00:00:56,790

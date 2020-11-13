@@ -4,7 +4,7 @@ Unknown: Monday, Monday, Monday, open wide dev fans yet ready to stuff your face
 
 2
 00:00:25,920 --> 00:01:01,140
-Scott Tolinski: Oh, welcome to syntax in this Monday, tasty treats. We're going to be taking some time to talk about time and I'm talking about the brand new date time stuff in JavaScript. This is really, really fascinating and a huge topic. So we're going to be getting deep into this stuff. And I'm referring to the temporal proposal for JavaScript. This is currently in stage two and we have a whole lot to say about this. Before we do so though, let's introduce ourselves. My name is Scott winsky. I'm a developer from Denver Colorado and with me as always is the West boss.
+Scott Tolinski: Oh, welcome to syntax in this Monday, tasty treats. We're going to be taking some time to talk about time and I'm talking about the brand new date time stuff in JavaScript. This is really, really fascinating and a huge topic. So we're going to be getting deep into this stuff. And I'm referring to the temporal proposal for JavaScript. This is currently in stage two and we have a whole lot to say about this. Before we do so though, let's introduce ourselves. My name is Scott winsky. I'm a developer from Denver Colorado and with me as always is the Wes Bos.
 
 3
 00:01:01,200 --> 00:01:02,280

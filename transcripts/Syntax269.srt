@@ -4,7 +4,7 @@ Announcer: Monday, Monday, Monday, open wide dev fans yet ready to stuff your fa
 
 2
 00:00:25,950 --> 00:00:41,159
-Scott Tolinski: Oh, welcome to syntax. Yes, yes, yes, it is the syntax podcast. My name is Scott Tolinksi. I'm a developer from Denver, Colorado, and with me, as always, is the West boss.
+Scott Tolinski: Oh, welcome to syntax. Yes, yes, yes, it is the syntax podcast. My name is Scott Tolinksi. I'm a developer from Denver, Colorado, and with me, as always, is the Wes Bos.
 
 3
 00:00:41,370 --> 00:00:42,780

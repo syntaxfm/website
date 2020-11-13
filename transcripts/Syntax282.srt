@@ -8,7 +8,7 @@ the podcast with the tastiest web
 
 3
 00:00:04,590 --> 00:00:10,560
-development treats out there. strap yourself in and get ready. Here is Scott, ski and West boss.
+development treats out there. strap yourself in and get ready. Here is Scott, ski and Wes Bos.
 
 4
 00:00:10,589 --> 00:00:38,040
@@ -140,7 +140,7 @@ Scott Tolinski: Dynamo Dynamo, what
 
 36
 00:12:04,860 --> 00:12:36,059
-Wes Bos: I always say wrong. I nammo. Yeah, and we, I coded one up, you can go to West boss or sorry, get up comm Ford slash Wes Bos Ford slash hit das counter. And you can see the oldest part of the web, which has hit counters and the newest part of the web, which is serverless functions come together Collision Course. Yes, we also along the same line had guest books. Yes, books were really fun. Super fun. We I think we should add that back. That was really fun.
+Wes Bos: I always say wrong. I nammo. Yeah, and we, I coded one up, you can go to Wes Bos or sorry, get up comm Ford slash Wes Bos Ford slash hit das counter. And you can see the oldest part of the web, which has hit counters and the newest part of the web, which is serverless functions come together Collision Course. Yes, we also along the same line had guest books. Yes, books were really fun. Super fun. We I think we should add that back. That was really fun.
 
 37
 00:12:36,120 --> 00:13:24,000

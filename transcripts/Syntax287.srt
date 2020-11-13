@@ -1,14 +1,14 @@
 1
 00:00:00,359 --> 00:00:24,480
-Announcer: Monday, Monday, Monday, open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing, soft skill web development hasty, as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob, and Scott Taylor. Totally in ski,
+Announcer: Monday, Monday, Monday, open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing, soft skill web development hasty, as crazy as tasty as web development treats coming in hot here is Wes Baracuda Bos, and Scott Taylor. Totally in ski,
 
 2
 00:00:25,950 --> 00:01:00,000
-Scott Tolinski: oh, come to syntax in this Monday hasty, we're going to be talking all about records and tuples in JavaScript, and what they are, why you might need to know about them and what their status is because they're coming. And they're going to be really, really cool allow us to do some stuff that we've wanted to do in JavaScript for a long time, and really will help some of those situations where you want data to be the same thing all the time. So my name is Scott solinsky. I'm a full stack developer from Denver, Colorado, and with me, as always, is D. Wes Bos. 
+Scott Tolinski: oh, come to syntax in this Monday hasty, we're going to be talking all about records and tuples in JavaScript, and what they are, why you might need to know about them and what their status is because they're coming. And they're going to be really, really cool allow us to do some stuff that we've wanted to do in JavaScript for a long time, and really will help some of those situations where you want data to be the same thing all the time. So my name is Scott solinsky. I'm a full stack developer from Denver, Colorado, and with me, as always, is D. Wes Bos.
 
 3
 00:01:00,060 --> 00:01:00,720
-Wes Bos: Hey, everybody. 
+Wes Bos: Hey, everybody.
 
 4
 00:01:00,750 --> 00:01:33,750
@@ -16,15 +16,15 @@ Scott Tolinski: Hey, Wes. And this episode is sponsored by log rocket to know yo
 
 5
 00:01:34,140 --> 00:01:35,280
-Wes Bos:  They always change it. 
+Wes Bos:  They always change it.
 
 6
 00:01:35,540 --> 00:02:15,950
-Scott Tolinski: And what I what would I kill to have a scrubbable replay video to show me exactly what's happening as those kids are turning those knobs. And that's what you get with a log rocket. It's a video replay of the errors and bugs happening including the network store, the Redux store, works with all of your stuff you know, and love. And it is just one of these fantastic tools that will really eliminate bugs for you. So check it out log record.com forward slash index. All right, records in tuples, or records. Now let's start with the first and foremost thing about this topic, which is a big big thing, which is immutability, which is a big scary word. Do you want to talk about immutability? 
+Scott Tolinski: And what I what would I kill to have a scrubbable replay video to show me exactly what's happening as those kids are turning those knobs. And that's what you get with a log rocket. It's a video replay of the errors and bugs happening including the network store, the Redux store, works with all of your stuff you know, and love. And it is just one of these fantastic tools that will really eliminate bugs for you. So check it out log record.com forward slash index. All right, records in tuples, or records. Now let's start with the first and foremost thing about this topic, which is a big big thing, which is immutability, which is a big scary word. Do you want to talk about immutability?
 
 7
 00:02:16,160 --> 00:02:20,330
-Wes Bos:  Yeah, all of these words are scary things records tuple. 
+Wes Bos:  Yeah, all of these words are scary things records tuple.
 
 8
 00:02:20,330 --> 00:02:27,710

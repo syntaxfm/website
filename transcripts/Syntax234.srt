@@ -8,7 +8,7 @@ the podcast with the tastiest web
 
 3
 00:00:04,590 --> 00:00:10,530
-development treats out there. strap yourself in and get ready to live ski and West boss.
+development treats out there. strap yourself in and get ready to live ski and Wes Bos.
 
 4
 00:00:10,559 --> 00:00:47,790
@@ -504,7 +504,7 @@ Unknown: yes, I tell him sorry. I have my podcast. I love podcasts.
 
 127
 00:56:47,280 --> 00:57:06,660
-Wes Bos: Yeah. Big fan of podcasts. We run our own shout out to podcasts, especially in a syntax. Yeah, yep. All right, I'm going to shamelessly plug all of my courses at West boss comm forward slash courses, you can check out a list of all the different JavaScript and CSS based courses that I have used syntax for 10 bucks off.
+Wes Bos: Yeah. Big fan of podcasts. We run our own shout out to podcasts, especially in a syntax. Yeah, yep. All right, I'm going to shamelessly plug all of my courses at Wes Bos comm forward slash courses, you can check out a list of all the different JavaScript and CSS based courses that I have used syntax for 10 bucks off.
 
 128
 00:57:06,660 --> 00:57:26,370

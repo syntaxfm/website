@@ -16,11 +16,11 @@ Tip Get
 
 5
 00:00:09,060 --> 00:00:24,000
-workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob and Scott Taylor. Totally.
+workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Wes Baracuda Bos and Scott Taylor. Totally.
 
 6
 00:00:26,520 --> 00:01:01,049
-Scott Tolinski: Welcome to syntax in this Monday tasty treat, we're gonna be talking about refining processes and how we come up with the ability to make ourselves consistently better in our systems and our processes by evaluating and making them better. Because chances are when you said something, I'm the first second third iteration of it might not be the best. We've learned this from code. This is like refactoring lessons straight out of code into productivity hacks. So my name is Scott to linsky. I'm a developer from Denver, Colorado, and with me, as always, is the West boss.
+Scott Tolinski: Welcome to syntax in this Monday tasty treat, we're gonna be talking about refining processes and how we come up with the ability to make ourselves consistently better in our systems and our processes by evaluating and making them better. Because chances are when you said something, I'm the first second third iteration of it might not be the best. We've learned this from code. This is like refactoring lessons straight out of code into productivity hacks. So my name is Scott to linsky. I'm a developer from Denver, Colorado, and with me, as always, is the Wes Bos.
 
 7
 00:01:01,110 --> 00:01:02,400

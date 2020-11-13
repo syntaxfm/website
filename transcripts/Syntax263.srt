@@ -1,10 +1,10 @@
 1
 00:00:00,359 --> 00:00:24,480
-Announcer: Monday, Monday, Monday, open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob and Scott, Todd. Totally in ski.
+Announcer: Monday, Monday, Monday, open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Wes Baracuda Bos and Scott, Todd. Totally in ski.
 
 2
 00:00:25,950 --> 00:00:48,210
-Scott Tolinski: Oh, welcome to syntax. In this Monday tasty treat, we're going to be talking about forms captures honeypots. And dealing with malicious users. That's right, we're talking about contact forms and forms overall within HTML, JavaScript and the web. My name is Scott Dylan scammy, developer from Denver, Colorado, and with me, as always, is the West boss, how you doing?
+Scott Tolinski: Oh, welcome to syntax. In this Monday tasty treat, we're going to be talking about forms captures honeypots. And dealing with malicious users. That's right, we're talking about contact forms and forms overall within HTML, JavaScript and the web. My name is Scott Dylan scammy, developer from Denver, Colorado, and with me, as always, is the Wes Bos, how you doing?
 
 3
 00:00:48,599 --> 00:01:00,930

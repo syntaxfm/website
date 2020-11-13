@@ -8,7 +8,7 @@ module BBQ
 
 3
 00:00:08,340 --> 00:00:21,300
-Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob and Scott
+Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Wes Baracuda Bos and Scott
 
 4
 00:00:23,610 --> 00:00:24,450
@@ -16,7 +16,7 @@ Tolinksi ski.
 
 5
 00:00:27,690 --> 00:00:56,100
-Scott Tolinski: Welcome to syntax on this Monday tasty treat. We're going to be talking about Keystone dot j. s. And let me tell you something I know very little about keystone.js. But Wes has been using it for a little bit and I'm going to be asking him some questions. And hopefully I'm going to learn along with you about Keystone j. s. My name is Scott Tolinksi. I'm a developer from Denver, Colorado with me, as always is the West boss.
+Scott Tolinski: Welcome to syntax on this Monday tasty treat. We're going to be talking about Keystone dot j. s. And let me tell you something I know very little about keystone.js. But Wes has been using it for a little bit and I'm going to be asking him some questions. And hopefully I'm going to learn along with you about Keystone j. s. My name is Scott Tolinksi. I'm a developer from Denver, Colorado with me, as always is the Wes Bos.
 
 6
 00:00:56,150 --> 00:00:57,180

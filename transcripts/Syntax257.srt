@@ -1,10 +1,10 @@
 1
 00:00:00,359 --> 00:00:24,480
-Announcer: Monday, Monday, Monday, open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing, soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob and Scott Taylor. Totally in ski.
+Announcer: Monday, Monday, Monday, open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing, soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Wes Baracuda Bos and Scott Taylor. Totally in ski.
 
 2
 00:00:25,950 --> 00:00:53,159
-Scott Tolinski: Oh, welcome to syntax. In this Monday hasty treat, we're gonna be talking about Linux. Now, I recently have acquired a Linux laptop as a coding machine. And we're going to be giving you a rundown of what it is why I did it and a little bit of information about some of the pros and cons of running Linux in these types of environments. Now, my name is Scott Tolinksi. I'm a developer from Denver, Colorado, and with me, as always, is the West boss, how you doing?
+Scott Tolinski: Oh, welcome to syntax. In this Monday hasty treat, we're gonna be talking about Linux. Now, I recently have acquired a Linux laptop as a coding machine. And we're going to be giving you a rundown of what it is why I did it and a little bit of information about some of the pros and cons of running Linux in these types of environments. Now, my name is Scott Tolinksi. I'm a developer from Denver, Colorado, and with me, as always, is the Wes Bos, how you doing?
 
 3
 00:00:53,610 --> 00:00:55,710

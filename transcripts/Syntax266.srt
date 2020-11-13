@@ -8,11 +8,11 @@ the podcast with the tastiest web development treats out there,
 
 3
 00:00:06,149 --> 00:00:10,560
-strap yourself in and get ready to live ski and West boss. Welcome
+strap yourself in and get ready to live ski and Wes Bos. Welcome
 
 4
 00:00:10,560 --> 00:01:07,980
-Wes Bos: to syntaxes to the podcast with the tastiest web development treats out there. Today, we've got a podcast on video for the web 2020 and beyond. So I think like flashplayer was just died the other day, I think it was like laid to rest after all these years. And we've had html5 video for maybe five or six years. And anyone couldn't put an mp4 in a video tag. But there's so much more to it specifically around transcoding and encoding and live streaming and all that good stuff. So we're gonna attempt to break it down. Scott has gone through sort of all of this in the last couple months. And he's just been collecting little tidbits of what he's learned along the way. So today we are sponsored by Sanity, which is a structured content CMS for your projects and fresh books, which is cloud accounting. I'm a West boss with me as always is Scott Tolinksi. How you doing today? Scott to linskey?
+Wes Bos: to syntaxes to the podcast with the tastiest web development treats out there. Today, we've got a podcast on video for the web 2020 and beyond. So I think like flashplayer was just died the other day, I think it was like laid to rest after all these years. And we've had html5 video for maybe five or six years. And anyone couldn't put an mp4 in a video tag. But there's so much more to it specifically around transcoding and encoding and live streaming and all that good stuff. So we're gonna attempt to break it down. Scott has gone through sort of all of this in the last couple months. And he's just been collecting little tidbits of what he's learned along the way. So today we are sponsored by Sanity, which is a structured content CMS for your projects and fresh books, which is cloud accounting. I'm a Wes Bos with me as always is Scott Tolinksi. How you doing today? Scott to linskey?
 
 5
 00:01:08,369 --> 00:01:27,210
