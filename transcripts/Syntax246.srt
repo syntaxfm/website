@@ -1,0 +1,428 @@
+1
+00:00:01,319 --> 00:00:02,820
+Announcer: You're listening to syntax,
+
+2
+00:00:02,849 --> 00:00:04,590
+the podcast with the tastiest web
+
+3
+00:00:04,590 --> 00:00:10,560
+development treats out there. strap yourself in and get ready. Here is Scott, ski and West boss. Welcome
+
+4
+00:00:10,560 --> 00:00:42,960
+Wes Bos: to syntax. This is a podcast with the tastiest web development treats out there. Today we've got a real good one for you. We've got Heather Payne, who I'll talk about in just a second, but runs a very popular boot camp and here to talk about boot camps as well as getting a job especially in the current climate that we're in. today. We are sponsored by two awesome companies Sanity, which is a structure content, CMS, and century which is error and exception tracking. So welcome, Heather Payne, thanks so much for coming on.
+
+5
+00:00:43,259 --> 00:00:46,110
+Heather Payne: Cool. Thanks for having me. It's great to see you both.
+
+6
+00:00:46,349 --> 00:00:49,860
+Wes Bos: I'm also Scott Song. Yes. Hey.
+
+7
+00:00:53,460 --> 00:00:54,119
+Scott Tolinski: I'm here as well.
+
+8
+00:00:54,119 --> 00:00:55,409
+Wes Bos: How you doing today? Scott?
+
+9
+00:00:55,409 --> 00:00:59,250
+Scott Tolinski: Do good. Do real good. Just hanging out? Yeah, good. Yeah.
+
+10
+00:00:59,310 --> 00:01:55,680
+Wes Bos: So I guess I'll start it off here with I'm just gonna introduce Heather as to how I know her and then I'll let her have a second to explain kind of what she does. So I've known Heather for, I don't know, maybe probably eight or nine years now. And we go way back to like I owe Heather a lot for how getting into teaching and stuff like that, because she was initially behind ladies learning code, which I did some weekend stuff with. And then she brought me on when she started hacker you both for boot camp as well as part time classes, which is really cool. And it just got me into into teaching and doing everything that I'm doing right now, which is pretty cool. So Heather is running a boot camp, which is now called Juno, if you hear me talk about hacker you on the podcast, that boot camp is now called Juno. They have a bunch of other stuff as well past the bootcamp. So I'll just give you a second to sort of introduce yourself and anything else you want to say. Sure,
+
+11
+00:01:55,680 --> 00:03:54,150
+Heather Payne: thanks. It's funny, because like you say that, Wes, but I actually owe you a ton as well. Because I would not have Juno today if it wasn't for like our early partnership working together on that. So like, thank you as well. Awesome. Yeah, so my name is Heather Payne, and I'm the founder and CEO of Juno College of Technology, which as Westside used to be called hacker U. We were founded in 2011. Sorry, we were founded in 2012. So it's Coming up on eight years, which is pretty wild. About, and we are essentially programming bootcamp. So we help people go from being relative beginners to coding to job ready, over a nine week period. And we have a bunch of continuing education courses as well. Other things that we do. I have a team of about 3030 to 35, full time, folks who work at Juno full time, man, yeah, so we've grown a lot. And, you know, we've done some really cool stuff, we have a 12,000 square foot campus in downtown Toronto, which we were just putting the finishing touches on a half a million dollar renovation there, which we're super excited about. And last summer, I was part of Y Combinator. So I flew down to California and participate in Y Combinator for the company. And that was a really interesting experience, too. So over my, you know, eight years, I've gone from, you know, complete startup, we started up with no outside capital at all, and then built it up to 33 employees. And now I've also had the experience of, you know, going to Silicon Valley and talking to investors and that kind of thing. So it's been really interesting. And there's been a lot of really cool experiences. And of course, the latest nivola latest crisis with COVID is just another, you know, really interesting experience to have to figure out how it all works. And I'm excited to chat about that today. Because, you know, what is the role of a boot camp in the COVID-19 crisis? And during a recession? I think that's a really interesting topic that's on a lot of people's minds.
+
+12
+00:03:54,240 --> 00:03:55,410
+Scott Tolinski: Yeah, absolutely.
+
+13
+00:03:55,410 --> 00:04:15,030
+Wes Bos: Let's actually just like get into that initially, just like, I'm curious. It seems like you pivoted into online learning really quickly, and maybe easily from the outside, it seems like you're doing a smooth job at it. So like, like, what did you do when you realize, oh, shoot, we need to shut this thing down, at least in person. Mm hmm.
+
+14
+00:04:15,150 --> 00:07:19,800
+Heather Payne: Yeah. So luckily, there was someone on my team who in early February was like, we got to watch out for this. This is coming for us. And it's going to be very serious. So we had started making sort of contingency plans in early February, and it was always our plan to follow the local school board. So we decided in our plan that like when the school board decides that they're closing their doors, we too will close our doors, and it gave us a really, like clear yes or no to follow, which was helpful because in times like this, it's like hard to know what the right thing to do is, but that rule sort of helped us to see like, Okay, it's time to make a decision because this factor has happened. And so we had a few weeks to prepare for moving everything to online. Prior to this. We were hardcore in person boot camp. You know us because you came there with us, always in person to, it was always about the in person experience. If you ask people on my team, you know, would we ever move our programs online? The resounding answer would have been no, even though, you know, we saw coding boot camps, like lambda school popping up over the last couple years and doing things exclusively online, we really believed in the in person experience. And so it really challenged our identity, I think, to have two things online, but in a sense, like, we didn't even have a chance to think about it and reflect on that too much. Because it was sort of like, okay, we have, you know, a short period of time to make this happen. The bulk of the work really did happen in about a week. And so we you know, decided what stack we're going to use to teach our courses remotely figured out scheduling and all that stuff. And, yeah, the we got the news that the school board was closing on a Thursday, Friday was our last day in the office classes started remote on Saturday. So the whole thing kind of transformed in just a matter of a couple of days. But I've been super, super happy. Like, we will always do live online classes. Now. This is for sure. Part of our Yeah. And I could say that for sure. It's just the opportunity to help people who live outside of just the downtown Toronto area where we're located is so massive, and we really think that we're, you know, the Best Bootcamp in existence. And so to make that available to more people than just people who can afford to live or to choose to live in downtown Toronto, it seems very important. And I think the other thing that's helped us a lot was knowing that, you know, we know what a great bootcamp experience looks like, because we've been doing them for years and years and years. And so for us, it was about replicating that in person experience online as much as we can. And I think that's one thing that made it so great, we know what it needs to be like to be great. And we were able to use that as our kind of metric. And then my team has just been so amazing. The involvement that I've had in moving the bootcamp online has actually been extremely minimal, which, you know, is very exciting for me as a CEO, there's a lot of things to figure out in a in a time of crisis like this. And the fact that, like, my programs team and my curriculum team, are just, they just totally handled it and moved everything online. It's been super inspiring to see how my team has has reacted to all of this. Hmm,
+
+15
+00:07:19,950 --> 00:07:51,020
+Wes Bos: that's really interesting. I always tell people that part of the reason why I think people like the way that I teach is because I did it in person for so long. And I'm able to take that stuff that I've learned in person and and move that online. That's cool to hear you kind of say the same thing as like, you've obviously had, like eight years of sitting beside somebody with their laptop, trying to figure a bug out and you sort of the instructors learn what to say online as well, I guess. Totally.
+
+16
+00:07:51,060 --> 00:07:51,900
+Heather Payne: That's exactly it.
+
+17
+00:07:51,900 --> 00:08:18,210
+Wes Bos: Let's talk about boot camp. I want to know what you're teaching right now. Because like when I was when we started it up, we did. WordPress, SAS, jQuery. And yeah, just JavaScript. And I think that has changed quite a bit since then, like, what is the current bootcamp? What do you learn in and how long is it? Is it still nine weeks? Yeah,
+
+18
+00:08:18,360 --> 00:09:07,549
+Heather Payne: so we've stuck with nine weeks, we are finding that it is taking a bit longer to get through lessons now that they're online versus when they were in person. So haven't made any official decisions about that yet, but it's something that I've just heard a little bit about more monitoring that closely. But as yet, still a nine week program we have shortened to the HTML CSS portion of it. So it used to be three weeks when we were first working together, Wes, and now it's like a week and a half, two weeks. Yeah, I would say and then we're largely a JavaScript program. So we cover JavaScript and jQuery. And then we also get into react at the end. And they still work with API's. And we still do some tooling stuff. So it's evolved quite a bit. I think we've been doing react now for about I think it's two years that we've been doing react. So that's been part of the stack for a while.
+
+19
+00:09:07,710 --> 00:09:09,169
+Unknown: super interesting. Awesome.
+
+20
+00:09:09,169 --> 00:09:35,779
+Scott Tolinski: Yeah. So I'm really interested in in how you validate the the like the topics. So obviously, a lot of this stuff like react in the tooling there. There are things that are very, I don't know, prominent in our industry right now. But what's the process of taking a technology and knowing that it's, like appropriate to be teaching now in this boot camp as like a core concept? Hmm. How do you how do you decide like, okay, now's the time to add react.
+
+21
+00:09:35,880 --> 00:09:39,690
+Wes Bos: Yeah. Is that like, based on like hiring after the fact or? Yeah, so
+
+22
+00:09:39,690 --> 00:12:57,120
+Heather Payne: first of all, when Wes and I were first making the boot camp, we just guessed. And there was a lot of room for that. Back in 2014, because boot camps are very new. And so there was a lot of room just to put it out there and see what works. And then you know, the cool thing, I think one of the coolest things about running a boot camp is the chance that you get to do so. So much iteration, you know, the program is only nine weeks long. And so every time we run a boot camp, we're always changing something not too much, because you don't want to, like, you know, ruin the whole thing or whatever. But you can definitely do a couple experiments every single time. And then you see what works and what doesn't work. And then you keep building on top of those experiments. So we have a real like iteration vibe or real experimentation vibe in the company. And I would say, people largely are like down to try something new. And then we just compare that to how things went in the past and see how it how it works. So like the biggest change happened a few years ago, when we switched from WordPress to react. And this was partially because our grads, you know, when we started the boot camp, we didn't know that people would actually be able to get jobs out of the boot camp that was like, that sounded really cool. But it was 2014. And boot camps were new, and we just didn't know that that would be possible. And so we were preparing people for freelance jobs, we really pitched it as like, get a job as a freelancer come learn from Wes. And people came for that for a long time. But then we started noticing that people were getting jobs. And by like cohort two, or three or four that was like, yeah, pretty reliable, that you could get a job out of the program. And so, you know, we stuck with WordPress for a bit. But then once we made the call that we actually did not want people to become freelancers, we decided at some point a couple years ago that this is a job Transformation Program. And so if your goal isn't to get a job, as a developer, we don't think that this is the right program for you. We liked it because it just makes us more accountable. Like if someone becomes a freelancer, is that success, you know, as a freelancer, you can struggle along making 20 grand a year, or you can, you know, obviously do way, way better than that. But it felt a little bit like gray zone for us, for us to know if we did our job or not. Yeah, versus if someone gets a full time job. As a developer, you're like, Okay, we did our job. So the switch to react kind of went along with that, because WordPress is not the right thing to learn if you're looking to get a job as a developer, in a company, in most cases. And then now in terms of how we make those decisions, I mean, we track our placement rates obsessively. We have an outcomes team, which I actually run in the company, and we have really talented Career Services Manager and crew Support Specialist on that team. And like every single like we're in touch with every single student every single week, we're doing one on ones, we're doing mock interviews, we're doing resume reviews. And so we know if a cohort is getting jobs slower than a recent cohort, or getting in faster than a recent cohort, and we can use that data to make decisions around is a change needed. We'll also talk to people who interview or grads and find out why did you not hire them? And if it's a technical reason, like we want to know that and we pass that over to the curriculum team. Yeah. And then ultimately, it's the curriculum team's job to make sure that they're speaking with employers and taking that information from the outcomes team and making decisions from there on like, what to add what to remove, but it's a really iterative process, every single cohort, there's something that's been changed, so you're never going to have the exact same experience as a student who came before you. Cool.
+
+23
+00:12:57,149 --> 00:13:17,130
+Scott Tolinski: Yeah, I think that's important. Especially, I mean, we all know that everything changes so frequently, that being able to be so agile, not to use the word agile in the way that you know, it's used in this industry, but to be so able to quickly change like how how things are working, I think that's such a huge strength to be able to do that within a boot camp,
+
+24
+00:13:17,250 --> 00:13:40,890
+Heather Payne: totally. And such a difference between us and the college system, right? Or the university system. Because in a university system, your program is four years long, if you make a change in your one, you don't find out until four years later, when those students graduate, if you actually change their outcomes or not. Versus for us, we can find all of that out within a period of four, four months, you know, or less. So it's, it's pretty cool to be able to move that fast.
+
+25
+00:13:41,220 --> 00:13:42,210
+Scott Tolinski: Yeah, that's amazing.
+
+26
+00:13:42,240 --> 00:13:43,649
+Wes Bos: Yeah, no, no kidding.
+
+27
+00:13:43,710 --> 00:14:24,570
+Scott Tolinski: Yeah, it's funny. I'm a, I'm a board member of the with the technical advisory board for the University of Florida's program. And when they were like talking about their web development program, I just was thinking, well, it's amazing that they're getting people to talk about these things to change them. Because when I was in school at the University of Michigan, the web dev program was just basically the most archaic, awful thing in the entire planet. And I, you know, I took so many classes that I just felt like I learned more in my high school computer web development program than I did it within this college program. So it's just a, such a huge strength to be able to ebb and flow with the the industry as it is.
+
+28
+00:14:24,899 --> 00:14:54,750
+Wes Bos: I'm curious about like, like, what makes a good bootcamp student because I know you don't just let anybody into into the program, you screen them, you meet with them have a coffee, and you've seen probably what five 600 students go through this and try to get jobs after it. So you know, probably a lot about personality and skills and just the person in general. So like, like, what do you see as someone who's a good fit for a boot camp and someone who will likely get a job when they come out of this thing? Mm hmm.
+
+29
+00:14:54,779 --> 00:17:12,350
+Heather Payne: Yeah. So I think we have like approximately 1000 boot camp alumni. No. So Quite a bit, a big number. And many of those have, you know, were handpicked for the program by me. Last year, our acceptance rate was 20%. So it is like quite selective in order to get in and not every boot camp, you know, maybe is lucky enough to run things this way. But the way that we've always seen things is, you know, we want to make decisions on admissions, that's going to make sure that we're still around in 10 years, or 20 years, or 30 years down the road. And it's easy for us to make those decisions, because we don't have a VC backing us or anything like that. I mean, I did go to Y Combinator, and I did raise a bit of money from friends and family afterwards. But for the most part, this is my business that, you know, I'm the only director, I'm the only shareholder. So I'm making decisions that are going to make sure that this business is around for the long term. And it's meant that we can decide to grow as fast as we think we should grow. And then some years, like, it's not a lot, and in some years, it's a lot. So adulthood kind of depends on our capability. But what it meant is that, you know, for the past six years, essentially, we would run four cohorts a year. And when we first started, they were 25 students each, and we've grown that number over the years to cohorts of 40. But we've been pretty consistent with the size because we wanted to have the highest quality students joining us. And so that's sort of where that admission percentage comes from. But in terms of like what we've seen, so I mean, one thing that's really cool about you know, is that our student body is about 50%, female identifying and 50% male identifying, and actually have a lot of non binary students as well. So I shouldn't even say that those exact numbers. It's a really cool and diverse student body, which I love. And we bring people from all walks of life, which is really cool. The industries that people tend to come to us the most from, I would say, retail restaurant, we have a lot of musicians, a lot of artists, we've had quite a few flight attendants. There was a time when we had a ton of journalists, which is cool, because those journalists are now actually working in the in media companies, but in the developer side of things across Canada, which is really, really awesome.
+
+30
+00:17:12,389 --> 00:17:14,280
+Wes Bos: Yeah, love seeing that.
+
+31
+00:17:14,300 --> 00:19:15,390
+Heather Payne: Yeah, it's super cool. So those are some of the really popular ones. And what's really interesting about this industry is that I just shared is that those are some of the industries being hardest hit by the COVID-19 crisis. You know, restaurant and retail are being obliterated right now. musicians are having a really hard time flight attendants, hospitality workers are all being Well, yeah, you're right. We've always served people coming from those industries, which is why I feel that our role in the COVID-19 pandemic is to continue to serve those those people from those industries, they are going to need to switch into new jobs soon. And probably they want to, because they, they want to move on to something new. And so we'll still be here for those folks. But what we see I mean, typical age range tends to be you know, 25 to 40, I would say, typically, people would be making, and there's of course exceptions to everything that I'm about to say. But this is just some some generalizations, people typically would be making less than 50 k in their job prior to coming to Juneau. And our average salary starting out after Juno's is around 56,000 on average or so. So, you know, you're probably coming to Juneau, if you're making less than that right now. And that's when it kind of makes sense for you. And then we just find like people who come to Juneau, a common thread is that they just don't want to settle for whatever job they were in before. So you know, people who worked in restaurants through your retail industry, they oftentimes almost everyone that comes to Juneau did do some post secondary education, whether they went to college or university, whether they finished it or not, they they usually did some. And then they just didn't, it didn't get them the job that they wanted, they didn't get to where they needed to be, instead of settling and just accepting that they decided to, you know, apply to Juneau and come and go through this really tough nine weeks experience and go through a tough job find and come out the other end as a developer. So there's a real thread there of people, like not being willing to settle. And I think that's what makes our alumni community so cool and magical is that they all have this like thirst for more like deep within them.
+
+32
+00:19:15,719 --> 00:19:16,410
+Wes Bos: Yeah.
+
+33
+00:19:16,709 --> 00:19:37,950
+Scott Tolinski: So that's super cool. And it turns out, if Bootcamp, developers are needing some place to host their data, which we automate simplest data, yeah, sure. You'll probably want to check out one of our sponsors, and that is sanity@sanity.io, which is the structured content CMS for your new headless front end. So do you want to talk a little bit about Sanity? Wes?
+
+34
+00:19:38,219 --> 00:20:39,510
+Wes Bos: Yeah, if you are building an app, or a website or anything that needs data, and you need a real time back end, with either a graph qL API or they have a really cool syntax language called grok. bra and you need to pull in data into your into whatever app you're working on. Check out Sanity. It's pretty cool. The way that it works is because it's not Not just like login and use their interface, use this thing called sanity studio, that you can host yourself, which means that you've like it comes with like a back end. But you can push a little bit further and code it yourself because it's it's your code that's that's running. So they give you this really nice and it's kind of like WordPress in that in that regard in that like, it's a prebuilt admin tool, but you can drop in your own react components, do your own validation, things like that. It's pretty nifty. Check it out@sanity.io forward slash syntax that's going to get you double the free usage tier. Thanks so much just entity for sponsoring. Cool.
+
+35
+00:20:39,540 --> 00:21:21,030
+Scott Tolinski: So let's talk about like the post grad experience, right? Is that where you wanted to go next? Wes? Yeah, the post grad is is all about finding that job. And I know there's a lot of, I don't know, with small small colleges, private colleges, all sorts of things with trying to find job rates, like we get, you know, 90% of our boot camp, users finding jobs. And oftentimes, I personally find those to be a little disingenuous, but do you have any sort of metrics or tracking? Or is there any sort of process that you go through with Juneau to really help increase those numbers of people to have success in post boot camp life?
+
+36
+00:21:21,180 --> 00:21:22,380
+Unknown: Mm hmm. Yeah. So
+
+37
+00:21:22,380 --> 00:24:19,410
+Heather Payne: yeah, there is a big problem in the industry in terms of being able to compare apples to apples. Because what if our definition at Juno of what employed means is slightly different than a different boot camps definition of it, some boot camps would count a part time job coding as an outcome and some wouldn't. And so first of all, for a long time, we didn't even keep stats we just focused on. And this was my job. Actually, up until March of last year, it was my job to make sure that everybody who graduated from junos boot camp got a job as a developer. And we actually didn't even keep stats, it was just about like working one on one with those students and making sure that they were really happy. And that's how you know grew was just people spreading the word about us through word of mouth. Then like a couple years ago, it started becoming more important that we like had outcomes reports that we could use to show what our data is. And so we did started creating them. But then I think last year, the year before this organization emerged out of the US called sir, the website is cr.org. And it is the council for integrity in results reporting. Essentially, it's like a nonprofit body that creates a framework for boot camps to use to report on their results. So that you can actually compare apples to apples, when you are deciding which bootcamp you'd like, Oh, yeah, it's really cool. And it really provided the framework that we needed to help us also kind of solidify what we count as, you know, success or what we can as an outcome. So we joined, I think, you know, a year and a half or two years ago, and we've submitted two reports, so far, and we'll continue to keep submitting the reports whenever they're due. And it's just really cool. It's really cool to have a way of saying like, you know, we're doing the right thing, we're being really transparent. Not every single report is up into the right, necessarily, you know, our outcomes do go up and down. And we think that's an important component of being transparent with students is to say, like, you know, this cohort was this, and this one was a bit less, and here's why it was less. And here's what we fixed. And, and, you know, here's what the future looks like, so that you can trust us more. But, you know, internally, we pre COVID, our target was 70% employed by three months, which we have hid and hover around, typically. And then 90% employment by six months after graduation, and our most recent cohort that hit that six month mark before COVID hit, I think they their six month mark was on March 25, we hit 89% 87 or 89%, for that. So those are like realistic numbers for a boot camp. And we we hit those numbers. And, you know, we're not totally sure what the impact of covid is going to be on our placement rates, and they're obviously going to go down, we're going to try and make them go down as little as possible and make them go down less than every other boot camp in the industry just to kind of keep our place as you know, market leading placement rate. But then when we come out of the crisis we'll get we'll get ourselves back up to that 70 to 90% placement rate.
+
+38
+00:24:19,530 --> 00:24:20,640
+Wes Bos: This is so cool.
+
+39
+00:24:20,670 --> 00:24:40,140
+Scott Tolinski: I think that goes a long way for trust within the company. Because it is it is there's so many these boot camps that exist and how do you know if you can trust them, and some of them definitely make inflated claims. So it's amazing to have some sort of external body or some sort of transparency policy in mind to really gain that trust.
+
+40
+00:24:40,470 --> 00:24:55,740
+Wes Bos: You're also showing salaries in here too, which is like 79 people graduated and 1.6% as making over 90 k 52% is in between 50 and 60 k are these in Canadian or are they adjusted?
+
+41
+00:24:55,770 --> 00:24:57,420
+Heather Payne: I think ours is in Canadian Yeah.
+
+42
+00:24:57,600 --> 00:25:19,650
+Wes Bos: Okay. Yeah. Wow. That's so cool. This is like a standard. Yeah, I had no idea. You can just look at the data and see like, how many people actually get jobs. I've always been telling people, like, talk to a couple people and read the reviews and stuff like that. But like, this is just hard data. Yeah. as to if you can get in what do you expect for your odds of getting the job?
+
+43
+00:25:19,710 --> 00:25:20,460
+Unknown: Yeah, right.
+
+44
+00:25:20,790 --> 00:26:09,240
+Heather Payne: Yeah. And I like the format as well, because it shows what was the graduation rate? You know, so that way, if you're a student, and you're thinking, yeah, there you go, it's like, you can look at the report, you can see, like, I think in our case, depending on what report you're looking at, it's like, either 100% graduation rate, or like 98% graduation rate, or whatever. So you can see like, okay, there's a 98% chance that I'm going to graduate, and then there's a X percent chance that I'm gonna have a job within, you know, three months or six months, or whatever it is, and you can just make a proper ROI decision based on that. Although I still think your point is, is good, you know, when people are asking me for other ways that they should make a decision about which boot camp to join, I always say like, go on LinkedIn, look up the boot camp that you're interested in, and reach out to a few random alumni, you know, not the ones that the school gives you. Yeah, too. But like, Look, look up your own
+
+45
+00:26:09,270 --> 00:26:12,000
+Wes Bos: toes. That's what I said, like a couple podcasts ago.
+
+46
+00:26:12,030 --> 00:26:45,120
+Heather Payne: Yeah, you're also and then reach out to them. And I've found in general that like boot camp grads are really happy to share their experience, whether they are happy to share it, because it was awesome, or whether they are happy to share it, because they have some strong criticisms of the program, I think people are really open about sharing that kind of stuff. So you know, this is a big decision, it's a lot of money to go to a boot camp, our program is $12,000. Canadian. And that's, I think, on the cheaper side, in some cases, when you look at boot camps, especially in the US. So it's a big financial decision. And it makes sense that you would take some time to really investigate it properly.
+
+47
+00:26:45,450 --> 00:27:18,180
+Wes Bos: That's awesome. Let's talk about actually like interviewing for a job. So you guys obviously do a lot on the back end, make sure making sure people get their jobs. How do you prepare somebody for an interview? That's, I get questions about this all the time. Like, do I need to whiteboard and the reality is is like I only ever had like one interview my entire thing. And I think when I talked to you about doing hacker you we just went out for beers like that was like, that was the extent of it right? Like, like, tell us, I have no clue. How do you how do you prepare for an interview as a web developer? Yeah, totally.
+
+48
+00:27:18,180 --> 00:31:35,640
+Heather Payne: So you know, our approach with the job searching piece of the bootcamp has always been kind of like teach people how to fish rather than like giving them a fish, you know, that whole thing. So we've always been about like supporting a grad with their own job search. Rather than delivering them a job kind of on a silver platter, it's a lot more scalable. And something that I've heard from our grads over the years is that the skills that they learned from us around how to find a job and how to organize their job search are like lifelong skills that they will have forever. So I'll give you some like highlights of our sort of job search process that we that we follow, and some of our like, kind of tips that we have. So first of all, we need everyone to track their job search progress in a spreadsheet. And we've actually recently started exploring like some software solutions for this instead. But ultimately, what it comes down to is like job searches, really frantic. There's like new postings on all kinds of different places. And if you're just sending emails, and not tracking, where you're sending those emails, there's no way that you're going to like, be able to pursue each opportunity properly. And so we create a spreadsheet and our Career Services team shares access to it with them. So we can actually see every single day what jobs the students, the grads are applying to, we've always given like activity targets to our grads. So it's like a certain number of jobs to apply to every single day. And, you know, we find that our most successful grads are able to hit those activity targets. And, you know, in a pre COVID world, it wasn't a big number. It's like, we're asking you to apply to, you know, between two and four job applications per day. And then spend the rest of your time coding, like, that's kind of our recipe for job search success. And those numbers are really important. Because if you're applying to, you know, four job applications a day, that's 20 per week, and we find that, you know, a normal job search, you'll usually hear back from about one in every 10 companies that you apply to, you'll get like a positive response in a phone interview or something like that. And so if you're doing 20 applications a week, that means you're getting two phone interviews every single week. And then that actually is really important for like helping to keep the momentum going. So if every week you have two phone interviews, you're like, Okay, you like bring a little bit of swagger into your like phone interview, because you're like, I know, I have another one tomorrow. And it just kind of like, it really becomes this like upward spiral of like, confidence and success and like, you know, never feeling like everything's on one single opportunity. What happens when people don't apply to enough jobs is like, say you do one application a day. That's five per week. It's going to take you two weeks to hear back one positive thing because that's how long it takes you to do 10 applications. So it's gonna take you two weeks to hear back and then you're like, Like, oh my god, this is a really important interview because I only get one every two weeks and the pressure is on and maybe you don't, you're not yourself because of that. So we really find the like, you know, more important than the interview itself, to me is like nailing the numbers game of, you know, applying to jobs. And then the value that you get from joining a boot camp, is their approach is the same as ours, is like you get someone who's keeping you accountable to that job search, you know, every single week, we're checking in with you, you know, okay, you only did 15 job applications this week, what was the reason is there something blocking you that we can help you with, which actually just helps people achieve those numbers, which makes their job search more successful. And then, in terms of interviews, we've actually been like, quite hands off, typically, back when I was doing like, supporting all the grads, myself, I just said, you know, if you do three interviews, and you don't get it, like three interviews at three different companies, and you don't get a job offer, come see me because we're going to do some interview, like mock interview practice. And I didn't usually have to do much. So we usually found that like, by the time someone does like three interviews, they're usually you know, a lot of the time they they end up getting a job. Now we are doing a practice mock interview with like every single student just to make sure that, you know, in that first interview that they have, they do nail it. But my tips for interviews are largely bring a lot of energy. And I think this applies even more. So now that a lot of interviews are happening remotely, you can both see like, because you can see me and we're on video, you can see how much like animation that I'm bringing to our conversation. And it just makes it more enjoyable experience for the other person. And so, so that's really important.
+
+49
+00:31:35,640 --> 00:31:36,900
+Wes Bos: I'm enjoying it. Yeah,
+
+50
+00:31:36,900 --> 00:32:24,450
+Heather Payne: that's really important. I tip that I've always shared with our grads for their interviews is bring like a printed out piece of paper with questions on it, you know that at the end of the interview, they're gonna say, So do you have any questions for us, and there's something that's so professional about like, reaching into your, you know, probably your backpack realistically, and pulling out this like piece of paper that, yeah, you took the time at home to prepare and write and print, it just shows that you're the kind of person who is very thoughtful. So we have a lot of like tips like that, that we share with our grads, as they're going through the job search just to give them like a little edge on the other people who might be searching for a job, that if you're not having someone kind of guide you through your job search process, you're going to miss out on a lot of those kind of tips. So that's part of the value add that you get when you when you join a boot camp.
+
+51
+00:32:24,720 --> 00:33:03,450
+Scott Tolinski: Yeah, as someone who's been on both sides of the table in the interview process, I can tell you, those little things are such a big difference when somebody comes across your table, especially when you're interviewing, you know, 1020 people, the ones who stand out are the ones who do those little professional things, they write the cover letters, they show up, you know, 15 minutes, or they do all of the the perfect things that you need them to do. And it really makes a big difference. It stands out in a very positive way. So it's really exciting to hear that you guys are emphasizing that those kind of interview techniques in your program. Yeah, and
+
+52
+00:33:03,450 --> 00:35:19,590
+Heather Payne: here's the thing, like, it's not really fair, you know, like, it actually sucks that we have to encourage our grads to do this kind of stuff. Because if it was like just about skills, then they would get the job without, you know, they get jobs that they're qualified for without having to do all this stuff. But unfortunately, like, that's not how it works. And you're right, like, it does stand out to us. You know, to me, too, when I have an interview and someone does something that goes a little bit above and beyond, I'm like, wow, that, you know, we use that as a signal that they're going to go above and beyond as an employee as well, which is probably true. Like it does probably make sense. But yeah, no, totally thing that we encourage our grads to do. And this is like a slightly controversial one. I've also received quite a bit of feedback over the years of employers not liking this, but we really drill home that are and this is probably more true in COVID-19 era than ever before. We really drill drill home that our grads need to follow up on their job applications. So it is not enough. And maybe this is obvious now. But you know, when we first started, this was not obvious at all, like it is not enough to just submit your application into indeed are through LinkedIn or whatever and like hope that you're going to get magically picked out of a pile, you're probably not going to get magically picked out of a pile of applications. Like it just isn't. And I don't like to rely on luck in my life, you know, and I try and encourage our grads, to not rely on luck, either, like, let's take control of our destinies, you know, in a sense and so, you know, by doing a follow up, you know, three days later, hey, just checking in to see if you, you know, received my application. I'm really excited about the role. You know, it's not a follow up where you're like, Hey, did you check it yet? It's like a it's an opportunity for you to, again, sell yourself on why you're such a great fit for the role and why you'd be so awesome there. So we actually every week are checking in with our grads, you know, did you do your follow ups, the follow ups are key part of the job application process. And again, I wish we didn't have to do it. I wish magically the right person for the job would just magically get picked out of the pile. But that's not realistic. It's not the world we live in. And in a COVID era, there's there's fewer people doing more work. You know, some people that HR has been an area that I've seen a lot of layoffs in. And so there's gonna be less people looking through the same number of job applications looking through more job application. So this stuff just becomes even more important.
+
+53
+00:35:19,730 --> 00:35:20,460
+Unknown: Ah,
+
+54
+00:35:20,610 --> 00:35:27,030
+Scott Tolinski: yeah, anything you can do to make us stand out in those positive ways is is a plus in my mind. Absolutely.
+
+55
+00:35:27,420 --> 00:36:18,330
+Wes Bos: So let's talk about COVID right now. So we're starting to see the effects of much of the economy being closed trickle through two web developer jobs, like event bright, just laid off a couple hundred people, because there's not events going on right now. Right? In North Florida. It's easy to think like, oh, we're web developers, we can work from home. So our jobs are fine. But we're starting to see like, obviously, our job as web developers is to support the world coming online. And if that part of the business is no longer there, then then our jobs start to get in trouble, which is, sucks. So now that web developers are losing their job, there's less jobs out there. What do you say to someone who's coming out of a boot camp when there's this fresh crop of experienced devs? Maybe fending for the same job? Mm hmm.
+
+56
+00:36:18,360 --> 00:41:21,090
+Heather Payne: Totally. So yeah, we have like a few things that we're keeping in mind for this. First of all, just today in Canada, they announced some support for students and graduates, it's called the Canada emergency student subsidy, I think or something like that. And it means that anyone who graduated school in Canada after December 2019, or anyone who's going to school in the fall, can get 1250 a month, from May through August. So we expect that our grads will be eligible for this. And so and you know, all bootcamp grads in Canada would be eligible for this. And so that's great just to, like ease the pressure a little bit on needing a job right away, it will take longer to find a job. So we are no longer in the, you know, 90%, within six months world, we don't know how long it's going to take to get a job, it's going to take longer, for sure. But this will help a little bit. So I'm feeling really excited about that. And the other thing that we're doing, I mean, we're doing a few things. One, just like more student support, they just need more from us in terms of like even emotional support right now. And so we're like here for that, and we're ready to talk about that kind of stuff. There's also a lot of wage subsidies that are available to employers, some of them already existed before COVID. And some now are being added because of the COVID-19 crisis. And so I actually expect that there will be a lot of wage subsidies to help recent grads, you know, from colleges and universities, but also from boot camps, to land their first jobs in the coming months. Employers love to save money, and especially in this world, you know, where revenues are being cut, because there's not as much consumer demand, the opportunity to use a wage subsidy to hire a recent grad and end up only paying, you know, $10 an hour to that person instead of 20, or 30, or 40, or whatever, that will be really appealing to employers, because senior developers are still going to cost a lot. So you know, for those who are budget constrained, that will be really helpful to them. And then something else that we're looking at is how can we support our grads in like a more broad sense when it comes to employment. So, you know, in the past, we've moved toward, like, we want you to get a full time job, we actually make our grads sign, like a document with before they join, telling us that they will put full time effort when they graduate into finding a full time job, because it was that important to us that everyone kind of have that expectation in mind. But we're now exploring relaxing that a little bit. For the time being, it may make sense for our grads to take on a shorter contract that they might not normally be interested in. But now that would be a good idea for them. Some of them may be interested in taking on freelance projects. And we think that could be a good idea for them in the short term, until more full time opportunities open up. So we're just being a little bit more kind of open minded about it, if you can get to 20 our jobs, that's, you know, the same thing as having a full time job. And so can we pursue things like that, and so we're actually reaching out to employers and pitching them on on that kind of thing. And for companies who have decided to lay off a developer, you know, they're still going to have some dev work to do. And so, you know, maybe we can be there to have them hire one of our grads and have them do it in 20 hours a week or something like that. And it's sort of a win win in that case. But I think ultimately, there's going to be a little bit more, it's going to take longer to get into a job. And so we're focused on how can we make sure that our grads are getting experience of any kind as quickly as possible? And how can we make sure that they're still learning and still improving their skills. And I really see that once. You know, once the economy is opened up, again, no matter how long that takes, and I've no idea how long it's going to be. But once that does start to happen, there's going to be a lot of demand for businesses to bring their businesses online more effectively, because they're going to want to be more more retail. Yeah. So anybody who you know, doesn't currently have a Shopify store, they're scrambling to make one, they're doing it really fast and quick. And at some point, they're gonna want to invest in that and maybe doing it a little bit more properly or doing something a bit more custom. And that's just like one example. So I really think that in the coming years, there's going to be a boom for developers. And it's just this short term period, that's really painful. And so that's why I think it's still a great time to learn and a great time to go back to school. And like I say, you know, those retail workers and restaurant workers, like we want those people to come to us now. And, and yes, it'll still be, you know, it'll take longer for you to get your job. But then once you're in, and we see this all the time, like, once you graduate from Juneau, and you get your first developer job, like, you're pretty set, like, it's pretty great. And like, just to drive that point home, we were keeping track of our grads who have been laid off, because we want to provide support to them. And so we have a list. And, you know, it sucks to have people who have been laid off, we have 20, who we know of that have been laid off. But that's out of almost 1000 people that are grads of our program. So you know, we're helping those people, we're supporting them, two of them have already gotten jobs again, which is super exciting. And you know, the reality is, like, less than 2.5% of our grads have been laid off. As far as we know, once you're in, you're quite resilient. And you know, of course, there's some luck at play. But for the most part, we still think it's a really great idea to become a web developer.
+
+57
+00:41:21,230 --> 00:42:04,460
+Wes Bos: Yeah, I was just, I was just saying that to somebody the other day how every business needs to go online, like my dad built websites, and he's friends with like, a lot of Dutch people who run greenhouses, and every single one of them is scrambling to get some sort of online pick up inventory system going. And I'm just like, this is a term I hate bricks and clicks. But the bricks and clicks play after this is going to be huge for people who need to bring, like, in the states is pretty good. But in Canada, the whole like, order and the pickup in person. It's kind of there, but it's not nearly as good as, as it is in the States. And I think that that's gonna get really good. Once once we get back there, right?
+
+58
+00:42:04,500 --> 00:42:28,050
+Scott Tolinski: Yeah, yeah. And even here, I mean, it really kicked up a notch, as everyone's probably seen. Yeah, like, it's like, oh, you want to order some alcohol, you just leave your ID in the window, they drop it on the front part. It's like everything's like really evolved in those directions really, really quickly. So again, once everybody has a chance to breathe, it's going to be Yeah, it's gonna be a rush to really solidify a lot of those systems.
+
+59
+00:42:28,230 --> 00:43:19,190
+Heather Payne: Yeah. And there's also going to be some major changes to human behavior after all of this, like you can't go through absolutely something like that and not have big changes happen. And when changes happen, new businesses get started. And all of those businesses are going to have an online component, like it's impossible to believe that they will. So I think there's going to be this whole, like, set of new types of businesses that get founded that are all going to need support as well. I forget what podcast I was listening to. But they made the point that like, after world war one came the roaring 20s. And after world war two came the 50s, which was also a really big boom time in history. And so there's some thoughts that like, that's what we're in for once this all gets resolved is like a really big boom time. And, you know, that might not happen. And it's best to prepare for all scenarios. But you know, I think it's, I think there's a pretty good chance that we're going to be in for a really, like, really interesting decade to come once we get past this.
+
+60
+00:43:19,440 --> 00:43:21,780
+Wes Bos: No, I'm gonna name it the bricks and clicks boom.
+
+61
+00:43:22,590 --> 00:43:25,610
+Scott Tolinski: Here we go. Yeah.
+
+62
+00:43:27,660 --> 00:43:33,650
+Wes Bos: Um, what else I want to talk about, are you you still doing income share agreements, right? You just launched that, like
+
+63
+00:43:33,690 --> 00:46:11,550
+Heather Payne: six months? A year? We it's the one year anniversary last night? Wow. Yeah, so income share agreements are a payment method that started to gain some popularity in like 2018, I first heard about them in December of 2018. Essentially, what it is, is it allows you to not pay up front for your education. And this could be at a college or university or a boot camp, or maybe something else. So you don't pay upfront. But then once you graduate, and you make a certain amount of money, in a salary, you know, or a certain amount of money, whatever, you pay back a percentage of your income for a certain number of months. So just to illustrate how ours work, our upfront tuition is $12,000. But you could take an income share agreement, which means you just pay $1 upfront, and we have to charge $1 because it we need to like have a legally binding contract. And money has to change hands. It's like a government rule because we are like regulated by the government. So you pay $1. And then once you graduate, you pay nothing until you're making 50 K a year or more in a job. And at that point, you pay a 17% of your gross monthly income. And there's a payment cap of 1.5 times our upfront tuition amount. So the most you'd ever pay is 18,000. And the cool thing about this, especially in like COVID time is that if your pay ever drops below 50,000 you stopped paying for that period of time until it goes back. So I did have a grad who took a pay cut at work and their pay dropped below 50,000 and they stopped their payments, so they don't have to Paying right now, which is really cool. And also, if you end up losing your job, or you have to stay home to take care of loved ones, and you don't have any income, your payments pause as well. So it's really, really flexible. The goal is that they will make 24 payments in a five year period. So we have sort of five years to collect these monthly payments. And after five years, no more payments are due. So it's not like debt, where you're kind of stuck with it forever, either. You know, five years is kind of the max that you'll be with something. And even if you haven't finished paying it off, you just don't pay anymore. So it's it's been pretty popular. Cool. You know, when we launched them, we're the first school in Canada to launch income share agreements, I believe, to date, we're still the only one it's been a year, there's a few schools that have sort of called them income share agreements, but they're really more like payment plans then than true income share agreements. And so you know, it was a bit of a slow start in our first cohort where they were available, we had five students who took income share agreements, but the next cohort had 12. So that was really cool. And now we get like way, way more applications than we can afford to fund. We fund them out of our own profits. And we also in the past, have gotten a loan to be able to fund ISS as well. So, you know, for us, there is like a maximum budget that we can put into this, but essentially, we spend all of our profit.
+
+64
+00:46:11,640 --> 00:46:27,270
+Wes Bos: Oh, yeah, cuz you have to pay your instructors. Yeah. And pay for rent you have to pay for I didn't even think about that. Yeah, you have to like, like, front end all of the stuff, and then also hope that they get a job. Yeah. The fact right, yeah, totally kind of on you. So there's a vested
+
+65
+00:46:27,270 --> 00:46:28,860
+Scott Tolinski: interest there. Right.
+
+66
+00:46:28,890 --> 00:48:22,050
+Heather Payne: Yeah, it's very, it's very fun and interesting thing to manage. But essentially, we just give out the number of viruses that we can afford to so you know, for now, we haven't capped at about 10 per cohort. And that allows us to still leave 40 students per cohort. So it allows us to still cover like all of our costs, and then you know, and then we get the money later when they get a job. So, of course, there's a little bit of risk here. Because if people are taking longer to get a job, it's going to take them longer to pay us back. But, you know, because we like just fund this ourselves, that of our own profits doesn't really matter if it takes longer. So that's kind of cool. And then, so the innovation that I wanted to mention, is actually relating to income share agreements. So we're launching this on, okay, April 28, it'll be launched. So by the time everyone hears this, it'll be live already. It's the world's first pay what you can income share agreement. So the idea here is that, you know, previously, you either pay the full $12,000 upfront with cash, or you pay $1, and take a $12,000 iisa. But what we're launching now is the chance to choose so if somebody wants to just pay $3,000, upfront, they can and it means that their payment cap that they end up paying instead of being 18,000 would be end up being less than that. So it's like a really, okay, and what it does for us too, is extend our is a budget. So, you know, you can imagine in the past, I had 10 Isay spots $12,000 each, so I had a budget of $120,000. And I assays that can go a lot farther, if I'm giving out I assays of $6,000, I can help more students, you know, by giving them a bit of a lower ice each. So we're pretty excited about it, we think it's really like innovative and cool and student friendly. So it's launching on the 28th. And you know, if you're listening to this, it's already live. So you know, if you want to go check out, you know, college COMM And then I'm sure on the homepage, somewhere, you'll be able to see something about ISIS, just click on that. And there's a calculator and stuff that you can use to calculate your total investment.
+
+67
+00:48:22,380 --> 00:49:16,050
+Wes Bos: That's really cool. I, when I first talked to you about the income share agreement, I'm like, Man, that that makes a lot of sense, it seems very fair. And you talk to a lot of people who are sort of outside of it, and their initial reaction is like, you're gonna take part of my salary. And you can like, sort of, like, I'm glad that you can sort of like explain it on the on the podcast as to like how it works is it is a little bit complicated. But I think it's such a cool, especially now that like you can pay whatever you are, whatever, you're able to pay it up front. And then like because because there's a lot of people who I think everybody who goes through the bootcamp, they're like, life has changed, right? Like you change the trajectory of your life, because you've totally moved into this. Like right now. It's an excellent industry to be in. So it's cool that that is not now limited to just people who have the 12 grand up front to pay that.
+
+68
+00:49:16,410 --> 00:50:22,140
+Heather Payne: Yeah, like 12 grand is a lot to like have in your bank account. And what if you're not lucky enough to be able to borrow it from like friends or family or something like that, like bringing, bringing tech to more people and getting more people into tech is like the whole theme of my life. Like the whole theme of my career. You know, the reason that I started ladies learning code was to bring more women into technology and coding and give them like great early experiences so that they are not turned off from it and that they actually want to pursue it. And like over the past eight years at Juno, you know, the biggest, like, the biggest thing I think we hadn't been able to figure out is like, how to make it so that we have more like socio economic diversity in our programs and we're not there yet. There's still like a long ways to go and you know, even the fact that we We, you know, we require people to have their own laptop, it's like, there's still things that that make it hard. I mean, you know, we have a loaner program and like we, you know, we do everything that we can do as a as a private company, but there's always more. And so this is sort of our, like, latest innovation over the past year of just like bringing more people into this world that we think really deserved to be in this world and should benefit from being in this world.
+
+69
+00:50:22,620 --> 00:50:24,810
+Scott Tolinski: I think that's a great cap off.
+
+70
+00:50:25,230 --> 00:50:33,150
+Wes Bos: Yeah. Is there anything else you wanted to say or plug or anything else you want to mention to the audience? Um,
+
+71
+00:50:33,150 --> 00:51:30,480
+Heather Payne: I guess like one thing that that I'd love to mention, you know, now that our program is live online, we're actually able to serve, like I said, a much broader audience. So if the idea of a coding boot camp has kind of been in your mind, but you haven't been sure, like, which one is right for you, and maybe the ones in your city or not, you're not so excited about them. You can now come to Juneau, which is pretty cool. So if you want to check it out, and see what Juno's like we offer tons of free like three hour, kind of like web dev coding workshops, they're totally free, and gives you a chance to see what our instructors are like and what the classroom format is like, and what live online feels like. So if you go to the homepage, which is Juno college.com, just on the top right corner, you'll see a free online workshops button, you can click on that and sign up. And we'd love to have some more people from across the world. We've had people signing up from different countries already. And I'm just really excited to see what the next few months look like, as we sort of have more people joining us from from anywhere.
+
+72
+00:51:30,810 --> 00:52:06,840
+Wes Bos: Awesome. Yeah, I get people all the time asking me like, Hey, I don't want to just do your course I need something more structured, I need something more involved and like, what should I take? And I'm like, I don't really know, like, if you're in Toronto, or you want to come to Toronto, then go to Juneau. But other than that, I don't totally know. It's awesome that I can point people to because I think another big thing about boot camps that we didn't talk about is that like, the how good it is, is very much dependent on the curriculum, and the people that are teaching it to you. Those are probably by far the two most important things. And I know that both of those things are very good at you know,
+
+73
+00:52:06,930 --> 00:52:50,970
+Heather Payne: yeah. And I think like to that point, to me, it's like, so different when you go to a boot camp that's like owner operated, you know, like, I founded this company, and I work in this business all day, every single day, like this is my life's work. And that's really different than when you join a boot camp that, you know, was backed by VCs and has already been sold. And it's been bought by like a private equity company, like, I don't know, I think it's important to look up like who is the owner? And who's really behind the company that you're going to buy from and, and who do you want to support? You know, and what alumni community Do you want to be part of, I think that stuff really matters. And there's a lot of coding boot camps that are not owned or operated anymore. And I just think being operated is the best. So I always look out for that.
+
+74
+00:52:51,210 --> 00:52:52,170
+Wes Bos: Absolutely. Yeah, you
+
+75
+00:52:52,170 --> 00:52:57,330
+Scott Tolinski: want there to be a vested interest you want there to be you know, something at stake. Yeah, for you to succeed. Exactly.
+
+76
+00:52:57,390 --> 00:53:03,330
+Wes Bos: And this is totally unrelated. But this website is so slick. It's Gatsby, right?
+
+77
+00:53:03,330 --> 00:53:04,410
+Unknown: Um,
+
+78
+00:53:04,530 --> 00:53:05,430
+Wes Bos: I mean, look at it.
+
+79
+00:53:05,460 --> 00:53:06,810
+Heather Payne: I don't think it is.
+
+80
+00:53:07,050 --> 00:53:08,040
+Wes Bos: I figure it out more,
+
+81
+00:53:08,250 --> 00:53:10,170
+Heather Payne: isn't it? It is it is Oh, great.
+
+82
+00:53:10,320 --> 00:53:22,110
+Wes Bos: Well, at least the page I'm on anyways, you want to check out a fast, slick website with a nice design, check out gentle college calm is really nice. I just outed myself. So you guys obviously built this in? Yeah, we did
+
+83
+00:53:22,110 --> 00:53:38,790
+Heather Payne: build it in house. But I just added myself in terms of my knowledge of coding, which is extremely minimal. And people always find that real. Here. And it's like, one of the questions I get asked by students all the time, they're like, so like, when did you learn to code? And like, what was your most recent project you worked on?
+
+84
+00:53:38,790 --> 00:53:39,540
+Unknown: And,
+
+85
+00:53:39,570 --> 00:54:04,380
+Heather Payne: you know, I always share that, like, you know, I was learning how to code my my story is that I started learning how to code in, like, 2009 2010. But as soon as I started ladies learning code, there was so much interest in it that I just switched into the mode of helping other people learn to code. And that's where I've been ever since. So you know, I have some, I have some knowledge, I can be dangerous or whatever. But But mostly, you're gonna want to talk to our instructors, if you want to talk about coding stuff.
+
+86
+00:54:06,270 --> 00:54:14,250
+Wes Bos: Yeah, I think the very first hacker you website, we had like some HTML fields or something like that. And remember, you could get in there and do it. No problem.
+
+87
+00:54:14,280 --> 00:54:18,120
+Heather Payne: Yeah, I can do some stuff, but definitely not the best.
+
+88
+00:54:18,150 --> 00:54:22,140
+Wes Bos: That's funny how to find a job though. You know how to know how to find a job. That's
+
+89
+00:54:22,140 --> 00:54:24,000
+Unknown: my special expertise.
+
+90
+00:54:24,360 --> 00:55:39,810
+Scott Tolinski: Now, going through a boot camp is such a great way to make sure that your code gets better and better with professional training. Now, another way that we make sure our code gets better and better is by using a tool to track and log the errors and bugs that happen inevitably within our code. I mean, of course, I don't write code that has bugs but everybody else does. So what you're going to want to do is you're going to head to sentry@sentry.io. That's s E n t r y dot i O, use the coupon code tastytrade. You're gonna To get two months for free, and you're gonna want to see why this error and Exception Handling tool is just so fantastic. It really allows us to see everything that's going on in our application at a glance, fix it, make sure it's fixed and attach it to releases. There's a ton of features for everybody. There's features for the whole team. It's almost like, hey, there's something for the whole family. There's features for the whole team, there's the marketer features, there's the GitHub manager features, and there is all of the developer features the junior developers who's got to go push some quick code fixes for the growth of the team. So check it out, Sentry dot i O. Alright, so
+
+91
+00:55:39,810 --> 00:56:11,430
+Wes Bos: we're gonna wrap up. The two things we do at the end is one we do this thing called sick pics, where we pick literally anything could be a mug could be anything in your life that you find helpful, whether it's software or physical, good, I should have told you about earlier, you don't have to say anything if you can't think of anything. And then at the end, we do shameless plugs, which is just if you want to plug anything, you can link it off to that. Alright, uh, Heather, do you have a sick pic for us today.
+
+92
+00:56:12,270 --> 00:56:50,460
+Heather Payne: Um, my sick pick is whereby.com WHER ebay.com. It is the collaboration tool that our team has been using to work remotely together. And it basically gives everyone their own virtual office that is just kind of like available all the time and makes it really easy to pop into other people's offices. And when you're in a meeting with somebody, you can collaborate in a Google Doc together, which is a really, really nice feature. You can see people's faces and you can collaborate at the same time. So an alternative to zoom. It's been really helpful. I don't think we would have been as successful with remote working without this tool.
+
+93
+00:56:50,670 --> 00:57:01,410
+Wes Bos: That's really cool. I like this a lot. I'm gonna have to try this. I never heard of it. So what are you using for the actual online classes? Are you still using zoom for that?
+
+94
+00:57:01,650 --> 00:57:03,570
+Heather Payne: Yeah. Zoom is for the classes. Yeah.
+
+95
+00:57:03,750 --> 00:57:10,740
+Wes Bos: Oh, yeah. And this is just for like working. stand ups, things like that. Sweet. Cool.
+
+96
+00:57:11,100 --> 00:58:21,060
+Scott Tolinski: So my sick pack is related to a cippic that I've done before, which was my Oh, the size of this was like, like a quart, maybe of cold brew maker was like a giant mason jar with a filter. Well, I have the upgraded two things. This is ridiculous. But I've upgraded to a one gallon cold beer maker, and it has a tap. So it has a tap. It's a giant one gallon glass mason jar with a tap and a filter. you grind up grind up your beans, you put your beans in the water, and then you got to tap you've got your CB all D and this thing's really cool. So this is my sick pack. I really like my cold brew coffee apparently. So check it out. If that sounds like something you'd be interested. It's actually funny when I corny got the message that it was shipped before I told her that I bought it. And she's like, you did not buy this gallon cold brew maker. And I was like I did it's on the way she says, but the ad says it's for parties. We're not hosting any parties. I'm like, this isn't for parties. This is for daily consumption. This is not gonna drink a gallon a day. But oh, man,
+
+97
+00:58:21,060 --> 00:59:06,210
+Wes Bos: you need to post a photo on your Instagram. I need to see that. Okay, we'll do Oh, and I'm gonna pick something that Scott we were just talking about this earlier. It's I start menu for for the Mac. And it basically puts all the CPU I use it for CPU GPU and upload download, especially because I'm on such a strained network connection here. Up at the cottage, I always need to see like what is using my bandwidth and am I talking it out with whatever's going on right now. So I start menu, it does tons of stuff, but I use it for seeing my upload download really quickly in my in my menu bar. And Scott told me he's been using it for like, what, like nine years and I just got it a couple weeks ago. I've been using it since like 2012
+
+98
+00:59:06,230 --> 00:59:08,190
+Scott Tolinski: Yeah. So like, almost 10 years now.
+
+99
+00:59:08,220 --> 00:59:32,340
+Wes Bos: Yeah, it's crazy. That's great. All right, um, shameless plugs. I'm going to shamelessly plug my new website actually, it went live couple days ago, Wes Bos calm. It's a Gatsby website as well, really happy with with how it looks and how it came out. And if you can see a list of all the different courses that have on on there as well, but take a look. And it's all open source as well, so you can see it on GitHub.
+
+100
+00:59:32,670 --> 01:00:22,590
+Scott Tolinski: Cool. I'm going to shamelessly plug my latest course, which is on design systems in figma, where we talk about all of the really interesting features that exist, many of which only exists in figma to create these elements that become reusable, expandable components, text sizes, whatever to build a really robust design system. This course is specifically for anybody who might not feel like they have the skills to design something and maybe even develop Who if you get a system in place, then you know you can create something. So this is all about learning how to create those systems rather than like oh, add this border radius here. Add this here to make it look nice, giving you the tools to essentially make yourself a good designer. So head on over to level up tutorials. COMM Ford slash pro sign up for the year save 50% right now. Yeah.
+
+101
+01:00:22,950 --> 01:00:26,190
+Wes Bos: Awesome. Heather, do you have anything else to shamelessly plug?
+
+102
+01:00:26,190 --> 01:00:27,030
+Unknown: Yeah, I'm
+
+103
+01:00:27,030 --> 01:00:58,860
+Heather Payne: gonna shamelessly plug. The fact that we're we're not just a bootcamp, Gino has a whole bunch of continuing education courses, which are all now available live online as well. So you could take them from anywhere in the world. But we've got you know, web development, JavaScript full stack. UX data science is one of our newest ones. So if you're interested in learning something kind of like twice a week in the evening or once a week on the weekend. Check those out, because they're really cool. So junior college COMM And you'll see in there like a bunch of different courses you could take. Awesome.
+
+104
+01:00:59,040 --> 01:01:09,870
+Wes Bos: Sweet, thank you so much for coming on. That was really fun. We get questions about boot camps and finding jobs all the time. And it's fun to have you on and to talk about it. So thank you so much. Well, thanks
+
+105
+01:01:09,870 --> 01:01:14,730
+Heather Payne: for having me. This was really fun. Great to see you after so long with us and really nice to meet you too, Scott.
+
+106
+01:01:14,730 --> 01:01:20,130
+Wes Bos: Yeah. Likewise. Alright, thanks, everybody. Thank you.
+
+107
+01:01:22,890 --> 01:01:32,640
+Scott Tolinski: Head on over to syntax.fm for your full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
