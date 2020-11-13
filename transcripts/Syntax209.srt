@@ -1,0 +1,220 @@
+1
+00:00:00,359 --> 00:00:07,590
+Unknown: Monday, Monday Monday, open wide dev fans yet ready to stuff your face with JavaScript CSS node
+
+2
+00:00:07,590 --> 00:00:08,340
+module BBQ
+
+3
+00:00:08,340 --> 00:00:21,300
+Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob and Scott
+
+4
+00:00:23,610 --> 00:00:24,450
+Tolinksi ski.
+
+5
+00:00:27,690 --> 00:00:56,100
+Scott Tolinski: Welcome to syntax on this Monday tasty treat. We're going to be talking about Keystone dot j. s. And let me tell you something I know very little about keystone.js. But Wes has been using it for a little bit and I'm going to be asking him some questions. And hopefully I'm going to learn along with you about Keystone j. s. My name is Scott Tolinksi. I'm a developer from Denver, Colorado with me, as always is the West boss.
+
+6
+00:00:56,150 --> 00:00:57,180
+Wes Bos: Sup, everybody?
+
+7
+00:00:57,180 --> 00:00:59,220
+Scott Tolinski: So how's it going?
+
+8
+00:00:59,549 --> 00:01:12,090
+Wes Bos: It's going good. It's the last episode of 2019, which it's currently December 10. We're recording this so not quite, but starting to look forward to Christmas holidays and getting stoked for that. Yeah,
+
+9
+00:01:12,090 --> 00:01:43,410
+Scott Tolinski: I'm psyched. I'm psyched for everything here getting the end of the year juice going. And this is one of those topics that I think is going to make me really excited. So Keystone j s, this episode is sponsored by one of our longtime sponsors, very fitting to end the year out with Freshbooks. And Freshbooks is going to be the service that you use to keep track of all of your invoices, payments, and all that stuff after you just built the site of your clients dreams with Keystone j s. So do you want to talk a little bit more about Freshbooks? Was
+
+10
+00:01:43,740 --> 00:04:23,760
+Wes Bos: Yes, Freshbooks is cloud accounting software, I'm going to be using it today actually what every now and then I have what is called the money day where I go through my Freshbooks and go through all unpaid invoices and see have they been paid because sometimes when I get a check in the mail, I don't, I don't mark it as paid or whatever. Sometimes they haven't been paid, you got to chase those people. Or you can use the Freshbooks to auto send those things. And then I also am going to be wrapping up my 2019 expenses pretty soon make sure I got all of those logged in as well. And just make sure that that is all in good shape for going forward. And it's always a very quick thing for me to do that because of Freshbooks UI is very intuitive. Any problems that have one year I inputted a bunch of expenses as or sorry, HST, I imported it as lowercase HST. And some of them I input it as uppercase HST. And for some reason, they were separate. And I was like, email Freshbooks was like, hey, like this is showing me two different types of tax. And like an hour later, they had run a script that updated I'm sure that's fixed by now. But their support is fantastic for that kind of thing. So check it out freshbooks.com forward slash syntax for a 30 day unrestricted free trial and use syntax, and how did you hear about a section that will keep them sponsoring well into 2020? Thanks so much to Freshbooks for sponsoring. Alright, Keystone. Maybe I'll just give a little bit of back story on this. So I am currently rerecording my advanced react course. And my current advanced react course uses Prisma, which is a graph qL server, you give it your schema and it will kick out this huge graph qL API and it's really good. However, Prisma is working on Prisma. Two right now, and it's not going to be ready by the time I want to record. So it's not that I don't like Prisma. It's just that it just doesn't line up right now. And I'm a big fan of Prisma and everything that they have. So I'm just going through some of the different options out there. I've tried out Hasura a lot of people are telling me to check out nest jazz. However, one of the things that I've just had my eyes on recently is this thing called Keystone j s, which is sort of maybe even a Rails for JavaScript, might I say it's a graph qL base, I'll talk about what it is but basically Keystone j s. I've been talking about it for a while. It's finally here. It's pretty stable. And it is I'm not going to say I'm re recording my advanced react course with it yet because I'm still evaluating it.
+
+11
+00:04:23,760 --> 00:04:26,370
+Scott Tolinski: Didn't you just say that? I think you've just said that already?
+
+12
+00:04:26,390 --> 00:04:58,110
+Wes Bos: Well, I am recording it. But I haven't chosen Keystone as it's it's likely going to be Keystone. But I haven't. I haven't totally chosen that just yet. Because I haven't gone through absolutely everything yet. I've been I've worked probably four days in a row now converting the app over to Keystone. And it's going very smoothly, surprisingly, very easy to move things over from Prisma. All of the all of the resolvers get moved over very smoothly. It's just basically changing words and stuff like that. So did somebody say
+
+13
+00:04:58,320 --> 00:05:21,890
+Scott Tolinski: yeah, no, I think that's it. where we want to go is the very first high level. I know you said it's sort of like a what it's sort of like a almost like a Rails for node and in JavaScript, I guess I want to know a little bit about like, what exactly is Keystone? Is it a build tool? Is it? Yeah, it's a framework, like, where does it fit? Like, what is it actually doing?
+
+14
+00:05:22,260 --> 00:07:37,620
+Wes Bos: Yeah. So I would, I would say it's in the headless CMS camp, except that you, you host it yourself. And it comes with a lot of stuff. So it's basically two things. It's a graph qL server. So the way that it works is that you boot up a keystone instance. And you create these things that are called lists, maybe you can think of them your schema as like data types. So I'm creating the users, I'm creating items, I'm creating carts, I'm creating charges, all these different types, and they're all related to each other. And what happens with Keystone is that you create all these different types, you create all the different fields in those types. I'll talk about that more in just a bit. And then that what that does is it spits out a whole graph qL API for all of your CRUD operations, create, read, update, delete, based on all that. So that's one part of it. And that's, that's what Prisma does, as well, Prisma, you gave it your schema, it kicks out an entire graph qL API. The other part of Keystone is it gives you a GUI. So you can log in, it has accounts and auth baked into it. So you don't have to write that yourself. Or it's not baked in but they ship one with it, you can build your own if you like as well. And then they give you this admin GUI, where you can log in very much like a WordPress, you can log in, and you can see all of your data types. You can add, update, delete, reorder, do relationships, all of those things like that. And that admin GUI is built in react. But that's not to say that Keystone is a react thing. Because the third part of building a website, you have your back end, you have your admin GUI. And then you also have like your actual application, your front end, right. And the front end is up to you. You can use it with absolutely anything, they have stuff out of the box for using Knox with view, you can use a static react app, or you can use next j s. I'm personally not using any of those right now. I'm just, I have my next app totally separate. There's no reason behind that other than that's how I built my last one. And I'm just running that up. And I'm just trying to convert it over at the time. So it's a graph qL server ended admin GUI with accounts and auth baked in.
+
+15
+00:07:37,980 --> 00:07:59,940
+Scott Tolinski: Cool. So okay, so this, you give it your schema, and it creates the operations, right, your your mutations, you create update, Billy, can you get in there? And like, let's say you wanted to customize that stuff? Is that stuff just automatically written for you? And you don't even think about it? Or do you still have to go in and write the mutations and all that yourself?
+
+16
+00:08:00,270 --> 00:09:13,110
+Wes Bos: Yeah. So out of the box, just like Prisma is it gives you crowd operations for every type. So you can create types, you can update types, you can read them, and you can delete them. However, there are situations where you want custom logic, when you create something you want custom logic, or when you update or delete something, you want some custom logic. So for example, when somebody checks out, I need to create an order. And that needs to first ping the stripe API with their credit card number, or the stripe token and then charge their actual token, right, like there's a lot more logic. And when you get into custom logic, there's two ways to go about it. You can either write your own resolver. And that's pretty cool. So you can, in addition to all of the API they give you, you can create your own API surface that custom resolvers for queries or mutations. Cool. Yeah. And then, in that case, you can charge the stripe API. And then they also have this other thing called hooks, which have nothing to do with react hooks. You can think of them as you know, how WordPress has these different filters where you can jump in at any point of the lifecycle?
+
+17
+00:09:13,380 --> 00:09:15,920
+Scott Tolinski: Yeah, it's like a it's like a lifecycle hook. Yeah,
+
+18
+00:09:15,959 --> 00:10:27,690
+Wes Bos: yeah. So you can before when the data is received before it's validated after it's validated, during before creation, and after creation. So you can jump in at any one of these different points. And massage the data, validate the data, change the data, do whatever it is you need to do, and then pass it along to the next step. So I am using both of those right now. And at some point, you need to do custom validation, you can jump in with a hook. And then other points, if you want to. What is the one that I'm doing right now add to cart. So I created a custom mutation that's called add to cart that you ping it with an API and that under the hood, that will then Create a cart item, and assign the user that is currently logged in. And then keep going I could probably do with hooks, I'm gonna have it reviewed by the folks that think mail, some lovely Australians, by the way, they are a company out from Australia that that does a lot of this Keystone stuff. And they built this thing. And I've just been asking them dozens of questions. And then, in the middle of the night, Australians wake up and answer my question.
+
+19
+00:10:29,130 --> 00:11:21,510
+Scott Tolinski: So funny. So yeah, there's two different ways to go about it, which I like, because like out of the box, it just works. And then you need to do like an extra 10% of customization. You can either write your own endpoint resolvers, or you use one of these hooks to jump in and do what you want. That's pretty sweet. Because I've always done it myself. So every graph qL API vote I've ever written, I haven't used Prisma. Myself, yep. And so when I do it, I create the query, I create the mutation, I have to go and write the query to go and write the mutation. Anytime I add a new data type, I write this schema, write the graph, it's like you'd have to do the same things over and over and over again, I feel like this is one step closer to a dare I say like the Drupal past that I actually enjoyed, like the parts of Drupal that I actually enjoyed. So it's pretty cool. Okay.
+
+20
+00:11:21,720 --> 00:12:31,170
+Wes Bos: Yeah, I think the reason why I really like it is because it can be a bit of a bummer with all of the overhead of Yeah, and doing it from scratch, or using a lower level solution, there's certainly there's certainly benefits to using a lower level solution like a sewer or Prisma. Because they just give you the API's. And it's up to you to build everything else on top of that, and a lot of people need that. But certainly a lot of apps are just doing the same thing. We've got a whole bunch of data, it's related to each other. And I want to perform CRUD operations on it. And I want to lock it down via authentication and different things like that. And this just seems much easier and much more quicker to get up and running. And I think that's going to be good for my course. Because it gives you that immediate, like, Oh, I'm actually building something, oh, I could see how I can apply this to something else. Whereas sometimes when there's too much setup and too much boilerplate, you see this with Redux as well, people just go, Oh, this is the wiser, so much set up. And every time I want to create a new data type you're like, whereas like this, you just create a new data type. And then it gives you all the API and everything for you immediately.
+
+21
+00:12:31,410 --> 00:12:57,150
+Scott Tolinski: Yeah. And that's so funny, because I look at these docs, and I think, oh, okay, look, I'll look at all this code you got to write to, to work with this thing, right? Here's this specialized code they got to write for Keystone j s. But then the more I think about it, the amount of code that it's saving you is so substantial to do the same boring stuff you got to do every time. And I'm not a huge fan of boilerplate code. As you know, I resisted Redux for a long time because of it. So yeah, no, this is pretty sweet. And
+
+22
+00:12:57,330 --> 00:13:35,640
+Wes Bos: one more thing I have is, I think the benefit that you're saying there is because when you define your types, you give it what's called a field type, you can give it a field type of color, or text, or a password, or relationship, or a select and, or a slug, or there's like literally 20 different field types. And then you can go make your own if you want. And those field types, determine a few things that determine what does the GUI look like on the admin? But then they also determine how does it get saved to the database? And how does it get pulled out of the database? And then they also determine, like the cloudinary, one, it just resizes it behind the scenes for you,
+
+23
+00:13:35,939 --> 00:13:38,190
+Scott Tolinski: indexes and that sort of stuff.
+
+24
+00:13:38,490 --> 00:14:13,050
+Wes Bos: Yeah, yeah, it just it does both of those things for you, which I really like because you the developer, you have to create the back end, you got to create some sort of admin, back admin UI for people to manage this data. And then you also have to create your actual application. Yeah, just the the front end. And sometimes those, the admin and the the app, sometimes those overlap in terms of that, and Keystone allows you to do that. Like, certainly when people sell things on the sick Fitz app in my course, they don't have to log into this admin UI kind of want to do it in the app itself, and you do that no sweat,
+
+25
+00:14:13,320 --> 00:15:20,160
+Scott Tolinski: if I would have had something like this, this is this would have been something that I could have written level up tutorials on. This is like the kind of thing that I really, really enjoy. I'm interested in seeing where this goes. Okay, so you would use this in anytime that you want to have a full on application and not have to write the connections, not have to write all those CRUD operations. That was the stuff that you I personally really loved from rails specifically, was that you create a collection and then you have access to those things. It's almost CMS, like, in a way, but it's not necessarily a CMS. So let's talk about the like hosting of this. This is something that's kind of interesting to me. Have you done any work with hosting because that's always one thing that seems to be A bit of a bugger in a lot of platforms is, okay, you got this application, it's all working your front end, your back end, whatever, it all works localhost. How do you host this thing? And then make it easy? Is there any like one click host for this thing? Because I know Yeah, I can push this kind of stuff up to Netlify. Does this work with now j. s? Is it mounted? Not now, it's just now
+
+26
+00:15:20,190 --> 00:16:07,590
+Wes Bos: no now hosting. Yeah. Now, now. So is the admin UI. And the back end is all bundled into one application, which is great. So you don't have to host two separate apps. And that is a node app. It's based on Express and then the database is either a, it's kind of cool, they've sort of abstracted it away from the database. So I'm obviously using MongoDB, because that's the database I always use. But you can also use it with next K and e x, which is a ORM, for SQL databases. So if you want to use it with Postgres, or MySQL, or whatever, and that's great, because all the time people are like, great, but I don't want to use Mongo, I want to use whatever and and you can just say that was the thing with Meteor.
+
+27
+00:16:07,590 --> 00:16:08,640
+Scott Tolinski: Yeah,
+
+28
+00:16:08,670 --> 00:16:35,460
+Wes Bos: yeah, you can just switch out your database layer underneath. They have support for SQL and MongoDB. right out of the box. And then I'm sure the community will start building adapters for for other types of things. So there's that you got to host your MongoDB somewhere. And I recommend I use use em lab that got bought by MongoDB. So they have this thing, they have this thing called Atlas. That's probably what I'll use. You can also run it locally.
+
+29
+00:16:35,640 --> 00:17:12,390
+Scott Tolinski: I like Atlas. Yeah, I know. We talked about Atlas before, but I've been on level up spin on Atlas for a little while I moved it off composed just because the feature set Yep. And between Atlas and the Mongo DB compass application, I really like working with I like it, I look at the charts, I like the graphs, I like the index alerts. And I was getting this index alert. And I had goofed up one of my indexes. And it really made a huge difference. So I just I like that they, they're constantly improving, and seemed to make it like always an improved platform.
+
+30
+00:17:12,800 --> 00:19:29,570
+Wes Bos: That's good. So you can host this thing anywhere you can host a node app. And one of the things you can do is you can also host your actual application through it. So there's adapters for next and knucks, like I said, So ideally, you would just ship one app to a server, and it will run the API, the admin and your actual application all in one go. And because it's one big node app, you can host it anywhere you can host so I would probably reach for Digital Ocean. Unfortunately, I asked them like, Hey, you can't host this thing on sites Now, can you because the thing about sites now is that it has to be built in serverless functions. And they don't really host node apps anymore. On on sites now, which is unfortunate. That's why you can't host my current advanced react one on on sites now right now. And I doubt you'll be able to host this thing on sites now as well, because it's it's a node application, right? That might change. I know that they're, they're looking forward to it, I'll probably get in touch with them. And see if we can somehow get this thing because I love using now to host things but they don't like you running an app. They like you building your app, like with something like next JS like you certainly could host a front end on now. But the actual back end that connects them MongoDB I don't think you'd be able to do it on Heroku for sure. linode, for sure. Any of these other things where you just host a regular now. Plus, I'm really loving the whole Digital Ocean plus pm too. And I want to show I want to make some videos to show people how to host a note app on digitalocean with pm two, what exactly is pm two? It's a pm is this it's like forever, where it will pull apps on your thing. And it will, it will run them and collect all the logs for you. And it's got a really great interface. The only thing it doesn't do is it doesn't do like Port proxying yet. So you still have to run like a nginx config to proxy like forward slash admin or forward slash something to I'm using that on my own server right now. This looks cool. And I've been a big fan of it pm too. Yeah. Yeah, I should do a little little show on it. Oh, added to the list.
+
+31
+00:19:29,570 --> 00:19:54,510
+Scott Tolinski: I I like this pm. That's pretty sweet. All right. Let's talk a little bit about the shortcomings of this because I think we get enough of the benefits here. It seems like it's going to save you some time. It's going to save you some code doing redundant things. It's going to save you some boilerplate. makes all that stuff a little bit easier. What are some of the things that you've experienced so far that maybe aren't your favorite aspects of the Keystone?
+
+32
+00:19:54,990 --> 00:20:44,640
+Wes Bos: Yeah, a couple things. There's no TypeScript, not support, but they don't Have a good TypeScript story for maybe I should back up. So with a good graph qL server like Prisma, if you're writing in TypeScript, or even if you have a VS code plugin for regular JavaScript, as you're typing your queries, it will autocomplete them and suggest fields for you. Much like when you're typing in the graphical or graph, qL playground. There's no good. There's nothing like that yet. In this, which is a bit of a bummer for because people like to have that that's the whole point of or not the whole point, but it's a big part of graph qL is that it's typed, and that you can get these really nice auto completions. And then it will tell you as you type if you type the field wrong, right. So that's a bit of a bummer.
+
+33
+00:20:44,840 --> 00:20:48,780
+Scott Tolinski: Yeah, that's like one of the really great things about TypeScript is those Yeah, completions.
+
+34
+00:20:48,780 --> 00:22:28,320
+Wes Bos: Totally. So we'll see if something around that pops up. They're certainly talking about it on if you look on GitHub, the authentication, I haven't dove into the auth all that much just yet, they allow you to lock down the auth per list, which is like a type like an item, or per field, which is like item dot name or item quantity. So if you want to lock that down based on people's permissions, you can do that, I know that they've told me they are going to simplify it a little bit. Because certainly, with off, you don't want to feel like oh, this is probably what I want. Like you don't want to accidentally give somebody permission the wrong way. So I haven't dove too much into it. But it does seem a little bit complicated. At the moment, I bet that will get better in the future. Um, other things I didn't talk about was plugins. So they have a bunch of plugins that will help you they have one called the Apollo helper. So one of the problems I have in my current course, is that if you add an item or delete an item, the pagination is all off by one. So like page two needs to be revalidated. And the only solution Apollo has told me is you have to nuke the cache, which is you didn't delete everything from the cache, which sucks because then then you have to go and re fetch it from the network. So one of the plugins that Keystone gives you is the ability to nuke just a certain type, meaning that like you add an item, you can you can nuke all of the items from the cache. And then it'll refetch them. So you have and then you're not accidentally deleting the cart or the user or any of the other information that is still good.
+
+35
+00:22:28,620 --> 00:22:49,410
+Scott Tolinski: I think that Apollo client, three, is that the 333 version they're doing, they just announced that they're going to be giving you a ton more control over the cache. Oh, God. Three. So I wonder if that's going to make things a little bit easier there, too. I haven't looked into it too much. But there was the graph qL summit, there was a little bit about that.
+
+36
+00:22:49,710 --> 00:23:14,130
+Wes Bos: Oh, good. Oh, good. That's good. Um, there's a, something I haven't looked into, which is that they have an email plugin. So if you want to write your emails in JSX, it will compile them. You can use something like mg ml or whatnot. So that's pretty cool. They also have plugins for like Google and Facebook login. So if you don't want to use username and password to login, you want to sign in with Twitter or GitHub, you can absolutely do that as well.
+
+37
+00:23:14,550 --> 00:23:16,500
+Unknown: Yeah. And I want to use this now.
+
+38
+00:23:16,530 --> 00:24:03,510
+Wes Bos: Yeah, it's very much like using it. And I'm like, this is nice, like, up and running. And it's not like so so key stony. And what I mean by that, is that, yeah, I just basically copied my Prisma types, and pasted them into this. And then I just changed the syntax. And then I took all of my mutations. And Apollo and I just had to rename them from something like capital II, it used to be lowercase items. Now it's capital items, like very, very minimal. And I was like, Oh, good. Like this is still graph. QL. At the end of the day, none of this stuff is specialized. Where it's not going to, you're going to be able to take your skills that you learn in Keystone and apply them to something else if if that's not what you end up using. Yeah. Huh.
+
+39
+00:24:04,200 --> 00:24:06,390
+Scott Tolinski: I hope you don't mind. I might do a course on this too.
+
+40
+00:24:07,320 --> 00:24:12,060
+Wes Bos: Yeah, it's it's really neat. It's really neat. Yeah. Big fan of it. Cool. Well, this
+
+41
+00:24:12,060 --> 00:24:28,020
+Scott Tolinski: is the Keystone j s. You'll want to check it out. Trust me, I think this is pretty cool. And definitely something worth your time. This is available at Keystone j s.com. If you want to learn more. Version five is fairly new. Right? When did this come out?
+
+42
+00:24:28,020 --> 00:24:37,710
+Wes Bos: Keystone five came out in the summer. Yeah for is actually I initially started building my course platform like five years six years ago on Keystone.
+
+43
+00:24:37,920 --> 00:24:39,540
+Scott Tolinski: Oh, so you've had an eye on this. Yeah.
+
+44
+00:24:39,540 --> 00:25:32,820
+Wes Bos: And I don't know I don't know why I migrated. But I really liked it at the time and it was just because like I love Express I love node. I love react like these are this is all of my things. And I just feel so productive in this thing. And certainly there's a little shortcomings but it also feels like really stable as well. The focus That built it are building client apps on it. I don't feel like it's going to change out from under me, like, the Prisma stuff is amazing. But Prisma went from graph cool to Prisma. And then they change the schema. And now Prisma two is coming out. And like they're certainly doing that because graph qL is quick moving. Yeah. And that's the industry. They're trying. They're trying to, like, figure out the best way to do graph qL but as like a tutorial creator, who Yeah, they care about, but then it's not their end game to please me and you. It just changes quick.
+
+45
+00:25:32,850 --> 00:25:36,540
+Scott Tolinski: Yeah. And I really liked how easy graph cool was.
+
+46
+00:25:36,600 --> 00:25:37,140
+Wes Bos: Yeah,
+
+47
+00:25:37,140 --> 00:25:40,890
+Scott Tolinski: I always sort of wishing that that was the direction but you know,
+
+48
+00:25:41,160 --> 00:26:13,740
+Wes Bos: yeah, I think that with graph cool. It wasn't any getting the like, enterprise or like real applications. I think a lot of people built toys on it. And then when it came to like, even like the serverless function, you had a copy, paste it into their UI, like there was no like path for writing your serverless functions locally and deploying. So it's unfortunate. But that's that's the industry, which is if you take on something super early, like graph cool was like two years ago, if you take on graph qL, two years ago, it's certainly going to change. We're still all figuring this stuff out.
+
+49
+00:26:14,100 --> 00:26:18,030
+Scott Tolinski: Yeah, totally. Cool. Well, I learned quite a bit about Keystone.
+
+50
+00:26:18,240 --> 00:26:19,560
+Wes Bos: This is getting tasty.
+
+51
+00:26:20,730 --> 00:26:23,190
+Scott Tolinski: Oh, it's only 28 minutes these things go to 30.
+
+52
+00:26:23,370 --> 00:26:24,330
+Unknown: All right, we're allowed.
+
+53
+00:26:24,420 --> 00:26:39,360
+Scott Tolinski: Yeah, this isn't that tasty. We're alive. We're good. Keystone j s could be the Keystone to your next project might be mine. Who knows? I'm gonna try it out. Sounds fun. All right. Yeah. Cool. All right. Well, I don't have anything else. I'm excited to dive into this. thank us.
+
+54
+00:26:39,569 --> 00:26:41,460
+Wes Bos: No problem. Talk to you later.
+
+55
+00:26:41,549 --> 00:27:11,550
+Scott Tolinski: We will catch you in 2020. We're going to be in the future. Can't wait for that. 2020 with 2020 vision. We're gonna be crushing it next year. Like I don't know, in that crack or something. But let's, let's sign off the year. Yeah. All right, please. Head on over to syntax.fm for you full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
