@@ -1,0 +1,108 @@
+1
+00:00:00,359 --> 00:00:24,450
+Announcer: Monday, Monday Monday, open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA and Scott Taylor. Totally at ski.
+
+2
+00:00:25,950 --> 00:01:04,530
+Scott Tolinski: Oh, welcome to syntax in this Monday, we're gonna be talking about something really interesting, a feature that Wes has added to his own store. And because of that, I get 1000 requests a day to edit to my own store. That is purchasing power parity. The thought and idea that you know, not every country is purchasing with the same amount of money per each cost. So charging everybody the exact same price isn't exactly the most fair way to go about it. So my name is Scott Tolinksi. I'm a developer from Denver, Colorado and with me, as always is West boss.
+
+3
+00:01:04,590 --> 00:01:06,180
+Wes Bos: Hey, everybody, what's up?
+
+4
+00:01:06,270 --> 00:01:09,330
+Scott Tolinski: Hey, Wes, the pee pee pee man himself.
+
+5
+00:01:10,890 --> 00:02:27,180
+Wes Bos: That's great. Speaking of Pease Today we are sponsored by Prismic. Prismic is a headless CMS with a graph qL API on top of it. So the way that it works is you sign up for Prismic. You create your content types, you can relate them to each other. And that will spit out an API as either a REST API or a graph qL API. And then you can pull that data into wherever you want you the listener probably want to build a view or react or Angular or something, some sort of single page app like that. So we want you to check out Prismic try it on your next project, go to prismic.io forward slash syntax. And even if you're not interested in it, go to this website and check out the prismic.io for syntax because they've made this hilarious landing page like this seriously put some effort into it. This website has got Scott versus me they've pitted us as view versus react. They've got a bunch of different features in there. And they have a bunch of different starters for react and for view with a call Team Wes and team Scott really hilarious little website here and definitely you should check it out. prismic.io for syntax Thanks so much to Prismic for sponsoring
+
+6
+00:02:27,360 --> 00:02:30,780
+Scott Tolinski: nice by the way that was a Loki awesome head transition with the fourth pa
+
+7
+00:02:30,780 --> 00:04:48,810
+Wes Bos: Yeah, I aspire to be like us, God. Alright, so let's get into it. Um, purchasing power parity, parity, purchasing power, power, purchasing, parity, whatever you call it, I'm sure there's a proper way for it. This is something that I've implemented probably three years ago on my platform already. And it was done out of people emailing me non stop saying, Can I have a coupon? I am from this country? And then I would have to go and say, Okay, what is that country? Okay, how much do developers make in that country? Gentlemen? Okay, well, email them back, what would be a fair price for you, okay, and now to make a custom coupon and send it back to them. And that was just such a time suck from me. And I was realizing like, first, it's a really cool thing to be able to make your content available to absolutely everyone around the world. Like there's, there's something to be said for. Yes, I'm running a business. But I'm also It feels good to be empowering people to, to up their job, no matter where they live in the world. So that's the like touchy feely part of it. And then the like business west part of it is you can make more money by charging less in other countries. So this whole idea of people emailing from it primarily was India that got me started. Because there, there's a lot of people in India, a lot of developers out there that take my content, and they just don't earn as much as they do as like a North American or a European developer might make. So how do you like accommodate for that? Where it's weird, because it's the same product? It's generally the same price, although it is a little bit more expensive to actually it's funny, the most expensive place to stream video to is India. Yeah, yeah. Yeah, it is funny. And it's one of the cheapest countries to buy it from. So I just thought like, like, how can I automate this this type of thing, right? So over like, probably two years, I've just been collecting data from people as to like, how much they make what is like, what is the developer making your country and just information about what is fair and things like that. And then I built this thing called parity purchasing power. It's an economics term. And I implemented it.
+
+8
+00:04:48,870 --> 00:04:52,380
+Scott Tolinski: I was gonna say, did you come up with this concept? yourself?
+
+9
+00:04:52,409 --> 00:05:23,510
+Wes Bos: No, this is a an economist type of term. I sort of just put it into my own thing and said, I support it. So I did that. And then it's sort of like over the last couple of years, it's just blown up in terms of course creators are just pointing at me and other developers who now have implemented it and sort of like everybody or not everybody, but a lot of people have implemented it in their product, to a point where people who don't do it send me emails being like that, like, everybody is saying, why don't you do a West is doing my
+
+10
+00:05:23,510 --> 00:05:36,690
+Scott Tolinski: so many people messaged me about that. And I'll even in that later in this episode. I don't know if you want to get into like, why it's more difficult for me to do that than it is for you. Yeah. Do you want me to do to talk about that now? Or do you want to talk a little bit more about yours?
+
+11
+00:05:36,900 --> 00:10:39,800
+Wes Bos: Yeah, let's talk about, like how you calculate it. And then we'll we'll talk about like the implementation details. Cool. So the last thing I really wanted to become as sort of like the person on this thing, because I'm not an economist. And I also don't want to be put in the middle of what is fair and what is not fair. Yeah. So that is the reason why I do not make my rates public. I do not share them. Because that would be an endless hole of people emailing me about what is fair, and what I already got enough of that. And like I try my hardest to make sure it's fair across the world. So like, where do the rates come from? Well, personally, I have gotten rates just from asking developers from different countries, I see the traffic that comes to my website, I went into all of those countries found somebody if they had not already emailed me and said, like, what do you make, I want a glass door. And I researched what developers make in those. And I sort of just came up with a percentage discount that everybody would get based on which country they are coming from. There are many other ways to calculate this. So there is the somebody came out with an entire package that just does it. And it's called just purchasing power parity, I think you could just npm install purchasing power parity, and it will do all of that for you. I'm not sure where the rates come from. I'm not Yeah, I'm not sure where the rates come from there. You can also generate it based on the Big Mac index, which is how many hamburgers do you get for $50? Us? So that's the other thing I should say is I base my rates, even though I'm Canadian, I base everything on the US dollar. And then rates can they don't go up from there, but they go down from there. And they say like based on that, like how many how many burgers? Can you honey, Big Macs, can you buy with your money in that country? Right? Because that's all around the world. I'm not sure how, how much water that holds because of like supply chain as well, like how much just beef costs in different countries. But it's certainly a sort of highly regarded way to figure out purchasing power parity. There's lots of other things you can dip into. But what I found what works well, both from being fair, as well as trying to sell as many courses as they possibly can, the rates that I've come up with work pretty well. And I'm constantly adjusting them things like Argentina's economy tanked and I have to adjust the rate based on that. But it's it's pretty much just a dumb thing for me at this moment. Cool. Wow. So uh, implementation details, how do you do it? Once you have these rates? Like, how do you do it? Obviously, everyone's like, I can't do that, because people will cheat it right. So first of all, how do you determine what country someone is visiting from is the most often question I get in that question, or, and that comes from CloudFlare. header. So because I run CloudFlare, on all my websites, one of the headers on every request that comes in is the, the country that they're visiting from, you can actually, if you pay for CloudFlare, that also gives you the city and postal code as well, which is pretty cool. But I just need the country, that's good enough for me. So I pull that off of the CloudFlare header. And then I look that up in my database, and then I'll put a banner on the website based on which country they're visiting from, which is pretty cool. Then I just offer them up a discount code. So I say if you need this, here's the code because there are lots of situations where developers say like, hey, like, I actually make good money, I'm fine with paying full price on this thing I want to support you, which is really cool of them. So I don't make it an automatic thing. It's an opt in thing, or people can put in the coupon code. Because I have my own platform, the coupon code then checks if the user who is buying it comes from that country, I'm not going to tell you how I do that, because I don't want more people to cheat it. But that just Actually, I'll just tell you, there's two ways you can do it. You can you can match the CloudFlare head or header of what country they're coming from. And then you can also match that up with the billing address of the card or account that they are paying from so you can make both sure both of those. The next thing everyone says is like what about VPNs? So generally, people are really cool about this. I'm doing a thing I'm putting myself out there. I'm here on a podcast telling you that Yeah, my courses are cheaper in other countries and I haven't wanted to do this public For a long time, because I know now I'm gonna have to spend some of my time, fending this off with people cheating the system. So generally, most VPN CloudFlare is good at figuring out VPN, I'm not sure, like I tried it with a couple of VPNs. And only about half of them actually worked. Even then you have to still have your your billing address match up with the actual country. So that's a bit harder to actually fake. If you want to do that, and then I still do have people do it, but like I see the data coming in. And if somebody is clearly cheating it, I'll either email them and say, Hey, what's up, or I'll just revoke the account and wait for them to email me and be like, Hey, sorry, I was seeing if I could cheat it.
+
+12
+00:10:41,250 --> 00:12:22,170
+But generally, this is almost a non issue for me. Certainly people do cheat it. But the amount of goodwill and additional sales that it does bring in is well worth the headache of people abusing it and whatnot. Interesting. Yeah, doesn't work with sales. So I one thing I see that people do with purchasing power parity is that they don't apply it to sales. So if they're having like a Black Friday sale, they like take the purchasing power off, which is kind of like a middle finger. So if I'm having a Black Friday sale, you still can get an additional whatever percentage off based on your country, because like sales happen in every country, right, you should still be able to, to get that you can't stack them. So it is a coupon code. And I don't have the ability to do multiple coupon codes. So there is some weirdness there were people are students and want to do the purchasing power coupon code, you can only pick one, I just say pick whatever is better. And that's kind of where you have other challenges is people who buy from Iran, I talked about on the last one, don't have credit cards, or they started, they do have credit cards, but they don't have credit cards you can use outside of Iran. So if that's the case, they usually get a friend who lives in another country to buy it for them. But they still want the Iran coupon code discount. So I had to write a little bit of workarounds there for so people could still use the coupon code when they're not technically in Iran. But it's a whole nother issues by itself. It's complex. Yeah, it is. It is complex. I'm glad I put it in it definitely has helped sales. And that definitely has helped goodwill. And that's pretty much that's pretty much it. Cool. Well, that's a
+
+13
+00:12:22,380 --> 00:12:39,930
+Scott Tolinski: so that's really, I don't know, it's so fascinating for me to hear about this, especially because I've floated around the idea of doing this for so long. In fact, it's been on our to dues forever. And for those of you who are wondering, Well, why the heck don't you just implement this, it's a little bit more difficult when you're dealing with subscriptions. Anytime you're dealing with everything
+
+14
+00:12:39,930 --> 00:12:41,880
+Wes Bos: is more difficult with subscriptions, right?
+
+15
+00:12:41,880 --> 00:12:49,890
+Scott Tolinski: Everything is sort of multiplied, right? Because you have one variable, which is a stripe, credit card charges, right? It's stripe and
+
+16
+00:12:49,890 --> 00:12:50,790
+Wes Bos: PayPal. But yeah,
+
+17
+00:12:50,790 --> 00:14:13,200
+Scott Tolinski: well, you you do PayPal separately, but either way you're still sending the coupon is is rooted in your own thing, right? It's not? Yeah, often stripe system or whatever. No, it's not cracked. So I have PayPal, and credit card through charges and through subscriptions. And it's altered Braintree and they like really want you to do coupons in their system and add ons and all those things in their system. So it gets really, really complex really quickly, when you're doing discounts and add ons, you probably have a few hundred add ons and discounts that exist within Braintree zone system. Oh, yeah, because I can't, especially with subscriptions, I can't just send a longer price to them, I have to send the subscription that has a designated price and then with a coupon, and then that coupon has to already exist in their system, or I have to create it in the process of the creation of the subscription. So it's a really complex problem. And definitely not one that I can just stop everything and work on especially when we have so many things that they'll still work on. But yeah, if you if you do need some help, I'm you know, more than willing to give out the educational discount for those of you who are in a situation like that, because the educational price is a set price. It's not designated by country or by purchasing power, but at least it is it is cheaper, you know?
+
+18
+00:14:13,590 --> 00:14:38,250
+Wes Bos: Awesome. Yeah, it's much more difficult when you get into and then you got to think about like, renewals. And then you also got to think about people who have bought it already and then want to go back and yeah, Want it for like the only first four months of the 12 that they paid already. And who Yes, that can't be can't be easy to do. So it's certainly something at some point, I would probably recommend you do but I don't envy you having to
+
+19
+00:14:38,280 --> 00:14:59,160
+Scott Tolinski: Yeah, to do all of that. In the in, I would like to we have a lot of work to do on our subscription service anyways, in various regards in terms of like editing team and enterprise accounts, which is going to require a lot of upgrading, rewriting a lot of things and maybe it's something we can take a look at when we're heading into that code a little bit more, maybe bring on a specialist or somebody who's totally Pro with that.
+
+20
+00:14:59,550 --> 00:15:32,820
+Wes Bos: Totally And this is just another perfect example of why we code our own systems. Because this is just a crazy idea I had three years ago. And it went ahead and implemented it. And it's awesome. Like, if you were to go with an existing solution for streaming courses, there's no way that they would have this, maybe some of them do now, because it's become such a thing. But like, I wouldn't be able to write my own resolver code that validates a coupon code based on the request that's coming in, and all this other sort of information. There's so
+
+21
+00:15:32,820 --> 00:15:45,800
+Scott Tolinski: many times where I really feel like having my own platform is the greatest thing. Possibly, because you do get that those choices in control, you can add those nice little things that set you apart makes you totally different from their people.
+
+22
+00:15:46,050 --> 00:17:07,680
+Wes Bos: Yeah, absolutely. I big fan of that, it definitely gives you a bit of a competitive advantage to be able to implement, like, I implemented this thing in probably a day or so. And it's paid itself back many, many times over, based on just people from around the world. Mm hmm. So I think that is it. Uh, one last thing is people ask me all the time, they say like, how do you do that? If you have a Gatsby website, like it's client side only right that the CloudFlare header wouldn't necessarily work in that case that if that was the case, then you would need to load the page, and then ping some sort of API that gets a country and then comes back with the country and then display some sort of banner on it. And that would cause a little bit a page jank. If you're bumping down the page to show the banner off of there, but certainly doable as well. I also use this package called country emoji, which will allow you to pass in a country code and it returns the emoji of that country, which is pretty fun. So people, I found love to see their their country's flag on the banner. That's like a huge point of pride for them to see like, thank you so much for considering our country. Like I feel. There's some countries out there I had never heard of before today, which is really cool that to see that there's developers all around the world being able to build stuff.
+
+23
+00:17:07,920 --> 00:17:09,080
+Scott Tolinski: Yeah, totally. Wow.
+
+24
+00:17:09,239 --> 00:17:22,680
+Wes Bos: All right. Well, hopefully you enjoyed that. This is gonna be my go to thing that I point people at because I get asked all the time how I did it, and there's like tweet threads here and there about how I've done it. But I've never just gone out and totally said how it all works. So
+
+25
+00:17:22,800 --> 00:17:29,550
+Scott Tolinski: yeah. And if you want to email me about why haven't I done this yet? You can I can point you to this episode as well.
+
+26
+00:17:30,270 --> 00:17:36,560
+Wes Bos: Please go ahead. Right. Awesome. All right. Well, thanks for tuning in. Catch you on Wednesday. Please
+
+27
+00:17:39,570 --> 00:17:49,310
+Scott Tolinski: head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
