@@ -1,0 +1,176 @@
+1
+00:00:00,359 --> 00:00:19,980
+Unknown: Monday, Monday Monday open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA,
+
+2
+00:00:19,980 --> 00:00:21,660
+Bob and Scott Taylor.
+
+3
+00:00:23,610 --> 00:00:24,480
+Totally in ski.
+
+4
+00:00:25,950 --> 00:01:10,230
+Scott Tolinski: Oh, welcome to syntax and this Monday tasty treat. We're gonna be talking about a really interesting new feature that is coming to your browser API's all about internationalization, one of the least fun things that we have to deal with how do you deal with different languages, different currencies, that sort of thing. In all these different languages, it's actually a very, very difficult aspect of programming and something in specifically in JavaScript that if you've ever had to do it, you've probably come across some of the pitfalls, or some of the ways it could be better. So we're going to be talking about some of these cool little tasty treats that we have for you. My name is Scott Lynskey and with me as always, is West boss.
+
+5
+00:01:10,800 --> 00:01:12,750
+Wes Bos: Mr. International today.
+
+6
+00:01:13,230 --> 00:01:16,680
+Scott Tolinski: Oh, yeah. What is with that designation?
+
+7
+00:01:17,550 --> 00:01:23,040
+Wes Bos: Mister, because I I'm really excited about all these international methods. Oh.
+
+8
+00:01:25,410 --> 00:01:29,850
+Scott Tolinski: I don't like didn't know if that was a joke about you being in Canada or something? Oh, no.
+
+9
+00:01:29,850 --> 00:01:32,069
+Unknown: I was like live in your house.
+
+10
+00:01:32,250 --> 00:01:35,490
+Scott Tolinski: You're in you're not out of the country. What?
+
+11
+00:01:36,840 --> 00:01:45,060
+Wes Bos: Oh, man. Well, don't Google Mr. International, unless you want to see some cut dudes from around the world.
+
+12
+00:01:46,350 --> 00:03:59,190
+Scott Tolinski: I kind of probably could have guessed that. I think that's hilarious. So this episode is sponsored by Log Rocket Log Rocket is a really cool service. And a lot of people who have never heard of Log Rocket try for the first time. And they're really blown away just by how it can totally open their eyes. What it does is it gives you the opportunity to see bugs as they happen in your application, you get a really awesome little video, sort of replay of what happened when the error happened. And along with any sort of error logs, any of that stuff that you get via your browser, if you use Redux, you get the Redux store at the time, the entire networks tab, all of that good stuff. So check it out at Log rocket.com forward slash syntax and get 14 days for free, you're not going to need 14 days to realize how cool this is. But trust me, after those 14 days, you're going to be wanting to stick around because this is a tool that I use constantly in my application. And so let's get into it. Just to be totally honest, I am not, you know, the most fluent in internationalization of websites. Now, the furthest that I ever had to give personally for internationalizing or internationalization was via when we were working on this Ford project we had to deal with it was like 90 markets. Yeah, so the components that we were building had to work with all of these different internationalization formats, right to left to ride, you know, with whether it's up and down language of Japanese, all these different sort of fonts and everything like that. But we were looking at it from a design perspective, we weren't looking at it from how do you get this to work in a real production environment? It we actually the way we did it was we had a gulp plugin that basically swapped out the fonts and the text and all this stuff based on which language we passed into it. And that would just spit out a version of the site. So it wasn't actually doing any of this stuff live, it was just saying, Alright, here's the now here's this version of the site that we can test it in, we can do that looking around it and see how everything looks that way. So I'm really interested to get into some of this stuff today.
+
+13
+00:03:59,220 --> 00:06:48,540
+Wes Bos: Yeah, I think it's, it's funny, because all of this stuff that I'm talking about today, I didn't even think about it in terms of like translation or inner internationalization. I'm just excited because they're actually super handy even if you're just doing a single language website. Because these are things that have been a huge pain so things like formatting currency, or formatting percentages, or formatting lists of things with and or or doing things like moment j s, like four hours ago, or formatting a day. All of these things are just hard in general and they often require a whole external library in order to do them easier. And I MTL methods are making them super easy in one language, or super easy in many languages, which is really cool that it will just be easily updatable for whatever language you are locale you are trying to, to support. So let's get right into it. So I NTL is a global in the browser. So it capital i n t l dot and then We're going to go through some of these new methods that are coming. I think they're all in draft still, no, not all of them are in draft, but most of them are well supported in almost all the browsers. So it's, it's something that you can probably get to starting to use. The only caveat is that these are incredibly complex. So the polyfill for them is either non existent, or will be very large. Or even even things like no jazz, if you want these to work with all of the different locales in Node JS, you have to start up node differently, and tell it to actually include all of these things. Because I think under the hood, there's some super complex code going on in here, which, which is why it makes it so easy for us. So first one, I MTL number format. This also is available on on numbers with the method to local string, it's the exact same thing, it's it's said it's preferred to use the MTL number format, the way that all of these work is that you create what's called a formatter. And then you pass the format or a couple different options for how you would like to format your numbers. So with I MTL number format, you create a format or and you pass it, which locales you'd like to support. So there's a huge list I'm not even going to Arabic is the probably the only one that I can pronounce here. But you can also just pass it like Oh, locali e N dash U, S, or N dash CA, that'd be English, Canadian, or N dash, Fr, you get the point, right? You can look up a list of the lingo. Yeah, we'll
+
+14
+00:06:48,540 --> 00:06:51,300
+Scott Tolinski: link up to the page for the identifiers. Yeah,
+
+15
+00:06:51,360 --> 00:07:48,060
+Wes Bos: you can also just allow it to just look it up itself. So it will detect that from the browser, which is good, because I always hear from people who are living in a certain country, let's say you only speak English, but you move to France, and your browser is set to English, but because you live in France, it thinks you speak French, and then it just will automatically serve up French to you, there's a better way to do that. And that's just detected from the browser, what the language is set to on there. So that's good. The second one, you can pass this style. So you can set it to decimal currency, or percent. And this is really handy because in some languages, they use a period as a, like, if you have $11,400, they use the period where the comma is supposed to go, and then the comma where the period is supposed to go. And it's just, it's just backwards in some languages and, and cracked in English.
+
+16
+00:07:49,260 --> 00:08:00,930
+Scott Tolinski: Yeah, if you're a listener, and you hear us ever say something is like, correct in Canada, or the US or something, we're joking around your, your, your way of doing things.
+
+17
+00:08:01,230 --> 00:09:15,210
+Wes Bos: And then you could you can also specify which currency symbol, euro dollar, things like that. Or you can let it again, you could let it detect yourself, you can give it minimum and maximum integers. So I specifically use this API on my own website, because when I have a course, that is on sale for $97, I want it just to say 97. But when the course has cents on it, I want it to say like 97 and 58 cents. So when it doesn't have cents, I don't want it to show that. So I have a little bit of if statements there, that will, it will give it the minimum and maximum digits that it would like it to go. And I believe it will round it. If you have more than that is actually available at the end of that you call format on this thing. And it will spit out a beautifully formatted price or percentage or just a decimal number, which is amazing. Because previously, you'd have to go and get some like sort of format money function. And then there's all these weird edge cases, like specifically, when you have something that has 10 cents left, or a lot of times, it would just be like $40 dot one, like no, there's it's, it's 10 cents, I need the zero on the end, right? So as frustrating with that kind of thing.
+
+18
+00:09:15,630 --> 00:10:23,970
+Scott Tolinski: Yeah. So next one we have is the list format, which this is the first one that we we talked about this morning. This is really fascinating. Basically, you have a list, right? Maybe you have an array of strings, maybe it's let's say yellow, black, with another good syntax color, white, yellow, black and white. So your string is an array of yellow, black, white, and then you tell it that it's going to be a list of strings. Or you I'm sorry, you create your list. You give it a international list format, you say it's English, and then you format the list. And then it basically adds in what would be the common words that would create a list for instance, if you had an array like we said, which was just a yellow, black White, the output of that would then become yellow comma, black, comma and white. So it puts in the commas where they need to be. And it gives you the and and I see here that by default, it looks like it does do the Oxford comma. I don't know what doesn't that Yeah, I typically use the Oxford comma myself, I don't really have any strong opinions about it, though. But I like it. Yeah.
+
+19
+00:10:23,970 --> 00:11:28,050
+Wes Bos: It will also do, you can set a conjunction, which is junk, or, by default, it will use and, and then you can set it to be what is the conjunction, junction disjunction, and that will give you or so it will say, yellow, black, or white. And again, like, this is just something that if you had this in an array, you'd have to take all of the items except the last one. And then you'd have to join them together with a comma. And then you'd have to take the last item. And then there are no spaces here. And yeah, and then put the last item on there and then have a period and this will just do it all for you. And then you can just pass it a different locale, and then have not exactly sure how it works in other languages, but I'm sure they figured it out. And it will properly format it for the different types of languages. There's also like different styles, you can give it a style of long, short and narrow. I'm not sure what the difference between long
+
+20
+00:11:28,050 --> 00:11:31,290
+Scott Tolinski: and short is these examples look the exact same to me.
+
+21
+00:11:32,520 --> 00:11:49,440
+Wes Bos: The long and short. I don't know what the difference between long and short is. But narrow will will will not give you the end, or it will simply just give you comments, which I guess you could just do with a raid join as well. But I'm sure there's some fantasy things between different languages in there that makes that worth it.
+
+22
+00:11:49,920 --> 00:12:15,090
+Scott Tolinski: Yeah, interesting. stuff. So fascinating. Um, yeah, yeah, I think a lot. There's a lot of browser API's that when you dive into really, there's so much stuff in there that maybe you haven't used before that there's just a lot of opportunity to like not pick up an NPM library to do some of this stuff. And to just try to use the browser API to do it. instead. It's one of those things that I wish I had more time to just like sit and read through the MDN docs all day.
+
+23
+00:12:15,689 --> 00:12:39,780
+Wes Bos: Yeah. Next to we have here our date, time format and relative time format. So very much like moment j s, where you can nicely format your date times based on based on like, if you want to have your first show whatever or like I know that the US does, what day first? No, the US does month day, year on day, which makes makes no sense.
+
+24
+00:12:39,930 --> 00:12:44,400
+Scott Tolinski: It doesn't make any sense. But when you grow up and you're used to it, it makes perfect sense for no reason.
+
+25
+00:12:45,180 --> 00:13:10,650
+Wes Bos: Like most things in the US, right? works. Yeah, it works. And then everywhere else does day, month, year. So if you just format it by passing it n us It will do it the wrong way. And if you pass it the E n dash GB, it will do it there. I wonder what happens when you pass it the Canadian way? Let me see. Hold on. Maybe I'm talking smack in Canada. Same way here. Hold on.
+
+26
+00:13:10,710 --> 00:13:21,510
+Scott Tolinski: Yeah, I kind of felt like it wasn't just the US that did that way and that Canada did the same way as the US but we'll see here. even sweeter after you did talk trash.
+
+27
+00:13:21,810 --> 00:13:29,430
+Wes Bos: If you pass it. e N dash ca it will give you year, month day. So
+
+28
+00:13:31,110 --> 00:13:31,800
+Scott Tolinski: weird.
+
+29
+00:13:32,610 --> 00:13:39,690
+Wes Bos: Yeah, that's, that's interesting. Oh, what about French end? fr dash ca.
+
+30
+00:13:39,990 --> 00:14:02,610
+Scott Tolinski: So the cool thing that while Wes is doing is a cool thing about this is you can fire up your browser, throw in some of these things and just run some of these little experiments yourself. It just in your console there. I think that is that's awesome. You can just yeah, try it out and answer these questions without having to go to Google, you can use your own .js skills. You can pass it different types of calendars, Buddhist, Chinese, Coptic,
+
+31
+00:14:02,610 --> 00:14:12,180
+Wes Bos: Gregory, Hebrew, Indian Islamic, Islamic with to seize Japanese, all kinds of different different types of
+
+32
+00:14:12,510 --> 00:15:06,660
+Scott Tolinski: calendars. You can pass here, our cycles, you can pat like, I would love to meet the people that have implemented the logic behind all this. Yeah, so incredibly complex, just tucked away nicely for you. Yeah. And this next one, I think is the plural rules, which is pluralization. And listen to me seems like that has to be very complex, to get any sort of pluralization working, where you could be confident that the word is going to be pluralized. correctly, there's not just as simple as tossing an S on to the head of it. That dimension. I have no idea personally, what other languages the ways of doing pluralization I should know I feel like I know enough about other languages, but most of the languages that I know don't have any sort of wild ways of doing this, but I'm sure there's a ton of weird little exceptions here and there. I'm sure there's a ton of weird stuff about this.
+
+33
+00:15:06,900 --> 00:15:43,170
+Wes Bos: It's in the example says Arabic has different plural rules. So if it is, if it is zero, it says zero. If it's one, it says one. If it's too It's as to if it's six, it says few. And if it's 18, it says many. I wonder at what point does it change from few to many here? Let's try 10. Few. Strike 15, many Oh, 13, many 12? Many 11? Many 10? tennis few and 11 as many, you know, a
+
+34
+00:15:43,170 --> 00:15:47,550
+Scott Tolinski: few to me always enter that three. Yeah, yeah, always the three,
+
+35
+00:15:47,970 --> 00:16:19,710
+Wes Bos: hold on a couple you eat. And we pass it N dash us. Eight is other, bypass it to other one is one interesting. You can also get things like first, second, third, fourth 42nd. So that's always, that's always kind of a tough thing to do. It's just like very simple to say it out loud. But if you're ready to write an algorithm as to how that works, this will do that all under the hood. For you.
+
+36
+00:16:19,770 --> 00:16:23,520
+Scott Tolinski: This is this is all good stuff. And it all exists in your browser.
+
+37
+00:16:24,090 --> 00:16:45,270
+Wes Bos: Oh, I think this is like this is useful to distinguish between singular and plural form example dog and dogs. So it will give you other if it's dogs. So zero dogs, one dog, and then two dogs everywhere. Everything else everything except one is is dogs. And then one is dog. And that's just
+
+38
+00:16:45,270 --> 00:16:49,650
+Scott Tolinski: transform dog, two dogs, or am I Oh, tripping on that one?
+
+39
+00:16:49,680 --> 00:17:25,140
+Wes Bos: Well, what I'm what I'm seeing is that it will just give you the word, one, two or other. And you have to write the logic. Yeah, like like WordPress does. Where it will you like I have comments, right? Then you can say like, like for zero or more as a comment. Otherwise, I would usually just use a little shorthand if to add an s. But again, there's many use cases where that doesn't cut it. And this will, then this will go to other languages. Right. Interesting.
+
+40
+00:17:25,170 --> 00:17:36,780
+Scott Tolinski: Yeah. So I was I was thinking for some reason that this was the ability to transform a dog into dogs, despite not seeing that example. Anywhere. It's interesting, very interesting.
+
+41
+00:17:37,100 --> 00:17:59,730
+Wes Bos: Yeah. It just gives you the, the type, and then you would have to write your own function to tell it. Nah, pretty, pretty cool. I think like it's you might be if you just do an English website of a saying like, hey, like, why would I need this? But it's probably worth doing ahead of time. Because as soon as you need to internationalize something, you're already set up.
+
+42
+00:18:00,390 --> 00:18:13,650
+Scott Tolinski: Yeah. And it's at least worthwhile to just head to these docs and pause through them because you're gonna someday run across something. And instead of reaching for a library, you're gonna say, No, wait, nevermind. I know how to do this. I know how to do built in. Yep, built in. Got it.
+
+43
+00:18:14,330 --> 00:18:25,680
+Wes Bos: All right. I think that's it. If you want to check it out. I suggest you go to the MDN Doc's and just look up by MTL, and they have a list of all of the things we talked about, as well as hit the show notes. Awesome. Well, thank
+
+44
+00:18:25,680 --> 00:18:45,510
+Scott Tolinski: you so much for following along with us today on syntax and we will see you on Wednesday. Please head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
