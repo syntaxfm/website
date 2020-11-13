@@ -1,0 +1,160 @@
+1
+00:00:00,359 --> 00:00:24,480
+Announcer: Monday Monday Monday open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob and Scott Taylor. Totally at ski.
+
+2
+00:00:25,980 --> 00:01:00,960
+Scott Tolinski: Oh, welcome to syntax in this Monday tasty treat. We're gonna be talking about spelt three. Now this is going to be a fun one because Wes and I have not really dove that much into spelled I've maybe spent an hour looking at the docks in the past. I don't know about what's his experience with this, but we're going to be talking about our initial impressions, we're going to try to look and answer some some of these questions that we have here about it, we're going to approach it as sort of novices or people who are ignorant about this new framework and technology. My name is Scott Lynskey. I'm a developer from Denver, Colorado. And with me, as always, is Wes Bos.
+
+3
+00:01:01,049 --> 00:01:02,520
+Unknown: Everybody. Hey, Wes.
+
+4
+00:01:02,900 --> 00:02:19,410
+Scott Tolinski: This episode is sponsored by one of our longtime sponsors over here, it's intact, and one of our absolute favorite services on the entire web, and that is Netlify. Now, Netlify is such an amazing place to host your front end sites. But it does more than just host your front end code. It also, I mean, besides giving you an endless amount of features of global CDN, like absolutely painless, continuous deployment, one click HTTPS, basically all the stuff No one likes to do, but it gives it to you for free without you having to do anything. So that's one of the reasons why we like Netlify. But in addition to that, you can also have really easy serverless functions, you can use their off identity program. So you can authenticate users directly via nella phi, all without needing your own server or needing to manage any of that stuff. So head on over to netlify.com forward slash syntax to get more info Sign up today. And seriously, you'll just, I mean, even just look through the amount of times that syntax users have tweeted at Netlify saying I had no idea it was this amazing. So that's generally how I feel about Netlify. Over here. Big, big fan. So thank you so much for Netlify for sponsoring. Alright, smelt. What is felt? Do you want to do you want to take a stab
+
+5
+00:02:19,799 --> 00:02:21,960
+Wes Bos: at cybernetically enhanced web?
+
+6
+00:02:21,960 --> 00:02:23,630
+Unknown: He read the tagline?
+
+7
+00:02:24,810 --> 00:03:23,130
+Wes Bos: I think, and I'm like super new to this, and I haven't built anything. And so I think that's why it's gonna kind of make an interesting thing that you haven't either haven't either. Yeah, yeah, I it's it's sort of an alternative to using something like react or Angular or view. And what I'm finding is that it has an awesome very sort of bare bones syntax, it sort of just works, how you you go for it. And then second, the sort of the thing that people are loving is the fact that it compiles down to vanilla j. s, which I don't know, I don't know what I think about that just yet. But it's kind of cool that you can look at the examples and see what it kicks out at the end of the day. And it just kicks out like dot enter HTML and text content, and it just creates elements for you. So yeah, it's kind of cool. I don't I don't know what the benefit of that is just yet. Maybe smaller, faster. And we'll take a look at that. What that is through here.
+
+8
+00:03:23,160 --> 00:06:23,490
+Scott Tolinski: Yeah. Yeah, I think that's really the main selling point is that if you don't have to ship the platform, then you don't have you don't have to include it right, your users aren't getting the platform every single time. They're only seeing it really in the development of compiles away. Right. And that, to me is like really interesting. And I think it's probably the direction you'll see react, going, at some point, right? To compile it away, right? It's just, it seems like it's the next step to here we have this thing, that it would be removed entirely. Now they are noticing there's a lot of like, there is no virtual Dom on this thing. And it's faster because of it, right? I don't know how I feel about any of that. Because to be honest, I don't really know enough about performance of these these types of frameworks to say like, Oh, yes, that's definitively correct. Or somebody I'm sure is correct. But I think that's an interesting thing. It's not using the virtual DOM. It's not using that concept that we've been sort of really embedding into ever since react came about. So that to me is a it's a big leap, right. And the fact that it compiles away is very fascinating to me, I really think this is kind of the future of things. Let's talk about this syntax. I have pulled up. I'll have these in the show notes. spelt dot dev forward slash examples, is a really cool page here. This is I love this. I wish react had this where it's basically navigation, you click on any of these and then it gives you a direct, like almost like a code sandbox Style Editor and then output directly to the left of it. It's really sad. I'm loving this because these are all basic things. It's like oh, You want to see how to declare props? Well, here's not that these aren't Doc's This is a direct felt document here. So let's actually get into the syntax a little bit, the syntax of spelt is minimalist, really. And I personally feel like it's for the best, they talk about it a lot being just HTML. So in yourself file, you would have a script tag and anything in the script tag is your JavaScript, right? You would also have a style tag anything within your style tag is instantly becoming scoped CSS. At least that's my understanding. If we say something that's not entirely accurate, please let us know. Because we're just looking at this for the first time. And then below that is just your straight up HTML. Now, one of the things I really liked about this is, there was no need for like dumb stuff, like you're not needing like a fragment. Right? You don't have to worry about the language of JavaScript, you're just writing HTML. Yeah, like, Here's to two components side by side with no wrapper, you know what, like, sometimes I wish react would make. I don't I don't even know how they would do this. Because react is just JavaScript. But sometimes I feel like react makes me think too much about JavaScript or something like this is like, oh, here's this templating syntax. It's not just JavaScript tm, it's, you know, it's its own templating syntax, and therefore, they can do things that you know, JSX and react can't do. Mm hmm.
+
+9
+00:06:24,000 --> 00:07:25,320
+Wes Bos: What kind of cool thing I'm seeing here is the ability to do mutations. So if you've got a variable called count, and it's set to zero, and then when you click on something, you just make the say count plus equals one, or or count equals two, or you just you just overwrite that value. That seems to be a Okay, in svelte world. Whereas that's like, a huge No, no, in the world of react. And we have to write all these, like, functions of set state and callbacks and whatnot. And I always thought that was kind of silly, because like, just let me update a variable and let that variable on the page change, right? Yeah. And it seems like that's totally fine in salt world. And then it also, if other values are dependent on that variable, then you can put like, $1 sign in front of it. Hmm. Which is not JavaScript, it's like dollar sign colon, doubled equals count times two. And that the dollar sign means it will rerun whenever the values change. Interesting.
+
+10
+00:07:25,500 --> 00:08:37,860
+Scott Tolinski: Yeah, there's a lot of templates and taxi things here that I personally, really, you know, cut my teeth on when I was really getting into JavaScript frameworks. Three there, I guess, not really Angular, but more like mustache js, right? So for like me, this looks very comfortable to see an IF tag in your HTML inside of brackets, that looks very comfortable. To me, a lot of this looks minimal in the way that I like it to be minimal. And the reactivity on variables, just like sort of out of the box. I like that. I like that mutation. I don't need to write this does this date. I don't know this syntax, to me is interesting enough that I want to try it in a project and see how it goes. When you're using things like global state when you're using lots of components and nesting and all sorts of stuff. I I don't know what the patterns are for this. But just looking at these examples, I'm just endlessly impressed with the amount of ease in which things are pulled out. Like, I know, look at there's one that's like, there's some form example ones in the bindings category, like just think about react forms and like, oh, React forms versus spelt forms here. Yeah, not even a competition
+
+11
+00:08:37,980 --> 00:08:42,049
+Wes Bos: doesn't seem like like react is kind of the odd one out now. It does. Yeah,
+
+12
+00:08:42,059 --> 00:08:43,740
+Scott Tolinski: this is very lightly like,
+
+13
+00:08:43,909 --> 00:09:19,980
+Wes Bos: Yeah, we got view and angular are so easy. And it just works. And it's simple. And you have some sort of some of this magic syntax inside of your thing to make it work. And then react, everything is, I don't know, like, like, I'm fine with it. But it definitely seems much harder for a beginner coming to it. Having to know about all these gotchas and the syntax and when you're in JSX, and when you're in JavaScript, and then there is no logic inside of the templating language. So you don't have each or if or anything like that. So this is pretty nifty. I like this a lot.
+
+14
+00:09:20,270 --> 00:10:10,790
+Scott Tolinski: nifty indeed, man. Um, I feel I'm feeling the syntax. And I think this is the sort of spark This episode is I saw something about spell three. And I had seen it before and sort of, you know, read about it and saw the syntax before it was cool. But like, I was probably too busy at the time to like, really sit down and check it out. So it was like, last night, I sat down and I was like, oh, man, this is my kind of thing, and kind of like this a lot. So I have another note in here and it says, What's up with the build tool? I'm also interested in this too. So you have spelt and it compiles away to plain JavaScript. Now, how does it do that? Exactly? I'm looking here. I don't have an answer for this. Exactly. So Is it its own compiler? Or is its own build tool? Or is it like part? is he using Webpack? Let's see, or is it using roll up? Maybe
+
+15
+00:10:11,010 --> 00:10:22,860
+Wes Bos: it looks like that is something called the svelte compiler. And I don't know how you use it, I would assume that you use it with your regular tools.
+
+16
+00:10:22,890 --> 00:10:39,900
+Scott Tolinski: I don't know. No, no. Maybe it has its own. I'm seeing not a whole lot of things about any other tools. You know, I'm not seeing anything about other tools. So I'm not sure I really don't know the answer this one if somebody has. Yeah,
+
+17
+00:10:40,160 --> 00:11:10,260
+Wes Bos: I'm just just looking at the thing here says there's NPM, run, build and NPM run Dev. So probably it comes with its own build tool. And how you access that? Or if you if you need to access that I'm not sure. I'm sure there's some some way to same with like next yas as well, right. Like you don't have your own build tool with next as you just run next build? Sure. And then if you do need to access the web pack, and the Babel config, then you can, I would imagine that it's similar in scope.
+
+18
+00:11:10,470 --> 00:12:30,660
+Scott Tolinski: Yeah. And I found a project, spelt loader, and I'm not exactly sure which versions is supports. So this is interesting in it. I mean, it's a web pack loader, so I don't know. Yeah, I'm interested in hearing more about that. If you know the definitive answer to this. Please shout us out. We will retweet you on the Twitter. All right. Next question I had was about sort of like tooling around it. So I found some stuff. So one of the things I found was sapper at sapper dot spelt dev in sapper is called the next small thing in web development. It's powered by spelt basically a platform for building apps with felt what you can think of it as at least the way I've been seeing this branded is sort of the sort of the the next .js of the spelt world as an it takes care of a lot of stuff for you. It takes care of the routing sort of things that takes care of SSR, I believe, PwC sort of stuff. So it looks like to me that this is the de facto definitive, sort of, I don't know if it does do PwC stuff. But it looks like this is the platform for building spelt apps on it right now. Because it's, it's hosted and maintained by spelt themselves. It has their whole branding. It looks nice, it looks easy. And maybe it'd be something to try out on our sponsor Netlify here. What do you think about this sapper thing? Wes,
+
+19
+00:12:31,050 --> 00:13:37,500
+Wes Bos: I think it's pretty cool. I was just I was just skipping ahead to this felt native really quickly, because I was so enthralled on what that was. But the sapper looks pretty nifty. I think that anytime that you have one of these frameworks, you're it's almost a given now that you need like the the next equivalent and or the the Gatsby equivalent where you can go ahead and build either a static site, or you can do an easy SSR JavaScript web app. So that's sort of a no brainer. I think that you can see that next one that we have here is felt native, which it says felt native is a new approach to building mobile applications using native script. Where other JS native frameworks like React Native and native script view, do the bulk of their work on the mobile device felt native shifts to work to the compile step that happens when you build your app. Instead of using techniques like virtual Dom diffing, svelte writes codes that surgically updates the native view widgets, when your state app changes. So I don't know that sounds cool. Yeah,
+
+20
+00:13:37,530 --> 00:13:46,140
+Scott Tolinski: yeah. That seems to be the the mo overall, is to let the compiler do the work, rather than runtime or whatever. So yeah, I don't know. It's very interesting.
+
+21
+00:13:46,470 --> 00:14:07,680
+Wes Bos: Yeah. Well, we'll have to see, like, I guess if you're writing your entire app in spelt, just like you, you want a static site generator, you probably also want a native. I've never done anything in native script. I've done very little in React Native myself. So it's sort of hard to talk about this. I want to start running my mouth, but some I don't really know. Yeah, I
+
+22
+00:14:07,680 --> 00:15:59,040
+Scott Tolinski: mean, I've used React Native pretty extensively. I haven't used native script and more than just, you know, a little little check out here and there. So either, right, like this felt native seems pretty cool. It's one of the things that I do when like a language or technology like this is getting push is to see like, how many platforms are sort of there around it, who's using it, how many people are using it? And just to even check for like some sort of native solution or seemed like that there's some things coming out. It's a good sign that the community is healthy, right? That there's people working on this stuff. And there's a lot of things there. The salt themselves seems to have a lot of great stuff, you know, in their own repos, such as the sapper and it seems like there's a lot of people interested in working on salt for seemingly good reason. It looks really cool, man, I'm gonna have to dive in. I'm gonna have to build something with this. So that's it. I hit some questions initially when I was writing these, these show notes, and one of the questions is what's the TypeScript story? We know that TypeScript is really important in the web right now everybody's using it. Everybody's loving it. If you're not, you know, then I guess you're just like me and not using a, currently, not yet, but like, a lot of people are gonna require TypeScript. Right. So I went looking and I found an issue for TypeScript support. And it's from 2018. It did say in their docs, I found something that said that they were trying to get TypeScript to launch with TypeScript or felt three, I could be making it up, because I can't find it now. But it looks like they are close on getting TypeScript working here. But TypeScript is not officially currently supported. I have not dove into it any more than reading this issue on GitHub. I'd be interested, I think that's one of the essential pieces that they're going to need to have to get the kind of market share that they need. Right. So I guess, that's the big old question mark there. But it looks like one that's probably coming down the line.
+
+23
+00:15:59,250 --> 00:16:32,580
+Wes Bos: Yeah, there was a comment just three weeks ago that they're, they're sort of still waiting and still working on it. It seems like there are a couple like third party ways to do it. But I always shy away from using these sort of hacks. Yeah, because before you know it, the official version comes out. And then all of yours is using this like weird or older version from some random person online made it when it's something that big, I would probably just hold off and wait for wait for it to work with the wait for it to be officially supported. Totally.
+
+24
+00:16:32,609 --> 00:17:42,050
+Scott Tolinski: You don't want to do the same thing twice, just in different ways. If you can help it just because you're impatient. That's like a that's like a classic me me thing to do. It's like all but I can't read. For instance, I just bought a phone and I'm returning it today because I couldn't wait, couldn't wait for the pixel four, I had to have a phone right now. And I bought the one plus seven pro and I liked it a lot. But to be honest, you know, just the software, the hardware, it just wasn't for me. It was a great phone. But like, really, it is too techie. Well, when the pictures are awful into like, the skin, and everything is too techie, people expect you to want to route the phone and stuff and I'm just thinking, you know, I'm, I am not a spring chicken anymore. And I want my phone to just work super easily. I don't want it to I don't wanna have to tweak it and whatever, want the iPhone experience and Android, which is basically a pixel device. And so like, I just wasn't getting that in the phone and it was just like, Alright, you know, this clearly isn't for me, it's a wonderful phone. And I've got nothing bad to say about it. But you know, just not for me. Oh, yeah. So, sorry to get off topic there. Next question I had would be how hard Do you think it would be to convert a largish react app to spelt? I'm thinking it would be pretty tough.
+
+25
+00:17:42,480 --> 00:17:44,010
+Wes Bos: Yeah, I think so too.
+
+26
+00:17:44,279 --> 00:18:12,630
+Scott Tolinski: The syntax is very different. You have to worry about like state, how they manage state, how they manage the props, you got to worry about all of those things I did find there is an Apollo spelt that looks super nice and does not look too crazy different. But it's still different enough where you're having to touch every single component in your application. And if you have a big application, I just don't know how that's gonna go. Seems like why that would be a hard transition, you'd have to do some hashtag microframework stuff to get that to work.
+
+27
+00:18:15,590 --> 00:19:07,890
+Wes Bos: The next question we have here is will svelte be able to capture the market share needs to grow and compete. But judging by the amount of potluck questions we've got about it, and the amount of emails and tweets and things of what do you think of this? I think so it definitely seems to have the hype. I'm just looking at this view YouTube video, from the creator of svelte called rethinking reactivity. Yeah, I have 1000 views. So there's obviously similar to how view has struck a chord with people who are not totally happy with how things work in other frameworks. I think that this is also striking a chord with people, be it for performance, or just for the simplicity of the markup and how it's actually written. So I'm gonna be watching this tonight. Maybe I'll get my wife. Watch it with me grab some popcorn.
+
+28
+00:19:08,730 --> 00:20:23,730
+Scott Tolinski: I'll watch it. It's good. It's a good, it's good watch, I highly recommend what we should put in the show notes a link in the show notes. Yeah, I think this is the tough question, right? Because you still have some questions, right? You know, that there's gonna be people who write it off immediately, because the TypeScript supports not there just yet. You're also going to get people who look at and say, hey, there's too much magic going on. But I don't really think there's, I mean, there's some magic going on. But I don't know, it feels like a step forward, while simultaneously being not a step backward, necessarily, but like a look backward. Usually, you're glancing backward to all of the stuff that we've learned up until now. And this looks like something that is more radical than view because view is definitely has its like, take place. It's stuff that is taken from react and other frameworks, right? And you look at view and say, Okay, this is more simple than react, and it's a little bit magical, but it makes my life easier. And then you look at spelt and spelt to me feels more futuristic than view and that sort of way, it sort of went a whole nother step. So I'm really interested, I'm going to be watching just the sort of community in general to see how it grows and changes. And I would love to build something with it. Which actually leads us into our next question is, would you Wes or Scott, use this would you use felt was
+
+29
+00:20:23,760 --> 00:20:37,260
+Wes Bos: yes. I think this looks awesome. The fact that it compiles down to J s seems pretty neat. I'm not sure why that seems neat to me, but just being able to see that it is vanilla j. s, under the hood compiled down to is pretty cool.
+
+30
+00:20:37,580 --> 00:20:38,160
+Unknown: Yeah,
+
+31
+00:20:38,160 --> 00:20:38,910
+Wes Bos: yeah.
+
+32
+00:20:38,910 --> 00:20:40,260
+Scott Tolinski: Just the platform.
+
+33
+00:20:40,610 --> 00:21:11,130
+Wes Bos: It just like the like the the reactive variables, how they just work like that are as pretty nifty. I'd like to, I'd like to actually see how that works in a compile down to vanilla j. s, like, how would you do reactive variables in just vanilla j s. So definitely going to try to obviously, you're not going to just switch over to it just yet. I need huge market share, especially for like someone who makes it tutorial series for a living, I need to be able to do that. But I'm putting that on the list of things to check out because it's pretty nifty. Yeah,
+
+34
+00:21:11,130 --> 00:22:07,680
+Scott Tolinski: I'm gonna dive in like hard this month, I think after after really taking a look at it, I think I'm going to go in real hard on it. And then I still going to do a tutorial course on it, and really, really get deep in there and really understand this thing. I'm excited. I think it's going to be really cool. And to me, this screams like something that I would like to use. I like simplicity. I like a little bit of magic where I can tell where, you know, I can still tell what's happening and how to control it and do everything but at the same time. Do I really like to write you know, fragments all over the place for no reason other than the fact that you know, it's an array and JSX doesn't like it, you know? It's like, it's like there's these little things in react that uh, hold me up from really truly loving it. So yeah, I'm gonna I'm gonna be happy to use this. I'm gonna test it out. I'm gonna try it out. I'm gonna maybe put together a course on it. Who knows? We'll see and we'll see what we can build with it but I'm excited spelt three looks super cool to me. This looks like kind of the future in a lot of ways.
+
+35
+00:22:08,040 --> 00:22:22,980
+Wes Bos: Awesome. Well, hopefully that was enjoyable if you're using spelt let us know at syntax FM let us know we think about it. Yeah, do you like it wherever you don't? I'd like to hear from you. I want to hear all right. Anything else to add there? Scott?
+
+36
+00:22:23,279 --> 00:22:28,350
+Scott Tolinski: I don't think so. Yeah, check it out. Just head to their dogs had did their examples. If you you know, maybe scares you a little bit. Just
+
+37
+00:22:28,350 --> 00:22:28,860
+Unknown: check it out, I
+
+38
+00:22:28,860 --> 00:22:30,060
+Scott Tolinski: think could be really cool.
+
+39
+00:22:30,090 --> 00:22:37,650
+Wes Bos: Yeah. Thanks for tuning in. And we'll catch you on Wednesday, who's is head on over
+
+40
+00:22:37,650 --> 00:22:47,040
+Scott Tolinski: to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
