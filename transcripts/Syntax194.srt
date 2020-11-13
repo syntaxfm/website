@@ -1,0 +1,448 @@
+1
+00:00:01,319 --> 00:00:02,820
+Announcer: You're listening to syntax
+
+2
+00:00:02,820 --> 00:00:04,590
+Unknown: the podcast with the tastiest web
+
+3
+00:00:04,590 --> 00:00:05,760
+development treats out there.
+
+4
+00:00:05,760 --> 00:00:06,480
+strap yourself
+
+5
+00:00:06,480 --> 00:00:41,250
+Wes Bos: in and get ready. Here is Scott to Lansky and West boss. Welcome to syntax today is a potluck, which is an episode where you submit the questions, Scott and I will answer them we're going to be talking about all kinds of stuff. Gatsby next j. s security with things like Google Home listening to you over writing prototypes. Is that an okay thing to do, man some some good ones today. Today we're sponsored by Netlify and fresh books that we'll talk about them partway through the episode. My name is Wes Bos, and with me today is Scott to Lynskey. How you doing today, Scott? Hey, I'm
+
+6
+00:00:41,250 --> 00:01:16,440
+Scott Tolinski: doing good doing very good. So you know, I had my tailbone injury. Yeah, I have. I've gotten a shot in my tailbone on last week. And everything feels great, man. Really? Yeah, it's supposed to last me the entire year. So I'm going to actually be able to sit down for a whole year. I'm pretty darn psyched about it. If you've ever paid attention to we did our syntax live shows I'm either like leaning forward or standing up or whatever, because my, my tailbone is always killing me. So I'm really psyched to be able to sit down and it's kind of life changing. So here I am. I'm ready to go.
+
+7
+00:01:16,469 --> 00:01:20,190
+Wes Bos: What What did you get injected? Is it some of those like stem cells? Yeah, no, I
+
+8
+00:01:20,190 --> 00:01:25,140
+Scott Tolinski: it's like a it's a straight steroid, I believe. But it's like, right into the bone. And
+
+9
+00:01:25,469 --> 00:01:27,870
+Wes Bos: you Rhoden you can't go in the Olympics. Now.
+
+10
+00:01:27,870 --> 00:01:35,070
+Scott Tolinski: I know, man, I'm artificial now. So but whatever. I don't care. The other alternative was to cut it off. And I'm not into that.
+
+11
+00:01:35,729 --> 00:01:54,560
+Wes Bos: Oh, no. Yeah, nothing. Sounds rough. Yeah, you're rolling up. Yeah. Funny story. My mom was in the hospital eight years ago, like pretty, pretty bad situation. And to get her back out of it. They gave her all these steroids. And they're like you're doing well, but you can never go in the Olympics.
+
+12
+00:01:57,300 --> 00:02:07,500
+Scott Tolinski: That's super funny. Yeah, I saw you I saw you swap out those mirrors on your your car, you will swap them out with some carbon fibers.
+
+13
+00:02:07,590 --> 00:02:22,350
+Wes Bos: Yeah, pretty sick. Hey, hey, we have an SUV and our garage is like we downtown. So having a garage is lucky enough. But this thing is like our garage is super not wide enough for the type of car that we
+
+14
+00:02:22,350 --> 00:02:23,720
+Scott Tolinski: have. Oh, I know how it is. Yeah.
+
+15
+00:02:23,750 --> 00:03:21,960
+Wes Bos: And like, you have to be really good at backing it up. And twice. Now two mirrors on the car twice. Thankfully not me. But other people who have driven our car have knocked off both of the mirrors, not knock them off. But like clip the side of the garage when they're like backing up. And like this, these these mirrors are like they fold in and they're heated and they're they're auto dimming and you can change them every angle and they do everything like the entire mirror is like like $3,000 so I like I went on eBay and found all the parts and the only thing that they didn't have was like I like a cap like the top part to match the color of the car because you have to get that painted right if you order it from the dealer or whatever it comes just primed and you have to paint it so I like got some sick carbon fiber one yeah. of like, like some like, like BMW racing thing. Yes. And, man it This cargo is so much faster with that weight reduction.
+
+16
+00:03:23,190 --> 00:03:28,050
+Scott Tolinski: Nice, nice. Yeah, it's like reducing your JavaScript bundle size a little bit or something.
+
+17
+00:03:29,910 --> 00:03:48,990
+Wes Bos: One thing to do, though, like anyone to like, I don't know, try fix your own stuff. Because like a shop would have cost thousands of dollars and I was able to get away with new blinkers, new caps, and new supports for just a couple hundred bucks and they're ready to be smashed again. Even just like for the troubleshooting and problem solving bits of it. I
+
+18
+00:03:48,990 --> 00:04:37,410
+Scott Tolinski: mean, that's analogous to programming. I fixed my my fridge today. We've been having a water dispenser Coco papa, papa, papa. Yeah, you tried it yet. And so I was like, Okay, I need to do like hoes for the or the new valve for the line. So I like pull the whole thing out, I pull the fridge out, and I start to pull the line out. And like as I pull it out, I'm like, you know what, I'm gonna hook up the knob, this is sort of dissembled, I'm gonna hook up the water filter, and just try the water thing. And it all of a sudden stopped bubble bubbling. So I put it back together, and it just works. It was like 100 bucks. And I was I was like finger on the trigger to buy it. And I was just like, you know what, let me just pull this apart first and see if I can like find a clog or something. And sure enough, it's working. So who knows what I did, but uh, yeah, man, productive weeks for both of us on the DIY front.
+
+19
+00:04:37,520 --> 00:05:27,690
+Wes Bos: That's great. That's funny how many so for those listening, I always put whenever I fix something at home, I posted on my Instagram just because it's kind of interesting. Getting into stuff like I fixed our espresso machine the other day, there was like a water regulator that went bad in it. And I swapped that out and a lot of developers messaged me, really, you're so handy and I was like, Huh, like not really like I'm not handy either. I'm a developer. I'm pretty good at debugging So just take that mindset and apply it to like, I don't know, unscrewing stuff and looking around and poking things. And yeah, yeah, you can get away with a lot of YouTube parts, like a list of what parts are in the thing. And like a multimeter to see where electricity is. And I would encourage anyone who's, who has something break, like, what's the worst that can happen? You actually have to call the repair person like this. These repair persons you call, they don't have any other skills past us. They probably can do it faster. But
+
+20
+00:05:27,690 --> 00:05:29,430
+Unknown: are they experienced? Yeah,
+
+21
+00:05:29,489 --> 00:05:32,490
+Wes Bos: yeah. They just have parts in YouTube as well. Yeah,
+
+22
+00:05:32,519 --> 00:08:22,080
+Scott Tolinski: yeah. No, it is. It's totally analogous to programming because I think about that very much. When I'm doing it. It's like, Alright, especially with my code. It's like, here's this bug. Here's the breaking, we have a, you know, we know what the symptom is we have an error log, so we can sort of tell it is, so you can just sort of narrow narrow, narrow, narrow, narrow until you get to it. And that's the same thing you do with any of this stuff. So hey, do you want to get into our potluck questions? Today, we have a potluck episode, which is the type of episode where we read your PL Q's, your potluck questions on air, and we answer them to the best of our abilities sometimes. very excellent. The other times, we say things about Java that we regret. So let's go ahead and start the first one, which is from Robin, we work we work. We Rick wyrick. Any of those will probably work. Robin, you did not provide us with the Pronunciation Guide. So you get what we give you. So curious if you would consider to run your course platform on Gatsby instead of next JS? If not, what dynamic content would prevent you to do it. So this person is wondering if we would ever run our course platforms on Gatsby j. s. My course platform, for those of you who do not know is currently based on Meteor, I'm doing a rewrite index JS right now. And the way it works is that you have this content that's behind a paywall, and you have content that's free. And when you purchase the content, or you subscribe to level up Pro, you get access to all of the content. Okay, so there is content behind a paywall. And that's really specifically why I think Gatsby is not a good fit for my platform. Now not to say that you couldn't build level up tutorials in Gatsby, there's nothing to prevent you from doing that using Apollo and Gatsby is just as easy as using Apollo anywhere else. And that's really what I'm doing for my front end anyways. So you definitely could, but I'm losing a ton of benefits there because everything's done on build time. And what you can't have on build time is you can't have a user's status, whether or not they're logged in all of their account stuff in real time. So for instance, you'd be losing any of those sort of server side rendered benefits that you typically get from a static site. Now, granted, all of the static things would be very fast, but also going to be very fast on next day. So I really don't think it's a good fit for me, especially because I can get server side rendered user accounts and pro content, using cookies for my authentication with next JS rather than, like a static build. So I personally, you could do it. But I think next year is a better fit.
+
+23
+00:08:22,409 --> 00:10:00,720
+Wes Bos: Yeah, I think if I were to do anything in NEC or in Gatsby, it would be like the the marketing the sales pages for each of them. But I have so much in terms of like, who's watching what, and affiliate tracking and courses that you've bought? And like there's like so much that is dynamic. And that needs to actually happen. Even things like, what is it the parody purchasing power? Yeah, that's all done. That's all done server side, right. And moving that to a static Jen at the time of build just means that you have to load the page, and then start doing a bunch of work in the browser really quickly and trying to update the interface. And that's where it gets kind of janky. So no, I for right now, I don't think that Gatsby is a good solution for dynamic sites that need to be like that. We've set up before Gatsby for websites next for apps, that might change like I wouldn't, I wouldn't be surprised if Gatsby rolled out some kind of really interesting way to do serverless or like, you know how like, these like nice API routes now. Yeah, I wouldn't be surprised if Gatsby's got some sort of like, I bet we could get away because they've already distanced themselves from this whole idea of static site generator. Sure. Yeah. And like what the play looks like to do a dynamic site in Gatsby, maybe that will change one to add on. I don't know anything that you don't know. But I'm just sort of just talking here. If Gatsby really does want to become the like, boom, like the thing that that will finally go away from WordPress, then then maybe that's what they'll do, but maybe they're they're happy just sticking with their static they generated really fast front ends.
+
+24
+00:10:00,750 --> 00:10:20,340
+Scott Tolinski: Yeah, totally. And I think like if you if you look at it like a better use case for Gatsby would be like the syntax website. Now granted the yaks websites index js. And it's it's totally great in that, but it changes once or twice a week. And then there's nothing dynamic necessarily about it. So like that would be the ideal content for that.
+
+25
+00:10:20,460 --> 00:11:18,510
+Wes Bos: Yeah. If I ever get down to redoing some of the syntax website, for sure, we'll rebuild it in, in Gatsby just because like, like, even just before this thing right now, our like code bundler, like broke, or not the code bundler, the the like, ci, just like, it didn't build properly, and it wasn't up by 9am, when the podcast goes out, and I just logged in and hit rebuild, and then it worked. I was like, ah, those are the worst kind of issues, you know, for sure. So. Alright, next one we have here is from Wilfred, what is the difference between a software developer and a software engineer, in your opinion? Well, software engineers drive trains? Absolutely, I'm gonna say I'm gonna say nothing. Because like many other engineers, we are not held legally responsible if a website causes the death. Whereas if a bridge collapses as the like an actual engineer that built that bridge can go to jail.
+
+26
+00:11:18,659 --> 00:11:22,260
+Scott Tolinski: I think if the website caused the death, you would be responsible.
+
+27
+00:11:22,740 --> 00:11:28,080
+Wes Bos: Yeah, there's probably some way in that that you could find out I tend to find that
+
+28
+00:11:28,080 --> 00:11:33,149
+Scott Tolinski: fails. It's not going to it's not an emergency. If the website fails, I get Yeah, yeah.
+
+29
+00:11:33,450 --> 00:11:58,529
+Wes Bos: I think if you were to draw a line somewhere, someone that's gone to school for comp, sigh should be able to call themselves an engineer. And then everybody else should be able to call themselves a developer. But it doesn't really matter. At the end of the day, there's no like, legal definition of what that is. And and developers love to sit around and and pontificate about job titles and things like that. And really, who cares? Just start building your website.
+
+30
+00:11:58,710 --> 00:12:42,720
+Scott Tolinski: Yeah, yeah, pontificating is one of my favorite words, actually. So I'm glad you use that. But yeah, no, totally. I think really, the The only difference is whether or not it's in your job title or not. I really think that's it. I had a job title. Once where I was an engineer, I had a job title ones where I was an interactive producer. These job titles really don't matter that much at the end of the day, and in fact, I think over across the pond, as they say, and in England, the United Kingdom, I don't really know. I've heard that they do not refer to software developers, as engineers whatsoever in that, you know, it could be making that up. So if I, if that's wrong, please correct me. But that's what I've heard. Certainly. Okay. Next question.
+
+31
+00:12:43,140 --> 00:13:04,950
+Wes Bos: What sorry, one more thing I'll add to that is I've heard that in in Canada, it is illegal to use the title as an engineer without a license. So if you're Canadian, you And you call yourself a software engineer, you might go to jail, because it's actually part of like regulations in Canada that you cannot call yourself an engineer unless you are legally allowed to.
+
+32
+00:13:05,880 --> 00:14:51,799
+Scott Tolinski: Well, I'm an engineer, then and I'm going to rub that in your face. I'm going to engineer engineer it over here. All right. Next question is from simple back. No simple Beck asks how to deal with designers who design without any thought about how the dev will implement it. Usually, this is regarding consistency, for example, they use different font sizing for headers, or different pages, out of the blue spacings 20 different buttons sizes. So okay, I think the my outlook on this is that number one, you have to stop looking at how to deal with a designer, or how like, you can't look at it as us versus them, or us devs them designers, because at the end of the day, your creative team producing a creative product. And the outcome isn't just one person's doing right, the designer may have this, this idea right to do these 20 different buttons. But it's definitely your responsibility to talk with them early and often about the design and explain to them different concepts. But when I say that, I don't mean to lecture them. I don't mean to talk down to them. I don't mean to say Oh, you don't know anything about developing anything like that does, that's not going to get you anywhere, what we need to do is from the get go on every project establish a greater communication more early and more often. Because that's what's going to. That's what's going to enhance your team on just about every single project. Some of the best teams I've ever been on, are the ones where the designers were coming to the developers 24 seven to talk about easy things and animations and different things. And it's your responsibility just as much as it is theirs to educate and to talk these things through and communicate well, so yeah,
+
+33
+00:14:51,960 --> 00:15:33,870
+Wes Bos: yeah, I ran into that a lot. I was actually really annoyed because developers just like, want to create something beautiful, new and in reality I think that's Probably a signs of a bad designer as well, because a good designer would stick to a design system. And they would build a design system that's robust enough and flexible enough that they can build whatever it is that they want. So maybe talk to the designer, I find people complaining about designers. Half of that is valid, but the other half is just that, like, you don't want to be pushed enough. And I find working with designers who build these crazy things. It's like almost a challenge to me to figure out how you can do it well and perform it and things like that. And sometimes you do have to peel it back. But that's that's part of your job.
+
+34
+00:15:34,169 --> 00:15:45,029
+Scott Tolinski: Yeah, yeah, it's tough. I think at the end of the day, you're you're a team and their process, you have to educate them just as much as they probably have to educate you on different design things. So yep.
+
+35
+00:15:45,990 --> 00:18:03,180
+Wes Bos: Next up, we have a question from Daniel, which is, Hey, guys, I saw Wes has an example in one of his slides where the array prototype is written onto the nodelist prototype, is this safe enough for production as it overwrites all of the regular nodelist behavior. I was wondering if it was so let me bring it up real quick. This is referring to a slide I showed of bling dot j s and bling j s gives you dollar and dollar dollar for query selector query selector all it gives you the on functionality, where you can just like select an element, say on click instead of having an event listener, it will give you on for node lists instead of just having to loop over do a for each and individually attach it. So in one of the lines in there is node list dot prototype equals array dot prototype and you're overriding the entire node list prototype to be that is that an array prototype and real quick, a node list is sort of like an array, except it has a very much appealed back prototype on it, meaning it doesn't have all of the map and filter reduce methods that you're used to on an array. So often what you find yourself doing is converting a node list to an array so that you can use those things. So this one line Ah, this is it, is it okay to do that. Generally, the thing is, don't touch built in prototypes, build your own functions that do that. So like why, why are you doing this? And I think it's probably fine. Because this bling j s was built by Paul Irish, who is a dev over at Google. And this has been around for, I don't know, probably six or seven years now. And I haven't heard of anybody complaining about this. And it's not like your your node list is duplicating these properties on each, you're just pointing the prototype to the array prototype. So I think it's fine. I don't know if it is, but I have never heard anyone complained about it is from Paul, Paul Irish, who I respect immensely in performance and JavaScript world. So I think it's totally fine. And oh, sorry. The other thing is that all of the node list methods are also in the array. So you're not losing anything by overriding the nodelist prototype. So I think so I'm not sure.
+
+36
+00:18:04,410 --> 00:18:36,000
+Scott Tolinski: Yeah, I have nothing, nothing necessarily to say on that. Because I honestly don't know, I don't really do too many of those overrides, but at the same time, I think that's this year, a lot of these concerns about overriding anything, I think, become a problem more with teams, right? Because if you're overriding something yourself, you know what to expect, right? You've overridden it with this library. You know what to expect, but maybe somebody who's coming in on a project in maybe everything doesn't transfer? I don't even know I'm, my opinion is not valid here. So yeah,
+
+37
+00:18:36,000 --> 00:19:16,580
+Wes Bos: you should never you should never overwrite built ins with your own version of that thing, right? Because then anyone else running JavaScript on that doesn't know. And that's actually what happened with prototype j. s. They literally overrode the prototypes. And that's why we have string.is. It contains or includes, let me see if I take awesome and I say.in. Its includes that's why we have string dot includes instead of string contains, yeah, because prototype had a contains and it was different. And they didn't want to break the web. So in general, don't. Don't do that. But if it's if it's native methods anyways, that's not you're not changing anything on the node list. And that's probably fine.
+
+38
+00:19:17,060 --> 00:20:50,400
+Scott Tolinski: Cool. All right. Next question is from loot fi thank you for giving us pronounciation. In a potluck episode, you mentioned that you do not host your clients websites. If you don't host your clients websites. How do you go about handling clients that are less tech savvy? Are you do you avoid those clients? It's funny this question and the next question are are sort of related. So I wanted to put both of these in here, but I think we should answer them separately. So this question is about whether or not we think, like, okay, so you have a client's website, you signed up, what do you do about their hosting? Now, typically, what I would do is get them either online with you whether or not That's on the phone or maybe on a screen share, and have them sign up for the service and enter their credit card on whatever it is, and have them give you login credentials. Or they can provide you with a credit card. And you can create the account and sign up and do all that stuff for them to get the application set up. Because the last thing you want in my mind is reoccurring billing from some service on your own credit card. So you want to have their card, their account, it's all theirs, and you can set it to reoccur forever, and whatever you need to do, but in my mind, that's how I would approach it. And whether or not they're technical, I wouldn't consider that is anything, it's just a matter of not being responsible for either the payments or for keeping this thing alive, essentially.
+
+39
+00:20:51,000 --> 00:21:27,510
+Wes Bos: Yeah, don't don't do it. And we had a lot of people tweet us being like, Yes, I made the same mistake, don't actually do it ever. Because they will come back to you when when things break. Everybody knows how to buy something online, you're not asking him to like, SSH into a box and set up a linode server or something like that. You're you're asking them to go and go to a website that sells a hosting plan, click it, put their credit card in. And then usually they just send me the password for their login. And you can log in and do and do the rest. Everybody knows how to buy stuff online. And honestly, even if they can pay their power bill, everybody should be able to do that.
+
+40
+00:21:27,930 --> 00:21:30,240
+Scott Tolinski: At least in 2019. Yeah.
+
+41
+00:21:31,050 --> 00:23:11,220
+Wes Bos: So the next question we have which is related. I know you guys, especially Wes, have been pretty insistent recently and not hosting clients site. But what do you think about continuously hosting client sites with a service like Netlify is highly likely to go down and skills for all of you. So it might be a little bit of recurring income if you build them yearly for the minimal Netlify fees. So yeah, I think that that's fine to do that. But you getting in there and trying to scrape 11 bucks a month off of the top is not going to be worth it because of other stuff that is unrelated, that they think is your problem. So their email goes down, they want to make a quick change on the website Six years later, and you're not like essentially, by doing this, you are attaching yourself to the client, likely forever, because you can obviously transfer it out. But it's a pain to do that. So is it worth making an extra hundred bucks a year, when they're gonna call you up on a long weekend at five o'clock on a Friday night? Probably not. But like there's there's businesses that have support and things like that to do this. And if something goes wrong with any one of these things, like the website goes down, like their email, you need to direct them to the actual support, which they're paying for and say, Look, I I wrote the code. I'm not it. And I'll say I'm so adamant about this, because I've been there. And it's just not worth not worth it. Because a client's aren't dumb either. Like they can go and search, how much does hosting costs. And they're going to find the GoDaddy page where it says it costs like a ham sandwich to host your website. No, they're not sound like and find out that it is their gimmick, why are you charging me an extra 20 a month? So that's my thoughts. Yeah, Been there, done that
+
+42
+00:23:11,220 --> 00:26:21,480
+Scott Tolinski: bought a T shirt, you know? And did all that. So okay, so this is going to be the easiest to add transition in the world because this episode is also sponsored by Netlify. Hey, so Netlify, we were just talking about them. It's a super easy way to host your applications. Now. What does Netlify give you? Well, it gives you just about the easiest setup and hosting that you could ever possibly imagine, along with some things that right out of the box like a CDN, an SSL, a bunch of other acronyms. But it also gives you continuous integration and automatic deployment things that you don't even have to think about seriously, just connect your repo to Netlify. And let Netlify take care of the rest, it couldn't be any easier. And they also have a bunch of additional features, things that you're going to use for just about any major project that you're doing, such as some really awesome, unique DNS level analytics that are just like really super cool. Their analytics are very different. They come from a higher degree than something like a script on your page like Google Analytics. So you can actually trust these analytics. They also give you access to server side functions, login via identify forums and large media. So check out Netlify and netlify.com forward slash syntax. host your website, get up and running in just about two seconds, and then tweet at us just how awesome you found Netlify to be because that's what everybody else does. So check it out. netlify.com forward slash syntax and thank you to Netlify for sponsoring this show. Okay, next question is from Mr. X. Mr. X says, Hey guys, I'm a huge fan of the show. And I want to thank both of you for your amazing courses that you create. Well, thank you, Mr. X. I was listening to an episode on the smart home and I'm interested in buying a Google Home mini myself however, I cannot Stop thinking about the privacy implications of this device always listening around my house. What are your thoughts on this topic and on privacy related to online services in general? Okay, so this is a tough question. I have Google a Google minis all over my house. And so there is a microphone, and it's listening to you. I mean, it's definitive, and maybe some interns gonna listen to some audio. That's not you saying, hey, gargle, right. But people who think like this, they don't think about every other microphone that's in your house, considering every single device you have, whether it's a phone, or whatever, also has those same voice detected features. It has a microphone, so your phone is also listening for Hey, gargle, or Yo, any of those? Whatever? Sandra. Yes, Sandra, any of your, your queries that you're talking about your phone microphones already? Listen to that stuff. So I think this is the I don't know, maybe the future where we're just giving up our privacy? And for convenience, I honestly don't know, to be honest. Yeah, it's a tough thing. I might even if like I might even just straight up Turn off the mics on all of mine. Because I mostly use them through like Chromecast to Chromecast my thing rather than yelling at it, but sometimes I yell at it. I don't know,
+
+43
+00:26:21,600 --> 00:28:00,870
+Wes Bos: we yell at ours all day long, we had to replace our daughter's light switch with a Wi Fi light switch. And then we just put a plate over top of it. Because our daughter was turning the light on at three in the morning when she was angry and woken up. So we just put a Wi Fi light switch in and put a plate over it. And now we have to yell downstairs to turn their light on. That's funny. The developer in me knows how much this can be abused. Yes. Because like I know, like, it's sometimes funny you talk to you talk to like your non technical relatives, and they're like, oh, man, I just got an ad for the thing we were talking about. And the developer in me is like, hundred percent. They're listening to you. Yeah. Because there's so many like, I've got, like, I've listened to the reply all that and I know that about Bluetooth beacons and all these things, and hundred percent don't believe that they are listening to you for sure. But I but like also, like, I don't think it's as overblown. I don't know what to say about this. It's I don't think people say that about the wise cams as well. Every time we talk about them on the thing. People are like, oh, they're Chinese cameras spying on you? And I think like, Probably not, but maybe Probably not. I could bet. But it's hard. I'm taking the risk. I believe that the benefit maybe outweighs the cost. At some point. Maybe that will irk me a little bit more. I definitely am much more privacy focused than it was maybe even two years ago. And I think that there's a bit of a trend right now. And I think that's why I sort of sat I'm saddling up on a lot of Apple products over some of the other ones.
+
+44
+00:28:00,900 --> 00:28:19,950
+Scott Tolinski: Yeah, hey, that's a consideration I had to for getting the the iPhone although the report you know, Apple's interns and their third party people listen to you, too, because that report came out. So I think is Apple's regard maybe just be a heavy, hefty dose of marketing, but they do tend to back it up a little bit. So
+
+45
+00:28:19,950 --> 00:28:30,210
+Wes Bos: I think so. Especially like the the Catalina now asks for everything. And people are so annoyed by it. Like can access. Yeah, I don't mind it. Oh, I
+
+46
+00:28:30,210 --> 00:28:32,880
+Scott Tolinski: like it. I love it. I love it.
+
+47
+00:28:33,060 --> 00:28:47,280
+Wes Bos: Yeah, that's totally I love knowing what it being able to like know that someone's not using my mic. someone's not using my microphone or my webcam, things like that before actually use it. And I don't know, the world is amazing. But also awful.
+
+48
+00:28:47,460 --> 00:29:02,640
+Scott Tolinski: Yeah, right. The new Android has like a lot of those features, too. But I really loved how the iPhone was just like, would you like this application and know your location only when you're using it never where I like, I like how easy they're making a lot of those things now. So yeah,
+
+49
+00:29:02,700 --> 00:29:06,300
+Wes Bos: yeah, skeptical, but the by default, but cautiously optimistic.
+
+50
+00:29:06,390 --> 00:29:07,290
+Scott Tolinski: Exactly.
+
+51
+00:29:08,190 --> 00:30:25,050
+Wes Bos: Next question we have here is from Al Chen. What are your thoughts about using a CMS that uses flat files versus a traditional MySQL, Postgres database for a company blog that won't have large traffic? We are currently evaluating graph CMS and craft CMS, which I know you've mentioned a few times on the podcast. I think flat file CMS is fine for technical users. Yep. And I think that that's okay, as long as it doesn't stop you from posting stuff. Because you know, like, Oh, I don't know if it's gonna work. I don't want to have to run the build and update everything, things like that. Not a good solution for like, I worked on a large website once where we built it all on markdown files. And then we ended up building a markdown editor for the non technical users and we did everything like we built Table layout and everything. And it just wasn't like it didn't the end users were just like, Can I paste my Word document into it? You know, like, just wasn't there? Yeah. So I myself, I'm building a flat file, like Gatsby site for my own website. But that's because I'm a developer, and I want my want everything to be in markdown files. But I would probably go a traditional CMS for almost everything else.
+
+52
+00:30:25,080 --> 00:31:14,010
+Scott Tolinski: Yeah, I know, this person says that they don't say anything about non technical people editing. But that's such a huge thing, regardless of how optimistic you are, non technical people will never one understand markdown files, and to never go to GitHub to edit something sometimes, like, oh, it does have the metadata. GitHub will submit a port or no, nobody's gonna do that. No, no, nobody knows how to do that. And I wouldn't ask anybody to do that. So as long as, as long as it's user friendly, I know craft seems to look nice. I've never used it myself. As long as it is a decent editing experience, then it's fine. But again, like you mentioned, if for some reason, you're not going to want to edit it, or people aren't going to want to edit it because it's too much of a pain, then I you know, people just flat out won't so yeah, yeah, cool.
+
+53
+00:31:14,070 --> 00:32:08,850
+Wes Bos: And I would jump, I would jump at it. There's so many new CMS is out there right now. Prismic and Sanity have sponsored in the past Netlify has CMS headless WordPress content contentful. There's also this new thing that got released the other Tina's CMS, which is not a CMS. But oh, it's forestry is another one, they put out Tina, which is like an editing UI that will connect to your CMS. Actually, that's a that's a perfect solution. So this new editing Tina thing will have the ability to edit RAW files or like hook up to a headless CMS. So maybe look, take a look at Tina, because it's it gives you the ability to like edit your site in real time with a nice editing UI that comes out from the side. And then it will save it to respective wherever that that data lives.
+
+54
+00:32:09,000 --> 00:32:12,930
+Scott Tolinski: Yeah, cool. Good adoption. Good Modern UI, check out adoption. Yeah,
+
+55
+00:32:12,960 --> 00:32:14,190
+Wes Bos: came out three days ago.
+
+56
+00:32:14,730 --> 00:32:59,310
+Scott Tolinski: Right. Right, exactly. Next question is from Oliver. Seven. All right. Oliver asks, have you used data attributes as custom elements in the CSS in j. s. I have been developing, using them for the past two years and think they are the way forward. Here's some example usages so far. So they're talking about using a data attribute to style as like a look as a replacement for maybe like a like a styled components or something. Right? Yeah. How is this different than just using a class? I guess that's what I don't understand. Because you're just signifying a thing via a data attribute instead of a class. So how is that different than a class?
+
+57
+00:32:59,520 --> 00:33:40,200
+Wes Bos: Yeah, let me explain it real quick. So he gave us this example. Airedale, chemical.com they're gonna get these we're just gonna get like 40,000 hits. Yeah, right there. Air is a ir da, l e, chemical calm and then just view source on it. And yeah, is that they've got like a header component that has data dash CSS header equals header. So that's a specific kind of header they have, and they have a data CSS selection, content, slim. And then data j s header equals header. So what they're doing is they're creating custom components that have CSS and functionality attached to them. Yeah. Via data attributes, instead of like a class and,
+
+58
+00:33:40,320 --> 00:33:55,890
+Scott Tolinski: sure, let's look at the footer. The footer has data hyphen, CSS, hyphen, footer equals footer, and then data hyphen, CSS hyphens. Section equals content. Why wouldn't you just say class equals footer? Space contact? Yeah.
+
+59
+00:33:56,460 --> 00:34:34,260
+Right? You just you just typed so many more words to do the exact same thing, because it's just going to compose it the same way classes are, I think, yeah, maybe just more explicit in the HTML. But to me, I would just use this this is just seems like you're just coming up with a new way to do the exact same thing that people have been doing for a long time. And I think the only reason that I would use styled components over classes anyways, is just because of how it looks and feels within react to me personally. I mean, I don't think this, I don't, I guess I can see where the perceived benefit would be here. But to me, this perceived benefit does not surpass the utility of it.
+
+60
+00:34:34,440 --> 00:35:15,920
+Wes Bos: Yeah. What I've done in the past is sometimes I've added a class to something and I've used that class to style it. And to add functionality via JavaScript, like grab it via color selector and add, yep. And then I'm like, ah, shoot, I just tied like, what it looks like, and what it does into one class. And that's annoying because it should be separations of concerns, right? So like, what I ended up doing is I would just say like fn dash Like function dash, whatever. And then I knew that if it had fn in front of it that that class was for selecting it via JavaScript. So that's our Yes, this is a bit of a better way to, or a different way to like nice, clearly state. This is a footer and this is the type of footer it
+
+61
+00:35:15,920 --> 00:35:28,350
+Scott Tolinski: is. But when Couldn't you do that with just classes anyways? Like, yeah, you're saving by doing a prefix. Like if you wanted to say section, footer section, hyphen, footer as the class I mean, to me, this is just extra markup for not a lot of benefit.
+
+62
+00:35:28,380 --> 00:36:00,170
+Wes Bos: Yeah, maybe if you, I'm just trying to think like, what the benefits would because I had never heard of this until we got the question. I was like, This is super interesting. Yeah, show me all these web sites that have it. And like, and maybe because like, you can easily access data attributes via JavaScript, but you can access classes, and you have to parse the prefixes off of them. I don't know. I don't, I think it's cool. Absolutely. I don't think there's any downside to it at all. If it makes a lot of sense for you go for it. But he said, it's the future of components. And I highly doubt that. So
+
+63
+00:36:00,270 --> 00:36:40,050
+Scott Tolinski: that's cool. Yeah, I think anything that makes your system more robust and more usable as a design system is good, because it's helping your team build something that's organized. And really at the end of the day, like I wanted to do an episode on. I added to the hasty calendar here, if you wanted to talk about this at some point, but I'm writing good CSS, like CSS at scales. And I think that is such, like, the biggest component of that is having a system that people would adhere to. And that works, right. So anything that allows you to write a system like this, I believe is a positive. Whether or not it is the future, I think that it remains to be seen.
+
+64
+00:36:40,400 --> 00:37:25,710
+Wes Bos: Yeah, I also think there's There are many ways to do it. And it tends to be an I find in CSS world, people get really angry about people doing things a different way than they think is right, which like, I don't go for it if this is the way that you like to do it. Yeah, seems kind of neat. And I bet there's some benefits that we're probably missing here, like, tweet us at syntax FM, if you if you found any other benefits. So I'm just looking at the media queries here. And they're using a lot of Tilda selectors. So like if something has a full or center data dot CSS selection, then apply this padding. And then I think you can probably have like full dash hero, you know, like, yeah, maybe like different types of items. I think I'm stretching it a bit far here. But sure, it seems interesting. I probably wouldn't go into it myself, though.
+
+65
+00:37:25,920 --> 00:37:29,820
+Scott Tolinski: Yeah, yeah. No, I'd be interested in hearing more arguments for this. But yeah,
+
+66
+00:37:30,030 --> 00:37:57,650
+Wes Bos: yeah. All right. Next question we have here from Scott Cardoza, why do so many people jump on styled components? slash CSS and j s? Are these all people who have never used sass or SCSS? Seems like such a pita? To get a sass working with either of these? It feels like coding tables vs coding HTML. To me, it seems backwards. Oh,
+
+67
+00:37:57,690 --> 00:38:00,420
+Scott Tolinski: is it more of a an anon bread than a pita?
+
+68
+00:38:00,690 --> 00:38:24,780
+Wes Bos: Enough? Wow. Um, why do people so many people jump on it? I will see they see this question a lot from people because they're like, I'm used to SAS, I think it's great. And why are all these people changing? I'm annoyed that my comfortable way of doing things is changing. So first of all, you don't have to change. Absolutely not. sass is still extremely valid.
+
+69
+00:38:24,920 --> 00:38:29,580
+Scott Tolinski: I just added sass to the level up website for a small little thing. I just added it. Yeah.
+
+70
+00:38:29,609 --> 00:38:30,980
+Wes Bos: I mean, how come? Why?
+
+71
+00:38:32,070 --> 00:38:33,710
+Scott Tolinski: It's kind of a long story.
+
+72
+00:38:33,860 --> 00:38:34,460
+Wes Bos: I got time.
+
+73
+00:38:34,530 --> 00:39:46,460
+Scott Tolinski: Yeah. Okay. So I have some global CSS for things like my custom properties. I use a lot of custom properties in the live website. And so I had a lot of global CSS files. And I was occasionally getting some very, very weird Safari books where there would be just like memory, out of control in Safari exclusively. And I, it was the hardest thing to solve. But every single time, I would comment out my global CSS from styled components like that create global CSS component, every single time that I would comment that out, the bug would go away. And so instead of spending, you know, two weeks to try to figure out what exactly was causing this to happen within styled components, I just copied and pasted all of that CSS into a sass file. And that was it. Because the beauty meteors build tool is as simple as just saying, hey, yeah, add sass to this and it takes care of it. And it was just a few things anyways, but that solved the problem in just about two seconds. So it was only styled components, global CSS, and honestly, I have no idea what the problem is. It could have been anything from server side rendering to something specific with Meteor. So honestly, I have no clue.
+
+74
+00:39:46,649 --> 00:40:05,730
+Wes Bos: There you go. Yeah. I think like, why are people switching to it? People like having all of their CSS in their JavaScript. People like being able to run JavaScript inside of their CSS, which makes doing things like dynamic CSS. Really, really Easy you can't do if statements inside of your SAS super simple to do it inside of a stock component,
+
+75
+00:40:05,879 --> 00:40:07,320
+Scott Tolinski: or you can't do it on runtime.
+
+76
+00:40:07,350 --> 00:40:31,880
+Wes Bos: Yeah, exactly. You can't have what I guess with with like variables, you can do it on build time. Yeah, custom properties, you can now have variables in your SAS, which is great. Yep. So it's just a different thing that people like. And if it's certainly not everybody likes it. There's a lot of hate against stock components in the whole CSS and .js. So certainly don't have to go that way. But a lot of people quite enjoy
+
+77
+00:40:31,890 --> 00:42:31,110
+Scott Tolinski: it. Yeah, I think some of it too, is that okay? So CSS is built to cascade, right? And then so sometimes the people who are anti CSS and JS see those solutions as simply being a solution to scoping and cascading. So to say, well, we just want to scope everything. But I don't really think that's the case. Because a lot of times, if you're writing good CSS and j s, anyways, you're still taking advantage of all of the cascade, but it does give you more control over that scoping by having scoping, essentially there by default. And you can turn it on when you want or turn it off when you don't want by just how you compose things. So I think there is a little bit of that scoping thing in there. And I don't think it's that people don't know how CSS works to me, to be honest, it just gave me more control over that scoping and the overrides than files. And sure enough, you can get that same thing by different ways of having CSS load, whether or not it's being bundled in different ways. I like CSS and j. s, simply just because of how it allows me to organize my things in a way. So like, not that you can't organize these things with them, or with a system, you certainly can the exact same way. But I just like the way it looks and feels in that regard. But I think the biggest benefits, as you mentioned, are like some of the interactivity between JavaScript where you can just have JavaScript right then in there, modifying and changing your CSS, instead of having to do a bunch of overrides or anything like that, again, custom properties solves some of that as well. But yeah, I just like it. And, you know, I would consider myself a CSS head. You know, like, you know, I toured with CSS back in the day, you know, with all their shows, you know, I'm a huge fan of CSS. And like, I like CSS and .js. Just because it helps me write better CSS. And I don't think it's a pita, but maybe, maybe I think you should spend a little bit more time with it. And maybe you might like it, just like react. I thought it was ugly when I first saw it, and I was kind of annoyed by it. And then once I picked it up, I ended up really liking it.
+
+78
+00:42:31,260 --> 00:42:40,400
+Wes Bos: Yeah, I think that's like a good. Like, Scott has no horse in this game, whether CSS and j s wins or loses or sass, like, Oh, yeah,
+
+79
+00:42:40,439 --> 00:42:41,940
+Scott Tolinski: I was an early sass, man.
+
+80
+00:42:41,960 --> 00:42:57,570
+Wes Bos: Yeah, he just wants to use what's what works for him? And what he enjoys authoring and what makes writing scoped and maintainable CSS in his code base. Easy, right? Yeah. And because of that, he's probably tried them all. And he likes style components. So that's like a good way to look at it.
+
+81
+00:42:57,629 --> 00:43:07,380
+Scott Tolinski: I like CSS more than I like JavaScript. So like, you know, it's not, it's not like, I'm just trying to shoehorn JavaScript into everything I like, yes, more than JavaScript. So yeah,
+
+82
+00:43:07,499 --> 00:43:23,970
+Wes Bos: yeah. It's, you tend to get that feeling from the like, I'm a JavaScript person, and I'm a CSS person. And, and people are sort of fighting. And it's kind of nice to like, I think people like Scott and I were like, We literally don't care who wins this battle, because we're just using both at the end of the day.
+
+83
+00:43:23,970 --> 00:43:25,460
+Unknown: I don't see it as a battle. Yeah,
+
+84
+00:43:25,499 --> 00:43:26,010
+Wes Bos: yeah.
+
+85
+00:43:26,010 --> 00:43:35,940
+Scott Tolinski: If you see it as a battle, I think that's the wrong side of the argument. I think there's only one wrong side. And that is like the person who's divisive on either side. It's like, do what works for you.
+
+86
+00:43:36,419 --> 00:43:39,000
+Wes Bos: You know what, I'm not divisive about Scott. Oh,
+
+87
+00:43:39,170 --> 00:43:41,210
+Scott Tolinski: uh huh. Is it
+
+88
+00:43:41,420 --> 00:43:42,120
+Unknown: fresh books,
+
+89
+00:43:42,180 --> 00:44:11,310
+Wes Bos: it's fresh by our sponsor today is fresh books, which does your cloud accounting. If you're running a small business and you need to get paid, you need to send off invoices you need to track your time convert those time into invoices, log all of your expenses. freshbooks is going to do it it does small business accounting that makes your billing painless. Check it out. freshbooks comm forward slash syntax looks like they got a big fall sale going on right now. If you want to sign up for six months to
+
+90
+00:44:11,399 --> 00:44:12,450
+Scott Tolinski: get them deals,
+
+91
+00:44:12,780 --> 00:44:24,060
+Wes Bos: you're going to get a 30 day unrestricted free trial. If you check it out, make sure you enter syntax in the How did you hear about us that will get us credit and keep fresh books sponsor and thanks so much to fresh books for sponsoring.
+
+92
+00:44:24,270 --> 00:46:32,310
+Scott Tolinski: Yeah, gotta get those deals. All right. Next question is from Jerry. Hey, Jerry. When do you ever reach for a component library like material or bootstrap currently working in a corporate job? We're almost always expected to use one of these for our internal applications. I usually prefer to make it on my own, but I'm wondering if I'm going to make my life more difficult than it needs to be any advice. When do I reach for them I typically reach for them for side projects. And that's pretty much it or something where I don't want to have to write or design something else. Reach for it. Because if I'm having to do too many overrides, then, at the end of the day, I would rather pick a smaller, or like a selection of smaller tools, rather than one big tool, right? I would rather pick not that you need it with CSS Grid, no anyways. But like in the past, I would have rather picked a grid library, a, you know, a typography, a system of this system, and of that system, rather than one all encompassing system. And we worked on a project with a large team, I can't get too much into this project, because it was not one that I can share anything about. But we used bootstrap for I believe on it. And, man, the amount of time we spent having to fight bootstrap to do what we wanted to do was like kind of outrageous. And now granted, things would be very different with Flexbox and grid today. But I'm almost never reaching for these things. Unless, of course, it's a project that I need to get done quickly. And it's a project that I don't want to fiddle a ton with. In a corporate world, there's going to be a different expectation, because sometimes these decisions aren't made by you, when we made these decisions. Neither of the developers working on the project actually got to make that call, it was already started passed down to us. And here you go, you got bootstrap. So you don't always get to make those calls. And sometimes you got to, you know, work within the system. And that's all part of what we're doing as developers, you know. So when would I reach for them? Not ever unless it's, unless it's a side project, or I don't want to spend the time developing it myself?
+
+93
+00:46:32,430 --> 00:47:33,450
+Wes Bos: Yeah. Last time I reached for it was when I was doing my like course back end player. And I just needed a quick couple of classes to slap together an admin. And I kind of regret it. Because anytime I want to make a change, I have to like, figure out what is it doing and override it. But that said, it's certainly if you learn how to use foundation or bootstrap, well, it's a great base, and you can get really good at it, I just don't think that it's worth the time and investment because of I don't know I can, I can slap up a quick website design based system in like an hour or two. And I'm up and running. Like Scott said, the only time I would use it is if I needed to like have an admin dashboard, something that is so fussy with graphs and cards and blocks and things fitting together. And like that's a really fussy job. And that takes a lot of finesse. And if you can go and spend 50 bucks on a bootstrap admin theme, and just pipe the data right in there. You're laughing. So I think that's probably a really good use case for it as well. You know, one
+
+94
+00:47:33,450 --> 00:48:30,300
+Scott Tolinski: thing too, I might recommend is what I did is I created essentially my own, I don't want to call it a design system. But my own utilities, where I've sort of built up my own library mini library of utilities that I use for everything, whether or not in my in my projects, these are styled components, but they could just as easily be classes where I have a specific reusable layouts that I have, I have specific buttons, I have specific typographic settings. And I could take these things from project to project with me, and I know them really well. Now granted, those aren't going to transfer. If you have another developer, you'd have to teach them your system rather than a bootstrap system. But the benefits are that you don't have this giant behemoth known as bootstrap or any of these libraries sort of hanging out in your project. So that may be just a thought to consider is maybe it's worthwhile to develop your own internal one because internal well developed tools like that can always be a little bit more refined to what you need specifically.
+
+95
+00:48:30,720 --> 00:48:56,310
+Wes Bos: Next question we have here is from Dale. Dale, he's gotten worse. First off, great podcast. Thank you, Dale. Thanks. Please. Could you chat about get clients and which ones you use? And why or are you hardcore terminal geeks? Cheers from South Africa? Well, Dale, I had learned via the command line, and I do everything via the command line. However, I did switch for a little bit using the VS code built in one.
+
+96
+00:48:56,340 --> 00:48:58,380
+Scott Tolinski: Yes. Okay. I want to talk about that. Yeah,
+
+97
+00:48:58,470 --> 00:49:22,500
+Wes Bos: I recently saw like, in the latest release, it got even better. So it's good. Yeah, I think you should use a GUI. I don't use one just because like, I don't know, I learned the hard way. And now that's how I know it. Like I would say don't do it the way I did it, use the user GUI to at least learn it off because they seem really great. Whenever I see people using them. It's just that if for some reason, just love using the terminal.
+
+98
+00:49:22,680 --> 00:50:41,850
+Scott Tolinski: Yeah, you get all those interactive, like merge stuff. Now from VS code, but from a GUI I've never used a GUI I tried to use the get get cracking Is that the one I tried to use? Yes, at some point or but really, once you have your your muscle memory really tuned to your you know, your keyboard, your aliases set up, just bah bah, bah, bah, bah, bah, you know, fly through it. It's really easy to just have that be how you do it because that's your muscle memory. But just like you I've recently been trying out the VS code ones considerably more to use the whole interface for staging and merging and whatever, specifically because I've been doing some pretty monster merges. It's like the monster mash over here with merges for me and, and so I've been having to like really navigate through some conflicts and some complex merges. So I've been using the VS code ones. And I really love the history, I think it's get lens, a lot of that stuff. The tools I found to be in VS code have made me much less to tab over to my command line. But at the end of the day, I'd still say maybe like, 80% of my commits are still done through the command line. I don't know why I think it's just muscle memory. But yeah, that's pretty much it. I wouldn't even describe myself as a terminal geek, because I do a lot of stuff on terminal, but I'm not necessarily a terminal head. I'm not using vim or any of that stuff.
+
+99
+00:50:41,850 --> 00:51:10,320
+Wes Bos: Alright, that's all the questions for today. Thanks so much for sending those in. If you have a question, please, please send them on in@syntax.fm. Click in the top right hand corner, it says ask a potluck question, you can go ahead and pop your question in there. Whatever it is you want to hear us talk about. We really like these just because even if we don't answer them, it's usually helpful to like we see things over and over again and then say, Oh, we should do a show on that. Yes, totally. Something people are asking about all the time.
+
+100
+00:51:10,560 --> 00:51:19,650
+Scott Tolinski: Somebody told us that they didn't like our flow tank thing. Did you see that one? No, I didn't. Somebody said, Please keep your to your shows about coding now float tank?
+
+101
+00:51:20,880 --> 00:51:52,080
+Wes Bos: Well, yes, sir. It's our podcast. Well, we we do appreciate your feedback. We do. But also it's, it's our podcast. And we can do what's fun, because like, we do this thing twice a week. And we want to keep it fun and interesting. And we want it like my number one goal in web development is don't burn out. And if that means doing interesting shows on random stuff, and or if that means just talking to Scott about sleeping like I did for 20 minutes before we started recording. Yeah, then that's what I'm gonna do. Because we're having fun over here
+
+102
+00:51:52,170 --> 00:52:33,330
+Scott Tolinski: in float tanks. I mean, honestly, even though it's, you know, we weren't trying to be Joe Rogan, or anything like that with it. I was like you might have been but like, at the end of the day, this stuff is important to us as developers who are under a high amount of stress, like, I'm under a really crazy amount of stress. I know a lot of developers are I have crazy deadlines. I'm like, constantly freaking out about things, my codes not working this or that or whatever. Uh, having that time to wind down or whatever was is was super essential to me. And to try and experience like that, I think that's something that would be beneficial to people to know about. A lot of people just don't even know about that thing. So that's, that's my thought on it. I'm not gonna I guess apologize for it. But yeah,
+
+103
+00:52:33,750 --> 00:52:59,460
+Wes Bos: totally like, well, that's why we do podcasts on like health and fitness, and all of that sort of semi related stuff. Because honestly, it does make you if you're sharper, if you're more well rested. If you're in good shape, then I think you are going to be a better web developer. So slightly, anything that's related, let us know what you think at syntax FM, we can handle it, we can handle it. Cool. Ah, sweet about a sick pic for today.
+
+104
+00:52:59,730 --> 00:56:27,030
+Scott Tolinski: Yeah, I have a sick pick. So okay, I'm gonna preface this with that. Okay, so those of you who have been paying attention to this podcast for a little bit know that I've recently switched to an iOS device. As my sort of daily driver, I have four phones on my desk right now, three of which are Android devices, and one is an iOS. So it's by no means totally entrenched in this iOS device, but I've switched to it as the phone that I'm using, right. And so I like working out. And I have been really struggling to find the right fitness app for me, because there's the billion fitness apps and a lot of them look really good. And then you download them, and then they expect you to pay $10 a month, just Yeah, do your fitness stuff. And so some of them that have been suggested and like strong fit BOD at rep count, gravitas, heavy set. And so a bunch of these apps, I tried them out. And I need something very specific from my fitness app, I do not need it to use machine learning to generate routines. For me, I do not need people to say okay, this fitness person created this routine, like all I need is the ability to log my things, to save it to look at pretty graphs that that show me you know how much stronger I'm getting. And with some of the things that I was I wanted to connect to like maybe the health apps if I'm gonna get an Apple Watch, or I have a smart scale that connects to the Apple Health thing. So if I'm buying into this Apple Health thing, I want the app to connect to it as well. So I did a trial. And I downloaded a ton of these apps. And I have found in my mind, what is the best one for me. And this is called heavy set. The app was a $9 or $10 purchase but a one time purchase rather than a monthly or a yearly subscription. I'm into that because I think that's kind of nuts, because like a fitness app does not need to have servers running right. Sure you can have backup data and whatever but my fitness app on Android backed up to Google Drive and like that was That's free. So you just a one time purchase, there's no reason to have server costs for that. So yeah, I i've been using heavyset and let me say it's very pretty the opposite of it's like this neon green and black, the app is very pretty. The interface is not the most intuitive. But it's very good. If that makes sense. Once you like, get it, once you understand what's going on, it's super easy to navigate and looks really nice. But when you first open it up, and you're trying to figure it out, you're like, I don't what do I click on here. So it's definitely one that might be benefit from like watching like a how to video on YouTube, how to use it or something. But this is definitely my favorite app, you can import and export the data, you can get all your nice charts and graphs, it connects the Apple Health stuff. And it's totally customizable. So if they don't have an exercise that you do, you can add it in like two seconds. And it just didn't really nice things. You know, I'm one of the interns. This is like a web dev thing, even one of the interface things that I love about this app is that when you're searching for an exercise, and it doesn't have that exercise, it automatically is adding that text that you're searching for into like a create new exercise button. So if I search for overhead press and it's not in there, I can just easily hit one button to say add this instead of having to retype it and re add it. So it makes adding things really nice and easy. In the process of using it. There's just a lot of nice little user face user interface stuff. And
+
+105
+00:56:27,210 --> 00:56:31,260
+Wes Bos: this looks awesome. definitely gonna try this at the gym today. Yeah,
+
+106
+00:56:31,290 --> 00:56:33,720
+Scott Tolinski: I like it a lot. So heavy said check it out.
+
+107
+00:56:33,720 --> 00:57:36,390
+Wes Bos: Cool. Check that out. That's a good sick pick. I'm going to sick pick. Canadian television show. That's called the bar. I can't print a bar NASS Vaughn sketch. And yes, that's the way I can describe this as is Canadian women portlandia. Because it's a sketch show very much like portlandia where they do these hilarious little things. And it's it's for women who just like, there's one where they're like doing superpowers, and the one girl superpower is being that woman who like tells people to stop smoking and stop parking in the bike lanes. And everyone's like, Oh, I want to be that woman. You know, like, social interaction is hard. And it is hilarious. I think it's five seasons in already. You can watch. If you just search on YouTube, you can watch some of their best sketches. But we've been watching all of them on the CBC app. I'm sure you can find it somewhere else if you're not in Canada. So check it out the bar, NASS is ba r o n, e, ss, Vaughn sketch
+
+108
+00:57:36,810 --> 00:58:09,000
+Scott Tolinski: word. Shameless plugs, I have a new course on next j. s nine that that uses the next j. s API route to uses MongoDB. It uses Apollo and we build a habit tracking app, it's pretty darn cool. Where we do all sorts of really fun stuff related to server side rendering with react and the modern stack, and all wrapped up within one code base using these fantastic API route. So check it out at level up tutorials.com forward slash Pro, sign up for the year and get 25% off.
+
+109
+00:58:09,450 --> 00:59:09,300
+Wes Bos: I'm going to shamelessly plug in advance probably by the time we're listening. I don't think I'll have it out yet. But I my beginner JavaScript course is just about done. It's going to be it's it's crazy. I've been working on this thing for like almost all year, like nine months. Yeah. And I'm so happy with him so proud of like, I actually think this is going to be like a fundamental building block of a lot of people's learning of JavaScript. So it's going to be at beginner JavaScript calm, depending on when you listen to this. It might not be out yet but just put that in your head If you or someone you know like that's the other thing as like I know a lot of people listening don't necessarily need this course. But a lot of people listening know somebody who is looking to get into JavaScript and needs a beginner course that's not just like a hold your hand and console, log something and that's it, but you actually want to like end up building real stuff. So check it out, beginner JavaScript calm. I almost said thanks so much for sponsoring. Thanks so much for checking it out. That is my plug anything else today?
+
+110
+00:59:09,540 --> 00:59:10,440
+Scott Tolinski: That's all I got.
+
+111
+00:59:10,830 --> 00:59:15,930
+Wes Bos: Alright, thanks for checking in. We'll catch you on Monday. Later, please.
+
+112
+00:59:18,540 --> 00:59:28,290
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
