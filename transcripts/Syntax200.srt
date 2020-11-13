@@ -1,0 +1,780 @@
+1
+00:00:01,319 --> 00:00:02,820
+Unknown: You're listening to syntax
+
+2
+00:00:02,820 --> 00:00:11,340
+the podcast with the tastiest web development treats out there. strap yourself in and get ready to live ski and West boss. Oh, welcome
+
+3
+00:00:11,340 --> 00:00:20,820
+Wes Bos: to syntax. This is the podcast with the tastiest web development treats out there today is show 200 Wait, I got that.
+
+4
+00:00:24,630 --> 00:00:27,030
+Scott Tolinski: That wasn't even a real laugh. That was the soundboard laugh.
+
+5
+00:00:28,800 --> 00:00:49,380
+Wes Bos: Anyways, thank you so much for tuning in. This is a kind of exciting we are doing a live stream of our syntax right now at syntax comm Ford slash 200. Yeah, obviously you know that if you're listening to this live, but thank you so much for tuning in. Thank you so much for making 200 episodes happen. My name is Wes Bos with me as always is Scott to Lynskey.
+
+6
+00:00:49,380 --> 00:00:49,890
+Unknown: Hey,
+
+7
+00:00:49,890 --> 00:00:50,400
+Wes Bos: how you doing?
+
+8
+00:00:50,400 --> 00:00:51,390
+Scott Tolinski: Good, how you doing?
+
+9
+00:00:51,390 --> 00:00:56,520
+Wes Bos: I'm doing good. We got a ranger snow storm going on right now. So kind of excited about that.
+
+10
+00:00:56,820 --> 00:01:00,960
+Scott Tolinski: We have a raging snowstorm going on over here to double snowstorm,
+
+11
+00:01:00,990 --> 00:01:57,240
+Wes Bos: double snowstorm all the way. So the way that today works is that we are going to be answering a bunch of listener questions we've taken in a bunch of questions from you. We use this thing called pigeon hole, which is pretty cool. They gave us access to their software, when we did both of our live events. And then we they also said like, hey, like, why don't you try this for your 200th episode? And we did. And that's awesome. So if you want to submit a question, while you're listening to us on the live stream, go to syntax.fm forward slash 200. And you can ask your question there, and you can vote on your favorite ones. Today, we are sponsored by two awesome companies. First one is Log Rocket, which is going to track all of your front end events and give you sort of a treasure trail to what went wrong and sanity which is a structured content, CMS. It is your headless CMS tier, head full front end.
+
+12
+00:01:59,130 --> 00:02:01,560
+Scott Tolinski: Those are the kinds of things we can edit out typically.
+
+13
+00:02:04,410 --> 00:02:26,370
+Wes Bos: Except for you how many people are watching it right now? 122? Yeah, you 122 are enjoying it live. Alright, so I guess we just kind of go through the questions and talk about that. If you've got any questions you'd like us to answer anything related to love, or life or web development as well. You can you can ask that. You want to grab the first one there, Scott?
+
+14
+00:02:26,400 --> 00:02:58,800
+Scott Tolinski: Yeah. So the first one the the question with the most amount of votes here is we're rolling into 2020 make some wild Oh, wild and fun predictions about the next about what the next decade will hold for web and the development of it. Some might call that web development, the web and the development of it. So 2020 wild predictions, I'm going to have a different answer. If I were to think about this for a little bit longer. Do you do have some predictions offhand that you can go with? Or do you want me to go?
+
+15
+00:02:59,520 --> 00:04:05,819
+Wes Bos: Um, we talked about this, like the last two years, we talked about, like, what do you hope for the next couple of years? And and I think for both of those episodes, I said, I think it's gonna get easier to do tooling. And I hundred percent think that we are in a good spot right now with tooling. I haven't written a web pack all year, I've things like parcel two are coming out, which is makes it going to be really easy. It's going to be good. So like, I don't that's not the answer. But I'm really excited that that is actually gotten really good, I think and I hope what 2020 will hold is frameworks that will make it really easy for us to build complex applications. So thinking about Keystone has just come out and that's going to make it really easy. The what's the one that Sasha is working on? volgen Vulcan j. s, that's gonna I think that will probably gain some popularity. I think like it's especially once suspense, react, suspense come out. That coupled with a lot of these things that people build on top of that, I think it's going to make it really easy and really awesome to build complex apps with these frameworks. Yeah,
+
+16
+00:04:05,880 --> 00:04:15,479
+Scott Tolinski: I mean, that's the trend that we're we're sort of been saying, I don't know if that constitutes as a wild prediction, though. that constitutes as, like, I know, a mild prediction. Like,
+
+17
+00:04:15,539 --> 00:04:16,350
+Unknown: yeah, while I
+
+18
+00:04:16,350 --> 00:04:19,800
+Scott Tolinski: continue in the direction that it's been going in up getting more and more.
+
+19
+00:04:21,419 --> 00:04:30,600
+Wes Bos: I don't know, like this stuff doesn't move that fast, right? No, so no, no, I don't know if there's gonna be anything that's like, Whoa, nobody writes HTML anymore.
+
+20
+00:04:30,600 --> 00:04:35,850
+Scott Tolinski: You know, that's pretty well, prediction. There was West ba nobody will write HTML and
+
+21
+00:04:35,910 --> 00:04:38,610
+Wes Bos: no one's gonna clip that nobody writes HTML or
+
+22
+00:04:38,610 --> 00:06:10,560
+Scott Tolinski: No, nobody writes CSS. Don't Don't click that because I like CSS. We should just make a bunch of hot hot, hot take sound bites? No, no, I you know, I mean, largely, I feel the same way we, we didn't seeing a lot of things things generally get better and better. I'm really excited for you know, I'm excited for what the React team will do in 2020. And predictions wise, I don't know, I think there, there would be some really interesting things happening. If once suspense starts like really making its way, I think we're gonna see a bunch of like really interesting patterns around data loading, and controlling the mounting and unmounting of components. So none of those are none of those are very wild. I agree with like everything, I think there will be something that comes up to be a little bit more of the fills in the space for rails of JavaScript, whatever we talk about. And you see some of this with next JS right now. The NDC, some of it with Gatsby were these these two platforms that have like really grown this year. And neither of these platforms really seemed content in, like staying where they are. Both of these platforms are like constantly growing and improving. Specifically, if you think about it, like the API routes, and now there's this new I don't forget what it's called s w. Are react hooks remote. What does it stand for react hooks for remote data fetching, stale, while revalidate? Do you ever seen this? No, I
+
+23
+00:06:10,560 --> 00:06:12,330
+Wes Bos: haven't looked at it. I've never seen this.
+
+24
+00:06:12,840 --> 00:06:52,110
+Scott Tolinski: Yeah, no, this is a this is a, it's a project from zite, about loading data with suspense. And it can use graph qL can do a bunch of stuff. It's pretty interesting. And it works with suspensa. It looks very nice. I haven't gotten to use it yet. But a bunch of people have been sending it to me. Check it out when you get a chance. But I mean, that just goes to show you that like companies like zite are doing things like this to make things generally easier and more interesting. I Yeah. Like, you know, what are some of the things that next .js has? Or doesn't have that like Meteor had it doesn't have like an account or a database or something like that, right?
+
+25
+00:06:52,410 --> 00:07:02,040
+Wes Bos: Yeah, that's like, well, somebody and I know that people are working on in Keystone, Vulcan, things like that. But like, oh, Gatsby or knacks please just bake in account. Yeah.
+
+26
+00:07:02,040 --> 00:07:29,460
+Scott Tolinski: Yeah, best thing about Meteor was that you would just fire it up, and you automatically had accounts set up, and you didn't have to do anything. So I think that'll be interesting. And you know, Gatsby's doing a lot of big changes, you see them working in the space with their themes, they're just making adding additional functionality really easy. So I think it'll be very interesting to see what both of those platforms do next year, and I think they're, they're on the, you know, they're on the ticket to do something hot.
+
+27
+00:07:30,119 --> 00:07:41,580
+Wes Bos: And a bunch of people in the chat have been saying, like, ie is gone or dead. It's using WebKit. So like, ie is now using WebKit, or edge is using WebKit as a core and they have that new confusing sushi logo. I love the logo.
+
+28
+00:07:41,580 --> 00:07:47,700
+Scott Tolinski: I saw Henry has made the little surfing emoji guy on it. And I was like, that's pretty cool. It's pretty sweet.
+
+29
+00:07:48,300 --> 00:08:23,130
+Wes Bos: But like, does that mean that like, the days of complaining about edge are over? Like, do we have to start complaining about Safari now? Or Mardi Gras? Is it gonna be like easier? Like, is the like? I don't know. Cuz it used to be like, Oh, cool. I can't wait to use that in 10 years. Can we start using things now? I don't know. Maybe? I think that the like, the feedback cycle for like, here's a new feature, it's implemented, everybody can use it, I think that's gonna get a lot shorter. Yeah, in the next year now that the officially IE is going to be underground.
+
+30
+00:08:23,399 --> 00:08:42,240
+Scott Tolinski: And like custom properties, man, what's cost? Like everyone can use CSS custom properties and not have to worry about it. I think everybody's gonna find out just how darn awesome they're there. My, like, one of my favorite things in web development is grid and custom properties. Those two really make my life a ton better.
+
+31
+00:08:42,799 --> 00:10:10,830
+Wes Bos: Next question we have here and we got this question a lot. And I we also have been working on a show about it? And is is Wix going to steal my job? Or is webflow gonna steal my job? Or are these site builders like Squarespace? And I know like web flow is probably a little bit different than than all of these that we're lumping them in. But like, are these tools going to totally replace us as web developers? And we'll I think we've got an entire hasee treat, like we could talk about this for 20 minutes, I think. And I think, if your job is making pamphlet websites, where you add content, and you drag and drop things into spots, I think it will, because quite certainly, if I look at this, from a client point of view, the client would much rather log in and make the changes themselves. Not all the cases, but then a lot of times they rather just do it themselves, then have to like book time and three weeks on somebody's schedule. So I don't think that that's to be scared of I think what that's going to do is it's going to free us up from doing that base work. Because as tools get better, it's easier to like go ahead and build like a full stack website and server rendered react and I think we just shift up to stuff that's a little bit more complex. Everybody, the people that are at the top Start working on self driving cars. And then us regular people who were making like portfolio websites start making like a little bit more complicated web apps that, that these things can't do.
+
+32
+00:10:10,980 --> 00:10:30,720
+Scott Tolinski: Totally. Yeah. And we're gonna see, I mean, we're gonna see some tools come out that are gonna scare you a lot more than Wix will like, the only thing. The only thing scary about Wix is that they email me too dang much telling me that, hey, why don't you make a tutorial series on Wix? It's like, I don't really think my audience would appreciate that. You know,
+
+33
+00:10:31,020 --> 00:11:07,830
+Wes Bos: I should tell you a hilarious story about them. So they, like Wix is doing some server list stuff. Yeah, yeah, I that's actually kind of cool. But like, they emailed me and said, like, Hey, will you tweet out? Anybody building a site with wind? And then they said, We expect the responses to be negative, and then we'll swoop in my eyes with ours. Like, there's no way I'm gonna tweet, anybody building a site with, like, they were like, wanting to pay me just to tweet it and cause ruckus. So they could swoop in and save the day. Yeah, yeah.
+
+34
+00:11:09,660 --> 00:11:45,299
+Scott Tolinski: Yeah, I know, I get emails like that. And I just say, Hey, you know, I don't know, I would appreciate that. And they'd say, Well, actually, we do think you're on it. Well, I know you think that, but I don't think that but so yeah, I don't know. I you just wait till you see some of these tools coming out? You know, I think have you have you checked out? My I think it's mod modules. mod duels? I'm gonna. I think it's just supposed to be modules. Let me my jewels app. Okay, the spelling, I'll post this in the chat is m ODULZ. dot app. This is going in the live stream.
+
+35
+00:11:45,330 --> 00:11:51,990
+Wes Bos: That sounds like a toy that my, my daughter went by? Yes. Hey, Daddy, can we get some more modules?
+
+36
+00:11:54,600 --> 00:12:43,200
+Scott Tolinski: What is this, you seen this. So this is basically you could think of this app as figma that spits out react code that allows you to edit react code and have it edit the components. Now, there's some plugins and stuff working with figma, or sketch that kind of do this to some sort of an extent. And then there's framer, which sort of erroneously got billed as being that kind of tool, but isn't. And this is really that whole design and develop in a mean, you can see the interface looks just like figma. So it's sort of like a figma, like application here. That is for creating code. And one of the interesting things about this is I don't think it is react only, I could be totally wrong about that. But I'm pretty sure
+
+37
+00:12:43,350 --> 00:12:45,149
+Wes Bos: there, there's a few logo there.
+
+38
+00:12:45,179 --> 00:13:27,120
+Scott Tolinski: Yeah, there we go. Yeah, there's the view logo, and the mobile view that was hidden. So it's pretty interesting allows you to design and develop and deploy your design system without writing code. I've been in chats with these guys for a little bit. So I'm going to try to get access at some point. They didn't want to give it to me just yet. Obviously, I don't think they want me to see it when it's not ready. So yeah, I think the tools like this are to me a little bit more interesting than Wix, because it's going to allow people who are better than you at designing to design applications that actually work. So I think that's a that's a major concern, more than like, you know, a default crappy template from Wix or something,
+
+39
+00:13:27,659 --> 00:13:29,100
+Wes Bos: or you want to grab another question.
+
+40
+00:13:29,940 --> 00:13:40,260
+Scott Tolinski: This is a fun question here, because it is a special 200 episode question. The question is, what does the future look like for syntax?
+
+41
+00:13:40,260 --> 00:13:41,250
+Wes Bos: gram?
+
+42
+00:13:44,640 --> 00:15:13,080
+Scott Tolinski: No, okay, what is the future look like for syntax? To be entirely honest, it probably looks very similar to what the present looks like, we're going to continue to release you know, the same episode schedule that we're releasing, where we have a tasty treat a little 20 minute, 30 minute episode, and then a tasty treat a longer episode. And, you know, I think one thing that is it's as you do these episodes, it's not necessarily easy to lose sight of but you know, the, the end goal of what we're trying to do here is trying to make everything worthwhile educational and, like full of like value, I'm gonna say and not value like the monetary yet tasty. We want to be providing like, something that you can grow and use in your career and not just something that's, you know, filler to listen to, while you're sitting on the train. Like we want that time to to really grow your skill. So I mean, if what is the feature syntax looks like I think the the feature syntax, we're we're gonna continue to get better at the format and formula of what we've been doing, but I can't really see it changing too too much. We might have some tasty morsels coming down the pipeline, some things that are not like guaranteed yet, so we're sort of sitting on some stuff. We're gonna be doing a live episode next year next March in person on stage, React a THON. But other than that, I don't really know too much. What do you think?
+
+43
+00:15:13,590 --> 00:15:35,669
+Wes Bos: Yeah, I honestly think like we just keep doing I do. And I think we can try new things every now and then, like, I was trying to get a Google recruiter to come on the podcast, because he like, emailed me and said, Hey, you want a job? I was like, No, but can you come on the podcast and tell us how to get a job at Google? And he didn't reply. We could tell them, they could be anonymous. And we could do a voice transformer,
+
+44
+00:15:35,700 --> 00:15:37,080
+Scott Tolinski: yeah, transform their voice.
+
+45
+00:15:37,500 --> 00:17:25,340
+Wes Bos: We had to do whiteboarding interviews, just like a black shadow over. Honestly, I think all that is important to me about this podcast is that those who are tuning in are actually learning things. Yeah. And also that we continue to have fun and enjoy recording it. Because it's takes a lot of time every week, to do this type of thing that prep it and all that. And if it becomes like a slog to do it, then you can you can hear that in people's voices when they're on a podcast. And sometimes they skip a week and things like that. And then it just becomes a bit of a, it feels like homework, right? Yeah. And I want to make sure that this podcast keeps being fun, and people keep learning things from it. Like I was telling Caitlin the other day, I was like, I'm so glad, like we sold our sponsors for all of next year already. And I was like, I'm so glad that we are done that. So that we don't have to try and like beat our numbers every single time. Yeah. Because you know, those you watch people on YouTube. And they have to like resort to clickbait and coming out with these like awful videos, where they're just sort of grasping at straws to keep the viewership up, or to hit some sort of like arbitrary. Yeah, thing that they need for either monetization or whatever. But that you become beholden to this, these these things that maybe aren't the reasons why you started doing it in the first place. Totally, totally. And I want to like, keep true to that, where the reason we started this podcast, is because we didn't think that there was very good podcasts out there that actually taught you stuff. Like this isn't just Scott and I sitting around shooting the shoot. We're actually trying to explain stuff to you, and that you walk away going, Oh, I have a better idea of how CSS variables work, or I know, I kind of understand how data goes from the back end to the front end now.
+
+46
+00:17:25,580 --> 00:18:16,310
+Scott Tolinski: Totally. Yeah. I mean, it makes sense. Because we both have been teaching web development for so long now that like that is the first and foremost the goal of this thing. So that's what I see the future looking like. And again, it's it's a blast to do I have a great time doing it. And you don't that's going to hopefully continue into the next year. One thing that's not fun is solving bugs. because let me tell you, you're already stressed out that you have a bug, your code doesn't work. Things are a huge bummer. So what do you do? Well, you fire up Log Rocket and Log Rocket is the bug finding platform that gives you a session replay. I don't know how many people watch sports here. But in sports, they kick the ball, they throw the ball and something happens, right? And then if they don't get it, right, they check the replay. And they say, Oh, look at that replay.
+
+47
+00:18:16,500 --> 00:18:18,720
+Wes Bos: Oh, that's a good, that's a good analogy.
+
+48
+00:18:18,750 --> 00:18:48,560
+Scott Tolinski: It's a good analogy, man. And so with Log Rocket, you can check that replay. And you can see the Network tab, you can see the error states, you can see all that good stuff. All those things that happen when the user click the bug, as if it were happening right in front of you, allowing you to solve the bugs that you come up in your code all the time. Let me tell you this kind of tool is absolutely invaluable when you're trying to figure out what the heck happened. And you don't want to have to call up your user or email them and say, What did you do? What did you click on what browser we're using any of that stuff? So check it out.
+
+49
+00:18:48,750 --> 00:18:58,080
+Wes Bos: It's Log rocket.com forward slash syntax. And with that, you get 14 days for free. Try it out. Thanks so much to Log Rocket for sponsoring.
+
+50
+00:18:58,080 --> 00:18:59,640
+Scott Tolinski: Thank you luck rapid.
+
+51
+00:18:59,640 --> 00:19:33,900
+Wes Bos: Next question we have here is what emerging technology advancement, advancement most excites you in the next five to 10 years. I thought this is sort of unrelated to web what might be related to web development. And I very much have two things that I'm really excited about. First one is electric everything. electric cars. Yep. I really hope all cars are electric in I don't know how long it's gonna take. It's it's certainly going slower than I had hoped. But electric cars, electric leaf blowers, things like that. Like it's fall in Canada right now and do
+
+52
+00:19:33,900 --> 00:19:37,170
+Scott Tolinski: my electric leaf blowers. The craziest thing on the planet,
+
+53
+00:19:37,260 --> 00:20:06,300
+Wes Bos: they're so good. And like we've got everybody with these old like red, big like bus on the end of a on the end of a hose blown. They're so loud, so obnoxious. I would love to get rid of all gas power things just because they're allowed and bad for the environment. So that's one thing I'm excited about. And the other thing I'm excited about is fast internet everywhere, because of what that means for remote work because of what that means for access to information for everybody, like,
+
+54
+00:20:06,350 --> 00:20:10,230
+Scott Tolinski: just think about how much JavaScript you can download with a fast internet connection. I
+
+55
+00:20:10,230 --> 00:20:15,630
+Wes Bos: just want bundles to be huge. I want to be able to ship every framework and not have to worry about it. No, but like
+
+56
+00:20:15,630 --> 00:20:17,250
+Scott Tolinski: all of them at once. Yeah.
+
+57
+00:20:18,270 --> 00:20:48,300
+Wes Bos: I think like, as a web developer, one of the privileges we'll have is being able to live ideally, wherever we want because of remote work. And because of the internet, right, and I one thing that is severely stopping a lot of people right now is access to good internet. And whether it's Google or Elon Musk's satellites that float in the air, or five G, which is is going to be rolled out. I don't know if 5g will be the answer for remote areas, because 5g is super fast, but it doesn't, it doesn't go very far.
+
+58
+00:20:48,300 --> 00:20:49,890
+Unknown: It's got a small range.
+
+59
+00:20:49,920 --> 00:21:17,250
+Wes Bos: Yeah, that's the whole thing. Like the lower frequency, like you have is like not 800 megahertz. That's why your, uh, your radio is on like 870, the farther it can go, the higher the frequency, the more bandwidth you can do. But the slower can or sorry, that the smaller the ranges. So just, I don't know, some sort of fast internet, whether whether that's going to be 5g, 4g satellites, I'm just really excited for that for everybody to have access.
+
+60
+00:21:17,520 --> 00:21:48,480
+Scott Tolinski: I'm excited for augmented reality in a way that I think other people might not be as excited about it. And I mean, people are excited about augmented reality. But like, think about this, like, we're so tethered to displays, right, I have this ultra wide display on my desk, it takes up a ton of space. But what happens if like, all of the sudden, I have infinite displays built into my glasses, and I look this way, and there's a display, and this way, and there's an ultra wide display. And this way, there's a display with all my stuff on it. And like nothing on my desk.
+
+61
+00:21:48,830 --> 00:21:50,250
+Wes Bos: That'll be really cool. Like,
+
+62
+00:21:50,600 --> 00:22:07,740
+Scott Tolinski: man, I you know, who knows when that kind of tech would be available. But like, just think about the abilities you have when you're not tethered to hard devices screens to look at and you can see things anywhere you look I am. I don't know, augmented reality to me is one of those things that really fascinates me.
+
+63
+00:22:07,830 --> 00:22:12,150
+Wes Bos: Yeah, even on our car, we have the heads up display. Have you ever driven a car that was one of
+
+64
+00:22:12,150 --> 00:22:17,310
+Scott Tolinski: those? No, but it's like the coolest thing ever looking at. It's like a director Jenny
+
+65
+00:22:17,340 --> 00:22:39,990
+Wes Bos: on the windshield. And it tells you how fast you're going. And it will give you the nav directions, man like that's like perfect. I always think like augmented reality, some nerd with goggles, swooping around, but like that's also augmented reality is that you're just projecting the speed and information. And I can scroll through my my songs on with the steering wheel without having to look away and totally cool.
+
+66
+00:22:39,990 --> 00:25:40,320
+Scott Tolinski: You know what, I don't ride a motorcycle. In fact, they terrify me. But I still in the coolest AR devices i think i've ever seen was like, not a real device. But a like a prototype or a concept of a motorcycle helmet that had like rear view mirrors right here and your speeds and like blind side things. And I'm just thinking like this is actually going to change people's experiences in life in general, making things safer or more excellent. By putting the information, like you said, where it needs to be in front of us, you can change the songs without having to, you know, look away from the road. I don't know, ar is one of those things that absolutely really fascinates me. So I think that's what I'm most excited about. Okay, let's do another question here. What do you guys think of the I like this one from Ian, what do you think the future of a web hosting might look like? Is the Netlify. And now going to eat up the world? What should hosting companies do differently? hosting companies should get off their butts and start doing things like Netlify. And now, one of the things that I've always hated about hosting companies is just how difficult they make literally everything, like setting up an SSL certificate, right? Yeah, like I had a host one time, and I bought an SSL certificate through them for whatever, 150 bucks whatever they were back when that was the thing. And the process for getting it going was so darn frustrating. And then there jQuery time or crab timed out, and it was like not working correctly. And you're just like, why I just paid 150 bucks for this thing? Why do I have to do all of this other stuff just to install this SSL certificate on my server that's managed by you guys anyways. So I think the services that take the approach of Netlify. And now and if for those of you who have never used those platforms, they basically do just pointing your code to it. And it takes care of all this stuff that's annoying to set up like continuous deployment, or, you know, the actual managing of servers because you can have serverless functions at scale differently and things like that. You can have just your server side stuff, not even on the platform like Netlify has their identity stuff or their functions and all those things. Things that just make it really easy to not have to manage all of your own stuff. So in my opinion hosting companies need to offer more for what they're doing, and not worry about being, I don't know, I don't wanna say not worrying about being the cheapest. But like, because now and Netlify are darn pretty cheap comparatively, I think they just need to innovate, everybody get too complacent with the HTML and PHP web that we're living in. And these companies like Netlify, and now have really figured out what kind of things people actually want to use. When a company that I really like that kind of in the hosting space, but not hosting specifically, is DNS simple. Have you ever used DNS simple?
+
+67
+00:25:40,590 --> 00:25:42,540
+Wes Bos: No, I don't think so.
+
+68
+00:25:42,720 --> 00:26:22,590
+Scott Tolinski: DNS simple takes the idea of all that stuff, and is like, we're gonna be a domain management service. But we're going to add a one click everything. So you want to add an SSL on one click it right. And this is outside of Netlify. And outside of now, so like, let's say you were hosting somewhere for a client or something, or even, oh, I want to add Google email, one click, I want to add CloudFlare. One click, it's one click everything for your DNS. And it's really super good. You know, and I always hated like setting up mail gun, and like mail guns, like paste this into your DNS, but then you go, yes. And it's like, those options aren't even there. Or it requires it to be in a string or whatever.
+
+69
+00:26:22,620 --> 00:26:24,450
+Wes Bos: It's a little bit different. Yeah, you're like, do I include
+
+70
+00:26:24,450 --> 00:26:38,280
+Scott Tolinski: the quotes or not right? And it drives me nuts and DNS simples like, Oh, just paste this two things in here, click Oh, and it's done. So services like that, that take the guesswork out of any of that stuff is is what hosting companies need to do?
+
+71
+00:26:38,610 --> 00:27:28,110
+Wes Bos: Yeah, I think like, anytime there's a new need, there's always a hosting company that that will come up and be the hosting company for that specific thing. And then that's why people are loving things like Netlify. Now, because it makes it easy to host things. And I think like, we'll see a lot of both of those, we'll see a lot of companies that specialize in things like now and then Netlify and Heroku. And then we'll also see the total opposite was just just like raw server, and you can go for like a backblaze, or Amazon or Digital Ocean, something like that. Or even though like, I think Digital Ocean is a good example. Because like, like Digital Ocean is just like raw server space. But they don't approach it in such a way that like good luck, like Amazon dice. They like make it easy, right?
+
+72
+00:27:28,140 --> 00:27:39,480
+Scott Tolinski: If you want to go for the other end of things where it's like not doing everything for you. But like digitalocean has that figured out because they still give you so much. All right. Next
+
+73
+00:27:39,480 --> 00:29:13,260
+Wes Bos: question we got here is Wes in your node course, you globally set the font size to 10 px. So this is referring to setting 10 pX on the HTML element with the logic that allows the reason why you did this is because the mental math is easy to rems is equal to 20 pixels. My question is, and often people will set the base to 62.5% as well. And that brings it down. We answered the difference between that once on the show. I forget what it is, though. But the question is why? Why do that if you really want to calculate two pixels, why not just use pixels at the end of the day. And there's one comment on this thing, which says the user can change their browsers font size, and all the text will scale accordingly. That's not true anymore. If you use pixels, and the user scales a browser, it will scale accordingly. That has been true for like six years or so. But like why do I use that? Because setting a base size does allow you to scale up the entire website without the user having to scale it up. Because if the user scales up your design, everything, the images, the buttons, all of the UI will scale up. And often it's helpful to give your user the ability to just scale up the text and not all of the UI with it. So that's why I think using rems instead of pixels is better. We have an entire show very early on about the differences between that and also how to use rems and EMS together because it's not like rems replaced EMS. Yeah, cool.
+
+74
+00:29:13,260 --> 00:29:14,250
+Scott Tolinski: Cool. That's a good
+
+75
+00:29:14,360 --> 00:29:15,000
+Wes Bos: visitor there.
+
+76
+00:29:15,000 --> 00:29:18,930
+Scott Tolinski: We got a visitor. We got a guest. Hey, come on and say Hi everybody.
+
+77
+00:29:18,960 --> 00:29:20,760
+Wes Bos: Welcome. Get an earbud
+
+78
+00:29:20,790 --> 00:29:22,350
+Scott Tolinski: get in here. But yes, you're the everybody gave
+
+79
+00:29:22,350 --> 00:29:25,350
+Wes Bos: her the wrong you gave her the wrong one. This is the cutest thing I've ever Oh,
+
+80
+00:29:25,350 --> 00:29:30,540
+Scott Tolinski: yeah. You're right. Yeah.
+
+81
+00:29:31,590 --> 00:29:32,400
+Unknown: Hi.
+
+82
+00:29:32,910 --> 00:29:33,540
+Hi,
+
+83
+00:29:33,540 --> 00:29:34,770
+Happy 200
+
+84
+00:29:35,460 --> 00:29:38,880
+Wes Bos: Thank you. Do you want to introduce who this is Scott?
+
+85
+00:29:38,940 --> 00:29:50,670
+Scott Tolinski: This is uh, this is my wife, Courtney. Dr. kolinsky. She is a What is today's Labor Day? So it's better? Oh, no. Veterans Labor Day. Oh my God.
+
+86
+00:29:50,700 --> 00:29:51,960
+Unknown: He doesn't know any days.
+
+87
+00:29:51,960 --> 00:29:54,480
+Scott Tolinski: I don't know. holiday. So sorry. Yeah,
+
+88
+00:29:54,900 --> 00:30:00,000
+Wes Bos: it's Remembrance Day here in Canada. Oh, yeah. But do you is that a holiday for everyone? In
+
+89
+00:30:00,000 --> 00:30:03,660
+Unknown: the state's Veterans Day for government workers, yeah,
+
+90
+00:30:03,690 --> 00:30:07,380
+Wes Bos: Cannabis, just government and banks are closing down remember saying that's it?
+
+91
+00:30:07,610 --> 00:30:13,800
+Scott Tolinski: I don't even know when Halloween is so my holiday. Holiday knowledge is just awful.
+
+92
+00:30:14,910 --> 00:30:18,780
+Wes Bos: So what do you think about Scott and the podcast? How's it doing?
+
+93
+00:30:19,170 --> 00:30:26,460
+Unknown: I think he's doing great. Yeah, I think you guys are getting like the full flavor of who Scott is. And what I deal with every day.
+
+94
+00:30:28,410 --> 00:30:31,110
+Wes Bos: is Scott always dancing and bopping around? Oh
+
+95
+00:30:31,110 --> 00:30:32,220
+Unknown: my God always.
+
+96
+00:30:33,300 --> 00:30:36,930
+Scott Tolinski: Did I kick kick the air filter or some? I don't even
+
+97
+00:30:36,930 --> 00:30:37,920
+Unknown: know. Yeah,
+
+98
+00:30:37,950 --> 00:30:43,200
+Scott Tolinski: I just another day dented the grill a couple summers ago. I just yeah. hurt and stuff. What
+
+99
+00:30:43,200 --> 00:30:44,910
+Wes Bos: What is Scott's worst habit?
+
+100
+00:30:45,860 --> 00:30:48,390
+Unknown: his worst habit? You know, right.
+
+101
+00:30:48,390 --> 00:30:49,140
+Wes Bos: We got embarrassed. I
+
+102
+00:30:49,140 --> 00:31:04,800
+Unknown: think the worst one is that he likes to take his socks off. And like stuffed them in place. I don't know. Do you stop them in the couch and like other places, and now our son is starting to do it. So I don't know if it's just like part of who he is. Or like what he's watching.
+
+103
+00:31:04,860 --> 00:31:16,140
+Scott Tolinski: I think it's the albis Landon takes my socks off. Yeah, yeah, he does. He does. Take them off. Now. I don't know. They're not for me. But he takes him not only to wear socks. I work from home here. And I like to.
+
+104
+00:31:17,520 --> 00:31:23,850
+Unknown: I like to be I want to meet Kate. Okay, like, I didn't even text her. Hi, everyone looks so cute.
+
+105
+00:31:27,180 --> 00:31:29,100
+Wes Bos: How's it going? kailyn just brought me sushi.
+
+106
+00:31:29,640 --> 00:31:30,360
+Unknown: Ah,
+
+107
+00:31:30,450 --> 00:31:43,950
+Wes Bos: I'm just we're recording our 200th episode. Right now. Your life. Just very many hundreds of people watching you. She says she says Nice seeing you.
+
+108
+00:31:45,110 --> 00:31:48,780
+Unknown: I'm a big fan of Kate air newsletter every week.
+
+109
+00:31:49,380 --> 00:32:02,360
+Wes Bos: Oh, awesome. That's cool. Yeah, we are gonna have our wives on a show. At some point, and we'll talk about I don't know. Sure we were gonna talk about yet but embarrassing Scott. Yeah.
+
+110
+00:32:02,610 --> 00:32:06,990
+Scott Tolinski: Yeah, that's the story. Yeah. Yeah. There's their stories. Yeah. I'm always goofing around.
+
+111
+00:32:09,480 --> 00:32:12,780
+Unknown: Alright, well, how about Nice to meet you. Congrats again. Both
+
+112
+00:32:12,780 --> 00:32:14,160
+of you. Thank you. Thank
+
+113
+00:32:14,160 --> 00:32:15,300
+Wes Bos: you. Appreciate it.
+
+114
+00:32:15,450 --> 00:32:16,080
+Unknown: All right, Sammy.
+
+115
+00:32:24,180 --> 00:32:25,610
+Wes Bos: Awesome. Well,
+
+116
+00:32:25,610 --> 00:32:33,390
+Scott Tolinski: thank you for Courtney for popping by Veterans Day, man. Apologize for goofing that one up.
+
+117
+00:32:33,989 --> 00:32:37,470
+Wes Bos: All right. You want to grab another question? Sure.
+
+118
+00:32:37,470 --> 00:34:14,790
+Scott Tolinski: Okay, this is a fun one. West posted a picture of himself in 2005, I posted one of myself from 2006 as well, which is a funny picture. So Wes, and we both picture posting pictures of ourselves from 2005 2006. If you could go back in time, what would you say to yourself, um, I would tell myself to to get a single focus rather than, you know, focusing on too many things. I was trying to do a lot of things, especially back then I was trying to do music, I was trying to do video I was even in those disciplines, I was trying to do too many things. For instance, I was producing videos, but I was doing the editing, the videography, the audio, I was doing everything myself. So like, not only was I trying to do too much in a very large sense of thing, video, audio, web, whatever, I was also trying to do too many things within those one specific things. Even in web I was trying to do, you know, I was trying to learn at the same time, PHP, whatever, JavaScript, CSS all at the same time. And I would tell myself to pick one thing, focus on it, work through it, get better at it improve and then move on from there before going to the next thing. I think I'd still have a really hard time with that. But um, I just some like dose of reality to say like, you're never going to make it doing all of those things. And that makes no sense anyways, at that time, so that's what I would tell myself and I think it would have been, you know, get some dang focused, man, as you can tell, I still struggle with those issues.
+
+119
+00:34:14,850 --> 00:35:46,680
+Wes Bos: Yeah. But honestly, I think like a little bit of that is, is fine, because I have that as well, where I should be working on something, but I just goof off on YouTube or post a tweet or like, do something totally unrelated. But many of those things have have done very well for me. And it was only because I had sort of gone off course and done something so I think a little bit of that is fine. Obviously it's worked out for you and and I What would I say? Um, I think just like, keep doing it, like keep building stuff keep, like building audience like things like that. Like I very much remember when I was like I need to build an audience if I want to be able to do the stuff that I'm doing. Very much need an audience of people who will support me and pay for courses and watch videos and like things like that. Because otherwise without them, I can't do any of this kind of fun stuff that I thought I was doing. So like, maybe I should have done that earlier. Maybe I should just like, tell myself to just keep keep building stuff keep focusing on because I also remember just taking weeks off at a time because I was so frustrated. And I didn't, I didn't really have anybody that I could tell me like, That's normal. The stuff is very hard. It is very weird. So I don't know, just kind of keep going at it double down on it. Because like that, that early momentum, especially when you're you're young, like 2005 I was, I don't even know like, what how old are you what that was? What, 15 years ago?
+
+120
+00:35:46,680 --> 00:35:47,280
+Scott Tolinski: I was in college. I
+
+121
+00:35:47,280 --> 00:35:49,560
+Wes Bos: was, like 17 years old? I
+
+122
+00:35:49,560 --> 00:35:52,170
+Scott Tolinski: think sophomore? No, I would have been a freshman in college.
+
+123
+00:35:52,190 --> 00:36:11,730
+Wes Bos: Yeah, I was in grade eight. So like, that's the best time of your life. You got all kinds of time to goof around and stuff like that. So I don't know. I'm pretty happy with what I like the whole course. I did work very hard when I was young, but just think I just tell myself just double down and keep working hard, because that will pay off huge in the long run.
+
+124
+00:36:12,090 --> 00:36:20,040
+Scott Tolinski: Yeah, totally. Yeah. I would also tell myself to get on Twitter earlier. Now puts it on Twitter until like, way late. So
+
+125
+00:36:20,040 --> 00:36:21,150
+Wes Bos: Oh, yeah.
+
+126
+00:36:21,209 --> 00:36:23,820
+Unknown: Yeah, I was very late to that. All right, let
+
+127
+00:36:23,820 --> 00:36:33,030
+Wes Bos: me grab another one here. Should we do a YouTube question or iframe? I mean, I asked this question. But I think it's interesting. And I feel like sharing it with you ask your
+
+128
+00:36:33,030 --> 00:36:39,060
+Scott Tolinski: own question. I will answer their own question. Let me do 100 episode.
+
+129
+00:36:39,230 --> 00:38:23,340
+Wes Bos: Let me explain. I mean, some some time here. So the the pigeonhole to embed, to embed the pigeon hole into our website, I just whipped up an iframe and gave it a height of like 200 pX, because with like an iframe, you can have variable width, but the height of it, like essentially what I wanted was height equals however high the body of the iframe is. And that's really hard to do with an iframe. Because when you go across origin on an iframe from one domain to another domain, you can't reach into the DOM of that iframe. Yeah, and modify it, because that's a security issue, like you could iframe in someone's bank account, and start selecting buttons and clicking on them. So if you want to know how high the body is, of an iframe document, you have to the the iframe document needs to be sending that information up to the parent and and to communicate between an iframe and, and a parent, you need what's called post message and a lot of things like Zendesk and all these like web apps that integrate via an iframe, but it looks seamless. That's how they work is that they're constantly checking for a height change in the body. And then they send that data up to post message. And then on the the parent website, you catch that data and then you you set the style attribute of the iframe to be that high. So that's just kind of interesting. I've definitely implemented it myself a couple times. In the past, just when we've been doing it, the big one used to be with Facebook apps. Remember Facebook apps used to be iframes? I don't know if you remember that or not.
+
+130
+00:38:23,360 --> 00:38:32,760
+Scott Tolinski: You know what? Facebook apps? Um, yeah, I don't remember ever. I'm trying to remember what I even used Facebook apps for. You know,
+
+131
+00:38:32,790 --> 00:38:39,300
+Wes Bos: we did a lot of like contests. Like enter upload a photo cutest baby, cutest puppy. Like, I
+
+132
+00:38:39,300 --> 00:38:43,230
+Scott Tolinski: know, a lot of I've never built a Facebook app. But I remember man, like.
+
+133
+00:38:44,960 --> 00:38:45,650
+Wes Bos: Yeah,
+
+134
+00:38:45,860 --> 00:38:51,540
+Scott Tolinski: that's a weird part of like, the history of the web. I think. So that is
+
+135
+00:38:52,350 --> 00:39:02,100
+Wes Bos: that is it. post message. I thought I would get a little time to that. A little tasty treat. take home. Yeah, I get back a little dogs
+
+136
+00:39:02,100 --> 00:41:09,150
+Scott Tolinski: back there answering your own question here. Yeah, yeah. We got another one until well, let's do this one here. What's one thing you see devs stressed out about for? No reason. So what's one thing you see dev stressed out about? For no reason, the most? aka, what are some things that people worry about that maybe they just don't need to worry about as much or at all? Some of these things are, I think, like premature performance optimization. I'm very performance minded, right? Very performance minded, small bundle sizes, fast code, get everything and test it right. But a lot of times people are wondering about the speed of something that they're doing before they're even doing it to the point where they don't even know and I think pre optimization of code that you haven't tested or haven't seen, you know, there's the whole thing In test driven development, where you write some code, or you write your test, then you write your code, you get the test to pass, and then you refactor the code into something that's perfect. And I'd like to take that stance on performance, a lot of the times where I get something working first, then I monitor and I test its performance, I see how it handles, and then I see if I need to make any further modifications to make this code more performant. Rather than starting at the right, what are the things that I have to do to hammer in performance ahead of time? Because, to be honest, you know, think somebody asked me in my bought my react course, like why I'm not showing use memo and use callback, the ways that people use them occasionally. And for the most part, it's like, you don't need to use use memo and use callback every single time that you think you might need to because chances are memorizing, sure of memorizing can, you know help there? And, you know, we'll caching those values can help. But is that something you need to worry about? When you're learning the basics and learning how to become a beginner? I you know, I don't know, I think I think that's something that you you fix when you need to fix rather than before you need to fix?
+
+137
+00:41:09,440 --> 00:42:02,400
+Wes Bos: Yeah, the one I see all the time is people stressing out about frameworks changing orne going from one framework to another, or, or the the framework itself changing or things moving too fast. And the answer to always, this is like, honestly, if you're good at if you're good at JavaScript, these things are never going to stop changing, it's always going to come out from under you. That's just the industry that we're in. Yeah. But if you can honestly get good at just JavaScript, then like, your skills will transfer no sweat from one over you spend a couple days a week or so take a course just learn the ins and outs of how that framework works. You'll be able to pick it up no problem. So don't stress out about that so much your job is not going to be gone if react goes away tomorrow. Unless that's all you need to know is how to use react. And that's the case you're probably not writing very good react anyways.
+
+138
+00:42:02,420 --> 00:42:04,890
+Scott Tolinski: Yeah, yeah, no, I feel Yeah. You know, what
+
+139
+00:42:04,890 --> 00:42:10,400
+Wes Bos: shouldn't stress you out? Yeah, what Sanity, you know, that's you, you were sitting right in
+
+140
+00:42:10,400 --> 00:42:21,570
+Scott Tolinski: front of you, you know, it shouldn't stress you out managing the backend code when your own. That's why, you know, it's a back end CMS for your front end code, and so much more. Take it away. So
+
+141
+00:42:21,570 --> 00:43:53,130
+Wes Bos: we've talked about Sanity, as it's called a structured content, CMS. But what I really want to focus on in this ad read is the Sanity Studio. So Sanity is not this typical thing where you log in and start creating all of your content. Obviously, your front end is built in Gatsby react, PHP, anything you want, anything that can consume data. And then your back end is the the server is is hosted by Sanity. But the actual interface for editing your data is called the Sanity Studio. And that's an open source app where you can you can also host the UI for editing it, you can host that yourself, you can bring in your own react components to yourself. And the Sanity Studio is really cool, because it's not like you have to like type all of your own inputs, and handle save events and things like that the Sanity Studio includes that, and you can hook it right up to your Sanity, where that usually goes wrong in a lot of cases is they're like, Okay, that's good. But I have a special use case. But because Sanity Studio is open source, you can create your own inputs, you can create your own modules and create your own handlers, different ways to display the data yourself, which is pretty cool. So you want to check it out for your next project, go to sanity.io and use the forward slash syntax URL. So sanity.io forward slash syntax, that's going to give you double what you normally get on the free plan. Check it out. Thanks so much to Sanity for sponsoring. I've got another question here.
+
+142
+00:43:53,520 --> 00:44:29,340
+Scott Tolinski: And I'm gonna answer a question while you're thinking and somebody posted in the comments, saying something about an advanced react spring course, I wanted to state because I've mentioned several times I'm going to be doing them but like people are wondering where it is. React spring is in beta for their new version, and I don't want to record and release it. While it's still in beta. I'm gonna wait for that to be released. And then I will record the course. Just so just so that's out there. It's one of those things just like how many times is that burned either of us where you record something and then they slightly change it. So that's, that's, that's the status of that.
+
+143
+00:44:29,880 --> 00:46:59,460
+Wes Bos: It happens all the time. That's like, sometimes I have to like delay outputting courses just to wait until something is is pushed. Because you don't want it to like put it out and then a day later it's it's out of date. My next question here is from anonymous. Do you feel overwhelmed? Hmm, yes, yeah. Whenever I think of writing a post, I just feel like the space is so overcrowded and I don't want to add to the clutter or overwhelm. So this is a good question. Do you think about writing a blog post? about something you know about? Oh, there's so much out there. There's already ready 400 people that have done a blog post on react suspense. What? Why would I do that? Or why would I make a YouTube video on something? Why would I make a course on something? And thankfully, I never feel like the space is too crowded. I'm working on a beginner JavaScript course right now, how many beginner? resources are there out there? Probably 78. Right, like, there's so many out there. And I continually hear from people. Nice thing about having audiences, they tell me, like Wes, there's nothing good out there. Even there's 78 bad ones out there just nothing clicks with me, right. So like, never underestimate a the way that you can describe something, because someone might really like the way that you do it. And also, just like putting another resource out there, that might be the one banger that that really gets it done for for a lot of people. So don't feel overwhelmed at that just like just do your thing, put your head down. And like, Who was it? Seth Godin, I always say that Seth Godin has this thing, like, you put your work out there. And if people don't like it, it's not for them. And there's so many developers out there that if you think you're, you're good at doing it, then then go for it. And there's a comment on this as well. Like there's no better feeling and finding your own blog posts and solving your own answer. How many times does that happen to me hundreds of times, I google something, my own StackOverflow my own blog posts, my own spectrum thing comes up and go, Oh, I had this problem a year ago. So just simply documenting your own problems is well worth it for the community. How many times you go to a GitHub issue and see 500 thumbs up on someone's silly comment? That's because someone took the time to write a comment, think about what would happen if you wrote a blog post about a problem that you you encountered?
+
+144
+00:46:59,490 --> 00:47:38,970
+Scott Tolinski: Totally? Yeah, I can do. There's just about like, 100 times where I google something that I've like, done 100 times, but I still want to just confirm it. And then a little Wes Bos blog post comes up, and I'm like, oh, let's click on this one. Okay. No, but for real, I think the big thing for me here is that I recorded a Redux course, what like, I don't know, two years after every Redux course, in the world has been made. And it was mostly because I'd watched all those Redux courses. And I was like, none of these things really helped me understand this. They're using jargon. They're saying, Oh, you connect to a reducer to the transducer into the reformer into this? Oh, yeah. Oh, yeah. Michigan
+
+145
+00:47:38,970 --> 00:47:39,870
+Wes Bos: a after
+
+146
+00:47:39,870 --> 00:50:26,850
+Scott Tolinski: reducers. So like, they just start throwing all these words. And when you don't know what any of those words mean, then how are you going to understand the concept? So for me, it was more about I released my Redux course, because the content didn't exist in a way that I like to learn. And I made the assumption, but I think a good assumption that other people would have the same sort of issues, learning those ways that I did. And I was totally right, because a lot of people told me, my Redux course, really helped them understand everything because I broke it down in a different way. And chances are you have a different perspective than somebody else. And your perspective could be the key that opens that door for somebody to say, Oh, now I get it. Okay. So that's really, I think the, you know, the key message there. Now, I have a question here. This question would have gone really well, for a Sanity ad transition. So no, we missed this one. It says naming conventions. How do you say saying, I stay sane? With sanity? No. How do you stay sane with your naming conventions? This is one of my favorite things. I love naming things. Now. I used to not like naming things. But I love it now. Because I've got children. Yes, children. Children. Yes. I love naming children. No, but I love naming things in development. Because like, honestly, there was a time when you you get something and you say, ooh, what do I name this thing? This this this thing's popping up. And I have no idea in the answer to me recently, not super recently, but within the past two years has become make a system for how you name things. And if you have a system for how you name things, you're never having to guess if it's a Boolean, some sort of toggle, it's always like is is open is closed, whatever set closing set open, toggle open toggle closing. And what I do is I have this system of these set words, I'm always going to use every single time for the given action. It's never going to be like change this or whatever this it's going to be set. It's going to be toggle, it's going to be or remove, not delete, whatever. There's a set of vocabulary in the words that I use to name things in the code and it has made my life so much easier when deciding What the heck to name anything at any given point? So that's how you stay sane is you develop a system now, what system? Is there guidelines for a naming system? there? There are some guidelines. If you look at the clean code JavaScript repo, there's definitely some naming guidelines in there. But oftentimes, it's your team and your decision as to what makes the most amount of sense to you. As long as there's a system there. Everyone's going to know what to name things.
+
+147
+00:50:27,210 --> 00:50:38,820
+Wes Bos: Yeah, I have nothing to add to that. I think that's, that's great. I've never really had an issue of that. And if I were to look at it, like maybe I have some sort of system under the hood, maybe I should try clarify that at some point. Yeah, I
+
+148
+00:50:38,820 --> 00:50:43,050
+Scott Tolinski: wrote like a little notion page for like, the here's, here's what I think
+
+149
+00:50:43,500 --> 00:50:49,020
+Wes Bos: you should share that. That'd be really cool. Yeah, show notes show link below. smash the like button.
+
+150
+00:50:49,170 --> 00:50:56,640
+Scott Tolinski: I don't know if I share. I don't know what how, like permissions work in. notion. No, just hear that copy. Page. Oh,
+
+151
+00:50:57,360 --> 00:51:00,330
+Wes Bos: or put it in just our guest. Is it just a guest?
+
+152
+00:51:00,390 --> 00:51:10,320
+Scott Tolinski: I say just but I may as well. But just because everyone hates on me for saying GIF instead of GIF. So last thing I want is to further expand.
+
+153
+00:51:12,750 --> 00:52:15,570
+Wes Bos: Night. Next question we have from Johnny tight lips. Gatsby is best for static websites. And next is best for apps. That's something we said many times on, on the website, they're referring to us saying that a few times. How does create react app compare with next j s, if you were to start a new react app with a project with a back end, would you use next or create react app. So create react app is a is your baybel your Webpack couple different loaders built in ability to handle CSS, I think it does sass now. So it's all of that stuff packed up into one. And then it gives you the ability to eject from it. And then it will give you the ability to bundle it up. So at its basics, that's what create react app does. Whereas next js is more of like a server. And it has a router baked in it has serverless functions built in. What else does it have built in? Like linking pages that I guess has a router?
+
+154
+00:52:15,600 --> 00:52:16,260
+Unknown: Yeah.
+
+155
+00:52:17,970 --> 00:52:22,140
+Scott Tolinski: Just like built in, it has I mean, some of that sweet pre loading,
+
+156
+00:52:22,470 --> 00:52:23,910
+Wes Bos: you know, pre loading,
+
+157
+00:52:23,910 --> 00:52:29,070
+Scott Tolinski: the automatic code bundles, um, just yeah, a lot of good stuff,
+
+158
+00:52:29,550 --> 00:53:37,410
+Wes Bos: all of that stuff. So whereas create react app is just react and the tools that you need to get a react app pushed out to production. And in some cases, you need to eject from that and manage it all yourself. Whereas next, yes, you sort of like you go at it. The next .js way, you have to code in their conventions, you have to talk about the underscore document j s, the app file the pages, you have to do it in their way. And that's more convention, what's the same convention over configuration figuration, whereas create react app is the other way around, it's you got to configure it yourself, you got to bring in your own router, you got to do all that stuff. And for some people, they rather do that all from scratch, they can make all the decisions for me, I'd much rather just use the next shass and have it tell me where to put the files and how to how to do things. So what would I do probably next jass. But if you're just learning react for the first time, I would probably go with create react app, so you can very easily separate what is react and what is all of this ecosystem built stuff up built around it.
+
+159
+00:53:37,680 --> 00:56:25,350
+Scott Tolinski: Yeah, that's the perfect answer. Whenever I teach react, I teach it in create react app. But whenever I build anything, I'm not reaching for create react app, because I want that static page rendering, I want that server side rendering, I want those kind of things. I want the benefits that come without create react app. But create react app is the best way to spin up or even like a code sandbox, create react app, it are like the best ways to get quick up and running so that you can start learning react rather than getting bogged down in those platform. So that's that. I mean, I think you nailed it with that answer. There's not really too much for me to add there. those platforms are all good, though. You do want to take the time to learn next. And Gatsby, I think they're, they are dead on with making things just easy enough that you know the hard stuff, the stuff that we don't want to worry about the stuff that gets in the way of perfmon loading speed. I have a question that goes along with this here too. This is really nice related one, which is how much or how much is too much or too little magic in a framework or library. For example, a lot of folks say Laravel has too much going on under the hood or included. Meanwhile, other say react is too open ended. And this is a really good question for me. I recently have released a svelte three course, I released a view course and I released a react course all of which in the beginner sort of realm here so I think I have a handle on these things. different frameworks, more or less in how much magic they have. So we have a lot of magic in spelt, right? The compilers taking care of a lot of stuff. There's a lot of things that aren't JavaScript, even though there's a lot of stuff that is JavaScript, right. But like, there's a lot of magic going on and spelled. And to me, it feels very, very nice to us. Because you don't have to write very much code to do a lot, right? Everything just sort of works. And then in react, you have to write a whole lot like I remember being so annoyed with having to do like dot mind to do my set states or whatever, because it's just like, why do I even need this stuff? Like I get the the technical reason why I need it. But I don't understand why I feel like I'm having to do these workarounds to get this, like, this code. Doesn't feel nice, even though it's working correctly are working nice. So there is these different spectrums. And I'm of the mind that as your product gets more and more elaborate, the less magic is going to be beneficial. And as your project is more and more simple, the magic is going to be better. I started level up tutorials with Meteor with meteors front end framework Blaze. And it was very, very simple. The API tightly integrated, I was doing all my, this is like a neat little feature of Meteor, but I was doing all of my, I don't owe you 99 cents, you
+
+160
+00:56:26,220 --> 00:56:28,020
+Wes Bos: someone just tipped $1 99.
+
+161
+00:56:29,250 --> 00:57:35,700
+Scott Tolinski: Thank you, Joe. So voice him on Freshbooks. That's so funny. Um, so I've had the mind that like when level up tutorials was very small, I used so many of meteors magic. And then as level up tutorials got more complex. And I was dealing with subscriptions, I was dealing with sales, I was dealing with importing, I was dealing with different ways the API's being used in the admin section, they made more and more sense for me to remove some of that layer of magic. And there's still magic involved with Apollo and react. There's still some magic there or magic with next and Meteor, how I'm using it. But there's a lot less. So I like magic. But I think as a project itself grows more complex, you want to have a better handle on that complexity. And some people might look at that and say like, Okay, I know this project is going to be this complex from day one. So therefore, I'm gonna go very little magic route out of the box and other people, maybe they're just doing exploration, they're doing their prototype, and you just want to get into it as fast as possible. I say go full force into magic. If you're doing that. That's just my look on it.
+
+162
+00:57:35,730 --> 00:58:29,970
+Wes Bos: Yeah, I think the magic is great for getting up and up and running. And I even think like, as long as they have the ability to get access to the lower level stuff, whether that's injecting whether that's access to the document and next jazz, that's totally fine. I don't think Laravel is too much magic, because like, there's like huge web apps built on that entirely. It's no different than just using any other PHP framework. So I kinda have to make that decision yourself, but certainly do like some magic. Let's do one more or two more. We'll see how we go. I just got one non tech question for Wes. And follow you on Instagram. And just Kate is my wife ever get tired or roll her eyes at you buying all the difference? Yeah. Especially for your cabin. Or she rolls with it so I'm kind of I buy I often what I'll do is I'll buy broken stuff some random stuff I
+
+163
+00:58:29,970 --> 00:58:35,310
+Scott Tolinski: broken stuff online like big mouth Billy bass. I wouldn't be surprised if you buy big Oh, actually,
+
+164
+00:58:35,310 --> 01:00:30,960
+Wes Bos: I that's that's a failed one of mine Actually, I once bought a big mcfeely bass. And it was broken like he would he was short out when he did take me to the river. So he would sing the whole song. And then as soon as he goes Take me to the river, it would go okay. So I said, Bill, I fix it. So I bought another big mouth Billy bass that was a Santa one. And I said I need the gear from the broken one. I'm going to put the gear in the Santa one and then I'll have one good Big Mouth Billy bass. And both of them it didn't work they were not the same gears inside. And that was a failure and early on my wife got annoyed when I would do that because that's a waste of money right? I spent like $10 on too big mostly bad. But I think now she knows that like like I also buy I bought a whole bunch of these broken kids cars for my kids and and anytime I buy one of these things that's a risk because it could be it could just like not work totally at all. But she's learned to like she knows like that's who I am and I love to fix these things and I love to just like Tinker and and sometimes it means I have to throw it in the garbage and are wasted money but like I learned a lot about gutting a big mouth Billy bass I learned a lot about how it works and things like that. So yeah, big mountain believe. My track record is pretty good. We have three wicked kids jeeps at our cottage. And I've got like, I got like 100 bucks into all three of them. And they're wicked and the kids have so much fun. So like, she's she's sort of learned, like, Okay, I need to let them have some time to tinker. And I'm trying not to waste too much money on these things. But more often than not, I'll just like buy something. If I if I see a good deal at a yard sale, buy it, and I'll flip it and make 40 bucks. And then I'll take that 40 bucks and spend it on big mouth Billy basses. And then it's kind of like slush money just to play with there.
+
+165
+01:00:32,040 --> 01:00:56,010
+Scott Tolinski: Yeah, when I was a like a punk teen, I worked at target for a long time. And I used to like go down the like, the aisles that had those things like big mouth, Billy bass or the this like the dancing Santas or whatever. And I used to just like, push all of them and run away when I was. I was working there and I was just like, oh, man, this is gonna be really annoying.
+
+166
+01:00:57,180 --> 01:01:05,790
+Wes Bos: Working in that cheap Blaze and I have no idea that somebody just speaking of blazer,
+
+167
+01:01:07,050 --> 01:02:03,090
+Scott Tolinski: somebody sent a hit not somebody my. So Courtney sister has a son, maybe two years older than Landon, and he sent Landon a birthday card. And the birthday or no, I'm sorry, it was a thank you card. He said Landon a thank you card for his birthday present. And the thank you card is like a like a monster truck in it says let's Blaze and I was telling Courtney like you can't send that to somebody in Colorado. I feel like that has a very different connotation when you get to Colorado. Let's Blaze. We're cracking up about that. So Okay, question here. Let's see. One of them. Show us your office setup. So follow us on Instagram at ST AOL INS KI and you're at West boss on Instagram, I post lots of photos of my office set up there and no West can probably do that. Yeah, he wants to get some dev dev follows.
+
+168
+01:02:03,230 --> 01:02:10,200
+Wes Bos: I just need to my desk is always a disaster. So I can't take like a beautiful photo. Because it's like, always messy.
+
+169
+01:02:10,350 --> 01:02:14,480
+Scott Tolinski: So I need to like people who post their beautiful desks like don't work at those.
+
+170
+01:02:14,520 --> 01:02:32,760
+Wes Bos: No, it's funny. Like, that's not how it works talking to their day. Like, there's like this whole learning to code Instagram, where there's like these people, like, go through my like JavaScript 30. And they all have like, 48 4k monitors and like, your learning code, and you have like an $8,000 setup like I want.
+
+171
+01:02:34,980 --> 01:02:53,220
+Scott Tolinski: Yeah, it's so funny. Yeah, it's a weird part of Instagram. Or like the the posing for photos in front of my laptop. It's like, here, I'm sitting out on a park bench with my laptop. Like, is your like wife or your husband or your girlfriend or your bar? They're just following you around and like framing up those photos.
+
+172
+01:02:53,340 --> 01:03:26,880
+Wes Bos: Yeah, it's weird. I've started posting my Hot Tips on Instagram. And I think that is working well. But there's this whole other like lifestyle. People are very attracted to the coding lifestyle, which it's good. Like, but like it's it's not I'm not sitting on park benches and sitting on the edge of a cliff. Like get committing. You know, I'm getting here. I went to a coffee shop the other day, and I was like, someone was oh, I have a question for you. Someone at the coffee shop was doing a FaceTime on speakerphone. Not allowed. No, no. Yeah,
+
+173
+01:03:26,940 --> 01:04:14,880
+Scott Tolinski: you know what I thought I'd be like witness a major coffee shop, full pause as a developer getting chewed out by his client once just getting ripped apart for not being on deadline and the FaceTime thing or people with their air pods in just like talking away like having a huge long conversation. Now go outside, you can go outside. That's that's the polite thing to do is to go outside. Thank God for noise cancelling headphones. Yeah, like I say, um, okay, here's the one sorry, though. The actual last question that was like a little not actual last. But actual last question here is, how long do you think it will take before we can use suspense for data loading with libraries other than relay? I really liked this question. I wanted to make sure I got asked in this.
+
+174
+01:04:16,140 --> 01:04:16,800
+Unknown: Yeah,
+
+175
+01:04:16,830 --> 01:05:25,770
+Scott Tolinski: I think the answer is hopefully not very long. I think we're seeing that already. I mentioned in this episode, once s w. r, which is a library from the site, you'll want to check out I can post a link here in the chat. This is a really cool library. And this is it gives you the ability to use the suspense with something other than relay. Now, what I'm most excited for is whatever the Apollo team does with suspense, I have no idea what that is. I have no idea what that looks like. If it looks any different or if it's just basically looking very similar to the same. I really don't know, but I you know, this the space is open right now. And I think we're gonna see a lot of innovation around data loading in general, within react. So, yeah, I would think that Singh is at the speed at which this library came out from zite. I think by the end of this year, you'll definitely see a few more things pop up into early next year, you're gonna see more stuff. I think Apollo client three just got announced, even though it didn't say anything about suspense. But I think they're probably heard at work on some sort of solution.
+
+176
+01:05:26,040 --> 01:05:37,110
+Wes Bos: I did a talk on suspense over a year ago. And like, they've been working hard on it. So everybody knows exactly like what the whole point of it is. So I'm excited to see it come out. I cannot wait.
+
+177
+01:05:37,260 --> 01:06:08,820
+Scott Tolinski: Yeah, it's funny. I, some of the times have I'm like reading some of these threads about like the problem suspend souls. And as I, you know, I don't know if these are Facebook problems specifically, or if these are problems that an app like mine could have. And then like, just yesterday, I had like, one specific component that was like driving me nuts that I would have been like, you know, I'd prefer if this component would load last, I really prefer this. Like, and that's, you know, suspense gives you some of those controls that we may not have had of like, you know, component odor, or data even order of in which it loads.
+
+178
+01:06:08,850 --> 01:06:30,480
+Wes Bos: Yeah, I would imagine. We'll see in next 10, we'll see a deprecation of get initial props, which is the special method. They put on all of the classes in order to fetch data, but you have to do it at a page level. I think we'll see that go away. And we'll have suspense come in and save the day there. Yeah. Cool. Well, I don't I mean,
+
+179
+01:06:30,480 --> 01:06:35,580
+Scott Tolinski: there's lots more questions, but I mean, we could be here for hours if we tried to answer all of them. I'm so sorry.
+
+180
+01:06:35,940 --> 01:06:44,610
+Wes Bos: Yeah. Well, I don't let us know if you like this sort of like live version of a podcast, and maybe I'll do another one for Episode 1000.
+
+181
+01:06:47,970 --> 01:06:58,170
+Scott Tolinski: Maybe we Yeah. I mean, I think this wasn't too bad once we got it set up and apologize for any sort of technical difficulties at the front end of this, but we don't do this very often. So that's how it goes.
+
+182
+01:06:58,590 --> 01:07:05,220
+Wes Bos: Shout out to Marco and Joel, for giving us tips in the chat. Scott owes me three bucks now.
+
+183
+01:07:06,420 --> 01:07:10,020
+Scott Tolinski: Yeah, we can just chop that off of whatever you owe me for the sponsor. There
+
+184
+01:07:10,020 --> 01:08:01,860
+Wes Bos: we go. All right. Sick picks Today, I am going to sick pick the world's best windshield wiper blades. I Whoa, whoa, yeah. Lynch's why would show me so I hate it when the windshield wiper like does leaves a streak on it. And because of that, I used to replace my windshield wipers like every couple months, because they would always go bad. And then one day I decided to buy some good ones. And like kind of, they're kind of expensive, and they're the Bosch windshield wiper blades. And we've had them on our car for two years now. And they're still Perfect, perfect streak our streak free they they're really well that goes through they handle ice No problem, which is a problem in Canada. And it's it's such a one of these things were like not a fear of hockey,
+
+185
+01:08:01,860 --> 01:08:03,120
+Scott Tolinski: it's not a problem with your hockey player.
+
+186
+01:08:04,470 --> 01:08:29,669
+Wes Bos: It's just one of these things where like you don't have to worry about it anymore and it's just a good product overall. And then I was I follow this YouTube channel called Project farm where he tests everything with your wiper blades, batteries, adhesives, random things like that. And he tested windshield wiper blades and I was like oh man I hope the Bosch when and they did they were like by far the best blades that they tested so if you want some good blades, Bosch
+
+187
+01:08:29,879 --> 01:11:01,220
+Scott Tolinski: team exploits over here. No Bosch Uh, yeah, I still look them up have to check out I actually probably do need when new windshield wipers it's one of those things that you're like you don't realize that they're they've gotten bad until you're just like, Oh yeah, these are terrible. Yeah. So maybe I gotta I gotta do something about this. I got a sneak peek today of for those of you who've liked some of my podcast picks this is going to be right in line with some of the more popular podcast pics that I've done such as darknet diaries swindled what's the one that is very similar to this this one's definitely like a prolonged story rather than a little miniature stories. But this podcast has been absolutely fascinating. Oh, it reminds me of the the dream the multi level marketing one in some sort of way. So this podcast is called the missing crypto queen. And this is about is from BBC sounds and it's as you know one of those you know NPR style productions whatever that's just doing very good production. But this is basically about one coin one coin I believe is the coin and is about a crypto coin that was just a huge scam and in there some of them are yeah is a huge scam and basically this this woman was who's actually very very smart was getting on the cover a Forbes and stuff and she was you know, hailed as the next crypto queen. And turns out holding was a scam. They at some point in the book very like After it was already being used by thousands of people, or hundreds of thousands of people, they were reaching out to developers to say, Hey, can you build us a blockchain? And they're like, wait, I thought you guys are buying are already selling coins, like how you don't even have a blockchain. And so they just started lying about everything. And it is substantial. And what's crazy is it's like a huge cult. It's like, very cultish. And unfortunately, they've moved into lower economic situations where they're pulling money from people who don't have it and swindling him out of their money. And it's absolutely horrifying. So give it a listen. And if you know anybody who is investing in this coin, tell them to stop it because it is a huge, huge scam. And I've found this podcast to be utterly fascinating and totally, totally horrifying. The there's a huge mystery component to it, because this person has disappeared. And she's undergone plastic surgery, and she's hiding out in there trying to find her. So it's it's just, it's a thriller, it's good. So check it out, the missing crypto queen.
+
+188
+01:11:01,560 --> 01:11:16,640
+Wes Bos: All right, shameless plugs, I'm gonna plug my upcoming course, which is beginner javascript.com. And I will have more details about that very shortly, I'm really excited to get it launched, it's going to be a banger. So get ready, banger,
+
+189
+01:11:17,010 --> 01:12:55,949
+Scott Tolinski: this episode's coming on the 27th, which means that my course my next course, will be approaching its release. And that course is going to be on react and TypeScript. I'm gonna be showing you react and TypeScript patterns, we recently rewrote the entire front end of level up tutorials, thanks to the epic life in the chat for working really hard on a lot of that right now. And so we recently worked really hard to get TypeScript all up. We did the API a little bit ago, and now we're doing the front end of the site. And is I I really love it. I get it. I get why people talk about TypeScript and, you know, evangelize for it. I definitely, I don't want to say I ignored it for too long. But I definitely really understand and appreciate the benefits of TypeScript within a react website. Right now, I used to think like, Can I just do all that with prop types and default props? And it's so much better when you read a component. And that component has a little squiggly underline that says, hey, you're missing this required prop. say, Oh, yeah, this is missing this required prop. And I think it's already opened up. It's opened up a couple of bugs that we were having on the site where they were strings were changing into numbers and numbers, were changing the strings and just sort of magically and it really gave me a handle on some of that stuff I didn't really even realize was going on. So check it out. It's going to be on level up tutorials.com forward slash Pro, sign up for the year and save 25% so check it out. Oh, it's the 27th Do you know what that means? Hey, what does that mean?
+
+190
+01:12:55,970 --> 01:12:57,810
+Wes Bos: Black Friday, Black Friday.
+
+191
+01:12:57,930 --> 01:13:07,890
+Scott Tolinski: So by the time you were listening to this, the level of Black Friday deal will be on you can get 50% of the yearly subscription by merch.
+
+192
+01:13:07,949 --> 01:13:18,510
+Wes Bos: Yeah, I'll have mine up as well. I always do half off as well. So check out all of my courses. Wes Bos comm forward slash courses, forgetting that sweet Black Friday deals. Yeah, those
+
+193
+01:13:18,510 --> 01:13:24,020
+Scott Tolinski: deals got to get those deals. So yes, and if the year say 50%, level up tutorials.com Ford slash Pro.
+
+194
+01:13:24,229 --> 01:13:36,659
+Wes Bos: Alright. Thanks so much, everybody for tuning in. That was really fun. Thank you so much for making 200 episodes happen. I think it's really cool that we get to do this podcast, and we will catch you on Monday. Bye.
+
+195
+01:13:37,710 --> 01:13:51,560
+Scott Tolinski: Bye. Peace, peace. Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
