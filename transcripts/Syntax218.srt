@@ -1,0 +1,548 @@
+1
+00:00:01,319 --> 00:00:10,560
+Unknown: You're listening to syntax, the podcast with the tastiest web development treats out there. strap yourself in and get ready to live ski and West boss.
+
+2
+00:00:10,589 --> 00:00:16,680
+Wes Bos: I hope you're hungry. A lot of great intro
+
+3
+00:00:16,710 --> 00:00:27,929
+Scott Tolinski: it is we we briefly talked about potentially having some sort of a new theme or intro for these episodes. So I'm really glad that you chose to do that, especially without telling me makes it even better.
+
+4
+00:00:30,030 --> 00:00:44,970
+Wes Bos: So today, we have a potluck episode, which is you submit the questions, we answer them for you. If you ever have a question you'd like us to answer on a potluck, go to syntax.fm, click the Ask a potluck question button and put your text in the box, submit it, and we'll answer them maybe.
+
+5
+00:00:45,240 --> 00:00:49,500
+Scott Tolinski: Yeah, we get a lot of questions. So we really try.
+
+6
+00:00:49,530 --> 00:00:53,729
+Wes Bos: Yeah, but a lot of them are not very good. So keep keep submitting your good ones.
+
+7
+00:00:53,729 --> 00:00:56,880
+Scott Tolinski: But if we don't answer your systems, I mean, yours wasn't good. Yeah, that's
+
+8
+00:00:56,880 --> 00:01:24,300
+Wes Bos: true. If we don't if we don't answer it, it might be because we've answered it in a previous potluck, or because we just don't want to just jokey it keeps admitting them. We love them. Today, we are sponsored by two awesome companies. First one is dot tech domains. And the second one is Netlify. Funny enough, both of the sponsors I used in my latest project uses dot tech and we will talk about both of these companies partway through the episode.
+
+9
+00:01:24,510 --> 00:01:30,810
+Scott Tolinski: So Mr. solinsky If you haven't listened to that music tech episode, go put that one on there was a really good episode.
+
+10
+00:01:30,840 --> 00:01:34,050
+Wes Bos: Yeah, yeah. How you doing today? Mr. szalinski?
+
+11
+00:01:34,050 --> 00:01:34,590
+Unknown: Sorry, you
+
+12
+00:01:34,590 --> 00:02:02,310
+Scott Tolinski: can tell by my timing things are you know, they're just how they are when you're you know, paranoid i i was uh, joking on Twitter and with with Courtney, that when we go to the coffee shop, I'm gonna ask for a just a pitcher for the table. It's give me a picture. Let's get a couple fish bowls of cold brew. And she was like, Can you just get them to bring us the cake. So you know, when this is how it is? We're just we're living. We're living. We're loving all that stuff. So yeah.
+
+13
+00:02:02,340 --> 00:02:12,660
+Wes Bos: When when I was in high school, the like, cool place for suburban kids to hang out was this restaurant. It's Canadian restaurant called Boston Pizza. You don't have that down there, dear.
+
+14
+00:02:12,930 --> 00:02:17,819
+Scott Tolinski: Um, I don't know we have Boston Market. No, no, totally different.
+
+15
+00:02:17,820 --> 00:02:32,780
+Wes Bos: So Boston Pizza is a Canadian pizza chain. And it's like the place to go drink when you're in high school. And they had these like fish bowls, where you just get like a big thing of Kool Aid and vodka and you drink it out of a fishbowl that reminded me of that.
+
+16
+00:02:32,940 --> 00:02:44,699
+Scott Tolinski: Oh, yeah, that was I mean, okay. Yeah, fish bowls were always a definitely thing. Boston Pizza though. Is pasta known for their pizza. I don't Boston people get. I don't know is Boston. No, I mean, no, no. Oh, no.
+
+17
+00:02:44,699 --> 00:02:47,069
+Wes Bos: It's never known. And
+
+18
+00:02:47,100 --> 00:02:56,580
+Scott Tolinski: there's California apparently I don't think California really is but so I'm gonna anger people from any of these cities. You get me because Detroit pizza is the best and you will know it.
+
+19
+00:02:58,650 --> 00:05:06,420
+Wes Bos: Boston Pizza is not the best pizza, the restaurant, and I can't speak to the actual city's pizza. But anyways, let's get into our first question. First question we have here is from watering wolf. This is actually a bit of a big question. So buckle up. He's gotten us. I'm a huge fan of the show. Thank you so much. In March 2019, I left a creative agency that I've been with for two years to pursue freelance. around October of last year, I started to get the feeling that freelance wasn't for me. So maybe six, eight months on freelance and SAS not really for me, I got pretty lonely. I really started missing collaborating with my colleagues face to face. Fast forward to early January, I was offered a lead dev job at a mid sized company and I took it, it is exactly the work I've always been wanting to do building apps in react that will end up needing to scale. The pay is really solid and the benefits are great. And I'm going to learn a ton. So so far, so good. I've only been at the job for a week and I really hate it. Oh, I consider myself to be pretty intuitive. And I feel like I just don't fit in and I see many red flags. Everyone is perfectly nice. And their back end developers are very talented, but there is no process in place regarding properly building applications or collaborating between designers and developers. There also isn't any real excitement around on what we are building and the thinking is somewhat antiquated. I'm fun positive energy person. So far everyone has been pretty blah, huh? I've been miserable this whole week and super disheartened. What should I do? Do I suck it up for a while and start looking for something else potentially taking a pay cut? That's that's the scariest thing of all is a well paying job. Ah, yeah. And moving back into doing web dev as opposed to building apps into work for another creative inch agency with people that are more my jam. Feeling a little frustrated little was a little lost. I could use some words of wisdom from El Toro logo to Lynskey and Barracuda boss People so much for being mentors. Wow. Yeah, that's a tough one. Right. So first of all, congrats,
+
+20
+00:05:06,480 --> 00:05:08,370
+Scott Tolinski: I've personal experience to draw from this.
+
+21
+00:05:08,510 --> 00:06:28,200
+Wes Bos: Yeah. Um, okay, so first of all a week, I don't think there's enough time, right? Like, I think that you probably can get vibes from people. And I've certainly done freelance jobs, where I go into a company and you get those vibes immediately from the people that you're working with. So I would push it out a little bit longer what you said, You said that you are a lead dev at a midsize company. So the fact that you are a lead dev of it sounds like you're like the lead of doing apps. Like maybe there is some space to change things right? Like not necessarily, this can't always happen. But in a lot of cases, you can be the change that that company needs to see. And it certainly you'll be, you'll be hit with some opposition, because you're the new guy that's been there for for a week. And these other people have maybe a little bit jaded or maybe a little bit just used to doing what they they've been doing for so long. But if you're the lead of it, maybe change things up, maybe put some new processes in place, new tooling, things like that. So I would definitely see that out because it's work that you like it's good pay, it's just seems that the culture is a little bit different. And I think that that could potentially be changed. And then I don't know, maybe in six months, if it's not panning out, I certainly wouldn't think that it'd be a bad idea to to keep looking and keep your your ear out for something. What do you think? Yeah, I
+
+22
+00:06:28,260 --> 00:10:29,270
+Scott Tolinski: mean, I think you're dead on in a lot of that because the more I've been thinking about this, I have more and more personal experience to draw from you. Yeah. You mentioned as being like a lead and being able to make that change I'll never forget I one of my first jobs was, I worked as a projectionist. Essentially it was a an audio technician or video technician or whatever. But I was a projectionist for the medical school at the University of Michigan. And there was a really interesting culture there, everyone had been there for a very, very, very long time, like 30 years, right. And they were just the way that they did things. And I came in on my very first week, and I walked into this one closet, and the closet was an absolute mess. It looked like their stuff on the farm, there was just no organization, it was just the absolute biggest nightmare you've ever seen in your entire life. And so I had nothing to do my first week. And I clean the closet. Not only did I like actually scrub it, clean it like a you know, like making a nice and clean, clean, but I organized the life out of it in the best possible way. So you could actually walk in and find things. And I did. So to respect even the non system that was in place. And what happened, I got absolutely destroyed by an older gentleman who had worked there for his whole life. And it's like, what are you doing touching my closet? I'm like, I just saved your closet. And like, my boss came in and was like, Listen, you did the right thing, like, do not like you're going to get some resistance when you're trying to improve things. So if you have the power to work on and improve things, you might want to go for it. You might alienate yourself, right? You got to be a little bit careful about that. But again, like you like Wes said, if you have that title, you might have the ability to change things. When I got my first senior role, I really changed a lot of the process in terms of adding better get workflows and things like that that weren't, you know, they were they were things we really wanted to do. But given the opportunity, now I could do it. Another little piece I have to draw on is a mentor of mine, he got a job of his dreams in Chicago, which is like four hours from where we lived, right? So it's a decent, great pizza. Right? Great beats. No, I don't I'm not a big fan of Chicago pizza, sorry. But he picked up and they were planning on moving their whole family there. They had, he was commuting on the weeks and then just staying in a place temporarily while they look for a house and he had worked at this job. And basically was ready to pick up everything and move for this better paying what he thought was like a more advanced job. And what he found was that the managers didn't understand dev as much as he thought they did. Although the work that they were putting out, looked nice and was creative. They didn't understand Deaf process. They didn't understand how to work with the developer. They were giving him a bunch of awful tasks. I mean, he's a smart, excellent developer, and he just could not do it. He ended up quitting just saying no, screw it, come back. And then Luckily, he did that before they, you know, move their whole family out there. But the whole thing is, is that if it's not right, it's not right. And you don't have to stick it out. If you can come back to whatever you're doing before. Or if you can look for another job. I don't know if I would jump off of the ship before I had another ship pulled up that you could hop on to right. So if if it's really not feeling right, even right now, if it's not feeling right, apply, just start applying for stuff just apply and if they ask you in an interview, why you'd apply for things just say this, this place really isn't right for me. I don't want to like rag on the people who work there. It's just not necessarily a good fit with the way that I like to work. And people are reasonable, though, understand, so maybe just start applying and who knows, maybe another job will come up. And who knows, you might have to take a tiny little pay bump. But also maybe you might find a really great job. So just start looking if even if you know if it's not the right field just are looking and you don't have to accept another job. If an offer comes along, and your current one gets better. There's no harm in looking there. So that's my thoughts. Really
+
+23
+00:10:29,539 --> 00:10:31,020
+Wes Bos: awesome. Y'all grab the next question.
+
+24
+00:10:31,139 --> 00:11:14,669
+Scott Tolinski: Yeah. This next question is from Nicholas Graham. And he asks, Does syntax have a discord or slack community to collaborate on topics? Graham? I'm glad you asked it. The reason why I left it and may even use this question at all is just because the episode that came out on Monday was this. So Graham had asked this question before we had done that episode. So we just wanted to give a quick shout out. There is a slack community for people who have purchased Wess courses. There's a discord community, or level up tutorials and lesson I just created a Reddit community for listeners of syntax. So you go ahead and sign up for that Reddit and we can you can chat about the episodes and or you can join my discord and chat about the episodes and the syntax chat room there. But that's that's those are the options right now.
+
+25
+00:11:14,939 --> 00:11:19,320
+Wes Bos: Yeah, it's a reddit.com forward slash our forward slash syntax FM,
+
+26
+00:11:19,499 --> 00:11:23,520
+Scott Tolinski: or syntax FM dot Reddit Comm. I don't know if you knew that.
+
+27
+00:11:23,639 --> 00:11:24,600
+Wes Bos: Really? No.
+
+28
+00:11:24,629 --> 00:11:27,419
+Scott Tolinski: Yeah. Syntax fm.reddit.com.
+
+29
+00:11:27,509 --> 00:11:30,270
+Wes Bos: It makes sense why they they call it a subreddit.
+
+30
+00:11:30,299 --> 00:11:32,669
+Scott Tolinski: Yep. Yes. Oh,
+
+31
+00:11:33,809 --> 00:11:40,470
+Wes Bos: wow. Okay, that's awesome. So please go ahead and post anything you want there? Well, maybe not anything. But
+
+32
+00:11:40,500 --> 00:11:42,419
+Scott Tolinski: yeah, don't post anything. That's not I
+
+33
+00:11:42,419 --> 00:11:54,299
+Wes Bos: think it'd be really cool to just see what it looks like. I know there's a lot of people that aren't on Twitter, we certainly will still use our Twitter but I just spent all this time uploading a banner and check it out.
+
+34
+00:11:54,720 --> 00:11:57,899
+Scott Tolinski: This time, uploading a banner. That's great.
+
+35
+00:11:58,200 --> 00:12:00,750
+Wes Bos: All right. Next question. From rockin rollin ski.
+
+36
+00:12:00,779 --> 00:12:14,700
+Scott Tolinski: I wanna I want to know, this person knows that my dad's name is actually rock. And like, a lot of his nicknames would be like involving rock and roll, like his friends would be like a rock and roll like, we just named his rock. So this is funny rock and rollin ski. Hey,
+
+37
+00:12:14,909 --> 00:12:28,830
+Wes Bos: what's up? So Scott, dad asked, What is one thing that really it really annoys you about JavaScript? It can be things like missing proper module imports. What does that mean missing proper module imports? Why is it missing that?
+
+38
+00:12:29,100 --> 00:12:40,049
+Scott Tolinski: If you are rockin rollin ski, since you didn't use your real name? I know it's not my dad, who says question. Hit us up on Twitter about what this what you're referring to here because we're we're interested?
+
+39
+00:12:40,169 --> 00:13:33,840
+Wes Bos: Yeah. Anyways, what really noisy about JavaScript. I thought about this like not a lot like to I'm not one of those people that's always just constantly complaining about JavaScript. But there's one thing that does annoy me every time I import a module, it's the fact that if you're typing it, you import what it's called first, and then where it's from seconds. So import render from react DOM. And I wish it was the other way around because of better auto completion. So if it was from react Dom import, and then it would autocomplete all of the exports in that thing, and there are like things out there. But the sheer fact of the way that you write it first doesn't lend itself to good auto completion. Whereas if you gave it the file name first, and then what you want to import from there, that would be much better, I think. Interesting.
+
+40
+00:13:34,350 --> 00:14:23,520
+Scott Tolinski: Yeah. So this was when I had my initial reaction to this question was the thing I like least about JavaScript is when you tell, like Java, or C developers that you write JavaScript, they're like, okay, because they think you're they think what you're doing is, you know, writing, you know, importing 1000, jQuery plugins, to whatever you're doing to do a lightbox or something. Like, that's not really what we're doing anymore. in JavaScript, there's so much more there. But that's not a problem with the language itself. Obviously, my answer to this for what's the thing that you would like, that you could change about the language itself, and this might I don't know if this is controversial at all, but this is this is something that I really like, I personally wish there was a an official, like required formatic What did they call that?
+
+41
+00:14:24,450 --> 00:14:27,750
+Wes Bos: Like a word enforce. sannidhi enforced?
+
+42
+00:14:27,960 --> 00:15:02,340
+Scott Tolinski: Yeah, yeah. Right. Well, you know, you could think of something like Python, right? Where if you miss the actual way that Python is typed, it breaks. And I really like that I mean, I sure prettier has come in and been like, Okay, this is how it formats it but they're still just, you know, when you open a JavaScript file that somebody else wrote, you sort of don't know what you're getting in terms of formatting regardless of whatever and they have to opt into prettier. I would really love it personally. If there was just a this is the specific way you have to write it. I understand why it's not but just Nice little thing that I would prefer personally.
+
+43
+00:15:02,490 --> 00:15:07,260
+Wes Bos: Yeah, yeah, they just force you to write it in a specific manner. I wouldn't mind that. Yeah.
+
+44
+00:15:07,830 --> 00:16:17,429
+Scott Tolinski: Next question is from Ivan the great or the terrible or any. There's lots of Ivan's shout out to be boy, Ivan, you don't see niza 90s b boy. Okay, so this question is from Have you tried fauna db fauna.com. The guys from webflow are suggesting it. So I have a neat little note here. That's our tagline says a database built for serverless featuring a native graph qL, a full featured database to your apps in minutes. Access effortlessly from the browser from mobile. Never worry about data correctness, capacity, redundancy, latency, and availability. So fauna DB apparently is going to do everything in the world for you. And it's sort of built around this whole serverless thing. So to answer Ivan's question, I have not tried fauna, I have looked at fauna I have opened their documentation page about a couple times in the past. But I haven't actually gotten any feet on the floor with this one just yet. It's an interesting looking thing. But I don't really know a ton about it.
+
+45
+00:16:17,490 --> 00:16:54,299
+Wes Bos: It sounds pretty cool. They actually tried to sponsor the podcast, but where are our spots? So here's your free plug. Fanta. fanta.com. Yeah, Ford slash syntax. Everybody, everybody go to font.com Ford slash syntax. And then therefore, all fours are going to spike it like what happened? Anyways, um, it looks like they it's like a database, but also has an API in graph qL, as well as another REST API. Oh, seems cool. I certainly a lot of people have been asking me about it over the last like year, or a year and a half. I don't know anybody that's running apps on it. But it certainly seems pretty nifty.
+
+46
+00:16:54,750 --> 00:18:06,450
+Scott Tolinski: Yeah. And so it's, it's a hosted database, right? You're not hosting it yourself? I don't know. Can you host it yourself? It seems like there's this world right now, where the lines are sort of becoming blurred between the database itself. And the management of Yeah, database, you could things like has Syrah or any of these new sort of back end CMS 's that are coming out, where instead of even thinking about database schemas, you're just thinking about data and how it's stored. In me personally, I really like that, I like that I'm not having to think about the technicals and somebody is going to worry about how the details of the performance for the database work and things like that. So I don't know I'm going to give a fun a try. It's a matter of when I'm going to find that time. But I'm definitely going to give it a try. I just think there is probably a lot of competition in the space around hosted data whether that is a database a data as a service, these services like fauna, there's what would there's there's a lot of stuff popping up with graph qL what's the Neo for? Yeah, Nico. What is that? Is that what extra is Neo for j? Uh,
+
+47
+00:18:06,450 --> 00:18:53,460
+Wes Bos: well, Neo for j is a graph platform, but it's not graph QL. They're, they're the ones that have have totally gone in a separate direction, right and done their own thing that graph qL, which is cool, because it's always good to see like people questioning best practices. That's how we got react. Cool like that. My only like, reservation is that like, if you ever wanted to take this thing yourself, certainly get your data out. But we all remember when parks shut down, right? But then again, like I'll use Firebase in the in a hot tip, I'll use Firebase really quickly. So I'm not against these sort of hosted cloud databases for you just have to think about like, no, are they going to be around forever? And can I get my data out? Right. So yeah, it's cool. Yeah, those
+
+48
+00:18:53,460 --> 00:19:12,900
+Scott Tolinski: are all big concerns. What? Who's using it? For what? And how easy? Is it for them? To get their data out? At the end of the day? You know, like, if it's, if it's being used by Google and Google would need to get their data out, then they're going to make it so you need to, you know, like, what are what are those parameters around that? Definitely things to think about?
+
+49
+00:19:13,469 --> 00:20:22,820
+Wes Bos: Next one is from Eric B. What are your thoughts on including tutorial projects in a portfolio? For example, putting the CIC Fitz website from West is advanced react course in the portfolio? I'm relatively new to react and have a couple of my own projects, but a bunch of projects from following the course. Yeah, this is this is a good question. So first of all, is it allowed? Absolutely do whatever you want with the projects you do in my courses? Should you pass it off as your own is another question. So I think what I see most is that people build their own thing. It's not necessarily the exact app that we build, but they say like, Alright, I'm going to take the ideas of auth and users and items and relational data and maps and I'm going to make my own thing that is sort of like that. Absolutely go for that. If you're just putting the finished product of following the tutorial in your portfolio, then I think you should probably mark that as like, not for my own, like, I don't care what you do, but just from somebody looking at your portfolio, they should know that you didn't whip up this thing from scratch. But you did. I sort of follow up tutorial along the way. I think that's where I'm at with it. What about you?
+
+50
+00:20:23,220 --> 00:21:11,700
+Scott Tolinski: Yeah, that's a tough one. Because, again, a lot of the challenges that we face in programming are those of how do you get around this issue that you've encountered, or this problem that you're trying to solve? And really, what things and a portfolio to me should be is, did you solve these problems that prove to me that you're capable of solving problems in the future? And if you're following along to some sort of an example, right, that's maybe paint by numbers? Are you really solving these problems yourself? Even if the tutorial creator, like you and I has left in some issues to help you understand how to solve problems? Are you still solving those problems yourself? Did it display that you had some sort of thought process behind it? Because,
+
+51
+00:21:11,700 --> 00:21:12,420
+Unknown: okay,
+
+52
+00:21:12,420 --> 00:22:27,780
+Scott Tolinski: here's the deal. If you're applying for a job, that's mostly CSS and react stuff, maybe whatever, just some basic JavaScript, or maybe you're just doing CSS, right, let's just say you're just doing CSS. And then you took a tutorial that was maybe West bosses react tutorial, and you flipped it by making it your own custom interface that to me solves all those problems, right? It shows that you, you thought about these custom interfaces, and you thought about how to solve those things. And you didn't just paint by the number. So it to me, it's more about how you flip it for the things that interviewer would be looking for, I'm not going to say that, like, tutorial content is toxic to do a in your portfolio, it definitely not the case, definitely usable. But it has to illustrate that you solve those problems, and that you understood why they were problems. Let's say you need to get some eyes on your project. Well, you're going to need a domain for that project, you're going to need an entranceway, sort of the the the Fourier of your project is the domain. I like to think about it that way. And you're gonna want a fancy, cool domain. And that's why we have dot tech domain sponsoring us today. With a little bit more about that tech. Yes, is the man himself, Wes Bos,
+
+53
+00:22:28,230 --> 00:23:57,750
+Wes Bos: the tech tech guy, you can call me Actually, I think Leo Laporte has that. So don't call me the tech guy. Anyways, so.tech.te ch is a new TLD top level domain that you can register your own, I actually went and got uses dot tech. And I have I got West dot tech, which I don't have anything up there just yet. But I got West tech and uses that uses tech, we did an episode on a couple like a week or two ago, which is really cool. And we just sort of detailed everything that we use on there. And the domain name came from dot tech, all kinds of brands, CES, Viacom, Intel have all migrated to dot tech. And it's perfect for representing your brand due to its affinity and inherent meaning. So it's pretty cool. I want you to check out uses dot tech, which is the website that I built with my dot tech domain name. And I want to encourage you to check is your name dot tech available? Whoo, if so, you should grab it and use the coupon code syntax 2020 you get 90% off one five and 10 year dot tech domain names 10 year domain name talk about locking it in. Awesome. So go to go dot tech forward slash syntax 2020 and use the coupon code syntax 2020 to grab your dot tech domain name thanks to .TECH for sponsoring.
+
+54
+00:23:57,750 --> 00:23:58,950
+Unknown: All right, next
+
+55
+00:23:58,950 --> 00:24:13,830
+Scott Tolinski: question is from cam Killa cam. He asks a site you're maintaining is hacked. It's been hacked. What's his name? Elliot? Alderson is that from Mr. Robot is that his name? Mr. Robot has come
+
+56
+00:24:14,040 --> 00:24:19,080
+Wes Bos: in don't do movie references with me Scott. We've went over this. That's a TV show.
+
+57
+00:24:19,200 --> 00:26:01,860
+Scott Tolinski: You know, Landon calls the TV shows movies, Landon's. Like I want to watch the Mickey movie you're like that's and this is Wes right here. Basically the same thing. So how do you fix if if Mr. Robot has it has jumped in there and Hector Hector box here. What do you do? Well, this is a tough one there. So I haven't necessarily been hacked in any sort of ways. But I have had a client who been like, my site's been hacked and we love it. We FTP in their server. And the first thing we noticed was a billion PHP files that we did not put there. And actually, it wasn't even something a project that we had done. So client that we had taken over, but there was billion PHP files in there. And who knows what the heck they were doing? To be honest, I have no idea. And I didn't really care to find out, here's what I did. First thing is change all of the credentials, ASAP, change all of them and make them as superduper, secure add to fa, where you can just go ham on the login security there. Then next thing, actually, no, I, well, you got to kind of do all this at once. You got to get rid of all their stuff. Because if they have a backdoor in there, yeah, to get your keys and stuff, maybe change a lot of those passwords that aren't stored in any particular file. That's actually tough. Just start deleting that stuff and changing passwords all at once. Go crazy. And then I guess, maybe try to figure out what they did. To be honest, I'm not in a security authority, I just know that I do the best I can in terms of to FA keeping my keys private, if there's ever anything compromised, change the keys immediately. And I haven't really, I don't know, I haven't really experienced too much of this.
+
+58
+00:26:01,980 --> 00:26:13,260
+Wes Bos: Yeah, so I'm not I'm not gonna answer this in terms of like, what happens if a user website gets hacked? Because at that point, you need to figure like what databases dumped was code where it was
+
+59
+00:26:13,740 --> 00:26:15,120
+Scott Tolinski: taken. There were it was
+
+60
+00:26:15,180 --> 00:28:41,310
+Wes Bos: sensitive information. So like, all of that is sort of a different level. I think this question is, or at least I'm going to answer it in is I've had a client WordPress website that just got script kiddies at one point, meaning that it's a WordPress website. And there's a known vulnerability in a plug in or a version of PHP or in WordPress itself. And somebody runs a script and hits all these websites and, and injects it. So what do you do at that point, so sort of the first thing you need to do is go and reset all of your passwords, both for your hosting logins, which you should be using two factor authentication. And if you are just using straight up passwords to log into a server, then reset those generate new keys if you're doing that, which would be ideal keys and password combo is ideal as well. Because then it's something you have and something you know, then then will you do a reset all of the passwords. So almost in every case, I've had a couple WordPress has hacked over the years, it's because the person's username was their password, it was just like dogs 123. And they've used that same password on every single thing. So they were so uh, yeah, yeah, at that point, you got to figure out like, okay, like, how do they get in, you've changed all the passwords there. And then I just assume that everything every file is tainted, because like there could be malicious code in there that will then you're serving it up to your users. So in the case of a WordPress theme, you just basically got to rebuild the site from scratch, and you have to code review every single file, or just grab a fresh copy from your Git repo ideally, because that will be untainted, then you go to go get a fresh copy of every single plugin that you have get a fresh copy of WordPress, because like, WordPress has like, what 40 million files? How are you going to check all of those, you're not just scrap everything on there, start rebuilding the website, what can also happen in the case of a lot of PHP CMS is is that malicious code can get into the database. So you have to sort of go through that as well. There's a lot of plugins out there that will sort of scan for these these known things out there. And then either roll back to an old version, if you can, if you're using like a Digital Ocean or something like that, it's probably better just just spin up a new thing and grow back. Oh, yeah, you could roll it back, I guess. But yeah,
+
+61
+00:28:41,640 --> 00:28:46,950
+Scott Tolinski: I that's I mean, that's would be my first inclination is to find where it's clean, and then roll it back.
+
+62
+00:28:47,010 --> 00:29:20,910
+Wes Bos: Yeah, that I guess like that will get you up and running really as quick as possible. But I would be tempted just get a brand new IP address a brand new box. And that way, you know, none of that stuff has been tainted or whatever. Because like, it's frustrating, like, certainly, I've only had it in cases where it was just a simple little WordPress. And it was just the Indonesian script kitty that got the entire thing. But it certainly could be much worse. And you have to just assume that absolutely. Everything has been tainted and everything as an open door. So you have to go and go through and keep going through all those.
+
+63
+00:29:21,450 --> 00:30:27,930
+Scott Tolinski: Yeah, and one little thing, if you're using any of these CMS is right, there are some preventative measures you can take because if you're going to get hit by a script, Kitty or any of that, it's largely because there's these exploits that Yeah, over the course of WordPress or Drupal or whatever, and they're just going to try every WordPress or Drupal site they can find and to see if you're out of date on any of these or if your plugins are out of date or whatever that could contain in these Roadrunner abilities. So one thing I always did when I had a Drupal site is I hid the fact that it was Drupal as much as possible. I changed the domain or the the URL of the login page. So that You know, they're if they tried WP forward like I used to see server logs on a Drupal site come in saying route not found and they were searching for WP hyphen, because they know that if it's a WordPress site, then they can potentially do something. So if you change those things to prevent the users from even attempting to get in, in those specific ways, then that could go a long way as well. This next question is for Wes Bos to read not for me to read.
+
+64
+00:30:27,960 --> 00:31:42,750
+Wes Bos: The next question is from Mina to leave my book work. My bookmarks are overwhelming. I just started learning web dev. And then though I start my bookmark into folder and up with so much stuff, I don't even know how to use them. Certainly I had this problem when I was still learning every single little article or or trick that you you'd stumble upon you'd bookmark it, because you probably need that at some point. In the future. What do you use for managing your bookmarks on browsers? So I honestly, I use bookmarks here and there when I'm when I'm working on something like, let's say, I'm looking to do a new intro for one of my courses, I'll bookmark like six or seven mp3 files, and maybe some art for things that I like. But every now and then same as my desktop, same as my downloads, I just blow it all away, because it does become overwhelming. And you're never actually going to go back and look at all of those things. Yeah, if I think about how many times I've went into my bookmarks, and said, Oh, where was that link from? Six months ago? I don't even remember that. I have that that link. So just delete everything you'll feel free is the same thing with people who leave tabs open. My wife is awful at that she she leaves just like tabs open for like months. She's really, um, Oh, man.
+
+65
+00:31:42,779 --> 00:31:50,010
+Scott Tolinski: Yeah, I'm, I bet it's something I've gotten better at. But it's not something that I am excellent at it.
+
+66
+00:31:50,100 --> 00:31:56,910
+Wes Bos: You can get all that stuff back, just google it or go back to the URL, you'll you'll be able to find that information.
+
+67
+00:31:56,969 --> 00:32:01,680
+Unknown: But I'm gonna read it. I'm gonna read it at a moment. I don't know whenever I have that moment. I'll read it.
+
+68
+00:32:02,730 --> 00:32:04,200
+Wes Bos: Oh, man, I never have that moment. I
+
+69
+00:32:04,200 --> 00:32:07,350
+Scott Tolinski: just I know that the answer is that you never have that moment.
+
+70
+00:32:07,470 --> 00:32:17,730
+Wes Bos: Many times throughout the day, I'll just close absolutely everything, delete everything on my desktop, delete everything in my downloads folder. And just just live your life. It's a good life, Scott.
+
+71
+00:32:20,820 --> 00:33:00,270
+Scott Tolinski: I know I'm so bad about people have like really good ways of cataloguing all the information they find and bookmarks and notes on everything. And I do none of that none of that. We can maybe potentially say that, like notion is good for some of those things. For instance, like Courtney and I are looking to redo our bathroom. Our vanity looks like it's from Lord of the Rings or something. We did not pick it out. So like does not fit our tastes. We've never liked it. And on top of that, it needs work. So we're like, well, we'll just get a new vanity what they're like 300 bucks, right? We're not going Restoration Hardware on this, which by the way are like six grand or something. They're ridiculous.
+
+72
+00:33:00,300 --> 00:33:03,060
+Wes Bos: Yeah, Restoration Hardware is the best but super expensive.
+
+73
+00:33:03,330 --> 00:35:47,010
+Scott Tolinski: I was looking for a man on there. And I could believe the price. I was like, Oh, this one like holy cow. I've never shopped here before. Wow. So yeah, we're looking for a vanity right? And what we did is we made like a gallery table in notion Well, why should say we I made a gallery tote table in notion with basically screenshots of all the different vanities, we're considering, you know, sort of like your own custom Pinterest board. And that for that particular project just lived in that particular thing is very organized, it necessarily wasn't like a bookmark thing. But you know, those were, those were the links that we wanted to have for this specific thing. I remember using delicious a lot. Back in the day, it was really nice to tag everything just stored in there and in whatever I've been using pocket lately, but by using pocket, I mean I have it installed. I use it. Occasionally I find myself using pocket mostly before flights, or situations when I'm going to be offline. I'll just go ahead and grab a bunch of articles I would want to read beforehand, so I'd have something on the plane to look at. But for the most part, yeah, bookmarks are kind of a crapshoot, and I don't really use them for anything. So that's pretty much pretty much it for me, I just don't use them. Next question is from Tyler Jackson. He says, Hey, Scott, unless being an avid user of react and other modern JavaScript frameworks, how would you recommend integrating these technologies into more or less static brochure style websites? Say for instance, I have a banking website. There's mostly static content, but also complicated JS pieces such as calculators, location finders, and signup forms. I currently reach for jQuery and jQuery plugins for these functionalities but react and view sound like they could also help solve these one off pieces of functionality. Most tutorials and example are about creating apps from the ground up. But what if you want to sprinkle these frameworks and only use them for whatever j s is necessary? How might the both of you solve these scenarios? PSM he turned the show and can relate to West his origin story. 100% seemed ya ever seen kid? Yeah, Mama seen kids? Okay, my answer for this one is largely that react and view and any of these things can absolutely be used in this manner. One of the first things you do in like a create react app or any of these situations is you have an HTML file, and you have a div with an ID, and you do get element by ID, and then render your react application to that ID. Guess what you can do that on any div in your entire website. And you can do it more than once. So while the tutorial certainly don't show it that way, I know actually, I believe views tutorial does a better job of this than react. And I saw Dan Abrams talking a little bit about how they could be better about showing that, but it can absolutely be used in that manner. Any of these frameworks?
+
+74
+00:35:47,070 --> 00:35:54,510
+Wes Bos: Yeah, like facebook.com, the new version, which is awful, but like the facebook.com that everybody knows,
+
+75
+00:35:54,510 --> 00:35:56,850
+Scott Tolinski: as opposed to the old version, which was not awful.
+
+76
+00:35:56,940 --> 00:36:13,020
+Wes Bos: The new version is like the UI is horrendous, but like the like regular white and blue facebook.com is in was a server rendered app with react sprinkled in into little pieces onto the website. So certainly, if Facebook can do it, you can as well,
+
+77
+00:36:13,400 --> 00:36:53,100
+Scott Tolinski: that's absolutely correct in again, it's, you know, what are you doing for jQuery? Well, you're, you're saying, hey, go find an ID of an element and do this stuff, you're doing the same thing with react. But again, you'll need some sort of probably need some sort of compilation step to build up that JavaScript, I would imagine you should be able to find some content on this. I have not looked myself and maybe that's a series that somebody should make, how to add react to an existing project. And maybe it exists. If you know of a good series, or good tutorial blog, or anything that shows react to being used in this way. Let us know, like I said, I do know that the official view tutorial has a section on this. So check that out.
+
+78
+00:36:53,190 --> 00:37:44,880
+Wes Bos: Yeah, if you want like a development environment where you get like hot reloading, but just on like part of it, like maybe it's like a Drupal website, but like the calculator is built in react, and then you'd have to proxy your website and things like browser sync, I think maybe parcel does it as well, where you can proxy an existing HTML and embed it in there. There's also this new framework called Alpine j. s, I listened to full stack radio with Adam wathan. And he interviewed Caleb porzio, about this new, it seems kinda like it's very lightweight, sort of a like a lightweight view for when you just need to sprinkle on a little bit of JavaScript. And it certainly seems to be targeted at that like server rendered HTML, but I do I do need a bit of customization. So maybe take a look at that as well. It seems pretty nifty.
+
+79
+00:37:45,150 --> 00:37:59,400
+Scott Tolinski: Yeah, Adams got good advice. He was instrumental in me picking Discord. He said that he never looked back from picking Discord. And I was like, Okay, if Adam, Adam feels that way, then like, it's definitely like a good opinion to have. So yeah,
+
+80
+00:37:59,730 --> 00:38:05,310
+Wes Bos: that's great. Um, next question we have here is from how do you think you're gonna say this one? I'm
+
+81
+00:38:05,310 --> 00:38:06,380
+Scott Tolinski: glad you got this one
+
+82
+00:38:06,420 --> 00:38:07,710
+Wes Bos: Bartholomew beauty
+
+83
+00:38:07,710 --> 00:38:20,670
+Scott Tolinski: you get to see I mean, it could be birth birth all a meal it like they do this on purpose. This looks like polish. I don't know if they're polish. There's that. That l character with the line character they have in Polish, but I don't I honestly don't know.
+
+84
+00:38:20,820 --> 00:38:25,290
+Wes Bos: I like that character. I half the time when I see that if there's something on my screen.
+
+85
+00:38:26,910 --> 00:38:36,330
+Scott Tolinski: Which is, you know, I was watching a hockey and this is funny. I was watching a hockey game on my notepad. And I swear I thought the penguin scored a goal last night, and it was just
+
+86
+00:38:38,940 --> 00:38:41,640
+Wes Bos: just check it out. Yeah, it's really, yeah, it
+
+87
+00:38:41,640 --> 00:38:43,110
+Scott Tolinski: was super annoyed. Alright, the
+
+88
+00:38:43,110 --> 00:39:51,210
+Wes Bos: question from Bartholomew is Hello jazz dads. I was wondering whether you could share which backpack or bag you use for carrying laptops, I'm looking for something that'd be useful to carry my 16 inch MacBook Pro, but also hold other stuff like groceries, clothes, other various things they might want to put their tech backpacks tend to be sometimes too techie, or too stiff, too rigid. And when it comes to real life, we sometimes need more flexible things are human after all we need to eat and drink. Maybe you found the ultimate backpack and are willing to share your knowledge. Thanks for the amazing work well, I have found the ultimate backpack and I've had mine for probably three years now. It's the peak design. Everyday bag, I have the 30 liter they also have a 20 liter certainly wouldn't go for the 20 liter if you want to put groceries in it as well. And it's great. It's it's got this heat these huge openings on both sides. It swings around. So you can open it while the it's still slung around one arm. There's magnets in it. There's a bunch of little clasps that will on one I don't even know what they're called, but there's
+
+89
+00:39:51,210 --> 00:39:54,480
+Scott Tolinski: so many clasps, clasps and magnets. I love it. Yeah,
+
+90
+00:39:54,540 --> 00:40:38,010
+Wes Bos: you can clip it on and I've been mad about it and it's it's almost like a meme now. Like if you were to do the web developer starter pack, that backpack would be Oh, it's funny thing is that it's it's like a photographer's backpack. It comes with all these little like, yeah. What do you call those? Like dividers? Yeah, inserts dividers, I took most of those out except for one. And then I keep one really low near the bottom, and I slide all the cords and everything under that. I put my backpack that I put the laptop in the sleeve. And then that leaves the entire backpack for life stuff. Like whatever it is that I'm working on. I just went to the cottage this weekend. How did my gloves in there had a couple beers in there. Things like that. Oh,
+
+91
+00:40:38,580 --> 00:41:01,920
+Scott Tolinski: yeah, I use mine as my my suitcase. Last time we went to react on and it was great. I was impressed too how much stuff I could fit in there for like a weekend travel. And that's all I traveled with? I have the same backpack, different color. And yeah, this is the same answer. It's It's so dang good. I'm so happy that I listen to you instead of going out on my own and trying to get something because this thing is, is very, very good. It's expensive. But
+
+92
+00:41:01,980 --> 00:41:42,000
+Wes Bos: yeah, my only complaint with it is it's a bit on the heavy side. Sometimes I find myself being like what is in my bag? And you got to hit it back day. Nothing in it. Yeah, maybe I need to do some squats in my backpack on. But like compared to like, I've got like a Herschel just a cheap Herschel backpack for the gym. And that thing is it's just cloth. Right? And, but like, I certainly wouldn't trust my laptop in that, because I think it would get dinged and certainly I even left a window open once, and it rained on my backpack. And my laptop was bone dry. So that backpack is the best. And I've had it for three years and it looks brand new. So yeah, I
+
+93
+00:41:42,000 --> 00:42:37,170
+Scott Tolinski: was really impressed when I saw yours. I mean, mine. I've had mine for about a year now. And it's held up fantastically. I don't have any complaints whatsoever. All right, next question is from t SOS t saw says, Do you read out vanilla fetch less than the dot fetch method in your components that need it? Or do you use a fetch wrapper? Allah? What like axios, or one of those written by yourself or someone else? What do I do I, I always write vanilla fetch. I don't use any wrappers, why I don't really need to not not like it makes sure it makes life in edge cases easier. But I don't really encounter that stuff that often. To be entirely honest, I use graph qL for my API on level up tutorials. So the amount of fetch requests I'm writing in general is just about none anyways. But I do write them in tutorials all the time. And we use straight up vanilla fetch. Do you prefer chocolate fetch or Neapolitan,
+
+94
+00:42:37,530 --> 00:43:38,360
+Wes Bos: raisin strawberry fetch, I mostly use vanilla Fetch as well in my project. So like, obviously, if there's something that is like, like a react project, or something like that, then I use whatever, whatever I'm using in that project. But anytime I'm doing something smaller, and they need to just like I need fetch, I'll pretty much always just use the regular fetch. Sometimes I'll write a quick little wrapper function. If it's always going to be JSON that returns to me and I like maybe want to handle the error within that function. All right, a quick little four or five liner? And then and then that's great. But then when it comes to custom headers and API keys and things like that, then I'll reach for axios. Not because you can't do that with fetch, but because it has some some nice defaults in there. So I'm kind of all over the place. But I would say probably in most cases, it's fine to just use fetch. It's kind of annoying that you have to do the double await. Yeah,
+
+95
+00:43:38,790 --> 00:43:45,270
+Scott Tolinski: the double await thing isn't worth it to me to like, be like, okay, now I need a wrapper for those, you know, I will double await Yeah,
+
+96
+00:43:45,540 --> 00:43:47,490
+Wes Bos: totally just add another line of code.
+
+97
+00:43:47,490 --> 00:43:48,120
+Unknown: Who cares?
+
+98
+00:43:48,120 --> 00:43:48,630
+Wes Bos: Yeah.
+
+99
+00:43:49,800 --> 00:44:43,890
+Scott Tolinski: You know, I personally, I find it just writing vanilla fetch to be fast enough for me. URLs is fast is is the process of getting your website up and hosted on nella phi. And let me tell you about Netlify. In the past, we have talked so much about how much we love Netlify that people thought it was like, almost a joke or something. But we are absolutely serious. And I'm absolutely dead serious when I say that Netlify is my favorite host on the entire planet. And when they first approached us to sponsor cindex, I was absolutely, absolutely psyched about it, because I knew that I could talk all day about how much I love Netlify. So you're gonna want to check out Netlify it's at netlify.com. They're the best place in my mind to host your front end code. But it's not just running code. They have all sorts of extra additional features like serverless functions and authentication, and they added some
+
+100
+00:44:43,919 --> 00:44:57,210
+Wes Bos: GitHub integration, like it'll Auto Deploy from a GitHub commit. But then if someone submits a pull request, they will like show you the staged URL, so you can check out Oh man, so many cool things. Gosh,
+
+101
+00:44:57,600 --> 00:45:49,260
+Scott Tolinski: a B testing comment forums. stuff, just their new analytics, which is like a DNS based local analytics rather than just like a script on your page. There's just so many cool things. And you're gonna, you're gonna head over to netlify.com Let me tell you right now, I don't know. netlify.com and you're gonna see that 600,000 at developers and businesses trust Netlify you're gonna see amongst them. Some of the giants like, you know, Nike and Verizon and a peloton. Did you give your wife a peloton bike for Christmas this year? I don't know, maybe. But if you did, their their thing was probably hosted on Netlify. So you're gonna want to head to netlify.com forward slash syntax, and you're gonna see all of the amazing things. Oh, we didn't even mention the free one click HTTPS, it's gone by automatic no fussing with SSL certificates.
+
+102
+00:45:49,320 --> 00:45:58,710
+Wes Bos: You don't even have to click Scott. It just comes with your it just comes with Netlify. So I set up a custom domain name. And it just it just works. Right. No cooking involved.
+
+103
+00:45:58,920 --> 00:46:18,210
+Scott Tolinski: Negative one clicks. Yeah, you don't gotta click. So I mean, this may sound over the top. But again, we absolutely love Netlify. And we're so psyched that they have, you know, supported syntax for as long as they have. So check it out. netlify.com forward slash syntax, sign up today and be absolutely amazed when you try it for the first time. Okay, next question is
+
+104
+00:46:18,240 --> 00:46:26,640
+Wes Bos: from Alex Webster. Hey, have you ever done? I don't know why I said that. So funny. But have you ever done yeah.
+
+105
+00:46:28,020 --> 00:46:29,340
+Unknown: Raspberry Pi.
+
+106
+00:46:29,340 --> 00:46:36,000
+Wes Bos: I'm trying my hand at remote access to a solar power setup at our batch. Oh,
+
+107
+00:46:36,000 --> 00:46:36,810
+Unknown: do you know what a batches?
+
+108
+00:46:36,810 --> 00:46:45,450
+Scott Tolinski: Do? I know what a batch is? Uh huh. I was gonna come up with something funny, but I do not. So
+
+109
+00:46:45,450 --> 00:47:01,950
+Wes Bos: batch is also called a crib in the southern half of the South Island is a small often very modest holiday home or beach house. He notes here very similar to what a cottage is in Canada. That's pretty cool. Went to the batch this weekend.
+
+110
+00:47:01,980 --> 00:47:03,960
+Scott Tolinski: Yeah. What nationality says that?
+
+111
+00:47:04,110 --> 00:48:29,310
+Wes Bos: A New Zealand? New Zealand? Yeah, I like it. All right. Oh, he This is a beach at the batch. cooked up a batch of cookies at the batch. Yeah. Anyways, I'm finding it hard to find good resources on Raspberry Pi for this outlined, and most of them get very technical really quickly. My idea is to take the RS 485 mobis data and as far as I can tell, that's just like the lower level data and send it to a database every five minutes or so. So he basically wants to take some information from his solar panel stuff with a Raspberry Pi, and then pipe that out to a database. So I find this reel I thought I added this one in because I thought it was pretty interesting. I'm like super into LTE modems. Right now as I'm trying to up my car, my batch internet pretty into LTE modems right now. I'm pretty into LTE, but like what I'm finding is that a lot of these LTE modems are used on Raspberry Pi's. And so I'm thought like, yeah, this would be really cool. So I think that I think what you need to do from here is that you need to think that it is a it's just a server, the Raspberry Pi is just a Linux server, like you would normally use on something like Digital Ocean, but you need to be able to figure out how do I get access to that lower level data? So with? Remember, I did that? That drone video at the beginning of last year where I flew a drone via react?
+
+112
+00:48:29,490 --> 00:48:36,270
+Scott Tolinski: I don't remember I don't remember I don't. Anyways, I did a drone, specifically not remembering that
+
+113
+00:48:36,570 --> 00:48:44,100
+Wes Bos: first research. Oh, yeah, I forgot about that. Oh, do you want to? You want to engage the audience on what happened there?
+
+114
+00:48:44,609 --> 00:48:53,760
+Scott Tolinski: They were going to send me a drone. And then they chose to send one to Wes instead. And then we're like, oh, yeah, we can't send you a drone. Sorry
+
+115
+00:48:55,080 --> 00:48:55,980
+Wes Bos: about it. Because we
+
+116
+00:48:55,980 --> 00:49:05,790
+Scott Tolinski: were in talks about it for like weeks. And I was just like, yeah, I'm gonna get a drone. That's pretty cool. And then West is like, Oh, I got my drone. And then they send me back. Oh, yeah, we don't have any more drone. Sorry.
+
+117
+00:49:06,390 --> 00:50:43,200
+Wes Bos: But I even further though, is like I told them, I would do it. But for money. And that. Oh, yeah. Oh, yeah. That was it took Scott's money. Oh, this drone money just by asking for it. Anyways, um, I did like a react and Node JS drone video. And I needed to access all of the data from the drone, which was sent over UDP on a Wi Fi signal. And then I needed to get that that's very low level data, and I need to get that into the browser. So how do you do that you do that with either D Graham is what I use to get access to UDP or you can use the child process dot exec in node, and that will just allow you to run shell commands. And that's probably what you want in your case, because as soon as you're on, you have access to the raw box then and you can run shell commands to get information. From there, and then you can send that out over a WebSocket or, or send it to react or or save it to a database, like you're saying. So like, that's what's helped me because like, I certainly don't understand how electronics work and how a lot of this low level Raspberry Pi stuff works. But it has helped me knowing that these are, these are all just sensors or data. And you can access that data really low level, and then you just need to, as soon as you can throw that raw data into a Node JS process, then it's like, Huh, because it's just JavaScript, and then you can start to, to sort of work with it. So I don't I don't have any resources for that kind of thing. But that's what's helped me in the past. Cool. Have you ever done Raspberry Pi? Ah,
+
+118
+00:50:43,200 --> 00:51:19,410
+Scott Tolinski: no, it's, I have a Raspberry Pi. I have a lot of cool little gadgets for it. I've done Audrina stuff, I have not and I would really love to but it's one of those things, you just got to find the time to really invest to get into it. I think I installed Raspbian on it. And I got my Linux up and running. And then I was like, You know what, I come up with a project for this thing. And you know what, I never did come up with a project for it. So I would really like to figure it out, or at least do something fun. And yeah, maybe it's in my future. At some point. I would love to get into that. It's got to find find the time to do so. Working with solar panels. seems cool, though. That seems very cool.
+
+119
+00:51:19,530 --> 00:51:32,190
+Wes Bos: That's the problem is like, being old is hard. Because like when you're young, you got all time and no money. And then when you're older, you got to like a little I got a little bit of money to spend on some solar panels. But I got no time to goof around with that.
+
+120
+00:51:32,370 --> 00:52:12,540
+Scott Tolinski: Yeah, I got no time to goof around with it. And I would love that time to go for the solar panels. That sounds like a blast. All right. Last question is from Charles merjan. He is to us in there. So I don't know if that was a typo or if it's actually urgent. But he says, What do Wesson Scott, think about beards? And have you ever thought about growing one? My answer is that my beard status is directly proportional to my stress levels. You can tell exactly how far along I am in any given project and how close I am to a release date by how disheveled my beard looks. And people will be like, Hey, have you grown a beard?
+
+121
+00:52:12,540 --> 00:52:13,770
+Unknown: I'm just
+
+122
+00:52:13,770 --> 00:52:32,580
+Scott Tolinski: really not taking care of myself right now. So that's something I'm trying to change trying to be better New Year new me I'm trying to shave my beard grow very good beard. I don't think Courtney likes it. So, you know, I'm sort of apathetic on it. If If Courtney's not into the beard, you know, I'm not gonna keep it. So
+
+123
+00:52:32,880 --> 00:53:18,840
+Wes Bos: I have never attempted to grow a beard. I certainly have. People always say like, oh, you're growing a beard. I'm like, No, I just haven't shaved in a long time. I think I have like a What's it call I just googled it trick Anatolian mania. It's where you pull your hair out. So if I'm just like, stressed out about something, and I'm trying to fix something on my code, I just sit there and just like pick away on my beard. And then before you know what I sound like a bald spot. So because of that, I just can't Oh, wow, I can't have a beard because I just like, anytime I get stressed out, I just start pulling away at it. I'm like, That's weird. And my wife's like, just stop doing that. I was like, I wish I could. But it's a thing of the Yeah. So I would love to I think they look really cool. I just I just paused can't possibly do because I just pull it out.
+
+124
+00:53:19,710 --> 00:53:43,350
+Scott Tolinski: You know what I there are times that I'm there. Like, I should just do it to have a beard for a bit of a time. Consider Yeah, nice. Like, I got a nice, full. Now's the time it would look good on me. Yeah. Maybe I'll just go for it and say, Sorry, are you gonna deal with it for a little bit? My apologies. You can have it for like a month and get rid of it. No biggie. reversible. Yeah. Good idea. So thank you, Charles. Cool.
+
+125
+00:53:43,410 --> 00:53:54,960
+Wes Bos: All right. Well, thanks for submitting all of your questions. Those are great. Make sure you keep on submitting those questions. We are going to move into some sick packs. You got a sick pick for me today, Scott.
+
+126
+00:53:55,770 --> 00:55:49,230
+Scott Tolinski: I do. I you know, I've been I've been racking up some sick pics lately in terms of stuff that had been really wanting to tell people about. So this is a neat little thing that I'd always been looking at for a long time. My back doesn't feel great. I have pretty bad poor back flexibility in general. Haven't really kind of neglected it in the scheme of things. And I've been working among, you know, changing some of that I've been stretching every day. I'm on a 18 day stretching the strict No, I think it's even longer than that. Let me check my stretching streak is significant. I'm on a 25 day stretching streak. So I'm all about stretching my back right now. And one of the cool things that I got was this yoga wheel. Now in the past these Instagram influencers would be like, here's the yoga wheel, and it's $100 for a piece of PVC cutting a circle. And I just thought it was a really cool idea because there's these big sort of wheels. Like these big PVC wheels. I thought it was a really cool idea. But I was never going to spend $100 on one of these things. Does that just seem stupid? So I got this new one, which is one of these Amazon knockoffs of which there's thousands of Amazon knockoffs of everything now, and this one is a $40 competitor, but it comes with two of them comes with two different ones. And it's really cool because it's a big giant wheel. And I'll just lay with my back on it, like a Swedish ball one of those, but it's so small, you can just have it around the living room rather than a giant Swedish ball that you would be really weird to have around. Let's just lay on it for a little bit. It's funny. The little one is this little miniature one. It's the perfect size for Landon and Landon loves laying on his next data when data is laying on it searching on his back lender will be like my back hurts to stretch it out. So it's super cute. I love this thing. And it was a nice, it was a nice little addition to my life here. I've been using it every day,
+
+127
+00:55:49,860 --> 00:56:42,390
+Wes Bos: I am going to sick pick cable ties. So I recently redid my desk I talked about on one of my last tech pics. And one of the things I got were these, like Velcro cable ties that sort of ratchet down on themselves. And I just went yet and I was on all of my cords and now all my cords have these nice cable ties on them. These ones are a Velcro which have like the hooks and the I don't know, what do you call? What is the other part of Velcro the fuzzy side and the hook side? I think there are some cable ties that doesn't matter which side they are. I would like to find those I couldn't find them when I was looking for them. So I just got 100 pack of these Velcro ones and they're awesome. And my life is so much more in order for them. So it's just something I think it's every every tech nerd needs to have on hand has these Velcro cable ties.
+
+128
+00:56:42,930 --> 00:56:59,130
+Scott Tolinski: Yeah, I have I have the Velcro the thread through Velcro ones and they are absolutely instrumental to the organization of all of my stuff. So any type of cable tie I think if you're interested in having one of those ID ready desks is totally necessary boys.
+
+129
+00:56:59,670 --> 00:57:20,310
+Yeah. You know, we're all about desk boys. I recently, um, I recently tweeted out a photo of my laptop and one of the hashtags was like, laptop with it filter for basic coding computer people. Because that's like Instagram category is just like here, let me just take a photo of my laptop all the time.
+
+130
+00:57:20,850 --> 00:57:48,900
+Wes Bos: I want somebody to make Instagram meme account where it just collects these pictures of people like I saw. I got one sent one today from Henry Helvetica, or this guy's like standing literally on the edge of a cliff with his laptop. That's what First of all, like you're not actually doing any code from the edge. Oh, Cliff. Second of all, you have to schlep that thing all the way up to that cliff just for your ID photo. Come on. Epic photo
+
+131
+00:57:48,900 --> 00:57:50,790
+Scott Tolinski: man epic photo.
+
+132
+00:57:50,940 --> 00:57:54,750
+Wes Bos: So if anybody wants fame, please make that. Can
+
+133
+00:57:54,780 --> 00:58:26,850
+Scott Tolinski: you remember Extreme Ironing? Oh, there was at some point in the earlier days of the internet, this was like this is like a meme, like planking kind of thing. But it was an extreme sport that they these people were trying to do or right on and they were extreme ironing. And it's just like people there's a guy ironing while wakeboarding? Isn't it hilarious? This was like one of the like these like Oji like this is early internet. Yeah, things. It was super funny. That's what that reminds me of
+
+134
+00:58:27,060 --> 00:59:08,040
+Wes Bos: extreme ironing. That's great. So somebody, somebody needs to make an Instagram account called like extreme computing. And that's extremely confusing computing, stream computing, and just repost these hilarious stage shots. With a funny caption, this is like, epic tutorial for me destroying my laptop. Oh, a shameless plugs, go to beginner javascript.com is my latest course check it out, it will still be on sale to the end of January. You can grab it and learn it's exercise heavy approach to learning modern JavaScript from scratch.
+
+135
+00:59:08,640 --> 01:00:06,660
+Scott Tolinski: from scratch, I'm going to plug my latest course that's going to be dropping on the 31st. So on Friday, this course is coming out and it is a doozy. It is all about graph qL servers. So a lot of times with these graph qL tutorials, we mostly focus on the client side, right Apollo client, you're pulling it data, here's an API that exists. But what I didn't find was a ton of tutorials that were completely focused on the basics of building a graph qL server. So we're not talking about database stuff. We're not talking about Express stuff. Really, what we're talking about is how do you write your schema? How do you write your your resolvers mutations? How do you do all those things, fragments, unions, all those weird little things, what the heck is an ASP type name, stuff like that. So if you want to check this out, the course is called How to make a graph qL server it's going to be available About the 31st and it is available exclusively on level up tutorials comm
+
+136
+01:00:07,080 --> 01:00:14,130
+Wes Bos: All right, I think that's it. Thank you so much for tuning in and we will catch you on Monday. He please
+
+137
+01:00:15,839 --> 01:00:25,590
+Scott Tolinski: head on over to syntax.fm for you full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
