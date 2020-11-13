@@ -1,0 +1,164 @@
+1
+00:00:00,359 --> 00:00:01,350
+Unknown: Monday, Monday,
+
+2
+00:00:01,350 --> 00:00:02,160
+Monday,
+
+3
+00:00:02,160 --> 00:00:04,009
+open wide dev fans
+
+4
+00:00:04,009 --> 00:00:11,310
+yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing, soft skill web
+
+5
+00:00:11,310 --> 00:00:21,660
+development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob, and Scott Taylor.
+
+6
+00:00:23,610 --> 00:00:24,480
+Totally in ski,
+
+7
+00:00:25,950 --> 00:02:17,880
+Scott Tolinski: or Welcome to syntax in this Monday hasty treat, we are going to be talking about cranky developers. These are the your co workers, your friends, the people that you work with, that they just never seem to be happy about anything. They're always they're always mad about the choices, you're making the tech choices, they're always maybe inserting their opinion when it's not needed, or holding back the progress of your building, because they just don't see the need for what the heck is a CSS preprocessor? I've always been fine with CSS and a 960. grid system. Why would I ever change that? So this episode, we're gonna be talking all about cranky developers. And we are sponsored by something that is going to be guaranteed to make you not a cranky developer. And that is century@century.io. Now century is a bug tracking service that really, really categorizes and catalogs all of your bugs let you know how many times they're happening to who they're happening to what operating system, you can attach data, like what user ID this an error happened to. So you can make sure that you can reach out to that user and say, Hey, sorry about that, that bug you ran into, let me fix that for you. So there's a lot of stuff here that you can do with Sentry. And let me tell you, I've been using Sentry in production for quite a while now. And I'm such a huge fan. So you want to head over to century@sentry.io Check out all they have to offer. Just get it going. Because if you sign up with the coupon code, tasty treats all lowercase all one word, you will get two months for free. So I highly recommend you take those two months. You see your bugs coming in. You solve those bugs and figure out how the heck you can make your application work. It works with any sort of platform that you might possibly be using whether that's react or node or heck not even JavaScript based anything you want century ha got it Ruby, literally anything yeah, centuries all over the place. They're they're just the key tool for bug tracking. So check it out at century dot i O.
+
+8
+00:02:18,000 --> 00:03:57,120
+Wes Bos: So we got this question on Twitter. I'm not gonna say the person's name because I don't know if they want their coworkers? We don't know. Yeah, the The question was, how to deal with curmudgeons, ie co workers who have questions and puff at support requests and think any new tech is just a cool code way to do things and immediately write them off. So I think this is something we probably see a lot. Often we hear from people that the person that is senior to me, is not interested in looking at any new code they're not interested in, in redoing the application in maybe the perfect example is we got a lot of people respond to just this tweet alone. They said, we're still working on a jQuery website, and there's just no, it's working fine. And and that's just the way we've always done it. And there's no real way to move forward with the tech that we're using. So before we even go into, like, how do you get somebody? The curmudgeon, how do you get the curmudgeon to maybe try things out? Or how do you convince them many experience in seniors developers often prefer stable and older technologies for a reason. So rather than Oh, this framework came out last week, it's Oh, this database technology has been around for five years. And it's extremely stable. And the reason why they do that is because they've been around long enough to either have been bit by these things or to see things change so rapidly. And that's not necessarily always good for the business when things change so quickly, and, and whatnot. So they rather choose something that's a little bit more stable. But there was like a saying, like, no one ever got fired for choosing IBM. What is that from?
+
+9
+00:03:57,420 --> 00:03:59,190
+Scott Tolinski: I don't know, I don't think I've heard that.
+
+10
+00:03:59,370 --> 00:05:31,920
+Wes Bos: No one ever got fired for buying IBM, but they should. There's an article in Forbes about it. It's just like a thing. I think because I went to business school and specifically focused on tech. I heard this all the time where it was very risky to try a new vendor, even though their product may have been way better. The person actually making the decision. It's just way too risky for them to say like, yeah, it might be 10 times better, but there's a small percentage chance that will fail and I don't want to lose my job. So no one ever got fired for buying IBM and I think the same can be said for no one ever got fired for choosing very reputable very stable technologies. However, there's definitely lots of businesses that have slowly died off or really gone downhill over time because of the technology choices that they make. And they don't move. They don't move far enough Case in point the entire taxi industry, right? Yeah. Now the taxi industry probably didn't want to risk letting people pay with a credit card. I know when I was in Universal always had to pay in cash was so annoying because the the debit machine and then just like things like Lyft and Uber come along and wipe him out because they weren't willing to, to put time into that. So that's my little like, yeah, this is why but at the same time, I think that people who are pushing against it often we hear the hipster JavaScript framework people that push against these hipster JavaScript frameworks that can be convinced and in some cases, so Okay, we're gonna go through some of our tips as to how to how to talk to these people and how to convince them.
+
+11
+00:05:31,950 --> 00:06:33,240
+Scott Tolinski: Yeah, and I've been called the hipster developer more times than I can count for making good choices. Like I was trying to get people to move to SAS, after SAS was already like, note node SAS was around. This wasn't like Ruby SAS, like just SAS and Hamill days, this was like SAS was mature. A lot of people were using SAS, and I was getting like, no, why would I ever use that? I can write good CSS without it. Sure. Well, I can write good CSS without ADO. But I also don't have to type vendor prefixes. And you did at that time. Or you had to go to like CSS three, please to copy vendor prefixes or something. Yeah, it's things like that. Till infinity. There's so many good choices that you can make that are like low risk that your curmudgeon people will still fire back on. Because at the end of the day, I think some of this stuff is all ego. Some of these people want to seem like they're hotshot Dev, they know what they're doing. They're good at it. Yeah. They don't need to change. They don't need to change. They don't need to evolve. They don't need to grow. Therefore, why the heck would they?
+
+12
+00:06:33,390 --> 00:06:47,250
+Wes Bos: I think that's, that's probably the best way to put it is that there's a lot of ego at stake. And I even have it myself. Sometimes I'm, I'm happy with my tech stack. And I think it's working fine. And then something new comes around or like, Oh, what is the other new thing? Yeah,
+
+13
+00:06:47,310 --> 00:06:48,090
+Scott Tolinski: another new thing.
+
+14
+00:06:48,510 --> 00:07:01,290
+Wes Bos: Sometimes it just goes away. I'm trying to think of like a, a tech that I never adopted, and then it sort of just faded into the distance, it was supposed to be huge. And it never really a backbone for
+
+15
+00:07:01,290 --> 00:07:04,980
+Scott Tolinski: me. I mean, backbone was pretty huge. At one point, yeah,
+
+16
+00:07:04,980 --> 00:07:54,020
+Wes Bos: backbone was was really big at the time, they sort of changed how we thought about these apps, I can't, I've made me think of something at the time. So what are things that we should consider? I think the first tip we have here is, is it better for the product? So these are questions that you should ask when adopting a new technology. And these are things that you can use to convince your stakeholders or your senior developers or whoever it is that's trying to that is stopping you from from using your new tech. So first thing you want to ask is, is it better for the product? So if by making this switch by spending the time rewriting whatever you have, by by retraining all your developers, is that new tech going to make new features faster to develop? Are you going to be able to make a better website a better web app at the end of the day? Because that you are moving to this product?
+
+17
+00:07:54,060 --> 00:08:25,920
+Scott Tolinski: Yeah, I think a good example of this is even a move to ESX. I interviewed for a company that was still using old JavaScript. And this is well into like, I don't know, a few years ago, when you know, I mean, Babel was very mature, a lot of people, there was absolutely no reason to not use it. And this company was using Gulp as their build process. So I don't want to call anybody out here. But you're you're already using a build process, you already have everything in place. And all you have to do is configure Babel, just in your build all the Gulf
+
+18
+00:08:25,920 --> 00:08:26,490
+Unknown: plug in.
+
+19
+00:08:26,490 --> 00:09:19,770
+Scott Tolinski: Yeah. And they were like, No, well, we just don't write ESX here, and I'm thinking your code would be so much better if you moved to ESX. And it's not gonna hurt the product, your devs probably a maybe not all of them are up on it, but a good amount of them probably already have experienced with it. Because honestly, at that point, it was pretty commonplace to be writing ESX exclusively at that point. So for me, that was an easy decision to just be like, Why Why wouldn't you? Well, we just don't feel that we need to train everybody in the the benefit there that you're going to get from the modern code, and the cleaner code that you could write with even just a lot of the stuff that came in ESX it was gonna save that was going to make the product their code so much easier to update to write to work in and all that good stuff. And they just couldn't do it. I just don't know why it absolutely befuddled me. I don't
+
+20
+00:09:19,770 --> 00:10:09,570
+Wes Bos: know why that is that people see that they say ESX and they see some of these new things they say like that's just trendy way to write JavaScript and I think to a certain point it is because anytime I have anytime I tweet out like a function as an example of how to code something there's always somebody replying as to making some like crazy one liner with implicit returns and yeah, I love all those features but they don't make sense in every single way because they can often hurt readability and it might be people seeing that and being like that seems worse but in a lot of cases, a lot of little one liners a lot a little filter functions. I love using arrow functions. Yeah, I love using all of the different there's a reason why they were added to that. JavaScript. And it wasn't because it was hipsters making JavaScript, it was because they make the language better at the end of the day for a lot of specific situations.
+
+21
+00:10:09,600 --> 00:10:34,620
+Scott Tolinski: Yeah. And there's a difference between adding stable, you know, ies, right, you know, what eight of whatever it is right now is 2019. There's a difference between that and ies next, and potential features and things like that. I could understand, hey, we don't want to add these proposals to our code base, because what happens if they don't, you know, be accepted? And then we have to pull that stuff out? But if it's in JavaScript, like, come on, come on. Totally,
+
+22
+00:10:34,650 --> 00:12:08,250
+Wes Bos: totally. I've definitely been bit by adopting things decorate quickly. Before as well. decorators. Yeah, one that I specifically got bid on. Same here. Um, and definitely wait until it's actually in the language. And definitely wait until you you see best practices come about from people using them. But I think at a certain point you, you can ignore these things. Yeah, definitely. Next question we have is, is it better for users. So there's, it's something to think about the product is it going to make a better product, and I think part of that also is, is the end product going to be better. So probably the biggest use case, an example of this is moving from a single page or moving from a server rendered each page refresh application, which in some cases, that's totally fine. But in a lot of cases, moving over to a single page application where it feels faster, you you're maintaining state between from page to page, all of that stuff, it's often is a much nicer experience, I think about something like using Airbnb, and how frustrating that would be on every single time how to reload the page. Whereas if I just want to quickly search something, amend my filters go back, you don't have to put all those filters up in the URL query for a pass from one to another, like, it just makes for a better product. And it makes for a better user experience at the end of the day, which is what we're all building these things for. One of the things that comes to mind when I think about this is the accessibility features, because you might be proposing accessibility features. And you might have somebody saying, well, what's that, like?
+
+23
+00:12:08,250 --> 00:13:17,250
+Scott Tolinski: I don't know, that's gonna take a lot of time, where you have to just the code, I saw something not gonna call, I don't want to call anybody out here. But there was a using a div for a button. And there was like a pull request for it saying, Hey, can we use a button for a button here, instead of a div? And then the person was like, No, like, it's a div, that we're not going to change it. I'm just thinking, like, come on, come on. Yeah, there's just that is such a, I don't know, it's the wrong way of looking at it, because that's improving the application for so many users. And I think people just ignore accessibility features. Because if it's not affecting them, it's easy for them to ignore. And some of these things do take time. And they do take effort, but it is going to make your application better. So just to put your foot in this their head in the sand and claim that, you know, it's not benefiting you or it's not important, I think it's just a short sighted, you can make a lot of improvements to the application that will be user facing forward. And again, if it improves the experience for the user, almost Why not? Right? The next one is going to be Is this better for the business? Will this new tech make the business succeed more? You have an example here? You said you added a sales back end to your application here?
+
+24
+00:13:17,520 --> 00:14:17,460
+Wes Bos: Yeah, well, so my checkout process is tied to the front end of my application. And because of that I wasn't able to do like it was the way that it works is that it was like tied to this specific website. So like react for beginners calm. And what I was thinking is like, you know, it'd be awesome. If I could upsell people and be like, hey, do you want to also buy this course, or when somebody in the back end watching a course, if you offer them like a coupon code, and they could just buy it right there without having to leave. So I'm currently rewriting that checkout process and making a lot more flexible. So you can buy multiple products at once you can embed this thing and the back end or the front end while you're watching while you're buying another product. And at the end of the day, that's just going to cause the amount of sales to go up. And that's better for the business. So it's a clear example as to moving from sort of this, like bertel thing that's very tied to the front end to something that's a little bit more flexible, and rewritten.
+
+25
+00:14:17,490 --> 00:15:08,460
+Scott Tolinski: Yeah. And I think you have to that you have to have that eyes on all this stuff. Because, again, these people are often thinking, I don't want to make these changes. Because when this stuff either scares me and I don't know it, or I don't feel like learning it or your hipster for wanting it. But if you can prove to them that it's better for the product, better for the users better for the business, and at the end of the day better for them as the developer, then you'll have a better chance of convincing them Now not all these people are going to be convinced by that. But I think better for developer is a good one too. This one might be hard though, because people really like to sink in and say like my way of doing this is the best. I know the best way to do this. I have my process down. How can you convince people that it's good To be better for them, because I think even myself, if somebody is going to tell me, Hey, you should be doing it this way. I might be thinking, but my way is good already, you know?
+
+26
+00:15:08,760 --> 00:16:34,830
+Wes Bos: Mm hmm. There's a lot of things we can think about is does it have a smaller learning curve? So when you onboard new people, what about maintenance, so you're gonna have to maintain that that certainly could be a downside versus the way you're doing it now. But it certainly could be the total opposite where like, I know, I've had applications where it just don't add specific features, because I know that it's the way that the application is built, you have technical debt, it's just too hard to add those things, and you just don't do it. Right. Whereas if sometimes you have like, you've built it in such a way where it is easy to add all these new features, you just start slinging new feet, like we've all had companies that you you send them an email, like I love your service, could you add this feature? And then like, you know, a year later, you don't get access to that. Whereas I've also had like, like missive is a good example. missive is the email program I use? Yeah, um, probably four or five different occasions. I emailed them, I say, hey, like, how can I, it would be great if I could like zoom in on the email, because like, I run a really high res monitor, I need my email to be a bit bigger. And within like, 12 hours, they had a, they rolled it out in their actual. And that's just, that's just because like, I'm saying nice things about them on the podcast. But that's just because they probably built their product in such a way where, Oh, absolutely, we can add a little toggle box where you have larger text. And then we can add a class on the thing and jack up the font size a little bit. No problem. Right. If that was built in a different way, that'd be much harder to do.
+
+27
+00:16:34,950 --> 00:17:29,360
+Scott Tolinski: Yeah. Yeah. So I think we want to get into maybe a little bit more of how to convincing people. And I think one of the Yeah, the key things here is, again, is the proof is often in the pudding. As I feel like we say that all the time, even though I'd never say that outside of the podcast, where if you have an example that says, Look, I can code this up in two seconds, I can show you why it's faster, why it's better, why it's stronger, everything in that def punk song, right? Every single thing that's there, you can you can maybe give them a little demo, check this out, I'm gonna build this thing that it took you a week to build last week, and I'm going to build it in a couple of minutes. And I'm going to show you how and why I think we should use this method, you do it, you show them the demo, that might be convincing enough, a lot of these developers again, they really like to see things in action. They know that their processes are good. But it might take that visual of look at how much better this is for these reasons.
+
+28
+00:17:29,550 --> 00:18:24,560
+Wes Bos: Yeah, just take a feature that you have in your application, build it out. And then like often this is what good conference talks are where they they show a feature. And they say, oh, and then I also took this and just turned it into something else. Or what was the talk at the the lightning talk at that conference, we're just that can we learn swix No. swix he showed how he just like rebuilt hooks. Yeah, and and use state and use effect in vanilla JavaScript. And then he just showed Oh, and then also with three lines of code, I can turn it into a use ref. And it was just like, like, everybody in the room was like, Oh, that's why composition and closures are so powerful. Because you just showed me You literally showed me this thing you built. And then you showed me how it could be extended. And I think you need a couple of those like mind blowing moments to, to show people to to get them to want to try it.
+
+29
+00:18:24,590 --> 00:19:16,800
+Scott Tolinski: Yeah, some people will resist that though. So here are some important things to acknowledge that we would did we just talk a little bit these at the onset of this, but with anything here, there is risks, and there is costs. So if you are presenting this stuff, make sure that you understand what the risks and costs are. Because if the developer who you're trying to convince to use this thing knows the risks and costs, and they call you out on it, your whole plan is sort of shot dead. And especially if you haven't thought about this. So let's say you want to move all of your CSS to this brand new preset processor that like two people are using the risks and costs are well, the risks are that it's going to you know, never take off, only two people are ever going to use it, there's going to be no tooling around it. And you're going to be stuck with this thing that is becoming a giant technical debt. And then the costs are the time it takes to write all your stuff over there. And then eventually, the time it's gonna take to move all your stuff off of it.
+
+30
+00:19:17,060 --> 00:20:11,220
+Wes Bos: Yeah, just think right now, there are people who built their application with react and flux, which is no longer used and probably picked glamorous for their CSS library, which is paypals CSS and j s, which was deprecated. So there's like, there's definitely I can give you probably 10 examples of things that looked like they were going to be the new hotness, and people bet the farm on them. And they were deprecated or they were not used like there's I know people that use graph cool to build their, their like startups product on it and it doesn't seem like like graph qL is still around but it doesn't seem like it's it's the way forward for for That type of thing. So you definitely want to be cognizant of that. It might not be a grumpy person, it might just be someone who, who knows better and has seen these things go wrong for more. Yeah,
+
+31
+00:20:11,250 --> 00:20:33,830
+Scott Tolinski: you want to look towards major players like what major players are using these things? Because if Facebook is using react and well, you know, Netflix is using it I like of all these people are using react, I think it's pretty safe to say that react probably not going anywhere anytime soon. So yeah, I think I think it's no longer a hipster. Anything right at that point, right. So you want to look at the momentum behind these locks
+
+32
+00:20:34,050 --> 00:20:44,840
+Wes Bos: from Facebook, though? It's true, like, in most cases, yeah. Like the big ones are fine. But even things like state management libraries can can go wrong. And that's not to say you can't rewrite them, right? No,
+
+33
+00:20:44,840 --> 00:20:47,640
+Unknown: I've written management library like eight times.
+
+34
+00:20:48,210 --> 00:20:49,140
+Wes Bos: You love doing that?
+
+35
+00:20:51,480 --> 00:20:53,760
+Scott Tolinski: Yeah, but there is a cost to that. Yeah.
+
+36
+00:20:53,789 --> 00:21:15,240
+Wes Bos: We also need to know that. Yeah, there's there's costs, you got to train people. You need to buy courses, you need to do workshop, often. There's you should absolutely, yeah, you should buy courses. Absolutely. Maybe the hosting is more expensive, or a different way to host it. Maybe it's just a little bit too brittle for you all kinds of stuff to think about. There definitely are costs as well.
+
+37
+00:21:15,350 --> 00:22:40,290
+Scott Tolinski: Yeah, absolutely. And I think the important thing to recognize at the end of all of this is some people are just not interested in changing. I know developers who got their job. They're making 60 grand a year. And they're thinking, yeah, I can just coast on this for the rest of my career. You know, I had a one gig and there was like, a guy who worked there. And his whole job was like encoding QuickTime videos. And that's all he did. And he was the webmaster, I'm gonna encode a QuickTime video, like, this stuff has gotten way easier, you can just drop it into some application, it spits out I mean, this was years ago. But it's like, you can't be that short sighted. But some people are that short sighted. And they're thinking, I'm just gonna coast along writing WordPress sites for the rest of my life, retire when I'm 60, or 70, whatever, call it a day, those people exist, they're out there, they're not interested in improving. And to be honest, don't let them hold you back. Because I've had coworkers like that. And then I've had managers in the same place, the manager is going to always side with the holding the company back. And guess what, if you stick around, you're going to get held back too. So if they're not going to let you advance things, they're not going to let you push things forward a little bit. And they're just going to be stuck in their ways. I would look for another job. I did that myself. And it was a, it was a great decision.
+
+38
+00:22:40,380 --> 00:23:40,080
+Wes Bos: I had somebody talk to me a couple months ago, where they said, I got a job. And often people's first job at a thing is doing HTML emails, which is the worst. And there was people there that their entire job was just working on HTML emails, and they were just hand coding them, and inlining the CSS themselves. And if you needed to change a color, you better be real good at finding replace. And they said like, Well, why don't we use something like MJ ml where that's like a react based like generator for emails where you can, you could just make components that are not table based, and they will generate the table based output. And then you can use things like, what is the juice, I think it's a CSS in liner, or you just write regular CSS and then it'll inline it for you. And they built up this whole task and like, it's crazy because like you could potentially automating someone's eight hour job into like a two hour job, which is very scary to people and and there's a reason why they haven't looked at faster ways, because then they're going to put themselves out of a job.
+
+39
+00:23:40,259 --> 00:23:59,430
+Scott Tolinski: Yeah. But that's the whole thing is if they don't realize that by putting themself out of the job, they're putting themselves into a position of maybe a higher earning or a better job or a more interesting job or more challenging job or any of that. I think these people just some of these people just don't want to be challenged. That's it. Yeah, they just like they're comfortable. Absolutely. All right.
+
+40
+00:23:59,700 --> 00:24:06,450
+Wes Bos: I think that's it. If you have any tips how to deal with the cranky devs let us know at syntax FM Otherwise, we'll see you on Wednesday. Boos, please
+
+41
+00:24:08,340 --> 00:24:18,120
+Scott Tolinski: head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
