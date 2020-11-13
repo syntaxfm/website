@@ -1,0 +1,452 @@
+1
+00:00:01,319 --> 00:00:02,820
+Unknown: You're listening to syntax
+
+2
+00:00:02,820 --> 00:00:06,120
+the podcast with the tastiest web development treats out there.
+
+3
+00:00:06,149 --> 00:00:10,530
+strap yourself in and get ready to live ski and West boss.
+
+4
+00:00:11,069 --> 00:00:38,720
+Wes Bos: Welcome to syntax. This is the podcast with the tastiest web development treats out there today we have a another potluck for you, which is we should do one potluck per, per week or know what one potluck per month. But we've got a lot going on our lives right now we're a little bit a little bit slammed. So with that, let's just do another potluck plus, like, these Pollock's are probably my favorite to do and they get the most listens. So with that we we treat you with an extra one. They Yeah,
+
+5
+00:00:38,729 --> 00:00:42,180
+Scott Tolinski: they're also very, very helpful. I think they're very helpful.
+
+6
+00:00:42,449 --> 00:01:03,689
+Wes Bos: Oh, yeah, I think you get a you get a lot out of these potlucks, because there's so many different topics that we can talk about. Today's sponsors our century, which does all of your air and exception tracking and Freshbooks, which is does all of your invoices and expenses tracking. We'll talk about that partway through the episode with me as always is Mr. Scott to litski. How you doing today? Scott?
+
+7
+00:01:04,289 --> 00:01:49,770
+Scott Tolinski: I could be doing better? No, you know, it's things are just crazy. I mean, they're crazy for everybody. But if my audio sounds any sort of different than normal, it's because I barely leaned in, came into my office and then just just annihilated my setup. It's so I've been spending all morning trying to get it back to where it was. Because I hadn't I you know, I tuned perfectly and he, you know, I asked him, I said Landon, did you touch any of these knobs or buttons? And he says, haha, he says, I just counted them. And I said, Oh, so that to me is like a big red flag. Because when he counts stuff, he's just pushing and whatever. Like he's not just
+
+8
+00:01:51,180 --> 00:01:57,780
+Wes Bos: I just counted them. Yeah. Did you have a picture of your knobs to go back to here? Did you have to do it by ear? Oh, cuz
+
+9
+00:01:58,050 --> 00:02:15,030
+Scott Tolinski: I have tweaked it over time. And I had to do it by ear. And I have this. I have a cloud lifter preamp in here. And for those of you who don't know, the whole setup, basically what we have is a rack mount. Which unit which has like, I don't know, 10 knobs on it, which control sort of
+
+10
+00:02:15,240 --> 00:02:16,280
+Wes Bos: land and he knows how many
+
+11
+00:02:16,940 --> 00:03:07,410
+Scott Tolinski: knows he's been counting them. Although he doesn't count. He counts, he counts. He knows this numbers, and he counts very well. But he just like, he'll like ignore it. He'll just like, he'll get to the number. He'll be like, Alright, there's five and then it'll just keep counting, even though he'll hold like, he knows that's the end. He just likes to count continuously. Either way, there's a compressor, there's a gate, there's a whole bunch of stuff. And for my microphone to sound nice. It is very specific. very specific. And yeah, um, so hopefully it doesn't sound too bad for you today. I'm gonna do my best to monitor it as we go. And if I notice anything else we can hear in an hour. But yeah, that's pretty much how not only today, but this whole whole month is gone for me. So yeah, my whole month is a set of mismanaged knobs here.
+
+12
+00:03:08,880 --> 00:03:47,190
+Wes Bos: I don't even have my DB X on right now which is the the compressor and everything you're talking about. Because I brought it up to the cottages, we actually have another one up here. And I realized it didn't have the cord for it. And some lucky soul I like for those who don't know, my cottage is in like a super small town in northern Ontario. Some nice audio engineer drove 20 minutes to meet me halfway and he just gave me the correct cable. Which because like there's no way I could get anyone any other way, because Amazon's not mailing stuff out and I needed it quick. So I just got it yesterday. I haven't hooked it up yet though.
+
+13
+00:03:47,610 --> 00:03:53,190
+Scott Tolinski: Yeah. That's cool. Well, props to that guy for Yeah,
+
+14
+00:03:53,370 --> 00:04:10,020
+Wes Bos: super nice guy. He said he had a garage full. He's an audio engineer. So I have every cable. Nice. He looked me up. Alright, let's get into the questions here. First one is from Dan Chenery. Chenery looks on the
+
+15
+00:04:10,020 --> 00:04:12,960
+Scott Tolinski: air. Yeah, Tony. Yeah. Yeah, sounds good to be.
+
+16
+00:04:13,620 --> 00:06:25,590
+Wes Bos: Do you have a quick overview how to effectively use a platform like cloudinary. I have a Gatsby site, which has a lot of images and want to use something like cloudinary for optimization, but the docks aren't completely clear how to get the most out of their service. Okay, so cloudinary is a service that you can upload images to or just feed images to, and then it will return, resized compressed, different formats, sepia tone, all of that. cloudinary is one they've their Buddhist sponsor. There's another one image x IMG ix. I haven't used that one before myself, but they do sort of the same thing. So the idea is that you just like you You pass it an image and it returns multiple sizes to you if you want. I really like cloud Neri because it allows you to do it on demand. And you can just put it in the URL structure and it will return that resize version. versus something like Gatsby image, you have to know ahead of time what size you want the image to be. So how do you use it with something like Gatsby? Well, there are different plugins for cloudinary. I'm assuming there is a Gatsby cloudinary plugin. I don't use Gatsby and cloudinary together because Gatsby image does all of that already for you. And it will just resize them I even learned the other day, you can add like filters like blur and contrast with Gatsby image. So all most of I think all of the stuff that cloudinary does, Gatsby image will do as well. The only downside to it is that you have to process them all on your computer versus cloudinary server. And for me, at least that was that was giving me like 2022 minute build times with just, I don't know, I think I had maybe 400 images with three or four different versions each. So I'll talk about I've, I'm redoing my website right now, I'll talk about how I solve that in the future. But that's just kind of how you will use them together. I have used some Gatsby in clownery together.
+
+17
+00:06:26,130 --> 00:06:47,730
+Scott Tolinski: I haven't because like you mentioned the Gatsby image stuff is really good, especially just because you host your images locally. And and I should put a caveat to what you were saying if you have the images and your your computer or your servers having to crunch those. It's only a problem if you have a lot of images, right? Like you have a lot of images, is that correct?
+
+18
+00:06:47,970 --> 00:07:47,190
+Wes Bos: I wouldn't even say I have a lot like I was surprised at how I hit it like so I have a website, I have about 40 blog posts, or maybe maybe. Yeah, I think I have 40 blog posts, and 250 Hot Tips. And every blog post and hot tip had one, maybe two images. So about 400 images. That's a lot of images. No, it's no, it's not a big website. Think about, like any website out there. I don't think that that's all that big like you think about an e commerce website. If you have 10 products, you have 10 and each have 10 images for each product. That's 100 images already, right. So that's, that's 100 images. And then you think about like a couple different sizes each, you have like a thumbnail version and a medium version, a large version. And then if you're if you're doing responsive, it gets out of control real quick. And Gatsby and Netlify are both working to fix this right now. Because they realize how dog slow this can be,
+
+19
+00:07:47,730 --> 00:08:13,020
+Scott Tolinski: you know, so Okay, so I do use Cloud Neri on my site. And so I think if you're looking to use Cloud Neri in not use Gatsby images, for whatever reason, I guess maybe the way I use cloudinary can either be of two ways I have an image that already exists. And I'm using their upload URL to Is it the upload or they fetch URL? I guess I'm confused by those. Let me say,
+
+20
+00:08:13,230 --> 00:08:19,740
+Wes Bos: You mean like the URL that you put in front of your path? Yeah. slurps Yeah, I call that the upload or the Slurpee or
+
+21
+00:08:20,040 --> 00:09:15,360
+Scott Tolinski: URL, because I had images that were coming in from YouTube's API and I wanted get I wanted cloudinary just slurp those up. So cloudinary would just slip those up. Sometimes though, what I do is I actually go to cloudberries interface, I upload the image via their click button, drag and drop. And then I just it like, I'm not gonna do that for batting images. But if I have a one off here for like the syntax logo on the level of tutorials website, I just upload that by hand. And then I have the URL in here. And then as far as like the parameters in cloudinary, these parameters, I think, as far as getting the most out of their service goes, one of the things that I've really loved is the F underscore auto parameter, which gives you the the format auto based on whatever browser, so therefore, a Google their Chrome, they're gonna send you a web p, to give you it's web p right now, web m, web M is movies.
+
+22
+00:09:15,799 --> 00:09:17,149
+Wes Bos: Yeah, web M is for me.
+
+23
+00:09:17,149 --> 00:09:50,149
+Scott Tolinski: Yeah. So they're gonna send you a web p, which is going to be a smaller file size than a ping, ping, PNG, whatever. And you don't have to do anything in the browsers that are going to not accept a web m like crappy Safari. They're not they're not going to get it. So they're going to get the actual image. So I personally prefer to good Yeah, I use the Q auto, which is quality auto. And I use f underscore auto for format auto so that way, I get the quality auto and the format auto and it just sort of takes care of itself.
+
+24
+00:09:50,149 --> 00:10:55,320
+Wes Bos: You know what one other thing I'm going to use cloudinary for on my website, is I am pulling in my Instagram photos yeah via the API. into the footer. And there's two problems with that, like, first, I don't want to use Gatsby image because they don't want to rebuild my website every time I post an Instagram I so I pull it in client side. But the problem with that is the images are much larger than they need to be for the thumbnails they are in and the lighthouse complains about that. And second, is like Firefox blocks, Instagram and Facebook. Yeah, I think I have some sort of thing on so like, the images don't work. And also, I don't want to, I'm trying very hard not to have any Twitter, Facebook, anything on my website. I don't want any tracking on my website. So like, I'm not going to give Instagram a free ride by embedding an Instagram URL into my website and letting them. So if I just popped the cloudinary URL in front of it that solves both problems. It can resize them, and it strips the actual Instagram, Facebook from being embedded on my website. Nice.
+
+25
+00:10:55,350 --> 00:12:34,679
+Scott Tolinski: Yeah, that's a good idea. Yeah. Okay. So next question here is from Andrew Andrew says, what kind of CSS pre or post processors do you use? What are the pros and cons for a preprocessor, sass, SCSS less, and the post processor as opposed to CSS. So these things, these tools that are largely tools to modify how you write CSS, if you've never used the CSS preprocessor, what it basically does is it gives you some additional features that you didn't have within CSS, such as nesting variables, functions, mix ins, and a whole bunch more, all that fun stuff. Post processes are interesting, because what they can do is really just they augment the way you write CSS, so it can give you like super powers into CSS even as far as like changing property names and things like that. They're all really interesting. Now, what do I use? I personally, if I were to say, what's my favorite CSS preprocessor. We've discussed this before, it's stylists, but stylist isn't used to hold on anymore, or at least a ton of people aren't using stylists right now. So I'm currently running sass on level up tutorials right now, believe it or not, it just sort of dropped it in there a couple months ago, just for fun. Because I was having issues with the global styles in styled components. And so I decided to do my global styles in sass rather than installed components, just because so what are the different preprocessors? Those are the different preprocessors sass itself. s a s s is sort of a weird syntax that not a lot of people used, it was sort of Ruby inspired there wasn't it was like a very, what do they call that when it's form? It's like format based, when you have like tabs and stuff like that, rather than the brackets?
+
+26
+00:12:34,770 --> 00:12:37,740
+Wes Bos: Oh, yeah. It's like based on indentation? Yeah, you
+
+27
+00:12:37,740 --> 00:12:53,159
+Scott Tolinski: don't see it used a whole lot. I would just probably ignore that for now. SCSS is basically this CSS syntax with some additional features. Less is basically sass with less features. That's my understanding of of less, it's basically sass with less features.
+
+28
+00:12:53,159 --> 00:13:17,190
+Wes Bos: It's totally caught up by now i don't think that there are any features that less is lacking, but immunity to ln and E for Yeah, it is. That's that's what it is, is that for the longest time, SAS was more, had more features. And that's why everybody sort of gravitated towards SAS, except for there's always like a weird, like, I feel like all the all the Laravel developers all went for less for some reason,
+
+29
+00:13:17,490 --> 00:13:40,260
+Scott Tolinski: the designer crowd went into less because bootstrap initially started using less. Ah, yeah, they it was really easy to get up and going with less, because you could just drop in a script, and it would do it live rather, rather than pre processing it actually. Like rather than compiling it, and that compile step, I think through a lot of people who weren't good at command line off or have build processes.
+
+30
+00:13:40,350 --> 00:14:46,710
+Wes Bos: Yeah, that was a weird thing. That was like the first time we ever had a build step in our website was Yeah, and for people to have to, like, do that. It was a it was an odd thing. I remember like people would edit the CSS and I'd be like, no, don't don't edit the source. It's gonna get overwritten. I had a client once. This is a funny story. I had a client once where I used I actually used lesson PHP world in my WordPress, because there was like a WordPress, sorry, there was a PHP library for compiling less, so I just did it. I said, if in the header, I said, if if you're if the admin is logged in, then just regenerate the thing as I'm loading this page. And it worked great. And except that like I like deployed a client site. And they were like, I just keep changing the CSS. And I refresh the page and my edits are gone. And they just like I wasted three hours on this. I could not figure it out. I'm like, oh, what's happening is that we're compiling this on the fly. I obviously changed to more of like a gulp workflow after that, but I thought that was pretty funny. It is funny. Okay, so which,
+
+31
+00:14:46,740 --> 00:15:23,100
+Scott Tolinski: what, what are the pros and cons? Well, honestly, I think there's a general blanket rule if you're using a preprocessor SCSS. Those probably the one you're going to want to use in 2020. Just because of the community just because of the resources just because the amount of Have people using it? As far as post CSS goes, I do love post CSS. And that's probably what I would pick. If I was picking one of these even though I did pick sass, I guess, both CSS is really great. There's just a lot of cool stuff going on with it. Personally, I'm using aisled components for all of that stuff. Anyway, so I'm not really using any of these. But as a general rule, if I'm picking anything, I'm gonna just pick SCSS.
+
+32
+00:15:23,370 --> 00:17:05,220
+Wes Bos: Yeah, I reach for post CSS, my own my own web, my own like course platform is in stylus, which I love. I'm sort of sad that it's, it's going away. But I'm not that sad. Because like, I like all of these things. And people are really opinionated about it. But like, it's not a big deal for me to switch from from one to another. Even from project to project, I would reach for post CSS myself, because I'm trying to think like, what are the things that I still want to use, that aren't in just regular CSS, and that's nesting that's coming. Advanced calculations. We do have calc function. And color functions are going to be a big one once we get those, and those are all things that will be coming to CSS one day. So I just like to keep it as close to regular and feature CSS as possible. That's why I read your post VSS. Yeah, post CSS. All right. Wow, those are those are just just two questions in those are some good ones. I like that a lot. Next one is from Graham, what are the most effective ways to share a project on the internet and get feedback? I'm in a phase right now where I'm building loads of new web things in react in JavaScript, but the only place I can share them is my Twitter. We're only like three people see them. Graham, buddy. Oh, so it's sad. Well, that that's a good question. I think the best place right now to post them is on Reddit. Like there's Reddit, our web dev, Reddit learn JavaScript, Reddit, what are those a couple other subreddits that are dedicated to that? And then also, I find and I get tagged in these all day long? It's the hashtag 100 days of code. Yeah,
+
+33
+00:17:05,250 --> 00:17:06,830
+Scott Tolinski: those get those get shared? Yeah,
+
+34
+00:17:06,899 --> 00:17:55,100
+Wes Bos: yeah. Or at code newbies. I get tagged in them, like probably six or seven times a day because people are taking my course as part of it. And I'm always surprised at how much interaction I got a Twitter account that was made six months ago and has 20 followers, how much traction that gets because people are following the hashtag. And they're following code newbies on Twitter, or doing the code newbies QA once a week, they have a q&a. And I think those are just three great ways to to find a community of people who can give you feedback. And especially like, I find it super valuable feedback, because often these people are just like six months a year ahead of you. And I find that feedback to be just as valuable as some 15 year old, our 15 year veteran of web development.
+
+35
+00:17:55,100 --> 00:17:55,890
+Unknown: 13 year old
+
+36
+00:17:56,840 --> 00:17:59,040
+Wes Bos: 15 year old veteran, a web development.
+
+37
+00:18:00,630 --> 00:20:02,790
+Scott Tolinski: That's good. Yeah, I think the key word that you're going to be looking for with any of this stuff is community find a community to share this stuff with Yeah, like you mentioned, those hashtags are great. We have a level up tutorials discord, the link is in the footer of level up tutorials, COMM And people share stuff there all the time, get feedback, share tips, and talk about stuff like that. So find a community of like minded developers who are working on stuff and just share with them in like you said, I think Reddit is a great place for that specifically because of those things. So Okay, next question is from Ted Lee. What are your thoughts on classes in JavaScript? Do we still need them in 2020? Or has functional programming paradigm made them largely unnecessary? Does the answer change? based on the size of the project or the team? I'm okay. Do we still need them? need is an interesting work. No, you don't need them. Some people like them, some people prefer them. Some people prefer the Opie object oriented programming method of things. I personally prefer functional programming myself. And since moving to react hooks for my entire application, I have not touched classes. classes were the thing that I used in react. And that was pretty much the time that I use them. Now, not to say that I'm not doing a whole lot of JavaScript work outside of react view, or svelte, but I don't know, I don't, you don't need anything and I don't want to get too hung up on that need. You don't need anything. You can do everything with fun. Yeah, whatever. Some people just like it. And some people like the object oriented programming side of things. Not to mention classes are pretty brand new in the scheme of things. And even though they are just syntactical sugar over how things work already in JavaScript, I don't know I mean, I I don't have any strong feelings on this one way or another. I think classes are fine. I had no problem working in classes, but I probably prefer functional programming overall?
+
+38
+00:20:02,970 --> 00:21:05,970
+Wes Bos: Yeah, I, I've told the story before but I once ran a poll on my Twitter, I says, Do you use classes in JavaScript and there was a sign like 5000 people answered, and it was literally half and half. So don't let any but this is such a divisive topic yet. anybody tell you either ways, I think you probably will make that decision based on your team. Especially like there's developers that come from other languages that are just classes to the grave, and come into JavaScript, although classes don't necessarily work the same way as they do in like a Java or something like that. It's just, they just write better code, because that's the way they think. And there's absolutely nothing wrong about that. You probably in our little circles of communities, you'll probably hear a little bit more now you don't need classes. Because the whole react JavaScript world right now it's very hot on like Scott said, like functional programming instead. So that's why so I'll try him out if you like them go for him. But it's it's not necessarily something you need. I don't think
+
+39
+00:21:06,320 --> 00:21:07,740
+Unknown: Yeah. Cool.
+
+40
+00:21:07,740 --> 00:21:13,260
+Wes Bos: Is there something you would need for your JavaScript though? Scott, anything you can think of? The Yeah.
+
+41
+00:21:13,260 --> 00:21:19,850
+Scott Tolinski: Hi. I mean, I'd be i'd need what do I need? I need comments. I need
+
+42
+00:21:20,880 --> 00:21:24,990
+Wes Bos: all sorts of comments. That's another I need console, ah, divisive topic I need.
+
+43
+00:21:25,950 --> 00:23:03,750
+Scott Tolinski: I need decorators. I need Oh, no, I actually need century to keep track of my bugs. And when I say I need it, I literally need it because Sentry lets me know of all of my errors and exceptions that I can track, tie them to releases and catalog them now century, which you're gonna want to check out@sentry.io coupon code, tasty treat all lowercase all one word, you're gonna want to try out century because let me tell you a century has been around the block for a little bit. And they know exactly what people want to see. In fact, I just deployed a new version of my site on Friday, which you know, you're not supposed to do but if you're doing it on Friday, you better have some error and Exception Handling tools. And guess what, I see that I fixed a bug in my API. But I'm also seeing that I have seen an increased amount of front end errors. Unfortunately, these errors are happening to users on the site. And they're not big things. We have a resizer observer loop that I got to take care of. And this looks like some small stuff here and there, but it allows me I mean, I'm pulling this up, right now I can look at my own error log, I can click on one of these errors. And I can say, Oh, yeah, this thing, this thing right here. Don't worry about this thing. This error, this is just a customer got a credit card declined. That's not an actual error. Let me go ahead and click ignore, and now no longer gonna see that message. So century is a great way to keep track of all of the things that are happening on your site and what users are seeing or feeling while they're using your application. So head on over to century century.io. Use the coupon code tasty treat all lowercase, all one word, get two months for free.
+
+44
+00:23:04,320 --> 00:23:51,150
+Wes Bos: Man, I've got it before we end the century AD thing, I got a story I did my nightmare, which is I broke my check out the other day. I deployed some some new features to the checkout. And something happened where the compile step didn't properly didn't work properly. And I deployed the thing. And I was freaking out because I was getting all these like, like obtuse emails from people being like, Hey, I'm trying to pay you money. It's not working. And it was like, I need this info quick. I can't like email them and tell them to give me their console. So I just hopped into my century, and I found the error that was happening. And I was able to fix it nice and quickly and get everything working. So I was like, Oh, thank goodness, I had that collecting the errors instead of waiting for emails to come in. Seriously, what went wrong?
+
+45
+00:23:51,239 --> 00:24:32,310
+Scott Tolinski: Yeah, yeah, thank goodness. And that's really where it really excels. Okay, so the next question is from Jonathan Biel. Jonathan had a note that saying his last name was impossible to mispronounce and I challenged him on that. So Jonathan Beal, aka Jonathan Bell here, he says, Does he s 2020 have var question mark? Also is the ies 2020 a real spec or just a term that people are using? Okay, so the ies 2020 thing based on ies whatever. This is all changed from how it used to be. You'll you'll all remember that when ies was at ESX or ies, five at this point, man, it's been so long. I'm like tripping ESX right.
+
+46
+00:24:32,549 --> 00:24:35,580
+Wes Bos: Yes. When Glen God scam Yeah, that was Yes. Yeah.
+
+47
+00:24:35,610 --> 00:24:58,020
+Scott Tolinski: Yeah, six came out. And it was like a big deal that it was like, Oh, this is V sex. This is the sixth version of ECMO script. And since then, what happened was because there hadn't been any sort of major updates until ESX had happened. It was like the biggest update since 2011. That was like years. Yeah, it was years, right. So because it's
+
+48
+00:24:58,020 --> 00:25:01,560
+Wes Bos: like five years before something new came to JavaScript before that,
+
+49
+00:25:01,650 --> 00:25:45,210
+Scott Tolinski: right? So people were sort of like, Okay, this is the JSX. But then the very next year, yes, seven. And so like the what the way is changed is now is that there's a new version of ACMA script every single year. So es seven was es 2016. Es eight was 2017. But the whole idea is that they wanted to prevent it from you know, eventually being s 24. And they just decided to say, Alright, it's officially going by the year now. So there's going to be a new edition of JavaScript based on each year, in fact, ies 2019, you know, broad things like flat map. And some other things. I'm looking at the Wikipedia right here, I forget every year.
+
+50
+00:25:45,240 --> 00:25:56,130
+Wes Bos: Yeah, there's there's always just like a handful, or three, right? things. It's it's not a six, it's like oh my gosh, make a course about it. You know, now it's just like, Oh, those are a handful of handy little things, right?
+
+51
+00:25:56,130 --> 00:26:14,340
+Scott Tolinski: So a lot of little things popped up here and there and ies 2020 is just the next iteration. Right. It's the next yearly iteration. And does it have var? Yeah, of course it has far. They're not removing things from the language. So yeah, far, let const they're they're still the gang's all still here.
+
+52
+00:26:14,640 --> 00:27:18,420
+Wes Bos: This is a question I get a lot about what my ESX course is that. These are not like separate versions of JavaScript, like you were to run PHP, six, and then all sudden, you have these these new versions of JavaScript. So JavaScript just continually adds new features, and it doesn't take away. I don't think No, it doesn't take away older features. The only exception to that is when we got used strict use strict was a way for you to know that your document was written in such a way. And in that case, it did take away some features, which is pretty, pretty nifty that they did that. So do we still have it? Absolutely. Is it still is it? Is it a thing? Absolutely. We have like probably a couple shows that say is var dead in the title. Bar is just another way to declare a variable. And like classes, there's going to be opinions all over the place. Although I heard a awesome thing on Twitter the other day from my buddy Connor, who I think works at slack. And they say he said on his team, they say constantly you can't.
+
+53
+00:27:20,640 --> 00:27:21,570
+Unknown: I like that. Yeah,
+
+54
+00:27:21,780 --> 00:27:52,980
+Wes Bos: yeah. But that that's just our opinions, right? Some people use lead by default, or always use lead, because const is not really immutable. So pick whatever you like, and go ahead and use it. Don't let anyone tell you otherwise. Yeah. Ah, next question is from Jacob. See? Have you tried GQ, LS s IGQL. Ss dev graph qL client alternative to something like Apollo client. Very interesting idea for clean and maintainable code. And we talked about this in the last podcast,
+
+55
+00:27:53,100 --> 00:28:00,270
+Scott Tolinski: we've talked about it. I mentioned it to you, you looked at it for the first time. So this question is asking, have we tried it? Did
+
+56
+00:28:00,450 --> 00:28:01,290
+Wes Bos: you try it yet?
+
+57
+00:28:01,290 --> 00:28:47,250
+Scott Tolinski: I have not tried it. And I'm gonna tell you why I haven't tried it because it doesn't support all of the functions and features that I would need it to right now, it's just queries. And you need a, I think my understanding of it is that you need a web pack setup. So I have not tried it. I have not used it. But I am very keen on trying it eventually, especially once they get at least mutations. And I don't need subscriptions. But I can't think of a project that I'm using that just straight queries with no mutations right now. So I'm gonna need those mutations, at least some way, I don't know how they do it. And I don't really want to run this side by side with Apollo or something. So I'm just gonna keep an eye on and wait until it's a little bit more full featured. But it's one of these projects that I really have my eye on because to me is fantastic looking.
+
+58
+00:28:47,610 --> 00:29:13,530
+Wes Bos: I'm looking at the docs for the cash right now. Because that's that's a huge feature of Apollo is the cash. And the dogs for the cash, say, the inbuilt cache automatically caches everything for you. Yes. It says updating the cache to do so obviously, it's it's early days for this type of thing. I would probably sit on your hands for six months or so while they figure this out, but definitely a contender for the future.
+
+59
+00:29:13,920 --> 00:32:46,770
+Scott Tolinski: Cool. So next question is from Papa herb. Papa hub asks, What are the main differences between working in a software agency and a software product company? pros and cons of each now, I have not worked as a software product company. But I have worked at a software agency. Now an agency is typically going to be an independent company that has that many different clients or sometimes even just like one big client, but it's independent from the essentially the product that's being created. You're creating the these works for other people essentially. And so typically, the way it works in an agency is that there's like a project available. Let's say, here's an example. You have a client I'm just going to use Ford Ford right Ford dot com. Nice I did. I don't I don't have personal experience with this one at all or anything. But let's say there's a client like this, and they have a job that needs to get done. And they say, okay, we need a website, we need this. And typically there's like some sort of a bidding process and companies will bid for those projects, you'll get the project, you'll complete it by a certain timeline, you'll push it out. And you'll either maintain it for a little while with some sort of a contract to maintain or you'll never see it again, where with a product based company, you are working on the product, and you are constantly working essentially on the same thing, right one piece of product or software. Now, the pros and cons are, oh, there's a lot of pros and cons here. It's very interesting, because with a product company, you're working in the same code base all the time, which can either be exciting can be great, if you love ownership of things like that, or it can be monotonous and boring. If you hate the codebase, there could be a lot of different things there. If around the code itself, where with an agency, if you hate the code base, guess what you get a new one next month, or you know, you might have to see it very often. So there's definitely a little bit of me personally, I liked working at an agency because I liked, you know, having something new to try every single month because it gave me an excuse to try out some new technologies that said is the owner of a business I guess I know, I said, I don't work at a software company. But that's actually not true. I own a software company. So I have been working on level up tutorials, comm for like, a billion years now since 2012. And I have had ownership of that project. And I haven't gotten bored of it. But I am the decision maker, I can make all the decisions. And that's probably a different space than somebody who is a junior or somebody who is you may be a senior developer, not like a CTO or something. Now, there's also some financial stuff here that I think needs to be thought of, because I've worked at an agency that was struggling for cash at some point, you know, you there's like this, like delicate dance of projects coming in, and you want to have your schedule filled, but you don't want to have it overfilled, or else you're going to be screaming like cramming for overtime, and you don't want to have it under a filter, or else you're not gonna have any money coming in the door, there was a time where we were at there was like a recession. And we were going through a major crunch. And we all did take 25% pay cuts just to keep the doors open of the studio. And it was really rough, demoralized people and made you not want to do anything, you'd come to work and you wouldn't have any projects to work on. So there is definitely like pros and cons here and there. The financial side of the product company is that if your code sucks, then you could potentially lose money that way. So there's, there's a lot of pros and cons to think about here in terms of both how you like working on code, as well as job stability and financial. So it really depends.
+
+60
+00:32:47,190 --> 00:33:51,000
+Wes Bos: I think the only thing I'll add, because what Scott said is bang on is that I can always tell when I am talking with somebody, whether it's on Twitter or at a conference who only works on one product, because they often find it very hard to understand why you might do something that specific way or what this tool would be useful for because they have their product and they have their own set of problems. And that's their, their entire world, especially you see this, like bootcamp students who've been at a company for two years, it's like, they only know this one product. Whereas like, Scott, and I were spinning up new projects, trying new stuff, you're working on an agency, you're starting new projects every couple months, if you're you're building apps for clients, you're tackling it in different ways. And that's not great for like, like code livability, like how long something lives, but you certainly are tackling things in all kinds of different ways. And I think that makes you a bit of a bit of a more well rounded developer. Totally. Yeah.
+
+61
+00:33:51,000 --> 00:33:51,750
+Unknown: Ah,
+
+62
+00:33:51,750 --> 00:34:52,730
+Wes Bos: next question. runs on from Discord. Is this from your discord? Scott? Yes. All right. I'll read it as a as if I'm asking you. Advice for having a static blog with minimal moving parts. Hey, I'm building a static blog with minimal moving parts right now. I used to have a static blog and I eventually got sick of it sick of touching it, because instead of writing content, I often got stuck keeping up with all the dependencies involved. Absolutely feel you there, brother. It's like, take a break on from building my website on the weekend. And you started it up on Monday and it's like, oh, 400 security warnings. So as long as you keep it under 100 security warnings here. Good. So keep going. That's question. My old stack consisted of jigsaw, server side generated Laravel, Vue js and a bunch of plugins balma CSS Netlify CMS. As you can see, the decisions are definitely not to blame. By the way, in the middle of this question. I'm going to cut it in again. Do you see Gatsby is making a CMS say
+
+63
+00:34:52,730 --> 00:34:53,430
+Unknown: well, I
+
+64
+00:34:53,430 --> 00:35:04,080
+Wes Bos: called it they put out like, they put together a GitHub issue. It's in very early planning days. But they are making it I think they're calling Gatsby admin. And told Jay,
+
+65
+00:35:04,080 --> 00:35:08,900
+Scott Tolinski: I called it is it like array as it are an RFC, an RFC?
+
+66
+00:35:09,060 --> 00:36:18,690
+Wes Bos: Yeah. Request for comments. Is that what that means? It is. Okay. So pretty cool. Well, we'll talk about that when it comes. Anyways, back to the question again, the obvious step would be one to drop Netlify CMS because I'm good with markdown anyway. And to not rely on a CSS framework. I'm considering switching to a j. s server site generator framework to avoid needing code in the extra language. Any suggestions? notes, not interested in Gatsby? I'm just not a react guy. Makes sense. I'm hobby coder is to play with Laravel. But not anymore. So going full j. s would be ideal. Interesting, I think, yes, you should drop it depends a few. If you need all of these CSS frameworks, you likely don't go ahead and drop that drop as many dependencies as you can. because like you said, you're going to spend your whole day updating the content. If you're if you're a developer. Yeah, absolutely moved to markdown. We've talked about that a number of times on this podcast, how it's good for developers websites. And sounds like you are the perfect use case for view. Because like, what's the what's the view static site generator?
+
+67
+00:36:19,050 --> 00:36:20,100
+Unknown: grid, some
+
+68
+00:36:20,480 --> 00:36:31,800
+Wes Bos: grid, some checkout grid some because it seems like people who love Laravel also love view, it's sort of in the same vein. So check that out. I think you have a pretty good answer here already.
+
+69
+00:36:31,860 --> 00:37:06,230
+Scott Tolinski: Yeah, there is a ton of static site generators. So I'm gonna post a link in the show notes here for what about 11 D, right? for static jen.com. And this gives you a giant and I'm talking giant list of static site generators, that tells you what it's built with. So okay, it's built with JavaScript, a uses view or use a spelt that uses react, whatever. And how many GitHub stars that has how many issues that has open how many pull requests? It's really cool. Love, love, love this site. This site? Was this put together by nella phi,
+
+70
+00:37:06,270 --> 00:37:09,090
+Wes Bos: I feel like this was it's been around forever.
+
+71
+00:37:09,330 --> 00:37:36,480
+Scott Tolinski: Yes, site Gen is, is hosted and maintained by Netlify. So this is a really cool place to find out about new static site generators, things that you can use, and maybe some that you haven't heard about some that you have, maybe find the perfect one for you. We could have like a static site generator dating service where you give us all your needs and wants and then we return to you the perfect static site generator for you. But no header.com
+
+72
+00:37:36,810 --> 00:37:53,790
+Wes Bos: also, one thing that people will not stop suggesting to me is Hugo, yep, yeah, he goes big. Anytime I start to say the good of Gatsby, there's somebody like knocks on my door, and they're like, Hello. Have you ever heard of Hugo? Yep. So maybe check that one out as well.
+
+73
+00:37:53,820 --> 00:38:40,880
+Scott Tolinski: We'll check it out. So Gatsby has 43,000 stars on GitHub 43 517. And Hugo has 4301 48. So just ever so slightly less stars, just ever so slightly, but both of them seem to be very popular. So not bad choices? Either way. Okay. Next question is from jigs. Hey, jigs, you don't know if you know anything about breaking. But there is a famous B boy ball not really that famous named jigs who's good. So Google cigs B boy, he's pretty good. So the question is, micro front ends Is this the solution to rewriting legacy components. And let me tell you, micro front ends is very interesting to me. And I don't want
+
+74
+00:38:41,040 --> 00:38:41,960
+Wes Bos: that micro front end
+
+75
+00:38:42,000 --> 00:40:06,110
+Scott Tolinski: micro front end is breaking up your front end into different front end libraries. So you could use a little bit of your site in react a little bit to say, your view, a little bit of your seitens felt, or maybe they're just different little components of the application, and in different versions of react. So it's basically breaking up your front end into smaller micro chunks, you can think of it as like the serverless of front end, they took the idea of like, Alright, you break up your your thing into different things. And now, you can make decisions on one part of your application that don't push through to the entire application. So yeah, I am not sold on my career. And I don't understand the benefit. I understand that they could be useful in this situation where you have maybe like some of your site is in backbone, you want to move over part of it to react or something or part of it to speld microphone ends up. It's an interesting concept to me, but what I haven't seen is I haven't seen the killer example. I haven't seen somebody say okay, this is the easy, awesome, my girlfriend and setup. This is how it just works. It all seems very sort of taped together to me as the best way I can describe it. Do you have thoughts on that? Like I said, I can't imagine doing this for any any reason other Then writing legacy stuff. But yeah, that seems like a sh t show to me
+
+76
+00:40:06,380 --> 00:40:35,580
+Wes Bos: go back to the episode where we talked about CloudFlare workers, where somebody sent me a DM, how they were migrating their legacy website over to react. And they were doing it component by component. And they were using CloudFlare worker to basically stitch the old, they would just take the old website, and then they would just start popping in the new pieces as they were finished. And then eventually, you've popped every piece, and there's no more legacy pieces.
+
+77
+00:40:37,800 --> 00:40:40,110
+Scott Tolinski: Thanks. About poppin pieces
+
+78
+00:40:40,350 --> 00:41:15,690
+Wes Bos: really start popping pieces. I think that that was probably a good way I don't know, like, You send us your tweets. How do you do big rewrites like this? Maybe we should even have somebody on the show who went through a large rewrite like that. Because like I think about like, even like the government of Canada's website, like how would they ever switch over when you've got you've got URLs to maintain? You've got hundreds of thousands of pages of important information? And like, how do you how do you switch over from playing like that? That's a question I have.
+
+79
+00:41:16,080 --> 00:41:19,050
+Scott Tolinski: Yeah, it seems like not a lot of fun.
+
+80
+00:41:19,560 --> 00:41:20,420
+Unknown: I'll just say that.
+
+81
+00:41:20,850 --> 00:41:32,820
+Scott Tolinski: But what does seem like well also does not seem like a lot of fun, but could be fun. If you use the right product is keeping track of your books and invoices said. So that's why we recommend fresh books because it makes it not not fun.
+
+82
+00:41:33,570 --> 00:42:15,030
+Wes Bos: No accounting, keeping expenses, tracking your hours. That's one thing I hate doing. All of that stuff is not fun. And fresh books makes it as quick and as painless as possible. So you can get back to doing fun stuff. So you're trying to track your hours you pop into Freshbooks you can use a timer on there on the app if you want. If you have an expense snap a photo of the receipt input how much it has. In Canada, I put how much HST was included on that. It's just a great way to manage all of finances around your small business. Check it out. freshbooks comm forward slash syntax, make sure you syntax in the How did you hear about a section? Thanks so much to Freshbooks for sponsoring.
+
+83
+00:42:15,030 --> 00:42:15,900
+Unknown: Cool.
+
+84
+00:42:15,980 --> 00:43:33,480
+Wes Bos: Next question we have from Oh, this is gonna be a tough one you got you got a next question is from Bay TGF beta can't noun psidium. Beta can can't noun sing them. I feel like I'm being tricked. It's like as if I'm saying like that, you know that? Like Will you marry me? Yeah, sure. Yeah, they're wearing like headbands. Anyways, thank you, beta. Hi, I'm relatively new to web development. And I feel like it's very difficult to catch up with JavaScript and stop you right there. It is very hard. We all feel like that. Next question. It seems like whenever I try to contribute an open source, I can't figure out the code because they're using newer and presumably better ways of doing things. How can I get up to date with everything that's going on in the JavaScript world? Also, at what point? Should I start learning a front end framework? I love your podcast and have listened to almost the entire backlog. And I found you three weeks ago. Oh, wow. Wait, so three weeks ago, and there's this is Episode 244. So if half of those are an hour long, that's, like 70 hours of content they listen to good job.
+
+85
+00:43:33,480 --> 00:43:34,650
+Unknown: Yeah.
+
+86
+00:43:34,770 --> 00:45:11,130
+Wes Bos: So how do you how do you keep up to date? That's quite honestly, one of the the hopes of this podcast is that you don't necessarily have to keep up with absolutely everything. Because it's, it's impossible. And what you need to do is you need to first It sounds like you're learning the fundamentals, which is exactly what you should do. And then you need to latch on to your small area of something and get really, really good at it and become an expert in that one area. So whether that is like a front end framework sounds like you're in a good spot for picking up a front end framework, whether that's spelt or react or view, you can likely make your decision because he's listened to every podcast here. And just just focus on that just focus on getting really good. I'll use react and react. And then and then you can start to expand your horizons. And once you're comfortable with that, either add on to that maybe look into a little bit of serverless function, maybe look into a styling framework, something like that, or switch to another framework and see how he liked that thing. So really, that and copious amounts of time being being at this for I don't know like how long have you been a web developer Scott like 1015 years longer, longer a long time. We've been at this for a long time. And Scott and I are only really confident in a slim of the JavaScript world. And then we also know that we have good, good fundamental JavaScript skills. And we know that we'll be able to pick up other frameworks should we want to or need to.
+
+87
+00:45:11,580 --> 00:46:33,630
+Scott Tolinski: Yeah. And that's really the key is that you can't, so don't don't feel bad about that. You can't. There's so many times I open up both open source projects. And I'm like, Well, why are they doing this this way? I don't even know I'm gonna leave. Because I'm uncomfortable. But no, I think there's just too many things here, whether it's new techniques, or whatever. But sometimes I think it depends on what your state of mind is, right? Now, if you look at an open source project, and you don't have the time to really dive in, you could say, Alright, see you later. But if you are in a curious mood, I found that open source code is some of the best ways to learn new techniques, new skills, and dive into how other people do things. Other people do things, it's not always better, sometimes just different. I was wanting to take a project that existed, and I was gonna adapt most the code to my own functionality. And they were using like, so Okay, let to be less vague about this, there was a reactive video player that exists, that's open source, and I needed a video player. But I didn't want to write mine from scratch entirely, or at least I wasn't quite sure exactly everything I needed. So I started diving into this one. And I found it was really neat. But they were using Redux for a video player. This is like, why do you need an action to be called to do this to do that, to do that, just to do play on a video player? So I oh my gosh,
+
+88
+00:46:33,630 --> 00:46:34,320
+Wes Bos: yeah,
+
+89
+00:46:34,350 --> 00:47:00,930
+Scott Tolinski: I just think you'd like, Am I missing something? Or why is this so over engineered? And it just just did a different approach? Honestly, I would say is it worse or broke? But it's a different approach? It's totally valid as long as it works. So, you know, don't always feel like everybody's approach is better, but it could be an interesting way to learn something sometimes. Okay, next question is from page neigbouring. House. nail the thank you page for the
+
+90
+00:47:01,290 --> 00:47:03,900
+Wes Bos: no or no, she phonetic? Yeah,
+
+91
+00:47:04,050 --> 00:49:29,550
+Scott Tolinski: I didn't think I was any. No, she did. I got pulled that out. I am good reader. No. Okay. Okay. So hey, Wes. And Scott, I can have your podcast, keep up the great work. Thank You page, I had a question about custom hooks in react, my team and I are starting to write pretty complicated custom hooks, gathering data from a number of different endpoints and pulling the certain endpoints on a continuous interval timer, before returning it to the component that needs the data. Since this is the case, some hooks have gotten fairly large, with multiple functions inside of them getting called to get manipulate all of the data, multiple hooks using the same functions to get slightly different data. Is it the best practice to keep all the hooks together in one file? Or should we break the hooks into separate files and move the helper functions into another file, just to have one hook per file? Whoo. So I just did a course on custom hooks. I'm not by all means the authority on the subject. But I have done quite a bit of work in custom hooks in the way I see it is I create custom hooks. And then if I notice that it's getting difficult to parse difficult to understand, I might break some of that functionality into another custom hook and use that custom hook within a custom hook custom exception. You know, I've used a custom hook within a custom hook within a custom hook before, or context within a custom hook in whatever. And I found that keeping things organized is occasionally difficult. But if you can break things out into, you know what makes sense into their chunks, they're they're usable chunks, then that's fine. And just like react components, I find, I find custom hooks to be very analogous to react components. But just for functionality, right, you could have a giant, giant custom hook. But it makes more sense for all that stuff to be together based on its functionality, just like you could have a giant react component that makes sense for it all to be together. Or you can make many smaller ones that all work in coordination. And both of those approaches are valid, it all just depends on the use case. And some of it is going to come down to your personal experience. So there's no hard and fast rules that say, Okay, this is going to need to be a custom hook here. And this another one here. But I have used a custom hook within a custom hook within a custom hook. And sometimes that's perfect. And other times I have a giant custom hook. So again, it's all about experience. And just like just like you get the feel for when you should break a new react component, you will get the feel for when you need more custom hooks.
+
+92
+00:49:29,940 --> 00:50:37,950
+Wes Bos: Yeah, I'll speak to like, should they go in their own files, I'll just tell you what I do. So when I write a custom hook, it's generally I'm working on a component and I go, Oh, I need to do something. So I'm what I do is I just go above that component and I write the hook. Yep. Then I will often find myself needing that hook in another component. And if that's the case, I move it out of that components file into its own file. I do the same thing for styles. I'll often write the styles in the same file, as component and then as I need to reuse that, I will throw it into its own file, because it's now used by multiple different files. And then the third thing is you said you have a lot of utils that are used inside the hooks, absolutely put those into their own file that makes testing those utilities very easy because they're nice clean export functions from that file. And it's not if it's not something that is entirely related to that hook. And it's used again, in multiple functions, then put it in its own file, so on an as needed basis, but absolutely don't feel afraid to put them in their their own files. Yeah,
+
+93
+00:50:37,980 --> 00:51:09,270
+Scott Tolinski: I have a whole folder with all of my custom hooks if they're used globally throughout the site. And it is like one hook per file. And if I do need a custom hook, that's like, just for a specific section of my website, I'll throw it in that feature folder just as like, here's the like, let's say I have the checkout. And I have a custom hook that's used checkout that use checkout hook is only being used for the checkout, that things go on right in that checkout feature folder rather than my general hooks folder. It's just going to be used checkout.ts Oh, yeah, that's largely how I think about it.
+
+94
+00:51:09,840 --> 00:51:48,150
+Wes Bos: Next question we have here from Jared any tips for navigating projects with bad project managers, working with a non technical agency project managers is really difficult to plan and allocate time to ensure all the projects are done on time on budget. And well, it's important to me to maintain an optimistic attitude in the organization. But sometimes I'd love to just hit him with the old peace out and go smoke, smoke some pork, but let me tell you as someone who quite quite frequently pieces out and goes to smoke support, but let me tell you, that is a good a good way of life. Wonder if you have any good experience, sometimes
+
+95
+00:51:48,150 --> 00:51:53,400
+Scott Tolinski: you gotta go on smokes import. But But that means something different here in Colorado.
+
+96
+00:51:54,690 --> 00:53:38,910
+Wes Bos: Everything in Colorado soon means something a little different. Wondering if you guys have any good experience managing these types of projects. Yes, these these types of projects are so draining, because not only are you trying to technically solve the problems, you are playing the role of trying to budget time and maybe even money in that case. And if you don't really know if it's unclear as to what needs to be done, or if the project is messy, or all is the person like I've talked to like working with project managers in the past where they send you emails at all hours, they love meetings, love having calls, things like that. And that just just drains you mentally and pulls you away from from doing the work that you're supposed to be doing. So how do you do it is you really have to train the project manager? Yeah, if you hit them on the nose and say, No, no, you You got it, you got to train them that you are not like, it's very clear to you that you know how to how to gauge how much time it is if they supply you with the right thing. So just letting them know upfront. If you don't have all the information, if things are messy, if you don't get stuff on time, if we have too many meetings, things like that, then then things need to get pushed. So you almost have to be a bit aggressive, I would say is the word that you use for this type of thing, because everyone wants to be nice. And like you said, you want to be optimistic about these things. But in order for you to make it look like you did a good job, you need to be very aggressive with the type of person who you might be dealing with there.
+
+97
+00:53:39,390 --> 00:57:38,820
+Scott Tolinski: Yeah, it's all a tough balance. It's funny, I'm gonna send this to my brother, he's he's recently gotten a job as a project manager now. So he needs to learn some of the stuff about working with developers, because it's so funny. He now talks about like developers, it's like he's never worked with developers before. He used to be logistics for truckers. So he's used to talking to truckers, and now he's talking to developers, he's talking to, I can't trust this developer in a meeting, I can't do this at this. It's so funny to get the opposite side of the coin, because I've worked with so many project managers, and the best project managers were the ones who really understood the timelines, let me do my thing. And knew when I was capable of meeting with the client, myself or whatever, there are some, there are some project managers who are just super aloof, and there's not a whole lot of things you can do because they are at some agencies, they are the barrier between you and the client. And if the client is unhappy with the timeline, and you have all of your stuff done, that's not going to look bad on you, that's going to look bad on the project manager. I had one project manager. This project had been going on for several months. And they were just like, so what's the status of this project? And I said, I finished it two months ago, and I hit told you and I said the email and you asked me about it two weeks later, and I send you the email saying it's finished. Here it is, and then they're like, oh, We'll set up the training now. And that's like, some project managers just don't get it. Sometimes Sometimes they're just not good at their job. And you as long as you have the email chains, and you have the the receipts to show that you're doing your job effectively, you know, just sometimes it's out of your hands. It depends on how much control you have over the situation, and how much you're able to actually manipulate the timelines and the budgets and things like that. It's sometimes the project managers are just not going to be there for you. So you just do your work, do it. Well make sure you have the receipts communicate effectively, and sometimes it's out of your hands after that. So again, those are the those are the big keys, communicate, have receipts, do you work? Alright, last question is from this Steve Polito. Steve says I'm committing often and early. But this means I end up writing the same vague commit messages over and over again. I know the solution to the problem is to just be more verbose, but as the difficult habit to break any advice, okay, I have a simple way that I like to think about a commit messages. For those of you who don't know, if you don't use Git, what Git is a version tracking system that keeps track of all your files, you can think of it like something that saves your your bacon in case you know, the machine crashes or something, you have different versions, it also allows you to branch off different things, try new things and, and not worry about breaking code. So commit messages are a way to describe it to everyone else, including yourself, your future self, what exactly this code contains. So if your commits are vague, then that's telling me that you're not doing any code changes, like what is the commit message supposed to do? Again, it's supposed to tell you what the changes are. And so bug fixes is not a good commit message, because it doesn't tell you what the code changes are. If you have a GitHub issue, include that issue number as Hey, this fixes issue number blah, blah, blah, fixes issue were blank, I like to describe these as this like a starts with a verb in like a so fixes issue where user profile picture was upside down, adds a new image format to this blank does this do this, but it should never ever be something like bug fixes or updates, updates, dependencies, whatever, none of those things are good commit messages, because they don't tell you what the actual code changes, the most important things is describe what changed your future self, your other developers, everybody else will thank you for it.
+
+98
+00:57:39,360 --> 00:58:55,830
+Wes Bos: My tip here is to squash your commits before you send a pull request to master or merge into master. So when I work on a team, my flow would be just commit, I don't know, like a couple, six, six or so times a day or a couple times a day. And and be as good as you can, like you said, but it's a problem to think about good commit messages every single time, especially when you're just doing the same thing on three or four different commits. So what I would do is I would commit for the day. And then once I'm done a feature, I would squash those commits, which is just just Google whatever the command is for squash, and that will open up a list of all of your commits. And you can cherry pick which ones you want to be squashed into the other one. And then you can write a new commit message for all of that. That's very descriptive include issue numbers or ticket numbers, things like that. And then that's all done on your own branch. And then when you send your pro request that goes through to as a nice single tidy commit. Yes, just don't squash commits after you've pushed a master because then then you get into rebase. How it's awful. I've been there.
+
+99
+00:58:56,640 --> 00:58:59,250
+Scott Tolinski: Yeah, get Hell is one of the worst kind of health to be in.
+
+100
+00:58:59,729 --> 00:59:06,090
+Wes Bos: Totally. Let's move on to some sick picks. You have a sick pick Scott. Oh,
+
+101
+00:59:06,090 --> 00:59:28,830
+Scott Tolinski: I am stumped for a sick pack this week. I do not know. So what I am going to sick pick is a YouTube channel that I have picked before in the past. And I think I've even maybe picked this really recently but I still love this YouTube channel. I watch it all the time. So this is the gels marble runs for those of us who are needing some
+
+102
+00:59:28,859 --> 00:59:30,990
+Wes Bos: Oh, is it back? It's back? Yes.
+
+103
+00:59:30,990 --> 01:00:41,190
+Scott Tolinski: So last time. Last time I picked this this YouTube channel conveniently got like he accidentally deleted all of his videos or something like the day I think he goofed it up himself. I think he was he accidentally delete your entire you he was trying to do something and YouTube had to step in and I don't know if he had to recreate it or whatever. Either way gels marble runs is a YouTube channel where my marbles he races marbles, but he does it in a way that he pretends that they're like skating. sports teams, and there's actual teams with, he names them all. It's very cute. It's very fun. And it's very addicting. If you have if you're needing like sports in your life right now, which you know, I like sports, I'm a sports fan. I put these out. And they're also very, they're very, very kid friendly. They're very innocent in a lot of ways. So they're fantastic. They're a lot of fun to watch. And you know what, you end up becoming a fan of various Bramble teams, and then you end up hating other Marvel teams for no reason, just like you do in real sports. And so it's it's a, it's a blast, I highly recommend watching some of this. And if it sounds ridiculous to you put on one of these videos. And who knows, maybe you'll just find yourself rooting for one of these marble teams.
+
+104
+01:00:43,140 --> 01:01:29,850
+Wes Bos: I'm going to sic pick a tool, Scott. We pick pick tools for our weekend projects every now and then. And I'm just getting done with installing a bunch of pine paneling in in a shed that I'm turning into an office. And in order to install this stuff you need like a nail gun and a compressor. And that stuff's kind of expensive, especially because like I'm not, I'm not going to be using this all that often. Although I know a couple times a year I have to go go borrow my dad's nail gun. So now I have one and I bought this little kit that was dirt cheap. And I'm going to tell you how to make it better. So this is hilariously who makes his hudon Hyundai high end by the car company Hyundai. Hyundai Hyundai. They had a commercial always soon. They had a commercial that was
+
+105
+01:01:29,879 --> 01:01:31,800
+Scott Tolinski: a Hyundai like Sunday.
+
+106
+01:01:32,190 --> 01:01:34,890
+Wes Bos: Hyundai Oh yeah, I always say hi. And I
+
+107
+01:01:34,920 --> 01:01:39,060
+Scott Tolinski: yeah, they had a commercial. That's how you say it here in the States. So Hyundai, Hyundai,
+
+108
+01:01:39,510 --> 01:02:45,630
+Wes Bos: Hyundai, okay. So they, I guess make tools as well. And I bought this like dirt cheap, little two gallon air compressor and it comes with a nail gun. It's also a staple gun, and it has a bunch of fittings. And it was like 114 bucks Canadian, which is, I don't know, like a ham sandwich in American right now. And I got it. And I turned it on, it started leaking. And I went to the reviews. And I'm like, Oh, this is why people don't like this thing. So it just like took apart all the fittings and I put the Teflon tape on it, which is what you're supposed to use on threads that have air or water. I think water Yeah. on them. So I took apart all the fittings, Teflon taped it, put it put it back together thing worked amazingly well. I shot like 5000 nails through it. And I only jammed out once. So I thought for the price. It's obviously not a professional tool. But for the price. You can't even get a air compressor for how much I paid for this entire kit. Well, so I was I was pretty impressed with it's the Hon di, h, h, C to G and K.
+
+109
+01:02:46,530 --> 01:02:47,130
+Unknown: Wow.
+
+110
+01:02:47,520 --> 01:03:05,160
+Wes Bos: Yeah. All right, shamelessly plug all of my courses West boss.com forward slash courses, Use coupon code syntax for 10 bucks off, learn you some JavaScript or some CSS or whatever it is you'd like to learn during this downtime. If you have downtime, I don't have downtime. So
+
+111
+01:03:07,170 --> 01:03:47,910
+Scott Tolinski: yeah, I'm gonna shamelessly plug level up tutorials.com. And check it out. It's a lot of tutorials there a lot of tutorials. So I make a new tutorial series every single month. It's like a video subscription or it's like a magazine subscription, a new tutorial series every single month. And the latest one is on custom react hooks. So if you're interested in learning all about custom react hooks, head on over to level up tutorials comm forward slash pro sign up for the year and save 50% right now. So thank you so much for watching. And thank you so much for watching. That's what I say at the end of my YouTube videos. I just like went into total Program Mode there. Oh boy. That's all I got.
+
+112
+01:03:48,480 --> 01:03:54,780
+Wes Bos: Alright, thanks so much for listening. We will catch you on Monday. Peace, peace.
+
+113
+01:03:56,640 --> 01:04:06,420
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
