@@ -1,0 +1,44 @@
+1
+00:00:02,460 --> 00:00:21,120
+Wes Bos: Hello, everybody, and welcome to syntax. This is a new podcast that Scott and I are launching. And we already have three episodes recorded. And we'll be launching them shortly. For now we just wanted to let you know that we're going to be launching this podcast. And to sort of get you subscribe to the feed so that when they're ready to drop, you're ready to get them.
+
+2
+00:00:21,300 --> 00:00:27,660
+Scott Tolinski:   And this is a web development podcast filled with tasty tips and treats for web developers. 
+
+3
+00:00:27,960 --> 00:00:39,420
+Wes Bos: Oh, oh, yeah. So a little bit about ourselves. My name is Wes Bos. I am a full stack developer from Canada. And I essentially create training courses that help web developers get better at their job. 
+
+4
+00:00:39,660 --> 00:00:50,520
+Scott Tolinski: And I am Scott Tolinski, a full stack web developer from Denver, Colorado, where I have created over 1000 free tutorials on YouTube at level up tutorials. 
+
+5
+00:00:50,660 --> 00:01:21,290
+Wes Bos:  Awesome. So the idea with this podcast is it's going to be a web development podcast where we take a topic and sort of dive deep into explaining both what that topic is, and all the stuff that surrounds it, as well as talk about our experience with that specific topic. So we're going to go all over t he place everything from JavaScript frameworks, CSS, advancements, CSS frameworks, all the way through to command line tooling, and even some of the other stuff like soft skills that we need as web developers. 
+
+6
+00:01:21,380 --> 00:01:37,970
+Scott Tolinski: Yeah. And we're really super excited about launching this thing. And we really need your help to make it launch with a bang. So head over to syntax.fm where you can find buttons to subscribe on all of your favorite podcast players like iTunes, Stitcher and overcast 
+
+7
+00:01:38,200 --> 00:01:45,730
+Wes Bos: awesome so actually do that please like Don't be like oh, it should subscribe do it because when it drops, we really want to get this thing to the top of the charts. 
+
+8
+00:01:45,870 --> 00:01:49,680
+Scott Tolinski: Yeah, just Yeah, really push that like button as hard as you can. 
+
+9
+00:01:51,210 --> 00:02:06,420
+Wes Bos: force touch that like button. Awesome. So we're a syntax FM on Twitter, and the website to grab all of those buttons is syntax.fm. As always, I'm at Wes Bos on Twitter and Scott
+
+10
+00:02:06,540 --> 00:02:12,000
+Scott Tolinski:  is @stolinski Awesome. 
+
+11
+00:02:12,030 --> 00:02:15,840
+Wes Bos: So with that, we'll see you in the first podcast and a couple days.
+
