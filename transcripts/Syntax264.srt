@@ -1,0 +1,404 @@
+1
+00:00:01,319 --> 00:00:02,820
+Unknown: You're listening to syntax
+
+2
+00:00:02,849 --> 00:00:10,530
+the podcast with the tastiest web development treats out there. strap yourself in and get ready. Here is Scott, ski and West boss.
+
+3
+00:00:10,559 --> 00:00:49,470
+Wes Bos: Welcome to syntax This is the podcast with the tastiest web development treats out there today we've got a very special guest we've got Jerome Hardaway on which was just like making a list of bullet points of everything that Jerome has done and is involved in right now. So we'll save that for the introduction, but all kinds of really interesting stuff. Today, we are sponsored by two awesome companies. First one is dot tech domain names, which is literally in the name. It's not technically. And that's one his century he does all your error and exception tracking in your front end your back end apps with me as always is Mr. Scott to linsky. How you doing today, Scott?
+
+4
+00:00:49,920 --> 00:01:14,640
+Scott Tolinski: Hey, I'm doing okay, I started a new physical therapy like first thing in the morning. And it means I have to like wake up earlier than everybody for the first time and who knows how long and it is difficult to barely. But yeah, it's nice to get that out of the way and you know, get home and Uncle Nikki is hanging out with Landon right now while we record this and yeah, that's gonna be the rest of my day is just hanging with Linden in Brooklyn.
+
+5
+00:01:14,840 --> 00:01:30,030
+Wes Bos: That's good. Yeah, if you hear Scott, stop talking, like I was listening to the last podcast, and there was like a section where Scott just stopped talking for a while, because he had to run out. So if you hear Scott duck out for a bit, that's because he's got to turn uncle Mickey back on or something like that.
+
+6
+00:01:30,240 --> 00:01:47,670
+Scott Tolinski: Yeah, Courtney went back to work. So we're now splitting time. 5050. Where before when she wasn't at work, because the school shut down. It was like, Oh, all right. Well, you can have all the time you want to work. And now I do not get that time, which is very reasonable. Yes. It's a hard transition.
+
+7
+00:01:47,879 --> 00:01:58,410
+Wes Bos: Awesome. Well, let's get into it. So Jerome Hardaway at Jerome Hardaway on Twitter, basically, I think you referred to yourself as the Captain America of .TECH. Is that right?
+
+8
+00:01:58,439 --> 00:02:24,630
+Unknown: No, I was referred to first but that's the Captain America web, by Kyle shevlin. And then a bunch of guys that Tula tulia, they started describing me as the sergeant of arms or get arms. So that's who code and. And I was like, two years ago, and it just stuck that people started calling me you know, and he's, he's like the web's Captain America.
+
+9
+00:02:24,660 --> 00:02:29,720
+Scott Tolinski: So that's a better nickname than either we have. We don't have nicknames that are that cool.
+
+10
+00:02:29,750 --> 00:03:24,780
+Wes Bos: No, no, we don't we need a cooler name like that. I think it's very fitting. So drum, you're an avid Tweeter, you have an Air Force background, you've obviously learned to code yourself, we'll talk about that you run a thing called vet to code. And then like most recently, given the all of the Black Lives Matter, protests, the awful police brutality, you've been like an incredible voice in the web development community. And you've just been like, so generous with your time and helping people figure out like how to like, what do we even talk about how to be an ally with all these voices, and not? So we thought we just have you on just to talk to you about everything and your backgrounds. Very interesting, as well as, because you met with Scott and I, and you sort of, like helped us figure out what do we do as two white dudes in tech, with a large platform? And how do we handle that? So we appreciate that. So you want to like give yourself a little bit of introduction? Did I sort of cover everything there?
+
+11
+00:03:24,780 --> 00:05:26,670
+Unknown: Oh, yeah. You know, the high level overview. Like you said, my name is Ron Hardaway, I'm the geeky arms or Executive Director, I guess I'm old enough now to be called executive director of ETSU code. I started with the code was like 2728. And I just didn't feel right with that title. It was like, everybody's like, everybody was old. So I was like, I'm not like these like, ancient dudes. So I'm just gonna have a title for myself. Basically, what we do is that we teach veterans that a program is a JavaScript focus, and we do this hundred percent free no GI Bill, no government funding, nothing. But the sole focus of just you know, teaching people JavaScript. And right now we had a 97% success rate 252 veterans and 37 state jobs, very happy about that we're growing every day in services because we try to run it like a tech company that you can mess up at and I get fired. And just you know, it's the joy of my life because I was a veteran coming from security forces and allow these programs didn't exist at all when I was out and only thing they were told me I could do was be a copy, go back overseas and go back didn't shot it. And I was like, I don't like any one of those things. So I started to learn how to code and got my first opportunity with department Homeland Security with database analyst and I never looked back and when I was trying to help other veterans out I was like this, you know, this is the way like getting like veterans, early stages or any special and teaching them how to utilize their critical thinking skills they pick up in the military and apply that to programming. That's just what I thought of when I'm not doing that. I was a funding engineer at Comic Book. I love those guys. That's like, you know, it's also I kind of fit into the whole Captain America stick like Sam Hughes kept the Captain America fan Marvel fan. Yeah. You know, that was a front end engineer. Sorry, I'm guessing my dogs growling.
+
+12
+00:05:27,380 --> 00:05:32,250
+Scott Tolinski: Alright, you gave very well, we all we all have annoying dogs that bark and get in the way.
+
+13
+00:05:32,250 --> 00:06:48,270
+Unknown: My dog said that they're not having that they're being very unfriendly with each other right now. So I was a friend engineer coming book, loved it. But I recently moved on to be a dev advocate and take evangelists for Quicken Loans, and pretty strong love that to them already excited. My bosses, like they're very aware of things that are going on. And they're very supportive. And it's just, especially as minority, it's just super cool to be in type environment like that, where you get 100% of yourself to work. Because that's, you know, code switching and everything like that, that's a very big thing in our community. So that freedom to be able to be all of you. So that way you can be you can perform at the highest level that you have and not have to worry about tiptoeing around people's like ideals, or their mind, or the microaggressions, or the thought processes that they have already preconceived in their brains about minorities. So you don't, you know, fit that you have, you know, and that's what happens in a lot of workplaces where people are, you know, they're trying to dodge that stuff. So they can't, you know, they can't bring their A game and can't be your full self. Yeah, yeah, that's, that's, that's me, a quickenloans dev advocate by day, Executive Director of etsuko by night, essentially Batman without the money out of gadgets. So
+
+14
+00:06:49,200 --> 00:06:52,770
+Scott Tolinski: you spend any time in Detroit at all, because of Quicken.
+
+15
+00:06:53,249 --> 00:07:40,530
+Unknown: They're gonna be having me fly out there every once in a while. So I'm gonna be up there, but I'm in Nashville. Yeah, Nashville is coming from Memphis and coming from a community like the tech community. It wasn't really all from Nashville. It's been like a complete 180 degrees actually, by they're taking the jobs who community is amazing here. I don't know, you know, any of you guys here like Cowell shit like Eventbrite or anything like that. These guys, they really are forward thinking, especially in the south, but really forward thinking about, like, how to make communities inclusive. So I'm very like, appreciative of this community. But also like, you know, I like to travel. And I'm lazy. I don't like leaving home. So I'm the same way I like, Yeah,
+
+16
+00:07:40,530 --> 00:08:26,850
+Scott Tolinski: I just asked, because I know, I'm from Southeast Michigan and Quicken Loans. I know, they've done a lot for the city of Detroit. I know a ton of developers who have either worked there at some point in their career, or they were definitely one of the companies that was in our scene quite a bit, given our proximity. So you, you mentioned basically wanting to have a different path after after, like, coming back, right? What was your introduction into programming concepts that made you want to say, Alright, this is something that I really want to devote myself full into, but also like, I want to show everybody else, like, what was your introduction that made you just say, this is, this is what I want to do this.
+
+17
+00:08:26,850 --> 00:10:18,799
+Unknown: Alright, so I saw a commercial online, and they were just talking about coding at a college or something. And I was like, What is that, and that did more research. And he was like, Oh, you can learn how to do stuff on your own. So I picked up SQL book. And that's how I got into, you know, SQL and, you know, Postgres and learning that stuff, and I've been dealing with, what am I thinking department security, but what really, like hit helped me, like, you know, get that book of like, wanting to dive in was like, I wanted to be entrepreneur, I saw business is the way for upward mobility at the fastest moment. And like, the thing that I kept running into was like, all of the ideas I had, they require programming and programmers cost the most amount of money when it comes to building a project. And I was like, Yeah, dude, like, if I can learn this stuff on my own, that will, like save up a lot of the costs of, you know, building projects and stuff like that. So that's what had me dive into it. And I just really, like, man, the front end, but just really bit me, especially comes to user experience, because I have security forces. And I put front end developers like as the elite gate guards, like the web, right? So because in the end users, especially your user focused developer users really don't care about the back end, as much as it doesn't work, right like it. They want it to be fast, be pretty and work right in that order. So that's where I was like the front end, guys, they kind of, you know, stole the show for me. And then that's what I wanted to focus on. I never, I never forget my first front end framework and never forget the first time I played with a different like, front end CSS framework, like animate dot CSS, that was the first.
+
+18
+00:10:20,159 --> 00:10:23,970
+Wes Bos: Oh, that blew my mind. That's one of my most watched YouTube videos actually
+
+19
+00:10:24,020 --> 00:11:05,549
+Unknown: slick slider that was my favorite. Like, that's it. That's actually how I met Ken Wheeler years ago, he was the first big name person, like when I was learning how to code who actually spent like, 30 minutes, we'll be talking to me about something over online. I think he remembers it. That's like, yeah, just being able to like, you know, like, that's what another thing that attracted me to JavaScript by how just down to earth everybody was, it was the working man's language. It wasn't a bunch of, you know, people telling me about computer science and, you know, LIFO, FIFO, big O notation and all that other stuff. I was like, Oh, these are people, I can actually, you know, drink and play video games with and, you know, go for,
+
+20
+00:11:06,330 --> 00:11:33,450
+Scott Tolinski: Damn, it's all about like producing stuff, right? I mean, that is such a key. Key Point. It's like, once you once you realize that your limits are like sort of boundless in what you can create with these technologies. If you're that, like the right type of person, you just sort of move into that holy cow, I can build anything. And then that that is like so so I don't know, it's so superpower superpower, right? Exactly,
+
+21
+00:11:33,510 --> 00:11:47,279
+Unknown: is freeing and crushing at the same time to do everything, but there's not enough time to do everything. Right, you know, time becomes the enemy to creativity. Hmm. Yeah,
+
+22
+00:11:47,310 --> 00:11:58,799
+Scott Tolinski: yeah, that's a perfect way to describe it. Because I know I have so many side projects that are just said on worked on, because I have too much other stuff to work on too many other cool things to build that I'll
+
+23
+00:11:58,799 --> 00:12:32,520
+Unknown: tell people. No, I just should just start random Twitter where I just throw out like the first idea that came to me in that morning, and I just have some less than one habit. I can't even actually, ironically, I kind of did that I started a thing down here. And I just let other people take it over because I just didn't have the bandwidth, like between betson code and helping the veterans and teaching and writing. Okay, you guys can have this. And they've been running with it. And I'm very proud of them. Yeah. Cool. That's awesome. So
+
+24
+00:12:32,970 --> 00:13:05,279
+Scott Tolinski: and that's hard to do to give give your projects over to someone else. You know, I like think about, you know, Paul Henschel, he created react spring for animations. And then it's just like, oh, he started working on other things, but instead of just, you know, not releasing updates or whatever, he just gave it away to somebody else and let them work on it. And he'll still be there and maintain code or add code or whatever. But it's like, Alright, well, I made this thing. But it I can't imagine giving away that kind of project that you you've put so much time and energy into it at all. Like that's got to be a weird feeling, right?
+
+25
+00:13:05,309 --> 00:14:35,640
+Unknown: No, not at all. Like, that's what I think that's part of being successful. Right? If, like, one of the things that I tell my veterans is a part of it, who codes job is to be is to signal books. Every accomplishment I make, you have to make it in half the time like this. I tell them why if I'm my first big company Corporation job took me four years and guess what you have to do it into? And like, I'm here to tell them that like, and they're like, holy crap, I have a few veterans that they've done that before. Or be the one Andrew who's it. Verizon, I have Jeff, who's at Microsoft, and Schuster, who's Amazon, and they, you know, they fly Holy crap, he's, like, really scared the crap out me. But that's how, you know, I, you know, when we hit when we come up with NIF different channels in different projects, I'll start the project, but then I'll quickly give it to someone else. Because my I feel like my part of my mission is to use the work in the foundation that I've done to, you know, make other stars, right. Mohammed Ali said it best, you know, charities like the rent, we paid for Vienna art. So that's my thing. Like, alright, I have to I've done this. It's time for me to make sure that other people can use what I've done and use my skill sets or use the thing of whatever I've done to make it easier for them. Because if I make it to the top, it's cool, but I like that I get a bigger Hi, I'm making light helping other people. So that's a military thing for me like
+
+26
+00:14:36,960 --> 00:15:00,990
+Wes Bos: you're that guy. I have another name for you that I've been watching the the Michael Jordan documentary and they were saying that the reason why Scottie Pippen I think it was Scottie Pippen was so good, was because he didn't have to have the ball like and he would just give it to the he would just like set it up and give it to somebody to score like he didn't have to be the star of the show. But he saw it as his like place to sort of set other people up. I think that's really cool that it You're doing that as well. I
+
+27
+00:15:00,990 --> 00:15:03,149
+Unknown: don't know anything about basketball. I
+
+28
+00:15:05,220 --> 00:15:08,279
+Wes Bos: mean, either, except that I watched the documentary like last night.
+
+29
+00:15:08,279 --> 00:15:24,510
+Scott Tolinski: Yes, we watched it too. And I am I'm so hopeless at basketball, especially like, I actually like I can't enjoy watching basketball because of how terrible I am at it. I just know that it's like, this is just a reminder, not not good for me,
+
+30
+00:15:24,659 --> 00:15:30,270
+Unknown: literally a famous basketball player and know nothing about it. Like I'm related to me.
+
+31
+00:15:31,380 --> 00:16:04,950
+Wes Bos: That's awesome. If basketball was my, my sport growing up only because I was tall, and then at certain point, everybody else caught up to me. And I was no longer good at it head to head didn't have that, that advantage. So you tie yourself to code database. And then you got started getting into teaching yourself JavaScript and things like that, like At what point like, how many years in? Did you start that to code and start to like, then teach other people? Because like, honestly, I don't know if you think that's but I think teaching other people is a great way to improve your own skill set.
+
+32
+00:16:05,220 --> 00:19:21,750
+Unknown: You're absolutely right. So this is how it worked out. 2014 It's the summer 2014 was a really big year with the Department of Veteran Affairs and people in general, working on veterans in general, sorry. So I'm working that nonprofit where they have me as the digital marketing admin, but really, I'm the programmer, my first day at work, they were like, hey, you're young. Can you fix our site, and it was the most awful thing I've ever seen in my life. took me three months learning LAMP stack, which made me hate LAMP stack afterwards. But now I'm learning to love LAMP stack again. Now to do this, and during that summer, we had an army veteran in my hometown, in a losing his life, getting shot by wrongful bola Department of Veteran Affairs. And because of who was involved, the government was involved. They were like, it's not really our fault. And the most we can do is give you like a couple hundred dollars to pay for the hit style. And like, you know, yeah, so this family was just, you know, he had a daughter and everything. And I was like, That's not right. That's horrible. But none of the nonprofit's are going to stand up to the VA because VA is big brother. And most of them get their money through grants from the VA. So they were gonna do that. So I'm at home chillin, and I get a phone call from a person and another nonprofits like, yo, you have to help these people. And like if the VA said, No, no nonprofits gonna help me, right? I'm not asking for profit, I'm asking you, because I know you're the only person pull off. It's like, don't get me in trouble. And of course, I did get in trouble for this. But I use my digital skills. I build a website, use the things I learned while about digital marketing. And I was able to get a generate enough buzz during this whole crazy thing of past summer was and raise $10,000 in 27 hours. And why able to, like give money to the family were able to put money aside for the little girl, everything. And that's when I was like, okay, you know, I've done my good deed forever. I'm never going to hell, I want to see you guys later peace out. And then people were like, No, you can't do that. Like, what else are you gonna do? Like you've done something you have that capacity? Let's do something. I'm like, Okay, well, what helped me do this is learn how to code. And because I'm in Memphis, and all the people who are at VSOs are Oh, people. They're like, Say what? Now? What is this? Do you think people last year was asked at one point in time? Do you think that Mr. Troops note can learn how to code and here I am being an unlisted troop? Who are another code. And I was like that is while well afterwards, like General Assembly, they see things I've done and they hit me up and they're like, Hey, would you like to come up here? In order to like, level up your skills and stuff? We'll give you a scholarship, yada, yada, yada. Like, yeah, sure. Let's see what happens. I go up there six weeks into their course I end up getting my first job offer back home. So I just posted the rest of the course because I think the only thing I really learned was like command y. So
+
+33
+00:19:23,970 --> 00:19:27,540
+Wes Bos: at General Assembly is at boot camp in New York. Is that right? Yeah,
+
+34
+00:19:27,540 --> 00:22:12,480
+Unknown: I was like but like it was it was weird. Yeah, it was a whole weird experience. So I get back home and the whole time I'm teaching veterans remotely and things like that, like this is before especially the like the nonprofit game was like, very antiquated. We were the first remote nonprofit like we were the first people there were like, you know, you don't need big buildings. Like you know, they're all for me. I when I was looking like I got this idea from being a general assembly and working in nonprofits and a lot of stuff is like bloat. make people feel good. But it's not really as effective and you can do more with less money. And that's the thing that I like really kind of focused on was like, How can I be efficient and you know, actually accomplish the mission like I want I remember being in Iraq remember, like how you know we were and how well we got the job done. And I was like, that's what you want. That's what you need when you're training you know, laser focus or minimal distractions, not making you feel like you're a developer, but focusing on becoming the thing that you want to be right and basic, john, yeah, yeah. And basic training, everything like I understand my people don't like, that's why the whole boot camp co boot camp thing is weird. It's like it's not like a boot camp like they treat you nice a feature all the time. It's all happy, smells good. There's no one yelling that you know, what made you get up at four o'clock in the morning. Summer Camp, that's what it really is like, it's not boot camp. Like if you actually went through a boot camp for coding by you, this would not be these are not be sustainable businesses. Because people be like, I'm not doing that is real, like somebody made you the new data structure and array data structures and algorithms the way like you would go into like a military boot camp, people would quit, like in New York minute. So yeah, I was teaching the whole time and it helped level up my skills or move up my skills fast. And to this day, like I try to teach all like at least one section of our cohort. And it's just like, even from when I look at how bad I was, then how good I am now. And probably in five years, I'm looking at this like, yo, you idiot, back then. Now, just everything has changed. Like we were the first nonprofit, we were the first organization completely JavaScript, we just nuked our Ruby back end, and we were like, we're gonna go, we're gonna focus on JavaScript, then we went straight, we were forced to go serverless. And we were like, we're just gonna focus on jamstack serverless. Focus, and like, is heavy on the language as possible, like, I'm a firm believer in making it hurt. And that's why I chose JavaScript, because JavaScript does not care about your feelings.
+
+35
+00:22:13,080 --> 00:22:13,770
+Wes Bos: No.
+
+36
+00:22:14,820 --> 00:22:32,160
+Unknown: So I was true words. Yeah. So I was like, Okay, so we're going to focus on pushing JavaScript to its limits for our veterans, so that we didn't get jobs and it's been working. And I am very happy for that. Because like, is the light joy in my lifetime helping people and helping fellow veterans?
+
+37
+00:22:32,670 --> 00:22:41,160
+Wes Bos: That's unreal. I love hearing that. That's, that's so cool that you did that. I want to know about the tack. You'd you said gem stack and whatnot. But like, like, where before? We
+
+38
+00:22:41,160 --> 00:22:44,490
+Scott Tolinski: want to know about the tech, maybe we should know about the dot tech domains?
+
+39
+00:22:44,550 --> 00:24:09,540
+Wes Bos: Oh, god, it's got your thoughts. Yes, let's talk about the dot tech domains. So if you want to know about tech, and you're building a website, you're building a project, you've got a side project you've working on or, or you've you've got a business, you'd like to start up and you need a new domain, you want to check out dot tech domains. They are the there's used by all kinds of people, I even use them myself, go to users dot tech, I use that domain to create a Gatsby website, totally open source, you can check it out. And it lists all of the people who have a Ford slash Users page that details things like their text editor, their monitor their mouse, that kind of toilet paper, they like to use all the stuff about the people that are on there. So if you sort of want to align yourself with the tech industry, and you need a new domain name, check out dot tech, you need to go to go dot tech, forward slash syntax 2020 and use the coupon code syntax 2020. And you're gonna get get ready 90% off one, five and 10 year domain names. Just go ahead, buy the 10 year domain name at 90% off and then set yourself a calendar reminder in 10 years to renew that thing. Thanks so much to tech for sponsoring, tweet us your tech domain names at syntax FM, we'd love to see what you're building. Thanks so much not tech for sponsoring.
+
+40
+00:24:09,900 --> 00:24:12,810
+Scott Tolinski: Cool. So let's get into the tech now.
+
+41
+00:24:12,810 --> 00:26:00,000
+Unknown: The Jam stack take for ritsuko. Like because that's my favorite stack right now. Because I'm just very happy how it all turned out. Right now the stack is jam stack is serverless gets me on the front end we're using bootstrap is the CSS framework, while also still using like flex and grid of course, because we have to make sure the troops know flex and grid and Amazon Web Services as part of the for some our database of some our API and the way Netlify and contentful. Those are that's everything they were using for the website. And the code stack like the code is just we we redid all the code to make sure that It was as friendly as possible for beginners, like it was like that was the most important part, we were like, it has to be beginner friendly, it can like this whole site has to operate in a manner where people will have lesson were anywhere from three to six months of experience can come in and find something to do and not be intimidated. And I that's like my favorite like, you know, it's a simple stack. But that's what makes it so beautiful like it, you know, we use simplicity and ease and try to, like, make people feel good versus, you know, coding with our egos and things. And that's like, one thing that I'm a very big fan of is egoless coding. I have a saying that I tell my veterans, I was like, No, we, we build products for the user. But we write code for each other. So you have to think about the person live, right? Have you in person come behind you when you write code? And so when we're looking at when we're doing our code reviews and things of that nature, that's always since vs. piping, why did you write this code for you? Or did you write this code for someone else?
+
+42
+00:26:00,360 --> 00:26:44,910
+Scott Tolinski: Yeah, sometimes people they do they don't they, they let their cleverness get in the way of writing code that generally makes sense to most people, rather than making sense to one person or the person who wrote it. I think that's like, I don't know, I love to hear you talk about that. And the joys of picking a stack that just like works for you. Because I get those like, same feelings with a lot of stacks myself when I'm coding. And I think about like, there is such a importance to really enjoying working in the codebase and making it a joy to work in rather than just making it impressive to work in or something like that, you know? So I really, I really think that's a nice message for people is that like, code for the person that's behind you? I know, that is a really cool way to say that.
+
+43
+00:26:45,210 --> 00:27:57,030
+Unknown: Yeah, well, we also tell them clever code kills projects, right? Like when you're because you know, you, you might look smart, but the person is coming after you. It's going to struggle with this. And so you know, everything will be easier. People just thought about the most vulnerable people, their population versus themselves making themselves look good. So I guess what I think about why when I write something like lit a person, I always use that three month or the six month rule, I would a person with three to six months of experience, understand this will be able to explain this to them. They did a little bit of research and a little bit of elbow grease. Why would they you know, they get this so they would go on StackOverflow and or the MDN. You know, I never want someone looking at something I wrote and just freaking out over it. Because they can't figure it out. And I've had programmers I've worked with that are complete opposite me. They you know, they want to make their stuff as complex as possible. Because, you know, that's where they get their ego. But I'm like, Yeah, I kind of like a scary I'm for an am nine to work every day. So I'm kind of cool in the ego stuff. Like, I don't get my I get my rocks off from like coding alley I help people with go. So
+
+44
+00:27:57,030 --> 00:28:27,000
+Scott Tolinski: I think that's important too, in like even in API design, we talk a lot about like smart defaults and those aspects of your application that should just work, right, they should just work without having to need 1000 different configuration elements in there. It's such a huge thing that I think many of us because we really live in complexity all the time that you it's hard, you have a hard time of like thinking and simplicity. And that's such a key thing when you're creating things that other people are both going to code in and as well as consume. And that's like
+
+45
+00:28:27,000 --> 00:29:02,310
+Unknown: the beauty of like thinking like a junior developer, even at a senior level, because you have this high level thinking. But if you always go back to the fundamentals, like you're able to see that hey, oh, there's a new way to do this and new thought processes of doing this in simple ways. I never forget have one of my troops, Carla, when we taught her like the Audi's Fitch and she used it in a coach challenged at her job that she is currently working to show header when they're like getting data from API. Oh, we've never seen a number of a used fetch, like Yo, this is brand new. So she was teaching them as it is. This is how it should be, like done.
+
+46
+00:29:02,310 --> 00:29:46,320
+Scott Tolinski: So that that's like such a good thing. I got a job once. Maybe not specifically because but like, in my interview, I they were asking about what kind of grid do we want to use for a project like this? What kind of grid would you choose to use? And I was like, Well, I would use Susy, which is a SAS library and they're like, wait, why would you what is Suzy? Why would you use that we're using this I was like, Okay, let me let me let me sketch out why I would use it and you hear why here's why it's better and simpler than what you're using. And I think they were just like, Ah, so if you can like teach your your interviewers something that they didn't know that's like a surefire way to as long as you can do it in a way that's tactful. That's a surefire way to look really good. And in a job interview. Oh,
+
+47
+00:29:46,320 --> 00:29:53,790
+Unknown: yeah, you can teach a interview the interviewer something you're probably like, 80% later getting that job. Why? Yeah.
+
+48
+00:29:55,200 --> 00:29:56,460
+Scott Tolinski: Yeah, that's a big help
+
+49
+00:29:56,670 --> 00:30:02,610
+Wes Bos: you help your vets get jobs as well. Do you do any interview prep? For them If so, like, like, what do you even do to prep? Some? Oh, yes.
+
+50
+00:30:02,610 --> 00:32:26,430
+Unknown: Well, here's my, here's my secret to interview prepping. Firstly, the interview prep begins well before the interview, right? Well, boy interview prep stars, the first line of code like we call it, I learned from Scott hanselman. We call it front loading, right? Where the goal is to answer as many questions with your projects as possible, prior to getting like the code challenge, right? So you're like, for instance, if you're a front end engineer, right, the things people want to know is do you write semantic HTML? How do you write clean CSS? Do you understand design systems? Like, are you working with like a friendly architecture like style, like BIM or smacks? Or you have strong CSS? You understand how to use API's? And do you have experienced the front end framework? Right? So I am like thinking in that aspect of building a project, making sure that this portfolio has grid and flex components, understanding the module like you know, you have scalable modular components that you can use flex with, but then when the main layout you're using grid, then, like the first landing page, make sure it's just HTML and CSS, JavaScript, right? All that just pure HTML, CSS, JavaScript, then I have a secondary project like Marvel API, since I'm a comic book fan, right? So I'm having Marvel API I'm use for yet to make a search database page where you can search and find everything that you know, is whatever Marvel superhero that you type in. So that way, it'll lay out everything that you need, then like, and make sure that's mobile first, as well. So that's the first thing I want to make sure I answer, like, when like, make sure it's pretty, make sure it's about me, make sure as I catch and try to tell people portfolios, stop using blacking portfolios, portfolios, or your business car portfolios life, if you're going on the first day, you want to dress like a slob on your first day. So don't do your portfolio like this, like his dating life. until he gets my attention like john given make some bad decisions. Let's go. So that's the first thing. I'm making sure you're looking at the UX components of it. Like there's a really good website laws of UX. He actually has a book now, john, you're blocky, I think his last name, but he laws a UX is just is amazing. You're trying to get the basics of UX fast, like do you use that book? Just as
+
+51
+00:32:26,430 --> 00:32:27,510
+cool? Yeah, this
+
+52
+00:32:27,510 --> 00:32:29,340
+Scott Tolinski: is really cool. I've never seen this before.
+
+53
+00:32:29,730 --> 00:32:31,260
+Wes Bos: I'll link it in the show notes.
+
+54
+00:32:31,800 --> 00:33:21,600
+Unknown: Yeah, it's amazing. So I have veterans go through that I'm teaching that then. Alright. So now they're there. And we're like, okay, now you've done all this heavy lifting with this portfolio that answers all the questions. Now you can work on smaller components or projects to continue improving or GitHub and pruning your skills or your a code pen. And like improving your skills, you can work on smaller things, more tactful things to ensure up like that, like code challenges, things like that. So we have a code challenge channel where they would assign in every day and they can do code challenges that we pick that like we write literally based upon their skill set and the cohort. So then after that, I'll say we're doing the interview prep. I personally look over every resume, like if you want me to do a resume, I'm there I'm looking at it, I helping you rewrite it and help you retool it,
+
+55
+00:33:21,690 --> 00:33:24,930
+Wes Bos: what types of things are you looking for there? If you look at someone's resume?
+
+56
+00:33:25,050 --> 00:36:28,170
+Unknown: Alright, so when I'm thinking of being a programmer, or getting a programming job, I'm with the first of the three users right for you, is what I call it. So first user is the robot, right? So like you're on LinkedIn, a lot of people don't know this, but a lot of resumes and stuff gets screened for like by bots, right? So I'm looking for keywords, I'm looking for JavaScript, I'm looking for react, I'm looking for semantic HTML, looking for CSS, I'm looking for you talk about smacks and B, I'm looking for all that stuff that the robot would like, also look for the bot would like pick up. So I'm looking for that for that stuff, implementing that and adding that stuff in there. Then after that, I'm looking for a nice descriptive elevator pitch style overview before people get down on the bottom, then I am pruning all the military jargon out last The first thing and it's so and it's such a hard thing for our veterans, because the things that we do in the military is really, really hard. And you know, really, really cool on a lot of things. Well, they were like, Yo, I understand that. But for a person who is like looking at you for a software position, this isn't going to matter to them because while we're less than 1% under the civilian population, the population United States of America, two, they are on average nine to 11 people removed from any one military and United States. So yeah, no one's gonna understand how you were a part of a process that protected $52 billion worth of assets like an asteroid You know, they have that, first they have a knee jerk the light. But this is a part especially the guys have been in like more than like 10 years, had a knee jerk reaction with this is a part of my life and who I am what yo I understand that however we have to set the world is what it is and not what we want it to be. And we had to focus like we had to play offense and be counter offensive. When I start talking to them in more of a tactical point of view, they start understanding things like and that's a big part of my strength is that I live the life that they live. So I can look at it from a tactical point of view and focus on let's you know, accomplish this mission. Now that we've I've done that I've cleaned up all the military jargon I've made sure they when they're talking about their projects and the things they've done, that they've carved career, what I call the TPC or a total person concept, and showcasing like how much of a self starter they are how much like you know, they are into learning this craft becoming better. And also making sure they're doing volunteer work within the nonprofit that continues to grow their skills. We start doing interview prep and start doing mock interviews. So we've had two veterans who like when he went through a big boy jobs, we did four hour interviews. So these guys because we were like, you know, you have to do this nightmare, like when they get when they get the interview position where all right his position. So we had to prep for this is what we're gonna do. We actually have a fame prep channel for those who end up getting famed interview jobs
+
+57
+00:36:28,380 --> 00:36:33,710
+Wes Bos: for our audience. That's Facebook, apple, Amazon, Google, Netflix and Google.
+
+58
+00:36:33,750 --> 00:36:35,340
+Unknown: Netflix looks at Netflix and Google. Yeah,
+
+59
+00:36:35,340 --> 00:36:42,920
+like that's the wireframe. That's the worst travel movie yet why you don't want to be like this thing. interviews are the words interviews, right?
+
+60
+00:36:42,960 --> 00:36:51,960
+Scott Tolinski: Yeah, Wes and I both interviewed at Google, and we both did not get the job. So we vote at first hand experience to is like, yeah, it's up.
+
+61
+00:36:52,380 --> 00:36:59,610
+Wes Bos: We should have somebody on who has got a job there and talk about what the interview process is like. Yeah, where we went wrong?
+
+62
+00:36:59,790 --> 00:37:52,800
+Unknown: Yeah. So like, that's the channel that we like, we run you through the gauntlet on that channel. But if it's a normal interview, which is we focus on a phone screen, then we focus on a technical conversation, then a code challenge, because that's usually the typical interview right? Three things on screen to make sure you're not crazy, technical interview to make sure that you actually know how to talk tech to a another technical person, then a coach is to make sure that you actually can write code, right. That's the typical interview, right, three phase process of taking a view. Whereas, you know, Fang interviews, it's like four different interviews. And there's like, one is like four hour long, hour, four hours long, you got to get interviewed by the team. All this stuff, like, average thing, interview last, like that process last like two, three weeks. So like, that's how we do it. Like, if you look at PwC.
+
+63
+00:37:53,130 --> 00:38:05,730
+Wes Bos: That's super helpful. It's questions we get all the time people ask me how to prep for interviews. And quite honestly, I've never aside from good that one Google interview I talk about all the time, I've never really had a job or gone through an interview either. So
+
+64
+00:38:06,440 --> 00:38:28,020
+Unknown: I've been on both sides. Yeah, both sides of the table there. But see you front load a while you build so much. And you do so many things like people already know your skills, like one of your first project one, the first time I heard a list, I was there was a project with like keyboards, where you just press a button and it was showing you the yakko dot
+
+65
+00:38:28,020 --> 00:38:28,770
+Wes Bos: info.
+
+66
+00:38:28,800 --> 00:38:56,820
+Unknown: Yeah. So like I was looking at, I was doing work with accessibility on comic books, and I was looking at key codes. I can look it up, because I just saw that. So I can easily keto by for users that have less mobility in their hands. So that's what you're you do you consistently and continuously build projects that add value and the more projects you'd be able to add value, more things you build add value, the less questions people have.
+
+67
+00:38:57,030 --> 00:39:52,710
+Scott Tolinski: proof is in the pudding. Speaking of proving in the pudding, this is actually real. Yeah, I know, this is a rough transition. But this is a real tale from distress land, where you push a repo live and century saves your butt. So the sponsor that I'm gonna be talking about right now is sentry@sentry.io. Now, I just pushed out a tremendous update to level up tutorials.com yesterday at the time of recording, this will be months old, but it's using a new video player and all this sort of stuff, right? So this is this is a personal experience I had yesterday, I pushed this thing live. And then maybe about a fraction of a second after pushing this live, I got my first little Sentry email came in saying, hey, there's a string of DD is not defined or whatever, blah, blah, blah. But the end that the end result was is that date FNS had changed part of their format API and you had to use little DS instead of large ones.
+
+68
+00:39:52,920 --> 00:39:54,810
+Wes Bos: So I got bit by that too. You got
+
+69
+00:39:54,810 --> 00:41:31,500
+Scott Tolinski: bit by that too. And I I thought I had gotten them all and it turns out I missed one but Guess who did not miss one it was century. And that made it so that I was able to push out a fix for that, within seconds of pushing out the live application. I mean, my desk did not find it, nothing found it, but century found it and let me know. And I was able to solve that bug within seconds, really reducing the time of any sort of user inconvenience. So firsthand account of Sentry being amazing no Sentry it had sentry.io is the error and Exception Handling tool that is just really fantastic. They're going to be adding performance testing. I don't know if you've seen me this performance testing tools West, but I opted in for the beta recently. And it basically is giving you the performance stats of all of the URLs basically on your site, you could think of it almost as like Google Analytics for performance. And I'm getting some really seriously good data here. Right now I'm seeing that page that I had typically, which is forward slash tutorials was pretty slow. Well, the past 94 users on that page have had an average load time of 500 milliseconds, which for me, pretty good. I like that, I like that that's in the milliseconds, we didn't hit a second even from a load time. And that was one of the slowest loads on my entire site. So I'm getting a ton of use out of these performance tools already. I've only had them up for 24 hours. century@sentry.io, one of my absolute favorite tools for all those reasons and more, use the coupon code at tasty treat all lowercase all one word, and you're going to get two months for free. So thank you for Sentry for sponsoring.
+
+70
+00:41:32,400 --> 00:41:58,710
+Wes Bos: There's obviously a lot going on right now in every community and the web development community is sort of responding to police brutality and all the protests and whatnot. And Scott Nye, I hopped on a call Mike Scott, we need to do something. We're all ready to go and then drum hop these like, hey, Wes, like, let me know what you're gonna do. And so we jumped on a call and very, very appreciative for your time and whatnot,
+
+71
+00:41:58,730 --> 00:44:20,310
+Unknown: we had a conversation, your initial things like Alright, let's do one on one time two with a people of color black people and women and see nihilists go through their things to go through mentorship, and it's like, that's okay. But when you really are missing the mark on say, you guys have a voice that you can both provide ally ship amplification to people who already have the talent, what we've already learned is that there's no such thing as a lack of black talent, what there is, is a lack of employers willing to drop their pattern matching practices and you know, invest and take chances on minorities on people are color on Latinx on trans people like these, that is the problem that we're having in the tech community. It's not the others No, no black people, I there's a whole website called the Black talent, tech talent pipeline, that they're talking about it. And so the black COEs, their user group in Nashville when they're building that talent up as well. So these things, they're they're there they exist for what needs to happen is that people like you guys who have that forum, this platform. Oh, yeah, it goes off to these five things. You I find people that you even are amazing. If you have any tips for them, make those tips have introductions, Manos productions, let people know these people exist. Because and amplify the idea of you know, make a make the hire make the wire, right? Do the wire right like because that's the issue that we have. It's not that people, these latest talent doesn't exist, it's that people are not willing to take a chance. And if you guys aren't taking that chance of being more open to taking that chance, because that's just how the world works. So is you know, that's how that Sukkot started. That's how the whole learn how to code as a veteran kind of started while I was telling people you should learn how to code people like cool, but when I wasn't the person who paid the code, no one was listening. Then when I was making the money, I were coding I wasn't having a fun lifestyle. You were like, yo, how do I learn how to do that? So somebody has to make the first move and amplify and be like a real like legit ally. But guess like I said, I'm I'm doing positive things on Twitter. I'm trying to just mitigate people's emotions because I yes,
+
+72
+00:44:20,400 --> 00:44:21,930
+Wes Bos: do an excellent job at it.
+
+73
+00:44:23,040 --> 00:45:40,440
+Unknown: I I've been in firefights I've been in mortars I know how hard like in how emotional things can be in good I know that, you know, this is a marathon not a sprint. So and stress is like the number one killer of things like when we're dealing with things like this. So you have to be able to think in a manner to where you're solely focused on solving the problem. But you're not letting the you know naturally human things like affect your like process of start of solving it because like, you are completely just fighting your anger. You are completely justifying your stress and you're worrying things like that, like, you know, but boys and I am like terrified, like the idea of driving my wife's car like she has, like, I have a little light Honda Sonata because I, why I picked that car just because like no one really that's suspicious. I mean, my wife has a Mercedes and I can have my 17 year old, like, drive that thing like casa, pull them over. I am terrified of what might happen. Like I you know, I had to explain that to a friend who, you know, it's cool that you see all the things that I've gotten, but at the same time, you know, cops don't ask me for my dd 214 cops, I'm still five times four, one. What's
+
+74
+00:45:40,440 --> 00:45:45,180
+Wes Bos: that? Sorry? What's that? dd 214 the Canadian? Oh, sorry.
+
+75
+00:45:46,650 --> 00:49:49,350
+Unknown: They're like, there is the form that the military gives you. Once you're once you get out. Like, you know, even as the executive director of Mexico, I have to constantly remind people that yes, I am a veteran. And then they think the Whoa, you bleed green. So, you know, colors matter. Like no pause, I'm black, too. I was like, I, I was born black, I earned the right to be called a veteran like that. They're not, they don't like they're not separate, they're the same thing. I'm a black veteran, like, that's how I'm described. So that whole, like, I'm trying to help people stay home because I'm like, you know, this stuff is hard. It's not gonna be over anytime soon. So to do this work, you got to take care of yourself, like, you know, piano play, you know, drinking water eating, right? You're learning how to deal with your stress like that, you know, take care of your mental health, all this stuff to get this mission done. You know, you're gonna have to a lot of self care and a lot of prep and a lot of planning a lot of strategic thinking, because now one mistake, people are gonna try to exploit it or, you know, make up money. You know, we're in this new weird thing where the, you know, anti fog bleakie man is what caused everything. And I'm like, like, and it's just, it's a weird thing. And particularly because I, I'm a veteran, so people assume that I have a heavy conservative leaning. And I'm like, no further supplementary veterans. And just like most people are just like, everything else, is just the most vocal people tend to usually be on the extreme side of one side or the other. But we're, you know, a healthy mix of everything else. And I've been reading reports and articles all week of like, people who have felt who are upset and mad and like General, from generals, to National Guard, they were in DC, and they were like, We should have been there. That was wrong thing. And that's kind of what made me like, say something I was looking around. I was around my constituents who are executive directors, like, they weren't saying anything. Why are these 50 year old dudes like not saying a damn thing? And I'm like, okay, so you're like, Okay, I guess I'll be the first person to say something. And I was like, I and I was like, No, I want for a limp every day for because for boop for putting boot das on my country, and I'll be damned. If I'm watching. You're like, Dude, this type of like, this is insane. And I'm sorry for swearing like, but that's where I got like the most this, like, it made me visibly angry. And I had to say something. But then I also knew that Yo, while you're angry, you have to mitigate that and control it actually think strategically. So I'm like, yo, do the work. No, allies, like people are like, Oh, you know, some people, they're getting tired of talking to people about LS Show. I'm like, Yes, it's hard. But you still have to do it. Because, you know, being an ally is hard. Why? We're asking I tell people all the time, why you're asking somebody to give up something that in the animal kingdom, like no one asked that Tiger to get to the level of the deer, right? Like it's while I say, oh, let's get rid of the things that are the systems that are in place to make us more equal. So that way to make us equal. So you don't have these predisposed advantages on me in our society. That is hard for someone to come up and say like, Yes, I am aware that there is a systemic racist system in place that keeps me from getting ahead of you that keeps you from getting hit in the same manner. I do. I understand that because the system you have to work twice as hard for the same thing. I understand that even though we might have accomplishments, there are things that are in the way that are in it for it for you that are in the way for me. I understand that. How do I help be a part of the solution, and not the problem? That's freaking hard. Right? So I'm like, no, it's difficult as it is, like playing a book. I am still honored when people ask me because I'm like, yo, well, yeah, let's have this conversation because a lot Yeah, I know. That's difficult. Like Yes, especially like you like people are asking me during that timeframe. like everybody's emotions are kind of shot. So you know, come up to a black person asked him why how did you help make you you know, a better person and you're like little nervous. The last
+
+76
+00:49:49,350 --> 00:49:50,610
+Wes Bos: thing we want it to do.
+
+77
+00:49:53,430 --> 00:52:53,580
+Unknown: I get it like okay, yeah, thanks a while while you're you know, Cuz, like, well, like, it's like, everybody has to control themselves on that, because like, the only way we win is as a unit, right? We can't, can't be singular for emotion has to be a unified set. Like, you know, this is how you solve it. And it's not about getting political about, you know, you know, as everybody against racism, it's not, you know, just democrats or conservatives or republicans or libertarians, it's everybody against racism that we like, it's a global issue. If you're if you're in a country where it's like black people, but it is some, it's another culture, we're against that too, right? Is everyone that's like, my message was because to me, it was a horrible thing. But the ingenuity that came from people being common and stuff was just amazing. Like how their Kpop like stands. Like, bizarre Yeah, yeah, it was like, you know, it was like Avengers, endgame. People came out of the woodwork. We had the Amish, we had Kpop we had witches, like, yeah, like, yeah, this is like, this is, this is legit, like Avengers end game, when at the end, I was like, yeah. So I, like this is what it is about everybody working together to in a systemic issue, because we're all getting, you know, you saw the New York Times bestsellers list. Every book was about why, you know, being able to like see the systemic racism in yourself and being able to be a better ally. That is, why these are the steps that people are wanting, like to keep are one and it sounds like they're just like veterans, like if there's a veteran is willing to do the work, I'm gonna be there for them. There's a person allied is willing to do the work, I'm going to be there for that. Why? That's like what we're supposed to be for. We're supposed to help each other. Right? Like, you know, and I know, I tell people all the time, like my wife, she gets on my nerves about it. Because like, She's like, you're super selfless and you don't take you don't take any time for yourself. And like, that's a point like military taught me, you know, service for self service, excellence and pride my service was so basically what we do, that's what we're supposed to be doing. So that is like an integrity first. So being honest, doing the right thing, no one's looking and taking care of people by putting yourself like, you know, to be selfless, like that is a act of leadership. servant leadership is where is that? So that's where I'm like, I have to help people. I can't just sit that way. I can. Yeah, like, especially like, you know, I'm one of the hot more more visible veteran leadership, and I'm the only black one under like, 40 and I'm like, I don't say anything. Then who the hell will so why? What am I supposed to do and then you get the big six just chillin. So I was like, Okay, I gotta do something. Totally.
+
+78
+00:52:53,609 --> 00:53:15,750
+Wes Bos: I that's a blog post I think I want to see you write is I've had a few notes here throughout the entire podcast. It's just like skills the military has taught you to critical thinking levelheadedness stressful situations, helping others. Like I would love to just see like, it's super hot right now. I don't know. But it's that it's not allowed. I know all the navy seals are writing books right now. Right?
+
+79
+00:53:15,780 --> 00:55:17,340
+Unknown: Oh, yeah. I guess uh, wow. Like they're not supposed to whether they, you know, the government will like charge them like a million dollars and like, they make like 10 so it's okay. But yeah, you can tell we talk about that stuff all the time. That's one of the things I always tell people I think people especially enlisted troops folks think the year out they're just following orders. It's like no like we're the ones where and I constant feedback loop like combine is used out in the field. Why you know, doing small tasks Yeah, why do a small test things like that? Like stand ups we like it's not just like all stand up like we don't call it stand up but like we literally have like protocols random we're doing we're off patrol. We circle up life was more than a minute we're on a knee is one of the five minutes to go prone we have checking who's read. If you're if you're read for ammo, or green fam, have you read for water green for water? If you read for food, memories, all that stuff, like how was your battery life so that we do these systemic checks all the time. Like, it's just a knowledge transfer of how to operate with that, like, That's all it is. And we teach my favorite part of it. Sukkot is teaching people combat because you when the when they see how combat is and you put that knowledge transfer how it works then, like rapid deployed forces, and they see that, oh, they're using this so they like alleviates like some of the stress of them because like, you know, I kind of already know how to do this. It's just a different way. And I guess the part of being able that's part of a community and being able to be in like, the community is like, okay, I was a veteran. I know how this lifestyle is. I'm a programmer. I know how this lifestyle is. Now I know where they like or the interest intersection of them like and that's where I try to focus on when I teach my this is, you remember when you did this, this is how it works on this side, right? Same thing like that's what it's about knowledge transfer, helping people pushing forward get the one unified mission across
+
+80
+00:55:17,370 --> 00:55:25,230
+Wes Bos: beautiful. Is there anything else that like, specifically you wanted to get across to our audience? Or we didn't talk about that you'd like to talk about? Oh, no,
+
+81
+00:55:25,230 --> 00:55:42,000
+Unknown: I mean, this is a blast. I'm and I mean, you know, take care of each other. Support veterans black lives matter why just be the change. He wants to be the superhero that you wish you had when you were a kid. So why that's, that's one rule that I follow.
+
+82
+00:55:42,630 --> 00:56:59,220
+Wes Bos: Amazing. Amazing. All right, let's, let's get into some sick pics. This is the part of the podcast where we pick things that are sick. I'll start with mine, just because I have it right here. And it's a YouTube channel. So over the last, I don't know, eight, eight or so months, I've been doing a whole bunch of research and trying to learn about I want to convert either an ATV or a go kart to electric. So I'm gonna buy like a gas, one that the engine has exploded and converted over to electric. And I've watched a bunch of stuff on how batteries work. And I feel like I've got it down. I've talked about that in the past. But now I'm trying to understand motors, gearing, torque, how come a horsepower, electric horsepower versus gas horsepower, all that works. And I've just been ingesting for probably the last six months or so all of Jeremy feelings, YouTube videos, and he has got all kinds of videos on different types of motors what motors are good, like if you pull a motor from a treadmill versus a microwave, like what's better, even though they go at the same speed. Actually, I don't think a microwave goes the same speed as a treadmill. But it's just like awesome. He is a self taught engineer. So there's no background in this stuff. Just all self taught. And it just just makes so much sense to me. So check it out. Jeremy fielding on YouTube. Wow,
+
+83
+00:56:59,220 --> 00:58:46,110
+Scott Tolinski: that was pretty good. I never heard of that. I am going to sick pick a show on Netflix. I feel like Netflix is so persistent around everybody. Right now everybody has Netflix. Right? So hopefully, I'm not leaving too many people out here. But I don't have you ever seen this show explained. I believe it was created by Vox. But it's been around for a couple seasons now. And I got my parents into this because we watched one on tattoos. My my dad got into tattoos. And it was sort of like the history of this but explained it is basically these deep dives into explaining various things right, like, so one of them would be like tattoos and why it was taboo and the history of it. Another one would be like cricket, like I don't know anything about cricket, but explains the whole history of the video game or the video game, the game, the sport, cricket. And there's so many these amazing ones Kpop. One, I didn't really know too much about Kpop. And this gave me the the whole background, there was one really important episode in relation to some of what we talked about here. But there was one called the racial wealth gap explained and it was talking about how loans were issued in specific neighborhoods and directed black families and specific ones and how some of these things that underlying sort of how we got here and how sort of the the quote unquote American dream was not available to everybody. So if you watch this season, really put on the racial wealth gap, it was one of the most important things that I've watched on in this but just about every single one of these is fantastic. There's a couple seasons of it, and corny and I just binge through all of these. They're all pretty quick, like 20 minutes long. And in really, really just well done. Well produced. Oh, there's one encoding. I don't know if I've seen the one encoding. Hey, interesting.
+
+84
+00:58:46,440 --> 00:58:49,410
+Wes Bos: I'm in drone DMS any sick pic today.
+
+85
+00:58:49,410 --> 00:58:59,850
+Unknown: Oh yeah, I have to do is a show. Where show HBO they have the watchmen. I don't know. He hasn't watched it yet. But he's seen
+
+86
+00:58:59,850 --> 00:59:00,540
+Scott Tolinski: the show.
+
+87
+00:59:00,600 --> 00:59:29,670
+Unknown: Yeah, the that series is amazing. It's really well written and ironically, or some of the things that people have learned, I think, especially in my circle, because I'm a big comic nerd. People have kind of started like it was the first show that woke them up because it covers black Wall Street and the Tulsa Oklahoma massacre and things of that nature. And I never forget and so I was like why would they make this such a horrible thing up and I was like that's that's real. And she was like what? Like, yeah, let's
+
+88
+00:59:30,690 --> 00:59:32,820
+Scott Tolinski: just stop there. We're not taught in school. Yes, I
+
+89
+00:59:32,820 --> 00:59:59,970
+Unknown: know. Yeah. town school. I bet she's like I like lived in Oklahoma my whole life. I never thought about this like, yikes. The technical vidrio is like the thing that I am like on fire about right now. It's a holographic. Basically the screen mirrors your video. So you can do tutorials and things of that nature and walk through the tutorials and people can see you in the background versus you like being you know, a little square here. What's it called?
+
+90
+00:59:59,970 --> 01:00:00,840
+Adriel
+
+91
+01:00:00,840 --> 01:00:13,710
+vidrio is vi D ri. Oh, absolutely on fire about it. I love it like cuz the idea of like not having to be this little itty bitty square. Oh, it's fun. There's something.
+
+92
+01:00:14,759 --> 01:00:15,810
+Scott Tolinski: I never heard of this. Yeah,
+
+93
+01:00:15,869 --> 01:00:19,470
+Unknown: I just learned about it like last week and I have been playing with it every day.
+
+94
+01:00:20,820 --> 01:00:27,750
+Wes Bos: Yeah, you got to see this. To understand what it is cool. I'll put the link in the show notes as well. Sick pick Jerome.
+
+95
+01:00:32,850 --> 01:00:41,220
+Alright, shameless plugs. I'm gonna shamelessly plug all my courses. Wes bos.com forward slash courses, check it out coupon code syntax for 10 bucks off?
+
+96
+01:00:42,060 --> 01:00:57,360
+Scott Tolinski: Yep, I'm gonna shamelessly plug my courses as well. The course we're doing for this month because we do a monthly course over our level of tutorials is on design systems with CSS and CSS variables. We're using modern CSS stuff to do creating design systems.
+
+97
+01:00:57,690 --> 01:02:10,050
+Unknown: For me, of course, I'm shamelessly plugging everything PwC we just started some of the veterans to start a podcast where they're interviewing grass and talking about all things take from point of view of like a transition to veterans. So definitely check that out. We just got our GitHub sponsors for our org please like if you want to sponsor our tech, so that way we can continue to like build new things. our end goal is to take that website and have it to the point where we have videos where you can abuse and replicate along with the videos and have it you know, be able to plug in, sign in with your GitHub, your Stack Overflow, like our in game like, which these big shout out to Atlassian and JIRA for hooking us up with all their JIRA products because our endgame for the website, or the next year to two years is insane, like their platform is like it's going to be able to help us ramp up to going from maybe 4050 veterans a year or two hopefully like 500 veterans a year. Wow. Sounds like I'm so excited. Yeah, and just donate donate and listen to our stories follow things that we're doing by our Twitter page of Twitter is at vesco at Jerome Hardaway, I'm always I'm just trying to be positive and help as many people as I can.
+
+98
+01:02:10,730 --> 01:02:16,350
+Scott Tolinski: We definitely appreciate you. You're doing amazing things and thank you so much for coming on the show.
+
+99
+01:02:16,500 --> 01:02:19,080
+Unknown: Roger, that thing just reminded me. Of course,
+
+100
+01:02:19,140 --> 01:02:23,070
+Wes Bos: I'll come Alright, talk to you later. Ace, please.
+
+101
+01:02:25,020 --> 01:02:34,730
+Scott Tolinski: Head on over to syntax.fm for you full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
