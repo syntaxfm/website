@@ -1,0 +1,128 @@
+1
+00:00:00,359 --> 00:00:24,480
+Announcer: Monday, Monday, Monday, open wide dev fans yet ready to stuff your face with JavaScript CSS node module, BBQ Tip Get workflow breakdancing, soft skill web development hasty, as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob, and Scott Tolinksi ski.
+
+2
+00:00:25,950 --> 00:00:48,900
+Scott Tolinski: Oh, welcome to syntax on this Monday tasty treat, we're gonna be talking about GitHub actions, GitHub actions, we're going to explain them what they're here for. And you've probably gotten access to them recently, if you're on GitHub, and we're going to talk a little bit about what they do and why you might be interested in them. My name is Scott Tolinksi. I'm a developer from Denver, Colorado, and with me, as always, is Wes Bos.
+
+3
+00:00:49,229 --> 00:00:51,630
+Wes Bos: Hey, everybody. Hey, Wes.
+
+4
+00:00:51,870 --> 00:01:39,810
+Scott Tolinski: This episode is sponsored by Log Rocket, one of our favorite sponsors over here at syntax, we love Log Rocket, because what they do is they make solving your bugs so much easier by giving you a reproducible video that you can watch as you clicks around and does this thing and breaks your site, you might be getting some reports, or perhaps you're using another error and Exception Handling tool. Or perhaps you just logged into your Log Rocket and saw that there was a bug happening and you wanted to know why. And so you can click that video and you can see the network activity, you can see the console logs and error logs, you can see just absolute pixel perfect video what the user saw, you can even scrub through it. And it's really cool. It puts a little timeline markers in the little timeline there to show you when events happened.
+
+5
+00:01:39,810 --> 00:01:42,660
+Wes Bos: Scott's doing lots of hand gestures right now.
+
+6
+00:01:42,780 --> 00:02:36,330
+Scott Tolinski: I'm just tickling like crazy right now. karate chopping over here. And in honor of GitHub actions, I'm doing some chops. And let me tell you, this is one of those tools that really saves your bacon. Because how are you going to know how user managed to goof up things users can like find the craziest ways to goof up things on your site, you turn your back and all of a sudden, the headers upside down and the footers where the header should be in there, their arm broke somehow. And you got to figure out how the heck they did that? How did they break their arm using your website? Well, this thing will help you figure that out. So check it out at Log rocket.com forward slash syntax and you will get 14 days for free. This is a service I use and love over here, I level up tutorial. So check it out at Log rocket.com forward slash cindex. Alright, GitHub actions, you want to get into it. But what you want to give us a what is GitHub actions? What are they?
+
+7
+00:02:36,600 --> 00:04:12,930
+Wes Bos: Yeah, so GitHub actions was rolled out. I know I've had it for about six months now. And I've seen a couple conference talks about it. And I actually haven't used it on any of my projects yet. But I've been like really digging into it. So my hope for this episode is to explain what it is and what it can do. So that the next time that you have this problem, you can go, Oh, that's what GitHub actions does. And then you can sort of roll into it. So GitHub actions are little pieces or big pieces of code that will run when some sort of action on GitHub happens. So essentially, it's a file with code in it. And this code can be written in JavaScript, I think I've seen libraries for, for Ruby, and for a couple other languages, that code can be run and can be triggered when different things on GitHub happen. So like, what would that be? Well, when somebody submits a pull request, or creates an issue or edits an issue, or assigns a milestone or pushes some code to your repo, or closes an issue, or any of these things that happen, like they're all events, all of these events on GitHub, you can then listen for them to happen. And when those things happen, you can trigger some actual code to run. And these things are called actions. So the code that you write is called a runner. And you can host them on GitHub yourself. Or you can also do a self hosted runner. I'm extra Sorry, it's it's only in beta right now. You can't do it yourself just yet. But they're, they're beta testing it.
+
+8
+00:04:13,049 --> 00:04:17,880
+Scott Tolinski: So why would you host it yourself rather than hosting and GitHub? Like, what's the benefit there?
+
+9
+00:04:18,120 --> 00:06:01,800
+Wes Bos: So GitHub offers three environments to host these runners right now. And they have Linux, a Windows and they actually haven't even have a Mac one, which is really interesting. And they give you 2000 minutes for free on a free plan. And it goes up from there. And I guess for people who are doing a lot of actions, maybe I should say, just for a couple examples, an action might build your application, it might deploy your application, it might run prettier, might run tests, things like that. So you might have, I don't know, six or seven different actions. And each of those takes, like I know, building the syntax website and deploying it to now takes about eight minutes. And if you're doing that, oh 20 times a day, every single time that you send in a pull request, you'll run out of those minutes really quickly. And then you go and pay GitHub anywhere from point eight cents a minute up to eight cents a minute for Mac OS, to actually run this code on it. So it's I kind of equate this to like a serverless function, where anytime something happens, you can run these actions and it will, you'll be able to run a script that does whatever you want, it deploys, it builds your app, it can publish to NPM, it can run prettier, it can check for spelling mistakes, it can apply tags, to pull requests, things like that, it can notify people of imagining you could like send text messages and things like that, as well. And when you get over your minutes, you have to go and pay GitHub or if you have your own infrastructure, if you don't want to run maybe sensitive code on GitHub servers, and you want to run on your own servers, a lot of companies can't do that. Gotcha, then they might want to, you might want to host it yourself on your own servers. Okay, so
+
+10
+00:06:01,800 --> 00:06:37,980
+Scott Tolinski: this sounds a little bit like, I guess it sounds like a little bit of super powered, continuous integration stuff. Because more than just continuous integration. It's also building in things that were even like process based maybe around issues or things in your repo. But one of the things that I'm really interested in, is this going to replace continuous integration services? Like, am I going to need to use codeship? Or said before, or circle ci, or any of those things? Are you still going to need those with GitHub? It doesn't look like it actions, or could it completely replace that,
+
+11
+00:06:38,190 --> 00:07:33,900
+Wes Bos: I think it will completely replace it, because you do have to take it on yourself to actually write the code that the CI does, because like, it's not like GitHub is going to like write code for every single possible situation, but when people will, but But well, they people have published all of these different types of actions. There's hundreds of actions already on GitHub, for things like deploying to Google Cloud, deploying to AWS, running your test suite, and making sure all of these things happen. And you can also order them as well, it's called steps. So you might want to like, first run a linter, and then run a builder and then run a deploy and then run like a domain name swap on that. So that might be four different steps that you have interest. Um, and as far as I can see, yes, this is going to replace all of these like little 510 dollar a month services that are used for your continuous integration.
+
+12
+00:07:34,050 --> 00:08:03,480
+Scott Tolinski: Yeah. Which I've never found to be super user friendly. Anyways, you know, I don't want to complain too much, because they're fine. But I feel like there's things they could have done. Like, coach, it was really great, because it did a lot for you. But I think you were paying for that right? Well, I think some of them, I don't know, they all have their own ways of doing things and their own systems that you kind of have to adhere to and learn and then becomes a big thing that you have to learn this thing, where I feel like GitHub actions are gonna be a little bit more. I don't know if the word right word is ubiquitous, but used is ubiquitous,
+
+13
+00:08:03,570 --> 00:08:42,020
+Wes Bos: used by everybody? Yeah, like, you don't have to learn a new way. It looks like they're all based on YAML, which is the indentation based config file. So if you've ever done like a Docker file or something like that, kind of similar to that. So it certainly we'll still take a lot of setup like this is not some amazing GUI, where you just click together things that exist, you still have to write your own config files and whatnot, but like, I'm just running some math on what I would need it for. And it's, it's real simple, real simple. I think it will be I think it will be very cheap. If we were to run syntax, or even my own build on on something like this.
+
+14
+00:08:42,210 --> 00:08:54,630
+Scott Tolinski: Interesting. So yeah, it seems like it could be definitely very useful, especially and maybe you were like on a roll your own Gatsby type of thing, where, like you were headed a Gatsby and you wanted to have like a build created directly every time you pushed,
+
+15
+00:08:54,720 --> 00:09:49,500
+Wes Bos: yeah, deploy it to your server. Yeah, comment with a, like, you could also like you could check it. And if it's if it's failing some tests or failing code style, then you could either just automatically fix it or have a bot, write a comment under it. Like there's a lot of bots that currently do stuff like this. And GitHub actions, I think will totally replace all of that as well. Cool. Pretty cool. Yeah, it's and so GitHub has libraries in, I was just looking at the JavaScript libraries, and they have them in other languages as well. So like, you would write like a node app, or a node script that imports the GitHub libraries. And then you can use those libraries to get information about the code, you can check out some, check out a branch if you like. It's pretty neat to be able to do all of this. And it's pretty cool that GitHub is opening up the ability to run code on their own servers. Wow,
+
+16
+00:09:49,790 --> 00:10:57,300
+Scott Tolinski: this is really interesting. I just found just googling around within the action googling I'm just searching within the actions here. And I found one called it next diff for next j. s does actually Made by site themselves. I've never seen this before. And this action takes a screenshot of your change to pages, and then writes a comment on a PR. Yeah, just the positive, stuff like that, like, yeah, I'm running a site like level of tutorials, there's a lot of pages and I make changes. I rely on, you know, Cypress and my unist unit tests, but I'm not testing for visual changes necessarily. And so sometimes things do maybe introduce a small visual bug on a page that I haven't checked or didn't look at, or manually test for some reason, in a visual way. And this seems like that could be a really great thing to just get a nice little Alright, here's the changes that have happened. And here's them and screenshots right here in front of you. That seems like that seems like a task betta, like a manager would do to be like, hey, go off and take screenshots of every single page and then email them to be because I'm, you know, not tech savvy. ahead. Wow. Have
+
+17
+00:10:57,300 --> 00:11:00,600
+Wes Bos: you ever had that, that gets you? Oh, you rusty, we're not.
+
+18
+00:11:00,720 --> 00:11:11,670
+Scott Tolinski: We had somebody was just like, we need screenshots of all the pages. It's like, why don't you just go to the darn site and look yourself, or you know, pull it up on your phone, even all I need screenshots? Oh,
+
+19
+00:11:14,370 --> 00:12:02,670
+Wes Bos: that's great. I'm just reading through the code on the next diff. And it seems 190 lines of JavaScript, it uses puppeteer. So like the beauty of GitHub actions is that if it's done in JavaScript, you can just use any node module that you can think of, it does look like there's a Docker file, which is 25 lines of code. And part of the Docker file is that once the Docker image is up and running, I'm imagining it has puppeteer or headless chrome running in it, then it just runs this node screenshot j s. And then that will in turn, pull down the website, check all the pages, and then post a table to the comment. So that's actually a really good example of like a simple example, which seemingly pretty powerful,
+
+20
+00:12:02,760 --> 00:12:43,440
+Scott Tolinski: yes, it's simple. Yeah, we should actually link to this marketplace, I'll pull up put this in the show notes here. Because the the marketplace looking for actions, there's a lot of cool stuff that just popped through in here. And just even again, just to check them out, like you said, just pull through their code and see to see what you can do for some of these. But also maybe just get inspired. Like I had no idea that screenshots thing even existed. And I just searched for next, and it popped up. So I'm pretty darn excited to dive into these a little bit more now that I have a firmer understanding of how powerful they can be. I was sort of thinking they were just sort of a continuous integration replacement. And I wasn't thinking that they were so powerful.
+
+21
+00:12:43,650 --> 00:13:36,000
+Wes Bos: Yeah, it's it's the sky's the limit if you can run your own code, right. So that's pretty cool. I'm just looking at other ones. Validate license, make sure repo has a license, environmental variables, syntax checker, lots first things like es lint in here. That's because that's like the probably the most simple one is just format the code, when somebody sends in a pull request, yeah, format the code properly, get up actions for Gatsby, see Li Twitter action, update a status on behalf of a user. So like, whenever you merge a pull request, or whenever you cut a release of an application, you could post it out to GitHub, update or create a DNS record on CloudFlare. That's huge, because a lot of this like hosting is just changing your DNS a record to a new value, and then your domain name will
+
+22
+00:13:36,030 --> 00:13:45,810
+Scott Tolinski: cut over immediately. Here's one that exports figma components directly from figma and then uploads them to a GitHub repo. Pretty
+
+23
+00:13:45,810 --> 00:14:18,660
+Wes Bos: cool. Yeah, there's that Oh, there's SMS I SMS responsibility alert. I said that earlier that that does exist. php runner? Yeah, pretty cool. Pretty, pretty, pretty. Oh, secret scan, scan your repository for secret? Oh, by accident. Mm, scan your repo. Ah, so if you because I've certainly heard of people accidentally posting like AWS tokens to GitHub. So maybe this will stop you from doing that before you even push
+
+24
+00:14:18,660 --> 00:14:25,020
+Scott Tolinski: it. s3 backup mirror repository to an s3 storage repo. Cool.
+
+25
+00:14:25,230 --> 00:14:59,130
+Wes Bos: I can't figure out how this thing works. But what the secrets can but I think the way that it works is that it will stop the push from happening. So I even think you can go even before you push code to a repo, like from your command line, I think you can reject it. So you don't even accidentally push a secret to GitHub, those things like well, how would that work if as soon as you even submit a pull request, the code is on GitHub, and then you're poached, but I think this will stop it. That's just another example of like, being able to trigger these actions from running at any given point.
+
+26
+00:14:59,370 --> 00:15:04,980
+Scott Tolinski: Super cool. I'm very excited. I'm glad we chose to do this episode because now I'm inspired.
+
+27
+00:15:06,270 --> 00:15:16,980
+Wes Bos: Awesome that that was my hope with this is that like, not necessarily, here's how I'm using it. But here's what it is. And here's what people are using it for. So just clear the air as to what it is. Wow, cool.
+
+28
+00:15:17,040 --> 00:15:48,510
+Scott Tolinski: So these are GitHub actions, I am pretty darn excited. I don't know about you. And I'm going to be spending some time in this marketplace today. So check it out. We have the links in the show notes here. If you want to check out the GitHub actions marketplace and just pass through some of that code and see what you can use or might be useful in your projects. Just doing a little quick little search about whatever you know, type of thing you're using or something you might be interested who knows somebody may have already written this thing for you. And that's the best case scenario. So as always, this has been an awesome episode of syntax. I look forward to Wednesday's episode. All right.
+
+29
+00:15:48,510 --> 00:15:53,100
+Wes Bos: Thanks for tuning in and we will catch you later later. Please
+
+30
+00:15:54,930 --> 00:16:01,800
+Scott Tolinski: head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player
+
+31
+00:16:01,800 --> 00:16:02,580
+Unknown: or drop
+
+32
+00:16:02,580 --> 00:16:04,710
+Scott Tolinski: a review if you like this show.
+
