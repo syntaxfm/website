@@ -1,0 +1,160 @@
+1
+00:00:00,359 --> 00:00:24,480
+Announcer: Monday, Monday, Monday, open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob and Scott l Tara. Totally ski.
+
+2
+00:00:25,950 --> 00:00:58,400
+Scott Tolinski: Whoo, welcome to syntax. on this Monday tasty treat, we're gonna be talking all about what it takes in some of the pitfalls, the classic pitfalls of moving from PHP to node to very popular server side languages. And I'm sure this is something that a lot of you have done at some point. And a lot of you may be doing again in the future, or perhaps you are doing this currently, my name is Scott Toland scam, a developer from Denver, Colorado with me, as always is West boss.
+
+3
+00:00:58,470 --> 00:01:34,020
+Wes Bos: Hey, everybody, I'm excited to talk about this. I think it's kind of a cool episode, I even asked on Twitter, like if you had learned node after PHP. And this is not to say that you should move from PHP to node. But this is just I know, there are a handful of people who have made that switch. And it's a pretty big like paradigm, I think, a big paradigm switch. And there's a lot of like gotchas and things that you maybe didn't totally understand. So we're going to attempt to detail what all of those are. And even if you are no developer, there might be a couple clarifications for what this beast of note is. Yes, absolutely. And
+
+4
+00:01:34,050 --> 00:03:40,860
+Scott Tolinski: today's episode is sponsored by a company that will aid you very, very well in your transition to learning anything new. Because obviously, if you're going from PHP to node, you're going to be making a ton of mistakes. So you'll want something to capture all those mistakes and tell you what you're making. In case there's anything in production. And of course, I'm talking about century and you're going to want to head over to century and century.io. And you're gonna want to subscribe using the coupon code, tasty treat all lowercase all one word, you're going to get two months for free. I have a I want to talk a little bit about briefly, I have successfully used Sentry to squash that bug that I was talking about. It was very, very difficult. But luckily, Sentry really gave me a complete understanding of the things I needed to have. So here's a little background, I had this bug that was coming about. And it was happening intermittently, maybe about 10 years users or so we knew the exact qualifications for this bug to happen. But we could not reproduce it ourselves. And it was driving us absolutely bonkers. Because we couldn't reproduce it was sort of like shooting in the dark. That said, because I had century here was like a little flashlight on the top of my helmet, allowing me to navigate the Cave of this bug. And it really, really helped us out so much so that we were able to finally solve it. So thank you very much for century for making my life that much better. So head on over to sentry.io Sign up today, check it out one of my very favorite tools and a central part of my workflow in general. So PHP, I think this might be real the first time that we've spent some time talking about PHP for any extended point of time outside of WordPress. Yeah, show. So I'm interested to get into it a little bit. It has been a decent amount of time since I've written PHP code at this point, which is not not saying anything about PHP, specifically, just that that's where my head's been at, you know? Yeah. And I was never the best PHP developer outside of any of these other frameworks, Drupal or WordPress. So I'm really interested in in some of these things, and some understandings about moving from PHP to node and what some pitfalls that people generally have.
+
+5
+00:03:41,100 --> 00:04:29,490
+Wes Bos: Yeah, so the first one we have here is that servers need to be started and babysat and restarted when the app crashes. So this is kind of not true. But generally, when when people are using PHP, it comes along with nginx, or Apache comes with the server. And then if something breaks, like, like one of your scripts goes awry, and it doesn't work, you can just refresh the page or the next person that goes to that URL is not going to see the server falling over. But with node if something crashes, if if your node process quits, that's it, you have to actually start your server over again. And that's why people use things like I personally use forever. And most recently, I've switched over to pm two. And what that will do is it'll watch your process. And if anything breaks, it will try to restart the process for you.
+
+6
+00:04:29,790 --> 00:05:45,870
+Scott Tolinski: Yeah, which is definitely one of those things that people hit very early on the first time they have a crash, and they're just sort of like, wait, what, especially in a live server, you got to get into those things almost immediately when you're learning web development with node, and it's not something I had ever personally thought of with PHP. So the next one is, you know, PHP has been established for so long that some of the tools that are sort of just, you know, ubiquitous or they come along with it, maybe it's Apache or nginx or something like that, but there is a No file system based routing built in. So you can't just go ahead and visit the index file or something in your browser, you have to build the route yourself, you have to tell the request what to do. And you have, I remember, this was like a big, weird thing for me. When I first picked up node, I went to like a node meetup. And we spent the entire meetup just like outputting, a Hello World from an index dot HTML. And I just remember thinking like, wait, why are people using this? Again, this is so so much work or so. So weird. This is one of those things that we typically many PHP frameworks, because that's really what you just went off of just done for you and not something you had to ever have to think about, especially if you're using Apache nginx, which you most likely were?
+
+7
+00:05:46,110 --> 00:07:01,260
+Wes Bos: Yeah, it's it's kind of interesting. And for that reason, I think that's why PHP is so easy to get up and running, where you could just sling an index j s. And if you want it to have a set a separate file that just did did something, you could just throw that on your server. And that's its own sort of process. And when somebody hits that process, it's up and running. Whereas node is lot I think, is the kind of overwhelming idea of this entire podcast is that note is a lot less batteries included, you sort of have to bring everything yourself to note including lots of language, because JavaScript, the language lacks what's called the standard lib, it doesn't come with a whole lot of software as conversely, PHP has this massive standard live, and you can get a lot done without ever having to reach for external dependencies. The other thing I also asked on Twitter, like like, what are some of the gotchas that came from switching from PHP to node? Pete Tasker is at p Tasker said, node is more building on building a server and PHP is working on a server. Same idea with learning code. Also PHP, you don't necessarily need to have a framework with no, you basically have to have express or happy or something like that to get anywhere half decent. I totally agree. Like we said, there's a lot less batteries included.
+
+8
+00:07:01,650 --> 00:08:16,800
+Scott Tolinski: Yeah, another one that we had was the functional programming concepts within JavaScript, in general, are not something that you would typically dive into, you're probably doing like, object oriented PHP or something. You know, me personally, I didn't know necessarily because you know, I come from a front end world. So whenever I was doing PHP, in general, it was so much of working within the confines of these different frameworks that have already existed, whether it's Magento, or WordPress, or Drupal, right, you're existing within their systems, you're not building it yourself. And then when I moved to node, and JavaScript for everything, even my JavaScript skills weren't exactly great when I first started. And one of the things that made me a better developer for both node, but JavaScript in general was learning functional programming. And even if I'm not doing strict, hardcore functional programming all the time, I'm doing functional programming to an extent for just about every single thing I do writing pure functions, using what's called immutability, those kind of things. These are concepts that I never even thought about once in PHP. And now it's become the key part of writing clean and good code for both not only my server side, but my front end code as well.
+
+9
+00:08:16,890 --> 00:11:43,500
+Wes Bos: Next one we have here and I would wager that this is probably the biggest sort of gotcha the biggest hurdle moving from PHP, and that is that JavaScript is mostly so synchronous, whereas PHP is mostly synchronous, yes. Or, like, JavaScript doesn't have this concept of threads. And really quickly threads in programming are sort of this idea of you go off and do a little bit of work and come back, when it's done, we kind of have that with like a web worker. But in general, JavaScript kind of just works that way with concurrency. Meaning that if you were to set off a fetch request, we're not just going to sit there and wait for that fetch request to come back before the next line comes, it will just fire it off, and then keep going with the rest of lines. And then when the data comes back or response comes back, then we actually deal with it with what's called a callback. And with PHP, everything is very synchronous, meaning it reads top to bottom. And if you do want to explicitly do something that is sort of a synchronous, you have to get into what are called threads. And that's probably true for a lot of languages where they don't have a sink await built in by default. So sort of getting over that mindset of everything is a synchronous, and JavaScript is a bit of a hurdle. But I think now with a sink await that we have here it's fairly simple to get up and running with that. The other thing that a lot of people said and I've found this myself is that on PHP, everything gets cleaned up on each of their quests, meaning that you sort of just like when you hit a hit a file or an endpoint or something in PHP, it sort of starts up a new process and you can have variables and things like that and then when when the request is sent, all of that is cleaned up. With node you, you have the possibility of having global variables or you can have state management or you can have memory. That's kind of a weird thing with I remember when I was first learning Xpress, I was using passport j s, and all of my logged in users would were stored in memory. And then when the process restarted, everyone got logged out. And I just couldn't figure that out. And I was like, oh, like, in No, you do have this ability to sort of like have these various. And there is like sessions and things like that in PHP, but everything sort of gets cleaned up with PHP, whereas node, you have to sort of think about that. And I've also run into many bugs. When that when I was first learning node where I accidentally had shared a variable from one request to another, where that's kind of hard to do, unless you explicitly do it in the PHP world, huh? What other things I'm just going to read these straight from lens Webber, which is Ph. R. Y said, multiple client requests exists in the same process. Hence, you bleed data over from one to another, if you don't stick to the context object religiously. in PHP, you store so much personal data and services, and it's cleaned up on every request. So that's just another good way of explaining sort of what we went through. Other things about that is that the JavaScript event lifecycle is funny. We've talked about this before, in quite detail on some of our like, our stumped episodes, which like, you know, how the JavaScript lifecycle is funky. And sometimes you have to await a zero second timeout in order to put somebody on the end of at the end of the lifecycle that's just much simpler, I think, in in PHP. So I think like, it's sort of like when learning react, there's a lot of gotchas that you sort of have to have to know when you do this stuff.
+
+10
+00:11:43,739 --> 00:12:07,680
+Scott Tolinski: Yeah, it's like the price of entry. To get into this, it's like, you have to now pay the Node JS troll tool to you know, get get through some of these things. It's just each platform. And each library or each anything is always going to have its own set of here are things that you just got to work through at some point or hit on those transitions, and maybe have a little bit of a stumbling here or there, but make you a better developer.
+
+11
+00:12:07,919 --> 00:12:38,490
+Wes Bos: Yeah. Last thing I have here is that dependencies are key in Node when I was doing PHP, and I think this has changed since then. But when I was doing PHP, sometimes you would have to go off to GitHub and copy paste a, like a wrapper or something like that. And I know that PHP has composer and things like that for installing dependencies. But dependencies are a way of life in Node so much that it's almost become a meme. That you have to install four gigs of stuff before you can even write a Hello World in Node world. Yeah, it's
+
+12
+00:12:38,490 --> 00:12:56,730
+Scott Tolinski: it's funny when Drupal moved over to composer I remember, I think a lot of people in the community were like, I don't know, necessarily get this. But like, now, if I was coming back to something like that, now, it makes so much more sense in a different context. Now that I've worked in this type of environment where that kind of thing is much more normalized.
+
+13
+00:12:57,599 --> 00:13:04,410
+Wes Bos: I still even remember doing like jQuery plugins, and you just download the zip, and you just then you just put it over
+
+14
+00:13:04,410 --> 00:13:10,980
+Scott Tolinski: it in your head tag, you just get it from an ABN Who cares if that CDM goes down at some point.
+
+15
+00:13:11,369 --> 00:13:33,570
+Wes Bos: I remember teaching, if this was even like six years ago, I remember teaching like jQuery plugins. And then people would people would have the hardest time being like, which of these 700 files in this GitHub repo actually need? And I'd be like, Well, it depends. I don't know. It's different for every single one is so much easier. Now. We just require the thing and call it a day. Yeah,
+
+16
+00:13:33,570 --> 00:13:43,170
+Scott Tolinski: I know. It is so much easier and so much different in so many ways. I can't imagine like I know people complain about the complexity of today. But come on, there's so many less complex things about today.
+
+17
+00:13:43,529 --> 00:13:53,490
+Wes Bos: Yeah, yeah, absolutely. It's it. We should do. I think we've talked about this before, but would you do a show on like the olden have we even done that? Have we did that?
+
+18
+00:13:53,969 --> 00:14:02,790
+Scott Tolinski: Like the olden days? I'm so disturbed sleep deprived right now, I could not tell you what we have done a show on? Because I am out of my mind.
+
+19
+00:14:04,080 --> 00:14:13,530
+Wes Bos: Oh, man, I don't think we've done it. But we should do an episode on like the way things used to be. For those young listeners, they can know how good they have it,
+
+20
+00:14:13,590 --> 00:14:15,090
+Scott Tolinski: get off my lawn episode.
+
+21
+00:14:16,020 --> 00:14:49,920
+Wes Bos: Awesome. I think that's Oh, one more thing I had here. JavaScript doesn't have keyed arrays only based on index that's just like maybe a programming thing where in JavaScript or sorry, in PHP, you can have arrays that have keys, sort of like objects do in, in JavaScript, where you can say like, if I have like a person, square bracket, middle name, that could that could be an array where you reference the arrays, middle name, property, whereas in JavaScript, everything is index base 012345. So that's it. Anything else you want to add there?
+
+22
+00:14:50,700 --> 00:14:52,260
+Unknown: I don't other than I'm happy. I'm
+
+23
+00:14:52,260 --> 00:15:11,520
+Scott Tolinski: not working in PHP anymore. For no reason other than I was just never very good at PHP. I think I probably could have been good at PHP. As you know, you, you know, you learn and whatever. But for some reason writing one like that a lot easier for me to get better at one language, even if node is very different from you know, client side JavaScript, it's
+
+24
+00:15:11,520 --> 00:15:12,390
+Unknown: still one language, I
+
+25
+00:15:12,390 --> 00:15:30,540
+Scott Tolinski: don't worry about all those syntax little things that I got to remember. My brain is not cut out for that. So yeah, I'm happy that I'm not writing PHP. But if you are writing PHP, that's cool. I'm sure. It's changed a lot and improved a lot. Even as versions of PHP have grown. It's gotten much better. So not a hater, not a hater on it. It's all good.
+
+26
+00:15:30,900 --> 00:15:37,200
+Wes Bos: Yeah, Scott's been very careful now, because he got no roasted for saying nobody uses Java.
+
+27
+00:15:37,439 --> 00:15:42,300
+Scott Tolinski: Yeah, I did get roasted for that. I also got roasted for saying anything about tailwind.
+
+28
+00:15:42,420 --> 00:15:43,230
+Unknown: Cisco
+
+29
+00:15:44,550 --> 00:15:46,590
+Scott Tolinski: is Yeah, I'm just gonna ride that line.
+
+30
+00:15:48,480 --> 00:16:40,260
+Wes Bos: That's great. That's it's one thing I like about our community is that they actually are fairly respectful. And I don't feel like anything comes from, like Angry place. I think most of it just comes from, like, I actually really love this. And I would love for you to love this as well, which is cool. If you have any thoughts on this, if you know both node and PHP, if you learn node after PHP, or maybe even the opposite way, tweet us at syntax FM, we'd love to hear what your sort of gotchas are. And we will retweet them. Cuz they're a, I was thinking this is a total aside, Scott, but I thought I would just bring it up right now. We should make like a retweet machine, where when people tweet us they're like, thoughts about an episode. Yeah, it will like go into some sort of queue. And then like the audience can like upvote ones. And then once they hit a certain certain threshold, they'll automatically get retweeted out.
+
+31
+00:16:41,340 --> 00:16:44,490
+Scott Tolinski: That dangerous and a lot of work. Yeah.
+
+32
+00:16:46,590 --> 00:16:47,880
+Wes Bos: Couldn't be abused at all.
+
+33
+00:16:47,910 --> 00:16:56,820
+Scott Tolinski: It could not be advised at all. Yes. But by all means, yeah. No, if you want to put that work in and you do not fear what could happen there. Go Go ahead.
+
+34
+00:16:57,030 --> 00:17:21,480
+Wes Bos: Thank you. It would be a fun. a fun way to use like a, like a queueing system or do like a note app that uses uses streams because Twitter has a Streaming API instead of just like a request API. I think that'd be pretty nifty. So maybe maybe coming to a YouTube near you. Alright, I think that's it. Anything else to add there, Scott?
+
+35
+00:17:21,959 --> 00:17:23,670
+Scott Tolinski: I got nothing.
+
+36
+00:17:24,180 --> 00:17:30,540
+Wes Bos: Cool. Well, thanks for tuning in and we will catch you on Wednesday. Please
+
+37
+00:17:32,430 --> 00:17:36,990
+Unknown: head on over to syntax.fm for a full archive of all of our shows.
+
+38
+00:17:37,230 --> 00:17:39,270
+Scott Tolinski: And don't forget to subscribe in your podcast player
+
+39
+00:17:39,270 --> 00:17:40,050
+Unknown: or drop
+
+40
+00:17:40,050 --> 00:17:42,180
+Scott Tolinski: a review if you like this show.
+
