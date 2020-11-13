@@ -1,0 +1,512 @@
+1
+00:00:01,319 --> 00:00:02,820
+Announcer: You're listening to syntax,
+
+2
+00:00:02,849 --> 00:00:04,590
+Unknown: the podcast with the tastiest web
+
+3
+00:00:04,829 --> 00:00:05,760
+development treats out there.
+
+4
+00:00:05,760 --> 00:00:09,000
+strap yourself in and get ready to live ski
+
+5
+00:00:09,000 --> 00:00:10,890
+and West boss. Oh, welcome
+
+6
+00:00:10,890 --> 00:00:18,690
+Wes Bos: to the summer edition of scinto. Yeah, it's I don't know how it's any different than the normal syntax.
+
+7
+00:00:18,710 --> 00:00:24,270
+Scott Tolinski: You're wearing a Hawaiian you're wearing a flower shirt right now. So like, that's summer edition enough right now.
+
+8
+00:00:25,019 --> 00:00:32,359
+Wes Bos: Very, very summery. It's like the perfect weather right now where you don't have to have the AC on or you just open the windows and live for free.
+
+9
+00:00:32,459 --> 00:00:37,140
+Scott Tolinski: Oh, we have the Avery aacn down here. It's hot. It's very hot.
+
+10
+00:00:37,169 --> 00:00:45,240
+Wes Bos: We had it all last week. But thankfully, you could turn off for at least a day or two. So that voice there Mr. szalinski. How you doing today? Scott?
+
+11
+00:00:45,329 --> 00:00:49,439
+Scott Tolinski: Do good. How you doing today, Mr. Boss? We're doing good.
+
+12
+00:00:49,589 --> 00:00:54,840
+Wes Bos: Doing good as well. Not slipping a whole lot with the the new baby but we're surviving.
+
+13
+00:00:54,869 --> 00:01:04,860
+Scott Tolinski: Yeah. Likewise, that coffee this morning. I got my tea sitting here. So I'm already doubling up on the caffeine tip. So that's, uh, enough of a sign to tell you around that.
+
+14
+00:01:05,009 --> 00:01:42,900
+Wes Bos: Yeah. Oh, great. Alright, so today we are sponsored by two awesome companies. First one is Sentry. And the other one is Freshbooks. Sentry does your error exception tracking Freshbooks into your cloud accounting. We'll talk about them both partway through the episode. So today potluck, if you have a question you'd like us to answer on one of these episodes, we do one per month, just go to syntax.fm. In the top right hand corner, there's a button that says ask a potluck question, you can go ahead and type your question in the box, and we will see it and put it into one of the future shows if we like the question. We don't we won't answer it at all. Ready to get rockin there, Scott?
+
+15
+00:01:42,930 --> 00:01:51,450
+Scott Tolinski: Yes. Although I should say if we don't answer your question, it doesn't always mean that we didn't like it, we get lots of questions. So I just wanna want to put that out there. Put that
+
+16
+00:01:51,450 --> 00:02:01,800
+Wes Bos: on, let me just pick the ones that we think will make like an interesting episode, and also ones that we sort of see over and over again. Yeah. So that will help it. So you want to you want to grab the first one there? Sure. The
+
+17
+00:02:01,800 --> 00:03:20,639
+Scott Tolinski: first question here is from Elon, that collagen. Hey, guys, newer listener to your show and dev in training here. I hear you both talk about state a lot in your podcast. And while I understand a little bit about it, it's something that I couldn't do with learning more about on never understanding the context. You both used it. Could you enlighten us. Thanks to you and your amazing content, whose Thank you, Alan for the piece. Loved it. So state, what's up with state what is state and state in application? You're right, it does get tossed around and us in particular, we do tossed around in wood, you know, you just sort of take for granted that this is this thing. And it's almost kind of even hard to necessarily pin down and define what the state of your application is, as it says it's just how your application is at any given moment is the state of your application, right? If you have, let's say, a basic HTML website, right? And you could call it an application, if you weren't sure. We have a web app, that's just an HTML page, right? The state of that application is essentially either it has been loaded or it has not been loaded. When it's loaded. It's static. That's all it is. But in applications as they grow, they have more situations they can be in, for instance, you have a good way
+
+18
+00:03:20,669 --> 00:03:22,530
+Wes Bos: situations situation. Right?
+
+19
+00:03:22,560 --> 00:04:29,100
+Scott Tolinski: Right. So you have let's say the let's use the level up tutorials website for an example, the default state of the application is not locked in, the data comes in, and that data is stored in a specific way. Now, you could view that data as being state as well, because that data has specific things that are are only relevant to this particular state of the application that we're in. But then once the user logs in, the state of the application changes. Or if you're in a dynamic single page application, when you change pages, maybe the state of the application changes, or pretty much anytime you're doing anything dynamic. Think about this, the navigation pops open slides open, like a hamburger menu. Well, there are not that navigation is opened or closed is the state of that navigation. What is the status of this thing? Is it open is closed? Is it mounted? Is it unmounted? What is it? What would it where is it currently living right now. So that to me is the best way to describe state is just sort of how the application is right now or how this component is right now.
+
+20
+00:04:29,250 --> 00:05:05,700
+Wes Bos: Yeah, if you think about like CSS, CSS elements will have state they'll have you have your regular, you have your visited links, you could have a hover, you could have an active, which is you're currently clicking on. So those are different states of the actual link. And then when you expand it to your entire application, like Scott was saying, There's often a lot of data that is associated with that. So you might have like, what is the current logged in user? What do they currently have the navigation open? What items are in the shopping cart, and all of these sort of pieces of data as to like what Are they even if you just think of it outside programming internal, like, what is the state of the world right now?
+
+21
+00:05:05,880 --> 00:05:06,420
+Scott Tolinski: Yeah,
+
+22
+00:05:06,420 --> 00:05:32,100
+Wes Bos: who is president? how hungry? Are you? How many family members do you have? These are all pieces of information that play into how you go ahead and live your life. And if you ever wanted to totally replicate that, you would have to make sure that every single piece of state in your life is exactly the same. So when we say state, we just essentially mean like things that are currently happening in your application. Yeah,
+
+23
+00:05:32,100 --> 00:05:45,840
+Scott Tolinski: I think that's a good way to define it. And I think there's some interesting ideas around state and what you consider to be state or the application state in general. Have you done any learning and reading into state machines? Wes,
+
+24
+00:05:45,900 --> 00:06:18,750
+Wes Bos: I have a little bit I found them fairly interesting. Because what is that David k piano? Yeah, yeah, those are a lot of unreal code pens, and he's always pushing state machine. So I went and watch that talk. And then I also went through some of the like, very basic JavaScript state machines. And it's kind of interesting, because he just basically lays out like, this is the house. This is the house with two windows. This is how so two windows in two doors. This is a house with three windows and one door. And those are different, like ideas of what the state of a house could be.
+
+25
+00:06:19,080 --> 00:06:50,730
+Scott Tolinski: Yeah, yeah, yeah, I found a lot of that stuff really interesting. I, it's one of those things I wish I could spend more time with. But every time I get into coding up any sort of state machine anything, I think it's a little it's a little much for some of the stuff I'm doing, but I understand some of the benefits, I think it'd be worth maybe a topic on an episode topic for us to maybe research a little bit about state machines. And then yes, and then give a little intro one on one to what a state machine is, and and how you can use it. Tweet us out if you are interested in learning more about state machines. Oh, next
+
+26
+00:06:50,730 --> 00:07:57,240
+Wes Bos: question we have is from Larry masuleh. Thank you for the pronounciation I have an idea for a project that assisted for WebSockets pushed text, images, documents to a bunch of users in real time, I just learned about firebases real time database and looked like it would be pretty easy to implement my idea. What are your thoughts of pro con of these two technologies? Thanks from a super fan. Alright, so we actually have sort of like a WebSocket. One coming up a show I have I've had it for a long time. And I've just been adding ideas to it. So we'll do a show at some point. And then people say Firebase, so Firebase is not an alternative to WebSockets. Firebase is a platform for storing data and storing images and doing authentication. So it's sort of like a database in some some services around that. That is real time. And that uses the technology that is a WebSocket. A WebSocket is sort of like a highway between you and the server, which will allow you to send data immediately over these WebSockets. I'm just doing this like pointing motion right now, if I have data going back and forth, you can imagine me and my fingers in the air.
+
+27
+00:07:58,500 --> 00:07:59,790
+Unknown: Yeah, they're they're flying.
+
+28
+00:08:00,990 --> 00:08:49,669
+Wes Bos: So it's not really one or the other, you can certainly get a lot of other platforms out there. There's another one, there's an open source version one called feathers, j. s. I know Meteor is all built on on WebSockets. A lot of graph qL subscriptions are all built on WebSockets. So the pros and cons of using something like Firebase is that it just like built for you. It's a service, you don't have to worry about hosting it or anything like that. The cons is that it's not open source, there's a possibility that it will get shut down. At some point. I think Google is pretty Google owns Firebase. I think they're pretty invested in it. But that said, Google has shut the door on plenty of things in the past that people people thought was unreal that they would they would do that. So that's the con there. But you could also build your own. But then you have to sort of maintain that that entire infrastructure there as well. Yeah,
+
+29
+00:08:49,770 --> 00:09:16,380
+Scott Tolinski: I would definitely say to consider Meteor because you know what Firebase you are, you're stuck on sort of somebody else's platform, right? firebases platform with their data, you're sort of stuck in that system. But with Meteor, it's using Mongo. And you can host that and do anything you want with that database. That's your database, it's like, it's probably a lot more common to have maybe MongoDB developers or something, then I don't know, Firebase is really popular. But at a larger scale, or something,
+
+30
+00:09:16,470 --> 00:09:47,820
+Wes Bos: I would say if you have an idea for a project, and you're sort of like new to learning this kind of thing. Just go with Firebase. Like, honestly, if this thing takes off, and it's amazing, doing super well. And you're finding that Firebase is a bit of a limitation, then you can absolutely move over to that type of thing is to be able to save like a large part of your application. It's just how the data gets transferred, that you'll have to swap out and that's not a big deal because your your app is doing awesome. You're probably a millionaire by now. And you can pay some sucker to do it for you.
+
+31
+00:09:48,000 --> 00:11:33,330
+Scott Tolinski: Sure. But if you are I mean, my my idea here is that like this is going to be like Meteor right now. If you used it with Mongo or whatever, it would be a cheaper solution in the short term. Yeah, because you're not going to get Like the hosting for just hosting a database is going to be cheaper than hosting a service like Firebase. But I think that coming on this Tuesday, actually, tomorrow, there's like a big Meteor conference where they're going to announce the feature of the meteor, not like a conference. It's like a meteor night they used to do and they're going to do another one. So I'm really excited about what the future of Meteor, we'll hold it. I've been using it on level up tutorials for a long time. And if you're looking at real time stuff, let me tell you, it's like, it's so easy to get going with that stuff on Meteor. I'm such a huge fan of the platform in general, but I would just say check it out. It's a cool and easy way to do WebSocket stuff, and it takes care of all the hard stuff for you. Cool. So next question comes from Ross White House. Got a bunch of easy names today. And is how is your fitness going? We haven't heard an update except for Scott's crazy AB workouts on Instagram. This one's funny because we were doing sort of, we've done two fitness episodes. We did one when we first started and then one maybe a year and a little bit later. It might be time for another update on that one. I don't know what the timing is, but maybe we should keep I think we're gonna plan on doing that a yearly thing. We should look into that. As far as yes goes. It's tough when you're a parent at this stage in the game to do everything but I'm finding time to hit to the gym a few days a week like normal and I'm not finding as much time to get my breaking cardio stuff in but yeah, everything's everything's been progressing. I would say I'm in a better state than I was last time we did that episode. So yeah, we should maybe we should consider adding an episode another fitness part three to the docket here.
+
+32
+00:11:33,690 --> 00:11:44,820
+Wes Bos: Yeah, added to the thing. My Fitness is going okay, I sort of got hit with the sort of one two punch of my daughter not sleeping and new baby on the way
+
+33
+00:11:44,850 --> 00:11:46,980
+Unknown: so hard to do everything. Just
+
+34
+00:11:47,010 --> 00:12:11,970
+Wes Bos: Yeah, it's it's really, really tough to do it when you have a new baby and things like that. So it's been a going, Okay, I'm not a I'm not like 100% happy with where I'm at right now, I definitely could probably lose a little bit more weight. But I think I'm sort of like maintaining where I'm at, which is good. I don't want to want to like let myself go. And then as things start to get easier as you start to get more into a schedule, you sort of get back into that
+
+35
+00:12:12,090 --> 00:14:41,760
+Scott Tolinski: word. Cool. Okay, so next question here is from Tim Moran. And Tim wirkungen. Sort of only half answered this question for you. But don't worry, you submitted a bunch of questions. So there we're actually going to fully answer another one of your questions later on, in this episode, question his five year outlook Back to the Future with West and Scott. Let's say both of you, gents, or junior developers to basic knowledge and skills, HTML, CSS, JavaScript, how do you add all of the expertise and knowledge of how to best master those skills and where the industry is heading? What would be the outline and focus for roadmap for basically the next five years? The premise of this, this question is going to be what's going to change in the future? And where would you start learning right now for a five year outlook. And my advice for everyone is that five years is too long, like the question Where do you see the industry in five years? I we could speculate, but like, where do you see your career in five years? I don't know where were we both five years ago, when was five years ago, it's 2019. So this was 2014, I wasn't even living in the state that I'm living in right now. I was working for a small agency, and I was building WordPress websites with PHP. So it's really hard to project that far out. And my advice to you, or anybody else would be to don't project that far out. Because you're going to go down some wrong paths project six months out, three months out, look at sort of stuff where you want to go where you want to learn in that kind of timeframe, not sort of the larger timeframe. So what stacks would i would you learn who knows, whatever is relevant five years, I don't think we can understand or know, it could be react, it could be something you've never heard of. So I would say bet on maybe just core foundational programming skills, how the web works, HTML, CSS, and JavaScript, you're going to want to make sure you have those skills. And what resources would you use to learn I would use level up tutorials and nothing else? No, I don't know. There's, you know, again, it's whatever content works best for you. And who knows what's going to be around as things change inside? So Tim, this is this isn't a great answer to your question. But at the end of the day, I think five years is way too much to project. And just you'll want to keep an eye on the industry and see where things are going. But if as long as you have like core JavaScript skills, those skills are going to be applicable to pretty much anything that you're going to probably try to learn in the next five years, unless of course, TypeScript is now taken over JavaScript or who knows what we don't know.
+
+36
+00:14:41,820 --> 00:15:31,409
+Wes Bos: yet. We get a lot of questions like this people asking like what does the future hold and we have absolutely no idea and I don't, I know that it probably causes anxiety and a lot of people not knowing what the future has and not knowing if your skills will be relevant and they probably won't be and that's why he needs to kind of calm Being be re evaluating and learning new things. But like, like, what should you be doing? Just put your head down and start making apps start building applications. That's what we're probably going to be doing. And five years from now, with what tools, I don't know, it will probably change a little bit, but it's not gonna change that much like, people were starting to talk about jQuery being dead five years ago. And there's still people using jQuery now. So it's not going to be this like, apocalyptic thing where it's absolutely totally changed. It doesn't it doesn't even though we say it move fast, it doesn't move that fast. Yeah.
+
+37
+00:15:31,409 --> 00:15:35,190
+Unknown: So not generally refresh your browser and have it be a different frame. Yeah.
+
+38
+00:15:35,220 --> 00:15:56,159
+Wes Bos: Oh, my gosh, I have no absolutely no skills and things like that the fact that you listened to this podcast, and that you typed in a question for us means that you're already probably at like the 10%. of cutting edge. And that puts you in a really, really good spot. So just keep making apps, you changing your tools, every six months, little things here, little things there. You'll be fine. Don't worry about it.
+
+39
+00:15:56,250 --> 00:16:21,090
+Scott Tolinski: Yep. Yeah, that's good answer. You just gonna want to make sure that you keep your knowledge fresh, non stop fresh. This is a an ad transition into fresh books, which is one of our longtime sponsors over here, it's in text. Now first books is the way that you can keep track of all of your billing and accounting needs, for once you've gained those skills that are going to propel you to the next five years of your career. So with more about freshbooks is Wes
+
+40
+00:16:21,149 --> 00:17:20,040
+Wes Bos: Yeah. So what does Freshbooks do quick, easy invoicing, they say if you send your invoices via Freshbooks, you get them paid online, get them paid immediately, you get paid two times faster, definitely been in the situation where if you have to like mail them a PDF that gets forwarded to somebody else, and then they have to like print out a check and then mail it to you. If you can pay online directly on the invoice, you often get paid. I've been paid within five minutes before on Freshbooks. Because they just make it that easy. You can customize the branding, you can have multiple currencies, you can have reoccurring invoices if you've got somebody like on a retainer, all this stuff just takes the busy work out of running a business and puts you at the home to actually build websites and be a programmer. So go to freshbooks.com forward slash syntax in use syntax in the How did you hear about a section, you're gonna get a 30 day unrestricted free trial Again, that's freshbooks.com forward slash syntax. Thanks so much to Freshbooks for sponsoring.
+
+41
+00:17:20,040 --> 00:17:20,600
+Scott Tolinski: Thank you.
+
+42
+00:17:20,729 --> 00:18:16,800
+Wes Bos: Next question we have here is from TP is it worth to find a remote dev job at the early stage of your career, I have six month internship and one year of software engineering experience. So one and a half year of web developer experience considering the stuff I learned from my seniors and other dev team, I wonder if I will lose the opportunity to learn stuff from my team members. I think we sort of answered this question maybe like a year ago, or someone said, then I think that's true. I think when you are a junior, it's so much easier just to roll your chair over to somebody else's desk, and get a little bit of help and have somebody explain it to you in person. And I definitely think that that is lost, as well as the the whole skill of working remotely. And the whole skill of being good at slack and the good and good at email and being available to your court. These are all things that you need to learn. And I definitely think that it's easier, it's not impossible, but it's much easier to do it when you are in the same office as someone What do you think about that?
+
+43
+00:18:17,009 --> 00:20:04,890
+Scott Tolinski: Yeah, I totally agree. I mean, I learned so much from my boss and coworker, when I got my first even couple of dev jobs. And it was maybe one of the most important things for my career development to be able to say, Hey, man, I don't know what I'm doing here. Can you look at this. And then, you know, you just roll this chair over and look at it for me, and we could talk about it. And it was just a different experience than, you know, chatting in slack slack chat room, because yeah, somebody can try to solve your problem in a slack chat room, but it's not going to be the same. And you're not going to get that same kind of, I don't know your that same kind of experience. So if you're a junior, and you're really valuing that learning things from the more experienced developers, then I wouldn't hunt for anything remote. Remote stuff for me is like I work remotely because it makes sense for me. But you know, to be entirely honest, if I had a job in the same city that I was living, I could drive to work and go into an office. I love that there's a lot of like glamorizing of remote work and ensure there's, you know, it's really great to be able to go to a coffee shop or my backyard or whatever and work, but at the same time working in an office is sweet for a ton of reasons. So don't feel like you have to work remote just because you see other people working remote. If it's something that makes sense. Like your your dream job is giving you a job offer, but you know, there are two states away and you don't want to move then yeah, maybe that's a cool idea. But I wouldn't just glorify it for being remote itself. And yeah, definitely value that experience you'll gain from the people in your office. All right. Next question is from King Lawrence. Cao belay. Oh, I'm so sorry if I butchered that one king. You did not provide us any spelling notes here. And you pronounciation there's one of those YouTube pronounciation things Kubo eo I think it's kubelet Oh, I'm gonna I'm gonna go on the line Google
+
+44
+00:20:04,890 --> 00:20:08,360
+Wes Bos: a la Oh, that sounds right. Yep. Yeah, let's let's go with that.
+
+45
+00:20:08,400 --> 00:21:27,690
+Scott Tolinski: Yep. Hi, I'm listening to syntax for three months now. I find it very useful, especially the sick pics part, I had a question about how to keep myself motivated in coding. Now, we've talked about this a few times on several different episodes. But really, the motivation factor in web development really comes from the same motivation factors that you get from literally everything else, like what is makes you motivated to do anything, typically, it's just generally being excited about something I don't know about you. But like, when I'm really excited about maybe like home automation stuff, the first thing I do is go to YouTube and watch a bunch of videos and buy some things and try them out and get really excited about it. And you know, that propels me to learn the things I don't think about like, Alright, now I'm going to sit down and learn about home automation. So for me, the the big thing is really just finding what's exciting for you, and finding ways to make your work exciting through those things that are exciting to you. Specifically, we talked about using hobbies as side projects to attach excitement to the coding itself. Or even on top of that, like, I am really excited about animations. Before I was with developer, I wanted to be a motion graphics artist. So I spent a lot of time learning and playing around with the animations specifically, just because I love doing it. And that's what gets me excited. So that's my answer is find, find ways to get excited about this stuff.
+
+46
+00:21:27,780 --> 00:22:20,820
+Wes Bos: Yeah, for me, it's entirely just what I'm excited about what I'm interested in the motivation, I have huge problems with motivation when I'm just not invested in it. And that's probably why I work for myself and do whatever it is that I want. Because I'm mostly interested in learning new things and teaching other people and making money from that. And if you go back to the episode a couple couple episodes ago, when we talked to Harry dry, that was like the perfect example as well. Like, how do you keep yourself motivated? Well, Kanye West is on the phone. And you gotta get this thing working right. Like, I don't think that he would have learned as much if he was just kind of sitting there building something that like a, like a pet keeper app or something that just was totally uninterested to him. I think if you throw yourself into something, maybe try find a way to make money at it or find something that might blow up. That's the sort of the way to do it.
+
+47
+00:22:20,940 --> 00:22:21,900
+Scott Tolinski: Yeah, totally.
+
+48
+00:22:21,900 --> 00:22:24,930
+Wes Bos: So sick name King Lawrence. Capello,
+
+49
+00:22:24,960 --> 00:22:31,380
+Scott Tolinski: I know it's, it's a really cool name. But I think that might be top tier names that we've had on this. These potlucks.
+
+50
+00:22:31,440 --> 00:22:34,770
+Wes Bos: Yeah, King. What if I named my son King King boss? I
+
+51
+00:22:34,770 --> 00:22:42,300
+Scott Tolinski: don't know, opportunity. Damn, that would have been cool. That's a cool. That's a really cool.
+
+52
+00:22:43,950 --> 00:23:30,030
+Wes Bos: Next question we have here is from HUD. He says when Ryan Jones, what's your opinion? Oh, y'all. Okay, I have an accident. What's your opinion on using? using some obscure or at least in my opinion, features of the language such as JavaScript bitwise operator and a production app? So hold on, let me let me do the the bitwise operator real quick. So the JavaScript bitwise operator, most people don't know what this is. So the bitwise operator is a way to sort of invert with a Tilda I personally don't use it because I just myself had to pause and say what does it do again? Because I've certainly used it a few times, but I always forget and we put
+
+53
+00:23:30,030 --> 00:23:33,720
+Scott Tolinski: it in inverts Yes. Oh, the till they does invert Yes.
+
+54
+00:23:33,720 --> 00:23:43,410
+Wes Bos: Okay, the till they will invert it and invert Yeah, bit of the upper the bits. So that's, if you have some, some bits you want to invert, these are just
+
+55
+00:23:43,739 --> 00:23:47,100
+Scott Tolinski: using it as as a as all there was like
+
+56
+00:23:47,100 --> 00:24:53,040
+Wes Bos: a couple cool tricks I saw. And I've used before, same with the the triple arrows, or the triple right angle bracket, things like that. I don't know, I probably wouldn't use them unless your entire team is on board and knows about them. But whenever I use them, I find myself kicking myself have to come back and Google what they actually do. So it's it's kind of a cool way to do it. And it looks neat. But there's almost always just an easier, more readable way to write that code. Anyways, that wasn't even the entire question. Such as JavaScript bitwise operator production app that dozens of other engineers will maintain and continue to maintain long after you leave the company seems hard to read and Amelie understand which possibility makes it hard to debug and refactor. Yeah, sort of the same thing that we're saying here? Yeah, I probably wouldn't use them. They're not all that well known. They don't read well, like if you see a Tilda or two arrows, you don't immediately know what that is. So I would probably just use something else that's a bit more readable and a bit more referenceable.
+
+57
+00:24:53,130 --> 00:25:58,380
+Scott Tolinski: Yeah, totally. I'm right there with you. In fact, I had bitwise operators in my code base, just because they were like Alright, here's a quick code saving, you know, snippet that you could toss in to do any number of things. And it may be this is potentially just a tiny little bit more fast or more performant. But and it takes less, you know, characters in your code. And to be honest, I've ripped them all out, because every time I hit them, I was being like, Well, what does this do again? And then if I wanted that same exact technique, I always had to go look up how to do it, because it wasn't something that I was just there for me. So I don't know if your whole team is down with bit wise in like understanding how they affect the bits and what that even means, then, like, go for it. But personally, like you said, exactly, it's it's not they don't read well, they're not easy to parse, unless, of course, you're very experienced with them. So I don't really see any of their perceived benefits to necessarily be benefits enough to make up for the downsides of them. So I have an es lint rule that yells at me if I use them, so I don't use them.
+
+58
+00:25:58,680 --> 00:28:41,250
+Wes Bos: I'll read the next question. Because it's, it's directed at me. Wes, I keep hearing you talk about working from your Dropbox, do you sync everything up even like your node modules folder, you have me interested in a semi similar workflow. So my opinion on this has actually changed in the last couple of months. So I'll go over it real quick. Putting a JavaScript project in Dropbox is a good way to backup your entire project. And if you accidentally goof something up, then you can always revert it with the Dropbox, the tools, and that's nice, because sometimes you're in between Git commits any accident, delete something, you have to go back and revert it. I don't have two computers. So I've never had the problem of sinking Git repos with Dropbox. I know people can run into a problem with that. Dropbox does not have the ability to exclude folders, they do have some sort of like ability to not sync things, but they don't have the ability to just like get ignore all node modules folder. So I'm not about to go into every node module folder of every project and ignore it. And that doesn't even work. By the way, it removes it from your, your local computer as well. So I've probably done it for 10 years now. And it's been working really well. But in the last couple months, I've been noticing like, Dropbox is hungry for both CPU and memory on my computer. And I have like one of the fastest computers you can buy. And I don't know if something changed in the last couple of releases of Dropbox. But it's it seems like, like the node modules has millions of files. And it seems like it's just real chuggy. And it's making a noticeable difference in how fast I can move around my computer. So I'm actively looking for alternatives also, like I don't really use Dropbox all that much anymore. They seem like they they don't care about technical users all that much anymore. And they're more going towards like, I don't know, different like tools for teams and trying to compete with slack. And it just doesn't seem like a like the tool that it was when I was in university. And it was like this, like online USB drive. And it was amazing. Now they've, they've sort of gone in a different direction. And I don't really enjoy it all that much. So I still use backblaze, which does not have the same issue as Dropbox. So backblaze will backup my entire computer, including all of my node modules, folders, and never ever do I have to worry about backblaze being a hog of memory or CPU and never see it in the top ones. Whereas Dropbox is always chugging along, taking 30% half a gig of memory. So I'm probably in the next six months, I'll probably just get away from Dropbox entirely and go to do something else. I'm not sure what that exactly is. Yeah, if you have any suggestions, make sure you tweet us at syntax FM.
+
+59
+00:28:41,370 --> 00:28:45,480
+Scott Tolinski: Yeah, I can't believe your Dropbox wasn't chugging long before this. Because that
+
+60
+00:28:45,510 --> 00:29:12,300
+Wes Bos: never to know me for for doing it. And I was like this works great for me. I love it. I got an amazing doing. Yeah, it's all passive backup, which is your backup should always be passive, if you like are working on something and then you don't do a git commit, and you come back the next day and something happened. It certainly saved my bacon many times over. But it's at a point now I just I just think Dropbox as a company is kind of goofy.
+
+61
+00:29:12,360 --> 00:30:17,220
+Scott Tolinski: Yeah. Okay. Well, that one question is from Tim Moran, who asked the question that we sort of didn't answer correctly before. So there's your your answer, Tim and Nicolas Angelo is the next question. And Nicholas asks, have you talked about Firefox Developer Edition? It looks like it should be very useful, but I can't quite make the transition. I might there with you, Nick. If I can call you Nick. You know. I don't want to be presumptuous here. The Firefox Developer Edition is awesome. I just did a course on developer tools. And I was just like, and I love Firefox developer tools. I should use these all the time. Firefox Developer Edition is so great. And then like 24 hours later, I find myself just going back to Chrome or brave or not using Firefox, the developer tools are excellent in Firefox. So I would highly recommend checking out Firefox Developer Edition. But at the same time, I don't use it as my default browser. I don't know why, but I definitely recommend checking it out. They're there. They have some really cool new tools. I don't know if you've used it a little while Wes.
+
+62
+00:30:17,280 --> 00:31:16,320
+Wes Bos: Yeah, I have used it quite a bit. It's not my daily driver, I should be totally up front. Firefox sponsored my CSS grid.io course. So the reason it's free is because they paid me. And I put it out for free. And I used the Firefox dev tools in there, because the grid dev tools in and all of the layout tools, the Flexbox tools, they're all much better than Chrome. But I still use Chrome day to day. And like he said, I don't know, I don't know why I did imported all my history. I got my LastPass setup. So those aren't like really issues. And I just kind of keep going back to Chrome. And I think it's the same reason why like, I still use the Mac keyboard and like, I still find myself wanting to go back to the Magic Mouse. I'm like, it's just comfortable. And I should almost just like uninstalling, because like there's no excuse for me not to actually be using every even like from a privacy standpoint, it seems to be much better. It's just I don't know why.
+
+63
+00:31:16,320 --> 00:31:17,190
+Unknown: Yeah.
+
+64
+00:31:17,520 --> 00:32:30,360
+Scott Tolinski: Yeah, I know, I'm right there with you it. I like the way it looks better. I like the sort of vibe of it better. I like everything better, and I just don't use it. I don't know if you've used the font tools in there. But the font tools are Yeah, I'm just being able to change the font line height with all those dragging Draggy, you know, got little sliders to change your fonts, you can see all of the fonts tag for any given website, it tells you exactly what the fonts are, how they're used. And it makes working with typography really excellent. And there's another clip path tool that I briefly talked about in the in the series that I just did. And it's if you've ever used any sort of video editing or Photoshop where you make a mask, and you can like click and drag and move the mask around to mask something, you have that ability in Firefox dev tools. So if you're using clip path at all, you can shape and create your clip path SVG directly in Firefox, or I guess it's just a clip path path string. And you can shape those directly in Firefox dev tools, and it is awesome. It is so cool. So if you're the type of person who prefers that visual sort of visual editor sort of style of things, I would definitely recommend checking out it could be could be your new browser, if you could commit to it. Like we both are having trouble committing to it,
+
+65
+00:32:30,390 --> 00:32:51,690
+Wes Bos: why we should do one week with Firefox. So and then do like a hasty treat on and like what our issues were and what we liked and what we didn't like, because that will like give us like a full week. You have to use it the entire week you have to use on your phone as well. And then we can we can do like a hazy treat explaining why or why not. We decided to continue going.
+
+66
+00:32:51,720 --> 00:32:53,760
+Scott Tolinski: Let's add it to the list. And if you want to see
+
+67
+00:32:53,940 --> 00:32:56,040
+Wes Bos: a Saturday, I like it. But yeah, let's
+
+68
+00:32:56,040 --> 00:32:56,670
+Scott Tolinski: do it.
+
+69
+00:32:58,440 --> 00:33:57,240
+Wes Bos: Next question from Tom G. Hey, guys, just wondering what your opinion of CSS naming convention methodologies is such as Ben, thanks, I'm a big fan of them. I think some of the criticism of them is that is very verbose in your code, and you have very long HTML things. And I'm I didn't really find that all to be issue. The problems that bem solves is the fact that you can't really have scoped CSS, things like that. So big fan of bem, I don't really use it all that often because I'm almost entirely using some sort of a CSS in j. s, and a lot of my projects, and what that allows me to do is just to scope them with like a styled component or something like that. So I don't know, I think that bem will probably fizzle out in the next couple years as we start to see other other possible solutions pop up a lot of people using CSS and j. s, hopefully will have something coming to CSS that will just be native for for scoping. So we'll start to see that what do you think about that? Yeah, I
+
+70
+00:33:57,240 --> 00:34:42,960
+Scott Tolinski: think that's pretty pretty on. You know, I used them anytime I was doing CSS. And I guess the thing that's important about them is really just understanding how to separate your components on into could be blocks, elements, modifiers, those kind of things, how to look at your code and think about your code. And that sort of structure, to me is way more valuable than the actual syntax of bem itself. I never really loved the syntax of bem and I used a lot of those same core methodologies in my styled components set up. So you know, I think bem is great, I'd have no idea what's going to replace it. But I think what's important is just having like a defined structure like that within your CSS general and understanding the scope and components of how you're using that CSS.
+
+71
+00:34:43,440 --> 00:35:02,310
+Wes Bos: Yeah, one of one of my favorite things like you said is that it like forces you into some sort of structure. And I love when when things make me have structure I love when people give me the names of the folders I should use I love when people tell me what my naming convention should be, you know, like Then you just follow that you don't have to think about it.
+
+72
+00:35:02,670 --> 00:35:08,900
+Scott Tolinski: Yeah, definitely. Cool. Next question from suave G or is this five g suave q?
+
+73
+00:35:09,440 --> 00:35:10,440
+Wes Bos: suave a que
+
+74
+00:35:10,460 --> 00:35:14,460
+Scott Tolinski: suave a que suave a que Yeah, I thought this was Vic, Slavic.
+
+75
+00:35:14,480 --> 00:35:15,920
+Wes Bos: He's He's from Poland.
+
+76
+00:35:16,080 --> 00:36:00,660
+Scott Tolinski: Okay, I'm so sorry. I am earning my own people's names. Hey, great podcast. I'm listening in Warsaw, Poland, Europe. Oh, thank you for the clarification there. I appreciate it. I would love that. My, my hometown. I guess I am I'm Polish for those of you don't know, little bit tiny little bit. I would like to refer to the question in Episode 140. About front end development possibly dying? I don't feel satisfied with the answer. So maybe I could state the question differently with machine learning being developed rapidly in the last few years? Will the web change causing reduction of front end jobs? Maybe we will just train smart algorithms and develop them instead. What do you think? Pick?
+
+77
+00:36:00,660 --> 00:36:01,320
+Wes Bos: A Yeah,
+
+78
+00:36:01,320 --> 00:37:26,400
+Scott Tolinski: I you know, okay, so I, there's so many things you can say about this. But at the end of the day, robots are probably going to take most people's jobs. So understanding how that change will happen is maybe what you want to think about. So it really depends like how far in the future you're talking about. But I don't think web developer or developer jobs are in danger anytime soon. Because there's always going to need to be people connecting things to connecting things. But one of the links they gave us here is how to train AI to convert your design mockups to HTML and CSS. Cool. Let me know when you can have an AI that will take design mockups and build a level up tutorials, because those kinds of systems are endlessly more complex. And so will robots or AI take over some of the basic web jobs? Like here's an HTML page, maybe Sure, who knows. But you know, there's services like Wix and Squarespace and whatever that exists already, right now that do much of that work for you, and they haven't killed the job. So we will see what the future may hold. Who knows how incredibly smart and powerful our robot overlords will be when that inevitably happens. But you know, honestly, we just goes along with the other one, we can't predict. would I not take a career in web development? Because the robots are gonna take it? No, you could say that about any any career. Yeah,
+
+79
+00:37:26,460 --> 00:39:31,440
+Wes Bos: yeah, this is always people like scared of like, oh, like, that's not safe, because robots are gonna take it or that's not safe, because something is going to change about it. And it might button you sort of just have to roll with it. If that happens, sort of my my answer to this is the easiest stuff gets automated. So yes, the easiest stuff to do right now, taking a very simple design and turning that into HTML. And then maybe writing a bit of little CSS to that, for sure. That'll get automated that will get that's like, so simple, that it should be automated it the tool should get easier for us to do that sort of stuff. And then I think the hard stuff gets easy. Building a real time graph qL based site that instantaneously updates all around that stuff has gotten so much easier in the past five years in scaling, auto scaling, like that's AI right there. It used to be like, you'd have to like buy servers and manage them and plug in and rack mount them and things like that. And now you can just auto scale up by paying a couple bucks a month to one of these big cloud providers. So hard stuff gets easy, and then we invent new hard stuff. So we say okay, well, now that that's easy, maybe we could go ahead and do something more, maybe we can push it a little bit further. Maybe we can make self driving cars now that this other stuff is a little bit easier. So honestly, I think the world keeps on turning or the robots are going to take over on one of the two. I don't think it's going to be like an oil people always say like, we're like two years out from robots doing things I don't think it's gonna be that crazy. Like, I've had a robot vacuum for four or five years now. And it still is the robot. You can't go over top of my vent is sucked up a USB cord the other day, like honestly, come on, we're, it's gonna be a little bit longer before this, this type of stuff all all sudden, like a robot comes out and starts building tutorial courses or something like that. Yeah, at some point, it might, but I don't know. Maybe I'll just start making how to train your robot courses. And I'll be fine.
+
+80
+00:39:31,590 --> 00:39:56,670
+Scott Tolinski: Exactly. You always want to be uh, you know, you know, a couple steps ahead of that. But who knows? Like it's like, again, right? You said once the easy stuff gets taken care of, we can spend our time working on some of the harder stuff and the harder stuff gets easier. So like, who knows, maybe the applications that we're developing in the future are just stuff that lives in your brain or in your eye or whatever is powering some thing who knows we're soothsayers here. We're going to just take it as it goes.
+
+81
+00:39:57,209 --> 00:40:17,630
+Wes Bos: Imagine we didn't have to write another router and then We could start building like a robot chainsaw or something like that. Like we're all here trying to configure a router and upgraded every three months. Yep. And then once that gets off, please AI come fix that for me. Let me work on something else. So I can make a chainsaw robot or something like that.
+
+82
+00:40:17,760 --> 00:42:26,900
+Scott Tolinski: I don't know why you went with chainsaw robot that seems very dangerous to me. I am a little terrified of a chainsaw robot, I would prefer unless it's on battlebots. Of course, I would prefer Yes. Most of my robots do not have chainsaws. So next question is from narrow. How do you deal with anxiety and fear during interviews that might hinder your ability to give the best impression of yourself or solve coding challenges? Now my answer to this is the same answer I have for lots of things, which is practice, we are talking about practice, you just want to put in the time and the hours. You want to put in the time to practice the stuff. Okay, so this can come from multi layers if you want to, if you get nervous or scared during interviews, talking to people answering the questions, do a lot of interviews, do a lot of interviews for jobs that you don't even want, just get that interview, get in there. Talk to people practice it. If you cannot get an interview to practice with seriously this, this might seem like a little you know, play time, but you know, have a friend or your partner, whoever, sit down at the chair with you and pretend to interview you, because there's no substitution for practice of any kind, shape or form. So practice it, practice it, practice it, coding challenges, find out what kind of stuff they're most likely going to be asking you practice it. If you're at a react job, Google react, interview, coding challenges, practice it, coding challenges, questions, practice it, do all that stuff, get as much practice in as possible when I was terrified of doing one of my talks, because I don't give a ton of talks. But when I do, I really like to make sure that I'm well practiced. I gave my talk for my dogs, my toddler, my wife. Anyway, I gave that talk over and over again. And then when I got up on stage, it was easy, just because of practice. So the same thing goes with interviews, find though, find ways to get your reps in. And if I'm a little rusty from job interviews, I will go on a couple job interviews just for fun. I interviewed at a couple of unnamed companies here that I definitely didn't want the jobs after I learned a little bit more. But it was good to just go out there and meet some people and talk web dev for a little bit and get that practice in.
+
+83
+00:42:27,090 --> 00:43:23,400
+Wes Bos: Yeah, I think about this a lot with I've got three kids now. And I want them to grow up not being afraid of these types of things. And I realized there's different types of personalities. And anxiety is a real problem that can can fester in in people. But I think like if one of my kids is scared of something, the solution is not just to keep them away from that the solution is to slowly introduce them to something and to practice and to just make it very apparent to them and very front of mine. And we've seen it with with many things, including just like bugs in our backyard. They love bugs in our backyard right now. Why not? Because we like run away every time that there's a bug. It's because we we take a look at it, we play with it, and we try to go back to it. It was scary next last time. Let's try it again this time. So like Scott says just practice do it a lot. It will get easier. There's honestly no other cheats or things like that around it.
+
+84
+00:43:23,480 --> 00:43:29,010
+Scott Tolinski: Yeah. Do you know what that that's called? You're doing a psychological practice without even realizing it really,
+
+85
+00:43:29,250 --> 00:43:29,880
+Wes Bos: what's what's that called
+
+86
+00:43:30,120 --> 00:44:54,390
+Scott Tolinski: exposure therapy, where you you, basically you take somebody who's scared of something, and you expose them to it in a safe environment in like in small amounts. Like if they're terrified of snakes, you might start by, I don't even know, I don't want to speak on actual psychologists behalf here, because that would make my wife pretty upset. But you know, you expose them to it a little bit by little bit looks like for instance, you know, my my coordinator, she accidentally screamed when she saw a spider in the house. And because of that Landon was like all spiders, I'm afraid of spiders. So then, you know, a couple days ago, we went on the rock wall, and we looked at spider webs. And we talked about the webs and we talked about the spiders and we said okay, here's the spider. And then if I ever have a little spider, uh, you know, I let it run in my hand or something. And I, I try to show it to him in because it's like, we just don't want to instill that these things are scary, you know, and it wasn't an accident that he, you know, perceived them to be scary in the first place. So we want to try to correct that through a little bit of positive exposure, just like you said, cool. So now let's get into our last sponsor, which is a longtime sponsor here at syntax. And this is one of those sponsors that's going to take things that are scary for you like bugs, not spiders, but bugs, and it's going to help you solve those bugs, hopefully in a non violent way. You're going to take those bugs, you're going to learn them outside and you're gonna want to scamper away. You know, that's what it's all about.
+
+87
+00:44:54,390 --> 00:44:57,300
+Wes Bos: It's like good. That's one of your best transitions yet.
+
+88
+00:44:57,360 --> 00:46:14,370
+Scott Tolinski: Oh, thank you. You know I'm you know, hugs Yes. Absolutely. So essentially is the bug tracking and error and handling and exception tracking tool that is going to take your application to the next level. So head on over to century.io. Use the coupon code to use the coupon code tasty treat and get two months for free. With century you get access to every single bug that's taking place on your site, you can keep track of them, you can attach them to GitHub issues, you can see the operating system, you can see the browser you can see so much awesome information about these bugs. And this is a service that both West and I have used ourselves, oftentimes you'll get people who messaged us about our sponsor reads and say, guys, I can't tell what's your personal opinion and what the sponsor read. And century is one of the perfect examples where this is something that we both used for so long, like my personal opinions about this thing are the same as what I'm telling you right now in this ad. Like a big big fan of this platform. So sentry.io coupon code code, tasty treat, and you will get two months for free. Check it out. All right, so now is the part of the show where we'd like to get into our sick picks things that we pick that are sick stuff that we like could be anything and we share it with you so West, what is your sick pick?
+
+89
+00:46:14,460 --> 00:46:24,180
+Wes Bos: My sick pick is I were laughing today when we first started I'm like, Can you hear me? Okay, cuz I'm downloading a lot of Arthur. And sounds like Oh, I love Arthur.
+
+90
+00:46:24,180 --> 00:46:25,260
+Scott Tolinski: Yeah, doesn't love art.
+
+91
+00:46:25,290 --> 00:46:28,680
+Wes Bos: So Arthur is what is he? aardvark?
+
+92
+00:46:28,680 --> 00:46:29,400
+Scott Tolinski: He's an aardvark. Yeah.
+
+93
+00:46:29,400 --> 00:47:42,990
+Wes Bos: Arthur is this like kids show that I watched growing up like crazy. I love it. And it's still on and they're still making much higher quality episodes. Now. I think they're on episode 18. Which would make sense because 18 years ago, I was probably watching it myself. And they have a bunch of them, I think like 40 episodes of them on what's the CBC kids youtube channel. So CBC is the Canadian Broadcasting Corporation. It's like our PBS government run. Yeah, it's kinda like PBS, but in Canada, and their YouTube channel has tons of really good episodes on it. And so I went on there right now, and I use this tool called YouTube DL, you can brew install YouTube DL, and you can just point it at entire playlist of videos, and go and download them all. And I use that because then I can throw them on the iPad, or I can throw them on the TV. And then if you're if you're without internet or something like that or not, you're not using up all the bandwidth. So check it out. CVC kids on YouTube specifically, they have an Arthur if you just Google and YouTube CBC kids, Arthur, you'll you'll find the entire playlist there and enjoy I love watching with my kids one of my favorite shows. Yeah,
+
+94
+00:47:42,990 --> 00:48:01,830
+Scott Tolinski: I'm I'm very I the other day, I was like Courtney, we maybe we should put on Arthur and she's like, I think Arthur is like he's not old enough for Arthur yet, which is a bummer because I just really wanted to put on some Arthur. And so now I'm gonna be really excited. Because I still love that show. When I was a kid. I loved Arthur. So I'm, I'm happy that this is your sixth pick. My sixth pick is in a whole nother realm here.
+
+95
+00:48:01,830 --> 00:48:03,360
+Unknown: Okay,
+
+96
+00:48:03,360 --> 00:48:06,930
+Scott Tolinski: speaking of eating bugs, though, don't aardvarks eat bugs? I don't know. That's Uh, yeah.
+
+97
+00:48:06,930 --> 00:48:09,930
+Unknown: I would imagine or anteaters is an anteater. Yeah,
+
+98
+00:48:09,930 --> 00:48:11,040
+Scott Tolinski: yeah. Sure
+
+99
+00:48:11,040 --> 00:48:13,440
+Wes Bos: are VOXI bugs. What else would they? Yeah, you're
+
+100
+00:48:13,440 --> 00:48:46,680
+Scott Tolinski: right. I was just imagining in any year when I was saying that. So my sick pick is going to be the wise sense pack. Now we've talked about wise cams, w y, z on the site before on this podcast before we're both big fans, we have them. I use them for all sorts of stuff I have all over the place at one point in the back yard, front yard, all sorts of stuff. Now, Weiss has recently come out with something called wise cents. Now wise cents is a little package of sensors. And they are super cheap. It looks like the wise site might be having some trouble right now. So I'm not getting 20
+
+101
+00:48:46,680 --> 00:48:51,120
+Wes Bos: bucks, 20 bucks to contact sensors and emotion sensor and a bridge
+
+102
+00:48:51,150 --> 00:49:31,680
+Scott Tolinski: to context sensors, motion sensor and a bridge. And for that price, like these things are so awesome. I use the context sensors and all of my fences. I have them on my garage. So I know if my garage is open. And they'll wise recently added Google Home integration to their cameras. And I'm really excited for when they added to the sensors because they they I know that's on their user forum saying it's coming very quickly. So I'm very excited for that. Because then you can trigger actions and do all sorts of interesting things with the y's sensors. And yeah, I use them for all sorts of stuff. So check these things out. They are really cheap. And they are microscopic. They're tiny. They don't require yeah
+
+103
+00:49:31,680 --> 00:49:33,390
+Wes Bos: be much smaller than I thought,
+
+104
+00:49:33,420 --> 00:49:44,280
+Scott Tolinski: oh my god. Yeah. When the little box came, I was like how they fit vor things in this box. And then you pull them out and you're like, holy cow, these things are small. So I'm big fan of these. If for those of you who are into Smart Home stuff,
+
+105
+00:49:44,460 --> 00:49:55,140
+Wes Bos: you don't really need a bridge. All you do need a bridge but because they're like they drive on coin cells, which is great. They don't the run power to them, but they give you this little bridge that plugs into the back of one of your cameras.
+
+106
+00:49:55,410 --> 00:49:57,540
+Scott Tolinski: Yes, you do need in that era. for it to work.
+
+107
+00:49:57,570 --> 00:50:35,640
+Wes Bos: Yeah, you need a camera, but it's cool because then you can actually actually detect real motion because the current motion on the camera is based on frame comparison. And then this is real motion or like I have put one on my garage door. And anytime the garage door opens, I start recording, you can put them on your mailbox so you can get an alert when someone like your mailbox is open. So you know there's mail this whole company wise it's wy Zed E. They're just rolling out I actually got a couple a message from Tony who listens to podcasts at works there as a developer night which is super cool just like the one of the best companies ever if they don't have like a monthly fee for using the camera like
+
+108
+00:50:35,640 --> 00:50:37,380
+Scott Tolinski: hub you don't have to buy a hub
+
+109
+00:50:37,650 --> 00:50:45,960
+Wes Bos: all the stuff yeah they've got a bulbs now I haven't tried the bulbs yet because of I'm not a big fan of like bulbs when the switch gets turned off the ball doesn't work there's
+
+110
+00:50:46,080 --> 00:50:52,230
+Scott Tolinski: a lot I have I have some of those the what's it called bulbs there's some big issues that we need to like sort of have answers to
+
+111
+00:50:52,470 --> 00:50:55,020
+Wes Bos: you've had the of the wise bulbs or the Philips we
+
+112
+00:50:55,020 --> 00:51:14,160
+Scott Tolinski: have the Philips use ones but like you know yeah, I'm not going to buy it via Philips outlets or switches because they're proprietary whatever you know, I want I don't know that that whole switch everything answer none of that's been solved yet. So I'm waiting for that to be solved but that now the interesting problem
+
+113
+00:51:14,160 --> 00:51:21,750
+Wes Bos: yeah you almost have to like board up your old light switch keep that power on all the time and then get like a Wi Fi light switch.
+
+114
+00:51:21,780 --> 00:51:23,070
+Scott Tolinski: Yeah, right exactly.
+
+115
+00:51:23,100 --> 00:51:27,720
+Wes Bos: That will but then yeah, that's that's like rewire your entire house. There's
+
+116
+00:51:27,720 --> 00:51:29,250
+Unknown: no good answers. Yeah,
+
+117
+00:51:29,370 --> 00:51:50,370
+Wes Bos: if I were to ever build a house I would put a hotline in every junction box as well so that you can do this sort of thing, but I don't know I think that the lights which is probably a better a better go if you're doing bulbs and then you just use a cheap LED bulb. So we're pretty nifty I love talking about this stuff. Maybe we should do another like smart home on so down. So
+
+118
+00:51:50,370 --> 00:51:58,770
+Scott Tolinski: right now my home automation and smart home life has changed substantially since the last episode. So yeah, yeah. I've been doing a lot of research and learn a lot of stuff.
+
+119
+00:51:58,800 --> 00:52:03,720
+Wes Bos: Yeah, pretty cool stuff. There's rumors that there's going to be an outdoor camera coming pretty soon. Well, there's
+
+120
+00:52:03,720 --> 00:52:09,150
+Scott Tolinski: a countdown clock on wise calm that says in 22 hours a new wise cam will be coming.
+
+121
+00:52:09,629 --> 00:52:11,100
+Wes Bos: New wise cam feature.
+
+122
+00:52:11,160 --> 00:52:22,950
+Scott Tolinski: Oh feature. Oh, man. Yeah, reading reading comprehension. Now my strong is, I don't know, what could it be? Because they already have Google integration. Oh, no. We're gonna find out. Yeah,
+
+123
+00:52:23,100 --> 00:52:53,250
+Wes Bos: if you want to, like be in the know, of this stuff. There's a there's a really good Facebook group called wise labs, beta testers, you can apply to get in. And there's just just hackers. Everybody's a hacker inside that group. And the employees are also in that group. There's like one guy who, who put a new like wide angle lens on his. He like opened it up and figured out that they're just using like off the shelf lenses that you can just buy on Amazon. And yeah, so many cool things. I love this company so much.
+
+124
+00:52:53,700 --> 00:53:15,030
+Scott Tolinski: Yeah. Awesome. Cool. Well, let's get into our shameless plugs here. Shameless plugs is the section of the show where we talk about stuff that we sell Western, I both create web development courses, where we teach you web development topics. And this is the part of the episode that we get a little bit of Sally and we try to sell you some stuff or just talk about the things that we're working on. Yeah, I'm
+
+125
+00:53:15,030 --> 00:53:37,110
+Wes Bos: gonna shamelessly plug my CSS Grid course it's totally free. At CSS grid.io. You can learn all that is to know about CSS Grid, it was sponsored by Firefox, which is why it's free. And we do use the Firefox Dev Tools all throughout that one. So if you want to like maybe get comfortable with the Firefox dev tools, that would be a good course to go through as well. Nice.
+
+126
+00:53:37,140 --> 00:54:28,740
+Scott Tolinski: I have a new course coming out today. When you're listening to this, it might not be up by the time you're listening this but this is this episode will be released on July 31. And if it's not July 31, in this episodes out, then it's not going to be out today. But this course will be out July 31. And it's going to be e commerce with Gatsby. So if you are looking to sell stuff with a static site generator like Gatsby, make your own little Gatsby store everybody who's ever used the Gatsby store has been like, wow, this thing is slick. If you want to be able to build something like that, you want to head over to level up tutorials.com Ford slash pro sign up for the year and save 25%. And also this month or last month, we came out with a course called dev tools and debugging, which dives into every single tab and feature in Chrome dev tools to the greatest extent. And we talked about how to solve very common bugs using dev tools. So check it out.
+
+127
+00:54:28,830 --> 00:54:37,890
+Wes Bos: Sweet. I think that's it for today. Thanks for tuning in. Thanks everyone who submitted a potluck question. Hopefully you enjoyed it, and we'll catch you next week. Please
+
+128
+00:54:39,840 --> 00:54:49,590
+Scott Tolinski: head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
