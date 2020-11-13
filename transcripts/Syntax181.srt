@@ -1,0 +1,152 @@
+1
+00:00:00,359 --> 00:00:24,000
+Announcer: Monday Monday Monday open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA boss and Scott Taylor. Totally.
+
+2
+00:00:26,579 --> 00:00:53,220
+Scott Tolinski: Welcome to syntax on this Monday hasty treat. We're gonna be talking about automation and things that you can do with your own workflows that we do. And just give you a little bit of insight of some of the stuff that we do to make our lives easier on a day to day basis. Whether that's recording or delving or any of this stuff. My name is Scott to Lynskey. I am the creator of level up tutorials. full stack developer from Denver, Colorado and with me is always is Wes, boss.
+
+3
+00:00:53,280 --> 00:00:55,140
+Unknown: Hey, folks. Hey, Wes.
+
+4
+00:00:55,140 --> 00:01:00,780
+Scott Tolinski: What do you find if your nickname was the boss? And then you could have like West, the boss boss.
+
+5
+00:01:01,110 --> 00:01:13,530
+Wes Bos: That would be really cool. People always call me But hey, boss. Yeah, like when you're out like a shwarma shwarma place or something like that. Like they shed a boss. What do you want? I'm like, Do you know me? Or are you just call me boss like, because that's a cool thing to do.
+
+6
+00:01:13,560 --> 00:03:17,280
+Scott Tolinski: Yeah, that'd be pretty cool. I approve. Cool. So this episode is sponsored by Sentry. Now, Sentry is one of those really key things part of my workflow that allow me to track all of my errors and exceptions. I look at my Sentry just about every single day, I get alerts for regressions, and all sorts of stuff like that. So if you want to check out Sentry, head on over to century to IO, and use the coupon code tasty treat to get two months for free. Let me tell you just a little bit more about what I'm using Sentry for right now. So I have Sentry all the time on both my API. And by front end of my site. One of the coolest things you can do inside of Sentry is to mark a bug as as been confirmed that you've completed this. So let's say I got this bug says cannot read property underscore ID of undefined. Okay, I didn't then go and then find within my react component or whatever it may be where I'm trying to read a property from something that doesn't exist, but I push an update. And then I go ahead and say, Hey, this was resolved. And this was resolved in the next release, or even the current release, or even a very specific release, I can attach these these things to release this directly. So I can just say check checkbox, you've resolved in this release. And then, uh, you know, I'm sitting at home, I'm watching TV, and I get a little buzz on my phone, it says, regression. And I can see that I had a regression in this bug and I didn't actually fix it the way I wanted to. And sure enough, that the release, I pushed out to fix it. So these are the kind of tools that you get with Sentry, as Sentry die of stuff that I absolutely rely on in my day to day life. So this episode is going to be talking about other things that we rely on in our day to day life in coding workflows. And these are going to be automation workflows are things that we just use to make everything easy. And we're going to be talking about some home automation stuff, some bash scripts, some Alfred stuff, and maybe just a little bit of miscellaneous things as well. Do you want to kick it off? I think the first thing we want to talk about is Alfred.
+
+7
+00:03:17,460 --> 00:04:45,950
+Wes Bos: Yeah, I'm a big fan of Alfred myself. It's if you don't know, Alfred is this like Little Mac app that I personally hit alt space and it pops open, Alfred, and you can launch apps from it, you can install extensions, like I use one to convert HTML entities from one to another. So if you have like Exxon, thank you. And you want to know like, what is that in HTML entity, like ampersand, excellent, a Gu, semi colon. I'm not sure exactly what it is. But you can just take it in there. I'm going to do it right now. That's pretty sweet. So I just typed D or encode, er, you know what my laptop is in the shop right now. And I haven't installed all of my alfrid extensions to this new one. So I would be able to tell what it was or, or the times and then I have another one that will do the other way around where you can decode and percent times and it will show you what the equivalent one is. And it will show you basically for and I've got all these different plugins that I use without friend, we've talked about that in the past. But another thing Alfred allows you to do is like workflows where you can say like, when I type this thing in, go off and do these things and has this awesome editor where you can stream together different tasks and whatnot. And quite honestly, I don't have any of my own custom workflows for that. But after seeing what you have here, I'll let you talk. I kind of want to build some of my own.
+
+8
+00:04:46,169 --> 00:07:46,680
+Scott Tolinski: Yeah, I have a couple of that are great, and I've been recently getting more and more into these. I goofed around with them a little bit in the past, but I have a few that I've been using right now hold on one of them. The first one is the most basic I have one that changes my audio inputs. So I can just do like, oh, is my audio playing through the wrong thing. So I can just toggle my audio input. Okay, that's just minor. But the major ones I have are ones that actually prepare me for my different work environments. One of the things that I really struggle with is occasionally, I don't want to say, focusing, but it's my brains all over the place. So I have a hard time necessarily shutting everything down. And if I have stuff here or there, whatever, I'm likely to sort of bounce around, or maybe glance on Reddit or something like that. So I've been really trying to make my life automated in those ways that I don't have to think about some things. So for instance, I have one that I just called record. So if I do Alfred, and I can just type Rec and it, you know, finds the right one. And what this does is it closes every single app on my computer, it then turns on my focus blocking software, so that I can't visit any social media sites or any blogs or any of that stuff. And then it opens up the apps that are required. So I will open up my screen flick, it will open up VS code, it will open up Chrome, it will open up anything that I need for my recording, I think that's it, let me check, it opens up a notion as well, because I keep my notes and notion. And that's pretty much it here. That way I can have everything up and running and nothing else. And it This ensures that which is something that I really need more and more. Now, I don't know why, but it's getting harder for me to focus. So I'm making my things happen more like that. I also have one for syntax, which closes everything but then opens up logic, zoom and notion. And it also has chrome open to just so I could look up notes and things like that. So using these little workflows are really great. There's not a lot of great ways, though, to make these super shareable these ones that I have, because what I've done for the ones that close apps, I've written Apple scripts to do them. And it's not going to fit your workflow entirely. It's so it's kind of hard to just share because it's not something you can just plug and play, I kind of just, I don't know, I just kind of like wrote this whole thing in Apple scripts. But you can definitely find workflows and things like this online that you can copy and paste, it's largely what I did is copied and paste these from other places. But I definitely rely on these and I've been using them more and more I'd like to get into combining some of my bash script, we'll see sh script, I guess stuff. Because it's not as easy or whatever my z sh functions, I'd like to combine some of those with some of these to make these gigantic transformer workflow things but have not had that happen. yet. That's such a good idea. It's a great idea.
+
+9
+00:07:46,859 --> 00:08:58,550
+Wes Bos: The cool thing about Alfred is you can always kick out to any like script that you want. So whether it's a PHP script, or a node script or a bash script or anything, you can just kick out to that and then receive the data back and then display it in, in your Alphard output or throw it in the key in the clipboard. Whatever it is that you want. I think it's really important. If you have a hard time with the sort of setup, being like, I'm gonna record a video today, but like, oh, then I have to close on my windows, like, Oh, you have all this sort of stuff blocking you, automating all of that same with like starting a new website. Like I don't feel like starting a new site today. If you could just automate that all and like when I when I was doing WordPress, I would just have like a one key command or one shell command and it would automatically create the folders for me it would give me a new Photoshop file, it would give me a fresh WordPress or create a database, it would change the words in the WP config file. And like all of that is like and then like I was up and running. I was like, Ah, okay, like I'm done the boring part. Now I actually get into the fun stuff, which is actually building it. So automate away the boring and the monotonous because that is often a blocker in terms of getting actual work done totally. And
+
+10
+00:08:58,550 --> 00:11:04,560
+Scott Tolinski: that's sort of what I'm about right now is about getting all this stuff. One thing I really wish Alfred could do is I wish it could really quickly and easily integrate with my Google Assistant stuff. Because I have some home of flows my smart home routines that I would love to be able to include in this I would love to be able to type an alpha command and have my smart home routines just happen. I found it's maybe possible but not exactly obvious. There's like some Python thing library to integrate with it but it hasn't been touched in a little while. It's a little iffy. That said we also have some smart home routines here. I don't know if you do a ton of this stuff but I use a lot of these I tell my my routines that I'm recording. And one of the things that does is it turns off my studio monitors that way I don't get any sort of digital hum there or anything coming out of my studio monitors there. No accidental noise coming out of them. I also it turns off my air conditioning because the air conditioning units right outside my office. I also Have vents in here. And what this does is it just prevents any of that low hum in my office. It also turns on my office lights and turns on my desk. My desk includes my monitor and all sorts of stuff with my my audio stuff. So I have a recording one. I also have an intros one where it turns on my studio lights for when I record the introductions for all of my videos. I have one that says I had just told Google that I'm working and it turns on my studio monitors so that I could listen to music, listen to podcasts, or any of that stuff. Turns out my desk just gets my office ready to go. And then I have a shut it down routine called shut it down that runs every day at 6pm. And it shuts off my desk. It turns off every single outlet in my office except for one, which is the wise cam I have that's pointing into my backyard. That's actually I know you have wise cam setup outside. But for me, yeah, I have a really nice windows spot in my office that can I just point out the window. And I use a little magnet mount thing that they come with. And I have just pointing out the window so I can get my whole backyard and the wise cam through the glass.
+
+11
+00:11:04,650 --> 00:11:08,340
+Wes Bos: Does the IR at night not reflect off the glass though?
+
+12
+00:11:08,550 --> 00:11:17,040
+Scott Tolinski: I haven't had issues with that. But it's like, it's like pushing up against the glass. It's not like a distance away from it is right up on there.
+
+13
+00:11:17,160 --> 00:11:31,170
+Wes Bos: Okay, okay, cuz I ever thought I could do that at some point. But I put one in my office pointing out the window. And then at night when you want night vision, it was just reflecting the IR off the glass and that you could just see the camera itself.
+
+14
+00:11:31,200 --> 00:11:37,560
+Scott Tolinski: That's funny. I I should check on that. I don't think I've had that issue. No anything. And I just had some clients that at that much.
+
+15
+00:11:37,740 --> 00:12:38,190
+Wes Bos: Yeah, we put some in some outdoor enclosures, which would they've only been running for two weeks, but they're going strong, but wise themselves have said, we're testing an outdoor camera right now. So I bet. Yeah, next couple months, we'll see an outdoor camera for sure. Cool. I just have a couple of those little there are through Google Home as well. We have one called it's called shutter down. And you just say, okay, Google shutter down. Sorry, if I just tripped your chapter thing. And that turns off the TV or girl, we forgot about gorgo gargle, turns off all the lights, I used to have it turn the thermostat down. But then I just figured you just automate that anyway. So I took that off. And then we have a wake up as well, which turns the lights to like 12% in the morning. And it's it's pretty nice to be able to do that. past that I don't really have any other smart home routines. I think as I'm getting more and more stuff that is smart in my house, I'll probably start getting into that.
+
+16
+00:12:38,310 --> 00:14:29,850
+Scott Tolinski: Now man, I got a lot of routines that aren't necessarily even a part of my office. Like, we have these porch dangly lights that come on at a certain time, the lights throughout the house, maybe starting at six o'clock progressively get dimmer, so that way, we you know, the evening time nine o'clock rolls around, the lights are all dim. We're not all just being blasted with light. So we're, you know, ready to go to sleep. So I like to I rely on these things a lot. I really have a fun time really playing with these routines. For some reason. It's something that I could just do endlessly. I really enjoy setting these up. It's like, I don't know, I'm really into it. So the next one we want to talk about was bash scripts and aliases. I use a lot of aliases for stuff more so than I use functions or scripts, not you know, functions are fine, but aliases just really do the job a lot of the time. For me, I have one that is just G, which runs git add period. And then it runs git commit hyphen m, and there's an argument of, you know, the thing so I can just type G, and then my commit message, and then that adds any unstaged, untracked files and then commit them. Really nice and easy. I hate having to type git add git commit hyphen, M Yeah, you know, like the word I'm on. So I have that I have one that's just push that just as git push origin with an argument. So push master push develop. I also have one called lat. l UT so I can just, I just open up a new tab le UT and what it does is it changes directories into my level up tutorials directory, and then runs yarn and then runs yarn start. So that way I can get my whole application just up and running with a one little commander, just that Oh, UT. I'm sure I have lots more to be honest. But these are the ones I use. Primarily I use these all the time. So the those are the ones that I'm a big fan of.
+
+17
+00:14:30,330 --> 00:14:57,210
+Wes Bos: I have Yeah, I've got a handful as well, sort of depending on the project that I have. I sort of just add them as as I go. One that I use everywhere is get a see exactly what you said. It adds everything and commits it with whatever message I pass it. I have that as a I used to have it as like a like a bash script, but I changed it to be a get alias get script. Did I hold on? Hold on? Yeah,
+
+18
+00:14:57,210 --> 00:14:57,720
+Unknown: hold on.
+
+19
+00:14:57,720 --> 00:14:58,920
+Hold the phone here.
+
+20
+00:14:59,160 --> 00:16:25,590
+Wes Bos: Yeah, it's it's It's not a, it is a it's in my like, my Git config file. So it is a proper get. One, I don't know, what's the benefit of making it a good alias other than not that versus something else. But I did. I use z a lot. So z is like a thing that will allow you to jump to free sent directories, which is frequent and recent, mixed together. So you just say like, z, I call my thing, Boss monster. So I just type z monster, and it will put me in the monster, I'll do z monster back end. And it will put me in the back end folder inside of my boss monster folder. So that has done away with a lot of my aliases because it's just smart. And it learns based on what paths you go to. So I deleted a whole bunch of my things, I have one just called like, db, and it puts me in my Dropbox folder. Oh, nice. Yeah, I have one called t, which uses this utility called tree. If you I think it's brew install tree. And what that will do is give you a nice tree listing of your directory. And then I can just say t three. And that what it will do is it'll give me three levels of directories. And then it will ignore DS store, node modules and a couple other files that don't necessarily want to see. And that's great for tutorials to sort of just give people a visual as to where where the files are. And where we currently are, oh, this might Yeah, I have one called source, which just
+
+21
+00:16:26,880 --> 00:16:29,610
+Unknown: sounds like an alien race source. Yeah.
+
+22
+00:16:30,690 --> 00:17:08,570
+Wes Bos: That will just source those that sh RC file, and then move back to the directory where we currently we used to be, because if you ever make edits, to use that sh file, you have to close the terminal and open it up again. But if you type source, that sh RC and then and then go back into that directory that will allow you to sort of stay where you are in the headspace. So I just made a quick little alias or a little function. It's a function called source. And I've got a couple other I used to make animated GIFs on the command line. But I don't do that any longer just because there's a lot other better apps out there for creating animated GIFs. Interesting,
+
+23
+00:17:08,810 --> 00:18:06,990
+Scott Tolinski: I forgot one that I use all the time. And I'll have a will have this in the show notes. But I use one that I have as our NPM. And what it does is it removes my node modules folder recursively from every directory. So like let's say I'm running low on Well, okay, so I should should note that I create a lot of repos when I do my courses. Because I duplicate repos, I do a lot of stuff there. And I occasionally get a ton of node modules folders. So I can just point I just do our NPM when I'm in the site's directory, and that's going to find every single node modules directory in that thing, and delete all of them in one fell swoop, saving a ton of space. And to be honest, like you don't really probably need those node modules folders anyways, you can just head to your directory and type, you know, yarn or npm install when you're about to work on the project anyways, so I like this our NPM again, I'll have the the actual syntax for this available in there. So you can check this one out, too. I use this all the time.
+
+24
+00:18:07,290 --> 00:18:41,280
+Wes Bos: That's neat. I, I have some, I can't find what it is right now. But I have something that will search my hard drive for node modules, folders and just delete them. If I haven't touched the directory. It's been more than a month. It's somebody built after on Twitter, I was like, how do I delete because they're like you're running out of space on your laptop and node modules. If you have like any sort of like, like Time Machine backup or anything like that 40 million files will make it really slow. So just cleaning those up is is really helpful, because you can always go back and npm install them later if you need to.
+
+25
+00:18:41,360 --> 00:18:42,480
+Scott Tolinski: Yeah, totally.
+
+26
+00:18:42,750 --> 00:19:57,930
+Wes Bos: Uh, what else we got here. Other things that we have, I do a lot of not a lot, but I wish I did more email automation. So if you're a student, you sign up for a student discount that will go into a queue and then I can just mark it as approved and then it will automatically send out the email student discount to them. And then it will then check if you had bought it three days later. And if you have not bought it three days later, it will send a follow up email being like, Hey, is everything okay? Like, did you get the code and that's it's both a sales tactic. It sells a lot more courses. And also it's it's helpful because a lot of people are like, Hey, no, I didn't get it or Oh, sorry for I checked my my junk in it went into there or something like that. So I find that be very helpful. I'd love to get a lot more email automation like that, because it's really good for for sales. I've like I use stripe web hooks for a lot of things is specifically if people if there's a dispute on a charge, or if there is I forget what the other hooks are. But basically, if there's anything fishy going on with stripe or PayPal, it will ping a URL on my on my server and my server will automatically freeze that person's account.
+
+27
+00:19:57,930 --> 00:20:06,800
+Scott Tolinski: So are you doing all that with this node mean even the previous one, the email discount the student discounts thing? Is that all are you doing though with node?
+
+28
+00:20:07,229 --> 00:20:49,410
+Wes Bos: The No, that's all done with drip, which is my email provider done with drip, okay, they have a whole, like a system that you can create these workflows in. So basically, if you look at the workflow, it will, the person signs up, they put their email in, and they can email some proof. And then you can go in and tag it as approved. And then it will then send out the email to them, that gives them a discount code. And then you say, wait three days, and then after three days, you have a if they have a tag of customer, that's it. And I don't have a tag of customer, then do a follow up email, say, Hey, is everything okay? Do you have any questions? Things like that fun?
+
+29
+00:20:49,410 --> 00:20:50,570
+Scott Tolinski: Cool.
+
+30
+00:20:50,879 --> 00:21:13,140
+Wes Bos: Yeah. And then I've affiliate payment that's somewhat automated, I still have I still approve it manually, because it's kind of scary automating sending people money. But it does a lot of the sort of the heavy lifting of calculating and creating a CSV for me, and then that CSV, I can just manually upload to paypal and, and send out my affiliate payments.
+
+31
+00:21:13,850 --> 00:22:19,110
+Scott Tolinski: Very fun. All right, like this. These are all things that I'd be looking to automate more like my student discounts. I'm still approving all of those by hand, I look at every one of those anybody time. If you think that's a robot, now, that's me looking at your your student account stuff. So I need to fix that I need to make it better. I mean, to have it, because that sounds nice to just be able to check and click and whatever, rather than respond to an email or something so interesting. Interesting. I would love to Yeah, I've been working on automating some of these processes within my codebase. A lot more. I mentioned, I think it was in the last episode or a couple episodes ago, about my new importing system, where before, I used to have to import the playlist, then import all of the videos, and I had to like copy and paste a whole bunch of stuff. And now I can just paste in the playlist ID I click Import, and it brings in not only the playlist, but all the videos. And if I want to update I just click it again. I mean, there's like trying to automate that stuff out of my life has been definitely something that I've been wanting to dive more and more into both within the code as well as these systems.
+
+32
+00:22:19,710 --> 00:22:33,090
+Wes Bos: Yeah, I can't stand doing that sort of like stuff that you have to do every single month, you have to remember to do it has to be done in a certain time. Oh, yeah. Or like the same thing over and over. It's much better just to write some code and try to automate it.
+
+33
+00:22:33,120 --> 00:23:16,530
+Scott Tolinski: Yeah, yeah, definitely. One thing that we didn't talk about that I mentioned on the recording episode, is that I use an app Devi. And I use it to automate the placement of my windows. So if I want to put my windows in recording mode, ideally, my Alphard script could interact with Devi in somehow put all of my windows in recording mode after they open them. But we'll see might be one thing that I look into improving at some point in my Elford, scripts, my Helford workflows. That's all I have. I want to hear what kind of automation and cool stuff you are doing to make your dev life better. Even just simple things like what are some like fun little aliases or commands that you set up to make your whole process a little bit more seamless and easy for you?
+
+34
+00:23:16,860 --> 00:23:21,810
+Wes Bos: Yes, tweet us at syntax FM. I think that's it for today, though. Anything else to add there, Scott?
+
+35
+00:23:22,200 --> 00:23:23,070
+Unknown: I don't have a whole lot.
+
+36
+00:23:23,100 --> 00:23:26,310
+Scott Tolinski: I'm interested in this stuff. If you have any cool fun tools, let us know.
+
+37
+00:23:26,549 --> 00:23:31,620
+Wes Bos: Cool. All right. Thanks for tuning in. We'll catch you on Wednesday. Please
+
+38
+00:23:33,450 --> 00:23:43,230
+Scott Tolinski: head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
