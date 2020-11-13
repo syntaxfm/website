@@ -1,0 +1,340 @@
+1
+00:00:01,319 --> 00:00:04,590
+Unknown: You're listening to syntax the podcast with the tastiest web
+
+2
+00:00:04,590 --> 00:01:08,310
+Wes Bos: development treats out there. strap yourself in and get ready. Here is Scott, ski and West boss. Oh, welcome to syntax. This is the podcast with the tastiest web development treats today we have a potluck episode, which is we answer your questions. We go all over the place talking about JavaScript, CSS tools, hosting platform soft skills, all kinds of fun stuff like that. If you have a question you'd like us to cover on an upcoming episode of a potluck, we do them once a month go to syntax.fm and in the top right hand corner, there's a button that says ask a potluck question. You bring the meat Scott and I will attempt to answer the that them or something like that. Today we are sponsored by Sentry, which does all of your error and exception and your bug tracking and the second one is Freshbooks which does all of your small business, freelancing invoicing, expenses, time tracking things like that, with me as always, which I just learned the most hilarious thing about Scott is Mr. Scott Tolinksi, who had a tongue piercing
+
+3
+00:01:10,050 --> 00:03:00,449
+Scott Tolinski: Yeah, I had a tongue piercing for a long time. We were just talking about Western he went to the dentist. Yeah. And I was thinking I hate the dentist because they have a receding gum. Due to a tongue piercing that I had for. I don't even know I would be very interested in counting how many years it was a long time maybe like eight 810 years. Which is hilarious. The funny thing is, is I really just got it to get a piercing It was like well I want to get a piercing. That said I don't want an eyebrow piercing I don't want to lip piercing and I don't want an ear piercing and I don't want to know I was like whatever I'll just get a ton of like this is just be a fine you know life experience. And then I got it done. Another really fun bit of that story is I got it done one without telling anybody but I got it done the same day that we were supposed to be doing a performance with my breaking crew. Oh my gosh. And so we were supposed to be dry. Okay, so I think I'm gonna get this thing done after work I'm gonna walk in there I'm gonna get it done it's gonna be fine I'm gonna go performance I'm gonna kill it whatever I get it done and I immediately Pat well I didn't immediately pass out I leave and as I'm crossing the street I start to pass out and I feel like I'm gonna like you know lose it so then I I lay down in the middle of this is Ann Arbor Michigan against a building if for those of you who who know and Arbor by the Starbucks over there I laid down in in sort of like a a door well like our door is I just kind of leaned against it and then just like passed out like a drunk ass against the door or something. But I was just out of it. And then when I came to which is kind of ridiculous that I passed out in public like this, but when I came to I had all these people calling my phone saying dude, where are you? You're supposed to pick everybody up and drive this to this performance sign Sorry, I could talk but totally cool and then I just pushed out
+
+4
+00:03:00,720 --> 00:03:02,610
+Wes Bos: so oh my god needless
+
+5
+00:03:02,610 --> 00:03:10,680
+Scott Tolinski: to say we did the performance and it was a Okay, I have some cool photos of me doing some flips over some people so I was still able to do that kind of thing. So whatever
+
+6
+00:03:11,160 --> 00:03:16,440
+Wes Bos: that's hilarious Wow, that's it. That is a fantastic story. I can't believe you haven't told that one before
+
+7
+00:03:16,470 --> 00:03:19,380
+Scott Tolinski: dude is yours there's that's my life. I got a lot of stuff like that.
+
+8
+00:03:19,410 --> 00:03:21,840
+Wes Bos: You got a lot of stories. Do you have any other piercings?
+
+9
+00:03:21,930 --> 00:03:33,750
+Scott Tolinski: No that was it. I had it in for a long time and it was great. I enjoyed it and then because my gums to recede and now I know I'm regretting that decision so
+
+10
+00:03:34,860 --> 00:03:55,319
+Wes Bos: I have a tragic piercing which is that little like no but nub of skin Yes, your your headphones in and I've had it for probably like 12 years and it fell out like last year and I was like Dwight do I get it replaced? And I did because I want to stay cool dad with that
+
+11
+00:03:55,319 --> 00:04:06,380
+Scott Tolinski: in you know it's funny when I first met you I always whenever I talk to you got your headphones on. So yeah, when I first met I was like oh my God appears easier. But like I never see that because your headphones I was covering it.
+
+12
+00:04:06,449 --> 00:04:22,640
+Wes Bos: Yeah, it sucks with the ear pods I sort of got used to it but when I first started putting the air pods in in like the it would kind of like get in the way of and hurt a little bit because it's there's obviously a big ring there that is pressing up against their pod. I
+
+13
+00:04:22,640 --> 00:04:25,980
+Scott Tolinski: still have a giant hole in my tongue but it doesn't really cost me any trouble so
+
+14
+00:04:26,390 --> 00:04:28,050
+Wes Bos: can you like shoot water through it?
+
+15
+00:04:28,070 --> 00:04:34,200
+Scott Tolinski: No, I'm pretty sure it's closed up inside of it somewhere but the top and bottom still are there.
+
+16
+00:04:35,330 --> 00:04:42,200
+Wes Bos: Wow. Well, that was pretty cool. Send us your piercings at syntax FM on Twitter. We'd love to see what kind of crazy piercings
+
+17
+00:04:42,200 --> 00:04:45,120
+Scott Tolinski: you know if I want to see photos of the piercings you can just tell us
+
+18
+00:04:46,580 --> 00:04:54,570
+Wes Bos: I want to see a photo unless it's like super weird friends that had like the sub dermals Yeah, it goes in your cheek.
+
+19
+00:04:54,600 --> 00:04:55,440
+Scott Tolinski: Yeah.
+
+20
+00:04:57,270 --> 00:05:43,440
+Wes Bos: Anyways, let's talk about web development. Hi We have got a whole bunch of questions. I'll grab the the first question here. And we'll sort of go through and answer them. First question is from not sure of the name, it was anonymous. Hi, guys love your show. What do you think about Webpack verse parcel versus the old way, gulp, etc. Webpack seems to bring a lot of magic improvements, but it is overly complicated and a lot is not easily visible. Is it worth putting in the time to learn? Where do you see the future towards some specialized guy, as example, a front end dev build specialist. So like somebody, his full time job will be just maintaining the web pack, or going towards some sort of simple build tools? Thanks. Oh, I've got some opinions on this. Thank you anonymous.
+
+21
+00:05:43,770 --> 00:05:46,200
+Scott Tolinski: I knew you would. That's why I picked this question. Yeah,
+
+22
+00:05:46,560 --> 00:07:10,950
+Wes Bos: um, I think that I haven't, honestly, I haven't really written a web pack in probably a year and a half. And I think that's amazing. And that's because, and I've been saying this for a long time is that the Webpack is under the hood, sort of tool that people are much smarter than most of us will configure for us. And then they will surface themselves via higher level tools that are much easier to use. So things like if you use next js, or Gatsby, or any of these sort of like pre built things, they sort of just do it all under the hood for you. And you you can you can expose it if you need to. But at the end of the day, we're all writing, like modern JavaScript, or TypeScript. And we're all sort of doing the same thing. So it doesn't really make a whole lot of sense to me. why a lot of people have to write their own web pack from scratch. Other questions here was parcel, I absolutely love parcel, I've been tracking parcel two, which is is a kind of a nice quick way to get up and running. I'm using personal in my upcoming JavaScript course, just because you just type parcel index. html in it, it starts bundling it all for you. It's kind of annoying, because it doesn't do a sync away by default. So then you do have to like get a Babel config file, which is annoying, but personal two will hopefully solve all of that. So that's my thoughts on that. What about you? Yeah, I mean,
+
+23
+00:07:10,950 --> 00:09:06,330
+Scott Tolinski: I think I'm under the same mind. I'm trying to think when the last time I wrote a config for any of this stuff was alright, I guess I am adding some config to it for next j s right now. But you have tools. I mean, if you're writing react, you have you know, parcel which obviously isn't Webpack base, but does so much stuff for you, you have platforms like Gatsby next and create react app. But most of those times, you don't really need to get into the Webpack stuff. And me personally at my sites in Meteor, so I haven't really written a Webpack config. I haven't written a gulp file in a long time. Not because Gulp isn't, isn't great. But like, I feel like with parcel just existing to do everything for you, or Webpack, you know, any of these things just that exist. I feel like I haven't had the need to have a gulp process like I did in the past. Yeah. So you know, I'm of the same mind, I haven't had to write any of this stuff in a little while. And I'm pretty psyched about it. That was the one thing I always loved about Meteor. One of the things that really made me gravitate towards that initially, when I picked a desert project is that to add a package, you just did blah, blah, blah, add package, you didn't have to worry about the Babel configs ever really, I mean, you kind of do, but you didn't really a lot of stuff was enabled by default. I never had to tell it anything. If I wanted sass, I just added a sass package. I didn't even have to write any configuration code. I didn't have to tell the platform to use the sass package. I just really liked that aspect of things. So for me, I would personally always go towards a platform that doesn't involve you having to maintain any sort of complicated config, because packages become out of date things change, and you're gonna have to get into that mess at some point. Keep it updated in the future. Yeah, yeah. And you you're gonna get into something here in a second. But again, they do just take the things that are hard in the process. And they make it easy if if you use any of these platforms.
+
+24
+00:09:06,480 --> 00:10:34,110
+Wes Bos: Yeah, the talking about golf. I love golf when it came out. Yeah, written like a I somewhere on my computer. I have like a 10,000 word book I wrote on gulpin never released, which is a bit of a shame. But I was kind of bummed when when golf started falling out of favor in Webpack. And I didn't totally understand why because I was like, this is so much harder, I was really happy with the like, go grab the thing that you want, pipe it through whatever transform that you want, and then pipe it out the other end. And and the reason why that I Webpack sort of fell in love with everyone fell in love with Webpack and Gulp out of favor is that it's a different paradigm shift in terms of like how you handle all of your assets and dependencies and things like that, where with Gulp you were in charge of figuring out what went in and what went out. Whereas with Webpack you just have like a script file or HTML file and then Then any sort of assets, CSS, code splitting, things like that image compression, because the web pack or even if you look at something like Gatsby, because all of that goes through Gatsby, we're able to do a lot smarter things like bundle, minute minimization, code splitting, that's like automatic based on your route, because Webpack knows a lot more about your application, it can do a lot more powerful stuff about it. So I didn't understand that for the longest time. But now I'm finally like, okay, that it makes sense to me.
+
+25
+00:10:34,279 --> 00:11:52,860
+Scott Tolinski: Yeah, totally. In, it might seem like we're dumping on things like Webpack, or configuration. But it's not that those tools are overly complicated period, it's that the average user doesn't need to get in there and change those configurations. Because chances are their use case is not that special. And if your use case, isn't that special, you don't need to reinvent the wheel. Now there are people who really love to tweak and maintain and set up and all that stuff, and that's fine. But you have to know if you ever leave your organization, there's something that maybe the person that comes in after you might find that one to do that. So I don't know, there's a lot, there's a lot of here, but you know, these these tools are all fantastic. And really whatever works for you works for you. But I'm of the mind, if I don't have to write a config to get it to work, then that's probably best for me. That said, my new site does have a fair amount of config in it. But yeah, all right. Next question is from Bartel, what is your opinion on AWS lambda functions? Now for those of you don't know, a lambda function is simply just a function that you can run without having to have a server setup. And you can run these functions and node can you run them in just any old language? I don't I'm not quite positive about that. Because I haven't used straight up lambda functions.
+
+26
+00:11:53,370 --> 00:12:24,210
+Wes Bos: Yeah, I think that they obviously have no js. I think you can do them with PHP. I mean, look, AWS, lambda, languages, what languages does lambda support natively? Java go PowerShell node j, s, C sharp Python, and Ruby code provides a runtime API. Okay. So Ruby is one that I wasn't sure of at the time. So anything's read our documentation using node Python, Java. So pretty much the big ones out there, although PHP is not in that list. Interesting, huh?
+
+27
+00:12:24,630 --> 00:12:25,890
+Unknown: Well, now Oh,
+
+28
+00:12:27,270 --> 00:14:39,000
+Scott Tolinski: yeah, I'm not too upset about that. Go on. So AWS, lambda functions, you know, the thing I like about these is that you can encapsulate small bits of functionality that you would typically need to create a server for and have it up and running in a nice little thing really quickly be able to hit that whether this is maybe building your own cloudinary or building a redirect system, or there's all sorts of little use cases, or you can have a fully like serverless thing where your entire API is living in lambda functions or something, there's a there's a wide variety of things you can do with these functions. That said, I wouldn't, you know, what I really don't like AWS for, I don't like it for anything that requires you to use AWS counsel. Yeah, it's just, it's bad. And their documentation is out of date. And bad, their language is inconsistent and bad. Like they call one thing, one thing somewhere, and then something somewhere else. I mean, there's just there, it is very difficult to get into it, just by straight up reading the documentation, or even just trying to click around things don't, it's not intuitive at all. So if you're the type of person who really loves nice, intuitive based systems, you know, I don't love AWS lambda stuff for that. That said, I don't know if AWS lambda is always going to be the right way for you as a dev to consume serverless functions, please. There's all sorts of platforms that exist on top of AWS lambda that serve to make your life easier, especially now that like serverless has become much more of a mainstream thing. I mean, just think about what Netlify did when they added serverless functions, but they don't really make a big deal out of them. They just call them, here's these functions, you can run. And you don't have to get into all of the extra AWS console stuff with routing and whatever. You can bake them into your app. But then again, you have to be on Netlify. Or at least you use Netlify to do that. So I think AWS lambda functions for serverless functions. I think it's all great. That's it. I've just never really like working in AWS console. Every time I have to go into s3, I sort of just like cringe at the interface and what I'm having to do. Yeah, so yeah, that's that's my thought on it.
+
+29
+00:14:39,059 --> 00:15:09,299
+Wes Bos: Yeah, I agree. Yeah, same, same way. I'm always willing to pay a little bit more for I mean, there's, there's hundreds of startups out there right now trying to figure out how do you make this serverless thing really easy, and as painless as just building a regular app and you don't have to think about it like we have got Netlify Right now Yep, serverless j s. m, man, I'm forgetting a whole bunch of them. And we're gonna get 100 emails from people being like, I'd love to come on and talk about it. And
+
+30
+00:15:10,409 --> 00:15:16,980
+Scott Tolinski: I'm using I'm using next JS nine right now with the API routes. Yeah, I really like it really beautiful.
+
+31
+00:15:17,279 --> 00:17:49,530
+Wes Bos: So I think, again, this stuff is for smarter people. I think just as we said, with Webpack, there is going to be abstractions built on top of it, that are much easier, you pay a little bit in terms of flexibility and probably cost. But for a regular web developer who just wants to get stuff done, that's probably not a huge thing at the end of the day. So I think that that's totally fine. Work. Yes. Next question from Roberto on the syntax website. Each episode is a markdown file, how do you push into production? Do you have a different branch for each episode in a merge into Master? Or what is your strategy to avoid releasing an episode before the intended date? So this this index website I made like two and a half years ago, before, or maybe even three years ago, and we haven't really touched it all that much since then. And I'll just sort of tell you what the process is right now. And there's probably better ways to do it now. But it's not I kind of like how it works. So every single episode gets a markdown file. And in that markdown file, we get frontmatter, which is frontmatter. matters, just metadata about a markdown file. And it's kind of like custom fields if you're using like a WordPress or something like that. And in that we put the name of the episode, I'll link to the mp3 file and a release date, which is a timestamp. And then when we push to Master, what happens is we have a it's an ext JS website. And when the next Yes, oh, sorry, it's an X JS website on the front end. And there's a small little node server that when the node server starts, it consumes every single markdown file and spits out the equivalent HTML out to a out to like, sort of like a little API that we have set up for that. And then when the website loads every single time we hit that API, so you visit the homepage, it's it's server rendered. But the same thing happens if you refresh it in the browser, it will hit that API, the API will then filter episodes, which are only in the past based on the timestamp and then a lot just render them out to the page. So that's it. What's to stop somebody from listening to future episodes? Nothing? I know, a bunch of you actually do that, because I can I get, like, 1011 listens before they're released. And that's clearly people going into the GitHub, copying the mp3 file, and and playing it, which means all the power to you if that's,
+
+32
+00:17:50,250 --> 00:17:53,010
+Scott Tolinski: yeah, that's the web right there. That's the spirit.
+
+33
+00:17:53,060 --> 00:18:01,170
+Wes Bos: Oh, that also that that build process is done via What is it? What's the automatic build thing that we use?
+
+34
+00:18:01,170 --> 00:18:05,360
+Scott Tolinski: Now? Isn't? It's just that next as I thought that took care of everything?
+
+35
+00:18:05,460 --> 00:18:09,830
+Wes Bos: No. Yeah. But you we have to actually like build the site. Oh, you
+
+36
+00:18:09,830 --> 00:18:11,040
+Scott Tolinski: set that up? Yeah. Sorry,
+
+37
+00:18:11,060 --> 00:19:18,270
+Wes Bos: which now J. Now j. s? Does that now you can or sorry, right. Now, yeah. Now we'll do that. If you hook it up to your GitHub, it will automatically build it. But I'm using some sort of continuous integration software. Code ship, we use code ship. That's what it is. And it's funny, because now I'm thinking like looking back on that. And there's a number of things we could do is we it's there's no need for an API, because there's not really anything dynamic about it other than the the filtering. And we could easily move that show filtering just to the client, like you could do a react loop and say, if it's not earlier than the current timestamp, then don't show it. So we could probably it probably better suited for something like Gatsby Gatsby wasn't all that popular, back when the site was built. So that's that's why we made that decision. And now I finally got access to GitHub actions, which I think unfortunately, is going to put a lot of these automation startups out of business. Because you're able to do things like run a build on something like that before you actually push it out to your hosting provider. Yeah, I
+
+38
+00:19:18,270 --> 00:19:24,660
+Scott Tolinski: use a semaphore, but I think I'm gonna be using actions very soon here. I've had those for a little bit.
+
+39
+00:19:25,019 --> 00:19:27,350
+Wes Bos: Did you get access to GitHub actions yet?
+
+40
+00:19:27,479 --> 00:19:28,380
+Scott Tolinski: You bet I did.
+
+41
+00:19:28,440 --> 00:19:51,210
+Wes Bos: Well, you got to do a show on them because they're still in beta. And you got to have a hook up at GitHub HQ, I think in order to get pushed up to the front of that list. But from the people I've talked to about GitHub actions, man, does it look cool, and I think it's gonna make life a lot easier. And you don't have to use all these like third party $5 month bleed until you die startups for that.
+
+42
+00:19:52,580 --> 00:20:48,240
+Scott Tolinski: But you one, one thing that one thing that GitHub actions aren't going to take care of is error and exception handling. Yeah, so you're gonna want to use another tool for that which be century@century.io. You're gonna have to use the coupon code tasty treat all lowercase all one word when signing up, because if you do tasty treat, you'll get two months for free of century. Now, I wish I had two months for free a century, because I use century all the time. And it's one of my favorite services in the world, it really, really makes me confident that my site is not breaking right now I'm up, I just pulled up my century, I could see sort of the issues at a glance. And really one of my favorite things about this is I can see directly how many users this error is affecting. So I can come in here and I can see Oh, okay, here's the error that only happened for one individual, it looks like Oh, it looks like it might be being caused by some sort of,
+
+43
+00:20:49,800 --> 00:27:21,330
+like ad blocker tro tool. So you know, what I can do is come in here and I can click ignore, I'm gonna ignore you. And you're not anything I have to worry about. Now it's removed it from the issue, queue it removed it from anything that I have to think about. And if you see several of these ones, you can batch it, you can do any of that great stuff. And I have my API and my front end of the site set up side by side, I can click back and forth between them. Check it out, check out what the bugs are, and get those fixed up right away. So head over to sentry.io and sign up using the code tasty treat. Thank you very much for century for sponsoring. Alright, next question is from at dono. Kuhn. Okay, dearest, Wes. And Scott, well, thank you don't Okun Wow. Yeah, a lot of job postings in my city are from Digital agencies. I remember Scott mentioning one of his first jobs was at an agency. I was wondering if maybe Scott can share some of his experiences working at an agency job. The reason I'm asking is because it seems like there is always a thread on our web dev with horror stories about working in an agency, whether it's about management long hours, or just being on stable. The threads have made me second guess which agencies to apply for a first job? Is there any red flags? When you work in an agency to jump ship? You guys have the best thanks and love. Okay. So I think he don't know Kuhn. Let's, let's talk about this. Yeah, I think that one of the main things that I get out of this was the thread on web dev about horror stories. Man, if you go to read it for anything, you are going to have people screaming and complaining about everything. I mean, somebody put this money, I don't want to say too many controversial things. Somebody put a little minor minor ad in a GitHub or at a iterm thing. And I swear people were ready to burn down the cities, like people on Reddit were just absolutely furious. And that's not like a mature response. So Reddit is very, very, very far from a mature response to anything. Okay. I don't know if I would ever trust a comments in most reddits for things that said, Sean moderates the React Reddit, he does a great job of that the React Reddit does do a much better job of these than some of the other ones. And for a lot of this stuff, I've had to completely remove myself from Reddit entirely, because of just the amount of pitchforks and aggression and all sorts of things people have towards any opinion, that is not their own. So, okay, that said, I really liked working in agency, I've worked at three agencies in my career, I worked at a small agency, that was 12 people, I worked at a medium agency that was oddly enough double that at 24 people. And I worked at a very large agency, which was 3000, some people, okay, and the best experience out of all of those was the smallest of the agencies. So the 12 person one, every time I did a project, I was one of a couple devs there a couple interns and I felt like everything I did really contributed to the bottom line and contributed to the excess success of my coworkers. That said, we you know, you will add a 12 person agency, you end up accepting a little bit of, I want to say responsibility in terms of, you know, it's a company and if the company isn't doing well, at for, you know, several months, it's a lot more difficult for that smaller company to be secure. Pay everyone salaries, I had to take a 15% pay cut for like six months, just because we are in a recession. And you know, the clients weren't coming in or they weren't offering as much money as they were before. And that was hard. I mean, I chose to stay at the job because I love the job, but it was hard. So when time came to get an upgrade to a bigger agency, this one was backed by the University of Michigan. So I know that I'm never going to miss a paycheck there. I took that job, and the agency job was fine. The work was fine, but I didn't love the work. I didn't get as much control over what I got to do. For instance, at the smaller one, I got to set up my own Git workflow, I got to set up my own build process, I got to choose which frameworks and things I was working on. And then we get to the University of Michigan, they say, Okay, well, we're only on this old old version of PHP. So well, you can't do anything fun and to, well, we have to support IE seven. And well, we have to also use this older version of WordPress, and you can't use this or that or whatever. And like it was a fight to even get access to use Drupal seven at the time, which was kind of ridiculous. So that was difficult. There are things that you might concede there, I also worked at a very large agency. The thing about the large agency was great, they paid a lot, the work was really interesting. And it was higher level work. It was more fascinating work. less crazy deadlines, so to say, but I've never ever had to meet with a client. So when I worked at a small agencies, I was always doing the client meetings, which is great. But sometimes you just like to Dev, you don't want to sit up to client meetings and stuff. When I worked at the huge agency, I never even saw the client, they didn't want me in the room with the client. They didn't want any of the developers and they just like lifted these the these the guys that work in the dark, we'll just put them in the corner. But again, at a larger agency, you're going to just blend in a little bit more. For instance, our offices in our desks were in a hallway. They weren't even in an open office space, they were in a literal hallway because they didn't have any room for us. So they just folded up some card tables. And they put us in a hallway and said it was temporary. And then two years later, we found out it wasn't exactly temporary, it was for the entirety of my contract there. So there's upsides and downsides to all of these things that said, my time working at agencies across the board was great. I always felt like I had a variety of projects to work on, I always felt like the code I got to you do was challenging enough for me and I met some really amazing, both coworkers, clients, people, I get to work more closely with designers and UX people than I did anywhere else. So I'm a big fan of agency dev jobs. You know, if I went back into it, I would probably look for another agency job just because that's how I liked it myself. So that was a long winded way of saying that.
+
+44
+00:27:22,590 --> 00:29:02,910
+Wes Bos: I really liked working at agencies as well, as a freelancer I probably worked with, like, I think like 20, or 30 different agencies. And some were an absolute nightmare of sending hundreds of emails and changing scope and calling at all hours like I remember, I remember I just had my daughter. And it was like 9pm on a Friday. And I was just the phone was not stopped ringing. And they're just like, they just kept being like, hey, like, sorry, we need this right now. And like just like, holy, like, How are you so disorganized. And also because a lot of it is like there's a big agency that outsources to a smaller agency, which can't handle the work. So then they hire me. So you're like three or four, like ripples away from the client. And it's just like stuff gets telephone tagged from one to another. And that's, that's really hard to work on that. But some of them were awesome. Like, I absolutely love starting a new project every couple months, because you get it's like it's fresh, you can start from scratch, I spent a lot of time working on like the tools that would automate my workflow things like setting up a brand new WordPress, like even if it takes you like three hours to set up a WordPress, I would automate that into a script. And it would take 10 seconds to set up a new WordPress. And that's well worth your time. Because then you can hit the ground running a lot of the people that you see, that are complaining on on Reddit about these things is because they everything moves way too fast, and they don't have enough time to work on what they want. And they feel like they're always being rushed. And that's absolutely true. I think part of that can be solved by automating. And the part of that is just like, you have to have a good time estimate estimation estimation. For your manager, whoever whoever's working with you.
+
+45
+00:29:02,940 --> 00:29:12,720
+Scott Tolinski: Yeah, personality fit is a big thing there. Because, you know, I'm the I'm the I'm the type of guy who is refactoring my code base all the time. So obviously, I'm gonna like to start a new project from fresh all the time.
+
+46
+00:29:12,750 --> 00:30:12,060
+Wes Bos: Yeah, it just is just a it's just a doggy dog world out there. Like some you I've seen. Countless agencies shut down. A lot of companies are bringing work in house now. Because like technology is just becoming part of the business rather than a thing that used to outsource to build like a pamphlet website and a Facebook marketing campaign. It's all bringing being brought in house. So a lot of agencies have closed down in the last couple of years, but I don't know I would probably go for it. red flags are just when you do feel like even if you quote it properly, you're always being rushed. That's probably time to move on. And also when there's just people are unwilling to use new technologies because like, Well, we've been using the same like Photoshop 12 grid and WordPress starter theme for 15 years. And it's what we're cranking out. Those are the agencies that are going to go under because they've gotten comfortable with the sort of thing that they offer. And I don't know that I think they'll go under pretty soon. I think
+
+47
+00:30:12,060 --> 00:30:44,850
+Scott Tolinski: that is indicative of sort of a larger point is that there are good startups, there are bad startups to work for, there's good agencies to work for, and there's bad agencies to work for, and the red flags are going to exist in all of them. So across the board, no, agencies can be amazing to work for. And I'm sure they can be terrible to work for too. So it's really just about your intuition and your understanding of whether or not this company is going to be good to work for regardless if they're an agency, regardless of their startup, whatever.
+
+48
+00:30:45,480 --> 00:32:37,830
+Wes Bos: Next question we have here is from Arnold, hey, Arnold, what's the deal with recruiters? How do they work? Should you use one to land a new job so the thing with recruiters is they're sort of like real estate agents. Most of them are people just grasping for some money, it's a very easy thing to get into. Because for a lot of people, it's just a numbers game. If I email 4000, people, one of them might be a good fit. And like, from what from what I've heard, recruiters can make like thousands of bucks, like, like I've heard, it's like 20% of the first year salary, or like 10, even if it's 10% of $100,000 dev job, you can make 10 grand if you just like keep like splattering it, and that's why you get so many emails. And so because of that recruiters have sort of have a bad taste with developers, because we're these amazing developers that make the world turn with the skill and you peasants are trying to find me And no, I can pick from what it is. So he turned to give me money. Yeah. But I think the other thing is that like, I've had so many recruiters who absolutely waste my time, with like jobs that are like, hey, Wes, I see you're super into JavaScript. What about this ASP SharePoint job? Like No, no, not at all that hasn't that has zero overlap with my skill, you have no idea actually about web development. So you've started just trying to throw it against the wall and see what sticks. So I personally probably would not go with with a recruiter. But I don't know for recruiter, if a recruiter contacted to contact you. I give them a bit a little bit of a sniff test to see what they are I probably an in house recruiter. Like if somebody is working for Google or one of these big companies. That's probably something to pay attention to. But past that i don't i don't think a recruiter is all that helpful.
+
+49
+00:32:38,220 --> 00:34:23,400
+Scott Tolinski: Yeah, uh, I've gotten a really good job, my my job at Ford, I got through a recruiter. And they were just a recruiting agency. And it just so happened, that they reached out to me via email. And so many times these recruiters send you an ad before I get a message from a recruiter telling me why I understand why they get a message. And they say, we got this great job it's in, it's in, you know, what's to say, downtown Denver, and they're looking for a senior developer. And they expect to me somebody who's at a job or whatever, to see that email be like, oh, JOB, JOB, JOB, sound good, me apply for a job. But in reality, as developers we have, I don't want to say we have a lot of freedom and flexibility. But once you get into maybe aspects of your career, once you've had experience, and you're looking for more senior roles, you get a lot of opportunities, right? Because the opportunities are definitely there. And what these recruiters don't understand is that there's so much more to a job than the title and the location that you will you will be working at, for instance, I really want to know what company it's for. I want to know what kind of work I would be doing there. Those are the things that are all really important to me. And they're not going to tell me until I establish some sort of contact with them. The one thing I really really liked about this recruiter from Ford, or they weren't from Ford, they were from another, you know, outside agency, but they messaged me, they said, Hey, I have a great opportunity. It's with Ford, it, you know, pays really well. I think it's perfect for your skill set. You know, they do this and this and this and this and they nailed it. It was for my skill set. But most importantly, they told me what the job is and what I'd be doing at the job. Oh, that's good. Yeah, they're
+
+50
+00:34:23,400 --> 00:34:25,050
+Wes Bos: always so opaque about it.
+
+51
+00:34:25,080 --> 00:35:01,290
+Scott Tolinski: They're so old pick up on it. What's up with that? I mean, like I get it, they don't want you to just go to the company or to go through another recruiter they want to capture you like some sort of Tiger in a cage or something they want to get you and in. The thing I've always looked for in recruiters is those recruiters who are legitimately just out there to help and like, Oh, I got this thing. It looks like you'd be a good fit. Let's chat. And those are the recruiters that I want to work with. And so it can be really annoying. But again, like you mentioned, they're just doing it. They're just doing the job some of them are skeezy or added in others and to
+
+52
+00:35:01,560 --> 00:35:34,830
+Wes Bos: real estate agents, car salesmen and recruiters, and 98% of them are people just trying to trying to do something like I'm 32 years old. And all of my friends that couldn't hack it at their first shot, are either car salesmen or real estate agents right now, because it's an easy thing to get into. And it has a possibility of paying well, real estate agents. It's crazy. Yeah. But most people aren't really adding all that much value, but there's some of them that are super helpful. So
+
+53
+00:35:35,070 --> 00:38:01,320
+Scott Tolinski: we just had this conversation because we just bought a new car. And we're at these dealerships, and I was telling was, I don't know if it was Malcolm Gladwell, or one of those books was talking about car dealerships were like, one person at the dealership is responsible for like most of the sale. Yeah. And in it, we had so many bad agents, when we went or agents, whatever they are salesmen, whenever we went to go to any of these, like, most of the ones that we talked to, were terrible. They were bad with customer service, they were bad with everything. And Funny enough, when we called check on a car is one guy who just sort of like, Oh, I can't get you this car, it's not gonna be here, or it's off the truck. But you can't even look at it until after four o'clock. So come back at four o'clock. Well, we call just to like, check on it to say we're going to make an appointment and some other guy who's clearly the salesman salesman of the store answered the phone, and was like, oh, that guy said he couldn't get it for you all get it for you right now, if you come inside, like, and so like, there. That's the difference. One guy clearly wanted to help us and the other guy is just like, you know, trying to follow procedure and trying to do I don't know. So there's just so many bad ones. So that's a little aside about car dealers. So next, we have a question from Max. Max says, What do you think about Upwork? And or what do you think about the upward platform and their latest updates? I don't know what their latest updates are. But is it possible to find a cool full time job there is that only work for beer Upwork is tough, you're going to get outbid a lot, you're going to get you know, your your prices slashed people are just absolutely going to be cutthroat trying to get these gigs. And oftentimes, you're going to be outbid by people maybe in in potentially countries where the dollar isn't as much. So it really depends, depends on what kind of work you're looking for. I've posted jobs there before and had some really bad applicants and just wished that the person who was skilled with the right things would have just come into my inbox. And then I would have given them the money to do it. But I couldn't find anybody full of the right skill. So I think if you have a good skill set for the role, and it's potentially maybe a rare skill set, you'll probably clean up a little bit better on it, it really depends, I think you can get outbid very, very intensely and end up not making anything. Yeah, we,
+
+54
+00:38:01,610 --> 00:39:59,150
+Wes Bos: every time we talk about Upwork, we get a couple tweets from people being like, Hey, I actually make my entire living off Upwork. And it's great. And I think those type of people love that. They don't have to do anything, but actually do the work and the work will come to them. And it's sort of just a great and they have like a really good, like reviews, they've done thousands of hours of installs thousands of dollars on there. But just as like me looking at that as like, Okay, first of all, there's somebody between me and the clients, so they have total control. And if a business has control over you talking to your clients, you're not really like a freelancer, you're sort of just like working for somebody else. And the possibility of them pulling the rug from under you, at some point is very large. And also like, like, they're going to take a cut of your pay, because like the money has to go through Upwork, which is I think that's good for some people, you know, you're not going to get ripped off. But also they're they're taking a cut of it as well. So if it was me, I would just spend my time trying to increase my client list, trying to increase my notoriety, write a couple blog posts, and then just go to the clients directly, because you're going to have, I don't know, any platform that sort of puts me on the same shelf as 40 other people. And you it's all based on, it's not all based, but it's very much based on how much will this cost at the end of the day. That's very frustrating to me, and I don't think I would really want to be put on that. Whereas I'd much rather be my own business and have clients find me and be able to have coffee with them and talk about this amazing thing that we're going to build with them and show them that the value goes much, much more past then this is the task get it done. So I know that's that's sort of what I think Upwork same with like Fiverr, things like that. It doesn't seem like a really great marketplace, but I do know there's lots of people making a living or a little bit of extra cash on it.
+
+55
+00:39:59,730 --> 00:40:03,540
+Scott Tolinski: Yeah. Totally, I think I'm in agreeance with you on that one.
+
+56
+00:40:03,570 --> 00:40:15,270
+Wes Bos: So if I was going to go out on my own and not use something like Upwork How would you like build people? How would you track your hours? How would you do your invoices all that Scott, any thoughts?
+
+57
+00:40:15,360 --> 00:40:19,650
+Scott Tolinski: Probably with pencil and paper, I would maybe just sit judges are handwrite it?
+
+58
+00:40:19,710 --> 00:40:32,760
+Wes Bos: No, what about XLS x docs, where you just save them to your desktop, and then when it comes time for to do your taxes, you you have to open all your XLS x docs.
+
+59
+00:40:32,790 --> 00:40:48,860
+Scott Tolinski: Yeah, I could use XLS I am a big fan of XLS. For most things, I would prefer probably to do it in a PPT and then take a screenshot of it. But whatever works for you works for me was and neither of those, neither of those strategies would be that first because they're not fresh books.
+
+60
+00:40:49,800 --> 00:41:26,730
+Wes Bos: So our sponsor today is fresh books. If you are I don't know if you're gonna be a freelancer, do it on your own, use fresh books. To handle that part. Part of the reason people don't want to use something like Upwork is because it handles all of the paperwork and the taxes and the billing and all of that software like Guess what? Freshbooks does that all for you as well? Well, I want you to go ahead and check it out. Max freshbooks comm forward slash syntax, and you're gonna get a 30 day unrestricted free trial max this this ad is only for max really coming from Max here. Yeah. So check it out. Max, thanks for listening fresh books, or thanks for listening, Max, and thanks to fresh books for sponsoring.
+
+61
+00:41:26,879 --> 00:43:25,020
+Scott Tolinski: Okay, cool. Next question from Jamie. After your episode on spelt, I did a deep dive to see what it could offer. I like it. I'm willing to make the buy in. But I had there. Jamie's got a lot of intonation here and is typing. So I just wanted to get that across. But I already have a fast website and a developer flow, like dot files, the starter templates, snippets, and this is the big one, linting and formatting on Save. If my website is already fast, why should I sacrifice my developer experience to learn a new syntax note, you should not sacrifice any of that stuff to learn any syntax? That's the answer. If you really like felt enough to go off and build some stuff with it, do it, go for it. But like, just because the syntax is fancy and nice and clean, and whatever, doesn't mean you should abandon the things that make your workflow fast and effective and efficient. And all those other things because you have these processes react is not going anywhere. If you're talking about react or whatever you're coming for, you know, there's really not a whole big reason to switch unless you one are willing to invest the time into replacing those processes. And to do that you probably have to be pretty dang sure that this is the technology you want to switch to. So there is a little bit there. I'm liking and using spelt myself, but I have not started the spell to branch of level up tutorials comm yet, just because that would be a huge investment of my time and my effort. And I really got to be dang Sure. So why should you sacrifice your device? I don't think you should. I don't necessarily think you should totally jump ship from whatever you're doing. That said if you want to slowly migrate over that sounds good. You want to jump in all at once. That sounds good too. But you kind of got to be sure of what you're doing. If you're making a big change like that. And like I said, I love spelt, I'm really excited. The next level up tuts course is going to be installed. It's really cool platform. But I don't know if in 2019 right now you need to drop what you're doing and switch.
+
+62
+00:43:25,320 --> 00:45:19,170
+Wes Bos: Yeah, I think there should there should be a clear benefit to the end user which faster, better, greater website and a clear benefit to you as a developer, which is a better developer experience enjoy ability, big array of plugins that you could you can tap into. So I know don't write it off because like certainly we've all been there before where we write something off because it sounds silly and then you realize two years later I was wrong about that react. Yeah, react or, or anything like that. But I don't know. I think it should be a clear clear why and I don't think you also have to get in so early on stuff like this, like if you're like, Huh, pretty interested in it. I'm gonna sit on my hands for six months, and then take a look at it in six months and see like where people at because there are people right now trying to figure out all of the things that you mentioned, as to how do we make that very, very easy for everybody. Next question from Mr. tasty treats. Wow, that's a copyright infringement. So you'll hear from our lawyer. Will there be a CSS Grid inspector in Chrome? Do you use a third party grid inspector or stick with Firefox CSS Grid inspector. There is a CSS Grid inspector in Chrome. But it's not nearly as good as the one in Firefox where the one in Firefox you can turn on and off. Areas showing you can see the line numbers you can see all of the information about it like Firefox is just killing it and CSS tooling right now. And CSS Grid in Chrome is just you just hover over the elements It shows you the grid. So will there be? I would? I would hope so I would think so I would think that there are people working on it right now. But I don't use a third party one in it. I honestly don't need the inspector all that often. And when I'm working on something particularly challenging, I will always help. Yeah,
+
+63
+00:45:19,170 --> 00:45:25,350
+Scott Tolinski: I'm right there with you if it's really something challenging, or new or fresh Firefox to get a handle on it, but
+
+64
+00:45:25,350 --> 00:45:27,090
+Wes Bos: you're good at it now. Yeah, I'm
+
+65
+00:45:27,090 --> 00:46:06,990
+Scott Tolinski: typically fine with the chrome ones. I use the grid so much that like, I don't know, most of the simple use cases. Yeah, I can just, I just, you know, think of the code becomes a reality. And my site just looks nice, because CSS Grid is like that once you get good at it. So no, yeah, I think the the chrome ones will probably get better. Like you said, the Firefox ones are great. Yeah, if you need them. But for the most part, just keep practicing at the grid. And you'll hardly end up wanting to use them or need them anyways, unless it's extremely complex. Although maybe when sub grid comes, that's going to even be different, because I could see sub grid getting a little tricky. I know, we talked about that in one of the previous episodes. So check out the sub grid talk, if you want to learn more about that.
+
+66
+00:46:07,380 --> 00:46:38,070
+Wes Bos: Yeah, that was good. I finally just using like, the standard stuff in CSS Grid, like 90% of the time. And then when I'm doing a particularly challenging layout, that's when we'll have to get into it. It was funny. I came back from code Ace and CSS nav in grid. And I was just sitting there being like, how do you center something? And I took me a second. And then I was like, Okay, I'm back in it justify in line and items and content and all that. And it's like, Okay, I'm back on. Yeah.
+
+67
+00:46:38,700 --> 00:49:27,330
+Scott Tolinski: All right. Last question of the day comes from, is it chat or shit? I think it's chat. Sorry, chat. Chat is from New Zealand. So it's fun last name from New Zealand. It's pretty sweet. Last name their chat. Hey, Scott, and Wes, I'm looking for some advice on what is the best way to handle media queries in Gatsby with styled components I've seen online, just add styles from the components. So to say with a squeaky screen width of 678 pixels, you'd have to go through each component and add the media query there. So they end up being the same media max width 768 pixels, heaps of times, even more, when there's more breakpoints in the UI find it a bit tedious. Okay. Surprise. Part Two question here, too. If I want to pass a different props to a component in Gatsby on the window size, how should I go about doing this crate react app, you might use window dot inner width to determine the viewport size and pass the appropriate props into that Gatsby window isn't available at build time. So how should I handle this? Here's how you handle this Mansur part two first, because that's how I do it. Um, you check to see if window exists before accessing a window dot inner width. So you just check to see if it exists. That way, when you build the site, it's not going to exist, you can have some default value there for it. So yeah, you don't have you can use window dot inner width, just check to make sure it exists. First check to make sure window exists, I should say. And then that way is a good way of getting around, especially anytime you're doing anything with SSR. And you have that window is with that's how you get around it regardless of the platform. This first question, how do you manage breakpoints, I do it via the same way that styled components recommends to do breakpoints on their website, which is to basically have an object with template tag literals, and be able to do things like above dot mid above large and do it that way. Otherwise, I would most likely hand write out the media query. That said, I think the key here because you mentioned having to add a media query over and over and over again, I think the answer lies into building a more reasonable reusable component system. If you find yourself having to add the same breakpoint over and over again, I would, I would do it the way styled components recommends on their website. But in addition to that, I would look into maybe what things you can abstract into components that are both wrappers or layouts or, or things you can use, I have a whole component layout and library system that I built for level up tutorials myself, uses styled components. And let me tell you, I hardly ever have to create a one off component with a media query. Because all of my layout tools are already built as a styled components library. So I don't really have to think about them that much.
+
+68
+00:49:27,629 --> 00:50:43,500
+Wes Bos: Yeah, I it's funny, you say this, like I've sort of moved away from just building like a medium version of my website or a 768 version of my website where you have like three sort of main break points. First of all, because CSS Grid makes things so much easier, absolutely. That I probably write a third as many media queries as they used to before CSS Grid. And second, I just basically whenever I hit a point where things are getting tight, or it doesn't look good, I say okay, what's that about? Thousand pixels. Okay, I'll pop a breakpoint in there, and then just write it for that specific component. So I'm not sort of thinking sitewide. I'm just thinking more in a component level. And I do think that like, like sort of component queries, where you can say when this thing is a specific width, then then change that way. So that way, the components a lot more flexible than putting anywhere so yeah, I sometimes I'll put like a medium sized breakpoint in there or put it in my theme provider. And then say, like, this is my breakpoint. And the nice thing about that is that if you ever do want to change that breakpoint site, why then you can, I can't say that I've actually ever run into that the need for that. Yeah.
+
+69
+00:50:45,090 --> 00:51:14,940
+Scott Tolinski: I think that that's pretty much it. I don't really have a whole lot else to say on this. That's it. I just make sure your site looks nice in all of these different viewports. But again, zine systems, those kind of things. They're your friends. Okay, so that is it for this week's potluck question. I'm so sorry. If we did not get to your question, you should see the absolutely monstrous list of questions we have to pick through. It is it's like we can't even read them all, let alone picks them. So I'm so very sorry.
+
+70
+00:51:14,940 --> 00:51:25,410
+Wes Bos: If any of the spreadsheet lags when you scroll it. That's it. Don't let that stop you from submitting it. Because we pick the very best questions. Yes, yes,
+
+71
+00:51:25,410 --> 00:52:11,040
+Scott Tolinski: we I mean, we really try. We really try. But again, if you feel like your question was top notch, and we didn't get to it, I'm very sorry. Maybe even try resubmitting it because maybe if it's been a couple months, maybe we've lost track of it. But thank you so much. For anyone who submitted questions. If you'd like to submit your own question, head on over to syntax FM, and click the little ask a potluck question. It's in the top right side of the screen there. And we'll we'll get to it on one of our next potluck episodes, which is going to be in four weeks from now. One month from today. It's going to be the next potluck episode. So that was the part of the show where we get into his sick picks. These are picks that we find that are sick. Oh, wow. This could be anything I think you have even I think West sick pick the garbage bag ones. What else have you sick pick before
+
+72
+00:52:11,100 --> 00:52:12,450
+Unknown: I picked a garbage bag?
+
+73
+00:52:12,990 --> 00:52:23,310
+Scott Tolinski: No, you didn't. I just made it. They can be off the wall. The fact that you you like weren't like no, I didn't do that is evidence that it's it's possible.
+
+74
+00:52:23,970 --> 00:52:30,300
+Wes Bos: I've got thoughts about garbage bags. So yeah, absolutely. I would probably pick pick a garbage bag at some point.
+
+75
+00:52:30,810 --> 00:52:36,150
+Scott Tolinski: Right? Yeah, as long as it was able to tell me the time and read my Twitter feed. Smart garbage bag,
+
+76
+00:52:36,150 --> 00:53:13,320
+Wes Bos: man. That's what I did make. I made my own Garbage Pail out of I went to a like auto mechanic and they have these big blue barrels. sitting outside. Yeah, windshield washer fluid in and I got those and I cut the tops off of them. And then I got like bungee cords that will keep the you know, when you throw something in the garbage in the bag comes in after it. That's the worst thing to me. So I put that and then you also drill holes in the bottom of your garbage can so that when you pull the bag out, it doesn't suction to the bottom of the garbage can. So like Yeah, lots of hard tips about garbage bags here.
+
+77
+00:53:13,830 --> 00:53:19,650
+Scott Tolinski: See? See? isn't totally off base there. Okay, so what is your sick pick for today?
+
+78
+00:53:19,710 --> 00:54:24,960
+Wes Bos: My sick pick is a YouTube video of Steve Rowe and Andy Roy. So you know, TiVo is obviously the guy from jackass. And Andy Roy is a skater. And they both recently have had been sober for like, I don't know, six months a year or something like that. And they're both of their lives like if you'd like if you heard the story of like Roy, Steve o doing ketamine and like it's not an MD ROI just like has no teeth and things like that. And he got teeth and they both got like sober and they both look amazing. And they have this like YouTube video where they're just like filming in a car and they're driving somewhere. And it was super interesting to listen to just about like their past and growing up in San Francisco and things like that. So if you want to have I don't know a very entertaining especially if you like sort of grew up watching these guys skating and jackass and all that. I think it's really interesting watch. Yeah, if
+
+79
+00:54:24,960 --> 00:57:03,840
+Scott Tolinski: you want to, if you want to know why Andy Roy is like how he is are you going to do is watch that vise did a little documentary on him. And Holy cow. His life is set up to sort of put him in the position that he sort of was I can't really say too much other than that other than like his family life, his parents, all that stuff is sort of horrifying. So Andy Roy's a fascinating person. And definitely something that his his a little documentary about his life was well worth watching if not for any other reason than an interesting Life of some human being my sick pick today is going to be a DIY air filter, I have a gym garage, it's like an old garage, it produces a lot of dust in there. It's the old sort of dank garage, it can flood occasionally. And that's where we have our gym stuff. So I decided I really need an air filter in there who knows what I'm breathing in. And we bought this really nice expensive air filter from Costco it cost like 140 bucks. And that's great. But like, I don't want to go throw that thing out in the dank old gym. Yeah, so I found some video from a professor at the University of Michigan who specializes in air quality stuff. And they found that this solution of a standard $20 box, and a pleated filter, like a standard air filter that you'd put on your furnace is actually extremely effective. Although it's not as great as an air filter. This cost me like 40 bucks, maybe, which, you know, you could get three of these, or these for the same price that you could have regular fancy air filter. So I you know, I was I bought this air filter, and what I did is I bought a four inch thick air filter, which actually believe it or not, the four inches thick part of it makes it so the airflow is easier through it rather than more difficult. So I got one that is a carbon pleated Merv 12 air filter, and the carbon does a lot to pull out some of the smells. And like I said, this gym is pretty dank. And I noticed a 10,000% reduction in dankness in there when I went in. I was like, Oh, this is this is a little bit less dank. It smells pretty good. So I'm a big fan of this so far. It's obviously doing something and it's obviously working. And the fact that somebody from the University of Michigan says it's going to work means that I am going to believe it. Because I'm a big fan of the unit. So that's amazing. Yeah, I put put the link to the box fan of the filter in the show notes here. You can check it out if you're interested in that kind of thing.
+
+80
+00:57:04,170 --> 00:57:55,080
+Wes Bos: You know, you can also do with that thing Scott was said, Get some beef sliced it real thin. And you get another filter. Yeah, put it in you can make beef jerky. That's like a pretty popular way to make beef jerky is put beef between two airfares and run a box fan. Yeah, drying those meats. meats was? Yeah. Cool. Oh, man. That's good. Good. Sick pic. Shameless plugs today. I will shamelessly plug all of my courses I can just, I'm working so hard on my beginner JavaScript course. It's a half of the questions that we get in our potluck. When is it coming out soon. It's going to be great when it does come out. But I have Wes Bos comm forward slash courses that has a list of all of the courses that I offer. If you want to take a free one or a paid one use a code syntax for 10 bucks off
+
+81
+00:57:55,530 --> 00:58:48,750
+Scott Tolinski: sick. My shameless plug is going to be my new advanced Gatsby e commerce series that just came out and we build a custom shopping cart. We work with coupons, we work with local storage. And we work with Shopify all within Gatsby to build blazingly fast sites, it picks up where the Gatsby e commerce series that left off. And you don't have to worry a ton about like styling are the initial stuff of connecting Shopify to Gatsby, we sort of do all that stuff for you, or at least in a faster way than we ever could have in the other series. And we spend a lot of time talking about strategies for dealing with the Shopify API via context, all sorts of stuff. So if you want to learn Shopify, in Gatsby, head on over to level up tutorials.com forward slash pro sign up for the year and to get 25% for free. 25% off, not for free. But thank you so much, and check it out.
+
+82
+00:58:48,930 --> 00:59:00,990
+Wes Bos: Beautiful. I think that's it for today. Thanks for tuning in. And make sure you follow us on Twitter at syntax FM. I'm at West boss Scott is at St. olinsky. And I think that's it anything else to add?
+
+83
+00:59:00,990 --> 00:59:01,500
+Unknown: No.
+
+84
+00:59:01,890 --> 00:59:03,450
+Scott Tolinski: All right, peace. Hey,
+
+85
+00:59:05,520 --> 00:59:15,270
+Unknown: head on over to syntax.fm for you full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
