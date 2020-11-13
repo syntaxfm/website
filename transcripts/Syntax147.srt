@@ -1,0 +1,188 @@
+1
+00:00:00,359 --> 00:00:21,989
+Announcer: Monday, Monday Monday open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot. Here is Sarah CUDA, Bob, and Scott. Hello, Todd.
+
+2
+00:00:25,950 --> 00:00:51,330
+Scott Tolinski: Welcome to syntax in this Monday tasty treat, we are going to be diving into your weaknesses. These are the scary places where all of the hard things in your life your work your career live, and we're going to be talking about why the heck you should know about your weaknesses and what you should do about them. Okay, my name is Scott solinsky. I am a full stack developer from Denver, Colorado and with me as always is West boss. Hey, everybody.
+
+3
+00:00:51,990 --> 00:00:52,950
+How you doing? Wes?
+
+4
+00:00:52,950 --> 00:01:05,900
+Wes Bos: I'm doing pretty good. Excited to get a recording here with this. This one is going to be going live. What? The 27th? Yes, we're recording this way ahead of time. So congratulations. Maybe if you have your baby by now.
+
+5
+00:01:05,940 --> 00:01:15,810
+Scott Tolinski: I think there's like zero percent chance that my baby will not be here by this by this time. I guess. So. Yeah. About that graduate. Yeah, thank
+
+6
+00:01:15,810 --> 00:01:16,860
+Unknown: you little one.
+
+7
+00:01:18,420 --> 00:03:47,580
+Scott Tolinski: That's wild. This episode is sponsored by Log Rocket. Now Log Rocket is one of our longtime sponsors, here at syntax. And Log Rocket is a really, really cool service. Those of you who who use a system and a bug hits, you know that it's often mysterious. Even if you have the full error log of what happened, right, you're you're tracking your errors, you're seeing these errors come in or worse, you don't have any error tracking system at all. And your users are reporting a problem. You know, just how tough that can be to solve one of your issues, you can spend absolute hours just trying to figure out what the heck the user even did to find themselves in the predicament that they did. Now Log Rocket Is this one of those special services that really makes your life easier and so many sort of ways. So check out Log Rocket at Log rocket.com. forward slash syntax in what Log Rocket does is it gives you a video replay along with full console, you get access to the DOM, you can see everything that happened when the user hit their error. This is so important because well, like I said, there's so many times you're just left in the dark. So again, check out Log Rocket at Log rocket.com, you'll want to see their session replay. This thing is really super cool. It's one of my favorite services, that sponsors syntax. And I love and use this service myself. So let's get into it talking all about weaknesses. Now, I think the first thing I wanted to start off with was really like why why should you care about your weaknesses? So many people are like, why don't I don't think about the things that are difficult are the things that I'm not good at. And I just work on the things that I'm good at. And eventually I'll be a superhuman at those things. But I think the things that we avoid are the things that we're afraid or bad of or bad at. But if we constantly avoid those things, do you end up becoming lopsided in your skills as a human or a person. And maybe you just progress slowly or not even at all right? You just end up, you just end up stuck in these places where you're not you're not advancing forward. So I really think it's important to shine light on these things that you're scared of, so that you can approach them, you can improve them, and your life will get better. It's not just that you know what you're bad at, but you also have to have the want to change it. Because if you don't want to change these things that you're bad at, you're never gonna make any progress there. So you always want to look at these things that are are tough in your life is 38 inches, man.
+
+8
+00:03:48,030 --> 00:03:50,430
+Unknown: week, week week.
+
+9
+00:03:51,570 --> 00:03:52,290
+My God.
+
+10
+00:03:53,730 --> 00:04:01,800
+Wes Bos: Sorry, I was you said weaknesses. Like we have to get the soundboard out for this one. So I was trying to hook it up. That's why I've been so quiet.
+
+11
+00:04:04,680 --> 00:04:05,700
+Scott Tolinski: Oh, my weak,
+
+12
+00:04:05,730 --> 00:04:10,590
+Wes Bos: weak, weak weak, knowing your weaknesses. Sorry, I've like cut you off. Or you say, Oh,
+
+13
+00:04:10,590 --> 00:04:15,480
+Scott Tolinski: no, no, no, that's great. Then not like it was a serious topic or anything? No,
+
+14
+00:04:15,570 --> 00:04:16,230
+Unknown: no, but
+
+15
+00:04:16,380 --> 00:05:02,730
+Scott Tolinski: addressing the things that you aren't good at in your job or in your life are going to make your life so much better. And again, the last point I want to have before we get into some of the things that you want to dive into is don't optimize the things that don't matter. And this is an important thing because Sure, you might be a really good JS dev in your bad CSS Dev and maybe becoming a good CSS dev will help your life. But will becoming a better Python dev really help your life. I don't know, depends. Are you looking for a career change in Python? Sure. If so, but if you aren't planning on using those skills, don't optimize that thing. Just because you're bad at it. I'm bad at playing basketball, but I'm not going to go out and start shooting jumpers every day because it's truly not Important my life, I'm absolutely terrible at it.
+
+16
+00:05:03,320 --> 00:06:20,460
+Wes Bos: Yeah, I also have one more thing to add about this is that my wife and I talked about this quite a bit, because I'm very much of the personality type where I think I can figure it out I can, I can tackle anything. And like, it's can't be that hard. And often I run into people who think that they're pre programmed to absolutely suck at absolutely everything or suck at this one thing. And I think the biggest one that I see that always drives me nuts is that people say I suck at math more like I would never be able to figure that out. And I think that attitude is very is such a terrible attitude to have towards anything you see in in web development a lot, I suck at JavaScript, or I suck at designing things, or I hate CSS. And it's like, Ah, it's probably because you haven't actually, you do have a weakness there. But I bet you can get a lot better if you were to actually try at it. And that attitude of saying, we're actively trying to not teach in our girls to basically say, like, Oh, yeah, you might be terrible at these, this one thing, but don't write yourself off as someone who's no good at this one thing for the rest of your life. Because like I bet if if it's worth learning, like it's probably worth getting good at math. So probably, it's something that you should spend your time getting better at. Yeah, I
+
+17
+00:06:20,460 --> 00:08:21,270
+Scott Tolinski: think oftentimes, people who say that, it's not that they aren't good at it, it's that they maybe aren't pre disposed to have it come easy to them. So therefore, you have to say, Okay, well, it's hard, therefore, I'm not going to look at it, I'm going to sweep it under the rug. And just using that like sort of defeatist attitude, like, I'm not good at this, I can't do this, I won't do that kind of thing that sets you up for not ever doing it. Like, I think, I'm not gonna say I could get into the NBA, but I could get better at basketball. If I wanted to go practice basketball, I'm not predisposed to be good at it. But if I were to get practice, I could become better than I am. So again, a lot of it's about the time and energy putting into these things. And I think it's important to know which things in your life are actually important that you should be putting time and energy to that you're absolutely neglecting. Because I can think of a whole ton of things for myself all the time. And just by shining light and wanting to change those things, it moves you forward in life. So I wanted to talk a little bit about this first as a dev, then as maybe an employee or worker or someone at a company, and then also is just as general as like a human, what kind of things should you be examining in your life? So I think as a dev, I think what aspects of languages are you not good at JavaScript itself is a huge, huge, huge language concept. There's so much to learn with JavaScript, what aspects of JavaScript are afraid? Like? Are you afraid of what what are scary to you? What aspects Could you be better at that will help you I mean, if you're a JS Dev, typically, I think learning a lot about different things, it's going to help you out no matter what. So if you're here in JavaScript, I would think that you want to look at the stuff that is scary to you, and what things you want to dive in and build something with just build a project with get comfortable with it and approach it in a way that's like, Listen, I know I'm not good at this right now. But I can be good at this. So what aspects of what languages are you not good at? And how can you make yourself better at those?
+
+18
+00:08:21,810 --> 00:09:38,130
+Wes Bos: Yeah, this is totally something that I've run into in the last maybe six months or so is two things, I don't really understand a whole lot about our music. I don't understand how music works, how notes work, or anything like that. And therefore, when I was trying to do audio visual as a visualization, it was really hard because it didn't understand what by quad meant or what filters or like, understanding, like wavelength and things like that, like what, what do those things mean? They mean nothing to me, I could have written that off and be like, yeah, I'm not a music person. It's just doesn't, I'm terrible at it. And I could never learn an instrument now as a kid, or I could be like, Ah, you know, I could probably probably at least understand how this stuff works. So I sort of dug into that. Same with the the video stuff. And I don't I'm not an expert by far. But I did learn enough to make an audio visualization thing. I do understand what some of these these terms are now. And I feel like it's just made me a more well rounded JavaScript developer on the whole, which is, I think, the whole point of these things. Don't shy away from it that I think that's the whole point you're trying to get across here. Scott, is that like, Don't shy away from things, because you're not good at it. Because if we're probably make you overall better to Dev.
+
+19
+00:09:38,220 --> 00:12:40,950
+Scott Tolinski: Yeah, absolutely. And I think even like you'll become a more well rounded human being. Now I think that's like a trait that I often see in people that I really am impressed by and admire, people that I like to be around. They're often the type of people who are curious in that they don't limit themselves. For instance, I have a friend Who was pretty ignorant about just health and fitness and everything, he wasn't in bad health, he was in fine health. He knew about nutrition and whatever. But he learned about lifting and how lifting could help him out. And then now he read starting strength, he read some of these other books. And now the guy is putting up lifting numbers. And he's only been doing it for like a year and a half. But it's like, instead of just being like, Okay, well, personal fitness scares me, I'm just going to ignore it. He dove in, he read some books. And now all of a sudden, he, he knows all the proper forms, and he's doing all the lifts. And he's doing all of the the difficult compound lifts and all this stuff. It's just about being able to be creative and putting in that time and energy. One thing I see a lot in the dev community that really kind of kind of makes me upset, to be honest, because at the end of the day, it really comes down to what I would assume is is somewhat insecurity, right? Like, what aspects? Or what skills and languages are you bad at? And if you're bad at those skills and languages, does that translate into you being aggressive towards people who are good at those languages? For instance, you see a lot of people who are bad at JavaScript lashing out a JavaScript developer saying, like, all you're shipping this huge bundle, and you're using JavaScript for all this stuff that you don't need to be using JavaScript for. But at the end of the day, they don't, I don't know, if they don't know about code splitting, and server side rendering, and all these things that you could get around a lot of those JS concerns. I mean, there's the answers for a lot of this stuff. But those people are going to lash out, because chances are, they're gonna say, Well, my, my skills are good, I'm good at this stuff. Therefore, they must be, you know, unnecessary with the things that they're doing. And it goes both ways. There's definitely people who are bad at CSS saying that the only way to write CSS is to not write CSS at all, it you know, I mean, there's just so many like sides to this argument here. And at the end of the day, I think it all comes down to insecurity in your own skills, or maybe something that you're not good at, or taking the time to learn. And that might be a tough truth. But I honestly think that you need to dive into both things you need to understand fully before you're criticizing or anything like that, and just just take a step back, because oftentimes, the the boundaries are just drawn by, I wouldn't necessarily just say straight up ignorance, but maybe like insecurity surrounding something that you're afraid of, or something that's difficult for you. And is that leading for you to take a hard stance that's going to limit your career in some sort of way. I just think that's a very important thing to realize what languages Could you be good at that could be useful in your career that you're neglecting? Because you're potentially afraid of failing at them?
+
+20
+00:12:41,370 --> 00:13:21,270
+Wes Bos: Yeah, there was a Reddit thread the other day on our web dev, where someone basically says, like, I can't find it right now. But essentially, it was saying like, hey, all new developers, like cool it with knocking absolutely everything. I see this all the time, people are six months into something learning web dev a year into it, they they're starting to cut their teeth in something and they love their stack. And then immediately they start in bash, whatever it is that they have found hard. And I think that a lot of people think that it makes them look smart, and opinionated, and really good at what they're doing. But it just makes you look like a bit of an a hole
+
+21
+00:13:21,330 --> 00:13:22,230
+Scott Tolinski: in there.
+
+22
+00:13:22,710 --> 00:13:43,050
+Wes Bos: Yeah, it totally shows how insecure you are with your job. The thing basically like, oh, that sucks. That's the worst way to approach it. I would I would die if I had to work on that. And it doesn't make you look like a good developer. It just shows your insecurity and how you're probably scared of ever having to tackle that type of specific work should ever come your way.
+
+23
+00:13:43,199 --> 00:16:37,920
+Scott Tolinski: Yeah, I feel like that way is a lot with people trashing things. You know, it's like, I mean, even between frameworks, right? The view and react stuff, people trashing either framework doesn't really matter. They're both excellent. They both allow you to do great things like well, why why? If you were confident in your choice of what you're working on, why would you need to trash Anything else? So another thing I want to touch on as, as an employer or employee, he also is just like a worker and he sort of place like, what kind of things are you bad at your job? Like, I remember going in the nine to five, you just show up, you do your thing you leave, and you never sort of evaluate what you're doing, or could be doing better, unless you're maybe getting a performance review. And honestly, I don't ever remember taking performance reviews very seriously. Not because I was not inclined to perform well, but because I thought I was performing well. I mean, you know, I always had good performance reviews. So I always felt like I was doing fine. So therefore were really wasn't something that I thought about. But how do you communicate with your employers? Do you feel like you really are employees, your fellow coworkers? Do you feel like you reply to emails fast enough? Are you clear? Are you friendly? Are your goals aligned with the company's like, do you actually care about the things you're doing right now? If you're a company selling widgets, are you all in on selling those widgets? Or if your company's an agency? Are you all in on making quality work? Or are you just showing up and writing code and then checking out because honestly, you know, I understand showing up and checking out, but you work for some place and at some place to do something greater than just, you know, slinging code. So you want to make sure that you're excited about what you're doing, and how you're doing it, your code, and everything will be better because of it. Are you fast enough with your work? I've worked with a lot of developers who are slow, slow, slow. And I'm not advocating being like fast and breaking things. But you know, sometimes it doesn't take four months to do a site, it takes a couple weeks to do a site if you do it really, you know, focused? And are you providing that that speed that you're capable of? are you providing value to your coworkers? Are you teaching things that you you know, and that other people at your work may not know? Are you maybe potentially holding little mini workshops or things like that? What are you what are you providing for the people around you? Who do people want to work with you? I've had a lot of co workers that, you know, project managers and people would say, I want to work with Scott, because I know Scott's gonna get it done fast. I know he's gonna get it done, right? He's gonna communicate, he's gonna do do people want to be on your team? Or are you the last picked? And I think that is something that is important to constantly sort of evaluate all of these things. Add more, there's probably a billion more of these things. But as an employee, could you be doing a better job? What are you bad at? What are your weaknesses?
+
+24
+00:16:38,580 --> 00:16:41,010
+Wes Bos: Hell, yes. tasty treats.
+
+25
+00:16:41,340 --> 00:16:42,480
+Scott Tolinski: Those are some tasty treats.
+
+26
+00:16:43,920 --> 00:16:44,670
+Unknown: Exactly.
+
+27
+00:16:45,240 --> 00:16:47,940
+Scott Tolinski: Exactly. Exactly. shady.
+
+28
+00:16:50,160 --> 00:16:59,790
+Wes Bos: Awesome. Last section we have here is as a human. So how is knowing your weaknesses as a human in general? helpful? Yeah.
+
+29
+00:16:59,790 --> 00:17:48,900
+Scott Tolinski: I mean, in general, there's, there's like, everyone's in different stages of their life. So some of these things are going to be different. But like, in general, how do you treat people? Even like, even like when you're driving? Like, are you driving? Like if you drive, right? Are you an aggressive angry driver? For no reason? Yeah. When you're at the store, you're right. Are you? Are you letting people jump in front of you and allowing you treating people well? Are you tiptoeing? Are you just being like a generally good person? I honestly think that like treating people well, and just in general, being a good human being to other people is just such a way to enrich your life in different ways. Yeah. Yeah, I agree. Yeah. And it's, it's, it's an easy thing, but it's also an easy thing to lose track of, especially when you're frustrated or like things aren't going well. You can be turned into a grumpy, grumpy
+
+30
+00:17:49,470 --> 00:17:50,010
+Unknown: Gus.
+
+31
+00:17:50,060 --> 00:18:02,190
+Scott Tolinski: Yeah, I was gonna say gasp I was trying to think of a gender neutral gender or gender neutral or a woman's G. Okay, Genevieve, Genevieve. One. Yeah, yeah, grumpy Jovi.
+
+32
+00:18:02,370 --> 00:18:18,210
+Wes Bos: Well, hold on, there's got to be like a general neutral that we can just use for gender neutral Gump, because there's not a lot of gene names. I know Gabby Gregory, crude. Gertrude and Gabriella tweet asked if you know what a grumpy gender neutral person is,
+
+33
+00:18:18,270 --> 00:19:16,890
+Scott Tolinski: yes, I'm interested. But again, it's, yeah, it's just too easy to be grumpy when you cannot be grumpy. If you just put that energy and focus into it. Are you giving your time and energy where it needs to be given? Like, for instance, are you playing with your phone and watching the TV? When your child is saying play with me? Right? Are you giving your full attention to things? That's a big one that I think people often times they veer into not giving full attention to the thing they're doing? They're easily distracted by the stuff around them? And is that is that something that's a weakness in your life? Look for these things that you're neglecting? Like? Who are what are you neglecting in your life? And can you be doing a better job there? And will it make your life better? So this is something that has really come up since the whole konmari thing. But do you and Kate like take up time to assess your your living space and be like, Alright, this room, I'm just not loving this room like,
+
+34
+00:19:17,600 --> 00:19:57,390
+Wes Bos: Oh, yeah, yeah, kids always constantly re evaluating where it's at. And I recently did it in my garage or garage was a disaster of just stuff piled everywhere. And I just thought, like, how can I make this space better, because it's a huge frustration. In our lives, we need to find something specifically when I want to find a tool or something like that, because I have like all types of different tools. I have like little electronics tools. And then I have bike tools. And then I have like carpentry tools, and they're all just piled all together. I could never find anything. So at different toolboxes now for that specific thing. And we're always constantly re evaluating how to make the space better. So it gives us less grief.
+
+35
+00:19:57,720 --> 00:21:18,150
+Scott Tolinski: Yeah, yeah, I know. And we We sort of had the dream of doing a pop top for our house. And then we got some quotes lately, and they were way higher than we were expecting. So we've abandoned the whole popped up idea. And we're like, Okay, so now that we're committed to not remodeling, and just keeping the house as it is, like, what are the things that we're going to be wanting to spend money on to like really improve our lives? So like, what are these things in this living space that like, daily make our lives worse. And so like one of those is our backyard isn't really that cozy. Our backyard is like nice, but it's like a lot of sun. And we don't want to hang out there that much. So we're working on planting some trees, we're getting a lot of shade, we just got bought a big old shade for the backyard. And we're gonna get some new furniture, hang up some of those, you know, tree, those little like lights, solar powered lights to make it all just nice and cozy, and maybe do a fire pit or something. But we're just looking to make that space feel better. So instead of hanging out on the couch watching TV, we can go hang out in the backyard and read a book or watch something on the tablet or something rather than just hanging on the side all the time. So I think it's important to to evaluate these things in life instead of just living with them, right. It's like living with a cluttered desk. I know this desk should be better. And when you actually clean it off, it feels really good. So
+
+36
+00:21:18,510 --> 00:21:28,920
+Wes Bos: that's what I need to do right now. Like, every time right now, every time I clean my desk I feel so much better about just like what it is I'm working on. That's what I'm doing right after me too. Because I
+
+37
+00:21:28,920 --> 00:21:32,790
+Scott Tolinski: got a I got a Bobo's wrapper here. I got a
+
+38
+00:21:32,970 --> 00:21:34,140
+Wes Bos: What's up, Bobo?
+
+39
+00:21:35,060 --> 00:21:41,070
+Scott Tolinski: It's a Colorado. These oat bars. I see it. They're made in a colder tree. Yeah, there
+
+40
+00:21:41,070 --> 00:21:42,150
+Unknown: it Yeah,
+
+41
+00:21:42,210 --> 00:22:09,990
+Scott Tolinski: they're lovely vegan, gluten free, non GMO. They're all good, good stuff. But yeah, that's it. I mean, just think about that. Think about things in your life that you just live with every single day that you shouldn't be living with the way they are. Whether that is in code in your job, or in your life in general, and fix those things up. because trust me, it makes a huge difference. And you'll you'll thank yourself in the long run. That's all I got today. Do you have anything else Wes, I
+
+42
+00:22:09,990 --> 00:22:14,100
+Wes Bos: think that's it. Thanks for all the motivation. Going to go clean my desk now.
+
+43
+00:22:14,220 --> 00:22:18,330
+Scott Tolinski: I'm gonna go clean my desk as well. And if you're out there, clean your desk.
+
+44
+00:22:20,610 --> 00:22:24,900
+Wes Bos: Cool. Thanks for tuning in. We'll see you on Wednesday booth is
+
+45
+00:22:26,880 --> 00:22:29,070
+Scott Tolinski: head on over to syntax.fm for
+
+46
+00:22:29,070 --> 00:22:30,360
+Unknown: a full archive of
+
+47
+00:22:30,360 --> 00:22:36,660
+all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
