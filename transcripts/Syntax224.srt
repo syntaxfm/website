@@ -1,0 +1,500 @@
+1
+00:00:01,319 --> 00:00:02,790
+Unknown: You're listening to syntax,
+
+2
+00:00:02,790 --> 00:00:05,760
+the podcast with the tastiest web development treats out there,
+
+3
+00:00:05,760 --> 00:00:10,560
+strap yourself in and get ready to live ski and West boss.
+
+4
+00:00:10,619 --> 00:00:12,360
+Wes Bos: It's supper time,
+
+5
+00:00:12,659 --> 00:00:13,980
+Unknown: open up wide.
+
+6
+00:00:15,960 --> 00:00:31,050
+Wes Bos: We got some entrees for you today. Although we're gonna break them down into smaller pieces so much. As they say the the tasty treats we're breaking down. I'll set you up for that one.
+
+7
+00:00:31,230 --> 00:00:35,700
+Scott Tolinski: And here we could keep going like that. I think this is funny. This is funny. Let's play.
+
+8
+00:00:37,470 --> 00:01:20,190
+Wes Bos: Today we are talking about serverless and Cloud Functions, what are they? What are the providers, the different frameworks that you can use? We use with them ups and downs. Why? Why would you want to use serverless? Is there still a server? If it's serverless? We'll get that joke out of the way. Immediately. There still is a server somewhere no one knows where. But at some point, there's still a server running. So that's kind of what we're going to talk about today. Today we're sponsored by dot tech domains, which is in the name there dot tech domain names, and Freshbooks which is cloud accounting. We'll talk about them both way partway through the episode. How are you doing today Scott to Lynskey
+
+9
+00:01:20,310 --> 00:02:00,150
+Scott Tolinski: doing good if it sounds like I'm loopy it's because I am a little loopy. Yeah, no. Doing good man. Carney was in in Michigan did a little friends thing so Linden and I had a boy's weekend for the first time ever is the first time that it was just landed and I hanging out at the house together for a few days. You know, just we made a giant snow pyramid that's going to be there forever and ever because it's a tall snow pyramid. And yeah, we got a ton of snow was a lot of fun, you know, so it was kind of an exhausting weekend. But it was a fun exhausting weekend. Definitely one of those those good ones, you know,
+
+10
+00:02:00,900 --> 00:02:44,520
+Wes Bos: that's good. Yeah, we we've been starting to get some serious snow now. And although it keeps mountain it's really frustrating. But every time it comes out, we try to build a snowman or a pyramid or whatever. Or the thing that we do here in Canada is we go to like the end of the street where they plow all the snow into this like, like 15 foot, tall snowbank, and then you make these like terrifyingly scary tunnels might collapse on you at any point. I remember as a kid, we would like make these tunnels through these snow banks and teachers would be like fine with it. And I'm thinking now like, that's like 10 feet of snow collapse. But that's all part of growing up in a snowy country. Yeah,
+
+11
+00:02:44,729 --> 00:02:53,819
+Scott Tolinski: we were gonna build a snowman but like the snow isn't sticking enough. So we're just like, Alright, you know, this was piling into a mound and then we, you know, make it into a nice little pyramid. So that was fun.
+
+12
+00:02:53,910 --> 00:03:15,600
+Wes Bos: Yeah, we we went to bogging and what the kids are getting now is like, oh, man, the kids are getting our these like a foam toboggans that have a sheet of plastic on the bottom. It's almost like a crazy carpet that you can actually hold on to because you know, crazy carpet. For our listeners that live in warm climates that crazy carpet is I don't know anything about cold.
+
+13
+00:03:15,600 --> 00:03:20,880
+Scott Tolinski: I've never thought a crazy carpet is not outside the context of like Aladdin or something I've never heard
+
+14
+00:03:21,449 --> 00:03:52,289
+Wes Bos: Google's crazy carpet right now. It basically a piece of like plastic that's rolled up with two little holes in it that you hold on for dear life. And those things frickin rocket down the hill. But it's really hard to like, get on. So the kids now have like that. But on the top they have this like almost like a like a surfboard, like a really foamy surfboard? Or like the keyboard or something. Yeah. And they go fast. Man, I was so so impressed. I was ripping down the hills as my kids.
+
+15
+00:03:52,590 --> 00:03:53,789
+Unknown: Boogie Boogie Boogie.
+
+16
+00:03:55,470 --> 00:04:06,360
+Wes Bos: Alright, well, let's get into it. Um, we're going to be talking about serverless and Cloud Functions, like I said, so why don't we dive right on into it? You want to take a gander? What is serverless? Scott?
+
+17
+00:04:06,449 --> 00:04:16,699
+Scott Tolinski: Yeah, serverless is, is just someone else's server? Or isn't that the whole joke? Or is that the cloud? That's the cloud. The cloud is just someone else's server. I don't know. The point.
+
+18
+00:04:16,740 --> 00:04:21,320
+Wes Bos: Yeah, and race are much the same thing. Yeah, cloud and serverless are tightly bound.
+
+19
+00:04:21,380 --> 00:05:18,990
+Scott Tolinski: Yeah. So basically, the idea behind serverless is that you're really not focusing on managing your own server instance, essentially, for your application. And what you're doing is doing everything based on whatever the route or the URL that needs to access this data, whether that's a specific API route, that you're hitting to go do some sort of function. Maybe it's your web hook, maybe that's your API, maybe that does any of your given things, each of these access and individual function that will run and do all of its stuff and output based on whatever you need it to do. So it is a server side instances in the code you're writing. is a server side language node, whatever. But it's only like one specific. You could think of it as a specific endpoint that you're managing to do one specific thing. Yeah, rather than having a whole server that's doing a whole bunch of different things, and you're having to manage the entire server itself.
+
+20
+00:05:19,440 --> 00:08:14,460
+Wes Bos: Yeah, so I like to think of it as sort of like URL driven or functional, function based programming, because functioning right, yeah, just like sort of just a prep myself for this episode. And also, just because I've been super curious about it, I tried to convert the syntax website, which has a very small server component, there's three functions, there's one that will convert all the episodes from markdown into HTML, there's one or the two endpoints that will get all of the shows. And then there's another endpoint that will get a specific show. And then there's another endpoint, which I forget who was somebody listens to podcasts, wrote a endpoint that took all the sick pics out of the, the show notes and put them into their own page, and the regex for getting the sick pics out of there Where's like, anywhere, it says IQ IQ in an h2. Grab that, and it works great. So those, there's just like three or four little endpoints there, those are three. And for each of those, you need to create your own sort of URL, and they each are their own, sort of, you can even think of as its own server, they're not, they're not really able to talk to each other unless you, we'll talk about sharing code and in just a second, and that's different than a Digital Ocean droplet or, or a Heroku instance, or linode. And so anywhere you go and buy like an actual server, and you upload an application to it, that's different, because how that works is that you, you buy some server space, and then you run your application on it. And if your application gets really big, or if you have a lot of traffic or any number of other reasons that your server is not enough, you have to upgrade the entire server. And that server will always be running, no matter what goes on. Actually, that's not true with Heroku. Yeah, and the idea with these serverless functions is that they, they're not running at all until somebody initially hits that URL. And then it has to do what's called a cold start, it has to sort of boot up and then start responding to the people. And then once there's not any more requests to that function, it will spin down. Meaning that said, Oh, like, nobody needs me. And that's why sometimes when you go to this is the same thing with Heroku, as well, although Heroku is not server less, when sometimes when you go to Heroku, for the first time, it takes like an extra 300 milliseconds or so that's because it needs to actually boot up the application similar to if you were to run like node index j s, that process needs to happen. Because you're not with serverless, you're not paying to have the server running 24. Seven, you're paying to have it running for the 300 milliseconds or seven seconds or three minutes that you need it to run, and then you spin it down. And the benefit of that is that maybe we can get into some of the benefits. Now Scott is that
+
+21
+00:08:14,490 --> 00:09:21,529
+Scott Tolinski: Yeah, I was gonna say you're, you're like, unknowingly diving into some of these benefits. You've already covered is several of them here. So So I mean, what are the benefits, like you meant? Yeah. Because they're just, you know, one function or one thing happening on each of these server functions, you're not worrying about scaling up the entire server component of your application, like with my server, right now, it's hosted on Meteor galaxy, which is just like a Heroku esque type of thing where you have containers, right. But if I need to scale up my entire server side, whether it's the web hooks, the API or whatever, I'm scaling up the whole thing, I'm sailing up the entire server where with serverless, you can really benefit from modifying essentially, the app parts of your application, there may be the most hungry for that, and not have to pay for that extra extra strength or extra energy that you need from all of your application. Two parts of it are a little bit lazier than other parts. Basically, it can be cheaper, because you're not necessarily worrying about scaling up the whole thing. You're worrying about scaling up individual functions.
+
+22
+00:09:21,750 --> 00:10:52,039
+Wes Bos: You know, when it initially clicked for me what server lists was, is I was listening to the code pen Radio Podcast. And they had, I think it was Chris coiour, and some of the devs Behind Code pen explaining how they use serverless functions, or Cloud Functions, or lambdas. They all have different names, to do all of their pre processing. So you think like you've got sass, you've got Les, you've got Babel, you've got like all of these different things on code pen that need to be converted into JavaScript, HTML, or CSS. And they don't run like a sass server and and whatever server or whatever Because maybe for whatever reason, like autoprefixer, would would just spike. And so what they do is that they, they just have lambdas for all of these different kind of processors. And then they hit those lambdas with the code that needs to be converted, and then that lambda wakes up and does this work and then sends the result back and then shuts itself down. And the beauty of that is that that's very cheap to do versus just keeping a server hot and running. And because you're only taking a split second, and then that after that shuts down, maybe somebody from Airbnb will use that the next piece of that server, and then you're basically just sharing server compute power with the people around the world, because you only need to dip in for a quick second to do that. So I thought that was a an awesome. Ah, that's, I get it like that, I see why that would be helpful.
+
+23
+00:10:52,169 --> 00:12:06,929
+Scott Tolinski: Yeah, I think part of it that opened it up for me, too, was thinking about like some of the security benefits of it. Right? If you manage a virtual private server, and that server, it has basically the keys to your entire application, if that thing gets hacked for any specific way, whatever that account goes by, you could be in big trouble. Or that server is having an issue, your application could be in big trouble, where if you think about a one specific serverless function, going down or getting hacked isn't necessarily going to have the same exact, it's like containerizing things not to use the word container like a Docker container or something, but it's keeping it sort of separate, this is separate, this is separate, this is separate. Maybe this function is running on a different service than this function for whatever reason, or whatever, you don't have to worry about keeping a server potentially up and running, that you're not maintaining the security aspects of, I know a lot of us, we've gotten into things like doing digitalocean droplets. And we're not system admins, right. I myself, you know, there's probably a digitalocean droplet that I have that's maybe not up and running on the latest everything and all the security patches and whatever. But this now, we don't have to, you wouldn't have to worry about those kind of aspects from this because you're not managing the server and that sort of way.
+
+24
+00:12:07,200 --> 00:12:44,909
+Wes Bos: One other benefit I have here is faster deploys. So just trying it out myself. The really cool thing is that if you only change one of your functions, you only redeploy that one function, you don't need to redeploy your entire application, and do the whole build process and things like that. So sometimes that'll cut down your whole deploy process from like, like I was doing it on, we'll talk about providers, but I was doing it on one of them. And by the time I get pushed and went over to the one over the dashboard and refresh. It was like 12 seconds I was counting in the updated app was running. Yeah, that's pretty impressed by that. Yeah.
+
+25
+00:12:45,390 --> 00:12:52,320
+Scott Tolinski: Yeah, this little time that you just been sitting in waiting for stuff like that, or, um, it's expensive. It's expensive for a lot of reasons.
+
+26
+00:12:52,559 --> 00:13:39,390
+Wes Bos: Yeah. Like my deploying my entire note app is like less than 45 seconds. Like, it's quick for me. But a lot of people have like, even like the syntax website, which is not on on serverless. It's just a next jass. But the whole deployment is like six minutes or so. I was talking to Guillermo from Zeit, and he's like literally everything about v2 of their their platform is way better, including speed. So redeploying that to v2, which is or trying to get on would be so much faster than a current, like nine minutes that it takes to deploy, which, like, Are you talking about dying minutes is pretty good. If you talk to some people who have like app release days, you know, and there's like, 100 different steps.
+
+27
+00:13:40,049 --> 00:14:24,149
+Scott Tolinski: Yeah, totally. I mean, it can be expensive. And so another thing is, also empowers front end developers to do a lot more, you don't have to worry so much about being a system admin to, you know, do those kinds of things. And I guess that that is a like a big skill in general is that running a server is hard running your own server is hard. And that's why we do have services like Heroku, and other things like Meteor galaxy that do a lot of that stuff for you, right? But this gives you even one step further, is that front end devs as long as you can write some node code, no, you can write a function that does some stuff on the server. And now you don't have to worry about having that specific subset of knowledge of managing a server and getting all those routes in correctly. You're just worrying about an endpoint Really?
+
+28
+00:14:24,600 --> 00:15:47,940
+Wes Bos: Mm hmm. I thought that I just I just did like a tweet about this the other day, and I said, like, just tweet me back with your words of wisdom. Because like, I think one of the biggest resources I have in the world is Twitter followers, who are much smarter than I yeah. So I thought that this reply from Max steenbergen was awesome. He says, I don't care much about what tools people use other than professional interest, but to me serverless and the jam stack in general has been a gateway into actually building apps myself, back in always has been too much of a hurdle for me and now that hurdle is lower it isn't just lower, it's gone. I thought that was really interesting. So this fits in well to the jam stack. Because if you do need a little bit of like server side functionality with your react app or your, your view app or something like that, you don't have to, okay figure out an entire server, you literally can just write one quick function that will take in data, and then return to you the result of that or take in data, do something like send an email or something like that, right? Like there's, you literally can just code these really super small functions that do one thing. And then you've got that, and then you don't have to, like maybe you could literally change languages for the next piece of functionality of your website. And that wouldn't matter for that piece of code that you wrote last week.
+
+29
+00:15:48,179 --> 00:15:50,490
+Scott Tolinski: Yeah. Isn't that fantastic? That's pretty amazing.
+
+30
+00:15:50,789 --> 00:16:07,470
+Wes Bos: Yeah, it's pretty cool. Like I been like, like following it and playing with it for a couple years. Now. I haven't built any, like serious, big application on it. But one of our predictions for this year was that serverless is going to get easier. And by just like, kind of looking in and trying a bunch of this. I definitely think that is true.
+
+31
+00:16:07,590 --> 00:16:35,909
+Scott Tolinski: Yeah, I think it's already true. There's I did a Scott tries video on YouTube. Gone, Scott tries begin, which is a service that we're going to talk a little bit about later in this episode. Yeah. Not as like a sponsor or something. But as a just one of the serverless things. And I think that like between that and the current iteration of next jsapi routes, I think this stuff is getting way, way, way easier already. We're in February. So you know, it's a good start for one of our predictions. Yeah,
+
+32
+00:16:35,909 --> 00:16:58,230
+Wes Bos: I think that video is what got me onto it. Because we were talking about beginning and insights now on the podcast, and then you're like, I never tried begin, and then you did a video about it. And then I was like, Oh, this is cool. I watched it. And then I tried it myself. I was like, Oh, this is awesome. And hopefully a bunch of people listen to podcasts, but not now. We'll try it if you haven't already. Yeah, that's good job, Scott. Hey,
+
+33
+00:16:59,220 --> 00:17:04,069
+Scott Tolinski: YouTube content lately. So it's part of my part of my new my new YouTube thing. But
+
+34
+00:17:04,069 --> 00:17:33,450
+Wes Bos: yeah, let's talk about what can you host on serverless. So you can host like a static file. So you can host your react application on serverless. We'll talk about some limitations in just a second, you can host obviously, single functions. They can be in almost every language, the most popular by far is running them in JavaScript, but you can use Python go I think there's even PHP cert, it doesn't Taylor otwell have some sort of PHP serverless function?
+
+35
+00:17:33,780 --> 00:17:39,720
+Scott Tolinski: I don't know if you know, the, I haven't really spent a whole lot of time thinking about PHP. I don't know
+
+36
+00:17:39,720 --> 00:17:50,700
+Wes Bos: I do every day. Yes, you can run PHP on lambda, we'll talk about the services in just a second as well. So yeah, you can do it that you can run it in Rhino didn't know how to say that yet.
+
+37
+00:17:50,840 --> 00:17:52,500
+Scott Tolinski: Dino Dino,
+
+38
+00:17:52,580 --> 00:17:55,920
+Wes Bos: did we decide on what the thing is? Are we forever gonna
+
+39
+00:17:55,950 --> 00:18:00,510
+Scott Tolinski: know there? Were people arguing about it on Twitter? So yeah, I don't know.
+
+40
+00:18:01,310 --> 00:18:02,430
+Wes Bos: You didn't know. Okay,
+
+41
+00:18:02,460 --> 00:18:06,300
+Scott Tolinski: I don't know. Yeah, I can make that joke a fourth time. That would be good.
+
+42
+00:18:06,660 --> 00:19:15,690
+Wes Bos: What isn't serverless for, you can't really host an entire app in one serverless function. So you can sneak an entire Express app into a serverless function, if you want it to. And that's referred to as overloading the function. And the downside to putting an entire app inside of a function is that you get slower cold starts, meaning that if you were to start an app like node, node server, j s, and that's your entire app like mine starts in 200 300 milliseconds. And that's slow for an API request, imagine adding 300 milliseconds to a request just to start the server not to connect to a database, do the actual work and send the response. So the whole idea behind serverless is that you don't put it all into one function, you, you break it up into multiple functions. And then there's there's a 500 meg limit on most applications, which is funny, because now we have to start worrying about how big our server side dependencies are. And you can hit that pretty quickly with your node modules folder, because most of them will include everything in the node modules folder, including the readme and whatnot.
+
+43
+00:19:15,900 --> 00:19:43,680
+Scott Tolinski: So I'm curious on on your understanding of this, because this suggested way of having like a graph qL API with, like, specifically, next JS server side routes, right? And now they're their serverless routes, is to basically put your endpoint as one API route. That's pretty hefty amount for you know, your entire API would be basically a large part of your application running. Do you have any thoughts on that specifically?
+
+44
+00:19:43,820 --> 00:20:41,130
+Wes Bos: Yeah, I think as long as it's under 500. Meg's, which is a lot like Yeah, I was just the syntax website is all dependencies included. The syntax website, I think is just over 200 Meg's and then you can also do things like, like tree shake. Your your application to remove unused functions and whatnot. It doesn't seem to be included in some of these bundlers. But a few people have said they've done that. And it seems to be Yeah, that's a totally fine option. Because also like, is it? Is it that big of a deal that one request every I think it's 15 minutes or half an hour that your lambda will run? And then at a certain point, it has to shut itself down? And you have to start up another one. And that's the cold start. So like, Is it that big of a deal that one request every 30 minutes has an extra 200 milliseconds? 100 milliseconds added to it? Maybe, but probably not for the things I'm working on? Yeah. And what do you think about that?
+
+45
+00:20:41,190 --> 00:21:04,470
+Scott Tolinski: I don't know. I'm just I never, we never got our like, well, we did our whole conversion to next js and the server server routes, and we have that all going, but it never went to production. So I didn't get to see it in a real world situation, besides just using it myself. And as an individual using it, it was fine. But I just don't know how, you know how other people feel about that. So
+
+46
+00:21:04,980 --> 00:21:24,350
+Wes Bos: we should I should also mention that the reason why people love these is yes, because you can scale them, but also because it's dirt cheap, that you could run a simple little website for pennies. every single month, we Scott and I are going to do like a show on how to server pricing work. Like what's a dyno? Why?
+
+47
+00:21:24,420 --> 00:21:27,240
+Scott Tolinski: Why do you pay like, a dino? A dyno? You
+
+48
+00:21:27,240 --> 00:21:45,860
+Wes Bos: know, a dyno? No. You know, Roku has? Yeah, yeah. Whenever you're like trying to estimate costs. It's asking you like hours and things like that. You're like, ah, most of them 24. Right. So we'll do a separate show on that. Because here we go, Scott, I'm gonna set you up. This is a big show.
+
+49
+00:21:46,050 --> 00:22:24,810
+Scott Tolinski: Yeah, it's such a big show. We should break it into smaller functions of shows. See, I had that drugs already. And then you trusted us. I trusted you a joke. I see a good joke. I'll take it and trusted you with that joke one time. This is a funny story. One time we were working on a project. And the project did not complete on time. And the project manager says to one of our developers, I trusted you. And so that was always a huge joke. We always I trust. Yeah. So whatever. Whatever anything happens between Courtney and I, we always said I trust their CEO.
+
+50
+00:22:26,280 --> 00:22:28,920
+Wes Bos: That's great. Oh, Dev stories.
+
+51
+00:22:29,460 --> 00:22:36,630
+Scott Tolinski: If you want to have dev stories of your own, and host them on a website somewhere called dev stories dot tech, your run and check out that tech domains.
+
+52
+00:22:37,080 --> 00:23:37,950
+Wes Bos: So dot tech, I know a lot of you went out and bought your dot tech domains after they sponsored the first episode. dot tech is the domain name for techies, developers, tech enthusiasts, whatever it is that you are tech heads. That's I think that's what it should be. I obviously went ahead and used a dot tech for my uses dot tech website, we did a whole podcast on that. It's short, it's relevant, it perfectly encapsulates what you want to do big brands like CES, Viacom, and Intel have all used dot tech, we've got a wicked deal for you. If you want to go ahead and grab your own dot tech domain name there is 90% off a one, a five and a 10 year dot tech domain, go to go dot tech forward slash syntax 2020 and use the coupon code syntax 2020. And you are going to get 90% off one five and 10 year domain names. Thanks so much to dot tech for sponsoring.
+
+53
+00:23:38,310 --> 00:24:05,190
+Scott Tolinski: Thank you. So then to these raw providers now these Brava riders are basically anywhere that you can write your own lambda functions. And these aren't necessarily the hand holding services. These are sort of the real deal. Holyfield services, these are the ones that really get into maybe a little bit more a little bit more tech, heady territory in terms of the the type of skill level needed to interact with these I think,
+
+54
+00:24:05,280 --> 00:24:07,110
+Wes Bos: yeah, they're too hard for most people.
+
+55
+00:24:07,470 --> 00:24:14,340
+Scott Tolinski: Yeah. Especially people who don't have experiences with the surfaces or server side experience to a large degree. Yeah,
+
+56
+00:24:14,550 --> 00:25:10,380
+Wes Bos: yeah, that's part of the benefit of having a sysadmin is that they're able to understand what Amazon so the big one, we should say the big one is Amazon lambda. And they provide they've got tons and tons of servers. And if you want to just have a little sip of computing power from Amazon, you can queue up a lambda or not even queued up, you just write a lambda and it they'll give you a URL. You can ping that your own do your work in whatever language you want. Likely no j S is for those of you listening to this podcast, and it'll spit it back. So there's that one. There's one of the ones Google Cloud Azure, Microsoft Azure has them. Yeah, Red Hat. IBM Cloud Functions SAP apparently has an offering like this is You can tell this is real deal when when the corporate boys come into the room and and start doing that CloudFlare workers ever you heard of this before? Scott,
+
+57
+00:25:10,439 --> 00:25:17,280
+Scott Tolinski: you see this? I have not. I think you told me about CloudFlare workers in the past
+
+58
+00:25:17,399 --> 00:26:25,800
+Wes Bos: somebody I, I was like, Hey, where should I host my upcoming advanced react course is that it's just that's just a regular node app. And I need to host it somewhere that will run a regular node app. And I'll probably run into the limitations that we talked about earlier. So I can't put on service and they're like, put it on cloud for workers. And I was like, isn't that like, serverless? And their reply was, yeah, but you, I forget what the reply was. But anyways, it's not bad. It was something like you probably can, it's probably some of like, the overloading thing. But I did a little more digging into what CloudFlare workers are. And they're kind of like service workers. So the idea is that you can write JavaScript that will intercept an HTTP request, kind of like a what's the appropriate way to say man in the middle? It was better in the middle? No, no, it's been changed. It's a monster in the middle attack. But but it's obviously not a monster in the middle attack, because you're doing yourself but because CloudFlare is at the DNS level, you can intercept HTTP requests, much like a ServiceWorker in JavaScript, and then do things like serve up a cache or do some trance polarization, transpile ization,
+
+59
+00:26:26,009 --> 00:26:31,320
+Unknown: whatever that word is. transpilation, transpile, trance transpile. ization
+
+60
+00:26:31,320 --> 00:27:19,290
+Wes Bos: transplant spallation transpilation. You can do transpilation. Yeah. And I think I think it has all of the same features you'd expect from ServiceWorker. But you also can do it at a DNS level? No, I think that's really cool. Because like, right now I have an issue with my short domain name, West io cloudapp, like, upgraded me, and some of the features that I relied on don't work anymore. And like I can't, I was like, oh, but like, if I could like write some code that's in between my domain name and their servers that my domain name is pointing to. And I think that's what this is for, where you could just like jump in the middle and write a little bit of JavaScript, and then either either send the request forward, or send the request back yourself.
+
+61
+00:27:19,649 --> 00:27:21,180
+Unknown: Hmm, that's interesting.
+
+62
+00:27:21,359 --> 00:27:27,600
+Wes Bos: Yeah, definitely. I'm not sure if I totally understand that. Right. But from my research, that's what that's what it is.
+
+63
+00:27:27,629 --> 00:28:27,270
+Scott Tolinski: It's a whole new world. And yeah, no, any of us. Yeah, this is very exciting to me. And there's also Okay, so we have these, these harder, more difficult providers that, you know, they're very your your, this is going to be your cheapest option. If you're looking at like, let me save the most amount of money possible, this is going to definitely be the cheapest option, because again, you're going right to the source and a lot of these other services that we're going to talk about use these services under the hood, and many of which probably use AWS lambda primarily. So these are the easier providers. And there's a lot of different easier providers, I think maybe the first people that I saw do really easy serverless functions was probably Netlify. I think there were others that came before they were doing with the whole serverless thing. But in terms of who can make it the easiest, I think Netlify came in and was like, you know what we know you want to do server side stuff on our platform. So here, we're gonna make it pretty easy to set up some functions for you.
+
+64
+00:28:27,719 --> 00:29:48,720
+Wes Bos: Yeah, so the way that it works with a lot of these, we've looped these into providers and frameworks together, because some of them are so tightly bound that the provider is the framework, and some of them are somewhat different. So like Netlify is awesome, because you you just create a folder. And this is the way it works with almost all of these, you create a folder for your function, and then usually a stick like an index j s in there, and you define whether that's going to be a get or a post, or what are all the other different HTTP verb requests. And then each of those functions will generally have a its own package. json. And then you have to have this is like one kind of like a bit of a bummer thing to me, is that you have to have your own dependencies for each function. Yeah, and share code. Talk about that. Yeah, but like, like, let's say you wanted like lodash for like three of your different functions, you have to install lodash three different times for each of those. Unless you want it to share the I'll talk about it now you can share code between lambdas it's just that that code is then bundled every single time for for each of them. So the one I tried out was begin because cutted the Scott did the video on it and I was like, Oh, this is extra pretty sweet. I had met them at a conference it just never had checked it out.
+
+65
+00:29:48,989 --> 00:30:15,510
+Scott Tolinski: Yeah, cuz you told me about begin because I heard from you. And then I added to my list, and it just so happened that that so I'm just doing this Scott tries video where I try different web services, right? And it just so happened to be Number two on my list for no reason in particular, it wasn't because I was the most excited to try it. I just hadn't. I didn't know anything about it. And I'm really glad it was number two on my list because I'm like really into it I'm very interested in the index is begin calm, by the way. Yeah,
+
+66
+00:30:15,719 --> 00:31:26,400
+Wes Bos: the whole idea behind begin is that they have this like open source framework called architect. And so you do have to code your serverless functions in a in like a format that architect understands. So the way it is that you have a folder called HTTP, and then you have get dash index, and that's for your GET request to the index and get dash Scott would be any requests that go to forward slash Scott, on the domain name and post dash Wes. And then you can have like, variables like, like blog posts forward slash zero or two, like that's one thing I was doing with this syntax API is that I wanted to be able to do for slash API forward slash shows forward slash 004. And that would give you show number four, which is kind of cool. So begin is the paid hosting provider, an architect is the the open source framework behind begin, and I don't think you have to know that it's architect because you can just use all the begin docks and whatnot. But the thing about that is, if you ever wanted to go and host it yourself, and not pay begin, but you wanted to do the fear of the waters of AWS yourself, then you you could do that.
+
+67
+00:31:26,489 --> 00:31:47,580
+Scott Tolinski: Yeah, which is, you know, I really love what AWS does for us, but I've never really loved working in it. There's so many different options and different things, you know, to hit. There's so many different wells of knowledge, and I found the documentations kind of all over the place. So if I can use one of these things, instead, I'm gonna always pick it really,
+
+68
+00:31:47,940 --> 00:32:19,020
+Wes Bos: I see like Google Cloud and Azure and AWS lambda, I see these guys as just a utility. It's it's power coming in from the wall. And and if you want, if you know how that works, you can certainly wire up your own lamp. But most of us are, you can wire up your own circuits, most of us are going to go and buy something that you can just plug into the wall and not have to worry about that we want a one layer abstraction away from, from the stuff in we're willing to pay for an abstraction layer on top of these things. So
+
+69
+00:32:19,259 --> 00:32:21,000
+Scott Tolinski: I like that metaphor. I like that.
+
+70
+00:32:21,180 --> 00:32:55,740
+Wes Bos: Oh, thank you. Yeah, I that just came to me. It's just had a moment of clarity. The other big one in the spaces is sites now. And next. Yeah. So if you are making a next Yes, application, they have this thing called API routes, which is awesome. And you can very much the same, you can code up your serverless functions in there. And when you apply deploy to sites now, they will do the behind the scenes deploying to I think they use lambda and Google Cloud not sure. But the thing is, it doesn't matter. Because it works. Awesome.
+
+71
+00:32:56,010 --> 00:33:35,640
+Scott Tolinski: I think the whole point for us is that it doesn't matter. You know, if we're getting into these, well, I guess it does matter. But it doesn't, we shouldn't it shouldn't have to matter to us, because we're not here to know what the infrastructure behind this is. We're just thinking about here, this function, here's the thing, what it's going to do for us, and that's part of the whole productivity benefit of these things is that you don't have to worry about setting up here lambda routes and all those things. Um, there's a serverless framework serverless.com, they sort of got the name there. Yeah. And that will deploy to AWS with you. They were one of the first make it Yeah, yeah. I remember reading a
+
+72
+00:33:35,670 --> 00:33:52,380
+Wes Bos: lambda, Azure Functions, Google Cloud, and more. So that's a huge benefit to building on the serverless framework is that you can literally move your stuff anywhere. And it's an open source framework. So you can just move this thing to any other provider if you want.
+
+73
+00:33:52,650 --> 00:34:16,610
+Scott Tolinski: Yeah, there's also AWS amplify, which I haven't used myself, but I've been hearing the word amplify being thrown around a lot more something that Yeah, really interesting to check out. I haven't checked it out. I just went to their their docks at nice, AWS amplify github.io It looks pretty cool. might be something I'll give a try. doesn't look too difficult. doesn't look too config heavy.
+
+74
+00:34:17,040 --> 00:35:00,600
+Wes Bos: Yeah, that I think it's so funny that even even Amazon can't use Amazon. So they have to build their own tool. But that that's obviously a joke because it does serverless functions. But like a lot of these things begin does this as well. They also have things for databases and subscriptions and static files. We'll talk about those in just a second. So they're more it's more of like a toolkit for the different pieces of things. Like obviously, the server is just one part of building an app. You also need database and static files and VR, it looks like amplify does, which is pretty cool. Yeah. Interesting. Er, predictions, machine learning capabilities to your app. See,
+
+75
+00:35:00,630 --> 00:35:03,750
+Scott Tolinski: we're let's just throw some more words in here. What else? Can it Oh, is it?
+
+76
+00:35:04,710 --> 00:35:08,670
+Wes Bos: pub sub pub sub e AR and VR storage interactions?
+
+77
+00:35:08,670 --> 00:35:13,050
+Scott Tolinski: interactions? UX UI, deep dive?
+
+78
+00:35:13,560 --> 00:35:25,920
+Wes Bos: Deep Learning, deep learning. Pretty cool. So yeah, I just wish I it's literally my job to try stuff all day. And I wish I could. I wish it could be my job to try stuff.
+
+79
+00:35:26,670 --> 00:35:29,520
+Unknown: I know. Yeah. You know, yeah, I know,
+
+80
+00:35:29,610 --> 00:35:38,100
+Wes Bos: like, this is our job to try these things and to dip our toes. And that just in this one small facet of web development, which is serverless functions, there's
+
+81
+00:35:38,100 --> 00:36:14,850
+Scott Tolinski: literally like, what 20 different possible options that we could go into. Yeah, I know. And then that's this whole Scott rice thing, man, I'm just gonna try stuff. And the best part of how I keep plugging this video series that I'm doing, but the whole point, like a way for me to go in with his, like, little preconceived notions as possible, so that I look like a complete ass on camera, trying to figure out what the heck this thing does. And so I'm pretty excited to try a lot of these, I'm just going to go ahead and copy and paste this providers list into my to do list for that series. Try all this stuff, and it'll give me a good excuse to really do some deep dives here.
+
+82
+00:36:15,360 --> 00:36:25,560
+Wes Bos: Scott's mailbox is going to be full of stickers and T shirts in the next couple of months. Now, that's great. Um, what else do we have here?
+
+83
+00:36:25,590 --> 00:36:29,010
+Scott Tolinski: We have a lot here. We should do a two parter.
+
+84
+00:36:29,690 --> 00:36:32,580
+Wes Bos: Okay, yeah, we can. Oh, my gosh, there's tons.
+
+85
+00:36:33,110 --> 00:38:46,500
+Scott Tolinski: Yeah, we're definitely an indie split these up in smaller functions here. So we're gonna do a potluck next week, and then we'll be back with part two of our serverless function. So we want to give you the freshest data possible. And that's why we're going to take a break to talk about fresh books, which is one of our longtime sponsors over here. They're all longtime sponsors, they're all our favorites. Fresh books is the cloud accounting software of your dreams, I think they use of your dreams for way too many of our sponsors, but fresh books, is so good. Fresh books is really cool. Let's talk about this because nobody likes to talk about money. We're developers, and we like to talk about code. But we all know that billing stuff has to happen, you have to get paid for your work, you have to be able to send invoices, you have to be able to check in on those invoices. And QuickBooks is no good. I'm gonna straight up say it. And I don't mean to make this a flame advertisement. But I love Freshbooks simplicity, it really it's software that has was just absolutely right for the disruption of it. So Freshbooks does a great job at getting all of those cloud accounting features that you know and love, while making it just a fantastic web service. from up north in Toronto, they're Toronto based. Yes, they are. Yes, they are. So check it out@freshbooks.com. And you're going to want to see all of the easy invoicing, expensing time tracking, projects, payments, reporting, and all sorts of more, they even have excellent mobile experiences for you to be able to check all that stuff on the go. Because that's important. We're always on the go. That's what we're doing. So you know, it's the best for is scanning or seats before I crumple them and lose them in the wash. It's a necessity, it's a necessity to be able to do that, because of who keeps track of the receipts. I don't want to have a folder full of receipts. Nobody wants to do that. So you're gonna check it out@freshbooks.com forward slash a syntax and enter a syntax and the How did you hear about a selection? Let them know that you came from scitech. So that they say, hey, that's our favorite podcast around those syntax syntax guys over there. It's syntax.fm. So check it out. freshbooks.com forward slash syntax.
+
+86
+00:38:46,980 --> 00:38:59,900
+Wes Bos: Beautiful. What other providers do we have here? We talked about Netlify. Almost all earlier. It's crazy. One really cool. One is Apex up. Have you heard Hey, heard of this? You seen this gun?
+
+87
+00:39:00,420 --> 00:39:05,130
+Scott Tolinski: The name of this? We should just have a third show a week just called Have you seen this? Or we just
+
+88
+00:39:05,190 --> 00:39:05,760
+Wes Bos: have you seen?
+
+89
+00:39:06,960 --> 00:39:12,330
+Scott Tolinski: Because there's new web services? 24. Seven, I haven't No. This is from the robot himself.
+
+90
+00:39:12,810 --> 00:39:23,670
+Wes Bos: This is from Yeah, TJ Holloway, Chuck who is the inventor of everything he's done machine what he invented stylus Express. Can
+
+91
+00:39:23,790 --> 00:39:25,320
+Unknown: What else? Mom Yeah,
+
+92
+00:39:25,670 --> 00:40:34,380
+Wes Bos: yeah, the Express Connect stuff was early on was him pretty much every like foundational node package. He was extremely important in early days of node. And then he switched to being a go developer a couple years ago. And I was very sad. But now I'm looking at this Apex sh which is called up there's a they have a couple products but one is called up. And apparently the way that it works is that you just take your Express koa Django go Lang existing framework and run it through Through apex.sh, and it will magically make it serverless. and post it. It doesn't say anywhere on how it does it. But the sort of the idea is that people don't want to have to learn this new way. Like that's, that's one of my biggest hang ups with the serverless. sto yet, it is frustrating i like i like by existing Express workflow, it is very simple. I can share code really easily. And I just want some tool that will server lists it for me. And apparently that's what this will do. So I have yet to it's open source.
+
+93
+00:40:34,440 --> 00:40:52,170
+Scott Tolinski: Yeah. And I have that that same feeling. Because you do anytime anybody new comes out with, you know, here's our new serverless platform I instantly think of Okay, now I got to learn somebody else's folder structure management style or way to do it. And yeah, we don't have to think too much about that kind of stuff.
+
+94
+00:40:52,260 --> 00:41:15,750
+Wes Bos: Yeah, Yeah, me neither. So I'm going to take one of my existing Express apps and try run this through up. I think it's gonna be amazing. Because everything TJ does is amazing. So it's like zite, as well, anything they do is probably going to be amazing. So I'm excited for it. It's got kind of the same, like, minimalistic vibe as light as well. It's just kind of cool.
+
+95
+00:41:15,960 --> 00:41:20,150
+Scott Tolinski: Yeah, same fine. You can tell a lot about a project from their vibe.
+
+96
+00:41:21,540 --> 00:41:22,350
+Wes Bos: good vibe.
+
+97
+00:41:22,380 --> 00:41:25,050
+Scott Tolinski: Yeah, we shove a vibe level projects.
+
+98
+00:41:26,420 --> 00:41:26,960
+Wes Bos: On this,
+
+99
+00:41:26,960 --> 00:41:34,080
+Scott Tolinski: yeah, five vibes out of 10. Here, I'm not feeling this just kind of makes me feel a little bit sad.
+
+100
+00:41:34,260 --> 00:41:43,980
+Wes Bos: So one other one that somebody just tweeted at me was open, fast open Functions as a Service, which is a Kubernetes Kubernetes.
+
+101
+00:41:44,010 --> 00:41:44,730
+Unknown: You got that?
+
+102
+00:41:44,730 --> 00:41:45,390
+You got it? You
+
+103
+00:41:45,390 --> 00:41:46,610
+Scott Tolinski: got it? Yeah,
+
+104
+00:41:46,610 --> 00:41:59,420
+Wes Bos: I know how to say that. I'm just trying to trying to figure out how to explain what Kubernetes is. There's like Actually, this really cool. It's like container, kind of like Docker, but you can it'll orchestrate your containers.
+
+105
+00:41:59,460 --> 00:42:01,460
+Scott Tolinski: Nobody knows what that does it just Yeah,
+
+106
+00:42:01,500 --> 00:42:26,310
+Wes Bos: yeah, it scales, your containers up very high. And apparently this thing will like, because like, the difference between just taking your functions and throwing them on a Digital Ocean is that you have to manage scaling them up and down yourself. So this open Functions as a Service, apparently will just work with, some of you can just deploy this thing to, I don't know,
+
+107
+00:42:26,360 --> 00:42:38,150
+Scott Tolinski: it seems like a good option for those of us who need full ownership and control. I think that's a thing that we haven't really talked too much about. But again, I think this gives you a little bit more full control over that.
+
+108
+00:42:38,669 --> 00:43:09,210
+Wes Bos: Yeah, like, imagine you're working for a company where you have to have everything on site, like GitHub has on site offerings, because lots of companies can't let a single piece of data get outside of their own managed infrastructure, right. And they probably listened to this podcast and say, must be nice. Just be able to whip up any single service. You want Western Scott, I, it took me six years to get approval to log into Twitter on my computer at work, right?
+
+109
+00:43:09,210 --> 00:43:48,480
+Scott Tolinski: Well, when I worked at the University of Michigan, we couldn't even run Drupal seven, because they wouldn't let us have a certain version of PHP there was like, the PHP had to be this antiquated old version. We couldn't run Drupal seven, whatever it was, and I just remember doing my runs up think that, you know, or is Drupal eight, I'm sorry, not Drupal seven, I just remember being so frustrated by those limitations that were placed. And it's like, people work within those limitations every single day of the week. And it again, it must be so magical to not have to deal with those limitations. I I very much feel for those of you who have legal and corporate limitations like that.
+
+110
+00:43:48,960 --> 00:44:13,980
+Wes Bos: Yeah, I'm just I'm just reading the open fast here says avoid lock in through the use of Docker runs on any public or private cloud. So the Docker image runs on one single node, and then you can scale up, I'm assuming that's what Kubernetes does, is that it will orchestrate the scaling up and down of your servers as you need it. So I'm not sure how that works. If you need a Docker image for every function.
+
+111
+00:44:14,190 --> 00:44:15,990
+Scott Tolinski: I don't know enough about this stuff to
+
+112
+00:44:15,990 --> 00:44:36,420
+Wes Bos: I'm sure they figured it out. Yeah. So yeah, it's kind of a neat one to look into if you need some sort of self hosted one as well, if you need to go all the way down to because that's we'll talk about locking in the next episode. But at a certain point, you are locking yourself into maybe one of these providers, not all of them do, but some of them do lock in.
+
+113
+00:44:36,689 --> 00:47:45,150
+Scott Tolinski: Yeah, interesting. And we're going to be talking a little bit more about that a little bit more in the next. This sort of lock in a whole bunch of maybe pitfalls. We're going to be talking about moving existing applications over local development, sharing dependencies, all the stuff we didn't get to cover in not the next episode of syntax, but the one after that. So we're We had to split this one up. I mean, it was appropriate for the joke that I wanted to make that Westfall. But it was also appropriate just because of the amount of content here, there's so much here, it would have overloaded our server. So now's the time we get into some sick pics. It's the type of the part of the show where we talk about stuff that we really like stuff that we've been into. So my sick pick is a really interesting YouTube channel here. And I'm gonna say first and foremost that I have not listened to everything on this YouTube channel. As in like this, this YouTube channel has a bunch of different series, I've been watching this one series in particular, so I can only vouch for this one. And also there, you have to have a little bit of tolerance for annoying YouTube posts not to say that this guy's going to be annoying to you, but it's but he borders he borders on the annoying. And this is this Matt, Mick muscles is that really, that's got to be a fake name. That's got to be a fake name. And you're not got, yeah, I got God. This is a YouTube channel. And it's largely video game based. But that's not why I think is interesting. I think the most interesting part of this YouTube channel is this series called what happened. And he basically goes through, basically these, you could consider them, you know, cursed games, or just total flops, or some of the biggest video game disasters in history. And he talks about the entire development cycle of them. So that's where this is relevant, because I don't know very much about game development. But I have worked on a lot of teams, and a lot of projects that have built a lot of software. And this is just so appropriate for all of this stuff. Because what you what you really learn is what not to do when running any sort of major project. Because just like any other software that you're writing, whether it's an app or a video game, these stories are absolutely fascinating from what you have is like parent companies getting in the way to, you know, broken software, to bad managers to all sorts of things. And what you realize is that here you have these, you know, this output this thing, this video game, that's been bad forever, and everybody can laugh and make fun of it. But that video game wasn't bad, because there was, you know, 20 developers who else sucked at their jobs. This was bad because of potentially a host of reasons. Maybe the target would moved way too many times, or there was too many limitations placed on them, or too many people pulled off of the project. But at the end of the day, I have been going through these and I've just been so fascinated by the stories about what exactly led these projects to be so exactly terrible. And as a developer, just very, very interesting.
+
+114
+00:47:45,570 --> 00:48:27,870
+Wes Bos: That's really neat. I'd love those types of channels that look into like why things went a certain way. Like there's another maybe it's even the same one. That muscles, I don't think so there's another one guy who goes into like, like video game consoles, and like, why they failed and why only things were available in some regions and why. And he went through every single I went through every one of them I forget what the name is, I'll find it but like how each of the consoles got hacked, though. So how like, Xbox 360 got hacked and how the original PlayStation got hacked and how the next PlayStation and how the DRM worked. And that was I'm gonna find that let me get my sec back.
+
+115
+00:48:28,230 --> 00:49:09,030
+Scott Tolinski: Yeah, I was just I was just watching one last night. And they was just like, all right, these developers were like really talented. And then this one developer who spoke out against the manager for like, the manager kept changing that what they were doing and the game was already delayed 100 times and this one the one guy who was basically keeping things together and being like, no, we're not going to change this again. Just got just left he just quit he was just like, quit I can't do this. And that's really what you noticed throughout the course of this lifespan of this development of this thing is all of the good people left because they were just you they were just pulled off of it by the the personalities involved. It was just very fascinating.
+
+116
+00:49:09,810 --> 00:49:27,060
+Wes Bos: All right, my sick pick is modern vintage gamer on YouTube. Interesting. I had another YouTube channel is going to take pick but I'll save that one. So this one is great because it it goes into how the piracy anti piracy worked and how they were defeated. And like how the game shark worked like
+
+117
+00:49:27,900 --> 00:49:28,620
+Unknown: magic to
+
+118
+00:49:28,620 --> 00:49:47,880
+Wes Bos: me when I was a kid same here then there's all these like weird like consoles that were only released in Japan. And I just love it. It i don't i know i played games as a kid. But I don't have that much interest in video games. But just how it worked is very interesting to me. So check it out. Modern vintage gamer on YouTube.
+
+119
+00:49:48,990 --> 00:49:50,250
+Scott Tolinski: Subscribe to my life.
+
+120
+00:49:50,850 --> 00:50:14,970
+Wes Bos: All right, shameless plugs. I'm going to shamelessly plug my beginner JavaScript course be I'm not going to spell it you know how to spell beginner beginner JavaScript calm. syntax for 10 bucks off is the course to get you up and running on modern JavaScript and just get you comfortable with it. So you can go ahead and the course of your dreams. Yes, it is just a course there, you hear that? I'm gonna put Scott's face on the website, this is the course.
+
+121
+00:50:17,460 --> 00:51:42,720
+Scott Tolinski: You have to see the magic of this course. My slogans here, cool. I'm gonna plug my YouTube channel, because I've been doing some YouTube videos just for fun. I decided that, uh, you know, before in the past, I've always done YouTube videos where there's just like straight up tutorial content. And yeah, I'm taking a different approach to it. Right now I'm doing these Scott tries videos where I try different web services that we've talked about a couple times. But I'm also doing another series of videos on a code block where I'm getting into real code in the level of application. So the first one I released was a little bit on react motion and just talking about react spring. And so what I did is I took one component that was written in react spring, and I just converted a direct motion and talked about it while I did it. And another one that I'm that will be out by the time you're watching or listening to this podcast was really cool. I had this severe jank in my site where it was loading the stuff and the animations were really choppy. At one point I was getting down to like 10 FPS, it was not anywhere near 60 FPS, and I'm thinking what in the world is going on? And that's when I found out the real cost of data you our eyes. So I don't know if you know too much about data URLs. But apparently, they're six times slower to load than images. And when you were loading about 100 of them, your site is not happy about that.
+
+122
+00:51:42,959 --> 00:51:56,610
+Wes Bos: So really, yeah, that's, I was wondering about that, like, yeah, at what point? Does it not make sense to use a data URI? Because tax spends over the wire? Yeah, let's so point when some point found it,
+
+123
+00:51:56,610 --> 00:52:29,790
+Scott Tolinski: I found it, I definitely found it. But then built this whole new service around how I'm going to do background images differently instead of using data URLs, but it is yeah, you have a 64 bit string or whatever. And the CPU has to decode that. So when you have a whole bunch of them, the CPU has got to decode all of them and your CPU goes nuts. So this was a limitation in the site, and I fixed it. So if you want to check, check that out. learn a little bit about stuff like that, check out the level up tutorials at YouTube channel. I'll have the link in the show notes.
+
+124
+00:52:30,090 --> 00:52:53,010
+Wes Bos: Beauty. Well, thanks for tuning in. If you have your own thoughts on serverless make sure you tweet us at syntax FM or hit us up in the Reddit Reddit comm forward slash our forward slash syntax FM. We've got like almost 700 people in there. It's a real cool community to cool community. Cool. All right. Thanks for tuning in. Catch you on Monday. Later, please.
+
+125
+00:52:54,930 --> 00:53:04,680
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
