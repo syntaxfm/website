@@ -1,0 +1,136 @@
+1
+00:00:00,359 --> 00:00:01,350
+Unknown: Monday, Monday,
+
+2
+00:00:01,379 --> 00:00:02,580
+Monday, open wide
+
+3
+00:00:02,580 --> 00:00:06,990
+dev fans yet ready to stuff your face with JavaScript CSS
+
+4
+00:00:06,990 --> 00:00:07,590
+node
+
+5
+00:00:07,590 --> 00:00:08,820
+module, BBQ Tip
+
+6
+00:00:09,059 --> 00:00:21,660
+Get workflow breakdancing, soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA bombs and Scott Taylor.
+
+7
+00:00:23,610 --> 00:00:24,450
+Totally at ski.
+
+8
+00:00:25,950 --> 00:00:53,880
+Scott Tolinski: Oh, welcome to syntax on this Monday hasty treat, we're going to be talking about libraries. And when you should roll your own or install a dependency, the sort of classic question of should I do this? Or should I let somebody who's already done this, take care of it for me and just use their work. It's part of what makes open source software. So excellent. My name is Scott winsky. I'm a full stack developer from Denver, Colorado. And with me, as always, is Wes Bos.
+
+9
+00:00:53,940 --> 00:00:55,380
+Wes Bos: Hello, everybody. Hey, Wes.
+
+10
+00:00:55,380 --> 00:02:17,100
+Scott Tolinski: This episode is sponsored by Log Rocket. Now, I've been using Log Rocket for a little bit here. And let me tell you, my favorite thing about Log Rocket is the session replay, where you can see exactly what went wrong and why a lot of times, you'll just get an error stack. And you don't know exactly how that error was triggered. And maybe you're thinking, how could they possibly gotten that error? I don't know. With session replay, you not only get a video of what happened that led up to that error happening. But you also get access to the network activity that counsel errors and logs. And if you are using Redux, you get access to the Redux actions and things like that as well. So let me tell you Log Rocket is superduper. Excellent. And if you want to learn more about Log Rocket, you can check it out at Log rocket.com forward slash syntax, sign up today at Log rocket.com forward slash syntax and get access to 14 days for free. Try it out, and you won't want to quit. Cool. So let's talk about the topic of this particular episode, which is a should you roll your own or install a dependency. And I think we wanted to start off with Hey, here are some reasons to roll your own. Here's some reasons to not roll your own. And maybe some situations where you may or may not want to fork them. And then we're gonna get into some examples. So do you want to kick it off here with one of the reasons about why you might want to roll your own?
+
+11
+00:02:17,130 --> 00:03:39,450
+Wes Bos: Yeah, I find myself in the situation all the time, where especially now with NPM, it's so very easy to quickly NPM, install something and get access to something that someone else has built in that functionality is immediately there for you. And that's often a really great and the right choice. But there's some situations where you might want to have what we call roll your own, where instead of like taking somebody else's library and including that entire library and the overhead that comes along with that and maintenance of from somebody else, sometimes it's better just to go ahead and write your own function that does what you want. So let's talk about first of all reasons to roll your own. I think that I have learned in the past quite a bit from being able to solve a problem myself, because generally, when you reach for an external dependency, it's because you have a specific problem that needs solving. And you say, oh, something already does that for me. And we see that a lot in the WordPress world as well. Or when I first started, I would always reach for a plugin that did what I thought it did. And then you kind of get a little bit further along in it and you realize, ah, doesn't do exactly what I want. I guess we'll talk about when we talk about forking. So I think you can learn a lot by just rolling your own function, writing it out. And even sometimes when I'm doing something, I'll just open the source code of a library that does what I'm trying to do and see how they've approached us specific plan.
+
+12
+00:03:39,810 --> 00:04:55,230
+Scott Tolinski: Yeah, there's nothing wrong with taking what somebody else has done an open source and just making it more of what you are personally looking for. If you hate the API for something and know how you can change it, I mean, there's always a good thing that you maybe you want to rewrite and change it. I think that's a great one learning experience is such a big important thing. Like sometimes I just want to see if I can make this thing, hey, there's this interaction I need there is a library for it, I have some extra time. Let's just see if I can make it let's push my skills a little bit more. And let's see if it's something that like I am capable of doing. And largely with front end frameworks nowadays, you can pretty much do anything you want. Now the tools are there. So now with everything is as easy as it is, chances are, there's a lot of opportunities to gain some experience there. Next one I have is for this sort of even goes along with that. And this one that only takes place if you have the time to have fun rolling your own dependency. Because just like a learning experience from rolling your own thing, it could be a fun challenge. You know what's better than doing like a code wars challenge an actual challenge in your real codebase that you can actually have something to show for it at the end of the day. So for me having a challenge like this is just super duper fun and that is a reason why I might roll my own but again, this is only something you want to do if you have the time for it.
+
+13
+00:04:55,500 --> 00:06:08,610
+Wes Bos: Next up we have features this is something I get bit by all the time you look at something and from On the surface, you know, I could build that in a minute, I could build that in a weekend, that should only take a quick little bit to actually do that ourselves when the reality is, is that you start to get into lots and lots of use cases, I'll give you a perfect example. So many times in my career, I've said, I don't need a slider plugin, I'll build my own slider, yeah. And you, you got a bunch of divs, you, you give them a class of current and next and previous, then you get into this weird situation where if you want to transition them you need far next and far previous Yeah. And then if you want to loop it, like, if you're on the last slide, the next slide is going to be the first one. But that looping should only be an option. And then sometimes you want video inside of them, and they need to size themselves based on it on how many is in or if you want to show three slides at once. And before, you know, you say wow, I thought this was just simply adding or removing classes. And this slider is so involved. And before you know it, you've built your own entire slider plugin that has all of the bugs that you didn't even know that you would be coming there. So the features of somebody who has already built something is probably a huge reason there.
+
+14
+00:06:08,790 --> 00:06:43,050
+Scott Tolinski: Yeah, so I you know, for me, maybe a library doesn't have the stuff that you want it to do specifically, yeah. And it's going to be easy to build your own. That just does that one little thing just a little bit differently. And so for me, like if I have something that I can see that libraries have no plans to add the features that I want them to have, and it won't be too much of an investment for me, I will attempt to add those features and have my own thing that does what exactly what I needed to do rather than sort of what I needed to do bunch a whole bunch of stuff I maybe don't need it to do,
+
+15
+00:06:43,230 --> 00:07:12,450
+Wes Bos: I found I ran into this a lot more and WordPress world because in WordPress, you would get plugins, and they would do this thing. And if it didn't work exactly how you wanted it, it would be really frustrating. I find this less in the node world just because node tends to follow these smaller packages that do one thing and one thing well, that means that you end up installing a lot more packages, but it's because they do less things. And you can sort of pick and choose these little pieces as you need them.
+
+16
+00:07:12,570 --> 00:08:08,040
+Scott Tolinski: Yeah, cool. Last one is maybe you want something more lightweight. For instance, I find myself I think is a react power plug is the name of the library react power plug. It's like a whole bunch of render prop in different utilities, render list container, a whole bunch of just like interesting stuff. But I found out when I was like, when I first installed this library, I was like, yeah, I'm gonna use this stuff all the time. Because, oh, I did use this stuff all the time. And then when I went through it, I found that I was really only using a couple of them all the time. And therefore I didn't need a library with all of these installed in it. Even though there is tree shaking and stuff like that, I just decided, Hey, you know what my use cases are simpler enough that I don't need a library to do this. I wrote my own versions of those components that I was using. And I use those instead of maintaining another library with versions I have to keep track of and stuff like that. So that way I can code split it myself if I need to and not have to worry about any additional dependencies or anything else.
+
+17
+00:08:08,100 --> 00:08:53,970
+Wes Bos: All right, let's switch over to reasons not to roll your own. So when should you reach for something that's off the shelf? I think the biggest reason for me in this is that the packages that are out there, specifically, if I think about things like date, FNS, which is kind of like a moment jazz, or I think about lodash, or I think of these like libraries where people are very testy, whether you should use them or not, I always reach for them, because they are battle tested, they've run into every single bug, they have millions of people using them on millions of different websites, they have seen it all and specifically in the use case of like lodash and date functions is they've been tested so much that you know that they're both going to both work, but they're also going to be performant in a lot of really weird edge cases.
+
+18
+00:08:54,000 --> 00:09:00,480
+Scott Tolinski: Yeah, that's a big one, you have a lot of eyes on something, it's gonna get refined, it's gonna get refined like a diamond. And I'm not even
+
+19
+00:09:00,480 --> 00:09:05,760
+Wes Bos: as good of a developer as the people that build lodash. So I'd rather lean on them for that kind of thing.
+
+20
+00:09:06,020 --> 00:09:33,410
+Scott Tolinski: Yeah, yeah, leaning on the people who are smarter than you is a strategy that will make your career a lot better. Another one I have in here is is not only are they battle tested, but they're actually tested. You don't have to write your own tests for this code. Because a lot of the times, the tests are already there, you know, it's gonna work. And if there's a bug happens, then there's a whole open source community of people who can not only find and solve the bug, but then test to make sure it doesn't happen. So actually tested is a big reason to use a library.
+
+21
+00:09:33,689 --> 00:10:18,530
+Wes Bos: Next up is a time and money. These are things that not everyone has time to sit around and build these beautiful things yourself. A lot of us have to get work done and things need to ship that's a pretty underrated one is the fact that you can take something off the shelf, it does what it says on the box, it probably is not going to bloat your code all that much, especially if we're talking about things that you can be easily tree shooken and you can just use that one little piece that's that's the argument people have for lodash All the time. Why would you include a whole library just for that one function? Well, the reality is that a lot of these libraries, you can either just import the one thing that you want cherry pick it, or you can tree shake the pieces that are unused out of your application. So that's not a huge argument and a lot of use cases.
+
+22
+00:10:18,720 --> 00:11:25,410
+Scott Tolinski: Yeah, I think that's an important one. You know, and oftentimes, I think people overlook that they say, what's the budget? The budget is $5,000. Okay, well, I'm thinking a custom back end platform with this and this and this all from scratch, you know, like, no, that's not that's not going to work. So not every project. Not every budget allows for the usage of totally custom code. And not everyone needs it, to be honest. So the next one I have on here is experience, like maybe you just flat out can't do it, right. So there's no harm in downloading a slideshow plugin for react or for WordPress, or for view or whatever. There's no harm in doing that if you aren't capable of coding that. And just like what Wes said before, a lot of the times these authors for these communities around these things have done it in a way that works really well. And they're going to do it better than you anyways. So maybe you just flat out don't have the knowledge or experience required. And that's not a problem. It's only a problem if your site ends up becoming way too slow, because of too many dependencies. But honestly, I just don't think that everyone needs to tackle every problem over and over again. Absolutely.
+
+23
+00:11:25,410 --> 00:11:40,920
+Wes Bos: Now, let's go to the third option, which is forking, when do you take something that someone has built and fork it, which means make your own version of it and either stick it in your project or publish it as a new dependency? It's the kind of the beauty of open source. When do you do something like that?
+
+24
+00:11:41,100 --> 00:12:43,230
+Scott Tolinski: Yeah, I had, um, one library that was a react calendar, I believe it was like react big calendar or something, I forget the library. Either way, this thing did almost everything, I needed it to do almost everything. And the code base was elegant and really nice. When I looked into the source, that all made sense. And if I was going to be building my own calendar from scratch, I probably would have ended up looking something very similar to what theirs looked like, it was just really good. So the last thing that I wanted to do was to write my own when they already had a nice structure for me. So I basically I took the React calendar, I forked it. And then I added all of the features that they were not planning on adding anyways, granted, if they were wanting these features to be added, I would have submitted a pull request or done a little bit differently. But for me, a lot of it was like I need these very specific functionalities that a lot of other people aren't going to need. And it's not worth you know, clouding up the current library for it. So you can fork it, you can change it, and you can make it into something of your own.
+
+25
+00:12:43,260 --> 00:14:41,580
+Wes Bos: Yeah, ideally, some of these libraries, like even think about Redux Redux allows people just to build their own add ons for it, it's important to first check, can I upstream these changes? Meaning Can I make a pull request and add these features? In a lot of cases? The answer is yes. But in some cases, the answer is no, it's not. That's not where the direction that this package is going. And it's fine to to fork it and make your own version of it. I think we'll finish this up with just some examples of like, these are things that I've gone through in my own my own working, and we'll see what Scott thinks about them as well. So one of them, I tweeted the other day, a little example of using fetch, so I was doing like a little working on my upcoming JavaScript beginner course. And I was I was building something that needed to fetch data from a back end, because they're building like a simple little crud app. And we were using fetch there. But with fetch, there's a couple things first, you have like that double double promise with fetch where you have to fetch it. And then you also have to turn it from the return data into JSON. So those are get to do the double return there or the double await. Yeah. And then there's also when you want to post some data to a back end, you have to like set some headers that tell it that it's JSON. So it's kind of annoying, because it's ugly, and it looks gross. So I just made like a quick little, like, fetch JSON function that set those defaults and got rid of the double await and return the data. And people were like, why not just use axios. And they're all offended. I didn't use axios. There. And in that case, all I needed to do was make a little function that was 12 lines long. And that was it for that entire example, if I needed anything that axios gave you, then I would for sure, reach axios because before you know it, you start adding features to these functions. Before you know it, you've built your own library, and you've reinvented the wheel. And that's where I would probably reach for axios when you need more, but in a lot of examples, it's you can just code up a quick little 12 line function. And that's going to be good enough for your your specific use case.
+
+26
+00:14:41,760 --> 00:15:05,490
+Scott Tolinski: Yeah, and I don't understand the like, why would you use that? Why wouldn't use five always use fetch personally, maybe I just don't understand the use case as much for using axios just probably because I haven't yet used it. But he to me. Yeah, I mean, it's in the browser, man. You don't need any extra stuff. And if you can do that little extra little fun And then then that's not really adding a dependency to your library. So, yeah,
+
+27
+00:15:05,520 --> 00:15:20,700
+Wes Bos: totally. Plus you learn, like the whole point of that is also showing people, how do you make your own functions that are our sync functions, but internally have promises? And how can you then await that function? So as another added benefit, is you're going to learn something by being able to use that function?
+
+28
+00:15:20,850 --> 00:16:06,050
+Scott Tolinski: Yeah, that goes back to one of our earlier points. Yeah. And the next one is you had date FNS versus StackOverflow, copy and pasta, or copy and paste, which I think is hilarious, because it really is super duper accurate to how you work with dates in in JavaScript. And for me, I am always reaching for date FNS, just because dates are one of those things that are such as severe pain in my butt that I just don't want to have to think about it, I want it to be nice and easy. I want to have a little format function with some format strings in there and let date FNS take care of the rest of it for me. So for me, I'm always reaching for this. It's modular, you know, it supports tree shaking and stuff like that. So why would you use it based on not using a library, it's very small,
+
+29
+00:16:06,090 --> 00:16:29,850
+Wes Bos: I was shaking my head the other day where I had to maintain my own array of months, there's no way in the browser unless I'm mistaken, to get a list of months. Yeah, the string like like January or Jan, like in PHP, just format a date and you pass it all like your m, capital R or whatever. And it just kicks out the date as you want. And I'm wrong about that, where you can't have you can't just get an array of possible months,
+
+30
+00:16:29,880 --> 00:16:36,480
+Scott Tolinski: I don't think so I think people just always do it like a you always just see it hard coded and like a string or something in there. html.
+
+31
+00:16:36,570 --> 00:17:47,810
+Wes Bos: Yeah, that's what I do. Because it'll return like zero base index of what month it is. And then you have to reference that against some array that you're keeping with the names of all the months. And then if it's a different language, then you have to internationalize that array. And it's just such a pain in the butt working with dates in JavaScript. So I will also reach for date functions. And we I know we talked about this a lot. But if you're new date functions is a library that is very compatible with moment j s, but it's built in kind of a functional way. And it also supports tree shaking. So if you are building any type of application going forward, I would probably reach for date functions. Yeah. Likewise, the last one we have here is lodash versus your own. So my approach to this is, in most cases, it's very simple. I just tried to use MapReduce filter, go back to the episode, we talked about array and object methods. But every now and then I reach for like a very odd use case where I have some data and I need to change it or search it or are migrated in some way. And if that's the case, I will always reach for the lodash function in there, because I know that it is going to be fast and absolutely battle tested, especially if you're dealing with thousands and thousands of pieces of data, you write your own function that might be really inefficient.
+
+32
+00:17:47,940 --> 00:18:38,790
+Scott Tolinski: Yeah, I can't write that better than they wrote it. So again, I use this and you can pull out each individual one that you need, and use them as you see fit. So I again, I use this all the time again, I can't write this better. And it saves me a lot of time for when I need it. So again, yeah, MapReduce filter is always my go to first again, if you need anything more deep, like more in depth than Yeah, lodash is where it's at. So yeah, this is pretty much it for this topic. I mean, there's probably other reasons for why you might want to or not, that might be personal, or maybe whatever. But I think these are good reasons to live by or just in essentially developed by men. A lot of this stuff just goes to show you how successful and amazing open source software is in general. So without having the access to the source. I think most of the things on this list wouldn't even be possible. So I'm really just happy for the current state of open source in our own web development world.
+
+33
+00:18:38,880 --> 00:18:44,250
+Wes Bos: Awesome. So I think that's it for today. Thanks for tuning in. And we will catch you on Wednesday.
+
+34
+00:18:44,300 --> 00:19:05,670
+Scott Tolinski: Yeah, we're gonna be giving you a developer Gift Guide. So check that out. It's gonna be a lot of fun gonna be really fun episode. Alright, so we'll catch you in the next one peace. Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
