@@ -1,0 +1,256 @@
+1
+00:00:00,359 --> 00:00:21,660
+Unknown: Monday, Monday Monday open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA bombs and Scott Taylor.
+
+2
+00:00:23,610 --> 00:00:24,450
+Totally at ski.
+
+3
+00:00:26,520 --> 00:00:54,390
+Scott Tolinski: Welcome to syntax on this Monday, spooky treat. We're going to be continuing some of our devs scary stories. And we're going to be doing so in a hasty or fashion these are just going to be so we had a lot of these spooky stories and we couldn't just leave it to one little episode so we wanted to extend it. This is an A this is an EP, an extended play of this spooky stories. My name is Scott Tolinksi. I'm a developer from Denver, Colorado and with me as always, is z Wes Bos.
+
+4
+00:00:54,840 --> 00:00:59,040
+Wes Bos: Hey, everybody. Hey, Wes. You should West booth.
+
+5
+00:00:59,040 --> 00:03:27,780
+Scott Tolinski: Yes, I did. I don't think there's any possible way. Scott hilinski maybe, huh? I don't know. Yeah, that's not that good. So let's get into it. This episode is sponsored by century now century is for those of you who have been tuning into syntax for a little bit, you'll know that Sentry is one of these sponsors that's been around for a really long time. We love Sentry over here, we both use Sentry ourselves. And I personally rely on Sentry every single day to make sure that all of my bugs are tracked, logged recorded, and that I know how to solve them. Now Sentry is the error and Exception Handling tool that integrates with just about every single thing that you could ever possibly use, from react to node to or whatever Sentry is going to be there for you, you're gonna want to head over to sentry.io and use the coupon code tasty treat all lowercase all one word, sign up, let them know, you're going to get two months for free of century when you do them, let me tell you, you're going to want to just try it out, throw it on your site, see the kind of errors and exceptions that are happening when you aren't looking. If you aren't on the site, you're not experiencing these errors you have anything that anyone's using, there's going to be bugs and things that are happening. So might as well categorize them, catalogue them with a tool like Sentry. So check it out@sentry.io coupon code tasty treat. Okay, here's a tasty treat. The first question or the first spooky story here is called perf. Whoa. In my beginner days, I built a charity system that needed to screen recipients for duplications, the pages spit out all recipients in a particular order. Well, the client was wrong about the number of expected recipients and it took down the shared database server and 20 production database. Though the woes of shared server in general, I remember I ran updates on a Magento site. And it brought down an entire shared server on GoDaddy because Magento or GoDaddy or whoever at the time, this was way back in the day, one of my first websites did not have the memory requirements to run Magento but they still had the one touch for Magento on whatever this system was. And then like after talking to customer support, they were just like, yeah, we're gonna remove that one, one quick install, because it's bringing down people sites. That's funny. It's It's funny how often like in my entire career,
+
+6
+00:03:27,780 --> 00:03:59,250
+Wes Bos: I've DDoS myself more than people have DDoS me, you know, like, you can accidentally write some queries that write a million database queries and take down your server. definitely been there before. Totally. Next one, it was called always backup your backups. We have a dev who knew he was being let go. And he deleted our site and backups before he left. I had to restore what I could feel the Wayback Machine page by page. Man.
+
+7
+00:03:59,820 --> 00:04:02,880
+Scott Tolinski: That's rough. Don't do that. If you're if you don't do that, what the hell
+
+8
+00:04:02,910 --> 00:04:04,920
+Wes Bos: I almost wonder if you go to jail for that, you know,
+
+9
+00:04:04,920 --> 00:04:07,800
+Scott Tolinski: like seriously, that's should be legal.
+
+10
+00:04:07,950 --> 00:04:34,410
+Wes Bos: If that was like someone like a filing cabinet. And you just lit the filing cabinet on fire or like dump water in the filing cabinet shredded it like that's for some reason doing that digitally is allowed or it's probably not like I bet you could get get into legal trouble for doing that. That seems like a shady way to go. Why not just leave the way everybody does and light a bag of dog poop on your bosses? Yes.
+
+11
+00:04:35,310 --> 00:04:40,860
+Scott Tolinski: That's a good way to make sure you never get hired ever again. Boop buggin Yeah.
+
+12
+00:04:42,990 --> 00:04:51,570
+Wes Bos: So don't do that. That's a nightmare. So backup your backups or have off site backups i think is probably the the solution there and test your backups.
+
+13
+00:04:51,600 --> 00:05:29,400
+Scott Tolinski: Yeah. Is that the thing that people say to do? Okay, next one is kill children. Don't get don't kill children. Back in the day. Before console log, we used to have to alert ourselves to whatever it was up to. I accidentally pushed to production, some j s that had alerted the names of some custom DOM manipulation functions, one of which was named, killed children. visitors were a bit freaked out. Yeah, if you're on a site that just pops up and it's like, kill children, you're gonna be like, Man, this site was hacked by Jason. I don't even know what to think about it. Yeah, so don't do that.
+
+14
+00:05:29,610 --> 00:05:44,670
+Wes Bos: I remember before I learned JavaScript, like IE, like five would always tell you like illegal something. Yeah. There was some sort of illegal and remember it popping up being like, ooh, like, Am I doing something illegal? Yeah. on this website?
+
+15
+00:05:45,300 --> 00:06:01,320
+Scott Tolinski: Yes, I know, we will. What is that people like non tech people, like freak out when the developer tools act that they're the developer tools open? And like, if somebody I'll put something to the console, there'll be like, Oh, I'm being hacked. Physics, telling me to not be on this page. What are you
+
+16
+00:06:01,320 --> 00:07:13,170
+Wes Bos: doing? Yeah. Next one is robots don't eat food. I blocked Google, from the at the time largest recipe website in Europe that had a community with thousands and thousands of threads. Google removed 50% of the index during a weekend, so visibility dropped horrible. And Google stopped delivering ads. So long money was lasso. Ooh, imagine so robots. That txt is a file that lives on all websites and tells Google whether which pages or directories, it should crawl. I've certainly done that before. Actually, I had a website years ago, where we, we migrated it for some reason. And for some reason, that like local version of the robots. txt, had, like a disallow star. And we accidentally just put that up. And then overnight, or over a couple days, everything dropped from Google. And I think it actually was a setting in the WordPress back end, don't allow Google to crawl this. Yeah. And I just went in there and clicked it. And luckily, a couple days later, it came all back. But imagine like someone that relies on search traffic for your entire business to function.
+
+17
+00:07:13,289 --> 00:07:31,080
+Scott Tolinski: Have you ever done the opposite of that? Because I have, where we have a staging dot whatever. And that staging site wasn't secured by anything, because we had a lot of people looking at it, and then you forget to put a don't follow and then you're googling something and you see your staging site pop up in the search results.
+
+18
+00:07:31,289 --> 00:07:32,430
+Wes Bos: Definitely has happened.
+
+19
+00:07:33,020 --> 00:07:35,010
+Scott Tolinski: Yeah, that one's happened to me. No, no,
+
+20
+00:07:35,130 --> 00:08:20,820
+Wes Bos: I actually have a kind of a funny story somewhat unrelated to that. But I for a long time, I scheduled WordPress database backups to just email to me, and then I immediately archive them. And I have one from probably 10 years ago that I installed on a client's local server. And every day it's still email is a backup and I like can't figure out that WordPress is like, I can't figure out where the WordPress is installed. I think it's just like a local machine. And again, figure out how to turn it off. And this a ghost Yeah, I don't want to block it as spam because it would hurt their domain. I am sure I could contact them at some point. But on some rogue server I'm sure they haven't. They've decommissioned but it's still running for some reason. It's like every day send me a backup for like yours. Oh
+
+21
+00:08:20,820 --> 00:08:24,750
+Scott Tolinski: my god. That's hilarious. That's a good one. Oh, go server.
+
+22
+00:08:24,840 --> 00:08:26,190
+Wes Bos: Yeah, that's spooky. There
+
+23
+00:08:26,190 --> 00:09:28,830
+Scott Tolinski: you go. Spooky. Yeah, yeah. You said you didn't have any spooky stories. That one spooky they didn't include the ghost. Alright, email goof up. So when I was a junior, I was emailed a job from the boss a list of email accounts to remove well the email was forwarded as part of a chain I saw the first email and a long list of accounts. I worked through them removing them one by one, you know, pop to the bathroom, come back and I see my boss's face is read. He read the wrong email. And I had removed the initial list of accounts not the accounts that were supposed to be removed. Luckily they were p o boxes so the clients emails or allowances what oh pop boxes p Oh, I hit my my cursor over it. I was like how does a p o box fit into this? Luckily, they were pop boxes. So clients emails were all local and we restart the accounts from a backup thank God for backups because yeah, yeah, you don't want to do that. That's a bummer. But yeah, email goof up for sure. And
+
+24
+00:09:29,150 --> 00:10:19,500
+Wes Bos: that's why a lot of people do what's called soft delete now so because of how scary deleting things is scary they don't actually delete it. They just mark it as deleted yeah as like a property or a column in the database entry. Next one we have is hundreds of thousands of date issues. I had two arrays for a calendar short names for the week and long names for example, MN tues, weds and monday, tuesday wednesday, but one of them started on Monday and the other one started on Sunday. De, which my OCD had couldn't stand up. So I updated them to start on the same day, I forgot to update the calendar logic. So through 36 hours, I had customers booking products for the wrong day in the applications used by hundreds of thousands of people.
+
+25
+00:10:21,570 --> 00:11:21,990
+Scott Tolinski: And I did so when I worked at the startup, that's what we were doing was like booking stuff. And I did all of the logic for the calendar and booking stuff. That is not an easy task. Like it, there's so many possible ways to goof up or allow maybe like a duplication of a booking or anything like that. That is just one hefty pie there. So yeah, the hundreds of thousands of data issues for sure. Yikes. All right, spooky. August, one of my projects used a release branch to deploy to production. Okay, very common. This wasn't a problem until we needed to merge fixes from one release branch into another release branch, and a dev left to the Delete after merged text box checked. We lost our August release that day. Oh, so it needed to merge. And then how did how did they lose the branch? I guess I understand like the delete the previous branch. But wouldn't the merge even though it wasn't like failed? Wouldn't the merge at least have like been there still?
+
+26
+00:11:21,990 --> 00:11:42,480
+Wes Bos: I don't know. I delete after merge. Yeah, like wouldn't? I don't know how that can happen? Maybe it was all on one devs machine. Oh, and then they delete because part of what happens is when you merge a branch, you just have that branch kicking around forever. And then before you know you've got hundreds of old branches, so you can delete them. Oh, yeah,
+
+27
+00:11:42,510 --> 00:11:43,650
+Scott Tolinski: I delete all the time.
+
+28
+00:11:43,800 --> 00:11:54,720
+Wes Bos: And also, that's because if you want to clone something, if you clone it with all these weird branches, and then it's kind of weird as well. So I guess it was deleted. That seems like a dangerous button to have, right?
+
+29
+00:11:54,960 --> 00:12:00,810
+Scott Tolinski: Well, they're even in GitHub when you when you merge a PR. It's like delete branch. I mean, obviously it's not auto but
+
+30
+00:12:00,810 --> 00:12:30,060
+Wes Bos: yeah, ideally, you'd have like a local version as well. Yeah, totally. But that seems like a like, that shouldn't happen, right? Like he's a call. There's so many safe cases. But stuff like that does happen where there's like, it's a perfect storm of the accidental things that had happened. Totally, maybe it was like the actual GitHub, like the GitHub like, like desktop app, maybe and it deleted it locally and remotely. I just don't ever want to get into that. Sorry. Yeah,
+
+31
+00:12:30,060 --> 00:12:30,810
+Unknown: I'm good.
+
+32
+00:12:31,350 --> 00:12:48,180
+Wes Bos: Next one we have here is you're up to bat when I was a left. This is hilarious. When I was 11. I wanted to help tune up my friend's newly acquired and very old PC, so I replaced his boot dot bat files with mine. His PC wouldn't boot after that friend cried playdate over
+
+33
+00:12:49,680 --> 00:13:13,380
+Scott Tolinski: boot, Beth Brooklyn's my daughter, her initials are bat. And when we when we were first naming her, Courtney was like, I don't, I don't want the like, I love the name Brooklyn, but I don't want her to be named bat, or initials defeat bat. And I was like, Oh, is this this is too bad. Like, I like Brooklyn, and now, both leaning into it super hard. And we're like, oh, there's our little bad
+
+34
+00:13:13,440 --> 00:13:16,740
+Wes Bos: or bad. That's great.
+
+35
+00:13:16,860 --> 00:14:30,480
+Scott Tolinski: Okay, this next next one is printed code. We went to a potential client that was having issues with their software. I asked them if we could see the source. And he said, it's hanging up in the back. That's already confused. It assumed that he meant a USB stick. Okay. Yeah, that's Yeah. Okay. When we get back, it's actually printed out on paper and hanging. Apparently, they had one guy writing this over 10 years spaghetti code in PHP, no version control, no comments. And, uh, oh, there's not good, no comments. And sadly, we were brought in because the guy had passed away. So Oh, my, written down on paper. I have never heard of that happening before. That is outrageous. It reminds me of a, there's a is one of this the city that I'm from, there was a guy who I'd worked with at a computer store who was applying for a job at another computer store. And he had went into this place to interview and he turned down the job and you're gonna hear why because he goes into the interview. And the guy's like, so I hear you're good with puters puters puters. He's like,
+
+36
+00:14:30,660 --> 00:14:31,200
+Unknown: yeah,
+
+37
+00:14:31,200 --> 00:14:52,110
+Scott Tolinski: I guess I'm pretty good with pewters. That was just like a small microcosm of everything that happened on that interview, but it was apparently a very similar type situation where there was just like, like, the people he would have been working for just like had no idea how computers worked, right? printing out code, and like, you know, they print out emails or whatever, but yeah,
+
+38
+00:14:52,170 --> 00:14:59,970
+Wes Bos: pewters man. Wow, that's, that is great. I bet like you could go onto the server and grab a copy of it.
+
+39
+00:15:00,359 --> 00:15:03,150
+Scott Tolinski: Nowadays, just take a picture of it with your phone and have it.
+
+40
+00:15:04,109 --> 00:15:09,690
+Unknown: OCR and yeah, run a linter on it and you're up and running in a couple minutes. BINGO, BINGO, I just start pulling out my
+
+41
+00:15:09,690 --> 00:15:10,230
+Scott Tolinski: code.
+
+42
+00:15:11,039 --> 00:15:32,640
+Wes Bos: Next one is the first production code update at think key thinkgeek, which is like a website that sells geek stuff, right? It's pretty, pretty popular website stuff. That syntax was elsif Ls if instead of ls space l Yeah. l LS if what language is that? Is that Python?
+
+43
+00:15:34,320 --> 00:15:36,600
+Scott Tolinski: It's PHP, isn't it? It's Ruby.
+
+44
+00:15:36,600 --> 00:15:37,410
+Unknown: Oh,
+
+45
+00:15:37,410 --> 00:15:38,910
+Scott Tolinski: I see what you're saying. Yes. Okay. Yeah.
+
+46
+00:15:39,150 --> 00:15:49,710
+Wes Bos: No, because PHP, sorry. It's LS if PHP does elsif and l space? If yes, but who saved a letter there when building Ruby? That's funny.
+
+47
+00:15:49,740 --> 00:15:51,570
+Scott Tolinski: I know. That from Ruby. Yeah.
+
+48
+00:15:53,250 --> 00:16:01,710
+Wes Bos: It's server rendered. And I took down the entire site. It was fun hearing QA run around the corner gelling sites down sites down. I faint.
+
+49
+00:16:02,970 --> 00:16:04,320
+Scott Tolinski: Oh, no.
+
+50
+00:16:04,620 --> 00:16:05,880
+Wes Bos: Yeah. Oh, that's
+
+51
+00:16:06,090 --> 00:16:49,140
+Scott Tolinski: something bad happen. Just like one letter. one letter. Yeah. Next one it would take. It would take a while to catch up on all of these orders. Oh, this is a good euro catch up with a K. This one? Yeah. Like this? Yeah. Well, when I was just starting out in the biz, like 15 years ago, I worked for a pretty big Swedish grocery chain, redoing their website to gain some time, we had a hard coded all article names to catch up in that dev envy instead of lorem ipsum. This is another ipsum folly. Guess what eventually ended up in production? Well, when they finally launched, they sold a lot of ketchup.
+
+52
+00:16:53,640 --> 00:18:39,320
+Wes Bos: Oh, that would be awful. It's probably like maybe on the client side, it says the name but when the order actually goes through, just catch up. You know, product is Yeah. Rough. Next one is this story makes me want to stick my head in a sink. Oh, actually, S is a good one. I told my wife about this one. My first dev job was working at a meal kit startup think Blue Apron that is no longer with us. So it's one of these meal kits syrups that no longer is there. I was doing full stack node and react on one of my first major back end projects was the integration with the new shipping fulfiller. Fast forward a few weeks and I had finished the integration was ready for an actual production run, it would be responsible for the fulfillment of 1000 orders each week. Keep in mind these orders were meal kits, which are perishable errors and delay could mean wasted. Money lost lots of money. I was definitely super nervous. But I tested it a bunch and had written actual unit tests and felt as confident as I could be. The first orders were placed on a Friday afternoon for some reason. Yeah. Shortly after I got home, I got a text message asking what was going on with this shipping integration I wrote, it was crashing and only handful of orders were going through. I almost passed out a few hours of troubleshooting later, I still couldn't figure it out. I got bailed out when one of the IT guys in the Project Lead manually inputted all the orders. I later realized I didn't know what a sink coding was. And that I was unintentionally slamming the shipping API with all 1000 orders at the same time. This led to some serious digging into promises, generators and a sink await which I can now say I've become advanced and proficient in absolutely the scariest bug I've ever produced.
+
+53
+00:18:40,650 --> 00:20:00,000
+Scott Tolinski: There's no greater like learning incentive, rather like the neck kind of thing happening where you're just like, well, I it looks like it got a lot of stuff to learn. The first time we had learned Angular was we were working this job and there's three contractors. And they gave us an assignment. And one of us had the assignment that was due, like first his assignment, let's say was due on a Wednesday and ours were due like a month later, right? And he presents his and they were so mad about it. They were like we need this is a bunch of jQuery plugins, like strapped together this thing is awful. And like the other two developers, and myself and this other guy, we'd also been mostly just using jQuery not because for no reason other than these were just prototypes, right? And so they fired the one guy. And they were like, We need this thing due today. And so the other to the me and the other developer, we spent like 24 hours just like slamming through Angular tutorials to like build a better system for this thing. And then work it out. And then we got done in where we were rewarded with a nice little bottle of whiskey for each of us for our hard work but we It was like there was no greater thing. It's like okay, this guy just got let go. If we don't get this together in 24 hours and really like master something here, we're going to get
+
+54
+00:20:01,610 --> 00:20:09,540
+Wes Bos: Yikes Well, I think that's enough spooky stories for the for everything I think we'll do another one of these next year.
+
+55
+00:20:09,590 --> 00:20:10,470
+Scott Tolinski: Oh yeah
+
+56
+00:20:10,550 --> 00:20:22,820
+Wes Bos: these are great so if you are listening to this and you have it send us over one you can send it to my email Wes at Wes Bos comm send it to Scott however which way you try to send it over to us we'll start a list
+
+57
+00:20:22,920 --> 00:20:26,700
+Scott Tolinski: Scott at level up tuts is the shorter email for me
+
+58
+00:20:26,760 --> 00:20:29,160
+Wes Bos: Scott love love tut's dotnet
+
+59
+00:20:29,190 --> 00:20:36,720
+Scott Tolinski: yes level up tuts I even people messaging me on my level up tutorials comment form talking about love love tuts now because
+
+60
+00:20:40,170 --> 00:20:43,650
+Wes Bos: you should do like a limited run of T shirts love tutorial need
+
+61
+00:20:43,650 --> 00:20:46,310
+Scott Tolinski: a little heart heart logo. That's it. I'm done with that.
+
+62
+00:20:47,670 --> 00:20:53,700
+Wes Bos: Cool. All right. Well, thanks so much for tuning in and we will catch you on Wednesday. Please
+
+63
+00:20:55,610 --> 00:20:58,200
+Scott Tolinski: head on over to syntax.fm for a full
+
+64
+00:20:58,200 --> 00:21:05,400
+Unknown: archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
