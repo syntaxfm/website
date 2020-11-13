@@ -34,6 +34,7 @@
     "next-url-prettifier": "^1.4.0",
     "now": "^20.1.2",
     "os": "^0.1.1",
+    "parse-srt": "^1.0.0-alpha",
     "postcss-easy-import": "3.0.0",
     "postcss-loader": "4.0.4",
     "prop-types": "^15.7.2",
