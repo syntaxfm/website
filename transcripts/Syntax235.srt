@@ -1,0 +1,296 @@
+1
+00:00:00,359 --> 00:00:01,350
+Unknown: Monday, Monday,
+
+2
+00:00:01,350 --> 00:00:02,160
+Monday,
+
+3
+00:00:02,219 --> 00:00:19,980
+open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA,
+
+4
+00:00:19,980 --> 00:00:21,660
+Bob, and Scott Taylor.
+
+5
+00:00:23,610 --> 00:00:24,480
+Totally at ski.
+
+6
+00:00:25,920 --> 00:00:59,490
+Scott Tolinski: Oh, welcome to syntax in this very secure episode of syntax, we're going to be talking about password management, how to lock those passwords up. Because you don't want to make sure anything that you have gets stolen or used or access to without your knowledge. And this is vitally important for every service or anything that you do on line. It's extremely important. My name is Scott Tolin ski. And with me, as always, is Wes Bos.
+
+7
+00:00:59,520 --> 00:01:26,940
+Wes Bos: Hey, everybody. I'm actually really excited for this episode, because this is a question that I get from my friends and family as well as web developers alike. So I'm hoping that this show can be a show that you send to like literally anybody, you don't have to be a web developer to listen to this one, it's just gonna be like, how do you get good at passwords? Because I think for us web developers, one of the biggest pain points is our friends and family who have sloppy password management hygiene.
+
+8
+00:01:27,270 --> 00:04:07,590
+Scott Tolinski: Yeah, totally. And speaking of hygiene urinal, make sure your application has proper hygiene from bugs. And we don't want to bugs in our application. And that's why we use a service like century@century.io. Now you're gonna want to sign up, use the coupon code, tasty treat all lowercase all one word, and you're going to get two months for free of this fantastic service. Now essentially, is the bug in error handling exception tool that really just makes everything so so easy. Surgery is adding new features all the time. Now, I'm currently looking at the Discover tag, which has a loan new sign because it's letting you know that hey, this is a new, and it's looking for searching events, users tags and everything else, allowing you to see new bugs that have popped up. For instance, I'm seeing this interesting bug popping up here. And it looks like it's coming in on our API cannot read property ID of null, which means I can tell you exactly why that is coming up, because that's a very standard bug. But this allows me to see every time that this bug or this error is happening when it's happening on my server, if it's on my API, my front end, wherever it is, I can track this thing. I can take a look at it, I can fix it, find it marked as resolved. And then no more bug. I mean, that's really really the the end result of this all looks like this. This is a bug that just popped up. And it just popped up with the latest release. Not only that, but I can actually I can, I can write a test for this bug to make sure it never comes back and that we don't have any regressions. Which of course you could track on Sentry as well. So check it out@sentry.io coupon code tasty treat all lowercase all one word, you absolutely will not regret adding this to your application is essential service in my mind. So password management, getting good at passwords. I think this is a special place in my heart because not because I've been hacked or anything I have not. But I am acutely aware of the consequences of this. And to be honest, I don't know if you've ever been to have I been poned which will link in the description for those of you who are sitting available with the computer right now. Which I imagine most of you are because a lot of people are at home right now. Yeah. Or in the office or not driving? I would say head to have I been poned in the show description. Enter your email in the Have I been poned search bar, hit enter and then just be kind of horrified. Because I'm horrified at all of these things. What it is is the listing of every time your email has shown up in a password breach.
+
+9
+00:04:07,590 --> 00:04:12,210
+Wes Bos: How many does your show up for a lot? Mine's 23
+
+10
+00:04:12,570 --> 00:04:19,130
+Scott Tolinski: doesn't say a number 916 breaches. I'm in Bitly which I'm sure you are as well.
+
+11
+00:04:19,440 --> 00:04:20,570
+Wes Bos: Yeah Bitly
+
+12
+00:04:20,630 --> 00:04:24,480
+Scott Tolinski: discuss discusses a commenting service
+
+13
+00:04:24,660 --> 00:04:32,490
+Wes Bos: 500 pixels Adobe Dropbox imager, Kickstarter lead myfitnesspal path and
+
+14
+00:04:32,490 --> 00:04:56,430
+Scott Tolinski: as I say on Patreon Yeah, Patreon. This is one of the reasons when Patreon got hacked. I actually emailed them and said hey, can you delete my account from your service considering you're not securing your database or whatever? And they were like, No, we can't do that. I was like, What? Don't we don't delete accounts? Okay, they said they can't do it for tax reasons. I think that was a BS answer. Oh,
+
+15
+00:04:56,550 --> 00:06:13,320
+Wes Bos: yeah. Yeah, they have to like tie the purchase to a actual person because, yeah, whatever we should say like when a website gets hacked, usually what happens is that, like a database dump is taken or something like that, and they get access to your username. And usually in best case, your password is hashed, meaning that it's not if your password is dogs, it's not sitting in the database as dogs, although that does happen that's being called clear text. So anytime, email service will email you your password or like I know Bluehost does this, they ask for the last four characters of your password, which it's possible that they save that and but that's still not a good good process to do anyways, but they are hashed meaning that is very hard to unhashed them, or to generate a hash of words and match them. That is definitely possible, especially with probably the biggest hashing algorithm out there is MD five that's used, very popular in PHP world, specifically WordPress uses it. And if you use a common password, the MD five hash of a common word will always be the exact same hash. So you people are still able to reverse engineer those.
+
+16
+00:06:13,440 --> 00:06:47,970
+Scott Tolinski: What's really fascinating about Have I been poned is that it gives you quite a bit of information about the hacks that took place for each one. So you can get a good amount of information, whether or not it has been a hashed password, and what it was hashed with. All right, was it Bitly they gained access to 9.3 million email addresses, usernames and hash passwords using SSH, a one and a small number using B crypt. Did you ever use a service Apollo? It's not Apollo graph. QL. Because I saw Apollo on here. I was like holy cow did Apollo graph qL get hacked for some reason? And it's not?
+
+17
+00:06:48,270 --> 00:06:52,260
+Wes Bos: I never used it. But mine's in here as well. So what's up with that?
+
+18
+00:06:52,260 --> 00:07:07,260
+Scott Tolinski: Yeah, cuz mine is in here. And it says Apollo left a database containing billions of data points publicly exposed without a password. Okay, Apollo, who are you? And what were you thinking?
+
+19
+00:07:07,350 --> 00:09:18,360
+Wes Bos: This is that sales tool or process? So what they do is they basically, they basically scrape data and buy databases from people, like anytime I subscribe for a magazine, I put a funny middle name on there, and they see where that data trickles through and who's bought it spark? And that's, that's kind of what they do is they sell your data, which is these are awful companies. What's the security researcher here? Yes. So let's talk about let's talk about, like, how do you actually set a good password? And what tools should you be using? So regardless of what you do, you absolutely must have a unique password for every single website. And this is probably the one that gets absolutely everybody. If you reuse the same password on multiple websites, as soon as that password is found out on any of these websites, then that immediately bots will try those passwords on other popular websites. So yeah, Case in point, this happened to me, I was getting a little sloppy for my McDonald's password. And I had reuse the same password on McDonald's as I had used on some app that I had used years ago and don't know which one but obviously, it was breached at some point. And then what happened is someone went and bought $8 worth of McDonald's. And then about 10 minutes later, they went and bought $120 worth. And it was such a pain to get those charges reverted because it wasn't like credit card fraud. I couldn't call my credit card company saying like someone stole my card, because they hadn't, they had just got access to my McDonald's account, right. And they just went up and ran the ran the thing. So that's Case in point a place where you should never reuse it. It's not that your password is not guessable. It's not someone's not just trying to sit there guess it's that when it does get out, it's only an amount of time before your McDonald's and your Uber and your PayPal, all of those things are like people will test if these passwords work and then all sudden you're you're out of luck. Like it's it's such a huge pain to have to try to revert all of that so never reuse a password.
+
+20
+00:09:18,360 --> 00:10:22,790
+Scott Tolinski: And this isn't just like some nerds in his basement drawing one password at a time these are either complicated a robot robot yeah button that's doing it or farms if human beings trying various things. So I you know, I this is absolutely number one super big concern doing anything online. So again, generating a new password, how do you generate a password and I keep using the word generate a password here because you're most likely not going to want to just invent a password yourself. Because if you can remember that easily, chances are it's not a great password. Now, there's some exceptions to that. The whole sentence based password thing that's a good way we'll talk a little bit about that. in a second, but for the most part, I think it's the easiest to rely on a password generator, regardless of what it is right? If it's through the browser through a service of which we'll talk more about, but having a generated password, something that's not logical, not a sentence, not a dictionary word, not a dictionary word with some, you know, threes swapped
+
+21
+00:10:22,790 --> 00:10:27,150
+Wes Bos: out for Oh, exclamation mark in a one to the end. Oh,
+
+22
+00:10:27,390 --> 00:10:45,450
+Scott Tolinski: it doesn't do anything, right. Yeah, because they're there. If their service can check for, you know, password, they're going to be able to check with password with an ampersand or a add sign as an A. So that's not really a thing. I always reach for a generator that generates a nonsense password myself.
+
+23
+00:10:45,770 --> 00:12:57,750
+Wes Bos: Yeah, I do that as well. I'm going to talk about this little generation method I do. However, I don't use this method anymore. Since the password management, integration in iOS has gotten so good. So for for years and years, he had to like quit the app, go to the app, copy the password, come back, open the app, paste it in. And that was just like a bad workflow that I didn't like. So I use this new or not, I for years, I use this approach, which was, first thing you do is you make a sentence. So make a sentence, I love to eat pizza. That's the sentence, right? So that's your base password, then you go ahead and decide on casing of that. So do you want a camel case it Do you want to lowercase I love to eat and then uppercase pizza, just decide on that for how you're going to spell it. And then what you do is to in order to make that password unique, because you can't just use I love to eat pizza on every website, you have to make an algorithm for how you generate your password based on I use the domain name of the website. So one example is you could take the third letter of the domain name, or sorry, you could take the third letter of love to eat pizza and replace it with the fourth letter of the domain name. And then you could count the number of letters in the domain name and add that to the end. And that way you are every single website like it seems complicated, but say, Yeah, I have a system I love to eat pizza is my base password. And then I always know that the third letter is replaced with the fourth letter of the domain I'm trying to sign into. And then the number of characters in the domain name is just added on to the end or to the start or in the middle, or whatever it is. And then you can say, okay, knowing these two rules, you always have to remember those two rules, you can generate a unique password and remember unique password for for any single one. So I that worked forever. For me, it worked really, really well. I still use it on some things like Netflix that you have to share with family and whatnot. But I've pretty much entirely moved over to just jet random generated strings, which is I probably would say this is what everybody should be using these days.
+
+24
+00:12:57,960 --> 00:13:03,030
+Scott Tolinski: Yeah, totally great. Do you wonder I liked Android so much androids always had good integration with that kind of stuff. Especially
+
+25
+00:13:03,030 --> 00:13:05,490
+Wes Bos: It was awful on iOS for years.
+
+26
+00:13:05,580 --> 00:13:25,110
+Scott Tolinski: Yeah. And I always I still I really dislike the iOS keyboard. And like the Android keyboard, if you didn't like something like that, that was like sort of keyboard integration, somebody would just come out with a better keyboard, and then everyone would use that. So like the competition over like the iOS keyboards or just like skin versions of the iOS one. It's like not
+
+27
+00:13:25,170 --> 00:13:28,620
+Wes Bos: No, they're not. No, they're, they're totally so bad.
+
+28
+00:13:28,980 --> 00:13:32,820
+Scott Tolinski: Why are they also bad? Because the custom ones on Android are great.
+
+29
+00:13:33,150 --> 00:14:48,780
+Wes Bos: Oh, that's, that's a good question. They're not just skin versions, they are there. And you can tell that they're their own thing because they are not that good. Well, the one of the bunch, it's the worst one of the bunch. Okay, so I like the iOS. Anyways, rant, we do ranty iOS rant on another episode. So using a password manager, you go ahead and you sign up for this, you install it in your browser, you install it on your phone, and then every time that you sign into a website, or every time you sign up for a website, it'll try to add that password to your list of passwords. And then you have a master password that you can use to sign in to your whatever. So I personally use one password. I was on LastPass for years, and we talked about how awful the user experience is on LastPass. I would recommend to nobody, no matter how much money they spend on sponsoring youtubers don't use LastPass. It's awful. And I'm not saying that because like I don't like the company. I'm saying that because I've tried to get family members on last pass. And they say screw this. This is too hard. Doesn't work. Yeah, it doesn't work all the time. It's a common password. It's annoying. And the user experiences is so important when you're trying to get family members on board for this type of thing.
+
+30
+00:14:49,020 --> 00:15:37,590
+Scott Tolinski: Yeah, absolutely. Because it's already invasive enough right? To ask somebody to use something like this and in place of their you know, handwritten notes password or using the same password on every day. It's all right. Be invasive to their workflow. They're adding a step into whatever they're doing. So you got to make it as smooth and as easy as possible. And I again, likewise, I, Carney and I both used LastPass for a little while, and she always hated it. She never wanted to use it because of it. I hated it. And I knew I needed to use it. So I still did anyways. But once we move to one password, it definitely it's just so much nicer at the interface. Everything is just way easier to use. But there, there are certainly other good versions and other good applications as well. I just don't have the experience with some of these like dashed line. I haven't used it before. So I don't know, but people seem to really like it.
+
+31
+00:15:37,890 --> 00:16:30,600
+Wes Bos: Yeah, there's daschle MC is pretty popular and bit orden is a open source version of it. So if you want to host the the password database yourself, which I argue that's a very good way to do it. Because then you're not giving some random company your all your passwords. I should also say like one password is not like they don't just have a database full of all of your passwords in the second half, then you're screwed that what they do is they encrypt it based on your path, your master password. So if one password, it gets hacked, the person just gets encrypted passwords. They they don't get access. And that's the reason why if you forget your master password, nobody in all of land can help you. Because all of your passwords on their server are encrypted. And even one password can't unencrypt them. Unless they have some sort of like, triple lock door with a secret key. They might have that but who
+
+32
+00:16:30,600 --> 00:16:42,600
+Scott Tolinski: knows. For the I have a little note here it says For the love of God do not forget your master password. Because a Courtney has forgotten her master master password twice now on a lesson two very frustrating,
+
+33
+00:16:42,990 --> 00:16:44,130
+Unknown: because he's like, no,
+
+34
+00:16:44,460 --> 00:16:55,620
+Scott Tolinski: that's I shared all these passwords with she'll be like, what's the Amazon password? I'm like, I'm not reading this, this line of no generated text to you. So where's your one password? Yeah, I
+
+35
+00:16:56,340 --> 00:16:59,730
+Wes Bos: did that too. She lost it. And then she just stopped using one password altogether.
+
+36
+00:17:01,110 --> 00:17:01,950
+Unknown: Yeah.
+
+37
+00:17:03,180 --> 00:18:34,290
+Wes Bos: And like it's on us as developers to make this stuff as easy as possible. Because, you know, like, like, what do you do with your master password? Well, like, first of all, you can recover it, if you have a family member on the same account, like you can assign family members that will allow a reset, which is good. And then you can also like, I LastPass, I forgot mine once in a but luckily, I had the Chrome extension installed and it like verified it based on that, which is good as well. So just write it down, put it somewhere super safe. So you won't accidentally lose that. Because Yeah, it's it's not the end of the world, you can go through the process of resetting every single password that you have. Like, is not the end of the world. But it's just a pain. It's a pain. Yeah, totally. Other tips here. So one huge tip I have for people's turn off Chrome or Firefox built in password, remember, which is hard happens is Yeah, it's hard to do because it like gets in the way it like drops down in front of the one password. But also I see a lot of people relying on that. And then then then that's not like doesn't work on their phone. So like their passwords aren't remembered from that. And then like when they change your password, it updates in one of them, but not both of them. And then it's out of sync. And that's where a lot of this frustration with these password managers. If you have one single source of truth on all of your devices, turn on everything else off key chain all of this stuff, turn it all off, except for whatever Password Manager you're using. And life will be so much better. I guarantee it.
+
+38
+00:18:34,290 --> 00:18:54,750
+Scott Tolinski: Yeah, totally. And you know, okay, I should offer up a tip here. Let me pop up in Chrome, because it is a chrome like really, really wants you to use their their solution. Chrome's like, can you please use our password manager? Like, you know, so me pop up in my extension here real quick for one password.
+
+39
+00:18:55,140 --> 00:18:58,820
+Wes Bos: Yeah, I was gonna use like Google password because they have like their own
+
+40
+00:18:58,850 --> 00:19:00,660
+Scott Tolinski: thing. They have their own generator. Yeah,
+
+41
+00:19:01,100 --> 00:19:18,660
+Wes Bos: they don't have it. Like it doesn't work on Firefox. And it doesn't I don't think they have an app as far as I could see. So like it's just like not there. And also they don't have notes like Password Manager notes for me. Things that I want, like confidential, things like passport numbers, and expiry dates, all that stuff, credit cards,
+
+42
+00:19:18,660 --> 00:19:20,880
+Scott Tolinski: credit card numbers,
+
+43
+00:19:21,050 --> 00:19:24,900
+Wes Bos: anything anything sensitive, should you know adored in your password manager.
+
+44
+00:19:25,100 --> 00:19:53,130
+Scott Tolinski: And also you can group them you can organize them like we have ours grouped by entertainment, so that I can share the entire entertainment folder with Courtney rather than like having to share each one individually or whatever. Here's all of our, you know, YouTube, whatever logins, here's all of our shopping logins, here's all of our personal finance logins. And then I have my like level up tutorials, logins that I can share with the team members, people who are using this thing that aren't me, you know, I find it very, very valuable in those sort of ways.
+
+45
+00:19:53,400 --> 00:19:57,390
+Wes Bos: Absolutely. It's a little bit of work to get up and running. But while we're this
+
+46
+00:19:57,900 --> 00:20:11,130
+Scott Tolinski: an additional here's another little hot tip, if you will are using one password to take advantage of their watch our feature. This one might go sort of, you know, above the radar if you're not looking for it, or below the radar, I don't know, I'm not a radar technician
+
+47
+00:20:11,160 --> 00:20:11,970
+Wes Bos: under the radar
+
+48
+00:20:12,030 --> 00:20:48,860
+Scott Tolinski: under the radar. The watch tower feature is a feature that tells you which of your passwords have been included within a data breaches. It also tells you which of your passwords are reused on multiple sites. So it can take a look and it can say, Hey, dude, you're using the same password on these two sites. And you should probably do that you should probably change that. It's also a good tells you which ones are weak, which ones have been hacked, which ones are unsecured, which ones aren't using two FA that should be using to FA we're going to be talking a little bit more about to FA in just a second. So use the Watchtower, it's really really useful feature.
+
+49
+00:20:49,290 --> 00:21:30,000
+Wes Bos: Next up is turn on biometrics. So likely your phone or an or your computer has face ID Touch ID some sort of sensor blood, Id turn those on because typing your master password, your master password should be strong and typing it every single time you want to open that sucker up sucks. So if you can turn on fingerprint or face ID to get access to your passwords, that's just another like it has never been better for just regular people to use a password manager because of because of these things you very rarely ever have to actually type your password because of biometrics.
+
+50
+00:21:30,210 --> 00:22:04,860
+Scott Tolinski: Totally. Yeah, and again, any anything that gives that opportunity to do it because it's so much faster. So let's talk about two fa, which stands for two factor authentication, which means that you need it two factors to authenticate you into the site as in, you need more than just a password to get in, you need a password plus something that is a little bit more secure, right? And there's a whole bunch of different ways to do two fa, very of which have been this like six digit code that is a two FA code that sort of it changes however, was it every 30 seconds every,
+
+51
+00:22:04,920 --> 00:22:20,010
+Wes Bos: every 30 seconds, you get a new six digit code, which like I remember being like, seven years old, my dad had this little thing on this key chain, to VPN into his work. And I'm just like, oh, man, all these years later, I finally understand what that's for. Yeah,
+
+52
+00:22:20,010 --> 00:23:42,030
+Scott Tolinski: so the two FA is just such a really interesting thing. It makes you feel like a secret agent because you're getting this special code. So what happens is you'll go to log into a service, and it's gonna say, okay, that's cool, you are authenticated. But before we can let you in, before we know it's actually you, we need this six digit code that you need to enter. There's several services authy is probably the biggest one. Google Authenticator is also really big, I would recommend using something called authenticator, or plus, for various reasons. authenticator plus allows you to host everything locally, and back it up in your like Google Drive, or whatever. And oh, cool. Yeah, the reason why that's great is because if you lose access to your authenticator, it is a giant pain in the butt to get this reset this thing that is generating all of these codes. So authenticator plus is my pick, there's an android version, there's an iOS version. So both of you are covered. And you know, the coolest thing about f indicator plus for me, besides the fact that I can import and export and take these with me to various devices or backup somewhere is that they have I watch or whatever the Apple Watch is called, they have the Apple Watch app, so that I can get the codes on my on my watch. And I can just look on my, my wrist, hit it and then type it in, which is way better than looking at your phone or some other service.
+
+53
+00:23:42,450 --> 00:24:52,590
+Wes Bos: Yeah, so we should say like, the whole idea behind two factor authentication is that even if someone does get your password, when you log in, they will still ask you for this code. And generally, the codes live on your phone. And if they don't have physical access to your phone, then they they still can't log in, which is great. So I forever had been using I use authy, initially, and then over to Google Authenticator, because I think there's just some services that wouldn't do it. And then I actually, I dropped my phone in the lake, and it started acting up so I brought it into apple and they replaced it for me. And I was just driving home. Oh, no, later. I thought so all of my gods. So the process of getting back into your account when you have don't have the codes, it's very hard because you have to like submit your driver's license or some some sort of proof every every single one has a different way to get back in and it probably took me two weeks to get back into to every single one. It takes time. authy authy is like a like a like an actual one and a half week waiting period. They
+
+54
+00:24:52,590 --> 00:24:54,120
+Scott Tolinski: they really make it
+
+55
+00:24:54,150 --> 00:26:55,230
+Wes Bos: Yeah, it's intentional because they don't want somebody just jacking it from you or like that. So I actually recently probably in the last month, I switched over from Google Authenticator over to using one password for two factor authentication. And for the longest time, I'm like, that doesn't make sense. Because the whole idea behind two factor authentication is something you know your password and something you have. It's Yep, your like your phone, right? And you have a code on there. And if you put them in the same place, isn't that kind of defeating the purpose, like, if somebody gets into your, your one password, then they'll have both things that they need to get into your account. So for the longest time, I was like, that's dumb. That's the silliest thing ever. And then I finally like looked into it, I was like, why didn't Why are people doing this. And then I realized that you can't set up a, you can't log into one password, you can't set it up on a phone, you can't log into it with an app without having an additional sign in code. So and that sign in code is generated from another app that has one password on it that is logged in, or from somebody in your family who can also get that secure signing code. So one, password itself is two factor, meaning you need your master password, and you need a code to set it up on a device. So meaning that if even if somebody got my one password password, they wouldn't be able to log in on a device unless they had that secondary code to login. So with that, under thing, I said, Okay, I'm gonna start moving over to using one password for this because you don't have to whip out your phone or look at your watch every single time that you want to code, you can just open one password, and it will give you the code, you can copy and paste, or in most cases, it auto fills the code for you from thing, which is amazing. So I had resisted this forever. I was wrong. And it's the best workflow I've found so far for this type of thing. I wonder
+
+56
+00:26:55,230 --> 00:26:59,010
+Scott Tolinski: if I can easily migrate? I don't know. Seems Uh,
+
+57
+00:26:59,160 --> 00:27:18,720
+Wes Bos: yeah, I don't think so unless you have backed up your initial QR code. So if that's the case, then you have to turn off two factor. This is what you have to turn off on every service. So what I'm doing is every time I log into a website, I move it over and then delete it from Google Authenticator.
+
+58
+00:27:18,840 --> 00:27:37,320
+Scott Tolinski: Yeah, yeah, that's cool. Yeah, I like authenticator. Plus, maybe keep some of these things in separate little islands. But I totally see where you're coming from. That sounds like a really nice little workflow. And especially again, if you're trying to make security easy, that is the goal, right, then keeping everything within one password is definitely the easiest way to go here.
+
+59
+00:27:37,860 --> 00:28:21,330
+Wes Bos: Um, what else is when you set up two factor authentication, you'll almost always get backup codes. And it's anywhere from five to 20 different codes, which are one time sort of like one time use passwords. So if you don't have your phone on, you already can't get access to it, or you totally lost it. Your backup codes are what is gonna save you. And you can print those out. I don't know if it's a good idea to put the backup codes in your one password. I think it would be okay, because of the reasons we just talked about. Yeah. And you just print them out, put them somewhere safe. And if something ever happens, then you have to go and reach it for those backup codes. And I've had to use mine once or twice before. To get it get back into my accounts.
+
+60
+00:28:21,780 --> 00:28:22,410
+Unknown: Interesting.
+
+61
+00:28:22,800 --> 00:28:50,700
+Wes Bos: Other people say is that you can just back up the QR code. So the QR code that you scan to set up two factor authentication, that code has a number in it, which will allow you to generate these things. And if that if you save that QR code, or you save the number that's in the QR code, you can always re add these two other things. So if you were to lose everything, but you still have that QR code printed on paper, you could just open another authenticator app at it, and it would give you the code that you need. Hmm.
+
+62
+00:28:51,180 --> 00:29:27,510
+Scott Tolinski: Yes, man. I don't know if I've taken proper precautions for if my things go by, but I has done a pretty good job. I guess the fact that I can export my What's it called? It has, like all you only have to remember our master password. Because when you export it, it gives you like a, an encryption password. And then when you import, you have to type in that encryption password. As long as you have that encryption password. You're good with authenticator plus. But yeah, I should have done a better job of remembering these backup codes. Maybe I'm going to start turning it off on some services, and then moving everything over to one password. I think you've convinced me,
+
+63
+00:29:27,780 --> 00:29:42,240
+Wes Bos: it's like kind of scary. And that's the reason why a lot of people don't do it. Because they say like, well, I don't want to I don't want to be locked out of my account. But let me tell you please turn on two factor authentication for every service that offers it.
+
+64
+00:29:42,330 --> 00:29:54,480
+Scott Tolinski: Yeah, definitely. Yeah, if it offers it, and some places will even give you a discount. MailChimp gives you a discount for using it. So that's actually a good reason that great yourself. Yeah, right. It's not a big discount. But
+
+65
+00:29:54,720 --> 00:32:22,680
+Wes Bos: you can also do text message two factor authentication. So you sign in and it will text you a code recommend not doing this. Because some places, you only can do that. Yeah, a lot of places will only allow you to do it, which I don't like. I think the reason they do that is because of the support overhead. When that happens when someone forgets their password, then you have to like assign someone to spend 20 minutes working with this person to get back into their account. Like I have a slack, like my slack room, like a couple times a week, people are lost my two factor authenticator for slack and you reset it, and like is the slack admin need to go in and turn it off for their account? And I'm like, Oh, this is such a pain, right? Like, imagine this being on a larger scale. So some text messages will do the reason why I say don't do it is because there's this thing called sim jacking, which somebody and this happened to my sister a couple months ago, somebody will go to your your cell phone provider and say, Hey, I am moving from what are the att and virgin those are in the States, I'll use those. So I'm moving from at&t to virgin, and you have to port my number. So they sign up and they pretend to be you. And then they just port your number. And now all sudden, some some malicious actor has a new phone with your phone number. And then they can just request like a password reset token or a two factor authenticator token. And it just texts it to them. And then they have access to your entire account, my sister had it, they drain her entire paypal account. And then they they wouldn't give her her phone number back for like seven days because they like trust nobody. In this case, she had, like PayPal was trying to tell her Tough luck. They took like three or $4,000 out of her PayPal. She is a nightmare overall. And I hear these stories all the time. So because your phone provider is a weak point, I'd recommend not using the text message codes where possible. And another step you can take is at least with my own provider, which is Fido in Canada, you can lock transfer, meaning that I had a call them I said lock transfer. So if I ever, if I ever want to move to another provider, I have to call them up. They took a recording of my voice which Jeez, I guess they use voice recognition. And then I have to I think it takes like a week to unlock it or something like that. What did you always you're saying was
+
+66
+00:32:22,680 --> 00:32:24,060
+Scott Tolinski: that Hey, everyone.
+
+67
+00:32:24,300 --> 00:33:04,380
+Wes Bos: Yeah, everybody. Yeah. Let me allow me just to say what I said. Right? That No, they they just asked me they just asked me a bunch of questions about like what I had for lunch. And I think that it someone could probably take words from this podcast and string together, I would like to change my cell phone provider, or just seeing them that I'm smoking meats, smoking meat, smoking meats, barbecue sauce. Anyways, just call your provider and ask them like, what can I do to stop getting some jacked? Because these providers know that this is a problem and they are starting to implement stuff, at least in Canada, they are
+
+68
+00:33:04,830 --> 00:33:17,790
+Scott Tolinski: totally cool. And if you're interested in a little bit of extra listening on this type of thing, please I implore you to listen to this episode of the shop talk show. I don't know if you've listened to this one West, but it's from 2014.
+
+69
+00:33:18,110 --> 00:33:21,180
+Wes Bos: This is where Chris coiour got his passport forged. Yes,
+
+70
+00:33:21,180 --> 00:33:38,250
+Scott Tolinski: Chris Carter got hacked. And then he interviewed the hacker on the show. It is one of the most interesting podcast episodes I've ever listened to. I you know, it's still it since 2014. It is set with me. So go ahead and listen to that, because it is very, very fascinating.
+
+71
+00:33:38,820 --> 00:33:55,260
+Wes Bos: Awesome. So please send this podcast to family members, anyone that needs to get better password hygiene. Please figure this out. Now before you get hacked before your PayPal gets drained, because it's a nightmare. Trying to get this stuff back. So take precautions now. Wash your hands.
+
+72
+00:33:55,500 --> 00:34:18,510
+Scott Tolinski: Yeah, yes. All right. I think a good way to get them to wake up to some of this is to just have them enter their email and have I been poned. So and then this website, say enter your email here. Yeah. And see if you've been hacked because that can be a real eye opener for a lot of people to see that and then just see Holy cow. People have access to these things of mine. So just a just a heads up. They're
+
+73
+00:34:19,110 --> 00:34:23,340
+Wes Bos: awesome. All right. Thanks for tuning in. We'll catch you on Wednesday. Please
+
+74
+00:34:26,190 --> 00:34:35,940
+Scott Tolinski: head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
