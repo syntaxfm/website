@@ -1,0 +1,112 @@
+1
+00:00:00,359 --> 00:00:24,149
+Announcer: Monday, Monday Monday open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob and Scott Tolinksi
+
+2
+00:00:27,239 --> 00:00:52,320
+Scott Tolinski: Welcome to syntax in this Monday hasty treat, we're gonna be talking about everybody's favorite subject in the entire world, which is Internet Explorer. 11. Oh, yeah. Love me some Internet Explorer. 11 is something neat? We'll never hear anybody say ever. My name is Scott Tolinksi. I'm a developer from Denver, Colorado and with me as always, is the West balls.
+
+3
+00:00:52,560 --> 00:00:53,760
+Wes Bos: Hey, everybody.
+
+4
+00:00:54,120 --> 00:00:58,710
+Scott Tolinski: Hey, everybody. So how's it going in that full stack shack over there? Wes
+
+5
+00:00:58,950 --> 00:01:07,800
+Wes Bos: going good. I talked about last episode. My internet is not great right now. But it was hopefully will get better. I'm I'm holding out for it.
+
+6
+00:01:07,890 --> 00:02:17,400
+Scott Tolinski: Yeah, I'm hopeful to this episode is sponsored by a company that's going to make it so you don't have to be hopeful that your website is working all the time. And that is century@century.io you're gonna want to head over there. Use the coupon code tasty treat all lowercase all one word, you're gonna get two months for free. Now what is Sentry? Well, Sentry is the open source error tracking solution that helps you monitor and fix crashes in real time, cut down the time on error resolution from five hours to just five minutes. That's an official copy. We don't often read a ton of official copy here. But I felt like I would for once. Now century at century diode is a service that we both use and love over here. And it's a great way to see all of your bugs happening in your application, be able to mark them as fixed in a watch in horror as they have resurfaced again, and you have to go and fix them for real this time. So check it out. century.io coupon code, tasty treat all lowercase all one word, check it out. All right, inter net explore, it is a thing. Internet Explorer definitely is the thing. It's definitely a browser that people use. And that's really my thoughts on Internet Explorer. That's it.
+
+7
+00:02:17,610 --> 00:03:23,280
+Wes Bos: It just exists. Yeah, I saw I launched my website the other day, and I was talking about how awesome it is that I didn't spend a whole lot of time doing cross browser testing. And I was just saying like, the web is pretty good right now. Pretty good. And of course, people don't like that when you say something good about the web. And I got a lot of pies for like, what about iE 11? And and I said like, I'm not supporting iE 11. And then I got just blasted with all kinds of unsolicited opinions of whether you should or shouldn't support iE 11. So I thought, well, let's just record a quick podcast about should you support iE 11. Because the like, I don't know, as developers, we love to sit around and say, Oh, he sucks, like who uses IE. But at the end of the day, there are lots of metrics in ways you can decide if you should fully or partially support iE 11. And we'll also talk about like, what are the features you can start using if you don't need to support iE 11. So some of you might already be on that train where you can drop by 11. So I 11 was made. Let's see, when was it
+
+8
+00:03:23,520 --> 00:03:24,660
+Unknown: 1800?
+
+9
+00:03:25,380 --> 00:06:33,030
+Wes Bos: October 17 2013. So almost seven years ago, I 11 was made. And that is a long, long time ago. There's a lot has happened in the web since then, which is kind of frustrating. It will be deprecated at some point. Let's see when iE 11 comes with Windows 10. And the end of life for Windows 10 is October 14 2025. Hmm. Which is kind of interesting. Let me make sure that is correct. I can't find a specific date, there seems to be stuff all over the place. But the reality is, is that support for I 11. And people actually using ai 11 is waning. And that's really exciting for us developers, because there's a lot of things that we can start to use. And there's a lot I think that once we finally drop iE 11 we're going to be moving a whole lot faster. So currently, as of Can I use com It says that iE 11 is 1.44% Global usage. But I think you should probably never use those numbers as whether you should or shouldn't support it. Because you should be looking at your own numbers of as to whether you should or shouldn't. So let's talk about that real quick. Like how do you make a decision whether you should or shouldn't support iE 11 I think you need to go into two big analytics and that is how many people are visiting your website currently that are in I 11. And be probably more importantly how many people are giving Your company money in IE 11? Because at the end of the day, if, right, let's say you get a 2% drop in sales because you stopped supporting iE 11 in almost no world will you get a approval for that, because if the money is coming in, who cares what browser they're using at the at the end of the day, um, I personally had to make sure that my course platform, not absolutely everything, but the buying and the distributing of the courses had to work in IE 11. But for my most recent website, Wes Bos calm, I just don't support 11. I opened it up, and I love it. And it's awful. Like, the thing doesn't work because I don't have polyfills for this stuff. And none of the layout works, because I'm using Flexbox, and grid. And I'm okay with that. Because it's like 0.06%, ie 11 usage that comes to my website. And I've made the decision that people aren't giving me money to this type of thing. And it's not worth my time. Even like, there's probably people screaming at me right now being like, well just just give a a lesser website, which we'll talk about in a second. But that is not worth my time, either. I've totally dropped it. Now. We're no Yeah, for me, I've decided not to, but you, as a developer should put aside any snarky comments you have, and thought and hatred towards IE, and just take a raw look at sales money coming in, or just raw usage statistics that are coming to your website.
+
+10
+00:06:33,750 --> 00:09:00,600
+Scott Tolinski: I do too much just tickling I was doing a tutorial of I kept trying to say this word. And every time I said this word, I did this hand thing and knocked on my microphone. I was like, Oh, God, I gotta stop doing that. Okay. So yeah, I think it's essential. It's funny because I run a business right as well. And I made the decision to not support iE 11 from day one, specifically, because you know, the people who are using our application are inherently not going to be iE 11 users, those of you who are looking at making modern web applications, what we're not really appealing to level up tutorials, certainly not appealing to the person who's never touched code in their entire life. Like we have tons of free youtube channels for YouTube videos available for that kind of thing. But our platform is largely for people who have experienced with code and are looking to learn new things. So those people are very unlikely to use iE 11. And the only people who open my application up on iE 11 are people who aren't my customers, which is the you know, it's important. It's funny, I was at the bank, and the account associate who is helping me with my account, and I was like, Oh, let me see your website. And she popped it open, and it looked like total garbage. And I was just like, I swear, I'm legitimate. I just don't you aren't my customer. So like, if you if you were to open this on your phone, this would look fantastic, you know, but I, I've made all those decisions based on actual data that I have, well, had I no longer do Google Analytics at all. But I, when I used to do Google Analytics, I used to look at it and just say, why would I spend the time to do this? What's it getting me and the cost value proposition for me just wasn't there. And so that is to get it, it was an educated decision. It wasn't just a decision based out of Hawaii sucks, which it does. But you know, I don't want to make decisions that way. And then for the most part, I think that's largely the like, if you aren't the decision maker in your organization, and you're looking to convince people who are the decision makers, then you need to hit them up with raw data other than IE sucks, because they're just gonna look at you like, you're lazy. If that's your platform, if your platform is I just don't want to deal with this, then they're gonna say tough stuff, you got to deal with it. But if you say, Listen, this is going to be a zero percent cut to our bottom line, we have nobody using the site actively on it this way it spends, I spend this much amount of money. So we're technically like a net negative in this situation, then you can look at your stakeholders and show them exactly what the weight of that decision really is.
+
+11
+00:09:00,990 --> 00:09:51,240
+Wes Bos: Let's talk about like, once you do drop iE 11. What features can you start using without having to go back and code a secondary version? And probably the biggest ones for me are modern Flexbox. So there is a somewhat supported version of Flexbox in IE 11 that you can just use, or does it autoprefixer to kick out, and it doesn't have all the features, but it's good enough, in most cases, CSS Grid zero support and CSS Grid doesn't. You can't polyfill or anything like that. There's no libraries out there that will will do that. So you just can't use CSS Grid until you drop iE 11. And then things like CSS variables, you could certainly run a autoprefixer through that and just have static variables and then have the CSS variable after
+
+12
+00:09:51,330 --> 00:09:55,470
+Scott Tolinski: dx. They're really not great. The fallbacks for variables.
+
+13
+00:09:55,590 --> 00:11:14,250
+Wes Bos: They're not Oh, but like, I'm thinking like you have like black And just use something that would output color black and then output again after that color var dash dash black. Sure. And then that will give you live variables in browsers that support it. And I think that's what you should be doing in most of these things where you can make it work kind of, or make it work good enough in these browsers, sometimes you can just ship a little bit of extra code to do that, huh? What else you can partially support iE 11. So it's like major features can like I could actually, they already work. So you can already read the blog posts in IE 11 is just the nav and the footer and some of the image loading stuff doesn't totally work, which is okay. You can use progressive enhancement, where only modern browsers get the progressive enhancement is this idea. So you have a baseline, and then you add the fancy stuff in newer browsers or graceful degradation where you have your application, and then maybe you just have like a one column layout that you you feed to 11. And then there's simple things just like polyfills, where if a array method doesn't exist in IE, 11, then you can just polyfill it, and we'll add that to the array prototype. So it will work in in in IE 11.
+
+14
+00:11:14,610 --> 00:11:28,290
+Scott Tolinski: Mm. Oh, yeah. What about testing? Let's talk about this situation, you are a one person or a couple people shop, you only have Mac computers, what's your strategy for testing, ie 11, or making sure that it works?
+
+15
+00:11:28,620 --> 00:12:16,650
+Wes Bos: Yeah, I use VirtualBox. And if you go to modern.ie, you can download a seven gig image of a Windows machine and it comes pre loaded both with Microsoft Edge and the version of Microsoft Edge that is not yet chromium. So that's kind of important for some people. And then it also comes with iE 11. And it's free. There's certainly browser stack and lots of services out there that will allow you to login. But VirtualBox is free, as long as you got like 15 gigs of free space on your computer. I've used that more often, just for random stuff that only works on Windows, just fire up that I also have a Surface Book that has iE 11 loaded on it as well. So sometimes I'll just open that up and double check a couple things.
+
+16
+00:12:16,800 --> 00:13:09,090
+Scott Tolinski: Yeah, those are all peak strategies are you just remember back when I worked in an agency, and we still had to test for IE seven, believe it or not, when I first started working? Yeah, we had this like CRT Windows computer that you had to turn on every single time you had to. It's like, Alright, I'm gonna have to test windows today at some point. So I'm just gonna start turning this computer on right now. And then I'll come back to it in like an hour, and they'll be ready to go. It's like such a process. I just remember that. so vividly of like, this is the AI machine. And we test all the browsers on this, and we have them all loaded, and it was just such a giant pain in the butt. So things have changed, definitely this virtual box, it's amazing that they just give you those, you know, here have these We know, we know that you need to test for it. So we'll we'll make it as easy as we can on Yeah, at least. And I would do that before paying for a service myself. But you know, time is money and those kind of things as well. So
+
+17
+00:13:09,120 --> 00:13:42,210
+Wes Bos: yeah, download it now. Because like when you need it, your internet is going to be slow and downloading a seven gig image takes a while, they used to even have versions of like all the way back to iecex. I don't see that they offer those anymore, I'm sure you could pick them up. Another little tip of the VirtualBox is when you have it open. Make sure you take a snapshot of the first day because it's only good for 30 days. And then you have to redownload or reinstall the image. But if you take a snapshot of the clean image, then you can always revert back to that snapshot every 30 days if
+
+18
+00:13:42,210 --> 00:13:48,750
+Scott Tolinski: you need to. Yeah, VirtualBox makes that pretty easy. VirtualBox is pretty rad that it exists at all, to be honest.
+
+19
+00:13:48,900 --> 00:14:04,020
+Wes Bos: Yeah, it's unreal that they can do the people are even running, like OSX on Windows, like a hackintosh. But instead of installing it, they're running in a VM. And apparently you only give up one CPU core to do that. Ah, yeah,
+
+20
+00:14:04,080 --> 00:14:06,180
+Scott Tolinski: I wonder how that Yeah, I wonder how that goes. Yeah.
+
+21
+00:14:06,360 --> 00:14:18,930
+Wes Bos: And you can use like an AMD processor for it. Mm hmm. nifty. So that's it. Should you support iE 11 Well, do your homework. Stop complaining on the internet? And, and make a wise informed decision?
+
+22
+00:14:19,950 --> 00:14:21,330
+Unknown: That's such a good Yes. Uh,
+
+23
+00:14:21,330 --> 00:14:32,400
+Scott Tolinski: can you we just end every episode with do your homework, stop complaining on the internet and make a wise informed decision. That to me just is like every single decision you need to make about any of this stuff.
+
+24
+00:14:32,400 --> 00:14:33,390
+Unknown: Should I tweet that
+
+25
+00:14:33,390 --> 00:14:41,130
+Scott Tolinski: react is bad because some react developer hurt my feelings at some point? No, maybe you should just not do that. And you should learn a little bit about it.
+
+26
+00:14:41,220 --> 00:14:43,620
+Unknown: Haha. Oh, that's
+
+27
+00:14:43,620 --> 00:14:52,080
+Wes Bos: good. That's good. All right. That's it for today. Thanks so much for tuning in and we will catch you on Wednesday. Please, please.
+
+28
+00:14:54,030 --> 00:15:03,800
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe. In your podcast player or drop a review if you like this show
+
