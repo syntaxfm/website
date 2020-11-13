@@ -1,0 +1,148 @@
+1
+00:00:00,329 --> 00:00:24,450
+Announcer: Monday, Monday, Monday, open wide dev fans yet ready to stuff your face with JavaScript CSS node modules, barbecue tip workflow breakdancing, soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bobby, and Scott El Toro. ski.
+
+2
+00:00:25,920 --> 00:01:10,140
+Scott Tolinski: Oh, come to syntax on this Monday tasty treat, we're going to be talking about domain selling. Now, this is something we as developers, we love domains, buying them selling them. And this is one thing that can really come up a lot of times, once you get that bug of buying domains is all of a sudden, there's a domain you really want. Or perhaps you own a domain that somebody else really wants. And Wes has learned firsthand some of this experience stuff. So he's going to be sharing with us a little bit about his experiences buying and selling domains in a greater sort of way. Because domains, they can be worth a lot of money, depending on what you own. Now, my name is Scott kolinsky. I'm a developer from Denver, Colorado, and with me, as always, is West boss.
+
+3
+00:01:10,230 --> 00:01:13,170
+Unknown: Hey, folks. Hey, folks. Hey, Wes.
+
+4
+00:01:13,170 --> 00:02:15,720
+Scott Tolinski: So this episode is sponsored by Log Rocket. Now Log Rocket is just really the next generation for bug finding in your application. Because what you get is a session replay. If you've ever wanted to see what's happening when a user clicks a button and the whole thing breaks, let's say you click a button, and then fire starts shooting out, you can see how and why that happened. You can look at their network requests, you can look at their error log, you can look at the Redux store. And it works with more than just react, it works with anything you possibly using, including all of your current error and Exception Handling tools like century. So head on over to Log rocket.com forward slash syntax, and you're going to get 14 days for free and try it. because let me tell you, it's not going to take 14 days for you to see why you need this, it's going to take one bug that you cannot solve. And when you hit this bug and you get to see this session replay in action, you're going to say, ooh, let me hop on that rocket. So Log rocket.com forward slash syntax, check it out.
+
+5
+00:02:16,160 --> 00:05:57,449
+Wes Bos: All right, well, we are going to talk today about buying and selling of domain names. I've actually I'm thinking back at all of my things. I think I've bought maybe five or six domain names in the past. And then I just sold my very first domain name. Not I didn't get rich off of it. But it certainly I'll tell you how much in just a bit. But I thought that the process of getting a domain name from somebody else and giving them money, and then getting the domain name to use securely was interesting. So we'll talk about that in today's AC trade. So let's talk about first buying, then selling and then transferring. So the first thing is if there's a domain name you wish to buy from somebody? How do you do that? Like, how do you even contact them? So this is my process. First, I'll go to the contact form on a website, if there is a website that is already there. So usually, usually this is not the case, because there is a domain name you want to buy from them. It's almost always somebody bought it. And they're thinking about doing something with it, or they're sitting on it for a while. And there's no there's nothing pointed there right now. So if there's no contact form on the website, my next step is I'll go to who is and look up the Whois records for the domain name. And often that will not it's becoming less and less popular now. Because domain name registrations give you free Whois protection, which is great, because certainly some of them do. Yeah, yeah, you don't want your you shouldn't use the registrar if they don't give you that. Because you shouldn't have your home address easily visible by just someone who is in your website. Right? Yeah. So thankfully, that's been the case with a few of them that I've bought, I've been able to just look it up and find the contact there and then send them an email, say, Hey, are you interested in selling it? That's always kind of a delicate dance, because you don't want to show all your cards off the table? Because then they're like, Yeah, sure. $1 million, please. If that's blocked, so there's nothing on the website, there's no who is you're like, who owns this website. Next, what I do is I do sort of a deep search. I've successfully bought one by searching on Twitter for the domain name. And often you will see people not often but sometimes you'll see someone tweet about the domain name. Or if there was a blog on it, at some point, you'll see that someone had tweeted out a blog post on that domain name. So you can you can find Twitter accounts that have talked about it. And then you message them and say, Hey, do you are you Do you know who owns this domain names? I'm interested in buying it. And then finally, if all of those are blocked, there's no way to figure out who owns it. You can enlist like a buying agent, which I've never done myself. But I know that there are people who have connections inside of registrar's or there's processes I'm not really sure what that looks like. But you can get a buying agent and they will try to deliver I think Even like GoDaddy or something like that will try to like contact the person, you can like, say I wish to buy this domain name. And they'll try to like contact the owner of it for you. So there's that. domain names I've bought in the past. I bought JavaScript co probably two years ago, like not.com but.co. I thought that was pretty good. I think I paid about $700 for it. And I thought this is gonna be the domain name when I finally do, like a beginner JavaScript course or like a, just a JavaScript fundamentals course. And I had been sitting on that for for a while. And I knew that that's what the domain name was going to be. But then I got an email from Dave Martin, who also makes courses. So shout out to Dave and he says, Hey, Wes, I've got beginner j s.com. Do you want it? And I said, No, absolutely. Yeah. And I was like, What do you want for it? And he said, don't worry about it. I believe I had helped him out on a course like just some feedback earlier. Ah, what?
+
+6
+00:05:57,540 --> 00:05:58,470
+Scott Tolinski: That's awesome.
+
+7
+00:05:58,500 --> 00:09:54,720
+Wes Bos: I know, like, perfect. I think maybe let me look at my email. Big shout out to Dave. Yeah, I believe I had given them feedback on his own course sales page, like three years ago. And I guess that little 10 minutes of me, giving feedback helped out huge because he gave me this wicked domain name. The only problem with it is that it was beginner .js dot com. And beginner javascript.com was owned by another dev who was sitting on it. And I contacted them as like, Hey, can I buy it? Because like, I don't want to have beginner j s and not beginner JavaScript calm? Because the course will be called beginner JavaScript, right? Sure. So I said, I contacted me said, No, I'm not interested in selling it. I'm gonna build my own beginner course for that, like, shoot, shoot, well, what do I do now? And so I just like whatever. And then like, maybe three or four days later, the owner of it came around and said, You know what, I'm talking to my wife. Maybe we would like a couple, a little bit of money for it. Sure. And you know what, I'm never actually gonna build this course, like real talk. So he said, Okay, I'll sell to you. I think I forget how much it was a couple hundred bucks. I paid for it, which I think was fair. And I send him over the money. I'll talk about transferring it in a second. But I bought it off of him. I bought learn node.com, which is my node course. And that was, I think I gave a $300 donation to the E FF in exchange for it. So the owner of it was cool enough to say I don't want your money, but please donate and then I'll give it to you for free, which is cool. Now, the best one that I just did is my son, my recently born son, his name is kit and I have all of my other children's calm. And when we decided to name him kit, I was sort of bummed because I was like, I love the name. But the domain name is not taken. There is a Danish photographer who owns it is taken, it is taken. And I saw whenever and then a couple months ago, a month ago, I went to it again. And they had redirected it to a new domain name. I was like, Hmm, interesting. They're using a different one. So I contacted her and said, like, Hey, I'm ever interested in selling it. And no, no reply. Founder on Instagram messaged, no reply on Instagram. And then, just as a Hail Mary, a couple about a week ago, I messaged I commented on one of her photos. I said, Hey, did you get any of my messages? It says no, nothing. Why? What's going on? So sorry. And then I messaged and she was like, check your DMS, like the the Instagram like, you know, the part of Instagram where your dams go if you've never messaged her somewhere? Yeah, I was like, check that. And then she says, oh, sorry, I missed all of your things. So she's like, I'm not sure if I'm interested in selling or not. But I'll talk about it. I'll think it over and we'll see. So I said all right. And then I got a message from her. The next day says my son listens to syntax. No way knows who you are. So shout out to Dan boss for convincing your mom to sell me the domain. Oh, that's sweet. So she said my son listens to your podcast and really likes you. And honestly, we're not using it. So we came. I think it was a couple hundred bucks as well. I sent him over. And then additionally, I also have hooked up the son with all of my courses. That's so cool view as part of part of the deal. So that was super cool. I was I'm so happy that I can't get it because now I have Kip boss calm. I don't know people are asking like our.com is going to be like a cool thing in 20 years when they actually need it. And I don't know when I have them just in case like it for sure. None of my kids friends are going to be able to get the.com of their name right in 20 years from now there for sure all going to be taken. Well, unless you're like me. None of my kids are going to be taken but I got them anyways, just in case just in case somebody wanted to goof with me.
+
+8
+00:09:54,720 --> 00:10:03,360
+Scott Tolinski: I got Yeah, I got Brooklyn to ski calm and Landon to Lynskey down Calm just in case. So they'll have them forever and ever.
+
+9
+00:10:03,870 --> 00:11:02,760
+Wes Bos: And if you put them on, I put them all on CloudFlare, which is like eight bucks for a domain name is they they sell their domains at cost if you're wondering. So it's not that much to maintain them. Just in case, I don't know, just in case they ever want to be on the internet. And just in case you ever want a domain name, because I'm so glad that I like my oldest son, my youngest kid have six letter domains. And my middle one has eight letter domain. And those six letter domains are hard to come by, right. There's only I think there's only so many five letter domain names even available and yarn and all the six letter combos will eventually be gone, I guess, as well. So that's how, that's how buying them works. And then I also have sold one recently, which is learn.li. I want to see it, they haven't done anything with it. So I when I was rebuilding my course platform, I was like, should I like rebrand away from Wes Bos and make it like a platform? Yeah. And I was like, What could this platform be like, learn Li learn like
+
+10
+00:11:02,789 --> 00:11:04,080
+Scott Tolinski: step up tutorials?
+
+11
+00:11:04,110 --> 00:11:07,620
+Wes Bos: Yeah, step up tutorials, increase your skill.
+
+12
+00:11:08,669 --> 00:11:10,230
+Scott Tolinski: Next Level tutorials
+
+13
+00:11:10,260 --> 00:11:20,340
+Wes Bos: next level, something like that. And I said, so I registered a whole bunch of domain names that I thought I was going to use, and one of them was learned. Li and I thought it was pretty good domain name. Oh, that's
+
+14
+00:11:20,340 --> 00:11:23,669
+Scott Tolinski: pretty good. lonely. Yeah. No, like, It's cute. Yeah.
+
+15
+00:11:23,730 --> 00:11:31,559
+Wes Bos: Yeah, like lonely. And I ended up talking to a bunch of people are like, No, just stick with Wes Bos. Like, that's sweet. So I scrapped it.
+
+16
+00:11:31,590 --> 00:11:38,070
+Scott Tolinski: Yeah, you have a cool name. If you're like somebody named Scott Tolinksi. or something, it's not quite as easy to use that as your your brand name.
+
+17
+00:11:38,100 --> 00:14:53,400
+Wes Bos: No, no, it's not we and we've talked about that before just branding in general. So I've had this learn that Li and for some reason, I just kept letting it renew for like 20 bucks a year for probably three years, four years now. And out of the blue, I got an email from somebody say, hey, do you want to sell it? And I said, Sure. I'd like to sell it. $5,000. So I said 5000 bucks. And then they reply, first of all, I did all my research on this person that had emailed, and I'm guaranteed it's a fake email account, because it's like a company. Like imagine, like Uber wants to buy a domain name from you. Yeah, they're not there. They're not gonna like be like, Hello, we're Uber, we'd like to buy the domain name. Hey, Uber, how about a billion dollars, please write there, they're going to use an agent, or like a fake identity. And by the by the English that this person used? I don't think that they were, I think that English was their second language. So I think it might have been some service that goes off and tries to buy domain names for people, there is a learn lead.net or like a Learn, learn lead calm. There is a service called lonely, a lonely co learning to end development budgets Made Simple. And I was like that might be who is not contacted them and say, Hey, do you want in on this as well. And I'm trying to shop it around now. And they didn't email back. And I was checking out their website to book a demo from there. Oh, the demo was broken when I tried to sell it. And now their demo is working. It probably was them. So it probably was them. So I said 5000 bucks. They said no, How about 700? And I said, How about 2000? And they said, How about 700? And I said, How about 1500. And we met right in the middle at $700. And I was a very good negotiator. But I think 700 bucks, I was like, Oh, that's weird, because I just paid a couple couple hundred bucks for Kip boss. And now I'm selling this one for 700. There's a bit of room in between there. So I was pretty happy with that. And so this is like the more official process because with every other domain name, we'll talk about transferring it now. Every other domain name I've done, I've just done based on goodwill, meaning that I see these people, they're on the internet, they're part of our industry. Yeah, I'm gonna gamble, PayPal, and the PayPal will have your back though, you can always pull the money back, I made a gamble sending this person a couple hundred bucks, in hopes that they actually send me the domain name totally. So it's worked out in every case so far that the person didn't screw me because they could certainly take my money and not send me the domain name. And the way that it works is that they give you a code. So you get an auth code, and then you try to register that domain name fresh. And if it's already registered, you give it an auth code. And that will allow you to transfer the domain name into a registrar. So I transfer them all you have to transfer them over to something other than CloudFlare because CloudFlare doesn't have registrations yet. They use hover.com which is what I use for everything else that is not on CloudFlare and it worked. But with the this official one learn to ally and it's kind of risky. Yeah, it is. It's pretty risky. And I was like, whatever. You know, like I'll figure it out if they screw me, but
+
+18
+00:14:53,459 --> 00:14:56,490
+Scott Tolinski: as long as you you're aware of that risk, like Yeah,
+
+19
+00:14:56,520 --> 00:16:21,150
+Wes Bos: yeah, everybody. Everyone else that had bought them had been developers In their in our industry, you can see their Twitter and whatever it's like, they're probably not going to screw me. And Kip FOSS was, I don't know, I've never met a Danish person I didn't like. But with this, this other one that I couldn't find any info about this person buying it, I ended up just using they use escrow calm, yeah and escrow.com will they send the money to escrow.com and then you give them the domain name. It's weird, I thought like, I thought escrow would be like you give escrow the domain name and then they give escrow the money in escrow verifies both are in their hands and then they then they switch them over doesn't work that way. You add they give escrow the money. Once escrow has it then you just send the domain name directly to the the person buying in and then escrow releases the funds once they verified it has been transferred. So I was like, how am I not gonna get screwed on this? Like, what if they just say I didn't get it and then it then it's gone forever, right? So I tweeted about it. And a lot of people are like, trust escrow, they they're like the gold standard in the industry of buying and selling. So I went for it. And I got my money. Everything went smooth. I'm very curious to see now who are buying it. But I don't know. I don't think it's that crazy of a dome. I had a friend once who sold the domain name for 27 grand.
+
+20
+00:16:21,179 --> 00:16:22,770
+Scott Tolinski: Yeah, these money.
+
+21
+00:16:23,100 --> 00:16:26,299
+Wes Bos: Those imagine what would you what kind of boat would you buy with that?
+
+22
+00:16:28,320 --> 00:17:17,300
+Scott Tolinski: If that big, it's a big boat gonna be a big boat. Yeah, my, my boss had bought a domain for his like, perfect side project. And he was like, this is like my dream domain. And to be honest, I don't necessarily remember it was a three letter.io domain. And he was so like this is this is the domain that I've always wanted to wanted to get. And he got it because he like waited right for the moment that it expired and ended it that way. So instead of ganging up somebody in the knee. I think he had the domain for like a month. And then somebody messaged him and was like, I will give you a good amount of money for this domain. And he's like, yep, here it goes. I'll do I get. So it's like, wow, work so hard to get that domain, but then it was definitely worth enough money to somebody else that it made that worthwhile. I've always had the dream of buying a domain that would be like, I gotta gotta have somebody got to have it like Bob calm.
+
+23
+00:17:17,400 --> 00:17:18,030
+Wes Bos: Yeah.
+
+24
+00:17:18,030 --> 00:18:06,150
+Scott Tolinski: Did you hear that Bob? Calm story? No. This is actually I think it's perfect to fit this. This is the story of bob.com. So this, this guy, let's see, where's the story of Bob Kahn, and I get a shortened version of this Hold on one second. It's actually really funny story. So this guy, Bob had had owned windows 2000 dot com. And when Microsoft was, like, all of the sudden, like, Uh, oh, crap, we need windows 2000 dot com. They went to sell it, or they wanted to buy it from him. And he was like, Well, if you can give me bob.com because Microsoft had owned bob.com Oh, gave him bob.com.
+
+25
+00:18:07,070 --> 00:18:29,550
+Wes Bos: That's amazing. He probably made a ton of cash on that. That's hilarious. That's great. Um, a couple other people asked like, well, I'm sure we all have 100 domain names that we want to get rid of, because they're costing us money every year. But you're like, I can't give it up. Because whatever. Yeah. What if I get rich on it? So you can listen on marketplaces. So sido SE do is one
+
+26
+00:18:29,600 --> 00:18:33,780
+Scott Tolinski: I sold through there. Yeah, I'm sorry. I bought through they're not sold. Now. That's good.
+
+27
+00:18:33,780 --> 00:19:41,490
+Wes Bos: And another popular one is park.io, which initially tried was just just buying and selling domain names. And I think the product that they have is a $99 back order. And then this guy's got this wicked fast sniper. As soon as a domain name expires, this thing will sniper register it for you, which is what you want. Because if you think you're going to be wise and wait for a domain name to expire, and they quickly register it, you're in for a world of hurt because there are people who any domain even like if you have like, I don't know, a granny to lynskey.com Yeah, somebody for some reason we'll we'll register that because for whatever reason, a one in 100 are people that are worth money or people accidentally let them expire and they have to buy them back at a certain amount of money. So check it out. They have recent sales on park.io and weekday.io. sold for 990 clap.io sold for 700 bucks. That seems like a good deal. Yeah, one to sold for 20 grand one to that sounds like a spam site for sure though.
+
+28
+00:19:41,759 --> 00:19:48,720
+Scott Tolinski: If you hadn't been in an accident, you could buy one to E and then that could be your domain. I got one toe.
+
+29
+00:19:48,989 --> 00:19:49,850
+Unknown: Oh,
+
+30
+00:19:50,009 --> 00:19:50,580
+wow.
+
+31
+00:19:50,580 --> 00:20:07,740
+Scott Tolinski: I'm in the end up there. I'm a father man. I got I got I got dad jokes. Now. I it's funny because we talk about these dad jokes in our household and life. corny, I think was like, yeah, you don't have any dad jokes. And now that I do have dad jokes. I'm thinking she's regretting saying that because she doesn't like
+
+32
+00:20:09,510 --> 00:20:44,520
+Wes Bos: self taught iOS is for sale right now. Current bid is 100 bucks. That'd be a good Yeah. If you're trying to build a course platform self taught.io startup as well. Yeah, well it will be sold by the time you listen to this. All right, well, that's buying and selling a thought hopefully that is somewhat interesting. It's it's always very mysterious. I think people keep it hush hush, because yeah, they either have made a ton of money on it, or I don't know for what a reason. So I'm, I'm happy to share my experiences of making and sending a few hundred dollars here or there.
+
+33
+00:20:44,640 --> 00:20:50,460
+Scott Tolinski: Yeah, I'm not I'm not trying to get rich off this. I don't even do any of it. But I have a dream of doing it. So I will say,
+
+34
+00:20:50,570 --> 00:21:00,930
+Wes Bos: Yeah, I should look at my list of domain names that I bought. I think I bought like, like iPhone 10 dotnet one time and like, I never get rich and that never worked out. Yeah,
+
+35
+00:21:00,930 --> 00:21:05,640
+Scott Tolinski: I know. I need to like prune them. I need to go through and prune them.
+
+36
+00:21:06,860 --> 00:21:13,580
+Wes Bos: Cool. All right. That's it for today. Thanks so much for tuning in. And we will catch you on Wednesday, whose face
+
+37
+00:21:15,510 --> 00:21:25,290
+Scott Tolinski: head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
