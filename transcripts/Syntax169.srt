@@ -1,0 +1,136 @@
+1
+00:00:00,359 --> 00:00:24,450
+Announcer: Monday, Monday, Monday, open wide dev fans yet ready to stuff your face with JavaScript CSS node module, BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob and Scott Taylor. Totally at ski.
+
+2
+00:00:25,950 --> 00:03:04,350
+Scott Tolinski: Whoo, welcome to syntax on this Monday tasty treat. We're going to be talking about how Wes is able to get internet out in the remote Forest Lake, where he is out at his cottage we're going to be talking about this is going to be really interesting. It's going to be kind of techie in terms of its web related, but it's it's the internet in remote areas and the strategies that Wes is using to get internet. I mean, he's communicating with me live live via the internet right now. And it's a he's in the middle of wilderness. So it's pretty awesome. I can't wait to hear a little bit about him following his stories on Instagram. It looks really super fun. My name is Scott Dylan ski and with me as always is Wes Bos joining us today jumped up. So this episode is sponsored by one of our longtime sponsors here at syntax is Netlify. Now Netlify has launched recently, a really neat new service allows you to get analytics straight from the DNS so that way, you have your you know, your your Google Analytics, right, your Google Analytics is a script that loads it onto a page and somebody visits your page or registers a click although your Google Analytics is not accurate, why is it not accurate because people block that stuff, people block the trackers people don't, they don't want you snooping on them. So they block all that stuff. This however, is a little bit different. Because this information is coming not from a script is coming directly from the server itself. So because of that, you get accurate analytics via Netlify. It's really super cool. And I really think it's a totally different approach than we've seen before to analytics, something that I've found to be just really, really, really inventive and amazing. So Netlify, for those of you don't know is a hosting company allows you to host your front end code, serverless functions, and do all really, really easily with their simple commands and just get up and running in no time. Netlify is one of our favorite hosts. And really my personal choice for if I'm hosting any front end code, it's going straight to Netlify. You can get up and running for free with Netlify. So head on over to netlify.com forward slash syntax and sign up just smash that link, just smash it and head over there. And you get continuous deployment, global CDN, https and all that for free. Dang, get it now go there. Okay, Netlify, what's up? Alright, let's get into this remote internet thing. If you can tell I'm highly caffeinated. And I'm ready to hear all about how you're how you're able to, you know, grab that that sweet, sweet internet up there in the Yeah, remote wilderness.
+
+3
+00:03:04,380 --> 00:09:17,070
+Wes Bos: I think this is it's kind of interesting because us web developers, we really can work from everywhere. I know that not everyone agrees that remote work is the best. And in some cases, it doesn't make sense. But it's kind of cool that if you can get internet and a space you can work from wherever it is that you want. And I've heard from from many people, when I was researching this to say like we had to pass on my dream house because the internet was two kilometers out and we just couldn't get it like. And that's it seems like getting internet in remote locations is getting much easier and much better, especially in Canada. And I think that's really cool, because then us as web developers are able to expand where it is that we want to live. So what my hope is today is to do sort of like a brain dump of absolutely everything I've learned over the last six months of doing research into how to get internet because my wife and I bought a cottage which is up near Gauguin parking Canada, and we're pretty remote, we're four hours drive from from where I live, and especially where we are, we're on a small little lake, we're probably half an hour out from the closest town where you can go buy gas and groceries and things like that. So before we bought the house, we did make sure that we could at least get a cell phone signal. And then we went ahead and bought the bought the cottage and moved in now now that we're here I've done a whole bunch of research as to how to get into it. So first thing is let's talk about what are some of the options if you live in a remote area and need to get internet so the the first and probably the most available one is Satellite Internet. So if you put a satellite dish just like a regular TV satellite dish on your property somewhere, you can ping a satellite and get internet. Now the speeds that I see people getting around here is it seems to be about five or 10 megabits down and one up, which is okay. It's not Great, and it's really finicky. So if you have a tree that goes in front of it, if it snows on the satellite dish, if it's raining all of those things, all those problems that you get with satellite TV, also go to your internet. So for nothing but terrible stories about Satellite Internet, so I started decided to just pass on that one other option that a lot of people are getting now is what's called local LTE. So not the LTE that you get on your phone. But what's happening is a lot of small internet providers are putting up towers that will cast a, I don't know, 510 kilometer radius around it. And there's even options where you can pay $20,000 and get a tower on your land, and then your neighbors pay you and you sort of you sort of make your money back double and 510 years, which is kind of cool. And that's using in Canada, at least we have this 3.5 gigahertz spectrum that went up for auction in the last couple years. And that spectrum is now being used by companies to do the sort of local LTE. So that's cool is just not an option where I live or where we have our cottage as well. But just because there is no local LTE tower that anyone has put up in our area in order for us to get that so we're just not within range. So that's pretty popular in like small towns, where maybe there's just like a bunch of farms and sort of a town and someone will throw up a tower and and broadcast LTE out to them. All their options are line of sight. So if you live somewhere remote, but you do have access to somewhere that does have fast internet, you can get these like parabolic satellite dishes that you can beam a signal from one to another. And if you actually go on YouTube, and check out Denmark fives house tour, it's pretty unreal, because he did my five lives in Canada. But he moved I think like I forget where it is, but north of Milton. And he wanted fast internet it just wasn't available where it was. So he put up this massive tower and just beaming in the internet from the closest city and because of the where he lived sort of on a hill, he was able to get line of sight directly to it. That again was not an option for me because where we live is called Hastings Highlands so where it's very mountainous where live so there was no direct line of sight to that I could even like put up put up a tower in the city and beam it in. So I looked into that just for for fun sake. But it wasn't an option we did end up going with was just regular LTE. So we do get very good cell connection up here or okay cell connection I'll talk to you about about it. And by getting a decent cell connection where we are, you can actually get internet over that. So I'll talk about the plans and the data and the speed and all that in just a second but I'm gonna dive now into modems and routers. So if you want to use the your cell carrier are one of the cell carriers as an internet provider, there's a couple things that you need. So first is you need a modem that takes a SIM card and you need like a router obviously. So most of the things that you can buy are modems and routers in one. The one that I settled on and in this is mostly because it's one of the best ones I found and I found it super cheap unlocked on online. It's the ZTE mf 288 I'll put all the links to this in the show notes. It has a battery in it so you can actually just like take it with you on the road if you wanted to do that. And it came unlocked which is cool because I've been testing a bunch of SIM cards from different providers where I am other other modems in this area or the Netgear lB 1120 really popular in this space is mophie at mophie network comm This is really big I did a lot of like YouTube research and surprisingly all of the research comes from like the RV and community where people just go off and live in an RV for for their entire life and they need internet wherever it is that they are so mophie makes a really good one that is it actually runs on open WRT which is that like custom router firmware. Hmm. Which is is pretty nifty custom router firmwares
+
+4
+00:09:17,070 --> 00:09:18,410
+Scott Tolinski: kind of scares me.
+
+5
+00:09:19,320 --> 00:09:25,710
+Wes Bos: Oh, really? No, it's it's pretty popular. Like do you remember like tomato firmware for your router? Or?
+
+6
+00:09:26,459 --> 00:09:36,530
+Scott Tolinski: I've never met with my router ever. I've always just rented from the cable company and I mean now we're on fiber, but I've always just rented the router and plugged it in and not thought about it.
+
+7
+00:09:36,900 --> 00:10:59,610
+Wes Bos: Oh man. No, I've I've run like custom firmware on my router for a long time. And it's cool because like if you want to get I also went to school for Telecom. So I know a little bit about this stuff. But if you do want to get into too that you can because it's hackable and they don't sort of limit what you can do. I did find that the mophie router is just this like No no name brand is what's Zed btw iE 826 t, which I don't know if that means anything to you. But if you want, you can actually just buy that yourself and build it up yourself. So you can you can get a modem card, slap it in there for a sim. And then you can also load DD WRT on it. I don't know if that's really something I want to do myself. But I ended up with a ZTE mf 288. And it works great. Now, one little thing that happened was when I tested when I tested my the speed before we bought it is that my phone connected to there's two carriers in Canada, Rogers and Bell and my phone connected to a bell tower just because where we live, there was no Rogers reception. And I assumed that it connected to the Rogers tower and it didn't. So I realized like we're gonna need some antennas here in order to get the the fastest speed possible. So when we turn this thing on,
+
+8
+00:11:00,660 --> 00:11:04,800
+Scott Tolinski: getting into antenna, I saw those antennas you were installing to. They're serious business.
+
+9
+00:11:05,010 --> 00:14:03,660
+Wes Bos: They're huge. Yeah, big because we turned it on and there's zero bubkis nothing. Zero signal. Guess. And I was like, Oh no, like this is this is awful because the carrier I wanted to use go sir Roger, it's not through bell. So it was like, okay, and like our own cell phones weren't even getting connection if we if we didn't connect to the bell tower as well. So I did a bunch of research into it. And there's two types of antennas, you can get an omni antenna, which is omni directional. It's just something you throw up in the air and it goes, it sort of looks for signal on all ends. And then there's directional antennas, which you point directly at the cell tower. So Omni is easier. Directional is better. So I went with directional, and I ended up getting these things called a Yagi antennas. They're made by Wilson electronics, but Yagi is the type of antenna and you run two of them, you run one horizontal and one vertical, or you just you just run them in 45 degrees from each other, or 90 degrees, I guess. And what that will do is it will get all of the signals, whether they're horizontal or vertical, I don't really understand how how frequencies work. But you're supposed to mount them like that. So we we got these and we plug the antennas directly into the router. So you take off the tiny little plastic ones that they come with. And you plug these ones in, I sent my brother in law up on the roof just to hold it up in the air. And then we used an app called Open signal. And that will tell you exactly which direction is the the cell tower of where you should be pointing it. And we lucked out because where we wanted to mount it was a break in the trees, which so it would, it's about five kilometers away, and we mounted it directly to it, plugged it in. And we went from no signal at all to four out of three out of four bars. Which is it's it's not amazing signal. But it was certainly much much better than absolutely nothing. So we plug that in. And right off the bat, we were getting 15 2025 megabits down and 1215 megabits up, which is for some people, that's awful. But yeah, that but a lot of people are messaging me being like that's better than anywhere in Britain. We're getting so certainly faster upload speed than I even can buy at my own home. And then that download speed, I get up to 30 megabits down, which is way more than you need about like two or three to watch a watch an HD YouTube video. So certainly more than than we could possibly need. Other things in this area are called cell phone boosters. So the college we have also has a metal roof, which is not good for cell signal, because it just blocks it. So you can get these little things called boosters where you throw a Yagi antenna up in the air. And then if you literally throw it
+
+10
+00:14:03,660 --> 00:14:04,620
+Scott Tolinski: in the air like you
+
+11
+00:14:04,620 --> 00:15:19,620
+Wes Bos: throw it up in the air Well yeah, yeah, yeah. Screw it does something nice and high. Yeah. Although not too high, because the longer the cable the the more frequencies you lose, or the more Yeah, the dBm. Yeah. So you want this sort of like I want with a 30 foot cable, which was long enough, thankfully. So these boosters, they take in a signal, they boost it, and then they rebroadcast it inside the house. And I have one of those, which ended up not using it just because of how well the the current one worked with us. So that's another option for people. If you're getting low cell signal LTE signal, you can just throw one of those up and rebroadcast inside the house. That's that would be even helpful if you just have like a basement apartment, something like that. And you want to get better, better reception. Let's talk about plans, data and speeds. So we talked about the speed that I got the plan I've tried a whole bunch of them. In Canada, all of the major cell phone carriers offer just like a data only SIM card. And they're they're decent. They it tends to be about, I don't know, $3 per gig, which is not decent at all. It's actually robbery. But like actually,
+
+12
+00:15:20,489 --> 00:15:38,970
+three or two, we I was doing the math and I was like, we'll probably spend like two or $300 a month. If we need to, like do a couple hundred gigs of it, we stop watching Netflix, things like that. But if we're just doing our regular Instagram, I'm doing video chat with you right
+
+13
+00:15:38,999 --> 00:15:41,040
+Scott Tolinski: now. I wonder how much it's costing? Yeah,
+
+14
+00:15:41,219 --> 00:19:13,200
+Wes Bos: kind of the kind of the the cost of doing business. So I did that. But then I also tried this is in Canada, you can get like I went to the states and eBay and bought both at&t and Google phi SIM cards that have roaming data enabled on them. And I'm currently testing those right now the at&t one is working really well. This is what I'm on right now. Which is so bizarre that it's cheaper to go to the states buy a SIM card and bring it back into Canada and operate on roaming. And then it is just to buy a local SIM card. For data only. That seems to be at&t seems to be the if you're in the States, that seems to be what everybody is using in the sort of LTE community. And they do offer. There's a couple of things out there that some people buy an iPad Sim, and use that some people buy if you go on eBay, you can find these connected car, SIM cards that you take out of your car and put it into your modem. There's also some resellers have unlimited data plans of via at&t. So I've used 80 gigs so far, and it hasn't been throttled. It's not perfect. It does go out every now and then I haven't been able to pinpoint why traffic on port 80 is sometimes blocked. Because it it thinks it's not a phone or something like that. I'm not totally sure why. But you Port 80 almost, I was surprised almost nothing runs on port 80 anymore, because everything is SSL. So that's not a huge problem, you can use a VPN as well, if you want to get around that I've had to jump on a VPN if i a couple times. But so carriers, I'm still testing it out, I might have to jump back to one of the Canadian carriers. If things go south, that's totally fine. But just know that if you can get an LTE signal, there are some decent ones out there, especially in rural areas. Because the throttling that these companies do after you hit however many gigs they allow you, the throttling is not like immediate, it's only they just do, they put you at the end of the line. So if there's other people using the tower, they you get they get priority over you. And if you're in a rural area, it's not like you're at a football game where there's thousands of people, there might only be 100 people in like a square 10 kilometers, something like that. So it's, I don't think it's that much of an issue for people who live in rural areas. So something to think about, I'm still testing them out. I have this like, I feel like a drug dealer because I have an old iPhone bag of SIM cards from all the carriers. And I'm just like testing them out. And like like if someone were to like, Yeah, it looks like a burner phone with all these different SIM cards, like I'm trying to sell drugs or, or like do SMS jacking or something. Yeah, but hilarious. I'm spending a little bit of money on a bunch of different plans just to test it out. Because like, this is this is my dream to be able to work from a cottage and have internet and there's no like, good solution. Everybody here uses Bell and it's like capped at five megabits down and it does one up and not doing Yeah. And you can live with that you get like 10 gigs a month or something silly like that. I'm like, come on, like, there is some stuff like the CRTC, which is like the regulatory body in Canada, they are forcing and working with the big telecoms, to be able to give internet to rural residents. That's
+
+15
+00:19:13,200 --> 00:19:16,500
+Scott Tolinski: another thing I can say. Rural, rural, rural,
+
+16
+00:19:17,039 --> 00:19:47,220
+Wes Bos: but it's it's kind of a joke, though. They're like, they always have these press conferences. They're like, we're bringing internet to everybody. And then you look at it, and they're screwing you on the cost and the speeds. And once you look into the actual details, it's it's not a good deal for very much at all. So I'm very much looking forward to Google's Satellite Internet, which is supposed to be lower level satellites that they're going to launch all around the world and then be able to get high speed anywhere, which is a balloon barrier. Am
+
+17
+00:19:47,220 --> 00:19:48,210
+Scott Tolinski: I making that up?
+
+18
+00:19:48,539 --> 00:20:49,200
+Wes Bos: I remember hearing they have balloon ones that they could throw up. Like if there's like a natural disaster that they're also launching just satellites. low low orbiting satellites, which is pretty cool. So I can't wait for that to come out as well. But I don't know i'm i'm two weeks in on this and it's been working great. I'm pretty happy with it. Other things to think about I have here is that the static IP is not almost never available. So if you need like an IP for your computer, then you probably have to go a different solution, or I've heard of people paying extra for a static IP and IP address that doesn't change for your router. But that's never been we've got cameras and things like that security cameras, all of these things, I don't need a static IP. And even if you do just use something like what D D and D DNS dynamic DNS where you can get like a domain name for your your computer, and then just port forward that to wherever it is that you want.
+
+19
+00:20:49,289 --> 00:20:57,210
+Scott Tolinski: Man networking is, this is something I have no experience in. That's like blowing my mind all of these things that I don't know here.
+
+20
+00:20:58,680 --> 00:21:20,300
+Wes Bos: It's really interesting stuff when you can you can get into it and figure it all out. I've got a bunch of the ubiquity gear here as well, which I haven't hooked up yet. But the the idea is that I'll have like a mesh network in the cottage, so that we get get access everywhere. And then they sent me a bunch of cameras as well, which I'm gonna hopefully install so we can check on the place when we're not here.
+
+21
+00:21:21,000 --> 00:21:26,190
+Scott Tolinski: Man, we're gonna do our home automation Part Two episode. Yeah, because there's so much stuff that has changed
+
+22
+00:21:26,549 --> 00:22:08,250
+Wes Bos: and changed so much stuff. I love this kind of stuff. It's it's not intentionally developer related, but I think it has 100% overlap in the interests of developers total fund to tinker with this stuff. So that's, that's it. Hopefully that answers any questions that you have. I know I've got a hundreds of DMS on an Instagram from people saying like, oh, like, I want to move remote or I'm I'm living in a tiny house or our internet situation sucks right now. And it's, I can barely do. Like, I can barely do a Skype with my coworkers. I need something better. So hopefully that helps you out. I'd love to hear any other tips that you have. Just tweet them at me. I'm at Wes Bos.
+
+23
+00:22:08,490 --> 00:22:12,900
+Scott Tolinski: Yeah. Cool, man. This is really, really fascinating.
+
+24
+00:22:13,140 --> 00:22:26,760
+Wes Bos: Yeah, yeah, the The world is changing. So I've also got my fair share of like, people being like, you should probably just relax at the cottage and not like have high speed internet.
+
+25
+00:22:27,420 --> 00:22:30,420
+Scott Tolinski: See there and you're working. I mean, it's like, yeah,
+
+26
+00:22:30,900 --> 00:22:53,700
+Wes Bos: I think for a lot of people that don't understand that like trying to, like craft my life in a way where I can enjoy my family, but also be like, work at the same time was about the pay for all the stuff. I enjoy creating stuff. Like, it feels really good just to sit down. I haven't I haven't been on my computer for like two weeks. And I sat down today and I was like, ah, feels good. I like being able to sit down and create stuff as well.
+
+27
+00:22:53,819 --> 00:22:54,360
+Unknown: Yeah.
+
+28
+00:22:54,779 --> 00:23:09,000
+Scott Tolinski: Yeah. That was another thing too. What happened to me? I like some I did something. And it was like a Sunday, I tweeted out that I had gotten a lot of Redux errors on Sunday. And people were like, it's Sunday, you should just relax. I'm like, Listen, like nine to five.
+
+29
+00:23:09,000 --> 00:23:09,930
+Unknown: I do.
+
+30
+00:23:09,930 --> 00:23:34,980
+Scott Tolinski: I don't work nine to five. I like you got to find the times that you can. But also, I just like it. I like working on this stuff sometimes. And like if Landon's taking a nap, like oh, you know, work work out in the yard. Yeah, sure. I'm gonna do that too. But I sometimes just want to, you know, work on some stuff that's non work related. Like I was just, it was like a side fun little project. And like, that's a that's where it's at. So, yeah, totally.
+
+31
+00:23:35,009 --> 00:23:41,250
+Wes Bos: Yeah, it just you do you, do you? Well, with that. I'm actually gonna take my girls fishing.
+
+32
+00:23:41,700 --> 00:23:43,860
+Scott Tolinski: Nice to catch some dinner.
+
+33
+00:23:43,890 --> 00:23:55,740
+Wes Bos: Maybe. Yeah, TJ and TJ can go well, thanks for tuning in. I think this episode is long enough. And we'll catch you on Wednesday. Peace.
+
+34
+00:23:57,750 --> 00:24:07,530
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
