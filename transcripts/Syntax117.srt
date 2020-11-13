@@ -1,0 +1,216 @@
+1
+00:00:00,359 --> 00:00:24,450
+Announcer: Monday Monday Monday open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bobby and Scott, Todd. Totally ski.
+
+2
+00:00:26,100 --> 00:00:57,240
+Scott Tolinski: Oh, welcome to syntax and this Monday hasty treat, we are going to be talking all about one of the things that we deal with every single day. And this is going to be email. In particular we want to talk about how to email busy people how to write emails that actually get read, and don't just get tossed in the archive because that is a huge thing. When you're emailing somebody who's got a lot of stuff on their plate. The last thing you want to do is completely overwhelm them. So my name is Scott Tolan ski and with me as always, is Wes Bos.
+
+3
+00:00:57,299 --> 00:00:58,350
+Wes Bos: Everybody. Hey, Wes,
+
+4
+00:00:58,350 --> 00:01:01,229
+Scott Tolinski: are you ready to talk about email? I'm ready to talk about email.
+
+5
+00:01:01,229 --> 00:01:38,040
+Wes Bos: I am. Yeah, we're gonna talk all about how to email busy people. So not necessarily managing email. We talked about that not necessarily marketing emails. I think we've talked about that. Maybe we can, if people want to hear more, but we're going to tackle the topic of how do you email somebody who gets way too much email, and you absolutely need a reply. And this is coming at it from both. I'm a busy person who gets too much email, as well as I like to email busy people who are sort of out of my league, and I hope to get a reply. So yeah, we're in the kitchen of some hot, hot, tasty treat tips today on how to do that.
+
+6
+00:01:38,100 --> 00:01:52,710
+Scott Tolinski: Yeah, yeah, I know, I'm a busy person, too. But one of the things that helps me stay less busy is having total visibility on the errors and bugs inside of my website. And for that, I love to use a service called century, which has been a longtime sponsor of syntax.
+
+7
+00:01:52,860 --> 00:03:39,300
+Wes Bos: Yes. So centuries tagline I love it is stop hoping your users will report issues. It's a bug in error tracking service. So what happens is you install it on your server, your client, it's going to catch all of the errors that happen. And then you get this amazing dashboard that gives you great visibility into what happened, who is it happening to how many people how often is it happening? What devices is it happening on and it allows you to fix your bugs really, really quickly, because you have this amazing visibility into what's going on some huge companies so what I'm gonna do right now is just spot spotlight some of the companies that actually use it. So Reddit uses it one of the software engineers that read it says, seeing only my 30 issues out of thousands makes resolution easy. Why? Because you can set up filters on Sentry to filter out stuff you don't care about, as well as you can aggregate issues that are happening over and over and over again. You can just look at it like this happened to 20,000 people but this is just one issue in the Sentry back end. And I know that I can fix this and man that feeling when you see that you see it the number of times that issue happens just plummet once you deploy a new version. It feels good man. Feels very good man. Tons of tons of really cool. Uber PayPal Nike peloton, man the peloton ads have been been hounding me on the internet. Using these bikes. Yeah, likewise, so cool. Anyways, I don't want to do a peloton ad in the middle of our century AD but they are a customer of century Lassie and New York Times Pinterest, all kinds of cool companies. If you want to check it out, and try it on your own website. Go to century.io use the coupon tasty treat all lowercase one word, and you're gonna get two months for free, which is better than their standard free plan. So check it all out. Thanks so much Sentry for sponsoring. Cool.
+
+8
+00:03:39,329 --> 00:04:04,260
+Scott Tolinski: Thank you Sentry. Yeah, so Okay, let's get into it. First off, emailing busy people is not easy, because well, people are busy. And again, if you send that email and it's not good, it's not going to get read, it's not going to get answered and most likely will end up in an archive or at the bottom of somebody's inbox until they see it several months later, and then click archive and never actually answer you. So yeah, let's get into it. What do you want to talk about first West?
+
+9
+00:04:04,440 --> 00:05:54,510
+Wes Bos: Yeah, let's kick it off with with subject lines, we're going to go through subject lines, the body of the email, and then as well as just like little tips, because as someone who gets tons of email, I would love I wish I could absolutely reply to everyone. And I do reply to pretty much everybody. The speed at which our reply is is generally due to how easy it is to parse the information and the ask that you have in the email and get a reply back to you. So making it easy for me to just ingest the email, understand what's going on, offer a solution or offer help or offer whatever it is advice, whatever it is that somebody is emailing me for is is really important because there certainly is lots of emails that I open up and it's just a book. And that's it. There's all the breaking all the rules and I just go and I don't I don't touch it and I'll just snooze it or close it and then I'll come back to it at a later point and I'll probably do that three or four times until I Actually buckle up and to finally do that email. Yeah. So let's kick it off with the subject subject lines, a good subject line will give a user context to what the email is about before the email has even been loaded. I find that's really helpful. If somebody sends me an email that says, hey, Wes web development conference in April 2019. Well, I'm clicking that email, my brain is already going okay. Do I already have a conference in that one? It's 2019. That's next year? Well, it's, it's it's 2019 already, but I could be thinking, Okay, that's, that's next year ready. And maybe I'll pop my calendar open at that time. And I'm already set up, I'm already in the headspace. Whereas if the email was just a quick, like, if people always emailing us a quick question, or Hey, Wes, and then I have no idea what that what is it about? And more often than not, I won't even open it immediately. Whereas if it's something too enticing to me, like a speaking opportunity, but Oh, yeah, absolutely. I'm gonna open that real quick. Yeah.
+
+10
+00:05:54,630 --> 00:06:35,250
+Scott Tolinski: Yeah, that quick question, or saying, Hey, can I ask you a question or something asking a question to ask a question is like, such a frustrating thing for me. I used to have meals working with and they would send me a chat, like every morning and the chat would just be Hey, and then I'd have to be like, Hey, what's up? And they'd be like, how are you? Like, okay, let's just what is the question you have? For me, I don't have time to go back and forth this every single time we chat. It was a professional relationship. Right? So yeah, don't ask a question to ask a question. Have your question beat? You know, obviously, when it's going to be like you mentioned, the important information should be upfront, it shouldn't be hidden behind a layer of who knows what
+
+11
+00:06:35,340 --> 00:07:33,020
+Wes Bos: other things don't use gimmicks. So emojis, exclamation marks, putting square brackets around the word important, or read quickly, that doesn't make me want to read your email quickly, that makes me want to not read it at all. Because like, I know that you probably aren't actually in a fire and I need to go and save you from it. And it's funny, because the people who do have emergencies that like maybe they're in the middle of a course, and they're totally stuck, and I could help them right through a thing. Or maybe they need to buy something by the end of the day, because their budget is expiring, but they need to know do you offer this because otherwise my boss won't reimburse me. So these are urgent questions that they have and time is of the essence. And usually they will just, they will send me like a nice quick one liner with a really good subject. And I can answer that with one hand from my phone while I'm drinking a coffee, which is great. So don't use gimmicks, things like that. I know Scott, you recently just got a bombshell of an email from
+
+12
+00:07:33,020 --> 00:08:00,120
+Scott Tolinski: someone I got a great one. Yeah, no, it was just as just annoying. I'm sorry if this if this is you and you're listening and you mean this email, but like the subject matter of the emails, blatant clickbait, which made me like, sort of roll my eyes immediately. Because it's like, you don't need to be that cute when you're, you know, trying to contact me, but the whole thing is just a doozy of of really just totally obnoxious marketing stuff. Like, I don't know, let me I don't know. Should I read some of this thing?
+
+13
+00:08:00,270 --> 00:08:02,790
+Wes Bos: Yeah, I was dying when you read it. So please, yeah,
+
+14
+00:08:02,790 --> 00:08:43,350
+Scott Tolinski: so this person is trying to sell me on their email marketing skills, which they did not sell me on. They write things like my emails have been known to evade the spam folder like a greased pig and turn lists into raving fans, all while putting the rest of their inbox to shame. Oh, it was just so pretentious and ridiculous. They started the first email with salutations. The second email, they responded because I did not obviously respond to this email they responded with. I haven't heard back from you yet. Which tells me that you accepted Elon Musk's one way ticket to Mars, or you don't care about email marketing. Like Don't insult me. Like Come on. Yeah, like oh, excuse
+
+15
+00:08:43,350 --> 00:08:46,230
+Wes Bos: me. Yeah, of course. I don't care about hair.
+
+16
+00:08:46,350 --> 00:09:05,070
+Scott Tolinski: Oh, yeah. No, I'm pulling to Mars. Now this whole emails, like it made me want to have over here, I was just totally over this thing. I was like, I don't typically respond to this. And I had to respond. Just saying, like, both of these emails are very sexist. Like, I can Yeah, handle this, I'm pretty sure I would lose all of my subscribers. If I hired this dude.
+
+17
+00:09:05,270 --> 00:09:51,530
+Wes Bos: It's funny because like, you can tell that that guy is fresh out of paying $4,000 for some sort of high pressure, email sales course. I can always tell like, there's these courses out there that are like, marketers selling marketing stuff to other marketers. And this this whole scammy industry of things that are really weird, and I can always tell like, whose courses have been coming like Ramit Sethi has this like email course that he got out like five years ago, and I was like, Yeah, I get like those scripted emails all the time. I was like, okay, like I know, I know what you just you're fired up. I know that you just took this $5,000 course or whatever, but this does not work anymore, especially for people who know the business and can see right through you.
+
+18
+00:09:51,570 --> 00:09:54,050
+Scott Tolinski: Yeah, it's not eye catching. It's just a noxious.
+
+19
+00:09:56,660 --> 00:10:56,910
+Wes Bos: So those are subject lines up some good, some good Examples of subject lines, I just just scanned my email really quickly. A good example of subject line is century sponsoring your podcast in 2019, or unpaid invoice number 23. Or if you are having something that is a yearly thing, like if you do something every year, I've been sponsoring, I just like giving free courses to a couple conferences every year. And when somebody emails me to say, Hey, can we do it again this year, they put the the year in the in the email. So I know that it's not like an old email or if I'm searching for it at a later point, I can quickly distinguish what years those things were from, which is really helpful. And then as another one, someone just emailed me, Wes, I'd like to help you with Facebook ads. I thought that was good. I never actually ended up working with them. But yeah, that's a really good one. I thought that was a really good. I was like, Oh, I know exactly what you want to do with me. You use my name. So I caught my eye out of the hundreds of emails in my inbox. So I thought that was a really good one as well.
+
+20
+00:10:57,030 --> 00:11:55,740
+Scott Tolinski: Yeah. Nice. Yeah. I mean, I think that they're all all important things to just have exactly what you're doing. I mean, I think a good strategy, honestly, is to maybe scan your own inbox and see, again, which emails you're more likely to open up and maybe what the headlines are, because again, you don't want it to be like, Oh, you don't want it to be overly intense or invasive, you want it to be useful, and you want it to be very clear. And I guess a lot of that same thing goes for the body. Because I do I get a lot of emails that are hefty, to say the least write big long paragraphs, they take a long time to get to the point. They don't tell me exactly what they're asking until, like somewhere in the middle. And if that's the case, I'm I, my, my like, attention has been lost in the first paragraph. I don't need a host of background, if you want to ask me for a coupon code or something like that. asked me for the coupon code. Don't tell me like, Alright, here's my entire life story. And now that I've told you this, man, please have a coupon. You know?
+
+21
+00:11:55,920 --> 00:12:24,210
+Wes Bos: Yes, yeah, I get those all the time. I think when you open an email, the person reading it is thinking, What is this about me not? What is this about the actual reader. So if you started off with a huge like bio of your entire life, the reader probably doesn't care until they've have some more context for what's going on. So they need to know it's the other way around. Right? I'm actually I was just looking through my email inbox. And I got an email from a recruiter at Google subtle brag right here.
+
+22
+00:12:25,980 --> 00:12:26,760
+Unknown: No big deal here. I'm
+
+23
+00:12:26,760 --> 00:12:42,810
+Wes Bos: just gonna read the the email because I thought it was a perfect example of how to email busy people. The subject was hi from Google. Pretty good. Yeah. Okay, Mama, hello. Although I did get somebody like once do that. And then they were just like, they were like a partner of Google. And I was like, come on,
+
+24
+00:12:42,810 --> 00:12:47,040
+Scott Tolinski: I get those clouds. Your Google Ad specialist, like do you work? No.
+
+25
+00:12:47,340 --> 00:13:42,000
+Wes Bos: I'm at Google specialists, they would say if you're not doing work for Google, but this person actually does. It says, Hey, Wes, new paragraph important. Don't jam everything into one line, make it very scannable. What are your New Year's resolutions? You look like a talented software engineer looking for a new challenge and like to make an impact. So first of all, you look talented. Thanks for buttering me up. What are my new year's resolutions? If and if you're trying to make an impact, I love making impact, right? And I realized this email is probably sent to thousands of Avengers. This is how Google works. Right? So this is not obviously directed at me. But I'm flattered. Okay, let's keep reading. I'd like to chat with you about some exciting projects. I love excitement, that you be a great fit for Oh, good, exciting projects that I would be a good fit for. That's the kind of context two sentences context for what's going on. next paragraph. Let's talk about 2019. And get started on New Year new me gameplan. Oh, maybe
+
+26
+00:13:42,000 --> 00:13:45,210
+Unknown: they do listen to the podcast. Oh, yeah. Funny.
+
+27
+00:13:45,510 --> 00:14:02,430
+Wes Bos: Here is, here's my calendar. So call to action of what you can do next. Pick a time that works for you. I look forward to getting to know you. So just like a couple sentences really got really got my attention. I didn't have to like, oh, let me like go brew a cup of coffee and sit down to read this thing. Yeah, I immediately have some context for what's going on.
+
+28
+00:14:02,460 --> 00:15:21,800
+Scott Tolinski: Yeah. And they made it easy. They broke it down for you. They gave you everything you needed and didn't give you anything more than that. Which is like, exactly. I mean, it's an important thing. And we want to, we want the emails to be short and sweet. We don't want them to be like too too brief. Like I don't want I don't want to get an email that's just like, Hey, can you message me? Or can you talk? Well, no, well, yeah. What's your question here? So even with the same thing as the subject line thing, get your question out there, ask your question, and then make it easy to answer. And sometimes questions are a little bit more elaborate, right. And I think you had a really nice point in here about having lists of things right. Yeah, reading your list, because when you're asking multiple questions, it's a I don't know, it can get lost in a paragraph that there are even multiple questions. I've answered emails thinking that I've totally answered them before, only to have Oh, what about this other thing I mentioned in the email? Okay, sorry. So numerating your questions and saying up front, like setting some sort of expectation. Like hey, Scott. I have a couple of questions for you. One, blah, blah, blah, to blah, blah, blah. Okay, and then I can then take those same numbers and answer them the same way I can say one, here's your answer to number one, two, here's your answer. Yeah. To That said, if you're not in like a current working relationship, send, like 10 questions. It's this isn't an interview here. This is like, yeah, this is just an email.
+
+29
+00:15:22,020 --> 00:16:31,080
+Wes Bos: Devon, the numerated. One I heard maybe about a year or two ago, and I've switched entirely to it. Because all too often, when you ask somebody questions, I'll email very busy people and say, Hey, can you do this, this and this, and they'll send the first two things, and they'll send it and it's just a, it's just a mistake, right? Because then Otherwise, the user has to parse the email and into the asks, but if you numerate them, the person couldn't even reply right in line, I often will just copy paste the list of questions, paste them in, a lot of people do this to me, I love it. And then I just bold my reply, or whatever, or just use a little arrow in front of it. So it shows that you're replying in italics. And you can reply right in line. I absolutely love that. I think that's probably the most important tip from this hasee treat here. Yeah, definitely. Another one I have here is make it scannable. So someone should be able to scan the email really quickly, for the first time to decide what's going on. If there is an email that requires a lot of information, put subtitles in there and bold them. So the person can do it, as well as when you want to come back to an email and figure out Oh, where was that little piece of information about the invoice or the wire transfer info, you can just scan the headlines and get right to it.
+
+30
+00:16:31,110 --> 00:17:32,550
+Scott Tolinski: Yeah, I'd love to use this, especially with that kind of information. To have those sub headings. Again, maybe even with your numerated list numerated. I don't know if that's actually the correct word. But either way, list full of numbers here, a o l, if you will, those can certainly use headings as well. Another one that we have here is don't be annoying or rude, which I experienced in a previous email. And it turned me off really quickly. I had another email a couple days ago from somebody who was just straight up yelling at me about a bunch of stuff. And they were saying I charged them for their free trial. I'm like, Listen, there's no word on level up tutorials site that says free trial anywhere you cannot find it. They're like, why'd you charge me for this free trial. And the kind of the gate accusing somebody like that is not going to make me want to solve your problem. And it's not going to make me want to be on your side, right? So don't be rude about these things. If you're you have a question or whatever. Keep in mind that everyone's a human being on the other end of that email and you want totally like, you want to assume best intentions at all times, in my opinion.
+
+31
+00:17:32,700 --> 00:18:11,880
+Wes Bos: Yeah, somebody emailed me the other day, and they were just like, all pissed off that it didn't have a login button at the top of my course websites. So that sent me this really like rude email. And then I send them back just a screenshot of the button with a circle around it. Like you mean this login button. And, and they're like, Oh, well, it's should be bigger. But like, if you're trying to do that be like, hey, Wes, I had trouble signing in. Is there a login button I missing somewhere? We've probably been a more appropriate and that will help me Oh, people are having trouble finding the login button. I've got a design issue on the website. I need to fix that. But instead, I was just like, I don't want to deal
+
+32
+00:18:11,880 --> 00:18:12,450
+Scott Tolinski: with this dude,
+
+33
+00:18:12,450 --> 00:18:47,810
+Wes Bos: what's this dude's problem? Yeah, right, exactly. Other things, quantify in a single sentence, and then you can go on. So before people do this all the time. To me, they say they want to join the affiliate program. So in one sentence, I have a website with 10,000 visits per day, can I join your affiliate program, and then they'll go on to more information about this is the type of articles we write this is the type of visitors that we have. And that's fine. But I was able to quickly quantify what was going on, especially when when the quantity of visits or listens or anything like that is important in the decision that you're making. Yeah,
+
+34
+00:18:47,810 --> 00:18:57,150
+Scott Tolinski: and I think that all goes along with making important information easy to find, right? Make it be obvious that this is the main meat of the email here that you want.
+
+35
+00:18:57,420 --> 00:19:30,180
+Wes Bos: Sometimes people will just bold the like the punch line of the email, and I kind of like that. Yeah, like, if you have to send a paragraph, and there's like one sentence in there that says, I want to make you an extra $300 a month or something like that. I actually find that helpful, because my eyes will immediately go to that. And then I'll say, oh, okay, maybe I should continue reading this email. Yeah. Or TLDR. Maybe throw TLDR at the top. And then you can read that and get a little bit a TLDR. Yeah, I like that. That's too long. didn't read who didn't read our friends? Yeah, I realized that sometimes we say these things and people don't.
+
+36
+00:19:31,530 --> 00:19:39,420
+Scott Tolinski: Yeah, so that the TLDR is the hasty treat for your tasty treat that's later on in the email. Yep.
+
+37
+00:19:39,480 --> 00:20:35,400
+Wes Bos: What else do we have here? I've got a couple others avoid images and your signature. This just annoys me in general. This is actually one thing that the Google recruiter failed at. If you embed images into your signature, especially like animated GIFs. like nobody cares. Yep. You don't need a Twitter icon in your signature. And what happens is that As you email back and forth, I don't know what email program it is, but they always like are sent as attachment. It's like, yeah, and then billion and then that goofs up your email search has all often like, be like, oh, someone sent me an invoice. I know it was a PDF. Yeah. So I'll search their email and say, has attachment in Gmail? And then if you have like this, like stupid LinkedIn button in every one of your emails that sent us an attachment, then that search is worthless to me. Yeah. So those I've never had seen anybody being like, oh, wow, I won't do business with you. Because if your sweet email signature that you built here, it's just unnecessary. Yeah,
+
+38
+00:20:35,430 --> 00:20:42,510
+Scott Tolinski: I mean, I think at the end of the day, and it's going to be no bad connection, it's going to take longer to load or might not load at all. Just keep it simple.
+
+39
+00:20:42,560 --> 00:20:46,020
+Wes Bos: What about a prolific quotes at the bottom of your email? What
+
+40
+00:20:46,020 --> 00:21:12,450
+Scott Tolinski: do you think about when people have those? Oh, I'm endlessly inspired. demand has no idea. I've never even looked at somebody's signature unless I need their phone number or something. So like, again, just like everything else, put the important information there. And don't put in anything else. Don't fill it with a bunch of images. Don't fill it with a bunch of quotes, put in your phone number, email, Twitter, whatever you need to get a handle by. But again, don't throw a bunch of unnecessary stuff in there
+
+41
+00:21:12,510 --> 00:21:21,000
+Wes Bos: have been if you email me, you have to like find like a hilarious quote now and put it at the bottom. Yeah, yeah. You miss 100% of the shots. You don't take Yep,
+
+42
+00:21:21,000 --> 00:21:22,770
+Unknown: Wayne Gretzky. Oh, my God.
+
+43
+00:21:23,970 --> 00:21:39,080
+Wes Bos: It's good to say that last tip I have here I don't know if you've got any more is Don't break the thread. So if you're emailing back and forth with somebody, don't start a new email. Because then you have like two emails going, you don't know which one to reply to. I've been emailing back with Nathan berry who runs?
+
+44
+00:21:39,509 --> 00:21:41,910
+Unknown: Yeah, nice. Cool. And yeah, I'm a fan
+
+45
+00:21:41,940 --> 00:22:15,450
+Wes Bos: for four years. Because when I initially was like, drip, or ConvertKit, and I went with drip, and now drip is drip is like jacking their prices up, because they they're trying to get rid of like the little guys that use their service. So Nathan reply to like a two year old email from there. And I was like, perfect. Like, I like that. I don't know if everybody likes that. But I like that he he replied to an old email, because that shows that we have rapport from from before. And Ooh, that was a rhyme rapport from before or from it also gives me like, access to what we were talking about before. Yeah, so helpful. I like that.
+
+46
+00:22:15,480 --> 00:22:35,190
+Scott Tolinski: Yeah, yeah. No, it's uh, it is. It's a must. Of course. It's a new subject, new subject, new email. Yes. Right. sangria object, same email chain. And that way again, everything keeps him in line with your inbox. When you're searching for things you can find the right email. And again, it's going to it's going to just make people happier with what how you're emailing.
+
+47
+00:22:35,250 --> 00:22:36,390
+Wes Bos: All right. Anything else?
+
+48
+00:22:36,420 --> 00:22:48,510
+Scott Tolinski: I got nothing else again. You know, get get your information out. You know, don't throw an extra bunch of stuff and be cool. Be cool to people and be nice and yeah, I think it's all gonna work out.
+
+49
+00:22:48,569 --> 00:23:03,450
+Wes Bos: Yeah. Take these tips to heart. I don't mind I should say it might sound like I hate it when people email me. Oh, yeah. I don't mind when people email I like when people email me. Just these are these are some of the tips that I found from enjoyable emails that and conversations that I've had with people. Yeah,
+
+50
+00:23:03,450 --> 00:23:11,250
+Scott Tolinski: and my favorite ways that people email me is when they say nice things about me. I like that. Good emails about how good of a job I'm doing.
+
+51
+00:23:11,910 --> 00:23:27,660
+Wes Bos: It's got print them out and put them on as Fred to do. Yes, yes, but good I did today. Awesome. So I think that's it. Thanks for tuning in. Hopefully it wasn't too tasty of a hasty treat. And on Wednesday, no, it hasn't been our tasty, tasty, no, it's somewhere in the middle
+
+52
+00:23:27,690 --> 00:23:28,230
+Scott Tolinski: middle ground.
+
+53
+00:23:29,700 --> 00:23:31,950
+Wes Bos: All right, we'll catch you later who's please
+
+54
+00:23:33,900 --> 00:23:43,650
+Scott Tolinski: head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
