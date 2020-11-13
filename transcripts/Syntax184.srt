@@ -1,0 +1,496 @@
+1
+00:00:01,319 --> 00:00:02,820
+Announcer: You're listening to syntax
+
+2
+00:00:02,849 --> 00:00:10,530
+Unknown: the podcast with the tastiest web development treats out there, strap yourself in and get ready to live ski and West boss.
+
+3
+00:00:10,589 --> 00:01:08,670
+Wes Bos: Welcome to syntaxes. The podcast with the tastiest web development treats. Today we are going to talk about building a desktop app specifically, we have atn LeMay here from missive, which is an email client that Scott and I both use. We'll talk about what it is in just a second. But he's here to talk to us about how to build actually everything in JavaScript iOS app, the desktop app, Android app, you name it. So today's episode is sponsored by two awesome companies. The first one is Log Rocket, which is Log Rocket is going to give you playback into bugs that possibly happen on your website, as well as a whole bunch of insights into what happened as well as Freshbooks, which is cloud accounting and invoicing and expenses and all that good stuff. So welcome, atn thanks so much for coming on. I really appreciate you taking some time away from building your app and coming on do you want to give us like a, a quick little rundown of who you are and what you do?
+
+4
+00:01:09,089 --> 00:02:43,470
+Unknown: Yeah, so I'm, I'm probably a front end developer, although it can do a bit of full stack, but I'm admitted I do the front end. So missive is a full fledged email client. So with all the modern tools you would expect from your email client nowadays, so we're talking news and later on do send canned responses and contacts and we even have rules, what we call rules. It is the equivalent of let's say, Gmail filters so you can apply automate whatever workflow you have. So that's that's the email client part of missive. But in missive, we bring collaborative tools and features right to you right in your inbox. That was the the idea behind missive so you can share conversations with your colleagues or you can even delegate a full email account so that you don't have to show your password or it's easier to know who did what, especially if you're sending on behalf of a company or you're sending on behalf of someone else. That's something you like to know. So in terms of cognitive features with the different is, is we brought in chat. So basically, your email conversation can become like a chatroom. And then you can have tasks assignment, and real time collaborative composing, show labels, teams, etc.
+
+5
+00:02:43,740 --> 00:04:13,020
+Wes Bos: Yeah, everything. So to give you some insight, I started using missive probably two years ago, where I had brought on an assistant. And I said, like I need something to be able to work with my assistant on emails and things like that. So I ended up on on missive, versus Canadian products, how to support the home team. Second, it was very clearly the best one out there. And the way that it works is that I have my personal email box, I've got my work email address, and then I have a support email address. And I have all three of those funneling in. And then what happens is the support one immediately goes through my assistant, and she will try to reply to as many of those as she can. And if there's a question, we can chat back and forth in line about the email. So like, like, you can see like the person's response, we can go back and forth on a couple little chats, then somebody can send it an email, as anybody and then you can close it, you can assign it to people, and it's just like the best workflow. Yeah, for just kind of like boop, boop, boop, boop, boop, boom, like trying to assign emails to people and handle it. And there's a chat room in there. And, and like, I think it would be like great for like, like people that are trying to do support or people that have like, if you have like a shared inbox, if you know if somebody replied from one or not, it's just it's just an awesome tool. I know. I've been using for a while. Scott, you picked it up? How long ago?
+
+6
+00:04:13,319 --> 00:05:51,750
+Scott Tolinski: Yeah, so maybe about three months ago, four months ago, I had been doing sort of a trial of several different email clients, I used nihlus. And one I believe it's called, I don't know, they changed it a whole bunch over the course. I've used spark considerably. And I was just looking for something that had these features were team accounts. These kind of these kind of features were all very important for me to be able to track again, who's answering what and where they're coming in. So I've been looking in personally into getting a virtual assistant to handle at least my support emails, or at least to help with the support. Yeah, the common things that I do every single day. And so because of that, it's like okay, now I have to improve my workflow. I have to get it. This One of my requirements that didn't seem to be a requirement of a ton of other people was that it needed to have an Android app because I use Android primarily. And so many of these, like email platforms are like, the world's best email platform. And then it's like, oh, iOS only. Okay, great. Yeah. And then they're a lame excuse as well, we just want to focus on the best experience for the small now, like, you can focus on, you know, supporting the other 60% of mobile users out there. So I'm a big fan of this app for for that reason. And I know you had talked it up. And I personally did, I just, I don't know why I didn't bite initially. And now that I did, I'm feeling like a total dummy for not biting two years ago, or whatever, when you first told me about it. So I've been a big fan than a daily user of it for the past, you know, three, four months?
+
+7
+00:05:51,960 --> 00:05:57,810
+Wes Bos: Yeah. So it's obviously awesome app. We love it. This is not sponsored or anything, even though we bought these.
+
+8
+00:05:58,200 --> 00:06:00,600
+Scott Tolinski: Yeah, I don't want to gush too much here. It's great app. But
+
+9
+00:06:00,600 --> 00:06:15,090
+Wes Bos: the reason we're having him on is because the the desktop app, the Android app, the iOS app works in the browser. All of that is built in JavaScript. So you want to start with the maybe just the desktop app, how is what is it built in and explain about that?
+
+10
+00:06:15,450 --> 00:07:57,090
+Unknown: Yes, of course. So it's the basis is, is is a good old react app. And we started building like in January 2014. So I just had a look. And the first react we had was the 0.8. Wow. So we're talking like the 2013 version. So had a quick look to and the first commit of Redux, for example, was in 2015. So that was a year after we had already started missive. So in that regards, we didn't know what we Redux was or even at the time, I don't think I mean, bundlers were not much of a thing, either. So the rest is, maybe something we could consider nowadays, a little bit of a legacy. For the the tools we use, but we haven't had a reason to change that yet. It's working quite well, and you don't want to break something, especially with it. This big of a codebase. Yeah, so the rest is a is a backbone for the models, collections, router events. So backbone with underscore. It's a build with CoffeeScript. Oh, really? Wow. Yes. At the time was, it was the only way to create classes and instances. Yeah, yeah. It wasn't pretty doing that in JavaScript. And that's something we know, we knew we wanted to have a good base. So we built that with CoffeeScript. And the rest is just libraries and the helpers. But it's basically that.
+
+11
+00:07:57,420 --> 00:08:08,310
+Wes Bos: So you use react with backbone. How does that work? Do you just use react for like the for templating? And the virtual Dom stuff? And then backbone for the rest of it?
+
+12
+00:08:08,399 --> 00:08:38,779
+Unknown: Yeah, pretty much. So backbone is like our Redux. Yep. We use it for the events. So mostly, everything is event based. So you just trigger an event with your backbone. And you know that the good components are listening to that event. And we use it for the router, too, which, at the time, even react router router, I don't think was a thing. And also for the models and connections, which is the biggest reason we we've been using backbone.
+
+13
+00:08:39,119 --> 00:09:03,960
+Wes Bos: Oh, that's, that's really neat. And have you looked over at TypeScript sort of like that meme looking over at it? Or is that just like, you've probably got there's, there's only three people your hire, you hired a fourth, online, this massive app. So I'm sure that you've got enough on your plate. But have you ever thought about the benefits of something like a TypeScript? We have not considered it yet? For the same reason,
+
+14
+00:09:03,960 --> 00:09:42,770
+Unknown: it's just a big codebase, that it would take a lot of effort and time to do something to use a TypeScript or a change. Or ideally, maybe it would be more like a modern JavaScript. So instead of CoffeeScript, because for all the other tools that we could use, but at the end, you realize that it's it's not what makes a good app. Yeah. So you can you can sub profile of JavaScript, you can profile your events, you can profile your react nonetheless. So that's, to us. It's not been like a reason yet to to change that.
+
+15
+00:09:43,200 --> 00:09:59,070
+Scott Tolinski: Wow. So the React part of the code base, did you use any libraries in particular to get yourself like there? I know the desktop app is electron. I feel like it most likely is Yeah. And so for the front end, you used react app or next or any of that stuff.
+
+16
+00:09:59,340 --> 00:10:38,460
+Unknown: No, you No, it was still so new at the time. So I want to say, we didn't know about create react app or so we just started with a bare bones, we react. And we just create a few routes and came up with a structure that was working well, and components and some intertwined with the backbone models, you can register to the events. We did Oh, we did add the React backbone library at the time, which was something that helped glued backbone in react together. So that was pretty seamless for us to implement.
+
+17
+00:10:38,640 --> 00:10:51,480
+Wes Bos: And what about, like tooling? How do you dev on this thing? Like, what do you run on your computer to dev on it? And then And then also, like, what's the process for bundling this thing up into an app and eventually into electron?
+
+18
+00:10:51,690 --> 00:11:38,909
+Unknown: Yeah, we changed along the line, but it's just web back. So we just started with back server, which compiles everything into a single JavaScript file. It is not so much optimized, that is something that we would like to to improve and work on. But on other than that, I run a single process in terms of building the client part, the front end part, so that it's just a single process, which is the Webpack. config. And then that's literally bytes four bytes, the same JavaScript file that is in electron or Cordova for the mobile apps. And the same one that we use on for the the web browsers. Hmm,
+
+19
+00:11:38,940 --> 00:11:45,899
+Scott Tolinski: so what kind of state management Do you have going on? So you said it's all sort of event based
+
+20
+00:11:45,929 --> 00:11:47,309
+Wes Bos: backbone models? Right.
+
+21
+00:11:47,370 --> 00:12:02,190
+Scott Tolinski: Right. So we're on the React end of things, I guess, d? Are you using anything to manage state locally for react? Or are you just centrally running pretty much with the the backbone as sort of the catalyst for everything?
+
+22
+00:12:02,820 --> 00:12:44,190
+Unknown: Yeah, we do have one state object. That is, in fact, the backbone model. Yeah. But because it provides with the, the events we need, you can listen to just specific events. So you can have a component that will listen for the events state, just online offline, if you we know a user goes online and offline, we trigger an event. And we just update the state and the state will trigger the event. And the components that are required to know about the online state, they can just, if it's a UI component, it can be rendered with reactive Ensign.
+
+23
+00:12:44,190 --> 00:13:43,590
+Wes Bos: That's so neat that you can can do that all in react. Because if I think about the an email app that I use, there's so much fussy stuff. And I bet like most of your dev time is spent on very small little bugs, because like an email client has tons of shortcuts and tons of little things and different context switching. And when you press arrow keys, different things happen and different checkboxes and like, the reason why I wanted to have have you on is because like I spend, probably most of my day between VS code, which is the electron app, and and Miss have, I spent at least a couple hours a day in in my missive app being the or at least maybe half an hour an hour doing email every day. And I was like, the fact that this thing is so nice and polished and done entirely in JavaScript is pretty amazing. Like, is it challenging to do a lot of these like UI things in JavaScript? Or? Or is that a benefit to doing it in JavaScript?
+
+24
+00:13:44,069 --> 00:15:06,360
+Unknown: Oh, yeah, well, it's a little bit of both, you can be considered a side effect of adding only JavaScript applications. For example, the worst thing to do in JavaScript or do yourself are everything related to swipe. So of gestures that comes for free, normally, in a native application, or if you use Apple SDK, or even an Android, you get those for free. And we are used to do the iPhone gestures. We know how they work, when they are smooth, they responded in whatever app you use, they will always respond the same way. So that's something you expect from the apps you use. So having to build that in JavaScript. I would say that that's been the most challenging part. It's the UX around all these little things that you expect to be in an app while be all the everything that is UI, and that you would get like the picker, select the context menus and things like that. Yeah, I mean, once you nail them, it's there. They here for long you can just reuse them or you can have a higher order component that you can reuse and those I wouldn't consider them most challenging parts, but definitely the the UX and the gestures and the the other stuff around me.
+
+25
+00:15:06,840 --> 00:15:40,470
+Scott Tolinski: So mysid has a fairly unique gesture as far as what I've seen, this could be different for Apple users, where if you start swiping on one email, and then you hold down or swipe down, you can dismiss or archive, like as many emails as you can, in one fell swoop, I'm really interested in that interaction was that, like, what was the catalyst for that coming up with that interaction, and when you made it, where you instantly like, this is superduper handy, because that's something that I use 24 seven in missive, and I found myself just absolutely loving that.
+
+26
+00:15:40,830 --> 00:16:31,529
+Unknown: Yeah, yeah. We've always said that we were the first and only ones to do what we call the multi conversation swipe. Mm hmm. I don't exactly remember how we had the idea. Maybe it was because we we had to find a way to do act on multiple conversations at the same time. And, you know, the the pattern of select, and then you just stop the conversation you want? I don't know, I guess it wasn't fast enough, or wasn't productive enough. And, and once we had the idea, and once we did it, there was no, no going back for us if there's something that we've been pushing a lot. And when we we demo missive, and that's something we're just or we're really proud of the the UX around the multi conversation swipe.
+
+27
+00:16:31,679 --> 00:16:46,380
+Wes Bos: Yeah, I love that, that that UI myself. And it's funny, because I see myself using it and like, Oh, that's really nice. But then I'm curious about like, but how did they build it? You know, always want to know, like, what's behind it? and whatnot?
+
+28
+00:16:48,179 --> 00:16:52,110
+Unknown: Yeah, you mean, technicalities or challenges?
+
+29
+00:16:52,230 --> 00:16:58,799
+Wes Bos: No, I just as a as a user, I think it's just interesting. From a developer standpoint, whatnot.
+
+30
+00:16:58,830 --> 00:16:59,370
+Unknown: Yeah,
+
+31
+00:16:59,370 --> 00:17:15,240
+Scott Tolinski: I would actually be interested in hearing just a little bit of the technical behind it. Yeah. When you're swiping, you start to swipe, like the handle the event? And then what are you triggering the event on? Is that the drag of the email specifically? No, yeah, exactly.
+
+32
+00:17:15,240 --> 00:17:53,130
+Unknown: That's, that's a good point. Because you work with the DOM, you know, how you want to limit your reads and your rights. So actually just swipe on your screen. And with the x and y coordinates, we can map that to the conversations that we know are there, we just don't query the DOM at all. You just move points. And then we just, we move in, we use the CSS to move with J with JavaScript that moves the transform treaty of each elements that are detected to be within the swipe range. Cool. I
+
+33
+00:17:53,130 --> 00:18:19,260
+Scott Tolinski: mean, it looks and feels super smooth. So I think that would be like the challenge of it. That's it. That sounds like I don't know, that's a super interesting approach. When you have problems like that, that are sort of a typical, it's always sort of like, Okay, I'm gonna start this is just a drag and whatever and this thing, and then oh, no, wait, we have to support everything. So then you have to move on to, well, how can I, it's almost like you're selecting something, I just, I find that that solution pretty darn interesting.
+
+34
+00:18:19,550 --> 00:19:11,550
+Wes Bos: Yeah, in my JavaScript 30 course, one of the exercises is to just click a checkbox, hold down SHIFT and click the lower checkbox, and just select everything in between. and for it to work the opposite way, select a lower checkbox and do a higher one. And the logic in that very simple example. It was like 40 lines, 4050 lines of JavaScript, and it's fairly complex. I can't imagine like, implementing it, like for real life with like, all these swipes and everything, oh, it is a lot of lines. And then you mix in requestAnimationFrame a lot of techniques to have like a 60 FPS animation and transitions once I found a way to improve on very old devices, because back then we had to test like, just the iPhone four.
+
+35
+00:19:11,550 --> 00:20:10,550
+Unknown: I don't know if you remember the iPhone? Oh, yeah. But as much as they were very nice devices, that's the kind of transition that would kill your phone, it wouldn't work and, and then enjoyed the it wasn't much more smoother than iOS. So you have to find ways around that. And in our case, it was a we had to, to have two levels of transform 2d. So one level 40 Aaron's on doll swipe and another for the vertical. So it was a very complex and back and forth trial and error. But yeah, just a there are no secrets Besides, don't read and write that down too often. So you want to cache if you you know your your elements are Certain position, you want to catch that position, you don't want to query too dumb to know where conversation b is. You really want to work with data in the DOM itself.
+
+36
+00:20:10,770 --> 00:22:07,500
+Scott Tolinski: Yeah, I think we'll get into a lot of this more after we talk about one of our sponsors. But I think that leads me to like, maybe the next section we can get into, which will be like the mobile mobile app space of it, because that's such a, it's such a big part of this. And that app doesn't feel like a Javascript app. So real quick, I think we're going to talk about one of our sponsors, which is Log Rocket. Now, if you have users using your app, and maybe they're swiping in the thing in their email app does not do what they're supposed to. So Log Rocket is one of these really cool software's that? Well, it allows you to see exactly what's happening. It typically when we're solving bugs we're doing so almost in like a cave without flashlight on you got like a call stack, maybe which is like your phone's flashlight. But maybe you want that big ol flashlight to see everything. I know Wes wants big flashlight, see everything. And so what we have at Log Rocket is your entire bug system illuminated, you can see exactly what the user did with a session replay video, you can get access to the network tab, error logs, Redux store, all that awesome stuff. I'm a huge, huge fan of Log Rocket. So check it out at Log rocket.com forward slash syntax, and you will get 14 days for free. So check it out. And thank you to Log Rocket for sponsoring. So let's get into talking about this mobile app because the mobile app is great. And you know, it's funny that we talked just about the animations and some of the techniques that you needed to use to remove jank from the animations. And so many times that when you're using native apps that aren't native apps, they they have those issues, where specifically with things like dragging events, I know I personally have built like Cordova apps and things like that to get those dragging events. And I could never get the animation feeling like a true native app. And I never felt like missive felt slow in those ways. It feels very smooth.
+
+37
+00:22:07,710 --> 00:22:17,250
+Wes Bos: I didn't even know. I asked him before he came on. I was like, is the app built in JavaScript too? Or is that that's native? And he's like, no, it's JavaScript. I was like, What I didn't even know like, I
+
+38
+00:22:17,250 --> 00:22:47,790
+Scott Tolinski: there's no way you can tell that. It's, it's built in JavaScript. And I agree like those JavaScript apps have that feeling, you know, it's just a feeling it's like that a j anchor or fps loss that you do notice, and I don't notice it with missive. So I would love to get into quite a bit about the the mobile app, I'm sure we have a billion questions about it. But first and foremost, maybe Can you give us maybe a little bit a high level? What's it built in? Is it you know, same codebase? With that kind of stuff? He's sharing components? I'm very fascinated by this.
+
+39
+00:22:48,210 --> 00:23:05,760
+Unknown: Yes. And that's actually a bar that we're quite proud and not ashamed. And I'm saying that because it is a Cordova app, first of all, cool. So it is bytes, four bytes, the same same app that you get on your desktop,
+
+40
+00:23:05,790 --> 00:23:06,420
+really,
+
+41
+00:23:06,810 --> 00:23:08,490
+Scott Tolinski: I swear it's super impressive.
+
+42
+00:23:09,120 --> 00:23:11,550
+Wes Bos: So it's, it's like the same bundle shipped out.
+
+43
+00:23:11,610 --> 00:23:54,780
+Unknown: It's media queries, no way and CSS. If you resize your desktop app down to a mobile, you almost get the same experience. But with the exception of We know you're not on a touch device, but the animations, everything you can even swipe on desktop, if you hold down the shift. The shift key. So yeah, back to mobile, but it is this exactly the same app. So it's same technicalities, same challenges, same law, that's what allows us to be fast. And to be able to provide such a big app with a lot of features only as a team of tree and to deploy on all the platforms at once. Wow.
+
+44
+00:23:54,810 --> 00:24:09,390
+Wes Bos: So you say it's built on Cordova, which is like what phone gap used to be, I've been sort of out of the game and these types of things. And what does Cordova give you in order to run an app on iOS or Android.
+
+45
+00:24:09,450 --> 00:24:43,110
+Unknown: So it's similar to electron so it gives you a WebView. So in our case, it's WebKit. So that's, at least you can you know, you're working with the same browser, and then it has like an ecosystem of plugins. So then you can add all the native, the functionalities you need. So if you if you want to control a few things about the keyboard, you we have a plugin for using the photos and images, uploads, downloads, and stuff like that. Yeah.
+
+46
+00:24:43,200 --> 00:25:21,330
+Wes Bos: Okay. That's pretty cool. It's always interesting to see. So that differs from something like React Native where I just say this for our listeners, I'm sure you know, that difference from React Native where in React Native your UI is done natively in iOS or Android and all that. Your logic and everything happens in the background in JavaScript, whereas this is your UI is HTML and CSS and you run JavaScript right on it, which is pretty cool that you get such as smooth Express. I'm still I know you said this like two minutes ago, but I'm just resizing my email app right now. I'm still amazed that you can I just resize my app, and it's the mobile app. on the desktop.
+
+47
+00:25:21,390 --> 00:25:57,810
+Scott Tolinski: I think anybody's ever built it even like a mobile mobile, not even like a mobile app, but a mobile view of an application and had to do a lot of this stuff, whether it's gestures or animations, you'll know that it's not always super easy to get it feeling like a native app. And, and I'm really impressed that missives using Cordova. What's your experience been with something like Cordova because I have used it but I haven't done it for anything larger than this. Do you feel like using Cordova has been a large positive for this app? Or do you feel like it's holding you back in any sort of way? Do you wish it was on different platforms? Or are you totally satisfied with it?
+
+48
+00:25:58,170 --> 00:27:25,800
+Unknown: I think it's a it's a spoof was positive for us. It's been working well. But to be fair, we have a lot of internal toolings. To make Cotto act exactly like we want it to work. There, there was a lot of times where, for example, you would you would want a plugin. It was a the WebView is a plugin to on Cordova, so you want your WebView. But on Android, if you included the plugin, the Android app was just crashing. And if the plugin wasn't included in iOS, iOS would be crashing on your state, we're fine. I just want it in iOS or vice versa. But you can't do that with Cordova. So we kind of had built our own structure around Cordova, just just to the endows us to have plugin in only one platform while we don't have it in another platform. And then we rely on Fastlane. I don't know if you know about Fastlane. I don't know know, that manages all the building part and the deployment on iOS and the slide and Google Play Store. Okay, so that that's a tool that's been I think it's been bought by Google used to be an open, it is still open source. So app automation
+
+49
+00:27:25,800 --> 00:27:38,670
+Scott Tolinski: done right. And they have a little counter of how many developer hours they've saved, which is kind of like a, you know, people serve, but how are saved we have, you know, 19 million hours saved. It's pretty cool.
+
+50
+00:27:39,239 --> 00:27:43,230
+Wes Bos: It's that fast lane dot tools, if anyone's trying to look it up as we're talking.
+
+51
+00:27:43,469 --> 00:27:52,140
+Unknown: Yeah. So at some point, we'll just switch to Fastlane for the compiling and building and releasing to the respective app stores.
+
+52
+00:27:52,259 --> 00:28:02,430
+Wes Bos: Oh, and if you never had any trouble with Apple or anything like that, for I know that a long time ago, it used to be they didn't like using JavaScript apps. But now it's fine.
+
+53
+00:28:02,880 --> 00:29:08,910
+Unknown: Yeah, no. And I mean, I don't even know if they are aware. It must be but we've been featured on the apps we love and, you know, little stories here and there on the app store a few times already. I think both on Apple, Canada and Apple us well, to our knowledge at least. So yeah, it's it's a recurring every two or three months, we will see a missive icon in one of these categories. So we Yeah, so as far as far as we can tell, they don't have a problem with that. Your ad being a JavaScript, but you do have to play by the rules. And we don't inject everything is bundled in the app. Download assets afterwards, or we don't we always go to the store. That's good. Yeah, then no, we besides a few guidelines here and there, they will change the few things you have to to update for the billing and stuff like that. But
+
+54
+00:29:09,300 --> 00:29:21,060
+Wes Bos: the thing about a Javascript app is if you want to update the app, you can sort of just go to the internet and download the entire jazz file. Yeah, but that's not allowed. You have to go through the update process, then yeah, approves you. Right.
+
+55
+00:29:21,450 --> 00:29:53,640
+Unknown: Yeah. And that's what we heard, and we haven't even tried. That's something we'd like to do for the desktop app to come up with the ServiceWorker and download the assets. Just the assets and not electron itself. But I don't I don't think that's something that you want to try with Apple. You do. So I think we'll it will keep on waiting 24 hours before being approved and just continue that way. Yeah, you
+
+56
+00:29:53,640 --> 00:29:55,290
+Scott Tolinski: don't want to get the band.
+
+57
+00:29:55,410 --> 00:29:56,100
+Unknown: Yeah, no,
+
+58
+00:29:56,280 --> 00:31:12,150
+Scott Tolinski: yeah. But that's pretty impressive that you you know, you know, you're just doing something right when you have a Javascript app that can be featured in those apps, because it means it, you know, it is a Apple approved experience, which of course, they, you know, they definitely value very highly. So this is, this is darn interesting. I was sort of expecting the app to be maybe not Cordova. So this is changing a lot of my mindset on this whole thing. So the app number feels like, it's an email fine, right? We all know, email clients have like a ton of state where these things are downloading emails, there, you know, grabbing emails, when you open it, it has to feel smooth, it has to have notifications, it maybe has to fetch them into background, like it should fetch them in the background. I never feel like this app is waiting, like, I never feel like I'm waiting for this app to load. What's the message that you've durer? What's the techniques and shares you've done for dealing with those kinds of data? Whether that's offline online, low network stuff, notifications, like how background tasks? How do you manage to do all those so well with a Javascript app?
+
+59
+00:31:12,690 --> 00:33:04,560
+Unknown: Yeah, that's, that's interesting, because I truly, we don't have any background fetching, whatsoever. Interesting. Besides, of course, the API, our API, our server does all the heavy lifting of I mean, getting the emails into our servers in parsing and doing whatever server needs to do to render them to just provide an email that's usable. Sure. But as far as the client is concerned, we just prioritize getting the right emails and because that's the thing when, when you first open missive, you see a list of conversations. So we want that to be as fast as possible. So the server never includes any data of the message itself, it doesn't have the body of your email that is hosted on the s3, so on Amazon s3. So the HTML required to render the email we fetch. Once the conversation has been rendered, we know we can fetch the latest message, which is the most likely want to be read first. And then in the background, all the other messages are fetched, while you read, for example, the last message, and it's just so far, it's been, it's been working pretty well, because we we rely on what the browser does best, which is making requests. So we just fetch the content. And then we reduce persisted in the index dB. So all the other times, we don't query to the server, we just, we use the local version we have, which is stored in index dB.
+
+60
+00:33:05,190 --> 00:33:12,810
+Wes Bos: Okay. And index DB for our listeners is a sort of like the grown up local storage that's built into the browser, right?
+
+61
+00:33:13,229 --> 00:33:39,720
+Unknown: It's a little bit similar. But it's a sync, so it's not sync, like the local storage. And you can do, you can query it a little bit. You can. It's transactions based for those who knows a little bit more about databases. So you can just have a cursor and iterate over items. So you can be you can do a little bit of queries to that database in JavaScript.
+
+62
+00:33:39,720 --> 00:33:48,090
+Wes Bos: That's cool. I've actually never run into somebody who uses index dB. I always look at it and like Collins, pretty neat. I wish I could, could use that.
+
+63
+00:33:48,390 --> 00:33:51,090
+Unknown: That's pretty cool. You should build an email client.
+
+64
+00:33:51,299 --> 00:33:56,040
+Wes Bos: Yeah. Sounds Sounds hard. I don't want to do
+
+65
+00:33:57,150 --> 00:34:10,650
+Scott Tolinski: it does sound hard. I like there's sometimes I think about projects like oh, I can I have this project that you know, there's no good solutions for me, I'll just build it didn't like in an email client is one that I would look at for maybe half of a second and just be like, no.
+
+66
+00:34:12,750 --> 00:35:11,360
+Wes Bos: Let's take another quick break for one of our sponsors. And then we'll get back into it as there's a whole bunch of stuff I want to talk about here. And their next sponsor today is fresh books, fresh books, does. Your cloud accounting keeps track your invoices keeps track of your expenses, you can do your time tracking on there, you can do automated follow ups if people haven't paid you, all of that good stuff. It makes it makes billing painless for small businesses. I use it myself I have for probably 10 years now. I'm in it probably at least a couple times a week. It's great. Check it out@freshbooks.com forward slash syntax for a 30 day unrestricted free trial. Don't forget to use this syntax. When they ask you how did you hear about us? Thanks so much fresh books for sponsoring. Let's talk about testing. Just also like obviously, you can test it like in the browser and whatnot, but like, like, how do you make sure that it works on all of these devices? Do you do that by hand? Do you have any, like test suites or automation or anything built in there?
+
+67
+00:35:11,460 --> 00:35:46,710
+Unknown: Yeah, we do have a, I would consider it a small test group for everything that is unit based. So the unit test that's mostly tested, but as far as integration tests that we can call them or that's that, you know, that will make sure that your react component act accordingly or whether you're on a mobile device, we don't have exactly any tests of that sort, yet. Oh, yeah.
+
+68
+00:35:46,740 --> 00:35:50,760
+Wes Bos: Yeah. I'm wondering like, how would you even test that swipe? One that we talked about?
+
+69
+00:35:50,790 --> 00:35:52,770
+Scott Tolinski: Yeah. Yeah, right, seriously?
+
+70
+00:35:52,860 --> 00:36:51,600
+Unknown: Well, you have to buy an Android and you have to buy an iPhone. So yeah, we know we do a lot of manual tests, and then the, they are ups and downs. And you have to just be aware of what you're, you're releasing, what's new code review, we do a lot of code review between us. And then a lot of testing, we have a little staging environment for us that we are barely a week in advance of our stable releases, which are almost weekly anyway. So we're not much in advance. So yeah, sometimes we have a few bugs, hit the production here and there that we try to be as fast as possible to fix them or in regards to, especially with the App Store review, and everything, you know, you can add some times before fixing the actual bug. But yeah, we tried to be careful.
+
+71
+00:36:52,109 --> 00:37:30,120
+Scott Tolinski: So have you at all looked into anything like Cypress, which is for those of you who don't know is a an end to end testing library that gives you these visual things. The reason why a lot of times people won't use Cypress is because it's only Chrome. But since your app is Chrome, electron, Chrome, Chrome, Chrome, that obviously don't know what the iOS Cordova WebView is, but it seems like Cypress would be right up your alley for at least doing like, quick step through testing. We use it ourselves quite a lot. And it's been very nice. It's sort of like a jQuery interface for interacting with your application. Hmm.
+
+72
+00:37:30,120 --> 00:37:39,570
+Unknown: Well, that's, that's interesting. Me. Ah, I don't even think I knew what Cypress was. So that's, I will definitely note that,
+
+73
+00:37:39,629 --> 00:38:15,920
+Scott Tolinski: yeah, you should check it out. Because it's, it's not testing in the same way that normal testing platforms are where you have to worry too much about, you know, if you're using react, react, testing library, whatever, you're having to actually deal with the platform Cypress, it's more like load up this URL, click through it, make sure things work, even just have a Cypress test, that's just called site tour. That's just the user clicking to go to every single individual page just so I could make sure I didn't goof up, you know, something that would have caused a page to not load the correct data at some point. So yeah, I check it out. Cypress is one of those tools that I really liked myself and rely on so
+
+74
+00:38:16,379 --> 00:39:33,810
+Unknown: yeah, no, that's interesting. But we do have a, a CI that runs for the client part, which is using puppeteer. Okay. Yeah. Yeah. Yeah. Which is that the headless Chrome, chromium? Yep. We are set up to be a little bit more deep with the React testing and everything. But for example, most of the, let's say we have some, you you add a label, which is, well, the the assigned label, if you move a conversation to assign to me mm in missive assigns, you has to add yourself as an assignee, that's to remove the conversation from being in the state where it's considered closed or opened, and so does a lot of automatic actions. And because you applied the label assigned to me, and that is something that we can test, because that's a unit part, the only thing we cannot test yet is knowing whether the right components will be will show that, you know, the US been assigned for real and gotcha. Yeah, yes. That's the lacking part. We have like a 50%. Of what we need to test that.
+
+75
+00:39:34,400 --> 00:39:53,210
+Wes Bos: I yeah. I think the last thing I want to ask about here is the styling of the UI. It's a like, what are you using there? It's a pretty like stripped down UI. But like I'm curious into, like, how do you obviously use CSS any specific frameworks Also, do you use Flexbox grid, things like that?
+
+76
+00:39:53,879 --> 00:41:06,980
+Unknown: I'm a huge Flexbox fan. I don't think there's anything Flexbox cannot do. Yeah. And I the I don't consider the walk, I've been using flat growth for quite a few years. So I don't consider the the API to be. Sometimes it's easy to get lost into the cheat all the here with the justify in the alignment and everything. So yeah, we use Flexbox. For everything. It's sass, mostly, we're just for a little bit of nothing too fancy. No, no, make sense? No, it's it's almost only CSS. And what I like to do is build a, you know, like a CSS API of sorts. So you, if you want to add a margin, you know, you'd have a class for that margin, which is, for example, margin left, you know, it's, we don't write as much CSS anymore. Once you have a good base, you can just apply these in consider in consider the CSS as a language of a solid line. You could use a
+
+77
+00:41:07,379 --> 00:42:08,880
+Scott Tolinski: Yeah, I've often heard of that referred to as a utility base CSS, or sass. Somebody is trying to call it functional CSS at some point. Yeah. But yeah, that that's a very, not just common approach. But I think it's a very, it's an approach that a certain group of developer really, really likes. Because we hear that all the time with with tailwinds. that's largely how they do it as like these micro classes that handle their use cases. And you apply a bunch of classes to handle those use cases. I am absolutely fascinated by that approach. And a ton of people seem to really, really love it. So that that's great that it's working for you, especially because they said you don't end up having to write a lot of CSS that way, you're just applying the classes for a system that already determines how this whole thing should look. It's, yeah, it did the styling. So it's pretty cool that you're using, like you said, sass, not using a ton of crazy stuff. And again, that's just all being done through your build tool. So that seems pretty straightforward to me.
+
+78
+00:42:09,690 --> 00:42:52,610
+Unknown: Yeah. Very old school, very old school. It shows how long ago we started, and we just kept using the same tools. And that's, that's also an advantage of, of being a small team. Every single decision you make toward your stack, you really have to, to ask yourself is if it's worth it, if it's Yeah, it's something you will end up just rewriting over and over. Again, that's something you can build on. And if it's easy to use for everyone in the team and easy to integrate some someone new and you try to you have less options a little bit if I may say, I
+
+79
+00:42:52,610 --> 00:43:48,990
+Scott Tolinski: think we I think this has a very good message behind it. Because I think I even like message something on, I think on Twitter, something about spelt about how I like spelt. And somebody responded to me with like, Oh, my gosh, you know this, what is this? What is this other thing we have to learn? Now it's like, well, you don't have to learn it like, this goes to show you not that these technologies are old, but you're using backbone in a Cordova app that feels like a native app on all platforms. So it's really not the latest and greatest tool that matters. It's the tool that your team knows how to use effectively. And it seems like you guys have really locked down these tools effectively. So I want to stress that because I don't like just because something new comes out doesn't mean you you have to learn it, or you have to do it or whatever. Yeah, I mean, you guys are using just amazing tech to do this. And it feels like a great experience.
+
+80
+00:43:49,169 --> 00:44:24,840
+Wes Bos: Yeah, it's just like, and like I think the quickness of how quickly you can roll out a change. Like, I think like a couple times, I've emailed you and say like, Hey, is it possible to do this? And then like, three hours later, you're like, update the end now. And it's like, oh, man, like, I think it was just like different font sizes, what I wanted, and he had rolled that out in like, a couple hours or something like that was amazing. I was like oh, that's like such a huge benefit of like the web stack and keeping things lean is that you can move a lot more quickly with that type of thing.
+
+81
+00:44:24,990 --> 00:44:57,990
+Unknown: Yeah and whether or not you got the West boss treatment that's between us I can hardly be more biased but we do even just with the the trio's we care a great deal about support. And that's something we're really proud of. And we we follow up every single request. We personally follow up with everyone. We requested a feature. That's something that's very important to us. And yeah, that's that's the care we put every single day into building missive. That's amazing. Well,
+
+82
+00:44:57,990 --> 00:45:04,620
+Wes Bos: it's appreciated because Scott I just love gushing about about it. And we're not paid or anything to do that. Yeah,
+
+83
+00:45:04,740 --> 00:45:17,430
+Scott Tolinski: this is an ad. This, you know, like a lot of podcasts they like to do that, like the promotional tour, or something or somebody just released a book. And like, this is not a promotional tour, we just thought this was absolutely fascinating.
+
+84
+00:45:17,700 --> 00:45:22,560
+Wes Bos: You should see how many people want to come on this podcast to plug their product.
+
+85
+00:45:22,590 --> 00:45:33,570
+Scott Tolinski: Oh, you see how many people want their boss or their their coworker? My coworker, my boss is the perfect guest for your podcast. And they also just released a new book. Oh,
+
+86
+00:45:33,870 --> 00:45:41,370
+Wes Bos: that doesn't work. We won't have you on if you have signed cool to sell. But we will have you on if you actually built something nifty.
+
+87
+00:45:42,060 --> 00:46:02,070
+Unknown: That's really nice, because that's actually our only channel of marketing. We don't do any marketing. We don't do any ads. Word of mouth, as always, and is still be our only channel. So we know you guys gave us a few shout outs in the past. So that's extremely appreciated.
+
+88
+00:46:02,940 --> 00:46:10,860
+Wes Bos: Absolutely. Um, is there anything else you that is interesting about the technology stack that you think listeners would like to hear about?
+
+89
+00:46:11,190 --> 00:47:08,850
+Unknown: Well, we could we could move on to a different topic. Very, like new, we could talk about the back end, we could talk about the servers, the microservices, we have. We would be here for a few hours. Oh, yeah. But, uh, no. I mean, in terms of front end, as far as the client is concerned, the application, whether it's an email client or not, it's a fully aware of that. It's just a matter of sending and receiving requests and making sure everything is, is up to date. So that that's the challenge to deal with them first, yes, an email app. And then you have chats in real time. And you can archive from Gmail, you can archive from Outlook, you can archive from missing. So there are a lot of sources, a lot of places the data can be updated. And that's something for the back end guys to to have fun with.
+
+90
+00:47:09,000 --> 00:47:24,990
+Wes Bos: Yeah, that doesn't see, like a fun job. Doing all of like, email, email, and calendaring have been around forever, and trying to innovate on something that is like a standard SMTP or I don't think anyone uses pop anymore. But like,
+
+91
+00:47:24,990 --> 00:47:26,040
+Unknown: Oh, we don't,
+
+92
+00:47:26,490 --> 00:47:39,360
+Wes Bos: those are like standards, right? And then but that but then you have like Gmail adding stuff on top like using and like that's, that's not part of the standard and having to deal with that. I can imagine that's, that's a tough thing to do.
+
+93
+00:47:39,390 --> 00:48:09,930
+Unknown: And both Gmail and you have outlook, the, they're both moving away from a map, which, so you have to connect to their own API. So now, it's you cannot consider those standards anymore. They have their own proprietary API. So that's, that's not something that we're, we are supporting right now. But yeah, that's, that's going to be something we will need to, to address at some point. Interesting.
+
+94
+00:48:10,169 --> 00:48:26,220
+Wes Bos: Well, um, that was super helpful. I'm sure we could talk another hour about it. But I want to respect your time. I think I just love these kinds of interviews, because it's, it's just super curious about how is it built, and we get to use our podcasts as a way to get into people.
+
+95
+00:48:26,729 --> 00:49:13,230
+Scott Tolinski: I know. Well, that reminds me of the the one we do with Drew about the danger curve game, because it's so inspirational to see to like, you know, as somebody who develops things with, you know, primarily web sites and applications, it's amazing to see something like an email client, which is an application you've been using since you probably started using a computer. And it's interesting to see that kind of thing done so well with our technologies. And so that's absolutely fascinating to me, it's totally inspiring, and if you download us missive, you'll be pretty darn blown away about I don't know, just the impressiveness of the whole the whole project. I'm just absolutely fascinated by this. So thank you so much for coming on and sharing everything.
+
+96
+00:49:13,499 --> 00:49:15,000
+Unknown: Oh, thank you for having me.
+
+97
+00:49:15,090 --> 00:49:27,450
+Wes Bos: Absolutely. Let's move into some sick pics. This is the section of the show where we pick things that are sick. I've got another I've I've been on a bit of a roll with tools lately.
+
+98
+00:49:27,479 --> 00:49:36,720
+Scott Tolinski: I know you're gonna stick big and I knew what it was before we even started the show. I'm pretty excited about this because I'm like, I'm gonna have to be using your referral link here.
+
+99
+00:49:36,810 --> 00:49:41,910
+Wes Bos: A couple people even like DM me on Instagram. We're like, hey, sick pic in the making,
+
+100
+00:49:41,910 --> 00:49:42,450
+Scott Tolinski: I know.
+
+101
+00:49:45,060 --> 00:50:58,260
+Wes Bos: Anyway, so what I'm sick picking is the Wagner flexio It's a paint spray gun, which is it's basically like a plugin gun. They call it an airless gun, and it's got this huge wind turbine on the back. And then you can screw on a nozzle with a big thing of like paint like just like latex painter or oil painter, whatever it is. And we had bought this thing for our kitchen which is like a kitchen island off of Kijiji like it was used and it was the wrong color. So we took one of our doors into the store and got a color matched and got this like melamine paint and I put it in the gun I had to thin it out a little so it would spray nicely. And this thing is awesome. It's like having like spray paint but for any color that you could possibly want. And so much cheaper than spray paint. So it was a little bit of investment. 200 bucks Canadian. But I am kicking myself the amount of painting I've done as a homeowner I hate painting. Yeah, worse. And this just turned out so nicely. So check it out. I got the 590 I can't find it on Amazon but I at my local in your Canadian you'll know Canadian Tire is where I got it.
+
+102
+00:50:58,290 --> 00:51:02,100
+Scott Tolinski: Yeah, we hit those initial again so I'm aware of those. Wait,
+
+103
+00:51:02,130 --> 00:51:04,740
+Unknown: you have Canadian Tire in Michigan? Yeah, we did. Yeah,
+
+104
+00:51:04,740 --> 00:51:08,490
+Scott Tolinski: we don't have them here in Colorado, but we have Michigan.
+
+105
+00:51:08,790 --> 00:51:11,850
+Wes Bos: Really? No man it's a it's an odd Stark.
+
+106
+00:51:11,880 --> 00:51:13,710
+Scott Tolinski: I know the logo very well. Yeah.
+
+107
+00:51:13,740 --> 00:51:16,440
+Wes Bos: Yeah. You probably see it on like hockey games and stuff like that.
+
+108
+00:51:16,440 --> 00:51:29,010
+Scott Tolinski: Or maybe they're not in Michigan. Maybe they're just in Ontario right across the winter there. Oh, I just googled it and it looks like they're only in Windsor. I guess that's a sorry, I misspoke.
+
+109
+00:51:30,480 --> 00:51:36,390
+Wes Bos: Yeah, I'm looking at it too. Alright. Okay, that would have been amazing, because I know there's Tim Hortons is close enough.
+
+110
+00:51:36,600 --> 00:51:39,510
+Scott Tolinski: We we spend enough time in Windsor. Yeah, we got tea hearts. Yeah,
+
+111
+00:51:39,540 --> 00:52:08,280
+Wes Bos: yeah, you got t shirts. So check it out. Wagner flexio 590. I got one that came with two tips. One like spray detailed gun. And then one. Like a regular gun? I guess I don't know. Go check it out at your whatever. May nerds or whatever that you shop at? What do people in the UK shop at home base? Go check it out at home base or Wikis? I know I talked to you at the end about this before. You didn't. Did you think anything or you want to skip it?
+
+112
+00:52:08,670 --> 00:52:43,770
+Unknown: Well, yeah, no, I do have one. But I feel not lame. But I you know you were talking about on stacks. You know, I'm a little bit outdated. Yeah, I can be, but I know. Especially because I can use it with missive because we are with CoffeeScript. But in other side projects or other micro services, we build pharmacists, I use prettier quite a lot. Yeah. And that's been a really a time saver for me. So yeah, that's, that's the only thing I could think of
+
+113
+00:52:43,950 --> 00:52:46,530
+Wes Bos: Wait, does prettier work with CoffeeScript?
+
+114
+00:52:46,770 --> 00:52:59,370
+Unknown: I don't think so. I've been I've been trying to find ways, but there's like maybe one fork on GitHub. I don't know the status of the thing.
+
+115
+00:52:59,460 --> 00:53:06,960
+Wes Bos: I'm a big fan of prettier myself. Check it out prettier IO, auto code formatter, Scott D of a sick pick.
+
+116
+00:53:07,110 --> 00:54:57,060
+Scott Tolinski: My sick pick, today is going to be another podcast, I found this one to be super fascinating. If you're into if you're in the music industry at all, I've always been, you know, big fan of, you know, just in general. I don't know I my first concert was when I was in like Elementary School. I've been a big fan of listening to music for a long time. This podcast is called disgrace land. I don't know if you've ever heard of this West. It's got like Elvis as a mummy as the logo or a zombie. And so Graceland is sort of true. You don't want to call them true crime, but their true crime. So sort of stories because they're not necessarily crime related. They're just events about different sort of disgraceful events and music history, or even just general like, really rough events. So some of them would like Amy Winehouse rehab, the Muse and the rare talent, Johnny Cash pills, more pills and playing with fire. But they're just sort of these really kind of dark stories about things that have happened in music history. And I found them to be absolutely fascinating. So many of the stories because the ones I just said don't really sound like they sound kind of mainstream. But the some of the stories that I've listened to have been things that I never had any idea that they happen, things about, like famous musicians that you've heard of that you didn't maybe know of the backstories behind, or just situations they got into that are super sketchy. And so I found this podcast to be absolutely fascinating for nothing less of these stories of people and musicians that you've heard about for a long time, but never heard of any of these stories. So check it out. It's disgrace land. It's by one of the bigger podcast people who is by it is by I Heart Radio, and it's just really good, hyper high production quality done really well. So big fan of that one. If you're a music fan.
+
+117
+00:54:57,240 --> 00:55:07,230
+Wes Bos: Cool, we'll move into some shameless plugs. All of my courses at Wes bos.com forward slash courses. It's the end of anything you'd like to shamelessly plug. Oh, let
+
+118
+00:55:07,230 --> 00:55:27,810
+Unknown: me see. Course missive app.com. Or you can find missive on any platforms specific app stores. And you can just drop us an email if you have questions or whatever. We're pretty responsive on emails, we know emails we do, we do. That sounds like a tagline,
+
+119
+00:55:27,810 --> 00:56:28,260
+Scott Tolinski: no emails. My shameless plug is going to be from my latest course, which is going to be spelt for beginners. And it teaches you everything you need to know to get up and running and started with spelt. It's done really cool. I've been showing some stuff on Instagram about it, because you would not believe how little code you have to write to do some things. It's sort of like they took some ideas from react and view and just sort of like at least the coding aspect of things, and then just removed all of the fluff all of the extra little things, you know, I found it to be absolutely just really nice to work in. And there's some really great platforms along with svelte to do some server side rendering stuff, too. So check it out, you will be amazed that all of the things that we're able to accomplish in this course we build a quiz in about two seconds, and it uses an API and it has animations and it has styling, it's awesome. So check it out, at level up tutorials.com forward slash pro sign up for the year save 25% and that's all I got.
+
+120
+00:56:28,560 --> 00:56:46,860
+Wes Bos: Great. Well, thank you so much again for coming on. appreciate all of your time. Check it out at missive app.com. It's an awesome app even just to like, try it out and see like oh, this is JavaScript behind the scenes and to see what a well built Javascript app can look like on mobile and desktop.
+
+121
+00:56:47,160 --> 00:56:51,870
+Scott Tolinski: Yeah, and just give it five stars on every platform while you're at it, too. Is there to
+
+122
+00:56:53,940 --> 00:57:01,290
+Wes Bos: go. Alright, that's it. We usually end with a piece. You can say how do you say peace in French? Hey, hey,
+
+123
+00:57:01,290 --> 00:57:02,040
+Unknown: hey,
+
+124
+00:57:03,450 --> 00:57:13,230
+head on over to syntax.fm for you full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
