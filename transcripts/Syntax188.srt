@@ -1,0 +1,556 @@
+1
+00:00:01,319 --> 00:00:02,820
+Announcer: You're listening to syntax,
+
+2
+00:00:02,849 --> 00:00:04,590
+Unknown: the podcast with the tastiest web
+
+3
+00:00:04,590 --> 00:00:06,120
+development treats out there,
+
+4
+00:00:06,149 --> 00:00:09,000
+strap yourself in and get ready to live ski
+
+5
+00:00:09,000 --> 00:00:10,530
+and West boss.
+
+6
+00:00:10,530 --> 00:00:19,170
+Wes Bos: Welcome to syntax. Today we're going to talk about the server side Phantom Phantom. Let me start that again. What's the different word for welcome?
+
+7
+00:00:19,319 --> 00:00:19,980
+Unknown: Howdy,
+
+8
+00:00:20,069 --> 00:01:04,730
+Wes Bos: howdy to syntax. This is the episode about server side fundamentals. So we've done a couple episodes. Now we did CSS and HTML fundamentals, we did a show on JavaScript fundamentals. And they have been doing super well in terms of listens and the feedback that we're getting for people. So we've been planning this one for a while it just sort of piecing together what do we think the fundamentals are to understand about the server side. And that's what we're gonna dive into today. A couple quick things. First thing we're sponsored by Sentry and Freshbooks. Sentry is going to do all of your error and bug exception tracking, and Freshbooks is going to do your cloud accounting with me as always is Mr. Scott to Lynskey. How you doing today? Scott?
+
+9
+00:01:04,760 --> 00:01:23,460
+Scott Tolinski: Doing good, doing really good that they were recording this I we just got news yesterday that Meteor was acquired. And those of you who know that my platform is that Meteor. So I'm really excited because it means that the future of Meteor might be a little bit different than I was anticipating. And who knows, maybe I will stay on the platform for a little bit longer.
+
+10
+00:01:23,490 --> 00:01:26,310
+Unknown: We'll have to see. But interesting stuff,
+
+11
+00:01:26,370 --> 00:01:31,020
+Scott Tolinski: exciting stuff. Also, hockey starts today. So I'm sorry about that.
+
+12
+00:01:31,080 --> 00:01:32,280
+Wes Bos: That sure is exciting.
+
+13
+00:01:32,340 --> 00:01:41,070
+Scott Tolinski: It's funny that the American on the podcast is excited about hockey starting in the Canadian does not care. It's just a funny little paradox there. That's not a paradox.
+
+14
+00:01:41,130 --> 00:02:47,039
+Wes Bos: I wish I could get excited about hockey. Honestly. It's so fun. Like, I like those, like getting together with the beers and having some wings with the boys and, and all that, like the actual watching hockey. Same with like, oh, whenever I hang out with my buddies, they all like play FIFA on Oh thing. And I'm just like, this is so boring to me. I don't want to be here. But anyways, so the server side fundamentals, we're gonna attempt to kind of go through them. I asked on Twitter, what people thought, what were the server side fundamentals? This is not going to be an explainer episode. Because we could probably do an entire episode on each one of these things. But more of a high level overview of like, what really are the fundamentals? What are the things that you should know, if you feel like you're trying to dive into just server side? So Scott and I are both full stack devs we're by no means like expert back end developers, but we know our way around our request. And we know how to send a response. And we've deployed many websites in our day. So I think we're pretty qualified to talk about something like
+
+15
+00:02:47,039 --> 00:02:51,000
+Scott Tolinski: this. Yeah, we got we get back in skills, where matters. And I think that's what's important.
+
+16
+00:02:51,240 --> 00:03:51,840
+Wes Bos: Totally. So the first thing you need to understand the concepts of server side is that the request and response, essentially, the way that the web works is that somebody types in a URL to your browser, or they make a request from an iPhone app or something like that, that will ping a server. And that is what those are called a request. And that with that request comes a whole bunch of stuff we're going to talk about, sometimes it's cookies, sometimes it's headers, sometimes it's body data, things like that. And then you are on the server, you get that request. And then you can do some work, you know, whatever it is that you need to do, generate templates, find some files, query database, and then you send back a response. And, and with that request and response, there are sort of two main things. The first one is called the HTTP method. There's all these different methods that are get post put delete options. Does that it? I think there's some other weird ones that have never used.
+
+17
+00:03:51,960 --> 00:03:56,220
+Scott Tolinski: Yeah. never used like any of them. Other than the standards. Yeah.
+
+18
+00:03:56,520 --> 00:04:51,200
+Wes Bos: Yeah, get post put. And very rarely do I even use delete myself, I just use get posted. Yeah. And now that I use graph qL, I don't even it's Don't even think about Yeah, you don't have to do any of them. Right, you don't have to think about it, you just send your function off, and it takes care of it for you. So like, what these are just different methods that you can use to contact a server, a get request is similar to how you just go visit a website. And then a POST request is similar to how when you submit a form, and if you've ever been in like Chrome or Firefox and you've submitted a form, and they try to refresh that page, and it says, like, Do you wish to resend this data like you get a little pop down? That's because you're on a page that was rendered by a POST request. And by refreshing that you're resending the post request. And that could potentially, I don't know resave it in the database or, or change the page or a lot of times people won't allow that request happened twice. So the thing might break.
+
+19
+00:04:51,300 --> 00:05:18,240
+Scott Tolinski: Yeah. And so along with any of these methods, the server's going to respond with a status code right in this code that gives you Information about whether or not the request was successful or not. So there is a five. What do you call these like levels? Or numbers? I don't know what they would there's five? Oh, I guess category headings is what they're listed as here. I don't know if that's the official terminology.
+
+20
+00:05:18,390 --> 00:05:23,760
+Wes Bos: Yeah, I've kind of five categories of responses that you might have, right. And they're basically listed
+
+21
+00:05:23,910 --> 00:06:08,340
+Scott Tolinski: through a 100 level, a 200, level, a 300 level, a 400 level and a 500. level. And largely, we don't, I don't know how many of these you end up seeing, but the main ones that you see are largely some of the ones that you've probably seen in your own work, for instance, a 200. Rate response is beans, pay a Okay, everything's all good, the big old thumbs up, they should just actually return a thumbs up emoji. That's really what it is. And some of the other ones that you may have seen will be like a 307. is a temporary redirect or a 301. is a moved permanently a permanent redirect? Or I mean, I'm sorry, a 30308. Wait, what's the difference between a 301 and a 3080?
+
+22
+00:06:08,429 --> 00:06:15,570
+Wes Bos: That's real one is the standard redirect. And you use that for SEO? I've never seen a 308 before it says experimental.
+
+23
+00:06:15,660 --> 00:07:40,020
+Scott Tolinski: Yeah, I have never seen that either. That's when I saw that. I was like, Oh, am I missing something here. But then there's some of the other ones you you may have encountered, you probably wouldn't have encountered a 308. Because it's experimental, but would be like a 400. Right? A 400 is a bad request didn't work, something failed their 401 would be an unauthorized request to something you might see a 403 is a forbidden hate, you can't you can't be here. And then a 404 is probably the most common. Not for any reason other than you're probably just seeing these jokes a lot. Or you've ran into a page that you googled and clicked on the link, and it's no longer there. And it's a 40444 page not found, or just a simply a not found response, that might be one of the most common. There's also a 500 error, which is internal server error. So I mentioned these number codes 100 through 500. There's a 100 code is an informal A 200 is a success, a 300 is a redirection, a 400 is a client error, and a 500 is a server error. So those are the different classifications. And now you know, if you see a 500 come along, you'll know that there was an error on the server. And likewise, you know what 300 comes back, you'll know that there's something having to do with a redirection, or a 200 comes back. And that's an okay,
+
+24
+00:07:40,020 --> 00:07:44,700
+Wes Bos: the funniest one that I've run into in real life as a 418.
+
+25
+00:07:44,790 --> 00:07:46,920
+Scott Tolinski: Did you run into a 418? Yeah, I
+
+26
+00:07:46,920 --> 00:09:07,380
+Wes Bos: was, well, I was so mad when I did too, because I was working with vimeos API to upload captions, and like you had to upload them in like, I forget, it was a weird way that you had to upload it. And something was broken with the API. And it just kept returning for 18. I'm a teapot. And I was like, no helpful information at all on marine. So like, in clearly the the developer behind that, because you, the developer, are responsible for sending these different codes, depending on on what happens, right? Like, a lot of times people just send 200, okay, and then they say an error happened. And that's not what you should do, you should send like a four, a four, or four or one or 500 or something like that, or you don't, you know, you never send a 500 because if the server falls over, it sends a 500 for you. And you're you're responsible for sending all of these different numbers along with your response to the user. Like if you're rendering out a not found page, you also send the code along so the browser knows what happened. And then there's a teapot one, which is a joke, when it was defined in 1998, as part of April Fool's joke, and it was actually implemented by most surfers. So you can send a 418 I'm a teapot. But I'm sure the developer academia was just having a like just joking. Like, this should never happen. I'm a teapot. And then it actually did happen. It ruined my day.
+
+27
+00:09:09,000 --> 00:09:10,440
+Unknown: That's hilarious. Yeah,
+
+28
+00:09:10,440 --> 00:09:17,779
+Scott Tolinski: I've never seen that one in the wild. And that's a it's, it is a funny joke. But at the time that you would get one, it's probably not a funny joke.
+
+29
+00:09:18,000 --> 00:10:31,549
+Wes Bos: No, no. Next we have like just basically understanding what a server is because you think like a server that's like a computer that's connected to the cloud somewhere, right computer, but and then you hear about, like, whip up a quick node server, or something like that, or a PHP server. But then you also see these things like Apache nginx IIS, which is Microsoft's caddy, which is a really popular one with SSL, baked in Tomcat, these are all different types of servers. So like, like, what are those and just like real quick, the sort of the idea is that like, if you're thinking about node or PHP, those languages, you can build a server in those languages. But generally what happens is that you run something like Apache or nginx. And they handle all of the incoming requests. And they do things like handle static files, they handle redirects ahead, it handle proxying your application. And they're much better at doing that. They also will handle SSL certificates. They do like the hard work of that. And then they just pass off the request to your actual application. So you can run a website without them. But I say almost everybody runs one of these web servers in front of their application.
+
+30
+00:10:32,009 --> 00:10:43,620
+Scott Tolinski: Yeah, definitely. And ports just like you have on just about anything, right you on your computer, you have ports in ports are open. So information can come and go via ports on your computer. my MacBook
+
+31
+00:10:43,620 --> 00:10:45,960
+Unknown: doesn't have any ports, no ports. Oh, yeah,
+
+32
+00:10:46,139 --> 00:10:48,870
+Scott Tolinski: it's got USB C ports. Yeah.
+
+33
+00:10:51,000 --> 00:10:51,750
+Unknown: That was a joke. I
+
+34
+00:10:51,750 --> 00:12:16,080
+Scott Tolinski: have a good joke. The joke. That's the kind of joke that I would tell the Courtney and she would just be like, what are you what ports so ports are again, you'll typically see this, especially when working on localhost or something where it says localhost colon 3000. And that 3000 is the port that is your application is running. And typically those are local ports, or things that can only be accessed from internally within your computer. But did you know you can also open up those ports, so people can also access those from your IP and a port. that's largely how people might run a server or something off of a home computer, there was actually like a really bad Reddit thread where somebody was like, I want to run a website, and I can't get my port open correctly on my computer, I want to just host it like anywhere else, like I want to host it the right way. And I want to host it on my computer in my bedroom. Okay, so the ports are the ports that are available and open. And largely when you run an application, it's what port you're running it on. So people can access it. And then eventually pointing your domain name at a specific IP and port, so that it will be able to access that application. But the ports again, it's just basically you think of like a porthole or something, it's a way that things can go in and out of the server,
+
+35
+00:12:16,140 --> 00:13:19,860
+Wes Bos: you don't actually point a domain at a specific port, you just point a domain at a, I don't think you can actually you just point a domain name at your IP. And then you can run different ports. Generally, your if I have like three node apps, yeah, I have this on one server, if you want to run three node apps on one server, you have to run them on all different port. And you can run one on port 81 on port 443. And those are HTTP and HTTPS, then there's Port 22, which is for SSH, but like, then you kind of run out unless you want your like users to go to Port 3000, which nobody does. So what you do is you you have an nginx or an Apache config that will run on 443 HTTPS, and then it will proxy it'll proxy it for you underneath the hood. So even like if you go to react for beginners calm, I'm actually running it on like Port 3000 or Port 6969 or something. But then it just shows it running on port 443. Which is HTTPS,
+
+36
+00:13:19,860 --> 00:13:20,399
+Unknown: correct? Yeah.
+
+37
+00:13:20,399 --> 00:13:28,260
+Scott Tolinski: Okay. Yeah, that's it. So I've always run nginx to proxy my apps. I've never run anything directly out of the port.
+
+38
+00:13:28,559 --> 00:14:22,559
+Wes Bos: Yeah, me too. And it's, it's my least favorite thing to do is to write nginx configs. I always like wish that there will be something like pm two, which allows you to run multiple node processes on your server. I always wish that that would like hook into something like caddy or nginx. And just like, just do it for me, you know? Yeah, I do know. Next up, we have just database connection and interaction. I don't think a whole lot of database stuff is necessarily a fundamental of server side. But just knowing that the idea of a database is generally that it is hosted on a separate server, but it can be hosted on the same server, but almost always, you will host a database somewhere else on another server that is running the software that can save MySQL, or MongoDB, or something like that. I think that's pretty much all you need to know, as a fundamental of server side.
+
+39
+00:14:23,010 --> 00:15:16,679
+Scott Tolinski: Yeah, definitely. And especially because, I mean, as developers, maybe you've gotten into this stuff via other things. But you don't often think about this, when you run an application that is complex like that. You have one server that's a virtual private server, most likely, that is running the software, right. And if that software is chugging that server to make it run slower, and the database is living on that same server, then that database is going to run slower, everything on that server is going to run slower because if it's a server, it's a computer that is struggling to run that software. So a lot of times Besides, you know, other people having figured out those problems, Better than you could, in hosting on a, you know, another platform for your database. It's also separating a lot of these aspects that are related but not completely partially, you know, not completely tied together, it's a good idea to separate some of those things for those reasons. Next up, we
+
+40
+00:15:16,679 --> 00:15:33,000
+Wes Bos: have cookies and sessions. So we're not going to go into what they are just because we could do an entire episode on them. But understanding what cookies are. And when you have a request with those cookies come along, for the ride, understanding, just picture your cookies,
+
+41
+00:15:33,029 --> 00:15:39,750
+Scott Tolinski: yeah, just put picture and cookies on there on a train car, they're gonna last hands up in the air. They're long for the ride,
+
+42
+00:15:39,870 --> 00:15:47,370
+Wes Bos: and sessions, what sessions are and how you can use them to save data about the user or what's going on on your server
+
+43
+00:15:47,490 --> 00:18:09,390
+Scott Tolinski: word. So the next one we have here is writing files and directory permissions. Now you have to think about this. Again, it's like a computer, right. And on your computer, you have a user and that user has different permissions and what it can edit what it can't edit. And this is largely done for well, security, right permissions. And so on a web server, we have these same ideas of permissions, what directories that can a specific user access, and that's where the whole idea of root root is the root user, the root user can access everything. Now, I don't know about you. But ever since I started following digital oceans server tutorials, I shut off the root user, the moment I spin up a new server. And that's really just Oh, nobody has root permissions. And then I create a group that has very specific permission permissions to do what I want that way in case somebody accesses my system. They don't have access to the root user yet, or unless the root user can only log in via a certain port or something like that. So you know, I think it's important if you're managing one of your own servers to if this is your first time managing a server, whether it is on digitalocean, or another one of these VPS providers that you do follow some sort of tutorial that really runs through setting up file and folder permissions, as well as like what users can access what because the last thing you want is somebody to be able to come in and start polling, you know, the images to me just like ripping out stuff out of a computer, you don't want somebody to just be able to go willy nilly throughout your application, or throughout your server that is, so you're going to want to make sure that you set up correct permissions, and directory permissions file folder permissions, what who can read access and write what. And that can be a very common mistake, when people are just starting to get into this things is I go to do something, I don't have the permission, or my application is white screening, because the application itself doesn't have the permission. The application is running as a user that doesn't have a permission to write to this file that read to this file, and therefore it's not working. So just know that everything on a computer is just like your own personal computer that has a user that can read write and access and execute certain things. Do you want to go over that? That whole whole bit here where the the numbers come into play? The 677 sevens? Like I'm ludicrous.
+
+44
+00:18:09,450 --> 00:18:20,840
+Wes Bos: All I know is that I often when I was learning WordPress, I would often see people suggesting just it's called ch mod. Yeah, CH mod Srimad. How do you say that?
+
+45
+00:18:20,940 --> 00:18:32,490
+Scott Tolinski: As you know, I it's funny because I say ch mod for for changing permissions, but then I say Chone for changing ownership of files, Chone,
+
+46
+00:18:32,550 --> 00:19:17,550
+Wes Bos: I say, Joan for CA, Joan. But it's like Ichabod. It's ch mon. And then it's shown, like I said, it's so funny that I don't do the same system for both of those. Change mode is what it stands for. So ch mode, mod ch mod is make sense. They have all just different numbers. And if you want to, like make things totally open to anyone that can run, then they suggest that you 777 that code. And I would always see these like Stack Overflow. And somebody's been like, got it fixed ch 777 the entire server, and now it's working. And that's unfortunately not a good thing to do. So I don't know, maybe take a little bit deeper and look at permissions and how all that works. Well, I
+
+47
+00:19:17,550 --> 00:19:33,210
+Scott Tolinski: think we should I think we don't have to get too deep into it. But I think we should at least say that 777 means that the user, the group, and the world can read, write and execute. So everybody can anybody can this 777
+
+48
+00:19:33,830 --> 00:20:51,660
+Wes Bos: Next up, we have headers. So when you make a request, so go back to the start when we talked about making a request via get put post, things like that. Generally, you can send data over the wire in a couple different ways. And one of the ways is you can send body content along so like if you submit a form, you will send all of the fields that are associated with that form along for the ride. You could, but you can also send that data along via the headers. And the headers will often contain information, things like, like what browser? Did it come from? authorization tokens? What type of request? Was it, any authorization tokens, content type, things like that, just so understanding that there is often a bunch of information in the headers, and you can sort of like learn about headers, if you open up your network tab in your dev tools, and just like make any sort of request and click on that request, you can see there's an entire there's an entire tab for the request headers, and as well as the response headers that have come back in terms of like, other things that can't how big the content is, when it was sent content type, we'll talk about that. So pretty nifty.
+
+49
+00:20:52,200 --> 00:22:12,930
+Scott Tolinski: It's funny that that's where you when I was going to go to the exact same spot next, because that Network tab can really give you even though it is, you know, the the response you're sending and the response or the request you're sending, and the response that's coming back, it gives you into a huge insight into what these things are actually doing for every one of your requests. I've been moving my account system over to next j s, which is kind of a big deal, because Meteor handles all of my accounts. And I was having this bug. So to say where the user auth token is where my I should say my authorization was working on the initial load, but then any subsequent graph qL request afterwards, the context would just be an empty object where user would be undefined. And that was sort of confused. I was using a package. And then so I was like, You know what, let me let me just check these headers real quick. And the author, the auth, headers weren't being sent on any of the other requests. So obviously, none of the requests are going to be authorized because, well, when the request goes out the auth token, just flat out wasn't there. So I was checking to see if it was it was there and it just straight up wasn't. So it was an easy fix. Because you know, I just had to change essentially one line of my graph qL request to send those headers along. But the Network tab is what allowed me to see that in about two seconds. So this is one of those things that can really give you a good handle on what's going on.
+
+50
+00:22:13,500 --> 00:23:20,280
+Wes Bos: Next up, we have error handling. So what to do when, when things go awry. And often I think in PHP world is a little easier just to let things break, because you could just refresh the page and try it again, and it will work. However, with your log with the node server, the error handling will call in most cases, if you don't handle the error, the entire process will, will fall over and it will break. And that's why you run things like pm two or forever. And that will restart your your application should anything like that actually actually happened. So that along with like another one we have here a little later I was talking about and I was having logs, because when there are errors, those will go to the logs and often when there are requests that will be logged and just knowing that there is usually logs on your server somewhere that will detail what happened. And knowing that those logs can also fill up the harddrive space and your server very quickly, especially on some of these smaller servers that just have five gig little space on them. That will cause it to fall over really quickly.
+
+51
+00:23:20,520 --> 00:23:57,450
+Scott Tolinski: I feel like that's a rite of passage is to have your server crash because the arrow has filled it up. I've had times where I've been like looking at the usage of the hard disk usage. I'm just like, What in the world is taking up this month, this like much space on my server? Oh, it's the logs, the logs that I've just been writing and writing. I've used it I don't know if you've used any of these. But I've used paper trail before for like logs as a service. They make it like easier to search and analyze and stuff like that. It could be a little bit of an alternative to something like a century without the same. It's like more or less like here are the logs for everything. Here are the errors and exceptions.
+
+52
+00:23:57,480 --> 00:23:58,950
+Wes Bos: Yeah, just the raw data.
+
+53
+00:23:58,980 --> 00:24:32,100
+Scott Tolinski: Yeah, here's the raw data if for all those data heads out there, when I had a really good joke was when you said when things go awry. And I was going to say what is this the bread hour? Oh, that's a good one. Wow, wow, couldn't get I couldn't get that one in there. But I really wanted to. So sorry about that. I'm sorry, everybody. But I'm not sorry about this. And this is one of our sponsors, which is Freshbooks. And Freshbooks is the cloud accounting software that we know and love. If you've listened to syntax for any bit of time, you've probably heard us talk about fresh books. So
+
+54
+00:24:32,100 --> 00:25:01,320
+Wes Bos: with more about that is with fresh books is a cloud accounting that you need to keep track of your invoices keep track of your different clients that you have. You can track all of your hours in there, your expenses, different projects, different rates, everything you need to do to manage sort of the finances of your business and I recommend that you check it out@freshbooks.com forward slash syntax, you're going to get a 30 day unrestricted free trial and thanks so much to Freshbooks for sponsoring, yeah,
+
+55
+00:25:01,350 --> 00:25:17,910
+Scott Tolinski: thank you fresh books. Cool. So the next one we wanted to talk about was async data handling. Now, I don't know about you, but I pretty much I don't I don't do a lot of this other than just through my API and promises on that end. But async data handling, what do you what did you What were you thinking for this one,
+
+56
+00:25:18,090 --> 00:26:07,080
+Wes Bos: I was more thinking, like, in terms of making your server as fast as possible. Things don't always need to happen sequentially. Yeah, especially if you are waiting on responses from databases or servers. And just understanding that things can happen synchronously, especially in JavaScript, it's very easy to do it. And just to sort of be wise about how to run multiple requests concurrently, and then that will make things the fastest because you certainly can put yourself into code yourself into a corner is that the saying? Where you maybe have like 10 different requests, and you do one after another? And, man, this is this is getting kind of slow? Why is that and I'm handling that data a synchronously with concurrent requests is important. Interesting.
+
+57
+00:26:07,140 --> 00:26:12,630
+Scott Tolinski: See, I wouldn't have thought about that as being a fundamental, but it is one of those things that you can put on yourself with, you know,
+
+58
+00:26:12,720 --> 00:26:32,100
+Wes Bos: I was just gonna say that, yeah, it's like one of these things just to know about, you don't have to go and study up on it. But just know that like, if you ever are doing multiple requests, or multiple database queries, know that you could possibly be making it slow if you're doing one after another and look for a sync strategies if you are running into those problems.
+
+59
+00:26:32,190 --> 00:27:13,080
+Scott Tolinski: Yeah. So Okay, so the next one here is routing, which is a common thing that we talk about in web development terms on the front end and the client side of things. But if you think about it, everything here with our server is, you know, accepting requests for a URL. And that's exactly what it's doing. I think that's a big problem that people have when they're first learning about client side things is that they, they have this disconnect between the client side routing aspect of things and the server side routing aspect of things. There's a long time where people would say, Alright, my page works when I navigate to this page, but then I refresh it, and the page no longer works. Can you think about that? why that might be Wes
+
+60
+00:27:13,170 --> 00:27:15,150
+Wes Bos: routing? Is that the answer?
+
+61
+00:27:15,720 --> 00:28:29,970
+Scott Tolinski: That's the answer? No, because if you think about it, okay, so a request comes in to a specific route on your server. And many times, if you have a client side only application, what you need is basically a catch all route that says, hey, I'm going to catch every single route. And then I'll let the client side router handle what's actually displayed on the page. But for those of you who don't do any client side stuff, and are just primarily doing things like, you know, whether you have a WordPress or you have a any sort of application that runs primarily on the server as a full stack application, maybe you have an express server that's accepting these routes, you might have the route, accept a route and then load a specific page or send a specific response back. So again, a route on a server is the exact same thing that you would encounter in a route on the client side of things. But again, this is the route that the web server is hitting, when the user immediately navigates to that page. When the user navigates to that directory. It hits the server side route. And one of the things that html5 brought us was essentially, the html5 style routing, where you could have a route that loaded the client side stuff without having to refresh and hit the server.
+
+62
+00:28:30,270 --> 00:28:40,050
+Wes Bos: Yeah, it was called push state. And that's that's what pushed all of the React router all of the routers for your single page apps. Those all use push stay underneath the hood.
+
+63
+00:28:40,050 --> 00:28:42,060
+Scott Tolinski: Did you ever use p Jax? p Jax.
+
+64
+00:28:43,320 --> 00:29:00,330
+Jax was like the coolest thing in the world when it came out. P Jax dot Heroku app.com. I have that memorized. Because I used to love this stuff. PG X was back in the jQuery days before you find Yang works. And so P Jax stands for?
+
+65
+00:29:01,020 --> 00:29:01,860
+Unknown: What does it stand for?
+
+66
+00:29:01,860 --> 00:29:15,690
+Scott Tolinski: It stands for push state plus Ajax Yeah, push they play Jax is p Jax. And it's basically a jQuery way to swap out the page without having to do a full client or full server side refresh.
+
+67
+00:29:15,810 --> 00:29:34,080
+Wes Bos: Yeah. So it would just in the background, go and fetch that page. Yeah, via an AJAX request and then just swap out the page with push date and then change the entire body out with with whatever had been Northern Iowa. I thought that was I think in in Rails land. They call that turbo links. Is that what that is? Oh, interesting. Yeah,
+
+68
+00:29:34,080 --> 00:29:46,110
+Scott Tolinski: yeah, I remember turbo links. I remember p Jack's like blew my mother effing mind. When I first did it. I was like, Oh, this is so cool. The header doesn't even refresh. And when I on the next page,
+
+69
+00:29:46,590 --> 00:30:09,000
+Wes Bos: I remember in jQuery is dot load. You could give it a URL, and then you give it an ID of that page. And then it would just load like a subset of the returned HTML and then put you could put That in like some HTML and like, that was like next level to being able to like, yeah, like you said the the nav doesn't change your scroll position doesn't change half the
+
+70
+00:30:09,000 --> 00:30:10,800
+Scott Tolinski: stuff doesn't have to refetch. Yeah.
+
+71
+00:30:10,860 --> 00:30:30,660
+Wes Bos: And then you can use push date to update the URL. And yeah, that was some some pretty nifty stuff back in the day. Yeah, right. Still is honestly, like, if you have a server rendered app, you can just you can just slap on a little bit of that, and it makes your experience so much better. I think that's Basecamp is still done that way, as well. And I think a lot of GitHub is done that way as well.
+
+72
+00:30:30,840 --> 00:30:38,400
+Scott Tolinski: Interesting. It's just so funny. I've been in, you know, ever since Angular came out, I've been in the framework world, I don't even remember what that's like,
+
+73
+00:30:38,610 --> 00:30:55,290
+Wes Bos: drinking that Kool Aid there. Next, we have MIME types, which, so you've got your like circus mime. And then you have your European holiday, St. mime. And one other kinds of minds are they're gone. Let's
+
+74
+00:30:55,290 --> 00:30:56,940
+Scott Tolinski: keep going on sometimes. Here.
+
+75
+00:30:57,180 --> 00:30:58,680
+Wes Bos: We got cartoon mime.
+
+76
+00:30:58,710 --> 00:31:04,140
+Scott Tolinski: Yeah, got a cartoon mine. We got the, the, you know, the person on America's Got Talent mime.
+
+77
+00:31:07,170 --> 00:31:13,680
+Wes Bos: Types of mimes my man, he got a French mime, which has like the big guy in the hat.
+
+78
+00:31:13,860 --> 00:31:26,010
+Scott Tolinski: Oh, yeah, that's a classic mine. There's a mine who's a bee bee boy who became a mine. And he does this routine where he like pulls the string out of his mouth. And it just keeps going and going. And you're like, Oh, I know. That's just like a tape measure thing in your mouth. But it's still fun.
+
+79
+00:31:28,110 --> 00:32:49,610
+Wes Bos: What we're talking about is not actual mind, sorry, not actual minds. But every file type in the history of files has a specific type associated with it. Like JPEG has a MIME type of image forward slash, jpg, a GIF, and a PNG will all have it. And video will also have their own MIME types for each one. So the reason why you can call your files with a dot anything like you could, your JavaScript could have like a dot west on the end. And you could do script source equals scripts dot West. And it would still work. As long as your server returns a MIME type. And even the browser if it gets like a MIME type that it wasn't expecting. Get up actually does this, they goof with the MIME type of their files, so that you can't hotlink CSS and JavaScript directly from GitHub. If you've ever done that, I have not. And by default, the server's will take care of this all for you. That's why you have a that's why you use something like nginx or Apache. Because if you serve up a.js file, or you serve up a PNG, the server will try to detect what type of file that is. And then part of the header is the type is a type and that that gives you the the MIME type that's sent along. So very rarely do you have to do that yourself. But it's good to know that there's these things called MIME types,
+
+80
+00:32:49,770 --> 00:33:23,880
+Scott Tolinski: I think that time you've probably run into that the most is when like uploading an image or something, right? Because you have to define the format of the images or the files that it will accept. Because otherwise, that file input isn't going to accept, like just willy nilly, I just had somebody say like, Hey, I tried to upload a GIF to my avatar, I don't accept gifts as the image upload type. So we block those. So there, that's why they're hitting an error. And now I know I have to write an error bit of code to say, hey, this file type is not supported. Go ahead. Oh, that's a fail on my part.
+
+81
+00:33:24,300 --> 00:34:11,960
+Wes Bos: While we're talking about this, one thing that really grinds my gears is apps and websites that don't accept the new iPhone, high efficiency image format. So when you take a photo on your iPhone, it gives you a hike a gic, which is for pictures. And when you upload that, it's like oh, it's not a JPEG or a PNG don't know what to do with that. And it's really annoying because I have to like convert them. I have like an app on my desktop. I have an app called hike converter with from it's just from sin Dre sin Dre Saurus. Probably butchered that. But update your app so that you can upload hikes, because they are same with like web p as well, like they're the feature and we should be able to upload those things. Yeah,
+
+82
+00:34:12,000 --> 00:34:20,190
+Scott Tolinski: absolutely. And as somebody who just got an iPhone, that's suddenly a problem I'm actually interested in as opposed to a problem I might not have been as interested in
+
+83
+00:34:20,250 --> 00:34:22,920
+Wes Bos: as opposed to not having problems with Android, right? Yes,
+
+84
+00:34:22,920 --> 00:35:55,050
+Scott Tolinski: exactly. Yeah. None no problems. And we like to transition into this sponsor when we talk about bugs. And your server can also have bugs. I have to mine does. Yes, mine does. Yes, absolutely. If I got bugs, yes, I two bugs. No, I have two of these accounts. Well, not two accounts. But I have two of these projects within my century. Now. century@century.io is an error and Exception Handling tool that will not only just work with your front end code, but it's going to work with any server side or back end code as well. So I have a century project for my API, as well. Believe it or not, and that way I can see all sorts of errors. Now what kind of errors do I have? Well, I'm looking at Brown one right now, let's see, is a graph qL error field, create course, must not have selection string. So I goofed up, I have to adjust my API that said, This isn't public yet. So that's is a bug that I don't worry about user saying. So we know I can go as I can come in here. And I could say, ignore this bug. Even though this bug is a part of a release. It's not a public facing bug. And I don't have to think about this bug ever again. So if you want to be able to catalogue and know exactly what's happening on your server, head on over to sentry@sentry.io and sign up using the coupon code tasty treats all lowercase all one word and get two months for free. So that's sentry.io coupon code, tasty treat, let them know that you heard about century from syntax.
+
+85
+00:35:55,380 --> 00:36:19,560
+Wes Bos: Last thing about Sentry is that they just closed the Big round of funding, So congrats to them, and they are hiring. So if you want to work for Sentry, and possibly have Scott, talk about your suite features, go to sentry.io forward slash careers. They're hiring in San Francisco, Vienna and Toronto, where my Canadian folk, Vienna, Vienna sounds warmer than Toronto,
+
+86
+00:36:19,880 --> 00:36:25,110
+Scott Tolinski: is it I don't know very much about the NFL, it just sounds nice. Got a nice name, it sounds like a nice, I'd like to go.
+
+87
+00:36:25,860 --> 00:37:35,960
+Wes Bos: Alright, next we'll talk about authentication. So different ways to add off to an application. So I would say as education is an advanced topic, but knowing just about the basics of the different types of authentication. So at the very basic, you have this thing called basic auth, which is it's literally you type your username and your password into the browser with like, if my username was Wes, and my password was boss, it would be West colon boss at, and then the domain name that I want. So that's, that's very basic, basic auth. And we also have this concept of bearer tokens, which come along for the ride in your header, you have JW t, which can come along, you can come along in the header as a bearer actually, it can come along in the body, it can come along in a cookie doesn't matter. And come along, I like to say like, what I mean by that is that like it gets sent in the request to the server, as well as just regular cookies, we have sessions, there's all kinds of different ways. So just having a good primer on on how they all work and whatnot, not saying you have to know how to implement all of these because I couldn't do it from scratch. I've done it many times. And it's it's kind of a hard thing to implement. Yeah,
+
+88
+00:37:36,210 --> 00:38:31,730
+Scott Tolinski: auth is not my favorite thing. And it's so funny, because it seems like I sometimes pick my platforms based on the things that require me to do the least amount of odd. Yeah. So here we are today. So Okay, next thing is environmental variables. Now, this one's probably seen as a NV somewhere. And an environmental variable is something that your server can read. But the client can't read. And this is makes it a great place to keep all of your secrets, all of those secret things that you don't want the browser to, while the client side for that matter to be able to read, such as API tokens, things that you're going to be calling there. And I use environmental variables for like database credentials, those kind of things and be able to load them up in my application server side, and again, allow my application to call them without having to pass that stuff along to the client side.
+
+89
+00:38:31,830 --> 00:38:49,230
+Wes Bos: Yeah, I use a thing called dot envy me too, which is like a node package that will load them into your environment. From a file. However, that file should not go in your should not go in your version control, you should not have those types of things in your version control, because what
+
+90
+00:38:49,230 --> 00:38:54,150
+Scott Tolinski: are your thoughts about that, if the version control is private, and will always remain private?
+
+91
+00:38:54,170 --> 00:40:17,790
+Wes Bos: Well, like I did it in the past, and then I brought a contractor on to work on it. And I was like, shoot, like, I can't give him access to my Git repo at all, unless I go, even if I were to take it out, those those credentials are still in the, in the history. So I either have to go back and scrub all of these environmental variables from the good history, or I just had, like, I just made a new repo. And we just started from there, because I had done that, because like, you don't want to give them you don't necessarily want to give your like database credentials to a contractor who can like you don't want them accessing your entire codebase or your entire client base. You give them like a like a test set, right? Yep. And you you don't give them actual access to, to those types of things. And same thing with like email servers or an API keys and all of that, like, just give you you should have like a separate set of dev stuff. So I've made that mistake in the past. I am also interested in your thoughts on if you were given an additional contractor or an employee, publishable rights, the ability to publish your application. What would you do then? Oh, yeah. Like if if that was the case for me, I would go into the server and make sure that the environmental variables are there. I guess if they can get on the server, then yeah, they can get access to those tokens. So if that was the case, no, I'd use some sort of ci. Yeah, where it would it would deploy it for me because you don't want them necessarily having access to those things. Yeah,
+
+92
+00:40:17,790 --> 00:40:19,440
+Unknown: I have you. Can
+
+93
+00:40:19,440 --> 00:40:21,300
+Wes Bos: you Yeah, sorry. Go ahead. No, no, I
+
+94
+00:40:21,300 --> 00:40:29,790
+Scott Tolinski: use a CI for that. I was just wondering what your way of just trying to turn to get your thoughts on that unprovoked whatever I was, Oh, yeah. Yeah,
+
+95
+00:40:29,820 --> 00:40:31,830
+Wes Bos: I was good. You're a good interviewer.
+
+96
+00:40:31,830 --> 00:40:32,460
+Scott Tolinski: Why thank you.
+
+97
+00:40:36,170 --> 00:41:29,900
+Wes Bos: Next up, we have and I think this is the final thing that we consider a fundamental of server side. And that is just deployment in general. So there are so many different ways to deploy things. But I think at a very basic, you should know that you can SSH or SFTP into a box, and drag and drop those files up there. And then know that that is probably the most primitive way to deploy your application, it still works fine. It's nothing wrong with that. But there are lots of different ways to deploy your application from continuous integration to using a bunch of different apps. Or you can do this like domain name switch over that a lot of things are using now or like if you use now to sh they'll just deploy a new instance. And then once it's once it's running, they'll cut over your domain into the new one. So you don't have any downtime. That's what I do. Just understanding how how that all works. Yeah, it's,
+
+98
+00:41:29,900 --> 00:42:33,330
+Scott Tolinski: it's fascinating. There's a lot here. And deployment can be one of those things that I think is often left to services like now that just do it. Yeah, well, because you're really not saving that much money, in fact, now is really, really pretty cheap. So you know, I think that when it comes to an application like that, where you want no downtime, you don't want to have to drag and drop whatever, then use something like now if it's a front end site, I would use Netlify in a darn heartbeat. Because of all that built in continuous integration stuff. So deployment is one of those things that has never been the most fun. I used to manage my own deployments via my own virtual private server with my note app, and it was just like, always prone to goofing up somewhere along the line and me know, potentially having some downtime. And I say that as somebody who's not an admin, like a sysadmin, although I'm sure if you are a sysadmin, you're probably setting up your own container flow. And I think that's probably where things like Kubernetes or, you know, Docker really shine, yeah,
+
+99
+00:42:33,330 --> 00:43:06,650
+Wes Bos: you start to spill out into this, like, sysadmin person. Like, also, like, it's for sure worth it for, like companies that are super big, you figure all that stuff out themselves. But for for you and I you're just getting into this fundamentals, you got enough stuff to worry about, like ports, and proxying. And all of this stuff that it makes sense, like probably 20% of the stuff that is off your plate, if you if you go and use a different service to host or do auth or to do image uploads. And then you worry about and always learn that stuff.
+
+100
+00:43:06,689 --> 00:43:21,480
+Scott Tolinski: So many things security. I mean, like I would rather offload security to a company that like specializes in it, I just would. And it's a small, small price to pay to not have to manage that stuff that said, if you are really confident in your skills there, then by all means, yeah, go to town.
+
+101
+00:43:22,020 --> 00:44:17,760
+Wes Bos: All right, um, we just got a list of stuff. Because anytime we ask for like suggestions on Twitter, like, what do you think is the fundamentals for this, then you almost always get things that are like, the most advanced stuff that I don't even know myself. Yeah. So like, some of the things that were suggested as fundamentals that I think are advanced, I'm not sure what you think about this God, but like scaling databases, and rmws WebSockets in real time is kind of an interesting one, because it can be easy, but it also can be really easy with Meteor. Yeah, there you go. streams. So dealing with streams and streaming responses. So some of the new like, yeah, suspense server side rendering stuff is pretty interesting. where like, I saw some demos where like, they're not even running react on in the browser. They're just running it on the, on the server and streaming the responses to the browser, which is kind of cool. Do you see that demo?
+
+102
+00:44:17,910 --> 00:44:28,140
+Scott Tolinski: No, you know, streams are a fantastic mystery to me. I was like, just like, doing some work with streams and Apollo and I was like, I don't I this is just during my brain.
+
+103
+00:44:28,620 --> 00:44:52,620
+Wes Bos: Yeah, it's if you want, like a really cool intro to streams, look at the Twitter Streaming API, because you can just search for something popular like Justin Bieber, and you just boop boop, boop, boop, boop, we get in tons of tweets. And you know, and you can actually, like, get a good idea of what a stream is. And I always have the stupid did I ever do this the example of like, eating a sandwich and stream?
+
+104
+00:44:52,709 --> 00:45:05,040
+Scott Tolinski: Oh, we did. We talked about a very large sandwich. We talked about a giant Subway sandwich and I was like, That was a long time ago at this point. And I think people really liked it. So let's reprise that bit
+
+105
+00:45:05,070 --> 00:46:08,670
+Wes Bos: anyways, we have streams and buffers. And the idea is that a buffer will read entire file at once, or it'll bring everything in at once before you do some work on it. So that's, that's like you go and grabbing a quick six, six inch from subway and bringing it home and then eating it. And then a stream is like, Oh, my gosh, I have such a large, a large sandwich, it won't even fit into my house, I better start eating it as they're bringing it into the house. So like you're working on eating the sandwich as the workers are bringing the sandwich into the house. Whereas with with a buffer, you'd wait until the entire sandwiches in your house before you start to work within. streams are often helpful for things that can be processed really quickly as they are streaming in like video or like, I've done it where I've had like millions of entries in like us a CSV file. And like I couldn't, I couldn't load a million entries into memory because it was too big and it just fell over. So I had to deal with them and save them to the database as I was streaming them in from reading them. I don't know if that's a good example or not but sandwiches, man,
+
+106
+00:46:08,910 --> 00:46:18,060
+Scott Tolinski: can we just call this episode? sandwiches, man? server side rendering or the server side foundations sandwiches?
+
+107
+00:46:18,150 --> 00:46:19,950
+Wes Bos: Why don't we have subway sponsor
+
+108
+00:46:20,040 --> 00:46:23,310
+Unknown: this? Yeah, because subways garbage it is
+
+109
+00:46:23,370 --> 00:46:25,710
+Wes Bos: they're in big trouble in Canada. Good.
+
+110
+00:46:26,010 --> 00:46:26,910
+Scott Tolinski: I hope they are.
+
+111
+00:46:26,970 --> 00:46:30,810
+Wes Bos: They're trying to sue the CBC, which is the Canadian Broadcasting Company. I
+
+112
+00:46:30,810 --> 00:46:35,910
+Scott Tolinski: know the CBS man I watch hockey. I got john Terry on there. Yeah, I know what that
+
+113
+00:46:35,940 --> 00:46:42,720
+Wes Bos: Oh, yeah. Sorry about him. Yeah, they're suing because of chicken. Which is hilarious. Apparently it's not real chicken.
+
+114
+00:46:42,840 --> 00:47:06,390
+Scott Tolinski: Yeah, they are. They're awful. Did you hear about this thing in the believe it was in in England or something where they were hiring employees as quote unquote, sandwich interns so that they didn't have to pay the minimum wage because they weren't waiters. And they were just they were just saying they're just employees. And they were just trying to skirt the law that is so darn gross. That makes me It's so obnoxious.
+
+115
+00:47:07,590 --> 00:47:09,000
+Wes Bos: It goes along with sandwich artists,
+
+116
+00:47:09,000 --> 00:47:25,200
+Scott Tolinski: though it does sandwich. Now it's good. Okay, let's get into the part of the show that we call sick picks. That's where we pick things that are sick things that we like, last week, I picked a video game about goes West, what are you picking this week,
+
+117
+00:47:25,500 --> 00:48:45,540
+Wes Bos: I am picking something that I got for free from a company. I will always mention that. And I these are the wise plugs. So I own a bunch of cameras. I bought them myself. And I love the wise cams. And then they're I think they heard on the podcast. We're like, Hey, thanks for recommending wise cam, want to check out this time we're checking out the wise plugs. It's a plug that you put in and then you can use Wi Fi to turn it on and off. And the kind of cool things about it is that you can also I also have wise sensors. So if somebody that the sensors don't need to be hooked up to Wi Fi, they run on like a coin cell so you can put them anywhere. So if someone walks by a sensor, someone opens a door, one of those things, then you can trip, like a lighter or anything to turn on. You can also schedule them really easily with the wise app or with Google, Google Home, which is pretty cool. So what I've started to do is from 6am to 9am, I turn the fan on in my office and just get it like nice and cool in here before I come in. And then the fan turns off right at 905 right when I'm about to just start working. So they're pretty cool. And they're also like way more affordable than some of the other stuff like we were sent the Levitan plugs. Yeah. Which Scott famously did not like at all,
+
+118
+00:48:45,750 --> 00:49:22,680
+Scott Tolinski: please. Okay, I should state that when I use them with the iPad that we have here. They were perfectly fine. But the Android app was just like, if I could build an app that was it was built just as like a toy puzzle to infuriate the person that uses it. You click on the button and the button moves. There's something that was their app, but it was their legitimate app. And I'm getting so angry at that application that, yeah, I am so mad at that. In fact, I still use one of the Levantine ones, but I only push the button on it. I don't even use that as a smart outlet. It has a button on it, I push the button to turn it off, because that's my life.
+
+119
+00:49:22,830 --> 00:49:48,390
+Wes Bos: So like the Levitan outlet was what 28 bucks I'm looking at on Amazon right now. And the wise plugs are two for 15 which is awesome. So a big fan of everything that ys does. I've been trying out the plugs for a couple of weeks and like they're not that exciting and their plugs and you can like you can do stuff with your cameras or with your sensors, which is kind of cool, but they work they work well and they're they're affordable.
+
+120
+00:49:48,600 --> 00:49:51,960
+Scott Tolinski: That shouldn't be their tagline. They work. shrug.
+
+121
+00:49:55,410 --> 00:49:56,100
+Unknown: What more do you want?
+
+122
+00:49:56,100 --> 00:49:59,520
+Wes Bos: They work. They work. Hey, come on. What am I you
+
+123
+00:50:00,000 --> 00:50:09,360
+Scott Tolinski: So I think YouTube's sick pic and this is the YouTube channel called. I think they just it's a it's a guy Sam crack am cracked. Yeah, I love
+
+124
+00:50:09,360 --> 00:50:11,250
+Wes Bos: that love Sam crack.
+
+125
+00:50:11,280 --> 00:51:21,900
+Scott Tolinski: Yeah. So what he does is he he fixes sort of totaled cars that he buys at auction. And so he'll some of my favorite videos of his though are where he's just like wandering through a car lot and is just like, oh, he's just like pointing out what's wrong with these cars? Okay, this car is totaled it's a, you know, $200,000 Lamborghini, it looks pretty good. But check this out. It's got frame damage. This is what it's gonna cost to fix. And so he can look look at these things and know whether or not these projects are good or not, based on just a quick glance at them, and it's pretty fantastic. Because sometimes we'll buy the car and get into it and realize it's not as bad as he thought it was. And sometimes it's not as good as he thought it was. And I've just found it to be awesome. So Sam crack. I've been obsessed. There's a ton of these videos. I find it to be just just endlessly fascinating from a tinker's point of view. He's not like a like the classic like, Hey, guys, we're doing this like sort of YouTube that I almost can't Yeah, but I find the content to be good enough where it doesn't necessarily matter. And I like to put this stuff on before I'm going to bed just to chill me out a little bit. It's like a tinkerer sort of TV and that's what I'm into. I'm into this.
+
+126
+00:51:21,900 --> 00:51:37,590
+Wes Bos: I watch a lot of these like rebuilder car rebuilder shows just funny because I watch it because I think one day I'm going to convert a car to electric and I don't really know all that much about like probably seems like you're getting started with those
+
+127
+00:51:37,620 --> 00:51:38,400
+Scott Tolinski: power Yeah,
+
+128
+00:51:38,430 --> 00:52:01,350
+Wes Bos: well I'm starting with 12 volts and like little these tiny little motors but like, I think maybe in like five or 10 years I'm going to take like a really cool like, Land Rover or something and like make it electric right and totally that would be crazy. I don't really know all that much about how cars work. So I've been watching these for probably a couple years I love B is for build is one that I really like. goon squad is another really good one
+
+129
+00:52:01,379 --> 00:52:07,590
+Scott Tolinski: I that's like a it's a rabbit hole. I went down on YouTube and was like, This is not something I knew existed.
+
+130
+00:52:07,740 --> 00:52:28,950
+Wes Bos: Yeah, tovarisch is another good one. He just like rebuilds, like he's rebuilding a Lamborghini from the Fast and Furious right now. There's just tons of them and I pick and choose which builds I want to watch. I'm not really all that interested in that like supercar ones. I'm more interested in just like kind of like middle of the road nice cars. I mentioned a supercar or Yeah,
+
+131
+00:52:28,950 --> 00:52:32,850
+Unknown: most Yeah, yeah, I'll seek Oh, yeah. karwan specifically, yeah.
+
+132
+00:52:33,960 --> 00:53:07,410
+Wes Bos: But the BS rebel guy is LS swapping a Lamborghini right now, which is you take like a an engine from like, I don't. I'm gonna not do this justice. But what is an LS swap? It's like a Chevy. Yeah. If you take an engine from like a Chevy trucker Corvette or something like that, and you put it he's putting it in a Lamborghini, which is bonkers. It's all bunk. what he's doing Yeah, yeah. Really cool. I love those those channels. It's so fun to watch. And I think you learn a lot about like, problem solving and how cars work and, and whatnot. Word.
+
+133
+00:53:07,440 --> 00:53:17,520
+Scott Tolinski: Yeah. Big fan deck pic. Yeah, so shameless plug. My name is Wes Bos, and I'm gonna shamelessly plug all my courses for you. Yeah, I know. I saw. I saw that joke.
+
+134
+00:53:17,610 --> 00:53:18,750
+Wes Bos: What's the URL?
+
+135
+00:53:18,840 --> 00:53:21,480
+Scott Tolinski: A Boss Boss stuff, calm.
+
+136
+00:53:22,560 --> 00:53:49,890
+Wes Bos: Just boss things. Wes bos.com forward slash courses. has all of my courses added. Thank you, Scott. Yes, I'm actually working on my beginner JavaScript course I was recording it all day just got finished. big lesson on truthy and falsy which I was pretty stoked about. It's a fun way to talk about true and false values. And so get ready for that it will be at beginner javascript.com when it is ready. Cool. Nice.
+
+137
+00:53:50,730 --> 00:54:48,510
+Scott Tolinski: I'm going to be plugging in my smelt for beginners course you could hear me say the word answer 100 times in that course because we're building a quiz. And that's one of those words that gets funnier and funnier and weirder and weirder, the more you look at it. So we build a quiz. It hits an API. It has a little bit of really fun stuff. We do some animations using the built in spelt animation library which is awesome and let me tell you, it is so stinking cool. I love spelt and I want to build everything in it right now. Because it is too darn simple and it makes me like upset at how simple it is. I'm just like, gosh, it shouldn't be this easy and it is It feels great. And I absolutely love developing it but it's same time it feels like react we have the control and the power but it has the What is it? It's got the control of react but it has the syntax of a Lamborghini I don't know. It's awesome. So spelt for beginners is that level up tutorials comm sign up, become a pro and save 25% off the year. So that's all I got.
+
+138
+00:54:48,750 --> 00:54:54,360
+Wes Bos: Awesome. Thanks for tuning in. We will catch you on Monday. Base
+
+139
+00:54:56,190 --> 00:55:05,940
+Scott Tolinski: head on over to syntax.fm for a full archive of all our Our shows and don't forget to subscribe in your podcast player or drop a review if you like this show
+
