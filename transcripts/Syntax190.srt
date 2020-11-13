@@ -1,0 +1,632 @@
+1
+00:00:01,319 --> 00:00:05,730
+Unknown: You're listening to syntax, the podcast with the tastiest web development treats out there.
+
+2
+00:00:05,730 --> 00:00:23,160
+Wes Bos: strap yourself in and get ready to live ski and West boss. So welcome to syntax is the podcast with the tastiest web development treats out there. Today we have I intentionally asked him not to tell me his last name, so I could try it, Brad to snuff. Wow, that
+
+3
+00:00:23,160 --> 00:00:24,660
+Unknown: is very good, sir.
+
+4
+00:00:24,839 --> 00:00:25,740
+Wes Bos: Is actually
+
+5
+00:00:27,300 --> 00:00:35,850
+Unknown: yeah, pretty damn close, man. This to nr is is how I say it. So to an hour to an hour. Yeah, I think you got it, too. And
+
+6
+00:00:35,850 --> 00:00:39,180
+Wes Bos: I I you French? I am. Well, my
+
+7
+00:00:39,180 --> 00:00:43,979
+Unknown: my family was from France. You know, a couple generations back so.
+
+8
+00:00:44,250 --> 00:01:00,119
+Wes Bos: Oh, that's good. Well, that's sort of a thing on the podcast now is we only have French Canadians on. We had ATM from missive, who is from Montreal. So only French Canadians Come on the podcast from this point forward.
+
+9
+00:01:00,869 --> 00:01:06,540
+Scott Tolinski: I mean, I'm I'm actually I'm French Canadian. So they're like a little bit my grandma,
+
+10
+00:01:06,590 --> 00:01:07,200
+Unknown: are you really?
+
+11
+00:01:08,370 --> 00:01:10,560
+Scott Tolinski: Marsh and from Montreal?
+
+12
+00:01:10,620 --> 00:01:15,090
+Unknown: All right. Well, we'll allow you on then you should rename it to syntax.
+
+13
+00:01:19,860 --> 00:01:58,950
+Wes Bos: Oh, anyways, today we have Brad on to talk to us about migrating, deploying and hosting WordPress, we'll talk about and introduce him in just a second. Today, we are sponsored by Netlify, which is going to post your website it's gonna it's like the easiest way ever to host like a Gatsby website or static site, or pretty much anything you want to host you throw it up on there, and it works out well. And a new sponsor today is Hasura, which is a instant real time graph qL API that sits on top of a Postgres database, which is pretty nifty. We'll talk about them partway through the episode. So welcome, Brad. How you doing today?
+
+14
+00:01:59,060 --> 00:02:01,110
+Unknown: I'm doing great, man. Yeah, thanks for having me.
+
+15
+00:02:01,620 --> 00:02:20,780
+Wes Bos: Oh, yeah, you're welcome. I'm always happy to have Canadians on the podcast. I was laughing because people always say I'm in Ontario. And people always say like, oh, you're on the east coast. And I said, like, No, no, like, even just because we line up with New York doesn't mean we're on the east coast. Like there's a whole much there's a whole lot more Canada. To the east.
+
+16
+00:02:21,060 --> 00:02:28,310
+Scott Tolinski: I still feel like, even after you say that, I'd still consider it to be the East Coast, just because it's relation to New York. Yeah.
+
+17
+00:02:29,100 --> 00:02:32,690
+Unknown: It's definitely Eastern Canada. But it's it's not the coast.
+
+18
+00:02:34,110 --> 00:02:35,160
+Ontario. No.
+
+19
+00:02:35,160 --> 00:02:41,130
+Don't forget about all of cabac also the second largest province in the country.
+
+20
+00:02:41,910 --> 00:02:48,300
+Wes Bos: Some of us do forget about Quebec. Anyways, you're from Nova Scotia, which makes you a merit timer.
+
+21
+00:02:48,300 --> 00:02:48,930
+Unknown: That's right.
+
+22
+00:02:48,960 --> 00:02:58,050
+Wes Bos: So yeah, well, you want to introduce yourself, what is it that you do you I know you have a company? You're actually our I think our very first sponsor on this podcast many years ago.
+
+23
+00:02:58,229 --> 00:03:50,190
+Unknown: Oh, yeah. Yeah. I've been a fan of your requests. And so when you said you're gonna start a podcast as like, I want you know, on that, yeah. So my company is delicious brains, Inc. We do three plugins for WordPress, and SAS app called spin up WP. And we've just launched two of those products this year, actually. So we went from having two plugins, to having three and a SAS app just in 2019. So, so lots of changes for us. We're remote team of 10 people. And so we've got some in the UK, some in Pennsylvania, and a couple in Ontario, actually. Oh, awesome. And then myself, and we've been going since I guess 2013 is when we launched our first product. So been at it for a little while now.
+
+24
+00:03:50,280 --> 00:04:12,330
+Scott Tolinski: So when you when you started that company, was the thought process. This is the worst part about working in WordPress, let me try to make it better. Or did you just like to be masochistic? Because like, when I personally work with WordPress, I like want to stay like the deploying process of everything is just always my least favorite part of it. So the fact that you would make that your business?
+
+25
+00:04:12,870 --> 00:05:23,160
+Unknown: Yeah, yeah, I was actually working at an agency in Vancouver. And I had the problem of, you know, going from dev to staging to production. And so I cobbled together, I actually hacked up a plugin that I found that did exports have the database, and I hacked it to export but also do a Find and Replace, to kind of make the migration to other environments. Super easy. And then I just threw it up on wordpress.org and just sat there for years, probably three or four years, actually, before I kind of realized, Oh, this thing has a following. Now, maybe there's a business here, you know, maybe this is something I could turn this into So I did a little bit of customer research. So I added like a sidebar to the free plugin and asked people if they'd be willing to pay for like, you know, the push and pull features and some support. And people, you know, there was I get like, 300 responses before I decided, hey, there's, I think there is something here. So nice. Let's start, we started coding.
+
+26
+00:05:23,330 --> 00:06:00,150
+Wes Bos: Yeah. Interesting. So maybe I should real quick, just explain what these are. For people that don't know, the big plugin you have is WP migrate DB Pro, which allows you to push and pull your database and also your files as well, from local to production or staging and vice versa. And it's it's a huge tool in many WordPress developers toolbox because of how painful that was, like I, I still remember the scripts that I wrote to find a replace strings in a SQL file, when I was doing a lot of WordPress, and it's really painful, especially if you goof it up.
+
+27
+00:06:00,690 --> 00:06:20,820
+Scott Tolinski: This is like the scariest thing to write. Because you're once you get into, I mean, not even just manually editing the database. But like, once you get into writing a script that you know, will modify all these records. Yeah, that that really scares me when I die, especially if it's my own work. My own work, I'm like, Oh, I don't know if I'm gonna break this or not.
+
+28
+00:06:21,600 --> 00:06:57,420
+Unknown: Yeah, there's, there's weird stuff that you don't even realize that we've tackled for you, and that plugs into. So like, when when you go from like MySQL, 5.0 to 5.1 or something, there was some weird difference between those two databases that we had to accommodate. I can't remember what it was now. But But you know, we were we were just handling that we added that feature. And so yeah, there's there's just weirdness. Basically, when you're migrating from one environment to another set, so that we, you know, we there, there therein lies the opportunity, you know, for us to take care of all that stuff for you.
+
+29
+00:06:57,990 --> 00:08:09,060
+Scott Tolinski: Yeah, and especially as workflows change and become more modern, I remember that was like a huge thing, because I was never, I was more of a dribble person. And in my agency work, and by the time we were into WordPress, there was like, sort of like a deploy person, and you just push it off to them. But in the Drupal world, that was such a huge thing, when Git was becoming more popular in version control. In general, how do you version control your database records, because so many of these things, you don't just want to do a database poll, and then just throw up the database, you want to keep it all, either in version control, or you want to pull them out. And somebody came up with this really great plugin that essentially took all of your database records and stored them as a custom Drupal plugin. And then all you had to do was install that Drupal plugin on the new database, it pulled in all of the data. And it was like really super fascinating. It was not it like it never got to the point where it was like very seamless or excellent. But it solved a lot of those issues. And I remember there being such a huge void of like, Okay, I get that we should be using version control here, I get, we should be using these modern deployment practices, but I don't necessarily know how to do it. So I find tools like yours to be endlessly valuable.
+
+30
+00:08:09,300 --> 00:08:27,360
+Wes Bos: Alright, so I maybe should go through the other two plugins real quick as well. These are two I've never used myself. But it looks like you have one called WP offload media, which will allow you to offload your images from that local uploads directory to something else like s3 or digitalocean. Is that right?
+
+31
+00:08:27,600 --> 00:09:38,010
+Unknown: Yeah, yeah, that's pretty much it. It allows you to get your media in your WordPress Media Library, off of your server and onto object storage. The reason I made that plugin actually, is because I was, again, this is just a fork of another plugin that I needed, because I was I was load balancing a WordPress site. And what happens is if, if you're uploading your files to server one, and then you know, they don't end up on server two, right? So then you need to either set up some kind of like shared drive between the servers, or in this case, we just upload the images directly to s3. And then you've got a you know, everything's in object storage, so no problems. So that was kind of the reason for that. But now, you know, there's a bunch of reasons why our customers use it. It's kind of some people use it as like a redundant backup. Hmm, some people use it as a like, if they're serving video files or like have huge files, then they want to get those off the server anyway. So there's there's all kinds of use cases that people want it for.
+
+32
+00:09:38,029 --> 00:10:02,159
+Wes Bos: Yeah, I would imagine in lots of WordPress instances is it doesn't make sense to have your media on the same server that's hosting up your WordPress, especially if you're moving towards one of these, these hosts that are what's the word for a host that you can't change the files once it's on the server, like a Heroku or a now or something like that. What's the word Scott? Oh,
+
+33
+00:10:02,159 --> 00:10:02,789
+Scott Tolinski: beautiful,
+
+34
+00:10:02,789 --> 00:10:04,620
+Wes Bos: beautiful house thing. That's what I'm looking for. I've
+
+35
+00:10:04,620 --> 00:10:07,020
+Scott Tolinski: never heard that. I've never heard it be referred to as that.
+
+36
+00:10:07,039 --> 00:10:08,419
+Unknown: Yeah, me neither I
+
+37
+00:10:08,419 --> 00:10:40,260
+Wes Bos: mutable hosting would be that, like, you have like a WordPress website and you deploy it to your host. And then once it's there, once it's running the files on that host can't change, right? Because like, that's your deploy. And if you want to, you have to deploy a new instance, if you want to change something about that website. WordPress is this kind of like this weird thing where like, you can deploy it. But then like, also, it can also change on the server because of media uploads, and like plugins get updated on the server, and then you run into sort of this hellish spot where things are changed on both ends?
+
+38
+00:10:40,350 --> 00:11:39,750
+Unknown: Yeah, it's kind of a security dilemma as well, right? That PHP has access to change the PHP. Yeah, right. So like a lot of managed WordPress hosts will actually lock that down. So I know on WP Engine, and now flywheel, because WP Engine acquired flywheel recently. So if you had a plugin, say that received an API request from an external source, it doesn't have access to change the PHP file. But if you're executing a PHP file, when you're logged in, then that php file does have access to change the file system. So they're limiting it to logged in users, which certainly helps the situation, but throws a wrench in the gears for plugins like mine, who are trying to do things remotely, right. So got some extra work to do for their platform as a result of that. That's not not easy, I
+
+39
+00:11:39,750 --> 00:12:47,520
+Wes Bos: bet. Why don't we start there? Let's talk about like, like migrating a WordPress, I'm a super in this headspace right now. Because I spent, I maintain a number of different WordPress websites. And I spent a couple days last week just totally redoing some some WordPress stuff. And I had to do the whole song and dance of Okay, so the client has changed their remote version with both content and media uploads. And I have my own version, which is in a Git repo. So then I had to pull it all down. But then I had been working on it first, like I had, like, been doing some dev on it. And then I'm like, Oh, I need to pull the content. And then I ran into the situation where like some of my custom fields, and some of my custom post types were in the database. So I had to make sure to bring those to code first. And then, and I still lost stuff at the end of the day. And I was like, Oh, this is hard. So like, can you tell us like what's the best way to to migrate a WordPress where you have a remote, you may maybe even have a staging. And you have your local? And at any given time data, and code is changing on all three of those things? How does that even work?
+
+40
+00:12:47,580 --> 00:12:48,960
+Unknown: Yeah, it doesn't.
+
+41
+00:12:50,279 --> 00:12:57,840
+Wes Bos: And this is not like a WordPress problem, either. This is like a this happens with any CMS or anything where things are changing at any given time.
+
+42
+00:12:58,020 --> 00:15:42,330
+Unknown: Yes, it is a CMS problem. It's not traditionally an app problem. If you have an app, it's pretty rare that you run into the situation where you're going to be changing a lot of the data locally that you're going to need to move that data to another environment, it's usually just schema changes. You needed to kind of track with an app. But yeah, it's CMS. CMS is or boger. For this, like, Yeah, because of a lot, a lot of the data that's stored in the database is like structural. Right. So like, you just mentioned custom fields, which that's stored in the database. And yeah, it's a problem. And like pages like you, yeah, if you need to add some new pages to your site that you're doing some development on, those will be going in the database as well. So we actually worked on solving this problem for almost three years, and, and a lot of threw a lot of resources, and then pull the plug on it completely. So it was it's one of those heartbreaking stories. But we did we did when we set out the goal was like a moonshot, right? Because we knew this was a super hard problem that no no one had solved. Right? And, and in the end, you know, we didn't make it to the moon, right? So it's, I mean, it's, it's one of those things like, if you're going to have a big lofty goal like that, sometimes you're just not going to make it. So what we recommend now is that is scripting, which is essentially the way that that tool was working. And so let's say you need to create new custom fields and advanced custom fields, like you would instead of like doing that via the UI, you would script it in your code with PHP, like creating those fields so that you can run it in staging and then production when you need to, without like, overwriting the database or anything like that. And when you refresh your local copy of the database, you can just blow away everything, and then just run that script again and you get your if you can kind of do a dry run of your your Yeah, your live deploy, if you have that script that you can just run, so you get that huge advantage. So it's, of course, it's more work right to like to create these scripts. But the you get some pretty massive advantages by doing it. So that's what we recommend. That's what we do on our on our site. We've got all of our sites on WordPress, and, you know, whenever we're doing development, that's that's what we do. We just run, create a script and then run it when we deploy. And, and it's it works great. It's just more work.
+
+43
+00:15:42,990 --> 00:16:11,580
+Wes Bos: Yeah, I think the the benefit of that also is that you get your fields and your post types in your version control. And that traditionally has not been something that, like, has people have been as part of version controller, oh, yeah, you got to go in there and make new fields and make sure they're exactly these names. And exactly these post types, right. And I was happy. It was like 500 lines of code to put them into my, into my theme, but it works great, right?
+
+44
+00:16:11,880 --> 00:16:33,299
+Unknown: Yeah, there is a, there's a little hack that we use once in a while to, if if we're being lazy, which is. So what we'll do is, let's say we need a new page or a new post, for some piece of work that we're doing. We'll just go to the live site. And we'll create that on the live site, but just leave it in draft.
+
+45
+00:16:33,390 --> 00:16:34,020
+Okay.
+
+46
+00:16:34,140 --> 00:16:49,409
+And then we'll maybe script switching it from draft to published in our script. So it's kind of like a little shortcut. And it's just yeah, it's way easier than scripting the whole creation of a post. That's that's a good point.
+
+47
+00:16:49,409 --> 00:17:46,070
+Wes Bos: I like that. All right, let's switch to talking about like, the like migrating your database as well. So when you have a, like, you have a local version of your website that has the updated theme, as well as some updated content that is in the database. What does that look like? When you need to then push that to a remote WordPress, install that to either your staging or to your production? Because like, the way I usually do it is I'll just like, I'll just pull everything down. And luckily, the websites I work on where I can just tell people like, Hey, don't touch the website for the next like, like three hours. I'm working on it right now, though, usually, like, okay, that's fine. Or, or you can like, look at what has been changed in the last little bit. And then I'll make my changes, and then I'll just push that all live. But I know like, obviously, you have a plugin that will allow you to selectively push stuff like what does that look like for you? Or for someone who's doing like maybe a larger website?
+
+48
+00:17:46,410 --> 00:18:51,690
+Unknown: Yeah, I mean, some of our customers actually will, you know, they'll pull down the site, make changes to the database, and then push it up to their production. We don't recommend doing that. Because in the time between when you pull down and you push up, yeah, you know, the production database may have changed. And so you could lose those changes. So as a general rule, we avoid encouraging that. But, but if you've got a brochure aware site, that never the bait database almost never changes, you can kind of get away with it. But yeah, I mean, pushing the data with migrate is pretty easy. Like you just install the plugin on both sides. And you stick the connection info into one side, and which connects to the other side. And then you hit push, and it sends your data over the wire from one plugin to the other, and over HTTPS, which is important. But yeah, other than that, that's that's all you have to do pretty much. And you can just push your data and pull it down as well. So
+
+49
+00:18:51,900 --> 00:19:40,710
+Wes Bos: Oh, yeah, I always make sure that I take like for backups of the database, because oh, yeah, that's kind of this the scary button to push. I know, it's part of the plugin where it will automatically back it up for you. But I always will go and do it myself. Just because like, that's always nightmare scenario, when, when something could go wrong, because like the code I haven't get, and maybe we'll talk about that next. But the data isn't necessarily versioned. Like that. I know, some CMS does have really nice versioning, like built in at a low super low level. And that's the benefit of a lot of these new CMS is out there where they start it from like a versioning to anytime you update anything, you can always look back at the data and say like, Okay, this had changed, and you always have access to the older version of that data. But that's not always the case in WordPress land.
+
+50
+00:19:40,950 --> 00:20:21,420
+Unknown: No, I think the only version of WordPress is on the posts and the pages. Yeah, those are all version. So anytime you update one, it kind of saves a version of it. But yeah, but versioning is kind of a separate issue from backups, right? Because even if you have versioning, you're still going to want to create a totally up your site, right. And and I would highly recommend everyone have, you know, hands off just recurring backups going. And if you if you're on a managed WordPress host, I would definitely make sure that they're working. Because the illusion of backups more dangerous than not even having them on right.
+
+51
+00:20:21,450 --> 00:20:47,400
+Scott Tolinski: Yeah, right. I think that's a that's like a common thing is that like, Oh, I'm taking backups. Well, have you tried any of your backups? No. Well, I guess you're not taking backups, then. Because you don't know if they actually work. Right. And that I that's something that I probably I've never done that I I'm like, kind of terrified. I take I you know, I have regular database backups. But to be honest, I've never tried to load one of those database backups. And I think that's something that you got to do.
+
+52
+00:20:47,670 --> 00:21:51,390
+Unknown: Right. I think there is some talk about automating the testing of backups to Oh, yeah. And basically, you know, getting a report kind of on a regular basis, maybe it's weekly or monthly, that says, hey, we tested your backups. And they were, you know, that the zip files are not corrupted, or like, you know, it's good to know, right, that's, it's like one of those things like the, you know, things are still running smoothly. And, you know, so yeah, I think that's, that's something that we're planning to do in the future for our new SAS app called spin up like that one. We do daily backups currently, for that app, and but we're not testing the backups. We're leaving that up to you right now. And I think most people are used to that. Like, that's kind of the industry standard. Right now. There's very few services that are testing your backups and telling you that they're good. But I think that would be a nice kind of value add Yeah, customers to have that reassurance.
+
+53
+00:21:51,420 --> 00:22:18,450
+Wes Bos: Totally. When I was in university, I did a co op at an investment bank. And every once every six months, they would have a Saturday, where someone would literally just go in and kick the plug. And like they would see if they could get it back. Right. Like if the worst case goes wrong. And our investment machines go down. like can we get back up to speed? And they obviously did it on Saturday when the markets were closed, but kind of a scary thing to try.
+
+54
+00:22:18,810 --> 00:22:31,500
+Unknown: Yeah, that reminds me of Chernobyl. Yeah. Because I'm pretty sure that was that whole meltdown was due to a test there. They were testing the safety features of the PowerPoint.
+
+55
+00:22:31,710 --> 00:24:19,680
+Scott Tolinski: I like can't bring myself to watch the TV show now about it. Like I heard, it's awesome. And I just I can't bring myself to do it. It's too gnarly for me to know, like the realities of that situation. Oh, all because of a test. Ah, so hosting WordPress without some of these tools might be difficult. But hosting the front end of your headless WordPress site should not be difficult. And that's where we turn to services like Netlify. Netlify is our favorite host over here at syntax. And let me tell you, you're going to want to try Netlify. Because this is one of those services that you try it and you love it, you basically login, you select your repo, and you add your build steps. And it takes care of everything from continuous deployment to CD ends, to SSL certificates, and some more acronyms of all sorts of different types. Netlify is absolutely incredible. And we invite you to sign up@netlify.com forward slash syntax, and sign up and deploy a site and then head to Twitter immediately. And tell us just how surprised you were at how insanely easy The service was, because that's what everybody else does, even though we didn't tell them to do that, because it's that cool. So head on over to netlify.com forward slash syntax and check out all of the insane features they have over there, including some of the new stuff like Netlify Dev, which allows you to have your entire serverless platform on your own laptop and Netlify edge, which is their new custom Delivery Network designed for blazingly they blatantly and they they I think they need to add one fire emoji in there next word blazing sites and modern workflows. So check it out. netlify.com forward slash syntax. Cool. So let's get back into it. All right,
+
+56
+00:24:19,740 --> 00:24:51,330
+Wes Bos: so we're gonna talk about deploying as well as hosting WordPress. But before we get into that, I'm curious, a lot of people have asked me about this. And I get questions like this all the time. Like, when you have a WordPress in get in version control, like what goes into, like, what goes into your WordPress repo and what doesn't go into it, like what do you ignore? And how does that look like? And I've heard different answers from ever absolutely everybody. I'm curious, Brad, what do you do for version control on a WordPress site?
+
+57
+00:24:51,810 --> 00:24:55,410
+Unknown: Nothing. We don't do anything. No, I'm just kidding.
+
+58
+00:24:57,240 --> 00:24:58,230
+Wes Bos: There's v1
+
+59
+00:25:00,000 --> 00:25:00,600
+Unknown: We will have
+
+60
+00:25:01,050 --> 00:25:02,790
+the old boy although
+
+61
+00:25:02,820 --> 00:28:58,530
+no, I mean, the the thing would be you would ideally want, right? It's only the coat your custom code would be in. We're in source control, right? The Yeah. So like, if you've got some custom theme or some custom plugins, like that's it would just be that stuff. And you can totally do that. So the way we've set up our WordPress installs is we use composer. So we'll use composer to manage WordPress. So WordPress would be in like a subfolder of the main directory, and composer would be used to install it and and update it. And then any plugins that are on the wordpress.org repo, we also use composer to manage those. So when so there's there's actually a mirror a composer repository mirror of the wordpress.org repo, it's called w packagist. So w or w packages. So WP packages is not WP packages. It's just one piece of packages. Yeah, W packages 70. Okay, yeah. So so there's up on a link, please. So there's that. So if you need any plugins, for.org, you can use composer to manage those as well. And that's, that pretty much licks it for you, right? Like you've you've got composer managing your core. I mean, if you've got a scene from the from.org, you could put it in there as well. But let's say let's say let's make this harder. Let's say you've got some plugins and themes that you've bought, okay, from a third party vendor. Yeah, now things get more complicated, right? Because there is no composer repository. For most of those, if you're using one of our products there is we actually have a composer repository, so you can manage all of our products via composer as well. But yeah, if they're, if they don't have that, then you're probably going to have to put it in Git. Unfortunately, Either that, or you need to do a git ignore and ignore it, and just have it installed. And maybe you do your updates rate on the server, or you update locally, first test it and then update on server once you've tested that, it's all good. So yeah, it's a it's a bit of a wild west. So I we've had been having a debate about this internally a little bit recently, as well, because managing plugins and composer works out. Okay. If you don't mind deploying your site every time you need to update plugins, yeah, right. But let's say you've got, you know, the Yoast SEO plugin installed, and it's every week, every week you need to update. It could be you know, if it's a blog, or, or a site that's not that, you know, mission critical for you. Do you really want to be doing a git deploy? Or, you know, whatever your deployment process is, do you really want to be doing that every week for that site? Or would it be easier just to log into the dashboard and click Update? Yeah, right. If the answer if the answer is the latter and for me it is then I don't I don't bother with composer I just keep the plugins installed on the server and just click update and you know test to see if my blogs broken and and it's not so all cool you know, carry on. So I find that less of a pain but if it is mission critical side or you're doing client work and you don't want downtime, then composer gives you that that extra control over the versions of the software on on your site. So
+
+62
+00:28:59,040 --> 00:30:17,430
+Wes Bos: Oh, yeah, we should say for our listeners, mostly a JavaScript heavy listenership here, composer is similar to like an npm install, but you just you can't use composer to install PHP packages, right? Oh, yeah, I'm just gonna tell a little story of I had that exact problem where I had like, when I was doing a lot of WordPress, I had like a starter WordPress I had and that was just on get like the whole WordPress core, all of my plugins, my base theme, everything and I use that to like, start a new WordPress every time I needed to do one, I would just clone it and that I would keep that up to date. And then I got DMCA by one of the paid plugins that I like I paid for, like, I think it was like a custom custom taxonomy reordering plugin where you could drag and drop the order of a taxonomy. And then the author rightly so the author of that plugin, DMCA cuz then people wouldn't have to buy it. They just go on GitHub and download it and I never figured it out. I think Just like I just used it as a private repo from there on out, because I could never figure out how to open source. Obviously, it could just open source part of it. And then I'd have to like, copy paste it. And it was like, too much trouble to allow the Yeah, the world to have access to this. I just made a private, right the rest of the time.
+
+63
+00:30:17,460 --> 00:30:31,170
+Unknown: Yeah. So if anyone is interested in, you know, using composer to manage their site, we've wrote written a bunch of articles about this on our blog. So we can link those up in the show notes, and people can consult them for trying it out. Definitely.
+
+64
+00:30:31,500 --> 00:31:14,490
+Wes Bos: Yeah, I think that's probably worth it. Because WordPress gets a lot of hate around, I think, because of how sloppy it can possibly be. Because you have this issue of just data everywhere, and plugins, here or there. And a lot of the stuff, we talked about a lot of these problems, and for a lot of people who don't either know or care, they just kind of, they just kind of go for it. And it's the Wild West, and eventually something bad will happen. And then there's a sort of this other part of the WordPress world, which is like people who are putting good time and resources and are good PHP developers trying to like fit solve these problems. And I think that's why WordPress is sort of gets a bad rap. And in some cases, people aren't willing to, to go the route of understanding what is composer and whatnot.
+
+65
+00:31:14,550 --> 00:31:15,420
+Unknown: Yeah, well, I
+
+66
+00:31:15,420 --> 00:31:35,880
+Scott Tolinski: think you have a lot of people that maybe WordPress is their first Yeah, foray into database development, or CMS development or even application development with a server component. So just that that aspect of things, you're inherently going to have some sloppy or newer coders coming in to try to work in these things.
+
+67
+00:31:35,910 --> 00:32:38,040
+Unknown: Yeah, I think, I think the PHP side of WordPress, which, at this point is becoming less and less, right, because WordPress project has really embraced react. Gutenberg, which is the visual editor that's basically taking over the entire dashboard is all done in react. So, you know, the PHP side of WordPress is kind of shrinking a little bit. And kind of as things go forward, I think, I think it'll shrink more and more and more, right. And hopefully, the part that's, you know, the small part, this left gets updated and more modern, as we drop support for older versions of PHP. That's really the thing that's holding the WordPress codebase back or has held it back is that there's been this fanatical support for all versions of PHP, right, like PHP. 5.2, was dropped relatively recently. Right? And 5.2, I think is over 10 years old. Wow.
+
+68
+00:32:38,040 --> 00:32:38,670
+Wes Bos: Really?
+
+69
+00:32:38,730 --> 00:32:57,450
+Unknown: Yeah. It's crazy that we we still supported that. Yeah. But the reality is, you've got lots of web hosts out there running old servers with old versions of PHP, stone and old versions, WordPress. And so if WordPress did an update, that would break all of those sites, right. So it has
+
+70
+00:32:58,410 --> 00:33:00,510
+Wes Bos: a huge portion of the web would go down.
+
+71
+00:33:00,540 --> 00:33:37,830
+Unknown: Yeah. Right. So that's, that's the reason for it. But as the reason doesn't really matter that much to PHP developers who get in there and see the state of things and are just like, uh, you know, like, this is horrible. You know, there's no namespaces object oriented programming is kind of there, but not really. So it's, it's in a pretty sorry, state when you're, let's say, you're coming from the Laravel world, like, it's, it's, it's pretty shocking if you go from Laravel to WordPress, PHP development.
+
+72
+00:33:38,790 --> 00:33:49,020
+Scott Tolinski: And that's really the benefit of starting when Laravel started, right. I mean, they they didn't have to deal with all this legacy that WordPress is forever indebted to.
+
+73
+00:33:49,110 --> 00:34:01,830
+Unknown: Yeah, well, and larvell takes the complete other tack, like when a new version of Laravel comes out. They're like, it's PHP seven point, whatever. Plus, yeah, like, if you don't get with the program, too bad. Yeah.
+
+74
+00:34:02,190 --> 00:34:24,060
+Wes Bos: Yeah, I think that that's probably a benefit to the audience that Laravel has is that, like, it's mostly professional PHP developers using this thing? And they are able to say, like, you know, what, moving along, you we're gonna keep on trucking. We're cutting this stuff. Here's your upgrade path. And I know, there's even tools out there that will automatically upgrade it for you.
+
+75
+00:34:24,230 --> 00:35:03,480
+Unknown: Yeah, it's great that PHP has, you know, end of life a lot of its stuff and it's on a it has a much stricter end of life schedule now, where it's like, you know, I think it's PHP 7.1 is end of life next month in November already, right? I feel like see PHP seven just came out, but you know, yeah, relatively speaking. You know, so like, so they're, yeah, they're, they're stopping doing security updates. So which is also forcing web hosts to like, take this more seriously. And, you know, keep their servers updated and stuff. So it's all good.
+
+76
+00:35:03,540 --> 00:37:28,650
+Wes Bos: Yeah. So our new sponsor today is has surah. They are instant real time graph qL on Postgres. Postgres is a very popular, highly scalable database. And Hasura is a graph qL server that's going to sit in front of that, and do all of the heavy lifting, it gives you the ability to get a graph, qL server up and running really, really quickly. It's pretty cool. You go to hasura.io, and deploy one to Heroku, just to get immediately up and running and started with it. And sort of the way that it works is that you go in create your your data types, and you can set up all your relationships. And they're going to give you an entire interface for working with your graph qL server, they have ability to deploy to Heroku, or to Docker, Digital Ocean, Microsoft, Azure, AWS, Google Cloud, you name it, like I personally have, have seen this at a couple conferences, and I've gotten a demo from them a couple months ago, but I think it's pretty nifty. And some points they've sent over for us to talk about here is that it's a real time graph qL database on Postgres, so you can either grab a brand new Postgres database, you can put it on top of an existing one that's out there, they have this concept of remote joins, which is pretty cool. And what that means is that they can configure relationships between independent graph qL schemas, so you might have your own one, but you might also pull data from GitHub or from stripe, and you can sort of just stitch that into a single schema, which is graph QL. They also have authentication as like sort of first class support, which is pretty cool, because of course, these demos are neat, but you need to be able to secure down and lock down all of the data that they have there. Finally, they're working on making it super easy for developers to write custom business logic in REST API. So whether that's a serverless function, or micro service, something like that, and you can write those wherever you want, and then expose them via your graph. qL so you're looking to do graph qL, definitely check out hasura@hasura.io. Thanks so much to Hasura for sponsoring, let's talk about deploying and hosting WordPress. So seems like you've made a company on on hosting WordPress. And so I wanted to like sort of get you're not as like a big ad for your company. Obviously, we're interested in that's why we have you on here. But like, like, what are your thoughts on like, what's the easiest way to host a WordPress? Or what's the best way to do it and tell us what the spin up WP does?
+
+77
+00:37:28,880 --> 00:40:23,610
+Unknown: Yeah. So I would certainly wouldn't recommend spin up WP for everybody, right? It's not, it's not the magic bullet for every situation. So basically, spin up WP allows you to connect to digitalocean server or linode server, any cloud server, anything with an IP address, really. And it will set up the server for hosting WordPress, like really well, like it'll set up full page caching, and just make the site run fast, like really fast. And so that's basically what it is in a nutshell. But the issue is, you're kind of on the hook for making sure that that server, you keep the software updated. You don't have to babysit it. Yeah, you have to babysit it. Exactly. So we try to facilitate that as much as possible. Like that's our that's our mission with this product is to basically it's basically training wheels for for developers that want to manage their own server, right? Yeah, so it's, we're trying to make it much, much easier to manage your own WordPress server. Because there's some massive benefits you get from doing that. And you get full control of the server. And and you can tune it how you like, you can change the full page caching rules, if you if you need to, which which can really have a huge impact. So like, just just to give you numbers on that. So like a full full page cached page can be served in like 30 milliseconds, right? Like a cache page. If it bypasses the cache and hits the PHP, and the MySQL, and the object cache, you're talking like 300 milliseconds plus, right? So like, 10 times slower, right? And 300 milliseconds is a really low. That's that's a very conservative estimate. Sometimes it could be over a second to load a page. It really depends on the page and what how much process is going on. If if there's already something in the object cache, if the object cached prime or not, or if it has to go and query MySQL, it can really slow down that page load. And so when you're talking about the web, right, like, speed is everything. It's so important, right? So So this is where I think spinnup lp comes in, like it's Looking for that kind of control and optimization and performance and you're willing to babysit the server? That then it's, then it could be a solution for you. But if you're not willing to babysit the server, then you really ought to go with a managed WordPress host. Right? Because that's what they do. That's why you pay them the extra bucks, right? Yeah.
+
+78
+00:40:23,630 --> 00:40:26,850
+Wes Bos: What what are some examples of managed WordPress hosts? Some people know?
+
+79
+00:40:27,920 --> 00:41:29,940
+Unknown: WP Engine is probably one of the bigger ones. I mean, go GoDaddy, I think is the biggest web hosting company in the world. And they're probably the biggest WordPress host in the world as well. Yeah. And then you've got Paisley Paisley has been around for a long time. I think they were like the, they were basically the original manage WordPress host before, before the term was really coined. Paisley was has been around. And they seem like a really great host. In fact, I think if I needed to manage WordPress hosts, I'd probably go with Paisley. And then flywheel which just got bought by dopey engine has been a big one. Site grounds and other one. Oh, yeah. And kinsta concert is another big one as well. And the list goes on. You know, there's a lot of and it shows, of course, wordpress.com really could be considered a managed WordPress host now as well, because you can Oh, yeah, yeah, you can install plugins now on wordpress.com. So can you
+
+80
+00:41:29,940 --> 00:41:30,600
+Wes Bos: really
+
+81
+00:41:30,629 --> 00:41:50,610
+Scott Tolinski: Yeah, yeah. It's the whole thing is a little difficult, though. The whole, like managing your accounts and knowing where the sites are. I found the it's not exactly you have to log into here and then go to here. And then here's your sites, but I just I think they maybe miss miss the mark on some of those usability aspects of nailing down multiple accounts.
+
+82
+00:41:50,879 --> 00:42:17,460
+Unknown: I agree with you on that. They actually they created a separate dashboard experience. Yeah, but it doesn't, it doesn't. You can't do everything in there. So sometimes if you need to do something you have to bounce to like the the regular WordPress dashboard. So it's Yeah, that's the disjointed experience. I think that you're talking about there. And so yeah, so it is Yeah, I agree. I'm not a fan of that either.
+
+83
+00:42:18,920 --> 00:43:19,560
+Wes Bos: Yeah. Oh, this is interesting. The spin up WP because I think like we have this problem in JavaScript world as well, where you can go on one side of the spectrum and spend five bucks on a Digital Ocean server and host it on that. But then you have to do everything yourself, you have to worry about backups, you have to mean like you have to like sudo apt get everything and before you know it, you're your assist admin. And then on the on the totally the other side of the spectrum is you can go like sign like a now or a Heroku or something like that, where it's all done for you. And that's great. And it's just a little bit more expensive. And I've always wondered like, like, Where's the thing in the middle where I can pay for the the server space myself, but still have like something that will help me babysit this thing? So I don't want to have to worry about it too much. And that sort of seems where what that is for this? Is that right? That sir? I'm trying to gauge it.
+
+84
+00:43:19,680 --> 00:45:33,570
+Unknown: Yeah, that's that's a very good way to gauge it. That's a very good description of it kind of sits in the middle between managing and entirely yourself. And the managed WordPress hosts kind of sits in that nether region that that no one has filled until now. I guess. There has been, you know, we were very much inspired by by Laravel. forge on this. Yep. And we there's tons of people that host WordPress sites through Laravel forge because it's a way to quickly get set up with a server running an optimized LAMP stack. Right. But yeah, for doesn't go the extra mile for WordPress, because it's not what it's designed for. It's designed for Laravel apps. So we thought like, what if we did go the extra mile for WordPress? What if we built Laravel forge but for WordPress, like what would that look like? What would be the? Because we're because essentially, we're hosting a very specific app. What can we do beyond what Laravel forge does? Because Laravel job forges and know what app you're running. So it can't it can't guess what you might need for that specific app. Yeah. But we can, right? We know it's going to be WordPress. So we can we can backup your site and your your site files and your database, for example, right without any configuration needed, right? You just flip a switch, right? And so we can do all kinds of stuff. We can configure your full page cache, right. So like, there's a bunch of really cool stuff that we can do, knowing that I am deploying WordPress, right. Totally. One of the other things we're trying we're going to do that we haven't done yet is we're going to like send monthly or weekly emails that say like, Hey, here's the things that you ought to be doing with your server. Right? So, for example, I mean, you guys have run servers before. So like, give her login to the server, and it's like you have 162 up software updates. Yeah. And then your immediate thought is like, oh, maybe I should log in here a little more, more often. And then you never do.
+
+85
+00:45:34,980 --> 00:45:40,170
+Wes Bos: Yeah, yeah. Right. That's it, or something's gonna break for sure. I'm not touching that. Yeah, yeah.
+
+86
+00:45:40,200 --> 00:46:43,410
+Unknown: Oh, yeah. That's the other thing. So what I what we're thinking is like, what if we said regular email that's basically gives people a little update on like, how their servers do it, and maybe some suggestions on what they should do to the server to like, keep it in good health. So that will be like updating that software? Like, for example, we just, we just updated nginx, from 1.5 to 1.6. Because apparently, when nginx comes out with a new version, the old version is basically deprecated. lol, there's no security updates for that. And it's like, we didn't even know that until recently. How would someone know that if they're managing their own server? You know, they probably wouldn't. Yeah. And so so there's all these things that that we feel like we're in a good position to help people like do and to have success managing their own server without the kind of anxiety of like, Oh, God, you know, what am I missing here? Like, what's gonna happen to my server tomorrow?
+
+87
+00:46:43,740 --> 00:46:56,760
+Scott Tolinski: Yeah, right. Yeah, it's, for those of us who aren't sis admins, or, you know, not used to dealing with those kind of vulnerabilities, that thing can be just super daunting and super terrifying.
+
+88
+00:46:57,240 --> 00:47:17,160
+Wes Bos: I want to ask about deploying to so obviously, we talked about deploying a database, but like, what about the, I guess, the code for you? Do you use composer for that as well? Or like, what's the process from you check in? Maybe even this, maybe it's not even part of git, but like, what does your deployment process look like from from beginning to end?
+
+89
+00:47:17,640 --> 00:47:22,320
+Unknown: Do you mean on spin up load up like if you're if you're launching a site on there, you mean or
+
+90
+00:47:22,770 --> 00:47:46,800
+Wes Bos: Alright, just maybe just in general for either using spin up WP or if you were just using like a write like anything else? Like Like, if I've got a server and I've got a local WordPress, how do I get that on there? Like, honestly, how I do it right now is I still use FTP. I just open up my FTP client drag and drop the folder overwrite thing. Wait for 45 minutes, and then it's life.
+
+91
+00:47:47,130 --> 00:47:50,130
+Unknown: Yeah, we've become a bit more sophisticated than that.
+
+92
+00:47:52,290 --> 00:47:56,100
+Wes Bos: You don't have somebody drag and dropping folders. Yeah,
+
+93
+00:47:56,100 --> 00:48:04,530
+Unknown: I mean, yeah, it's been a while since we've been with that stage. But I mean, it's kind of our whole thing, right? That's that's our whole
+
+94
+00:48:04,560 --> 00:48:05,190
+Wes Bos: Yeah.
+
+95
+00:48:05,190 --> 00:48:51,210
+Unknown: So we use buddy. Do you guys know buddy, buddy dot works? No. Okay, buddy that works is is a great deployment tool. We use that it ftps for us. assuming everything passes, the tests before you know it, it does, you know, compiles their assets. It runs a build and all this stuff and, and then it just ftps everything. And it it's all based on the branch. So when you when we push to master, yeah, I mean, I guess we don't really push the master. We usually merge. I guess we merge like our develop branch into master and then push master. And there's a good hook that fires that buddy. body's like,
+
+96
+00:48:51,210 --> 00:48:52,020
+okay,
+
+97
+00:48:52,020 --> 00:48:58,350
+I'll grab. I'll grab your latest. They should really use my my marketing on this.
+
+98
+00:48:58,560 --> 00:49:10,680
+Scott Tolinski: Okay. Yeah, buddy. What a money. Yeah, they need a little buddy, little buddy character on here. Remember, that was like the thing. MailChimp came out there. They're MailChimp and then they're just like, you know what everybody needs to care.
+
+99
+00:49:11,250 --> 00:49:21,030
+Wes Bos: They tried to sponsor this podcast, Scott. I just searched them. I was like, that sounds familiar. They tried to sponsor the podcast, but we were sold out. So here's your free spot, buddy. That works.
+
+100
+00:49:22,050 --> 00:49:26,220
+Scott Tolinski: Buddy, that works. Great domain. And there's some good marketing tips. Get a character
+
+101
+00:49:26,249 --> 00:49:29,970
+Wes Bos: whatever it is. That's interesting. That's That's cool. Well, it's
+
+102
+00:49:29,999 --> 00:49:36,570
+Unknown: if this if they see some signups from this, they'll be they'll be signing up for a year of sponsorship with you guys, right?
+
+103
+00:49:36,959 --> 00:49:47,760
+Wes Bos: Yeah, that is cool. So like it's kind of like a continuous integration piece of software reminds me a lot of like a like a code ship. But
+
+104
+00:49:47,789 --> 00:49:50,280
+Scott Tolinski: yeah, you could design is great. Yeah, I really liked
+
+105
+00:49:50,280 --> 00:50:07,530
+Unknown: this lightning bolt. It is it we actually were inspired by buddy when we were designing spin ability fee like we were like, Oh, we got to do this like buddy. Like they just now this UI on this, you know, so. So yeah, we're we're pretty impressed with with their work there.
+
+106
+00:50:07,620 --> 00:50:09,390
+Scott Tolinski: Yeah. Looks good. Cool.
+
+107
+00:50:09,750 --> 00:50:14,100
+Wes Bos: All right. I think that's all the questions I have about this. Do you have anything else? Scott?
+
+108
+00:50:14,310 --> 00:50:21,630
+Scott Tolinski: I don't know. This has been fascinating. Yeah. Is is like, yeah, hugely giant pain point in lives people of working with WordPress.
+
+109
+00:50:21,810 --> 00:50:30,990
+Unknown: Yeah, like, I guess one. One thing I'll say that we didn't mention is I actually had a chat with the founder of Gatsby.
+
+110
+00:50:30,990 --> 00:50:33,030
+Scott Tolinski: Oh, Kyle.
+
+111
+00:50:33,090 --> 00:50:55,560
+Unknown: Yeah, Kyle, because he was super interested and promoting spin up LDP as a way to like, get a headless WordPress site set up, like really quick. And so apparently, that's another good use case for spin up is headless WordPress, which is totally not what we were thinking of when we started building this like a year and a half ago. Yeah. And how
+
+112
+00:50:55,560 --> 00:51:01,410
+Scott Tolinski: this WordPress with Gatsby is like, Yeah, it's definitely great. It's a nice little, nice little way to build.
+
+113
+00:51:01,680 --> 00:51:32,370
+Wes Bos: Yeah, yeah. Because you think about like, obviously, our sponsor Netlify, how easy the front end is. And there's not a great WordPress story. There's lots of services, we've got no entity as one of our sponsors, where it's super easy to get back up and up and running. But if you still want to do WordPress, you still have to host the PHP somewhere, right. And that has to be done somewhere, simply. And I even recently hunted for a client of mine to do it. Well, a clan of a friend of mine to do a WordPress headless WordPress site
+
+114
+00:51:32,370 --> 00:51:50,070
+Scott Tolinski: install, and we just ended up going with some cheap, you know, Bluehost. I know you're not a fan list, but just just to have a thing, but then you have to, I don't know, it's definitely not as modern or as cool as it could be. So I think that's definitely a Avenue worth exploring. Yeah,
+
+115
+00:51:50,070 --> 00:52:01,980
+Unknown: I mean, if Gatsby is the one hitting the site, the headless site, I guess it doesn't really matter too much where it's hosted. Right? Like, because it's not like direct, traffic's hitting it.
+
+116
+00:52:02,130 --> 00:52:04,380
+Wes Bos: Right? No, no, just that build time. It's
+
+117
+00:52:04,380 --> 00:52:06,330
+Scott Tolinski: the API. Yeah, exactly.
+
+118
+00:52:06,660 --> 00:52:24,000
+Wes Bos: Man, I'm just looking at the pricing. I'm just going back to the body of know of WP Engine. Oh, yeah. And like, like a if you got if you have over 25,000 hits a month. So you have over a couple hundred hits a day, it's 115 a month to host your WordPress that's
+
+119
+00:52:24,000 --> 00:52:47,430
+Unknown: expensive managed WordPress hosting is you're basically paying for support, right? Mm hmm. Okay. And it's, it's really not even support, you're paying for support insurance. Right? Because he you don't necessarily need you're not gonna necessarily use support every month. Right? So if you're paying for insurance when you're buying managed hosting, so
+
+120
+00:52:47,460 --> 00:52:48,960
+Wes Bos: yeah, that makes sense.
+
+121
+00:52:48,990 --> 00:52:59,910
+Unknown: Yeah, it totally makes sense. And it's totally worth it. For a lot of people. That peace of mind is worth paying for. Yeah, yeah. Right. So yeah, it's just different different cases. Right. different strokes for different folks.
+
+122
+00:53:00,480 --> 00:53:06,570
+Wes Bos: Yeah, surely. Cool. Anything else you want to? That we didn't talk about here? No, I
+
+123
+00:53:06,570 --> 00:53:09,120
+Unknown: think that's great. I think we've covered lots.
+
+124
+00:53:09,240 --> 00:53:25,980
+Wes Bos: One crazy question I had I don't even know if this is the thing is, have you heard anybody talk about serverless? WordPress? before? I know that Laravel just released vapor, which is serverless. For for Laravel. Is that even something that could happen with WordPress? Do
+
+125
+00:53:25,980 --> 00:53:28,680
+Unknown: you even know? The new hotness? Yeah,
+
+126
+00:53:28,980 --> 00:53:29,940
+Wes Bos: yeah,
+
+127
+00:53:29,970 --> 00:53:48,270
+Unknown: we were we were pretty pumped when we saw that the excited about the vapor announcement, because sounds so cool, right? serverless you don't need servers anymore. But at the same time, like my second thought was like, we just built a whole business on top of top of cloud servers, servers.
+
+128
+00:53:48,270 --> 00:53:50,640
+Wes Bos: Yeah. Yeah.
+
+129
+00:53:51,630 --> 00:54:29,730
+Unknown: But yeah, when I when I thought of a site, then I like thought about it more as like, Huh. I don't know how the heck this would work with with WordPress, because when you're building an app, you can build it for a certain platform, right? Like you can build an app to take advantage of, you know, serverless functions, for example, right? But if you're installing a plugin from the wordpress.org repo, right, like, you don't even know what it's gonna do, you know, like, how could you possibly accommodate that on the infrastructure side, right? Yeah, I,
+
+130
+00:54:29,820 --> 00:54:33,810
+Scott Tolinski: I'm having a hard time even wrapping my brain around how that would any of this would fit together.
+
+131
+00:54:33,810 --> 00:55:02,250
+Unknown: But I think it would have to be serverless in the sense that like, each request would still have to, like execute pretty much like it does now on a typical server. So be some kind of, yeah, some be some kind of adapter. I don't know. I haven't done a ton of thinking about it. But the thoughts that I've had around it, it's like I can't see around it. I can't see how it works. How how you'd be To do serverless with WordPress,
+
+132
+00:55:02,430 --> 00:55:07,920
+Scott Tolinski: well, you could always just release it as a coming soon and collect some of that. Yeah, and just never
+
+133
+00:55:07,950 --> 00:55:15,000
+Unknown: never launch out or do like an anti campaign on it. Like serverless is silly. You know, you spin up WP? Yes.
+
+134
+00:55:15,000 --> 00:55:17,370
+Scott Tolinski: Get some alliteration going on. Yeah, again,
+
+135
+00:55:17,370 --> 00:55:21,600
+Wes Bos: I'm server, you should make some, some t shirts that say serve our full
+
+136
+00:55:21,630 --> 00:55:22,710
+Scott Tolinski: Yeah, like,
+
+137
+00:55:23,700 --> 00:56:26,280
+Unknown: I've also done, I've done a little bit of reading on serverless. And one of the things that I heard is that serverless can be really beneficial when you architect your app to take advantage of these external serverless functions. But if you just jammed all of your requests through like one serverless endpoint, which is what vapor does, it actually results in poor performance? So that's, that's something to actually look at as well. So there's, like, I haven't tested vapor, I don't know if it suffers from performance, or if it's great, I really have no idea. But it's something to be to look at for sure, like, are the costs of serverless gonna actually be higher than if you architected your app to use serverless kind of sparingly, rather than for every request? These are all questions that I don't know the answer to. It's early days for serverless. Even on the app side, so I don't even know where that leads WordPress.
+
+138
+00:56:27,060 --> 00:56:34,230
+Wes Bos: Yeah, yeah. All right. All right. Now we have our sick picks. Brad, do you have a sick pick for us today?
+
+139
+00:56:34,410 --> 00:57:30,540
+Unknown: Sure. Do. One of the questions I like to ask is like, what's like a purchase under $100 that you've had in the past, I think is a Tim Ferriss question. Yeah, so mine, mine is a grill. So it's like a large grill, it's like two or three feet long, I think and like a foot wide or something like that, or foot and a half wide. And once a week, we do Teppanyaki at home. So like, I'll just, you know, cut up a bunch of seafood and vegetables and stuff. And, and my kids will actually, like cook their own dinner. They they can't pronounce Teppanyaki. So they just say cook your own dinner. are we cooking our own dinner? And they love it. It's like one of their favorite meals. It's great. Like, it's hard to describe like how good hot food is like right from the grill. Like, it's just yeah, taste here. It's really good. Oh, have
+
+140
+00:57:30,540 --> 00:57:32,670
+you ever made okonomiyaki on this?
+
+141
+00:57:32,700 --> 00:57:33,540
+I don't know what that is.
+
+142
+00:57:34,920 --> 00:58:02,220
+Scott Tolinski: Oh, Google it. okonomiyaki it's it's sort of this Japanese savory pancake. It's almost like a it's a wheat flour based batter. And it's got some Japanese sort of barbecue sauce and some fish flakes and all sorts of stuff on it. It's It's wild, and it looks kind of wild. But that's how they serve it. And if you go to Japan and get okonomiyaki it's excellent. I'm one of these. This
+
+143
+00:58:02,610 --> 00:58:18,690
+Wes Bos: girl so Oh, this is cool. I want one of these my wife. When we first started dating I took her to Korean barbecue where they you get like the thing Oh, yeah, table and she's like, this is dumb. Why do you have to cook your own food. And I was like, This is so exciting. I love cooking my own food,
+
+144
+00:58:18,810 --> 00:58:21,060
+Scott Tolinski: she would say like something
+
+145
+00:58:26,340 --> 00:59:29,480
+Wes Bos: that's funny. Um, I am going to sick pick something that I sick picked, like, probably two years ago on the podcast, and that is Magna tiles. These are a kid's toy that we got for our kids a couple of years ago. And they're Yeah, they're just these little plastic squares that have magnets in all four squares, and all four corners and allows the kids to make pretty much anything that their imagination can come they're squares, there's little triangles. And then for gifts we always get like my parents and grandparents to get the our kids like they get us like a big bass or get us some wheels or it's kind of like Lego but they're way bigger. And it's like two years later and my kids play with them I'm not lying every single day wow it's such a cool creative thing. My kids are three and four now and I imagine they've got still a couple more years left before they they start to go for like Lego and stuff that's a little bit more intricate but like my two and a half year old three year old they no problem playing with these things. It's really cool. Awesome.
+
+146
+00:59:29,520 --> 00:59:37,830
+Scott Tolinski: Cool. Yeah, these are these are red I remember when you pick pick these before. Got to get some landed Landon's at that age now where he's going to start to love this stuff.
+
+147
+00:59:38,010 --> 00:59:47,880
+Wes Bos: We have mix and match. We have some Magna tiles and some Picasso tiles. And oh yeah, they're interchangeable hundred percent interchangeable. So we don't we can't visually see the difference between them.
+
+148
+00:59:48,230 --> 00:59:54,900
+Unknown: I love that the box says for ages three to 99 100 year
+
+149
+00:59:54,900 --> 01:01:04,950
+Scott Tolinski: olds, you're out. No gotta leave it around. Okay, my sick pick is going to be For the HV HBO television show succession which is people are starting to take notice the show right now I we just started watching it because it's so funny this this is like the constant progression of television shows with Courtney and I is all like mentioned it to Courtney, like months before and then she'll be like, not interested. And then like as months go by, she'll be like, seeing it on their Instagram feed or whatever. And then her friends so and so is watching it now and our other friend should be like, oh, maybe we should watch Game of Thrones. I'm like I told you that like three years ago, and you said you didn't want to watch it. So that's it. That's how succession is gone. And she had enough of her friends cert to watch it that she decided she would like to watch it and now we're hooked. So we're about you know, six, seven episodes in and we're loving it. And a little side shameless plug or sick pick in addition to that is the righteous gemstones on HBO. I'm going to be out I guess the righteous gemstones on HBO is satirical comedy about like, mega churches, and it's great. It's Danny McBride and Adam Devine. And it's just it's hilarious. So those two shows on HBO. Nice.
+
+150
+01:01:05,160 --> 01:01:11,430
+Wes Bos: Alright, shameless plugs. Brad? What would you you can shameless plug as much as you want? I feel
+
+151
+01:01:11,430 --> 01:01:24,090
+Unknown: like I've been basically plug in everything already. So you guys, you love it. You guys. Go ahead. I mean, yes, everybody can check out my stuff. spin up WP calm. So let's just brains calm. So there's, there's my plug.
+
+152
+01:01:24,930 --> 01:01:47,220
+Scott Tolinski: Yeah, just start shouting URLs. That's what I do. My name is Scott Tolinksi. I'm going to be plugging all of my courses on the mat. Love Scotland ski and you can find those courses at level up tutorials. You can find all I'm going to be plugging all of my courses. Standard Wes Bos refrain so you can find them level up tutorials.com forward slash pro sign up for the year and save 25%
+
+153
+01:01:47,550 --> 01:01:54,630
+Wes Bos: I'll plug all of my courses as well. Wes Bos comm forward slash courses and check it out. Check it out.
+
+154
+01:01:54,630 --> 01:01:55,200
+Unknown: All right.
+
+155
+01:01:55,200 --> 01:02:01,710
+Wes Bos: That is it for today. Thanks so much to Brad for coming on. And we will catch you on Monday. All right.
+
+156
+01:02:01,730 --> 01:02:02,850
+Scott Tolinski: Thank you, Brad. Thanks, guys.
+
+157
+01:02:02,850 --> 01:02:03,810
+Unknown: Please,
+
+158
+01:02:03,810 --> 01:02:15,540
+Scott Tolinski: please head on over to syntax.fm for you full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
