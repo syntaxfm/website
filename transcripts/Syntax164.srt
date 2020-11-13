@@ -1,0 +1,388 @@
+1
+00:00:01,319 --> 00:00:02,820
+Announcer: You're listening to syntax
+
+2
+00:00:02,849 --> 00:00:09,000
+Unknown: the podcast with the tastiest web development treats out there, strap yourself in and get ready to live ski
+
+3
+00:00:09,000 --> 00:00:11,370
+and West boss. Oh, welcome
+
+4
+00:00:11,370 --> 00:00:58,080
+Wes Bos: to syntax. This is the podcast with the tastiest web development treats. Today we have super interesting guest on a super interesting story about Kanye West. I'm just gonna say that and I'm gonna kind of Weiss is not on the podcast right now, but close enough. We'll talk about that in just a second. But it will do our sort of pre show stuff that we need to talk about real quick. We are sponsored by two awesome companies Sentry, which is going to do all of your error and exception tracking and Sanity, which is allows you to build a structured content so you can distribute to any device or channel over flexible API's with a fully customizable react JS editor. I will talk about that partway through the episode. So with me, as always is Mr. Scott Tolinksi. How you doing today? Scott?
+
+5
+00:00:58,109 --> 00:01:12,330
+Scott Tolinski: Hey, doing good. Yeah, fill in the fill in the flow of things. Yeah, I don't know. We just launched a new course yesterday. And so I am ready to start the month over and start working on the next one. Awesome. Yeah, that's that's good. Happy to have Harry here today.
+
+6
+00:01:12,419 --> 00:01:17,670
+Wes Bos: Yeah. So welcome to our guest, Harry dry. Welcome, Harry. Thanks for coming on. Absolutely. Pleasure, guys. There's
+
+7
+00:01:17,670 --> 00:01:19,260
+Unknown: no place I'd rather be
+
+8
+00:01:19,289 --> 00:01:26,220
+Wes Bos: alright. So Carrie is a developer from where you're from England.
+
+9
+00:01:26,850 --> 00:01:27,780
+Unknown: Yeah, live in London.
+
+10
+00:01:28,830 --> 00:02:37,740
+Wes Bos: Awesome. So Harry is a developer from London. And I don't know, maybe a couple months ago, this sort of came across my my Twitter feed was this random website, which is the Kanye story calm. And Harry built this dating website for Kanye West lovers, which is absolutely hilarious. And he's a web developer and sort of just made it work. And he's just got this insane story, both in terms of like, web development and building the thing, but also in terms of just like, getting in touch with Kanye West's management. And also, we I won't spoil it too much. But so what we're gonna do today is we're sort of gonna go with Harry through this crazy story. And then we will sort of talk to him about like, how do you even get ideas for this kind of stuff? What do you do when you hit? Like, this is the ultimate side project that totally blew up. And it's like, the perfect example of things that that you want to do. So we're trying to pull enough out of them that we can so that you can sort of like maybe build your own Kanye West dating website. So Harry, do you want to give us like just a quick rundown of who you are, and whatnot, and then sort of talk about the Yeah, sure.
+
+11
+00:02:38,550 --> 00:05:06,600
+Unknown: I'm Harry, I guess, a humble web developer from from the land of London. And I've, I've tried a few side projects before, and they've kind of been very hit and miss. Well, actually, mainly Miss. And this one flew a little bit more. So I funnily enough, someone I think tweeted it to Wes, because he features a little bit in the story and was messaged me, and here we are so ready for it. Funnily enough, I started back in 2017. So I was a university, I went to Durham University in England and did economics. And by third year, I kind of knew that I didn't really want to be in a suit, talking rubbish about macroeconomics for the next 50 years. And at this point, I had two things going on, I was in a little art group. And I had I was trying to write a book. And neither were going to well, and I kind of convinced myself that the reason why they weren't going to well was because we didn't have a website. So at this point, like websites seemed, I don't know, like a totally, like something which only EMI EMI MIT people could make, I was absolutely no interest in this sort of stuff at all. I'm so bored of economics that I had to try it. So um, I started out on Code Academy, as a lot of developers do. And I did the HTML course, working through that. And in the library, I think I was probably supposed to be doing my dissertation actually, at the time, and did the HTML course. And I think when you look back at it now, as people who maybe have a little bit of experience with development, it's easy to forget that when you start it's just such a, like a black hole, like a really is, like a blank canvas, really. So funnily enough, I did the HTML course. And I hadn't like no idea what to what to try next. And Code Academy for some obscure reason, recommended me Angular. So I kind of jumped from HTML, with very little knowledge to Angular. And then I spent a month and a half trying to piece through this and just going absolutely nowhere on it. And little did I know that Angular probably wasn't the language I should be learning straight out of HTML. So fast forward a little bit, I think. And by this point, I was I figured out Reddit was a website which existed and I started asking questions on there, like, you know, how do I learn web development basically, and people were applying I think some really great messages came back someone said, the net ninja this YouTuber who is absolutely awesome as I started
+
+12
+00:05:06,600 --> 00:05:09,540
+Wes Bos: doing a huge, huge YouTube channel, doesn't he?
+
+13
+00:05:09,870 --> 00:05:59,310
+Unknown: Yeah, I don't actually get why he isn't bigger than what he is. He's really amazing, a huge fan. And the others were, I think people mentioned JavaScript 30 and then level up tut's was, was being talked about. And I started working for these. So I slipped into JavaScript. And I remember being in the bill bracer Library. It's during library, and my dissertation deadline was looming over me here, but I just really wasn't into it. So I distinctly remember that I was on level three about five 6pm. And I cracked open with his drum kit, which is the first first teacher who sure we've all been there, done that one. And it was a bit of a breakthrough moment because I mean this in a nice way, but I as I said, I used to think websites were for a really smart people and I just couldn't really do it or not, I'm
+
+14
+00:05:59,310 --> 00:06:01,650
+Wes Bos: not that's what
+
+15
+00:06:03,120 --> 00:06:07,320
+Unknown: I saw. I saw you kind of like a bit of a bumbling fool in the
+
+16
+00:06:09,630 --> 00:06:21,150
+Wes Bos: No, totally I that's why I love leaving all of my goof ups in show. It's both shows my debugging process, but also shows people like like, I really am not just going to cut out like half of this video, which is me goofing up.
+
+17
+00:06:21,180 --> 00:06:33,870
+Scott Tolinski: Right? You got to leave it and Scott Lee leave a lot of your errors in as well. I do. Yeah. Specifically even like the typo ones or the ones that show Okay, unexpected token on line. 19. Let's go to the lining keynote. There it is. Oh, yeah, I accidentally typed something.
+
+18
+00:06:35,640 --> 00:06:37,080
+Wes Bos: bumbling fools for life?
+
+19
+00:06:38,520 --> 00:09:00,480
+Unknown: Well, that gave me a lot of reassurance really, and working through these tutorials and then finished university and I went actually did a coding bootcamp. After that I went to Israel, funnily enough, there's this company called founders encoders. And the idea is that it's a free boot camp. So what you do is, you take the course, and then you end up being a mentor. So that's how it kind of pays itself back, I guess. Ah, well, unfortunately, I had to leave for for personal reasons. So I'm back in the UK at this point, and didn't really want to get a job I was trying to, like, puzzle it through in my own in my own world, and my parents house. And when I left nazzer of the founders encoders course they were doing learn they were doing note. So I picked up West course learn node, and started working through that. And slowly but surely just in the digital library, just hammering out the videos skilling up, and I'm getting this slowly but surely. And I'm a big fan of real world stuff. So I think yeah, I think at this point I kind of was just copying a lot. I was, you know, I'd be copying videos on YouTube versus the low node course. And I think there's probably as two different types of knowledge. There's kind of blog post knowledge, and then there's more real world knowledge. And, you know, if you read a blog about Cuban ETS and Firebase, it's never going to be like that in real life. And I was kind of conscious of that. So I thought, like, let's try it. Let's try project. Let's try and make a start up. There's no better. There's no better way of getting getting into it and trying to do real world startup. So come back from uni. And my friend Joseph sent me these huge canvases, his Twitter canvases, and they had a tweet on it from Roger Federer. And I was thinking was Roger Federer tweeted me here. It turns out, no, it was just all photoshopped. And it was this little gift you've given me. But I got so into it, this this gift, I thought it could be in a million pounds idea. And I said to Jaws, like let's make a website where we sell these canvases, and it's going to blow up, we're going to be huge. For me, as well, it's just a great project to like, cut my teeth in development, I could kind of do a little projects and, and it'd be real world stuff. So I couldn't do any design at this point, really. And Joe was was not too good either. So, again, I'm on YouTube. And that's kind of how I learned it really, just by how do you design a website? And I think at this point, Scott Scott sketch. YouTube series. Yeah,
+
+20
+00:09:00,480 --> 00:09:01,159
+Scott Tolinski: yeah.
+
+21
+00:09:03,289 --> 00:09:07,950
+Unknown: So I was doing it about four or five years after it was recorded. I think you recorded it ages ago.
+
+22
+00:09:07,980 --> 00:09:09,870
+Scott Tolinski: Yeah. 2009 long time ago.
+
+23
+00:09:09,919 --> 00:09:15,720
+Unknown: 2012. But I was convinced this is gonna be like, too old, but it really isn't. I just sketch hasn't,
+
+24
+00:09:16,649 --> 00:09:18,390
+Scott Tolinski: hasn't. No.
+
+25
+00:09:18,510 --> 00:10:01,500
+Unknown: So I'm doing a designer's website and like, make it blue. Actually, any designs out there, what I did was add sketch kind of on my computer, figuring it out, and still couldn't really do much good stuff. But why did was I started finding websites online, which I loved that stripe was one. And I would just try and make it pixel perfect and sketch. And the philosophy was that you've got to know what it feels like to create a masterpiece. So I think you could throw enough shapes around, sketch your day, and you'd really get you ready to get nowhere. But I would just duplicate these sites pixel perfect and slowly you sort of realize, all right, that's how to do a button or that's how you add a show. Whatever. I don't really Life would be nice.
+
+26
+00:10:01,739 --> 00:10:19,710
+Wes Bos: That's I love love hearing that that's exactly how you should should do it. Like I did the same thing with like implementing an encoding, like, just do it pixel perfect. And you're going to learn so much along the way, rather than just trying to grasp but these like sort of abstract concepts that you often will find in a tutorial. Yeah,
+
+27
+00:10:19,710 --> 00:10:32,850
+Scott Tolinski: and I was gonna comment on your design overall, like, specifically on, you know, the Kanye story website? I mean, it seems like you do have some design chops there. Do you have any design background? Or is more or less just all self taught?
+
+28
+00:10:33,049 --> 00:11:24,659
+Unknown: That's actually such a big compliment? Because I ever I felt like I had an inferiority complex with my designs. Yeah, I look at that 140 the site for the canvas project, honestly, like, it just it sucked for about a month, I was just trying to redo it. And I guess it's your practice. And I think the skill I've got is, I'm really not afraid of copying stuff. And it's not it's not like a bad thing. For example, with the refactoring UI guys like, I know, you guys are big fans, and they show you some amazing design, just copy it and change it so that it's your own thing isn't how I think if we learn, just going back to the whole copying thing, there's that's how I got the idea from this writer called Hunter S. Thompson. And he used to copy his prolific writer. Oh, yeah. And he used, he copied out The Great Gatsby word by word, the whole book. And that's what he said. He said, like, that's how I learned, I just copied out the best things in the world. And you
+
+29
+00:11:24,750 --> 00:11:28,590
+Scott Tolinski: get that. Yeah, he's a, he's an interesting guy.
+
+30
+00:11:32,490 --> 00:12:36,360
+Unknown: Yeah, I'm not sure how good he would be a web developer. I site goes live. And I think on the first day, we put it on production. And it sold just one we sold one canvas. For me, that was amazing. I was 20 years old at home, and the first money had ever come through from stripe, and is another kind of game changer. I think, yeah, he talks about this. But you know, the first little bit of money comes in and you sort of realize, you know, I can actually use my development skills to find makes me cool people will pay me and I don't necessarily have to get a traditional job is a big thing. So the site kind of 140 canvas that rolls by and to be honest view, the site pretty much just died. But it was it was a everyone starts there. Like there's no kind of, actually this is a what analogy. So I look at success a bit like, and then all your failures are like the 140 Canvas, Canvas project or this, they're just bricks it and you have to lay them in, and then you end up maybe a few years later or five years, 10 years later, with a bit of a finishing.
+
+31
+00:12:36,720 --> 00:13:00,240
+Scott Tolinski: I think that's a great way to look at it. And we hit we talked about failure before. It's just being like one of those things that you have to get through if you want to push on, you want to do and that way, I'm such a huge fan of that technique of just doing things, figuring out what the problem is. and growing from that, that problem rather than letting that problem hold you up or define what your your skill level is, or anything like that.
+
+32
+00:13:00,419 --> 00:13:18,840
+Unknown: 100% Yeah, I couldn't agree more. So cameras printed out the way. And then I'm lying in bed one night, and I've got my just looking through Twitter is one of those bad habits. Javon go riddle? Yeah. And I saw, this is Donald Trump dating site, which had kind of going crazy on Twitter, it went viral, opened up the site.
+
+33
+00:13:18,840 --> 00:13:20,610
+Wes Bos: That's actually how Scott met his wife.
+
+34
+00:13:20,970 --> 00:13:23,580
+Scott Tolinski: No, no, please don't start.
+
+35
+00:13:27,090 --> 00:13:28,679
+Unknown: But the site I load up.
+
+36
+00:13:34,649 --> 00:13:35,789
+Scott Tolinski: No, no,
+
+37
+00:13:36,029 --> 00:13:36,570
+Unknown: I thought that.
+
+38
+00:13:38,429 --> 00:13:39,179
+I know that guy.
+
+39
+00:13:41,940 --> 00:13:47,159
+And I looked at the site, and it's just a load of rubbish really is that awful site of whatever you
+
+40
+00:13:47,159 --> 00:13:52,289
+Scott Tolinski: think I got, like, right away the dating site. I'm sure it got hacked.
+
+41
+00:13:53,700 --> 00:15:15,659
+Unknown: I look at it and it's getting like all this attention. And I think forget Trump, it's really kind of brilliant idea. Because you're just leveraging a massive audience, massive fan base, which is already built, and they're just piggybacking on it, and they're probably doing really, really well. So I felt like Alright, what could I do here? Like, I want to make more websites and data and websites. Good challenge. So I started writing down viral ideas. Harry Potter in the UK, Brexit really big thing. So I thought, What about a Brexit dating site? Maybe that's fly. And then I'm a huge Kanye West fan. So I felt like you know, dude, what you you love? I know a lot. Let's try that and also maybe I'll meet someone at the same time. Who knows. I the next day I wake up at a bit I buy the domain easy Dayton. And as a backup I also bought Brexit dated but never got used. And I put up this pre launch page online. It just says a dating site for fans of the genius Mr. Kanye West, coming soon, and then underneath I wrote Taylor Swift fans are banned from this website. I feel like with the sings that that line was essentially, you know, a platonic gesture. No one's ever going to I'm never going to play. It just gives a little hook for the media to kind of get their teeth into. Yeah, I
+
+42
+00:15:15,659 --> 00:15:29,850
+Wes Bos: think in Oh man. I should say that. For those listening Yeezy is a Kanye West like his own brand. It's like a dudas meets Kanye. He has he's got like famously. Do you have any Do you were uses?
+
+43
+00:15:31,380 --> 00:15:34,049
+Unknown: Yeah, kind of embarrassed to but yes, I do. I wish.
+
+44
+00:15:34,549 --> 00:15:43,830
+Wes Bos: Okay, I've got a couple pairs too. So he's got these like silly shoes that are actually super comfy. And that's what easy is so easy dating calm. I should
+
+45
+00:15:43,830 --> 00:15:46,409
+Unknown: have I should have made that clear. Actually, it was just easy dating.
+
+46
+00:15:46,439 --> 00:15:48,179
+Wes Bos: I think it was easy that daddy sorry.
+
+47
+00:15:48,210 --> 00:18:42,050
+Unknown: I think the thing was, this is a funny thing that if I bought a.com with easy in, it was like 10,000 20,000. But for some reason, the dating domain just hasn't like hasn't taken off yet. So it was about seven bucks. Alright, so then at this point, I was doing some work, some really simple development work for a payments company just a couple of days a week. And to go I live in at this point, I live in my parents in Portsmouth, which is really South England. And I have to get the train up to this company each day, come back, and I'm sitting in this meeting. And my phone rings in this in this payments meeting wasn't really to present in the meeting to be honest. And I turn it off, and then I turn to the side and it rings again, I turn it off and then attach to this meeting. And I check my own. I had email set up on MongoDB. I think, again, it just shows I guess my naivety that people would probably use MailChimp and stuff I just didn't know about that stuff. So I was just saving everything to Mongo, and I checked the database. And there was like 15,000 emails in there. So I googled, I googled Kanye West's name. And suddenly it's everywhere like Fox News are talking about it. MBC news, MTV, I get the train back home and like hundreds of unread emails, people are trying to get ready for interviews, TV interviews, radio interviews, everything and oh my god. Little did they know that it was just a 21 year old in his pajamas at his parents house, which is a landing page one day, I should actually add that I to kind of spark off all that media stuff I just posted on Reddit. It was it was that simple, really. And post got about 700 up votes. And I did it the night before us and I went to work and never really checked and I think an earlier break at work. I just emailed it off to a few journalists. And I think it's kind of funny that with the right idea, I guess that you don't really need to kind of try that hard. And maybe that's the wrong message to give out. Yeah, something is just kind of fly I suppose. So had all these emails in this in this email list. And it suddenly hit me that I really have no idea how to make this dating site as getting the train back into London. And on the train. My friend texted me he was like the BBC, you want to talk to you right now. They're talking about you on Radio One, like, you've, you've got it, you've got to talk and I was on this train. So I try to call the number but there was no service on the train. So I couldn't get through to them. And at that moment, I was just thinking, I'm blowing an opportunity here. Because I'm trekking into London every day, I someone's got to build this site. And add to that night, I got back home and I called my boss and just explained to him that I was going to leave because I was making this this carny dating site. And he liked me. He wished me luck. He was brilliant about it. I think he kind of kind of got it. I guess. He
+
+48
+00:18:42,050 --> 00:18:42,780
+Scott Tolinski: kind of got
+
+49
+00:18:44,670 --> 00:19:20,520
+Unknown: I'm not sure. I really don't know. He was a cool guy. So next day, it hits me Alright, I've got to make dating site now. And at this point, I'd been coding for about eight months. And again, like via kind of got over the hurdle where I felt like, you can actually do web development. I still felt like apps and stuff and complex sites that just for the geniuses, I could never do a dating site. It just seemed inconceivable. So the only thing going for me really was I had done with this course. And I had tasted What was it again? What was the restaurant? What was the restaurant? In LA note?
+
+50
+00:19:20,640 --> 00:19:35,330
+Wes Bos: Dang, that's delicious. So on my learn node.com course we build a like a restaurant review. So you create a restaurant, you can update it, you can comment on it, you can review it, like you get the point. Right, so the standard app that you sort of build in that tutorial.
+
+51
+00:19:35,880 --> 00:22:43,380
+Unknown: Yeah, so I had I had dang that's delicious. Open on my computer on localhost 777. And I'm just thinking, alright, I've done that course. How do I maybe transition that into a dating site and it's I realized this time afterwards, it's called crud, which again, I had no idea of at the time, but essentially, you can kinda it was a bit of a similar thing because I'm where's this course you create stores, and then you can delete stores. You can like stores. And it's not that dissimilar from dating. So you can create profiles, you can upload a picture, you can like profiles. Yeah, only thing is really missing, I guess were like chat and notifications. So they came a little bit later on. But I think here, a huge thing I picked up from this was like, just the importance of being thrown in at the deep end. If it wasn't for these, you know, 15,000 emails, barking at me every day to actually make a dating site, I'd have probably spent six months in react or some fancy framework, trying to figure it out and probably would have got really nowhere or done the same work. I didn't six months I didn't work. And and I think during the site, like I love this line by Confucius, he says that those who think they can and mostly think they can't both usually correct. Mm hmm. And I think that in web design, there's no better application of that, quote, If you think that you can solve the bug, you're going to solve the bug. If you don't think you can solve the bug, you're not going to solve the bug. If you think that you can make a dating site, you'll go figure it out. If you don't think you can, you won't. And fortunately, for me, I guess that my hands are tied, like I have to do it. So just slowly, but surely, that thing gets pieced together. And in node and pug and MongoDB. Same stack as learn node. And, um, I went, I had this little ritual before I release a product where I have to go to the phone shop. Because I haven't got any testing software on my computers or anything, I have no idea how to really browser test, like that kind of technical stuff. So every time I cycled down to to Vodafone, the phone company, go into their shop, and I say to them, I'm just browsing while I load up the site on all these different iPads. And then I'll make, I'll make a few different accounts for each of the devices. And just test it and pick some messages around test it test that it's all working. So I get the phone shot. Here we go, like sites ready to go. Put it online. And for the first It started off, like people flood into it 10 2030 users, people are matching, I'm talking to goes on my own dating site is going crazy. And then suddenly, and when I've got a bit of a bone to pick, yeah, suddenly, what happens is that left, right, Center, the images just stop vanishing from my sight profile images disappearing one by one. And it's in plain sight was that I think I'm right here, feel free to correct me. But the way that you save images on the Learn node course, is that you see to Heroku Heroku or like you saving to a local file storage or something. So I just completely copied that using moltar and stuff. But I think that that's like a temporary solution. I'm sure you probably mentioned it on the course. I
+
+52
+00:22:43,410 --> 00:22:43,920
+yeah.
+
+53
+00:22:45,510 --> 00:23:04,410
+Wes Bos: Because the way that the course works is we just save them to the server not using like s3 or or cloudinary or anything like that. And if you're using one of these like immutable hosts like Heroku they just get wiped out when you when you read it. Yeah, because it's it's push only right. So sorry about that.
+
+54
+00:23:06,420 --> 00:24:28,230
+Unknown: So yeah, that's what happened to me I kind of the first iteration of easy dating was a dating site without any images on i'd sent out an email saying Alright, guys, like a little messed up here. I spun it as the service of crash too much too much traffic in I came back two weeks later, and I figured out cloudinary was solution. So I kind of figured out how to do that and put up the site live. And again, it goes pretty well. Like I get emails from people they're saying, I've just had my first date on easy dating. Thank you so much for the say. More press coverage. It's, it's going good. But I think what kind of struck me at this point was I made this a it was going well but I still felt really out my depth. So I had no real market and experience at this stage. I was fixing all the bugs you know, most dating sites probably have millions of investment and you know, 50 employees I was just trying to work it out day by day and I was really tired as well because of the intensity of making the whole site and then it Yeah, it was taking its toll but it that way. So slowly but surely, you know the traffic was at like 30,000 and it just drops day by day. And I had a theory at this point that I can save this I got one kind of place to save the save the dating site. And it was way better if I get Kanye West and both like that's a surefire way of transitioning is
+
+55
+00:24:29,370 --> 00:24:42,450
+Scott Tolinski: reasonable a reasonable person would say that's hilarious but if I just take Kanye West involved I actually think that's the solution for for tutorials here. Let's just get Kanye involved
+
+56
+00:24:44,520 --> 00:28:25,680
+Unknown: Yeah, numbers would spike I think. So. I didn't know what I was doing here. But so I started out on LinkedIn and I would just message people people we worked at easy just be like, by chance know this Kanye West fellow and didn't go anywhere to go interview, I think I spoke to my dad and he said, Look, you know, you've got to do sweet pretty granted to get him get him interested. So I for like, what if I write a song, or if I put up a plane or something good. And then it hit me that Kanye just tweeted the day before that he was opening offices for his new company easy in New York, London, San Francisco, and Wyoming. And I thought, I've got it, this idea just flew to my head. What about if I put up billboards in these four locations, send phone me, Kanye West, I've got ideas, followed by my phone number. And as for it comes in, and like I shut it down. I was like, Ah, you're never gonna do that. You're never ever gonna do that. And it just for the whole day just kept like, I don't know, kept coming back to be like, what if? What if you did it? So I started, I started calling billboard companies, I would call them up and I'd be like, hey, how do you get a billboard up? How does this work? How much money does it cost? How long can they stay up for? And I just realized that it's actually so cheap. So for a billboard in Times Square in New York for 24 hours, it was like $670, which I thought was crazy. So I I kind of just, I guess I followed through is that I lined up all these billboards for going up at the same time, like suicide. And I had a problem, though, because I didn't live in any of these locations. So originally, I just felt like, Oh, this will go huge. And people will take photographs. But I had done enough projects to know that things just don't really work out. So I did a bit of them use my brain look, but I had this Mongo database, all these users who were on the dating site, and I did like a little query for locations. So I found like, Alright, in New York, there's 250 people on the dating site in London, there's about 200 people. And I just pulled them all out and sent them emails being like, Hey, I'm putting up a billboard in Times Square by chance, could you swing by there after work, and take a quick photo and send it to me? And people did, I guess, I got, well, the bill was about to go up. And I'm primed and ready to go. And I get an email into my inbox from the company who Lamar who are going to be putting these things up. And it says, like, we can't put up these billboards. They're blocking Kanye West's right to privacy. He's been told by the legal department. And obviously, like, Damn, I've already paid for the London one at this stage. This is all going wrong here. Like I have to do more together. And when I went downstairs, walked downstairs and I talked to my dad, and I was thinking, maybe I should pull out maybe this is all too big for me. And he kind of says, Don't worry, we'll figure it out. You always figure this stuff out. So we're both start calling the Lamar wood company. My dad's pretending he's a BBC journalist following the story. Hey, look, I'm fine. This kid. Right, we've got camera crews outside right now. And but they're not budget put it that way. They're just not. They're not. They're not buying it. So we were we came to a sort of compromise that we could see, instead of Kanye West, Mr. West, not really using his name. And they said, Okay, that's fine. So 10 minutes later, stresses over the billboards, go live, get all the photographs for you. I put out some tweets, email all the journalists who I kind of had lined up. And then the next day, I see Kanye, his name trending on Twitter. I was obviously following it all quite closely. I was thinking, why have I done it?
+
+57
+00:28:27,720 --> 00:30:01,230
+has it taken off? And then it turns out, no, it hadn't. Because what happened was, this was exactly the same day. I did the billboards was the day when I'm not sure if you guys would remember. But Kanye did that TMZ interview, where he says slavery sounds like a choice. Yeah. So that kind of hijacked my story a little bit. And I think he had other things on that timing, but I wouldn't Well, yeah, it's what it is really, I think I got really lucky with the first the first dating site, and maybe a bit unlucky with the second one, the second billboards, but I was chatting to my dad. And we just felt like we put in all this work. And we shouldn't just give up. So we started trying to track down the headquarters of easy on Google Maps, weed. And we sort of found roughly where it was, but there was no addresses or anything. We found companies nearby. And we just started calling them up, explaining that I've made this dating site and I was young and you know, put up these billboards. And if you could do and phone gets put down on me and then suddenly this this young girl just says yeah, like my friend works be easy. I'll I'll sure I'll send this over. So I think that was a bit of a lesson. I guess that you know, all the fancy stuff like trending on Instagram, going viral press media coverage, whatever. It doesn't. It doesn't really get you anywhere. Like all it took was a lot of hard work. We found the numbers we got a breakthrough and, and a couple of days later, an email drops into my inbox from this, this contact easy saying Oh, we've just seen everything like we'd love you. Talk to our CFO,
+
+58
+00:30:01,950 --> 00:30:02,760
+Wes Bos: oh my gosh, Chief
+
+59
+00:30:02,760 --> 00:30:03,840
+Unknown: Financial Officer.
+
+60
+00:30:04,380 --> 00:31:20,070
+Wes Bos: So before we hear about what's in that email, story's insane. We got to stop first sponsor real quick, which is a century century does all of your error and exception tracking, we've talked about them a lot on the website, you install a piece of code, and then errors that happen, we'll get logged to the Sentry back end. And you can sort of see, I'm gonna highlight one feature of Sentry, which is custom queries. This is pretty neat. They have the way they say it is dig deep, no shovel required. So if you want to know like, how often are these errors happening, if you want to search for specific errors, you can use their custom queries editor here and you can search by file name, or, or function, you can sort by count of how often it is you can aggregate them, you can search where the country code is not know if they've got some good examples on the website here. So if you've got tons and tons of data, sometimes too much data is hard to sort of dig through and figure out like what's going wrong? And is this actually an issue or not. So centuries custom query, which is available on the business plan is pretty nifty. You can check it out. So try out century@century.io and use the coupon code tasty treat, you're going to get two months absolutely for free. Thanks so much to Sentry for sponsoring. Alright, Harry, what was in that email?
+
+61
+00:31:21,090 --> 00:34:23,910
+Unknown: says this skill Actually, I maybe shouldn't say a name, but yeah, sorry. This go Ashley said, given see if I watch the chat, let's like light up a call. And then she sends through a WhatsApp message, which was actually open. This is from Ashley just I got sent this WhatsApp message. And it's it's essentially I think it was the easy Connie's like group chat and his office. And they were saying, I can't remember exactly what it said. I think it was something like, like someone showed us to Kanye, let's run a Let's run a, like a drop in what's it called, like a taster at the office? Let's see how it goes directly to Kendall Jenner. Someone sent it to Kris Jenner like, and obviously Oh, my God, this has really taken off. So the CFO calls we have a chat. And lovely guy gave me lots of time on the phone. He said we'll keep in contact. Like we had more back and forth on email. He I think he to be honest with you, I think he probably sussed out that I was just this really kind of naive, 21 year old, and I was nothing to worry about. Part of me thinks that I think he wanted to call me check that it wasn't like some big company who were gonna make a big play and like steal their brand name or something. And he was lovely. But I think he kind of saw me and he was like, Oh, no, this guy's harmless. He's, he's not going anywhere. So we have more back and forth. And then suddenly he stops email it, I was like, some odd maybe he's busy or whatever. But then I later found out from the girly, lovely like gala easy that they'd be huge changes. So loads of people would kind of left the company. I don't quite know why. But there was just big changes that easy. So this guy there who I was kind of chatting to. He left and as in the cold, I guess to a degree. So the site like Ron was on. I also from that, like I started getting loads of calls people saying, Do you want a job? Like, do you want to do joint joint work for us. So I had the site and I was still doing that. But at the same time, I was still not a great developer. And I felt like I could go into a job here kind of an a good level. And as a web developer, which would be a transition from economics, I could like pick things up. So I started out as a web developer for a bit site in the background. And then slowly but surely, I guess I kind of just, it's a little bit sad, really, I kind of just like slowly lost interest in it. And, and then I accidentally deleted the database, which didn't go too well. And I guess that's more or less the story. That's kind of the whole year and a half of dating. And I think although, you know, there's the end isn't as crazy as it could have been, I think the whole of, of like year and a half doing that was just training. And I think that the best thing to do, if you're in development, if you're into startups, whatever, is just getting your train in early because the first things don't really go well. And if you can train in like a jujitsu, a real life situation, a real life combat situation, you're going to get so sharp so quickly. And you know, oh, boy, maybe it didn't pan out as I wanted to. It was a crazy thing. And I think it Foster, would it be like four or five years? I'd say, yeah, I
+
+62
+00:34:23,910 --> 00:35:11,100
+Scott Tolinski: think this is the perfect example of just getting your hands dirty and making something. I mean, this is, to be honest, an extreme example of that I've read you you are you got way further than most people who are just going to hack together something and that's, that's hilarious and amazing. It's absolutely the whole story is absolutely amazing, left to right. But I think it just goes to show you that even as somebody who's just picking this stuff up, and yeah, learning from a perspective like that, you can make amazing things with this technology. And you can make things that are Get all the way to Kanye West with this level of skill. I mean, it just goes to show you where our tools and everything are in the year 2019. It's amazing. Oh, yeah, yeah,
+
+63
+00:35:11,190 --> 00:35:52,610
+Wes Bos: it's such a crazy story. And like, it really reminds me of my first thing that I built, which was this daily deal aggregator that, like, I just put it together for myself. And then I shared it with a couple friends and then boom, it blew up. And before I knew it, like, people are saying, it's a startup, and I had investors emailing me and I'm just like, like, Whoa, whoa, whoa, like, I'm, I'm very under qualified for all of this. And I'm sure you would say that about your story as well. But if you just just keep stabbing at different things, and before you know it, something's gonna catch. Something's gonna work. Same thing with my like, YouTube videos, I was just making random blog posts. And before you knew it, one of them caught on and go, Ah, this is one of the the kind of the cool things.
+
+64
+00:35:52,920 --> 00:36:25,940
+Unknown: Yeah. 100%. I think of what Scott said, like, to the outside, this is magic. You can someone looking at it from the outside be like, wow, they didn't say, how do you do that. But once you start looking at development, like bit by bit and really take it step by step, lesson by lesson, I guess, you just kind of figured out like, it's not, I really did have this complex, where I just felt like it wasn't for me, and I wasn't kind of the sort of guy who would ever do this sort of thing. And it got thrown into it. And it turns out, right. Wow.
+
+65
+00:36:26,010 --> 00:36:52,230
+Wes Bos: So the story is crazy. But like, like what made what made you think to like, man, I gotta, like, make an entire website for this, like the Kanye story calm. It's not just a blog post. Like it's an experience. You've obviously got our attention. You've been on some other blog posts, like, you've got this like, ability or like, I'm gonna take this and use it as a huge lever to sort of forward my career like, Is that is that the plan and like, what are you doing right now?
+
+66
+00:36:52,320 --> 00:39:42,960
+Unknown: that's a that's a really interesting way of looking at it. I had, I think, with whatever I do, it always starts off with Sony, which is like, which is quite small. And then I just end up holding it and holding it. So I had the Konya story broke for about six or seven months, but just never kind of got around to finishing it. And yeah, I guess, the extra little details that help. No, I think like the Kanye story, I think is compartmentalised. I think that's you know, that part of my life is over. There's a grapevine in my life. I don't want to try this story around I think this is the the premiere, I guess of the story is going nowhere else like it's I don't want to, you know, be the guy who bangs on about the same thing. And my parents are sick of me talking about it, to be honest with you. The way I did find is that this just fueled me a lot. So it gave me I kind of learned, I can do development now. And I can actually take money on the internet. And I got really into marketing because the whole billboard thing, it was kind of created marketing. Yeah. So after the Kanye site, I kind of looked around like what can I What can I do next. And I love the phrase and in business life, I guess that build the product that only you can build, write the book that only you can write, film, the video series that only you can film. And I think that it's a way of escaping competition is through authenticity. So if, for example, look at maybe the Joe Rogan podcast, he's kind of his own guy, like there's no, you can't compete with Joe Rogan, because he does all these crazy things like you jitsu he's really into free speech, comedy, etc. And it's in a way, I guess the same with you guys making the courses. Like if Scott Tillis his level up Tapscott kind of pulled from the air, or Wes Bos courses got pulled off the internet. Actually, it's pretty bad is that because people would probably still find. But I think just backing up from the Joe Rogan thing, I think that the idea with marketing is, is to kind of Actually no, sorry, a few mistakes in here. But we'll we'll run for it. I think you're kind of selling your own, like your own brand, in a way your own voice, you're in style. And it's really authentic. I think that a good test is, let's say a venture capital company came along hundred employees, millions of pounds of investment. Could they replace you? And to be honest with you? The answer is probably like, I don't think they could people just like your guy's style. So and also, another example of that is refactoring UI to Adam and Steve, the guys who do that thing, like, no matter how much money you have, you're not going to be able to kind of get rid of them. Like they just do it their own way. And people love it. So the idea of this marketing example site is just to do marks in in my own way, I guess, like, try and conjure up my own style, my own voice and make it my own. And if any developers want to learn a bit more about marks in it, definitely maybe check it out. And he will let you learn it. He thinks,
+
+67
+00:39:43,050 --> 00:40:30,960
+Wes Bos: yeah, I was talking to Scott about that on Friday as well. I was like, the podcast is obviously like, we're good at web development. We can talk to you but like, people listen for that, but they also listen just as much for Scott's breakdancing stories or barbecue Tips or Scott's transitions into ads and things like that. And that's, if you can sort of like double down and make it is who you are. Like, I even think like my pictures of barbecue on Instagram and whatever it is that I'm super into right now, I think that's just as important as sharing web development stuff. Because people tend to latch on to that as well. And they just like you as the person, which I think is kind of interesting way to go. Because then you become, it's hard to replace that kind of thing. Because people like, Scott, right, yeah, I
+
+68
+00:40:30,960 --> 00:41:27,360
+Scott Tolinski: mean, everybody's different. And those things that that make us different are the things that are interesting. Now, whether or not uh huh, you know, set an index on a MongoDB database or something. But I wanted to talk a little bit about like the the learning aspects of when you were learning to code. Specifically, you would mention that Code Academy had given you the angular thing, I actually really love Code Academy system I like highly recommend for people that are learning to fly through the cutting Academy courses. But I think it was just so it's funny that you mentioned that it was very tough to know what to do next after HTML, and then it sort of threw you into the weeds with Angular. I'm interested in that that period where you were like, Alright, I want to build web stuff. And I want to learn HTML, where you just sort of flying at the whim of whatever, the instructors the computers, were telling you to learn next, or Were there any particular things that influenced you in the technologies or the resources that you chose to learn?
+
+69
+00:41:27,630 --> 00:43:01,800
+Unknown: Yeah, that's a great question. So specifically, the reason why I wanted to learn code was to make a website for my book. And this is our is our project we were doing. So I had HTML down from that point. And then there's Dreamweaver, which I had the Adobe suite of products, like Premiere Pro, and all that. So they had Dreamweaver. And again, I didn't have those no friends, there was no, no podcasts like I was listening to. So I just kind of thought that Dreamweaver was the whole of the internet, it was the only ID I guess, the only text editor, so I was fumbling around. And yeah, HTML, I think for that, I paid some developer on Fiverr, to do a little bit JavaScript for that project. But thinking back to Code Academy, all I really remember was just how kind of I think how much of a black hole it felt like, in reality, all I really had to do was just go into forums and ask people for help. But I didn't ever think that was a possibility at the start. And when I figured out that it was I would be on Reddit every single day. Like Reddit web development, I've had a pre that most hated person on Stack Overflow for the last last year. It's tricky to think back, I guess, remember, it being a big, slow, slow grind. Until I kind of found like, the net ninja. I did a lot of weather stuff. I did. Lots of level up tuts. I think those are probably the three which kind of I mean, the net Ninja, for example. So I don't have to keep plugging away. No, no, yeah,
+
+70
+00:43:03,330 --> 00:43:03,900
+Scott Tolinski: absolutely,
+
+71
+00:43:03,960 --> 00:43:29,610
+Unknown: it's up. But he does level up touch this as well. But this playlist, so you just feel like you get into C pants. And on codeacademy. I just didn't feel like I was in safe hands. I felt like I was paying on Code Academy. You can you can pay for like the premium where it's like five pounds a month, and this developer will kind of help you out with your problems. So I was paying that. And he was helping me out with Angular. And maybe, I don't know, I can't really remember it too. Well, angular was just a bad time.
+
+72
+00:43:30,630 --> 00:45:06,840
+Wes Bos: In my career, I think. And we all have a checkered past with Angular. Yeah, that's super interesting. Uh, one thing I do want to do is stop real quick for another one of our sponsors, which is sanity@sanity.io. So what is Sanity? It's the ability to build a website with structured content. So what does Where does your data go? When you're trying to build a website with Gatsby or next or PHP, or pretty much any language you want to do? Where do you put your content? So Sanity is sort of to two parts. The first is Sanity Studio, which is is what you get when you log in, you can create instant you eyes for complex data, you get real time collaboration, it's all stored in what's called portable text, which means you're never going to be locked into a specific vendor, which is really important to me, because you should be able to get your data out if you want to do it. And doing that in a standardized way is, is key. So you don't have to like write some sort of adapter to put it into another CMS. You can customize it back end with react j s, which is cool, because like it's a hosted service. But if you do want to build custom UI eyes, you can do that with react js. And then the other part is the content back end that they have, which is a powerful API, you can query all of the data. It's fully GDPR. Eu hosted. Pretty nifty. If you're looking to build a website, you need something to do with your structured content, go to sanity.io slash syntax, and you're going to get double what the free plan normally is. Thanks so much to Sanity for sponsoring.
+
+73
+00:45:07,020 --> 00:46:04,140
+Scott Tolinski: So I'm really interested in a lot of the I don't know, the learning aspects of your journey here and the things that you had to struggle through. I know you mentioned some of the bugs that showed up. And then some of the things that were just born out of, you know, being a new developer in learning through these things. But I'm interested in in your sort of process for pushing through bugs and figuring out what the problem was debugging those kind of situations, because those aren't skills that are easy to necessarily just have out of the box, debugging and troubleshooting skills. So I'm interested in what you did to pick up and understand how to solve problems, because that seems to be definitely a blocker. For a lot of new developers, when they hit a problem. They don't necessarily know where to go. I know you mentioned being hated on Stack Overflow. And, you know, being a regular visitor, is that is that to sort of your approach is to just ask a lot of questions, or did you have another approach to solving bugs? And
+
+74
+00:46:05,160 --> 00:48:07,710
+Unknown: that's, again, really interested in make me make me think back to this. So one learning right now from that is when I when I worked for this subsequently, I did a bit of work for this some Development Agency in London could crowd form. And I'd be kind of like more of the junior developer and there'd be this more senior developer that would Leo, I used to ask him loads of questions. And what I realized during the back and forth with him was that he doesn't know the answers either to these things that he can't debug my thing either. But what he has got is just more tenacity, it kind of comes back to the if you think you can solve the problem yourself the problem, and he would just Google for 10 minutes longer than me, you figure it out. So with the specifically with the the easy dating site, I did have a system, I ran into so many things that I got together a system, there was an online group called work in progress, which I was a member of. So I post everything on there. Anytime I had a problem, essentially, I'd write it out as in like a title code embedded into the thing. And I post it on work in progress, then I post it on Reddit web development, then I post it on Reddit and node. And if it's specific to Mongo, I post it on Reddit Mongo, and then that was kind of it, I closed my eyes, an hour later, I'd get at least one replay. And maybe I felt like a bit of a spammer doing that stuff. But to be honest, I was a bit desperate and people which is really, really nice. I think that's the thing about development is that if you can somehow find like a mentor or a little online group, like whether slack is a good example of this, people really love to help you. So when I was making the chat for ease dating, he's the single check it so it's by pusher. I'm not sure if you have heard of it, but it was in its infancy. And they were so stoked to have like someone used their beta product. They pretty much just handhold me through it. So every single day, I'd genuinely every single day, I'd be messaging on this slack group. Alright, guys, how do I do this? How do I do this? And they just walk you through it. And you're kind of there. So I really, I guess, struggle around enough and ask enough questions, and you will, you'll work it out.
+
+75
+00:48:07,859 --> 00:48:46,140
+Scott Tolinski: Nice. Yeah, that's, I think that's a great way to look at it. Because too often times, there's like a sort of famous comic of like a guy mining for diamonds, and he's hitting the diamonds. And then diamonds are like an inch away. And he's giving up. And then the guy below him is mining for diamonds. And he's like not giving up and he's going to be the one that hits it. I mean, there's certainly like the the person who is the most stick to itiveness. Like, perseverance to push through these things usually walks away with the knowledge and metaphorical diamonds so to say, Yeah, no, I think that's a great lesson for new people is to just push through it Work, Work Work hard to get that that knowledge. Yeah, yeah, absolutely.
+
+76
+00:48:46,140 --> 00:48:57,090
+Wes Bos: I think that's really all the questions I have. Is there anything else that you want to any wisdom that you want to impart? You seem so prolific with your, your English accent?
+
+77
+00:48:58,830 --> 00:49:40,500
+Unknown: Wow. No, I think the only thing I'm in no position to give any advice. The only thing I would take from this story is that I really sincerely think that the more clueless you are, actually, this is what I say that every single person out there starts off and they're making it up as they go along. No one likes we're talking about Steve Jobs, Elan, Musk, Scott Tolinksi, West, but no one knows what they're doing. And just understanding that is a really, it's really kind of refreshing. Because you also don't know what you're doing. And then slowly but surely you you'll figure it out. And you'll and you'll get there. And I think the only thing I take from this story is if I can do it, anyone else anyone else can do. For sure.
+
+78
+00:49:40,740 --> 00:51:03,450
+Wes Bos: Yeah, I love that. It's true. Like I I really don't know what I'm doing like any any more than than anyone else. But I do know that I'm good at figuring things out and I'll be able to sort of make it happen. I think that's the attitude that you need. So when you're sort of cowboy going through all this stuff. Alright, we're gonna get into some stuff. Sick pics, sick pics are pics that are sick. And I don't know if you you have anything, Harry but I'll start myself off here. I recently switched to the Logitech MX two master MX Master to something like that. It's a, a mouse, Bluetooth and wireless USB available. And it's it's pretty nifty. I've been using the Magic Mouse for a long time. And I love the Magic Mouse. But I thought I just tried this one out. And it's really, really smooth. It's got all these different buttons that you can customize. I'm maybe three or four days in so far, and it's taking a bit to get used to it. I didn't dislike immediately love it, and I still don't immediately love it. But I really liked the ergonomics of it. I really liked the software that comes with it. And I think that if you're not getting a Magic Mouse, which is super ergonomic, the MX Master two is probably the best mouse that you can possibly get. And that was confirmed by very many people on Twitter and Instagram saying I've had this one for a year and I absolutely love it. So check it out. If
+
+79
+00:51:03,450 --> 00:51:42,840
+Scott Tolinski: you need a new mouse, I'll put a link in the description, guys. I have a thick pick, which is a TV show that I used to love when I was a kid. I don't know when this was on originally. And now it's back. I don't know how long it's been back for. But I recently found out that it's back. And that show is battle bots. I don't know if you've ever watched a battle. But is that what the robot robots are fighting in a cage? And yeah, awesome. I mean, the production value is just so nerdy and whatever. But it's so much fun. And I have such a lot of fun watching the robots beat each other up. So battlebots has returned. And this is one of those things that I really love. So that's going to be my sick pick for the day.
+
+80
+00:51:43,020 --> 00:52:00,810
+Wes Bos: That's how the the mythbuster Grant imahara that's how he got sort of into the whole Mythbusters is that he was like a champion at battlbox interest. And he's like just like one of those kind of guys that can build stuff like Harry, do you have a sick pick?
+
+81
+00:52:00,870 --> 00:52:07,320
+Unknown: I do. Yeah. Is is one the the maximum number of sick picks people can take. I could have to but I'm not sure where streets is
+
+82
+00:52:09,000 --> 00:52:10,290
+Wes Bos: your only time on the show.
+
+83
+00:52:11,760 --> 00:53:20,640
+Unknown: I'm gonna get a sick pick. The Twitter's me good Twitter, Demetri keetsa. It's by this guy called Benjamin grasa. And it basically hides all your twitter and instagram numbers. So your follower count your likes and your tweets, your retweets, your notifications. Oh, I started using it. Actually, when I when the carnia story got so much attention. Originally, I downloaded this thing it kind of gives you anxiety seeing all these messages or isn't notifications. And I didn't want to make like stuff like followers or things like that a goal. So I think it's really healthy. And although I guess if you look at your Twitter more like a business you probably do want to know, but um, it helps me a lot and you can always turn it on and off. And the other thing I will throw in is there's this boxer called Tyson fury and GS and he's just got a dad who john fury and a video a week you're on YouTube. It's called Camp life. Big john theory gives tour of vintage caravan. 13 minutes long and honestly, there's more wisdom in in big john fury than probably the horror that United Kingdom put together. check out that video, you'll learn a couple of things I think about about life. Oh,
+
+84
+00:53:20,700 --> 00:53:24,630
+Scott Tolinski: yeah, I like that. Cool. Yeah, put that on camper van
+
+85
+00:53:24,630 --> 00:53:54,960
+Wes Bos: life. I have a sick pet coming in another one about somebody who travels around in a van as well, which is loving it. I'm not gonna spoil it now because that's my sick pick for later but I'll check this one out. Thank you. Awesome. Well, now we're moving to our shameless plugs. I'm going to plug all of my courses. This whole episode has been a plug for Scott and I's courses but mine are available at Wes bos.com for slash courses, including the node one that Harry used to contact contact Kanye West himself. What about you, Scott,
+
+86
+00:53:54,960 --> 00:54:31,740
+Scott Tolinski: I have a new course on level up tutorials called the dev tools and debugging that was released the last day of June and I am currently recording the next series which is going to be released next Wednesday. By the time you're listening to this is going to be to confirm July 31 is going to be released it's gonna be on Gatsby an e commerce. So if you want to be building a store with Gatsby you're gonna want to check out the new Gatsby e commerce tutorial series that's coming to level up tutorials next week or the 31st of July thank you and check it out at level up tutorials comm forward slash pro
+
+87
+00:54:31,919 --> 00:54:51,150
+Unknown: before it gets us saying that I when I started out I was you know pretty clueless and in the library and both of you guys's courses pulled me free I genuinely mean that from kind of having no idea to be in here so it's a cool moment to be on the show and I really appreciate you guys for button means a lot. Hey, we
+
+88
+00:54:51,150 --> 00:55:09,540
+Scott Tolinski: really appreciate you taking the time to tell us your your story cuz it's not only is it a wild one, but it's full of like awesome advice in awesome. life lessons and awesome dev lessons. So I think the audience is really going to get a lot out of this in terms of seeing what Yes, the power that you you wield, you know?
+
+89
+00:55:09,780 --> 00:55:41,760
+Wes Bos: Yeah, I honestly rather have like stories like that on this podcast just because like, you want to hear from someone who just did it who you always wanted, like, like sort of trail behind somebody who's just a couple lengths ahead of you, rather than maybe like I've said this before, but that's why I just don't understand why people love Ilan musk and Steve Jobs and stuff like that so much, because like, that's not inspiring to me at all. What's inspiring to me is like someone who's like, just, I don't know, five years ahead of me where I'm just like, oh, wow, like, Look, look what they've done in the last five years. I could do that in the next five years Really?
+
+90
+00:55:41,820 --> 00:56:07,530
+Unknown: Well, yeah. I said, I've recently started this marketing, project, food marketing examples.com. It's distilling real world marketing lessons into kind of short, concise summaries, as Twitter, Twitter for that quarter at good marks in HQ, where I kind of try and turn these examples into friends. So check that out. And also, I'm Harry dry on Twitter, and any questions about the show or anything, just feel free to get in touch and help out?
+
+91
+00:56:07,830 --> 00:56:12,420
+Scott Tolinski: This website looks great. By the way, another great little design. Yeah, it looks really nice.
+
+92
+00:56:12,480 --> 00:56:15,330
+Unknown: Thank you. Yes, yes. sketch for you.
+
+93
+00:56:16,710 --> 00:56:17,250
+Ah,
+
+94
+00:56:19,440 --> 00:56:21,870
+Wes Bos: that's cool. I love the way you say ah, as well.
+
+95
+00:56:23,430 --> 00:56:24,000
+Unknown: Hey.
+
+96
+00:56:26,580 --> 00:56:40,770
+Wes Bos: Awesome. Well, I think that's it for today. Thanks, everybody, for tuning in. Thank you so much to Harry for coming on. Make sure you check his website out marketing examples.com. And we'd love to hear what you thought about the show at syntax FM. Yeah, that's it for today.
+
+97
+00:56:41,010 --> 00:56:54,780
+Scott Tolinski: All right, he's, he's head on over to syntax.fm for you full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
