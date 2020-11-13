@@ -1,0 +1,104 @@
+1
+00:00:00,359 --> 00:00:22,320
+Announcer: Monday, Monday Monday open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob and Scott El Toro.
+
+2
+00:00:25,920 --> 00:00:33,150
+Scott Tolinski: Oh, welcome to syntax on this Monday tasty treat, we're going to be talking about the mysterious
+
+3
+00:00:33,860 --> 00:00:34,770
+Wes Bos: Shadow DOM.
+
+4
+00:00:36,930 --> 00:00:56,250
+Scott Tolinski: Yes, the Shadow DOM, the coolest sounding thing that exists, this sounds really cool if, like, I think we should have like a coolness meter for web tech, because the Shadow DOM certainly sounds super cool. My name is Scott Tolinksi. I'm a full stack developer from Denver, Colorado with me as always is West boss.
+
+5
+00:00:56,250 --> 00:00:57,390
+Wes Bos: Sup everybody,
+
+6
+00:00:57,390 --> 00:02:50,400
+Scott Tolinski: sup sup Wes. In this episode, we're going to be talking all about the Shadow DOM, what it is why you need to know about it, what it like means what are the pieces of it and sort of how you can get started using something web component based in your own workflow. So this episode is sponsored by one of our longtime sponsors, which is century I'm gonna highlight something really cool about century that I use in my little dashboard here. And it's this this stats tab, the stats tab shows you just how many issues and bugs are hit over a course of time. And you can see, okay, over time, is my codebase getting less and less and less buggy, or more buggy, or you can see Is there like a trend here, where there's all of a sudden the huge burst to this day of big issues and errors. And it's just a two and a really awesome graph here. It lets you know exactly what's happening on your site. And this is just one of many features like this in Sentry, because Sentry gives you amazing visibility to track your deploys to track your releases, and track your projects to make sure that there are no critical bugs happening, any bugs that are hitting the user. Any things that are happening repeatedly, you know, I see above come around every once in a while where somebody is clearly trying to do something nefarious. And I can tell from the error that is popping up in my salary. And I go ahead and I can watch that one or I can ignore it, I can see the user that's trying to do it. Maybe we want to throw down that ban hammer and banned that user for trying to do something sneaky on my site. So head on over to sentry.io and use the coupon code tasty treat get two months for free. That's tasty treat all lowercase all one word, century die. Oh, check it out. Okay, let's get into the Shadow DOM. The Shadow DOM is basically the DOM that you don't see. As is that a good way to say it?
+
+7
+00:02:51,780 --> 00:02:56,430
+Wes Bos: Yeah, it's, in some cases, you can see like what it is, and well,
+
+8
+00:02:56,430 --> 00:03:00,210
+Scott Tolinski: you can see it but you don't you don't look underneath. You can? Yeah.
+
+9
+00:03:00,780 --> 00:04:29,570
+Wes Bos: So I thought maybe we can initially just start explaining like, what is the Shadow DOM as we see it right now, then maybe we'll get into like what is the Shadow DOM as part of web components and making your own shadow DOM components. So I think the best way to think about it is that sometimes in the browser, you need to encapsulate UI, and logic and styles and things like that. It's very much like any framework that you have, you often want to like, encapsulate all these things into one nice tidy package. And the browser itself has a bunch of Shadow DOM elements that are itself. So if you think about a video or audio tag, those things will have play button, pause button, a slider for the volume, the actual viewing place, event listeners for keyboard shortcuts, all kinds of stuff that's going into it. And if you inspect element on a video or audio, it's just a video tag. But under the hood, actually, if you open up an mp4 directly in the browser and inspect that, you will see that there are buttons and divs and paragraphs and spans and inputs there are there are actually made up of all of those different elements. So that is the whole idea behind the Shadow DOM is that single elements, or single components are actually made up of many more elements, sort of under the hood, in order to reduce complexity and to encapsulate at all, we just pack it into its own one little element called the video or audio or what other elements in the browser or
+
+10
+00:04:31,320 --> 00:05:40,170
+Scott Tolinski: things like a slight lacked, yeah, input, because they have their own functionality. They have their own styles and that you've been using the Shadow DOM all along, and you didn't even know it. It's easy to look at these things like video tag, you just pop it in. And you don't even realize that under the hood, it is it's just inputs, its buttons, it's divs. It's these things that we use as the basic building blocks. And once you realize that will the default browser stuff is all just shadow DME and it's just elements, then that should really sort of blow your mind. Because then when you think about it, what other things will I mean, the video tag didn't exist for a long time and HTML. So what other things don't exist right now, that should exist or could exist? Or, you know, I mean, maybe there's a whole host of components that we haven't necessarily dreamed up in the way that they need to exist. So I think this is totally fascinating, because maybe there's a component that your your site needs that no other site in the world is going to need. And then what do you do? Well, you create your own you create your own component, your own web component?
+
+11
+00:05:41,790 --> 00:06:34,080
+Wes Bos: Yes, I guess that's the second part to this is that obviously, there's default ones that come in the browser, and they're usually kind of hard to style, that's generally when you have things like a dash WebKit appearance. Or, if you ever want to style drop downs, and you find these like, really obscure, like, the one that comes to mind all the time is input type of range, where you have a slider, if you ever want to style those things, you want to style the the button that you grab on to the track the notches, all of those things are styleable. But via these weird things is because it is a shadow DOM element under the hood. But you can there is a whole browser based API out there using for creating your own shadow DOM elements. So maybe we should like like, what's the benefit of making a shadow DOM component or a web component over just using like a rack component or just a div?
+
+12
+00:06:34,470 --> 00:07:28,020
+Scott Tolinski: Yeah, I mean, when I think about that, like, even just think about the the ones that currently exist, like what do they do? Well, they have functionality that like doesn't leak over, right? This, like, let's just use it as a drop down, you click one or whatever, the video has the play, pause, whatever, you don't really need to access that sort of stuff. I mean, you can, but you don't need to access the internals. And then there's also styles, the styles don't leak out, right, you can style the div inside of a video player. And you don't have to worry about classes leaking or overriding classes, because everyone's going to use a video player. But everyone's doesn't want to have some basic CSS class or default styles leak into their website. So it encapsulates it scoped your styles. And it basically, I think the key thing is just encapsulation. For me, it encapsulate functionality and style in a way that's like, here's this thing, and it exists in the space.
+
+13
+00:07:28,080 --> 00:08:47,970
+Wes Bos: Yeah, uh, one thing I didn't know before we did this is that you can just take a shadow DOM element, you can append a style tag with a bunch of CSS inside of it, and that CSS will just be scoped to that element. One other cool thing is, when you when you actually go ahead and create your element, the way that it works is that you, you take like an empty element. So take like an empty div, and then you you run a method called attach shadow against it. So you just grab any element on the page and run dot attach shadow. And what that will do is it will turn that element into a shadow DOM element. And then you can use your regular Dom API's to start appending elements into that. So style tags, script tags, divs paragraph tags into it. And you can also when you run this attach shadow method, you specify whether it is open or closed in terms of mode. And when it's open, it can you can access the elements via JavaScript from the parent scope. And when it's closed, you cannot so I think about a video tag that's closed, you can't access the individual buttons of a video tag. But if it was open, you would be able to have access to that. So I thought that was pretty neat that you can lock it down or still give access to the parents. So it's in my opinion, it's almost like a better iframe. Where Yeah, yeah, you can reach into it, if you want allow people to do that. Yeah, there's
+
+14
+00:08:47,970 --> 00:08:57,120
+Scott Tolinski: a lot of interesting things about the Shadow DOM and web components in general. So do you want to take some time to talk about creating your own web components now? Yeah, so
+
+15
+00:08:57,120 --> 00:09:30,210
+Wes Bos: it just said about like you, you create a shadow DOM element with the attach shadow. You can append with a pen child or insert before insert adjacent, all of the DOM API's that you're probably used to. And then this is not anything I've ever done. Maybe you've done it before, Scott. But you can use the window dot custom elements, dot define method to define your own custom elements. So you can just make your own tags very much like we do in reactor view, or something like that. And then they'll just to be available on the page for you to go ahead and use.
+
+16
+00:09:30,690 --> 00:11:13,320
+Scott Tolinski: Yeah, and I've done web components for men. That was a while ago last time. Maybe not the last time but I worked on while Web Components back in, you know, 2014, maybe, yeah. And using Polymer, I actually had a couple of tutorial series on polymer for both the first version and the second version of Polymer. And since polymers changed a little bit, the polymer project is a little bit more encompassing of several different things now, but one of the things that's in polymer is basically this polyfill for webcams. Opponents where you can just use web components, and they just work. And Google even had a whole bunch of their own. It was really, really pretty sweet. But no, I have created web components. I've created them. And I used the polymer polyfill. When I did, and it was, it was pretty cool. I didn't do anything major with them. It wasn't like a huge, huge project. It was a side project. And it was really just for fun. But you know what, I did have fun. And I think there is, I think there's a lot of people who have rightful criticisms of web components. And maybe they're not as useful as something like react. But at the end of the day, I think it's a cool thing. And as long as they continue to evolve, I think it's just gonna get better and better. But, you know, me personally, I've only used in the small, small sense. So it was cool for what I was doing. And it worked well. And it felt nice. But again, I haven't done craziness with them. And usually, I'm probably just picking react anyways, because it's sort of a component based flow. And it sort of feels like you're making web components, even though they're not. So yeah, I don't know, I don't know if I would reach for it necessarily, until it's maybe a little bit more full featured. But the end of the day, if it ends up being as full featured as something, then you don't have to use the library use. It sounds pretty cool.
+
+17
+00:11:13,410 --> 00:11:36,810
+Wes Bos: Yeah, yeah. It's pretty exciting to see this stuff. There are some libraries out there specific. I'm looking at react shadow, which will allow you to use react components, and they automatically get turned into Shadow DOM elements. Interesting. And I guess the benefit of that is you can encapsulate your CSS, like that. So it's just yet another way to do scope styling in react. So I thought that was pretty neat.
+
+18
+00:11:37,170 --> 00:12:24,330
+Scott Tolinski: Yeah, you know what? Some of this stuff, it all reminds me of there. Actually, I think this will date when we recorded this. But today felt version three, I believe just came out. Yeah. And this framework to me is super interesting, because it's component based and it disappears. I don't think it has anything to do with web components necessarily. But it just the way it disappears. And you're only using browser API's rather than like a library itself. Yeah. It's just sort of fascinating to me. And I think that's sort of the future where we're going, it's like, why don't we put react in the browser? Well, I mean, kind of web components could be that future, as long as web components continue to evolve, like, why don't we just put the framework in the browser? Well, we sort of are I mean, that that is like the dream of web components. Right there. Yeah.
+
+19
+00:12:24,480 --> 00:12:37,170
+Wes Bos: One thing I have a question about is, I don't know if you know the answer to this this like, Is there anything like similar to live variables? I use that in air quotes here? Like, like state is in react in Web Components? world?
+
+20
+00:12:37,830 --> 00:13:11,220
+Scott Tolinski: Yeah, you know, I'm not, I'm not quite sure it's been a long time since I've actually used them. This may be one of these things where we both need to spend a little bit of time diving into them, and maybe report back on like what we learned about web components, because I think that is maybe a very interesting sort of topic. This is definitely a really interesting thing. So if you know about live reactive variables, and web components, tweet us out, listen, oh, yeah, actually, that might be an interesting person to have on as a guest in the show a web components expert. Yes. I would be interested in talking to a web components expert. I have a lot of questions.
+
+21
+00:13:12,720 --> 00:13:28,410
+Wes Bos: Awesome. Cool. So I think that is our explanation of what the Shadow DOM is. It's something that already exists in the browser has for a long time as well as an API for creating your own encapsulated components.
+
+22
+00:13:29,100 --> 00:13:33,030
+Scott Tolinski: Yeah. encapsulations keyword capsulation in capitalists the
+
+23
+00:13:33,030 --> 00:13:38,160
+Wes Bos: Word of the Week from Scott and why the week. Anything else to add?
+
+24
+00:13:38,160 --> 00:13:39,480
+Scott Tolinski: I got nothing.
+
+25
+00:13:39,569 --> 00:13:44,460
+Wes Bos: All right now. That's it. Thanks for tuning in. We'll catch you next week. Please.
+
+26
+00:13:46,560 --> 00:13:56,310
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
