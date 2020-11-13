@@ -1,0 +1,144 @@
+1
+00:00:00,359 --> 00:00:24,480
+Announcer: Monday, Monday, Monday, open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob and Scott, Todd. Totally in ski.
+
+2
+00:00:25,950 --> 00:00:48,210
+Scott Tolinski: Oh, welcome to syntax. In this Monday tasty treat, we're going to be talking about forms captures honeypots. And dealing with malicious users. That's right, we're talking about contact forms and forms overall within HTML, JavaScript and the web. My name is Scott Dylan scammy, developer from Denver, Colorado, and with me, as always, is the West boss, how you doing?
+
+3
+00:00:48,599 --> 00:01:00,930
+Wes Bos: I'm doing great. I am back in Hamilton for a couple of weeks. So we came home from the cottage and my internet here is fast, I can see you. There's no, there's no latency. It's a it's a good life.
+
+4
+00:01:01,500 --> 00:02:08,550
+Scott Tolinski: It feels weird that there's no latency that we're actually on. webcam. Now. That's wild to me, was also wild is one of our sponsors, which allows you to not only like right now I can see Wes but our sponsor today allows us to see your errors and exceptions happening right there. on your website, I'm talking about Log Rocket Log Rocket is the error and Exception Handling service that allows you to actually visually see how your error is happening with a scrubbable Video Timeline of the errors, what it was collecting all of the the things that led up to the eventual issue, this is one of those amazing services that you really have to try out. So you're gonna want to head to Log rocket.com, forward slash syntax, and you're going to get a 14 days for free. Again, check it out Log rocket.com Ford slash syntax, see your errors and exceptions happening in real time with a scrubbable video with Log Rocket. So let's get into it. Let's talk about forms we all know and love forms, I deal quite a bit of forms myself, where do you want to start here?
+
+5
+00:02:08,579 --> 00:04:27,930
+Wes Bos: Yeah, I just want to talk about sort of like where this episode came from. So I'm working on my Gatsby course Actually, it's done, I'm about to start recording. And I have part of the course is that we have like an order form, that is just a contact form. And then it sends an email. And like that was like one of like the first things that you learn when you're like learning PHP to send it, send an email, and you're done. And I'm just kind of sitting there being like, I can't like, I can't release this and tell people, it's this easy to submit a contact form, because you create your form, it sends an email, you can't just release that to the wild because of bots and malicious users. So if you have a contact form that does, obviously contact mix, sell something has an email newsletter, sign up a bug report, signing up for an account, resetting a password, all of these types of things are just forms that the user will then submit. However, if you just have those on your website, somebody is going to either there's going to be just like a generic bot that finds that form, and submits it just because it's trying to inject spam and trying to send emails to you. Or you're going to have somebody that writes a script that will maliciously submit it a million times. And that can be really big trouble. If something like a password reset is sending an email off to a user, like, imagine a user could request a password reset for someone's account that's not theirs, and they could send, I don't know, 1000 a minute or something like that, then what's gonna happen is like, first, your users gonna be pissed. And second, you're gonna get locked out of your transactional email thing like that. So it's sort of the unfortunate, The unfortunate thing was web development. Is that like, the first 90% of it seems all easy. And then you have to get into this little weird area go Yeah, but we need to account for these types of bots. So we're gonna go through I think I've got four different sort of approaches that you could go through here to solve these are sort of defend against these types of things. And then you can sort of choose one or or multiple ones of these to get into it. So what can you do the first thing and I asked on Twitter, like, like, what do you do? What do you do about this? Because the probably the we'll talk about this in a second. The clear one is put a cap on it. But CAPTCHA suck, I hate them so much the most effective
+
+6
+00:04:27,930 --> 00:04:53,390
+Scott Tolinski: like, yeah, overall most effective, but also the, if we're, if we're doing the Yelp dollar sign thing, that's the the highest amount of dollar signs there because it's the you know, requires the largest amount of discomfort and disruption for your users. I think I don't know about you, but I've actually had to resort to captures in some situations where I prefer not to, but the end of the day it sometimes it is just required. Yeah.
+
+7
+00:04:53,430 --> 00:05:55,620
+Wes Bos: So the first one is called a honeypot. And honeypot is essentially a field on your input that right other users will not fill out, but bots will try and fill it out. So it might be an input that says do not fill this out. Sometimes people hide inputs, so they have an input. And then they hide it either via CSS or by the hidden attribute. People said that works really well, which I have a hard time believing because like what bot is not smart enough just to check if an element is visible or not. Right. But apparently, it works pretty well. The downside to this honeypot is that you have to really make sure that it's accessible. So if you have an input that should not be filled out, you need to make sure that the accessibility use case for that works as well. And then also, I've seen people, like change the names on things, and then that screws up the autofill. So you got to make sure that you put the proper autofill attribute on those inputs as well.
+
+8
+00:05:55,980 --> 00:06:17,190
+Scott Tolinski: I found the honeypot to not be that effective in 2020. Just knowing for my personal use case, when I've used it. It hasn't done a lot for me to prevent spam. But maybe I wasn't seeing the full amount of spam I was going to be getting. But it seemed to me that if there was spam, or spammy enough, they were found ways to get around the honeypot or identify it for what it is.
+
+9
+00:06:17,340 --> 00:06:48,690
+Wes Bos: Yeah, I asked on Twitter about this. And I would say like 80% of people said honeypot is enough for most of my use cases. Just because the spammer knows if there's these are just automated bots, in most cases, it's not somebody going to the website and trying to figure it out. And they know that okay, if they have a honeypot in place, then I'm just gonna get a move ahead, because there's certainly much more, there's a hundreds of other contact forms on the web that they can put there. I don't know like, what are things that are like gold buy gold online? Or
+
+10
+00:06:48,810 --> 00:06:56,610
+Scott Tolinski: Wouldn't it be fairly simple for a bot to find the honeypot as a honeypot just based on maybe checking CSS rules or something? So
+
+11
+00:06:56,610 --> 00:07:27,210
+Wes Bos: I thought that's what I thought as well. But apparently, it works pretty well. I was super skeptical of it at first, but maybe the people that are saying it works are also not the ones that are getting nailed, because certainly I have contact forums I have had online for years. And they have no sort of none of the stuff we're talking about today. And they've never got a single single piece of spam in them. It's maybe it's more for like common form inputs, things like WordPress, they specifically look for them. Interesting.
+
+12
+00:07:27,539 --> 00:07:35,580
+Scott Tolinski: Yeah, I really don't know, I wish maybe there were some like research, it'd be really great to see some research on the status of a honeypot.
+
+13
+00:07:35,580 --> 00:07:36,330
+Unknown: Mm hmm.
+
+14
+00:07:36,330 --> 00:08:31,920
+Scott Tolinski: Next is going to be IP throttling. And this one can be exceedingly simple if you use a service like CloudFlare. And like, this isn't obviously a sponsor spot. But CloudFlare makes IP throttling just absolutely super simple in their firewall settings, you just say, hey, I want to rate limit this person if they're hitting this same thing beyond this time, or you can just identify who that IP is and block their IP. And sometimes you need a little bit more custom work with this one, specifically, if it is like submitting a contact form five or six times and then stopping, or potentially, like I had an issue with a scammer that was clearly doing some VPN stuff to change their IP every once in a while. So one IP, if it were to get blocked, they would just go ahead and change their IP start going off again, change your IP, so on and so forth. But this one can be effective if you have a non sophisticated spam attacker.
+
+15
+00:08:32,150 --> 00:09:40,500
+Wes Bos: Yeah, yes, things like only allowing somebody to sign like try to sign up twice within a 10 minute window. And then there's also algorithms that you can use that every single time that they do, it's like the Have you have you ever had your kid get your iPad or iPhone, he come back and it's like, please wait six hours to unlock, because every time that they do, like try to brute force it, it adds a little bit more time. And that's enough just to either frustrate them or slow them down enough that they're not going to do enough damage. Because the difference between sending, like submitting it 10 times over an hour and submitting it 10,000 times over an hour is huge, right? Yeah, totally. Also, so the reason why the IP throttle doesn't work. So well. And also I've I have IP throttling on a lot of my stuff. And I often get in trouble with classes who are taking my courses, because they're all the same IP address and then all sudden, 40 people try to sign up land and then my my IP throttling kicks in. But it says hey, you can't do that because it seems like you're a spammer. So like yet also have to think about that where multiple people could be on legitimately on the same IP as well.
+
+16
+00:09:40,890 --> 00:09:46,320
+Scott Tolinski: That doesn't seem like super common, though. But yeah, definitely something that I would never thought of.
+
+17
+00:09:46,470 --> 00:11:43,650
+Wes Bos: Yeah, yeah. Next we have blocking known ASN. So one thing that a lot of malicious users and bots will do is that they they don't use the same IP address they every single time they make a request, they run it through different VPN, usually what will happen is they sign up for either VPN service or just like raw boxes on like a, like a server like Digital Ocean or something like that. And then they send the request through that that box. And every single ISP, including every single person, like Digital Ocean, and every single person that hosts something they have this number that's called an ASN. And it's a specific number to that host, and ASN for legitimate msps are good. But you can also get lists of commonly abused IP addresses, especially because there's a lot of hosting companies that do not abide by DMCA. And those are very popular amongst people who want to run bots. So you can add a CloudFlare level, you can get a list of as ns, or just look at the ASN for people who are submitting these spam, and just block those and that or you can, you can, you can throw in a CAPTCHA at that point. Because the bots are automated and if you throw a CAPTCHA and so what I've done in the past is because there's also legitimate reasons for people using like a digitalocean, as a VPN, and you can't you then you're blocking good traffic as well. So you can just throw a CAPTCHA in there if they're coming from one of these known CD SPS, as somebody who uses the VPN for just like all the time traffic anyways, I am frequently frustrated by IPS being blocked, because he's just going to Google Google will be a lock off, we got to do this CAPTCHA. And then I have to select, you know, 800 photos of the sidewalk before Google looks at me through and I just end up going to DuckDuckGo instead, because they let me use their search engine and I don't get as
+
+18
+00:11:43,650 --> 00:12:05,340
+Scott Tolinski: good of search results. So it is definitely frustrating when you're on a VPN. And those IPS like that's the one most like that's the one reason why I would never have Courtney on a VPN all the time, because I just feel like she would not have the patience to deal with that. And I almost don't have the patience to deal with it either. But it definitely is, is a huge bummer. The scammers gonna ruin everything for everybody. Hmm,
+
+19
+00:12:05,640 --> 00:12:35,520
+Wes Bos: totally. And that's why if you pay for like a popular VPN, and try to use Netflix from another country, it almost never works it that's because Netflix has a list of all the popular VPNs ASN numbers. And if they see that your traffic is being piped through one of these, they won't allow it. So if you want to use a VPN, and you want to get American Netflix, you have to host your own VPN software on a service that ideally is not not known by netflix
+
+20
+00:12:35,790 --> 00:13:37,590
+Scott Tolinski: word. All right. Last on this list, and we're going to wrap this up is talking about everyone's favorite and least favorite, which is CAPTCHA CAPTCHA is a most effective in my mind, because what you have to do with a CAPTCHA is it usually asks you to submit something sometimes it just based on your threat level asks you to submit a checkbox that proves you are not a robot. Other ones are getting a little bit more complicated. I don't know if you've seen any videos more than we have to drag the puzzle piece into a puzzle or something like that. That to me is way better than the eventual grid of photos that you have to suggest to help Google's learning algorithm. Either way, it's presenting the user with a challenge, right? And that challenge will verify whether or not it's an a legitimate user, and not just a robot. We've all seen these we all use these captures they are annoying, or they can be annoying, I should say. So you you have a nice little descriptor for each of these the soft capture knowing capture good, you want to talk a little bit about some of these different ones you have here. Yeah,
+
+21
+00:13:37,590 --> 00:15:11,730
+Wes Bos: I don't know if this is considered I just call this a soft CAPTCHA but it just like what is one plus one, you can just automatically generate like a list like an array of questions, and then pop them in there. Think simple things. What is one plus one? What is five plus eight? And then submit the question ID and the answer. And then on the server side, you check if the answer is the same. So that's at the very basic, that's probably enough to stop a lot of people. But then there's also like years ago, we had these super annoying, you still see them all around these like, like metal band cryptic letter trying to type what you see in it. Those are almost a thing of the past because Google's working really well. The downside to using Google's captures that you have to embed Google on your website. So just like putting a Facebook or Instagram link on your website, then they're able to sort of track you around the web. But their capture works super well. By default, they're hidden capture will use their internal algorithms to figure out if you're a bot or not. We don't know what that is, but I'm sure it's things like have you signed into your email on the same IP address and cookies and things like that. And then if it detects that you are a maybe a threat, then it then it will throw up the little train or self driving cars select the sidewalk and the bus and the bridge and I feel like they've I don't know about you, but I feel like I've had to fill out like two or three of them recently before I'm able to get past the captcha, I don't know if that's just me or it's getting like getting worse
+
+22
+00:15:11,939 --> 00:15:33,960
+Scott Tolinski: when you're on a VPN. That is maybe the IP has been suggested, or you know, concerned that it's spam they make you fill out like eight. And I'm just so annoyed by it sometimes especially, or even like when it'll say, you know, select the stoplight in they'll be just a tiny sliver of a stoplight in one photo and you're like, do I select that tiny sliver or not, and then you select it, and then it doesn't work. And you're
+
+23
+00:15:34,019 --> 00:15:36,120
+Announcer: like, Oh,
+
+24
+00:15:36,570 --> 00:15:47,220
+Scott Tolinski: I honestly get really fired up over over these captures. And in fact, I'm so I get so angry at them. It might be the most angry that I get is when I am like eight or nine round on a CAPTCHA.
+
+25
+00:15:47,820 --> 00:16:36,780
+Wes Bos: The last one we have here is if you don't want to use Google, because I know like a lot of people straight up block all Google stuff on their network, which is understandable. There is another one called h CAPTCHA. I thought this was certain CloudFlare. But it doesn't look like it. It seems like it's trademark registered of intuition machines, Inc. It seems like it's like a privacy focused CAPTCHA, which is cool. Maybe I'll go to this as well. The only problem is that I use this on one of my sites. And every now and then I get people complaining that the captcha doesn't load because they use an ad blocker, which is frustrating. And you just have to be like, you got to turn it off. I'm sorry. Like, it's it's so annoying that like good paying users get blocked by this stuff. But at the end of the day, you sort of have to, otherwise you wouldn't be able to run your website.
+
+26
+00:16:37,260 --> 00:17:30,240
+Scott Tolinski: This intuition machines company seems kind of interesting. It is basically just the SA software company who specializes in machine learning and AI. So seems like uniquely suited for an upgraded capture. But more recently, I have been seeing h capture around. Specifically, I'm trying to remember what sites I've been seeing. But there are some sites that I see it on now. And I actually really like it because for the most part, it's so much more reliable than than Google's in terms of like actually understanding your selections. And it does seem to be a little bit less annoying. And in my, in my mind when using it also added benefit of not adding someone like Google keeping a little bit more privacy focused aspect to your site is very positive. Again, we don't use anything like Google Analytics. So having a capture on the site is the first time we've invited Google onto the site. And it's not a great feeling.
+
+27
+00:17:30,630 --> 00:18:01,610
+Wes Bos: Oh, man there integration if you're using google recaptcha, version two, which is what most people are using, there's a version three, which is not like a successor to it, I spent like maybe three hours reading the differences. And I started to throw my hands off. I'm like, I don't understand what the difference is between these two. But it looks like if you want to use h CAPTCHA, you just swap out a couple pieces of HTML, and it will just work, which is super cool. So you could probably swap this out in like 20 minutes, I bet.
+
+28
+00:18:02,360 --> 00:18:04,440
+Scott Tolinski: Maybe a nice little project for today, then,
+
+29
+00:18:04,980 --> 00:19:00,080
+Wes Bos: I think that's the other difference with google recaptcha. version three is it gives you a threat score. So if you not just when you want to submit a form, but like when the page loads, if you want to like given the IP address, and cookies and things like that of the person visiting, you can also get a threat level where you can sort of like make the choice yourself based on the data that you've been given. Cool. Pretty nifty. So those are things you should know about. I'm glad we did this just because Oh, sorry. The other option is just use the service. And that's Unfortunately, the solution for a lot of things lately. And I don't necessarily love it because people are like, just use a service like me know, I kind of want to teach people how to like, make an actual form and submit it and email it, rather than just pop in this thing. That's five bucks a month to send an email. So although services have that stuff solved,
+
+30
+00:19:00,420 --> 00:19:08,640
+Scott Tolinski: also, like eight or nine services later, and you are looking at a hefty bill coming your way, right?
+
+31
+00:19:08,670 --> 00:19:21,350
+Wes Bos: Yeah, I don't know if that's part of my, my ethos. Certainly I love using services. But and even like, for my own website, people are like, just use, what's the cloud for the images?
+
+32
+00:19:21,840 --> 00:19:22,650
+Scott Tolinski: Oh, cloudinary
+
+33
+00:19:22,800 --> 00:19:48,180
+Wes Bos: cloudinary. I love cloud nine. I use it on my course website. But he specifically didn't want to use it, even though they offered to give it to me for free. And but I was like, No, I like I want to build this thing. So somebody who doesn't have $99 a month to run this thing. Yeah, we'll be able to do it. So like I want to like, I don't know, there's something about like the early days of HTML where everything runs, everything runs by yourself. That's certainly an option as well. Yeah, I
+
+34
+00:19:48,180 --> 00:20:09,590
+Scott Tolinski: really tried to stay away from services when I do the tutorials for those reasons, or not, like lock yourself into something that's going to ultimately cause the user money. I mean, it ends up becoming death by 1000 cuts here where you just have So many different services you sign up it all seems cheap at the time and next thing you know it's expensive and you could probably save that that money by just doing it yourself.
+
+35
+00:20:10,050 --> 00:20:17,880
+Wes Bos: Totally. Alright, that's it for today. Thank you so much for tuning in and we will catch you on Wednesday, bees face.
+
+36
+00:20:19,650 --> 00:20:29,430
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
