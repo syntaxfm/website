@@ -1,0 +1,176 @@
+1
+00:00:00,359 --> 00:00:24,480
+Announcer: Monday Monday Monday open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA boss and Scott Taylor. Totally at ski.
+
+2
+00:00:25,920 --> 00:00:47,549
+Scott Tolinski: Oh, come to syntax on this Monday. Hey c treat we are going to be talking about five things that could be potentially making your site slow. And this is going to be a series we have a whole bunch of these things. So we'll hit them in different hastiness along the way here. My name is Scott Tillis, gimme developer from Denver, Colorado and with me, as always, is West boss.
+
+3
+00:00:47,700 --> 00:00:56,790
+Wes Bos: Hey, everybody, I'm coming at you live from a shed cottage, which is very cold in here right now. But it's the quietest place.
+
+4
+00:00:57,030 --> 00:01:08,010
+Scott Tolinski: We couldn't be any different right now. You have to con and giant puffy jacket and I'm wearing shorts and a T shirt. So apologize that I'm feeling very comfy here.
+
+5
+00:01:08,039 --> 00:01:10,080
+Wes Bos: Didn't you just have like snow like a week ago?
+
+6
+00:01:10,230 --> 00:01:16,260
+Scott Tolinski: Yeah, but we also had like 75 degree weather made before and like probably the day after,
+
+7
+00:01:16,260 --> 00:01:17,160
+Wes Bos: you know, Colorado weird
+
+8
+00:01:17,160 --> 00:01:19,500
+Scott Tolinski: like that. So. So we do it.
+
+9
+00:01:19,760 --> 00:01:31,890
+Wes Bos: I think that we anytime we say any sort of temperature, we need to convert it to the other one. So 75 American, okay, is 23.8 Celsius.
+
+10
+00:01:31,980 --> 00:01:40,440
+Scott Tolinski: Oh, I thought you were just gonna guess because I thought that would Oh, fun. I think that's about I think that's about 10 degrees, Alec, I don't know Celsius at all. So that'd be fun.
+
+11
+00:01:40,860 --> 00:01:43,350
+Wes Bos: Okay, let's next time that comes up. Well guess
+
+12
+00:01:43,440 --> 00:03:09,360
+Scott Tolinski: Yes, right. This episode is sponsored by Log Rocket. Now Log Rocket is the perfect place to stop guessing why your bugs happen. And by this, I mean that it's not like other bug tools. Because what it gives you is a pixel perfect session replay, which is a scrubbable video with network requests, console logs and errors, network activity, Redux store, just about everything and including even mouse events or where your user is clicking, so that you can see exactly where and why these bugs and errors happen logs all of this stuff. So you can just pop on here, watch a little video. And it's amazing because you can solve these issues without them having to contact you without them having to say, Alright, I was on this browser, I clicked on this, I did this. And then this. And you know, nobody wants to do that if they just had an issue on their website. So head on over to Log rocket.com forward slash syntax and sign up today, you will get 14 days for free. And honestly, it's more than enough, drop it in your site, check it out. And then be amazed when you can solve these bugs visually, which is really the dream. So let's get into it, we're going to be talking about five things that can be making your site slow. And I think the very first one we wanted to talk about was slow at TT f of b ttfb is time to first banana.
+
+13
+00:03:11,310 --> 00:05:57,870
+Wes Bos: That's great. Yeah, it stands for a time to first byte. And this is definitely one of those things that make your site feel really slow. Because usually what happens is when you visit a website, it's just a white. While you're waiting for it to load, or you're on the previous page, you click the link and you're waiting for that next page to show up. And that time to first byte is basically what it means is that when you request sign from the server, the server gets that request, it gets the stuff that you need, it makes templates and HTML, all that good stuff. And then it sends it back to the browser. So the time from clicking the link to the browser getting like its first line of HTML is called the time to first byte. And that's pretty important. So like what makes a time to first byte slow. So there's kind of three steps here. The first is that when you click it, your browser will do a DNS lookup, which translates the domain name into an IP address. Generally, there's not a whole lot you can do on that end, if you're using any sort of like popular service, or server or something like that, because these things are pretty well tuned. But I think where a lot of the slowness comes from is a, you have a server that is too far away from the actual user. So one of your customers is in Australia, your server lives in New York, it has to get on a boat and ship across the ocean in order to get there. That's why people put servers all over the world so that your Australian and your Chinese users get faster response times. lower latency is often what you'll hear. The other thing you can get here is like slow server processing. So what needs to happen on your server? Well, let's take WordPress for an example because a lot of the web is WordPress when the request happens WordPress gets it, it needs to figure out, Okay, this is the URL they wanted. What does that translate onto my end, and then maybe it needs to make six or seven database calls to get posts and information about the website and information about the currently logged in user. And then once the database is done, it gets all that data back. And then it says, Okay, now I've got the data. Now, let me template it out. And it's in PHP, PHP scripts needs to run and it needs to be converted into HTML, that's your sort of templating step. And then finally, you ship that out of the server back to the browser, so that processing on the server, the faster that can happen, obviously, the the faster your website will load. And then once you've sent that response back, it's out of your servers hands, and it's on to the network speed of the actual user. So there are some things you can control there, like the server processing and where your server is. And there's some things you can't control, which is, how fast is your users internet connection?
+
+14
+00:05:58,170 --> 00:08:46,550
+Scott Tolinski: Yeah, totally. It's funny, because ttfb can often be like a really slow thing in your year, when you check your network requests, you check your app building, and you see ttfb. And then how do I how do I work on that it's almost like a black box. But I think this was a really good explanation of everything that's happening there. And maybe where you could to look to start to speed up some of those processes. So the next step is going to be you have either too many requests, or too large of requests, or potentially your waterfall on your requests. What do I mean by any of this? Well, what happens after that ttfb is the server or the browser starts to request items, such as your scripts, right? Or your images, it says, Hey, give me that image from from this URL, or give me that script from this other URL. And these things are just like any other file on your computer, they take kilobytes, cavies, and sometimes, unfortunately, even megabytes, which shouldn't really happen, right, unless it's like a video, I guess. So we have these requests for various assets, and they need to come in and just like your computer, when you share files, it takes a file from one place and moves it to the next, you have to be very cognizant about the size, and overall quality of these images, or, or various scripts, for instance, we'll talk later on about some of these assets being too large, it a little bit more in depth in the next step. But right now, if you have too many requests, that's a big deal. Let's say you are not bundling up your JavaScript, or not bundling up your CSS, as in, you're not taking all of your files and squishing them into one file. They could be potentially loading, you know, five or six different JavaScript files. One of the it I do a lot of WordPress consultancy for friends, just like friends will be like, Hey, I have this WordPress site. It's very slow, I can't figure it out. And then I went to their site, the first thing I always do is check the network or the network panel, because sometimes these people like they're just adding things left and right. And I saw that this guy's site was loading for count of four different versions of jQuery. And they were all being loaded as a unique request. So it's like I came in there, I cleaned up some of his plugins cleaned up some of the requests, but just how many things you are requesting is such a big, big deal. So just make sure that you are as mushing with a build process down into everything. If you have WordPress, or Drupal or anything. There's often at different plugins or extensions that just add that stuff for you. But a lot of the stuff we're working on nowadays is built with Webpack, or Gulp, or one of these things that just smush everything down into one file of its various type.
+
+15
+00:08:47,250 --> 00:09:41,940
+Wes Bos: Yeah, one more point on the waterfall is that the the Network tab in your Firefox or Chrome dev tools are going to be super helpful to visualize what waterfowling is because central Yeah, sometimes what happens is that like, like, let's say you load some CSS, and then that CSS has an import statement in it, and then that goes and load some more CSS. And then that CSS, maybe that has another import statement. And what happens is you load one thing, which then figures out it needs to load another thing, which then figures out it needs to load a third thing, that already kind of happens because you download your HTML, and then your HTML starts to parse. And then you realize you have like scripts and style tags and stuff like that in there, and you have to download those. And if they then go download other things themselves, then you start to really slow things down where I will talk about tools you can use to make sure that all of this is loaded in as few requests as possible.
+
+16
+00:09:42,209 --> 00:11:27,390
+Scott Tolinski: Yeah, totally. Definitely. So the next one we want to talk about here are assets that are too large. So we mentioned that there's too many requests or a problem, but assets that are too large when they're requested is also a problem because again, with moving of these files, the larger more megabytes more gigabytes. Yeah, that's not happening, these files are the slower the whole thing is going to be to take to load. So images are often the best place to look for savings like people want to talk about. Okay, my site slow. What can I do this? What can I do here number one, number one first thing to do check those dang images. Yeah, sometimes those images are giant it. And there's a lot of different fixes. for stuff like this, I I'd like to hear about some of your tips. But mine are compressing, optimize your images via your build tool or something like image opt in. If you don't have a build tool, or it's a pain in the butt to modify with your images, or your images live elsewhere or something, you can take your images and run them just drop them into this application, it's going to crunch them out, remove all that extra metadata, any of that extra stuff, and it's not going to have any degradation to quality. You'll also want to use like I use a service called cloudinary, that does all this for me, it makes them as small as possible and serve the optimized version. Another one is make them smaller, sometimes you're sending like a giant image that really doesn't need to be giant, and it's only being displayed 400 pixels wide. But the image you're loading is 800 pixels wide. Turn that thing up, make it 400 make it exact, get that exactly how you want it to be. And if you're thinking, well, these images, will they need to be a certain size on mobile on a certain size and desktop? How can I accommodate for that? There's also a picture fill, which is also a great technique for using various image sizes. Wes, do you want to talk a little bit about what picture fill is?
+
+17
+00:11:27,780 --> 00:11:36,750
+Wes Bos: Yeah, picture fill is just the polyfill for the picture element, which I don't even know. Let's look it up. What is the browser support for picture right now?
+
+18
+00:11:37,080 --> 00:11:44,700
+Scott Tolinski: Oh, that's funny, because I've always used picture filled. It's so fun. I like I know it has the picture element. But I just say, Oh, it's picture fill.
+
+19
+00:11:45,510 --> 00:11:53,550
+Wes Bos: Yeah, because for the longest time, it was a thing that you couldn't use. It seems like every browser except iE 11 currently supports it, which is fantastic. Hey,
+
+20
+00:11:53,670 --> 00:12:00,180
+Scott Tolinski: I don't support iE 11. So that means I can drop picture, Phil. Yeah, there we go. Hey, cool. See you later picture, Phil.
+
+21
+00:12:00,180 --> 00:12:28,680
+Wes Bos: The idea is that you can you can pass multiple sources along with media queries, and show and hide different sizes based on most likely the width of your device. And that's great. Because if you have a very large screen, then maybe you can load a larger image that doesn't necessarily correlate with like the speed like I'm talking to you right now I'm looking at a third I'm on a 34 inch 4k monitor, and two megabit down LTE connection at my cottage, right, so
+
+22
+00:12:28,680 --> 00:12:31,140
+Scott Tolinski: I'm gonna serve you the biggest image possible for that.
+
+23
+00:12:32,460 --> 00:13:10,650
+Wes Bos: But generally, I would say like, yeah, you're you don't need to load the those huge images if you're on a smaller a mobile device. So that's a big one. And this stuff is great to talk about. But quite honestly, this is not something that I'm going to do without a tool that does it for me, because it's just too hard. Like, I'm not going to sit there and resize all my images, you generally need something like Gatsby image, or cloudinary or something like that, that will automatically regenerate and give you multiple versions of that image. And I think that's why this stuff is becoming much more popular because it's becoming almost effortless in a lot of these tools that we use now.
+
+24
+00:13:10,860 --> 00:13:27,240
+Scott Tolinski: Yeah, I think firing up Gatsby and seeing that like SVG or that blurry image fade in, like for free. I think seeing that was was very instrumental in me really loving the Gatsby platform just because I was like, Oh, I don't have to do this myself. How amazing is that?
+
+25
+00:13:27,330 --> 00:14:45,570
+Wes Bos: WordPress does this automatically for you as well right now. So if you're using WordPress, you just have to do nothing. It just comes for free in all of your websites, you have to intentionally turn it off, which I think was a really cool, yeah, think of them best by default. What else I use this, somebody sent a pull request to my own personal website for to add image bot. And I've never heard of this before. And it's just a little GitHub add on that you can add to your Git repo. And every time that you add images to your repo, it will try to optimize them. And at first I close a pull request. I'm like, No, I don't want to like, yeah, compress my images in the repo. That's the source. That's my source images. I want them to be full rez, and then I'll use something like Gatsby image to compress them and resize them. But then he said no, this, this is lossless, which means that there's lossy and lossless compression with images and lossless will compress them without actually pixelating them or making them without throwing anything out the door and lossy will, depending on how aggressive you want to be. It will degrade the quality of the image. So it's free for open source projects, which is cool. So if your Git repo is public, you can just add this thing on and I was surprised. I think it like 30 35% of my images got smaller.
+
+26
+00:14:45,840 --> 00:16:10,680
+Scott Tolinski: Wow. Nice. Cool. That's a good tip. So the next one we want to talk about is lazy loading, and I chopped off the word images off of the headline here because there's a lot of stuff that you can lazy load especially in reactor opponent land, you can lazy load entire components. But, uh, you want to talk about specifically about lazy loading images. And what exactly lazy loading images as well. lazy loading is basically the idea here that if there say an image being loaded at the bottom of your screen, so to say this is an example, if there's an image being loaded on the bottom of your screen off Canvas out of the viewport, and you can't even see it, does it need to be downloaded at the same time as everything else that your site is needing to be to load? If you click refresh on your site, you look at the narrowed panel, you could be seeing this, like the footer image being loaded, before the user could even interact with the site. And now does that footer image need to be loaded, then if they're not even seeing it? No, not at all. So that's where income lazy loading which lazy loading basically looks for a user scroll, and at a certain offset, or at a certain of like, if a user is scrolling and they hit the image, or they hit a margin above the image called an offset, then that's going to trigger a loading of that image. So that image is then loaded, once the network is quite a bit more open and free with not a whole bunch of other stuff coming in.
+
+27
+00:16:11,010 --> 00:18:00,960
+Wes Bos: Yeah, lazy loading is it can be done natively in a lot of the browsers now. So if you have an image, you just put lazy equals true attribute on the image. And it will only be downloaded once it's about to be in the viewport supported on latest edge Firefox and Chrome, not in Safari, or iOS, Safari, but it's more progressive enhancement. In that case, because it's an attribute you add, and not like in the other case, you have to use like a library or something that will use intersection observer under the hood. Yeah. And generally how that works is that you set an image tag with like a data dash source, or like, you make up some attribute, that's not actually the source attribute. And because the browser doesn't know what that attribute is, it will just not download the image, and then what you can, you can watch that element to come in on screen. And then when that element comes in on screen, you simply use JavaScript to set the source attribute of your image to whatever was stored in the data dash source attribute. So that's almost doesn't need to happen anymore. Now that we have lazy equals true on images. But that's just sort of how it works. Another thing you can do is just like, pre load things, like ahead of time, so like one downside to lazy loading images is that they won't like if you have a slider and you want to lazy load the images, you generally want to lazy load the slider image, like two slides ahead. Because like if somebody clicks on it, then then it starts to trigger to download. That's kind of annoying, right? So if that's the case, then you want to look two slides ahead and two slides back. And then make sure you set those images to download them. And every time you change a slide, you go ahead and figure out what are the the two ahead and two to behind images
+
+28
+00:18:01,100 --> 00:18:19,710
+Scott Tolinski: word. Cool. So last on the list here is using a CDN or not using a CDN. Now, what is a CDN? And once you've actually covered this in in very intelligent terms before Would you like to just give a quick one liner is what a CDN is,
+
+29
+00:18:19,850 --> 00:19:23,280
+Wes Bos: I did I I don't remember intelligently covering this. But a CDN stands for content delivery network, essentially, what that means is that when you have an asset, that asset will be put onto servers all over the world. And then when somebody requests dog dot jpg, your CDN will be smart enough to route that user to the low the the closest server that contains that asset. So things like cloud front. So like Amazon s3 is a good place to store images. However, you have to choose where you want to put your images on Amazon s3, they have locations all over the world. However, if you put CloudFront in front of it, or just use an existing CDN, they will automatically take your asset of a dog dot jpg, and then distribute that all around the world on all of their different servers. And then when somebody requests it, they're smart enough to route that to the closest server that has it. And that sort of comes back to the time to first byte that will be much faster to download it.
+
+30
+00:19:23,550 --> 00:20:31,580
+Scott Tolinski: Nice. Yeah, CDN is definitely one of those things you got to have me I mean, you got to have it. I use Cloud front for a long time, but no, no on CloudFlare for everything. Good News Netlify. Folks, this is not an ad. They are not sponsoring this episode. But if you use Netlify to host your site, you automatically get a free CDN. You don't have to do anything to set it up. It just it's just there. And I think that's really like a lot of these things that we've talked about here. That's the way it's going. Right? They're doing it fast. By default. They're giving you the CDN by default. They're making it secure by default, giving you the SSL right we see these things over and over again. And me if I'm looking Looking for platforms to host or places to move my site. Those are definitely features that I'm going to be looking for. Because I don't really need or want to spend the time setting up the CDN if my host or whoever is going to do it for me. So I would imagine that you're going to be seeing this out of a ton of different hosts right now, just for CDN, automatic CDN, just make it happen by default, because this is really something that, like, should we have to think about this as developers? I guess, maybe, but I don't want to have to think about it, even though I already do.
+
+31
+00:20:32,160 --> 00:21:02,790
+Wes Bos: Yeah, yeah, I don't think we should either. I the stuff will not be adopted by the masses until the tools do most of the heavy lifting for us. Yeah. Because it's all good and stuff to talk about lazy loading images. And actually, that's one that you can do your yourself pretty easily. But like a CDN, like all sudden, you you move from like a HTML CSS JS dev into like this, like networking specialist. That's not something you're gonna do. So tools are, I think, the way forward with a lot of these speed things.
+
+32
+00:21:03,320 --> 00:22:14,580
+Scott Tolinski: Yeah, definitely. I, I keep thinking about this. It's funny, because the the genesis of this, the show ideas came from me thinking about this YouTube video I have, it's my most disliked YouTube video, my most disliked YouTube video, which is probably just ratioed in the hall, or whatever I get, like, mostly, you know, like 98% 99% thumbs ups, one of my videos is just like in the gutter. And that is how to make or like website performance tips. And the tip is to reduce the amount of HTTP requests. And apparently, every single person who watched that video feels like there should be a one click button to fix the problem. They say, well, you explained what the problem is, but you didn't say how to fix it. I mean, I did say how to fix it. I just can't tell you for every individual platform, right? But it really opened my eyes to the fact that if there isn't a one click fix problem. So many people are just dead in the water in terms of wanting to start to solve that problem. They just either can't do it, don't know how to do it or don't want to do it. So I love to see these fast by default things coming into various platforms.
+
+33
+00:22:14,940 --> 00:22:18,060
+Wes Bos: I'm so curious what my most disliked video is now.
+
+34
+00:22:18,360 --> 00:22:26,130
+Scott Tolinski: Yeah, you can't sort I get like, the meanest comments on this video all the time. So that's the one reason I know about it. Oh,
+
+35
+00:22:27,540 --> 00:23:12,300
+Wes Bos: I found it. It is how to set up VS code, and prettier and es lint it has. Let me see here. This is a video I did a long time ago before I put together my own es lint. And it has 90% like ratio, meaning that 1100 people liked it. And 125 disliked it. Interesting. And that's just because how frustrating this stuff is. And I actually superseded that video with a with another one. Word superseded it with my own setup, where it just it just tucked away all the complexity into its own tool, which is exactly what we're talking about today.
+
+36
+00:23:12,540 --> 00:23:18,090
+Scott Tolinski: Yeah, mine. Mine has a he has 30 34% likes. So it's
+
+37
+00:23:18,090 --> 00:23:20,130
+Wes Bos: uh oh, wow.
+
+38
+00:23:20,850 --> 00:23:29,400
+Scott Tolinski: It's posted. Yeah, it's in the gutter. It's so funny because my average is so very high. That one my average down tremendously.
+
+39
+00:23:29,940 --> 00:24:01,080
+Wes Bos: Man, that's that's really interesting. All right. I think that's our first five. We've got probably another five if not more things you can do on your website. There's just like so many things. He knew client side on the server caching, caching on the server caching on the client. different tools that you can use? let's not give them all away here. Yeah. Okay. Well, make sure you tune into the next one. It won't be the next show. But in the coming weeks, we'll do another show here with five more things you can do to make your website fast. Yeah, let's
+
+40
+00:24:01,080 --> 00:24:01,770
+Scott Tolinski: do it.
+
+41
+00:24:01,950 --> 00:24:07,350
+Wes Bos: All right. Thanks for tuning in. We'll catch you on Wednesday. Later, please.
+
+42
+00:24:09,270 --> 00:24:11,460
+Scott Tolinski: Head on over to syntax.fm for
+
+43
+00:24:11,460 --> 00:24:12,330
+Announcer: a full archive
+
+44
+00:24:12,330 --> 00:24:19,020
+Scott Tolinski: of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
