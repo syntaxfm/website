@@ -1,0 +1,396 @@
+1
+00:00:01,319 --> 00:00:04,590
+Unknown: You're listening to syntax the podcast with the tastiest web
+
+2
+00:00:04,590 --> 00:00:09,000
+development treats out there, strap yourself in and get ready to live ski
+
+3
+00:00:09,000 --> 00:00:10,530
+and West boss.
+
+4
+00:00:10,530 --> 00:00:28,710
+Wes Bos: Welcome to syntax. This is the podcast with the tastiest web development treats out there. My name is Wes Bos. I'm a full stack developer from Hamilton, which is a city in Canada. And with me, as always, is Scott to linski. From Russia.
+
+5
+00:00:30,750 --> 00:00:38,220
+Scott Tolinski: zero percent from Russia. I'm Polish I am not Russian. And I live in Denver, Colorado. So No, you're wrong on all of friends close and
+
+6
+00:00:38,220 --> 00:00:39,060
+Wes Bos: close enough
+
+7
+00:00:39,060 --> 00:00:43,770
+Scott Tolinski: basic that you see Russia from my backyard, I guess kaylynn joke.
+
+8
+00:00:44,699 --> 00:01:44,910
+Wes Bos: Today we are talking about the fundamentals of JavaScript. So we're gonna like sort of go through like we always, we did an episode a couple weeks ago on like, what are the fundamentals of HTML and CSS. And now we're going to do an episode on the fundamentals of JavaScript. So if you are new to JavaScript, and a job posting says you should know the fundamentals of JavaScript. I think we're gonna go across today, we think that this is the fundamentals is at a certain point, like Java, just never JavaScript never stops going. You can like go into like, wormhole after a wormhole and just like find yourself in like random areas. But I think what we're going over today, which is going to be sort of a base that everybody should know about JavaScript, ideally, before you sort of branch off and go into frameworks, or canvas or audio or video or whatever direction you're going to be taking, these are a set of core skills that you need. Today's sponsors, Log Rocket and Freshbooks. We'll talk about them partway through the episode. But how are you doing today? Scott?
+
+9
+00:01:45,210 --> 00:01:45,810
+Scott Tolinski: Do good.
+
+10
+00:01:45,810 --> 00:01:47,010
+Unknown: Yeah, you know, we
+
+11
+00:01:47,010 --> 00:02:09,599
+Scott Tolinski: didn't live in them sleep deprived to dad life. But uh, yeah, I'm good. As far as everything goes, you know, we got the level up redesign launched a couple weeks ago, I finished my most recent course, recording that by the time you're listening to is already going to be available. And I'm feeling good. I'm gonna be working on some code stuff today, recording some syntax and a feeling feeling happy to be doing all of that.
+
+12
+00:02:09,719 --> 00:02:43,310
+Wes Bos: That's good. Yeah, I've got crazy over here, we just obviously just had her baby, we're about to go up to our cottage, which we bought, we just closed on it in a couple days, which is really fun. So I've been prepping for a big move up there. And then I'm working on a getting a new course launched on JavaScript, beginner JavaScript, which I took, I took a lot of the sort of outline of my course, my course will cover more than this. But I took a sort of an outline of the first part of the course. And and use that to scaffold up today's show. Well,
+
+13
+00:02:43,319 --> 00:02:47,940
+Scott Tolinski: I think that is going to make it extra special, extra. Extra tape.
+
+14
+00:02:47,940 --> 00:02:55,590
+Wes Bos: All right. So let's, let's get in on into it. You want to take the first one, what is the first part of the JavaScript fundamentals?
+
+15
+00:02:55,680 --> 00:04:22,680
+Scott Tolinski: Yeah, so the very first part, and I think there should maybe preface this where there there is some order to this. But there's a lot of things where you could think of is like this is the first thing you should spend time on. But really, I think the core concepts of any of this stuff is how variables work. And in JavaScript, we have var let and const. And those are basically where you assign things to right you have your variable, you have your lead, and your constant variable that should be unchanged. Now for the most part, I think beginners learning in 2019 should understand the difference between var, let and const. But maybe also understand why people are really saying to just use const and let when you need it. Because basically const means the identifier can't be reassigned, right? You can't reassign this thing. And that's one of the I think that's one of the techniques for writing good clean code is to not be assigning things ever if at all, I don't reassign things ever myself unless I absolutely need to. So knowing that const means you can reassign it, where let and var you can reassign it. However, they both understand the scope in a different way. I don't know what's the best way to say that you're the one t they are block scope, they're their block scope, but like a beginners not gonna understand what that means, right? So earlier, you want to get into what block scoped is and then maybe, maybe we can lead back into this one.
+
+16
+00:04:23,270 --> 00:06:17,790
+Wes Bos: Yeah, in my course teaching it that's exactly what we do we just say like, these are var Latin const here's the gotchas. And by the way, there's some weirdness around arrays and objects where they're not technically like you can add value to the Reign object and but you can't reassign the variable Yeah, that's sort of a downside to like this even my course my course is not like here's everything you need to know about it because like that's too much right? And then you have to get into object freeze and all that and all sudden you're overwhelmed. So you just need to know like var Latin const they one can not be reassigned. One can be reassigned in one is also can be reassigned, which is var. And then you get into at a later point, which is with the next item that we have here is is scoping. So, understanding where variables are available to you based on where they've been created where they've been passed into. So in JavaScript, we have block scope and function scope. And function scope is is also a block scope, which is kind of confusing to some people. But because there's curly brackets to block scope as well, then knowing basically how scope lookup works. So basically, if you've got a variable, and it's not available inside of that function, does it go to a higher level, you don't have to know every little nitty gritty thing about it, but just have a decent understanding of how scoping in JavaScript works and, and how the lookup works. Because I think that's probably a huge, that's a surefire way to write bad code is not understanding scoping and having global variables or or having lots of errors. And that would make me really hesitant to hire somebody if they don't know how scope works, because you essentially have to rewrite a whole lot of the code and you could potentially be writing some huge mistakes. Yeah. Next up understanding what types are. So types in JavaScript are different types of values. Anytime you have a value, it's going to fall into one of the six available types that we have, is it six or seven? Now? JavaScript?
+
+17
+00:06:17,790 --> 00:06:20,550
+Scott Tolinski: Did we just do a thing on that no syntax live? i?
+
+18
+00:06:20,640 --> 00:07:12,270
+Wes Bos: Did I just I literally just recorded a video. There's seven, I can never remember. Yeah, there's seven, because the new one is symbol. So understanding what the different types are, like, Why is there only one type of number, like what's in what do you do with decimals in that specific case? And then go into sort of every single type. And so with strings, there's double, single and backticks? What are the pros and cons of all of those? And then once you get into objects, I think objects is is like a little bit deeper, you don't have to know absolutely everything about them. But I think there's one thing you do need to know about objects. And that is how do you copy them? And what is the difference between a reference versus a copy? And so yeah, I mean that like if you have a nested object inside of it, or if you want to take a copy of an object, you don't accidentally just reference the original one. So I think those are some some important terms to grasp. Cool.
+
+19
+00:07:12,720 --> 00:08:49,520
+Scott Tolinski: Yeah. Okay. So next, I think it's important to talk and understand the functions, the different types of functions and how they're used and why you might use some of the different types of functions, but also the scope and in everything that comes along with a function. And the fact that you can store a function as a variable, right, you can declare a function as a variable, but you can also use a function as an expression. And you see these a lot of times with just like anonymous function expressions, or even named function expressions, but you can use an inline function directly with your your arrow functions or your non arrow functions. So you want to know the difference between a function definition or I mean a function expression using the keyword function, but also using the arrow function and, and maybe what the difference is there, I largely use arrow functions myself, but a lot of people don't. So the important understanding of the usage of this in the scope around an arrow function, and why those even exist is important to know. I also think it's important to know the difference between a function and a method where a method is sort of a function that exists on something else, to put it in the most non technical way possible, maybe a functions within a class. And you can declare that that class or that method, and that scoping that function to the class. So you'll want to understand the difference between what a method is and what a function is, and how those two interact in the sky. I guess the key word so far over, I think everything here has been scope A lot of it, you'll be able to understand scope within all of these instances.
+
+20
+00:08:49,590 --> 00:10:19,159
+Wes Bos: I think a lot of interview questions also surround like you said, functions can be stored as values. So not every programming language allows functions to be values, meaning that you can't stick functions in variables, you can't pass them as arguments. They can't be, they just can't be moved around like that in JavaScript, you can that's what people that's what they mean, when they say functions are first class citizens are first class functions. And that's sort of the basis for functional programming. So I think a lot of a lot of people who are like functional programmers interviewing you that they want to know that you understand that a JavaScript is kind of special in that it can hold functions as values. So just knowing about that is important. Definitely. Next we have here is the DOM. So part of JavaScript obviously is going to be working with the DOM. And even if you are planning on using some sort of framework, it's important to understand how the DOM works at the end of the day. So that is creating elements, selecting elements, modifying elements, looping over elements, but basically just being able to interface with raw DOM elements on the page is going to be something that you need to know and I'm offering Then surprises, I think a lot of people just went straight from jQuery to react, or they just go straight into react when when they're learning. They don't spend a whole lot of time. But I find that I have a awesome understanding of how the DOM works in vanilla JavaScript. And I find that it's very helpful in react in react land, just because you know, how websites work at the end of the day?
+
+21
+00:10:19,440 --> 00:10:49,710
+Scott Tolinski: Yeah, I think that's actually something that's largely looked over. For some reason, when people are teaching JavaScript, they they go so much into the JavaScript fundamentals and the JavaScript things that they don't like, take into account that the DOM is really what we're working with. So JavaScript and the DOM, and how JavaScript interacts with the DOM is is one of those ones that is just largely, I don't know, passed over for some reason, people don't spend enough time on it. those skills are always going to be applicable. Yeah.
+
+22
+00:10:49,740 --> 00:11:20,640
+Wes Bos: And I don't think you need to memorize it. I find myself every day just know I look up stuff all the time. Yeah. How do you do this in vanilla JavaScript, that's absolutely fine. There's probably not worth putting space in your brain, especially if you're working on a react app, or what other kind of app full time, you're not going to be using it all day. But again, spending some time adding elements, putting elements adjacent to each other, duplicating elements, removing them, yeah, what the difference between a node and an element is, that's a set gotcha that a lot of people have.
+
+23
+00:11:21,059 --> 00:12:30,809
+Scott Tolinski: Yeah, even just updating basic properties, classes, in your text, those kind of things, those skills are always going to come in, in handy. And if you understand a lot of these things, then maybe you're going to have less errors in your site. But if you don't understand them, and you have lots of errors in your site, or maybe you do have lots of errors, because that's how life is, maybe you'll want to check out one of our sponsors this week. And this is Log Rocket. Now Log Rocket is the service that allows you to see bugs as they happen with this amazing session, replay the video that gives you everything that you could possibly want to know about the bug. When it happens. It gives you your network tab, it gives you the console it gets your Redux store allows you to really see the issues as they happen along with a session replay video that you can scrub through and see what happened when the user clicked and broke the whole site. So you're gonna want to check out Log Rocket at Log rocket.com forward slash syntax. It integrates with everything you know, and love. And it is one of those services that is going to save your bacon. Save your bacon in a Big Green Egg smoking it up. So check it out. I can too. What's that?
+
+24
+00:12:30,809 --> 00:12:32,970
+Wes Bos: Yeah, it'll save your Canadian bacon as well.
+
+25
+00:12:33,000 --> 00:12:35,190
+Scott Tolinski: Yes, Canadian bacon. Also an excellent movie.
+
+26
+00:12:35,909 --> 00:12:36,750
+Unknown: Canadian bacon
+
+27
+00:12:37,020 --> 00:12:39,390
+Scott Tolinski: movie or the or the thing? Ah,
+
+28
+00:12:39,419 --> 00:12:40,230
+Wes Bos: the thing. Is there a movie
+
+29
+00:12:40,230 --> 00:12:44,730
+Scott Tolinski: there's a movie with john candy and Canadian bacon.
+
+30
+00:12:44,730 --> 00:13:01,380
+Wes Bos: It's funny because Canadian bacon is a very different thing to everybody to Americans. They tend to think that's what that's what people think it is. That's not what it is. Like, we don't just yeah, we don't just go by like a circle ham from the grocery store and put it into the frying pan because
+
+31
+00:13:01,799 --> 00:13:06,029
+Scott Tolinski: I like some like sandwich meat and we throw it on the thing. We're like, we're Canadian.
+
+32
+00:13:07,950 --> 00:13:47,940
+Wes Bos: No ik bacon is off. So and also in I think in the UK. Bacon is like the part of the belly but also part of the tenderloin. And it's like this like, I think they call it like back bacon. If you get bacon in the UK. That's that's what it looks like. It's I think it's also not smoked. It's just cured. Hmm. Which is kind of interesting. But that's again, that's not what Canadian bacon. Canadian bacon is what we call it peameal bacon here. So we don't just like walk around saying like, like, I always want to say like, this is bacon in Canada, like the French people probably don't just call toast french toast like, maybe they do actually do you think they do.
+
+33
+00:13:48,360 --> 00:13:55,080
+Scott Tolinski: I you know, french fries, mean? fries, and I'm ignorant American. So
+
+34
+00:13:56,429 --> 00:14:16,950
+Wes Bos: anyways, PML bacon is the pork tenderloin, which is a really lean cut of meat. They cure it for like a week or so. So it ends up really pink. And then they roll it in cornmeal. And then you slice it up really thin and cook it ideally in a cast iron pan. So it's not saying that we have all that often in Canada, but now you know,
+
+35
+00:14:18,299 --> 00:14:22,409
+Scott Tolinski: you have just been given the fundamentals of Canadian bacon.
+
+36
+00:14:24,750 --> 00:14:27,059
+Wes Bos: So Google, it's Google peameal. Bacon.
+
+37
+00:14:27,090 --> 00:14:34,080
+Scott Tolinski: No, I don't know if I'm gonna do that. I don't know what that word. Maybe you should have a spelling link in the
+
+38
+00:14:34,110 --> 00:14:57,149
+Wes Bos: e a m e a l peameal. Bacon. That's amazing. I would highly recommend that you. You try it yourself a female on a bun. That's that's what they saw at the farmers market in in Toronto. And it's like a huge thing. Ooh, okay. Anyway, back to JavaScript. I thought we would we got a couple of minutes I thought we would dive into what the heck Canadian bacon is.
+
+39
+00:14:58,140 --> 00:15:57,799
+Scott Tolinski: rightfully so. Well. Let's get into To the I was going to try to make another Canadian bacon connection, but I don't have one here. And this is going to be understanding prototypes. And this. Now this is one of those things that I feel like, I feel like people. They talk about how hard this is. And maybe it's just because I didn't come from different programming languages. But this has never given me that much trouble in JavaScript. I don't know why. But this just always refers to this the thing that you're talking about, and the the sort of scope that you're under at this particular point. And now again, that scope is going to be different based on where you are and your application. But I don't know, for me if I ever needed to be confused about what this is, I just looked at this, you know, through debugger in there through a console login. Okay, this is this thing. Okay. Or this is undefined. I guess I should figure out why. You know, and to me, what is this equal to?
+
+40
+00:15:57,840 --> 00:15:59,850
+Wes Bos: Just? I don't know, check it. Yeah, just
+
+41
+00:15:59,850 --> 00:16:22,710
+Scott Tolinski: check it right. Exactly. Yeah, people talking about confusing that is it maybe it is confusing to know exactly what this is all the time. But I don't know, this is one of those concepts, that it's hard to talk about this without saying this too much. It's like saying that Amazon assistant name whenever you're talking? Oh, yeah, when you're trying to you're trying to talk about this, you just end up saying this a whole bunch. And everything gets kind of wonky,
+
+42
+00:16:22,919 --> 00:17:11,040
+Wes Bos: a little trick that I use, and this isn't 100%. But generally, when you want to know what this is equal to and a function, you take a look at what what got called, it's usually a method, and the method will have a.to the left of it, and to the left of that there will be something there's usually an object that you're calling that method on. And that's what this is equal to, this is equal to the thing that the method got called against. And that's usually an instance of some sort of, like a class or react component or something like that. And if there is no this, then you are it's probably just equal to the window. So I know it's, I think that the problem is, is that a lot of people like they like try to learn this prototype a little bit too early, and they don't understand like, why you might need it or even like a lot of developers don't even use that at all. Yeah,
+
+43
+00:17:11,219 --> 00:17:12,720
+Scott Tolinski: I hardly use it. No, no, yeah,
+
+44
+00:17:12,959 --> 00:18:05,400
+Wes Bos: I hardly I, the thing I used to always use it for was event listeners. And then I switched over to using like e dot target and EDA, different target, just because like, then if it's like an arrow function, I don't have to go like, Oh, whoops, I did an arrow function. Now I have to do it. So I just started using the event, in all cases. And then now that react is going hooks in the coding a lot and the hooks direction, I even now start using this a whole lot less. So it's more of like a object oriented programming style. So you might not even have to use that sort of thing in your your job. But it's worth knowing like how it works and creating an object yourself. It's worth looking at the old class creation, design pattern, and then looking at the classes that came in ESX. And how those are the same thing. Just because it's a common interview question.
+
+45
+00:18:05,489 --> 00:19:14,280
+Scott Tolinski: Yeah, I feel like this, like, what is this equal to at this point is a common interview question. So if you have trouble with understanding what this is equal to, then maybe just there's got to be like a site that has a whole bunch of just scenarios. And they're like, what is this equal to at this given time? And if you want to understand it a little bit better, maybe you can build that little scenario thing yourself, just write a bunch of JavaScript, and then check what this is at any given point. And then, well, I think you might be able to pick up on patterns and how it's used. But obviously, I think you'll want to spend some time with it. Because it is a common interview question. It's one of those things that people like to get other people on, like, oh, that you can't find what this is, at this point, or, or what's the scope here? I've been asked what a prototype is many times on an interview. So understanding prototypes and understanding I mean, it's all based on the word prototype anyways, but how one function or one class can access the, it's so weird to talk about classes now in JavaScript, even though they've been in here for a little bit. But you have a function, you have a function prototype, like how do those two relate to each other? And what does that mean? Okay,
+
+46
+00:19:14,670 --> 00:20:03,660
+Wes Bos: that would be an awesome little website for somebody to build. That would, I think that would be an awesome on your resume as well, where Yep, you just create a little micro site, and give me 10 examples of different instances where this will be equal to something else, like an event listener, a method on an object, an arrow function on something else, and just list out a whole bunch of things and make I just looked up the domain name, this dot Dev, which somebody has taken and used as hire dot this dot Dev, but I don't know find a snappy domain name. That would be an OS. If I was a hiring manager, I saw that on somebody. Someone's portfolio saying, like I built a little site that explained how this works in JavaScript. And I was in that's amazing because you obviously thought I need to understand this. So I tapped And then share the share the wealth with everybody else.
+
+47
+00:20:03,720 --> 00:20:44,250
+Scott Tolinski: Yeah. And I mean, if they're gonna ask you about it, you can show that not only do you understand it to the point where you could explain it, but you can understand it to the point where you could teach it other people or create a resource like that, I think is very valuable. Next, I think you wanted to get into events, which is a big one, because right along with the DOM, you know, I, I know a lot of resources, they like to use events, maybe in a non practical way. But understanding how events work specifically, in real world use cases, like submitting a form and doing something with that form other than just sending the request via the post or something like that. There's a lot here in terms of wanting to make sure that you have foundational bases covered.
+
+48
+00:20:44,250 --> 00:21:09,780
+Wes Bos: Yeah, so listening for clicks on buttons, listening for all of the different mouse events, because there's, I think there's four different mouse events. And now we also have pointer events, which tries to aggregate touch and mouse events into one, which is actually pretty sweet, I think. But I think there's like a nine different pointer events that are in there, or you obviously don't need to know them all. But just understanding how these things work. Like what does bubbling and propagation mean,
+
+49
+00:21:09,800 --> 00:21:12,000
+Unknown: bubbling. So we should definitely,
+
+50
+00:21:12,110 --> 00:21:56,730
+Wes Bos: we should do an episode on on bubbling and propagation. Yeah, that would be a good one. So understanding how those work and why why those work. One thing I found helpful is that even though this might seem like an advanced topic, which is dispatching your own events, I think it will actually help you understand how events work in general, because what you can do is when something happens, you can dispatch your own event. And then on the other end, you can start listening for your custom event, and figure out how you can pass data from the dispatched event to the event handler via the event object. I think that will that will maybe give you a little bit of an aha moment. And custom events are super handy as well to if you're building any sort of component word,
+
+51
+00:21:56,880 --> 00:23:34,680
+Scott Tolinski: yeah, I think this, this next one, this is a very, very important one. And if you really want a good understanding of some of these things, we have a whole episode on JavaScript array method. So I think understanding arrays and how they work are a big part of JavaScript, especially foundational things, when you want to manipulate an array, how you do so with push pop any of those things, slice, splice, whatever, when you'd want to change an array versus when you'd want to create a new object itself, you will want to understand spreading and resting those kind of things, you'll want to understand any of the main array methods, and go ahead and listen to our syntax episode on array methods. It's one of our most popular episodes if you aren't into array methods. If you aren't, if if you don't hear the word array method and go, Oh, yeah, array methods are awesome, then I don't think you spend time with them because they are awesome. So go ahead and listen to our episode on array methods. Because knowing the at least at the very least, for each map, filter, reduce will save you a ton of time and headache trying to do more complex things with loops. And who knows what trying to get the array to bend to your will, in the way that you want it to when to use an array versus an object when it makes sense, when you need those keys, or when you want to pull stuff out, specifically, an election or something. And again, like we mentioned, when you are modifying an array versus when you're creating an entirely new array and what that means for you and your code. Then you have mutation verse immutable written here. And I think that's a good foundational point on JavaScript as a whole, like not just arrays, but like that's a
+
+52
+00:23:34,680 --> 00:23:37,380
+Unknown: military word people have. It's scary.
+
+53
+00:23:37,380 --> 00:23:43,470
+Scott Tolinski: It scared me a lot of mutability. Hey, if something can change, you're not Yeah, if you can change it.
+
+54
+00:23:44,790 --> 00:23:48,900
+Wes Bos: Can they mutate? Yeah, they change from one thing to another?
+
+55
+00:23:48,990 --> 00:23:51,150
+Scott Tolinski: And is it changeable? changeable?
+
+56
+00:23:51,150 --> 00:24:29,220
+Wes Bos: Are they changeable arrays? Yeah, that's, that's so much nicer. Yeah. Yeah, mutation sounds so much scarier. But there's a thing like some of the array methods, like pop will take items out of the original array, and then some of them will like slice or splice, I can't even remember what they are, I always have to figure it out myself, we'll just return a new array. And they're sort of sort of a trend right now, just to going all immutable, only using the array methods that will return a new array instead of modifying the other one. But in some cases, that's annoying, because then you have to, like you have all these, I got all these variables, and you're just re assigning a variable. I do do that I
+
+57
+00:24:29,220 --> 00:24:35,940
+Scott Tolinski: typically keep things immutable, but that's it. Yeah. Not nothing. Maybe like 99% of the time. I do.
+
+58
+00:24:36,240 --> 00:25:06,990
+Wes Bos: Yeah. Especially if you've, if you have a function and you pass in the array, and then you remove an item and you don't you don't think that it's going to be modifying the the array outside of that function. So that goes back to the whole reference versus copy sort of thing. So I think that's that's worth spending some time on and understanding how these things are. Again, like with all this stuff, you don't need to be an absolute expert. But if somebody's like in an interview, or or you need To know about like this, this, by the way this will mutate the array. You should know what that does, because that's the potential for a huge bug down the road if you don't,
+
+59
+00:25:07,410 --> 00:25:37,980
+Scott Tolinski: yeah, yeah. And I mean, in speaking of winter reference something, and I don't know what what the transition here is, but when you want to reference your invoices, and you want to reference your clients is your clients as your clients, you're going to want to go ahead and check out fresh books. So which is the place that you can keep track of all of your, your your invoices, your payments, all that good stuff that you use, so you can get paid for the work that you have. So with more about fresh books, one of our sponsors this week is Wes Bos.
+
+60
+00:25:38,070 --> 00:27:58,050
+Wes Bos: Yeah, you've got enough to learn about JavaScript. So if you are trying to freelance work your way up as a web developer, it's not worth spending also more time on taxes and invoices and expenses. And time tracking that stuff is very, it can take over your entire life, I always talk about like working on your business versus working in your business. And working on your business would be doing the busy work. Working in your business, I forget which one it is. But essentially, don't waste your time doing stuff like that, get fresh books. To do all of your cloud accounting@freshbooks.com four slash syntax, it's going to give you a 30 day unrestricted free trial. And make sure you syntax in the How did you hear about a section that will allow them to keep sponsoring thanks so much for fresh books for sponsoring. Cool. Next we have here is flow control. And flow control means doing things in different orders doing things when they're conditional. So this has to do with looping. So looping alone has a whole bunch of flow control in it, you can, we have the for of loop, we have the for in loop, we have all of the array loops, which is the we have got for each we've got map and reduce, like so understanding how those all work. And then also when might you want to use a for in or for of loop versus a dot for each and scrutinize both opinion, almost always you reach for one of the array methods. But specifically, I found a good use case for the for of loop, I think the other day where I had an array of promises that it needed to run in sequence. So did one when that was done did the next and when that was done did the next one. And right now there's no way to await inside of an array loop right now. So if you've got like an array of things that you need to do one and the next and the next, but you can await inside of a for of loop. And that will sort of pause the the loop from running until you've until you've resolved that promise. So I don't know if that has anything to do with that what we're talking about here, but I just thought that was a useful little tidbit where I go Hmm, I was wrong about always hundred percent of the time using for each because that was a good use case of using a foreign or for of loop. Yeah. What other kinds of looping Do we have not looping if it's his flow control, knowing about truthy and falsy do you know about truthy and falsy sounds like a like a couple that lives down the road.
+
+61
+00:27:58,320 --> 00:28:49,650
+Scott Tolinski: Oh, yeah, truthy and falsy Yeah, I see them out gardening every once in a while they're putting in some hydrangeas today, truthy and falsy if that just really understanding that that control. You know, it's one of those things that I think if statements in particular, they seem like they're so basic, but when people are first starting out, I don't know if they truly understand like, really how you can make things efficient with your if statements or readable sometimes people go really deep with if this than if else than if else or or this or whatever. And then maybe a switch would be more more suitable, or ternary would be more suitable. Or maybe even they're using those things, when is straight up if would be more usable. So just knowing how to write clean code in those sort of ways. And I have a resource at the end of this episode that you're gonna want to check out that's going to help with a lot of that stuff. And, yeah,
+
+62
+00:28:49,830 --> 00:29:33,690
+Wes Bos: that's good. The other thing we have here is promises and a sink await. So this is somewhat related to Ajax calls. But it's also related to flow control, which is if you have stuff that takes time. And if you don't know what a synchronous is that I guess that's a whole nother topic there is what does this word synchronous mean? And why do why do we need promises? And how do they work? And why do we need a sink await? And how does that work? So especially if you're coming from another language like PHP, where it's kind of hard to do a synchronous stuff or everything by default is synchronous. And then you move to JavaScript or a lot of stuff is as synchronous by default. So that's, that's another big hurdle to get through and understanding how that works.
+
+63
+00:29:33,750 --> 00:30:39,630
+Scott Tolinski: I feel like a lot of this stuff we have syntax episodes on. So honestly, if you want to like really hear more of us talking about some of these things, deep dive into the syntax back catalogue, and just look for titles that call out any of these things. Next up is security and accessibility exe s s which is also cross site scripting. Basically how a site and a server are basically how domains are talking to each other and what they have access to To and why that matters is important. Obviously, all websites shouldn't be able to pull all information from all all other locations and setting up those sort of rules and understanding what the heck is going on, there is an important thing to know just for your own security, but it's also something you're going to hit. Anytime you do anything, you follow it tutorial, then you go to do it on your own, where you're not following your script 100%. And then you get hit with a cross site scripting error. And then, huh, yeah, so you got to know how that stuff works. Understand just any, anytime you are working with API's, what exactly is going on? requests, headers, responses, those kind of things? Yeah,
+
+64
+00:30:39,660 --> 00:31:45,420
+Wes Bos: I don't think you need to go too deep into all of the like, requests back and forth and curity keys and all that, because that's, that's pretty complicated. But like, at least know, like Scott said, at least know that when you're creating HTML, and you're dumping data that's coming from someone else into your HTML, know that that's a possibility for access and why that might be. And we've got a couple shows on on this as well. I think we did one just a couple couple weeks ago explaining what that potential issue is, I think the other thing that is important to know, is just a couple things about accessibility, you don't need to be an absolute expert. But there's certain things that can be what we call foot guns, where you can accidentally or unintentionally make a website inaccessible to a large portion of your user base. And just knowing about things like when you're creating elements, if they can be accessed via the keyboard, what other kinds of things, we have a whole we have a whole show on this that you can you can go through but just like knowing like, you're not an expert, but you should know about these things. So you don't accidentally be mean to somebody who's visiting your website.
+
+65
+00:31:45,510 --> 00:32:33,690
+Scott Tolinski: Super, super, super important. Yeah, I mean, I guess testability. Overall, I think in every facet, you should have the accessibility foundations down. Because I think that all this stuff's important. It needs to be more important. So make sure you got it, make sure you got it down. We already mentioned immutability, and then you have a little section here to know about, but not to master or you're not needed to master and the first one is modules. Now, you know, I agree, especially because modules are used, so is pervasively the right word. Right now, with all of our front end frameworks, you're breaking things up, just understanding it the very least basic Import Export named imports and exports, those kind of things. You don't need to get in to all of the crazy specifics, but just lighting design patterns, things like that.
+
+66
+00:32:33,720 --> 00:32:36,480
+Wes Bos: That's a rabbit hole, but import export, like you said,
+
+67
+00:32:36,510 --> 00:32:39,510
+Scott Tolinski: Yeah, yeah, wins, name diverse default, that kind of thing.
+
+68
+00:32:39,660 --> 00:33:34,440
+Wes Bos: Totally. And knowing that modules have their own scope is probably important as well. How do you share data from one module to another, knowing about closures? closures is one of these things that people always ask in interview questions as well, right? Oh, yeah, it's it's it goes along with immutability, where you're like, Whoa, closures that sounds like serious. That sounds like something but it's not. It's just that I don't know you got a function. And then when that function returns, there's sort of this like, mysterious space that still lives inside of there that you could have variables inside of. So I've got a couple simple examples coming up in my courses, lots of good stuff online, that will give you just the the main idea as to what is a closure? And then I think you'll find yourself running into lots of different situations where you say, I could use a closure here. You don't have to code absolutely everything. And closures just know what they do and why that might be useful.
+
+69
+00:33:34,680 --> 00:33:50,850
+Scott Tolinski: Definitely. And it's funny, you have Ajax requests here. And I kind of mentioned this in the cross site scripting one, but yes, requests in general, how to, it's funny to hear them called Ajax requests in 2019. Just because I remember that being like a thing in Dreamweaver,
+
+70
+00:33:50,910 --> 00:33:54,330
+Wes Bos: right? You do Ajax requests, or am I just being old?
+
+71
+00:33:54,630 --> 00:34:25,670
+Scott Tolinski: I think you're being called I don't call them I just call them requests. Yeah, just your fetching or whatever. But basically, being able to request information from a third party, being able to then take that information, parse it, and then use it typically via JSON, or whatever it is, or graph QL. Now at this point, but just understanding requests in that sort of way, how you can get data from an API is is I think, one of the most Yeah, it's it's an important thing to understand what the foundations here.
+
+72
+00:34:25,770 --> 00:35:02,210
+Wes Bos: Yeah, I agree. I think we should stop calling them Ajax requests. Because Ajax means a synchronous JavaScript and XML and synchronous to now it's all a synchronous by now. The XML HTTP requests used to be synchronous. No longer is you can you can no longer I don't even think you can turn that setting on anymore. I always see like little errors in my Chrome console that this will be going away soon or something like that. And obviously, it's not XML knowing what JSON is another good one, like what is JSON, and why do we use it? It's it's JavaScript object that is put into text so you can easily translate ported from one place to another,
+
+73
+00:35:02,550 --> 00:36:27,570
+Scott Tolinski: I feel like after the recording of this episode, we're gonna be like, oh, there's so many foundational things we missed, because there probably is. So if you think we missed any of these Foundation, things, I would love for you to tweet us out, we'll give you a retweet. And we'll that'll be our way of saying I'm sorry for missing it in the episode, I think the last thing that I had on here, and this is one of the things that got me so much better at JavaScript is understanding clean code. And now I've linked to a clean code at GitHub repo that is basically based on the book by Robert Martin clean code, but it's adapted to JavaScript. And the thing that's so great about this repo is that does a, here's what's bad, here's what's good. And here's some code like a one liner, really illustrating why. And in terms of understanding the foundational concepts of JavaScript, this might help you understand the, like you said, with foot guns, these things in this clean code repo are going to prevent you from foot gunning yourself, or shooting yourself in the foot, so to say, because the cleaner your code is, the more it adheres to sort of these kind of standards or a standard like this. Yeah, the easier it is for I think, for you to get the picture and to understand how these things are working. So I would highly recommend taking some time and going through all of these and this was one of those ones to me, that will greatly improve your understanding of foundational,
+
+74
+00:36:27,650 --> 00:36:48,230
+Wes Bos: this is really good. I'm just reading through this right now. I love when people say bad example. Good example. I love that because I can just look at these little really clear and very clear. Oh, yes, I shouldn't do that. Or that's what people mean, when they say at most two arguments. What if you need more than two arguments? What do you do? Well, here shows how to use an object as an argument. Yep,
+
+75
+00:36:48,270 --> 00:36:53,820
+Scott Tolinski: this this function should do one thing. Here's why. You know, I love it. Beautiful, big fan.
+
+76
+00:36:53,850 --> 00:36:54,710
+Wes Bos: I'm gonna do this.
+
+77
+00:36:54,710 --> 00:37:03,210
+Scott Tolinski: I like that a lot. Yeah, my, my better JavaScript course is basically this repo adapted into a JavaScript course. Or basically what we do we just that's
+
+78
+00:37:03,210 --> 00:37:09,630
+Wes Bos: available at level up tutorials. COMM Ford, store Pro, pro Pro, the store
+
+79
+00:37:09,630 --> 00:37:12,980
+Scott Tolinski: has actually gone away. It still exists, but it's kind of gone away.
+
+80
+00:37:13,130 --> 00:37:16,460
+Wes Bos: Oh, interesting. But there's a link on the top it says store.
+
+81
+00:37:16,770 --> 00:37:41,550
+Scott Tolinski: No, it exists. It exists. But it's now just the same as the tutorial listing. Okay, just shows. Okay, now buttons. So it's really just a toggle for those buy now buttons, so it allows you to buy it's so funny because the store used to be an entirely separate section of level up tutorials comm like an entirely different codebase. It was its own own thing. And now it's, it's pretty much gone. I mean, there's now it's just essentially a component that's toggled on and off by a route.
+
+82
+00:37:41,940 --> 00:37:53,550
+Wes Bos: Cool. All right. I think that's it. That's the fundamentals, it's probably a little bit overwhelming to know that that much stuff, like almost an hour's worth of stuff is the fundamentals just rest to tell you what plumbing,
+
+83
+00:37:53,760 --> 00:37:55,110
+Scott Tolinski: yeah, for me to talk about it.
+
+84
+00:37:55,130 --> 00:38:17,420
+Wes Bos: And that's not even getting into any frameworks or anything. It's just knowing how the language itself works. But I think like, you could probably master this in, I don't know, a couple weeks or something like that understanding what it is before you. You're not going to be amazing at it, but just knowing what they are and sort of having headspace about them. And then I think as you build real stuff, those things will cement themselves.
+
+85
+00:38:17,690 --> 00:38:27,170
+Scott Tolinski: Yeah, absolutely. I like that word, cement. Cement is the perfect word to build your foundation. We got to cement Oh, this foundation. That's deep.
+
+86
+00:38:29,160 --> 00:38:32,130
+Wes Bos: All right. What about some sick picks the sick pick for me today?
+
+87
+00:38:32,399 --> 00:40:02,340
+Scott Tolinski: Do? Yeah, I actually have a couple of sick picks, I'm gonna have a hard time picking between I got so many things I like right now. Lots of stuff. This is going to be a sick pick that will fit this episode, I think very, very appropriately. This is a really awesome podcast that I just found some I'm so sorry. Because I don't know who tweeted this out. Somebody tweeted this out. I saw it. It's from code newbie. And the podcast is called a base CS. And so to give you the sort of the basics of this podcast is it's computer science topics that are distilled into a really sort of brief episode maybe like a 20 minute long episode. So let's give you an example. season one episode one is bits binary and bytes, a beginner friendly breakdown of how to count in binary, and how it relates to bits and bytes. And so they start sort of there. And if you start at the very beginning and just listen up a friendly intro to big O notation. I know people were asking about that in one of the episodes of syntax stacks in real life, like basically what is the concept of a stack and how does it relate to things in real life. There are so many things in here trees in real life. Don't be stumped by trees, binary searching, just all these concepts in computer science that you might not have ever picked up anywhere. And here they are explained in a really brilliant way the two hosts are absolutely amazing. So I'm a huge fan. of this podcast and I've been listening to every episode,
+
+88
+00:40:03,570 --> 00:40:29,670
+Wes Bos: I am going to sick pick a baby item. And this is the outlet sock. So probably the funniest part about having a new baby is that you're always like, just like looking at them and making sure that their chest is moving to make sure that they're still breathing. Every new parent is just like, Huh, and when your baby's sleeping, sometimes they're breathing very lightly, and like you just like have to poke them to make sure that they're still awake.
+
+89
+00:40:29,690 --> 00:40:37,590
+Scott Tolinski: It's the worst part cuz they're sleeping, baby, but I'm not quite sure. And you put your hand on them and you're like, Okay, they're breathing, and then they wake up. You're like, I shouldn't Yeah.
+
+90
+00:40:37,590 --> 00:40:48,210
+Wes Bos: So it's the worst part for sure. It's I think it's what contributes to a lot of sleep loss for parents, because you're constantly on edge being like, are they okay? Are they okay?
+
+91
+00:40:48,479 --> 00:40:49,730
+Scott Tolinski: Then the whole crying part,
+
+92
+00:40:49,859 --> 00:41:58,920
+Wes Bos: that data the whole crime part as well. That's, that's awful. When we had our last kid a couple years ago, we bought this thing called the outlet smart sock. And it's basically you and you go to the you go to the hospital, and they put the little clip on your finger that has like a red light. So it's like, it's one of those it will track your your heart rate and your your oxygen level. But this is a sock that you put on the kid's foot. And then there's an app that will basically just transmit that data. And I know there's a lot of people that are gonna say like, Oh, you put in your kids. vitals on the internet, Mark Zuckerberg is gonna comment like, last time I tweeted about this, we had some really opinionated people. So please hold your fire. This makes me feel a lot better about my child. But it's great because and then it will alert if the sock falls off, it will alert if there's ever an issue, and only ever once alerted for our last baby. And you're not sure if it's a if it was a false alarm or not. But I'm happy it did alert us. And it's pretty cool. So it's just a little little sock that you put on their foot. And you you can see their vitals and I think the new one does like sleep tracking. They'll tell you like when they're sleeping and when they're awake based on if they're wiggling or not, which is pretty cool. So it's the outlet smart sock
+
+93
+00:41:59,129 --> 00:42:01,980
+Scott Tolinski: word. Cool. Yeah, this looks nice. Yeah,
+
+94
+00:42:02,010 --> 00:42:21,380
+Wes Bos: it's a little little design, super expensive. But it's well worth your it's like, I think it was like 300 bucks for us. But your sleep is worth it. And the thing about kids stuff is that you could just sell it. And like six months because kids stuff is just turns over so quickly. And like the Facebook groups for selling kids suffer amazing.
+
+95
+00:42:21,440 --> 00:42:35,550
+Scott Tolinski: Yeah, yeah, I believe it. Absolutely believe it. Most of the stuff that we got was either given to us or borrowed, you pass it along and you buy from somebody else. That's just how it is. Cool. So shameless plugs. Do you have any shameless plugs for us?
+
+96
+00:42:35,669 --> 00:42:50,630
+Wes Bos: Wes bos.com. forward slash courses, has a list of all my courses, you can learn ESX, or node or react or CSS Grid, just take a look at what of that available bunch of free bunch are paid. And you can, you can grab a course if you want to support me.
+
+97
+00:42:50,879 --> 00:43:49,290
+Scott Tolinski: Cool. So for those of you who may not have listened to syntax before, Wes Bos, and I do our own courses, we both teach web development stuff. And I know you're hard to work on some new stuff. And yeah, I'm hard at work on a new series every single month. So we have a new month here, and a new tutorial series. Now the series that came out last month was all about real world debugging and Dev Tools teaching you every single tab in dev tools. But the course for this month, I'm happy to announce considering it's the 17th of July today, as you when you're listening to this, the course is going to be on e commerce with Gatsby. So if you want to build a web store in Gatsby, head on over to level up tutorials.com forward slash pro sign up to become a pro. And that course is going to be available on the 31st of July. And if you're waiting for that course, you can listen to all of the other new courses you can get all caught up with Gatsby with pro Gatsby to any of that good stuff. So thank you so much. And check it out. Level Up tutorials.com for slash Pro.
+
+98
+00:43:49,410 --> 00:43:53,400
+Wes Bos: Beautiful. Thanks for tuning in. We will catch you on Monday.
+
+99
+00:43:56,580 --> 00:44:06,360
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
