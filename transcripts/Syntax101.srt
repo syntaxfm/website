@@ -1,0 +1,200 @@
+1
+00:00:00,359 --> 00:00:24,450
+Announcer: Monday, Monday Monday open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob and Scott Taylor. Totally at ski.
+
+2
+00:00:25,980 --> 00:00:26,610
+Unknown: Oh, welcome
+
+3
+00:00:26,610 --> 00:02:10,650
+Scott Tolinski: to syntax today is a hasty treat in the craziest tastiest podcast around we're going to be talking all about where are they now, we're gonna be talking a lot about libraries that have been hot or somewhat hot in the past things that have been widely used or hyped up, and maybe are less widely used or hyped up or if all around disappeared. Today, we're gonna be doing a little bit of where are they now with some of these libraries. Oh, my name is Scott Tolinksi. And with me, as always, is Wes Bos. And this episode is sponsored by our friends over at content full. Now content fall is a great way to host your data. Now in the modern front end web. We're working a lot with front end technologies. And that leaves out a big piece of the puzzle, which is your data. Where does this live? How does it stored these things that you don't even want to have to worry about right? Just give me a list of blog posts and let the website figure it out. So content fold makes that really super easy by allowing you to organize, manage and completely control all of your data. Not only that, but it makes it really easy to access your data when you need it. So we really love content fall as a platform for all of our front end code pulling in data. Anytime that you need to store some stuff, it is the back end CMS of the future. So check it out, head on over to content fool.com forward slash syntax FM and if you sign up for content full, you get a free pair of content full socks, and let me tell you these socks are awesome. What's and I both have the socks, and I'm wearing mine right now. So I'm a huge, huge fan of content fall. And I know Wes is as well. So check it out again, and content fool.com forward slash syntax FM. Alright, so
+
+4
+00:02:10,650 --> 00:02:58,800
+Wes Bos: we're gonna talk about where are they now? frameworks, libraries, things that we use in web development. And probably about maybe five years ago, they were the hotness as we say, these were the up and coming or the super popular pieces of technology in web development. And now five years later, you look back and go Hmm, it's interesting that you don't see that all that much anymore. So it's important to note that we're not going to say that these things are dead, because at some point, you're going to choose these technologies, and you're going to have to commit to them for however many years, it's you can't move around as quickly as that when you have a business to run. But we're saying that these are sort of the Macaulay Culkin of web development technologies where that guy is still around, he's living his life enjoying things, but you don't hear from him all that much anymore. And you think back? Uh huh. Whatever happened to that? Yeah,
+
+5
+00:02:58,890 --> 00:03:03,510
+Scott Tolinski: yeah. So what you're saying is that these are gonna make me slap my cheeks and scream.
+
+6
+00:03:04,680 --> 00:03:35,400
+Wes Bos: Oh, my gosh, oh, that's terrible. I also want to say that no shade thrown on any maintainers or developers behind these frameworks, I think that's really important. Because often, there are people who take on these projects that are a little bit older and maintain them for security for features for bug fixes, things like that, because their company or their projects actually need them to survive. So props to them for doing that. This is not to say anyone who's worked hard building a framework or maintaining a framework should have any shade thrown on them for that. Yeah,
+
+7
+00:03:35,400 --> 00:03:37,770
+Scott Tolinski: we were talking about no shade zone,
+
+8
+00:03:37,860 --> 00:04:13,950
+Wes Bos: no shade zone, we're talking on Twitter about this. And somebody said, anything that Jeremy ashkenaz put out, and so he's the developer behind backbone underscore a lot of the jQuery stuff, it was hugely influenced influential in the JavaScript community. And anything he touched, was just turned to gold, which is such like, he really shaped how JavaScript like push forward in the last couple of years. A lot of the things that he built are on this list, but I thought that was important to note as well. So let's start it off. Why don't you grab the first one there, Scott? Yeah. First
+
+9
+00:04:13,950 --> 00:04:29,490
+Scott Tolinski: one is, we have a couple of tools here. So these aren't the same tool, but they're both sort of in the same category, one of which is grunt and one of which is Gulp, both of which had some cute logos. We had one that had like a wild boar when they had like a cup. I mean, was the cup with the straw and 711.
+
+10
+00:04:29,490 --> 00:04:31,350
+Wes Bos: Big, big gulp.
+
+11
+00:04:31,380 --> 00:05:19,470
+Scott Tolinski: Yeah, so these tools were largely considered to just be build tools. Now people would call them like a task runner or something, you know, who knows what everyone had like a marketing slang for it. But at the end of the day, the whole thing, the whole thing that these things were doing was taking your code, building it into something that the browser can understand. And then outputting some other code. So whether or not that is things like, you know, collecting your JavaScript files, whether or not it's compiling your sass or stylus, which I would imagine is the first time that a lot of people use some of these was just simply working with sasser or one of those technologies. It would also do things like compress your images, it might build a web font or something like that. It there's a host of tools that these things could do. But at the end of the day, everything involved here was really just a build tool.
+
+12
+00:05:19,500 --> 00:06:58,080
+Wes Bos: Yeah, I think that I still use Gulp in a whole bunch of my projects. Yeah, I still look at Gulp as one of the best things that I've used in the last five, six years, because it was so easy to use, so easy to build plugins for the plugin ecosystem was was massive. And when we moved over to using the replacements, which is more things like using parcel or Webpack, or whatever, it sucked, because like, first of all, I was coming from this idea of taking something, piping it through all of these transform, and then outputting it somewhere. And Webpack has a whole different thought. And the way that we build apps is totally different. These days, where it's more of like a No, your application requires these assets. And Webpack is smart enough to detect those as the throw. So you approach it in a bit of a different way. So I don't think that Gulp is really going anywhere. I know that a lot of people are still building websites where they just need to be able to pipe in some images and some sass and some JavaScript, they need to run it through whatever transforms they need to do, and then kick it out to a build process. But I do think that because of the different types of apps we are building, especially when you look at things like Gatsby, or next, or, or whatever the tools need to be built into these frameworks for us, which I wholeheartedly welcome. Because I don't just not use Gulp anymore. I very rarely ever have to touch something like Webpack because the frameworks or something like parcel just does it for us. So yeah, I think we went we went back a little bit for a little bit there with Webpack. Obviously, people still using Webpack. But I prefer these tools that use Webpack or parcel under the hood and do the hard work for me.
+
+13
+00:06:58,110 --> 00:07:43,020
+Scott Tolinski: Yeah. And I'll even still reach for Gulp in situations that are like, Alright, I need six images output in different sizes and dimensions or whatever. And instead of using like Automator, or some built in Mac OS thing, I'll reach for Gulp because it's just like a syntax. I know. I know the plugins I know just write a simple utility for myself. So I still see Gulp used all the time. grunt not so much. I don't do like I don't see a ton of people using grunt are suggesting to use grunt as more. I remember when Gulp first came out, I was sort of like, Oh, this is a lot nicer to me than than grunt. And I dropped grunt very quickly. But I'd be interested to hear what percentage of people are still using grunt specifically? Because I just don't i don't see it that much anymore.
+
+14
+00:07:43,169 --> 00:07:51,870
+Wes Bos: Yeah, I forget what the differences were, it was something to do with streams versus like, temporary files. And how fast Gulp was over grunt,
+
+15
+00:07:51,870 --> 00:07:54,900
+Scott Tolinski: I remember was a lot of extra syntax compared to go,
+
+16
+00:07:55,110 --> 00:08:28,650
+Wes Bos: Yeah, it was. That's the whole like coding versus configuration. A golf was a huge config file, which web pack also is I much prefer the Gulp approach to things where you would just code JavaScript, and pipe them through all of your your, your plugins that you have. So kind of interesting to see us move along. That's probably the saddest one that I see moving on. But I understand why it is. Because the tools are getting better. And the needs, especially with JavaScript, our needs are much bigger with things like code splitting, tree shaking, it's just a lot more complicated that you simply just can't do that with something like gob.
+
+17
+00:08:28,680 --> 00:09:43,110
+Scott Tolinski: Yeah. And I think another thing that these tools that we should mention is that they were an important to bridge to a gap that was like, people who who are getting into compiling things, they would use an app like compass app or code kit was used for a long time. And there were some others, I forget their names even now. But like these tools allowed us to understand the build process more than just opening up an app and selecting a folder and having it do its thing. So let's get into the next one, which is one that we briefly mentioned in the intro, the star which is backbone, and it's sort of counterpart library that's often used, why I would say mostly used with it, which would be Marionette which you would be described as a backbone framework. It just makes writing backbone code easier. backbone would be considered one of the sort of Oji web frameworks In my opinion, were like, this was one of the very first JavaScript based frameworks, front end frameworks, I should say that that really took off to the point where it was highly used and things like enterprise and I remember interviewing for a lot of jobs, even well into Angular, angular one's heyday, that we're still using backbone and lots and lots and lots of work on backbone itself. This is this was one of the first ones West Did you ever have any experience using backbone yourself?
+
+18
+00:09:43,199 --> 00:09:52,830
+Wes Bos: Yeah, I think back to it. I remember so clearly taking the peep code backbone tutorial, which was a huge motivation for me building my own
+
+19
+00:09:52,949 --> 00:09:54,270
+Scott Tolinski: Ember tutorial. So
+
+20
+00:09:54,290 --> 00:10:18,480
+Wes Bos: yeah, deep code. code was awesome. For those that don't know it. He was one of the early like, screencast stirs that would sell modern web development screencasts. And the whole company got bought up by I think it was Pluralsight, which I thought was kind of cool. So I did build a couple things. I don't think I ever deployed any production backbone code, just because by the time I got up and running with backbone, angular was becoming popular. That is
+
+21
+00:10:18,480 --> 00:10:24,180
+Scott Tolinski: that I don't know if that was an intentional joke about backbone, but it could be read as one. And in that case, what
+
+22
+00:10:24,180 --> 00:10:25,040
+Unknown: was the joke?
+
+23
+00:10:25,140 --> 00:10:29,820
+Scott Tolinski: The joke is that backbone was difficult to learn. And so by the time you got up and running with it,
+
+24
+00:10:32,220 --> 00:11:09,600
+Wes Bos: I think it was definitely difficult to learn. But also it was the first like frame where there was like knockout as well. Yeah, at the same time, and can j s was a big one, or but even before that, we had something called JavaScript MVC. But that was like the first time that people were looking away from jQuery and saying, Hmm, maybe we should use a framework. And it was like a totally different mindset to approaching especially front end developers who had never built any sort of complex logic on the on the back end, you had to like relearn a lot of stuff. And I know people had that having to relearn when they first learned Angular for certain react. But the whole industry sort of was shook up when when backbone came on the scene.
+
+25
+00:11:09,630 --> 00:12:11,670
+Scott Tolinski: Yeah, I read the book, human JavaScript. And that sort of opened my eyes to backbone. And then I actually picked it up, I decided I was going to do a tour of the front end framework. So I picked up backbone, I picked up Ember, which was still pretty young at that time. And I picked up Angular, which was also pretty young at that time. But I remember just being like the Angular, I think picking up Angular was faster. And like you were instantly a little bit more productive with it, even though it wasn't necessarily as structured. And so for me, I like gravitated towards Angular immediately, just because it was easier. But then I did have to learn backbone for a few job interviews and things like that. And I actually went on one job interview, and they were just like, so can you code out for us two way data binding in backbone. I was like, well, I've never done it in backbone. But, you know, I've only been working in Angular lately, the past like few months. And they were just like, Well, can you do an example of two way data binding in Angular? I was like, I mean, I could, but it's going to be worthwhile for this interview. Because it's too easy. It's like,
+
+26
+00:12:13,020 --> 00:12:13,530
+Wes Bos: yeah, you
+
+27
+00:12:13,530 --> 00:12:15,270
+Scott Tolinski: don't have to do anything. Yeah.
+
+28
+00:12:17,220 --> 00:12:22,140
+Wes Bos: So that's, that's interesting. What was Marionette I have never looked into that. I remember hearing a lot about it.
+
+29
+00:12:22,320 --> 00:12:57,930
+Scott Tolinski: Yeah. So Marionette was basically just a way to make backbone less verbose, less, sort of boilerplate D, it was sort of just like an extension on the backbone. And most of the time, people I don't think use backbone too much without Marionette. I could be totally wrong on that. But from the things that I worked on, and people I've talked to Marionette was almost always used side by side with it in larger projects. Because when I even interviewed for one backbone job, I didn't, I didn't do very much Marionette, I'd only done just straight up backbone, because I'd read some books and done some examples. And they're like, Oh, you should be using Marionette. Okay. Okay. So
+
+30
+00:12:57,960 --> 00:13:13,350
+Wes Bos: yeah. Interesting. Next one we have here is package manager. So for the longest time, we didn't have a package manager for JavaScript, you simply would just go to a GitHub or even before that you just go to like a random website or a Google remember Google Code.
+
+31
+00:13:13,380 --> 00:13:17,220
+Scott Tolinski: Yep. Maybe grab the script, download CDN, and just pay Yeah, you
+
+32
+00:13:17,490 --> 00:13:27,840
+Wes Bos: just pasted all these like script tags in the head of your document, and then your page load would be super slow. And that would be your dependency management. And if there was ever and like an update, you probably would never get that. Or you would probably
+
+33
+00:13:27,840 --> 00:13:38,190
+Scott Tolinski: never even know, I just remember like loading scripts directly from a CDN and being like, I don't know why this is be a problem ever. It's easy. how things have changed. Well, what
+
+34
+00:13:38,190 --> 00:13:50,100
+Wes Bos: came around in the early days was we had NPM, which is the node package manager. And then there was a huge push to make something called Bower, which is a front end package manager for JavaScript and CSS. Another cute logo
+
+35
+00:13:50,100 --> 00:13:50,820
+Scott Tolinski: here.
+
+36
+00:13:50,850 --> 00:15:02,280
+Wes Bos: Yeah, that was that was that was a good good quality logo. I think sticker mule still uses that logo as like their example sticker, which is fine. Right. And the other one was components, which is by TJ Holloway, Chuck. He's the developer behind everything, everything on the internet like Express and I can't what they are stylus, Jade, pretty much anything I love. He's one of those one of my darling web developers. He unfortunately is a go developer. Now, he doesn't do a whole lot of JavaScript anymore, which made me sad. But so he came up with components. We had Bower, they had a big push. But it was frustrating. Because there were like library authors that were like taking sides and being like, No, I'm only pushing to Bower or I'm only pushing. Because what happened is people just started putting packages in NPM for front end, and we're like, what are you doing? This is node package manager. But NPM was like alright, bring it on. We'll be like the the package manager for web development. And slowly Bower and component never components never really got a whole lot of traction. Bower got some initial traction, but people started to side with NPM and I am so glad that as much as people complain about NPM I'm so glad that we only have one person Yeah, now instead of multiple,
+
+37
+00:15:02,370 --> 00:15:23,130
+Scott Tolinski: I understood like the use case for Bower, but it was like solving a problem that I didn't like totally understand at the time or feel like I had. So like I ever reached for Bower, I think I only used Bower and projects where as part of the boilerplate, and it was like, Okay, this is part of the flow of this project. But I don't think I ever really was like, this is the this is the right answer. I am
+
+38
+00:15:23,160 --> 00:15:41,130
+Wes Bos: Yeah, my my only experience with that was, like I composer or PIP on Python, and I almost my only experience was it never freakin work. Yeah, you just like pip install, blah, blah, blah, it would just puke onto the screen, and then it would be broken. And five years later now NPM does that just as well. So?
+
+39
+00:15:41,910 --> 00:17:18,860
+Scott Tolinski: Yeah. Nice. Cool. So next up we have was compass. Now compass is one of those things that again, was primarily used as a package deal along with sass, when sass first came out, it was sort of like, well, you're going to use sass, and you're going to use compass, because compass gives you all of this extra additional functionality that is more or less not to what a processor does, or preprocessor does, but as stuff you're going to need in CSS, so compass gave you a lot of CSS, like utilities, or sass, things like prefixing, there were some really cool sprite generation tools, there was like a billion mix ins they came in at, you could do things like create triangles and stuff like that really easily with a mixin rather than seat like having to write out that CSS every time. And there was just a whole bunch of stuff that that made your life a little bit better when working with CSS. And I was such a huge, huge fan of compass for a very long time I use compass, it was actually I am going to credit Chris Epstein of compass with some of the I don't know, the the drive that at least started level up tutorials to be big as it is. Because in 2012, I released a couple of tutorials on Drupal and sort of stuff like that. And it just sort of sat around and I released some sass tutorials. And I don't think the world was really ready for sass. At that time, at least the YouTube world wasn't ready for it. And then I released some compass tutorials. And Chris, he started tweeting out my compass tutorials, and that seriously took off my YouTube channel. So I owe a huge amount to the compass project in general. But I'm just a huge fan of this. And I even used the compass app for a very long time as well. This was a big one for me.
+
+40
+00:17:18,930 --> 00:18:20,730
+Wes Bos: Yeah, I remember seeing the sprite generation alone. So we maybe should explain what sprites are for the kids to the podcast. So back in the day, you would have all these little icons that were a PNG. So you'd have like your little search icon that was a PNG. And you would have like a background gradient that would repeat on the X or Y axis that was like a little PNG, or you'd have all of your icons every like little image that you needed to make your website work you needed to have as a PNG and that would slow your website down. Because if you have 40 different little icons and borders and things that are all PNG based, you would have to put them in one big PNG file called a sprite, you set the background position of each of your divs. Like you would say like this span is 50 pixels wide and 50 pixels high. And the background position is like 300 pixels over 200. You'd like battleship Yeah, to figure out where on the sprite. That image was. And it would just show that little thing. Yeah, yeah. Was there one post? I
+
+41
+00:18:20,730 --> 00:18:27,080
+Scott Tolinski: think it was like about how Amazon use CSS sprites or something. And that like blog post, like blew up of CSS
+
+42
+00:18:27,080 --> 00:18:27,590
+Unknown: sprites?
+
+43
+00:18:27,660 --> 00:18:46,920
+Wes Bos: Yeah, I remember that coming out. And then every time I would like inspect element on like a search button on Google, you would find the link to their spray. Yeah. Yeah, they would need Yeah, he was fine. The spreadsheet. So that was a pain because you would have to make your own sprite sheets, or I used this website from Jake Archibald called Sprite. Yeah, I love this breakout. Yeah.
+
+44
+00:18:47,040 --> 00:18:47,790
+Unknown: Oh my god,
+
+45
+00:18:47,810 --> 00:20:15,320
+Wes Bos: it was so hard to make them because if someone was like, cool, but can we have a red search icon, you'd be like, Oh my God. Now I have to like change my sprite sheet. So what this did is you would just export all of your images as separate PNG files. And then you would just set the background image to be like background image, lemonade, search dot png, and then the lemonade script would collect all of your PNGs put them into one big file and then replace the CSS to wherever that image was in the destination, which is such a roundabout way. And now we don't even have to think about that because you have things like svgs and and whatnot. You don't have to worry about it. You don't have like interface rasters anymore. Yeah, totally. So sprite generation. What happened to Compass it basically, it didn't become unpopular. It's just that the entire language progress. So the vendor prefixing either went away, vendor prefixes are almost not a thing anymore, or they got replaced with autoprefixer. And people started to get a little bit overwhelmed with how messy compass code could get because people got like so excited about all of these mix ins and having a variable for absolutely everything. I remember how A project where I was like, Where's this border radius? Sen. Oh, it said in this file, it's related in this file treasure that is imported from this. And I would just like being chasing around, I'm like, I just want a border radius variable, or I just want to type five, and have it show up, right?
+
+46
+00:20:15,540 --> 00:20:34,550
+Scott Tolinski: That was always the worst when you had like a big framework type project. And it would be like, Alright, now I want to change this one particular element, you go to that particular element, and it said as a variable, that when you change that variable changed like eight other things. So then you had to make a decision. Do I want to branch this off from this? Or like, How do you like it would just it like complicated things before it needed to be?
+
+47
+00:20:34,610 --> 00:21:18,720
+Wes Bos: Yeah, Foundation, I think foundation two was very heavy, very heavy on these these calculations. And I often found myself being like, this is unnecessary. For me, at least, that happened. And then the big thing that killed it was that the maintainers themselves sort of like gave it the kiss of death intentionally. They said, We are not going to port compass over to two node sass or lib sass or anything like that. So it was only in Ruby sass. That's what sass initially was in. But that was very slow. So it got rewritten in C. And it got rewritten in Dart as well. And the maintainers of Chris said, I will not port this over because it's not necessary. We have better things now. And this project served its purpose, but we don't need to go any further with it.
+
+48
+00:21:18,720 --> 00:21:46,800
+Scott Tolinski: Yeah. And cheers for that. It made my life so much better at the time. Yeah, cool. So I think that's it, we have a lot more of these, we're gonna be doing more of these episodes sprinkled out whenever we have, there's a lot of tech that you know, was once used and is no longer used. So I hope you found this episode to be interesting. And we're gonna keep these going. You'll have another one next week. So we're gonna do another Where are they now next week, and we got some more really exciting fun stuff for you planned. So yeah, keep your ears open for that one.
+
+49
+00:21:46,800 --> 00:21:49,820
+Wes Bos: All right. Thanks for tuning in. We'll see you Wednesday, please.
+
+50
+00:21:52,290 --> 00:22:02,070
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
