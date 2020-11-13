@@ -1,0 +1,336 @@
+1
+00:00:00,359 --> 00:00:03,420
+Unknown: Monday Monday Monday open wide dev fans
+
+2
+00:00:03,420 --> 00:00:21,329
+yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob and Scott
+
+3
+00:00:23,610 --> 00:00:24,480
+Tolinksi ski
+
+4
+00:00:25,890 --> 00:00:50,640
+Scott Tolinski: coming to you live, while sort of llanera Yes, not really, from the JW Marriott in San Francisco is is the first ever syntax recorded in the same space is the same physical space here, we have a tasty treat for you today is the Monday edition of syntax. My name is Scott winsky. And with me in person in this hotel room is West ba This
+
+5
+00:00:50,640 --> 00:01:21,780
+Wes Bos: is weird. For those who don't know, I've never actually met Scott and we are ramping up tomorrow we're doing a full version of a full tasty treat of the syntax podcasts at jam stack calm. And we figured might as well just try record a little hasty treat as well. So Scott brought his focus, right, we both brought our microphones, we had to run to the store and buy a XLR cable for Scott's mic. And now we're trying it so the audio probably won't be as good because we don't have all of our mixers and everything with us right now. But it'll still be good.
+
+6
+00:01:21,810 --> 00:01:52,530
+Scott Tolinski: Yeah, I think there's some major, major hiss coming through from my mic. So chances are, this might not be the prettiest in terms of audio quality episode that we've done here. But it should be fairly personable. So today we're going to be doing what we like to call stumped, which is where we give each other JavaScript interview questions or interview questions at that. We're going to be pulling questions today from flash cards for developers.com is a new sort of website that we're using here for these. So hopefully, we don't get any repeat questions. And yeah,
+
+7
+00:01:52,740 --> 00:03:43,200
+Wes Bos: today's episode is sponsored by email octopus. And this is actually kind of an interesting way to do email. Because if you want to run email marketing, and you want to do like a newsletter person, let's say, you've got like a couple options where you can go full blown and host your own version of some sort of hosted thing. And that's great, because it's, it's very, very cheap. And all you really need is something like Amazon, or does the CSS simple email service. And you can send dozens and dozens and thousands of emails for just like, I think it's like 10,000 emails for a buck or something like that. The downside of that is you have to host your own version, you can go all the way to the other side of it and use something like a MailChimp or whatever, that gets very expensive. I know myself that gets really expensive when your email list gets huge. So sort of the the sweet spot in the middle is using something like email octopus, which you still use your own Amazon SES key. So you still pay just the wholesale cost of sending those email, but you use a hosted service to actually manage sending your emails, your unsubscribes, all of that stuff that comes along with it. So it's kind of really cool, because it's going to be so much cheaper than running a plan if like, let's just go on here. 2500 subscribers on the shrimp plan, it's free tuna plan 10,000 subscribers, just 19 bucks a month, 50,000 subscribers, 39 bucks a month, I'll tell you, if you look at 50,000 subscribers on anything else is going to be much more expensive. So if you are looking for an affordable way, especially if you're someone who doesn't send email out all that often. And usually what happens is these email newsletter places they'll charge you by the month based on how many people you're sort of like holding in your list. And if you're just sitting on I'm not sending out a whole bunch of email, it can get fairly expensive for for doing nothing. So check it out at email octopus.com and thanks so much for them for sponsoring.
+
+8
+00:03:43,649 --> 00:03:56,910
+Scott Tolinski: I like the tuna plan, or the shrimp plan. We just got some ramen. So that's Yeah, that was delicious. Absolutely. Cool. So we got some interview questions here. Do you want me to kick it off? Yeah,
+
+9
+00:03:56,910 --> 00:04:00,240
+Wes Bos: hit me with your best. Best stumper. Okay,
+
+10
+00:04:00,360 --> 00:04:06,180
+Scott Tolinski: this is the stumper. The stumper is, what's the difference between a synchronous and synchronous code?
+
+11
+00:04:06,240 --> 00:05:38,580
+Wes Bos: Ah, that's good. Okay, so when synchronous code is run, it will sort of lock up the browser and stop any other JavaScript code from running. And the perfect example of this, if you want to understand what a synchronous code is, put out like a timer on your website where every 300 milliseconds, it will update, like update something on the page. So you can see that it's removing or use a set timeout and every second, increase the number of seconds by one and then take something that is synchronous in JavaScript. And some good examples of synchronous stuff in JavaScript are alert, confirm and prompt. That's why we don't like to use those to teach because they are unlike most things in JavaScript. They're synchronous. And what that will do is it will actually stop all of the timers on the page from running. If you have any other like Ajax requests in the background running if you have any other JavaScript that needs to happen, maybe some fetching or refreshing of data, none of that can run because you sort of locked it up with things cretinous as synchronous is the opposite of that, where it will fire off a request. And then it will only come back when that thing has been finished. And that's where you use a promise that's reuse a single way. That's where you use a callback, you can basically just fire off a request, you can fire off saving a file. That's another good example. Like if you have a synchronous, no jazz has an API for write file. And then they also have an API for write file sync. And the downside to write file sync is that nothing else can happen when that thing is running. Generally, you want to just kick off the saving of the file, let that run sort of in the background, and then come back with the name of the file once it's been saved to disk. How did I do? Yeah, I
+
+12
+00:05:38,580 --> 00:05:44,670
+Scott Tolinski: think this is good. Yeah, I think you can breathe now. I think that was a great explanation. Yeah. No, a plus.
+
+13
+00:05:44,700 --> 00:05:59,820
+Wes Bos: All right. Here is I like this one. I don't know if you know this one. Because this is one of those like classic interview questions, which very rarely will ever have to like, use it. Or if you need to use it, you just look it up. So what is the difference between call and apply? Oh, I
+
+14
+00:05:59,820 --> 00:06:08,790
+Scott Tolinski: never used calling apply? I don't know why I never use it. This is gonna be embarrassing. No, I don't use these very much. So I don't know. Yeah, please read me the answer. This is embarrassing.
+
+15
+00:06:08,970 --> 00:06:47,610
+Wes Bos: Yeah, well, so when you're trying to like find a method, it may be the reason why is because like you use react to use a lot of functional programming, right? Where you don't have to use the keyword this all that much. So it all boils down to what does this equal to? Right? So when you have dot bind calling apply, you can you can figure out how to invoke a function against that. So the answer here is both call and apply are used to invoke functions. And the first parameter will be used as the value of this within the function. The call argument will take a comma separated arguments as the next arguments and apply takes an array of arguments. So I very rarely ever have to use that myself. Yeah,
+
+16
+00:06:47,640 --> 00:06:49,620
+Scott Tolinski: dang, I feel dumb for not knowing that.
+
+17
+00:06:50,520 --> 00:06:56,700
+Wes Bos: That's, that's why it's like a classic interview question that you probably don't use all that often or ever. Yeah. And your entire career. He's
+
+18
+00:06:56,700 --> 00:07:11,700
+Scott Tolinski: dot bind, or whatever. But yeah. Okay. So here's an easy one. And I'm giving you I'm giving you light ones today. That's the computers. Getting getting me the good questions here. How do you share code between files?
+
+19
+00:07:11,760 --> 00:08:04,050
+Wes Bos: Oh, I like that. This is actually something I get questions about a lot. Because people like yeah, I get it. Wes, you have a script tag on HTML page, and whatever. But how do I actually architect an application that's like, a little bit bigger. So probably the most modern way to share code between files is just using a module system ESX modules common j s, require j s. Other ways that you can do it is via namespacing. So if you put like a, what I used to do a lot is I'd have like a window dot app, and you'd have like one big namespace for your entire application as a global variable. And then anytime you wanted to put some code that shared between it, you just put all of your methods in all of your variables as methods and properties on an object you have like app dot, fetch new users and app dot save user and app dot current users would be like an array of users and you kind of namespaces that way. Don't use that anymore, just because of modules are much, much easier to use.
+
+20
+00:08:04,710 --> 00:08:05,670
+Scott Tolinski: Yeah, way easier.
+
+21
+00:08:05,670 --> 00:08:07,440
+Wes Bos: How's that? Was that decent?
+
+22
+00:08:07,830 --> 00:08:10,380
+Scott Tolinski: Yeah, was absolutely sufficient. Perhaps.
+
+23
+00:08:11,310 --> 00:08:24,870
+Wes Bos: That's the, the, if you were to describe my life, absolutely sufficient. There's a little softball, what's the difference between double equals and triple equals? Oh, yeah, well, and the,
+
+24
+00:08:24,870 --> 00:09:05,130
+Scott Tolinski: I think, is just beginner developers who are specifically JavaScript, right? We're always taught that to not trust the double equals and sort of banish it to the Shadow Realm. You never need to use the double equals because it's not reliable, which is kind of hilarious, because well, now you have to have three equal signs to Yeah, actually have things be equal to what you were expecting, right? Right. If the the number three should not be equal to the string three, or whatever. So what are the each individual characteristics? I don't know what it's a good example of one of the ones that's a false equivalence with the double equals I'm like, I haven't ever used the double equals in my entire life.
+
+25
+00:09:05,130 --> 00:09:11,580
+Wes Bos: Yeah, no, I think that there's like a type of Nolan type of undefined. Or if you use a double equals something like that.
+
+26
+00:09:11,580 --> 00:09:30,240
+Scott Tolinski: Yeah, there's a handful of cases where the double equals is not necessarily reliable in the sense that the, the conditional comes out to unexpected results for what you're not expecting. So the the triple equals is pretty much the one you're going to use every single time because that is what gives you the correct ones. Let
+
+27
+00:09:30,240 --> 00:10:01,200
+Wes Bos: me Yeah, like if you do zero equals equals false, you get true, right? Because zero is falsie. But it's not the same thing. Yeah, that we should say that the difference is that double equals we'll just check the value if they're the same, and triple equals we'll check both the value as well as the type. So the fact that zero equals equals false is true because the value of those are both falsy. But the the types of them one of zeros, a number and falses, a Boolean so they don't line up. That's why triple equals is better? Yeah,
+
+28
+00:10:01,230 --> 00:10:02,660
+Scott Tolinski: yeah. more explicit.
+
+29
+00:10:03,150 --> 00:10:33,600
+Wes Bos: Yeah, that's it. One other fun funny thing that I find when I'm teaching beginners JavaScript is they use just use one equals, and they say if name equals Wes. And you're just basically saying like, if you can set a variable to be equal to West, then go ahead and back in var days. Was that always happen? Because you could always reassign a variable now with const? You will least complain a little bit. Yeah, it'll throw an error and you can figure out what's wrong because I've been there myself with some head scratchers. Why is this always true? Yeah, that is a beginner bug. Right.
+
+30
+00:10:33,600 --> 00:10:43,400
+Scott Tolinski: There that happens. Let's see what I got here for you. As we fun and pretty easy. What's the difference between no undefined in undeclared?
+
+31
+00:10:43,439 --> 00:10:44,400
+Wes Bos: Oh,
+
+32
+00:10:44,520 --> 00:10:46,380
+Scott Tolinski: that's a classic one too. It's a
+
+33
+00:10:46,550 --> 00:10:47,610
+Wes Bos: Yeah, an
+
+34
+00:10:47,660 --> 00:10:52,620
+Scott Tolinski: undeclared? undeclared, just as an undeclared variable. It's not like a keyword.
+
+35
+00:10:52,740 --> 00:11:29,520
+Wes Bos: Oh, okay. Okay, I see. No, I always think of as actual an actual value of nothing. So if you want to explicitly set something to be nothing you set it to be no or as undefined is if you make a variable but don't set it to anything. You'd say var name that's undefined, right? Like the it's been created. But there is no it hasn't even not yet defined what the value of it is, and then a undeclared variable is is gonna actually going to error out because if you have a variable that you're trying to use it, it will throw you an error saying that it's not yet been created. Yeah, it just simply. It's not something that
+
+36
+00:11:29,790 --> 00:11:30,630
+Scott Tolinski: doesn't exist, right?
+
+37
+00:11:30,660 --> 00:11:32,730
+Wes Bos: Yep. Yeah. That's pretty good.
+
+38
+00:11:32,790 --> 00:11:42,810
+Scott Tolinski: Yeah, that's good. Definitely good. Yeah. It's like you're trying to use your new account to log of West, but you've never even had a variable West anywhere else. Yeah, gonna be like, what the hell is Wes,
+
+39
+00:11:42,900 --> 00:12:10,080
+Wes Bos: we just say that something is never know by default. Whereas undefined is something by default, if you just create a variable and don't set it to something, it's undefined. Or as you did developer or program has explicitly set something to be no, in order for it to for that to happen. Null is often useful in situations where like, you can't use like false or zero or something like that. Because those could be legitimate values, where if you need something that is not a value, then you set it to No, yeah,
+
+40
+00:12:10,140 --> 00:12:32,250
+Scott Tolinski: yeah. Yeah, this is something that you used to use a lot more even. And back in, like jQuery days, when you'd have like your, you wanted to make sure our jQuery and all your scripts were loaded before you ran them. This is just basically saying, hey, when the document loads, we can now do this. So you're not trying to essentially perform actions on things that don't exist. Right. Let's say the document is not
+
+41
+00:12:32,280 --> 00:12:55,470
+Wes Bos: ready. David, already the same thing document already is that was in jQuery. And that was under the hood, what are we doing is using it was firing an event called DOM content loaded? Yeah. And that would wait for all of the HTML to be downloaded. And that was important, because sometimes you would run your JavaScript, right? Or you're looking for something that didn't exist any way for it. But the load event,
+
+42
+00:12:55,949 --> 00:13:02,040
+Scott Tolinski: I feel like that's the only time I've ever used anything waiting for the document to be loaded. was with jQuery.
+
+43
+00:13:02,070 --> 00:13:08,040
+Wes Bos: Yeah, back in the back in the day, because almost always now we just put our scripts after the HTML has right
+
+44
+00:13:08,040 --> 00:13:09,060
+Scott Tolinski: at the bottom. Yeah,
+
+45
+00:13:09,090 --> 00:13:31,500
+Wes Bos: yeah, exactly. Or you could you could Oh, yeah, some of these second differs. But then that's the DOM content loaded or document ready in jQuery is not the same thing as load load will wait for CSS to be loaded, wait for all of your images to finish. So that where I have use load before, if you want to wait until an image is done downloading so you can get its resolution or you can get its width and height so that you can work with it.
+
+46
+00:13:31,590 --> 00:13:48,990
+Scott Tolinski: Yeah, man. It's so funny because you do you work in these these frameworks, you have the lifecycle methods, and like, how much JavaScript have I written that's not been in react or Angular or whatever, in the past, you know, X amount of years. It's so funny, because it's like, oh, man, you just, you just end up losing some of this stuff.
+
+47
+00:13:49,020 --> 00:14:09,030
+Wes Bos: Yeah, you just never have to use it. So it's not something it I always categorize the stuff as up to knowledge. Because, yeah, you need to know it. But that's just because that's the way the language works. And if something nicer comes along, that makes you not have to know these, like, you don't have to be a drug dealer of these little facts about how the browser works. It just, it just works. Like Yeah, what I know
+
+48
+00:14:09,030 --> 00:14:14,370
+Scott Tolinski: because it's funny is it does not affect my day to day building code, right? Like build stuff.
+
+49
+00:14:14,400 --> 00:14:16,680
+Unknown: Yeah. Okay, okay, I
+
+50
+00:14:16,680 --> 00:14:19,710
+Scott Tolinski: got one for you. This one's fun. What is the event loop?
+
+51
+00:14:19,710 --> 00:15:31,650
+Wes Bos: Oh, that's a good one. So before I even say this, there's an really, really good talk on YouTube. Let me find the name of it. I've sick pick this in the past. Philip Roberts, what the heck is the event loop anyway? And apparently, Jake Archibald also has a good talk on it as well. I haven't watched that one yet. I should, because he's always good at breaking down these complex things. So essentially, you have functions and stuff that get called in the browser and they get sort of queued up to be called. And the order in which they are called they're sort of added to the the event loop. So that's one of the reasons why we sometimes have to Use a set timeout zero, in JavaScript or in some of my courses, I just have a weight weight zero, and you just have a single await for zero seconds. And what that does is it makes sure that the next code will be put at the end of the, at the end of the event loop and the end of the call stack. So I don't know if that was a really good example. It's kind of a very obtuse thing to talk about. So I would recommend if you are still scratching your head, check out this this talk, because I remember I watched that talk from Philip. Robert sounds like this is very good. Yeah, actually, I've
+
+52
+00:15:31,650 --> 00:15:34,680
+Scott Tolinski: gotten this question in an interview before Have you Yeah,
+
+53
+00:15:34,950 --> 00:16:00,720
+Wes Bos: it's it's really good to know, how does how the browser works with this kind of, and this kind of comes back to the synchronous versus synchronous, because if you're coming from something like PHP, where your code just reads top to bottom, you don't really run into problems like this. But knowing how the browser queues up functions being called and a synchronous versus synchronous is really important to being a JavaScript developer. dope. All right. What do we got going on? Do one more each?
+
+54
+00:16:00,720 --> 00:16:02,220
+Scott Tolinski: Yeah, let's go for it. All right.
+
+55
+00:16:02,220 --> 00:16:21,360
+Wes Bos: Why is extending built ins in JavaScript not a good idea. And when they say never extend built ins, they mean, don't take stuff that comes with JavaScript like array, and just start adding your own methods to it. So like, if you have an array and you add like.to? Scott, you can just start it. So why is that? Not a good idea?
+
+56
+00:16:21,600 --> 00:16:54,330
+Scott Tolinski: Yeah, I guess it could be maybe for a few reasons. I don't know what maybe the the not good reason. But to me, it seems like you might one be potentially overriding some potential functionality, either future or current functionality, whether or not you know what you're doing or not? Like, I guess that's probably a lesser concern. But for me, I guess it would be you are using sort of, like non standardized API's, when things could be in a separate library broken out? What would be I don't know what what is the bad reason for doing it other than that,
+
+57
+00:16:54,360 --> 00:17:24,000
+Wes Bos: well, so in the past, what has happened is if you extend an array, and you add like a he taken around, you add a method called, like, find names or something like that. And then somebody else comes along, and you have like a plugin, and they also write have their own and they override it. Like you said, you could have a naming collision. And that's why things like jQuery was in its own variable dollar sign. And that's why things like lodash are in their own variable underscore. And what had happened with
+
+58
+00:17:24,030 --> 00:17:30,110
+Scott Tolinski: I think it was mootools is mush. Yeah, or her wallet did not smoosh. But much note that this mush gate
+
+59
+00:17:30,390 --> 00:18:02,910
+Wes Bos: mootools extended the the prototype, right, and they added contain Yes. And the reason why it's not contains in the ESX back and it is dot includes is because of mootools. And they didn't want to break existing website. So generally just don't touch you can touch that. We talked about this last episode, when when should you touch the prototype when you're poly filling, right? You should extend built ins by poly filling them with standard JavaScript API's. But don't do it for your own willy nilly stuff. Just go ahead and then make your own function somewhere else.
+
+60
+00:18:02,940 --> 00:18:04,500
+Scott Tolinski: Yeah, well, smartgate was the same thing. But
+
+61
+00:18:04,500 --> 00:18:08,520
+Wes Bos: for flatten, flatten will explain that. I didn't really get into that.
+
+62
+00:18:08,600 --> 00:18:11,940
+Scott Tolinski: Okay. Yeah, it was it was like a Twitter thing couple months ago.
+
+63
+00:18:11,970 --> 00:18:13,850
+Wes Bos: Yeah, we're watching a little bit of it. Yeah.
+
+64
+00:18:13,850 --> 00:19:07,770
+Scott Tolinski: So there was a proposal for a new language feature called array dot flatten. Yeah, to flatten an array. The problem is, is that mootools also had a flatten. And so the the proposal, the proposal author jokingly suggested renaming a flatten to smush compatibility issues, but then it led to this whole conversation of is a smush. to demo name for this kind of thing. Or is a flatten Is it fine to just start using flat and break a whole ton of sites that are using mootools? This? Yeah, it's basically the exact same sort of conversation, right? And so I guess that that makes a lot of sense, especially with libraries in your own individual code base. I guess maybe there's less of a scary reason to, to override stuff but I guess you probably just shouldn't anyways, yeah,
+
+65
+00:19:07,770 --> 00:19:11,610
+Wes Bos: you never want to get that call from like a client like six years later, right? And like,
+
+66
+00:19:11,610 --> 00:19:12,180
+Unknown: um, what's
+
+67
+00:19:12,180 --> 00:19:12,930
+Wes Bos: going on? I
+
+68
+00:19:12,930 --> 00:19:20,640
+Scott Tolinski: just added a smash. Yeah. method to array and now there's an actual smash method and everything's breaking. There's
+
+69
+00:19:20,640 --> 00:19:25,650
+Wes Bos: lots of variables out there. You can just make your own namespace right make your own functions. Yeah, I
+
+70
+00:19:25,650 --> 00:19:38,670
+Scott Tolinski: think that that is the best answer is that it just comes down to namespacing in general. Yeah. Yeah, I think that concludes our hasty tree here is not my best showing I study up on these flashcards these next ones
+
+71
+00:19:38,940 --> 00:20:05,400
+Wes Bos: No, I like I think people have been been saying like, it's, it's fun to see us, like goof off or not be able to totally like when we're put on the spot to explain these things. It's not always as as smooth as it would be in a tutorial where we can take six or seven like sometimes I'll take like seven or eight shots at trying to explain something and then the best one will We'll make it into a tutorial. But these ones are just off the cuff as they would be in an interview. Yeah, it's
+
+72
+00:20:05,400 --> 00:20:29,360
+Scott Tolinski: funny because in an actual interview, I think, like one of the worst things you can do is just start to bullshit your way through some of these answers. And instead of just saying, I'm not quite sure, you know, give me give me an explanation of this. And we can talk about it or something. I don't know what the best route is there. But sometimes an interview, the last thing you want to do is, is like, act like you know something when you don't
+
+73
+00:20:29,400 --> 00:20:46,200
+Wes Bos: totally. Alright, that's it for today. Thanks for tuning in. We'll look forward to Wednesday, where we have the Live podcast, we've got some really fun stuff up for the live version of the podcast. It's gonna be hilarious. And even if you're not obviously not going to be there, it's still going to be very fun to listen to.
+
+74
+00:20:46,470 --> 00:20:52,610
+Scott Tolinski: Yeah, if you're not going to be there. You should next time. I don't know is there there's not next time lined up?
+
+75
+00:20:52,650 --> 00:21:02,060
+Wes Bos: No. We've been tweeting them telling them to do jam stack UK. Oh, yeah. And there's a lot of jam I think what do you call like crumpet cough or something like that?
+
+76
+00:21:04,710 --> 00:21:05,810
+Scott Tolinski: Tea and jam stack?
+
+77
+00:21:05,840 --> 00:21:06,830
+Unknown: Yeah. Oh,
+
+78
+00:21:06,990 --> 00:21:07,770
+Scott Tolinski: that's pretty good.
+
+79
+00:21:07,980 --> 00:21:10,470
+Wes Bos: Oh, that's a really good idea. pinkies up cough
+
+80
+00:21:10,500 --> 00:21:12,180
+Scott Tolinski: Yes. pinkies up.
+
+81
+00:21:13,200 --> 00:21:19,980
+Wes Bos: Well, well, if you want that to happen, tweet at Netlify and tell them we'll see how this one goes tomorrow first.
+
+82
+00:21:21,590 --> 00:21:29,910
+Scott Tolinski: But yeah, so hopefully this audio wasn't too bad for you. We will catch you again in the live show on Wednesday and then back for another regular hasty treat on Monday. So I guess that's it
+
+83
+00:21:30,210 --> 00:21:31,290
+Unknown: sounds good. Please.
+
+84
+00:21:33,660 --> 00:21:43,380
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
