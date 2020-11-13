@@ -1,0 +1,276 @@
+1
+00:00:01,319 --> 00:00:04,590
+Unknown: You're listening to syntax, the podcast with the tastiest web
+
+2
+00:00:04,590 --> 00:00:05,520
+development treats out
+
+3
+00:00:05,520 --> 00:00:10,530
+there. strap yourself in and get ready to live ski and West boss.
+
+4
+00:00:10,559 --> 00:00:33,150
+Wes Bos: Welcome to syntaxes to the podcast with the tastiest web development treats today we've got a potluck coming at you. These are questions that have been submitted by you the listener. We've got some questions on CSS Grid, deploying career advice, TypeScript, boot camps, JavaScript, you name it, we're going to be covering it today. With me as always is Mr. To Lenski. How you doing Scott?
+
+5
+00:00:33,150 --> 00:00:33,810
+Unknown: Hey, I'm
+
+6
+00:00:33,810 --> 00:00:45,360
+Scott Tolinski: doing good. Just, you know, working. I'm speaking at a developer Denver in like two days. So I got to prepare a run through my talk a little bit. Yeah, it's
+
+7
+00:00:45,360 --> 00:00:46,200
+Wes Bos: a talk on.
+
+8
+00:00:46,529 --> 00:01:08,370
+Scott Tolinski: It's gonna be my too fast too furious talk. So if you were listening to syntax, you remember we did an episode that was based on how to learn things quickly. And that's really yeah, the topic there. I'm changing up some of the things in it, maybe updating it just to hair, but for the most part, it's the same talk, and I'm really excited to give it so yeah, I'm pumped. Yeah, I'll be my first talk in a little bit here.
+
+9
+00:01:08,609 --> 00:01:29,550
+Wes Bos: Great. Well, today, we are sponsored by two awesome companies. First one is century dissolve your error and exception tracking as well as Freshbooks. Does. Small Business Freelancer invoices. So invoices expenses, all of your cloud accounting needs. We'll talk about them partway through the episode. Other than that, you're ready to get into it there. Scott.
+
+10
+00:01:29,609 --> 00:01:32,100
+Scott Tolinski: I'm ready to play. All right,
+
+11
+00:01:32,129 --> 00:01:33,630
+Wes Bos: you want to grab the first question there.
+
+12
+00:01:33,809 --> 00:01:54,660
+Scott Tolinski: Yeah. Okay. Eric saw. Thank you, Eric, CSS Grid question. prefer using grid, prefer using a grid row and grid column instead of grid area. For example, grid row one, three, and grid column, one fourth, instead of grid area. 1134. Hard to visualize.
+
+13
+00:01:56,340 --> 00:02:12,630
+Wes Bos: what he's referring to here is is how to span an element. So we want to put something on a grid, he prefers to use grid row and grid column versus actual named areas where you say like grid area, header grid area, footer grid, or even just our grid area with,
+
+14
+00:02:12,630 --> 00:03:20,069
+Scott Tolinski: you know, the line numbers. So he says, I find it easier to parse when looking at code, but is grid area more performant? I thought of it because in Flexbox, it's a best practice to use a shorthand flex property instead of writing out flex grow shrink basis. Okay, so on. So then he goes on to say thank you for all of the podcasts. You're very welcome, Eric. Yeah, so this is this is a interesting question. But it's To be honest, not one that I've ever spent any time thinking about whatsoever, cuz I don't think any of these things are going to be performance issues that you're going to have to worry about. Even the using the flex verse, flex shrink thing, I use flex, shrink and flex grow all the time, I use grid row and grid column instead of grid area just about every time. Because to me, it makes more sense to think about the grid row in the grid column spans rather than just the entire grid area span. That said, I think it's all just personal preference. You could look at the performance of this and say, Okay, well, it is more performant to do it this way or that way. And therefore, that's the right answer. But me personally, I've never ever been in a situation where that mattered, ever.
+
+15
+00:03:20,220 --> 00:05:56,610
+Wes Bos: Those performance things, people are always scared of these random edge KC things being performance. And if they really are a performance issue, then the browser should fix that because you shouldn't have to make your job harder as a coder just because like one thing is has this weird edge case performance. So once you use whatever you like, I personally go your way where I just use grid row grid column, whatever it is that I want. I very rarely ever use the grid area syntax unless I'm specifically doing like a kind of a neat response of where I want to relay it relay it out every single time on when I hit like a breakpoint. So yeah, totally fine. Don't sweat it and go for it. I think that's a great question. Yeah, totally. Next question we have here is from Tomek, do you have any advice on how to deploy an application? I mean, what do you think about AWS zite Heroku. Firebase to use automated tools like circle ci or buddy dot works? I also wonder, should we keep the whole application on one server? Or should we split the front end? example keep it on s3 back end, put it on easy two images uploaded by users on another instance in case of s3? So this question, I didn't actually pick it because I went and added this as an entire show. I think this would be really interesting to talk about lying in general. But like, we can obviously answer that real quick here. And let's go into it a little bit more than an entire show cuz we can talk about images and like security credentials, and there's so much back and yeah, front end and, and like migrating data and like how do you cut over from the old version of your app to the new version of the app? So there's really a lot to it. So how do you do deploy an application. There's so many ways, I guess I can talk about my own application. Right now I have it all as a single application, which is nice because I have, I do also have many other applications where I have a separate front end and back end. And I find that to be a bit of a pain to have to restart it. It is good for scaling to have them as separate front end and back end, just because if your back end needs much more resources, you don't have to scale up the entire thing just to handle that. Lots of people do keep their images on separate ones. But personally, I put all of my images on cloud Neri is in cloudinary. Yes, the one. Yeah. And then all of everything else, the front end and the back end all goes on a single Digital Ocean droplet. I'm currently working on moving that over to sites now. But that has not been easy task to to get the regular node app up and running on it. Yeah, what about you?
+
+16
+00:05:56,790 --> 00:05:58,170
+Scott Tolinski: Yeah, so no,
+
+17
+00:05:58,200 --> 00:05:58,710
+Unknown: yeah,
+
+18
+00:05:58,710 --> 00:07:50,940
+Scott Tolinski: I'm using something called Meteor galaxy right now, which is really just sort of, I believe it's just sort of a wrapper over an AWS instance. But to be honest, I don't think about it too much I was using, I believe it's called semaphore. And it was a build tool, like a continuous integration tool. And I really liked it. But then they changed it pretty substantially for the version two, and I like having, like, completely changed the interface and the API and all that stuff. So now I'm looking at it like, well, I don't want to learn something new. So I just haven't learned the the new version since it was released. I don't know there's this is a this question. But ticular I think maybe we should record this episode really soon. It's something that I'm doing a ton of looking into at this very second, because, you know, I like Meteor, and I really love my platform. But the hosting is expensive with galaxy, right? I'm not necessarily getting anything special out of it. And I'm hardly using anything that's even Meteor based anyways. So at some point, I could be saving a ton of money on hosting, I could be with a platform that is, you know, has more people behind it at the moment. And I could be taking advantage of those platforms, special features, rather than sort of sticking on a platform where I'm not using the special features and paying more for it, you know. So it's something that I've been really strongly looking at, and especially since next j s, version nine added API routes, I've been looking into moving my platform to next and hosting on zite. Now I believe it is and I'm using the next JS server via API endpoints as my entire API because each one of those runs on its own container. And I guess you can scale those up individually. These This is what I'm hearing. I haven't done necessarily the full
+
+19
+00:07:50,940 --> 00:08:05,400
+Wes Bos: research yet. That's how they're now that sh, the new version now 2.0 works. Yeah. And which is why it's so hard just to host a regular node app is because they want you to cut it up into every route being its own app, when you have
+
+20
+00:08:05,580 --> 00:08:26,370
+Scott Tolinski: a graph qL API, because you don't really matter, right? Because all of the sudden you just have one endpoint. That's one API route. And that connects. So I'm going to be able to essentially move over my entire API, right the bit of code to connect my Mongo DB up instead of using meteors, Mongo, and then I'll have all my API's on one endpoint.
+
+21
+00:08:27,180 --> 00:08:27,930
+Unknown: Beautiful.
+
+22
+00:08:27,990 --> 00:09:07,350
+Scott Tolinski: I know, I'm, it's actively in my brain. And I'm really thinking about this. So this is going to make a great episode. To be honest, I don't have any good answers for you either. I also use cloudinary to host my images, because I was doing it myself at some point. And I realized, you know what, I just don't have the back end skills to make some of these things happen. Like I was, you know, really overloading my server with image transforms and doing all sorts of things that I just realized, you know, what, I'm a little bit out of my depth when it comes to media handling like this, and I'm gonna let a service like cloud Neri handle it for me, and I'm happy I did because it saved me a boatload of time trying to figure that out, even though you know you pay for it. But Connor is cheap for what it does.
+
+23
+00:09:07,380 --> 00:09:27,510
+Wes Bos: Yeah. cloudinary is tricky, because it does get really expensive when you start getting into the paid version. Yeah, it goes up pretty quick. And that's that's the same with almost all stuff is either way too hard, and very cheap, like Amazon and whatnot, or it's super easy and gets expensive real
+
+24
+00:09:27,510 --> 00:09:29,460
+Scott Tolinski: quick. Totally. Yeah, sure.
+
+25
+00:09:30,169 --> 00:09:30,690
+Unknown: All right, let's
+
+26
+00:09:30,690 --> 00:09:34,500
+Wes Bos: move on to the next question we've got here. Cool.
+
+27
+00:09:34,520 --> 00:11:48,600
+Scott Tolinski: Next question is from David. Sorry, the A's capitalized I wanted to emphasize a career advice question. I'm best at being a front end JavaScript developer. But in the quest to make my job easier. I've also been getting into full stack architecture, namely ci CD Travis CI Git lab ci Kubernetes. And I'm feeling like I'm spreading myself a little thin. And I guess I'm just trying and I'm finding it a bit frustrating. configuring Kubernetes is a lot of bashing your head against the wall, I know that my skills as a front end developer are already viable. Whereas I can't say the same for my Kubernetes ci CD skill set. I'm wondering whether I should narrow my scope a bit. Maybe this is just frustrating bump, I'm climbing over and in six months, I'll be happy with where I'm at. interesting to hear your thoughts. One thing I've been thinking about is, maybe I should step back from the network architecture stuff Kubernetes and focus more on DevOps that is closer to the front end stack, ie writing test VS code tooling and commit hooks, ci tools, and more. You know what it depends, it depends on what you find it interesting, if you find this Kubernetes continuous integration, continuous deployment is that what the DMC D stands for? Yeah, if you find that stuff, interesting, I would stick with it like, but I would approach it is more of like a hobby, for instance, you know, I'm really interested in design stuff. So I practice design, and I do these things. And I learn about the design. And it's not easy for me, but it's a you know, it's become a hobby of mine. And it's one of those things that like I've now grown to be much better at it sure, through practice. And that practice was never like, reliant on anything. Not everything that you have to learn has to be like in a direct laser beam towards your goals. Sometimes it's fun to learn things that are just, you know, off to the side a little bit, and still related somewhat, and are going to increase your, you know, your skill set as a developer. But you know, it all depends on what makes you happy. And to me, personally, I find the stuff that's the most challenging and the most rewarding the stuff that makes me the most happy. So if this stuff, like, you know, bashing your head into Kubernetes, if that actually makes you happy, then then stick with it. If it doesn't, then I might, I might look on to something else that is more practical or more related to what you're doing.
+
+28
+00:11:49,380 --> 00:12:50,429
+Wes Bos: Yeah, it sounds like he says, I'm spread a little thin. So it sounds like right, this stuff is not fun. And I feel like I want to be spending more time. It seems like an odd thing to try to pick up. If you're just focused on being a front end. Totally as Dev, I can maybe see some of the like automated testing could be helpful, but like continuous integration, all this deployment Kubernetes, that stuff is sysadmin level. And there's sort of this whole gap between the middle it which is being a back end developer missing. I think so probably our may or may not probably maybe that you had seen a bunch of job postings, you see, you keep seeing Kubernetes and Travis CI, and this stuff popped up popping up, I wouldn't sweat it, I would probably just double down on my JavaScript stuff. And then only when you need to actually use these things, then the interest you picked up, that's generally how I learned stuff as well, I have no use for some of these things. So I'll never learn them. But as soon as something like that pops up, I'm happy to double down and I find that the learning is much easier when I have a real use case for it.
+
+29
+00:12:50,549 --> 00:13:05,610
+Scott Tolinski: Yeah, especially that that spreading yourself thing. Thin part is like pretty key, I guess. Because if you're spread, then you're not going to be learning anything as well as you would if you were, you know, focused on learning that specific thing. So I totally hear that. Yeah. Mm hmm.
+
+30
+00:13:06,419 --> 00:13:55,679
+Wes Bos: Next question we have from a Yannick he you think TypeScript adds value to react or more complexity than value when to choose TypeScript for a project? So this is kind of a question we get all the time people are saying like, hmm, I'm like, I'm kind of happy with my setup right now. But seems like everybody's talking about TypeScript now. And is it worth it? I think the reason why you probably hear a whole lot about it, and you hear a lot of people started chanting about it, because it gives you that sort of like, Oh, my gosh, this is amazing. Why have I not done absolutely every single project in this so far? So I think it absolutely adds value in a lot of projects. I don't think all of them and I don't think you should sweat it too much. But there definitely is a reason for people going absolutely nuts over it because of the benefits that it gives you in a react project. What do you think about that? Scott?
+
+31
+00:13:56,039 --> 00:16:25,230
+Scott Tolinski: Yeah, it's TypeScript is one of those things. This is kind of a spicy topic, because TypeScript people really love TypeScript. I mean, if you even if you saw the state of the JS survey, right, TypeScript was really well liked by the people who use it. So there's this barrier to entry, where you look at something that's done in TypeScript. And it just reads like, maybe a little bit confusing, right? The syntax is a little dare I say, super ugly, a little super ugly. I think it's pretty ugly. I don't I don't know. I know, people are gonna not like that. But, you know, I don't think people are using TypeScript because it looks super nice in your codebase. I think, you know, they're dealing with the syntax for the features and all the stuff you get. And the fact that, you know, you can just use straight up JavaScript and have it compile as TypeScript. I mean, it's easy to migrate over to. So this is a tough one for me, specifically, because I know TypeScript is going to make your project most likely less buggy. But at what point is it worth to have that and maybe if you're thinking Getting on the ground level? What point? Is it worth starting with that? It also depends on your developer skills, right? Is everybody on board? Is everybody committed to learning and using TypeScript from the get go, then that's a great way to do it. If everybody's all of the the mind that TypeScript is going to make this project better, then yeah, that's good. But if you're just sort of saying, hey, my project works fine. I'm really happy with my my dev flow and how things are going, like, do I need to rewrite everything in TypeScript? I don't think so. I use, you know, prop types and default props and all those things. And they catch a lot of my type stuff. And I use the typed API with Apollo and things like that. And I totally I totally get the appeal of having types. And in just in general, so yeah, I mean, personally, I, I don't know, I'm sort of split on this one, because I would be looking to migrate my codebase to TypeScript. But isn't the highest thing on my priority list? I'm not exactly sure. It really just depends to me on different stages of the project, different levels of understanding, does to answer the question directly, do you think TypeScript adds value to react? Yes, does it add more complexity than value? I don't know, from what I've heard from people who have used it a lot, know that the value outweighs the complexity. But I haven't used it enough on a personal level other than just, you know, smaller projects,
+
+32
+00:16:25,500 --> 00:16:46,230
+Wes Bos: I think, probably, if you're just learning react, absolutely. Don't touch it. But maybe if you have a larger project, start something else up just to see what the benefits are. And then you'll probably go, Oh, it's one of those things, we say this all the time, you sort of have to have the problems that it solves, before you can realize the benefit that it gives you. Exactly,
+
+33
+00:16:46,230 --> 00:20:08,460
+Scott Tolinski: exactly. And TypeScript is definitely one of those things that will save you bugs down the line. But really, you know, your codes gonna maybe have bugs in it either way. And obviously, you'll want to use something like century to log in, categorize and find those bugs. West has a little thing in here says, Hey, you know, you can use source maps to track errors back to your TypeScript. That's awesome. And that's absolutely true. You can upload your source maps to century and century will be able to automatically link those errors directly back to the source. And that's one of these awesome features about TypeScript that I use personally, even without TypeScript. So yeah, definitely, you know, TypeScript can work hand in hand with something like century to make your code way better. So what is essentially you will century is the error and Exception Handling software that logs categorizes, and lets you just keep track of all of the bugs that your users are happy having. So that way, you can go through and solve them. If you would like to get two months of century for free, head on over to sentry.io and sign up using the coupon code tastytrade, all lowercase all one word, and you will get two months for free. That's more than enough to check out some TypeScript, upload a source map and check it out in action. So yeah, definitely head on over to sentry@sentry.io. All right, next question. Here, I am in a well known boot camp as of right now, from what they have taught us. This is what I'm working with HTML and CSS, JavaScript, jQuery, node, express, SQL auth. And VC API's react Redux, as we finish off the program, they're going over Java. Ah, I do want to learn Java. However, I feel like my time would be better spent fine tuning my knowledge of the stack. And I can learn Java at some other time, do you recommend it that I fully engage with Java and try to absorb the some of the basics and fundamentals now? Or do you recommend that I take this last month here and strengthen my current skills? So I do better during my technical interviews? By the way, thank you for everything you do. Okay, this question is interesting, because there's a lot of interesting things being taught at this boot camp. But more particularly Java, as everyone knows, is the shortened name of the original programming language, JavaScript, it was produced as JavaScript and never thought that words too long, will just cut the script off and ship it as Java. And and that's the story about Java. Actually, you because they cut off half the word the Java is actually twice as small now. Okay, so they're teaching you Java, I have no idea why they teach you Java that makes no sense to me. People don't really use Java that much in any setting here. I mean, they do but they don't use it that much. It's not like one of those skills that I really see that even like, like the one of the big reasons to learn Java in the past, however many years was to build Android apps. And Android doesn't even use Java anymore. I mean, so this is really odd to me. I would not spend any time on Java. It's gonna just completely I don't know There's, uh, doesn't really I don't see the benefit other than just getting a taste for different programming language other than JavaScript. Yeah. What are your thoughts on this was
+
+34
+00:20:08,489 --> 00:21:40,610
+Wes Bos: I think I know what's happening here. And it's that like, first of all, Java is super popular. Even though in our circles, it seems silly, like almost every bank out there runs on Java, like the big the big corporations all run on Java. And I bet that this boot camp is either in bed with a bunch of these corporations, or they live in a town that has like an Oracle, a Sun Microsystems, and like even Google, like things like that, then these people are hiring for Java, whether they like it or not. So I bet that that's what hap is happening here. They're sort of just trying to bait everyone's resume with a little bit of Java knowledge, that way that they could go either way. And that's even what most computer science programs taught for a long time. Some still do. But it does seem to be that a lot of in computer science are now teaching like web development languages like JavaScript. So I would I would just spend time on it. I don't think you would, especially if you want to be a web developer, and you want to be a web developer that sort of has a modern stack and you want to be hired by some of these companies, then I probably wouldn't spend time on it. If you do want to plan on like, you can get a well paying job that's maybe not that all that exciting. I don't know I we're kind of being kind of hard on it here. But it definitely seems silly that they would, they would put that on the end of something that is HTML, CSS, JavaScript, jQuery, express, SQL, React Redux, all these like super modern things. And then they just put Java on there for some reason. Yeah.
+
+35
+00:21:40,649 --> 00:21:45,030
+Scott Tolinski: Yeah. That's bad to me. I yeah, I don't really know. Yeah, so
+
+36
+00:21:45,050 --> 00:23:08,460
+Wes Bos: I wouldn't, but it's not gonna kill you. It's probably just gonna give you a bit of a better evaluation for other programming languages and how different programming languages work, but your time is likely better spent getting better at JavaScript. Yeah, yeah. Next question we have here is from JD Hirsch. Code hustle. Have you seen live coding going on on Twitch thoughts? Maybe stream do a syntax stream in the future a good list that live coders dev? Thanks for all you do keep killing it. This, the twitch thing is definitely interesting to me. I've definitely looked at it a whole bunch. And I've done some live streams on on YouTube. But I personally don't find it interesting at all to watch a live stream of somebody coding. I don't know if it's because I'm getting old. And that's just like what like young people like to do. But like I can get stuck on something for half an hour. And you just have to sit there waiting for someone to do something like my my tutorials are very trim. And they take they take out some of the arms and ahhs and they speed up when I'm typing along thing and people get distracted even on those videos. And they say this is taking too long. click away. So I have a hard time believing that people sit there and watch. And obviously they do because the numbers are there. It's just never been attractive to me as someone who produces content. And as someone who watches content.
+
+37
+00:23:08,640 --> 00:23:26,610
+Scott Tolinski: Yeah, I'm right there with you. I yeah, I can't think of a situation where I would watch a programming live coding. I guess it's like to see how people like really their thought process. Yeah, I have I have thought about like, I've thought about doing it, but maybe not live and like,
+
+38
+00:23:27,330 --> 00:23:29,010
+Wes Bos: I've got a lot of videos.
+
+39
+00:23:29,249 --> 00:23:42,540
+Scott Tolinski: Yeah, but the same style of content where it's like, Alright, here's this thing I'm working on just like watch me do it for a little bit instead of like teaching because most of my videos are like, Alright, we're gonna sit down, we're gonna learn this one thing. Oh, yeah, no,
+
+40
+00:23:42,630 --> 00:24:18,180
+Wes Bos: that's kind of what I keep my YouTube for is like, here, I'm gonna like, figure it out on screen. But I'm going to trim, trim it down. I'm going to speed up some of the coding and we're going to figure it out together, or I'm going to come back in five minutes, and say, Okay, here's what I've learned. Right? So like, I could see maybe live streaming, and then and then editing those down to a bit more palatable thing for YouTube. But I don't know, it's definitely something I keep my eye on. Because I don't want to like wake up one day and be like, Oh, yeah, I'm the guy who don't want to watch it. The old man who nobody watches anymore doing Java tutorials. Yeah.
+
+41
+00:24:19,560 --> 00:24:21,360
+Unknown: You know, yeah, no, I
+
+42
+00:24:21,360 --> 00:25:51,540
+Scott Tolinski: hear you. And like, I didn't know I, I wanted to do it a couple of times. At the same time. I like I have stuff to do. And I you know, it's like, yeah, if I'm going to be coding the level up site, it's like, Yes, I could live stream me coding the level upside and talking about my thoughts as I refactor this component for the 1800s time or whatever, or write this new cool thing. And that's really great. But like, that's a lot of pressure, man. Like people are judgmental, too. So if I'm typing something in like people in the comments the whole time, they're like, you forgot this, you forgot this or whatever, which they do. Like I do. That's not going to be productive for me, I'm not going to feel like, I don't know in the zone. And I, I don't know about you guys, but I do a lot of googling and a lot of looking stuff up. And a lot of like time reading things when I'm working. So like, if I'm trying to solve a problem for the first time ever, the last thing I want to do is be like under the gun, have a bunch of people watching you try to read some documentation and try to, to figure it out on the spot. Like, that doesn't sound like fun to me. That's maybe like content was prepared. And instead of like doing a edited video, I just went up and taught this thing live and then called it a day. Yeah, that, you know, maybe I would do that. But yeah, it's an interesting thing for me, like you said, I'm keeping my eye on it. And I would like to practice it and be decent at it. So that like, if I needed to go in that direction, I could, but yeah, it's not something I'm actively pursuing, I guess.
+
+43
+00:25:51,690 --> 00:26:03,360
+Wes Bos: Yeah. If you do watch live streamers, do coding, tweet us at TEDx FM, and let us know, like, why and what it is that you like about it? Which ones do you like? Because I'd love to get some more insight into it.
+
+44
+00:26:03,600 --> 00:27:25,680
+Scott Tolinski: Sure. Yeah, absolutely. I want to, I want to see the best examples of like, what it is and what makes them good. Cool. So next question is from Mr. JavaScript, JavaScript. Whoa, we're talking to Mr. JavaScript right now. Mr. JavaScript asks, How do you handle people who think that JavaScript is a joke? And is going to be overthrown by blazer or some C sharp library framework? Can we all just get along and live in the same industry? I am having a hard time I'm being an adult, these kinds of responses around the web and in random discussions with people I know very well. You know what I do? I just don't care about it. Like, I don't care if somebody writing C sharp thinks that C sharp is the future. That's cool. Good for them. I know No, I don't care about that. I don't care about anybody who says JavaScript is a joke, or that you're, you know, you're writing too much CSS, I don't care about any of this, anything that anybody else is saying other than, you know, the things that are going to make me more productive and whatever my job So to be honest, people's opinions really matter very little in this and most people who have an a, you know, most people have an opinion and lots of people have bad opinions. And I don't know, I just would not care about this for two seconds. Somebody wants to argue with it about it, then just say, okay, you know, that's, that's your deal. I'm just gonna, you know, move on.
+
+45
+00:27:25,740 --> 00:28:26,400
+Wes Bos: Yeah, like GL wt Good luck with that, like, congratulations, that we've talked about this before pet people, these people that have these really aggressive opinions are usually hiding the fact that they're not very good at other things. And they've sort of learned they're one thing and they're scared that other things are gonna become the thing and they like to just put other stuff down because of it. I've definitely run into lots of people like this where especially like, at, like conferences, sometimes you get these like, questions that are not questions, but it's just like somebody's talking, though. I and I feel sorry, for cuz it's often a lot of the women who speak get these like, well, there's a blazer framework, and it's actually, it's gonna be much better. And I just thought I'd let you know, like, thank you, like, down, like, just let me do my thing. You do your thing. Good luck with that. I think that's the best you can do. Let those people live their lives. Yeah, it's
+
+46
+00:28:26,400 --> 00:29:52,590
+Scott Tolinski: funny that you that you mentioned something like that, because it's like recently, now, not recently, but like, Ah, there's so many things in this world right now that people like want to attach themselves to like, it's like a sports team or something. Like, oh, I use JavaScript, therefore, my a and my entire identity is JavaScript. And then when somebody says that JavaScript sucks, the first thing you do is you hear I suck, because JavaScript is my identity. And I, you know, they're saying it sucks, therefore, I suck. And this is like, for everything. For phones. You can't say anything bad about any particular phone or device or anything, because people who love it are going to come after you and they're gonna say, well, this obviously, you know, this phone manufacturer is the greatest thing ever this computer or laptop or this brand. I mean, Apple people know exactly what I'm talking about. Because they do that all the time. Like how I can't see how anybody in the entire world could possibly not want to use anything that's not this device, or this library or this framework or this anything. none of it matters. It's not a sports team. It's not your identity. It's it's a thing that you use to you know, advance your life and your career or whatever, or in you know, phone or tech computer cases. It's a tool to get your job done. That's it. And I just I just don't get it. I don't get why people want to wrap up so much stuff into the things they buy or the things they're a part of. Yeah, mini rails. Mini rant,
+
+47
+00:29:53,010 --> 00:32:44,010
+Wes Bos: beauty. Next question from Roy M. There are plenty of places saying that is important to say Your API keys by not embedding them in the front end code. Cool. I'm on board, but not many places tell you specifically how to do this. How do you safely use an A? This is so true, though, like every tutorials like either says like, don't actually use your your API key use a proxy or like something like that. And then they don't know how to do it. Because like, it's the answer is like, oh, sorry, maybe let me finish this question here. How do you safely use an API key and a crud project? Roy M. So the answer is that it's hard. And it's hard to stop people from abusing it or misusing it or, or something like that. So let me just go through real quickly, let's say you get an API key from let's use get help as an example, or GitHub. Yeah, if you use that API key in your JavaScript code, anyone can view source on your JavaScript code and pick up that API key, and then start to make requests as yourself. And this is definitely happened many times before somebody had a Twitter API key. And they built like a little Javascript app. And they're like, I'm like, hey, like, you shouldn't do that. Because you, you someone could use your API key. Yep. And I'm like, you shouldn't put your Twitter API key in, in your front end, because anyone could then tweet from you. And they're like, No, I've, I've limited it. I'm like, No, like, you can't do that. Yes, specifically, that thing, and no, it's fine. I know what I'm doing. So then I just wrote up a quick little app and tweeted from their account, and they're like, Oh, okay. Anyways, um, so that's why you can't use it, right? So like, what you have to do is you have to put the API key on your server side, and then use your boot up a server, and then your JavaScript pings your own server, and then your own server and turn pings GitHub or Twitter or Yelp or whatever it is. And that's what that's what's referred to as a proxy. It's a server that does sort of the work for you. Good, but then like, haven't you sort of just moved it move that sort of vulnerability from your server or their server to your server? And now like, what happens if somebody pings your own server and uses API key through there? So how do you safely use an API key and a credit product, there's a couple ways, you can use cores, which is only allowing your requests from a specific domain name, that kind of works, you can use rate limiting only allow certain amount of requests per IP, you can use whitelisting only allow people who have a specific IP address to hit it. And then probably the most common one is just use authentication. So the the person has to be logged in and and the cookie or the jadibooti needs to be sent over with the request before you go ahead and perform that. So I think those are the four ways. Is there any other thoughts you have there? Scott?
+
+48
+00:32:44,580 --> 00:33:03,330
+Scott Tolinski: Yeah, no, I do all my API calls through my server or through Apollo, you know? So no, I have all of my private keys and all of my API keys as environment variables. And that's that's it pretty much. Yeah, I guess I just don't do a whole lot of this.
+
+49
+00:33:03,749 --> 00:33:29,250
+Wes Bos: Yeah. Like, even if you even if you have it as a private variable on your own, like, what's to stop somebody from just using your your API, and pinging the like, like, let's say you, you had like a Google Translate API key. This happens all the time people figure out like, third party services endpoint for translating, which probably under the hood is, is using that key. And a lot of people just do nothing and hope nobody finds that that it right.
+
+50
+00:33:30,600 --> 00:33:46,140
+Scott Tolinski: security through obscurity. I know. I mean, I have I my API in my front end are tightly linked. So yeah, we get a course error if they tried to do anything there. But yeah, I mean, that's pretty much it. I just locked it down that way.
+
+51
+00:33:46,140 --> 00:34:14,280
+Wes Bos: Awesome. Let's take a second to talk about one of our sponsors, which is fresh books, fresh books is cloud accounting software, for your small business, for your entrepreneurship, for your freelancer, whatever it is, freshbooks is going to help you out for your cloud accounting, go to freshbooks comm forward slash syntax and sign up for a 30 day unrestricted free trial, it's going to help you get paid faster, and let you spend more time on your business. Thanks so much to Freshbooks for sponsoring.
+
+52
+00:34:14,580 --> 00:34:15,120
+Unknown: Cool.
+
+53
+00:34:15,120 --> 00:34:26,730
+Scott Tolinski: All right, next question from Gonzalo. Do you plan to launch a syntax FM app? I don't think so. Not not one that I'm aware of.
+
+54
+00:34:26,730 --> 00:34:27,440
+Unknown: Yeah,
+
+55
+00:34:27,480 --> 00:34:31,940
+Scott Tolinski: what would it what would the syntax app do? Would it deliver you some tasty treats?
+
+56
+00:34:32,040 --> 00:35:02,880
+Wes Bos: Yeah. I don't really know what a syntax app would do. Maybe like you could have offline. I always get mad when podcasts have their own app, because like, Can I just use this like normal app for all of my podcasts? Do I download your app just to listen to your podcast? I think what would be better would be just to keep working on the website and adding features to the website so that the website gets better. And that's because I'm a web developer and I'm on Team web. I just don't think Angular an app would be all that necessary.
+
+57
+00:35:03,110 --> 00:35:12,330
+Scott Tolinski: We could always make it a TWA. Yeah. Though, the one that you can the progressive web apps that you can Oh, yeah, submit to the Google Play Store
+
+58
+00:35:12,980 --> 00:35:29,280
+Wes Bos: would be pretty nifty. Being able to track what you've listened to, I think there's a pull request on out for that right now, I think all the features that would be in an app can be easily added via the web. And then we can just ship it as a pw a if you really wanted to do that. ship it. I
+
+59
+00:35:29,280 --> 00:35:46,170
+Scott Tolinski: think that I think just by declaring that I think you were shipping the the, the official app? No, I don't really don't know what we would do for a syntax app. I mean, if there was an any practical reason, but I don't think there really is. So yeah, sorry about that one.
+
+60
+00:35:48,960 --> 00:37:31,650
+Wes Bos: Next question is from sad, Dev is a bit of a sad question. to end it off on I was hired as a junior developer at a company in the last year, it's my first web development job. And I was so excited. The interview and application were all about react and full stack development, whoever now that I've been here a while I found out the company does primarily DevOps work. So that's like working with servers and Amazon, things like that. None of this was mentioned in an interview or application, but it looks like it will be the majority of my workload, I am feeling very discouraged. And I was wondering, what would you guys do in this situation? So who That would suck because you spent all your time trying to get your job. And finally you're in a job. And then that's your most of your time is doing this work? And you're not even doing the work that you had hoped you are doing? So like the the easy answer is get another job. But yeah, yeah, it's, it's not always that easy, is it? Because like, there's, you have this job now, and you probably have bills to pay, and then you don't have all this time to sort of keep up with your skills. And it's tough. So I think either ask your, your boss Hey, like, what's going on? Like, why? Why are we not doing what we had hoped to do? There's certainly nothing wrong with DevOps work, maybe you could get really good at that. But if I were you, I would sort of just maybe burn the midnight oil and, and keep learning, maybe start applying to other jobs while you're working there. Hey, maybe that's a benefit, you've got you money to put food on the table. While you're looking for your next you have some experience, you probably still have a portfolio, you can probably make a switch somewhat easily somewhat. I don't know how difficult that would be, depending on your skill set. But I'm sorry, that sounds like a bit of a bummer situation.
+
+61
+00:37:32,010 --> 00:40:52,170
+Scott Tolinski: It does. Yeah, it definitely sounds like a bummer. And I've been in a situation not exactly the same, because it's not nearly as drastic, but where I was sort of sold the job on doing one thing, and I wasn't doing that when I got there. And it's the only job I've ever worked at for like six months. And then I'm Luckily, you know, one of my one, this is actually funny, one of my recruiters that, you know, reach out on LinkedIn, of all places, a recruiter from LinkedIn got me a great job, and I got to leave this job. So you know, I would just keep your ears open, maybe let people know, specifically recruiters, or those kind of things that you are looking, because people can find you a job, you know, especially if recruiters are active in your area. So I would I would just work it out, I would try to do the whole thing where like one, you know, you got your feet in one boat and the other boat pulls up, and then you try to stretch out and put your foot on the other boat without falling into the water. If you can imagine what that metaphor is. So like jumped, jumped ship, so to say from one job to another without ever having to take a ticket dunk into unemployment land, so I you know, I personally would do that, stick it out, while you look for a job. If you need things to build your resume, grind it out, make it happen, get that job that you want to do, because let me tell you even working six months in a job where I wasn't doing what I was sold on was it was soul crushing. You know, I really didn't like what I was doing. And I didn't like the work and I didn't like the end result of the work. I wasn't proud of it. I keep nothing from that job in my portfolio or on resumes because I just flat out it's not something that you know, I'm proud of so so to say that we'll even my thing was like little so they they sold me that I was going to be doing essentially Drupal sites and that I was going to get to do a lot of modern stuff. This is before front end frameworks, right. And so I was sold on that and I get there and oh, we're using an old version of WordPress, it has to support IE seven, and you don't get to make any decisions. We're using pixelated images for icons, like all sorts of stuff. And I'm just thinking like, well, should we do it this way, this way and this way, and they're just like, No, we were not doing it that way. And so you know, I had to just suffer through that for six months of, of, it wasn't even like bad work or whatever that I was putting out but the just not it wasn't modern work. At the time, we were, we're just going way backwards and it just felt it felt bad. So I didn't I didn't feel like I needed to add that to my stuff. And I just worked hard. I got out of it got a new job and things looked up forever after that. So yeah, I you know, pretty much the same advice as West's in a more long winded fashion. But yeah, just stick it out. Look for a job, interview it up. Let people know that you're looking cool. So that's it for this week's potluck. This week's Yummy, yummy potluck. Next week, we're gonna be back and with maybe an interviewers, I don't know, it's gonna be a mystery here. It's gonna be a lot of fun. And I'm excited about it. Now it's the part of the show where we talk about things that we really enjoy. It could be literally anything we we call these the sick picks their picks that we find to be totally sick. Wes, kind of sick picks you go for us today,
+
+62
+00:40:52,610 --> 00:41:05,310
+Wes Bos: I am going to sick pick something that's really weird, but I thought I'd let people know. But it's the Amazon basic sells kitchen faucets. Hmm. Isn't that weird?
+
+63
+00:41:05,900 --> 00:41:10,860
+Scott Tolinski: Weird pick this Yes. And maybe some of the weirdest, weirdest that we've done.
+
+64
+00:41:11,100 --> 00:42:20,690
+Wes Bos: Because we needed a new kitchen faucet. And I went online to find like ones and there's lots of like, kind of plasticky ones out there that that are great quality. And then there's like the high end molan ones for sure, like four or $500. And I was on Amazon, just kind of looking at what my options were. And I realized that Amazon basics which Amazon looks like on Amazon's a brand. And what they do is that they free brand, sort of high quality stuff, kind of like how Kirkland does with their their batteries and things like that. So I don't I haven't figured out who Amazon basics is rebranding yet. But it is like decent quality. And it's it's cheaper than IKEA, which was surprised me. So it's if you're in the market for a new faucet, we got one from Amazon basics. And I was surprised like we just it's just for the cottage. So we just needed something cheap to throw in there. So we weren't looking for super high end. But I was pleasantly surprised at at that as well as the actual install instruction. So check it out. We got the pro style springs sprayer. If you're interested in that,
+
+65
+00:42:21,170 --> 00:44:30,750
+Scott Tolinski: springs by her. Yeah, that's pretty cool. That's also sick. My sick pick is also going to come from Amazon. But obviously you can purchase this other places. Now if you've been following me on Instagram or any of these things, you may have seen little pictures here and there if my office because I'm My office is undergoing a great change right now, I don't know how to explain it other than my office feels very cramped, because of my desk is in the middle of the room so that I can have my camera shoot me behind the desk, there's a lot of weird things like when you see my my desk on camera, it's, it looks like it's just my desk against the back wall. Now my desk is like in the middle of the room, and I have to have it all configured a very specific way. Well, I was just looking at it the other day, and I was thinking you know what, I'm just gonna start getting stuff out of here, getting new furniture, getting, you know, just making my office feel better, right. And one of those things was that I was using this old monitor stand from, you know, way, way, way back. And it was a two armed monitor stand for my two monitors. And I just taken one of the monitors off so I had this like arm from the monitor stand sticking out. And it was like catching people's sweaters when they walk by and stuff. It was giant pain in the butt. So I went to look for an upgraded monitor stand and found this heavy duty arm with it's like a pneumatic spring height adjustment. And it can be positioned anywhere gets super tall, good super far out and moves very easily, which is great for me because I need to move my ultra wide out of the shot when I'm doing video recordings. But also I'd like to just move it and get it into a position that's good for me when recording that might actually be different from what I'm doing. So this thing is totally take it was only 74 bucks, which is actually great price compared to a lot of these. And it's been rock solid. For me, I've been absolutely loving this thing. And it's a huge upgrade for me at a cost of 75 bucks definitely worth it in my mind. So I highly recommend it's mean by vivo. I don't know if vivo is a company or if this is just you know, one of those other you know, like distributed by Amazon type things, but yeah, loving this thing.
+
+66
+00:44:30,960 --> 00:44:54,810
+Wes Bos: Beautiful. What about shameless plugs today I will plug all of my courses, as I always do. Wes Bos comm forward slash courses. I am working hard on my beginner JavaScript course which should be out probably a month from when you're doing this maybe a little longer. We'll see how that comes. But it's coming along nicely. And I'll be sure to announce that on the show as well. about you, Scott.
+
+67
+00:44:55,050 --> 00:46:11,010
+Scott Tolinski: Cool. My shameless plug is going to be my my, I guess my course that was it had come out was a Gatsby e commerce which basically gave you a just like a foundation of working with e commerce and a static site generator aka what kind of stuff can you do? What can't you do and what's difficult at the very end of that we get into really working with Shopify. Now this course that I'm going to be releasing this month, as in August 2019, will be coming on the 31st. So not quite out by the time you're listening to this, but it's going to be a continuation of that course, we rebuild a dynamic Gatsby site using Shopify and Gatsby. So we're going to be building our own shopping cart, we're going to be adding Apollo to the mix. And we're going to be talking a little bit about how to use Apollo to do more dynamic stuff in Gatsby, we're going to be writing our own shopping cart handling a little bit more interesting things going a little bit more in depth, and really just rounding out all of the stuff that we couldn't cover in the last series. So check it out. I don't have a title exactly determined yet for but it's most likely going to be Gatsby in Shopify, dynamic Gatsby, something like that. But yeah, that's what's coming to level up tutorials that this month, so keep your eyes open.
+
+68
+00:46:11,280 --> 00:46:16,710
+Wes Bos: Awesome. That's it for today. Thanks so much for tuning in. And we will catch you in the next one.
+
+69
+00:46:17,370 --> 00:46:31,140
+Scott Tolinski: Right whose face head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
