@@ -1,0 +1,156 @@
+1
+00:00:00,359 --> 00:00:24,450
+Announcer: Monday, Monday Monday open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA and Scott Taylor. Totally ski.
+
+2
+00:00:25,950 --> 00:01:05,400
+Scott Tolinski: Oh, welcome to syntax on this Monday, we're gonna be talking about hiring an assistant, which is something that is, if you are working as a solo Dev and entrepreneur, you're working as anybody, it's actually shockingly more affordable than you can imagine. And it makes your life a lot easier. This is one area of my life that I am struggling with. So so much. So we're going to hear all about Wes his experience hiring an assistant talking a little bit of how they get their workflow going. And just generally how we get that productivity up. My name is Scott Alinsky. I'm a developer from Denver, Colorado and with me, as always, is West boss.
+
+3
+00:01:05,640 --> 00:01:06,590
+Wes Bos: Hey, everybody.
+
+4
+00:01:06,870 --> 00:01:08,510
+Announcer: Hey, Wes. How's it gone?
+
+5
+00:01:08,900 --> 00:01:13,200
+Wes Bos: It's gone good, going good. I don't know what to say, cool. Well, this
+
+6
+00:01:13,200 --> 00:01:20,790
+Scott Tolinski: episode's gonna blast off. And we're gonna be doing so with a rocket, a rocket, what kind of record a lug around a logging
+
+7
+00:01:20,790 --> 00:01:22,860
+Wes Bos: rocket, a logging rocket. Now
+
+8
+00:01:22,860 --> 00:02:07,020
+Scott Tolinski: what is Log Rocket? Well, you're gonna want to head over to Log rocket.com Ford slash syntax. And you're gonna a little bit, learn a little bit about Log Rocket, you'll get 14 days for free. If you hit that URL Log Rocket is a service that allows you to stop guessing why bugs happen, right? Even with a text trail of a bug or an error log, it's still difficult to always understand exactly what's happening in your application. So that's why Log Rocket gives you a session replay, which is a pixel perfect replay. If you saw a you know, basketball guy, you saw Michael Jordan, he does a dunk right? You want to see that? Again, you do a rewind, you do a replay you watch that thing happen in real time where he jumped from how to jump How to do it? Well, the choice was that you could do that with your bugs?
+
+9
+00:02:07,020 --> 00:02:08,610
+Wes Bos: I do. Wow.
+
+10
+00:02:08,630 --> 00:02:34,530
+Scott Tolinski: Yes, I want to I wish I could do that with my bugs. I scrubbed through and just see the user clicked here and the entire thing turned into a velociraptor. How'd they do that? I don't know. Well, now you'll be able to find out because you could see Redux store your network activity or councils, errors, logs. And you'll get to scrub through that works with anything you know, and love. So check it out Log rocket.com forward slash syntax, big fans of this service over here. And you're gonna want to check it out and just see how easy it is to see those bugs.
+
+11
+00:02:34,880 --> 00:04:39,540
+Wes Bos: Alright, so let's get into it. Let's talk about hiring an assistant. This is something that I've done for probably about two years now. I know a lot of people sort of asked me questions about it. So I thought I'd detail as to how do you find someone? And what do they do? And how do you delegate tasks and whatnot, it was a big step for me because like, I'm not running a business, I know, there's probably people listening that have like seven people that work underneath them and that they delegate all that stuff, I'm very much I just want to work on what I want to work on. And I want to put my head down and just code the day out. And when the administrative side of running a business gets in the way, I find that to be a little bit frustrating. So about two years ago, I hired an assistant. And they have done an awesome job at sort of helping me out and doing the work that I don't want to do that frees me up to do this podcast and things like that. So first of all, there's sort of two different types of assistant you can get like an in person, Assistant, someone that lives locally. And then you can also get a virtual assistant, which can live anywhere, but it's pretty popular to get someone from countries where the cost of living is lower, like the Philippines and things like that Philippines is really big country. Personally, my assistant lives locally, which is very handy for some of the stuff I'll talk about in a second that needs to actually happen in person. But there definitely are benefits to having somebody that is virtual. Whether that is someone that's in the same country as you or somewhere around the world, just because like if you offset timezones with somebody that is helping you out, that can be a benefit, because then then you're being able to monitor email for 14 hours a day instead of just eight hours a day, or you wake up and there's a bunch of questions already, something like that. So that's definitely a help. Personally, my my sister lives in the same timezone. As me though, we've been thinking about getting a system as well right, Scott,
+
+12
+00:04:39,690 --> 00:05:23,490
+Scott Tolinski: I have about 15 to 20 applicants in my inbox for virtual assistants, I'll donate domestically, some of which are even here in Colorado, which is nice. But I struggled and fell short when it came time to do the thing that I would like an assistant to do which is go through all of them, evaluate them In your email, yeah, man, whatever, I got those like, you know, 1020 applicants, I was just sort of like, well, now what? I gotta give him a task, I gotta figure out who's reliable got to do all that stuff. And I just believe it or not, didn't have the time to do it. So I'm a victim of not having an assistant already, really need to work on that aspect of not only my business, but my life in general. Yeah,
+
+13
+00:05:23,550 --> 00:06:42,090
+Wes Bos: I feel that way too. Like, I don't ever want to take on something that becomes a project. For me, the reason why I want an assistant is so that you don't have to spend time on something right? And you don't have to check in with them every single day to answer all these questions like, just like, I was very clear up front. I'm like, I just it's not that I want to be left alone. I didn't say that. But like, I need to be able to do my work and have somebody take the reins on the stuff that I can't do. So what type of stuff is that? What what types of tasks Do you delegate? So I do a lot of support is delegated. So not technical support, because my system is not a coder, not a developer, right. But more things like administrative support, receipts, amendments, little refunds, too, these are the types of things that are death by 1000 cuts where it's, it's not, it takes me 42 seconds to refund somebody $10 because they forgot to type in the coupon code or switch over a course from one to another because the one that they bought was too advanced. And they need the beginner one and said all things like that are so minimal, but they they meet up by just doing them over and over again. And I just also don't like to do that type of stuff, I
+
+14
+00:06:42,330 --> 00:07:57,420
+Scott Tolinski: do want to how I solve some of these problems myself, not having an assistant is to see how many of these things that I can like identify these death by 1000, cuts items, right? and identify how I can write a tiny bit of code to make those things way easier in my admin platform. And this is the benefit of owning your own platform. So many people talk about, oh, I started doing this on teachable or any of these other platforms. And it's like, well, what happens if this situation comes up? Well, now you gotta, you got to have an assistant do it, you got to do it, you got to spend the time. But for me, if I have a standard situation, which is maybe somebody's asking for a refund, I built like a one click thing here in my interface, I just type in the order number, click the refund button, it processes it all deletes it all and does everything for me sends out the emails, yeah, whatever. It's like a one click solution. And that to me, frees me up so that sure enough, it is like a context switcher. I'm having to do that myself and still having to go look up the order and delete it. But it's opened up the door for an assistant or somebody to be able to do that foolproof way of solving these problems. So if you can like write a code solution to a lot of this stuff that could even open you up as like an assistant to your assistant.
+
+15
+00:07:57,630 --> 00:10:12,150
+Wes Bos: Totally, I think like what I did for years and what anyone should do before they go ahead and hire someone is figure out how do you automate that? Because like, not only does that is that not free, but it also takes any of the room for error. Yep, out of the equation, because it's it's automated, it's tested, it just works like that. So I felt a whole bunch of tools that are just for my assistance use. And then under the hood, it does a lot of the stuff like my assistants not going to log into PayPal and find the transaction and make sure they work up. It's just a button that they click on to, to make a refund or something like that. What else email replies, big one for me. So for the email for me, it's it's either taking a big email, people write books to me and distilling into one question that I can answer, or the opposite, which is me writing a very terse reply. And having her extrapolate that in a kinder way. And both of those are great, because I don't need to spend my entire life reading this big book. And often, often, they're, they're very emotional, too. I got fired from my job. I can't afford this thing. What's going on right now, and I love seeing those, but I can't I can't read like six or seven a day. It's just too much for me to put myself in a state like that. So I can just have the question, Wes, can I offer a refund on this course? Even though it's a year old? Yes. No? Yeah. Yes. No, yes. No, right. Or even just like, I'll talk about slps in a second question doesn't even come into me at all or email replies. I'll just write like a quick like, sorry, can't do this. And then she'll extrapolate that like, hey, thanks so much for emailing, unfortunately, not able to do this because of xy and z. But we can do these following things for you. So that cuts down my email quite a bit. I still do get more email than I ever could possibly want. But that only makes the processing of it much faster. Also, email goes through my system. At first, so any email that comes in is processed and anything that she can deal with gets dealt with before it even hits me. And then anything else that needs to go through to me goes closer to me. And
+
+16
+00:10:12,410 --> 00:10:55,110
+Scott Tolinski: I'm interested in hearing a little bit more about that process. If you have the time to do that right now. Yes, definitely. Because I know we both use the same app to do this, which is missive, another are there email apps that do this kind of thing. But I'm interested in hearing a little bit more about your missive workflow, because the way I have mine set up is that I have my inbox, right, which is just my standard inbox. And then I have my unassigned, which every single one, like a customer service request, or something right now goes into unassigned because I'm the only person in here will actually even corny and Eric are both in here as well. But for me, the way I was trying to get it set up is when you have something come in through your your email or whatever does automatically get assigned to your system. Is
+
+17
+00:10:55,110 --> 00:12:44,490
+Wes Bos: that what happens? So I've got two email addresses. And I'm not going to say what they are because people will figure out how to actually know this. I don't care. Like if you email me directly, you will get a much slower reply. Yeah. So I've got I've got my personal email, which is Wes at Wes Bos calm, and then I have my support email, which is Hey, at Wes Bos calm. So personal email comes into me first, because things like lawyers and whatnot, that's, that's private stuff that needs to come through me first. And then piece by piece, those ones I can then surface to other people. So my assistant, and then I have the support email, which is, Hey, Wes Bos, that all goes, that's where most of the support and stuff comes through. That's like the publicly listed email, all of that goes through the system first, and then stuff that can't be dealt with gets sent through to me. So basically, we each have our own inboxes. And we can each give each other things, and it works out pretty well that way. So do you do you use the assigned to thing at all? Or is that just based on? Okay, okay. Yeah, so it's entirely based on assign. So basically, I'll just blow through my email, I'll either deal with it myself or assign it to somebody, and then then it's out of my hair, and it's gone. And it will only show up if I'm tagged in it, or if it's reassigned back to me. So something like something that is complex, and we don't have a tool for it has to be done in the database, then that'll get assigned to me, I'll do the thing. I'll do the process. And then sign it like an example of that is deleting someone's account, right now I have to write a tool to totally wipe somebody out in the out of my database. So right now people email, say, Hey, I request to be removed. And then I have to wipe everything from our databases. And then I'll send it back to the system. They'll say, Hey, we got ready, you got rid of every little piece of data we have about you. Thanks for letting us know.
+
+18
+00:12:44,520 --> 00:12:54,870
+Scott Tolinski: Yep. Do you use the chat functionality? If you haven't used missive? There's this whole chat, which allows you to chat with your team outside of an email. Do you use any of that? Or do you do chat by either means?
+
+19
+00:12:55,140 --> 00:15:09,690
+Wes Bos: No, I do it. I do all inside of missive. I really like it because you can assign like to dues inside of the chat. Like just like lightweight to dues where if I give them something, I just put a list of things to do, Hey, can you log this receipt and send this mail and whatever. And then I just put them as little checkboxes and they can check them off as they finish them. So I use that I use the chat in line much more though, like if you have a customer email, you can chat in between the replies with the other people that have access to it. And that's great, because you can talk about how to reply to someone without the the person seeing. And then also, you can always go back to old emails and see what you had talked about, about that email as well. So big fan of that totally cool. Other things, I use the get the assistant to do his mailing and shipping of items, the one thing I would like to do is to get somebody totally separate to do that, that lives in the States. Because I often have to ship stuff to the States. And it's incredibly expensive. So I'm thinking about maybe finding somebody that just like lives in the states and would want to do that, just for that. invoicing and expenses is huge one for me. So I'll just do a quick little reply on an email and say, Hey, can you invoice them for XYZ in this currency and whether or not to include tax expenses is great, because I'll get an email from a company and says, we charged you 30 bucks for this service. And I'll just assign it to the assistant. They'll take a screenshot or print as a PDF and attach it into my fresh books, which is great. Research is one that I get every now and then. So like if I say like previously, I've said can you go find emails for the following coding boot camps or something like that, and then they can go out and and find all that information, blog post edits, sponsorships, all kinds of like little stuff that I don't necessarily want to do, you can just pass over to the assistant. So one big, big way that I sort of automate the stuff that can't be coded is called SOP, standard operating procedures. So behind Have a big list of things that could possibly happen. Hmm. Can you provide an example of an SLP that you've written in the show notes?
+
+20
+00:15:09,750 --> 00:15:11,550
+Scott Tolinski: Like, here's a sample SLP?
+
+21
+00:15:11,850 --> 00:15:14,520
+Wes Bos: Yeah, yeah, let me let me pull up one right now,
+
+22
+00:15:14,790 --> 00:15:17,070
+Scott Tolinski: just so we can get a good visual on this.
+
+23
+00:15:17,580 --> 00:16:17,940
+Wes Bos: All right, so I'm just looking at my recipes, and it's a document 30 pages long. And it's common questions that come up, hey, what's the difference between beginner JavaScript and JavaScript 30. Even though that information is very clearly on the website, people email me all the time asking that. So we have just like a standard reply that we have for that, or somebody has bought a 10 pack of licenses. And they say we love it, I want to buy 20, what do you do in that case? Or somebody has questions about how parody purchasing power works, things like that. Questions? Are our licenses personal and can I reuse them? This is one thing I all time, can I reuse licenses when an employee leaves the company and they took the course. And now they left? Did we get that spot back? Right? Questions like that? Where are my stickers? So you just have the answers to like, what the reply should be in here as well as like, do this, do this, do this to solve them? Or
+
+24
+00:16:17,940 --> 00:16:18,600
+Announcer: is that?
+
+25
+00:16:18,630 --> 00:17:03,150
+Wes Bos: Yeah, it's half of it is just canned replies. And then the other half of it is just like, here's how to handle a situation like that. And anything that comes up more than three or four times the same time over and over again, we say let's make up for that. Because like, I think you have to like stop and think can I fix this at like at a website level or an application level? Or can I just fix this. So they would never email me in the first place. Because it's frustrating for someone have to end up to email you. But in some cases, it's just, that's just support. That's how support works, right? At the end of the day, sometimes you do have to contact the person. So if that's the case, then we put out SLP for that.
+
+26
+00:17:03,570 --> 00:17:06,050
+Scott Tolinski: Cool Do you use notion for that? Or do you use for that?
+
+27
+00:17:06,350 --> 00:17:41,360
+Wes Bos: We use a Google Doc with a Google Docs has the ability to do like a table of contents so fun. And that's just we've got general knowledge, stickers, customer support, inquiries for requests, things like that. I feel like that's great. And I I can't pay in Iran is a big one. Yeah, people can't use credit cards in Iran. How do I get around that? I do have a credit card. My friend lives in the UK. I live in Iran. I want the Iran discount just like oh, all this stuff so that we just put that stuff into play. Cool. It seems like a really good use case for an ocean because you could have
+
+28
+00:17:41,520 --> 00:17:49,070
+Scott Tolinski: Yeah, sardines, you could have like a little toggle accordions and you could do table of contents in there, too. Huh? I'm gonna make one I'm gonna add a notion.
+
+29
+00:17:49,340 --> 00:19:13,890
+Wes Bos: I think I will move this to notion I. I made it like, oh, let me look at the day in the dark ages. But two or three years ago, I made it before notion existed. Yeah, October 12 2017. I made the made this so I probably will move it over to notion at some point. Cool. All right. Last thing, I want to talk about just tools that we use to work with an assistant. So one password is big. I need to share single passwords to something like fresh books that gets sent over if I need to change a password. It's not like I have to like, tell somebody I changed the password because it just automatically signs themselves in missive is probably the hub for everything that I do. It's an email client that allows you to assign listen to our entire show on missive and how that works. A big fan of missive custom back end tools. So I have a whole admin dashboard that's used for managing it. There's like a roll of, there's a role for someone that's an assistant that doesn't give them access to all the information but gives them enough access to information to be able to find people and modify their accounts accordingly. I use a Chromebook. So like I had to buy a computer for my Cisco Chromebook stick to 200 bucks. And it's it works great for that type of thing. Because everything we use is web based. And then Google Docs. But now that you say that I kind of do want to move it over to notion.
+
+30
+00:19:13,980 --> 00:19:55,340
+Scott Tolinski: Yeah, it's fun. So um, Courtney has been she wants to do like a system like things for me because she sees me struggling in various aspects. And obviously it's like, yeah, it makes no sense for a doctor to do that. Like that is not taking advantage of your qualifications, but occasionally, so she's diving more and more into like handling some of those things for me on her day off or something. So she'll be like, yeah, I booked your fight, so whatever. So I've added her to missive and we're starting to get sort of a flow going down with Mrs. notion, whatever, she can use it all in our iPad. And it's nice because practicing with her it's almost like practicing for an actual assistant. So I totally I'm getting into the flow a little bit more of it, but I really love hearing this your process here.
+
+31
+00:19:55,710 --> 00:20:21,590
+Wes Bos: One thing is just the vibe of the emails that you send is very important. To me, because I don't I don't like it. Sometimes you see people sending emails that are very terse. And sometimes you said, see people that send emails that are very clearly fake enthusiasm. And I don't like either of those. So I feel like I've nailed it in the middle with the way that I reply to your email you Oh, email. Thank you once more.
+
+32
+00:20:21,590 --> 00:20:24,780
+Scott Tolinski: Unlike sponsor emails. I'm like, Oh, I gotta take some notes here.
+
+33
+00:20:25,230 --> 00:21:04,530
+Wes Bos: Yeah, yeah. Yeah. Like, that's really important to me. Because like, like, right now, if somebody says, Hey, can we sponsor and we say sold out? Like, you don't say sorry, sold out? Like that's a very sorry, even though they were popular. Okay. Yeah, that's a very, like jerky thing to do. Yeah. So I had to, like, talk to my assistant about, like, how many exclamation marks to use and things like that. So it is not because she was doing it bad. But like, before we even started, I said, this is important to me. And I had to figure out how to convey my, my vibe. I'm sure other companies have that type of thing. I'm not even sure what that's called. But that that was important. Yeah.
+
+34
+00:21:04,580 --> 00:21:08,600
+Scott Tolinski: It's a character, culture, brain culture.
+
+35
+00:21:08,840 --> 00:21:18,110
+Wes Bos: Yeah. All right. I think that's it. Hopefully, that was helpful to the few of you that want to hire assistant, maybe it's interesting to everybody else.
+
+36
+00:21:18,420 --> 00:21:51,150
+Scott Tolinski: I think it's fascinating. I think there is a, we as developers, right, you have the ability to do so much more, right? You can create things in because you can create things, it's really easy for people to even start companies start businesses and start things like this become entrepreneurs. So I think this is such a key component to running an effective anything that if you're interested in this life, definitely might be a good way to get started thinking about what it would look like to have somebody help you out with this next, because oftentimes, it is worth it that pays for itself,
+
+37
+00:21:51,569 --> 00:22:50,940
+Wes Bos: I should say. So my assistant works hourly. And it's somewhat flexible in that they can work as many or as little hours as I have content for which makes it good for somebody who has a lifestyle that is a little bit more flexible. Or maybe you're an assistant for multiple people. Some days we have like when I launch a course they put in tons of hours and some days, when there's not all that much. It's just a couple hours in the morning, a couple hours in the afternoon. That's also really nice, because if somebody emails me, it's likely that they're going to get responded to fairly quickly. Because it's in the morning and at night or in the morning in the afternoon, things like that. I think that that works beneficial to both people. Like I know there's a lot of people who want to do the whole work from home thing but definitely need a flexible schedule. And I think that this is the perfect use case or something like that. Totally. Alright, that's it. Thanks for tuning in. Catch you on Wednesday. Booth. Please.
+
+38
+00:22:52,590 --> 00:22:53,400
+Announcer: Head on over to syntax.fm
+
+39
+00:22:53,400 --> 00:23:02,340
+Scott Tolinski: for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
