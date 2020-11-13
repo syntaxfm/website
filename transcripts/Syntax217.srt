@@ -1,0 +1,216 @@
+1
+00:00:00,359 --> 00:00:21,989
+Unknown: Monday Monday Monday open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA and Scott Todd.
+
+2
+00:00:23,610 --> 00:00:24,480
+Total in ski.
+
+3
+00:00:25,980 --> 00:01:01,380
+Scott Tolinski: Oh, welcome to syntax in this Monday hasty trade, we're gonna be talking about community building on line, some of the different software techniques and things you can do to either get started with a web community or join one potentially join one of the two that you're going to be hearing about in this episode. And we are going to be talking a lot about the pluses and minuses here a little things to consider when thinking about a community on the webinar. My name is Scott Tolinksi. I'm a full stack developer from Denver, Colorado, and with me, as always, is Wes Bos.
+
+4
+00:01:01,650 --> 00:01:02,220
+Unknown: Hey, I'm
+
+5
+00:01:02,220 --> 00:01:21,000
+Wes Bos: excited to talk about this because I don't feel like there's any like perfect solution out there yet. And there's lots of options out there. And they all have their, as you said, pluses and minuses, but I don't think there's a silver bullet out there yet. And I'm, I'm really hoping GitHub comes out with something pretty soon. So we'll talk we'll talk about that. Ooh,
+
+6
+00:01:21,120 --> 00:02:35,910
+Scott Tolinski: yeah, you know what I have? personally? Well, okay, well, we'll share my opinion, I'll wait to share some of my opinions. All right guard. But this episode is sponsored by one of our favorite sponsors over here. They're all our favorite sponsors. Let's be real. And this is century@sentry.io. Now, Sentry is the perfect place to track and store and log in, categorize and make sure that you've solved every single bug that's ever happened on your website. Because let's face it, you're going to solve bugs. And the last thing you want is for your community members to start harassing you about those bugs. They're your people in your community, you're going to say, hey, there's some bugs here. What are you doing, you're missing this bug, you're missing this bug, whatever. So before that happens, you're going to want to make sure that you have access to all sorts of really excellent logs and categorizing tools so that you can keep track of every single bug market as fixed before your users even notice it, which is really the goal of solving bugs. So if you want to try out century@sentry.io it works with every single platform that you could possibly use. Let me tell you, you'll get two months for free if you use the coupon code. tasty treat all lowercase all one word. Thank you so much for century for sponsoring. Alright,
+
+7
+00:02:35,940 --> 00:03:12,720
+Wes Bos: well, let's get into it. Maybe I should start real quick with where we're at right now. My community is on slack. And I've been on there for I don't know, maybe four, four and a half years now. And there's something like 30,000 people in there and I I feel the aches and pains of the slack. Yeah, because it's okay. But there's like I said, there's there's a lot of downsides to it. And I've been like looking for something better. And I was excited to hear that you've recently switched to Discord. Yeah, yeah. Tell us about Hi. Sorry, I I ruined the lead there. No, no, I
+
+8
+00:03:12,720 --> 00:04:52,580
+Scott Tolinski: prefer a nice little lead. And, you know, it's funny because we had a tweet come in, and it was sort of like, Hey, I'm trying to sign up for your slack room. But it's saying that you're all out of invites. And I was just like, this is so annoying. The invite process to slack Why can't they just add a form to allow anybody to sign up to your room that is good for more than just a month or something because the real answer is is because slacks not good for open communities right it's more like yeah team closed community focused and and that's really who their their audiences and so I really was feeling the pains of not using slack what it was for what it was essentially made and used for. And so I asked around and a lot of people were telling me discord discord Discord. Yeah and I heard so many glowing endorsements from a lot of people I trust honestly I would name them all but there is too many to name just about every person that I you know really look for good advice from was telling me that discord is the way to go. So I did a basically a scorched earth and I just said screw it. Let's move it must move the community. I'm tired of it. You know, I knew the the people who were using the Slack channel I did a nice little poll online and people said that they wanted to wanted to move and I took the shot. Now we're on discord and let me tell you 24 hours later, I'm really loving it. So we'll get into the plus and minuses a little bit, but I'm on discord right now. We'll have the links to both of our communities is yours open you have to purchase from your course.
+
+9
+00:04:52,680 --> 00:06:11,670
+Wes Bos: No mine. So mine is only it's invite only, and it's only for people who have heard Just a course and I so I have hired someone shout out to AJ, he sort of holds down the four in the Slack channel and helps people with whatever issues they have. But like, it would be like out of control. If I were to let even the free like my JavaScript 30 has over 300,000 people have signed up for that. So like, he would, it would be too much to support to give away support for that. And it would also just take away from the people who have paid for a course. So I'm currently only having but I guess like, the other side, I should say is that like, also the community helps each other a lot. Like it's not just me and AJ, it's it's primarily the community members helping each other out because everybody's at a different point. So I guess that that would help there as well. But currently just a private only in slack. We should also say that discord is kind of like Slack, but it's it was initially started with what like gaming, and it's just faster and free. Yeah. And how does it work? Do you like do you host your own server? Like I often see like a lot of YouTubers now say that, oh, I have my own Discord server. Now.
+
+10
+00:06:11,880 --> 00:06:28,590
+Scott Tolinski: That just means that you have a lick of room. So yeah, yeah. So unlike Slack, where you have a new account for every single team you sign up for, which honestly, is one of the worst things about Yeah, great. He's 2 billion accounts, you do the magic link thing. And it's like, here's all your different logins. Yeah,
+
+11
+00:06:28,740 --> 00:06:32,070
+Wes Bos: yeah, I've like 40. Yeah, every conference I've ever been to. Yeah,
+
+12
+00:06:32,070 --> 00:07:44,370
+Scott Tolinski: it's annoying. So this, you maintain one account, and then you can sign up for as many different channels, I guess their rooms. I don't know what they're called cert, I guess they're just called servers, right? You sign up for as many servers as you you want. So I'm in a few different servers right now. Like I'm in the official view, one and then the official spelt one. I'm in one for react people, and then one to watch hockey games. A few different ones. And yeah, so in those regards, it's a little bit different, but it feels very much like they took slack in the relic. All right, what is slack? Do well, and what does slack do badly for, you know, larger open communities rather than closed teams. Right. So I guess let's get into it with like some of the first topics here that are the first categories, right? for building communities, you largely have a few different options, right? You have at least chat options, which are largely the two big ones would be slack and discord are the really the two biggest chat ones. Obviously, there's IRC, which has been around for ages and ages, but I don't know who's really actively joining a lot of IRC rooms. Now at the moment, right, they've sort of a dozen been superseded by these new fancier chat applications. I was
+
+13
+00:07:44,370 --> 00:08:02,220
+Wes Bos: on IRC channels. So back in the day, and I had a run on a bouncer, which would keep you logged in, like if you want to, if you as soon as you close your laptop, you'd be logged out and you wouldn't be able to see the like, chat history from before. So yeah, IRC is is cool, but that ship has sailed.
+
+14
+00:08:02,610 --> 00:08:07,890
+Scott Tolinski: Yeah, what what service did you use to to use IRC? like did you use an app or?
+
+15
+00:08:07,950 --> 00:08:27,720
+Wes Bos: Yeah, I used an app called link Innes. Hmm. And yeah, that was it was pretty cool. And then I ran my own bouncer on like a Digital Ocean server interesting, which is fine. Like, that's I initially got into like, writing bots in JavaScript. For IRC that was really fun to do. I learned a lot of API's doing that.
+
+16
+00:08:28,200 --> 00:10:22,500
+Scott Tolinski: There's so many cool things about IRC. It also led into my first encounter with community members who are rude to you, when you're first learning Django. And I was like, hey, what what's up with this, uh, this donkey, I followed the official Getting Started documentation and like, step two, just flat out doesn't work. They're like, Oh, yeah, it's out of date. Like, okay, well, that's, that's good for getting started, you know? Good, good. Good point, good Nina status for that, for me trying to learn this thing. So they were not very nice to me. Let's go ahead and talk about the next one, though, which is a forum based, obviously, we're going to get into the pros and cons of these a little bit more definitely. But forum based would be more indexable, right there or fundable by Google, they're better to be searched, there may be slower communication. It's known as rapid fire chats, just sort of rapid fire real time communication. And the big option there right now is really discourse, because discourse is sort of the new take on forums. I should also say there's another big sort of big option there is spectrum. I'm not particularly a huge fan of spectrum, but obviously nothing against them. I just don't think it's right for the type of community that I'm trying to build. There's also old school type of forums like BB forum, whatever stuff, which in 2020, I don't know. And then things like Facebook groups. Okay. Let's talk about the pros and cons of slack and discord in the chat options because, as we mentioned, the forum base, they're indexable they're searchable, whatever and then chat options are faster real time but they're not indexable but in depth with slack and discord. In my mind, the pros of slack are just that it's an excellent product. It's well made, it has a lot of features, the chat features, the stuff in there is really super good the embeds all that stuff is really good. The cons would be cons would be for me something that is a pro. Yeah, threads. I hate threads.
+
+17
+00:10:23,190 --> 00:10:25,890
+Wes Bos: I hate threads so much. I'm glad you said that. It is a
+
+18
+00:10:26,970 --> 00:10:28,020
+Scott Tolinski: lack of anything,
+
+19
+00:10:28,040 --> 00:10:49,950
+Wes Bos: the UI is like I can if I'm in one thread, great. And I like the I guess the the flip side to not using threads also sucks because if we have two conversations going on at once, it's just jumbled, but like the UI Sox for threads and you get lost. And if there's a thread from like, two days ago, there's no way I'll see it, I realized there's a button on slack. But I never go back and check it.
+
+20
+00:10:50,250 --> 00:11:29,850
+Scott Tolinski: I have the hardest time finding like when I have a little number that says, Oh, you missed a message. I have the hardest time finding where that message is missing. I don't know if it's just me. I'm missing something in the interface. But either way. Yeah, threads are not a feature for me, like people say, Yeah, but discord doesn't have threads. Yeah. Good. Thank you. Thank you. And then the last you know, the other con for me is really the signup is a giant pain in the butt. It is just couldn't be any any more obtuse with the amount of logins you need to have. Yeah, how impossible it would be to have any sort of open signup? Yes, I get that there's things like slack. And you can throw that up on a site now. But yeah, that's that's largely it for me,
+
+21
+00:11:30,030 --> 00:12:51,780
+Wes Bos: man managing a slack. Well, I have like, what 30 35,000 people on my slack and managing that thing is hard, because like the UI freezes, cuz there's 35,000 people in it. And there's like these people that like, got the invite, but then like, never activated it. But then six months later, try to activate it, they get into this weird like, state where I can't like, like, you look for the invite, and it's not there. But then you try to invite them and it's like this person has already been invited. And like there's just like, all these bugs around managing people. And I it's I think that's just because it's that's not what it's for, right? It's meant to be for companies of hundreds of people, not not thousands. But yeah, it's it's frustrating. But the actual like community, I really like slack because it's you get that immediate immediacy people have it open. That's that's one thing is, I don't want to move to something else where people don't have the app open. The second custom thing people will like go to it when they're doing the tutorial. But then look, close it down. And if I want to be able to access people who've taken a specific course, or send a message to somebody who had a problem, and it's it two days later, or something like that, or sometimes I'll get an email and I'll say, Oh, I could I'll let me check if they're on slack. And the good thing about slack is that people are on it, and people have it open. Right, and you're able to get in there really quickly.
+
+22
+00:12:52,050 --> 00:15:37,890
+Scott Tolinski: Yeah, that is a one of the actually is one of the big things that I noticed when I was doing pros and cons. People would say, Well, I already have slack open for all of my team. So um, yeah, Slack, that's going to be the one that I think we should stick on. And that definitely is a thing. But to me, like, is that a good reason to stick on something that is inferior? Maybe? Sure. I don't know. I have, I think since joined enough discord communities in the past few months that I feel like I have discord open as much as slack now because I use it for enough of different different communities and different, you know, ways of chatting that to me it's become sort of that same sort of system. So I understand it's not the same for everybody. And a lot of people who haven't used discord before are going to feel really kind of weird with it. And you don't want to alienate anyone in your community. I didn't you know, it seems like I made that, that jump pretty rashly. But to be honest, it's something I've been contemplating for a really, really, really long time. So the next one, like we said, is Discord. There's open signups. You can have private rooms, that permission system is infinitely better. You can set varying different levels of roles and permissions to give people different access and whatever I found, there's some really cool stuff where you can stream within Discord. So you can stream yourself type, you know, doing vias code, live coding stuff within discord itself. That to me is all very exciting like that. We're slack on that one should a video chat, but it's not really made for broadcasting kind of stuff. There's also a lot of like just sort of general next gen slack features. It's like they took a lot of the ideas that you have in slack and up them up a little bit like your channels, right your channels are now organized into different groupings, and it seems way more organized in the per level permissions for each channel just seems a little bit more well thought out. It does seem like they took the ideas specifically ripped it off and then we're like, Alright, well can you do to make this one maybe a little bit more fun and a little bit more open? Some of the cons would be that less people have it maybe, I guess but that was something we talked about with slack but nowadays is It is becoming more and more popular, it is maybe a little bit more busy in the interface. I don't know if it really is it looks nice. One of the things that I don't like is that by default, while I simultaneously like and don't like this, by default, you're you're subscribed to all of the channels. So when I create a level up tutorials, one, you are automatically subscribed to fitness and gaming and music and sports and parenting and whatever. And it's not like you have to go hunt those out. So it's good that you don't have to go hunt and find them to know that they even exist. But it's sort of annoying if you aren't really interested in getting updates to some of those, and you're seeing them.
+
+23
+00:15:38,160 --> 00:16:08,790
+Wes Bos: What about pricing? So one thing with slack is that it's a they charge you based on active people. So I'm just looking at my stats. Now there's 42,000 people in mine, but only 1800 of those are active right in the last week, only 80 and 100 people have actually used the use the chatroom that those other people are just they took a course and they haven't haven't jumped back into it just for for whatever reason. So even at that, though, that's $16,000 a month if I were to pay for it. Wow. So like, what about discord?
+
+24
+00:16:09,000 --> 00:17:39,720
+Scott Tolinski: Yeah, so there's just really interesting. In my mind, it's like a community focused pricing. So sure you can you can pay a bunch and unlock extra features. But that's really what it is. It's just extra features for the server. So I don't know, I haven't spent enough time with this to really know how Searching far back goes. But it doesn't look like any of these extra features are really based around how many messages are saved. So I still need to figure out, like in slack is all about how many messages and back in history you have and things like that and those extra little things. But this there's like different levels to your server level one perks include an additional 15 server emojis, 120 128 kbps, audio audio quality, and the animated server icon, custom server invite background 720 60 FPS go live streams. And then there's a level two and the level three. And the cool thing is is that members of your community who are subscribing to discord already can gift your server, what are called, what are these called boosts, they can gift your server boosts, and it will boost your server adding to these features. So for instance, I had two really amazing community members give my server two boosts already in it opened up the level one perks for me. And level up tutorials hasn't paid anything for that now we are going to be boosting the server ourselves, just to open up some of these features for everybody. But it seems like a really interesting pay model.
+
+25
+00:17:39,750 --> 00:17:44,700
+Wes Bos: Yeah, it's hundred bucks a year and it doesn't seem like is limited by how many people are on it. Right?
+
+26
+00:17:44,880 --> 00:17:47,550
+Scott Tolinski: I'm not paying anything for it. Oh, you mean for level, I'm
+
+27
+00:17:47,550 --> 00:17:58,170
+Wes Bos: looking like if you want everything, everything the most you could spend is 100 bucks a year, sure, or 10 bucks a month. That's amazing. Like, that's great. Like, if you could do that,
+
+28
+00:17:58,340 --> 00:18:50,910
+Scott Tolinski: I'm still diving in. And to be entirely honest, I'm still very much of a noob of this thing. But in my time on it managing this already. I'm just really, really into it. I'm very excited about it. So cool. We have a syntax room there too. If you want to jump on and talk about syntax, there is a syntax room within the level up discord, I will share that in the show notes. Alright, let's talk about foreign based ones. Because these are really interesting options that a lot of people ask me about, why didn't you go with a foreign based solution? They're searchable. They're indexable, all that stuff that you'd want? Yeah, within maybe some things. And this is a maybe a tougher one. Because I just don't I feel like a foreign based situation is more difficult to moderate. That stuff is there people start a new thread when they don't need to chat. It's just so communicative or whatever, there's less work that I have to do to assign somebody to moderate it.
+
+29
+00:18:51,150 --> 00:20:10,380
+Wes Bos: Yeah, there's a lot of work in moderating a forum. And also you you don't get that immediacy, every time I'm put with a form. I'm just like, should I really post this? Or should I just wrap it, you know, like, is this worthy of posting? And that's what that's what spectrum I think was trying to solve the fact that tech forums and tech chat, both are missing something because I do get back messages on my slack. Don't ask me how I got that. But you like it sucks. It's not like Google searchable. And I would love to have those things show up in Google's results, because like, Who wouldn't want the search engine juice of 40,000? people posting? Right? Yes, right. And things like that. Right. And a spectrum was it was kind of doing that. So they're like kind of forum meets chat. And they were working really hard at that. And it looks or it doesn't look like it happened GitHub bottom. And it seems like the development has sort of stopped. And I've asked the developers behind it. I'm like, What are you doing at GitHub because I so badly need the perfect solution to my problem. And they say we can't tell you so Is that I was working on the holy grail of chat meets GitHub issues meets form software. I hope. So.
+
+30
+00:20:10,710 --> 00:21:11,570
+Scott Tolinski: Let me tell you, though, I really hope there's nothing against anybody who worked on spectrum because it's an excellent product for what it does. But I really do not want to have a spectrum for a community. I just don't like it like, again, nothing against anybody. It's just not for me, the notifications are a total mess. I get a good Ziad emails from spectrum no matter how many times I told them, I don't want you to send me an email, I will still get an email from spectrum. I had to put them on my spam list, because it's just like theirs. It was totally impossible to end the spam coming from spectrum. And also, I just didn't find it very navigatable. It's really hard to find. Yeah, I think there's sort of the general chat, I just found it very difficult to parse and find it, whatever. It feels too impersonal. But impersonal, impersonal, yes. feels too impersonal. While not necessarily like there's the less immediacy that you get from a forum, but at the same time, none of that. I don't know, I just don't like and I'm sorry.
+
+31
+00:21:11,700 --> 00:21:41,360
+Wes Bos: So here A case in point. I very heavily use next and Apollo on slack. I was in there all the time chatting people meeting people. And how many times have I posted to next Apollo since they moved to spectrum? Never? I don't know why. But it just it just something's missing there. And I'm not there. And maybe it's because they don't have the chat open? Or maybe it's because I feel like there's nobody here right now, that will actually be able to help me. So maybe I'll just post it on Twitter instead.
+
+32
+00:21:41,570 --> 00:22:05,730
+Scott Tolinski: It doesn't feel like a community. It feels like, Hey, this is like a crappy or GitHub issue where it's not tied to actual code. Mm hmm. Yeah, that's just my thoughts again, and nothing against is an excellent product, but it's just not for me. And there's also like the old school forums option, which, you know, all that software is probably pretty janky. At this point, you'd have to imagine it's an easy way to get hacked. There's probably like a billion people looking to exploit that.
+
+33
+00:22:05,940 --> 00:22:19,590
+Wes Bos: Yeah, there's some I don't know, I don't know if that's necessarily true. It's it's still actively being developed. And I'm sure and each one dirty issues. Well, like, I think probably the one that you're talking about is like, what phpbb or vbulletin?
+
+34
+00:22:19,740 --> 00:22:30,750
+Scott Tolinski: Yeah, phpbb is still actively being developed, because their website does not look like Oh, really? I'm so sorry. phpbb Oh, no, this look like yeah,
+
+35
+00:22:30,750 --> 00:22:43,260
+Wes Bos: there's there's some nice ones, and there's no DB that I'm sorry, ah, being developed. But like, again, though, the reasons why we don't want a form is because of it doesn't have that immediacy. That chat does.
+
+36
+00:22:43,470 --> 00:23:17,280
+Scott Tolinski: Yeah. So again, I'm I guess, they're still actively being developed. I take back what I say, I'm still not going to use it. Yeah. Next thing is the Facebook groups, which, you know, Facebook groups can get absolutely massive. There are some hugely massive Facebook groups. I'm not going to use it because there's cluesive to Facebook users. And in my experience, Facebook is becoming a bit of a ghost town. And just, there are large groups, but it is it's not inclusive enough for me, right, you got to have Facebook to get in there. And yeah, that that comes with a lot of stuff.
+
+37
+00:23:17,340 --> 00:23:59,400
+Wes Bos: It's Facebook, you just have to say that. I'm part of a couple, like there's really good WordPress groups on there. I'm part of a couple for LTE modems and things like that. And anytime you have a very obscure question about those very obscure modem, somebody will answer you within 20 minutes. And it's amazing because like that the media is there. And you can see like the actual people behind it, but after I don't know, after three or four replies, everything gets lost, you're interested in these tiny little replies. There's no formatting for code or anything like that. And it's not indexable on Google, which sucks. So like it's effectively gone.
+
+38
+00:23:59,460 --> 00:24:03,690
+Scott Tolinski: So that's the benefit. Yeah, that's Yeah, a bit of a forum. Right? Well,
+
+39
+00:24:03,780 --> 00:24:44,370
+Wes Bos: it's like, I don't want to put my stuff on Facebook. Like the last thing I want to do is be spending any more time on Facebook than I have to So yeah, I sort of mourn when these amazing groups, our Facebook groups, because of how much amazing information. Like if you if you think about like, if you search for something about like a car or anything like that, you'll often find posts from like a forum from 15 years ago with some photo bucket images, by the way, which got next. Yeah. And I was like, How amazing is that? This has been preserved. Oh, you think Facebook is gonna preserve the post I made last week about them? modem no way that's that's effectively thrown in the garbage and,
+
+40
+00:24:44,490 --> 00:24:46,470
+Scott Tolinski: and Will anybody be able to find it too?
+
+41
+00:24:46,500 --> 00:24:50,310
+Wes Bos: Yeah. Not even in the spirit of the internet. So yeah, Facebook group
+
+42
+00:24:50,310 --> 00:24:51,900
+Unknown: talk. Yeah, that is
+
+43
+00:24:51,900 --> 00:25:42,360
+Scott Tolinski: a bit that is the thing that you don't think about a ton is really just that those Google juice that comes from that stuff. It really, really can help Another option there is Reddit. Reddit is a good option. Because you get the forum type thing. There is really good indexing, but Reddit is can become a bit of a toxic hellhole. So yeah, that's a whole thing too. Yeah, I spent I spent a decent amount of time on Reddit, at least in certain Reddit that are moderated. Well, for instance, Sean swix, swix. Yeah, he moderates the React.js. One, and he does a great job, and therefore, because he does a great job, and because he set up that community to be so nice. It feels different than a lot of other Reddit communities can sometimes feel where everybody just blames each other until infinity.
+
+44
+00:25:42,450 --> 00:26:36,660
+Wes Bos: Yeah, I think if you create your own community on Reddit, you're not necessarily going to be inviting in the angry people. You can certainly just boot them. It's all about moderation. Yeah, I nabbed the RMS boss, which you should probably grab our level up tuts just in case someone were to grab it. And like kind of I've been thinking like that. I kind of like read it. Like I often find myself searching for something. And I'll just append read it on the end. Oh, likewise, yeah. What does that mean? That appending it and by appending it It means like, give me a real true people's insights. Right? Like, don't give me some like forum software where it's just a reply from the people who own it saying like, please contact us or something like that, like, real people are on Reddit, so I don't know. I'm definitely still considering do it using a Reddit, but I don't think that it is it is it though.
+
+45
+00:26:36,660 --> 00:26:45,840
+Scott Tolinski: So we'll see. Yeah, I in the chat on Reddit sucks. I don't know anybody who's using that. But yeah, because they exist, but it's not very good.
+
+46
+00:26:45,930 --> 00:27:01,020
+Wes Bos: The chat sucks. Yeah. It's funny. Like, I think like discord is the chat of Reddit. Like I think like Reddit probably missing a huge opportunity there. Yeah, we're like they could have been the read or maybe they would even buy them at some point, you know? Yeah. Right. Yeah. Right. That
+
+47
+00:27:01,020 --> 00:27:07,890
+Scott Tolinski: would have been the perfect I think connection there. Because that's where I've mostly heard about discord more than anywhere elses feel Reddit?
+
+48
+00:27:07,890 --> 00:27:08,490
+Unknown: I think.
+
+49
+00:27:08,549 --> 00:27:12,900
+Wes Bos: Yeah. It's, it's funny how people have to go off of Reddit to get more immediacy.
+
+50
+00:27:13,170 --> 00:28:05,550
+Scott Tolinski: Yeah. Right, which is like Reddit, if you you, you refresh the new incoming post, there's always something new. That's pretty immediate. But yeah, it's not quite at that level of immediacy that you get from something like this. So yeah, very interesting. I think there's some other options, too, that you could consider communities such as, like a comment systems in anything like YouTube comments, systems in YouTube could largely be seen as a community, but it's largely sort of like a one way community, somebody's like yelling at you via video. And then everybody else is just sort of chatting at the bottom and flaming each other and being awful. And that doesn't really feel like a community. To me, I think that some people would say that is, and maybe the people who are excellent at tending in video, and that kind of way could do it really well. But as somebody who's spent a lot of time on YouTube, I just don't i don't see that as necessarily being a community that seems like a dictator and a bunch of underlings or something.
+
+51
+00:28:05,700 --> 00:28:59,010
+Wes Bos: Yeah. One more thing I should say is that one kind of thing I'm working on right now is notes, like community source notes for each video. So like, often, sometimes there'll be like, a little mistake in the video, and someone will jump into the chat. And there'll be like, three people immediate being like, oh, the fixes this and that I have to go back and update the video. But like, like, what if the notes were immediately underneath the video that said, like, oh, if you accidentally type this, or this is wrong, or just like little things that you get tripped up in a video, there's no build immediately below it. So that's something that's almost done. I'm really excited about it. Because like, also, I'm, I often watch stuff, or like a YouTube video, and I'll hit a bump. And then I'll just go in the comments and write what the solution was, right? Like, that's the first thing you go for. So like, it would be cool to have community notes as well. And so they're like markdown based, they'll be on GitHub, so people can edit them if they want to add something themselves. So I'm excited about that.
+
+52
+00:28:59,279 --> 00:30:17,190
+Scott Tolinski: Yeah, and we, we added comments, to level up tutorials for pros, and BI. The thing I wrestled with whether or not that should be available to everybody, but again, that's what we largely do is have community source notes if people notice something that they ran into a bug with a version, and then we added the ability to pin the comments. I mean, it's their own comment system, largely written by Eric Sartorius on our team, and because of that, we can add any feature we want to it we want to add pinning. Okay, pinnings in there it is one you know, that's great. It gives you that sort of freedom, but again, it's a little bit more of a slog to get it going. So that said, I'm on Discord. Currently I don't, I was on slack forever and ever and ever. And so I don't intend on seeing the community move at any given point in the near future here. So don't feel like I'm going to be moving it if you want to check a chat about syntax episodes. We have all sorts of stuff on here. This is sorry, a general little advertisement for my slack community. But we have like code help CSS, JavaScript, react, Meteor, whatever. Design help design, inspiration musicians, parenting, sports, gaming, fitness, all that fun stuff. So if that sounds like you want the link in the descriptions, I just wanted to chat a little bit about these communities. My head's definitely been in this space majorly.
+
+53
+00:30:17,550 --> 00:30:24,900
+Wes Bos: Well. All right. I think that's it. Thanks for tuning in and we will catch you on Wednesday. He's, please
+
+54
+00:30:26,820 --> 00:30:36,600
+Scott Tolinski: head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
