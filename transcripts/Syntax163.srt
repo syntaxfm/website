@@ -1,0 +1,192 @@
+1
+00:00:00,359 --> 00:00:24,480
+Announcer: Monday, Monday, Monday, open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing, soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob, and Scott Taylor. Totally in ski.
+
+2
+00:00:25,920 --> 00:00:57,780
+Scott Tolinski: Whoo, welcome to syntax and this Monday tasty treat, we are going to be sort of going over several of our different favorite resources in different topics, we're going to be talking about Twitter accounts, web dev resources, design resources, desktop tools, and YouTube accounts. And now these are largely going to be web dev related, but we have some fun ones as well, you could sort of think of this as an episode of web dev sick pics. My name is Scott Tolinksi. I'm a developer from Denver, Colorado and with me as always is West boss.
+
+3
+00:00:58,020 --> 00:01:02,430
+Wes Bos: Hey, everybody, Scott some sick pics today. Oh, Episode, follow them
+
+4
+00:01:02,700 --> 00:02:17,580
+Scott Tolinski: sick picks some tasty, tasty treats. This episode is sponsored by one of our longtime sponsors over here and syntax. And that's Log Rocket. Now Log Rocket is the amazing service that allows you to visualize the bugs. As they're happening, you get a session replay, which is a scrubbable video that includes network requests, the console, your Redux store, all that stuff, you need to be able to solve any sort of bug, just imagine this, you have a bug and instead of having to ask your users, you know, what OS, what did you do to make this happen? Where did you click on? And how did it break? Well, now you can just get an actual session replay and watch as the user clicks the link and breaks your entire site. So you can go ahead and fix that without having to ask your users anything. So check it out at Log rocket.com forward slash syntax and get 14 days for free. But one of the services we really like over here is syntax, so highly recommend checking it out. So let's get into it. I think we wanted to start with Twitter accounts, we're going to give you sort of one Twitter account that we like, talk a little bit about why and I shouldn't stay at the the you know, the jump here that if we left anybody off? I mean, we're only giving one pick each here. So we're gonna leave.
+
+5
+00:02:17,580 --> 00:02:18,300
+Wes Bos: We're leaving.
+
+6
+00:02:19,019 --> 00:02:31,190
+Scott Tolinski: Yeah, we're leaving everybody off. So if we left you off, don't Don't feel sad. Maybe we'll do another one of these then who knows? So, yeah. Did you want to get into who was the Twitter account that you said that you like to follow here?
+
+7
+00:02:31,560 --> 00:03:51,270
+Wes Bos: Yeah, so there's tons of tons of ones. And I think in a lot of cases people know about them, like we all know, follow smashing mag and CSS tracks. But the one that's just like consistently amazing things about JavaScript is Mateus Bidens. And he works on va, which is the engine behind chrome and, and node Actually, he works at Google on that. And he is also on Tc 39 which, which is Tc 39 is the committee that decides and works through all of the sort of proposals as to what gets added to JavaScript. So he is on the cusp of what's happening with JavaScript and his tweets are just like awesome to like people always ask me like how do you stay up to date? How do you know when new stuff comes out? And his Twitter account is probably one of the main sources that I use because like anything anytime something has been proposed, anytime something that has been approved or anytime anything is actually shipped to JavaScript, he will always tweet out saying like, I'm just looking at his Twitter right now. Here's some things that got announced array dot flat map string dot match all all the I MTL methods, I NTL that number format, big in support object dot from interest, all kinds of like this new stuff. He's always tweeting about it. So huge resource for sort of staying up to date with what's new in JavaScript, and just like really interesting as well.
+
+8
+00:03:51,480 --> 00:03:54,750
+Scott Tolinski: Cool. And you said that Twitter handle is
+
+9
+00:03:54,899 --> 00:04:00,120
+Wes Bos: Oh yeah, forgot that it's matea switches ma th ay ay s
+
+10
+00:04:00,120 --> 00:06:08,670
+Scott Tolinski: cool. Glad to hear that. I have not following Mateus. So I go along Mateus. Mine is in a totally different direction than this in yours as I walk in several different directions minds in a different direction. Yours was a individual and it was JavaScript based. Mine is an aggregate account. And it's designed based. It's called Hey, designer at a designer. And this is just a daily curated design blog list. They tweet out every day. Some design links, some really good stuff from good people. If you go to their site at hay designer.com. They categorize things in different ways. It's really nice. You can browse by topics that way, but I just like to follow them on Twitter. And every once in a while every every day or every other day something pops up and I'm like ooh, I need to click on that and check it out. So this is one of those ones that you just you just sort of have it on and when something useful pops up into it you are very happy that you are following it. So as a designer is the Twitter account I have picked for this next one Let's talk about web dev resources, aka some sites that we like. And mine is a site that I would assume a large amount of you already are familiar with. And this is this scotch.io. Now scotch.io is basically web dev tutorials. And this is run by at Chris on code, so you can follow him as well, too. That's a good Twitter follow. But really, it has tutorials from a lot of people, blog, post videos, all sorts of stuff. I think Chris even does some live streaming now. So this is one of those resources that besides being tremendously well designed as a resource, I think the content is all very good. It presents itself in a way that is easy to follow big headlines, code examples, and all those good things you like from a resource without actually being bogged down with a bunch of extra bs stuff. So I'm a big fan of scotch.io. It's a great place to come for inspo, great place to come from tutorials. And if nothing less, just go to the site and hover over the logo because it has the beautiful SVG animation, that is definitely worth your time.
+
+11
+00:06:08,820 --> 00:06:12,930
+Wes Bos: My next resource is actually just going to be an aggregate of other resources.
+
+12
+00:06:13,770 --> 00:06:15,810
+Scott Tolinski: Yeah, what? Yeah, aggregate the first one.
+
+13
+00:06:17,100 --> 00:06:58,080
+Wes Bos: This was launched a couple days ago on Twitter by Twitter at last design, which is at losses, I'm not sure what his actual name is. But he launched his website called the web gems.io, which just aggregates like amazing resources on the internet. And it has this really nice little way that you could filter by CSS design, front end, full stack, HTML, JavaScript, PHP, Python, Ruby, and the website's fastest hack. I think it's built on nuxt. I was doing a little bit of poking around. And it's just like, if you're looking for stuff on a specific, I know, you look for JavaScript tutorials. Oh, my free ones on there, which I was happy to see. Yeah, yeah. Yeah. And of course, yeah, yeah. It's just mine
+
+14
+00:06:58,080 --> 00:07:00,090
+Scott Tolinski: is to see that.
+
+15
+00:07:01,140 --> 00:07:04,590
+Wes Bos: Well, it's, it's open source. So submit a pull request
+
+16
+00:07:04,620 --> 00:07:06,570
+Scott Tolinski: somebody else that doesn't look like
+
+17
+00:07:10,260 --> 00:07:17,340
+Wes Bos: no, you got to own it, your stuff is good. So just send a PR in there. So I don't know all kinds of good stuff. That's web gems.io.
+
+18
+00:07:17,520 --> 00:07:41,610
+Scott Tolinski: Nice. Yeah, I really like this, I fired it up. And one of the things I liked a lot about this is it feels like it feels like a bookmarks page, or one of those things that's easy to navigate. It doesn't take up too much space. A lot of times these things they'll want to put like paragraphs about all this stuff. And I don't know, this just makes it nice and easy to find what the resource is and why you might want to check it out. I liked it. Next up is design resources. What do you got for design resources.
+
+19
+00:07:41,820 --> 00:08:04,290
+Wes Bos: One of my favorite design resources is creative market. So it's a paid market where there's a lot of amazing artists that will sell things, I grab fonts off there all the time, often buy like, if I'm looking at my like purchase history here. I bought hipster burst pack, where like, you know, design a logo and it's got the like the like blinds that are bursting from behind it.
+
+20
+00:08:04,320 --> 00:08:05,790
+Scott Tolinski: Oh my God, that's funny.
+
+21
+00:08:05,790 --> 00:08:53,040
+Wes Bos: I just I just bought like a pack of those to add often I'll go on there and buy textures, things like that fonts, people always ask me like, wait, like, where'd you get your font because you could spend hours and hours combing through we want or you can just go on here and find some pretty nifty ones. So big fan of creative market. I want one other thing I'll say, though, is that often what will happen is that the authors will have their own website for selling these things. So what I'll try to do is, I'll search for the own author's website, first one I'm about to buy. And that way the that way the artist gets all of the money instead of credit market taking their cut. I think that's such a stellar tip there. Because you want to support the the creators first and foremost, I think creative markets probably doing fine themselves. Mm hmm.
+
+22
+00:08:53,040 --> 00:10:17,900
+Scott Tolinski: Sorry, if you work for creative marketing, I think that this but supporting the individual creators is a great idea. Mine is something I just saw yesterday. So it's good timing that we're doing this episode. It's called the UI movement.com. And it's basically weekly inspiration. And everything kind of moves. I don't know if that's a requirement, I would assume it is with the name UI movement, as well as the fact that Yeah, everything has a play button on it. You don't state explicitly that all of these things are for movement based, but it looks like it is. And let me tell you, this is sort of dribbly in the way that a lot of these things are done in a in a vacuum. You know, somebody just designed this in a motion graphics tool, and then said, Okay, this is a website. So I understand that everything's super practical on here, but you can get a lot of really great inspiration as long as you sort of ignore the fact that everything is very overly trendy and overly optimistic. But I think there's enough good ideas on here that it can really just get those wheels turning in especially if you are looking at movement. I mean, a lot of this stuff is really good. To do but there's some very practical examples on here, if you look for them, and being able to pull that inspiration and put it into your project is one of those things that's going to take it up a notch, especially if you you know, have some skills in your back pocket, like maybe perhaps react spring, or one of those, there you go, a big fan of
+
+23
+00:10:18,020 --> 00:10:44,660
+Wes Bos: this is cool. This reminds me of dribble, like five years ago, where I would like find something on dribble, and you just be looking at me, like, come on, you can't do that. And you can't do that. And then I'd be like, oh, maybe you can, maybe you can put a slant on the end of that thing. And then I'd be like, ah, screw it, I have to try it now. And then you spend the next couple hours coding. So maybe if you want, like a little practice, just pick one of these UI things and try to implement it yourself.
+
+24
+00:10:44,730 --> 00:12:16,950
+Scott Tolinski: Yeah, can I actually say that people are always asking on Reddit or on Twitter, like, I need good ideas for portfolio projects, right? I don't have any clients, I need some good ideas is a to do list a good enough idea for a portfolio project and usually ask for it all that stuff is no because it's gonna be crappy, or just basic, but I think you could look at here and and just pick one of these and try to build it in, the more impressive, the better. Because it could end up looking really nice in your portfolio, as long as you credit the designer and the people who created these visuals. But these are, I mean, this is a whole bunch of, you know, really difficult sort of things that you could look at and say, Wow, I could add these to my development portfolio and show that I can create this kind of stuff. I think that'd be a really good use case of your time, if you're looking for stuff to build. Alright, next we want to get into desk top tools. These are just sort of apps that are going to help you in your day to day, ours are very, very different. Mine is going to be a new app. Well, it's not a new app, but it received a big update. And this is POC p o ck at POC dot Dev and POC is the app for those of you who are on Mac I'm sorry, Windows and Linux people. This is for people who have a MacBook with a touch bar. And what it does is it actually makes the touch bar sort of useful. Now I know a lot of other people like better touch tool and things like that. But to be honest, the better Touch Tools interface and whole thing gives me anxiety. There's way too many options.
+
+25
+00:12:17,220 --> 00:12:20,430
+Wes Bos: Does bettertouchtool even do the touch bar.
+
+26
+00:12:20,430 --> 00:12:23,700
+Scott Tolinski: I think it does write better touch tool. Yeah, I think it does.
+
+27
+00:12:23,730 --> 00:12:34,500
+Wes Bos: Does. Yeah, I didn't I didn't realize that. Yeah, bettertouchtool does. Absolutely everything goes under brazier. Like if you've got like a like one of those old Apple remotes from 15 years ago, I guarantee it works with this thing.
+
+28
+00:12:37,500 --> 00:13:17,670
+Scott Tolinski: And so yeah, so POC is like basically it gives you a dock it gives you a widget it gives you a status widget it gives you control center and looks like they're updating. And like I said it's very minimal right now. But in terms of making your your touch bar actually somewhat useful. I'm using this right now. And I gotta say, I'm loving it quite a bit. Even if it's just for like, I threw some folders in my dock like my doc is pretty minimal, but I threw my sites folder, my level up tuts folder, my downloads, and now they're just sitting there all the time in my toolbar. And if I ever want to access the level of tut's folder, I just tap it on my toolbar, and it actually makes it useful for the first time ever. Yeah,
+
+29
+00:13:17,939 --> 00:13:48,720
+Wes Bos: I don't have to try it out. Cool. Yeah, mine is MongoDB compass. So if you use MongoDB, a good GUI tool is important to be able to quickly edit stuff, especially when you're in like the prototyping phase where you haven't created like an admin UI for that yet. MongoDB will just give you a raw access to the data. But it also provides some aggregations a nice visual UI for your data. Big fan of it. There's a free version available under the community. I don't really understand MongoDB like charges for it, but it's also free. Yeah, I
+
+30
+00:13:48,720 --> 00:13:52,200
+Scott Tolinski: was wondering about that. There's a Community Edition. And then there's a
+
+31
+00:13:52,230 --> 00:14:07,620
+Wes Bos: like cloud and kind of like, like Oracle or something like that, where like they've got this like amazing open source product, but they're also a huge company that makes money. So sometimes the that stuff is a little bit confusing, but I don't pay anything for it. And I love it. It works great.
+
+32
+00:14:08,100 --> 00:14:27,210
+Scott Tolinski: is I actually use a studio three t for that. In studio three t looks like it was just plucked right out of the year. 1990. Yeah, I'm sorry, studio three t devs. If you're listening to this, you do great work the applications great. Doesn't look great. And hopefully they update that that sometimes, you know, check out this.
+
+33
+00:14:27,420 --> 00:14:28,830
+Unknown: I think I've used that company. Yeah,
+
+34
+00:14:28,830 --> 00:14:29,490
+you know, I
+
+35
+00:14:29,490 --> 00:14:50,490
+Wes Bos: use one similar to this. It's called the another one I use a UCS is called Mongo hub. And I still use it from from time to time just because the aggregation UI is pretty nice. But yeah, some of these UI are that's that's specifically why like compass is that they spent some time but I think it's built on unlike electron app as well. Cool. You have the added benefit of your CPU being
+
+36
+00:14:52,380 --> 00:15:06,570
+Scott Tolinski: the call on handwarmer. So we just had the benefit of it warms your hands, I'm in cold call. There you go. Next step. We wanted to get into some that you YouTube channels. So let's do our dev YouTube channels first and then let's do our for fun ones after that,
+
+37
+00:15:07,020 --> 00:15:57,300
+Wes Bos: what do you got? All right, um, mine is actually I'm going to change mine, I just decided mine is the dot conferences YouTube channel, which posts all of the talks from the.js dot CSS dot whatever conferences if you haven't heard the dot conferences are I think some of the best conferences out there, I think they're only in Europe I spoke at one about a year and a half ago. And the talks are, I think mine was like 15 minutes, most of the talks are under 20 minutes long. And they they really put a lot of stress on like practicing your talk and getting it forward. So if you've just got if you've got lunch, or you've got like, I don't know, you put it on to x, you can like really suck in a whole bunch of amazing information from some of these talks in a really quick amount of time. So it's the dot conferences, YouTube channel.
+
+38
+00:15:57,960 --> 00:17:36,510
+Scott Tolinski: Yeah. And that's funny, because mine was going to be the J s, calm EU YouTube channel, just like what you were saying, you know, one of the things I like to do with this stuff is throw on a playlist of a conference, and just like Chromecast up to the TV or something and just have it on, you know, maybe while I'm working, or it's almost like background noise, because not every talk is going to be applicable to you. But like, the talks that are applicable to you are going to like pull you out, and then you're going to sell what is this tasty tree here, let me pay attention right now. And just start listening. So I love to have this stuff on in the background, it's part of my learning strategy is to have these sort of conference talks. And then that way, if I'm ever thinking, you know, what I really want to learn this topic, I might have something in the back of my head that says, You know what, there was a talk on that, that you sort of listened to, but maybe you want to listen to a little bit more. So I highly recommend it, just any of the big conferences, just subscribe to all those YouTube channels. Okay, let's get into some fun ones, some non web dev ones. This is a channel that I've sic picked before on this is and this is stance elements. Now stance element is just dance. It's it's breaking primarily. But there's also other dance like, I think they probably they have some popping, they have some locking, those are two separate dances by the way. They have some voguing and all sorts of stuff. But if you're interested in seeing human capabilities, then being inspired by some movement, I, which I typically AM, is a stance elements for for this kind of stuff. It's amazing. I'm gonna
+
+39
+00:17:36,510 --> 00:18:49,980
+Wes Bos: pick another one that I just stumbled upon, like a couple weeks ago, and I've just been glued to it. I feel like it's, you know, when people say like, Oh, I just found a new Netflix show and has like six seasons to feel like that is me on YouTube. Now, when I find a new YouTube channel, and it's like, oh my gosh, there's like four years worth of content here. This is amazing. So the new one that I found is Andrew Camerata, CA m, AR, a TA. And he, it's hard to describe what he does. He does like excavating and small engines, and he built this like house out of shipping containers, but he built like a castle. And the reason why I like it is it's just very pointed into like, here's what I'm trying to do. Here's how I do it, or this broke, here's how I fix it. And I think that the the whole problem solving methodology behind how he approaches thing and also explains how he's doing something, I think it's like, totally unrelated to web death. But I think I learned a lot just about like problem solving and how to tackle things and also how to explain what is he doing cuz at the end of the day, that is what I do from for my job. So plus, they're super entertaining, just learning about all these this random stuff. So it's Andrew camera, Rod. I'll put the link in the show notes.
+
+40
+00:18:51,930 --> 00:19:38,970
+Scott Tolinski: That's great. I'm always on the lookout for stuff like this. We're about to do some potential excavating over here. So this is okay. This is actually a good funny side story. For those of you who aren't into children things you might not find this to be that funny. But Landon loves excavators. Keep in mind, he's two years old. And he loves he says x gubbay tar. He says the longest word he knows other than succulent, which he just learned but excavator he loves the word excavator. So my brother who loves you know, to be the uncle who gets annoying gifts. He got Landon, a giant excavator that he could ride for his birthday this year, turning to and so he got in this giant excavator and the first day that he got the excavator Landon wouldn't go to sleep because he was just like,
+
+41
+00:19:40,850 --> 00:19:41,840
+Wes Bos: oh my god,
+
+42
+00:19:41,970 --> 00:20:13,170
+Scott Tolinski: he just loves it so much. And then the next day, this is the funniest part I woke landed on. And he usually says that he just says something like that I miss you or did I love you or something like that when I wake him up? And he I wake him up and I pick him up out of his crib and he goes dead. And I'm like, Yeah, he's like, ah, Love excavator. You covered we had. Oh, that's great. He loved excavator seat so we're gonna put some of these on. He's gonna go nuts. It's like get PBS.
+
+43
+00:20:14,330 --> 00:20:41,790
+Wes Bos: Yeah, it's it's super interesting. Oh, this other this guy he also did. The way I found is that he was fixing all these jet skis. He would buy these like jet skis that been sitting in a field for like, 1010 years. And then he would like, like, bring them back. And I was like, Oh, I would love to be able to know how engines work and fix a jetski that'd be so cool. But but that's the thing about YouTube videos is that like no never do. Yeah, but it's fun to watch somebody else do it
+
+44
+00:20:41,880 --> 00:20:58,290
+Scott Tolinski: right. Totally cool. Well that's a that's a lot of sick pics. I think that's all the good stuff that for the most part we haven't really talked about on this show before I think there's only a I think the LA enough the dance YouTube channels. The only one I think any of us have mentioned before this. So
+
+45
+00:20:58,820 --> 00:21:08,330
+Wes Bos: lots of good sick pics there. Yeah. If you have any of your own resources, make sure you tweet us at syntax FM, and we'll retweet some of the the good ones.
+
+46
+00:21:08,400 --> 00:21:09,800
+Scott Tolinski: Yeah, only the good ones.
+
+47
+00:21:09,900 --> 00:21:14,400
+Unknown: Well, thanks for tuning in. We'll see you on Wednesday, whose face
+
+48
+00:21:16,320 --> 00:21:26,090
+Scott Tolinski: head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
