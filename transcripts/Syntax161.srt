@@ -1,0 +1,148 @@
+1
+00:00:00,359 --> 00:00:01,350
+Unknown: Monday, Monday,
+
+2
+00:00:01,350 --> 00:00:02,580
+Monday, open wide
+
+3
+00:00:02,580 --> 00:00:06,990
+dev fans yet ready to stuff your face with JavaScript CSS
+
+4
+00:00:06,990 --> 00:00:07,590
+node
+
+5
+00:00:07,590 --> 00:00:08,820
+module, BBQ Tip
+
+6
+00:00:09,059 --> 00:00:12,810
+Get workflow breakdancing, soft skill web development hasty, as
+
+7
+00:00:12,810 --> 00:00:21,989
+crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob, and Scott Todd.
+
+8
+00:00:23,610 --> 00:00:24,450
+Totally in ski.
+
+9
+00:00:25,860 --> 00:01:03,930
+Scott Tolinski: Oh, welcome to syntax on this Monday. Hey, Steve, we're gonna be talking about one of our favorite topics. In fact, I think we could go hasty or in haste here with this sort of topic. But this is going to be a really fun one, we're gonna we're gonna get into it fast here. And we are going to give you all of the things that we love in VS code right now, some little themes, some fonts, some extensions, and some techniques. And again, this is going to be a hasty treat. So it's not going to be entirely comprehensive, but it's going to be a lot of fun. So I'm really excited to talk about a lot of the things that we love in VS code right now. My name is Scott Tolinksi. And with me, as always, is Wes Bos.
+
+10
+00:01:03,930 --> 00:01:29,130
+Wes Bos: How's everybody doing? Well, I've just had my baby boy. stoked to get back to recording as funny of it took, I took a couple days off, and now I'm starting my like paternity leave, which is, I don't know, gonna be like, a couple hours a day of working in a couple hours with the kids. So I'm really curious to see how that works. Yeah, yeah,
+
+11
+00:01:29,130 --> 00:03:28,590
+Scott Tolinski: it's been interesting for us as well, because we're, what, three weeks in the future, have you so to say because our baby was born in May. And so, yeah, things have been interesting, although you now have three, so it's not going to be your exact future here. But let's get into it. Let's actually first we wanted to quick touch on our sponsor today, which is going to be net LIFFE, I now for those of you who have been listening to syntax for a little while, you know how much we love Netlify. And those of you who are new to the show, are about to find out just how much I love Netlify. And just how much I know Wes loves Netlify as well, if I'm picking a service to host anything with at this point in my life, it's going to be Netlify. And let me tell you why. Because Netlify makes everything so incredibly easy. We're used to having to deal with servers and build processes, and continuous integration and setting all these things up can take up your entire week, let alone just make you want to pull your hair out sometimes Netlify does all of those things. So so well. Netlify makes it incredibly easy to get up and running with any Git repository and have it built and up in a free web host essentially, in absolutely no time at all. So give it a try netlify.com forward slash syntax, take advantage of everything they have to offer from a global CDN, continuous deployment set up for free one, click HTTPS which you need in 2019 in some seriously awesome other things. And if you need the power of server side functionality, Netlify has that for you too, in various features, as well as serverless functions. Cool. So let's get into our favorite VS code stuff. Do you want to kick it off with what theme you're using? I actually actually might be able to answer this for you. Because I'm going to be able to take a guess here. You're using your own cobalt theme still right?
+
+12
+00:03:28,980 --> 00:03:34,980
+Wes Bos: cobalt two. Yeah, cobalt is the was the original one that I forked probably like 11 years ago now.
+
+13
+00:03:35,010 --> 00:03:40,770
+Scott Tolinski: So the two, the two is like stamped on there. You can't just say cobalt. Yeah, you guys say cobalt. You
+
+14
+00:03:40,770 --> 00:04:06,030
+Wes Bos: know, if you say cobalt, then again all the time people email me like, I'm using your cobalt theme or like, no, it's not built. It's not the one that comes with VS code. It's you have to install it yourself. So it's, it's, it's quite a bit different from that now. And yeah, it's been my favorite people ask me like, Don't you ever get sick of it? And I think No, I've been I've been tweaking and working on this thing for for years and years and years and years now and absolutely love it.
+
+15
+00:04:06,210 --> 00:04:57,770
+Scott Tolinski: I actually have a hard time getting away from my own level of touch themes that I've been using. I have two themes. I have a dark one and a lighter one. And I love my level up themes. They're the best things in the entire world. But you know what, man, I am just way too, you know, I got I gotta change it up, and I gotta change it up sometimes. So I'm not currently using my level up themes, although I still love them very much and I missed them every time I open VS code. I'm currently using this theme that kind of got a lot a little bit of boost on the Twitter land when it came out, which was synthwave 84. And this theme, it actually looks enough like my level of themes. There's lots of purple in here and a lot of color contrast the things that I love in a good theme. So this one wasn't too crazy for me to go to from another purple theme to another purple theme. So I'm using synth wave 84 and I really like it and I missed my themes, but I really like it.
+
+16
+00:04:58,070 --> 00:05:00,890
+Wes Bos: Awesome. What about a font Using these days
+
+17
+00:05:00,930 --> 00:05:35,460
+Scott Tolinski: fonts, I'm using a dank mano, which is a paid font. Before then I was using fear code but dank moto. You know what it came out and it has a little bit of niceties that Fira didn't have I used the ligatures within, dank moto And trust me, I love ligatures. I don't know if I could live without them at this point, you know, I could live without them. And that's hyperbolic. But like I love my ligatures and I know some people hate them. But I'm a huge, huge fan. So I use danke mano happy to support that font with ligatures. I'm a big fan, it looks great.
+
+18
+00:05:35,669 --> 00:06:54,750
+Wes Bos: I use operator mono have for many years. And it's it was pretty expensive. I think it was like 200 bucks when I first bought it, which is nuts. But my answer to that is it's literally my job, you staring at it, but I'm coding so I can spend a little bit of money on that kind of thing. I actually don't like ligatures. I prefer to see the actual characters myself. And I always thought that there would be an issue with people taking my courses being like, that's just like a that's a very wide equal sign. I know it's three equals and something like that. But I know you've never had that issue before. So it no completely warranted. Yeah, yeah, you know it, I should try it. At some point. You also have to like patch operator Moto, if you want ligatures, and it's not something that I've been been interested in getting into. So I absolutely love it. It's It's such a, like your coding font and your coding theme is such a hotly contested thing. And people either love it or absolutely hate it. And they think like, it's it's funny, I used to get asked every single day like how do you look at that it's awful. And like the the mental overhead, that's the what people always use as an excuse for anything that they don't like, they think like the mental overhead is unbelievable. For something like that is like no, it's fine. I know what h looks like, and I absolutely love it.
+
+19
+00:06:55,260 --> 00:07:09,930
+Scott Tolinski: Yeah, right. Yeah, it is. It's one of those things. I mean, it's, it's a kind of an extension of you, right, you spend so much time in this environment, it's like your room or something, it's just another part of your your life that you spend a lot of time in. So got to make it yours.
+
+20
+00:07:09,930 --> 00:08:14,730
+Wes Bos: So now we're gonna get into each we each have five extensions, or just things we love about VS code, maybe it's a feature that has been released the last little bit, maybe it's a package and extension that we have. So we'll sort of just go back and forth each and hopefully you find a few things that you can add to your own workflow. So my first one here is bracket pair colorizer. It's pretty, pretty nifty little thing where if you have lots of nested blocks, maybe you have a function inside of that you have object with nested method. And inside of that you have another object, seeing what the associated brackets are curly brackets, parentheses, things like that, obviously, you can just click them and they'll they'll highlight each other. But another little extension that I run is the bracket pair colorizer. And it will just every time you have a nested block or nested parentheses will choose a new color for those brackets. And then you can you can quickly look at it and say like, oh, purple opens here, purple closes here, yellow opens here, yellow opens or closes there. Yeah,
+
+21
+00:08:15,000 --> 00:09:29,010
+Scott Tolinski: I love black, black and bracket colorizer. I use this one all the time. People always ask me about this. This is one where they see screenshots and they're like, how did you get those colored brackets? Where'd you get those colored brackets? No, I absolutely love this one too. I use this non stop. Yeah, so my my extension actually kind of goes along with this in a way that has to deal with colors in a way that in your code that's just helps you find things. And this is better comments from Aaron bond, that our comments has nearly a million downloads. And I use this all the time because what it does is it colors, your comments to be different colors based on a sort of indicator character. So for instance, if I have a comment, and then I put an eye started with an exclamation point, it colors the entire comment red, I use the app or anytime that it's like emergency stuff or something you need to be aware of. Then there's the to do one which I like to use to do some comments. I used them you know so much frequently and this color's your to do's makes them stand out make some orange, there's a question mark turns blue and asterisks which turns a green and a puram. One for parameter based comments. Love, love, love this extension, better comments, one of my favorites.
+
+22
+00:09:29,220 --> 00:10:39,000
+Wes Bos: Yeah, I've been using that one for a while now as well. And what I like about it is that it's not like a it's not like a specialized thing. Because if somebody is not using VS code, those comments don't look weird. They're just they just have the word to do or an exclamation mark in front of them. They're still comments at the end of the day. They're just highlighted a little bit differently in when you have the sync turned on big fan. Next one I have here is to extensions actually permute lines and unique lines. So in Sublime Text days, we had the ability To permute, which is flip line. So if you've got, sometimes I'll just copy paste data and paste it into VS code. And I want to flip all of the lines, top to bottom, bottom to top and permute lines will do that as well as unique lines will not take all of the lines and just give you remove the the unique ones. And I often have that where if I'm like making an object or something like that, and then pasting in data from a few sources. Like one example is one of my demos I'm working on right now is I took like a list of different colors from three or four places. And then I selected them all. And it just ran unique on them. And if I had like gray in there twice, it would just remove it for me.
+
+23
+00:10:39,120 --> 00:11:34,320
+Scott Tolinski: Well, I don't have unique or permute line style, but I just clicked install on both of those. Especially the unique lines with like you mentioned working on an object or something, I'm definitely going to be using that one. Absolutely. Cool. Next up I have is one that is very popular, a lot of people know this extension, and this is import cost. Now I less import cost because it's really easy to just install a bunch of stuff and not think about it. But when you have import cost installed, whenever you import anything in your application, it's going to tell you the bundle size as well as the jesup minified bundle size. So you don't really have a whole lot of excuses about not knowing what's in your project if it's staring you in your face, okay, by importing this, I'm now bringing in this amount of kilobytes into our project. This one was made by Wix, it has nearly a million downloads. So it's very popular, but I love import cost.
+
+24
+00:11:34,740 --> 00:12:45,150
+Wes Bos: Next one I have here is just a new feature to VS code, it just popped up last week in my VS code, and it's breadcrumbs. And I specifically love this for for my tutorials, because what will happen is if you're in a folder, three levels deep, and then you're inside of a file, and then you're inside of a function, and then you are defining a variable, what it will do is it will show you breadcrumbs, the all of the folders, the actual file you're in, and then it will go down to the nitty gritty of which function and which variable Are you currently in. And I love that just for my own sanity, because I can click on a folder, I can see a list of all of the other files and allow me to quickly jump into those sibling files, as well as for people who are taking my courses, they can quickly see what file am I actually in currently, because that's a huge problem I find in not just my own courses, but even when I'm doing a workshop is people create folders, they create files in the wrong folder, because of how small the VS code sidebar is. And maybe the indentation isn't as great, but sometimes easy to accidentally create a file in the wrong folder. And that there goes your your Friday night or whatever it is that you're doing. It's a bit of a bummer.
+
+25
+00:12:45,210 --> 00:12:46,950
+Scott Tolinski: There goes your Friday night.
+
+26
+00:12:49,290 --> 00:12:51,930
+Wes Bos: Obviously we do fun things if that's what our Friday night is.
+
+27
+00:12:51,959 --> 00:13:52,560
+Scott Tolinski: Yeah, yeah, definitely. Absolutely. Now I'm going to go with another piece of functionality just like you do this, wouldn't it although has been in VS code for a long time. And this is the go to definition by holding the Command or Control key, I believe it's Ctrl. On Windows on Mac, it's the Command key. If you are using react or view or any of these systems, this thing kicks so much. But let's say I have a component here, the component name is series. I've imported it from the series file. But you know what, I just want to jump to the definition where that thing was defined, I can hold the Command key, and then you your component, or your function or whatever now becomes a link, you can click it, and it takes you into the file. If it's in another file, it takes you to the line. If it's on another line, it basically it goes to the definition. So you never have to guess or try to find where things are specifically defined here. And this thing works. so darn awesomely, I love it, I used it non stop, big, big fan of go to definition by control or command control, click.
+
+28
+00:13:52,829 --> 00:14:21,930
+Wes Bos: Next one I have here is the toggle quotes extension is very simple. If you create a string with single or double quotes, ideally, your prettier will fix it for you. So I find myself using this lesson last, but I always create strings with single single quotes. And then I go shoot, should you use Tableau or you should use backticks. So what this will allow you to do is toggle between single, double and backticks. In JavaScript specifically, and works in all languages, it will toggle between all the different different kinds that you have there.
+
+29
+00:14:22,050 --> 00:14:30,480
+Scott Tolinski: It looks like it's a pretty easy, like command to it. It's just command and then the tilde de is that what is known as outlanded single quote,
+
+30
+00:14:30,600 --> 00:14:49,550
+Wes Bos: when I first installed it, there was no there. It wasn't hooked up to anything, which I thought was silly because people are like, Oh, it doesn't work very well. Because in Sublime Text, I had a similar one that would allow me to command till the end toggle between it and looks. I wired it up to do that and it looks like they have made that default. Now
+
+31
+00:14:49,620 --> 00:16:41,040
+Scott Tolinski: I just installed this and I just did a command it's command single quote actually. So the default one Okay, so I just wired it up to commit or I just installed it. I went to a string I did command single quote, and it's gone between my Wow, this great, I'm gonna use this all the time, especially for turning quotes into backticks. I'm gonna love that. So, next one I have here is one that people ask me about all the time, because I use this non stop this thing is called a rap council log. Now wrap console log is a really neat extension that basically allows you to run a single, you know, command and have it output a console log on the very next line of whatever your cursor was on. And it can be really interesting because it can also prepend it with a string of the with the variable is there you're logging, or if you have multiple ones selected, it can do multiples. This thing is just so incredibly easy. And what I like to do personally, is rig it up so that I can just do command l to do the one word outputs with the string. And it has been actually Whoa, hey, get this. So I talked about this. I'm wondering if this person heard me talk about this on an episode of syntax before or the level of tutorials because somebody has gone ahead and created a package that I'm now seeing called rap Council. Log simple, which has my command l a shortcut that I talked about before doing the exact same thing that I talked about where it does the variable string with the variable, so maybe just install wrap console log simple, then you don't have to modify the other one. And it's just going to do this stuff that I'm talking about here. Yeah, that's my advice, rap console. log simple. This one's really cool. So I'm going to uninstall rap council log, and change it to rap console log simple. Right now. Last one I
+
+32
+00:16:41,040 --> 00:17:07,770
+Wes Bos: have here is called snapshot tools for VS code. And what it will do is if you use jest, snapshots, it will, it will show you the, if you highlight over the snapshot, it will show you what the snapshot looks like overtop of it. And it will show you if there is an error in your snapshot compared to what it had last time. And it's kind of cool, because you don't have to go to the terminal. To see this, you can just hover over top of it. And it will show you if it's broken or not.
+
+33
+00:17:07,770 --> 00:18:23,010
+Scott Tolinski: Super cool. Yes, my last one is also a very popular one called a good history, you can be on any single file at all, you can open up your command prompt, and you can type get file view or view File History. And it shows you a history of that particular file. And when it's been changed what branch you're on, you can choose your branches, you can choose all your commits, you can copy the commit name directly, or you can click on the commit itself and compare the version of the file to the current file that you have open. I use this all the time, because I'm not a huge fan of commenting code out, I like to just get rid of it if I'm getting rid of it. And then if I ever needed anything from it, what I can do is just check the history of the file really insanely quickly check the history of the file, compare it against what I'm doing, maybe copy and paste or if something broke, I can compare it to the previous commit those kind of things. I absolutely love Git history, it gives you a really nice visual of all of your commits and branches as well. When you just generally click the Git history link that it puts in your your top menu bar gives you one of those like subway maps of all all your commits, and branches and all that stuff. So good history is one of my absolute favorites. I use it daily, big, big fan here.
+
+34
+00:18:23,090 --> 00:18:29,280
+Wes Bos: Yeah, I use that one quite a bit as well. The UI for it is is great. Like you said, beautiful, beautiful.
+
+35
+00:18:29,570 --> 00:18:52,920
+Scott Tolinski: But yeah, that's it this these are just some quick, tasty but hasty VS code tips that we absolutely love. So if you want to hear another one of these other events, I'm sure I could come up with 5678 more VS code extensions or features that I absolutely love. Maybe we can make it a little bit of a running thing if you're into it. So thank you so much for checking out this Monday history tree. Do you have anything else to add? Wes,
+
+36
+00:18:52,980 --> 00:19:08,810
+Wes Bos: I think if you have something you'd like us to try out VS code extension, tweet us at syntax FM at Wes Bos and Scott is at stilinski. And that's it for today. Thanks for tuning in. We'll catch you on Wednesday news, please
+
+37
+00:19:10,610 --> 00:19:20,400
+Scott Tolinski: head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
