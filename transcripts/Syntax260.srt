@@ -1,0 +1,392 @@
+1
+00:00:01,319 --> 00:00:04,590
+Unknown: You're listening to syntax the podcast with the tastiest web
+
+2
+00:00:04,590 --> 00:00:06,480
+development treats out there. strap yourself
+
+3
+00:00:06,480 --> 00:00:09,000
+in and get ready to live ski
+
+4
+00:00:09,000 --> 00:00:10,530
+and West boss.
+
+5
+00:00:10,530 --> 00:00:47,189
+Wes Bos: Welcome to syntax today we've got a potluck for you talking about libraries vs. frameworks, are we still using Firefox? Who would win in a thumb war show? use jQuery or react isn't worth time learning design patterns, all kinds of really good questions. We are going to answer them for you today. If you have any of your own potluck questions, go to syntax.fm. And there's a button in the top right hand corner that allows you to submit it, keep sending them we love doing them. You love listen to them. Today, we are sponsored by two awesome companies Prismic, which is a headless CMS, and Freshbooks which is cloud accounting. How you doing today, Scott?
+
+6
+00:00:47,789 --> 00:01:03,119
+Scott Tolinski: I'm doing good. doing real good. I'm working on some fun stuff with video. I'm working on some new course stuff. I'm just feeling good about my coding, getting a little bit more sleep now. So I'm just I feel like a better headspace overall, I think how about you?
+
+7
+00:01:03,569 --> 00:01:22,380
+Wes Bos: Yeah, yeah, I'm doing really good. I've been I'm building a Gatsby course. And I'm just flying right along it. It really enjoying it. And we're up here still at my cottage, and everything is blooming. We're seeing all kinds of animals. There's a crow that has a blue jay as a buddy and they hang out together all day. It's really awesome. That's cool.
+
+8
+00:01:22,529 --> 00:01:23,910
+Scott Tolinski: Yeah, very cool.
+
+9
+00:01:24,119 --> 00:01:30,750
+Wes Bos: It's funny how like everybody over 30 turned into bird people. During the Coronavirus. Yeah, it
+
+10
+00:01:30,750 --> 00:02:40,440
+Scott Tolinski: turned into like a lawn. I mean, I've always kind of been a lawn person, but I'm definitely like spending a lot of time in my yard. Alright, first question from code finity. Why does react bill itself as a library instead of a framework? So the real answer here is the fact that if you've used other frameworks, especially things like Angular, or that would go as far as view definitely spelt, because spelt does a lot of this stuff for you. It really depends on how much the thing does for you, right? And react doesn't do a fair amount of things. And it wants you to have the community step in and provide it. So really, the main reason is that react, likes to think of itself as this this view layer for your application. It's the view layer, but it's not necessarily, at least currently, it's not the data layer. It's not necessarily providing a whole lot of things like routing and animations and image support. And yeah, like I mentioned, loading of data is a big one. I mean, think about a lot of frameworks provide a specific way to load data into them. And react doesn't do that. So it likes to think of itself as a view layer library that provides sort of the base level for things to be built on.
+
+11
+00:02:41,030 --> 00:02:44,130
+Wes Bos: Yeah, it doesn't even do templating. Like that's JSX which,
+
+12
+00:02:44,130 --> 00:02:44,789
+Unknown: right,
+
+13
+00:02:44,789 --> 00:02:56,789
+Wes Bos: it kind of is react, I would say, I don't think most anybody actually uses people do react without any sort of JSX. Or like, there's other libraries, but two people just use it straight up like react create element.
+
+14
+00:02:57,419 --> 00:03:10,770
+Scott Tolinski: Yeah, yeah. It's funny, because there's always like somebody on like Hacker News being like, I don't know why you would even use JSX. You just use the functions. It's like, come on that Yeah. Look less like fairly great looking experience.
+
+15
+00:03:10,829 --> 00:04:04,590
+Wes Bos: No, that would be tough. People do it. Next question we have here is from Amnon, are you all still using Firefox now that it has been six months, I can believe that it was actually six months. I still am using Firefox. I absolutely love it. The dev tools have been fantastic. To me. There's a couple little annoyances I have. But I've logged those all as issues and they are getting fixed. And there's other things like that breaking off a tab in Firefox is a little bit weird. Like it's so nice to smooth in Chrome. And the same thing with the Firefox iPhone app is not as good and it's annoying that it's the Chrome is way better on iOS. And it's annoying that your history doesn't sync between Chrome and Firefox. So that would be kind of cool. Maybe once or twice a week the Firefox iPhone app. I've just like forced quit it because it will stop rendering out websites. Those
+
+16
+00:04:04,590 --> 00:04:27,450
+Scott Tolinski: are some things that Apple makes intentionally difficult for developers like browsers. Yeah, keyboards? Oh, yeah. Firefox on Android in my experience was very good. I have not used Firefox very much on my iPhone, but I have installed and for the most part, it functions fine. But I definitely think that it's more likely a case of like Apple goofing it up or anything else. Right.
+
+17
+00:04:27,630 --> 00:04:47,550
+Wes Bos: Oh, yeah. I bet like a lot of the chrome iOS app is them just working around little bugs that Apple intentionally loads in so yeah, but desktop. I love it. I've been super happy with it. And they we also just got Apollo Dev Tools back after like two years. So now that's even one nicer thing for me. What about you, Scott? Are you still on? Are you trying other things?
+
+18
+00:04:47,850 --> 00:04:50,510
+Scott Tolinski: I've been on brave for a while now is
+
+19
+00:04:51,120 --> 00:04:52,050
+Wes Bos: three months I bet
+
+20
+00:04:52,070 --> 00:05:28,860
+Scott Tolinski: Yeah, probably at least. And I really like brave. There are some situations, which leads us let's say I'm not using Firefox anymore. But Only because I was seeing some monster monster CPU usage with it. And now I have no idea. If that's probably because I had 10,000 tabs open, it's most likely my fault. But I had I was seeing monster CPU usage. And so I wanted to try out another one specifically try out brave because I was missing some things in Chrome. And by things I just think I just mean, the general like, where things are even not used is mostly the same. I think I was missing like some of my extensions that I had come to rely on, used over over time. But
+
+21
+00:05:29,070 --> 00:05:48,930
+Wes Bos: let me say something every Chrome extension will work on Firefox, the whole that's what most extensions, I really like the Apollo dev tools. It's just a Chrome extension. And it just works on Firefox. The only reason it was gone was because of the head use Val and in Firefox pulled it out because of possible security issue. Yeah, back in there. No, I
+
+22
+00:05:48,930 --> 00:06:17,820
+Scott Tolinski: think about it, the more I'm trying to think of the reasons why went back I think I'm not quite sure why went back. I think it was mostly just the CPU and little things here and there like little annoyances here and there. Yeah, but it's mostly just the CPU and little annoyances. So I went back to brave, I wish I would have like, overtime, kept a diary of what I thought about this, because I don't remember over the course of time, what why I went back, but I remember it being not entirely grounded on, you know, facts in logic alone, you know what I'm saying?
+
+23
+00:06:18,270 --> 00:06:27,180
+Wes Bos: Yeah, sometimes it's just like, I don't know why it just feels different, or I just wanted it and I just like it, I can't put my finger on it. But something about it is enjoyable.
+
+24
+00:06:27,390 --> 00:08:23,910
+Scott Tolinski: So that ties in really well to the next question, which is also from an anonymous person, I doubt These are from the same person, they could be says, Hey, guys, is it possible to do a hasty treat regarding the brave browser, I would love to hear your opinions on the tech views approach, why we need another browser in 2020, I use brave exclusively because by default, they block all cross site trackers. And they do all connections are possible through HTTPS blocks, scripts, IP blocks, fingerprinting stuff, and one of the things I love about it is this little like line in the in the URL bar, that is their logo that tells you how many items are on a particular page in what they are and why they blocked them. So it like does a good job of being transparent in terms of like, Alright, this site, we blocked these many things because of this. Now there are some I found brave to be a little less fluid of inexperienced in some other browsers, even though it is basically chrome with more privacy protections, specifically, because those privacy protections, I couldn't even create an Azure account on brave like, even with all the shields turned off, turn the shields off. Look, try to create an Azure account every single time it gave me a fail. I opened up Chrome, same version, Chrome, whatever chromium, I open up chrome worked first time. Now, that probably says more about Azure than it does about brave. But to say that every single website is going to be a fluid, seamless, perfect experience on brave is definitely not the case. I don't know if I would tell everybody to use brave because you will hit situations like that. And some people just might not know how to get past that. Right? Like, oh, this site isn't working, the site must be broken. Well, I had to use a different browser. And no matter what I did in brave, it didn't work. So there are going to be situations like that brave people have, in my experience, no offense been a little sufferable.
+
+25
+00:08:23,910 --> 00:08:24,600
+Wes Bos: Yeah.
+
+26
+00:08:24,600 --> 00:08:38,899
+Scott Tolinski: With some of their suggesting of brave, so to say, we're really brave, like, Okay, I get it. It's good. I use it. But like, it is not a perfect experience on every single website out there. Regardless of what people try to make you think
+
+27
+00:08:38,999 --> 00:09:26,940
+Wes Bos: One really cool thing about Braves that I like is that they're trying to figure out like, what's the replacement for ads? Because obviously, they're blocking ads. And like, what are content creators going to do if you don't have ads on your, your blog or your video or something like that. So what they're doing is they're turning out the single bat basic attention token. And depending on who watches your video, or reads your blog, or something like that. Brave has a bunch of money that they'll then pay out like it basically is trying to figure out like, what are people actually enjoying the content and then from that content, they then pay out. I know, people that have brave, they put like 10 bucks into it a month or something like that. So it's kind of cool to see that they're trying to not also just block ads, but trying to fix How do you get creators, right?
+
+28
+00:09:26,940 --> 00:09:33,149
+Scott Tolinski: And there's this neat little like, send a tip directly built into where you can send a tip. I haven't used any of that stuff, though.
+
+29
+00:09:33,630 --> 00:09:41,070
+Wes Bos: Next question from not sure who would win in a thumb war. Wes or Scott for sure. Scott. I feel like Scott has some hand strength.
+
+30
+00:09:41,220 --> 00:09:59,760
+Scott Tolinski: Like I feel like you'd probably give a mean handshake I do give me that is for sure. Because my grandpa, you know and classic Polish Grandpa, even when we were like very little, like when he gave us a handshake. He would do knuckle roll where he would grab and roll your knuckles. Oh yeah. And the whole thing was like
+
+31
+00:09:59,779 --> 00:10:02,490
+Wes Bos: great But did that Oh, it hurts just thinking of it.
+
+32
+00:10:02,610 --> 00:10:29,070
+Scott Tolinski: You had to roll his knuckles before he did it to you before he'd be like, oh, okay, so like as like a trial that was always a shortcut there. So I definitely did handshake. Yeah, that's on point. And I do a lot of grip strength stuff. I do a lot of hanging from stuff that said, I have these little stubby thumbs, no calls my thumbs toes because they look like they're just short, little thumbs. I don't know if I have to do it. Like, if we're talking like,
+
+33
+00:10:29,100 --> 00:10:30,840
+Unknown: Oh, you don't get the tail of the tape here.
+
+34
+00:10:30,870 --> 00:10:48,450
+Scott Tolinski: Yeah, you've got the reach advantage. Most likely, yeah, maybe you have a power advantage. But you definitely have a reach advantage which can come in handy. I've never been particularly good at the Moore's I was going to say you specifically is my stubby little though. Maybe I can get a little data. Like if I get you. I'm not letting you go. But I don't know if I can get you.
+
+35
+00:10:48,480 --> 00:10:54,120
+Wes Bos: You're like a crocodile? Yes. Yes, exactly. All right. Well, next time we meet up in person, we'll have to
+
+36
+00:10:54,149 --> 00:14:04,559
+Scott Tolinski: we'll do a thumbs up for surely fun. Next question is from Andrew Peterson. What are your thoughts on exit state and state machines for managing state and applications? I've been super interested to try it. I'm interested to hear what you both think. also wondering if any recommendations on how to use it with Apollo, whether to use x dates internal context to Store app state, or use the Apollo cache, I have the same questions because you don't the one thing that's missing for me in x state is more examples of real world use cases because I can I can see a stoplight example, in state 1000 times, but I'm never building a stoplight in the web. So what I would love to see an x date if those of you who are using x date or state machines in general, a little bit more real world examples with like actual data coming in. And specifically even with Apollo or working with API's, because right now a lot of the stuff is very, like machine based, this is on this is off, this is waiting, whatever. And for those of you who don't know, the idea behind x state and state machines is basically that you have these different states that your application can be in. And the state is more than just like the actual state of this thing, the state determines where can go next, ie, if a state has to like a light switch, it has on off right, an on switch can only ever be coming off, and then off can only ever be coming on. And just like that the example that people use is the stoplight, right? a stoplight can go from green to yellow, but it can't go from green to red. And so the state says more about the intention of where it can go than just like the actual data itself. So I looked quite a bit at x state recently, because I'm building this new video upload system, which believe it or not, has quite a bit of state involved in building a video upload system. And so I looked at x data next state react considerably. And I thought, you know what, there's already enough complex things going on here that I don't want to learn a new state way of doing my state just to do this. But that's the only reason I didn't pick x state was because I didn't want to have to learn x state. In addition to all of the other new things I was doing, I ended up just doing like a react context in use reducer business. So I don't use state machines, but I've been very interested in them. And I've been watching a lot of YouTube around it both X state and state machines, as well as how the syntax can look within react and these neat little graph tools that they give you within x state, there's a lot of really cool things about x state. That said, I'm not using it currently. That doesn't mean I wouldn't use it, I find the idea of state machines to be both fascinating and a nice little computer science topic. It's used in video game development, it's used in in application development and all over the world. And understanding state machines is not a skill that is going to be specific to web dev. So for me, I find it to be a very useful skill to learn for overall computer programming stuff. I have not really taken the time I need to I would love to see an example repo of somebody using x date with Apollo in a real world situation and how that all works myself. If you have that. Go ahead and tweet us out about that.
+
+37
+00:14:04,980 --> 00:14:23,429
+Wes Bos: Ever since we had david on episode 206. Talk about state machines. I've been hoping for a little example a project that I could do it, but I haven't done it myself the question about Should I store my local state in Apollo or x state? I definitely wouldn't put it in Apollo. It's just too hard. either put it in context or something else don't
+
+38
+00:14:23,429 --> 00:14:36,960
+Scott Tolinski: i don't think that putting your local state in the Apollo cache as well as is probably the best bet. I think Apollo local state was a cool idea. And in practice, it always ended up being more work than I was hoping. Yeah,
+
+39
+00:14:37,110 --> 00:15:42,270
+Wes Bos: I think it might be changing a little bit for Apollo three coming out. But I remember reviewing it like three or four months ago and been like, still not as good as just using context plus, in terms of my course people just want to see context. Is this a popular thing don't want to learn. Next question we have here from Richard benign. Yeah, should I start a new project with jQuery or react? Baseball emoji? That's a great question. I probably would say this question should be more should I use vanilla or jQuery versus react? Because like, if you're gonna go ahead and build an app with a whole bunch of stuff in it, then then yeah, React is probably a good use case for that. But if you just need a couple lines here or there, you don't need to do the entire app and react. He just want to add some functionality. That's where you should probably reach for more of a DOM based library like vanilla or jQuery, I probably would just say, just go use vanilla. We're at a point now we have been for a few years where there's no benefit that I see in using jQuery over vanilla JavaScript,
+
+40
+00:15:42,330 --> 00:15:44,940
+Scott Tolinski: there's one benefit animating height auto.
+
+41
+00:15:45,929 --> 00:15:47,700
+Wes Bos: There you go. query. Still, I
+
+42
+00:15:47,700 --> 00:16:16,470
+Scott Tolinski: mean, okay, so let me let me preface this by saying both svelte and framer motion in react have the modern, beautiful version of animating height auto. But in vanilla j. s, I can't imagine that's any fun to do. Because you're gonna have to measure the thing, you're gonna have to turn on and off overflow hidden. I mean, there's a lot of stuff that I don't want to do that it's going to do for you. But still one of the things I was like jQuery, why can't anything else do this to the degree that jQuery cut? And now I can't I basically, but yeah, so good.
+
+43
+00:16:16,500 --> 00:16:31,230
+Wes Bos: There was so good slide toggle, and everything was so slide toggle. We don't need a lot of those UI things now that they're all in CSS, but CSS will never be able to animate Hayato. I don't think I know, it's unfortunate. You know, it's fortunate,
+
+44
+00:16:31,289 --> 00:16:33,029
+Unknown: what is that? Oh, look at you.
+
+45
+00:16:33,270 --> 00:17:20,160
+Wes Bos: So you want to check out Prismic Prismic is a headless graph qL CMS or REST API CMS, it's really cool. Because you sign up, you get in, make your data types, you make repeater fields, you can relate them to each other in great tags and tag them, the entire UI is done without writing any code. So if you want to be able to set up a back end, for a project that you're working on, and click it all together, you can do that probably I bet within 12 and a half minutes, you could have a couple data types up and running. And that's pretty nifty. It's called Prismic. It's at prismic.io. four slash syntax, you want to check out this website as well, because they've got a really cool Scott Vs. West, they've got a bunch of examples with view and react. Check it out for your next project. prismic.io for such syntax,
+
+46
+00:17:20,300 --> 00:20:03,690
+Scott Tolinski: cool, cool. Cool. All right. Next question. This is from var levy. Hey, guys. So a somewhat different question today. Oh, I'm basically a young teen, so less than 16 year old, with a passion for all things web development, awesome. However, without being able to legally have a job, I'm unable to make money and therefore running on a $50 Raspberry Pi and a 10 plus year old monitor. As much as I love my PI, just running npm install can make can be agonizing, I can only imagine. That seems like it's no fun. Not to mention the amount of space in node modules takes up on the device with 16 gigs of storage. So basically, any pointers on getting income and practice in the web development field when you are under 16. And just in general, what advice do I have to be a young team learning code? Yes, you know, you've got something going when a teenage boy would rather listen to your podcast, and watch Star Wars or Marvel this friend. So thank you so much, Bartleby. That is awesome. I wish I was listening to web dev podcasts, I wish podcasts existed when I was 16, or less than 16. That would have been pretty sweet. So let me give you a little tip here. If you don't want to install things locally, with your Raspberry Pi, hop on something like code sandbox, then you're not going to be taken up your own storage, you can build full applications on code sandbox. Granted, it's not the same as having your own personal environment. But there's there's options out there for cloud providers in terms of hosting your entire plot projects on the cloud without having to even have them grace your local machine, which would make things like installing node modules a ton faster, and not have to worry about storage or anything. So I would look into that. And a lot of these services like code sandbox, they can be free, so don't worry about the cost that it takes there. So that's one quick tip. Another tip and how to make money. I mean, man, when I was your age, I was like mowing lawns for for cash. Yeah, you can quote unquote, mow lawns, for cash with web dev projects. If you can get people who are willing to pay you to do them. That's going to be the hard part. Especially when you are your age, getting people to trust you to do stuff like that might be the time to reach out to your family and friends network to see if anybody needs anything like Oh, hey, I'll bill to this quick thing for this kind of money on and collect some cash. There are other options, but a lot of them would involve fudging some terms of service like getting your mom to accept the you know, Terms of Service on an advertiser or something and connect their bank account to it so you could maybe create something with ads on it to bring income in. Do you have any ideas here? Wes, this is a really fascinating to me because I had a job since I was 13 But it was a job job. It wasn't like a freelance job. And
+
+47
+00:20:03,690 --> 00:20:09,900
+Wes Bos: I was a just a hustler when I was a kid. And I just like read this question. I thought like, oh, man, this, this was me,
+
+48
+00:20:10,070 --> 00:20:10,820
+Scott Tolinski: I could imagine that
+
+49
+00:20:10,820 --> 00:22:07,230
+Wes Bos: when I was a kid, I was always just like, standing on the side of the road selling pairs. That's the paper route. And I had my own lawn mowing business. And like the fact that you're, you're under 16. Like, if you're over, like 10 years old, I bet there's something you can do. And this doesn't even have to be go and build a website for a local company, that'd be amazing. But like, maybe you just need to go, mow couple lawns, shovel a few driveways and save up a couple hundred bucks in order to buy your first laptop, there's a lot to say in terms of what I call like, paperclip mentality where I don't know, try, go mow a few lawns, buy a cheap laptop, and then use that cheap laptop to start getting really good at web development, then maybe build a few websites and buy a mark spensive laptop and you sort of just trade up and trade up, there was a guy in Canada that traded a paperclip up and up to a house just by doing a trade by trade. And I think that's kind of one of the really exciting things about becoming a kid is learning how to make money and learning how to trade up and I don't think you need that much money in order to go buy like a Chromebook or something like that. And then like Scott said, like run the stuff in the cloud. This is especially true if you have slow internet NPM installs can take forever. But if you're running that in the cloud, you're using, we talked about a couple episodes ago, it was like VS code, like hosted, what was that called? code server. So you can like run VS code in the cloud and access it via a browser. Yeah. So you can have your files as well as your editor right in the browser. And then you can just go get like a Chromebook or something like that, or code sandbox does all of the stuff. Code pen. What's the other one glitch does all the server side stuff if you'd like to, and there's huge free tears on a lot of these serverless ones? So I think if you were to just go and do something, try find a way to make three 400 bucks, you can buy a Linux Chromebook, maybe a cheap Windows computer if you want.
+
+50
+00:22:07,290 --> 00:22:11,220
+Scott Tolinski: Yeah, right. Exactly. Yeah. Yeah, I think those are all good suggestions.
+
+51
+00:22:11,700 --> 00:23:19,830
+Wes Bos: The next question is from sore vermeiden. Is it worth my time to learn design patterns in JavaScript? That's a great question. So JavaScript has a lot of different design patterns. And what we mean by that is ways that you can structure your code or your functions or structure multiple modules. In order to make your application easy to reuse parts of your code. Those are design patterns. So is it worth learning them? I think so. But I did a lot of design patterns stuff before I really knew how to do a lot in JavaScript. And it went right over my head. And I don't think that I was helpful at all to spend time on that. I just started poking away and hacking things. And then you find yourself being like, weird, I'm copy pasting the same HTML, or the same JavaScript code from one function to another. And there's only these four bits that are different in each of the functions. And you go, Okay, that's probably what design patterns are. And then you start looking into them. You go, Oh, I kind of had that problem before. And that's how I could have solved it. So yes, learn them, but not the very first thing before you know what problems they solve.
+
+52
+00:23:19,860 --> 00:23:27,540
+Scott Tolinski: Yeah. What's a good example of a design pattern? Would that be state machine to state machines? The design pattern? There you go, Yeah,
+
+53
+00:23:27,540 --> 00:23:39,120
+Wes Bos: I would say don't go out and learn state machines. First thing, because you don't know what pain it's solving. Yeah. Our state machines design problem or design pattern? Oh, absolutely. Okay.
+
+54
+00:23:39,300 --> 00:24:09,750
+Scott Tolinski: I like know so little about design patterns that I don't know, even what constitutes a design pattern. You know, have you ever been to source making a.com they have a book called source, making calm design underscore patterns. And I've always really loved the look of this site and their work. So maybe I'll pick this up and read this through 406. Well, structured jargon free pages, that is my con 228. illustrations, understanding a dive into design patterns,
+
+55
+00:24:10,469 --> 00:24:14,670
+Wes Bos: examples in Java, c++, PHP, Python, and Delphi.
+
+56
+00:24:14,729 --> 00:24:23,730
+Scott Tolinski: It's not exactly a JavaScript book. That's it's explicitly not a JavaScript book. But a lot of this stuff is just straight up comp size stuff.
+
+57
+00:24:23,940 --> 00:24:27,870
+Wes Bos: Cool. Yeah, check this out source making calm. Cool.
+
+58
+00:24:27,900 --> 00:25:48,480
+Scott Tolinski: So next question is from Kartik says, I have a question regarding figma design to HTML conversion. For those of you who don't know figma has some interesting features, one of which is like a panel that just gives you the CSS of anything, you click on it. So you click on it gives you the CSS, or you can just do copy CSS directly from copy and paste really neat. I wanted to ask about the process. When transitioning from designing to code. Do you keep the font size padding height of images as same as defined in the design or do you take something different for let's Suppose the navbar is 115 pixels, I'm guessing the scenes tall? Do you make it the same as well or something else? Well, it really depends on your design. Because as we all know, designs are not exactly static, they can be fluid. So it really depends on the aspect of your design, there are some things I do take specifically from figma, I typically won't take width or height things unless they are like a max height or a max width, I guess maybe is a little bit different in terms of like a top bar, a top bar, I usually defined explicitly. I don't know us, but I usually define the top bar as being like two times the vertical rhythm height. So okay, let's break this down. Do you do know a whole lot about vertical rhythm? West? Yeah,
+
+59
+00:25:48,480 --> 00:25:48,990
+Unknown: yeah, we've
+
+60
+00:25:48,990 --> 00:25:50,790
+Wes Bos: talked about a few times on the episode.
+
+61
+00:25:50,850 --> 00:26:58,530
+Scott Tolinski: So vertical rhythm, for those of you who don't know, is basically like, when you have a line height of let's say, 1.5, and you have a body font size of 16 pixels, then you do 1.5 times 16, which I believe is 24, I could be wrong on that, then that would be the height of each individual line. So I would typically set my nav height to be like twice that 24 or 48. So then locate my top navbar is going to be 48 pixels tall. And I'll usually do that explicitly. And it's going to come from experience in terms of how much CSS practice you have. But you'll you'll get a feel for when things need to be explicit. And when things seem to be not. For the most part, what I would do if I were you would just be copied the st. css out of there. If you're copying the CSS at all, copy it straight out of there, and then just modify that remove things, tweak it whatever to be how you need it, because that data existed can save you some time writing that CSS. I personally just use the design guidelines as a guideline in hand code all the CSS myself, but the CSS exists there. And if you take that conversion, I would not keep things that explicit.
+
+62
+00:26:59,190 --> 00:27:12,630
+Wes Bos: I just look at it and eyeball it into place. Sometimes I'll do a little bit of measurements in terms of how things look, but pretty much just eyeball it, and then only use the copy CSS functionality for things like
+
+63
+00:27:12,660 --> 00:27:16,110
+Scott Tolinski: gradients, things that are annoying to type like box shadow, right? Yeah.
+
+64
+00:27:16,290 --> 00:27:40,920
+Wes Bos: Yeah. Yeah, absolutely. inbox shadows, very hard to eyeball as well. So if you've got it nailed in your design program, then you can just export that directly, which is pretty nifty. We need to do an entire show on figma, though, because I used it for my last project halfway. And I really, really liked it. I had some troubles with the internet, which is not figmas problem, really
+
+65
+00:27:41,040 --> 00:27:45,810
+Scott Tolinski: figma figma has some really cool stuff in it like the auto did you get into auto layout?
+
+66
+00:27:46,050 --> 00:28:12,300
+Wes Bos: No, no, I didn't get very far in but like I did the like whole, like layout my thing and I felt like comfortable in it. You know, you get into like a new editor for a video or something. And you're just like, oh, like how do i do the most basic stuff like this is frustrating. I felt very at home in in figma. So I think we should do a whole episode where I asked you questions about some of that more advanced stuff.
+
+67
+00:28:12,420 --> 00:28:22,110
+Scott Tolinski: I'll leave you with this tasty morsel an auto layout is basically a way to get a button that automatically resizes to the tech. Yes, that's in it. That's very nice. I mean, that's a basic use case for but yes,
+
+68
+00:28:22,110 --> 00:28:30,600
+Wes Bos: actually one question before I have no design programs allow me to do border top and border bottom. It's always got to be a complete square border.
+
+69
+00:28:30,750 --> 00:28:53,670
+Scott Tolinski: So framer web does that now. Only one I saw. It's funny. I saw Steve Stroger tweet about this thing. Oh, it's so cool. I wish Figment did this. And then the figma people were like, wait, what is this that's different, and then led to a big thing. So there is a lot of hope that it could come in figma at some point, because I think there was a lot of people saying I really want this do so
+
+70
+00:28:53,700 --> 00:29:00,810
+Wes Bos: it's like the only thing that we've had in CSS forever that has not made its way into a design program and not vice versa.
+
+71
+00:29:01,110 --> 00:29:03,000
+Scott Tolinski: Yeah, right. I know. I want it.
+
+72
+00:29:03,300 --> 00:29:12,720
+Wes Bos: Next question we have here is from Ahmed, you are both great at technical communication. How do we get better at technically me?
+
+73
+00:29:15,060 --> 00:29:21,480
+Scott Tolinski: Is that the most ironic love Yeah, that we've ever had here you flubbing the talking about being a an expert communicator expert
+
+74
+00:29:21,480 --> 00:30:30,060
+Wes Bos: technical communicator can't even read a sentence here how to get better at technical communication when self learning. Thank you. Yeah, I think this is something that Scott and I are both very good at is taking a technical concept and breaking it down so it is easy to understand or make sense or conveys all of the bits of the tackle. So what it does, how do you get good at that? I think there's there's two parts like one part is just getting comfortable talking and being able to get your thoughts out without being like, oh, oh, no, let me start again or no that was that was awful and I'm flustered and or being speaking in front of people or or creating something that you're going to put out on YouTube and being like, Oh, my voice sounds weird things like that. That's half of it, it's just being comfortable spewing words out. And then the other half is just thinking at it in terms of, like, I think this is just something I'm good is being able to, like, look at something, understand how it clicks in my head, and then spit that out into words. And hopefully, you find your subset of people that like the way that you explain things.
+
+75
+00:30:30,090 --> 00:34:08,820
+Scott Tolinski: Yeah, a key point to there is that like, different people are going to learn in different ways, and you're not going to be everybody's cup of tea. So don't like don't try to appeal to everybody with your explanations and really explain things the way that you know how to understand them. And think you'll find your your audience of people who understand things the same way you do. That said, there are some tools that I like to use specifically, these aren't things that I've created, like, intentionally, but like, I've noticed, one thing that we both do, is that we both use things like metaphor, or attaching to, like experience that a lot of people might have in their life to explain certain topics, or some people really lean on the jargon and technical depth of programming stuff. And some people Yes, we'll definitely understand and learn better through the technical jargon. There's just some people that are wired. But there's also a lot of people who are going to more quickly relate to a metaphor about mowing the lawn, or opening a package or something like usage of metaphor. And that way, that those kind of things are very crucial for people to understand, because that's how your brain works, right? You have these connections. And if you are able to say, Alright, these two connections exist like this. And now therefore, I have this prior base of knowledge. It's really easy to understand this concept. If you connect this abstract metaphor here. That is a something that people will use a lot in their normal day to day life. So I think that's a key aspect. Or both of us that use the metaphor whether or not it's planned or not, like you said, just getting comfortable talking is a big thing. And how do you get comfortable talking? In my mind, I had to do it through reps. If you watch a lot of early levelup tutorials, videos, I'm really awkward, especially when I'm on camera. When I started putting myself on camera, I was all like rando here and it just got better. Just got better through to sheer reps, talk things out rubber, duck it, discuss your code with yourself and your room, say like, Okay, so what is this code doing here? Well, it's it's toggling this, it's doing this well, and don't just talk about like, Alright, the x function is connected to the Y function is connected to the B function. It's more like the root of this thing. Describe your code, right? good comments, all kinds of things are going to help you understand the actual programming in a way that you could explain it to other people. I also use my wife as a rubber duck a lot whether or not she likes it, I discuss the problems I'm having with x y&z video encoders. And why they're bugging me, and she can listen if she wants to. or she can just pretend that she is listening and thinking about something in something else entirely. So a lot of it just comes down to practice. Next question is from Mike creevey. And he lets us know that it's just like gravy. What tools or other methods do y'all use to manage a spinning up new projects with all the assorted directory structures, tools and configs you prefer? For example, when I start a new project these days, I like Ts prettier es lint. And I want those things to play nicely together, I find myself constantly copying files from one project to another. And I haven't found a good abstraction allows me to set up a new project with the associated files, bonus points for a solution that can keep shared configs and dependencies up to date, I'm gonna go ahead and say, I'm not going to get any points little on bonus points here, because my solution to this is to copy and paste, that is my solution, I would love to know have a great solution to this that is better than what I'm doing. Because this feels like an area of optimization for me. Although I typically work on one or two projects, I do fire up a new project all the time to create a new tutorial with an often found myself wishing or missing I had various configs in there.
+
+76
+00:34:09,230 --> 00:34:35,040
+Wes Bos: My solution to this is I install all of these things globally on my computer. So anytime that I spin up a tiny little project, it just uses my global configs because there's nothing installed locally. So anytime I have any job, I've got a j s file in my downloads folder, it'll still apply prettier to it, which Oh, I really like so people always give me crap for installing it globally. Like it causes issues and things like that.
+
+77
+00:34:35,100 --> 00:34:39,570
+Scott Tolinski: What about your like configuration files? Where did those the you're installing it globally,
+
+78
+00:34:39,629 --> 00:35:22,230
+Wes Bos: they live in your your home directory? Hmm. Till the end, it's great because everything has it and then and then for like projects that as we're spending more than half a day on then I will go ahead and install everything locally for that project. And in that case, it's usually just my ESL and prettier For that I have my own config, that I just npm install. And then the ES lint config is simply just extends Wes Bos. And then I don't have to copy paste anything. It's just install that. And then there's also an NP x command on the repo for that, that will install all of the, like 19 dev dependencies that are needed peer dependencies sorry for too. I
+
+79
+00:35:22,230 --> 00:35:32,880
+Scott Tolinski: have a package to do that as well for prettier. You'd be great if it was just like, here is the level up tutorials settings for like everything. Be nice.
+
+80
+00:35:32,910 --> 00:35:35,850
+Wes Bos: Yeah, you should publish it. It's crazy. If people started using mine.
+
+81
+00:35:36,150 --> 00:35:48,650
+Scott Tolinski: Well, I have the prettier one is published for level up. It's just not I just don't advertise it. It's on the GitHub, if you want to look at it, you can. Yeah, but I'm gonna warn you if those of you who like semi colons are not going to be happy when you see it.
+
+82
+00:35:48,920 --> 00:37:43,590
+Wes Bos: That's the thing about mine is that people would be like, Oh, I just forked Wess and change this one setting. And I'm very clearly saying no, the whole point of prettier is and yes, Linda is that you just overwrite settings that you don't like. So take Scots. And then if you don't like one of the Settings, then just overwrite those few things. Yeah. Next question is Tom from the UK. Hi, guys, I'm 26 years old and working a full time job, I'm currently looking at the possibility between work and spending time with my partner, as I get maybe an hour a week to focus on learning JavaScript feels like it's going to take me literally forever to get anywhere, when I do want to learn something, there's always a better way of doing it. And when I get sit down, I have no direction your podcast is giving me small boost and motivation. But at 26 is that too all to make it into web development? Haha, no, you're you're a baby in web development, the web has only been around for, I don't know, 2025 years going to be around for much, much longer than that. So absolutely not too old. I don't think it's ever too old to get into something like that. And advice here, you have to spend time with your partner or, or learn JavaScript, um, I think at certain times in your life, if you're looking to make a really big change, or something like that, a understanding with your partner that this is a going to be a busy time, or that you really want to do this, this kind of thing, obviously, don't ignore your family or partner or whatever. But I think it's fine for there to be certain periods in your life where you really want something. So there's going to be a little bit of give on on both of your ends, in order to make that thing work, what to do small projects. That's why I made a lot of my courses, because small projects where you get something done are small wins. And that gives you the motivation to keep going.
+
+83
+00:37:43,940 --> 00:41:57,650
+Scott Tolinski: Yeah, definitely agreed on all accounts there. You know, I was lucky enough that Courtney was getting hired doctor. So like she was busy every single night, like any time, right, so we could hang out on the couch and both study together. And that's our search serve regards. So like you said it will take some buying on your partner. But that's always a solution to like, what if your partner wants to watch a specific TV show, and maybe it's not a show that you are interested in watching, but you can still put on your headphones and code on the couch next to them while they watch that TV show or whatever they're watching in still way to like spend some time together while you're learning something new. I mean, those are certainly options there. It's not always have to be like, Alright, I'm either studying working or whatever, or we're hanging out, you can do both at the same time. Another thing you can do at the same time, is run a business and keep track of your bookkeeping, because well, one of those will require substantially less amount of effort if you are using our sponsor fresh books. Now fresh books is the cloud accounting software that we know and love, which allows us to do all sorts of really cool stuff like sending invoices and little nudge reminders to say, hey, why'd you pay that thing allows you to do time tracking, keep track of projects reporting, there's even a great little mobile experience for you as well. I found so many things like this don't have a good mobile experience. So we're always out and about on our phones, these kids are on their phones these days, got to be able to keep track of our books from our phones using fresh books using their mobile app. So you'll want to head on over to freshbooks comm forward slash syntax for a 30 day free trial of fresh books put in syntax in the How did you hear about a section because they love hearing about that they love hearing that they heard about fresh books from syntax? Trust me, we are all interested in making money off of our side projects and having them support us in various ways, especially now that we're needing to be a little bit more creative. So check it out@freshbooks.com Next question is from Ui Ui says hi, Weston Scott, how do you set up a web development project for an enterprise level? There are so many simple tutorials and quick wins all over the internet. Oh, shots fired West. But how do you get more knowledge about a bigger enterprise ready, level technical stuff, how to organize a view app with greater than 60 pages. My project is an application on the shop floor of producing firms, mostly inputs and static charts, less than 50 concurrent people working within the application, how to organize the RESTful API? How do we resolve dependencies between an API endpoint one an API endpoint to how to share information between components and view state management? So there's a lot of questions here, basically, the end of the day, Lee is saying, Hey, where's all the tutorials on hard stuff, right, where's all the tutorials on the real world big stuff. And the problem is that the more deep you get into this, whether it's, you know, enterprise level, whatever your needs become very much more specifically your needs, and not the needs of enough people to make creating a tutorial on those things worthwhile. So what you're going to find is largely, maybe a little bit more bite sized things, so you won't find or even abstract things. So to say, you're not going to find a ton of tutorials that are like, here's how to organize a view app with 60 components, because that doesn't fit the needs of a lot of people, you're best off looking at things like application like front end application, structure layout, you're going to have to get more general to get the answers you're looking for at this stage. Because when you get too specific as you will, when it gets to that level, things will get more and more specific, and therefore harder to I think, reach an audience with teaching. So where is the content for this? I think that's where it is, I think you're gonna have a hard time finding it. Unless, of course, it's very specific to as it is, in terms of how do you learn this stuff? I would take each of these as bite sized problems and look at them as bite sized problems, right? How do you structure an application with a lot of components? Well, feature folders, I think it's a good idea. A lot of people seem to be doing it. But you might not exactly find that under the heading of, you know, a view app with 60 components how to structure that, you know,
+
+84
+00:41:57,690 --> 00:44:19,500
+Wes Bos: yeah, I think it's got nailed that there with the bite sized pieces. That's what you have to do. There's, there's not going to be a tutorial out there that covers absolutely everything. And you have to sort of learn these things, maybe independently, maybe a few things here or there, you pick and choose your technologies. And then it's on you as the developer, when you get to the level of building these larger apps to be able to decipher all of these things and put it into one big thing. So like Scott says, just break it down into smaller problems. And figure out often when you get into one of these topics, folder structures, REST API endpoints, sharing dependencies, there's often five or six different methodologies in each of those things. And it's up for you to sort of go and research and read the articles and whatnot as to how you should approach it. Totally. Next question is from UI print. He gave us a nice pronounciation for this one, Davey. Oh, yeah, I've done Wes is next jazz course, where he used to styled components instead of next own style JSX? What are your opinions on style? JSX? And why do you do or do not use so style JSX is basically you just put a style tag inside of your component. And then you give JSX backticks. And then you type your CSS inside of that. And then you're expected to use JavaScript for just regular JavaScript, regular state and everything for all that. I prefer styled components over that just because like j style JSX is very, very simple. It's very lightweight, it gives you a scoping built in, which is really cool. And for a lot of people that's that's quite honestly, for a lot of what I do, that's all I want is just to be able to do scoping and things like that. But there's a couple nice little things that are installed components, the way you structure them, quite honestly, a lot of my choices around JavaScript in our CSS in react applications are just based on how it looks, which is like not necessarily performance or whatever. But some of the like back in the day, they were always like based on objects. And the fact that you couldn't use dashes was just like, a no from me, because like, I want to make it feel like as I'm writing CSS as close to possible not to say that style JSX isn't that because you literally just write CSS inside of the style tag. But I don't really have a super convincing answer to that other than there's just a couple things I like on subcomponents a bit better.
+
+85
+00:44:19,500 --> 00:45:45,480
+Scott Tolinski: You're also really locked into I mean, that's there's more a greater degree of lock in with it than there is with styled components because they'll Manas you can take with you to any react other place. I don't know if you can spell JSX I haven't looked into it. But my understanding I like to keep pretty like if I'm going to lock into something it's going to be into, like you could just say okay, React style components locks you into react, okay, but I'm not going to most likely change out of react because that's going to be a big enough project of its own. So like, I think it was brave of you to say that you care about how it looks because I care about how it looks in like I feel like Sue oftentimes that that view Point is minimized in the discussion of things like, I can look at some code and say this is ugly, I just don't like this. And people say, Who cares if it's ugly, it's the best way that it works. And, well, I got to, I have to look and iterate upon this code, I have to understand it, I have to parse it, I have to be able to ship it. And sometimes how it looks is very important in terms of for me, like, how the code functions. And so I don't know I really prefer style components, because I can copy and paste from CSS and just drop it right in there. Like you said, you can do that with this. But I don't know there's there's not a whole lot of fancy special stuff within stuff components that I utilize anymore, because I use CSS variables to do all that stuff. And I just basically use it as scoping wrappers for my stuff. And you can take it with you to wherever you want.
+
+86
+00:45:45,840 --> 00:45:53,970
+Wes Bos: That's something I've been thinking about a lot lately, Mike, I'm really not using any of the style components, the interpolation stuff. And the
+
+87
+00:45:54,000 --> 00:45:56,580
+Scott Tolinski: file system reframes stuff like
+
+88
+00:45:56,580 --> 00:46:20,490
+Wes Bos: that, yeah, I don't or the providers or any of that. I'm like, maybe I do need to take a second look at something that just gives me scoping. Maybe at some point, I'll do another round of these. I just remember like to you three years ago when I first got into style JSX. I was like, I don't really like this as much as I think also the another big one was at the time, it didn't work in it. And if my tooling wasn't there, I was just like,
+
+89
+00:46:21,060 --> 00:46:46,980
+Scott Tolinski: Oh, yeah, the tooling is not there. Count me out. Sure. It works. Now there used to be the main reason why I didn't want to leave Sublime Text was because there was high yakou which was an Emmet like thing, but it was a little bit smarter. And I missed so much. I still miss hierarchy so much. I missed it all the time. But I got over that, but it because it's not that bad. But again, you're you're totally dead on if the tooling is not there. Things are going to work in that regard. Count me out. Out big out.
+
+90
+00:46:47,430 --> 00:46:52,020
+Wes Bos: Let's move on to some sick pics. Do you got any sick pics for me today? Scott?
+
+91
+00:46:52,320 --> 00:48:24,660
+Scott Tolinski: I do. I have a podcast. I listen to a lot of new podcasts lately. So I might have a few suggestions here these there may be some different ones, then there's some types that I haven't been into before. But this podcast, let me tell you is really fantastic. There's two of them here. One is called myths and legends and one's called fictional. And what this post does is he breaks down myths and legends like the Odyssey and you know, the King Arthur and stuff like that. And he breaks them into more digestible chunks. So you're getting the gist of the story, you're getting the overarching themes of the story, you're getting the characters, you're getting what happens without spending, you know, hours upon hours learning about this stuff, because I don't know a ton about a lot of these things. Like, I guess I know a little bit about mythology, in some sort of ways are in whatever, but I just found these to be fascinating. And he also has one called fictional where he basically gives you the recap of famous books, he'll talk about the time machine, and he'll tell you the story of the book of the time machine in two episodes. And maybe that's like an hour and a half worth of your time. He modernizes it to a point where it's occasionally annoying. So he'll be like, oh, and then so and so texted so and so and I'm this kind of roll my eyes a little bit, but 99% of the time, it's non non cringe inducing, and occasionally it's cringe inducing. So if you can get over that one percentage of cringe inducing things I really appreciate and enjoy this podcast. I've been listening to it a lot.
+
+92
+00:48:25,050 --> 00:48:38,490
+Wes Bos: I mean, a sick pick something I sick picked a couple years ago and I just react on it and wanted to tell you how much I love it. And that is ready to get ready for it. pre cut parchment. Oh, yeah, it's for your baking Show of hands.
+
+93
+00:48:38,670 --> 00:48:52,080
+Scott Tolinski: Yeah, cuz I tweeted at you. And I was like, Whoa, and you were like I sick pick this. And the moment you said that I remembered that you say picked it. But I was I totally forgotten that you had because we say pick a lot of things over the past 260 episodes. That's true,
+
+94
+00:48:52,080 --> 00:50:26,940
+Wes Bos: very hundreds of things. So it's essentially what it is, is just partially on paper that is pre cut perfectly to fit a half sheet pan. Honestly, it's the biggest life changer ever. Because parchment paper, I cook on everything. And I know there's these reusable mats and things like that. But I do it a lot on the barbecue. And I also just love just throwing out if I roasted veggies, you just throw out the thing. I know that it's not environmentally friendly or whatever. But it's so good for cleaning up and just cleaning up at the end of the day and making everything nice and fast. And I did the math the other day, because I buy a 500 sheets at a time, which is enough for I don't know, like a year or two. It's enough for 500 and I did the math. That's 500 There you go. That's, that's a good way to count it. I paid 32 bucks or 500 sheets and then I went to the store and looked at how much it was and it was half the price to buy it pre cut. You don't have to worry about the stupid little razor blade on the side of the box. Not working and kind of getting by and yeah, yeah, exactly. So just one of those life changing things that you can you can do in your life. That is just a couple bucks. So pre cut parchment paper cool. Very cool shamelessly plug, I'll shamelessly plug my beginner JavaScript course go to beginner JavaScript calm is a course that will help you with all of the ins and outs from scratch all the way up to working with the DOM and design patterns, things like that. It's a really good course beginner javascript.com Use coupon code syntax for an extra 10 bucks off that's even if it's on sale, you can still use that.
+
+95
+00:50:27,390 --> 00:51:07,080
+Scott Tolinski: Cool, I'm going to shamelessly plug my latest course which is on sapper who teach you how to build a really insanely fast site with sapper we teach you all the ins and outs if you don't know sapper is the sort of next JS analogous framework for spelt, where you get either a statically generated site or you get a full server side rendered site with server side API's and things like that all of the same server stuff you'd come to know and love. You also get client side folder based routing, full stack folder based routing even up and down your API routes. It's really cool. My website is built in sapper I'm a huge fan of it. So if you want to learn sapper, head on over to level up tutorials, comm forward slash pro sign up right now and you will save 50% off the year.
+
+96
+00:51:07,530 --> 00:51:08,040
+Unknown: All right. That's
+
+97
+00:51:08,040 --> 00:51:13,620
+Wes Bos: it for today. Thank you so much for tuning in and we will catch you on Monday. Eighth,
+
+98
+00:51:13,740 --> 00:51:25,860
+Scott Tolinski: please head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
