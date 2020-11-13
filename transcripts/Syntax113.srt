@@ -1,0 +1,160 @@
+1
+00:00:00,359 --> 00:00:24,450
+Announcer: Monday, Monday, Monday, open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing, soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob, and Scott Tolinksi ski.
+
+2
+00:00:25,920 --> 00:00:57,840
+Scott Tolinski: Oh, welcome to syntax in this Monday tasty treat, we're gonna be talking all about code, quality tooling, how to get your code, being extra nice via tooling, these are the kind of things that are really going to do all of the heavy lifting for you, or make you aware of some bugs, it's going to totally eliminate any of those memes that it's like, you know, find in seek champion the semi colon because these two things are going to fix all of you. So my name is Scott solinsky. And with me, as always, is West boss,
+
+3
+00:00:57,960 --> 00:00:59,880
+Wes Bos: ready for some high quality code
+
+4
+00:00:59,880 --> 00:02:47,370
+Scott Tolinski: today, high quality code that's coming at you in this tasty treat. This tasty treat is actually sponsored by a company that is going to really help you have high quality code, which is century now century is one of these tools that basically what it does is it? Well, you you put it into your codebase. And it keeps track of your errors and exceptions and lets you know how they happened. It tells you a lot of information such as the operating system and maybe what versions of things they're using and what browser and allows you to really gain some key insight into what's going on in your application. One of the coolest things about Sentry is that it provides some really awesome ways to be notified when something is going wrong. Now you Everyone has their own workflows, right. So I personally, I work best in different ways. And if Sentry can ping a Slack channel and say, hey, there's this thing going on, then my whole team can see it in one little fell swoop and we can even chat about it directly in slack. In addition to notifying any of your chat applications or anything like that, you can also get notifications via email, SMS, and you can just really integrate with any of the platforms that you're used to using so that you can be notified in a way that works for you and your team. Now, if you want to try Sentry, which I highly recommend you do, especially if you want some high quality code, you want to head on over to sentry.io and sign up using the coupon code tasty treat all one word, all lowercase, and you get two months for free. Trust me, you're gonna want to try it out because it's one of those things that the proof is in the pudding as they do say, I'm going to train myself. So okay, we have Sentry to help us get some quality code, what are some ways that we can dive in and set up some tooling in our application to get some quality code as well?
+
+5
+00:02:47,490 --> 00:04:27,000
+Wes Bos: Yeah, so we're gonna run through some tools as you as a web developer can use to get high quality code, the first one's going to be a linter. second one will be a something called prettier. Third thing is going to be just VS code in general, or your editor, you could say, and then we've got some some minor things here on TypeScript and testing in something like jest. So probably the two biggest ones of code quality is using es lint and prettier, let's kick it off with es lint or, or linters. In general. The idea behind a linter is that you whenever you hit save, or whenever you commit your code, you run your code through a linter. And the linter is going to mostly analyze your code for potential errors that might happen now, yes, lint, which is the most popular linter before before that, we had j s hint, which was a pretty popular, there was jass lint initially, which I think was made by Doug Crockford. And then we had j s hint. And now we have es lint, which which sort of came around when we started developing an ESX. And we got those. So a linter will take a look at your code and tell you where potential problems happen in your code. Now, there are some stylistic things in es lint that it can do. It can tell you if you forgot a semi colon. It can do like minor things like that. But the way that it's sort of going right now is that you should only use a linter for actual problems that will develop inside of your code, things like scoping issues, things like double variable declarations, things like what are some of the other accessibility issues are a huge one. I use my own one. What are some of the other things that yes, lint will do for you?
+
+6
+00:04:27,630 --> 00:05:22,290
+Scott Tolinski: Yeah, I mean, it will connect to a lot of the platforms that you use. So if you have plugins, you can say, Well, this is a react specific lint, config. And so more than just general JavaScript or whatever you're working, when it's going to potentially make you aware of best practices within those libraries. And obviously, these best practices can be tweaked to your liking. I think most people that I know have their own set of ies lint rules, turning some things off here and there when maybe some things are a little not necessary in their codebase But really, it allows you to connect to whatever type of application you're writing, in addition to plugins via like react or whatever. There's also a handful of presets, I use an augmented version of the Airbnb presets myself, which is just sort of their team's defaults for es lint. And again, it's tweaked, because there's definitely some rules that I turn off a little bit.
+
+7
+00:05:22,590 --> 00:05:40,500
+Wes Bos: Yeah, I think the important thing to notice here is that, yes, lint is is mostly preferences. There are things like that that will actually just break your code, and it will let you know that but a lot of it is like things like should you have a dangling comma on your object? So that's a question for you Do you do the comma dangle Scott,
+
+8
+00:05:40,860 --> 00:05:43,920
+Scott Tolinski: I do do a comma dangle. And Daniel as well, so
+
+9
+00:05:43,920 --> 00:07:04,050
+Wes Bos: it loves the dangling commas. What that is, is when you have an object and you have your properties and values, you always put a comma dangle at the end of the line. And that's because when you go to add another property in the future, what you used to have to do is you have to add a comma two line before it and add your new line. And that screwed up your your get blames in the future. I think it was IE nine was the last browser that couldn't do comma dangle. And now with transpilers. It's not anything you ever have to worry about things like putting function names. So if you have anonymous callback function, you just write the word function or you have an arrow function, should you name those or not for better stack traces. So the way that I use mine is that I use Airbnb by default. And then over probably over the last two or three years, I've just been tweaking my own and turning things off. Because Airbnb is incredibly strict with what they do. And it's a little bit torturous when you just want to get things done. And it's sort of always falling in your way. So I recommend just taking something that's already out there, the default one that comes with the ES lint, or the Airbnb, one, if you're writing some react code, and then just turning things off, I'm constantly turning things off, because I say, I get that. But I'm never actually running into issues with that. And I feel like if I were to write a run around with my code, just to make you happy, it's it's unnecessary.
+
+10
+00:07:04,290 --> 00:07:39,020
+Scott Tolinski: Yeah, absolutely. Anytime there's an accessibility things, I make sure to not turn those off. Because sometimes those can pop up. And you'll be like, Oh, I don't have time for this right now. But you do have time for that right now. And you need to be made aware of that kind of stuff. So I definitely I turn off when the ones I turn off are pretty inconsequential, like no use of radix radix. Yeah, yeah, I turn that one off, a turn off, no counsel, because I use console logs, I use that. I mean, it's always annoying when you put in a console log, and then it's red underline. And there's only these that are like, truly, truly necessary that I turn off. So
+
+11
+00:07:39,090 --> 00:08:52,830
+Wes Bos: you could have like a separate linter rule for when you commit code. And when you develop code. And then before you commit it, it'll it'll say, hey, you forgot to console log in there. But it's just annoying that your your ESM break breaks every time you want to console log, something that seems a little bit unnecessary. But other things like unreachable code. So if you have a return statement, and then you have code underneath that many times, I've accidentally done a return tip inside of like a year, but you goof up an if statement, and you have a return inside of that. And then it tells you there's unreachable code underneath there. either delete it, or you have some sort of error in your your earlier return because this code will never in any circumstance ever run. So I feel like as Lynn has made me as like, as like salty as you get with it. Sometimes I remember the first time I ever turned it on. I was like who lives this way? Because it's almost everything I do is wrong. But after maybe a couple weeks, especially reading into the rules, like I always go down a rabbit hole of why is this underlined? Oh, that's interesting. Let me go read into like the GitHub issue and see why do people actually believe this? or Why do people believe that this is not a good way to write code. And I think it just just makes you a better developer all around,
+
+12
+00:08:53,030 --> 00:09:28,550
+Scott Tolinski: right. And you can make those judgments yourself whether or not that is something that is truly necessary. But one of the things I really love is like the no unused variables, because sometimes you're writing code. And then in a refactor, it makes it really easy to see what you're using, what you're not using, maybe what you intended on using and you're not using, and maybe you can, you can flip that around. I also use it to enforce prop types and react because I'm not using TypeScript in my project. So having strict prop types and default props on every component is pretty important to me, at least to prevent unexpected breakings of things. So do you want to get to the formatting.
+
+13
+00:09:28,740 --> 00:09:30,480
+Wes Bos: One more thing to add to it?
+
+14
+00:09:30,480 --> 00:09:31,770
+Unknown: Alright, let's do it.
+
+15
+00:09:31,949 --> 00:10:41,300
+Wes Bos: One last thing I want to say is that all of his ESLint rules, you can turn them off, which is zero, you can turn them to warning, and you can turn them to error. So you can some of these that is like console log, you could just turn into a warning, and it'll just be yellow. And you say yeah, I know that that shouldn't be left in there, but I'm using it right now. Another kind of neat thing is like the no unused variables. One thing that I do in Express is that every single Express function that I write, you get the request the response The error in your next function, and that's the signature that I write for all of my expressing whether or not I use the next or the error or anything in there is, I always want to have it and what was happening with me is it would be like you didn't use your Error Error variable. So I would delete it from the signature of the function. And then I would like need that variable. And then I had to go back and add it. So you can write these these like little regex is called arcs ignore pattern. And what that will do is to say, like, tell me not to have unused variables in that my function passes me but ignore request response next and error, because those are always the ones that I like to be using. Word.
+
+16
+00:10:41,540 --> 00:11:59,220
+Scott Tolinski: Interesting. Yeah, I bet I don't, I don't turn that one off a whole lot. Because I don't do that, like you do. But it's interesting. I know, that's definitely like a thing that a lot of people do have those things in there. Cool. So uh, in addition to all of that awesome stuff, we also have prettier which can work in coordination with es lint, I actually use the prettier extending, I extend my es lint config via prettier, and I have prettier forward slash prettier as an error in my es lint rules, in addition to having prettier installed for my project. Now, I actually don't think I tweak prettier at all. I'm not sure I do. But prettier. Before we get into it is really just a format or so in a lot of other languages. Like maybe like Python, your code has to be formatted a certain way, right for it to work in JavaScript. Yeah, you can write your code in all sorts of different ways. And it's not always great for teams, or maybe people working on a file, and then all of a sudden, you open it up, and it's some foreign sort of formatting. So a prettier does is it sort of standardizes the formatting. And one of the really great things that I love about prettier is configuring it to reformat on save. So I typically don't even concern myself with formatting too much when I'm typing. I don't do proper indentations. And I don't worry about the correct
+
+17
+00:11:59,250 --> 00:12:00,660
+Unknown: type of No, I'm a slob. Now
+
+18
+00:12:00,660 --> 00:13:03,690
+Scott Tolinski: it's the past total slob. In fact, I'm such a slob though. And I'm not using prettier, and I save it and doesn't update it for me, I get really frustrated because I have to go and fix things. But even like things like adjusting the tabbing of a component how far out it is right? You make one change. And then you got to select, you got to read tab and everything like that. Now with prettier, you can just hit save and watch it all magically fall into line. So I love prettier. And I pretty much don't touch a project unless I'm using prettier nowadays, because not only does it like make my code more standardized, easier to read. But I know that across teams, I'm going to be happier with the code that my team's writing, I'm going to be happier reading it, it makes more sense to have that in my workflow and just have something totally standardized rather than write it the way you want. And it's way easier to enforce when it's an automatic thing than when it's like up to the users discretion, Hey, could you follow all of these code formatting rules and memorize them and then don't ever mess them up? Right? Where you're just is a robot, let the robot do it for you.
+
+19
+00:13:03,720 --> 00:13:34,500
+Wes Bos: It's crazy how much we used to fuss over a coding style. And there would be these huge coding documents. And we use this many tab pieces, tabs or spaces or single quotes or double quotes. And now we take that all out of it. And it's pretty amazing for beginners, because it takes all the like part of my hugest feedback when I was beginning teaching HTML and CSS is this is messy, you should clean it up a little. And now it's just like, doesn't matter at all. Because as soon as you hit save, it will indent it for you and look a lot nicer.
+
+20
+00:13:34,620 --> 00:14:01,290
+Scott Tolinski: Now, it also gives you visibility into like well formatted code. Like when you're used to reading well formatted code, you're going to be way more strict about requiring well formatted code. Because if you get used to looking at reading and writing sloppy code, then other people are going to be super annoyed with you. And you're just not going to set yourself up for success where with this, it's automatic, and you get used to looking at it as like this is what it should look like.
+
+21
+00:14:01,439 --> 00:14:51,960
+Wes Bos: Well, there's three things that I change on prettier, myself prettier doesn't have a whole lot of options, because it's it's opinionated by default. But with all things, people say can we just have a setting to do X, Y, and Z. So the three that I use is first I turn trailing comma to what's called s five. And just like we talked about the trailing comma, if you don't add a trailing comma to your objects, and you save it, this S five will automatically add one, you also have the option to set it to all which will also add a trailing comment, comma in your function arguments. So if your function has two arguments, you have two commas and one after the last argument, which seems a bit odd, huh. But that as an ESX. That's allowed. I don't use it myself though. The other thing is I use single quotes instead of double quotes, although I've been thrown around the idea of just going all in on backticks Yeah, I
+
+22
+00:14:52,020 --> 00:14:54,960
+Scott Tolinski: think that I might go. I like how it gets the set set up for you.
+
+23
+00:14:55,080 --> 00:15:32,220
+Wes Bos: Yeah, yeah, that's that's where I got I was looking at a lot of the cats for example. So I was like, it does mean make a lot of sense to just use backticks for strings, because then you don't have to worry about single or double quotes or escaping things or switching it to back ticks when you want to interpolate something. So I think I will probably do that at some point this year. And then the other one is I changed my print width to 100 characters, because 80 characters wide, and then it wraps. I'm on a huge screen, I don't work with other teams with people on different things. So I find that I can easily have two panes of code open at once. And 100 characters is still enough for me to see everything nice.
+
+24
+00:15:32,250 --> 00:15:51,930
+Scott Tolinski: So I mean, we've never discussed our prettier RC files before. And let me go down the line if my prettier RC single quote is equal to true, oh, you turned it on good. Trailing comma is equal to s five. I don't have the width, though. So we're dead on in both of those. So it's funny, hilarious name,
+
+25
+00:15:51,930 --> 00:18:11,520
+Wes Bos: but we've never talked about it together. And our settings are almost exactly the same hilarious. That is really funny. Man, that's, that's good. The way that I set up my prettier is through es lint. I think Scott does that as well, because es lint has this dash dash fix option, which it will actually fix a couple things like like cause like, if you forget a semi colon, ts lint, we'll add that in. So it has the ability to run fix against your code. And then you can extend it by just putting prettier in that. So I have it all in one. I don't use prettier via esque VS code. And the reason behind that is because I don't want my editor to be tied to how the formatting should go. Because if I wanted to hook into a get hook, like before you before you push, there's some people that only use prettier in ESLint before they commit. So there, they feel like they can figure it all out themselves, which I don't understand, like just have it on save every single time because then then you don't have to worry about doing indentation and whatnot. It just does it for you. But if you want to do on a good hook, if you wanted to use another editor for whatever reason, if you wanted to throw this up on a server that you're using vim on, all of that stuff will work. No problem with this. It's not tied to your specific VS code, or sublime or whatever. So I like this way, it's not as one nice clean package. I also use a HTML plugin for es lint, which will anytime you have an HTML page with a script tag, it will also format the contents of that script tag, which I find very helpful for anytime I'm doing a quick little demo specifically in my specifically in my CSS Grid course. Because prettier we should say this it was prettier will do not just JavaScript prettier will do CSS prettier will do graph QL. There's a prettier PHP plugin, which is currently being worked on. I tried it, I threw like a gnarly six year old functions, PHP WordPress file at it. And it didn't break it, which was amazing. Because I had tried out a whole bunch of PHP linters. And they all broke my code. I threw it through prettier PHP, and nothing broke. It was a little funky at spots, which is why it's still being in development. Like I'm so excited to see that prettier is being extended to all of these different languages. Because I think pretty soon we'll be able to just save your save your files in whatever language and not have to worry about formatting or whatnot.
+
+26
+00:18:11,570 --> 00:20:10,530
+Scott Tolinski: Yeah, I think that's the key point is probably didn't break your code, because prettier is really just formatting right? It's like not correcting errors necessarily. It's just fixing formatting. And I really love how sometimes you miss like an indent or maybe you miss like a closing element or something and prettier Aeneas lint in combination are going to let you know pretty quickly exactly where that stuff is. So it makes it just so genuinely easy to solve and find bugs when you just look at your code that I can't imagine writing without es lint and prettier in combination. Next part up, we want to talk a little bit about how to use this, you mentioned that you just use it again in a project basis rather than in your editor. But the editor has a big pour a big role to play in this as well. Because we both use VS code. And one of the things that I've always really loved about VS code it was maybe the thing that sold me on VS code was just how easy linting and prettier was to get set up. You really just don't have to do anything. The editor really is set up from the beginning to use linting and systems like that so that you feel confident when you start going. I remember just how much of a pain it was occasionally to get Sublime Text, working with a linter there'd be some error going on the back in the background, you had to check some logs, you had to install a bunch of stuff. And if it didn't work, you didn't necessarily know why it didn't work. Now, in VS code, you get a little exclamation point. If something's not configured correctly, it lets you know exactly what's going on. But for the most part, I've had nothing but awesome experiences using VS code with these things besides getting a little red underline under each item right? It feels like a spelling error and a Microsoft Word document. You can see it a mile away. You get the little squirrely red underline look Do you know there is an error? When you hover over it? lets you know what the problem is. But you you actually I know you use a different way to jump from error tear frequently, right?
+
+27
+00:20:10,550 --> 00:21:04,070
+Wes Bos: I actually don't use the I've used it in the past, like the VS code, jump from air to error and fix them. But generally, just as I'm coding, I'll see the either the yellow, which is a warning, or the the red, which is the error, underline. And I'll just go ahead and fix it. I'll hover over top of it, and see which rule I'm breaking. And then I'll go do a little bit of research. If I'm not sure why I'm breaking that rule even have having this setup for probably three years, I still regularly run into new things that have never, I've never accidentally written myself. Yeah, so it's like, I still use all the VS code stuff. But I don't use any of the tools that allow me to cycle through all of it, I have it set up to save on fix, there's a VS code setting that you can do to run the fix on Save. And that way it will every time you save it, it will just re indent your code and check for any errors. And then the other question I get all time is do you have a local config or a global config on your computer?
+
+28
+00:21:04,310 --> 00:21:52,590
+Scott Tolinski: I have a local config. I don't have any global config setup. But it probably would make sense to do that. Although I do like to keep things with the project, just so anybody who's using it can also include that stuff. The vs. Code folder, I believe it is Yeah, yeah. So I, I do primarily use a local one for a lot of things. But that's really just the stuff that is I want my other people in my code base to also be saving on on or formatting and save and stuff like that. I don't save my personal like font sizes, those kind of things, maybe just project specific things. But I do I do have a glow. I did say I didn't have a global I have a global, I was just thinking it was like not a global I don't know, I never created anything. It's just the default,
+
+29
+00:21:52,770 --> 00:23:17,250
+Wes Bos: VSP and the default setup, whatever, yeah, I have a global ESLint file that has all of my settings in it. And that's great, because anytime I want to whip up a quick project or do a little demo, it immediately just starts working. And then I don't set it up. And then anytime I have a project that is more long term, I will set a local Yes, lint in there. Um, what I'm considering doing is just making my own, like, you can publish your own es lint to NPM. And then you can just set your es lint to extend like the West boss coding style. So much sense. Yeah, I've been considering doing that just for my tutorials as well as just for my own sake. And that way anytime I like make a change my mind as to linewidth or something like that I can just publish a new version of my my settings, because that's all Airbnb is yes, Lin extends Airbnb. And then they have a huge slew of rules. So I could just make my own list of rules that extend Airbnb, and then publish that up to NPM. Nice. The only reason I haven't done that is like I don't really want to be, I have my dot files online. But like I don't like these aren't the dot files for everybody. Some people just copy paste my own my dot files, and then they send me these big long emails, they're offended at a certain choice that I've made. And I'm just like, this is my own personal, like, please don't take these as gospel. This is just what works for me. Like it's not like Airbnb, where they have these very opinionated, it's just what works for me. Yeah. Hey,
+
+30
+00:23:17,670 --> 00:23:35,130
+Scott Tolinski: so does your version of VS code do this. This is one of the things I think popped up recently. In VS code. I'm not sure if this is an extension, I'm pretty sure it's not. If you go to your es lint RC file, do you get little descriptions next to each one of your rules? Oh, let me see. And maybe it's an extension I added going to confirm this.
+
+31
+00:23:35,280 --> 00:24:05,700
+Wes Bos: Nope, my minor showed up as well, that so that is um, this has been in VS code for a while it works with package JSON and stuff like that, where they have these like little definitions for config files. So package JSON, Babel, RC, es lint RC and they know of all it's like it's kind of like typed types for config files. And they know what all the potential things are like if you open up a package, JSON it and hover over some of the predefined, like author and license, they'll show you that as well.
+
+32
+00:24:05,970 --> 00:24:47,250
+Scott Tolinski: Nice. Yeah, I love this. Because I mean, you get a glance at what the rule actually is doing. And you can jump to the documentation immediately from there. And that's something that you often do if you're trying to figure out if you need this rule or not. Cool. So this episode is getting a little tasty. So what we're going to be doing is we're going to be covering some more tools in the next hasty treat, and which is going to improve the quality of your code. We're gonna be talking about types in JavaScript via TypeScript flow or reasons, something like that. And then we're also going to be talking about testing. And maybe we're gonna be talking a little bit about exception and error tracking tools as well.
+
+33
+00:24:47,340 --> 00:24:50,790
+Wes Bos: Yes, we've got some friends in that space we could talk about.
+
+34
+00:24:51,000 --> 00:24:52,860
+Unknown: Yeah, Yes, we do.
+
+35
+00:24:53,490 --> 00:25:35,790
+Wes Bos: Awesome. So hopefully you enjoyed a few things here. There. If you want to find my dot files. It's github.com for slash West boss Ford slash d o t f i l e s. Well, that has all the VS code extensions that I use all of my hyper term settings, all of my es lint rules. They're all listed in there. I should make one of those people asked me to make one all the time. I should bite the bullet and do it. Yeah, people ask me all the time, too. And I finally publish them up. And I don't have any like synching setup. I said, I just like, every time I change my Islam, I'll just copy paste it up to GitHub. Yeah. And I find that works. Well, some people have like a sinking setup. So if they have multiple machines, they can sync them between machines, but I don't have multiple machines, so don't need to worry about that.
+
+36
+00:25:36,000 --> 00:25:40,620
+Scott Tolinski: Yeah, well with how much I've been changing machines lately, maybe should be an option for me.
+
+37
+00:25:41,700 --> 00:25:43,890
+Wes Bos: Absolutely. Cool. Anything else for today?
+
+38
+00:25:44,340 --> 00:25:45,000
+Scott Tolinski: I got nothing.
+
+39
+00:25:45,569 --> 00:25:49,200
+Wes Bos: All right. Thanks for tuning in. We will catch up on Wednesday.
+
+40
+00:25:52,800 --> 00:26:02,580
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
