@@ -1,0 +1,196 @@
+1
+00:00:00,359 --> 00:00:24,450
+Announcer: Monday, Monday, Monday, open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob and Scott L. Totally ski.
+
+2
+00:00:25,950 --> 00:00:54,240
+Scott Tolinski: Oh, welcome to syntax on this Monday heastie treat. We're going to be treating you with the topic of hobbies. And we'd like to talk about hobbies. But this is going to be talking a lot about how hobbies can help you be a better developer, how they can help you in your life and how they can just make things a little bit cooler for you overall. So we're not just wrapping ourselves in code. 24 seven, my name is Scott turbo Lenski.
+
+3
+00:00:56,310 --> 00:00:57,720
+Wes Bos: Is that what you're going by now?
+
+4
+00:00:57,750 --> 00:00:58,290
+Scott Tolinski: Yeah,
+
+5
+00:00:58,290 --> 00:01:02,460
+Wes Bos: so I'm getting rid of El Toro loco Toro loco. Yeah.
+
+6
+00:01:03,120 --> 00:01:06,090
+Scott Tolinski: I'm not crazy about it. I'm sorry. We'll see.
+
+7
+00:01:06,560 --> 00:01:11,819
+Wes Bos: Toro loco literally means crazy, doesn't it? Crazy ball loco. Yeah,
+
+8
+00:01:11,819 --> 00:01:15,120
+Announcer: but I'm not. I have no local about it. Yeah,
+
+9
+00:01:15,150 --> 00:01:20,810
+Scott Tolinski: I'm not local about it. My name is Scott Tolinksi. And with me as always, is Wes Bos.
+
+10
+00:01:21,090 --> 00:01:22,170
+Wes Bos: Sup everybody?
+
+11
+00:01:22,200 --> 00:02:49,170
+Scott Tolinski: Sup Wes. This episode is sponsored by sentry@sentry.io. Use the coupon code tasty treat all lowercase and all one word and you will get two months for free of this fantastic service. Now what is this fantastic service I'm referring to we'll set century is the air and exception a tracking tool of your dreams. I know me personally a dream quite frequently about error handling tools. And when I do Sentry is usually the first one that comes up. Why? Well, because Sentry catalogs and logs all of your different bugs attaches them to releases and branches and users. And it allows you just a total freedom and flexibility to solve the issues that you need. You even get a nice stack trace, you can attach source maps to it. And it works with every single platform that you could possibly imagine. I mean, just imagine a platform. Well, I mean, don't do that. Because I'm sure there are some things it doesn't work with. But it works with just about everything that you possibly use in your daily life. Not only that, but it has an incredible interface and is used by some of the top companies in the industry. It's fantastic. I use century myself and I have long before they sponsored this podcast. So I'm very happy with Sentry for sponsoring this show. And thank you so much. Check it out@sentry.io use the coupon code tasty treat all lowercase all one more get two months for free. Let's get in to hobbies.
+
+12
+00:02:49,620 --> 00:03:59,040
+Wes Bos: Yes. So with that we do a show on like how important hobbies are for the mind. And for I think they make you a better developer if you're able to take some time out of your day or on your weekend or in your evening or whenever you have time for something to focus on something that is probably unrelated to code. Not that it's not necessarily bad to have a hobby that is code because certainly that's one of my hobbies but something that is unrelated, I think So real quick, we'll just go over some of our own hobbies. For me, I tend to take on a new hobby, research it like crazy do build or make something and then when I'm finished that all I'll move along to something else. So I don't really have a whole lot of like long standing hobbies. I have more very short obsessions where I learned something. So in the past I've done kombucha fermentation curing things like making bacon. This last spring I got super into bike flipping, or I bought and sold I think I bought and sold about 40 bikes in I think a two or three month span. And I mean, like like seven grand or something like that you
+
+13
+00:03:59,040 --> 00:04:00,660
+Scott Tolinski: weren't stealing those ladies.
+
+14
+00:04:02,190 --> 00:05:13,010
+Wes Bos: Let's not talk about I was buying them from like older suburban gentlemen who who's had them in there. They're like 17 racers that have been sitting there and they need work, right? So you buy them and fix them up. I did kids right on repairs. So we have three of these, you know, those like 12 volt kids, right on Jeeps, I got three of those that were in the state of disrepair, and I fixed them and sort of hack them to run on drill batteries, you can overvolt them to go faster, which is kind of fun. And most recently I got an ATV that was super broken. And I'm currently going through the process of learning how gas engines work and how brakes work and clutches and things like that. And my man game here is to get a another ATV and convert it to battery. Well take the gas engine out. So I learned about batteries on the kids ones I'm learning about brakes and clutches and stuff like that on the new one. And then I think eventually we're going to go and replace the motor of an ice one internal combustion engine. They call it two batteries.
+
+15
+00:05:13,050 --> 00:05:13,760
+Scott Tolinski: Wow.
+
+16
+00:05:14,160 --> 00:05:14,850
+Announcer: Yeah, I
+
+17
+00:05:14,850 --> 00:05:21,570
+Scott Tolinski: find cool. That sounds like a lot of fun. This all sounds like really handy. And like, I don't know.
+
+18
+00:05:22,800 --> 00:05:32,670
+Wes Bos: Yeah, I don't know why they're all very like, there's something just like working with your hands and figuring that kind of stuff out. That is interesting to me. I guess I'm not super good at it. But I'm learning.
+
+19
+00:05:32,700 --> 00:06:36,330
+Scott Tolinski: Yeah, I think that's a thing. We'll talk about that later in this episode. But I think that's the thing with hobbies that people really, they want to start a hobby and they want to pick something up, they'd be like, worry too much about being good at it, or the possibility of being good at it. During the day, you you just, you don't do it for those reasons. That's not why I do most of my hobbies. And so I have a lot of hobbies, too. I've been many of which for a long time, I've been dancing for 15 plus years. And I do that like twice a week or so or once a week occasionally when it gets crazy. But even even when I do only once a week, I'm still dancing sort of every day. For those of you don't know I do. Breaking breakdancing has been on my head and stuff, whatever. I've also been weightlifting in doing a lot of fitness stuff for a long time, whether that's yoga or whatever. So I find time to move around a lot as some of my hobbies to get especially to get away from screens, spend a lot of time with screens, I even take my computer to the gym, so I guess it's not too relevant there. But a lot of my hobbies are based on moving because I got a lot of energy to get out. Yeah, it's the turbo
+
+20
+00:06:37,380 --> 00:06:38,820
+Wes Bos: turbo Delinski.
+
+21
+00:06:39,960 --> 00:06:53,160
+Scott Tolinski: It's uh, I also like video game. I play a lot of video games on my my switch recently, I got an Oculus quest, which is like the standalone VR headset that I've been playing Oh, cool. I burned 600 calories with it last night.
+
+22
+00:06:54,660 --> 00:06:59,250
+Wes Bos: That's unreal that you can burn that many like I can I have a hard time doing that many calories at the gym.
+
+23
+00:06:59,280 --> 00:07:13,470
+Scott Tolinski: I play for like a couple hours. And I'm playing these like games that require you to like duck and squat and jump and move around. And they're fun. It's not like a doesn't feel good. I'm not even intentionally exercising. It's just I'm moving around so much. And I think I'm a bit of a spat. So
+
+24
+00:07:14,010 --> 00:07:17,640
+Wes Bos: yeah, that's a very good description for Scott unintentionally exercising.
+
+25
+00:07:19,950 --> 00:08:05,460
+Scott Tolinski: Yeah, that is true. I also I watch I watch hockey a lot, which doesn't seem like a hobby. But you know, it's, it's a chill out II watch thing you keep track of it. It's just not it's not necessarily mindless. I do design as a hobby. I designed the whole level up tutorials website, I don't really consider myself a designer professionally, as you granted, I professionally do design. But I do it mostly as a hobby computing, which I use my computer as a hobby, you know, I get good at my computer, I do web development as a hobby, you know, I pick up projects and do them for fun, just for no reason whatsoever. I also have been snowboarding for a really long time. And you know, some of the best mountains out here in Denver. And I watch a lot of kung fu movies, which also is a very relaxing hobby.
+
+26
+00:08:05,820 --> 00:08:26,610
+Wes Bos: Yeah, the watching of hockey is always interesting to me. So I always thought for the longest time, like that's a waste of time. But then you talk to people who are super into it. And they follow the stats, and they know who's good at slap shots. And it's super interesting that you can get really into the data of it, which I never really, totally understood.
+
+27
+00:08:26,700 --> 00:10:24,650
+Scott Tolinski: Yeah, and there's gonna be a lot of really interesting, they're going to be doing a lot of like player tracking and things next season. So you'll be able to, I don't know, what API's are, will be public. But I know there are a lot of developers out there who have hockey as a hobby. And it gets used the NHS API to build statistical models and things like that, or, or even just visualizations where, you know, heat maps and stuff. Like there's a lot of potential there with these API's, which is one of the things I wanted to get into, sort of in this next section here, which is why are hobbies Good for you, and good for you as a developer? Now, before we get into some of the, like non developer ones, I figured maybe we talk about some of the developer focused reasons first. So why are hobbies Good for you, as a web developer? Well, like I was just talking about before, there are API's out there that exist for the things that you like, or there might not be, and maybe you could build some sort of cool API around something like this. But like, maybe hockey is your passion. And you don't really know what to do for a side project to learn react, or to learn animation or to learn those realization. But you can pick up that NHL API and do something fun with it, do something interesting with it, or do something boring with it just to get your hands dirty. But at the end of the day, when you're working with data that is actually exciting to you or interesting to you, it's going to be a huge, huge difference and the amount of energy and attention you're going to be putting into what you end up getting these ideas like you You know, I'll we do a lot of like Movie Database stuff and the level of tutorials courses and then yeah, sure I watch movies but that's not like my hobby other than the kung fu movie thing. But if if I was doing a side project and I was going to do it on hockey, looking at the players names and their stats is infinitely more engaging to me than looking at some list of I don't know. I'm interested in a lot of things. I'm struggling to come up with something I'm not interested in.
+
+28
+00:10:26,790 --> 00:11:40,170
+Wes Bos: Totally No. For me, it's always the Pokemon API is always super uninteresting to me. foo bar Baz stuff is always very uninteresting to me. And there's so many other things that I would I would be like, like to go into like, like one example here. This is not what I'm interested in. But this one developer on Reddit posted they made this website whoo flu dot live, which is tracking and charting. All the stats about the Coronavirus that we have right now. So how many are confirmed in what countries they're confirmed in. And it was cool, because they obviously had taken the raw data from a world health organization or something like that. And they use their skill to plot it, to scrape it to update it to deploy it, to design it. And I was like, that's like, clearly this person was interested in it. And they probably learned a lot along the way making this website. I think those are the best kinds of Oh, yeah, cross of hobbies. Like I'm not to say that like Coronavirus is a hobby but like being like a news junkie and a data junkie, a journalist, a lot of journalists are like this. They just love the data, and they need to be able to visualize it. Yeah, I
+
+29
+00:11:40,170 --> 00:12:52,800
+Scott Tolinski: think one of my most successful side, I mean, successful from a personal standpoint, side point. side projects I've talked about this before is this B boy tools app I made for myself. And basically, as a dancer, I came up with all these pain points of things that bothered me about practice, right? I wasn't, or even competition, right, I was forgetting my moves, I was forgetting sort of the combinations, I work with these things. I was had some like really interesting tool ideas where there was like, would be like an air horn that would sound every 30 seconds to help me like judge the time. And so there's all these tool ideas I came up with, I was like, all these things would really assist me in my hobby, not just, here's just a project with my hobby data. But here are some things that could make my hobby better. Like there's so infinite possibility. If you think about any hobby that you have, just think about how could that be better? And how could you use your skills to potentially make it bigger in my my opinion, is to dream big on this. Because the possibilities of what you can build, there's really, I mean, it's totally endless, but you can do things that are much greater than what you'd expect. And if you have that seed of excitement around it, it's going to push you to to learn those skills a little bit better.
+
+30
+00:12:53,610 --> 00:13:40,320
+Wes Bos: So unrelated to just web development, I think like, Why are hobbies good? I think they keep your mind sharp. It's good for mental health and mood. Certainly, I had a crazy busy week last week working on my advanced react course. And I said to myself, like, I just wanted to work on this ATV because I just got it. So I said, I'm not going to touch it all week, I'm going to go hard Monday to Thursday. And if I can get I made myself a list of everything I wanted to get done, that if I can get that all done, then I'm gonna take Friday off and work on I got it all done. And it was such a motivation. And then when I did it, it was a nice way to come down from having such an overwhelming tough week of just like being in the code. And it was quite a slog. So just generally good for mood and, and whatnot.
+
+31
+00:13:40,380 --> 00:13:56,520
+Scott Tolinski: Yeah, my my Friday was if I could get my course released before Friday afternoon, I could go have a date lunch with my wife and have a couple of drinks. Not as a I mean, definitely something to look forward to, but not as educational, I would say.
+
+32
+00:13:57,660 --> 00:14:51,990
+Wes Bos: No, that's important as well. I also think it promotes creativity and critical thinking. So one little issue I had was the stress on this ATV were blown out. It's like the it's like a little gas cylinder that goes inside of a shock. And the dealership wanted like 220 bucks for them. So I just like kind of went online searching for like what else uses air struts. And I found out that there's like a truck, a Volkswagen truck rabbit from the 70s that uses air struts. And it's like pretty much the exact same part. So I bought it at the local auto parts store for like a fifth of the price, put it in works totally fine. Just like little things like that about like, you encounter that all the time as a web developer. And that sort of thing is important in other areas of life as well trying to like take a step back and say like, Okay, this part is not available to me, but like, what do I actually need to fix at the end of the day?
+
+33
+00:14:52,230 --> 00:16:16,380
+Scott Tolinski: I think what you'll see pretty quickly is that problem solving skills can be exercised in different ways. Just capacity is the way in, you should spend some time away from the computer screen solving these problems because I often look at mine problems in my code, and I try to visualize them or think about them or approach them. And you can learn so many different lessons from these different projects and tools, I think that's really impressive that you are able to do that with the 80, I would have no idea where to start. That seems like a crazy project to me. But a lot of these do come down to that you're really just more capable than what you give yourself credit for often times, and like I personally, I would say, I don't know if I can do that. But then again, I just did so much other like, I've done so many other things that I didn't think I could do, both being a handy, Handy guy around the house, you know, those kind of things I do so much more than I think I'm capable of doing. And I think that's really the message all the time, especially now in the age of YouTube, where you can go to YouTube and do just about anything. I mean, I replaced some waterline pump on the back of my fridge, and I had to like take apart but entire fridge. And I looked at that it was a very daunting project and I sliced open my hand because I'm dumb. But at the end of the day, I did it and it works and I'm pretty proud and you do it to be honest, every single time I get water from that fridge. I'm like, Oh, dude, then I did that little house pump there.
+
+34
+00:16:17,730 --> 00:16:45,210
+Wes Bos: That's the best cuz like, YouTube is the best like you can just like a week ago, I didn't even know what stret was. And a couple days later, I'm like finding alternatives to it. And it's just because you have the internet, you have YouTube showing people disassembling things and you've got measurements of different things. And you can you can look them all up. And I don't know, it's just that critical thinking, like you said, is so key. And I think that being a developer has helped that in other areas of my life.
+
+35
+00:16:45,240 --> 00:17:49,890
+Scott Tolinski: Yeah. One thing you do have to be cognizant of, though, is like sort of the effect it has on your mental health, whatever this particular hobby is, because some people will be like, yeah, playing video games is my hobby, and then they'll sit down in front of a computer and they'll work don't just in a year, you're getting actually really angry and frustrated. And in those cases, probably not having that desired effect on you know, maybe Sure, maybe it's increasing your response time or something like that. But it's probably raising your blood pressure not having exceptionally great mental health effects. And I've had to be cognizant of that personally, because I would play specific types of video games, and Courtney would just look at me and she'd be like, I don't think this is really relaxing you right now like it like if you're spending time away from you know, and you're stressed out, shouldn't you be doing something to help your state and not that the video games have to be, you know, stressful, but I found more time feeling better about the things that I'm doing while I'm playing video games, if I'm cognizant of if it's actually making me relaxed, or if it's stimulating me in a way that's maybe not exactly helpful.
+
+36
+00:17:50,250 --> 00:18:02,970
+Wes Bos: That's good to have that outlook on it. Yeah. So let's, let's talk about like, how do you find a hobby? So this is something I talk to people all the time, they're like, how do you find a hobby? Like, how do you get into these crazy things? Yeah.
+
+37
+00:18:03,570 --> 00:19:01,850
+Or, like I hear from people are like, I need a hobby, but I just don't know what, and like, I'm opposite. I've got a laundry list of 10,000 things I'd love to look into. I want to grow hot peppers. Well, but I think for me, at least figuring out what a hobby will be, is I always need like an end game. So for me, it's not like I want to learn about batteries. Like I do want to learn about batteries. But like that's not an end game to learn about it. So my end game is I want to build something I want to build a TV that is battery powered. And that's my end goal. And learning about that and having fun researching and going into all the different parts that you need is the hobby itself. So I always try to like kind of revert not reverse engineer, but start at the end of what you want to complete, and then work backwards. And then along the way, you might get sidetracked, you might do course correction, but it's nice for me to at least have a sort of an end game.
+
+38
+00:19:02,430 --> 00:19:12,120
+Scott Tolinski: I'm not really the same way. I don't know, look at there being an end game. I mean, I think that's evident from so many hobbies. Like I've been dancing for so long and whatever. There's no end game there. Yeah,
+
+39
+00:19:12,120 --> 00:19:21,320
+Wes Bos: I think that's probably maybe a little bit more healthy, though. I don't I do like not have to get something out of it. You know? Yeah, right.
+
+40
+00:19:21,320 --> 00:21:25,100
+Scott Tolinski: I'm just doing a tip for the creative output or the physical app. But for me, it's always been about like, what do I think is cool? And can I just do it? That's the whole thing is that oftentimes people look at these things. And it's like, I think breakdancing is so cool. I could never do it. That's like yeah, you can if you think it's cool enough, you could just start doing it. I started when I was older than most people who start and I you know, I got pretty dang foreign and and so it's good to just be able to look at things that you find to be cool, and figure out how you can just start doing them. You're very capable of doing just about anything picking it up, whatever I mean, but I haven't He's been inspired by my dad who, like he learned how to snowboard when he was like 40 years old. And then he picked up the drum, like he played guitar his whole life. But then he was like, You know what, I want to play the drums. So he like, wouldn't just took drum lessons. It's like a bunch of kids taking drum lessons. And then my dad in there, like taking drum lessons. But then he got really good at the drums. It's like, he was so capable of just being like, Hey, you know what, that kind of looks cool. Maybe I should just like, try it and pick it up. He started doing yoga, he started doing all sorts of stuff. So I hit that really good role model of like, if you think something is cool, just try it, you know, you may not be good at it, you may not whatever, you may really enjoy it and want to continue doing it. Or you may have this image of like, I used to watch music videos, and I'd see these breakdancers and I'd be like, this is the coolest thing on the entire world. And I whenever I started saying I was gonna learn a lot of my friends told me I was ridiculous, because I couldn't dance. I had no background in dance, no background in any of this. I didn't know anybody that could teach us this before YouTube. Everybody thought I was crazy for wanting to learn it. And I just thought it was cool. And I let that push me through into now it's just like one of the very most important things that's ever happened in my life. Because it allowed me to travel that allowed me to have some creative output and stay fit and do all these things. So don't listen to people like that and just pick up stuff and try it.
+
+41
+00:21:25,310 --> 00:21:57,450
+Wes Bos: Totally agree. Just kind of got to go for it. Yeah, go for it. other little things we have here is YouTube, we talked about that. Just go down a rabbit hole of YouTube videos is to find a different hobby, forums, Facebook groups, things like that meetups, volunteering, just like putting yourself in different situations will often lead. Like I've got so many friends that have gotten into rock climbing lately. Oh, yeah. Like, one person probably went rock climbing once with a friend. And then all sudden, they're like, this is amazing. And everyone's super into it. Yeah,
+
+42
+00:21:57,480 --> 00:22:18,480
+Scott Tolinski: I went rock climbing last year with my neighbor. And it was awesome. I had a great time. But then, you know, we have a baby. And it's hard to get out of the house as much as Yeah, like, you know, you only have someone that's like the same thing with me. Like you said before, I have so many things that I would look to put my energy into, and I just don't have the time or energy to be able to do it all so
+
+43
+00:22:18,630 --> 00:22:31,050
+Wes Bos: yeah, yeah. It's tough with kids. I definitely try to always have something on the go. But certainly it gets it's the first thing that gets pushed to the backburner. Oh, yeah, when life gets crazy,
+
+44
+00:22:31,380 --> 00:22:32,340
+Announcer: totally. Yeah, I
+
+45
+00:22:32,340 --> 00:22:49,290
+Scott Tolinski: and YouTube. I mean, we mentioned like YouTube being such a huge well of source, but like, you can find how tos on absolutely anything. absolutely anything. And I think that's an important thing to just start and just start watching some of that stuff.
+
+46
+00:22:49,650 --> 00:23:13,860
+Wes Bos: All right, we want to know what is your hobby, tweet us at syntax FM, or post it in the Reddit reddit.com forward slash our four slash syntax FM. We would love to hear what your hobby is. It's kind of cool. I've seen different people send us photos of them listening syntax when they're gardening or flying a helicopter or doing all kinds of really neat things. So I'd like to hear that.
+
+47
+00:23:14,160 --> 00:23:16,140
+Scott Tolinski: Yeah. Likewise, you're all amazing.
+
+48
+00:23:16,470 --> 00:23:21,030
+Wes Bos: Cool. All right. Thanks for tuning in. Catch you on Wednesday. Please
+
+49
+00:23:22,650 --> 00:23:32,430
+Scott Tolinski: head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
