@@ -1,0 +1,168 @@
+1
+00:00:00,359 --> 00:00:01,350
+Unknown: Monday, Monday,
+
+2
+00:00:01,350 --> 00:00:02,160
+Monday,
+
+3
+00:00:02,160 --> 00:00:04,009
+open wide dev fans
+
+4
+00:00:04,009 --> 00:00:07,590
+yet ready to stuff your face with JavaScript CSS node
+
+5
+00:00:07,590 --> 00:00:08,820
+modules, barbecue tip,
+
+6
+00:00:09,030 --> 00:00:11,609
+workflow breakdancing, soft skill web development
+
+7
+00:00:11,609 --> 00:00:21,300
+hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob and Scott
+
+8
+00:00:23,610 --> 00:00:24,149
+Tolinksi.
+
+9
+00:00:27,300 --> 00:00:49,260
+Scott Tolinski: Welcome to syntax on this Monday hasty treat, we're going to be talking about slow connections. And this is gonna be part two of these tasty treats that we're doing. Who knows how many we're gonna do? Because it seems like there's so many of these tips, these tasty, tasty tips here we got for you. My name is Scott to Lynskey. I'm a developer from Denver, Colorado, and with me, as always is les balls. How you doing?
+
+10
+00:00:49,350 --> 00:00:59,430
+Wes Bos: Hey, everybody, I'm excited to talk to you on my slow connection about slow connections, more stuff about how to account for slow internet connections.
+
+11
+00:00:59,489 --> 00:01:00,210
+Unknown: Cool. Well, this episode
+
+12
+00:01:00,210 --> 00:01:07,140
+Scott Tolinski: is sponsored by how Prince Luce study web development comm it was a little bit more about that is Wes.
+
+13
+00:01:07,470 --> 00:02:50,430
+Wes Bos: Yes, Kyle prinsloo has his course, which is everything you need to master freelancing. Man, he's got over 2500 people have already taken this course, which is pretty impressive. And what this is, is a course you go ahead and buy it and you get all kinds of stuff in this course, there's an E book for freelancing there's an E book for web design. There's a bunch of HTML CSS templates. There's a CSS spice Chrome extension, mon. Yeah, CSS spice, calm spice. Okay, inspector extension. Yeah, show you different properties and whatnot. If you select an element, it'll show you what styling on that there's a slack community Facebook community. This is really important when you're trying to be a freelancer prospective client questionnaire, because you need to know what are the questions you ask your client before you build something, a proposal template SEO checklist, I'm not going to go through absolutely everything on here, because there's tons that you get with the bundle. But check it out at study web development, comm forward slash freelancing. And you can see everything that you get in the bundle in order to become a freelancer. So I think this is probably very, a very good time to maybe brush up on freelancing skills because of the the shaky job market right now, I know that a lot of people will be in between jobs over the next couple of months, which is unfortunate. But if there's any way to make a little bit of money while you're in between jobs, and as well as keep on top of your web development skills, I definitely think freelancing is that. So we got a coupon code here it is syntax that's gonna get you 25% off the entire course. Thanks so much to Kyle prinsloo. And study web development comm for slash freelancing for sponsoring. How are you doing? You're
+
+14
+00:02:50,430 --> 00:02:58,050
+Scott Tolinski: doing good, you're doing good. I actually got my MacBook computer back in three days, some of my my fancy new computer again, once again,
+
+15
+00:02:58,350 --> 00:03:06,210
+Wes Bos: I'm impressed how quickly you got that back. You have to lock with computers. So the worst that you can actually get it back. Yeah, I
+
+16
+00:03:06,210 --> 00:04:56,970
+Scott Tolinski: bought a backup computer, which is kind of a crazy thing. But I bought a backup computer, which is going to be a Linux machine. It's a system 76 machine. So we're going to do a whole episode on that in the future. So I know this is the hasty tree. We don't normally do banter at the beginning. But you know, I just don't want Yeah, we do what we want. We make the rules here. Yeah. So let's get going. Let's first talk about images. Now images are one of the most killer things for any websites download time, because there's just nothing you can do about images, there are going to be hefty, hefty hefty, just about all the time with some small exceptions. And there is a lot of different techniques you can use and utilize to make your usage of images just a little bit better. When you think about it, we have like a JavaScript bundle. And the solution to making your JavaScript bundle is to use less JavaScript, right. But as an image, there's only there's only so much data you can remove for an image right before the compression gets to be bad. That's where you'll see a lot of companies right now they're doing a lot of research, you have a lot of new image formats coming out whether that's web peas, or various things like that. But what are some strategies that we can have to reduce the load of our images? Now one, here's here's the, here's the beginner tip number one do not serve an image larger than you need. I remember back in Dreamweaver days, there used to be a button that was like optimize image that all it did was make the image the actual width of the way it was displayed. And that was like when I was first but my very first website I had some person be like your images are huge. And this is when high school does it means like your images are huge. You just click that optimize Image button. I was like, oh, wow, okay, yeah, I can make my site lit a lot faster. It should be like the very first step. don't serve an image larger than what you need first step.
+
+17
+00:04:57,450 --> 00:06:21,870
+Wes Bos: Next one we have here is resize your images on Client before uploading, which is sign a lot of people don't think about they always think about like loading download fast. But if you have an application that where the user has to upload stuff, a photo off your iPhone is three or four Meg's they're massive that takes forever to upload on some of these things. And not to mention, someone needs to upload six or seven images, you're just killing their data plan with that. And it is so easy to resize the images in the browser, you just pop it into a canvas element, resize a canvas element, pop it out of the canvas element, and you've got the the resize image, you can just convert that thing to binary string and post it over to the server. So always think about that. Next one we have here is width and height content on placeholder images. So not a lot of people do this anymore. Because of responsive design. It's frustrating to set the width and height attributes on an image, but also make them responsive. But you can always overwrite within high attributes at smaller values. But it's really frustrating to go to a website and start reading something and then have the content shift down or the button shift down. Because the image has been loaded in the browser knows how big it is. And then it has to shift everything around. So within height is key for not having page jank, as the slow side is loading.
+
+18
+00:06:22,200 --> 00:07:27,990
+Scott Tolinski: Another tip we have here is to crunch your images to compress them with lossless compression, there's a lot of different ways you can do this, a lot of build tools do it nowadays. There's also, if you're working on a little bit less of a build tool, heavy process, which I don't know a lot of people probably aren't nowadays. But there's an app called image optim. Or there's a lot of image compression software on the web that you just drop your images to. And it removes all of the metadata beneath the extra color data that doesn't need to be there all while keeping your images looking the exact same. And I've seen like huge reduction in image sizes, doing this, this is something I would never not do. There's obviously ways to do this within your build tool as well. And maybe even some stuff with you could have like a continuous integration sort of workflow with like a GitHub action or something that could go cruncher images on commit or something like that. I know, you've experienced quite a bit of crunching things on commits with your Gatsby site, and just how long image processing can take. But it really depends on your setup. It can be one of those things that it's very nice to have. Totally,
+
+19
+00:07:28,020 --> 00:07:52,770
+Wes Bos: there's we've talked about hundred times or services, there's good hooks, there's local apps, all kinds of stuff, just find some way to compress your images. Next up, we have use SVG where possible. So a lot of times the the logo of the website, a lot of these things can be used as SVG, SVG, s are significantly smaller and can be infinitely scaled up. Because they are vector based.
+
+20
+00:07:52,950 --> 00:08:07,710
+Scott Tolinski: Yeah, definitely. And they can even be straight up server side rendered in line. So the next one is going to be lazy load images, where possible, that's actually become increasingly easy, given the fact that you can now just drop up is the tag just lazy, right?
+
+21
+00:08:08,010 --> 00:08:11,250
+Wes Bos: Yeah, lazy attribute on your image tag.
+
+22
+00:08:11,270 --> 00:08:29,580
+Scott Tolinski: So there's browsers that support the lazy attribute will take care of it. Other ones that won't Well, hey, they won't just yet but at least that some progressive enhancement for you, I use the React lazy load plugin that works really well, for lazy loading images. I think that's something that it should definitely be done, especially for things that are out of the V port.
+
+23
+00:08:30,000 --> 00:10:07,260
+Wes Bos: Yeah, that's easy one to add. Next, we have scripts and CSS assets. So we are not going to talk about this again. But make sure that you're appropriately loading your your CSS and your scripts. We did a whole series of hasty treats on things that cause your website to be slow, go back and listen to those ones. Next is video. This is one thing I didn't do initially, when I launched my course platform as I just had one type of video and users on slow connections would not be able to smoothly watch the video because it just was too large. So some sort of player that does variable video processing, whether it will drop down to a lower resolution or something like that. Absolutely key. Next up, we want to talk about connections that go in and out. So you might have a fast connection. But if you are going into the subway, or you walk under a bridge or something like that, and your connection goes out for a minute or even 10 seconds, it's important to show some sort of UI to the user that they are offline. And it's very easy to do this in your applications. You just have an add event listener for the offline and online events. You listen on the window, and then at that function, you can go ahead and set state online true or online false. You could probably make a react hook called use online that returns true or false, very easy to do. Same thing with like, if you have data that needs to be saved, but it's not pushed up to the cloud yet telling the user are going to We try to upload this or we try to save this in 10 seconds. I think slack does a probably the best job I've seen. I'm doing this.
+
+24
+00:10:07,380 --> 00:10:48,390
+Scott Tolinski: Yeah, discord has a really nice one too. I think that is an important capability, especially if it's like a real time thing. If it's a website, obviously you don't need to alert people. But if it's anything more people are inputting content and viewing content in real time, then potentially, I think that's a an important aspect. So next one is going to be service workers. Now I'm interested in maybe getting, we should get like a service worker expert on here. Service Workers are a bit of a mystery to me in terms of writing, like, I could not write my own ServiceWorker from scratch, but I haven't ever tried and I've never really looked too in depth at it. Do you know the internals of what a ServiceWorker does exactly how it does it?
+
+25
+00:10:49,280 --> 00:12:03,810
+Wes Bos: Yeah, yeah, it I've talked about a little bit on the CloudFlare workers API, because it's very similar is that the service worker sits at the network level, and intercepts requests. That's that's one thing it does is it sits at the network level and allows you to both save values to your cache, as well as intercept requests and serve up cached HTML, CSS, images, things like that. serviceworkers can also be used for other things as well. But that's probably the most popular one is, is showing an offline version of the website, they are a little bit tricky. I'm always a little bit scared to put them on because you can accidentally get into a spot where you cache the website, and then someone visits it. Luckily, you can always a service worker will always try to check for a new version of itself on every page load. So you can always clear that cache. But I agree that they're much harder than I think they have to be. They are Yeah, Google is working on something. It's like worker workbox by Google is a nice little library that will allow you to do things like progressive web apps very easily, without having to know all the nitty gritty service worker stuff. Interesting. Yeah,
+
+26
+00:12:03,810 --> 00:12:04,530
+Scott Tolinski: I've never heard of that. Yeah,
+
+27
+00:12:04,530 --> 00:13:23,610
+Wes Bos: cool. So the next one we have here is font loading. So one, one trouble with fonts in the browser is that if you use a custom web font, then your browser will show you nothing, until that font has been being loaded, which is frustrating to the users because they don't care about your custom font when their internet is slow. They just want to rewrite the actual content of it. So you can use the font display property of your font, when you define the app font face, and you can set it to fall back, you can set it to swap swap is most likely what you want, where it will take like 100 milliseconds or 200 milliseconds. And if it hasn't downloaded or sorry, that's fallback, not swap, fallback will try to download the font. And if it's taking too long, then it'll just show the fallback font face, which is which is what you want. And I think that's also the default and a lot of browsers now. And your browser will also determine how long it should try to download the font before then falls back. But definitely check out your font display, especially if the developer have that font installed locally on your computer. And it just shows up immediately when you visit. That's why I always like to name my fonts something different than what they are on my computer. Oh, nice that smart, you can still get the feeling of what does it like for regular
+
+28
+00:13:24,000 --> 00:13:38,190
+Scott Tolinski: visitors in the very like the case where performance is absolutely essential in these things. And you can using a system font is going to be totally the fastest every single time there's going to be no fun download requirement, you know,
+
+29
+00:13:38,190 --> 00:14:30,270
+Wes Bos: there's this little snippet, I'll put it in the show notes here. It's font family, Apple system, blink Mac system, font, segue go UI Roboto, oxygen, Ubuntu, Open Sans Helvetica new, it's this like massive font stack that will give you a really nice font, regardless of what you're on. And that's kind of my default. And then I'll go for a custom font, usually on headings and things like that word. Next one we have here is just some CSS tricks. Like the like the website, if you have text overtop of an image, make sure that your background color matches that Yeah, as well as possible. Because if you have like a white background and a black image, and you've got white text, you're not gonna be able to see that text until the background image load. So make sure you set your background image, show your background color to be something similar to that image.
+
+30
+00:14:30,630 --> 00:15:49,980
+Scott Tolinski: Yeah, that's actually a really good point. I don't think about that a whole ton, but that is that is definitely. Right. So let's talk briefly about like testing these things. I don't know There seems like there's a billion services to test these things into really experienced them. I use, obviously the audits tab within Google Developer or Chrome Developer Tools to really run an audit to see where the potential slowdowns could be, but like you have it listed here. The ability to mimic a slogan goes a really long ways. Now Wes, does it need to mimic a slow connection right now, but I have a really fast connection. And I often forget a little bit about just how fast my connection is. So if you head into Chrome Developer Tools, you head to the Network tab, you'll see that they have the ability, there's a drop down, and typically by default is online, which just means you're online. Now you can test to see your site in offline here already. But you can also test to see if it's any fast 3g, network 3g, yeah, fast 3g or slow 3g? Or there's some custom ones where you can actually get down into the nitty gritty of throttling it. So you can make a custom profile and choose the actual amount of cavies download upload latency, all that stuff. You know what I'm surprised they haven't updated this to have like four GB the option because like honestly, 3g who's using 3g still give me an edge network Next,
+
+31
+00:15:49,980 --> 00:15:57,660
+Wes Bos: check your privilege out the doors got a lot of people are still on 3g. Are they myself included? Are you yeah, oh, yeah, man, I'm
+
+32
+00:15:57,660 --> 00:16:02,730
+Scott Tolinski: now with that I will come up with like five G's the thing now, so I just figured 4g was ubiquitous.
+
+33
+00:16:02,850 --> 00:17:05,570
+Wes Bos: My phone regularly dips into 3g. But I take that back, I'm sorry, depending on how far I am from the plus, like, also, we're thinking about just like all around the world, and a lot of developing countries don't have 4g absolutely everywhere because like the faster these connections get, the more towers that are needed. So 5g needs towers every couple blocks, whereas 3g needs towers, every 10 1520 kilometers. So there's a lot of places I guess it's different in Canada, because Canada is a massive country with like a 10th of the population of the US. And there is a lot of spots in Canada that still don't have have LTE connections, or the LT connections are heavily throttled like I do get lt up here. But they're heavily throttle just because there's 2000 cottagers on the one tower. And one tower can only do like 100 megabits I read, and Scott's here sitting with 10 times that on one internet connection for his office, right? It's not the thing.
+
+34
+00:17:06,479 --> 00:17:36,080
+Scott Tolinski: It is it is and in I i understand that is not common. In fact, for a very long time, I just really wanted fiber internet forever and ever and ever, I would have watched the the updates of when it's gonna roll out to Google and whatever. And then one day, I just got a little letter in the mail it says CenturyLink has fiber. Now granted, CenturyLink does not deliver the speeds that I'm paying for. But it's it's like am I going to really complain that hard getting 700 up and down or something when I like, am paying for a gig, I don't I'm probably not going to complain about that.
+
+35
+00:17:36,630 --> 00:18:07,580
+Wes Bos: It's important, I guess if you're doing video and stuff like that, but I would absolutely love to get that I can't wait for the day like I bet in the next couple years, we'll get that where I live in Hamilton. It's important to know all of his even just even if you have like 15 megabits down, that's fast enough to load most websites in a second or so. But it's when you get down to just like one to three megabits down. That's when a lot of these things that I'm talking about here, start to show their cracks. Come
+
+36
+00:18:07,580 --> 00:18:11,040
+Scott Tolinski: to a crawl. Yeah. Especially today's JavaScript framework world.
+
+37
+00:18:11,310 --> 00:18:13,890
+Wes Bos: Am I right? There you go.
+
+38
+00:18:13,890 --> 00:18:15,270
+Scott Tolinski: Let's start the flame or
+
+39
+00:18:16,020 --> 00:18:42,450
+Wes Bos: Alright, that's it for today. That's all the things that have Oh, I should also say you can throttle your connection in Firefox as well. You have to use the mobile emulator and there is a drop down that says the different types of throttling and that 4g LTE is an option. Cool. Thanks so much for tuning in. If you have any tips of your own, make sure you tweet us at syntax FM and we will catch you on Wednesday. Please
+
+40
+00:18:44,730 --> 00:18:47,810
+Scott Tolinski: head on over to syntax.fm for a full
+
+41
+00:18:47,810 --> 00:18:48,390
+Unknown: archive of all
+
+42
+00:18:48,390 --> 00:18:54,510
+Scott Tolinski: of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
