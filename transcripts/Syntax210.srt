@@ -1,0 +1,372 @@
+1
+00:00:01,319 --> 00:00:10,530
+Announcer: You're listening to syntax the podcast with the tastiest web development treats out there. strap yourself in and get ready to live ski and West boss.
+
+2
+00:00:10,559 --> 00:00:56,310
+Wes Bos: Welcome to syntax and happy new year Happy 20 This episode is going live January 1. We're recording it December 16. So the year new me love that same New Year new me. Today we got a potluck for you all kinds of awesome questions around JavaScript and CSS and hosting applications and soft skills. It's got a good one for you. So stay tuned. We are sponsored by today. Kyle Prince Lu's freelancing course which is available at study web development comm forward slash freelancing dot html and Log Rocket which is logging in session replay for your JavaScript apps. We'll talk about them partway through the episode with me as always is Mr. Scott to linsky How you doing today? Scott?
+
+3
+00:00:56,459 --> 00:01:19,680
+Scott Tolinski: Doing good. I'm um, you know what? To be entirely honest, I felt a little a little slow with the past couple episodes. I'm feeling a little bit more revitalized. 2020 feeling really charged. Got some caffeine in the system. And and I'm excited for this year. I'm excited for this month. I'm excited for this episode. So macro to micro I'm all ready to go. What about you?
+
+4
+00:01:19,949 --> 00:01:37,050
+Wes Bos: I am doing pretty good. This is last week before Christmas holidays. And my daughter's got a half day on Friday. So I've got what four and a half days to wrap up my year. I've gotten 5 million emails or apply to invoice down and think Yeah, just trying to button everything up this year.
+
+5
+00:01:37,109 --> 00:03:53,250
+Scott Tolinski: Yeah, I'm feeling a little stressed out and then same same way trying to get everything where it needs to be. And I just looked outside and it's suddenly a winter wonderland outside. It was like beautiful. And now it's absolutely coming down. snows coming down Colorado. Yeah, Colorado man wild wild weather here. Let me tell ya. Let's talk about the weather for a little bit longer. Now let's get into this potluck episode. The first question is from Tim Moran. And Tim asks, Tim asks really good questions. By the way, I think we've gotten several of Tim's questions. I recognize his name from a few other potlucks. But he asks, When you run an audit, like lighthouse on a website, do you run the audit on each page? Have you found an app or a hack to run the audit over the entire site or multiple pages? So yes, when you do run lighthouse, it's just running it on the one page that you're running it on. Typically, you're going to want to run those on, you know, the the main pages as far as running it on everything. Woof. I know that would be very difficult. For me personally, because levelup tutorials has a lot of pages, right? We have like, let's say 2000 plus tutorial videos, and blog posts and little pages and stuff that would require auth. So to be able to have an audit automatically run on each page automatically seems really, really kind of tough. You know what I don't know. But the things like lighthouse, these are good things to run, maybe like in the development process once or twice. You don't need to be running these things continuously and really staying counting on it. Usually it gives you a set of checklists, and you solve those issues. And a lot of times those issues are solved for the entire application. So it's something you want to be cognizant of, but maybe not something you need to be really intense about that said, we just had an episode on GitHub actions, and we had an episode. Well, I haven't had an episode on Cypress yet. But maybe that's a tool that could be baked into your continuous integration via GitHub action, something else? Or maybe it could be baked into your end to end testing with something like Cypress To be honest, I have no idea just seems like a possibility.
+
+6
+00:03:53,699 --> 00:04:37,110
+Wes Bos: Yeah, I think what would be really cool is if you could run lighthouse, or whatever you're using, on the pages that were changed, like you should be able to figure out what page has changed in this pull request, and then only run it on those pages. I'm just looking online here there is a NPM package called lighthouse batch will allow you to run it on multiple pages. And there's another one that will allow you to run it in parallel. But certainly if you've got, I don't know, 80 pages that would that would take quite a while I think with these tools, I'll just run it on like the home page. And then if you know, it's like a significantly different page, there's a lot of extra code or functionality on that page that I'd probably run on there.
+
+7
+00:04:37,499 --> 00:04:49,980
+Scott Tolinski: I found one called lighthouse action. That's a GitHub action. There you go into it, but I don't know if it does exactly that. I would need to look at this a little bit more. But definitely something interesting there. Yeah,
+
+8
+00:04:50,010 --> 00:05:09,660
+Wes Bos: you would need some sort of custom code that would figure out based on whatever CMS you're using, what pages have changed. Yeah, what pages have been touched, like and you could if it was like a natural app, if a component lower down the tree change, then you'd need to rerun it on the parent page. So I don't know maybe maybe somebody out there has a solution for that. I would
+
+9
+00:05:09,660 --> 00:05:29,820
+Scott Tolinski: almost want to do it like a custom list of pages to run like here the page because I don't need to run on every tutorial you just need to run on one tutorial page. one specific one, one listing one this one that so then you can't necessarily have it be super ATA, well, you deleted a list and have it go through it but interesting idea. Cool.
+
+10
+00:05:30,240 --> 00:05:44,730
+Wes Bos: Next question we have here is from potbelly font pig question, what makes a font good. I stumbled upon this website, Haley feech dot fun forward slash fonts, it's h a l e, why
+
+11
+00:05:44,940 --> 00:05:49,770
+Scott Tolinski: we should probably make sure this is an appropriate website before retreating it or sharing it. But
+
+12
+00:05:50,160 --> 00:06:37,110
+Wes Bos: I've been to it is very appropriate, um, where she says her first font was not good. But it looks perfectly usable to me. What are when you're picking fonts for web apps? How do you judge the fonts is entirely subjective? Um, I think there's there's a couple things probably to it is, how readable is it at a large in a small use case? So if you make a font very small, is it is it still readable? I know that there's some fonts that are very hard for what's the disorder that you have? Where dyslexia lexia? Yeah, for there's a lot of fonts that are hard for people with dyslexia to read. So I don't really know, what makes a good font and what doesn't, that's not really my area there. But, Scott, do you have any thoughts on this?
+
+13
+00:06:37,320 --> 00:07:52,590
+Scott Tolinski: Yeah, you know what I mean, I looking at this, especially when she, she says, This is her first font, it's not very good. But it holds a special place. I'm on the font website, by the way. And what's interesting about this font is it looks really good to me to know the difference between a font looking good, and the font looking good to the person who created it, it could be saying this does isn't good, because perhaps it doesn't fit with the things that they've learned about typography as they've grown as a designer, or potentially, there's little issues here or there with the kerning or the the flow of a font. But a lot of this, to me personally, would seem like it's just a matter of taste, and matter of skill in their own work rather than like I mean, you sometimes you look at your code, and the code might seem perfectly reasonable to somebody untrained eye, but somebody who's also looked at this might say, Oh, this could be better. And these ways it look at this the same way with creating fonts. To me, all of these fonts on this site look super dang good. I love all of them, especially the one singlet it looks like it was inspired by Katamari damacy, which is favorite of mine. So this looks great. I love a lot of this stuff. Check out this page, if you haven't, fringe is also good. Wow, very good.
+
+14
+00:07:52,620 --> 00:08:47,940
+Wes Bos: Yeah, I think also, what makes a good font is that it has upper and lowercase, has accents available. You can't just think like, the most English doesn't have accents. But pretty much every other language does. Some fonts will account for letters that come after it. So if you have an A and E, they'll give you that cool ey thing. Even like one of my favorite fonts, which is red, Nika, I use red, Nika. Next, I use that on my JavaScript beginner javascript.com course. And if you inspect the aava of JavaScript, you'll see that I just wrapped a span around it and how to really bump down the letter spacing because the the weird case where an A and A V and an A all came together, there was just these like massive gaps in between each of the letters. And like, that looks awful. So I had to, like go in and kerning in in JavaScript socks, because you just have to wrap a span around each of the letters. Yeah, um, but
+
+15
+00:08:49,020 --> 00:08:54,919
+Scott Tolinski: yeah, was that there's a plugin for that were wrapped automatically wrapped, was that
+
+16
+00:08:55,140 --> 00:08:58,260
+Wes Bos: I've written it 100 times before I call it Spartan wrap.
+
+17
+00:08:58,260 --> 00:08:59,130
+Scott Tolinski: Oh, nice.
+
+18
+00:08:59,149 --> 00:09:02,070
+Wes Bos: Where it just it's splits your letter.
+
+19
+00:09:02,100 --> 00:10:19,770
+Scott Tolinski: There was one that was made by I think the Sandro maybe that automatically wrapped each one and with a letter with its own class. So we used to use that all the time back in the day a jQuery plugin. Okay, cool. So let's get into this next one from Adam Kay, and it's as a solo founder, speed is essential. So Adam is speed demon. What's faster, building your own components using a theme or using a framework? Well, if you were just looking into what's the fastest, like number one the fastest, I think the fastest is using your own framework that you've written yourself. Why is that the fastest because you're, if you've written your own framework, and it encapsulates everything that a you might need to do, then you know how to use it really well because you wrote it and you probably have used it before. That's probably number one the fastest to me. Second, most being using any other framework like tailwind. Or bootstrap or something like that those are going to be very fast, especially if you have worked with them before and know it if you don't know it, not gonna be as fast. That's to me speed is like the number one most essential thing, then that's it to me. But I don't think speed is number one, the most important thing, but that yeah, that's another conversation, I think,
+
+20
+00:10:19,789 --> 00:11:07,950
+Wes Bos: yeah, my my course back end, I built it in foundation. Because I wanted speed, I wanted to slap this thing together and get it up really quickly. And now we regret it. Because now whenever I want to, like, modify one of my course cards, I don't have like a course card I can work on, I've got 15 different classes that I have to like, overwrite on each of them. So long term, the short term, getting it up and running, just just ship it. Absolutely, that's the fastest not writing tests for your JavaScript that's much faster than actually writing tests, long term is going to bite you in the butt for things like that, unless you do it properly. Obviously, you can approach any of these frameworks properly. But if you're just thinking like, I just need to get something up long term, and that might not matter, he might not care about long term, you might just care about getting it up and running. So
+
+21
+00:11:08,220 --> 00:12:00,270
+Scott Tolinski: if you do long term care about it, I would recommend writing your own anything because we recently rewrote the entirety of the CSS for level up tutorials. And we did so starting fresh from a design system perspective. And we redid the design system, and figma did it all out and then rewrote all the components. And let me tell you, right now, we could not be any faster, adding things to the site, because everything has a component at all works the exact way it should. Here's a layout, here's a card here. So whatever, it all fits together, like a perfect little system that we designed it to do. And to me, that is really essential. I don't even have to look up any sort of documentation because I wrote it along with Eric and designed it. So I'm, I'm very about writing your own thing, but in the same regard, that isn't the fastest, it's just the fastest after that framework has been written itself.
+
+22
+00:12:00,870 --> 00:12:28,470
+Wes Bos: All right. Next question. We have here is from Tim. Hey, guys love the show. Thank you, Tim. I've never been a tea drinker. But lately, I've been wanting to start drinking hot tea in the afternoon instead of coffee. I know Scott is the tea girl. What would your suggestion be for starting out? This is a great question because I think all of us probably drink a little bit too much coffee and Scott knows the stuff here so lay it on a Scott, how do you what would you suggest someone getting into tea,
+
+23
+00:12:28,559 --> 00:16:40,620
+Scott Tolinski: there's a lot of variety in tea from black teas down to white teas, right? So you go black is the strongest, most caffeine strongest flavor, white, the least amount of caffeine, the I don't want to say the least amount of flavor but then maybe the more subtle of flavor. And then you have stuff in between you have yellow teas which is a little bit more you have green teas which is more than that you have Long's which have their own characteristics. There's so much variety in teas Not to mention the amount of fruit or, or flavoring you can add to the My one suggestion would for tea would be to stay away from something like teavana, where everything is just like filled with sugar. They just add a bunch of sugar to stuff. So I wouldn't go crazy because those are those are delicious, by all means, but they're not when you miss the characteristics of the tea, but you also just don't need that much sugar in your life, especially from something like tea. I personally, my favorite teas are all Chinese green teas. Alex and Taiwanese oolongs. I like some some interesting stuff, I think you need to try teas. And don't be afraid of them. If you don't like it. Don't worry about it. start buying teas in small quantities rather than large quantities until you will really find some that you like because there's some very different characteristics. For instance, a Puerh teas are like fermented dark teas. And those can be really strong and very smoky. And they can almost have some like real earthy qualities that a lot of people don't like. So if you try one of those, and think it's going to be representative of all your T's, it's not going to be the case. Now, last year, my brother got me this cool little subscription to a place called sips be, you know when those box services type things where they send you some stuff, and I found it to be really pretty good. You give it some qualifications to say okay, these are the kind of flavors I like, this is the stuff I might be interested in. This is how much I know about tea, right? You could say I don't know anything. And what they do is they send you a box of four different teas and I found it to be pretty reasonable. The teas were all good that I got from there. They get them from several different places. It's all loose leaf tea, you drop it in. So I would suggest stick with loose leaf tea. You know, use a filter or whatever because the teaser high quality. Find some service that allows you to try or test out tiny amounts of teas. Just go to your local loose leaf tea store. We have some amazing ones here in Colorado, if you're in Ann Arbor, Michigan tea house represent, that's my favorite tea shop. They do a lot of great testing, but um, yeah, buy small quantities and try a bunch of different teas. Chinese greens are where I'm at. It's really hard because there's so many different varieties of flavors. But if you have specific flavors you want Feel free to hit me up on Twitter. And I can do my best to point you in the right direction. Next question is from Michael Reed. He He also let us know that it's read as an art Ed not read like you read a book, because it's. So thank you, Michael. Is it worth bundling JavaScript for websites that aren't using a framework, ie WordPress or CMS websites, the company I work for uses several or uses a large enterprise CMS, and our JavaScript is just a minified mash of several different j s files, most of which are several hundred lines of spaghetti code, it would be nice to break up all these files and store in a modular way, and have the added benefit of using Babel. so we can write modern j s. However, the output of bundle j s seems massive. Won't that hurt performance on page lip? Hmm, this is a tough question for me. Because I haven't worked in CMS websites enough recently to know the right answer. Like if I have, that's one of the reasons why I'm reaching for a headless situation. Because you get a lot of those benefits, right? The code splitting. But then again, you're you are adding the issues of a front end framework.
+
+24
+00:16:40,799 --> 00:16:46,980
+Wes Bos: The question is saying like we already minify it, right. But if we bundle it is huge. I don't get that.
+
+25
+00:16:47,279 --> 00:16:59,370
+Scott Tolinski: I don't get that either. Because if they're minifying it that's doing the process do it. So like in that case, why couldn't you use Babel to transform it? Before you minify it? Right?
+
+26
+00:16:59,610 --> 00:17:23,940
+Wes Bos: Yeah, your bundles not gonna be any bigger than the code that you write. And less and less of what's happening is that you have seen some sort of bundler, that's including every, every single polyfill under the sun. So I don't know, I don't think so. Like the absolutely you should should be bundling your code. And then that opens you up to using things like Babel, and yeah, all kinds of really neat stuff. So
+
+27
+00:17:24,179 --> 00:18:05,640
+Scott Tolinski: when I wrote a lot of Drupal, we always use Gulp on the back end to do the the compiling. So are you compiling your CSS? What are you doing for your CSS? Is there a build tool, grunt, gulp one of those. If you're using one of those, then you could probably throw Babel in there, too. I can imagine you have that much JavaScript, in a CMS base website that's being thrown. Now that seems like the only time I ever had that much JavaScript is when you're including a bunch of libraries or doing full front end stuff. So this is Yeah, this is a tough answer, I think. But yeah, you should probably be using a bundler. In my opinion, it shouldn't be that difficult. If you're already using something to compile your CSS. You know,
+
+28
+00:18:05,640 --> 00:18:35,640
+Wes Bos: it's a show I want to do in the new year, I guess it is the new year, but you listen to us is like for years, we've been saying HTTP two will stop us from bundling. And like the whole idea behind a sheep HTTP two is that requests to the server for like eight JavaScript files, and 14 CSS files will only make one request. So like, it doesn't matter if you have 1000 script tags on your page. And people have been saying that forever. And I'm kind of sitting here been like, Can we do that now? Or like, why are we still bundling?
+
+29
+00:18:35,790 --> 00:18:39,800
+Scott Tolinski: I heard HTTP two is gonna kill graph. QL. Two?
+
+30
+00:18:39,960 --> 00:18:43,020
+Wes Bos: Well, there was an article on that now HTTP three is out.
+
+31
+00:18:43,140 --> 00:18:49,260
+Scott Tolinski: Whoa, can we just jump to eight? What is this? What is the HTTP think it is angular?
+
+32
+00:18:52,380 --> 00:19:33,080
+Wes Bos: So like, and like most servers are supporting this already. So I don't know. Like, I don't know enough about this space. I'm sure somebody listening does you can tweet us or maybe we'll find someone to come on the show. And explain, is that actually true? Like, even like with the reason why people think it's going to kill graph qL is because you will be able to make multiple requests to like, let's say you've got a component that hits your API endpoint 14 times. And that will fire off 14 different requests. Apparently, that'll be fine with HTTP two. But I haven't actually heard anybody just doing that and saying it's fine. So I'd be curious to see what that looks like.
+
+33
+00:19:33,390 --> 00:21:17,330
+Scott Tolinski: I'm curious as well. I'm very curious. I'm also I'm also curious about becoming a better freelancer. One of our sponsors today is study web development.com. Now study web development. COMM has this really cool bundle, which is everything you need to know to master freelancing. And it has been taken by over 2000 students. It's really super cool and let me tell you, there's a ton of stuff in here, including a freelancing and beyond the E book, CSS and HTML templates, a private slack and Facebook community portfolio templates, client questionnaire, which is meaning you can give your clients before starting a project and SEO checklist to make sure that you are giving your clients everything that they possibly can need. There is a ton of stuff, including lifetime updates, like I can't even tell you exactly how many things are in this. And there's actually going to be some new additions to this bundle as well, including a legal contract. So you don't have to pay a lawyer to write a contract for you. css spice Chrome extension, which is actually pretty cool. It's a Chrome extension that helps you inspect and copy CSS from other websites, and a brand new ebook called a web design and beyond, it was just focused on equipping you to create the most effective websites to get results for your clients. So head on over to study web development.com and use the coupon code syntax for 25% off the bundle. Again, that is the coupon code syntax is study web development. id.com Thank you so much for study web development comm for sponsoring
+
+34
+00:21:17,520 --> 00:21:20,570
+Wes Bos: next question we have from sky dog. What's up sky dog?
+
+35
+00:21:21,080 --> 00:21:33,420
+Scott Tolinski: sky dog? there one cat one critique of sky dog asks a really good question here. I'm just gonna say it up front. But sky dog a missed opportunity a spelling dog, da w g
+
+36
+00:21:33,560 --> 00:21:36,240
+Wes Bos: da da. Oh, what is that? We just have
+
+37
+00:21:36,270 --> 00:21:39,480
+Scott Tolinski: wolf dog man. Like dog until
+
+38
+00:21:40,550 --> 00:23:38,310
+Wes Bos: we get we do get a lot of these questions that are phrased this way. Anyway, Sky dog. Hey, guys love this podcast. So flipping much. Thank you for for watching your language dog. I love how you you do your best to keep the content fresh and current as well as interesting. And let's be honest, fun. Thank you, dog. I know both of you put out a ton of content and both together individually. I'm curious to hear if you listened to any other podcasts there in the land, any other types of content that you consume, to hone in on your skills and pay the bills. Thanks. Oh, and peace. Alright, so I listened to a lot of podcasts, but very few tech podcasts. Just because I don't know, I think that's why we made this podcast. I didn't particularly enjoy a lot of these podcasts because the they're not all that exciting or interesting. And the audio is often awful on them. But the tech ones I do listen to I listen to shop talk show. Not all of them, but quite quite a few of them. Chris Carter also has a really good one called the code pen, code pen podcast, whatever the code pen podcast is called. I really enjoyed that one. And then I just listened to mostly things about getting scammed. I'm a big fan of the heist podcast that has every week they talk about different heists that they have. I used to listen to the mixergy podcast, which is a really good one for having stories from people who have sold a business or grown a business or things like that. I don't listen to it all that much anymore, because I listened to it for I don't know, like six years or something like that. And it's starting to get a little bit repetitive. For me at least like not no no shade thrown on the podcast. It's just, I'm in a different spot in life right now. So those are kind of ones I have and just like I'm been listening to the dream that's got sick the other day. Oh, season two and also I figured out they had a like an in between season that didn't do yeah, Lula row with leggings. Oh, it was so good.
+
+39
+00:23:38,820 --> 00:23:40,200
+Unknown: Yeah, that was great.
+
+40
+00:23:40,920 --> 00:23:42,060
+Wes Bos: So that's me. What about you?
+
+41
+00:23:42,300 --> 00:24:32,640
+Scott Tolinski: Um, I so okay. Yeah, I added ones that are tech and tech adjacent here. Because I always give my my sick. Yeah, that are podcasts that are not. And so I listened to the React pad, the React podcast, with fantastic, fantastic. He is the man tastic I suppose. He know. I really love react podcast, not just because I've been a guest there but it's really one of my favorite really just great shows great guests and always learned something indie hackers, which we featured Cortland on this show as well. Indie hackers absolutely love indie hackers. I think I learned so much from different founders. They're just yeah, about growing their businesses and you can just what they should be doing, when I listen to those also tech adjacent is akimbo by Seth Godin. And it's,
+
+42
+00:24:32,790 --> 00:24:33,750
+Wes Bos: yeah, that's a good one.
+
+43
+00:24:33,930 --> 00:25:10,500
+Scott Tolinski: Yeah, Kimbo is fascinating, because it's a marketing sort of that type of podcast, but in a little bit more of an abstract way. I found it to be very thought provoking in a way I really enjoy. I also really liked command line heroes command line heroes tells them sort of the history of different programming topics, from the creation of Linux to all sorts of stuff. I really liked command line heroes. I continue to listen to that so I don't listen to it. A ton of tech podcasts that like I said, I listened to a ton of hockey podcasts and comedy podcasts and then a bunch of podcasts about parently. scams and swindles. So
+
+44
+00:25:10,530 --> 00:25:13,950
+Wes Bos: yeah, that's my wheelhouse. That's it.
+
+45
+00:25:13,980 --> 00:26:57,330
+Scott Tolinski: Next question is from Kareem Hussain and this is, what are your thoughts on Blaze? Or blazer? Is it a good movement to be an early adopter of a framework like this? Or should you focus on ones that are already in fully released state like react or view etc. Also, I want to say that you guys are keeping me company in the car back and forth the office. Thank you for an awesome podcast. B are from Sweden. Thank you cream. Okay, thoughts on blazer? One I had to I had to Google blazer. Yeah, I've been told about blazer before, right? It's come up before on this podcast blazer for those of you who don't know is that build a client web apps with C sharp for Microsoft. Now, let me tell you, the amount of C sharp I've ever had in my entire life is a whopping zero. So I'm not reaching for blazer simply before because I don't know anything about C sharp, I literally know nothing about it. Other than that it exists as a programming language. And this thing runs through web assembly. So it looks cool. I guess, that said, it's not really that enticing to me, because of the technology. I'm not going out of my way. Because I don't use what it says here. blazer is a feature of ASP dotnet, the popular web development framework. Okay, I don't use ASP. NET, I don't I've never used dotnet, I don't use C sharp, this is not in my wheelhouse at all. And I probably wouldn't reach for it. That said it's by Microsoft. I mean, it's got some backing behind it. And if you're a C sharp person, and you are interested in in an order you work in dotnet, this seems like a great thing to use here. I just don't ever do anything like this.
+
+46
+00:26:57,630 --> 00:28:22,680
+Wes Bos: Yeah, I would have written this off as silly, a couple years ago. But there's a number of different things out there. What's that other language that you compiles down to JavaScript, but you write your reason you write, oh, camel, no, there's a couple different things out there like this, where you write in either a different language, or you write in this new custom language that we have. And it will compile down to JavaScript. And I think that's really cool. And I think is really neat that people are always constantly re evaluating it being like, hey, wait, is JavaScript the best for this thing. And it might not be like, we might not be writing JavaScript in or might not even be writing TypeScript in five years, you know, it would go a lot slower than five years, probably 10 years. So maybe check it out, I just did a quick scan of the website. And just from looking at it, it gives me a very corporate II feel the link off to like telric stuff, which is they always have like, they used to have that like kendo UI, which was like a super expensive UI library for jQuery, things like that. So I think this probably has a good spot in like the corporate land where you have a lot of developers that know, C sharp and love C sharp and love approaching things in the Microsoft D way. So I would give it a shot. But like, I haven't really heard all that much about it. So I would let's see on GitHub.
+
+47
+00:28:22,980 --> 00:28:33,120
+Scott Tolinski: We're also not like in tune with the ASP. NET crowd, though. I think we figured out that we're certain there's some communities, we're definitely not in tune with as much as we probably should be.
+
+48
+00:28:33,660 --> 00:28:38,910
+Wes Bos: No, I mean, it looks cool. I wish I had a little bit more information on something like this.
+
+49
+00:28:39,150 --> 00:28:48,930
+Scott Tolinski: I would stick with something like react, but if your ASP head, or a C sharp head. Yeah, I mean, sure. Does it try it out? Depends on what you're productive with, to be honest.
+
+50
+00:28:49,110 --> 00:29:07,980
+Wes Bos: Yes. All right. Um, I would like to ask how you make yearly subscriptions in a website, specifically, Scott does yearly subscription. Also, how do you give a lifetime locked yearly subscription? Yeah, that's interesting. So how does subscriptions work? You want to give us a rundown how that works in your platform?
+
+51
+00:29:08,040 --> 00:30:48,000
+Scott Tolinski: Yeah. So I've set up a couple subscriptions via stripe or via Braintree. But typically subscriptions work this way you have it depends on how you work by typically you're selling some sort of access, like a roll level, right? We had a whole episode on rolls and rolls can determine who has access to what right. So what you're doing is you're simply selling the toggle to make somebody a pro or a premium user, right? And then that gives them different credibility on the site or credentials credibility. So here we have a checkout form, like you typically have any other checkout form. It has a product which is a subscription in most of your different services. Whether you're using something like Braintree or stripe, or even a subscription service based SAS you have a product that's out Specifically for a subscription. And guess what all of that reoccurring billing, all of that holding on to users often in their, their? What's it called their tokenized payment form, all of that stuff is held at the payment processor, okay? So you buy a product, it tells stripe or Braintree, whoever that this person signs up, and that you are authorized to charge them at whatever interval you have made it clear. And the payment processor holds on to that token and holds on to that authorization. It's all been authorized. Okay. So because it's all been authorized, you don't need to hold anything in your own personal database. And I would strongly prefer not to, to be honest, I don't want to be responsible for credit cards or so
+
+52
+00:30:48,000 --> 00:30:51,450
+Wes Bos: no credit card numbers, stuff like that gets stored in your database.
+
+53
+00:30:51,540 --> 00:32:40,740
+Scott Tolinski: Correct? Because people always ask me, can you remove my credit card information from your database? I don't have it. Braintree just simply has an authorization to charge you. Okay. So that's what happens. It basically comes in and says, Yes, the charge was successful, the charge was successful, then you go ahead and you you apply that role, you give them access. And then from that point, everything else is basically web hooks. So your website will receive messages from the payment processor, in my case is Braintree. Braintree sends my website a message that says, this customer account number has been correctly charged, or this customer is about to be charged, or this customer charge was failed. And there's a whole ton of different messages, let me tell you, there's 40 different messages. And I don't have to respond to all of them. Because some of them don't really matter. Like I don't have trials. So I don't have to deal with any of the trial web hooks. But based on whatever web hook is coming in, then you didn't have to adjust accordingly. For instance, if the payment has failed three times and the user subscription is canceled, I'll we will I will be getting a canceled subscription web hook message. And with that message, it has a customer ID, I look up that customer ID in the database with the results of the web hook and remove their permissions accordingly. And then I update their user account with the updated information that has come via that web hook. So everything is basically it works like a product, you buy the product, it goes off into the billing land, and the web hook sends messages it's charging, you don't have to worry about the timing, you don't have to worry about storing data, any of that hard stuff, you just simply have to worry about what happens when they purchase what happens when they cancel all these specific events.
+
+54
+00:32:40,950 --> 00:33:35,970
+Wes Bos: So we should say real quick, a web hook is like an opposite of fetch request. So instead of you pinging stripe server, and asking for information stripe will ping your server. So the way that you set it up is you give stripe or Braintree or whatever you give them URLs. And you say when this happens, ping this URL with a payload of information. And then Scott has code on his server that will will act accordingly. I use that as well with anytime there is either suspected or or a suspected fraudulent payment, or there's actual fraud or someone has charged back something, they will immediately go and lock that person's account. So while we can sort of get that sorted out, so that's, that's a web hook, because PayPal or stripe will tell me that there's something going on. And that will hit my hidden endpoint on my API, authenticate it and then go ahead and lock down that user's account. Yeah, I
+
+55
+00:33:36,090 --> 00:33:53,040
+Scott Tolinski: have I should say I have a, an endpoint assert, like a specific endpoint on my server that's only used for the web hook. I have one for my stripe web hook one for my brain, pretty web hook. So you do have to create those server side routes to accept those web hooks.
+
+56
+00:33:53,340 --> 00:34:05,040
+Wes Bos: And when somebody subscribes on like the 14th of the month, do you just charge them? Like if it's monthly? Do you discharge them on the 14th of every month then? Yeah, so it's not like a prorated?
+
+57
+00:34:05,100 --> 00:35:50,310
+Scott Tolinski: Yeah, I do personally, yeah, it's not prorated. A lot of the payment processors, they give you the opportunity to do whatever you want. So you could say always charge the first of the month. And I just think it's easier to not have to do that. Right? So you have the flexibility and specifically with Braintree, like the thing I kind of hate about Braintree is that they make it very flexible, but at the same regard because it's so flexible, you have to do everything yourself. And that can be really frustrating. For instance, when you cancel a subscription, you can't just say cancel because that like cancels it out, right? So what you have to do is with Braintree you just say oh cancel this, or I mean stripe stripe, you say cancel the subscription and stripe says okay, I got you. At the end of the term. We're going to do everything you need to do to cancel this subscription with Braintree. You have to set the total amount of billing dates to be one plus whatever The current amount of billing dates is like, it's like you have to do all that stuff yourself. And if you goof it up, or if for some reason the data is incorrect, but the data is in there, there's just no safeguards in the system. They cancel. It removes all the user information, just like Gosh, Braintree, I would really love a little bit of help here. Because you would have to imagine that every single person who uses the Braintree API would have to do these same things. And so it's like, you ever ping them and you say, hey, it'd be really great to have these sort of methods in your API. And they're like, if you're new at hope implementing, and I don't need help. It's just that companies like stripe, people like them, because the developer experience is really nice. And I just don't get that from Ranger that said, for the most part, they give you the things that you need to be able to handle any of those situations.
+
+58
+00:35:50,730 --> 00:36:04,730
+Wes Bos: And what do you do when I'm sure this gets really complicated? where someone get uses like a coupon, but that year, and then like, the next year? How does that work? Do they get that same rate or they charge more and things like that?
+
+59
+00:36:04,880 --> 00:37:16,440
+Scott Tolinski: This is a hot topic for me, because I kind of learned my lesson on this one in the past I the language was very explicit in the Black Friday sales, and it would say, you get this price off of the first year of the subscription. And it was very explicit. And that's what it was. But I get so many deals said I just got a rate increase and after. And I feel bad about it, because I didn't want that to be deceptive at all. I that's just how I chose to run the sale. So if you did get charged that like a more amount for the second year, like I will refund the difference and set you up for life. Because this year, what we did for the Black Friday sale is we said this is your black Friday's price for life until you grab. So you have the option to save either. And I just so happened to make a bad choice on that two years ago. So I changed the language about it this year. And I changed the actual process because it was too confusing. I think a lot of the times you get the flexibility to do any of this stuff. You ever think about here on refunds to refunds for the most part just work through web hooks. If I do a refund or cancel on my end, it sends a web hook message saying they're canceled. I don't have to worry about the user roles or anything.
+
+60
+00:37:16,670 --> 00:37:19,740
+Wes Bos: What if they want to refund like four months into 12 months?
+
+61
+00:37:19,740 --> 00:37:42,360
+Scott Tolinski: There is a checkbox in Braintree to prorate it. Okay, and same with stripe is way better about all of that stuff you could count on if if there's something that exists stripe has done it better than Braintree. But Braintree definitely just box Pro, right? It figures all that date time stuff out for you. Thank God.
+
+62
+00:37:42,600 --> 00:37:49,460
+Wes Bos: Wow. Interesting. Very, very complicated. This is much easier for me. by it, you have it.
+
+63
+00:37:49,770 --> 00:38:03,480
+Scott Tolinski: It's very complicated. Yeah, and I'm implementing enterprise accounts right now. And that's even more complicated. Because you have to think about who owns the account, we have access to the payment method, like there's just a lot there.
+
+64
+00:38:03,900 --> 00:38:30,810
+Wes Bos: It's such a pain, I'm getting that as well right now. And the enterprise is really interesting, because they want lots of like functionality to like, see if their employees are taking the course and not like that. I don't have that yet. And they're asking for it. And I'm like, I don't want to build that. But also like they're buying, like thousands of licenses from me. So yeah, it's a, it's tough. You know, what is also tough figuring out why your JavaScript went
+
+65
+00:38:30,840 --> 00:42:14,880
+Scott Tolinski: south, and south for the winter is like geese going south in Denver right now. And the best way to determine if your code has gone south, is to use a tool like Log Rocket. Unfortunately, I guess rockets don't really fly south, they go straight up. But Log Rocket is the tool and the service that allows you to get a handle on the errors and bugs that are happening in your site in the most visual of manner. Let me tell you, I'm a visual person. So this is the kind of tool for me specifically, because I like to see what went wrong, I don't just want the error log what you do get. But what you do get as a session replay a video replay that is scrubbable along with the network requests, along with your Redux store, along with any sort of console errors, you get all of that. And anytime an error has happened on your site, you can see that now, one thing that we like to do on our own implementation of Log Rocket is attach an identity to a user. And so that way, when a bug comes in, we can see that bug happen on what specific user actually triggered that bug. And then we can see what they did to make it happen. And if you want to try out Log Rocket yourself, come on over to Log rocket.com forward slash syntax and you'll get 14 days for free. So check it out. Let me tell you this thing is super duper cool. I absolutely love this service. All right. Next question here is from B A, B I feel like other developers code is always shorter, better structured and easier to read than mine. Any tips or resources on writing good clean JavaScript code or any functional programming language. My This is referred to as the gap in design is the gap between your aesthetic. This is like sort of a loose interpretation of the gap. But it's a difference between your your tastes and what you're capable of producing, I guess is the easiest way to say it. And so I often felt this way. A lot of times I'd see, especially in the what are those sites like code kata are those ones where you'd, you'd do code challenges. And I would preusse, this behemoth that's 30 lines of code. And then you see somebody figure that out, and one liner with a dot map and reduce or something, and you just say, huh, I'm feeling really, really bad about myself. But the important thing is that we're all on a journey here to learn code. And specifically, we're always on a journey to improve if you're not looking at the code you wrote last year, and thinking, Oh, what was I thinking I could do that so much better right now, then I don't know if you're progressing enough. Because I do that all the time. I'm always feeling like, I learned so much or gotten so much better. And he refactor of my code always feels like the code is so much better. So one thing I would recommend is to read code from those kind of sites. I like those code, kata challenges. You can read those things, those, those code, tests, see other people's solutions. And don't just look at the solution and say, okay, it works, but actually look at what they're doing and why and see if those kinds of things really take the time to understand it. Because the more time you put into understanding the reasoning behind it, the better opportunity, you'll have to make those same decisions yourself in the future. Now, another thing I really love myself, is the clean code JavaScript repo on GitHub. We've referenced it several times I live by this thing, I absolutely love it. It taught me a lot about functional programming, in general. But it mostly taught me about writing good clean JavaScript code. And I absolutely love this repo. So check this thing out. I'll link to it in the show notes.
+
+66
+00:42:15,210 --> 00:43:45,900
+Wes Bos: Yeah, I think with this kind of thing, especially if you're just learning it sounds like you are just learning, don't sweat it, you just have to make it work. However it is that you can. Because if you're just trying to like, if you're just like stressing out over, like, Oh, I could do this in less code, or I can make it more beautiful. You just don't know how to do that yet. And you'll get better and better as you write more code. In the resources, I'm going to plug my own stuff, because I think it's legit, good. You just need to watch other people code and read other people's code. And I think go doing my JavaScript 30 course is is good for this. Because we're in the headspace of saying, Okay, we've got this array of objects. And now we need to filter them and attach, make each one into a div and then attach event listeners to the button inside. And you're okay, I'm in that headspace. These are three things that we need to do, how would I do it? And maybe try go do it yourself and then see how I would do it? Certainly mine is not the best way. Mine is not the only way I get emails all the time from people being like, why didn't you do it this way. And like, there's thousands of different ways to do things. And mine is just one way that I thought was a good way when I recorded the video. And you'll learn a lot about that. And you'll also learn not to, to really sweat about that kind of stuff as much anymore. Just watch other people code and look at other people's code, like Scott said, and you'll get better over time. And it's like Scott said, also, it's just a constant change of Oh, I would rewrite this thing over and over and over again.
+
+67
+00:43:46,230 --> 00:44:02,220
+Scott Tolinski: That's one of the reasons why I love refactoring so much. You know, it's like a it's a meme at this point how much I love refactoring. But I honestly, I love looking at old code and being like, you know what, this thing could really be so much more elegant with a reduced with a map, whatever. So you know, that's just me.
+
+68
+00:44:02,760 --> 00:45:28,680
+Wes Bos: Next question I have here is from Brian. Both of you have CMS backgrounds. Scott, what Drupal? Wes with WordPress when you're moving? When you move to freelancing? Did you build for clients using a CMS? Or did you create a custom admin interface for clients to manage their own site? You mentioned some headless WordPress in the past, but what was the norm? Thanks for the great show. Okay. Absolutely. Don't create your own thing. This This was a big thing back in the day and I have worked on tons of custom cage cake, PHP, CMS is because every everybody out there thought we could make this own custom CMS that our clients would love and we could charge them 50 bucks a month to actually use it and WordPress won out over that. And I think we're also starting to see that now with there's a whole bunch of headless CMS is and that I don't think that that has been finalized yet. In terms of like, what is the world that everybody is going to be using. So if you're doing freelance, absolutely don't build your own CMS, you're just going to be you're reinventing the wheel in terms of file uploads, and drag and drop reordering. Like just just, I'm thinking, you upload six photos to a field and drag and drop, reorder them, and then add captions to each of them. That would take you like, three years to code that yourself. Don't tell it to yourself, absolutely use something off the shelf. Yeah,
+
+69
+00:45:28,680 --> 00:48:21,510
+Scott Tolinski: I know, one thing I do stand for with this is not creating something custom. But and not necessarily customizing what's there, but limiting your users options. So specifically, I don't I know this is possible. And WordPress in different ways, Drupal makes this very easy. But I always would, whenever I would pass off a site to somebody, you have one person, maybe that's techie who can have access to everything right, this is the administrator. But a lot of the times, the people who would pass off a Drupal site to somebody else wouldn't realize that that person is going to get very confused if they load up dribbles back end and see 1000 different options. So I personally always took the extra time to really fine tune permissions, but also the display stuff within Drupal. If someone's a blog, post editor, and all they need to see as blog posts, then do not give them access to the other stuff, the anything, right, give them access to what they need to have and give one person the ability to have access to everything else. Because then it is a custom back end as in it's like customized to what those users are needing. But it's all built in in the same system, you don't have to worry about the whole custom code aspect. So definitely something that I highly recommend is really fine tuning those permissions before passing it off. Ain't nobody want to have a whole big list of Drupal stuff or WordPress stuff in front of them if they don't know what it is? All right. Last question. Hey, Scott. And Wes, you're obviously very successful with your course careers. Yes. Oh, thank you. Do you miss client work? If people for some reason ever stopped buying your courses, which they won't know? You're crazy? No. Would you go back to client work and this from Andre McNamara now I'm so this is a tough one for me. Because I love doing the course development. If I didn't get paid for it, I would love to create more free content. I love making courses. So it would be really tough for me. We know one thing I don't like about doing client and freelance work specifically, is I don't like having to keep track of all that stuff myself, being a manager of myself for you know, client communication, whatever. If I worked at an agency, I would be okay, I would be fine. Having somebody else as a project manager, somebody else just say here, push this code here, do this stuff here, whatever. But to be honest, I've grown so accustomed to working on my own code projects, the way I like to being able to explore and whatever, I would have a hard time going back to that life. That said, I would probably just pick up the agency work like I did before, and I would crush it just like I did
+
+70
+00:48:21,570 --> 00:49:21,000
+Wes Bos: last time. Yeah, the one thing I miss about client work is the ability just to start fresh, especially because the the types of things that I was working on was mostly, I would come into a company and build something, either by myself or with their team. And then we were handed off to internal team to be maintained, which is the dream because like maintaining software is not as nearly as fun as just creating it from scratch and beginning to choose all the technologies and stuff like that. So I certainly missed that aspect of it. If I were to stop selling courses, would I go back to it? Probably I probably would also try my hand at creating some sort of, of application product. Yeah, yeah, product, something like that is something I haven't really done. And it's saying it's somewhat appealing to me. There's always this like idea in the back on my head to like productize my course platform, which I'm not going to do, don't email me about it. Everybody else does. But one day, mine would be better.
+
+71
+00:49:21,000 --> 00:49:27,000
+Scott Tolinski: Mine would be better for that. Why? Because I don't know. Just joking. I
+
+72
+00:49:27,000 --> 00:49:27,780
+Unknown: don't know. Oh,
+
+73
+00:49:27,780 --> 00:49:36,720
+Scott Tolinski: I got nothing to back that up. Okay. I was just, I was trying to pump up my course platform was Oh, in you didn't want to go along with it.
+
+74
+00:49:37,110 --> 00:49:53,700
+Wes Bos: Oh, no, sorry. I wasn't I wasn't having that. I would probably like go down that route of building some productizing something like that. It would be pretty good. But yeah, I definitely do miss client work every now and then. But I think I could go back to it no problem and be pretty successful at it.
+
+75
+00:49:54,120 --> 00:50:43,470
+Scott Tolinski: Yeah. If I were to say Do I like working on client sites or level up tutorials more Definitely like working on my own thing more, even though I happen to refactor it all the time. But just because I have this huge sense of ownership and pride over this thing that is been my baby for so many years now that like, I will, you know, do anything for this site, I worked so hard on this site, whereas like a freelance project, if you get it, you don't always have that and you're just like, Alright, this thing is going to be out of my hair and, you know, a month anyway, so let's just get knock it out. Rather than this, like full on ownership or something. I guess if you have a long term client and an agency or something or a long term client, you can definitely get that. But it's not going to be the same as your own course, or your own platform overall.
+
+76
+00:50:43,860 --> 00:50:47,100
+Wes Bos: All right, let's move into some sick pics. What do you have for me today?
+
+77
+00:50:47,430 --> 00:51:18,510
+Scott Tolinski: Sick pics. For those of you don't know, this might be your first episode. Sick pics are the stuff that we pick that we like, it could be anything. A lot of times it's the podcast or YouTube channels or something. This is a TV show. And this is a TV show based on a series of other shows. So I'm going to call out one specifically but all of the shows in this series are fantastic. I absolutely love aerial America. And now I spelled the aerial like the font in here for some reason. Instead of aerial like above,
+
+78
+00:51:18,870 --> 00:51:19,710
+Wes Bos: like the fish.
+
+79
+00:51:19,950 --> 00:51:22,230
+Unknown: Yes, like the fish fish.
+
+80
+00:51:24,600 --> 00:51:27,270
+Wes Bos: mermaid Yeah, right there fish, aren't they? Yeah, I
+
+81
+00:51:27,270 --> 00:53:02,880
+Scott Tolinski: guess so. But how many times have you ever heard somebody be like, Oh, yeah, that fish. Let me tell you aerial America is basically just like, I don't know, if they're drones or helicopters. They're, they're above shots of every single different thing in the United States, different states. Different. There's one on just Yellowstone. I recently watched one on Alabama, I've never been to Alabama. But why I can't I've driven through Alabama, I've never hung out in Alabama, let me tell you, I learned a lot about Alabama from this thing. There's so much going on in our country of the United States is where I live, that I don't want to say our money. Either way, there's so much going on that you don't know about that is absolutely fascinating to see from an aerial perspective, from all the different little nuances of the different states. I'm a huge fan of the Michigan episode as well as the Colorado episode, as you can imagine, totally not biased in either of those declarations. But check this show out. It's on the Smithsonian channel, I get it on YouTube TV, but it should be available on a lot of different places. And if America isn't your thing, if you're like, screw America, or just a gentler version of that, there's also Arial a whole bunch of other stuff. Let me see what else is there? Oh, yeah. So if you're not into learning about the states, there's Arial, Ireland, Arial Britain, a whole bunch of these seems like they got their whole thing figured out and stuff like what works with these. But there's so many different ones, and they're fantastic. And I highly recommend this.
+
+82
+00:53:03,420 --> 00:54:21,840
+Wes Bos: I'm going to sic pick an iOS app that's called streamer for Chromecast. So one of the biggest downsides to having iOS is that if you want to mirror your phone, you have to do it to an Apple TV, which I don't want an Apple TV. I got Chromecast everywhere. My family has Chromecast. And often what happens when we visit my family, like this past weekend, I was at my parents place, and we're looking for somewhere to rent for March Break down in Florida. And what happens is like, I'll bring up the app. And I'll just be scrolling through listings and I want to show the four or five other people in the room, what's on my phone, and you can't mirror your phone to a Chromecast you have to mirror to an Apple TV, whoever there's this app that came out I don't know when it came out. But it's awesome. It takes advantage of the screen recording feature in iOS. So it it takes the screen record and immediately pipes it into a Chromecast so it enables just like perfect screen mirroring from an iOS device to a Chromecast device, or or even the google home with a with a screen. And this is amazing. I'm so happy. I like tweeted it out when I got 5000 Android people being like, yeah, we have that already. And it says
+
+83
+00:54:22,290 --> 00:54:31,410
+Scott Tolinski: in the operating system. Yeah, click away. iOS makes you download an app and click eight things to get it. Yeah, Android arose in that regard.
+
+84
+00:54:31,920 --> 00:54:46,380
+Wes Bos: So it wasn't even possible at all it like this is a bonafide hack in order to get it to work, but it works great. I'm so happy to actually have it up and running. So check it out. It's called screen streamer for Chromecast.
+
+85
+00:54:46,770 --> 00:54:47,310
+Announcer: Nice.
+
+86
+00:54:47,310 --> 00:54:55,440
+Scott Tolinski: Yeah, I must have I used the Android functionality for that all the time. So been missing that my my iPhone.
+
+87
+00:54:55,800 --> 00:55:07,620
+Wes Bos: Yeah, you should get it I got so many people tweeting me being like why would you need that error? Some guy was like, why don't you just do a video and then play the video back? That's not what it is not the same Dang.
+
+88
+00:55:07,709 --> 00:55:09,810
+Unknown: Yeah, I know. I know.
+
+89
+00:55:10,770 --> 00:55:56,550
+Wes Bos: But I love it. I'm so happy to have this. Cool. Um, shameless plugs, I'm gonna shamelessly plug my beginner JavaScript course is at beginner javascript.com. It is the fun exercise heavy approach to learning modern JavaScript from scratch, had a whole bunch of people go through already. It's a big course. So like, I had to wait a couple weeks to get like the first reviews from people, I also see people jumping around just to the things that they want, which is, which was my hope with this course you just like I need I need help with hoisting and functions. And I also want to do all of the exercises just to learn a little bit more, and you see people jumping around, which is cool. So check it out. beginner JavaScript comm Use coupon code syntax for an extra 10 bucks off,
+
+90
+00:55:56,609 --> 00:57:03,120
+Scott Tolinski: Bo. I'm gonna plug that level up tutorials.com forward slash Pro, this is the pro subscription for level up tutorials. And what you do is you get access to every single course that's available on level of tutorials right now, along with 12 additional courses if you sign up for the year because we release a new course, every single month, like a magazine subscription. These things are awesome. If you're a level of Pro, you also get the ability to vote on the kind of stuff you want to see. Let us know how to improve you also get access to commenting and very soon. If not, by the time that this episode releases actually, probably not. But very soon, we'll have some really nice little updates that include courses and tracks to lead you through which courses you should take when a lot of little nice little improvements coming to level up tutorials this year, especially for pros. We have some really exciting things coming down the pipeline that I cannot wait so if you sign up to become a pro for a year, you'll get access to that all year. Have a look tutorials comm forward slash Pro. That's all I got. All right,
+
+91
+00:57:03,180 --> 00:57:04,500
+Wes Bos: sounds good. Talk to you later.
+
+92
+00:57:05,730 --> 00:57:06,330
+Unknown: Bass.
+
+93
+00:57:08,220 --> 00:57:18,000
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
