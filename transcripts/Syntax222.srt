@@ -1,0 +1,500 @@
+1
+00:00:01,319 --> 00:00:09,000
+Unknown: You're listening to syntax, the podcast with the tastiest web development treats out there, strap yourself in and get ready to live ski
+
+2
+00:00:09,000 --> 00:00:10,530
+and West boss.
+
+3
+00:00:10,559 --> 00:00:48,630
+Wes Bos: Welcome to syntax the podcast with the tastiest web development treats today, we've got a really good one for you. This is a sign that like pretty much every other question on our potluck is this is our gooeys going to replace us what what role does a GUI and we say that we mean graphical user interface. So a program where you can drag and drop or use some sort of interface to build part of or all have a website. So like, Where do they live? There's a lot of hot opinions on either side of this debate. And we're going to kind of go through it and give our own opinion as to what that looks like.
+
+4
+00:00:48,630 --> 00:00:49,380
+Unknown: Yeah,
+
+5
+00:00:49,439 --> 00:00:54,210
+Wes Bos: yeah. With me as always, Mr. Scott to linsky. How you doing today, Scott? Hey, I'm
+
+6
+00:00:54,210 --> 00:01:12,780
+Scott Tolinski: doing good. It's a snow storm right now. It was like an ice storm this morning. So much so that we have like this incline. And you're trying to walk up it and you were just sliding back. It was like yeah, it was a rough morning, but ready to go man right in front of the computer. Yeah, chillin. Yeah, rock ready to rock
+
+7
+00:01:12,839 --> 00:01:35,880
+Wes Bos: day, we're sponsored by two awesome companies. First one is Hasura, which is a graph qL API on top of a Postgres database. And the second one is Log Rocket, which is logging in session replay for JavaScript applications, talk about them partway through the episode. So, Scott, what do you think about the codeless? movement? What are one describe what is codeless? mean?
+
+8
+00:01:36,449 --> 00:02:09,270
+Scott Tolinski: Yeah, so codeless is, without code, it's code less. It's a creating and building things, without necessarily having to write any lines of code to make it happen, whether or not that's like for websites, or apps or prototypes, or any of that stuff. I mean, we're gonna be talking about gooeys, in general, throughout the course of this episode, but for the most part, this codeless movement is mostly about getting the things done quickly, without having the need to dive into code or this skills to dive into code.
+
+9
+00:02:09,659 --> 00:03:10,080
+Wes Bos: Yeah, and there's a lot of like, heated opinions on both sides of this. There's a lot of people who are building these codeless tools who think that this is the next great thing. And then there's a lot of people on the other side of things that are anti it because maybe because they think they're garbage, or maybe because they think they're going to take their jobs. So from my point of view, I don't really if it's gonna take my job, me bashing, it is not gonna help anything, right. Like, like, I have no, no way to stop this, if this is what is going to happen in our industry. So I don't necessarily, I'm not anti it, but I'm also not for it. And we'll talk about our opinions a little bit through here, but I'm just like, trying to think like, there's all kinds of jobs that are currently being replaced by computers and AI and things like that. truckers are getting replaced by self driving cars. cashiers are being replaced by those stupid annoying little boop boop things.
+
+10
+00:03:11,009 --> 00:03:12,960
+Unknown: where to put things?
+
+11
+00:03:13,919 --> 00:03:44,610
+Wes Bos: You know what I'm talking about? I use those. I do. Yeah, yeah. But I feel like I feel like you should get like a license to use them. Because like the people in front of me that like don't know how to use them or like I don't know what's going on with unrecognized item because like I think like a developer and I know that like what's happening behind the scenes, they're weighing it and whatnot. And I can get those through those things really quickly because i think i think like I'm interacting with a computer and not just like a regular human right yeah,
+
+12
+00:03:44,630 --> 00:04:21,930
+Scott Tolinski: I can do it because I was a trained cashier at one point really well yeah, I worked at target for when I was like 16 forever and ever at night, I got whatever the they used to like have this anxiety into I don't know if they still do but they used to have this anxiety inducing like letter grade you would get for the speed of your casual really after each transaction and so you would do the whole transaction and then the score would pop up and on the screen so I would always be like, because your managers can see those scores I was Oh yeah. And for like whatever the top score was every single time it probably at the detriment to customer service because I'm just
+
+13
+00:04:21,930 --> 00:04:42,690
+Wes Bos: like food food food Yeah, yeah, I used to work at Tim Hortons and we would get like time at the window would be the big one. And if you got to like the timeout the window under I think it was under like 14 seconds or like 22 seconds then you would get like tickets to the movie or something like that. So yeah, and like we were like so rude to customers and we're just like here pull up.
+
+14
+00:04:44,130 --> 00:04:45,830
+Scott Tolinski: Take 10 minutes and go Come
+
+15
+00:04:45,830 --> 00:05:07,010
+Wes Bos: along with timbits throw the coffee in the in the passenger seat and like throw the change and then get out of here. You know. Doesn't Gordon anyways, cashiers. lawn mowers are I went super into I love how lawnmowers made the list here. He's like Roomba on Mars.
+
+16
+00:05:07,050 --> 00:05:10,260
+Scott Tolinski: I don't like that. I think that's giving a robot
+
+17
+00:05:10,680 --> 00:05:12,000
+Wes Bos: blade blade
+
+18
+00:05:12,020 --> 00:05:19,680
+Scott Tolinski: with the intention of cutting things. I know. Thank you, sir. I will not have any robots with blades around my
+
+19
+00:05:19,950 --> 00:05:20,520
+Unknown: family.
+
+20
+00:05:20,520 --> 00:05:21,140
+Scott Tolinski: Okay,
+
+21
+00:05:21,450 --> 00:05:25,860
+Wes Bos: this just raised a razor blades, I guess could cut you but it's just tiny little razor blades. And
+
+22
+00:05:25,860 --> 00:05:28,920
+Scott Tolinski: they it starts with tiny little razor but yeah,
+
+23
+00:05:28,920 --> 00:05:40,260
+Wes Bos: that's true before you know it there. You've got industrial ones that are cutting down trees bushwhackers that are AI, john heads. Anyways, um, you have doctors in here?
+
+24
+00:05:40,650 --> 00:06:21,150
+Scott Tolinski: Yeah, doctor. So I mean, just think about it. And obviously, you know, Web MD, but like, the future of medicine, you could imagine is going to be something like idiocracy. You just like plug in, you know, plug your fingers into the thing. And it's like, you have the flu. Obviously, I'm not talking about right now. But they these kind of things are coming. That basically the point I'm trying to make with this is that no job is really safe. And I think every single year, we're just going to continue to see more and more jobs being replaced by computers. And if you have a wide enough view of everything, you could imagine a computer doing just about nearly every single job that exists in the current economy.
+
+25
+00:06:21,150 --> 00:06:24,660
+Wes Bos: What am I hairdresser Do you think you're gonna Roomba? With a?
+
+26
+00:06:25,680 --> 00:06:26,940
+Unknown: Please? Of course.
+
+27
+00:06:27,000 --> 00:06:30,120
+Wes Bos: Yeah. You're okay with putting blades near your head?
+
+28
+00:06:30,300 --> 00:06:37,620
+Scott Tolinski: Am I okay with it? Yeah, not okay. Well, no, I'm not okay with it. I I'm just saying it's the reality.
+
+29
+00:06:37,680 --> 00:06:42,600
+Wes Bos: Okay. You just submitting to our blade carrying robot overlords?
+
+30
+00:06:42,630 --> 00:06:44,310
+Scott Tolinski: I am not to mean nothing. I'm not.
+
+31
+00:06:45,390 --> 00:07:21,600
+Wes Bos: So yeah, that's our whole idea is like, why not web developers. And I think us web developers sort of have a chip on their shoulders think that we're all how high and mighty because we make the world turn and, and things like that. And I certainly catch myself doing it all the time. Anytime I see like a commercial for like wayfair. Or, like pretty much anything that I know somebody at that company, or I know what tech is running at that company, I got, like that.com is only running because of us. We know like we built this task that's running on that thing. And I don't know, we might be replaced at some point.
+
+32
+00:07:21,960 --> 00:07:47,970
+Scott Tolinski: So I thought this would be a fun little thing is that since we're largely going to be talking about web development, and Gee, why's that assist, or help in web development? A lot of this is really centered around website builders, or app builders or tools that can do a whole bunch of stuff for you just by clicking and dragging, whatever. What was your very first experience with sort of building an application or a website via a GUI?
+
+33
+00:07:48,270 --> 00:08:33,960
+Wes Bos: Oh, yeah, for me, it was Dreamweaver. And I remember thinking, Oh, it can't do the whole website. Like I thought, as soon as I got Dreamweaver, cuz I was using, I think notepad plus plus at the time. And then I finally got Dreamweaver, and I was so excited to not have to write code anymore. And I got into it. And I thought, like, oh, like, it's got some tools for hovering a button, and you can put buttons in spots, and it will generate the HTML, but like, it's not the whole replacement. And that was most probably 20 years ago. Yeah, that that first happened. And if you would ask me, if 20 years later, would we have that? Would we have this better? Yeah. Because geo cities was drag and drop, wasn't it?
+
+34
+00:08:34,230 --> 00:08:38,850
+Scott Tolinski: I used Angel as an angel fire head myself. So yeah.
+
+35
+00:08:38,970 --> 00:08:52,020
+Wes Bos: Oh my gosh, yeah. Okay. I think Joe said it was Drake drag and drop because I went from geo cities into Dreamweaver, and then I realize I better have to actually learn how to write this code thing. So that was my first foray into gooeys.
+
+36
+00:08:52,230 --> 00:09:33,169
+Scott Tolinski: Yeah, same here. And I think my first realization that they're not that good is when you were to look at it in the browser within Dreamweaver, like the injury Weaver browser, everything would be roses, and then you'd open it up and the actual browser and the whole thing would just look like a car crash. And you're just like, ah, but the gooey said, it looks fine. So why doesn't it look fine. And that was my, my understanding, when I had to start diving into the code was more like, shoot, this thing can't look this bad on actual browsers, it actually has to look good, well, what's going on here, and then you open up the code and see like, you know, 1000, different nested divs. And all of a sudden, you're, you're freaking out about this really bad looking crazy code that this tool has created for you.
+
+37
+00:09:33,649 --> 00:10:06,690
+Wes Bos: So of the gooeys that we have out there. There's obviously lots of little GUI tools, things like there's get clients that will allow you to use the client instead of having to write the Git commands. There's VS code, I would consider a GUI only. Now, even though we are writing code, it does take a lot of the like, what would you call that kind of work that vs. code does. It doesn't write any code for you, but it does make things A lot easier a lot of the the hinting that it gives you a lot of the automations that it gives you. I certainly welcome that type of gooey.
+
+38
+00:10:06,870 --> 00:10:08,419
+Unknown: Yeah, it's an assist.
+
+39
+00:10:08,659 --> 00:10:10,350
+Wes Bos: It's an assistant. You're right. Yeah. It's
+
+40
+00:10:10,350 --> 00:10:14,250
+Scott Tolinski: Sidney Crosby, Sidney Crosby passing you the buck, and you just got to tap it in.
+
+41
+00:10:15,919 --> 00:10:17,100
+Wes Bos: I know all about that.
+
+42
+00:10:17,219 --> 00:10:17,970
+Scott Tolinski: Yes, you do.
+
+43
+00:10:18,529 --> 00:10:47,220
+Wes Bos: And then there's entire website builders, which is, which is probably more of what people are worried about. So you've got things like Wix and Squarespace. You've got different WordPress builder plugins, where you can just click together a website, there was grid.io. For the longest time, yeah, it was gonna use AI to regenerate your website. So you'd give it some content, and it would use AI to just generate it up. And like people were seriously I remember
+
+44
+00:10:47,220 --> 00:11:04,799
+Scott Tolinski: people being very scared about grid die. Oh, yeah. And now it's like not even not. Yeah, I was just looking up the domain name. I remember people in the agency being visibly scared about grid.io. And they saw, do you see this, and people are gonna want to hire us anymore. And yeah, boop.
+
+45
+00:11:05,279 --> 00:11:59,039
+Wes Bos: It never never panned out. No. And then there's also like tools that are not meant for the end user. Like, I think like a Wix and Squarespace. They are either meant for end user who is somewhat technical to go in and click the other website, or it's meant for someone who will use that as a tool to go ahead and build a website. And certainly, like Wix even now has serverless functions. So they definitely are targeting developers. But there's things like web flow, we had a sponsor, last year, coffee cup had like a grid builder, which kicked out like decent CSS code extra really nice CSS code at the end of the day. So that's like a whole nother area where they're not targeting end users. They're saying web developers, instead of writing code, this is the tool that you will use. And I haven't used web flow myself have used God,
+
+46
+00:11:59,039 --> 00:13:02,159
+Scott Tolinski: I haven't. But it looks nice. I think I've had my eye on and I can see sort of like what it does and where we're coming to action. It does things like animations. But again, with any of these tools, once you hit like a snag in the way that it does it, it's going to be harder for you to gain that like full control, which, of course, is something we'll talk about. And I think even further in that same direction of like, GUI tools is slightly more in the direction of for developers is the app modules dot app. We keep talking about this, but it's not released yet. I just did another round of betas. I'm really excited to get this one. Because this does feel like it's a GUI for writing code. what it feels like is more of like a figma, or a sketch that gives you a react view of whatever code. Yeah, so the code in this becomes much more of a main feature than something like web flow, work into the it does nice code and the code is much more forefront in this. You'll be able to import code and export code and have your component system come in and out of this in a design GUI tool.
+
+47
+00:13:02,459 --> 00:13:28,260
+Wes Bos: Yeah, you got to think that at some point, sketch and figma. And all these companies are looking at, like At what point can we export to HTML, CSS and JavaScript? Right? Yeah, yeah. So given all of these builders, like, like, what do we think? Are they going to replace our jobs? Where do they fit in? In terms of being a web developer, we want to tackle that?
+
+48
+00:13:28,439 --> 00:15:01,440
+Scott Tolinski: I think with most things, it's a fit for any given situation that requires independent evaluation. Like if you're a person who is opening up a flower shop, and you need a store to sell things on, or whatever, are you necessarily going to think, Oh, right, now I gotta learn react first. And then I gotta learn this. Next, I gotta learn how to work with data, like that's not necessarily the right in the best path for you. Maybe you have some cash, and you can fire off some money to somebody who's going to do it for you. But if you don't have that money, these codeless tools, something like Wix, or Squarespace that even have e commerce things built in, That, to me seems like the perfect situation for you to be able to go ahead and take that. And so for any sort of basic operation, these things are going to work really well for you. And in my opinion, I think one of the things that that does for us, developers who are really into the code stuff, is it frees us up from having to work on those types of projects, those types of projects that I personally don't necessarily love to do. I like building fast sites. I like building nicely designed sites and brochure sites cool. I like doing all of that stuff. But I really like building applications that are useful a little bit more now. And that's really where I want to spend my energy rather than writing some HTML or working within a CMS or some other system to produce some sort of brochure site. I'll let somebody else and or a robot Do that for me gladly.
+
+49
+00:15:01,980 --> 00:17:15,390
+Wes Bos: Yeah, I think where are these things are going to replace jobs is the sort of like brochure where websites, the couple hundred to a couple thousand dollar WordPress website, it's much easier for a client to just sign out for themselves, especially the type of client who wants to have control and push the buttons themselves, they can just sign up for one of the services and and crank out a website, even basic e commerce website, someone's able to sign up and kind of get it in. And that's good because I don't think we need to be re doing these websites over and over and over again, there. Everybody's got the same large photo at the top with a call to action button, three columns underneath an email signup form at the bottom, we've all we've written those websites thousands of times ever, I think that these tools are freeing us up so that we can work on other stuff. And for some people that causes anxiety, because that's where their skill level stops. And they're being replaced by a robot and their skill is their skill was pushing the button, the right buttons, putting WordPress themes and plugins together. And now they have to be pushed a little bit further as to when do you call someone who does custom stuff, it's when you hit the limitations of these things. And the limitations of these tools are keep pushing themselves out. They are getting better layouts, they are getting better ecommerce, things like that. And I'm okay with that. Because that like Scott says it opens us up to being able to work on better and and harder problems. Because certainly there is no end to problems in web development space that that we need to solve totally. And I think that big just because it's like gooey, people tend to poopoo it. But like you look at something like Gatsby that comes preloaded with all of these image compression and all of the stuff and it just does it for you. And everyone loves that. And why is it that everyone loves Gatsby doing all this stuff for us? But they don't like like a Wix or Squarespace doing this stuff for us? And it's because it has a has a gooey, I guess it doesn't seem as hard?
+
+50
+00:17:15,390 --> 00:19:43,850
+Scott Tolinski: I don't know. Yeah, that's if you think about it, it's at the end of the day. Those are both you're not writing. I mean, you're writing code in the Gatsby sense. But you're not writing any of that image compression code. Yeah, you like you don't have to write every little tiny bit of code for everything you do. There's no, I don't want to either. And as long as you're evaluating these services, I think part of the part of the issue too, is like who owns what, right? I think about that a lot with some of these, like, who who's the owner of this, if you write the code, you've owned it right? And, you know, you're putting it on a server or whatever you're renting out that server space. But when you have too many codeless services, how much of everything Do you own? And maybe that's a an anxiety or a stressor for people? But then you can keep going far with that. It's like, how many libraries do you need? Are you going to use every library? Are you gonna write a framework from scratch? Like, how far are you willing to go to make this thing 100% Custom, because we all use tools every single day. And whether or not it's a GUI tool, or it's just a magical tool, whatever. They're all serving the same sort of purpose. And speaking of tools that really just make your life easier, but don't get in the way, I want to talk about one of our sponsors, which is hasura@hasura.io, that's h a s, u r a.io. And Hasura is this really amazing Open Source engine that allows you to connect your database and micro services and instantly gives you a production ready, graph, qL API auto scalable, you can import your applications. I recently did a big, nice little test run of Hazara from my own YouTube channel. And it was really, really cool. I was very impressed. Basically, you can host this anywhere you want, if you're not using the enterprise version. So it's free to get started free to use free for any sort of major thing because again, you're hosting this yourself. And they even have like a like a one click Get started with Heroku. Oh, yeah. So if you want to get this trying to do this one click Get started with Heroku. And really just experience it allows you to basically create your own API through their GUI, which is largely just a nice way to work on the database itself. And it builds out all of that stuff that you typically would have to write yourself for a graph qL API with is mutations, query subscriptions, all that stuff. It takes care of all of that for you
+
+51
+00:19:43,950 --> 00:19:51,960
+Wes Bos: then occation to yeah, oh, yeah, I installed it myself when I was like, evaluating it for my course. And it's really neat.
+
+52
+00:19:52,380 --> 00:20:24,720
+Scott Tolinski: Yeah, I know it is. It is very neat. So you want to check it out@hestra.io and again, get started with that. Get started quickly. And you'll have a graph qL API up. And seriously, I did my YouTube video on Hasura the other day, and I had an API up in like, less than five minutes. So it's really super cool. And again, because it's open source, and because you host it yourself, you really get a lot of that ownership feeling of this kind of thing that we were just talking about. So again, check it out. hazara.io.
+
+53
+00:20:25,170 --> 00:21:56,790
+Wes Bos: Alright, let's talk about GUI and codeless. A little bit more, is it always better like there tends to be either people think it's always bad, or it's always better. And I tend to think different situations is better. I've certainly been in situations where they give you a GUI for something that is clearly just talking to API's under the hood. And it's extremely frustrating, because you just end up with 400 tabs, and a bunch of checkboxes, and you can't figure it all out, when in a lot of cases, some lightweight scripting or something like that is the better interface for dealing with something like that even like, you think about what is it like x Microsoft Excel, that's a GUI for lightweight programming, I would say. But as soon as you want to get a little bit complicated, like we've got a spreadsheet for the sponsors of the show, and we've got two columns, and I want to check our I want to count the the number of times a certain one shows up in either column, and then tally them up on this like, pivot table. And I was getting into some serious stuff in Microsoft Excel when like, I was like, Oh, this would be so much. I get map filter reduce three seconds. So sometimes a GUI is not the best interface for that when you do want a little bit of control. Yeah, obviously, you have to learn how to do a little bit of programming, but anything somewhat complicated. I think the the GUI falls short on that, what do you think about that?
+
+54
+00:21:57,180 --> 00:23:11,820
+Scott Tolinski: I think it all falls into what you're capable of doing and how quickly and comfortable you are capable of doing it. Because there are things like in web development that I'm capable of doing right authentication, I'm very capable of doing authentication. But in my platform, Meteor just does it for me, as I think about it, and didn't have to spend that time. So I think there's more than just like a wing of like, if you can do this or not, if you should do it, whatever your deadlines are, whatever your goals are, but everybody's on a sort of a different spectrum and a different path of like, I'm capable of clicking some buttons in creating a Wix site to I'm capable of, you know, writing, you know, byte code, or whatever I'm writing in binary to to create a full stack whatever myself. So there's this huge spectrum of how quickly and capable you are with something. Verse, you know, what the simplicity is, in every single time you approach a situation or problem, I think it's worthwhile to address some of these, you know, I had this, a lot of this stuff came up when I was doing my subscription model. There's a whole lot of platforms that do subscriptions, like there's one called recurly. I don't know if you're familiar.
+
+55
+00:23:11,850 --> 00:23:14,250
+Wes Bos: Yeah, I've used that before many years ago.
+
+56
+00:23:14,610 --> 00:24:30,420
+Scott Tolinski: Yeah. And so there's a bunch of stuff. I think they're actually based out of Colorado here. But yeah, they are they they invited me to do they like it send me like a customer service thing. I was like, Hey, can I just pop over to the office and chat with you guys. But this kind of service, what it does is it handles a lot of the nitty gritty for subscriptions. And you know, the the prices, they take a little percentage off the top. Well, when I was writing my subscription things I was thinking like, Well, you know what, I'll just do it myself. That way, they don't have to take any bit off the top. A little did I know that the Braintree API really makes you write everything yourself. So my API took me a substantial amount of time to write. And I honestly, I do kind of regret not using one of these services. When I had the chance to start getting up and running. When I think about how much time I spent really writing all that custom code that could have been done much faster, much easier for me on this tool. It's not necessarily no code. But it's a tool that helps helps reduce the amount of code. It's a code reducer. That's the whole thing is we have these, this whole no code movement where people are talking about not using code for anything. But like, what about the the some code movement or the some no code moves?
+
+57
+00:24:30,870 --> 00:24:33,120
+Wes Bos: Yeah, yeah. A little bit of both.
+
+58
+00:24:33,150 --> 00:24:38,040
+Scott Tolinski: Yeah, that's maybe the sweet spot in my mind. But I'm a developer. So it's going to be?
+
+59
+00:24:39,750 --> 00:25:01,800
+Wes Bos: Yeah, like, honestly, I've got no horse in either race. I just want to make cool things. And if either one of these things code or no code makes that easier and better and makes for a better user experience for my user and sells more widgets at the end of the day, then I will I will totally embrace that. Totally.
+
+60
+00:25:02,160 --> 00:25:04,080
+Scott Tolinski: Unless it's a robot lawnmower.
+
+61
+00:25:04,080 --> 00:25:07,620
+Wes Bos: Unless it's a row. I'm I welcome robot lawn Morris,
+
+62
+00:25:07,830 --> 00:25:18,060
+Scott Tolinski: but I'm not gonna embrace it. So that's been in blades. I don't wanna hug. Yeah, it was a good joke. There's a little hug joke. My dad now again, Oh, I
+
+63
+00:25:18,060 --> 00:25:19,860
+Wes Bos: didn't even get that. Wow. Yeah,
+
+64
+00:25:20,009 --> 00:26:13,680
+Scott Tolinski: that's great. So we did talk about some of these tools and like what they are and maybe what they do for you. But I had this little levels of hell crossed out and wrote goi assistance. And builders in this is just sort of like maybe the different levels of what these tools can be. Because again, they can be anything from services that you just add. But really, for website builders, specifically, you have had the the very, I think the I don't want to say necessarily the most technical level, but the very most outer level of these builders is what we've all come to use is basically cm CMS is right. Were there people at the time when CMS started popping up talking about CMS is killing programming jobs. I maybe I don't know, I don't remember a world before CMS is honestly. But like, you have WordPress, which, at the end of the day does a lot of stuff for you that it used to be somebody's job to do.
+
+65
+00:26:14,130 --> 00:26:19,620
+Wes Bos: Yeah, the the CMS killed the what what do you call that web master,
+
+66
+00:26:19,830 --> 00:26:21,720
+Scott Tolinski: or whatever, to the webmaster, maybe?
+
+67
+00:26:21,720 --> 00:27:15,630
+Wes Bos: I certainly know, when I first got started, I knew a lot of people and as working as a, like a WordPress consultant, I would go into companies, and you would you would meet these people whose entire job was to just update the content and to wrap it in paragraph tags and to put span tags around things and to inline it. And it's just like poof, like, hopefully, they have like some other skills at that, because like WordPress, totally decimated that whole thing. Because now anybody can come along. And you can literally even copy paste it from Microsoft Word, and it will keep the formatting, right and paste it in. But then I guess there's a downside to that. Is that like, have you seen the garbage that the WordPress GUI kicks out when you try to like paste in pre formatted text, right, like, downside to the quality of code that comes out there?
+
+68
+00:27:15,870 --> 00:27:53,730
+Scott Tolinski: Sure. But in again, you got to think about it like that person who had that job as the person who is just updating HTML files to change the content, you know, the career path for them could have been learned some PHP, and then all of a sudden, you're not just updating that and you're writing custom functionality for a WordPress site. And so I think it's important to always have your eyes on where these things are going and how you can be sort of ahead of the game there. And make sure that you're not going to be replaced by a robot because you're now having these skills that these tools can't do exactly for you.
+
+69
+00:27:54,150 --> 00:27:58,680
+Wes Bos: Speaking of tools, that will give you a nice GUI Scott.
+
+70
+00:27:59,010 --> 00:29:12,600
+Scott Tolinski: Yeah, it does. This gives you a nice GUI is one of our sponsors today. And that is Log Rocket. Now Log Rocket is the super cool platform that allows you to see a session replay of when errors happen in your site. Now this thing is really super cool. Let me tell you, I heard a rumor that Log Rocket like darsie, the magic slogan that was a little a little Tweety, Tweety Bird. Yeah. So yeah, I wish we had joked around that you need to see the magic on Log Rocket, you'll want to see that magic at Log rocket.com forward slash syntax, where you'll get 14 days to try it. Now, what does this do, it gives you a session replay, it is an exception tracker, that allows you to see the errors as they happen. So when a user click this thing, and it broke your website, well, now you're going to be able to see a video of that user clicking and breaking your website. But not only that, you're going to be seeing the network blog, you're going to be seeing your Redux store, you're going to be seeing the error logs, all that cool stuff. Only that you're going to be able to see the mouse and where they clicked and how they broke your website explicitly. So it is really super cool. You're going to want to try it out at Log rocket.com forward slash syntax and see what the magic is all about.
+
+71
+00:29:12,810 --> 00:29:13,860
+Wes Bos: Beautiful.
+
+72
+00:29:14,280 --> 00:29:56,910
+Scott Tolinski: So we can continue with the next level here, which would be you have access to code, you can drag things into place, maybe it's not necessarily a CMS, but it is a little bit more for you than a CMS because you do have the access to some code, right? Like, I think like a Squarespace would be here, because I think you do have access to some code, right. But for the most part, the intended use is for you to be able to just drag and drop things into place. And you shouldn't have to worry too much about the theme or the PHP that's doing it. And then the next would be being able to drag blocks into place, but just about no access to code, right. They're not giving you maybe you can add a script here or there or whatever. But for the most part, this is just a Lego piece set. Right?
+
+73
+00:29:57,060 --> 00:30:45,110
+Wes Bos: Yeah, you can drag and drop your blocks. This is pretty popular in In like WordPress land, and as well as a Squarespace, things like this, you have, I don't know a whole bunch of different kinds of blocks, you have a big big photo, you have a gallery block, you've got text block, you've got an email signup block. And you can drag and drop these things into the spots that you need. And then usually what happens is they give you some sort of like custom block. So if you really need to go custom, then you can go ahead and just paste in some code. And that's for me, where it gets a little bit frustrating where then your workflow ends up being typing into this like text area. Or maybe they have some sort of like code, like a code pen thing in there. But that's frustrating for me, because I rather work and use version control and things like that, in my entire editor. Yeah,
+
+74
+00:30:45,150 --> 00:31:34,950
+Scott Tolinski: there's a lot of like, weird ground here, where, as developers, we're starting to lose the ways that it's efficient for us to work in these like, I don't want to use my mouse to click around this interface this whole time, when I could be doing it very differently. I think the last sort of one here in this, these levels of health for web developers would be an easy theme that's completely just generated out of the box. And the only thing it allows you to modify would be like text headings in images, sort of Dragon that sort of, in these, these are the varying levels of these robot editors. And you can see from the very bottom of hell here to the top, we lose control, like as you go down, you're losing control, you're losing the ability to take it over as a developer. And I think that makes a lot of us pretty anxious.
+
+75
+00:31:35,130 --> 00:31:50,790
+Wes Bos: One thing I'm wondering here is that a lot of the stuff we've gone over today are for making websites and some lightweight e commerce, but like, what about like web apps? Like what about custom functionality that you want to build? Have you seen anything that allows you to do custom functionality?
+
+76
+00:31:51,150 --> 00:32:26,100
+Scott Tolinski: Remember, there are some, like app builders that are sort of like Lego pieces specifically for like, native mobile, ad, none coming up with the names right up top, but they make lofty promises, like you can make a native app without touching any code. But at the end of the day, if you're working with any sort of actual API, yeah, or database, or you're working with data in any sort of way, a lot of these sites or applications that you're able to build with these can only end up being so complex, the moment you need something that is really off the beaten path at all, you're going to be totally screwed at this point.
+
+77
+00:32:26,100 --> 00:34:17,670
+Wes Bos: Yeah, that's I see a lot of people, namely, like marketers, they use Zapier to click together multiple services. So they're paying four bucks a month for 47 different services. And then they're all connected to each other via Zapier and web hooks, and Zapier is this tool that says like when it's kind of like If This Then That, yeah, but it's a little bit more, a little bit more in depth than if this and that you can do things like if when someone buys something on gumroad, then send them an email and push them into your email marketing software, and allow you just to click together all kinds of different services that might not necessarily talk to each other. And I've seen lots of times, like, that's great, because it allows people, mostly just to get the stuff done that they want to do. But there are things where you you do run into issues. And you you can't get done exactly what you want. And quite honestly, that's where I see a lot of marketers come to me into coding boot camps where they're like, I need like just a little bit more skill. So I can, I can code this myself, instead of having to rely on some sort of a GUI. So it that's a just another perfect example is a gooey gets by and probably 90 95% of the use cases. But as soon as you want to do something custom, and probably something that is beneficial for your business, that gives you a bit of a competitive advantage, then you don't have access to the same thing with like, people always ask me like, why are you not using like teachable or something like that for hosting your platform, because it's just this thing, you sign up, you upload your videos, and you're off and running. And it's because I want to do things like parody, purchasing power and coupon codes that are specific to specific people. And like, I do want that extra 10%. And that is hugely beneficial to my business to be able to do that.
+
+78
+00:34:17,820 --> 00:34:34,350
+Scott Tolinski: We didn't even talk about some of the business financial things about this. Because really all these services that you're gonna pay for that every single time you add it like a no code service to whatever you're doing, you're paying for it that's coming off the top line, the bottom line, top line, bottom line coming off the bottom bottom line,
+
+79
+00:34:34,670 --> 00:34:36,510
+Wes Bos: there's no top line, there's no top line, it's
+
+80
+00:34:36,510 --> 00:35:34,710
+Scott Tolinski: kind of at the top line, it's coming off the top or coming off the bottom line. I think those are the only two valid ways to say it. But at the end of the day, we we need to assess that and what are those costs going to be because really when I was mentioning that recurly option, it's like recurly does so much for you, but it did take some off the top and to me I not interested in that necessarily in every single case. Now there are some times where I'm definitely willing to pay for what is going to be the, you know, the tool that makes my life a lot better. But if this tool is going to affect that for the rest of time, and is going to be a percentage based on top of every single sale that I do, there are some major concerns there that you need to think about, like what is the most healthy, cheap thing because it seems like the code option if you are a developer, and you have time might be the cheapest. Now, if you don't have time, and you're hiring a developer to do it, developers are pretty expensive. So that that is again, a trade off you need to be aware of.
+
+81
+00:35:35,040 --> 00:35:45,570
+Wes Bos: Yeah, I'm just looking at Squarespace. And their most popular is, if you pay monthly 16 bucks a month, then it goes up to 46 bucks a month. And
+
+82
+00:35:45,630 --> 00:35:47,070
+Scott Tolinski: that's cheaper than a developer.
+
+83
+00:35:47,100 --> 00:36:52,890
+Wes Bos: Yeah, 46 bucks a month, 12 months, it's five 600 bucks a year, you certainly would spend a couple, like at least 1500 bucks to get a custom developer. So it's three years. And then you also have to pay them for updates. But then you look at adding on e commerce. And especially like I know Shopify makes a lot of bank from the apps, the add ons, if you want to do like a upsell people or circle back with email, or I'm just looking at the Shopify App Store. And a lot of these things are 678 bucks a month, which doesn't seem like much until you've got 15 of them running and all sudden this thing is costing you a whole bunch of money. But for a lot of people certainly worth it and and a lot of developers are probably certainly worth it as well. Yeah, everybody's in a different situation. And every situation is different. And I think that's what some of the people on both sides of the argument need to realize that code no code is not right. For everybody in code all the time is also not right for everybody, you kind of have to look at each situation and what your parameters are in terms of money, skill set, and whatever.
+
+84
+00:36:52,890 --> 00:37:02,940
+Scott Tolinski: So whose jobs are at risk from these things? And whose jobs are not at risk from these things? I have some really good ones for not at risk. Do you want to tackle these whose jobs are at risk? And
+
+85
+00:37:02,940 --> 00:37:11,730
+Wes Bos: whose jobs are at risk? Well, certainly, certainly not the no code coders because the whose code in the no code platform,
+
+86
+00:37:11,880 --> 00:37:20,670
+Scott Tolinski: right? The no code coders are not at risk. Unless they no code themselves out of a like they they code themselves the robot that codes there no code for them.
+
+87
+00:37:20,690 --> 00:37:28,110
+Wes Bos: Yeah, at some point, they're gonna write one line of code too many and then just start writing itself.
+
+88
+00:37:30,300 --> 00:37:30,920
+Unknown: Oh, no.
+
+89
+00:37:38,010 --> 00:37:42,210
+Scott Tolinski: Excellent. printer just started printing out pink slips everybody's toes.
+
+90
+00:37:44,370 --> 00:38:33,840
+Wes Bos: I think like, obviously, there's there's that that's that's what's comforting to me is that like my courses, the folks at Wix actually take my courses to learn react. And I was like, okay, like, obviously, they're not using their, their own tool to build Wix, which obviously, everybody would would think that. So that's not at risk, I think who is at risk is WordPress tinkerers, things like that, where it does become a lot easier just to use it. But then again, I've also seen a lot of people just move to like, they're still web developers, they've just moved to using like Squarespace or Wix or something like totally cuz it's an easier tool for them to use and their client like stuff data. And there's nothing wrong with that, because you're still providing the service to your customer, which is getting them online and making them visible and whatnot, and how you build the website is just part of it.
+
+91
+00:38:33,960 --> 00:38:38,790
+Scott Tolinski: Yeah, that's the goal. And the day is to service the people who are paying for your services.
+
+92
+00:38:38,900 --> 00:38:54,540
+Wes Bos: Yeah. And then we said that the webmaster jobs that are where you're just upload updating HTML on a website, I think that that ship is probably sailed, though I don't know a whole lot of people who straight up code HTML into website anymore without some sort of CMS in between.
+
+93
+00:38:55,610 --> 00:39:53,400
+Scott Tolinski: Yeah, and I think there's some jobs that are definitely not at risk, like typically you think of like when I worked at the University of Michigan, they had such strict guidelines about what their web properties needed to be like that I just don't think it was possible for them to get on any sort of service like a Squarespace or Wix without some sort of major contract in place. For those services to adhere to specific guidelines. Like we we had to run specific versions of PHP and all the servers had to be a specific way. And, you know, because of that we were stuck on various versions of different CMS. And granted we could use those CMS is but the University of Michigan had to basically own everything. And I think with government educational institutions like that, I think there are a lot of those companies who are always going to require some level of ownership over the code that unless they've built their own no code tool or own CMS or own whatever, that getting them into something like a Wix or a Squarespace just probably isn't going to happen.
+
+94
+00:39:53,820 --> 00:39:54,390
+Wes Bos: Totally.
+
+95
+00:39:54,390 --> 00:41:35,360
+Scott Tolinski: Let's finish it up with some of our favorite gooeys that do help us do develop What are some of yours? Everybody knows my favorite GUI is Netlify. Now, if I took all of the things that I hated about deploying a website, and they made it really super nice, like, Oh, you know, you want to have continuous integration for free like an easy, why not just do it, you want to have an SSL certificate without having to do anything? Sure. Okay. You want to just connect a repo and just have it do everything for you? Yeah, no problem. So Netlify, to me falls in line and one of these like, it's a GUI. But at the end of the day, it's a GUI that helps you develop things faster and easier and takes care of stuff that you don't want to do yourself. In other platforms like that would maybe be like Heroku Heroku, did the same sort of thing with hosting these one click applications, they made it really easy to add services in ways that are just super nice and easy. Another one is a studio three t, which honestly is my pick for the application that's stuck in a time machine, because it looks like it's from the 90s. But I don't want to have to fiddle with my database in code all the time. And maybe I don't want to necessarily have to write all these tools all the time. And this gives me a way to visualize see the database in a way that many other database gooeys are because database gooeys in my mind are just, they're a must have for doing anything. And obviously VS code for web development is a GUI. It's not, it's not a drag and drop Website Builder. You got to do all the coding yourself. But VS code itself has so many niceties that just make my notes look a little high five with the app, and it takes care of a bunch of stuff for you.
+
+96
+00:41:35,790 --> 00:42:40,050
+Wes Bos: Yeah, I don't want to get too heated on the like vim vs VS code thing. But like the amount of work it takes to get like sidebars and everything up and running in vim, we're all just like, I personally do this with Zed sh, if you look at half the plugins I have for is that sh or z sh for all y'all Americans. I'm just like trying to like the command line prompt and the auto completion and being able to use your arrow keys to select files from a list. All of those things are gooeys, that will make your life much easier than having to type out the code directly. So not kidding, anyone there. Every now and then I use the sketch CSS export. So if I've got like a card, and that card has a border and a couple box shadows and a specific background color on it, I'll just right click Export to CSS, and it'll give me the exact box. The box shadow is a big one, because I have to fuss around with box shadow a lot to make it look like my design when the values are already in. Oh, yeah, your design tool, might as well just export them from there right. Now, I
+
+97
+00:42:40,050 --> 00:43:22,380
+Scott Tolinski: don't know what sketch does, because it's been a long time for me. But in figma, you can create these design styles like I've created my all my my whole elevation system for Bach shadows in figma. Right, yeah, I've created the whole element elevation things as styles, I never have to touch values ever in figma, just I select a div and then or a square. And then I say, okay, your elevation level three, whatever. But then there's just a right click Copy CSS, it's like so nice to be able to do that, then they have to write box shadow comma, you know, like all that over and over again, where you may be prone to maybe make a mistake here or there. But this way, you have the visual representation of it, copy and paste, you can confirm it. It's not like it's just doing anything for you there. It's
+
+98
+00:43:22,380 --> 00:43:33,110
+Wes Bos: just helping out. Another big GUI that I like to use is big GUI. That's not like cyberduck if I want to interface
+
+99
+00:43:33,170 --> 00:43:40,020
+Scott Tolinski: cyberduck is like I haven't I haven't heard of cyberduck. since the days of webmasters, I use a transmission.
+
+100
+00:43:40,020 --> 00:43:59,940
+Wes Bos: Man, you know what it's good for. So if you want to upload files that are bigger than like half a gig to backblaze b two. Yeah. It has, like it has all of the API's for uploading to backblaze in it. So So does it transmit? Yeah, Does It Really? Yeah. Well, that was
+
+101
+00:44:00,720 --> 00:44:06,420
+Scott Tolinski: a one click service for v2 because I use that that's what I use for B two or s three.
+
+102
+00:44:06,780 --> 00:44:18,630
+Wes Bos: Oh, why? Because I use transmit for everything else. Like I'm just saying like, anytime I want to upload a big file or peruse or download a file. I don't want to have to figure out what the SCP or our sync command is. Oh, yeah.
+
+103
+00:44:18,840 --> 00:44:23,580
+Scott Tolinski: I only upload big zips to my v2 and I use transbond
+
+104
+00:44:23,910 --> 00:44:50,130
+Wes Bos: you know, well, what am I using cyberduck for then, if I may be too on because I love transmits one of those apps I've used for like 10 years and I love it. Yeah. Oh man. Well, today I learned but for those listening, if you don't want to pay for transmit, you can do it for free on cyberduck but transmit to you is so yeah, it is a good it's a G G G gooey, gooey. Good, good. Really good, gooey.
+
+105
+00:44:50,130 --> 00:44:52,710
+Scott Tolinski: Yeah. gooey,
+
+106
+00:44:52,830 --> 00:45:34,380
+Wes Bos: Digital Ocean, another gooey I would say. So if you want to set up a box with like a Docker image That can be hard. And some would say impossible. And digitalocean allows you to just click from a list of things. And you can do things like upgrade your RAM or your cert your server space or create a firewall. All of that is is just a GUI and because I'm not like a sysadmin, I love it right? And I'm sure there are hardcore sis admins who think that's lame, and you should do it on the box yourself. Yeah. But as someone and like that, that's what makes me think about this as like, people that aren't like hardcore full time web developers probably look at this stuff. They're like, yeah,
+
+107
+00:45:34,380 --> 00:46:11,280
+Scott Tolinski: keep doing your code thing. But yeah, I find this to be very helpful and easy. It's all a spectrum here of you know what your abilities are, because the Digital Ocean really changed the game in that regard in terms of totally being able to set up a VPS just so easily. And quickly. I remember the first time I used digitalocean, I felt like, while I finally feel like I have some understanding or superpower as to how to control and set up the servers, where I would have looked at something on AWS and just been a little confused. When I was was that easy to I never used their service like that.
+
+108
+00:46:11,609 --> 00:46:23,700
+Wes Bos: Yeah, I used it all. It's awful. It's so hard to do it. It's I wish that Amazon would make it easier for just regular folk to use their services. Yeah. Because it's it's difficult. Yeah,
+
+109
+00:46:23,819 --> 00:46:27,480
+Scott Tolinski: I think I referred to one of their services as the deal with it platform.
+
+110
+00:46:29,460 --> 00:46:43,560
+Wes Bos: where like, there's like now this whole crop of services, like we talked about begin calm Come on episodes ago. They're they're just a service on top of AWS. That makes it easy to do serverless functions. Right,
+
+111
+00:46:43,650 --> 00:46:54,960
+Scott Tolinski: right. So somebody had to code that to so that we could get to know code. Begin calm. And I don't know if I'd begin spend necessarily no code tool, but it does so much for you. It's really cool.
+
+112
+00:46:55,530 --> 00:47:10,890
+Wes Bos: Yeah, no, it's definitely stuff to write all your serverless functions yourself. But the setup, which is like it was Yeah, the sysadmin part of it, who has it, US web developers don't want to have to deal with. So pretty neat. They were pretty excited that we mentioned them. So shout out to begin calm.
+
+113
+00:47:11,700 --> 00:47:50,880
+Scott Tolinski: Yeah, right. Yeah. And I actually have my video that is going to already be out by the time you're listening. This will be on the level up tutorials YouTube channel, and it's going to be Scott tries begin calm, I believe this new thing where it's like very cash, super cash, we're just trying out a service for the first time. And usually it's funny, because I do my my video camera, you probably get to see my real expressions for when I actually click on things because I had a really funny experience where someone from take shape ad sent me a breakdancing gift via the telecom service thing because they saw that I was using the site at that that was fantastic happen live on on the video.
+
+114
+00:47:51,330 --> 00:47:55,770
+Wes Bos: All right, I think that's it any more thoughts are sure moved into some sick pics.
+
+115
+00:47:56,010 --> 00:48:22,980
+Scott Tolinski: And I think the thoughts are just be cognizant of what exists, what's out there, what its faults are, what its strengths are and how you can maybe avoid being totally replaced by a robot. But at the end of the day, I don't think anybody as long as you're continuing to work in these things, or your I don't think you're at risk of losing your job anytime soon. But it's always again, you don't want to be that the developer who still only edits HTML in 2020, you know,
+
+116
+00:48:23,520 --> 00:48:31,440
+Wes Bos: absolutely. I totally agree there. Let's move into some sick pics. I've got one here today that is a baby sick pic.
+
+117
+00:48:31,680 --> 00:48:33,690
+Scott Tolinski: I thought you were gonna say the pic was a baby,
+
+118
+00:48:33,870 --> 00:48:38,280
+Wes Bos: I know that it's a baby as well, we should get a baby, they're pretty sick.
+
+119
+00:48:39,360 --> 00:48:43,260
+Scott Tolinski: But the idea is they do get sick quite frequently do get sick.
+
+120
+00:48:44,220 --> 00:50:38,160
+Wes Bos: the wrong kind of sick pick on I'm gonna sick pick the outlet smart sock baby monitor. So what this thing is, is when you when you have a newborn baby. And this would be an awesome gift, if you were into spending hundreds of dollars on your friends. And what it is essentially, you know, when you go to the hospital, and they put that thing on your finger that tracks your heart rate and your oxygen levels. So it's the same thing, but it puts it on the baby's foot. It's a little sock, and then there's an app on it that will allow you to monitor their heart rate and their oxygen levels via the app. And this is not like a replacement from keeping an eye on your kid. But what it is, is that like, you know when you have a newborn baby like are they still breathing or they're trying to like picture like fine not wake them up, but you're trying to put your ear next to them to make sure they're still right. That's awful as a parent because you're like, I just want to make sure they're still okay, she's napping for like an hour longer than normal Is everything okay? Okay. And then you go in there and you wake them up and then it's awful or it's the middle of the night you wake up you're like I wonder if they're okay. So, this thing will tell you what their heart rate is and what their oxygen levels There are other ones that are camera based that you put this like dots on the child like it's like a sleepy Snuggie thing. And then the camera will track the dots and make sure that the dots are moving. Like they'll detect the breathing of the child, which is kind of cool. But we got this one years ago, probably four years ago. And we, we just pass it along to my sister, because we're done with it now. But it was such a peace of mind thing. Knowing that you can just quickly open your phone and check on the heart rate. And make sure that make sure that they are in fact still okay, and pretty cool.
+
+121
+00:50:38,789 --> 00:50:39,360
+Unknown: Yeah,
+
+122
+00:50:39,360 --> 00:50:40,110
+cool.
+
+123
+00:50:40,110 --> 00:51:56,190
+Scott Tolinski: I have a podcast pic today, which is going to be a podcast from wondery, which is you know, one of those, I think they did the dirty john one. And after that they just like blew up. So this is a podcast called the Baron of Botox, and it's about this famous plastic surgeon to the stars, and it goes into their life and sort of their downfall as a interesting human being and sort of the things that happen in their life. It's, it's both sad and fascinating. At the same time. I know nothing about plastic surgery, or Botox or any of that stuff. And I'm learning a lot of interesting things. And it's really fascinating about like, the history of all this stuff. And this person who created this, it's very fascinating. And this story is equal parts horrifying and interesting. So check it out. Beautiful, shamelessly plug all of my courses West boss.com, forward slash courses, grab a course or to use coupon code syntax to get 10 bucks off, learn a little CSS, JavaScript, whatever you like. Yeah, my latest course is on how to build a graph qL API. It's now available for level up pros at level up tutorials.com forward slash pro sign up to become a pro save 25% for the year. So yeah, that's all I got.
+
+124
+00:51:56,549 --> 00:52:00,600
+Wes Bos: Alright, thanks for tuning in. Catch on Monday. booze, please.
+
+125
+00:52:02,430 --> 00:52:12,210
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
