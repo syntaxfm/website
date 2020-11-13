@@ -1,0 +1,436 @@
+1
+00:00:00,359 --> 00:00:24,000
+Announcer: Monday, Monday Monday, open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob and Scott L. Todd. Totally.
+
+2
+00:00:27,420 --> 00:04:42,480
+Wes Bos: Welcome to syntax in this Monday hasty treat, we're going to be playing a TLD game, which I am so excited about. Wes has a little story about this game, so I'm gonna let him introduce the game. But before we get into that this episode is sponsored by Log Rocket. Now Log Rocket is a longtime sponsors syntax, one of the coolest services in the universe, I was gonna say on the planet, but considering it's a rocket ship, it's most likely outside of the planet. Log Rocket is a error tracking and handling service that allows you to see the errors as your users have seen them. It is awesome. What you do is you get a session replay video of the error that's happening. As the user saw, let's say they click on this icon of a maybe a winking emoji or something mean that Winky emoji breaks the whole site, you can see exactly what they clicked the error log, the Network tab, the Redux store, all that stuff that you want to know, to figure out what happened when you solved the to solve your bugs. So if you want to check out Log Rocket, head on over to Log rocket.com for slash syntax, and you're going to get 14 days for free, one of those services, you really have to, I should say C to believe because it's a visual thing. But it's just that cool. So check it out Log rocket.com forward slash syntax. All right. My name is Scott to Lenski. And with me, as always, is Wes Bos. And, Wes, you have a little bit of story about this game. So I'm interested to hear this little intro. Yeah, I was out for drinks with a bunch of creatives, I guess, some photographers and whatnot. And we're just kind of standing around talking about how I make websites and domain names. And then I somehow I brought up that I own bo bosta af. And I was telling them how how much of a pain in the butt it is because it's Afghanistan. And there's like a sanction in the US against doing business with Afghanistan businesses, so you can't get CloudFlare for it. And there's all these, these things that can happen with it. And I was saying like how it was, like 100 bucks a year to register this thing. And it's funny, but it's also a pain. And he's like, oh, man didn't even know AF was a thing. Like, that's Afghanistan. And he's like, Man, you must know so much about domain names. And I was like, I do know so much about domain names. Like, it would be fun to do a, like a little game where kind of like stumped, where we go back and forth. And we have a list of every single TLD a TLD is a top level domain so.com dotnet, dot onion dot actually done, you know, I think is actually one that's not a, that's just if you're actually using Tor. Yeah, but there's hundreds and hundreds of them here. And some of them are associated with businesses, some of them are not registerable. Some of them are associated with countries. So what we're gonna do is Scott will pick a TLD. And then we have to answer the question. Is it for a country or a business? And so yeah, we have to say that, if so, what country is it for? Or what business is it for? Or what type of business is it for? So like, if you look at something like doc accountant, right, that's obviously not for a specific business, but it is for the type of business that is an accountant. How much per year does it cost? So you either have to guess how much it is per year? Or you can say unregistered because there is some that are unregistered. And because they're just there, they're owned by companies like companies can go ahead and pay to get their own TLD like dot blog is owned by WordPress. But WordPress does allow it does sell it whereas they could just keep it for themselves if they wanted. And then finally the last question is is Scott dot whatever? TLD and West dot TLD available. So it's got dot blog available and is West dot blog available? So we have to take yes, those. Do you have any idea like points scoring for this? I was maybe thinking about doing like a golf thing, like lowest score wins. So every time you get one, right, just to make it more. And then if you guess like how much per year if you are off however many dollars you're off. That's how many points that you have to add to your score. And
+
+3
+00:04:42,890 --> 00:04:43,800
+Unknown: my God.
+
+4
+00:04:44,910 --> 00:05:50,190
+Wes Bos: put a lot of thought into this over the weekend. I'm so excited about it. I'm excited. I think that all sounds fun. And you know what, this doesn't have to be the only time we play this game. So let's say we run with these rules and they're no good. We can always change it. We can tweak it. Yeah Yeah, there's no rules. This is our podcast. We do what we want. Yeah, I'm wearing an overalls t shirt right now to remember those. No rules. No rules. No. What's, what's that from? What is that? It's a brand. I think I remember that. We had a when I was a kid, we had extreme zone, which was like the Sears like streetwear brand. And I loved having everything extreme zone. And we used to go to this like outlet mall in Canada that had like a Sears outlet, and I would buy all buy up all the extreme zone gear and just rock it so hard. That's amazing. All right. So first TLD is dot B. Oh, oh, that'd be Oh, okay. So first question. Is it a country or a business?
+
+5
+00:05:50,280 --> 00:05:55,650
+Unknown: Is it a country or a business? I'm gonna say it is a country. You are right.
+
+6
+00:05:55,830 --> 00:05:57,270
+Yeah, country.
+
+7
+00:05:57,330 --> 00:05:59,220
+So I got negative with five points,
+
+8
+00:05:59,250 --> 00:06:02,970
+Wes Bos: you get negative five points. So okay. Scott is at negative five.
+
+9
+00:06:03,180 --> 00:06:09,120
+Unknown: I know I've already made the table. Look, look, look down in your notion page. You'll see okay.
+
+10
+00:06:09,180 --> 00:06:15,030
+Wes Bos: All right. I'll let you score. Okay. Okay. And which country is it? Ah,
+
+11
+00:06:15,060 --> 00:06:23,460
+Unknown: which country? Is that be? Oh, I'm going to say, oh, man, Bolivia.
+
+12
+00:06:23,760 --> 00:06:25,380
+You got it? Oh.
+
+13
+00:06:27,300 --> 00:06:28,260
+That's amazing.
+
+14
+00:06:30,900 --> 00:06:44,520
+It's the first the first literal first country that came into my head with that even sounded anything like Bo. Okay, that's great. I was thinking European the whole time. The first time I went to South America. there when? Okay, cool. Okay. Wow.
+
+15
+00:06:44,700 --> 00:06:53,460
+Wes Bos: I don't know my country's very well. So this is gonna be very interesting. All right. Next question. How much per year does it cost to register?
+
+16
+00:06:54,450 --> 00:06:57,630
+Unknown: I'm gonna go ahead and say 70 bucks.
+
+17
+00:06:58,049 --> 00:07:10,860
+Wes Bos: 199 99. So $200 a year. See, US got decimated there. I don't know if you'll be able to come back from that. So you were 30 $30 off
+
+18
+00:07:10,919 --> 00:07:18,720
+Unknown: minus 10. So I'm 120 why this price guessing is a little skewed here. Okay. I'm at 120.
+
+19
+00:07:19,229 --> 00:07:23,490
+Wes Bos: All right. And it's got Bo and West up Bo available.
+
+20
+00:07:23,820 --> 00:07:25,500
+Unknown: I'm gonna say yes. On both accounts.
+
+21
+00:07:25,890 --> 00:07:30,600
+Wes Bos: Scott doppio is available. Yay. And Wes doppio available.
+
+22
+00:07:30,600 --> 00:07:35,190
+Unknown: As you get 10 for those each 10 h for those bring me down to 100
+
+23
+00:07:35,370 --> 00:07:39,690
+Wes Bos: Yeah, I need you to come back from that. decimation that you with the pricing.
+
+24
+00:07:39,989 --> 00:07:49,380
+Unknown: Okay, so I got 100 points on that round, just because of the pricing. Even though again, lower is better. Lower is better. All right. Well, good luck to you, sir. Okay, good
+
+25
+00:07:49,380 --> 00:07:49,920
+luck. Okay.
+
+26
+00:07:49,920 --> 00:08:09,480
+I got I got one for ya. Yeah. Good luck with this one. is.bz. h as in Hey, Wes. Is dot busy. He's, he's busy. Is this a country or whatever? Okay. country or business age
+
+27
+00:08:09,719 --> 00:08:10,740
+Wes Bos: is a country.
+
+28
+00:08:11,099 --> 00:08:16,950
+Unknown: You are correct. It is. It's not a country necessarily a geographical
+
+29
+00:08:16,950 --> 00:08:17,880
+Wes Bos: region
+
+30
+00:08:17,880 --> 00:08:24,270
+Unknown: geographical region in France. For Brittany. I don't know. Wait.
+
+31
+00:08:24,390 --> 00:08:29,400
+Wes Bos: You're supposed to ask me this. Ah, that's the second question. That's fine. Just keep going.
+
+32
+00:08:30,930 --> 00:08:35,460
+Unknown: All right, well, I spoiled this one. So what country or business type? Is this for?
+
+33
+00:08:35,700 --> 00:08:46,040
+Wes Bos: a? I don't even know you said you said Brittany. It is Brittany. I did say that all right. But is that it? Like what's that h4? Uh,
+
+34
+00:08:46,160 --> 00:08:53,640
+Unknown: I have no idea. You would have never got that. All right. I give me those points. It is a region in France,
+
+35
+00:08:53,700 --> 00:08:54,600
+Wes Bos: a region in France. Okay.
+
+36
+00:08:54,600 --> 00:08:57,480
+Unknown: So So what are your points that now and negative 10?
+
+37
+00:08:57,630 --> 00:08:58,830
+Wes Bos: Yeah, killing you.
+
+38
+00:08:58,980 --> 00:09:06,120
+Unknown: Okay, I spoiled that. What was that negative 10 to before this, how much does it it that much does it cost to register that bch?
+
+39
+00:09:06,480 --> 00:09:10,230
+Wes Bos: I'm gonna go with $89 a year.
+
+40
+00:09:10,550 --> 00:09:12,270
+Unknown: It costs 6999
+
+41
+00:09:12,330 --> 00:09:15,170
+Wes Bos: Oh, nice and close.
+
+42
+00:09:15,330 --> 00:09:16,800
+Unknown: Yeah, grumpy. I
+
+43
+00:09:16,800 --> 00:09:18,360
+want to grow it over here. So
+
+44
+00:09:18,360 --> 00:09:34,670
+Wes Bos: you're at zero right now? No 10 point difference bringing you to zero. Okay, so is Scott dot b z h in West Bz h valable. I'm gonna say Scott that Bz bch is taken in Wes is available. Okay.
+
+45
+00:09:34,829 --> 00:09:47,340
+Unknown: You are correct on one account. They're both available. So you owe a score of negative 10. Oh, worked on that pricing. 111 200 bucks.
+
+46
+00:09:47,420 --> 00:09:53,900
+Wes Bos: Dang. All right. Okay, and they give you a fun one. dot Banana Republic dot
+
+47
+00:09:54,000 --> 00:09:55,860
+Unknown: Banana Republic.
+
+48
+00:09:56,010 --> 00:10:01,710
+Wes Bos: Is this a country or a business? Or like a we shouldn't say country geograph Africa region or a business?
+
+49
+00:10:01,710 --> 00:10:03,650
+Unknown: I'm gonna say it's a business.
+
+50
+00:10:03,960 --> 00:10:06,390
+Wes Bos: That's correct. What type of business? Is it?
+
+51
+00:10:06,690 --> 00:10:09,920
+Unknown: Is it a clothing store business? Uh, yeah.
+
+52
+00:10:09,930 --> 00:10:17,130
+Wes Bos: Could you be a little bit more specific? a banana republic? Who owns banana? Republic?
+
+53
+00:10:17,219 --> 00:10:18,290
+Unknown: I'm gonna say the gap.
+
+54
+00:10:18,410 --> 00:10:28,080
+Wes Bos: Yeah, yeah. Man, do I get two points for that? That's, that's okay. Given it. All right. Good. How much per year? does it cost to register?
+
+55
+00:10:28,499 --> 00:10:37,020
+Unknown: Now? would anybody want to adopt Banana Republic domain? Ah, I'm gonna go ahead and say it cost 60 bucks.
+
+56
+00:10:37,379 --> 00:10:39,720
+Wes Bos: an unregistered bowl, on Register
+
+57
+00:10:39,720 --> 00:10:43,620
+Unknown: bowl. So what does that mean? How much money do I gotta lose for that?
+
+58
+00:10:43,829 --> 00:10:47,270
+Wes Bos: Well, you were it was zero and 60 is? Yes.
+
+59
+00:10:48,360 --> 00:10:53,640
+Unknown: I got 160. And this pointing very skewed towards these number values, which apparently,
+
+60
+00:10:54,120 --> 00:12:52,110
+Wes Bos: don't give me the answer for the next one. Yes. Is Scott that West? Yes. They're both available. So yes, give me 10 points back. Thank you. For 20 points back. Okay. So I have 140 points West, you have negative 10 points. Are you ready for your next challenge? I'm ready. Bring it on. All right. We're gonna do dot baby. Bat Why? Oh, the Isle of baby. Is that to say that's a business? Uh, I don't think it's a business. Well, it's not a geographical like, it's not a country. It's not a geographical region, is it? No, but it's just generic. Okay. Yeah, that's what you mean. Like, it's it's obviously a business registered that so they could make money selling baby? Oh, I see what you're saying. Yes. Yeah. Okay. Yes, it is a business. Okay, and what type of business? Or is it? Is that an actual business? I'm gonna say it's just a type of business. So for baby related businesses. I'm trying to find out to be honest, let me see. Here it says if you go to one one domain.com Ford slash baby dot htm it says the purpose of baby dot baby domain name extension is to create online space where people can connect to a worldwide network of parents as well as goods and services aimed at parents. Hmm. So you're wrong. So you know, I said it's for I said, it's for baby related businesses. Okay, that's not the right parents. You miss the P word. The parent the parent. Babies can't use the internet, I guess. Okay, so you are sitting pretty at negative 20 points so far. How much does it cost per year? Two register, dot baby. I'm gonna say 20 bucks. You're wrong. It's 80 bucks. Oh, that's a
+
+61
+00:12:52,110 --> 00:12:52,680
+Unknown: lot.
+
+62
+00:12:52,680 --> 00:12:59,400
+Let's just add a 62 year total here. Thank you. Sorry. So you're a positive 40 Thank you. We have a difference of 100 points now.
+
+63
+00:12:59,490 --> 00:13:32,310
+Wes Bos: Oh man, you're catching up late Well, now it really is West West that baby and Scott baby available? I would say both are available. They are both available. You know what I should when I tested this domain? I should have checked if I should have done the pricing based on Scott that baby I did the pricing based on West baby and the price he for some reason West baby 80 bucks. What about Scott that baby 300 bucks that would have put me in first place.
+
+64
+00:13:35,160 --> 00:13:35,670
+Unknown: Oh,
+
+65
+00:13:36,150 --> 00:13:41,100
+Wes Bos: man. So funny. That's a premium domain name. Yeah.
+
+66
+00:13:41,130 --> 00:13:42,270
+Unknown: Dang.
+
+67
+00:13:42,300 --> 00:13:43,500
+Wes Bos: Oh, that is great. All right, let
+
+68
+00:13:43,500 --> 00:13:52,980
+Unknown: me find another good one here. By the way, for those of you listening to the current score is 140 for me, Scott and 20 points for Wes
+
+69
+00:13:53,040 --> 00:13:54,570
+Wes Bos: lower is better so I'm winning.
+
+70
+00:13:54,570 --> 00:14:00,780
+Unknown: Lower is better. So Wes is currently winning but all it takes is one Scott that baby to change this whole game.
+
+71
+00:14:01,110 --> 00:14:05,970
+Wes Bos: This list is massive. I gotta go with.kr
+
+72
+00:14:06,449 --> 00:14:08,790
+Unknown: o I'm gonna go ahead and say it's a country.
+
+73
+00:14:09,240 --> 00:14:14,010
+Wes Bos: It is a country correct? Yeah. You What country is it for?
+
+74
+00:14:14,189 --> 00:14:20,820
+Unknown: I feel like it's it's gonna be one of those. Like, I'm gonna say Kurdistan or one of those comments a Kurdistan.
+
+75
+00:14:21,240 --> 00:14:26,970
+Wes Bos: Is that your final answer? It is incorrect. It is South Korea.
+
+76
+00:14:27,240 --> 00:14:31,470
+Unknown: Yeah, I knew I didn't think it was Yeah. Oh, that makes so much more sense.
+
+77
+00:14:31,829 --> 00:14:43,950
+Wes Bos: Yes. How much does it cost to register a.kr domain name I mean to use the starting at value here just to be clear, it's a starting at this much per year.
+
+78
+00:14:44,130 --> 00:14:45,870
+Unknown: Where do you find the starting value?
+
+79
+00:14:46,170 --> 00:14:48,330
+Wes Bos: This is on one on one domain comm
+
+80
+00:14:48,660 --> 00:14:50,490
+Unknown: you have a weird like when you type in
+
+81
+00:14:50,580 --> 00:15:37,920
+Wes Bos: if you go to 101 domain.com Ford slash kr dot htm Yeah, they have like a little landing page every single one. It tells you what it starts at yet. Yeah. Okay, cool Korea South Korean domain name, South Korean domain name qkr. I'm gonna go and say I'm going to stick with my my number, which is not that successful for me. I'm gonna say somewhere around 60 bucks. Oh, that's good. 50 Oh, so I'm still 100 No, I'm at 150 Oh, 100 No, because I got negative five bringing me down to 135 then I got positive 10 so 145 Okay, he had a fall, and it's gotten West available. I'm going to say yes to both. They're both available. And both are unavailable.
+
+82
+00:15:38,819 --> 00:15:44,130
+Unknown: 20 points. No, I get to keep I don't add anything. I don't lose anything. Stay.
+
+83
+00:15:44,490 --> 00:15:45,840
+Wes Bos: Only if you get it, right.
+
+84
+00:15:45,900 --> 00:15:47,400
+Unknown: Yeah, that's how we've been doing it.
+
+85
+00:15:47,610 --> 00:16:28,950
+Wes Bos: Okay, okay, maybe we should, should put this. Oh, Scott. That VIP is 600 bucks. Whoo. All right. So I will let's do I'll do mine. And we'll do one more each. This is kind of fun. Yes. I'm finding this to be very fun. Hopefully. everyone listening is finding this to be fun. We Okay, I got a good one for you. And I think this is gonna be very interesting. So good luck. This is a dot, moto. moto. Okay. I must say it's a business is a business. Okay. I going to say it's Motorola.
+
+86
+00:16:29,400 --> 00:16:42,750
+Unknown: It's not Motorola. Moto G would would you like to hear what it's for? Yeah. moto is. A it's a generic for websites about motorcycles, cars and trucks.
+
+87
+00:16:42,930 --> 00:17:33,050
+Wes Bos: Oh, wow. Interesting. Yeah. So not moto I actually, it's funny. I thought it was going to be for Motorola too. And I looked it up. So that's how I knew it was going to be a good one. Okay, so how much per year does a dot moto cost? If you want to register? You know, West Moto, I say 50 bucks a year. 50 bucks a year? Well, unfortunately for you. This is not available yet. Oh, so you get to add 50 bucks to your total 65 meaning I'm still double behind you. So are double Yes. Double behind you so. Okay, so neither of them are available. That's it. Oh, I think I got a good one. Oh, man. I love this. Doc dot A W dot a. w. m
+
+88
+00:17:33,080 --> 00:17:35,700
+Unknown: country or a business? I'm gonna say
+
+89
+00:17:35,840 --> 00:19:13,530
+Wes Bos: country correct. Wow. Yeah, I would have guessed this for you guys have the burger chain a NW down there? We do. I don't know if they have them in Denver. But we have them in here. I would have guessed that. It was like for a NW but it's not it's it's a country. I don't know if I would have guessed that. I don't really think of a AWS that much. No, no, I don't think the super popular. Oh, they're all over Canada. That could be the next controversial thing I say in this this podcast. Okay, so a W what is a W stands for country? Is it for what country? I don't know. We'll say Antarctica. No, no, although I did look up my article before this game was like aq, so it's close. W is a Roomba. A Roomba? Yeah. Okay, cool. Yeah. So how much does an urban domain name cost? And the Reuben domain name what it starts at? Yeah. Starting at Aruba domain is going to start at $60. That's gonna keep my number 90. It's pretty close. Hey, so plus 30 plus 30. So plus 30. And it's got that AWS and West AWS available. Yeah, they're both available. They are correct. Yay. So that brings me back down to 150. Which is the final for my score of this tournament. Right. 150 Okay, Wes. Are you ready? I'm at 65. So the price here could really botch it. The price could botch it. And I got a good one for you.
+
+90
+00:19:13,530 --> 00:19:16,350
+Unknown: I had a really good one. Yeah.
+
+91
+00:19:16,350 --> 00:19:23,600
+This is a dot. I am. I am. Oh,
+
+92
+00:19:23,640 --> 00:19:28,920
+Wes Bos: that's for sure. A country because I remember I am being around for a long time.
+
+93
+00:19:29,360 --> 00:19:34,770
+Unknown: Dang, you are correct. I was hoping you would confuse it with instant messenger. So
+
+94
+00:19:34,770 --> 00:19:45,300
+Wes Bos: no. Yeah, well, people use the IM for a long time for I am. What country? I'm going to say Indonesia.
+
+95
+00:19:46,100 --> 00:19:48,780
+Unknown: No, it is the Isle of Man.
+
+96
+00:19:48,960 --> 00:19:50,760
+Ah,
+
+97
+00:19:51,000 --> 00:19:59,570
+located in the Irish Sea. Yes. So No, you're wrong. It is the Isle of Man which I don't know how you could have guessed that. I wouldn't get that
+
+98
+00:20:00,659 --> 00:20:03,800
+Wes Bos: How much per year I'm gonna guess this 89 bucks a year?
+
+99
+00:20:04,169 --> 00:20:10,200
+Unknown: Ah, nope. It is not $89 a year. Unfortunately for you. Ah,
+
+100
+00:20:10,820 --> 00:20:13,920
+yeah. So no,
+
+101
+00:20:14,300 --> 00:20:19,820
+I think you are officially the winner, but it ended up being much closer than I got
+
+102
+00:20:19,820 --> 00:20:55,440
+Wes Bos: 120 Oh, wait, no, hold on. We got Scott. I am we got the last question to answer here. One Two. Well, yeah, you still gotta guess. Yeah, yeah, I know. I know. But you still Yeah, because God I am. is available in West I am is available, I'm guessing. Okay. Uh, Scott that I am is not available. And it doesn't matter. Either way. West I am is also not available. So no, your final scores. 20 points. Wow. Well, I got so I got what, 140? No, you're no you don't get you don't get plus points. Oh, yeah. You talked about that. Wow. Well, that was kind of fun. It's like golf.
+
+103
+00:20:56,279 --> 00:21:03,990
+Unknown: I can't believe it ended up this close. I mean, the after the first round, it was 100 to negative 10. After the second round was 142 20.
+
+104
+00:21:04,139 --> 00:21:08,760
+Wes Bos: If you didn't botch that first one. It would you would have just decimated me.
+
+105
+00:21:08,939 --> 00:21:14,520
+Unknown: Yeah. is all about what was the win the first one I don't even remember what it was. Oh, I got the country right to Oh, my gosh,
+
+106
+00:21:14,600 --> 00:21:32,160
+Wes Bos: yeah. You killed that with the country. Bolivia, add that to the soundboard. Bolivia. All right. Well, I know if you found that entertaining. I certainly did. I think we should do that again. Because there's literally thousands of other.
+
+107
+00:21:32,759 --> 00:21:40,290
+Unknown: There's so many. When I looked at this list, I was like, Oh, my gosh, there's just more than you can possibly even parse. So
+
+108
+00:21:40,310 --> 00:22:34,590
+Wes Bos: yeah. Because like, a couple years ago, they opened it up where you could like put in a application for a space. I think it was still like $100,000 to get a TLD. And I'm not sure what the the costs are to maintain that. But there you can get like there's New Holland. Oh, that's a good one. Is that the popular brewery in Michigan? Or is it the tractor dealer? Do this live? We should do a live PLD game with the audio. Yeah. But like, I have it like timed countdown. So you can Yeah, and we should be able to look at like a list of countries as well. I think that'd be kind of interesting. I don't know. Yeah, I think we just we just discovered something. All right. Well, that's it for this hasty treat. We're going to be back with a back you on Wednesday with a full on tasty treat. pumped about that one. Beautiful. Thanks for tuning in. Catch you then please
+
+109
+00:22:37,080 --> 00:22:46,890
+Unknown: head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
