@@ -1,0 +1,228 @@
+1
+00:00:00,359 --> 00:00:01,350
+Unknown: Monday, Monday,
+
+2
+00:00:01,350 --> 00:00:03,420
+Monday, open wide dev fans
+
+3
+00:00:03,420 --> 00:00:07,590
+yet ready to stuff your face with JavaScript CSS node
+
+4
+00:00:07,590 --> 00:00:08,340
+module BBQ
+
+5
+00:00:08,340 --> 00:00:09,060
+Tip Get
+
+6
+00:00:09,060 --> 00:00:11,310
+workflow breakdancing soft skill web
+
+7
+00:00:11,310 --> 00:00:21,660
+development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob and Scott Hill.
+
+8
+00:00:25,950 --> 00:00:59,820
+Scott Tolinski: Oh, welcome to syntax on this Monday tasty treat, we're going to get moving with a framer motion, we're going to be talking a little bit about this library and why it is so cool. And one of these libraries that you're going to want to check out, at least give a try and just see how it can improve your understanding of animations within your react code. My name is Scott Tolinksi. I am a developer from Denver, Colorado, and with me, as always, is d Wes Bos.
+
+9
+00:01:00,030 --> 00:01:00,930
+Wes Bos: Hey, everybody.
+
+10
+00:01:01,229 --> 00:01:05,370
+Scott Tolinski: Hey, everybody. I'm gonna start one time just by saying, Hey, everybody,
+
+11
+00:01:05,429 --> 00:01:06,480
+Wes Bos: Hey, everybody.
+
+12
+00:01:08,670 --> 00:02:02,040
+Scott Tolinski: This episode is sponsored by Log Rocket, that's ogrockt.com. And you're gonna want to check out Log Rocket, because it is the coolest service to really understand how the bugs that are happening in your code are actually happening. Their tagline is a stop guessing why bugs happen. And really that describes them so well, because what Log Rocket does is it gives you a session replay, which is a pixel perfect video replay. With that scrubbable with events to let you know exactly what happened in your code. When something went wrong. When a bug happens. While it takes a session replay of that bug happening. It gives you access to the Redux store at the time, the network activity console locks in errors and all sorts of really cool stuff to give you that visibility that you so desperately crave. When a bug happens. No more.
+
+13
+00:02:02,060 --> 00:02:02,610
+Wes Bos: Hey,
+
+14
+00:02:02,610 --> 00:02:36,090
+Scott Tolinski: what exactly did you do to cause this bug? Hey, my website turned purple. How did it happen? Well, now here, you can watch a video and see exactly what that user did to manage to turn your site purple, whatever it was, it's really super cool. You're gonna want to check it out Log rocket.com forward slash syntax. And during the 14 days for free, that's more than enough to at least have a bug happen and allow you to solve this bug with Log Rocket. So check it out Log rocket.com forward slash syntax. Thank you so much for Log Rocket for sponsoring. Alright, so
+
+15
+00:02:36,090 --> 00:02:50,160
+Wes Bos: you are jumping into framer motion. I know, really nothing. I know what it is. And I've checked out a few times, but just is really your wheelhouse. So what did they just release something new? Or is this something that you recently got into?
+
+16
+00:02:50,400 --> 00:07:35,270
+Scott Tolinski: Yeah, to preface this a little bit, I have been doing quite a bit of animation work. As we know, I released in animating react course on react spring. And I absolutely loved working in react spring for a long time. So you know, I've been planning on doing some sort of intermediate level animation course coming up here, right. And I just been hanging out and watching everything. And I decided to give framer emotion a try while I was waiting for the next version of react to spring to drop. Because last time I had actually really taken a hard look at it was when it was still pop motion pose. And so after playing with it, I was really enamored with the syntax of it all, for at least at least, especially, you know, interface, simple animations, not to say that it is a simple base library. But the ease of which it is to be able to create some very simple animations was really impressive to me. So the more I dove in it, the more and more I became impressed with it. And so I decided to do a course, on level up tutorials, which is going to be out February 29. On Leap Day, it's gonna be out on Leap Day, and it's going to be get moving, or now that's the name of this episode, it's just going to be on framer motion. Because of that, I've just been having such a fun time playing with framer emotion overall, I thought we could talk a little bit about it, and maybe lay out some of the differences a little bit of what it is doing this in react spring, maybe what brehmer motion can do for you. I think the the best way to get a good handle on framer motion without even looking at the syntax really, is even just looking at this framer.com forward slash motion. And there's just a lot of good examples directly on this front page. They do even show you the code here. And the cool thing is, is that there's these open and sandbox buttons next to them. So I love that kind of stuff where you can just pop over to code sandbox and give it a try in a real world environment and see what it actually looks like in some real code. So a little bit about framer motion, what's the what's the 411 here is really that it used to be known as pop motion pose. This was a library that largely focused on sort of scenes where you had various scenes that you would change between. And to be honest, as much as I liked pop motion pose, it was never my favorite way of doing animations, it felt like I was writing a little bit more code than I would have liked to write for really basic stuff. It was simple enough, but it was never my favorite one. And once react spring dropped their react hooks versions of like, use spring to do physics based animation. I was, you know, totally sold on that. But the new pop motion pose, which is a framer, emotion is really focused in my mind on simplicity, you're gonna see sort of simplicity, ease of use, just largely in focus here. If we're talking about designing API's that are developer friendly. This to me is the gold standard. This API is so developer friendly. I'm just looking at some of the code examples here. framer comm forward slash motion, and it's just just like sick writing, like inline CSS and react. It's basically writing a couple of props. It's everything I've ever wanted out of a animation library. You know, the worst part about Angular was, at the time, it wasn't the worst part. But looking back on it, it was the whole the way that animations were done, where everything's just gets a before and after before start after start whatever classes and you got four classes to work with. Right, all your animations. And yeah, largely what react transition group did as well. Yeah, one of the reasons why I never liked using react transition, Graham went right to, you know, something like react spring or any of the other options react motion is using render props. Although that API was really difficult to parse, react, react, React motion was a great ly great library, but not a developer friendly API, in my opinion. So this library also uses physics based animation. So there's spring based animations, as well as duration based East based animations. So it's not just one or the other. So you do get access to that sort of physics based stuff into the spring based animations are the defaults. Now, one thing I don't like about this is that their defaults are a little aggressive. For me, they're a little bouncy, so Okay, compared to react springs, defaults, I find myself changing the default a lot more often here. But you know, it's minor. So emotion was previously pop motion pose, where you had different scenes. So you'd set up like the open scene and the close scene, and then you toggle between them sort of sounds like a What's that? David k piano? state state lens?
+
+17
+00:07:35,790 --> 00:07:41,580
+Wes Bos: x date? Oh, yes. And sorry. Yeah, sorry that you're talking about flip animations. But yes. Oh,
+
+18
+00:07:42,090 --> 00:08:27,540
+Scott Tolinski: sure. Yeah. So you basically would have like two versions, and that's fine. But again, like for really simple animations, it seems like overkill. However, this like this idea still exists within pop, or frame or motion, it's just a little bit. It's not like the default, the easiest way. It's, it's just another tool that you have. And it's a very, very powerful tool once you get to use it. So what's new here, basically, you have a whatever element you're using, think of like styled components, right? You do style dot div, style dot h, one style dot, pay a paragraph, whatever, you do the same thing. But with motion, it's motion dot Dev. And if you're using styled components, you would just extend that Lino motion dot div within your style to function, right?
+
+19
+00:08:27,600 --> 00:08:28,350
+Wes Bos: I see.
+
+20
+00:08:28,470 --> 00:10:10,860
+Scott Tolinski: So it really doesn't get in the way too much. At the end of the day, all you're doing is replacing a div with a motion dot div. And that makes it really easy to implement pretty much anywhere, I didn't have any trouble implementing this, I use styled components all over the place. And the big key is that you have this animate prop. And so you have one single prop. That's called animate. And that prop allows you to set various values. And if any of the values change within animate, the thing animates. So if you have a toggle, you just change that toggle in the animate. And it's going to toggle the animation and it's automatically going to interpolate do everything within the animation. The cool thing here is that the API made it really nice inside of animate or any of their other animation things where you're not thinking about CSS properties. I'm not thinking about transform, translate, 3d, and then three variables, you're only thinking about the x coordinate, the y coordinate, scale, rotate, those kind of things. You could do scale x or something like that, too. But if you want to move something to the left, you just animate the x value to a positive value. The reason being is that because this, what this does is basically, a lot of times people don't realize that you shouldn't animate properties like left or padding or the margin, right. Those are going to lead to some janky animations, you should pretty much only animate a few things. That being you know, training forms, so translate scale, whatever. And even at that you should do those in the 3d environment. So that it utilizes your GPU, but also the opacity.
+
+21
+00:10:11,730 --> 00:10:17,270
+Wes Bos: I always hear that that people always say like, only transform and opacity, but like, like colors obviously fine, right?
+
+22
+00:10:17,400 --> 00:10:18,920
+Scott Tolinski: Yeah, yeah. Color side.
+
+23
+00:10:19,200 --> 00:10:21,050
+Wes Bos: What about font size? You know,
+
+24
+00:10:21,060 --> 00:10:23,300
+Scott Tolinski: I don't know about font size. I would probably use scale, right?
+
+25
+00:10:23,340 --> 00:10:30,020
+Wes Bos: Yeah, yeah, you're right. Yeah, that's sure. Like, why would you want to animate the font size? Because that that would like push everything over? Right? Yeah,
+
+26
+00:10:30,050 --> 00:11:42,990
+Scott Tolinski: yeah, yeah. So you have this sort of live Prop, you can think of animate, you change the values, everything's going to change. But a lot of times the animations are used with an initial state. And for that there is the initial prop where you can say, okay, initially, this thing is at zero opacity. And then the animate value is one. And then that way, whenever that component mounts, it goes from zero to one. And I made it super easy, right? Also, there's an exit Prop, but the exit prop is also for an exit state for unmounting states. And this needs for you to be able to use this you need a wrapping component around that there's a little bit around there with the syntax, you might want to look up, it's a little bit hard to express over radio. So like I said, this whole thing is all about making difficult stuff easy. And one of the things they make really easy that I like, is just your base things. So for instance, to to make something draggable, you simply add a prop, drag it that's like, it's it's super easy. You can say drag x, and then it's going to allow you to drag on the x coordinate of this thing. Or you can give it a drag a constraints, and then it's going to constrain itself to a specific div. It's really super cool.
+
+27
+00:11:43,080 --> 00:11:48,810
+Wes Bos: Oh, man, this drag and drop demo is so cool. It's so slow to the website and check this out.
+
+28
+00:11:48,960 --> 00:13:00,960
+Scott Tolinski: Yeah, there, there are so many neat little demos here that are so slick. The fact that it makes this like draggable stuff this easy. You don't have to bring in anything else, it just super nice. Another thing is, is working with gestures and events like hover and tap, those kind of things. I always had the issue with bring or react spring were here I have this animation that's taking place on Mount right, or this animations taking place. But then I also want to give that same item, a hover animation. So I would do the hover animation and CSS and you have to add a transform or a transition. But if you had a transition to that same thing, then it's going to goof up the physics based animation because all of a sudden you have a transition on it while it's doing its spring based JavaScript based animation. And the whole thing gets really messy. So what I really loved about this library is that it handles the hover events to like wild hover or on hover. And that way you can change the the CSS properties without having to worry about whether or not the animation is complete or whatever, it all interpolates correctly based on whatever you're using. So this library handles that all rather than just the animation part of it.
+
+29
+00:13:00,990 --> 00:13:26,430
+Wes Bos: So for things like drag and hover and scroll, are you able to hook into these? And like when something does drag, then do something is that what is it? Or is that not what it's meant for? Like, is it meant to be made for UI components that you actually, because I'm just looking at this, this this that div that you drag? And that's not accessible at all? I can't even select it or anything. But is that what it may is that was for?
+
+30
+00:13:26,699 --> 00:13:49,110
+Scott Tolinski: Yeah, totally. Yeah, I mean, there's all sorts of not only is there you know, events for on, hover on drag, whatever. But there's also we like hooks that like things that are fired once this has ended once it started. While it's currently doing this, this is going to run on pan on pan start on pan. And there's so many different events here that you can really tap into the whole process.
+
+31
+00:13:49,230 --> 00:13:56,160
+Wes Bos: Ah, on drag. Yeah. So it's like any other man, this is like jQuery UI for react. This
+
+32
+00:13:56,160 --> 00:15:48,270
+Scott Tolinski: is great. The API is just about as fantastic as it gets here. There are some downsides to this, this library, which I'll go over at the very end. But at the end of the day, I feel like this API is the sweet spot for me in terms of like, let me handle this stuff I want to handle but like, Don't make me write a whole bunch of extra stuff I don't care about. Yeah, it also gives you like really good control over all of the properties that like some people might look good. Some libraries like these and be like, okay, but I have very specific animation tastes. You say, Okay, well, you can change the evening, you can change the durations, you can change the type of animation, whether it's physics based or anything like that. It gives you the ability to do all of that. There's actually it's funny because you mentioned accessibility, there's a whole section on accessibility in their docs. There's like a whole section on that. So Oh, yeah, they have thought about accessibility here. It's fantastic. There's also the the idea of variance. So variance as we talked about, with pop motion pose. What it is, this is sort of like state machines where you have various states of your application. Now you can have as many of these as you want, you have various states. So let's say this thing is open or closed, right? You could have those two states, and maybe on open, you want five different things to animate. And typically in the past that would involve changing one state and then doing like a state toggle on all five of those different things. But this allows you to pass that variance object into all of your different motion components, right? Yeah, let's say a five different things, just pass in the variants to all of those different motion components. And then on the parent, you just tell the parent which variant is currently active right now. And they all just go off and do their own thing and make it happen. The variant stuff is super powerful for orchestrating a lot of designs at once, something I've been really into.
+
+33
+00:15:48,450 --> 00:15:53,340
+Wes Bos: Cool. Um, so this is this is just react only this framer motion.
+
+34
+00:15:53,640 --> 00:16:22,020
+Scott Tolinski: Yeah, and then it does do it does the animations outside of the React context. So honestly, I don't remember if pop motion posted that but that was one of the things that I really loved about react spring is that it took the animation basically out of react to them. So that react wasn't worrying about the animation on trying to control it, to make it as performant as possible. And then frame or motion as either already did that before or followed suit here. I honestly don't remember.
+
+35
+00:16:22,740 --> 00:16:36,660
+Wes Bos: Yeah, cuz there was a pop motion pose for view. Yep. I remember it being like, just like a low love library. And then there's adapters. But it seems like this framer motion is now only for react at the moment. Maybe they'll come out with a view in the future, though.
+
+36
+00:16:36,900 --> 00:17:14,400
+Scott Tolinski: Yeah. My understanding was that pose that was the library. Yeah, yeah, I think pop motion pose was the library. And it was like straight up just JavaScript. Yeah. And the creator of it. This is like, well, the API can be a lot nicer if I make this a little bit more, because there was like the pop motion pose library for react and the one for view. And then there was the other one, like the the parent one. And I think this is just like, well, how nice can the API be if everything is done straight up in react, right, you'll have a lot more control over how cool the API can be. It also works with CSS variables and SVG path, just
+
+37
+00:17:14,400 --> 00:17:21,960
+Wes Bos: looking at that element on all these things and expecting it to be embedded flash or something like that. And it's all CSS variables.
+
+38
+00:17:22,310 --> 00:18:49,100
+Scott Tolinski: It's all yeah, it's all there. There's so much cool stuff in here, the docs do a pretty good job, I have some trouble finding some things occasionally when I'm looking for them. But for the most part, that there's a lot of good examples in the docs. I do like in this like orchestration bit, when you setting up your variance and your animations, one of the cool things is you can so you can have one, one transition happened. And then you can say, all right, this transition transition should happen before the children. And then you stagger the children by point three seconds. And then this next one will happen after the children is ran, it's like, you can get really into the nitty gritty of it. And you can do some really dynamic stuff where these same variants lead these poses, they can actually be a function rather than a just a straight up object. And that function can get properties. So one of the cool examples they have for this in their example thing. Imagine in your mind's eye, a grid of 100 squares, right? Just 100 by 100. grid. Yeah, you want it to animate, starting at the middle, right square, and then in the circle out from that middle, right square. This can happen that way based on some funky math that you're doing, but you have the freedom. So one of the things that I really like about this is it's straight up focused on simplicity first, and then you can get into the crazier stuff if you want to, but it's not putting the crazy stuff front and center. It just makes everything really easy.
+
+39
+00:18:49,259 --> 00:18:55,070
+Wes Bos: Interesting. And what and what is framer? x again, remind us how does that in relation to this?
+
+40
+00:18:55,259 --> 00:18:58,610
+Scott Tolinski: Yeah, so framer x is a UI design
+
+41
+00:18:58,740 --> 00:19:03,690
+Wes Bos: application. Yeah, that outputs react or is built with react.
+
+42
+00:19:03,780 --> 00:20:32,400
+Scott Tolinski: It's built with react. And you I honestly, I have to look into it a little bit more when it launched. You could have a react components that you could import export. But they had to be react components from the start. It wasn't like you could draw a div and say, Hey, export this div as react. Yeah, that could have changed by now, but I'm not sure. I know that there animations within library or within the application, framer x are actually all done with framer motion. So the framer motion is powerful enough to power a legit desktop application like that prototyping tool. So there's so much we haven't gotten to on this. It's, it's one of those things you're going to want to check out just to get a handle on. Even if you are already like I'm good with react spring, it does the hook thing. I think that framer motion is an also an excellent tool to have in your tool belt. I'm a big fan of both of these libraries. Still, I don't want to say like, Oh, this is the promised land, or this is the promised land because I think framer, emotion is probably easier. At the end of the day, I think it's probably easier to do some stuff. I think react spring also has its strengths. It has a lot of really nice low level tools. It also is much smaller in terms of K B's, you know, this, this has got those KB toys, but it's not the full amount of K B's. Let's see, let me pull this up here. Who remembers k? Do
+
+43
+00:20:32,400 --> 00:20:36,750
+Wes Bos: you guys have KB toys? While I'm looking this up? KB toys? What is that?
+
+44
+00:20:37,140 --> 00:20:44,790
+Scott Tolinski: A was a toy store. It was primarily found in like, outlet malls? Or Oh, no, I've
+
+45
+00:20:44,790 --> 00:20:48,990
+Wes Bos: been to one of these in the States, though. I know what I know you're talking about.
+
+46
+00:20:49,340 --> 00:22:18,750
+Scott Tolinski: So yeah, shout out to KB toys. So okay, so the KB is on this thing. It's at 80 kilobytes, pre g zipped 26 kilobytes g zipped, where I found react spring to be about half of that. So I think it was about like 12 or so cavies. wreck spring g zip. So your you know, this library is twice as large just react spring. And it really shows in the API, it really does a lot more for you. But that said, you are paying for that ease of use by having a larger library. And I think to me, honestly, I think it's worth it. I actually went in while I was doing my research for this latest level of tutorials course, I rewrote all of the library or all of the animations on level up tutorials to be in framer motion. I love having to learn it as a playground, right? Yeah. So I just took all the animations. I was like, Okay, so this is going to teach me everything I know how to do in react spring, but to do it in front of emotion, just to learn it right? but not necessarily because I'm advocating for one or the other. It was more or less here. Let's let's go ahead and try this thing out. And at the end of the day, I really liked using it. I really liked diving into it. And I honestly think most of my code is probably better looking right now because of it. So yeah, for promotion, check it out this. This particular episode isn't sponsored in any sort of way. I know framer framer, did they reach out to us to sponsor at some point? I'm not sure.
+
+47
+00:22:18,780 --> 00:22:24,360
+Wes Bos: Ah, it sounds familiar. I mean, yeah, we'll take their money if they want. Yeah, yes. Right.
+
+48
+00:22:24,420 --> 00:22:29,700
+Scott Tolinski: This is not sponsored. But if you want a frame or you feel like since throwing up some cash or something, you know, yeah, kit. Yeah.
+
+49
+00:22:29,730 --> 00:22:32,310
+Wes Bos: Gets got a hat or something like that. Yeah.
+
+50
+00:22:32,610 --> 00:23:03,570
+Scott Tolinski: Yeah. Toss it. toss me a couple of things. But yeah, I know that. That's it. That's all really all I have. I really think the proof is in the pudding. For this one. As well said the proof is in the pudding. proof is in the pudding. If you have tried that pudding could be delicious. So check it out. framer.com. The API is at Ford slash API, forward slash motion, forward slash examples to see some cool little examples. And again, level up tutorials is going to be having a course on it this month to get a little bit silly at the end there. Sorry.
+
+51
+00:23:03,630 --> 00:23:06,240
+Wes Bos: Yeah. Yeah, get a salary as you want.
+
+52
+00:23:06,330 --> 00:23:06,930
+Unknown: Oh, I
+
+53
+00:23:06,930 --> 00:23:08,850
+Scott Tolinski: did to feel bad about it. I've been feeling
+
+54
+00:23:09,330 --> 00:23:13,470
+Wes Bos: bad Scott. This is our podcast we do. We want you to get as silly as you want.
+
+55
+00:23:14,670 --> 00:23:15,540
+Scott Tolinski: Silly season.
+
+56
+00:23:15,540 --> 00:23:24,060
+Wes Bos: All right. Thanks for tuning in. Thanks to Scott for schooling us on framer, and we'll catch you on Wednesday. Base.
+
+57
+00:23:25,950 --> 00:23:35,730
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
