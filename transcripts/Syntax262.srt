@@ -1,0 +1,356 @@
+1
+00:00:01,319 --> 00:00:10,530
+Unknown: You're listening to syntax the podcast with the tastiest web development treats out there. strap yourself in and get ready to whiskey and West boss.
+
+2
+00:00:10,589 --> 00:00:47,430
+Wes Bos: Welcome to syntax. This is the podcast with the tastiest web development treats. Today we're going to be talking about our react wish list. These are we've sort of been keeping tabs on like things that I wish that react had or JSX had or generally the community in general, I put out a tweet as well, we got some really good insights on that. Today, we are sponsored by two awesome company. First one is dev lifts, which is going to get you the developer fit their entry level plan is now free, which is amazing. We'll talk about that partway through and fresh books, which is cloud accounting. As always, my name is Wes Bos, and with me as always, is Mr. Scott to Lynskey. How you doing today, Scott?
+
+3
+00:00:47,579 --> 00:00:49,049
+Scott Tolinski: Hey, doing good,
+
+4
+00:00:49,049 --> 00:00:49,560
+Unknown: you know,
+
+5
+00:00:49,560 --> 00:02:39,210
+Scott Tolinski: hanging out, do my thing about to launch the new level up tutorials video player, which has been a Sonic, thank you. Yeah, it's using player j. s, it's using mocks for video hosting. It's a very nice and modern solution that I've been looking for for a long time. And we have an episode coming up that I've been planning for a little bit about video on the web, and all of the ins and outs of video on the web. because let me tell you, I was looking to move our encoding to a different platform, move our video hosting to a different platform, you know, wanted to just get everything a little bit better. And it is a an interesting world that we may not tend to dive into too often, especially when platforms like YouTube make it seem so easy, right? Yeah. So that would be a nice little topic for future ones talking a little bit about not only mcse and why I chose mcse. And maybe we could have some of the mcse folks on here. Yeah, so let's get into it here. I do maybe want to preface this episode, just to let anybody know, because I'm sure there's going to be a substantial amount of people who disagree with various aspects here. And specifically, React team members, if you disagree with us, that's cool. I would assume that most of these things we are aware of are probably not practical. Some of them definitely are practical. But I'm sure there's a certain percentage of these things that will make some people's eyes roll whether or not you are a contributor to react or whatever. But just know that everybody has different opinions on this stuff. And these are just sort of our opinions and things that we've gotten from the community. So try to keep it up in mind with some of these, especially as we we talked about them. I think it's gonna be real fun. And I think the premise of this episode is intended for this to be a fun exercise and not a not a contentious one. Do you know what I mean? Totally.
+
+6
+00:02:39,210 --> 00:03:14,039
+Wes Bos: I think in the past, like, if you made me make react, I would have screwed it up by now. Yeah, right? Exactly. A lot of the times, the solutions that RAC comes out with is because they know better than I do for my own for my own Great. So this is like, like Scott said, no shade podcast. But these are just things as a developer that we would love to see, either in react or, like a lot of the things that we're gonna say people are saying, like, just use this plugin, but a lot of them are gonna be like, well, we would love to have some sort of first class support for these types of things. So we don't need to bring in a plug in or something like that.
+
+7
+00:03:14,369 --> 00:04:51,900
+Scott Tolinski: Yeah, right, exactly. I think the number one is, I think we both can acknowledge that react, a lot of the decisions that it makes are from the standpoint of it wanting to remain flexible, right? It's always had the the sort of idea of flexibility as a strength, right, the fact that the community can come in and do 100 different state options is a strength. And at the same time, that string can also be a weakness, because what it leads to is it leads to some situations that either have 1000 different solutions or might not have a clear solution. So I think that maybe isn't an initial preface as well. Another we're done with the endless amount of preferences. Let's get into the first one, which is going to be one of the features that I've been wanting forever and ever and ever is the ability to delay the unmounting of a component easily. Because yes, there are ways that you can do it right easily. For specifically for things like animations, like how great would it be? Where did you just say, hey, this component, you you take the, you know, whatever, one millisecond here to unmount. And while that's happening, maybe I can process some quick and easy animation stuff. Because right now the solutions end up being like duplicating the component, or having both components mounted at once and then fading out well, one fades in and the other one fades in and trying to time it all it usually is up to the animation library author to solve that problem that I think should probably be a react self problem. But I am very aware through conversations that I've seen on this one that it is it is a deceptively difficult problem with how react works. And it's not just as easy as saying, Alright, here's your delay field right here,
+
+8
+00:04:51,900 --> 00:05:37,020
+Wes Bos: right? react doesn't give you any animation so early on, they had like an animation package. I think that they It's no longer the official one, they sort of gave it off to somebody else. And there's certainly no end of animation things, I animation packages out there. But if you take a look at Felton view animations, like all first class in those frameworks, so I know that they're sort of just saying, like, maybe it's not for us to do, but I certainly would love to see at least some very basic animation things added right into it. And that also like you think back to jQuery, people love jQuery because of that, because it just comes baked right in, you don't need to go reach for another huge animation thing and have providers and whatnot, just just let it work sort of out of the box.
+
+9
+00:05:37,349 --> 00:06:19,200
+Scott Tolinski: Yeah, it's funny, because I wasn't even necessarily getting into animations overall, as a whole. But it would be nice to have that baked in support, as long as it was nice and elegant. Because there was something really special about it, not to bring up my course, because I don't want to sound like I'm marketing here. But in my latest separate course, we did like an animation unmount per route, or even like a component that flies and unmount. And it was as simple as just adding a, it was like a literal transition colon fade on the component. That's it, you didn't have to write any CSS, you didn't have to write any JavaScript, you didn't have to you just put that one little line around there. And it handles mountain handles on mountain handles, anything you want. Next one we
+
+10
+00:06:19,200 --> 00:06:51,720
+Wes Bos: have here is that just react suspense in general to release so there's a there's a big update to react that has been coming for, like probably a year and a half, two years now. And it's going to handle being able to suspend components while you are doing something. So most likely, that's going to be data fetching. And you can stop the whole thing from rendering for a certain amount of time. And then if that goes over, you can show a loading screen. We have a show on it. We did well over a year ago on what react suspense is. And I just don't I have no clue where it's at. Oh, I
+
+11
+00:06:51,720 --> 00:06:57,090
+Scott Tolinski: think they might be getting I think they might not ever be releasing it. Did you see that tweet from Dan about it?
+
+12
+00:06:57,509 --> 00:07:00,240
+Wes Bos: No, what? Okay, so Spence in general,
+
+13
+00:07:00,269 --> 00:07:02,190
+Scott Tolinski: yes. Let me see if I can find this.
+
+14
+00:07:02,279 --> 00:07:27,020
+Wes Bos: Alright, so Scott and I, we just pause for like, five minutes, tried to decipher these tweets from Dan a roff. And we're not sure what they mean, obviously, they're, they're second guessing whether suspend should be a thing, that talking a lot about how server, the server side rendering needs to be first class citizen. So maybe they are looking at getting more into the server space and sending diffs. On over?
+
+15
+00:07:27,479 --> 00:09:23,970
+Scott Tolinski: It seems like, the reason why there are these delays is because maybe there's a reimagining or envisioning of how things are going to work or maybe some bigger thinking going on, then just say, All right, we're just going to finish this and roll it out, right? Because once something's rolled out, it's, you know, it's you got to support it, you have to maintain it. It's a big decision, especially with a platform like react. So obviously, with a feature and something as big as is the implications of this is that they should take their time, right? Absolutely. It is one of those things that we would like to be solved. I know me personally, I work quite a bit with server side rendering and react. And it is not the most fun process, having to rehydrate. And then whenever you hit issues and rehydration, it's difficult to solve. Like, sometimes I have issues where, let's say, one div, like doesn't close correctly, or something or like CSS all of a sudden isn't applied to the section correctly. And if you look at the HTML, it's malformed. And you say, Ah, I wonder why this is, but it's coming in from a server fine. It's a hydration issue. And sure enough, the hydration issues are definitely going to be you know, user caused errors. But it's not always clear why these errors are happening, or how they're happening or how to fix them. And then there's that old good old friend that is the element div was expected to be in div or element div was expected to be a div but was found to be a header element, an error that you get during rehydration, where the rehydrating elements are not matching with on the server side. And that was extremely frustrating, you know, things made it better. It doesn't necessarily always let you know why it's happening. It lets you know that it is happening, but it tells you very little about why it's happening. So server side rendering in general on react definitely seems like it exists. It works. But it definitely isn't as seamless, smooth and easy as it could potentially be, as we've seen from platforms like maybe next JS or even not in the React ecosystem sapper or something like that.
+
+16
+00:09:24,239 --> 00:09:57,450
+Wes Bos: Next one we have here is file based components. A lot of stuff we're saying is that swell and view have done a really good job at it. So being able to put your components, throw in a style tag into a single file. Right now, React is very opinionated about how you should lay things out and components, you can put multiple components in a single file. They have no opinions on how you should use CSS, other than you can pass a style prop to any component. But with a file based component, you'd be able to have things like scope style tags,
+
+17
+00:09:57,479 --> 00:11:49,049
+Scott Tolinski: so when you have like one component versus Like per file, sort of like file based component, it does kind of inherently keep things a little bit more organized, because you can't all of a sudden have a bunch of components in one file. It's sort of like automatic stuff. It also makes some of the naming of things automatic. It doesn't make as much sense in the React cons context as it does others because Okay, you have a function that functions the name of the component, that function has a return statement, everything happens within that function. But what what would happen if you were all of a sudden, in Keep in mind, this is far fetched, eliminate that function and just have the script stuff happen as in the file, and then you would have the VA JSX be automatically returned. Granted, I don't think any of this necessarily works in the React context, as is, if you were to just say, Alright, let's do view single file component templates in react, obviously, there would be a lot of reimagining that would have to happen for that to work. But I think there are some some things that it would be low level stuff, if you just kept react as is and just had, all right, you put a style tag at the bottom of your file, and all of a sudden, we have scoped CSS rather than anything else. And I think those are, are like maybe the more of the realistic changes, you could see here coming from something like this. And to me, it's not like a big, big deal or a big thing. But it would be kind of nice to have that kind of support, rather than right now we have like 800 different approaches to this, whether it is creating a style component, and then wrapping your files in a component or using whatever Versailles solution was, or using importing style JSX or empu, or importing CSS or whatever. Yeah, just being able to say, Alright, this CSS file is associated with this component, specifically, it will load on this component and it is going to be scoped to this component in a single file would be really nice.
+
+18
+00:11:49,590 --> 00:12:45,870
+Wes Bos: Next, we have prevent default shortcuts. So very often you have a function, we talked about this a couple episodes ago, you have a function, and when somebody clicks on a button, or submits a form or something that has a default, on it, you'll have to both run that function as well as prevent default on that element event, you can do this a number of different ways, you could just pass the event to your function and do it inside of that. Or you could do like a little inline arrow function right outside the onClick handler. Or you could have two different separate functions, the first one that does the prevent default, and the second one that calls the actual function. So those are all kind of like math. And it would be awesome to have, just like on click, and like I know, swell has a cool syntax that allows you just to prevent the default and then run the function because that's such a common thing to do. I think it should, it'd be awesome if it was built right into react. Yeah, how
+
+19
+00:12:45,870 --> 00:13:54,779
+Scott Tolinski: many times have you had to write prevent default when dealing with the form and react, just about every time, we'll talk a little bit about more forms stuff in a minute here, because forms in react in general are just really not elegant. They're just bulky. Next one, I wanted to just this, this is a quick little bug here. Again, this goes along with server side rendering, when you use server side rendering, turns out, use layout effect, just flat out doesn't work, right, because well, there's no dumb to worry about. However, it just breaks. So what you end up having to do every single time, every time you want to use a use layout effect. In a server side rendered react app, you have to use your own custom component called the well, the most common one is use ISO layout is the most common naming of this, but it's like, either that should be built in or the use layout effect should have a case for that, where it should just work with server side rendering, because having it just like not work isn't really super ideal for anyone trying to pick this up. So let's take a quick break to talk about one of our sponsors today, which is def lifts. Now you may recognize deadlifts as being one of the very first sponsors that we ever had on syntax. So Wes, do you want to talk a little bit about the def lifts plans they have going on right now?
+
+20
+00:13:54,960 --> 00:15:49,740
+Wes Bos: Yeah, so you've you've heard them sponsor on the podcast before their developers who are out there to refactor your body and know that developers probably aren't the healthiest community out there. And they in the past have had a bunch of really cool plans. And we're here today to announce that they have gone First they have the fit start plans, which are three different types of plans, you have lean bodyweight, or strong. And what they're gonna do is they're gonna deliver you workouts in a spreadsheet format, emailed every four weeks. So basically, you start, you can get them in your email, you know exactly what to do. You go to the gym, you open the spreadsheet, and you just do what it says in the spreadsheet. And they are making those free, which is awesome. And you can get those at dev lifts.io. And then they have brought back their premium plans, which are a one time purchase. This is actually what I went through myself. So it's an eight week plan that's tailored to what you want. So it's 199 bucks, you get 50% off for being a syntax listener with the code syntax, and when you pay that you sort of fill out a form, tell them what you're hoping to do, are you looking to get stronger? Are you looking to lose some weight, something like that. And you tell them where where you're at, like, I told them, I was going to a gym, and I have access to all of the equipment and other people say, I don't have access to a gym, I can only do it at home. And right now, almost nobody has access to a gym, at least in Canada. So you can sort of tell them like where you're at and what you want to do. And they will give you a tailored plan for what you want. You also get what you should be eating and sort of diet and nutrition that you should be going on as well. So check it out all of the plans, you get slack access, as well. So you can get a really cool community of other developers who are looking to get in shape as well go to dev lifts.io. And use a coupon code syntax for 50% off. Thanks so much devilish for sponsoring. Cool. So
+
+21
+00:15:49,740 --> 00:17:07,500
+Scott Tolinski: let's keep this moving here. This is one that sort of gets in into some, just higher ideas about react is really just that, again, that flexibility and freedom over maybe sort of rigidness and some of this, to me comes down to the lack of like recommendations coming directly from the React team. Because they don't want to officially support something, right? They don't want to say this is the official way, because everything's coming in from the community. But you know, what I'd really love if there was like a react recommended hooks package, you know, like here are the recommended or even just a repo of recommended hooks. Because sometimes you do see a lot of like spicy threads on the internet's saying like, why are all these react people doing these things? This really crappy way? Well, it's like, Well, you know what I mean, maybe if there was a little bit more, more like, these are the specific ways to do this. Right? These are the official unofficial react hooks, right? And I think about this all the time with like, how many thousands of use fetch hooks out there? Are there? Like, would it really be that hard for there to be an official use fetch hook that does all this thing? And if you need like a more complex one for yourself to use it? I don't know. To me, it just seems like there's an opportunity there for more guidance, essentially, on some of these practices.
+
+22
+00:17:07,949 --> 00:17:47,160
+Wes Bos: Yeah, I agree. And I realized that it's, you can tell me just npm install it and get it going. But it would be nice not to have to make a decision as to which one you would want to use or even have to stop and break your build and install it and get going just for the super common things like fetch, set, timeout, set interval, those are those those things are part of JavaScript. And if there's no like way to use them without writing a super custom hook in react, I think that they should at least come with, especially now like, they should come with it. Because like now that we have tree shaking or whatnot, if you're not using them, then they're not going to be added to the build at the end of the day.
+
+23
+00:17:47,570 --> 00:18:22,290
+Scott Tolinski: Yeah, an important point that you made there was just not having to make that decision. I mean, we know as developers that decision fatigue is real, like, it is very real. There's times when I get done working. And Courtney asked me a question about like dinner, I'm like, I cannot make one more decision today. I've made so many decisions about so many different things that I'm just my brain is fried for making decisions. And so while this freedom and flexibility is great, it also can wreak havoc when you're you're having to like research 10 different state libraries just to pick how to do global state,
+
+24
+00:18:22,310 --> 00:19:12,110
+Wes Bos: right? Yeah. Next one we have here is a good forum strategy to bind inputs to state directly, I know that there's there's libraries like format, but even then you have to set the value, you got to set the change handler, you got to do all this stuff. And then in order to get an input tied or bound to a piece of state, and I find that always to be not an issue, but like I find myself just going like, uh, I have to now write this like, I don't know, 10 or 15 line hook in order to bind this data to, to state i would love if it just bound it directly to stay or if there was like some sort of Prop where you could specify a handler, and then it would map that to state I realized that reacts a little bit more explicit. But something around making forms easier to deal with would be awesome.
+
+25
+00:19:12,590 --> 00:20:53,940
+Scott Tolinski: Yeah, it is difficult to use a platform like view Angular, or svelte and then go back to react for forms. Because I instantly want to just shut the project down when I start having to write like a couple of view states or use reducer when like, it would be really great just to have this auto bind does variable to this, this thing when this input changes and get to like, essentially feature parity with actual HTML inputs, to have the, you know, the input value bind. Now I grant I understand, you know, forms in react, but to me, again, most of these form libraries that come out, they don't make the API really that much simpler. And at the end of the day, a form shouldn't really be that, that difficult to write. And I think that it can hang a lot of people up right when they first start typing in input in react and nothing comes out because you haven't updated the state or, oh, these little new things that are just make learning react difficult for people, I think forms is definitely one of them. That can just be painful. And it also just isn't. I don't know, I sometimes my views on like terse and beautiful code, quote unquote, beautiful code, in my mind, my personal opinion of aesthetic beauty within code, get in the way of making things actually real world usable and robust. I sometimes look at an API and I think, why can't this API be way simpler? Not like really considering all of the edge cases that many the people who are developing these things actually think about? So I realized that so next one here is going to be one that's probably not going to happen. But it's sort of the promise of React Native web, which is sort of like jersey, the movie Street Fighter.
+
+26
+00:20:53,940 --> 00:20:55,320
+Wes Bos: No, no, I
+
+27
+00:20:55,320 --> 00:22:27,030
+Scott Tolinski: haven't seen any movies that will I figured as much, but You surprised me sometimes. So there's the video game, Street Fighter the game. And then there's the movie Street Fighter, the movie based off of video game. And then there was a game Street Fighter, the movie The game, which was a game based off of the movie, and, and so it wasn't actually based off of the game. It was a game based off of the movie, which is initially based off of a game. They just did this on, How did this get played podcast, so it's fresh in my mind. But that's what it reminds me of React Native web. It's like React Native web is the web, which is based off of native, which is based off the web for rigged. Would it be really cool as if like, knowing what I know about React Native, I've done a couple of courses on it. This is not possible. But it'd be really cool. If you could write once deploy everywhere, hey, that'd be cool. I know there's things like native script that that make them nice and easy to or easier compared to maybe React Native because React Native is not trying to solve that problem. React Native is trying to let you learn the concepts of react and use those skills to write native apps. It's not trying to be a write once deploy everywhere solution. But React Native web is trying to be a write once deploy everywhere solution. And it'd be kind of cool if React Native web just sort of worked with divs, and whatever. And, yeah, I have no practical means of actually expressing how this would work in the real world. I say this as a fantasy of mine, it would be fantastic. If you would just write your app and divs and stuff. And then React Native would say, oh, let me turn them into views and whatever you need.
+
+28
+00:22:27,330 --> 00:23:26,400
+Wes Bos: Next one we have here is compile time directives. Someone I have never, I never thought of this or seen this before. But it's pretty cool. So someone linked up this directive x package, which gives you directives, which is a fancy way of saying like an attribute or a prop on a component for doing things like repeating, they have the SEC extra Pete, we know that react doesn't have looping and it doesn't have if statements in it. And extra peat will attempt to fix that for us. So it will give us looping and give us if statements, which is kind of cool. So like if something is logged in, then go ahead and render out the username. And I'm assuming what happens is, this is a Babel plugin. And then Yeah, it is. And then we're under the hood, I listened to one of our podcasts, I said under the hood, like 100 times, I have to
+
+29
+00:23:26,940 --> 00:23:27,900
+Unknown: stop saying.
+
+30
+00:23:28,860 --> 00:23:51,090
+Wes Bos: So behind the scenes, what happened? Yeah, is that it just compiles it down to whatever the equivalent is in react also, they have repeating if statements binding, oh, it binds it, it does the this dot bind to this, you know, I will automatically bind that that's not so much of a issue anymore. Now that we have hooks,
+
+31
+00:23:51,270 --> 00:24:22,200
+Scott Tolinski: because this will this library we talked about before the recording the show, it hasn't been updated since 2018. So I don't know what this library if it works in a in a react hooks world or what it would even like, but I thought this was really interesting. I kind of wish this was an active project. And people were doing some kind of things with the accent is very, like, very template syntax II, which we'll talk a little bit more about when I hit the JSX section of this. I thought this was fascinating.
+
+32
+00:24:22,440 --> 00:24:32,370
+Wes Bos: I think this is really cool. But I would not use it until it's like a standard thing in react because like someone's gonna come into this project and be like, Oh, yeah, we use this weird. Oh, yeah. Like, what
+
+33
+00:24:32,370 --> 00:24:33,150
+Scott Tolinski: is this?
+
+34
+00:24:33,540 --> 00:24:47,760
+Wes Bos: Yeah, it's that's the unfortunate thing is like, I don't want to use the same thing with like, in JavaScript, if something is not at least what stage three or something. I don't want to use it just because it's not really officially supported just yet.
+
+35
+00:24:47,940 --> 00:26:13,260
+Scott Tolinski: Yeah, I learned my lesson with decorators. I think a lot of people really great flow going with decorators for like Apollo queries, and like, it was just so nice and fantastic. Yeah, no, I think rip them all out, I started hitting Babel issues and later versions of Babel. And as the day went back a stage or whatever, I was just like, Alright, okay, I'm not gonna put my future on decorators here. Another thing I would really like to see would be, we got a couple of people mentioned this in the Twitter thread. And this is something again, that comes out of the land of view in spelt, which is the idea of a slot. And now slot kind of takes the place of children. Now, the reason why a slot is maybe a little bit different than a children situation would be that you can have named slots. So instead of just being children, or, you know, children, the second item in an array of children kind of thing that you might have to do right now with when you have multiple items as children, you would actually be able to pass things in into specific, quote unquote, slots, and then that would pass them through and then in the next template, you would define the slot and then potentially the name of what the slot is. And then that way, it just makes things a little bit easier to read and explicit in your JSX, or whatever would be in the current version sits in your, you know, view, templating language, or wherever the concept of slots to me is a little bit more readable than the children function as is.
+
+36
+00:26:13,470 --> 00:26:19,980
+Wes Bos: Yeah, that seems pretty interesting as well. Tony has a lot of stuff here, and people are gonna be like, why don't you just use our or view,
+
+37
+00:26:19,980 --> 00:26:43,080
+Scott Tolinski: then I think the answers to a lot of these, like, if you're listening to this episode, and your first inclination is to say, Hey, why don't you just do blank? It's because we know, we know that you can already do workarounds, or have, you know, easier versions or some of these solutions. We're very aware. I think this is sort of like a, you know, like a fun. It's a fun. It's a fun little exercise. Yeah,
+
+38
+00:26:43,200 --> 00:27:17,550
+Wes Bos: totally. All right, let's move on to JSX, then so JSX is technically not part of react, but almost everybody uses JSX and react together. So what is our wishes for JSX. So the big one is remove the attributes that don't line up with regular HTML, the two big ones are HTML four, and class name, as well as the camel casing of attributes. I think it has to be camelcase to react, whereas it doesn't matter an HTML basically just line it up perfectly. Apparently, the class name thing is fixed. Somebody
+
+39
+00:27:17,550 --> 00:27:48,810
+Scott Tolinski: was tweeting us that Paul Henschel. Paul is a really, really excellent developer. He worked on Paranoid Android for those of you who ever rooted your Android phones back in the day, that was one of the bills I used to run all the time on my Android devices. And then he went up, and he wrote react spring, which is one of my favorite libraries to he does a lot of 3d stuff. Now with react three fiber, he just works on some really amazing projects. So follow Paul Henschel, if you don't already, will maybe link to his Twitter in here.
+
+40
+00:27:49,020 --> 00:28:15,060
+Wes Bos: That's awesome. So he said that you can just use class, because for the longest time, we had to use class name on an attribute, and now prettier corrects it, which is great. But it looks like we will just be able to use it in react as of react 17. Not sure about HTML four and the other ones, but that's certainly high up on. And there's certainly reasons why they did that. But I don't care. I just want it to be the same as HTML.
+
+41
+00:28:15,360 --> 00:29:31,560
+Scott Tolinski: Yeah, I think for me, too, it's a lot of these things end up being like, again, here's the solutions for them, I don't care. Here are the reasons why they have I don't care, I would just like JSX, to be a bit more of a templating language and less of like trying to be too close to JavaScript or too close to react. Again, that's some of its its strengths. But there are so many nice little things that could happen if it were just to embrace the templating language aspect of things and maybe make the code a little bit Regier more readable occasionally. And again, aligning it dead on with HTML would be my my number one on the wish list just because I have had most of my experience in my career writing HTML, and maybe PHP before that, but HTML specifically, that like now that I'm having to make all these changes to how I write HTML, it feels very weird to me. And maybe that's just a dinosaur brain talking, but definitely feels weird to me. One of the thing that I would really like, is to not have to bring in react if you are just writing a JSX or TSX component. I already do this with a Babel plugin called react require, which is what next GS uses, I believe, but react require will basically say, hey, if this is a TSX, or JSX file, don't worry about importing react. We got you.
+
+42
+00:29:31,920 --> 00:30:18,720
+Wes Bos: Yeah, so this is coming. So the thing that transforms JSX into JavaScript is called it's a Babel plugin called transform, React JSX. And the is already been merged. So the functionality is there that if it detects JSX, it will just import react for you because that was always an that's one nice thing about next js is that you can just start typing JSX and of course I need react in in this component. It's an entire react project. Why do I have to import it. And that is no longer going to be a thing, which I'm going to see if I can sneak this into my next course. Because How awesome would that be if I don't want to spend the first like 10 seconds of every file importing it or you know i mean it's it's it's a bummer
+
+43
+00:30:19,080 --> 00:31:46,610
+Scott Tolinski: yeah I use this react require plugin to great success. I also kind of take liberal use of another Babel plugin which is not super related here but tangentially related to what we're talking about. I use one called import Global's for things that like, let's say, in a, okay, for instance, there isn't going to be a bundle of my code that ships without a GQ l because we use data just about everywhere, right? So Well, why not just make GQ l available without having imported ever so I have this import Global's Babel extension allows me just say, hey, automatically important g qL, as well as a styled in every single file, as well as link because I don't want to import react all over the place. So I actually make somewhat liberal use of this specifically for plugins, and it's import Global's in the plugins. Again, these are these are ones that are going to these are dependencies that will show up in every single bundle that I use a Babel plugin, import Global's Ah, and again, I use it for GQ. Well, I use it for styled from styled components, I use it for it link. It's funny, I also used it to import FC, which is from react for my TypeScript stuff, because I don't want to do react up FC. And just because I'm lazy, I can type FC if I want to have a type for functional component. So there's a lot of little little things here I use that for, especially if the code is going to be in every bundle. Anyways,
+
+44
+00:31:46,650 --> 00:31:51,330
+Wes Bos: this is not a very popular plugin. This is a hot tip you're dropping here, Scott,
+
+45
+00:31:51,450 --> 00:32:56,640
+Scott Tolinski: I, you know what, I come from the world of liking a little bit of magic. And some people really shudder at the fact that, oh, you could use styled without importing it, why don't care, I'm never gonna have a variable name styled because I use styled components just about throughout my entire site. So I'm never going to have to think about that. So Sure. It's not something you want to do in every project or whatever. But for me, I really, really appreciate not having to import something. And I know the first comment is going to be well, you can set up auto import. Yeah, I have auto import setup. I still don't want to do it. I don't care. Okay. I like this yesterday. Another one that we often talk about on here is better conditional syntax, because it's not always super readable to do variable, ampersand, ampersand, whatever. And there's definitely some some caveats here. Whether it is using ternary operators or using the ampersand or whatever, it would be nice to have some explicit if statements sometimes it's just visually nicer to see the word if else whatever in your code rather than ampersand and question marks and whatever.
+
+46
+00:32:57,059 --> 00:33:44,640
+Wes Bos: Yeah, I agree as well. The if statements and the the looping, we'll talk about the looping in just a second. It's I their dearly needed in, in react. Other things. I would love fragments by default. So you have oh my gosh, if you have two siblings, like if you have a component that returns like two div siblings, and you try to run it, React will say you cannot return two siblings, and it knows what you did. But it won't fix it for you. So I would love a love for it to just wrap it in a fragment and the fragment will allow you to return just to sibling it's a ghost element. So like, why not? If you know what the problem is react, why not fix it for me just go the extra mile. And do that. For me.
+
+47
+00:33:44,760 --> 00:33:50,430
+Scott Tolinski: That was a really good one when you said it knows what the problem is? Yeah, okay, well, yeah, you account for the problem, then infect it.
+
+48
+00:33:52,200 --> 00:34:21,900
+Wes Bos: Same with automatic keys all the time I forget to put a key, I'm looping over something. And every time you loop over an element, you have to give that element and a unique key. So react can track where it is. And very often I'm looping over a list of people or pizzas or something, and they all have an ID. So it would be cool if react could infer the key from the data, because it's labeled common things like key, Id underscore ID, things like that.
+
+49
+00:34:22,190 --> 00:35:42,030
+Scott Tolinski: Yeah. And I certainly understand the importance of explicit keys. But hey, why not have something automatic as well, right, where it's automatic and explicit, whereas explicit, I guess the concern there is might that be too confusing to have that and just have one way of doing it, but still, I don't know. I like the automatic where I can get it. You know, I also really like the syntax that was in the end. This is another spell thing. I really like this syntax and spell. There's a template tag for awaiting promises, where you just have a pound await, and then the expression and then a colon then and then a colon catch. It's like all right. inside of the the the template tag is essentially the ability to accept or reject or whatever the promise not accept or reject. But output the result of the promise or output the error state without having to do the if error, blah, blah, blah, JavaScript. And you could actually throw it right there in the template, it could make things a little bit simpler than we have in react. Because right now in react, you would have to do all that before the JSX starts right? or do some sort of a wrapper, right? Where would make it a little bit more sense to have some of that stuff in line sometimes where you can have the outer shell of the component render first, and then the interior shell of the component be conditional? It can get a little confusing when you have that multiple wrapping elements sort of going on there.
+
+50
+00:35:42,030 --> 00:35:44,360
+Wes Bos: Totally agree that would be fresh if we had though,
+
+51
+00:35:44,360 --> 00:35:46,110
+Scott Tolinski: yeah. Okay. What do you get refresh?
+
+52
+00:35:46,170 --> 00:35:47,480
+Wes Bos: You know, what else is fresh?
+
+53
+00:35:47,480 --> 00:37:02,460
+Scott Tolinski: What else? Fresh books and a fresh books is a longtime sponsor over here at syntaxin? What is Freshbooks? Well, they're the cloud accounting software that we know and love over here. That gives you some really great features, such as little helpful nudges to get people to pay the bills on time, say I did this work. And I didn't do it just for exposure here. So how about we just nudge it along here, and maybe you're a little bit overdue, send me a little reminder, and it's a little bit less aggressive, aggressive than sending them an actual reminder. So check it out@freshbooks.com forward slash syntax and let them know that you heard about them from syntax in the section that asks. And if you sign up today, using freshbooks.com, forward slash syntax, you'll get a 30 day unrestricted free trial. So do that right now. Okay, so let's keep moving along here. Let's talk about some more JSX. stuff. We we talked about this one already, but simple scoped CSS, like scoping CSS baked into JSX be very easy. Sorry. There just needs to be a standard way of scoping CSS in react without us having to resort to using 800 different CSS libraries.
+
+54
+00:37:03,000 --> 00:38:17,190
+Wes Bos: Yeah, I feel like that is either going to come to CSS or react soon, because I feel like now that we are using CSS variables, maybe nesting is coming to CSS, you don't even need a whole lot of nesting if you're using scoped CSS. So like, I think a lot of people are going to be moving away from these CSS frameworks. Because we have it all in ncss, or most of it at least, totally. Next one, we have a shorthand for props all the time, if I have a component, and I've got a bunch of variables, and I have like a price and I want to pass the price variable down as a price Prop, you have to say price equals curly brackets price variable, if you have two or three of those, it gets kind of weird, because you're just passing it down. So like a shorthand for passing down a variable as the same name of the variable as a prop would be pretty cool to do that, I know that you can create an object and spread those in. But still, that that spreading, I think it's confusing to a lot of people because it's got three dots and curly brackets and whatnot, or even just putting a variable in the attribute, and it would just, it would just pick up that at the variable in scope and pass it down would be really, really nifty.
+
+55
+00:38:17,250 --> 00:39:15,810
+Scott Tolinski: It would be really nifty. And I really hate having to do prop equals prop. I just really don't like it. Smell just lets you do it. Pass it in. It seems like there could be some sort of a shorthand to indicate this is a prop, you know, like, what if it was just like $1 sign bracket prop in there? I mean, obviously, that's not like a real JavaScript seems like an emoji or some. It's just anything, right? Yeah, give me a ghost emoji and then whatever passed along it just anything, right? It's just extraneous. And again, it's just almost extraneous for the sake of being extraneous. I guess you could say it's to keep in mind of JavaScript, right? It's trying to make things more JavaScript D. But just like that, I think there would be also like, it would be nice to be able to see use back ticks. I you wrote here prop interpolation without backticks. And you just had a string dollar sign first dollar sign last is like a prop. And I thought that was really interesting. And I thought that was maybe a little too radical. So I was like, Well, how about even this?
+
+56
+00:39:15,900 --> 00:39:17,340
+Wes Bos: Oh, just just backticks
+
+57
+00:39:17,360 --> 00:39:32,420
+Scott Tolinski: less radical version of just do a backtick Yeah, equals backticks dollar sign, curly bracket, first dollar sign bracket, and then it's a little bit more like JavaScript. But right now we have to do your right letter bracket back to dollar sign bracket, like, comma,
+
+58
+00:39:32,420 --> 00:40:11,150
+Wes Bos: I like that a lot better. That's it's keeping true to JavaScript as as is sort of how react likes to do it. Let's move on to the last section real quick here is just as tooling tooling around react. So a story for easy prettier Babel, TypeScript. This, this came in on Twitter, because I thought like, like I know, React has react scripts and they have their own Babel config. But if you have to change That's kind of weird. And apparently there are some more issues around trying to use that in development as well as production. So I know that that is currently being worked on as well.
+
+59
+00:40:11,550 --> 00:41:18,810
+Scott Tolinski: One of these things I thought would be really interesting and I pulled this from a smelt sapper perspective, is that because in sapper, obviously, it's sort of like a next JS equivalent everything so baked in, you can just do to do routing, you can just do a ref, like you would an HTML and it automatically turns that into client side routing, which opposed to the ability to have a link from react router, having to bring that into the link tag link to is a special syntax. It's not HTML. And then even worse with next Yes, you have to do link and then an anchor tag inside of there, which is just madness to me. And sure enough, when I suggested this on Twitter, I got a lot of cool, why don't you just import link a globally I do that, why don't you just have a link available or reassigned to a capital A, I do that. But those things don't really make up for just how nice it is to write an HTML a href, with like, absolutely no special syntax or nothing in there and just have it automatically client side route. It is a fantastic experience in what I wish I could replicate in react land,
+
+60
+00:41:19,350 --> 00:41:48,380
+Wes Bos: especially for Scott and I were we're teaching this stuff and we can't to put too much magic, that is not standard magic into our stuff, because people are going to be going into projects where it doesn't have this exact same setup. And if you stray too far from that people get frustrated because you taught them something that was a little bit different. So that's why it's gotten I always like to sort of keep it as close to what's in the box as as possible.
+
+61
+00:41:48,780 --> 00:41:51,810
+Scott Tolinski: Yeah, especially in our content. Yeah.
+
+62
+00:41:51,840 --> 00:42:25,800
+Wes Bos: Last one we have here is just scaffolding component generation. I know tons of different frameworks have this sort of thing where you can scaffold out a basic file, it wouldn't be all that much for react. But it just like sort of some basic setups. And I think a lot of these things that we talked about, as well as why people love to use next jass because they've taken the base of react, and they've added a lot of the stuff that we're we're talking about on top of it, which is like I haven't used react scripts, or like that's react scripts, right, or you object. I haven't used that. And well over a year, I've used crate react app,
+
+63
+00:42:25,800 --> 00:42:34,130
+Scott Tolinski: because I want server side rendering, I want route I want route baked in routing, I want server side rendering, I want that stuff. And I won't have to think about it.
+
+64
+00:42:34,170 --> 00:43:00,860
+Wes Bos: I'm gonna call it here. I think react is gonna announce some stuff for SSR in the next six months. So I think by the end of the year, React will will roll out some special SSR stuff where you can do partial hydration from the server, you don't have to ship as much stuff to the client, because a lot of it's happening on the server. I bet that's what's going to happen. And I bet that's why they are dragging their feet on rolling out of suspense.
+
+65
+00:43:00,960 --> 00:43:24,000
+Scott Tolinski: I think that's a pretty reasonable prediction. Yeah, that seems about right to me. I, if you were to predict how many of these things that we suggested in this episode, were to actually come true. What would you predict? What do you think? What do you think our average rating? Do you think one of them, which would be the one that we already know is coming? Or do you think any of these things likely come three or
+
+66
+00:43:24,000 --> 00:43:31,670
+Wes Bos: three or four we'll probably make because maybe some new some new common hooks will see the class and class name thing we'll see. I
+
+67
+00:43:31,670 --> 00:43:33,330
+Scott Tolinski: bet unmounting for animation.
+
+68
+00:43:33,570 --> 00:43:56,850
+Wes Bos: Yeah, so I animation stuff will definitely. And then the rest is just you you lean on the community for that because it's just not reax job. They've always been like that. And along the way they've just said, No, you choose your own package for whatever it is you want to do, then that's cool, too. Totally, totally. Well, thank you so much for tuning in. Let's move into some sick pics. You have a sick pick for me today.
+
+69
+00:43:57,300 --> 00:44:07,770
+Scott Tolinski: I do you know what I've been? You know me. I get into some new podcast territory, Alex and podcasts and podcasts and up. So let me suggest a podcast here. I'm gonna sneeze.
+
+70
+00:44:09,630 --> 00:44:10,140
+Unknown: Whoo.
+
+71
+00:44:10,440 --> 00:44:19,050
+Scott Tolinski: Yeah, my dad really makes these really elaborate sneezes, and it's decided I wasn't sneezing elaborately enough, so I decided to step it up.
+
+72
+00:44:19,290 --> 00:45:04,590
+Wes Bos: I'm a scream sneezer. We're like were you Ciao? Yeah, no. And my wife recently noted that our children are all three of them do it. Oh, they all scream sneeze and I saw I tweeted like, Oh, no, my my my kids have the scream sneeze. Like, I can't sneeze quietly like, I feel like I'm gonna like blow my back out or something like that. So I just it's just it's a it's a production. And my kids have done it. And somebody on Twitter said my favorite bit of trivia. Morgan see underscore Smith on Twitter says time to break out one of my favorite facts, making noises while sneezing is a learned response. And we know this because deaf people obviously Mostly don't make a noise when they sneeze. So does learn from watching.
+
+73
+00:45:05,430 --> 00:47:01,290
+Scott Tolinski: Yeah, right. Yeah, that makes so much sense. There's a deeper story here because I used to not be able to. I used to say I couldn't sneeze. It's not that I couldn't sneeze. But when I went to sneeze, I tighten up and hold it in and then like, yes, a pop or something or hit have the hardest time. And the only way I learned how to appropriately sneeze was to start really gone. Like, like these big, big sneeze noises that my dad my dad was always like, you know, my dad would do it. My mom would roll her eyes or something because it was over the top and ridiculous. So yeah, that's, that's my sneezing story. No, my podcast here today is going to be a podcast that I've been really enjoying. I don't listen to very many tech podcasts, there's a there's a few. But this one I just, I've been I've been listening to it every day. And so far, I feel like it has made me smarter. So I'm gonna suggest it to you, which is if you're not listening to software engineering daily, please do. It's very fantastic. And it's it's, it's not like a fun syntax experience, so to say, but it is definitely a very educational experience. And maybe half the time, it's a little bit not in my wheelhouse. And I'll just skip those episodes. But for instance, we mentioned mux. Earlier in the episode, there was an episode on May 29 2020, Kubernetes vs. serverless with Matt Ward, boom, that is an episode that really blew my mind and a lot of ways. So it was really fascinating to hear people having these big problems that I'm not necessarily having myself, how they're solving them, and maybe some of this technical stuff that can be occasionally over your head at points, but also at the same time give you a little bit of base knowledge for various aspects of even maybe server infrastructure or stuff that you've never really cared to think too much about before. You might not have to. But it does give you that nice little ability to understand the concepts a little bit better. I think the host is great. He has really good questions they get into it. And not every episode is super relevant to my interest but for the most part I found them all to be very good so far. All right,
+
+74
+00:47:01,500 --> 00:49:11,370
+Wes Bos: I'm going to sec pick another two I've been on a tool kick lately just because we're just doing a bunch of work at our place. And a while ago I sick pick my sick pick was a pic quick. So there's the screwdrivers, yeah, you you can't lose the bits too, because in order to get the bits out of the handle, you have to push the old one in. It's It's It's genius, because you can't ever just like leave a bit lying around. Because if you lose one, you're screwed. And you can't take them out without pushing the old one through. It's awesome. And I picked it a while ago and I have the the sick pack the sick pack. It's just all the screwdrivers you would ever need. And I also have the stubby one just thrown in there. Yes, it's a tiny little it's literally called the stubby. That's good. They also have the teensy Turner for for things like tech gadgets and whatnot. But the one I'm going to pick today is I called it last time the junk drawer screwdriver. It's just a smaller version of the six pack with slightly smaller bits. And it's perfect for around the house stuff like it's you can still do your Philips you can pull a drywall screw out of it. But if you need to, like take a battery cover off because the kids need a battery swapped out on their annoying toys or I was working on my garage door and I needed the tiny little screwdriver to clamp down on some leads. And I was like this screwdriver is awesome because it's not like a tiny little set of jeweler's screwdrivers, but it's also not the big one. And it's the perfect junk drawer screwdriver. It's the perfect screwdriver ever having around the house and we keep it in the house and it's awesome. The one that I have is called the hex key pick quick, which it says it's for machinists and mechanics, which I don't I don't know that should I guess so. But it's the perfect they should call it the junk drawer screwdriver because it's great. I don't know if you can can you go on Amazon and see if you can you can see these because it's a Canadian company. Pick quick p IC qu IC e pick quick sick pick.
+
+75
+00:49:11,370 --> 00:49:18,300
+Scott Tolinski: little screwdriver family. I'm getting in here in a variety of colors to which color did you go with?
+
+76
+00:49:18,540 --> 00:49:30,690
+Wes Bos: We're all wondering. I think that they're colored based on what they do. But so the red one is what I have. That's the six the six pack and then the junk drawer. One that I'm talking about is the yellow one.
+
+77
+00:49:30,840 --> 00:49:38,070
+Scott Tolinski: No I do I see. I see the three multi driver family available in orange, blue, red, green, all of the same thing.
+
+78
+00:49:38,310 --> 00:49:42,000
+Wes Bos: Oh, okay. Maybe. Yeah, maybe I'm wrong about the colors then.
+
+79
+00:49:42,000 --> 00:49:43,620
+Scott Tolinski: Maybe you're wrong about the colors.
+
+80
+00:49:43,620 --> 00:49:53,370
+Wes Bos: Ah, yeah. I've never been so passionate about a screwdriver, but I was just using it the other day and I was like This thing is awesome. And my wife is like that's the best screwdriver we've ever had.
+
+81
+00:49:53,970 --> 00:50:09,450
+Scott Tolinski: Yeah, I bought a screwdriver set off of Amazon for like phone projects. Again, very passionate about that screwdriver. That whole set has been very good. Fantastic. I believe I understand being passionate about a screwdriver. A good one really, really definitely comes in handy.
+
+82
+00:50:09,540 --> 00:50:14,040
+Wes Bos: Yeah, I just looked on on Amazon us 12 bucks for the one I'm talking about. Cool.
+
+83
+00:50:14,280 --> 00:50:49,500
+Scott Tolinski: All right, well, let's get into the shameless plugs part of the episode where we talk about things that we have created ourselves. Now I have created a course on sapper that came out last month and it's sapper for everyone we teach you about how you can build full stack server side rendered or statically generated apps using spelt and sapper so a lot of the features that we mentioned in this episode, things being pipe dreams to come to acts on kind of interesting to you. Maybe you want to check out in a fully server side rendered platform check out the sapper course because my site's built in sapper, I'm a big fan. I like it a lot.
+
+84
+00:50:49,740 --> 00:51:29,400
+Wes Bos: I'm gonna shamelessly plug upcoming course of mine should be out in I don't know, maybe a month or so it's a Gatsby course I don't have a name for it just yet. But it's going to teach you to build websites with Gatsby talks about sourcing data from a headless API, as well as from a REST API as well as how do you do live data and Gatsby and you don't have to rebuild it, like when the page loads how to fetch that data. So pretty happy with with how this course is going. It should be out in a little bit after you listen to this. So just go to West boss comm Ford slash courses. The rest of my courses are there as well and you can grab them for 10 bucks off with the coupon code syntax.
+
+85
+00:51:29,760 --> 00:51:35,160
+Scott Tolinski: As always, we will catch you next Monday where we're going to be talking about what less forms and inputs Yes,
+
+86
+00:51:35,160 --> 00:51:36,180
+Wes Bos: we are ready to record
+
+87
+00:51:37,860 --> 00:51:38,700
+Scott Tolinski: their pace.
+
+88
+00:51:40,530 --> 00:51:41,310
+Unknown: Head on over to syntax.fm
+
+89
+00:51:41,310 --> 00:51:50,250
+Scott Tolinski: for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you liked this show.
+
