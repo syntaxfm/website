@@ -1,0 +1,368 @@
+1
+00:00:01,319 --> 00:00:04,590
+Unknown: You're listening to syntax the podcast with the tastiest web
+
+2
+00:00:04,590 --> 00:00:09,000
+development treats out there. strap yourself in and get ready to live ski
+
+3
+00:00:09,000 --> 00:00:10,560
+and West boss. Welcome
+
+4
+00:00:10,560 --> 00:00:57,570
+Wes Bos: to syntax. This is the podcast with the tastiest web development treats out there today we got a potluck for you. potluck is episode where you submit the questions, Scott and I will bring the answers. If you have a question you'd like to bring to the Pollak please submit it. Go to syntax FM, there's a button in the top right hand corner you can submit any question or show suggestion or anything that you want in there. And that helps us out and I love doing these episodes. Today we are sponsored by two awesome companies. First one is Log Rocket, which is all of your logging and session replay for your JavaScript applications. And the next one is Sentry which does your error and exception tracking for all of your applications? front end and back end. We'll talk about them partway through the episode with me as always is Mr. Scott to Lynskey. How you doing today, Scott?
+
+5
+00:00:57,899 --> 00:01:07,260
+Scott Tolinski: Hey there. Hey there. Hey, they're doing good. It's funny. I just listened to the episode where I was talking about jailbreaking my phone. I and jailbroke my phone last night,
+
+6
+00:01:07,289 --> 00:01:08,340
+Unknown: so Oh,
+
+7
+00:01:08,399 --> 00:01:16,260
+Scott Tolinski: how come? There was just the apple developer conference. And I really wanted those widgets. I got to have those widgets, man, I got to have phones.
+
+8
+00:01:16,289 --> 00:01:17,310
+Wes Bos: iOS 14.
+
+9
+00:01:17,310 --> 00:01:21,120
+Scott Tolinski: I was 14. Yeah, man. So the developers preview baby
+
+10
+00:01:21,539 --> 00:01:29,220
+Wes Bos: looks really cool. I'm excited to finally have which it's so funny. Like all of this stuff they announced was like, Android had that for like all of it. Here's
+
+11
+00:01:29,220 --> 00:01:44,640
+Scott Tolinski: all of the all of the features, the global search, and I bet like just about all the features were but I'm so here for it. I'm very happy to have them. And especially I just found Was it inputs.com is that the site input mag.com. They just did a thing.
+
+12
+00:01:44,909 --> 00:01:46,080
+Unknown: I've never seen this site. By the way, this
+
+13
+00:01:46,080 --> 00:01:55,290
+Scott Tolinski: is a really beautiful site. If you've never seen input, mag com, this is a really good iteration of brutalist design variable width
+
+14
+00:01:55,290 --> 00:01:56,400
+Wes Bos: fonts here.
+
+15
+00:01:56,459 --> 00:02:24,030
+Scott Tolinski: Yeah, they do a lot of cool stuff. They they revealed that there was a really interesting new feature buried in the accessibility settings to do like, you could assign the different tap sequences to do different things. So you could do like tap tap swipe, or something to initiate a Google Assistant query or something. There's like a whole bunch of interesting things about it, but they're under accessibility, and nobody else was talking about them yet. So Oh, I guess I'm going on. Oh, that's
+
+16
+00:02:24,030 --> 00:02:31,410
+Wes Bos: cool. Yeah. Awesome. Well, let's jump into the potluck. Now. You want to grab the first
+
+17
+00:02:31,410 --> 00:02:42,060
+Scott Tolinski: question. Yes. First question is from anonymous. Hi there. Love the show. I can honestly say the show has helped me become a better and more knowledgeable developer. So thank you. Thank you.
+
+18
+00:02:42,120 --> 00:02:42,870
+Wes Bos: You're welcome. Hi, I'm
+
+19
+00:02:42,870 --> 00:03:10,500
+Scott Tolinski: a junior Dev. Coming up on two years. At my current agency. I have been primarily on the front end using Angular and a templating. With handlebars and HTML and CSS. I even asked if I would be interested in moving more out to the back end to focus on node j. s. I would love to become a full stack so I'm all for it. So I'm wondering outside of creating API's, what else should I learn to do and back end? West? I think you got this one mister. No, j s. Yeah.
+
+20
+00:03:10,650 --> 00:03:12,720
+Wes Bos: Mr. back. Yeah. And they call me but
+
+21
+00:03:13,050 --> 00:03:14,130
+Unknown: they do call you that.
+
+22
+00:03:14,130 --> 00:03:17,490
+Scott Tolinski: I think I have Mr. Back Ed, I would have started that's a good nickname to add to the list.
+
+23
+00:03:17,520 --> 00:03:30,449
+Wes Bos: That's a joke that I have with my wife is anytime there's like something funny. I say that's what that was my nickname in high school. Like, anytime, anytime. Hilarious. I say that. It's it's a it's a sure laugh for my wife anyway.
+
+24
+00:03:30,449 --> 00:03:32,100
+Scott Tolinski: Good laugh? That's a good laugh.
+
+25
+00:03:32,130 --> 00:05:26,880
+Wes Bos: Yeah, that's what they call me in high school. Try that. Try that on your significant other and see what they think. So question is like, I want to become full stack. But like other than creating API's, what else should I learn on back end. So like, creating API's is certainly a large portion of it. And under under all of that creating an API, I think there's a lot more you can learn like authentication, doing JW, t, o auth. All of that. That's a whole can of worms right there. And database calls. And data aggregation is another big one. So if you want to be able to, like, even in my no jazz course, it was half complicated to get the average review of all of the reviews of a specific store like that's, that's not trivial. Because if you have 100,000 reviews on a store, you can't just query them all. And then for loop over over them and add them up, you have to do that as an aggregation on your database. So it's nice and fast. server side templating is something to learn. So I know a lot of people think that like server side, templating is dead, but we've got a hasty treat coming up. Or maybe it was the last one, depending on the order that we're recording this just about, like server side rendering is back. And it's more popular than ever. And there's some really cool apps that have been built lately that are fast as heck, email templating. That's a whole whole thing. sending email. Sending transactional email is very important. I say almost every application has Sort of sending email, cron jobs, sending stuff every x hours doing something when something happens web hooks, that's another one. Oh, yeah, well, there's a huge list, I just just rattle off that came off the top of my head. And I think that all of those are things that you could you could practice and get better at being a back end developer or like all of this stuff also applies if you're a serverless developer, which I would still consider a back end developer. Yeah,
+
+26
+00:05:26,880 --> 00:06:06,390
+Scott Tolinski: the only thing I would add onto here, because I think you did a great job with this list was just thinking about like, security and not like, not like securing your server. But like, when a query comes in, on the client side, we know not to trust anything, right? We know not to trust anything coming from the client, right? We should never just blindly trust that information coming from the client. So learning how to properly identify that the person who is intending to do the operation has the access and ability to do that operation. Because again, that that's sort of your last line of defense before either inserting things into the database or running code on the server. So that's the only thing I would add to it.
+
+27
+00:06:07,230 --> 00:06:21,090
+Wes Bos: Awesome. Next question we have here is from Cletus Diaz. Hi, guys. I love the podcast. I work as a webmaster and would like to be a front end developer someday. That's a good question like what's a webmaster? Scott, what do you think? What do you think a webmaster is?
+
+28
+00:06:21,420 --> 00:06:47,820
+Scott Tolinski: Currently? I'm somebody who potentially is just like watching over a site for a business. Like we have a business we have a company. Here's our site, I'm the one who makes sure the site stays online. I'm the one who makes sure the site is updated, or whatever when it needs to be maybe you're not working. Yeah, multiple projects. It's like you have a project that you're just managing is that is that that's what comes to mind for me. I would
+
+29
+00:06:47,820 --> 00:06:58,170
+Wes Bos: think that to like like content, new pages, contact forms, managing a CMS, things like that, like maybe not necessarily building the thing from scratch. But
+
+30
+00:06:58,560 --> 00:07:12,210
+Scott Tolinski: yeah, kind of just hurting it throughout the day. Even if it's like a just like a straight up codebase system like HTML pages, right? Oh, we need to have a new page, right? You got to go in, you got to copy a new HTML page, you got to change the in the code, those kind of things? Yeah,
+
+31
+00:07:12,600 --> 00:08:21,600
+Wes Bos: I think that's probably a lot more common than we think. So that's kind of interesting. Next is question I currently I'm working on a myrn stack app. So myrn is MongoDB. Express react. And what's the end node? node? Obviously, there you go, stack app in order to enhance my own skills. But I have problem focusing, I tend to procrastinate a lot. How do you tackle distractions to get things done, I would appreciate some tips. So Oh, man, at least for me, in my life, if I'm procrastinating on on something like that, it's usually because I'm anxious that I don't know how, how to do something, how to tackle something, if I look at anything in my life, whether it's just like, projects that I haven't finished, or whatever, it's because I haven't, I'm a little bit anxious that I don't entirely know what to do as my next step. And for me, the way sort of around that is to break things up into smaller tasks. And by breaking it up into smaller task, it's a little bit easier to sort of take a bite of it, and research what you need to do to get that one thing done. So that's what I would say to do there.
+
+32
+00:08:21,630 --> 00:12:38,880
+Scott Tolinski: Yeah, I would agree. I so one of the things that I like to do is to find the source of your distractions, and then just absolutely remove them. I don't know if I have the self control to really look. Okay, I got I got a computer screen, I got a big old monitor, I got a phone, you know, all these gadgets and gizmos and widgets and all these things, right? I just I just want to look at it. Right? Got it. I got a Twitter on the eighth device today. So for me, it's really important to assist myself in ways that I'm unable to do it myself by with the use of software, I use an app literally called focus for Mac. There's a bunch of apps and tools, I don't know exactly which on what all the different platforms at this point, but what you're looking for is something that blocks certain sites for you. And oftentimes, like, yes, there are ways around these applications. But if I pop open a tab that like I start typing t w, and then I hit enter and then it takes me to Twitter and then it greets me with a like a quote message saying you should be doing work and then I Oh, okay. And it what it does is it makes me acutely aware of just how compulsive checking Twitter can be for me or checking Reddit, or even going to certain forums or, or different things. It reveals to me more than anything, just how compulsive the behavior is. And not only I'm doing it compulsively because I like you said, I'm trying to be distracted. I'm not trying to focus. So once you put all those blockers in, I highly recommend that app focus for Mac. I don't know what the other app People always ask me about different apps, but there's a ton of apps in this in this category that you can probably look into and install. You know, I think that's the way to go from me if you can't do it yourself, if you have a hard time focusing, let the robots to help you focus for you because you know, that will help a lot. Also, it really helps to put yourself in a position where you're capable of focusing You know, it, I know, it's it's not necessarily great advice right now, considering the current, you know, global pandemic and stuff like that. But for me always going to a coffee shop or someplace like that was always like, a really good solution for when I had trouble really getting in, in the zone because you just feel bad if you're at a coffee shop and you're you're browsing the internet or something. So what use all these tools granted coffee shop, not a great one right now, maybe you can go to a park or something and tether your phone or I don't know, either way, put yourself in a position to focus, get your everything in order, but you're focusing apps on and then just go to town. Good. I like it. Yeah. Next question here is from Jonathan Jonathan, this is going to be a fun question roll up or Webpack Webpack. Five still doesn't have es six module output. Oh, it doesn't, as described by Philip Walton here, here's an article he links to a blog post. So instead of upgrading to Webpack, five, this might be a good time to think about switching to roll up or parcel. So my thoughts here is that at the end of the day, use the tool that you're most effective with. But let me tell you, I have not modified a Webpack config in a very long time. I think the only times that I've used Webpack recently are with a Gatsby site or a next j s site. Everything else my own personal site is on the meteor my side projects also in Meteor. So I use meteors build tool, which replaces all of that stuff. In terms of using parcel or roll up, I have been using roll up for a lot of stuff lately, not because of any specific features, but mostly because roll up is in fact, you know, the main build tool in sort of this felt community. And that's largely because rich Harris, who created felt seems like he created a roll up as well. And so you'll see roll up being used quite a bit I also have been using I forget what it is I've been using some sort of a package library to create other packages and that uses roll up as well. Oh, ts dx t s dx by Jared Palmer is this TypeScript zero config. It's like a starter for creating packages. Specifically, I use it for creating react packages that uses roll up as well. So I'm just I'm just very used to roll up at this point. I don't know what it is. I haven't seen a web pack in a little while.
+
+33
+00:12:39,090 --> 00:12:51,390
+Wes Bos: Yeah, me neither. It's been well over a year since I wrote my own web pack. I always reach for parcel. It's so easy to get up and running. parcel two has been cooking for a while now. And I bet it'll be out in the next six months or so.
+
+34
+00:12:51,419 --> 00:12:52,380
+Scott Tolinski: Yeah, just hot beta.
+
+35
+00:12:52,560 --> 00:13:43,289
+Wes Bos: Oh, did you awesome. That's that's really good. I love the ease of use and parcel. Just up and running. You can kind of just has like a dev server built in as well and handles all of your images. It's it's pretty, pretty nifty. I use it in a couple of my courses. It's kind of interesting. You say like that. Webpack doesn't support ESX module output. That's kind of cool. Because like, I never thought about that. Like, I'm not shipping ESX modules to any browser. Yeah, I'm still always kicking it out to just regular JavaScript bundles and whatnot. But yeah, not to say like, throw any shade on web pack. Web pack is super. Yeah, yeah. Football is just that everything that uses web pack for me. Like I think Gatsby, I think next. They're just under the hood, and people much smarter than I are able to do nothing for me. And then I just use the simple tool on top of it.
+
+36
+00:13:43,470 --> 00:13:44,610
+Unknown: Yeah, exactly.
+
+37
+00:13:44,909 --> 00:14:46,500
+Wes Bos: Next question we have here is from Chico, I have been learning web development, HTML, CSS, and JavaScript. And I'm at a place where I can build simple websites for small businesses. But I feel like I'm a beginner. And I'm wondering if you have any recommendations on courses to get a more immediate, intermediate or advanced level? Yeah, I obviously, as someone who sells courses, I'm here to tell you, you can go grab my beginner JavaScript course that will bring you up to intermediate level. Any of the courses I have any of the courses God have as well. But at a certain point, you got to stop looking for that golden blog post, or course or YouTube video or person to follow on Instagram. And you just need to keep grinding the way you get from beginner to intermediate to advanced is not buy a course it's by literally just putting in the work and building stuff. So just start building 100,000 projects. And over the course of building those things, you will become intermediate and advance.
+
+38
+00:14:46,830 --> 00:16:16,890
+Scott Tolinski: Yeah, get those reps in. Another tip I might have is to find like, find things that are interesting to you. I'm not talking about like hobbies or sypro. I'm talking about like things in code, find aspects of code that are very interesting to you, ie if you want to take a little short detour to look at like, like Canvas stuff, maybe you're interested in Canvas, or maybe you're interested in web animations, or maybe you're interested, and something really mundane like regex, right, but take that detour time to really deep dive into something, and just let your curiosity drive you because oftentimes, when we're really motivated to really dive into something, we learn a lot better. So if you're feeling like this beginner and you want to get more intermediate, find a topic that it seems interesting on the surface, and when you could just dive into maybe you want to learn how webcam works or something like that neat. What is the web? For some reason? I'm blanking on the web technology, I can only think of like web RTC, a user medium. Yeah, good. Get user media. exactly what I was thinking of cool. Yeah. So just like your your curiosity pull you in different directions. And that's going to lead you to create different projects, and those different projects will lead you to learn more things. Like he said, Get those reps in. Oh my god, this is the funniest thing ever. Whenever Wes wants to do a transition, he always typed in all caps in the notion thing. And he just wrote speaking of projects, how about replaying your session? I don't know if that sounds better in your head west. It doesn't sound great. I love Oh,
+
+39
+00:16:16,890 --> 00:16:19,980
+Wes Bos: how am I so bad at transitions to ads? And you're
+
+40
+00:16:20,250 --> 00:20:55,380
+Scott Tolinski: so good? I don't know. So okay, we were talking about like, let your your you know, your curiosity drive you and you may hit some snags along the way. But when you hit those snags, you're going to have a tool, like Log Rocket to replay those sessions for you and allow you to see what exactly is happening when your users are on your site. I don't know if that necessarily works. But it could work. Let's talk about Log Rocket here. Log Rocket is the service that allows you to see what happens when something goes wrong on your site. Let me tell you, it plays nicely with another one of our sponsors that we're going to be talking about later on in this episode, in this really, really cool service. What it does is it basically you just drop, I think it's just a simple JavaScript file in your site. And all of a sudden, you connect with a config, you get this really neat session replay. If this video log of what happened when somebody clicked something or did something in your site broke, their headline is stop guessing why bugs happen. And that's really the best way to describe this service. Because it's no longer looking at error logs. Granted, they do give you error logs, it's no longer just looking at these big, you know, exceptions. What you're actually watching is a video of the the crime happened and action so you can go in and solve it. Like the good little Yes, it is it is a crime. Oftentimes, when the user somehow managed to click on the only thing that they weren't supposed to click on, and it broke everything because that's just how users are right? So what you're gonna want to do is head to Log rocket.com, forward slash syntax, and you're going to get 14 days for free. So give it a try and check out Log Rocket at Log rocket.com. forward slash cindex. Thank you so much to Log Rocket for sponsoring. Alright, next question is from Jonathan. Why would you choose a style components over other ways of writing CSS? Okay, I'm working on a CSS course right now. So I have my my brains definitely in the CSS territory, right? I'm thinking a lot about CSS and what things are most efficient and whatever. And I use CSS custom properties are also known as CSS variables. for just about everything nowadays. I'm just very into them, right? They do so much for me. And I began thinking like, Alright, what is styled components giving me here that I cannot get with CSS variables, what one is like, what's the difference between having it and not and then become acutely aware of this, because I have a project started that's on Meteor and spelt, and a level of tutorials, which is on Meteor and react. And obviously, spell doesn't have styled components. Granted, you can do CSS and js, but I thought this would be a nice opportunity to see just how much I didn't need styled components, or just how much I needed it. And I ran into a couple of use cases where I found styled components to really help me along, for those of you don't know style components is basically creating a like almost like a custom element that is just CSS really, right, instead of having a div, you would have a card element in that card element would have CSS applied to it. And instead of there being a class of card on a div, you could just have a card, right? The cool thing about styled components, though, is that because they're a component, you can pass the data into it. And it makes it so that you can have that CSS work dynamically based on JavaScript and a much easier way than having to write all that JavaScript by hand yourself. It's almost like you're just passing in some values and it just takes care of it. So the things that I found to be very difficult it a system that wasn't based in a CSS and j s, put it in something like a grid component that has like dynamic grid columns. My grid component in level up tutorials, accepts an array of numbers, and it's how many columns that grid should have at each breakpoint. So this is like really interesting. So if my grid component has a columns property of an array with one, two, and three, at the smallest breakpoint, it will be one column at the medium breakpoint, there'll be two columns. And at the large breakpoint, it will be three columns. That kind of thing is difficult to do in a dynamic way in without something like styled components, because there's no way to, to dynamically run a loop, right? That's the big things that I'm missing still in CSS beyond like things like nesting and whatever, there's no way to do things like a loop. And in that really comes in handy in styled components, especially when the loop is generated dynamically. So that's why I like styled components. Again. In addition, I just kind of like how, how I'm looking at a card and not a div with a class of card. Despite how minor of an addition that is,
+
+41
+00:20:55,680 --> 00:22:15,150
+Wes Bos: you know, it's one thing I ran into just a couple days ago, I was working on my Gatsby course. And we also had a grid component where the grid component had like a default of two columns, and a default gap of 20 pX and a couple other defaults. So I had a grid on the homepage, where I had like two things, I had like a list of pizzas and a list of people. And I wanted to put those side by side. And I had changed the columns. And the I passed in some variable CSS variables, not not style components, but I passed in just regular CSS variables. And then inside of each of those lists of pizzas and a list of people that also was a grid component. So I had nested grid components. And I was running into this issue where the lower level one and I wanted the defaults to kick in. But the higher one I wanted to pass in my own. And I was like, What is going on? I was like, oh, even though I'm passing in the CSS variable at a high level, it's not scoped just to that grid, though. And any other any other child element that uses the same CSS variable will then inherit that, and then I got into this weird situation, or I couldn't, I couldn't really do it. Because I couldn't really use the defaults. I had to explicitly pass them in each time because they're, they're not scoped to that component. They go all the way down.
+
+42
+00:22:15,180 --> 00:22:54,630
+Scott Tolinski: Yeah, the scoping. I'm working on a course that all it is right now for this month. Well, by the time you're hearing it, so we'll already be out. It's on using CSS variables to do design systems. Like that's pretty much the scope of the course. And we spent a long time like two whole videos on specificity as well as scoping for variables. Because it is, it's it's one of those things that when you first start to get into it, you don't necessarily understand all the caveats here and there of using them. So they're definitely a powerful tool. And definitely just another another way that you can foot gun yourself with specificity and CSS with the cascade and all that stuff.
+
+43
+00:22:55,260 --> 00:23:58,740
+Wes Bos: Next question we have here is from Mandy, what are your thoughts on companies that make senior developer roles require leadership responsibility? A great technical person does not always make a great leader or vice versa? that's a that's a great question. I think if you are going to be a senior leadership, I think that's kind of in the in the name that you will likely have people under you that have to report to you and have to ask you questions and things like that. And certainly, I'm sure a lot of people on this podcast can say, yeah, I've run into my fair share of senior developers who are hard to talk to and are, are brash, and all that stuff. So I definitely think that that is is key, just because anywhere in your web development career, having good interpersonal communication, people skills is super key. So I think having them as a senior developer is definitely important. So it sucks if you just want to be a senior developer Dev and just hack away all day, but unfortunately, that's how teams work.
+
+44
+00:23:59,130 --> 00:24:00,150
+Unknown: Yeah, I think
+
+45
+00:24:00,150 --> 00:27:21,870
+Scott Tolinski: about this, like, there's difference to me between like a tech manager and a senior developer, a senior developer, to me is somebody who's making like, project based code. They're making like a lot of like, I okay, this is what the project should be. This is what are, this is what the team should be. And those to me are all like very leadership, ask roles. Like to me, being a senior developer is not just about being good at code. Because like, yes, you can be good at code, but that that to me would just like put you into like a territory of being like a just a straight up developer. You're not like junior year, you're, you know, like you're a developer, web developer at web applications developer or whatever. But like that whole, that whole level of senior developer or anything like that, to me, says that you should probably have some leadership skills and believe it or not, I don't know if people know this, but leadership skills are not just they don't just exist, you know, for some people, sure, some people Born leaders, that's a thing. But I wouldn't necessarily say that too many people here are born leaders in this world. And a largely the people who do good at these roles and the people who become better. Senior developers are the ones who take the time to learn about motivation are the ones who take the time to learn about picking the right tech for projects based on team's qualities rather than just your own. Those those are the qualities that make a senior developer good is the the additional qualities beyond just being a excellent Dev, right? Because, you know, a lot of times senior developers are the ones who get put in meetings, and you get to talk talk about these code changes and talk about these things. And so a lot of times, that's a thing, too. I mean, there's a whole host of developers that I worked with in my life that if I was their boss, which I wasn't, I wouldn't, I would not hire them to be senior developers. Because I don't want I don't want some of these people in meetings, I can tell you very straight up, there are developers that I've worked with before, who I would just not anywhere, I would want nowhere near those people near our client, not because they're not a good developer, because they can't talk about their code. They can't be civil to clients in the right way. They're better as developers. And to me, that doesn't, that's not necessarily what makes a good senior developer. But who knows, every every, these are all just job titles. And job titles, as we know, are largely meaningless and different between organizations. So I would personally say that you should learn these skills if you get put in that position. Or if you want to be in that position, or Yeah, just be aware of that. That's a thing, right? That's an actual thing. All right. Next question is from David comma, London. And I'm not sure if David's name is David London, or if David is living in London, or if he's visiting London and decided to split the cup, but it's David London. Hey, David. David says, I'm often knocked out at planning out code from the start, I find it easier to start coding if a few lines, run it and see where I'm at and carry on. This technique doesn't work when I need to wait for deploy to finish so I can view the real results, increases death time. Do you have any advice on what I can do better is I tried doing TypeScript once and I was a horrible experience. Because I tried, instead of debugging my code to try to get it working. I spent most of my time trying to fix TypeScript. I think that's a common common thing that people run into. I think this may have to do with my poor code planning. No.
+
+46
+00:27:21,870 --> 00:27:22,530
+Unknown: Okay.
+
+47
+00:27:22,530 --> 00:30:07,740
+Scott Tolinski: Let me tell you this. I run TypeScript myself. I am a good code planner. But I'm not always I'm not always choosing to develop like that. Sometimes I choose to develop, like, wherever the wind may takes me, you know, I'm a leaf in the wind just did that. That's how I develop sometimes. And TypeScript. I don't think it's in the way of that the problem is, is that TypeScript does you you do run into a problem occasionally of just trying to get things working. And then by the time you do, you're all exhausted, or maybe you never do and you'd never get there. So it might be better to pick up TypeScript on a project that's working from the start and start with it with TypeScript. Just so you can, you know, start at a baseline. But okay, let's get into the actual question, which is, basically, what can David do to improve the time that he has planning his code out? Now, here's what I like to do. Your code is largely going to be if you think about it, it's you know, it's a procedure, it's a thing that does a thing, right. And we we often think about our code, in terms of the code itself. It's a function it's, it's a react component. And now what I want you to do, is I want you to get your comment hands out, and do you know, the command forward slash new a comment and write what the component does? All right, this component plays a video. Okay, well, okay, so that's step one. Now let's break that down a little bit more with some more comments, we would say, Alright, well, this component, it needs a video element that the video comes in from this prop. And this does this, when I click the play button, it needs to do this. When I click the Stop button, it needs to do this. When it's paused. Maybe it needs to do this when the video is over. It needs to do this, maybe it goes to the next video, if it's an autoplay thing. Write out everything this needs to do. But do so in a like a tree an outline, right? Have you ever written a paper for school or something like that, you write the outline, and you fill it in, and then you fill it in, and then you write your paragraphs. That's how I write code when I really, really, really want to make sure it's organized. I write a layout for the code in comments saying explicitly in English, what it needs to do needs to do this needs to do this needs to do this. And I'm not thinking about like it's a react component. I'm thinking like, on and these two load, next video, okay, right there. That's just grabbing basically one function, and that's describing the higher levels of this and you can use this structure that you're writing in comments, to then write your code within the comments. And guess what, if you do that, your code will be commented without you having to write comments after the fact. A double whammy here. I use this technique all the time. So I write out my whole organization, my whole structure, everything the code needs to do in comments. And then I fill in the code afterwards to get it to work.
+
+48
+00:30:08,070 --> 00:31:39,480
+Wes Bos: Yeah, I do the same. It's called I call it pseudo code, or I just do it in almost all of my tutorials as well. We write down what needs to happen, and comments, and then fill in the blanks from there. I think also, a problem that is coming from this question is, this technique doesn't work when I need to deploy wait for a deployment. Or I can view the result. So like, that means that he probably has a not like, there's no local developer experience. It certainly I've worked on projects like this in the past where you, you make a change, you have to deploy the thing and sit on your hands for three minutes, and then check if it worked. And then if it doesn't work, you have to do it again. And that feedback cycle is so frustrating, because he basically, he went from three seconds to just refresh and see if it worked down up to three minutes, 10 minutes, sometimes even 20 minutes, and you can't get any work done that way. So it sounds like you need to figure out how to replicate your production environment locally, so that when you test something, you can just see the results almost immediately. And there might be some roadblocks, there might be some really long compile times. And there's a lot of people out there that are still using, like Ruby, SAS, or you make a change to some CSS and you have to wait like 15 seconds to see if it changed. And that's that's extremely frustrating. So try to find out where is that time happening? And how can I make it quicker as well as local? And that will free you up to have a much faster feedback cycle.
+
+49
+00:31:39,510 --> 00:31:41,970
+Scott Tolinski: Yeah, fast feedback cycle. Very important.
+
+50
+00:31:42,450 --> 00:34:13,680
+Wes Bos: Next question we have here is from john, he's gotten less big fan, longtime listener, I have a very random question. For context. I'm a Mac user and a Linux OS user myself. However, recently, while building our application, I noticed that Windows does extremely weird things with the font size, as we have a pretty decent Windows user base. This is something my partner and I wanted to solve whoever I'm unsure about the best way to handle it, it seems entirely different from user to user on Windows. Example, a company employee on an older desktop font size is set by default 250%. Well, at different employees, newer 4k display is set to 200%. seems weird. How in the world? Do we as developers account for something that seems so inconsistent? We have tried a vertical media queries that are much more or less of a kick to them for tablet mode? That's kind of annoying. Obviously, this is less optimal? So this is a great question. Because you kind of have to think about not only screen size, but like resolution, because somebody who has a 32 inch 1080 p monitor will have things much bigger than someone who has a 32 inch 4k monitor. And then even then some people who run these monitors run the fonts totally small and some of them run a much bigger. Unfortunately, that is I don't think that this is a problem with your code. I think that this is a problem with your users having their their font scaled up and down. Yes, I don't, I don't think that this is actually an issue with your code. Because this is you, if you use specific font sizes for specific things, they should be all that size in relation to the rest of the website. So I did run into this as a like, when I did client work, you would get the you get people being like, Hey, can you make this bigger or smaller, because their specific computer screen was big or small. But it's up to you to do sort of a good baseline that is visible to everybody. And if the user is finding that the font size is too small or too big, then hopefully the rest of the internet for them is is too big or too small. And they need to account for that on their end. And if it's not, you're probably doing things too big or too small to start with. So I know that's not much of a good answer, but it's probably not you but it's the user. Yeah.
+
+51
+00:34:13,680 --> 00:35:03,170
+Scott Tolinski: And I'm glad you caught that. Because when I edit this question, that's exactly where my mind when when I read this question was, this sounds to me, like somebody has their browser configured a certain way. And that's why there's this huge discrepancy. And you know, what you adjust and account for that kind of stuff. That's the beauty of working on the web is that there's just too many variables and little things that are going to just exist like that, that there's only so much you can do there. So you can just provide the best experience possible to as most people as possible and if somebody wants to size their font up and is angry about it, tell them to size their font down. And you know, obviously, you can't do that to all of your users. But that is certainly a thing. That's exactly Where my mind went when I read this. So I'm glad you caught on to that
+
+52
+00:35:03,210 --> 00:35:16,170
+Wes Bos: if you want to, you can detect the zoom level on your application. So if it is an issue where your application is being weird at a different zoom level, you can detect that. But I would almost say like,
+
+53
+00:35:16,710 --> 00:35:19,110
+Scott Tolinski: don't do that. Because I would say don't do it. Yeah,
+
+54
+00:35:19,400 --> 00:35:42,170
+Wes Bos: yeah. Because like, obviously, your users zoomed in for whatever reason, maybe they have a hard time seeing the tax, specifically, also myself, I, I run my monitor at very, very high resolution. And then I will often just bump up the font size on my browser or in my text editor, just because I want the text to be vague, but I don't want like my tabs to take up all the space and things like that.
+
+55
+00:35:42,230 --> 00:36:22,500
+Scott Tolinski: Yeah. And also like accessibility, you know, there could be very real reasons. And me personally, I used to not feel this way. Because I didn't understand this as well. I don't know what I'm saying used to mean, like back before I understood what accessibility stuff was in general. But like, I used to just, you know, outline, zero or outline none. And then once I realized just how terrible of a of an idea that was, I've just largely always erred on the side of not messing with anything that the browser does for accessibility, if the browser's doing it for accessibility, you're probably not going to be doing it any better. And you're probably going to be hurting some of your users that are using it for those reasons. So
+
+56
+00:36:23,210 --> 00:36:43,290
+Wes Bos: there's two things that people always say on zoom level one, one person says don't use percentages for things like font size, or margins or whatever. Because when you when you bump up your font size on your they won't actually increase it. And that has not been true for a long, long time. So stop saying that every time I tweet anything out, I get one person that says that it's
+
+57
+00:36:43,530 --> 00:36:44,820
+Scott Tolinski: always talked about that. Yeah, that
+
+58
+00:36:44,820 --> 00:36:48,230
+Wes Bos: hasn't been true for like, like six years or seven years now.
+
+59
+00:36:48,540 --> 00:36:58,130
+Scott Tolinski: Yeah, because what the browser does when you zoom, when used to hit command plus in the past, it used to bump up the font size. Now what it does is it increases the browser's zoom level.
+
+60
+00:36:58,440 --> 00:37:42,480
+Wes Bos: Yeah, that's that's a really good point. And yeah, it got rid of a whole bunch of issues that came along with that. The other thing is that if you're doing font size based on like a VW like, viewport width, or viewport height, fonts that are set based on viewport height or width, when you scale them scale up the browser, the fonts actually don't adjust themselves, because they're still a percentage of the height or width of the viewport so they don't bump up. And to get around that you can use a calc. So you can say like calc 10 vw plus 10 pX, and that will convert it to a pixel value and it will go up and down as the browser zooms in and out. That's one I didn't know about it. Someone just on Twitter, maybe like a month ago said it. I was like, ah, interesting. That's good to know.
+
+61
+00:37:42,630 --> 00:37:44,580
+Scott Tolinski: And yeah, Twitter's great for that stuff.
+
+62
+00:37:44,900 --> 00:37:47,580
+Wes Bos: Twitter is a good place. Usually sometimes it's awful.
+
+63
+00:37:47,880 --> 00:38:10,590
+Scott Tolinski: Yes, exactly. Sometimes. So next question is from dirty puncher dirty says, Here are side projects, common among developers, I recently mentioned to my boss that I have a few side projects and nothing serious just for learning mostly. And he said he would rather that I didn't, and instead focus on my work.
+
+64
+00:38:10,670 --> 00:38:11,960
+Unknown: Oh, my gosh, he said
+
+65
+00:38:11,960 --> 00:38:20,280
+Scott Tolinski: he hadn't really heard of developers doing side projects. And that if I wanted to work on things that aren't our work, that I have things that he has things that I can do.
+
+66
+00:38:20,550 --> 00:38:21,270
+Wes Bos: Oh my gosh.
+
+67
+00:38:22,800 --> 00:38:42,090
+Scott Tolinski: Okay, so yeah, so this one stuff, because, okay, if your boss has things that you can do, and there's work that's not being done yet, don't do side projects, if there's literal work to be done, and you aren't doing it, because you're working on your side project, that to me is a valid reason for a boss to say that, right? That that that's totally valid.
+
+68
+00:38:42,110 --> 00:38:43,440
+Wes Bos: Yeah, if you're on the clock,
+
+69
+00:38:43,530 --> 00:38:53,700
+Scott Tolinski: right? only work on side projects on the clock if you have the blessing of your boss, or if they won't find out. So like, I don't just be like, Hey, I'm
+
+70
+00:38:53,700 --> 00:38:54,330
+Unknown: working on this
+
+71
+00:38:54,330 --> 00:39:58,530
+Scott Tolinski: project boss. Me personally, every time I did work on a side project, my boss either knew about it or would not know about it, because I was so ahead of my work. And he was so checked out that they would never have figured it out or something like that. I would recommend if you are doing this kind of thing to talk to your boss and let them know that you would like to spend time learning and working on side projects, because they will make you a better developer, give them the whole program pros and cons for doing it. But don't just do it and then talk about it as if you know, they might be mad about it or something. To me, it seems like there is valid reasons for a manager or boss to be bad about this. But again, the boss's attitude here is also kind of weird, like cognero no developers work on that's how you learn stuff. What are you talking about? That's how you learn? Yeah, you learn by writing code and you write code, not always in your projects. You can't write experimental code and all of the work that you're doing so how are you expected to learn? There's a lot of red flags here to me but also just make sure you aren't making your boss mad by not getting the work done. If there is work to be done.
+
+72
+00:39:58,880 --> 00:40:50,900
+Wes Bos: I have heard many times People work on side projects on the clock. And they they will own that code because that's probably part of your contract. So if you like stumble upon some like million dollar idea, they will own it. So I know a lot of people strictly will not even touch a line of code while they're at work. But they're all there. Also his people that have contracts that say, like anything they do at any time is any line of code on that machine on the work machine, or Yeah, not sure how legal that is or not, but definitely check it out. It sounds like your boss just doesn't understand. I would just tell them, Hey, I'm making mistakes here. So I'm not doing it in our own codebase. I'm learning, stumbling through things and also like, it's fun. Like you can get real burnt out at work real quickly, if you're working on the same codebase Oh, yeah. And being able to have another side project that you're you're TINKERING AWAY on will sometimes bring that love back.
+
+73
+00:40:51,420 --> 00:42:10,830
+Scott Tolinski: Can I also say here? And I've already said a lot about this one, like that side projects are you working on at work that to me, the sweet spot for a side project that I worked on at work was always involving something that if my boss asked me what I was working on, he would be psyched about it and like upset about it. For instance, when I wanted to learn Angular at one of my jobs, if he were to walk by and I'm like, What are you doing, I would said, I'm making a pre launch checklist for all of our projects. And he would have been a while that's a really cool thing. And then I'm not like, Oh, it's just some side cut I'm working on, you know, this is like this is a learning experience. This is a project into something that's going to make our team better in some sort of way. And that still checks all the boxes of being a side project, a side project doesn't have to be like a Pokemon thing. I'm not saying that yours is, I'm just saying like, it should be probably something related to your work. And you can you can, your boss will love that if you're if you're thinking about those kind of things. So for all these side projects that you are working on on your own time, because maybe the sidebar, trigger and turn into a business, maybe you got users on these things that I'm talking about side projects that are off the clock, you might want to go ahead and throw on some error and Exception Handling tools. And I mentioned that this one plays really nice with our previous sponsor in early on in this episode Log Rocket and I'm talking about sentry@sentry.io.
+
+74
+00:42:11,130 --> 00:43:42,570
+Wes Bos: Yeah, Sentry, they just got a new tagline on their website, software errors are inevitable chaos is not that's, that's, that's a great thing. Because a couple weeks ago, I I said this earlier, I deployed a new Checkout, not a new Checkout, but a couple of new, like major changes to it, and something broke. And that could have been chaos, because I could start losing money. People are emailing saying, hey, it's not working. But I was able to jump into my century, see the errors that were happening, kind of see the stack traces the browsers that it was happening on and, and really quickly pinpoint where the error was happening and what code was was making it happen. And I was able to jump in. And actually, in my case, it was that there was a cache of the old version. So it was showing me the error. And I said, I can see that that's not the right code, because I had written new code, and I'm not seeing that in my century. So I was able to quickly jump in and invalidate that cache. And that would have been very hard for me to debug because I had, I had cleared the cache from my browser, and I wouldn't be able to replicate that in my own browser. So having that sort of insight into how these things happen is key. And that's why you need Sentry, for your project@sentry.io and use the coupon code. tasty treat all one word, and that's gonna get you two months for free. Thanks so much for sponsoring. Let's get into some sick pics. Do you have a sick pick today?
+
+75
+00:43:42,990 --> 00:44:54,240
+Scott Tolinski: Sick bag? Yeah, sick pick, I got a sick pick today, you know, I think pick a lot of podcasts. And some are a little bit more like a wider reach than others in terms of who's going to be interested into what. But there's a really neat podcast that I've been listening to along the same lines as darknet diaries for a little while now. And it's a malicious life. And it's it's a little bit less of a drama podcast then. Then darknet diaries and a little bit more of like explaining situations. For instance, he spent three episode which totals about an hour and a half on the Stuxnet virus and he talks a lot about these different things. He talks about a lot of different worms, and he runs down different situations and then really, like just dives into it. The shows very good. I've been listening to it now for quite a while here. Yeah, it's just one of my favorite cyber security podcasts because it really just opens your mind to some of the stuff that's going on. And like I mentioned, it's a little bit less of like a narrative dramatic form, then darknet diaries a little bit more like straight up, and it pairs really nicely. I think even jack resetter from darknet diaries was like a guest on one of the episodes. So yeah,
+
+76
+00:44:54,240 --> 00:44:55,530
+Wes Bos: they've done a couple swaps. Yeah,
+
+77
+00:44:55,680 --> 00:45:14,280
+Scott Tolinski: they've done a couple swaps. maliciously. I know this. This is so funny because apparently I'm about to rob a bank and I'm about to scam people because a lot of swindlers and scams and in hacking. Those are definitely my favorite podcasts. So that fits right along in that same same world there.
+
+78
+00:45:14,280 --> 00:45:26,610
+Wes Bos: Yeah, I have been listening to that one for a while. The only thing I don't like about it is the the host intonation as he speaks is like the duck, the duck, the duck the duck, and it's
+
+79
+00:45:27,030 --> 00:45:31,050
+Scott Tolinski: just yeah, to me. Sometimes I wonder if it's just his accent or what
+
+80
+00:45:31,590 --> 00:45:48,690
+Wes Bos: I think it sees. I think it's ESL, like, he probably speaks German and whatever. And he takes the intonation from the his language and brings it to English. And as a native English speaker, I'm like, Ah, that's a little bit off. I know. It's not something I should be worrying about. But sometimes it gets to me.
+
+81
+00:45:48,810 --> 00:46:00,480
+Scott Tolinski: Yeah, it doesn't bother me. It's not something that I've ever but I can understand why would be make listening to it a little bit more difficult because it's not like as seamless or something. But no, I you know, I I totally get where you're coming from.
+
+82
+00:46:00,930 --> 00:46:40,230
+Wes Bos: The content is worth it though. It's it's like super well researched. And it's it's very technical to like, like, they don't dumb it down for for anyone. So I really appreciate that. I'm going to sic pick my new hard drive. So I have had these Western Digital passport drives for a while we've got i don't know i got like three or four of them just for I got one for kids shows. I got one for time machine. I got another one for my wife's Time Machine. We have a handful of them. And I recently accidentally just dropped kicked one off my desk. I had a cable hanging and I kicked it and the whole hard drive went flying while it was spinning and I killed it.
+
+83
+00:46:40,290 --> 00:47:01,830
+Scott Tolinski: Can I say something really quickly, before you jump into this time machine? You you and your wife time machines. It's just funny that that's a sentence that you can say in like, in English, and like everyone's just like, Oh, yeah, hard time machines. And we all know it's not literal time machines. It's just like a fun thing to say no. So if my wife and my we use these, these hard drives for our time machines,
+
+84
+00:47:03,180 --> 00:47:40,800
+Wes Bos: the secret No, obviously the backup of your computer. And I have people always ask like, why don't you use? What's the thing the Synology for that it doesn't work well, time machine doesn't work well over over the network. It really does. Um, and I much rather just have like a physical USB for my time machine anyways. So I kicked one it broke. And I thought I said maybe I should try a different one. Because I think maybe that's the second one that that went on me over the last like seven or eight years. So I went for the let's see rugged one where you've probably seen this Oh, yeah, right. Orange neoprene neoprene jacket or rubber jacket or
+
+85
+00:47:41,070 --> 00:47:42,540
+Scott Tolinski: light jacket. Yeah.
+
+86
+00:47:42,600 --> 00:48:53,520
+Wes Bos: And what I really like about it is that it's just USB C and it's besides my iPhone, it's the first thing I've bought, that comes with a USBC cable out of the box. And you don't have to have some stupid connector for it. It came with both USB actually, which is really cool. And I was like man, after what five years of having a this MacBook This is the first thing I bought that I can plug in to it. It was good. It looks like it will survive a kick, unlike the other ones. So I'm pretty happy with it. And it's also fast as heck. I think it backed up much faster than the other one did. And the other the the Western Digital my passports they come with this like weird USB C or USB three. Plug that's exactly two prongs in one. I'm not sure what the name is, is of it, but you know what I'm talking about. And like if you lose that cable or you forget that cable cuz like we have it for our kids show. And I often will bring that kids show harddrive with us wherever we go. So I can plug it in a laptop. And if that's if I lose that cable, I'm poached. But if all you need here is just a USBC cable. Although USBC cables are a piece of their own.
+
+87
+00:48:53,910 --> 00:48:55,770
+Unknown: Yes. Cool.
+
+88
+00:48:55,800 --> 00:49:00,150
+Wes Bos: Yes. Let's do some shameless plugs. What do you got for me today, Scott? Yeah, I
+
+89
+00:49:00,150 --> 00:49:57,300
+Scott Tolinski: got a new course on CSS design systems using the CSS variables is really cool. In fact, we spend the entire like first bit of the course. And I mean, like, like legit first bit of the course it's quite a bit of the first bit of the course, doing only classlist CSS. And I'm not talking about like this, this CSS isn't isn't pulling up at 711 with flip flops on and no shirt. I'm not talking that type of class list I'm talking. It's not using CSS classes. So we're just styling everything in like a full on design system, using CSS properties in straight up elements for CSS to build our own sort of baseline CSS, and then we go from there to build out a full on system and talk about strategies for dealing with elements and reusability and media queries and all sorts of fun stuff. You can get that at level up tutorials.com does the guide tell you where you can get it level up tutorials.com forward slash pro sign up to for the year and save some cash. Thank you.
+
+90
+00:49:57,720 --> 00:50:22,890
+Wes Bos: I'm going to shamelessly plug Beginner's Guide javascript.com It's a fun exercise heavy approach to learning modern JavaScript from scratch. So it's for it's beginner friendly, but it goes all the way up to intermediate concepts and whatnot gets you really good at JavaScript. Check it out beginner JavaScript calm, you can use a coupon code syntax for an extra 10 bucks off sick. That's it for today. Thank you so much for tuning in and we will catch you on Monday.
+
+91
+00:50:23,130 --> 00:50:24,420
+Unknown: Later, please.
+
+92
+00:50:26,130 --> 00:50:35,910
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
