@@ -1,0 +1,176 @@
+1
+00:00:00,359 --> 00:00:24,000
+Announcer: Monday Monday Monday open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob and Scott El Toro. Totally.
+
+2
+00:00:25,890 --> 00:00:49,740
+Scott Tolinski: Welcome to syntax in this Monday tasty treat. We're gonna be talking all about the JavaScript standard lib or the standard library. This is a really fascinating topic about future JavaScript things that are going to make our life better and better. As we often like to talk about on the show. My name is Scott Lynskey. I'm a full stack developer from Denver, Colorado, and with me, as always, is a West boss.
+
+3
+00:00:50,220 --> 00:00:51,690
+Wes Bos: Hey, everybody. Hey, Wes.
+
+4
+00:00:51,690 --> 00:01:43,680
+Scott Tolinski: This episode is sponsored by longtime sponsor of syntax, which is century now century is the bug error and exception tracking software that allows you to make sure that your application is running as smoothly as possible at all times, you're gonna want to head on over to century@century.io. And you could sign up using the coupon code at tastytrade, all lowercase all one word and get two months for free. This is going to be a big time saver after you get this set up. Because this is going to let you know where your errors and bugs are happening directly before your users let you know about it. So head on over to century@sentry.io. And check out the tasty treats that they have over for you@sentry.io. So standard library or the standard lib, you give me a you know, just a quick little bit here. A quick little tasty treat
+
+5
+00:01:43,890 --> 00:03:58,920
+Wes Bos: the skinny. Yeah, so go there, there's a proposal to add a standard lib to JavaScript. And if you're coming from other languages, you probably already know this. But most languages Python, PHP, Java, they have a bunch of built in stuff that you can simply just import like it was an NPM module. So rather than having to go ahead and npm install something and then require that you can simply just like require it yourself. Same with like, even no j S has it has a standard lib with a bunch of utils stuff. We just don't have that in JavaScript. Of course, we have some Global's for, for working with arrays and objects and things like that. But almost always, when you need to do anything as simple as formatting a date, or I don't know anything somewhat complex with an array, you have to go and reach out for an external library in order to work with it. So there's this new proposal to add a standard lib to JavaScript, which will allow us to have sort of built in handy little features. Now you might be asking, like, like, what's the difference between having a standard lib? And just making it a global in the browser mean? Like, like, why can't we just like, keep putting stuff on the array prototype or something like that in order to get where you want to go? And I have the same question as well. And the answer, which this is on the Google Developers websites is not exposing built in modules globally has a lot of advantages. They won't add any overhead to starting up a new JavaScript runtime context. So anytime you spin up a ServiceWorker, a tab, a new node process, that startup time is really important to people, especially if you're talking about things like opening a new tab, or maybe like a serverless function that needs to boot up that boot up time is really important. Because if it takes like 100 milliseconds just to boot up, then that feels a little bit slow. So by having them as a standard lib, they don't consume any any more memory unless they're actually imported. And they don't run the risk of naming collisions with other variables defined in your code. So I think that's pretty cool. Because like it, they're they're, they're sort of NPM installed, but you're not actually requiring them until you actually go ahead and reach for them. Yeah,
+
+6
+00:03:59,040 --> 00:04:46,500
+Scott Tolinski: I like this little note that was in the the one Google Developers thing is they're just like, downloaded NPM modules, except for they ship with the browser. So I mean, really, if you've been using NPM modules at any given point, then you have a lot of the tools that you would need to even work with some of this stuff, because it's just going to be like importing anything, right? You're just going to be importing, let's say, import library from standard or j s, colon, and then the library name. And did you read a little bit about that? I was actually a little bit confused about that aspect of the importing. ut D is STD colon or j s colon to be the namespace for these things. I saw on the the one GitHub it says that the J s namespace is the namespace but on the Google one, they were referring to it as STD.
+
+7
+00:04:46,580 --> 00:05:21,240
+Wes Bos: Yes. So this is still a proposal so it's it's a little bit up in the air. They've proposed jazz colon, and they proposed STD colon, and then they've also proposed the NPM sort of way that you do it is Yeah, yeah. Standard forward slash. It looks like it hasn't been decided yet. So we're not sure it does say in the official proposal that it's jazz colon. However, in the one, the one standard lib that was already implemented. We'll talk about this in just a sec. Yeah, they are saying a CD. Yes. Standard.
+
+8
+00:05:21,420 --> 00:05:33,930
+Scott Tolinski: Yeah. So that aspect was a little confusing for me. But this this proposed, or is this is this in the in Chrome right now, because I would when I was reading is, this seems like it was still kind of potentially in Chrome.
+
+9
+00:05:34,110 --> 00:06:18,690
+Wes Bos: It is in Chrome already. This one is, it says here is key value storage module is currently available in Chrome 74. And therefore, you have the experimental web platform features flag turned on. So it's assigning a lot of developers flip on. So you can try out new stuff in the browsers, you go to about colon flags, I believe in Chrome, about colon flags. Yeah. And that that will open up this like, under the hood of your browser. And there's all kinds of stuff you can turn on and off. And the one you want to turn on is experimental web platform features, because you can already use modules in the browser as well with a script type equals module. And what this key value is, maybe we should talk a little bit in this module,
+
+10
+00:06:19,140 --> 00:06:25,860
+Scott Tolinski: I jumped into it a little quickly there. I was just wanting to not say anything that was not accurate initially.
+
+11
+00:06:26,100 --> 00:07:06,990
+Wes Bos: Yeah. So there is a local storage, you know, local storage, you can set key value strings in local storage in the browser. The one downside to that is that local storage is synchronous, meaning that if you have a larger write or something like that, you could be potentially blocking other things from happening. So this key value storage is the exact same thing except that it is a new a synchronous API that will allow you to work with it. And then there's also a whole new API of things for for working with it, it has get set delete, very much like we have had in something like a JavaScript map.
+
+12
+00:07:07,170 --> 00:08:10,470
+Scott Tolinski: Yeah. Yeah. What's what's cool about this is like the whole stated goals of it is performance, speed, and all those things, but also simplicity in the API. And that's something that local storage really got right, in my opinion was just yeah, how blade dead simple the API is to use. So now that we're having these in a standard library, and a different with performance as the real kicker here, I think this is definitely a good, good first module, I think this is an interesting use case. And, you know, I'm interested in giving this a try. Obviously, this is one of those things that you kind of have to be careful with, because, well, if you ship some code with the standard library in it, and your users do not have that Chrome flag enabled, well, guess what? It's not going to work unless you're using a polyfill, which I would imagine the polyfill I haven't done too much reading into this would just be the library as what could be a node package. And then potentially, you're loading the node node package from your packages rather than from the browser, if it doesn't exist in the browser. Does that sound correct?
+
+13
+00:08:10,590 --> 00:08:40,950
+Wes Bos: Yeah, I would, I would imagine that part of the synchronous loading of this thing is that it would just load it on demand. Yeah, it needs it. So it's using another part of, of modules in the browser is just loading it on demand. So it's, it's kind of cool. It's It's It's not the most exciting thing ever. But it's it's a perfect example of giving you the idea of what is a a standard library in the browser. Now, I guess we can talk a little bit about like, What kinds of things do you want to see being added as a standard library to the browser?
+
+14
+00:08:41,490 --> 00:09:31,020
+Scott Tolinski: Yeah, I think the thing that most people would want to see, I mean, we have listed here, deep clone, and then another link to a proposal. But it's funny, because the first thing that I thought of which I'm sure a lot of people, their brain would go just be like, Hey, be great. If Well, all the stuff that's not already in JavaScript already is from lodash, it would be as a standard library, that would be great, because we got a bunch of features from lodash, a lot of stuff that you used to use before we had that map and things like that. We got all those in JavaScript now. But there's still a host of things, a lot of the deep stuff, a lot of the things that are a little bit more tricky, where I'm reaching for lodash, it would be really great to have those built in because to be honest, it seems like that stuff should be part of the library. But again, the benefit of having these be in a module is that you wouldn't have to have them all the time.
+
+15
+00:09:31,230 --> 00:09:58,770
+Wes Bos: Yeah, you don't need to load the entire library on as you need it. They just be available for you in the standard library. So I think that will probably be one that we start to see. You can get most of your work done with the array methods that we have put every now and then maybe 5% of the time, you do need to reach for one of these specialized methods. When you're doing you're doing union of data you need to do a deep grab of property on although that is coming to the to JavaScript as well.
+
+16
+00:09:58,830 --> 00:10:09,750
+Scott Tolinski: You know which What do you Use a lot because I use, like, let's say I've used has in the past, although I'm now using the What is that? The operator the question mark
+
+17
+00:10:09,770 --> 00:10:11,540
+Wes Bos: optional chaining? chaining?
+
+18
+00:10:11,580 --> 00:10:36,170
+Scott Tolinski: Yeah, so now using chaining and optional chaining instead of has, however I use merge, I think I've used to set I've used find find is really nice flat map flat map. Yeah, flat map is actually really sweet. Find index is like a deeper find index times have gotten times which I mean, you could you don't need times anymore, I should probably rethink some of that code.
+
+19
+00:10:36,410 --> 00:10:42,360
+Wes Bos: Yeah, well, sometimes I just prefer like a nicely named method over an obtuse
+
+20
+00:10:42,510 --> 00:10:45,870
+Scott Tolinski: like, array. Yeah, yeah, yeah,
+
+21
+00:10:45,900 --> 00:12:10,440
+Wes Bos: yeah. And I know, I can make my own little, I can make my own little functions like that. But that's the whole point of a library like this, it will be very easy to do these types of things. And it's not adding any overhead to either your bundle of JavaScript or the the startup time of your application. So we'll probably see quite a bit of those. We already see this in in node node has an entire assert package that will check for for deep, deep, strict equal. So if you have two objects, and you want to compare those two objects, that's hard in JavaScript, so no just ships, a utility library that allows you to do that if you want to do a deep clone of an object. So real quick, if you have an object, and you do a copy of that object via something like object dot assign, or you use a spread, or something like that, it will only clone it one level deep. So if you have a nested object inside of that, the second level, third level, fourth level objects are still referenced to the original object. And that can be a bit of a bug city, because if you change that second level object, the original thing that you copied it from will also be changed. So a deep clone is when you actually copy all of the levels deep. And that doesn't that's hard to do in JavaScript currently, as well, we'll probably see something like that. What else? a synchronous JSON parse JSON stringify a library to do that would be handy. I bet.
+
+22
+00:12:10,740 --> 00:12:17,160
+Scott Tolinski: Yeah. Some some you you ID create some unique I What is this? Other you stand for? universal?
+
+23
+00:12:17,160 --> 00:12:23,070
+Wes Bos: universal, unique identifier, universally unique identifier? Okay.
+
+24
+00:12:23,160 --> 00:12:35,940
+Scott Tolinski: I was like, a unique identifier. That's only one you Yeah. So be able to create like a, what it would be like a database key, or even the key in general, it's like a unique string would be? Yeah, that'd be nice to have two, I think. Yeah.
+
+25
+00:12:35,969 --> 00:12:40,170
+Wes Bos: They're also called gu ID globally unique identifiers.
+
+26
+00:12:40,439 --> 00:12:46,410
+Scott Tolinski: those are those are like, those are acronyms I see. And I've never been like, Oh, I know what that means. But what does that actually
+
+27
+00:12:49,680 --> 00:13:07,950
+Wes Bos: that's great. A URL library for parsing URL. So if you want to build a URL with hashes, and query parameters, and pages and pads and all that stuff, or if you want to parse it into something, you almost always have to reach for an external library like that. So that's
+
+28
+00:13:08,280 --> 00:13:27,720
+Scott Tolinski: really handy. Get query string is in the browser, or I mean, yeah, is the URL, right? Yeah, yeah, I've actually, I used this myself, what is this? query string parameters? Because as many people who have used react router, know that react router doesn't ship with a sort of way of doing query strings?
+
+29
+00:13:27,780 --> 00:13:30,330
+Wes Bos: What's the name of that method? I totally forgot about that.
+
+30
+00:13:30,839 --> 00:14:10,530
+Scott Tolinski: Use ref cookie URL or URL search. params. Yeah. So you are a URL search params, new URL search params, you give it the string of your URL, and then it basically takes all of the params and spits them out to you as an object where you can grab it with a dot get. So you say hey, dot get, and then you pass in the pram name, and then you get that value back out of it. I use this skin, I actually use it with a polyfill. So the cool thing about this is, is you can use this totally right now as is you just do need a polyfill. If you're shipping to pretty much any browser, to be honest, it's not it's not super widely supported yet.
+
+31
+00:14:10,920 --> 00:14:21,930
+Wes Bos: It looks like edge 17 chrome 49. With most of it actually looks pretty well supported except for IE, but like, Who cares? polyfill it if you need it?
+
+32
+00:14:21,959 --> 00:14:26,880
+Scott Tolinski: Yeah, I would polyfill it just anyways, because the polyfill is easy to do, you know?
+
+33
+00:14:27,120 --> 00:14:38,820
+Wes Bos: Yeah, totally. Yeah, no kidding. And it will just load it on demand for you. Yeah. What about things like polyfill? Like path and hash? And is there there's nothing in the browser for that currently, is there?
+
+34
+00:14:39,050 --> 00:14:43,550
+Scott Tolinski: I don't think so. Correct. or wrong here. But as far as I know, I don't know.
+
+35
+00:14:43,949 --> 00:15:05,970
+Wes Bos: There's there's one like little trick I've seen is if you create like a document create element and you create an anchor link and set the href on it for F right. And you can use you can use that link to access all of the properties that link will automatically generate for you. So I think you can get that hash out. I don't know these these are just different tricks and stuff like that it'd be nice to have it in just one nice tidy little library.
+
+36
+00:15:05,970 --> 00:15:10,050
+Scott Tolinski: A nice little bundle, nice little standard standard bundle.
+
+37
+00:15:11,160 --> 00:15:32,940
+Wes Bos: So that's that's all I can think about. Right now. If you have any other things that you'd like to see come to standard live in JavaScript, let us know maybe like, like a nice Canvas API, like the Canvas API is, for me is difficult to use. I think so like maybe a, but maybe that's what libraries are for. Like, they're probably not right.
+
+38
+00:15:33,000 --> 00:16:06,420
+Scott Tolinski: Yeah. It's like, at what point what's the threshold, it's like, the things that are used frequently enough for will make every month the most people's lives better in certain ways, or by standardizing them making things easier for people making performance better, those kind of things. Yeah, I mean, we had like, a nice little conversation before we started this episode about Intel, or international, which is a new API coming to the browser. We were saying that we could probably do an entire episode about this, but you wanted to touch on it really briefly. And this one, how much did you want to get into on that?
+
+39
+00:16:06,780 --> 00:17:10,980
+Wes Bos: Yeah, real quick, I was just gonna say like, most people are probably going to say something like moment j s, which is like a date formatting in time ago, and relative time and currency formatting, all those things. And those things are I started writing them down, I was gonna be like, well, they are actually coming. They are in the browser already under the I NCL methods, and then I started typing it out. And I said, like, Man, this is a whole show right here. I'm super excited. Anytime I tweet a hot tip from ancl. It goes bananas. So we're going to save that for our next AC treat. Talking about currency formatting lists, formatting, date, time formatting, sorting things based on different like, I'm sure our international users will know that. Anytime we show a simple example. They'll say, it's not that easy. When you don't just have a, A through Z. And right you've got accents and things like that to worry about and different types of keyboards and different types of locale, where it doesn't necessarily match your language and how you format money, all that good stuff. So we'll talk about that in the next episode.
+
+40
+00:17:11,249 --> 00:17:18,030
+Scott Tolinski: Yeah, there is a lot there. And I think anybody who's worked with international anything has understood just how difficult that can be.
+
+41
+00:17:18,030 --> 00:17:19,710
+Unknown: Cool. So uh,
+
+42
+00:17:19,739 --> 00:18:07,710
+Scott Tolinski: this is it. This is exciting new stuff. You know, I think we absolutely about JavaScript in the evolution of things just being easier for the users and things like that things are just getting so much easier for the developers as well. getting nice and clean, we're not gonna have to do any sort of these hacky things to create things, because hopefully, we get everything that we asked for. It all shows up, and it's all perfect. And it makes their lives that much better. So I'm really excited about all of this stuff. If you want to try the key values storage standard library that is shipped in Chrome, make sure you flag or turn on that flag. And then we have a link in the show notes here to let you know exactly some of those API things and a little blog post explaining a little bit more about the key value storage one from Google.
+
+43
+00:18:07,740 --> 00:18:13,230
+Wes Bos: Sounds good. Thanks for tuning in, and we'll catch you on the next one. Peace. Please.
+
+44
+00:18:15,110 --> 00:18:24,930
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
