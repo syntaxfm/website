@@ -1,0 +1,112 @@
+1
+00:00:00,359 --> 00:00:24,480
+Announcer: Monday, Monday, Monday, open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing, soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob and Scott Taylor. Totally at ski.
+
+2
+00:00:25,950 --> 00:00:26,640
+Unknown: Whoo, welcome
+
+3
+00:00:26,640 --> 00:00:54,090
+Scott Tolinski: to syntax. This Monday tasty treat, we're going to be talking about modules. In node, this isn't is going to become more and more relevant as time goes on here. So I figured it was a good opportunity to take the time to maybe give a little bit of an introduction to what the heck modules are a node and maybe how they're different from modules. And the browser. My name is Scott solinsky. And I'm a developer from Denver, Colorado. And with me, as always, is Wes Bos.
+
+4
+00:00:54,390 --> 00:00:57,210
+Wes Bos: Hey, everybody. Good to see you.
+
+5
+00:00:57,510 --> 00:01:39,150
+Scott Tolinski: Hey, good to see you, too, Wes. And this episode is sponsored by one of our sponsors, which is also good to see the sponsor, because we absolutely love them over here at syntax and that is century at century dot i O. Now, Sentry is the service that you need to solve all of your JavaScript node have anything issues, because it's not just JavaScript, let me tell you that Sentry works with just about every single thing you could possibly use. Not to mention that just about everybody uses Sentry, from Airbnb to Disney to PayPal, peloton with their cringy ads, and Microsoft and Dropbox and all of these people,
+
+6
+00:01:39,270 --> 00:01:49,350
+Wes Bos: I was looking through logs on my MB TV server the other day, and I was like just looking through the logs. And I saw a century log there. I was like, Oh my gosh, they're everywhere,
+
+7
+00:01:49,350 --> 00:04:10,410
+Scott Tolinski: everywhere, everywhere. And let me tell you back end front end doesn't matter century works for you. It tells you what happened when the when the bug happened. It gives you a whole trail of events, there was a click on this on this particular element. And then we'll received a 500 error. Now what was that error? What was the status of that error, you can even tell it which version control commit introduced the bug, you can attach your source maps, you can see the changes of how many bugs over time it happened in your application. You can ignore bugs, for instance, we get this slick really, it's like a an error that frequently comes from a Firefox extension that a lot of people use. And that's not a bug that I need to see. So guess what? ignore it. I don't want to see that thing anymore, because it's not a bug with my application. Right? So Sentry gives you all that abilities and more to again, work with every single thing you need to know to really dive into what's going on with your site and how to fix and solve your bugs, head on over to sentry.io and use the coupon code tasty treat all lowercase all one word, and you'll get two whole months for free. And that's more than enough time to try out because we absolutely love century and you will see instantly why. Okay, so modules in Node before I want to start get too in depth with this episode, you have done quite a bit more research on modules in Node than I have. So I am going to ask you some questions. And first, I want to start off with how they were sort of done before because the one of the reasons why I don't know a whole ton about these is because within my Meteor setup, which I'm using, you just had access to the module import syntax. And now I understand that those aren't actual modules. But in the past, you may have used the import syntax on a node application. And how might you have done that? Well, really all that's happening is that it's Babel and babbles just converting your code into something that node can read rather than actually node supporting those modules. So I'm really interested in knowing what are the benefits of using these modules compared it to a Babel configuration that compiles it back down to the standard requires syntax. So let's get into it here. And let's learn a little bit about node modules.
+
+8
+00:04:10,920 --> 00:07:53,790
+Wes Bos: Yeah, so node modules were unflagged. They're still experimental. And they've, it's funny, I went back and found a tweet from myself from almost two years ago. And when I was about to release my node course, I said, like should I just, it was, it was still experimental, but I was like, it's probably fine. And I almost released the node course. And it's two years later, and they're still working on it, which is not not any shade on them. It's not like they're dragging their feet or anything. It's just that this is huge in the language, and if they get it wrong, then we have to live with it for the rest of our lives. So they're just spending a lot of time listening to browser developers, no developers package authors, making sure that like everything works well together, so they're no longer behind a flag when you want to use them. So if you're on node three, 14.2 or higher, you can just start to use them. However, they're still missing features. And it's still experimental. So yeah, that's that's kind of the caveat of this episode. So the way that node modules work right now is that they use this thing called common j s, meaning that you have a file, which is a module. And you can either module dot exports, like a function or an object or something. And that's the main thing. That's the one thing that's exported from that file. Or you can do exports dot exports dot name, exports age, and you can, you can export multiple things from that. So it's kind of the same thing as exporting an object. But the reason we have that is because sometimes people want to export a function from that, and you just module that exports a function and sometimes you want to export multiple functions or an object or multiple properties, and that's where you use exports dot, now, we're going to be using ESM. That stands for ECMO script modules. Now, in JavaScript, we have a spec as of ESX, to have modules in the language. And node is making it available for us to use that syntax, since we're already using that syntax in browser land. So there's been a huge effort as to like, move it over. However, it's really hard because we have this huge ecosystem of your own authored code, which is written in common jazz. And then you also have this huge, like, hundreds of thousands of modules in NPM. And almost all of those are currently written in common j s. And we need to be able to have this big in between period, while we're moving things over as our own code bases. And as our libraries get updated to ESM. So we're just gonna like, I guess, in this episode, sort of just detail like where it's at right now and how it will work. And and then we'll have some suggestions as in terms of tools you can use to make the migration easier, or whether you should just sit on your hands for another six months a year. So how do you do it, there's a couple different ways you can do it. But I'm going to be assuming that okay, I want to start, I want to rewrite my code base in or I want to move my code base over to using ESM, which is ECMO script modules. That's what we use in the browser. So the way that you can do that is you go into your package JSON, and you switch your project over by default, your project will be as in common j s. And if you want to switch your project over to using ACMA script modules, you can go into your package JSON and add a type property, and you set that type to be module and that will that will switch it over. Now if you do that, then then all of a sudden, you have to rewrite all of the other files there, I'll talk about a second, there are better ways to slowly do this. But
+
+9
+00:07:54,150 --> 00:07:59,670
+Scott Tolinski: I was gonna say yeah, cuz that seems like not an option for a lot of people in the migration.
+
+10
+00:07:59,820 --> 00:09:05,780
+Wes Bos: Yeah, he can't just flip it over. So maybe I should maybe I should say that approach first. So if you want to move over one file at a time, without breaking anything, you don't put this type of module in your package JSON, and you do it file by file. And then the way to do that is you have to use the Michael Jackson script extension, which is the dot m j s, which people sort of curl up in in horror of doing that. And at the end of the day, the node needs to know how your files should be interpreted. So you either do that carte blanche, and you put a type of module in your package JSON, or you do it file by file, and use the dot m j. s extension on your ESM ones. So my idea would be that you just start coding, every time that you refactor a file, you rename that to dot m j s until you get to a point where all of your files are now, m j ss, and then I would flip that switch and rename everything back to dot j. s. So that would that would be like one way to go. But I've got some other options as well.
+
+11
+00:09:06,120 --> 00:09:08,250
+Scott Tolinski: But then you got to rename all those files.
+
+12
+00:09:08,270 --> 00:09:12,510
+Wes Bos: Yeah, your your Git history is goofed up, or sucks.
+
+13
+00:09:12,750 --> 00:09:18,360
+Scott Tolinski: I was thinking like, what would be the downsides to doing some sort of like a Babel thing for your transition that's
+
+14
+00:09:18,360 --> 00:12:28,530
+Wes Bos: coming. Let me let me give it a sec. So the other option is, is that you can flip it to type of module in your package JSON, like we said, and then you start to use all of those imports. So you have to either go through every common jazz file you've written which has a require in it and flip that over to import, or you have to rename those files to a dot c j. s, which notes to note that it is common jazz, which is kind of a bummer as well. And I should say like this is not that they didn't think of this. There's a lot of there's a lot of like gotchas in terms of how the different Modules systems work. And Babel modules aren't following the ACMA script spec. And that's why it's so easy for Babel module. So there's a lot of like people throwing shade on it. And there's a lot of hard work that's been done here. So maybe like pump the brakes before you send a mean tweet about something like this. Because it's it is a much harder problem than it seems on the surface. I've dove into it. It all all has to do with the fact that ACMA script modules are statically evaluated, meaning that you can tell what the exports are from a common j s module just by scanning the file. Whereas a no jazz common jazz module like you can, you can import and export things as part of the code when it's run, which is like you could generate an export, when the file is read, it's parsed. And then you could generate an export, we can't do that. On the other side, at least, that's my understanding of going into it, you can read the thing yourself. And that changes quite a bit, right? Yeah, well, I think for most people, it doesn't, which is why you're able to use Babel and not have a problem at all with it. And how I actually ended up just using Babel on my project, and it just worked, right. So I think for a lot of people, it probably doesn't matter. But there are some sort of use cases here and there. Gotcha. Then it comes to importing and exporting. So if at some point, you're going to need to import things from a common j s module into a ESM module, so the way that works is that you just use import, and then node will know that you're importing it from a common j s module, but with the import syntax, and it will map that import into into just like a variable. So you can use like, import Express from Express and even though Express is a common j s module, and you're using the import sec, it will work. The downside to that is named exports don't work currently. Mm hmm. So if you are importing, use a fact. And use reducer from react. And let's assume react doesn't ship the ESM package, then that doesn't work, you have to import the whole thing as react and then use the methods off of that now, that will change because that was a huge pain point. For me, that eventually made me saying this isn't ready for me yet.
+
+15
+00:12:28,560 --> 00:12:31,800
+Scott Tolinski: Yeah, that would be tough. I'd have to rewrite a lot of code.
+
+16
+00:12:32,189 --> 00:14:01,770
+Wes Bos: In node land, you can use destructuring, you can do something like const, curly bracket use reducer equals require react. But it doesn't work yet. And apparently, there's plans to make it work. If you go to github.com forward slash no jazz forward slash module modules, you'll see a list of everything they want to implement yet, and at the top of that list is being able to use named exports from a common j s module. Because that's not something that you can change yourself, because you have to wait for every single package in NPM to be updated to ESM. Which might not ever happen. There's lots of packages out there that are just done. Yeah, they're never going to be updated. But they're still good packages. So like, my question is here, like, like, what would be the approach to move it because what I ended up doing is, I just went whole hog searched for require, and just went through every single instance, like hundreds of require statements, I replaced them. And it worked. But like that, you can't do that for most projects. Right? So the solution is what you've been asking is use this node module called ESM. It's written by john David Dalton, who wrote lodash, as well. And it allows you to just use both, and it just works. So you can you can use named exports, you can use your imports. And this code was actually forked off of Meteor, which Scott's been using for, like four years, right? Love it. Yeah.
+
+17
+00:14:01,800 --> 00:14:31,110
+Scott Tolinski: Yeah. And I'm excited about meteors future with now that there's a new ownership behind it. But yeah, it's one of those issues that I've always been like, every time I start a project that's not Meteor and I go import, yeah, you know, Fs for whatever I'm like, Oh, I can't do this without setting up a whole Babel config. And then I got to have a separate web back thing for my server. Don't Babel config. It's like, man, Meteor made that so easy that it was just like, it just works just works to you know,
+
+18
+00:14:31,170 --> 00:15:41,970
+Wes Bos: yeah. So all you have to do to get this thing working is when you run your app with like node index j s, you just have to do node dash r ESM. And that will require the ESM package first, and it'll do a little bit of magic and then run your app. And it just works. And it's great if I bet that the note implementation will work like this eventually, but until then, this is what I'm recommending that you go. Go ahead. I don't think it's all that Great, especially if you need named imports. Like I was trying to import some packages from like Keystone. And it was called like, graph QL. And I was like import graph qL from graph QL. But it was a named export. So I was like, What do I call this thing that I import and then access the method off of? It was just like a naming problem as like, I don't even like know what to call this thing if I want to import. All right, yeah, you can't destructure it as you import it. That's not part of ESM spec, which is a bit of a pain. So it's not ready yet. It's looking really, really good. I'm really happy that it's there. But if you're using the library ecosystem, I would reach for this ESM package.
+
+19
+00:15:42,330 --> 00:16:17,100
+Scott Tolinski: Yeah. Cool. All right. Well, that I think that clarified a lot of things. For me, this is one of those non issues that I've had for so long, just because I've never, I haven't looked at a require statement unless I really need to just just because So no, this is absolutely fascinating. I'm going to keep up a little bit better on this overall development of this with a node just to know what the differences are here, I was thinking that they would just flip a switch, and all of a sudden, everything would be peachy keen. And it would all just work correctly. But no, it looks like it's a little bit. Yeah,
+
+20
+00:16:17,130 --> 00:17:00,540
+Wes Bos: yeah, there's so much little fiddly stuff that they have to think about. And also things like importing JSON files, you can't just do that as part of ESM. Because it's not a JavaScript module. But in node, you can just require a JSON file, and it will load that object into your variables. So they have to sort of like Webpack, they have to build a bunch of these different loaders. And I'm really hoping that they're just built in and they just work. And I'm really hoping that you don't have to have like a node pack file that you have to config totally, but they're very much like, we don't want to have to have a whole lot of config. The only config you have to do is have a type of module, or you have to use the Michael Jackson script or the CJ s script.
+
+21
+00:17:00,800 --> 00:17:02,760
+Scott Tolinski: Cool. Well, thanks for clearing that up with
+
+22
+00:17:02,850 --> 00:17:21,750
+Wes Bos: Yeah, no problem. Hopefully you learned a thing or two, and I'm sure we'll update it. Maybe in six months or so to see where we're at with this type of thing. Go to the node j s modules GitHub repo, I'll link it up in the show notes. And you can see sort of the things that are still outstanding with this. Awesome, cool. Well, we
+
+23
+00:17:21,750 --> 00:17:26,330
+Scott Tolinski: will catch you on Wednesday, where we're gonna be talking about,
+
+24
+00:17:27,150 --> 00:17:29,010
+Unknown: Pika, Pika back,
+
+25
+00:17:29,010 --> 00:17:46,710
+Wes Bos: Pika. pika Chu package. I'm recording this right after this episode. And I'm glad we had this because we're both in the headspace of modules. ESM modules are the way forward and pick a package as far as I know, it's trying to solve this as well.
+
+26
+00:17:46,890 --> 00:17:50,910
+Scott Tolinski: Package building reimagined. Yeah, so Dan, for that one. It's gonna be really exciting.
+
+27
+00:17:51,320 --> 00:17:54,000
+Wes Bos: All right, talk to you later. Please.
+
+28
+00:17:55,800 --> 00:18:05,570
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
