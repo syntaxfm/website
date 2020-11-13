@@ -1,0 +1,376 @@
+1
+00:00:01,319 --> 00:00:02,820
+Announcer: You're listening to syntax
+
+2
+00:00:02,849 --> 00:00:04,590
+Unknown: the podcast with the tastiest web
+
+3
+00:00:04,590 --> 00:00:06,120
+development treats out there.
+
+4
+00:00:06,149 --> 00:00:08,010
+strap yourself in and get ready
+
+5
+00:00:08,669 --> 00:00:10,560
+to whiskey and West boss.
+
+6
+00:00:11,339 --> 00:00:12,120
+Wes Bos: gum.
+
+7
+00:00:14,610 --> 00:00:15,120
+Unknown: Alright,
+
+8
+00:00:15,150 --> 00:01:02,400
+Wes Bos: welcome to the Halloween edition of syntax FM. We have some spooky web dev horror stories, we reached out to you and ask for your most disastrous scary stick your whole stick your head in a hole. And Scott has a soundboard of spooky sounds, we're gonna be going through some awful stories of people losing their databases and accidentally pushing code to production that they shouldn't have. And just some, some really, really hilarious but also some really like, Oof, I hope that never happens to me. In my career stories. We are sponsored by two awesome companies Log Rocket and Sanity. We'll talk about them partway through the episode with me today is spooky to linsky. How you doing today?
+
+9
+00:01:04,980 --> 00:01:26,580
+Scott Tolinski: I'm doing good. Oh, yes, yes, I am ready for this spooky. Oh. And we're going to be giving you some lovely campfire stories here. You can just imagine, I have a flashlight on my face coming from the underside of it.
+
+10
+00:01:28,560 --> 00:01:29,280
+Wes Bos: Beautiful.
+
+11
+00:01:36,060 --> 00:01:39,870
+Scott Tolinski: I promise I will not be that annoying for the remainder of this one is a bit
+
+12
+00:01:40,079 --> 00:02:12,960
+Wes Bos: long. Scott is on the sounds by the way. So send your tweets to him, not me. So we've got all kinds of stories. We're going to keep them all anonymous. Most of them were privately sent to me on Twitter, DMS over email. Some of them were just tweeted to me but out of respect for people's jobs will be saying their names. And we're just going to sort of jump into it. First got has his own disastrous get clean. Sorry, you want to start us off with that one. And we'll get into it.
+
+13
+00:02:12,990 --> 00:03:21,449
+Scott Tolinski: Yes, this is Scott's disaster escape plane, a young junior developer is learning new commands. And he takes way too long to realize that he just ran Git clean from the root directory of his MacBook Pro. He watches in horror as he sees the command line logging out deleting all of his files, as one by one each file disappears, like a specter into the night is quick fingers. hit Command C just in time to save the computer. But what was lost some client projects that he could never get back, including some After Effects render files, and an after effects project that he had spent 50 plus hours working on and had to continue building it from scratch. And that's how I learned how to run good clean on a non Git directory or just in general.
+
+14
+00:03:22,110 --> 00:03:24,210
+Wes Bos: That's what get clean does. It removes
+
+15
+00:03:24,210 --> 00:03:35,370
+Scott Tolinski: everything from the directory that you're in. That's not a part of the current Git repo. And I didn't have a Git repo in that directory. So just start deleting things,
+
+16
+00:03:35,910 --> 00:03:39,660
+Wes Bos: really. So you can run git commands on non repos.
+
+17
+00:03:39,660 --> 00:03:44,880
+Scott Tolinski: I I'm pretty sure I was very new to Git, so there's a chance Oh, I had Yeah,
+
+18
+00:03:45,180 --> 00:03:58,110
+Wes Bos: I was very new. Oh, man. Are this a chance you might have accidentally created a repo? Yeah, in the root like ninja? Yeah, I've heard of people doing that. They're like, Oh, I'm making a new repo. And they're now they don't realize they're in the root folder. Oh,
+
+19
+00:03:58,130 --> 00:04:24,140
+Scott Tolinski: yeah. I it was it? Yeah, it was it was bad. And the After Effects project was very complex. And it was like I you know, had to grind out through the weekend to get it, get it back, or to redo it from scratch. And that was just, yeah, so yeah, it was a one of those simple I turn command DS open up a new tab and don't realize you're not in the current directory. So I've since changed that parameter forever.
+
+20
+00:04:24,380 --> 00:08:09,750
+Wes Bos: Ai x is spooky. I write that three out of three pumpkin spooky. All right, next one we have here is magic updates the gathering. This is this is probably one of the best one that I had received. I read the email and just the over the entire weekend. I was thinking about the story and I told it to my wife and I just can't stop thinking about how awful this would have been to happen to myself. So it goes like this. Like all good dev horror stories. This one centers around bad practices. I was a full time public school teacher at the time. But I was working at a side gig at a local game store, the owner of the store had learned enough PHP over time to build some basic tools for managing our e commerce site. But since I was a resident techie, I started to learn to code as well and took over a lot of his projects. Unfortunately, since I was learning the job, a lot of generally accepted good ideas got passed me, for example, having a development environment. That's right, everything was edited live in prod. So at this time of the story, we recently had started carrying singles of a new trading card game, and we needed those cards to be built onto our website, no problem. I found a fan site for the game and wrote a scraper. So I'm imagining that this is like a Magic the Gathering sort of thing I ran in, I ran it once and successfully and built all the cards from the set into our database, great, except I made a mistake and parsed some of the data incorrectly, no big deal, I'll just tweak the scraper and make it run an update statement again, against the database, all of our problems will be solved. I fixed the code and started the script and waited for it to finish running. And I kept waiting. And it waited some more. Why is it taking so long, I looked at the code to see if I could spot the problem. alarm bells started going off in my head, I saw the problem immediately, I forgot the where clause in my SQL, I had overwritten every single item in our e commerce database with the data from a single card, then, and then I continued to loop the process for every other card. The best part about the whole thing. I wasn't actually at the store when I was working on this. In fact, it was the worst possible place in my classroom with 30 kids watching a movie. That Class dismissed A few minutes later. So in between classes, I ran into my office and called my boss to his credit, he was unbelievably calm about it, I told him I would head over straight after work and get to work on it. I wasn't sure but I would come up with something that was Friday. Thankfully, I put in 24 hours at the store. And by Sunday night through a convoluted process, I was able to rebuild most of the data in the inventory. But what I couldn't rebuild was the stock quantities of Magic the Gathering singles in the store. So just like a bit of a side here, I've learned that Magic the Gathering these comic book stores and things like that will often have like hundreds of thousands of dollars worth of these cards on file and they have an entire database of of what it is that they had. So we had to do that by hand over the next month, how many cards you ask over 100,000 cards. So this guy had it written over written 100,000 Magic the Gathering entries and they had to redo it over by hand. So once the initial shock blew over, the whole thing turned into a joke. Again, I earned the nickname where I see SQL from the incident and often told people my mistake was actually just my way of establishing job security. I was eventually hired on full time as a manager, developer and proud to say I'm no longer development prod
+
+21
+00:08:11,910 --> 00:08:15,750
+Scott Tolinski: rookie. Ah, yeah, that stinks.
+
+22
+00:08:15,929 --> 00:08:24,750
+Wes Bos: Isn't that awful? Can you imagine your heart when you realize that you had overwritten 100,000 Magic the Gathering cards and had no backup
+
+23
+00:08:24,750 --> 00:08:27,930
+Scott Tolinski: in production? Whoo.
+
+24
+00:08:29,640 --> 00:08:35,879
+Wes Bos: I'm gonna give that one a six candy corn out of six candy corn because that is awful.
+
+25
+00:08:36,119 --> 00:08:49,649
+Scott Tolinski: That's candy corn is scary. So I'm also going to I'm going to give that a three candy corn veterans the highest candy corn rating that there is very spooky. That's like chip your teeth on a an old stay. Okay, and a corn.
+
+26
+00:08:50,820 --> 00:08:51,539
+Unknown: Boy. All right.
+
+27
+00:08:51,539 --> 00:09:31,350
+Wes Bos: Next one I have here is called yas. So testing a feature to overlay text on map tiles. I decided Yes. Was the appropriate text. Yes. Forgot. I had also just implemented caching. So it saved all of my new tiles to our production s3 tile cache lines called asking all the countries in all of their states said Yeah. So I logged into AWS went into our cash bucket on s3, deleted everything and then zoomed up and around the map for a while to recache a bunch of tiles. What bug you must have been seeing things,
+
+28
+00:09:31,500 --> 00:10:53,880
+Scott Tolinski: new bugs. I don't know what you're talking about. Yeah. This next spooky story is called token trouble. There was once a password list signup system, which sent out an email with a password link. This form was not a normal form. No. What was wrong with it, you ask? Well, it did not check the validity of the token. The route you were led down posted. The ID of the user. And while this situation was looking quite grim, it gets worse. Not only was this form unvalidated, and the token was not checked, because due to decay, none of this code was currently working. So with a loud scream, our hero finds out that the user IDs were actually sequential integers, meaning that anyone and anyone could hijack any Echo, they wanted to simply by changing the sequential number of the user ID on the post form. Luckily enough, our hero, he had the tools. And he had fixed this, like a carving knife through a pumpkin, and all the spooky exploits were put to rest. For However,
+
+29
+00:10:54,570 --> 00:11:24,720
+Wes Bos: I'm bad. That's, I've seen that before. Like, I remember when like the Groupon was a big thing. There was like a competitor. And the URL just said, like, coupon ID equals 400. And I was like, 400. Seems low. Maybe. And I was gone for Oh, yeah. Oh, man, I can see the entire address and name of everybody. And then I ran a little script. And I was like, Yeah, I can see like, hundreds of them. And I sent them an email and they fixed it, thankfully. But who? Yeah, buki?
+
+30
+00:11:24,779 --> 00:12:14,250
+Scott Tolinski: Yeah, I found, I found something like that I forget what it was, it was like a WordPress client forum or something. And it, you know that the username was going to be just that you know, your name, and then the passwords were auto generated for you. And it would be like St. 2019. So that way, if you knew the name of any user on the site, you could reasonably just type in their name, then their initials, and then 2019. And they all went, Oh, man, how generated are just like, oh, not so good. Not so good. That's like, almost like getting a when you get an email, and your passwords just sitting there in plain text in the email, and then you just really regret doing that you're like, I should never have given these people like I've never used this password ever again, for anything. I suppose a lot of these are cases for getting a password manager.
+
+31
+00:12:14,700 --> 00:14:17,549
+Wes Bos: No hitting. Next one we have I'm gonna say his name because this is very well known. Adam J. Sontag, back in the days of jQuery. Adam was part of the jQuery core team and he was the the jQuery plugin registry was dealing with some spam problems where like, you could submit, you could submit a plugin to the registry, and then they would approve it and put it in thing but people were submitting plugins that would like link to these like sketchy plugins that made you pay for them. And it's just a bad experience overall. So like, it was both like SEO spamming, but also people like trying to trick users into buying like plugins that they just had repurpose. So Adam was sort of like working on managing all of this and deleting it, and he was in the database one day, and he was just deleting some of these, the spam things here. And he accidentally deleted the entire plugin registry. And the the only backup they had was over a year old. And this was that jQuery heyday when things were changing every single day. So they they put up this blog post, basically, and said, like, Look, the plugins registry is is gone. we deleted it. Sorry about that. But it wasn't really all that good anyway, and they had they rebuilt it on Git and GitHub where you could do it. And actually it was it was kind of nice, because it just kind of cleared out all the cruft. And all of the good ones immediately made their way back into the registry. And then that was a huge push for people to move to using like NPM, and package managers, things like that instead of the old way that we're doing it. So can you imagine deleting, like the jQuery, the most popular JavaScript framework, probably ever at especially at the time, and everybody uses plugins, and then you just accidentally deleted all of the links to all of the plugins. And what do you do over there?
+
+32
+00:14:17,789 --> 00:14:21,750
+Scott Tolinski: And that reminds me of the Git lab thing. Do you remember that Git lab? One?
+
+33
+00:14:21,779 --> 00:14:22,409
+Wes Bos: No.
+
+34
+00:14:22,620 --> 00:15:54,210
+Scott Tolinski: What was it let me Google this really quick. Git lab, deleted their database, part of it like a huge part of their database? Oh, yeah. It was like a engineer. Oh, yeah. Git lab database. And, yes, I could almost read this one. Yesterday, we had a serious incident with one of our databases. We lost six hours of database data, including issues merge request users comments, snippets, and more. Yeah, they were gone. They got lost. There's this whole thing. Maybe I'll post a link to this in the description, considering this isn't necessarily a A spooky story that was submitted to us but this is a spooky story. And you've got to feel really bad for whoever goofed that went up because those kind of things they just happen as we have seen you know, it's so you got to be careful but at the same regard you know, everybody makes mistakes. Okay. I'm sorry everybody if you hate the soundboard because I love it. Next one is going to be success. There was a time when I wrote the word success to a file in production to the tune of nine gigabytes. That's a lot of success. Here's some people work their whole careers for that much success in the eye. He is able to pull it out in what probably was a couple of seconds. After that folks always trolled me for putting success in my work. Alrighty, and QA team had no idea you were running. Why we were running out of disk space.
+
+35
+00:15:55,169 --> 00:15:57,240
+Unknown: Access, success. Success. I
+
+36
+00:15:57,240 --> 00:15:59,340
+Scott Tolinski: yeah, that's great.
+
+37
+00:15:59,580 --> 00:16:03,720
+Wes Bos: That's exactly what can happen if you just leave a console log success in.
+
+38
+00:16:04,049 --> 00:16:05,460
+Unknown: Yes. Right.
+
+39
+00:16:07,529 --> 00:16:10,140
+Wes Bos: Oh, that is so funny. Success.
+
+40
+00:16:11,850 --> 00:16:36,000
+Scott Tolinski: These stories are quite spooky. I am beginning to question my own reality. And my own sanity. Oh, one of our sponsors today is sanity@sanity.io. And Sanity is fantastic. Let me tell you that. And West, I know you have some new things to talk about. With Sanity do you want to give those a give those a whirl.
+
+41
+00:16:36,120 --> 00:17:38,940
+Wes Bos: So sanity.io is a structured content CMS. So basically, what that means is that you you can go and you can npm install the Sanity, and you can create this sort of CMS it will, it's really cool it all run locally. It's not like you have to go to the the website and create it there. And then you can push that all of your, your fields and all of your relational data to Sanity. And then what that will do is they'll start up this little interface where that will allow you to edit all of your content, you can use your own react components with a lot of their content, which is pretty nifty. And then they just got like a lot of like helpful features that you don't necessarily have to build, like, image resizing and cropping. And you can choose where the thing crops around, like someone's face, something like that. Pretty, pretty cool. Check it out@sanity.io forward slash syntax, build your next Gatsby nuxt. Next, whatever, whatever it is you're trying to build. Try it with a Sanity back end. Thanks so much to Sanity for sponsoring us.
+
+42
+00:17:39,180 --> 00:17:50,880
+Scott Tolinski: I think that's fantastic. Because as developers, we like to just like be in our code, you know, like, just yeah, hang on your code. So being able to work on that locally, and not having to be always in a UI is super cool.
+
+43
+00:17:51,110 --> 00:17:54,320
+Wes Bos: Yeah. And like, not to mention, just like version control.
+
+44
+00:17:54,390 --> 00:19:44,220
+Scott Tolinski: Yeah. Right. Like that was a huge problem. And all those problems we just talked about with WordPress. Yeah, yeah. Cool. So next one is Parental Advisory. This one's pretty good. I started my first software development job out of college a few months ago at a mid sized company doing educational management software. About a month ago, I was working on a bug for a fixed a notification feature that sends letters to parents informing them if they qualify for free or reduced lunches, obviously very sensitive information. I was new and didn't know the codebase that well just yet. And when my boss let me know, they really needed this fixed done soon, and our QA person was gone for the day. I still wasn't very confident in it. And it was totally working, but not wanting to let my boss down. I said, Sure, it's ready. Famous last words. About two days later, the team gets an email from the project manager informing us that the school district has sent out letters, but instead of sending one to each parent, they had sent every letter to every parent, full of information. As a parent, I'm very horrified right now. I immediately knew my change was the problem and I had a pit in my stomach. Thankfully, my manager quickly reverted the change. But apparently, the customers were furious. Understandably. It gets worse. The next day, the whole development department 20 people are so got an invite with a random meeting with the CEO. I knew exactly what it was about. So I sat down in the chair and by chance when the CEO arrived he took the last empty seat, which was directly next to me.
+
+45
+00:19:44,430 --> 00:19:46,650
+Wes Bos: That's for sure the co workers leaving
+
+46
+00:19:47,300 --> 00:20:11,090
+Scott Tolinski: right they knew everybody know everybody's like is like that CD is toxic. All right, we go on to said we don't want to sit by this person. So for the next two hours, I had to sit with my entire depression. While the CEO ranted about how he got chewed out all day by customers or parents, because of my bug, and a few things related to my bug, four things.
+
+47
+00:20:12,719 --> 00:20:14,060
+Unknown: I don't know you either
+
+48
+00:20:14,060 --> 00:20:52,950
+Scott Tolinski: think, yeah, I just didn't lock those out. But they're they're there. I don't know if my boss told our CEO, I caused the bug, but everyone on my team knew it was me. I was mortified. I saw my software career flash before my eyes. After that, I did not get fired. And things just kind of carried on as usual. But Boy, was I anticipating starting a new job search in the next coming days. And that's that, yeah, that stinks. That is a that's scary, I would be absolutely sweating profusely, I would just be feeling downright
+
+49
+00:20:53,219 --> 00:21:34,380
+Wes Bos: awful. Oh, the email ones are awful. Because if you send an email out to many thousands of people, like, let alone you just send private information, but you can't stop it. Like it's the emails are sent. And you probably get emails and calls from people for the next two days being like, Hey, did you know that this is happening? Like I've certainly done that before, even just a spelling mistake in one of my emails, then I buckle up for the next week of getting emails from people saying like, Hey, did you know you spelled this word wrong, and it's awful, there's no way to like, go back and change it at least with the website, you can get it up and running again, or change whatever it is on the website. So they'll stop.
+
+50
+00:21:34,530 --> 00:21:45,240
+Scott Tolinski: Yeah, that is like super, super scary, just not like, it's like seeing the train, go down the tracks, and you're like, Oh, this is gonna fall off the bridge, and I can't do anything about it.
+
+51
+00:21:47,010 --> 00:22:42,150
+Wes Bos: I've got another one here called students changing grades. This is from anonymous, who's everybody catching a caching bug in prod had users receiving permissions of the user before them, which is off by 1000s of students click to see their grades. But if you have teachers permission, you get the teachers grade book, not only could you see everybody's grades, but you could change them to and they did. Everybody changed their grades right back, they're probably just curious to see if they could accept a few of them, left them change. I think that is bananas. Because off by one bugs. This is a perfect example of what is an off by one bug. It's if you have an array and you're trying to look up something or if you're looping over something, and the reference to what you have is the reference of the last iteration of the loop not this one. That's what off by one bug is and that is a nightmare in the new update to con.
+
+52
+00:22:43,440 --> 00:22:44,610
+Unknown: That is scary.
+
+53
+00:22:45,269 --> 00:23:45,300
+Scott Tolinski: This next one is going to also this one's not called Parental Advisory, but this one will have a little bit of a Parental Advisory. This story is called Laura cell. This story is hardcore. You see, the site was built on something called site core, and a featured a landing page with a few interactive custom pieces. Like a ghost, our hero was testing a feature to show and hide content, making content vanish, and then reappear right before our very eyes. There was a bug giving our hero a bit of anything quick, our hero use some random text throughout their work, although he made a grave mistake. Now what was this mistake? Well, he seemed to have it on the brain because he decided to use the random text of next face. Of course, naturally that that's what you would choose, right? With swift action.
+
+54
+00:23:45,390 --> 00:23:46,800
+Unknown: He splashed the bug
+
+55
+00:23:46,800 --> 00:24:30,510
+Scott Tolinski: everything was working. And well, you know, with limited QA I think actually, that might be the lesson for a lot of these stories. Is the words limited or no QA seems, seems to be a big clients limited to no QA. Yeah, that that is a frequent occurrence in these stories. Well, with limited QA is this stain would see itself all the way into the hearts and minds of 15,000 users and generated a staggering amount of emails demanding that email face be removed from the website at once. Our hero is left to admit their mistake in front of entire office simply by raising his hand
+
+56
+00:24:31,050 --> 00:24:32,160
+Unknown: to say yes,
+
+57
+00:24:33,240 --> 00:24:52,980
+Scott Tolinski: it was me and he had you know had no one to blame for this stinky situation but himself. Needless to say they have switched to a lorem ipsum generator, but some throughout the halls still tell tales of the face, and the mess that he left behind.
+
+58
+00:24:53,640 --> 00:25:07,410
+Wes Bos: Never put swear words when you're debugging never puts swear words in anything. They Is this always happens, I do it, I do it. And I've I've accidentally pushed them into production before. And I've learned the hard way as well.
+
+59
+00:25:07,860 --> 00:26:21,300
+Scott Tolinski: I have some in production right now that are not user facing. So this is actually funny, I took a screenshot of some of my code on Instagram, and people were cracking up that I have a mutation, a graph qL mutation named a bolt in my code. And they're like, well, what this is both mutation Well, I work my sites in Meteor Currently, I'm actually moving off of it. But the This is hilarious. I, when you log in as a user, it's done through a WebSocket. And through just ordered a standard request, right? Well, my whole systems in graph qL, except for that login. So I really needed a way to refetch specific queries on that thing. And since Apollo doesn't provide any sort of just refetch queries method or anything, what I did is I created a state mutation that that does nothing, it just returns a function that returns null, and it's an empty state mutation. And that way, I can just run that bullet state mutation and then cause a refetch of specific queries or run cash updates on that, even though it's not a graph qL function. And so I wanted to get that explainer out. Because before, like, what is this thing you have got going on in your code. That's it. It's just a little workaround a little bonus, but it's going to be gone. So sadly, it's no longer with us.
+
+60
+00:26:21,750 --> 00:28:08,940
+Wes Bos: Next one we have is I like to call it drowning in a waterfall. And this is not really a mistake, but it's just a scary client to have to work for. So the entire admin tool only work because the 35 script tags loaded in a waterfall. So what does that mean? You have a script tag that has to load and be parsed before the next one can be downloaded and be parsed and like etc, etc. and scripts further, further down the stack had hidden dependencies on a sync things done in the first script, change the script order, breaking everything, minimum minify, and concatenate, break everything. Even just looking at the terrifyingly, a long list of script tags, broke the list, broke the site. Oh, and then I mentioned that every page did this and all shared all of the JavaScript, or all of the files were served by an Apache Tomcat, for God knows why. So changing any file meant a 32nd restart of the server. That's when we find the waterfall problem. Tomcat was serving everything on the page. So requests were deeply queued. Moving the script tags to another port meant that the waterfall change which concurrent with concurrent requests to both servers, so deeply broken, I want to cry, my mom sounds like JavaScript that had been added on to for years, and years and years and years. And it's all dependent on things, just assuming things that are loaded before it. And thankfully, modules and things like that have solved these problems. But that certainly was an issue. Before we had any sort of modules in the browser, or even like something that common jazz.
+
+61
+00:28:09,240 --> 00:29:59,970
+Scott Tolinski: Yeah, it's fun. It's funny that these things totally exist. If you've ever worked in an agency, and like, maybe you're the first like, you're the newest member on the team, like you're giving the project and they're like, Oh, yeah, by the way, there's like, there's like 25 different CSS files in this and they all kind of override each other in this weird way. But you can add this one or this one or whatever. But just if you're gonna make something new, just add a bunch of new classes and copy and paste, I've had that same situation where like, all the sudden, you get the project that everybody has been, like avoiding touching for all this time, because they've had it for, you know, 10 years and nobody wants, wants to rewrite it from scratch. And the stories scare me this one scares me in particular, because I used to do a lot of Magento. So this one coming up is called Magento upgrades, which is honestly scary enough title in its own, it doesn't need any embellishment, if you've ever worked in Magento. I've had more white screens during like a simple version update on Magento than literally any other platform. Okay, so this story is September 2018. me the new client, you should update to Magento 2.3. CIO, we need a year to that we need a year to do that. We're still on 1.7 point two, actually, even the jump from two to one is sounds awful to me. September 2019. They haven't even started. So it's going to take them one year from when they start Magento 1.7 is from what year but 2012 security performance costs. In fact, I've worked in Magento 1.7. And I cannot imagine continuing to work in Magento 1.7. So I do hats off to you for putting up with that. But that right there is all you got to tell me for a scary story is upgrading Magento
+
+62
+00:30:01,439 --> 00:30:02,730
+Unknown: His name is john
+
+63
+00:30:11,730 --> 00:30:28,020
+Scott Tolinski: Did you ever listen to that prank call with the john cena prank call? Yeah. Oh, that guy's hilarious. Yeah look up john cena prank call might be the funniest prank call I've ever heard in my entire life and I could listen to that maybe 100 times and still find it to be funny so funny.
+
+64
+00:30:28,020 --> 00:31:06,060
+Wes Bos: I do that I just after I heard that is walked around my house being like, anyways, the reason why we just played that is cuz I can't even read this one. I was laughing so hard at this I had to show my way I could tell the ones that I told my wife about are the most hilarious. So customer called complaining that when using our application, every few hours, he would be blasted with fullscreen, john cena. So hold on. Imagine you're just chillin, working on a corporate app, something like that, and you have
+
+65
+00:31:06,990 --> 00:31:07,500
+Unknown: jobs.
+
+66
+00:31:12,780 --> 00:31:25,650
+Wes Bos: After a few minutes of giggling, we kind of already knew he had seen a phi, which is a Chrome extension, installed on his browser, the customer checked extensions and promptly called out his coworkers.
+
+67
+00:31:25,830 --> 00:31:41,340
+Scott Tolinski: Oh my god. So I think the lessons that we're learning here is one q&a. And two Chrome extensions that are goofy. You gotta like not use those in your death. Man, sir. Yes. Oh, this hilarious.
+
+68
+00:31:41,430 --> 00:31:42,030
+Unknown: Oh, man.
+
+69
+00:31:42,030 --> 00:31:46,610
+Wes Bos: Let's let's do Log Rocket. Man, these are great. We have tons left.
+
+70
+00:31:46,680 --> 00:33:21,240
+Scott Tolinski: Yeah, these scary stories are making me just want to leave this planet. And if I do, I would leave. So in a Log Rocket. And Log Rocket is a service that allows you to leave this planet to a higher, you're going to ascend to a new planet where everybody knows their bugs. And they can see the answers immediately. Because what Log Rocket gives you is a session replay. And if you've ever used any sort of error tracking tool, you'll know that you can get a lot of information, that is exactly what you need. But you don't always know exactly what the user did to cause the bug. So what Log Rocket does, besides working with your existing tools like Sentry, and everything else, any of your platforms that you could potentially use, Log Rocket gives you a session replay, where you can literally watch a video of the user clicking around on the site and see the thing as they click the thing and the other thing breaks all of the sudden. And not only that, but you can check out their console log, you can look at their errors, you can look at their network activity, you can look at their Redux store. You can see all of that and more just in a simple video being able to scrub through it. This is like next level bug tracking software. If you want to ascend to a higher level of bug finding hop on that Log Rocket at Log rocket.com forward slash syntax, you're going to get 14 days for free 14 days so that you can eliminate any spooky bugs in your code. All right,
+
+71
+00:33:21,270 --> 00:33:22,770
+Wes Bos: give me another spooky one.
+
+72
+00:33:22,800 --> 00:35:23,610
+Scott Tolinski: Spooky. This one's good. My gration my grain deep. In the heart of Texas, a large well known plumbing company was about to get the fright of their lives, something so spooky that it would cause their drains to Decalogue. They demanded super fast work and didn't want to pay for these fancy things like a proper environment for staging or queues, or A's. No, no IQ series, neither us nor as No. So soon enough, they would learn their mistake as a client services, sold them on the idea that they could build the entire site within the admin editor. And for those of you who don't know, the admin editor is editing PHP code on the browser in production into the database. Oh, so after four grueling days of finger tapping, nearly destroying the very keyboards that created the code, our hero was hacking and slashing through the work like a machete. Things were looking clean and the sun was coming out. But just then a page refresh and boom. It's all gone. The entire site is gone. It was all of the updates. They were gone. They were missing. The Plumbing Companies admin had actually wiped the slate clean by migrating to a an older version of the database by ironically enough, a plugin get it dry. No plugin Pour. Everything was gone. And I mean, everything, all of the hard work our hero had done was gone. Of course we know how clients are the plumbers denied having any responsibility for this clog in the workflow. And our hero was left to start over from square one a long weekend. Indeed.
+
+73
+00:35:24,029 --> 00:35:35,630
+Wes Bos: Oh man that things like that. Just make me if you ever have a client that goofs around with stuff like that. You just set up like hourly backups or something like that just just to save yourself because like,
+
+74
+00:35:35,669 --> 00:35:38,690
+Scott Tolinski: oh, awful. That sounds bad. Yeah.
+
+75
+00:35:38,729 --> 00:36:08,630
+Wes Bos: Next one we have is called the primary key nightmare. This one is gold. I work for a large financial institution that shall stay nameless. Last year, I found a bug where you could edit the page source when retrieving your monthly statement. If you changed it to somebody else's account number Wallah, their statement became yours to download. The account number was used as a key to retrieve the back end service.
+
+76
+00:36:08,630 --> 00:36:09,540
+Unknown: Oh, that
+
+77
+00:36:09,540 --> 00:36:21,330
+Wes Bos: is a major goof up. Oh, it's funny, like, you think like your bank has good security, things like that. And sometimes it's not at all. No,
+
+78
+00:36:21,380 --> 00:38:38,460
+Scott Tolinski: this is this. That's your bank right here. They don't care. Okay, this spooky story is called the $20,000 yamo format, or you got the words $20,000 in the title, you know, it's gonna be good. Here's a story about an auto formatting frontmatter. I was working on an e commerce client site during my first dev job and added their products page, a simple request that only required the change of the frontmatter. For those of you don't know, frontmatter is like a bit of metadata that gives information about a particular page. No problem. Well, I saved quickly and pushed it to their store, just like I had done a million times before I checked out the category when it was pushed. And all was cool. I didn't go to check on the live store. Because I got a call from another client. Mistake number one. Yeah, that is that happens. Four hours later, I get a call about why the site which should make you about two to $20,000 a day had gone down. For hours the Yeah, the other 20,000 that's a that's a spicy meatball right there. Well, I made some support calls and called the client a bunch and I couldn't figure it out. Finally, at the end of the day, I had forgotten that I had turned on my HTML format on save for a project I was working on earlier, it had indented the YAML. Those of you don't know YAML has the indentation rule. Like it has to be indented a certain way like Python or some other languages, right? So it had accidentally indented the YAML. When I made the change, pretty much all of the yamo was then invalidated. Luckily, they were cool about it. How are they cool with that? How would that like I would not be cool about that. Even though they didn't quite understand the technical aspects. Good Times exclamation point. Also, if anyone knows how to ignore YAML in HTML files, when formatting on Save, it would be rad. Anything that works lol please use the name smokey. Okay, smokey. I should have read this in a much smokier voice.
+
+79
+00:38:38,550 --> 00:39:04,610
+Wes Bos: Oh, man. That's awful. That's it's funny because like, that's something that you didn't do. But your code is there and you have these robots that format your code, and they accidentally do something with it. And ideally, that would go through a kind of approval or even just like a some sort of ci right. But like that's ideally a lot of a lot of people are just kind of cowboy in it and doing quick little changes here and there. For you know, the thing crashes and burns.
+
+80
+00:39:04,650 --> 00:39:48,330
+Scott Tolinski: Yeah, I mean that that seems like a I mean, there there is some legitimate and common threads throughout these. And of course they are cowboy coding. Yeah. Which is where you're just editing live on the server, which, you know, we all have kind of done at some point in our careers. Whether or not we wanted to or not, maybe it was the demand from the client. Bad q&a or no q&a at all. browser extensions. just general Miss steps here and there. But these things are hilarious. We have a lot more for you. I think we're gonna have to do a second episode. But I thought these stories cracked me up. Because they're so relatable on so many levels, but at the same time, you just feel so bad and you just cringe for the things that have happened.
+
+81
+00:39:48,630 --> 00:40:20,850
+Wes Bos: Alright, let's move into some sick pics. So like like Scott said, we'll do the rest. in upcoming episodes. We've got some off some really good ones coming up here, and we'll do some sick pics. Now and catch you in the next one. I'm going to sick pick a subreddit called absolute units. This is a hilarious subreddit of things that are big. So something like a carrot or somebody who is 300 pounds and just jack like have you seen this? The guy the mountain to know who this?
+
+82
+00:40:20,880 --> 00:40:39,920
+Scott Tolinski: Yes, I've seen the mountain. Yeah. Oh yeah, dude. Besides Game of Thrones, which I know you you didn't watch. he's a he's an actor in Game of Thrones, but we watch the the strongman competitions The World's Strongest Man just to see him go, like throw around some giant bricks and just like toss them after the dude is unreal.
+
+83
+00:40:40,170 --> 00:40:56,460
+Wes Bos: If you just Google the mountain holding a mug, it just looks like he's holding like a kid's mug. It's so tiny. And so this subreddit is just full of absolute units. So anything that is larger than it normally should be, and I find it very amusing. Check it out.
+
+84
+00:40:56,630 --> 00:42:14,690
+Scott Tolinski: Nice. My sick pic. I always thinking about this because, you know, sick pics, they gotta be these things that genuinely make our lives better. You know, like a subreddit full of absolute units, right? I mean, that makes our lives better. And so one of the things I was using the other day that I realized I've never sick pic, but I've had for a couple years. And it's kind of ridiculous how much this thing has enriched my life. This is this Dyson chord free vacuum. And like, Oh, yeah, so vacuums. I've added a Costco while ago there's, you know, a whole bunch of different ones in the same class a vacuum. But the idea here is just it's it's like a little, whichever. When you get there all awesome. You plug it in, it charges up hangs on the wall. And it has a billion attachments. And it's this super light, little it looks like it looks like a dustbuster for those of you have ever had dust busters. But there's a long tube on the end, too. So we use this thing as our standard vacuum because we don't have a robot vacuum. And it's just awesome. I use it every single day, we have an old house that generates a lot of dust. So we use this thing, absolute 24. Seven to vacuum just about anything but you you swap out the tube and you're not vacuuming the floor anymore. But you're, you know, vacuum thing here in there. The battery lasts forever. It is super powerful.
+
+85
+00:42:14,690 --> 00:42:26,670
+Wes Bos: How long does the battery last? Because I see them all the time used? And they say it runs for two minutes. And obviously Yeah, it's probably like, like, really old. And I'm like, I wonder if I could swap the battery? Like, what is it when it's good.
+
+86
+00:42:26,790 --> 00:42:31,350
+Scott Tolinski: I don't know there's when it's good. It's enough to clean the whole house
+
+87
+00:42:31,400 --> 00:42:32,610
+Wes Bos: longer than you need it
+
+88
+00:42:32,690 --> 00:43:06,860
+Scott Tolinski: longer than you need it. And then unless of course you turn on the like the hyper power mode or whatever. And then it's done in like, very not that long. Because like there's like a super power mode, which I never use anyways. But this thing is just fantastic. I've been using it for years now, a couple years. Yeah, I think we probably had their like add v 11. I think we probably have the V six or something like that. But it's great. It's fantastic. It's super nice, super easy. So if you don't if you're in need of a vacuum cleaner, and you want to not get a robot one, this one is where to go go to Costco because they have a decent price on it too.
+
+89
+00:43:07,020 --> 00:43:29,100
+Wes Bos: Cool. Let's move into some shameless plugs. I'm gonna plug all of my courses, Wes bos.com, forward slash courses, you can grab yourself a free course or a paid course or whatever it is use the coupon code syntax for 10 bucks off anything that is on there, except for the fried ones, you can't get 10 bucks off free. That's how it works. What about us got
+
+90
+00:43:29,400 --> 00:44:27,990
+Scott Tolinski: a, I'm gonna be plugging my course that comes out tomorrow, it is going to be full stack react with next j s nine. And it uses the new next day as API routes. And this course is pretty dang jam packed full of content. It's not a beginners course. But it's also not like too daunting. What we do is we're building like a habits tracking app. And we set it up with a graph qL API via Apollo Apollo server, we set it up with a database using MongoDB. And then we use react on the front end. And what you get is a server side rendered site, you get all of this running out of one repo using next J. Next js is API routes. So your entire Apollo API, it runs out of a single folder within your next JS application. It's pretty dang sweet. So check it out. It's going to be available October 31. On level up tutorials comm you can sign up to become a pro today and get access to that course and more
+
+91
+00:44:27,990 --> 00:44:33,060
+Wes Bos: beautiful we should do a show on next. Yes routes. I think it's pretty cool how they work. Big fan.
+
+92
+00:44:33,240 --> 00:45:07,890
+Scott Tolinski: Oh, yeah, dude, I'm the new the new version of level up tutorials is built using the API routes in next nine. Yeah. And like I just, it's the perfect thing I needed for moving from Meteor because my whole API was already out of one folder within Meteor. And like the fact that I could basically just remove the meteor stuff and point the next JS application essentially to one file and that's all I needed to do to migrate it. was like pretty darn amazing. So, and this is going to give me a lot more control over my containers and stuff. So I'm pretty psyched about it. Wow, that's awesome. All right,
+
+93
+00:45:07,920 --> 00:45:18,570
+Wes Bos: well, let's wrap it up here and we will catch you in the next one for some more spooky stories these days
+
+94
+00:45:20,580 --> 00:45:30,330
+Scott Tolinski: head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
