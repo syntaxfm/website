@@ -1,0 +1,124 @@
+1
+00:00:00,359 --> 00:00:21,989
+Announcer: Monday, Monday, Monday, open wide dev fans yet ready to stuff your face with JavaScript CSS node module, BBQ Tip Get workflow breakdancing, soft skill, web development hasty, as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob, and Scott L. Todd.
+
+2
+00:00:25,890 --> 00:01:14,610
+Scott Tolinski: Welcome to syntax in this Monday, Hey, Steve treat, we're going to be talking all about how to get the buy in for a tool from your team. There's all sorts of things that we present to our team. And we say, I'm so excited about this new thing, this thing going to be great. And then you get these looks from your team. And they say, I don't want to do that. So this is going to be talking about how to sell developers on tools that you should be using in your tool chain, where everybody can get a ton of benefit out of them. And the the one that we're gonna be talking specifically about in this is prettier, but I think this advice will apply to a lot of things. So my name is Scott kolinsky. And as always, I'm joined by my awesome co host, Wes Bos.
+
+3
+00:01:14,670 --> 00:01:17,700
+Wes Bos: Oh, very kind of you. Thank you, Scott, you're awesome co host.
+
+4
+00:01:18,030 --> 00:02:53,190
+Scott Tolinski: Thank you. I appreciate that. This episode is sponsored by an awesome sponsor, and that's Log Rocket. Now Log Rocket is the error and Exception Handling service that allows you to see how your errors happen. And what I mean by that is they give you a session replay video, that is scrollable, with the Network tab and error logs and all those things that we like to use when we're actually debugging ourselves. It's really cool. It's so fantastic, because it's the tools that we use to debug, but it's actually a replay of somebody else causing the problem. It's unbelievable one of those things you're going to have to see, to believe. And that's at Log rocket.com. And it looks like there's some interesting new developments at Log rocket.com. They have this new Log Rocket on premise, which is run Log Rocket in AWS, Azure, or your own environment, or Log Rocket Cloud, use our hosted solution, which is the version that we've been, you know, advertising here and syntax for a little while now. So they now have a look looks like an on premise hosted version where you can host it yourself. Or you can continue to use the one that is hosted with them. So you're going to want to head on over to Log rocket.com forward slash syntax and get 14 days for free to see the magic of Log Rocket. So Wes, I know this question came in to you from an email and it was a good enough email that you said hold the phone, we got to make this into our in our next hasty treat here. So I'm interested in it. Maybe you giving me a little bit more background on this, and then we can dive into this subject?
+
+5
+00:02:53,519 --> 00:04:30,450
+Wes Bos: Yes. So the question came out an email and I thought like this is this is a great question. So it was I wrote a long message to our architect asking if I can sell prettier into our component generator for new projects moving forward in the response I got was don't auto format, not all devs want that in prettier doesn't always format the way I like it. I don't want to enforce that on other devs. So prettier is a tool that will take your code and format it based on what it thinks is best. And the reason why we say that it's because prettier doesn't have a ton of options. There are some minor options, like you can use a single or double quotes or there's a couple other ones, I forget what they are. But generally prettier just just works for you. And it's awesome. Because you as a developer, you don't need to worry about properly formatting or indenting. Or remembering the style of how your team codes or any of that stuff. You just kind of you should see me I'm just a mess when I code now. And then I just hit save. And it just formats at all. All nicely. So the question goes on to say this sucks, because I know our code base could benefit from it so much right now I visit the project and the code is not spaced out. And that makes it hard to read quickly for me. Lots of the rack code is bunched up with no spacing. It is a mess. That's one thing in react world prettier will automatically indent and put quotes around the things that that need it even with like spaces if there's a space that you need there. React will automatically do the stupid react space, which is curly brackets quote space. Yeah, right. I
+
+6
+00:04:30,450 --> 00:04:32,310
+Unknown: hate that. I hate it.
+
+7
+00:04:32,450 --> 00:06:34,050
+Wes Bos: We do. I hate it. It is a mess for me, especially because I'm very organized. If this was your situation and you know of a new tool or standard, something that can help a lot. And it is shot down. Do you just give up? I don't know how to respond to this because I'm only deaf, whoever proposed this at my company. And I just started here. So Oh, we hear this a lot. I'm a new dev at a company and they're not using X, Y or Z, which is clearly way better. What do I do? In that case, so there's a lot to unpack here. First of all, I don't think that any senior devs, like junior developers, especially new to the company, developers coming in and starting to say, like, why aren't using this thing? It's not as good. Like, I think everybody has a little bit anxiety about becoming out of date, especially in JavaScript land. And if some whippersnappers comes in and starts asking, What are these, this package called prettier? Probably what would happen is I would open up the website and look at it and go know that right, like, what what are you doing? And also, I think senior developers know better to then to slap a new tool into their codebase. Because every time you add something new, especially something that changes your code, then how do you know that's not going to break something down the line in one little use case. And that's probably what the developer here is afraid of? Is that getting a call on a Sunday morning that something's broken? And it's because I weird format, or came in and did that? So I'm betting that the situation here is that the senior developer here doesn't necessarily know what prettier is, or doesn't think that the formatting that prettier gives is how they like to write code, I certainly have that as well. I went into prettier and I said, Oh, I don't like this. And prettier intentionally doesn't have very many options, because it's opinionated about it. And I found personally, if you just sort of give up and let prettier format it how it wants, and just be okay with that, then life gets a lot better. What do you think, Scott?
+
+8
+00:06:34,469 --> 00:08:20,100
+Scott Tolinski: I largely feel the same way. I think I tweaked it on some things like a little settings. Yeah, semi colons. I don't like any more. I like have a hard time admitting that out loud. I don't use semicolons anymore, I had to turn it off. And that's something that would definitely urge a senior dev who'd be like what your semi-colons in our project. So I mean, I mean, I think largely you, you hit the nail on the head for most of this. There's tools that that can help us in everyday life that you might not necessarily see the benefit on. Or you might not be awoken to the benefit on until you either use it for yourself or you you get it the light bulb pops on, and you're say this is why. And a lot of that has to do with the value proposition there the what is the value of this to the codebase? versus what is the cost of adding it right? Is the cost that it's going to create bugs? Or is the cost that it's going to modify things in a way that I'm not comfortable with? And what's the benefit. So there's this whole cost benefit analysis that needs to be done. And that's definitely what the senior developers are thinking. He I think you nailed it on the headwind, senior developers really know, not to willy nilly add stuff to things. But in the same regard, I think prettier is one of those tools that will just make about any codebase better, in so many different ways, from sussing out stylistic bugs to making everybody's code look the same. There's so many things that are in the positive value comment like column here, that it's a lot about, how can we illuminate those values in a way that's coming across as helpful rather than like, no at all a and like needing to take in this like I need to take over this project was by new fancy tools?
+
+9
+00:08:20,520 --> 00:08:46,590
+Wes Bos: Yeah. So we've got a list of a list of suggestions of what can you do here. The first suggestion is like you asked for their thoughts on a tool instead of suggesting it. So come to them saying like, hey, I need your opinion on this, rather than Why are we not using X, Y, or Z. And it sounds like you've already done this. But just for anyone who is looking at a new approach to something like this, that's probably a good way to go about it.
+
+10
+00:08:46,740 --> 00:09:00,020
+Scott Tolinski: That to me, before you move on to the next one. I think an important thing to note there is that our developers, we developers, we love our code bases. My code base is my child, it's not actually my child, I you know, I love my children more than my code base. But like,
+
+11
+00:09:00,090 --> 00:09:00,600
+Wes Bos: yeah,
+
+12
+00:09:00,600 --> 00:09:15,630
+Scott Tolinski: I really, really, really have put a lot of time and sweat and effort into my code. And I really connect with it very on a deep level. And if somebody were to come into my project didn't be like, you know, your formatting sucks,
+
+13
+00:09:15,630 --> 00:09:16,800
+Unknown: why not? Yeah,
+
+14
+00:09:16,800 --> 00:10:32,780
+Scott Tolinski: I would be like, you suck. You know? Like, that's the natural response when when it's almost like an insult, right? It's like an insult to the word totally based. That's happened. So I think largely, that's a great suggestion. Because if you're asking for their advice, you're not insulting their codebase you're not insulting their ego, you're not getting in that sort of mental space. And it's more like looking at it as an objective person rather than in relation to something that they hold dearly. And the next one is show with the Dev, that even though it looks weird, it's better for readability and it is, it looks weird or different, maybe different might be even a better word. It looks different than than what they are used to looking at. But We have a project. And sometimes somebody writes code one way somebody writes another code another way. And it's important to see, hey, this is this is a better for readability because we're all going to be looking at the same thing every single time. And we know what we're going to be looking at rather than having to teach things like I don't have to teach my developers anything about my own formatting because prettier teaches it to them, right? prettier takes care of that aspect. Therefore, we don't have to do that aspect of training. And this is how we write code here, you know.
+
+15
+00:10:33,599 --> 00:11:38,370
+Wes Bos: Next one we have here is look at the existing guidelines. So this is one question. I don't know about this specific use cases, like, Are there an existing coding guidelines that you are following like a formatting guidelines, like, we always put array methods on their on their new line, or always explicit return? When it's an object or something like that, right, like different rules. And if that's the case, then you really are asking the person to change their coding guidelines. So try to see if you can match it as close as possible. For this reason, I wish prettier, did have more options, and you slowly do see them adding more and more options, but try to like, take what the existing guidelines are, and match it as close as possible for that. Because my other question was, is like if there are no existing coding guidelines, like what's to stop you from just using it personally, right, on on the new code that you write, and then just checking it in? Right, but it sounds like maybe there are some existing standards in place.
+
+16
+00:11:38,879 --> 00:11:39,480
+Unknown: Yeah,
+
+17
+00:11:39,599 --> 00:12:49,500
+Scott Tolinski: I think that getting a close like, between es lint together with prettier, you need to have some sort of standards, where it is whether it is just as lint, or whether it is pretty, or whatever, you need to have some sort of formatting standards, and asking the developers to enforce those formatting standards by hand, I do not think is a good strategy for having those formatting standards. So if the standards already exist, maybe even before you give it to them, say hey, check out this cool tool that will enforce our standards, but enforce it in a way that just does it for us automatically, right? There's that value proposition, here's the value, it's going to allow us to enforce our guidelines that are either already exist or a closed version of our guidelines and those aspects. Another good tip would be to put together a solid argument for it and really write down the pros and cons. And, you know, here's I thought about these things, I thought about the impact that's going to have on our codebase here's how it's going to make our codebase. Better, here's how it's going to make us more productive. Here's why I think we should probably use this for our application. Like we said, Keep in mind, you want to be respectful of the codebase.
+
+18
+00:12:49,769 --> 00:13:29,070
+Wes Bos: Totally, I also would try to use it in a smaller project. Because I think that a lot of people are against tools like this, especially ones that are so aggressive and opinionated. But honestly, have you ever seen someone use prettier? It's usually like, I Oh, that's nice. Like, oh, you get even, especially like, I use prettier on Save in my editor every single time you save it just formats it some people only like to do it on as a git commit or something like that. That's crazy. Yeah, I think that is a tool that you should use on safe. Yeah, exactly. But just let them use it. It that'll help a whole lot.
+
+19
+00:13:29,519 --> 00:13:30,060
+Announcer: Totally.
+
+20
+00:13:30,599 --> 00:14:15,960
+Scott Tolinski: And lastly, you can always just use the prettier format or yourself. And you know, this is this is one's a little interesting, because if your code base has an existing guideline to it, if it has an existing guideline, then you use prettier when you're typing and and whatever. And then you will have to readjust to the guideline. That's not a lot of fun, but it certainly scratches that itch. I remember this being a thing when like sass first came out, like some people didn't want to use sass. And then other people were like, well, I'm just going to use sass myself, and then just only send the CSS down the line or something, or it's definitely not an ideal situation. This is sort of like a last ditch effort. And I personally might not even do this one myself.
+
+21
+00:14:16,379 --> 00:14:48,800
+Wes Bos: Yeah, yeah. I think as well, you should also maybe check out j s beautify. I think this one comes with VS code by default. And there are, I think more options in this one versus prettier. I'm sure there's a reason why prettier is better. That's why everyone uses it. But if you find that you can't match yours prettier with what your existing coding style is, then maybe check out j s beautify. It's on GitHub, cause I'll link it I'm not gonna say the www
+
+22
+00:14:49,079 --> 00:14:56,460
+Scott Tolinski: w w dot. What? HTTP Yeah, they're the days of writing out URLs.
+
+23
+00:14:57,690 --> 00:14:58,260
+Unknown: All right.
+
+24
+00:14:58,260 --> 00:15:11,700
+Wes Bos: So hopefully that helps you I emailed this person back, as I asked for, like more details, because I'm very curious to see like how this goes. And like, I would certainly be really bummed to have to do a project without prettier on it right now. So
+
+25
+00:15:11,700 --> 00:15:12,720
+Unknown: totally
+
+26
+00:15:12,720 --> 00:15:23,010
+Wes Bos: let us know how you got your boss or other team on board with tools like prettier, yes, lint, whatever, tweet us at syntax FM, and we'd like to hear that.
+
+27
+00:15:23,490 --> 00:16:59,940
+Scott Tolinski: Yeah, I would like to hear that too. And I think a lot of this advice applies, like we mentioned at the onset of the show is, I think it all applies or selling anything to your team. And, and maybe not just prettier, whatever. But remember, at the end of the day, there is a sort of cost benefit analysis that managers are always looking to do. And if you have a senior developer there, they are most likely manager minded and they have an idea of like, what is the cost? What is what is it going to take to do this? What is the it was funny, I before we wrap the show up, I have a job interview once and they didn't use any ESX features at all. And the reason was, is because they didn't want to have to deal with it. And I was like, What do you mean deal with it, you guys already have a build tool, they already had a build tool, and they weren't using year six. And this is this is like, break it. Like, what? Like, you can use this and that I if I would have gotten the job, I would have been like, Listen, we need to talk about this ESX thing, because it was for a senior role, whatever. But you know, I think that is definitely there. There's all sorts of these little things that can pop up that you need to be able to sell the team on in various ways, all all sorts of time. I remember one of our devs when we worked at four trying to sell us on react, and it was before I understood react. And I was just like, no, like, that's ugly. That's that's ugly. I don't get it. And then once he sold me on it, he built like a pixel create, like a pixel art editor. And he's like, Look, I built this pixel art editor in absolutely no code whatsoever. And it was super easy. Let me run you through this code. And I was just like, Oh, this is dope. Okay. And let me let me look into this react thing a little bit more.
+
+28
+00:17:00,000 --> 00:17:05,300
+Wes Bos: Yeah. That's, that's a great sorry. Yeah. All right. I think that's it for today. Anything else out there, Scott?
+
+29
+00:17:05,489 --> 00:17:06,960
+Scott Tolinski: I don't have anything. No, no.
+
+30
+00:17:07,530 --> 00:17:12,660
+Wes Bos: All right. Well, we will catch you on Wednesday. As please
+
+31
+00:17:14,640 --> 00:17:24,420
+Scott Tolinski: head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
