@@ -1,0 +1,156 @@
+1
+00:00:00,359 --> 00:00:24,480
+Announcer: Monday, Monday, Monday, open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing, soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob and Scott Taylor. Totally in ski.
+
+2
+00:00:25,950 --> 00:00:58,110
+Scott Tolinski: Oh, welcome to syntax. In this episode of syntax, we're going to be talking about five more things you should know about performance to make your applications much faster, very much faster. We have so many things, so many tips, so many little things that you can do here. So this is part two of a series that who knows how many parts are going to be because there's just a lot of perf tips. We have an endless stream of them here. My name is Scotland ski. I am a full stack developer from Denver, Colorado and with me, as always is Wes Bos.
+
+3
+00:00:58,170 --> 00:00:59,190
+Wes Bos: Hey everybody.
+
+4
+00:00:59,190 --> 00:01:02,150
+Scott Tolinski: Wes Bos coming at you from the boss house.
+
+5
+00:01:02,159 --> 00:01:09,930
+Wes Bos: Boss. I've been asking people what I'm building a little shed office and trying to figure out what to call it.
+
+6
+00:01:09,930 --> 00:01:11,970
+Scott Tolinski: Bosaso is my submission.
+
+7
+00:01:12,120 --> 00:01:15,450
+Wes Bos: Boss hos cm. So people accept called the bike shed, which
+
+8
+00:01:15,450 --> 00:03:01,290
+Scott Tolinski: is bike shed fantast. Yes, right. And that's where West is, home base is going to be well, he shipped some code. And while he shipping code, he's gonna want to make sure that there are no bugs in that code. Even if he is working out of a shed, if we don't want bugs, no bugs in the shed. I actually had a dream last night with a bunch of creepy crawlies. And I'm not into bugs right now. So if I want to keep track off, yeah, I want to keep track of my bugs, I'm going to do so with century, it's actually funny, my dream involved a brown recluse spider, and we were like sleeping in somebody's basement and sleeping bags, and we lost the like, oh, there's a brown recluse spider, we got to take care of that. And then we couldn't take care of it, and we lost it. And then we're in sleeping bags, that's the place you want to be with the brown recluse spider on the loose is in a sleeping bag. So you're gonna have to keep track of your bugs. And you're gonna do that with sentry@sentry.io is the perfect error tracking solution, because it gives you all the information you need to know while keeping track of your bugs. What release it happened in. Well, if you have a source map set up, it can show you exact line where this bug happened, what browser what user committed this air, all within an amazing, fantastic interface to keep track of all of your exceptions. You can mark them as complete, finished, whatever. And again, attach them to GitHub issues. It's so good. I it's an essential service for my business. And I know it will be for you. So head on over to sentry.io use the coupon code tasty treats all lowercase all one word, and you're going to get two months for free. Yeah, that's a lot of left a lot of free. So check it out@sentry.io. All right. perf tips, five more performance tips. Wes, do you want to hit up the first one?
+
+9
+00:03:01,890 --> 00:04:33,240
+Wes Bos: Yes. The first tip we have here is shipping too much JavaScript. This is something that happens. I think this happens because a lot of applications, especially ones that have been around for more than no more than five years or so they're built on the fact that your JavaScript depends on other JavaScript. And that depends on other JavaScript. And it's very brittle. You can't just take part of the JavaScript out and expect everything to work, because they haven't been written properly with modules or things like that. It's all sort of just jammed into the the global space. And it's pretty common. Like I look at a lot of like online stores and things like that. And you can tell that they are shipping tons of JavaScript, because it's just way too complex to figure out how do I only load part of it? Or how do I load it on the pages that is needed. So thankfully, that has gotten a lot easier with tools like parcel or Webpack. And react, lazy loading code as you need. Webpack has a bundle analyzer that will tell you, if there's unused code code, what's it called treat code shaking, tree shaking is when it will figure out if if parts of the library are unused, and it will drop those from the final build. So there's really a lot you can do in terms of slimming up your JavaScript. And the tools that we have right now for being able to look at what is large. And and what is. What can be code split make that a lot easier these days.
+
+10
+00:04:33,690 --> 00:05:33,030
+Scott Tolinski: Yeah, it does. And that's really the key takeaway from this one is that, yes, you have some responsibility here. You can't load up bootstrap and material UI in one project and have your bundles stay small, right? You have to keep be cognizant of what you're adding to your project at all times. And it's We're so lucky that we do have these tools for us right now that we can have a bundle analyzer No Meteor has a bundle and bundle analyzer as well. Anything you can do to visually see your application, I bet personal might as well, we should check into that. But either way, these kind of tools are extremely, extremely helpful to find out where the bloat is coming from, you might not even realize that one particular module you're adding might have another module that it uses, which is another module, which all of a sudden, you look at this thing and say, holy cow, I did not know that this react toggle was taking up, you know, 200 kilobytes of JavaScript,
+
+11
+00:05:33,510 --> 00:06:15,570
+Wes Bos: or, like a package was meant to be used server side, but you just included a client side. I've done that with a Yeah, slug library. The slug library included a description of every Unicode character ever. So like, like a Unicode heart, it means hearts. A crying emoji means laughing and crying. And like, surprisingly, if you ship a description of every single emoji to your browser, that will add, I think it was like two Meg's or something like that. It was huge. And I was like, what is causing this? Yeah, it's just silly things like that, where you npm install, some think it's gonna be fine. Like Scott says, You have no idea what that is requiring, under the hood until you use some of these tools.
+
+12
+00:06:15,719 --> 00:08:01,710
+Scott Tolinski: Yeah. And I like what we've talked about these bundle, and Allah is just a couple of times now. But like, you definitely should get some sort of visual on it like what is because it's so powerful. When you see these giant pizza pie slices taking up a big chunk. I am like almost obsessively eliminating some of that stuff like how can I get this smaller? How can I get this smaller? Okay, next one is going to be not bundling your code, which is a big problem that you probably don't want to have. And this is a problem that's becoming less and less prominent as bundlers and Webpack, and parcel and all these things become way more commonplace, but for a very, very long time. And still, in a lot of places, it was sort of weird to have a build system, I remember the first time we instituted a gulp process in our workflows. And a lot of developers had a really hard time getting up and running with it, because it was so foreign and different than what they were used to doing. And same with grunt. And when any of these things came out, at first, it was like, Oh, I have to run this thing. Every time I save a file. Now, it was just definitely like a process and maybe CSS preprocessors were the lead into that. But bundling your code together is an essential thing about releasing something because what it does is it it takes all of your your things that you needed to do it minify them. And what it does is it removes the whitespace it makes the characters less redundant. And it just gets your project ready to go so that you're serving one file, one main file, or maybe potentially lazy loading some files, but you're serving one main file rather than one giant giant file or several giant files, right?
+
+13
+00:08:02,070 --> 00:08:36,169
+Wes Bos: Yeah. Because at the end of the day, we talked about this in the last episode is that more requests, cause that waterflow water sorry, waterfall requests. There's only so many I forget what the thing is. But there's only so many requests that your browser can make at one time. And then once you get past that, it'll start to waterfall them for you. So bundle it up, and then sort of goes with bundling is compressed them. So what's the one that we use in in JavaScript land is a uglify? I don't even know what they are on dad anymore. There was a Babel one.
+
+14
+00:08:36,289 --> 00:09:30,170
+Scott Tolinski: There's even some new ones that are coming out that are I don't want to say that they're like brand brand new or something. But they're like things that are much better developed by Google. I'm totally blanking on the names of them right now. In fact, the new react router uses that in it like they got a ton of performance for react. router, six. Oh, so react router six is using the new Well, not the new, but it's using the Google Closure Compiler. I don't know if you've heard of this compiler. But it's really super, really super good. And it got their bundle size from 28 K, that's minified to 88.5 k minified. And that's only 2.9 k g zipped as opposed to 9.4. g zip. So Wow, big savings there.
+
+15
+00:09:30,530 --> 00:11:00,600
+Wes Bos: Yeah, I remember this from a long time ago. Yeah. And everyone said like, it's good. But like you have to write your code in a certain way in order for it to work. It's a Java application, which is really funny. Yeah, closure compiler is a Java application for minifying JavaScript, which is pretty interesting. So I don't know what they're doing under the hood. But I guess there's huge benefits if you write your application in a certain way, that it can then be minified What else we have here? g zipping. So generally GG g zipping is something you just turn on in your server. And then when your server serves up a JavaScript file, it will do things like if you have a variable called Scott 47 times in your JavaScript, it will realize that I'm not going to send the word Scott 47 times, I'm going to send this the word Scott once, and then I'm going to all those other spots, I'm just going to point to the original Scott. And then that will, that's what Jesus thing is it makes it makes redundant words and letters and characters only be sent one a once over the wire. And browsers are able to unpack that. So it's not like g zipping is Ossining. You have to turn on in your browser. It's something you turn on your server, and then your browser will know how to unpack g zip code. So that's generally turned on by default, but it's certainly worth checking, because it's an easy win for all servers.
+
+16
+00:11:00,990 --> 00:11:25,530
+Scott Tolinski: It's an easy win. Do you remember there used to be like a PHP module? What was that called the Google one that you just added. And all of a sudden, your site got a whole bunch of compression benefits from it. I totally blanking that was like Google PageSpeed or something. But it was like some module mod that you could add on to PHP. And I remember the first time we did an a Drupal site, we were just like, blown away. It was in nginx, that we did it but there
+
+17
+00:11:25,560 --> 00:11:30,990
+Wes Bos: Oh, yeah. Yeah, that's an Apache and nginx. module called it's called Google PageSpeed. Google PageSpeed.
+
+18
+00:11:31,020 --> 00:11:54,600
+Scott Tolinski: Yeah, stuff like that is just endlessly important when serving your code. And often we don't think about it. But if you do have control over your own server, it's one of those things that you do want to make sure that you are utilizing to its full capacity. Next one is going to be loading JavaScript synchronously. That was I always want to say like synchronicity synchronously. So this is basically
+
+19
+00:11:54,630 --> 00:11:57,120
+Wes Bos: Oh, sorry, that's supposed to be a synchronously.
+
+20
+00:11:57,180 --> 00:13:00,480
+Scott Tolinski: Yeah, I was gonna figure this out. I was like, why would that? Yeah, I was, as I was reading this, I was like, Wait a second. So this is often you'll often see this in libraries, when they tell you like here, copy and paste the script at the bottom of your code. And it will be a little property in the script tag that says async, or I'll say, defer. One of those things that's async. This attribute means that it's executed as soon as it's downloaded without blocking, right? So blocking is when something loads, everything else waits for it, right? What this async means is that, hey, the rest of this stuff can load, right? But this thing's gonna download just sort of on its own. Now, the defer tag, it also does not block, right, so it's not going to sit, it's not going to block any of your loading. But unlike async, defer is only executed after the entire document has finished loaded. So if your package like isn't needed, right now, now, now, you can always defer it and at least use a sink here.
+
+21
+00:13:00,780 --> 00:15:25,890
+Wes Bos: Yeah, I found this really nice. Stack Overflow, that explains what happens. Because back in the day, we used to just put all of our script tags in the head of our doc Yeah, right. And the reason the reason we did that is because we wanted to make sure that the JavaScript was on the page first, and then the HTML, and then we move to putting the script tag, like before the closing body tag. And what that did is it made sure that the tags were on the page before the JavaScript. So this like, was really cool, because it tells you how the browser works. So when you fetch the page, like index HTML, then the browser goes and starts parsing the HTML. So it downloads all of the text. And then it says, alright, I'm going to turn this text into HTML elements. And that's, that's the parsing step. But when the parser runs into a script tag, referencing an external JavaScript file, so script source equals bundle dot j, s, the browser goes off and requested that script file Meanwhile, the parser blocks and stops parsing the other HTML elements on the page. So if you have like an h1 tag, and a paragraph tag that says thanks for visiting my website, that will not show up until the JavaScript in the head has been totally downloaded. So that's number five, after some of after some time, the script downloaded in sub is subsequently executed. So it runs all of the JavaScript in that file as well. And then finally, the parser continues with the rest of HTML document. And that's why we always told you put the script tags near the closing body tag, because you at least should show your user something on the page while you're downloading this JavaScript, because likely, they're not going to click the buy button and the second, the page loads, and that just gives a faster perceived value. But now with the sync and defer tags, as Scott was talking about, it doesn't matter where you put your script tags as long as you know that Using those properly, in my tutorials, I still put them right before the closing body tag, because it's a bit of a foot gun, if you don't hundred percent understand how they are on the page, and then also putting them near the closing body tag as you never have to deal with waiting for the document to be loaded. And like that's when in jQuery days, we would pop everything in dollar, right dollar sign,
+
+22
+00:15:25,890 --> 00:15:31,170
+Scott Tolinski: whatever the way for the browser. Yeah. Yeah, document ready. And by doing all of that, my gosh,
+
+23
+00:15:31,200 --> 00:15:40,920
+Wes Bos: yeah, you don't you don't need that if your code is loaded after the HTML elements, because you know that it's on the page already. Because it came before.
+
+24
+00:15:41,300 --> 00:15:45,270
+Scott Tolinski: It's funny how many problems like react solves here? Like I don't think about this stuff.
+
+25
+00:15:45,330 --> 00:15:47,520
+Wes Bos: Yeah, you don't think about any of that. It's amazing.
+
+26
+00:15:47,520 --> 00:16:11,430
+Scott Tolinski: I have a hook that I used to load scripts that I wrote, it's like a script loader. Yep. And it's like, is the script loaded or not? It just spits out a Boolean, you pass in the script, or whatever. And then you only load external scripts when you need them. Like, I don't love that the checkout stuff unless somebody clicks on the checkout. So yeah, it's so funny, how many of these problems are taken care of, you just don't have to worry about them as much.
+
+27
+00:16:11,910 --> 00:16:39,330
+Wes Bos: That's like, ideal world for me is that like, most developers shouldn't have to know how this stuff works. Because they're either not going to care, they're not going to have enough time to actually implement it, or get out there stuff to worry about. Yeah, they got other stuff to worry about. So like, just let the let the tools and the frameworks do that heavy lifting for you. It's the same thing with Gatsby and image compression. Let something else do it for you. Because it's too hard for most most of us. Yeah,
+
+28
+00:16:39,360 --> 00:18:15,900
+Scott Tolinski: yeah, I'm into that. Alright. Last one is going to be this is going to be a DB side of things. And sometimes when you're working with a database, and you are not a database person, that you might neglect certain things. And one of the things that gets neglected often is defining indexes on your database. Now, it's different for every single platform, depending on how you do it in Mongo. It's just like a one liner, you're saying, hey, this field is an index. Now, what is an index? Well, an index is basically, you can think of it as sort of like a tape. So Table of Contents is basically an easy way to look up things that are commonly used. So if you have an ID field, or maybe let's say, here's a better example, because an ID is almost always automatically indexed. But let's talk about what is a slug, right? a slug is something you'll often look up a page by, right, the slug comes in, you send that slug onto your server, that slug then is in your database query. And what you need to do is make sure that you have an index on that slug, because what it's going to do is it's going to build what's called an index, and it makes the lookup infinitely faster. So it's definitely something that's highly required. Anytime you're doing any sort of lookups is you want to make sure that you have your indexes on your DB fields. Now, a lot of platforms like I said, take care of this different in different ways. Some do a little bit more automatically than others. But with Mongo, it's it's just typically a one liner, just look it up. How do I Place an index sticker on I have an index on anything you do a find on anything, you do a sort on anything you do a filter on, or an ordering on any of that any of those fields? Yeah, I
+
+29
+00:18:15,900 --> 00:19:28,710
+Wes Bos: always do it immediately on slugs, emails, IDs It comes with, and then any other like anything, where you're comparing values greater than less than dates, things like that, that will make sure that those things are nice and fast. I also my M lab, which is my database hosts just which is now MongoDB, Atlas, they send you an email, I think, weekly and tell you what you should pay indexes on because it says like, Hey, you ran this query 100 times last week, and it took on average this long, throw an index on it, you can't index everything, because then you run out of space, because I think it puts them in memory or thing. I'm not sure where to put some pie somewhere. Basically, every time you put an index on something, it has to loop over all of your data and store that info. So like if you have a very large database that certainly could take hours, if not days to build indexes for your existing data. But in most cases, at least in my data, it's very small only, I don't know, four or 500,000 entries in certain tables. It's it's not it's pretty quick to do something like that.
+
+30
+00:19:29,060 --> 00:19:38,060
+Scott Tolinski: I absolutely love the Atlas side of things where it tells you what indexes are there. Have you used the compass app that they give you with that?
+
+31
+00:19:38,130 --> 00:19:43,410
+Wes Bos: Yeah, we use it in. I think three of my courses we use. Yeah, I'm good to be compass.
+
+32
+00:19:43,550 --> 00:20:21,210
+Scott Tolinski: This is great. And it tells you where you need indexes and it lets you know all that stuff. So you need indexes in your database. I wish I knew more about them within other databases. Like I don't really know what the index situation is on other databases. I just know that it's I think you need it's funny that I think the question everybody asks, When it comes to indexes, it's just sort of like, well, if the if the black box is is, you know, so solid, why don't they make the whole plane out of the black box, you know that all the indexes were Why don't you just index the whole thing? And it's a funny I'm so glad you touched on that because it is it's the question that everybody asks, like the moment they learn about indexes.
+
+33
+00:20:21,560 --> 00:20:29,940
+Wes Bos: Yeah, Joe, this thing makes it faster. Slap that on everything, right? Yeah. That's fine. That's it. All right. We'll stop there.
+
+34
+00:20:30,000 --> 00:20:30,690
+Announcer: No more.
+
+35
+00:20:30,720 --> 00:20:32,360
+Scott Tolinski: No more perf tips for you today.
+
+36
+00:20:32,600 --> 00:20:38,300
+Wes Bos: Thank you so much for tuning in. We've got some more coming up. So get ready.
+
+37
+00:20:38,789 --> 00:20:44,600
+Scott Tolinski: Get ready, strap yourself in and get ready. We got five more coming out. Yes, some other time in the future.
+
+38
+00:20:45,080 --> 00:20:49,850
+Wes Bos: Beautiful. All right. Thanks, everyone. Catch you on Wednesday. Please
+
+39
+00:20:51,690 --> 00:21:01,470
+Scott Tolinski: head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
