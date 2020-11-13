@@ -1,0 +1,208 @@
+1
+00:00:00,359 --> 00:00:21,660
+Unknown: Monday Monday Monday open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA boss and Scott Taylor.
+
+2
+00:00:23,579 --> 00:00:24,480
+Totally in ski.
+
+3
+00:00:26,910 --> 00:01:52,680
+Scott Tolinski: Welcome to syntax in this Monday tasty treat, we're all going to be talking about Wess brand new website. The last time this websites are refresh was sometime in 2014. So we're going to dive into all of the ideas and interesting things that Wes did with his new website. And we're going to be exploring some of the choices that he made, and why he chose to do things his way. My name is Scott Tolinksi. I'm a developer from Denver, Colorado and with me, as always is the US boss. Hey, everybody. Hey, Wes. This episode is sponsored by Sentry. Now sentry@sentry.io is the amazing error handling and exception tracking tool that you really need in your project. In fact, you're gonna want to head over to sentry.io use the coupon code, tasty treats all lowercase all one word, you're going to get two months for free. Let me tell you, it's really easy to just drop in Sentry in your project and see it up and running in no time at track those errors and exceptions I've been using Sentry personally, for a long time, and m are really, really into it. I just absolutely love this platform. And I wouldn't have it any other way for browsing and keeping track of the errors and bugs that are in my site. So thank you so much for century for sponsoring now, Wes, this new website is at Wes bos.com. Didn't you used to have another different URL? Or am I tripping here?
+
+4
+00:01:53,100 --> 00:01:54,630
+Wes Bos: No, I've never had it
+
+5
+00:01:54,660 --> 00:01:57,660
+Scott Tolinski: once you get like boss dot F boss dot F.
+
+6
+00:01:58,020 --> 00:02:00,660
+Wes Bos: Boss that f is where I sell stickers.
+
+7
+00:02:00,810 --> 00:02:03,300
+Scott Tolinski: Oh, yes.
+
+8
+00:02:03,600 --> 00:05:53,520
+Wes Bos: Yeah, yeah, no, I've been on West boss calm since March of 2004. I remember asking for a domain name for my birthday. My birthday was in February, late February. So I've been I've been on there for 16 years, it's I've been on what's common. It's obviously seen many iterations of personal website over the years probably, I don't know, five or six different website designs. And my last one was built on WordPress, for actually my last couple that were built on WordPress, I probably was WordPress for about 10 years. And I had a setup with WordPress, I had lots of advanced custom fields, I use less for styling. And there wasn't a whole lot of custom JavaScript. But for a lot of that I did have jQuery on that. So that was the existing stack, the the website was getting kind of slow. One huge pain point I had was anytime I would link to it in an email, I'm hosted on Bluehost, which we all know is my favorite hosting company ever. And they auto scale their servers, which is great, but there's like a five minute delay when traffic spikes to when it auto scales. So I would email out to 300,000 people, hey, here's here's a link to my website, and it will crash my server. And then it will come back up after five minutes because they would scale the server which is great. But the in that five minutes, how many thousands of emails do I get your website is down, which was frustrating. And obviously that was my own fault. Like I should get a better server. But I just didn't feel like moving it on over. I thought about keeping it on WordPress because I like the admin for all of my blog posts and everything. But what I ended up doing is saying I want to move all my content to GitHub and have it editable by the community at large, like already have had the site live for less than a day. And I've already received nine or 10 different pull requests of spelling mistakes, corrections, updating things. There was like somebody was reading like a two year old blog post and there was a little there was a mistake in there and they just they fix it themselves. And it's really cool to be able to have that open to the world. So my stack that I chose was Gatsby j s I'll talk about that a little bit more in just a sec style components, and react and MDX. I'll talk about all these in just a sec. But that's the stack I chose. And I've been working over over the last year or so kind of just poking away at it here or there. I sort of settled on the design about six months ago and that's where I was like Alright, next time I have some, I don't know about a week of time, I'm going to really double down and finish this thing on up. So what I thought I would do is just kind of go through the different parts of the stack why I chose it and and why I didn't I did also write a blog post similar to this So go to Wes Bos comm click on the blog, and you'll see it up there. So the stack Gatsby, it's static site generated, meaning that it generates the HTML beforehand. But it's also made a made in react so that after the initial page loads, just HTML and CSS, the React framework loads, and then it picks it up from there, meaning it sort of hydrates it. And then it's a full blown react application. I didn't go for next j. s, that's probably the most common question I get. Because when I started it Next, Jess was more for like applications. They've since changed that they now have a bunch of lifecycle methods for working with statically generated, which I think is the best way to do it. Because you can opt into statically generating page by page instead of like, Gatsby is your all in on everything is statically generated,
+
+9
+00:05:53,909 --> 00:06:07,200
+Scott Tolinski: right? Or it's dynamic. There wouldn't be like a server side rendered version, because there's no node instance in Gatsby, at least, right? Yeah. But there there could be dynamic content, you're not necessarily locked into static.
+
+10
+00:06:07,650 --> 00:06:54,090
+Wes Bos: No, you can have dynamic content. But if that's the case, then you have to totally go outside of the Gatsby graph qL API and then post your own API somewhere or in a serverless function. That's what I did for. I'll talk about that. It was some of the serverless functions, although it just was tweeting with Kyle from Gatsby and he said, we're getting hosted graph qL, which means that hopefully, your Gatsby site will be able to refresh its data from the graph qL API, so it's no longer just going to be static like that. Is that a scoop that you got there? Well, he tweeted it. So I'm gonna say it's a scoop. Okay, cuz I had never heard of. I've never heard anyone talk about it before, but he just tweeted it to me out in the open. So it's not secret or anything.
+
+11
+00:06:54,480 --> 00:06:57,510
+Scott Tolinski: I didn't know you were into privy to some inside information.
+
+12
+00:06:57,570 --> 00:09:16,710
+Wes Bos: Oh, no, no, no, that's, I'm not that privileged. Just the guy cider, sweet and read and stuff. Yeah. The other thing is that Gatsby has a huge plugin ecosystem for things like Sitemaps. And I don't know, all kinds of images and whatnot. And next, yes, it's not that it doesn't have those. It's just that that's not the way that next js is set up, you'd have to do that yourself and reach for existing react plugins. So it would be kind of cool one day to see how hard it would be to switch over to next. Not because I want to just because I think it'd be interesting to see the the pros and cons side by side for an actual full blown website. All the the blog posts, so I've have, I forget how many. Let me let me look at my blog. 120 blog posts. Probably about 70% of those are still valid, and then the rest are just outdated content. But I feel weird, like taking it down because it's the web right? So I just kept all the blog posts there. It's the history. Yeah, yeah, exactly. And I had to move those over to markdown, most of them were already written in markdown, which was great. But the whole process of moving it to MDX is really tough, because like HTML is so forgiving, you goof up a tag or something like that. It just keeps going, right. But jazz, sax is super unforgiving. You got one incorrect tag somewhere, or you don't auto close, an image tag, all of those things. So I wrote this massive script that just find him replaced all of those little gotchas. And then I finally after a couple hours as they built the auto import every single blog post from my WordPress API, that's how I did it. And as I just pinged in the WordPress API, I also took all my Twitter Hot Tips from Twitter, and made those into pieces of content, which is great, because like, I personally can't even find my own Hot Tips when I want to find them. And it's like, the Hot Tips is the huge piece of content for me. And the fact that I don't own those is weird to me off is just a silly thing on Twitter. But like, it's a big reason why I have so many Twitter followers, and people absolutely love them. So like, why am I not owning this content?
+
+13
+00:09:17,220 --> 00:09:50,220
+Scott Tolinski: What's funny that we should talk? I mean, that's like a definitely like a topic of conversation. Maybe we could even elaborate on another hasty treat sometimes owning your content. And when we we talked about Yeah, for in the blog things when we were saying like, okay, you could do a medium blog, and that's going to get you maybe find stability initially because people will stumble upon it. But you're not owning that content, and you don't have full control over it. And I agree with you that that's like something you need to own and I'm, I'm psyched to see that you found this this way to pull that all in to your site.
+
+14
+00:09:50,640 --> 00:11:35,400
+Wes Bos: Yeah, yeah, absolutely. The styling the design, I did the design all myself. I went for some of this like grunge texture. So there's two grungy PNGs that get loaded onto the website. And I twist and turn them and angle them and offset them enough that it looks like the grunge is fairly random. But I didn't want to have to load in grunge absolutely like like five or six different grunge PNGs because that would make the the page load too heavy. So as it's kind of fun to be able to do that a lot of people say like wire, my logo itself is a PNG, I designed it all in vector, except the grunge has to be raster. And a lot of people say like, Oh, yeah, just use a SVG and SVG. grunge is not the same as a raster based grunge. And I actually converted it to SVG. And the file size was like 10 x what a PNG was because of there was thousands of little paths for every little dust spectral. I'm using operator moto and red, Nika next as my fonts, whole flare and co gave me free license of operator moto for the web, which is really cool. Because I've been like, saying, I use operator moto forever. And a lot of people had bought it after me. And it was on sale a couple months ago. And I tweeted out, hey, it's on sale. And then a couple days after I got an email from them, saying like, hey, do you want a free font for your website? And I was like, Yes, please. Because it's it's expensive. Yeah. I looked at the the price. I think it was like 1600. dollars to get unlimited usage license. He thought so. Yeah, yeah, that's expensive.
+
+15
+00:11:35,400 --> 00:11:37,470
+Scott Tolinski: Can we talk mono fonts for a minute?
+
+16
+00:11:37,500 --> 00:11:38,070
+Wes Bos: Yeah,
+
+17
+00:11:38,070 --> 00:11:49,470
+Scott Tolinski: I'm a big fan of these mono fonts as display fonts. Like, my entire website is one font right now. And it's mono. Lisa, and man have really liked going to mono font for this.
+
+18
+00:11:49,800 --> 00:12:08,490
+Wes Bos: Yeah, it's I did to the operator, the whole fair gave me a copy of operator, something sans there's there's one that's not monospace. And I tried that and it just didn't didn't feel good. I feel like it's pretty readable. I only have one person give me a angry tweet about it,
+
+19
+00:12:08,880 --> 00:12:13,830
+Scott Tolinski: as a developer to it gives that like vibe that like I'm a developer? Totally, totally.
+
+20
+00:12:13,860 --> 00:12:15,240
+Wes Bos: Yeah, I think so.
+
+21
+00:12:15,450 --> 00:12:18,840
+Scott Tolinski: Do not I? We're obviously not talking about my site right now. But
+
+22
+00:12:18,870 --> 00:12:20,160
+Wes Bos: no, let's talk about it.
+
+23
+00:12:20,550 --> 00:12:30,600
+Scott Tolinski: I used like id style ligatures in my design as the back arrows. So my back arrows are just a bracket and a line. And then as lit turn ligatures on,
+
+24
+00:12:30,840 --> 00:13:26,280
+Wes Bos: that was really nice. That's beautiful. Oh, while we're talking about the fonts, so all of the headings h1 through h6, all of the headings are actually pretty complex, because it's, it's an h3. And then inside of that there's a before and after pseudo element that adds the black and white texture over top of the text. And one really cool trick is that like I had overlaid this black texture on or sorry, I overlaid the white texture over top of the tax because it's white on black text. And what happens is when you overlay elements on top of taxes that it makes it unselectable. And I thought like, shoot, and obviously I just put on pointer events, none on that grunge and then the clicks go right through it and still allow you to select it. So that that was a kind of a cool trick that I really liked. Yeah,
+
+25
+00:13:26,340 --> 00:13:30,150
+Scott Tolinski: I like this. I think the grunge is super interesting here how you chose to do that?
+
+26
+00:13:30,450 --> 00:13:51,300
+Wes Bos: Yeah, yeah, my favorite part about it is if you select the text, the grunge is still on top of the highlighted text, which is pretty cool. Because I've always wondered like, I wish you could do like background texture on the Select. Hmm. But you can't, but you can if you overlay something on top of that, and then pointer events, none.
+
+27
+00:13:51,450 --> 00:13:52,680
+Scott Tolinski: Yeah, neat, neat trick.
+
+28
+00:13:52,950 --> 00:14:28,020
+Wes Bos: There's also a little yellow square in the top left hand corner, just kind of as a design detail. And one cool thing I did there is that the size of that square is done in EMS. And the benefit of doing it in EMS is that the size of the square goes up and down with the font size. So it's it's related to the font size of the heading tag. And that was a perfect use case for using AMS over rems, because it's based on the the font size of the thing. And it didn't have to size one for every H tag.
+
+29
+00:14:28,050 --> 00:14:33,810
+Scott Tolinski: Yeah, yeah, that's like, that's free right there. That's That's the dream of Yes.
+
+30
+00:14:33,960 --> 00:15:20,490
+Wes Bos: Yeah, that's like I always find it hard to find good use cases for AMS over RAMs, but there's one right there. Yeah, love it. CSS has done install components. I'd have a big global styles and then every component, I just use a component for that. And then I put like, sub selectors in there. So I still heavily use classes and tag selectors. inside of it. So I don't go crazy with style components and do a new style component for every little thing I just every general area, every general component as opposed to heading a meta, that's its own component. And then inside of that, I use just like regular CSS selectors. And I'm pretty happy with that sort of bounce there. Cool.
+
+31
+00:15:20,610 --> 00:15:25,500
+Scott Tolinski: Did you say I mean, you're using like, bam, or anything like that for your actual selectors?
+
+32
+00:15:25,620 --> 00:15:50,580
+Wes Bos: No, no, just, I don't think it's necessary to use something like that when you are using scoped CSS. Because, yeah, I would just give something a class of like, meta, or a class of big, and I don't have to worry about those classes in other places, because I know that I'm always writing scoped CSS. And that's good. I don't have to follow some strict thing there.
+
+33
+00:15:50,700 --> 00:16:37,740
+Scott Tolinski: Yeah. So in my site, I'm doing like scoped by default, right? That's just the way it is installed scope by default. And then you choose when you want to be global. And I really love I mean, I typically used to writing style components. But I really do love that scope by default, because then you still get to turn the cascade on whenever you want it. And if you know what you're doing with CSS, it's like, Alright, here's where I want the cascade. Here's where I want my Global's, here's why I want the the baseline stuff, and then here's where I want things scoped. It makes it such a nice experience. I think some people will look at scoped CSS as being like a, you know, for people who aren't good at CSS. And in my mind, it takes a lot of skill to execute with a scope CSS and make it you know, super dry and just nice to use. So yeah, I love it a big fan of that.
+
+34
+00:16:37,770 --> 00:18:31,020
+Wes Bos: Me too. It's just been really nice. And by default, like you said, scope, by default, you write your styles are scoped to that component. And then if you want something to be global, like a lot of the fonts and variables and whatnot, then you can throw that in your global CSS love it. One kind of cool thing that MDX gives you is a couple things. MDX allows you to embed react components right inside of your markdown. So YouTube player embed component, if you want to put a graph, you want to put anything inside of your markdown, you can just embed a react thing and you can import an export values from your MDX files. But another kind of cool thing that MDX does is you can replace the components. So all of the headings, and all of the code blocks and all of that anytime there was like an h2 tag, instead of rendering out an h2 tag, it would pass it off. And I could supply my own custom component for an h2 tag. And that's how I got these like, really complex headings without having to write the code every single time in my MDX file, night. Yeah, a serverless functions. So there's a couple things on the site that need to be on this on server side. Most common is the the Oji images. So if you share a URL out to Facebook, or something like that, it will show you like a thumbnail. And the way I did that is there's a page on my website, just called thumbnail, and then via the params, you pass the title, the URL, the image, the slug all of that information about it. And then it just I just laid out these thumbnails in HTML and CSS. And then I'm using a serverless function with puppeteer, which is headless Chrome, to just take a take a screenshot of that, and then serve that up to the user, when they're asking for the Open Graph image.
+
+35
+00:18:31,200 --> 00:18:33,630
+Scott Tolinski: puppeteer, hey, they're getting fancy.
+
+36
+00:18:33,900 --> 00:18:51,900
+Wes Bos: Yeah, it was really neat. Because like, otherwise, you'd have to use like a different program to make images. And I was like, I want I just want HTML and CSS. And then I want to take a screenshot of it. I don't want to have to, like, learn this other node package. That's not as powerful as CSS to lay things out.
+
+37
+00:18:52,050 --> 00:19:06,480
+Scott Tolinski: Yeah. You know, I've been thinking a lot about images in like, what's your strategy? I mean, it was so nice to have like, in the CMS, like a drop zone, drop the image in? Are you just coding all the paths? I guess it's Gatsby. So you're doing the Gatsby image queries?
+
+38
+00:19:06,690 --> 00:19:26,490
+Wes Bos: Yeah. So in almost everything, it's in markdown, which does Gatsby image queries for you under the hood. And then I just put the images in the folder of the blog post, or I have a folder that has like pictures of me and there's a picture of Scott on the on the about page, so go check it out. I saw that hey,
+
+39
+00:19:27,660 --> 00:19:33,030
+Scott Tolinski: including me on your site. That's very nice view. Oh, yeah, I have your name and your wink, but I don't have any photos on my side.
+
+40
+00:19:33,110 --> 00:24:11,550
+Wes Bos: My wife was a little bit cheesed that you came before. Oh, no. Oh. So I use Gatsby image to compress and resize and everything like that I'll talk about that was a bit of a pain in the butt in just a second serverless functions. Also, I'm pulling in tweets and Instagram posts and Instagram stories and all three of those needs to be done server side then of course API's so I use service serverless functions for that, which is pretty cool. I'm using them through Netlify. Because they have like a nice local thing called Netlify. Dev, but they are just AWS lambda. So they could they could really be hosted pretty much anywhere. It's just a node file. Hmm. I'm pulling in my Instagram Stories via sort of like a fake login. So I'm hitting their graph qL API that's undocumented, and then passing my session cookie along with it. And that gives me my stories, because there's no API for Instagram stories. If you are not a business or something like that, like even you're not a brand that is in with Facebook. So it's not something you can do. Yeah. And those the tweets, Instagrams, and the podcast, the latest syntax podcast gets pulled into the footer as well, all of those are done client side, because you can't if I were to do them at build time, then they would be out of sale by the Yeah, they'd be out of date. So that's like one thing. I was like, I was like, looking like how do I do it on build time and refresh it in the client? And the answer was, like, use the code. Two totally separate things. Which sucks. So I think that's what the the Gatsby hosted graph qL API will fix. I bet there will be like a tag that says refresh, refresh on client true. And then it will just ping this server for any updated content. It's hosted on Netlify. That worked really well. I actually, initially it didn't build on Netlify, or render, or I tried it on a bunch of them. And one of the biggest pain points I had was that apparently had too many images, I bought 350 images. And it would just fail and timeout on every service that I tried. And it was just way too big. I guess. Like, I don't know what people who have larger websites than 300 pages are doing because I know there's there's e commerce websites out there. Yeah. So I talked to Jason friend of the show, Jason lengstorf. He used to work at Gatsby works at Netlify. Now, so who better to know everything about this stack. He hooked me up with this experimental thing called Gatsby parallel build, which throws your images out to Google Cloud, or Google. Yeah, Google Cloud Hosting. So it's sort of like serverless functions, I guess it is a serverless function. And then Google Cloud will just spin up 300 instances or something like that, resize each image individually, and then send it back. And that took my meal time from about 25 minutes to about five minutes, which is pretty good. And then there's still another like, five, six minutes of deploying, after the build is done on Netlify, then as to deploy, so it's about 12 minutes to get something from a git push to being live on your website, which is okay, I kind of wish it was faster than that, like I had, like a bug on the website when I launched it. And in 12 minutes, like lots of people messaged the bug. Yeah, yeah. So I kind of wish that it was a bit faster. I used I tried Gatsby cloud, which is using this thing called Gatsby incremental builds, which I hope is will be a thing for everybody at some point. And it was great because it took my entire build. And then I changed like a word on a page, and then it rebuilt it in a minute. Mm hmm. And that is Gatsby is smart enough to know not to rebuild the entire website, but just to rebuild the one page. Yeah, I think that Gatsby cloud also does similar parallel image processing. I just ran out of time to investigate all of that. So I'm just gonna sit on my hands. And I bet that this will get better at some point because like, um, it's not a big website. I don't think it's a medium size website. And I think that a lot of other people probably have this pain as well. Sure. You can view source on it, which is really fun. It's all formatted nicely. I use a plugin from James Vickery. It's called Gatsby plugin prettier build. He actually just built it after I was asking on Twitter, like, Hey, are
+
+41
+00:24:11,550 --> 00:26:27,210
+you able to format the outputted, HTML from Gatsby? And the answer is no, because react Dom does that for you. And it just puts it out. But he built this on post build. That's a hook in Gatsby. Once the build is done, you can run some code. And then he built this thing that would concurrently run the HTML files through prettier and format them nicely. Oh, nice. And the view sources is very readable now, which I was really happy about. What else do we have here? There's a lot of stuff that went into it, which is pretty cool. I think that's about it pretty happy with with the site right now. It's a big driver for me. I had to maintain all of my old links, because blog posts and Google Search juices, but a big part of my business. Lots of people find my blog posts by searching on Google read a couple and then buy a course after that. So I needed to make sure that that all and I will see in a week or two what my stats look like, once they've leveled off, did they get better? Did they go down versus WordPress, something like that. So I had to like make sure that the slugs got moved over from the old version as well. But overall, very happy. It's very fast, like I didn't do much to make it fast. It just is fast out of the gate. And I felt like I didn't really have to give up too much or really anything in order to get that. So nice. I think the one thing I gave up was the build the build times because of the Gatsby images. All Yeah, the other thing is that everybody is gonna say, why don't you just use cloudinary like Scott, and I love cloud, Neri and cloudinary will do the image resizing on demand for you, which is cool. And like I love cloudinary I use it for my course platform. I just didn't want the build of this blog to be dependent on like a paid company. Like I wanted it to just work even if you're offline. I just wanted this whole thing to build and not have to like reach out for any external services. So that's why I although obviously, gas will parallel build uses Google Cloud, it will still build just fine with a regular Gatsby build. And that's what I wanted to maintain. And once it's built, it's built. What do you mean by that?
+
+42
+00:26:27,420 --> 00:26:31,080
+Scott Tolinski: Like, once it's built, it exists as an HTML JavaScript and like, it's not like
+
+43
+00:26:31,080 --> 00:26:56,250
+Wes Bos: yeah, you're right. Yes. So it exists. You're not relying on it. Although I guess you probably could use Yeah, cloudinary to just resize it and then save it locally. Jason link serve has a cloudinary Gatsby image plugin that I think does something similar to that. So that certainly is an option. It's just that my traffic level, it would get real expensive. Real quick, for something like that.
+
+44
+00:26:56,400 --> 00:27:01,500
+Scott Tolinski: Yeah. You know, it's really easy to not have to worry about images when you don't have any.
+
+45
+00:27:02,070 --> 00:27:21,210
+Wes Bos: That's that was my say you don't have a note. I just don't I just don't want to deal with it. Yeah, that's great. Like, I'll say I couldn't do that. But I think it's because you are incrementally building your site. Because that's probably a YouTube video for you working on adding my site. Here are the options I have. Here's why.
+
+46
+00:27:21,450 --> 00:27:22,590
+Scott Tolinski: I don't have images.
+
+47
+00:27:24,150 --> 00:27:37,710
+Wes Bos: Don't have images don't have problems. Right. Yeah. All right. So I think that's it. I'm pretty happy with it. Check it out. It's on GitHub. It's all open source so you can learn a thing or two from it. It's at github.com Ford slash Wes Bos Ford slash Wes Bos.
+
+48
+00:27:38,190 --> 00:27:45,390
+Scott Tolinski: Nice. Cool. I hope this was awesome. I really enjoyed hearing about your site, especially because he did so many fancy neat things that men love it.
+
+49
+00:27:46,259 --> 00:27:49,350
+Wes Bos: Fancy guy. Fancy guy fancies my middle name.
+
+50
+00:27:49,350 --> 00:27:50,400
+Scott Tolinski: Yeah. All right. I
+
+51
+00:27:50,400 --> 00:27:55,350
+Wes Bos: think that's it though. Thanks for tuning in. And we'll catch you on Wednesday.
+
+52
+00:27:59,340 --> 00:28:09,120
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
