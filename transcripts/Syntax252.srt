@@ -1,0 +1,484 @@
+1
+00:00:01,319 --> 00:00:02,790
+Unknown: You're listening to syntax,
+
+2
+00:00:02,819 --> 00:00:06,120
+the podcast with the tastiest web development treats out there,
+
+3
+00:00:06,149 --> 00:00:10,530
+strap yourself in and get ready to live ski and West boss.
+
+4
+00:00:10,589 --> 00:00:13,650
+Wes Bos: Welcome to syntax nice.
+
+5
+00:00:13,650 --> 00:00:14,400
+Scott Tolinski: I was on
+
+6
+00:00:14,549 --> 00:00:29,130
+Wes Bos: Oh, really, if Scott and I just clapped to start the show. And I've got high latency over here. So I try to offset my clap knowing that we'll have latency. And I just impressed Scott with my clap. So that was good.
+
+7
+00:00:29,159 --> 00:00:31,500
+Scott Tolinski: Yeah, it was great. It was probably the one of the best has been
+
+8
+00:00:31,559 --> 00:01:09,200
+Wes Bos: Oh, well, thank you. I can count to 300 milliseconds in my head. Anyways, this is the syntax podcast where we talk about web development every single week. Today, we've got a potluck show for you. And a potluck shows where we take your listener questions. And if you've got a question you'd like us to answer, go to syntax.fm. And in the top right hand corner, there's a button that says, Ask a potluck question, go ahead and put your question in there. These questions are awesome, and we really enjoy getting them. And I really enjoy doing these shows. Because there's something for everybody in the show. So with me, as always is Mr. Scott to Lynskey. How you doing today, Scott?
+
+9
+00:01:09,719 --> 00:02:18,000
+Scott Tolinski: Hey, I'm doing good. We should notice we have tons of submissions in the potluck. So if your question has not been asked, and it's been a little while, maybe ask it again. If you thought it was a killer question, if you thought it was just Okay, go ahead and save us the trouble. But if you think you had a killer question that we've missed, go ahead and submit that thing. Again. We just looked at the list. And I was like counting how many I closed it now. But when I was counting how many I was brilliant impressed with just how many amazing questions. For those of you a little behind the scenes look, what we do is we have this giant spreadsheet that they come in on and we mark whether or not the question is going to be appearing in the next episode, or in the next potluck that we're going to be doing. Yeah. And Wes and I are so much on the same page. It's ridiculous because I picked a question. And Western market is being on the show. So then I like started to get into the question. I was typing it in here. And I was like, Oh, no, wait, what's already picked this one? It's already been. So it's like, out of the thousands of questions that are in here. We somehow pick the exact same question just out of the blue. And it just happened to be what the only one that didn't get marked as being coming. So either way. I think these episodes are so much fun, man. I love doing these things. So
+
+10
+00:02:18,149 --> 00:02:19,979
+Wes Bos: yeah, yeah, that's it. I'm
+
+11
+00:02:19,979 --> 00:02:39,750
+Scott Tolinski: on a 13 inch MacBook Pro from a long time ago. My current one is going by I am currently awaiting the arrival of my new Linux PC. laptop. It's on a PC laptop, Linux laptop. And yeah, man. So hopefully this episode goes okay, but I'm ready. Wow, that's
+
+12
+00:02:39,750 --> 00:03:08,280
+Wes Bos: exciting. So today, we are sponsored by two awesome companies. First one is Log Rocket, which is you're logging in session replay for your JavaScript applications, and Prismic, which is a headless CMS with the rest and graph qL API. I actually played around with Prismic quite a bit over the last week or so. And I've got some kind of cool stuff that to tell you about it. We'll talk about those partway through the episode. But let's get on into it. You want to grab the first question there? Yes, I
+
+13
+00:03:08,280 --> 00:03:56,580
+Scott Tolinski: do. Okay, first question is from mirissa. Do you think selenium, selenium? I don't I've never really said that out loud to selenium, selenium could get replaced by Cyprus in the future. All right. Selenium is a platform for end to end testing as well as Cyprus. So do you think Selenium will be replaced by? Yeah, I guess it depends on who is using it. But in my personal experience, Cyprus has a much better developer experience than Selenium. And as far as being like, not even in the same universe, better developer experience. You know, there's always going to be tools like lower level, like the newbie, there's like puppeteer, that could be considered like another thing you can use for this, but I think even Cypress probably just uses puppeteer itself.
+
+14
+00:03:56,939 --> 00:03:58,560
+Wes Bos: Yeah, I would assume they would.
+
+15
+00:03:58,919 --> 00:04:50,510
+Scott Tolinski: Yeah, I think they do. And I think that's why it took them a long time to get Cypress working on Firefox, which it does. Now, if that was a reason why you weren't using Cypress, it does work with edge and Firefox now. So it can test all that stuff. But either way, I really, really love Cypress. It's this visual interface. You get to code your tests. In a very jQuery likes fashion, hey, find this thing, click this thing, do this thing. And then when you save it, you can watch your test run visually in a visual browser and see all the outputs and step back through each step of the tests. I really like Cypress, there's definitely some annoying things occasionally with it, where tests pass one time and don't pass another time or, you know, you got to kind of definitely learn the Cypress way of doing things a little bit. But at the end of the day, I think Cypress is the best end to end testing suite by far.
+
+16
+00:04:50,849 --> 00:06:10,050
+Wes Bos: Yeah, we should also say like both of these products are sort of just ways to automate browsers so you you instead of like running like Like a jest test or something like that, where you expect a function to output, sick, like three plus three is equal to six or something like that, or even like a snapshot, or you expect a span to have the certain characters inside of it. These are much more where it literally fires up an actual browser. And using the JavaScript environment, you can click on things and sort of just like puppeteer, whatever the user is doing to interact with it. So these are pretty cool. They're becoming really popular because a lot of people rather test your application as close to the user. Plus, like all the stuff Scott just said about being able to like visually see what's happening in each of your tests. So it's pretty cool. I've only used Selenium like, maybe four years ago. And at that time, it was slow. And the API was clunky to work with. It was really frustrating to run the tests because it had to boot it up. And now that we have headless Chrome, and tools like Cypress assuming built on top of that, it's getting much easier to work with. So I think it probably will. But I haven't haven't touched Selenium in a couple of years to I don't know where it's at right now. Yeah,
+
+17
+00:06:10,050 --> 00:06:14,490
+Scott Tolinski: that's where I'm at right now. And Cypress is just so good. I have no reason to pick up anything else.
+
+18
+00:06:14,970 --> 00:08:44,700
+Wes Bos: All right. Next question we have here is from Leo. When blogging about code, you need a way to display snippets of code in your blog post, what are good ways to do that embedding something like a GitHub Gist, or setting something specific up for your blog? That's a great question. So I just did this myself. And I had previously used a bevy of random WordPress plugins to sort of do it. So when I was building my site, I switched over, and I sort of looked at what the possible options are out there. One option is just put it in a GitHub just but I think, if that's the case, you have to use an iframe to embed it. And I didn't wanted all of the code to be editable on my own blog, because like, already, I've gotten tons of tiny little pull requests that clarify and fix code snippets that are on my blog. And if that's a GitHub Gist, then you can't do that, right. So I wanted that was kind of out the window. And then I went for prism, which I was using on my WordPress blog for a couple years. And I actually ported cobalt to prism, and it looked Okay, it works well. It's pretty lightweight. But it never gave me the syntax highlighting that was like the same as vs. code. So I thought, okay, that'll be okay. And then I went over to this thing called Shiki, which, you know, polar code, there's the VS code extension that will create PNG. Anytime you see somebody tweet a code snippet of like some code, and it's like in a PNG, and it looks kind of cool. Sometimes that's generated often that's generated by a VS code plugin called polar code. And the developer behind that has another project called Shiki, which takes VS code, highlighting files and will take your VS code theme. And that will just output it right into HTML and CSS, which in it works amazingly well, like it looks exactly like VS code. So that is pretty awesome. So I tried to get that going. And there is a Gatsby plugin for that. But I just couldn't get it working. And then someone said, like, why don't you just use there's a plugin called Gatsby remark vs. Code. Hmm. And I just like put my VS code theme from my VS code like cobalt to, I just put it in there. And then it just worked amazingly well. Wow. And I have operator mano, which is my font are already on the website. So I couldn't believe how nice this looked. I didn't have to do anything for special like JavaScript or anything like that. And it just worked. right out of the box.
+
+19
+00:08:44,730 --> 00:08:46,770
+Scott Tolinski: Does this use like Monaco or something?
+
+20
+00:08:47,029 --> 00:08:50,730
+Wes Bos: No. I'm trying to wonder what does it use? Yeah, I'm
+
+21
+00:08:50,730 --> 00:09:04,669
+Scott Tolinski: gonna pop this open under the hood. Gatsby site is not low. Yeah, me right. Now. Let's pop this open. Let's check this out. I'm interested in this because I am currently using prism and I still love it. You know, it's, it's okay. But I don't love it.
+
+22
+00:09:05,149 --> 00:09:20,730
+Wes Bos: There was highlight j. s and prism for a long time. And that was amazing that you could do that. But now that these editors are built in HTML and CSS, there's no reason why we can't have the same highlighting that we have in VS code in the browser, because they're literally built on browser technologies.
+
+23
+00:09:20,880 --> 00:09:34,710
+Scott Tolinski: Right? It's fun I do on whenever I do conference talks, and I need code within them. I use just code sandbox. Obviously, I don't want to rely on that. I think you know, like for the same reasons you had with the, the Just let me see what this uses.
+
+24
+00:09:34,980 --> 00:10:30,840
+Wes Bos: I'm looking at the dependencies under the hood here. And like so what happens is I use markdown, which uses remark under the hood. And I think that those parse it into the classes and everything. So I think that that does a good job already of wrapping spans around every single character like semicolons and quotes and stuff like that. That's how these these syntax has His work is that they, they parse the text and then wrap everything in a span and give it a class of variable or definition or function or method or something like that. And then your syntax highlighter will say like functions are red and brackets are blue and things like that. So I think what this plugin does, it parses your VS code theme, and then translates that into CSS classes that can then be applied. I think I didn't even look into it too deep, but it worked super well. Interesting. It's
+
+25
+00:10:30,840 --> 00:10:38,640
+Scott Tolinski: all very interesting. I am not using Gatsby on my site. So I'll be interested in tearing this apart a little bit and see what they're doing here.
+
+26
+00:10:39,149 --> 00:10:57,840
+Wes Bos: Oh, here we go. It's using VS code dash textmate under the hood, which is a library that helps tokenized text using textmate grammars. Okay, so I was wrong there. vias code. textmate is the one that takes in a string, and then outputs textmate grammars, which is spans and everything like that.
+
+27
+00:10:58,020 --> 00:12:34,950
+Scott Tolinski: Ah, fascinating. Cool, I gotta dive into this. I've always find this to be a giant pain in the rear To be honest, dealing with code in the US the spans and all the classes and you know, the classes and the things. I just don't like that much. Okay, so next question here from code finity. Do my students need need need is all capitalized here to understand recursion to be effective j. s. devs? Do students need to understand recursion to be effective? j s. devs. In my opinion, I just about never use recursion in my day to day work. Not to say that I never do. But I just about never do. There are certainly times where I've been coding on maybe something even look server side to do some sort of operation. I think you know what? Surprisingly, recursion seems like the best option here. And let me do this. And then I get it working and whatever. So do your students need to understand recursion? Yes, absolutely. I think they need to understand recursion. Do you need to be a master of recursion? I don't think so. I I don't use it that much. And it depends on what you're doing, obviously. But in most like real world application, especially if you're a front end Dev, I don't use it in front end Dev. It's usually back end def when I'm using it, it doesn't. I don't think that really matters. But at the end of the day, I think you should have your students learn what recursion is learn how to use it, and learn when it makes sense to use. But I don't think they need to be, you know, recursion sensei at the end of this.
+
+28
+00:12:35,340 --> 00:13:06,210
+Wes Bos: No, I have recursion in both of my beginner JavaScript, JavaScript 30. And I intentionally didn't just create a video that makes you sit down and learn what recursion is because it doesn't make a whole lot of sense as to like why you might want to do that. And I intentionally waited for a few different situations where a problem popped up. And the solution was recursion. And then we said, okay, because, like for me, I remember like, it's a scary word you sort of look at it like, and I
+
+29
+00:13:06,360 --> 00:13:09,899
+Scott Tolinski: do want to give a quick one on one, like a very quick 101.
+
+30
+00:13:10,529 --> 00:14:12,000
+Wes Bos: Yeah, I always say recursion is a snake eating its own tail. Meaning that it's a function that calls itself indefinitely until you have what's called an exit condition. Meaning that like, you might have a function that looks to check if a letter is a specific letter. And if that's not it, then it would just run again on the next letter, and then you so basically, the function calls itself from within it, but then you pass it maybe the next letter in a string, or you can use it with anything, really. So I think your students should know about recursion and maybe the problems that it would solve. And then when they hit an issue where recursion does get introduced, or recursion, is it they're going to go? Oh, yeah. And that's why they've been talking about recursion. This is the problem that it solves. So absolutely. They're in some cases, like Scott said, like, people don't use recursion all that often. They rather just use a, like a while loop or something, right? Just runs until you have an exit condition.
+
+31
+00:14:12,210 --> 00:14:46,590
+Scott Tolinski: Yeah, there's so many instances where it's like, there's multiple solutions to this problem. And you could do some sort of a loop or you could do some sort of recursion. And most of the time, I think a loop is going to be easier for a lot of devs to parse, or recursion might be a Yeah, well, I don't want to say simpler, but a smaller solution, code wise or something. So definitely something to think about. And definitely something to practice, but maybe not something to really, really concern yourself with, like really beating yourself up over not knowing the most optimal way of doing things every time.
+
+32
+00:14:46,830 --> 00:17:30,030
+Wes Bos: Yeah, another classic. I just thought of another good example, if you're doing like a rock, paper, scissors, sometimes what will happen is that you'll need to run the game. So you might have a function called play game and at the very bottom of that function, You'll want to like, let's say you're doing a best of three. And if that's the case, then you got to check does somebody have or maybe best five, and in order for someone to win, they must have three wins, right? So at the very bottom of that play game function, you'll say, if somebody doesn't have at least three wins, then play game. So that's the play game function is calling itself. And then it just starts over again. And then it runs again and again. And again. Eventually, your if statement at the bottom of that function, will say somebody did win. And if that's the case, that's called your exit condition, and then that function will no longer run. Yeah, work. Cool. Um, what do we got next here? Question from Renan. Hello, guys. What do you think about developing just using an iPad, plus keyboard plus external monitor to try this? I just moved my environment to a VM on a cloud, and configured code server VS code accessible by the web? Oh, that's cool. It works pretty well. The only problem is now is that I have an iPad as bad resolution for external monitor. When I'm using the browser, this is a really cool question, because it's kind of one thing that I see happening a lot, both in, like, kids growing up right now, but also just in my friends in general, that are not tech savvy, like me is that nobody's using a actual computer anymore? Hmm. And what does that mean for us? like dinosaurs that are still sitting down and building the things that are on computers? Like, is that gap becoming larger now where someone can't learn to code just because they don't have like a proper computer that they can sit down to? They should be able to just like code on an iPad, right? So the solution is, yeah, like, you can't run Gulp, or Webpack, or whatever, on an iPad, but you can run it on a server, which then is piped into your iPad, which is kind of cool. So I think that it would work pretty well. I've never done it myself. My only frustration with an iPad is the like, multitasking. I know it's getting better. And Apple's that kind of rolling out these things where it's like, it's your only computer. But like, I still get really frustrated trying to do stuff really quickly on an iPad, where I think like, oh, man, I could just fly if I was doing this on my computer. And it's to a point where if I have to do anything half serious, even what if I have to buy something online? I just put it down and I go get my computer? Because I feel like I'm so much more productive on that. But do you think
+
+33
+00:17:30,510 --> 00:20:21,350
+Scott Tolinski: this question is near and dear to my heart? Because I've been thinking about this a lot, specifically, because I was looking for some sort of backup solution, right? For those of you who've been listening to this show for any bit of time. No, apparently my hardware breaks all the time. And it might just be because ports. Yeah, I don't even know like the issues that I'm having to send my computer in right now for our issues that it came with, like the left speaker has been buzzing since I bought the computer. And it's had light leak on the monitor since I bought the computer day one turned on this $5,000 computer and had light leak on it. So I've been needing a backup machine for this. And I've decided that to really prevent this machine from breaking any further, I'm just basically going to leave it on my desk all the time and use it as a you know, production machine only exclusively right. And so I wanted to get a backup somewhere I could code, coffee shops and things and I started looking into what it would take for that to be an iPad Pro. Because I like the new keyboard. Courtney's has an iPad Pro, and it's really, really nice. I really like it. And I was just thinking, hey, maybe that's a possibility to get an iPad Pro could take this with me, it could be like a travel or around the house coding machine. And then I began to look into it and adjust. Honestly, it seemed like too much work. It seemed like there was too many things that I would have to jump through too many hoops to get it to be super effective. And I ended up getting a Linux laptop instead from system 76. which apparently this thing has a 21 hour battery life. So I'm pretty psyched about that. But at the end of the day, I found this to be something that is not super great right now, but could be good. I think this code server thing is a good idea for a way to run a development environment. I think it's an interesting idea. I really don't know if I want to have all my stuff running on the cloud all the time. I would really prefer to have it all running locally. You know, if you're an environment with bad internet, like you know, coffee shops, typically my local coffee shop, terrible internet some of the worst ever. So I don't know if I would really love to rely on that unless I had like a 5g connection everywhere or like a guaranteed internet connection. I think those are my biggest concerns about that is the fact that you're not able to code if you don't have a connection to the Internet somewhere. So just things to consider here. I don't know if I would do it but if you've got cash to spend Maybe try it and see if it works, you know? Or, or maybe if you have one sitting around like I have an iPad sitting around. And maybe I could get this set up and working and have some sort of a cloud environment on it, just get a little Bluetooth keyboard board or something and see if that works before making an investment into something more substantial.
+
+34
+00:20:21,800 --> 00:20:53,880
+Wes Bos: Yeah, I bet that in the next three years that this will be much different. Totally, yeah. Because like, so you look at something like code sandbox or code server, and it is doable via the browser. The cool thing about this code server is that you can own it like you can actually host it yourself. And that would be huge for companies, because they don't seriously don't want to put their code base through maybe code sandbox where you have to store your code on somebody else's server, that's certainly a good option. I just don't know if it's totally there yet. I know
+
+35
+00:20:53,880 --> 00:21:05,010
+Scott Tolinski: as much as I love code, sandbox two, I have run into issues where my tests were failing on code sandbox, because of code sandbox, and not because of my test, you know, in like, how much do you want to deal with that?
+
+36
+00:21:05,360 --> 00:21:36,690
+Wes Bos: Yeah, I, we should, like revisit this in one year, because I bet this will change. And I will totally just because I want this coding to be available to anyone. And it would be really cool. I've gotten messages from people and asked if they can take my courses on an iPad, and you can with something that code pen or especially like, even like my JavaScript 30, you can do all of that in a code pen. No problem, you got your library refresher, but right below you, it's awesome. But as soon as you get into like more like serious work, I would think it gets a little bit harder.
+
+37
+00:21:36,830 --> 00:23:20,910
+Scott Tolinski: It does. I'm a huge fan of code sandbox. I think it's fantastic. I use it all the time. But I don't know if I would love to work on it. 24 seven, at the moment that is, but if you are working on a project 24 seven, and you want to make sure that there are no bugs in it, you're going to want to use a service like Log Rocket, and Log Rocket will blast you off into the galaxy, or at least the solar system, local solar system, you know, further into the galaxy might be a little bit more difficult. But you'll want to head to Log rocket.com forward slash syntax, check this out, you're gonna get 14 days for free. Now, what is Log Rocket? Well, Log Rocket is the perfect way to visually see why your errors are happening. Did your user somehow spawn a Tyrannosaurus Rex just walking across your How did they do that? Well, you can find out how they did that. Without having to guess because you're going to get a pixel replay video of what happened that scrubbable you're going to get the network requests, you're going to get the error logs, you're going to get your Redux store, and you're going to be able to visually see what happened. So check it out at Log rocket.com forward slash index. All right, next question from El local Toro boss. Hey, that's a good name you got there. El Toro El Loco Toro boss. Hi, guys, a react workflow question. I often find myself refactoring sub components out of a component once it gets too big. This, however, is very tedious work, especially if the sub component is tightly coupled with the component and thus needs to take a lot of props. Do you have any suggestions? Do you just let the component grow? No, I do not. I am a big proponent of really taking things out when you start to feel that feeling.
+
+38
+00:23:21,180 --> 00:23:22,740
+Wes Bos: You're a component proponent?
+
+39
+00:23:23,130 --> 00:24:17,610
+Scott Tolinski: Yes. Yes, I'm a component proponent. You are absolutely correct. But I think this a listener like perfectly encapsulated that feeling that you get when you're coding and you're like, Huh, this thing is starting to feel like this should be its own thing. And the moment I get that feeling, make it its own thing, because it's only gonna get harder. Do it. Do it, do it. You know what? There's some VS code tools and extensions. I'm on my 13 inch, so I can't check out exactly what they are right now. I don't have them installed. Do you use any of these extra things west to refactor react components within vs. code? I know, there are some extensions that are built to do exactly this. I know some people have showed me something where you select your HTML, your JSX. Yeah. And then you would essentially right click it and say, I know VS code has like a, there's something in VS code where you can, you know, move it to its own file or something immediately. Oh, that's cool. Yeah.
+
+40
+00:24:18,090 --> 00:24:25,470
+Wes Bos: I only use one for generating prop types automatically. And even then I don't I don't use that all that often. Hmm, I know,
+
+41
+00:24:25,470 --> 00:25:10,620
+Scott Tolinski: it's built into VS code to move to its own file. There's an extension called j s refactor. And if you have this installed, you can do extract to function, extract to function convert to whatever, but you can extract things to their own function. It's not perfect. Oh, cool. I think there has to be a react version of something like this. I'm sorry, I don't have my my real setup here. So it's a little tricky for me to to explain this properly, but there has to be something that's like select this and then turn into a JSX component or functional component. If you have An extension like this that you use for refactoring, please let me know. But my suggestion for this a local Torah boss is to just do it, do it early and just bite the bullet make it happen.
+
+42
+00:25:10,920 --> 00:26:27,990
+Wes Bos: Yeah, early is the key there, because you said it's very tedious work moving out. And that's probably a sign that you did it too late. Because the whole idea behind these components is that it should be nice and snappy and things like that. And if you find, like, oh, there's so much to move over, that thing probably got too big in the first place, taking lots and lots of props. So like, if you find like, I have to pass down seven or eight things to this component. If that's the case, you can spread an object full of props. So if you've got like an ID, Prop, and a person prop and an age Prop, and you've got like six or seven different things, you can stick all those props into one object, or each of the props is a property on that object, and just spread the entire object, which it looks like you open angle bracket, you type the name of your component, curly brackets, and then you do dot, dot, dot and the object that you'd like to spread in and that will take every property of that object and pass it in as its individual prop. Yeah. Next question from Pat Clark insert hoser related greeting here a fellow hoser among us must be a Canadian, or at least for Michigan has a hockey fan. I don't want to actually don't want to love Pat's spot. I know where Pat lips but
+
+43
+00:26:28,020 --> 00:26:40,110
+Scott Tolinski: not like, I don't know where his house is. But I know his his general awareness. Oh, yeah. Sorry, Pat. I don't actually know where you live. He's a member of the chat room. But he's a hockey fan. He's got a hockey podcast. Pat's a cool guy.
+
+44
+00:26:40,440 --> 00:26:43,110
+Wes Bos: Is he a Canadian? American? That's a great question.
+
+45
+00:26:43,290 --> 00:26:55,170
+Scott Tolinski: I don't know his origins. I don't know why he lives. Yeah, but I don't know his origins. Okay. I don't know where Pat come from. I you know, he is a hockey fan. So you know, maybe just to Canadian by proxy, I
+
+46
+00:26:55,170 --> 00:29:59,250
+Wes Bos: don't know. Makes sense. Anyways, he's a fellow hoser during quarantine have tried to come up with an outline for creating a goofy Pokemon app with my boys, age eight, and five. They're obsessed with Pokemon right now. I figured this will be a fun little group activity. I see they are struggling with focusing on the online instruction. So that that's like a kind of a big thing right now, is this online teaching that everyone is doing? Oh, yeah, starting to crack at the seams with all these kids that are a couple months in even even my own kids. I know. And they're a bit fatigued with learning right now we've tried doing a bit of scratch scratch, Jr, which is sort of a GUI based programming environment. But there was I figured a fun theme project will help them stay engaged learning, but I'm struggling of where to start. How would you go about creating course slash activities like West's JavaScript 30 core specifically designed for primary slash elementary age kids? I think this is such a cool question. Because it would be so neat to make some sort, of course or something out there, where you actually are building something that helps these kids learn to code. So my answer to this is similar to my thoughts of teaching adults, and it sounds like you're on on the right track, you have to have small wins with these exercises. So don't go out to make this massive Pokemon application. Because that's way too large, it might not ever get finished. And if the kids don't see any successes really quickly, then they will get fatigued and be sick of it. And that's the reason why am I JavaScript 30 course, the very first exercise is a drum kit, because you start the course and within like 10 minutes or so you've built this thing where you can hit the keys and it starts playing a drum based on what key you hit. And people send me videos all the time of their kids just immediately come over and go, Oh, what are you doing over there, or I want to build something like that. So these like small wins, small projects were things that are both, they're fun to do. But you're also learning it at the same time is key. And then also like open ended as well, if there's one thing I've learned with my kids, if you give them like something to start with, so we have just big bin of wood at our house, and my kids always take the wood out and start playing with it. And I gave my kid just a couple screws and the screwdriver. And surprisingly, they're able to crank them into the woods. Yeah, nice. And you just leave them for however long they need. And if you leave it open ended or you give them something to start with, like a simple drum kit, then people's mind starts going like, Oh, I bet I could change this into X, Y or Z like people that send me screenshots of what they've built in my courses. It never looks like what I've built and it never does what I've done, and it's because they did the thing, let's say cool whilst I did what you did. But here's what I'm really excited about. And I changed it to being a guitar or piano or something else like that. So being able to give them enough that it will spark some idea in their head and they'll be able to take it and run with it from there. I think those are key.
+
+47
+00:29:59,430 --> 00:32:11,610
+Scott Tolinski: I think those are Totally key in. One thing I would want to add on because I thought you killed this question here. But you did a great job on this one. I know that there's the graph qL Pokemon polka dex thing? And no, I don't know how much pat you work with graph QL. But it's really fun to quickly fire up that graphical and see that you can like search for anything. And maybe that might be like, I mean, I really don't know, the capacity here. But that might be, you know, at some place interesting to look specifically Pokemon related. There's an Open Graph qL polka decks API that people use for teaching graph QL. So if you are interested in checking out that that might be something to look at as well there. But I don't have a ton of good advice here. I think Wes killed this one. My my kids are still too young to concentrate on any of this stuff. So it's hard for me to have any plan around here just yet. So next question is from Cheyenne. How much should someone who wants to work as a web developer starting as a junior position should know about data structures and algorithms? Should I practice algorithms? So basically, this question is this person is looking to become a junior web developer? Okay. Web Developer? No, no, mention a front end or back end. But how much should they worry about data structure and algorithms? Well, it really depends on what kind of work you want to do. If you're building front end interfaces, you're doing CSS and JavaScript and building clicky. things that make things happen when you click them. I would not focus a ton of time on this, because that's going to be wasted time. I don't use the that stuff in my day to day, absolutely not. However, if you are interested in becoming a better programmer, overall, yeah, you should maybe learn this stuff, and maybe even learning it as a hobby as the way to go. Or maybe learning it a little bit less like rigorously, with little bit less intention behind it. But as a front end developer, you probably won't use algorithms in the way that they're used in actually computer science. But I don't know, it's probably good to have an awareness of them. But as a front end developer, I just don't use them, you know, very often and in like, any sort of scientific sense.
+
+48
+00:32:11,880 --> 00:32:43,800
+Wes Bos: Yeah. I'm so glad you said that. Because like, I probably like a couple times a week, I get an email from someone saying, hey, Wes, do you have a course on data structures and algorithms? And I'm like, not really no, like, actually not at all. And honestly, I've been a developer for like, 12 years. And the only time I've had to learn those things is when I was trying to go in for an interview at Google. And other than that, I never ever use those things. The joke I use is no just npm install it. But even then, like, I'm not doing tree sorts, or
+
+49
+00:32:43,800 --> 00:32:44,640
+Unknown: link
+
+50
+00:32:44,640 --> 00:33:33,960
+Wes Bos: Yes, or stack pops or any of this stuff in web development. And I don't think it's I think that their people are asking this question, because they see it in job postings, because like, oh, why else would they would they be asking? They're sort of just looking at job postings, and the job posting probably says, knowledge of data structures and algorithms. And I think that maybe that's just taken from some like stock web developer job posting. Because like, I don't know, I've been on the inside for a long time. And I've never come across the actual need to know these things. Certainly, you need to know how to maybe efficiently work with large sets of data and how to search through things quickly, and how under the hood, all of these things probably work. But quite honestly, if you're trying to build a web app or something like that, you don't need these things.
+
+51
+00:33:34,230 --> 00:33:53,070
+Scott Tolinski: Yeah, that's where I'm at. It depends on your career trajectory in where you see yourself. And if that career trajectory requires these things, otherwise, I don't know. Yeah, maybe it's not worth your time. And you're better off spending more time hacking together some front end stuff. It really depends on what your career trajectory is looking like.
+
+52
+00:33:53,520 --> 00:34:09,510
+Wes Bos: Next question we have here from Zack killer podcast, guys. I'm working with a friend to set up a YouTube channel and are getting into podcasts too. Not tech related. So no competition. No worries. Good. Scott, I actually take anybody out if they try to start a tech podcast. Yeah. Well, we
+
+53
+00:34:09,510 --> 00:34:16,050
+Scott Tolinski: don't talk about that. Wes. We don't talk about that. Okay. Oh, sorry. Yeah, that's probably after the show. That's the after show.
+
+54
+00:34:16,830 --> 00:34:36,750
+Wes Bos: Yeah, who is if anyone's trying to start anything like that we? We've got our ways. Don't worry about that. Don't worry about Anyways, I'm thinking about trying to host my own RSS feed. For podcasts to save some big bucks. Am I crazy? Thanks. This is a great question. I think so. Yes.
+
+55
+00:34:38,850 --> 00:34:41,210
+Scott Tolinski: Especially after being involved in this Yeah.
+
+56
+00:34:41,670 --> 00:36:13,920
+Wes Bos: Yeah. Like the RSS feed is so key to your podcast going out and I've seen lots of people who host their own and little stuff, your server goes down or something breaks and then the whole thing is broken. What you should do is when you start your and we did this for syntax, that Fully, when you start your podcast, make sure the RSS feed that you submit is on your own domain. So even though we use a service to host our podcast, the RSS feed is on V dot syntax calm and that way we own the domain name. And if we ever want to switch to another service are hosted ourselves, we absolutely can. I think this is like akin to, you know, people who use their email addresses at their ISP provider. Yes. You know, like, you talk to somebody that's super old, and they're like, Hi, please email me at like, around here. It's like that dotnet? No, no, not Hotmail. It's like, oh, Comcast. Yeah, it's like Comcast or spectrum. When you sign up, you get an email address, and they use that like, you're screwed, then like, if you ever stop paying that ISP for internet, then your email address has gone to that doesn't make a whole lot of crazy. Yeah. So that's my suggestion there. If you do want to host yourself maybe look for like a WordPress plugin. I think people use like blueberry or Blackberry, something like that. But it's not that expensive. And there's there's all kinds of podcast startups out there right now. I'm sure a lot of them have free plans, which would be more than enough for a podcast starting up.
+
+57
+00:36:14,420 --> 00:36:19,230
+Scott Tolinski: Yeah, I agree. 100%. With your answer here, I would not do that.
+
+58
+00:36:19,530 --> 00:36:23,100
+Wes Bos: I always say do it yourself on everything. Except for things like this.
+
+59
+00:36:23,130 --> 00:37:57,110
+Scott Tolinski: Yeah, there are definitely some things where you don't want to DIY it. Alright, next question is from Luke, Luke says, Do you guys name your colors in terms of the color, or the use of the color, for example, you say you styled all your links to be purple, would you name that color purple, or link? Here's what I do. I name one color purple, which is the purple. And then I named link, after the purple color, especially I use CSS custom properties. But I would do this with sass to where people like there was like a time where people are like, do not name your colors, use the action of the color, what the color doing is the primary whatever, like, there was such strong feelings about that. But in my mind, it makes more sense to name your colors like this is the site's purple, this is the site's black, this is the site's yellow, this is the site's blue, whatever. And then after that, take those colors and then reuse them to say this is the accent color. This is the card background. This is the header color, this is the text color. And then you can have that system and you have the best of both worlds. There's no reason not to do that. I do that myself personally. And it actually works really well with our seeming theming system within CSS custom properties. Because when I wanted to make our Wave Race 64 theme, I did not change the card background color. But I changed the blue color or I changed the purple color to be something else right? I changed the actual purple or whatever, to whatever the purple that was on the cover of wavery 64. So that is my suggestion there best of both worlds.
+
+60
+00:37:57,420 --> 00:38:17,900
+Wes Bos: Yeah, I agree with Scott, I do exactly the same thing. I'm usually just start with color names. And then things that are common enough. Like link, like, I'm not going to do like border color if I'm only using it once. But if I use that, like link six or seven different places, then I'll make its own variable. And yes, CSS custom properties make the stuff so simple.
+
+61
+00:38:18,380 --> 00:38:21,150
+Unknown: Also, I have a tip for making things simple,
+
+62
+00:38:21,210 --> 00:38:38,340
+Wes Bos: sort of along the same thing. People ask me why I do this all the time. But I always set gray on my route. And then I set gray with an A to B the other gray. Guys Canada. Canada smells it one way and I don't know which way it is. I always forget.
+
+63
+00:38:38,360 --> 00:38:51,240
+Scott Tolinski: I don't know either. In my latest course, I wrote gr e y. And then I had to like call out the fact I'm like, Listen, I don't know, which is the correct one. So you can name it with an A or an E it's 100%. Up to you. You know, it's so funny.
+
+64
+00:38:51,240 --> 00:39:02,610
+Wes Bos: I've no idea is popular in the US. I just looked at it. Okay, EG Why is reigned supreme in the UK, Ireland, Australia, and other places that use British English, which includes Canada.
+
+65
+00:39:02,610 --> 00:39:04,860
+Unknown: Fun. Ah,
+
+66
+00:39:04,920 --> 00:39:07,590
+Wes Bos: the states gives everything up inches.
+
+67
+00:39:07,650 --> 00:39:14,250
+Scott Tolinski: I'm sorry. Yeah, I'm gonna apologize on behalf of the founding fathers for not using metric.
+
+68
+00:39:15,630 --> 00:40:53,580
+Wes Bos: metric gray. All right, let's talk about one of our sponsors. And that is Prismic. Prismic is a headless CMS with a graph qL and a REST API in it. I actually went ahead and built a little app in it the other day, just to try it out into to get a feel for it. And it's really neat. There's a couple things that I really like about it that I'm going to point out is first there's no code needed to get this API up and running. So you literally sign in, use the entire interface for creating all of your content types. You can create repeaters, which in turn will have sub content types inside of it. So like if you have like a store content type and then inside that store, you might have like images that would be repeater because you want to have an image and maybe some text that goes along with each of those. And you can relate things to each other, which is pretty nifty. They've got like 10 or 15 different types of input fields that have different UI, and then use hook that thing up to whatever front end you're using. They've got a really nice Gatsby plugin that you can just pop in, it grabs all your content on, you can make pages you can query this stuff as you need, which is pretty nifty. And the other thing I wanted to talk about is that they have image x, I am GIX built right into their images. So if you want to do things, we've talked about cloudinary, a lot very similar to that if you want to crop something, or resize something, or change the format, something like that, that comes with all of your Prismic image uploads, which is pretty nifty. So check it out. prismic.io forward slash syntax. Thanks so much to Prismic for sponsoring,
+
+69
+00:40:54,360 --> 00:40:56,250
+Scott Tolinski: nifty, super nifty,
+
+70
+00:40:56,250 --> 00:40:57,480
+Wes Bos: very nifty, super
+
+71
+00:40:57,480 --> 00:42:35,310
+Scott Tolinski: duper nifty. Next question is from Jean Henson, here? Hey, guys, I'm listening to you for about a month and I really dig it. I'm working on an app that will require a couple of different databases, I need a database for user information. And the larger database for application data. The app does some analytic stuff. So data is critical. I'm getting lost in the world of hosted database options and lab digitalocean, etc. Big cloud providers, AWS, Google, etc. Could you guys talk a little bit about how you choose database hosting? bonus question. Have you ever used auth 00 Cotta for user authentication? I have used auth. Zero. It's nice. I have not used ocata. I have not heard of Okada. Sounds like a cool name. Well, yeah. Cool name. Yeah. Whoo. This is a difficult question. Because I'm not a database, bro. And I don't want to give bad advice here for working with a database. If you are concerned about data, critical uptime, I think AWS in there. Likewise, their services, you know, the AWS services, the ATM machines, they are probably one of the better routes you can go considering who's hosting on there and what they're hosting on and how many people are using it? How much content tutorials are on there. I'm curious about like the authentication and the data stuff. I keep all of that in the same database myself. I don't know it. I'm sure you do, too, Wes. But I don't know what your thoughts on Yeah, that they're I don't necessarily want to give you bad advice gene. So I would probably if I were you go to AWS. But that's not like maybe the most informed opinion, I think.
+
+72
+00:42:35,420 --> 00:44:22,320
+Wes Bos: Yeah, so the difference between these things is like m lab. What's the other one? Atlas? Yeah, MongoDB, Atlas, digitalocean. All of these things. digitalocean probably doesn't fit into this thing. But the way that it works is that they are services that provide you generally a layer of accessibility and ease and migration and backups. And they provide a whole bunch of like handy things on top of it. And sometimes when you use these services, they literally ask you, where do you want to host the database? Right? So I think my database is actually hosted on Amazon minus as well. Yeah. But I don't care about that, because I'm just using em lab or Atlas. So there's, do you want service plus actual raw infrastructure? Or are you smart enough to just do it yourself? And then go ahead and host it. It's the same thing with with hosting a website, like, do you want to go with Netlify? Or sites? Or what they called virtue? vertue bare cell virtues now vs owl? Or do you want to go with one of these things where they're certainly more expensive, but they're way easier? Or are you just going to go host the thing yourself, and scale the servers yourself and be able to do all of those things yourself. So in my case, I would say just go with M lab or MongoDB, Atlas, or whatever, go with, like a setup for you solution, until it starts getting too expensive, that you're scaling so huge, that it's costing literally hundreds, maybe thousands of dollars a month to host this database. And then when that's the case, they say, okay, what's it gonna take for us to move this over to another provider? That's more raw infrastructure? AWS, Google, things like that. And if that's the case, that's kind of where I would go, unless you love doing the stuff yourself.
+
+73
+00:44:22,740 --> 00:44:23,310
+Unknown: Agreed.
+
+74
+00:44:23,400 --> 00:44:28,860
+Wes Bos: Have I ever used off o or o Cotta? I've used I always say auto. It's off to zero. I
+
+75
+00:44:28,860 --> 00:44:30,270
+Scott Tolinski: see. I see. Zero. Yeah,
+
+76
+00:44:30,960 --> 00:45:07,620
+Wes Bos: I say everything wrong. So just whatever I say it's probably wrong. Yeah, I've used up zero a couple times. It's pretty cool. But in in all of my courses, I have just coded the off ourselves except for the Firebase Auth. One that we didn't react for beginners, just because like, I still found it a little bit confusing, especially the new rules around cross domain cookies is really annoying. And then the whole signup flow or it kicks you off. The website you got to come back is kind of frustrating when if you could just leave the user on the same page, I find that a little bit nicer
+
+77
+00:45:07,950 --> 00:45:08,490
+Unknown: word.
+
+78
+00:45:09,270 --> 00:46:57,270
+Wes Bos: Next question we have here is from Beatrix gloria de, Hi, I'm confused about using GitHub, what happens to the files that are ignored. So in your in your Git repo, you can have a git ignore file. And that will allow you to list folders and files that you do not wish to be part of your Git repo. So what happens is the files that are ignored, but are required for development, what's the best practice to backup both I've used in V files, but not sure how it works, if it's in a dot Git ignore, and the site is deployed via GitHub or Netlify. Right now, I have a backup folder on my hard drive. And I backup both the dev in the live versions with the timestamp and whenever I do a new release. And then there's another question here. I'll leave that for just a second. This is a good question. Because there are certain files that you should not commit to your Git repo, most likely they're going to be in V files. And DMV is just a way to put secret information, things like API tokens and passwords and login usernames, things that shouldn't be part of your Git repo. But they do have to be on the server. So the process for that is generally you have to log into your production server, or log into, like I know, Netlify has a UI where you can input these environmental variables just into the UI, they give you a text boxes for that. So that's the process but backing them up. That's a good question as well. I don't think that I back them up, except for the fact that I use like a time machine to backup my entire computer and they'll be on there. So I don't have anything else past that. Because I know that these things if I really did totally, absolutely lose them, which has never happened to me. You can just log in and reset your API tokens and just get new ones. Yeah, I'm
+
+79
+00:46:57,270 --> 00:47:13,050
+Scott Tolinski: with ya. It sounds like Beatrix, has it figured out in terms of like, back II know, having a backup folder with versions and a timestamp. That's way more than I do. And that's probably a better solution than what I would suggest anyway. So I think you got to figure it out, Patrick.
+
+80
+00:47:13,050 --> 00:47:14,130
+Wes Bos: So thanks for teaching us
+
+81
+00:47:14,160 --> 00:47:17,370
+Scott Tolinski: Yeah, right, exactly. I'm about to go make a timestamp thing.
+
+82
+00:47:18,480 --> 00:47:32,280
+Wes Bos: That's good. We had one more little addition to this thing. You spoke about jetpack. I'll look into that. But I'd be curious about what is the best and how to do this with a cron job. For example, what is jetpack? And no, not the WordPress plugin?
+
+83
+00:47:32,280 --> 00:47:37,740
+Scott Tolinski: Yeah, I've heard jetpack used in different contexts, including WordPress. Oh,
+
+84
+00:47:37,800 --> 00:48:43,200
+Wes Bos: I think I know what they're talking about. So I use jetpack to like backup my wife's WordPress website. Oh, gotcha. And that's great. Because you can always you can log into jetpack and rollback an entire version of your website, which is really cool. It could take like 10 backups a day. So I don't think that WordPress is a little bit different, because almost always, a WordPress plugin will store your tokens and keys in the MySQL database instead of an environmental variable. So if it's an environmental variable, jetpack won't grab that either. How would you do it for a cron job you could this is actually maybe not a bad idea is you can code up a little JavaScript file or a bash file or something that simply copies those files and timestamps them and then dumps them into the folder that you're talking about. And then set that up to be a get pre commit hook. And a get pre commit hook will just run whenever you make a commit or whenever a pre push hook. And before you push it will take a copy and put them in your folder like that. And that will be automatic. I like that. That's a good idea.
+
+85
+00:48:43,410 --> 00:48:57,870
+Scott Tolinski: Beatrix, you got the ideas. Love it. Yeah, these are all great ideas. I'm gonna try to implement something like this. Alright, next question is from Sam and Sam gets this a little Pronunciation Guide. He says it rhymes with ham. So thank you, Sam, I would not have figured that out. It wasn't for you.
+
+86
+00:48:58,230 --> 00:49:16,020
+Wes Bos: Actually, in Canada, in the West Coast, or in the mid coast, I guess was the schedule and they say, in Alberta, they say som and they say hom o sound if you have some job on your beigel. So yeah, I don't know Psalms. Um, hey, Sam.
+
+87
+00:49:16,020 --> 00:51:44,820
+Scott Tolinski: I was laid off early in April because of COVID. I'm sorry to hear that. And I'm sorry that we just have your name after reading this. I have been trying to file for unemployment since then. The state unemployment office said that they were launching an update website for filing claims. On a specific date, they ran a banner saying that demand has been so high. It's affecting the process despite rigorous testing. Why is it so hard to scale? And the answer to this question is because people don't really care about scaling until they need to is this is the real answer to this. And it's not because that's the right thing. It's because that's the real thing, right? Everybody has deadlines and whatever. And if you tell your boss Hey, I need months to work on this. To make sure that it works when 10,000 people are doing this at the same time or whatever, they're probably not going to grant you that time. If the project doesn't allow it, that's really just the cold, hard reality of it. And me personally, if all the sudden level up tutorials became an international phenomenon, I think I wouldn't be screwed, because I don't think it will. But it is not something that I'm preparing for. And I probably should now there are different ways to scale in different ways to test this. So what you are looking for, in one of these things is stress testing and stress testing is difficult to do. It's not exactly easily accomplished, but you need to be able to figure out a way to essentially hit your website, your server, your database, any of these vectors that exist, right, you need to hit them repeatedly. And often. And I you know, I think we, we've both learned a little bit about some of the stress testing that can happen in terms of like, security wise, in terms of things like, yeah, app shows, and whatever. And, you know, CloudFlare has some really great DDoS protection for those types of things. But this isn't even like, this isn't a DDoS it's, like sort of an unintentional DDoS. Yeah, it's just lots of people using it. Right. Their system wasn't built to accommodate that. I think that a lot of it really comes down to a lack of planning on the development side of things that people didn't plan for this particular situation, right, which, obviously, I think this global pandemic is going to change people's viewpoints on a lot of things and how they plan for various things. I think just the fact that entire world can shut down for you know, certain amounts of time should make people open their eyes a little bit to some things that they need to take better stock of.
+
+88
+00:51:45,120 --> 00:51:49,500
+Wes Bos: Yeah, even in Canada, we have this like, weird store called Canadian Tire.
+
+89
+00:51:49,620 --> 00:51:50,880
+Scott Tolinski: I know Canadian Tire. Yeah,
+
+90
+00:51:50,940 --> 00:51:59,130
+Wes Bos: yeah, they were down for, like, their website literally said, please come after 5pm when it's less busy. And I'm just like,
+
+91
+00:51:59,400 --> 00:52:00,540
+Scott Tolinski: this is a website. First of all, it
+
+92
+00:52:00,540 --> 00:55:11,280
+Wes Bos: sucks to be yes. Sucks to be the the developers behind that trying to fix that, because they're getting slimani slammed right now. But also, like, I'm just thinking the same thing, like, what's the problem here, and like, I kind of know what the problem is, is that like, these are websites that have been built on for 10, maybe even longer, like, I know, the unemployment in New Jersey was built on COBOL. And these are not websites that you can just quickly spin up another box, and everything will work just well, because they're much more brittle than that. So there's two ways you can sort of scale up a website. The first one is, you can increase the resources on your server. So more RAM, more CPU space, more harddrive space, and there's a limit to how much RAM you can stick in the server until you get diminishing returns, or just you could literally can't put any more sticks of RAM in it. The other way to scale up is to load balance that meaning that you have multiple servers and every single request that comes in, gets a load balancer takes in that request and decides which line in the grocery store that that request gets to go to. And in order to load balance an application. There's things that need to be shared amongst all of the applications like I can load balance my application, no problem, because let me tell you the things that need to happen, your application needs to share data from server to server. So generally, you need things you need your database to talk to, obviously, both of those database has to be connected to both servers. And if there's data that like needs to go from one server to another, then that has to be saved in the database. And a lot of applications will store things like login sessions, temporary variables, file uploads, things like that will often be stored in memory. And things that are stored in memory don't get shared from server to server. So that needs to be thrown into a database. Something like Redis is really popular in that regard. So if you build it's very popular in the last couple years to build stateless applications, that's why serverless functions are really popular because the serverless function spins up, it does its work, and then it closes down and there's no like, there's no state that is maintained in that serverless function. And if you build your application, that way, it is much easier to scale it up. But still, it's not an easy thing to do, especially if you need to, like take something down. In order to test this, you can't do that as well, you have to put it on a separate domain name, something like that. And then there's the other side of it, which is your database needs to be able to scale. And that's an entire area I have no clue about but I know they're scary things like sharding where you can distribute your database amongst multiple databases, multiple servers, things like that. That's that's a very complicated thing to do as well. And for me, and you, it's probably easy just to go reach for a service that can scale itself up. But a lot of these companies especially the government, they hosted All in house. And it's not as easy as just going getting another AWS server, it means, like a one year procurement process of actual rack mounted server hardware hardware.
+
+93
+00:55:11,430 --> 00:56:04,230
+Scott Tolinski: Right, exactly right. I know for us, it's just click that up arrow, and call it a day at some point. Until, but again, we're not getting slammed away. These unemployment offices are getting slammed right now. It's really, really difficult problem to solve, I think. But yeah, I don't know, I don't have a ton of great advice other than what we just said, you know, again, it's it's all about proper preparation for situations like this. And I think a lot of times these companies just don't have the resources to do it, don't have the time to do it, and maybe don't have the manpower to do it. And it just doesn't get done and global pandemic hits, and all of a sudden, everybody is shorting rather than shorting. Yeah, that's a good one that was off the dome here was playing. Wow. So next question, that last question I should say is from Eric Zorn. That's a pretty dope last name. Eric. Zarin You sound like a James Bond villain.
+
+94
+00:56:04,440 --> 00:56:07,560
+Wes Bos: I think the Dutch name actually. Oh, yeah. Dutch.
+
+95
+00:56:07,710 --> 00:56:24,720
+Scott Tolinski: Hey, guys, what's your take on these rails like server side, rendered react and graph qL frameworks. Here's another one built by Michael Jackson and Ryan, Florence. And some others called remix. He has a link to remix. We've talked a little bit about remix, maybe not on the show. But Wes and I have chatted about it.
+
+96
+00:56:24,900 --> 00:56:33,180
+Wes Bos: They're gonna come on the podcast, they are going to come on the podcast, I don't know when. But they have confirmed they're gonna come on the podcast and talk to us about REMAX sounds pretty cool.
+
+97
+00:56:33,180 --> 00:57:12,540
+Scott Tolinski: I'm pumped about that I'm very pumped about that. I've never met Ryan, or Michael in person. So we Nice to meet them. So this, of course, is in addition to Redwood and Blitz, which are two frameworks that we've talked a little bit about on here. Thanks for the great content, as always, so what's our take on these sort of frameworks? We have been largely saying that these are the frameworks of the future, right? This is the stuff that does the stuff that you don't want it to do. And for those of you who don't know, I'm not love Meteor into this two, people have been saying that, you know, this needs to exist in Meteor does a lot of this stuff that a lot of these frameworks are trying to do. And I actually just found out that Blitz is basically just a wrapper on top of next j. s. Did
+
+98
+00:57:12,540 --> 00:57:13,920
+Wes Bos: you know that? No, I
+
+99
+00:57:13,920 --> 00:58:21,060
+Scott Tolinski: didn't. Yeah, I was looking at it. I don't know exactly what it's doing specifically. But it is basically a wrapper on top of next j. s, where Redwood I don't think is I think is its own thing. I think remix sounds fantastic. I don't know a ton about it. It's interesting that they're not going the free model that every other framework is. So I don't know, the last time I paid for a product like that would have been a CMS, and that would have been expressionengine. And that's fine. But we didn't reach for expressionengine on every project, because we felt like Drupal could do the same things, and for free. And if you're good enough at Drupal, you could deal with some of Drupal, Drupal II things. So what do I think about them? I think remix sounds cool. I can't wait to learn more about it. I'd be interested to see what the pricing ends up being pricing models, of course, yeah. And we're still early days and all of these. And I'm excited to to look at all of these more. And I encourage you to look at Meteor a little bit more. I'm actually doing some free videos right now on Meteor and spelt. And it's really sick. It's really sick. It's really, really seamless. You get small sites, you get real time you get all this stuff for free. It's pretty cool.
+
+100
+00:58:21,210 --> 00:59:11,610
+Wes Bos: I'm the same as Scott optimistic waiting for these very curious to talk to if you don't know Michael Jackson and Ryan Florence are the devs behind react router one through 114. Yep. Just joking me Everyone always gives them a hard time for releasing new react router for making it better. Yes. And so they are tackling this, which I think that they have some really cool ideas. Plus, I'm very curious to hear about their pricing model, because I don't know open source is not super sustainable for a lot of people. And if anybody knows it, like I think Ryan tweeted the other day, this COVID-19 has just decimated his training business. And he's sitting there looking at millions of people using react router, right, and his business is suffering. That's a very weird spot to be in internet props, points,
+
+101
+00:59:11,610 --> 00:59:18,180
+Scott Tolinski: those GitHub stars. Good. Where can I catch those GitHub stars? For some dollars, my GitHub bugs?
+
+102
+00:59:19,230 --> 00:59:31,650
+Wes Bos: Oh, so yeah, I'm very, very curious, watching all of these things sort of work on and I would lump next jass in the stew they're certainly looking at. We need to do another update show on next year, because a lot has happened in the last six months or so.
+
+103
+00:59:31,800 --> 00:59:35,520
+Scott Tolinski: Big changes to hair all around. Big changes to Gatsby next
+
+104
+00:59:35,610 --> 00:59:37,140
+Wes Bos: change. Oh, yeah,
+
+105
+00:59:37,410 --> 00:59:41,820
+Scott Tolinski: I would have gone with Tupac. But yeah, you could do that one to those Bowie.
+
+106
+00:59:41,850 --> 00:59:42,600
+Wes Bos: Yes. Yeah.
+
+107
+00:59:42,600 --> 00:59:44,460
+Scott Tolinski: We could do a Bowie Tupac mashup
+
+108
+00:59:44,480 --> 01:00:00,570
+Wes Bos: that changes makes me so reminiscent because when I was, I don't know nine years old. We had Encarta on window incarnate and there was a little changes video clip on Encarta. Mind
+
+109
+01:00:00,690 --> 01:00:09,570
+Scott Tolinski: Do you know what the best part about Encarta was? Was that video game that like the dungeon crawling game where you had to like look up facts to answer questions that was the best part about Encarta. I love that. Yes,
+
+110
+01:00:09,570 --> 01:00:10,410
+Unknown: I
+
+111
+01:00:10,410 --> 01:00:19,710
+Scott Tolinski: played easy when I was a kid. I wonder if you can play in carta online. You can play in carta. Play the encyclopedia. Yeah.
+
+112
+01:00:19,890 --> 01:00:30,330
+Wes Bos: Or like use it I remember like thinking how is it possible that they have everything in the world on this one CD this one epic I wonder now like how many things were on in carta?
+
+113
+01:00:30,390 --> 01:00:35,010
+Scott Tolinski: Yeah, right. Well with the Wikipedia verse in carta here Yeah,
+
+114
+01:00:35,820 --> 01:02:09,360
+Wes Bos: probably similar. Oh, you can win world pc.com is an online museum dedicated. Oh, you can download Encarta image I wonder if I can get this running. Mm hmm. Fun would that be sick fix today, I'm going to sick pick up a notebook laptop stand. So in my new shed office that I'm in here right now, the desk that I'm on is a big Maple thick slab and it's not that it's too thick that I can't put any arms on it. No monitor arms, all these things won't clamp to it because it's too thick. So I ended up like wall mounting all of my stuff. And instead of getting a laptop stand like the roost stand or the the rain em drop stand I got a just a regular monitor arm and then Amazon sells this notebook tray that clamps are you can screw it on to any vase amount arm so any I had like an arm that I got at a garage sale and I just took that and screwed this laptop tray to it, man, it's awesome because I can keep everything off my desk away from coffee spills and whatnot. But it still is at a level that's much higher and and my stand at home is kind of annoying because sometimes my mouse hits the bottom of it and I can't put stuff underneath it really. So if you've got an old monitor arm kicking around, can be desk mount or can be wall mounted, then you can just buy one of these and attach it to it. And it comes with like rubber holders and everything. That's pretty neat.
+
+115
+01:02:09,720 --> 01:02:22,230
+Scott Tolinski: That is neat and never heard of that. My pick is going to be something that I've been using quite a bit because it's springtime here in Denver and we got the sun we got my grass poppin I got some fertilizer down we got that green green grass. You know,
+
+116
+01:02:22,320 --> 01:02:24,540
+Wes Bos: your grass is looking great brother.
+
+117
+01:02:24,629 --> 01:03:48,600
+Scott Tolinski: Hey, thank you, man. Yeah, I you know, I grew it out a little bit and trimmed it out and take it out and taking care with my lawn right now. But I'm doing that via these all battery powered tools. So I have the I went all in on this system because I got the weed whacker and edger of ego. I think they sell them at Home Depot. They're based out of Michigan, but I think they're built in or they're a Chinese company but they're built in Michigan, it's weird, but they're all battery powered in they're extremely powerful high quality batteries last forever and did the best yard equipment I have ever bought. And I was using like a 1980s Honda lawnmower that died. And it was you know, fantastic. But things puffing out gas It smells terrible. And like I'm mowing the lawn in like near silence with essentially like it's like quieter than our vacuum cleaner. And you can smell the fresh cut grass, you know, the smell of the grasses wafting into your nose rather than gasoline and whatever. And I you know I wear headphones and I can actually hear my podcast while I mow the lawn. So I got the lawnmower, the leaf blower and the edger of E go eg Oh, and they're all amazing. And I make an all swap batteries in the leaf blower is so powerful. It's unbelievable. It's the best thing I've ever bought for yard work. So huge fan of the stuff I've been using it on the daily big fan.
+
+118
+01:03:48,899 --> 01:04:02,460
+Wes Bos: Beautiful. I'm going to shamelessly plug all of my courses Wes Bos calm for slash courses that you can check him on if you want to learn JavaScript, CSS, anything like that. Use the code syntax for 10 bucks off.
+
+119
+01:04:02,760 --> 01:04:42,840
+Scott Tolinski: Cool. I'm gonna shamelessly plug level up tutorials.com this month series is going to be on sapper. sapper, for those of you who don't know is the sort of next .js equivalent for spelt. And it's what my site's built on right now my site is tiny, and it's fast because of sapper. And spelt has all these built in goodies like animations and stuff. So we're gonna teach you how to build an animated fully server side rendered super duper duper fast site and also statically generated generated if you want and again it does it all with sapper on level up tutorials.com. You're gonna be blown away by how clean and small your code is.
+
+120
+01:04:43,230 --> 01:04:49,140
+Wes Bos: Awesome. Thank you so much for tuning in and we will catch you on Monday. Peace.
+
+121
+01:04:51,030 --> 01:05:00,780
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like. This show
+
