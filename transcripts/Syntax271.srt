@@ -1,0 +1,108 @@
+1
+00:00:00,359 --> 00:00:24,480
+Announcer: Monday, Monday, Monday, open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob, and Scott Taylor. Totally in ski.
+
+2
+00:00:25,950 --> 00:01:05,040
+Scott Tolinski: Oh, come to syntax in Episode 271. This Monday haec treat, we're going to be talking about how we upgraded our syntax.fm site to use next j. s is latest versions for everything, including now, v two, we have the site's gone through some evolution. And there's been some big changes to it with the help of the next team. And I think there's a lot of lessons to be learned here. This is a true Tales from developer lanes. So my name is Scott Tolinksi. And I'm a developer from Denver, Colorado. And that little lap you just heard with me as always is the West boss, how you doing? What's up, everybody?
+
+3
+00:01:05,610 --> 00:02:11,660
+What's up, sup sup Sup? Sup. And this is gonna be a good one for those of you who work in next jazz for those of you who are curious. This episode is sponsored by one of our sponsors here we love over here it's syntax. And that's Log Rocket to know Log Rocket is the perfect place for you to get a session replay of any errors or bugs happen. Now typically what happens is user creates a bug somehow you use just creates a bug, right? You didn't you didn't code the bug the user made it made the bug. And in that in the site breaks, and you don't know what happened, you just maybe get an error log, or maybe you get a notification saying that something broke. But with Log Rocket, you get a video, it's like being a detective and actually being able to see the crime happen. You can scrub through it, get your network activity, get the console logs and errors. It's like not only get the video that you also get wiretaps and all that stuff, look at this, I'm really stretching this metaphor, and I think it works really well. So you're gonna want to head over to Log rocket.com forward slash syntax, and you're going to get 14 days for FREE when you sign up. And there's an on premise or a cloud version of Log Rocket so that everybody's needs seem to be taken care of here. So check it out at Log rocket.com forward slash syntax.
+
+4
+00:02:11,910 --> 00:02:23,430
+Wes Bos: All right, let's get into it. So the syntax website says some history of the syntax website was built, I don't know probably three, three and a half years ago, whenever we started this podcast, I Wes,
+
+5
+00:02:23,490 --> 00:02:29,550
+Scott Tolinski: I minimally contributed I'm really sorry for that. But you just like pulled it up in one day, you're like, oh, by the way, I'm working on the site. It's done.
+
+6
+00:02:30,269 --> 00:07:08,550
+Wes Bos: Yeah, it's just built a quick little website in next jass. And it was hosted on Zeit now, which is now called, it's now it's just called the oversoul, which is, so when we refer to ver, Sal, we mean both the company as well as the hosting of it. And at the time, it was a custom node server, that would take in the request, and then pass it along to next jass itself. And we'll talk about why we needed a custom node server in just a second. But that that was what it was. And the site now version 1.0 has been gone for like a year and a half. And we just, I just left it running on that, because I didn't feel like updating anything. So the other day, we woke up, it had stopped deploying, because I ignored all of the emails that it was going to stop deploying, and it sort of just dropped in our lap that we we could no longer redeploy the website, and there was an error on the website. So luckily, huge thanks to Tim and Lewis, who work on the oversell and narrow next jazz core team, they both work on ourselves, well, they've seen this coming for like a year and had updated our site to use the latest next jazz, which has no need for a custom server and would also be able to deploy to now to So actually, this is a question I get a lot, a lot of people are like, why can't you host node apps on now, too, which is now called versal. They don't allow you to run like long or constantly running node processes. They only run serverless processes, which spin up when a person visits a website and spin down. So if you want to host like a node server that is always running, then you can't do that on on forsale anymore. And that's why a lot of my my courses don't work on on wsl anymore. So like our options, were either just move it to a like a digitalocean or Heroku or something like that, or just just update the website. Why did we have a custom node server for the website when it seems so simple? Like why not just do that. And we'll also talk about like, why not Gatsby or SAP or something like that for the site near the end. So there was three things that we we use the custom server for. The first one was there's an API behind the syntax website and the reason why that's there is one because Use it in some of my tutorials. If you want to pull in a list of something and render it out, it's nice to have something that's not your same old like static data as well as, like I've used API's in the past, and then they change and then the tutorials at a date. So like, it's great to have an API that you can use that you actually have control over. So there's that. And then I also pull in the latest syntax podcasts into my own website. And that's done via the API. The second, we need on demand page builds. So you might say like, Well, why not just get to be because we need to be able to release the new podcast episode at 9am on Monday and Wednesdays. So when somebody visits the website, every single time that someone visits a website, it pulls a list of podcasts that should be available at that given millisecond, and then renders mountain chips into the browser, just like any server rendered website would do any PHP or whatever website would do normally. And then the third reason we had a custom server was because of custom routing. So previously, next, yes, the only way to do dynamic URLs was to pass the dynamic bit as a query parameter. So if that was the case, you'd go to syntax FM, forward slash show, question mark, episode equals 203. And title equals and then it would be the, the URL encoded version of the title. And that just looks ugly. We wanted like nice custom URLs, which is Ford slash show forward slash 261, Ford slash tasty treat, whatever, whatever. So those three things are now a thing in next jazz, so we are able to upgrade. I'll go over them. So the first one was the API. Now we use API routes. That's something built into next js, which is really cool, because you can just go into your pages directory and create a folder called API. And then those endpoints will be deployed server lessly. But you can also use all of the packages and helper functions and everything like me, have you used API routes? And next Yes, for Scott,
+
+7
+00:07:08,580 --> 00:07:34,800
+Scott Tolinski: I have a course on it. Yeah. Oh, beautiful. Yeah. So definitely. Yeah. So I mean, it really, and And not only that, but I've the sapper version is like basically the same thing. So I've had a lot of experience both of them how next does it as well as announced Abra? Does it naturally just basically giving you access to a server side route? And you can do anything on that route? Really? Yeah. Whether or not uploading an Apollo API or whatever? Yeah.
+
+8
+00:07:35,700 --> 00:08:11,700
+Wes Bos: Yeah, it's great. And you don't have to like provision any servers or API keys, or like a lot of these serverless things they make you have your own package. json file. Yeah. And then if you want to share like a, like a helper function between two server serverless functions, then you have to, like publish that as a package. And next Yes, just bundles that off for you. It doesn't matter where you put your stuff, it will figure it out and bundle it up for you, which is the best is probably the the best server lists. kind of experience I've had so far after trying a whole bunch of them. Just wait until you try sapper.
+
+9
+00:08:13,890 --> 00:08:30,570
+Scott Tolinski: Wes is so annoyed at me. I mean, I did this in the last episode. And I did this on Twitter when we were talking about it. I was just joking, but I think they handle it just a tiny little bit better. I think there are improvements that could be could be made. I don't know. It's good. At least you're
+
+10
+00:08:30,570 --> 00:08:33,750
+Wes Bos: not talking about TypeScript all day long. It's nice to have a bit of a change. Yeah,
+
+11
+00:08:33,750 --> 00:08:38,070
+Scott Tolinski: no, no, no, no, no, those people I know. Yes. Sorry about this, whatever.
+
+12
+00:08:38,100 --> 00:09:46,980
+Wes Bos: So next one was on demand page built. So when a new episode comes out, then the page has to be refreshed. And you will see the new episode, right. So if this was Gatsby, or any other static statically generated site, you'd have to regenerate the entire website, like at nine o'clock, and then it would be like 910 by the time it hits your website, or you do it, like maybe try to do it before but it's kind of annoying. So that is something that initially wasn't possible because Tim who refactored the site, refactor it to use next Jess is new static site generation, which is really cool. So next, yes, now has the ability to statically generate pages and you can opt in to that on a page by page basis, which is like I think, the best of both worlds you can have server rendered when you need it, and then static generated when you need it. And he opted to make the entire site static generated which is great. Except for the the one part that we need to be dynamic, which is we need the whole thing to be regenerated when there's a new episode out, right? And then you have to like set a cron job up and that's kind of annoying, you know, and if we release one at different time,
+
+13
+00:09:47,010 --> 00:10:09,240
+Scott Tolinski: what we really need is a lib sans sapper version. No, no, I'm not. This is the first time I'm not gonna say is ever. What we really need is a libsyn like a hook something that just fires Then we could just say, hey, just fire off a message when this is published on Lipson and like, come on, that would be the best way to solve any of these problems and
+
+14
+00:10:09,240 --> 00:11:15,480
+Wes Bos: might even exist. I didn't even look into that. So that might exist. But I think the way that they did it is pretty cool. So it's still statically generated, meaning that you go to syntax FM, that is like blazing fast because there's a static HTML page. But there's a flag that they added, and it's called unstable region. were added, this is not part of next. Yes, yeah. But we're, I guess we're kind of beta testing it. So the way that it works is that when somebody visits the website, you can set how many seconds you want it to region after and they just set it to one meaning that every single time someone visits a website, in the background, it's going to regenerate the next version. So at the very least, somebody visits our website at nine o'clock, and they don't see the new episode, but then the person that comes in visits it after them, see it, because it regions after every single time, which is kind of cool, because it's still statically generated. But it's also it's also we don't have to redeploy the entire build, because it does it for you.
+
+15
+00:11:15,869 --> 00:11:18,390
+Scott Tolinski: Yeah, that seems like a best of both worlds kind of situation. Yeah.
+
+16
+00:11:18,390 --> 00:12:29,610
+Wes Bos: Yeah, I so far, it's it's been good. There's a couple little bumps, but we figured them all out. And then finally, the third thing, custom routing, that is now a thing. And next Yeah, so you can do sort of like URL matching with this square brackets in the thing. So it's awesome. It's, it's nice and fast, it's super fast to load, super fast to build, like the whole versal build and deploy was done in like three minutes or something like that, which is much faster than my Gatsby website. And I guess I have more images on my Gatsby website. So that's not really a fair comparison. But it is pretty nice and fast. And the deploy is nice and fast as well. One, like little pain point I have is that versal seems to have a lockdown on the API routes, meaning that like, if you want to use next JS API routes, you can't just deploy that thing, anywhere because they've got some secret sauce on their own hosting platform. And if that was the case, then you'd have to not really sure what you'd have to you'd have to like remap API folder to your own server. There's some people that are well, yeah, solution. Yeah. But that's kind of like a like, I get it. That's their business.
+
+17
+00:12:29,730 --> 00:12:30,810
+Scott Tolinski: You got to have something.
+
+18
+00:12:31,170 --> 00:12:43,020
+Wes Bos: Yeah. If we, if we wanted to play this thing to, like Digital Ocean. I don't know if that would just work. Because there's some secret sauce and versatile to make the API API routes work.
+
+19
+00:12:43,709 --> 00:12:58,020
+Scott Tolinski: Yeah, I just think it's interesting. And it's funny, because our our site has always been a perfect use case for static generation. But there are those challenges involved. So I think this all seems like a nice little, nice little fix. And it's really amazing of the next team to come in and help us out like this.
+
+20
+00:12:58,890 --> 00:14:00,810
+Wes Bos: Yeah, yeah, very much appreciate that. Because they didn't have to like, it's also like, it's not very, it's less complicated than it was before. Because they took out all of the custom logic on the server, and just replaced it with pages, right? Just pages and a lib folder. And they took all the functions that we had written before. And they all just work, which is pretty nifty. Yeah. So big fan. So the the other questions is like, why not use Gatsby? We've mentioned this before, but we'll we'll address it. Gatsby was not as popular when I built the website. So that's probably why. But then we also have the additional challenge of having to regenerate it at nine o'clock to release the episode. Whereas this just happens automatically. And we can deploy it whenever we want, as well as the API routes, where we could totally do the API routes with like a Netlify functions. But that is not something that's built into Gatsby. So you again, you have to think about where am I hosting this thing in order to make the serverless function part work?
+
+21
+00:14:01,140 --> 00:14:35,100
+Scott Tolinski: Yeah. And then the last one you yours is why not sapper. And it's so funny, because when I made that little tweet, I wasn't honestly seeing that we should rewrite the site in sapper because that would have rewrite all the components will deploy air. Yeah, right. All the CSS you had no, I'm just joking. You know, I don't mean to be that like sort of why don't you just completely rewrite the whole thing from the ground up? I we both have businesses to run we both have way better things to do than that's by all means. There was intended to be as a joke I do like sapper, though. I will say that. Yeah.
+
+22
+00:14:35,100 --> 00:14:40,590
+Wes Bos: So what my question is would sapper be able to do all of these things? I think the answer is yes.
+
+23
+00:14:40,590 --> 00:15:04,890
+Scott Tolinski: Everything except for maybe not the on demand page built SSG. I'm not sure what the answer to that is. I haven't looked into that kind of thing before. But yeah sapper does static generation it does server side it does page server side routes, like next j s does. So it does all that stuff very well. So it basically does everything. Next year does except for this. So yeah, yeah, I think it could do it fine. Cool.
+
+24
+00:15:04,890 --> 00:15:55,860
+Wes Bos: Somebody also tweeted me the other day, they just like ported the entire website to Gatsby and they redesigned it. It was really slick looking. And I was on my phone. And I can't find the tweet. Like it was one of those things like if sometimes I don't reply, it's because I like see it when I'm like, yeah, be too right. Oh, my head that I should be paying attention to my kids, and then I just never, and then it's gone. And I don't know where that is. So if you are the person that ported the entire website to Gatsby, send us the link again, because that A is really cool. And be the design was really sick because the design of the syntax website is okay. But now that we have 261 episodes, it could it could use like a maybe a rethink as to how to scroll the episodes a little bit nicer. We're using position sticky a lot. But as the data changes, maybe the design needs to change to
+
+25
+00:15:55,860 --> 00:17:01,260
+Scott Tolinski: you don't have been thinking about I mean, we haven't really announced anything like this, because there's nothing really to announce. But this is Episode 271. And we're recording this bout a month back maybe maybe a month and a half back. Right? Well, so we're we're actually banking, a couple of episodes. We're doing a lot of recording right now. And Wes, and I will be taking a tiny little bit of a break, but you will not experience a break because we're recording so many episodes ahead of time, right? So on September 2, two, were effectively starting Season Two of syntax, you could call it that. There's not going to be a ton of changes or anything, so don't be worried about that. But maybe that's it. I saw time for maybe a tiny little visual update or visual refresh the site. Maybe we can take some of that time off to brainstorm some things and write some code. I don't know. I'm excited. Maybe we can get some new new bumpers, some new audio stuff. bumpers, yeah. Gotta have some bumpers. I do want to get a bumper with turbo instead of El Toro loco as much as I love El Toro loco can't help but feeling it's a tad bit insensitive. I don't know. That's just my thoughts on it.
+
+26
+00:17:02,250 --> 00:17:09,660
+Wes Bos: Cool. All right. I think that's it for today. Thank you so much for tuning in and we'll catch you on Wednesday. Please, please.
+
+27
+00:17:11,550 --> 00:17:21,320
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
