@@ -1,0 +1,136 @@
+1
+00:00:00,359 --> 00:00:24,480
+Announcer: Monday, Monday, Monday, open wide dev fans yet ready to stuff your face with JavaScript CSS node module, BBQ Tip Get workflow breakdancing, soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob and Scott. Todd. Totally in ski.
+
+2
+00:00:25,920 --> 00:01:02,220
+Scott Tolinski: Whoo, welcome to syntax on this Monday tasty treat. We're gonna be talking about our flow for creating features, dealing with bugs, and just all around working on our platform. What kind of things that Wes and I do now, this isn't necessarily going to be a definitive de facto, this is how you should do it. But more or less a conversation between Wes and I were we just share sort of what are our approaches right now how they could be better maybe you know, we can pontificate a little bit on that maybe maybe my name is Scott to Lynskey. I'm a full stack developer from Denver, Colorado, and with me, as always, is Wes Bos. What's up? Wes? Oh, not
+
+3
+00:01:02,220 --> 00:01:15,390
+Wes Bos: too much. Just the I just tweeted about this like sleep thing. I got this, like watch about sleeping, or it's a watch and it tracks your sleep. And I realized I'm the watch is always telling me I don't get very much deep sleep.
+
+4
+00:01:15,390 --> 00:01:18,720
+Scott Tolinski: What OS does the last run? I'm actually interested in that
+
+5
+00:01:18,780 --> 00:02:15,530
+Wes Bos: it is I don't know, it's a Garmin vivoactive. Three. I don't know what it runs on. But it does like herpe, or heart rate and some interesting stuff on it. I think it's kind of cool. I've never thought it would be a watch person, but I got as a gift. And I actually think it's kind of cool. Anyways, I've been wearing it at night to see what my sleep is like. And I've been wearing it for four nights. And it's actually like, like, I get like, I've gotten four good nights of sleep, which is rare for me, which is so I have like four days and the deep sleep. It's telling me I'm not getting a lot at all. So I'm just I tweeted about it. And I'm having all these unreal answers like lots of very helpful stuff from people saying some people are saying can't trust the watch. Other people are saying get a sleep study. Some person said put tape on your mouth and I looked up this like Amazon tape that looks like something that like no like terrifying someone or the van would put on your mouth. It's
+
+6
+00:02:15,600 --> 00:02:33,090
+Scott Tolinski: Oh, God. And you showed me this before the show started and my first opinion on it was this is scary. This thing is like creeps me out this these. We got to share this photo in the show notes or something because this straight up creeps me out. I don't like it. I really don't like it.
+
+7
+00:02:34,740 --> 00:02:41,750
+Wes Bos: So that's how I'm doing I'm super distracted by these people sleeping with their mouths taped seems like they're gonna get robbed or something like,
+
+8
+00:02:43,560 --> 00:04:06,690
+Scott Tolinski: Oh, so yeah, we don't like that. We don't like the mouth tape shot while you're sleeping. But we do like Sentry, which is one of our awesome sponsors, they've been sponsoring syntax for a long time. And for good reason. Because this is a software that both Western I use personally in our projects. Now, this is a very fitting sponsorship for this episode, because century is one of the things that I utilize every single time in my workflow for tracking new features and bugs, I attach releases to each of my releases within century. So that way, I can say, Hey, you know, he century, this source map and this git commit are all attached to this particular release. And if you find any bugs in this release, please let me know about it. And then you can categorize, categorize, and catalog your bugs by release. And you can see if the ones that you think that you fixed in this particular release have actually been fixed in the release. And that's really key. And definitely is something that I've been needing to dive into much more and more as my application grows. So if you want to try out Sentry, head on over to century@sentry.io, use the coupon code tasty treat all lowercase all one word, and you're going to get two months for free to that's gotta be enough time to do a release. And check out some of these release features. Because if you're doing this kind of thing, you're gonna want those features. So let's get into it
+
+9
+00:04:06,960 --> 00:04:57,450
+Wes Bos: feature in release planning, the way that it works is sort of like dwell on my own course platform, which is me and another dev who work on it, as well as some of our past stuff that I've worked on for bigger companies that have a proper project managers and proper release cycles and inversions and things like that. So the way that it's always worked for me is that you log all the features that you'd like to see into some sort of software. This actually goes for bugs as well, where you have things that you'd like to fix in your platform, whether they are regressions or bugs or new features like that you like that to use. So I currently use GitHub just to use issues in my own GitHub. And then I put those into the GitHub like Kanban board. I don't know you know, that thing where it's like Trello, where you drag and drop into different columns. Is that
+
+10
+00:04:57,450 --> 00:05:20,370
+Scott Tolinski: called Kanban board. Yeah. Bond board is a Japanese. It's spelled jet it is Japanese hey there Look at me with my Japanese language skills. You it's not spelled with an H though. So you have an S with an H it's KN ba. And when I say going, I think oh, that is the Japanese word. So con con con bond it would be combined bored.
+
+11
+00:05:20,489 --> 00:05:31,230
+Wes Bos: Sounds like something I want to like, man, I went to this amazing Japanese restaurant the other night and I had the compound board. such delicious little things just just a nice Board of miscellaneous things to eat.
+
+12
+00:05:31,559 --> 00:05:40,530
+Scott Tolinski: I had a combine Courtney had the bento we Yeah. We did karaoke after, what are the Japanese words can be thrown here.
+
+13
+00:05:42,810 --> 00:07:34,380
+Wes Bos: So once I've got it into those things, I'll have like a column of like things I'd like to do, or like needs talking about. So like, just kind of like, every time I have an idea, I just throw it into that column or create an issue and throw it into that column. And that doesn't mean that they're gonna things that I'm going to implement, that doesn't mean that it's things that needs to be done, it's just sort of like I have a place for it. And then if something comes up, I don't know, like a two weeks later, I have somewhere to put it, I have a little bit of a home for it. And then when I want to actually work on them, I'll drag them into another column of like needs to be implemented. And then I'll have a list of all of the things that want to be implemented. And I'll just drag them up and down. In order that I like to see them implemented. The at the top is what I want to do first at the bottom is not so pressing. Lots of times, people in the past I've worked on, like use JIRA, and they have like a level that they want to have. At that time, they'll often assign like a quarterly or whatever release schedule for that type of thing. For me, it's just the order in which I wish to implement them. Then when it comes time to work on something, you sit down and you tear off one of these features that you'd like to have. And then you move that into working on category, then you do the work and make that feature actually implemented. And then when it comes time to pushing it, you you test it, you write tests for it. And then you push that out to production after it's been test. So and then you just move the card into done, you close the issue, and rinse or repeat through the entire way. And the entire thing. That's my entire process. It's pretty simple. Because it's just me and another developer. There's much more complex processes I've used in the past working for different clients. But that's kind of what's been working for me and I've really been liking it.
+
+14
+00:07:34,470 --> 00:07:43,320
+Scott Tolinski: So is your course platform public on GitHub? And do you have the ability do people can they submit issues for yours?
+
+15
+00:07:43,350 --> 00:08:36,330
+Wes Bos: No, all of that all of it is private actually. And the way that it works is if I get an email from somebody, or I get like a Twitter dm or slack dm or something like that, I'll usually talk to the person for a quick second, because that's where a lot of like the good info will come from. And having developers as customers is really helpful because they'll often like think about, I want to make the skipping better, I want to fix the autoplay, like, I think that would be a cool thing for you to do. And here's what I think about it. And they'll like almost like like sort of how we sometimes get potluck submissions where the whole episode is detailed out. Often people will just give me like, everything you possibly need. It's probably because developers is trained to think in terms of like tickets. Yeah, and then so No, none of it is public, it would be kind of cool to do that. But I also don't know that I want to have to manage something like that.
+
+16
+00:08:36,449 --> 00:08:38,030
+Unknown: Right? I'm feeling the same way
+
+17
+00:08:38,070 --> 00:08:57,990
+Wes Bos: where you then you have this like, public thing, and especially the entire course platform, like maybe I could do like feature requests publicly. Yeah, but I don't want to release my entire code base, I haven't zero time to manage that type of thing and has support it. And that's as most open source maintainer is, no, it's a full time job just doing that.
+
+18
+00:08:58,260 --> 00:09:27,000
+Scott Tolinski: This is a it's a thing that I'm really interested in, especially like the feature requests. I know there's a ton of services out there that do that if you are a listener and you use something I know user voice is one of them. Only here if you're using a feature request platform that you really like and isn't super expensive and or is free or open source. So I'm interested in that kind of thing. It could be interesting to talk about, do you use milestones within Git Hub at all?
+
+19
+00:09:27,410 --> 00:10:20,190
+Wes Bos: I don't I know that they're in there but I just kind of work on them and release them as as quick as they can or as I as I feel like it obviously things that are pressing to the user experience come first and then features that I'd like to add sort of come after that but i don't i don't tie anything to a specific milestone. Cool. The other thing I just want to add is the we just just finished recording with a tn from missive and they use canny, which is canny.io it's just a service that you can use to allow people to upvote features and based on trending, so that's a Yeah, so it's it's something I would probably would like to like just do a course on one time, like, maybe like a smaller little full stack course that I could do with we just build that right the ability to login with GitHub only vote once per thing, filter based on most popular within the last week, something like that. That'd be kind of a fun little course, I'd like to put together at some point as well.
+
+20
+00:10:20,520 --> 00:10:22,910
+Scott Tolinski: Yeah, yeah. No, that's a great idea,
+
+21
+00:10:22,950 --> 00:10:25,830
+Wes Bos: even for like, like potluck questions when that'd be great.
+
+22
+00:10:25,980 --> 00:10:27,240
+Unknown: Ah,
+
+23
+00:10:28,790 --> 00:14:48,240
+Scott Tolinski: voting platform. That is Yeah, it would be pretty darn easy to pull off and we could be cool. Awesome. Well, way I do it here is I have two systems. Essentially, I used to just keep everything and get up I did the projects that combine boards I did the milestones have a lot of labels, my labels are fun have like emoji and all of my labels for my issues to make them cute. You know, it's a speed thing. It has a rabbit running. It's cosmetic, it has been more than fingernails getting painted. But it's the bug, it has a spider. That way you can see it's a bug. So but it also says bug, it doesn't just have the spider. So all of my issues go within GitHub issues. Still, it still bugs 100% of the time, even if they end up sort of being attached to a release, they go in issues exclusively, I tend not to put bugs in my actual project tracking stuff that I use. And like you I use a Kanban board for that stuff. But I actually use it in motion, not GitHub. Now the reason is, is because I like to track priorities and releases in terms of things that aren't maybe just purely code related, but also maybe some process things. And so the way I have my feature set up is I have a table within notion that's just called priorities. And so I have the biggest problem of as you probably all know, by now wanting to jump from thing to thing before I finish thing. And so it's like, oh, I 90 90% of the ways through this, this new testing thing I've done, let me just jump into something else entirely. And I'll come back to this one. And the next thing you know, I have like 800, open, different projects. So I started this table largely as a way for me to say you can only work at the thing that's at the top of your priorities list do not work on any of this other stuff. If you have ideas or anything, you can type them out into them. But don't work on the code, because that's not your highest priority. And so my table has the name of the release with a version number. So it's the version number and then the main name of whatever that is. And then it has tags, whether or not it's for business development, front end, back end enhancement feature, those kind of things. And then it has the branch name for the branch that that version is. For instance, we have a branch on Cypress testing right now. And it says in the table, Eric Sartorius came up with this and it's Cypress Hill is the branch the branch. So we do a lot of fun branches. Okay, so if you work for level up there we do we do fun branches. So Wow. Yeah, I know, every Friday is fun branch day where we get to make a fun branch. And enjoy those kinds of benefits. But yeah, no, we haven't been a lead dev on it. So somebody leads up each project. For instance, Eric is leading up all of the Cypress testing, so his icon is there. And then I'm leading up version 2.4. Here, I used to name all of my versions and releases after Pittsburgh Penguins players. But that got very confusing. Instead of being like version 2.4. It was like a version oily Mata. And people were like, what the hell is this? Like, if people work on the branch, like, Do I really have to type out this finished person's name, their full name as the branch name. So there wasn't really a great way to do it. Now I just do by by version number. I don't use sem bear for this project, I just I want to say arbitrarily increment the version. So it makes it feel like I'm making progress. I have the goals of each particular release. So the current version 2.4 release, I have the goals up top above the combine board. And it's largely to improve user experience and tighten up things. And then also put in time saving things for myself so that the goals are time saving to tighten up, improve user experience. And then I have my Kanban board, which has four states not started in progress, testing and completed. And so between Eric and I, we just assign each other different issues. And that's the nice thing about notion is that I can sign something to Eric, I could just create it and then I can add comments I can add add any relevant links. Do you ever use the comment system within notion?
+
+24
+00:14:48,240 --> 00:14:58,890
+Wes Bos: No, I I saw that you commented on something like we're selling our sponsors right now. And I saw that you commented on one of them. And I was like, oh, whoa, I didn't even know that that was actual feature that you could do.
+
+25
+00:14:59,100 --> 00:18:02,010
+Scott Tolinski: Yeah, and it doesn't really Really nice little Ping. And then there's a resolve button next to it. So he can message out and you know, have a question that says, hey, I'm trying to do this, but this, you know, somebody goofed up something, you goofed it up. And then so I can look at and say, Oh, I goofed it up, I fixed it here you go resolved. So we use the notion entirely for all of that tracking. And I like to have as many bits of, you know, tagging or assigning or anything in there, it seems like it's a lot of work, but I need it because for so long, I've been to all over the place with what I'm doing. And I need to have a system in place of to do's priorities. Everything on my list, whether it's a bug or an issue is labeled with a p one through p four, which is the system that we got through getting things done. I also do the same for my daily to do list. This allows me to quickly look at things and say, Alright, this is a p one, this is the first thing I should look at this is a p two or priority two, it's less important all the way to P four, which is get to these last or whenever you can. So I use the P one through four system. And what else is important about my priorities, each of my releases has a little emoji attached to it, I guess that's important. I usually just click Add icon and notion and it just gives me one I just added an icon and there's like a guy levitating in a business suit. So I guess that's the emoji for this particular release. That's pretty cool. But yeah, that's that's pretty much I keep track of my issues, notion has really changed that for me, again, I, before I had a system, I was just sort of all over the place. What I would really love is for simple templates with a notion I just tweeted about this the other day, well you can't do is you can't like just select a page and say, Hey, turn this page into a template, and then go from there, there's this whole weird template button thing that doesn't quite work the way you'd want it to. So I would really love to be able to just click new issue or whatever new priority and have it do everything for me. But that's just how it is. This is how I do it. I know there's a ton of more complex systems. Again, I only have a couple of people in my notion, I think there's like three people in my notion working on this at a time. So obviously, this would not scale to a team of 30 4050 people. So we know a lot of our listeners do work on big teams like that, and teams that have to support those kind of systems. I would love to hear about what your system looks like if you have blog post, or if you have any sort of you know, even just links to share this with us as at syntax FM, but we will retweet you, we want our audience to hear what some people are doing in larger and bigger, more intense groups of project planning. And I guess it's a little bit different since we're the single developers like we are largely the people making the calls of saying, Hey, this is what's going to get done next, this is where we're going. But it would be a totally different game. If you had a coming from above somebody saying you know what, you know, that thing that you really wanted to work on, we're not doing that anymore, we got to do this other thing. So that would be a totally different world to me. And I'm interested in hearing about how you do and manage that.
+
+26
+00:18:02,090 --> 00:18:03,990
+Wes Bos: Awesome. Anything else to add there.
+
+27
+00:18:04,140 --> 00:18:11,520
+Scott Tolinski: Just don't just share us with us your systems. And let us know if you hate what we're doing with our systems and think we have to do it a better way.
+
+28
+00:18:11,550 --> 00:18:38,190
+Wes Bos: Yeah, I would like to hear if people have better systems as well. Just like, I don't know, I've never really spent all that much time on it. Like I'm happy with it, but there's probably better ways to do it. I just don't want to get sucked into something that is more work. Yes. On the system than actual getting work done. Because that's that's where you like sort of fall into this trap and then free know it your management. And you've you're doing here all day long. Not suck Yeah, right. Exactly.
+
+29
+00:18:38,190 --> 00:18:47,060
+Scott Tolinski: Yeah, these systems are supposed to make our lives easier and not more difficult. So if your system is making your life more difficult, that's a good sign,
+
+30
+00:18:47,250 --> 00:18:48,390
+Unknown: not the right direction.
+
+31
+00:18:48,480 --> 00:18:55,140
+Wes Bos: Awesome. Well, I think that's it for today. Thank you so much for tuning in and we will catch you on Wednesday. We will
+
+32
+00:18:55,140 --> 00:18:57,270
+Scott Tolinski: catch you on Wednesday later.
+
+33
+00:18:57,560 --> 00:18:58,100
+Wes Bos: Please.
+
+34
+00:19:00,630 --> 00:19:10,410
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
