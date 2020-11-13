@@ -1,0 +1,224 @@
+1
+00:00:00,359 --> 00:00:24,480
+Announcer: Monday, Monday, Monday, open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob and Scott Tolinksi ski.
+
+2
+00:00:26,610 --> 00:01:05,840
+Scott Tolinski: Welcome to syntax in this Monday tasty treat. We're going to be talking about CloudFlare. Specifically, I'm going to be asking Wes to describe some things in CloudFlare. Not because I don't know I know everything right? Of course not. Of course, it's not like I don't know. But I'm just interested in learning some new things from the audience perspective. So I'm going to be asking Wes a whole bunch of things about CloudFlare. And we're going to be talking about it. I should state first and foremost that we are not sponsored by CloudFlare. They have not paid us for this episode. This is just a pure curiosity and interest. So my name is Katelyn scam, a developer from Denver, Colorado, and with me, as always, is Wes Bos.
+
+3
+00:01:06,060 --> 00:01:07,110
+Wes Bos: Hey, everybody.
+
+4
+00:01:07,110 --> 00:02:55,200
+Scott Tolinski: Hey, Wes. This episode is sponsored by Log Rocket. Now Log Rocket is an amazing service to give you a session replay over what types of bugs are happening in your site, something happened? Well, it's going to be cataloged logged in Log Rocket, and you're going to be able to check it out, see it and you get this really cool thing. This is one of the services in my mind, you really want to go their website, I'm not just doing saying that because they're our sponsor. But if you do go to Log rocket.com, forward slash syntax so that way, then they know where you came from. But you're gonna want to watch this video that shows you exactly what you get with this session replay because it's a scrubbable video that shows you your network requests your console log, it shows you what the user did. And it is absolutely fascinating, you get to see all of the steps that they took before they broke your website. And it's so cool. So if you go to Log rocket.com, forward slash syntax, you'll get 14 days for free. And you're definitely gonna want to try this out. Or at least watch the video because that's enough to sell me it is so very cool. So thank you to Log Rocket for sponsoring. And I bet CloudFlare wishes they could thank us for, you know, the amount of trust we're gonna give them from this episode, even though they they don't need that CloudFlare a big big company. So CloudFlare for those of you don't know, they provide a ton of different services, so many that it kind of makes me overwhelmed when I look at it. So I see CloudFlare. And I hear everyone talking about CloudFlare. And granted, I've used it in the past for some things. But there are so many different things that exists within CloudFlare. Here, I wanted to ask you which of these services that CloudFlare has are using, which are you not using when why and maybe we can do a little bit of overview of these features, and maybe what utility they provide.
+
+5
+00:02:55,470 --> 00:07:43,950
+Wes Bos: Yeah, CloudFlare does so much. And it actually powers like 10% of the internet. One in 10 requests go through classified and there's a bunch of people that don't like that, because there's too much power in one spot. And that's that's a very valid concern, you definitely have to have trust in the company in order to use it. So what are they? Well, probably at the very basic, they are a DNS provider, which means that when you buy a domain name, and you set your name servers, you set your name servers to point at CloudFlare. And then you log into CloudFlare. And you're able to manage your a records, your MX records, your all of your validations all anything that you put in a domain name. So do you personally, are you hosting your domain there? Or are you pointing your DNS there and or both? Like are both of those things a possibility just to point your name servers there and let them you do the DNS stuff. Yeah, at the very basics, they are free DNS provider with a really nice interface. But you can also now transfer your domain names to them. You can't register new domains with them yet, they will probably roll that out at some point. But because they want you to use the rest of the stuff that we're talking about. They offer domain name registration at cost, which means you're not going to get them cheaper anywhere else. They don't have every single, they don't have a F. So I still have to go to Gandhi to get a F. But you can just renew them. I've moved all of my domain names over as many as I could. I personally, I buy them at hover, and then I just transfer them over to CloudFlare. Once the like two week lock is up, because I know that they'll they'll renew their at cost for those of you who've never transferred a domain is that process. So I've transferred domains, but do you want to Yeah, do you want to do a quick on that? That's a great question. Yeah, people. So like one thing you need to know about transferring a domain name is you have to pay for registration. But you don't have to wait until your domain name is about to be up for renewal. So if you've got eight months left at GoDaddy or something like that, you can move it over to CloudFlare. And then you get one year and eight months. So you have to pay the eight bucks for a.com. But you don't reset the clock, you still have that original time that you you paid at your original registrar and you can then move it over and how to do it. Well, first, you have to unlock the domain name, which is a setting in wherever you currently have your domain name. And then you have to get a transfer code. So you generate these one time transfer codes. And then you set up the, you just basically set it up on CloudFlare. And then they ask you for that code. And then anywhere between 20 minutes and a week later, that domain name will transfer over some registrar's, make you log in and approve it. Some registrar's don't like this, because it's a cash cow for them. So they want to make it very hard. Yeah, yeah. But yeah, once it's there, you have access to all of your DNS at CloudFlare. And then the one sort of the, the initial thing that they did was, they turn on what's called orange clouding. So you can either use CloudFlare, just as a DNS provider, which is great, because because they're such a big part of the internet, I feel like my stuff updates quicker on CloudFlare. I'm not sure if that's true or not. They provide caching. So if you have an image or CSS or HTML, they are a layer in between your web server and your request. So when as soon as you go orange cloud, you're essentially putting another server in between. and at that layer, they will proxy all of your requests in and they can do things like image compression, they can do caching, like, I'm just looking at my beginner JavaScript course here. So in the last two days, I've cashed a gig. So that's huge. If you're paying by the gig, that's out of 28,000 requests, 95% of the visitors are receiving a cached one to them. So that's great. If you if you're paying by the gig, this is gonna save you tons of money, and you don't have to pay for this on cloud flares. And another thing they do is DDoS protection. So if you're getting a DDoS is distributed denial of service, if somebody were to hammer your website, or if you were to DDoS yourself, which I've done many times in my life. CloudFlare will recognize bad actors like that. And they will try to prevent that based on lots of stuff, most of which is secret sauce internal to CloudFlare. Because they don't want to tell it same thing how like Google spam recognition works. They don't tell you how that works, because that's their secret sauce. Right? Totally.
+
+6
+00:07:44,400 --> 00:07:56,010
+Scott Tolinski: So this is all free so far. That's crazy. Yeah, yeah, that is that is totally free. Do you have to have all of your DNA? Like, do you have to have your DNS on there to take advantage of things like the DDoS? Protect? Yes,
+
+7
+00:07:56,039 --> 00:09:04,830
+Wes Bos: yes, yeah, you have to use their their DNS at a very low level. But even if you just use it, it's a very, it's probably one of the best UI eyes I've seen for managing your DNS. So big fan of that. They also hide your server IP. So like one, one sort of thing is like, how do you not get DDoS is don't let people know what your server's IP address is. Because as soon as somebody knows what the IP address to your boxes, or if your box is not set up, like on digitalocean, you can set up firewall rules that will reject any requests, unless it's coming from CloudFlare. And that will stop malicious actors from trying to go directly to your box. But in general, you should not let people know what the IP address of your box actually is. And if you look up the IP address of a CloudFlare domain, it will just send you a CloudFlare IP address. And there's no way to tell there's some like weird stuff around it is if you need to SSH into your own box. You have to sort of work around that. But that's well worth your time. Cool.
+
+8
+00:09:05,540 --> 00:09:43,040
+Scott Tolinski: Wow. So I okay, yeah, although this is getting the wheels turning. The main barrier for me is moving my DNS which I'm currently running on DNS simple. DNS was pretty cool. But I think I need to move my DNS over, and they need to start doing some of this stuff. Just to just to get I don't know, just to get a lot of these features. Right now I was on DNS simple specifically, because of their, they have these like really interesting sort of fake record. That's not like a real record. Let me see what it's called. They call it a like an alias record. I think if that's not a real thing, are you familiar with the alias record? concept?
+
+9
+00:09:43,500 --> 00:09:44,310
+Wes Bos: Yes, I am.
+
+10
+00:09:44,310 --> 00:10:29,610
+Scott Tolinski: There's there's some weirdness around if you want to alias the root domain? Yeah. Which CloudFlare does that as well. They have some special sauce around that which is not generally a thing that you can do. Right is super weird for me because I needed to do a reroute moving from HTTP to HTTPS. Yeah. It was like a lot of weird stuff. So cool. All right, well, I'm gonna have to do that this is gonna be on my list today. So okay, we have that if you also have here that there's a free HTTPS, is that something you're using? Because I've always I'm using my SSL through DNS, and Let's Encrypt. Oh, yeah, well, yeah, it is. Let's Encrypt, but it's automatically renewed and set up through DNS and Oh, so DNS simple does that for you. That's cool. Yeah, you don't even have to touch it. You just say, hey, this domains got DNS, and then it renews automatically and stuff. That's how
+
+11
+00:10:29,610 --> 00:11:24,150
+Wes Bos: it should work. Yeah. So CloudFlare will give you free SSL certificates, which is, was a big deal, when you had to pay for them, it's not so much of a big deal now that they are free for everything with Let's Encrypt, I still generate a Let's Encrypt SSL certificate for all of my sites, because the traffic between CloudFlare and your server, and the traffic between CloudFlare. And the user, between the user and CloudFlare is encrypted. But by default, the traffic between CloudFlare and your server is not encrypted. So I'd like to have that on Also, you can sometimes I have to just turn off CloudFlare. It's called going gray cloud, gray cloud domain name. And that turns off all the CloudFlare features, and just gives you a raw DNS. And if that's the case, then you lose SSL. So I still always do have an SSL cert. For all of my my websites
+
+12
+00:11:24,150 --> 00:11:31,140
+Scott Tolinski: for those two reasons. Interesting. Gray cloud, white papers and net developers have in common. That's cool.
+
+13
+00:11:31,410 --> 00:11:58,320
+Wes Bos: Yeah. That's great. I should say, also, like moving your DNS over CloudFlare. Does this cool scan? Well, they will take your existing DNS entries, oh, Lord them over I got again, that was like the Yeah, that was like, the hard part about moving DNS is that like, I don't want to, like it's so scary to move your email, DNS. Because if you take down email, you're, you're poached. So they do a really good job at that. Yeah,
+
+14
+00:11:58,320 --> 00:11:58,980
+Scott Tolinski: I gotta get that,
+
+15
+00:11:59,189 --> 00:12:51,510
+Wes Bos: what else they have a firewall rules. So I've got a couple firewall rules that are run on some of my course platforms just to keep malicious actors out. So I put those up there. So like, I think he got like five free firewall rules. And after that, you have to pay a lot of these, they give you a couple for free, and then you pay for the rest after that. They give you scrape shield. So if you've got email addresses or phone numbers on your website, CloudFlare is really good at detecting if the person viewing the website is a bot, or the what they do is they inject a little bit of JavaScript into your website that will they'll default, they'll hide email addresses, and then they'll use JavaScript to show them and then they can detect if it's a bot or not, and not show them which is pretty cool. Interesting. That's cool. Yeah, they've got stats, which I really like. So like survey, similar, you know, we talked about, like, Netlify stat. Yeah,
+
+16
+00:12:51,600 --> 00:12:55,140
+Scott Tolinski: I was gonna say it looks like they have some analytics stuff in here. That's new that I haven't seen.
+
+17
+00:12:55,500 --> 00:13:59,040
+Wes Bos: Yeah, some pretty cool analytics. I'm a big fan of this. And also, like, they CloudFlare knows bots, right. So I feel like I trust the CloudFlare analytics a lot, because they can filter out bots really, really well. And they're also not it's not client side stats, it's server side stats, which is pretty cool. Yeah. And what else here they, we too, had a whole show on serverless function. So they have this new thing called CloudFlare. Workers, which is pretty nifty. How we said, so CloudFlare workers to me, and makes it seem like there's some sort of connection to service workers are they're not, they're just, they're just serverless functions. That's a they're serverless functions, but they work similar to how service workers work in that you can intercept requests. Because of the unique position CloudFlare is in, you can run code in between the request and the response. And you can sort of step in, much like a service worker would be able to intercept the fetch request and serve up a cache instead of letting it go to the server.
+
+18
+00:13:59,370 --> 00:14:00,000
+Unknown: Interesting.
+
+19
+00:14:00,180 --> 00:14:31,560
+Wes Bos: Yeah, they have their own DNS, like if you go onto your, your router, do you use this? I do? Yes, I do. So they intelligently route your requests. So they're a bit faster. It's just one dot one dot one dot one. So if you go to one on one, no one, no one on your website, or you can even type in one dot one dot one dot one, like the actual words, and it will work which is pretty nifty. So they must have registered the dot TLD. Four, just dot one.
+
+20
+00:14:32,670 --> 00:14:35,880
+Scott Tolinski: Just so they could get that name. That's, that's kind of wild. Yeah.
+
+21
+00:14:36,209 --> 00:14:55,020
+Wes Bos: Yeah. And then they have CloudFlare warp, which is a How do you describe this? It's like a VPN, but not a VPN. Oh, so sometimes your ISP will. It encrypts your traffic like a VPN does, but it doesn't hide you like most VPN does. It's not going to fake your country or something. Oh, that's
+
+22
+00:14:55,020 --> 00:15:05,070
+Scott Tolinski: that's pretty useful, right? Because there's so many times I go to YouTube, TV and YouTube TV's like your Is there no VPN? That's it? You can't Oh, yeah, sorry, YouTube. Oh, I
+
+23
+00:15:05,070 --> 00:16:40,590
+Wes Bos: see. Yeah. Yeah, I didn't even think of that. Yes, because nothing in Canada is good enough to actually watch normally. But I should not lie. Actually, CBC has a pretty good app. But they have this little VPN that like, I have an at&t phone. And if you try to, it has this thing called stream saver, where it like, reduces if it tells you're streaming Netflix or YouTube or something like that, it will intentionally throttle those packets. And they shouldn't be able to do that, like data is data, right? You're paying for what you get. So CloudFlare, were warfel just encrypt that traffic. And currently, they only have it for your phone. And I'm assuming they will, at one point, roll it out. CloudFlare doesn't seem to roll out stuff very quickly. But when they do, the rollout is usually pretty good. And there's a little bit around warp who didn't work with YouTube initially. But I since went back to it after six months or so in it. It's awesome. Now, interesting. So they're bangers they don't put out a lot of stuff. But when they do, it's a hit. Yeah, well, like they do a lot. But like they don't, it doesn't seem like they rush anything out. Sure. But I can definitely trust the company in terms of the stability. And this is probably at some point, someone will take this clip of me saying I trust them and probably come back. But this happens. Anytime I talk about a company, something happens, they get hacked, or they're found like colluding with government or something, right. They're doing and it comes back to get me but that's fine. I'm I'm taking that risk.
+
+24
+00:16:40,650 --> 00:16:53,520
+Scott Tolinski: So okay, so there's a lot of these services here, right? There's, these are a lot of services. And there's a few that I see that you're not using, do you want to give some insight into what you're what you're not using? And maybe why?
+
+25
+00:16:53,910 --> 00:17:01,470
+Wes Bos: Yeah, one one thing I haven't used yet is they have a key value storage for their servers, where are serverless functions? What are they called workers.
+
+26
+00:17:02,070 --> 00:17:45,960
+So if you need some sort of database, they they make that available via key value storage, the only reason I haven't used it is because they don't give you any for free. So if you want to use even one little little bit, you have to pay for it, which is not how they've hooked me on the rest of their product. Like I don't give me give me 10,000 requests a month or something for free. I think that would be pretty cool. If they did that. I switched over to begin for a little project I just did I made a hit counter on service work or serverless functions. And in order to save the data, but how many hits were there? Yeah, I switched to begin because they have like a free tier of data. They also have an entire video streaming product,
+
+27
+00:17:46,140 --> 00:17:51,080
+Scott Tolinski: right, which I'm very interested in if we're being entirely honest here. Yeah,
+
+28
+00:17:51,110 --> 00:18:27,390
+Wes Bos: I actually had calls with them like a year and a half ago when I was having trouble with Vimeo. And they were just in the early stages of rolling it out. And like they don't have a player, they might have a player now, at least at the time I looked at it, they didn't have a player. It was just straight up API's for just doing raw, like it's really low level stuff, where you give them your mp4 file, they'll take care of the encoding and the transcoding. And CDN in and around the world and all that kind of stuff. Which is pretty cool, because I like them as a company. So I would definitely check that out if you are reevaluating your video right now.
+
+29
+00:18:27,590 --> 00:18:35,910
+Scott Tolinski: Yeah. And it's it is I mean, it is you're not hosting it there. So it's not like you're stuck there. Right? I mean, it's Yeah, yeah. Interesting.
+
+30
+00:18:36,420 --> 00:18:37,470
+Wes Bos: What sorry, say that, again,
+
+31
+00:18:37,710 --> 00:18:49,310
+Scott Tolinski: you're not hosting the video on CloudFlare. Right? you're hosting it in like an s3 bucket. Right? You are? I thought you were just pointing it to an existing storage, but maybe I'm totally wrong. Oh, does a store huh?
+
+32
+00:18:49,710 --> 00:19:48,900
+Wes Bos: Yeah, they I'm sure that you they slurp it up from an s3 bucket, or they can slip it up from anywhere. But they are the the store. And the interesting thing to put it out. So that's one thing like big files don't get cached. Like whenever I talk about how expensive it is to offer downloads for my videos. Everyone's like, why not just put CloudFlare in front of it? And I was like, Oh, yeah, I'm sure CloudFlare will love to cache my 100 meg video download, you know, and they they don't they don't cache zips or large files over I forget what the threshold is. It's more for images and CSS files. Interesting. Yeah. And the last thing I don't use, I don't use any of the like deep customization. So if you have like actual like really high level security threats where you need to block a lot of people get really into firewall and access control. They have tools for that. It's just not something I use all that often is the things I do use. I'm within the like five free per domain name. Hmm, cool.
+
+33
+00:19:48,930 --> 00:20:11,940
+Scott Tolinski: So we did get into this last little bit, so we're not going to have another heading here that says how you set it up. We've kind of talked about this, but let's say okay, so I'm on I'm on CloudFlare staff dashboard. I have entered my domain. How do you go through the physical process on here? Have you have a domain somewhere else? Where Yeah, what do you do? We can do this real quick? Um, well, I
+
+34
+00:20:11,940 --> 00:20:29,970
+Wes Bos: would first. Yeah, I would first just like don't worry about transferring the domain name to them. Just leave it on your current registrar while you toy around with this, you can transfer that at a different point. And that has nothing to do with almost all of this. But you just basically you you set it up, it slurps up all of your DNS records.
+
+35
+00:20:30,240 --> 00:20:34,980
+Scott Tolinski: Well, how do you how do you get it? Where's the slurp button? We're looking for the slurp button,
+
+36
+00:20:35,010 --> 00:21:21,860
+Wes Bos: you click Add site? Yes, you type in. Level Up tutorials.com. Yeah. And you click on the free plan. Yeah. click on Confirm. And then it's a scanning for existing DNS records. And now it's telling me we've got level up tutorials. We got store dot level up tutorials. Those are both pointing to the same. Yes server. Yes. Yeah. Then you've got some stuff looks like around working with galaxy. And I got a lot of records, mail, sending sending mail, and then some validations around sending transactional email as well. And then finally, inbound. postmark stuff. Yeah, you see you just have you've got like six or seven records here. It slurped them up. And I don't know I keep saying slip it out
+
+37
+00:21:21,870 --> 00:22:05,850
+Scott Tolinski: to you. Um, so this is a you know, as we do we're slurp. Did there's like a 711 slurp slurp song slurp song? Are you familiar with this? slurp song? No, no, it's a 711 hit called dance, the slurp. We should put this in the show notes. And I laugh about this. Because my boss, the guy who I started level up tutorials with Ben, he used to play this song because it's so ridiculous in our office. And it was like a huge, huge, like, hit in our office for a little bit. Just it's so funny. I had never heard of a 711 braided song before. But this thing is it's from the 70s it's very weird, and very worth your time. But up
+
+38
+00:22:06,390 --> 00:22:09,090
+Wes Bos: far. All right, I'm gonna I bookmark that,
+
+39
+00:22:09,120 --> 00:22:11,010
+Unknown: yeah, got a burnt out anyways.
+
+40
+00:22:11,130 --> 00:23:04,110
+Wes Bos: So when you add all these DNS records, you continue. And then the last sort of thing that you need to do is you need to go into wherever you have registered your domain name right now, and change your a wreck or your sorry, your name servers. So you there's generally two or four name servers CloudFlare will give you to name servers, you pop them in, and then you got to sit on your hands for anywhere from a half an hour to 48 hours, it's usually within a couple hours, they will move it over. And if everything went according to plan, nothing will have changed. That's fun. And then I would probably turn off. Sure I would probably gray cloud all your your URLs while you wait for that transition to go. And that one sure nothing breaks. And then just start turning on all of the CloudFlare you orange cloud Amal, and then just kind of visit your website and see if everything looks good.
+
+41
+00:23:04,140 --> 00:23:05,250
+Unknown: Cool. Wow.
+
+42
+00:23:05,250 --> 00:23:26,460
+Scott Tolinski: So this is pretty interesting to me. I am going to be just spending the whole day on CloudFlare right now. Not that it's so funny because I used it so much in the past, but I haven't used in a little while. And it seems like it's so much different and so much more evolved than it was before. So very into this. And again, once again. This episode is not sponsored by CloudFlare. But if they want to throw some cash for this, they can do that. Take
+
+43
+00:23:26,460 --> 00:23:37,590
+Wes Bos: your money. I will take it out. Yeah, send me a hat at least Yeah, no hat. Has anyone ever given you a hat? Hold on. Has anyone ever got a hat from a company? Have you? Uh,
+
+44
+00:23:37,620 --> 00:23:40,920
+Announcer: I got a hat? No,
+
+45
+00:23:40,950 --> 00:23:51,300
+Scott Tolinski: I think I did get a really bad hat from like one of those like really crappy foam trucker hats. I'm trying to remember who sent it, but I'm not sure wasn't good. I think my dog ate it.
+
+46
+00:23:51,660 --> 00:24:08,160
+Wes Bos: All right, well, well, actually, the CloudFlare went public. So they're like, they're a publicly traded company. Okay. And when they did their CEO had a suit and the inside of the suit was orange, like CloudFlare, which is so cool. And apparently his sister made it which was is even cooler.
+
+47
+00:24:08,190 --> 00:24:09,270
+Unknown: Yeah, that is cool.
+
+48
+00:24:09,330 --> 00:24:37,260
+Wes Bos: Yeah, kind of a cool company. So hopefully you learned a thing or two. That is why I always talk about how much I love CloudFlare. It just gives you so much for free. I think the reason why they gave you so much free is because they have major, major, major clients and like my silly website that gets a couple hundred hits a day is a drop in the bucket compared to like, yeah, they're like probably defending, like every half of half of the world e commerce on Black Friday.
+
+49
+00:24:38,970 --> 00:24:58,890
+Scott Tolinski: Right. Cool. Well, I hope you learned something about CloudFlare it seems like it's one of those essential tools that you should have in your tool box, your tool belt, whatever you're carrying around with you to do web stuff. So check it out. Try it try this out. Add one of your domains just play around with it. I always like to do this stuff on a test domain first or maybe like a fun little product one just see if it works.
+
+50
+00:24:58,920 --> 00:25:03,150
+Wes Bos: Yeah, yeah, yeah. Do a low stakes one while you get comfortable with it.
+
+51
+00:25:03,180 --> 00:25:08,490
+Scott Tolinski: I've just clicked the go on the moving level up tutorials over there right now so we'll see while we're recording this episode
+
+52
+00:25:09,450 --> 00:25:15,360
+Wes Bos: that's that's a good idea. Yeah, your your smallest project ever. Just the only thing that feeds your family?
+
+53
+00:25:17,010 --> 00:25:18,990
+Unknown: Yeah, that's like
+
+54
+00:25:19,020 --> 00:25:24,030
+Wes Bos: Alright, this is getting a bit tasty. So we'll end it here. Thanks so much for tuning in. Catch you on Wednesday.
+
+55
+00:25:25,230 --> 00:25:25,740
+Unknown: Please
+
+56
+00:25:28,260 --> 00:25:38,040
+Scott Tolinski: head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
