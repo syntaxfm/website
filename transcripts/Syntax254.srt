@@ -1,0 +1,336 @@
+1
+00:00:01,319 --> 00:00:02,820
+Unknown: You're listening to syntax,
+
+2
+00:00:02,849 --> 00:00:04,590
+the podcast with the tastiest web
+
+3
+00:00:04,590 --> 00:00:09,600
+development treats out there. strap yourself in and get ready. Here is Scott, ski and West
+
+4
+00:00:09,600 --> 00:00:10,530
+boss.
+
+5
+00:00:10,559 --> 00:01:28,830
+Wes Bos: Welcome to syntax the podcast with the tastiest headless CMS treats today we've got a breakdown of both like why you might want to use a headless CMS, what are things that you should take into account? We get this question all the time, like, Hey, what's the Scott what headless CMS should I use? And the answer unfortunately, is it depends. There's so much that you need to think about in terms of data and hosting and pricing and self hosted backups, images, things like that. So we're gonna go through a whole bunch of things to think about for headless CMS as well as we're gonna rattle through a huge list of hosted self hosted in, bring your own UI. CMS is for you. We're gonna get into it today who here are sponsored and intentionally did not look at who was sponsoring today's episode. We booked this like six months ago, I told Scott before we added the sponsors, I said whoever sponsoring today, because obviously we've have several headless CMS sponsors on this podcast is that whoever sponsors today, we're not gonna we can't change it. We booked it six months ago. So one of the sponsors is a headless CMS Sanity, and the other sponsor is Freshbooks, which is cloud accounting. We'll talk about both of them partway through the episode. We'll talk about Sanity actually, in this episode as well. Hey, how you doing today, Scott?
+
+6
+00:01:29,339 --> 00:01:41,610
+Scott Tolinski: I'm doing good. I was I was considering because I had written the word roundup in this episode title is considering doing like a get along little doggies kind of thing. Like a you know, Wild Wild West thing. Jim was Desperado. You know,
+
+7
+00:01:41,759 --> 00:02:30,000
+Unknown: I don't I don't know what that is Roundup. Like around up. Isn't that where you like? lasso all the bowls and stuff. Oh, did you guys have that commercial for Arby's? roundup? Yeah, that's, that's the exact same concept. It's just that RVs was using that as a roundup. You know, Roundup, right. $5 for five meat sandwiches, Roundup. I remember like looking at that and be like, Oh, that's disgusting. Yeah, I used to I used to dig Arby's. I'm not gonna lie. I'm not gonna I'm not gonna pretend like I didn't. But no, I haven't done fast food like that in a little while. But I used to is Arby's still a company? I would have to imagine. Did you know that R stands for R, the letter R and the letter B was spells out roast beef, roast beef, oh, are the Arby's that's next level?
+
+8
+00:02:30,000 --> 00:03:47,009
+Wes Bos: I just blow your mind? That's awesome. Yeah. All right. Well, we've got a massive show today. So let's get on into it. Let's start, I guess just with talking about like, what is a headless CMS? And why might you want to use one. So a headless CMS is a content management system that you actually Scott and I are sort of like putting things on the list here talking about like, what is even a CMS. So I think a headless CMS is a piece of software that runs on the server, you can log into it, and manage your data, you can create new data types, you can create new pages, you can create new people. And then you can attribute different pieces of data to that, and the part that makes it headless. Because that's what a lot of CMS is do is that the data that comes out of that CMS is not coming out in terms of HTML, or it's not rendered out in a theme or anything like that. The data just comes right out of it raw. And the format that that generally takes is either comes out as a REST API that returns JSON, or a graph qL API that returns JSON, there's a couple other ones that are out there. But generally, it's either a REST API or graph qL API that will return to you the raw data, and then it's up to you to go ahead and take that data and do what you please with it.
+
+9
+00:03:47,339 --> 00:04:14,460
+Scott Tolinski: Yeah, we were having this discussion. We were adding things to this list. And it was just sort of like, Well, no, that's not a CMS. And I'm like, yeah, is the CMS and then we realized that there is such a wide spectrum of like, how much it does for you versus how little it does for you that are like what point yeah, that threshold that it's no longer considered a CMS, I wrote down like, is a hot dog a sandwich? Because that's like the same discussion. At what point does it stop being a sandwich,
+
+10
+00:04:14,519 --> 00:04:55,620
+Unknown: Scott was talking about a Sora, which is a like a graph qL API. I was like, that's not really a headless CMS. And he's like, well, they have an interface they haven't. That's kind of just like PHP myadmin, right. Like, you can edit the text box, but it isn't. But you can add data with it. There's the data fields. So it kind of is it a headless CMS, that's what I'm saying. It's funny, you say that, but like, also, there's, there's parts of my website that I don't have a UI for. And if I want to edit that piece of my website, I just go into the database tool, and write some queries and edit it. So I guess it kind of is a headless CMS in that regard. And it's obviously doesn't have the nice UI that most of them will have, but I think it is,
+
+11
+00:04:55,620 --> 00:05:41,580
+Scott Tolinski: I think it's definitely a conversation. I don't know, at what point because you made a really good point because you pretty much posted is PHP myadmin. Associate CMS. And obviously the answer is no. It's a big No, but like Hazara is just a nicer version of what's going on there look a much nicer version, but it's still a nicer version of like a database interface. Totally granted, you can add an edit data, but it is a big conversation. Like what point I guess it doesn't really matter. Like, none of this really matters because it's all a threshold of whether or not it's user friendly. And I actually have a great idea, we could make a site that is just all of the headless CMS is and then rated as to like, who could use them? Could my dad use it? My dad could not use hesser. My dad could use WordPress, definitely.
+
+12
+00:05:42,450 --> 00:05:54,330
+Unknown: Yes. It's like anyone who, like somebody who's non non web development, can they use this thing to figure it out? Right? They're used to posting on social media, right? Could a Facebook user use this?
+
+13
+00:05:54,600 --> 00:07:21,990
+Wes Bos: Yeah, so I'm building a Gatsby course right now. And I went down the road of trying out a whole bunch of different CMS is to see what would be best for this. And I ended up going with Sanity. And what I learned is that there's this huge threshold between usability and nice UI. And on the other end of things, there is total control over your your CMS. And then there's a lot of stuff sort of in between. and with most of them, you have to sort of pick and choose which end of the spectrum you want. And we'll talk about that a little bit more. A lot of people like assume that like, Oh, yeah, use a headless CMS with Gatsby. And that's why you would need it. But a headless CMS, the whole point of it being headless is that your front end is not dictated by the CMS itself, you don't have to have a static website. So it's pretty popular to use Gatsby or any of these static site generators with a headless CMS, just because they don't have a back end for you to log into. You can use them with anything. So the whole idea is that you have your data and you can pull it into your iOS app, your mobile website, your Android app, your static website, you can pull it into, like a widget on it and menu UI or anything like that the data is free for you to pull in at any time, whether that's on build out a static site generator, or whether that's every single time a user loads a page, or whether that's every half an hour, you refresh the data in the cache, that's maybe server side.
+
+14
+00:07:22,590 --> 00:07:42,840
+Unknown: It's such a good point. That is the conversation. It's like, why would you need a headless CMS? Well, that's it right there. I mean, it's the same reasons why you need an API verse, why you just connect to a database, right? Yeah, exactly. You want to sort of normalize the access layer, so that whoever or whatever needs to access that data is able to do so.
+
+15
+00:07:43,320 --> 00:08:50,419
+Scott Tolinski: Cool. So let's get into the next section, which is we're going to talk about things to think about when choosing a CMS, right? These are the sort of the feature set of various CMS and some do the each of these features better than others. And I wouldn't necessarily say there's any perfect one. So that's a something to keep in mind here. It's really which of these fit your needs the best. So let's talk about some of these needs. And one of the big ones is authentication, like who needs to authenticate, right? Do do other users need to authenticate? Or is it just admins, right? Because you can't really have a CMS without sort of admin CMS stuff, right? So obviously, the admin is going to need to log in. But what about users? How many users are going to need to log in? Is it going to be a nasty use thing? Is there going to be a permissions and roles based thing? What does that look like? Right? Can users post to this site? That's a big deal, too, right? If users can log in, but they can just save things or whatever. That's a very different story than users logging in and posting things. I know, I just think about the giant matrix of checkboxes. That is the Drupal permissions. But it is totally needed, because you can tweak every little permission there. And that is a big, big feature set.
+
+16
+00:08:50,820 --> 00:09:03,750
+Unknown: Yeah, some of these CMS does have just a user, someone can log in and do anything they want. And, and some of them go super nitty gritty where someone can create content, but not post it live, someone can see something, but not edit it,
+
+17
+00:09:03,840 --> 00:10:48,450
+Wes Bos: edit it, but now publish it. There's just no rules at all. So it's important to look at what do you need before you get into it? Otherwise, you could be a month into a project and realize, oh, there's nothing to do that. And some of these things. They assume that you'll be writing your own off strategy, if you need that low level, and fine grained control totally. The next one we have here is how easy is it to create your own data types. So if you want to go ahead and create a listing of stores, and every single store has a name and address, and then each of those stores has employees, that's like a relational, another data type, which is a user right? And you can connect those those people. How easy is it to go ahead and create a new data types. So some of them, you can just log in and create your new data types just with the UI in there. So I'm thinking of advanced custom fields and custom post type UI in WordPress. Prismic is like this as well there's, there's no like code story to it, you can export it to JSON and put that in your Git. But you generally you just log in and use the UI to create it where On the flip side, there is a lot of CMS is that are entirely based on schemas and JSON documents, importing types and setting all the all the settings rather than checkboxes in the UI. Everything is done in code. So that's something to think about, as well as who is the user that is going to be setting this all up? Is it a developer, if that's the case, then you can do it in code, or someone who just prefers to do it in the UI? Because sometimes I look at these things, and I go, oh, too much config. To get this thing up and running. I just rather use a nice GUI.
+
+18
+00:10:48,480 --> 00:11:07,440
+Scott Tolinski: So you know if there was ever this conversation back in the day of Drupal verse WordPress, the reason why I prefer Drupal myself, because it was so easy to create new data types where WordPress you always had to install a plugin or get into the code to do it. So to me, it was always like that, that was just such an easy feature of Drupal. It felt like it was you know, the, the easy part of it.
+
+19
+00:11:07,830 --> 00:11:58,380
+Unknown: Yeah, that's one thing I I never understood about WordPress. I like to have the the most powerful things in WordPress, which is creating custom content types, creating custom taxonomies and creating UI for custom fields, that without a plugin, those things are absolutely useless in in WordPress, now, you can do it in your functions, which is crazy, because it's so easy in Drupal. Yeah, that is that is silly. And obviously there's a huge market and almost everybody automatically installs those plugins into WordPress anytime you want to go but it's funny that they've never taken that on themselves. Totally. Yeah, cuz those you eyes aren't even very good for those No offense to those developers. I think those guys could be much better. Oh, man, I'm gonna say I love advanced custom fields. Sorry, you I can I can look at you I you can say I don't Well,
+
+20
+00:11:58,380 --> 00:12:17,669
+Scott Tolinski: yes. So I don't know if you've ever used Drupal. But even like Drupal seven, or Drupal six, like even those versions, people were like that, that tells you what an interface for creating custom content types could be like, and it's just so much better. It's way better. So like, after you've used that if used ACF, you're just like, oh, what is this?
+
+21
+00:12:17,730 --> 00:13:50,940
+Wes Bos: No, hold on, I want to talk about this. Because like, a huge portion of our audience uses WordPress. And like, for me advanced custom fields is you create your your group, you drag and drop your your things, you set your settings. And then you add your rules where you want these fields to show up and you click on Save. I'm like wondering, like, how can that get better? Like, what what does Drupal do, it's the actual UI, the functionality is large. So you know, there's, you know, it's basically like a table of fields, or you can group them together, whatever. But it's basically a table of fields. And then you can say, Alright, I want a new field, what kind of field is this? Oh, it's a reference to another content, or it's a image upload or whatever you just, it's like creating a like a database table, you just say, here's the field, here's what it is. Here's the field, here's what it is. Here's the field, but it's in a big table. And there's none of these, like groups by default, right? The group's by default thing is weird to me. And it gives you 1000 options when you don't need 1000 options, both times, you only need like one or two options, what the field is what it does. And then you can you elaborate with more options if you need them. But Drupal is all that stuff. So it's not just this cluster of information. I think you're talking about the custom post types, not advanced custom fields, custom post types, that does give you 5 million options, which is frustrating. Yeah, no advanced custom fields is where you. So the custom post types is where you create your types. But the UI for adding custom fields is actually really, really good. Oh, yeah. But yeah, I totally agree with you there. It is very confusing.
+
+22
+00:13:50,970 --> 00:14:21,720
+Scott Tolinski: Yeah. All right. Next one is can you create one off content types? Ie, can you take a look at single page? And that page has very specific requirements, right, some specific fields? Like, is it an FAQ page? Maybe it needs like a question and answer field? Or is it just like a giant text box? But can you create these one off content types that are used for one thing does has one purpose, and that just exists? So that that's definitely a thing, whether or not I mean, that goes along right along with the content types anyways, like a one off is like a very specific thing like a page or something
+
+23
+00:14:21,990 --> 00:15:10,529
+Wes Bos: like an options page settings, homepage, UI, something like that. I find myself needing to do that in almost every project that I do. Where next one we have here is custom workflows do have control over what the process to publishing looks like. When somebody publishes something, does it need to ping somebody can you hook into these specific things. So a lot of the UI only ones don't have this, but a lot of the code ones do allow you to hook in at these different steps in the content creation types. And you can do things like run it through a spell checker and come back or ping Email somebody or save a revision. Another thing is like drafts, revisions rollbacks. That's another really powerful feature that a lot of these CMS will have
+
+24
+00:15:10,649 --> 00:15:38,970
+Scott Tolinski: this version control. I mean, it's version controls. Yeah, it is right. Next is going to be our images handled. This is always a big thing do when you upload an image, how easy is that some of these services require a little bit to get images up and going. Some of them give you a ton of tools out of the box, and others just make it pretty standard. Right. So what does it look like? How much options do you have over the cropping, the output, the can the control of images, that's, that's such a big, big one.
+
+25
+00:15:39,570 --> 00:18:36,000
+Wes Bos: Yeah, a lot of them don't have anything. And you'll have to go and reach for cloudinary cloudinary, Image, Image x image IX, whatever it's called. And go ahead and do that. Because especially if you're using Gatsby image, a lot of these services will give you all of the pieces you need for Gatsby image without having to resize all the images locally, which is kind of cool, as well as like a UI for uploading images. So if you want to create like a gallery of images, I found very fragile interfaces where you have to create a repeater. And then that has an image and a caption. And then if you want to reorder them, it's a little bit of pain. And then I found like, Oh, this is a very common thing that you need to do a gallery field would be really nice to be able to do that. You can drag and drop six images, reorder them, add alt tags in that interface. So that's pretty common to do on a website. And I felt like a good chunk of the ones I looked at were lacking good gallery fields. The next one we have here is field UI. So the hosted ones generally don't allow you to create custom UI for the upload fields. They give you a list of 10 or 15. Possible upload fields, like a gallery field, like I just talked about. So what what is the predetermine UI out there? And the UI is huge in terms of does the person who's going to be using this thing at the end of the day? Do they enjoy it or not? Is it frustrating to create things like I even a couple of them that I tried is that my internet was slow. And I wanted to create like, seven different toppings for my pizza. So I just like I wanted to right click open the new topping form, because I had a pizza and then I had a topping type. And the topping type was related to the pizza. And in order for me to just quickly add seven toppings, it wasn't like WordPress, where I could just add seven categories or taxonomies to something, I had to first go to the toppings, create all seven of those, and then go back to my pizza and select them from the list that I had made. And then I was like, Okay, this is kind of a pain. And I tried to like right click open new topping in seven different tabs. So I can at least get the UI open nice and quickly. And then it was a button and I couldn't open a new tab. And I was like, Ah, this is too hard. And it's just like little things like that you don't think about when you're you're looking at it. But once you get into it, you're two days into it. You go Oh, yeah, this flow sucks. I want I want the like WordPress, add a tag UI, which is very easy. Yeah, totally. I totally feel you on that one. But sorry, the last thing I just want to say here is two way relationships. Oh, yeah. Does the data up date on both ends? So if you have, like a movie that has actors, and then you have actors that have movies, if you delete a movie from an actor, does the actors movie also updating? That's super important? Otherwise, your data gets out of control really quick? Yeah, totally.
+
+26
+00:18:36,180 --> 00:19:12,540
+Scott Tolinski: It's all about relational. The ones that do relational data really well do a really good job there. I think that that's a key feature in CMS. Next one is going to be data validation. How much control do you have over individual fields? Again, this even goes along with permissions, but like validating individual fields to not only who can do it, but like, what can they type in this field? This is a number field image field, like what kind of what kind of data validation Can you have? And how does that output in the API that itself, and so giving full control over those fields, how those fields work is a key feature and how you validate those,
+
+27
+00:19:13,230 --> 00:22:25,110
+Wes Bos: the one thing I had was pizza prices, I wanted to make sure pizza was at least $10. And not more than $35. So obviously, simple validation is that a number but I also wanted to make sure that it was within that within that range. I wanted to make sure there was no decimals in it. And then when, when that validation goes wrong, or it's not validated, can you provide custom error messages to to that person? And that's where the code base ones one over over the just simply UI ones? Because you essentially can just have a validation function and run the code yourself throw errors if you want. Next one we have here is hosting. Is it hosted for you or do you need to host it yourself? How much is that going to cost? The other next point we have here is pricing. How much does it cost? If you need to add 15 people like it's pretty popular right now, for services to charge based on how many people are in there. And what I see happening all the time I've done this myself is, instead of just adding more people is you just share the password with everybody on your team, right? Because it's getting it can get expensive real quickly. Don't do that. So don't think about Yes, don't do that. Next one is going to be content movability. So like, a lot of these, you know, the classic CMS types, they give you access to just the database. But it would be really difficult to move your site from a WordPress using straight up the database. But luckily, for situations like that, there's all sorts of data exporting plugins to make that easy enough. But that's something you need to think about. Because this CMS might not be available forever. Who knows? What if you're still on Joomla? Like, what are you gonna do? I'm gonna, well, I'm gonna have to figure out how to get my data to Joomla. Now, I don't know what the story is there. I'm sure they there's very exportable data. But once we had a client who had their data in a custom ColdFusion CMS that there was exists, and it was like impossible to get the data out. Because that wasn't built into the CMS there was no sort of exporting the community was dead here was this, once used CMS know that we had the site that was so many years removed. And what did I have to do, I had to have one of our PHP engineers write a script to parse all the data out into a CMS and CSV values to get us all the data correctly so that we could import it somewhere else. And it's like, Alright, that would have been really great. If you could have just done that in the UI, or one click to get your data into a CSV or something. Totally, almost all of these will allow you to view data because that's that's literally what they do. Yeah, their API, see your data out. But like I'm talking about like other things like schemas, users, revisions, custom field types, all of that information about how your UI is built. Can you also get that information out of it or not? Sure. Yeah, totally. What else we have here? Is there a course or real time API? Do you need that? So can you use this API from the browser directly? Do you need API key for that? Or is it meant to be used proxied through some sort of server? Is there a UI that allows you to specify domains that are cores friendly or not? Is there a real time API deserve real time graph qL API can subscribe to things, or do you need to do polling? It's good things to think about as well? Yeah, totally.
+
+28
+00:22:25,110 --> 00:22:44,130
+Unknown: Next is going to be the API like what does this API actually look like? Is it only for querying? Or is it for querying and mutating or modifying? Is it for like a graph qL API? Is it a, is it a REST API? What does this give you? Like? What is the issue that what are the options?
+
+29
+00:22:44,130 --> 00:22:45,270
+Can you choose? If
+
+30
+00:22:45,270 --> 00:22:59,340
+Scott Tolinski: you want an XML output rather than a JSON output? Not that anybody would. But could you choose like a JSON REST API over a graph qL API if you wanted? Or is it just straight up a graph qL API or just straight up a REST API?
+
+31
+00:22:59,730 --> 00:23:11,100
+Unknown: Also, importing data how, how easy is it to import data, I was specifically using the Sanity import one. And the really cool thing that they allow you to do is import file pay
+
+32
+00:23:11,100 --> 00:23:56,490
+Wes Bos: for this sponsorship, they didn't pay, you're gonna pay for a part of this bug as well. Now this part, you can import, like you can also import data, but you can import images as well, you just give it a path to an image on your local computer. And as part of the import process, it will also upload the file and then link that file to it, which is pretty nifty, because a lot of times the data in the CMS is just stored as like a JPEG path. And then you'd have to provide that yourself. But that sort of came along as well. So there's a lot to a lot of things to think about when you are picking my map. That's why we have this massive list. And this is why we can't answer the question as to like, which one is the best? What should you go ahead and use because there is as a whole lot of give and take in this sort of world right now.
+
+33
+00:23:56,850 --> 00:24:08,790
+Unknown: So when you're starting a fresh new project, you're probably going to need to look for one of these CMS and maybe you're making some money off this thing and then you're going to need a fresh, fresh, fresh books to do all your cloud accounting software.
+
+34
+00:24:08,850 --> 00:26:22,350
+Wes Bos: Yes, fresh books is the cloud accounting software for your small business it is painful to send out invoices track who's paid you do your taxes, see see what local taxes you owe different currencies all that hard stuff freshbooks makes that easy. Want you to check it out. freshbooks comm forward slash syntax and make sure you syntax in the How did you hear about a section that's going to get you a 30 day unrestricted free trial. Thanks so much to Freshbooks for sponsoring, yeah, cool. So let's get into this Roundup. We're gonna start with the hosted CMS, these are probably the quickest way to get up and running. So the first one we have unless here is Sanity. Center, just kind of kind of interesting because it is hosted but both ends of the story here. The back end, let's call it the admin UI, the admin UI can be hosted either on Sanity, like you can deploy it, or you can host it yourself. Their admin UI is called Sanity Studio. And it's a react application. And obviously, the headless the front end of your website is also hosted by yourself. So like, how does that make Sanity hosted? Well, they give you Sanity Studio, which is a full blown admin UI that you can use to talk to Sanity API. But you can also because it is just code and because it is react, you have full control over creating custom content types, creating custom validations, over how it's displayed in the sidebar, colors ever and pretty much anything, right? It's just just JavaScript at the end of the day. So you do have control over that, which is pretty nifty. And that's actually the one that I ended up going with for my upcoming course. I intentionally like didn't look at it, like I asked on Twitter, like, what should What should I use? I intentionally didn't like say, I was checking out Sanity, because I knew that they obviously were a sponsor of the podcast, I didn't want to like taint that in any way. And the response was very heavily weighted in WordPress, Sanity, strappy. And there was quite a few Drupal there as well. So it's good to see that a lot of the community was there as well.
+
+35
+00:26:22,470 --> 00:27:19,200
+Scott Tolinski: Yeah. So next up is prismic@prismic.io. And outside of what we've experienced via Prismic, from the sponsorship, again, my opinions here are not paid for, I have not had a ton of actual real world experience with Prismic. It looks really great. And I think there's a lot of really interesting features about it. One thing I really like is that they really emphasize the content editing portion of things, it just looks nice, right? Like the the editor, it looks nice. And I think that's such a one of these features in a headless CMS that's totally overlooked a lot of time is what is what is the actual content editing experience, like, and they have, you know, drag and drop and everything looks really nice. There's a lot of like, really nice design touches on here. So I, I don't have the experience with it, where I can say like, oh, it does this, and this, and this, and this and this. But I really love the attention to detail that they have done in the design of everything. Yeah,
+
+36
+00:27:19,230 --> 00:28:48,180
+Wes Bos: I also did check this out for my course. And it was really cool, because I just I talked to the folks behind it, after I decided not to go with it for my course. And it was actually really good. Because there is no, there's no code setup, you don't npm install anything to get going. You just create an account, you log in, you click the plus button to create your types. You create all your fields, you relate them to each other, you can create repeatable things and all that that was awesome. It also comes with image x. So for all of your images under the hood, the reason I went with Sanity over Prismic was because of the control over custom inputs. So they give you 15 or so inputs, rich text editing, basic text, image upload, I don't know there's like every every type of input you could you could think of but as soon as you want to make a custom UI for yourself, which is not in every every case, but sometimes you do want to do that, then you don't have control over that. So sort of as a trade off for the ease of getting up and running. Like I signed up and had data in my Gatsby thing in like five minutes, which is that the trade off for that is you don't have full control over the UI. But the UI is pretty slick. Next up, we have here is contentful also have been the sponsor of this podcast. I've not used them also known as content folding. Is it content? I don't know. I don't know. I think people just say it both ways. That's why it was the joke. Probably can't content. I don't know,
+
+37
+00:28:48,210 --> 00:29:06,930
+Unknown: I don't know what it is. I mean content full content. I mean, this thing makes me content. I guess that could be a so they've been around for a while. Have you used them? No, we used them in a level up tutorials course. Yes. So contentful or contentful is, again, a really easy to get up and running. I like that they
+
+38
+00:29:06,930 --> 00:29:56,310
+Scott Tolinski: have a lot of like features like the web hook experience is really nice. The content editing experience, for the most part is very, very nice. That makes your data like a first class citizen. It's all about your data, right? Here's your data. There's tables of data, easy access, easy to edit, everything works really well. In fact, it reminded me of like, what I occasionally wished WordPress would be like in a headless situation. And so I really like those aspects of it. Now granted, I have heard from people I have not used it in this much of a capacity. I have heard from others, that it gets expensive. And actually just looking at it the developer plan. There do nine bucks a month for the developer plan. That's one yeah. One roll 24 content types. 5000 Records 40 bucks a month. That's expensive. So you're paying for that.
+
+39
+00:29:56,520 --> 00:31:11,400
+Wes Bos: Yeah, maybe we should say what the prices are for these other services. Well, cuz anyone who's driving right now can get an idea of like where it starts Sanity, the free plan is obviously zero dollars. And then it goes up to 200 bucks a month that includes 20 users, and that's 10 bucks per user past then 90 day history retention. So that's kind of that's what Sanity is at. And then Prismic is sort of on the way, it's funny that we've had both of them sponsor and they're very much on in different spaces, because Prismic is seven bucks a month for three users. So like, if you want to just get a quick website up and running, certainly Prismic is a really good use case for that. And it won't get too expensive on your real quick. And I think that's important to know, because like, for a big company that's using this to power their thing, the difference between $7 and $200 a month is is nothing right? Like they have payroll that is $300,000 a month. So they don't really care about a couple hundred bucks here or there. But then for some someone who's just building a website for a client, maybe you're freelance or something like that, then then the prices do matter. Because all sudden, something might be pretty, pretty expensive if it goes up. So pricing is saying you should definitely think of
+
+40
+00:31:11,700 --> 00:31:51,150
+Unknown: Yes, you should always think about pricing before you spend the money. I think we should maybe do like a Yelp dollar sign thing for this. Now another way. Yes. Honestly, like, this needs to be a thing. There's all these static site generator websites that compare everything, there needs to be a website that compares all of these different headless CMS as well. Cool. So the next one is going to be datto. cms. So do you have you looked at datto It looks nice site looks nice. I have not used the most beautiful, gorgeous, however, I have not used it myself. It's very use style. Without grunge. Yes, putting blocks of color behind text is my signature move.
+
+41
+00:31:51,180 --> 00:32:15,600
+Wes Bos: We need grunge we need grunge on this thing. They have a video encoding and streaming built into it, which is pretty cool. So that's it looks like they use mocks by must Yeah, just really, really cool. Like a lot of these CMS is are not going to roll their own image service or video service. So they just leverage using other services behind the scenes. That is pretty cool. Data CMS,
+
+42
+00:32:15,600 --> 00:32:51,030
+Scott Tolinski: I'm going to need some help here with the pricing. It seems like because it's in euros, right? This is the Euro symbol. I don't know, if you're on the site. It looks like it's free for the developer account, which is a single collaborator hard limits on quota community based support. But it looks like they're the next plan up is 99 euros a month, and then 1500 euros a month. So it seems like the pricing is quite a steep little jump up. So it seems like the for the developer small project with low traffic, it's zero. But eventually it's going to get into like a $4 sign territory.
+
+43
+00:32:51,420 --> 00:33:15,840
+Wes Bos: That's 107 US dollars to start. One thing I'm looking at the docs for data right now. And they have it looks like they have very fine grained control over roles and permissions. So you can add different rules about who can create read, update, publish, unpublish, edit, and delete as well as create other people. Which is pretty nifty. So looks like they've nailed their permission story here.
+
+44
+00:33:15,860 --> 00:34:40,320
+Scott Tolinski: Yeah, cool. Next one story block. I use this for a Scott tries video, the things I liked about storyblocks is that they thought about the front end a lot. If you needed a front end, right? It made that they tried to do a lot with like editor interface stuff where you could visualize your stuff as it's being typed. But I found a lot of the drag and drop tools to be a little confusing, didn't know where to go here there. But they do make it nice and easy for you to get started with a boilerplate in terms of like, Oh, you want to do a Gatsby boilerplate then yeah, here, just click Gatsby, you want to do a, you know, view, whatever. What is the view x or any of those? Go ahead next. Yeah, next is the one I was thinking of not the Redux thing. But no, if you want to do grid, some are aware of all or whatever, they make it really nice and easy to do that I really appreciated that for pricing for this one starts for free forever with one user. The basic plan is seven bucks per user per month. So it's a seat based pricing 12 bucks per user for the advanced 21 for premium. It looks like the more features that it gets. If you need like custom workflows, scheduling, content, staging, custom roles, Import Export s3 backups, you're going to be paying more for that I would say this is like a, this is a good a $1 sign. I guess it's per user per seat, though that it's a $1 per seat. So each time you add a seat, it adds another dollar to the yield score.
+
+45
+00:34:40,920 --> 00:34:47,550
+Unknown: That's great. Next one we have here is eight base. I've not tried this myself looks like dammit graph qL API.
+
+46
+00:34:47,670 --> 00:38:02,130
+Wes Bos: A base was really confusing for me. It was nice. Yeah, I did a Scott tries video and ate bass and just read their marketing copy because I had no idea what they did for a very long time. I was just like, Okay, well what does this do? I don't under But then I think they it looks like they actually changed it. Hell this funny, they might have changed it. Their whole thing was like very marketing speak. And I was like, What is this thing and now it just said build faster and better or something is like keep going faster. And I was like, What does that even mean? But now it looks like the very first thing it says backend as a service professional grade software, boom, nice job, a base for updating that shout out. Ah, so their pricing is I hate when companies do this, I get why they do it. But they do it based on like database rows and requests and how many one gigabyte an hour. So it looks like they have serverless built in, which is pretty nifty. I always look at these companies that charge based on requests and by the hour. And I'm like, I'm a developer. I don't know. Yeah, I have no clue how many I'm going to use. And that's why I like it when companies can sort of take a gamble and say, based on the number of people using it or something like that. But it's 25 bucks for a million database rows, a million graph qL subscriptions and a million graph qL API calls a month, which seems like a lot probably. Yeah. gotten I are gonna get so many email. Yeah, yes, I know. Every single company we mentioned. The next one is Canadian based agility cmms. They have tried to get me to do a course on them for a long time, but I've not checked it out just yet. It looks like they are targeting more of a corporate world based on the website seems to do a lot of requests a demo register for a webinar, their website doesn't do a great job at actually showing the UI of the headless CMS, which is why I think they're probably trying to sell managers rather than developers or editors on the end of the day. But from what I've heard, lots of people have been recommending us to myself, you can you can plug it right into Gatsby or next or next or anything like that. Seems to be a pretty popular plus a Canadian out. Yeah, well, alright, let's move real quickly into self hosted versions. So probably the most popular self hosted one that you can do. And this is what a lot of people are opting for is headless WordPress. Why? Because likely, you already have years and years worth of content already inputted into WordPress. And WordPress has a REST API that you can pull your data out of. There's also WP graph qL, which we had Jason who builds WP graph QL. He's got hired by Gatsby. Now, that's a good option as well, advanced custom fields, custom post type UI, custom plugins, things like that in WordPress, generally, all of these custom plugins are saving their data as custom post types, custom taxonomies and custom fields in WordPress. So if you have some sort of like something that sells tickets, or a custom contact form, or something like that, most of these plugins save their content as custom post types. And that means that you can then pull your data out of the API with that.
+
+47
+00:38:02,340 --> 00:38:44,400
+Scott Tolinski: Next up is Drupal, which has been around forever and ever and ever shoots out an API, the admin interface is less friendly than WordPress is in some regards, because it just gives you a ton of stuff. But once you tweak permissions and all those things, and make it really nice and friendly, and install a new admin interface, it is really a nice setup that I think a lot of people just don't reach for, for whatever reason, maybe they never had an experience with it. But I always really liked working in Drupal in CMS world. So I would recommend checking out Drupal. It's pretty cool. I haven't used it in a long time. Mostly because I haven't done client work like this in a long time, but I've not reached for Drupal. Again, myself if I was reaching for a PHP based back end for free,
+
+48
+00:38:44,820 --> 00:39:19,980
+Unknown: WordPress and Drupal obviously free except for if you have to buy plugins. You don't buy plugins in Drupal, and it's all free all open source. Is it really? Yeah, Drupal sounds awesome. Like the community seems like it just does not. They just kind of keep on chugging over, over the time making awesome things. Someone linked me to this content scms. It's that can contentious cms.org contenta is an API first Drupal distribution. So it looks like it's a whole done for you headless CMS UI. And then it spits out an API on out on the other end, which Cool, cool. So
+
+49
+00:39:20,280 --> 00:40:16,350
+Scott Tolinski: next up is craft CMS, which is a popular one, but it's a paid self hosted solution. And the pricing for this one is your solo building a site for a friend free forever. Okay, so you can get started and learn craft for free. And then once you get into a pro, it's per project basis rather than like a seats, right? You just pay for the license that hey, craft CMS, does this have any relation to expression engine? Oh, crap. We transition from expression engine to craft CMS. What are the differences between expression engine and craft CMS? Most of what pixel and tonic used to offer baked into the CMS. It seems like they're they are related. I'm not alone. Not quite sure. This was one of those things. We used to use expression engine all the time, and it was a paid CMS. And you'd pay just for the project because it was it was nice. It was a nice experience that uses us that PHP Code Igniter, which is like sort of, like the precursor to like, sort of a layer file sort of system.
+
+50
+00:40:16,400 --> 00:40:50,730
+Wes Bos: Yeah. Laravel. Yeah, it's not the same codebase but like, it was the PHP framework to use for a long, long time until Laravel came around. And I haven't heard a lot of people using code ignitor in a while, but I know it is still an active project. Next, we have ghost, Ghost came out, when node became popular just blocks and it was like a Yeah, yeah, it was like a blog. And now it seems like it's a full blown headless CMS built in Node. I have not tried it in probably six years. But it seems like the people that say same was crap. CMS seems like the people that use it. Absolutely love it.
+
+51
+00:40:50,879 --> 00:41:15,870
+Scott Tolinski: Let me tell you about something. I just went to the like what's new and goes three. And they offer like subscription and membership based accounts for like in the in the CMS turn your views into an engaged audience with the member signups in like paid seats. That sounds like a really killer feature for this kind of thing. It looks like it's integrated directly, and almost looks like Braintree or something. But it looks like Oh, no look with stripe payments. Cool.
+
+52
+00:41:15,870 --> 00:41:16,560
+Unknown: Wow.
+
+53
+00:41:16,590 --> 00:41:33,960
+So that sounds like this is open source. But why it's paid but also open source. So what's the might be the same as WordPress, right? Where you can have one on there, or you can host it yourself? Maybe I'm wrong. I like that approach quite a bit. This is nice. I think I might reach for this. I want to try it. Yeah, me too. It
+
+54
+00:41:33,960 --> 00:42:14,190
+Wes Bos: looks to me a Scott tries video on this place. One coming right up there. Next is strappy and Keystone. Tons of people tell me to use strappy. It's a open source headless CMS on node j s, which is pretty nifty. Keystone is very similar to that a graph qL API, you can create your schemas, it creates your UI for you and spits out an API. On the other end, you can also create your own custom input fields. With Keystone it is totally self hosted, which is pretty nifty as well. I bet we'll see a lot of strappy in the next in the next year or so seems to be gaining some really good momentum right now.
+
+55
+00:42:14,630 --> 00:42:23,340
+Unknown: I have a last one here is a Joomla. And then I wrote JK cuz I don't, I haven't thought about Joomla. In a long time, I was just thinking this would be a funny option. Have you?
+
+56
+00:42:23,550 --> 00:42:48,150
+Wes Bos: Did you ever use Joomla? I did. Initially I used to do Drupal, WordPress and Joomla all at the same time. And then I remember like just making a quick break. And I said, I'm only gonna do WordPress. So I dropped both Drupal and Joomla. And luckily, it was like the right decision for the right decision. Yeah. So impressive. They're still going like obviously, there's there's probably like millions of websites still built on Joomla. Like will never, never
+
+57
+00:42:48,600 --> 00:43:19,830
+Scott Tolinski: make it really easy to install via cPanel. It was just one of those icons install Joomla go. Next up is going to be an ad read and a totally non related ad read to the rest of this episode. This ad read does not pertain to any of our opinions on any of this stuff. And it does not influence our decision to say nice things about them. However, this is the time where we do get to say nice things about them. And that I'm talking about sanity@sanity.io like Wes mentioned, they booked this episode, like last year. So we didn't know that this episode is gonna be so
+
+58
+00:43:20,010 --> 00:44:32,220
+Wes Bos: the nice things we're saying here are very clearly paid. The nice things we said earlier are not paid. Yes, exactly. Honestly, like I did try out tons of CMS is before my next course. And I ended up going with Sanity just because it strikes the right balance between control because it is code that you run on your computer at the end of the day. And it just works. And it's done for you. The support is awesome. Like I don't you, if you if you sneeze and say Sanity on Twitter, they'll be there in two seconds chiming in. So it's an awesome CMS, I'd recommend that you check it out for your next project. they've they've got some pretty big customers that are running it, you can count on their servers to be up because it is a hosted version. They scale. They do all the image compression and CDN stuff for you at the end of the day. But then you also do get the control of being able to control what does the editing interface and workflow and validation and all that stuff look like for me. So check it out sanity.io forward slash syntax that's going to get you double the free usage tier. You can check out some some examples that you got there. Thanks so much Sanity for sponsoring. Thank you for that conflict of interest.
+
+59
+00:44:32,220 --> 00:45:03,030
+Scott Tolinski: So next up is going to be the API here. And these are these are going to be CMS is that they get into the conversation of is this a CMS and some of these are maybe a little bit more or less than others like Hazara to me, we had this conversation already. Yes, it is a like a database editing interface. But yes, you can also edit your content on it, and it spits you out a nice graph qL API, and you get accounts and subscriptions and all sorts of cool stuff. West just wrote Firebase. No, no. What are you doing? That's
+
+60
+00:45:03,030 --> 00:46:01,080
+Unknown: a lot. This is this is getting way too far away from a CMS. Fire. Well, Firebase has a editing interface. I don't know. I don't use Firebase. I'm sorry. Yeah. Oh, well, I did. I don't know. Let me let me let me just did let's do a whole episode on Firebase without me using it, I can just teach you know, it very similar to Hasura. Prisma, as far as I know, does not have no sorry. They do. Prisma has a UI view. And this is not Prismic. Prisma has a UI that is very similar to a database editing UI where you can edit your things. You can link relational documents. It's pretty, pretty nifty. Actually, I had used so I missed graph. Cool. I wish graph cool would have done like, like stayed on that track. You know, who did who picked that range? Yeah, those reins up. And we actually forgot this one on F to add it to the list, which is graph CMS. Have you ever used graph CMS? Have you seen that no graph CMS
+
+61
+00:46:01,080 --> 00:46:01,980
+CMS?
+
+62
+00:46:02,010 --> 00:46:22,020
+Scott Tolinski: Yes. Graph CMS actually is different course A while ago on an older version, and it was still pretty fresh. But it's been a while since I used it. And it's a really cool. The thing I love about graph CMS specifically, is that it is sort of what graph cool was it where everything is just done very for you in the interface, and it spits out a graph qL API.
+
+63
+00:46:22,020 --> 00:46:35,670
+Unknown: And at the time, there was like some relational data features missing. But it looks like it looks like they have like really stepped up the game here. They even have like e commerce examples, content hub marketing apps travel,
+
+64
+00:46:35,670 --> 00:46:53,100
+Scott Tolinski: why graph CMS this thing looks really slick now. Not that it didn't look slick. The design was always slick. But it was like features that were missing. But it looks like custom roles and permissions mutation API Management API playground. That's just a graph. qL playground, interactive schema editor. It has
+
+65
+00:46:53,100 --> 00:47:15,900
+Wes Bos: locales. This is one thing we forgot to talk about which localization? Yeah, what if your website has multiple languages? Like you have a piece of content? Like what does that story look like? And somebody in the tweets said, it's important to think about that, and it looks at graph CMS 450 bucks a month per projects gives you four locale. So pretty busy.
+
+66
+00:47:16,560 --> 00:47:36,600
+Scott Tolinski: The essential Price Is 40 bucks a month, 39 a month, so and that's yet doesn't get you a ton of stuff. So this one is definitely a like a contentful competitor, where you're you're getting into the heavier dollar signs. But there's a free developer plan if you want to, like try it out. So you can sign up and you don't have to pay to get used to it first hits free.
+
+67
+00:47:36,690 --> 00:48:00,990
+Wes Bos: Next up, we have Git based CMS is so there's two I know of in this area, and that's Netlify CMS and forest street IO, I believe both of these work in the way that they give you a UI. But the actual data is not stored in a database, it's stored in a markdown file. So the data gets parsed. And committed to a markdown file, which is pretty it's really cool.
+
+68
+00:48:00,990 --> 00:49:02,280
+Scott Tolinski: I actually use Believe it or not, I was doing all of my on Scott Tolinksi calm I was doing just markdown editing. And then all of a sudden I was like, you know what this is all just markdown, these are all just basic fields. I wonder how easy it would be for me to drop in Netlify CMS to this, I just dropped in Netlify CMS keep in mind my site is sapper. So it's you know, just it's it's just markdown, right. So it doesn't matter what the platform is whether it's Gatsby sapper, or goodsam. Any of those, right? I just dropped it in. And now I have an admin interface to edit my markdown files, if I so choose without having to get into my editor. The thing that makes it nice for me is that the only other way to do this would be to add a markdown file on GitHub and have it whatever. So your site pushes a new version if you're doing the statically generated site. But since this is editing the Git file, you don't have to do a, you don't edit your file locally, then have to push out via git, you can just edit it in this interface, and it takes care of the good stuff. And if you're hosting something with a continuous deployment, like Netlify, then it's just gonna rebuild for you. And it's almost like working in a real CMS.
+
+69
+00:49:02,700 --> 00:49:21,510
+Unknown: We said many times on this website, don't give your client markdown file. Like maybe this is the actual option is, especially if you need a very simple, very simple UI. Great. I think that that's a pretty good option. So what let's talk about pricing on these free 399
+
+70
+00:49:21,930 --> 00:50:01,380
+Scott Tolinski: Yeah, cuz it's just, it's just again, it's just files, you're just dropping files in your app. And they're, they're running because again, there's no database, there's no servers, nothing everything's hosted in your thing. It's just giving it permissions to, to make those pull requests via your own GitHub. So I logged in with my own GitHub. It's really slick system, but it's got, I'm gonna tell you this, it's got just about zero features. I mean, I don't want to I don't want to be mean about that. But it doesn't have a ton of features. It's just a nice admin interface for editing your stuff. I really even wish they had themes because this bright white theme really hurts my eyes. I wanted to make it like dark. And then I was like, Well, I'm gonna just install some custom CSS. I don't want to get into this.
+
+71
+00:50:01,620 --> 00:50:28,230
+Wes Bos: Oh, yeah, it looks like forestry is free for three people per month, it syncs with get instant previews, you can host the UI on your own website if you want. And then if you want five users per website, as well as a couple other support, our access control, that's kind of interesting you access control with a markdown file that goes to 29 bucks a month, which is pretty affordable, I think.
+
+72
+00:50:28,320 --> 00:51:00,090
+Scott Tolinski: Yeah, cool. Next up is going to be other these are all the others, right? These are just ones that didn't fit in anything else. And it's funny, a lot of people suggested some like spreadsheet based stuff. So some, you know, you can apparently have an API with Google Sheets, which I haven't done. There's also the option to use something like air table, which is sort of like a more high powered table based software, which is sort of like a Google Sheets type of thing. It's like a relational data table, but they have an API too, that you can tap into. And you can use air table as a CMS.
+
+73
+00:51:00,330 --> 00:52:17,880
+Unknown: There's a couple out there, there's one called Sheedy, which hooks up to Google Docs and just gives you like a JSON API, you laugh, but it actually kind of makes sense. I didn't laugh anytime that you want to, like, I just built a spreadsheet last night, full of every single thing that needs an oil change, and an oil filter, and a air filter and what type of oil it needs. And like the first thing I do is not install something like that. The first thing I do is I just go and make a spreadsheet. And the spreadsheet is the like the most low bar CMS that you can get and you you give yourself titles above it. So like maybe the spreadsheet is not a bad idea at the end of the day as well. Let's uh, let's look into the pricing. I'm clicking on the pricing link on Shi t.com. And it's not doing nothing, not doing anything. Looks like they just launched a new website because this is different than what I remember pricing. The pricing button doesn't work. No, well, maybe it's free then they're at you type in Ford slash pricing. I get a white screen. So shout out shout out pricey if you're listening. I'm getting a white screen on your pricing. right he probably Sheedy, that is a little shady. But they'll probably fix this by the time this episode releases. Tina,
+
+74
+00:52:18,180 --> 00:54:51,750
+Wes Bos: Tina, Tina, CMS, not a CMS. So Tina is built by the folks behind forestry. The idea is that it's the real time UI for editing on your website. So you can stick this into your website and open up an editor right on the website. Or you can just type directly into a content box on your website. And you can see how it looks in real time. And then the idea is that when you hit save, where that data goes, is is up to a plugin. So whether it goes to markdown files, or whether it's saved in a MySQL database, or whether that's saved in any other headless CMS that you need to looks like, I didn't totally understand this when I first saw it, but now I definitely do. They have a button that says edit the site. And you can log into GitHub and edit Tina cms.org. A little bit of Yoda Moria there. Next up, we have just straight up markdown, don't I don't know, it depends on if clients are using that don't just have straight up markdown. Next is going to be it's funny I you have this listed here. I did not write this you wrote notion, which is an interesting kind, I wrote it for you. I know I felt like you did. So notion does not have an API yet, although they've been saying they're going to get one for a long time. So we'll see if the notion API ever arrives. But you could always use notion as a really nice blogging platform, I found this really interesting project from split B, which is an analytics company I just found out about. It is like a unofficial notion API where they like scrape your notion page that's public. And it gives you like the API data and it gives you all the data of the blocks, the all this sort of stuff. And somebody had written a really great wall split B did not somebody, somebody at split B wrote a really great renderer for react for a notion template because the API is kind of interesting. And so I wrote one first belt, because hey, I wanted to see if I could do it. And now on the site on Scott tolinksi.com, forward slash notion. That's a page that is being written and edited within a notion itself. And I wrote support for a bunch of the blocks, like code blocks and lists and whatever, I'm still working on it. But it's, it's a fun little project is just a little like to see if I could do this kind of thing. Like you just pass in a notion ID page or the ID for the notion page and it just spits out the page. It's not totally viable because you can't really work with pretty URLs. But it's an interesting idea. You could at least write something custom with it.
+
+75
+00:54:51,990 --> 00:55:57,810
+Unknown: notion is probably the one of the best wizzy wigs you can get. And I say that because gotten I just had like a three minute thing or couldn't figure out how to unindexed. Yeah, heading. It was exactly how that went, yes, it was very Microsoft Word. And we both tried dragging it sideways. And then it did the whole, like Microsoft Word were like made a table. And we're like, oh my gosh, what's going on anyways? Besides that, I think notion is an awesome wiziwig has all of the like user management and everything built in already. So I wonder if that's maybe even something they have coming down the pipe. They said they have a CMS coming out. But they've been saying that for a long time. So who knows? Who is that it is that everything that has to do with this headless CMS? Dude, the moment that we press publish, you're gonna say, What about this one? What's gonna happen? Well, I put out a tweet asking for them. And it had 400 and 42nd replies, and I scan all it was your opportunity to make sure we weren't forgetting Well, yeah, that was your opportunity to tell us one that we missed. All right, let's
+
+76
+00:55:57,810 --> 00:57:48,570
+Scott Tolinski: move into some sick pics. Sick pics. You know what, I have a sick pic. I'm building a fun thing right now, which is it's not that fun. It's like a rack for my weights in my gym. And because I wanted to fit our squat rack onto like a smaller spot. But it has these like giant pegs coming out of the sides for where you put the weights. And it makes it really inconvenient. So I'm just gonna build my own out of some scrap wood. So Landon and I, yesterday, we just went to town building this, this rack together. It was fun. I got to teach him about a circular saw and you know, power tool safety. He's two years old. It's three years old. But you know, he got to watch it. He thought it was fun. So it was really you know, I got to teach him how to use use some of this. Not obviously the circular saw, but I got to teach him how some of this stuff goes. And one thing I got to show him was this orbital sander. And so I have this DeWalt orbital sander, and it's so dang awesome. I mean, nobody like sanding stuff. So if you have like wood projects, it's awful. Yeah, I just I plug this thing in, I pop up like a Velcro sanding thing on the bottom. It collects the dust for you. And my gosh, it can make the the most rough edge of something the smoothest darn like I even it's almost like getting into like territory. I'm like rounding full on rounding corners of the like a two by four off with this thing. It's so effective. I actually really love it. It's like, what is the sander here? It's 60 bucks for this thing, man. Oh my gosh, it's really good. I've had it for a few years but I was just yesterday I was like man, this is probably my favorite tool because it really adds a level of fit and finish to projects that you can often ignore and just have them looking kind of janky so a big fan of this. I need this. So I'm working on building some shelves for my office right
+
+77
+00:57:48,570 --> 00:57:49,140
+Unknown: now.
+
+78
+00:57:49,140 --> 00:58:08,760
+I've got like a palm sander which is not an orbital sander and oh Rosanna spins and a palm sander just goes back and forth. And it doesn't Michael like I've got all the grits of sandpaper and everything but it's suck. What it doesn't do is it doesn't go in a circle. I mean, like it goes in a circle and then back like you're driving a steering wheel by mouth.
+
+79
+00:58:09,210 --> 00:59:38,190
+Wes Bos: Oh yeah, man I need I need to get one of these because I'm sanding stuff right now and I'm so sick of it. I have all the grits of sandpaper so I'm actually I'm gonna pick another wood roofing. So I'm building I'm building these shelves right now. I just went to like a local dude and bought some cherry like a live edge cherry cherry and I went on Amazon and found these awesome shelf brackets that are like just really modern looking. They're just black square tube. Can you hit me up with those shelf brackets because I need to build some shelves. I was like just running the I was running the prices on just like going out and buying like a nice shelf versus you can just buy a piece of wood like I'm not a woodworker here. I'm just a guy I bought a piece of wood you cut it you rip it to size with a circular saw and then you can go to town with Scotts orbital sander and sand this thing nice and smooth and then some nice fella on Twitter told me to put polycrylic on top of it to sort of seal it up and give it a nice satin finish and this this look I'm impressed with myself because like I don't have finesse in woodworking and this these types I don't either. Yeah, and these things are looking real good in this cheap shelf brackets off Amazon, a hunk of wood sand it down Put some poly acrylic on it so that's my safe pick today's these shelf brackets that allow pretty much anybody to make a nice looking shelf. Cool. Feel like a
+
+80
+00:59:38,220 --> 01:00:08,910
+Unknown: regular old dad over here because he was making shelves. Yeah, building weight racks and all that stuff. Well, I think it's just like a sign of the times he can't like you literally can't go out and buy something or go out to a store and look at possible options. And you got lots of time so it just seems like he might as well just try build it myself. I'm not even Getting wood I'm using scrap wood beautiful that's that I don't know what am I say? That's the dream beautiful that's that's the scrap
+
+81
+01:00:09,960 --> 01:00:55,290
+Scott Tolinski: so now's a better show we're talking about shameless plug so we just plug stuff we get silly on yeah time to sell some stuff. So level up tutorials.com so by the time you're listening to this episode, the latest level up tutorials course will be released and that is on sapper now we're going to be talking about static site generation with sapper, we're going to be talking about server side stuff with sapper it's basically the next j s version of spelt. And if you want to talk about no code to do some really good stuff, man, this is where it's at. You get animations baked into the library. So we got paid routes and all this stuff. If you want to learn about sapper head on over to level up tutorials.com forward slash pro sign up for one year today and save some cash.
+
+82
+01:00:55,530 --> 01:01:24,840
+Unknown: I going to shamelessly plug my youtube channel just go to YouTube search West boss and subscribe. I finally pass and we've been talking about this for like a year and a half I finally passed the hundred thousand subscribers mark and got my plaque. So I started like shifted my YouTube strategy from tutorial there are little Yeah, like they're like they're not full blown tutorials. They're just kind of me figuring things out and explaining how things work. And I've really enjoyed that. So check it out. youtube.com forward slash West boss.
+
+83
+01:01:25,050 --> 01:01:26,250
+Cool. All right, well, that's it.
+
+84
+01:01:28,200 --> 01:01:43,080
+Have a good one lazy face. Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
