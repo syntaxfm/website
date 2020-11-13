@@ -1,0 +1,92 @@
+1
+00:00:00,359 --> 00:00:24,450
+Announcer: Monday Monday Monday open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob and Scott Tolinksi ski.
+
+2
+00:00:25,920 --> 00:00:50,970
+Scott Tolinski: Oh, welcome to syntax. In this episode, we are going to be talking all about code quality tooling. And this is going to be a part two. So if you did not listen to last week's tasty treat, go back and listen to last week's first we talked a lot about really important stuff, some really important tooling to get your code up to quality. My name is Scott winsky. And with me as always, is West boss. Hey, everybody.
+
+3
+00:00:51,030 --> 00:00:53,100
+Unknown: Hey, Wes. How's gone? doing pretty good?
+
+4
+00:00:53,220 --> 00:02:26,660
+Scott Tolinski: Yeah. How about you doing good radio radio, talk about some tooling, which something really good quality? Yeah, this episode is sponsored actually by one of the items that we're even going to talk about later in this episode, which is really interesting. So is a good little fit here. For the sponsorship. This episode is sponsored by our friends at Log Rocket, they've been sponsoring syntax for a little bit. For those of you who don't know, Log Rocket is a really, really cool platform that allows you to stop guessing when bugs happen. It basically gives you a video replay of what happened when a bug occurred. And you can see the console, you can see the network requests. If you use Redux, you can even see the changes to your Redux state at any given time. This thing is super cool. It's one of those services that I tried out and loved right away. So you want to check it out at Log rocket.com. And again, it's going to integrate with some of the tools that we talk about later. In this episode, one of our other sponsors, Sentry integrates really well with Sentry integrates with any of your other tools, whether that's GitHub, robar, New Relic, any of that stuff. So anytime you're working on a project, and you need visibility into the errors, network requests, all that good stuff, head on over to Log Rocket and check out Log rocket.com forward slash syntax. And if you sign up using that URL, you get 14 days for free. And I think that's enough time to see the proof with Log Rocket there. because trust me, it's one of these things that once you use it, you have a bug, you're never going to be able to go back to that visibility, or I should say non visibility that you had before.
+
+5
+00:02:26,810 --> 00:02:59,640
+Wes Bos: Alright, so let's jump into it. We've got three things to sort of cover today. First is in these are just continuing on from our last show, these are just things that will help you write better quality code. And these are tools that are not necessarily going to turn your code into better code, but they are going to aid you and help you in writing better code. So the first one is TypeScript in types. Second one is going to be jest and testing. And the third one is error and exception tracking, which Scott just talked about from one of our sponsors today. So you want to kick it off with TypeScript and types. How does that help you write better quality code?
+
+6
+00:02:59,760 --> 00:03:56,970
+Scott Tolinski: Yeah, so you know, a lot of times, I think, when people first see TypeScript, they'll just see the sort of extra stuff, right? It's just extra code in your JavaScript. But when they're using TypeScript or another type system, like flow or reason, one of the key benefits of using any of this stuff is that your tooling instantly knows more about your application than it did before. in JavaScript land, we're very used to having all of our errors happen occur on runtime, then when somebody visits your site, and they do something, it breaks, and then you're sort of stuck dealing with it, then now what these tools allow you to do is have a much better overview of your application, so that the tooling can tell it's going to break on compile time, rather than runtime, or even just while you're looking at it with your linting errors. The linting errors instantly become more smart, you get to see all this visibility about how your application is actually working, rather than just specifically at runtime.
+
+7
+00:03:57,149 --> 00:04:42,890
+Wes Bos: Yeah, that's the beauty of a type language is that you will figure out the errors. It esslyn brings you a lot of the way there with this type of thing. But with TypeScript, you go all in, and it will tell you that there's an error before you even hit the browser. So you won't even have to open up your console or figure out there's a build error. By the time just as you're writing it, you're gonna get be getting immediate feedback. And these things that give you immediate feedback. They're so extremely nice. But I find that when I move to something that doesn't give me that immediate feedback, even just things like live reload. It's crazy how you're like, oh, man, how did I ever How did I ever do this right now? Like, I can't build a website without like, immediate live refreshing right now anymore, because I'm so used to it, and that that tooling is just part of my workflow.
+
+8
+00:04:43,070 --> 00:05:40,380
+Scott Tolinski: Yeah. And then in TypeScript, in particular, I know it can be a bit of a pain especially to work with in some systems, you have to sort of relearn a lot of stuff. There's definitely some growing pains there. And if you pick another type system, I've actually heard flow is a little bit easier to get going with but I think type Script is definitely the most popular, I'm not versed in, in flow very much myself. So I can't really speak entirely on that. But also reason which is even further, anything you're you're used to comfortable with. But all these tools are basically, they exist to help you write better code out of the gate that's less prone to breaking. And again, while you're writing it, you have a better understanding of if this is going to work or not, I think these tools are, you know, for so long JavaScript has not had this kind of stuff that maybe JavaScript developers have just gotten so used to how we do it. But when in reality, like most of the typed programming world would maybe like scoff at not having these kind of features.
+
+9
+00:05:40,530 --> 00:06:32,370
+Wes Bos: Alright, next one we have here is jest and testing. So you might think like, well, I get the benefit of having tests and writing it again. So we have a whole show on that. But like, how does having jeston, or any sort of testing setup help you write better code when you're in it and actually writing the code. So I think like, for me, the I've got a couple different vs. Code extensions. And specifically, I have one that will show me when my tests are failing, or when my tests are passing. And also, when I'm working on my test, I can see the inline snapshots as well. And that immediate feedback, like we just said before, I think it just gets a little bit more productivity, as well as helps you write overall better code. So I'm a big fan of having that sort of immediate feedback in there, especially when you break something, you immediately know that you've done something dumb, and it's not going to get past you. What do you think about that?
+
+10
+00:06:32,490 --> 00:07:46,590
+Scott Tolinski: Yeah, and one of the things I love about writing tests and having good test coverage is the ability to refactor things very easily, right? Because there's the whole test driven development thing where you write your tests, then you develop, rewrite your code, all this stuff, I test her and development is kind of tough for me to like really stick to, but what's not tough for me to stick to is writing a component or writing the test to make sure that component does what I want it to do, and then maybe having the freedom to change things, right? I mean, if you have a component, and let's say you have a test for it, it's really basic component, then you convert it from a class to a stateless functional component, and you goof something up in there. And maybe you goofed it up just enough that it breaks everything, but not obvious enough that you caught it, right. But your tests are going to catch that. And that's a tiny little refactor. And anytime you touch any of your components, you risk really breaking them. So having those tests in place that say, Hey, this is going to work, the way you expect it to is, it's really key for me, and it's really open things up to feel more competent in changing my code, rethinking it rewriting it, because if your tests are written correctly, your test should really be testing to make sure that this thing you know, does an output what it needs to. And that's pretty much it.
+
+11
+00:07:46,830 --> 00:08:40,860
+Wes Bos: Awesome. Last one we have here is not necessarily when you're writing the code the first time around, but it's when you're actually writing the code to fix something that has broken and that's having some sort of service. Obviously, we've got friends of the show, both Log Rocket and Sentry provides services like this, there's lots of other ones out there as well. And what they'll do is they will track and catch all the errors that happen on there. And all the different services, different features, some of them will allow you to replay like Log Rocket will allow you to replay sort of the thing that led up to that. And having that insight, we've said this a million times on the show having the insight to how it broke in what was going on what browser what even like things like Redux state or whatever what was going on, at the time of the error is going to just give you like a perfect picture as to what went down and how you can write the code to actually fix that and make it not happen again.
+
+12
+00:08:40,949 --> 00:09:24,570
+Scott Tolinski: Yeah, especially because we don't use these kind of tools, right? When you don't have an exception or error tracking or logging system set up in your site, you're sort of relying on either seeing it happen yourself or having a user report an issue. And I wonder how many users will have an issue before somebody actually reports it. Right? That could be like a week of an issue existing on your thing. And then maybe people are just you know, it's not their job to tell you that your things breaking. So, you know, maybe maybe they're noticing it for all this time. And you need to have that visibility so that you can fix that code and write that code better before somebody you know, let you know that it's broken, because at that point, it's probably too late.
+
+13
+00:09:24,720 --> 00:10:15,630
+Wes Bos: I think also on the flip side of that is sometimes people email me and say this thing is broken. And I'll put 1520 minutes into it trying to track down like what is going on that this person has sees this weird thing or it's not working properly for them. And then you get an email Oh, sorry, I had this turned off or I was on a company VPN that was blocking. Vimeo or I had this like Chrome extension overreached and was breaking the site. And often I'm like, I should have just looked it up and saw like, is anyone else really having this problem because Even if like three or four other people were having this problem, then it would be worth my time to look into it. But if it's just one person, there's always that possibility that it's just their specific use case, or their specific browser setup or something weird with their setup where they've actually gone ahead and broken your website.
+
+14
+00:10:15,959 --> 00:10:49,830
+Scott Tolinski: Yeah. And again, you can't fix things that you don't know are happening, right? So that's like, might not know your code is crappy or broken. And these tools let you know where it's broken. I think that's like the common thread amongst all of these things, right? Yeah, with everything we talked about linting, hinting prettier, TypeScript, just, and it's exception error tracking, all it is, is letting you know when your stuff is broken. And the more things that you can have that let you know, when your code is broken, the better because then you're not going to have broken code. Awesome.
+
+15
+00:10:49,860 --> 00:11:06,990
+Wes Bos: So those are the three other pieces of code quality tooling that you can put in place, all of these tools do have a little bit of investment in order for you to set them up and get them working properly. But these are the ones that we think are probably worth your time looking into even just a couple of them if you want to get them up and running.
+
+16
+00:11:07,020 --> 00:12:01,140
+Scott Tolinski: Yeah, and some of them are definitely more of a commitment, right. Like TypeScript is a commitment. Yeah, it's a big commitment. Dad, we're like throwing something like Log Rocket or Sentry is like a couple lines of code connecting to a service. That one's easy. writing tests with just adds a bit of a commitment as well. But definitely one you should be taking, setting up your linter or setting up your prettier that is like not a commitment. That's like a five second drop. In fact, I was just I was, it's funny, because I think about this, like how many people don't use some of this stuff that is so dang easy to set up, especially linting and prettier, because the ES lint and prettier. Having that in your code base takes no time at all for the amount of benefits that you get out of it. And, you know, there's probably no excuse to not be using this stuff at this point, just for the sheer amount of time it's going to save whenever you run into something. Yeah, I
+
+17
+00:12:01,140 --> 00:12:04,140
+Wes Bos: totally agree. It's a no brainer to turn that those ones on.
+
+18
+00:12:04,350 --> 00:12:13,800
+Scott Tolinski: Yeah, no brainer. Get it done. If you're not getting it done, and you won't have to make memes about it on Instagram. Or maybe you still will just say you can get a bunch a bunch of clicks.
+
+19
+00:12:14,459 --> 00:12:21,450
+Wes Bos: Awesome. All right. I think that's it. Anything else to add? That was a pretty hasty, hasty treat that we had today. That was a hasty tree. Yeah, no, that
+
+20
+00:12:21,450 --> 00:12:48,090
+Scott Tolinski: was a very hasty treat. No, I don't have a whole lot to add. If anyone else has any tools, or even categories of tools for quality code that we haven't mentioned here, please let us know. I guess the one thing we didn't talk about was continuous integration or, or those kind of pipelines but those really just end up using all of the things we've mentioned here before you deploy, right. Yeah, but that's pretty much it. No, I don't have anything extra. This was a nice little hasty treat.
+
+21
+00:12:48,270 --> 00:12:58,890
+Wes Bos: Yeah, you're welcome. You're Enjoy the rest of your day today that you don't have to listen to us. Alright, we'll catch you on Wednesday. Thanks for tuning in. Please, please.
+
+22
+00:13:00,720 --> 00:13:04,500
+Unknown: Head on over to syntax.fm for a full archive of all of
+
+23
+00:13:04,500 --> 00:13:10,500
+our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
