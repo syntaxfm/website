@@ -1,0 +1,688 @@
+1
+00:00:01,319 --> 00:00:10,530
+Unknown: You're listening to syntax the podcast with the tastiest web development treats out there, strap yourself in and get ready to live ski and West boss.
+
+2
+00:00:10,559 --> 00:00:46,020
+Wes Bos: Welcome to syntax the podcast with the tastiest web development treats today we've got a really fun one for you. It's an entire episode of sick picks. We at the holiday gift guide. So these are things whether you're looking for something to ask for whether you're looking to buy for a techie or a web developer, these are things in tack food experiential clothing, that Scott and I think that are good gifts. So we're gonna sort of go through it's always a fun one we did this last year and people loved it because it's just also a neat way to discover new products and services and things like that. How you doing today, Scott?
+
+3
+00:00:46,409 --> 00:01:44,910
+Scott Tolinski: I'm doing good. Yeah, I'm tired. It's it's Yeah, it's that time you know, the kids are maybe both not sleeping we moved landed into his big boy room and he's sleeping into a full sized bed because that's all we had didn't ever so little guys in the giant bed. And he he's getting used to it. But sleep has been disrupted. So to say I also had a little bit of an issue this morning with my robot in my house. I told Google to turn on my right power strip. Yeah, say girl turn on my right power strip and it goes turning left power strip on I said turn on the right power strip horrible. So turning left power strip on and I said gorbel you are mF and dumb. And then gorgo says back to me. Sorry, I'm still learning. like okay, I don't need my darn robot talking back to me. I did not know that was a thing.
+
+4
+00:01:44,939 --> 00:01:46,770
+Wes Bos: I got kids talk back to me.
+
+5
+00:01:46,889 --> 00:02:03,660
+Scott Tolinski: I need a robot talking back and say my mistake sir. Like a come on? I don't know. Maybe made me feel not feel bad for swearing at it. But it made me feel bad. Oh, made me feel creepy. There's creeped out by this thing apologizing.
+
+6
+00:02:04,080 --> 00:02:37,190
+Wes Bos: Yeah, we we have that with the the Chromecast about half the time when we tell it to show us something on our TV. Like we're say, like, show us photos of camping or photos of swimming in it about half the time. It's like, are you putting them on the TV. And then the other half of the time. It's like, I don't have a screen. And I go on. There's like I love the Google Home stuff. And we'll talk about that in here. But sometimes that you can tell that they're like constantly tweaking it. And like when you think you have a handle on what to ask it or how to exactly say it, then they change it on you.
+
+7
+00:02:37,740 --> 00:02:58,740
+Scott Tolinski: Yeah, it was like for one week, if we were to tell Google to sing Twinkle twinkle little stars. Because Leah loves that land, it will be like our friends all three. So we'll tell it to sing it. And then for like, one week, it would be like playing Twinkle twinkle little stars. And Spotify would be like, No, you sing it. We want you to sing it.
+
+8
+00:03:00,150 --> 00:03:02,880
+Wes Bos: Don't don't pass this off. Don't
+
+9
+00:03:02,880 --> 00:03:09,690
+Scott Tolinski: do yeah. And now let's see they get it didn't sing it for like a couple weeks. And now it's singing again. So I have no idea they need to stop tweaking.
+
+10
+00:03:10,139 --> 00:03:51,090
+Wes Bos: Oh, man. All right. Well, today, we are sponsored by two awesome companies. The first one is Prismic, which is a headless content CMS with a graph qL API. And the second one is Freshbooks is just cloud accounting software. We're talking about them partway through the episode. So we're just gonna go through some categories here. Things that are are nice gifts, the some of them are just like very generic. And you can find them anywhere. And some of them are actual specific products. And for those ones, we'll have links in the show notes if you want to check them out. So don't feel like you have to write them down while you're driving. hands on the wheel and on the wheel. So let's let's kick it off with some some tech gadgets you want to you want to grab the first one there.
+
+11
+00:03:51,330 --> 00:03:51,840
+Unknown: Yeah,
+
+12
+00:03:51,840 --> 00:04:46,700
+Scott Tolinski: I recently have bought into the apple ecosystem. And I got the Apple Watch and let me tell you, it's darn good. So if you have an iPhone and you're on the fence about the watch, check out the Apple Watch. I know this is old news here but I really liked mine and I was definitely a holdout for a long time. So I use it all the time for absolutely everything from tracking workouts to controlling my podcast. Honestly, probably my favorite feature on it is the decibel meter. I use it all the time to check how loud things are which is sounds ridiculous but I really love it like my dogs barking and I'll be like, Oh, this is really bad for my ears right now. Or, or I can even just tell the ambient level in my office like I can visually get a good indication that my ears are hearing what I'm thinking I'm hearing correctly in my office. So either way, the Apple Watch is great and and I highly recommend it if you need another recommendation for it.
+
+13
+00:04:47,610 --> 00:05:51,060
+Wes Bos: Awesome. I'm going to pick up wireless chargers as the next one. So I've got this little pad on my desk. Most phones now have the what is it Queen Chi. How do you say that Queen g I don't know. I don't know isn't basically you you you lay your phone down or your your your headphones or whatever that has wireless charging on these pads and they charge just make sure that you get one that does 10 watts there's a bunch out there that are five watts seven and a half watts do do one that does 10 watts I personally have the sovereign one which they sent me for free that's why I have that one. But I'm just looking on Amazon here and the anchor ones are much cheaper and encore has never let me down on on anything. I love their products so I would probably go for that one instead. Although the sobre one that I have has this like really cool light ring around it. And it does get the likes on Instagram. Because it looks cool. Can you use it in like the bedroom like I know my charging pad to be not lit up?
+
+14
+00:05:51,779 --> 00:06:01,980
+Scott Tolinski: Yeah, and it's baby monitor can't like the baby monitor thing itself has this huge light on it. You're like what Come on, like I don't need this light on 24 seven Why is this late on?
+
+15
+00:06:02,219 --> 00:06:27,840
+Wes Bos: Yeah, we we bought like this I just bought this huge pack of every color electrical tape available. And I just went around our house just taping everything with the light on I was like Why does everything have such a blinding light? So a good idea. Don't get this don't get this opera one. If you want to put it in the bedroom because it's bright as hell. I honestly don't use the charging pad in the bedroom or anything like this sounds weird saying in the bedroom.
+
+16
+00:06:28,950 --> 00:06:30,480
+Scott Tolinski: In the boudoir Yeah.
+
+17
+00:06:31,590 --> 00:06:47,040
+Wes Bos: Because I like just having it on like a chord is fine for me. And I've got some recommendations for wicked chords. But I do use it on my desk because I take my phone out and just lay my phone on this thing when I'm at my desk and get a couple extra percentages while I'm sitting there.
+
+18
+00:06:47,250 --> 00:07:31,110
+Scott Tolinski: Nice got to get those percentages in that battery got to be charging, charging that battery all the time. My next pick is going to be for the Sony wh 1000 x m three headphones, it's the stuff I hate how they do those names, man. But these are the like the class leading noise cancelling headphones. And I wear mine absolutely every day at some point, I have them on my head and the battery lasts for long, like the longest time ever. The sound canceling properties of them are absolutely fantastic class leading absolutely as good as it gets. Definitely worth the price. So these are these are my personal headphones of choice. If you're not rocking like a pod situation. But these are great are absolutely awesome essentials for flights.
+
+19
+00:07:31,260 --> 00:07:33,660
+Wes Bos: Yeah, they're USB C two, right?
+
+20
+00:07:33,770 --> 00:07:35,670
+Scott Tolinski: Yeah, USB C. Yeah,
+
+21
+00:07:35,850 --> 00:08:23,790
+Wes Bos: I was looking at these, they're on sale for Black Friday, like 80 bucks off or something like that. And I was so tempted, I have which I guess will be my next pick, I have the Bose QC 35, which were there are like one of the best ones you can get as well. You can connect to devices to them as well. So you can flip between your phone and your computer. So if you get a call you listen to music and you're you get a call you can flip between, although that's not perfect. It's sometimes confuses itself, as to which one it should be connected to. And but the big fan of those as well. And the problem, the only problem with them is that they're amazing. And like I've had them for like, I don't know, two or three years and they're they're nowhere close to being needed, needing to replace replace the ear cups on them. And they feel like brand new headphones. So maybe in another three or four years when these things dial, I'll be able to check out the Sony ones.
+
+22
+00:08:23,910 --> 00:08:26,760
+Scott Tolinski: Yeah, right. Yeah, who knows, but they'll be like by then.
+
+23
+00:08:27,300 --> 00:09:36,649
+Wes Bos: Next one we have here is a USB C hub. So if anyone has one of these new MacBooks, or really any computer that is USBC based, you'll know that they often don't come with any ports. So having like a rock solid USB hub has been or is super important. I've had many different hubs in the past and a lot of them don't work, a lot of them flake out and I go to conferences and do workshops, and I can't have a flaky one. So the one that I got was the sovereign eight and one. It's kind of expensive, like 55 Canadian, which is probably about 40 3038 American, something like that, but it's got your HDMI in it got a bunch of USB regular ports, a couple of USB C ports, just does everything, everything that you need. So I've been a big fan of having that one and then just like the cord on it because like what happens with these things is that you get the projector and they have the bend the cord that often put it in the side. And that's where these things flake out is when they get bent. And then that's really flaky and this thing has been rock solid for like two years. So big fan of that one.
+
+24
+00:09:36,990 --> 00:10:37,380
+Scott Tolinski: Yeah, I have one that is the techy and yeah, this one's really good as well. It's been doing good for me, but I also I like what you're saying about anchor like everything that anchor makes is always been good for me. So between the sovereign said techie anchor, I'm sure you can find a really good one. This is a neat little gadget for those of you who are maybe potentially getting interested In streaming, maybe you have a camera you're interested in upgrading your webcam. This is a neat little device that I use called the Elgato cam link, and it basically plugs one end USB, and the other end HDMI. And as long as your camera can do a output, it's called a clean output where the output doesn't have anything overlays on it, it's just straight up video, you can use that as your webcam, you can use it to record directly onto your computer, you can use it for just about anything live streaming, this little device is really super cool. It looks like a USB drive. And it does so so much. So check it out. Elgato cam link.
+
+25
+00:10:37,529 --> 00:10:49,590
+Wes Bos: Oh, that's cool. I'm just looking at these like, well, how much did that cost? Like hundred and 10 bucks. 150 bucks. That's pretty good for if you've got like an old DSLR kicking around. As long as it
+
+26
+00:10:49,649 --> 00:10:54,240
+Scott Tolinski: outputs correctly, you would have Yeah, sure. It's on the list of what to have on the website.
+
+27
+00:10:54,360 --> 00:11:20,190
+Wes Bos: Yeah, okay, man, I'm really tempted to this because I'm getting kind of sick of my webcam right now got a 1080 p Logitech webcam. And it's it's good, but like everybody's stepping up their game with these like DSLRs. And Scott looks amazing on his. And that My only problem is I don't have like, I'm right up against the wall where my desk is, and I don't think I'm far enough away, I think I need to just tear down everything in my office and reject the layout, you just
+
+28
+00:11:20,190 --> 00:11:30,029
+Scott Tolinski: need to build an extra extra few feet behind your wall, just knock down the wall of your desk where it is, instead of just moving your desk, you just shift everything a little bit.
+
+29
+00:11:30,630 --> 00:13:00,000
+Wes Bos: I badly need to redo my office. I just got wires everywhere. I mean, like one of those like rack mounted things that I can put everything into. Yep, nice and clean. Yeah. Next one we have here, which is still under attack is the bunker five in one quick charge hub. So I've picked this a couple times. And I have a couple of them throughout my house. So the problem that you have is that generally you have like, I don't know a couple USB things plugged in, you've got like underneath our couch, we've got two lightning cords for both of our phones. And then we've got a couple of USB microphones to charge random things from around the house and a bunch of the kids stuff is USB and some of its USBC. And then we have an old iPad, which is the old 30 pin. And like you've got all of these different connectors. And sometimes it needs to be charged at the same time. And you don't want to have to like keeps switching out the cord. Like this is a bit of an aside but I always go go nuts on my wife because she is a cord mover. You know the type of people that have like one nub and one iPhone cable and they like carry it around with them. Like if you want vacation. They like unplug it from beside the bed and like pack it like yes. the complete opposite, where I'm like, the court should always stay in one spot. And you just buy more chords and put them where they should be and you never move them. Because that way you never lose them. And they're never in the wrong spot. And they always have one when you need it. Oh, totally.
+
+30
+00:13:00,210 --> 00:13:12,299
+Scott Tolinski: Yeah. What's funny about that is that like, there gets to be a point in which you have like an apple power cable that cost like 120 bucks or whatever. And you're just like, yeah, okay, maybe I'll just move this one around everywhere.
+
+31
+00:13:12,539 --> 00:14:13,080
+Wes Bos: The laptop is a bit of an exception, you can move that that's the only one I will move. But everything else like I'll just device USB charging devices, you just have one where you are anyway. So this thing is 63 watts. And it has you can get them with five, eight and 10 ports, I believe I have the five one. And then you just have like USBs coming out of this thing. And you can charge all your stuff at once, which is awesome. It charges super fast because it has mine has this thing called IQ in it, which will it will detect the max charging rate that the device will take like it will keep bumping up the charging rate until it realizes it's not taking anymore and then it'll back it off. And then these new ones have quick charge in them. So if you have a device that accepts a quick charge, then there's two of those ports are quick charge enabled. And the rest are are IQ powered, which is pretty neat. So I love this thing. We have three of them throughout our house. kind of expensive, but 50 bucks Canadian, but well worth it, I think
+
+32
+00:14:13,529 --> 00:14:17,340
+Scott Tolinski: interesting. Yeah, that's pretty cool. Quick Charge hub.
+
+33
+00:14:17,580 --> 00:15:31,799
+Wes Bos: Yeah. Oh, I got one more. So my last one on on this kind of gadgets here is are these new three in one, like I'm a sucker for a weird cable. I have these cables that are like in the same plug there USB and then if you turn it upside down, it's micro like it's not like a like a little adapter you take off it's the same plug. And it works pretty good. And I've in the past I've tried those like magnetic tearaway ones in the past and I've recently found these three in one cables that are braided First of all, because braided cables are the best. But they have like three you plug one into the wall and then they have three, they have a USBC, lightning and a micro USB all in the same one. And they all work at the same time. Meaning that you might not even need the last thing that I picked unless you need a high charge rate, because it will charge them all at once. And it's just the best. I bought one to try it out for a couple weeks. And I've been loving it. And now I have ordered one for everybody in my family. It's gonna be like a little stocking stuffer. Oh, that's fun. Yeah, I got them on. So there's just like, you ever go to this website? dealextreme. calm.
+
+34
+00:15:32,070 --> 00:15:37,919
+Scott Tolinski: Nobody sounds awesome. So yeah, deal extreme. It's spelled with an X instead of x.
+
+35
+00:15:38,429 --> 00:15:47,669
+Wes Bos: It's actually dx.com dX like developer experience calm. Oh, and this website is awesome. It's all kinds of cheap little gadgets that you get from China.
+
+36
+00:15:48,029 --> 00:15:52,770
+Scott Tolinski: Oh, man, I just got transported back into the 90s in a nice day it
+
+37
+00:15:54,090 --> 00:16:15,630
+Wes Bos: so you can you can find I got them on this website for about four bucks apiece. The only downside is that they come from China. So the shipping is anywhere between a week and it never shows up. Yeah, yeah, I never. I have seen them on like Amazon, things like that for about 10 bucks a cord, which is, in my opinion, well worth it for a high quality braided cable.
+
+38
+00:16:16,080 --> 00:16:40,679
+Scott Tolinski: Nice. Cool. You got to be a little careful with buying tech, sometimes at one time, my buddy but some ram for his girlfriend's computer. And they had only been dating like a year. And she's not a techie. She just like she was like a writer. He's like, well, her computer was slow. And that was the only gift he got her. Like, dude, that's not a sick. Would it make sense? It's a practical gift. I'm like, dude,
+
+39
+00:16:41,909 --> 00:16:44,429
+Wes Bos: giving someone a vacuum for Christmas. And mostly.
+
+40
+00:16:45,450 --> 00:16:54,929
+Scott Tolinski: Yeah, they're asking for ram for it unless she was like explicitly, like, I really need some ram for my computer. It's like, well, I heard her talking about how slow was oh my god. Okay.
+
+41
+00:16:54,960 --> 00:16:57,799
+Wes Bos: Oh, look at that one.
+
+42
+00:16:57,929 --> 00:17:25,800
+Scott Tolinski: Yeah, careful with that one. Let's section we want to talk about is automation, home automation stuff. We like smart home stuff over here. I know we're all big fan of the wise cams. But one smart home device that I really liked more than a lot of anything that I have else in my house is the Google nest home hub. For me, I really get a lot of use out of this. Courtney and I both have one. And it has like a revolving door of family photos on it is just like our family and friends photos.
+
+43
+00:17:25,800 --> 00:17:26,970
+Wes Bos: It has a screen right?
+
+44
+00:17:27,000 --> 00:18:07,470
+Scott Tolinski: Yeah. So it's basically like a little it is small to the small one is pretty little small. And it's like a little photo frame. And it is so smart. and nice. To be honest, this thing really, really has. That is probably the best smart device because you can tell it to do things but it has a good speaker. But you can also swipe when you need to swipe, push when you need to push. Landon can yell at it to the weather in the morning, because he really likes to do that. But he'll just like sit there and swipe through pictures. And it'll be like that's grandma. That's that's uncle Ron. Like, he'll just go through all of them. And it's so much fun for him. So we really like our nest home hub. It's it's really nice device for the for the price. Yeah, we
+
+45
+00:18:07,470 --> 00:19:06,000
+Wes Bos: just got one on Black Friday, and I brought it home, plugged it in. And it does all the stuff with Google Home does. But the frustrating part about Google Home is there's no screen. So when you turn on the lights, you sort of have to yell at it. If it did it wrong. You can also just like run over there and hit the dimmer on it or something like that. And the kids love it for swiping through the photos to plays YouTube videos. It's like an iPad. But it doesn't have a browser which I'm surprised no one's hacked it yet. Like first thing I did. I was like, Alright, who's got custom firmware for this. Nobody has hacked it as far as I can see. But for like it was an eight nine bucks Canadian so good. We went and bought another one just to have another one. In our cottage just it's so cool to have the like the family photos, just constantly on it's so good because it detracts our kids from wanting to watch TV, because they just like sit there and watch the photos and swipe through them. And they can go back if they missed one which is really cool.
+
+46
+00:19:06,000 --> 00:19:07,800
+Scott Tolinski: Oh yeah. Yeah. Love it.
+
+47
+00:19:08,010 --> 00:19:17,550
+Wes Bos: Yeah, that I'm very tempted to get the max one which is a larger screen. I think the cheap ones like an eight inch screen, which is Yeah, it's big enough. But the max ones like three times.
+
+48
+00:19:17,600 --> 00:19:24,860
+Scott Tolinski: We'll be getting a max one for the kitchen. I think just yeah. Courtney would really like to use it for like watching TV. or cooking or
+
+49
+00:19:24,900 --> 00:19:25,650
+Unknown: Oh, yeah.
+
+50
+00:19:25,650 --> 00:19:28,230
+Scott Tolinski: Yeah. Asking for recipe stuff.
+
+51
+00:19:28,500 --> 00:19:33,930
+Wes Bos: Yeah, as you have YouTube TV, right? We do. Then that does that go on the Google Home? Yeah.
+
+52
+00:19:33,930 --> 00:19:36,030
+Scott Tolinski: You just say you put this on this. Yeah,
+
+53
+00:19:36,030 --> 00:19:37,500
+Wes Bos: that's so cool.
+
+54
+00:19:37,500 --> 00:19:39,050
+Scott Tolinski: The accordion does that all the time?
+
+55
+00:19:39,210 --> 00:19:40,920
+Wes Bos: That's like having a TV in your kitchen.
+
+56
+00:19:41,160 --> 00:19:50,840
+Scott Tolinski: Yeah, if she's like, she's in the bedroom and just like hanging out on the bed. She'll just tell the google home sits right on their nightstand there and play something on there because we don't have a TV in there. You know?
+
+57
+00:19:51,180 --> 00:20:05,220
+Wes Bos: Yeah. And the future is awesome. I was just thinking about that one. My kids were watching a YouTube video on it. And they're just sitting in front of and I was like, like, 10 years. Your old me would have killed to have Yeah, little touchable TV like this would have
+
+58
+00:20:05,250 --> 00:20:06,780
+Scott Tolinski: loved that content.
+
+59
+00:20:06,870 --> 00:20:38,640
+Wes Bos: Yeah, we've talked about all the wise stuff on end in this podcast if you want to get somebody a nice camera, the Wise cams are 19 bucks. Yeah, American. They're amazing. There's no monthly costs associated with it. They're USB powered. I have seven of them in my house. And I have two of them outside which they're not supposed to be outside but they're holding up okay. In the Canadian winter, big fan. The the wise plugs are good ones. You've got a couple of the bulbs, right? I don't have the bulbs yet.
+
+60
+00:20:38,969 --> 00:20:47,790
+Scott Tolinski: I don't have any of the bulbs. I don't have anything but the cameras and I or the I'm sorry, of the the cameras. And then I have the motion sensors and the proximity sensors.
+
+61
+00:20:47,840 --> 00:20:48,590
+Wes Bos: Oh, yeah. Yeah,
+
+62
+00:20:48,590 --> 00:21:05,760
+Scott Tolinski: I've got that as well. And those have all worked really good. You know, we have the motion sensor in the garage. I have a prep or a door open sensor on the garage as well. So I can tell if the garage doors open. I have one on all the doors. It's really nice. I like it a lot. Yeah, no way. We can just make sure everything's all good.
+
+63
+00:21:06,050 --> 00:21:14,940
+Wes Bos: Yeah, that kind of stuff is a great 20 $25 gift for somebody. Oh, yeah. And I think it you get you get your bang for your buck on that kinds of thing.
+
+64
+00:21:15,150 --> 00:21:24,390
+Scott Tolinski: Yeah, the the sense ones are really cheap for what they are. And they work really, really well. So big, big fan of those. That's a nice, cheap, fun gift.
+
+65
+00:21:24,630 --> 00:22:48,150
+Wes Bos: Mm hmm. Apparently the wise outdoor cam was delayed. They were supposed to release it by the end of the year. And they just sent an email saying, apparently, it's going to run on battery for like six months, which is pretty cool. Right? Probably similar to how the ring doorbells do like whenever there's motion, it will turn on. But then you can also hardwire it, which is pretty cool. But apparently it's delayed. I'll be happy to do my battery wise, because we don't have a lot of good wiring situations as is with this house. So be nice to get some of those and not have to worry about that aspect. Yeah. And it's not a big deal to like, have to grab it down once or twice a year and plug it in for a half an hour to charge it. Totally. Um, what else here at Google Chromecast, that's always a cheap one to give somebody if it's got a TV with HDMI port, you plug this thing in at the very basic for most TVs Google Chromecast will turn your TV off via Google Home. So you just say okay, Google, turn the TV off. And like that alone is good. But also as a picture frame like you turn your entire TV into a picture frame. And then things like watching Netflix and whatnot is pretty cool. Although we don't we don't like doing YouTube and Netflix all that much. Because then you don't have like a remote control, which is frustrating. So we like to go just use actual TV raw to do Netflix and stuff like that.
+
+66
+00:22:48,210 --> 00:23:45,600
+Scott Tolinski: Yeah, we've been getting into once our TV got the apps that are really nice. Yeah, I got good ABS that's like really sort of what changed it for me was using the apps in the TV. But before we had a crappy old TV in the apps are all terrible. So we always Chromecast did everything. And now we do a little bit more of the TV usage just because of how nice that is. Let's get into I guess one last thing that I have. I have a smart power strip that I really like. I'll post a link in the show notes here. But I've really liked having these smart power strips because you can control each outlet individually or the whole strip itself. It has four USB plugs on it. My camera is powered by it. My studio monitors are on it my video monitor all of my studio lamps. So I can tell it like various commands to say, Oh, it's recording time. And then all of my lamps will turn on my monitor will turn on my studio monitors will turn off. It's so good. Seven big fan of having something like this to give you that like fine grained control.
+
+67
+00:23:45,600 --> 00:23:46,260
+Wes Bos: Who makes this
+
+68
+00:23:46,260 --> 00:23:51,360
+Scott Tolinski: one? I'll have to look it up. To be honest. I'm not sure without looking at it. I'll have to post a link.
+
+69
+00:23:51,779 --> 00:24:11,370
+Wes Bos: Cool. I've been thinking about getting one but then I also just have regular power strips. I was at a garage sale this summer and I found all these like super high end power strips and I bought them all. And I was like I just plugged this into the wise outlet thing. And and then it's smart. Just put that on the end.
+
+70
+00:24:11,400 --> 00:24:13,680
+Scott Tolinski: Yes. That works. Sure. Okay.
+
+71
+00:24:15,810 --> 00:24:24,690
+Wes Bos: That's the red or the Clark Griswold of our home. All right, what's next here? We've got a laptop.
+
+72
+00:24:24,930 --> 00:24:28,080
+Scott Tolinski: Movie reference. Wes Bos did a movie reference. Oh.
+
+73
+00:24:29,610 --> 00:24:49,710
+Wes Bos: That's one of the movies I've seen probably dozens of times is like Christmas vacation. Oh, yeah, that's a good one. Let's take a quick break for our sponsor, which is Prismic. And I'm gonna just ask you to go to the website prismic.io forward slash syntax because it's actually hilarious what they've built right here.
+
+74
+00:24:50,010 --> 00:24:51,300
+Scott Tolinski: Oh, this is so funny.
+
+75
+00:24:51,390 --> 00:25:00,000
+Wes Bos: They found a clip of Scott breakdancing and a clip of me. And they've sort of pitted us against each other as Scott being team view and West being team react.
+
+76
+00:25:01,620 --> 00:25:02,310
+Unknown: That's funny.
+
+77
+00:25:03,689 --> 00:25:11,130
+Wes Bos: And then they've taken their employees and like pitted them against suddenly Levi's on Team Wes. Well, Phil is on teams.
+
+78
+00:25:12,029 --> 00:25:15,960
+Scott Tolinski: That's great. Scott, Scott. Oh, so
+
+79
+00:25:15,960 --> 00:26:07,230
+Wes Bos: anyways, what is Prismic? They are a CMS that has a graph qL API. So you log in, you create your content types. You create relationships, you create, what kinds of inputs that you want. And then they've got a JSON API, as well as a graph qL API, you can pull that data into Gatsby, React Apollo, pretty much anything that accepts data, which is absolutely everything. But you probably want to use it with a view and Knox or next or react, something like that, check it out. It's the component based CMS that you didn't know that you needed prismic.io forward slash syntax. They've got a bunch of docs and starters. That will sort of get you up and running with a little example. So maybe over the holidays, if you're looking to try something new, check it out. prismic.io forward slash syntax. Yeah, it
+
+80
+00:26:07,230 --> 00:26:20,130
+Scott Tolinski: looks like they have some really nice Getting Started stuff on that forward slash syntax page as well. So definitely need check out there. At least run through the getting started. I'm sure you'll be pretty amazed at how easy this stuff is pretty cool.
+
+81
+00:26:20,130 --> 00:26:31,530
+Wes Bos: Also, check out the Prismic YouTube channel as well. They have been bringing in people that are in the industry just in for some like chats just about the tech. They're doing it really well
+
+82
+00:26:31,559 --> 00:26:34,320
+Scott Tolinski: people, huh, just some people, some some people,
+
+83
+00:26:34,379 --> 00:27:12,330
+Wes Bos: some some amazing, good looking people knows, obviously I was brought in to talk about react hooks and next versus Gatsby and something else. And they I think, like once a month they're bringing in someone and I think that it's a perfect example of like content marketing to me, because they're not like sitting you down being like, so tell me how Prismic is going to be changed your world. They're just talking about tech in general. And I think as a side effect of that, that makes you have a positive outlook on on a company like that. So I thought, yeah, good job as content marketing in that respect. So anyways, let's keep going with our gift guide.
+
+84
+00:27:12,539 --> 00:27:35,460
+Scott Tolinski: Yeah. So the next thing, you have a laptop, you have a desk, well, maybe you need a laptop stand for that desk, I personally have the one by 12 south, it's a really nice, it's all one piece, it's really sturdy, it puts the laptop in the perfect spot. That's the one I like to use. I know you have some other options here. But this 12 South one is really nice. If you're a fan of this brand, it's really nice stuff. In general,
+
+85
+00:27:35,849 --> 00:28:12,390
+Wes Bos: I personally have the rain design m stand and I've had this thing for probably 10 years now. And they still sell the exact same one and it just looks like your lap. Actually, now that I have a space gray laptop, it doesn't match it anymore. But it's just like a solid piece of aluminum. And it's perfect for just like putting your laptop on it and raising it to the right height. But there are some other sort of designs that have popped up in the last couple years. The big one was the roost stand. And this thing is like, like an umbrella and you unfold it, and you get this like really cool. Oh, I
+
+86
+00:28:12,390 --> 00:28:15,180
+Scott Tolinski: see that. I know and explain it.
+
+87
+00:28:15,209 --> 00:28:16,980
+Wes Bos: It's like this like origami thing
+
+88
+00:28:17,069 --> 00:28:19,950
+Scott Tolinski: on brella is a good good way to explain in
+
+89
+00:28:20,069 --> 00:28:22,230
+Wes Bos: Yeah. And you can put it at different
+
+90
+00:28:22,230 --> 00:28:25,890
+Scott Tolinski: angles. It's sort of like the spider from a wild wild west.
+
+91
+00:28:28,560 --> 00:28:31,980
+Wes Bos: I don't even know what that is. What is that?
+
+92
+00:28:33,210 --> 00:28:45,720
+Scott Tolinski: Will Will Smith movie from the 90s. And there's a giant spider in it. Oh, mechanic, it looks a lot like that. You know, like Connect sir. Those kind of things. It's like Yeah, yeah, Google that's out there. It looks like the stand.
+
+93
+00:28:46,230 --> 00:29:31,740
+Wes Bos: The benefit I've seen to this roost stand is first you can travel with it because it's portable. Second, you can put it at any angle that you want. So often I'll see people even at like coffee shops or on a on a plane. They'll just set this thing up and put their put their keyboard like put their MacBook like almost all the way open, very angled. And then you have like an external keyboard underneath it so well. That's pretty cool. rousse makes a nice one next day and makes a nice a nice one. There are a bunch of knockoffs now on Amazon. I think the risk one is like hundred bucks, something like that. The next stand is like 35. So I'm kind of tempted to get this but I don't I don't need it. Yeah, I
+
+94
+00:29:31,740 --> 00:29:32,910
+Unknown: started Yeah, he did.
+
+95
+00:29:33,090 --> 00:29:49,590
+Wes Bos: If I was like when I taught the boot camp, we had a bunch of students, they would bring in external keyboard and then they would just set this thing up on their desk, and they would work all day from this. And that's the perfect setup. You don't have to like hunched over your laptop all day long. You can just set this thing up in front of you.
+
+96
+00:29:50,220 --> 00:30:35,070
+Scott Tolinski: Yeah, I don't know if I would do that. I like typing on my my laptop and shoving my face up into the screen and yeah, definitely like that. Another option would be phone cases one of my favorite phone cases is the Rhino Shield. This case is a little bit different. It's like a bumper case. It just goes around the rim of the phone. I've dropped my phone. I've now had three phones with Rhino shields. I've dropped them hundreds and hundreds of times. I've never had a single issue. Never a screen crack. Never anything. All of my phones are great. And I'm a clumsy dude. Anybody who knows me knows I'm bumping into things. 24 seven. So the rhinoshield for any device. I think they have them for just about every major phone is just been a fantastic phone case for me for ever and ever. So big fan.
+
+97
+00:30:35,430 --> 00:30:44,820
+Wes Bos: Cool. I don't have any phone. I use a phone case, but I'm not even sure which one it is I just go to the mall and try them on until I find one that feels good. And that's the one that
+
+98
+00:30:46,860 --> 00:30:48,840
+Scott Tolinski: I'm shaking my head over here. But yes, continue.
+
+99
+00:30:49,650 --> 00:32:02,360
+Wes Bos: I may well check your rhinoshield out next time. Um, next one is something we did last year. And this got a lot of heat on Twitter when I asked for gift guides and that's a mechanical keyboard. And David Elster on Twitter said, that's like buying somebody a mattress without asking if they like their bed for her or software's. And it's kind of true. So mechanically, keyboards are awesome. It's such a good gift for developer, but you It's such a particular thing, because the keyboard itself, the key caps, the switches underneath, all of those things are customizable by you. So maybe even just getting someone like a decent bass keyboard and then or gift card and letting them spend the money on the caps. And switches themselves might be a good idea. gift cards to keyboard stores. I'm sure that exists. Is that a thing? I'm sure that exists, you can get gift cards for like the gas station. So I can I'm sure you can get mechanical gift card or mechanical keyboard gift card. I have the control keyboard CT RL big fan of that one. I also have another keyboard here that has been sitting on my desk for six months. And I have not yet been able to put it together.
+
+100
+00:32:02,970 --> 00:32:58,440
+Scott Tolinski: Because I just it's it just doesn't work when you do so. Yeah. That's the same as a big project. And that didn't work. I also I have the code keyboard which is a really nice. It's a variation on another keyboard. But I have the code keyboard for a wired option. And if you're like know somebody who's just maybe not like a mechanical keyboard, crazy person because they exist. I like this key tronic key one. And it's a key cron sorry, nice Tron. And it's like a really low profile mechanical keyboard. It has these really interesting mechanical switches, the latest version of it, it's really nice. And it's something a little bit different. Maybe Maybe there is a mechanical keyboard fan out there who might find this to be maybe a novelty, but I personally use it as my daily driver keyboard and really like it because it's clicky. And it's nice. It's tactile. It's also low profile. It's Mac first Mac focused. Yeah, it's just really nice.
+
+101
+00:32:58,560 --> 00:33:06,270
+Wes Bos: I think this is really cool. I'm looking at this. You've said it a couple times. And I think I would be really happy if somebody gifted me this for Christmas. I
+
+102
+00:33:06,270 --> 00:33:12,360
+Scott Tolinski: think if somebody charges via USB, see it's Bluetooth. So it's wireless, which is a big thing for me.
+
+103
+00:33:12,390 --> 00:33:14,910
+Wes Bos: Yeah, a lot of them are all wired and they're all wired.
+
+104
+00:33:14,910 --> 00:33:32,460
+Scott Tolinski: Why? Because people like don't want to have that tiny, tiny, tiny, tiny little bit of latency that you don't notice anyways. Yeah, but I really like it. It's a nice keyboard. And it when you click you can set it up. So when you click a button, LEDs radiate out in a rainbow pattern. And it's fancy.
+
+105
+00:33:33,030 --> 00:33:58,410
+Wes Bos: It's it doesn't seem that expensive either under what 74 bucks I'm looking at it right now. Yeah, for what it is. That's really nice. I think if somebody like if somebody is like a hardcore gamer don't get them this Oh, yeah, yeah, I think if someone's like a web developer designer loves Mac products that's this is probably something that they would enjoy. Yeah, totally. That they're playing starship or whatever that those games are. Don't get them that
+
+106
+00:33:58,440 --> 00:34:06,510
+Scott Tolinski: yeah, if they're playing starship, you better believe this is not the right keyboard when they're on that starship. What's that fate? What's the famous line from that starship game
+
+107
+00:34:06,540 --> 00:34:07,650
+Wes Bos: starship? Oh,
+
+108
+00:34:07,650 --> 00:34:12,900
+Scott Tolinski: what's the famous one they always say? They say right before the big ending. Oh,
+
+109
+00:34:12,900 --> 00:34:15,690
+Wes Bos: live long and go forth or something like that
+
+110
+00:34:15,710 --> 00:34:18,150
+Scott Tolinski: live long and go forth from from the game. That was this time
+
+111
+00:34:18,150 --> 00:34:23,190
+Wes Bos: that it's got that Bill Nye and what's his bunny? The other scientists guy in part of Yeah,
+
+112
+00:34:23,190 --> 00:34:29,460
+Scott Tolinski: Bill and Neil and Neil Neil did yeah. Mika, Mikko Koivu Mikko Kaku said his name. Okay.
+
+113
+00:34:31,020 --> 00:35:15,840
+Wes Bos: All right. Next is Mac mice. I recently switched to the Logitech Logitech MX Master. I got two which was quickly I realized why it was on sale. Number three came out a couple months later, but I've been loving it. I had huge problems with it not connecting and I went through absolutely everything it turned out to be the dongle can't be plugged into like a hub or like there's too much interference. So if you get somebody this mouse also get them just a USB extension cable for like three bucks. And then you can extend the dongle down from away from the hub that they're using to where the mouse's so it makes it kind of wireless
+
+114
+00:35:17,279 --> 00:35:17,880
+Scott Tolinski: extender
+
+115
+00:35:17,900 --> 00:36:59,900
+Wes Bos: it works amazing since I've done that I love this mouse so much, I would highly recommend you get this for someone cool. Um, what else we have here, lamb cow flexible tripod, so my wife is a fascist. And she goes through tripods like crazy. And I tried to get her like I got like for a long time I got her like some knockoff gorilla pods and they weren't all that good because eventually after like half a year, they would start slouching, the camera would would fold over. And then I got her like a legit gorilla pod, which is like the number one. It these are like little tripods that you can wrap around like a tree or a fence or anytime that you need a quick little tripod there these bendy tripods. And the GorillaPod is amazing, but I recently got her that are actually over a year ago, I got this lamb cow flexible one, which is I think even better than the gorilla pod because it bends in any way. It's basically just like a big bendy, three bendy sticks. And it comes with all these attachments for your phone and for your tripod. Mm hmm. You can wrap it around. I personally we have like a ring light. I'll personally put my phone in this tripod and then wrap the tripod in the middle of the ring light. And it looks amazing when it happens. So that's pretty cool. We should specify that this is if you're if you're just listening and not looking at the things it's not lamb cow like a little lamb and a cow that gives you milk it's all one word Li m m co you lamb cow. Yeah, big fan of this thing. And it was it was much cheaper than the the gorilla pod as well.
+
+116
+00:37:00,110 --> 00:37:52,710
+Scott Tolinski: Cool. If you want to get into some expensive gifts, like you're talking big money gifts and you know this person is really wanting a new camera. Obviously this is something like this is something you'll probably want to consult with with them. But at least you something maybe you could have a conversation with about if you know that they're interested in cameras. My camera which is the Sony Alpha mine says Sony 873 is just an absolutely fantastic camera in terms of quality. These Sony mirrorless cameras are absolutely blown away everything else. That's out right now for the price. So if you want to get a nice, nice nice camera, possibly used for all sorts of things, video, whatever 4k video, the Sony A seven, three is a beautiful camera, it's around, it's earning 1798. So it's pretty expensive for the body itself. Santa
+
+117
+00:37:52,710 --> 00:37:54,090
+Wes Bos: is coming this year.
+
+118
+00:37:54,090 --> 00:38:05,400
+Scott Tolinski: Yeah, so this is this high end gift. But this is a very nice camera. So something to maybe have that conversation about if your person is interested in a nice camera,
+
+119
+00:38:05,900 --> 00:38:51,210
+Wes Bos: we're gonna move on to experiential gifts here. So some of the best gifts I ever got, were just like, like a knife skills class or a cooking class or massage and because these are things that I will normally not take time out of my day to go do or spend my own money to go do but when somebody gives you a gift card for a float or a massage or nice skills or cooking class and you go and do it, you kind of look back and go Hmm, that was actually really fun. And I took a knife skills class maybe four years ago, and I still have the knife. I know how to sharpen it really well because of that. And like I have, I think I have like pretty good knife skills from just that one day class. I think it was pretty cool. Nice. Yeah,
+
+120
+00:38:51,230 --> 00:39:45,380
+Scott Tolinski: I personally get a massage every couple of weeks because of my turns out when you spend, you know, good 15 years spending on your head. Your body doesn't like it when you're 30 something so I have to get a massage every couple of weeks here. So this is the kind of thing especially as developers, I know how many people have bad posture habits. I've seen it hunching over, I've been there. You're slouching at the end of the day. It's two o'clock and you're just passing out your postures gone to absolute hell. So massage is gonna go a long ways we did this floating experience which like honestly, you mentioned already but it was really nice for the overly stressed out person in your life. The floating experience the the salt was just saltwater floats or whatever they're called. The deprivation floats was absolutely great, relaxing thing for me.
+
+121
+00:39:45,959 --> 00:40:05,820
+Wes Bos: Yeah, I I went back and did my second float the other day. They remember we talked about like, I'm not sure if I'm going to go back. And it was right after I launched my course. And I was feeling like, Oh, I need something right now and I went and had a float and I felt Amazing after So, highly recommend going for a full class or getting someone a gift card for that.
+
+122
+00:40:06,230 --> 00:41:16,980
+Scott Tolinski: Yeah, totally. I'm just gonna knock out my couple of ones here. And then I'll let you just rattle off the rest because you got a lot here and their food. Yeah, my two food ones are a cold brew coffeemaker, which is essentially just a giant, I'm talking giant mason jar and filter, you just ground up your coffee, you put it in this thing, and then you fill it up with water, and then you leave it in the fridge for a couple days, boom, cold brew coffee, I have two of these, I always have a pot of CB going cold brewskis all around the house until insky household because we get a couple of these. And another one is going to be these prep naturals and glass meal prep containers. This is funny, somebody on our Twitter actually suggested this, but we have a ton of these, we maybe have like 15 of them, maybe 1520 of them. And these are great. They're they're hefty glass. It's all safe plastics. And you don't have to feel bad about you know, using these plastic Tupperware that are just creating waste on the planet. And granted, this is glass so you could recycle it a little bit better. So I absolutely love these things. They've held up really well. We've had them for about half a year right now. We do all of our meal prep inside of these containers. So big, big fan.
+
+123
+00:41:17,340 --> 00:41:29,670
+Wes Bos: Oh, yeah, I'm just looking at these right now. These are we have very similar ones. They're called glass lock. And about two years ago, I'd like standardized our entire house on glass lock we Yeah, we just
+
+124
+00:41:29,670 --> 00:41:30,480
+Scott Tolinski: did that. Yeah,
+
+125
+00:41:30,540 --> 00:41:49,730
+Wes Bos: you just gotta like, just go with one and like find one. Like we've had all of the different kinds out there and they're all garbage. And finally found these glass lock ones that looks very similar. Nice, good quality. The lid is plastic for these good locking hinges on each side. Yeah, it's just it just looks great in your D.
+
+126
+00:41:50,070 --> 00:41:50,940
+Unknown: ft. Glass.
+
+127
+00:41:51,000 --> 00:41:53,070
+Wes Bos: It looks great in your fridge as well.
+
+128
+00:41:53,310 --> 00:42:00,270
+Scott Tolinski: That's really what's the most important part. When you have company over they better open their fridge and be like, wow, that glassware.
+
+129
+00:42:00,570 --> 00:42:10,560
+Wes Bos: You have lots of leftovers. If somebody opens my fridge they say Wow, you have a lot of hot sauce. I'm I'm like a lot of sewer
+
+130
+00:42:10,650 --> 00:42:13,800
+Scott Tolinski: I would say they would say I have a lot of soy sauce in my fridge.
+
+131
+00:42:14,040 --> 00:42:48,030
+Wes Bos: Oh, well. I wouldn't have any soy sauce in my fridge. A good I would like a really nice hot sauce. It's such a good gift and it's usually under 10 bucks. So it's like a little stocking stuffer or something like that. The two I'm going to pick right now are blue top creamy buffalo. Any of the blue top creamy ones are amazing. They have one that's like a like an Indian spicy Indian one. The creamy buffalo is really good. And then a new one that I recently found at my local store. It's from Canada. Thunder Bay. Heart heartbeat hot sauce.
+
+132
+00:42:48,900 --> 00:42:52,940
+Scott Tolinski: Bay. Do you have any kids hockey players that are born there? Oh,
+
+133
+00:42:53,610 --> 00:43:05,250
+Wes Bos: that's all that comes? Well, that's all it comes out of there plus their hot sauce. This one is the pineapple habanero, which I bought it and then I posted on Instagram and everybody's like, Oh, that's on hot ones this year or this season.
+
+134
+00:43:05,520 --> 00:43:07,110
+Scott Tolinski: I love a good hub in your home and
+
+135
+00:43:07,170 --> 00:44:02,760
+Wes Bos: and I looked it up and it's it's good. So order those up for the person that loves loves the hot sauce. Next one is Maldon salt. This is just like really high quality flaky salt is a finishing salt that you sprinkle on, on literally anything and it just tastes great. So what I'm doing this year for my family members is I bought these like really nice. They're called weck jars. So if like if you're like if you appreciate like a ball mason jar, these wack jars are on like the next level of glass jars. So I bought a bunch of these wack jars that look like tulips, and I filled them with Maldon salt. And for I don't know for 10 bucks out the door you have like a really nice Stocking Stuffer for people in your family. Oh, yeah, good one. I bought a bucket of Maldon salt, which is probably more than I'll ever need.
+
+136
+00:44:03,540 --> 00:44:06,600
+Scott Tolinski: salt pans though, you know, understand.
+
+137
+00:44:06,810 --> 00:44:52,440
+Wes Bos: Next one I have here is thick sheet pans and pre cut parchment. So sheet pans are like the cookie. I don't know if some people call them cookie sheets or baking pans, things like that. They're called sheet pans against two baking sheets. The half sheet Is this normal size that you have. I have ones called the Viking they are super good quality to get the really thick ones so they don't warp and bend in the oven and then get their standard size. So if you go and buy pre cut parchment paper, those two things make cooking so enjoyable because you just whip out your your sheet pan you grab a couple pieces of pre cut parchment paper. You're making amazing brussel sprouts in just a couple of minutes.
+
+138
+00:44:52,530 --> 00:44:54,360
+Scott Tolinski: You get some sprouts gone. Love it.
+
+139
+00:44:54,390 --> 00:45:04,050
+Wes Bos: Yeah, top five kitchen gadgets I think ever for me is good pen and paper Cut parchment paper cutting parchment paper to fit is it's for the birds.
+
+140
+00:45:05,759 --> 00:45:10,890
+Scott Tolinski: It is not something that I spend more than five seconds thinking about my life but I oh my gosh then
+
+141
+00:45:10,919 --> 00:47:33,540
+Wes Bos: kills me. Yeah that well like those are the kinds of things that like not people that are not into cooking, don't really think about that. But man, I spent a lot of time thinking about these things. Hmm. Next one is a good instant read thermometer. Part of being a huge part of being a good cook is having is just being knowing like what's the temp of your food, so you don't under cook or overcook it. And I said pick this a while ago, it's called the Mr. Scheffer. It's one of the best known name thermometers I've ever had. I've had the expensive like hundred dollar ones, and they're called a thermal pop. Those are amazing. But they're also $100. And I think I got this one called the Mr. Schaeffer. And it's like 20 bucks, and it's just as good. It's nice and fast. It reads it quick. Which is also what I said nice and fast. And it's got a backlight, things like that nice and big. So I like that one a lot. Next, we have my dry steak aging and charcuterie bags. So these are one way breathable bags that you put meat into, and they will you put it in your fridge and they will dry age, or here Shakuni, which is pretty cool. So it if you normally want to dry aged steak, you need a whole bunch of like equipment and whatnot. And these, these bags sort of do a control, it's a bit of a cheat code. And a lot of people who do proper dry aging of steak, turn their nose at them. But from what I've seen, they're pretty cool. And last couple, just some eco friendly ones, I recently switched to using mesh produce bags, and they're awesome. You don't have to like take the little plastic bag off the thing at the grocery store. You just bring all these mesh bags there see through so if there's like apples or something in there, the cashier can still read the code off the apples. And it's good for the environment because you're not throwing all these gross bags into the garbage every week. Alongside that beeswax wraps for wrapping your food in. So instead of using a plastic cling wrap to put over a bowl or to wrap a piece of cheese in just take a piece of bees it's basically a cotton that's been submerged in beeswax so you can make them yourself as well. Wrap your food in them. Yeah, I've been on a bit of a anti plastic kick the last year in our kitchen.
+
+142
+00:47:33,869 --> 00:47:34,950
+Scott Tolinski: Oh totally. Yeah. Like
+
+143
+00:47:35,939 --> 00:47:44,220
+Wes Bos: I've been sort of honing in on it and I'm these mash produce bags have been a bit of a game changer. The hardest part is trying to remember them when you go to the store though.
+
+144
+00:47:44,489 --> 00:47:50,700
+Scott Tolinski: I've never even heard of that. That's the hardest part about bags in general for me. Yeah, I know. I get the whole foods and I'm like shoot.
+
+145
+00:47:51,149 --> 00:47:52,530
+Wes Bos: Yeah, the bags.
+
+146
+00:47:54,000 --> 00:48:14,280
+Scott Tolinski: We live we live like two blocks from a whole foods. So I always like walk there to go get stuff and then bring it back. And then I had too much of pride too prideful to just be like, no, it's okay, I'll take the paper bag. I'll just be like, No, I'll carry it all so then I'm like walking several blocks like trying not to drop anything with my arms full of food.
+
+147
+00:48:15,450 --> 00:48:19,830
+Wes Bos: Well, the the the earth appreciates your Yeah,
+
+148
+00:48:19,980 --> 00:48:24,420
+Scott Tolinski: every sheets that. Like are you sure you don't want a bag? Yeah, I'm sure I got it.
+
+149
+00:48:27,540 --> 00:49:17,880
+Wes Bos: Last thing I have here is just Yeti drinkware. So stainless steel cups that keep your tea or coffee hot forever. I've tried a lot of them and a lot of them after a year start to peel or you put them in the dishwasher and they started to discolor and the only ones that have held up are the Yeti ones which are way too expensive for what they are but they do hold up and I've got the the lowball with the it's like a mug with a with a handle on it. And I've been loving this thing and my wife got one as well. We'd like the much better than the really tall ones. Because they don't tip over on your laptop screen or something like that. Yeah, they just don't fit in your your car cup holder. So they're not to go cups. They're just like a mug for busy parents who forget their coffee.
+
+150
+00:49:19,890 --> 00:49:40,800
+Scott Tolinski: Can't forget that coffee man. Next up, I have a few wellness items. These are mostly gym related. One of them is a favorite gun. If this is a percussion massager. It's basically this like you can imagine what's a tool like a jig? Like workers in saws like a jigsaw. Is
+
+151
+00:49:40,800 --> 00:49:43,680
+Wes Bos: that a jigsaw? A like a saws all
+
+152
+00:49:44,010 --> 00:49:46,890
+Scott Tolinski: a Yeah, like a saw. But yeah, yeah.
+
+153
+00:49:46,890 --> 00:49:49,350
+Wes Bos: So it's basically like, yeah,
+
+154
+00:49:49,379 --> 00:50:01,320
+Scott Tolinski: yeah, and oscillating. So yeah, so it's basically just like that with a giant rubber ball on the end. And really hard. So you pointed out your muscle goes wow wow. Like Really, really fast.
+
+155
+00:50:01,650 --> 00:50:02,820
+Wes Bos: You have one of these,
+
+156
+00:50:03,150 --> 00:51:22,320
+Scott Tolinski: I just ordered one. I've used them before, and they're really cool. So I'm really excited to get mine. I'll let you know how it is when it when it comes here, but I've heard really good things from both massage therapists, physical therapists, I'm going to use the life out of this thing on my neck, my back, shoulders, all that good stuff. Another one is a foam roller. If you don't have a foam roller by now, gotta get one, they're cheap, just lay on it for a minute. If you've got back pains, this thing is just so essential for getting the muscles in your body to chill out, save some money by not having to go get a professional massage. The last one is power blocks. These are really awesome. They're adjustable dumbbells. I've talked about these A long time ago on syntax, but we have these specific ones that power blocks, you can adjust them anywhere from five pounds, up to 70 pounds at five pounds, or even 2.5 pound increments. And I use these every day. They're perfect for the person in an apartment who maybe wants to just start moving around a little bit more. It wasn't like you start at five pounds you can start with whatever you want you can use them for every single exercise before we had our home gym we literally did every exercise with these things so I'm a huge fan of these power blocks and then West headed the Japanese nail clippers because people really liked those last time
+
+157
+00:51:23,189 --> 00:51:33,390
+Wes Bos: a hard time for them and like everybody like if we looking at like clicks and stuff like that for everybody was all over these Japanese slippers. Yeah, they are.
+
+158
+00:51:33,689 --> 00:52:27,750
+Scott Tolinski: They're from Seiko, if I'm pronouncing that our psyche, psyche yeah psyche. I don't know why type Seiko Seki edge. These are stainless steel nail clippers. And they are darn heavy duty like this is the heaviest duty nail clipper it could probably little chop your finger off if you let it these things cut through absolutely anything that Japanese steel yet some Samurai steel apparently in these. But I absolutely love these nail clippers. They are just darn heavy. I mean, they are just absolutely beastly. I got a couple of them and I can't recommend it enough. It's something you use all the time and nail clippers. So you might as well get some really good ones. Because you know, you don't know just how good good nail clippers are until you get some of these beasts that could cut off your finger or something. And they're not too costly. They're I mean 13 bucks for the big one or something but they're not too bad. Man. I'm
+
+159
+00:52:27,750 --> 00:52:38,220
+Wes Bos: just looking at these muscle tissue deep tissue massage guns. I always try to get my walk on the backs of my legs. Yes, yeah. And if I could just give them this
+
+160
+00:52:40,170 --> 00:52:58,200
+Scott Tolinski: secret. Hey, could you just hit me with this thing he just pulled in? Yeah, I'm really excited to see what this is like I did not get the 24 k Gold Edition that costs $1,000 which is ridiculous. I don't know why you'd need a gold plated theragun but you know you do use their gun. Yeah,
+
+161
+00:52:58,620 --> 00:53:03,750
+Wes Bos: I guess they know their their target market. Well, yeah, right. I gotta get gold one. I
+
+162
+00:53:03,750 --> 00:53:06,270
+Unknown: gotta get the rose gold one. Yeah.
+
+163
+00:53:07,260 --> 00:53:09,480
+Wes Bos: Cool. Well, let's move into some sick packs.
+
+164
+00:53:11,850 --> 00:53:13,620
+Scott Tolinski: like pigs is it? This is the whole show sick. The
+
+165
+00:53:13,620 --> 00:53:53,400
+Wes Bos: entire episode was the sick pick. Shameless plugs, I can finally shamelessly plug my beginner JavaScript course. And found beginner javascript.com slam dunk your JavaScript fundamentals is the fun exercise heavy approach to learning modern JavaScript. It's been selling like hotcakes, I've been super happy. But the feedback has been amazing. People have been saying things like, man, I never understood closures or like functions. Like I don't know how you pass arguments into functions and things like that. That was always like a little bit like, fuzzy for me. And now I've had that aha moment, which is really cool. So, so happy to get it out beginner javascript.com. Yeah, just
+
+166
+00:53:53,400 --> 00:54:05,550
+Scott Tolinski: take a little bit here to say, you know, what I really admire about all of your courses is how fun you make that stuff. Like when I look at your examples, I'm like, Man, these look so fun. Say
+
+167
+00:54:05,610 --> 00:54:06,540
+Wes Bos: yeah, yeah,
+
+168
+00:54:06,630 --> 00:54:53,400
+Scott Tolinski: I really admired that about your courses. They're really super really super fun. My I'm going to sick pig or not sick pig I'm going to shamelessly plug level up pro level Pro is the tutorial service where you get access to every single tutorial series on level up tutorials. COMM there's so many from testing, react, animating react, there's a bunch of basic view stuff, basic speld stuff, a full stack react. And next my latest course was a react in TypeScript for everyone. Those of you who are interested in learning how to write TypeScript within react, or even level one TypeScript. If you're looking to just Indian simply understand what the heck TypeScript is. So check it out at level up tutorials.com forward slash pro sign up for the year and save 25%
+
+169
+00:54:53,760 --> 00:55:02,190
+Wes Bos: All right, that is it. Thank you so much for tuning in. Hopefully you picked up a thing or two for us. someone in your life or maybe just yourself?
+
+170
+00:55:02,670 --> 00:55:04,620
+Scott Tolinski: Totally Yeah, nothing wrong with that
+
+171
+00:55:04,710 --> 00:55:09,420
+Wes Bos: and we will catch you on Monday booth, please
+
+172
+00:55:11,340 --> 00:55:21,060
+Scott Tolinski: head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
