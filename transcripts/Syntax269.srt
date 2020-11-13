@@ -1,0 +1,84 @@
+1
+00:00:00,359 --> 00:00:24,450
+Announcer: Monday, Monday, Monday, open wide dev fans yet ready to stuff your face with JavaScript CSS node module, BBQ Tip Get workflow breakdancing soft skill web development not hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA. And Scott Tolinksi ski.
+
+2
+00:00:25,950 --> 00:00:41,159
+Scott Tolinski: Oh, welcome to syntax. Yes, yes, yes, it is the syntax podcast. My name is Scott Tolinksi. I'm a developer from Denver, Colorado, and with me, as always, is the West boss.
+
+3
+00:00:41,370 --> 00:00:42,780
+Unknown: Oh,
+
+4
+00:00:43,019 --> 00:03:13,230
+Scott Tolinski: hey, yo, hey, yo, hey, Yo, this episode is Monday hasty treat, and we're gonna be talking about nuber. And no refer also known as no opener. And no refer when I see those two words, they just turn into jelly in my brain, and I don't even read the whole word, new their new printer. And we're gonna be talking about security. What's the issue with that if you've worked in any front end framework, you probably know with that you can't just link off to the sites with a blank without using one of these tags. We're going to talk about what they are, why it is what the whole reasoning behind that is. And maybe just a little bit of the depth there, it's just going to be a fun one. This episode is sponsored by century. Now, unfortunately, this is not a bug that will show up in your Sentry logs. But if it did, it would pop in there, it would show up, you'd be able to track it, he'd be able to attach a GitHub issue with one click back. That's probably my favorite thing in Sentry. I have so many favorite features to Sentry, because I use it every darn day. It's one of those apps I almost never close. But let's say I just pop open Sentry right now. I have an error that's coming up. And it says no series found. What I can do is I can say, Okay, this is happening on this URL in particular. And I want people to take a look at this error. So what I do is I end my century. And I just click the box that literally says Create issue. And all it does is create a GitHub issue. And I don't even have to leave century, all I have to do is click the plus I can even assign it to somebody directly. I can add all those things that you know and love from GitHub, and it will create a link directly to this issue so that anybody who is attempting to solve this issue, can find it directly in your century, get the error logs, get what happened, the breadcrumbs and all that stuff, fix that issue, solve it, and then we can mark it as resolved. It's so fun and easy. So if you want to try out Sentry, head on over to sentry.io, use the coupon code at tasty treats all lowercase all one word, and you are going to get two months for free. So thank you so much for century for sponsoring this episode. Wes, I know you got curious about this, which is a funny thing, though. And somebody says, you know, do something, instead of just saying, Yes. You said, I need to understand this. Which to me, yeah, that's a that's a great skill to have. Sometimes I just read things people say do this. And I say, Okay, I'll do it. Yeah. Other times, you really want to know the details. And I'm really impressed that you you took this deep dive here.
+
+5
+00:03:13,589 --> 00:06:24,660
+Wes Bos: Oh, good. Yeah, I saw a tweet from Adam argall. And he just like it posted this CSS trick that you can put two exclamation marks in front of any link that doesn't have these attributes. And I thought like, okay, but like, why, like, that's kind of annoying that we have to do this, like, why is this a thing? And why hasn't the browser fix it. So if you haven't heard of this before, if you have a link that has a target of underscore blank that meaning it will open in a new tab or window. If you do that the website that you link to whether it's your own website, or it's a another domain website will have access to the window of the opener website. So if we have Scott calm, and Scott links to West calm, and Scott says a href equals West comm target equals blank, and I pop that open now west.com will have access to the entire window of Scott Comm. And that's a huge security vulnerability because then someone could any like any website you literally link to could maliciously then reach back into the other website and scrape data change the page, you name it, right? So this popped up, I don't know maybe a year or two ago and since then, we've been getting an es lint rules pop in anytime on GitHub. If you sneeze a underscore blank, somebody will come with a pull request adding these two attributes of REL no opener and REL no referrer. And what these do is first REL no opener will ensure that the website that you've linked to normally you can just access the opener website Scott comm links to West calm on West calm, I'd be able to access Scott comm via window dot opener. So I could say like window dot opener dot document. And that will give me the document of the opened website. So just adding a relative no opener, we'll make that note. And then a relative no refer, we'll go one step further and strip any referring headers. And we'll talk about the ups and downs of that. So that's, that's what you have to do right now with underscore blank things otherwise other websites could do it. And I thought like, okay, like, like, why is this is obviously security issue in the browser? Why don't browsers just fix it? And I asked on Twitter, like, what are any valid use cases for this thing? Because the reason they're probably not fixing it is because it will probably break a whole bunch of websites out there, because you can't just change how JavaScript and how JavaScript works. And I was like, thinking like, what websites do use this and the only one that I could think about? First of all, there's plenty of like pirated websites where you try to download something, you click it, and it changes the page on you and then opens up something else in a new tab. Mm hmm. And like the only like one that is legitimate that I could think of would be a retail me not here use retail me not to get like a coupon code or something.
+
+6
+00:06:24,690 --> 00:06:49,950
+Scott Tolinski: Yeah, it were like retail me that was like a funny because it was one of those things that I felt like, worked until companies found out about it, because like the moment companies found out about it, they're just like, let me publish embedded marketing into the site. Yeah, like, Oh, you can only get this coupon gotta be set up for our mailing list. Now, all of a sudden, like I really liked you tell me now when it was just like, oh, here's the coupon. Got it? Yeah, underground.
+
+7
+00:06:50,760 --> 00:07:40,680
+Wes Bos: So what they do is, if there's a coupon code, you have to click to reveal it. And by clicking it, it sends you to the website. So if I'm trying to buy something from the gap, what it does is it opens the coupon code in a new tab and then changes the current tab to gap Comm. And that gives them the buffer, so that they can get any affiliate dollars from that. And I was like, okay, that's kind of a okay use case for it. But they're, they're sort of leaning on that. And then I think everything else I've seen, maybe like, This used to be really popular when you click a link, and it would open up a pop up window. And then what you did in that pop up window, you still want to control what's happening on the main tab of the website. Mm hmm. I only really only see this in like banking websites that are very old. And I don't think this is so much of an issue anymore.
+
+8
+00:07:41,270 --> 00:08:32,900
+Scott Tolinski: I think it's a relic of the pre framework days, because now you can just, you know, not refresh the whole page when you do page. Yeah, conditions and things like that. And I remember that was like a huge thing. When we we were like, this is like sort of related, when we were working on our agency website. And we had this like fun little feature that was like the agency do a jukebox where everybody could put like a song of the month on and you know, you could hear music from the agency workers, right? There's only 12 of us there. So it's really like curated and cool. The old way they did it was that pop up window, right? Yep. And I remember when we went to do the new site, we did it in Angular, I believe I might have been Angular one. And when we did this in Angular one, it was so fancy to be able to have the jukebox just be a part of the site and live on the site and not be refreshed per page. We didn't have to bump it onto its own window. That was like the perfect use case for that.
+
+9
+00:08:33,449 --> 00:10:12,330
+Wes Bos: I forgot about that. Yeah, you can use just run the player in the pop up. So there's a really good example, if you go to the show notes. Mateus by Nance has a really good example about how it works on the same origin as well as cross origin. So it's interesting because course, even if you have course set up on your website, course does not apply here, which means you could potentially leak your entire document. So my question is, is okay, so every time we have a target equals underscore blank, we have to now add these two rails, which I never remember what they are, why doesn't the browser just fix that? And it looks like they actually are fixing it. So I did a couple tests Safari has for about a year or so, by default, any underscore blank link will also infer the no opener and I believe the No, no, I think just no opener, and you know, I'm not sure if it's the newer or not, so it will do that by default. And I believe Firefox now does this too, because I was trying to make it work on Firefox and I couldn't. And by putting no opener on a link, it just sets the window dot refer to null and you're not access to not able to access anything on it. It does currently still work. This is what June 26 we're recording does currently still exist in Chrome and I would expect the same thing in brave and IE Because they are both based on that. So I bet in a couple years, we'll have to stop using these annoying things. Whenever we want a target equals new underscore blank, fascinated,
+
+10
+00:10:12,770 --> 00:10:46,260
+Scott Tolinski: there's so many times we hit these problems in web dev, and like, so many people just deal with these little minor inconveniences, right of having to do this stuff, or add these little caveats. But we often forget about like, the load it all it all comes down to our brains, right? It's like, you have to remember, now all of a sudden, it's just one additional thing you have to learn. And one more additional thing that is a something that occupies space in your brain. But like, why, why why do we have to why do we have to deal with this? And I think not enough people ask, like, why can't this just be done for us? Enough? You know?
+
+11
+00:10:46,319 --> 00:10:55,200
+Wes Bos: Yeah, yeah, that's exactly it also, like, people are just adding a blind, I'm like, well, doesn't that like break some stuff? Like, is that bad for SEO? Or analytics?
+
+12
+00:10:55,229 --> 00:10:56,940
+Scott Tolinski: And why does it even exist? Yeah,
+
+13
+00:10:56,969 --> 00:12:09,510
+Wes Bos: yeah. And so no, refer does hurt your analytics. Because if you put No, no refer on a link, when somebody visits that website, it's not going to tell you which website referred you to them. And it's just going to, there's like a header that you can pull. And it will just tell you straight up that someone went directly to your website. So if you're looking at your analytics, you say, Wow, all these people are just typing in this long ass blog post URL, that's weird. And it's likely know that the links to that page are being stripped of the referrer. So in some cases, you probably do, it certainly could be a security issue by having referred leaking, what URL links to whatever. But if you need that information, especially if you're doing something like referrals, like I have, specifically I have a referral program myself. And if people were to pop this attribute on my referral links, I wouldn't be able, oh, sorry, no, I would, I still wouldn't be able to track it. Because the URLs with my referral program have specific data in them as to who is referring those you see if you ever look at our first link, you'll see that the person's name and the link. And that's how it's tracked. So it's not based on people linking it from URL for header,
+
+14
+00:12:09,629 --> 00:12:11,580
+Scott Tolinski: you do yours as a query string, right?
+
+15
+00:12:11,969 --> 00:12:34,470
+Wes Bos: Yeah, it's not not a query string. But it's just like a params. An Express brand. You're on like a brand matching. Yeah. But that's what I've learned about this. So if you do have a target equals underscore blank, you probably still do want to add REL no new opener and new refer to that in about a year, we'll we'll be able to stop doing that.
+
+16
+00:12:34,890 --> 00:12:41,010
+Scott Tolinski: Well, I look forward to the day that I didn't have to go there and make that modification on my code now
+
+17
+00:12:41,070 --> 00:12:44,550
+Wes Bos: beautiful, such a small thing. But it's bugged me for a while I thought, hmm,
+
+18
+00:12:44,880 --> 00:13:03,000
+Scott Tolinski: there's so many times a little things like that popped into my brain where I get curious about something and then it just be it's a perfect opportunity to learn out loud and to say, hey, other people might be interested in this too. I think it's the power of learning in public. So awesome. I'm so I'm so glad you did this, because it taught me a whole lot about this as well. I've always just been like, yep,
+
+19
+00:13:03,000 --> 00:13:37,500
+Wes Bos: we'll add. Yeah, we have something in my family where we just say it can't be known or like somebody asks, like a really simple question. Like, why does drinking water upside down, get rid of hiccups? And we all sit around and go can't be known. Like if only there were some sort of resource out there that we could look this information up but can't be known. Some giant catalog of information to type in and or ASCII and with your voice? It's Encarta. That's what we're talking about. In carta. Thank you so much for tuning in. And we'll catch you on Wednesday. Peace, peace.
+
+20
+00:13:39,540 --> 00:13:40,350
+Announcer: Head on over to syntax.fm
+
+21
+00:13:40,350 --> 00:13:49,320
+Scott Tolinski: for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
