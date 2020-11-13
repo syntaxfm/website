@@ -1,0 +1,520 @@
+1
+00:00:01,319 --> 00:00:06,120
+Unknown: You're listening to syntax, the podcast with the tastiest web development treats out there.
+
+2
+00:00:06,149 --> 00:00:11,400
+strap yourself in and get ready to live ski and West boss. Oh, welcome
+
+3
+00:00:11,400 --> 00:00:53,729
+Wes Bos: to syntaxes to the podcast with the tastiest web development treats out there. today. We've got a guest, someone that knows a lot more than us. We have Dr. Courtney kolinsky. On the show. She's gonna be talking to us about mental health and web development. Just kind of a interesting time right now with the Coronavirus going around. And I think a lot of people are hurting. So I thought we it's a great idea. Scott said like, Hey, what do you think about having Courtney on the show? I was like, perfect timing. I think this is absolutely perfect. So today we're sponsored by Sanity. And Freshbooks. Sanity is a structure content, CMS freshbooks is cloud accounting. We'll talk about them partway through the episode. But welcome, folks.
+
+4
+00:00:53,939 --> 00:00:55,560
+Dr. Courtney Tolinski: Hi, I'm happy to be here.
+
+5
+00:00:55,829 --> 00:00:56,369
+Unknown: Yeah,
+
+6
+00:00:56,399 --> 00:01:02,369
+Scott Tolinski: happy to have you here. We're, we're also a cooped up in the house. This is the perfect opportunity.
+
+7
+00:01:03,119 --> 00:01:04,200
+Dr. Courtney Tolinski: Right? Yeah.
+
+8
+00:01:04,230 --> 00:01:14,790
+Wes Bos: Can I just say what I'm experiencing right now is Scott and Courtney are sharing this like set of like Android earbuds that they got from a gumball machine? And then like I say,
+
+9
+00:01:17,670 --> 00:01:27,240
+Scott Tolinski: it's like we're doing a duet. Yeah. Yeah, we're both speaking in the same mic. This is this is a budget budget, a budget program we got going on. That's what's going on.
+
+10
+00:01:29,610 --> 00:01:33,750
+Wes Bos: So I'll let you can sort of kick it off there, Scott and get going.
+
+11
+00:01:34,050 --> 00:01:46,710
+Scott Tolinski: So with us on the show today is my lovely wife, Dr. Courtney kolinsky. She is a doctor of educational psychology. I don't know Do you want to give a little brief introduction about who you are and what you do?
+
+12
+00:01:47,310 --> 00:02:19,050
+Dr. Courtney Tolinski: Sure. So I am a doctor of educational and clinical psychology. I work primarily with children and adolescents. But I love to work with adults as well. Currently, I am the director of a learning Evaluation Center here in Colorado. And I do a lot of diagnostic evaluations for things like ADHD, autism, learning disabilities and mood disorders. I've also done a lot of therapy as well with children and adults. So thank you so much for having me. Awesome.
+
+13
+00:02:19,080 --> 00:03:07,080
+Scott Tolinski: Well, let's get started. So I asked a question on the the Twitter a couple of weeks ago, just about what sort of questions people might have for Courtney. And I, what I did is I broke these up into several different sections. And I figured we could talk about each of these just sort of generally, and then, you know, address some things directly. We have, we're going to be talking a little bit about depression, anxiety, focus on job performance, motivation, remote work stress, and we'll just have a conversation, it's going to be pretty relaxed. And, and honestly, I know Courtney probably would want this disclaimer, and I don't want to speak for her. But despite the fact that she is a doctor of psychology, if you have anything directly with yourself, you should probably reach out to someone rather than take advice directly from this podcast. Is that a fair to say, Courtney?
+
+14
+00:03:07,350 --> 00:03:19,590
+Dr. Courtney Tolinski: Yeah, it's important to always, of course, Speak to your doctor, or therapist if you're having serious issues. But hopefully, this general advice that I'm able to give will be helpful to a lot of people.
+
+15
+00:03:19,620 --> 00:04:25,880
+Scott Tolinski: Yeah, totally. So the first little bit, we wanted to talk about depression. So I wanted to read some some messages anonymously that people had sent me, just so we can get like, you know, hopefully, if you're feeling this way that you can have a little bit of, I don't know, what's the word I'm looking for? togetherness with other people who are potentially going through the same thing. So some people say, honestly, just explaining depression would be great too many times I've heard but you don't look sad. And that is really something that depressed people hear all the time. You don't look sad, you know, you aren't like, why don't you just feel better kind of thing. Another one would be as someone who struggles with depression, what are some things that I can do to rekindle the things that I enjoy, like developing and hobbies, this would be a great benefit for me for learning more dev related things to doing outside work. Another my depression is due to some things in my personal life, and I'm two years into it. Coding has brought me a little life back and the only thing I have to do. So do you want to talk a little bit about the basics of depression and maybe what it is and how people experience it?
+
+16
+00:04:26,390 --> 00:06:36,180
+Dr. Courtney Tolinski: Yeah, so I mean, depression is more than just feeling sad, right? It's, it's certainly a sad aspect. But it's this sense of hopelessness, that things will not get better, things are awful, and they're not going to get better. And on top of that, there's a loss of interest in the things that you like to do. Right. So if you enjoy coding, or you're a golfer, whatever that hobby is, you all of a sudden find yourself having a really hard time getting out of bed, just kind of taking care of yourself and getting out to do those things that you used to enjoy There's a host of different other like symptoms as we refer to them that go along with it. So sometimes just being extremely irritable, can be like gaining a lot of weight or losing a lot of weight, just a general sense of fatigue and tiredness. So there's a lot of different factors that can look into depression. But it's not always just feeling sad, right? It's feeling sad, and then it affecting your life to the point where you're not able to function, whether that's going to work, or going out socially with your friends, or just, you know, engaging in your relationships in general. So that's, that's kind of a good overview of depression. And just like anything, it's it's a spectrum, right? So sometimes people who are depressed, can be outwardly, the, like happiest people you've ever met. Like, I've had some clients that just like radiate sunshine, you know, from the outside. And internally, they're like, you know, in a sense, dying inside, right, but they don't show that to other people. Because a lot of times they've heard the message of Oh, you you need to be happy, right? Or it's not okay to feel sad. So instead, they internalize that they don't express it, and the depression kind of eats away at them. And then there are other people who do outwardly look really sad and look really tired. And those people are, you know, easier to treat from my perspective, but, but it can look different. And it's, I think, important to not assume that just because somebody looks happy, they're not. Oh, yes, yeah.
+
+17
+00:06:36,839 --> 00:06:58,200
+Scott Tolinski: So do you have any recommendations specifically for people who are having a hard time enjoying the things that they are like that they used to love to do specifically coding? Or, or even outside of coding hobbies? Do you have any general advice for people who depression is getting in the way of the things they enjoy in life?
+
+18
+00:06:58,799 --> 00:08:46,890
+Dr. Courtney Tolinski: Yeah, I, the biggest thing that I always encourage, like my clients to do would be self care, right. And so a lot of times, they'll have them make a list of all the different things that they enjoy doing to take care of themselves, just to help get them out of bed, if if they're that depressed, right, it's a range, of course. So some people are like, functionally depressed, where they're able to go to work, able to engage in, you know, their normal day to day life, but internally, they're not getting the, like, pleasure that they used to out of it. But self care is really important. Taking care of yourself, making sure you're getting dressed, keeping up on those haircuts, right shaving or, you know, whatever it is for, for dudes, for girls, that could be like putting on makeup or you know, whatever it is that makes you feel your best. doing those things are really important. You know, and then I think just encouraging other people to help reach out to you, you know, asking your friends, letting them know and being vulnerable and saying, Hey, you know, I'm having a difficult time, it would be really helpful, if you like, checked in on me once in a while, if it's that extreme, or, you know, if you're able to, like functionally interact in your day to day then scheduling, so making, putting in the calendar as like, like an event or an appointment that you would need to make. So things like if you enjoy golfing, right putting that in the calendar every Sunday, I'm going to go golfing at 11. Right and and keeping that appointment as if it were a doctor's appointment, really treating that very seriously, just to help keep them with those hobbies. And you know, you can scale back if it's too much to do your normal, five, six hobbies, whatever you do, scale back to two or three, but figuring out what's important to you, and then scheduling it and prioritizing those things.
+
+19
+00:08:47,069 --> 00:09:50,250
+Scott Tolinski: Yeah, yeah, I don't know, I don't think we've ever gotten to this on the show. But I've been on and off antidepressants and spiked concussion. And I've tried several different ones. And, you know, over the course of time, it's funny that you mentioned the you know, weight gain, weight loss, but some of the antidepressants made me gain like a lot of weight. Not to mention inside that concussion, I couldn't work out I gained like, like 1520 pounds. And that almost fueled everything more because you just feel worse about yourself. And I think that tip about doing your self care things is really super important for me, especially, I know, I'm not very good at it. But when I am feeling those feelings are you know, that sort of flow of life, just getting up and doing my hair shaving whatever, goes a tremendous distance that like you don't want to do it and you don't feel like it's going to make a difference. It sounds dumb. It seems like oh, this isn't gonna do anything. And it worked so well for me. You just you feel a little bit better about yourself and just taking care of yourself in those ways makes it a big deal. So I think the next one we wanted to talk about
+
+20
+00:09:50,399 --> 00:10:15,020
+Wes Bos: Wait, hold on. I have one quick question. Yeah, well, the doctor is in. So like, let's say I've got a friend who is suffering from depression you say like Go out and talk to them like that. What do you say to somebody that that has depression, right? Like, that sucks or woof? Like, that's obviously not that way you should say, but like, I always find it a little bit weird. Like, I'm like, oh, like, what should I say? How should I dance around it? Should I come on?
+
+21
+00:10:15,049 --> 00:10:24,870
+Dr. Courtney Tolinski: Yeah. Oh, do you run that you like know which of your friends has depression? Or is it just like a general sense that maybe there's something going on?
+
+22
+00:10:24,870 --> 00:10:36,120
+Wes Bos: I would say that there's a couple of friends who have come out and told me, but I would assume that there's probably more of my friends that don't even don't even tell me.
+
+23
+00:10:36,480 --> 00:11:15,929
+Dr. Courtney Tolinski: Yeah, yeah. So I think just generally checking in and not putting any assumptions on like, hey, how's that depression going? Right? Like, nobody wants to be reminded of it necessarily, but checking in and saying, like, Hey, man, how's it going? You know, have you been just having like, a general question, you know, and seeing how they respond, if they're like, Oh, you know, things are great things are good, then, you know, don't assume anything, just take them at what they're saying. and invite them, you know, make it a point to reach out to them more, check in with them and invite them to things and not assume that they will take you up on it necessarily.
+
+24
+00:11:16,230 --> 00:11:35,789
+Wes Bos: So good point. Yeah, my one buddy of mine that said, like, Hey, you just want to go for a run, or you want to go down the stairs, like in our city, this is massive stairs that go up the mountain. And like, that's just okay. Just Just trying to like, think of like, how do you proactively invite somebody out to do something? And like, also, I know, exercises is helpful as well.
+
+25
+00:11:36,360 --> 00:12:22,020
+Dr. Courtney Tolinski: Right? Yeah. And yeah, that, of course, goes without saying a great diet, exercise, sleep. I mean, those things are so valuable in terms of taking care of yourself just on a day to day but especially for somebody who's depressed. But yeah, checking in with your friends, if you feel like something's going on, or something's not right, just having like that general leading question of, Hey, how's it going? I think can you know, speak volumes, a lot of people, they're, they're afraid to reach out. They don't want to burden people with their, their sadness, right? Or their depression. Yeah. But if you extend that interest in genuinely show that you care, then I think that that goes a long way. And people will feel like they can trust you, and that they can be more vulnerable with you.
+
+26
+00:12:22,649 --> 00:13:43,320
+Scott Tolinski: Totally. So let's get into the anxiety side of things, because that's a big part of this as well. And especially right now, when everybody is sort of on edge and anxious, in general with the current state of the world. So I will talk a little bit about some of that stuff directly. But I think a lot of the concerns people have with anxiety follows around the idea of maybe like inadequacy or imposter syndrome, or those kind of things. So when I asked this question, I got the question about talking about imposter syndrome just about 1000 times. So I wrote imposter syndrome times 1000 here, because that's how many responses I got about it. And it's funny, because no matter how many times you talk about imposter syndrome, it seems like that's such a big topic. I know. I myself and many other people, you know, often deal with these issues. People often are asking, How do I deal with increased anxiety during the current situation? How do I avoid anxiety and feel useless when working on products that don't appeal to you? I wanted to ask the doctor, why do I feel that I have to work on 1000 projects that seem to never finish? It's anxiety inducing. I'm under depression medication. Sometimes I feel scared that I am so slow. It doesn't feel accomplished enough. Like people working at thing. Do you know what Fang is?
+
+27
+00:13:43,440 --> 00:13:49,470
+Wes Bos: Yeah, Facebook, apple, Netflix and Google go. Okay,
+
+28
+00:13:49,470 --> 00:14:12,450
+Scott Tolinski: etc. and being an S ee software engineer. Yeah, how to deal with assists, how to deal with anxiety caused by today's event. So it seems like the overarching message is that one people have imposter syndrome. They feel inadequate. They feel anxious about the amount of workload they have, and they're anxious about the current situation. I don't know. Do you want to give some generalized stuff? And then maybe we can talk about some advice for those topics?
+
+29
+00:14:12,870 --> 00:14:19,230
+Dr. Courtney Tolinski: Yeah, well, I mean, I guess first Have either of you experienced imposter syndrome in your career?
+
+30
+00:14:19,770 --> 00:14:20,669
+Scott Tolinski: Absolutely.
+
+31
+00:14:20,820 --> 00:14:21,870
+Unknown: Yeah.
+
+32
+00:14:21,870 --> 00:14:23,909
+Dr. Courtney Tolinski: So tell us about it. What is that like for you?
+
+33
+00:14:24,419 --> 00:15:42,049
+Scott Tolinski: So for me, you know, I remember getting my first dev job. My my manager and boss at the time Ben shaft. He hired me when I really didn't know what I was doing. Like I was hacking together WordPress templates and stuff. And so then all of a sudden, I got hired for my first dev job. And it was building Drupal sites. I'd never seen Drupal. I'd never really written any PHP, considering I was just like modifying CSS and HTML within WordPress templates. And all of a sudden, I'm handed a client. Not to mention he was actually at a conference the first week of my job. So I was like, oh, here's your client. They're Drupal six site or whatever, and you don't know what you're doing. You don't know any of the tools. Your boss isn't there. You know, like, what do you do? And I just remember feeling like, I am going to get fired from this job. I don't I'm not I do not know what I'm doing here. And sure enough, you know, the men was amazing. He was a great teacher, a great mentor. He didn't expect me to know those things. He taught me so much. And I grew into the role and eventually ended up after he left getting that senior position that he had, and then moving on from there. But there's just about every single new job I took, except for maybe one or two, I felt like the job was way above my skill level. And it was scary.
+
+34
+00:15:42,090 --> 00:15:51,929
+Dr. Courtney Tolinski: Yeah. Yeah. Well, so in that time, when he wasn't there, and you were kind of holding the reins yourself, what did you do to talk yourself through it?
+
+35
+00:15:52,500 --> 00:16:25,110
+Scott Tolinski: Uh, yeah, I just did what was asked of me, and tried to do my best and ask questions wherever possible, you know, via email, or chat, or whatever. I had never met him at that point besides on phone. So we didn't have like, you know, the kind of rapport we do now as friends. So I just, I just didn't, I did my best to complete my assignments to the best of my ability and, like, not mess things up. But I guess they asked a lot of questions would have been the thing I did. First and foremost, yes.
+
+36
+00:16:25,110 --> 00:16:35,850
+Dr. Courtney Tolinski: Ask a lot of questions and, and really try your best and hold that confidence in yourself. Yeah, yeah. Okay. Okay. Yeah, yeah. What about us? Have you ever gone through that?
+
+37
+00:16:35,970 --> 00:17:57,830
+Wes Bos: Yeah, um, not a whole lot. I've certainly been nervous in lots of situations where I feel out of my, out of where I should be. I'm specifically the big one was when I like, eight years ago, when I went to interview at Google. And I, even just when they email me, they're like, Hey, you want to work at Google is like me? Yeah. I, I started, like, I was certainly nervous. But I don't think I had imposter syndrome, because I knew, like, if I'm not a good fit, if I'm not good enough, they'll say no. And they did. And, and that was fine. And my wife always tells me I'm unapologetically confident. Meaning that like, my confidence levels, probably in a lot of things, basically, I'm just like, I don't know, we'll figure it out. or right. These are just regular people walking around. These are regular people working these jobs, certainly they've learned over time, and I could probably do that as well. So it just knowing that like, the worst that could happen is that you won't get the job. Or you'll get can, I guess, if you do get a job in a place where you feel out of your bounds, that that can be a big, sort of a scary thing for people. Right. But if that's the case, I know that like just surround yourself with people that are a bit of a support network, right? Certainly friends and communities that that can help you out in those situations that you know, you eventually will hit.
+
+38
+00:17:58,469 --> 00:19:42,560
+Dr. Courtney Tolinski: Yeah, yeah. Well, and I'm wondering, I think there's a big difference between imposter syndrome and just maybe like low self confidence. I wanted to get your thoughts on that, especially in your field. Because so imposter syndrome is the idea, right? That you you have the skills, you're highly qualified for this job. But you feel that you didn't deserve it for some reason. And you externalize, like your success to outside factors. So it was luck. I just got lucky, right, that I got this job, or I fooled them somehow. Right. I tricked them into thinking that I could handle this job, right. And they'll find out eventually, that I'm a fraud. Right. So that's like the crux of what imposter syndrome is. And the reason that it's so powerful is because people can't talk about it. Right? They feel like, Oh, well, I can't tell people because then they're gonna find out that I'm a fraud. Yeah, jig is up, right? So they're holding it in. Yeah, exactly. Right, the jig is up. They're holding it in and it eats away at them, because they're not able to talk about it to anyone, and find out that other people feel the same way. Right. So there's that sort of imposter syndrome. But I also think that there's just like, maybe a social comparison or like a low self esteem and feeling like, I am really good. Like you're saying with Google, right? I'm a great developer, but maybe I'm just not the right fit for them. Right. But But you could take that the other way and say, oh, like, why didn't I get that job? You know, everyone's just so much better than me. I'm not as good as everybody else. Right. And that's different than imposter syndrome. I think that's just like a low self confidence or low self esteem.
+
+39
+00:19:42,779 --> 00:20:38,490
+Wes Bos: Yeah, I think I, I definitely see that. Yeah, teaching a bootcamp for many years. I see that a lot. And I think people chalk that up to imposter syndrome, because it has a cool name. Yeah, but it definitely is. I think in a lot of cases. It is just low confidence in your skill set. In whatever it is because you see that imposter syndrome just disappear. Once they're in it for a couple weeks ago, this is not as scary as I thought it would be and right, just anxiety or or being a little bit afraid that you're not as confident to go into situations is probably so I don't know what to tell people how to get around that, like I have that with my my kids as well, just when we encounter situations where they're, they're scared, or they they don't think they can do something like Alex is trying to learn how to play hockey right now. And she gets frustrated, really easy. And yeah, we just have sort of talk her through and the you know what, you can get better you get really good at this,
+
+40
+00:20:38,520 --> 00:20:39,120
+Unknown: right?
+
+41
+00:20:39,120 --> 00:20:44,330
+Wes Bos: I don't I don't know how, like, how would you tell that to a developer? Who doesn't think they're good enough?
+
+42
+00:20:44,810 --> 00:21:10,580
+Dr. Courtney Tolinski: Right? Well, we I mean, I'm, I didn't really get to speak about my background at all. I'm a child and adolescent psychologist, right. So that's predominantly my field is educational and clinical psychology. I've worked with a lot of adults, but I really enjoy working with children. And that's my expertise. And so one of the things that we do with kids, and it's kind of like this new movement in education, just to talk about growth mindset. Are you familiar with that?
+
+43
+00:21:10,650 --> 00:21:11,250
+Wes Bos: No?
+
+44
+00:21:11,250 --> 00:21:11,850
+Dr. Courtney Tolinski: No? Okay
+
+45
+00:21:11,850 --> 00:21:12,540
+Unknown: about it.
+
+46
+00:21:12,660 --> 00:22:44,490
+Dr. Courtney Tolinski: Yeah, it's the idea, right, that our brain is a muscle, right? Is it? It's actually a muscle? Well, that's the term that we use, I don't know if it's an organ or muscle brain in Oregon. Okay, well, we refer to it as a muscle, right? In the sense that you can develop your brain, right, your brain is constantly changing. And we talk about neuroplasticity, and how our brain is not like set in stone, as we once thought it was right that we can constantly change and evolve. And that those like synaptic connections that are forming in our brain are able to develop even into like our our late adulthood. And so there's the idea of growth mindset where, you know, maybe you're not able to do something right now. But we use the term like, I haven't done it yet. Right? So that's with little kids, right? So I haven't done this yet, or I haven't figured this out quite yet. And that that word yet is really powerful, especially with kids. But I think that adults, that could be really powerful for as well, just the idea of it's not like this finite black and white thing. Well, they're really great. And I'm not right, there's there's a lot of gray in there. And when you get into that mindset, that's called a cognitive distortion. Right? Well, we're, you're assuming something. And there's there's a whole slew of cognitive distortions, I don't need to go through them necessarily. But it's the idea of just being flexible with yourself and knowing that I have a lot of these foundational skills. And it's okay, if I don't know everything, right. There's always room for practice and room for development within my skill set.
+
+47
+00:22:44,880 --> 00:23:23,160
+Wes Bos: I see that a lot with people, developers who are coming from HTML and CSS, and moving more into complicated logic in JavaScript. Yeah, we see that a lot. Because people bring this, I'm not good at math from being a kid, a lie that they sort of project that out onto their entire career. Like, I could never learn that because that's kind of like math. That's right and complicated for someone like me. And like, honestly, I wasn't good at math. But I figured it all out through over the years. And I think that's awesome. Like, you're not good at JavaScript yet. But you certainly can get better.
+
+48
+00:23:23,550 --> 00:24:14,640
+Dr. Courtney Tolinski: Yeah, exactly. And I mean, we all bring different skills to the table, right. So if you're struggling with imposter syndrome, I think one of the things that's helpful is just writing down a list of your accomplishments and the things that you're really proud of what you bring to the table uniquely, that maybe other people don't, right are the things that you've accomplished, that you can refer back to, because it's really easy to forget all those things in the moment and to focus on the thing that you maybe aren't as good at as somebody else. But when you go back and look at your accomplishments, it puts it into perspective to say like, Oh, I really am skilled at so many other things. But maybe this one thing is something that, you know, I need more development on, you know, that I'm not quite good at. So I think that that's really helpful having that that list of strengths. What would you say? What are some of your tips for imposter syndrome? Ah,
+
+49
+00:24:14,640 --> 00:25:46,830
+Scott Tolinski: I think as a developer, it's easy to feel inadequate because of just how many people seem to be like superstar, like excellent developers. But there's so many things in there's just an endless amount of things to learn in this industry, right? You're never going to learn it all. And you're never going to have every specialty and if it looks like somebody has every specialty and every skill out there, they know everything. No, every single person has a weakness in their dev game. Every single developer. Nobody knows Ruby, Python, JavaScript, wasm everything right and there'll be knows all of the different slang words. So if you feel like you don't know enough, chances are, you know, just as much as a huge percentage of other developers who are doing very excellent work every single day. Not only that, but you are very ahead of the game, if you're listening to this podcast, or if you're watching YouTube tutorials, or you're even cognizant of the fact that you don't know things, then you are ahead of the game, you are just a better developer than you give yourself credit for. So I guess that's my recommendation. And that's what I reach to is that if I'm feeling inadequate in my skills, I just think about all the cool stuff I can build. Even if it's just getting, you know, the color green on the screen, just a green background or something, it's still cool that you're able to produce a website at all right? I think that's just like, I don't know, that's a big message to me. Is this the stuff that we do? We're producing things, we're creating things that even if it's basic, whatever, it's still awesome that we can do it.
+
+50
+00:25:47,370 --> 00:26:42,090
+Dr. Courtney Tolinski: Right? Well, and that's the reason why I asked you to if you have struggled with imposter syndrome, because it's important to realize that you're not alone. Right? If you feel that way. And again, circling back to what we were saying, imposter syndrome is that idea of I can't talk about it, because then other people will find out where the reveal will be, will be there. So hearing that you too, have struggled with it. No, you can assume that a lot of really great developers are struggling with this same sense of anxiety and feeling like, you know, I'm not good enough, right. So it's important to understand that that everybody feels that way. And what it shows is that there's a strong sense of like high achievement there, right. And that's something that that you should really be proud of, because people who are not high achievers are not going to feel that way necessarily. And that says a lot about yourself as a as an individual and a developer.
+
+51
+00:26:42,900 --> 00:27:05,610
+Scott Tolinski: So let's take a quick break to talk about one of our sponsors, for this episode is sanity@sanity.io. And we did not line this up first, and they need to be on the mental health, podcast on purpose or anything. So don't think we're doing that. But with more about Sanity images, which is a neat feature from Sanity as well as
+
+52
+00:27:05,880 --> 00:29:09,630
+Wes Bos: Yeah, so we talk about Sanity, their headless CMS structure content, CMS it before. And one thing I want to spotlight right now is everything around handling images inside of Sanity. So you know that if you are using images on your website, you probably need to resize them, do some transformation to them, put them on a CDN so that they are fast all over the world, because that's probably one of the largest pieces of data download on your website. So Sanity has an entire pipeline for working with your images. And it's pretty cool, because you can take an image, put a hotspot on it. So maybe a hotspot might be someone's face or product. And then depending on how you crop your image, whether it's rectangle, or square, or trap a zoid, or whatever, Sanity, we'll keep that hotspot sort of in focus, so that as you create different sizes of your images, it's not always going to be cut off. And that's super important. Another kind of cool thing is that they have a package that you can npm install called Sanity image URL. And you can flip and resize and invert images right on the fly. So you might import like a large image for like a person or an avatar or something like that. But then you need to resize it and compress it and whatnot. And the JavaScript library, you can just sort of like the example they have is just Image Source equals and then in react, you can pass the the the original URL to this library and then call that with that URL dot flip dot invert. It's pretty cool. So not only is Sanity really good at just being a headless CMS, but they've got that whole second thing, which is like what do you do about images in this case done for you. So check it out sanity.io forward slash syntax that's going to get you double the free tier. Thanks so much to Sanity for sponsoring.
+
+53
+00:29:10,590 --> 00:29:53,970
+Scott Tolinski: Thank you. So the next spa we wanted to talk about would be a focus on job performance. We did get a lot of questions on this as well and here's one it says how do I keep motivation and focus I find myself enjoying work but I have a hard time focusing on it. All of the distraction free apps don't work because I can turn them off and they literally have no power over me. I do have a small note about these distraction free apps. Most of them have like or at least the good ones have like a hardcore mode. So look for hardcore mode where you literally can't shut it off. I know focus app for Mac has that where there is no way to shut it off. So like if you if you have a hard time shooting those off. These find the hardcore modes and turn them on it's difficult to get
+
+54
+00:29:53,970 --> 00:30:07,530
+Wes Bos: I just say that I figured out how to get around it. I won't tell you how but the hard dollar in me is like When a hardcore focus mode to do some work, and then the hacker in my mind is like, I wonder how that works. I have control over this computer,
+
+55
+00:30:07,740 --> 00:30:11,400
+Scott Tolinski: that it's in, like system processes or something or Yeah, I'm
+
+56
+00:30:11,400 --> 00:30:15,390
+Wes Bos: not gonna say but it's possible. Hilarious. Okay.
+
+57
+00:30:15,480 --> 00:30:27,330
+Scott Tolinski: So, Courtney, what kind of message do you have for people who are having a hard time focusing? I know that I have some focus issues in general, and you give me a lot of good tips on focusing. So I know you have some good information here.
+
+58
+00:30:27,930 --> 00:30:34,770
+Dr. Courtney Tolinski: Yeah, well, first of all, if you've got, like, 20 tabs open as you have currently, like that's, that's not ideal, right?
+
+59
+00:30:35,970 --> 00:30:39,990
+Scott Tolinski: This isn't even all of the tabs card. This is just some of the tabs. Yeah.
+
+60
+00:30:40,230 --> 00:30:58,020
+Dr. Courtney Tolinski: Yeah. I don't know what the optimum tab to focus ratio is. I don't know if there's such a thing. Seven, seven. Okay, so keep it to seven or less. Yeah, that's a big one. Um, I really like Brian Tracy's book. Do you know what that books called? Scott? Eat That Frog.
+
+61
+00:30:58,020 --> 00:30:59,460
+Scott Tolinski: Is that Brian Tracy? He definitely. Yeah,
+
+62
+00:30:59,460 --> 00:31:00,450
+Dr. Courtney Tolinski: I think
+
+63
+00:31:00,630 --> 00:31:03,990
+Scott Tolinski: we talked about Eat That Frog quite a bit on this show. Right?
+
+64
+00:31:04,020 --> 00:31:06,110
+Wes Bos: Yeah, it is. It is Brian Tracy.
+
+65
+00:31:06,180 --> 00:31:54,810
+Dr. Courtney Tolinski: Yeah. So his idea is to have a couple of frogs that you want to accomplish in the day. And those are the things that you want to tackle. First, they're the most important. And they're your big frogs, right. So you want to tackle those things first. And then below that, having a list of all the other little things that you want to do, right. But I think coming up with a list every day, sitting down first thing in the morning, these are the things that I want to accomplish. And prioritizing that list is really important. Beyond that, in terms of focus, I think knowing yourself and being really honest with yourself about your your habits is really important. Right? So if you notice that you're constantly on Twitter, having that hardcore mode on Twitter, you know, is is the smart way to do that.
+
+66
+00:31:55,019 --> 00:32:12,510
+Wes Bos: I think even just logging out of these services is key. Yeah, because it stops that like, I just find myself min mindlessly typing in TweetDeck, 100 times a day, and I log out then then I go, oh, what am I doing? Like, oh, I was sleepwalking going to this social network?
+
+67
+00:32:12,749 --> 00:32:30,660
+Dr. Courtney Tolinski: Right? Yeah, I did that with Instagram, I have a huge problem of just like looking at Instagram, just in the evening instead of being present. Right. And so I just uninstalled it on my phone. And then I have to physically type it in on my phone and the what would you call it the format? I don't know, the website?
+
+68
+00:32:30,779 --> 00:32:31,830
+Scott Tolinski: The URL?
+
+69
+00:32:32,279 --> 00:32:39,750
+Dr. Courtney Tolinski: Right? Well, just the the website isn't as good as the app. I see. Yeah. So then I get frustrated. And I close out of it.
+
+70
+00:32:40,380 --> 00:32:45,210
+Wes Bos: It's always a bummer for us web developers when the the advice is just use the web app because you won't be
+
+71
+00:32:48,690 --> 00:33:31,200
+Scott Tolinski: just use the thing that we do that we do. That's not as good, right? Yeah. No, totally in. And I think that's a big thing. Because that barrier to entry, you just had a little bit of a barrier to entry there. I know that it is for me, I'm the type will do command w close the Twitter tab and then Command T type Tw in the bealach way. What am I doing? I was just that, yeah, like do that over and over again. And to me those focus apps in particular block that really well. But I think the best advice you you've given me is that having the to do list. Yeah, is like so paramount. Yeah. And really having that to do list in in sticking to it and eating those frogs. And making that the key to there is a big one for me.
+
+72
+00:33:31,440 --> 00:35:08,480
+Dr. Courtney Tolinski: Yeah, and I don't know if this is part of those focus apps that you use. But one of the things that I recommend is called the Pomodoro. app. That's what I recommend for kids doing homework, right? So I think the same idea applies to adults as well. But it's really the idea of working for a period of time and working strategically. So like 25 minutes of solid work, right? And then you take a short break, like three to five minutes. And thinking about in that break. What can I use that time for? Is it to go to the bathroom? Is it to get a drink is it to browse Twitter, right? So using that time for the break, and then going back and working again for 25 minutes, right? So I recommend 25 minutes of work three to five minute break. And you do that for a period of like three times. And then after the third work period, then you take a longer break like 15 minutes. And you can use that time to like, go outside, if you can go for a walk, just get up and walk around the office or or browse Twitter, whatever that is. But having like the designated work and break time, I think really helps to structure it especially for people who, you know, have issues with focusing. So I recommend that a lot for my ADHD clients. But I think that applies to anybody because a lot of us are kind of feeling ADHD lately, just with all the distractions right and just everything that's around All the time, there's so much to distract us. So having like that structured work time, I think really helps along with the designated plan every morning.
+
+73
+00:35:09,270 --> 00:36:11,210
+Scott Tolinski: Yeah, absolutely. I think the next thing we want to talk about is, I combined these two because a lot of people were asking about similar things here. And this is motivation and remote work specifically. So I accidentally messages this term that I never heard of bore out, have you heard of bore out, I've heard of no burnout. They said, I want to deal with burnout or bore out. And I thought Bora was a really interesting idea, the idea that you're just bored everything and you can't work on things because you're bored. And that to me, sounds slightly depressive, like depressive symptom kind of thing to me. But, you know, the bore out the burnout. How do you deal with? How do you deal with the loss of focus and happiness in web development, especially in Remote Jobs? Then somebody says, working for yourself at home, you don't get the chance to bounce ideas of encouragement of other people? What are some good ways to compensate to ensure you have a positive mindset? So how do you stay motivated? How do you stay sane? How do you keep that level of motivation up? especially well, working from home, like so many of us are doing currently?
+
+74
+00:36:11,880 --> 00:36:34,320
+Dr. Courtney Tolinski: Well, I think these are more appropriate questions for you to than me. I know, in my job, I'm doing something different every day. And so I don't quite always know what to expect. And that keeps the bore out, I guess, low? Certainly there's a mental burnout. Who is that? But what do you what do you to do? I think I think you could better answer that question.
+
+75
+00:36:34,710 --> 00:37:13,020
+Wes Bos: Yeah. Honestly, this happens to me all the time. And it's, it's just the fact that I can't do something for a long time. And if I don't like what I'm working on, I need to work on something else. And I've just realized that about myself is that, like, fortunately, I have a job where I can do that. Yeah, but I can't work on something for for too long. And I've certainly had client projects where I'm just like, this will never end. And I hate it. And in my case, I just would need to work on a side project. I need to do sign fun and need to do a tutorial, something like that, to just totally switch away. And then I realized I'm excited about the stuff. It's fun. Again, I'm building something from scratch. I'm using these new technologies.
+
+76
+00:37:13,530 --> 00:39:47,420
+Scott Tolinski: Yeah, that was the thing about me for agency life. That's why I liked working in an agency so much. I even like working more on well, even when I worked for board, we were building prototypes. So it's something new, yeah, 24 seven. And so like agencies, a lot of the times your work is the work comes in, you build it, you ship it, you work on something else, and you don't support it for too long or there isn't support because chances are it's just like a brochure or something or site that, you know, you gave them a CMS and chances are, they'll never even log into it. So these things just sort of sit there. So for me, that was always a big driver is the fact that you're always working on something new. And that's one of the reasons why I love web web development so much. But I could see if you're working on a product, or like an application that is the application, then it could get really boring, although I've worked on level up tutorials, comm myself for so long. But the fact that I'm the boss, and I can make the calls here, if I want to learn framer motion, well, I can just rip out all of my animations and rewrite them in framer motion just for the fun of it just to learn it right. And that is a that's sort of one of the reasons why I love doing what I'm doing right now. Because I do get that freedom, and the ability to change all those things. So I don't know, what I would advise is maybe find some ways to switch it up in your job. I know you don't always have the ability to be the decision maker. But switch it up. Even if it is as simple this is gonna sound dumb, but even if it's as simple as changing your theme in VS code, switch it up, switch it up, tried something different. Get some new new flows going on and try some new extensions, maybe some new new plugins that make it so you can type your code differently. Just try something new is really it. I know that that's sort of the message that we've been saying, because we both like to try new things. But if you get bored, try something new. If you need motivation, think about the motivating factors. What are the motivating factors in this work is often learning new things, driving yourself or pushing yourself in different ways. So if you're doing client work, or whatever, and you can't figure out how to drive yourself forward, really see what kind of variables you can affect yourself, like, Hey, can I try this new framework out on this project? Sure. Just do it. Ask your boss, ask for that time to maybe work on side projects or learn new things. And that will help maybe push you forward, keep it fresh, and it's just like one of our sponsors, we're gonna want to keep it fresh, and that's fresh books. Oh, it's just the cloud accounting software that Wes loves and uses every single day. And I don't know about you guys, but our tax time got pushed back so get more time to work in fresh books before taxes are due. Hi.
+
+77
+00:39:47,850 --> 00:40:36,980
+Wes Bos: It did. Unfortunately. My Freshbooks work was only a few hours this year, and I export it everything so my taxes got delayed, but I don't need it because Freshbooks made it so easy to do my taxes this year. Basically, I use fresh books to keep track of all of our invoices. So if we invoice someone for a sponsor, it gets sent out via fresh books, and expenses. So go buy a coffee or something like that on a meeting, I can expense half of that I put it into fresh books. At the end of the year, I export those two things. They also have all kinds of really good reports. So you can see where you're at, in terms of money coming in money going out who owes you money, who Shakedown, things like that. So check it out. freshbooks.com forward slash syntax, and use syntax in the How did you hear about a section? Thanks so much to Freshbooks for sponsoring,
+
+78
+00:40:37,320 --> 00:41:01,050
+Scott Tolinski: thank you for spokes. Alright, the last topic we want to dive into, uh, you know what, honestly, court I think this has been so so good. And so illuminating, we should have you on again to do more stuff. Because, you know, your your specialty is, in fact, educational. So like, maybe we could talk parenting stuff talk, dealing with adolescent problems or things like that. But I think there's so many topics here that we didn't even get to cover.
+
+79
+00:41:01,320 --> 00:41:04,050
+Wes Bos: Yeah, let us know what you want to see.
+
+80
+00:41:04,530 --> 00:42:02,630
+Scott Tolinski: Yeah, absolutely. If you have more questions for coordinator or anything like that, we can have her back on again and do a round two of this. Because, you know, there's just so much here, this last section is going to be on stress, we get a couple questions on stress, which is, how can I correctly identify the source of negative stress and not lashing out on closer ones? One under stress? Sorry, sometimes these these questions come in, and we got to interpret them a little bit. So how do you identify the source of negative stress? And how do you deal with not lashing out? being aggressive? And also how do you avoid eating to cope with stress? So, like positive coping strategies for stress and just stress in general, I know a lot of us are under some really tight deadlines. So managers, you've you've experienced me firsthand being under some extreme stress from really demanding and honestly abusive managers and bosses over the time. So I don't know what kind of advice you can give there.
+
+81
+00:42:03,090 --> 00:42:09,960
+Dr. Courtney Tolinski: Yeah, um, well, have you have you talked about the Coronavirus situation at all? on the podcast?
+
+82
+00:42:10,590 --> 00:42:15,300
+Wes Bos: A little bit, but not really, because we haven't recorded in two weeks and the world?
+
+83
+00:42:17,550 --> 00:42:57,510
+Dr. Courtney Tolinski: I know. Yeah. Okay. Um, yeah. So, I mean, obviously, we're all under an insane amount of stress right now. It's Paramount, and everybody. So this is a really, I think, pertinent topic right now, in terms of identifying the source of stress. How I encourage my clients to do it is to really think about how we experienced stress in our body. Right? And it's interesting, we think about like these basic emotions, like anger, sadness, happiness, whatever, we all experienced them, but we experienced them differently. Like, have you ever thought about that West? How you experience stress in your body? Like where you feel it?
+
+84
+00:42:57,650 --> 00:43:10,650
+Wes Bos: Yeah, I get, I get headaches. If I have a stressful couple days, I wake up or just get a wicked headache that like no Tylenol or anything can can get away with. It's just like the worst headache that I can get.
+
+85
+00:43:11,039 --> 00:44:20,400
+Dr. Courtney Tolinski: Okay, yeah. And for me, it's just like a sense of tightness, like muscle tightness on throughout my body. And a lot of times, I have like, perseverative thoughts where I'm thinking about the same thing kind of over and over, I like hyper focus on what it is that I'm stressed about, you know, so it's different in everybody. And so it's really important to think about and pay attention to when you feel stressful, and think about where you're experiencing it. So pay attention to your heartbeat, right? Is it beating really fast? Are your muscles tight? Are you clenching your muscles? Do you have a headache? You know, is your face flushed? Right? So think about those things. Because they're important cues to let you know that you're feeling that emotion. And I mean, that seems really obvious. Like, we all know what stress is, but a lot of times we don't identify it quickly. And when you can pay attention to it in your body, which you know, is part of mindfulness and what that's so effective and so helpful. But when you can identify it in your body, then you can put a label to it and say, Oh, I'm feeling stressed out, right, and then think about it more rationally, instead of feeling it like, immodestly right emotionally in your body?
+
+86
+00:44:20,729 --> 00:44:22,590
+Wes Bos: Yeah, call it out. That's a really good point.
+
+87
+00:44:22,709 --> 00:44:42,720
+Dr. Courtney Tolinski: Yeah. So this this the first step, and then once you're feeling stressed, thinking about it, like I said, rationally, so thinking about what what specifically is making me stressed. And a lot of times, it's helpful to write it down. So if you're at work, thinking about what are the things that might make you stressed? So what's an example of something that you might be stressed about?
+
+88
+00:44:42,990 --> 00:44:44,310
+Wes Bos: The world falling apart?
+
+89
+00:44:46,500 --> 00:46:06,030
+Scott Tolinski: Yes, yes, that one? Yes. In a developer sense, maybe a boss saying, get this done right now or you're you're in big trouble? I don't know. Yeah, there's a lot of it for me was always around. deadlines, you know, sometimes having to pull all nighters to work on stuff because coders wasn't working. We know as developers very specifically, there's that like joke. It's like, this is not working. I have no idea why this is working. I have no idea why, where, where sometimes things just don't work. And it's so beyond you why this thing isn't working. I think I had a, I had a bug last night. And it was so dumb, I was editing the wrong file, of course, it's like, why is this error still here. And it was editing the user transactions file rather than the user transaction file, which just happened to look very, very similar in terms of layout of the React that component. And here I've edited this variable, and I'm like, I'm still getting the errors. My code not compiling, I stopped and started I checked the debugger. I'm like, why isn't this data coming in? And now you know, all this stuff? And sure enough, it's just something so stupid, because sometimes when it builds up and builds up and builds up your your default systems for checking the things that are basic shut off, you know, right, yeah. And that can get kind of tough.
+
+90
+00:46:06,750 --> 00:46:39,180
+Dr. Courtney Tolinski: Yeah, yeah. So if it's an error like that, then I think, again, just paying attention to how you're feeling. And if it's something that you can't control at that moment, then you could do a couple of things, right, you can just take a break, go for a walk, I think that you find a lot of your solutions got when you take a walk. That's one of the things that I'm always recommending to him, but instead, he kind of like digs in. And we'll just try and solve itself itself. And his brain is not thinking necessarily rationally thinking that, yeah, out of that frustration and stress,
+
+91
+00:46:39,210 --> 00:48:16,710
+Scott Tolinski: I've got better though I used to, I used to have a problem. When we when my office was carpeted, I used to flip my chair over, I used to just stand up and knock my chair over. Because it was like, Alright, this isn't gonna break the chair. It's carpet. It's not that loud. It's not like I'm damaging anything. I was never, I was never the type to get really that angry about it. But just flipping the chair over, always, like, relieved a little bit of that aggression for me. And like, yeah, I haven't done that in like, eight years or something. I haven't done that in a very long time. But that was like, I remember Courtney having a chat with me just being like, you need to stop doing that. That's not, that's not a good to do. So. That was that was one of the things that was always my release of aggression. And now I don't I just don't have that much aggression anymore. I don't know what it is to just found out how to chill out a little bit more. But I know that that people are saying how do you do avoid lashing out? And to be honest, it's, we're developers, right? When you're developing code. It's easy to be in this like straight up logical mindset where your brain is, like, no emotion, it's logic, logic, logic, logic, no emotion. And so when we're solving problems, it's really easy to stay in that mindset. But you need to be able to keep yourself grounded in the real world and realize that like, you know, there's, there's things going on outside and that you need to not, I don't know, you need to be cognizant of everything rather than just like hyper focused on what you're working on. And those techniques that you've listed, like going for a walk just endlessly endlessly effective for me.
+
+92
+00:48:17,129 --> 00:48:27,600
+Dr. Courtney Tolinski: Yeah, the one that is really getting a lot of attention right now the coping technique is the four I think it's 4478 breathing, can you check that?
+
+93
+00:48:28,169 --> 00:48:34,410
+Scott Tolinski: So we pulled up in our call here on Healthline comm Have you ever been to helpline West's websites really nice actually
+
+94
+00:48:34,439 --> 00:48:36,030
+Wes Bos: not been on that line before?
+
+95
+00:48:36,149 --> 00:49:11,580
+Scott Tolinski: Yeah, I don't know when this came about, but help line calm. I've been really loving this web website lately. I have no idea. It just started popping up and they have like really good advice all the time. So they they described this as first but your lips part, make a whooshing sound, exhaling completely three. Everyone sit back and close your eyes and do next, close your lips. Inhaling silently through your nose and count to four in your head. The dog barks. Then for seven seconds, hold your breath.
+
+96
+00:49:16,800 --> 00:49:21,690
+Then make another whooshing sound and exhale from your mouth for eight seconds.
+
+97
+00:49:27,750 --> 00:49:50,910
+My ASMR people loving this. So that is that's it really it's it's basically exhale, whooshing exhale, breathe in through your nose silently for four seconds, hold for seven seconds, then whoosh out for eight seconds. So silent, silent and for four, hold for seven, whoosh out for eight.
+
+98
+00:49:51,930 --> 00:50:45,030
+Dr. Courtney Tolinski: Yeah, you can also do belly breathing too. And the idea is to like expand your belly as you inhale. A lot of us breathe in correctly. There's a lot of research on how to breathe correctly. So when you inhale, you want to expand your belly like a balloon blowing up. And then when you exhale, the air should be, you should be like sucking in. Right, so drawing your ribcage up, which is like alternative to how we usually breathe way right where we inhale in second, and then exhale and suck out. So the idea is to breathe the opposite. So when you inhale, blow up the balloon. And then exhale, bring up the ribcage, but the 478 breathing actually, there's a lot of research in how it I don't know the specific research, this is like the mom brain sleep deprived. My brain right now,
+
+99
+00:50:45,059 --> 00:50:45,900
+Scott Tolinski: no one is judging you.
+
+100
+00:50:47,550 --> 00:53:32,730
+Dr. Courtney Tolinski: But there's a lot of actual like neuro research on how the 478 breathing is really helpful with it's called the vagus nerve. It's actually really interesting if you Google that the vagus nerve like Las Vegas. But yeah, so that type of breathing is really helpful, I think, obviously, like taking a break, and realizing what's in your control. I think right now, the issue of control is really pertinent. Just the lack of control that we all are feeling. Yeah, with everything. And understanding like, here are the things that I can control, right? If you can't solve that bug currently, then that's out of your control right now, you know, what's in your control is that you can take steps in to work through and figure out a solution. But currently, what's out of your control is solving that bug, right? So there are other things that you can do to help yourself rather than dig in your heels. But the 478 breathing, understanding what's in your control, taking walks, taking breaks, things like that. And then just kind of broader things to help with stress. Of course, again, exercise, diet, sleep, all those things that we've already talked about are just so important. Yeah. And then other good coping skills. I think exercise is huge. And it's something that we totally underutilized. taking walks even can be a really solid exercise if you're doing nothing at all if you're totally sedentary, trying to make it a vigorous pocket. Buchanan's ideal. But yeah, all those things are really important. As far as this distress eating, I know that's a tough one. I think a lot of us can be like, not mindful in terms of our eating and just kind of like cramming and snacks. I know Scott is kind of guilty of that sometimes. Like, I just I stocked up at the grocery store. I bought like six box of crap boxes of crackers. And I bought them for us to last like the entire month, and already was like for the boxes are gone. It hadn't even been a whole week and he eat crackers. I really stress under a lot of stress, like the rest of us, but I was so angry. He has his crackers, but he gets into this habit of just kind of like mindlessly eating. Yeah, working. Yeah, yeah, exactly. And some of us are more guilty of that than others. But I think that idea of mindfulness. If distress eating is an issue then portioning out your snacks and having like, a certain amount of crackers on your plate and then putting the box away, right not having the box in front of you so that you can just continue to eat, Miss just thinking about those things. I think being mindful is probably the lesson on the day, right? just paying attention and noticing and then taking steps to correct the things that you are struggling with.
+
+101
+00:53:33,000 --> 00:53:43,200
+Scott Tolinski: What about like replacing crackers with a baby carrots are something then then if you're mindlessly snacking near at least getting some fiber and beta carotene and all that stuff.
+
+102
+00:53:43,320 --> 00:53:50,100
+Wes Bos: yet. That's actually really good because it makes your mouth taste awful. Anyone? Okay, I love caramel.
+
+103
+00:53:51,180 --> 00:54:35,730
+Scott Tolinski: Yeah, I can chomp on some baby carrots. Although Carney's gonna laugh because she buys me baby carrots and I don't eat them. But I don't eat them not because I don't like them because they're in the drawer and I don't think about them. And if I don't think about them, then I don't do anything about them. I got it. It has to be visual. I got to open the fridge and see the carrots and be like, oh, carrots. She goes carrots. So I think that's it for now. Courtney as a as a guest on this show. We're going to be doing sick pics, and I don't know if you have anything prepared. But I invite you to give us a sick pick if you'd like this is for those of you who this is your first episode sick pics are the things that we think are sick. Courtney, do you want some time to think about a sick pick? Or would you just like to have a sick pick?
+
+104
+00:54:35,790 --> 00:54:37,260
+Dr. Courtney Tolinski: Well, have you done Animal Crossing yet?
+
+105
+00:54:37,530 --> 00:54:38,100
+Scott Tolinski: We haven't.
+
+106
+00:54:38,249 --> 00:56:03,000
+Dr. Courtney Tolinski: Okay, so I have been to sick picks, I guess. My first would be Animal Crossing. We just purchased it for the switch. I don't know if it's available for other things to switch. Okay. But there's a way that you can play as a two player mode which we just figured out. I don't know. Is there a term for that? Co Op Co Op? Okay, but it's really fun. You get to have like your own little island. And you create you like forage for things you fish, you create like a little tent and you have like your stuff in the tent, and you can travel to other friends islands. It's been a really neat and kind of meditative game. And I'm not somebody who's like, really into gaming, I like Mario Kart, and Mario type games. But I really liked this one, especially I think, because we had a couple trips planned, and we aren't able to go on any of those trips. So it sort of makes me feel like we're on an island, we're taking our vacation, even though we're in our living room on the little cars and things, toddler toys. But it's been a really fun game. And I highly recommend it, especially if you're looking for kind of an escape during these times. So that's my sixth pick. And then I know you had a couple of people asking for parenting recommendations or books. So some of the books that I really like if you're interested in parenting books, how to talk so kids will listen and listen. So kids will talk.
+
+107
+00:56:03,090 --> 00:56:04,620
+Wes Bos: Oh, my wife's reading that right now.
+
+108
+00:56:04,620 --> 00:56:05,910
+Dr. Courtney Tolinski: It's so good.
+
+109
+00:56:05,940 --> 00:56:06,480
+Wes Bos: Yeah,
+
+110
+00:56:06,480 --> 00:56:25,800
+Dr. Courtney Tolinski: it's a really great book. I think it's, even if you don't have kids, it's a really great way to understand how to communicate effectively. And to not like put labels on things and just allow for empathetic communication. I think a lot of us don't do that, because we're uncomfortable with it. And that's a whole nother story. But anyway,
+
+111
+00:56:25,830 --> 00:56:33,180
+Scott Tolinski: we should I'm sorry to interrupt here. Somebody, one of us should write a book, how to talk to developers, developers.
+
+112
+00:56:34,440 --> 00:56:36,030
+Wes Bos: developers will listen Yeah.
+
+113
+00:56:37,170 --> 00:56:38,190
+Dr. Courtney Tolinski: Yeah, this year, maybe. Yeah.
+
+114
+00:56:38,190 --> 00:56:38,760
+Unknown: Right.
+
+115
+00:56:38,760 --> 00:56:43,050
+Wes Bos: You should write that developers are not great at communication. No.
+
+116
+00:56:43,500 --> 00:56:59,910
+Dr. Courtney Tolinski: Kidding, right. Yeah. So we all should read that book, Ben. But no, it's it's a great book. And there's there's so many like little nuggets in there. So if you're looking for a parenting book, I like that one. And then the whole brainchild by Dan Siegel. Those are two really great books if you're just looking for parenting advice.
+
+117
+00:57:00,420 --> 00:57:09,450
+Scott Tolinski: Thank you. That was a you came up with a sick pigs wave faster than we do. Yeah. Congratulations. That was good. So let's do you have a sick pick for us.
+
+118
+00:57:09,480 --> 00:58:39,300
+Wes Bos: Yeah, um, I'm going to sick pick an iPad game developer for kids called toca. Boca, Boca, Boca Toka mocha. So like, we got our kids an iPad. And we went down this rabbit hole a couple years ago, realizing almost every iPad game is awful, whether it's the content, whether it's the like links for ads that they put under the kids fingers, and then they touch them, or whether it like like our kids would get these apps that they like, try to like make you buy something and then the kids touch it. And they're like, why isn't it working? And they're like, Can we buy this and let's just a dumpster fire Kids Games. So I found this one iPad developer called Toca Boca, and they have a bunch of different apps where it's good for like really young kids as well, where they they can do hairstyling on people and cut their hair and change the color. And there's Toka Toka kitchen, which allow you to like you can cook stuff and like there's there's no like end game. There's no points or anything. It's just, it's just doing stuff. It's just styling the person's hair cooking a dinner, and it's just like the kids. It's so calming. I like playing it myself. It's really, really cool. So if you're looking for iPad apps for your kids while they're home right now, because you need to slam an iPad in their face for 45 minutes so dad can get some work done, Uncle Mickey. Mickey. Chef Mike, we've been calling our microwave chef Mike lately.
+
+119
+00:58:42,000 --> 00:58:43,050
+That's so good.
+
+120
+00:58:45,300 --> 00:58:54,870
+Chef Mike and Uncle Mickey taking the taking the lead on this Coronavirus having the kids. Anyways, Toca Boca check it out. Toka kitchen two is probably my favorite. That's cool.
+
+121
+00:58:54,870 --> 01:00:23,910
+Scott Tolinski: My sick pick is going to be a YouTube channel that I was actually watching the other day I've been I've been subscribed to this channel for a while. But I think some people saw me watching it on an Instagram story. And we're asking about it. This channel is the engineering mindset. It's a YouTube channel that teaches basic electrical and otherwise engineering concepts. And it does so in really, really good diagrams. So even like the initial the electrical engineering basics starts off with the how electricity works and it gives you a nice little thing about circuits and batteries. And they do whole videos that aren't that long. They're like 10 minutes long. Here's how a capacitor works. here's here's what current is, here's what voltage is. And it does so in such a great way that you can get the full basics of everything and then once you get beyond the basics, it can teach you all sorts of things about condensers chillers, evaporators, h vac systems, all this stuff that I don't know anything about, but it breaks these topics down are so relatable to what we're doing in terms of like logic and engineering in general that I love this, this channel and it does a great job of of showing you via diagrams and animations and everything. So if you're interested in learning a little bit about engineering in general, this channel is very popular 760,000 subscribers, so very good YouTube channel. They're someone that a lot of the videos have like 2 million views and stuff. So good stuff there.
+
+122
+01:00:24,300 --> 01:00:32,220
+Wes Bos: I should I should also say these these iPad apps I recommend it looks like they are available on Android and Kindle as well.
+
+123
+01:00:32,480 --> 01:00:38,790
+Scott Tolinski: Oh, nice. Cool. Well, that's it. Do you have any shameless plugs, anything to plug here?
+
+124
+01:00:39,060 --> 01:01:11,820
+Wes Bos: I'm shamelessly plug all of my courses. So I just put all of my courses on 50% off until when I don't know when does Coronavirus. And I know a lot of you're at home, a lot of people are being laid off and need to keep their skills sharp. A lot of people are just looking for something to learn in this time that they're they're stuck in their house. So Wes bos.com forward slash courses, everything is 50% off. I imagine it will be that way for at least a few more weeks. So yeah, check it out. Use coupon code syntax for extra 10 bucks off. That should still Oh,
+
+125
+01:01:11,940 --> 01:01:44,640
+Scott Tolinski: yeah, yeah, we're going to be doing the same thing on level up tutorials. So level up tutorials.com, we're going to be doing 50% off the yearly subscription if you want to sign up for the year as well as just about everything on the store. So again, we don't have the sale up as of the second that we're recording this but it will be up by the time this podcast is out. So also, if you've purchased a monthly or yearly subscription recently just get at me and I'll discount you down to that half off rate depending on like if it was if you purchased it like two months ago then I don't know. But if you're like yeah, that's not the
+
+126
+01:01:44,700 --> 01:01:55,170
+Wes Bos: issue. Here. It's just say like, if you bought in the last couple weeks or whatever, and you feel like you got burned, then let me know. Yeah, you should. We're pretty good about it. So it's cool. It's like it's kind of like Black Friday, except the world is falling apart.
+
+127
+01:01:55,260 --> 01:02:09,270
+Scott Tolinski: Yeah, right. It's actual Black Friday. It's black 2020. Well, thank you so much. And thank you so much to Courtney, for coming on the show, Dr. Courtney kolinsky here and we hope to have you on again someday soon.
+
+128
+01:02:09,570 --> 01:02:11,760
+Dr. Courtney Tolinski: Yeah, happy to be here. Thanks for listening.
+
+129
+01:02:12,060 --> 01:02:12,840
+Wes Bos: Yeah, thanks a lot.
+
+130
+01:02:14,670 --> 01:02:24,450
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
