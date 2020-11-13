@@ -1,0 +1,192 @@
+1
+00:00:00,359 --> 00:00:24,480
+Announcer: Monday, Monday, Monday, open wide dev fans yet ready to stuff your face with JavaScript CSS node module, BBQ Tip Get workflow breakdancing, soft skill web development hasty, as crazy as tasty as web development treats coming in hot here is Sarah CUDA boss and Scott Taylor. Totally at ski.
+
+2
+00:00:25,890 --> 00:01:08,760
+Scott Tolinski: Welcome to syntax and this Monday heastie treat, we're gonna be talking about CSS units. And we're gonna be talking a lot about different units in CSS, most of what you've probably heard of, but we're going to be talking a little bit about when and why you might want to be using some of these things, upsides, downsides, tips and tricks, all sorts of stuff. And it's going to be a lot of fun, because CSS units is really one of the most used things in styling your website if you think about it, because well, how many times do you use anything without a unit. So these units are going to be very important to how your CSS scales and how it works over all. And it's going to be really, really fun now My name is Scott one ski and with me is always is Wes Bos. How you doing?
+
+3
+00:01:09,150 --> 00:01:10,830
+Wes Bos: Doing well doing? Well.
+
+4
+00:01:10,920 --> 00:02:29,220
+Scott Tolinski: Nice. This episode is sponsored by Log Rocket. Now head on over to Log rocket.com Ford slash syntax, and you're going to get 14 days free of Log Rocket. And let me tell you a little bit about Log Rocket. This is such a great way to get better visibility into the things that are happening on your website. One of the coolest features about Log Rocket is called session replay. And where you get a pixel perfect video replay of what happened when this bug happened. So a bug happened, you get the error message, you know it exists. But you don't know exactly what user did to trigger this, maybe they Click these buttons in this very specific sequence. And for some reason that sequence is causing you problems. So check it out. The session replay is just an amazing feature for you to get that visibility that you've never had before. Not only that, but it works with things like your Redux state. It shows you the network activity and gives you the council log errors as everything's happening. So if you want complete visibility into your bugs, and you want it to integrate well with all of the tools you know and love like century, check out Log Rocket at Log rocket.com forward slash syntax get 14 days free, super duper, super cool tool.
+
+5
+00:02:29,459 --> 00:04:49,070
+Wes Bos: All right, so let's get into it. I sent out a tweet the other day, it says I often hear people say that M's aren't used in CSS anymore. And they're still useful. Here's an example. And it went on to give an example of when you might want to use an app. And we'll talk about that in just a second. So I think it's funny that CSS units can become popular in some ways of sizing things can become unpopular, because there's some like new version, it's sometimes you see that with CSS Grid come along, and people say well no longer need Flexbox. And it's like No, these things are added to the language because they solve a specific problem that doesn't make the old things not useful. So we're gonna go into all of the different, not all of them, but a lot of the different units that we have in CSS in when you might want to use them, starting with M's and rems, and what they do. So maybe I'll take a stab at how EMS and rems work. So EMS and rems are both relative units, meaning that when you set a let's use a font size, when you set a font size to two M or two REM, they are going to be two times the size of something else that it is relative to and the difference between EMS and rems is that EMS is always based on the parent that has a font size set on it. And rems is always based on the root, which is your HTML element. So if you set a font size on your HTML element, and anywhere in your application, you set something to be to ram like so let's let's give a simple example of HTML font size 10 pX anywhere in your page that you set something to be to ram, it's going to be 20 pixels. However, with EMS, it's just going to go up the tree much like position absolute works, it's going to go up the tree looking for a parent that has a font size set on it. And a lot of frustration with EMS stems from people are having messy CSS where they've set a font size on a parent. And then they set a font size on like a child inside of that parent. And then they set a font size on like a parent or like a paragraph tag inside of that. So what happens there is you've amplified your your EMS three times to be three times bigger and then people don't understand how EMS work. So that's what they are. I think they're both very, very useful. You want to take a stab at why you might want to use EMS and why you might want to use rems. Yeah,
+
+6
+00:04:49,080 --> 00:05:53,160
+Scott Tolinski: I mean, largely in the case of EMS, you're going to be wanting to use them in the situation where the size of it needs to be dependent on its container and likewise with rems, where Well, the size of it is going to be, again, like you mentioned relative to the overall document. So rems end up behaving like this thing that can scale based on the body font size, or the HTML font size, but it's a scaling all together, right? There's no sort of relative scaling of any of this stuff, or EMS. Again, it's all based on the container. So if you have something that's self contained, and you change the font size on the container, it's going to change things all the way down, where you're going to be changing it more of like a global thing, maybe you have like a layout style, that's, that's for the entire document. And then maybe via media query, it's changing for the entire document, all of your font sizes jump up just this little much more, rather than changing container based specifically.
+
+7
+00:05:53,340 --> 00:07:19,440
+Wes Bos: Yeah, so the examples that I give often are, if you have a component, and inside of that component, you have a heading, and maybe have like a subheading, and maybe you have a bunch of text, then maybe you have like some footer further text, those, all four things need to have different font sizes. And if you ever want to scale up that entire component, you'll need to set the font size on the container. And then every element inside of that is going to be based off of the font size of that container using an M. So I gave an example on Twitter, where I have my headings for all of my new blog redesign are all different sizes, h1, through h6, are all different font sizes, and each one of those has this little like yellow square that's in the top right hand corner, just kind of a design embellishment. And the size of that square needs to scale up and down its width and height based on how big the font size is. And I could set a selector for every single heading tag all six of them and set a different width and height for each one. But what I did is I just set the font size on the h1, h2, h3, and then set the width and the height of each of those to be 0.75 M. And then what that does is as the font size of the heading tag goes up and down the corresponding square Also, you can do this with buttons as well, the corresponding actual element on the page will scale itself up and down without having to manually go in and do that.
+
+8
+00:07:19,520 --> 00:08:23,100
+Scott Tolinski: Yeah, one of the main examples that I use for rems, specifically is for things that aren't, they're more global, right, like margin. Yeah. So if you have a vertical rhythm, right vertical rhythm, sort of like a vertical grid, sort of you can think of it as like various lines. And each line takes up this amount of space, whether that's pixels or whatever, right, let's say each line takes up 16 pixels, your fonts are typically going to your text size throughout, the whole thing is always going to line up essentially either on one of those lines in between those lines, whatever it's it's taking up that space to keep that vertical spacing, uniform and organized. So I end up using this a lot for things like margin bottom, where the margin bottom one REM is always going to be equal to essentially one line and my vertical rhythm that way I can do like a margin bottom one REM margin bottom two rooms, and know that it's taking up two lines in my vertical rhythm or one line in my vertical rhythm or something like that, again, because those aren't dependent on the container, those are dependent on the overall vertical rhythm of the document.
+
+9
+00:08:23,220 --> 00:08:53,580
+Wes Bos: Yeah, I tend to use rems almost all the time. But I do reach for EMS, when I need a specific use case like the one I I just explained there, which is pretty cool. I did hear from some people on Twitter who the do all of their typography in EMS, I think that's great if you have the like your code is as neat and as clean and you have control over all of your components, setting the font size yourself, but I do know that the EMS can get out of hand pretty quickly when you accidentally have set a font size on two different things and they start to multiply each other.
+
+10
+00:08:53,730 --> 00:09:38,010
+Scott Tolinski: Yeah. And they definitely can confuse newer CSS developers. Definitely. I mean, one of the reasons why they're confusing is because it's difficult to make that conversion if you've been thinking in pixels, right? Like I'm thinking this font is 14 pixels. Well, what the heck is that in M's or rems? I mean, rems is the easier one to figure out because the document, but what is that right? And so a lot of times people pick up this trick where it's setting the HTML font size to 62.5%, the magic percent, that makes one REM equal to 10 pixels. The reason for that is that you can now say 1.6 REM instead of 16 pixels, and your font conversions, if you're moving everything over to M just gets that much easier. Is this something you use or have ever used?
+
+11
+00:09:38,070 --> 00:10:14,580
+Wes Bos: Yeah, so I've always just manually set the font size on my HTML to 10 pX, and then that means everything is base 10. And I can easily calculate out from there. But I just googled like, Why do people use 62.5 instead of just manually setting 10 pX and I couldn't find a great answer, but I think the reason is because if the user sets their own font size in their settings. Apparently, this will respect the user's font size and still bump everything up. Whereas if you manually set 10 pX, then it will override the user's font size. So that was interesting. I think I just learned that myself.
+
+12
+00:10:14,660 --> 00:10:41,300
+Scott Tolinski: Yeah. I've only ever seen the 62.5. That makes sense for about the 10 picks. But yeah, just Google that just now and see the same thing. So this is not something I ever really used. I feel like if I need those conversions, I usually just look them up. I don't know why I never really liked this. It seemed kind of weird to me. But at the same regard, it is easier to figure out and if Yeah, if you're wanting to just convert over then it's easy. Yeah.
+
+13
+00:10:41,460 --> 00:10:51,270
+Wes Bos: It's because you're American, and you used to having weird mounts for everything. And I'm Canadian, I'm used to everything being base 10. And making sense. So
+
+14
+00:10:51,510 --> 00:10:56,760
+Scott Tolinski: we should go, Yeah, like feet, we should get a feet unit and CSS says one,
+
+15
+00:10:56,880 --> 00:11:15,210
+Wes Bos: there is interest. We'll talk about that. That's rems and M's extremely helpful to sort your type in it. I also use rems and M's for like Scott said, padding margin, things like that, or I need them to scale up and down the beauty of using rems, let me tell you a little story one minute and tell
+
+16
+00:11:15,210 --> 00:11:16,500
+Scott Tolinski: you a little story.
+
+17
+00:11:16,590 --> 00:12:04,500
+Wes Bos: I had a student once design their entire website when they were accidentally scaled in. So they had to hit command plus, and they zoomed in the website and they built the entire website. So they were adjusting everything to look how they wanted it. But everything was off. And then I they're like my media queries aren't working. And they're not like clicking at the right points. And I was like, Oh, you're probably zoomed in and I zoomed out and the whole website was much tighter. But website, the saving grace was that they had built everything in rems. So all they had to do is change the base font size to be a bit bigger, and everything scaled up. And that's the sort of the beauty of using something like M's or rems is that if you ever want to scale anything up or down, you can just change your base font size, and those things will scale up accordingly. Cool. Well, what about pixels?
+
+18
+00:12:04,590 --> 00:13:04,440
+Scott Tolinski: I was gonna say, in addition to rems and M's there is a lot of other units, including one that is probably the king of units and CSS, as we know in terms of usage, which is the almighty pixel. And I think this one's gotten a bad rap people. Sometimes they want to say don't use pixels or amzer M's or king or whatever pixels. They're still very widely used. And well, I think it's maybe because of what high density displays and things like that people were thinking like, well, maybe we shouldn't be using pixels, because well, now what is 16 pixels isn't 16 pixels before, however, we don't have to worry about that because a pixel in the browser has pretty much become what a device pixel is on something like Android, right? If you've programmed for mobile, you'll know that if you set something to 16 dP, it's not a absolute 16. It's a 16 based on whatever the resolution of that devices. So honestly, we don't have to worry about that too much anymore. And I find myself using pixels somewhat frequently.
+
+19
+00:13:04,680 --> 00:14:00,150
+Wes Bos: Yeah, pixels got a bit of a bad rap years ago, because what used to happen is if you someone were to scale up the website, the type would scale up, but the UI wouldn't, and then your whole website would look broken. And that was always the big test, whatever. Now in all browsers, if you scale up a browser, the entire UI of the website, type in background images, and everything will just scale up accordingly. So it's not a big thing anymore. And also, I find it kind of funny how we are all doing just using rems, and setting a base font size and then we just all are mentally calculating how many pixels we want. And then just making that instead of saying 16 pixels, we just say 1.6. REM and Oh, that's nice. You know, it's no different. It's not yourself. Yeah, there's at the end of the day, all of our screens are built in pixels. So pixels are totally fine. Don't feel like you're doing old technology. What about points, points? I've never used points of you
+
+20
+00:14:00,150 --> 00:14:30,960
+Scott Tolinski: know, I've never used points. But it's always the worst when you get a like a Photoshop file or something from a designer, and the fonts are all in points. And you're just Oh, yeah. Okay. Did they mean these to be in points or pixels or whatever? No, I never, I never ever think about points in web development whatsoever. Yeah, but it's actually one more thing on pixels. If you want to see how frequently pixels are still used in design, I would find any major website, inspect their source, look at their CSS a lot, a lot, a lot, a lot are just using pixels for fonts and all sorts of stuff. So
+
+21
+00:14:31,050 --> 00:15:29,460
+Wes Bos: yeah, one other thing I'll say is that M's are specifically sometimes better for type than pixels. If you are doing one of those websites where you want to be a let the user increase their font size. Because often if the user is trying to increase it themselves by zooming in, or if they have if you're trying to just increase the root, like the root RAM, often you're like you're merging your padding, sometimes maybe probably not borders, but all of those things are those things also scale up and it's unreal. likely that the user wants to scale up padding in the same accordance that they want to scale up the font size, right? Like they don't need extra padding to be shown. They just need the font size to be a little bit bigger. So it's a little bit more readable. So in that case, I think M's will for sure without word. Yeah. What else do we have here? viewport units. We talked about this in a past episodes, we won't go too far into it. But they allow you to scale based on the height, the width, or the min or the max of those two. It's a percentage of how big the viewport is on your screen.
+
+22
+00:15:29,580 --> 00:15:32,490
+Scott Tolinski: It's my favorite unit. It's my favorite unit. It's
+
+23
+00:15:32,880 --> 00:15:39,180
+Wes Bos: 10 units for me. We had a really cool like use case for it in the last episode, honestly, yeah,
+
+24
+00:15:39,180 --> 00:15:50,220
+Scott Tolinski: I am still loving that. And in the funny thing is, before I even saw that use case, I was still like, Oh, I got the heart eyes emoji for viewport units. And now that I have that example, it's like double heart eyes emojis.
+
+25
+00:15:50,430 --> 00:16:22,500
+Wes Bos: Next we have ch units, which are character units and a one ch is relative to the size of a zero in a font size. So this only really works well with monospace fonts, where all of the characters are the exact same width of each other. But if you ever want something to be exactly if you've ever wanted text to go exactly the width of an actual element, you can use ch units to use that I've only ever used those in fun little demos and never found a real use case for it in production. Let me know if you have though,
+
+26
+00:16:22,500 --> 00:16:33,390
+Scott Tolinski: have you? I have not No, I've never used them. No, I just don't. I never found the reason to use them. Just like I know you. You've recently used an inch unit right? Or an internet centimeter unit.
+
+27
+00:16:33,510 --> 00:17:14,250
+Wes Bos: Yeah, inches and centimeters and millimeters are available as well. Yeah, in print style sheets, if you've ever need something to actually be so I was printing envelopes, which envelopes are physically done in inches. So if you need something to be at the very top right hand corner, like a stamp, you need to position them based on inches. So I size up the page, the whole print CSS world is weird is wild and weird. Yeah, but it's all available for you there. I've never used it in real life, though. I always joke that clients used to come back to me like he moved the logo over an inch. And you have to like kind of be like, oh, there's no inches in Let me pull up
+
+28
+00:17:14,250 --> 00:18:09,000
+Scott Tolinski: my ruler and hold it up to the screen. What else we got here we have percentages, which are just a famous unit in general, because well when ticularly I mean percentages has been around forever in CSS. But I think the the like the big take off for percentages was when mobile first and mobile web design really came about. And all of a sudden, you were figuring out, well, okay, this div is no longer 960 pixels wide, this div is going to be 75% of its container. And you are doing all that math. I mean, when responsive web development first came out, that was like sort of the big thing it was do math, find the percentage that's your container with float it Alright, do math, find your you know, and in that way we were building fluid designs and fluid designs have been around for a very long time. But now that device screens have been more fluid percentages have been just, you know, a key part of understanding CSS in general for a very long time.
+
+29
+00:18:09,420 --> 00:18:14,360
+Wes Bos: I have a question for you about media queries. How do you write your media queries when you are trying to write when
+
+30
+00:18:14,600 --> 00:18:47,600
+Scott Tolinski: I write my media queries using an object a JavaScript object? I do above dot med. And then guess what? Above dotnet? is some value whether it's like 960 pixels or something like that. But yeah, value actually gets converted to EMS. Um, let me double check. Let's see breakpoints. Yeah, that is converted to EMS, via division by 16. And so the code that's output into my code base is an end. But I really only think about it as a pixel value. Hmm,
+
+31
+00:18:47,700 --> 00:19:21,930
+Wes Bos: that's interesting. I do all of my media queries and pixels. I've tried them in AMS. And it confuses me. And you can do them and Rams and seeing all these like obtuse things. And at the end of the day, I understand that I want this thing to be to look this way when the screen is above or below or in between this pixel value, because at the end of the day, our screens are just in pixels. And I've never run into the situation where I want to scale up or down my media queries accordingly. Because I know that's something that they can do. It's just not a use case I've ever actually needed. So I write all of my media queries in pixels. And it's it's worked out well for me.
+
+32
+00:19:22,170 --> 00:19:39,320
+Scott Tolinski: Yeah, in fact, I only do that M division, because that's the way the code in the style components documentation was written. And I copied and pasted it. Well, I copied and modified and pasted it, but I didn't modify the damn part. I just don't think about it. Yeah, just don't even think about it.
+
+33
+00:19:39,510 --> 00:19:57,390
+Wes Bos: Yeah, it works. Other units we have are, specifically when we got Flexbox and CSS Grid, we got the flex grow and flex shrink values, which are unitless, which can be very, that's a frustrating thing for people who are picking up Flexbox right, they flex on a container and their image is doing some wonky stuff and
+
+34
+00:19:57,390 --> 00:20:08,040
+Scott Tolinski: they're just like, Yeah, why is this image being split? wished and you need that that flex shrink value of zero or one. It's sort of an interesting property overall.
+
+35
+00:20:08,490 --> 00:20:35,460
+Wes Bos: Yeah, it's it's a weird one to get your head around, especially because there is no unit, it's just the amount of free space that is left or the amount that are Sorry, sorry, it's not the amount of free space is the amount that it should grow in proportion to the other flex items, or the amount that itself should shrink, according to its siblings. Which is a little bit confusing. It's a bit better in CSS Grid, because we have these fr units, the they're like flexible units, or I like to call them free space units.
+
+36
+00:20:35,490 --> 00:20:39,750
+Scott Tolinski: There were a few year unit, this my Rookie of the Year is the FR unit.
+
+37
+00:20:39,750 --> 00:21:10,680
+Wes Bos: Love it the Oh, yeah, it's so good. So it will take after like when you have CSS Grid after you've divvied up the space that have hard requirements, like if a column has a hard REM m, or pixel or percentage width, or height to them, after that you've got extra space leftover and then and then the extra space will be divided up via the FR unit. So if something has to fr and something has one fr the one that has to fry off twice the amount of the free space, it'll take up two thirds, yeah,
+
+38
+00:21:10,680 --> 00:21:17,220
+Scott Tolinski: two thirds of the total space, and the one will take up one third. So you add up all the F RS and then it's a fraction.
+
+39
+00:21:17,570 --> 00:21:31,610
+Wes Bos: So you can you can do them. I sometimes I do them 100 base just to like kind of think in percentages. So like 50 fr, and 25. fr is 50% and 25%. You can make them as big as you want. Because there's no, there is no basis there. Yeah,
+
+40
+00:21:31,650 --> 00:22:02,100
+Scott Tolinski: I use these constantly. Obviously, they're they're they're very, very useful when doing any sort of grid. Because most of the time, things don't need a hard requirement. They just need this sort of space for this sort of space. And when they do need a hard requirement, you give that pixel that M that ran that value, whatever. Use these fraction units for everything else that needs to grow accordingly. But yeah, these are these are great units. There's a whole bunch of extra units. We never even think of like degrees. And we talked about them in another episode. There's like yeah, radio radians and Yeah.
+
+41
+00:22:03,870 --> 00:22:11,550
+Wes Bos: Have you heard of that? Which one, the x x, the relative relative to the x height of the current font, have never heard of that,
+
+42
+00:22:11,730 --> 00:22:21,720
+Scott Tolinski: before? Never heard of it, never used it. And maybe it's just because I'm not typing enough. I need to get my type skills up to have a better understanding of when that would be useful. Yeah,
+
+43
+00:22:21,720 --> 00:22:28,560
+Wes Bos: I think that's all the other units that I have. And just looking at it, there's there's a bunch of print ones that are probably not use all that often.
+
+44
+00:22:28,560 --> 00:22:47,400
+Scott Tolinski: If you are out there, and you have a favorite obscure CSS unit that you have an interesting use case for, let us know I'm interested in some of these obscure yet and what are the best use cases for them. So if you're using one of these, these interesting ones, let us know league is there. They're fun. And they exist, but I don't necessarily find myself using them ever.
+
+45
+00:22:47,940 --> 00:23:42,840
+Wes Bos: My favorite was turned turn Yeah, turn turning if you want to turn something like a quarter turn 0.25 turn instead of 90 degrees. And I tweeted that and people were so either so into it are so salty about they're like, why not just calculate the degrees and like that the reason you don't in case? Because like, yeah, how much is a 37%? Turn in degrees? I don't know, was 0.37 times 360. And then round the decimal place that you end up with? Yeah. So it turns out pretty cool. When you aren't thinking in degrees. Just how much of a full turn should it turn itself? Word? Yeah. So I think that's it for today. Let us know your favorite units or whatever or how you like to approach your type and other people that size their type very specifically with EMS and rems, and I'd love to hear how you do it. So tweet us at syntax FM on Twitter.
+
+46
+00:23:43,079 --> 00:23:45,030
+Scott Tolinski: Cool. I don't have anything else on CSS units.
+
+47
+00:23:45,030 --> 00:23:49,020
+Wes Bos: Thanks for tuning in. We'll catch you on the next one. Please
+
+48
+00:23:50,970 --> 00:24:00,750
+Scott Tolinski: head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
