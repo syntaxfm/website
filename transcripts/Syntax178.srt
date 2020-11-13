@@ -1,0 +1,540 @@
+1
+00:00:01,319 --> 00:00:11,010
+Unknown: You're listening to syntax, the podcast with the tastiest web development treats out there, strap yourself in and get ready to live ski and West boss. Oh, welcome
+
+2
+00:00:11,010 --> 00:01:11,120
+Wes Bos: to syntax. Today we're gonna be talking about our process, hardware, software, everything that we do to record edit in hosts our courses as assigning, and we get a question probably every day somebody say like, Hey, what do you do. And we've done this sort of in the past on the podcast along with another show, but we don't have a definitive thing to send people to. And also, I think our processes have changed, they change over time, you're always tweaking the hardware, the software that your process for editing, things like that. So we are going to lay it out exactly how we do all of the stuff. And hopefully, it'll give you some tips if you are looking to do maybe build a course or your own or make some YouTube videos or things like that. Today, we are sponsored by Log Rocket that does all of your error and exception tracking and fresh books, which does all of your invoicing, expenses, things like that. If you are a small business or freelancer, my name is Wes Bos, I'm a full stack dev from Canada with me, as always is Mr. Scott to lidsky. How you doing today, Scott?
+
+3
+00:01:11,219 --> 00:02:43,830
+Scott Tolinski: I'm doing good man. My name is Scott Tolinksi. I'm the developer from Denver here. And we just bought a new car this weekend, which was kind of while Yeah, Courtney, unfortunately, was rear ended again. And although she was totally safe and everything, it was one of those things where the insurance company's like, Oh, it's gonna be you know, six grand to repair your car, which is, you know, okay, whatever, you know, the insurance will pay for it. And then that number just kept going up until they like, no, it's actually like 18 grand, and then they just a little bit. So it like took us like two weeks to even find out the car was totaled. So at this point, we're just like, well, crap, we got to go get a car now. And we didn't have a whole lot of time to do research or sit down and really think about it, she's got to go to work. So we just ended up getting a not what we intended on doing By the way, we just ended up getting a new rav4 hybrid, which, for the New Year of them, they're incredible. I couldn't believe how good this thing is it gets 40 miles per gallon as an SUV. It's because the hybrid it's so responsive, it's super peppy. The car has a ton of ridiculous features for the price, like the rearview mirror can be like a video. So instead of like a mirror, you have a video meaning that anyone can see the rearview mirror from any position. You don't have to adjust it to make it like correct. There's a lot of like little things like that, that you wouldn't expect to exist. Yeah, instead of a Toyota. And it has the Lexus paint color on it. So people have just been asking us is that a Lexus because it's like brand new model. people haven't really seen him around. Ah, it's not a Lexus. It was a it's Toyota. And I'm really impressed.
+
+4
+00:02:43,889 --> 00:02:47,850
+Wes Bos: It looks sick. It's got a gnarly grill on it. It's like like aggressive,
+
+5
+00:02:47,879 --> 00:03:20,639
+Scott Tolinski: got a gnarly grow. I was not a fan of the previous version of the rev for the looks, or like the power output or anything. We test drove one and I hated it. And so I was like really not interested in this one. Then we watched a Doug demuro video on it, and he loved it. So he had to go check it out or like, holy crap, I think we're gonna buy a new car. So we bought it and we're gonna hold on to it for a long time. it it's it's perfect car record. So yeah, that you know, that's an adventure. Um, that whole thing was an adventure trying to do it with two kids and all that stuff. So I'm sure you're aware of what that process is like.
+
+6
+00:03:20,669 --> 00:03:30,150
+Wes Bos: Yeah, yeah. Trying to like make major decisions or your children are screaming is very hard. Especially when like you're under the like, you have to buy a new car right? You have to get back on the road.
+
+7
+00:03:30,299 --> 00:03:34,979
+Scott Tolinski: Even like test driving, like figuring out like how to test drive a car with kids and stuff. It was tell Yeah,
+
+8
+00:03:34,979 --> 00:03:47,940
+Wes Bos: you can see how to put the car seats in. One of my least favorite things in the world is installing car seats. And we have the like, click Connect one, which they're like super easy to install, but it's just always miserable. By the end of that.
+
+9
+00:03:48,029 --> 00:03:57,900
+Scott Tolinski: I jam my my thumb in the thing this morning. It still hurts. You know, one of those fingernails. But yeah, that's pretty much it. You know, don't need to give you a whole update here. But uh, no, that's cool.
+
+10
+00:03:57,900 --> 00:04:05,940
+Wes Bos: Have you seen the Honda has this new electric car and there's no mirrors on it? It's just cameras. So cool.
+
+11
+00:04:06,000 --> 00:04:29,370
+Scott Tolinski: Yeah, it's not coming to the US it I want this car so badly. Because I don't do a lot of driving. I just zip around the city, you know, to drop the kids off at daycare. And this is little Honda. It's not coming to the US. I've already expressed my displeasure with that. But it's really super cool. Look it up. I don't know the name of it offhand. But it's a just do a google Honda electric car. It's got the cutest little face. I love it.
+
+12
+00:04:29,550 --> 00:05:28,200
+Wes Bos: I got to find it because the name of it is super interesting. It is the Honda he is what it's called. Yes, the Hyundai he Yeah, super cute. It's super cute. Yeah. Awesome. Well, um, let's say we get down into it. We are going to start with recording how do we record our courses? And maybe we should just say really quickly. So Scott and I how we make our money is that we record these web development courses showing you how to build stuff in web development. We both been doing it for years and years. And we sort of have honed in on, on what gear and our processes and things like that. So we're going to go through recording, we're going to go through editing, and then we'll go through how we actually host them up. We also have talked about our course platform. That's something I get all of questions about all the time. If you go to syntax.fm, and search for Stax explained, Episode 14, maybe we should do an updated version in a couple months.
+
+13
+00:05:28,200 --> 00:05:29,940
+Scott Tolinski: Oh, yeah, mine's changed a lot.
+
+14
+00:05:29,970 --> 00:06:59,070
+Wes Bos: I have some new updates on mine that I'd like to get rolled out first. But it's pretty good. People always ask me like, what is it that you're using as a WordPress plugin? Can I get it? Can I use it as well? So yeah, it'd be kind of fun to go into that. So first thing recording. Software wise, I use just a couple things, I use a software program on the Mac called ScreenFlow. And that does a pretty good job at recording your screen. It's aware of windows, it's aware of cliques and key presses. So if you ever want to do things after the fact, like zoom in on a key or on a click, or put a ring around where your mouse is, or do any of these After Effects, it saves all of that metadata along with the actual recording video. And I don't use that all the time. But I do find it helpful every now and then, because it actually knows, I also find it helpful because you can record your like multiple screens at once you can record an iPhone screen, you can record your webcam, and a couple times anytime I'm doing sort of funny stuff. Like I'm doing face detection or the drone stuff, I often need to record what I'm doing, as well as the the actual screen. So I've liked ScreenFlow I'm not super stoked on like ScreenFlow itself. There's I've got lots of qualms about it. But it's definitely the best thing that I have. And I also have zero ambition to learn something else just because like it works totally fine. For me. I'd much rather spend my time building more courses and working on stuff like that, then then switching software.
+
+15
+00:06:59,100 --> 00:07:11,280
+Scott Tolinski: Yeah. And at the end mean, if you haven't used a professional editing software before, I think you're not even before but like frequently, I think you are, you're better off because that is a pretty steep learning curve at the beginning.
+
+16
+00:07:11,310 --> 00:07:35,270
+Wes Bos: Yeah, it's funny because my wife needed to edit some videos. And they weren't even like screen recording. And I just gave her ScreenFlow Yeah. And she she was up and running. And then after, I don't know, after about a month or two, she's like, Okay, I need more like I actually need a little bit more control over this type of thing, because I'm not actually editing screencasts. And then she went and learned a new editor I forget, I think it's Premier Pro, something like that.
+
+17
+00:07:35,429 --> 00:08:01,200
+Scott Tolinski: It's funny that our tools and these like professional tools can be used for like, sort of different things like that, like I gave Courtney needed, like a very simple brochure for her work. She was doing it in like Word or PowerPoint or one of those. And I was like now here's a checkout figma just here's a figma template. And she was up and running in no time. She was like, Yeah, I can't believe how easy this is you can just click and drag things. And like, Mike Yeah, this is this is where it's at. So
+
+18
+00:08:01,260 --> 00:09:20,490
+Wes Bos: yeah, modern tools are the best seriously other software I use, I use something called Uber layer, which is actually a very old app. But it's been working for me for ages. And essentially what it is, is I I run my recording on my 4k monitor, and I only record part of my screen, so that I can export it to like a 1080 DPI, resolution. And in order to do that, I can't record my entire screen. And I actually prefer not to record my entire screen because I don't like getting things like tabs in OSX. Like when I first did it OSX had everything glossy and was like that dark gray color. And then as soon as OSX updated, it just makes my tutorials look out of date, even if the actual content in them is up to date. So I stopped recording as much of that as I can obviously like the URL bar in Chrome, I have to record and things like that. And sometimes chrome will update its look and then that sort of looks like it. But I like to record as much just actual text editor as possible. So it doesn't crowd the screen as well. So I built this thing in in sketch and it's just this like rectangle that I overlay on top of my screen. And then I drag my windows into that however it is that I want to put it I have little notches on it. I can I can rearrange them. A lot of people have asked like, why don't you use like a dv or something like that. So you can snap your windows,
+
+19
+00:09:20,580 --> 00:09:22,669
+Scott Tolinski: I was ready about to ask you that. Because Yeah,
+
+20
+00:09:22,710 --> 00:09:51,990
+Wes Bos: because Debbie doesn't let me get exactly how I want it to go. Like they give you the amount of blocks that you get or you can like you can customize it up to like a 20 by 20 blocks. And you can increase the the grid space and the offsets and the margins too, which is what I do. Yeah, I've done that. But it's just like it's it's like way quicker for me just to grab the window and resize it inside of my rectangle instead of like having to figure out which one to click and I know you can like save them with other apps and stuff like that but
+
+21
+00:09:52,620 --> 00:09:53,700
+Scott Tolinski: or with Divi.
+
+22
+00:09:54,409 --> 00:09:56,460
+Wes Bos: You can save your spots with Divi. Yeah, I'm
+
+23
+00:09:56,460 --> 00:10:02,730
+Scott Tolinski: gonna get on you about this because all I do is hit Ctrl R and all of that. I will snap into the the little window, maybe
+
+24
+00:10:02,730 --> 00:11:40,740
+Wes Bos: I should try it I get harass all the time people like why don't you do it, it's like because, yeah, like I'm and also I often will, if I'm if I'm doing some code that's very wide, I'll make my editor bigger and the browser smaller. And like I'm not always just doing the exact same setup for everything, it just kind of whoever it is that I want to, or I have the terminal that needs to go on the screen while things are running so that you click something in the browser and you see a log in the terminal. So I just move them around, it takes two seconds, never been a huge problem for me. What other things I have a 4k monitor, so I record at double the resolution. And that's not to say that everything is tiny, it's just that everything is two X, I don't export it at like, what is 1080 times two, I don't export it at 2160, export that I do export it at 2160, actually, and then I let Vimeo, which is my host, dumb it down to 1080. And that resolves in very, very crisp videos for the user. As well as anytime I need to zoom in on something, I can zoom in to two x and it's never going to look pixelated because I have those extra pixels available. If I need it. Other things that I do is I've got my editor here, my VS code, I zoom out the editor very, very, very high. So things like tabs and all of the like editor chrome gets out of the way. And then I bump up the font size really, really high. So again, we there's a space is so limited on a screencast. So I try to make the actual code as large and as visible and as clean as possible. So that's my software, you want to go into your software, and then we'll do hardware. Sure,
+
+25
+00:11:40,830 --> 00:12:09,210
+Scott Tolinski: yeah. So myself, where is this? It's so funny. Anyone who's listened to this podcast for any bit of time knows I'm changing stuff all the time, because apparently, I just have that amount of hyper activity. But over the course of levelup tutorials, I've used maybe like eight different screen recording software. So I'm currently using screen flick, which is a software that I wasn't using for a little bit. And then now coming back to, I jumped to I show you HD for a little bit,
+
+26
+00:12:09,210 --> 00:12:11,159
+Wes Bos: which that's a good one.
+
+27
+00:12:11,370 --> 00:14:43,380
+Scott Tolinski: It was good. But some thing happened in one of their updates recently, not recently, maybe like five months ago, and I would lose recordings non stop with it, here's what would happen halfway through the recording, my CPU would spike like crazy, it would spike all the way to the top, it would cut out my audio and then my audio would never come recording. And since I show you has latency and their audio monitoring. So like right now we're recording and logic and I have an earpiece in so I can hear my microphone to monitor it. But I couldn't do that with with I show you because it was delayed, and it would really mess up how I was talking. So here's delayed, but I couldn't do it. So therefore I would never know when the audio would cut out of the recording until I listened to it afterwards. And I was losing maybe hours and hours and hours and hours of recordings, I would send them to my video editor and he'd be like, Alright, this one doesn't have any audio after that midway point. And then I'd have to set up my code for you. It was just a total nightmare. So I'm really angry. I show you HD right now. And I'm not using it anymore. So I'm using ScreenFlow, which has been excellent. I also record at two x the resolution on my retina screen, but I do that specifically. Because I want 4k output. So I actually output at 4k. And so I'm I'm exporting at 4k and I'm uploading at 4k as well. So I'm not doing any zooming typically, it means to me I do I end up doing live via the browser or zooming in in Mac OS while I'm talking about it. So I don't do any post zooming. Let's see. So for config, like we had it, like you mentioned, I do use Devi and it snaps my windows up to the top into a recording space, I just do it with command R or no option or one of those, I also have an option C that puts one dead in the center of what would be the video recording. So like typically, my I don't know why I do it this way, just have my text editor has been full screen, my browser has been full screen. But my terminal I always like to have a little bit of margin around it. For some reason, I just like to have it be in the center with some margin. So I have a little command for that. I hide the menu bar and Mac OS which took a little bit of getting used to because you'd really like to have that menu bar up top but I hide it Yeah, for the same reason that you do. I don't really want one I don't want all of my tools that are up top like the one that shows how long the recording has been going on for and stuff like that. I don't want that in the video,
+
+28
+00:14:43,549 --> 00:14:48,360
+Wes Bos: or like the time and then you can see like, oh, that obviously took him 15 minutes to figure out.
+
+29
+00:14:49,080 --> 00:15:28,770
+Scott Tolinski: Right so I hide that menu bar. And it's been one of those things that took a little bit of getting used to but I had it all the time. Now it actually gives you a little bit of extra screen real estate because the 16 by nine area doesn't show the doctor Anyways, I don't even think or worry about the duck, or at least my usage of the doc, oh, yeah, I bump up my my font sizes in VS code, I zoom in on a browser occasionally, one of the hard things is bumping up the font size in dev tools, I do that, but I don't leave it bumped up. Like if I want to show something very specifically in the dev tools. I'll click over and then plus plus to show it. But I won't necessarily leave if they get really super crowded really quickly. And then you're not getting your show a whole lot.
+
+30
+00:15:28,799 --> 00:16:11,250
+Wes Bos: Yeah, so I've spent probably entire week on this trying to fix this issue. Because Chrome Dev Tools, you can write custom themes for it. And I was like, I'm gonna create a custom theme that just makes the text in the console big and everything else small. And at least last time I checked, everything in Chrome Dev Tools is done in sprites, and you cannot zoom them up, because it can't make the font size smaller on some things, because the sprites would goof it up. And I was so frustrated with it, I might be might be changed now, because they've gotten rid of a lot of their icons. And either imagine a lot of their icons are now SVG. But you cannot just zoom in the console part and everything else stays small, which is frustrating. So I do the exact same thing. Yeah, I
+
+31
+00:16:11,250 --> 00:18:23,700
+Scott Tolinski: like that. Occasionally, I was hiding browser tabs, but I stopped doing that, because I want the user to be able to see what tab we're on and look what window we're on. So I don't do that anymore. One thing that I do when, when I'm recording it, you know, my process is very non edit heavy. So to say. And non script based, what I do is I record a little bit, I know where I know where the end results gonna be. And I know the code we're writing. So I record a little bit and I talk about I talk about it, I do it I code. And I don't typically make too many mistakes. And then I pause and take a breath. And then I start the next section, I think about it a pause, take a breath, and then think about the next section. And we'll talk a little bit about more while I do that in the editing part of this. But that really helps me record these things without major issues or goof ups. I know if the code that I'm going to be writing is in my external monitor that I always have, like sort of a roadmap of where to go, right. Yeah, so I'm never getting lost and never like really goofing up in that sort of way. But that's pretty much it. I have some other stuff too. Software wise, I do 4k video intros that are animated video intros for all of my series, please, I have for like the past six or seven of them. For those of you don't know, I release a new series every month. So buy like 20 some videos, and they have a theme, they have a little card, they have a logo and this whole thing animates to start each video. Well, I create these using two pieces of what are not appropriate software for what I'm doing. I'm creating it in figma, which I guess is fine. So I make the original frame in figma. It's just a couple of layers. And then I use an app called principal for Mac, which is for interactive sort of prototyping, where you can click on things and drag things in whatever but principle for Mac added a 4k video output. And they have an auto mode. So I should do a tutorial on this because this process of refined and basically you just import a frame from figma. You have it the starting frame, the ending frame, and you basically just drag stuff around, you click a button and everything just sort of animates on. It's unbelievable. So I use principal for Mac to do all of my video intros. And it allows me to export as 4k making it one of the coolest apps in my workforce, it almost becomes like After Effects light. And that's exactly what I want.
+
+32
+00:18:23,790 --> 00:18:41,280
+Wes Bos: That's amazing. I need to check that out. Because I've I always feel limited by I used the ScreenFlow to do my intros as well. And I always feel limited by like what you can do, and it's pretty good. It's got all of your standard swoop in swoopo Yeah, but I sometimes I think I could do a better job of this. I just coded it in CSS.
+
+33
+00:18:42,080 --> 00:18:49,550
+Scott Tolinski: Right. And so mine allows me to do all custom easing curves, you can drag the points. It has a bunch of presets. That's great principle for
+
+34
+00:18:49,550 --> 00:18:50,490
+Unknown: Mac. Yeah. And
+
+35
+00:18:50,490 --> 00:19:12,050
+Scott Tolinski: you know, the the process for what I do is easy enough and quick enough. Like I have made a video intro for one of my courses in less time than what would be like an Instagram video. So you could watch the process of me making one of these within like the whatever the one minute limit or whatever it is on an Instagram video. It's pretty slick.
+
+36
+00:19:12,080 --> 00:19:14,360
+Unknown: That's really cool. You have to check that out.
+
+37
+00:19:14,489 --> 00:19:17,250
+Scott Tolinski: Yeah. All right. So let's, uh, let's get into hardware.
+
+38
+00:19:17,400 --> 00:20:12,830
+Wes Bos: Yeah, our hardware is I think largely the same. Now. When I first started, I used a Audio Technica 80 2020 and that was okay. But the biggest problem with recording is you've got your laptop that has a fan. You've got vibrations in as somebody types. You've got the annoying when someone breathes in, or has a sniffle and all of those things, drive listeners absolutely crazy. So I think between Scott and I were both like we want this recording to be as good as possible right out of the gate. Because we don't want to have to spend any time fussing with it after the fact we don't want to edit it. We don't want to spend a lot I'm in editing, we don't want the audio to sound garbage. And then we'll have to fix that after the fact, we just want it to like, come in nice and clean, do some light editing and then ship the thing off so we can keep making more content is it would you say that's true for you? Yeah,
+
+39
+00:20:12,960 --> 00:20:23,520
+Scott Tolinski: that's 100%. My, my thought process is any This is, the more prepared I am up front with everything, the less I'm going to have to do post or even a video editor or any of that stuff. So yeah,
+
+40
+00:20:23,640 --> 00:21:20,040
+Wes Bos: because that stuff takes so long and it's draining and it makes you not want to record stuff because you know, you're gonna have to spend extra time editing it. So for hardware, I use a Heil pr 40 mic, and on front of that I have a pop filter, which hopefully takes out a lot of pops. And anytime I have like a big wind gasp from my, from my mouth, that sits inside of a shock mount, which takes out almost all of the typing sounds. So the annoying thing with screencast is when people are typing the vibrations of that go up the microphone and you hear so you can mitigate a lot of that by just putting a T shirt underneath your keyboard. But a proper shockmount works really well. That's on a boom arm so I have just like a Heil PL two t boom arm I don't you don't get a crappy boom arm you will be frustrated. So yeah, spend the money on that.
+
+41
+00:21:20,060 --> 00:21:49,340
+Scott Tolinski: I then got a nice one. And I don't like it really what I really want what I really, really want is like, sorry, I just I would really want like a like a radio station one. And it'd be really cool came out of the ceiling pull it down at No, I don't know. But is this the sort of hurdle like spring system that exists in these is like inherently sort of weak? I got like a pneumatic air pressure one, or whatever. Oh, yeah. For my computer monitor. And it's like the greatest thing ever. And I would love to have that for a microphone.
+
+42
+00:21:49,380 --> 00:22:19,590
+Wes Bos: Yeah, it's like the the light at the dentist. They put that thing anywhere with one finger. Yeah, that would be pretty sick part of that one of the hardest things I have when coding is trying to put the mic close enough to my face, but not close enough that it can't see the keyboard. Because I need to be able to type that's uh, I haven't found a great like what I would love is the equivalent of a Heil pr 40 I'm sure this exists, but just like a Brittany Mike, like one that hooks onto your your ear? That I don't think that exists.
+
+43
+00:22:19,620 --> 00:22:30,270
+Scott Tolinski: No, no, because those mics, nearly the diaphragm is way smaller on those mics. Yeah, you're right, like, yeah, I mean, those are good for public performance. But for audio, audio,
+
+44
+00:22:30,360 --> 00:22:43,620
+Wes Bos: I've got it pretty good. I actually have mine upside down the way that I have it. And the reason why it's upside down, people always message me. It's because I need it to get out of my way. So you can actually see what it is that I'm typing.
+
+45
+00:22:43,650 --> 00:22:46,470
+Scott Tolinski: Yeah, upside down is the way to have it. That's how the pros do it.
+
+46
+00:22:46,530 --> 00:22:58,290
+Wes Bos: Yeah. That's how all the pros are pros. So that's how we do it. That gets piped into like a, I don't know, what do you call this DB x 286 s. It's a preamp processor.
+
+47
+00:22:58,320 --> 00:23:10,650
+Scott Tolinski: Yeah, it's a compressor, a limiter, excess eliminator. It might be a limiter. It has some very minor EQ stuff. It is a also a gate. So it acts as several things. Yeah,
+
+48
+00:23:10,739 --> 00:24:29,490
+Wes Bos: yeah, I actually was surprised because when I was at my cottage, I have this exact setup. But I never hooked up my preamp because I didn't have my guy name and set it up for me. And I was listening to the podcast, I was like that actually sounds pretty good. Considering I was in like a cinderblock room without my preamp installed, and it still sounded pretty good. So I think like probably 90 or 85% of it is the mic, and then a good preamp will get you all the way there. This thing's pretty cheap, I think it's a couple hundred bucks. And it just takes out a lot of the background noise like I can have my window open in the summer and a truck and drive by and that won't get picked up. I can have the air conditioning on and it will usually not pick that up. It just sort of takes out a lot of the others you have to you have to be eating the thing for it to pick up your voice. But that's that's good because then it doesn't pick up a lot of the sort of outside noise, which makes a low quality screencast. Or then it gets piped out of that into focus right to itu which is just a USB interface for XLR stuff. So you can plug a guitar something in there there is a focus, right like one eye two or one eye one that just has one input. I don't know why I got the one with two inputs, but we used it when Scott and I did in person podcast and we just two mics right into it. So it was worth buying. The one
+
+49
+00:24:29,490 --> 00:24:48,120
+Scott Tolinski: the one I wanted might not been out because the two It was like the cheapest one when I got it. Yeah. And like this thing is cheap. Because I used to buy USB interfaces back in the day. This is fine. Believe it or not. This is my third USB interface. So I'll talk a little bit more about that. Never. But this is the cheapest one and it's been the most reliable and it works just fine. So
+
+50
+00:24:48,300 --> 00:25:12,450
+Wes Bos: yeah, it's great. I the only sort of qualms I have with it is that there's no like monetization. So your microphone just comes in on one channel. Yep. And that's sometimes when you watch a video and it's On the left ear, and most good editing software will allow you to monetize that. And ScreenFlow by default makes you do it on every single audio track, which drives me nuts. That sucks.
+
+51
+00:25:12,450 --> 00:25:13,320
+Unknown: Oh no. So you
+
+52
+00:25:13,320 --> 00:26:07,650
+Wes Bos: have to like select every audio track and the possibility of forgetting one, by accident, it's awful. So what I use is I use a piece of software called loopback. And that will automatically pipe in the Scarlet to itu and then it just, it'll just pipe out another interface that is just the left and the left pipe to the left and the right. And I also really like that because if I'm doing some, like audio coding, I can pipe in the audio of my browser into that feed as well. Or I can I can pipe in the audio of the show or something like that. So I like it. It's cool, because I also have my mic here and I have my mic at the cottage. And I can pipe both of those mics into the same interface. And then I can just hit record and not have to be like, oh, shoot, I forgot to switch the mic. You just know that it's it's always going to work because I have it set up for both microphones into one. One input word. That's my hardware. What about you?
+
+53
+00:26:08,160 --> 00:26:44,070
+Scott Tolinski: Yeah, so for me I use the my microphone is the electro voice ar e 20. It is a famous radio mic. In fact, if you like go on any ESPN talk show you chances are they're using this a mic. This is like a super super famous radio mic. It's been around for a long time. It sounds really good on low voices. So for me it works really well with my voice. I've tried several microphones in the past. I've used a couple condenser microphones I started with the Blue Snowball, and I'm not that snowball isn't the snowball? It's like it was like a $600 blue mic so it wasn't like their their intro mic.
+
+54
+00:26:44,550 --> 00:26:50,520
+Wes Bos: No, the Blue Snowball is I just bought one at a yard sale for 10 bucks. Okay, it's that's the cheap USB one. Why is it Oh, it's
+
+55
+00:26:50,520 --> 00:28:52,140
+Scott Tolinski: the bluebird Bluebird, the bluebird. I had that for a long time. And then I have another microphone. I'm not currently using a condenser mic, but this one has been the best mic the thing that the the problem with this mic is really that the volume level the the level on it is so low that no matter what I needed a preamp, so I also went with the the dbx x 286 s for my compressor and all that stuff. But to be honest, I needed a preamp anyway. So when I was looking at like decent preamps, it was like okay, well you can spend 150 for a decent preamp, or you can just get this whole thing that does everything for you and including a preamp. So the DB 286 S is an essential part of my hardware flow. Without it my microphone would be not working really well. But this microphone is great. Fantastic. I'm in love with this microphone. I always pointed out when I see it on TV like it's my child. Look at that microphone. So I'm a huge fan. I also use the focus right to eye to again, I mentioned them I've owned several preamps before I had one by Apogee that was really nice until legit died on me. And then I had what did you see I had one by m box, or it was by Digi design who owns Pro Tools. So it's like the Pro Tools like intro, reg but because it allowed you to use the Pro Tools software, which at the time, I don't know if it still is it was like locked down by hardware. They like upcharge the hell out of it. So you could use the Pro Tools software. So I was really into Pro Tools when I was in college. So I had to get like a really nice one. But that one also was on some older version a USB and they never updated the drivers for new Macs. So once a Mac OS I don't know it was like maybe like five versions ago. I just couldn't use it it became a paperweight because even though the thing worked fine. It probably works as well as this two It does. It just did never got software drivers for it so well. I went about the two It was pretty cheap and it's been been really good for me. I also do video recording. I know you do like via your webcam.
+
+56
+00:28:52,290 --> 00:28:57,090
+Wes Bos: Yeah, not I just have like a 10 ADP webcam. So it's not nothing. Nothing amazing.
+
+57
+00:28:57,210 --> 00:30:28,320
+Scott Tolinski: Yeah, I've been getting born to like building a set. You'll see it in the latest series, the latest level up tutorial series. I have like a set in my office which is really just my desk even though I call it a set. I have my set and I have my videos and my lights all set up. And my video camera is a Sony A seven, three, I guess this is the a seven three but it's a seven and then three eyes. I don't know how you say that out loud. I will type it but this thing is incredible. Records 4k like smooth as butter. It can record HD at 120 frames per second. I have a 22 millimeter lens forward. That's a fixed lens, a prime lens and I just have it set up in the perfect spot. It has a really nice bokeh and it looks really nice for the background blur effects that I'm going for. And it records in 4k so my whole process is 4k, 4k video animation 4k video at the start and 4k for my screen recording. And so for that the process I use is I record the video camera with just the cameras on built on mic. Now I could get an external mic for that. But with my whole process right now, this is extra money. So I have the camera just recording it standard audio. And then I have my electro voice are he recording into logic and then I just use the editing app I use to synchronize the two. And that's it. I just say, Hey, hey, you synchronized by the audio waveform. Use the nice audio coming in from my microphone. Bingo. Bingo. I got really nice audio and really nice video on one clip. So that's my hardware.
+
+58
+00:30:28,410 --> 00:31:45,600
+Wes Bos: One website I really like is BSW usa.com. Yeah. So broadcast supply worldwide. They have these like podcasting packages, and they change them every couple weeks. And if you're looking at like, right now, I'm looking at my package, which is the Heil pr 40 the Heil shock mount that they have, they make their own pop filter, that's like nice and small. Most of these pop filters are like pantyhose over like a car tire. And they're just massive. My mind is is huge. And they actually want to know something really funny. When we were broke college students, like freshmen in college, we want to do recordings, we made our own pop filters out of sewing hoops, and pantyhose. That's exactly what we did. There you go. Yeah. So the NC says basically exactly what it is. Yeah, I've been trying to buy another one of these. It's hard because from Canada and you run the risk of getting absolutely nailed with duties when it comes into Canada. Luckily I didn't get any when I when I bought my first one. But the pop filters are amazing, but they've got it right now for 369 bucks. You get the mic cable, the pop filter and the shock mount for 369 bucks. Its regular 606 so they have actually has some legit deals there. I know Sweetwater is good as needed. I often will buy stuff at long and McQuade they have a lot of a lot of good, good equipment.
+
+59
+00:31:45,810 --> 00:32:09,480
+Scott Tolinski: We water sends you candy in the box too. So if you really short on candy, you will get some with your Sweetwater I order a lot of stuff from Sweetwater because I just always have they've been real good good to me as a customer in terms of customer service and stuff. So I usually order from Sweetwater just because I've been ordering from them since 2004. So for a very long time, at this point. Big fan, what else? Are
+
+60
+00:32:09,480 --> 00:32:10,650
+Unknown: you a big fan of Scott?
+
+61
+00:32:10,740 --> 00:33:16,770
+Scott Tolinski: Oh, I'm a big fan of video recording, like Log Rocket does. And Log Rocket Records a video of your users while they're making your site break? Because let's face it, we all write code that can introduce bugs occasionally. And the worst part about trying to solve a bug is getting users to give you the correct information, hey, my thing broke. Okay, how did it break? What browser are you using? What did you do to break it? And how can I fix it? Well, Log Rocket answers all of those questions for you by giving you a session replay, which is a play by play of what happened when the user clicked it the follow on video that you can scrub, get the network requests, get the dev tools, get the Redux store all that stuff. It's amazing. One of the services that you've got to try, especially if you're producing software that people are using, so head on over to Log rocket.com forward slash syntax, and you will get 14 days for free. A big fan of this service. So check them out. Okay, so let's get into our editing process. Now. Editing is something that I used to spend a ton of time on. And now I have somebody else doing it for me. But I'm interested to hear what your editing process is considering I think we're on different ends of the spectrum here.
+
+62
+00:33:16,920 --> 00:35:05,690
+Wes Bos: Yeah, my editing process is pretty simple. So the way it works is I have a set video that I want to record. And usually that's somewhere between five minutes and 20 minutes. And I know exactly what it is I wish to accomplish in that video, I usually have the code up in in one of my other screen so I can sort of reference it. And then I'll record the entire thing. And this is a little bit controversial, but I edit it out right after I have recorded it. So I'll finish that 15 minutes of recording. And then I'll go through the entire thing, I'll chop out the spots that I don't want to put in, I'll often slow up or sorry, speed up slow typing. So you don't want to like watch me type in something for, I don't know, for like 20 seconds. So I'll try to like speed that up a little, especially if it's something that like, if it's a crucial to the actual tutorial, I won't speed that up, because you have to type that yourself as well. But if it's something really simple, like I'm typing a sentence, or I'm just like uploading a uploading an image, I like that I'll speed that up now just so that it keeps people engaged. I'll edit out some of my goof ups, although I do leave a lot of them in because I've heard from people that that's the part they like the best where you goofed up, then you have to debug it. And then they see my process for actually debugging what had happened. And then the reason why I edit it right after is that is because I'm in the headspace of what I just did. So I know exactly what I need to edit out. And then also sometimes I'll just be like, ah, I just spent half an hour on that. And it sucks. It's not very good. I was sort of like, falling over myself a couple times. I'll just scrap the entire thing and do it. Again. And and that's good, because I think that for me at least that gives me a better end product.
+
+63
+00:35:06,000 --> 00:35:17,690
+Scott Tolinski: It's only you sort of just know, like, I know that like very much when I'm recording things. Like, yeah, I know this one is not it. This is this, ain't it? Chief? Did this.
+
+64
+00:35:17,730 --> 00:35:18,810
+Wes Bos: Yeah.
+
+65
+00:35:19,830 --> 00:35:29,550
+Scott Tolinski: I know very, very early on. Like, if it's like 20 minutes in, and I'm not halfway through with the recording. I'm just like, Oh, this is a disaster. I will just scrap it right then in there.
+
+66
+00:35:29,580 --> 00:35:48,330
+Wes Bos: Yep, absolutely. Sometimes I just need to like go for lunch, or whatever, and then come back to it. Because energy is a huge thing for me. And when I'm recording is that if I'm just not into it, or I've been doing it for too long, like, recording is exhausting. Yeah. So if if I'm just like not feeling it, I'll just scrap it and come back when I'm feeling my energy's a little higher.
+
+67
+00:35:48,600 --> 00:35:50,210
+Scott Tolinski: Yeah, same here. So
+
+68
+00:35:50,250 --> 00:35:56,630
+Wes Bos: that's, that's my entire process. It's, it's pretty simple. I like to keep it simple, because I can make more content that way.
+
+69
+00:35:56,940 --> 00:39:48,690
+Scott Tolinski: Yeah, I like that. That's actually how I used to do it. When I was doing level up tutorials, like three videos a night sort of thing, when I was really grinding through it. Now I have product release schedules and things. And I've really changed my process quite a bit. And I've changed it necessarily, because it's the right thing for how I edit, but it's the right thing for getting the content out. So right now I work with a video editor last month. Unfortunately, I didn't get to work with my editor because I recorded 10 videos in the series and had to throw them all away. Because I was like this is redundant, it's redundant from another course I did on level up, I'm not really bringing anything new to the table, it's not really bringing the value that I wanted in this course. And instead of trying to continue push around through that, I just I scrapped 10 videos, and I was like, You know what, instead of starting at video number one, I'm going to start this course that would have been would have been video number 11. And then I can offer way more value essentially for that. So unfortunately, I had to edit it all myself for the first time in a little while, which is not a huge deal. I like editing. But I usually work with a video editor. His name is Tim Tim Smith, he's the coolest Tim is great. I just dropped off my videos, I give it to them before the 15th of each month. And he has informed me by the end of the month, he does a great job, he does a really super good job. And as you know, he never misses a deadline or anything. So Tim is the man. And he's really saved my butt lately, allowing me to focus on some other stuff. But when I do edit, I use DaVinci Resolve version 16. Like I mentioned before, when I record I pause a lot. And I don't pause a lot. But I pause to get a breath to think about what I'm saying next. And I know when I'm looking at my audio forms in the in the video anytime there's long pauses where I'm not talking, that's a spot for me to cut. So I zoom way out. And I have some shortcuts, which is just a C, and then z and x. And so C will cut like a blade through it. And z will trim from the back to the front. And x will turn from the front to the back. And so I just leave my fingers on C x and z. And I just use the cursor to click here's a here's a spot, cut, trim up, cut, trim up, cut, trim out and I remove all of the blank space. So once the blank space is removed, that's the only time they start to watch the video. So I remove all the blank space, then I watched the video and then I'll find goof ups and cut them out. I try to find arms and cut them out. But that's tough to do. It's tough to cut out all of the arms and it's really only if it's a problem where I'm like clearly being like, okay, yeah, I think about this. So I you know, I do do my best to cut that stuff out. But it's hard. It's hard to get it off. And I really love Da Vinci resolve because it's free one, but it has the best features in my mind between premiere and Final Cut Pro. I have a background in professional video editing. I used to edit videos for Guitar World Magazine, future music magazine, guitar, one magazine. So I have a background in professional video editing. And I always use Final Cut. And then I use premiere premiere has major issues with variable framerate, which all screen recording software pretty much produces variable frame rates. And it's not like it's funny because you go on the premiere forums and be like, how do I deal with variable frame rates? And you know, the professionals they're like, why are you having variable frame rates? Like Well, okay, what's this a screen recording software? It's not my choice. Yeah, because your computer needs to like adjust while you're recording, right? If you were stuck at a solid framerate, it might overwhelm itself or something I suppose. So DaVinci Resolve basically has the features in the interface or something like premiere without having any of the weird little bugs and you don't have to have an Adobe subscription, which I you know, I'm not a huge fan of myself. So DaVinci Resolve is where it's at. I'm a big, big fan.
+
+70
+00:39:48,710 --> 00:40:06,090
+Wes Bos: I like what you said about the like the just being quiet for a bit. I use that as well because you can edit so much faster when you can just visualize the audio wavelength. Yeah, and you can Cut out. Or I'll do like a, I know you've done your screech in the past or do or something like that.
+
+71
+00:40:06,960 --> 00:41:21,650
+Scott Tolinski: And you can quickly see, like, where the goof up was. And you can edit it just by visually seeing it rather than having to sit there and listen to the entire thing. For those of you who have not heard this story, I had this I had this great idea is a great idea of doing this screech anytime I messed up, and it was like a hideous noise. And I was like, Oh, this is a great idea. until I started working with an editor and a publisher for one of my courses, I'm not gonna disclose who, because I'm not super happy with them. I never made any money off of that course, I put a lot of time into it. And it was like, oh, we're not really gonna pay you anything for it. You get like 5% of your royalties. So I did this screech, which was just totally obnoxious. And I sent off all my videos to the publisher, after they were edited. You know, this is for final. This is for here, listen to these. And we're gonna release this. And so the editor is listening to it. And I get comments back and it's like, everything looks great. But at 555 in this one video, there's a loud scream into the microphone. And I would assume the video editors headphones just shot out of his ears because it was so bad and so loud I listened to it was maybe one of the most embarrassing moments in my professional career.
+
+72
+00:41:21,750 --> 00:41:23,760
+Wes Bos: Ah, that's hilarious.
+
+73
+00:41:23,790 --> 00:41:44,880
+Scott Tolinski: Yeah, one of my biggest, biggest goof ups there. So needless to say, I needed to make a fresh recording of that just like you know, our friends at fresh books. Fresh books gives you awesome cloud accounting software and no screeches. There's not going to be any screams or squeals when you're learning this website, maybe just squeals of joy.
+
+74
+00:41:44,900 --> 00:42:31,670
+Wes Bos: Yes, if you are a small business, if you are a freelancer, just trying to track your invoices, send them out. If you want to send quotes, if you have expenses that you need to input, take a picture of receipt, attach that managing all of that in fresh books, cloud accounting is the way to go. I use it for all of my money coming in all of my money going out. And at the end of the year, when tax time comes, I can just provide a big dump out to my accountant and he has Scott Do not laugh at that he has all of everything that is needed in order to do my taxes, which I absolutely love. So check out fresh books at fresh books calm forward slash syntax, use syntax in the How did you hear about a section? And thanks so much to Freshbooks for sponsoring. Nice, cool.
+
+75
+00:42:31,710 --> 00:42:33,920
+Scott Tolinski: So hosting, how do you host this stuff now,
+
+76
+00:42:34,230 --> 00:45:46,980
+Wes Bos: I've actually gone through a couple of different hosting platforms over the years I initially hosted on Wistia. And Wistia is a sort of like a video host. And they're they're sort of like the MailChimp of video hosting where they're really good at like, doubling down on like capturing emails and things like that. But their bandwidth is just the bandwidth is probably the biggest expense, or was the biggest expense for me. So I stopped using Wistia because the bills were getting massive. And I moved over to using Vimeo because Vimeo has business plans that you can, I think there are a couple hundred bucks, I think I paid three or 400 bucks a year. I think they even have one for 200 bucks a year. And you can use Vimeo and I initially was using the I've told this story before but I wish I initially was just using the video output. They give you like a streaming mp4 where you can use it with your own html5 player. And I had my own custom player and everything. And it was great because it wasn't branded Vimeo it was just my own custom player. But downsides to that is that if somebody was on a slow connection, it wouldn't dumb it down. If somebody was on mobile, it wouldn't resize it for them. And then also I got an email from them that I was using, like three or four terabytes a month. And they said like, Hey, you can't do this. This is too much. And it was somewhere in the somewhere in that. So I said fine, fine, fine. like can I have give me like a month to move this over to the Vimeo player. So I did I moved over to the Vimeo player. The reason I wasn't doing that initially is because there was no way to control playback rate on the Vimeo player initially. And that's a huge thing for tutorial watchers, they want to be able to speed it up. So they finally did land that in the Vimeo player so I was able to move over no sweat. And now I use Vimeo for hosting everything. I use rev.com for captions. So you can hook rev comm right up to captures I also have a script that will upload the captions from GitHub because people will make corrections to the captions on GitHub. And then I just run that script and it will push the captions up to the Vimeo and then my my own course platform is like a kind of a additional controls. It's all built in react and I have just like kind of extra controls that I add like skip ahead 15 seconds, skip back 20 seconds. The volume I want to store locally on the users so that they can, I can sort of keep that as a profile, wide setting, things like that. You say them local storage on the user object. I currently save it in local storage. But it is I'm going through a big rewrite of the player right now. It's not live yet. And that is then moved to the user in the database, just because like it sucks, if you want to watch on your phone, or you want to watch on like your work, you watch it at work, and then you sign in at home. And those things don't don't switch, just little annoyances. It's nicer to sort of put them in there. Oh, also, I use backblaze to provide downloads for my courses. Because some people want to watch them on airplane or offline, something like that. I used to use Amazon s3
+
+77
+00:45:47,010 --> 00:45:48,210
+Unknown: Yes, at that s3, s3,
+
+78
+00:45:48,210 --> 00:45:59,490
+Wes Bos: and it was I would have months where it would be over $1,000 a month just for downloads. And it's I don't even know what it is for backblaze probably under $100 a month for me.
+
+79
+00:45:59,640 --> 00:46:00,810
+Unknown: It's definitely cheaper. Yeah,
+
+80
+00:46:00,840 --> 00:46:08,340
+Wes Bos: yeah, things the cloud storage has gotten so cheap in the last two years, it's unreal. So that's how I provide downloads of my zips,
+
+81
+00:46:08,430 --> 00:46:09,390
+Scott Tolinski: your big zips,
+
+82
+00:46:09,630 --> 00:46:12,240
+Wes Bos: my bigs that we have an entire episode on pig zips.
+
+83
+00:46:13,140 --> 00:47:21,990
+Scott Tolinski: We have an episode on tips. So my process is largely similar. Although I host on YouTube, I am moving to Vimeo for no reason other than I don't necessarily trust YouTube with my entire business, you know, everything is unlisted and brought in through the API. So you know, users can't just head to YouTube and see the stuff that you're paying for and you won't be able to find it. Now, that said, I have this thing I call the import Iser the import, Iser just went through a huge rewrite. And what it does now is I can create a series of it used to be that I had to import it before I did anything, and I would import it from YouTube, and then I could edit it. Now I can actually create the entire series product, the the look of it, all of the facts about it, and then I can click Import just by passing in an ID, and it's going to fetch all the videos and you can see them pop into the import Iser right then and there. Now the import Iser now also has the ability to import from Vimeo. So I'll be moving to Vimeo and I've been paying for it for a little bit. But you know, when you record and you do all this stuff, it's really hard to work on the platform 24 seven, so that's one aspect of the import Iser that needs some work will be coming.
+
+84
+00:47:22,080 --> 00:47:25,020
+Wes Bos: What's this Vimeo? Vimeo, you're talking about?
+
+85
+00:47:25,230 --> 00:47:32,310
+Scott Tolinski: Oh, you say Vimeo, Vimeo, Vimeo, I okay. Mr. Said, video.
+
+86
+00:47:32,970 --> 00:47:45,030
+Wes Bos: No, Canada is wrong about that. I'll stand by that. Same when we're talking about the car as well. We use in in Canada, we use liters per 100 kilometers city No, the worst miles per gallon is better.
+
+87
+00:47:45,540 --> 00:48:31,260
+Scott Tolinski: Yeah, and I host I host my videos on s3 currently, although I also host on the backblaze B to like you do. So it's funny because I have so much of my system that it has like all locked down so that it wasn't like googling certain public, but that API call and all that stuff is set up through Amazon and I just haven't had the chance or the ability to rewrite it. So half of it's funny, when I upload a course I actually upload it to both s3 and v2. But I have the one that's going to be downloaded more often in v2. That way, the most of the downloads are coming from v2 and not s3, but the s3 is there for some of this stuff. So that it just doesn't break my old code. I am moving at all to be to at some point, but it's like, man, just finding the time for those kind of things. It's not it's not worth it.
+
+88
+00:48:31,290 --> 00:48:43,200
+Wes Bos: Yeah, that kind of stuff is like I rather just pay the extra money and keep building stuff. It's hard to when it's working fine. It's really not it's not maybe not that expensive, right? Is it worth it?
+
+89
+00:48:43,290 --> 00:50:13,350
+Scott Tolinski: It's not in since I have it. No, it's not I have my like the majority of my downloads coming from v2. So because of that, the I'm only paying like 100 bucks. And that's three a month, which is really not that much. So that's pretty much it for my my hosting for everything I I've been looking into using a new video player called plier. pl y er. And it's really just it's it's not really new video player, but it's sort of a CSS wrapper over it. But the cool thing is that it it basically themes, both the Vimeo player as well as the YouTube player. So I'll be able to have mixed Vimeo and YouTube content on the site and the user most likely won't notice. So that is going to be something we're working on right now. It also can be branded and look a little bit nicer. So we'll see where that goes. It's obviously something we're working on. But definitely nice little new thing here. But I kind of work on some of these features. We also we save like autoplay and stuff in the user settings, which is in the database, not in local storage, which is why I asked because I was contemplating that decision for a little while. And then I made like a user settings. object. Yeah, that has, you know, whether they're on dark mode or something. So we save autoplay in there, but one major frustration for our users is that they can't save their video speed in there. So I'll be looking to fix You're out how to save the videos. Oh, I mean, I know how to save the video speed. But like, I want it to work with both Vimeo and YouTube. So being able to translate that with the Player, Player, whatever it is, and get that all working.
+
+90
+00:50:13,410 --> 00:50:36,180
+Wes Bos: Yeah, that was a pain for me. Yeah, it's gonna be a pain because people also have like the Chrome extension, the video speed player. So there's like, there's Vimeo, which tries to save the speed. There's me, which tries to save the speed. And then there's this, like, third party Chrome extension. And it was just a headache trying to figure out like, No, mine, mine is the winner.
+
+91
+00:50:36,870 --> 00:51:14,670
+Scott Tolinski: Mine wins. I have. It's funny, because this has been something that's like been totally on my brain lately. My platform checks like user's watches and stuff, it tracks whether or not they've watched a video. So that was like a big thing. I have a timer that starts essentially, when they start playing a video, and then every, like five seconds or something, it checks to see what the progress of the video is like, it checks to see what percentage of way through the video they are. And if they're greater than, like, 93%. I did this just by feel. If they're greater than, like, 93% of the video, then it it submits a user did finish this video,
+
+92
+00:51:14,790 --> 00:51:26,070
+Wes Bos: Mark, I did his exact same thing because people weren't getting all the way to the end. Yeah. And then it would mark it as finished. And they're like, Ah, it's ruining my add that the bar is not checked.
+
+93
+00:51:26,340 --> 00:51:37,830
+Scott Tolinski: Well, I actually had to also help solve that problem. I added a nice little button, like a checkbox. So if you did watch the video, you could just click that checkbox to submit it. Same thing to submit a watch thing. Oh, that's good.
+
+94
+00:51:37,830 --> 00:51:49,260
+Wes Bos: Can I ask a question with the Yeah, if somebody scrubs back to the beginning of the video to rewatch it? Do you unmark it because I currently do that and people complain? I do not unmark it?
+
+95
+00:51:49,380 --> 00:51:53,550
+Scott Tolinski: Well, Mark I need the only way you can unmarked it is by clicking the checkbox checkbox.
+
+96
+00:51:53,580 --> 00:51:59,040
+Wes Bos: Okay, yeah, I need to add that that's I like adding that kind of stuff, though. That's fun stuff to code. Yeah, I
+
+97
+00:51:59,040 --> 00:52:34,650
+Scott Tolinski: also do a check to see if like, so when I get one of those checkboxes, and it were when the user has watched the video, I also run a check to say, Hey, have you watched every single video in the series if there's 23, checkboxes for this series, and there's 23 videos in the series, then mark the series as completed. And so that way I can keep track of if you've watched the series or not all of which this stuff is becoming more relevant now that we're actually using some of these features. We've had these features in the site for a little bit, but they weren't user facing. And now they've become user facing. So we're adding a little bit more features around there.
+
+98
+00:52:34,980 --> 00:52:37,800
+Wes Bos: Beautiful. Anything else about hosting?
+
+99
+00:52:37,890 --> 00:52:40,050
+Unknown: Now? That's it? We got a lot of stuff here.
+
+100
+00:52:40,050 --> 00:54:01,710
+Wes Bos: Yeah, it's, it's kind of a lot of fun stuff. We also have common questions. So with this type of stuff, we all I always get, like, why not do it this way? And I always like to entertain those questions, because maybe I am not doing it the best way. But right, we're just gonna rattle through some of the common questions that I get one of the ones that I get all time is, why not show keyboard shortcuts? So like, people often get distracted watching my videos, because they're like, oh, what theme is that way? Like, how did he do that? How do you move? Like, how did you do the multiple cursors, things like that, I often try to just record a quick video to show the person. But the reason I don't show keyboard key presses in my editor is because they're different on everyone's computer, not everyone's using the same editor, not everyone's using a Mac or whatever, I have my own custom shortcuts enabled that are not the same as what other people have. So it's a very hard thing to do. The exception with that is my, my Sublime Text course because that is all shortcuts. And we are all on the same editor and assuming that you're you have been customized that yourself. But other than that, I don't want to distract from the actual thing, which is learning react or learning node or something like that. Whereas, like, how did you do that cool thing with your keyboard that should be for you to figure out or hopefully, for another course that I record.
+
+101
+00:54:01,830 --> 00:54:27,660
+Scott Tolinski: And I'll call out vocally keyboard shortcuts I have if they're important, yeah. But if if I had them like the screencast or mode on VS code, if I was using that, or via the editor, people would see that I hit Command S maybe 10,000 times every time I make a change. Just I make a change and I just rifle off command as command and as you know a few times like I think people would be really annoyed with my keyboard shortcuts I don't have the self control over those.
+
+102
+00:54:27,900 --> 00:54:35,460
+Wes Bos: Yeah, it's you can you can turn them on and off in VS code and that editor what was the thing the recorder use? Like presenter Oh,
+
+103
+00:54:35,460 --> 00:54:36,660
+Scott Tolinski: screen screen flick?
+
+104
+00:54:36,660 --> 00:54:40,830
+Wes Bos: Yeah, it does record key presses so you can show them at a specific time but yeah,
+
+105
+00:54:40,830 --> 00:54:46,590
+Scott Tolinski: and there's also the the presenter mode or whatever in in VS code does all that stuff. Yeah.
+
+106
+00:54:46,620 --> 00:55:21,090
+Wes Bos: So it's just not something I want to muddy up my my screen with. We went over why not record full screen because it looks dated. The other I guess the other problem is that if I did record full screen I'm on a 32 inch monitor. Hear, I would have to like, like be across the room to be able to see it. Because if I recorded it right on my laptop, it would probably be better. But because I'm recording on my 4k screen, if I did do full screen, everything would be massive, like the letters and be as big as my head. And I can't necessarily do that maybe I should just get like a smaller monitor smaller 4k monitor just for recording.
+
+107
+00:55:21,240 --> 00:55:55,770
+Scott Tolinski: Yeah. So Oh, yeah, we had this other one is People often ask us why we don't use TypeScript for our normal tutorials. And it's really just because you're limiting the audience, you can expect that the people especially beginners, you can't expect that everyone is going to know those shortcuts, or you can't expect that they're going to know TypeScript. So if you do everything in TypeScript, well, then you're sort of inherently limiting your audience. And I would, you know, obviously show TypeScript if it was like a react and TypeScript course, but for just normal react stuff, you know, even if you're using it or whatever, it's gonna limit your audience, it's gonna, you know, hurt the beginners, the people you're actually trying to service here.
+
+108
+00:55:55,860 --> 00:57:27,240
+Wes Bos: Yeah, I get that question a lot. Like, why not use this very specific thing. And it's because you're trying to teach the fundamentals of something you're trying to, to get the ideas across. And the more specific you go, the more sort of like deep end you go, the more people fall off during the course and ask for refunds or are frustrated. And those are never I get lots of frustrated emails where well, not a lot, not lots, the course you get great, you should try them. But every now and then you get like dislike, it's funny often wake up in the morning, and there'll be a string of like six or seven emails, and someone and the last one is just apologizing, because it's just like, you know how hard it is when you're coding and things aren't working? And you're like, this is a crappy ass course, you're like, Oh, actually, I didn't understand how these things work. Yeah. Same thing with like things like testing, my latest advanced react course does have testing in it. But it's like, it adds an extra, like four hours to the entire course. So I can't add that to absolutely every single course. Because a it's not the focus of it and be, it's just going to add too much overhead to things. Because if I put in absolutely everything people ask for the courses would be 40 hours long, and no one would ever actually finish it. So there's this fine line between me trying to teach you something and get it across and including absolutely everything that people are asking for. So I sort of gauge it. If I have people on either side being like, this course is too advanced for me, or this course is not advanced enough for me. I'm sort of going for in the middle of those people.
+
+109
+00:57:27,600 --> 00:57:59,790
+Scott Tolinski: I feel it. Yeah, I mean, I do the same thing. And and I have a course on testing, it's like, Okay, this is the course on testing. If you want to learn testing, watch this course, we cover everything that you would cover in this. And then Okay, let's get back to the other stuff, you can always watch the testing course totally, you know, I, you know, it is important, and I highly recommend you test your components thoroughly. I don't necessarily again, want to take up that time to do that. And, you know, maybe I'll add something like Cyprus or something to the sakes and love in Cyprus. That's a whole nother topic for another episode here.
+
+110
+00:57:59,910 --> 00:58:23,370
+Wes Bos: So you've just probably triggered all of the testing people that think you're gonna get some angry tweets, tweet us at syntax FM, if you're angry about that, yeah. But hopefully you understand how that works. So that's our process for recording editing and hosting our courses. Hopefully, there's a couple nuggets in there that keep you happy and you can apply to your own recording tasty nugget.
+
+111
+00:58:23,670 --> 00:58:36,150
+Scott Tolinski: Alrighty, JC. I like that. I like to do what Landon always says, Landon. When he likes some food. He goes, I eat that. I eat it. We're like he wants a tasty nugget because I eat it.
+
+112
+00:58:36,180 --> 00:59:03,780
+Wes Bos: I eat I eat it. That's great. I love that my my daughter's always say it tastes good. And we've been recently every time I make something I call it dad's famous. So if I if I made something like mac and cheese that's like not the famous mac and cheese. Yeah. And now they've started to ask for it. Can we have dad's famous peanut butter and jam and honey sandwiches? I was like, I didn't even invent that but sure God, that's great.
+
+113
+00:59:03,809 --> 00:59:06,390
+Scott Tolinski: I'm gonna steal that I'm sorry. I'm taking them ripping it right
+
+114
+00:59:08,790 --> 00:59:14,400
+Wes Bos: all right. I think that's it for today. Anything else to add there Scott? I don't know. We got to do we got to do sick pics. Oh, yeah, I
+
+115
+00:59:14,400 --> 01:00:26,940
+Scott Tolinski: got a sick pic. I gotta sit pick on what is it? My sick pic is a show on Netflix. And it's so cool. If you're into cars at all, or to be honest, this the show's called hyperdrive, and it's basically you could think of Ninja Warrior with cars, and they have an obstacle course and you have all these drifters coming from all over the world to do this adrift course in the drift course is awesome. So not only is the production value of the show, unreal, it's like it's fun. The whole thing is fun. They have like my Michael best thing in there from the UFC is one of the hosts and the whole thing is that like super serious, it's very Ninja Warrior esque with the way they do the announcing and stuff and they have to do these. Some of them are extremely technical drift maneuvers, and other ones are just sort of ridiculous like a giant balancing That they have to do with their cars. But the drivers are fantastic. The stories are all fantastic and the the energy, the vibe, everything about the show this style is just super, super good. You will watch this and just be in total of some of these drivers so my show is hyperdrive. It's on Netflix, if you have Netflix, check it out. I watch I don't binge a ton of stuff, but I binged the life out of the series and I really really enjoyed it. So check it out beauty
+
+116
+01:00:27,029 --> 01:01:17,220
+Wes Bos: I am going to this has been the best second pick. I got a sick pick a pic quick. In this is a screwdriver with Piglet in the handle, I have gone through, I don't know tons of screwdrivers, I'm a mess with organizing my tools. And I have all these different screwdrivers where like they put the bits in the handle, and they have like these tiny little screwdrivers and you lose them as they're not the right one. And probably for about four or five years I've been just using these things called the pic quick. And it's a screwdriver where the handle has all of the different bits that you need. In order to take out one of the bits from the handle, you must put take the old one out and push it up. So you push the new one out so you can never lose your bits because the only way to get them out and put the other one back. Oh, that's fun. And I love it. It's just the best design.
+
+117
+01:01:17,279 --> 01:01:23,850
+Scott Tolinski: If only they had that for video games. I always put the video games in the wrong containers when I'm done with them, making everybody angry.
+
+118
+01:01:23,969 --> 01:01:58,440
+Wes Bos: So good. I I refer to this and we have like a bunch of them. But I have one that we called the junk drawer screwdriver where it's like the house screwdriver it doesn't go with my tools doesn't go in the garage. It's just in the house for doing things that need screwdrivers around the house like taking batteries out of a kid's toy or something like that. And it's like 12 bucks you just have it around the house. They have torques specific ones but I just I just buy the red one where they have all just your standard ones I'm not sure if this is a Canadian thing or not because they have Robertson in the all of the ones that I buy. Do you know what robertson is? No, I
+
+119
+01:01:58,440 --> 01:01:59,940
+Scott Tolinski: have no idea what robertson is
+
+120
+01:01:59,969 --> 01:02:05,340
+Wes Bos: in Canada we use a lot of square screws instead of stars. Oh,
+
+121
+01:02:05,369 --> 01:02:06,980
+Scott Tolinski: that's that's called robertson
+
+122
+01:02:07,109 --> 01:02:10,050
+Wes Bos: is called the Robertson head. Yeah. What's the star called?
+
+123
+01:02:10,079 --> 01:02:13,200
+Scott Tolinski: Not the torques one. There's a torques which is sort of a star
+
+124
+01:02:13,229 --> 01:02:17,700
+Unknown: know that the star screwdriver is called I've always just called a star.
+
+125
+01:02:17,759 --> 01:02:21,570
+Scott Tolinski: I've been taking apart a lot of hard drives lately. Oh, yeah. He's the star.
+
+126
+01:02:21,689 --> 01:02:25,500
+Wes Bos: It's called the Philips is the star. Oh,
+
+127
+01:02:25,500 --> 01:02:28,200
+Scott Tolinski: that that doesn't fill up. That's just a four pointer.
+
+128
+01:02:28,229 --> 01:03:01,860
+Wes Bos: That's not a star. Yeah, that's true. It's not really a star x. But yeah, check it out. I love the screwdriver. I have them all over the house in my toolbox because I have thrown all my other ones out well worth the money. For shameless plugs. today. I'm gonna plug all of my courses Wes Bos comm forward slash courses. I am officially back from paternity leave. Yeah, I am. Well on working on my beginner JavaScript course. It's almost done. So you should hear announcement from me in probably a couple weeks. Cool.
+
+129
+01:03:01,920 --> 01:03:53,640
+Scott Tolinski: excited about that. I have a new course on advanced to get to be in Shopify. We build a custom shopping cart. We work with coupons. We put things in local storage. We have persistent shopping carts through Shopify, and even talk a lot about like the post signup or the post, like purchase process and all sorts of stuff. There is like so much there. I've done two series on Shopify and Gatsby. And I like really feel like I feel like there's so much more you could do, because it's just an endless amount of topic. e commerce is hard. We all know e commerce is hard. But if you're looking to build some really cool Gatsby sites using Shopify, check out my new course. Advanced Gatsby in Shopify, it's available along with every other level up tutorials course on level up tutorials.com forward slash Pro, sign up for the year and save 25% off the total price. So thank you so much. And yeah, check it out.
+
+130
+01:03:53,640 --> 01:03:54,240
+Unknown: Also,
+
+131
+01:03:54,240 --> 01:04:01,770
+Scott Tolinski: we have a new course coming out in September, and I'm really excited about it. I'm gonna talk to you more about it next week, but very excited about it. Sweet. Alright, that's
+
+132
+01:04:01,770 --> 01:04:03,930
+Wes Bos: it for today. Thanks for tuning in. And we will catch you
+
+133
+01:04:03,930 --> 01:04:10,680
+Scott Tolinski: on Monday. Oh, guess what we're doing on Monday in the in the the syntax episode. Do we want to give a teaser?
+
+134
+01:04:10,730 --> 01:04:22,350
+Wes Bos: Yeah, the TLD game, the TLD game, we have to guess what a TLD is What country are businesses from how much it costs to register. I think it was hilarious. It went really well. We already recorded it.
+
+135
+01:04:22,380 --> 01:04:39,390
+Scott Tolinski: It was hilarious. I really enjoyed it. It was a lot of fun. So get excited for that. Please head on over to syntax.fm for you full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
