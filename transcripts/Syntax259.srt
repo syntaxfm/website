@@ -1,0 +1,136 @@
+1
+00:00:00,359 --> 00:00:01,350
+Unknown: Monday, Monday,
+
+2
+00:00:01,409 --> 00:00:02,160
+Monday,
+
+3
+00:00:02,219 --> 00:00:07,590
+open wide dev fans yet ready to stuff your face with JavaScript CSS node
+
+4
+00:00:07,590 --> 00:00:08,820
+module, BBQ Tip
+
+5
+00:00:09,059 --> 00:00:21,660
+Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob and Scott Taylor.
+
+6
+00:00:23,610 --> 00:00:24,480
+Totally in ski.
+
+7
+00:00:25,980 --> 00:00:26,910
+Oh, welcome
+
+8
+00:00:26,910 --> 00:03:30,990
+Scott Tolinski: to syntax on this Monday hasty treat, we're gonna be talking about CSS functions. Now, some of these are gonna be ones that you may have heard, some of them may be ones that you have not have heard of. But they're all going to be pretty cool. And we're going to discuss the what's wise and housing, where's that you have with some specific CSS functions. Now there are a ton of these things. So obviously, this is going to be a subset. My name is Scott Lynskey. I'm a developer from Denver, Colorado, and with me, as always, is the West boss. Hey, everybody. Hey, Wes. This episode is sponsored by Log Rocket. Now, CSS is such a visual medium, and it will make sense that your air and exception and handling should be visual as well. And that's very possible using Log Rocket. Now you're going to want to check out Log Rocket Log rocket.com forward slash syntax, where you'll get 14 days for free. Now, what is Log Rocket? Well, it is the visual error and Exception Handling service that allows you to see a session replay. Really pretty cool you can it's a draggable interface that shows you a video of what happened when the bug happened where the user clicked, it gives you your network log, it gives you error logs, it gives you just about everything you'd come to expect from the Chrome Dev Tools being right there, in addition to your Redux store, and all that fun stuff as well. So check out Log Rocket at Log rocket.com, forward slash syntax, thank you Log Rocket for sponsoring. Let's get into some CSS functions, just trying to CSS function here. And I'm pretty into some CSS functions myself, this is an area that's always expanding within CSS. And sometimes we just have our head down in the codes. And we might not even notice all of the changes and improvements that have come to making CSS functions really more useful. So Wes, do you want to get into it and talk about some CSS functions? Yeah, the first one is actually been around for quite a while, but it has pretty good browser support. And that's the ATR function. And this function will allow you to access your attributes from an element. Most commonly you're going to use this with like a data dash attribute. So if you have like a div and you want to apply some additional info to that thing that needs to be available in CSS, then what you can do is you can say like data dash, last name is equal to boss, and then you could access that thing in CSS, most likely, this is going to be using a before or after pseudo element in which you can use content, content, property, and CSS will allow you to put text into an element. And then you can access the data attribute. So a really neat one I saw on Twitter the other day was, if you have like a code tag as a data, dash language of JavaScript, or CSS or whatever, and you're using those as code blocks, you can use the before to add the language of the content in CSS. And that's helpful often when you're working with some generated output that you can't control. But you still need to be able to display something sometimes you can get away with just using them before or after with ATR. Cool, yeah,
+
+9
+00:03:30,990 --> 00:04:06,180
+Unknown: you know it. I don't use a T tr a ton. Remember, somebody was saying like, oh, why wouldn't you just like, what about using a T tr instead of like, classes? Remember, there was like a, I think there was a potluck question that came in a while ago about that? Yeah, that was for selectors, though. Yeah. Oh, you're right. Hmm. Not for accessing them in CSS. Your another thing I've seen them is with tooltips is if you want that was perfect, perfect, perfect use case. There's like not a lot of control over like whether tooltip should go above down left or right. And then also, I'm not sure if it's totally accessible or not. So that's
+
+10
+00:04:06,359 --> 00:05:30,870
+Scott Tolinski: something you kind of have to think about. Yeah, at least it's something you could you could use as a jumping off point. But I think that that is pretty commonly used. Next is going to be hell canal calc is sort of everyone's new favorite CSS property. Because I think once you discover calc, once you discover it, you you really get into it. And it's especially powerful when paired with things like CSS variables, it allows you to calculate two values, ie specifically units of length, right? And you can calculate things like 100% minus three M's, so you can mix and match. That's like one of the coolest thing the hugest use case. Yeah, especially like if you have a fixed header size, and you have like the viewport height, you can calculate the body height by doing you know, 100 Vh minus your fixed header height, especially if that's stored in a variable or something like that. Then you get access to the rest of the content. That is the rest of the browser window. I mean that that, to me is worth the price of entry. Because it's like, well, there's no price of injury, but it's worth the any sort of learning this thing, because, too, oftentimes, we've wanted to be like, give me 100%, of where we currently are. And while Okay, that's not super helpful. So like it doesn't CSS doesn't work in the way that you'd expect it to there. But being able to calculate the browser height with a property minus this, or that is just so incredibly powerful. I love calc, I use it all the time.
+
+11
+00:05:30,960 --> 00:06:03,540
+Wes Bos: Yeah, another really good use case for this is with margin, if you're setting a width of something, and you know how big your margin or your your gaps as well, if you've got grid gaps, or now Flexbox has gaps as well, you can calculate this and have a fixed size margin. So you could say like 100% minus 40, px and Lex guys said you can you can mix and match those things. And this is really helpful for when, like, you scale up something and you you still always want the width of the margin to stay the same and not scale up along with it.
+
+12
+00:06:03,810 --> 00:06:16,740
+Unknown: Yeah, fantastic. Next one we have here is the is function. This one's actually pretty cool. It used to be named matches, but now they've renamed it to is and what this will allow you to do is to select
+
+13
+00:06:16,920 --> 00:07:17,130
+Wes Bos: multiple parent elements and then a single child within it. And what that means is like, how many times have you ever written the code header h1 comma dot header h2, like you want to select all of the h1 h2 h3 h4 h5 through h6, that is inside of a specific element. And if you want to do that, then you you would have to write like the header h1 comma, the header h2 comma or nest with this you can say exactly dot header space colon matches h1, h2 all the way through. And what that will do is it'll say, within this selector, find me all of the following elements and this works for the other way around. You could say if it is the header or the footer, or the sidebar, and then there's a link inside of that. If that's the case, you don't have to say like dot header space, a sidebar space, you can say, header, footer sidebar space a and it's pretty cool to be able to select multiple combinations at any level of your selector.
+
+14
+00:07:17,130 --> 00:07:17,670
+Unknown: Hmm,
+
+15
+00:07:17,670 --> 00:08:13,830
+Scott Tolinski: very interesting. I hadn't seen that before. Next up is going to be some trigonometry. Yeah, how many people love trigonometry, I used to actually like trigonometry in school. I don't know, it's been a long time since I've done any sort of trig. But there's trig functions, and CSS, which can be super useful for those of you doing really interesting things such as sine, cosine, tan, all of the things that you would expect to be from your graphing calculator. Those of you who've used trig in the last few years, anything that is there now one of the ones that I thought are a little bit more maybe useful to me personally, considering not doing any sort of trick, but like, pow, for the power of as well as square root sq. RT to get the square root of something. Again, I'm not going to be using these a ton. But I think they're interesting to know that they even exist, because I guess I didn't know that like sign existed, but not to the point where I would I would think to use it at any given point.
+
+16
+00:08:13,980 --> 00:08:29,400
+Unknown: Yeah, I think suncoast 10 can be used in a lot of animations and CSS. Yeah. Especially to get like looping things. Yeah, I've never used any of these in CSS. And the only I've only used one, I think it was 10 or a 10. in JavaScript. I
+
+17
+00:08:29,400 --> 00:08:45,240
+Wes Bos: think I use sign before that was when I was doing face detection. And I needed to figure out if the eyes were at different levels, I wanted to figure out the tilt of the head. Hmm. Oh, yeah. given two points. What is the angle of the third or something? Yeah,
+
+18
+00:08:45,240 --> 00:08:50,660
+Unknown: look at that. Yeah, that's a that's an actual good use case for something like this. That's cool.
+
+19
+00:08:51,390 --> 00:09:02,400
+Wes Bos: Next one is, is one I've heard quite a lot about, but I've never used it myself. And that's the clamp. I know that it allows you to do specify the min and the max of something. But do you know a little bit more about this Scott.
+
+20
+00:09:02,490 --> 00:10:44,420
+Scott Tolinski: So clamp is interesting in I have been like getting into clamp functions quite a bit due to like animation courses, like I use clamp, not the CSS function clamp, but I use clamp all the time in doing animations when you want to clamp a number. What exactly is clamping? Well clamping is basically when you want an upper and a lower bound of a number, right? You could think of it as like when you have a minimum and a maximum value, and you want it to stay within those bounds. So it can be useful in terms of when you want to scale with the viewport up to a certain spot and down to a certain spot. And then there's also a preferred value, which is the sort of the center value. Okay, so let's take a font size example here. So like, let's say you want the font size to clamp to the lowest possibility of being one rim and the highest possibility of being too random. Right, so you want the font to always stay within that range of one to two reps. And you want the font to prefer to be at a specific size. Now, people often use viewport units for this. So the way you would see this written would be fine size clamp, the first argument would be one RAM, the second argument would be something like 2.5, a vertical width, so 2.5 times the viewport width, maximum being two Rams. So something like this would be useful if you want your font to scale to the size of the viewport, but always sort of remain that same relative size. This stuff so visual, you could think of this, remember, when we were in the past, we would use like fit text?
+
+21
+00:10:44,730 --> 00:10:50,880
+Unknown: Yeah, yeah, were you like scale the size of a piece of text across the width of the parent?
+
+22
+00:10:51,000 --> 00:11:28,500
+Scott Tolinski: Correct. And this could be definitely useful for things like that, as well. Because as the element grows in size, you're going to have the font size, essentially change to be upper and lower bounds of this thing. So it's basically like a fit text use case when you want your text to fit to something. But you can clamp it to the lower bounds and the upper bounds. And this while this example is we're talking about just text right here, clamp is useful in a lot of situations, anytime you want to clamp down a value to a minimum case and a maximum case and you just shrink it down into there.
+
+23
+00:11:28,920 --> 00:11:40,500
+Unknown: That's great. Because like you have min width and max width, if you ever need that for text, or if you ever needed for any other CSS properties, there's not min and max values for that, right seems like clamp we can use for that.
+
+24
+00:11:40,500 --> 00:12:10,200
+Scott Tolinski: Yeah, clamp. To me the like the most flashy thing that you can use it for is fluid typographic right. Like, type. Yeah, that scales. But I would guess there's probably like a ton of other use cases for it that are probably very interesting as well. I haven't used like, I'm typically using clamp within JavaScript myself. So seeing that clamp exists in CSS is going to be one of those things that I think is going to take a little bit of time for me to really explore the should I say upper bounds of where this thing can go.
+
+25
+00:12:10,890 --> 00:13:57,930
+Wes Bos: There you go. Wow, that's great. Next one we have here is min max. And this is part of CSS Grid, when you want a column or a row or a track, as we call them in CSS Grid to kind of like clamp as well, to add a minimum be this big and at a maximum be this big, you can pass it to different values for your lower end. And your higher end, where this ends up actually becoming much more useful is when you want to have a set of equal columns in in grid. And people will often say Oh, three columns, one fr one fr one fr and that will give you three equal columns. And that actually works in some cases, but because the way that fr works in grid, I like to think of fr units as free space, meaning that after each grid column has had it space used, there's a bunch of extra space. And if there's not much in each of your columns, then you have 100% of equal space. And given them each one fr one fr one fr that means that they'll each take up equal columns. But if one of your columns has something that's making it wider, like an image, a video, some text that doesn't wrap, the CSS Grid will first lay it out based on the width of that text or that image that doesn't wrap, and then it will say, Okay, now I fit this thing, there's a bunch of extra space free space, and then it will divide that evenly up between the people that have one fr each. So it doesn't actually make equal columns. So all that to say, if you use minmax, 01 fr, what that will do is it will at a minimum, make them zero, obviously, and at a maximum make them one fr but what that will do is it will make them all exactly the same, regardless of free space that is left out until they all wrap on to one line.
+
+26
+00:13:58,740 --> 00:15:24,540
+Scott Tolinski: It's interesting. I haven't used this a whole lot. But I'm interested in a lot of these things. Because sometimes we get wrapped up into the way that we've just done CSS for so long that you don't even think about like, oh, there's this really new, elegant way to do things in grid is one of those ones that's like when it first came out, it was like Alright, here's the way that you do things in grid, but I'm learning that there's just so many advancements to this stuff that I haven't even thought about a whole lot like this one. Next one is the fit content function. And fit content is really interesting. It's for grid specifically, we were talking about this as sort of like a max width for grid, like a grid template columns, sort of like a max width, but it's not limited to the width dimension. It can be used for columns or for heights. So you could think of it as like a max for a grid row. And you could say that fit to content is going to be a maximum width. Keep in mind that this can be when I say width, it can be their width or height. So if you pass in, let's say 100 pixels to fit content, the grid template column will shrink to the content, but it will max out at the value specified in here. So if you say 100, if you have like two characters in your grid template column is going to shrink to those two characters. But if you have, you know, paragraph, the maximum it's going to be is going to be 100 pixels wide. So this is sort of like a, it will, it will fit the content to this specific parameter.
+
+27
+00:15:24,540 --> 00:16:37,470
+Wes Bos: Beautiful explanation of that that's it's always very hard to explain these such visual things over a podcast. But hopefully, we gave you the gist of it, and you can go check it out yourself. Last one we have here is filter. Now filter is a CSS property. And it comes with a whole bunch of different functions, there's blur, blur is really cool because you can, if you have something that's semi transparent, and you put a blur on it, then you can still overlay tax on top of that and not have that blur. And you can get this kind of cool, blurred background effect that used to not be possible. I remember designers always giving me mock ups. Where go Yeah, the thing would be blurred. And they're like, Huh, sorry, can't really do that in in there, this grayscale, sepia opacity contrast, saturate. Yeah, you can just and stack them together as well where you can apply a bunch of contrast and then add CPOE or vice versa. And it actually does do them in order. I've used this quite a bit on like my generated slide decks, where I just have images in the background of each slide, if you like grayscale it and then crank up the contrast and then have a bunch of opacity. It looks like a really nice background image when it's really just a JPEG that's being
+
+28
+00:16:37,620 --> 00:17:02,820
+Scott Tolinski: crunched by CSS. Oh, that's fun. Yeah, I think blurring is super interesting. We we used saturate forever and ever and ever. I'm on level up tutorials calm. I'm like the very first version that we had all the logos be saturated, and you hover and then they saturate. I mean, that kind of UI function is is really sort of nice. There's also the URL function within filter. Have you ever used URL filter where you can use an SVG filter?
+
+29
+00:17:03,300 --> 00:17:21,780
+Wes Bos: I didn't know about that until we had Sarah swated. Oh, yeah. Cast, she told me about that episode I wasn't on. Yeah, that's the one episode we did without Scott because you were like sick or something. And we already had her queued up. I'm using it, the URL function in my if you go to my beginner JavaScript comm course I've got these
+
+30
+00:17:21,780 --> 00:18:11,460
+Unknown: drips, where the Oh yeah, the pattern above it, the blue pattern drips down onto the div below it. And that's a clip path, I think, no mask, there's a difference between a mask and a clip pass. Yeah, that would be a mask, and then the mask sort of punches it out. And on that you give it a URL of in this case is an SVG. inside of it. There's like the data for how the mask will look and how it will punch it out. So isn't that just an SVG? Maybe it's art. Maybe you're right, I'm referring to where Sarah was telling us how you can attach different filters in SVG. And then you can access those filters in CSS with the URL. I'm thinking what you're what this is using, is it using specifically an SVG as a mask? Yes,
+
+31
+00:18:11,460 --> 00:18:27,480
+Scott Tolinski: sorry. That's what it's doing. And masks are super common in like video and photo editing, right? You like create a mask of a thing to get that transparency layer going. So obviously, if you've used Photoshop to I think masks are extremely common in Photoshop, so
+
+32
+00:18:27,509 --> 00:18:44,940
+Unknown: yeah, yeah. Yeah, it's pretty cool. It's not not what I was thinking about initially. So it has nothing to do with the URL function that you just talked about. But you can store filters in SVG, and then access them via CSS. Oh, it's a good episode. Go back and listen to it.
+
+33
+00:18:47,310 --> 00:19:18,150
+Scott Tolinski: So that is it for these cool CSS functions. And there's a lot of really amazing CSS functions. I want to hear what your most interesting, and just exciting use cases for CSS functions are that maybe we didn't even cover the function at all. Or maybe we covered the function and you have a really cool example of how you can utilize some of this stuff. Again, these are all very visual. So let's get some visual examples. If you follow us on Twitter, we will retweet you some of your cool CSS function examples. I want to see some.
+
+34
+00:19:18,350 --> 00:19:35,090
+Unknown: All right, thanks so much for tuning in. We will catch you on Wednesday. Ace be head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
