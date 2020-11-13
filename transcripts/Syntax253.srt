@@ -36,7 +36,7 @@ Wes Bos: Yeah, there's a couple different types of slow connections, there's slo
 
 10
 00:03:28,110 --> 00:03:51,960
-Scott Tolinski: I never get 1000 though, I usually get like, if I'm wired Ethernet, I'll go like 700, you know, CenturyLink there it Yeah, only 700. And I had to call CenturyLink. And I was like, Listen, I'm not getting the speeds I paid for or I'm paying for me only getting 700. They're just like, okay. So that's great. But it's still better than rather than good for Comcast for the same price. So you know, there's only so much
+Scott Tolinski: I never get 1000 though, I usually get like, if I'm wired Ethernet, I'll go like 700, you know, SentryLink there it Yeah, only 700. And I had to call SentryLink. And I was like, Listen, I'm not getting the speeds I paid for or I'm paying for me only getting 700. They're just like, okay. So that's great. But it's still better than rather than good for Comcast for the same price. So you know, there's only so much
 
 11
 00:03:51,960 --> 00:05:00,830

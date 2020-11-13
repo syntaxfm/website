@@ -28,7 +28,7 @@ Scott Tolinski: ice cream maker, and we're just pulling it pulling the trigger o
 
 8
 00:01:02,909 --> 00:01:12,090
-Wes Bos: Today, we're sponsored by century and fresh books. We'll talk about them partway through the episode. I've always already introduced Scott. But how are you doing today? Scott?
+Wes Bos: Today, we're sponsored by Sentry and fresh books. We'll talk about them partway through the episode. I've always already introduced Scott. But how are you doing today? Scott?
 
 9
 00:01:12,360 --> 00:01:19,140
@@ -232,7 +232,7 @@ Wes Bos: Yeah, that's, that's always very tempting to do that, because it feels 
 
 59
 00:22:31,620 --> 00:23:43,740
-Scott Tolinski: it feels like you're being productive is the best way to describe it. But if you want to actually be productive, and not just feel like you're being productive, you want to make sure you have a good here and Exception Handling tool, then I'm talking about sentry@sentry.io, you're gonna check out century@sentry.io use the coupon code, tasty treat all lowercase all one word, you're gonna get two months for free or century. And let me tell you, this is the perfect type of tool for those of you who do want to get things done, because it really checks all of those boxes of stuff that we're talking about in this episode. By giving you clear actionable items to work on, giving you the code the release the attacks, you can, you can basically really nail down every single issue your site or services, having, and then troubleshoot it, knock it out, market is fixed, do all that stuff. So that way you can keep track of exactly what's happening and have that crystal clear visibility into your application. So check it out@sentry.io coupon code, tasty treat all lowercase o one work. Alright, so this one's really not good for me. This next one is called planning, planning tips. I'm terrible planners, so much so that my wife has had to step in and start planning things for me because she's getting too frustrated with my planning skills. And
+Scott Tolinski: it feels like you're being productive is the best way to describe it. But if you want to actually be productive, and not just feel like you're being productive, you want to make sure you have a good here and Exception Handling tool, then I'm talking about sentry@sentry.io, you're gonna check out Sentry@sentry.io use the coupon code, tasty treat all lowercase all one word, you're gonna get two months for free or Sentry. And let me tell you, this is the perfect type of tool for those of you who do want to get things done, because it really checks all of those boxes of stuff that we're talking about in this episode. By giving you clear actionable items to work on, giving you the code the release the attacks, you can, you can basically really nail down every single issue your site or services, having, and then troubleshoot it, knock it out, market is fixed, do all that stuff. So that way you can keep track of exactly what's happening and have that crystal clear visibility into your application. So check it out@sentry.io coupon code, tasty treat all lowercase o one work. Alright, so this one's really not good for me. This next one is called planning, planning tips. I'm terrible planners, so much so that my wife has had to step in and start planning things for me because she's getting too frustrated with my planning skills. And
 
 60
 00:23:43,950 --> 00:25:28,680

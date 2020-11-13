@@ -12,7 +12,7 @@ development treats out there. strap yourself in and get ready. Here is Scott, sk
 
 4
 00:00:10,560 --> 00:00:42,960
-Wes Bos: to syntax. This is a podcast with the tastiest web development treats out there. Today we've got a real good one for you. We've got Heather Payne, who I'll talk about in just a second, but runs a very popular boot camp and here to talk about boot camps as well as getting a job especially in the current climate that we're in. today. We are sponsored by two awesome companies Sanity, which is a structure content, CMS, and century which is error and exception tracking. So welcome, Heather Payne, thanks so much for coming on.
+Wes Bos: to syntax. This is a podcast with the tastiest web development treats out there. Today we've got a real good one for you. We've got Heather Payne, who I'll talk about in just a second, but runs a very popular boot camp and here to talk about boot camps as well as getting a job especially in the current climate that we're in. today. We are sponsored by two awesome companies Sanity, which is a structure content, CMS, and Sentry which is error and exception tracking. So welcome, Heather Payne, thanks so much for coming on.
 
 5
 00:00:43,259 --> 00:00:46,110
