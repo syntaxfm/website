@@ -1,0 +1,560 @@
+1
+00:00:01,319 --> 00:00:04,590
+Unknown: You're listening to syntax, the podcast with the tastiest web
+
+2
+00:00:04,590 --> 00:00:10,530
+development treats out there, strap yourself in and get ready to live ski and West boss.
+
+3
+00:00:10,559 --> 00:01:19,950
+Wes Bos: Welcome to syntax. This is the podcast with the tastiest web development treats. We have got a banger show for you today about working from home. And don't turn it off just jack because I know everybody's given tips on how to work from home. But we're going to attempt to give you our tips as to like how do you make the most of what's going on right now, a lot of people are working from home, a lot of people are working from home with their significant other, they're in a different space, you're not as productive. There's a whole lot going on in the world are a little bit distracted. You may be you have kids, maybe you have lots of kids at home that needs to be taken care of but and you and your significant other both have jobs to do at the same time. So it's just this like really weird area. And we're just going to try to give our thoughts and we reached out to the twittersphere for their own thoughts as well. So like how do you navigate this troublesome time? And do your best i think that's that's really a what we can do right now is do your best. today. We're sponsored by dot tech domain names and Prismic will talk about them partway through the episode with me as always is Mr. Work From Home, Scott to lidsky. How you doing today? Scott?
+
+4
+00:01:20,069 --> 00:02:00,060
+Scott Tolinski: Hey, yeah, do good. Doing good? Well, I mean, you know, given the current situation and doing good, and, you know, I think it's, uh, I don't I don't want to bump people too much out about any of this stuff, because everybody's already bummed out enough about it. So yeah, you know, I think we'll, we'll try to cover this to the extent where it's going to be helpful without trying to bring you down or something like that, because that's really what's important. Here, you're getting enough bummer news from elsewhere. So we'll try to keep it all productive, positive and all that stuff. And yeah, so in that regard, I'm doing good. I'm sipping on a tea. I'm working on some code. I have 14 failed just tests this morning. So you know, and that's, that's where I'm going to be at.
+
+5
+00:02:01,740 --> 00:03:27,840
+Wes Bos: That's good. That's good. All right. So let's get into it. We've got some a bunch of different topics here, but your space, your routine, your focus, your your self care, and then we've got a big, big section on like, how do you even possibly slice up your day if you have a partner? And kids Yeah, where like, you just you just can't possibly both or be working at the exact same time because kids need to be watched and yelled at and all that sort of thing. So let's start off with sort of the the easiest, I think the easiest wins you can have when you when you're working from home is like what does your space look like? How can you make the space that you are sitting in are standing in or whatever, as productive as possible, so that like you sort of set yourself up for success because like I know myself if I tried to do a bunch of work just sitting on the couch or something like that, I'm not nearly as in the zone as I could possibly be is if I'm sitting at my desk and even when I'm gone for like a trip or something and I come back and I just plug in my laptop Toma monitors and everything I just get the sense of like, Ha like this is where I meant to be and everything is much easier because I'm properly set up for that. So like what are the things you need to properly set up a sort of a makeshift This is not your Instagram desk boy wanting thousand dollar setup. This is you've got a table and a rickety chair. How do you make the best of it?
+
+6
+00:03:28,169 --> 00:03:45,210
+Scott Tolinski: So here's what you need less you need. You need some cool pictures hung up on the wall behind you. Maybe some of those sound foams. Sound observing foams RGB some decent lighting, you need some RGB, you need a keyboard that looks like an alien mothership. Yeah, no
+
+7
+00:03:45,210 --> 00:03:46,130
+Wes Bos: sponsored,
+
+8
+00:03:46,169 --> 00:04:50,220
+Scott Tolinski: hashtag sponsored. Yeah, no, what you really need is, I mean, I like that you said set yourself up for success. Because what you really need is a space that does set you up for success. And in that regards, it's a space that can be yours feel comfortable and feel like a workspace like what is your workspace at your office feel like? I know some Open Open Office workspace plans are not the most conducive. And maybe that's what you're like at work. But what does your your zone feel like? Where do you feel like you're in the zone working and maybe that's a good idea to start with for your your desk space. To me personally, it all starts with being able to shut the door. And if you don't have a door or an office to shut, put on some really good noise cancelling headphones, getting yourself in that sort of on oral not oral but oral with the a space is really important for me personally, to just have this sort of inner focus zone time where I'm not being influenced by the dog barking or Mickey Mouse on TV or whatever.
+
+9
+00:04:50,220 --> 00:05:43,260
+Wes Bos: Yeah, and I honestly quite think so we're just to give you some some idea here. We're recording this on March 24. And I'll probably be released two weeks. From now, so the world might have changed a lot in the next two weeks. But as I'm looking at it right now, it looks like people are going to be working from home for at least, I would say probably three or four more months. So in some cases, your your employer will allow you to spend a little bit of money on investing on some stuff. Even if it's just you, I would probably spend a little bit of money and look for some sort of room dividers, I know, you can either get just like, even just the old twin mattress or something like that, where you can just put this thing up and give you a little bit of spaces. I know a lot of people don't have a dedicated room that we can go to especially I'm thinking of like friends that live in like bachelor apartments in New York, my wife, she doesn't have her own office.
+
+10
+00:05:43,260 --> 00:05:51,660
+Scott Tolinski: I mean, I have an office at our house because I work here 24 seven, but she's working from home right now she doesn't have an office. So, you know, what does that space look like?
+
+11
+00:05:51,960 --> 00:06:39,150
+Wes Bos: Yeah, so some sort of room divider, you can get these phone ones, or you can even just like those acoustic panels that they put up on the on the side of a gym, it's sort of hard to buy secondhand stuff right now, because people on like, my immediate thought would be like, just go on Facebook marketplace, find someone who got a bunch of OLED panels from a 70s office and, and throw that out just for the time being but like even then that's that's a little bit dry, you're gonna have to find something, some sort of thing online or in the cottage, what I've done is I've just, we have these really heavy wool blankets, I've just hung a couple of those up around me. And that just dampens all of the sound and not all of it, but it gives it dampens enough that you're in a little bit of a different mindset.
+
+12
+00:06:39,450 --> 00:07:10,740
+Scott Tolinski: And they make like sound deadening blankets for that as well. If you're like looking to shell out cash, which I know, most people probably aren't. But if you have like extra money, or your company is giving you money, I know I've heard about that some companies are giving their employees some money to outfit their work from home setup so that they're more productive. And maybe that's something to look into is sound deadening blankets or dividers or some sort of thing to give your your space a defined feeling. So it is your focus of space when you step in there.
+
+13
+00:07:11,040 --> 00:07:24,570
+Wes Bos: Yeah, other just like actual tips I have there is things that work well to hold up blankets are if you go to Home Depot, whatever they have these just like clamps like hand clamps that are spring loaded.
+
+14
+00:07:24,690 --> 00:07:27,060
+Scott Tolinski: No Yeah, I never thought about doing that. And heavy
+
+15
+00:07:27,060 --> 00:07:44,820
+Wes Bos: duty may heavy duty magnets I've bought off of Amazon before just like we in our cottage we have like spaces where there's no blinds, and we just have because if a kid needs to sleep in there, then we just throw up a tea towel or something and then we just use magnets to to keep it up over there.
+
+16
+00:07:45,150 --> 00:07:47,700
+Scott Tolinski: How do you attach the magnets to the wall and to the blanket,
+
+17
+00:07:48,020 --> 00:08:36,529
+Wes Bos: you have there's a couple different options. So if there is something metal, then the magnets are a good use case. You can also buy ferrous plates. So what does that mean? It means a piece of steel that is magnetic. Unfortunately, washers aren't ferrous, so you can't just buy some washers and stick them to the wall with to a tape or something like that. So you'd have to find something that is magnetic enough. Otherwise, if you've got even just like a piece of trim around a window or something like that, those clamps work pretty well in my use case because he kind of want to go something semi permanent. I wouldn't even be all that scared of just drilling into the ceiling or the wall. Yeah, to do something. Because if we're gonna be at this for a couple months, and it's not a big, big deal to patch a wall when things get back to normal.
+
+18
+00:08:36,799 --> 00:08:51,649
+Scott Tolinski: Yeah, and I agree and that's that's sort of where I'm looking at it. But then again, my space is definitely more of a permanent space. I am interested in these magnets and clamps maybe you could throw a link in the show notes to let people know exactly what you're talking about that might be might be super useful.
+
+19
+00:08:51,799 --> 00:09:17,029
+Wes Bos: Yeah, they're just called super strong neo dimmitt neo denee dmem they're called fishing magnets. Which is kind of fun because there's this whole genre of YouTubers that tie a very powerful magnet to a string and throw it off of a bridge or something like that. I found a murder weapon or shares like a Ford Pinto that come up
+
+20
+00:09:17,100 --> 00:09:23,029
+Scott Tolinski: these damage your computer or something? I'm sure they could but to what did like I guess they're they're not that
+
+21
+00:09:23,029 --> 00:09:38,460
+Wes Bos: well it like don't get the like, like the thousand pound one that like will pull a car. Just get these. I'm just looking at the ones that I bought. So I got a six pack of 40 kilogram that's 85 pounds. Okay, I
+
+22
+00:09:38,460 --> 00:09:41,190
+Scott Tolinski: was gonna say you got to get that freedom muted there. They're
+
+23
+00:09:41,190 --> 00:09:43,279
+Wes Bos: about the size of a loony which
+
+24
+00:09:44,419 --> 00:09:58,950
+Scott Tolinski: I have in my in my drawer here so yes, I'm really do yeah, I spent some time in Canada being being a Michigander for most of my life. It was a common practice for us to head up to Windsor or someplace around there. So
+
+25
+00:09:59,029 --> 00:10:03,960
+Wes Bos: just getting a little late. Any game when they had they had to needs to when you went there, right? Oh, yeah.
+
+26
+00:10:04,159 --> 00:10:12,390
+Scott Tolinski: Tunis? Yeah, yeah, Looney Tunes. And like I learned at the bar you got to ask for like a blue not like a Labatt blue. Like, can I get a blue?
+
+27
+00:10:12,480 --> 00:10:13,260
+Wes Bos: Oh really?
+
+28
+00:10:13,440 --> 00:10:20,299
+Scott Tolinski: Yeah, they like there. I was like, and they were like, What are you talking about? It was in Grand bend.
+
+29
+00:10:20,610 --> 00:10:29,340
+Wes Bos: Oh, yeah. Oh yeah, I know about that. Yeah, that seems like an area of Canada. That would drink a lot of blue. Yeah, yeah. Did you get the blue flu forever? No, I
+
+30
+00:10:29,340 --> 00:10:29,880
+Unknown: did not get
+
+31
+00:10:31,230 --> 00:10:36,840
+Wes Bos: a flu is in university and like, Don't drink too much blue. You're gonna get the blue flu.
+
+32
+00:10:36,870 --> 00:10:38,899
+Scott Tolinski: See? Yeah, that's hilarious. Yeah.
+
+33
+00:10:41,820 --> 00:10:58,140
+Wes Bos: Anyways, what else do you need for your space? keyboard monitor. Just some sort of external keyboard? I am. I hate hunching over my laptop. I know Scott you full time drive on your laptop. Is that true? Nope. Oh, you know you've got an external keyboard. Yeah, you sick pick that one.
+
+34
+00:10:58,320 --> 00:12:28,649
+Scott Tolinski: I got an external keyboard and I prefer the giant Mac trackpad is my go to for a mouse. I don't like mice. Really? I don't know why. And a lot of people really like their their mice there. But you can have the trackpad for me. It's always been the golden because I love all my gestures. I love. Gotta have my gestures. Man. I'm so used to it. So even when I get a desktop computer, I always opt for the external trackpad. Oh, yeah. I have the MX Master two, which I hilariously bought. Because it was on sale and did not realize it was on sale, because they're releasing the three. Oh, I'm just looking like that. The frustrating thing about everybody working with a home is everything is sold out like the Elgato cam link is totally sold out everywhere. Really. A lot of like audio cables are all sold out right now. The MX Master three sold out looks like the two is still available, which is good. For those of you don't know the Elgato cam link is this neat little thing that has a USB on one end and an HDMI in the other. And as long as your DSLR or mirrorless, or high end camera supports a no output, HDMI output like a no display output as in, there's no crap on the display, then you can use your DSLR, mirrorless, whatever, as a webcam. So if you ever see anybody with a super high resolution webcam, that's what we're doing. I record all of my videos through the Elgato cam link. It's a really cool device if you have a nice camera like that.
+
+35
+00:12:29,010 --> 00:13:26,549
+Wes Bos: Yeah, it's it's I just got one recently and it is super cool. Yeah, it's such a step up like like, I'm not saying go out and buy this. But if you have it, you can't even buy it now. But if you do have a nice SLR like there's something about meeting with someone who has good video and audio that just makes you feel like you're in the room like Scott and I are recording this podcast, a lot of people don't even know that we're do this over zoom. So yeah, that's Sunday. Like it's the worst. When you talk to people it's like echoey, and their audio is awful. And their their video is awful. There's just like small thing like maybe like what are some good things that you can do to make good audio and video as you're talking to people from home. But one of the the biggest cheats I have is just put a T shirt underneath your keyboard. So it doesn't sound like your bow bow bow bow bow bow bow bow, when you're, you're talking over the thing, because you always had to tell people to mute themselves. So that's an easy one, you probably have a T shirt.
+
+36
+00:13:26,880 --> 00:13:29,159
+Scott Tolinski: I Yeah, that's a good idea. I don't do that. So
+
+37
+00:13:29,580 --> 00:13:49,890
+Wes Bos: I did it. When I, when I initially started doing video recording, I only I only had like a tiny little tripod to record myself and every vibration from my typing would follow its way back up back up into the microphone. Hmm. And just simply putting a T shirt underneath the keyboard absorbed all of those sounds interesting. So
+
+38
+00:13:49,890 --> 00:14:37,350
+Scott Tolinski: my keyboard, by the way, is the key kran k one. It's a wireless keyboard, it's semi it's a mechanical keyboard. But this got these really low profile mechanical switches and it feels much more like typing on the Mac laptop than it does a mechanical keyboard. I really really disliked this keyboard when I first bought it because it triggered key presses when you just rested your fingers on it. And they've since come out with like a third iteration of this one. And it is awesome now so I'm a huge fan of this keyboard now so if you're looking for something like that, that feels a little bit more like the Mac keyboard, check it out. It's the the key Chrono k one and it has a fancy le DS that change all the time. So you can look like Instagram, desk person,
+
+39
+00:14:37,890 --> 00:14:44,610
+Wes Bos: desk boy. Um, what else we have your external monitors, obviously super helpful as well.
+
+40
+00:14:44,610 --> 00:14:46,140
+Scott Tolinski: super helpful.
+
+41
+00:14:46,200 --> 00:15:11,130
+Wes Bos: You've got one you can throw together and just raising up your laptop on even just a set of books, something like that. So it's just at a bit of a higher level that's going to prevent any fatigue that you have in may seem silly but if you're going to be spending 468 hours a day on this thing, make sure that you have good ergonomics is you don't want to come out of this with a RSI injury or something like that.
+
+42
+00:15:11,399 --> 00:15:12,870
+Scott Tolinski: What is RSI stands for
+
+43
+00:15:13,020 --> 00:15:17,760
+Wes Bos: repetitive stress injury RSI injury, that's like ATM machine.
+
+44
+00:15:18,029 --> 00:15:51,539
+Scott Tolinski: Yeah, ATM machine, right, I got carpal tunnel from breaking. Like, there's so much repeated stress on your wrist, I got carpal tunnel, and I had to wear those like 90s rollerblading wrist guards for a little while, while my wrist healed. And it was a really huge bummer because the trackpad really aggravated. And I really loved using my trackpad, so I had to go to believe it or not a Wakeham tablet, or wake up however, you like to say it was the most ergonomic for me, when I had carpal tunnel, it worked really well. But uh, luckily, those kind of injuries can heal themselves if you if you let them. So
+
+45
+00:15:52,169 --> 00:16:19,740
+Wes Bos: a lasting tip we have here for space is don't work from your bed in your couch. It's very tempting, especially if it's like, oh, I'm working from home. But there's nothing, especially for me nothing less motivating than sitting on your bed. You're also mixing up spaces. Yes, which is not, we're all trapped inside right now. So if your bed is where you work, but it's also where you sleep at night, and you're just you're just mixing up all the spaces. And that's not good for your health overall.
+
+46
+00:16:19,860 --> 00:17:48,150
+Scott Tolinski: Yeah, it's not good specifically for your sleep, if you start working in your bed, because it trains your brain to say, this is the place for work. And then when you go to lay down for sleep, your brains still thinking that it's in. Well, this is a workspace. So you know, yeah, definitely something to think about. So, next section here we have is on our routines, which are also very important because you know, you have a routine when you go to work, you wake up you do this, you do that you get ready, you go to work, and then you come home you Do you know your normal stuff. But now that we're we're working from home, it's really easy to say, hey, screw this routine. I'm working from home, I'm gonna sleep in, I'm gonna do this, do that whatever. Well, I don't want to say that our routine hasn't changed, because it's certainly changed. And we have been waking up later. But luckily, that's because Landon has been sleeping in super light for some reason. So if you can get it, yeah, well, we can get it as a new parent. So we're definitely pushing it a little bit there in terms of our normal wake up time. We're not waking up at, you know, six, 630, whatever. And so I think the most important thing is to at least have some sort of a semblance of a routine, specifically for yourself care. And it's funny that we talked about this in the previous episode with Courtney, where you say like, you know, really, fixing yourself up shaving can do wonders. And as I say this, I had to put on a hat because my hair looked crazy. I have the worst scraggly beard ever right now. I am not following this. I
+
+47
+00:17:48,150 --> 00:17:53,910
+Wes Bos: shaved after Courtney told us to shave on the last episode. I'm nicely shaving. Yeah,
+
+48
+00:17:53,969 --> 00:18:15,830
+Scott Tolinski: I think she would prefer if I would, too. So, you know, I need to step up in that regard. For me, it has been difficult. And certainly with my sort of situation, as things go and things get a little bit more overwhelming. That's one of the first things to go for me. And it really makes a negative impact in my life. So I do need to add this to my routine. And
+
+49
+00:18:16,070 --> 00:18:46,100
+Wes Bos: by the way, speaking of this is somewhat unrelated. But somebody on Twitter heard that I was having trouble flossing, he sent me this big message about how the mouth is the gateway to disease and all this stuff. Oh, and it worked. I'm shook. So I'm shook Scared Straight. And he's like, he's like, honestly, he's like, he's like the I think he said the apps never worked for him. But like, knowing why you should floss is what worked for him. And I was like, Oh, that makes a lot of sense. And I've been been on my game.
+
+50
+00:18:46,340 --> 00:18:56,760
+Scott Tolinski: Yeah, I think Courtney told me something about like, in it, like extending your life by like, 10 years or something. And I was just like, Oh, I want to die. So yeah, that's when I started flossing.
+
+51
+00:18:57,800 --> 00:19:42,390
+Wes Bos: I'm gonna have a great smile and be 120. Yeah. All right. Yeah. Next up, we have here is clear start and stop times, we'll talk about this a little bit more, because start and stop means they'll stuff a little bit differently right now for a lot of people. But even if that's you're working five to 10, or five 5am to 11, or you're working three hours in the morning and three hours in the evening, just to get your time in just being clear with those times where you can look, I asked on Twitter, like what are your tips for making this happen and a bunch of people just sent me a photo of their whiteboard at their house where they clearly had every hour nice and planned out. And that way, work doesn't bleed into family life and vice versa.
+
+52
+00:19:42,860 --> 00:20:31,310
+Scott Tolinski: Yeah, that is important to keep those boundaries. And lastly, we have taking breaks it's just so important to take breaks, take breaks, go for a walk. I know that some places are in like stay at home mode, but I'm pretty sure all of those stay at home modes allow you to take over Walk around your neighborhood. Unfortunately, everybody since everybody is at home, in our neighborhood, I don't know what it's like where everybody else lives. But in our neighborhood, everybody has say, Oh, I can't go anywhere. So I guess I'm going to take my dog for a walk and and what you see is you end up getting this experience where you see somebody on the next block, and then you got to make a try. All right, I'm turning here. And so our walks are no longer linear down one line down another line. We're just, yeah, it's totally walk Pac Man. We're just avoiding
+
+53
+00:20:31,310 --> 00:21:03,390
+Wes Bos: people at all costs. Oh, that's great. We should also say like, we understand the the privilege that we have from having a job, and being able to work from home, like I asked for tips on Twitter, I got a couple angry people being like you're looking at a job. And also like, yes, we understand that. But we also understand that there are a lot of people who will likely get to keep their jobs through this and are trying to navigate through working from home. And that's what this is. That's what this episode is for.
+
+54
+00:21:03,720 --> 00:21:41,700
+Scott Tolinski: Absolutely. And if you are working from home, right now, it might be a good time to pick up a little side project or build something that could help your your resume out help your your skills, grow any of those things, now is a good time to sharpen those skills. And if you're going to sharpen those skills, you got to have someplace to host your domains, any projects that you're working on, and what better way to host them than on a dot tech domain to let everybody know that your domain is well, tech related. I know, West recently used the uses what was the the URL uses dot tech
+
+55
+00:21:41,760 --> 00:21:42,480
+Wes Bos: uses dot
+
+56
+00:21:42,480 --> 00:22:54,150
+Scott Tolinski: tech, such a good domain. West recently did this uses dot tech website which shows us links to what all sorts of web developers are using and are seen. And this is like the perfect use case for this kind of domain. And honestly, if I were to see this site, let's say I'm a hiring manager, right? And somebody says I'm looking for a developer to do a react gig and somebody sent me uses that tech and says, Hey, I made this as a fun little side project, you just did this goofing around, I would say, holy cow, you're good. Let me hire you. Let's talk about this. Because this looks great. It feels great. It functions great. And not to mention, it's on a dot tech domain. So if you need a dot tech domain, you're going to want to head to go dot .TECH forward slash syntax 2020. If you want to click that link, we'll have the link in the show notes. The description of this episode, you can use the coupon code is syntax 2020 and get 90. That's right. 90% off of a one five or 10 year domain get 90% off a 10 year domain. That's crazy. So head to go dot tech forward slash syntax 2020. Check it out.
+
+57
+00:22:54,150 --> 00:23:21,000
+Wes Bos: Yes, I'm actually kind of excited to see what projects come out of this. Yeah, certainly, it's hard to work from home. But there's also like a lot of after work is done. You might have a bunch of extra time on your hands, depending on your situation. And it's no better time to to do that side project you've always been thinking about. So grab a dot tech domain name for it. Let us know what you've been working on Twitter syntax FM as well.
+
+58
+00:23:21,180 --> 00:23:32,400
+Scott Tolinski: Yeah, we'll share it out. By the way, Wes, I'm looking at this piece of tech. One thing I'm just noticing on this now that I didn't notice before is your very subtle, non blurry drop shadows on these little boxes.
+
+59
+00:23:32,700 --> 00:23:39,060
+Wes Bos: Ah, thank you. Yeah, very, very subtle. You have to have a very expensive monitor to be able to see it.
+
+60
+00:23:39,570 --> 00:23:41,940
+Scott Tolinski: Yeah, right. No, not passing contrast thing. So
+
+61
+00:23:42,330 --> 00:23:53,820
+Wes Bos: yeah, you know what, that that site? There's so many people on it now that the try filter for someone that is like JavaScript or developer? Like try filter first, something that has a lot of people in it? 266
+
+62
+00:23:53,850 --> 00:24:03,000
+Scott Tolinski: Yeah, JavaScript. Yeah. Feel the lag? Oh, it didn't like me. No, it must be that 32 gigs of memory. I'm rockin my CPU.
+
+63
+00:24:03,480 --> 00:24:05,790
+Wes Bos: There's some sort of issue I'm getting No,
+
+64
+00:24:06,000 --> 00:24:08,910
+Scott Tolinski: man, I'm clicking around, oh, I can click and click and no lag.
+
+65
+00:24:08,970 --> 00:24:34,410
+Wes Bos: I like I was running rack dev tools on it. And I was getting like 200 milliseconds of lag for painting it. And I think it's because of how many people are on the website. So I thought that would make a good video or something like that, figuring out what's wrong and how we can fix it like maybe virtual scrolling or something like that. Yeah, virtualization is probably going to be your key. Yeah, that's kind
+
+66
+00:24:34,410 --> 00:24:57,690
+Scott Tolinski: of cool. Like like obviously wasn't a problem when we first did it. But now there's what 335 people on the website and it's it's too many right? So you need to look at solutions for fixing that so yeah, maybe maybe you'll find a neat little thing like I found out what the data you are I when I was letting you know a couple hundred series with data you our eyes and that was that was running my my CPU. Give me some jam. Wonder.
+
+67
+00:24:57,690 --> 00:25:23,400
+Wes Bos: Yeah, that that I'm sure I'll find something Weird cuz I like I put like 20 minutes into it and it just couldn't figure, like I knew that it was only happening on large paints. So it might just be the fact that it needs to paint 335 people to the writing, but I still haven't haven't dug into it that much. So that's a good, my I'm not sure if we're using data your eyes anywhere. But yeah, it's probably something weird like that, you know, it's probably something weird. Yeah. Cool.
+
+68
+00:25:23,430 --> 00:26:15,150
+Scott Tolinski: So let's get back into it, which is going to be the next aspect, which is focus, which we talk a lot about, we talked a little bit about in the previous episode. And we've largely have the same advice here. When you're working from home, it is really key to focus, it's key to really know what you're going to be able to do for the day. Because there are we'll talk about things with your, your partner your family, if you have other people working at your house or living at your house or your workspace permit, whatever. But it's important to know what you should and can accomplish in a day by making a detailed to do list of everything, right. And that way you can check things off, you can feel productive, you can know that you're getting work done. And you can just really have that good visualization of all of the things that you need to do. So you're not like off drifting thinking about playing video games or hanging out with your family or whatever.
+
+69
+00:26:15,600 --> 00:27:10,200
+Wes Bos: Yeah, I'm a big fan of making to do lists. We've talked about this a million times over. But honestly, you need those small little wins, especially during this time where you might not feel all that motivated to do your work because of what's going on. And I find myself like I found myself sitting down yesterday, which was Monday, I had a whole week off with our kids to figure out what was going on. And I sat down on Monday and I just like paralyzed with what do I do first, right? Mm hmm. So I just went into my app, and I just did a brain dump of all the things that I'd like to get done in the day, or maybe the next couple days, and then reorder them. And then I just started checking it off and say, Okay, I'm getting back into the back into the rhythm. And at the end of the day, I looked at my list, I said, I did everything on that list, I feel a lot better about what I've got done in this day. So to do list, we've we say it all the time, it seems silly, but but absolutely get yourself set up.
+
+70
+00:27:11,280 --> 00:29:05,760
+Scott Tolinski: The next one, here is another thing we talked about that we talked about focus on many times, it's almost so redundant at this point. But eating that frog, really headed setting like a high value thing that you want to get done for the day will definitely make you feel accomplished. And you want to feel accomplished in these times. You don't want to feel like you're just wasting away. Because you know what, if we're being entirely honest here, one of the biggest things that I've used to distract myself from the current situation is my work. You know, it's really just pouring myself into the code pouring myself into the videos and the editing and whatever. And it, it makes everything just a little bit easier because you're not thinking about, you know, the current situation. Some other tips I have are to don't watch or check the news during work hours. If you have apps that send you notifications for news, turn that stuff off, turn off any notifications, remove the news app from your home screen, whatever put it somewhere that's not accessible. So you're not like mindlessly pulling up the news that do not have the TV news odd, nothing is going to change in one minute that is going to be that important, and it's going to distract you, it's going to make you anxious, and it's going to largely make you less productive, which honestly, this isn't all about being productive. But if we're talking about getting work done, don't let that stuff creep into your life. In fact, I've added a ton of filters to my apps lately on Reddit and Twitter and whatever I'm adding all of the filters for any keyword of any of our current situation or political climate, because you know what, if I want to seek that news out, I will seek that news out and I will do so on my own time. I don't need Twitter or social media blabbing just constant, just terror Abby, because it's going to make me anxious and it's going to make me feel bad. So I block all those terms. And if I want to seek that stuff out, which I do, I will seek it out on my own time.
+
+71
+00:29:06,150 --> 00:29:48,600
+Wes Bos: Yeah, I heard a really good turn the other day. It's called Doom scrolling. where like, I catch myself doing it as well. Like, after you put the kids to bed, you can open your phone and just start scrolling through the news or through Reddit Coronavirus or whatever and then it's almost like I'm just like looking for more bad news or looking for how I'll and then I'm like catch myself like what am I doing? Like this doesn't make me feel good. It's affecting my sleep, all that stuff. It's important to stay up to date with what's going on. But the fact that I was just using it as like entertainment almost, or just like a sign to fill me up. I don't don't I think that that's just distracting. Just try catch yourself if that's happening.
+
+72
+00:29:48,990 --> 00:31:23,430
+Scott Tolinski: Yeah, it's it's so easy to it's so easy. And I know it's like it's funny because Courtney's news app like sent her a notification and it says Hi Mark. The world's ending and like that, like no matter what she's doing, if she gets that notification, it's gonna freak her out. So like, turn that stuff off. And I guess that's leads into the next section, which is self care, which is really important in these times we're all stressed out, we're all feeling the burn. We're all feeling you know, really bad overall, to use the, the biggest word ever. But in meat, my personal viewpoint, we've been taking great steps to sort of, especially recently to make ourselves feel better. We've been playing a game Animal Crossing, which Courtney talked about in the last episode, which seriously is just so relaxing and meditative. My brother asked about this game. He's like, I don't know anything about this game. What do you do? I'm like, Well, yeah, you fish and you catch bugs, and you walk around the forest. And you pull up weeds. And it's just, it's, it's sort of boring, but it's so cute and relaxing. And it feels so good. So if I find things like that, don't you know, it's funny, we put on a Netflix show that I really like I really like altered carbon, which is like a cyberpunk futuristic show. We watch like five minutes of it, and it was just like super violence, you know, and typically, I'd be really into that. And I just felt too too heavy for me. I said, we got to shut this off. We got to put on something a little bit more mindless, a little bit more relaxing. So we put on love is blind and that was a lot of fun. So
+
+73
+00:31:24,300 --> 00:31:26,640
+Wes Bos: is that that new Netflix show that everyone's talking about?
+
+74
+00:31:26,730 --> 00:31:45,390
+Scott Tolinski: Yeah, yeah, it's a train wreck. It's one of those you know, romance shows where they put people in a they put people in different pods and then they like ask them to married people ask each other to marry each other without ever seeing them. It's just It's It's wild. It's a little bit of a train wreck but it's it's good mindless TV.
+
+75
+00:31:47,730 --> 00:31:50,550
+Wes Bos: I'll allow just in these times, right?
+
+76
+00:31:51,840 --> 00:31:53,130
+Scott Tolinski: Things like that. You know,
+
+77
+00:31:54,390 --> 00:32:12,240
+Wes Bos: exercise obviously is another important one. Our gym gyms are obviously closed right now. So one thing my wife and I did immediately is we went out and bought an exercise bike because peloton no we're not not much of rich a whole
+
+78
+00:32:12,270 --> 00:32:17,670
+Scott Tolinski: I know Yeah. peloton owners but yeah, that is no
+
+79
+00:32:17,670 --> 00:32:31,440
+Wes Bos: I'm I it seems really cool. And I told my wife if she can do like two years of this then we can get a peloton but like, like we got like one of the fast Schwinn ones and it was it was still like, like a fourth of the cost.
+
+80
+00:32:31,469 --> 00:32:32,280
+Scott Tolinski: Yeah, of
+
+81
+00:32:32,610 --> 00:32:41,850
+Wes Bos: of what a peloton would cost? Maybe at some point. Yeah, like what's the subscription? Like 30 bucks a month? Yeah, let's let's look it up.
+
+82
+00:32:42,180 --> 00:32:52,440
+Scott Tolinski: You could join the peloton in the corner of a room meme where everybody like puts their peloton, like overlooking a giant window and some ritzy apartment.
+
+83
+00:32:52,890 --> 00:32:54,930
+Wes Bos: It seems pretty sweet. Yeah, I
+
+84
+00:32:54,930 --> 00:32:58,590
+Scott Tolinski: know. I say this is somebody who would gladly take one you know,
+
+85
+00:32:58,860 --> 00:33:00,270
+Unknown: oh key.
+
+86
+00:33:01,560 --> 00:33:03,930
+Scott Tolinski: I'm gonna get I'm gonna guess that means this expensive West is 49
+
+87
+00:33:03,930 --> 00:33:10,170
+Wes Bos: bucks a month. That's more than I pay for my gym membership, like three times over.
+
+88
+00:33:11,220 --> 00:33:16,020
+Scott Tolinski: We spend 100 bucks a month for our gym membership in Michigan. It was a really dope gym.
+
+89
+00:33:16,020 --> 00:33:25,680
+Wes Bos: Oh, yeah, we I used to pay like 60 a person and then like another one open up down the road. That was like nicer and 20 bucks a month. I couldn't believe it.
+
+90
+00:33:26,730 --> 00:34:59,730
+Scott Tolinski: If you are looking to get out of this with not spending a ton of money though. There is this podcast I recommended as a sick pick the other day. And do want to clarify this. These guys are very sarcastic. They like made some comments. Like immediately after I suggested this podcast they like made some comment about hating marijuana and being super religious. And like hating everything. Like it was like very weird, but they were being super sarcastic. And if you didn't know them, and you just listen to it, you'd be like, Oh, these guys are like, very intense. Like the joke was way overboard. And like I just like, Oh crap, I just suggested this thing, and people aren't gonna get the jokes. But this podcast is really good. And it's all science based. But this episode most recently talked about what you can do for workouts both cheaply and expensively working from home with like minimal to no equipment. And it's fantastic because they basically go through every single muscle group and say, Alright, this is what you can do if you have no equipment. This is what you can do with a little bit of equipment. And I think that's really great. I personally have a set of what we have a home gym, right? But if I if you don't have a home gym, a squat rack and whatever the easiest cheapest thing you can do is buy a set of adjustable dumbbells. We have the power blocks and really like them. They go from 2.5 pounds all the way up to 70 pounds at a point or 2.5 pound increments. So you can do just about everything. Like you could do a full body workout with those things, no problem and it's one piece of equipment.
+
+91
+00:35:00,179 --> 00:35:12,090
+Wes Bos: I saw a set of those on marketplace the other day, and it had been posted for like 20 minutes. I was like them, they wonder like 20 bucks have gone. Oh, but they're, they're not cheap at all. There are hundreds, hundreds of so it's not the cheapest thing you can do.
+
+92
+00:35:12,149 --> 00:35:24,110
+Scott Tolinski: It's not the cheapest thing you can do. But it's like one piece of equipment in their lives. It's a tiny piece of equipment, it lives somewhere, and you will use it forever. We've had ours like for years, and they they feel brand new. So
+
+93
+00:35:24,110 --> 00:35:33,780
+Wes Bos: a set of five to 50 is 600 bucks, but honestly know that what? Yeah, look them up. That's not their normal pricing that
+
+94
+00:35:33,780 --> 00:35:41,940
+Scott Tolinski: must be inflated like crazy. MSRP $800. No, that's not right. That's nice.
+
+95
+00:35:41,960 --> 00:36:07,860
+Wes Bos: I've been looking at them ever since you you suggested them. And I always see them as being like, silly, because I saw sometimes I see them for like used like one for 150 bucks. That's not but like, the thing about these power blocks is that they hold their value. I've seen a set of like 10 year old ones go for hundreds of dollars. So you'd be able to sell them again. No problem. Yeah, these are.
+
+96
+00:36:07,860 --> 00:36:11,940
+Scott Tolinski: These are crazy. These are these prices are crazy. We did not pay that much. These must be
+
+97
+00:36:11,940 --> 00:36:15,810
+Wes Bos: no you got yours used right? No bottom. No. Oh,
+
+98
+00:36:16,190 --> 00:36:28,050
+Scott Tolinski: yeah. There's several different brands too. I know. Bowflex has won. A bunch of different people make when either way adjustable dumbbells, however you can get them really will go a long way for for working out. The Bowflex
+
+99
+00:36:28,050 --> 00:36:33,360
+Wes Bos: five to 52 pound a status for 20 Nice.
+
+100
+00:36:33,360 --> 00:36:38,400
+Scott Tolinski: Those got an ad edited. That's got to be maybe that maybe the Canadian? You guys are getting hosed.
+
+101
+00:36:38,879 --> 00:36:48,690
+Wes Bos: Bunch of hoses. That's 300 bucks us. Yeah, we're getting. Do you know that the term hoser comes from whoever lost the hockey game had to hose down the rink?
+
+102
+00:36:48,710 --> 00:37:22,380
+Scott Tolinski: No, I didn't. I will call it a hose or your hose. You ever said that Bob and Doug McKenzie movie, whatever that was? Ah, Doug McKenzie. That was like the best movie ever. Strange brew? No, I haven't. Oh, my God, you gotta see this strange brew, Bob and Doug McKenzie, a pair of fictional Canadian brothers. It's Rick maraniss and Dave Thomas. It's so good. The movie is fantastic. They're formed out of a TV either way. It's strange. bruco. Watch it very Canadian. Awesome. And obviously, there's hockey involved in the Canadian movie. So
+
+103
+00:37:24,660 --> 00:38:04,560
+Wes Bos: we have I've seen a lot of people doing like zoom happy hours because like one thing you do miss working from home is that you don't have that social. Like just chit chatting with people. And it's funny. Like I've even seen people go as far to say we're having a zoom meeting for half an hour. And you may not talk about work. Yeah, seems silly. But honestly, I think that like a lot of people need that just the the little chitchat back and forth talking about what's going on in your life because you do do that in a workplace. As someone who works from home I love missing out on the chitchat because I don't like the chit chat. But a lot of people need it. Oh,
+
+104
+00:38:04,590 --> 00:38:19,530
+Scott Tolinski: I like that to chat up. Honestly. I really miss being able to go to my coworkers and say, hey, I've got to do this with my code. Is this a bad idea? And they can be like, Yeah, what what are you thinking? Why would you do that? And I like oh, yeah, that is done. Wait,
+
+105
+00:38:19,610 --> 00:38:21,480
+Wes Bos: I could talk you off a ledge. Yeah, I'm
+
+106
+00:38:21,480 --> 00:39:23,250
+Scott Tolinski: having a bad idea. Or, you know, Hey, man, can you I've been working on this bug for two hours. Oh, I fixed it. Okay, you know, yeah, that kind of thing. I really missed that. Next one is don't over rely on substances. I know it's tough right now but a couple glasses of wine or whatever every night that's cool, whatever. Whatever fits your fancy but like I don't know a note about addiction or overly abusing substances I suppose. I don't want to be preachy but like, man, if you have too much alcohol or you just pounding it, that's not helping the situation or are too much of anything too much relying on substances I know it's so funny because like my anxiety makes me want to say like oh don't don't do anything because I don't want my immune system to be compromised to the point where I haven't been drinking at all just because I don't want my immune system messed up. But in the same regard, they just announced yesterday that in what we're recording this they announced yesterday in Colorado that liquor stores and marijuana shops are not essential services and then within like
+
+107
+00:39:23,250 --> 00:39:24,170
+Wes Bos: they're not
+
+108
+00:39:24,300 --> 00:39:46,860
+Scott Tolinski: they are not in they needed to close and so within like moments of announcing that there were our long lines like wrapping around every liquor store and dispensary in this in the city, really I mean, it was craziness you can find pictures of it. And like I don't know within within an hour they they were like okay, sorry. Well, we'll pull that back. You can have your you can have your alcohol.
+
+109
+00:39:47,400 --> 00:39:48,030
+Unknown: Yeah, and now
+
+110
+00:39:48,030 --> 00:39:57,300
+Scott Tolinski: they all have a you know, curbside pickup so you can go pick up those edibles on the curbside or something. So it's a interesting situation. Nonetheless,
+
+111
+00:39:57,540 --> 00:40:05,790
+Wes Bos: that is because they just announced what is Isn't essential here in Ontario and cannabis and alcohol is essential. It is now
+
+112
+00:40:05,880 --> 00:40:06,840
+Unknown: open. Yeah. However, if
+
+113
+00:40:06,840 --> 00:40:27,840
+Wes Bos: you order online, they will no longer bring it to your door. And they have to check if you're 19. So you they have you have to drive to the post office and show the person their ID and then drive home, which seems a little counterproductive when you're trying to keep people away, but right, that's how they made their decision there.
+
+114
+00:40:28,770 --> 00:42:13,860
+Scott Tolinski: I have a couple more here. One of them is an inside joke between me and Courtney which is your vd we always called vitamin D v. d. And like, will be on a walk. It's Holly I don't know, like people are who are not in tune to our lingo. Probably you're like what the hell because we'll be on our walk and we'll be like, getting some vd and we crack up about it. But get that vitamin D get some sun in your backyard. Let that son come in if you if you if you can get it. If not, I take a small vitamin D supplement. Don't go crazy overboard with it. But vitamin D can help your immune system right now can also help a lot of things. So just try to get some sun try to be outside a little bit get that vitamin D. Or that vd as we say, and also don't stress yourself out at night. We want to optimize and maximize our sleep here. And it was even like last night, I think it was like last night I I saw a cornice phone like the light was on when we were like trying to go to bed. I was just thank you. She better not be googling Coronavirus stuff. Sure nothing like was and it was stressing the both of us out. And last night. I even talked about it when we were in bed. And it was like, Why? Why am I doing that. So I think it's important. Something we're certainly gonna try to do more of but like set a boundary and say like after nine o'clock, no more CV talk, nothing COVID did not doesn't exist after this time. We don't want to stress ourselves out before sleep. I didn't get good sleep last night. And that's not helping anything. So I think we want to optimize and maximize our ability to shut our brain off before before bedtime. And if you want to optimize and maximize your data, you're going to check out prismic.io, which is a super easy way to make your website editable for the entire team wants to want to talk a little bit about Prismic.
+
+115
+00:42:14,280 --> 00:43:37,590
+Wes Bos: Yes, Christmas is a headless CMS, it's got a REST API. It's got a graph qL API, the whole idea is you sign in you create your data types, you relate them to each other. And that spits out a graph, qL API and the other end, and then you pull that data into your react app, your view app, or your iPhone app, whatever you're using, you can pull that data on into your app. So it works with next Jess Knox Gatsby, they've got all kinds of really good starters. If you want to try it out for a project that maybe with your dot tech domain name, hey, How awesome would it be if you use both of our sponsors? In a single project? Yeah, right. Now you want to head over to prismic.io forward slash syntax. They've got a nice little layout of the different features that they have their previews that they have the image optimization that they have, they have two different starters, one for react and one for view. They sort of pitted us Scott versus Wes view versus react. It's a hilarious little landing page. Check it out. prismic.io forward slash syntax. Thanks so much to Prismic for sponsoring. Cool. Yeah, let's get into this last part, which quite honestly, I don't have a whole lot of answers here. Just yet. I think a lot of people are trying to figure it out is there's a lot of us who have kids, that their childcare is cancelled. So the kids are at home with them. And then there's two parents or our childcare wasn't
+
+116
+00:43:37,590 --> 00:43:42,510
+Scott Tolinski: even canceled. We just didn't want to have them in childcare right now. Because Oh, yeah, it's
+
+117
+00:43:42,510 --> 00:43:44,250
+Wes Bos: still it's still on in Colorado.
+
+118
+00:43:44,280 --> 00:43:49,110
+Scott Tolinski: Well, as of yesterday, maybe not. But up until yesterday. Yes. Who was Oh, yeah.
+
+119
+00:43:49,410 --> 00:44:26,700
+Wes Bos: Or like, maybe you're single single parent with now all sudden, your kid is at home because you don't have childcare? Like there's a lot of people in situations where it's just not possible for both parents to work as well as have their kids at home. So I reached out on Twitter and said like, like, okay, like, how are you? How are you even doing this? Because it's certainly not possible for both of you to put in a solid eight hours a day when when the kids are at home. So like, like, first of all props to you for for doing this. This is not hard. Especially like, like I know. I mean, it's not easy. It's Yeah, it's not what I say. It's not hard. Yeah.
+
+120
+00:44:28,920 --> 00:44:29,820
+Unknown: Do you got Yes, not
+
+121
+00:44:29,820 --> 00:44:38,340
+Wes Bos: hard. This hard. This meme the other day is And just like that, no one ever asked to stay at home mom what they do all day. Hey, all
+
+122
+00:44:38,340 --> 00:44:42,900
+Scott Tolinski: right. Yes, I know. So many props to stay at home moms. Oh my god.
+
+123
+00:44:43,170 --> 00:46:21,780
+Wes Bos: It's really hard to be at home with your kids all day. Like some people are really good at it. But certainly people who are used to working a full day are not used to it and you're sort of thrown into this. Yes. So these tips can vary greatly depending on your job, your significant others job, how many kids you have how old your kids are Whether they have like online school or not, but we're just going to rattle through some of the tips that we have here. So what's been, I think what's been working so far for myself, as well as a bunch of other people is just slicing your day up so that each person gets a set and a number of hours. So whether that's each person, like some people said, I'm been working, waking up at 5am. And working until 11, hmm. And then my significant other takes the next five or six hours from there, some of them do two hours on two hours off two hours on two hours off, just sort of trading back and forth. Some people say like, I get a couple hours done in the morning, and then I get a couple hours done in the afternoon, I think really just trying to like, look at it and say, This is gonna be hard. But how can we slice up our time so that we can both get the amount of time that we needed even if your significant other doesn't even have a job, being home with the kids all day is is incredibly tough. So like, what I've been doing with my wife is just like, just jumping in once or twice a day and giving her a 30 minute break? Totally. So she could just go do whatever, she can do some work, or go do a workout, or would just be away from everybody else for a little little bit of time. So you can maintain your sanity?
+
+124
+00:46:22,169 --> 00:47:26,490
+Scott Tolinski: Yeah, totally. And communication is so key in that point where Courtney's work is a little bit different than mine in regards that, you know, she largely requires to be at work testing kids, and now that's not going to happen. So she, it's not that she doesn't have a ton of stuff to do, she has a lot of reports to write and all those things, but it's very different. And so the way we do it is the beginning of the day, she'll say I need three hours, four hours to write today. And you can have any of that other time to work. Because, you know, she knows that my business is sort of a priority right now, because we don't even know what the status of her jobs going to be. So we're splitting it up in those ways. And sometimes, this is an appropriate thing to give yourselves both a little break and, and sometimes uncle Mickey needs to come over for a visit. And Landon gets to watch the Mickey Mouse for a little bit while we clean or get stuff done that we couldn't otherwise do. If we were all just watching or playing with the kids. 24 seven. So yeah, don't don't let your field self feel bad if uncle Mickey comes comes to visit. And
+
+125
+00:47:27,299 --> 00:48:10,470
+Wes Bos: other people said that they are sort of having like focused time where that's where you can schedule all of your calls, all of your deep work needs to happen. And then you can sort of have like, half focus time where if you need to have your laptop out and do a couple emails are fix a couple things. Well, you're you're watching over the kids and then that's a good way to do it as well. So because like it's, it's not like you can't just slap the kids in front of the TV for an hour as well. That's certainly a fine thing to do at this point in time. It's just that you're not going to get that like deep work. I'm not gonna record a video tutorial, while my kids are watching Dora the Explorer in the background, you know, but I certainly could reply to some emails or do a few tweets or something like that.
+
+126
+00:48:10,889 --> 00:48:23,280
+Scott Tolinski: Yeah, totally. Yeah. And it's all just a balance. You got to I don't know, we're all just doing our best at this point. You know, so don't let yourself get beat up over maybe not winning the parent of the Year award right now.
+
+127
+00:48:23,819 --> 00:48:26,250
+Wes Bos: I'm gonna Mickey is gonna win the parent of the Year award.
+
+128
+00:48:26,309 --> 00:48:54,330
+Scott Tolinski: He is Yeah, we were recording that last episode with Courtney and, and myself here. And since we were doing that Brooklyn was taking a nap. And Landon was watching Mickey Mouse. But he when the episode changed, like the episode was over, he was like freaking he was upset. He was like, oh, episode Vicki rose. back and then we can finish the episode. Episode. Yeah, it's it's rough.
+
+129
+00:48:54,810 --> 00:49:18,690
+Wes Bos: Other tips you have here is just in terms of coworkers have empathy for your co workers because you might not understand what's going on in their house if they can't get back to you as quick as they want or they miss a call or whatever. So just know that everybody's in a really a bit of a weird situation right now and think about that check in on on people as well if you're not hearing from them as much worth making sure that everybody's okay as well.
+
+130
+00:49:18,810 --> 00:49:41,430
+Scott Tolinski: Yeah, and don't check in like don't make it loaded. Like, hey, why aren't you at work be just like, Hey, how you doing? Is everything cool? Like, check in with them mentally. We talked about that in the last episode too. But a lot of it is just we are all people. We're all struggling right now in all sorts of ways. So everybody needs to just be great to each other help each other out. And you know, just be awesome people.
+
+131
+00:49:42,030 --> 00:51:28,290
+Wes Bos: I like it. Alright, let's move into some sick pics. I actually got a very sick pic for you today. And this is probably only for people who have young children. But my wife recently bought this thing called this slumber pod which was because we were supposed to go on vacation before the world fell apart but we still are using it because it's super, super helpful. And what it is, is it's essentially a blackout tent that you put over top of a play yard or pack and play or crib or whatever, whatever those things are called, you know, those like little Yeah, those things you put your kids in. And it's this, this tent that goes over top of it and makes it completely dark in them. And that's always a problem we have when we're traveling. It's like, okay, the kids going for a nap. Yeah, or even at my parents house. Alright, let's go for a nap at my parents house. And they have like, like a coffee filter over the the window. And it's like the Brightest Day in there, even with the blinds closed. So we bought this thing, and you just pop it over top of their crib, or whatever. And it's just super black in there. And it works amazing. Like our kid is having the best sleep she's ever had. It's nice and quiet, there's a little window, you can put the camera in those little fat holes that you can open if you're concerned about that. And I couldn't it was expensive as like 200 bucks or something like that. And I was like, This is silly. Why are we buying a tent? For 200 bucks, we can go to the store and buy a tent for less than that. And we got it on there. And he slept like a baby. And this thing is amazing. So like, even if you are in a situation right now where you need to take over one of your kids rooms and they can't have their nap. Because you're working in there. This would be a good thing to slap over top of a pack and play while they're in the laundry room or something like that. And it becomes super dark.
+
+132
+00:51:28,500 --> 00:51:35,370
+Scott Tolinski: That's funny. It's it's basically like when you put up a tent over a bird cage and the birds like it's nighttime.
+
+133
+00:51:35,430 --> 00:51:37,920
+Wes Bos: Yes, that's exactly what it is.
+
+134
+00:51:37,950 --> 00:51:44,760
+Scott Tolinski: Yes. That's my area. So you're treating your children like birds congratulate? Yes. Thank you. whatever we
+
+135
+00:51:44,760 --> 00:51:46,020
+Wes Bos: can do to get through this.
+
+136
+00:51:46,050 --> 00:53:45,000
+Scott Tolinski: Yeah, right, exactly. That's how I'm I'm running. My stick bake is a an escape from reality. So to say into virtual reality by sick pick is something I've picked before. But I've been spending a lot of time with this. In the evening, right after we put the kids down, I get like a, maybe an hour or so to play some virtual reality. And I have the Oculus quest, which is standalone, meaning there's no wires or anything. And it uses this really cool room scale thing. So you draw a line on the floor of your boundaries. And when you get close to that boundary, when you're walking, it brings in like a grid, so you can see you're approaching that boundary. So we have a decent amount of space in our living room that I just drew out and be honest, actually drew out the entire first floor of our house. So I can walk through the first floor of our house in VR without running into anything. That makes it insanely cool because you get so much space. And there's this app I've been playing lately, which is this brand new VR ping pong, table tennis. I have never played table tennis I am largely terrible at it. I've probably lost like 300 games at this point. Because I've been playing a nightlight and the physics are so stinking good. When you hit the ball, you get a haptic feedback that really feels like a balls hitting the paddle. You're holding the paddle you serve. It has rules. You play online with people. So I'm playing a lot online with people all over the world. And you have voice chat and whatever and the physics are just dead on it really feels like you're playing table tennis. So I was playing with this guy from Utah the other night and it was just so much fun to be like Hey, man, how you doing? Oh, dude, good. Oh, where are you at home in Colorado and Utah. Okay, how's things going? Oh, Nino, whatever. We're playing table tennis and talking about the current situation and just vibing out and having fun, and I'm losing every game and it is just so dang cool. So I'm just really into the Oculus quest right now. So check it out. If you have if you have money to drop. It's not cheap. I bought it a little while ago when it first came out. And it just gets a ton of use right now. So I'm a big fan.
+
+137
+00:53:45,150 --> 00:54:01,590
+Wes Bos: Awesome. Shameless plug. I'm shamelessly plugging all of my courses Wes Bos comm forward slash courses, they're likely still half off to give you something to do when you're at home. But check it out. I'd recommend my beginner JavaScript course, which is beginner JavaScript, calm, cool.
+
+138
+00:54:02,010 --> 00:54:15,960
+Scott Tolinski: And all of my courses in my subscription are 50% off. So if you are looking for some learning material on level up tutorials, check it out, level up tutorials.com. You can sign up and get 50% off. All right.
+
+139
+00:54:16,200 --> 00:54:23,010
+Wes Bos: Thanks for tuning in. Hopefully you are keeping well and we'll catch you on Monday. He's please
+
+140
+00:54:24,720 --> 00:54:34,440
+Scott Tolinski: head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
