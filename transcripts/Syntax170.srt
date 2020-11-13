@@ -1,0 +1,416 @@
+1
+00:00:01,319 --> 00:00:04,590
+Unknown: You're listening to syntax the podcast with the tastiest web
+
+2
+00:00:04,590 --> 00:00:06,120
+development treats out there.
+
+3
+00:00:06,149 --> 00:00:10,560
+strap yourself in and get ready. Here is Scott, ski and West boss.
+
+4
+00:00:10,560 --> 00:00:42,930
+Wes Bos: Welcome to syntax. This is the podcast with the tastiest web development treats out there. Today we are talking about state in react such a simple thing, but there's very many ways to approach it. Lots of different things out there. So we're gonna try to dive into local state and global state and UI state and data state and caching and API data and, man, there's just tons of stuff here so yeah, with me as always, is Mr. To linsky. How you doing today? Scott Lynskey. Hey,
+
+5
+00:00:42,930 --> 00:00:54,360
+Scott Tolinski: I'm doing I'm doing okay, I'm doing pretty good. My office is is like under a state of transition. So things are a little chaotic. There Brittany and Kevin chaotic. And
+
+6
+00:00:54,869 --> 00:00:58,080
+Unknown: do you remember that show? Brittany and Kevin now?
+
+7
+00:00:58,259 --> 00:01:50,520
+Scott Tolinski: It was a show it was about britney spears and Kevin Federline. I don't know if that's the same, but it was called Britney and Kevin chaotic. So I like can't say the word chaotic without prefixing it with Brittany for some reason. But no, no, dude, huge bummer. Yesterday, somebody rear ended, Courtney and her friend and Brooklyn are and her cars all jacked up. And you just I feel so bad. I was like, in total, like dad rage mode. driving out there. I was like, I was gonna crack some skulls. I'm just, you know, everybody's okay. They had to have an ambulance, come check out Brooklyn and stuff. It was just awful hours all messed up. So, you know, things have not been exactly carefree the past 24 hours. But you know, all things considered everybody safe. And yeah, know that. That's it. That's it. But yeah, bummer.
+
+8
+00:01:50,670 --> 00:02:18,840
+Wes Bos: I am. So we moved up to our cottage, which it's a funny word that the Canadians use it as just kind of like a place on the lake where you swim and hang out for the summer. So if this audio is sounding a little bit weird, it's because I haven't totally got my office setup yet. And I don't have the compressor running. And it's a little echoey in here. So apologies for the audio, but it seems to be working somewhat. Okay. Yeah. I
+
+9
+00:02:18,840 --> 00:02:37,860
+Scott Tolinski: mean, it's really okay. Because you're living the college life. You're wearing a flamingo shirt, and you're hanging out in the water and stuff. And we just had, we just have to look at you on your social media feed. Be like, dang, he's living it living it right now. So, TJ and over here,
+
+10
+00:02:38,340 --> 00:02:48,720
+Wes Bos: yeah. Oh, well, you said TJ and then I was googling it. And I was like, What is TJ and mean? That's, that's, um, it's tj. And
+
+11
+00:02:48,870 --> 00:05:06,720
+Scott Tolinski: that's, we're getting into state here. That's some local state of my own personal slang that I came up with that I I always say, and I feel like I just like, totally neglect the fact that I don't know that people don't know what it means. But it means Well, technically, it means totally jealous in. Okay, I'm totally jealous. And in sometimes All right, TJ, and then apostrophe n. So I'm like, totally, totally jealous thing. And I don't it's, yeah, it's not it's not good. But yeah, so that's some local state for my own personal slang. Let's get into actual state in applications in the local state of sponsorships for this episode are going to be Log Rocket and Freshbooks. We'll get into both of those later. Those are longtime sponsors, but syntax, we love both those services. And the first thing we want to dive into I think, is what is state this was the question that we actually answered in the last potluck, I believe somebody asked us what is state I hear about state all the time we answer that question, maybe we'll do a little bit of recap here, but basically, state itself, what is state in your application? Well, the best way I feel like I could describe it is it's how your application is at any given point, the the state of the data could be whether or not that the navigation menu is open, whether or not the modal is open. But it could also be your data, maybe let's say I'm level up tutorials, I have an array of tutorials that need to be loaded, those tutorials would also be considered an application state. So it can be all sorts of things from global to local. And maybe it's maybe there's some some gray area in between there. But what we're really going to be talking about, again, is is maybe the difference there and maybe some of the different strategies that you could use to wrangle in your state. And obviously state is not specific to react applications is pretty much a general concept, right? any application that you're building in any framework, or any language or anything is going to have state at any given point. So even though this episode is specifically about react, you can think about a lot of these concepts in other applications as well. So let's get into what kind of things Captain state now that we have an idea a little bit about what state is, what do you keep in state was?
+
+12
+00:05:06,870 --> 00:06:29,130
+Wes Bos: Yeah, I think it can kind of be broken down into a few different pieces. The first is obviously, data, that is your application, I guess it is all data. But if you think about your application, you generally have a few different kinds of data, you've got the temporary client side data, I like to think. So if you've got data that's coming in from a form input, or a search, or when someone clicks a button or information about something that the user is currently doing, I like to think of that as like temporary client side data. And if you need to hold on to that for any amount of time, temporarily, generally, you stick that in state. So probably the the most common thing in react is that when somebody types into an input box, you send that data immediately into state, and then you reflect that data back into the input box. So it looks like the user is actually typing that data. And that's helpful, because when you then go ahead and submit that data, you want to send it off to the server side, you have it in a nice tidy little piece of data. Other types of data is cached Server data. So if you've got an API, whether that's graph qL, or JSON, or any other type of API, you ping that server, and you come back with some data, you need to put that somewhere in before you go ahead and display it. And where to put that data is state.
+
+13
+00:06:29,430 --> 00:08:10,140
+Scott Tolinski: Yeah, I mean, I think it's like most beginner react tutorials. When we I know, in my beginner react tutorial, we do this where you hit an API, the one that we do in mind is the movie DB API. And you hit this API, and you get some information back. And sure, you can display that information just straight up. But the way that you end up managing it in most beginner cases, is just throwing it into some local state. And then from there, you can move on to more advanced topics of which we'll talk a little bit more about, there's also UI state, which, again, a lot of this stuff, I'm not making up the names. Well, I guess I am making up the names here. But these aren't like official names. That is the UI state you could think of is sort of like at any given point, again, like things like the think about like a hamburger menu, right? Whether or not that hamburger menu is open or not. That's a piece of state where there's a value somewhere that's set to true or false. And that true or false is going to toggle and a react component that shows up or maybe it animates in, or maybe it drags on or something like that. But either way, the fact that that menu is open is most likely a Boolean that's just toggled somewhere. Or maybe it's like a string or something depending on how you manage your local state. I wanted to briefly have a an aside here about naming things. How do you what's what's your strategy for naming local state thing? Because this is one thing that I've found, I have gone through several evolutions in my codebase, about how I name things. And I think it's tricky, but I think I've landed on something that I really love. So I'm interested to hear about how you name state, like if you were going to be making like a modal, what would you name now that we have hooks? Three if the name the functions and? Or maybe you have an action or something? What How do you name stuff?
+
+14
+00:08:10,410 --> 00:08:40,440
+Wes Bos: Yeah, I'm usually with with those types of things I like to I initially started with like cart open, but I've started just sticking is on the front. And I think that might be a little what you do as well. Because then I find that my if statements read really nicely. So is nav open and and you show that the the drop down inside of react. So big fan of that I'm trying to think about other variables that might not just be
+
+15
+00:08:40,980 --> 00:08:42,570
+Scott Tolinski: about like an action or a function,
+
+16
+00:08:42,720 --> 00:08:47,610
+Wes Bos: I don't really have any any really good rules, do you have a specific rule of how you approach those types of things?
+
+17
+00:08:49,039 --> 00:11:17,130
+Scott Tolinski: To say like I had this sort of like light rules. And then like last night is this very specific last night, Ty was in one of those, you know, in one of those galaxy brain states, where where you can see through the code, and you're just like looking at the matrix lines just trickling down, you know, it's like, I could see that next line of code I was gonna type before I typed it, and I ended up refactoring, maybe like 15 components. Because in level up, I've been, I've been encountering this really bizarre bug. And I have to assume it's a race condition somewhere, or it's honestly probably something with my state, I really don't know what the problem is, which is not a great way to operate. I have all of my error tracking, I know the conditions in which it happens. I have all of the error logs, I know exactly what's happening. But I cannot reproduce it. I have my account. I do the exact same thing I see my users doing in Log Rocket because I use Log Rocket, one of our sponsors today. I see all of that stuff, and I still cannot get it to happen and it's driving me nuts. So I was like, You know what, I know the files in which this is happening. I'm going to take a deep dive into these files and really just try to rewrite them so I sort of just looked at all this stuff. And I came up with maybe better rules than what I had before. Because again, I had ways of naming things, but I didn't have like solid rules. So now, again, everything is going to be it like is whatever, which for the most part was, but when I started getting into these components, I saw things like, so I had his tutorial visible, right, that tells you exactly what it is. But then I also had things that was can see video, and I'm like, okay, like, why do I have can see video, and then I had another one, which was will do something else or will be available. And I'm just thinking like, okay, the these things are all sort of describing the same kind of thing, but I'm approaching it from different perspectives as the user or whatever. So I just rewrote everything to be his tutorial visible his playlist visible is this right. And by by really standardizing that it made my application so much more transparent. Another thing I did is I've sort of come up with rules for how I name actions. So you know, toggle theater mode, right? If it toggles something, it's toggle theater mode, if it's setting something, it's set blank, if it is removing something, it's remove something. But that that's pretty much it. So
+
+18
+00:11:17,549 --> 00:11:31,679
+Wes Bos: yeah, putting a verb at the front of the function, I find, it tells you that it does something, it should tell you what it does, I'd be curious to see if other people have some sort of rules to how you name your things. written.
+
+19
+00:11:31,710 --> 00:11:32,850
+Scott Tolinski: I'm very interested in that.
+
+20
+00:11:33,330 --> 00:11:59,700
+Wes Bos: Or I've certainly had like different approaches to, like, get movies or and then I would go get movies. Yeah, yeah. It's annoying, like I should I should have some sort of system in place. I would love to hear what other people think. Yeah, what their system is, because I think that would probably, it's like a linting rule, right? Like, it's the it's the code still works. But I would love to have some sort of rules that makes me a better Dev, same here. And just,
+
+21
+00:11:59,820 --> 00:12:56,549
+Scott Tolinski: I actually, as we were talking here, I was thinking after this episode or the next one, I would just go pop over to notion and just write out my the simple rules to how you write stayed stuff in my application for other devs. It's I don't know, it's one of those things that I think can make an application way better, because even changing is visible to his tutorial visible makes things make way more sense. So it's small little thing, but it definitely has a big impact. And after refactoring these components, I'm just reading through my my code. And last night I just looked at, and I was just like, you know, Job well done here. You know, it just it made me feel really good. And I'm very confident that this, this issue that I'm facing is gonna get get worked out. But it's, it's one of those things, you can really go down the rabbit hole with. So next, let's talk about global state. vers local state, and what the heck that is, you hear you heard talked about global state versus local state? Do you want to take a stab at it?
+
+22
+00:12:56,820 --> 00:15:17,909
+Wes Bos: Yeah. So the idea of global state versus local state is that your data, let's say, something like, is nav open? And then you have another piece of data, like a list of movies? Does that data need to be globally available? I mean, does it need to be available everywhere in your application? Or should any component in your application be able to access that data? Or should that data stay contained within the component that uses it. And there are certainly arguments on either end, local local state is certainly much easier to make, make components that are you can move them around, they contain their own data, they often contain the logic for fetching that data. Whereas global state is often it's much easier, because if you have the data living at the top of your application, you can certainly pass it down or use some sort of thing like context or Redux to inject that data into into the the components that need it. So now, it's not really one versus the other, I think generally, all applications will have both global state as well as local state. And I think the, you need to ask yourself, does this data need to be accessed outside of this component. So if it's the case, for actually that's, it's a really good example of in my node course, I would have the his cart open. And I thought like, that's clearly just a Boolean that only needs to be available to the cart, because I only need inside of the cart to open or close it. But then I found myself needing to open the cart when somebody added something to the cart, so I thought, Oh, now I need to move that like that center, the thing that updates state outside of the cart, because now it is it needs to be accessed in other parts of my application. So generally, I'll start with local state, and then if I think that I won't need it, and then it's it's fairly easy to refactor out into a global state. Things like data. Like let's say you have a list of movies, I'll generally try to To keep those as close to the component as as I need them, because like, you could have three or four NASA components, you just have that at the top. But then again, if you if you do need it elsewhere, you you stick that in global, do you have any any sort of like rules or any methods for determining whether it's local or global?
+
+23
+00:15:18,299 --> 00:17:12,860
+Scott Tolinski: You know, we just did this huge rewrite of level up. And I definitely learned quite a bit about it, because I've gone through a lot of changes in Mike my global state. So like before, I was using something called Meteor session, which started things at session variables. But it was very active, it was really cool. And then I moved to I moved in next, I don't even know what I moved to Next, I might have moved to Redux. Next, and then from Redux to Apollo client, and now to context. And I haven't been happy with many of those systems, because I found it difficult to add an update and changed and new state and ever since moving to my new system, it's become way easier to take things out of local state and move them into global state very easily. So my rules are really just again, it's, I like to think about it as just ahead of time, what are the situations where I'm going to need to access this toggle this whatever, right, and you think something like as simple as a main navigate, like the navigation, the hamburger nav opening and closing, you think something as simple as that should just be local state. But let's say you have the nav open, and the user logs in from the that, that navigation, they click that they log in, and all of a sudden the menu doesn't close Do you want to go have to pass that function all the way down into your log in function to be able to do that. So at that point, I've really like erred on the side of putting most things in global state. But I think there is like definitely, like form form state, for me belongs in local state, like little toggles, and little things like that mostly belong in local state. And what some of the larger aspects of the site, you know, is the navigation open is the shopping cart, open, what's in the shopping cart, those all go into global state for me. And then obviously, all of my data is in Apollo cache. So I don't really think too much about that as being global state. But I don't really have any hard and fast rules other than just trying to visualize where exactly this is, needs to be accessed.
+
+24
+00:17:13,290 --> 00:18:05,520
+Wes Bos: Yeah, I think there was like, people sort of got scared of global state, because back in the day, everyone would just throw all the data on the window. And I think it's sometimes he will mix up this concept of global variables and just have everything globally available and just reaching outside to it. And this idea of just having a single global store for your data, and having a method to inject that data into the components that need it. And I think we've got plenty of good options. We'll talk about that to put them in there. So yeah, nothing wrong with global state. And also like, we talked about component reusability, and all these things all the time. But if I'm if I'm not kidding myself, I know that most of my applications, I don't share components to other projects. I know that my data is here, and my components need those data. Yeah, totally. That data.
+
+25
+00:18:07,260 --> 00:18:16,820
+Scott Tolinski: Do you personally do you? Do you think of your Apollo client as like, our caches is a global state? I think that's sort of what I do. Yep.
+
+26
+00:18:17,280 --> 00:18:28,530
+Wes Bos: Yeah. Because Because you can put everything goes into the the Apollo store, you can even put your local data in there. Okay. Yeah, I definitely think that is a global surrogate. And you can only have one of them as well, per app.
+
+27
+00:18:28,680 --> 00:20:41,190
+Scott Tolinski: Yeah. So definitely. And we can talk about that in the next section, which is going to be managing local state. But before we get into that, I wanted to quickly transition here into one of our sponsors, the ultimate transition there. So this week's sponsor is Log Rocket to know I mentioned earlier on in the episode that I'm having some issues with one very particular weird use case. And to be honest, I was seeing my my error pop up in century in century is giving me some good information, it was sort of telling me where the bug was happening. But I couldn't necessarily figure out how the user was managing to do these things. So I fired it up in my Log Rocket, and I watched as the user clicked a link, and it showed me exactly what happened. Now, obviously, as I mentioned, I haven't solved this bug because I haven't been able to reproduce, but at least now I know exactly what the user was doing. And importantly, I know who the user was. So I can look at their user object, I can see exactly the steps they were able to do to reproduce this issue. And I'm hard at work. And after we get done recording, I'm going to be solving this bug. But Log Rocket has made that absolutely possible because with Log Rocket, what you get is a session replay, it's a video and the you could drag it you can see the session you can see the network responses. You can see everything the Redux store, if I used Redux, that would be a great use case as well and allows you to see all this happening in the same time as the users doing it. So allows you to solve the Bugs quickly and easily. Again, I'm going to be really diving into this later today here a little bit more, as much as I love rocket, I can't wait to get in there and solve this bug. So if you want to get 14 days for free head on over to Log rocket.com forward slash text and sign up today. Great service. I really love using it myself. And again, I think some people maybe occasionally, you know, they hear our sponsor reads and they think we're getting a little like blurring the lines, getting cheese, burn the lines between the you know, stuff that we like, and stuff that we're trying to sell you or something. But to be honest, we use this stuff. And, you know, I don't think I would be Hawking it here if I wasn't just in it myself and loving it. Yeah,
+
+28
+00:20:41,280 --> 00:21:12,320
+Wes Bos: that's it's funny, like some of our sponsors like, like Log Rocket and Freshbooks and Sentry. They do very well on our podcast, because we actually really love them. But that's, that doesn't that doesn't go across to every sponsor that we have, because we don't necessarily use in love every single month. Yeah, sure. So it's why it's such a good fit, right? Like, ideally, the sponsors will find people that have podcasts that actually use and love their products. So it's a, we're happy to have them on.
+
+29
+00:21:12,630 --> 00:22:11,430
+Scott Tolinski: Yeah, absolutely. Very happy. Alright, so let's get into managing local state. Now your options for managing local state, even though there's probably lots more they inherited, we're going to get into but the main ones are really just what's built into react, the new use state hook as well as set state, which has been here from the get. And yeah, I personally have just loved, like, loved refactoring my application to use use state. Because again, it allows me to name things better with less code, right? I can have a little function that says this. And that's like not very much code. And then I don't have to write a whole separate function to do the whole set state thing in. And I absolutely love using use state personally, it's really changed the readability of my application. If I see a set state call in my codebase, I'm like, get it out of here I have that's just me. I'm obsessed with refactoring. Sometimes.
+
+30
+00:22:11,730 --> 00:22:45,810
+Wes Bos: Yeah, the hooks has made just local state so easy, because it has decoupled the like, what it looks like and where it lives. It's it's totally decoupled it and made it really easy to inject that kind of local state into something so big fan of, of using hooks and use state and for for local state. I previously had used Apollo for some local state, but I found that it was just too cumbersome to have to write graph. qL queries? Yeah, first setting Booleans.
+
+31
+00:22:45,810 --> 00:22:46,470
+Scott Tolinski: Mm hmm.
+
+32
+00:22:46,680 --> 00:23:10,200
+Wes Bos: I think they're working on getting on making it better. But I remember talking to them, I'm like, I just want set state for Apollo. Yeah, like, I just want to throw it in there. And that's kind of against the whole idea of graph. QL. Because graph QL. So, so rigid, and typed. And you have to know ahead of time, like what it looks like, and you have to write a query to pull that data out. And I just wanna, I just want a variable.
+
+33
+00:23:10,290 --> 00:23:38,880
+Scott Tolinski: Yeah, I was doing so I sort of had a flow like that going, where I was doing direct writes to the cache, and then I had my own functions that were doing direct writes to the cash No, sort of all obfuscated behind the scenes. So that like, you just had one single function that was like toggle math. And that's all you needed to do. Yeah. But like the amount of code that I needed to write to have that was just sort of annoying to do all the time. And to be honest, yeah, you know, the Apollo client state is awesome. But I did feel like it was a little too fresh, little to green
+
+34
+00:23:39,570 --> 00:23:46,020
+Wes Bos: heads, find a way to test it either. Just do it my course we don't test it. Because it's, there's just no way it doesn't work.
+
+35
+00:23:46,020 --> 00:25:36,870
+Scott Tolinski: Yeah, if you, if you google anything about testing local state, you'll probably find three or four GitHub issues I created at some point, and then people are still like, has this been resolved yet. So you know, I love the Apollo team. And I hope they figure that that part out of it at some point soon, because like real that the testing piece is non existent. And that like it, especially if you have mixed, because they advertise, you know, the ability to do a query that pulls in your data plus the client state at the same time in one query. Yeah, that's great. But then I found myself having to have a totally separate query just for my test that didn't include the client state, just to get the test working. And it's like, that is not a good way to test your code. So I was not happy with that. So I converted over to context for my global state. But all right, back to back to managing local state here. There's a bit of a always a thing that comes into play when you get into more advanced components. Like when you have maybe like a toggle, let's say a modal, right? You trigger the modal from the outside, but that modal needs to close itself from the inside. And you probably might not want to put all of those in global state. So then what do you do? Well, you have to pass the state and the update state function down into the component. That's like a huge question. People always ask us, how do I traverse my state? Right? I have this state in this one component. Now I wanted this other one. And the answer is always well, you got to create a parent component that includes both the state value as well as the state senator or whatever, and then pass those down to both. Yeah, I don't know, this is one of those things that I used to do all the time. And now it like makes me kind of upset to do so because depending on how many times you have to pass down or where you have to pass it, it can get kind of cumbersome, kind of dense and kind of unnecessary. And I find myself reaching for context and global state at most of those times I need that sort of stuff.
+
+36
+00:25:37,110 --> 00:26:16,170
+Wes Bos: That's the sort of the thing in react is that you can't pass data up unless you have a function that is passed down. Yeah, if you've got your setter and your data at a low level, there's no way to send it upstream unless you move that up. And react has a word for that. It's called lifting state. It which sounds should essentially just means put it higher. get past a dam and state, you know, Salmon River. Oh, that's actually awesome. That's actually awesome name for like, a library where you could use an emoji like, Is there a salmon? Like you use salmon? I don't think so. Um, hold on. Let's figure this
+
+37
+00:26:16,170 --> 00:26:25,890
+Scott Tolinski: out. This is important innovators. We are innovators here. And, you know, I don't have to do any I can be the name guy. I can just come up with the names and then somebody else can write the code.
+
+38
+00:26:26,520 --> 00:26:36,540
+Wes Bos: There's a couple there's three fish emojis. There's a blue fish on iOS of cat blue fish on a rod and then a tropical fish.
+
+39
+00:26:36,810 --> 00:26:39,510
+Scott Tolinski: So what about salmon? Look at sashimi.
+
+40
+00:26:40,500 --> 00:26:47,430
+Wes Bos: Yeah, there's a fish cake. Fish cake. And there's sushi as well. Yeah, no sushi me though. Okay,
+
+41
+00:26:47,820 --> 00:27:15,180
+Scott Tolinski: well, we got some work to do. First thing we got to do is get the salmon emoji standardized, then we can begin working on this library. Okay, good. So next up, I wanted to talk briefly about state machines. And I say briefly, because to be honest, I personally am not that experienced in state machines. I am aware of them I sort of am aware of how state machines are, I would be interested in having a state machines expert on this show to talk a bit more about them. And why I didn't tell you.
+
+42
+00:27:15,390 --> 00:27:41,070
+Wes Bos: Yes. Because like like six minutes ago, or like six months for recorded this podcast. I messaged David cage. Yeah. And said, Can you come on and explain them to us? Yeah. And he said, Sure. So he's gonna be on probably in two weeks, I think he said would be good. Cool. So which is good, because it'll be like soon enough after this comes out that it's like fresh in our minds as to how it works.
+
+43
+00:27:41,160 --> 00:28:38,340
+Scott Tolinski: That's great. I'd be very excited to talk to David, because his library access state is really the state state machine library of choice. And I see x state now is using the new organizational GitHub where it has the at x date forward slash react, and they're using hooks. So there's like a little use machine hook. And so x state really seems to be your application state can only exist in several different ways, right? There's the active state, the where the inactive state and that canceled state or whatever, basically, you're defining these ways that your state or your application is, and you don't worry about the little individual parts of the state. So making invalid state parts not possible is my very, very rudimentary understanding of it. So hopefully, when when David comes down here, we can get him to give us the whole rundown.
+
+44
+00:28:38,640 --> 00:29:11,340
+Wes Bos: Yeah, it's just the there's another another good example they have here is the fetch machine where you have an idle state, you have a loading state, and you have a success state and a failure state. And each of those states can have a bunch of information that's associated with it. So what to happen when there's a successful what to happen when there's an error, where to fetch the data from things like that. So I'm really excited to have him on I'm intentionally not going to look into it too much. Just because I think it makes for a better podcast.
+
+45
+00:29:11,490 --> 00:29:19,110
+Scott Tolinski: I'm going to do the opposite. I'm going to look into it really in depth. And then Okay, yeah, but then I'm going to pretend that I haven't. So then I can do
+
+46
+00:29:19,110 --> 00:29:20,010
+Wes Bos: it in depth, Lee.
+
+47
+00:29:20,010 --> 00:29:24,720
+Scott Tolinski: Oh, so it's like this, you what you're saying is this. Oh, okay. I'm getting it.
+
+48
+00:29:25,440 --> 00:29:26,970
+Wes Bos: All right. That sounds great.
+
+49
+00:29:28,830 --> 00:29:57,000
+Scott Tolinski: Yeah, so the next section we're going to get into is going to be global state. But before we do, we're going to get some new fresh state in here with one of our first sponsors. So this is we're refreshing the state here and this is fresh books, is one of our longtime sponsors that helps you keep your books accounting, bookkeeping, all that stuff, invoices, organized and modern and excellent. So with Barbara freshbooks is Wes
+
+50
+00:29:57,360 --> 00:30:49,260
+Wes Bos: for fresh books is the cloud accounting software. that you need. If you are a small business, if you're a freelancer, if you're just someone who needs to send a couple invoices out at the end of the year seems easy just to make a Word document. But when it comes to reporting, making sure people have paid for getting if people have paid, that kind of stuff can get really be a headache. So check out fresh books, you're gonna get invoicing, expenses, time tracking, projects, payments, the mobile app is awesome. I love the mobile app just for inputting receipts, things like that. What I'll often do is, even when I'm out, I'll just have a receipt, I'll just take a snapshot of it, input all the details, and then stuff the receipt in a in my pocket. And I know that I don't have to like worry about keeping it because like receipts, you know, how receipts like fade over time? Or if they get caught they? Yeah, they go all black?
+
+51
+00:30:49,260 --> 00:30:55,590
+Scott Tolinski: They're like, it's like a you didn't see this movie you didn't see Back to the Future. Did you know it's like photos fading? should I?
+
+52
+00:30:57,510 --> 00:31:50,160
+Wes Bos: Yeah, so don't don't get that. Go to freshbooks comm forward slash syntax and use syntax in the How did you hear about a section, it's going to give you a 30 day unrestricted free trial. Thanks so much to Freshbooks for sponsoring. Alright, let's talk about global state. This is a bit of a big one. So we talked about what global state is, it's this idea that you store all of the data related to your application in some sort of store. And the store is just a fancy word for an object. in JavaScript, it's where you keep your data. And then usually, along with that data is a bunch of instructions as to how to update that data, how to fetch that data, a bunch of little stuff around that. So you want to take a stab at a first couple ways to do global state interact? Yeah, yeah, I
+
+53
+00:31:50,160 --> 00:33:35,850
+Scott Tolinski: think obviously, well, not obviously. But the most popular one is probably Redux, it's been the king of global state for a little while in react. The problems with Redux are that it's really kind of complicated and hard to pick up. I think the people who have Redux click easily for them don't necessarily understand that. But like the people who don't have it, click easily for them, could really just bash your head against Redux for months and months and months, because it is, there's a lot of boilerplate code. And people complain about I complained about that. It is a a thing. Some people are like, I don't understand the complaints. But there is a lot of boilerplate code that to do some very simple things. So Redux is complicated, it's hard to learn. But it's very, very, super useful. It's very organized and structured, makes your application a lot more solid. I found my application state was sec very, very nice. When I was using Redux, I understood exactly what everything was the states that how it, how it all how it all worked, it has some really great tooling around it, such as the time traveling features, and all of the Redux dev tools, like almost make the cost to entry. Totally worth it, because the Redux dev tools are really second to none. And that sort of regard, their excellent being able to see your state. And this all happens because of Redux his use of basically, immutable data. And so we say that word occasionally immutable, it really just means that this data isn't, you're not changing it, right. So with Redux, you have your store, and you're not updating your store unnecessarily, but you're creating a new copy of it. And because you're creating a new copy of it, you're able to go back and see any version of that store at any given time, allowing you to basically time travel, those kind of things, especially in the dev tools.
+
+54
+00:33:36,120 --> 00:33:38,820
+Wes Bos: Yeah, let's talk about what that is time traveling.
+
+55
+00:33:38,970 --> 00:33:39,630
+Scott Tolinski: Yeah,
+
+56
+00:33:39,690 --> 00:35:08,880
+Wes Bos: yeah, like Scott just said, You're, you're let's say you have an array of Scott and Wes. And then you add another item to that array. Brooklyn, now we have an array with with three items in it. The idea behind time traveling is that because the data is immutable, meaning that we don't do, we didn't just update that array, we have two arrays. Now if the old array scotton less, and we have the new array, Scott, Wes and Brooklyn. And the idea is that what time traveling is that you can go back at any time and go back to that earlier data, or undo actions. So in Redux, you have actions, which are things that you do add a name. And then you have a reducer, which figures out how you how you add that name to the array. So the sort of the logic as to how you're adding items in there. And then the time traveling will allow you to go back in time. And it's kind of cool, because you can you can turn off any of the actions, it doesn't have to be sequential. So you could go back and turn off three or four actions and it will just replay the application as if those three things never happened. But everything before and after them did happen, which is pretty pretty cool for if you're doing animations or you want to like replay something, you want to say like, Oh, I added this item to the cart, and you want to just go back and forth, back and forth. Just It's such a handy tool. I think that's why people absolutely love Redux. As Scott said, it's worth the the pain and the setup and the boilerplate for that kind of thing.
+
+57
+00:35:09,090 --> 00:35:51,030
+Scott Tolinski: Yeah, yeah, you do get people who are very into Redux. And then you get the people who are like standing on the outside being like, but I don't get it. And then, you know, there's is sort of that back and forth there in terms of like, well, is it worth it to learn this stuff. And I think learning Redux is absolutely worth it. That said, I do think it's kind of unnecessarily complicated. I personally, I don't want to, but I know some people are mad about this. But I like a little bit of magic. Like, I don't love a ton of magic, where I don't know where things are happening. But like, if I could just, instead of having to call an action, which does another thing, which hit 3d, like, instead of doing all that, I would rather just call a function like I do right now, and have that do everything else behind the scenes. But then again,
+
+58
+00:35:51,090 --> 00:35:51,650
+Wes Bos: yeah,
+
+59
+00:35:52,710 --> 00:36:46,110
+Scott Tolinski: whatever there. There's other approaches here of what you're going to get into. And there's a ton of new hooks based libraries to ever since hooks was released this one that was probably I don't know if this is the most popular one. But I've been seeing it around a lot, which is called the Easy peasy, which is basically a wrapper for Redux. One of the cool things about something like this is that you don't have to really learn Redux in the same sort of way, you still get access to the Redux dev tools, the code that you're writing, the syntax for, it is definitely smaller, cleaner, whatever than Redux. And it is a little bit easier. That's why they call it easy peasy. But again, there's a lot of little libraries that are popping up like this right now with hooks that make global state more easy. So actually, I'm really interested, if you're using a global state hooks library, tweet this out, I want to I want to know what people are using in their code. Because it's really interesting to me. Do you have anything else on Redux?
+
+60
+00:36:46,230 --> 00:37:41,610
+Wes Bos: Yeah, I just think like Redux May, the reason why Redux got so popular is because the whole idea of global state in react without react Redux initially, was that you had to pass things down, all the way down. So if you've got a component at your top, and you've got a component listed, eight levels deep, they had a pass all of those downs via props, in Redux made it easy to keep your data and keep your actions, your functions on how to update them at your your top level. And then you can inject that data in those updaters at a lower level. Now, that's obviously changed. Now we've got context. But it's that's the reason why it got so popular. And I that's also the reason why a lot of people aren't are sort of moving away from it right now. Not because Redux is bad, but because the thing that that the only thing that they are using it for was the ability to do that. Mm hmm. is now much easier in just pure react.
+
+61
+00:37:41,760 --> 00:39:01,880
+Scott Tolinski: Yeah, definitely. Cool. So let's dive into the next one, which is mob x, which is another one I have not used, people who use it seem to like it, I don't use it, it's a little different. They use decorators, they use observables. It's basically as it says it's based on observables. And for those of you who don't know, I got this little this little uh, I guess you could call this a definition of observables. From this website, I just googled and found hype dot codes. I don't know anything about this site. But I thought this was really nice description of observables, which is an observable is like a stream. For those of you know, what streams are ended allows you to pass zero or more events where a callback is called for each event. Often observable is preferred over a promise because it provides the features of a promise plus more. So it's sort of like a promise, if you can think about that. However, it allows for listening for specific events or waiting and pausing on different times. So mob x is based on observables. The syntax is cleaner and nicer than Redux. But it does use things like decorators and observables. So if you don't know those concepts might be worth taking some time to dive into those. Again, I haven't used mob x, but they have a good sized community. And it seems to be well liked by the users.
+
+62
+00:39:02,070 --> 00:39:12,840
+Wes Bos: Yeah, it seems to be one of those things that is not all that popular, but the people that do like it are crazy about it. And it seems to be a really good use case for whatever it is they're working on.
+
+63
+00:39:12,920 --> 00:41:26,040
+Scott Tolinski: Yeah, it sort of emerged as like the first major competitor to Redux. So I think that gave them a bit of a heads up. Next is going to be context. And this is what I use for my global state. I use reacts context. And I get a lot of questions about this, because people are like, well, doesn't that context cause a bunch of unnecessary re renders when you have all of your data in one provider? And sure it would, but I have all of my data in several providers. So what I have is a little system that has several different providers. And then I have like a merger that essentially merges all the providers so that in my app.js, I just have one provider there that sort of encapsulates all the other ones. And then I have several different global states, so to say for all of my different types of state, so anything related to the checkout right is the checkout open, is there an item in the cart cart, you know, is there order complete, those things are all living in the checkout context, I have one, that's the app context is the navigation open that sort of thing, I have one that is the, actually the alert context is an alert fired. And that is so that way I have like global toast messages. And what's great about this is that anytime you want to call any of these, or update any of these functions, all you have to do is use the use context hook. And it's amazing because I don't have to do anything, I just say, use context, and then pass in the context. And then I get to pull out my send alert function, I have a send alert function, you pass it a string, it calls updates, the global state, the alert pops up, if I do a send error, it does the same alert, but the background colors red, and I can create these little functions inside of my context, components that are able to update manage all my state, a lot of people do this same sort of concept using use reducer, but most of mine are to be honest, is just use state with inside of my, my context. So I use a lot of use state. And that's pretty much it instead of you I don't use reducer to me is like a little bit overkill for a lot of these things. If you want to check out the merger that I have, I think I have a call it a provider composer, I didn't write that I actually got most of this code from somewhere else. And although I want to change the name, because I don't really loan or provider composer, rather call it like merger Iser, or something fun.
+
+64
+00:41:27,300 --> 00:41:27,810
+Unknown: Yeah.
+
+65
+00:41:27,810 --> 00:41:41,850
+Wes Bos: So you're saying that if you've got multiple providers, or if you have one provider with all of your data in that, then that will trigger too many renders on things that are not necessarily changing?
+
+66
+00:41:42,230 --> 00:41:49,440
+Scott Tolinski: Yeah, my understanding was that when you update the state of a provider, every bit of code that touches that providers updated,
+
+67
+00:41:49,649 --> 00:41:50,340
+Wes Bos: okay,
+
+68
+00:41:50,399 --> 00:42:06,900
+Scott Tolinski: so like, if you were to have everything within one provider, and you were to open the navigation, then my alert would trigger a rerender on the alert component, it would trigger a rerender on another component and another component and checkout component, whatever. But if I had it, you know, in its own individual islands, then it won't.
+
+69
+00:42:07,169 --> 00:42:46,130
+Wes Bos: That's interesting. That's a kind of a cool way to do it. We should also say that, like, the whole idea of context is that you don't context is just like a bus that gets your data where it's going. Context doesn't hold any of the data itself. So if you want to hold data, you still like Scott said, you still put it in state. And if you want to update that data, you still have state updaters. And then how you get that like how you teleport that data and those updaters from the top of your application down to where it needs to be is via context. So context is sort of like your data is in the air. But before you can before you can actually grab it out of the air, you need to use context.
+
+70
+00:42:46,169 --> 00:42:58,860
+Scott Tolinski: Yeah, and let me tell you, I didn't love context, until hooks came out. It wasn't until use context came out that that it really solidified it for me, but also made it seem a lot more elegant, easy, because now
+
+71
+00:42:59,580 --> 00:43:01,650
+Wes Bos: render props are just too much, right.
+
+72
+00:43:01,730 --> 00:43:12,780
+Scott Tolinski: It's just too much code, how much code is that a render prop to get that stuff out of there? It's like five lines of additional JSX. And just like clouds, your your your not your DOM, but your JSX it just Oh, yeah,
+
+73
+00:43:12,780 --> 00:43:19,320
+Wes Bos: yeah, it's funny. There's so many things that were saying today is is just like it used to be so terrible. And now integrate.
+
+74
+00:43:20,210 --> 00:43:23,070
+Scott Tolinski: Yeah, right. Yeah. Except for mixins.
+
+75
+00:43:23,210 --> 00:43:49,830
+Wes Bos: Except for mixins. Yeah. I use context as well. Just like Scott was saying, big fan of how it works, especially now with hooks, I think I reach for in almost all of my applications as a default. And then if not, if I want to go more graph QL. Then I go for Apollo. But I don't even reach for Redux anymore for it or any of my applications. It's just either context, or Apollo. Yeah,
+
+76
+00:43:49,920 --> 00:45:07,140
+Scott Tolinski: Yeah, same here. Cool. So let's get into the last section here, which is going to be Apollo. Now, Apollo is just really a library for graph qL, of which there are several of these libraries. So we can't talk about them, obviously, all because there's too many of them. There's erkel, there is relay, there's a whole bunch. Apollo manages the cache of your entire application. And you could think of it as sort of like your Redux store. So anytime you call for data, it pulls in that data and caches it, then if you try to get that data again, your your Apollo store is going to be like whoa, we already have this data, let's pull it or you can do another fetch off the server if you need to grab fresh data. In addition, you can also have your client state your local state like Wade mentioned, they're your clients, they can be saved as data. And again, managing your global state. That's not the data coming in from your API's, as we both mentioned can be a bit of a pain but the system's nice like when I first saw it, I was like, this is really cool. I can do everything through Apollo, I don't need Redux. But after using it again, I think there are some some kinks to work out and some little things here and there that that that you know, it is really nice to be able to just say Yeah, also give me the the client state in here as well. But yeah, that's a good. Yeah,
+
+77
+00:45:07,140 --> 00:45:47,430
+Wes Bos: I think that's a pretty good rundown of state in react, how you get your data where you need it to be how you update the data when you need to update it. It's a pretty, it seems like such a simple thing. Yes, have a object, you want to change the data, you change the data, but you really get into it, both in terms of like performance and immutability, and writing testable code and being able to have good dev tools, you get really into some but just storing data in an object. So hopefully, that was helpful to you. If you've got anything to add, make sure you tweet us at syntax FM, on Twitter, we'd love to hear what you have to say about this.
+
+78
+00:45:47,729 --> 00:46:29,010
+Scott Tolinski: Yeah, I'm of the mind that some of the some of the state stuff like some of the problems that people talk about in state aren't necessarily the same problems that a beginner or smaller applications will have. So people might look at some of this stuff and be like, I don't get it. Why don't you just use your state or whatever, for everything. But as your application grows, that changes in different sort of ways. And just know that there are people who need to solve these problems, because these problems are very, super real, with what happens when your application grows to this size. And again, not all small applications will pop up and have the same sort of issues. So if you're listening, and you're like, I don't understand why I needed any of these hardcore tools like this, you just Just wait.
+
+79
+00:46:29,669 --> 00:46:45,330
+Wes Bos: Just wait, you will eventually stub your toe on something. And you'll say, Ah, that's why people are spending so much time on these these problems. What about sick pics today? What do you got? A I have a sick pic. For
+
+80
+00:46:45,330 --> 00:46:48,150
+Unknown: me a
+
+81
+00:46:48,780 --> 00:48:17,460
+Wes Bos: mistake? I have one. Let's see. All right, well, you go ahead and find your sick pick, I am going to sick pick a keyboard, someone sent me this keyboard A while ago, it wasn't in the company, it was just someone who listens and thought that I should try a mechanical keyboard because I've been a Mac Book keyboard or the apple keyboard for probably for 10 years. And I love it. And I've tried many times to get into mechanical keyboards. And it seems odd that this whole mechanical keyboard, sort of john rrah, where you put it together yourself and you have to spend all this time configuring it. And it's never been all that appealing to me, especially with the how loud they are because I record screencasts for a living. And you might even hear me typing. So this is the the massdrop control keyboard. And I finally I brought it up to the cottage here because they don't have another Mac keyboard and I thought I'd try it. And I forced myself to figure out how to remap some of the keys. And I'm I have to say I'm actually really liking it. I'm surprised once I forced myself to use it for a couple days now and I'm feeling really good about it. It's got like a rainbow LED on the bottom, which My kids love. It's wired, which sucks, but I'm sure I'll get a Bluetooth one at some point. But big fan of it. It's called the mass drop control keyboard. And I think you can buy it on drop calm. Big fan.
+
+82
+00:48:17,820 --> 00:49:18,810
+Scott Tolinski: Yeah, so I I'm currently using a mechanical keyboard myself, I have the key Kron k one. It's low profile. And it's Mac specific. So like the keys are really flat. And they remind me a lot of like the chiclet style on the MacBook. So I was really interested in this keyboard, because it's mechanical switch. And I was thinking okay, this is like a nice little bridge between a mechanical keyboard, and whatever. It's also Bluetooth that has all the fun LEDs and all the Mac keys right where a lot of the ones just aren't like not Mac specific. And the point of actuation I believe it's called the point in which it registers a key press is before the click. It's driving me nuts. I like I'll rest my finger on the key and I'll type a letter because the key is slightly depressed. No click but it still registers a key press and I am probably going to return it I like right I like took a photo of my desk and I got like a billion Instagram coming What keyboard oh my gosh,
+
+83
+00:49:18,810 --> 00:49:33,900
+Wes Bos: that Instagrams the worst. I like the word a huge banner. Like this is a control keyboard and like a 400 people what keyboard is that? Yeah, and Instagram people are the worst for asking what keyboard is that? It gets you the likes. But but
+
+84
+00:49:34,350 --> 00:50:03,240
+Scott Tolinski: so I had to but every single time I couldn't just I couldn't just paste it in as the key shot. I had to paste it. It's the key term, but I'm not sure if I like it. I think I'll return it. Yeah, like, it's like, I just want to ignore it. So I'm like, I don't know, I'm back and forth. Because to be honest, the typing experience is really nice. And if I can like train myself to use it correctly, then then be fine. But it's like I spent 70 bucks on it. So it's like you kind of want it to be I don't know. Perfect. That said it does work really well. I don't know other than the typing issue a little bit like doesn't
+
+85
+00:50:03,240 --> 00:50:13,080
+Wes Bos: type the only board to do well it the keyboards main function it's a to type and BT get the likes on the gram.
+
+86
+00:50:13,110 --> 00:50:21,600
+Scott Tolinski: Yeah. And have rainbow colored LEDs. Set to be teal right now, which is really nice because it's my brand colors, you know, to I want to
+
+87
+00:50:21,600 --> 00:50:27,630
+Wes Bos: change mine, but I can't figure out how to like this whole, you have to like inspru install 100 things. And
+
+88
+00:50:29,130 --> 00:50:31,830
+Scott Tolinski: if it's a good to brew install anything, I'm like,
+
+89
+00:50:31,830 --> 00:50:33,240
+Unknown: I
+
+90
+00:50:33,240 --> 00:50:41,700
+Wes Bos: don't want a hobby. I just want it to work. Yeah. I think most people are into these keyboards because it's a hobby and I don't want it to be a hobby.
+
+91
+00:50:41,730 --> 00:51:02,940
+Scott Tolinski: I don't want it to be a hobby either, right? I know. My sick pick is going to be another podcast, my podcast hick picks, people seem to really love. So I've been doing a little bit of hunting for some new podcasts. And I've been trying some out here and going on bit of a hunt for different ones. And I in the past don't really love tech podcast, or even programming podcasts. There's only a few I listen to like the React pod attacks.
+
+92
+00:51:02,940 --> 00:51:04,980
+Unknown: syntax is the best. Well,
+
+93
+00:51:05,040 --> 00:52:04,170
+Scott Tolinski: I never miss an episode of syntax. I hear the hosts are both very smart and very handsome. Yeah. Oh, yeah. exceedingly. Yeah. And so, you know, I, I'm sort of skeptical about getting into too many tech podcasts. But this one has been really good. It's right up my alley. It's called command line heroes. And it is history of web dev stuff. So the first couple episodes were just okay. They were doing like the whole Apple and Microsoft history. But then they got into like a hit Linux history. And then they're doing like a DevOps history. The most recent episode that was released on today was is just called creating JavaScript. And I haven't listened to it yet. But it's all about the history of JavaScript. And there's one on basic and all sorts of stuff, again, is, you know, tech podcasts are not typically my thing, but this is right on my alley. I love history. And there's a lot of really great episodes. It's narrated really well, it's high production value. They do it in seasons. So it's called command line heroes, and I've really enjoyed this podcast.
+
+94
+00:52:04,350 --> 00:52:31,530
+Wes Bos: They asked us to be on this. Hey, but yeah, did they had it? They sent it? It's red hat is behind this. Yeah. Right. Send us an email to what it was to like to host it to host one of the episodes, I think, well, it was it was like safer. No, it was like super, like, short notice, though. So I think I said we can't do it. I think you're on it. Maybe we should Check.
+
+95
+00:52:32,190 --> 00:53:57,930
+Scott Tolinski: Check. I would be on that podcast. I'm a big fan now. Yeah, that's really cool. Command Line heroes. Maybe you'll hear me in west on it. Who knows? But that Yeah, that's it. My shameless plug Today is August. My shameless plug today is going to be the latest level of tutorials course, which is called Gatsby e commerce. Have you ever been curious about how people do e commerce with static site generators and Gatsby specifically, well, this is the good, it's not just good. It's great. It's such a it's not. It's not just great. It's incredible. This is the incredible start to e commerce with Gatsby. Now this isn't the advanced course. But what we are doing in this course is first, we build a Gatsby site with just stripe that allows you to just accept payment via stripe then we do another Gatsby site where we connect to Shopify and use this iframe to buy button that has an iframe cart and does everything for you. And then lastly, we show you the very basics of building your own Buy Now button directly with Shopify. The I should say that the course that's coming out in August as will be the announcement of the August course is going to be an advanced Gatsby e commerce which is just going to be Gatsby and Shopify exclusively in we're going to be building a really nice full on site. So if you are interested in learning gets B and E commerce head on over to level up tutorials.com forward slash pro and sign up today. Save 25% of sign up for the year so do that now. Right now drop what you doing Santa.
+
+96
+00:53:59,610 --> 00:54:15,510
+Wes Bos: I'm just gonna plug all of my courses again. Wes Bos comm forward slash courses I've got courses on react and node and in CSS Grid and Flexbox. Some are paid some are free. check them all out. Wes. Bos sw SB oh s.com forward slash courses.
+
+97
+00:54:15,510 --> 00:54:16,410
+Scott Tolinski: sick.
+
+98
+00:54:16,410 --> 00:54:23,700
+Wes Bos: I think that's it for today. Thanks for tuning in. Apologies if my audio was not as good as it usually is. Don't apologize for
+
+99
+00:54:23,700 --> 00:54:24,540
+Scott Tolinski: anything ever.
+
+100
+00:54:26,370 --> 00:54:30,630
+Wes Bos: Just know we get we get lots of hate when the audio is not perfect. So
+
+101
+00:54:31,620 --> 00:54:40,260
+Scott Tolinski: I understand that I listen to a podcast and someone's eating during the podcast or Oh, yeah, just I'm like ready to get on Twitter. What are you doing? And then I don't.
+
+102
+00:54:42,060 --> 00:54:47,730
+Wes Bos: Oh, boy. Alright, that's it for today. Thanks for tuning in. And we'll catch you at the next one.
+
+103
+00:54:49,110 --> 00:54:49,770
+Unknown: Peace.
+
+104
+00:54:51,630 --> 00:55:01,410
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review If you like this show
+
