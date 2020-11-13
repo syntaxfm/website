@@ -1,0 +1,404 @@
+1
+00:00:01,319 --> 00:00:02,820
+Unknown: You're listening to syntax
+
+2
+00:00:02,820 --> 00:00:04,590
+the podcast with the tastiest web
+
+3
+00:00:04,590 --> 00:00:05,760
+development treats out there,
+
+4
+00:00:05,760 --> 00:00:10,560
+strap yourself in and get ready to live ski and West boss. Welcome
+
+5
+00:00:10,560 --> 00:00:50,070
+Wes Bos: to syntax. This is the podcast with the tastiest web development treats out there today we've got a banger of a show for you. We are talking with Philippe Nicola probably butchered that. But he's here to talk to us about Meteor and specifically like what's happened with Meteor in the last? I don't know, six months or so. Some pretty exciting stuff coming up. We all know Scott is number one Meteor fanboy. So we've got some really good stuff for you today. We are sponsored by Log Rocket, which does your client side session replay and century he does all of your error and exception tracking. So Scott, welcome and how you doing today?
+
+6
+00:00:50,339 --> 00:01:33,450
+Scott Tolinski: Hey, doing good on highly caffeinated and ready to go. Amber's talking about Meteor. I love to talk about Meteor. So I'm really super excited for this one and excited overall. Yeah, just generally excited, you know, which is a good feeling in these in these current times, you know. So with us, as the West mentioned is Philippe nivola. And I'm so sorry for this butchering, you said it's Portuguese. So the Portuguese is not a language of mine that I'm comfortable with. So, uh, welcome to the show. Philippe, do you want to give a little bit of a heads up about background, who you are, what you're doing currently, maybe what you've done in the past, or what sort of stuff you'd like to work on. Just a quick little overview of view in your work. Okay, great,
+
+7
+00:01:33,479 --> 00:02:14,520
+Unknown: and what your pronunciation was very good, then I am Filipina, Hola, it's different, but almost there. I'm a developer for like, 15 years. I start with C c++, like code challenge and in diversity, and so on. I even create a simulator with Fortran in the past what's crazy, and it's really hard to code with Fortran. And then I was like, a Java developer for many years, more than 10 years. And in the past years, like five years, I'm mostly using JavaScript, professionally. And also like I, I really love to code that I'm coding all the time, my side projects, and also in my companies.
+
+8
+00:02:14,609 --> 00:02:19,250
+Scott Tolinski: Cool. Right now, currently, you are what is your role officially with Meteor?
+
+9
+00:02:19,439 --> 00:02:42,410
+Unknown: Officially, I am a meteor evangelist. But then when I died tiny, like they asked me to help with this role. That's the mature evangelist, but me actually helping with my stuff internally. And it has been great so far, like me working for tiny with mature in the past, I believe, almost nine months, and has been a very good experience.
+
+10
+00:02:43,079 --> 00:03:37,979
+Scott Tolinski: Cool. So for those of you who haven't been paying attention, Meteor was owned and created by the meteor developer group. And I don't know the timeline for this, I don't know if you can fill in some of this stuff. If you know the history, the end of 2011. I picked it up around 2011. Around dish then when it was when it was in its conception, really liked it. I've been using it ever since level up tutorials has been built on Meteor since 2000. And Dang, I don't even know 2013 or 2014. It's been on it for a long time. So I've been in the community for for quite a bit of time, however. So it was created by the meteor developer group who currently owns and runs Apollo. However they last year, sometime mid last year was acquired by a company tiny, tiny owns dribble and a whole bunch of other stuff. It's a it's a company based out of Canada, so West up in your your territory, and they they own a whole bunch of stuff.
+
+11
+00:03:38,039 --> 00:03:39,449
+Wes Bos: Yeah, proud Canadian.
+
+12
+00:03:39,479 --> 00:03:46,410
+Scott Tolinski: Yeah. So briefly, you sleep and you want to give like an overview of what exactly meteorite is, yeah,
+
+13
+00:03:46,410 --> 00:05:12,750
+Unknown: before we jump into this, I just want to also mention, like, my experience with nature, then I'm using meterpreter, since like 2012, or 13, I'm not sure because it's so long ago. They're like, I'm using nature for all these years. And I'm using like, in my daily basis, and I'm building like real projects with these putting projects in production, then it has been a very great experience. And because of that now I'm here as an evangelist, because sometimes when you see an evangelist, you think the opposite, right? Okay, somebody hired this guy to talk good things about the technology or about whatever. But that's not the case. I was already pretty happy with meter. I was already working with meter. And then I sent an email to tiny just a quick background story. Say, okay, you acquire Meacher, how can I help? And then we start to exchange some emails and indane. I'm here, like, but but that's the story. I was a user good lesson. Yes. And I feel depends, like, I know the pains of being in the other side of an open source project that has a company behind it. And I think that's also good, but I but what I always asked for the community like keeping, giving me your honest feedback, because maybe with time, I can lose a little bit This side of the bank. And then I want to know what's working right now. Like, how can I improve meter experience? Now that I'm in the other side, but I missed you using meter, then I mean, both sides. Awesome.
+
+14
+00:05:12,770 --> 00:05:52,830
+Scott Tolinski: Yeah. I mean, you were an evangelist before now you're getting paid for it. So that's like a fantastic little transition, right? But it's also a good lesson to say like, hey, when we see these changes happen, like somebody acquire somebody or whatever, man, shoot your shot, reach out, I know, we talked about stuff like that all the time on the show, whatever you mentioned, West, like, oh, Dino Dino exists, oh, that might be a good opportunity to, you know, Stake Your Claim into some being the dino expert, you know. So let's give our background for our users who might not know anything about Meteor, let's say you know that it exists. And maybe you have some wrong ideas about what exactly it is. But do you want to give like a quick overview of what that Meteor is and why you might want to use it. And
+
+15
+00:05:53,220 --> 00:08:22,710
+Unknown: meter for me is a platform to develop into deploy JavaScript apps of outsides. And I can try to break this a little bit. Like develop it. What I mean, we've developed with mature nature is like is composed by two parts, we have the first part that are the packages that you can use to write your app, then you can take advantage of code that others are read, have wrote in the past, then you can use this code. And then nature provides a lot of good batches. And part of dispatches, they are like the core of nature, then you get get this for free. And they're like your web app, like you can think about express or your WebSocket connection, if you want to use real time, then jmeter is this platform that provides this packages for you. And also mature provides the abuser, then you don't need to use Webpack, because Meteor has its own bundler and compiles everything for you. And it works in a very, very nice way, then you have this to to develop your applications. But in the end, Meacher in the runtime, it's just another application. That's also something that maybe some people are confused, because they see meter, and they see node, it they don't know like, Oh, they are the same. They're not the same. But nature is just node gold running also in the server. And when meter is running the client, it's just JavaScript code running in the client, then it's not like a new language or a new, like runtime for JavaScript. It's just a bunch of code reading to help you to create node apps. That's the whole idea. And what I said that is applied the furniture developing house to deploy Javascript app, because the meter as a company, we also have a product that's called galax, where you can publish your code there, then, of course, because the same company was behind these two products, there will be service, that's the meter and the the core platform where you can deploy your code, everything was thinking was done thinking about meter, then we have like painters and dashboards with your connections, thinking about WebSockets, you have approximator with WebSockets in mind as well, then that's the whole package. That's why we call it like jmeter is a platform where you can develop apps, and not only web apps. jmeter is also integrated with Cordova. And then you can also deliver native apps in the stores using just meter in on JavaScript in that report. Ah,
+
+16
+00:08:22,890 --> 00:08:37,980
+Wes Bos: just to confirm for like our listeners that haven't haven't used it before, like it's obviously a like a full batteries included framework that includes everything from database and API all the way to user accounts and often login, right?
+
+17
+00:08:38,519 --> 00:08:43,039
+Unknown: Yes, but you can also remove the batteries. If you don't, you don't want to use
+
+18
+00:08:43,039 --> 00:08:44,820
+Wes Bos: it. Any way to put it.
+
+19
+00:08:45,720 --> 00:08:50,640
+Unknown: Or you can replace the batteries like you can use mature with whatever you prefer.
+
+20
+00:08:51,409 --> 00:10:20,940
+Scott Tolinski: Yeah, we actually use mongoose as our database connection layer right now on level up, which is like funny because it's like, a meteor has their own Mongo thing. And we're choosing to not use it if we don't want to, you know, and that's what I've always really liked about it. Yeah, I was one thing I really liked about Meteor that I'd like to maybe highlight here in this whole thing was you mentioned, it's a build build tool, right? So it builds your built builds your code for you. I've never found a build tool that really is as simple as Meteor even parcel isn't as simple as Meteor build tool, because like let's say I want to use SAS code and my code, Meteor add the SAS package, SCSS package, boom, it's in there. And then I don't have to, I don't have to even type anything. I don't have to manually go in and and then added in a plugins config, I don't have to do anything. I just add the package and Meteor is smart enough to know that I'm now using sass, I can just start writing files. It's even cool enough that like on top of that it did. There's like some eager eager loading of certain directories which we can talk about a little bit more. But like let's say I wanted to just start prototyping some stuff out. I add the sass package, I have a client folder, all I have to do is add a CSS file and start typing in Automatically picks it up like I don't have to import it anywhere, I don't have to load the file anywhere, it just picks it up. So there's a lot of like features around the build tool that just make it a really like simple experience, especially to get up and running quickly. It's one of my, my favorite aspects about it. Okay, so we got a little brief overview. It's a node node platform, Philippe, you want to add a little bit more on to that.
+
+21
+00:10:21,049 --> 00:11:26,309
+Unknown: One thing that I'd like to to add is an analogy, like how to think about meter like, because right now, I know a lot of people that are listening to this, they are used to create react app concept, and also view create concept. Then, for me, Richard is like the Create at react app, or the view client for any framework for any like, library that you choose with JavaScript, because you can run, literally, Meteor creates dash dash react, or dash dash boo, or a dash dash, or Angular or dash dash, whatever, because you have a bunch of dash dash options that are in Demeter create command, and then you have your project already running. And without any configuration, you can just type start typing the code in this really, really powerful. And I'm not talking just about the front end, I'm talking about backing from Jane. And both are connected already. And I know that's a pain when you're using other platforms that you need to think about two different piece. But in nature, they are the same piece. And I think later in this talk here, we are going to explain like how this can benefit you as a developer.
+
+22
+00:11:27,090 --> 00:12:40,140
+Scott Tolinski: Totally Yeah, I've always liked that too. In fact, when I start a new new project and other platforms, and you have to think about, you know, the back end and the front end being a separate it's like only now with some things like these API routes with like, next j s or I know sapper has their own thing like that, too. Like only Now are we starting to see other platforms that like really do the same kind of thing that or not like rails itself, you know, or Django or one of those. But for me, it's like been so long, where Meteor was like the only only show in town that wrapped up all that functionality. So I've always been a big fan. There's a handful of misconceptions for people who have used Meteor in the past, or maybe were around when media first launched. Because when media first launched, it didn't have a lot of it wasn't necessarily full featured and wanted to do a lot of things. The Meteor way didn't have NPM installs, which was kind of crazy to think about. And so now it's it's much more of a normal, like node platform, just with a whole bunch of extra stuff. Do you want to talk about maybe some misconceptions that people might have around? What working in modern Meteor is like, I know, we briefly talked about this,
+
+23
+00:12:40,350 --> 00:14:54,240
+Unknown: I believe this is the first misconception like, usually people ask, like, Can I use these which feature? And if you can use a leaf node, or you can use it in the browser? Basically, the answer will be yes, almost all the time. Of course, if you have something very specific that's integrated with Webpack, or another beauty to maybe need to create a plugin, but otherwise, they sort of be always Yes, you can use with nature, if it's not, or if it's JavaScript, because mature is just these two together as well. Another misconception that's very common is like mature, you can only use MongoDB. And, and that's not true at all nowadays, because if you think about the background started that Scott told us, like, the company behind Apollo was the same company behind meter. And like they are creating Apollo in Meteor Development Group nowadays, they still have mature apps in they are using Apollo with nature. And of course, if you know, graph qL, when you know, Apollo, you know, you can connect any database with Apollo with graph QL. Because it's just like a query language connecting your server in your client, then you can connect with graph qL, working connect with rest, whatever data pattern that you want, for mongoose, or yet, then that's another misconception that's, that's very popular, but it's not true. But in the beginning, it was like this, because the nature whole idea was about real time, then we could have a data in your Mongo. And you could have the same data in your browser in Meteor has a library that's called minimum that runs inside your browser. And it's really powerful. And it's really cool. Because you can just write data in in one side and seeing the other side. It's very magical. And but you don't need to use it. Like if you don't want to use it. You don't need to use mini Mongo, it's you can think about mini Mongo as Apollo cache, or any client side cache. But minimum was very simple to publish data, because it's just like, like a mirror of your database in the server. And you can query this database in the same way. That was the whole magic of Meteor in the past. But right now, we still have a lot of companies, a lot of users using this way. But we also have a lot of companies just using a graphical or using as a resting point, then it's it's not tied to MongoDB anymore.
+
+24
+00:14:55,020 --> 00:15:49,409
+Scott Tolinski: Yeah, anupriya you know, so level up tutorials for a long time was built using the pub sub in Mini Mongo, and I really loved it. And it's so funny because like, now I am on Apollo because I wanted to get things a little bit more, I don't know, like typesafe, or I like the graph qL way of doing things. But I recently started this new tutorial series on spelt in Meteor. And I'm like, I'm really falling in love with the whole mini Mongo flow of doing things where it's like, Oh, this is so nice to, to publish the data to, to then just run essentially, like a DB call on the client side. And it's such a nice way of doing things that I do I miss, I miss doing it that way. And I'm really specifically within spelt, I'm really excited to just see how simple and powerful the code is. So very big fan of that. I think there's also some misconceptions about performance in Meteor, do you want to talk a little bit about that?
+
+25
+00:15:49,549 --> 00:17:43,800
+Unknown: Yeah. And it's also good to remember what I said in the beginning about Node JS, like mature is just a Node JS layer. And then if you if you think about performance, you should try to think about Node JS, like Meteor will have the same performance because it's just node code running the server. But of course, you can choose features. Like if you want to have a subscription, as Scott was saying, like, I want to have the same data in the server in the same data in the client. And I want this data to be synced automatically, in jmeter does that extremely well. But of course, you need to pay the price, right? Because you want to keep this data in the server. So every time something changes in your database, you interesting grenades, then this has a cost like but but if you want to implement this in your code, you're probably going to spend more memory and more CPU than meter because meter has been doing this for like, nine years. And of course, the code has improved a lot. And besides that, then that's a it's a scaling issue, if you don't take a few precautions, but also right now, we have a lot of optimizations in the community that a lot of companies are using, like reds upload, you can connect reds, just by adding a backyard, and everything will be better. It's it's not like be scalable as hell because of course, you have other limitations, but it will be a lot better. Because red dot blog can provide you a lot of benefits in a way to not find nature that that are new change. And then the way the nature, we reach this change and publish to the clients, it's like it's not true, like mutual gain scale. And we have many companies on galaxy, we run a few thousands of apps on galax running nature in they have a lot of people using it, then it's not true. But of course, if you have, if you want to have very powerful features, sometimes these features will have a cost in the server side. Sometimes these features will have a cost in the client side. It's just about trade offs and not about limitations. Totally.
+
+26
+00:17:43,820 --> 00:18:20,060
+Scott Tolinski: Yeah, I think that's important. One of the things that like really bugs me, I see this, maybe more than anybody and maybe not as much as maybe you Philippe but I see this maybe more than anybody because every time I publish like a new Meteor tutorial, people will be on like YouTube and say, like, oh, Meteor, oh, that's a word I haven't heard in a very long time. And I'm just like, Oh, shut up. Like, it makes me so annoyed. What do you have to say like for those kind of people who think that Meteor has just not existed for, you know, five years here or something, and how they launched and then it failed? Because it's been, it's been around, there's been an active community, right?
+
+27
+00:18:20,130 --> 00:20:29,550
+Unknown: Like, for me, it's funny, because every time I also post a video or something people ask, like, is meter dead? Like, of course not. Yes. We do. We talk about meter here. Like we have a community. Like we have half a meter of developers that use meter like it's a lot like you have a lot of audience like people are following meter and using the tools, then of course, meter is not there. But what I have for these people like I'm not angry, like I just think it's funny to listen discretion. But like meter right now, like, today, the day that we are recording, we are very up to date with Node JS, we are using the latest node j. s, we are up to date, if you want to use the Mongo part with MongoDB, then you can use all the features of MongoDB. We are also up to date with Cordova they like Meteor is a very live project. And you can use Meacher with TypeScript. You can use Meteor with react with view which svelte with Elm with Angular, like we can use a meter with any tool that you like, in your, in your from chain environment or your Node JS environment. And also, as Scott said, like the community of nature, I think that's the biggest feature, like the community is huge, and it's very good, because sometimes the community can be huge, but the community's not helping or the community is not engaged enough but with your community. These guys are amazing. Like what they are doing like I have a guy that I would like to highlight here. That's the his nickname is Southern. Like he's doing a lot of rape work for a beauty farmers. Awesome. Yeah, even I have a few Spiner here. I spoil it about hot model replacement. I just test a few brains from And pod mod replacement is coming. And then like we had this from the community. And this is amazing, then, like, if you haven't seen nature for a long time, you should check, check it out our Git repository, we have a roadmap there, then you can see our vision for the future. Also the prs in the code issues, we are replying as fast as possible. We are measuring prs, like, almost every week, we have released almost every month, then it's, that's what I can say, like meter is, is pretty alive.
+
+28
+00:20:29,880 --> 00:21:29,840
+Scott Tolinski: So I yeah, I think that's really important. I think that was one of the reasons why people felt like Meteor was dead for so long as because even though there was development, it's like Meteor was constantly adding new features and new updates. And the very fantastic Ben Newman was like doing so much amazing work on Meteor over the course of the past few years. But MDG, and the powers that be that owned Meteor just did not care to talk about it, they didn't share it, they didn't have a roadmap, they occasionally released blog posts here and there. But they did absolutely nothing to really like push it forward, in the, you know, the worldview of people who who saw it, so it largely felt like it was stagnant or not changing. Meanwhile, there's a ton of new additions being added to it and ton of new features constantly being, you know, being poured into Meteor, but I don't know, there's no like vocal promotion of it in any sort of way. And that was like really frustrating as a fan of it, because you see all this new new stuff coming in. And, you know, there is no visibility, or the outside community of like, what's going on here.
+
+29
+00:21:30,660 --> 00:22:06,450
+Wes Bos: I'm interested in like, how to actually use this thing. Having never used Meteor myself, and you saying, like, Oh, yeah, you can use an Angular or view or reactor or whatever it is that you want. So the client side aspect of Meteor? Is it simply just a JavaScript library that you then subscribe to data? And then when that data changes, it gets piped in? Is it necessary to have like adapters for different different frameworks? Or how does that work? Maybe, maybe focus on react or or, or view since that's what our, our audience is probably most familiar with?
+
+30
+00:22:06,570 --> 00:23:26,640
+Unknown: Great question. And actually, you don't need to think about mature at all, like you, the only part that you need to think about mature is the entry point, like mature, we have two ways to have an entry point for the client side, you can defining our package JSON, in a few that's called meet your main module in the new case, okay, my main module four declined is this file, and you just put the path there, that's one way, the other way, you can just create a client folder, a folder that's named client. And then you can just put some files there and return results. So we start to load from this folder, then, and that's it, like you can put inside this folder or inside this entry point. And he called that you want even if you just want to, to use jQuery, and then you can just try to write to your DOM, that's fine. That's going to work. And in react works exactly like this, you just put the react, render first function there, and you provide the first component that you want your huge component. And that's it. Besides that, you just need to put also an email there, if you want to put something there, Heather, or if you want to put something the body, like you put your HTML file in the same 80 points that I mentioned. And that's it, then you're ready to go. You can use any framework. Of course, if you're a framer to have a think Blake's library, and you need a special compiler for distinct print library, maybe need to write a plugin. But usually, you don't need to do anything.
+
+31
+00:23:27,120 --> 00:23:34,050
+Wes Bos: Okay, but how does the data get from Meteor into your react application?
+
+32
+00:23:34,320 --> 00:25:40,020
+Unknown: Okay, then we are going to the data layer, like then you can choose again, whatever you want. And maybe that's a weakness of meter, because it's so open, then maybe it's harder if you're just starting to make this decisions, because you can do whatever you want. But if you create, if you like, give this example, you type meter, create dash dash react, and you choose your name like my app, then you have a red setup for you two pieces, the client side, as I said, you very simple just react code there. And you also have the server side set up for you using Mongo using collections. That's the name of the backing meter, then you can publish it this data, then you can use the metered publish function, and you just return a Mongo cursor, like activity dot find, and that's going to return activities for the mini Mongo, then in the client, as you're used to nowadays in react, you can just use a hook that's called use tractor, tractors there is this idea of real time data, and also reactivity, then you can have updates all the time, for free, basically, then this hook, you can write, again, the same function, you can even use the same code to find the activities because the activities will pop up in your minimum in your client in the activity to be there. Because you publish these activities. Then that's it, you can list activities and if you type right now, if you stopped This, this audio and you go to your terminal and you start Meacher and you run this comment, this is exactly what's going to happen. And this part is the magic that you just publish all the data from the server to the client. And if you don't want to do that, and usually you don't want to want to choose whatever you want to publish from the server to the client, you can call the function subscribe. dysfunctional subscribe, you can ask specific data, you can pass like some parameters to filter in the server. And then you can publish specific data. But basically, you can you just need to use a hook. And then you need to publish the data. But he's that react hook as any other react hook that you have available? Yeah,
+
+33
+00:25:40,020 --> 00:25:50,550
+Wes Bos: that's I like that a light doesn't like shoehorn you into a specific way of coding. But there's lots of options. And you could pretty easily add this to an existing application as well, it seems like,
+
+34
+00:25:50,880 --> 00:26:05,040
+Unknown: yep. And you could also hit place at this hook with use query from Apollo or using mutation from Apollo, the code would be the same, but you just use a different hook, then you get the data in a different way. And you interact with the data in a different way.
+
+35
+00:26:05,790 --> 00:28:11,550
+Scott Tolinski: Yeah, and I posted a like a little code snippet of use tracker in the show notes, if you want to check that out. It will be there it is, it is as simple as really just a US tracker, and then inside of there subscribing to the data, running that mini Mongo query, and then returning that data like that's it. And in fact, in spelt, it's even easier because spelt has a really neat pub sub kind of thing on the front themselves in terms of like subscribing to, I guess it's not upset, but like in terms of like subscribing to data, but you don't even need like this whole use tracker business, you just do like dollar sign the thing equals and then a Mongo query, essentially, it's so cool that it like it works very, very simple. It's like a one line of code to get some data in your your spelt site. And as we mentioned, Meteor works with anything, including both of our sponsors. Today, one of our sponsors is Log Rocket, I used Log Rocket myself with Meteor on the front end. And it's fantastic. It shows you all of those hard to find bugs, all of that difficult stuff where man, your user, your user, it turned the website in to a crocodile. I don't know how they did that. But you can find out how with Log Rocket at Log rocket.com forward slash syntax, sign up today and stop guessing why bugs happen. If you use that URL, you're going to get 14 days for free. And what you get is a scrubbable video replay of the error happening along with the Redux store, the network activity that console logs and errors, any of that stuff that you need to actually solve the bug. I mean, let me tell you, there's so many times that you just you just wish you could see the network request of any errors that users have. And you can with Log Rocket, so check it out Log rocket.com forward slash syntax. I think we've we've largely touched on some of this stuff already. But I think it might be worth reiterating here. What do you feel like the ideal use case for Meteor is like, let's say like, I'm a developer, I have some react skills, or I have some few skills. Why would I like what's the situation that I would say, Okay, now, now, maybe I shouldn't think about using Meteor,
+
+36
+00:28:12,060 --> 00:30:40,530
+Unknown: let's rephrase your question a different way. Like, what are the keys that you should not use Meteor, because you're so flexible, that maybe it's easier to respond this way? Like, I personally, I would not use meter for simple is that websites, like, I think we have amazing tools right there, out there nowadays that you can use, like get to be a next GSE, or you name it, you have great tools, I think there is one more that's very popular that I'm missing right now. But I would not use Meacher to create just a static website, because one of the power of powerful features of jmeter is that you have your server and your client side together, they are not together because they are not deploying the same place. But you can use them together in a nice way. And if you just want to like a simple static page, you don't need that, then I don't think is a good use of meter. But even though some people really like each other a lot in the greater project that's called meter client bundle that can really create this for you base it on a major project. But I don't think it's the best choice I think you have better choice for, for popular for like simple websites. But in the other case, like complex applications, or social applications, or whatever you need real time, like Meteor is a great choice. Like you are going to write just a few lines of code. And you can have subscriptions and you can have a lot of a lot of options. If you have like more needs like for relationships, very hard to do data fetching a lot of John's or this does kind of work I would also use meter but I use meter in combination with Apollo or other graph qL library because graph qL is a very nice way to define your data, your models, and one one use case that I really love about Demeter in arid beauty. I hope just using this When you have like simple needs, maybe a simple app that you want to create, I just go with blank metered methods, which are methods is a way that you call basically a function using a string as a name. And the data comes from the server, then you can just ask like, go get my list of activities again. And then you just pass a string, any the server, you just return yourself activites. And meter is going to serialize to do all the hard work for you keep that type skip the, the complex types that you can have your MongoDB. And that just works, then it's it's very cool for simple apps for complex apps. But I don't think it's the best choice for simple static web pages.
+
+37
+00:30:40,950 --> 00:31:38,360
+Scott Tolinski: Yeah, I would agree. If you're doing anything real time in your you plan on using like a node thing. That's really where it like super shines. Like, it's superduper fantastic, easy for that. I I'm not a fan of doing real time with anything else. But it's not like limited to real time. You know, I think that was like maybe a misconception too, is that if you're doing Meteor you are doing real time, like we don't do real time anything on level up. And it's perfectly good for us. So, okay, now let's let's turn it into like, maybe a little bit less positive territory. And like, let's talk a little bit about why Meteor, I don't want to say a failed, but like, why the hype was so hot when it first dropped? And then like dissipated pretty quickly? Like, do you have like a good understanding of why exactly Meteor did not continue to maintain its hype cycle? Or why why was really hyped up and then less hyped up almost immediately afterwards?
+
+38
+00:31:38,670 --> 00:33:23,360
+Unknown: Yeah, I believe Mitchell was ahead of its time. And that was really shocking when people saw liking 2011 2012 a way to publish data that easily. And that was the reason for this hype. And if it was just fired, like it was a very good technology. And it's true, a very good technology. But as you said, like I was not in this side in the past, then it's, I'm kind of in a weird spot, because everything that I say, yeah, I'm not saying about myself, then it's hard to, to say bad things about others. But I think it was just a matter of focus, like because the people behind meter development group, they are really, really smart people in very good people, like everybody knows that. But they're focusing a different layer like meter is a solution for the front chain for the back end. And even for the data layer in, they choose to just work in the data layer, that's the Apollo, and then they start to change the company direction. And that, of course, effect meter. Like it's like if you have a company, and you have one project, and then you decide to create the second product, of course, you're going to focus more in one product, or most of the companies, of course, companies like Google, they have multiple products. But most of the companies, they focus on just one product, and then we start to lose traction. And also we have this misconception of meters is is good for prototypes. And I think that's that's really wrong. Because we have a lot of business and you can check out our website, our showcase. There are a lot of real companies doing real business with nature. But that was because nature is so is that maybe some people are afraid to take that series like oh, but that's so is that is must be something wrong with this. I think that's all was also something at this time. Totally.
+
+39
+00:33:23,790 --> 00:34:54,420
+Scott Tolinski: Yeah, in from my perspective, too. When people jumped into Meteor for the first time, back when it first came out, people were concerned and maybe a little unhappy that it didn't have one like proper NPM support for packages when it like hit version one, I think it didn't, it didn't. And two, it didn't have like, so you had to use a meteor wrapper for every single node package, which obviously is not a good way to do things. And it's been long since dropped, right? but to also, I noticed that people were really upset that everything at version one was eagerly loaded, everything was eagerly compiled and loaded in a way that there were no imports, and almost everything was like sort of global. And while that was like a really fantastic experience in a way because you didn't have to worry about any imports, it was still not scalable, is that normal, like if you're trying to build a large website, having not having imports really sort of limits the amount of control you have over things. So I think those two things really threw people off, but Meteor added those pretty quickly afterwards. And I think if they would have dropped version one with NPM support and with proper, like import module system, people would have been probably a lot happier with Meteor overall and maybe less inclined to dismiss it as being like a prototyping tool. That's to me is like maybe one of the problems is that Meteor might have launched too early with version one. Maybe it wasn't baked enough. But I
+
+40
+00:34:54,420 --> 00:35:37,770
+Unknown: think we need to understand you hear about timing because it's kind of easy to say right now because you know that NPM is yes standard way to do modules with JavaScript. But at that time, it was not the case like NPM, I think was released in 2010. Then it was pretty early on. Like, it was a lot of discussion like, what's the best way to use node to use modules in general? in JavaScript, they mature, come up with its own solution that Oh, it's called metered packages, that's very similar to NPM, and maybe even inspired NPM in some ways. And then it's it's this weird spot where now it is to say, like, Oh, that was a bad call, we should wait a little bit and integrate with NPM. But at the time, maybe would have done the same? I'm not sure.
+
+41
+00:35:38,250 --> 00:37:20,670
+Scott Tolinski: Totally. And I was immature enough as a developer, in this sense to personally like not understand those criticisms, like, I could understand the NPM one, because obviously, it was a pain in the butt. But like, the eager loading and the imports thing I remember being like, why would you want to write all this extra code to make it more difficult for yourself when everything's global, and easy? And then like, obviously, now that my application is scaled and things overall have changed, right, I'm seeing a little bit different of a tune where I love my imports. I definitely understand what you're saying, though, because it was very true. Like, how many applications were people writing that were like using that style of imports? And even if there was no create react app, there was no, no such thing as personal Webpack was like, I don't think Webpack existed. It might have been in its infancy. I don't really know the history of Webpack. But it certainly wasn't popular to the degree it was people were I came from Gulp and grunt to Meteor directly with No Steps in between. And I think that's where a lot of people were in terms of the style applications. We've talked a little bit about meteors past few years present, do we want to talk a little bit about meteors future? So Meteor has some new owners, which is tiny at tiny capital.com you can see their portfolio of sites is designer news. Dribble, ride home West, you were right home, you might remember right home right then they sponsor an episode of syntax. A couple years. Yeah, you're back. Yep. Tech meme ride home. Yeah, so these guys are tiny capital now owns Meteor that happened sometime last year, do you want to talk a little bit about maybe that transition, why it happened, what happened and what's tiny doing in the future of Meteor looking like
+
+42
+00:37:21,330 --> 00:41:31,650
+Unknown: dionisio is Andrew and an angel. I think he saw an opportunity, like MDG was changing the focus to Apollo. And then Adrian took advantage of this change. And he basically bought metered, and metered includes the open set aside, and also the galaxy. That's the hosting platform that meter has. And then like From now on, I think it was like August last year, and then later in November, I joined and then we we start to build this new era of meter. And then we start to update a lot of the components in what I see for the future. And what I can talk about tiny is like tiny is really like interested in health meter, because tiny is a group of companies. And I only have like good influence from tiny, like tiny is really concerned about keeping mature ecosystem healthy. And that mature, it can grow and get have resources to grow in the both sides like in the open source side, and in the in the Gallic side. And that's also very important for me, because I don't want a company that is not hoping for the best of the open source or not hope for the best for the other side. And that's even a little bit crazy to think about. Because if you buy a product, you want to make this product great to improve this product, because you are putting a lot of money that then that's an important aspect that some people when they're coming to her I was asking, like oh, tiny wants to grow meter tiny, one meter to be better, of course, they have to do a lot of money that nobody buys something to kill, then it's not the idea in Chinese is doing this. We have also injured Domo, that's another angel, we have changes. That's the CEO of meter software. That's the new company behind meter. The meter development group is not the company name anymore. The company now is named meter software. And this company has an SEO that's carranger demo. And we also have a magic guy who also have engineered. And by the way we are hiring in this moment, we have another engineer position opening. And that's pretty cool because we are growing our team. And what I see for the future of Witcher is that tiny and mature software company is going to invest more money on nature, we are going to keep resources on nature. And we are going to keep growing galaxy because galaxy in the last three, four months to release a lot of new features. A lot of great, great features like out scaling, you can just deploy your app. And if you start to have a lot of scale, a lot of connections, your app can start another container and it can also scale down automatically later. And as you charge by hour. That's great because if you're a business you just have busy hours At night, you can pay like a minimum fee just to have your app running. And then in the night, you can scale up. And that's pretty cool. And in the future, I see more features and even more advanced features like this. And also in the open source side, what I see is like, better tree shaking that code elimination, right model replacement, as I said, it just does today, a PR and it's working really well already. And we also want to improve the build times and keep delivering whatever the community of Mitchell is asking for, because that's the is the whole idea of time to, to be there for the mature community to provide feedback. And to improve what you have right now, in we are a very stable platform. That's also important because right now with JavaScript in disgrace word that we have, like every day, something new is, is coming up. But meter, if you have a project from like eight years ago, it's very likely that just wait like 10 or 20 minutes, you can run it again, in the latest meter, because we don't have almost any breaking change in this eight years. And we of course, you need to update also your NPM dependencies, maybe you need to, to do some tweaks in your code because of the nodes improvements. But in general, your code is going to work exactly the same. And that's very rare. Like we have even new software new libraries that from each month, it's you need to rewrite your code to keep running it, then that's not the point with Meacher want to have a stable platform for the next years.
+
+43
+00:41:32,010 --> 00:42:56,670
+Scott Tolinski: Yeah, I've been a big fan of that non breaking changes aspect of it for a long time. Like you mentioned, the meteor has never been the problem. If there's been a problem. It's been, you know, one of my packages needing to be meeting me the right things. Well, there. I don't want to call out react router, because that's the joke. One that like everyone talks about react router updating all the time, but it's usually something like that, that that's the that's the problem. So Oh, yeah, I should I should do as a little side note here. Meteor galaxy, if it wasn't clear is is a hosting platform owned by Meteor to host node apps. But it is not the only option for hosting Meteor, you can host Meteor anywhere that you can host a node app, there are like community run efforts to make hosting easier or more efficient via other platforms, whether or not it's a build pack for Heroku. Or is it Meteor up, also known as mop mop is a community package lead to get easy to appointments going. And those are all really great efforts that have been evolving over time. MCC was one of those packages that like, was a little frustrated. It's like Actually, I don't want to call out MCC because it was the reason why I moved to galaxy because it was like MCC was so iffy at the time. But that was years and years and years ago. And it is a it's got a fancy new website, it's had a lot of work into it. And it looks fantastic now. So I think Mike has gone through a great evolution as well. For those of you who have ever used it before, you might want to check it out again.
+
+44
+00:42:56,690 --> 00:43:45,240
+Unknown: And that's also very important for Meteor because you need to remember, like we have the business aspect of nature, that's galax. And that's also important, because that's where the money is coming from, then if you have more clients, you can support more mature development. But also, nobody wants to use a platform that you can just run in a single provider right, then that's not the case with metered totally because in the end, when you run meter Butte, you just have a node project, like don't have your meter project in gain, like the final artifact is just a node project that you as Scott said, you can run whatever you want to run a node project. And that that's the beauty of it. Like you can support meter as well. Running on galax is also good because we have great features. But if you don't want that that's not a problem. You can use Meteor in the same way for free and you can deploy whatever you want your code
+
+45
+00:43:45,600 --> 00:44:05,310
+Scott Tolinski: does awesome. Also awesome is one of our sponsors. That's bad transition, but I did it and one of the sponsors is a century our this Sentry actually works very nicely with with our other sponsor Log Rocket. And do you want to talk about Sentry less? I know that I usually do the Sentry. But do you want to give it a whirl? Yeah,
+
+46
+00:44:05,310 --> 00:44:06,090
+Unknown: I've
+
+47
+00:44:06,090 --> 00:45:49,380
+Wes Bos: been using Sentry on my both on my note application as well as in the client side JavaScript for my application as well just to collect all the information about what went wrong stack traces, browsers, cross project issues, all things like that. It's really cool. It hooks up to your your GitHub. So basically, you just install this thing into your application. And then it will start to listen for specific errors, which is really cool, because there's not a whole lot of like, setup that you need to get century up and running. You just install it. And anytime an error is thrown in your application, it will collect all the data that's needed. You can go a little bit further and attach things like user IDs to specific sessions so that if there is a user, if something goes wrong, you can actually track it down to the specific user that happened which is pretty cool. It works as the The different languages JavaScript, Python, Ruby, node, go Android a whole bunch more, as well as all the frameworks. React Django, Meteor, I bet rails, it doesn't have to, it doesn't matter which which framework it is because it works with all of the different languages. And it just just works from there on out. So check it out. sentry.io use a coupon code tasty treat for two free months. Thanks so much to Sentry for sponsoring. Cool. Yeah, one question I have is around serverless. So does like serverless becomes more popular becomes a really neat way to both host your entire application, as well as maybe just specific parts of your application can be thrown into a serverless function. Is there any plans or ideas around integrating that into Meteor?
+
+48
+00:45:49,890 --> 00:46:52,350
+Unknown: And not? Not at the moment? Because it's, it's quite simple to create a new Meteor app in a few companies are using Meteor not in a serverless way. But you can deploy like your server side code. And in multiple instances, maybe you can split your app like nah, nah, micro service abroad, because it's very easy to start up a new project. And you don't need to configure anything, basically, almost major projects, then, but it's not like a serverless approach. In as I said, like, usually mature, the benefits use both together. But of course, you can just use the client side, and you have support for that. But I don't see right now, like, how are you going to benefit from from this, like the idea of serverless I think nature is more a good fit, if you want to have everything connected now very, very easy way. And maybe later if you need to extract some functions to a separate function that what I do, like if you need your lambda to process a s3 file, but usually I like the idea to have a real back end application.
+
+49
+00:46:53,100 --> 00:47:09,330
+Scott Tolinski: Yeah. Do you want to talk about any like little known features that people might not know that Meteor can do or meteors build tool? Can Do I have one in mind if you don't hit it, but is there any any specific things that you think that might Wow, people that they don't know about?
+
+50
+00:47:09,540 --> 00:48:11,280
+Unknown: And that is one that I think it's very important for when you need to run your app needs low low device, like for cell phones that are very cheap. And that's called nesting part. messtechnik part was a proposal for ACMA script, I don't know exactly what's the stage of this proposal right now. But nature supports this already. And it's pretty cool. Because basically what you can do, you don't need to evaluate your code before you need your code, then you can think about imports as variable where you try to reduce the scope as much as possible in which that you can improve a lot the startup time of your application, because if you have a lot of JavaScript code, when you run the unit is loaded by a slow device, it's going to take a few seconds, maybe to load. But if you're not really parsing the code, you're just loading the code, that's going to be much faster, then it's a it's a very nice feature. That's the compiler and not in the runtime system. But that I really like about Meteor, and that helped me to create native apps that have better performance better boot time in. It's pretty cool.
+
+51
+00:48:11,970 --> 00:48:34,050
+Scott Tolinski: Yeah, it is, it is pretty cool. And it was like one of the first platforms to really have it. I remember when react loadable came out, like Meteor supported that day one. And that was like a really nice experience to have like react loadable and dynamic imports, sort of like I felt like almost before anybody else had them, it was very nice feeling. There's a lot of things like that, that I felt like we got really early like a sink await and whatever. But
+
+52
+00:48:34,170 --> 00:49:16,650
+Unknown: you know that that's a different feature that you're a major Scott but they are good together. Oh, really, like that's the thing part is just you can put in part anywhere on your meter code anywhere inside a function. And it's not going to not deliver this piece of code, which will also support that in that's called dynamic import. But nasty imports is not to avoid delivering code, the client is to avoid the evaluation of this code. And that can really improve like you have a function. And maybe you have an if condition they're in this if condition you need to load a huge library. Like you don't need to even evaluate this library until you reach this if condition. That's really powerful. I don't think I Wow,
+
+53
+00:49:16,740 --> 00:49:32,460
+Scott Tolinski: I don't think I've seen this. Come on. I've never used this. So this is nested imports. I think you guys got to make a bigger deal about this in the in the meteor guide. I don't even see this I see this in the migrating 1.4 something's got to add something about that there. Yeah, as I didn't even know there was a third like
+
+54
+00:49:32,460 --> 00:49:50,040
+Unknown: to to post pretty soon like a suitcase about how I how you can optimize apps using as the new part. It's most important for native apps. Because when you are running computers today, like the computers are pretty fast. But when you're running a native device sometimes like they're mobile, they are limited.
+
+55
+00:49:50,100 --> 00:50:06,810
+Scott Tolinski: Yeah. Interesting. Cool. So I guess the one thing I was thinking about was like the ability to serve different like bundles to different browsers. That was a big one for me that I think Meteor did way, way first, and nobody talked about it. So do you want to talk about that?
+
+56
+00:50:07,200 --> 00:51:07,260
+Unknown: We call this evergreen, that is a great post by the great Bang numo explaining all the details about it. But the idea is that in any browser that your client wants us, it's going to work because as meter has both sides, as I said, we are going to say explain about this, like, we know the server side and you know, the client side, then when a request comes from a meter, client side meters know how to understand this request, in he can respond with the appropriate bundle, like if it's a modern browser meter is going to deliver some like ECMAScript five features, if not mature, is going to deliver legacy browser with a lot of polyfuse bundle, then it's pretty cool because you don't need to use polyfills all the time in modern browsers, that usually what you need to do. But as we have the control in the both sides, it can choose whatever is the best bundle for each specific client. And this is really great for your clients because they can use old browsers. And you don't need to worry about these two bundles, because Mitchard does that automatically for you.
+
+57
+00:51:07,680 --> 00:51:16,650
+Scott Tolinski: Yeah, so basically, you get you get smaller code for the browsers that support newer features. And I think that's like it's effortless. Do I didn't have to do anything to do that. You know, I
+
+58
+00:51:16,650 --> 00:51:59,010
+Unknown: mean, the same talk like Meteor also produced a different bundle for Cordova. And I don't know if you know, Cordova, but Cordova is a nice way to embed your web application in a native app in Cordova provide reads that you can call the major code as well in Cordova is updated with iOS and Android platforms. And then you can just with one command, you can run your app in a simulator or in an actual device in just with retribute. as any other new tribute, you can also build the native apps. And we are preparing a lot of tutorials and a lot of guides for you to do this very easy. Then if you're planning to release a native app or a web app, but you want to also have the app natively in the stores. You should check it out.
+
+59
+00:51:59,400 --> 00:52:13,350
+Scott Tolinski: So yeah, we I haven't actually done any Cordova myself. But we had atn on the show to talk about missive, and his app was built in backbone. And he used Cordova right to publish his native apps. That was the case was
+
+60
+00:52:13,380 --> 00:52:18,810
+Wes Bos: Yeah, it was it pretty cool. The whole app is built in a single codebase. And it felt so slick.
+
+61
+00:52:19,050 --> 00:52:49,440
+Scott Tolinski: It blows my mind because I use missive every day, and I could have never told you that was a web app. I thought it was a native app. So that got my wheels turning to say like, like cuz I always thought Cordova was a little bit of like a toy, right? It's a toy. It's a WebView whatever. But no, it's not it's it's very full, powerful. And after after using mysid for so long, and knowing that is in finding out as Cordova I was like, wow, Cordova is powerful is much more powerful than I gave it credit for. And I definitely want to take a look at that. Now that I know I can just build a Cordova the web
+
+62
+00:52:49,440 --> 00:52:52,170
+Wes Bos: is powerful, I guess you mean to say yeah,
+
+63
+00:52:52,200 --> 00:53:22,650
+Scott Tolinski: unless you know what, okay, don't don't put words in my mouth. You have the web is powerful. Okay, web is very powerful. I'm very a big fan of the web. Trust me. Yeah, I don't know, I want to I want to get those tools. I've actually, one of the things that I had to concern was that level of tutorials like the mobile experience that for me didn't feel like a mobile app. So I didn't want to publish it feeling like a website. So I've been recently pushing out a lot of like a tab bar at the bottom and tweaking those things to make it feel more native. I definitely plan on checking out some of those Cordova features as and also
+
+64
+00:53:22,650 --> 00:53:51,120
+Unknown: you could have like a pw a native V app in the same codebase just using meter. And that's, that's pretty cool. And you have apps that are doing this, like I have my own apps doing this. I have an e commerce website in Brazil that does that. And also you can check out a showcase you're never going to see there. There is a company that's called bathabile that's doing like incredible event apps just using nature and they can create beautiful hv apps for different conference and it's it's really really great.
+
+65
+00:53:51,630 --> 00:53:52,230
+Wes Bos: Cool Yeah,
+
+66
+00:53:52,230 --> 00:55:39,480
+Scott Tolinski: I thought this was really great. I if it seems like I'm you know, advertising for Meteor here or something, it's just that I've been using Meteor for so long and I really have loved it for so long. I've been dying to talk about it on the show. And so I'm so glad that we get we're able to have Philippe on to talk about the current status of Meteor and I'm so excited for meteors growth in future and just I'm just I'm pumped to talk about it so it's not the caffeine talking it is my genuine excitement talking here. So now it's part of the show where we talk about sick pics. These are pics that we have found that they're just something that we think is sick it could be literally anything. I just ate a peach Bobo bar. Bobo's are from Boulder Colorado, I would sit pick this if I could if I knew that most of you could get these things because they're fantastic. But my sick pick today is going to be the amplifi alien and full disclosure. They sent me one of these things, man this is a Wi Fi six router that that looks like I don't even know how to describe this thing looks like it's got an underglow on it. It's a tube Oh says yeah, hot screen. It's it's very sick looking. In fact, when I took a picture of it on Instagram, most people were like, what is that? Like? What even is that? Like, it doesn't look like any Wi Fi router you've seen and has a touchscreen that's constantly telling me my network speeds. It is very, very fast. And I have I have gigabit internet in my house. So am I able to push out Wi Fi six speeds, which are crazy fast up to 7000 to 600 megabits per second. Yeah, I've got one of these things set up and I am loving it. It is the coolest router I've ever owned. And I'm so excited to have it. The app is very fantastic as well. Wes, I know you've had quite a bit of experience with ubiquity yourself, but this is my first product of theirs and man I am impressed. I'm very impressed. It's fantastic.
+
+67
+00:55:39,780 --> 00:56:19,500
+Wes Bos: Yeah, it's it's like next level I've had the just the regular amplifier at my house for a long time and I've got the unify stuff here at my cottage and I also got the the alien. I install it at my dad's house and man we'd like through two of his old Linksys routers out that barely covered the whole house and just this one thing and it's beautiful like he put it on the bookshelf he kind of little he cut a little like a hole in the back of the bookshelf so you could just like have no wires just hanging out and they just updated it so that the screen on the front will give you all kinds of information about up della download clients and things like that that
+
+68
+00:56:19,500 --> 00:56:21,060
+Scott Tolinski: how many devices are
+
+69
+00:56:21,780 --> 00:56:29,640
+Wes Bos: gushing we I got one I got mine free as well like full disclosure, but like the ubiquity gear is top notch.
+
+70
+00:56:30,240 --> 00:56:52,560
+Scott Tolinski: Yeah, sorry, if this is coming off as an advertisement again, it's like if I would have paid full price for this thing, I would have been feeling the same. I'm gonna show my my speeds right here to the camera. I'm currently getting 600 up and 700 or 700. Up and 600 down. So just a Yeah, just to give you an idea. Why am I here? Scott? I'm so sorry, Wes.
+
+71
+00:56:53,490 --> 00:56:59,130
+Wes Bos: Oh, that is so that's unreal that you can get that on your phone over Wi Fi.
+
+72
+00:56:59,640 --> 00:57:01,500
+Scott Tolinski: Yeah, yeah, it is. It's crazy.
+
+73
+00:57:01,560 --> 00:58:48,230
+Wes Bos: The future is good. I'm gonna sick pick an app that I've sick picked before and just got a bit of an update. It's called parcel app. And this is not the JavaScript bundler. This is a app for your desktop. And for your I think iPhone and Android, and it does all of your tracking. So you throw a tracking number in there for a package and it will detect usually the shipper. And then it will give you updates as to where it's at. And you could filter for delivered and you never have to like go and find the email or bookmark the app. And it will just show you all the updates as to where your stuff is. And one cool thing is that like I have Amazon and a bunch of other places I order from frequently I have a Gmail rule set up and to automatically forward the emails, like whatever has shipped, and then it will automatically add it to to your and I've been doing that for years now. And recently Amazon stopped putting the name of the product that is being shipped in the in the shipped emails, because apparently Google and other companies are scraping people's email to figure out like what was selling what and who's buying what. So Amazon stopped putting that info in the email. And then this, this trick that I've used is not working as good. And they recently are they're in beta testing right now. And I'm a beta tester of licking Amazon integration. So you sign in to Amazon via an iframe in the app, and then it will pull the information about what has actually shipped. Otherwise, you just like product 749 has shipped. Yeah, I don't know what that is. Big fan of this app. I've been using it for years. And anytime there's a bump like this, like something happens. The developer works hard on it. So personal app dotnet.
+
+74
+00:58:48,450 --> 00:58:54,570
+Scott Tolinski: Cool. Yeah, I just I never heard of this. I just downloaded it. So they got one. What do you got?
+
+75
+00:58:54,980 --> 01:00:15,120
+Unknown: My sick big should be galaxy. Because I'm using galaxies for many years. On all my major apps, you can save a ton of money with galaxy because we will not spend time with DevOps as we have one command deploy. The only configuration that you need is your Mongo URL. If you're using Mongo, we also have all descaling that it can save money again, because we just need to run many containers if you have many people in your app. And this is done by galax triggers for you. We have integrated APM you have zero downtime, updates, notifications, proxy layer, just customize it for meter WebSockets. And you can use for free for 30 days, up to four gigabytes. That means that you can run eight containers or four containers depend on the size or two containers. You that's your choice. Anyway, galaxies great but my sneak peak will be a little bit unusual. I believe. My sneak peak will be today. I don't know if you have heard this word before. But there is a drink. It's actually from Paraguay but Brazil is closed Paraguay then I I have this. I use I drink Today like everyday all the time, I mean, how do you spell this? It's t e r e r e Delta. And it's, it's pretty great. It's like a cocci. It's like a green tea. And I think you can order on Amazon because you can buy
+
+76
+01:00:15,180 --> 01:00:17,430
+Scott Tolinski: anything. It's yerba latte.
+
+77
+01:00:17,460 --> 01:00:19,020
+Unknown: Yeah. Is the code one.
+
+78
+01:00:19,080 --> 01:00:23,340
+Scott Tolinski: I used to drink a lot of high here but my tape but this is cool. I gotta get into the
+
+79
+01:00:23,580 --> 01:00:27,840
+Unknown: station. I think I'm at best better developer because of their
+
+80
+01:00:28,260 --> 01:00:29,250
+Yeah.
+
+81
+01:00:29,250 --> 01:00:34,050
+Wes Bos: How did how do you make this it's ice so you just brew it like a tea?
+
+82
+01:00:34,890 --> 01:00:48,450
+Unknown: Yeah, no, you like there is just fresh. Not not fresh. It's dry but you just put there in the cup. And you have this especially strong. Let's go Come bom bom BIA Bambi it's called bomba mo Yeah, okay,
+
+83
+01:00:48,450 --> 01:00:49,260
+Scott Tolinski: go Yeah, what
+
+84
+01:00:49,410 --> 01:01:05,220
+Unknown: a bomb is the same word for a bomb. Then I don't want to throw like bombi here. Maybe you'll get banned this episode. But it just puts there and you just put a cold water very cold water because in Brazil usually is very hot. And then you drink it. It's cool. Yes, Ed, you
+
+85
+01:01:05,220 --> 01:01:22,830
+Scott Tolinski: can do yeah, you can do cold brew. Yeah, I'm a huge fan of that. I mean, I big fan of your romantic for a long time. I never made my own cold one. I only ever bought that from like Whole Foods. But I'm into this. I'm gonna have to get some. Do you put anything in it? Or is it just your do you put any like lemon or any,
+
+86
+01:01:23,480 --> 01:01:32,400
+Unknown: like a guide. But usually people like to put lamb or pineapple or whatever. But I drink literally every day all the time. Then if I put
+
+87
+01:01:32,400 --> 01:01:34,530
+Scott Tolinski: anything nearly caffeinated for our audience Yeah.
+
+88
+01:01:34,530 --> 01:01:36,600
+Unknown: It's pretty cool.
+
+89
+01:01:36,840 --> 01:01:40,110
+Scott Tolinski: Yeah, for those of you don't know. It'll get you going.
+
+90
+01:01:42,000 --> 01:01:44,310
+Unknown: It has no effect on me because I drink all the time.
+
+91
+01:01:44,760 --> 01:01:47,280
+Yeah, that's me cold brew right now.
+
+92
+01:01:47,790 --> 01:02:03,120
+Wes Bos: Amazon autocorrects bomba straw to boba straw, which is for bubble tea. Oh, you have to tell it. No, I don't want a bubble tea straw. I wanna, I don't want it looks like a spoon. With with tiny little holes and then a straw on it. So
+
+93
+01:02:03,120 --> 01:02:06,090
+Scott Tolinski: it doesn't suck up the herbs in that in your mouth.
+
+94
+01:02:06,630 --> 01:02:10,020
+Unknown: Don't try wait for a regular straw. Otherwise, you're going to eat there.
+
+95
+01:02:12,570 --> 01:02:17,550
+Scott Tolinski: You're gonna be pulling it out of your teeth. I actually am a gourd and one of these straws already.
+
+96
+01:02:17,850 --> 01:02:18,420
+Unknown: I'm into this
+
+97
+01:02:18,420 --> 01:02:26,070
+Scott Tolinski: into this too. Yeah. I'm gonna head to Whole Foods and pick up some yerba sack. Yeah,
+
+98
+01:02:27,150 --> 01:02:42,000
+Wes Bos: that's probably a sick word scanner here to study. That was a sick sick back. Yeah, we'll do shameless plugs now. Wes Bos comm forward slash courses, you can check out all the courses that I have you syntax for 10 bucks off, learn a new thing or two?
+
+99
+01:02:43,530 --> 01:03:20,610
+Scott Tolinski: Yeah, I'm gonna shamelessly plug level up tutorials comm it's my site where you can learn all sorts of cool stuff. We have courses on smelt sapper, there's actually a lot of courses on Meteor. And we have a new course a free course that's on YouTube right now for Meteor and spelt. So if you're looking to get full stack apps have in like the least amount of code in the entire world, I built a package for Meteor accounts with spelt. And it's two lines of code and you get the whole login system. For free. It's so easy and simple. It's amazing. So check it out, level up tutorials.com.
+
+100
+01:03:21,180 --> 01:03:45,630
+Unknown: So my shameless plug is my Twitter, just follow me on Twitter, Phillip novela. And I am about to release a website that's called How to create an app dot Dev, where I'm going to teach how everything that I learned about app development in the last years, of course, I'm going to be using jmeter not because I'm an evangelist, but because I love it. And everyday, use it every day. And and that's it, follow me on Twitter.
+
+101
+01:03:46,019 --> 01:04:33,600
+Scott Tolinski: If you are interested in Meteor, join the slack community have a link in the show notes for us. And there's also a forum to forums.meteor.com you'll see yours truly hanging out there all the time, as well as the Slack channel. I'm in there all the time. And we also have a media room and the level up tutorials. discord channel too, if you want to talk me here with level up tutorials as well. So thank you so much for Philippe for coming on. This is awesome. I'm so excited to get this episode out and for people to really care about Meteor as it actually is. So that's I'm so excited. Thank you so much once again, and we usually end the show with a peace we just say peace peace pace, please head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
