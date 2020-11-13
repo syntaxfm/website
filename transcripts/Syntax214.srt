@@ -1,0 +1,480 @@
+1
+00:00:01,319 --> 00:00:02,820
+Unknown: You're listening to syntax
+
+2
+00:00:02,820 --> 00:00:04,590
+the podcast with the tastiest web
+
+3
+00:00:04,590 --> 00:00:10,530
+development treats out there. strap yourself in and get ready here is got to live ski and Wes Bos.
+
+4
+00:00:10,559 --> 00:00:21,990
+Wes Bos: Welcome to syntax. This is the 2020 Fitness show. How many times have we done a fitness show here? Scott, maybe this is our third or fourth, number three. Number three.
+
+5
+00:00:22,019 --> 00:00:28,560
+Scott Tolinski: Yeah, we've done one every year. So this is our third year syntax. And this is the third fitness row.
+
+6
+00:00:29,099 --> 00:01:23,970
+Wes Bos: Awesome. So today we're gonna be talking about just kind of where we're at with fitness. Developer fitness in general, I think is important topic because we sit hunched over a keyboard all day. And I think there's a, I think one of the ultimate productivity hacks that you can have is being in good shape and having good energy for the work that you do. So that's kind of why we'd like to do this episode, just kind of explain where we're at. We are sponsored by two awesome companies. First one is a fitness company dev lifts. deadlifts has actually sponsored all of our fitness episodes and a bunch of them over the years. They offer a bunch of personal training plans. We'll talk about them partway through the episode. I'm currently on one. It's awesome. And the second one is century which does all of your error and exception tracking front end back end native application, PHP, JavaScript, Ruby, you name it. I will talk about them partway through the episode as well. So Happy New Year, Scott,
+
+7
+00:01:23,970 --> 00:01:25,440
+Scott Tolinski: Happy New Year,
+
+8
+00:01:25,649 --> 00:01:27,330
+Wes Bos: how you're feeling this new year.
+
+9
+00:01:30,930 --> 00:01:31,500
+Unknown: You know,
+
+10
+00:01:31,590 --> 00:01:56,190
+Scott Tolinski: let me give you a little bit of an insight to how I'm feeling this new year. I when we started getting ready to do this episode here. I am kind of getting over cold so I'm a little congested. I wanted to take a look at decongestion and went to take the decongestant and I also went to put my headphones and I put my headphones in my mouth and I put the decongestant. So that is how I am feeling now um,
+
+11
+00:01:56,219 --> 00:01:59,250
+Wes Bos: yeah, your ears your decongested then
+
+12
+00:01:59,520 --> 00:02:40,970
+Scott Tolinski: my ears are decongested absolutely, you know, accordion I spent a good amount of time like really just doing that you know, spring cleaning kind of cleaned up the house, got the the you know, the kitchen table cleaned off, got rid of the Christmas tree, that sort of stuff. And the house feels so dang good that I was able to like I spent a good 20 minutes. And I say this as a B boy, those of you don't know breakdancer, I spent a good 20 minutes rolling around on the floor in my living room last night. And so the fact that we have that much room in our living room right now is pretty unheard of for all the toys and Christmas stuff that was going on. So I'm feeling nice and open and ready to go. I'm just gonna get a little bit of a jumpstart. But how are you feeling?
+
+13
+00:02:41,340 --> 00:03:41,940
+Wes Bos: I'm feeling great. I this is obviously the first day back at work for 2020. I spent a couple days over the holidays. Totally rejigging my office setup, because over the past, like I don't know, three years, I kept adding more and more gear, which is more and more cables. And I just got to a point where there was just too much stuff in my office. So I I built this thing called the lack rack, which is an Ikea coffee table. Yep. And then you take a second top of an Ikea coffee table and you put it underneath. And it's the exact same width as a like a rackmount server. So I put everything in there, but wheels on it, you can roll it out, and then I clean up my office when it's looking amazing. Like I can roll around in this place as well. I actually am looking at getting some kettlebells Yeah, actually not looking they're coming today for my office because I'll talk about that in just a bit. But like a feeling so good that like New Year new me, I got my office all cleaned up, my desk is looking really good. And I'm just like ready to ready to charge forward with the year.
+
+14
+00:03:42,300 --> 00:04:40,230
+Scott Tolinski: Cool. Well, that sounds good. Which is, uh, you know, I think this episode hopefully will be inspiring to those of you who aren't doing anything, and those of you who are doing it, something will be inspired to do more. You know, I think that's a really, I'm not necessarily the type to, you know, really think about resolutions being the thing, because honestly, you should be thinking about these things more than once a year. But I do acknowledge that that's like a huge driver for a lot of people as this new year. It's exciting to get going. And I think fitness and health related things especially, which is why there's that whole joke about, you know, January 1, the gym is you know, hyper crowded, and then, you know, February, it's not crowded anymore. So hopefully these are the type of things that you could implement in your life now if you're not doing them or work for and hopefully this just inspires you to do a little bit more. So yeah, no shame. If you're not doing anything, though. Let's, let's all just work to better ourselves in this new year.
+
+15
+00:04:40,580 --> 00:04:52,520
+Wes Bos: Absolutely. So let's start off with just kind of reflecting on the past year sort of where we're at health wise, we've updated a couple of times over the time. So where are you at right now Scott? Yeah,
+
+16
+00:04:52,530 --> 00:07:27,390
+Scott Tolinski: so if we're talking about fitness, you know, I for those of you don't know I had a tailbone injury so I have this nerve damage in my my back. Essentially that goes down my leg. And because of that, it's been not a great thing for me in terms of a lot of the fitness things I like to do in the past. I'm a B boy. breakdancer are about 1516 years now. So I like to move a lot and it's really limited my movement, I haven't been able to go snowboarding as much. So last year, I didn't get to do any snowboarding, which is really huge bummer. I went for like a week for one single trip and then paid for it for a while with how much it hurt my tailbone. So that's a huge bummer. But I really tried several different things. weightlifting wise and fitness wise, I tried different, different things. And sometimes I fell off and I didn't lift for, you know, a couple weeks here a couple weeks there, but pretty much for the entire 2019 I at least had some sort of spent time in the gym at least every month for a little bit. Even if I was going through some health issues sometimes that you know, I'm trying to do things where I have this nerve pain, and it's like, okay, maybe if I take a month off from the gym, it will help it and then Okay, didn't help. But so let's go back to the gym. You know, I'm an experimenter in those types of ways. So I've tried several different lifting platforms or lifting versions, I even got to go breaking a few times, but not as much as I would like. I did however, finally find a full body workout, which I'll get into later on in this episode that I've really come to enjoy. I've been doing it throughout the entirety of November and December. So coming into January, I'm still feeling hyped on the progress I'm making here. So I finally really found a nice little flow that I've worked on. My cardio is like non existent right now because I haven't been doing any sort of cardio things. And a good friend of mine lent me his weight belt, which I've been using to get feedback for while I do things like deadlifts or squats. And it's not like a supporting belt, but it like helps you brace your core a little bit more. Oh, really. And I found it's like really helped me understand the form a little bit better that I need. And I've been able to more safely lift heavier weights. And so that to me has been really exciting that I'm able to do that. Another thing I think that I've been really working towards is that we have a an old shed. It was like a very old shed. In fact, I'm going to do a whole before and after when I'm finished with it. It was looks amazing. By the way. Thank you. It was dank, it was so dang. released. It was like the grossest looking thing in the entire world. But
+
+17
+00:07:27,390 --> 00:07:28,800
+Wes Bos: not a good Dang. No,
+
+18
+00:07:28,830 --> 00:07:35,490
+Scott Tolinski: not a good day. No, it would look like I mean, it is the 1920s shed that people have been using as a shed for you know, 100 years.
+
+19
+00:07:35,550 --> 00:07:36,660
+Wes Bos: Katelyn it Yeah,
+
+20
+00:07:36,770 --> 00:07:58,680
+Scott Tolinski: yeah, I really wanted to make that space more enjoyable for us to use. So I just like covered the whole thing and several coats of different kinds of paint. It took maybe like seven days of just hard work on there. And it looks like an actual gym now. It's like so cool. It's got these like black padded floors. We have a squat rack I painted the walls paint the ceiling
+
+21
+00:07:58,710 --> 00:08:02,760
+Wes Bos: motivational quotes put up on the wall. Yeah, sure. Arnold's and we,
+
+22
+00:08:02,760 --> 00:08:32,250
+Scott Tolinski: we just put a giant TV in there, which is going to be fun. That's an old old TV that we had like our first Vizio from like 15 years ago. So I'm excited to have that gym going forward. But that was a huge thing for me. And I got some new equipment. I got a new bench and I got a glute ham developer, which is like my new favorite tool entire world. So that was my past year. And it was a lot of change a lot of growth and a lot of setup for 2020 to be my my best fitness year yet, man, I'm
+
+23
+00:08:32,250 --> 00:08:39,869
+Wes Bos: TJ and on here, we should say Scott once said he was TJ and I was like what does that mean? It means totally jealous saying.
+
+24
+00:08:41,249 --> 00:08:46,110
+Scott Tolinski: So in a way you don't know is that I've occasionally said I'm totally TJ and
+
+25
+00:08:47,070 --> 00:08:52,649
+Wes Bos: Yeah, you got it. You're totally TJ and I'm totally TJ and you're a little home gym that that looks awesome.
+
+26
+00:08:53,779 --> 00:08:55,279
+Scott Tolinski: Thank you It was hard work.
+
+27
+00:08:55,350 --> 00:09:00,510
+Wes Bos: I there's Do you have photos on your Instagram? Or you will eventually uh
+
+28
+00:09:00,570 --> 00:09:13,890
+Scott Tolinski: i'm gonna do eventually because it's not done and I didn't want to do the whole before and after thing when it wasn't finished but maybe either yes episodes live I'll have those photos up because I just hung hung our lights up yesterday so it's like getting
+
+29
+00:09:13,909 --> 00:11:27,000
+Wes Bos: there. So cool. All right, so my update here is we said on one of the last shows that 2018 was was a tough year for both of us just having kids kids not sleeping. I had like my workload is probably a little bit over committed for that and unfortunately that means that Jim and probably more nutrition for me takes a bit of a hit. Which is a bit of a bummer. So I gained about 12 pounds from where I'd like to be. So I'm working on getting that back down. And it's it's incredible the the energy difference that that you feel just not necessarily just the the the extra weight but just not going to the gym and actually going to the gym for even just like you start going for like two weeks again. The energy differences is amazing. And it's funny how I often forget that. Yeah. Because it's it's all about energy. For me, it's all about like feeling good and cranking out as much work as I can possibly get done in my eight hour day. And it's such a such a life hack, being able to be doing exercise a couple times a week in it translates so well to getting stuff done writing better code, just having that motivation to finish your stuff up. So that's kind of where I'm at right now is trying to work through that. I've been doing the dev lips plan. And so they're one of our sponsors. Today, they hooked me up with another plan. I was doing one of their plans for probably about a year and a half. And I really liked, I really liked it. And then basically, once I got back into it last November, I said, like, Hey, can you do another plan for me, here's where I'm at with. I'll talk about that in the sponsor spot. But basically, I've been doing another one with lifting, doing a lot more cardio recently, which I've been enjoying, specifically, because when we go to our cottage for the summer, I don't have anything up there that is like a gym or something like that. But what you do have is beautiful running around the lake. So I in the summers, I usually like to go for runs nice and early in the morning. So I've been trying to get my cardio up in preparation for this coming summer to do that, and been doing a lot of HIIT high intensity interval training. Is that what it stands for?
+
+30
+00:11:27,090 --> 00:11:28,440
+Scott Tolinski: That's it. And that's it.
+
+31
+00:11:28,529 --> 00:11:47,250
+Wes Bos: And that basically that what that is, is you just run like crazy for 90 seconds and then you cool it down for 30 seconds and then you go absolutely bonkers for for 30 seconds is usually that I'm that person in the gym where you like looking over? Like what's wrong with that guy, like, you're going way too fast. You know,
+
+32
+00:11:47,279 --> 00:12:13,020
+Scott Tolinski: I prefer what I'm doing high intensity interval training would be there's a site fitness Blender that has a whole ton of free videos. Yeah, they do. Like they'll do like burpees or something where you you get to the floor, you jump up into the air again on the floor, you jump up there you do mountain climbers, those kind of things. That to me is like maybe the preferred version of that same thing. But yeah, yeah. I've never been a fan of running for some reason. Never ever,
+
+33
+00:12:14,039 --> 00:12:21,510
+Wes Bos: man. Alright, so now let's let's move into, let's move into what we're doing right now. What is our current workout look like?
+
+34
+00:12:21,720 --> 00:15:22,740
+Scott Tolinski: Yeah, current workout for me is it's really interesting. So I've been doing a lot of workouts over time. In fact, I was doing a deadlift one for a little bit. But you know, the workout they gave me was really great geared towards the things I was doing and breaking. The problem is my joints have taken a bit of a beating. And I have been breaking as much. So I wanted to focus a little bit more on general full on strength. So I've just been doing this lifting routine. Now my lifting routine has gone through so many different revisions. But here's its current state, and I know that some people will not like this. I'm gonna just say that up front. But I've been doing this now for three months. And I haven't seen any downsides yet to it. So okay, I do a four day split, where I have four different exercises that I do. I have a chest and triceps, I have a back and biceps. I have a shoulders and I have a leg day. So those are my four days. And within all of those four days i do i alternate abs and like leg development with the glute ham developer. So my workout days are my workout schedule is seven days on zero days off. So people talk about needing a rest day and all that stuff. But let me tell you, I've been doing athletic anything for my entire life. I was a you know, sponsored rollerblader and I was a B boy for 15 years and I've been weightlifting for 10 years or something. So I've been doing a lot of stuff for a long time. And I can listen to my body and know when in fact it's a being overworked and not. So I do this four day split I spend about an hour in the gym seven days a week. Make sure Courtney gets a time as well if she wants it, but my back. Okay, let's start my chest day is incline bench press with dumbbells than a bench press than a decline bench press. And then I use the glute ham developer to do sit ups with holding a weight and then I do close grip bench press for my triceps. So I do a lot of stuff that hammers and then back day I do weighted pull ups than I do deadlifts. I do bench supported rows and then I use the glute ham developer to do glute ham raises. Then concentration curls and then reverse concentration curl. So again, my workouts are pretty pretty stacked here. Shoulders I do overhead press lateral raise a close grip bench press and setups and then let's see what's my leg day I do squats. deadlifts, calf raises glute ham raises concentration curls and reverse curls. So like I said, these are pretty loaded. And I've been doing this now for like I said three months and you would think that a would like Be a little bit overworked. But to be honest, I'm not making progress. Every single workout I'm adding 2.5 to all my lifts that I'm having like really good workout. So this is what it looks like for me. But that's it, I'm, I would say I'm fairly advanced in this stuff in terms of how long I've been doing it, and being able to understand my body and I haven't gotten injured at all, which is a big plus, for me.
+
+35
+00:15:22,950 --> 00:15:28,529
+Wes Bos: That's great. Are you still using that heavy set app to track if you're progressing in your weights?
+
+36
+00:15:28,710 --> 00:16:30,360
+Scott Tolinski: Yes, I'm using an app called heavy set for for iOS, it's not the most intuitive app, you kind of have to set some stuff up yourself. But the benefits are really outweigh that for me. Well, I posted on Instagram, I'll post on on Twitter. It's funny because this this chart looks a lot like what progress really looks like in life. It goes up and down and up and up and up and up, whatever. But the average is, is like a steady progression up. So even if one workout from the next, I'm not moving as much weight, I'm still growing every single workout. One of the things I really love about this app is it tells you your total volume. So like I can look and see that. Let's see. Yesterday for my workout. I moved a total of 21,500 pounds between all of my exercise, whether it's deadlifts, pull ups, deadlift, whatever. And so I can look at that and see, okay, I'm doing about the same amount of work, every single workout, whether it's a back day, chest day, whatever, and I can throw the volume or whatever, where I need it to, to see that progression upwards.
+
+37
+00:16:30,840 --> 00:16:42,870
+Wes Bos: Cool. That's, that's really neat. So I've been going on three days a week, which is just about as much as as I can handle. Being away from like, the gym is pretty close, like a 10 minute walk, which is great.
+
+38
+00:16:42,899 --> 00:16:46,020
+Scott Tolinski: Yeah, but I can't my gym is about a 10 second walk.
+
+39
+00:16:46,260 --> 00:18:31,410
+Wes Bos: Haha, TJ and, yeah, so I go three days a week, I go once at night, I sort of have a trade off with my wife, and then twice during the day. So after I record this podcast, all like Mondays for me are usually like wake up. For the two hours before we record this podcast, I do emails and sort of just like tidy up stuff that needs to be prepped for the week, then we record this podcast, then I go to the gym, and then I'll come back and do some more sort of tidying up. And then the rest of the week is sort of just like heads down doing like heavy, heavy code. So I'll try to go once on on Monday. And then I'll try to go once on Wednesday, and then again on Thursday. Sometimes we can sneak it in before a date night, which is my favorite. Because there's nothing better than like just killing out at the gym and then going and having like a nice beer and Oh yes, take it. So apparently, according to deadlift guys, apparently that is one of the best times to have a beer as well as your body is still burning stuff. So I like that. Basically, one day, his chest and back. It's got a bunch of different exercises through that. And then legs and chest on the second day and then legs and back on that I've sort of neglected back in the past, not in the last like a couple of years. But like when I was young, I was just more about chest and arms. Right? Yeah, yeah. And like just like my have my daughter on my, on my shoulders for like half an hour. The other day. We're walking home from something and like the next day I was just had hugest headache ever. And I was like, Oh man, I like I don't know if I pinch something or if I just need a stronger back. Yeah. But I was like, I need to make sure that I'm not like this old guy that has back problems. Right? So
+
+40
+00:18:31,410 --> 00:18:38,090
+Scott Tolinski: are you doing any sort of like pull up motion? link or maybe like a? What is the machine where you pull? Yeah, yeah,
+
+41
+00:18:38,130 --> 00:18:44,460
+Wes Bos: this one? Yeah, were you it's the straight bars above you and you pull down. Is that good for for that type of thing?
+
+42
+00:18:44,490 --> 00:19:38,940
+Scott Tolinski: Oh, yeah. Yeah, yeah. And especially if when you're doing it, you're like, focusing on feeling it in your back. They talk a lot about this is a little little like a little small thing where they talk about this mind muscle connection that when you're doing a specific exercise, specifically like one like that, you could do that exercise and feel it all in your arms and your chest, right, and you're just like pulling it like that. But that exercise your back is the muscle that should be doing that exercise. Yeah. And your body is often wanting to substitute the weaker muscle with like a stronger muscle. So if your chest and arms are stronger, it's going to try to use those more than your part of your back that's weak. So like if you really think about those back muscles and pulling those in when you're pulling it down. And that goes for any exercise. It makes us so much better for the perfect girl. So yeah, I mean, if you want back stuff that rose whatever that you're doing, I'm sure Douglas guys got you covered.
+
+43
+00:19:39,270 --> 00:20:02,760
+Wes Bos: Yeah, no, that's how I see it going right after court. This podcast is back day. So I'm going to to make sure like what I've been doing is like trying to go super light when I'm learning a new exercise just to make sure that I have the form and I can feel it because I certainly know you can either hurt yourself or just be wasting back day because you're like you said you're coming compensating with other ones. So that's a good, good one.
+
+44
+00:20:03,050 --> 00:20:47,060
+Scott Tolinski: Yeah, that that going, like not allowing your ego to step in, like, it's too easy for me to look at my app and be like, well, I did this amount last year. So I should be able to do this. Like, that's not really what it's about maybe, like, specifically yesterday, I was doing rows. And I was doing it at a, I do these like bench supported rows, because it's like less hard on your your back to hold yourself in that position. And I was doing like 125 or something, I was doing it. And like, the last one, it felt fine, but I felt like I was sacrificing my form. So I dropped 10 pounds. And I did the next one. And I just did it really concentrating on my form. And it's just as good. I mean, like, don't let that ego Yeah, and I'm not saying you are but like
+
+45
+00:20:47,060 --> 00:20:49,770
+Wes Bos: no, no tips for everyone listening. That's such a hard thing
+
+46
+00:20:49,770 --> 00:20:58,580
+Scott Tolinski: is to not let your ego jump in there and be like, walk us through us, you know, cuz it's just, it's just something that we're young innately want to do.
+
+47
+00:20:59,090 --> 00:21:38,760
+Wes Bos: Totally, totally. Another thing that the dethleffs guys gave me that I love, they call them cardio finishers. I call them blasters. Because they're just like, like you want to leave the gym. Just like toast you want to you want to leave the gym every day and sometimes when you are lifting weights you have like sets in between like you feel like tired but you don't feel like you know so at the at the very end after I do all my my lifting weights. They gave me like these eight different blasters. The one my favorite one is rowing, I didn't even know I enjoyed rowing.
+
+48
+00:21:38,790 --> 00:21:40,170
+Unknown: rowing is so good.
+
+49
+00:21:40,260 --> 00:22:36,150
+Wes Bos: It's so it's 500 meters row 500 meters as fast as possible. And you aim for under two minutes. And I'm just like, you get into like two minutes. I bet I could do a minute and a half and then and then once you get like close to two minutes, I'm dying. And like just like panting like crazy and like I could barely do it. And you can see on the screen like your pace and you keep going over two minutes and under two minutes. And oh, I love that because it's just two minutes at the end just do it on your way out just do a real quick and just like those little little cardio headers blasters are I really enjoy those. If you're not like the most athletic person in the world, or just anybody you can still do rowing. And let me tell you if you replace your treadmill or your What's that one thing where you get your arms gone the elliptical, you replace the treadmill or elliptical with rowing.
+
+50
+00:22:36,150 --> 00:23:05,670
+Scott Tolinski: Oh my gosh, like that it like watch a couple of videos on rowing form because the forums important, but once you do rowing at all, it will absolutely kill you. And it's not like like, the cool thing about rowing is that like really super advanced people can get their butts kicked by the rower and people who are basic can still get that same butt kick from the rower and you can you can grow with it so much. If there's like one piece of equipment that I would splurge on it would be a really dope rower.
+
+51
+00:23:05,910 --> 00:23:29,730
+Wes Bos: A buddy of mine just got a like a for 200 bucks. He said he got one from China on Black Friday. Whoa. And he said, it's like it's not great. But like it does the job. And it was like do and I'm sure you can find one like on the local classifieds as well. Yeah. If you like don't want to totally invest in something like that just to see if you like it or not. And it's surprisingly affordable. Right? And I know 200 bucks is not cheap.
+
+52
+00:23:29,759 --> 00:23:32,190
+Scott Tolinski: But I don't have the room for one is the problem.
+
+53
+00:23:32,219 --> 00:23:36,240
+Wes Bos: Yeah, they're they're big, right? And you can't just like fold them away like a treadmill either.
+
+54
+00:23:36,479 --> 00:23:44,100
+Scott Tolinski: Well, maybe you can't actually you can, you can follow them up. But it wouldn't fit in our gym with all the stuff we have in there right now. So that would be a huge thing.
+
+55
+00:23:44,100 --> 00:24:39,000
+Wes Bos: You need a second level, second level ops guys. I think that's always good. The other thing I'm trying to focus on right now is figure out like, what can I do when I'm stuck on something in my office. So I just clean up my office, I have a like a fairly large office maybe, I don't know, 25 feet by 11 feet or so. And the ceilings are decent. It's like a third floor house. So it's not like like 10 foot ceilings, but I think it's high enough to do some like, just like kettlebell workouts, some, some swings and stuff like that. So I've ordered some they should be coming any minute now. Actually, I just adore. And I'm gonna try that because sometimes when I'm stuck on a programming problem, instead of like, just like going to YouTube or whatever to just like, take my mind off of for a second. Like maybe I should try doing some sort of exercise in between. So that's kind of something I'm trying right now.
+
+56
+00:24:39,330 --> 00:25:40,380
+Scott Tolinski: That's a good thing. You know, a lot of people they don't know when they can fit in an exercise or whatever. Even just like going for a walk at work, right? Like if you're stuck on something, go for a walk around the block that gets your blood moving. It's way better than do whatever you're going to be doing sitting at your desk. We used to work at a pretty big office building, my boss Ben and I and we would just, we not only would we do laps outside around the building, but on good days, what we would do is we would do a lap around the first floor, and then we'd walk up the stairs and do a lap or on the second floor and then walk up the stairs and like, it wouldn't be like and we would just chat and have a conversation, it would be more like just, you know, buddies hanging out, then getting movement, but at the end of the day, you're still burning calories doing that you're moving, you're doing something that's better than just sitting in your chair. And that's like a low hanging fruit to move when you're stuck in a programming issue because we have all that we all know those those times when you just butting your head against something and you're not going to necessarily solve that issue just sitting there butting your head against it still.
+
+57
+00:25:40,560 --> 00:25:59,550
+Wes Bos: totally totally so I'm so excited by like this. Do you use kettlebells at all I just got into them in the last like month or so just there's this like new room at our gym and they just got a bunch of them in there. So I just like Washington YouTube videos on Yeah, how to do swings, and if they seem very versatile, so I thought 2030 bucks, might as well try it.
+
+58
+00:25:59,820 --> 00:26:41,940
+Scott Tolinski: They are versatile. Yeah, we have a 35 pound kettlebell that was gifted to me from level up tutorials developer Eric satorious. He's living in Denver for a little bit he bought this kettlebell and he was like flying out to go live somewhere else. He's like, How the heck am I gonna get this kettlebell anywhere? I don't have like any. Here, I'm not driving. So he just, he gave it to us for super cheap. So we got that. To do that. I do the swings, the ones where it's between your leg and you yelling it and yeah, the 35 pounder kicks, kicks my butt. I don't do a ton of stuff with it anymore. But I do fairly often. It's it's in the gym. We have it there just to whenever you're feeling like moving. The good thing about those exercises, your whole body's moving. But yeah, kick kicks your butt.
+
+59
+00:26:42,240 --> 00:29:42,360
+Wes Bos: I always saw people doing like the swings. And I was like, come on, like what does that do? And then I did it. And I was like, oh, it feels pretty good. And the next day, my butt hurt so much. Yeah, yeah. megabyte. And so it was, it's a good one. All right, let's take a break for one of our sponsors. This one is dev lips, which is totally related to the fitness episode. So DevOps is out there to refactor your body. So it's JC and dad, JC is a developer and obviously super into fitness, and that his actual personal trainer, and they've put together a couple different plans and things that you can sign up for to get in shape. And it's totally a targeted at developers and a lifestyle that we live and sort of the community that we like to have around that thing. So there are two things that dev lifts currently has, there is fit dot start, which is has a couple different options. Basically, what I like about deadlifts is that you you talk to them and you fill out this survey and you talk about like, like, where are you at right now? What do you want to achieve? Do you want to get lean? Do you want to remove body weight? Do you want to get strong? And then you also talk to them about eating habits? Can you go to the gym? Do you want to do it at home? Do you travel a lot, and they'll compile all that information into just a set of exercises and a nutrition plan that will will help you out. And that's really cool, because that's exactly what I want. As a developer. I don't want a personal trainer, I don't want 1000 different YouTube videos, I just want someone to take all of the aspects of my life into account and tell me what to do. And then I can follow that I can follow the instructions once I have that. So that's what deadlifts will give you. They've got fit dot start, you can you can have few options, lean bodyweight and strong. The workouts are delivered to you via email each month and you also get access to the slack community. So you can ask questions as to like like I specifically ping JCS said, Hey, ever do kettlebells like like what's this all about? And he kind of gave me some some of his thoughts and things that you can do with them some stuff that I hadn't even thought of which is cool. And then they also have their premium option, which is a custom tailored options where you get your workouts and nutrition advice. After answering the questionnaire that also check in with you each week via slack. Make sure See how it's going. If you need to tailor it a little bit different here and there. So pretty cool. I recommend it they are offering 50% off their plans. If you want fit start, you can use the coupon code syntax. And if you want the premium offering, use the coupon code tasty. And each of those will give you 50% off, go to dev lifts.io to check it out. And I'm sure they'll ask the answer any questions that you possibly have before you want to sign up. And check it out if you want to get healthy and fit and focused on on your fitness this year. Thanks so much to deathless for sponsoring. Thank you.
+
+60
+00:29:42,570 --> 00:30:30,630
+Scott Tolinski: Yeah, one thing I want to point out before I guess we go any further in this episode is is those of you who are maybe newer to syntax, you might be listening to this and you might be thinking okay, this is great. We're getting these stories, but I don't know a whole lot about any of this stuff. Maybe I've never done anything. We have two other fitness episodes like we mentioned at the get go on this site. We had the the fitness one, the very first fitness one. And then we did a follow up last year. So if you want to learn a little bit more about some of what we, how we feel about some of this stuff, but on the other episodes, the past two episodes, and you'll learn a little bit more about maybe some beginner things that you could do, or ways that you can get started or whatever. And it's fun. You'll also notice that deadlifts have sponsored those episodes as well. They've been a longtime supporter of syntek. So again, thank you deadlifts for supporting us for this long, and we really appreciate what you're doing.
+
+61
+00:30:31,020 --> 00:30:46,980
+Wes Bos: Yes. So let's get into nutrition, which I think is just as important as or maybe even more important than then working out. So what you eat, how much you eat. Yeah, those types of things really effective. So where are you at right now with your nutrition?
+
+62
+00:30:47,310 --> 00:31:10,440
+Scott Tolinski: Yeah, so one thing I'd like to say is that, like, a lot of people want to make it really complicated, but at the end of the day, we're talking calories in versus calories out. It's just simple physics, right? Your body's gonna, you know, if you expel a bunch of calories, and you income a bunch of calories, the end result is going to be what happens to your body. So that said, I'm not really doing anything that crazy, Courtney makes really good meals.
+
+63
+00:31:10,920 --> 00:31:11,610
+Wes Bos: Yeah, she,
+
+64
+00:31:11,610 --> 00:35:29,940
+Scott Tolinski: she makes really good food that is like, what she gets, she gets a lot of, I wish I knew this is like skinny tastes, which is like sounds like it's not going to be good. I think it's a blog, it a lot of the stuff on here is like really good recipes. And they're not like, I don't want to put these people down because I'm fully into this. But like, if they're not like vegan vegetarian stuff, like it's actually like good recipes, they're just made using nice ingredients. It's the stuff that's gonna be good for you. And so, you know, I'm lucky that she's really into making really nice food like this. And so because of that, we we eat pretty, pretty nice. Here, we pretty clean. With the addition of the new baby, it has been a little bit difficult to also make food all the time. Even we're both feeling worked, not just her Courtney's feeling worked, I'm feeling worked. Yeah, neither of us want to make anything. And then we end up ordering a pizza. So that that happens. And I think this year, it's happened more than any other time. But at the end of the day, I'm expelling so much energy via my workouts via breaking whatever, that I kind of need a lot of food, I need to eat a lot of stuff. So for the most part, I don't think too much about nutrition. I have a set of recipes that I make that are all pretty good. Courtney has a bunch of stuff that she makes, and we just sort of go through the schedule and make it so good dinners. Yeah, that's one. salads for lunch are really super easy. Here's what you do. You go to Costco, you buy a couple bags of the big salads. And then you buy a rotisserie chicken, you rip up that rotisserie chicken, you put it into a bag every single day for lunch, you have a salad with dressing crew tons and chicken, chicken. And that's five days of lunches, man, that's five days, you can have a little little extra there. But that's like really super easy, low hanging fruit. And let me tell you, I don't crave any of that stuff. I occasionally we'll go out and get Panda Express because you know, kind of had that panda. But you do regret it afterwards. Right? Yeah. Personally, I don't do a lot of fast food. And maybe that helps that I'm working at home, right? I can walk to the kitchen and get that salad rather than being like a bunch of buddies being like, oh, where do you want to go out to lunch? Totally. Oh, man. That's, that's hard. Because that was a huge thing. For me. When I worked in an office, when I worked in office, it was always me sending panda gifts to my coworker so that we could go to Panda Express. We just he would get a panda gift. And he'd be like, again, what are you doing? So it's a little bit easier for me and I recognize that. But at the end of the day, it's easy to make those salads because you just buy those big bags, buy those premade things and you don't have to really do a whole lot yourself. As far as like dessert and stuff like that. I've never been a sweets person ever, never really been a sweets person. Although we got into a routine when Brooklyn was born that Courtney and I were just so wiped at the end of the day, we were like, Oh, my ice cream. And that was like that, let's have some ice cream became an everyday let's have some ice cream. And like you eat ice cream every day. Like I'm just as good with like a couple of pieces of chocolate with peanut butter or something like peanut butter cups. I'm good with a couple of that. I don't need a whole thing of ice cream every day. And so for me it was recognizing that maybe that's a little bit of a slippery slope to just start like relying on some of that stuff after dinner. And so I do that. I also do intermittent fasting but I don't do it. I don't do it hardcore intermittent fasting for me isn't like just not eating. It's it's basically just cutting out eating before 10 o'clock, and it's cutting out eating after dinner so I don't have any snacks after dinner, dinner, I have a little dessert and then I just drink water or tea or have a beer or something instead of having like snacks. So that that's it for me. It's just like I'm not a lot of extra stuff, but it This wasn't a major life change for me to get here. This has just been like a progression. Yeah, every year changing it a little bit differently. So my advice, if you want to be eating a little bit better doing these things is to make small changes here or there, right? make a small change. Don't make a big change, make a small change and stick to it, then make another small change and stick to it and just go from there. So that's, that's really what I'm doing. For my nutrition. Again, I'm not thinking about it too much, because I'm doing so much work. But what are you doing for your nutrition?
+
+65
+00:35:30,270 --> 00:35:53,040
+Wes Bos: Yeah, so I'm, I, I think for me, the biggest thing with nutrition is just making sure that I don't eat more than I should. Because like you, we don't really eat bad stuff. We're lucky that both of our kids so far are great eaters. You can pretty much give them anything we don't have like I know a lot of my friends have to cook like two meals, like one for their kids and then one for themselves.
+
+66
+00:35:53,100 --> 00:35:54,380
+Scott Tolinski: We kind of got to do that.
+
+67
+00:35:54,650 --> 00:35:56,010
+Unknown: Landon's not a great either. Yeah.
+
+68
+00:35:56,010 --> 00:36:20,960
+Wes Bos: No, that's I'm so glad that our kids like they're not amazing. Like some days, you know, I don't like that and, and stuff like that. But we never have to cook two meals or basically just give them what, what we're eating and we don't like I don't have any tips on how to make your kids not picky eaters, because I think we just got lucky. We're crossing our fingers for the third one right now because we it's been going well,
+
+69
+00:36:21,150 --> 00:37:06,030
+Scott Tolinski: we'll see about Brooklyn, but like Landon, it's so funny because like, it's not necessarily that he doesn't like the things I said he just doesn't want to try it. Like yesterday, I made like teriyaki noodles and all this stuff. He loves doodles and Teddy's gonna like it's teriyaki. It's kind of sugary, it's kind of whatever. And he was just like, I don't like it. And I'm just like, you didn't even try it. You like noodles? These are salty, sugary noodles. Just give you guys like, I want to try it. I'm like, come on. We. I don't know if you're familiar with Daniel Tiger, Daniel Tiger. NPO. Yeah, it's kind of like a Mr. Rogers Neighborhood sort of animated thing. And there's an episode where it's like, you got to try new foods because they might taste good. And so we sing that to him all the time. And he's just like,
+
+70
+00:37:07,980 --> 00:37:09,090
+Unknown: don't want to,
+
+71
+00:37:09,540 --> 00:38:23,850
+Wes Bos: like, yeah, just try. Oh, man. Yeah, that I think my actually my only tip I know, I said don't have tips. But I always have tips is that like, we never stress our kids out around eating, we basically put it in front of them. And we also did what's called baby led weaning where you just as soon as the kid is six months old, you start giving them just a little pieces of food and Yep, you don't like look at them, you don't tell them to sit down and eat you just kind of like put it in front of them and sometimes they don't need anything but when they're hungry though, they will actually eat and I think that mix with just being lucky is as worked out. So anyways, um, what what I do to whenever I feel like I'll probably overeating or eating too much or eating some of the wrong stuff is just like macro tracking. So usually for about a month I'll try to track every meal that I'm having and put it into an app and then I find like after a month a month and a half you sort of get in tune with like how much you can eat of each meal and and that and then and then I stopped doing that and then you're sort of in tune with with with how much you're supposed to be eating. I am still going low carb definitely makes me feel I was the first episode we did I did was doing full on keto, which I really liked. It's just a bit hard with family to do that
+
+72
+00:38:23,900 --> 00:38:25,190
+Scott Tolinski: low carb is the way to go.
+
+73
+00:38:25,230 --> 00:39:00,600
+Wes Bos: Yeah, that's great. We don't get a whole whole lot of bread and pasta and stuff like that anyways at our house. Most of our meals are high on veggies so brussel sprouts, salad chickpeas, roasted chickpeas are one of our favorite late lately. Green beans things like that big fan of that and then some sort of meat so we usually don't do like a like when I grew up it was potato or pasta and then along with the other one so we generally don't do a whole lot of pasta things like that. We've replaced a lot of stuff with cauliflower lately and yeah,
+
+74
+00:39:00,600 --> 00:39:21,650
+Scott Tolinski: I saw that and he did I thought I would be like no thank you like cauliflower rice, cauliflower rice or cauliflower neoci or something but I don't know if that's actually colorful or whatever but I'm surprised at some some of these substitutions that you can get at Trader Joe's or wherever that are just term really good
+
+75
+00:39:21,960 --> 00:41:01,610
+Wes Bos: yeah the the cauliflower is a bit hard for me to get on board but if you dress it up enough or you cook it properly then then I can get on board but like I've certainly been served cauliflower rice before and I couldn't put it down just because but that said for me it's like I absolutely love food I love cooking and things like that. And last episode I said I was getting super into like fermentation and I'm still super into fermentation crunchy, sour, spicy, those are my flavors. I don't like sweet I don't eat a lot a whole lot of sweets or, or like you said candy, things like that. I just got this jar. I went to drop my my daughter off at school and one of her friends is Korean. So naturally I'm asking her like, hey, like, do you make kimchi? And she's like, my, my mom makes the best kimchi ever. So she gave me this like, big thing of stinky kimchi. And, oh, I love kimchi I can eat. I can eat it all day long. It's still it's for those who don't know, it's it's fermented cabbage. That's also kind of a bit spicy. So it's crunchy and spicy. It's got the fermented flavor on it. It's probably one of my favorite toppings ever. What else here beer is probably my downfall. That's probably the reason why I am a couple pounds overweight right now. It's just like, nothing better than especially with having kids. Yeah, you're stressed out from a date. Nothing better than having a beer with my wife at the end of the day. But that's something I'm working to cut out over the next couple months just as I'm trying to drop it because beer especially like some of these like super heavy IPAs, things like that those things are loaded with carbs and calories. So do
+
+76
+00:41:01,610 --> 00:41:02,960
+Scott Tolinski: you know how I cut that out for me?
+
+77
+00:41:03,330 --> 00:41:03,860
+Wes Bos: How
+
+78
+00:41:03,960 --> 00:41:07,110
+Unknown: Niccolo light I just stopped keeping it in the house.
+
+79
+00:41:07,190 --> 00:41:09,030
+Wes Bos: Yeah, that's that's it for me.
+
+80
+00:41:09,420 --> 00:41:44,670
+Scott Tolinski: I the the problem is that we have a liquor store two blocks away, but it's still two blocks. I gotta go walk right, I could walk two blocks to go to the liquor store. But at the end of the day, if I have a beer, and I go to go to the grocery store, and I pick up a six pack and just have it in the fridge, I'm gonna drink it. I'm gonna have one I'm gonna have to maybe add in the evening. I'm gonna drink them if they're there. Yeah, and if they're not, they're not going to be like, you know what, it's seven o'clock. 738 30 whatever. I just put the kids down. Let me go walk two blocks to let go. I'm gonna be like, I'm too tired to go to the liquor store. So just not having into the house has been a big thing for me.
+
+81
+00:41:45,000 --> 00:42:14,730
+Wes Bos: I've switched mine over to kombucha at night instead. Whoo. Because like, I just like, I just like a bit of like a fizzy drink. And that's not a pop. And I never would buy a lot of kombucha because it's so expensive at the store for some reason. Yeah, it's like rotten tea. Why is it so expensive? But I'm just like, whatever the beer is expensive as well. I'm just gonna buy a bunch of kombucha and replace that as my like having something at night. So I'm excited to see how that pans out. Yeah,
+
+82
+00:42:14,760 --> 00:42:32,250
+Scott Tolinski: that's a good that we were doing that too. In fact, when Courtney was pregnant, too, you know, I didn't want to look drink to you know, make her feel left out. Although that did change at some point. You know, we would we would both drink kombucha wine glasses. You put it in a wine glass. It feels more like you're having a nightcap. Yeah,
+
+83
+00:42:32,550 --> 00:42:40,380
+Wes Bos: it's good stuff. Um, so speaking of tracking macros, Matt, what about tracking errors? Scott? Oh, you're
+
+84
+00:42:40,380 --> 00:47:09,180
+Scott Tolinski: new Wes. Wow. Big one big one right there. Yeah. Let's talk about our sponsor today, which is Sentry. Now. sentry@sentry.io is a longtime sponsor of us over here at syntaxin. It's a great way to track those bugs. And you can track those bugs all day long. You can track them with a release, you can track them with a specific user, you can do all sorts of stuff, maybe one user is having this very specific issue, you can attach that user ID to that issue. And then you can go look up and see. Alright, what's so special about this particular users data that's causing this issue or what what could possibly be the problem here? Well, that's my really my favorite thing about century is that allows you to understand the errors that your application is giving off and allows you to understand when and how you fix them. So you're going to want to try century again, century@century.io, use the coupon code tasty treat all lowercase all one word, you're going to get two months for free. Again, this is one of those tools that I cannot see my my business even functioning without just because it is so dang important to understand what the user is seeing on your application. It's funny people messaged me all the time. They're like, I'm sure you saw this in your century, but I'm experiencing this mic. I'm on it. working on it. So again, last century, thank you so much for sponsoring. Okay, so let's get into the supplement side of things here. This is going to be easy for me because in the past I've taken supplements I was doing like I don't want to seem like these were like no dose or something like that. These were just like divvied out caffeine so like 100 milligrams of caffeine that you could have instead of a coffee I was thinking that was better because you were saving on calories and it was cheaper and all this stuff is cheaper than having coffee. I have long since cut that out and I've since moved to coffee. I know coffee has a lot of benefits. I drink tea in the afternoon now I was drinking tea a lot. I have been brewed bring a lot of my own cold brew for the caffeine. But to be honest, I think I'm getting a little too hot and heavy a little too much with the cold brew here. It's it's a little too much so odn I'm od and on that calf which is like, you know, legitimate concern. So I've been trying to pull back a little bit I have like a one coffee a day limit now I'm gonna have a coffee in the morning and then in the afternoon, I'll have like a Green tea or white tea, something a little bit less than than caffeine. I have a really great app for iOS. Because I'm really into tracking. I'm just so into tracking and this is it. What's this app called called caffeine app. Wow, appropriately named that. The cool thing about caffeine app is that you can say, Alright, I had a large cold brew right now. Now large cold brew has a whopping 230 milligrams of caffeine in it whoof. And this app will show you the lifespan of that caffeine in your body. And a nice little chart that shows how like sort of like the half life, how the caffeine depreciates over the course of a day. So you can see that, okay, at 3pm. Today, I'll still have 110 milligrams of caffeine in my body because of that cold brew that I had at nine o'clock. Which means what the cool thing is, they have like a little bar that says Like, this is the amount of caffeine that you can have in your body and still sleep comfortably. So you can like plan your caffeine throughout the day to make sure you're below that bar. So caffeine for me is really the only supplement that I'm doing other than maybe a probiotic. I'm doing a probiotic because I have been on and there's a whole whole fiasco with me getting strep throat four times in a row. I've been biotics so much in the past two years that like my stomach is just goofed up in terms of the biology there. So I understand the pros and cons and all of the stuff about probiotics. And if they actually work, I'm taking a specific one. And I am drowning myself in probiotics to try to get my stomach. I'm also doing kefir, which I mentioned before, as well as just other fermented things to get that sort of bacteria up to where it needs to be. And then I take a few medications for my nerve damage. So because of that I've cut out all supplements other than a high quality protein for our workouts. I was taking a few supplements and you remember in the past, oh, I guess I am taking supplements. I'm acting like I'm not taking anything. I'm taking fish oil. Yeah, and I'm liking psyllium husk is like a fiber supplement. But that's it. That's it, nothing really major.
+
+85
+00:47:09,600 --> 00:47:54,870
+Wes Bos: Okay, I am taking a few things and experimenting with a few things as well. So the one that I always take is a multivitamin. I was taking the Vita Jim ones for a while. But I switched I listened to Kevin Rose podcast and he recommended these ones called mega food men's one a day. And they're it's basically just like a multivitamin, but they come from actual organic natural sources. So like I don't know how they get a carrot into the vitamin, but Oh, cool. They're great. So you can take them on an empty stomach, you don't get that kind of feeling. And the the actual, like the numbers on the side of the bottle are higher than most of the stuff that you find out like a CVS or something. So big fan of that one again, it's called the megafood men's one a day. I'll put link in the show notes for that. Yeah, this
+
+86
+00:47:54,870 --> 00:47:55,620
+Unknown: looks nice.
+
+87
+00:47:55,680 --> 00:48:21,810
+Wes Bos: Yeah, I've been been really enjoying that one also been taking magnesium at a different point. Don't take them together. Apparently, if you take magnesium with a multivitamin, they will cancel each other out. So I've been taking that to try to get better sleep like I sleep a lot, but I feel like I don't get great sleep sometimes. And the magnesium. I've tried a whole bunch of things. And the magnesium is the one that has actually been helping me take a fish oil every day.
+
+88
+00:48:21,900 --> 00:48:24,630
+Scott Tolinski: That really worked for me to magnesium. Yeah,
+
+89
+00:48:24,660 --> 00:48:26,700
+Wes Bos: yeah, I was a big fan of that.
+
+90
+00:48:26,850 --> 00:48:36,690
+Scott Tolinski: I have a question about this multivitamin before you Yeah, interrupt. Oh, is this the $78 480 tablets one that yikes? I mean,
+
+91
+00:48:37,320 --> 00:48:46,410
+Wes Bos: I paid 60 us okay for 72 tablets, so yeah, it's not not cheap. Okay,
+
+92
+00:48:46,530 --> 00:48:49,080
+Scott Tolinski: let me make sure that we're on the right one. That's a spicy meat. Yeah.
+
+93
+00:48:49,080 --> 00:49:22,020
+Wes Bos: 83 cents. Other vitamins? Yeah, yeah. 83 cents a day. That's fine. 60 cents American a day that's like adds up right like if your your vitamins is $50 a month that does that now shoot I didn't even look at that. No, I'm now I'm looking at it. I don't know. I think it's it's worth it for me at least just to to do it is there Yeah, I probably I think I ordered the smaller Count 72 but I think if I have reordered now I'll just get the much bigger one because cool.
+
+94
+00:49:22,020 --> 00:49:23,370
+Scott Tolinski: Okay, I just want to make sure
+
+95
+00:49:23,430 --> 00:49:50,160
+Wes Bos: yeah. What else? So after I said I was like having trouble getting good sleep. I'm on one of the podcasts a bunch of people reached out and said these work for me. So I tried Lion's Mane which is a mushroom powder. A bunch of people recommended that. Try that for a full month and nothing. Nothing didn't feel any different. So that was a waste of money. Yeah, I didn't either. I also tried a show a ganda.
+
+96
+00:49:50,430 --> 00:50:16,350
+Scott Tolinski: Yeah, I like that. Yeah, yeah, yeah, I'm on an SSRI, which is for my tailbone. Yeah. And that it's also like an anti depressed Since then, so what's funny is that it works really super well. ashwagandha when I take an ashwagandha it feels way different than it did when I took one look at a year ago before before I was on this for my my tailbone. Let me tell you, man, yeah, ashwagandha can really get me in the zone.
+
+97
+00:50:16,650 --> 00:50:31,020
+Wes Bos: Yeah, so I've only been doing it for about three weeks so far, and I haven't noticed anything, but I'm like, I'm gonna finish the bottle. Yeah, and see, see what we have. And then the other one that people recommend is she pronounces she'll
+
+98
+00:50:31,050 --> 00:50:33,270
+Scott Tolinski: shot? Yeah, no idea what that is. Yes. Um,
+
+99
+00:50:33,270 --> 00:50:38,700
+Wes Bos: it's a blackish brown powder. excluded from high mountain rocks.
+
+100
+00:50:38,790 --> 00:50:40,950
+Scott Tolinski: If it is excluded. I don't know if I'm taking it.
+
+101
+00:50:42,330 --> 00:50:47,430
+Wes Bos: I don't know. It's some black rock. Read it. I haven't excavated I haven't
+
+102
+00:50:49,680 --> 00:50:50,910
+Scott Tolinski: eaten Black Mountain rocks.
+
+103
+00:50:54,240 --> 00:51:26,970
+Wes Bos: Oh my god. That's amazing. Um, I don't I ordered it on Amazon. And it was expired when it came. So I have to send it back. So I haven't haven't haven't tried this one just yet. Plus, also, like, I don't know how much I trust buying something like this on Amazon. It seems like it already seems kind of hokey. Yeah, Amazon Wild Wild West. And like, I'm kind of scared that you would get like fake stuff on an Amazon so like, I think I need to find like a local health food store that actually knows the stuff that I can talk to them about it.
+
+104
+00:51:27,180 --> 00:52:17,970
+Scott Tolinski: Yeah, that's what I buy most of it at Whole Foods, or like a local place you know, at least it's it's at least like tested or quality with the place I go to because I in the past, I have experimented a lot with supplements. The place I always go to validate supplement ideas is examined calm, because what you can do is search for anything. And what they do is they tell you a little matrix here of the level of evidence, the outcome, the magnitude of effect consistency and results in some notes for each different thing that it says it's supposed to do, like is this thing supposed to reduce your blood pressure, it'll show you the level of evidence how much it reduces your blood pressure and if that study is actually legit, and then it'll give you information about the toxicology of it, and it's very assigned great. I absolutely love this website and I always check this for everything
+
+105
+00:52:18,359 --> 00:52:26,250
+Wes Bos: it's got a heat I just went for shield chat. Yeah, I don't know I just there's a huge page on it. It will I'm gonna read through this
+
+106
+00:52:26,280 --> 00:52:33,900
+Scott Tolinski: neat it looks like it has it has a verified magnitude increase in antioxidant enzyme profile so there There you go. I'm in
+
+107
+00:52:35,760 --> 00:52:46,560
+Wes Bos: so that's that's kind of where I'm at with with supplements and stuff I was taking the What did I call it last name blockchain amino acids? Yes. What is it actually called?
+
+108
+00:52:46,920 --> 00:52:53,910
+Scott Tolinski: Oh, bc I don't know. Yeah. Bc ca the Bz bit block? blockchain? That's
+
+109
+00:52:53,940 --> 00:53:14,640
+Wes Bos: Bitcoin. Yeah, branched chain amino acids, which apparently helps with muscle recovery. And you can get some with caffeine in it. So I did like that tasted like juice. It made you all jumped up. So I might get another scoop of that. Once I start doing the gym a little bit more heavy this this year.
+
+110
+00:53:14,760 --> 00:53:49,590
+Scott Tolinski: Yeah, we'll see when I when it when I'm like a little bit past where I'm at right now with my nerf stuff I was taking beta alanine was taking Oh, I'm sorry, I'm blanking on it. I was taking a few things that you would find in like a pre workout. Like there's all sorts of pre workouts that are loaded with caffeine. And I always just found a buy some of the ingredients and mixing myself. That way I could limit the amount of caffeine that I'm having in that sort of way. But yeah, I might I might be on more supplements later. But right now I'm just like hanging hanging with the basics. Alright, let's
+
+111
+00:53:49,590 --> 00:54:00,840
+Wes Bos: move into the last section, which is just looking forward. We sort of touched upon this, but like, what does the next year look like you've or what are your goals for going forward? Scott?
+
+112
+00:54:01,200 --> 00:57:48,360
+Scott Tolinski: Yeah. Goals going forward is just to increase like full body strength. Like I spent way too much of last year really doing upper body stuff. And he because of my tailbone. I was avoiding doing lower body stuff. I was avoiding squats and deadlifts. And now that I've like really gotten in the flow of of with the weight belt and perfecting my form and just feeling a little bit better here. My goal is like leg strength. So I'm going to hit my max deadlift ever was three, three sets of 300 for five. So I'm going to try to beat that this year and get up to 350. Just because, you know, it's nice to have a number of goals to look forward to. I really been into this glute ham developer, which if you don't know what that is, Google it. It's a really hard exercise. And I've been working on it now ever since I bought one on Black Friday. I've been working on it now for several weeks, and it was so hard for me and I'm just now feeling like I'm getting It so by the end of the year, I want to be like a glute ham. Master, I'm gonna have the strongest dang legs ever. So that's really like where I'm focusing this year is to get more full body. cardio needs to be a thing for me, I went to breaking practice a couple weeks ago, and I swear I thought I was going to die, my heart rate was 180. for about an hour, I was just like, not able to breathe. So I'd really like to be able to get back into that sort of shape in terms of cardio and not be panting like crazy. I've been stretching every day, I have a new app called streaks on iOS, which allows you to track a whole bunch of stuff. And you know, me I like tracking I'm now at, let's see how many days I'm now at a streak of 12 consecutive days of stretching every day. So stretching out a day is a big thing for me. Big Big fan of making sure I get some stretching time in I'm going to be trying to at least get to breaking practice. Once a week, I'm going to continue my lifting every day, I'm going to solely very get very focused fitness focus for me. I'm going to start going to yoga once a week, but I'm going to do so in like February once the New Year's crowds start to thin out a little bit here, I might do some yoga at home. In the meantime, I think all that stuff is just going to help my my body heal a little bit more. And like you can do sort of fake yoga, or even just like stretching, while you're watching TV. People are wondering like how you have time for this stuff. Man, I stretch while watching. Like, we will watch the Mandalorian or whatever, we're sitting down watching TV, you're relaxing, it's just as easy to sit on the floor and do like a little toe stretch or bend over or whatever, while you're watching TV, it's not hard, the gym remodel is going to make my life a lot better and get this last night, I put on my Apple Watch. And I did a little bit of like that activity tracking. And I don't know how accurate This is. But I had it measuring my heart rate and I played a game called super hot on my VR headset. And super hot is a it's like a matrix style game where time only moves when you move. And it's not like super violent. I mean, it's violent. But you're you're fighting these polygon people. It's not real people. But like it gives you a situation where you can punch a guy, catch his gun as it's in the air, shoot another guy. And you can do all this like you're in the matrix. And since I'm me and this VR headset I have as the Oculus quest, it's not tethered to anything. I'm me, I'm literally like, like army crawling on the ground in my living room and jumping behind barrels and rolling around, laying on my back. And doing like all this stuff. I burned 400 calories playing playing VR last night. So yeah, like just finding little ways to move around while I'm being entertained or whatever.
+
+113
+00:57:48,450 --> 00:57:51,210
+Wes Bos: That's like more than some people burn in the gym.
+
+114
+00:57:51,750 --> 00:58:13,530
+Scott Tolinski: I know a lot. If I watch out for it. I was like what the heck I was I was sweating. And I was doing all this work. And I'm sure Courtney was just like cracking up watching me doing this because I'm like, ducking behind barrels and whatever in this world, but just finding new ways to move and get moving when, you know, I would normally just sit down and eat an ice cream or something. So
+
+115
+00:58:13,950 --> 00:59:00,840
+Wes Bos: yeah. For me, I've said most of the things looking forward just basically focusing on being consistent with both food and gym. Because like it's, it doesn't have to be a huge part of my life. But just something that you you do it has to be part of your life. So that's kind of what I'm focusing on for this year. I'm excited to get kettlebells in the office, see how that works out? I'm sure I'll I'll update you all in like a month or two to see like where it's at, are they is it just a doorstop? Or I'm actually using them. I think that's that's about stretches is one thing there's, I know we want to do a podcast on stretches entirely. Because that's something I've always neglected. And I know you are super into stretching. So maybe we should do an entire podcast just a hasty treat on a couple stretches. Yeah, I
+
+116
+00:59:00,840 --> 01:00:14,670
+Scott Tolinski: have a whole bunch listed here. And since we're at the time we're at, let's just make it the very next tasty treat that we do, we can just move this stuff into there. Stretching with with Scott here and I can add a little bit more. Because I've often been known as the guy who sits on the floor and stretches in the office. Like I think my coworkers have often done like what the actual hell is this guy doing stretching on the floor in the office. And so you can do it, people will look at you funny, but you can do it. But we'll do a whole episode because let me tell you, as somebody who has all sorts of issues or whatever, through braking or through movement, or through the sheer fact that you sit down on a computer all day and work, there are stretches that can make your life significantly better, especially for web developers. We have these issues. I know I've been there sitting in a chair all day long and just come home and then sit on the couch. I mean, you're just sitting sitting sitting thing thing and I'm not talking about getting standing but there's just like little things that you can do to help your body feel better. It's gonna make your development way better as well. So that's really just it. we'll tackle this stretching stuff in another podcast. I'm super psyched for it. So let me know if you have any specific requests before this episode releases.
+
+117
+01:00:15,150 --> 01:02:21,780
+Wes Bos: All right, let's move on to some sick pics. The things that we pick that are sick. I've got a kind of a neat one today it's a refillable metal torch lighter. Let me explain. We light a lot of things around or I light the barbecue a couple times a week, we like candles all the time. That's actually the only thing I don't smoke cigars or anything like that. But we have all these hundreds of these like crappy little barbecue lighters that stopped working after a little bit of time or there's little Bic lighters around. And I was actually amazed at like how many we just throw out because they don't have a refill spot on them or you're not set up for it properly. So I went out and I got this. It's all metal. It's like a super high jet flame torch lighter. And basically you didn't have jet flames painted on it because that'd be a not yet. Maybe I should just basically it looks like a pen. And it has like a little clicker on it and you click it on and it just goes Oh, like just throws a flame out and lights a candle on a second. If it's windy or anything, when I'm trying to light my barbecue that's never an issue and you fill it refill it with butane so good for the environment, you're not throwing out all these plastic lighters like I probably threw out like six or seven of these like dollar store barbecue lighters. And it's kind of wasteful. So we it's like 20 bucks, you can get this nice one you have to buy it can it butane as well and you can refill it and it's funny because like I bought my mom something like this like 10 years ago to light their fireplace and their candles with and they still have it and they use it probably a couple times a week and the Zippo makes one as well. I thought it was so cool. So I finally got it. I'm kicking myself for not getting something like this earlier. Because it's just both a really good product and I think it's good for the environment. You're not throwing more plastic away. Yeah, check it out. I'm sorry. The one I got is called the tech boss cigar. I guess it's for cigars, cigar lighter, but I'm not using it for that.
+
+118
+01:02:22,620 --> 01:04:30,300
+Scott Tolinski: That's fun. That's way fun. I'm gonna keep it fitness related. Here I have a few few YouTube channels, stuff that I really like here. So one of which is going to be fitness blender, they have a YouTube channel or you can go to fitness blender.com. And there's just about a gazillion. gazillion is the technical term is just about a gazillion videos on different workouts. And you can give your level if you're a beginner, intermediate, advanced, whatever. And it's so dang good, the amount of stuff they give you for free. So if you're looking for just any sort of like, Oh, I want to just get moving any sort of whatever fitness blender is the way to do it. Another one I have here is Bob and Brad. It's a YouTube channel with 1.5 or 1.5 8 million subscribers. I was really surprised to find this channel the other day because I never heard of this. And it's all physical therapy stuff. It's so good, especially for me I have a lot of issues. So this is like 60 seconds to get rid of knots in your shoulders. How to crack your own back without a chiropractor but the one I was like looking for was about sciatica, like nerve pain, different different stretches. I've like learned so many stretches from this if you're looking if you have a specific ailment. this YouTube channel is two physical therapists who are really smart and they're super funny. They're like super dorky, like very dorky personalities in the best possible way. But they are just absolutely absolutely really great resource if you have any sort of pain. Next one is a weightlifting channel. I follow Jeremy Ethier ether I don't really know I don't think he says his name ever. But he does a lot of like very targeted videos that are like science based. Again, this is a big channel 1.8 million subscribers. So he does stuff like the scientific way to grow your shoulders the best for back exercises, you could do stuff like that I absolutely really love this channel. And I find between these three channels, you get your cardio, you get your weightlifting and then you get your pain management and physical therapy stuff. So this is three YouTube channels that I think you should check out if you are interested in fitness stuff.
+
+119
+01:04:30,720 --> 01:04:38,340
+Wes Bos: All right, is it thank you for tuning in and we will catch you on Monday. Please
+
+120
+01:04:40,170 --> 01:04:49,920
+Scott Tolinski: head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you liked this show.
+
