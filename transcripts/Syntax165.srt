@@ -1,0 +1,152 @@
+1
+00:00:00,359 --> 00:00:24,149
+Announcer: Monday Monday Monday open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob and Scott Tolinksi
+
+2
+00:00:26,610 --> 00:01:10,050
+Scott Tolinski: Welcome to syntax and this Monday tasty treat. We're going to be talking all about some of our VS code, tasty treats here and this is going to be sort of a partner to for a couple weeks ago we did a VS code hasty treat, where we talked about some of our favorite things. And you know what VS code has so many awesome features, awesome new things. It's changing and evolving all the time. So we thought we would take some time to do a another episode. And in this episode, we're gonna be talking about some extensions that we like, some features, some things to learn some keyboard commands, some snippet libraries, those kinds of things, and just all the stuff we love. My name is Scott Tolinksi. I'm a developer from Denver, Colorado and with me as always is Wes balls. How you doing Wes?
+
+3
+00:01:10,110 --> 00:01:26,340
+Wes Bos: Hey, doing great. It's actually killer today. Whoa, today. So it's a it's a holiday, but we're gonna be taking a whole bunch of time off this summer. So we thought we would work today and not goof up our recording schedule. We record on Mondays, which is hilarious because almost all holidays are on Mondays. It's
+
+4
+00:01:26,340 --> 00:03:04,560
+Scott Tolinski: weird, it seems. So here's a lot of holidays on our on our recording time. But yeah, no, dude. I'm excited for this episode. I'm excited for VS code. And nothing I'm excited about is one of our sponsors today is a longtime sponsor of syntax. And those of you who have listened for a very long time will recognize this bunter is one of the ones that we gush about all the time. And this is Netlify. Netlify, is a service to host your front end code, your serverless functions, you can do so much stuff with Netlify, it is unbelievable. And let me tell you that the experience of getting started with Netlify is as simple as just selecting your repo, choosing your build command and have it go, it takes care of continuous integration, all that stuff that you know, and is a giant pain in the butt set up somewhere else Netlify makes it nice and easy. So I mean, this is one of those services that the proof is really in the pudding here where you got to, we got to go and use it. And to do that you want to head to netlify.com forward slash syntax, and you want to sign up, you want to check it out. And I don't know if this feature is going to be live by the time you're listening to this. But we know for a fact that this is going to be announced this is no heist new analytics service, that is going to be one of those things that's going to knock your socks off because these analytics can be trusted. Unlike some analytics, like Google Analytics, they're coming directly from the browser, which can well a lot of stuff in the client can be spoofed, this is all coming directly from the DNS. So this is going to be this is going to be analytics that you can't spoof. And this is going to give you better real data that is going to be more accurate and easier to trust, I should say. So yeah,
+
+5
+00:03:04,590 --> 00:03:22,410
+Wes Bos: yeah, like I can't trust my my analytics at all, because almost all web developers use ad blockers. So if I look at my like email, open rates, or conversion rates or Google Analytics, they're like so much. They're so far off from my actual sales data, and like actual amount of people that I think
+
+6
+00:03:22,410 --> 00:03:25,440
+Unknown: are on my website. So it's like, what's the point of even looking at them?
+
+7
+00:03:25,470 --> 00:03:36,210
+Wes Bos: Yeah. But getting the logs from just the server requests is amazing. Because you can't block a server request. Otherwise, you're blocking the entire website.
+
+8
+00:03:36,329 --> 00:04:45,890
+Scott Tolinski: Yeah. All right. Cool. So let's get into it. With this VS code hasty treat. Now, I think we want to start off with some extensions, we did a whole bunch of our favorite extensions. Last time. This one, I kind of want to just talk about some extensions that are, you know, interesting, some ones that we use are ones that we find to be useful. And the first one I want to talk about is get blame. Now, git blame is the one that allows you to easily see who the heck wrote a line of code. And this makes it really nice and easy. If you're on a team. Whenever your cursor is on a particular line of code down at the bottom little info bar, it will tell you exactly who wrote that line of code. For instance, I'm on a line of code right now in my API, and it says that I wrote this line of code stilinski wrote this two years ago, so you can see instantly if something's not working, and Wes Bos was the culprit. Wes Bos wrote this entire essay, Wes Bos wrote this line of code. And it was of course better than the line of code that you wrote so you can see exactly what's going on who wrote what and what of these tools I'm a big fan of Do you use get blaming? I know you don't really code on a team that much
+
+9
+00:04:46,010 --> 00:04:57,300
+Wes Bos: Hmm, I don't use it in VS code. I need to use get blame every now and then. When I want to see what's going on. Is this the one where it actually shows you in line inside your codes?
+
+10
+00:04:57,480 --> 00:05:08,760
+Scott Tolinski: I don't know if I think it maybe can I'm not sure this One just shows you down at the bottom, which I find to be nice and unobtrusive. I have turned off all pop ups and hovers really in my VS code. So like, I don't see those pop ups,
+
+11
+00:05:09,000 --> 00:05:47,820
+Wes Bos: I used to have that one where it would just put it above the chunk of code that the person had written. Hmm, because it can do that. And I really didn't like having it in inline because it looks like there's actual code inside of there. So I totally turn that off. I also had, I was doing a workshop once. And somebody had actually, like, typed down that piece of code. It was from the other one, which was VS code, like file size, where it tells you how or import costs. That's the one. It tells you how big the imports are. And somebody actually wrote like, hundred 28 kB, beside as if it was Kota had to go, Oh, I remember the things. Yeah,
+
+12
+00:05:48,540 --> 00:07:14,160
+Scott Tolinski: that sounds like something that I would do, I'd be like, I don't understand why this isn't working. token bellotto. What is the same, like another one I i've been using, although this plugin is great. Let me tell you this. I'm going to preface this with this. So don't sound like I'm hating on this at all. But it is not exactly the easiest one to set up. And that's the Apollo, the official Apollo graph qL package. And you do need some things you need to well, you can publish your schema with the Apollo schema registry, and you set up an API key, there's a lot of setup involved. And it was kind of frustrating, because I felt like I had the setup working. And then something changed. And then it broke. And I felt like I was kind of chasing it for a little bit. But the features you get out of this are really good at adds a really nice while it adds syntax highlighting which you can get already from other other places. But it gets really great intelligent auto completion for fields, arguments, types, variables. So when you're writing your queries, you get more information. Basically, it's making VS code aware of your schema and how it all functions together. That way, you can see exactly what's happening. Like you can hover over a fragment, and it's going to tell you what exists in that fragment. It gives you some performance information, it validates fields, it's really, really pretty cool. I like this extension a lot, it is kind of a pain in the butt to set up from my personal experience, but definitely one worthy of checking out if you are an Apollo user.
+
+13
+00:07:14,400 --> 00:08:58,950
+Wes Bos: Next one we have here is the VS code spell checker, which is funny that this is like one thing that's just not included in the ability to do spell check. And it's frustrating because it doesn't use like the system spell check. Yet these a totally separate plugin, but it's good, it works well. You can add items to your own dictionary, which is cool. You can also it also allows you to install dictionaries from other commonly used like you can install a JavaScript dictionary, and it will it'll do things like constant, let it'll it'll make those actual words in your dictionary. So you don't have to add them yourself. It does spell check from camel case, which is cool. So like if you type a word, in camel case, it will translate that to just like spaces and then spell check it for you, which is really, really cool. That would not happen with normal spellcheck. And probably my favorite thing about this that I didn't know for the longest time is that my biggest gripe is that it puts a little like light bulb near the spelling mistake and you have the light bulb. And it's so frustrating because it just the light bulb moves on me all the time to like a random spot. I don't understand how it's detecting it, probably something to do with my zoom settings. But I realized that you can just use nVs code this this is called code actions, which will modify your code like es lint is a code action. And what this will do is if you just hit command space, you can select the spelling correction with your keyboard, which my biggest qualm with a built in OSX is you cannot fix a spelling mistake from the keyboard, you have to reach for your mouse. Yeah, and I've ever looked for a solution for this. And since I do almost everything in VS code, you can now do it from the keyboard, but hitting command space. And that will open up a list of fixes. I love that tip.
+
+14
+00:08:59,130 --> 00:09:09,020
+Scott Tolinski: I should mention for those of you Alfred users who have tuned the command space, you might need to have a little change for that dude, what was your Alphard command was I'm interested in that
+
+15
+00:09:09,050 --> 00:09:10,890
+Wes Bos: minus option space option.
+
+16
+00:09:11,460 --> 00:10:24,870
+Scott Tolinski: Whoa, I command space because that was like always the default. And then that was the default for spotlight in yakko OS. So I'm gonna maybe have to reassign some, some keyboard commands, cuz I don't use this, I kind of use my mouse a lot. I'm a little bit of a mouse user. And I think that makes some people upset. But I need to get on this code action business because I'm clicking the light bulb right now and I shouldn't necessarily be clicking that light bulb. I want to talk about a new feature that was recently added to VS code which is being able to change the tree indentation and allowing to have guides in the tree. So the tree is the Explorer. I think they call it the Explorer and see view view Explorer. Yeah, so Command Shift E it's where your files are living. And if you're like me, you know I have my structure of my application, memorize it. Don't need to see a ton of spread out in this thing so you can change the intent level to make it more compact more concise, or you can make it bigger and you can add some indent lines here there's another property of preference called tree indent guides would really you draw lines from your folder to your folder This is a new thing here in VS code at some point I'm on I should state that I am on the insiders build but I'm pretty sure it's in the regular one as well
+
+17
+00:10:24,900 --> 00:10:27,210
+Wes Bos: what sorry What's this called again tree
+
+18
+00:10:27,270 --> 00:10:37,710
+Scott Tolinski: in yours it may just be in the insiders and it might be coming to the other one so let's go ahead and search for tree indent in tree indent Yeah, so okay work but
+
+19
+00:10:37,710 --> 00:10:40,800
+Unknown: I just have tree and dead pixels. Oh, wow. Okay, so
+
+20
+00:10:40,800 --> 00:11:12,090
+Scott Tolinski: this must be one that's coming to VS code. And so I see tree indent where you can choose the indented pixels You see that? Yeah, and then there's one directly below it will be workbench tree render indent guides and you can tell it to always on hover or none, you actually should change mind on hover that's a little bit nicer. So this is this is coming in VS code insiders. I by the time you're listening to this, it might be in your VS code. So double check. I use the insiders I don't know why it's kind of a pain in the butt updated every day. But that's just how I am
+
+21
+00:11:12,960 --> 00:11:44,130
+Wes Bos: Yeah, I switched away from insiders just because I I found that the the pace of new features in VS code was already it's already so fast. Yeah, that I didn't even every now and then I want to try something new. And I'll dip into insiders. I just checked it. Now. You're right, that tree render. That's a huge pain point from mine is that especially doing workshops, people put files in the wrong folder because the indentation is, it's muddy as to like, where where you actually are. And this and the new breadcrumbs is going to help that a lot.
+
+22
+00:11:44,189 --> 00:12:37,890
+Scott Tolinski: Yeah, and that's the next thing we want to talk about is breadcrumbs. When the witness got released, a turn on breadcrumbs right away, and breadcrumbs basically adds what you if you don't know turn breadcrumb is that nice. It basically is like, here's the folder structure that it took to get to where you are. And, or even like any sort of navigational structure because of bread bread crumb on a website is just the navigational structure. But here we can see that like, if I'm in playlist j s, my little breadcrumbs Joe's playlist that j s is inside of a playlist folder, which is inside of an API folder, which is inside of an imports folder. And just by clicking any of those folders, it opens up a nice little drop down allows me to potentially open up all their files within that same folder. Like if I click playlist j s, it shows me every single file that's in that folder, so then I can then click on playlist, graph qL, if I want to jump into my graph, qL schema really cool.
+
+23
+00:12:38,040 --> 00:13:31,320
+Wes Bos: It goes even further than folders and file names, it will show you what function you're really in Yeah, and then you can drop down a little further and see what variables are inside of that function. And then it's actually an awesome tool for viewing scope of variables. Because you can see what what variables are scoped to that module, you can see what functions are there you can see if there's like a closure, and you have like a for each inside of that it will nest them. It's pretty, pretty impressive. That it goes as deep as this and used to be you can do this in in sublime were used to be able to I think it's command r it works in VS code, at least for me, it's command R and that will open up the at mine in your command palette. And then you can just search for function names. But this will just give you sort of a nice little map view of all the functions in that specific module.
+
+24
+00:13:31,560 --> 00:13:37,110
+Scott Tolinski: Yeah, I don't think it command R is the default for that. What is the default for that? I'm not sure what the default is.
+
+25
+00:13:37,140 --> 00:13:51,900
+Wes Bos: If you just open up your command palette and type Yeah, the and then you'll be able to see all of the different these these things are called symbols, which is a good word. variables, functions, methods, I'm sure other languages have different names for them.
+
+26
+00:13:51,930 --> 00:14:29,820
+Scott Tolinski: Yeah. Cool. So breadcrumbs is one thing that if you don't have on you can turn on, I believe it is in View menu, where you can select View from the very top and then show breadcrumbs is the one it should be right by mini map their show mini map and then show breadcrumbs there, you can just check it. Next one we'll talk about is the version control menu or SCM if you do Command Shift g Ctrl, Shift G, and this thing, how much you use this I because I primarily use Git via the command line, but I love the VS code, get features, specifically just managing commits, managing changes through this command shift g Do you use this at all?
+
+27
+00:14:30,180 --> 00:15:03,420
+Wes Bos: I don't but it's the first time I've used it every now and then I should say and I especially use it for the color highlighting in the sidebar to see which files are new which files have been modified, because it will color them red or yellow or green based on their their git status. I've not used this as a as a GUI but I think that if you are getting into git, I think this is how you should should be learning it. I think that the only reason I use the command line is just because I'm an old guy and I have been using Git on the command line forever,
+
+28
+00:15:03,510 --> 00:15:25,950
+Scott Tolinski: I use the command line a lot, there's several things I do use this interface for, like, if I'm doing a commit, I mean, I have a keyboard or an alias set up for my z, sh that I use primarily. But sometimes when I'm in here, I'll do Command Shift G, and just type in the message box, and then do command Enter to commit. And it's so fast every time I do it, I'm like, man, why am I not doing this more often, it's me, I
+
+29
+00:15:25,950 --> 00:15:33,930
+Wes Bos: need to like, force myself to use it for like an entire week or something like that, and then make a decision on that, because that's it this is it might even be better, it doesn't
+
+30
+00:15:33,930 --> 00:16:41,370
+Scott Tolinski: pull you out at all. And there's even switching branches. Like if you switch branches, there, there's a couple ways I don't know the keyboard shortcut. To be honest, I know I'm gonna, you know, with my mouse clicking, but I click on the branch name in the bottom left. And then you could just choose what branch you want directly from here. And it not only visually shows you every single branch that exists in your repo. But for me, I find it very nice to just sort of get an overview of the current state of my version control to see okay, here are all of these branches, maybe I should turn some of these branches. Maybe these are ones that I created at some point, you know, had an idea with and now I want to delete them. And you can delete branches from from Git to directly if you just had to your command palette, you can type in delete, and that should bring up the Git delete branch. And then you could just go highlight a branch that you're not using anymore, click on it and delete that branch. If it's one that is no longer necessary. I'm definitely a fan of con con marrying Marie Kondo method, some of my branches here and get cleaned it up. Only the essentials? Yeah,
+
+31
+00:16:41,820 --> 00:16:45,660
+Wes Bos: it's pretty cool. I also like the the UI for merging things.
+
+32
+00:16:45,689 --> 00:16:46,890
+Scott Tolinski: Yeah, beautiful.
+
+33
+00:16:46,950 --> 00:17:07,140
+Wes Bos: I'm big fan of the, the GUI that will show you what's been added and what's been removed. And you can also just like diff two different files, if you feel like it, you can diff from your master branch to another branch or to an old commit. I know all these things you could do and get but it's just I think it's so much easier to have it built into your VS code.
+
+34
+00:17:07,229 --> 00:18:00,080
+Scott Tolinski: Yeah, yeah, I know. It's funny, because it's ID we say this every time we do these episodes, but it's like ID people are going to be just shaking their heads 24 seven at us, because it's like, this is the stuff you could do for ID. Or you could do an ID and just have it be, I don't know, easy built in, and something that you've either paid for now WebStorm and knew that stuff. And you know, that, hey, this is free. And it's VS code. Cool. Well, there is so many darn things to learn into. To get down with VS code. We're actually we're running out of time in this hasty tree. But we have so many other things that we're going to extend this into a monster part three, where we're going to be talking about some really things that we loved, that are really important to learn in VS code, we're gonna be talking about some keyboard commands. And we're going to compile some of our favorite snippet libraries, and maybe talk a little bit about some tools to generate snippet libraries and how to use snippets to their fullest extent.
+
+35
+00:18:00,630 --> 00:18:10,100
+Wes Bos: Awesome. Well, thanks so much for tuning in. If you have your own vs. Code tips, make sure you tweet us at syntax FM. I'm at Wes Bos. And Scott is at stilinski. He
+
+36
+00:18:10,100 --> 00:18:28,770
+Scott Tolinski: is and that's it. Yeah, we love VS code. So tweet us out some of your favorite extensions. We want to hear what you're using what you're loving within vs. Code, maybe some sick tips and tricks that we have not covered in this episode. And we will hit you up with one of those nice fancy retweets from the syntax Twitter. So thank you so much for listening and we will catch you on Wednesday.
+
+37
+00:18:29,160 --> 00:18:30,540
+Unknown: Peace, peace.
+
+38
+00:18:32,520 --> 00:18:42,300
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
