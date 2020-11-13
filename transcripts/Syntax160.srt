@@ -1,0 +1,404 @@
+1
+00:00:01,319 --> 00:00:02,820
+Announcer: You're listening to syntax
+
+2
+00:00:02,820 --> 00:00:55,080
+Wes Bos: podcast with the tastiest web development treats out there. strap yourself in and get ready. Here is Scott, ski and West boss. Welcome to syntax, the podcast with the tastiest web development treats. This is an episode I've been really excited about for a couple of months now because it sort of merges all of my interests into one. So we have Jason ball on who's the author of WP graph QL. And we're gonna be talking all about like WordPress, headless WordPress graph qL and WordPress, I'm sure we'll talk about like frameworks, like things like react and WordPress, so I'm really excited about it. We'll get into that and choose Jason in just a second. Today, we are sponsored by two awesome companies. One is Sanity. And the other is Log Rocket. We'll talk about them partway through the episode. With me as always, today is Mr. Scott Tolinksi. How you doing today,
+
+3
+00:00:55,289 --> 00:01:10,050
+Scott Tolinski: Scott? on doing super good. I think this might be the single most sleep deprived episode of syntax since our since the start of recording. Wes and I are both newly I don't know, newly Christian with the new babies. Yeah, to say that. Yeah.
+
+4
+00:01:10,139 --> 00:01:28,800
+Wes Bos: So my kids have been running around telling people. So for those who don't know, I just had my baby boy, which is kick boss is his name. And we had him what, three or four days ago now, and yeah, I'm feeling pretty good. He's very easiest baby so far, but that's good. We're cautiously optimistic.
+
+5
+00:01:30,600 --> 00:02:21,330
+Scott Tolinski: Yeah, yeah, Brooklyn's doing a lot of sleeping. And that is good for us as well. So we are we are pretty psyched about this one. But yeah, I'm doing I'm doing good. I'm pounded to cold brew. So I should be should be somewhat lucid and ready to talk about WordPress and graph QL. I mean, this is these sub subject. I'm like, very, very psyched about so we got a billion questions for JSON. What's my word? a JSON. That was a happy accident. That was great. Just to show you where my brains at today. But yeah, no, no, good. Wes. and I were talking before the show started, we just couldn't believe how many questions we had for Jason here. And I hopefully, our questions lined with your questions, and we get everything answered. And you all feel like you got a whole lot out of this episode, because I'm personally feeling like, I'm going to get a whole lot out of this episode. Mm hmm.
+
+6
+00:02:21,360 --> 00:02:23,660
+Wes Bos: So JSON, tell us about yourself.
+
+7
+00:02:23,690 --> 00:02:42,840
+Unknown: Yeah. My name is Jason ball. I've been working on WP graph qL for about two and a half years, been working with WordPress for over a decade at this point, full time in various roles. Yeah. I don't know. I love open source in general. I'm happy to give back with, you know, something I'm passionate about.
+
+8
+00:02:42,930 --> 00:02:58,710
+Wes Bos: That's awesome. So you recently, I saw that you had left your current job to work on WP graph qL full time. And then just like, I don't know, like 10 minutes ago, I got a message from you. You have some exciting news, which I we didn't even know. But you want to tell us about
+
+9
+00:02:58,710 --> 00:04:22,920
+Unknown: that? Yeah. So a couple of weeks ago, myself and Kyle Matthews had some conversations. Kyle Matthews is the CO creator, I believe of Gatsby heads that up. So I chatted with Kyle and Sam. And basically they said, Hey, we like what you're doing with WP graph QL. We've got a lot going on with Gatsby and WordPress, and having some issues with the REST API. We think that a native graph qL implementation on WordPress is kind of the way to go to bridge the gap between the two technologies, using Gatsby for your static site, front end and WordPress as your CMS back end. And so we chatted and they said, Hey, we'd love to have you join the team. So you can work on WP graph qL full time without distractions. I have a day job. And so I obviously accepted. So I'm joining their team starting on what is it June 24. And my primary focus will be WP graph QL. Just get it to because we're still in beta, right? We're not at a 1.0 yet. So one of the early focuses is going to be just getting that to stable point work out some of the kinks we know about now. And then make sure Gatsby has a first class you know, integration between WordPress and Gatsby. But also WP graph qL should work well for any client, not just Gatsby. So well,
+
+10
+00:04:22,980 --> 00:04:52,800
+Scott Tolinski: why it seems like a rabbit. Yeah, it seems like something then I think is a smart move for Gatsby considering how much of the web is powered by WordPress and Gatsby seems to be such an excellent choice for teams that are looking to maybe upgrade the front end of their WordPress site that maybe is already existing. And so for them to to invest you know time and talent into sort of the WordPress Gatsby seen just the WordPress scene in general, I think it's a really smart move for them.
+
+11
+00:04:54,720 --> 00:06:28,710
+Wes Bos: Um, so let's let's talk about data in WordPress real quick and then we can sort of get into depth P graph QL. So the sort of the basic way to get data in WordPress is you make a theme. And these themes by default will will have sort of data like available to them inside what is called the loop. And then if you want to have like custom data, like you want to have like a homepage that pulls in your recent posts, and, and the members have your company and a list of your stores and like a tag cloud, remember, that was the best tag cloud and all of that data, if you want all of that available to you on a single page, you have to go off and write a bunch of custom queries with either the get posts or the WP query class that they have in there. And then you loop over each of those and whatnot. A couple years ago, WordPress started working on the the WordPress JSON API, which allows you to have endpoints for hitting them and just going and grabbing those different pieces of data. Which is great, because if you are trying to build something with a WordPress back end, and you want to pull in that data, even if you're just doing a regular WordPress theme, and you want to like be constantly refreshing posts, or for whatever reason, if you want to fetch that data outside of a regular WordPress theme, that's what the the WordPress REST API is for, as well as there's a whole bunch of like mutations there where you can push data to. And so that's good. And but so you've come along and created a sort of graph qL interface for actually fetching data. You want to tell us a little about like, like, What is it? What is WP graph? qL? And why did you make this thing?
+
+12
+00:06:28,740 --> 00:08:15,360
+Unknown: Yeah, so what is it I'll start there. So WP graph, qL is a makes if you install the plugin, it's a plugin currently, if you install the plugin, it makes your WordPress site a graph qL server. And what that means is that you can use the graph qL query language, which is a specification not tied to any specific technology bits, a specification for how to make how to write queries and how a server should respond with data. So your WordPress site becomes a graph qL server. So now you can, you'll have a graph a slash graph, qL endpoint, so you get a single endpoint. And then you can write queries this using HTTP requests, you can write a graph qL query to ask for any number of resources, and in response would get a JSON payload, matching the shape of the data that you asked for. And right now we support like pretty much all the chord data that WordPress ships with like posts and pages and custom post types, tags, categories, and custom taxonomies, comments, users all that stuff. So out of the box, you just activate the plugin, you get an endpoint, you can start writing graph qL queries against that endpoint and getting data back. It's almost like a hybrid between the two things you mentioned, like WP query on the server side that allows you to get data kind of in a flexible manner. And rest allows you to get it over an endpoint where rest isn't so flexible. It's like a resource per endpoint. And web query, you can combine like you could query on a single page for, let's say, comments and pages and posts like if you want it to. And WP graph qL allows you to query for many resources in one request, where rest is kind of like one resource. And then if you want another resource connected to it, you have to follow up with another request. Mm hmm. Like
+
+13
+00:08:15,389 --> 00:08:46,230
+Wes Bos: so if you've got a list of users, and you want to, you want to pull in those users, maybe you want to pull in their posts, and for each of those posts, you want to pull in the categories. And for each of those categories, you want to pull in the description, like that's often in WordPress, that's like two or three different queries. And then you have to do like a weird PHP loop where you're like, you were like, rebuild it almost like a like a there's a there's math in PHP, right? Yeah, you just map over it and create you need it does. So does does WP graph qL? Get rid of that where you can do relational queries?
+
+14
+00:08:46,260 --> 00:10:09,750
+Unknown: Yes, it does. And it actually makes it more efficient. If you did it the way that you talked about, like in PHP, you'd probably write something like a WP user query, let's say to get 10 users. So that's one query, and then you're going to iterate over that. And you'll probably say, Get 10 posts for user one, get 10 posts for user to get 10 posts for user three. So for 10 posts, you're gonna write 10 more queries to get 10 posts for each user graph QL. Since you since we know ahead, what data you're asking for, we can make use of what's called deferred resolving, or in greater graph QL. And it's called Data Loader. And this allows, this allows us to say, okay, you're asking for users, and you're asking for their posts, I'm going to write the one query to get all 10 users. And I'm going to wait until I have all 10 users and write one query to get all posts for all 10 users. So instead of 11 queries behind the scene, talking to SQL, it ends up being two queries. So that's kind of the gist of it. So since you're asking for your data up front, it's smart enough to be able to make some of those optimizations for you. So yeah, it's less code for you to write because you can just in graph qL syntax say, here's what I want. I don't really care how I get it, but this is what I want. Graph qL is gonna figure out the how for you, and then give you the data back. So it's Yeah, yeah, it's pretty cool.
+
+15
+00:10:10,710 --> 00:10:47,149
+Scott Tolinski: Yeah, that was my own personal experience with graph. qL is like one of the biggest benefits is that it? You do you don't worry about how you're getting the data from the API, except for when you're writing the API, you just worry about what the data you want is, I'm a little bit curious. Because obviously, you said you've been working in WordPress for over a decade. I'm interested in maybe how you came about graph qL initially, and maybe like, what some of your initial thoughts were when you saw graph qL when you first started to use it, and maybe how this sort of idea for Oh, hey, I should be working on a WordPress implementation of this even came about?
+
+16
+00:10:47,189 --> 00:15:36,240
+Unknown: Yeah, sure. So yeah, so I've been Yeah, like you said, working with WordPress for a decade or so mostly, mostly building just like sites, right, like, like most people in WordPress, worked for a couple agencies, building sites for realtors, and or like real estate, Home Builders and stuff, built some auto dealer websites, but all sorts of stuff. Now, for the past four years, I've been working for a newspaper publisher, we have about 100 newspapers across the United States. And we do a lot of content syndication. So like two papers, for example that we have are the Denver Post and boulder David camera, which are I don't know what 50 miles away from each other something. boulder is a smaller town has less coverage, like in the newsroom. So Denver Post, let's say they write a news article about the Denver Broncos, Boulder daily camera can say hey, we don't have reporter there, they can click a button saying we want to subscribe to these articles. And then automatically as them post publishes these articles, any paper, such as automated camera that subscribe to it will automatically get that information. So we were doing a lot of this content, syndication, pushing and pulling of data across our network of, you know, hundreds of sites across the country. And we were using the WordPress REST API pretty heavily. We started using that before it was in WordPress core. And then we used it afterwards in WordPress core, but it was causing us a lot of headache. We were kind of at the spot, because when you syndicate our call, if you think about like a post or an article in WordPress, it's not just one entity, it's it's the post, but then it's the terms and the images and the author, right. So you're talking all these different resources that you have to move around to syndicate one article. And so at the rest we were doing, you know, we'd send over the post data, it would make a callback for the featured image, then make a callback for the gallery and then make a callback for the terms, right. So we're doing all these, like network requests kind of got out of hand, like it was very hard for our team to like, manage what was happening. So when there was a bug, it was like very difficult for our team to troubleshoot. And it was taking a long time, because there was so much stuff happening, like you had to wait for one request to finish before he could do the next request. So syndicate one article, sometimes it's taken us like three minutes. And that's like, in news, like, obviously, we're trying to do stuff fast. And so yeah, those rooms were like, Hey, this is broken rock, it's not broken, just give it time. So. So there was a lot of pain points around that, especially as we started scaling to more sites, were sending out more messages and have to handle all sorts of other stuff. So at that time, I was just like, as a hobbyist playing with JavaScript framework called Meteor, just nothing in production. I just had heard about it, I was fascinated with real time, like real time interfaces. So I was like, Oh, this Meteor thing might allow me to build some of this stuff. I didn't have a real reason. I was just curious. And so I followed that ecosystem for a while, built some hobby projects with it. And then they pivoted to this product called Apollo. And one of the one of the guys heavy in that ecosystem, put up a site called learn graph qL, calm about the same time. So and I followed him on Twitter and whatnot, until I was like, Oh, what's this graph qL thing. This is probably maybe mid 2016, or something like, graph qL was fairly new. So I started learning about it. I said, Oh, this is real cool technology. I didn't, I didn't quite like have a real use case that I thought of at the time. But then when we started having these pain points with syndication in the newsroom, I said, Oh, I remember this tech called graph qL that allows you to do things with multiple resources in one request, maybe this could help us so I kind of spun up a proof of concept of, you know, how we could syndicate multiple things in one request. And I showed it to my team, and they said, yeah, this makes sense. I did get a little pushback and whatnot. But once I had like a working prototype, and said, Look how little code this is, and how easy it is to follow. It was kind of a no brainer, like yeah, let's let's try to go this route. So it took us a little while, but we've been in production, syndicating on GraphQL. Now for I don't know you Monster so on, I think 54 or 56 sites on WordPress. Well now at the moment. Yeah, so that's kind of the origin story. So it was server to server communication, which is not typically, like the story you hear for graph QL. Usually there's like some JavaScript or Native Client, like a native mobile client that needs data. And usually, that's where you hear the origin story. But yeah, for us, it was PHP to PHP servers, getting data in the most efficient way possible, and in a way that our team could easily debug when issues happened.
+
+17
+00:15:36,960 --> 00:16:24,029
+Scott Tolinski: Interesting. It's funny that you say that your first experience with graph qL came out of the meteor community because it was the same for me just because of Apollo, and the connections there. And I personally, that was that was my whole experience as well. I'm doing some some projects with Meteor, my sites actually still be built in Meteor, but it's basically the whole API is now Apollo and graph QL. But it was funny, because when that first came out all the learning material around it, everything started to shift. And the team really started to push this message message of graph QL. And, again, it was sort of just shocking how easy it all felt like it was. So it's really interesting to hear that somebody had the nearly a similar like a very similar experience in terms of latching on to it.
+
+18
+00:16:24,539 --> 00:17:03,299
+Wes Bos: One question I have here, and one criticism I hear craft queue all the time is that like, you just write these queries, and you have no idea how they're sort of fulfilled under the hood, you could be 10, potentially writing this like beast of a query, then, really, but because at the end of the day, you do have to write a database query to actually resolve that data. And what I was like, I was really glad to hear you say the opposite, where you said, like, Oh, no, this is much faster, because we know exactly what you need ahead of time. So there, we can sort of think ahead and make it much more efficient. So when you're writing the resolvers, for WP graph, QL. How does that work? Are you writing MySQL queries directly? Are you still running that through the WP query interface? Yeah,
+
+19
+00:17:03,299 --> 00:18:02,490
+Unknown: I think almost exclusively, we're using native WordPress abstractions like WP query that exist already. And the reason for that is, WordPress already has like an ecosystem built around these things, such as like dropping cache plugins, right, if you want to have Redis as your cache, you can drop that into WordPress. And that makes use of internals within these like WP query abstractions. So the way like WP query works, as soon as it fetches an item from the database, it attempts to cache it. If you have a plug in like Redis Cache, or mem cache or something like that, it'll cache an persisted cache. And so by making use of those existing things, any thing you're already doing to optimize WordPress, will already be in effect. We go a little bit above that and say, if you write a WP graph, qL query we do this deferred resolving, but it's still once once we get an object from the database, we cache it like WordPress does, because we're using WordPress functions. Yeah.
+
+20
+00:18:02,969 --> 00:18:15,540
+Wes Bos: So any any off the shelf WordPress plugin, or anything that like modifies your data in between you actually fetching the data from the database. All of those plugins still work, right? They should, as
+
+21
+00:18:15,750 --> 00:18:19,230
+Unknown: much as I know how to support it. Yeah. I mean, they're not
+
+22
+00:18:19,230 --> 00:18:37,890
+Wes Bos: doing anything funky here. You're not going like you're not going around anything that WordPress does. You're just using the native WordPress interface to actually fetch the data. And any any hooks or whatever that are sort of in between you your query in the database will still work as Yeah, as intended. Yeah, for example, like,
+
+23
+00:18:37,979 --> 00:19:36,660
+Unknown: somebody was building a membership site, and they wanted their, you know, content of posts to be private. And they said, How, how can I lock this down? And WP graph qL? I said, depending on how they did it, it might already work. So he was using, I think, restrict content Pro. And he's like, Okay, let me give it a shot. Yeah, it works, right. So he just does a query. And if he's not authenticated, then the content just was returned. No. But then if he sent an authenticated request, like, you know, we we had, there's lots of different ways to authenticate. And WordPress would maybe talk about that later. But if you send authenticated requests, and we're going to verify, just like the rest API would do have capabilities to see this content. And if so, plugins, like restrict content pro that are doing that logic of using core WordPress hoaxes, check your capability. If it knows that you're authenticated, it'll send it back whether trust or graph qL or a normal WordPress request. So he ended up being able to do this without any extra magic.
+
+24
+00:19:37,170 --> 00:19:45,180
+Wes Bos: How do you send a authenticated request then to graph qL? Is it is it client side like cookies or j wt? Or how does that work? Yes,
+
+25
+00:19:45,180 --> 00:22:35,490
+Unknown: you know, you could do you could do either one. So if you're on the same domain, like if you have a headless site, but it's on the same domain, like you have your site calm is WordPress, your site.com slash headless app, right. So there's same domain Yeah, you can use The cookie off that WordPress already has. So if you have if you have a cookie for your WordPress domain already stored, then then you can have that sent in the headers. I have an example app. So I have an app called WP graphical. So if you're you're probably familiar with graphical, and if you're not graphical is a so graphical is like an ID for exploring a graph qL schema and testing queries and mutations and whatnot. So I've, I have a separate plugin that you can install called WP graphical. And that's on GitHub. And when you install that, you get the graphical ID in your WordPress dashboard. And in the source code of that, we just have basically a function that wraps that react app and says, anytime you make a request, just pass the existing WordPress cookie along with the headers. So that's one way that's and that's source code you can look at to see how you can use cookies as authentication. Oftentimes, though, your WordPress site and your whatever site whether it's next j. s, or Gatsby review, in grid summer, whatever it might be, there's going to be on two different domains. So cookie authentication won't work in that case. So there's different like with the REST API, there was a couple authentication mechanisms like OAuth, and basic auth. And there's a work on, there's a team working on JW t ot that they're hoping to get into WordPress core at some point. So any of those mechanisms, they also make use of just core WordPress functions. So there's a hook early on in WordPress execution called determine current user and graph QL. And REST API and your normal WordPress dashboard. respect that. So any of the REST API authentication plugins, if you use those, you can use those with graph with WP graph QL. So basically, most of those give you some sort of header token to pass in your request. And it determines that who you are, what capabilities you have. And then it continues to process whether it's a REST request or graph qL request. So your user your identity is figured out early in the process, and then pass down through the rest of the execution. And then I have my own plugin called WP graph qL JW t authentication. So that's like a, that allows you to actually do a login mutation with graph qL to get a token response. And then you can use that token in your headers, as well. So there's lots of different ways to do it. But anyway, you can authenticate with WordPress core should be respected by any of these API's. Cool.
+
+26
+00:22:35,880 --> 00:23:05,940
+Scott Tolinski: Yeah. So that's fine. I mean, you mentioned that there's, there's lots of ways to do it here. There's also lots of ways to host your back end data. This is a sponsorship, ad transition. And one of those other ways that you can host your data is through something called Sanity at Sanity i o. Now, Sanity is the longtime sponsor syntax over here, and they make hosting your back end. Really simple and really interesting with their whole bring your own front end service. With a little bit more about Sanity as Wes.
+
+27
+00:23:06,300 --> 00:24:31,110
+Wes Bos: Yes. So we realized that WordPress and Sanity are a bit of competitors. And actually, it's funny. I've talked to the Sanity folks at a conference and they say it's, it's not us versus the other headless CMS. It's all of us vs. WordPress, because there's a lot going on right now in this whole space of like, who stores your data? And what's the best editing interface for it? How do we pull that out and put it into a something like Gatsby or whatever. So we'll just say that up front, we obviously realize that they're sponsoring the WordPress episode. And we hope that that shows you that we're not tailoring our content to whoever sponsoring the episode, but you want to check it out. sanity.io is a headless CMS, which means you can log in, you can create your content types, you can have relational content types, you can even like code your own react based component, UI. So if you want like a custom upload interface, or custom data input, or custom validation, you can code that all in react and use it on their hosted platform, which I thought was pretty, pretty neat. So check it out@sanity.io forward slash syntax, and you're gonna get double the included monthly usage. If you already signed up not through the syntax, just ping them in the chat with the in mentioned the code tasty treats and you'll get sorted. That's it for today. Thanks so much to Sanity for sponsoring.
+
+28
+00:24:31,470 --> 00:24:51,840
+Scott Tolinski: Cool so I wanted to talk a little bit about maybe development process a little bit. So in 2019 for you personally, what is local WordPress development look like? How are you spinning up a new WordPress instance? Like what are the fastest ways what are the most efficient ways to get going with like a WordPress site so
+
+29
+00:24:51,840 --> 00:25:48,180
+Unknown: that you can get get going there might be better or faster ways but my preference I use local by flywheel it's a desktop Je UI app that lets you just click new site and you can configure like the PHP version and the MySQL version. And in I don't know, 20 seconds you have a WordPress site and you have it spin it spins it up in Docker for you. And then you can with goi just click buttons to get access to SSH or access to, you know, the SQL database through SQL pro or anything like that. It sets up the x debug for you to work perfectly with PHP storm. I personally, I've been using it for probably two years or so for most local work that I do. And I rarely have a reason not to use it. I there's a lot of other ones like I've heard Lando is a good thing I've heard like Laravel has like some local development stuff that people make work well with WordPress. I can't remember the name of it.
+
+30
+00:25:48,420 --> 00:26:11,550
+Wes Bos: Yeah, we I used that when I used to teach a WordPress class. We used it on Windows because like the what's the one that everyone used on Windows for so long? whap Yeah, when and damp lamp was such a nightmare. Yes. XAMPP. And that there was like a Laravel one that works super well. I can't remember the name of it right now. And it works super well on Windows, which I was surprised to see.
+
+31
+00:26:11,790 --> 00:26:35,400
+Unknown: Yeah, I've I haven't really explored any of those other ones. For some more newsroom sites, we have a custom Docker install that sets up like our cluster sites for syndication and stuff. So for that we use like a custom Docker eyes, local environment, but like all the WP graph qL stuff I do I do with local by flywheel. This is not a sponsorship either. Like, it's just how it works. Yeah, yeah,
+
+32
+00:26:35,400 --> 00:26:36,090
+yeah.
+
+33
+00:26:36,390 --> 00:27:20,910
+Wes Bos: Although we'll take them if they want to sponsor with a flywheel. That's cool. I always love hearing people's development process it What about like deployment? Like, what do you do about like data that needs to be migrated? Because the sort of the one pain point that I always had with WordPress was, if you have like some like settings or something like that in your database, that needs to be part of the deployment. Ideally, those settings would be exportable to like a JSON, and then you can commit those, but some of the plugins only let you like, save it in the database. And that's a frustration. So you have to be like, Alright, deploy this thing and quickly update the settings. Nothing breaks, like, what do you do about that? Oh,
+
+34
+00:27:20,940 --> 00:29:34,740
+Unknown: yeah. So like, on our production, like in our newsroom sites, we usually if, if a feature is going to change something like if a feature depends on an existing setting, we usually try to roll things out with, like a different setting for the new feature that this new feature will then take over once this setting has been changed. So like the old feature will still work. But if if we add support for the new setting, after it's been deployed, so we'll deploy both features basically. And feature B, the new feature will only be active once we do something on production to activate it like a flag or whatever. And then we'll usually hopefully try to remember to pull out the old feature. detect that. But that's kind of been what we do. We have been doing some interesting things with graph qL, and things like that, though. So like I mentioned, we have 54 sites across the network. And so managing like small things across 54 sites is very tedious. Like if you need to change one setting, like, Hey, can we change, I don't know, the favicon for all 54 sites or whatever, like that's an interns whole day, right? Like, login, decide, hey, login site B. So we've been building like a react app that uses graph qL, to talk to all of our sites. So we can log into one site and do things like that, like user management is our biggest pain point. someone leaves the newsroom and they had access to 54 sites. Oh, yeah, we got to, you know, get rid of them fairly quick, or, you know, change their capabilities, or whatever. So we have like a react app now that can talk to all 54 of our graph qL endpoints. And then we can in one interface search for a user. It'll use graph qL, to search for the user across all our sites, bring it blab and say, Here's where this user exists, then you could click on and say, I want to delete this user or I want to change this user's role. And then you can confirm these are the sites I want to change it on, click Submit, and it uses graph qL to send a mutation. So what used to be, you know, several, our job is now a 45. second job. So it's not exactly deploying, but it's like, yeah, how do you handle these settings when you roll out and for us, like, that's one, one use case.
+
+35
+00:29:34,950 --> 00:30:06,780
+Scott Tolinski: It's just so interesting to hear about other people's custom tools like that. I love writing custom admin tools in the back end. Yeah. And to hear about stuff like that, especially with WordPress, it just goes to show you that you can, you can use WordPress in these kind of ways, like people are using their own custom Express apps. You just have to know where to send the right messages, how to connect to the right sites build these custom tools, but it's fascinating to hear it This react app that can modify permissions across so many different WordPress instances. Really cool.
+
+36
+00:30:07,170 --> 00:30:25,080
+Wes Bos: So there WP graph qL obviously has support for mutations pushing data like he told me you can create and delete users are all of those things like creating posts, updating posts, deleting people uploading images, or all those things supported. WP graph qL,
+
+37
+00:30:25,470 --> 00:31:24,030
+Unknown: pretty much we don't, we have an open issue for uploading images still, that we need to address, you can sideload images, so you can pass a URL of an image and it'll sideload it. But as far as actually like uploading from like a forum, like using multi party on input or whatever, that's not at the moment supported, but will be soon. There's also like, debate in graph qL on like, how you should even handle uploads. So I've been a little hesitant on like, what approach to take here. So I've partly intentionally I'm holding off on that. Because like, because, you know, if this, there's potential, at some point, I don't know for sure that wp rathkeale could make it to WordPress core, or at least be recognized as like, the official way to do grammar, with WordPress. And so like, I feel like I have a responsibility to do things like, well, up front as much as I can. Because if I make breaking changes, it potentially affects a lot of people. So sometimes I'm a little patient with
+
+38
+00:31:24,330 --> 00:31:44,550
+Wes Bos: That's good. That's don't do it right the first time otherwise, you end up with this what like some mistakes that were made in the first days of WordPress 15 years later, we still have these like, some some stuff is the underscore and some stuff is get underscore. And then you have get that you're like, what does it return? Do I echo it? And it's, it's so important. Yeah,
+
+39
+00:31:44,550 --> 00:32:29,400
+Unknown: now, I've already made some of those mistakes, like I have, like, I don't want to commit to 1.0 yet, because there are some mistakes that I made that I want to correct, which will lead to breaking change. But I want to do that before I say this is 1.0. And, yeah, so now that I'll have time, like a lot of that a lot of those features have been just on the back burner, because they're going to take a fair amount of time to accomplish. And, you know, as I do get to work on this at my current day job, if the features make sense for a job, but for features that they don't use, like if I want to work on them, I got to work on nights and weekends and whatever, which I do a lot of but now I'll be able to work on it all day every day. So some of those features that have been on the backlog I'll be able to address
+
+40
+00:32:29,610 --> 00:33:06,000
+Scott Tolinski: really interested in the the hosting picture for all of this, because that definitely is like a complication that I think can get a new developers thrown off a little bit when they're working and maybe a headless WordPress setup. So I'm interested to hear your thoughts on what do you think are the easiest, most efficient ways in your mind host the WordPress back end and the front end site? Is there anything that makes it easier along the line, I personally am just like spinning up a site in a WordPress site in a cheap server and then throwing the front end up on Netlify. But I'm interested to hear what the the approach that you see happen a lot is
+
+41
+00:33:06,510 --> 00:34:25,650
+Unknown: honestly, I think it really depends on what you're trying to accomplish. Like in your case, it sounds like it's a site that largely you're managing by yourself. So your your actual needs for the WordPress site are pretty minimal. Like in our case, we have a newsroom. We have newsrooms with you know hundreds of people logging in. So the WordPress still needs a decent server because there's lots of, you know, lots of writes happening and lots of concurrent users using it. But if it's just like a, you know, one person then their personal site, I think what you're doing works well my current WP graph QL. Doc's website is a Gatsby site on Netlify as well. In that case, it's not actually using WP graph. qL is just mark down because I want the community to be able to contribute by pull requests. I don't want the content in a WordPress site that only a handful of people have access to right to. So that's why I did that. But it's on Netlify. It works great. I'm real happy with Netlify. I think I think it really depends on your needs, though. Like I mentioned, like our react apps. In our case for the newsroom. The SEO doesn't matter to us. They're all admin apps. So we just use create react app. And then we don't really host them anywhere like we just like we just put up we just on cue them in a dashboard page of WordPress, right. So they're just this file that WordPress so Oh, interesting. Yeah.
+
+42
+00:34:25,650 --> 00:34:26,310
+Wes Bos: But that's
+
+43
+00:34:26,310 --> 00:35:02,610
+Unknown: that's because they're not we're not trying to like rebuild WordPress themes with it. We're, we're building admin interfaces. But if I was, yeah, I think what you're talking about though, you have a WordPress site on whatever comfortable host depending on your needs, you can go cheap for five bucks a month with something like Bluehost or whatever. If you have a lot of users that need to be in there editing, you know, there's higher end hosts, you know, the P engine or Pantheon or something like that, where you start paying 30 bucks, yeah, or higher. And that's and then the good thing with a static site though, is you can host it for free, almost anywhere. Very cheap like he could tossed on s3 for.
+
+44
+00:35:02,820 --> 00:35:21,000
+Wes Bos: I don't Yeah, he's a month probably because it only needs to be Netlify ones, right? And as long as it's it's all static content and nothing is then reaching back to the the original endpoint it doesn't even need to be alive. Like you can't even put it on, like one of these services that spins down when it's not being used. Yeah,
+
+45
+00:35:21,420 --> 00:36:31,020
+Unknown: yeah, yeah. serverless. Yeah. And now there's those speaking of that, though, there is this new like Gatsby has docks and whatnot on building dynamic sites with Gatsby, right. Like the Gatsby swag store is a good example of one in production, right? Like when you load it, it loads up their inventory. But then it allows you to do dynamic stuff, like purchase a product and maybe check the count of inventory left or something. So in some cases, a static site might still make dynamic calls back to a server. So it depends on what you need, like. So we have a guy Jeffrey Taylor, who's working on WP graph qL for WooCommerce. And that would probably be an example where you still have a live WordPress server. But you could build a Gatsby site that does, like puts your inventory in a static file, but then still make calls back to your live WordPress server for things like the amount of stock left. Yeah, product, right. And then to process the actual like order and cart fulfilling and things like that. So it would save, it would save your WordPress server, you know, some traffic, but you'd still have to have a live connection for some parts of it. But the big thing is you get to Thea react, in my opinion, it's
+
+46
+00:36:31,020 --> 00:36:31,610
+a big that's a
+
+47
+00:36:31,610 --> 00:36:43,650
+big one where like, I don't know anybody super excited about theming. in PHP, especially once you've learned like, how to take advantage of state and modern JavaScript libraries like the word react.
+
+48
+00:36:43,670 --> 00:37:13,020
+Wes Bos: Yeah. Do you? Do you see any pushback from people who like the one of the huge downsides to theming and reactor theming, in Angular with a WordPress back end, is that you give up everything that's been pre built for you. And a huge portion of the WordPress community is people who are just buying a theme, getting a couple plugins clicking it together. And that's it. And you see a lot of sort of anxiety around this whole, like, themes are going away. I don't even know what you think about that. Maybe you can say, say that as well.
+
+49
+00:37:13,880 --> 00:37:48,000
+Unknown: Yeah, I think there's trade offs, right, in my opinion, I personally would rather work on a project that didn't have all this stuff being hooked in for plugins, and I had complete control. But I've also, like, I'm, I've been working more on like, products at the newsroom. Like we're we're like iterating on the same sites over time. Yeah, I'm not working for an agency that has six weeks to deliver the site. Right. So that's my personal preference. But I do you think there's a huge portion of the ecosystem that doesn't have that time and freedom to work on sites like that, and they just need
+
+50
+00:37:48,630 --> 00:37:49,980
+a slider plugin?
+
+51
+00:37:51,030 --> 00:38:52,230
+Yeah, exactly. So I think we're gonna start seeing more plugins support, like, Okay, this works in WordPress, but it also shipped like Caldera forms, for example, as a form builder. And their forms are outputting, a react component. And so you can use WordPress, but then you can also use it potentially in Gatsby. So, like, I've been talking, I have an open issue on his plugin on color forms on GitHub, where we did a call like this and brainstorm like how it could look to do form like use graph qL to query the form fields needed, uses existing react component to render the form fields, and then use a graph qL mutation to set it back to WordPress. So like, we're exploring that so that you can use an existing WordPress plugin, potentially in another environment with, you know, very minimal effort. So I think we'll start seeing more of that the more API's like WP graph, qL evolve. I think you'll see more of those, like, use this in WordPress, but also use it.
+
+52
+00:38:52,320 --> 00:39:17,610
+Wes Bos: Yeah, like it comes with a react component that you can drop in. And even like, we had another Jason on the podcast a couple weeks ago, talking about Gatsby themes. And the whole idea there is you'd be able to bundle together, like, what it looks like and how it gets its data and the functionality all in one thing, and they can be composed. So that technically could be a thing as well, where you could just ship a Gatsby plugin. Yeah, yeah.
+
+53
+00:39:17,630 --> 00:41:22,920
+Unknown: I also, I think, I think for good reason, we're gonna start seeing a more of a trend of being like, more prescriptive with themes versus like WordPress ecosystem is like, all in one, like, build any website, under the sun with this theme. Right? And, and there's pros to that. But there's also a lot of confusion with it. And people have the word. Yeah, right with that. So I think we'll see like with Gatsby themes, I think we'll start seeing potentially more prescriptive themes. Like this is the theme specifically for documentation. Like if you're not writing documentation, don't use this theme. Right? Like it's gonna have features and styles and stuff specifically for that purpose. And it'll you know, in this case, it could have quick pre written to get data from WordPress or whatever your sources in the specific shape that a documentation site needs. Or you might have a restaurant theme, there was a press 75 themes. json by Jason Schuler, he was pretty active in the WordPress ecosystem for a long time. And he's doing some cool stuff with WordPress still, like he's got a site called leaflets or whatever. But his his ideas, that theme should be very prescriptive as well, he had a thing called pickle. Back in the day, this is just a classic WordPress thing. But it was, it came with custom fields on the back end, that only gave you certain inputs, and then a very specific output, you had no drag and drop page builder, you didn't have shortcodes, you didn't have anything, you just had very specific inputs. If you wanted a menu, you enter your data here. And that like it was very unflexible, like the opposite of what you think of WordPress as as being like this flexible, do anything you can. And his idea was like, if I do the work of making what a great restaurant theme, then that you don't have to think about how to do it, you just install this enter data. So I think we might see a comeback of that kind of approach of like, this theme does exactly this. And then potentially less need for that like flexible, like, Do everything you can imagine. But I don't know, I think there's gonna be use cases for both. But I think we'll probably We'll see. We'll come back with that. Hey,
+
+54
+00:41:23,100 --> 00:41:43,770
+Scott Tolinski: I have a question about when you have a WordPress site and you're using it for the API exclusively. Do you have any techniques that you commonly do to sort of prevent the WordPress front end from being loaded? Do you have a theme that you use the redirects, you're doing it on the server? What do you what are you doing for that aspect of the front end of the site?
+
+55
+00:41:44,150 --> 00:42:14,550
+Unknown: Yeah. So we have, we have one theme and our newsrooms that we call a content hub where all our newsrooms push some information to, and that has no front end to it. So I think we hook into I'd have to look up the code. I don't remember off the top my head, but I think we hook into maybe the template redirect hook in WordPress, and we just have like a one line function that basically says, if it's not a graph, qL and REST request, just like, return them. And so you just get a big white screen. I think that's all we're doing there.
+
+56
+00:42:14,730 --> 00:43:31,610
+Scott Tolinski: Sure. Cool. Yeah, really interested about that. So in this world of building all of this stuff here, you're never really gonna get into problems. Sorry, everybody. I'm sleep deprived. My transition game is not good today. I'll get back at it, it'll get back once the once things get back to normal here. Our sponsor of this episode today is Log Rocket. Now Log Rocket is the service that allows you to see the errors that are happening in a real time, video replay of everything that's going on in this session replay includes more than just the user clicking around and a bug happening. It also shows you the the error log at the time, your network requests, tabs, your Redux store, pretty much anything you'd want to see to be able to solve a bug. And this way, you don't have to ask your user a bunch of questions via email, Hey, what did you do to get this bug to happen? You can see it happen yourself and solve the bug. So if you want to try this excellent service, I went over to Log rocket.com forward slash syntax, you'll get 14 days for free, highly recommend checking it out Log Rocket is one of those services that I find to be extremely not only fascinating, but just so so useful for getting these errors and bugs solved up in no time.
+
+57
+00:43:32,070 --> 00:44:26,490
+Wes Bos: All right, next question. I think that part of the reason for WordPress has huge popularity is is due to custom fields and custom content types, custom taxonomies, that's where you are able to create, like you can create a store content type. And then you can have like custom taxonomy, which is like a tag or category. But it's just another way to categorize your content. And then the the the plugin advanced custom fields, which I think seems to be the biggest one. There's another one. I haven't been in the WordPress world for a couple years. Now. There's some rumblings of another one that people seem to like as well, those things alone, allowing you to create your own custom content types with custom input fields on the back end, I think are why WordPress is so popular in sort of the agency world where you can just whip up a quick site with a custom back end, is that have support in WP graph? qL?
+
+58
+00:44:27,000 --> 00:46:09,840
+Unknown: Yeah, so yeah, if use register post type registered taxonomy, um, there's just a couple extra parameters, you have to fill in to add graph qL support. So like rest the REST API, for example, you just say, Show and rest equals true. And then you give it like a callback for the controller class. So in graph qL, you just say showing graph qL true. And then he give it a graph qL single name and graph qL plural name. And that's like the names that this will use to reference your objects. So yeah, you could say register Your post type car, for example. And then Shawn graph your true graph, you'll single name car, graphical portal named cars. And then you'll have a schema where you can query for cars, mutate, cars update, create delete cars. So yeah, you know, three or four lines of code, you can have all sorts of craziness. And then if you register a post or a taxonomy to be related to the cars, like a make and model taxonomy, for example, so you could like label it as Honda. Yeah, for example, then if you register the taxonomy, they be connected to the car post type, graph. qL does those connections in the schema for you? So you can, you could do you could do something like query like cars, and then on cars query for make, and then ask, you know, get a list of the main URL, and you probably won't have a list of makes for cars. But yeah, so or you could go the opposite way and say, like, get a list of makes, so you could have like Honda, Toyota, whatever. And then nested on that, you could say, give me the 10 popular cars or whatever it might be. So in one request, you could ask for the makes and the car nice have that make? And
+
+59
+00:46:09,990 --> 00:46:24,210
+Wes Bos: what about filtering and sorting? That's the one of the big like, moments of graph qL is that it's not, it's not actually a query language at all. There's nothing built. There's nothing related to graph qL that lets you filter and sort and things like
+
+60
+00:46:25,320 --> 00:46:36,600
+Scott Tolinski: that I first started, though, always like looking at one document. Yeah. And trying to use another. And I was just like, why isn't this filter not working? It's like, the never built in the filter, dummy. You know, you have to build it in yourself.
+
+61
+00:46:38,940 --> 00:47:59,820
+Unknown: Yeah, so we do have some open issues on that we do have some filters already for things like filter by you know, the tag that a post exam or whatever, you can pass an ID, we have some filters like that, for custom post types. taxonomies. It's not super well supported, we have some open issues that I plan to address pretty soon on that to make it dynamic as soon as you register post type filters available. So some of that's up in there. But I do have an extension plugin called WP graph qL tax query that allows you to, to query posts by taxonomy input. I'm not, I didn't want to put that in the core plugin, because I'm still kind of iterating on the shape of how I want to do it. But that does allow you to query based on various taxonomy. Yeah, parameters, like so. And then there's also a extension I have called WP graph qL meta query, which allows you to query you know, filter your query by meta field values, like date. So, but yeah, well, dates depends on how you do date date is actually like, not a meta field. It's part of a core post object. So yeah, you can do a date, you can do a date query with WP graph. QL. Core. So you could say, give me all posts before March 5, or you know, yeah, like before March 5, but after March 1, or something like that. Oh, so you can do that. that's built into WP graph. QL. Alright, so
+
+62
+00:47:59,820 --> 00:48:10,620
+Wes Bos: if I was doing like an event, and that that event have a date, like, when is the event? would you use the like built in date to that content type? Or would you create a custom field?
+
+63
+00:48:10,620 --> 00:48:13,860
+Unknown: I probably in that case, I probably do. Because it could be
+
+64
+00:48:13,860 --> 00:48:16,560
+Wes Bos: in the future and then not published? Right?
+
+65
+00:48:16,890 --> 00:49:37,350
+Unknown: Yeah. Because the date the date? Yeah, the data in WordPress affects so many things like permalinks, potentially, depending on your billing structure, it can affect that it can affect the actual, like ownership status, like if your date is in the future, than only admins have access to it, right? It's not considered published. So are not necessarily admins. But based on your user role, you may or may not have access to the object. So I probably wouldn't do states for an event type thing where you'd need like future dates or date ranges. So yeah, probably use a, it's hard to say you might even actually use a custom taxonomy, because taxonomies are more performant for querying against. So you could have like a start date taxonomy and an end date taxonomy. And put a term for the date timestamp. And then you could actually do a filter using a text query, which is more performant than meta query, especially as your site scale. That's probably how I would do it if I knew what my needs were to query against that field. And then it could do hooks. Like tom tom know, wrote, he works for WordPress VIP. He wrote some good articles a couple years back on, like, proper uses of metal versus taxonomies. If you want to Yeah,
+
+66
+00:49:37,350 --> 00:49:45,780
+Wes Bos: yeah. It's good to have like smart people on that kind of stuff. Just because it stops us from shooting ourselves in the foot when we're trying to use it. Right.
+
+67
+00:49:46,290 --> 00:50:08,220
+Unknown: Yeah, because the problem with meta if you're going to query as it's not indexed at all, right, it's just like this wild card key value store and so as your sites grow gets very expensive, or taxonomies are like you They're, they're indexed properly to query against. So they're their main intent was to basically query by groups of things.
+
+68
+00:50:09,210 --> 00:50:28,770
+Wes Bos: I think that's all the questions I have for you about this. I think it's answered so many of the thoughts I had about like, how do you even build this? How do you host the thing? What do you do about custom fields? What do you do? But authentication? Seems like almost all of the bases are covered. Do you have anything else that maybe you don't think that we asked about or anything you want to cover?
+
+69
+00:50:28,770 --> 00:52:10,620
+Unknown: Oh, yeah, we did talk about custom types. And taxonomies, you did mention a vast, advanced custom field. So I've also written advanced custom fields. So I don't know if you've seen that or not. But I actually released that about two months ago, I was in an attempt to try and kind of bootstrap myself to go full time on this stuff before. And then Gatsby reached out to me so. So that was my first like, premium extension, to explore if I could make enough money, but in this whole time, but yeah, the way that works, if you're using advanced custom fields and graph qL, you just install that extra plugin WP graph qL for advanced custom fields, and then whatever fields you have registered, whatever field groups, you have get applied to your schema automatically, in graph qL, and then you can query that data. So let's say you had, you know, posts, and you added a field group called, I don't know, let's go with your event. date. example, you could have like a event dates right now a start date and an end date, then you could query your post, you could just say, I want my post, and then it'll prefix it with the field group. So you'd have like event fields. And then on that you'd have two fields like event date, or start date and end date. And no extra work, you just install ACF and saw that plugin, it'll add two fields to your ACF, like admin UI, where you create your fields. One, you just click Show and graph qL that you want that field group to be exposed to schema. If that set that need to, there's a one key that you can change what how you want it to be shown in the schema. Like if you if you named it something silly back in the day, and you don't like that name anymore, you can change the name but so you have those two settings and then it shows up in your schema on all the resolution happens without you having to
+
+70
+00:52:10,620 --> 00:52:27,600
+Scott Tolinski: run a line of code I think we're all very experienced with naming something something silly one point in time and then looking back at it later, like what was I thinking with this name? Yeah, cool. Well, I don't have anything else. So do you want to get into sick pics now?
+
+71
+00:52:30,090 --> 00:52:30,930
+Wes Bos: Oh, yes,
+
+72
+00:52:30,930 --> 00:52:31,890
+Unknown: thanks. Let's see,
+
+73
+00:52:31,890 --> 00:52:35,880
+Wes Bos: I think I'm selling too so I was trying to I was
+
+74
+00:52:36,420 --> 00:52:51,840
+Scott Tolinski: so sick pics of the part of the show for those of you who have never listened to a syntax episode before where we like to talk about things that we have in life in our office in our work that are sick, something that we really find to be excellent and want to share with you.
+
+75
+00:52:51,840 --> 00:53:54,600
+Wes Bos: I have one it's I'm going to sick pick something that I sick picked a long time ago and then Scott sick picked and I'm going to sit back in again. The cat the cow digit Ts three plus, which is the the Thunderbolt three dock for the MacBook Pros that don't have any ports in them. And you so you plug this thing in and it gives you a whole bunch of USB it gives you Ethernet gives you it charges that you can run multiple monitors off of it and I've talked about how it's unreal that you can actually have a single cable install where I've got audio gear and hard drives and two 4k monitors and charging an 85 watt MacBook all on one cable which is unreal that you can actually do that so I bought this thing before it even came out initially and then I was bummed that they like released the new one where they they put they had like a SATA ports on the original one which is like allows you to like hook up a hard drive which I don't know who's doing that
+
+76
+00:53:54,600 --> 00:53:59,070
+Scott Tolinski: and if you're doing that you could still do it via USB with a you know a simple setup.
+
+77
+00:53:59,340 --> 00:54:05,400
+Wes Bos: Yeah, so I I was kind of bummed because Scott you bought the new one that has the SD card right yeah,
+
+78
+00:54:05,400 --> 00:54:14,820
+Scott Tolinski: although they came out with the space gray one no and I don't have the spare one when I got I want this big screen one now in America I'm not gonna drop the money to buy one that matches but yeah.
+
+79
+00:54:15,840 --> 00:54:27,780
+Wes Bos: Oh man. So I was super happy because I did have to run an external USB hub off of this thing because it just didn't have enough USB ports in it. And then the new one I think they added two new I was gonna
+
+80
+00:54:27,780 --> 00:54:30,690
+Scott Tolinski: say mine's got a lot of USBs Yeah,
+
+81
+00:54:30,720 --> 00:55:10,320
+Wes Bos: the the new one has I think three or four more than the original one and an SD card slot which is the best because if you've got like a camera or something and you just want to pop that was the best part of the Old mac books readers slapping in you don't have to worry about a dongle. So big fan, they did send it to me I bought the original one with my own money. And then I've been like evangelizing it for two years now. And they said like hey, you if you want the new one, we can send it to you because probably sold more enough that it's worth it for them so that's full disclosure. They did send it to me but big fan of it. Absolutely love it. It's the Cal digit Ts three plus. Thunderbolt three dock.
+
+82
+00:55:10,769 --> 00:57:08,250
+Scott Tolinski: Nice. I have a sick pic as well. Seeing as I we we do have them. Dang it I had it just head my head. Now I'm just like blinking. I was just stalling for time. I don't know why I just forgot about it. Okay, and this a pic is one that since Wes has gone with a repeat, I'm gonna go with the repeat as well. This this harkens back to one of the first few episodes of I don't know if Harkins word anyways. But this goes back to one of the first few episodes of syntax where I recommended the application figma. I use figma every single day. And I probably used it every single day since that episode, where I recommend it a long time ago. And figma is basically a sketch alternative that works on any platform, it works in your browser. It has like Google Docs style multi user called multiplayer mode, well, everyone can edit a doc, you can leave comments to resolve. And if you've used sketch before, sketch sort of just stopped coming out with new features for a while. It it only worked on Mac, and they just like sort of, I don't know what they were doing. They just weren't doing a whole lot where figma was constantly adding stuff, whether it's new layouts, or the way their their component system works. And let me tell you, if you've used symbols and in sketch, you're gonna be blown away by how components work in figma. Because it just it's so much more practical in real world. So I'm such a huge fan of this application. So check it out. It's figma. It's it's an illustrated app. It's a prototyping app. It's a design app, I use it to design everything, my entire design system for the new level of tutorial site, which we just recently launched a couple of days ago. At this point, I guess it was all done in figma. first before we moved it into actual react components, and to be able to have a whole component system and everything built in figma at a time really made the new design system what it is. So yeah, that's my take big.
+
+83
+00:57:09,210 --> 00:57:11,190
+Wes Bos: Sick. What about you JSON?
+
+84
+00:57:11,820 --> 00:57:58,890
+Unknown: I already talked about in saga with local by flywheel, which is application that allows you to spin up WordPress sites very quickly, you know, in probably 20 seconds or so you can configure your PHP version, configure your SQL version, set up x debug for PHP storm, have access to SSH to run, you know, COI commands against a WordPress site uses Docker behind the scenes. So very helpful. I use it almost daily. Sick, if I can one thing. You mentioned figma had Google style, like Google Doc style, like integration? Or you know, yeah, what is your collaborative editing? that actually brings up a something about graph qL that we didn't talk about? Yeah.
+
+85
+00:58:00,150 --> 00:58:01,980
+Wes Bos: Yeah. Tell us about
+
+86
+00:58:01,980 --> 01:01:00,090
+Unknown: it. An amazing part of graph. qL is subscriptions, which is still like, as a whole, like being worked out, like what's the best way to implement subscriptions. But the idea behind subscriptions is that a client say a react component can subscribe to data until the server Hey, when something changes, tell me about it. Instead of like, historically, you write an application and you do something like long polling and say, a server did something change the server did something change a server did something change? Well, here you just say, hey, I want to know about this. But just tell me when it happens. I'm not going to ask you. Again. Just tell me. So with WP graph qL, I've been working on prototypes for how that could look. So that you know WordPress has event driven architecture already. So there's actions that gets sent out when certain things happen, like unsafe post or on comment deleted or whatever. So there's these events already happening. And so we can with graph QL. If you subscribe to these events, we can send you a payload that matches whatever you want in return. So I've been prototyping what that could look like. We're exploring that with Gatsby for doing like incremental builds. Right. So that's been a potential pain point with Gatsby is, you know, if you have a large site with lots of data, and you just correct a typo on one page, do you have to rebuild your entire site with just to fix a typo? Right. But with subscriptions, if if the site was already built, and Gatsby could just receive a payload of hey, here's this one thing that changed, it could potentially merge that into the already built site, right? Yes. So we're exploring graph qL subscriptions for end like I think one thing in WordPress, I'm not. I'm To be honest, I'm not a huge fan of it, Gutenberg. Yeah. New editor and WordPress. I think there's a lot of potential With it, like I love the concept of block based editing, I love react. I'm a huge fan of react. There's a lot of things. I'm not a fan of how it's been done today. I've tried to be vocal as I can with the time I have in like the GitHub repository for it. And Twitter, of course. But yeah, I think there's a lot of potential for it. And it if at some point in the future, you know, graft kills baked into WordPress core, or even as a plugin, you could do collaborative editing with Gutenberg, because at the block level, it could subscribe to events, and then it can know who's edit Oh, yeah, you know, you could show like the avatar of who's editing it, like on the top of the block. And maybe you could lock that block down so that only that person can edit it, but somebody else could edit the other parts of the page or something like that. So graph qL, like, enables that future. And I don't know what it would look like and if that's how it would happen, but it's possibility because of graph qL, and the subscription spec of graph QL. So it could be interesting word.
+
+87
+01:01:00,750 --> 01:01:04,530
+Scott Tolinski: We have so much to talk, we could do a whole nother episode. Gosh,
+
+88
+01:01:04,590 --> 01:01:23,340
+Wes Bos: yeah. If you've got questions to follow up, maybe we'll do another one in like six months or whatever. I'm sure a lot will change. I think the whole incremental build thing is is one of the biggest pain points in Gatsby right now. And it's something that they're focusing on. So I'd love to like hear like, what does that look like in six months? Eight months from now? Yeah.
+
+89
+01:01:24,570 --> 01:01:25,080
+Unknown: Yeah,
+
+90
+01:01:25,080 --> 01:01:52,830
+it's a very hard problem, especially like I have ideas on how it could be solved for WordPress specifically. But since Gatsby can talk to any data source, it really gets complicated. Like if get if you're just building a Gatsby site for just WordPress, like, I feel like I could give me a few weeks and I could have a solution. But for the multitude of data sources, like I that's a very hard problem. So we'll see. It's gonna be fun if you know if they come up with some Yeah,
+
+91
+01:01:52,830 --> 01:02:09,780
+Scott Tolinski: right. Yeah, yeah, we know. That's awesome. Cool. So now we're gonna get into some shameless plugs where you can shamelessly plug anything that you are working on. Are you working on anything other than WP graph? qL? Or do you want to just shamelessly plug WP graph qL?
+
+92
+01:02:10,140 --> 01:02:29,640
+Unknown: Yeah, just WP graph. QL. And Gatsby Hadn't you know the ecosystem between the two? I've lots of WP graph qL extension plugins, you know, like WP graph qL tax query and meta query WP graph qL for advanced custom fields. Yeah, that's pretty much what I'm trying to. Yes, shamelessly plug that.
+
+93
+01:02:30,210 --> 01:02:33,660
+Wes Bos: Yeah, you should plug your your Twitter's so people can follow you.
+
+94
+01:02:34,080 --> 01:02:42,810
+Unknown: Oh, sure. Oh, yeah. So I'm on Twitter at at Jason ball JSN ba HL. And then at WP graph. Nice.
+
+95
+01:02:42,840 --> 01:03:17,760
+Scott Tolinski: Awesome. I'm going to shamelessly plug, my new debugging course, which is on dev tools and debugging. We just cover all of the practical areas of the react or the React dev tools, the Chrome Dev Tools. Specifically, we talked about how to debug very common things like how to find images that are too large, how to find things that are pushing off your canvas and CSS, all sorts of practical real world bug solving, we're going to be tackling via the Chrome dev tools. So check it out at level up tutorials.com forward slash pro sign up for the year and get 25% off.
+
+96
+01:03:18,180 --> 01:03:30,150
+Wes Bos: I am going to plug all of my courses. Wes Bos comm forward slash courses, use the coupon code syntax to get 10 bucks off and you can learn mostly JavaScript and CSS stuff.
+
+97
+01:03:30,510 --> 01:03:31,950
+Scott Tolinski: Learn those JavaScript.
+
+98
+01:03:32,340 --> 01:03:44,640
+Wes Bos: Yes. Thank you so much, Jason, for coming on. This is so much information that I've been wondering about. And I think that this was probably gonna be one of our more popular episodes for the year. Yeah, I don't think we really appreciate it.
+
+99
+01:03:44,670 --> 01:03:46,950
+Unknown: So yeah. Thanks for having me. All right. That's
+
+100
+01:03:47,190 --> 01:03:50,070
+Wes Bos: thanks. And we'll Oh, we end off with a piece. So
+
+101
+01:03:50,400 --> 01:04:03,390
+Scott Tolinski: PC, please head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
