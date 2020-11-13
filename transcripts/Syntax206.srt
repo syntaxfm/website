@@ -1,0 +1,612 @@
+1
+00:00:01,319 --> 00:00:02,820
+Unknown: You're listening to syntax,
+
+2
+00:00:02,849 --> 00:00:10,560
+the podcast with the tastiest web development treats out there, strap yourself in and get ready to live ski and West boss.
+
+3
+00:00:11,279 --> 00:01:03,650
+Wes Bos: Welcome to syntaxes. The podcast with the tastiest web development treats out there. Today, we've got a banger of an episode, where we have a guest on. We're gonna learn all about state machines, which is really exciting. They applied to CSS, they applied to JavaScript, they apply to react in view. And it's just a really cool thing that seems to be getting some serious it's like a little talk about it is this like really like old concept, but it's it's getting some serious traction in our web development industry lately. So let's do some sponsors real quick. And then we'll dive into it. Our first sponsor today is Sanity. They are a structured content, CMS and second one is century which is going to do all of your error and exception tracking. With me today is Mr. David Kay piano and Scott as always, but let's talk to Mr. Mr. David today How you doing? Doing good,
+
+4
+00:01:03,659 --> 00:01:04,200
+Unknown: how are you?
+
+5
+00:01:04,829 --> 00:01:23,190
+Wes Bos: I'm doing good. I just about to launch my course I've been working on for like a year. And I cannot wait to get this sucker out. So it's a I've been just heads down on that for like a year but like building the website for a couple days now. I'm pretty excited about it. How are you doing today? Scott? Doing good.
+
+6
+00:01:24,360 --> 00:01:45,930
+Scott Tolinski: Yeah, no, I finished my month course I'm working on the next month scores. You know, as always, ready for this. By the time this episode comes out, be ready for the new year, which is kind of crazy. So just getting all that stuff working hammer got like a foot and a half of snow last night. So it is extreme weather territory out here in Colorado. Where are you from? David?
+
+7
+00:01:46,230 --> 00:01:49,470
+Unknown: I'm from Orlando. So we have no such snow problems to deal with.
+
+8
+00:01:50,700 --> 00:01:52,290
+Wes Bos: Have you ever had snow in Orlando?
+
+9
+00:01:52,889 --> 00:02:02,880
+Unknown: There have been times where very early in the morning, you have like these tiny little flowers that really stick but they technically call it like, hey, it snowed in Orlando. That's great.
+
+10
+00:02:03,389 --> 00:02:27,990
+Scott Tolinski: Yeah, Colorado is beautiful with the snow because the elevation is so high that like the sun's pretty intense. So when the sun comes out like tomorrow, inevitably, the roads will all be dry and warm and whatever. And we won't have that lingering. Like ice snow that you get in some other parts of the country. So yeah, yeah, yep, yep, yep. Okay, so state machines. Do you want to get into those? Or do you want to get into CSS perspective? first quest?
+
+11
+00:02:27,990 --> 00:03:02,039
+Wes Bos: Yeah, well, actually, so I've got two questions. First, first, I want to like allow you to introduce yourself. And the second of all, I know that you're really good at CSS. So I would just I was working on something like two minutes before this. I was like, we should ask David. I bet he knows. But like, do you want to give yourself an introduction? I know, I've known you for, I don't know, maybe four or five years now. And yeah, you have some of the best conference talks that I've ever seen. Yeah. Like, it's very rare that I go to a conference talk, and I go home being like, Oh, I'm gonna try that. And I believe you had a conference talk on flip animation.
+
+12
+00:03:02,100 --> 00:03:13,740
+Unknown: Oh, that was a while ago. Yeah. Yes. So we met at a CSS def conference, right. I believe that's the first place we met. Yeah. In San Antonio, or New Orleans, New Orleans? Oh,
+
+13
+00:03:13,740 --> 00:03:23,819
+Wes Bos: yeah, very long. That was probably like six years ago. It's a long time. Not sure if that's where the talk was. But I love that talk. And I went home and built something in flip animations right after that.
+
+14
+00:03:24,210 --> 00:03:59,400
+Unknown: Yeah. So uh, you know, a lot of the work that I do actually stems from just thinking about animations, just because I used to be really bad at JavaScript. I still am. But you know, also used to. So now I think about a lot of the things in terms of animations. And when you have an animation, you have certain states that something can be in, and then an animation is just literally a tween between those states. And so I apply that to application design and logic and everything. And I'm like, Well, everything seems to just be a transition between states, if you really think about it.
+
+15
+00:03:59,789 --> 00:04:17,820
+Scott Tolinski: Totally. Did you have a background in animation, prior to web because I personally worked quite a bit in After Effects before becoming a web dev. And that was sort of my introduction to animating on the web. You have your initial state, you're in state and you, tween between it. Did you have a background? Anything like that?
+
+16
+00:04:17,820 --> 00:04:26,390
+Unknown: I did not. I made some silly animations and flash back in the day, but that's pretty much it. I actually miss it there. There are days when I miss it.
+
+17
+00:04:26,700 --> 00:04:29,160
+Scott Tolinski: There are small parts of it. But yeah,
+
+18
+00:04:30,720 --> 00:04:36,930
+Wes Bos: yeah, you have a whole code pen, I think is that is that where people can go to View some of the stuff you've worked on before?
+
+19
+00:04:36,950 --> 00:04:48,510
+Unknown: They can they could go to code pen.io slash david key piano and just see a bunch of stuff. A lot of animated dogs, a lot of just other things. Even some things related to UI, I'm sure somewhere in there.
+
+20
+00:04:48,929 --> 00:05:05,550
+Wes Bos: The one that always stands out to me is Oh, the Husky Did you do this Husky? Yeah. Oh, man. So uh, probably everybody has seen this. There's 200,000 views on it. You When you move your mouse around, there's a husky that just looks around and watches you. Oh, yeah.
+
+21
+00:05:05,550 --> 00:05:17,390
+Unknown: So this is the that was the reactive version of the original, which was just a, you know, just a normal animation but decided to throw in some RX JS in there and have it follow the mouse cursor around and all of that. Oh,
+
+22
+00:05:17,570 --> 00:05:32,670
+Wes Bos: man, it's so cool. While you're listening to his podcast, if you're not driving, go go to code pen.io. forward slash david k piano, you'll get to see it. The one that I have, I always think of is this this room selector, where you have a house?
+
+23
+00:05:32,700 --> 00:05:36,330
+Scott Tolinski: Yeah, that's the that's exactly where I was gonna go the house responsive house? Yeah,
+
+24
+00:05:36,330 --> 00:05:51,600
+Wes Bos: yeah, that's like a slider. And then as you slide the number of rooms in the house animates itself from like, the number of windows and it's so cool. Like, like, how did you build that? Do you want to like maybe give us a rundown of that, that's, that's using RX js, right?
+
+25
+00:05:51,780 --> 00:07:02,430
+Unknown: Uh, not exactly, maybe maybe a tiny hint of it, but just to get the values in place. So that was an original animation by gal shear, who's a very talented designer from Israel makes all of these cool animations. And if you follow him on Instagram, you actually see him drawing things in procreate, and it's really, really satisfying to just watch him work. So this was one of the animations that he made. And I looked at it and I was like, there has to be a way to do this in CSS. And so what I did was I first just designed everything based on how many rooms there are. And I worried about the in between states later, and so you have three, four, or five or six rooms. And then I had to figure out like, well, there's so many different ways, you could go from like three to five rooms for the six rooms for the five etc. And so that's when I used flipping, which is my library. I'm working on a v2 of it. But basically, it's a way that allows you to go from one state to another states like visually, in sort of apply that flip animation, which gives it the illusion of moving from any location to any other location in a smooth way.
+
+26
+00:07:02,670 --> 00:07:48,840
+Wes Bos: That's cool. I we've talked about using flip on the podcast before, it was probably right after I saw your talk, because I thought, I bet you can use this flip idea with CSS Grid. Because, as you know, you can't animate much of grid or any of grid and Flexbox. in Firefox, you can use Firefox, you can but not not yet at the time, there was nothing in CSS Grid. And so if you make like multiple versions of something, like you said, You have every instance of that, and you can just tween from, from one to another. Right? That's amazing. This is so cool that this is the kind of stuff that blows my mind when you're looking at it like, wow, I had no idea you could do that with just CSS and JavaScript.
+
+27
+00:07:49,260 --> 00:08:10,520
+Unknown: Yeah. And only a little bit of JavaScript. And that's why CSS variables are so powerful, because you can define them in JavaScript, and then use it wherever you want in your styles. And I found that a lot easier than you know, the old jQuery way of like doing dot CSS and doing all of those styles on every single elements that that sort of sucked. Yeah,
+
+28
+00:08:10,560 --> 00:08:34,159
+Scott Tolinski: I mean, CSS custom properties, more than anything have changed my workflow. I just absolutely, it's one of the It wasn't an unexpected, like killer feature for me, because you come from SAS or lessor, or any of these, you know, stylists and you think, Oh, I already know variables. But there's so much more useful than a preprocessor variable because of how you can control them. And it just opens up the door to so much.
+
+29
+00:08:34,590 --> 00:08:47,270
+Wes Bos: Yeah, big fan. So state machines, do you want to maybe give us an just at a high level view? What is the state machine? What are the idea behind it? And then we'll dig into like, how do you actually use it as part of our web development?
+
+30
+00:08:47,370 --> 00:11:08,279
+Unknown: Sure. So I'll tell you, first of all, if you google state machine and find the Wikipedia article on it, don't read that first are going to be so terribly lost, because the first thing you're going to read is it's this mathematical model of computation, blah, blah, blah. But that goes to say that state machines are very, very old. In fact, electronics nor computers would exist without them, like finite state machines are a model for just determining what state you could be in. And so what a finite state is, is just a well defined state that expresses what something is in, for example, I'm awake right now. I could be either awake or asleep. I can't speak both at the same time, unless, you know, you can't sleep walking or something like that. But I'm only in one of those states. Or I'm hungry or not hungry. And it's not necessarily Boolean, as well. You could be like a traffic light. That's a classic example. Yeah, the traffic light could be green, or yellow or red. It can't be more than one of those at the same time. Otherwise, you have some serious accidents. That's not gonna be a good thing. So a finite state machine that's the finite part of it. The whole Machine part is how you transition between those states. So let's take a traffic light again, for example, it goes green to yellow, and then yellow to red, and then red to green, right. And it's always going to go in that specific order, which is really important. Again, you want to avoid accidents. So these things need to be predictable. Now, this is why I wouldn't trust a JavaScript developer to code the traffic light is because you don't want to have something like set yellow, or light equals yellow or light equals red. Instead, you want to send an event that says, When I'm on green, I send you this trigger event. And that will determine what the next slide is. So now there's impossible transitions. So you cannot go directly from green to red, or from red to yellow, everything happens in a very specific way. So a state machine is just describing a way that finite states can transition between each other in a very deterministic way. Ah, it's a lot less complex than it sounds, I promise.
+
+31
+00:11:09,029 --> 00:11:23,520
+Scott Tolinski: Yeah, totally. I think the, um, the traffic light model is a really, it's an explanation of it, that everybody is your memory knows what traffic light is, right? Yeah. And so I think that is really like a killer example, in terms of just getting the, the idea out there.
+
+32
+00:11:23,939 --> 00:12:15,690
+Unknown: Mm hmm. So another example to like, actually, a more practical example, let's say you're fetching data, right? You're you're trying to show something loading on the screen. So you might be in a state of not loading. And then once a request is made, now you're in the state of loading. And then after a while, you could be in a state of success, or in a state of failure, whether the request succeeded or not. And so the typical way that we could our applications is we, you know, we say is loading is true, or is loading is false, you probably use that variable about two times. Yep. Yeah. But then the question comes, if is loading is false. What exactly does that mean? Does that mean that it didn't start loading yet? Does it mean that the loading succeeded? Doesn't mean that the loading failed? You know, what exactly does that mean? Sure.
+
+33
+00:12:15,779 --> 00:12:34,020
+Wes Bos: I wrote some code probably a couple months ago that says, if it is loading, and it has fired, initially, like there's then I had another variable that has fired, and then I have all these things, like, if there's no error, but it isn't loading it, but it has fired, then go ahead and show them like, oh, there's got
+
+34
+00:12:34,020 --> 00:12:56,610
+Unknown: to be a better way. Yeah, yeah. So the easy way to see why those Boolean variables and flags everywhere could be so problematic. just multiply them. Let's say you have three, two times two times two is eight. Now you have eight possible things to do with add another Boolean flag now that's 1632 64. possible states like, it's going to get messy really quickly.
+
+35
+00:12:57,090 --> 00:13:37,590
+Scott Tolinski: Yeah, this is something I think couldn't improve my own codebase. Because one of the things you run into specifically with Apollo is you have a situation where loading is equal to loading is equal to false isn't this isn't isn't loading any longer, but the data might not be there for any particular reason. And then you have to either optional chaining null check whatever or error checking for every single time you're doing any sort of query component, decide how you want to do those things, but not having you still don't have explicit states because there are states where the data might not be what you're expecting, or the data might not come in correctly. And it's still loading is equal to false. So the Boolean right does not trustworthy.
+
+36
+00:13:37,770 --> 00:14:45,510
+Unknown: Right, exactly. And that's why, yeah, Booleans cannot express all the possible things that can happen in your application. And so if a designer or someone else comes to you, and it's like, what are the possible states that this could be in? You can't just say it's either loading or knots. Like there's a lot more to it than that. And that's why even like, just a very small stepping stone to start thinking in these finite states is maybe use a status variable instead, like statuses loading, or statuses idle or statuses, success or failure. Ah, in fact, I was doing a CSS animation today, which I'll probably post on Twitter sometime. And I noticed that there was a property, like, I wanted to know, how do I control whether the animation is playing or not, I can't say animation, looting true or animation playing true or animation playing false. Instead, they have a property called animation place dates. And so that's, you know, it's either running or paused. And so that defines, like, each of the possible states that the animation could be in. And so that's a lot more clear, at least to me. Sure.
+
+37
+00:14:45,539 --> 00:15:16,200
+Wes Bos: Yeah. Totally. So the idea with this is that like, you just think ahead of time, what possible states, there will be. Yeah, and then like, we'll go back to that traffic light example. How does that relate to programming where you can only Go through, like you said, to transition between them, there has to be idea. So like, maybe take the example of Apollo or you have like, you've got data, you have loading, you have potential errors, right? You have potential knowledge, like how does that apply that idea apply to programming?
+
+38
+00:15:16,740 --> 00:15:31,350
+Unknown: Have you ever run into a user interface where you have the screen and it says, like, it shows a loading spinner for a while, and then it says, Hey, success, and then like a split second later, it shows an error like, Oh, wait, it actually failed. So yeah,
+
+39
+00:15:31,470 --> 00:15:40,020
+Wes Bos: yeah, that the current Reddit is the opposite. It's like there's no load Reddit yet. There's no purpose. And then at the top, there are post JK,
+
+40
+00:15:40,200 --> 00:16:28,549
+Unknown: yeah, that was just the example, you know, I was thinking of, or sometimes you'll have a success with the loading spinner, like still happening. It's like, what are you loading, like what's happening, or what I what I like to call the Phantom error, where, let's say, you know, your internet connection is solid, you have a loading spinner going, and you're like, this has been going on for a while. So you decide to open up the dev tools and see what's going on. And there's a big red error, but the loading spinner is still spinning. So um, anyway, the way we apply this to programming is that we make impossible states impossible, like it should be impossible for it to be both a success and the failure at the same time that makes no sense, or even success while loading at the same time, totally. And so it's just a different way of thinking through your different states.
+
+41
+00:16:29,070 --> 00:16:30,210
+Wes Bos: That makes a lot of sense.
+
+42
+00:16:30,480 --> 00:17:10,380
+Unknown: And the interesting thing, too, is designers actually naturally think like this. I don't know if you all do any design, but you use programs such as, I don't know, envision or even framer, framer, x, things like that, you have each of your mock ups in a separate screen, right? And you might have an error that connects like, Alright, when you click this button, it's going to this mock up, when you click that it goes to there, or it could go here, and you have like this sort of user flow diagram, whatever you want to call it, of all the possible states your application can be in. So designers naturally think like this, which is great. Yeah.
+
+43
+00:17:10,580 --> 00:17:20,010
+Scott Tolinski: Yeah, totally. I mean, immediately, you and think about how those apps are made, right? Like figma, or whatever, you have the two frames that the two states. I mean, so Totally,
+
+44
+00:17:20,159 --> 00:17:46,200
+Wes Bos: yeah. And then explain the, um, I'm just looking at the example that you have here. So x date is a state machine library that you have developed. Yeah, it looks pretty interesting. I'm just looking at the example here, like you, obviously, you you define the states ahead of time. And then how do you go about actually changing that state? Or is that is that an implementation detail of the of each library?
+
+45
+00:17:46,380 --> 00:18:56,970
+Unknown: Sort of? So are you familiar with Redux? Sure, yes. So in Redux, you have a reducer the reducer takes the current state, the action that does happen, it's really an events, but we haven't come into that they swing that one, but you take the events that just happened, and it returns you what the next state is going to be. And so you're never directly setting state, instead, you're sending it some sort of signal or message in, it's like, hey, given this date in this event, what's the next date going to be? x date works exactly the same way. So the machine thought transition function, you give it the current state some event, and it tells you what the next state is going to be. And then you could actually have it be a runner, where, you know, you just say, all right, instead of you telling me what the next state is going to be just keep track of all that for me, and all subscribe to state changes. But anyway, in in theory, it's exactly the same as what Redux would be just defining when you have a state. And so that's what that the JSON configuration object looking thing is, is you telling it, when I'm in this state in this event happens, here's what the next date is going to be?
+
+46
+00:18:57,450 --> 00:19:38,600
+Wes Bos: Oh, okay. Okay, I that was a big aha moment. For me, I'm seeing it right now is that you are sending an event of toggle, that's, that's the best that happens. And then you say, when I'm in the inactive state, then toggle does this, it makes it active, right. And then you went ahead and described a total another one, which is when I'm in active state, and toggle happens, then make it inactive. So you go ahead and you describe what to do to these things when the events happen in every single state. So you might have three or four of them. I just think of like a, like a form would have lots of different states as well, right?
+
+47
+00:19:38,700 --> 00:20:16,340
+Unknown: Oh, yeah. Oh, yeah. And so if you're coming from Redux, there's a tiny bit of a mental shift here. In Redux. You're saying, When events happens, here's the next state. The problem is sometimes the events might do something different based on what state you are. So people in Redux when they write their switch case statements, they would say when this event happens, See this, this, do this have status that to that. So x date sort of reverses that, it says, when you're in this date, then when this event happens, here's what the next one is. So within it eliminates all of those if, you know if statements, ah,
+
+48
+00:20:16,380 --> 00:20:21,390
+Wes Bos: yeah, that's cool is, is this similar to how RX JS works as well,
+
+49
+00:20:21,540 --> 00:21:25,850
+Unknown: sort of So, um, Rx j s, it's, it's a little bit different, because it's, um, you know, it's for subscribing to observables, and all this streaming data. And in fact, x date when you interpret the machine and you started running, and you're subscribing to the States, that that's also observable as well. However, I like to think of RX js is like lodash, for you know, for observables in this stream of data. So it doesn't exactly do the same thing as x date, but you could use it with x eight, or you could even build your own x date with it. Hmm. Okay. And so what when I talk about using state machines, in applications and stuff like that, I don't mean like, Hey, you need to use my library, you need to use x eight, that's the only way you could do this. You could describe the state machine using a simple switch case statement. And that's what programmers have been doing for literally decades, is building state machines exactly like that. And so actually just gives you a lot of extra capabilities on top of that. Interesting.
+
+50
+00:21:26,220 --> 00:21:42,150
+Wes Bos: Yeah, I think that's, that's why it's important to just describe what it is, and the idea behind it. Because if you're just doing a little vanilla j, s example, you can pretty easily do that, like, even in CSS, like, how would state machine work in CSS? Do you have any examples of that?
+
+51
+00:21:42,420 --> 00:22:50,280
+Unknown: Yeah, I do. In fact, I gave a talk over at, um, it's called Finch comp, and also at CSS comp Budapest about that, about using the idea of finite states within CSS. And so my favorite and we do this all the time on the key framers, by the way, but my favorites, data attribute property to just put everywhere is data states. It's because this data state instead of, um, and I'm so guilty of this, but if you put like a class equals loading, or something on the button, or class equals disabled, instead, by having a single data state attribute, you're saying there's only one possible states or one possible value that could go in this data state attribute. So it's like data state equals loading or equals success. And so you don't have like this mess of, you know, trying to figure it out from the class name. And also, working with data attributes, and CSS and JavaScript is so downright easy. Yeah. I don't ever want to mess with the class list again.
+
+52
+00:22:50,970 --> 00:23:22,050
+Scott Tolinski: Yeah, you know, what? sold me entirely on the data attribute. This seems weird, but react testing library more than anything. Think I mean, I've used data attributes before. But once you fire open react testing library, and you do everything via data attributes, you just say, Oh, these actually are really nice to work with in general, but you just start to see the utility of them beyond maybe what I would have thought in the past. So the definitely can, I don't know data attributes overall. So Loki, awesome addition to HTML?
+
+53
+00:23:22,320 --> 00:23:51,510
+Wes Bos: Yeah. Because they're super easy to work with in JavaScript, you just have this data set object available to you. You can use them to style use attribute selectors in ncss. Man, it's, it's, it's great. It's true. I just wrapped up my beginner JavaScript course. And even though my JavaScript 30 course we use them all throughout that course just it's awesome. how helpful there. Yeah, like it. Some people are like, Oh, that's weird like that. You just make up your own attributes. But big fan of them. I'm glad to hear that you think so as well?
+
+54
+00:23:51,720 --> 00:23:54,540
+Unknown: Oh, yeah. I mean, it's what they're there for. Really?
+
+55
+00:23:54,810 --> 00:23:56,130
+Wes Bos: Yeah. Yeah, exactly.
+
+56
+00:23:57,270 --> 00:24:01,440
+Unknown: I just remember the jQuery days. Were all class names everywhere. Yeah, it was painful.
+
+57
+00:24:01,860 --> 00:24:18,120
+Wes Bos: Yeah. Cuz like if you said such a perfect example of like, he would sometimes have multiple classes, or like, you would have some like data in your class name that you had to like, strip the class name. Yeah. And like, parse out the data from the class name. And oh, man. So much better now?
+
+58
+00:24:18,660 --> 00:24:19,740
+Unknown: Yep. It was bad.
+
+59
+00:24:20,670 --> 00:24:51,570
+Wes Bos: Here's a totally unrelated question. But we had a question the other day where somebody was coding, so part of our potluck where we asked questions somebody asked, like, what do you think about instead of using classes to style things, just use all data attributes, and they pointed us to this website. That was there was not a single class on a thing. It was all like data dash header equals top and things like that. Scott, and I could not figure out why. Yeah, what have you seen it there? Yeah. Oh,
+
+60
+00:24:51,600 --> 00:25:33,330
+Unknown: yes. Um, I think that goes into the be atomic styles category where you're just like putting all of those in. So there are some great libraries that do that like tailwind and things like that. But yeah, this all comes back to states too. But the way I like to style my components is just, I know my component has a certain set of base styles. And I know that my component could also be in a certain number of states. So if I have a button, I will style the disabled button, I will style the loading, if it's a special loading button that loads data or something. And I would use data state in order to do that, instead of having all these like, pollute the HTML. I'm not a fan of Yannick style.
+
+61
+00:25:33,360 --> 00:25:43,860
+Scott Tolinski: I don't I don't use it myself for those reasons. I mean, I would rather build utilities within my CSS, rather than utility classes that I'm just a prying. Yeah, you're awakening
+
+62
+00:25:43,860 --> 00:25:45,210
+Wes Bos: the dragon. I
+
+63
+00:25:45,210 --> 00:25:50,040
+Scott Tolinski: know. I said something. I said something about how I didn't use tailwind on an episode. And a lot of people got man,
+
+64
+00:25:50,310 --> 00:26:27,240
+Unknown: I'm sore split on that. So like, I've been doing CSS for a long time. I love CSS. So I would never use, like, atomic styles or anything like that. And so that's why at first, my opinion was so strong. It's like, I don't want to use atomic styles. And then I started thinking about, well, hold on. There's other people like heavy JavaScript developers who might not know that much about CSS, unfortunately. And so in that case, I feel like I just just use the atomic style library, at least you at least I could deal with that rather than whatever you come up with. And in CSS,
+
+65
+00:26:27,270 --> 00:26:46,500
+Scott Tolinski: yeah. And I've used them in tutorials too, because it's easy to just say, while you're in the, you know, not have to focus any time on either having pre written styles or having to write CSS in a tutorial. It's not about CSS, you could just throw some classes and mock up something in two seconds. When you're teaching it. But right. Yeah, if I'm if I'm doing my own project, I'm not reaching for him, necessarily.
+
+66
+00:26:46,500 --> 00:26:49,290
+Unknown: And to be fair, tailwind is beautiful.
+
+67
+00:26:49,350 --> 00:26:50,220
+Scott Tolinski: Oh, yeah. No, no, it
+
+68
+00:26:50,220 --> 00:26:52,890
+Unknown: looks great. Yeah, it creates Yeah, yeah.
+
+69
+00:26:52,920 --> 00:27:24,480
+Scott Tolinski: I use it as a inspiration for a lot of CSS in general. And just to styling things overall, but I just don't use the library. Yeah. Right. So a lot of what we're talking about with states really comes from working with data in general, right, you have your loading your error, whatever. And one of the services that we like to use to load data, and query for data and access data without having to have our own server is sanity@sanity.io. With more on the one of their query languages is Wes.
+
+70
+00:27:24,870 --> 00:29:05,910
+Wes Bos: Yes. So Sanity, we've talked about them 100 times on this podcast, they are structure content, CMS, it's pretty cool. Because you can you can run your own react components in it, and get it all up and running locally. And it just talks to the Sanity servers. One neat thing that they just launched is his website, grok, Dev, GROQ. Dev. And so the the query language that Sanity uses to pull in the data to your like, let's say you're writing a react component, and you want to pull in a list of blog posts, the query language that you use is called grok, which is a query language for querying JSON. And it's pretty cool, because you can do a lot of like filtering, a lot of really neat selects with it. And it's an open specification that they have developed, and then just open source. so other people can implement this as well. And they just released this grok dot Dev, which allows you to load in some JavaScript, and then start querying it and see what the result will be. So if you're like, not sure how this query language works, they have a bunch of example queries in there. And you can just get it up and running. You can load in your own data, start writing your own queries, and that'll get you comfortable with it. It's pretty nifty. So check that out. grok, dot Dev, GROQ dot Dev. And then also make sure you check out sanity.io forward slash syntax. That's where super secret URL, you're going to get double what the free plan on Sanity normally gets. Thanks so much for just Sanity for sponsoring. Alright, so you know a lot about CSS, right? Can I ask you just a random CSS question? Sure, go
+
+71
+00:29:05,910 --> 00:29:06,450
+Unknown: for it.
+
+72
+00:29:07,260 --> 00:29:35,640
+Wes Bos: So I'm just I'm just working on a website right here. And I'm, I'm working on the cards. And I have rotated x, like 40 degrees, just so like, it looks like the card is kind of swinging out towards the user. And in order to get it to look like it's swinging off of the page, you need to put a perspective on the parent. And I was just sitting here with Scott and I was like, What is this perspective number? I always just put random mount of pixels in until it looks good. You just give any idea.
+
+73
+00:29:36,720 --> 00:29:37,410
+Unknown: Right?
+
+74
+00:29:37,530 --> 00:29:39,690
+Wes Bos: Do you have any idea what that is? Sorry. Go ahead.
+
+75
+00:29:39,750 --> 00:31:03,000
+Unknown: Yeah, sure. So so with CSS, you don't really there's no really this not not really this concept of death. And so you sort of have to that I'm that's why perspective exists, you know, sort of added on as part of CSS three and all of that. So perspective is basically when you define like a translate z, your your your Telling It Like how stretched out like, do you want it like isometric? So that would be a smaller or I think would be a smaller one, or maybe would be an infinite one. I forget what it is. Um, but it's like how stretched out are the, you know, the those the value pixels? So, in fact, oh, yeah, so I've been wrestling with perspective, too, for a while, and like just trying to figure out what those numbers are. What I do at first, now I just leave it at whatever the default is. Because a lot, a lot of times I'm doing a, like nested transforms. So I'll have a 3d transform on something and then a 3d transform off of that, because I'm doing ridiculous 3d stuff in CSS for no good reason. And that I just, you know, I played around with different perspective values. That's sort of one of those magic number type of things, though, but generally, a higher value is going to be your more realistic value. Or at least I think so.
+
+76
+00:31:03,390 --> 00:31:27,090
+Wes Bos: Yeah. Because if you do like perspective, 10 pX, it looks like that thing is, is flying off the screen to you. Right, like, and if you do, like 1000 pixels, it seems a lot more normal. Some I'm just I thought it would be the other way around, though. Cuz like, isn't 1000 pixels like? Is that how much is it stretching off the screen towards you?
+
+77
+00:31:27,540 --> 00:31:44,130
+Unknown: I think it's how much is how much fits within a certain thing. So obviously, like, let's say, from where your faces to a foot away from you, fitting 10 pixels in there versus 1000 pixels in there. So 1000.
+
+78
+00:31:45,360 --> 00:31:46,710
+Wes Bos: The opposite of what not? Yeah,
+
+79
+00:31:46,710 --> 00:31:52,710
+Unknown: at least that's that's what I think about when I think about perspective. css.
+
+80
+00:31:53,010 --> 00:31:54,780
+Wes Bos: That's a great perspective. No, oh,
+
+81
+00:31:54,780 --> 00:31:56,010
+Scott Tolinski: gosh,
+
+82
+00:31:56,010 --> 00:32:12,090
+Unknown: I actually do have a, I have a three speaking of perspective, I have a 3d CSS animation coming out soon. So yeah, it's been a while since I did a code pen except the weekly code pens I do on the key framers with my friend Shaw.
+
+83
+00:32:12,750 --> 00:32:16,530
+Wes Bos: Oh, yeah. Well, tell tell us about the key framers plugin as much as you want.
+
+84
+00:32:16,710 --> 00:33:07,470
+Unknown: Yeah, sure. So you can find more information on keyframe.rs. It's a weekly podcast, or not really a podcast. It's a live stream, where we bring imaginative user interfaces to life using CSS, HTML and a little bit of JavaScript. What we do is we find these really cool dribbling animations, these advanced animations that we're like, oh, how is that done? And we try to do them live on the air. So we have absolutely no preparation whatsoever. We're just like, Alright, let's sit down and do this for a couple hours and see how far we get. The Shahs a very talented animator, and very good with just all aspects of you know, web design and development. So we we get a lot of stuff done. And most of the time we do succeed in in at least getting some form of the animation. And most of the time, we don't even use JavaScript all too much.
+
+85
+00:33:07,680 --> 00:33:15,450
+Wes Bos: Really like so. Yeah, it what do you reach for like what's in your base toolkit when you're building urges that decided per, per episode?
+
+86
+00:33:15,510 --> 00:33:47,700
+Unknown: So in our toolkit, I mean, we try to do things as vanilla as possible. So our HTML is HTML, our CSS is SCSS. Just because sass is what we're used to using. And sass is really helpful for nesting and variables and stuff like that. Even though we try to use CSS variables as much as humanly possible. in JavaScript, we just, we use Babel, in case we want to use ESX. But we don't really use any libraries. I don't think we've even used g SAP on the show. Wow. Yeah.
+
+87
+00:33:48,210 --> 00:33:55,470
+Wes Bos: That's cool. I'm gonna have to start watching some of these just subscribe. So it's a YouTube channel as well. Just keyframes on YouTube.
+
+88
+00:33:55,770 --> 00:34:27,110
+Unknown: Yep, it's a YouTube channel, which is just a recording of all of our live streams. Eventually, we do want to get into shorter form tutorials and just talking about all the things that we have both learned and we've worked on, like whatever's in our toolbox, and just digesting all those for you know, anyone who wants to learn cool oh, yeah, yeah. And it's it's it's not basics. It's pretty much if you want to animate anything in CSS, like even the really really hard stuff. That's that's what we focus on
+
+89
+00:34:27,540 --> 00:34:28,320
+Wes Bos: all really
+
+90
+00:34:28,529 --> 00:34:33,170
+Scott Tolinski: day. I'm always really impressed with all of the demo so super, super good work
+
+91
+00:34:33,330 --> 00:34:39,630
+Wes Bos: in you. You accused live stream this on Twitch as well. I see. You got like the green screen background.
+
+92
+00:34:39,779 --> 00:34:44,940
+Unknown: Yep, that's our mean. That's our mean live stream. Okay. Okay. At least for now.
+
+93
+00:34:45,000 --> 00:34:46,110
+Wes Bos: Yeah, yeah.
+
+94
+00:34:46,130 --> 00:34:59,900
+Scott Tolinski: How do you like live streaming on Twitch because we've only so far done it on YouTube with OBS. I don't know. I don't know if you want to get into any of that. But what's your what's your reactions and thoughts about twitch versus YouTube for streaming or if you have any
+
+95
+00:35:00,230 --> 00:35:18,240
+Unknown: So we've actually been talking about moving to YouTube for streaming with twitch shot takes care of all the OBS all those technical details. I really don't i don't think my laptop could even handle it. I have one of those 2015 MacBook Pros, which used to be the best MacBook Pro. But
+
+96
+00:35:18,240 --> 00:35:19,410
+yeah, yeah, now
+
+97
+00:35:19,410 --> 00:35:20,880
+they have the 16 inch. So
+
+98
+00:35:21,960 --> 00:35:25,860
+Wes Bos: started GoFundMe, they need these episodes, though, we
+
+99
+00:35:25,860 --> 00:35:41,420
+Unknown: do have a Patreon for cameras, and we use that to buy audio recording equipment, like this microphone here. And I have a green screen as well. And basically everything to enhance the user viewing and listening experience.
+
+100
+00:35:41,480 --> 00:35:47,760
+Wes Bos: Totally cool. Man, there's so much interesting stuff to ask you about. That's really cool.
+
+101
+00:35:48,060 --> 00:35:51,440
+Scott Tolinski: Let's take it back to us x state and state machine.
+
+102
+00:35:51,440 --> 00:35:52,650
+Unknown: Yeah, sure.
+
+103
+00:35:52,650 --> 00:36:33,510
+Scott Tolinski: I think I'm most interested in about his usage with the stuff that you know, people are already using. Right, right. So people using like Apollo or react or whatever, I see that there is like a react library, which really just looks like it adds a hook for x state. But overall, within if you were saying, okay, I want to get into state machines, x date seems like a good place to start. There's documentation, there's libraries, how would I go about adding x date to my my current project? Regardless of what it's using? Is there like, does there need to be any sort of connection from x date to something like Apollo? Or does x date just sort of exist on its own? And you can use your own things with x date?
+
+104
+00:36:33,650 --> 00:38:14,400
+Unknown: That's a really good question. I mean, obviously, if you have an open source project, where you have a big dev team working, you know, 40 hours a week on it, then yes, you can make all these connectors for all these other libraries. But my philosophy on talking about Apollo in that case, but my, my philosophy is that nothing that you know, you use like a library, or whether it should really be framework specific, I want to make it react, like or a view or Angular specific. And so that's why x state is, in essence, two things. Number one, it's that pure function where you give it a state in an event, and it gives you the next state. And number two, it's something where it's sort of like an event emitter that you could subscribe to, where instead of you asking you what the next state is, you just say, Hey, I'm gonna send you events, calling dot send on whatever. And I'm going to subscribe to whenever the state changes. And that's it. So just like any other library that might expose some sort of subscriber or event emitter interface, as long as you know, the patterns of how do I retrieve values, like from a subscription, and put them in my framework, you could use this with literally any framework. And that's one of the reasons why there are hooks for reacts. But that's just out of convenience. Yeah, totally. You don't need that. And so people have been asking, like, hey, why, why can't you? Why Why isn't there an adapter for viewer Angular, and to be honest, like, no offense to react, but it's because it just works, you could just take it on the object, subscribe to it and update the state and everything just works. So it's pretty, pretty straightforward.
+
+105
+00:38:14,580 --> 00:38:18,510
+Wes Bos: Nice. Cool. That is so cool. I want to use this right now.
+
+106
+00:38:19,440 --> 00:39:20,760
+Unknown: And also, um, so one of the other biggest things about it in this is I've been asking like, why why do people use Etsy? Why are so many people interested in it all of a sudden, in a lot of people have told me that it's actually the visualizer. So by the Oh, yeah. Yeah, by by defining your state machines, but these objects, it's sort of like a JSON looking, you know, notation sort of thing that you just put in this machine function, and it spits out a state machine for you. You could copy and paste that exact same code, stick it on to x date.js.org slash biz, in C, your state machine visualized. So imagine trying to do this with a reducer and Redux? Yeah, you can't really do that. You can't really say, if I'm in this state, what are the next possible states I could go to, but with XD You can because that's what state machines are all about that determinism, that no matter what, when I'm in the state in this event happens, this is always going to be the next state
+
+107
+00:39:21,150 --> 00:39:53,100
+Scott Tolinski: visualizers great. Um, my very first introduction to programming in general was through a language called max MSP, which was visual programming in general, you basically set up these states and connected them via patch cables. And this is such a he I don't know if it's just because I learned like that, but looking at this, it makes the picture so clear, to me much more clear than looking at the JavaScript object, because here, you see exactly what routes were what can route there. What are the events that take place? I think this visualizer is such a killer feature.
+
+108
+00:39:53,420 --> 00:40:09,360
+Unknown: And sometimes sometimes people make state machines and state charts that are complex, and they're like, hey, David, this is really good. Using to look at in the visualizer. So I tell them, yeah, imagine not having that visualizer. Imagine how complicated your code would be without state machines at all.
+
+109
+00:40:09,630 --> 00:41:41,040
+Scott Tolinski: Yeah, just trying to navigate those different states just via the code. Yeah, yeah. So really, what we're hearing is that state machines are going to make your code less prone to errors. However, your code is never going to be entirely free of errors. And when your code inevitably has an error, you're going to want to check out one of our sponsors. Now that sponsor is a century, you're going to want to head over to sentry.io and use the coupon code a tasty treat all lowercase all one word, and you'll get two months for free of century now what is century century is the place to know what's happening with your errors, you can track them, store them, attach them to releases, attach them to specific developers or even users on your site. And so this way, you can quickly add something as an issue into your GitHub application or anything else that connects to every single service that you already use anyways, and it makes finding and solving these things next to effortless Now I use century myself in my own applications, and I absolutely love being able to tag a specific release to a specific GitHub commit, allowing me to see whenever I introduce a bug in a specific commit, this is really just amazing. And it really has refined our process, it is one of these tools that is absolutely essential in my mind. So again, head on over to sentry.io coupon code, tasty treat, and get two months for free. Thank you so much for century for sponsoring,
+
+110
+00:41:41,100 --> 00:42:14,100
+Wes Bos: yes. So if you think of some of these, like just UI widgets on websites, where you have uploaders, or like a multi select drop down, that you can do a fuzzy search on and not needs to fetch data, like, there's so much that goes into some of these custom UI widgets, that having a, like a visualization of what goes on, really cover you. I think in a lot of those cases, I think this is so cool that you just paste your JSON into the end of this website. And then it just builds a visualizer. For you
+
+111
+00:42:14,100 --> 00:42:33,210
+Unknown: paste the entire JavaScript, it doesn't necessarily need to be JSON, because it recognizes whenever you pass into that machine function, and then it does not only does it visualize, but you could actually simulate events. So you could click through the machine and just make sure that whatever you're doing matches the logic that you have inside your head.
+
+112
+00:42:33,710 --> 00:42:55,710
+Wes Bos: Ah, yeah, I see it and it's, you can reset it. So you can click on fetch, and then that puts it into loading. And then you can either resolve it and then then it puts it into success, or you could reject it. And that puts it into failure. But based on failure, then that opens up retry. Which brings you back to loading. Yeah. And then it counts the number of retries. That's, it's so neat. So
+
+113
+00:42:55,710 --> 00:43:20,280
+Unknown: it expresses that complex logic. Because I'm yeah, think about it's easy to make a tutorial in normal JavaScript, like, here's how to fetch data. But then someone asks you, how do I cancel that? Like, how do I provide a Cancel button? It's like, Oh, no, I don't know. But thinking about it this way it makes, you know, it makes things like that easy. Or easier. I don't want to say easy.
+
+114
+00:43:21,510 --> 00:43:32,190
+Wes Bos: Yeah. Would there ever be like a need or an idea of to do something the other way around, where you just start clicking it together in the UI, and then it kicks out some code?
+
+115
+00:43:32,690 --> 00:43:53,610
+Unknown: I'm working on that. I'm working. Oh, slowly, but surely. So early next year? Hopefully, I'll have something outs. I would like this. Yes, sort of like a visual editor. But the reason I did this the other way, too, is because it's a lot harder to convince developers like hey, just play around with this. Oh, yeah. editor, and then it'll spit out magic code for you that you copy paste. Like
+
+116
+00:43:53,700 --> 00:43:57,090
+Scott Tolinski: developers like that. flashbacks to Dreamweaver.
+
+117
+00:43:57,600 --> 00:44:03,810
+Wes Bos: We're not gonna acknowledge anything that's gonna take our jobs. And if you're building this weekend, x date job killer thing,
+
+118
+00:44:04,020 --> 00:44:17,910
+Unknown: then we don't want that. Exactly. So that's why I did this week. First. It's like, just here's a really simple way to code your state machines. And it happens to be visualizable. So or I don't even know if that's a word visualizable
+
+119
+00:44:18,090 --> 00:44:24,630
+Wes Bos: visualizable. It is on this podcast. Your words? Yeah, we do a lot and we mispronounce everything.
+
+120
+00:44:25,499 --> 00:44:26,190
+Unknown: Fantastic.
+
+121
+00:44:28,620 --> 00:44:32,250
+Wes Bos: Scott, D have any other questions for David do other stuff that we haven't covered yet?
+
+122
+00:44:32,760 --> 00:45:15,270
+Unknown: Just one thing, like when when you start learning about these state machines, you're not going to like it for one simple reason. And that's that you're going to start realizing that there are so many things, pretty much everything on the web on your phone, or whatever is a state machine. And you're going to be really frustrated because you're going to be like this should be a state machine. I'm like, dude, do you ever like, I don't know, use some sort of custom chat app where things Just keeps showing up on the bottom. And then you're like, You know what? I want to see what messages on top. So you scroll to the top. But once a new message comes in, it just scrolls you back down to the bottom. And you're like, why is that? So just just the tiniest things like that. That's
+
+123
+00:45:15,329 --> 00:45:32,940
+Wes Bos: super interesting. Yeah, it's true. Like, I run into that enough already that I think of like, Oh, this, like, you know, you can see an error happening on something and you can almost tell in your head, what happened. And then now you're now you start thinking, I know what happened. And I know how they should have done it
+
+124
+00:45:32,999 --> 00:45:54,900
+Unknown: exactly. More. Or when someone inevitably forgets to disable a button, and you're like, why is this taking so long to load? So you click it five times, and then you realize, like, Oh, I just placed five orders of something. He wants to place one or something silly like that. We have 40 undefined cards that are notion right now. Because of exactly that.
+
+125
+00:45:57,090 --> 00:46:02,160
+Wes Bos: Yeah, until it showed up. And then eventually, 40 of them showed up. So we
+
+126
+00:46:02,940 --> 00:46:10,650
+Unknown: behave, right, we Yeah, it's always good for the happy path, we have to consider every single possible edge case that, you know, can happen.
+
+127
+00:46:11,520 --> 00:46:21,090
+Wes Bos: Oh, that's funny. Wow, um, you seem to do a lot like, do you have a day job as well? Are you just doing this all day?
+
+128
+00:46:21,180 --> 00:46:44,490
+Unknown: I didn't know I I work at Microsoft. So I work with their commercial software engineering team, where we do a lot of interesting projects with a lot of big companies. And with that, I don't always get the chance to work with JavaScript and TypeScript. Like right now. I'm working with Python, and some data science stuff. So that's, that's my main job.
+
+129
+00:46:45,870 --> 00:47:00,720
+Wes Bos: Oh, cool. That's it pretty busy. I'm always amazed that when people have like they have a normal job, and then they also have this like, a podcast and the ability to keep up to date on the stuff and put out libraries and all that stuff. That's, that's amazing.
+
+130
+00:47:01,080 --> 00:47:08,040
+Unknown: Yeah, I wish I had more time, I would have gotten 10 times as much things done if, if I had all the free time in the world to do it. But
+
+131
+00:47:08,070 --> 00:47:12,060
+Wes Bos: yeah. Cool. Um, anything else to add there? Scott?
+
+132
+00:47:12,330 --> 00:47:20,730
+Scott Tolinski: I don't have anything. This has been really illuminating. I'm gonna do a little little demo in my code, just to try it out. Some I'm pumped. Awesome. Cool.
+
+133
+00:47:20,730 --> 00:47:31,410
+Wes Bos: All right. Well, let's move on to the next section, which is sick picks, these are picks that are sick. And Scott, you got a sick pick, yeah,
+
+134
+00:47:31,440 --> 00:48:56,880
+Scott Tolinski: I have a podcast that I've been really enjoying. I'm about halfway through it. It's one of those ones that's like 10 episodes or so. And then it's done. And so this is a podcast on a subject that I was not interested in. And I'm not necessarily still interested in. But the podcast itself is fascinating. It's called the big one, and your survival guide. It's from kppc, Southern California Public Radio, and it's all about the San Andreas Fault, and a potential devastating earthquake in LA. And basically, it talks about what happened in the past with past earthquakes, what people's experiences were, how likely earthquakes are to happen, and what could happen to you. So it's basically giving you like, really nice, like, I'm not in an earthquake zone here. But I still find the tips to be really super interesting. And they were just saying, like, oh, if you have two bottles of water underneath your desk, you're way more likely to live your life 200% more likely to live in the event of an earthquake. But the podcast itself is just really, really well done. It's a mixture of storytelling, scientific, they get a lot of like, really, really smart people on the topic of earthquakes in general a little bit of the history of earthquakes in California, how plate tectonics work and all that stuff. And I found it to be absolutely super well done. So I'm really intuitive, totally fascinated and a little bit terrified by it, but it's all super good. It's called the big one.
+
+135
+00:48:57,330 --> 00:49:02,070
+Wes Bos: Beautiful I David, do you have it? No, we sprung this on you. Do you have any fix?
+
+136
+00:49:03,030 --> 00:49:32,070
+Unknown: Yeah, so about a few days ago, there was a website by Lynn Fisher not sure if you're familiar with her she she makes these really amazing while she she doesn't love single div CSS things, but she also has this website at linen tonic.com where it's basically always a masterclass in responsive design. It's always the most amazing responsive designs that you could possibly do on the website. So I encourage you check that out and just
+
+137
+00:49:32,700 --> 00:49:34,140
+Wes Bos: Oh, yeah,
+
+138
+00:49:34,170 --> 00:49:39,030
+Scott Tolinski: I I follow. I follow on Twitter. So I'm, I'm aware. These are great.
+
+139
+00:49:39,240 --> 00:49:47,520
+Wes Bos: This is cool. It's just I just go to linen tonic calm and resize the browser. That's all I have to say for you. Yeah. Cool, sick pack.
+
+140
+00:49:47,520 --> 00:49:48,300
+Unknown: Mm hmm.
+
+141
+00:49:48,300 --> 00:50:58,650
+Wes Bos: My second pick today is going to be a documentary called American factory and it's on Netflix and it goes into a Chinese company. Start up a glass factory in Ohio. And I usually don't like when people come out swinging, they watch a one hour documentary. And then they're they have all these opinions because a lot of documentaries on netflix or house, their fires, they have somebody money behind them. Yeah. And then people come out swinging and saying just watch this documentary. It'll change your life. And this is not that kind of documentary. It's just a really interesting look into Chinese vers American culture. It sort of changed my mind about unions gave me kind of an interesting look into like, what a union will do at like a big factory like that. I just thought it was interesting. All around. So check it out. It's called American factory. It's about a glass company called fuyao. Interesting. Yeah. Good one. All right. Uh, this is the part where we do shameless plugs. You could plug anything in anything as many things as you possibly want. without having any shame. Do you have anything to plug David?
+
+142
+00:50:59,310 --> 00:51:08,310
+Unknown: Oh, yeah. Well, my ex State Library, of course, and also key framers keyframe.rs, which is our weekly live stream for really cool CSS animations.
+
+143
+00:51:08,310 --> 00:51:11,430
+Wes Bos: What is the.rs domain name?
+
+144
+00:51:11,730 --> 00:51:16,560
+Unknown: I think it's Russia or something like Russia. So yeah, I'm not too sure.
+
+145
+00:51:17,460 --> 00:51:26,790
+Wes Bos: We had a podcast once where we did a game. And Scott and I had a guess, what the domain name was for, and how much it cost, which was rough.
+
+146
+00:51:27,180 --> 00:51:29,580
+Unknown: So it's it's Serbia and Kosovo.
+
+147
+00:51:30,000 --> 00:51:32,790
+Wes Bos: Ah, interesting. I wouldn't have guessed that.
+
+148
+00:51:33,060 --> 00:51:37,470
+Unknown: Yeah. So R stands for Republic of Serbia. Ah,
+
+149
+00:51:37,500 --> 00:52:26,460
+Wes Bos: makes sense. Yeah, well, you would have won the game there. Cool. So check that out, we'll put links in the show notes to key framers as well. I'm going to stick pick my beginner JavaScript course, which hopefully by the time you're watching, this should be out at beginner JavaScript calm. This is a course on how to get absolute confidence in JavaScript from the ground up. So totally beginner friendly also, like brush up friendly if you're intermediate. And you just want to make sure that you have a rock solid foundation in JavaScript. It's all project based learning or mostly project based learning. So we're actually building things and learning as we go rather than just sitting there and console logging foo bar Baz all day long. So check it out. beginner JavaScript calm use syntax for 10 bucks
+
+150
+00:52:26,490 --> 00:53:09,810
+Scott Tolinski: off. Yeah, I would like to plug my course on how to console log FUBAR bass, it's available on now, I would like to plug my latest course is react and TypeScript for everyone. It is out now. And it teaches you how to use TypeScript in react using react hooks and all of that great stuff that we know and love and react. So it basically addresses all the real world situations that you're going to run into when you're trying to either type things like rafts or state or even just your straight up react components, props, default props and all that stuff in modern react and TypeScript. So check it out at level up tutorials.com forward slash pro sign up for the year and save 25% that's all I got.
+
+151
+00:53:10,379 --> 00:53:23,070
+Wes Bos: Awesome. All right. Thanks so much to David for joining us today and schooling us on fate machines and all those bonus CSS tips. Very tasty. So thanks a lot. Appreciate it.
+
+152
+00:53:23,399 --> 00:53:27,330
+Unknown: Thank you for having me. Peace, peace, peace.
+
+153
+00:53:29,310 --> 00:53:39,030
+Scott Tolinski: Head on over to syntax.fm for you full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you liked this show.
+
