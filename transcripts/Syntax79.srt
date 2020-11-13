@@ -1,0 +1,292 @@
+1
+00:00:00,359 --> 00:00:21,329
+Announcer: Monday, Monday Monday open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ tip workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA. And Scott.
+
+2
+00:00:25,860 --> 00:00:59,640
+Wes Bos: Welcome to syntax today we're gonna do stumped again, lots of you really enjoyed this one where Scott and I stumble upon seemingly easy questions about web development and fail to answer them. Note, if this is your first time tuning in stumped is where we, we go through some of these interview questions and like see, can Scott and I how would we answer them? Can we even answer them when we're put on the spot? And we start to squirm what our answers like that. So today's sponsor is native script, and Scott's gonna talk a little bit more about them.
+
+3
+00:00:59,880 --> 00:03:26,460
+Scott Tolinski: Yeah, so we are so excited to have native script sponsoring this tasty treat. Ninja script basically is a platform to allow you to build legitimate real iOS and Android apps using JavaScript or TypeScript. Now, unlike something like React Native, you're not locked into react specifically, right? You can use actual JavaScript, you can use TypeScript, you can use view, you can use Angular, it is really pretty slick. So TypeScript is basically a platform that allows you to work with real API's, it converts your JavaScript code into native code. So instead of some of these other libraries, that all they do is basically throw your website inside of a web view or something like that. Native script is not like that at all is actually compiling your code into legit native code so that it's one, you get these native performance benefits that you get. It's like one of the reasons why things like maybe a Cordova or PhoneGap that are using these web views aren't necessarily the best solutions, because they're still determined, they're still built upon these browser API's where something like native script is actually getting that native performance benefits, all that good stuff, you get to work in a really nice environment with the actual API's on your devices. It's just really super cool. It's also really easy to learn the native script.org has just a ton of awesome resources to for picking this up. So if you're interested in all in building native apps, and you are a fan of JavaScript, the native script is definitely going to be the way to go to check this out. And it makes it so you can write your code once for cross platforms, app apps, right, you can build iOS and Android apps, no more struggling just because you don't know swift or kotlin. You can take this on and with your JavaScript, your view your Angular skills and build some legit native apps. And one of the coolest things about the sponsor like many of our sponsors is that they are 100% open source and free to use. So check out native script at native script.org forward slash syntax. And honestly, this is one of those ones that you just want to try out. I sometimes I have these, these products that we share in here. And really the the proof in the is in the pudding for this one. You just want to get in there. You want to try it out, do some demo projects, and just see how amazing it is Ninja script.org. It's superduper Awesome. All right,
+
+4
+00:03:26,460 --> 00:03:31,200
+Wes Bos: well, let's get into it. Should we do rock paper scissors for who goes first?
+
+5
+00:03:31,380 --> 00:03:35,010
+Scott Tolinski: Yeah, let's do a little bit of rock paper scissors here. Let's do it.
+
+6
+00:03:35,040 --> 00:03:40,410
+Wes Bos: What are you what do you do rock paper scissors, throw a rock paper scissors and throw on on scissors.
+
+7
+00:03:40,440 --> 00:03:46,560
+Scott Tolinski: We do rock paper scissors. Shoot. I guess that's the American of us to say shots. Yeah, I'm culture apparently.
+
+8
+00:03:49,710 --> 00:03:51,000
+Wes Bos: Let's do it.
+
+9
+00:03:51,420 --> 00:03:53,370
+Unknown: All right. Rock Paper, scissors.
+
+10
+00:03:53,370 --> 00:03:54,600
+Shoot.
+
+11
+00:03:54,630 --> 00:03:55,470
+Wes Bos: There's a delay.
+
+12
+00:03:55,470 --> 00:04:03,540
+Scott Tolinski: I can't even see your hand. Scissors too, but you're doing it below the screen. I can't see what you're alright,
+
+13
+00:04:03,690 --> 00:04:06,960
+Wes Bos: I'll do it again. Alrighty, rock rock, paper,
+
+14
+00:04:06,990 --> 00:04:07,770
+Unknown: scissors.
+
+15
+00:04:07,770 --> 00:04:08,610
+Shoot.
+
+16
+00:04:08,610 --> 00:04:13,500
+Scott Tolinski: I can't see you again. Did you do scissors? scissors? paper. Got that? Okay,
+
+17
+00:04:13,530 --> 00:04:16,680
+Wes Bos: yeah. Okay, so I'm gonna I'm gonna ask the first question then. Okay, so
+
+18
+00:04:16,680 --> 00:04:56,670
+Scott Tolinski: maybe we should maybe preface this a little bit more. We mentioned that we try to stab each other with interview questions. These come from 30 seconds of interviews.org. It's not a site we're affiliated with. It's just a nice, cute little site that we we found we have we wrote like a little snippet of JavaScript that allows us to randomly select one of these questions. So needed for us to know the questions ahead of time somebody tried to claim that we would try to answer these questions to make ourselves look good. And if you listen to the last episode is tough. You would know that is not the case. So yeah, no, this is the first time we're seeing all of these questions. And they range from easy difficult to hard CSS, HTML, JavaScript, all that good stuff. So yeah, which got
+
+19
+00:04:56,730 --> 00:05:11,330
+Wes Bos: we're gonna have to like make our own repo of these at some point because we're gonna To run out of them, but for now we're all kinds of interviews.org. Alright, so first question I have here is what our differ and a sink attributes on a script tag? The intermediate question.
+
+20
+00:05:11,390 --> 00:05:51,210
+Scott Tolinski: Yeah. So it's basically when the script is going to be loaded, right? Because a lot of times if you just have your script at the head of your document, and you don't want it to be loaded immediately, what like what, let's say a good example of this would be like a Google Analytics, right? The last thing you want to do is sit and wait, while Google Analytics loads that stuff. For you, while you're just like, this is not essential to the loading of my product, right? My site needs to load fast, I don't need to wait for Google before everything else to load. So you can differ different scripts to load after everything else to say, Hey, this is sort of low priority. Is that suitable?
+
+21
+00:05:51,240 --> 00:06:51,300
+Wes Bos: Yeah. So I always go back to this blog posts, whenever forget this on growing the web.com a sync, it's all about when the script is downloaded and when it's parsed. Right, because there's two parts, you got to download the.js file. And then you actually got to like, you got to run through the JavaScript file and parse all of the JavaScript that's in there. So a sink downloads the file during HTML parsing, and will pause the HTML parser to execute it when it has finished downloading. So it'll download, like, basically, HTML parsing is when the HTML elements are being put onto the page. And then the download of the sync attribute or the async script tag will happen during that, but then it will pause the HTML parsing, well, it while it parses the script tags and then defer, what it will do is it'll still download it during the HTML, but it will wait until HTML is done parsing to parse itself. Nice. One I can never remember. But I just google it right now.
+
+22
+00:06:51,450 --> 00:07:44,190
+Scott Tolinski: And I found a really interesting website. I'll save this into the description of the video. This thing includes a bunch of graphs that this is actually the most helpful resource I've ever seen on this. And I've never seen this before. But it shows you have like a little timeline, just start parsing HTML, this is no defer async, start parsing HTML. And then it waits while it fetches and executes. And then resumes parsing, no defer async. And then with async, and that it gives every single example this is beautiful. I love this. I this is the kind of thing that I like to see a nice little visual example. So I'll make sure to share this awesome. Good job on that one. No, thank you. It could have been better. I'm disappointed. Okay, let's go ahead and let's run one here. This one is going to go pretty easily for you. I'm going to tell you that right now. Because we just did an episode on this, what are the differences between varlet and const?
+
+23
+00:07:44,270 --> 00:08:22,770
+Wes Bos: All right, real quick, var is function scoped and can be reassigned when not in strict mode, let and const are block scoped meaning that when they're declared they're only available inside of that block. So an if statement, a function is also a block and let and const cannot be reassigned. So you cannot create a new let or const variable with the same name and the same scope. And then the value of let and const sorry, the value of lat can be changed the value of const cannot be changed unless it is an object or an array in which you cannot change the binding of that value. But you can change the values that are inside of that object or re
+
+24
+00:08:25,980 --> 00:08:42,570
+Scott Tolinski: Yeah, knocked it out of the park. Yeah, yeah. Well, it doesn't. It doesn't hurt that we just, you know, yeah, minutes ago recorded an episode that I don't like the face. You're making me right now this face? The saying that I'm in trouble. I'm in big trouble.
+
+25
+00:08:45,000 --> 00:08:47,900
+Wes Bos: What is a callback? Can you show us an example of using one?
+
+26
+00:08:48,270 --> 00:09:35,900
+Scott Tolinski: Yeah, a callback is a function that executes after he that this stuff happens is often used in asynchronous programming before promises, because what happens is, you go off and you do some stuff. And then usually the last parameter in a function is a takes another function, and that is going to be the function that's called takes a function expression, I should say. And that function expression is going to be called after the actions have taken place. So like an API call would typically go off and do some stuff and then that data the results become available to you in the IF function expression. And then you can go off and do some more stuff with that data, like perhaps another call with another callback and another call with another callback and potentially some other stuff. Now that
+
+27
+00:09:35,939 --> 00:09:39,480
+Wes Bos: Yeah, all right. Give me a Give me one that we didn't just do a show on.
+
+28
+00:09:39,630 --> 00:09:45,050
+Scott Tolinski: Okay, this is gonna be a softball that you're getting the easy ones today. But if we haven't drawn this so maybe I'm
+
+29
+00:09:45,050 --> 00:09:46,440
+Wes Bos: just really good programmer.
+
+30
+00:09:46,470 --> 00:09:58,040
+Scott Tolinski: Yeah, maybe that's it not that this may be less blue. Well, how about this one then, what is recursion and when is it useful? And when is recursion useful and when is recursion useful?
+
+31
+00:09:58,439 --> 00:10:51,530
+Wes Bos: recursion is when A snake eats its own tail recursion is when you have a function that will call itself. And generally inside of that function, you have some sort of, always inside of that function, you'll have some sort of logic as to whether that function should call itself again. So some examples of when you're doing this, maybe you're programming a game, and you want to have a function, like take a turn, and that that take a turn, will run and then ask you for like a tic tac toe. And then you put your, put your answer in, and then it will run again, and it'll run again, and somewhere in that take a turn function it will check is this game over? If, if so, then display the score, otherwise call itself and then that will just kind of keep running, it'll run, it's really helpful for when you just need you don't know how many times you need to call something, but you just need to keep running that function until something changes.
+
+32
+00:10:51,750 --> 00:11:15,090
+Scott Tolinski: Yeah, I've used this in a situation where you're like doing like a page scraping and stuff like that. You can keep calling it over and over again to like, find something or doesn't. recursion is one of those things that's very easy to ruin your your day with, because it's one of those things that you kind of have to have a good handle on. And always make sure that your escape cases running. Otherwise, you're going to have an infinite loop.
+
+33
+00:11:15,630 --> 00:11:29,430
+Wes Bos: And escape case. I like that. Yeah, cuz that's when you get the maximum call stack size exceeded. That's when the function calls itself forever. And then all sudden, it's like a spinning tire running down the freeway. There's no way to stop it until it crashes into something.
+
+34
+00:11:29,610 --> 00:12:05,280
+Scott Tolinski: Yeah, there's actually so there's this hilarious meme comic, which is like Winnie the Pooh, I'm trying to find the one that's not an A gift that's impossible to read. But it's like Winnie the Pooh. And he is eating honey or something and tiggers like, oh, poo, that's not Honey, you're eating blank. And then the next panel is like some other thing. And then one of them he goes, you're eating recursion. And then the next panel is all four panels again. And then the next four panels, all four panels again, and that's it's like until infinity. It's just it's like a it's like one of those photos within a photos within a photos. That's hilarious comics have to find this thing. All right, here's one,
+
+35
+00:12:05,310 --> 00:12:08,490
+Wes Bos: what is the difference between a map and for each?
+
+36
+00:12:08,640 --> 00:13:34,740
+Scott Tolinski: Yeah, so for each does not create a new array, it just iterates over each item. So dot for each is an array method that is basically a shorthand for doing a for loop. So for each is going to have a callback function for each item in the array. And it's going to go through and give you that value of each item in the array for as many times as there is a new item, right. So it's basically just a looping over your array using an array method. Now a dot map is kind of doing the same thing. It's looping over your array, but it's doing so to create a new array. So each time that you loop over it, whatever your return value is from that callback function ends up being the value. Now you typically use dot map, when you have an array, and you want to augment this into a new array. You'll see it in react when people want to do loops, because you're essentially just outputting an array with JSX code. So you have your data, that's an array, and then you you're using a dot map over that array, you're adding some JSX code to it, and you're outputting a new array dot map is superduper. Useful anytime? Well, anytime you want to augment your array, and again, because it doesn't mutate the original array, it's super duper handy. I use mute map all the time to do any sort of modification to any race stuff.
+
+37
+00:13:34,800 --> 00:13:47,490
+Wes Bos: Now that I would have hired you after that one. Well, I think you if you like that explanation, go back to Episode 43. That's one of our most popular episodes 20 JavaScript array and object methods to make you a better developer.
+
+38
+00:13:47,520 --> 00:13:48,090
+Unknown: Yeah,
+
+39
+00:13:48,150 --> 00:14:06,240
+Scott Tolinski: they will make you much better developer. And in my new JavaScript course, coming out, we talked about all this stuff, too. So check that out. I have a hard one for you. And I really feel like you're probably not going to get this so I'm not got a big smile right now. Okay. What is big O notation?
+
+40
+00:14:06,570 --> 00:14:07,920
+Unknown: Oh.
+
+41
+00:14:12,300 --> 00:14:32,640
+Wes Bos: Oh, man. It's funny, because I actually did study up on this before I had my Google interview, like six years ago. Yeah. But obviously, I've since forgotten. It has something to do with measuring the complexity of a program of measuring the complexity of a function. So it's way to describe how efficient something is. Is that true? No, no, tell me.
+
+42
+00:14:32,880 --> 00:14:52,890
+Scott Tolinski: Yeah, it basically, it's a way to describe the time complexity of an algorithm, the best algorithms will execute in the fastest, and the simplest complexity. So the big O notation is a way of describing your code. Basically, whether or not this will execute quickly.
+
+43
+00:14:53,160 --> 00:14:55,320
+Unknown: Yeah. Ah, okay.
+
+44
+00:14:55,550 --> 00:15:09,120
+Scott Tolinski: Let's see if I can get some examples here. Oh, I don't know this stuff is Very confusing to me, because I'm not a computer science major, I feel like this is something that if you did computer science in your life, it would be very easy to answer this question.
+
+45
+00:15:09,600 --> 00:15:36,480
+Wes Bos: Oh, yeah, I'm just reading to go go to the example. 30 seconds of interviews that origami and take a look at it in JavaScript. Maybe we'll have it. That's what Scott and I were talking about some having some people on the show, who've done computer science, so we can ask them questions like this and just getting their opinion on, on explaining these things. Yeah. What does 0.1 plus 0.2 triple equals 0.3? evaluate to? And why? I feel
+
+46
+00:15:36,480 --> 00:15:58,620
+Scott Tolinski: like this is a trick question. Because it seems like this should be true. But I'm gonna go ahead and say false, because it feels like a trick question. And what the heck is that going to evaluate to? Is it going to be? Is it going to be one of the weird JavaScript number issues where it's going to be like two point or it's going to be point 002999? Something? Is that what's gonna happen?
+
+47
+00:15:58,680 --> 00:17:04,770
+Wes Bos: It is one of those. So zero point here, if you just everyone open up your console right now and type in 0.1 plus 0.2. And you get 0.3000000000000004. And soda. That's a everyone always tweets out like, oh, JavaScript, so dumb. It's an issue with floating point numbers. That is I as far as I know, almost all languages have this issue. Because it converts the numbers to binary, I don't totally understand it. I just know that whenever possible. I don't work with floating point, which is decimal numbers. And I just work with integers, which is whole numbers, because it can cause lots of issues. Like I'll give you an example. I had the ability to refund somebody. And what was happening is people had a product that was like, $23 and 33 cents, and I was trying to refund it, and it was trying to refund it. I was like 0000004, right? That was that issue. Right. So that's why I always try to store stuff in cents. Yeah, but that's just I guess that's just how it works. But you're saying it's giving you true?
+
+48
+00:17:04,920 --> 00:17:24,270
+Scott Tolinski: No, I Well, I didn't that it's weird, because I would typed it myself. And it gave me true and then I copied and pasted it. I must have been doing something wrong. I think I had I had 0.001 plus 0.0. Yeah. 002. Yeah, I had an extra couple of zeros in there.
+
+49
+00:17:24,630 --> 00:17:32,550
+Wes Bos: Yeah, so that's, that's a little bit of a weird one. If you ever want to see more like funny stuff in JavaScript that is like that. Just look up. WTF jass
+
+50
+00:17:32,700 --> 00:17:46,770
+Scott Tolinski: wtf j s. And Okay, we got another one hoisting, man, this is gonna be finishing off on an easy one. And I am, I guess I'm okay with that. You're going to get this one. What is CSS bam.
+
+51
+00:17:47,280 --> 00:18:10,530
+Wes Bos: Oh, alright. css BAM is a way to write your CSS in a way that is modular, so that instead of having CSS selectors that are complex, and that overlap each other and you get into specifity wars, you follow this? so it stands for block element modifier, what kind of words and the specificity? video. All right.
+
+52
+00:18:10,610 --> 00:18:18,590
+Scott Tolinski: I don't know. I heard you go through really quickly. I hit somebody who told me that it's spelled s A Felicity
+
+53
+00:18:18,660 --> 00:18:20,910
+Wes Bos: specificity. That's wrong.
+
+54
+00:18:21,080 --> 00:18:27,510
+Scott Tolinski: They wrote it out. And maybe they're just punking me they're trying to get me They said, this is this is a trouble. This is a problem.
+
+55
+00:18:28,340 --> 00:18:35,520
+Wes Bos: Yeah, all y'all can start your own podcast and with proper pronunciation of all the words. question here.
+
+56
+00:18:35,549 --> 00:18:37,410
+Scott Tolinski: How do you pronounce this word?
+
+57
+00:18:37,410 --> 00:18:43,580
+Wes Bos: Oh, oh, no. How do you say schema will be able to work with you or we're gonna fire you.
+
+58
+00:18:43,650 --> 00:18:45,320
+Scott Tolinski: Yep, just started sweating bullets.
+
+59
+00:18:45,800 --> 00:19:46,950
+Wes Bos: Anyways, what is CSS bem TSS bem is stands for block element modifier. And the way that it works is that you take your block, like let's call it a tweet, you give that just a class of dot tweet. And then inside of that tweet, you have elements and you might have like a tweet header, you might have a tweet content tweet timestamp. So you give it a class of tweet, the element is underscore underscore. So you might have dot tweet underscore underscore heading dot tweet, underscore, underscore content, tweet, underscore, underscore timestamp. And then if you ever want to take a heading but maybe make a little bit of a bigger one, that's a modifier. So you'd have dot tweet, underscore underscore heading dash dash large or dash dash special a dash dash pink, and then that will that will change it a little bit more. So it's a little bit verbose. But it's a really nice way to to maintain sanity in your CSS selectors. If you're not using something like scoped CSS style components and something like that, yeah, I
+
+60
+00:19:46,950 --> 00:19:52,070
+Scott Tolinski: remember being very like not upset but like cool. It's a lot of typing for
+
+61
+00:19:52,080 --> 00:19:57,900
+Wes Bos: Yeah, I was to, for the longest time I was like, that's dumb. And then I actually used it and I was like, I'm dumb. This is awesome.
+
+62
+00:19:57,900 --> 00:20:04,610
+Scott Tolinski: This is those so 100 Hundred percent. My experience. This is dumb and then I'm done. Yeah, that is exactly.
+
+63
+00:20:07,170 --> 00:20:25,050
+Wes Bos: That's why like I've done it so many times in my career where I've written something off because it looks ugly. And then I'm like, What about writing beautiful HTML. But then I like I realized, like it's worse typing a little bit extra to be able to have such slick components and not have to deal with the pain that is specificity.
+
+64
+00:20:25,580 --> 00:20:29,580
+Scott Tolinski: Nice. Well, you I think you just use crushed that one. I think. Yeah, I
+
+65
+00:20:29,580 --> 00:20:35,910
+Unknown: think the city we got a question or specificity, specificity. Yeah, I always do.
+
+66
+00:20:37,980 --> 00:21:04,340
+Wes Bos: Okay, I think that's it for today. If you have, I think we are almost out of questions on this website. So we got to figure out if you have a interview question, tweet it at syntax FM with hashtag syntax interview, and that way we'll be able to pull them up on Twitter, and like in a month when we do this again, so again, tweeted at syntax FM with the hashtag syntax interview, and we'll we'll try to answer some of those as well.
+
+67
+00:21:04,650 --> 00:21:11,330
+Scott Tolinski: Yeah, yeah, definitely. Because Yeah, we from this episode, we have seen that we are two episodes in and we're already running dry and questions here.
+
+68
+00:21:11,330 --> 00:21:15,030
+Wes Bos: So yeah, also would you hire Scott nigh tweet us that?
+
+69
+00:21:17,250 --> 00:21:25,610
+Scott Tolinski: Hopefully, we get hired simply because of my damn map explanation, explanation, and you could get hired killer attempt at a big O explanation.
+
+70
+00:21:27,510 --> 00:21:37,500
+Wes Bos: Call me Google. Alright, that's it. I think we're almost getting into not so hasty treat territory. So let's wrap it up here. Anything else to add?
+
+71
+00:21:37,500 --> 00:21:39,350
+Unknown: I got nothing else already.
+
+72
+00:21:39,450 --> 00:21:40,740
+All right, peace.
+
+73
+00:21:43,230 --> 00:21:52,980
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
