@@ -1,0 +1,388 @@
+1
+00:00:01,319 --> 00:00:02,820
+Unknown: You're listening to syntax
+
+2
+00:00:02,820 --> 00:00:06,120
+the podcast with the tastiest web development treats out there.
+
+3
+00:00:06,149 --> 00:00:10,950
+strap yourself in and get ready to live ski and West boss. Ooh, welcome
+
+4
+00:00:10,950 --> 00:00:46,020
+Wes Bos: to syntaxes to the podcast with the tastiest web development treats out there. today. We've got a awesome podcast and a potluck lined up for you. And potluck is an episode where we take in your questions. And Scott and I attempt to answer them. If you have any other questions that you'd like us to answer on a potluck, make sure you go to syntax, FM and click the button that says ask a potluck question. Those keep us going. today. We are sponsored by two awesome companies. First one is Log Rocket and second is Freshbooks. We'll talk about them partway through the episode. How are you doing today, Scott?
+
+5
+00:00:46,439 --> 00:01:15,560
+Scott Tolinski: I'm dealing you know, everybody. Yeah, just making it happen. Like last night I just like took a deep, deep exhale and was like holy cow. I am tight. I'm just tense, man. I'm just yeah, it's just it's non stop. But you know, it's all good. I sliced off the tip of my finger the other day. That was pretty early With what? You don't want to know. mandolin. No, a like actual shaving razor. It was just I was just moving it. And
+
+6
+00:01:15,620 --> 00:01:18,260
+Wes Bos: oh, my nightmare, dude. It's
+
+7
+00:01:18,329 --> 00:01:26,130
+Scott Tolinski: It's seriously. It's gnarly. So it's been covered and yeah, I'm not too happy about it.
+
+8
+00:01:26,159 --> 00:01:29,610
+Wes Bos: You're not going to the hospital for that door. Yeah. No.
+
+9
+00:01:30,479 --> 00:01:40,260
+Scott Tolinski: I don't want to get into any of the gruesome details but it's fine. There's a lot of people who do not want to hear what exactly happened to this. Oh, yeah.
+
+10
+00:01:40,260 --> 00:01:58,860
+Wes Bos: No, I get I'm like almost passing out this you're telling me that I get so queasy. I get what's called I thought this was a common thing. But I call it the melts. Where if you start talking about blood and, and veins and stuff like that, I just get like, whew, yeah, like, I can't rip anything.
+
+11
+00:02:00,270 --> 00:02:20,280
+Scott Tolinski: You're just you're you're actually passing out is what it is. You know, it's funny. I, I had a, like a sister removed from my arm at some point a couple years ago. And they were like, do you want to watch because it's obviously here you can watch. And they're like, obviously, you don't want to do this if you're on the passing out. And I was like, I've never I mean, I passed out once from something else. But like,
+
+12
+00:02:20,580 --> 00:02:23,310
+Wes Bos: I know I never heard that story on the podcast. But
+
+13
+00:02:23,340 --> 00:02:43,220
+Scott Tolinski: yeah, that's right. I've done I've ever passed out. I know watch this and then then I'm watching them do it. I passed out and they're like, Oh, you should have you should have not watched like why did you say you were actually mad at me for choosing to watch. I've never passed out before. It's weird thing you get like a cold sweat. And yeah, it stinks.
+
+14
+00:02:45,750 --> 00:03:44,220
+Wes Bos: Oh, man. All right, let's uh, let's get into the potluck questions. First one we have here is from Simon, Vollmer Iser, hey, Weston Scott, thanks for the badass podcast humor and knowledge always, as always was wondering on your take on mobile first design and implementation, dethrone desktop styles or the mobile styles into media queries, any opinions about that by switching a lot between project to do it differently. And it really makes my head melt. Keep up the good work. So this is a question that we get all the time is, is when you are building a website? Do you start with the mobile website? And then use media queries to desktop defy it? Or do you build the desktop website and then go smaller, smaller, smaller and mobile of phi it? And a couple years ago, there was a big push for the sort of mobile first. And now I don't know like like, what are your thoughts on this? Scott? Like what do you do? What is level up? tut's is a mobile first or is it desktop first?
+
+15
+00:03:44,400 --> 00:04:59,250
+Scott Tolinski: Yeah, this is a good question. Because I think you could really do it either way, if we're being entirely honest. And I have probably not done a good job of doing mobile first, specifically, because our users are primarily using the a level of tutorial site on their desktop computers or their iPads. So we're inherently going to favor a little bit wider of a viewport. Yeah, that said, The design was certainly coded in a way where it's going to do the most it can to scale up as in, I don't want to have to change a ton of stuff between mobile and desktop. And I'll definitely do my breakpoints as being the mobile first style breakpoints where you only use breakpoints to style things add increasingly larger displays as an, you know, the default styles are all for mobile. But so many of our styles are set up to a way that you don't even have to think about it too much, too much, too much. Yeah, it's almost like the media queries are used as patches to fix the stuff that's not working when you make it wider rather than really thinking about the two designs as being that separate.
+
+16
+00:04:59,490 --> 00:06:25,440
+Wes Bos: Yeah, you Yeah, totally. I'm the same way as well. I've always done desktop first and then gone smaller. I think the benefit to mobile first is that I think a lot of times people build these really complex websites, and then they find themselves trying to figure out, how do I cram this thing down into something that is acceptable on mobile web. Mobile First is like you think about the experience. First on mobile, which a lot of websites are probably majority of it is consumed on mobile. And then you can make it more complex with media queries as you go on up. Quite honestly, I've never had a problem going either way. So I don't think that it's too much of an issue. I know that when this first came out, there was a whole like, this tends to happen with like everything like this new idea comes out. And then the other thing is immediately garbage or an awful way to approach it. And I don't think that's true. I've never had real issues, especially with Flexbox and grid and thinking in terms of components, and how big that component will be like, I think component queries or element queries will make this the thing of the past as well, because like, I don't necessarily think in terms of website, I think in terms of like, player and Right, exactly, like listing of videos, or pricing grid or whatever is on the website. So if it's making your head hurt, do then just go back to the other way. I think it's totally fine.
+
+17
+00:06:25,710 --> 00:07:09,720
+Scott Tolinski: Yeah, it's totally fine. And honestly, I have some thoughts on why I think that it's seen as sort of a or it was seen as sort of a bad practice for a little bit to do dusty at first. I think it's because a lot of mobile sites were very neglected at that time. Yeah, right. At that time, media, media queries had just come out, people didn't really know about them that much. I mean, responsive design, just become a thing. So all of a sudden, there was a push to get people to actually make mobile looking websites a priority, rather than just an afterthought. So to me, mobile first was a shift into thinking about mobile websites has been something more important than they were before.
+
+18
+00:07:10,050 --> 00:07:37,830
+Wes Bos: Yeah, cuz also, like, what was popular, and unfortunately, still is, is that people would just start to hide stuff. Yes. It's the mobile website. They don't need all the features. And that's so frustrating to me to, to get a website that just hide stuff on mobile. Yes. When the reality is you should start all of the functionality and all of the content on mobile, and then, and then figure it out. So that I think there's some some good ideas behind that. And as long as you can keep those in mind, you're, you're gonna be in good shape.
+
+19
+00:07:38,250 --> 00:07:59,220
+Scott Tolinski: Yeah. And the only time that's really acceptable is if you have duplicate, like, for instance, we have a navigation that just straight up does not work structurally between mobile and desktop. So we have a mobile nav and a desktop nav. That's the only actually instance where we have a mobile component or desktop component. Oh, yeah. As long as it's like duplicate content, rather than
+
+20
+00:07:59,250 --> 00:08:13,200
+Wes Bos: I often find myself going way overboard on like clever CSS hacks and stuff go Yeah, get work on both. And then I just kind of like sit, sit in my chair and go like, what am I doing with my life? Like, just make Yeah, just make two naps and hide one or the other?
+
+21
+00:08:13,440 --> 00:10:08,190
+Scott Tolinski: We probably had like four or five iterations of our nav that would work our base CSS wise, because this is like, this is too much. What do we do? Next question is from Christian Anderson says, Hi, Scott in West love the show. Here's my question. What is the difference between the ES six arrow function and a normal function? When would you use a normal function instead of an arrow function? Or the other way around? Stay tasty? Christian. That, yeah, stay tasty. Yeah. So the big part of this is really how it deals with this and variables. Everything else is sort of, I guess, lesser function of this where you could use an arrow function for readability and those aspects of it. For me, I personally prefer the What do you want to call this, this, this simplification of how it handles this, there used to be this, I'm trying to find a good way to explain this without there used to be this technique where if you needed to access this, inside of a normal function, but you didn't want to access that functions, this, you don't want to parent scope, you wanted the parent scope, that's a perfect way. That's the exact word you wanted the parent scope. You had to do this whole this equals that or this equals parent or whatever beforehand in the variable and pass that in. And it was such a giant pain in the butt because each function had its own scope, where with a arrow function, it doesn't have its own scope. So this would refer to its parent scope. So that's largely the reason why I use it to me it's more predictable. I don't have to do this whole this that Dance to access the parent. And largely to me, it looks cool. No, I don't know that that's that's low on the totem pole. But I do think it looks cool.
+
+22
+00:10:08,220 --> 00:13:10,679
+Wes Bos: Yeah, it definitely does. So arrow functions do have their own scope, they just don't rebind the value of this, to that that function instance. So it will be inherited from the parent. And if there's no parent this, then they will go for the parent of that. And then eventually, this will just be the window, if nothing is bound to this, but if you create variables inside of an arrow function, you still will, those will still be scoped to that function. So what else do they do they allow for implicit return. So if you're doing like a map, filter, reduce is probably the use case where I use an arrow function most often, where you just need to take in an argument and then immediately return something like divided or looked up in an object or multiplied by a certain number or filtered out return true or false. Those quick little things can be done on one line with an arrow function. And that is that is huge. Implicit return is not doesn't have to be, you can still return and use curly brackets on an arrow function, as well. It's just kind of a shorter, concise syntax. The other thing about arrow functions that they must be passed in as reference or stored as a variable. So a function declaration where you actually write the word function space, say hi, that is that's called the function declaration. But because JavaScript works in a way, where you can put functions in variables, that that's why you can do something like const, say hi equals function as well, the arrow function is can only be passed in as reference, meaning passed in as an argument to like a map, filter, reduce or has to be stored in a variable. So they're technically anonymous functions. But that doesn't really matter all that much. Because if you have like a stack trace, or something went wrong, it will usually take the name of the function from the variable that it was stored in, instead. So yeah, it's it's kind of interesting. When they came out arrow functions, people were like, I'm gonna use arrow functions for everything. And like, I would get a lot of people being like, Why are using a normal function? Like, why don't you upgrade that? And like, I certainly do use both of them. I don't use this keyword a whole lot in much of my programming anymore, just because that's more object oriented, functional allows you to sort of just take in arguments and whatnot. So like, what do I use, I use both of them. For react components, I've actually switched away from arrow functions, and over just two regular functions, partly because of hooks, partly because of the implicit return was such a pain in the butt to rebug. Yeah, and so I just switched to just regular function. So that's the difference. They're both very useful. Use an arrow function if you need this to not be scoped, or you need the concise syntax.
+
+23
+00:13:11,039 --> 00:13:50,070
+Scott Tolinski: The reason why I use the arrow function, like all the time, and I just do I force explicit returns Well, for the most part, there's there's some use cases where I don't do implicit returns. But there are like for a react component, always explicit return every single time because you will need to refactor that. And I To be honest, arrow functions all the way I'm pretty much only do arrow functions. And it's really just for consistency in both syntax, the visual of it all, just to have things be possible. But also just so that we always know how things are functioning in that dimension. We just about never use the keyword this. So I don't I just don't have to think about it too much.
+
+24
+00:13:50,279 --> 00:13:53,130
+Wes Bos: That's not a big, a big issue for you.
+
+25
+00:13:53,130 --> 00:13:53,760
+Unknown: Yeah.
+
+26
+00:13:54,120 --> 00:14:26,100
+Wes Bos: Next question we have here is from Max Dayton, hey, it's gotten less, what are your opinions or experiences on developing for 360 slash VR experiences on the web? There are a few frameworks out there, like a frame and react 360. I was wondering if you had any experiences building with these things? And do you think this could become a big thing for the web development in the future? So I know I'm gonna pass this over to Scott because I've never done anything in VR. I've put a headset on once and it was pretty cool. But that's, that's where it stops with me.
+
+27
+00:14:26,279 --> 00:17:15,240
+Scott Tolinski: Yeah. So this is really funny. I've been it since the, the snow break thing, this snow snow day. Now their current situation. I've been playing a ton of VR, for like an hour each day, I would say maybe it's been really interesting for me, because it's like we put the kids to bed and there's like a little period before Courtney and I are like really hanging out where I'll just sort of floating around and I have been playing VR table tennis which is not something that I've ever played really, and I feel like I could be decent. Table Tennis Now, because of all the time I put into it in the physics are so good. And I absolutely love it. So I'm becoming a huge VR fan in that regard. The one thing I hate about VR is being like tethered to a computer. So my unit is the Oculus quest, which is no cables or anything. So as long as you're not tethered to a computer, I think VR has a lot of possibilities. I think as long as you are tethered to a computer, I don't think it's going to get that sort of mass adoption. So what are my thoughts on Web VR? I think it's fantastic. I think it's interesting. I think it's so cool. I've never heard of a frame, I have used react 360, briefly, nothing any major, to create anything major, it's one of those things that if I had any free time to do a goof around project, I would definitely spend it on one of these things not because I necessarily think that one of these things is going to be you know, the end LBL way to do VR probably won't, but I think it's sort of very fascinating. And the more I find myself using my own VR headset, the more I get ideas about what kind of cool interfaces you can build in it. So I think it's very interesting, I would love to do rather than like a game or anything like that, I would love to build some sort of interactive video experience where you watch a tutorial and some sort of way that makes it more interesting. Either way, I would keep an eye on both of these platforms, I would try them out, if you have the capability of trying them out. They look so stinking cool. And to be able to do VR using react components definitely is a plus for me not to mention, since my headset is made by Facebook, I would have to imagine that at some point, maybe react 360 becomes some sort of an official way of building types of apps maybe. So we'll see who knows, maybe you can take those skills and, and really flourish on a medium that is still very young, right, we have to consider that this VR medium is very, very young. And there's just an endless amount of opportunity to have a killer app in some sort of variety, where you can get in on the ground floor now, before these experiences blow up, and everybody's got a headset on. And we're all floating around on moveable chairs like Wally.
+
+28
+00:17:16,679 --> 00:17:50,490
+Wes Bos: Yeah, I am more interested in the AR, which is augmented reality. And I imagine you could probably do something similar with these frameworks as well, where you're overlaying useful information on top of whatever it is that your cameras seeing. So maybe that would be a fun project to do as well. Maybe just do like a simple little, like detection. Grab people's faces. Yeah, maybe pop up. information. I always take the Instagram. Have you seen those like the couple's questions on Instagram lately?
+
+29
+00:17:50,759 --> 00:17:55,440
+Scott Tolinski: I I've seen a bunch of like the quizzes and challenges. Yeah, I haven't seen the couple's questions.
+
+30
+00:17:55,680 --> 00:18:06,390
+Wes Bos: Oh, it's like, it's kind of like, when you get married, you played the shoe game or like, yeah, Who's most likely to cook dinner and you put the shoot? It's like that. But it's that you you tilt your head left or right, which is pretty
+
+31
+00:18:07,850 --> 00:18:09,780
+Scott Tolinski: fun. We should? Yeah, yeah.
+
+32
+00:18:10,050 --> 00:18:43,740
+Wes Bos: That would be a fun little thing to recreate. Yeah. I think like, I'm trying to think like, how would you do that? Well, like you would like track people's faces, which you can do? Yeah, you do object tracking? Yeah, you can do that in Chrome already. Yeah. And then you just like you track where their heads were and then over like, like, I don't know, one second. And if both heads move to the left, or to the right, or whatever, then you could, you could say, okay, they were here, and now they move there. It really doesn't seem that difficult when you think about it's just tracking
+
+33
+00:18:43,820 --> 00:18:45,480
+Scott Tolinski: a value a box.
+
+34
+00:18:45,660 --> 00:19:00,540
+Wes Bos: Yeah. If the value goes left or right, somebody make this with the I've got the face detection code on my beginner JavaScript repos on GitHub, you can grab that as a starter, and then take it and run with it.
+
+35
+00:19:01,050 --> 00:21:35,010
+Scott Tolinski: Yeah, do it. Alright, next question is turbo go Ran? How would you define a senior developer? What's the difference between an intermediate and a senior developer, as somebody who has had the senior developer role in their title before I can tell you it's largely just a job title. Now, in every single organization, these are going to this is going to mean something different, which is one of the reasons why I think it's kind of a vanity thing. Sometimes when you are applying for a job, the senior developer position all it means to the employer is that you've been in a role where you're doing a bit more management and you've had a little bit more on your shoulders a little bit more pressure, a little bit more ownership. I mean, personally, when I became a senior developer, I had a lot of different roles that I didn't have before I was supposed to go to more meetings, more management meetings, more meetings where I had to be the spokesman for all of the developers right? The advocate for the developers. This is a small company, right? It depends on the size of the company, I was in charge of coming up with the workflows that we would maintain as a team, the Git workflows, those types of things. I was in charge of directly managing the developers, their timelines, their projects. And I was also in charge of picking our stack choices, and even giving maybe some other developers more freedom to choose their own stacks based on what their comfort was. But again, this is largely something that's going to be different in every single organization. And simply having the job title of senior developer is largely just going to mean that you've been in a position of sort of management or heavier load and responsibility as a developer. And if you want to make sure your website's capable of handling some sort of heavy load, you'll want to make sure that you have some sort of error and Exception Handling service, one of which, where you can see how the errors are happening. Now, the sponsor, of course, is Log Rocket. Now Log Rocket is the error handling tool that allows you to see how your bugs happen. You get a session replay video, that is so cool, you could scrub it, you could see the network requests, the error logs, the Redux store, anything you got in there, and it works with all of your frameworks that you know and love. You can even see where the user clicked to turn your website into a frog. How did they do that? I don't know. But you can find out with Log Rocket. So if you want to check it out, head on over to Log rocket.com forward slash syntax, and you will get 14 days for free. Check it out.
+
+36
+00:21:35,970 --> 00:23:09,720
+Wes Bos: Beautiful. Next question is from Jason. Hey, I was curious about knowing your opinions regarding JSON colon API, and its consumption in react. Is it still a good pick going with JSON colon API, or paired to graph qL? Or just a normal rest JSON API? So I was like reading this, like, What? What is JSON colon API API? I thought like, that's just the regular REST API. And I looked it up and I said, Oh, okay, so this is a specification for building API's in JSON. So one of the downsides to just getting an object JSON string of finding it and sending that sucker down the line is that there is no standard for how you should interact with it for how to structure your data, how to do pagination, all that stuff. There's no specification for it. So everybody sort of just invented their own way of doing JSON API's. And every time that you needed to work with an API, he basically had to kind of sit down and and figure out how that thing worked. And that's still somewhat true with graph QL. Because you still have to know what the functions are called and what they are. But we we do have a standards in graph qL for pagination, and edges and ownership and things like that. So it looks like this JSON API is just like a spec for for building API's. And it's been around for since 2013 been last updated.
+
+37
+00:23:09,870 --> 00:23:12,120
+Scott Tolinski: I've never heard of this. And I don't know why I've never
+
+38
+00:23:12,180 --> 00:23:49,590
+Wes Bos: heard of this. No, maybe there. But yeah. So honestly, all of the Jade JSON API's I've built in the past, I've never had a whole lot of problems with it that I needed a rigid spec for this. But I could definitely see someone who was building a much larger API could look for something like this. That said, if you are building an API from scratch right now, I probably wouldn't go for this just because I think graph qL is probably a better choice. If you are going to build such a rigid API, and not just a standard, like JSON string of Fiat, give it an endpoint and call it a day.
+
+39
+00:23:50,010 --> 00:24:52,080
+Scott Tolinski: Yeah, I do think that having some sort of a structure or some sort of a spec is a is a good idea for any sort of major organization, it it's funny that the API's that we largely write are consumed by only a few people. And I think that's a big difference between needing something with some sort of a rigid spec and being able to come up with a little bit more creative spec of your own or something. To me, personally, I am using graph QL. So I haven't really thought too much about it. There is sort of like this counter push back to graph qL going on right now. And I don't know if you've seen it, where people will be like, you probably don't need graph qL it's probably just as good to do this and this and this. It's like okay, cool, but I like graph qL still, like that doesn't mean I don't like it because I do like what it what it gives me Have you seen this whole the GQ LS thing? It is called GQ, LESS Gq, l e s s dot dev is the site
+
+40
+00:24:52,229 --> 00:24:57,930
+Wes Bos: a graph qL client without queries, it's so cool. It's pretty cool. What does it do? So basically,
+
+41
+00:24:57,930 --> 00:26:14,280
+Scott Tolinski: here's the gist. So for those of you who don't know, with graph qL will only write an object, like a pseudo JavaScript object and graph qL, your API gives you back everything you asked for, right? Well, what this library does is it takes it one step further, and it says, Hey, we know that your component is using graph QL. And so you can just start using properties within your, your react component, or whatever, you just start using properties. And what this library is able to do is sort of pull out the object structure from what you're requesting and build a query for you. So you don't have to write so much at all, it makes so much sense. And then therefore, you're never gonna have to worry about stuff. There's like this often this disconnect, where maybe you forgot to query something, and you just thought it was available to you. So you used it, and then it wasn't there. And then that can cause a bug. So this is a really interesting new library. And by new, I mean, I think this thing is brand new. And I haven't had a chance to use it. But I've seen people talk about it. And it's been up for a little bit here. And it already has 2.3 thousand stars and a bunch of forks. And it looks like it's well under way to becoming really super cool.
+
+42
+00:26:14,760 --> 00:26:38,340
+Wes Bos: Yeah, because like, also, if your graph qL or not, if your graph qL API is tight, right. So you can just start coding and it will know all the all of the properties and whatever and you get really nice autocomplete in your template. So you just you just like use the data in your templates, and it will figure out how to query that for you, which is pretty nifty. That makes so much sense.
+
+43
+00:26:38,610 --> 00:26:54,300
+Scott Tolinski: Yeah, I'm, I'm interested, I definitely am interested. And it makes a ton of sense. I'm very excited for trying this out at some point. I wish I had like a little tiny Roderick to try this out on this would be a pain to try out and level up. But definitely looks cool. Something to keep your eyes on.
+
+44
+00:26:54,720 --> 00:27:28,230
+Wes Bos: One more thing about this JSON API is they have I'm just on their website here. They've a recommendations page about how to how to camelcase things. Your API should start with a character. Here's the URL structure you should use. Here's a URL structure for a single piece of item. Here's how you get comments that are relationship to something. I like that a lot. That's very much like when I learned idiomatic JavaScript where like, just give me a page of things I shouldn't shouldn't do. And I'll follow that. Nice. Yeah,
+
+45
+00:27:28,230 --> 00:29:06,270
+Scott Tolinski: I like that. All right. Next question is from actually Jason, not JSON. But Jason. And Jason asked two questions here. I thought they were very related. So I decided to answer both of them here. What's your take on Blitz j. s? would you use a framework like this to build large and scalable web apps? And then also, what's your take on Redwood j. s? would you use a framework like this build large is the same question with a couple of words replace. So for those who you don't know or feel fatigued by all this stuff, you're probably rolling your eyes that there's another new node.js thing. We have Blitz, j s, and we have Redwood, j, s. Now, both of these are layers on top of the things that we're using currently, like react, graph, qL, whatever. They're sitting on top, and they do specific jobs. Now I have an eye on both of these projects, because I think they're both interesting. They're both fascinating. And they both fall in to this category of things that we've continued to predict on this show that are going to become more of the future of this platform that we're working on. So it's funny that we we've predicted multiple times that these things are going to come out and here they are. Here's a couple of them. Yeah, we know, we know, right? Yeah, exactly. So the first one Blitz is more like a Rails competitor, right? Well, not a Rails competitor, but a Rails analogous. The whole thing about Blitz is that it's a monolithic platform is in your writing your entire code base in one code base. But it uses serverless functions. So when you deploy, it's all serverless. But I don't think you have to worry about that aspect of it too much.
+
+46
+00:29:06,480 --> 00:29:10,590
+Wes Bos: Isn't this the the same framework we talked about a couple episodes ago?
+
+47
+00:29:10,680 --> 00:29:13,800
+Scott Tolinski: It is but things have been moving along here.
+
+48
+00:29:13,800 --> 00:29:15,930
+Wes Bos: I think it's clearer what it is now,
+
+49
+00:29:15,990 --> 00:30:25,350
+Scott Tolinski: definitely more clear. So Blitz, in short as trying to be the rails for j s. Now Redwood is also taking this, but it's taking more control over the data side of things. And it uses react graph, qL and Prisma for the data. So with this one, you're not having to think about a database or your schema, and it's trying to encompass all those aspects, and then just giving you react, so I have my eye on both of these. I think they're both cool options. I think my Meteor stack does a lot of this stuff really well, in the same regard. Like I have server side rendering, code splitting, graph qL all those same stuff, right. So I think that I'm gonna throw my modern media into the mix is a nice option here too, but maybe a little bit less handhold. The, I don't know, we'll we'll see about these things. They're brand new. And largely, they're saying, Would you build anything in this right now, I'm not going to build anything major in either of these right now, because they're, I don't even think either of these are done yet. So just keep your eye on them and see, maybe that could be a cool opportunity to learn something new here.
+
+50
+00:30:25,500 --> 00:31:45,330
+Wes Bos: Yeah, I would definitely use this for a weekend project, but nothing too serious just yet. And I would definitely keep my eye on them. Because these are two things that have the potential to become really popular. And if you can be on the sort of front of that blog posts or YouTube videos or whatever, then that's a huge because like, I certainly do think something big is coming in the next. Hopefully this year, right. And one of these two might be it word. Next question we have from Andre McNamara does that right? Yes. I just butchered it like three times for what do you think of Dino j? s reaching version? 1.0? Is it really going to be a node successor? Or is that just marketing hype? So Dino, we've talked about it a bunch of episodes before, but basically what it is, is it's a runtime in JavaScript and TypeScript that's built on the same engine, that node is built on, which is called v eight. V eight is also the it's, it's the engine in Chrome. And that's, that's the reason why we're able to have no jazz in the first place is because you can take an engine and and run it in different places. So the idea behind Dino is that you can run the whole thing in TypeScript. What are some of the other benefits of it? We talked about so many times it just
+
+51
+00:31:45,930 --> 00:31:55,860
+Scott Tolinski: there's a lot of things where you like where you declare your import as being from a repost specifically, rather than via package dot JSON file?
+
+52
+00:31:56,340 --> 00:33:36,930
+Wes Bos: Oh, yeah. Yeah. So that seems pretty, pretty interesting as well. Is it going to replace node certainly not anytime soon. But from the folks behind it, as well as the fact that they it's like a first class TypeScript support. I definitely think it will be a huge thing in the next couple of years, especially if we can get I'm not sure like, what does it look like for using an existing node module in Dino, because like, there definitely have to be some sort of transition there. Because it takes years to build up all the resources that we have in Node land. But I'm pretty excited about it. I still haven't built anything serious in it. Just a couple little Hello worlds here and there. But like, begin, we've talked about them before they support Dino right out of the box, which is cool. So there's already like a good hosting. Like that was that was like a hurtful thing, when node first came around was like, how do I even run this thing on the server? But that whole story looks a lot nicer right now. So definitely not marketing hype. I would say, Dino has anything but marketing. They're not like there's not a company behind them. There's not a whole bunch of like, VC or anything, I don't think there is at least, it just seems to be a bunch of really smart people trying to solve something. I mean, I think like a couple episodes ago, or maybe a couple of months ago, we said it was built in TypeScript. Or we mentioned that and it got put back a couple people got mad. It's not built in TypeScript, in rust. But you you build your apps in TypeScript, you don't build the apps in rust. So what the thing is built in under the hood, we as developers don't necessarily care all that much. Right.
+
+53
+00:33:36,960 --> 00:37:52,400
+Scott Tolinski: Yeah. You know, so it's funny that I, I don't know, I'm interested in Dino, but at the same regard, I think I'm interested in it the same way I was in TypeScript about like two years ago, right? Like, yeah, I am keeping an eye on it. I'm thinking about it. It's in my brain space, but I'm not going to like really dive in or really do anything unless it like really picks up for me. Like there was some point when TypeScript became the obvious champion, right? Reason, naff was the other one flow. Yeah, I don't think people like flow very much. And so TypeScript, like very clearly became the dominant of the type systems for JavaScript at that point, I was like, Alright, I have to invest the time because this is becoming an industry standard to know this stuff. So until that happens, I probably will just keep a cursory glance at Dino just to have it in my brain space. Next question is from Dan, the man. Hey, guys love the show. My question is if you are looking to refactor code, you have a process that you'd like to follow. I've been polishing up a project from a boot camp I attended, and I'm putting on the finishing touches, and I'm getting frustrated, how inefficient, hard to read, and junk some of my code is, I want to go and restructure a lot of things eventually, but I'm wondering the best practices I should be aware of, or just maybe a way to tame this beast. All right, so I have a couple of strategies for refactoring. And it really depends on what the thing is, I'm refactoring I have, number one, always make a branch. Start number one, make sure you commit all of your code currently, and make a branch. Because if you start tweaking stuff, and all of a sudden it breaks and they are in your main branch and you have some code changes you didn't commit beforehand, you're gonna be frustrated that you are now having this project that's not working. Also, you want something that you can just go back to if you goof it up. So I have a couple of strategies, it depends on if I'm, if I'm refactoring a beast of a file, I'm going to branch I'm going to duplicate that beast of a file, and then I'm just going to go hard deleting stuff completely rewriting it right. And then just largely, that one is going to be probably a deep investment before you see anything working. Again, the other way to take this would be to change in small parts surgically. And this one works best if you have tests, if you have good tests that say, this is how this thing works. And you don't want to have to rewrite your test, you just want to say, Okay, this thing should function the exact same way it did before. If you're using react testing library with data IDs, that shouldn't be too much of a problem. If you have that sort of setup, going, then just surgically change out those things, rewrite them, move them, whatever, being careful not to break your tests. The last way I have is to migrate the things that are easy to migrate before rewriting a bunch of code, let's say your refactor is you're taking this thing from a class component, and you're moving it to a function based component. Now I know the React team says don't do this, but I have components that would be so much more elegant in a hook space setup. And I have hooks to help me. So maybe I think, Okay, well, this would be better with my own custom hooks, they'd be better with my setup, they'd be better as a function component. Let's go ahead and rewrite this thing. If I'm using component did mount component will mount though, if I'm using those lifecycle hooks, what I'm going to do is I'm going to use actual react hooks that mimic that functionality. First and foremost. Why? Well, because it's important to get this thing up and running as a function component. If you're doing that sort of transition, it's important to get it up and running. And then think about how you can restructure it. Because if you are refactoring your component, maybe you swap out all right, I did the class for a function component. Now I can take a look at these maybe non optimal hooks, like a non mount hook or something that you have, I can take a look at that. And then think about how this could be written with the use effect properly. Rather than doing it all at once. Do it one step at a time. So there's some different approaches. But the main thing is have tests branch and commit often and don't be afraid to really go radical with some things.
+
+54
+00:37:53,070 --> 00:39:00,480
+Wes Bos: Yeah, my tip for like, if you have like an ugly piece of code that just does too much is take a look at it. Obviously, if you have tests, great, maybe that's not always the case. But just go and take that huge stick that thing that bugs you the most and make sure it's working. And then just go through piece by piece and say like, what can I make into a smaller function? How can I chop this out into two other pieces? Can I put them in their own file or something like that, and just by sort of like going file by file, trying to clean it up and type, tidy it up often, then you'll start to see, ah, I'm doing the same thing over a few times. Like I just wrote for the footer of my own website, I wrote this thing that would fetch my latest Instagrams. And then I wrote another thing that fetch my Instagram stories, and then I wrote another one that would fetch my Twitter feed. And I was like, Man, this is mostly the same, mostly just going to an API, fetching data and returning it back. And that's the point where I'm sitting now and I say, Okay, I could probably refactor this out into a smaller reusable hook or whatever it is that I'm using.
+
+55
+00:39:00,980 --> 00:39:15,480
+Scott Tolinski: You know what, you're not going to like this. And that. Yeah. But the thing that gives me the most amount of confidence when refactoring my components right now, yeah, is TypeScript. And the reason I say
+
+56
+00:39:15,480 --> 00:39:16,800
+Wes Bos: what I not like that
+
+57
+00:39:16,830 --> 00:39:21,150
+Scott Tolinski: because TypeScript people are lying, TypeScript, TypeScript, TypeScript all the time.
+
+58
+00:39:21,300 --> 00:39:37,560
+Wes Bos: Oh, okay. I need to let's, let's make this clear. I'm not anti types right? Now, but people on Twitter keep saying like, Why do you hate TypeScript? I use TypeScript. I just don't have a huge project in it right now. So like, don't pay me as the anti TypeScript guy.
+
+59
+00:39:37,670 --> 00:40:11,040
+Scott Tolinski: I'm not trying to opinions but okay. The reason I say that is only because it's like TypeScript. People often say that, like TypeScript is the solution, just like every single problem. Oh, yeah. And that can get really annoying really quickly. So not to say that you specifically don't like TypeScript. But just to not I don't want to be that guy. Because now that I've like two months ago, when I didn't have my entire episode. Written in TypeScript, I was in your same boat, I've used it on projects, I was just, you know, whatever it exists, and it's cool. And now I'm like, slowly turning into one of those annoying TypeScript,
+
+60
+00:40:11,900 --> 00:40:29,670
+Wes Bos: boons of it the refactoring even like renaming a function across multiple files, that that refactor is such a snap in TypeScript versus the VS code does okay job at it, but like so much easier in TypeScript. If you have all of that stuff properly set up.
+
+61
+00:40:29,820 --> 00:40:56,520
+Scott Tolinski: I like it just for my components, complaining now. It's like, Oh, I don't have the props that I should have, or I am being passed something that I shouldn't have. And it's like me really made all my stuff more organized. Okay, off the soapbox. And while I get off my soapbox, maybe I'm going to sell this soapbox bozo on Etsy right now this person silent gun, and then if I do that, I'm I need to drag on Freshbooks. Right? That's pretty good.
+
+62
+00:40:56,960 --> 00:40:59,630
+Wes Bos: Yes, that was okay. It was
+
+63
+00:41:00,030 --> 00:41:00,540
+Scott Tolinski: Yes.
+
+64
+00:41:01,170 --> 00:41:33,780
+Wes Bos: Freshbooks is the small business accounting software that makes your billing painless. So if you are running an Etsy shop selling soap, or if you are a web developer, trying to keep track of your expenses, and money coming in, see who's paid you whatnot, sign up for fresh books and get all that cloud accounting in one spot. Go to freshbooks.com forward slash syntax and use syntax in the How did you hear about a section that is going to give you a 30 day unrestricted free trial? Thanks so much to Freshbooks for sponsoring. Awesome.
+
+65
+00:41:34,130 --> 00:44:00,180
+Scott Tolinski: So next question from creso. Which technology stack would you choose for 2020 e commerce and why? Okay, ecommerce 2020. A Yeah, yeah. So okay, it really depends on who your client is, right? If your client is somebody who's non technical, Shopify all the way best experience, most templates, biggest community, there's 1000 Shopify developers. So if they need work done, they'll be able to find somebody really quickly. So I think Shopify is sort of the winner for the easiest overall, if you're just building in their platform, if you want to get something a little bit more, I don't know developer a little bit more hipster, you can use Shopify as a back end for a Gatsby site or even a next JSA. And the Shopify API, it takes some getting used to but all in all, is pretty dang good. And they have some iframe cart stuff. So you don't have to like build your own shopping cart, you can just drop in there iframe cart. And then you can have your whole Gatsby site the way it is. So it's pretty cool. But it doesn't really give you a ton of ton of options in terms of like, giving the client those pages that they might be used to to see their orders and things, you're going to have to dive in a little bit more. If you want to go for a really cool little option here. There's a platform called snip cart. It's funny because they sponsored us a little while ago. So I don't this is they sponsored us a long time ago. This is not a paid promotion in any sort of way. But snip cart is sort of what I was talking about, like when you have the framing in with the Shopify and Gatsby thing. What it does is it basically is a ecommerce platform built for jamstack specifically, and its intention is to be a seamless experience on top of your site. And I believe it's all iframed in I'm not entirely positive. It looks really, really nice. I have not used on any projects. But it looks really super interesting. And I'm keeping an eye on as something that I would use if I was going to be building an e commerce site but Shopify snip cart, I would probably stay away from Magento, but only because of my own personal experiences in Magento. One, which Yeah, it's so funny. I one of them. I have like 70 tutorials on Magento one on YouTube. And people are always like, why don't you do Magento tutorials still, it's just like, haha, and I really didn't like it before it. I don't like it. Now I just did it because I was working on Magento every single day. So I knew it pretty well at the time.
+
+66
+00:44:00,450 --> 00:44:02,340
+Wes Bos: Adobe bought Magento
+
+67
+00:44:02,370 --> 00:44:48,780
+Scott Tolinski: Yeah, a few years. Oh, yeah. Right after Magento two came out. And Magento two was sort of this, in my mind botched a launch. I have no idea what the status of Magento two is right now. But it seemed like when they first launched Magento two it was I don't know. So like my, my experience in Magento is I have this like really weird relationship with Magento where it was the very first platform I ever built a site with a database, a MySQL database and a like PHP. So like most people cut their teeth on WordPress in that regard. But like Magento was it for me, like my first experience with PHP and databases was Magento. So I have this like very tight fondness for it and at the same regard I absolutely despise it. So it's, it's a tough balance.
+
+68
+00:44:48,810 --> 00:45:14,130
+Wes Bos: That's a funny thing that happens is that i think i think this is partly why WordPress gets a bad rap as well. It's because it is the first thing that people did, and they wrote some awful code. All things and weren't totally sure what was going on. And that's not to say that WordPress doesn't have its own faults. But it's funny when you look back at your The first thing that you ever did most people don't look back at it fondly.
+
+69
+00:45:14,160 --> 00:45:28,800
+Scott Tolinski: Yeah. And so if you're a Magento developer, and I'm totally wrong about this, don't be Don't be too mad. I haven't really looked at this in too long. It could be just fine. I see that they have a graph qL API and whatever. But I've just never been, I've never been a big fan. So
+
+70
+00:45:29,070 --> 00:46:30,780
+Wes Bos: yeah, I just made you know, those triangles. Were you allowed to pick two? Yeah, yes. Yeah. So I think online, e commerce has a triangle where you have easy control and cheap, you got to pick two, you got to pick two. So yeah, you know, it can be easy and cheap. But you don't get full control over over everything you want. It can be easy, and you can have control. And I think that's that's what Shopify is. It's easy. And you can have a lot of control. But you're going to pay through the nose, on add ons and things like that. And then if you want control and cheap, that's a building it yourself. And that's not going to be easy. You can certainly do it. Like I run my own. And I just have digital products with no shipping and no inventory. And it's hard enough e commerce and I can't even imagine doing like a real what a real store that has products and shipping and order tracking and different skews, different sizes, things like that, it certainly would have to go off the shelf or something like that.
+
+71
+00:46:30,810 --> 00:46:31,860
+Unknown: Yeah, totally.
+
+72
+00:46:32,370 --> 00:48:34,800
+Wes Bos: Uh, next question we have here is from Luke, I'm confused about developing a website for a client. I feel like most if not all clients want to take administrative control at the end of the product, and be able to handle things themselves. Does this mean i the only option for client projects is WordPress. I got really excited about making client site and Gatsby. But they would need to be a coder to be able to edit the content of the site or maintain it. Am I missing something here? Well, where's our sanity sponsorship today? Right, the thing that you're missing is, is that WordPress is a CMS. And the thing that people like about WordPress is the fact that it has a really nice back end that clients like. And they've got lots of control, lots of plugins and things like that. And then the other end of it is is where the data comes out. And then that's where you, the developer, go in and go in and start to pull the content and display it on a website. So the thing you're missing here is that Gatsby is more just the theme or it is just the theme. It's it's how you the developer, pull in the data and templated out where the data lives and how that data is controlled, is up to your CMS. So whether that's WordPress, and you can use the the headless part of WordPress for that with Gatsby if you'd like or whether that's Sanity, or any one of these other headless CMS is that you can go and listen to the entire headless CMS podcast that we did. And we listed out about 10 of the different ones out there. So that I think that's the part that you're missing. Being able to control what the site looks like, like generally Sorry, I should let me back that up. Generally, you're not coding content directly into a Gatsby page, unless you are actually a developer like I am. And I say that because my Gatsby website has paragraph tags coded right into the pages, where in most cases, you're going to stick that in some sort of CMS.
+
+73
+00:48:35,399 --> 00:49:18,030
+Scott Tolinski: I like how you said that get like the Gatsby said it's just the thing. Yeah, I think too often we forget that it is basically just like a theme template. And why would you use that over a WordPress theme template? Well, you get easy react, you get that prefetching, you get that image transition, you get some really insane speeds overall, I mean, just Gatsby sites are fantastic experiences. So that's why you would use it. But at the end of the day, like he said, it is just the theme, you need a back end, you typically are going to be connecting data to it in some sort of way. Unless, of course you are developer editing those templates yourself. So if a client needs to use it, yeah, you need to have some sort of a back in there. And don't make that backup back in GitHub. Your clients don't want GitHub,
+
+74
+00:49:18,510 --> 00:49:42,750
+Wes Bos: I have to continually tell people that. I know. People are like, Oh, why did why are you using GitHub? Why are you using MDX and whatever? Like, that's not real. And I was like, I know it's not like don't ever give your client a markdown file and GitHub. Yeah, they don't want to be it is because I'm a developer, and I want to be able to put my stuff on GitHub, but for most people, No, you shouldn't do that.
+
+75
+00:49:43,470 --> 00:51:45,450
+Scott Tolinski: Right. I know in Yeah. It's not about babying your clients or whatever it's about providing them with a good experience and being a good developer. Alright, next question is for Dan the context now. I'm assuming this is the same Dan the man as the other Dan the man but Dan asked some good questions here. How do Why use prop types and type check a component when getting the props from context instead of passing them down? So how do I use prop types to check? The big thing here is that your provider is still a component, right? In fact, I always make a provider component where it's like a function that has the whatever context provider in there, I would have my prop types in his those aren't coming in as props, though. You know what, this is an interesting question. And one that I haven't had to think about beyond the fact that if you use TypeScript, it actually is much better. Because when you have props coming into component, you have to type them in every single time and it gets totally redone with all of the types you have to write where with context, you can write your TypeScript types within that context. And it's going to just pass those into the component as their type, rather than having you to redefine the type as what it's like coming in on every single time. So I guess the problem with this question is, as I initially read it as how do you type check, and I'm thinking TypeScript makes it super easy. And now that I'm thinking about it, how do you use prop types in this way? I'm not quite sure. And I think that is maybe part of the problem with prop types, overall prop types to me, never felt as secure of a solution as TypeScript types. And I did use prop types extensively. So I don't know if I have a great answer for this. If you do have a good answer, what's the best way to type context with prop types? Here? Let me know. We'll retweet you on the show notes, I think is an interesting question. One that is solved by TypeScript. Awesome. Yeah,
+
+76
+00:51:45,450 --> 00:52:06,870
+Wes Bos: I don't totally understand this question. So I will pass on it. Next question we have here is from David, should I use the MongoDB or mongoose node module in my project? What are the differences? I don't know. I've only ever used mongoose myself. That's the way I learned it. That's the way I like it. I'll tell you. What is it Scott.
+
+77
+00:52:07,230 --> 00:52:58,260
+Scott Tolinski: The difference is, is that Mongo doesn't include any of the validation or schema stuff. So you use, you would have to bring in a third party package, like we used to use on level up tutorials, we used to use Mongo. And we did it with a schema package called Simple schema, which was great for a long time. But we eventually moved to mongoose because it offered more features essentially. So which should you use, whichever you like, if you want something that includes validation, then use mongoose. If you want to write your own validations and you want to write your own stuff there, you want a little bit more flexibility and a little bit more freedom, then choose Mongo mongoose is a very widely used package and highly supported. So I don't think it's going to be at risk of going away anytime soon. No, thanks. So I personally use mongoose. Now, yeah,
+
+78
+00:52:58,350 --> 00:53:38,790
+Wes Bos: I saw a Reddit thread unpopular web dev opinions. And the most popular one was MongoDB. And mongoose is not used in the real world. And it's just a tutorial language. And everybody's like, Yeah, thank you. And I was like, Oh, what? A No, no, yeah, the successful business over here, on mongoose and MongoDB. And I think that it gets a bit of a, I think the same thing happens with Firebase, because it's so easy to get up and running. It's pretty popular to be used in tutorials, and then people think of it as a toy, and not a real world thing. But certainly there are like MongoDB is a publicly traded company, are they not?
+
+79
+00:53:39,030 --> 00:53:42,090
+Scott Tolinski: They are a very profitable company.
+
+80
+00:53:42,390 --> 00:54:12,540
+Wes Bos: They have m MDB. So they're a publicly traded company. In my mind MongoDB the company is very much like red hat or IBM, or Oracle or like a big company like that, because they are a company that has open source software, but also, like is a publicly traded company making money off of that. So generally, publicly traded companies don't just they're not made from tutorial companies, except Pluralsight. Is 12 of the traded though.
+
+81
+00:54:13,380 --> 00:54:14,790
+Unknown: Yeah, right. Oh,
+
+82
+00:54:14,940 --> 00:54:28,650
+Wes Bos: but yeah, so it that wasn't really the question, but I don't think it's just a toy toy. There. It certainly does have downsides compared to other languages or other databases, but it is a good database.
+
+83
+00:54:28,650 --> 00:54:29,730
+Unknown: It's a good damn
+
+84
+00:54:30,060 --> 00:54:36,270
+Wes Bos: database. It's a good pop is. What's that mean? Yeah, they're good. They're good. Dogs Can't
+
+85
+00:54:36,690 --> 00:54:39,660
+Scott Tolinski: I don't know that. But it sounds cool. Good. I like dogs.
+
+86
+00:54:40,110 --> 00:54:45,210
+Wes Bos: They're good dogs. Brent. It's a good database. You don't know that meme? It's
+
+87
+00:54:45,210 --> 00:54:53,640
+Scott Tolinski: good database. A good I don't know that mean, I would consider I would I'm pretty beamed up to I mean, I know the means I'm with the names. Alright, let's
+
+88
+00:54:53,640 --> 00:55:30,600
+Wes Bos: do a little meme explainer right here. So yeah, so there's this Twitter account. called dog underscore rates. And he always rates them like 11 out of 10. Great dog, like everything is amazing. And there's no bad dogs. And some guy named Brant says your rating system sucks. You just changed your name to cute dogs. He replies, you give every dog elevens and twelves. It doesn't make any sense. So he replies at branch, the good dogs, Brent. Databases.
+
+89
+00:55:31,050 --> 00:57:23,100
+Scott Tolinski: This is good database. That's all good. That makes sense. Yeah, no, I mean, all this stuff is whatever you're proficient in, you know, can be effective. And certainly you can scale to have a very profitable business with MongoDB. So next question here is from Adrian, this is the last question here, we have a hefty hefty potluck for you here today. So last question from Adrian, he says, Is it bad practice if I mix up react bootstrap and material UI in one react projects? Yes, it's a bad practice. And let me tell you why it's a bad practice, besides the fact that both of those libraries have very specific, you know, UI ways of doing things that are very specific to their design system. So if you mix one with the other, what you're going to get is a Frankenstein looking thing, you're going to have, you know, an arm sticking out of your website and the leg sticking out over here, you're gonna have some bolts in the neck of it, and it's going to probably stand up and move around fine, but it's going to be Frankenstein together. You don't want to do that. Number two, part two, here's the here's the big, big meat of this. Here's the big meat. The big meat is one big old kielbasa. It is too, too large, in size, right? You're adding so much additional bloat via CSS, JavaScript to whatever, especially if these are react bootstrap react material UI, you are adding major k B's major KB toys to your site here. And we don't want to do that wherever you can. In fact, this is one of the reasons why I don't use frameworks at all, because honestly, they usually add a little bit of extra bulk to your project that it might not need. So if you were using one of them, stick with one of them, you can do every single thing you could possibly need to do in one of them by using it or extending it. There is absolutely no reason to use both of them.
+
+90
+00:57:23,430 --> 00:57:38,130
+Wes Bos: All right, I have nothing to add to it. Scott nailed that there. Let's move on. To some sick pics. I am going to sick pick a new Netflix series that everybody has been watching called Tiger King. Have you have you seen this yet? Scott?
+
+91
+00:57:38,460 --> 00:58:26,340
+Scott Tolinski: Yeah, it's funny. I listened to a podcast that covered Joe exotic before wonder he did a podcast before this whole thing went down before any of this stuff happened. They were like covering him as being like, Alright, this crazy guy did something crazy again. And so I had him I knew about him. And then I listened to the wondery podcast. So by the time that the tiger King came out, I knew the whole story. I already didn't know any of it. And we watched, I think the first like all of the episodes, but one and Courtney was like, I can't watch this anymore. And I can allow the animal abuse. So we have not finished it. But we watched it and I mean, I thought it was I knew the story. So like the story wasn't riveting. Oh, yeah, production was certainly great. And seeing some things like Carol Baskins husband wearing the tiger collar at their wedding thing like that was pretty shocking.
+
+92
+00:58:27,510 --> 00:59:14,400
+Wes Bos: Unfortunately, now, shotgun biting and the entire thing up, what I'm gonna say is, I think the backchannels is just as interesting as the actual thing itself. Like this podcast you talked about, I'm gonna go listen to that. David Spade has a YouTube channel where he interviews every single person he's like the Oprah of Tiger King ease, and I didn't know that's super interesting to hear. Like people's like they're able to finally like talk after it's all come out and they're able to give their own thoughts as to what happened and very interesting. So check it out Tiger King as well as backchannels I'm sure there will be a lot more I'm sure there will be an entire podcast that just dedicated to this Netflix series.
+
+93
+00:59:14,790 --> 01:01:02,370
+Scott Tolinski: Yeah, well the Wonder one does a good job because it's I think it's a little bit longer and it's wondery they're willing to dirty john and all those so they they're like very tuned at this style of podcasts. They're like, you know, it's funny because like podcasts are this this whole medium and there's this like type of podcast that is seen as maybe almost like the HBO of podcasts right? Where it's like always going to be high quality stuff. Yeah, no one they put it out but it might not be for you. And it's so funny that I've like gone back and listened to some of these like must listen to podcasts like up and vanished and some of these other ones that are like essential podcasts in the genre. And I like walk away always been like, yeah, that was really good. Like they did a good job on that. And you know, I put off a lot of stuff like that. So Wonder one check it out. It's really good. My sick pick is going to be murder. Murder party two on the jackbox six jackbox party pack. This is one of those things that you can now buy online and play over zoom we've been doing that I mentioned in the last show because we own it on switch. So I used my cam link to hook up the switch and stream my switch over zoom. Which is pretty sweet. I never now I feel like I could be a game streamer. Here's me playing Animal Crossing as I'm currently speaking. Yeah, I'm doing I'm doing that right now. I'm building a large fenced in private beach. And none of my residents can use the beach but me. So no, I'm gonna start I'm going to start doing them either. Right? Okay, getting off topic here. jackbox party pack. You can play it online. Now. If you buy it over steam. It's really super cool. It's a game you play with your phones. I specifically am recommending the murder party to it is just a quiz game a bunch of fun questions. My whole family has been drinking gratuitously and playing it online. That's
+
+94
+01:01:03,510 --> 01:01:21,420
+Wes Bos: awesome. Shameless plugs, I'm gonna shamelessly plug my beginner JavaScript course at beginner JavaScript comm if you want to brush up or slam dunk the fundamentals, or you're brand new to JavaScript, this is of course to take Use coupon code syntax for 10 bucks off, beginner JavaScript calm,
+
+95
+01:01:21,840 --> 01:02:22,500
+Scott Tolinski: cool, I am going to plug my latest course, which is called custom react hooks. And custom react hooks is a really cool course because what we do is we talk a little bit about the process of writing your own custom hooks throughout the course we're constantly writing custom hooks, so we don't know how many it is we may be right, you know, 15 different custom react hooks over the course of the video. But we talk a little bit about when where why how, what you do to write them why you would use certain techniques when to use certain other techniques, commonly used patterns that you'll see in other people's custom hooks. It's really stinking cool, and it's actually on sale for 50% off right now that's not something I typically do but with the current situation, it is 50% off and if you use the coupon code syntax, you'll get an additional 10% off so it's basically free. So head on over to level up tutorials COMM And I'll have the link in the description you can either sign up to become a pro subscriber and get access to all that and more or buy this course outright. Allah cart.
+
+96
+01:02:22,979 --> 01:02:31,020
+Wes Bos: Beautiful. Alright, thanks for tuning into the potluck and we will catch you on Monday. later peace face.
+
+97
+01:02:32,850 --> 01:02:42,570
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
