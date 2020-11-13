@@ -1,0 +1,108 @@
+1
+00:00:00,359 --> 00:00:22,320
+Unknown: Monday Monday Monday open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob and Scott El Toro.
+
+2
+00:00:25,950 --> 00:02:18,690
+Scott Tolinski: Oh, welcome to syntax in this hasty treat, we're going to be talking all about CSS Grid level two, aka CSS Grid with sub grid. Now, I'm very excited for sub grid. Wes is very excited about sub grid. And we're gonna be telling you a little bit today about why you should be excited about sub grid and the changes improvements coming to CSS Grid. So my name is Scott Tolin ski. And with me, as always, is Wes Bos. Hello, everybody. Hey, this episode, this hasty treat is sponsored by century. Now you can head on over to sentry.io. And check out everything that Sentry has to offer. They are the best place to solve your bugs. I had a really interesting bug this weekend actually, in which a an edge case of certain people were getting declined notices on their credit cards when they weren't actually declined. And this, let me tell you century's interface made it so easy for me to determine how people were having this bug who was having this bug how many people were having this bug, right, I could tell if it was an emergency situation, or just a, you know, a little situation. And sure enough, it was an edge case here. And I could figure that out. But century absolutely saved my bacon this weekend, being able to gain the visibility into these issues. So Sentry tracks all of your bugs issues, keeps them all in one lovely place, and allows you to make sure that they are taken care of correctly. If you want to sign up for Sentry and get two months free, you can hand that over to sentry.io. and sign up, use the coupon code at tasty treat all one word, all lowercase, tasty treat. And again, you'll get two months free of century it's something I highly recommend. It will save your butt.
+
+3
+00:02:18,810 --> 00:04:17,880
+Wes Bos: Awesome. Also century is hiring. I said I'd shout this out. They are hiring a whole bunch of positions. But the one we're shouting out is the developer evangelist. So if somebody what is the developer evangelist, it's a you're a developer, but you're sort of public facing for the company, you're creating video tutorials, speaking at conferences, being on Twitter, and just helping people out in general, I was thought that was a pretty cool job to be a developer evangelist. So they are looking to hire someone for that they are headquartered in San Francisco. But Ben did mention that remote is possible, especially as a developer evangelist, I think you do a lot of flying, going to various conferences and whatnot. So seems pretty cool to work there. You get a GIF when you are hired. They like create this hilarious gift for you when you get hired, which seems cool. There's other minor stuff like medical coverage, and dental and minor stuff like that. So just check it out. We'll link it up just century.io forward slash careers. If you're interested in applying for that we should get some syntax Pham, working at century. Nice. All right, so let's talk about CSS Grid, or level two or CSS sub grid as it's called. So we've had CSS Grid in the browser for probably about a year and a half now, it's starting to become extremely popular, people are starting to implement into their own applications because of the browser support. And one sort of thing that we run into is this problem of being able to align sub sub items of a grid face on the parent grid. So we're, this is gonna be a bit hard because it's very visual. But we're gonna use the the concept here of a grid, a grid item. And then a, we'll call the the third item that is inside of the grid item, a grandchild item. So you have the main grid, you have your items inside of that. And then in each of those items, you might have more sub items or more grandchildren items. So yeah,
+
+4
+00:04:18,450 --> 00:05:09,950
+Scott Tolinski: I like to think of it as like you have the grid, right. And you have your children, right, which adhere to that grid, but the children inside of that child need to adhere to the same parent grid right now as you can't do it. Like this is about the, like you said the grandchild right, that needs to adhere to the larger grid. And this is like one of those things that you might not understand the benefit of it until you see some really practical examples. And we'll give you some links, some blog posts and stuff to look at to see some nice little visuals explaining some of these use cases. But again, I like to think about it's like you got something nice Did that needs to adhere to a larger grid, there's some really, really cool things about CSS Grid level two or sub grid that we will be getting into in this episode stuff I'm very excited about.
+
+5
+00:05:09,990 --> 00:07:15,600
+Wes Bos: Yeah, if you're at your computer right now, head over to the show notes at syntax FM and click through to Rachel Andrew wrote a blog post on her own website, as well as a blog post on smashing mag. And she's obviously one of the developers defining she's worked for, like eight years on defining what CSS Grid is, if you google anything, CSS Grid, her stuff is going to come up. So we're gonna attempt to break it down. Why do you need it? What is the problem? And how does it actually work? So here's the visual problem that we have, like Scott said, It's when your sub items or when your grandchildren items need to adhere to the parent grid currently, that's that's not possible. So if you have like a layout of cards, where you've got three cards across this example that they have in smashing mag, you have a grid with three columns, and each of those columns has a card. And then inside of that, each of those cards, you might have a heading, you might have a footer, and you might have a content area. And you want all of those heading content areas and footers to align with each other, the problem that you have is that you could give your headers like a fixed height, where you just like figure out, oh, here's the biggest one, and you give them a fixed height, and then they all look the same. But ideally, you don't want to give your items a fixed height or a fixed width, you want to just let the content decide. And you want all of the cards headings to be exactly the height of the largest card item, item, but they're not related in any way. So this idea of sub grid is that you can have correspondence between all of the grandchildren items with the sort of parent grid that we have. So that's helpful for card layouts, that's helpful for whenever you have like, I've often had an option where like, let's say you have a list of buttons. And then you have like you have three buttons, and then maybe you have two additional buttons, but they're wrapped in a div. And that becomes a problem because you know that the grid is only between parent child and not parent grandchild. So sub gradable will sort of alleviate this issue that we have.
+
+6
+00:07:15,780 --> 00:08:29,490
+Scott Tolinski: Yeah. And the coolest thing about sub grid, in my opinion, besides what it does is how easy it is to use. Because you have this layout, right? Like you mentioned this card layout. And you might be thinking like, Well, how do I how do I attach this thing to the parent? Well, all you have to do is define either or both of the Well first you have to declare that the child is a display grid itself, right. And typically, that just creates a new display grid. And then you have to give it some grid template columns and some grid template rows. But with sub grid, you can take either or both of those and just say, hey, the grid template columns and rows are based on sub grid. So the property value is just sub grid. And then all it does is it adheres to the larger parent grid to get its values. And it's going to stay in line with that parent grid. So you don't have to redefine the fractions, you don't have to redefine the column width, you don't have to redefine any of that stuff, simply by having the value of subgrid. It just looks upward in the chain to what that grid is. And it's going to adhere to it. It's it the syntax for it is so dang elegant and beautiful. Yeah,
+
+7
+00:08:29,490 --> 00:08:44,370
+Wes Bos: I thought it was so cool. Because you don't have to define your grid item. You don't have to define like a span or a start or stop on that. But you can just then go one level deeper and define a span a start or stop on that sub item.
+
+8
+00:08:44,460 --> 00:09:05,070
+Scott Tolinski: And you can mix and match I mean, so you can use you can buy this giving it display grid, you can tell look columns to be sub grids. So the columns will add here to the parent grid. And you can tell the rows to be its own thing with its own row width or its own row height. Height. Yeah.
+
+9
+00:09:06,120 --> 00:09:09,170
+Wes Bos: blanking on the word heights how to rows work. Yeah, yeah.
+
+10
+00:09:10,400 --> 00:09:18,900
+Scott Tolinski: You can define all the the totally separate, completely separate grid while still maintaining that sub grid for the columns. That's, that's superduper. Cool.
+
+11
+00:09:19,110 --> 00:10:05,640
+Wes Bos: Yeah, that's, I think this is going to be extremely helpful in a couple situations first, when the designer designs that thing, and you're like, well, that's not really possible. Now you can and then the other thing that is going to be helpful is when you use like a CMS that gives you the HTML Yeah. And it dumps out and often especially things like WordPress, Drupal, whatever, they will just dump out some HTML for you. And your hands are tied. You can't like move things up a level and have them as grid items. Now you can one thing I didn't find out and I looked for this for quite a bit is how can you can you sub grid more than one level deep meaning that if you have items nested more five, six levels deep. Can you sub grid sub grids sub grids sub grid?
+
+12
+00:10:06,240 --> 00:10:07,980
+Scott Tolinski: Let us know. I don't know, either.
+
+13
+00:10:08,010 --> 00:10:15,690
+Wes Bos: I don't think you can. But I like all of the examples I saw were just three levels deep. Yeah, but maybe I would love to find that out.
+
+14
+00:10:15,810 --> 00:10:54,510
+Scott Tolinski: Yeah, please let us know. We will tweet you out. If you have the the answer for that one. It is funny. You mentioned the CMS thing. We used to have this there's a long running joke at one of our agencies, because we did a lot of Drupal and Drupal loves to give you a lot of Dibs, just a lot of divs. And we used to be like, Well, why don't you add a class to this div over here. And then we can do this. And then the other dev would be like, oh, because it's Drupal? Like Okay, okay. Okay. Well, why don't we add this and this and this? Because it's Drupal? Oh, okay. Okay. So, like, I love that the the CSS is going to get better in a way that your hands will no longer be tied on some of this stuff.
+
+15
+00:10:54,570 --> 00:11:59,550
+Wes Bos: Yeah, I think back to all of the JavaScript I used to write was just doing things like equalizing columns where you found the max height of three of them, and then, and then every resize, you had to like, change it. And that's no more you don't have to write any JavaScript for that. It can all be done with CSS Grid and CSS sub grid, we'll talk real quick about browser support. It's not in any browser, yet. This is still a a Working Draft, the last it was updated was October 2018. It's looking like it's nearing completion, what we will probably start to see next as this thing, as the spec is wrapped up, we'll start to see browsers actually implemented behind a, a feature flag. So you have to go in and turn it on to play with it. And then and then once that's out, it'll start push it. So it probably is, at least I would say probably at least a year out. This is just me, looking at what it's at right now, before we can actually start using in the browser, maybe even longer if you want to wait for browser support. Yeah, but I also did see somebody somebody implemented it with Houdini, which is so cool. You could
+
+16
+00:11:59,640 --> 00:12:01,080
+Scott Tolinski: it's almost like a polyfill. Yeah,
+
+17
+00:12:01,110 --> 00:12:04,200
+Wes Bos: yeah. poly filling CSS that's not available yet.
+
+18
+00:12:04,380 --> 00:12:42,450
+Scott Tolinski: Yeah. Huh. Huh. What is it? I think Rachel says in her smashing mag that it's like, a year out ish. And that's in July 2018. So I would love, love, love to be able to start working on this in 2019. And, you know, I, again, I think there are a lot of solutions. There's the areas of the level of tutorials website that I look at, like specifically like the products listing, and maybe the tutorial cards, and I'm just thinking sub grid would be absolutely perfect for me right now. And so I'm, I'm ready and waiting. So after listening to this episode, I hope you are ready and waiting as well.
+
+19
+00:12:43,530 --> 00:13:06,510
+Wes Bos: I think also, electron apps are going to benefit from this because a lot of people build, like I use a couple electron applications where the interface is very complex. And I can imagine that they would be really helpful to build these complex application interfaces. And the beauty of that is that you can just as soon as it hits electron, you can start using it. You don't have to wait for all the different browsers to catch up. Very
+
+20
+00:13:06,540 --> 00:13:08,610
+Scott Tolinski: Yeah, that's a big plus, I never thought about
+
+21
+00:13:08,640 --> 00:13:36,870
+Wes Bos: Yeah, so I'll recommend you check out this smashing mag article, Rachel goes into talking about how you can also name the lines as well, you can name the lines on your main grid. And then because the way CSS Grid works, you can also you can give a lines, multiple names, as many names as you want. We've done that in a couple of my CSS grid.io tutorials. But you can also name the sub grid lines as well, which is pretty nifty. I thought that was pretty cool that you could do that.
+
+22
+00:13:37,079 --> 00:14:01,500
+Scott Tolinski: Yeah, I love that just simply by declaring that X, Y, and Z or your your rows or columns, in particular, are in subgrid, that you can be sure that when you're giving it specific values, it's always going to go up to the parent. I think that's it just seems like it just works. And I can't wait to use it because it again, it's just exciting. I feel Yeah, this entire episode is just like, I can't wait. Sounds great. Yeah.
+
+23
+00:14:03,000 --> 00:14:27,270
+Wes Bos: Yeah, it's pretty. It's also like you can read through the entire spec in probably 20 minutes. It's Yeah, it's pretty simple. Like, I think we're done the podcast. Yeah, that's it. It's a pretty simple thing. Obviously, they've taken lots of time to make sure that they absolutely nailed it. This is not an easy thing. layout in general is not an easy thing to spec out. But I think once it comes to just us using it, it will be definitely really easy to use. Yeah,
+
+24
+00:14:27,270 --> 00:14:31,170
+Scott Tolinski: absolutely. Cool. Do you have anything else on subgrid CSS got
+
+25
+00:14:31,170 --> 00:14:35,250
+Wes Bos: it for me. I'm excited for it. And that's it. Awesome.
+
+26
+00:14:35,490 --> 00:14:50,940
+Scott Tolinski: Cool. Well, I look forward to it as well. And All right. Well, that's it. We will see you on Wednesday for a full on tasty treat piece, please. Head on over to syntax.fm for a full archive
+
+27
+00:14:50,940 --> 00:14:57,660
+Unknown: of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
