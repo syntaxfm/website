@@ -1,0 +1,108 @@
+1
+00:00:00,359 --> 00:00:01,350
+Unknown: Monday, Monday,
+
+2
+00:00:01,350 --> 00:00:02,160
+Monday,
+
+3
+00:00:02,160 --> 00:00:21,660
+open wide dev fans yet ready to stuff your face with JavaScript CSS node module, BBQ Tip Get workflow breakdancing soft skill web development. Not hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob and Scott Taylor.
+
+4
+00:00:23,610 --> 00:00:24,480
+Totally at ski.
+
+5
+00:00:25,950 --> 00:00:52,890
+Scott Tolinski: Oh, welcome to syntax and this Monday tasty treat. We're gonna be talking about Gatsby. And I'm excited. I love Gatsby. In fact, I had one of the first courses on Gatsby in the entire YouTube. So I've been on the Gatsby train for a long time. A big, big, big fan. I know Wes is a huge fan to just built his site in Gatsby. My name is Scott kolinsky. I'm a developer from Denver, Colorado, and with me, as always, is the West boss.
+
+6
+00:00:52,950 --> 00:00:55,229
+Wes Bos: Hey, everybody. Hey, Wes.
+
+7
+00:00:55,440 --> 00:01:54,750
+Scott Tolinski: This episode is sponsored by one of our longtime sponsors over here. And as Log Rocket now I'm talking about Log rocket.com. Now, you're gonna want to check out Log rocket.com forward slash syntax, get 14 days for free of Log Rocket. Now, what is Log Rocket? Well, it's the service that allows you to see your bugs and errors happening, as they happened in a video session or replay. It's very, very cool. It's one of those services that you would have wished you would have had in any project you are doing because anytime anything goes wrong, you often ask, maybe you look in your bug tracker to see maybe what browser or what what some of the code was that hit it. But this actually gives you a video of the event happening. Imagine being a detective and having a video of the murder take place. That is really what this is doing. So head over to Log rocket.com forward slash syntax and get 14 days for free and check it out. Very, very cool service. So Wes, gets me tips.
+
+8
+00:01:55,050 --> 00:03:48,000
+Wes Bos: So these are just going to be things that after building a couple Gatsby websites or little tips as the title set. So the first one we have here is to make a reuse reusable SEO component that sets all of your defaults. So what I found myself doing was on each of my pages, I would use react helmet to set all the head metadata and you in there, you'd have your Open Graph, meta tags, Twitter specific meta tags, you'd have SEO meta tags, and like I find myself using the same strings and images, maybe two or three times Oh, for it. And then I also found for pages that I didn't specifically have anything special for that other than the title of the page, then I would find myself in like, I'm not sure what the setup. So what I do is create an SEO component that in turn uses react helmet, and then set all of your defaults in there. So your default title, React helmet will also allow you this design I didn't know correct helmet will allow you to set up a title template. So if all of your pages are like about dash Wes Bos uses dash Wes Bos, like everything is dash, Wes Bos, Rackham, it will allow you to set a template for that. So you only have to pass in about and uses or the name of the blog post or the name of the page. And then it will render that out for you. So set a whole bunch of defaults, and pass in titles and images and thumbnails and stuff into your SEO component. And then finally, allow yourself to pass just additional meta tags that are spread into the SEO components. So meaning that you can also pass additional tags like you would to react helmet and then those will just be put later on in your SEO component. And those will overwrite anything that you want to overwrite.
+
+9
+00:03:48,660 --> 00:05:00,990
+Scott Tolinski: Yeah, I think that's important thing is that that the React element will overwrite. It's not like you can only have one of them. So my general strategy personally for Rick toman is to have one at the sort of app level that is just like a blanket covers every page, right? And then as we go, I make them more specific based on different trees of the application, whether or not it's like this layout, or this layout or whatever. But as these trees go down, you can make your react helmet as specific as you want. Fantastic. That's a, like a low key, super duper, duper constantly useful, like every project kind of component that is react helmet. So next one is going to be when in doubt, stop the build and restart too many times. I think people had issues where maybe a plugins not being recognized, or maybe they goof something up in the config. Either that or Gatsby is just behaving oddly, not what they're expecting to have happen. Now, because Gatsby sometimes needs a restart here where you have to cold stop the build so that the node processes actually rerun. Now that's what you got to do. So for me, when in doubt, to stop the build and restart and it looks like you have a little additional tier two.
+
+10
+00:05:01,320 --> 00:06:41,610
+Wes Bos: Yeah, just sometimes Gatsby gets into a weird space. And you just gotta start over cash involved. And the reason why Gatsby build is so insidious because there's a massive cache. And sometimes it gets a little bit weird. So you got to just clean it out. So just run Gatsby clean. I use sometimes cause far too just to nuke your node modules folder, delete your package, lock file, re NPM, install and restart. And even though that sometimes takes a couple minutes that will often fix some of these weird issues that comes along. Next one we have here is to use ES modules everywhere. So one like weird thing about Gatsby is that Gatsby node and Gatsby, what is it? It's Gatsby node, Gatsby config, and Gatsby SSR. Those are all done in common j s, because they're, they're node files, right. And then it's annoying if you want to share those with Gatsby browser or anything like that. And also, like you're writing ES modules in react, but then you have to write common j s in the config files. And what I've been doing for almost a year now is using ESM. And ESM will allow you to mix and match common j s and s modules. So I've just been writing as modules everywhere in every file and sharing them amongst the files. And it's great. There's even look at my Wes Bos repo on GitHub comm Ford slash Wes Bos Ford slash Wes Bos for an example of how that works. I won't say the code here. But until node is done with ES modules, and Gatsby will allow us to use the ES modules, this is a really good solution.
+
+11
+00:06:42,060 --> 00:08:04,950
+Scott Tolinski: Cool. And mine actually kind of goes along with this, which is to run the build locally to troubleshoot production issues. Because this the reason why this goes along with this in some regard is that I think there's sometimes when people first start writing this stuff, they might not have even written in the Node JS code specifically, or maybe they're just thinking about react, right, this is a front end thing, this is a front end result. And what you don't often think about is, Hey, there is no things that are happening and taking place. And at the end of the day, your entire application needs to compile in node j s, right? Because it's, it's running your that's how it generates the static build is that it runs the site and node and didn't create actual HTML files from that. So my tip here is Do not forget to run the build, and then serve the build locally as a production build before deploying, because sometimes people, they get all done with their project, and they just say, Okay, I'm going to get command brought up to Netlify. And then, whoo, it's not working on Netlify. And now now, I think it's a problem with Netlify. Little Lou, I know that I wrote some code that's maybe I used to like a window.or something, and I broke the whole thing. These are way easier to solve ahead of time on your local machine, without having to worry about whether it's being hosted or whatever. So just make sure you run that build before you push it up.
+
+12
+00:08:05,370 --> 00:08:56,610
+Wes Bos: Next I have is sort of like two options. So Gatsby doesn't have any specific layout. Any ways to do a layout, you just have to create your own layout component and wrap your components in it. So my first tip and my second tip are going to contradict each other. So first one is wrap your layout automatically in and Gatsby SSR. And Gatsby dash browser, those two file files will allow you to hook into a wrap page element and wrap root element. I think what i've i've read is wrapped page element is inside of your providers and wrap root element is outside of your providers. So if you're doing layout, you would want to put them in wrap page element. And that will every single page that you have will be wrapped in this specific layout. And there's no need to manually wrap every single page in that.
+
+13
+00:08:57,290 --> 00:09:38,190
+Scott Tolinski: So the the whole rap page element and wrapper element things are definitely topics that that seems scarier than they are at first. In fact, all of the additional sort of little API things in Gatsby are scarier than they are than they actually are. So learn that stuff. You know, it gets B has a page was that just like the in their documentation. Let me see if I can find the exact page. If you add to Gatsby site, and then you click on Doc's. And then you click on a Gatsby API, learn all that stuff. There's a lot of really useful in there, it's going to come in handy. So even if you're just building something basic, you want to get better at Gatsby asking how to get better. That's how you get better. You learn this stuff.
+
+14
+00:09:38,300 --> 00:11:03,600
+Wes Bos: Yeah, just read all of it. And then that gives you a headspace of what are the possible lifecycle methods that you can hook into. And they will definitely come in handy when you need it. So my other tip is the flip side of that is consider just manually adding the layout component to each page if you want that. So if you don't want everything single page to have a layout like I ran it situation where, like if I want Wes Bos calm forward slash, like a micro site or a custom custom URL that's still within my Gatsby site. And I don't want it to include the entire nav and footer and everything that is in my layout. If that's the case, then there's nothing wrong with just manually wrapping a layout component on every single page where you need it, and then just not doing it in the rest. I'm just thinking about that, you know, one like really cool thing I like about that is, I once accidentally wrapped my website twice in a layout component. I did both of the ones I talked about, and it worked. Like I just had the whole layout twice. And I was like, I would never have worked in WordPress land. Because the WordPress land is like the the logic of setting up headers and all of that and the template are so tightly bound. And in Gatsby, it's just what it looks like. And I could wrap it six times if I wanted and have six navigation, obviously don't want to do that. But I just did that by accident. Haha. That's really cool.
+
+15
+00:11:03,960 --> 00:11:15,150
+Scott Tolinski: Some people would see that as a fault, because they're saying, well, you're using this incorrectly it should break. I don't know if I'm of that mindset. But I definitely think that is this is like a positive in mind. Yeah,
+
+16
+00:11:15,150 --> 00:11:20,220
+Wes Bos: you can put your nav wherever you want, if you want it to put your flexibility. Yeah, it's pretty cool.
+
+17
+00:11:20,670 --> 00:12:56,580
+Scott Tolinski: Yeah. Another one here is long the lines of layouts. Now. layouts and as they pertain to animations in in Gatsby are kind of difficult. We all know, I like a good animation. I like to make animations. But Gatsby the way Gatsby and next JS do things with their their routing based is, unfortunately, it requires like basically most of your your page to mount and unmount on page change, right, which is one of the reasons why they have the whole v one, the layout plugin or whatever from the old Gatsby version layout, because people like that way of doing things. But now we have to use this whole wrapper element in rap page or rap page element. And those are the types of features that you're going to want to use if you're getting into interface animations and transitions. So just throwing an animation or an interface transition into your page or component is not a recipe for success, you kind of need to orchestrate it a little bit with Gatsby considering that there's going to be time to unmount and things like that. So if you want to have any interior pages or elements animate themselves, you kind of have to orchestrate it from the root element or page element layout wrapper that you've created is something that is not going to get unmounted or mounted on everything. That way, you can maybe throw in a little delay here while the internals animate out in some sort of custom way. Or you're throwing on maybe like a frame or motion animated routes kind of situation that is taking place on the container itself.
+
+18
+00:12:57,150 --> 00:13:49,200
+Wes Bos: good tip. My next one is one of these hooks that Scott was just talking about his use the on Create Page to pass context to the layout. So on Create Page is a hook in Gatsby and when your site is building, it will call that allows you to step in, and you can do whatever you want. And in my case, I wanted to pass some additional context to my layout.js component. And what I did there is I took the pages path, you have access to the whole page and all the data and everything like that, and I just checked if the path matched in my case, it was thumbnail. And if it was a thumbnail page, then you can just say page context dot whatever. And that allows you to you ever need to need to send some additional data over to your page, you can do that via the onCreate page hook.
+
+19
+00:13:49,620 --> 00:14:17,790
+Scott Tolinski: I think those hooks are largely underutilized, you know, under under utilized as in like, there's a lot more advanced functionality, you can accomplish fairly easily with them as long as you just land them. So yeah, good. One. Last one for me here is that you don't have to query for everything. You know, it's funny, I think is is that the example that shows that you're querying for metadata, I'm like getting it confused with the others content or grid, some and whatever.
+
+20
+00:14:18,000 --> 00:14:41,880
+Wes Bos: Like, that's what they show you as like the first introduction to writing queries is type this text into this file, then query that exact same text from the thing. And I get that they're showing you a very simple intro to sourcing data. But it seems kind of silly not to, to have to just type text into a file and then it goes into the API and then and then you got to quit.
+
+21
+00:14:42,840 --> 00:15:31,800
+Scott Tolinski: And I think sometimes people get the false impression that's like, the you got to do that stuff. But to be honest, if something is output only a couple of times or it's not going to change the name of your website, or it's hard coded text, or maybe it doesn't need to come in from an API, a lot of these sites that we're building with Gatsby They don't have a CMS back end, it's just a site write code that stuff, there's no reason not to. If your site doesn't need a person that modifying and updating the content, I would not reach for a CMS back end, right, I'm not going to reach for contentful, or, or WordPress, or any of these things, because it gives you not only like a ton of overhead, and all sorts of ways, it just makes the entire process that much more complex. So if you don't need that content editing, keep it in code, it's going to be way easier for you.
+
+22
+00:15:32,130 --> 00:16:08,760
+Wes Bos: last tip I have here I've said this before, use if you've got lots of images, and you're finding your build times are very slow. You can use Gatsby parallel runner, and that will offload the image generation to Google Cloud. And that will make it much faster. And that's why you saw my own site. And there's also like cloudinary, sanities, image all of those work with the Gatsby images as well. So that's that's an option as well. And if that's the case, you don't have to generate any images on build time. You just, they're just done on demand, which is pretty nifty. nifty. Yeah.
+
+23
+00:16:08,760 --> 00:16:09,330
+Unknown: I love this. This
+
+24
+00:16:09,330 --> 00:17:06,830
+Scott Tolinski: is a lot of great tips on one of my favorite platforms, Gatsby. And if you don't know Gatsby, give it a give it a real hard look. If you're just a react novice or any of those things, don't worry, because then you don't have to know a ton of react to get a very fast site out of Gatsby. It is I always have these funny conversations with people where they're like, I just don't understand why you would use a JavaScript framework to build a site. And when you could do it with an HTML and JavaScript like, Well, you see, have you seen how vast these these Gatsby sites are? And honestly, you get so many extra features. Beyond that HTML doesn't have right you get this ability to change page routes. Without having a full refresh. Imagine that right? So Gatsby just makes some of these things so incredibly easy. I think I could probably spin up a Gatsby site faster and quicker than I could most anything else. So big, big fan of Gatsby love these tips. Maybe we should do another one of these sometime.
+
+25
+00:17:07,530 --> 00:17:14,730
+Wes Bos: Yeah, yeah. Let us know what your tips are. Tweet us at syntax FM. I think that's it for today and we will catch you on Wednesday.
+
+26
+00:17:15,080 --> 00:17:15,590
+Unknown: Please
+
+27
+00:17:17,400 --> 00:17:27,150
+Scott Tolinski: head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
