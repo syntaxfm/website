@@ -1,0 +1,492 @@
+1
+00:00:01,319 --> 00:00:04,590
+Unknown: You're listening to syntax, the podcast with the tastiest web
+
+2
+00:00:04,590 --> 00:00:05,760
+development treats out there,
+
+3
+00:00:05,760 --> 00:00:10,530
+strap yourself in and get ready here is got to live ski and West boss. Welcome
+
+4
+00:00:10,530 --> 00:00:53,189
+Wes Bos: to syntax. This is the podcast with the tastiest web development treats out there. We've got an awesome one for you. We've actually done a lot of coding heavy shows lately. So we thought we'd switch it up and give you a soft serve. Scott came up with this idea, a soft skills episode called the soft serve. And rather than focus on one specific soft skill, we're just going to go through some a couple different topics, productivity, finishing projects, planning, communication, career and skill advancement, just to sort of touch on things that we've learned over the last couple of years and might help you out in different areas of your life. So it's kind of like a potluck in that we're going all over the place. But it's a soft serve potluck.
+
+5
+00:00:54,299 --> 00:00:55,830
+Scott Tolinski: And there's nobody brought anything else.
+
+6
+00:00:55,860 --> 00:00:57,930
+Wes Bos: It's just yeah, no one brought anything. So we brought
+
+7
+00:00:57,930 --> 00:01:01,080
+Scott Tolinski: ice cream maker, and we're just pulling it pulling the trigger on it.
+
+8
+00:01:02,909 --> 00:01:12,090
+Wes Bos: Today, we're sponsored by century and fresh books. We'll talk about them partway through the episode. I've always already introduced Scott. But how are you doing today? Scott?
+
+9
+00:01:12,360 --> 00:01:19,140
+Scott Tolinski: I'm doing pretty good. Yeah, just just hanging out. Yesterday was my birthday. So I am 30 years old now. birthday
+
+10
+00:01:19,730 --> 00:01:21,360
+Wes Bos: parties are very close together.
+
+11
+00:01:21,540 --> 00:01:23,610
+Scott Tolinski: Yeah, no, that's weird. Yeah,
+
+12
+00:01:23,610 --> 00:01:24,390
+Wes Bos: I know it is.
+
+13
+00:01:24,390 --> 00:02:09,409
+Scott Tolinski: It is funny. I have the same birthday as my dad. So that's always a lot of fun. You know, we can do happy, same birthday. And then some some jerk decided to really test my security in my site and try 20,000 stolen credit cards, changing his IP address. So IP banning wasn't working, you know, obviously, it was banning him. And he was just changing. And then email banning not working, just changing the email. I don't know if he has a host of stolen emails, or whatever this dude's deal is, but none of that charges got through. So it's like our fraud tools are good enough to catch all this stuff and ban him. So like, what does he get out of it? I don't get it. Just trying to ruin my birthday, I guess. But yeah, that's how it is.
+
+14
+00:02:09,719 --> 00:02:11,490
+Wes Bos: That's a bummer. I'm sorry. That sucks.
+
+15
+00:02:11,940 --> 00:02:15,500
+Scott Tolinski: Yeah, it's okay. I mean, I'm getting him. I added him on LinkedIn. So that was fun.
+
+16
+00:02:17,520 --> 00:02:52,830
+Wes Bos: That's good. All right, well, let's dive into the first soft skills topic we have here, which is productivity. So that's probably the biggest thing you want to be as a developer is, how do you get faster? How do you get better? How do you take the amount of time that you have and have more output or use the time that you do have wisely? That's kind of like a never ending thing? I think for a lot of industries. And I feel like it's especially prevalent as a developer. So what do you do? What tools do you use? What tips do you have for being a productive developer? Yeah,
+
+17
+00:02:53,160 --> 00:03:47,610
+Scott Tolinski: so we often talk about time, right time being the enemy, but it's really like energy, right? Because a lot of us have the time to do all sorts of stuff, but they run out of the energy. So for me being productive is all about utilizing that energy correctly, before my energy stores are depleted, right. And so for me setting up and getting prepared for like, a nice base of knowing what I'm doing is always the most essential thing for me to be productive. So number one, the very most important thing for me to be productive in the entire world is to create a prioritized to do list at the start of the day. And go through that, and do not veer away from that, unless, of course, there's some sort of an emergency. So a to do list really relies, in my opinion on having a good system. To make that To Do List useful. I used to do is to do this. And to do is to do this to do list
+
+18
+00:03:47,699 --> 00:03:48,270
+Unknown: I and
+
+19
+00:03:50,250 --> 00:04:23,040
+Scott Tolinski: and I prioritize everything p one through p for priority one, meaning that is the most important thing and that it should only be one p one per day, it is like the thing I have to get done that day, everything else is just sort of tertiary side project to that. And then from there, follow the whole Eat That Frog methodology where you take on your most difficult or most important task of the day, and then go top down and accomplish there and then sort of refactor at the end of the day for what things need to carry over to the next day or reschedule entirely.
+
+20
+00:04:23,430 --> 00:05:13,130
+Wes Bos: Yeah, I'm very similar to that. We've talked before how I follow the Getting Things Done mindset, I use an app called things and I've got a bunch of different sort of areas, like different projects and things like that. So the way that I use that app is that I have the inbox and then I'll just anytime there's something in my head I need to do or need to work on or need to fix or whatever. I'll just dump that thing into my things and then I'll drag them into the related project. And then for each project that I have are not necessarily a project but it's generally just like an area of life. So whether that's a re record or my personal website or Specific might be an actual project that I'm working on. Or even just things like, I use it for my personal life as well, like things in the bathroom that need to be fixed or, like I find myself to be for you said that needs to be fixed,
+
+21
+00:05:13,640 --> 00:05:15,950
+Scott Tolinski: or getting to be a really interesting sentence,
+
+22
+00:05:15,950 --> 00:06:13,560
+Wes Bos: things in the bathroom. No. So like, I find myself with, like 20 minutes of free time every now and then. And our house is full of tiny little tasks of things that need to be fixed or reorganized or whatever. And when you have 20 minutes, it's just like crippling thinking of all the different things that you have. But if you have a list of quick little fixes, then you can go into that it's just called adult life on mine. And then I'll say that I don't use p one through p four, I just kind of sort them in order at which I think I'd like to tackle them. And I try to either sort by what I can get done. Like what I'm feeling like, or probably the better way to do it is to sort by agony. So things that I'm procrastinating things that I don't want to do, usually in my life that is around responding to important emails that need Yes, responses and booking travel. Those are the two hardest things for me.
+
+23
+00:06:14,009 --> 00:06:32,880
+Scott Tolinski: You and I are of the same cloth in that regard. Yes, those are my two. In fact, what's so funny is that recently, Courtney has taken over the task of scheduling all of my travel, because she's just so annoyed with me for not scheduling things. They're not she's just like, you get that done yet. I'm just gonna do it just forward me to email and I'll do it. And it's changed my life.
+
+24
+00:06:33,149 --> 00:06:54,030
+Wes Bos: That's key. That's super key, I need to do something like that, just because I always keep putting it off. Or like, I get all these invites to different conferences, and I can't do them all. So I need to like look at all of them and figure out which one I can go to and timing and projects and like, Oh, it's uh, getting it all into some sort of system definitely makes that much easier.
+
+25
+00:06:54,300 --> 00:08:22,500
+Scott Tolinski: Yeah, you know, it's funny, I had an idea for a book. And somebody took my idea for that book. Somebody took it. I knew they was it. I announced this like, two years ago, I said, you know, what would really because dropping swear words in book titles is like super hot. Oh, yeah. I was thinking, Oh, you just needed a reimagining of getting things done, but just change the title to get be done. And yeah, and guess what somebody did it. That's that's a guaranteed moneymaker I don't I just should have pulled it that there'll be another thing on this whole thing about just starting things. But yeah, I think having an actual to do list, regardless of priority or whatever is totally essential to get things done in my opinion. Next on here is that get things out of your brain, I don't know about you, but like, my brain is just an Idea Factory, it pumps out all these sort of ideas, and one will move from the next to the next to the next. And the next thing you know, you've forgotten one or you forgotten the idea. So I use tools like notion religiously, to just jot down any idea I have, get it out of my brain, put it on the paper. That way it's out of my brain, and I have no chances for getting it in there. I can come back to it later. I can elaborate on it. I can brainstorm on it, I can do all sorts of stuff. But just getting it out of my brain onto notion or wherever is is so essential to me, I always make sure like, especially with my phone, I'll have it handy to just pop up in notion quickly add something, even if I don't want to work on it at that moment, just to get it out of there.
+
+26
+00:08:22,769 --> 00:09:01,110
+Wes Bos: Yeah, I do that as well that the whole term is out of your head into your system, or onto something that also is helpful. If you have a racing mind when you're trying to fall asleep. I personally don't have this I can just shut off really easily which job but some people are just like, there's just like I can't fall asleep because I'm thinking of absolutely everything that's going on. And I find for if I do ever have that's very rare, I just sort of put them into my system, I have lots of ideas, I write them down. It's just a nice thing to have them out of your head into your system, you know that they're they're written down somewhere. And you can revisit it in the morning saying about writing it down or typing it down for me is, is very helpful.
+
+27
+00:09:01,620 --> 00:10:43,980
+Scott Tolinski: Totally. And sometimes it puts my ideas into different perspectives because I have an idea in my brain. And this idea in my brain seems like this golden shiny object, and I just oh, I need to do this thing. And then I'll write it down and I'll go to sleep. And the next morning, I'll read it. I'll be like, that's a dumb idea. Why would I ever think that was a great idea. But just seeing that the game gives you that ability to reframe it and look at it objectively. I've always often heard use the term, a second brain. I don't know if you've heard that term before. So this is another tip I have is usually to like notion as a second brain. So this is less idea based and more best, like knowledge based. I recently realized that I was looking up the same things, you know, multiple times, like, Oh, I have this question for my accountant. And it's like, I know, I sort of know the answer to this, but I don't know the answer to this and I feel like I've maybe asked them before. So what I've started doing is really creating a list of where I database of things that are I've learned essentially things that are, that I'll want to come back to. And I refer to it as my brain. So like, whether it's like fitness based stuff, okay, here's the truth that I know about cardio strength, whatever. Here are the tricks that I know about my text preparation, contractors, business management, those kind of things. And I could just go back and review those at any time, rather than going to Google and looking up a new source and having to parse a blog post or whatever, I can review, my own note that I wrote, I think, is pretty essential for me, because of course, I don't have a great memory and a great recall. But I do generate a lot of ideas. And I do research a lot. So being able to essentially use a tool like notion as the second storage for data is huge for me.
+
+28
+00:10:44,730 --> 00:12:18,899
+Wes Bos: Yeah, I have, I do this as well, especially when I'm talking to people that are doing things for me like real estate, law, accounting, these are not my areas, and I need to remember them. And they're expensive. Yes, they're very expensive. So I take copious notes whenever I'm on the phone with somebody. And that's one thing that I love about having like bluetooth headphones, or phoning from your computer, that you have both of your, your hands free, and you can just sort of go to town making notes I have and for probably 10 years now just kept all my notes in markdown. I've had little brief stints with Evernote, and notion and 100 different little apps. And then I find myself like annoyed even things like I have a pizza recipe that's in Evernote. And every time I want it, I have to like download the Evernote app or like, reset my pass. I'm like, oh, like this is annoying. Like, I wish that it was all just in markdown. And I found that, although it's probably not the best experience for viewing them, it is the best experience for me keeping it long term and, and whatnot. And I know there's there's actually an app that I'm working with someone right now to turn my JavaScript beginner JavaScript course into text. And they are using an app notable, they are using this app called noteable, which allows you to view and also author if you want your markdown, this is pretty cool. And you can just like point it at a folder of markdown files, which I thought was pretty nifty. So I might be looking at that. Do you know,
+
+29
+00:12:19,559 --> 00:12:30,990
+Scott Tolinski: we did that in my electron course on level up tutorials we built basically that app, it was like, here's a folder of markdown files. And then you Oh, yeah, visual editor for markdown files.
+
+30
+00:12:31,230 --> 00:12:34,230
+Wes Bos: You did open source. I remember you made that cool little icon for it. Right.
+
+31
+00:12:34,380 --> 00:12:38,250
+Scott Tolinski: Yeah. made it look like a competent note. composition notebook. Yeah.
+
+32
+00:12:38,399 --> 00:12:45,570
+Wes Bos: That's, that's great. Yeah, it's true. Like that's not that that's not that difficult to do, right? You've just got a bunch of markdown files, and you can overlay them.
+
+33
+00:12:45,899 --> 00:13:03,510
+Scott Tolinski: Yeah. Rather with some Yeah. If you want to do frontmatter. Or you can just have a system like the file names, are we I think we just did file names in ours. But yeah, it's super, super easy. I think markdown is a cool tool for that. Because again, you can just move it into so many places, turn it the blog post, turned into a Gatsby site in two seconds. Who cares?
+
+34
+00:13:03,840 --> 00:13:04,350
+Unknown: Yeah.
+
+35
+00:13:04,590 --> 00:13:56,789
+Scott Tolinski: So a couple more here it would be to batch related items. For instance, I've been doing this Scott tries YouTube series where I tried different web services. And I released one a week. And it may seem like Oh, hey, house, Scott, but not so many videos by batch all those together. So I record all of the Skype tries for a month in one day, and I edit them in one day, and then I publish them and schedule them on YouTube. And then I just don't think about it for a month. And so by doing that allows me to work on one thing without switching contexts, which is one of the reasons why everybody hates meetings because they you know, they're working on something they have to go to a meeting, switch their context, change their Brian, change what they're thinking about, and then come back to it. So obviously, I hate meetings for a lot of those reasons that everybody else does. But by batching, the like related projects, whether it's doing all my email at once in the morning, or anything like that is just hugely useful to me.
+
+36
+00:13:57,090 --> 00:15:05,549
+Wes Bos: I do this with my taxes. So one thing I have to do every year, and actually unfortunately, now every quarter is to download every single receipt for every single online service that I haven't it's thousands, or not thousands, probably hundreds of receipts. It's a lot. Yeah, and I just do it all in one day. It's like my receipt day. And it takes I don't know, maybe four hours to log into every single thing and I have to download all the seats. But being able to batch it all into one day makes it so much faster. Because you're sort of in the headspace, you can think of all these different things that's going on. And I highly recommend doing that. Next tip we have here is just recharge when you need it. So there's obviously diminishing returns. But one thing I've noticed over and over is that just exercise in general is a huge productivity hack. Like I'm here trying to get the best keyboard shortcuts that I possibly can when you realize that I just wasted 15 minutes watching a silly YouTube video, you know and like yes, probably if I had On to the gym that day, I would have been a little bit more fresh. And I would be able to
+
+37
+00:15:05,610 --> 00:15:08,010
+Scott Tolinski: or even watch YouTube while you're at the gym.
+
+38
+00:15:08,299 --> 00:15:25,950
+Wes Bos: There you go. I definitely haven't. I actually never done that. He's usually because I'm doing like, I need to do more like cardio or something like that, where I'm just like on the bike or something like that. I'm usually like doing weights or doing something where I can't hold the phone. Maybe someone should just follow me around with a
+
+39
+00:15:27,539 --> 00:15:37,140
+Scott Tolinski: you should build this like a hat that like yeah, like to hold the phone down from the bill. I think I just made another million dollars here. This show business ideas with Scott
+
+40
+00:15:37,200 --> 00:15:39,480
+Wes Bos: are just like a one of those VR things.
+
+41
+00:15:39,630 --> 00:15:42,360
+Scott Tolinski: Yeah, VR thing. just shove a screen right in your face.
+
+42
+00:15:42,419 --> 00:15:48,120
+Wes Bos: Yeah, yeah. Cuz you could just over is what Google Glass was trying to do. Hey, hey, we,
+
+43
+00:15:48,360 --> 00:16:01,799
+Scott Tolinski: we put a one of our old TVs in the gym. And it's been awesome, because I'll put on YouTube or hockey games or whatever. Yeah, it's like, oh, yeah, this is great. Just put on a YouTube playlist and crank through some code stuff or whatever. Jealous of that.
+
+44
+00:16:01,799 --> 00:16:12,840
+Wes Bos: Yeah. Cuz I find I just do podcasts for that reason. Because Yeah, it's it's beneficial. But like, there's a lot on YouTube, I'd rather be watching. When I'm working out. Good tip.
+
+45
+00:16:13,080 --> 00:16:32,610
+Scott Tolinski: Yeah, last one would be to have a system and stick to it. People are really good about setting up systems and then sticking to it for half a month, 15 days, just like you know that all these great ideas, and now I'm out. So stick to your system, hold yourself accountable to it, stick to it every single day, every single month. The
+
+46
+00:16:32,909 --> 00:18:17,090
+Wes Bos: next one we have here is about finishing projects. So this is the next category we have here. I would like to think that I'm like pretty good at finishing projects. I've put out a couple of different things already this year, not necessarily like full blown courses, but just little things like that uses tech, and I'm working on my website right now. And my tip is just to sort of go all in. So like, if I look at my personal website, I've been working on this thing for a year. And it's not ever going to come out if I keep poking around at it for a couple hours here a couple of hours there. Because I find that the like we said earlier the ramp up to for me to get into the context. And also just like in designing, I sort of get in the feel of the website. And I started to just run with it. But I find that if I like let it sit for a bit and come back and then God not really too stoked on this anymore. I just need to do it, finish it and put it out. So what's worked well for me in the past, whether it's a tiny little open source project or personal website, something like that, it's just go all in on it for a couple days. And also it doesn't have to be like absolutely perfect. I think a lot of people are afraid to release something, if it's not 100% perfect, or they're not totally happy with it. And that time will will never come and I think that goes for for client work as well. client work, you obviously have a hard end, but you just got to get it done and figure out a way to make it work. So I'm just going all in in for a couple days and making things like I'm not going to do pagination, I got lazy loading on the images. So it's not a perfect issue. Just scroll to the bottom, if you want to see them all. I'll probably do pagination at some point. But it's not I can't do it right now. No time.
+
+47
+00:18:17,090 --> 00:20:13,290
+Scott Tolinski: Yeah. Yeah, I know. And then that's the whole thing is just get get it out. And then I mean, that was the whole the whole premise of the, in general, just minimal viable product stuff that was very hot A few years ago, and when startups started doing that, but for me, I have the hardest time staying focused on something and I've made a commitment via level up tutorials pro to release a course every single month. And I have done that now for like what like two, two and a half years of Yeah, it's amazing course every single month. So it might come as some surprise that I've really hard time finishing things considering I finish a course every month. But I have to because I am selling that if I yeah, if I don't get that out, then that's a big problem. So holding yourself accountable. And those sort of ways to finish projects and like really stick to your guns is just endlessly important for me specifically. But I do have a hard time really finishing things and staying focused. And so for me, it's all about doing a little bit of something every single day if you are having a hard time getting focused with it. And so like I always used to think about this writing papers, I used to procrastinate writing papers. I'm a terrible writer, I tested into English as a second language for my college writing class. They thought I couldn't speak English. So they put me into English as a second language. And so I was not looking forward to my freshman level writing course. And what I realized really quickly is if I do a page every single day, and then edit, do a page, edit, do a page, whatever, it was so much better than trying to do it all at once, obviously, but if you maintain that ability to chip away at this bigger thing, this big scary thing, it becomes less of a scary thing over time. It's good point you just have to really stick to those guns to do that. I also have a hard time really keeping myself accountable for things Long, long term. I don't know if you read any of the 37 signals books, rework I've
+
+48
+00:20:13,500 --> 00:20:17,600
+Wes Bos: read the rework. Yes, I've read reread the new ones though.
+
+49
+00:20:17,840 --> 00:20:21,320
+Scott Tolinski: So if you if you don't know Jason, is it fried?
+
+50
+00:20:21,780 --> 00:20:22,580
+Unknown: Fried fried?
+
+51
+00:20:22,610 --> 00:20:25,800
+Scott Tolinski: Yeah, Friedman, not Friedman. Jason freed.
+
+52
+00:20:26,160 --> 00:20:27,060
+Wes Bos: Jason.
+
+53
+00:20:27,060 --> 00:20:28,140
+Scott Tolinski: Jason free.
+
+54
+00:20:28,310 --> 00:20:28,950
+Wes Bos: Look it up.
+
+55
+00:20:29,910 --> 00:22:07,800
+Scott Tolinski: Yes. Sorry. David Heinemeier Hansson, I never said their names out loud. So I'm so sorry. There, they have some really excellent books. But when I read recently, well, I read it like maybe like six months ago, and then two months after that I've read it several times now is it doesn't have to be crazy at work. And one thing they talk about is how they have this whole process of working on a specific feature for six months. And they have a deadline, essentially, for all of their features. And it's not to get this thing essentially done, but it's sort of like here is the end of what we're gonna do is we're gonna only work on this one thing for six months, we're gonna or six weeks sorry, now monster be ridiculous. We're gonna work on one thing for six weeks straight at the end of that, do a post mortem, whatever, reassess where we're at, and then pick the next thing. Do that one singular idea for six weeks, and the whole all hands on deck to do that. And that, to me is really changed how I plan around some things because I had such a hard time. We weren't, we weren't shipping any features. We wouldn't be like, Alright, we got quizzes we're working on we got courses we're working on, we got blog posts, oh, wait, hold on, let me let me upgrade types or let me use TypeScript now. Okay, we've got to rewrite everything in TypeScript. Oh, wait, hold on, let me do everything in hooks for Apollo. Okay, let's read like, these things would just jump in the way and it's totally my fault. So Eric sutorius, our developer who works on the site with me was just like, Listen, if you suggest anything, that is not what we're working on, I'm just going to say no. And he's been so good about that. I'll be like, Hey, I just pushed this update to this branch. It'll be like, why are you working on that feature?
+
+56
+00:22:07,800 --> 00:22:08,670
+Unknown: Oh, yeah,
+
+57
+00:22:08,670 --> 00:22:11,850
+Scott Tolinski: you're right. Okay, gotta get back. We're working on.
+
+58
+00:22:12,270 --> 00:22:31,410
+Wes Bos: Yeah, that's, that's always very tempting to do that, because it feels like you're being productive. And you're going off on a new tangent. But generally, you're just starting things that will never be finished, or distract from the main, the main idea of what you're trying to get across. So that's, that's a really good point, I should should maybe apply that a little bit myself as well,
+
+59
+00:22:31,620 --> 00:23:43,740
+Scott Tolinski: it feels like you're being productive is the best way to describe it. But if you want to actually be productive, and not just feel like you're being productive, you want to make sure you have a good here and Exception Handling tool, then I'm talking about sentry@sentry.io, you're gonna check out century@sentry.io use the coupon code, tasty treat all lowercase all one word, you're gonna get two months for free or century. And let me tell you, this is the perfect type of tool for those of you who do want to get things done, because it really checks all of those boxes of stuff that we're talking about in this episode. By giving you clear actionable items to work on, giving you the code the release the attacks, you can, you can basically really nail down every single issue your site or services, having, and then troubleshoot it, knock it out, market is fixed, do all that stuff. So that way you can keep track of exactly what's happening and have that crystal clear visibility into your application. So check it out@sentry.io coupon code, tasty treat all lowercase o one work. Alright, so this one's really not good for me. This next one is called planning, planning tips. I'm terrible planners, so much so that my wife has had to step in and start planning things for me because she's getting too frustrated with my planning skills. And
+
+60
+00:23:43,950 --> 00:25:28,680
+Wes Bos: I think this, this kind of comes back to productivity and just writing things down. So when I have a project, or I have something that seems, seems super big, and so I'm going to use my like beginner JavaScript as an example, That to me was probably the most daunting project because the project was teach newbies JavaScript. And JavaScript is huge. There's so much to teach. There's different ways that you can teach people, there's like, there's just like, just trying to distill down what is JavaScript and what should you teach them. and in what order was it was really tough. So I found that being able to write it down in a way that makes sense for the content works well. So I got this new app called mind node, node, and it's like mind mapping brainstorming. And it's really neat, because you can just create like a node like arrays, and then you can go into arrays and say, like, you can break it down into methods and then you can like go Oh, some of them are immutable. And some of them are mutable, and you can, it's, it's much better than just I found markdown, which was what I previously used for everything. Because I could only go like two or three levels deep with markdown before it just became a giant mess. And you should see the mind node. I think I tweeted at some point, maybe I should tweeted again, that just the layout of this course was like six levels deep. And every single topic that had was broken down into multiple sub topics. And that really helped me plan them. And every time now that I work on a course I use this app, it doesn't have to be my note, it just has to be some sort of mind mapping software, you could do it with. Actually, I wouldn't recommend doing it with pen and paper, because I so quickly change things right.
+
+61
+00:25:28,710 --> 00:25:30,570
+Scott Tolinski: Yeah, lose track of it, or Yeah,
+
+62
+00:25:30,600 --> 00:25:53,910
+Wes Bos: yeah, you lose track or like, like, Oh, no, you know, what array methods. Like, one thing that it did was I put all the like looping stuff in with arrays. And then I was like, you know, what, this this is, has its own section called looping and iterating that goes with the for loops and all that. So I moved it from there. And all I do is drag and drop it rather than have to cut and paste text or race stuff. So big fan of mind mapping software for planning.
+
+63
+00:25:54,210 --> 00:26:18,600
+Scott Tolinski: So my note is kind of blowing my my mind node right now I am all in on this. It looks like it's only even like 240 a month for their their subscription plan, which I was just using something called whimsical on a. Scott tries video for the first time and it does very similar things. But whimsical, they do like charts in addition to What's up,
+
+64
+00:26:18,720 --> 00:26:22,500
+Wes Bos: did my node go to, like bass? How much?
+
+65
+00:26:22,950 --> 00:26:30,750
+Scott Tolinski: So my note is free for a lot of it. And then there's the node plus, which is 249 a month. Oh, I
+
+66
+00:26:30,750 --> 00:26:39,270
+Wes Bos: bought socks. I bought it when it was like 20 bucks for the entire aloe. Yeah, no. Oh, another thing to make you bleed every month.
+
+67
+00:26:39,540 --> 00:26:58,440
+Scott Tolinski: Yeah, no kidding. It looks like there isn't a ton of stuff with I guess there is. So either way. I was looking at whimsical fairly recently and really impressed by it. But it looks like my note has basically most of the stuff that I would use out of whimsical and guess how much whimsical is? How much 10 bucks a month?
+
+68
+00:26:58,650 --> 00:26:59,670
+Wes Bos: Oh, yeah, I'm
+
+69
+00:26:59,670 --> 00:27:00,840
+Scott Tolinski: mapping software,
+
+70
+00:27:00,900 --> 00:27:07,920
+Wes Bos: that's a bit might well, it also looks like it does wireframing flowcharts. But like, I don't need that. So yeah,
+
+71
+00:27:08,160 --> 00:28:08,070
+Scott Tolinski: yeah, check out my notes. But yeah, this is what I need it for is my note. And they have a so I really feel for my android people. Because I always used to hate stuff like this, I would come here and they'd be like, we have an app. And they'd be like, No, it's just iOS app. And I'd be like, now, I'm feeling a little less bad about this. But I'm going to use this mind note, this looks fantastic. Like I said, I was using whimsical to do a lot of planning like this. And I really do think that mind map is such a good brainstorming tool, I just really think it's a good brainstorming tool. For me planning in general, though, I need my calendar, I need my calendar, to be up to date to be accurate to be complete. If there is anything that needs my attention whatsoever needs to go in the calendar, or else it's just not going to happen. I had to block off time I have to do all those things. If I don't, again, my wife and I we lose especially track with the kids now it's like, Oh, you were supposed to do this today. Oh, shoot, I had to do this today, whatever, just got to keep it all on the calendar and make sure everything's in there. simple but effective.
+
+72
+00:28:08,580 --> 00:29:13,110
+Wes Bos: Another tip we have here for planning is I've said this before write it down. So another sort of example is that it was my JavaScript 30 course I had 30 things that I wanted to make. And trying to think of what to make is one of the hardest parts about building a course. That's why everyone makes it to do apps, because it's the only thing that someone can think of that adds content and deletes it and edits it, you know, like that, that kind of thing. So what I did for it took me over a year of just casual thinking of should build something like that, or Oh, that's a cool example, on that website, I should build something similar to that, or that's a neat UI trick, we'd be able to replicate that. And if I were to sit down and try to think of 30 things, they would all suck. But if I take a year of it just being passive and writing them into my to do to do app or markdown or whatever every year, then I think that's why that course has done so well. It's just because the things that you build in it are really fun. And I I owe that all to just writing them down. And I probably had like 70 things and most of them were awful, but 30 of them were pretty good.
+
+73
+00:29:13,560 --> 00:32:53,640
+Scott Tolinski: Yeah, I know that like to me, it's just really, especially for project planning. Rather than like time planning. I do that with all of my courses. When I come up with an idea for a course like even just like a very broad idea for a course, the very first thing I do is make a card for it and notion that says there's this course idea. And I put it into a Kanban board of potential selected in progress completed shelved. And these are my course ideas. And right now I probably have like 40 course ideas that aren't complete. So that way whenever I'm like I need Of course I can start looking for one but when I come up with a course I typically have those ideas, like ready to go and ready like for instance, I don't want to give away some of my secret sauce but let's say I have a course. Ready here and When I initially came up with it, typically I have a vision for what it's going to look like in my head. So therefore, I'm just going to start writing notes that very first moment. And that way, all of my cards at least have some context to them. And then I can have these notes here. And that really follows back to the chip away a little bit at a time. Because then when you when you approach this thing, it doesn't feel like this daunting task. It's something that's been sort of on your brain for a while. So next section here is going to be communication skills. And these are really taking for granted by developers. What's funny, my brother was always in logistics for his whole career. He's my older brother's a couple years older than me, he's now a project manager at a creative agency, they do a lot of Drupal stuff. And so it's funny that he's now in the creative agency world, as a project manager, people I've worked with directly before, and I think he's primarily working on email campaigns and stuff. But he'll be, he'll be telling me horror stories of developers that he's had to work with in the past year, okay, this person's like this, or, you know, these developers are just so rude to the client, we can bring them into the meetings. And you know, what he is not the first project manager that I spoken with, has been a friend of mine, or somebody I've worked with them had the exact same experience, I have a friend who works at another, not an agency, but like a, they're like credit card processing. And I hear all the time, our developers make the worst excuses for not doing things and they just, they're just rude to the customers rude on email, you know, just generally, that is not good way to be good. That is not a good way to be. So communication skills for being developers, it's going to do a lot for you as a person, but it's going to do a lot in your career. Because if you're somebody that people want to work with, then they're going to want to work with you more hire, you give you promotions, all of those things. They're gonna say nice things about you when you do job interviews elsewhere. So you're gonna need to work on your communication skills. This one first one I have here, I think is a big one. For me. We as developers, I think we are often optimistic about our deadlines and timelines, right? You say, Oh, I could get that done in a couple weeks. So yeah, I could do that this as a couple, throw some divs on here, slap some CSS in there. And we're done. Right? It almost never works out the way that we expected. So I have two tips here. And one is to be honest with yourself, and upfront about deadlines. If this thing is really going to take you two months, don't say it's going to take one month, just so you can look good. Be honest about how long you think it's going to take or how long it could take. Number two, give yourself padding in this regard. If you think it's going to take some amount of time, and you have a little bit more time to give padded pad that thing. Because if you deliver early people are going to be happy. And if you deliver late, people are going to be upset, even if that delivery date is the exact same thing.
+
+74
+00:32:53,970 --> 00:34:57,650
+Wes Bos: My tip that I have here for communication is don't let people expect more frequent communication then they should. So yes, this goes both for clients as well as anyone really emailing you is that they shouldn't you don't don't train them to expect an immediate response. Or don't train them to expect a text message. Like I get this all the time I get people try to like they get my phone number, which I posts for phone calls, but they like text me at like, two in the morning or something like that, or what else happens? People find my Facebook and messaged me on there or, or Reddit messaged me and like they just find all these different avenues to try to get a hold of me. And I just don't reply at all. Because I'm like, there's no way I'm going to start using Okay, this is another avenue which people know they can, they can try to get a hold of me. Same thing with email from clients. Like if you reply on like a Saturday night, boom, you've just, you've just told your client that you're available, you're available on Saturday night, and now they're starting to expect that kind of thing. And then they it same thing with people that send like follow up emails, like three hours after they send it, that immediately just gets put to the bottom of my list because they're like, That's no way to treat somebody and expect to get a an email back right there. So I'm awful at responding to emails, I know that but I'm fine with it. Because it's not really my business. You're trying to make courses here and teach people to code. So that's fine. So just things like like schedule an email to send the next morning. There's lots of tools out there, like it's totally fine if you're if you're replying to an email at Saturday night because you have it in your head and you want to get it out of your head into your system. There you go. But schedule that to send out at a certain time and just work hard to train people that you are not available 24 seven, because at the end of the day, the communication is very important, but it is not your job. Unless you are a project manager to do this communication. Your job is probably making websites if you're listening to this, and that's where you should be spending a lot of your efforts and time
+
+75
+00:34:58,050 --> 00:35:18,440
+Scott Tolinski: totally a couple tips. I have here for communicating. All this stuff is super important to me too. I think, like you mentioned, don't make yourself available. I'm so bad at that. I'm on chats and Hangouts, I'm on this, I'm on that I'm just opening every app to chat with people on Instagram, whatever I like. Yeah, I'm awful at that I need to be Yeah, they
+
+76
+00:35:18,440 --> 00:35:39,000
+Wes Bos: Instagram. So worse, I get like, cuz it's like a Saturday afternoon. And then someone sends you a screenshot of their coding problem. And I'm just like, like, I can't, like how am I supposed to like code on my phone? First of all, like, like, Instagram is a phone only thing. Anyway, I'm ranting here, but do any avenues to be contacted?
+
+77
+00:35:39,440 --> 00:37:14,310
+Scott Tolinski: Totally. Yeah. Yeah, limit those avenues. I like a couple of things here. Typically, I like to, like when people email you, it's really hard to convey emotion feeling and immediate stuff over email. Sometimes I read some emails, and I think this person is just pissed off, they're just angry, and they might not be. And so it's hard to do this. But I think you should always assume the best intentions, when somebody is sending an email, unless they're, they're calling you names or something, I would always assume best intentions, or that maybe somebody is having a rough day, and it's not you, whatever, there's, there's a lot of different, like, reasons why this email could seem salty to you, or angry or whatever. So basically, I like to assume good intentions, and I like to respond with good intentions, for the most part, somebody's being a jerk to me, totally, I'm not gonna have any problem, either just not responding or being a jerk back. But you know, for the most part, give them the benefit of the doubt, you know, people work hard, and they can often be upset for any number of reasons. I also had Don't be a jerk to clients or co workers on here with, yeah, specifically, do not be a jerk to your co workers, because those are your people, those that that's your team, right. And even if you don't gel personally, with some of these people, you've got to have their back. They're there, your team, you're on the same team, you're all working together to accomplish these goals. So you know, if you have a client, that's being a jerk to one of your co workers, stand up for them or whatever, but in the same regard, just try not to be rude to anybody here. We're all just, you know, needing a little bit more kindness in our lives to each other, you know?
+
+78
+00:37:14,480 --> 00:38:16,770
+Wes Bos: Yeah, one more tip I have about assuming good intentions is trying to take cross cultural differences into account. Because I often we'll receive emails, which I'm like, wow, this this guy's a jerk. And then you realize, like, Oh, I even some one time somebody emailed me and was like, trying to like, I think that they're trying to like wrap joke around. Yes, as like as me and you do on the podcast, but they just like, they like we're dropping f bombs and saying, like, hurry up and putting emojis everywhere. And I was like, wow, like, you don't have to be such a jerk. And then he replies like, I'm so sorry, I was trying to, and it was a guy from India. And he just like I had totally lost in translation, the How to joke around with people and not be a jerk. Like there's a fine line there. And I'm certainly I get that all the time. I often have jokes, and they're just, like, totally lost on people from other countries. Because that sort of humor doesn't translate. So you always have to remember that type of thing.
+
+79
+00:38:17,130 --> 00:38:21,840
+Scott Tolinski: Yeah, it's funny. I just got a I just got a That's weird.
+
+80
+00:38:21,840 --> 00:38:22,620
+Unknown: I guess I was like, Oh, let
+
+81
+00:38:22,620 --> 00:39:12,360
+Scott Tolinski: me see if I can pull up my YouTube to see some comments were some good intentions are intended. And the very first one I'm gonna say this guy did not have I just got this a couple minutes ago. This guy did not have good intentions. He says, I just lost 15 minutes of my time. What is this guy not updated the repo Seriously? Oh, I'm so sorry that my free content that you had to change the import slightly really upset you Mr. Giorgio here. So you know, sometimes it's okay to just be a jerk and jerk back to these people. I've been responding to some of these lately. Like, you know, somebody was just like, just got totally shocked. And I'll respond to it. How kind of you mark you know, just like a nice little. Yeah, that's exactly right. Sometimes it's okay.
+
+82
+00:39:12,420 --> 00:39:45,420
+Wes Bos: I've been going crazy with the block button on Twitter lately. And oh, yeah. I've been getting a couple emails of like, Hey, I actually really love your stuff. Sorry. I was totally joking. And like, it's just like, lost on. Even on Twitter. It's lost on me. You know that someone says something. They're trying to be funny. But I'm just like, What a jerk. And I hit the block button. And then they email me like, Hey, can you block me because I actually really like your stuff. I was just being I was just joking around. So that's maybe something I need to take into account, although like there's a lot of jerks on Twitter too. And I rightfully block a lot of them.
+
+83
+00:39:45,860 --> 00:40:09,980
+Scott Tolinski: I've been viewed. I really love blocking people on YouTube. If somebody drops any sort of swears on my channel or an educational channel, you drop some I'm gonna block you. I'm just not gonna bother. And I hit some guy who was being a jerk, like super jerk to me, and I looked him up on LinkedIn, and I'm added on LinkedIn. He sent me a message saying, I know why you added me on LinkedIn. I'm so sorry. I'm having a bad day I deleted the comment. It was super rude of me. And I didn't have to say anything. And I got
+
+84
+00:40:11,130 --> 00:40:14,150
+Wes Bos: Oh, man, say a single thing. Hey, yeah,
+
+85
+00:40:14,190 --> 00:40:18,780
+Scott Tolinski: LinkedIn has been good for me with that. lately. That's been a fun little fun little move I picked up Oh,
+
+86
+00:40:18,960 --> 00:40:27,270
+Wes Bos: I need to start doing that. Because LinkedIn is has no other value to me that professional network. Yeah. Yeah, that's great. I'm gonna, I'm gonna take it out. That's great.
+
+87
+00:40:27,780 --> 00:41:14,100
+Scott Tolinski: So Okay, next section here is skill and career advancement, which is obviously something we've covered a lot of times on this channel. I love these kind of topics. You know, I'm all about this. So one of my favorite ones is fd D. Every time I come up with something, I give it, an acronym for driven development. And driven development is a hobby driven development, I have a whole bunch of these. But fund driven development is just when you want to learn something, find ways to make it fun, because you know, when your something is fun, it, you're going to go back to it. So whether or not it's attaching something that's already fun and attaching to it, like we've talked to before, about hobbies, or like picking things to learn that are actually fun making a video game or something that you enjoy, make it fun, and it's going to fuel your drive to learn it.
+
+88
+00:41:14,100 --> 00:42:32,580
+Wes Bos: Next one we have here, this is funny, Scott type this as I was typing it, and it was hilarious. It's share what you learn. And it's a bit of a cliche, but I honestly find it super helpful, both for me, because you can get tips from other people as to how to how they attack the same problem. But also just it's such a good thing to be able to share what you learned. So I wrote a script the other day that went off and scraped all of my blog posts from the WordPress API and save them to markdown and then also downloaded all the images and did the same for all my Twitter Hot Tips and expanded any short URLs. And that's a pretty specific thing to want to do. But I still shared it online, because people are just like, Huh, like, how would you download an mp4 from Twitter without getting blocked or something like that. So just being able to just just put it out there, people love to read this type of thing. They love to sort of dig into little ideas. And more often than not, it will maybe spark something in their head for what they want in there. So just sharing what you learn. That's how I have gotten my entire career to this point. Literally just Same here, I open book and sharing what I know to people, even though I'm for sure not an expert on absolutely everything.
+
+89
+00:42:32,850 --> 00:43:30,110
+Scott Tolinski: It's worth it. It's been my entire career, I started you'd level up tutorials to show things in Drupal in SAS or whatever, that I didn't feel like the documentation existed. But there's these things that I just learned. I was like, oh, fairness, maybe somebody looks at this the same way that I'm looking at it, share what you learn in it will take your career to places that you have never imagined every single job interview I've come up to, they will be like, Oh, you created 700 video tutorials on YouTube. And, uh, wow, okay, well, you kind of know about this stuff. Hey, I saw this video tutorial on this topic. And your thing, can you tell me a little bit more about that, like, it really changes how people view your work because they just see that you are hunting for this value. Because even if you aren't sharing it, like if you aren't sharing, you're hunting for all that knowledge and whatever. And you have to tell people you have to like legitimize your skills there. But if you have all this content out there, they're misers for a job interview or career advancement.
+
+90
+00:43:30,440 --> 00:43:48,210
+Wes Bos: Big Big yet. And that doesn't have to be necessarily code. Oh, it can be just tweeting out something you have writing a little blog post, whatever it is, if you learn something, put it out there in the world, because somebody else is going to stumble across it at some point. And that's what keeps the world turning.
+
+91
+00:43:48,540 --> 00:44:23,310
+Scott Tolinski: I just recently started doing this weekly series on code blogs. And it's like I'm writing this code for level up tutorials. Anyways, people often ask me about my site. So now every time I need to do something sort of original or unique, I just turn on my camera and record a video. Okay, here, I'm converting this component from react spring to framer motion, and we're going to talk about it. Or here I had this janky issue where my code is dropping to 10 FPS, let's talk about how I fixed it. And it doesn't have to be anything major or polished, just put it out there. And if it could help people,
+
+92
+00:44:23,580 --> 00:45:04,740
+Wes Bos: that's what my last like five YouTube videos have been. Because they like Same here. I'm trying to be like, I want to keep doing YouTube. But like I don't want to, I don't necessarily have time or want to create custom content for YouTube. And at the same time, this just sort of live coding is becoming much more popular. So anytime I run into an issue or an interesting way to tackle something, like I learned about CloudFlare workers the other day, and I didn't record the entire thing, but I had gotten it to a point where I was like, I would like to tell other people what these are and how they work. But a quick little video, I think that it's interesting that we both sort of landed on the same thing. As just sharing what you know, whether it's on Twitter, YouTube podcast, you get it.
+
+93
+00:45:05,070 --> 00:45:33,570
+Scott Tolinski: And I mean, that's both how we created our careers level up tutorials, you know, Yes, boss, your blog posts, they'll come up all the time when I google things and on this podcast, and it's just like everything that we've done really follows this, and it has really changed things for me. So if you share what you learned enough, maybe it's going to blossom into a full on business. Or maybe you're just bringing in some ad revenue. And to do that, you're gonna keep track of all that stuff in your new cloud accounting software, which is Freshbooks.
+
+94
+00:45:33,960 --> 00:46:39,090
+Wes Bos: Yes, I just spent, oh, not that long, maybe four or five hours in Freshbooks, which is the most I'll ever spend in it all year, I generally just hop into it and check on invoices a couple times a month, but I had to generate reports, on invoice details, how much money came in how much money went out via expenses, all the different currencies that have all the different taxes that are in Canada that I had paid out, so I can get them back. And that was awesome, because they just logged in and generated all those reports. So if you are using Freshbooks, to keep track of your expenses, and send out your invoices and track your time, when it does come time to working with and doing all of your taxes, it is actually pretty smooth, to be able to just export all those things. my accountant loves it. So check it out. freshbooks comm for slash syntax and use the syntax code in the How did you hear about a section it's going to get you a 30 day unrestricted free trial. Thanks so much to Freshbooks for sponsoring.
+
+95
+00:46:39,600 --> 00:47:19,470
+Scott Tolinski: Thank you. Alright, so Okay, continuing this career advancement, we're getting a little tasty here. So we can move this forward a little quicker. But don't those of you who suffer from imposter syndrome, don't let the progress of others get you down. People learn things at faster rates, people, some people don't even necessarily learn things at faster rates. They just like to pretend that they do or, or talk about the stuff that they're learning to a greater extent than maybe they are. And so don't let the progress or perceived progress of other people make you feel bad about your own progress. As long as you're working towards your goals. You're going to get there. Just keep grinding at it. Keep working. Yeah. And you do you and just keep doing it.
+
+96
+00:47:19,770 --> 00:48:14,010
+Wes Bos: You see that on Twitter a couple weeks ago, people are sharing their like salary and how long they've been voting for. And like, that was just like a flex contest for sure. I think that's helpful. Yeah, only people that were making more than like $140,000. And there's some people posting, like, Oh, just made 450 and things like that. And I for sure know that most developers are not making that much money. And I know that that I could sort of have a sort of a vibe of people being like, this is kind of a bummer. Like, I don't make that much total make that much money. And also, there's a lot of people that were like, I'm making 470. And I've been a developer for six months, and things like that, where I'm just like, oh, man, like I've been a developer for forever. And I don't know, I don't think I could ever make that much if I got went and got a job at one of these companies. And then you either see like, Who's the developer Behind Code, sandbox?
+
+97
+00:48:14,010 --> 00:48:15,210
+Unknown: lib.
+
+98
+00:48:16,500 --> 00:48:51,690
+Wes Bos: Let's see here. It's a Ives Van Horn built code sandbox. That guy's like, I don't know how old he is. But he's not been a developer for very long and just created this like, amazing code sandbox. Next level stuff gets VS code running in the browser, like it's no problem. And you I see that all the time. Now that I'm like an old guy in the industry. You see these people that just out of nowhere, start building these amazing open source projects. So don't compare yourself to others. I think for most people, you don't make as much money and it takes a lot longer than you think.
+
+99
+00:48:51,900 --> 00:49:58,020
+Scott Tolinski: Yeah, everybody's on their own journey. Right? And yeah, be be proud of your own journey and work for it. But don't, don't compare yourself. A big one for me is tracking my progress on things. If I'm going to want to learn something, I want to make sure that I'm staying on target and tracking my progress to make sure that I know exactly how far along I am. Or if I need to refocus or redo this or redo that. Like I want to know exactly. If I'm able to do all of the things that I want to do. So track your progress. I like to use an app for like habit tracking specifically, this is a little bit more habit tracking. But if I want to advance something or change something in my life, whether or not it's in code or specific skill, I put Yeah, I put a little thing in my tracking app, which is called streaks is the one that I use for iOS. I used a habit tracker that we talked about on the show for Android before in the past, but I say let's say I wanted to stretch every day. I then have to click stretch. Okay, I stretched every day. And this holds me accountable. I love these systems. I love the charts, where I can see that I've you know done it every single day of this month or I did that or whatever it keeps me going right
+
+100
+00:49:58,020 --> 00:49:58,860
+Unknown: I need
+
+101
+00:49:58,860 --> 00:50:19,050
+Wes Bos: a habit tracker For that, using my habit tracker every day I know every morning I get a notification it says floss or drip. And I just have started to ignore I still floss every now and then. But it's not working for me I need something. Something else I need like money on the line, I think the health of my teeth.
+
+102
+00:50:19,140 --> 00:50:31,800
+Scott Tolinski: I think there is an app that if you don't meet your goals that sends you like put the money in and if you don't meet the goals that duck sends it to a friend of yours or something. So you would lay need to learn how to floss. Wes, you can send me I need a buddy.
+
+103
+00:50:31,890 --> 00:50:32,520
+Unknown: Yeah, you
+
+104
+00:50:32,520 --> 00:50:35,730
+Scott Tolinski: can just send any money every time you don't floss. I'm cool with that,
+
+105
+00:50:35,760 --> 00:50:40,620
+Wes Bos: when like what's a reasonable amount of like money to lose for not flossing,
+
+106
+00:50:40,770 --> 00:50:53,790
+Scott Tolinski: I would say like 10, Grand 10 Grand 10 grand, just like your team, but we got a bathroom remodel we gotta do was 10 grand is appropriate. 10 grand,
+
+107
+00:50:53,850 --> 00:53:05,490
+Wes Bos: okay. I'll have to sell a few things. Just looking around my office. Yeah, right. You want to buy a paper shredder? A lot. Next thing I have here, I wasn't really sure where to put this. But I see it from a lot of people that they say like, I want to do what you do, I want to do X, Y and Z, I wish I could start a YouTube channel, you're so lucky that you get to do this. And like one thing that popped up a little while ago is that I was just asking for people who do workshops, because I get people to email me all the time asked me to do workshops for the company. And I do as many as I can. Because I love them, I just thought I can't possibly do all of them. And a lot of them are very far away. And and I could only do like one or two of those a year. So I was just asking, like, hey, like who else does training out there. And then I sort of followed that tweet up with saying like, hey, like you should get into training if you are interested in it. Because doing like workshops for corporations, like you go into their company, as well as you go to conferences, they pay super well. And if you can create course content that takes a long time. But if you can create like a react workshop, and if you workshop and a CSS workshop, then you can just go into these companies and give these workshops and they pay super well. So like a bunch of people were like, Oh, that's super interesting, me, I would love to do that. And I got like a tweet the other day from somebody and said, like, it was like four months later, they're like, Man, I'm taking my first steps actually doing this. And because a very few people actually just go ahead and do it. Even though I said this is a very clear opportunity. Supply and demand is very out space right now. And companies have major budget to do these types of workshops, if you could just go ahead and start doing that. So just one person out of the like 15 that's that I love to do that actually had started taking steps towards it. And I thought like, Huh, that just shows that you just have to like, start putting one foot in front of another. And if that's something that you want to do, then start doing it, make a website, make a make one training course and start emailing around saying, hey, I'd like to offer this course.
+
+108
+00:53:05,820 --> 00:53:42,150
+Scott Tolinski: Yeah, and it's cliche at this point. But that whole thing, you know, the best time to plant a tree was like 100 years ago. And the second best time is right now. Yeah, that's a great quote. And for a lot of things, because honestly, you just want to get started. And even if you just start digging a tiny little hole, at least it's getting started with something. And I do think that's an important thing to just, you, you can do so much more than you give yourself credit for it. You just got to start doing it and start trying it fail along the way and learn a whole bunch. So that's really all I have in this soft serve episode. I like this. I feel like we could do more. I have a lot more like I could go I could go for hours on this kind of stuff is what I love.
+
+109
+00:53:42,510 --> 00:54:03,810
+Wes Bos: Yeah, Yeah, me too. I we don't do a whole lot of these soft skills. But if you have a topic that you'd like us to sort of cover, and not necessarily that we're experts, but we certainly thought about it a lot ourselves, and we can share our own experiences. Just tweet us at syntax FM or pop it in the potluck question. We'll see them there as well. And we'll certainly do some more episodes in the future.
+
+110
+00:54:04,110 --> 00:55:54,270
+Scott Tolinski: Yeah, absolutely. Okay, let's get into our sick picks. These are our picks that we find to be sick. These are the things that we like we think are an interesting or exciting, I have a YouTube channel for you today. And this one, I can't necessarily say that this is going to be everyone's cup of tea or a cup of soft serve, if you will, because it's a music channel. It's not a music channel. It's a channel that's uploaded a bunch of harder to find Japanese music of a genre of city pop, which is not something I really know a whole lot. So to avoid really making a jerk of myself trying to describe this generous history or anything. I am going to post one album in particular that I have been just going nuts on. And while I'm listening to this album, so many thoughts came through my mind about what it sounded like. If you've ever played the video game, Wave Race 64 it's like sort of cheesy jetski music. That is what This album sounds like it is awesome. And so it's so funny because I come up with all these descriptions. And then I looked in the YouTube comments and just about everybody is saying the exact same things. Oh, this sounds like it could be in Mario Kart, it sounds like wave 364 somebody says that right in that weird place where the 80s meant the 90s. And it does it, it has this very specific ad aesthetic, but like totally 90s somebody says, It's like being stuck in an elevator for 46 minutes and having a great time watching The Weather Channel. And the groove is just too real. It is a very interesting genre of music. And the best part is it's sort of like, Jazzy, and instrumental. And I could code to this all day long. This is to me, it's like perfect coding music. So if you think that you would like to listen to the Wave Race 64 soundtrack for days on end, then check out this channel. If that does not appeal to you, then you probably won't be into this.
+
+111
+00:55:56,580 --> 00:56:06,720
+Wes Bos: That's awesome. I am going to sit pick the amplifi alien router. So this is a new router from ubiquity. They full disclosure, they
+
+112
+00:56:06,720 --> 00:56:11,580
+Scott Tolinski: sent me this for free, are you being paid for this advertisement list
+
+113
+00:56:11,610 --> 00:56:36,330
+Wes Bos: not being paid, but did definitely got a free wicked router. So what it is basically a it's a it's a wireless mesh network router, you can buy one, or you can buy eight of them and hook them all up. And they'll all operate in mesh, but it's Wi Fi six, which Wi Fi six has a whole bunch of benefits, including, like faster. I think it goes up to gigabit over Wi Fi.
+
+114
+00:56:36,510 --> 00:56:49,680
+Scott Tolinski: And it gets close at least because we talked about this before at least go Yeah. 600 or 700. Yeah, it gets up to no, right. Yeah, it gets up to 7007 685 megabits. So
+
+115
+00:56:49,920 --> 00:58:03,000
+Wes Bos: yeah. And also if you've got like tons of devices on your network, like a bunch of phones, but just security cameras, doorbells, things like that, that King I watched a video on how Wi Fi six works and and how broadcast works. And so I basically I took this amplify alien router and I installed at my parents house, because the Wi Fi coverage at their house was was not good. And my dad needed a better router. So I installed this at his house. And first of all, the thing looks really cool. It's got like this glowing green underneath it, it's got a little screen on the front, or you can see what's going on with how fast upload and download are going, which is pretty cool. And then there's a really nice application where you can manage all the different devices on your network. And you can set like I always set our TV and any other streaming device to have priority over other network traffic totally so that I'll go faster. But the coverage is good. My parents just have two wireless routers. And we didn't even put this in Masha, we only had one and it covers the entire house, which is a pretty big house. So I was pretty happy with that. It's a pretty nifty little thing. If you're looking at the next gen of routers, I would definitely check this one out. It's one of the few Wi Fi six routers available at the moment right now.
+
+116
+00:58:03,120 --> 00:58:09,780
+Scott Tolinski: Yeah, you should hop on the call with amplify and say, Hey, I got another place in Denver that wanting one of these
+
+117
+00:58:09,780 --> 00:58:38,100
+Wes Bos: come up. I've got Mr. szalinski. I want this. So I'll get right people to talk to your people. It's It's pretty cool. I so I have the amplifi HD right now we should be like a whole networking show. Because I got a bunch of gear from them. And I'm just testing it all out. And I've previously talked about the amplifi HD, which I've had for a couple years I've been really happy with that. And then they have like another like pro line, which is all their unify stuff. Interesting. Yeah, networking show,
+
+118
+00:58:38,130 --> 00:59:20,220
+Scott Tolinski: we'll do it. I'm gonna be into this. Because I've been I looked my Google Wi Fi, but I'm getting a little frustrated with it. Because it's you can't do the like the VPN on the whole network, you can't do a lot of that stuff that you would like to do with maybe a more advanced router. So find my network getting slower over time. And then I have to restart the entire network. And then all of a sudden, it's fast again, or I get speeds again, and it's just through the Wi Fi router. Like everything Ethernet is fine. But like let's say, after I restart my router, the signal in my gym is five stars or whatever, and it works fine. But before I do that, it's like once or like having a hard time connecting. So I've really no idea what's going on with Google Wi Fi. It's kind of making me frustrated lately.
+
+119
+00:59:20,640 --> 00:59:57,420
+Wes Bos: Yeah, that's one thing I want to do is put a VPN on the router itself. And this amplify won't do that. This is like a more of a home gamer system. And their unify stuff is more prosumer or actually is professional professional equipment. And on those they have a lot more control over the entire network, which is cool. Like I went to school for Telecom. So I actually love to geek out about this type of stuff. Um, it's cool. All right, a shameless plugs. I'm gonna shamelessly plug my beginner JavaScript course at beginner javascript.com Use coupon code syntax for 10 bucks off.
+
+120
+00:59:57,720 --> 01:00:31,230
+Scott Tolinski: I'm going to shamelessly plug my animating react with framer emotion course, which I just launched. It's so cool. This product that I made that I'm trying to sell you on is so cool. Now this is a really cool course that I did about animating react with framer motion. We do all sorts of practical things like creating models, then we get into some of the Golden animations that are really hard to do like animating height auto animating unmounting router changes and orchestrating large scale animations. It's so cool. So level up tutorials.com forward slash Pro, sign up for the year save 25%
+
+121
+01:00:31,620 --> 01:00:35,640
+Wes Bos: Alright, thanks for tuning in. We will catch you on Monday.
+
+122
+01:00:37,020 --> 01:00:37,590
+Unknown: Peace.
+
+123
+01:00:39,480 --> 01:00:49,230
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+

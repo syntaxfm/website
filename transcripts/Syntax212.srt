@@ -1,0 +1,784 @@
+1
+00:00:01,319 --> 00:00:02,820
+Unknown: You're listening to syntax,
+
+2
+00:00:02,849 --> 00:00:10,530
+the podcast with the tastiest web development treats out there, strap yourself in and get ready to live ski and West boss.
+
+3
+00:00:10,530 --> 00:00:54,630
+Wes Bos: Welcome to syntax the podcast with the tastiest web development treats today we've got a really good one for you. We've got Fred shot on the podcast to talk about pika package, which I've been following for I don't know how many months now. And I'm really interested to figure out what it is and how it fits into your workflow and what it replaces and all that stuff. So we'll have him on in just a second. So we've got two awesome sponsors today. Sanity, which is a structured content CMS, they've got some new, pretty cool, they've been rolling out some features like crazy lately, we've been talking about their preview feature, and Freshbooks, which is cloud accounting software, with me as always is Mr. Scott to Lynskey. How you doing today, Scott?
+
+4
+00:00:54,719 --> 00:00:58,799
+Scott Tolinski: They doing good. And I don't have really a whole lot to say, but
+
+5
+00:00:59,339 --> 00:01:04,370
+Wes Bos: this is a third podcast we recorded today. So he's out of things to talk about. Yeah,
+
+6
+00:01:04,400 --> 00:01:07,890
+Scott Tolinski: the pleasantries, although we can only talk about the weather so much.
+
+7
+00:01:07,919 --> 00:01:17,490
+Wes Bos: Yeah, I like talking about the weather. Yeah, sometimes allowed like it. Yeah. Um, so Fred, welcome. Thank you for coming on the podcast. Hey, thanks
+
+8
+00:01:17,490 --> 00:01:18,480
+Unknown: for having me.
+
+9
+00:01:18,720 --> 00:01:40,320
+Wes Bos: So you've built this thing called pick a package. And it's, as far as I can tell, it's a whole bunch of stuff. And really why I've been paying attention is you have like, a bit of a background, both working in Node land, as well as you've worked at some large companies. So do you want to give us like sort of a rundown of who you are, and whatnot, and then we'll dive into what is pika package?
+
+10
+00:01:40,530 --> 00:01:45,630
+Unknown: Yeah, sure, I'd be happy to, um, if you want to ask me about the weather here, too. I'm free, as well.
+
+11
+00:01:45,779 --> 00:01:46,680
+Wes Bos: So where are you from?
+
+12
+00:01:47,250 --> 00:01:50,700
+Unknown: I'm in San Francisco. Right now. It is sunny for the first time in a while a nice,
+
+13
+00:01:51,750 --> 00:01:52,440
+Wes Bos: beautiful.
+
+14
+00:01:53,100 --> 00:02:46,380
+Unknown: Yeah, I've been working on pika for about a year. Now, this might even be like right around the time where I launched the first website, one year ago, it comes out of work I did, kind of starting at Google. So trying to take a look at the space where we have this new sort of module system for JavaScript coming in ESM IDs modules, which was kind of ratified in 2015. But took a while to get into all the browsers. And now four years later, we are essentially here where it's supported by a lot of modern browsers. So it's this kind of new chance to take a step back and take a look at all these different preconceived notions, best practices that have built up for maybe a different role, that doesn't make sense anymore. So it's really just a it started, at least as a project to experiment with different things in that area. And it's started to coalesce around a few different ideas that have taken off as experiments on their own right.
+
+15
+00:02:46,860 --> 00:03:31,650
+Wes Bos: Okay, cuz we just like 20 minutes ago, we just finished right doing an episode about modules in Node. Okay. And it's hard. Yeah, it's like not totally there yet. It's obviously still in development. But like, there's like no named imports from common j. s. And we have this whole, like, history of like, NPM is full of all these packages. And it would be nice if node and NPM. And everything just started today. And it was all ESM. Yeah. Not with a million other packages. Yeah, yeah, exactly. So like, what, like, what is bigger package then? Like, if someone were to ask you, what is it? I know, there's a couple different pieces to it, but want to give that a shot?
+
+16
+00:03:31,860 --> 00:05:42,690
+Unknown: Yeah, definitely. It definitely is a few different things right now. But I'd say what it is, conceptually, as it's asking this question of how would you do web development if you didn't need up? onblur? I'd say that's the biggest kind of thing that we've kind of latched on to as a question to ask now that we have modules that run on the web. So the question is, why do we use a bundler today? Yep, you might think we use it for production, which is nice. There are definitely some production reasons to use it. You might think, because it's a really nice development flow. There are all these things that have been built up in that world. But the big reason we all needed like that, that need to use a bundler there is no one really does much web development today without one would, and that would be Webpack or parcel, create react app that's like that bundler level tool. Yep. The reason we all use that really is because of NPM. As you said, all these old packages on NPM, millions of like a million packages are all written for common j s, which is that node syntax that was really championed by them, no champion that NPM was built for node originally. So that was kind of the lingua fresco, the standard module system. But the one downside was that it didn't run on the web natively. So a lot of let us all come into this one single JavaScript ecosystem, node web, it brought us all together, which was awesome. But the downside was that web developers had to pull a tool that had previously really only been for production, bundling, you know, you'd basically used to back in the day, concatenate all your JavaScript files into one for production reasons. Development, you'd still Yeah, that's the one thing where it's like I'm not saying we go back to like concatenating files together ourselves like the Julian that's come out of the last decade is awesome. But the downside has been that it's put a lot more strain on the development process. So bundling is now a development concern. And when you make changes locally, you have to rerun your bundler, you know that waiting for a compile step that we see on create react app and other tools. You know, on some projects I've worked on over the last few years, that's been a few seconds, it's been up to 10 seconds on one. That's every change, you're just kind of stuck there waiting. As a developer, that's, that's kind of a game. That's something that I don't like. So there's a lot that you can start to look at there.
+
+17
+00:05:42,750 --> 00:06:26,070
+Wes Bos: Yeah, just being able to reload like, so when I just launched a big beginner JavaScript course. And when I got to the the module section, I was like, Look, you can do almost all of this just with the like script type module, and then we are importing and exporting down the chain as far as you can go. And then we got to the part where we wanted to use some NPM package, and it got a lot Messier. And yeah, at that point, I say, this is where you need a tool, unfortunately. And I showed him some options and things like that, we ended up using partial in there. But so you're saying like this, Pika is going to solve that I'll be able to use just regular what script type equals module and then I can use pika as a registry on
+
+18
+00:06:26,070 --> 00:06:53,010
+Unknown: that kind of so before we get to the registry part, this is the before we ever got to that it was really just taking a look at exactly what you said, which is that it all works great. This whole new tech, this new language, it's fantastic. And then you have to talk to NPM. because no one's really doing web development. Without it today. What we started with was this project called Pico web, which we're renaming to snowpack, just to give it its own name, snow pan identity. snowpack,
+
+19
+00:06:53,160 --> 00:06:54,390
+Wes Bos: that's a nice name. Yeah,
+
+20
+00:06:54,450 --> 00:06:55,530
+Scott Tolinski: it is a good name.
+
+21
+00:06:55,530 --> 00:06:57,300
+Unknown: You have to you have to whisper it.
+
+22
+00:06:58,410 --> 00:06:59,070
+Yeah.
+
+23
+00:07:00,150 --> 00:07:03,660
+What snowpack? It lets you do is it's a simple,
+
+24
+00:07:03,780 --> 00:07:06,750
+Scott Tolinski: you're really good at naming things. I'm just gonna say that out of the game.
+
+25
+00:07:08,070 --> 00:07:58,650
+Unknown: Throw that. Right. Yeah, this is that that's a year in the making. So that was, you know, that was a group effort. People jumped into that issue. But yeah, what essentially does is it looks at that as the problem. So instead of saying you need to bundle your whole app, it really says okay, actually, you can get really far, it's just NPM you need to worry about, so why not build a bundler just for NPM. So what snow pack does is it adds install time versus at development time. And this is where the naming is, you know, you can call it what you want, you can say that it bundles your dependencies, you can say it's a post install script. But it essentially takes your dependencies and turns them into these single file ESM JavaScript modules. So react, react, any dependency you want, you can essentially just pull into a single JavaScript file that can then be imported by your project by your app.
+
+26
+00:07:59,490 --> 00:08:00,090
+Wes Bos: Okay.
+
+27
+00:08:00,570 --> 00:08:20,850
+Unknown: So you run it, once you run it, when you mess with your installs, maybe you add a new package, maybe you just run npm install for the first time. And then now you're able to do development locally, you're not running a tool, every time you make a change, you're not recompiling bundles every time you make a change. You're building your app locally without a ton of tooling. And then now all you need to do is run that bundler once with install.
+
+28
+00:08:20,850 --> 00:08:52,909
+Scott Tolinski: Oh, that's really, really great. I don't know, just exciting use case for this, the fact that it's not just going to replace something that you're using, but it's going to take something that every single developer who's used a modern bundling solution knows this pain point of sitting in waiting when inevitably, like he said, You shouldn't really have to unless you're installing something new. Right? So I think that right there clears up a lot of the why, for me, this is a that's a nice little nice little value add.
+
+29
+00:08:53,250 --> 00:09:13,649
+Wes Bos: Does this mean like, so I'm just looking at the docs here, and you import a module. And instead of importing it from an example, you have preact, instead of importing from preact, you import it from like local directory web modules, it makes a new folder called web modules, and then it puts the entire package into a single JavaScript file in that folder for you.
+
+30
+00:09:14,100 --> 00:09:39,510
+Unknown: Yeah, so it does what a bundler does right now for your whole app just on Yeah. pendency. So any transitive files that it would be loading, even if those are common j. s? If he has those all into one JavaScript file, that is ESM Ah, so you get one preact dot j. s file, even if react had dependencies, which I don't think it does, but it has local files, it has, you know, it's not a single file package, but it essentially installs it as one, even if it has dependencies itself.
+
+31
+00:09:39,870 --> 00:09:48,049
+Wes Bos: And what if something like shares peer dependencies? Yeah, like three modules has appeared dependency does this is there something for that yet?
+
+32
+00:09:48,330 --> 00:09:53,190
+Unknown: So I lean on roll up a lot. It's really a special roll up config column.
+
+33
+00:09:53,220 --> 00:09:55,380
+Wes Bos: Okay. So you didn't build your own.
+
+34
+00:09:55,590 --> 00:10:08,250
+Unknown: So whenever roll can do it can handle its peer dependencies, it can handle you know, it does all that pretty smartly, because it's the same problem we've been having to handle for apps, right? code splitting and chunking. And all that. Just move down a level.
+
+35
+00:10:08,970 --> 00:10:12,600
+Wes Bos: And does that mean I'm not gonna have a 40 gig node modules folder? Then?
+
+36
+00:10:14,009 --> 00:10:19,110
+Unknown: You still well, we still don't have that node modules. So we essentially create a web modules.
+
+37
+00:10:19,279 --> 00:10:20,070
+Oh,
+
+38
+00:10:21,289 --> 00:10:23,100
+yeah. So it really is post install,
+
+39
+00:10:23,130 --> 00:10:28,380
+Wes Bos: so it installs it and then pulls it out of there. Yeah. Okay. Okay. Wow.
+
+40
+00:10:28,399 --> 00:10:29,429
+Unknown: Yeah, exactly.
+
+41
+00:10:29,429 --> 00:10:33,049
+Scott Tolinski: So you should have gotten the two terabyte MacBook Pro is what you're saying? Yeah.
+
+42
+00:10:34,500 --> 00:10:42,390
+Unknown: It would be interesting to maybe pull from unpackage or from our CDN, but essentially, right now, it just, it's on top of node modules, it's on top of your npm install. And
+
+43
+00:10:42,390 --> 00:10:47,640
+Wes Bos: that that just allows you to use just regular HTML imports. That's not called HTML imports. That's
+
+44
+00:10:47,640 --> 00:11:45,240
+Unknown: not what it is. It's no just Yes. or JavaScript. Or it's, yeah, it's it's an interesting thing. We're now you kind of get into Okay, so now what's possible that you have this, you can technically run basically build a whole modern web app using modern NPM dependencies, without any other build tools. So you're literally a static assets server, and you make a change. And then you refresh your browser. And without any build tool in its, it's all just there are the changes there. But people like to use Babel, people like to use TypeScript. So there's this other side of it, where you can still use build tools. We're not saying okay, that's all built tools. That's all tooling at all. All we're saying is that you don't need this whole bundler. You can just use the tools you're wanting to use and TypeScript and Babel, they're still really fast at per file compilation. So you can still set up basically Babel on your source directory, you make a change, and now that will just have to recompile that one file. So you get TypeScript, watch. You get Babel watch, you get these things that are actually very good at single file changes.
+
+45
+00:11:45,539 --> 00:11:46,890
+Wes Bos: Okay. Wow,
+
+46
+00:11:46,919 --> 00:11:48,450
+Scott Tolinski: that's really interesting. Yeah, so
+
+47
+00:11:48,450 --> 00:12:00,270
+Unknown: no more 10 second, wait times for a bundler, you know, five second wait times you essentially, it's as fast as Babel or TypeScript can recompile a single file, which is, you know, milliseconds, or maybe hundreds of milliseconds at the worst, but certainly not seconds.
+
+48
+00:12:00,600 --> 00:12:23,010
+Wes Bos: Mm hmm. And I remember that with back in the day, we had like a SAS app that would take like, 32 seconds to recompile. Oh, is awful, right. Even like, I'm just thinking about how awful that used to be. I got a new MacBook. And just my note app restarts so much quicker on my new laptop. I was like, Oh, nice. That's such a improvement.
+
+49
+00:12:23,429 --> 00:12:51,809
+Unknown: Yeah, it's all these languages that we use, like sass and and, and using a bundler. It's like, we're writing a language that runs on the browser, like compiling and getting all these compiler benefits, that would be one thing, but we're essentially doing all this build time to still just ship the exact same language, right? Yeah, that's a shame. So hopefully, this is at least a start in that direction. It's been around for about a year, it's got some good, you know, we're hitting v1, soon, it's got some cool production things you can still do with it. It's it's a really exciting direction.
+
+50
+00:12:51,809 --> 00:13:40,980
+Scott Tolinski: I'm really excited that you you've clearly thought about aspects of like the barriers to entry of this, like, specifically people not wanting to ditch their already established build process. I think, to me, that was like one of the biggest unclear points of this whole thing was like, can you use this with whatever you're using right now? And how much buy in Do you have to get because a lot of times people will hit, you know, they'll have this major project, they've built it with one thing, they want to try this new thing, but it's it's too much of a hassle. So if you were having a project that already existed, could you maybe step through what the, their refactor process would look like to maybe even just attempt to add this for not the entire thing, but for maybe a small subsection? Like would the migration to this look like?
+
+51
+00:13:41,070 --> 00:15:22,350
+Unknown: Yeah, certainly. Yeah, that's definitely the interesting part of this is, it all depends on how far into the bumbler ecosystem you've built yourself. So the more you can consider some things that we do, like let's just call them they're like Webpack things like importing a CSS file right now, that's not really a defined thing. Webpack certainly, they just, they described it really, it's whatever plugin you're using, just defines that behavior when importing the CSS file, importing JSON importing things without a file extension. These are all sugar essentially, on top of something more complex that Webpack lets you do. So depending on how many of those Webpack specific or bundler specific things you're doing, you do need to start to rethink of Okay, what do those look like in a actual browser native way in a way that actually is defined in the spec and would run CSS is a good example of that. Or let's say you actually do lean heavily on importing CSS, as if it were a JavaScript module. So you do that import keyword, and then the string is a local path to your CSS file. That's not important JavaScript, that's important CSS that would never run in the browser. Webpack handles that for you using this magic bundling. Instead, you have to think about what that looks like either by using a specific library. So there's a few out there that exists. cs z is a really cool one, where it lets you do something very similar. Where you can either import a CSS file, essentially, it's the exact same workflow. But instead of using a ESM import that is a browser specific thing, you use this library, you say CSC. And then you put the string of the file you want to load. And then at runtime, it'll instead import that directly. Things like that. Are the are the interesting thing to tackle here? Depends how far into what pack you've gone. Interesting.
+
+52
+00:15:22,830 --> 00:15:25,919
+Wes Bos: CSC is the Canadian society for Zoo all
+
+53
+00:15:29,760 --> 00:15:31,679
+Unknown: they had amazing open source program.
+
+54
+00:15:34,740 --> 00:15:41,309
+Wes Bos: So CST is a runtime for CSS modules with sass, like pre processing. Interesting. Yeah.
+
+55
+00:15:41,309 --> 00:15:43,169
+Scott Tolinski: I've never heard of this. Yeah.
+
+56
+00:15:43,380 --> 00:17:06,480
+Unknown: Yeah. It's it really is this kind of whole other world you step into, um, ah, I would say works. Yeah, I would say the whole caveat to this stuff is don't take whatever you're using at your company that's working great. And feel like you have to rewrite it today or anything like that, um, this really shines as a if you're building a new app, and you haven't gone far down a path that's harder to walk back, then this is a great way to start and you know, get your feet wet. And then it just becomes Okay. How important is it maybe if you have a really painful death process that is taking 10 seconds? You know, it really depends on what is your pain? And then how hard is the solution based on what you've done? I'd say if you're especially if you're looking to like maybe eject from Webpack or sorry, from create react app, or something similar, where you've been using this fully featured environment, this fully featured dev environment that they've set up for you, you go to a jacked and all of a sudden, you're dumped with a four or 500, line Webpack config, that you have no idea what it's doing, right. Yeah, create react app is great, because it's a total mystery. Exactly. It takes care of it all for you. But you know, only to an extent, right. As soon as something breaks, you're stuck digging through that as soon as you want to customize it, unless you want to use maybe an add on tool. But anyway, that's a really good chance to take a look at this as well as, okay, if what I'm using isn't working for me anymore. If I'm feeling these pains of build time, wait time, how can I maybe take another look at a different solution.
+
+57
+00:17:07,050 --> 00:17:52,890
+Wes Bos: That's really cool. I also think like this is just like, awesome for beginners as well, because there's not a, there's not a huge hurdle to getting something up and running. Or even just like for me, like I've got an hour or two to work on a little idea that I have, I don't necessarily want to spend that time fighting some sort of config and whatnot. I just want it to work. And it's wanted to work in the browser. And I think we're like, I kind of feel like with this kind of stuff. And also other stuff in the industry. We're getting more back to the olden days where like, I would just, it used to be you just download a jQuery plug in and drag and drop it. He just included with the script tag. And obviously, it's a little different now that we have NPM it's much better, but I feel like it's Do you feel like it's getting easier? And obviously these tools are making easier?
+
+58
+00:17:53,280 --> 00:18:48,180
+Unknown: Yeah, there's definitely this like, nostalgic feel to it, where you still have all this same power that you have, you can use these NPM packages, maybe you have to import CSS differently. And whether that's a better way or a worse way, I think is up to interpretation. But yeah, I mean, you open up all these really cool and very nostalgic feeling things like View Source suddenly becomes the default again, right? If I'm deploying my whole site, as I've written it, then every file is as written. And maybe that's enough for you. So you're getting the jesup compression, and you're saying that's enough minification for me, or maybe you send you know, another minification step, maybe you add a bundler for production, like, it starts with a much simpler default case for exactly that hello world, you know, simple example you're talking about. And then if your Facebook or your some big company where you can afford a production team, you know, a web pack team. If you can afford to invest in that, then certainly you can get all the same benefits that exist today, but just with a much lower barrier to entry.
+
+59
+00:18:48,930 --> 00:19:45,030
+Scott Tolinski: Yeah, this we'll get into this a little bit more, I think after we do an ad reader so but this CDN thing is totally making me reminisce and of the times when you could like go to add jQuery or something and whoever would just be like, Oh, yeah, you just copy the script and place it at the top. And then next thing you know, you got, you know, 20 HTTP requests for different plugins or whatever all hosted on some mystery CDN that you've, you know, different CD ends and who knows where they're at. But I think what we want to do real quick here is take a quick break and talk about one of our sponsors today which is Sanity, and Sanity is located@sanity.io. Now Sanity is the the backend CMS to build a structured content in it is really exceedingly modern, and they are rapidly growing and adding new features. So Wes wants to talk about one new feature which is previews.
+
+60
+00:19:45,390 --> 00:21:24,750
+Wes Bos: So Sanity just rolled out this like really cool thing where you can iframe in your content, most likely that would be your website. And as you are typing in your editor, you can preview that as well. We'll look on your actual website. So they built this amazing thing where you can just type and you can preview it. And it looks like the code to hook it up is pretty simple. Because the way that you configure Sanity is not through like a GUI or something like that the way that you configure it is by writing these config files that are written in JavaScript. And you can just hook up a preview iframe, and it's up and running. And then the video that they launched to show this preview is pretty neat, because obviously, you can preview a website. But then they also show you can preview like social cards. So like as you are editing the metadata of a post or something or the title, you can like pipe that into like, what would it look like as show up as a Twitter card or a Facebook share interesting, or they also showed you could preview it as colorblind users, or you could just like apply colorblind filters, with I'm assuming CSS overtop of it. So it'll show you what it looks like from a color, but colorblind, you can preview as printable PDFs. I don't know, it's just such a cool way to think about previews, I would assume most people would use it to preview what it looks like on their website. But they've sort of taken a step back and allows you to control it a little bit more, however you want. So check it out, sanity.io forward slash syntax. And that's going to get you double what the free plan does. Thanks so much to Sanity for sponsoring.
+
+61
+00:21:25,410 --> 00:21:39,300
+Scott Tolinski: So if you had to pick a dot Dev, you'll see a search bar. And the very first link, you'll see really is the registry tab. I'm really interested in what exactly the registry is and how it relates to everything we've talked about so far.
+
+62
+00:21:39,990 --> 00:22:16,440
+Unknown: Yeah, definitely, that would be our next kind of big bet. So we started with all this open source tool and and now we're starting to experiment with some more city and register, you're kind of taking a look at the whole ecosystem itself. The registry is essentially looking at that problem from the other end of it. So we can keep using tooling to make development easier. But at the end of the day, what the tool is trying to solve is this fact that most of NPM isn't written for the web. It's written in common j s, or maybe it's written for ASM, but it was built, assuming a bundler would consume it. So it could still be doing these things that were never really tested or ever meant to run in the browser.
+
+63
+00:22:16,980 --> 00:22:37,830
+Wes Bos: Yeah, like, like react is probably written with ESM. But then they bundle it and ship it as a common j s, so that your Webpack can then eat that and then turn it back into ESM. Yeah, to use it. And then eventually, you bundle it again, and it'll ship it back out. J s, probably a bundle it up.
+
+64
+00:22:37,830 --> 00:24:18,660
+Unknown: It's turtles all the way down there. Yeah, right. A lot of web code is just built, assuming that there would be a bundler. Because again, that's that was the only way to use most anything on NPM. And by it was the deal that we made to have everyone joined MPM was that the language that we would all use was this common language that had already been chosen, which was common j s, you know, never meant to run in the browser. Without doing so, what the registry is, is it's a chance to start again, and start building packages that run anywhere and that run in the web natively, I would say, you know, right off the bat, again, going back to how does this play with the current ecosystem, it is essentially a Think of it as like a garden with an NPM. So every package in our registry is published to NPM. So you're not, you're not having to leave that place where all your users are today. But what it is, is, it's a way to build packages, where you can guarantee that every package in that registry in that collection is ESM. It is built for the web, it's tested on the web. And we're doing a lot of cool things in that space, where we see a bit of a fracturing of what it means to do JavaScript. So before everything was Webpack, or node, right, those are the two let's say, you know, parcel and maybe other things, but you were essentially as a package creator, targeting those two things. Today, you have Dino, you have these other registries coming up, you have GitHub package registry on the scene, you have em still, you have no DSM, you have no common jazz, as the world kind of fractures for whatever reason. That is, you see that the burden has really been being placed on package creators to create the perfect package that would somehow run in all these environments.
+
+65
+00:24:19,740 --> 00:24:37,380
+Scott Tolinski: But how many times do you get a GitHub issue that this doesn't work in my environment? For these reasons now is a package manager you're now having to troubleshoot some environment that you're probably not even used to using just because of different requirements via different build tools, different build processes, all that stuff?
+
+66
+00:24:37,680 --> 00:25:26,970
+Unknown: Yeah, exactly. Right. And and what that looks like is okay, I need to go and research what that field of the package JSON might be doing for that bundler, but I can't have it affect the bundles that are you know, right. Yeah, exactly. No one really owns it. And so you just get everyone overwriting each other. And we saw that a lot with people trying to build universal packages where essentially everyone assumed that module was there. So module was filled with In a package JSON that you could say, this is ESM. But what that would be like, Oh, great, you know, module code, I'll use that on node, I'll use that in the browser. So all of a sudden, you had this. You had this world where you actually couldn't describe what you wanted to do in a way that every tool would really follow in the way you want it. So having a target that some bumblers meant for the browser consume some bundle is meant for no to consume. Yeah, it's a bit of a mess. Not to put it lightly.
+
+67
+00:25:27,030 --> 00:25:30,450
+Scott Tolinski: It's a bit of a mess. I think that is like the tagline or what?
+
+68
+00:25:32,100 --> 00:25:33,750
+Unknown: Certainly, certainly for beaker.
+
+69
+00:25:35,670 --> 00:26:00,300
+Wes Bos: Yeah. So pekah is the registry it so like that? Is it its own registry? Does it sit on top of NPM? Is it both? I know that the idea is that nothing gets into the registry, unless it's ESM. Which is great. But like, like, where does it sit in relation to something like NPM? And where does it sit in relation to something like unpackage? Yeah,
+
+70
+00:26:00,330 --> 00:27:23,340
+Unknown: we're, we're still trying to figure that out. Okay, right. Now, it's basically in this closed beta, we have a few, if you head over to our Patreon, you can sign up for that closed beta. So it's a pretty limited set of users right now, as we try and figure this out. Okay, I did it today, it is a little bit of everything. So it's, imagine if your registry just was kind of by definition, or like unpackage, it was a thing that you could hit in any environment. So the browser can hit our registry. And just like our own package works today, it basically loads that module, you can technically do NPM, install, and then put the URL of our of our registry, and it'll install the package, Dino can import from our registry. So it's is almost just like a morphus kind of blob out in the cloud, where whatever environment you're in, you can hit it, and it will get you the package you need. And that pulls from the same CDN logic that we built out originally for NPM. Where if you're hitting it with a modern browser, and you want to load it directly on your site, so basically have the user instead of installing it as a developer and bundling in or anything like that, you can essentially send that import directly to our CDN to our registry, to your user in your built production app. If you do that, then if they're on a modern browser, they'll get the latest Yes, 2019. If they're on a legacy browser, they'll get that yes. 2017. So we do this really cool differential, sir, ah, default, where every environment gets the perfect JavaScript for them.
+
+71
+00:27:24,210 --> 00:27:53,190
+Wes Bos: That's really cool. I was thinking that I was like, I was just like thinking like, Man, it's so cool that just like regular JavaScript imports, no, bundler nothing you can import from a URL, right? Like you can import react from the registry dot whatever and forward slash react. But then that doesn't take care of like older browsers, right. But you're saying that it will detect the user agent and then serve up the the appropriate one? Yeah, that's it. Wow. That's neat, huh, fair. Yeah.
+
+72
+00:27:53,190 --> 00:28:19,620
+Unknown: And this, this applies back to what we were talking about even earlier. But every browser except for really, ie 11. And then UC Browser and China supports this. They're obviously the the minor ones that don't, but those are really the only two major browsers that don't support this. So if you're building a website that isn't targeting, you know, enterprise, ie 11, or maybe isn't targeting China today, that's certainly a pretty good option for even for production. Very interesting.
+
+73
+00:28:19,650 --> 00:28:20,250
+Yeah.
+
+74
+00:28:20,370 --> 00:28:54,990
+Wes Bos: Oh, that's really neat. Yeah. Yeah, I really, I really like that. Like, you clearly have like, taken a step back at all of this. And like thought, like, Huh, like, there's probably something we could do here. Like, I always appreciate people like that in the community, because like, I'm just the kind of guy that I just, I just use it because that's what we use. And we keep going, right? And then there's, there's like, these visionaries that take a step back and say, like, this is weird that we do this. And it's only because of the all of the steps that led up until today. That's why we do it that way. But like, what if we were to think about it in a different way? So this is very enlightening. Yeah, it's
+
+75
+00:28:56,220 --> 00:29:01,050
+Unknown: react gave that original presentation where they announced it, or maybe it was one of those announcements where I was there.
+
+76
+00:29:01,050 --> 00:29:01,830
+Wes Bos: Yeah.
+
+77
+00:29:03,300 --> 00:29:07,710
+Unknown: What was the title of that? It was like rethinking best practices. Like that was
+
+78
+00:29:07,860 --> 00:29:30,840
+Wes Bos: no, that was, um, Ben Allman, who was like the jQuery plugin, cowboy. He, he said, We are all sending snarky tweets out the release of react. I thought it was silly. Yeah. And he said, Yeah, he said, A react rethinking best practices. And he tweeted it out. And they took that tweet and go, we are rethinking best practices. Thank you.
+
+79
+00:29:32,340 --> 00:29:40,710
+Scott Tolinski: I remember sitting at my desk and one of my co workers was like, they'll they just just had this awesome talk on this thing called react. I like looked over at a screen. I was like, Oh,
+
+80
+00:29:42,180 --> 00:30:19,410
+Unknown: yeah, this feels a lot like that, where it's like, why are you messing with this? It's like, no, that's exactly the point is like, if you never ask these questions, we'll just keep doing you know, the same thing forever, but the world has changed and what is possible is changed. And at a certain point, you know, we got to explore that at the very least. So totally a big part of this has been said You know, this isn't forcing it, I'm not putting a stick in the ground that says, you know, you have to do it. And one way, it's more about just like these things are possible now. And if you want to for the first time, you don't need to use a bundler, you don't need to do all this tooling. So if you love Webpack, by all means, keep using it. If you want to try something simpler, then this is certainly an exciting time.
+
+81
+00:30:19,530 --> 00:30:20,820
+Scott Tolinski: Yeah, very cool.
+
+82
+00:30:21,110 --> 00:30:46,500
+Wes Bos: This seems like the kind of thing that I bet like a group of passionate people will start using it. And if it catches on, if it starts to make sense for them, they will not stop talking about it's like TypeScript right now. Right? Like, yeah, everybody will not stop talking about TypeScript. It's because it solves all of the problems that they've had with JavaScript up until now. And I could certainly see this happening with something like this in the next couple years.
+
+83
+00:30:46,830 --> 00:31:03,630
+Unknown: Yeah, that's lovely. That would be great. That's certainly the goal. Web Components, I know that community is has been interested in this in the registry specifically, I know Do you know they're still working on their NPM compatibility story? So how did they get a set of packages that work on node? And indeed now?
+
+84
+00:31:04,229 --> 00:31:18,720
+Wes Bos: We need to do a show on Dino. So Dino is like no jazz, but run on TypeScript? It's written by Ryan Ryan, the guy who made node he did this awesome. Talk a couple, like probably over a year ago.
+
+85
+00:31:18,860 --> 00:31:22,410
+Scott Tolinski: It was really good talk. Like everything is ever Gretton. Yeah,
+
+86
+00:31:22,650 --> 00:31:24,660
+Wes Bos: yeah, make your credit about node.
+
+87
+00:31:24,690 --> 00:31:31,890
+Scott Tolinski: I've always pronounced this as demo, and I'm really happy now that I've learned that it's Dino and the logo makes so much more sense.
+
+88
+00:31:32,100 --> 00:31:34,800
+Unknown: Okay. I was about to say, Oh, no, no, I'm worried I've been mispronounce.
+
+89
+00:31:35,820 --> 00:31:39,450
+Scott Tolinski: There's a dinosaur here. I mean, yeah. Yeah, that makes way more sense.
+
+90
+00:31:39,540 --> 00:31:41,070
+Unknown: Maybe it's Dinah. We don't know.
+
+91
+00:31:41,580 --> 00:31:46,470
+Wes Bos: Yeah. No, duh, duh, no, duh. No, no, no,
+
+92
+00:31:47,220 --> 00:31:48,570
+Scott Tolinski: no, no. Yeah.
+
+93
+00:31:48,840 --> 00:31:54,900
+Wes Bos: It's probably the No. there's anything we know from this podcast is that well, I'll say it wrong.
+
+94
+00:31:55,680 --> 00:31:57,000
+Scott Tolinski: Yeah, likewise, yeah,
+
+95
+00:31:57,060 --> 00:32:05,250
+Wes Bos: that's really interesting. I had no idea that this Dino is gaining such steam. I just look it up on the GitHub. I had heard about it for a while. But
+
+96
+00:32:05,760 --> 00:32:06,570
+Scott Tolinski: that's a demon.
+
+97
+00:32:06,840 --> 00:32:08,130
+Wes Bos: Yeah. demon.
+
+98
+00:32:09,090 --> 00:33:11,940
+Unknown: Yeah, types. That's I mean, TypeScript is another one of those things where if you're a package creator, you're getting those issues with people saying, Oh, please, you know, where are the TypeScript types? And then as an author, it's like, okay, don't use TypeScript. Yeah, do I don't need this myself? Exactly. Yeah, that's a nice thing about and I could talk a bit about the code editor, which is a bit of the other side of this registry, where we handle that as well for you. So TypeScript types are generated and hooked up for you by default. Essentially, the registry is just a place to put your source code, and then we will create the package for you almost as just a, like, not a side effect. But as a just a effective you're doing development below. Wow, every time you push a change, it's it gets a new release. So it's using that semantic versioning semantic release process. Yeah, it's really cool. It's essentially just like, we have your source code. So we can build these really high fidelity projects, connect all the entry points in a way that you can't really do today, where instead NPM has the tarball, right, it just has this kind of processed zip file is essentially what they get as a registry. So what you can do with that, that level is really, really exciting.
+
+99
+00:33:12,420 --> 00:34:47,760
+Scott Tolinski: So let's, before we get into the editor, and because I think this is a really interesting subject, I think we should probably take a break to talk about one of our other sponsors, which is fresh books. After you've written your application with Pika, and you've just been so fast and easy that you are bringing in the cash left and right, they're gonna want to head over to freshbooks.com and sign up, because you're going to need to have a system to keep track of your books. Now, fresh books is one of the very first sponsors over here, it's in tax. And we really believe in making this kind of thing easier if you've ever used, I don't want to say like QuickBooks or any of these other books, software's bookkeeping software, you'll know that it couldn't be it feels like it's going backwards in time. And Freshbooks feels like it's going forwards in time or into the future. Because it really, it takes the modern approach to all of these things we know and love puts it in the cloud, and it puts the features that you actually will use in front of you. My personal favorite feature is really, honestly, it's just how easy it is to get around and explore and navigate this thing. No more questioning and being confused about what the heck everything is and where to go. I always felt like I was messing up my books. So freshbooks is definitely the cloud accounting software that you'll want to check out. If you are needing to keep track of your books. What you're gonna want to do is head on over to freshbooks.com forward slash syntax, but syntax in the How did you hear about a section and let them know that you heard about Freshbooks from syntax, you'll get a 30 day free trial.
+
+100
+00:34:48,359 --> 00:34:57,060
+Wes Bos: All right. So I'm the editor. I think you just launched this what like a week or two ago as of as of recording, is that true?
+
+101
+00:34:57,420 --> 00:34:58,560
+Unknown: Yeah, a few weeks ago, maybe
+
+102
+00:34:58,560 --> 00:35:02,340
+Scott Tolinski: now if I put my email In this early access, can I get early access?
+
+103
+00:35:03,899 --> 00:35:33,170
+Unknown: Let's let's talk about No, it's still closed to open, open invite at this point. We're hoping to get it publicly available by January. We have people using it. So you can head our Patreon and get early access to that call. Yeah. Which is essentially just a group of people beta testing and banging out the last few issues and bugs before we go to public launch. And if you support $10, you get stickers is that Oh, yeah,
+
+104
+00:35:33,170 --> 00:35:37,500
+Scott Tolinski: stickers. Hey, I'm into that. So that's that Patreon.
+
+105
+00:35:37,530 --> 00:35:43,020
+Unknown: Yeah, featuring the new snowpack sticker. Oh, limited edition, or first edition, I
+
+106
+00:35:43,020 --> 00:35:47,610
+Scott Tolinski: guess. Uh, oh. Too bad on tethered to my computer gonna be Oh, grab my credit card.
+
+107
+00:35:49,350 --> 00:36:07,050
+Wes Bos: That would be worth millions. We'll get it folks ever. No. That's cool. Um, so like, what is the what is the editor? I'm just looking at it here. It looks like you write your code in this thing? Does it replace your vim or VS code? I mean, if that, or is that just for writing packages? maybe explain that?
+
+108
+00:36:07,560 --> 00:37:36,420
+Unknown: Yeah, definitely. Yeah, it's funny enough, which maybe I should have anticipated. But this is probably the most controversial part of the project, where I was essentially, I was really worried that everyone be like, Oh, no new registry all that's gonna be terrible. That's everything. Everyone's like, yeah, the registry is fine. What is this editor? I'm not leaving vs. Code. No way. Oh, funny. So we'll see how far this gets us. Um, we might, we might ship a like local development tool that can run somehow locally as use your own native editor. But what this is, is it's a way to build packages. So it's a code editor, you think of it as a code editor editor for packages, instead of having to set up your project structure and your folder layouts and all that. Everything is really conceptually about the package. So instead of having Okay, well, what do I call my source directory, you just have source files? Where do I put my test? How do I do that you just have test files. But navigation is really about the package. And the different things that would be a part of it. Okay. It's powered by Monaco, which is the engine that VS code uses. So it'll feel really familiar. If you are using vs. Code. It runs in the browser. So it runs all your tests in the browser. So again, going back to most people, when they say a package is ready for the browser, really, they're just testing it through some sort of node bundler hybrid, very few packages actually have a browser testing setup. Yeah, we do all this for you automatically in the editor itself. So you make a change, it runs in the editor. We have benchmarks that run there's all I mean, I could go on for hours about the features. But
+
+109
+00:37:36,780 --> 00:37:47,100
+Scott Tolinski: yeah, the one thing that was really interesting to me is the preview changes live in app. And it just gives you a live URL that you can import from directly. I think that's fantastic.
+
+110
+00:37:47,690 --> 00:38:10,080
+Unknown: Yeah, it really brings the editor and the registry together in a kind of I don't know if anyone's done it this way. But essentially, what, what you're describing is that in the editor, there's a little button to a live preview. So whatever package you're working on, you can get a live preview URL. And you can replace your import in your app to this live preview package URL of the package as you're developing. Oh,
+
+111
+00:38:10,130 --> 00:38:16,610
+Scott Tolinski: instead of messing with, it would replace the need for like an NPM. Link, which is like a giant pain in the rear.
+
+112
+00:38:16,830 --> 00:38:44,210
+Unknown: Yeah. Which never works the way I expected. Yeah, I always just go into the node modules folder folder hack at myself, like figuring out this link right now. So this will give you like a URL that you could locally dev on? Yes. So you can develop it in the editor and then in your application, just replace the import to that URL, and then you get that you see those changes instantly. So make the changes in the editor, refresh your app, and you should just pull in those new changes.
+
+113
+00:38:44,579 --> 00:38:45,780
+Wes Bos: Oh, that's neat.
+
+114
+00:38:46,130 --> 00:38:56,310
+Unknown: Yeah, it's, again, it's just like, we're exploring what's possible now that that whole native import system works across URLs across local projects. Yeah, it's exciting idea.
+
+115
+00:38:56,579 --> 00:39:14,670
+Wes Bos: Yeah, I can't tell you how many times I've like not created a pull request for something. Because I didn't want to go through. I was like, oh, man, I could fix this really quickly. And then I look into it. And there's like, like, a 3000 line contributing MD file. And all these like,
+
+116
+00:39:15,090 --> 00:39:18,380
+Scott Tolinski: Yeah, you got to test it in your local environment somehow. And
+
+117
+00:39:18,380 --> 00:39:36,600
+Wes Bos: yeah, you had all the tests. And I was like, Yeah, I can't, I was like, I could just fix this and do a pull request. But then all the GitHub bots are gonna get mad at me for not doing everything right. Yeah. So yeah, that would be cool to see, like, even like how it works with, like, forking a package. And then
+
+118
+00:39:36,600 --> 00:40:17,550
+Unknown: so that's, that's the gift and the curse of this, which is that we enforce that you're using this editor for any contribution to the package. So yeah, what you lose is that choice. I mean, that's, you know, that's we're definitely not hiding away from that fact, which is that you're using this editor for packages on our registry. But what you gain is exactly what you described, where you're guaranteed that every user is seeing the exact same editing experience. They're getting Running per change, they're getting formatting per change. So there's no like linting errors that would ever sneak into a pull request parent. Um, yeah, like that linting error back and forth is the worst dance, the worst part of open source where it's like, yeah, here's my contribution. Oh, great. Can you change this one thing? And it's like, and maybe that person never comes back?
+
+119
+00:40:17,690 --> 00:40:49,710
+Wes Bos: Hmm, that's Yeah, that I at first, I was like, I don't get why this is its own editor, not like a plugin. But I also never shied away from things that tell me how to do it. Like I almost always prefer, like, it's like with Webpack. I'm like, Don't give me this thing to work on. Like, don't get me homework, just tell me how to do it. And I'll, I'll do it, right, just force it on me a set of configs. And give me a little bit of customization. But and that's what this seems like, to me where you use this editor will work. To be totally fair, I've
+
+120
+00:40:49,710 --> 00:41:08,690
+Unknown: done a terrible, there's just so much to explain at this point that like, yeah, I need the time to read, I guess the project needs some time to bake a bit to talk about these two post blog posts to post documentation. So we'll see, I think I love this flow. But I understand that, you know, maybe some people just really love their local development experience. And that's fine, too.
+
+121
+00:41:09,300 --> 00:41:55,050
+Wes Bos: Yeah. Cool. Um, so a question I have is like, there's a lot of heat around NPM right now, just because like, they're a private company that owns all the code, literally, absolutely. Everybody's application. And like, obviously, it ships like it was started as this thing, but it was it is a separate company. And this, this company controls all of the code all of your JavaScript applications. And I don't know, people seem to be getting a little bit sore from that right now. So like, What does also from like a security point of view to right, you just have this random company? Like, obviously, I trust them, but they're still there that kind of, huh. So like, what does that look like on on your end? Is this an open source thing? Is this a Is this a company thing?
+
+122
+00:41:55,560 --> 00:42:56,360
+Unknown: Yeah, yeah, we there's a few different things that I'm trying to think about the most. One thing that we're trying to straddle that line, where a lot of the power that we see coming from this is that it is a what's right or not close, but a kind of controlled environment where again, we say that you use this editor and you get all these benefits. It's connected to the registry. So you get all these benefits from that. That is all by connecting the open source registry to our CD ends that we just by definition operate. Yeah, but at the same time, we're not at all that's not like really, the project is all about exploring the CSM space and building that ecosystem. So it's not really about like, and we control it. Haha. Yeah. So one thing that we've been playing around with, is that, you know, again, that idea that we published anywhere demo, and thanks for demo and a place for GitHub, but also in tropic is the new package manager, we're really excited to get this posted somewhere that that can read from so that's the more distributed kind of open package registry. Oh,
+
+123
+00:42:56,360 --> 00:42:57,170
+Wes Bos: I've never heard of that. I
+
+124
+00:42:57,170 --> 00:42:58,590
+Scott Tolinski: have not heard of this either. And yeah,
+
+125
+00:42:58,590 --> 00:43:13,320
+Unknown: this is um, by and I'm blanking on their names, but old people from NPM split off to start working on this. It's essentially a decentralized NPM or federated it is the better word. But everyone hosts their own namespace, and then you publish packages to there.
+
+126
+00:43:13,709 --> 00:43:15,710
+Scott Tolinski: Oh, very interesting. Well,
+
+127
+00:43:15,710 --> 00:43:17,010
+Wes Bos: you should have them on here.
+
+128
+00:43:17,519 --> 00:43:25,730
+Unknown: Yeah, this gets this gets back to this, like the fracturing right. It's It's everyone's exploring these different parts of it now. And, and managing that is going to be the the challenge,
+
+129
+00:43:25,730 --> 00:43:28,800
+Scott Tolinski: I think, I think you've just given us like three new show topics.
+
+130
+00:43:30,750 --> 00:43:31,830
+Wes Bos: Yeah, what else do you have?
+
+131
+00:43:31,860 --> 00:43:32,580
+Scott Tolinski: Yeah.
+
+132
+00:43:33,110 --> 00:44:05,910
+Unknown: A very, you said that you like these innovative things. But really, it's just like, once you take a peek in this world, it's a rabbit hole to fall down. There's just so much exciting stuff going on. Yeah, yeah. The I also say the registry itself right now is personally as an implementation detail, but partially just because it, it's trying to solve this problem. The registry is a Git repo on GitHub right now. So you can actually go to Pico package slash registry. And essentially, we mirror the registry itself into this Git repo. I'll see how long that scales for. But
+
+133
+00:44:07,470 --> 00:44:10,620
+Wes Bos: you'll get a phone call from GitHub at some point. Yeah,
+
+134
+00:44:10,859 --> 00:44:17,730
+Unknown: we'll see how long that scales for. But, you know, get homebrew, I believe is still powered by GitHub. So if they can do that we can I'm sure get pretty close
+
+135
+00:44:17,730 --> 00:44:19,410
+Scott Tolinski: it really I did not know that.
+
+136
+00:44:19,709 --> 00:44:23,850
+Unknown: I'm there. The formulas are. So I don't think the code is hosted in the registry.
+
+137
+00:44:23,879 --> 00:44:28,380
+Wes Bos: No, no, the the formulas are very interesting. Wow.
+
+138
+00:44:28,470 --> 00:44:41,790
+Unknown: So we're, we definitely don't want to be this closed environment. And we're trying not to be at every at every chance. So anytime a decentralized solution comes up where you know, we're full, full on supporting that. Yeah,
+
+139
+00:44:42,180 --> 00:45:03,660
+Wes Bos: I think it's a great time to sort of rethink all of this stuff, because we are in the next couple years, or maybe in the next year, node will be moving over to imports. And as people do that, it's it's a good time to maybe rethink some of this tooling and see Is there a better way we could be doing it It's really neat to see people putting their time into it.
+
+140
+00:45:04,230 --> 00:45:13,200
+Unknown: Yeah, notes notes he has some support is gonna be very, I mean, I don't think they get enough credit for how gargantuan that challenge was. But yes, yeah, we just
+
+141
+00:45:13,200 --> 00:45:14,580
+Scott Tolinski: talked about, okay.
+
+142
+00:45:14,609 --> 00:45:43,950
+Unknown: Yeah. It's the plus one to whatever you guys talking, because it is so impressive that they found a way to do this at least to start the process. Hopefully it goes well, yeah, that will be very interesting with if you can run an import and by spec, you can import from URL node has never really done that before. curious if that'll work, if that's something they're excited about it, you know, you'd start to get these same flows these same import from URL interesting flows in node for the first time.
+
+143
+00:45:44,640 --> 00:45:53,580
+Scott Tolinski: It looked at that something did demo Dino has as one of their features. Right, or you're importing Delphi? Are they from URLs? I guess they are from URLs? Yeah.
+
+144
+00:45:53,669 --> 00:46:00,600
+Unknown: Yeah. I think that's they're very excited about that part of it. So I think that's very much the blessed import into dependencies. Oh, yeah. URL.
+
+145
+00:46:00,629 --> 00:46:01,140
+Scott Tolinski: Nice.
+
+146
+00:46:01,140 --> 00:46:23,340
+Wes Bos: It looks like they do plan on implementing importing from a URL, because that is that is spec right. Like that's ESM says you should be able to import whatever from HTTPS dogs calm. And as far as I know, node is trying to one to one. Support. ESM. spec.
+
+147
+00:46:23,970 --> 00:46:46,020
+Unknown: Yeah, so that's gonna be I mean, that's that what does that do for I know that NPM team are ex contributors on the NPM team are working on something called Tink, which is a new version of node that like basically, you don't run npm install it just like installs as you run node. Ah, I think cats are working on that. Okay, another guest another guest for you. He Hey, go,
+
+148
+00:46:46,020 --> 00:46:48,750
+Wes Bos: wow, this is a whole world.
+
+149
+00:46:48,750 --> 00:46:54,450
+Unknown: What does a world of importing by URL mean for NPM? install? Right? I don't even need npm install anymore.
+
+150
+00:46:54,780 --> 00:47:16,050
+Wes Bos: Yeah, I've seen some people do this where like, as you type things, it will just npm install in the background for you. Some people said that's a huge security issue because someone could like right, I could jump on the package of our EA C. And if you're like import star from our EA C, and then it quickly installs this malicious react package.
+
+151
+00:47:16,230 --> 00:47:20,610
+Scott Tolinski: Oh, no. Oh, my God. Any sort of typo D package?
+
+152
+00:47:20,670 --> 00:47:25,920
+Wes Bos: Yeah. So there's like a, there's some weirdness around that. But I don't know. Maybe it can be solved.
+
+153
+00:47:25,950 --> 00:48:19,980
+Unknown: Yeah. React. Not to jump around. But I you mentioned that earlier, where it's like, one nice thing that we're trying to solve as well, is the idea that the registry gets the source code, right. So instead of this idea of, Oh, no, the package has been hacked. And no one noticed because the Git repo looked fine. So the developers had no idea but the Publish tarball Yeah, was minified also just had this little base 64 encoded virus that just, you know, basically stole your Bitcoin. That's, that's the world we're living in. Now, the nice thing about having the registry be the repo on which to their credit, GitHub is explained with their package registry as well. What you get is essentially, you lose that decoupling where things can sneak in and between the cracks. There's no way that in this world, a package that was distributed doesn't match the code that was worked on by the developers.
+
+154
+00:48:20,550 --> 00:48:22,320
+Wes Bos: Yeah. Yeah. Wow. A
+
+155
+00:48:22,320 --> 00:48:29,100
+Scott Tolinski: lot of interesting problems. These are all above my paygrade problems. Very, very interesting stuff. Yeah, it's
+
+156
+00:48:29,100 --> 00:48:31,650
+Unknown: it's an exciting time for sure. Wow.
+
+157
+00:48:31,859 --> 00:48:37,080
+Wes Bos: Cool. Well, is there anything else you'd like to tell us about pika? Or is that?
+
+158
+00:48:37,470 --> 00:48:42,660
+Unknown: No, this this has been a great overview. So thanks for letting me come on and just spread the good word.
+
+159
+00:48:42,720 --> 00:48:44,340
+Wes Bos: Oh, no problem. Thank you for coming on. I
+
+160
+00:48:44,340 --> 00:48:45,090
+Unknown: have Thank you
+
+161
+00:48:45,149 --> 00:48:49,650
+Wes Bos: benefit of having the podcast is if I have questions about something, just make it into a show.
+
+162
+00:48:51,240 --> 00:49:25,230
+Unknown: Yeah, that's like classic if you have a question. 10 other people are wondering it, or 100 I guess. Exactly. Yeah, totally. So where can people go to get pika to support you, obviously, things like that, you can just plug all those URLs. pika dot dev is the website, so learn more there. pika package on Twitter. So that's pika. PKG, on Twitter, and on our website, and on our Twitter, there's plenty of links to the Patreon if you want to get early access to all this and plenty of links to explore. Oh, and snowpack. snowpack has its own name now, so I got it. I gotta plug that separately. Oh, yeah. snowpack
+
+163
+00:49:25,230 --> 00:49:27,390
+snack pack.
+
+164
+00:49:27,419 --> 00:49:36,930
+Wes Bos: That's so cool. snowpack forms, layers of snow that accumulated in geographic regions and high altitudes. Do you know who knew them? It includes cold weather?
+
+165
+00:49:36,959 --> 00:49:45,210
+Scott Tolinski: Do you knew that? Of course. Do Colorado Come on, man. We talked about the snowpack all the time. How's the snowpack? How's it snowpack out there?
+
+166
+00:49:45,479 --> 00:49:46,440
+Wes Bos: Really? Well, we
+
+167
+00:49:46,440 --> 00:49:49,410
+Scott Tolinski: talked about it on the mountains in the context of snowboarding. Yeah.
+
+168
+00:49:49,769 --> 00:49:51,480
+Unknown: Should we grab the package? Yeah,
+
+169
+00:49:51,510 --> 00:49:52,350
+yeah, right. Yes.
+
+170
+00:49:55,200 --> 00:50:11,610
+Wes Bos: Wow. All right. So we do now we do things that are called sick pics where it's Just pick an item that is sick. So sometimes it's a piece of software. Sometimes it's an app, sometimes it's a piece of hardware. I forgot to tell you ahead of time, so no sweat if you don't have anything. Oh, well
+
+171
+00:50:11,610 --> 00:50:12,420
+Unknown: think of something.
+
+172
+00:50:12,450 --> 00:50:16,920
+Scott Tolinski: Okay, every single guest we've ever had includes the statement, I forgot to tell you ahead of time.
+
+173
+00:50:18,750 --> 00:50:22,290
+Unknown: Just to make me feel better, but it is a trap. It is. Yeah.
+
+174
+00:50:23,760 --> 00:51:43,800
+Scott Tolinski: My sick pick for today is something I mentioned in our gift guide. I've been spending some time with my Thera gun, which is basically just this percussive massage device that hits you really, really hard. Like really hard in one tiny little spot just just really cranks. Yeah. And I've been using this thing on my back, my back, I've been having all sorts of muscular issues on my back and it is the best thing in the entire world. I just leave it on my back and it just just cranks into it. And it's like getting a deep tissue massage for a device that you have in your house that you can use anytime you'd like so far I found it the packaging the overall experience of this thing to be very nice, very well put together. It's very ergonomic where it's built in a way like one of the things I was worried about is like I have these spots on my back that the muscles are really just goofed up. So Will I be able to access all of those myself without having to have you know my wife come in and do it because you know, that's just adds another layer to the whole process right? And the way this thing is designed, you can hit every single spot of your your shoulders, your back, your neck, anything in there with this just based on that the way the handle is held. I absolutely love this thing. And it is serious business. It hits you hard, and I'm going to big fan.
+
+175
+00:51:44,520 --> 00:53:49,980
+Wes Bos: Wow. Um, I'm going to sick pick this app called mb MBY. And it's sort of a, like a Plex competitor. Except the lateral Plex is sort of going the way of like, it's got Plex is going a little corporate for me and and MB is it's a server that you run on your computer. I've got it all up and running on my my NASS my diskstation, who makes that Synology. And you can it also has a recorder built in. So you can you can hook it up to an HD homerun, which allows you to get over the air, we get tons of over the air channels where I live, which is great because we get all the buffalo ones, because they're close to the border. So you get all the American channels. I watch fox news every day. Okay, I need that. And then, and we had all the Canadian ones as well, which is cool. You if you have like an IPTV subscription, you can pipe that in, there's this GitHub repo of IPTV channels as well. And then it just gives you this interface where you can watch live TV, you can record it, you can record shows based on their name or when they play. You can put all your video files in there, and it will organize them by name and download all the artists. It's just really, really nice. And the really cool thing is that the interface for watching is built in HTML, CSS, and JavaScript. And they have a Samsung app app and an iPad app and they've got all these different apps. And as far as I can tell, it's the same codebase running on all of these things. And it feels really good. So check it out at MB dot media EMB y never heard of this thing. Yeah, it's really neat. I tried it years ago. But now I like the Samsung app wasn't in Canada for some whatever reason. And so I saw I just ditched it because I needed it on my TV. And they finally just said here, just put it on a USB stick and install it yourself. And it works great. So yeah, Fred, do you have any sick pics?
+
+176
+00:53:50,609 --> 00:54:03,870
+Unknown: Yeah, I know. But I've been playing a game called idle supermarket and I don't even want to recommend it because it's just a total time sink. So nobody play it. Don't download it to go like idle supermarket. Yeah.
+
+177
+00:54:05,520 --> 00:54:11,970
+I already regret this it's literally the only thing I've been doing lately. I see
+
+178
+00:54:11,970 --> 00:54:14,070
+Scott Tolinski: the word tycoon and I like it
+
+179
+00:54:18,030 --> 00:54:21,780
+Wes Bos: That's great. Scott loves these silly little games he's gonna you just Scott
+
+180
+00:54:24,900 --> 00:54:33,150
+Scott Tolinski: All right, it's all right it's all good. I got kids I got something a little baby gonna do something whilst you know Oh, mom's making dinner get a hold on
+
+181
+00:54:33,180 --> 00:54:38,490
+Unknown: Yeah, yeah don't don't go actual grocery shopping just play a video yeah go grocery shopping,
+
+182
+00:54:38,550 --> 00:54:52,650
+Scott Tolinski: which I do hate. I do hate grocery shopping. We do a lot curbside delivery thing now to save myself from that. Pain and torture. Alright, next part is shameless plugs. Would you like to shamelessly plug anything?
+
+183
+00:54:53,460 --> 00:55:18,810
+Unknown: I would say really like if this it sounds exciting to anyone listening. Just start like falling down the rabbit hole. There are people who are Working on these packages and these projects that are purely you know, no bundler Luke Wilson is a good name for someone who's just I think he built CST a ton of other people are exploring the space and it's really exciting. So not so much plugin pika. Although certainly check that out. And just, you know, there's a exciting times for a web developer.
+
+184
+00:55:19,140 --> 00:55:20,130
+Yeah, totally.
+
+185
+00:55:20,760 --> 00:55:29,850
+Wes Bos: Oh, while we're talking about this, there's an awesome the podcast tools day I listened to they had an episode on tool list tools day, where you
+
+186
+00:55:29,850 --> 00:55:30,450
+Unknown: just don't
+
+187
+00:55:30,450 --> 00:55:42,240
+Wes Bos: use tools and you use imports and all that stuff. And that was a good one. It's kind of like this podcast where like, you talk about like, this stuff is is progressing and you don't necessarily need all these bundlers just yet.
+
+188
+00:55:42,600 --> 00:55:53,880
+Unknown: Yeah, yeah, it's it definitely feels like the start of something I'm sure yeah, there's this whole like we'll be much more mainstream so this is exciting check it out now it's it's definitely possible and and all there for you to explore cool.
+
+189
+00:55:54,300 --> 00:56:03,780
+Wes Bos: I applied all my courses Wes Bos comm forward slash courses just released a beginner JavaScript course that you should take because it's 2020 now and new a new year new you
+
+190
+00:56:04,470 --> 00:56:20,040
+Scott Tolinski: yes New Year new you and asked me to pick up a level up tutorials subscription while you're at it and get access to the course every single year, or every single month. There's a new course on level up tutorials.com Ford slash pro sign up and get 25% off the year.
+
+191
+00:56:20,340 --> 00:56:24,480
+Wes Bos: All right. Thanks so much to Fred for coming on. Appreciate your time. This is really exciting.
+
+192
+00:56:24,630 --> 00:56:27,180
+Scott Tolinski: Yeah, it's great. Check it out. Pika, everybody,
+
+193
+00:56:27,390 --> 00:56:31,020
+Wes Bos: and we will catch you on the next podcasts.
+
+194
+00:56:31,320 --> 00:56:32,010
+Unknown: Thanks for having me.
+
+195
+00:56:32,310 --> 00:56:33,390
+Wes Bos: Ace, please.
+
+196
+00:56:35,400 --> 00:56:45,150
+Scott Tolinski: Head on over to syntax.fm for you full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+

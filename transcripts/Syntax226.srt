@@ -1,0 +1,520 @@
+1
+00:00:01,319 --> 00:00:02,820
+Unknown: You're listening to syntax
+
+2
+00:00:02,820 --> 00:00:04,590
+the podcast with the tastiest web
+
+3
+00:00:04,590 --> 00:00:10,530
+development treats out there. strap yourself in and get ready to live ski and West boss.
+
+4
+00:00:10,589 --> 00:00:39,330
+Wes Bos: I can hear your stomach grumbling. It's time for the potluck. Welcome to syntax. This is the tastiest podcast around about web development. If you're just tuning in, we are doing a potluck episode today. We've got some awesome questions around Gatsby and next in a new tab and styled components and view in jQuery and Knox, the knacks and some really good JavaScript questions coming at us today. With me as always is Mr. Scott to linsky. How you doing today, Scott?
+
+5
+00:00:39,330 --> 00:00:40,409
+Unknown: Hey,
+
+6
+00:00:40,409 --> 00:01:06,780
+Scott Tolinski: good man. I just behind the scenes here is a little behind the scenes when we do our we do a clap to sync the audio. Yeah, yeah, we do a 123 clap. And it's always off because Wes uses bluetooth headphones, and there's latency but a Clapton when I put my hands down. I did so too aggressively and it ripped both of the headphone headphones out of my ears and out of the jacks. I'm like struggling this your whole intro. I hope it was awesome.
+
+7
+00:01:07,010 --> 00:01:36,720
+Wes Bos: Oh, man shirt was one of my best one of my best. Today we are sponsored by two awesome companies. First one is Log Rocket, which does JavaScript session replay for your application. And second one is Kyle prinsloo. Back with his freelancing course. We'll talk about both of them partway through the episode. So lots of questions today. We just went through, we haven't done we do potluck once a month. And we went through today and there was just tons of good ones in there. So we just kept adding them and adding them. So let's get right into it.
+
+8
+00:01:37,529 --> 00:01:43,290
+Scott Tolinski: The first one? Sure. First one is from Salvador are getting Yeti. I hope I
+
+9
+00:01:43,290 --> 00:01:44,100
+Wes Bos: got that. Okay.
+
+10
+00:01:44,100 --> 00:01:58,050
+Scott Tolinski: I don't know. I'm sorry. So now that this may be a crazy question, but I need to build a similar system to level up tutorials where people can access content based on a monthly subscription. Okay, please subscription content. Watch
+
+11
+00:01:58,050 --> 00:01:59,850
+Wes Bos: out, Scott. Don't answer this.
+
+12
+00:01:59,910 --> 00:04:07,650
+Scott Tolinski: They're coming for me. Okay. Any recommendations on where to start with either next j. s? Or Gatsby? How do I check if the person is up to date with payments? Any or how it would be greatly greatly appreciated. Also a fan your videos rocky pay, I pay for your content? Thank you so much Salvatore. Okay, so the answer to this question is okay, this question actually goes along with another one that we're going to talk about a little bit later with the next JS verse Gatsby stuff, because a lot of that stuff still applies. Specifically, do you get the benefits of a static site? If you have user accounts? Well, we'll talk about that. Another question. But so the basics are you need a payment processor that handles reoccurring payments, or you need a service like something like recurly? That will be like a full on service to do it for you. If you use stripe or Braintree that's going to handle your payments, you need a database component to all of this, which answers some of the other parts of this question, which would be how do you check if a person is up to date? Well, chances are you have a user you have a user record in your database, and you store some sort of access roll onto that user. And what happens is when the subscription charges or fails to charge, I should say or or does anything or is successful, the service, whether that's stripe, or Braintree sends a message to a route aka a web hook to your website with a message that says OK, customer number whatever payment successful and then you can do your service to fire off an email saying Hey, your payment was successful, whatever, or they send a message saying hey, past due or they send a message saying, hey, this account has been cancelled. So really, your server and your database isn't going to be managing the timing of any of this. But the timing of when people subscribe, or gain access is all done through the payment processor itself, their reoccurring payment system, and your database is just kept up to date when their messages come in. So no need to worry about setting up timers or checking things monthly or whatever. It's all about web hooks and the message to keep your users up to date with the payment processor.
+
+13
+00:04:07,979 --> 00:04:52,050
+Wes Bos: Beautiful. Well, we'll talk about the next first Gatsby stuff in a future question. But thanks for sending that in. Next one was from anon, what is your favorite New Tab page? And this is this is a good one. I actually just went through this myself. My favorite New Tab page is about blank, which is just absolutely nothing. I used to have to install a Chrome extension to even get this with a beard. Yeah, because I don't even want like your recent or most visited especially because when I record tutorials, I don't want that stuff just showing up. Now, even if I use like a different profile, and I don't want any of that. So just blank new page. I know some people have like motivational quotes or their to do list or whatever. But I've found over the years that just nothing works best.
+
+14
+00:04:52,470 --> 00:05:15,140
+Scott Tolinski: You know what's nice is in Firefox. They do have the top sites and highlights pop up, right? Yeah, but those are both accordions And they remember your position. So I just, I just hide both of those accordions or collapse them. So now when I get a new tab, it's essentially just a blank page with a Google bar if you need to search in there, although I never seem to use that, because I just search in the URL. Yeah. So yeah, that's my favorite.
+
+15
+00:05:15,380 --> 00:05:41,340
+Wes Bos: Firefox does a great job. They just let you uncheck all the boxes. So they have web search top sites, recommended by pocket highlights, by the way that like recommended I hate that on everything, like my Google Home. Has that in it, like, turn that off? Yeah, yeah. Can you turn off news on google home because it just shows me like the most awful stuff that's going on in the world. And my kids just like, accidentally tap it. And like bombs are dropped on every country in the world.
+
+16
+00:05:41,370 --> 00:05:45,660
+Scott Tolinski: I know, I know, lightning figured out how to get YouTube going on the Google Home screen.
+
+17
+00:05:45,960 --> 00:05:46,560
+Wes Bos: And just like,
+
+18
+00:05:48,030 --> 00:05:48,630
+Scott Tolinski: please stop anyways.
+
+19
+00:05:48,630 --> 00:06:05,100
+Wes Bos: Yeah. So Firefox has all these different things. You just take them all off. And I highly recommend it. It's good. Just don't. Oh, it's sort of a trend. We talked about this with the bookmarks as well. Just try keep stuff as minimal as possible. At least for me, I it works well, for me, it doesn't overwhelm me.
+
+20
+00:06:05,490 --> 00:07:45,960
+Scott Tolinski: I have too many distractions. Already. I'm getting a bit distracting myself. I don't need Firefox to step in and be like, Hey, you know what, let's actually distract you a little bit more. You know, I had to I have to work at that. So. Alright, next question is from UVA. Russ. Gosh, man, I'm getting a hard name. Say you got a non raw virus. Yeah. And, uh, come on. Okay. So this question is CSS versa. s CSS verse styled components. When you are developing a react or next JS application, which styling method Do you use and why? which one is best practice in quotes, or the most efficient way of going about it? Okay. There's no best practice here. So you can write excellent CSS, using CSS, CSS, or style components, or emotion or any of this stuff. It's all going to allow you to write quality CSS, what matters is that you're following some sort of a system that allows you to write not necessarily the driest code of all time, but write code that is efficient does what it needs to be in is updatable, and extendable. And all those those wonderful things. So if I'm writing CSS, or s, CSS, I'm always using something like them over a system that I have established myself, that really follows sort of the same sort of principles. I like to think about things in components now. Anyways, so it's all very component based in my mind. But yeah, I my thoughts are that you can write amazing CSS with any of these, I use styled components, primarily because I just like the way it works. And I like the ease of use of everything. But you know, to each their own.
+
+21
+00:07:46,620 --> 00:09:51,750
+Wes Bos: Yeah, I think you nailed it is that as long as whatever you're doing, just make sure you're using some sort of system, whether that's Batman, you, you figure that out on your own, or whether that's styled components, where you create a new component for that. So my approach, I've said this before, but my approach to writing CSS, any react application would be I do my sort of global styles first. And I think like a lot of people are a little bit afraid to like, use global styles because they'll, like, go nuts, do your do your base stuff first. So fonts and sizes, and background colors, all of that sort of like base stuff, go ahead and do that, and then go go component by component. And the other thing that I do is that, like, if I've got a div, and that div has some text in it, and it has an unordered list and a list item, some people will go bananas and make a new component for the paragraph for the unordered list for the list item. And for a button inside of that thing. And then all sudden, you got like six different components. So what I do is I'll just create a component for that thing that I'm styling. And I'll sort of like eyeball it, say like, Ah, this is this is like a, this is a one thing, this is a component. And then I'll just use descendant selectors inside of that. So maybe all grab the div that wraps the entire component. And then inside of that, I'll use my paragraph Selector List item selector under this selector button selector. And then if I find myself saying, Oh, I need to take this unordered list and I want to be able to reuse this somewhere else, then I'll just refactor it out into its own component. And I won't really stress it all that much out about it. Don't go bananas on creating a new style component for absolutely everything because that that seems hard. And that seems like I don't know. I always just found myself being able to do it much easier. So no, totally. That's kind of where I go. There's there's no like real best practice or efficient way. You'll certainly hear people spout opinions and write medium blog posts on either side. But who cares at the end of the day, as long as you feel confident in the approach that you're taking? Do you use the CSS prop
+
+22
+00:09:51,799 --> 00:09:53,149
+Scott Tolinski: in styled components,
+
+23
+00:09:53,460 --> 00:09:54,210
+Unknown: um,
+
+24
+00:09:54,210 --> 00:09:56,539
+Wes Bos: is that when you're doing like nested stuff,
+
+25
+00:09:56,730 --> 00:10:02,130
+Scott Tolinski: it's when you just want to write some string CSS. As a prop on a component,
+
+26
+00:10:02,419 --> 00:10:04,770
+Wes Bos: oh, like just like inline you mean?
+
+27
+00:10:05,029 --> 00:10:08,730
+Scott Tolinski: It's like inline styles? Yeah, straight up string CSS?
+
+28
+00:10:08,899 --> 00:10:09,419
+Unknown: Um,
+
+29
+00:10:09,419 --> 00:10:17,640
+Wes Bos: I haven't. But when I do need to write inline CSS, I just use like the object syntax. So I can imagine the CSS being nice.
+
+30
+00:10:17,730 --> 00:10:20,820
+Scott Tolinski: Yeah. It's basically the object syntax without an object.
+
+31
+00:10:21,090 --> 00:10:24,210
+Wes Bos: Yeah, that's nice. Actually, I don't like writing the object syntax.
+
+32
+00:10:24,210 --> 00:10:43,770
+Scott Tolinski: Yeah, I do it for prototyping, especially when I'm just like, still dreaming of what the components gonna look like. I just start throwing string CSS and everything. And then because it's a string, you can just copy and paste it directly into your style component if you do want to merge or move it there anyway. So I find that to be a really handy tool within styled components.
+
+33
+00:10:43,980 --> 00:11:12,510
+Wes Bos: Yeah, that's great. Maybe we'll start using that. I will say the one thing I do love about these style components and emotion and all these things is that it doesn't make you think of names and classes or anything like that, like the big No, no, is don't use element selectors, meaning like don't say h2, and style all of your h2. And don't don't say paragraph tag. And but with style components, you can because it's all scope. It's scoped to that component. And you know, there's like one paragraph tag and that component, so that's totally fine.
+
+34
+00:11:12,689 --> 00:11:13,620
+Scott Tolinski: Yeah, I like that, too.
+
+35
+00:11:13,980 --> 00:12:08,250
+Wes Bos: All right. Next question is from Rob, he links to lit HTML dot polymer project.org. What do you think of lit HTML. So this leg lit HTML, somebody recommended this to me at one point, because I do a lot of vanilla JavaScript. And I do a lot of templating of vanilla JavaScript with just backticks. And there's there's a little bit missing there in terms of like sanitization. And they're not actually doing document dot create element. They're, they're just grabbing a huge string of HTML and dumping that into an element with dot inner HTML. So this lit HTML looks very similar to template tags in JavaScript, but also sort of like JSX. So what what is the difference between what is the benefit of this? Scott, I'm just looking at it right now I forget.
+
+36
+00:12:08,520 --> 00:12:19,710
+Scott Tolinski: This seems more like a framework where you're doing more than just a little bit of like templates, it seems like they're trying to do a little bit more react II kind of things with it.
+
+37
+00:12:19,890 --> 00:12:45,450
+Wes Bos: Oh, it's like, like, lot, you can put variables in the HTML string, and they will be rendered. Yeah, when that data changes very much like react will do. And that's good. Because I see that all the time with vanilla JavaScript, people are like, Hey, I put a variable into the string. And I changed the variable, and it didn't update the string. And it's like, well, yeah, once once it hits a string, it doesn't know about those variables in the future, which is pretty cool.
+
+38
+00:12:45,840 --> 00:13:13,710
+Scott Tolinski: Yeah, it does. It does talk specifically about how it doesn't use the virtual DOM. And it's efficient. It's expressive. It's extendable, extensible. I wonder. I don't know the difference between the word extensible and extendable. So should google that extensible. To be able to be extended? extendable? why not just use the word expendable? If you know why you would use the word extensible, vers extendable, let me know. Because it cited them as synonyms.
+
+39
+00:13:14,010 --> 00:14:20,220
+Wes Bos: This is cool. Like, it's a light way way to put data into HTML, the template out data, and then when that data changes, it will be re rendered. Yes, without the V DOM, we should explain what v Dom or virtual DOM is real quick. So the whole idea behind react and I think view and a lot of these places have this idea of the virtual DOM is that they, they have the real DOM, which is your your page. And then they have a virtual DOM, which is in memory, they they keep a sort of a similar tree structure to what your what the DOM looks like. And then when data changes, the virtual Dom will update itself, and then it will know which pieces of the actual Dom to update. And that's why react is so fast, versus like some like in my vanilla JavaScript course. Sometimes I say like, Hey, we just got to re render this entire to do list, because we there's nothing built into vanilla JavaScript that allows you to figure out which part of the DOM has been updated. And it looks like that this does something similar to that. So pretty cool. I would definitely reach for this. It is pretty cool. Yeah, but
+
+40
+00:14:20,220 --> 00:14:31,649
+Scott Tolinski: check it out. Just to just to goof around with it. I use like handlebars, or some of those templating languages. This seems like it's a little bit more. I don't know. This seems pretty cool.
+
+41
+00:14:31,949 --> 00:14:38,669
+Wes Bos: Yeah. What it's just backticks. Right. So it's it's everything you're used to from writing vanilla JavaScript, except it's live.
+
+42
+00:14:38,909 --> 00:15:03,539
+Scott Tolinski: Yeah. Huh. Laugh Yeah, no, it looks interesting. I think this is one of those ones that you want to check out a little bit. And it does work with web components. So I, yeah, polymer polymer project seems to be alive and well with a lit HTML. I have not used polymer and a little bit so this was exciting to see what actually because I had heard of what he tml but what I didn't realize is that it was part of Polymer.
+
+43
+00:15:03,750 --> 00:15:19,980
+Wes Bos: Oh, yeah. When people recommended it to me, I was like, Well, I'm not using Polymer, but they're like, no, it runs on its own. Yeah, just cool. Like, imagine JSX. You could just use JSX. I guess it is its own project. But I've never heard of anyone using JSX outside of react world. So it looks like this lit HTML does
+
+44
+00:15:19,980 --> 00:15:29,580
+Scott Tolinski: do that. You can use an interview. Yeah, you did. Right in view. Alright. Next question here comes from Daniel. Boss, man. Cool. Sick. Last
+
+45
+00:15:29,580 --> 00:15:31,020
+Wes Bos: name, boss, man.
+
+46
+00:15:31,289 --> 00:16:42,630
+Scott Tolinski: Sick. Last name, boss, man. Hi, guys. I'm relatively new to react and primarily learning the Create react app way, when you go for the Create react app approach when building an application? And when do you customize the config. It is not like react comes with so much magic compared to the others. But I'm uncertain to when it is time to escape the whole create react app approach. And also when escaping it. Which mean configurations are you grabbing. All right? In my mind, if you're really needing to get into the Babel config, you need to do some server side rendering, you're needing to just really customize beyond what's there, then that's when you go for beyond crate react app. That said, I'm probably not rooting for create react app for too many of my projects to go into production, not because create react app isn't great. But because I think that typically if I'm doing another project, like a big project, I'm gonna want things like either static generation or server side rendering of which then you're getting into all these custom configs. So I'm going to primarily reach for something like Gatsby next j. s, or in my case Meteor to do those those aspects.
+
+47
+00:16:42,929 --> 00:17:04,680
+Wes Bos: Yeah, I agree as well. I think in most cases, you probably won't have to eject from create react app. Yeah. Like what are the reasons you might want to eject from create react app? The one of the biggest ones was no sad. Right? Right. Yeah, I think that's, that's been added now. And I guess like another reason would be like, Oh, I want to use that new. What's the new question mark, thing and objects? So
+
+48
+00:17:04,680 --> 00:17:06,450
+Unknown: optional chaining,
+
+49
+00:17:06,959 --> 00:17:07,860
+optional chaining? So
+
+50
+00:17:07,979 --> 00:18:16,850
+Wes Bos: like, let's say you, you needed to add that to your Webpack. config, and you got it you you want to try that out? Although it's in Chrome now, which is really cool. But yeah, obviously, not every browser has it. So you might have to escape for that. I think I would go as far to say, Don't ever eject from create react app, that's so much homework that you have to do to babysit this thing. You get 1 million files, you can't go You can't ever get an on a jack. Well, you can on a jack, you just have to scrap the thing and copy paste in your files into your old one, or into a new crate racked out. But I wouldn't recommend it. I personally have not written any more than a couple lines of Babel or Webpack config in my thing. And in most cases, Gatsby. And next, yes, they will allow you to just extend the one. So if you need to add something specific, like server side styled components, you can just add it to your Babel config, and it will fold it into to what they have. So yeah, I would just say try not to and if you really, really, really need to, you probably will reach for one of these more batteries included frameworks that is like next Jess Gatsby, whatever is out there.
+
+51
+00:18:17,160 --> 00:18:18,930
+Scott Tolinski: Totally. Yeah, hundred percent agree.
+
+52
+00:18:19,310 --> 00:18:34,850
+Wes Bos: Next question is from john. Is there a reason that hasty treat intros are two and a half times the length of normal episodes. Now that overcast has intro skipping? It'd be nice if they were uniform. And like, I didn't know that overcast added this, but
+
+53
+00:18:34,890 --> 00:18:37,920
+Scott Tolinski: there's no rocket cast has it too. And it's sick.
+
+54
+00:18:37,920 --> 00:18:38,730
+Wes Bos: Really?
+
+55
+00:18:38,910 --> 00:18:40,050
+Scott Tolinski: Yeah, I use it.
+
+56
+00:18:40,229 --> 00:19:01,310
+Wes Bos: I would like that. Because like, I'm so good at skipping the like 14 minutes of Joe Rogan intros, talking about underwear, something like that. So yeah, there's there's obviously no reason we don't have reason behind much on this podcast. But we are talking about getting some new intros done. So it would be awesome if they were all the same
+
+57
+00:19:01,310 --> 00:19:06,900
+Scott Tolinski: length. Yeah, we should we should specify. They're this long. I don't know what people like
+
+58
+00:19:06,960 --> 00:19:08,300
+Wes Bos: six minutes. Yeah.
+
+59
+00:19:08,489 --> 00:19:17,760
+Scott Tolinski: six minute long intros. I feel like that's probably pretty good. Like we could we could tell a little bit of our life story in six minutes before the podcast starts every time.
+
+60
+00:19:18,050 --> 00:19:28,500
+Wes Bos: Oh, no, I think they're talking about like the like, the leg walk. Oh, no, they are? No, they are. Yeah, that's what they're, they're not talking about us shooting the shooter, because that's genuine content. But
+
+61
+00:19:28,500 --> 00:19:43,170
+Scott Tolinski: what I'm I'm talking about is like, what if our life stories were just part of that intro out of Ann Arbor, Michigan, by way out of Denver, Colorado. Here is Scott Tolinksi, who's spent most of his career doing this. Pretty sweet. Tell the whole thing.
+
+62
+00:19:43,170 --> 00:19:44,430
+Wes Bos: Yeah. Pretty funny.
+
+63
+00:19:44,489 --> 00:19:51,110
+Scott Tolinski: Yeah, you could have a dynamic service that automatically inserted with the current forecast is in Denver and in Toronto.
+
+64
+00:19:51,320 --> 00:20:05,570
+Wes Bos: Just get that over with. Yeah, that would be funny. Yeah. So I know. We're gonna do some new intros. We got some really funny ideas for some some new intros. Maybe we'll Try to keep them the same length. But if it's funny, then maybe we'll go longer or shorter. So
+
+65
+00:20:05,600 --> 00:20:11,330
+Scott Tolinski: yeah, what specify we should do? We should tell that whoever's creating it, okay, make it 30 seconds or whatever. Yeah. 20 seconds.
+
+66
+00:20:11,460 --> 00:20:14,400
+Wes Bos: Yeah. 15 whatever. Yeah. But thank you, john.
+
+67
+00:20:14,520 --> 00:22:05,970
+Scott Tolinski: Yeah, thank you. So it's dope. That overcast added that skipping feature, but you don't want to skip our ad reads, because then you wouldn't get to hear us talk about why you can save so much time with Log Rocket. Now Log Rocket is the best place to visualize the errors and bugs that are happening on your site, you want to check it out Log rocket.com forward slash syntax, you'll get 14 days for free Log Rocket gives you a session replay that allows you to see your bugs in action. While they're happening. You can click and drag if you like to click and drag and see these things happen. You can see the user click that thing and have your whole website turn into a giant tomato. I don't know how they did that. But you'll be able to find out and see the network requests, the error logs, the Redux store, all that mark. And it works with all of the platforms that you know and love react Angular, just JavaScript, Ember view Redux, and it connects to a lot of the services that you might already be using such as you know, century robar, New Relic, JIRA, Zendesk, all that good stuff, the stuff that we know and love. So check it out at Log rocket.com, forward slash sin DAGs. All right. Next question is from Daniel, bro. Hello, there. I see Kyle Matthews, who created Gatsby coming out with a lot of input on how Gatsby can be used for web applications. After listening to several of your podcasts you talk about Gatsby. It doesn't seem like you agree, and would go for next j s instead. In your opinion? Is that still the same? Or is the development at Gatsby really heading in the direction where it is? s s. G and web applications? Thanks for a great show and keep the good spirit going. I'm usually walking my dog at night listening to you. And people stare because I laugh out loud. Yeah, I do that which is a SSG
+
+68
+00:22:05,970 --> 00:22:24,270
+Wes Bos: means server side generated? Yes. So like that's a Gatsby, by default is a server side generated, meaning that there it's all generated beforehand and generated out to HTML files, which then are rehydrated and then picked up as a react application when you visit the website?
+
+69
+00:22:24,300 --> 00:24:17,850
+Scott Tolinski: Yes. So okay, so this is the question that we, we refer to when we were talking about answering some of that other stuff later on in the episode, because specifically, it really depends on what your needs are. Because with a static site, or an SSG, it's really difficult. If you have user accounts, you have to imagine that you can do server side render, like a customer account page for, you know, if you have 10,000 user accounts, you can have 10,000, statically generated pages for each of those experiences, not to mention, whatever you have the header being different. There's just not a whole lot of good ways for that to happen. So then what you end up having is dynamic bits. So not to say that you cannot do it with Gatsby because you absolutely can user account based sites, all that stuff is just going to be dynamic and not statically generated, where with a next gen site, the server can render that information because it has that cookie, when it's building the site. Great. It's building the site, when the user hits the site, that cookie is there for their authentication, whatever, they are able to verify that users authenticated. And then the server responds with the fully server rendered site with that user data. So you have to imagine that some of those things when you're getting to user accounts, you have to think about what you need to be present there for the server side generated, but and what you need to be dynamic. So that's typically why we say that we're very aware if you are like a pro Gatsby user, if you're like super Gatsby person, and you don't need user pages to be server side generated, you could by all means do any of that stuff with Gatsby, it's just all about, I think may be the right fit for each platform. And me personally, I probably reach for something like next GS for only those reasons, specifically. But at the end of the day, like I said, you can certainly do dynamic things and Gatsby like user accounts.
+
+70
+00:24:18,210 --> 00:27:13,530
+Wes Bos: Yeah, I think you hit the nail on the head. So next Jes by default is server rendered, meaning that when you visit a web page, that thing is generated quickly on the server and then served up to whoever is visiting the website. And Gatsby by default is statically generated meaning that it's all done at build time before you push it out to the website. And then you if you want anything to be dynamic, you have to do that on the client meaning like let's say you have a lot of people are talking about using Gatsby for like online stores. But like if there's something that's dynamic like stock, how much stock is left, and you want to display how many are left for a specific size You need to load the page and then go ahead and then fetch that data and then update the page. And that's where you sometimes get the little spinner on page load because it has to load entirely. And then it goes, Oh, I got to go figure out if there's any of these left, and it goes off and comes back. So for that reason, I don't think that Gatsby is a great they do say like, of course, you can do static websites with us. But it seems like it's sort of like after the fact, which for some websites is is totally fine. But I certainly would not reach for it that way. I think next, jazz is doing a great job because they've approached it in the opposite way, where you can, by default, everything is server generated. But now they have this idea of server side generated static pages. So if there are some pages in your application that want to be statically generated, then you just specify that when you're building the application, and at build time, they will they will generate though there's a Gatsby still way ahead. And in terms of what the static site generation looks like, but the certainly like they are getting a little bit closer to each other in what they can do. So it would be cool to see some sort of Gatsby server at some point where you get all the amazing benefits of Gatsby, like sometimes I'm almost tempted just to run Gatsby dev on a surfer or something like that, you know, but I'm not sure what the the approaches, they did just roll out this like Gatsby builds, which they're saying is 20 times faster build times, I'm not sure how they are doing that. Maybe they are running multiple processes at once. Like maybe they deploy it to a multi threaded server or something like that. And then they build multiple pages at once. That would be awesome for like, I know, some people run stores on Gatsby that have hundred thousand products or something like that. I can only imagine that the builds for that would be very slow. Because there's no they're they're working on this thing that gets called incremental builds. Meaning that if you just change one page, your build will be faster. And I think Netlify does that as well, actually. But yeah, so it's I probably wouldn't reach for it now. But I bet that will change in the future as well.
+
+71
+00:27:13,680 --> 00:27:16,140
+Scott Tolinski: Yeah, something to keep an eye on in the very least.
+
+72
+00:27:16,860 --> 00:27:56,820
+Wes Bos: Next question is from Chris F. Hey, Scott. And Wes. I hopped on the view train from jQuery land and I am loving next nuxt and grid some so knucks syncretism are the next and Gatsby of view land. Wherever I'm hearing good things about Gatsby, would you say that it is worth learning Gatsby and the whole react ecosystem over that matter over grid some? This is mostly a small medium ish side projects that connect to a headless CMS. Thanks. Oh, this is tough, because I don't maybe Scott will have something to say on this. But like, I don't know, if the feature set of grid some is parody with Gatsby Gatsby is a force right now. They've got tons of people,
+
+73
+00:27:57,150 --> 00:28:03,060
+Scott Tolinski: I would say not anymore. But at one point, I would say it was close. Yeah, yeah, definitely. So
+
+74
+00:28:03,060 --> 00:28:25,080
+Wes Bos: it's tough because like normally I'd say no, like pick your pick your stack and just go ahead and use that because it's so cool. But we're in a bit of an interesting spot where it's weird that Gatsby is like the thing, and it's only built in react. I wonder if they ever will like roll out like a view Gatsby or something like that. Dude, I
+
+75
+00:28:25,080 --> 00:29:12,480
+Scott Tolinski: I would just think they would take over grids. Oh, because if you go to grids, website, and they got some juice, man, I mean, it's definitely pretty sweet in to be honest. Yeah, they really solved some of the issues in a better way than Gatsby, like the image stuff is better in grid, some in my mind. So I think grid zone has some really great ideas. Personally, if you're a view fan, and you're comfortable with view and grid, some I wouldn't just jump ship just for Gatsby because goodsam gives you most of that good stuff. Not to mention, it's very fast. So I don't think you'd be gaining a whole lot. And you'd spend a lot of time having to invest in learning react. Not to mention that but learning the Gatsby way of doing things on top of that. I think you're getting just enough with with goodsam. Next in view.
+
+76
+00:29:12,960 --> 00:29:19,380
+Wes Bos: Interesting. A lot of these like Gatsby plugins, they're just node plugins. They're just web pack load wrapper
+
+77
+00:29:19,920 --> 00:29:33,210
+like that. It's very little of it as actually react specific. So I would assume that it would be easy to port them over if they've not already been been moved over. So yeah, I like that. I would say no, not probably not worth it.
+
+78
+00:29:33,240 --> 00:29:51,110
+Scott Tolinski: Yeah, you might even be frustrated. Like I said the like the image stuff is so much but aren't good. So I'm sorry, get Yeah, I love you. But yeah, yeah, cuz you instead of you just have a G hyphen, image, you pass in the path. And then if you give it something like a width, then it just generates that you don't have to do the whole query thing.
+
+79
+00:29:51,450 --> 00:29:56,010
+Wes Bos: So you're saying loading an image. You shouldn't have to write out what 40 lines of right?
+
+80
+00:29:56,580 --> 00:30:01,980
+Scott Tolinski: Yeah, right. Yes. I am saying that and got that one right, so shout out to them. Yeah,
+
+81
+00:30:01,980 --> 00:30:03,270
+Wes Bos: absolutely.
+
+82
+00:30:03,390 --> 00:30:12,510
+Scott Tolinski: Yeah. Okay, next question. This one's from Mateus. Hey guys. Huge congrats on the show. I've been listening since Episode Two. And it's fantastic. Thank you Mateus. My questions.
+
+83
+00:30:12,660 --> 00:30:15,720
+Wes Bos: So one wasn't very good anyway. So good job he was, it was
+
+84
+00:30:15,720 --> 00:31:09,840
+Scott Tolinski: fantastic. What are your thoughts on CSS preprocessors. Now a day with the advanced GNU C news features and CSS? Do you guys really think it is worthy to use all those? Well, the thing about CSS preprocessors, that you're not shipping them. It's like a preprocessor. Right. So there's really no harm, I still reach for sass, or auto prefix or, or post CSS, I still almost always reach for one of those if I'm writing CSS and that style components myself, because I just can't live without that sweet nesting. I love that nesting. You primarily use CSS variables now. But if I was building for a site that needed to support older versions of IE, I would be very distraught without having some sort of a variable system in my CSS, other features, I don't really use functions and stuff like that. But I think they're, they're definitely there's definitely still a place in the US for them to make your life easier within writing your CSS.
+
+85
+00:31:10,230 --> 00:32:08,880
+Wes Bos: Yet, it's just like, I think of them not as this like diff totally different way of writing CSS, like sass was, but I think of them as just making the future CSS now as much as possible. Yeah, some things you can't polyfill or, or transpile. But a lot of it you you can see us as color functions and whatever. So I think of like, there's this really good plugin now that is sort of like the babble of CSS is called post CSS preset and, and you just tell it, what browsers you're supporting, and it will figure out which things it needs to transpile and which things that doesn't need to. And then at a certain point, maybe you won't be transpiling anything. So that's sort of how I look at it. And I don't necessarily reach for sass or stylus all that much anymore. Just because I'm much more on the web standards, train, things have been moving really well for the last couple years.
+
+86
+00:32:09,240 --> 00:32:10,110
+Unknown: Yeah, totally.
+
+87
+00:32:10,110 --> 00:32:49,740
+Wes Bos: Next question we have here is from Justin Scott, can you talk a little bit about why you decided to switch back from Meteor after putting in all the effort to convert level up tuts the next? Yes, man. This is like the next jazz show. This is great. I'm about to start new full stack. And I was considering next and until I heard you switch back PS love both you guys. You're all fantastic. Thank you. Yes, I'm curious is this so Scott's spend all this time converting his platform and a lot? Yes, a lot of and then he was like, not stoked on it. And then it turns out Meteor got bought. And it's looking like that truck is moving again. So why didn't you like next, Jess for your platform?
+
+88
+00:32:49,860 --> 00:35:20,070
+Scott Tolinski: Okay, so let me preface this by saying I love next js. I really like it. I've worked fairly a lot in it over the past few months. And I really like Meteor as a platform. My reasons why I was getting off Meteor in the first place is because you could see the progression over so many years of less and less work being put into it, of no fault of the meteor community themselves, just the investment being put into Meteor was, you know, not happening. So I could see the writing on the wall that maybe this framework wasn't going to be around forever and wanting to think about moving over. So what I did is I maintained a meteor branch and an X JS branch side by side, which allowed me to do a lot of really cool things. And it was really just like, easy merge from one to the other. And so I was able to run these things side by side and really see them in action next to each other. And for the most part next JS worked really nicely. I use their API routes to power my graph qL server, which it didn't feel as nice as my Meteor one, because my Meteor one is just like, here's your standard server, where with API routes, you have to think about it a little bit differently serverless functions every single time they connect being a serverless function, as we talked about in the last video, it was just a little bit different, right? So those aspects were all fine. But the big rub for me came with how next .js establishes pages, routing in those aspects. I am not a fan of the routing, where you have one route page where every single route of your entire application is listed in a routes page, I would think of that as being like how it would have done it like react router three or something. But me personally, I'm more of a fan of nesting route. So I have my route set up. And then let's say on so like forward slash, whatever my app page would have a route that would be then take me to the tutorials layout route and then inside of tutorials layout, I would add several more routes. And then inside of there I have a couple more routes and I do that throughout the site, whether it's for admin or whatever. And largely react router was built for you to be able to do that. The problem is when you get into applications like next to J s that expect you to do everything on a folder basis, it gets a little messy because what you ended up creating is a bunch of wrappers. So instead of having nesting with a nesting with the nesting, you end up having to write, here's a rapper, he's a rapper, here's a rapper, all your components are rapping, whatever. And it was just a different way of doing things. So that's it, it wasn't worse, it was just different.
+
+89
+00:35:20,210 --> 00:35:34,880
+Wes Bos: What do you mean by a wrapper? So let's say you have forward slash posts, yes. And then you have Ford slash posts forward slash three, yeah. And then your Ford slash posts will show you all of your posts and Ford slash posts forward slash three, it would show you post number three,
+
+90
+00:35:35,250 --> 00:38:07,730
+Scott Tolinski: that's not a good context, because I wouldn't use a wrapper for that. So let's think about this, like you have, let's say you have an admin layout, right? Your admin layout includes the normal stuff, but it also includes an admin navigation and a different layout container, maybe, right? So you have that admin layout. So now each of your admin pages in the way I would have done that before is you have a component, that's your admin layout. And there's several routes inside of there, including the navigation. But with next GS, what you do is you'd have an admin layout component that would have a children Prop, and then any admin page would have to be wrapped in that admin layout component. And so what happens is, the rendering gets kind of messy, where every page is getting a full rerender. No matter what sort of like Gatsby, right? When you go to a new page, every page has a full new rerender, because that's just how the layout system works within Gatsby. And next, you have this one page, that's a wrapper, right? What is it next? Yes, I think it's like the underscore app that j s or something. Yeah, so you have one page or one component, that's essentially a wrapper. And those platforms were with mine, it was much more the React router way of doing things, deeply nested routes, and it became just less fun to work in, in, in my mind, way less organized, I was having just not I don't want to say issues. But I was had to take advantage of things like a wrapping components and render props more than I wanted to. At the end of the day, I ran them side by side, and I didn't see a huge benefit to one or the other. And that's when tiny bought Meteor. And it was going to be essentially a lot less work to get us fine with a meteor and the fact that Meteor was going to see new investment and see new growth, and see new modifications and things like that, then it became, in my mind, a good idea to just stay with what we have, rather than go through the headache of doing this migration, and then having to deal with the inevitable bugs and issues that are going to occur from doing such a major migration to a different platform. So it was definitely a sunk cost thing where I was holding on to the next JS branch for a little while saying like, you know what, I spent all this time on it, maybe I should keep it. But at the end of the day, Meteor has been seeing a ton of advancements, I'm really happy with where the community is going. And I'm a big fan of the platform. So the fact that future picture has been clarified for me, I'm more than happy to stay on Meteor now. So that's really just it. Ah, interesting.
+
+91
+00:38:07,920 --> 00:38:15,060
+Wes Bos: Not sure I totally understand all the nested routing stuff, I'd probably have to see an example. But that's good, too. Good to hear that.
+
+92
+00:38:15,300 --> 00:38:37,050
+Scott Tolinski: Yeah, it's hard to express because it all just comes on comes down to how you write applications. And this is the way that our site's been designed from day one. So if I was building a new application from day one here, I might start with next j. s. But the fact that I've already had this application written this Yeah, different way makes it very difficult for me to migrate there.
+
+93
+00:38:37,260 --> 00:41:17,820
+Wes Bos: Awesome. All right, let's talk about our next sponsor, which is Kyle Prince losed freelancing course, it's available at study web development, comm forward slash freelancing. So this is everything you need to master freelancing College has told me he just sold his 2,000th spot in this thing. So obviously, people are enjoying it. He's got all these pretty cool reviews of people who have taken it. So if you're thinking like, Okay, I'm a web developer, I'd like to make a little bit of extra cash, or I'd like to go totally freelance myself and go out on my own. This is a course that's going to help you through that teach you the the ins and outs of things that you need to know to be a freelance web developer. So what does it come with? Well, this this bundle comes with the freelancing and beyond ebook, the web design and beyond ebook, a bunch of templates, a new thing that was added as a CSS spice Chrome extension, which is pretty cool. I'm just taking a look at it. You can get it at CSS spice calm. It's just a sort of helpful editing and debugging tool that has come out. That's pretty nifty to be added in there. That web design and beyond is a new ebook that got added as well. There's a professional legal contract has been written by a commercial lawyer. So if you just need like a good contract that's been written by an actual lawyer that comes with it, so There's all kinds of stuff in here, questionnaires, checklists, SEO stuff, you get lifetime updates, which is really cool. I appreciate when people do that. I do that with my courses as well, where you just like you bought it once you get the new stuff that was added to it. So check it out study web development, comm forward slash freelancing. And enjoy. Thanks so much, Kyle, for sponsoring. Next question is from Brandon next. Is this another question about next? Yes. Hey, Weston Scott. I recently started an internship at my favorite one of my favorite tech companies where I'm using Ember, js and Ruby on Rails. I love the team. People are so nice, but I'm not super passionate about the stack. I wrote rather be on something like react and no jazz or express in my day to day coding, do you think it's worth staying in the position? And then we got like another question. That's almost the same question. So this is from my Michelle teams. I'm thinking about doing a boot camp that teaches Ruby on Rails for the back end, I hear a lot that Ruby, Ruby is a dying language. But at the same time, I know it's used by some big timers such as Airbnb and Shopify. Yeah, man, I once saw Toby who is like the creator of Shopify. He posted their like stats for the unit testing. And like they for every line of code, I think they have two lines of unit tests, which is nuts. Like, I think that is the only way you could have confidence such a huge codebase anyways,
+
+94
+00:41:17,820 --> 00:41:18,420
+Unknown: real Could
+
+95
+00:41:18,600 --> 00:42:50,670
+Wes Bos: you please explain the relevance of Ruby and Ruby on Rails? We'll have in 2020 going forward, do you think it's worth learning? For new developers? Thank you, by the way, listen to podcasts. Good. So we see questions like this a lot where something's hot for a while. And then web developers have short attention span, so something else becomes hot. And people think that that other thing is not hot anymore, and is deprecated. And it's old. And this is not all that useful. So I think that a lot of people place too much weight on the tech stack, when the reality is this stuff will always be changing. And you as a developer, need to use the tools that you're like, the tools are obviously important. We've talked about them all this show. But these are all good tools that you're talking about. Ember, Ruby, on rails, these are some of the like, I think some of the best tools in our industry for creating web apps, and websites. So there's absolutely nothing wrong with it. The fact that we don't talk about these things on our podcast, or you don't necessarily hear about them all, that often doesn't mean that they're not very good. It's just that there's different hotness in the industry right now. It's probably not worth quitting your job, unless there's other things that that were hurting. But I don't think a tech stack is very rarely, I think, a chance to quit your job, especially something that is so modern, like Ember, and Ruby on Rails, you're not talking like, this is a 40 year old cake, PHP install that no one has wanted to update forever. And it's just a nightmare. Sounds like it's a decent stack. Yeah,
+
+96
+00:42:50,790 --> 00:43:13,260
+Scott Tolinski: yeah, rails, pow power, so many of the most popular sites on the internet still. And I would still consider rails to be an exceedingly modern platform overall, and a great platform. Every time I worked on rails, I had a really nice time using it. So I think you beginning a lot of good learning building sites with Ruby on Rails, I don't think you need to worry too much about that.
+
+97
+00:43:13,590 --> 00:43:43,560
+Wes Bos: Yeah, I was I was I'm writing a scraper for my bank the other day, just because like I, I wanted to, like I wanted to see over time and I wanted to be able to chart my daily up and monthly ups and downs of the investments that we have. Yeah, my bank didn't like have that. So I wrote a scraper that would log in for me and download a CSV of the data. And then I have that running every day. And then what I'm able to do is go back and now I have that the date or time anyways.
+
+98
+00:43:43,560 --> 00:43:52,860
+Scott Tolinski: Have you seen personal capital? Does that work in Canada? No, nothing works in Canada. Okay. Personal capitals, like does exactly that. That's fantastic. Oh, really? Yeah. It's so good. Yeah,
+
+99
+00:43:52,860 --> 00:45:02,580
+Wes Bos: very good. No, nothing works in Canada. So we don't have anything good here. It's all awful. So but it's okay. I'm a developer, I can fix my own problems. So I was just like looking through how it how it's working and trying to figure out like, what are the API endpoints to login? And what are the API endpoints to download this data. And I was like, Oh, this thing is built in Angular and Java spring. And it was like the most wicked app ever. Like, it uses JW T. And it's super fast. The interface is super responsive. And I was like, I was just like, using this app that they had built it. They just rolled out like they had like an old one for a long time. But I was like, this is where this is on to tech, two pieces of tech, Java and angular that people probably wouldn't say are hot, but this is an awesome experience using this thing. And also the fact that I was able to, like puppet it in, like be able to scrape it and download the endpoints in like a like a half an hour means that it was obviously built with single page application of mine. So just personal antidote there. Yeah. Thanks. anecdote, anecdote.
+
+100
+00:45:02,580 --> 00:45:50,610
+Scott Tolinski: Remember when we talked at in about missive in missive is an email client we both use and that's built on backbone in this fantastic script. Yeah. So shout out shout out to missive. All right. Next question is from a best wass best wasp asks, What's the deal with headless CMS and CMS is? I hear you there's talk about them all the time Sanity, Keystone Prisma, I'm not sure what they're good for. To me, it just seems like a UI to my database. But isn't that what my application is? It seems like it would be easier to have my front end, talk to my back end to talk to the database, rather than learning how each CMS wants to do things. Am I missing the point, okay, you are missing the point. Because what it is, is it makes all that super easy, it makes it so you don't have to write,
+
+101
+00:45:51,060 --> 00:45:54,090
+Wes Bos: tried to code a form that takes data, it sucks,
+
+102
+00:45:54,120 --> 00:46:36,210
+Scott Tolinski: I have my whole level of tutorials whole admin dashboard is that I mean, it's all custom forms and all that stuff. And every single time I create a new anything, I have to create that table, I got to create forms, I got to create all the queries and mutations, I have to do all that myself. And it would be so easy if a CMS could do that for you. Really, the benefits of using a CMS or a back end is that it just takes care of all that stuff. The admin forms the validations, the versioning, the plugins, organization, and it does it all in the spiffy interface that your clients will be able to actually understand rather than some janky form that you threw together.
+
+103
+00:46:36,690 --> 00:46:55,140
+Wes Bos: Yeah, not to mention the entire API layer, whether that's a REST API, or graph, qL layer or, or anything like that, like that, that takes a lot of work as well, where these things sort of just get you up and running. So headless CMS makes a lot of sense, especially in a website where you're just have data.
+
+104
+00:46:55,320 --> 00:47:07,560
+Scott Tolinski: Well, it's it's just like saying, it's like saying, well, what's the version? What's the deal with using react? Could I just write the framework myself? Yeah, you could? You could, but at the same time, yeah.
+
+105
+00:47:07,680 --> 00:48:14,280
+Wes Bos: And also like, the, the other. The other point that I have here is that like a headless CMS, sort of decouples where your data lives and where your data is being displayed. So like, for example, one of I talked to the folks at Sanity, and one of their biggest customers is Tim Hortons and Burger King. There's this company that owns the mall. And I'm not sure if I was supposed to say that or not, but whatever. I'm gonna anyways, like that data, like you think of any company that has a bunch of data. Where is that data being pulled into? Well, by the iPhone app, the Android app, pulled into the the boards, when you're ordering and you're looking at the menu, it's pulling being pulled into there, obviously, on the website, it's being pulled in, in store kiosks. Like a lot of times people have data that needs to be pulled in to seven or eight different places. And having a sort of decoupled CMS where that data lives is important. And it's not just tied to a website. And it's not just tied to as a single application, someone's using Word. A next question from JC is this RJC?
+
+106
+00:48:14,340 --> 00:48:19,230
+Scott Tolinski: I don't know that I was. I feel like JC JC JC would put his last name but I'm not sure.
+
+107
+00:48:19,260 --> 00:49:07,050
+Wes Bos: Yeah. Yeah, I feel like he would do that. What does smell need for each of you to use it instead of react in personal and feature developments? Oh, that's a good question. So I've never tried spelt. So I don't know. But I am pretty on to react because of the momentum it has in our industry, both in terms of like, what do people want for me in terms of training courses, as well as like, there's so many resources out there for using react JS like I just look at it like something like Express I always reach for Express. Why? Because expresses like the dominant one. And there's so many Reese's resources out there for it. Is there probably something better out there? Probably. But I'm pretty happy with it. Oh, by you.
+
+108
+00:49:07,320 --> 00:50:20,880
+Scott Tolinski: Yeah, I mean for me for to use spelled on one of my own projects. What does it have to do? Nothing. It has to do nothing different because I love spelt. I think it's fantastic. Yeah, I want to I'm gonna rewrite my own website and felt sorry, hashtag Sorry, I'm no I'm very, very excited to use Felton more things. In fact, I'm planning on doing a new spell course for level up that I'm thinking about right now with Meteor because I saw a repo like two days ago, that was an Apollo API with Meteor and spelt, and it was like maybe the most elegant, smallest codebase I've seen to do some very powerful stuff. So the amount of things you can get up and running really quickly with that stack and have it be beautiful and you know, easy to read. Nothing man I love I love spelt. It's fantastic. So I would check it out. I think It's a great thing too. I mean, like your reasons are totally valid. And I totally agree with you that the the industry momentum is certainly in reacts favor and will most likely stay that way. I can't imagine the entire community hopping on the sell train like that. But Phelps fantastic platform, and it's not going to go anywhere. So I think it's a, it'd be it'd be nice to work in.
+
+109
+00:50:20,910 --> 00:50:29,250
+Wes Bos: Yeah. Yeah. I always get the feeling. Sometimes people think that I don't like things because they don't use them. And there's just too much awesome in the world
+
+110
+00:50:29,280 --> 00:50:30,330
+Scott Tolinski: these days. Yeah,
+
+111
+00:50:30,360 --> 00:50:37,980
+Wes Bos: to do everything. And it's not like I don't like swell. It's just that I've not used it before. And that's all I have. Yeah. Okay.
+
+112
+00:50:37,980 --> 00:51:53,490
+Scott Tolinski: Next question is from Jonathan s. I freelance on the side as well as have a nine to five. The other dev I work with, mentioned that he'd helped if I ever need to work on a client project. What are your thoughts on doing freelance work with someone you work with at your job? Okay, well, is your job at agency because that is a little hairy there. If you're, you know, skimming some projects on the side with some agency members that said, I've done it myself, and I don't really think it's a huge problem. I think it's totally valid. I think, you know, that depends on how the work came about and what your role is at the agency, because some agencies are small enough that every single person is expected to be hunting for projects. And if a project comes into you, it would be ethical for you to send that project on to your managers. If that is the climate of the company. If you start skinning stuff on the side here, then that might get a little bit interesting with interpersonal relationships that your business if they find out that said, if it's a larger agency, or the expectation is that many people are doing freelance work on the side, and that you can hunt for your own projects. I see no problem with that. But it is I think it's a matter of the temperature and within your own agency and what things are like there.
+
+113
+00:51:53,790 --> 00:51:57,420
+Wes Bos: Yeah, just don't get sued. Make sure everything is right. It's okay.
+
+114
+00:51:57,450 --> 00:52:00,810
+Scott Tolinski: Yes. That's another legal aspect of it as well.
+
+115
+00:52:01,380 --> 00:52:29,670
+Wes Bos: Next question from Bryce boys. My team is currently in the design phase of a rewrite of our biggest product ever, we are switching from a Perl back end to node. But for some reason, are technically decided on happy for the node framework. I spent a little time with happy and it seems cool, but I'm not sure about its longevity, when compared to more established frameworks like Express, how do you feel about happy? And should I push it so happy has been around for a while I became out what maybe like six years ago, I'm
+
+116
+00:52:29,670 --> 00:52:31,110
+Scott Tolinski: trying to look the right now. Yeah,
+
+117
+00:52:31,230 --> 00:53:37,950
+Wes Bos: the thing with happy was that express was always like a server rendered framework. And then when building rest API's came around these frameworks, like happy and Cola, sort of came around and said, like, hey, it's a little easier to build rest API's with these things. And that's not that's not all they do. But Express was very much like a server rendered engine at the start. So nothing wrong, I would definitely say like, Yeah, that would be weird if they took some, like, brand new framework out there. But happy and I'm gonna loop koa in with this as well are certainly fantastic options for it. I think the only thing you might lose out on is there's not as much as many like weird, obscure middlewares for it as Express has. But if you are building like a huge product, you probably would build those middlewares yourself. So I don't think it's all that big of a deal. And I would be totally I know, I just said I would always pick Express. But if I were to let been, like thrown into a project where it uses happy, I would be very happy.
+
+118
+00:53:38,100 --> 00:54:27,360
+Scott Tolinski: Yeah, here's what here's the go you Okay, here's what I here's what I like about happy. Uh, I haven't used it myself personally. But just looking at their GitHub, it will the last commit was five days ago. There's 12,000 stars on it. There is nine issues and two pull requests. That is fantastic. How many big projects do you go to? That ended up having like 100 issues and you know, 20 pull requests. And that, to me is an interesting sign of, of how the the development is going. So I think happy seems to be on it. I mean, I have not used it personally. But I've heard good things. And it seems like it's really nice. So yeah, no, I would have no issue with somebody picking happy over Express. I think, from what I've read, it says Express is closer to node and less opinionated. So maybe happy does some stuff for you that express doesn't, but seems like a good choice either way.
+
+119
+00:54:27,720 --> 00:55:37,860
+Wes Bos: Yeah. All right. One more. Last question is from Andrew waffle. I'm a dev that recently joined an agency for the first time what hot tips do you have for living in Devon in the agency life, especially around time management time estimation and dealing with clients peace? Oh, this is this is a good one. So I did quite a bit of freelance work with agencies. And I think my tip would be you have to aggressively manage your own time because project managers the certainly lots of good ones out there. But there's, in my experience, I've encountered much more super stressed out super tight timelines, from project managers that want you to get everything done much faster and quicker. And things like phone calls and emails and whatever that will just eat up your actual time. So I would very clearly just say to a lot of my clients, like, Look, I can't, I'm not going to reply to these emails, I'm trying to get work done. And like, it's important that you communicate with them. But at the end of the day, you're the developer. And if you need to get stuff done on time, you need to aggressively rally against phone calls and meetings.
+
+120
+00:55:37,980 --> 00:57:15,420
+Scott Tolinski: Yeah, in you know, it depends on the agency size, it like, really, to me personally depends on the size, because if it's a smaller agency, you're going to be expected to interact with clients a lot more. We didn't have project managers at my first agency, specifically, because there was designers, developers, and like the business manager, and then the marketing person. So like, we didn't have project managers checking in. So you were your own project manager, you went to all the meetings, you sent out all the emails, you did all the contacts. And that's something you need to be on top of if that is your role, because you can always push back on that stuff if nobody else is going to be doing it. That said, if you do have project managers, and it's a little bit larger an agency, then you know, you might be expected to not interact with clients very often. And that, to me is a sweet spot for being able to get a lot of dev done. That said, you do need some of that experience, I became a much better I don't want to say salesperson because it's Sir, I wasn't doing any sales. But I became a much better speaker talking to clients and expressing why I made these choices. And here's the stack and what does that mean for you? And what are the technical aspects of these things? And what do you need to know without giving you too much? And how does this person like? Like what if I was able to interact with the client a little bit more I was able to better craft to the back end CMS for whatever I was doing for them. So it really depends on the agency side, I would recommend upping your your communication skills overall are going to be like invest time becoming a better communicator via email calendar to do lists, whatever make all of those expectations known and it will help you out greatly in the agency life.
+
+121
+00:57:15,780 --> 00:57:53,190
+Wes Bos: All right, let's move on to some sick pics now. I'm going to pick a blog post from Matt Stouffer. He put together this massive i think is like 1000 word blog post about how to get really good video and audio from like if you're doing live streaming or videos or even like even just want to have like a good quality webcam. And he went through like both all of the like budgets. So if you only have 100 bucks to spend or if you've got like an old SLR, this is what Scott does. You've got the L Elgato. 4k HDMI input. Yeah,
+
+122
+00:57:53,190 --> 00:57:56,400
+Scott Tolinski: but it's not an old SLR. Okay, it's a Sony mirrorless
+
+123
+00:57:56,400 --> 00:58:00,300
+Wes Bos: Yeah. Scott's got it. $2,000 webcam.
+
+124
+00:58:00,450 --> 00:58:03,960
+Scott Tolinski: $3,000 webcam. Thank you very much use me. Yes.
+
+125
+00:58:04,560 --> 00:58:52,230
+Wes Bos: Geez. So there's there's that I took my wife's old camera and hooked it up and looks freakin amazing. And it's great. He just like went over like the differences and pictures of lighting and not lighting and things like that. And it's all just in one spot. So if you ever want to know, how do I get better? Even I think even if you're just like a remote worker, I think having like a good quality audio and webcam makes such a difference. So I've been on so many awful conference calls with people where they've just got their Android earbuds in and they're sitting in like a glass box or something like that. And audio is just awful. Right? So this is cool. Check it out. It's at Matt Stouffer, ma TT s t au ff er.com. Go to his blog. It'll be there. I'll put a link in the show notes as well. Cool.
+
+126
+00:58:52,290 --> 01:00:40,350
+Scott Tolinski: I have a book, audio book that I'm going to pick here. And this is the book called caffeine. How caffeine created the modern world by Michael Pollan. Now this author is really super good. If you've read any of his other books. I've really enjoyed some of his work. However, this this book, I am not good with words. I'm just gonna say that I'm a you know, I can talk on the podcast, but I'm not a good writer, and I'm certainly not an elegant wordsmith. This book is crafted so dang good. It's crafted good. Yeah. No, I mean, this book is fantastic. The way he talks about the history of caffeine, the way he talks about, you know, he, he takes sort of like an idea like, Hmm, well, this caffeine, how could it you know, how has it shaped us as human beings and how are we addicted to it and it makes sort of no judgments upon you know, he really takes the stance of my opinion, like the curious person without being sort of like overbearing, or just in general judgy of people who consume a lot of Caffeine such as myself, and it really this book is not its intention isn't to make you drink less coffee or to consume less caffeine, but it is there to make you consider it. And so I had a great time listening to this book, it was two minutes. If you have an audible subscription, it's free. I breezed through this thing at two x. And I really, really enjoyed it. So if you're an audible subscriber, get this If not, I'm so sorry, maybe find it some other way. I'm not advocating for anything, but maybe I really enjoyed this book. And if you consume a lot of caffeine like I do, then it's definitely a worthwhile listen. And if you're a history person, it's a very worthwhile Listen, a lot of good history stuff in here.
+
+127
+01:00:40,530 --> 01:01:02,100
+Wes Bos: Sweet. shamelessly plug, my beginner JavaScript course go to beginner JavaScript calm. It's a fun exercise heavy approach to learning modern JavaScript from scratch. It's beginner friendly, if you're intermediate, it'll help you brush up fill in the holes here or there. You just go through it a lot faster than if you were a beginner, check it out. Use the coupon code syntax for 10 bucks off, beginner javascript.com
+
+128
+01:01:02,280 --> 01:01:47,400
+Scott Tolinski: word cool. I'm going to plug my latest course that's going to be out on Leap Day, February 29. It's going to be on framer motion, creating really awesome interfaces, animations with framer motion, we build some really great stuff. The cool thing about this course is we teach you you know, topic topic topic. And then we do a couple of projects. So we do a modal accordion topic topic topic. Then we teach you a slide and menu topic topic. And then we do something practical. So everything is all based on not only teaching you the skills, but really building practical animations that you're going to build in your application. If you want practical animations for react, check it out at level up tutorials.com forward slash pro sign up to become a levelup Pro, save 25% if you sign up for the year.
+
+129
+01:01:47,790 --> 01:01:51,810
+Wes Bos: All right. That's it. Thanks for tuning in. We'll catch you on Monday.
+
+130
+01:01:54,540 --> 01:02:04,320
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+

@@ -1,0 +1,512 @@
+1
+00:00:01,319 --> 00:00:06,120
+Unknown: You're listening to syntax, the podcast with the tastiest web development treats out there,
+
+2
+00:00:06,149 --> 00:00:10,500
+strap yourself in and get ready to live ski and West boss.
+
+3
+00:00:10,559 --> 00:01:00,810
+Wes Bos: Are you ready for your second course this is the podcast with the tastiest web development treats out there. Today we've got our sort of second show, which is continuing the server list show that we did. So two episodes ago or four if you count the AC treats, we did a intro to what serverless is. And today we're going to continue on that talk about databases files secrets off. And we've also got a couple little updates since we last aired the last serverless one we've had a lot of awesome feedback from you guys who listened to it and a couple things myself. We are sponsored by Sanity and Freshbooks Sanity is a structured content CMS and Freshbooks is cloud accounting. We'll talk about them partway through the episode with me today, Mr. Scott to linsky How you doing today? Scott?
+
+4
+00:01:00,839 --> 00:01:16,170
+Scott Tolinski: Davey? Tired man. Brooklyn's got that kind of like sickness where she can't breathe. And you know when a little baby little baby can breed. They are up all night very upset. And we got to do that the nose Frieda Frieda.
+
+5
+00:01:16,199 --> 00:01:23,160
+Wes Bos: Yeah, no. Nose Frieda is the most disgusting thing in the world but disgusting so worth. I can't do it.
+
+6
+00:01:23,339 --> 00:01:30,750
+Scott Tolinski: I have no help her like I have to hold hold the baby. Well, well, Courtney does the nose Frieda it grosses me out that much, but I can't do it.
+
+7
+00:01:31,049 --> 00:02:01,530
+Wes Bos: We need to explain what the notes Frida is. So the nose Frida is like a little tube on this like, like, almost looks like a pen. And you put the pen in the kid's nose and your brains out. It really feels like you're sucking their brains. Oh, yeah. They're just like, and then because they blow their nose. Oh, they have to have this not sucked out of them. It's funny that like when I was a kid, we had just this little, like disgusting little bulb.
+
+8
+00:02:01,920 --> 00:02:02,910
+Unknown: Oh, yeah. Yeah,
+
+9
+00:02:02,910 --> 00:02:12,240
+Wes Bos: bring it. How does that thing get cleaned? The nose free does. Oh, yeah. Just throw it in the dishwasher now. And it's it's Yeah, it's helpful. So sick pick, like a sick
+
+10
+00:02:12,240 --> 00:02:26,780
+Scott Tolinski: pig. Yeah, girl. So gross. But uh, yeah, because of that. We are both Courtney and I are definitely the walking dead today. We are very zombie like, and that's, yeah, that's where I'm at. I don't know where I'm at. Yeah,
+
+11
+00:02:26,810 --> 00:05:20,510
+Wes Bos: yeah, we are lowboy kit, just pop two teeth. And the night for last two nights. So I went to the gym this morning and feel feel sorry for you, but on top of the world by having two good sleeps. So ready, ready to get into it. So a couple little updates from the last show is first I tried CloudFlare workers, I noticed I noted how it kind of what it was. And the last one, I said like Hi, I have this problem maybe could solve. So CloudFlare workers is a serverless platform, meaning that you can write little serverless scripts for it. But the way that they deploy it is they're they're kind of in an interesting situation where because CloudFlare controls your DNS, and is actually sort of someone in the middle, you can actually intercept requests, much like a ServiceWorker in JavaScript. And the idea with CloudFlare workers is that you can intercept these every single request to a server, or specific requests like dot j s or dot CSS files. And then when that request comes in, you can either return your own request, or you can just pass it through much like a like a fetch request would work in like a ServiceWorker. Like you could serve it up from the cache. So the problem I had was I use I've been using this the screenshot app cloud app for like 11 or 12 years. And I have something like, I don't know, like 20,000 screenshots on it or something like that. And I I've, I've used every single markdown file I've ever written every single thing I've ever done. I've used cloud app to host my screenshots. And then I just paste the URL and I right forward slash content dot png, or forward slash content, JPG or just for slash content. And that will serve up the raw JPEG or PNG or whatever, not the like, the silly little thing, and cloudapp just updated their entire thing. And they just like, removed that entire feature, which I did a quick search on GitHub, by 14 and a half thousand short links on GitHub. Wow. And I was like, Okay, thanks for telling me. First of all, I got like so many emails. So it's like, like, how do I fix this do i do i have to download my entire archive, and then build my own server that matches those existing URLs because it's it's my own domain name. I pay extra for that, but they control the server. So I can't just add custom functionality. So I'm like, I'm gonna have and I can't just sign up for another service. Because these URLs ours are specifically the IDs of them are generated by cloud app. So I was like, I'm gonna have to, like build my own thing. I don't feel like doing this. And like, I like it. I like cloud app, other than the fact that they just screwed me on this.
+
+12
+00:05:20,760 --> 00:05:30,120
+Scott Tolinski: These are the problems that we have, as developers, this is such a classic developer problem. I feel like I feel like this all the time. I'm just like, shoot, what is the answer? Yeah.
+
+13
+00:05:30,120 --> 00:06:31,740
+Wes Bos: What is the answer? So the answer was a CloudFlare. worker, meaning that so what I did is, I have my domain name west.io. And I have cloud app, which is my, my screenshot thing. And what you can do is you can sort of jump in the middle of that, and you can write a worker. And what I did with the worker is I just intercepted every request. And I said, if this request matches the URL of forward slash content, or forward slash content dot png, then scrape that page, find the actual raw PNG, or whatever, and serve that up. Otherwise, just pass that through to cloud up. And I was like, This is perfect, because like, I'm able to add code to a server that I don't exist. It's obviously it's not doing that. But I'm able to sort of jump in the middle. And that's huge. Because I wouldn't be able to do that with any other set. Someone told me that Akamai edge accounted as well. A con is that how you say it?
+
+14
+00:06:31,890 --> 00:06:48,450
+Scott Tolinski: Were a con acha commie I'm so okay. This looks like a Japanese word to me. Even though they're a Saturday you on the Massachusetts it is a Japanese word than it is, ah, my,
+
+15
+00:06:48,810 --> 00:08:47,370
+Wes Bos: aka my accent come I anyways, they apparently they have a server list product as well, which is called an atom I come I come I come I yeah, I am in the same idea. There's, there's a lot more to CloudFlare workers in that you can cache stuff, and serve up the cache if you want it and you can have control over that. And one more thing, somebody someone just messaged me, and I might even want to do a show on this. He said, I'm not gonna say who it is. I'm not sure he didn't give me permission to say his name. But said, hey, let's just listen to syntax episode on serverless. Not sure if it's an episode idea or not. But if you want to dive into CloudFlare service workers, it means CloudFlare workers. I'm currently leading an invisible infrastructure migration right now from a legacy WordPress setup to a new storyblocks Netlify setup. So we're using CloudFlare workers to basically stitch together the headers, the menus and footers from the old WordPress site, while we move to our new Netlify pages, but serving the page back as if it was part of a normal domain. This means we can migrate from the old to the new slowly without massively disrupting the new SEO or doing a lengthy cost rebuild. I was like, Oh my gosh, that's genius. So the idea is that you, you just pull in the entire website with a CloudFlare worker and render it out. And then piece by piece, you can on the fly replace little bits of that by I'm assuming they're running their Netlify website on another domain name. And then they just pull in the pieces from the Netlify domain, stitch it into the existing WordPress. And eventually there'll be no more parts of WordPress left. Wow. And then they could just turn it off and they can do it. Not that that is that's a genius way to to use this sort of thing. People are swear when someone makes a request, you can stitch the bits together. stitching bids, that's
+
+16
+00:08:47,610 --> 00:09:16,980
+Scott Tolinski: Yeah, that's man. That's really cool. Yeah, man. Yeah. I'm really interested, like this stuff is all sort of blowing my mind. So I'm, we mentioned that we need to do more on CloudFlare. So I added a card into our potential hasty treats that just as Scott asks West questions about CloudFlare because I don't I have a cloud for account. I've used it in the past, but I'm not using a currently and I have a lot of questions about it. So I think that make a good episode.
+
+17
+00:09:17,340 --> 00:09:29,850
+Wes Bos: Yeah. Big fan of CloudFlare over here. Yeah. I don't use any of their paid stuff. Just use all their money. Yeah, don't give him any money. But all the free stuff that they give you is awesome.
+
+18
+00:09:30,049 --> 00:10:57,600
+Scott Tolinski: We also got a another note, and this is a great episode too bad. Only too bad. You didn't cover stitch the server. It was platform from MongoDB. I never heard of stitch. No, it seems like everybody and everybody is coming out with a serverless platform. This one seems to be really kind of interesting. So this is comes to you from MongoDB mongodb.com forward slash cloud forward slash stitch and this is the very first time I'd ever heard of it. I popped it up and looked pretty cool. build better apps faster with MongoDB stitch services. So basically allows developers to run simple JavaScript functions in the stitch serverless platform and making it easy to implement application logic, securely integrate clouds or so it seems like it's just like MongoDB saying, Hey, if you're gonna query a MongoDB database, well, maybe you should just consider using our serverless function, so you don't have to have your own function. Now, I thought this is really interesting, too, that they highlight graph. qL empowers developers to quickly build apps with graph qL, the groundbreaking API query blah, blah, blah. And I have not really dove into this beyond a surface level. But I thought it was really fascinating considering I do use MongoDB. My database is hosted at Mongo Atlas. And I think it'd be pretty cool to potentially check out some of their pricing seems pretty neat.
+
+19
+00:10:57,659 --> 00:11:09,360
+Wes Bos: I see what this is. Obviously, you have your database on MongoDB. And then they will also give you serverless. functions. Yep. And they'll also give you a graph qL API.
+
+20
+00:11:09,360 --> 00:11:09,870
+Unknown: Yep.
+
+21
+00:11:09,990 --> 00:11:30,210
+Wes Bos: that sits on top, very much like Prisma or Hasura. I'm assuming I haven't tried it. And then they give you off level as well. And then the triggers that seems like web hooks, yeah, when some data changes, and you need to do something, when that data changes, send an email, somebody logged into your account or someone reset your password, you could send an email.
+
+22
+00:11:30,539 --> 00:11:33,000
+Scott Tolinski: Kind of cool, kind of cool. Yeah, I wonder
+
+23
+00:11:33,000 --> 00:11:44,130
+Wes Bos: if they actually tried to sponsor our podcast, I got an email from them last week. We're sold out. But maybe this is why because it actually looks pretty cool. To try this out. Yeah. And they have
+
+24
+00:11:44,130 --> 00:12:02,130
+Scott Tolinski: a in the docs, they have a tutorial section where they teach you how to build a blog, or build a to do app, you know, a classic No, do I've got to build a to do web, we got some need to do is to do. We got to build those to do apps. But I'm gonna try one of these and just see how it goes. Maybe I'll do it live. I've been doing that recently. Where?
+
+25
+00:12:02,730 --> 00:12:04,890
+Wes Bos: Yeah, Scott tries on YouTube.
+
+26
+00:12:04,980 --> 00:12:33,539
+Scott Tolinski: Yeah, that's what I'm saying. Like, if I'm going to try these things anyways, or do these things anyways, I might as well just put on the camera and talk through it. Those you don't know, I've been doing this Scott try series on YouTube, where I've been trying different services like begin in his store and stuff. And for the most part, it's really opened my mind in some of these services, specifically, like how Sarah did something a little bit different than what I thought it did. So it's definitely getting my brain in that space for what this stuff can actually be.
+
+27
+00:12:33,929 --> 00:13:12,179
+Wes Bos: One more thing real quick, is we mentioned FA s, which is Functions as a Service. It's like the open source version of running a serverless. And I was like, well, like, like, how would you host this yourself, but we discovered that you have to run Kubernetes. So Digital Ocean has Kubernetes, which Kubernetes will scale up and down your servers as you need them. So I'm assuming that if you wanted to host your own, you could go for digital oceans Kubernetes product, and then run this FAA s Functions as a Service on it. And that would then scale your servers up and down as you need the resources. Kubernetes scares me there is that
+
+28
+00:13:13,590 --> 00:13:38,130
+Scott Tolinski: word Kubernetes. You know that hold that Hitler tries whatever? Or Hitler. Yeah, Hitler's meme from the 2000s. He did one on Kubernetes. And it's, it's actually hilarious. And it somebody said, this is probably the best tutorial on Kubernetes that exists, because he'll be like, Drew, did you install this? Did you do this? Did you do that? Oh, look, if you haven't, Oh, man.
+
+29
+00:13:38,399 --> 00:14:43,350
+Wes Bos: All right. Uh, let's move into today's show into the entire show of just updates. That's thanks for tuning in. No, but now we're gonna actually move to choose the next one. So we have a couple different topics here. We'll start with secret management. secrets are things like passwords, API keys, things that you don't want in your code. Because generally, you should not put sensitive things like that generally, base. Yeah, generally, generally. So like a URL string to your database or something like that. And if you need to connect to a database, and you need the URL, username and the password or anything like that, that data needs to be put as secrets, which is just basically process dot E and V dot something. And there's all kinds of neat ways to go about it. Some of these frameworks we talked about earlier, have a nice UI for it. Some have a C, Li some will ingest a dot E and V file. That's how I personally How do you manage your secrets? I use a dot env file.
+
+30
+00:14:43,649 --> 00:15:10,169
+Scott Tolinski: Yeah, it's I use since I'm on Meteor Meteor has what's called a settings dot JSON file, which are basically just write CSV files. Yep. And so it you can have the cool thing about settings is because Meteor, you can write they're not necessarily secrets if they're on the client, but you can write your, your public variables that need to be constants or whatever. And then you can write your private ones that are only server side. And it just handles it all super nice.
+
+31
+00:15:10,679 --> 00:15:40,890
+Wes Bos: That's cool. Some of them have a really nice, like dev begins specifically has a dev staging production interface. So I don't really like managing secrets via the command line. I'm not sure either either put it in a dot E and V file, or just go straight into the UI of whatever hosting service you're using. And a lot of hosts will have have that for you. And then it gets a little trickier when you have multiple staging environments, you've got like a development and production and a staging environment.
+
+32
+00:15:41,159 --> 00:15:58,440
+Scott Tolinski: Yeah, yeah. And I, no, they frequently say not to have several dot E and V files and to just have all of your your code do that immediate, it's a little bit easier than that. Because the settings that JSON, I don't have to have separate end files. Yeah. But is that how do you handle the environments? Per?
+
+33
+00:15:58,549 --> 00:16:08,909
+Wes Bos: Yeah, um, usually what I like to do is just at one point, you have to log into wherever you're hosting your thing and set them Hmm.
+
+34
+00:16:09,210 --> 00:16:11,429
+Scott Tolinski: So you set them in the UI or that Yeah,
+
+35
+00:16:11,460 --> 00:18:04,200
+Wes Bos: you set them in the UI, or login to the box and paste them in. That's Yeah, that's that's generally how I do it there. And then I maintain like a local file for my local development word. Next up, we have vendor lock in. So one thing to really think about is, am I going to be able to move this away from either the hosting provider, or I guess there's two types of vendor lock in here, you can, you can be locked into a lower level provider, like AWS, or MongoDB, or something like that. Like, even like, if you think about using a database, you can just use mongoose. And now you're locked into using mongoose as the database. Or you can use a higher level SQL package that will have the ability to you could use any database you want under the hood. And the code that you write is exactly the same. That's called a ORM, which stands for object relational mapping object. I've never actually looked that up myself, I always just know that an ORM puts a layer between the databases API and the actual API code that you write. Yeah. So that's, that's like sort of one type of lock in. And then the other type of lock in this is like a more of a framework lock in meaning that if you write code to a specific framework, can I take that framework and host it anywhere I want? Or am I am I bound to a specific host? So the questions I always ask myself is, can I take my app as is, and host it on another provider? Can I refactor some config and run the code as is because I think generally in serverless, most of this is just JavaScript code at the end of the day, but you always have to ask yourself is, if I get like banned from this service, you can
+
+36
+00:18:04,340 --> 00:18:49,710
+Scott Tolinski: move this thing somewhere? Or if that service shuts down, or that service is down for an entire day? Can I emergency hot swap this thing over to an entirely different piece of infrastructure, and it will work or does some secret sauce run on that hosting provider that I would then need to sort of move over and refactor the code, you really have to think about that. Because again, like if we often applaud these layers that make our life easier sitting in front of these things. But if those layers end up becoming like a real tight lock into a specific platform, that is definitely a foot gun that you could avoid by choosing something that maybe gives you the option to migrate off easily or move somewhere else. Definitely something to consider there.
+
+37
+00:18:49,710 --> 00:19:11,430
+Wes Bos: Yeah, like, one huge lock in is just using Firebase and not necessarily bad. I love Firebase. And I would I would certainly do a project on them. You just have to think, are they going to pull the rug out from under me in terms of tripling the costs like Google Maps did or just shutting it down, like parks shut down at one point?
+
+38
+00:19:11,430 --> 00:19:12,030
+Scott Tolinski: Mm hmm.
+
+39
+00:19:12,030 --> 00:19:32,130
+Wes Bos: Whereas if you did it on like an open source framework, then you could certainly just move it somewhere else. In a lot of cases, it's, it's fine. You're like, I trust this company. If we have to move off of parse to something else, then. So be it. It will have to cross that road when we get to it. But we're moving quickly enough right now. So it's well worth it.
+
+40
+00:19:32,360 --> 00:19:47,010
+Scott Tolinski: Yeah. And I mean, we look at Firebase, but just keep in mind every single cert like you think Google owns Firebase? Right. So okay, is Google gonna shut it down? They're probably not going to shut it down. They're not going to shut down like their what is their Google
+
+41
+00:19:47,040 --> 00:19:48,420
+Wes Bos: RSS reader? Yeah, you
+
+42
+00:19:48,540 --> 00:19:52,200
+Scott Tolinski: have to say, Well, what is their their app? One where the Google app, Google?
+
+43
+00:19:52,890 --> 00:19:58,580
+Wes Bos: Google Cloud, Google? apps are? out? Yeah. Yeah,
+
+44
+00:19:58,610 --> 00:20:03,390
+Scott Tolinski: it sounds some Google combination of words with Google Cloud and apps or something like
+
+45
+00:20:03,390 --> 00:20:05,160
+Wes Bos: cloud compute service.
+
+46
+00:20:05,360 --> 00:20:21,540
+Scott Tolinski: Yeah. But Google is absolutely famous for shutting down their services. So there's just about the good, the graveyard of dead Google services is almost larger than their active Google services. So yeah, those are definitely things you need to consider when thinking about that.
+
+47
+00:20:21,900 --> 00:22:16,470
+Wes Bos: So a couple quick examples here, obviously, haven't gone into them all. So next, Jess will only run the serverless part of it on now sh, which is sites hosting platform, there is a community package being worked on right now, which will allow you to deploy your API routes, which is their serverless functions folder to AWS or something like that. So that's just something to think about is if you if you went the now route, you might not be able to to run that. But then again, sites hosting is really good. So I don't know if I would, would sweat that that much. Begin is another one I have is so beginning kind of an interesting thing, where they built this thing called architect, which is available at arc AR c codes. So arc codes is just a framework that will run on AWS, meaning that it's an open source framework, and you can deploy your app to AWS, and run serverless functions and WebSockets real time stuff, it will it'll it'll interface with s3 for you, we'll talk about that stuff in a bit. But like basically, there's a bunch of different parts, and serverless functions being part of the biggest part. And then so then, if you want to host on begin, that you have to use architect to host on begin, like, you have to code your way, and you have to code your app in a certain way to host on them, which is not true on sites now. Because Zeiss, now you just have to, they have all these different ways to host an application. And as long as it's a serverless function in some way, then then you can host it hosted with them, you don't have to really fit the structured rigid way. Whereas begin, you have to code it in the way of architect. But the upside to that is that you can then take your architect, if you didn't want to host it on begin, you could just bring it somewhere else. And the only lock in that you have there is that it only runs on AWS.
+
+48
+00:22:16,470 --> 00:22:21,570
+Scott Tolinski: It's nice that they took the forethought to prevent locking in those sort of ways. You know,
+
+49
+00:22:21,570 --> 00:22:22,200
+Unknown: Mm hmm.
+
+50
+00:22:22,200 --> 00:22:32,610
+Scott Tolinski: It's like here, here is this platform now that okay, well, if begin, for whatever reason is no longer there. You're not, you're not screwed? You're you can do it yourself.
+
+51
+00:22:32,850 --> 00:23:01,230
+Wes Bos: Yeah, I think in most of these, like, we're just mentioned this, but I don't think that this is as big of a issue that a lot of people think because they probably won't go away overnight, right. And you are still just writing JavaScript at the end of the day for all of these things. So just re architecting how its configured and how requests come in. Sometimes, I would think the majority of your library code would still move from one to another. Mm hmm, totally.
+
+52
+00:23:01,230 --> 00:23:16,260
+Scott Tolinski: So let's take a quick break to talk about one of our sponsors where you can host your data and query it now with graph QL. And we're talking about sanity@sanity.io. I know you've got some hot new info for us West, what's up?
+
+53
+00:23:16,440 --> 00:24:13,260
+Wes Bos: Yeah, they're still rolling out a whole bunch of stuff. And one thing that that just launches graph, qL API is now out of beta. So previously, the way or one of the way that you can pull your data out of Sanity is with this thing called grok. gr o q grow. And it's really cool language that allows you to query all of your data and filter it out and sort it and whatnot. And it's awesome. But some people want like just a regular graph qL API that they're they're used to. So they wrote a graph qL API with grok, which is really cool. So under the hood, the graph qL resolvers, are just written in grok. And that's just been in beta for a couple months now and is now out of beta. So you can use either grok or graph qL, to pull the data out of Sanity into your website, your app, your sandwich board into wherever you want to display, you're saying,
+
+54
+00:24:13,980 --> 00:24:15,030
+Unknown: Yeah, I haven't done it
+
+55
+00:24:15,030 --> 00:25:02,160
+Wes Bos: yet data. So kind of the cool thing that they just mentioned about this is you can deploy tagged versions of your graph qL API. So let's say you want one version with only your posts and authors available, you can deploy an API with a blog tag and get your own endpoint for that and another one with a podcast tag and get your podcasts for that, which is pretty nifty. If you want multiple graph qL endpoints for different I know that kind of defeats the purpose in some some cases. But if you do want different endpoints for different pieces of data, because you host a lot there, you can do that. So check it out. Since sanity.io. forward slash syntax is going to get you double the free usage tier, and they also have a bunch of links to stuff you should check out as a syntax. Listen Thanks so much to Sanity for sponsoring.
+
+56
+00:25:02,370 --> 00:25:57,300
+Scott Tolinski: Nice. Yes, Andy, always putting in the work making those improvements. Cool. Let's say you're out there, Holland, Holland, big Holland. Next, let's talk about sharing dependencies. I also experienced this pain, where basically, if you are serving just individual functions, right, you have singular functions that exist on their own. Well, if you have all these functions, what do you do about things like dependencies, tree shaking and your application? Overall, one of my solutions to this was just to have one endpoint in my next j. s. app. That was, that was one of my solutions. I'm interested because you seem to have dug a little bit more into this than I have. How do you what do you do to solve this issue of having individual package JSON files in importing and exporting amongst different serverless functions to avoid duplication?
+
+57
+00:25:57,660 --> 00:27:31,350
+Wes Bos: Yeah, well, I guess the whole idea behind serverless functions is that you have small functions that are contained, right. And therefore they can run quickly and only take up the resources they need, when they are running, versus a large application that the whole thing is always running. And every time you add more code, or more dependencies, that application, surface area then grows, right? So the idea with serverless functions is that you have every single time you write a function, you can and we say a function, but like a function could do multiple things, and have its own libraries and whatnot. But generally, each function that you have has its own package JSON, which you have to npm install each of your dependencies for each. And that can be a real pain, let alone almost all apps have like a Utilities folder where like, I always have a function called format money. And that takes in cents, and in formats it with the dollar sign and all of that, and more than likely need that in multiple functions, and things like off if you want to do that in multiple. So like how do you share that code? amongst other ones? So ask us on Twitter, like what is your strategy? Because there doesn't seem to be a very clear path forward? And I don't think that this is totally solved, just yet. I think there's a lot of different ways to do it. So would the answer that people gave me is first some people publish their own private module full of utils? Yeah. So you go on, like, get a private
+
+58
+00:27:31,350 --> 00:27:36,180
+Scott Tolinski: and you have to, yeah, that's such a pain. It's such a pain, because then you have to update the module. Yeah.
+
+59
+00:27:36,180 --> 00:30:19,230
+Wes Bos: Let's explain how it works. So you, you have your own, like, I don't know utils. That jass. You, you publish that sucker to like a private NPM repo which you have to pay for, and then each of your projects, then NPM installs that module. And then you can import that the development workflow for that. It's like, what if you're working on your utils library, and you need it in another one, I think that's when you have to use like NPM link or something like that, that just seems like a big pain in the butt to me. So I didn't let go down that route. Another way you can do it is you can just bundle your entire function and then tree shake, aggressively, people said that, you can just require everything you want to bundle it up into one j s file, and then tree shake will get rid of the methods and functions and things that you didn't necessarily use. Because as it stands right now, serverless functions will bundle the entire node module, all of the read me's, all of the tests, everything that comes with it, which is mostly unnecessary. In most cases, if you're just taking a sip of util from from a library, what else you can simply just some serverless function providers will like xlights. Next, Jess will do this, begin we'll do this Firebase will do this, a lot of them will do this. Or you can simply just require something from another file, sometimes you need to name it something special. And that will, they'll know. And then when you go to bundle, it will just bundle that dependency in which each of them so if I have format money in three of my functions, it will just bundle that format money module into each of my serverless functions for me. And then finally, Amazon has this AWS has this idea concept called layers, which allow you to bundle up commonly used functionality, and then it will make that available to all of your modules. So if you have things that are commonly used, you can put them in a layer, and it seems to be pretty performant that way, so interesting. It's all kind of sucks that you have to think about that because like the beauty of back end was that you didn't have to worry about the size of your node modules. Right and now you do because everything is bundled up and put into a serverless function with the when you're using serverless functions. So now you got to start thinking about that. So we'll see what that does. Luckily, a lot of my node modules like date functions will publish the entire library. But then they'll also publish like lodash does this as well, where you can, you could require like lodash for slash has or something like that. And it will just bundle that little part before you
+
+60
+00:30:19,380 --> 00:32:53,670
+Scott Tolinski: and you should write if that if that is the option. That is how you should, how you should pull out those dependencies totally. Another big hurdle for a lot of these things is local development, which again, it seems like, Oh, that's a problem that's been solved in the past. But now we have to worry about local development. Because, again, if you are having one of these serverless platforms, these functions just exist, you kind of need something on your own end, when you're testing developing writing code to manage and have those functions be available. So there are several of these things that do exist. I didn't have you, um, I know, we don't have this on our list. But have you used Netlify eyes version of this? I have not? No, I have it. So really, what these are, are basically, they're going to end up being different platforms that you can run locally, probably one of the biggest ones being for next j s. And now dot Dev, which basically runs the now hosting platform locally on your machine, allowing you to utilize these serverless functions just as if they were in production or something like that. That is really the the solution for any of these is really just to have your own utility or your own platform that goes ahead and does that there's a we mentioned, I briefly mentioned this as Netlify, Dev, allowing you to run basically Netlify stuff locally at they gave us a neat tour of Netlify dev like a year ago at react and on. And it really blew my mind, but I have not used it. Because to be honest, most of the stuff I'm hosting on Netlify, right now doesn't even use their their serverless functions at all, I I'm curious about a lot of this stuff I have used now, Dev and I must say I do get a little bit. I don't want to say confused personally. But we have you know, the next was that you know, next start or whatever you use the next day as the yarn start or whatever to run next .js. And a lot of times you're hosting next .js ABS on now. And then you can do.in you can do a dot E and V variables on next .js yourself bundling them into the thing, or you can use the whole now .js dot JSON stuff that they have in there now platform and when you get is you have these different branches of techniques for doing the same thing in the same platform based on where you're hosting it. And to me that gets a little bit iffy and confusing about when to use what where. But these platforms are really interesting Iran now that are now Dev and it was very, very smooth, very easy to do. And for the most part had no issues with it.
+
+61
+00:32:53,970 --> 00:34:04,080
+Wes Bos: Yeah, it seems that a lot of the like the local dev for these things always comes after the fact. Yeah, so now has good local dev now was the CloudFlare workers just rolled out this thing called Wrangler, which allows you to run all of it locally. Like it's a good, it's a good name. Yeah, architect, which is behind begin runs locally, it also runs in a sandbox, which is kind of cool. I didn't even realize you could do that. that'll stop any code that's running to reaching outside to other folders or things on your computer. It's kind of cool. So I basically I wouldn't take a look at anything that doesn't give you a one to one replication of how it's going to run on the server. Yeah. Because till sometimes if you say, Okay, now it's locally, and now I have to, like, do this a little bit differently. Or like, I've seen a lot of people just make like, make shifts, express servers that try to replicate that. That's a pain as well. And a lot. I think almost all of that is gone now. Which I think again, we said 2020, zero serverless it's gonna get a lot more popular this year. Because the whole UI of or not the UI, the whole dev experience locally, and everything is really good.
+
+62
+00:34:04,440 --> 00:34:59,960
+Scott Tolinski: Yeah, I'm, this was always one of the biggest sticking points for me when I first heard about serverless, or any of these platforms, oh, you can run these functions now. Okay, well, do I have to like go into a text editor to write them in, you know, wherever, to have to do some some not like a text or like a text area. Do I have to write my functions? Yeah. Yeah, I just remember being really frustrated by it initially. And this, you know, running them locally is obviously what needs to happen, and also what needs to happen and you need to build your clients when you do work, because you got to get that money, man. I mean, you did that work at that money. You want to check out fresh books@freshbooks.com forward slash syntax and just just tell them, let them know send them in a letter in the mail saying that you heard about it from syntax, they would love to hear that Freshbooks is Canadian just like our co host West here. Now, right?
+
+63
+00:35:00,570 --> 00:35:05,340
+Wes Bos: Yep, they are. They're from Toronto, which very good to me. Yeah, you
+
+64
+00:35:05,340 --> 00:35:11,310
+Scott Tolinski: know that, uh, you know that they're gonna be really nice to you. They might say sorry, a lot. Alright, sorry.
+
+65
+00:35:11,520 --> 00:35:13,230
+Wes Bos: I'm sorry about that. So sorry about that. Okay,
+
+66
+00:35:13,439 --> 00:35:45,150
+Scott Tolinski: so let's get into Freshbooks. Here. It's the all in one small business invoicing and counting solution. I know Wes, you used fresh books for a very long time, long before they sponsored this podcast and you have been a very happy customer for that whole time. It integrates with a lot of stuff that you know, and love like Shopify. G Suite gusto, I'm a huge fan of gusto. Shout out to gusto. They're out here in Denver, stripe, all sorts of stuff. And they have a neat app for your phone. Do you use the app? Wes?
+
+67
+00:35:45,440 --> 00:36:29,420
+Wes Bos: I use it quite a bit. Actually, my my assistant uses a lot more than me. So I've added her to my account. And then every couple months, I empty out my pockets and get rid of these faded crumpled receipts that are almost illegible. Yep. And she is that to take a photo of it. Because if you ever get audited, I always want it to be easy. And I just want if they'll say, hey, show me a receipt for meals and expenses for this month, this many dollars like you claim this much. Show me and having a photo attached to each of those will make it super easy to do that. So big fan of the app, myself, I use it every now and then when I'm out and I just have a receipt, snap a picture, throw them in the garbage. Don't have to worry about that. Perfect.
+
+68
+00:36:29,630 --> 00:37:36,110
+Scott Tolinski: Yeah, so check it out@freshbooks.com forward slash syntax, and you are going to want to sign up because trust me, this kind of stuff is never any fun and fresh books makes it totally fun. So let's get into some more stuff. We're talking about existing applications, applications that have already been built, and how do we move stuff? Or how do we make things serverless. Because if you have an application, it could be difficult to move parts of it, especially if you have a lot of different things going on. With Me personally, my my API is basically one endpoint, right? So for me, it would involve me either having to split up my graph qL API and stitch it back together, or move that whole bit. So yeah, let's talk a little bit about a thought process here and moving in an application. Do you do a piece by piece all at once? What are your What are your thoughts here? My my initial impression is that you would probably want to do it piece by piece, starting with like the smallest route that you have, making sure that works the smallest route, smallest bit of functionality, get that up and running and then piece by piece it from there.
+
+69
+00:37:36,540 --> 00:38:41,900
+Wes Bos: Yeah, I think what I would do is just sit would start offloading very clear standalone pieces of the of the application. So whether that's image resizing, or like reaching out to an existing API, and like maybe you reach out to GitHub and create a repo, something like that, just like look at all of the or sending an email, that's probably the easiest one you can do. Yeah, yeah. And then just like move that logic out to a serverless function, and then that will then live on another domain name. So you'll have to change your calling of that function from just running a function to making a request to the endpoint and submitting the data and getting the data back. But if you do it properly, the returned response should be the same from a function as it is from hitting an API endpoint. So that's kind of how I would probably approach these things. I haven't done a bigger one. But like I read at the top of the hour, this one of moving this WordPress one around, there's probably a lot of kind of neat tricks we're not even thinking of here.
+
+70
+00:38:41,960 --> 00:39:21,570
+Scott Tolinski: Yeah, I moved level up to next day, as briefly, we talked about I think, then unless a couple episodes ago, or last episode, and yeah, that was me moving my API and my back end to serverless functions, because I was doing it all via the API routes. And next j s. And I only had a few routes, because it's graph qL, you just move the endpoint, the main, the main little bit there, and then you move the web hooks. And that's pretty much it for me, I didn't really have a whole lot to move. And so if you, I guess it could be considered a benefit of graph qL there is if you only have one endpoint, you only got to worry about moving one endpoint rather than all of your different requests.
+
+71
+00:39:21,600 --> 00:39:22,260
+Unknown: Yeah.
+
+72
+00:39:22,350 --> 00:39:45,630
+Wes Bos: But like if all of your mutations have, like if your mutation for signing up and creating an account and sending an email and resizing the avatar, and all of these things, all of those in themselves are separate packages, or they don't have to be But at a certain point, you're going to hit that serverless limit. And you're going to need to split them out into multiple so I don't know how to get back together. It's
+
+73
+00:39:45,630 --> 00:39:50,910
+Scott Tolinski: Yeah, yeah. The What is it Apollo Federation. Is that what that's looking to solve? Oh, I
+
+74
+00:39:50,970 --> 00:39:52,170
+Wes Bos: don't know. I've heard of this
+
+75
+00:39:52,260 --> 00:40:31,770
+Scott Tolinski: Apollo Federation. Okay, let me see Apollo Federation. Let me open this up Apollo Federation implementation. single data graph across multiple services. So yeah, there you go that that would be the the solution there to split it across multiple services. I don't know what that looks like, in terms of anything performance wise splitting, like, where do you split your graph? qL API? If you do so into different services? How unnecessarily complex does that make things? Like? Is that is the benefit worth the cost to do that? I don't know. I don't know very much about Apollo Federation. But it looks interesting.
+
+76
+00:40:32,150 --> 00:41:14,250
+Wes Bos: Yeah, well, you could, what else I'm thinking, and we should probably have somebody on the show who's actually done this before. But yeah, but I'm also thinking is that like, your resolver for your query, or new mutation? Will you all of your graph qL API's on one function, but the actual heavy lifting of what needs to happen in the resolver, sending an email, resizing an image all that thing, then that can just be in a serverless function, and the resolver will simply just send the data that's coming in to the serverless function, and then you get the response and send it your So you started just hot potato it because with the graph, qL is just a thin layer over top of the actual logic that needs to happen on your server. So I put that as a good way,
+
+77
+00:41:14,400 --> 00:41:16,730
+Scott Tolinski: they should have called it the hot potato service. That's
+
+78
+00:41:17,900 --> 00:41:22,770
+Wes Bos: somebody wait is hot potato taken on what is the NPM drinking game,
+
+79
+00:41:22,770 --> 00:41:25,440
+Unknown: the way that
+
+80
+00:41:27,570 --> 00:41:36,090
+Wes Bos: I'm gonna go NPM j. s, package hot potato allows you to pass an HTTP connection from one cluster worker to another,
+
+81
+00:41:36,090 --> 00:41:43,400
+Scott Tolinski: that's exactly what we want, oh, my God, I found a domain hot potay.to.
+
+82
+00:41:45,810 --> 00:41:54,000
+Wes Bos: Somebody please make this hot potato is a blazing fast graph. qL API stitcher focused on serverless functions
+
+83
+00:41:54,030 --> 00:42:01,730
+Scott Tolinski: focusing on delaying actually doing anything and just give it to somebody else. It's like how I how I handle email.
+
+84
+00:42:02,190 --> 00:42:36,440
+Wes Bos: Uh, what else is interesting here began just rolled out a, they have their own server, like most of these won't allow you just to run a Express server in them like you could but be ghin just rolled out at HTTP dot Express method, which will allow you to hook up an old Express application or existing, I shouldn't say old, existing Express application. And then what you could do is you could slow it, like you could just move it all over, and then slowly move piece by piece or to take it out. So be kind of interesting as well. Yeah,
+
+85
+00:42:36,540 --> 00:42:58,020
+Scott Tolinski: fun. I mean, it's fun that, uh, people who clearly have experienced these problems or have experienced some of these things, like realize what the barriers to entry could possibly be. And like that and begin allowing you to migrate your application like that just shows that they know what the, yeah, developer pain points are there? Yeah, it's because
+
+86
+00:42:58,020 --> 00:44:13,890
+Wes Bos: like, initially, when I tried this a couple years ago, I was like, This is too hard. And they hear stuff that comes back. I'm like, I'm like, uh, so you're telling me you want me to do all of this extra work? For what? Because like, a lot of my even my own application, I spend like 35 bucks a month to host my entire application that serves up, like, I've had hundreds of thousands of people do live stream videos and watch it and sign up for accounts and things like that. And I don't necessarily need I don't feel any of the pain points that the serverless in terms of scaling necessarily means. So I just kind of look at and garlic. Hmm. That seems like a lot of work for not much return. And, and that's why like, I don't, I don't think that this is the be all and end all for everything. But it definitely is, I think also easier for front end developers just to eat a little little bit of functionality. Because whip up a quick little script like that whole cloud app thing I did. I wrote that in the browser. I didn't even get into their local workflow yet started typing into the text box. How is that it was good because they the you have the experience for that is so good. Mm hmm. Because they use they use Monaco, which Oh, yeah, my Oh,
+
+87
+00:44:13,890 --> 00:44:14,910
+Scott Tolinski: shout out is
+
+88
+00:44:14,910 --> 00:44:15,990
+Wes Bos: just VS code.
+
+89
+00:44:16,020 --> 00:44:21,180
+Scott Tolinski: Yep. Which you should I mean, at this point, if you have like a text editor in line, Monaco's where it's at
+
+90
+00:44:21,630 --> 00:44:50,340
+Wes Bos: the Monaco code sandbox or something, and then they they have like a postman thing built into it as well. And they have like a fake browser that allows you to view their response. And they have Chrome Dev Tools baked into it as well. So they took all these things and just baked it into this amazing pie editing experience. And like I never use like a code sandbox or anything like that. Just because I'm like, as doesn't it feels a bit weird. It doesn't feel like your
+
+91
+00:44:50,340 --> 00:44:55,110
+Scott Tolinski: edit. Yeah, the themes different the shortcuts are different.
+
+92
+00:44:55,230 --> 00:45:11,790
+Wes Bos: Code sandbox uses Monaco as well. Yeah, there was even a demo, the guy got via code running in the browser, my mind, just like shimmed all the back end stuff with node API's. But this was like the first time I thought, this is okay to write this code in the browser.
+
+93
+00:45:12,210 --> 00:45:14,490
+Scott Tolinski: Yeah, it's gonna be okay to write the code.
+
+94
+00:45:16,949 --> 00:45:17,580
+Unknown: Alright, we're
+
+95
+00:45:17,609 --> 00:45:24,150
+Wes Bos: kind of running out of time here, we got a couple of more things to talk about the not not huge ones. Next one is databases. What do you do with databases
+
+96
+00:45:24,150 --> 00:45:26,370
+Scott Tolinski: data, not a huge, not a huge problem.
+
+97
+00:45:26,729 --> 00:46:27,930
+Wes Bos: Data is never a big problem. No minor thing? Well, like, you can just use any database you want. Yeah, but there's a lot of services that are just coupling data with it as well, which is super cool. Because that's sort of where you hit that. When you're writing a serverless function, like I just need to store something, I need to source some little bit of data. And now you're telling me to go set up an external database and host this thing for five bucks a month. So dynamodb is a big one from AWS, that is baked into architect slash begin. Firebase is a perfect use case for serverless. Because they have a wicked database already wicked CloudFlare workers has their own key value storage, it's a couple other ones. And you can also just use like MongoDB, if you already have a database set up, you just have to connect to that thing. When the worker, not the worker when the serverless function starts. So there might be there's there's overhead in any of these things connecting to it. You're missing a
+
+98
+00:46:27,930 --> 00:46:28,860
+Scott Tolinski: Gen one.
+
+99
+00:46:29,609 --> 00:46:30,300
+Wes Bos: What is it?
+
+100
+00:46:30,359 --> 00:47:10,710
+Scott Tolinski: phono? Yeah, calm? Yeah. Find a dB, the database built for serverless. It's like, right, in their headline, it's like, this is the database for serverless featuring native graph QL. I've heard a lot of good things about phono. It's on my list for the Scott try stuff. It seems really cool. I haven't used it. A lot of people seem to really like it. But again, when some of these things pop up, it's so hard to tell like, what is this thing if it's just like some cool thing that people are hyped about for a week? Or is it actually something that's going to stick around and be interesting to me? I've heard enough about fun. And enough people talk about, you know how great it is that I think I'm interested in giving it a real shot here.
+
+101
+00:47:10,859 --> 00:47:47,610
+Wes Bos: Yeah, yeah. Same with me. It says it's a serverless database that gives you ubiquitous low latency access to AP data without sacrificing data, correctness and scale. The only thing that makes sense to me there is low latency because of the whole idea of your server. List function needs to connect to the database, when generally that connection to your database happens when you start your app. And that that usually happens before you switch the domain name over. But in the case of this serverless functions, when you boot up a server, this function has to connect to the database at that point, so
+
+102
+00:47:47,639 --> 00:47:54,060
+Scott Tolinski: yeah, Fina, well, we should do an episode on fauna. Maybe you should give it a try. I'll do a Scott tries video on it. At some point, it's on my list.
+
+103
+00:47:54,209 --> 00:48:00,870
+Wes Bos: Yeah, we should like make a tiny little app that includes like two or three of these things we want to try out and they just do a little show on it.
+
+104
+00:48:01,229 --> 00:48:06,330
+Scott Tolinski: Ooh, sounds good. Yeah, we do a live show. We could do some screen sharing code share.
+
+105
+00:48:06,359 --> 00:48:12,030
+Wes Bos: Yeah, that'd be kind of fun. Maybe a little YouTube. Little two bit. youtuber thing. Yeah.
+
+106
+00:48:12,030 --> 00:49:34,680
+Scott Tolinski: So okay, another big issue is file storage. People often are like, I get hung up around uploading images or doing those kind of things. I personally don't like to manage my own image server own image folders beyond the point of hosting them somewhere like, I'm not going to host it on my own server. Because typically, a lot of these places, they've worked out some of these things specifically for me, cloudinary, which is more than just like an image host. They're an image like transformer. And you can just say, oh, here's the path to the image. Oh, yeah, by the way, choose whatever format is best for the browser to save on cavies and stuff like that. So I always reach for cloudinary personally, but if you don't want to go that far into just a service, that's probably going to cost a little bit more than something like rolling your own, you can roll your own cloudinary like setup using Amazon and serverless functions using an s3 bucket, or I'm sure using black backblaze b two as well does also a nice store, I store a lot of my files on both s3 and backblaze b two, but all of my images on cloudinary. Typically, I'm reaching for a service like this, because it just makes it easy. And I don't want to have to manage my own stuff. Not to mention, if you have a serverless function, there's not really a server for you to store those images on anyway. So you're probably going to need a service or a bucket or something somewhere to put them in, in the cloud.
+
+107
+00:49:35,009 --> 00:50:39,180
+Wes Bos: Yeah, the thing to remember or to know about serverless is that it's ephemeral, meaning that there is not really any memory, it will shut as soon as it shuts down. It's just code meaning it's ephemeral. It's stateless. You can't just store stuff on a serverless function. So if you want to like upload a like with WordPress, you upload a file, it just puts it in the WP upload folder. Right and that's that's Really simple. But with the serverless function, you need to put that somewhere else that will store files backblaze B to like Scott said, so like Firebase does this. I know architect begin does this. A lot of them will just part of the framework is handling files, if you want to save files, or pull files off of these things than they will the use the associated integration for that, which is pretty cool. A buddy of mine is looking into using Firebase and serverless right now. And he does a lot of thumbnail generation. And he said that the what's the package that's used for resizing images, image magic,
+
+108
+00:50:39,390 --> 00:50:41,130
+Scott Tolinski: or sharp sharp is like, though,
+
+109
+00:50:41,670 --> 00:50:57,570
+Wes Bos: yeah, sharp and image magic are just built into Firebase, which just just works, right? Like imagine, you didn't have to worry about installing libraries and getting things working on Linux. It just just works with them. Which is so cool. A big plus for Firebase in that regard,
+
+110
+00:50:57,690 --> 00:51:14,220
+Scott Tolinski: baby plus? Yeah, I know. And I'm really curious, because I didn't necessarily want to when I went to cloudinary, I was a little iffy about, like, giving all of my images to cloudinary. Just because of like, I didn't, at the time, I didn't know a ton about them. But now I've obviously I've grown to absolutely love cloudinary
+
+111
+00:51:14,370 --> 00:51:16,440
+Wes Bos: Yeah, what it's an external service.
+
+112
+00:51:16,470 --> 00:51:36,210
+Scott Tolinski: Yeah, right. I really looked into what would it take to build your own cloudinary or at least, you know, cloudinary light using, you know, serverless functions, and it was really pretty awesome. Like, it didn't seem like it was that there was it seemed like there was a lot of people doing different guides on a different approaches, and totally doable.
+
+113
+00:51:36,210 --> 00:53:12,720
+Wes Bos: Yeah, yeah, absolutely. It's one of those things where it's a fun demo for like the quick resizing. And then you get into and you realize there's so much more under the hood that needs to happen. But for simple resizing and compression of images, you probably could kick out a serverless function. And totally even one of the cool things about cloud, there's too many cloud companies, what's the one called CloudFlare? workers? The there's so many cloud companies, the CloudFlare workers has like 20 demo scripts, and one of them is image resizing, I found those to be super helpful, just to get just to get a base going, rather than having to figure out what the docks are and string that together. Last one is off. This is not something I've done yet. So I don't take this with a grain of salt. But you would likely use I know a lot of people use JSON Web tokens for this. Because sessions and cookies don't work well. Sorry, I shouldn't say I should say, sessions, because because the JSON Web Token can go in a cookie. That's what I do in my own course. Yeah. But sessions are generally stored in memory or in a database and from one to another, you can serve from one page, and you still logged in in the next page. And that's great. And with JW T, you have to send the token along every single time, either with a header or a cookie or something like that. So if you have code that is spanning multiple computers, multiple servers, because they're all different serverless functions, then JSON Web tokens is a really good fit for something like that. Hmm.
+
+114
+00:53:13,290 --> 00:53:47,250
+Scott Tolinski: Yeah, I also haven't had too often seems like a lot of these platforms that do exist, like throw off into the mix is like, Oh, yeah, by the way, we also do, like, you know, hacer those off. We just talked about the MongoDB stitch does the same at everybody does. All right. So at that point, you gotta wonder to like, do you roll your own author? Or do you buy in a little bit torn up the services off? That's also a decision you have to make about potential lock in and in what is their auth package actually doing? Is it actually locking you into anything?
+
+115
+00:53:47,550 --> 00:54:51,090
+Wes Bos: Yeah, yeah, totally. That's lots of questions, lots of decisions to make. So that's the end of our list here and off the lot to take in about serverless. But we've been been meaning to do this for a while and Scott just kicked it off when he did his little YouTube video on begin and then I tried it out and I was like, Okay, this is this is way better than it used to be many years ago. So I'm pretty excited about all of this stuff. There's so much more we haven't covered so many more different places to host and so many different frameworks that we probably haven't even heard of yet. So we'll likely do a another one coming up and I would like to also get somebody on the show who has converted an existing like a large existing app, just to hear how did you do it? Like what were the benefits? Why did you even do it? So if you know someone who has done that not if you work for a company and you want to pitch your own serverless function thing, but if you know someone who's who's moved a large app or website over to serverless let us know cuz we'd like to have them on the show.
+
+116
+00:54:51,180 --> 00:54:52,800
+Scott Tolinski: Love that. Absolutely.
+
+117
+00:54:53,280 --> 00:54:56,100
+Wes Bos: All right. Ah, sick pics,
+
+118
+00:54:56,220 --> 00:54:57,810
+Unknown: sick pics.
+
+119
+00:54:58,350 --> 00:55:09,900
+Wes Bos: I'm gonna pick pick something thing that I got for my birthday. And that is a socket organizer. So I've had sight, you know, you know, like a socket set like a tool, right? Yeah. Yeah,
+
+120
+00:55:09,990 --> 00:55:13,590
+Scott Tolinski: it was. Okay. We I was thinking like power power socket.
+
+121
+00:55:13,860 --> 00:56:51,300
+Wes Bos: Oh, yeah. Or it could be WebSockets could be second WebSocket sockets in my life. Yeah. Anyways, I'm talking about the tool socket here. So I can Tom and I've had, I'm awful with organizing my tools. And I've had a couple different socket sets over the years when I was just like young, much better now. But they all fell into this one big bucket of sockets. And whenever I need to find the one that I want, I can't find it. And then like, when I'm at a garage sale, and I found like a coffee can have sockets for $1. This summer, it was such a good deal had and like the 10 mil is always the socket that you lose, because that's bikes and cars that are all 10 mil. Anyway, so I had this coffee, Canada sockets. And I was like, I need a better way to organize them. So I went on a hunt to find out how do you organize sockets. And what I ended up with was this sort of, it looks like a game. It's basically four tracks, and they all have the different drive sizes on quarter inch, three eighths and half inch. And you can just slot all the sockets on it. And then you can just carry this thing around wherever you go. And it's better than the stupid case that you get, because it's, it's much more sturdy. It's pretty cool. It's like 30 bucks. And I was able to take my coffee cans, sockets and fill them all up. And now whenever I need to work on something, I can just grab this thing and bring it with me, rather than having to dig through the coffee sockets. So it's just called the socket organizer. There's tons on Amazon. I'll link to the one that I have but do some YouTube research as well to see the ups and downs of them. If you're looking at one of these
+
+122
+00:56:51,360 --> 00:58:54,750
+Scott Tolinski: nice sockets, man, I need some jackets in my life. To be honest, my soccer game is bad. I bought that I'm the glute ham developer thing. It's like his big old giant piece of gym equipment looks like a horse. And yeah, it would there were so many. What are the socket bolt bolts? Just what is it bolts? Just a bolt? Yeah, they're just called bolts. There was just so many bolts. I was like, oh boy, I have really goofed up by not having that my socket said here I couldn't find the right ones I ended up having to use like one of those like crappy IKEA wrenches that they give you in the back of the Southern wrench in like, it took me like two hours, I probably would have been faster for me to drive to Home Depot device, I could set and then build it but I can't do that. My Sneak Peek today is going to be another ebook. This one I thought was really, really interesting. It's called the power of bad. It's right up my alley in terms of interesting books. It's uh, you know, I totally started talking to my wife about it, because she's a doctor of psychology. And she's just like, Yeah, I know all that stuff. But she's like, oh, okay, well, this is all really super fascinating. It's called how negativity affects rules, how the negativity effect rules us and how we can rule it. Now I personally am a fairly optimistic and positive dude. So I'm not like, I'm not super heavy and negativity getting into my life. But really, this is like really opened my mind to a lot of the ways that our brain works around negativity, like sort of the one of the big things in that book is sort of like, Oh, you could get 1000 comments on your YouTube videos saying that it's awesome. And then you get one comment, calling you a big dumb idiot. And you're only going to think about the one calling you a big dumb idiot and why that is the psychology behind it. And it is a bit of a fascinating book and it's really opened my mind to some of the things that negativity and you know, non positive thinking can creep into your life and I really enjoyed it. That's a fantastic book. So yeah, the power of bad
+
+123
+00:58:54,870 --> 00:58:56,550
+Wes Bos: cool off to check that one out.
+
+124
+00:58:56,820 --> 00:58:58,290
+Scott Tolinski: I got that on Amazon.
+
+125
+00:58:58,770 --> 00:59:12,840
+Wes Bos: Beauty. Um, shameless plugs. I'm gonna plug all my courses West boss.com forward slash courses, you want to learn JavaScript, React node CSS Grid, Flexbox, you name it, check it out. Use coupon code syntax for 10 bucks off.
+
+126
+00:59:12,840 --> 01:00:14,670
+Scott Tolinski: Cool, man. I'm going to plug my latest course which is going to be well Forgive me the time of recording this. I haven't necessarily landed on though the release title of this but the end of the day, it's going to be animating react with framer motion. I'm a big fan of framer motion as I am react spring but framer. emotion to me is really just opened my eyes to some really cool animation stuff you can do. And it's just so incredibly simple. I just recently built my own drag and drop package based on framer. And it's just endlessly simple the syntax and what you can do with it is just immensely powerful. So if you want to learn all types of practical animations in react, check out the latest course on animating, react with framer motion on the level up tutorials.com. Sign up for the year and you can save 25% where the course is really neat. We are doing like a lot of like practical everything is practical here we're building a modal navigation or whatever all the stuff that you would actually use it for in real life. So follow along level up tutorials comm Thank you.
+
+127
+01:00:15,060 --> 01:00:21,030
+Wes Bos: Alright, thanks for tuning in. We will catch you on Monday later face please
+
+128
+01:00:23,040 --> 01:00:32,790
+Scott Tolinski: head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+

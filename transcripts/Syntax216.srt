@@ -1,0 +1,608 @@
+1
+00:00:01,319 --> 00:00:02,820
+Unknown: You're listening to syntax
+
+2
+00:00:02,820 --> 00:00:04,590
+the podcast with the tastiest web
+
+3
+00:00:04,590 --> 00:00:06,120
+development treats out there,
+
+4
+00:00:06,149 --> 00:00:09,000
+strap yourself in and get ready to live ski
+
+5
+00:00:09,000 --> 00:00:10,530
+and West boss.
+
+6
+00:00:10,589 --> 00:00:11,190
+Welcome to
+
+7
+00:00:11,190 --> 00:00:32,930
+Wes Bos: syntaxes the podcast with the tastiest web development treats in the entire world. We've got a banger have an episode for you. Today we're going to talk about tech to watch in 2020. So these are things maybe you want to try out some new stuff, maybe you want to get a leg ahead instead of saying you want to get a leg ahead in in whatever tech we have,
+
+8
+00:00:33,059 --> 00:00:41,700
+Scott Tolinski: like moving there's like isn't done. They can't call like part of the race a leg of the race. I don't I'm not a racer. But if I was I might not a racer.
+
+9
+00:00:43,530 --> 00:01:05,730
+Wes Bos: Anyways, if you want to, you want to get ahead. This is the episode for you. We're gonna be talking about like things that we think you should keep an eye on. Or if there's something where you're like, Hi, I want to like focus in on something to maybe for my career pick like one or two of these things over the next year and get really good at it. With me, as always is Mr. Scott to linsky How you doing today Scott?
+
+10
+00:01:05,730 --> 00:02:01,230
+Scott Tolinski: Doing good doing real good. I think the kids are sleeping a little bit better. That's helping us a little bit. They're not sleeping a ton better, but they're sleeping a little bit better. We are potty training Landon and i don't i don't know what your experiences were there but like waking up in the middle of the night because he has to go has been a little bit you know tough because you're so used to him sleeping like way up at like four in the morning and BMS monitor like dad, I have to go to the potty and bit. Okay. Oh, go downstairs and get Yeah. And the other night I got them. I put them on the potty and we're on just like waiting for him. And he's like unfocused, right? He often gets unfocused, and he was just like, it doesn't work. And I was like, Oh, no, what are you what are you referring to? But he's like, it doesn't work. Dad. I was like, what doesn't work? He's like, the fireplace. Our fireplace doesn't work. Grandma and Grandpa's fireplace works.
+
+11
+00:02:01,310 --> 00:02:03,270
+Unknown: So we're just you pull that from and
+
+12
+00:02:03,270 --> 00:02:04,260
+like is like,
+
+13
+00:02:05,189 --> 00:02:12,530
+Scott Tolinski: why did you were you even thinking about the fireplaces? Right? Like, it was just absolutely hilarious. And that's sort of what we're dealing with. But
+
+14
+00:02:12,990 --> 00:02:20,660
+Wes Bos: oh, that's hilarious. No potty training was was relatively apparently it's much harder for boys and girls. I've heard from my friends. Yeah,
+
+15
+00:02:20,669 --> 00:03:40,979
+Scott Tolinski: that's all we've heard too. Yeah, he's been he's been good about it. But yeah, the middle of the night stuff has been tough to get used to. But it's it's cooled off a little bit. So I'm I'm I'm feeling back at it feel ready to go here. We just launched a new feature on level up, which is like course pathways, where you can like, Oh, yeah, from one course to the other. And I wrote this neat little SVG thing that like calculated the center of each of my course cards and draws a path between them dynamically. And so I'm pretty psyched about that it was in this little fun little SVG project, for me, wait, are all the cards in SVG, or just the just the path, the cards are all divs. And well, there, there are labels. And then so I get the left corner of the div, I get the Yeah, or I get the left position of the div the top position of the div, then I know the width and height of it, because I'm using what's it called with that API, you can get that information, I'm getting the box information. Either way, I'm using react measure to do it. And I'm getting the height and width of the card I'm getting it's top and left. And therefore I'm able to calculate the center of it. And if I get all this, just draw a line between the centers. But then if they're at a different position, you want it to be all right angles. So then you have to calculate a halfway position between each one. And then angle, bend the angle, it's a lot of fun.
+
+16
+00:03:41,400 --> 00:03:54,600
+Wes Bos: I always look at that where like, like my drip my email marketing has, has like cards. And then like, it's like, the person goes through this. And there's like always these like little squiggly lines between them. And I always think like, hmm, it'd be neat to learn how to do that at
+
+17
+00:03:54,600 --> 00:04:15,690
+Scott Tolinski: some point. That's cool. And I did it with react hooks. And theoretically, all I'm doing is passing in an array of dimensions, aka, like, the dimensions where the the centers are, theoretically, you could just pass in an array of dimensions, and I could give that hook to the world. And anybody could draw a path with a few more options built into it or something.
+
+18
+00:04:16,319 --> 00:04:52,050
+Wes Bos: That's cool. I, when I was doing the face detection stuff, it gives you where the person's eyes are. If you tilt your head, it will tell you that one high, one is higher than the other. And then it I was like, okay, but it doesn't tell you the tilt of the head. It just tells you where the eyes are. And then I wrote some trigonometry. Yeah, like cool way back. Yeah, to figure out how to figure out the tilt given like a squared b squared, and then figure out c square either. I don't even remember how I did it. But I remember feeling pretty proud of myself figuring out how to how the head is tilted based on the eyes.
+
+19
+00:04:52,050 --> 00:04:54,660
+Scott Tolinski: Yeah, going back, way back.
+
+20
+00:04:54,720 --> 00:05:04,500
+Wes Bos: All right. Well, today we are sponsored by Sanity, which is a structured content CMS Log Rocket. What's the tagline there? Scott
+
+21
+00:05:04,500 --> 00:05:06,200
+Unknown: see the magic.
+
+22
+00:05:06,240 --> 00:05:26,580
+Wes Bos: See if that's not see the magic. Log Rocket law lets you replay what users do on your website and helps you fix bugs faster. We'll talk about them partway through the episode. So we're going to start off with tech. And we'll start off with CSS, a couple things here, and then some JavaScript and related things. You want to kick it off there, Scott,
+
+23
+00:05:26,580 --> 00:05:48,150
+Scott Tolinski: I do. But before we're going to do one more bid on that Log Rocket thing, because see the magic if you're like, looking at bugs, and not like working code, like maybe see the magics better for like Cypress because your apps working, but if it's bugs, maybe it's see the tragic, and then you're like watching the bugs unfold. Okay, sorry. Just a little aside there.
+
+24
+00:05:48,300 --> 00:05:48,840
+Wes Bos: There you go.
+
+25
+00:05:48,870 --> 00:05:49,500
+Unknown: Oh, wait,
+
+26
+00:05:49,500 --> 00:05:55,500
+Wes Bos: I have to say one thing. A joke. I had a joke about certain news station. We
+
+27
+00:05:55,500 --> 00:05:59,370
+Scott Tolinski: need a joke. Oh, yes. Yeah. Okay. Go for it.
+
+28
+00:05:59,940 --> 00:06:18,810
+Wes Bos: It's not a joke. I had a joke about a certain news station a couple episodes ago. And it was not clear that it was a joke to most of you. And I got some very angry emails about it. So first of all, I'm Canadian. And second of all, it was a joke. I'm apologize for everyone that got riled up about that. Yeah.
+
+29
+00:06:19,080 --> 00:06:31,230
+Scott Tolinski: Yeah. Well, you, you, you might have heard me go or something when you said it. But I don't know if I realized it was a joke, even myself. So can you just, you know, work on that donation a little bit. Their
+
+30
+00:06:31,500 --> 00:06:36,000
+Wes Bos: story of my life is just having jokes. And sometimes people don't realize that it's a joke.
+
+31
+00:06:37,290 --> 00:06:57,960
+Scott Tolinski: Yeah. All right. So let's get into this first one, which is going to be CSS subgrade, which we recently talked about arriving in some of the later versions of Firefox, and now I'm not quite positive what exactly that version is. But if you have Firefox, is it in? Is it in Firefox? Two main main main right now? West? You know,
+
+32
+00:06:58,320 --> 00:07:09,030
+Wes Bos: it is in Firefox 71, which was released on December two. So it's been about a month, month and a half in Firefox already. And I use it the other day is awesome.
+
+33
+00:07:09,059 --> 00:07:37,500
+Scott Tolinski: Yeah, we I was gonna make a joke that I was going to be arriving sometime this year. Because that didn't work out. So well. And he said that last time. But yes, subgrade is one of those things that it's going to allow you to really solve some of these neat little issues that we've had forever and ever in CSS. Again, we we have whole episode on subgrade. So many of these things. We're going to be saying, hey, if you want the full on scoop, refer to that episode. What episode was that number? Let me pull that up here.
+
+34
+00:07:38,040 --> 00:07:42,450
+Wes Bos: 109. CSS Grid level two, aka sub grid. Yeah,
+
+35
+00:07:42,450 --> 00:07:44,220
+Scott Tolinski: yeah, check that episode out
+
+36
+00:07:44,340 --> 00:07:48,900
+Wes Bos: was January 14. Yeah, we got exactly one year ago as of recording today.
+
+37
+00:07:48,900 --> 00:08:09,660
+Scott Tolinski: That's crazy. So yes, that is a subgrade. Again, it allows you to have a, essentially a grid within your grid, the best way to understand it is really visual. So you'll want to go ahead and check out that episode. We have a lot of links and a lot of ways to further understand what's going on there.
+
+38
+00:08:10,110 --> 00:08:44,850
+Wes Bos: Next one we have here is CSS Houdini, or it's called the CSS paint API. And it will allow you to make your own CSS properties by giving you a sort of a lower level worklet. Or you can like if somebody says like, oh, display, Scott, and then any, any div that's display, Scott will just have glasses on it. Yep. Right. Like you could probably do that with CSS Houdini. And it's it's been around for a while, but still being worked on. I'm just looking at browser support right now. Nothing in Firefox, no
+
+39
+00:08:44,850 --> 00:08:47,399
+Scott Tolinski: iOS, Safari, no opera, mobile,
+
+40
+00:08:48,049 --> 00:08:49,200
+no Safari,
+
+41
+00:08:49,649 --> 00:09:02,820
+Wes Bos: it's pretty much just, oh, it it's behind a flag in Safari in Chrome. And I guess we're just waiting for Firefox at that point. Because there's no more browsers How sad is or how happy is that, that there's
+
+42
+00:09:02,820 --> 00:09:12,870
+Scott Tolinski: no more browsers and those of you who rely on IE, I am so very sorry for you. It is the year 2020. Hopefully, we can move past this as a society.
+
+43
+00:09:14,029 --> 00:09:34,470
+Wes Bos: Yeah, so iE 11 was released October 16 2013. Yeah, almost seven years ago. I bet. That's probably one thing to look forward to in 2020. If you haven't already dropped it, I bet a large portion of people are going to drop that. And at the same time, people are upgrading to edge, which now runs chrome under the hood.
+
+44
+00:09:34,500 --> 00:10:37,020
+Scott Tolinski: Yeah. And if you look at our notes, the very next thing is about dropping IE overall. But I think so yeah, the Houdini, I'm really looking forward to Houdini because right now, even with all sorts of things, right? People are sharing code. They're sharing this and that we're able to take advantage of doing some really cool stuff, but I think CSS hasn't really had its moment in that way. The way that we've had to do CSS for a long time you bring in a library, the libraries, a bunch of stuff, obfuscated, and it's a pain in the butt to change any of it. And that CSS Houdini is going to give us like power tools, essentially, we're going to be able to do all sorts of cool stuff that we've never been able to do by sharing CSS functionality in really interesting ways. And so I'm personally very, very excited for Houdini, I think it's probably going to be one of the largest changes into how we write CSS once it's supported, obviously, which is going to be some time, but I'm very excited to see what's going on there. But yeah, look, yeah,
+
+45
+00:10:37,549 --> 00:11:02,070
+Wes Bos: we should do an episode on it. And we've been saying this for a while, but like, maybe we both need to make something in Houdini. And I'm really curious to see how it's gonna roll out. Because, like, I imagine, this is going to be like libraries that people like, that's what it's not gonna be easy to write these things. But like Google will probably roll out like a library. And then you and me can just go ahead and use that and it will, knowing it uses a Houdini under the hood.
+
+46
+00:11:02,100 --> 00:11:15,149
+Scott Tolinski: That's what I'm saying. Yeah, I'm excited about that. I think there will be give us a lot of opportunity to share some really powerful code. Like you said, display, Scott, it gives it glasses, it puts it upside down, it starts rotating it. Yeah.
+
+47
+00:11:15,330 --> 00:11:18,210
+Wes Bos: Oh, that. Somebody please make that that is awesome.
+
+48
+00:11:19,679 --> 00:12:34,380
+Scott Tolinski: So okay, so this next bit of CSS is something that we sort of look forward to every year is every, every little, you know, piece of sand that falls through the hourglass really drops the browser usage percentages in the browsers that we all hate just a little bit more. And personally, I haven't had to support IE myself, but I know many of you require IE, there's a lot of features out there in the great big wide open world of CSS that so many of us just have to ignore for so long, because we just order radiant use that right? Yeah, border radius back shadow. Okay. Yeah, no. But in particular, you know, I just checked out some of these that I've sort of filed away in the back of my mind for a little bit because I know I couldn't use them like scroll snap. I didn't know scroll, snap worked on IE and up. So are a iE 11, I should say. So if you have IE and 11. And you want to use some like native scroll snapping and your CSS that is usable, right now, position sticky, still doesn't work with any sort of IE, it's never going to happen. But if you don't need to support IE in 2020, you got a position sticky. And I really liked that position sticky is one that I've used quite a bit since of, you know, finding out that I was able to use it.
+
+49
+00:12:34,770 --> 00:12:44,789
+Wes Bos: Big fan. Oh, another kind of cool thing is a lot of people are gonna groan about this as you can. There is now a spec for styling your scroll bars.
+
+50
+00:12:44,880 --> 00:12:47,640
+Scott Tolinski: There has been isn't there? Or it was just it was
+
+51
+00:12:47,640 --> 00:13:35,640
+Wes Bos: there's really no web kit, like a way back in the day. There was like Microsoft version of that. Yeah. And then there was WebKit. But now there's actually a spec, which only Firefox has implemented but between Firefox and, and IE it actually works. And people groan at this every time I talk about it, because they're like don't style scroll bars. They're not a bar. Yeah. But if like, especially like if you look at something like TweetDeck, if TweetDeck didn't style, their scroll bars, they would have these big gray bars all the way through the application. And like even anything with dark mode needs to style your scroll bar to be sort of the opposite colors. I used it on uses tech and I think it looks pretty good. You obviously can can do some awful stuff. And it could be an accessibility issue if it doesn't contrast enough, but it can be done well. Yeah,
+
+52
+00:13:35,669 --> 00:13:48,210
+Scott Tolinski: I don't think it's a I think it's definitely one of those things that could be done. Well, I mean, even look at my VS code theme has styled scroll bars, you know, I mean, any of that stuff, and I don't think people groan about that not using the
+
+53
+00:13:48,510 --> 00:13:57,779
+Wes Bos: Yeah, I don't think people realize that. A lot of scroll bars are styled. It's just annoying ones that you go to a website. That's like super obnoxious.
+
+54
+00:13:57,780 --> 00:14:04,649
+Scott Tolinski: Yeah, right. Yeah, definitely. Don't don't don't have it start playing noises when you hover over the scroll bar
+
+55
+00:14:04,860 --> 00:14:11,880
+Wes Bos: when they're that scroll fart library a couple years ago. Yeah. farts girl dot j. Oh, God.
+
+56
+00:14:11,880 --> 00:14:22,200
+Scott Tolinski: Oh, gosh. something to look forward to in 2025 scroll dot j s? Yeah. Okay. To grow up, Wes. It's 2020. Okay.
+
+57
+00:14:23,520 --> 00:14:31,860
+Wes Bos: All right. Let's move on you. The next thing you have here is NPM. Tink, I actually haven't looked into this before. You want to give me a rundown on what it is. Yeah,
+
+58
+00:14:31,860 --> 00:16:23,100
+Scott Tolinski: yeah. So check it out. I've included a link to this in the description of the episode because I feel like a lot of people might not know what this is. But here's the Blog Post published September 12 2018. So this is this idea has been around for a little bit, but you can actually try a developer version of tank right now. I don't know anything about how well it works. I have not tried it myself. So I have no idea what the status of Tink is. And they very well maybe but This into NPM. I don't know the status. But Tink is basically a concept version of NPM, you can think of is just like an experiment that they're having. But it covers a lot of the stuff that we talked about on some of our, we briefly mentioned some of this in our Pico package. So it's an installer list NPM. So basically, just by referencing a package, it would install it on runtime, and it would add it to a shared cache across all of your packages. So it accomplishes this by instead of having a like node modules folder, it would have simply just a file that tells where to look these things up at. So you would no longer have this giant node modules folder in your application, but it exists across all of your projects, right. And one of the cool things is it only downloads the parts that you need. So if you're grabbing like a sub part of a module, it's not going to grab the whole thing. It's just going to grab that part. And again, it does this all on runtime. So you would never have to install npm install whatever. And again, it is not something that Well, okay, we talked about this in a couple episodes go in the pika package about how there could be potential security implications here. There's a little bit of notes on that, but not necessarily enough, something that we can get into here. And they don't feel like it's necessarily going to be a huge problem. But who knows?
+
+59
+00:16:23,460 --> 00:16:42,000
+Wes Bos: Interesting. Yeah, I'm just looking at like, like, what's the status of this? Their GitHub repo hasn't been touched in? Eight months, but there was there's a issue that says, Is this dead? And it looks like it is on the roadmap for NPM? Eight? Yep. We're on NPM. Six right now. I
+
+60
+00:16:42,000 --> 00:16:45,510
+Scott Tolinski: think. So that's exciting. So it's, it's it's definitely future.
+
+61
+00:16:45,600 --> 00:16:52,799
+Wes Bos: Yeah. And also, somebody put a link to yarn to Yep. Which I'm not sure what that's gonna do. Do you know anything about that? So there's a lot of
+
+62
+00:16:52,799 --> 00:18:49,820
+Scott Tolinski: like movement going on in this sort of space. And in terms of like, you know, nobody wants sort of that whole left pad fiasco thing to happen. There's a lot of like, issues that we have, obviously, where there's your packages directory, it's huge. It's a lot of redundancy. There's a lot of confusion sort of around here. So it may seem like these tools just are dumb, but they're not they're actually, we're actively have been working on these. These are problems that are actively being worked on in several different ways. And another one of those is yarn p NP, I think it stands for plug and play. I should probably confirm that. Yeah, yarn, plug and play, and not and play but plug and play. Okay, just to just, yeah, just in case you wanted to get that right. There's actually on the next dot yarn package, comm slash features, I'll push that I'll put a link to this in the description. But yarn PNP is sort of like the next version of yarn. And that sort of yarns take on solving some of the same issues that Tink would be solving. And I think this is really interesting. There's hard hard links, essentially, it eliminates package duplication. So again, same problem that we're facing, where you have the redundancy in your packages, it's also going to be utilizing a shared cache across all of your projects, so that you can not have a whole bunch of stuff installed in one spot. So again, these are all a lot of class, like these are a lot of the same tools that are solving the same issues here, where it's the whole space of packages. In fact, another one of these tools that we talked about in the previous episode, or the episode before we send Pika, Pika package. Yeah, snowpack, so check out pika package. What set up a whole episode is very enlightening. And they're also trying to solve a lot of these same issues and how we get our packages into our applications.
+
+63
+00:18:50,430 --> 00:19:10,610
+Wes Bos: Yeah, there's also entropic so I think it's safe to say something will happen with package management this year. Yeah. Because there's every everybody's moving yarns moving NPM moving, packages moving and tropic is moving. I don't know. Exciting space. I'm sure. We'll have a couple shows on it this year. Yep. What's going on there? Yeah,
+
+64
+00:19:10,650 --> 00:19:24,390
+Scott Tolinski: yeah. Then we get a lot of show last show topics from this. And also adding new stuff. And funny Tony is one of our sponsors. This episode, which is a longtime sponsor, syntax is sanity.
+
+65
+00:19:24,990 --> 00:21:09,300
+Wes Bos: Yeah, we've so if you know what Sanity is structured content, CMS, it's the headless CMS tier, the rest of your body, which is your website. And they've just been cranking out the the features lately. So I'm gonna just kind of go over a couple of the different features that they have here. So they've introduced the environmental variable support to Sanity Studio, which is the Sanity Studio is the UI that you use to edit your, your data. And it's kind of cool because like you Sanity is a hosted solution. But the studio, the UI that you use, you can self host that yourself. And you can throw your own react components into it, which is pretty cool. So they've rolled out support for environmental variables, which is pretty cool if you need to use that in any of your stuff, a nice UI for that type of thing. They've also rolled out Google Analytics right inside of Sanity Studio. I know a lot of clients like you, the developer want like a really wicked, headless CMS. But then your client wants a really nice UI to log in and manage their website, manage their data and all of that stuff. So just like one step further to the perfect dashboard is pulling all of that data right from Google Analytics into your Sanity Studio dashboard, they've given me a list of like, I don't know 10 different new things that they rolled out in just last two months. So they are charging on ahead for 2020. If you want to try check out Sanity for your next website, go to sanity.io forward slash syntax that's going to give you double the global normal free tier. Thanks so much to Sanity for sponsoring sic. Cool.
+
+66
+00:21:09,320 --> 00:21:57,900
+Scott Tolinski: So next one is demo or Dino. If you know how to pronounce this one, please get at us. Because we're not good at pronouncing stuff. We all know that. But you'll want to check out Dino at Dino dot land or the dino GitHub. Man, this Dino demo done this? Yeah, the naming thing for this is kind of tripping me I don't know. That said, the best way to learn about this, I think is to watch Brian das talk on everything he learned from the creation of node j s and the things that he wish he would have changed. Because this is basically they call it a secure runtime for JavaScript and TypeScript. But it's basically like a new version of node written with TypeScript that sort of solves a lot of those issues that Yeah, from
+
+67
+00:21:57,900 --> 00:22:17,370
+Wes Bos: the ground up, like this is not like a thing that you add to know or you start doing node and type it like this is like a brand new. Like you've got PHP node and now you've got Dino, yep. No debt, no. Node backwards? Is it? No, no, duh, duh, no, no, no, no,
+
+68
+00:22:17,400 --> 00:22:24,450
+Scott Tolinski: it's not no backwards, you can read it. A node demo backwards is Odin, Ed, own Ed.
+
+69
+00:22:24,960 --> 00:23:07,830
+Wes Bos: No one not backwards, but it's been split on two characters and then swapped with somebody else how to pronounce this. Not backwards. But um, I think this is really cool. It's, it's gonna be probably in a number of years before you, you see it have the adoption of even like beginner adoption. So I like node, it's obviously still being worked on. But something if you want to have like a maybe like a side project, or you're interested in, in how these things work, I would definitely check it out. I feel like building a website in this, they've got their simple little TypeScript server in like eight lines of code. Example, go to Dino dot land, it'll show you some simple, simple code. And it might be a good,
+
+70
+00:23:07,830 --> 00:23:43,950
+Scott Tolinski: pretty good about this base to build up your dev points a little bit, right, you take a library or package with popular node land and recreate it for demo, that'd be sort of low overhead, because you know, what needs to be created already. And then it would exist for this other ecosystem. Or if you get in on the ground floor on something like this, and you become like the demo person, then companies are looking for that demo person. Maybe you're that person. So might be something really interesting to look at early. But again, I might try doing a side project like this nothing major for me right now.
+
+71
+00:23:44,550 --> 00:23:49,170
+Wes Bos: I'm gonna go by demo cast. COMM and start a new career.
+
+72
+00:23:49,529 --> 00:23:53,280
+Scott Tolinski: Yeah. Whoo. And don't cast that's good. Oh,
+
+73
+00:23:53,550 --> 00:23:58,710
+Wes Bos: did someone already take it in there? Oh, somebody's already got it.
+
+74
+00:23:58,890 --> 00:24:02,130
+Scott Tolinski: Oh, it's something Oh, Daddy on it. Somebody's gone.
+
+75
+00:24:02,160 --> 00:24:05,220
+Wes Bos: What kind of demo developers using GoDaddy?
+
+76
+00:24:05,249 --> 00:24:12,300
+Scott Tolinski: Yeah, if you if you were if you ask GoDaddy. How can I host my demo site? They'd be like, dunno, you can't we can't do it here.
+
+77
+00:24:13,980 --> 00:24:20,970
+Wes Bos: Let's see. Is there any Whois info on this? Who is no fun anymore? Everyone's got private who is I never pay for?
+
+78
+00:24:20,970 --> 00:24:24,090
+Unknown: Yeah, no, you don't. I need to
+
+79
+00:24:24,120 --> 00:24:53,100
+Wes Bos: know it's it's free on like any, any registrar worth their weight. It's come. So your name calm is what I'm hearing. I'm using I've moved all my domain names over to CloudFlare because CloudFlare doesn't let you register new domains. So I have to still use hover to register them. But then use then you move them over to CloudFlare and they're they give them to you at a cost like eight bucks a year for like a.com
+
+80
+00:24:53,130 --> 00:25:03,060
+Scott Tolinski: I need somewhere to move mine because mine are all@name.com and I love your name.com your Colorado all that good stuff, but like You have not changed in years.
+
+81
+00:25:03,240 --> 00:25:36,840
+Wes Bos: This point? It's no Yeah, yeah, it's not fresh. Yeah, I probably I think I did the math, I'm saving $600 a year when I moved to cloud, okay, cuz they give it to all at cost. They don't have every single domain name, but I would say probably, I don't know, 98% of the domain names I had, like, the the.af didn't move over. And there's a couple other there's a couple other ones that are custom that couldn't, couldn't move, or I don't think dot tech will move over because they're their own their own thing. But yeah, you should check it out.
+
+82
+00:25:37,019 --> 00:26:34,170
+Scott Tolinski: Yeah, check it out. Cool. So the next one, let's get into some react stuff. Because this is, you know, there's a lot of new react stuff coming. For instance, suspense was just sort of dropped to suspense for data fetching. And that's all great. Oh, no, I think it's out. Yeah, I think it's out out. But the thing is, is that for send suspense for data fetching, to really be legit, or to really be everywhere, libraries need to take advantage of it, right? Like, for instance, Apollo, we need to take advantage of it. And that's one thing that I would look forward to is more libraries using suspense for data fetching. But one of the big reasons why I can't use it personally is because of servers that render right suspense for server side rendering is not released yet, which you can almost I they begun work on it. I mean, they're working on it. So I would like to think it would come out this year. But again, I'm not on the React team. And I have no understanding of what their deadlines or timelines look like. So
+
+83
+00:26:34,380 --> 00:26:50,610
+Wes Bos: their doc say, this is an experimental feature and is not available in a stable release. And then immediately underneath that, it says react 16 six add suspense component that lets you wait. Yeah, but I think that suspense for loading, they sort of lazy
+
+84
+00:26:50,640 --> 00:27:03,660
+Scott Tolinski: lazy loading in my Yeah, in my opinion, the naming for this. I don't know about some of the naming, you know, suspense for data fetching. This is my I get it, but like, it is a little confusing on what's released, what's not released?
+
+85
+00:27:03,989 --> 00:27:06,750
+Wes Bos: Well, what's the what's stable? react?
+
+86
+00:27:06,779 --> 00:27:09,990
+Unknown: Let me just check that 16 point. 12.
+
+87
+00:27:10,620 --> 00:27:16,560
+Wes Bos: And why is the doc say it's not? And everything I've heard is that it's not available yet. One of the docs Hey, it's
+
+88
+00:27:16,560 --> 00:27:23,130
+Scott Tolinski: not. It might not be I could be totally wrong about this. I think it is still experimental. Yeah.
+
+89
+00:27:24,090 --> 00:27:45,390
+Wes Bos: Yeah, this is like I did a talk over a year ago about this. I can't wait for it to come out. They're obviously making sure they get it right. But I am more than ready. There's like for for this thing to come out. So I can start moving over some of my libraries. And I am trying to re record my advanced react course right now. And I want this thing to be in it right. Everyone asked me like, does it have suspense in it? Like it's not? That's not even a thing yet?
+
+90
+00:27:45,630 --> 00:27:52,290
+Scott Tolinski: Yeah, you're you're a little ahead of the game. And that's, you know, understandable. But still. Next,
+
+91
+00:27:52,290 --> 00:28:02,370
+Wes Bos: we have here is something Scott is super pumped about, almost like came back from a lifeline is Meteor. What's the status of Meteor? I thought it was dead?
+
+92
+00:28:02,400 --> 00:28:22,350
+Scott Tolinski: Yeah. So okay, so Meteor, which was purchased by a company called tiny. So tiny is a, like a firm that owns businesses, they own dribble. They own a bunch of different interesting things. But one of the things they just recently purchased was, oh, they also own designer news. But they recently purchased a meteor at
+
+93
+00:28:22,350 --> 00:28:24,030
+Wes Bos: a lab. They're Canadian. Yeah,
+
+94
+00:28:24,270 --> 00:31:05,700
+Scott Tolinski: they are Canadian. They recently purchased Meteor along with meteors hosting platform galaxy, of which I've both been using for a long time. The good news about that is he is certainly you know, full credit to Ben Newman and the meteor team. Ben has done incredible work constantly on Meteor. But it was very apparent that MDG as a whole Meteor developer group as a whole was just not interested in really evolving Meteor or putting the energy into a beyond the amazing work that people like Ben we're doing. So the problem was, is that I think it was obvious for a lot of people that they weren't interested in putting in that time into it. So therefore, a lot of people just didn't want to care about it, right? I mean, right. Me personally, I was worried about the future of Meteor, because even though I knew that it would continue to see updates from people like Ben, I just knew that the energy wasn't there behind it to get it where it needed to be. So here comes tiny and tiny purchases it and it has, I think at first everyone is a little bit, I don't want to say concerned, but everybody was a little bit like, okay, what's gonna happen to this now? And since Tony has purchased it, there has been a ton of updates, because one of the things that Meteor always got right was the updates and the growth of the application. The things that Meteor got wrong, were the community focus aspects of Meteor, for instance, I would assume that a large portion of the community doesn't even understand what modern media or even looks like today. So they weren't great about fostering this community and they weren't necessarily great about it. keeping everybody up to date and bringing people in, and all these kinds of things that they just really missed out on. And you know, there's a lot of community members that putting in a lot of work to Meteor, and I felt like MDG just sort of ignored them for a little bit. So again, Meteor seemed like it was a little bit neglected. But they've now since released a new roadmap, which is big. Since buying it a couple of versions of Meteor have popped out of which Ben was working on before, but they've released in there excellent. And largely it, the library just seems to continue to grow and grow and grow and improve. So me personally, I posted the link to the meteor roadmap. And here, they're going to be getting tree shaking, thinner Meteor, the hosting platform, seeing a ton of improvements. But I personally, I've been using this platform for a long time, and I was rewriting my application on the next js. I've gotten it basically done. And I've since decided to go back to Meteor. So I'm actually still going to maintain an continue I project within Meteor. And I'm really excited to see where that goes through the next year.
+
+95
+00:31:06,240 --> 00:31:13,650
+Wes Bos: Awesome. That's, that's pretty exciting. I'm glad that that has sort of, because I know you were like, kind of sad to move away from it. And you're big fan of
+
+96
+00:31:13,650 --> 00:31:53,970
+Scott Tolinski: it. I love Meteor. I still am. Yeah. And I think there's a lot of misconceptions, I would love to do an episode on modern Meteor, what that looks like the misconceptions are as because it largely accomplishes so many of the things that we talk about with looking for this rails of JavaScript. And you can do so in an exceedingly modern way. You know, I have code splitting and server side rendering and TypeScript. And I have Apollo and all these things. And it's absolutely effortless. You can even you don't have to use a lot of the meteor stuff. If you don't want to, as a build tool as a platform as a node server. It's all an excellent, excellent platform. So yeah, I'm excited for where that goes.
+
+97
+00:31:54,240 --> 00:32:10,860
+Wes Bos: We've got some non react stuff. Next. I know view three is slated to come out fairly soon. So that'll be a big, I'm not not super down on viewer on what's changing and whatnot. But obviously, it's a major release. So that will be a big shake up. And then what was the other one smell smell?
+
+98
+00:32:10,890 --> 00:32:50,970
+Scott Tolinski: Yeah, so it's a big stuff smell had a big year. Last year, it is felt three came out a lot of press around that I think people really took notice of how, how nice it was to write small code and just how simple it is. So if you're interested, check out speld. To be honest, I'm really excited about what the future will hold. If there's going to be more community packages, or all more interesting things installed, the stuff that's there already, like, for instance, like the animation packages that are built into spelt, compared to obviously, there's nothing built into react, the stuff that's built into spelt couldn't be any easier. So check out its Feld, check out the community. And just, I'm excited to see how that grows this year.
+
+99
+00:32:51,810 --> 00:33:28,410
+Wes Bos: One thing I just watched an awesome talk a couple weeks ago on Apollo three coming out. And one of the biggest features for me is ability to work with the cash a little bit more. So right now, if you want to validate all of your items in the cache, you have to blow away the entire cache, which sucks because if you've got like users or local data in the cache, then you have to blow that away as well and refetch it from the server. So Apollo three is going to give you much better control over the cache. What do you know what any of the other stuff? Totally, I'm blanking on it right now.
+
+100
+00:33:28,830 --> 00:33:51,270
+Scott Tolinski: Um, they the way they are organizing the packages is going to be very different, in my opinion, the way they should have had it before. So that aspect of it is going to require a little bit of a rewrite of your code, but not really functional. So to say, it's just going to be a little bit better organized when you're looking for this specific package. I think that's a little when personally,
+
+101
+00:33:51,720 --> 00:34:15,030
+Wes Bos: yeah, there's there's not going to be so many little packages, it'll all just be shipped in, I think one big one or several big ones, which is good because mismatching versions is annoying. And I'm sure tons of silly little bugs pop up when you have like not the right version and peer dependencies never worked properly. And then I didn't hear anything about their suspense plan yet, which I'm super keen on.
+
+102
+00:34:15,440 --> 00:34:18,630
+Scott Tolinski: It's it's on the word experimenting phase.
+
+103
+00:34:19,170 --> 00:34:43,590
+Wes Bos: Oh, okay. Well, I guess they're just like waiting for it to be officially released. So they can go ahead and make stuff but that will be big as well. Because right now I use next j s and suspense. And we have to do this whole climb the tree rigmarole every component and look for queries and then move them up to the top and wait for those and suspense will make all of that so much easier. Yeah,
+
+104
+00:34:43,610 --> 00:35:01,730
+Scott Tolinski: yeah, absolutely. Well, speaking of next as Next one is next j s. Now, yes, next on the list is next j s. Look I can keep going all day. This one's not going to change because the next j s is added static sites. See that? That was three different transitions into next day.
+
+105
+00:35:01,730 --> 00:35:02,820
+Wes Bos: Amazing. Yeah,
+
+106
+00:35:02,940 --> 00:35:12,210
+Scott Tolinski: do you want to talk a little bit about the static API because I haven't looked into this other than the fact that it exists. Obviously, it's probably in response to the popularity of tools like Gatsby.
+
+107
+00:35:12,840 --> 00:36:30,960
+Wes Bos: So they rolled out some new, you know, we have get initial props, they have a new thing called get static props, which allows you to get static props and generate sites, they actually, as part of the rollout of this, they re did the syntax website, which is built index j s, and a custom server. And they redid it as a static website that is just generated on every pull request. We haven't merged it yet. Because we need the custom server because of the way that we release episodes. We can't regenerate the website at nine o'clock on Monday. And Wednesdays, when the episodes are ready, we push them with a timestamp. And then once that time stamp has passed, that data is then available in the API, and then the next time you visit the website, it will render a new version of that. So figuring out how that works, if we if syntax should be a static website, or it should be dynamic, we're not totally sure, because there's certainly other ways to fix that. But it's kind of cool. Obviously, Gatsby is doing a lot in the static space. And it's exciting to see now, take a look at or sorry, Next, take a look at that and try to implement it. There's still so much more that Gatsby does over something like this, but it's a kind of a step in the right direction, I think,
+
+108
+00:36:31,110 --> 00:37:24,380
+Scott Tolinski: yeah, totally. All these tools are going to just get better and better. And this year, another thing is serverless stuff is going to continue to evolve, you already seen it evolve in a really cool way. Next, JS has done some amazing work with it. They're now hosting platform that allow you to run serverless functions directly in your next step. We did a course on an alone level up tutorials. And I really, really liked how they kind of control you're able to get over your application, it feels like it's all neatly in one little thing. But at the same time you're running your functions and a server list as a serverless container. So I think it's all going to get a little bit easier. We're seeing companies like Netlify step up with their functions next .js with now a lot of people are in this space. And they're going to, again, make it a little bit easier than what AWS just had with like their, you know, deal with it platform.
+
+109
+00:37:24,570 --> 00:37:27,780
+Wes Bos: Yeah, it's true that it's been difficult in the past.
+
+110
+00:37:27,810 --> 00:37:29,310
+Scott Tolinski: Yeah, that should have been the name of the
+
+111
+00:37:30,090 --> 00:38:12,440
+Wes Bos: one sort of company I'm keeping my eyes on is beggin calm, which is going to allow you to do server lists stuff. I haven't haven't checked it out yet, but I've just it's from Brian LaRue, who was one of the main devs behind phone gap, and Ryan block. I met him at a conference and he's like, Hey, I'm Ryan block. I'm like, you're the end gadget guy. Yeah, yeah. Yeah. Like I remember reading Engadget, like, like crazy when I was was really young. And now he looks like Ryan block is running a serverless company with some a lot of devs I respect that are working on it. So it's on my list of things to check out. That's coming out speaking calm.
+
+112
+00:38:12,480 --> 00:38:28,860
+Scott Tolinski: Cool. I'll check this out. Yeah. Another one is Gatsby. As we know, we love Gatsby over here. And Gatsby, do you have any any knowledge on what Gatsby is going to be doing this year? I know, gather is just like always pushing stuff. You know,
+
+113
+00:38:29,520 --> 00:39:28,500
+Wes Bos: the one thing I'm really looking forward to is a single unified query. So currently, there are page queries which allow you to have variables in them. And then they're static queries, which don't allow you to have variables in them. And you can only use page queries at a page level. And if you want to query something inside of a component that has a variable in it, you're you're kind of out of luck. Yeah. So there is there the look looks like the unifying the queries, made possible by suspense. And they're going to move towards a single use query. There's there's already some there's lots of code written lots of proofs of proof of concepts. So I would imagine that as soon as suspense drops, we'll see a single unified query and then we'll move away from the two different types of queries in Gatsby. I think that's I'm not that's, that might be wrong, but that's kind of how I see it working like that. I'm not sure what else Gatsby has planned. But I think some pretty interesting stuff, if I would bet it's a big time for Gatsby right now.
+
+114
+00:39:28,530 --> 00:40:59,610
+Scott Tolinski: Yeah, Gatsby does the excellent work and we've seen it time and time again with themes and all the stuff they've been pushing out. Next one is the other category, which is this stuff that doesn't really fit in anywhere. I wanted to point out quickly, the headless CMS Thunderdome, I'm calling it where we have all these thousands of headless CMS companies right now of which we we know and love a few of them that we've tried, you know, such as Sanity and content full and take shape and forestry and then Even like things like Tina and some other stuff, there is so many of these services and so many of them are very excellent. So we should see this space be continuing to be a Thunderdome specifically because there's all this competition around and competition like this usually breeds some innovation. So I'm excited to see what comes out of this headless CMS Thunderdome and which tools are going to continue to grow and evolve. And they're all coming for that big that big seed of, you know, the the WordPress seat? Yeah, that seat that's, you know, getting a little long in the tooth at this point. You know, I don't know how many times people have tried to do headless WordPress sites. But I've done a couple of courses on headless WordPress. And if I'm being entirely honest, it's not really that great of an experience. I hope I don't, you know, make any WordPress people upset. I don't love it. And I so I think this, this area is ripe for someone to come in and just do it better. So we're seeing a lot of these companies take those steps, and I'm interested in seeing that happen.
+
+115
+00:41:00,060 --> 00:41:01,770
+Wes Bos: What about seeing the magic Scott?
+
+116
+00:41:01,800 --> 00:42:19,650
+Scott Tolinski: Yeah, seeing the magic and seeing the tragic with Log Rocket. That's also something I'm excited for this year. Because you know, websites, they got books, you know, it just happens. And a lot of the times when we have our bugs, we don't really know how they're happening. We don't really know what the user did, like, how did the website end up upside down? I don't know, how did the user do that I can't even imagine how the user made the website go upside down. But maybe they did. And Log Rocket allows you to see the exact steps that the user clicked, maybe they did a little cap con cheat code in there. And you didn't know that you had that on your web, maybe it was just hidden in there, and it made your website go upside down. But you would have never been able to solve that bug without a tool that allows you to see the user's interaction with your site exactly what they were doing their network requests. They are error logs that Redux state and all that and more using something like Log Rocket. So you'll want to check out Log Rocket at Log rocket.com forward slash syntax, you're going to get 14 days for free. And you're going to see the magic I'm sorry, Log Rocket for just making up these slogans for you. But you're going to be able to really see it because the first time a user hits that bug, and you solve it by watching a video, it's going to feel like magic, again, Log rocket.com forward slash syntax.
+
+117
+00:42:19,919 --> 00:42:55,710
+Wes Bos: A another thing I'm really excited for is all these frameworks that are now starting to pop up. Keystone, obviously, we had a show on that lot of people replied to the Keystone with you should try strappy. So that seems like a really good option as well. Meteor Vulcan j s, all these different like headless things where it's it's sort of a step ahead of Prisma or Hasura. Where those are good options. But if you want something that's a little bit more batteries included, there's a bunch of these different frameworks sort of pushing forward right now. And I'm excited to see,
+
+118
+00:42:55,979 --> 00:45:53,580
+Scott Tolinski: yeah, it's sort of the next the next level, right? We have things like Gatsby and next right that largely take control of the rendering and in those application parts, but what they don't take care of is any sort of data data live database layer or anything like that. It's largely about how you render this site, right? Whether that server side statically, whatever. A lot of these like Vulcan Meteor, Vulcans built on Meteor, but Vulcan Meteor Keystone strappy, they're more interested in full picture of like, how does the data get in into the site, and how does the data exist itself, whether that's working with a database, it does feel more of that space of a CMS, but like, maybe not the full space of the CMS, it doesn't take up the entirety of that space. But it's definitely interesting tools that allow you to build some really cool stuff. Another one I have on here is Cypress. For those of you who don't know, Cypress is the end to end testing library, you can check it out, I believe@cypress.io. You can just Google it. Cypress testing, it's an end to end testing library that is really super good. It feels like nothing else I've used for testing. I absolutely love it. The biggest reason why people don't use Cypress is because there's no Firefox support. But they have been working on it or sometime and I just on Twitter, they're still working on it. And I am very hopeful that it will get Firefox support in 2020. Another one is modules, which I was hoping to get my hands on this one in September, but I think they have a lot of work to do. Modules at modules dot app, we'll have the link in the show notes is a visual editor for your code. A lot of times these things can be balked at. But this one is more like figma or sketch and then you can output a view or react component from it. Oh, and also you can input your figma document in here according to this little diagram. So it seems like it's really cool. It seems like sort of what framer was trying to be. I have my eyes on this one and last Is my design app of choice is figma. Honestly, if you're still using sketch, you know, that's cool too. But I prefer figma. I don't want to be that divisive, but figma to me is just better in every sort of way. I really love figma. And they continue. Like, the reason why I like figma from the get go is that they had a lot of the same features as sketch. But they had new features, like all of the time. And that eventually happened where sketch just didn't keep up at all. And figma is cross platform, they added plugins, and they just keep adding new, new new features. They just added an auto resizing feature. So if you create a button, and then change the text, the button just resizes there's a lot of little stuff like that. And I'm excited for where this app goes this year because they continue to Yeah, Hill it non stop.
+
+119
+00:45:53,790 --> 00:46:25,740
+Wes Bos: You know, one thing I learned yesterday is that you can import sketch files into figma. Yeah, that was like one of the biggest blockers for thanks for telling me you could do that from day one. Yeah, I had no idea. Yeah. Okay. Well, I think I think 2020 is the year that I move over to figma. You said it turns out one of the devs or man main guys behind figma lives like 20 minutes away. So who's that? Yeah, um, let me look here. I don't know. It's in my DMS. My DMS are gone.
+
+120
+00:46:25,740 --> 00:47:03,030
+Scott Tolinski: Do you know what a funny thing about figma is that I was working with figma to do some videos, like a couple years ago. And yeah, they're only they only had a handful of employees at that time. But one of the guys I worked with at this computer store at University of Michigan where I met my wife all those years ago. And so Courtney, too, and it was so funny that I was like, Wait, is this the same? You know, is this the same guy who you know, it is so fun to just, I didn't know he was in the space at all. It was just so fun to run into somebody digitally that way that you would known from college?
+
+121
+00:47:03,330 --> 00:47:09,210
+Wes Bos: Ah, ha, that's cool. Yeah, I need to next site. I do. I'm gonna do it in figma. Yeah,
+
+122
+00:47:09,270 --> 00:47:17,370
+Scott Tolinski: I'm a huge, huge fan. I use it every day. I use it for all sorts of stuff. Not even like I said, I used to create my thumbnails and stuff. Just it's just the best.
+
+123
+00:47:17,970 --> 00:47:32,250
+Wes Bos: Awesome All right, um, so that's what we think 2020 has in store some really interesting stuff coming up. I'm excited for the new tech that drops. So buckle up and get ready. Let's move into some sick pics. You got a sick pic for me today, Scott, you
+
+124
+00:47:32,250 --> 00:48:50,400
+Scott Tolinski: bet I got a sick pic. I got a couple of them trying to decide. I have a really interesting little sick pic here. That's a smart device. But it's not necessarily the smartest to smart device. Like as an it doesn't need to have is not like all super fancy. You don't need to check it out at your house. So it's a little $13 thermostat. And high grommets are basically a humidity sensor. And it's very low power. And it basically runs on a couple batteries. And it connects via Bluetooth to constantly keep track of temperature. And every time you connect, it updates your your app. Also, I really love this, I bought a couple of them one for my attic, because we don't store anything in our attic. And I wanted to really keep track of what the humidity and temperature levels were in our attic. So that I know like what we can store up there and how it's going. But also for our gym, our gym gets really cold because it's a it's a shed, you know, it's basically a shed, it's a shed garage, but we have a couple heaters out there. So what we've done now is I have one of those thermostats and I can turn on all the heaters. And then I can come inside the house. And I can just look at the app because it connects via app even though it's just Bluetooth, it connects via app and I can just look and say okay, it's 40 degrees out there. That's warm enough for me to go out.
+
+125
+00:48:50,400 --> 00:48:51,960
+Wes Bos: What's this call?
+
+126
+00:48:51,960 --> 00:49:03,570
+Scott Tolinski: It's a go v thermometer hygrometer accurate indoor temperature, humidity goby, go v. I have a link to it in the show notes. Or I did.
+
+127
+00:49:03,870 --> 00:49:35,850
+Wes Bos: I'll put it back in Okay, I think I need this because my wife's always like, it feels cold in the girls room. And I'm just like, I don't know, is it and like, I always wanted to put the Eco B thermostat. And eco B has these little like coin cell things you can put in each room and then it will heat it depending on what room you're in. And I was like, I'd love to just have one in every room so I can know How hot is it in each room? Do we need to turn on a space heater? But there there's like 60 bucks apart. It's just too expensive. So just something super simple. Like this is probably what we want.
+
+128
+00:49:36,240 --> 00:49:49,320
+Scott Tolinski: That's great. It's super simple. It's it's very easy. And like it's a it's a nice solution to a problem that I think other companies would go way overboard trying to solve so Oh yeah,
+
+129
+00:49:49,410 --> 00:50:12,420
+Wes Bos: this is cool because like we've got the at our house. We've got the just the like regular one where you put the thermostat outside and then you've got like a tiny little so screen that you put inside. And we love that because it actually tells you what is the weather outside my house and not not some weather station at the airport. Yeah. And it tells you but this one goes on your phone as well, which is pretty cool.
+
+130
+00:50:12,870 --> 00:50:14,760
+Scott Tolinski: Yeah. Yeah.
+
+131
+00:50:14,970 --> 00:50:44,670
+Wes Bos: Awesome. Well, I'm going to sick pick something. So I just redid my office and I built a, I talked about this where I built a rack out of IKEA thing. And one of the things that I wanted to put in my rack was like a power bar, a rack mount a power bar. And this thing is awesome, because and you're not talking like the protein bars, are you? It's called right there. Yeah, I got it. Actually, this could be like a lifting rack and getting power bars to eat.
+
+132
+00:50:44,700 --> 00:50:50,820
+Scott Tolinski: I do want to clarify here. Yeah, I hear a rack and power bar. And there's our gym heads. They're gonna be huh.
+
+133
+00:50:51,510 --> 00:51:47,760
+Wes Bos: This is computers for all the computer folk out there. So it's a 16 outlet rackmount power strip that is surge protected. And it's awesome because you can mount this thing in your server rack or in your IKEA table, which is what I did. And it will give you I don't know 10 I think 10 plugs at the back to plug in all your stuff and tidy it up. And then it gives you six plugs on the front for just like temporary stuff that you need to plug in. So so I've been testing a bunch of routers right now and I seem to plug them in and out really quickly. And I don't have to like climb under the desk and find the power bar and find space to plug this thing in. So big fan of that it is called the startac 16 outlet, horizontal rackmount power strip. There's a whole bunch of them available out there. And this one has the most plugs for your buck. Which I'm a big fan of I need to
+
+134
+00:51:48,780 --> 00:51:52,380
+Scott Tolinski: my rack is great. need to step up my rack a game.
+
+135
+00:51:52,530 --> 00:51:53,430
+Wes Bos: You got a nice rack.
+
+136
+00:51:53,430 --> 00:51:59,580
+Scott Tolinski: Thank you. I got Yeah, yeah, we should have a rack off. Where we post our racks. Yeah, you
+
+137
+00:51:59,580 --> 00:52:03,990
+Wes Bos: should build one and we'll do a little hasty treat on on how we did it all because I've got built
+
+138
+00:52:03,990 --> 00:52:07,740
+Scott Tolinski: one. I built one. like four months ago.
+
+139
+00:52:08,010 --> 00:52:13,800
+Wes Bos: What you built like a rack. Like, like, Are you joking with a lifting rack here? are you?
+
+140
+00:52:15,630 --> 00:52:21,300
+Scott Tolinski: I'm not joking. No, I have a what's it called a rack? Like it's just a server rack?
+
+141
+00:52:21,720 --> 00:52:22,380
+Wes Bos: Really? Yeah, they
+
+142
+00:52:22,380 --> 00:52:52,050
+Scott Tolinski: have it underneath. I did it very interestingly. So I have a wonder if my desk because I have a standing desk at one of my desk to be like a one cable on one. Oh, yes. So what I did is I bought a it's supposed to be for like an in a cabinet. But I my desk is heavy enough that I'm not really worried about it tipping over and I screwed it into the bottom of my desk. So underneath my desk, I have the rack installed to the bottom of it. And then I just have my my what's it called it in there. My my audio equipment,
+
+143
+00:52:52,200 --> 00:52:54,090
+Wes Bos: db x 286 s
+
+144
+00:52:54,300 --> 00:53:07,650
+Scott Tolinski: just nailed it. I would love maybe if I had like a four port rack. So I could have a few more things in here. Because right now I'm kind of limited on the space. I went with the two and now I got a little bit of case of the regrets ease so
+
+145
+00:53:07,980 --> 00:53:23,070
+Wes Bos: well. You can go get a table for what $8 at IKEA. Who wants to know know what you have is super clean. I like that a lot. I only have three rackmount stuff and then the rest of it just one went on there. But I have dreams. Do you know you can buy a rackmount Mac Pro?
+
+146
+00:53:23,070 --> 00:53:26,340
+Scott Tolinski: Yeah, yeah. Yeah. So cool. I know
+
+147
+00:53:26,400 --> 00:53:27,990
+Wes Bos: everything should be rack mountable.
+
+148
+00:53:28,440 --> 00:54:24,960
+Scott Tolinski: Yeah, in the future, everything will be available. Shameless plugs, I have a new course on level of tutorials. And when I say I, I don't mean me because I did not create this course. But the very talented at James quick created a course for level up tutorials on react and Firebase where he builds a quiz. And it's really neat, you create a full quiz. And since it's using Firebase, you have a whole database to, you know, to backup that data and everything. It uses the open trivia API. So again, we have like access to an open API. It's really super fun. James is an excellent teacher. If you're not familiar with his work, just go subscribe to his YouTube channel. I'll make sure I link that here. He does very good video tutorials. And we're super lucky to have him be able to do a course for a level up. So check it out. I level up tutorials.com and the courses react and Firebase or full stack react and Firebase.
+
+149
+00:54:25,380 --> 00:54:54,390
+Wes Bos: Beautiful. I'm going to shamelessly plug all my courses right now because they are on sale over a new year new you just go to any of my courses beginner JavaScript, calm advanced react.com learn node.com react for beginners calm, yes. six.io. And you can grab all of them. They are on sale to the end of January if you want to grab one or two or all of them. Oh and use a coupon code syntax. They had an extra 10 bucks off as well. Cool.
+
+150
+00:54:54,810 --> 00:54:56,850
+Scott Tolinski: Do that. Do that do do that. That that.
+
+151
+00:54:56,940 --> 00:55:04,080
+Wes Bos: Alright, thanks for tuning in. And we will catch You on Monday, catch you then please, please
+
+152
+00:55:06,120 --> 00:55:15,870
+Scott Tolinski: head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
