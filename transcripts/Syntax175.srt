@@ -1,0 +1,284 @@
+1
+00:00:00,359 --> 00:00:21,989
+Unknown: Monday, Monday Monday open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob and Scott, Todd.
+
+2
+00:00:23,610 --> 00:00:24,480
+Totally ski.
+
+3
+00:00:25,890 --> 00:01:18,650
+Scott Tolinski: Oh, welcome to syntax in this Monday hasty treat. We're going to be bringing back one of our favorite segments and favorite types of shows. We all know that you love to this type of episode. And this is of course, I'm talking about the stumped episodes. Now, in stumped if you are a new listener to syntax, you might not have heard one of our stump episodes. But what they are is, Wes and I are going to ask each other a few interview questions that we randomly selected, and we're gonna do our best to answer them. Now, this is no pressure, we're not getting to look up any of the answers here. And if you listen to any of these episodes before, you will know that we both get easy questions wrong all the time. So that's the beauty of this stuff is when you're put under the pressure, you might not always come up with it. So my name is Scott Tolinksi. I'm a developer from Denver, Colorado. And with me, as always, is Wes Bos. How you doing Wes?
+
+4
+00:01:18,780 --> 00:01:21,390
+Wes Bos: Hey, everybody, I'm doing pretty good.
+
+5
+00:01:22,050 --> 00:02:37,220
+Scott Tolinski: Pretty, pretty good. I'm doing pretty good too, because I know the situation on my web app at all times, because I use sentry@sentry.io. Now, Sentry is one of our sponsors for this episode. And what Sentry does is it catalogs it collects all of your bugs. And it makes it so you can know exactly what's happening on any given point of your website. Now, the cool thing about Sentry is that they have different versions of the API for every single platform that you could possibly use IO century on my API for node, I have my century for my front end with react and JavaScript. I can connect to it via anything that I want. If I wanted to have a Ruby aspect of my site, I could have century for Ruby to century, it just takes care of everything catalog categorize catalog. That's a tongue twister. And one of the cool things is you can attach it directly to a GitHub issue and then I can assign it to someone like myself to take care of later, directly from Sentry. It's absolutely amazing. One of my favorite favorite tools that I use every single day in my business, so head on over to century@sentry.io use the coupon code tasty treat all lowercase all one word, and you'll get access to two months for free. I highly recommend checking it out something I could not live without in my devstack. So do you want to get into it? Who is going to be asking the first question and who's going to be answering what do you what do you think?
+
+6
+00:02:37,280 --> 00:02:40,350
+Wes Bos: Let's do rock paper scissors.
+
+7
+00:02:40,350 --> 00:02:52,110
+Scott Tolinski: Oh, yes. Let's do rock paper, scissors live on air. And we're just gonna shout out what it is. Okay, we Rock Paper, scissors, shoot and then the item that you want to do.
+
+8
+00:02:52,500 --> 00:02:56,310
+Wes Bos: Rock paper scissors, shoot. Is that like the American rock paper scissors? Yeah, we
+
+9
+00:02:56,310 --> 00:02:59,130
+Scott Tolinski: always say shoot Rock paper scissors. Shoot. Really? Yeah.
+
+10
+00:02:59,399 --> 00:03:00,420
+Wes Bos: Okay. All right.
+
+11
+00:03:00,420 --> 00:03:05,130
+Scott Tolinski: I can do that. But we'll so we'll be Rock Paper, scissors, blank. Whatever you're choosing.
+
+12
+00:03:05,339 --> 00:03:08,070
+Wes Bos: Oh, okay. That makes sense. You don't say the word shoot?
+
+13
+00:03:08,399 --> 00:03:10,590
+Scott Tolinski: Yeah, sorry. Yeah. Okay, okay.
+
+14
+00:03:11,670 --> 00:03:12,420
+Unknown: Okay, ready?
+
+15
+00:03:12,420 --> 00:03:31,620
+Scott Tolinski: Yes. Rock Paper Paper. We gotta get no, no, no, we gotta get we gotta get a look at cadence going. So we're okay. All right. Like, like this. I know that. Let's go slower. Rock paper. Okay, paper. So yeah. Ready?
+
+16
+00:03:32,670 --> 00:03:47,940
+Wes Bos: Rock, paper, paper, scissors, rock, rock. Oh, through rock. Alright, again. Rock, rock, paper, scissors, rock scissors?
+
+17
+00:03:48,270 --> 00:03:48,900
+Unknown: Yes.
+
+18
+00:03:50,340 --> 00:03:51,330
+You get to choose.
+
+19
+00:03:51,450 --> 00:03:57,450
+Scott Tolinski: I'm gonna ask the question first. Okay, what is the difference between no and undefined? It should be pretty.
+
+20
+00:03:57,480 --> 00:04:46,170
+Wes Bos: Oh, no, it's funny, because I actually just recorded a video off for my beginner JavaScript course on this. So hopefully, it's it's good. So no, is explicitly nothing. Whereas undefined is the absence of something. Yeah, well, what I'm what I mean by that is, when you create a variable, and you don't assign any value to it, it's undefined. Whereas if you want to explicitly set a variable to nothing, you use null. So I always like to use what was the example that I used share shares last minute shares just share share doesn't have a last name. She's just share her last name is undefined, right? Whereas somebody like who, like, got rid of their last name? Who's someone like that?
+
+21
+00:04:47,790 --> 00:04:49,440
+Scott Tolinski: Who got rid of their last name?
+
+22
+00:04:49,700 --> 00:04:50,490
+Unknown: Yeah.
+
+23
+00:04:50,970 --> 00:04:51,830
+Scott Tolinski: I don't know.
+
+24
+00:04:53,220 --> 00:05:33,810
+Wes Bos: Someone that got rid of their last name. I can't I can't think of I had a hilarious example in my course that I could go back and look at but some One who explicitly got rid of their last name, they would set their last name to No. And that is nothing. And that's further complicated, because you can actually set values to undefined. But I won't get into that just because you technically can do it. But that's generally how I see it, undefined is not set, whereas null is explicitly nothing of value of nothing. And I also find that helpful in situations where, like, you don't want to set a value. If you're dealing with numbers, you don't want to set it to zero because zero is a valid value, whereas, you know, is explicitly a value of nothing. Word.
+
+25
+00:05:33,960 --> 00:05:39,330
+Scott Tolinski: Yeah, yeah, I think that is a very long way of giving that correct answer. Yes, absolutely.
+
+26
+00:05:39,360 --> 00:05:45,720
+Wes Bos: Thank you. Next, we have I have a question for you. What is short circuit evaluation in JavaScript?
+
+27
+00:05:45,720 --> 00:06:39,330
+Scott Tolinski: What a short circuit and there's a robot involved? No. Um, so I don't know if this is the right answer. Because I don't know if I've used this term specifically before, but I think I have an idea of what it could be. My idea would be that you let's say you have a function that has a purpose, right, this function is going to output, it's going to alert Hello. But a short circuit would be when you were to let's say, let's check the users role ahead of time, maybe this user is like his user admin. And if that comes up as false, then you would just return to get out of the function without actually completing the process. So it's something that would be like in front of the process of the function supposed to do to get out of the function or get out of that intended activity, if some requirements aren't met? Is that even close?
+
+28
+00:06:39,330 --> 00:07:20,340
+Wes Bos: That's exactly it. So if you have like if you if you have a like an if statement, you could say if is admin, and and has special powers, it first checks if it is admin, and then it checks if you have a special power. And if you're not admin, it's not going to continue on doing those additional checks. It will just stop there. Same thing with there's a number of different loops that can be short circuited the which one is it the I forget which one it is, there's a couple array loops that you can short circuit, meaning that as soon as you find the thing that you're looking for, it's not necessary to loop over the rest of the items, you'll simply return that value and you've got it. dot find is does that
+
+29
+00:07:20,430 --> 00:07:28,140
+Scott Tolinski: cool? Yeah. Me. Alright, next question is, here we go. Got one. What is use strict?
+
+30
+00:07:28,140 --> 00:08:26,310
+Wes Bos: Oh, you strict is the ability to set the document. Is that good? Let me back up here. So it's there's new. in JavaScript we have, we have features that are added to the language. The problem is when you add new features to the language, you can't remove old features, you always have to be backwards compatible. So there's some some weird things in JavaScript like, Man, I'm I can't remember what they are. I just recorded a video on this as well, like the ability to define redefine a variable like either say var age equals 10. And then the line under that var age equals 12. The ability to var twice. If you're in strict mode, that's not allowed. So essentially, you can sort of like say, like, get rid of all this old sort of bad practice baggage that JavaScript has and put me in strict mode, which allows you to also like use some some new features as well. So I don't know, is that a good example of is that a good way to say it?
+
+31
+00:08:26,310 --> 00:08:27,330
+Scott Tolinski: I guess, oh,
+
+32
+00:08:27,330 --> 00:08:28,770
+Wes Bos: what does the answer say?
+
+33
+00:08:28,979 --> 00:08:44,660
+Scott Tolinski: I mean, the answer just says use strict is a statement to enable strict mode. So it doesn't really give you no direct access to what strict mode is specifically. And to be honest, I don't use strict mode myself. So I don't I don't really know, I know a lot of people really live on strict mode.
+
+34
+00:08:45,120 --> 00:09:31,790
+Wes Bos: Well, yeah, if you're in a module, if you're using ESX. Modules is strict mode is enabled by default, you don't have to use strict at the top of all your module. So that's why you actually probably do use strict mode for all your dough and you just never type it. Yeah. Beautiful. All right, I'm going to grab another one. Oh, here's one that I probably wouldn't have known. Oh, no. What is the only value not equal to itself in JavaScript? So I'll give you an example. What Yeah, what does that mean? A true equals true. One equals one string of less equals a string of less, those are values that are equal to themselves. So what is an instance in JavaScript where this exact same type value not equal itself? I didn't know this.
+
+35
+00:09:32,069 --> 00:09:41,370
+Scott Tolinski: You did not know this? I don't know this, and I'm probably seen it in one of those, like, 10 reasons why JavaScript script sucks blog post. Yeah. Oh, no answer
+
+36
+00:09:41,370 --> 00:09:43,650
+Wes Bos: is no. Well, why not?
+
+37
+00:09:45,030 --> 00:09:46,280
+Unknown: Oh, you didn't even know
+
+38
+00:09:46,650 --> 00:09:55,280
+Scott Tolinski: why I was gonna say zero, but okay. I don't know that. I don't know why 08. Maybe zero is equal to five. I don't know. Who knows. That's not a good who knows.
+
+39
+00:09:55,500 --> 00:10:12,570
+Wes Bos: I didn't know this thing either. So if you have not a number is not not equal to itself. And is equal to not equal to na n. Yeah. So go in your console and type triple equals na n is equal to false.
+
+40
+00:10:12,720 --> 00:10:24,570
+Scott Tolinski: What a dumb piece of knowledge. When would you ever need to know that? Like, there's no particular situation where that will ever memorable? I can't think of a single situation. So now that's dumb, man. All right, you
+
+41
+00:10:24,570 --> 00:10:25,860
+Wes Bos: can give me a dumb one now.
+
+42
+00:10:25,860 --> 00:10:40,440
+Scott Tolinski: Okay, let's go. Let's find the dumbest one. I'm not trying to find a dumb one here. I'm not actually trying to give you a hard one. This was gonna be an easy one. But it is I think it's a good one for the listeners. When would you create a static class member?
+
+43
+00:10:40,740 --> 00:10:43,380
+Wes Bos: When you do a static class member?
+
+44
+00:10:43,770 --> 00:10:51,650
+Scott Tolinski: Yes, static class members aka properties and or methods? I don't I've never heard the word member for this before but no common. A member?
+
+45
+00:10:51,840 --> 00:11:20,550
+Wes Bos: That's a fun, that's probably like a word that's used in another programming language or something like that. So when would you create a static property when you don't want each instance of that class to have it? So an example is array dot from an array of every single array that you create does not have that method, if you want to use it, it's, it's on the the prototype the capital A array, is that right?
+
+46
+00:11:21,360 --> 00:11:30,600
+Scott Tolinski: static properties are typically configuration variables. static methods are usually purely utility functions, which do not get done the state of the instance.
+
+47
+00:11:31,710 --> 00:11:56,070
+Wes Bos: Oh, you know what I was, I was saying methods I didn't think about I said properties. But that's, that's good to know. Same with like something like math.pi. If you want to access bi, you can access on math.pi. But every single number that you create, you do not have access to pi, nerdy, nifty. I have one here for you. What is a pure function?
+
+48
+00:11:56,969 --> 00:12:24,270
+Scott Tolinski: A pure function always returns the same thing. If you pass it, let's say like a function that adds two to the number. If you pass it one, it's always going to return three every single time. There's nothing else that's going to get in the way, no outside usage of any variables and therefore a pure function is nice impure, it is not going to have its result modified by anything outside of the function. Does that? Is that it? Yeah,
+
+49
+00:12:24,420 --> 00:12:32,250
+Wes Bos: that's it. Yeah. It never modifies anything outside of it. And it never reaches outside of itself so easily. They're easy to test.
+
+50
+00:12:32,550 --> 00:12:41,160
+Scott Tolinski: Yeah, I love love with a capital L o. v. Pure functions. Big fan. Awesome. Yeah. Pure function fan. Oh, one.
+
+51
+00:12:41,160 --> 00:12:47,700
+Unknown: purify. We should make a sticker like that. That would actually be great. Pure function. 86. Yes.
+
+52
+00:12:51,300 --> 00:12:55,560
+Wes Bos: Awesome. All right. Well, you got one. Let's maybe do one more each.
+
+53
+00:12:56,099 --> 00:13:10,680
+Scott Tolinski: Chair. Yeah, let's do that. We're getting to that time. Okay, my my Baba, Baba, I almost asked you one that we just answered in the last episode. So that's not going to happen. Okay, this is a pretty good one. Yeah. What is a JSON p
+
+54
+00:13:11,250 --> 00:14:05,850
+Wes Bos: o JSON. P stands for JSON with padding. And it gets around the ability. Before we had cores on the server side, it was not possible to send data from one domain name to another domain name, because that violated the course in the browser. However, you can get around that because one thing you can send from domain to domain name is not raw data, but you can send JavaScript. So JSON p essentially takes your data that needs to go from one domain name to another and wraps it in a function called a callback. And instead of sending the raw data you're technically sending I'm using air quotes here JavaScript, where the one argument to that JavaScript function is all of the data that you need in this sort of a way to sort of hot potato the data over into a global function, then you can grab that data via the callback. Hot potato.
+
+55
+00:14:06,089 --> 00:14:11,700
+Scott Tolinski: Yeah. Yeah, that's good. That's a good that was a good question for you. I felt like yeah, you you kill that one.
+
+56
+00:14:12,209 --> 00:14:18,360
+Wes Bos: Thank you. Okay. Well, you're just, I'm trying to I'm trying to nail you here. And you're just giving me softball. So I appreciate that.
+
+57
+00:14:18,360 --> 00:14:19,470
+Scott Tolinski: You're welcome. Yes.
+
+58
+00:14:19,470 --> 00:14:35,190
+Wes Bos: I've got one here. This is a CSS question. Describe the layout of the CSS box model and briefly describe each component. So how do you calculate the size of something? What are the things the four things that make up the size of something?
+
+59
+00:14:35,250 --> 00:14:58,590
+Scott Tolinski: Yeah, so it would be the content itself? Instead, they call it the boxes, the whole thing? I don't know. Whatever. You got it. Yeah. There'd be the content, the margin, the padding? Well, first, it goes to content padding, or first it goes content. Border net, sorry. content, padding, border margin.
+
+60
+00:14:58,650 --> 00:15:00,660
+Wes Bos: Yeah. Now Yeah,
+
+61
+00:15:00,720 --> 00:15:21,420
+Scott Tolinski: it's like I gotta visualize that little image that's inside of the Chrome Developer Tools. But yeah, that's pretty much it. And then the width is calculated as the entirety of a wall. I'm sorry, the width is not is just the width of the content. But if you use a box model border box, you get that whole thing as the width, which is everything except for the margin. That's how I like to do it.
+
+62
+00:15:21,960 --> 00:15:23,790
+Unknown: Got it? Yeah, yeah,
+
+63
+00:15:23,820 --> 00:15:25,170
+Scott Tolinski: yeah, yeah. Yeah. Good.
+
+64
+00:15:25,200 --> 00:15:28,440
+Wes Bos: That was a good one. I'm I like that one. You nailed this one. We
+
+65
+00:15:28,440 --> 00:15:32,820
+Scott Tolinski: got I mean, we got to do one of these stumps a month. I know we were talking about doing that. And we just didn't. So
+
+66
+00:15:33,000 --> 00:15:34,380
+Wes Bos: I'll let's let's get back into doing this. I
+
+67
+00:15:34,380 --> 00:15:36,300
+Unknown: think I think there are a lot of fun.
+
+68
+00:15:36,360 --> 00:15:55,860
+Wes Bos: All right. I think that's that's enough for today. I think that what we want to do with the stumped is somehow have listeners submit questions like this as well, because it's these are fun, like little interview questions, but it'd be fun to have listeners, submit ones and try to try to stump us. Yeah. All right. Anything else to add there, Scott?
+
+69
+00:15:56,189 --> 00:15:58,410
+Scott Tolinski: I got nothing. All right.
+
+70
+00:15:58,770 --> 00:16:03,900
+Wes Bos: Cool. Well, thanks so much for tuning in. And we'll catch you on Wednesday. Dude, please
+
+71
+00:16:05,760 --> 00:16:15,510
+Scott Tolinski: head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
