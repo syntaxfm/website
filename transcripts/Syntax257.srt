@@ -1,0 +1,200 @@
+1
+00:00:00,359 --> 00:00:24,480
+Announcer: Monday, Monday, Monday, open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing, soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob and Scott Taylor. Totally in ski.
+
+2
+00:00:25,950 --> 00:00:53,159
+Scott Tolinski: Oh, welcome to syntax. In this Monday hasty treat, we're gonna be talking about Linux. Now, I recently have acquired a Linux laptop as a coding machine. And we're going to be giving you a rundown of what it is why I did it and a little bit of information about some of the pros and cons of running Linux in these types of environments. Now, my name is Scott Tolinksi. I'm a developer from Denver, Colorado, and with me, as always, is the West boss, how you doing?
+
+3
+00:00:53,610 --> 00:00:55,710
+Wes Bos: I'm doing pretty good. How about you
+
+4
+00:00:55,979 --> 00:01:53,400
+Scott Tolinski: doing good. This episode is sponsored by Log Rocket. Now Log Rocket is the place where you can see your errors happen and watching a horror as your entire website gets flipped upside down. And you can actually figure out how to solve them. Because Log Rocket gives you a session replay, which is a scrubbable video that includes an error log a network requests tab, it gives you your Redux store. And it works with just about every single platform you could possibly imagine. It's very cool. And one of those things you're going to want to see to believe. So head over to Log rocket.com forward slash syntax, and you will get 14 days for free. So thank you to Log Rocket for sponsoring. So let's get into it. What's up with the Linux what's up with my laptop? Why did I get it what is going on here? If you've been listening to the show, for any given amount of time, you will have known my laptop seems to have a lot of issues. I've had a MacBook Pro 15 inch before they
+
+5
+00:01:53,460 --> 00:01:54,990
+Wes Bos: have had some bad luck,
+
+6
+00:01:54,990 --> 00:02:43,890
+Scott Tolinski: bad luck. For instance, when I took it into the Apple Store, the apple tech who is like after it gotten shipped off, it broke my screen, apparently. And then in an attempt to hide their folly, just like put my computer on a shelf somewhere or something like seriously, that's actually what happened. And because of that they had a laptop for like two and a half, three weeks, which eventually led to me getting a couple of pairs of EarPods for free because Apple felt very bad about it. So they hooked us up. Then, when I finally got my computer back, there was like another issue. I took my computer and I mentioned that I was apprehensive about shipping it off because of what happened last time. They said don't worry, everything's gonna be fine. I get my computer back and then like kernel panics immediately, only to find out that they installed the wrong logic board onto my machine.
+
+7
+00:02:43,890 --> 00:02:46,200
+Wes Bos: No way at that point. I
+
+8
+00:02:46,200 --> 00:04:03,420
+Scott Tolinski: said, because they were just like, Okay, well, we'll ship it out. Again, I said no, give me a new computer. They they gave me a new computer, which was nice, because it was a newer model. But I eventually upgraded to the 16 inch and gave that 15 inch to my dad. So I have a 16 inch. And from day one, it had light leak coming in from the bottom left, the left speaker was buzzing from day one. And then eventually my keyboard stopped working. So at that point, I was like, Okay, well, you know, I'll get it shipped back. And I'll get those things taken care of. Yeah, luckily, this time they took care of in three days, it was very nice. I got my computer back in three days. So I was just thinking, you know what, maybe I'm a little too hard on my computers. Like I'm taking this thing everywhere people see it precariously placed on a piece of exercise machine in my gym or something. I make people really nervous. So, you know, I don't know if there was like sand or dust got under the keyboard or something, you know, that happens because we're kind of in like, pavers create a lot of dust, I noticed a lot of doeskin on the computer when I'm outside. So who knows, maybe I'm just taking this thing and I'm being a little too rough on it. But you know, the end of the day, it should be able to handle it. So I just decided, you know, I can't I can't have my entire business be on this machine, and then not be able to take it places or do things on it or code, right?
+
+9
+00:04:03,450 --> 00:04:04,320
+Wes Bos: Yeah, I like
+
+10
+00:04:04,320 --> 00:05:10,820
+Scott Tolinski: to code in all sorts of places. Like I was coding on the floor, and my dad was just like, why is your computer on the floor? You have kids? I was just like long. I'm sitting on the floor encoding like what am I supposed to do here? So I've decided that this expensive computer needs to say on the desk and I purchased a system 76 laptop after numerous recommendations from people I trust about system 76 if you have never heard of them, they're a company out of Denver, Colorado. So that made me feel good to be able to purchase something locally. They make a lot of really interesting machines. Now I don't believe they design or create the shell of the laptop themselves. But they do assemble it they do you know do a lot of really interesting things with their computer including having their own OS which is a version of Ubuntu called pop OS. So I'm running pop os 20.04 and I purchased the lemur pro which is an ultra portable so It's a bit smaller. It's a 14 inch screen. And it weighs just about nothing like it's MacBook Air territory but maybe even lighter because it's the materials are not as heavy overall,
+
+11
+00:05:10,860 --> 00:05:14,510
+Wes Bos: is it like plastic or what? Like a polycarbonate?
+
+12
+00:05:14,730 --> 00:05:32,130
+Scott Tolinski: Yeah, I don't know if it is a plastic because it feels part of it do feel like mental? Let me see. It says it's at 2.2 pounds. So it weighs just about nothing. I don't know what exactly what it's made out of. But it does feel not like plastic, it doesn't feel cheap plastic, it feels definitely like,
+
+13
+00:05:32,790 --> 00:05:35,910
+Wes Bos: it's probably like a really sturdy polycarbonate.
+
+14
+00:05:36,180 --> 00:05:57,090
+Scott Tolinski: Yeah, probably something like that I should, I should definitely look that up. So this thing is, is pretty neat. One of the cool things is that the screen actually folds all the way down instead of stopping in a whatever angle that Apple determines that you would like to have that because, you know I like to have the hinge at 180 degrees sometimes. And it actually has been very nice to be able to have that hinge I missed that feature. When I open up my MacBook Pro.
+
+15
+00:05:57,780 --> 00:05:58,920
+Wes Bos: That seems really cool.
+
+16
+00:05:59,340 --> 00:06:17,490
+Scott Tolinski: It is, like I said it's a 14 inch the screen is matte, which is nice for coding outside, it has HDMI, USB three USB C, another USB three port, micro SD card, or headphone, it has all the parts that Apple doesn't want to give you. And for the most part,
+
+17
+00:06:17,520 --> 00:06:18,840
+Wes Bos: how much was this thing,
+
+18
+00:06:19,050 --> 00:07:23,700
+Scott Tolinski: after I loaded it up, it was probably like just about under two grand, it could have been like based back, it's like starts at like 900 bucks, maybe, okay, it started pretty cheap. You know, I'm using this as my code code machine, you know, wasn't gonna be like a backup computer, it's not just gonna sit on the shelf. In fact, I i've been primarily coding on this thing for a little bit now. I've wanted to get used to it, I want to you know, get the feel for it. So I definitely been been working full time on it. I think I upgraded the CPU. So it's got a 4.9 gigahertz I seven processor with a, you know, four cores, I only went 16 gigs of RAM, which is might have been a bad decision. But unlike an apple computer, you could actually upgrade the RAM yourself. Which is beautiful. Yeah, I got a faster, right hard drive on it. So I definitely upped it a little bit to get some of the higher up specs. And I also purchased the three year warranty. So it could have been it could have been much cheaper than I made it. But you know what, it's a code machine, I'm gonna be working hard on it. So it's definitely worth it for me to have something like this.
+
+19
+00:07:23,730 --> 00:07:30,120
+Wes Bos: Yeah, if we know anything about scotton laptops, you probably will have six of these things by the time that three year warranty is up.
+
+20
+00:07:30,390 --> 00:07:57,420
+Scott Tolinski: And it's crazy, because it's not like I am not doing anything explicitly hard on the computer. Like I'm not I'm not tossing it around. I'm very kind to my hardware, but I do take it places, you know, I it moves around with me and I move around a lot. So in that respect, I guess it does get jostled and whatever if I'm working at a coffee shop or something like that, but I'm not I'm not explicit. I'm not. I'm not spilling I'm not dropping in. I'm not doing those kinds of things. So who knows?
+
+21
+00:07:57,870 --> 00:08:08,670
+Wes Bos: Did you look at just buying like a really high end DELL LAPTOP and throwing Linux on that? Or did you hear such nice things about these system 76 ones that you just went for that
+
+22
+00:08:09,020 --> 00:11:36,090
+Scott Tolinski: I heard a lot of nice things. And again, it's local, I have some people that I trust a lot of who's just been saying really nice things that they're just like a boutique, smaller shop, you know, they they really put a lot of effort into it. And not only that, but they're like distro with pop OS is a little bit more geared towards my sensibilities. Now, granted, obviously, you can put a distro on any DELL LAPTOP. But no, I just wanted to support this company. I thought they're really they do really nice stuff. And for the most part, these computers are really nicely made. So yeah, I've just heard nothing but good things. And they they do a lot of they have a whole bunch of different computers for different sensibilities. So I picked the smallest cheapest one and went from there. So Linux pop OS. Now pop OS is his new boon to based distribution. I, to be honest, I've been watching all sorts of videos on YouTube about Linux distributions, because people like you know, talk about the distros. And what does this base you know, and I don't really know that much. I've ran mint before, which is another boon to based one that's also a little bit nicer. I like this pop OS specifically, you have the option to get was just straight up a boon to because it gives you a bunch of sensible defaults that make the Linux life a little bit easier. It's funny, because sometimes people talk about like, Oh, yeah, you know, like anybody could run Linux. But let me tell you after having this thing for a couple of weeks now, no, no, there's just so many things I have to do on the command line still, that if I didn't know how to use the command line, like I would be dead in the water with this machine. I'll tell you that right now. Specifically, just because Linux is just not a polished experience the way that Mac OS and Linux people might not agree with that. But it's missing a lot of things in you know, needing to run command line man is technical as Courtney is, man. If she had this computer she'd be she'd be toast. I'll tell you that. So Linux is still definitely not the same, but I was very Happy to see them just about everything I use in my daily life I could use on this thing. For instance, I run figma in figma works perfect down here. In fact, what I did is I logged into figma via the web, and then I saved it to the dock. Because I have a Mac OS style dock on here. I saved it to the dock as a progressive web app, pop it open, and it feels and looks exactly like the desktop version of figma on my MacBook Pro, so that's been really nice. It's amazing. Same thing with vs. Code. VS code feels amazing on here. DaVinci Resolve for video editing, zoom, brave, I use brave Firefox that all feels like exactly normal. Unfortunately, can't run ScreenFlow which, if I'm being entirely honest, hardly runs on my MacBook Pro because it crashes every day. take it seriously, that app crashes more than any other application I've ever used, and never crashes for me. Which dude, it seems like you always have such a dude hard up time with these apps. No. Okay, so like ScreenFlow is like the only app on my computer that crashes. And just about every single time I open it, it's like we recovered your project. And like, Okay, thanks. And I don't know if it's because I'm recording like multiple video streams at once and doing a little bit more intense stuff. But like, we can do this experiment after the show. But I have a guaranteed method to make ScreenFlow crash every time. If you have the timeline running. And while the timeline is running, you click More than once along a different spot in the playhead. It will crash guaranteed every time and I promise you yours will too.
+
+23
+00:11:36,600 --> 00:11:49,410
+Wes Bos: I definitely have my gripes about ScreenFlow like if I have my 4k video and a video coming up my webcam and then I'm trying to play that back at two X. It like gets out of sync Oh yeah.
+
+24
+00:11:49,470 --> 00:11:50,100
+Scott Tolinski: It's just like
+
+25
+00:11:50,100 --> 00:12:04,530
+Wes Bos: lags behind. And then if you're like six minutes in, it's like a full three or four seconds behind, which is really frustrating. I really hope someone makes something better than ScreenFlow. I know there's tons of other options out there. I've definitely looked at them don't no need to tell me what they are.
+
+26
+00:12:04,530 --> 00:12:05,400
+Unknown: Right now.
+
+27
+00:12:05,400 --> 00:12:24,210
+Wes Bos: It doesn't seem that like ScreenFlow the company behind it really cares all that much. It seems like they're more catering if you look at a lot of their training material. It seems like they're more catering towards like newbies, and like people who are making slideshows and things like that rather than actual screen casters.
+
+28
+00:12:25,230 --> 00:13:03,270
+Scott Tolinski: Totally, in fact, like, I wouldn't even run ScreenFlow but it is probably the fastest video editing platform in terms of like, Alright, you record multiple streams, you can set up these actions to animate between states. And it is very easy for doing some like really advanced stuff that would be definitely a pain in the butt in DaVinci, or something like that. But Da Vinci is a better editing experience, but not necessarily as turnkey and is easy to edit fast. So a lot of the apps I'm able to run, somebody asked me if I was bummed out about not being able to run sketch. And the answer is no, I don't care about memory in this sketch because I use figma now and big fan.
+
+29
+00:13:03,510 --> 00:13:21,120
+Wes Bos: That's the dream that it's built on web technologies. So that you like that's, that's a silly thing about sketches that you can't even use it on Windows, let alone Linux, right. Yeah, totally. And it's amazing that you can just you can use a lot of these apps cross platform and the experience is still the same.
+
+30
+00:13:21,540 --> 00:13:32,670
+Scott Tolinski: It's crazy is that they haven't even I mean, it's however many years later and they still haven't like budged on that. As far as I know. They haven't moved into like, Okay, well, no, we'll did they're just like now. Now we're cool. No, I
+
+31
+00:13:32,670 --> 00:13:33,630
+Wes Bos: don't think they care.
+
+32
+00:13:33,720 --> 00:15:25,080
+Scott Tolinski: Yeah. Which is okay, you do you but I think framer and figma are going to eat their lunch. So Oh, yeah. Well, we'll see where they're at in a couple years. So how has Linux been really for me? Well, I'm missing a couple things. I'm missing trackpad gestures, man. I love my big trackpad. So much so that I have the Magic Trackpad. I love that big trackpad being able to do multi finger gestures and stuff. So I'm definitely missing that on Linux. The trackpad is nice on this thing and not to say that it's a nice the two finger scrolling all that stuff works very well. I don't get any of the gestures that I have. Somebody linked me to a package that allows you to do stuff but I have a hard time believing it's going to be as good as the Mac iteration of it. In addition, I you know, there there is some instability things with some weird UI stuff. Like for instance, I went to open up the fonts panel in the fonts panel, just like wouldn't open up and I was just like, Okay, well, I guess I'm not working with my fonts today. So you know, at the end of the day, it's it's still not as polished of experience, but coding wise, okay, I got up and running. I got my stuff installed. I got my VS code going. And I did a little settings sync between VS code Mac and VS code Linux and I tweak some of the keyboard shortcuts and after some time to set it up, I could pop open one computer pop up in the other computer, go back and forth between Linux and Macs. Yes, Linux and Mac and just really like and really feel comfortable even with the keyboard shortcuts and everything. going from one to the other, and everything feels very nice. So in that aspect of things coating wise, it's a fantastic machine. And I've been really happy with it. Now the battery of this thing is killer, too. I've gotten up to like 20 hours of battery and as few as like eight hours, but it's really amazing to see that your battery's at 50%. And click that little battery icon. It says you saw the eight hours of battery? Oh, oh, okay, cool.
+
+33
+00:15:25,530 --> 00:15:46,530
+Wes Bos: Have you tried running like node processes and seeing what the battery is because like, my Mac, my MacBook will run for like seven days, if I'm not actually doing any work. And then as soon as I spin up a node process, it's the file watchers is what really drains it, then I've got like an hour, an hour and a half, pretty much, almost nothing.
+
+34
+00:15:47,010 --> 00:17:34,340
+Scott Tolinski: So yes, I have for the most part found it to be much longer of a battery life great running the same things. But I think it's just because of the system itself, or the battery itself. I'm not exactly sure. But no, I am I'm running. I'm running a node process. Meteor on it right now. Same thing, I run on my other one, and it worked. The battery's still really good. So some really nice things about this, we're okay. With command line experience, I've been able to get a doc that looks the exact same as the Mac Doc, I've been able to get essentially Alfred, which is exactly Alfred to navigate through my system, same keyboard shortcut. So I have a doc, I have Alfred, I have my code, and I have my browsers. So between all of that, once your keyboard shortcuts are there, which trust me is a bit of an adjustment period. I hate using control for everything. So also, like Chrome doesn't let you change keyboard shortcuts for some reason, like come on. Firefox has an extension, they'll let you do it. And I'm just sort of gonna set up like a system wide one to make the Alt key basically control on Linux, because that way, it's in the same place as the Command key and whatever. Yeah, that's been the biggest thing is the keyboard shortcuts, for me have not been a lot of fun to use. But for the most part, once things are set up with, like I said, the doc and Alfred and getting a feel for customizing things, having a nice little clipboard manager. It's all been very nice in terms of like having a shared experience between the two. I know some people said that they just bought a MacBook or a MacBook Air for the same purpose because they can't handle the context switching. Now I get that but like, once everything's all set up, the context switching is pretty minimal. And again, I'm only using this thing for code. So I don't have to worry about too many of the other multimedia things on here.
+
+35
+00:17:34,890 --> 00:17:44,250
+Wes Bos: What about like synching your VS code plugins and everything? That's something I've never looked into. So I only have one machine? Yeah. Does VS code do that? Or do you have something?
+
+36
+00:17:44,640 --> 00:18:42,630
+Scott Tolinski: So VS code just launched, I don't know if it's in the normal version, but it's in the nightly they launched a settings sync. And the settings sync is built into VS code now. And that works really well. But what I started using is a dozen sync extensions, which is like obviously, the one of the big things you'd want it to write. So I set up a extension package. It's a set of use a sink, which has 1.6 million downloads. And what it does is that, oh, wow, you log into GitHub, and it creates a gist of your settings, your extensions, and then on the other machine, you just pull from that, like a you just Well, I mean, you just run a command palette thing to say, all right, seeing my settings, and then it brings it all in, you can say like pull down or push up or whatever. And so if I install a plugin on my Mac, and I wanted on my Linux, all I have to say is push up, then pull down, and it's all synced. So it wasn't too bad. The only thing I don't want to think is keyboard shortcuts, because the keys are different on this thing. Oh, yeah.
+
+37
+00:18:42,660 --> 00:19:01,230
+Wes Bos: Yeah, that's, that's the really frustrating thing is the keyboard switching, I find that like, I was on Windows for a while. And I finally just switch them to be like what I'm used to. Yeah, it's a silly thing. But if you have to stop and think about copy, paste, oh, yeah. Every time Yeah, that's enough to make someone stop.
+
+38
+00:19:01,500 --> 00:19:24,750
+Scott Tolinski: There was a big thing for me was being able to get the keyboard shortcuts to be the same. Once the keyboard shortcuts were the same. I started feeling way more comfortable on this thing. The only one, like I said, that isn't the same as Chrome, which is killing me that I have to use Ctrl the copy on brave, but I guess it's you know, chromium based? Like, why can you change the keyboard shortcuts on that now? Like, why not wait,
+
+39
+00:19:24,779 --> 00:19:29,090
+Wes Bos: Chrome has their own keyboard shortcuts? Like it's not a system wide thing?
+
+40
+00:19:29,130 --> 00:19:38,090
+Scott Tolinski: I think they use the system wide ones. But like in every other app, like in VS code, you can change, copy and paste in VS
+
+41
+00:19:38,100 --> 00:19:42,110
+Wes Bos: code. Oh, but you can't change it like at a OS level.
+
+42
+00:19:42,540 --> 00:20:57,080
+Scott Tolinski: I think there's like a keyboard remapper that you can do here and I have changed it at a OS level. But I think Chrome is like overriding it or something. I don't know. I started looking reading. And somebody said well, you have to use this keyboard, remember, okay, gotta use a keyboard. remapper Okay, you know not excited about that. But that's just how it is. I think there there are definitely some things and it's, it's not a polished as a polished of experience. But I think Papa Wes is the most polished version of Linux that I've used. There's this pop Oasis store, which is sort of like the Mac App Store where everything's free. You click to install things. It's a nicer experience than than most things like VS code, you install it through the pop store, or whatever. And it just works. So it's very nice to click a button and click Install. It's not all done through the command line, the way you have to do that apt get whatever, you know, I'm not a not command line newbie here. I'm great at the command line. And I think if if I wasn't, I would be dead in the water. I can't say that enough. But for the most part, the laptop is nice. The OS is nice. And I've had a great experience with it. So I'm a big fan. I'm going to continue to use this as a code machine. happy with the purchase happy that I have this thing to take to the gym and precariously set my glute ham developer and continue to do that.
+
+43
+00:20:57,450 --> 00:21:03,630
+Wes Bos: Awesome. You need to get one of those two Shiba toughbooks. Which, yes, like the cops have in their cars.
+
+44
+00:21:03,660 --> 00:21:09,210
+Scott Tolinski: Yes, right. Yeah, the things that weigh 1000 pounds in there. Yeah. lined with Kevlar and whatever. I think
+
+45
+00:21:09,210 --> 00:21:26,790
+Wes Bos: this one looks really nice for exactly what you're talking about. It's it's super light, it seems really durable. You can bring it wherever you want. It's a nice, powerful machine. That's pretty cool. I think if I ever came across a laptop like that, I'd throw Linux on it just to see what it's like if you've got me interested now.
+
+46
+00:21:27,080 --> 00:21:44,600
+Scott Tolinski: It's nice to run Linux two in the way that you know, all your servers run Linux, you're used to it. It's good to get experience with Linux. It makes me feel like a lead hacker. You know, they people say that. Yeah. For the most part. Yeah, I know. It's been cool. It's been fun. It's been a nice little nerdy tech experience for me, so I'm feeling good about it.
+
+47
+00:21:44,910 --> 00:21:55,590
+Wes Bos: Awesome. Well, thanks for sharing that. If you've got any tips of your own. Make sure you tweet us at syntax FM. We'd love to hear what if you use Linux full time and what machine you ended up going north.
+
+48
+00:21:55,800 --> 00:22:01,590
+Scott Tolinski: Again, if I said something stupid, please let us know. We'll retweet you and let our audience know that I said something stupid.
+
+49
+00:22:01,830 --> 00:22:05,790
+Wes Bos: Thanks for tuning in and we will catch you on Wednesday. Please take
+
+50
+00:22:07,770 --> 00:22:17,550
+Scott Tolinski: care head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
