@@ -1,0 +1,572 @@
+1
+00:00:01,319 --> 00:00:02,820
+Announcer: You're listening to syntax
+
+2
+00:00:02,849 --> 00:00:05,760
+Unknown: the podcast with the tastiest web development treats out there.
+
+3
+00:00:05,760 --> 00:00:09,000
+strap yourself in and get ready to live ski
+
+4
+00:00:09,000 --> 00:00:10,560
+and West boss.
+
+5
+00:00:10,560 --> 00:00:45,060
+Wes Bos: Hey everybody, and welcome to syntax. This is the podcast with the tastiest web development treats out there. Today we are going to be talking about building games with JavaScript specifically building actual Steam games. Not like a silly snake or something like that. But actual shipped games with react, we have drew Conley on who is a game developer react developer will talk to him in just a second onto the show today, super excited to have him on and with me, my name is Wes Bos. I realize I forget to say who I am when I'm introducing. My name is Wes Bos. I'm a dev from Canada.
+
+6
+00:00:45,179 --> 00:00:49,140
+Scott Tolinski: You gotta like take it like it's everyone's first episode every single time.
+
+7
+00:00:49,379 --> 00:01:08,010
+Wes Bos: Yeah, that's the funny thing is like now that we have like 176 episodes. Sometimes people ask me like questions. I'm like, don't you listen to every single episode? I'm like, Oh, yeah, no, nobody has the eight days to just listen to the straight. It's just funny. But with me, Mr. szalinski. Scott Lindsey, how you doing today? Scott?
+
+8
+00:01:08,189 --> 00:01:20,640
+Scott Tolinski: Doing good. Finally, caffeinated. So I mentioned in the earlier episode that we recorded the knocking a whole lot asleep, obviously, at this point in our lives, but I'm ready to go. You know, I'm Mama. stepping it up. I'm ready. Yeah,
+
+9
+00:01:20,669 --> 00:01:33,750
+Wes Bos: I'm here. Awesome. Good. I'm finally back from my maternity leave slash long vacation in the summer. And I'm back at my huge monitor. And it feels so good. To be back in my my regular spot.
+
+10
+00:01:34,469 --> 00:01:40,560
+Scott Tolinski: Yeah, good about that, like comfort of your workspace or whatever just pulls you back into work a little bit more. It feels good.
+
+11
+00:01:40,949 --> 00:01:54,930
+Wes Bos: Yeah. So let's get into it. I want to like immediately off the bat plug Drew's game. It's called danger crew, and you can grab it on Steam. And it is super fun. I'll let him tell you what it is. But welcome, Drew, thanks so much for coming on. Hey, yeah.
+
+12
+00:01:54,959 --> 00:01:56,010
+Unknown: Thanks so much for having me.
+
+13
+00:01:56,639 --> 00:02:06,840
+Scott Tolinski: Yeah, so do you really quick before we get into Do you want to just give us a little bit a high level overview about me, not the technical aspects, but just the the game itself? And then we'll get into the tech stuff as we as we go?
+
+14
+00:02:07,049 --> 00:03:34,229
+Unknown: Yeah, sure. So yeah, kind of started as some friends and I work together in an office building, in this really pretty area of St. Louis, Missouri called Clayton. And we were like, at lunch one day, or walking to lunch one day, and it was one of those like, picture perfect fall days where the weather was perfect. And the part of town has like these really nice buildings. And it just felt very inspirational, kind of like you were walking through a movie set or something. Mm hmm. And my friend Henry was like, You know what, we should make a game about this. We're like, you're a developer, and you walk to lunch to AAA, and then you like, walk to the office and like, and yeah, you know, you could get on your laptop and like, battle other programmers and stuff. And yeah, and so we kind of just, like kept piling ideas on and, and we're like, I just felt so in love with this idea. I was like, I'm gonna pull this off. And at the time, I didn't know anything about how games were made. Like, I didn't know anything about unity, or c++ or anything like that. So I was like, You know what, let's just start today with what we know, which for us, were a bunch of front end developers. So we chose just HTML, CSS, and JavaScript, specifically react because I was doing a lot of react at the time. And I just felt very fluid in it, you know, nice and fast and productive. And I was like, you know, if, if the technology gets on our way, will will shift. But for now, we'll just do that and see how far we get. And we just never had to, we never had to switch? Oh, cool. Yeah. And so finally, the game came out earlier this summer. And it was just a really cool experience to work on.
+
+15
+00:03:34,469 --> 00:04:08,669
+Scott Tolinski: You know, what's amazing about the game, I think the thing that you're going to notice immediately if you go to the steam page, or just any any way of seeing the game, is that the first thing you're going to think is this is built in react like it. When I think of video game built in react, I certainly don't think of what you've managed to put together. And I mean, and I say that in the best possible way, because this thing is very impressive on all accounts. So I'm sure we'll both have a ton of questions asked you about how you how you managed to put this thing together. Wes, do you have anything before we get into into those aspects?
+
+16
+00:04:08,699 --> 00:04:55,130
+Wes Bos: Yeah, I just I just think this is so cool. Because naturally, developers I think people think there's like this hundred percent overlap on people that that play games. And I all the time I get people coming to me even like the summer, I was hanging out with my nephew. And his parents were saying like, yeah, we want to teach him to code. Like, could you teach him how to build a game? And I was just like, I could I could teach him how to like build like a drag and drop wiziwig and like an app and I was like, but like, those who don't know about me is like, I never ever play games. I had to download steam this morning to even just play this game. I've done it before. And I've just never had that connection with games. And it's always sort of been like this empty spot because I think gaming is such a cool way to introduce people to programming get them excited about actually making things.
+
+17
+00:04:55,409 --> 00:05:15,810
+Scott Tolinski: Man, I wish that's a contrast for me because I have I'm one of those people that has more steam games than they could ever possibly play. Like, because you go through the humble bundles during the sales and you have all this optimistic idea of all the stuff, maybe you get like four or five games at a time for one of these bundles. And man, my Steam my Steam to do list is much longer than my capacity to play games. So
+
+18
+00:05:15,830 --> 00:05:17,130
+Unknown: that's a common problem.
+
+19
+00:05:17,370 --> 00:05:22,760
+Scott Tolinski: Yeah, the common problem. So we're on different ends of the spectrum here. So this should be pretty good.
+
+20
+00:05:22,920 --> 00:05:23,490
+Wes Bos: Yeah.
+
+21
+00:05:23,490 --> 00:05:35,070
+Scott Tolinski: So let's get into the game itself. You said that you didn't have any knowledge. So you have like no background in game development before? Is that just something that says interested you? And all of a sudden you're like, let's, let's just do it?
+
+22
+00:05:35,430 --> 00:06:38,070
+Unknown: Yeah. To be honest, as a kid when I was like in middle school, I tinkered with this program called gamemaker. Oh, yeah. Which is still I mean, today game thing, very valid. Tons of really large games are made with Game Maker. But this was back in like the early 2000s. And it was a very small thing back then. And so yeah, gamemaker comes with this little program, a programming language called GML, Game Maker language. And that was kind of my like, first gentle introduction into programming. But then life happened, and I like got got away from programming or, you know, did some growing up or whatever. And then when I got back into it, basically, after college, I saw I was starting to get into web development, and I saw the syntax of JavaScript. I was like, oh, I've seen this before. This is just like gamemaker. And so that was kind of a fun way for me to get back into programming and get excited about it again. But I was making little like, Mega Man clones, like I grew up loving Mega Man. So I'd make like the alpha little Mega Man fan games and Game Maker, ripping, you know, art from other games and stuff. So I was very casual, you could say,
+
+23
+00:06:38,160 --> 00:06:55,830
+Scott Tolinski: yeah, I think one of the game that I had played that was made in Game Maker was, obviously is a very popular game hotline, Miami was probably maybe the most popular game made in Game Maker, as far as I know. But it is really impressive what you you can create with that. So why not head back to game maker for this?
+
+24
+00:06:56,280 --> 00:07:24,660
+Unknown: Again, I think it was at the time, I was just so excited about the idea. And I haven't touched game maker in like a really, really, really long time. And so yeah, it was one of those things where I didn't want those, like the friction of having to learn new thing to get in the way of, of God putting out the idea that I wanted to put out. And so again, I was very open to like, we might need to switch or something. But there's also kind of this exciting concept of building the game that you could just load up on a webpage and play. Isn't it interesting
+
+25
+00:07:24,660 --> 00:07:45,990
+Scott Tolinski: how sometimes like the the tech choices, like choosing to use web tech as a challenge, these things can act as sort of like a motivation to work on the project even more, because it's like, yeah, sure, I want to make a game. But the challenge of building a game in these sorts of ways are these sorts of ideas can really like drive those motivation factors and working on it.
+
+26
+00:07:46,080 --> 00:08:25,890
+Unknown: Right, I was trying to kind of find, like, Okay, what differentiates this from any other game? And it's kind of cool, because there's opportunities that let me what we're talking about is really just a webpage, right? So you, you can have the desktop game, and then if it's responsive, right, cuz it's like web code, so then it could gracefully, you could play it on your phone, too. And there's just a lot of opportunity there that I wasn't in, like I grew up playing games, but I wouldn't say that I'm 100% up to speed on all the latest stuff going on in games. And I know that there's a lot of like multi platform, things out there today and all of that. But yeah, at the time, it felt like this really new, exciting way to use the stuff that I already knew, which is, you know, web.
+
+27
+00:08:25,890 --> 00:08:26,910
+Cool. Hmm.
+
+28
+00:08:27,210 --> 00:08:48,330
+Scott Tolinski: Yeah, we'll get into talking about like the publishing aspect and wrapping it all up at the little bit further along. But I'm still interested in this like, so you started building it in react? And what were some of the first initial resources that you went to, to figure out how to even approach building a game in react?
+
+29
+00:08:48,360 --> 00:08:59,299
+Wes Bos: I'm curious about that. Because like, if I were to like whip up, create react app and start to make a game. What do you what do you do like I get you have state? Maybe you put points in state or something like that? Yeah.
+
+30
+00:08:59,340 --> 00:09:09,690
+Unknown: Well, it's funny, you mentioned that, because so first of all, the game is just create react app, in a way. Yeah, there's no fancy configuration or rejecting or anything like that. It's just out of the box, create react
+
+31
+00:09:09,690 --> 00:09:10,260
+Scott Tolinski: app.
+
+32
+00:09:10,279 --> 00:09:49,020
+Unknown: No, yeah, either way. Yeah. And I think the most important thing to understand is that under the hood, you approach it just like you approach any other web project. The kind of key difference is a bunch of visual like, tricks to make it look and feel like a game rather than a webpage. Right? So it's a lot of like moving elements around and doing things with the camera camera is like a pinkies up way to say it's like cropped divs that are moving. Yeah, and then from there, you know, it's just a lot of artwork and svgs and a little bit of canvas here and there. But it's it's really nothing that's not approachable for some of it's done at least a little bit of web development work.
+
+33
+00:09:49,350 --> 00:09:53,760
+Wes Bos: So you're not using like, like a framework or unity or anything.
+
+34
+00:09:53,760 --> 00:10:27,179
+Unknown: No and and that stuff is perfectly valid and awesome. They're great libraries out there. Like Laser that kind of gives you a lot of resources for putting graphics on the screen and physics and moving them around. But our game, if you look at it, it's very simple, where it's basically just characters moving around a grid, and then kind of transitioning in and out to different scenes. But there is nothing in it that really warranted like anything super heavy. It's really just a lot of thing. A lot of simple pieces put together that kind of that net effect is this thing that looks like one of those classic RPG games.
+
+35
+00:10:27,390 --> 00:10:32,850
+Scott Tolinski: So how much of it is Canvas? Because when I looked at it, the first thing I thought of is the whole thing is can No,
+
+36
+00:10:32,880 --> 00:11:15,390
+Unknown: no, it's very little. So any, any character you see on the screen is their own individual little canvas. And the only reason I use that is because Canvas comes with this cool CSS property you can use. I have it written down right here. It was a trick I just like recently discovered. But yet, image rendering pixelated. And what that allows you to do is basically provide an asset that's designed very small at its natural pixel size, and then upscale it without losing any quality. Because the nature and pixel art is like these perfectly even little squares of color. You can upscale it as long as you're doing it evenly, right. So the squares are always like evenly multiplying. That answers such
+
+37
+00:11:15,390 --> 00:11:25,529
+Scott Tolinski: a big question of mine about how you get to do that, because I know you create these pixels in the size of the pixels. So you're just outputting that to a canvas and scaling it up. Right? super great.
+
+38
+00:11:25,560 --> 00:12:10,320
+Unknown: Yeah, the game has this, anytime you resize the window, there's this little calculation that happens on like, how much real estate do I have? And how much of this Can I fit in. And that's why if you kind of open the game and start resizing the window, you'll see that art snap proportionally. Yeah, and it's funny because for the longest time, I had to find that trick because for the longest time, we were using svgs, for all the art to kind of have that same benefit of needing, you know, nice fluid resizing assets. But as the artwork evolved to get way more detailed, and then the file sizes of these SVG started getting huge. I was like this, this probably could work. But it's not the most sustainable thing. So that's when the canvas, I discovered the canvas trick, you can also use that for an image tag. But I didn't know that until, after way,
+
+39
+00:12:10,350 --> 00:12:33,360
+Wes Bos: way. One kind of cool thing, I'll just say, as an aside, I found with that, that little Canvas trick is that if you want to get the dominant colors of an image, is you can write an image to a canvas very small, and then use that pixelating thing and it will give you a grid of like nine pixels. And then you can just loop over nine pixels and find out what colors they are. No, that's interesting.
+
+40
+00:12:33,419 --> 00:12:37,500
+Unknown: That's awesome. You can totally generate like color palettes and stuff from that that's so cool.
+
+41
+00:12:38,730 --> 00:12:58,890
+Wes Bos: Using like, I was using like a library to like to snoop colours and do all this like equations and someone's like, you can just write this to Canvas and at nine pixels by nine pixels wide and get our two pixels by two pixels wide. I'll give you four. And it will give you the four most dominant colors without any libraries at all. That's so cool.
+
+42
+00:12:58,919 --> 00:13:03,840
+Unknown: I've always wondered how that's done. It seems magical, like some you need some heavy processor or something.
+
+43
+00:13:03,899 --> 00:13:04,860
+Scott Tolinski: Yeah, right, right.
+
+44
+00:13:05,520 --> 00:13:10,919
+Wes Bos: Are you using like anything like like Redux or any other JavaScript libraries?
+
+45
+00:13:10,950 --> 00:13:56,070
+Unknown: Yeah, there's a very light, light usage of Redux. Basically, just to glue some of the pieces together. So the game for context. Most of it is flow from moving from like the scene where you're walking around the world and talking to people into these little turn based battle sequences. And those are like kind of two different distinct scenes that happen. And so Redux helps, and like providing a place to store some state that needs to persist between those. And again, like this project, it took, like we started it in early 2015, when the landscape of things around react was very different. And so if I was starting today, I don't know if you'd really need Redux. But again, it's one of those things I just felt comfortable with, and really enjoyed how it worked. And so I just kind of stuck with that.
+
+46
+00:13:56,340 --> 00:14:44,909
+Scott Tolinski: It's probably great to have that structure too, when you're dealing with any of this. So one of the things that I mean, the graphics, for me are such a big interest point. Like I'm so curious about how you did so many of these things. So the each individual person is a canvas. But so let's say the environments, especially you have like repeating floors, and things like that, I'm really interested in how you laid out the environments. And I'm sure a lot of it is CSS, and HTML right. Now that I've heard a little bit more, but I'm really curious about how you got some of these repeating patterns in here to look so good. Not only that, but like with some of the variability, let's say you have like, it's like a grid of outside tiles every every once in a while, there's gonna be like a flower on one of the tiles or something like that. I'm very curious about not only how you created the grid, but how you created some of those interesting variations, right?
+
+47
+00:14:44,940 --> 00:15:01,110
+Unknown: I wish I had a better answer for you. But the honest truth is that a lot of that stuff is created created outside in an art program, like you can use whatever you're comfortable with. I've been using this pixel art program called a sprite, which is really lightweight, and it's designed For pixel
+
+48
+00:15:01,140 --> 00:15:06,049
+Scott Tolinski: art, hmm, the letter A like a Yeah, it's like a e sprite,
+
+49
+00:15:06,059 --> 00:15:08,190
+Unknown: I can send you guys a link, if you
+
+50
+00:15:08,299 --> 00:15:10,230
+Wes Bos: want to link to it, it's Yeah, we'll put it in the show notes.
+
+51
+00:15:10,260 --> 00:16:35,010
+Unknown: Yeah, it's like one of my favorite pieces of software, I think it's like 15 bucks hundred percent worth it if you want to even just experiment with pixel art. And you're absolutely right on the side, we have this like Dropbox folder of all of our tile sets. And we use that to construct actual like baked PNGs of each individual map outs outside of the game, and then we just import it into the game. We also made this little editor like a separate app that acts as an editor for the game that basically pipes any piece of content as JSON into the game. And so each if you notice, like if you move from a map to a different map, that's like moving to a different node in the JSON tree of what what's happening in this area, what asset do we use? How big is it when you talk to someone? What did they say? All of that data is kind of structured that way. But yeah, as far as the graphics side, it was pretty manual. And that's, that's not because it had to be I was just kind of a way that I had this one devastating moment where we did try to work with pure tile sets where you'd you'd place like individual tiles, and it would dynamically render kind of like what we were talking about before. Sure. In the tiling program that we were using corrupted all of our files, and we lost. Yeah, I wasn't smart enough to like version control them. I had them in like Dropbox. And I could have, I could have done some reverse engineering to fix it. But it was kind of like, you know what, we're gonna keep this real simple and just make individual assets for the maps. Wow.
+
+52
+00:16:35,039 --> 00:16:45,600
+Scott Tolinski: So what about like, the text? Is the text actual text? And you just used excellent fonts that totally mimic that art style? Or is the the text also rendered? How does that work?
+
+53
+00:16:45,750 --> 00:17:15,780
+Unknown: Yeah, so the text is all SVG, where each each character kind of has its own SVG paths in it. And in that you can kind of get in there and play with them and recover them. But yeah, they're one of the things with pixel art is that it's really important that every single pixel on the screen matches the pixel ratio. Yeah, I have a one pixel thing like no character, like say, You're making a T of the character T, you know, the little top of the T needs to be one pixel that needs to exactly match like the one pixel of a character's eye.
+
+54
+00:17:16,140 --> 00:17:16,650
+Yeah,
+
+55
+00:17:16,650 --> 00:17:39,720
+otherwise, you get this weird, like inconsistent kind of effect. It just doesn't feel right, because it doesn't match. You know, like how that the overall grid. Right, right. Yeah. And so to do that, we basically used svgs that match. Again, similar calculation, like how big is the pixel size right now? We'll use that to size the characters. Wow. And then under the hood, we have some like text baked into the DOM for readers and that kind of thing.
+
+56
+00:17:40,100 --> 00:17:47,060
+Scott Tolinski: Yeah. So okay, so even within SVG, it's just these are all paths, each letters that don't path. Yeah, yep.
+
+57
+00:17:47,090 --> 00:18:09,540
+Unknown: If you get in there and inspect the game, you'll just see like a bunch of SVG s for each character on there. And then also, there's kind of this like typewriter effect, where if I'm saying hello, you'll see that the you know, the text color atll kind of reveal one at a time. It's just SVG is like, you know, CSS visibility popping in and out. So pretty simple stuff. But it when you put it all together, it feels like a game.
+
+58
+00:18:10,070 --> 00:18:23,730
+Scott Tolinski: That's amazing. I mean, what you have is that even though there's simple solutions, they're like really smart solutions to all of this stuff. Where those are those svgs is with those all created with this a sprite as well or is that?
+
+59
+00:18:23,910 --> 00:19:13,310
+Unknown: Yeah, yes. So a Sprite. Basically, the workflow for art was created in a Sprite. And then it the time of this recording a sprite doesn't really have any SVG export support. And so I would export it as a PNG and then pipe it into Daniel Shaw made this amazing code pen that I have bookmarked. I use it almost every day. And you basically can drag a PNG into it. I'll send you guys this link to you drag a PNG into it. And then using similar magic, it will give you out SVG of what you just dropped in. So pixelart, I basically took every character and dropped it into this tool that he made and then copied the the SVG paths into the React code, and kind of like a reusable, if you mentioned like a reusable icon system kind of thing and react. It's basically that but their letters. Wow.
+
+60
+00:19:14,300 --> 00:19:23,840
+Scott Tolinski: This is really cool. Yeah, I'm so glad we had you on today. Have you ever noticed that like we have uneven amount of people from Denver on this show? I think it's because
+
+61
+00:19:25,140 --> 00:19:28,260
+Unknown: I yeah, I live in Denver right now. I yeah, I guess I didn't say that.
+
+62
+00:19:28,979 --> 00:19:33,080
+Scott Tolinski: Yeah, I don't people that people aren't really from Denver West. It's a very transients.
+
+63
+00:19:33,080 --> 00:19:34,850
+Wes Bos: So if we just go to Denver,
+
+64
+00:19:34,890 --> 00:20:28,650
+Unknown: yeah. So my wife and I moved here. A year and a half ago, I guess, from St. Louis, Missouri. We just we kind of like grew up in St. Louis spent our whole lives in St. Louis had never left St. Louis and we're like, you know, it's time for a change. We're gonna we're gonna move somewhere and just from traveling around and exploring different cities we visited my brother happened to live here in Denver, too. And so we were visiting him we're like, man, Denver's awesome. I had never come here as a kid like for vacations and stuff, we'd always go to the beach in Florida or whatever. So I've never really been to the mountains never been to this area. And so we just kind of fell in love with it and decided to move here. And yeah, that's the thing is like, a lot of so a lot of people have a similar story where a lot of people have moved here and people that are what they call it, Colorado natives, you know, born here. Quiet. And now there's all this traffic and stuff. So yes, I'm part of the problem. I'm also
+
+65
+00:20:28,650 --> 00:20:47,840
+Scott Tolinski: part of the problem, we moved to here three and a half years ago, and from Southeast Michigan. So Midwest to Colorado to Denver, it's very common thing. We've met so many people who are also Midwesterners, or anybody who's come here, and it's just like, I don't want to leave. And now, I'm sorry, natives. I'm sorry, every single one of you,
+
+66
+00:20:47,880 --> 00:21:01,140
+Unknown: right? Well, that's what's so funny, because I think something that really drew us here was that people are so welcoming, because there are so many people that you know, have gone through the same thing. And so although it's a very cool place, we're really happy here. I'm excited to see you know, where we go with it. Cool.
+
+67
+00:21:01,170 --> 00:21:15,000
+Scott Tolinski: Yeah. All right. Well, let's get back into the game stuff. But really quick, before we do, let's take a quick break to blast off to one of our sponsors, which is Log Rocket. I know that was
+
+68
+00:21:15,300 --> 00:21:18,590
+Wes Bos: pretty good. No blast off to sponsors get I like it.
+
+69
+00:21:18,749 --> 00:22:36,360
+Scott Tolinski: Yeah, okay, we'll use it. Log Rocket is a longtime sponsor over here at syntaxin, they're going to make solving some of your bugs absolutely painless. Because a lot of the times what we work in when we're trying to solve bugs, is trying to sort of work in an environment that we can't necessarily reproduce Exactly. So you're just sort of going off of, you're going off of error logs, you're going off of what your users are saying you're going off of maybe potentially, you know, a service log or something that somebody had submitted. But what you don't get is any sort of visual understanding of what happened for the user themselves. Besides what they've told you. Now Log Rocket changes all that because what they do is give you a pixel perfect replay of exactly what the user saw. When they did, It even gives you things like your Redux store at any given point in time, your network activity, your console login errors, so you can scrub through this video of what they did, where they clicked. And you can get their network requests, console logs and errors right there in front of you. It works with all the platforms, you know, and love from any front end framework you possibly imagine to some of our other sponsors like Sentry, that categorize and log your bugs. So you're going to check out Log Rocket at Log rocket.com, forward slash syntax sign up, they get 14 days for free, check it out.
+
+70
+00:22:36,840 --> 00:23:05,160
+Wes Bos: All right, let's keep rolling with this. You talked about how you've made the sort of the, the PNGs and scgs, and whatnot, but the actual like animation, moving someone from one place to another, maybe we should explain a little bit like the the whole premise of the game is that you're a developer and you walk to the coffee shop, like you said, and you walk around the thing, and you have these little battles. And there's a lot of animation as part of walking and doing the battles and whatnot. Like how is that all done? Is that CSS or using library?
+
+71
+00:23:05,400 --> 00:25:02,730
+Unknown: Yeah, yeah, basically, it's all CSS spreadsheets. And so when you see a character on the screen, you're actually seeing one of 16 frames of that character. Again, a lot of fancy div crap, fancy, right, just cropping divs, where you see, basically each each character is like a parent div with an underlying spritesheet. And then as you are moving around, we're utilizing CSS has this easing function called steps. And so as you're walking the characters kind of leapfrogging under the hood, to show like frame one, frame two, frame three frame, 41234, just like that. And then the end result, when you only see one of those frames at a time looks like they're walking. And so that that does like the the movement of the character itself, but then to actually move the character to a different cell. It's just a simple kind of x, y change, a lot of like CSS transforms to just smoothly move something to the next space, we are using a requestAnimationFrame loop to kind of keep everything in sync rather than relying on something like timing. Okay, yeah. And so every, like, every character on the screen kind of operates in that same loop. Yeah. And yeah, so you just, you know, you as the, as the player, you hold the right key down, the character starts moving to the right, or the left key down, the character moves to the left. And then to do that, we're also moving the map behind you in the opposite direction. And that's kind of what creates that like camera effect, where, where the frame is centered on the screen. But then as you move, it kind of feels like you're walking through our world because the world is moving behind you too. Huh. And that came like, I don't know if we said it, but we started this game in 2015. So it's been three and a half years. Well, more now. But by the time it came out, it was like three and a half years of constantly iterating on ways to do this. There's a million ways to do it. It's I don't want to sound like this is the way but just going through a lot of trial and error and experimentation. Like That's kind of the method that we ended up shipping in the final game.
+
+72
+00:25:03,240 --> 00:25:12,060
+Scott Tolinski: It's so impressive. The whole thing is so impressive on this lips thing is nuts. Yeah, that's how Twitter does their little animation, when you click the heart is really that
+
+73
+00:25:12,060 --> 00:25:22,920
+Wes Bos: thing. Yeah, I didn't know about this. So you can like transition from one thing to another, but instead of it smooth, yes, doing smoothly or busy a curve, it just goes.
+
+74
+00:25:24,480 --> 00:26:07,230
+Unknown: Yeah, and it's nice for like the designer's point of view, because you can design the the animation in like an animation program, and then just export the end result as a file and then basically just drop it in. Like in our case, we use react, you obviously don't have to use react, you can use whatever you want. But we have this nice reusable react component where you drop in the spritesheet and tell it how many frames are there. And then it will just handle the, you know, the animation for us. And that's used all over the place. Almost every piece of animation in the game uses that technique. It's pretty simple once you wrap your head around it, but it's really effective. And it looks just like the games that influenced us as kids like the games, we wanted to create one like, and yeah, so that that's worked really well.
+
+75
+00:26:07,320 --> 00:26:21,510
+Scott Tolinski: So I have a question about performance. Did you ever run into any major performance issues? Were there things that were like really locked you up at any given point? And you didn't know how to proceed? Or wondering if this was the right solution? Or was it smooth sailing in that regard?
+
+76
+00:26:21,540 --> 00:27:22,740
+Unknown: Yeah, part of the many years of iteration was kind of constantly discovering, as the game grew. And we're trying to do more and more with it, that the performance started to suffer here. And there, a lot of that was learning to consolidate loops. Like at one point, every character on the screen had their own loop. And so we did kind of a big refactor to turn it into, you know, just one shared loop that everybody would use. And then, like, certain optimizations to turn people on and off if they're not visible on the screen, so that you're not wasting time. Yeah, like, we saw varied results, right, like on most of the time, you know, I use like a fairly modern MacBook Pro. And performance is good. But then I'd like go over to my parents house and fire it up on their old like PC laptop. Gosh, this isn't right. I have different browsers to wood. I guess we'll get into this later. But we ended up shipping it on electron. And so yeah, kind of our cat browser is chromium under the hood. But at the time, you know, you can play the web demo in any browser you want. And you we definitely see, you know, certain browsers would handle it better than others. And I
+
+77
+00:27:22,740 --> 00:27:42,960
+Scott Tolinski: guess that's the beauty about shipping in electronics, you get to control that environment a little bit more than you could just saying here Not to mention, you can bundle it along those lines, like user user states and saves. are you saving those just as files or something via electron and the node and electron? Or are you doing something specifically?
+
+78
+00:27:42,990 --> 00:29:20,880
+Unknown: Right, exactly. So basically, the nature of well, first of all, the nature of react, first of all, is that components are hydrated from data somehow, right? So we can take the, the state of where the user is out right now, and then lock it away somewhere. And then later, you boot up the game ganda resume, we just pipe that same day at a back end, and you were right back where you were. And so that's definitely a nice thing. It turned out to make the saving and loading thing pretty easy. But yeah, you're exactly right under the hood, the game kind of has an environment variable that knows, am I the web version, or am I the electron version. And so when we run the Save function on the web version, it'll basically just write something to the local storage. So you still have it. Previous and previous demos of the game, we went through the whole route of having like a Firebase server where you'd make an account and login, and then your data would persist that way. Which is cool, because you could pull it up on different devices. And it wasn't, you know, as fragile as local storage. But we ended up getting away from that just when we decided to pursue steam and releasing it that way. And yeah, but anyway, on the Yeah, on. So electron will save a file to your machine, electron if to those who aren't familiar, it gives you this nice like instance of chromium that runs only your code, while it also gives you this little Node JS environment. So you can run back any kind of code. And yeah, so we just fire off basically like hitting a local API or something like that. You just fire off a call. And then it saves the JSON file to your machine. And then later, when you come back and boot up the game, there's a another one that looks for any existing JSON files, and then you cool you're back in business.
+
+79
+00:29:20,940 --> 00:29:24,900
+Wes Bos: So there's no server side aspect to this at all, like even
+
+80
+00:29:25,260 --> 00:29:26,820
+Unknown: the analytics stuff. Oh,
+
+81
+00:29:26,850 --> 00:29:36,270
+Wes Bos: yeah. But like, do you do ever send data outside like, dude, keep? My friend has a game and he keeps track of how many, like bullets are sent in like crazy stuff like that you can do with Google Analytics.
+
+82
+00:29:36,300 --> 00:30:10,200
+Unknown: Yeah. So we're not using Google Analytics specifically. But we do have a little bit of an analytics layer that basically just sends message off to what messages off to one of our servers, and it's completely anonymous. It just tells us stuff like, which battles are super hard. What like how far are people getting into the game? Where are they playing through to and stopping. We'll see like the breakdown of wins. And losses in the battles and so we'll see like a battle start to go read read read read read like this battle might be too hard because X percent of people are rage quitting after it and that was yeah.
+
+83
+00:30:10,710 --> 00:30:13,230
+Wes Bos: Oh yeah, that's that's really cool.
+
+84
+00:30:13,260 --> 00:30:33,270
+Scott Tolinski: That's this is so fascinating Yeah. And it's funny that you it's it's really interesting they did it just via like loading JSON files for those users dates because we I mean we do that same technique in my like beginner electron course you can learn that in like 10 minutes just writing a file and loading the file on unstart. That's just so it's so great, right? Again, I
+
+85
+00:30:33,270 --> 00:30:41,460
+Unknown: think it gets back to like, under the hood, it's really the same approach is making anything else on the web. It's just some of the visual stuff that makes it feel like a game.
+
+86
+00:30:41,910 --> 00:30:54,450
+Scott Tolinski: Some of the things that impressed me the most I was looking into this for like the level editor. And it from what I read, you said that all of the levels were created with the level editor itself. Is that true? Or am I making them? Yeah, no,
+
+87
+00:30:54,450 --> 00:31:24,300
+Unknown: you're totally right. So I think I mentioned before, we have a different repository that is just the map editor. And so things like constructing What does this person say when I talk to them? What if I've already completed this task? And then I talked to them? What do they say after that all of that's done in this kind of nice visual editor, for one to keep it nice and maintainable. Because it's, the game is just like working off a bunch of JSON under the hood, that editor is a glorified JSON creator, we're just making this really complicated object of like, what should happen when
+
+88
+00:31:24,930 --> 00:32:27,930
+Scott Tolinski: I'm doing something very similar right now even just an interface where it's a, it's just a series of forms that are crafting, for the new like courses platform that we're in, I mean, it's like courses, right? It's just a series, you learn this one, then you learn this one, the latest one, we have a nice little like Mario overworld stub map connecting everything. So I just drew an SVG path through the center of each one. But the whole thing at the end of the day is just saving everything to a basic JSON write, you can load that up and create essentially a visual path. And this, if you if you anyone listening hasn't seen this or anything like that, besides just checking out the game, we'll post a link to this blog post in the show notes. But juror is a blog post here about his editor. And it's so cool, you have to get a visual aspect on this, you have to get your eyes on this thing, because it's all react. And even though it is a glorified JSON editor, it's amazing. And this just sort of like blows my mind of the stuff that people are able to create with this, this web tech, I'm like, so inspired by looking at all this stuff.
+
+89
+00:32:28,230 --> 00:33:07,200
+Unknown: Yeah, that's awesome. Like from the beginning, we knew that we wanted to make a really long Well, it didn't turn out that long, it takes about average person completes it like six hours. But Originally, it was like an eight hour game. And I'm not gonna write all that JSON by hand, very error prone and not very creative, kind of slow and sluggish. And so like from day one, we need some maintainable way to add content to this. It's also kind of cool because someone that's not technical could get in and make their own levels and add their own content. So if we wanted to do the user generated content kind of thing we could, we didn't end up going that way. But it's nice to be set up to do that in the future if
+
+90
+00:33:07,200 --> 00:33:45,150
+Scott Tolinski: we wanted. Not only that, but you now have a like a working editor in case you want to even change the art style, change the theme, change the game or whatever, you have this editor that you could probably use and retrofit into any other type of game that uses a similar sort of like tile tiling set or use case editing is just superduper. Cool. Another thing that's superduper cool, this is week transition is getting paid, we all like to get paid. I'm sure drew would love to get paid for making this game. So go by his game. But in addition to that, you want to get paid. So you want to make sure that your invoices and everything are sent viewed and everything correctly. And for that you're gonna want to check out fresh books.
+
+91
+00:33:45,270 --> 00:34:36,540
+Wes Bos: Yeah, I'm gonna do this ad read. And just Scott and I right before this podcast, we use fresh books to figure out, we're like, hey, did one of our sponsors pay us yet? I said, I don't know. Let's go into fresh books. And just that ability of like, I don't have to track down like 80 emails and pieced them together and figure out if they sent a check and go into my bank account. It's like, No, you just go on Freshbooks and you take a look at your invoices, and you can see if they paid it, or if they didn't pay it. And it's that simple. I love fresh books. Obviously, they do a lot more cloud accounting stuff than that, but that's the one I'm highlighting today. If you want to sign up for fresh books, please go to fresh books calm for slash syntax, use syntax in the How did you hear about a section that's gonna get you a 30 day unrestricted free trial? well on your way to billing and tracking everything that's going on as your business. Thanks so much to Freshbooks for sponsoring.
+
+92
+00:34:37,050 --> 00:35:00,650
+Scott Tolinski: Cool. So I think the last major aspect we want to talk about is and we've talked a little bit about this before already by bringing the fact that it was shipped to electron so to say, but I'm interested in the process of publishing this game, getting it wrapped up getting it ready to go for Steam, and like also, how do you handle updates through Steam? Those kinds of things are Yeah, seemed like giants. To me,
+
+93
+00:35:00,650 --> 00:38:06,480
+Unknown: yeah, totally. And there are definitely mysteries. We've learned a lot in the past few months of going through this sort of painful process of doing it. But yeah, yeah. So first of all, we knew that, like, we had a lot of fun releasing these demos to code pen and in our own website and stuff as a web thing, but kind of earlier this year, we made the conscious decision that we want people to play this and so we need to go where the gamers are. And and while the code bend community is awesome, and very supportive and cool. They're like that, while they appreciate the game, there's very much makers themselves, and not necessarily the people that would spend eight hours playing a game. And so yeah, so we made the decision to go to steam. And so which led us down the path, like we need some way to wrap this so that you can open it as an app on your computer and have like this, this tangible thing that you can buy and download. And, yeah, so so that is what led us to electron electron, if you haven't used to before, there's a pretty straightforward process where under the hood, kind of the root of your project is an HTML file in that HTML file will execute whatever code just just like Chrome would, and then it opens that web page and your nice little like private instance of chromium, where you've got the same dev tools available to you. And you just feel right at home. When you're done making your edits, you basically run a build command. For us, it's NPM, run electron builder. And then that will create the the final like dot app on my Mac machine, electron exports to Mac, Windows and Linux. And so even though I'm a Mac user, I can still create Windows versions and Linux versions directly from my Mac. And so we just run the command to build all three of those. And then you go through a little bit of initial setup process to create a developer account with steam, you do some back and forth on taxes and business stuff and sign some like NDA with them around money and all that but but at the end of the day, once everything is cool, they give you access to this uploader program where then we can go in and upload our our three versions. Right now we're only on Mac and Windows, we do have a Linux version out, we've just had a hard time testing it so so it's not up there on Steam just yet. Yeah, so you upload your versions of your game. And then they give you a little editor for your store page, which is that page that you see the trailer and the reviews and you can update the copy of your game and all that. And then you go some some like final final approval kind of process with them where they download your game and make sure it is the game that you say that you're that it is. And then eventually, yeah, you hit you literally hit a button on launch day, it says launch on Steam. And then it's live for people to download and buy and getting their steam libraries. When it as far as updating. If you make a change to the game, which we've made a bunch of them after our release date, you go through the same process of uploading the new versions, and then steam is smart enough to trigger like, hey, danger crew has an update waiting. So the next time a user opens the game on Steam, it'll just automatically download the new version. We don't have to do any extra code for updating or anything like that. It just works out of the box once you give them a new version, which has been really cool.
+
+94
+00:38:06,629 --> 00:38:15,440
+Scott Tolinski: Yeah, that makes it nice and easy. Okay, I was thinking it was gonna be way more complex and obtuse than that. But that sounds really, really not too bad.
+
+95
+00:38:15,710 --> 00:38:39,750
+Wes Bos: Is it allowed to, like I know, when iPhone like react and JavaScript for iPhone apps became popular, a lot of people were just manually refreshing the app themselves. Oh, yeah. And then Apple laid the ban hammer on that be like, you know, you have to go through our update process. You can't just they're just loading a web. Yeah, you could just go and fetch a new JavaScript bundle and refresh the page. Is that allowed? seem would probably have? Well,
+
+96
+00:38:39,750 --> 00:39:41,420
+Unknown: it's funny because they don't, they don't really do a lot of checking when you release an update. So theoretically, I could like go update the game to have all kinds of bad stuff. And I'm not gonna do this. But you could do that. And then I don't think they'd know, until someone complained about it. Whereas I think I'm not super familiar with like the iOS world, but I think someone like manually checked your update. Right? Yeah. And so the sneaky way of, you know, loading, like, dynamically pulled code into the final app. Yeah. Yeah. As far as like, is that allowed on Steam or not? I'm not really sure. Because I think there are quite a few. Well, I don't know how many. But we're not the only electron app on Steam, like people have been doing this. And so I'm not sure how different the like gaming landscape is on how many games out there are like pulling in this code. I know a lot of them are pulling in dynamic content. Like it's Halloween. So the Halloween level is out today. And I'm pretty sure that, you know, through just API calls and such without having to redo whole builds. Yeah, so that's an interesting question. I'm not really sure.
+
+97
+00:39:41,940 --> 00:40:13,860
+Scott Tolinski: Wow. So I have one more question about some of the game logic stuff. So you know, this is like a traditional sort of RPG style, where you have, you know, an action and that's taking place and then they're sure, like, surely some sort of percentages stuff to figure out out what the result of that is. So even with buffs and debuffs, and all that stuff was that aspect of it hard for you to tweak get right. Did you have any experience there before you went in this? Or was this all a learning experience? Yeah, so
+
+98
+00:40:13,860 --> 00:41:18,650
+Unknown: I wrote that part of the game seven times. The seventh iteration is the one that was final. And you can see a lot of early versions on code pen, like, my friend David made this really cool artwork of Voldemort verse, Harry Potter. So we had this like prototype of Harry Potter verse Voldemort, that was like my first experiment with having basically like react state, like I'm this character, I have hp of 100. And on this character, I have hp of 80. And if I use this move, it's going to subtract your HP by minus 10. And then we have all kinds of different moves that affect the state in different ways. So it started as like a nice, simple prototype like that. And then we got a little bit more fancier with things like statuses, like if I'm using the deadline status, then I get an extra turn this round. Or if I'm, we've got like, all kinds of programmers stuff in it. So someone gets furious. And so then they're like a troll. And then they're, they're like, they're attacked as more but then they're, they take more damage and like your focus, so you put on headphones, and then that makes your your attacks like way more accurate. All the developers stuff.
+
+99
+00:41:18,920 --> 00:41:29,010
+Scott Tolinski: I had a question about that, too. I just had, like, you know, the dev themes in this game are so prominent, like that must have been super fun to do. Like, that must have been a really great aspect of it for you, right? Yeah,
+
+100
+00:41:29,010 --> 00:42:06,000
+Unknown: just kind of piping like stuff that I've seen as a developer into the game. Like, there's a part of the story where you attend meetings in an office and you like, go through an interview process. And you you go to a conference at one point, there's just all kinds of stuff, there was just this fueled by just kind of funny, silly things, trying to poke fun and make people smile. Like that's the real point of it is to it's a little far, it's super far fetched. There's some really goofy stuff in there. But it's Yeah, it's all about like, as a developer, haha, there's a lot of humor in here. And hopefully, you know, if you check it out, and you resonate with some of the stuff, it'll like, put a smile on your face.
+
+101
+00:42:06,380 --> 00:42:22,410
+Scott Tolinski: It definitely did. For me, I think those are like some of the fun things. And especially, it almost feels like being a part of this community, like almost inside jokey kind of stuff, where, you know, it's the stuff you get from just being a developer. And it's just, I don't know, I just really loved it. So you know, thank you for those aspects. Yeah. Cool.
+
+102
+00:42:22,410 --> 00:42:27,810
+Unknown: I'm glad that that stuff's coming through. Because I was like, I don't know if anybody's gonna like this. No, yeah.
+
+103
+00:42:27,840 --> 00:42:48,710
+Wes Bos: No, it's I love that the just the developer, you see that even on Instagram like this, the I don't know what you call it. But just the idea of being a developer and just celebrating the things that are developer II, like, talking about array methods are having stickers like those are, it's such a fun thing to do it and put it into a game.
+
+104
+00:42:49,260 --> 00:42:56,070
+Unknown: Yeah, it's fun to work on. And there's no shortage of there's no shortage of that kind of content. And so already, we're kind of starting to work on the next one. And
+
+105
+00:42:57,390 --> 00:43:00,420
+Wes Bos: you know, can you put in Scotland ski character?
+
+106
+00:43:00,480 --> 00:43:03,960
+Unknown: I can't. Yes. Diaz in your podcasts in the game?
+
+107
+00:43:04,230 --> 00:43:05,070
+Scott Tolinski: Yeah, syntax.
+
+108
+00:43:07,020 --> 00:43:18,090
+Wes Bos: Oh, and then like me and Scott, like battle it out by like the cheesiest transition into a sponsor or something like that. Yeah. That would
+
+109
+00:43:18,090 --> 00:43:32,850
+Unknown: be great. That was it's funny. It's kind of worth mentioning, like, if you guys have been to, like a conference or a meet up before where someone's in the audience, and they have to, like, raise their hand and interrupt the speaker and tell the room how smart they are. It's like, yeah, down, but it's
+
+110
+00:43:32,850 --> 00:43:34,320
+Wes Bos: kind of like what if those
+
+111
+00:43:34,460 --> 00:43:43,500
+Unknown: two of those even though Yeah, so like, in a such a heated argument over code that they like, busted out their laptops and started going at it with each other? That was the real inspiration.
+
+112
+00:43:43,950 --> 00:44:21,540
+Scott Tolinski: That's awesome. We really, we were just joking about that. The other day, that was so funny. Cool. I don't have any more questions. This is awesome. I highly recommend everybody check this out. Because it's not only from a technical perspective, it's it's superduper impressive. If you think about it being react the entire time, it's gonna blow your mind. But just from a fun standpoint, if you like playing games, you're gonna check this out. This is my kind of game. I play a lot of stuff like this too. Anyways, it was always a Final Fantasy fan and stuff growing up. So just anything like that classic RPG is my jam. But yeah, so check it out. Again, we'll have the links available in the episode description was David availa
+
+113
+00:44:21,720 --> 00:44:26,340
+Wes Bos: store dot steam power.com Ford slash app Ford slash 1064690.
+
+114
+00:44:27,150 --> 00:44:39,630
+Scott Tolinski: Yeah, you can also just go to danger calm the danger crew.com that was the URL is referring to West Thank you very much. So Drew, do you know about the concept of sick pics?
+
+115
+00:44:39,810 --> 00:44:40,800
+Unknown: Yeah, of course.
+
+116
+00:44:40,830 --> 00:44:55,500
+Scott Tolinski: Yes. So we do we do sick pics on this show. For those of you who don't know where we pick things that we find to be sick can be pretty much anything whatsoever. And since I don't have mine ready just yet, Drew or west. Would you like to start with your sick pick? Yes,
+
+117
+00:44:55,500 --> 00:44:57,510
+Unknown: I can. I can go first. So my
+
+118
+00:44:57,540 --> 00:44:58,380
+Go for it. First of all, thank
+
+119
+00:44:58,380 --> 00:45:01,680
+you for letting me pick a sick pay. This is a this is this weird
+
+120
+00:45:02,909 --> 00:45:04,560
+Wes Bos: part of the show. Yeah.
+
+121
+00:45:04,829 --> 00:45:37,680
+Unknown: So mine is actually an Instagram account. This is actually already a pretty popular thing. So it's likely that people have heard of it before, but I find it hilarious it brightens my day every single day. It's called a Nathan w pile strange planet. You can just google strange planet Instagram, this cartoonists makes these hilarious little comics about aliens that are like observing humans and acting like humans. And it's hard to describe the humor, it's hard for me to articulate it, you just got to check it out and follow them on Instagram. If you're an Instagram user, and I promise they will make you smile every single day. I think he releases a new comic every day. So definitely check that out.
+
+122
+00:45:38,069 --> 00:45:42,840
+Scott Tolinski: I've seen his comments or his comics before, but I have not subscribed to him on Instagram. So I'm
+
+123
+00:45:42,869 --> 00:47:10,110
+Wes Bos: not seeing them on Reddit. I didn't realize him. I'm following now. That's right. Let's good. My sick pic is going to be a tweet thread. So couple, Peter, and it's a 40 part tweet thread where I go off and rant. Oh, something you're gonna like no, it's uh, I don't know. But a month or two ago, I sick pick the Logitech MX Master MX two or MX two s master something like that. It's a new mouse that I got. And I've been loving it. And I've spent some time after like 10 years with the Magic Mouse, I spent some time sort of configuring it. And just like on a month or two later, I finally was like, Alright, I'm happy with my config. I'm happy with all there's like 40 buttons on it what each of the buttons do. And then I tweeted it out because a bunch of people are asking, like, what config do you use? And then the replies this we thread just totally blew me out of the water with much better configs to do because there's like buttons that you can have gesture. So if you're pushing the button, you put you move your move up, then it can like raise the volume or switch nap or you can do specific settings in a specific app for that mouse. It's unreal of what you can do with it. And the the reply says right? It's not my tweet, it's the replies that are actually the interesting part. So I'll link up the thread just go in and read through all of the the different replies and see what people are doing with their MX Master mouse and how they are configuring it. It's pretty cool. Cool.
+
+124
+00:47:10,110 --> 00:48:21,810
+Scott Tolinski: And I think pick is going to be an application that was a sick pick a long time ago, maybe like one of the first or second or third episodes of syntax. I'm just picking figma again, because I absolutely love and use figma. And the reason why I'm sick picking is because they recently within like the past two months or so I've released plugins for figma which is like always sort of the thing that was like oh, suppose gauchos plugins ball, okay, it doesn't work on most computers only works on Macs. So figma is the sort of relevant for this episode because it works in your browser, just like built with web tech. And it now has plugins. So you can add plugins, not only can you build plugins yourself, but it's just so super cool that plugins have just sort of come about in the past couple of months here. And there's already just about a billion of them. So I'm really excited diving in. I was thinking about doing a little video series about maybe exploring some of these plugins, so I might I might do that. If you're interested in that. Let us know. But yeah, figma figma.com. It's my favorite tool. I absolutely love them. If you watch the tutorial videos, you might hear my voice a little bit because I liked it so much. I did some of their tutorials for them. So, but yeah, that's my stick pick. I don't know anything else. Shameless plugs. Drew, would you do you have anything that you'd like to shamelessly plug in? I
+
+125
+00:48:21,810 --> 00:48:46,830
+Unknown: can take a stab at a shameless plug thing. Yeah, so danger crew. It's a top down RPG about being a developer at a company. So if you if you grew up playing like some classic RPG from the 90s, and you'd like goofy programmer humor, considering Check, check it out on Steam. And if you do happen to check it out, please consider leaving us a review. If you like it, the reviews a small action that really goes a long way. So cool.
+
+126
+00:48:47,010 --> 00:48:50,100
+Scott Tolinski: Yeah, please do that. Wes shameless plugs.
+
+127
+00:48:50,220 --> 00:48:55,260
+Wes Bos: I'm going to shamelessly plug my Instagram bow for I switch it up a
+
+128
+00:48:55,260 --> 00:48:57,810
+Scott Tolinski: little bit expecting it to be all of my courses is
+
+129
+00:48:57,840 --> 00:49:24,300
+Wes Bos: Oh my God, that's I shamelessly plug all the same thing every week. So instagram.com forward slash West boss, equal parts coding, cooking in kids, food coding, all cuz sounds coding, cooking and kids. So if you're interested in any of those things, join me there. It's kind of fun. Did his Instagram seems to be a lot less loaded lately than Twitter is so it's kind of a fun little retreat.
+
+130
+00:49:24,900 --> 00:49:27,540
+Unknown: Food pictures, man. The food pictures are just amazing.
+
+131
+00:49:28,080 --> 00:49:33,930
+Scott Tolinski: I like cooking up some nice stuff all the time. Totally jealous and about all your stuff.
+
+132
+00:49:34,350 --> 00:49:39,930
+Unknown: Jay, what is the word? TJ? You've been TJ and TJ?
+
+133
+00:49:40,080 --> 00:49:51,660
+Scott Tolinski: Yeah. And if you were if someone was at Trader Joe's that'd be TJ and that they were at t J's. So I'm going to shamelessly plug what is the day of the release of this course. Let
+
+134
+00:49:51,660 --> 00:49:53,430
+Unknown: me check it out September 9,
+
+135
+00:49:53,460 --> 00:50:41,670
+Scott Tolinski: I think September 4. So before they get ready to pay the price we are releasing on August Is 31st advanced Gatsby and Shopify? It's a headless e commerce course. That is the follow up to e commerce, or Gatsby e commerce that came out last month. And we build a, like a shopping cart from scratch. We use all sorts of really cool stuff. I mentioned before that we're using Apollo, I'm sorry, we're not using Apollo in this one. I changed it up a little bit midway through. But we are building our own shopping car. We're doing all bunch of custom stuff with coupons and interface stuff. And it actually looks nice. So we're building a whole ecommerce store with Shopify. And Gatsby. It's really super cool. Check it out at level up tutorials.com forward slash pro sign up for the year get 25% off. That's all I got.
+
+136
+00:50:41,850 --> 00:51:09,270
+Wes Bos: All right. End of the show. Thank you so much for tuning in. Thank you so much, to drew for coming on. And yeah, thanks for talking about this. I think our mind watching this episode, it's so cool. And I was playing that game. Just trying to be like, I like I try. I wish that you could inspect element in steam, because I think that'd be kind of cool to like, see it, but I'm trying to like guess like, Oh, that's a div that's Canvas, like,
+
+137
+00:51:11,310 --> 00:51:16,140
+Unknown: on the web, too, if you want to get in and inspect and judge all of our code. Oh, I'm
+
+138
+00:51:16,140 --> 00:51:26,220
+Scott Tolinski: gonna do that. I'm not gonna judge but I'm gonna inspect the life out of it. Because I really want to make an Ogre Battle 64 modern version, because it's my favorite game ever. That needs to exist.
+
+139
+00:51:26,550 --> 00:51:45,900
+Wes Bos: The demo is at play. The danger crew.com you can check out and I guess there you can inspect element. I'm gonna have the React Dev Tools open a little bit later today. That's pretty fun. Dude. That's it. Thanks so much again, and we will catch you on Monday. Peace. You can say peace true. Oh,
+
+140
+00:51:45,900 --> 00:51:46,770
+Unknown: peace.
+
+141
+00:51:46,800 --> 00:51:47,910
+Thanks for having me. Here we go.
+
+142
+00:51:50,100 --> 00:51:50,880
+Wes Bos: So that's it.
+
+143
+00:51:52,830 --> 00:52:02,580
+Unknown: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
