@@ -1,0 +1,128 @@
+1
+00:00:00,359 --> 00:00:01,350
+Unknown: Monday, Monday,
+
+2
+00:00:01,350 --> 00:00:02,160
+Monday,
+
+3
+00:00:02,219 --> 00:00:21,989
+open wide dev fans yet ready to stuff your face with JavaScript CSS node module, BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot. Here is Sarah CUDA, Bob, and Scott. Hello, Todd.
+
+4
+00:00:26,790 --> 00:00:59,970
+Scott Tolinski: Welcome to syntax in this Monday tasty treat, we're going to be talking all about developing for slow or spotty internet connections. Because we all know that the web isn't always the high powered gigabit speeds that sometimes we get to develop uninor fancy offices. And a lot of times people are using with slower, worse internet connection. So we're going to be talking about some of this stuff, how we can combat this and just some general ideas. My name is Scott to Lynskey. I'm a full stack developer from Denver, Colorado, and with me, as always, is Wes Bos.
+
+5
+00:01:01,170 --> 00:01:01,890
+Wes Bos: Hey, everybody.
+
+6
+00:01:02,370 --> 00:01:06,030
+Scott Tolinski: Hey, everybody. Yeah, wait for that. Hey, everybody, Wes. Hey, everybody,
+
+7
+00:01:06,030 --> 00:01:39,510
+Wes Bos: I'm excited to talk about this. because ever since that pandemic hit, we went and bugged out our cottage. And we have several sources of internet up here. And they were all awful. Like, they're okay, I'm happy to have it. But there's a lot of learned about developing for slow connections just from using the internet on a slow connection for the last two months, there's sort of a lot that has made me think about this. So we're going to go through some things that you as developers should think about, because especially like I see this, as well as when people are developing locally, everything loads instantly when it's local. So you don't even think about this.
+
+8
+00:01:39,750 --> 00:02:35,430
+Scott Tolinski: Exactly, right. So many of these things we don't think about. Now, this episode is sponsored by a company that's going to help you fix the things that you didn't think about when you didn't think about them. And they broke and I'm talking about Log Rocket at Log rocket.com. For slash syntax, you're going to get 14 days of this service, which what it does is gives you a screen recording of what the user did to break your site, you get to see mouse movements, you get to see clicks, you get to see network requests, and error logs, and all of those things that you're used to having when you encounter a bug in your own local environment. But now, you get to have them in your production environment with actual users using your site. It's a really amazing service. And one of the best ways to really understand why these things are happening on your site. So thank you so much Log Rocket for sponsoring Now, let's get into it slow connections. And it's funny West Uranus slow connection right now. In fact, the last few episodes, it's been really hard to talk because Internet's been cut.
+
+9
+00:02:36,329 --> 00:03:28,110
+Wes Bos: Yeah, there's a couple different types of slow connections, there's slow upload speed, which generally isn't a huge issue, unless you are trying to do a zoom call or something with somebody or trying to upload a large file. They're slow download, which is probably the one that most people complain about. And this is not just like, you have a slow download pipe. But it could be lots of people using the same connection your kids or watching a show your partners on a zoom call, things like that, it quickly gobbles that up. And it's easy for us developers who usually have very fast connections to forget about these types of things. Especially like I know, Scott, you have what gigabit connection at your office right now? Oh, you bet I do. So that's what 1028 megabits per second, and I'm over here on 0.6 megabits up.
+
+10
+00:03:28,110 --> 00:03:51,960
+Scott Tolinski: I never get 1000 though, I usually get like, if I'm wired Ethernet, I'll go like 700, you know, CenturyLink there it Yeah, only 700. And I had to call CenturyLink. And I was like, Listen, I'm not getting the speeds I paid for or I'm paying for me only getting 700. They're just like, okay. So that's great. But it's still better than rather than good for Comcast for the same price. So you know, there's only so much
+
+11
+00:03:51,960 --> 00:05:00,830
+Wes Bos: man, lucky. There's also high latency, which is when the time it takes for your requests to go from one place to another. And even if you're sending the character are from me to Scott, there still will be a however many millisecond delay in between each of them. And latency can be introduced by any number of things. So latency is one and then intermittent connection. So this is something that even if you live in a large city, you may run into because like maybe you're ducking into the subway really quickly, maybe you are in between two buildings, maybe you're in a building with a metal roof over top of it. There's all kinds of things that can cause your connection to go in and out, especially on mobile. And designing interfaces that account for all of these different types of connections is pretty important. And I like I said to this already, I don't think a lot of us think about it and even I tweeted it out like what are some things you need to think about for slow connections? And I got like one reply, and it just goes show that most of us aren't there. I'm guilty of this as well. We're not thinking about what happens when this the internet pipe is not as fat as We think it is.
+
+12
+00:05:01,200 --> 00:05:43,800
+Scott Tolinski: Yeah, you got to have that pipe to get this stuff going really well here. You know, it's funny I, the other day I was thinking about this because my internet connection, what happened? It went out my internet connection wasn't connected. And I was working locally and my site was still loading actual site like the one on the internet was still loading, not the local environment. And I was thinking like, Wait, is my internet out? Or did I just write this site correctly so that it works when the internet's out? I was just sapper and the ServiceWorker. You just worked. I was just like, Huh, it's really nice when you have to think about it in this stuff. And it just does it. But I hadn't thought about it. And that made me think made me feel really bad for not thinking about it. So it was a really nice experience when the site still worked offline.
+
+13
+00:05:43,980 --> 00:06:23,250
+Wes Bos: Yeah, absolutely. That's maybe that's the first one is install a ServiceWorker that will cache your site so that when your user is is offline, they're still able to see it. So I think about things like maps or an address lookup, if you trying to go somewhere or I think another thing we don't think about is people who have limited data plans on their phone. Mm hmm. If the person has run out of data, and they've got six months till the that resets, then what do you do? And if somebody is trying to look up an address, and then go to that place, having that data cached offline and still viewable, even if they don't have data on their phone is key.
+
+14
+00:06:23,310 --> 00:06:40,560
+Scott Tolinski: Yeah, it's only like, so helpful for level up tutorials. Because at the end of the day, we rely on video, you can't have that video served offline unless the user previously downloaded it. Yeah. So like, there are some situations where it's just not a great solution for offline other than making the vital information available. Right,
+
+15
+00:06:40,620 --> 00:06:44,610
+Wes Bos: I actually took the ServiceWorker off Wes Bos calm because,
+
+16
+00:06:44,610 --> 00:06:45,330
+Unknown: a,
+
+17
+00:06:45,330 --> 00:07:38,790
+Wes Bos: it's scary to launch with the ServiceWorker. Because yes, you can get into this place where you goof something up. And that goof up is cached. And then the person has to load the page again, and then look at the cached version, and then they have to reload it again. You could code something in there to hard refresh it, and whatnot, but the user will still get it. And then I've seen plenty of people get into a situation where they can unregister their ServiceWorker, for whatever reason, intentionally turn it off, and they didn't want to launch with it. And now that the launch is done, I'm probably going to turn it back on just so like if someone wants to read a blog post. I don't have a ServiceWorker on my own course website, just for the same reason, Scott says, but it would be kind of cool. Like, I always wonder that like, what's the limit to caching stuff in the browser? Like, could I cache a couple videos, so that someone could watch them from the course platform? But when they're on the subway? Yeah,
+
+18
+00:07:38,850 --> 00:08:40,110
+Scott Tolinski: I don't know. It's, it's interesting. That's why I make all my videos available for download. For people who do internet connections, now, it's gonna be great. So do want to talk about this loading UI section of this, yeah, where there's a lot of things around loading UI. And if your data is taking longer than an X amount of time to load, then of course, you're going to want to show some sort of loading UI. Now there's a lot of different ideas and opinions on the loading UI and perceived speed of loading. I know, skeleton screens, which is sort of just like a version of the actual layout. But they're typically like gray or dimmed out or not the actual content, but it's in the layout, that the actual content in skeleton screens are super useful for getting that perceived loading time up. But in the same regard, if the loading time is faster than a certain threshold, then those are going to actually make the perceived loading time slower. What are your thoughts on skeleton screens, verse, a loading spinner verse, you know, just thinking or whatever, blank screens,
+
+19
+00:08:40,380 --> 00:09:34,590
+Wes Bos: the skeleton screen is probably my favorite just from being on slow connections. Because Yeah, otherwise, your face was just a white page, and you don't know if it's broken, or if you need to refresh it to try again, at least for something like YouTube, or just shows the skeleton screen. And also like when those finally do load in, then the whole page doesn't read jerk itself over and move content up and down, which is really frustrating. So big fan of that. Also, it's good to not show those loaders or skeleton screens right away, because like for a lot of connections, you're gonna just be showing them for half a second. And then that's frustrating for the user to see that. And like Scott said, it shows faster proceed. So that's why react suspense. If it ever launches is going to do, it's going to allow you to control how long to suspend a component before it then shows a loading component. And that's going to be pretty cool.
+
+20
+00:09:34,710 --> 00:09:49,590
+Scott Tolinski: Like if you're dynamically loading a react component or tree of components via dynamic imports using react loadable or loadable. components, you can always have that threshold as well to say, like, show this loading component while these ones are being pulled in from the network.
+
+21
+00:09:49,890 --> 00:11:16,680
+Wes Bos: Next we have just showing a UI when something is happening. I've noticed that there's a lot of websites that don't show loading UI for things They assume will always happen. So the biggest one for me is when you're filling out a form, and the form will automatically show United States and all of the states and I wait to switch it to Canada. And generally, the way that I I get to Canada is that I tab over to the country form and I hit c three times because it goes, Cambodia, something else and then Canada. And every time you hit each one of those, it tries to find the version of states or provinces in that country. And a lot of those are loaded in on demand. What I've noticed is that there's a lot of websites that don't show any loading UI. So like I click Canada, is it doing something? Or is it not, I sort of sit there for a couple seconds waiting. And then sometimes it's broken, because I hit c three times, it fired off three x HR requests, and now they're coming back at different intervals, which we'll talk about that next, but just showing some sort of UI. And what I found really frustrating as a lot of checkout fields, just throw an entire spinner over top of the entire form and disable the entire thing. But it's just so frustrating, because like, while that's loading, I can fill up other fields if I want to, and just sort of like disabling the entire thing. really sucks. So that was a really bad experience that I got a few times in the last couple weeks, huh?
+
+22
+00:11:16,920 --> 00:11:21,540
+Scott Tolinski: Yeah, that's interesting. I don't it's not something I've ever dealt with being here in the States. That's Yeah, no,
+
+23
+00:11:21,540 --> 00:11:55,500
+Wes Bos: that's the thing is like you've never dealt with that switching country bug ever. Because forms just default to the US. And you can just go ahead and select your state. But little frustrating things to the rest of the world. Yeah, sometimes go unnoticed. Same thing with often places will ask you for your state, and then your country, because that's the way that is written on a piece of mail. But for for everyone outside of the states, they have to tab down to the country, change it, and then tap back up to change their province or state. And
+
+24
+00:11:55,770 --> 00:11:56,490
+Scott Tolinski: that's annoying.
+
+25
+00:11:58,080 --> 00:14:20,520
+Wes Bos: We have a count for x HR failures. So one frustrating thing with fetch is that we haven't for longest time had a way to cancel fetch requests, that we now have a board controller, which is great, but a lot of devs, myself included don't account for x HR requests being cancelled. Because like, like I said, if you hit the C key, it starts fetching the provinces for Columbia. Mm hmm. And then I hit it again, it starts fetching now the second request is going in, you should kill that first request. And that's almost never an issue for developers working on the website, because it's either local, or they're on a fast connection. The other thing is, sometimes your ex API request will break, you fire off a request, and then your connection dies, and you think it's still going. But if you open up dev tools, you'll see that that thing had then failed. So it's important, and this is why state machines are so good. Because you should never get into a situation where it's just like, you're assuming that it will either come back with an error, or you're assuming it will come back successfully. But if you in that catch of your ex HR requests or of your await, then you should catch that and then set the state to there was an error or retry it or something like that. So it's important to think about those worst case situations, even though you think like this will probably never happen. It does happen. Yeah. And then finally, the last one I have here, for today, we're going to split this into two different hayseeds. Because it's getting a little tasty, it's getting a little tasty. The still working. So if you are doing like a large upload, this is another thing is, if I want to upload a six or seven Meg image, it might take 15 minutes for me. And you don't know if it's stuck. And if it's broken, or if it's just still going. And sometimes these loader bars are so small that you have no idea. Or like in a lot of cases, Twitter, Instagram, these upload bars, they're so fake, like they go to 90%. And then if it's not uploaded by that time, then it actually just waits there. So it doesn't actually give you any sort of feedback as to whether the file is still uploading. So just giving the user some sort of, if it's just a percentage that it's uploaded, or some sort of like, Hey, we're still uploading it, don't worry, just leave me open or whatever, come back in 10 minutes, and it should be upload. So some sort of timeout that after three or four minutes, you can give the user some sort of feedback.
+
+26
+00:14:20,940 --> 00:14:52,440
+Scott Tolinski: Yeah, because that is that is the absolute worst. I was just waiting for my time machine backup to finish. And it was like, Oh, dude, the progress bar is completely full. But you know, it still says it's backing up and the gigabytes is still increasing. So why why are you not letting me know, you know, what the actual percentage or if this thing is actually doing something I need to be concerned about or whatever, I had to go and run a terminal command to see what the machine was even doing. I did see that it was actually moving the files. I was like, okay, you Why don't you let me know about that, right?
+
+27
+00:14:52,650 --> 00:15:33,750
+Wes Bos: It's true. Like I shouldn't be able to have access to that granular information like backblaze. When I use that it tells me literally how many files are left Even if it's like 400,000 files because I NPM installed something, it tells me exactly how many files are left. And that's such good information because I can just look at it for three seconds and see that number change, like, okay, it's just being slow. Yeah. So let's wrap it up here in the next Casey will do talking about images, scripts and CSS video, how to test for slow connections, what to do with connections that go in and out, like, what do you show on your app? There's some event listeners, you can add there. And then a couple little tricks for CSS and font loading as well.
+
+28
+00:15:34,109 --> 00:15:38,010
+Scott Tolinski: Cool. So I'm excited for that one. That's going to be another tasty tasty.
+
+29
+00:15:38,489 --> 00:15:46,440
+Wes Bos: Yeah. All right. That's it for today. Thanks so much for tuning in. And we'll catch you on Wednesday, but also Monday to finish this one up.
+
+30
+00:15:46,499 --> 00:15:50,910
+Scott Tolinski: And then also Wednesday after that, and then also Monday after that. And then also
+
+31
+00:15:50,939 --> 00:15:56,550
+Wes Bos: everyone Monday, Wednesday, and we'll see you there. Yeah. Peace. Please.
+
+32
+00:15:58,410 --> 00:16:08,190
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
