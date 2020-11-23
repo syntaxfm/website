@@ -170,9 +170,9 @@ export default function SponsorPage() {
         </p>
 
         <ul>
-          <li>Single Show — $2,200 USD</li>
-          <li>3+ Shows — $2,000 USD</li>
-          <li>10+ Shows — $1,850 USD</li>
+          <li>Single Show — $2,500 USD</li>
+          <li>3+ Shows — $2,200 USD</li>
+          <li>10+ Shows — $2,000 USD</li>
         </ul>
 
         <p>
@@ -182,8 +182,8 @@ export default function SponsorPage() {
 
         <p>
           <strong>
-            Hasty Treat — our 10-20 min Monday show. Sponsor is read at the top
-            of the show. One sponsor per show.
+            Hasty Treat — our 10-25 min Monday show. Sponsors are read at the
+            top of the show. 1-2 sponsors per show.
           </strong>
         </p>
 
@@ -191,7 +191,7 @@ export default function SponsorPage() {
           <strong>
             Tasty Treat — our hour long Wednesday show. Sponsors are mentioned
             at the top of the show, and ad read is done part-way through the
-            show. Two sponsors per show.
+            show. 2-3 sponsors per show.
           </strong>
         </p>
 
@@ -220,6 +220,13 @@ export default function SponsorPage() {
             that having Scott or Wes talk about the product or service and their
             experience with it gives it an added personal touch and converts
             better for the advertiser.
+          </li>
+
+          <li>
+            A evergreen listing on syntax.fm sponsors page for all of 2021
+            listing your current offers. This is handy for listeners who want to
+            quickly reference the sponsors's offering but are unable to recall
+            which episode, coupon code or link was used during the ad read.
           </li>
         </ol>
 
