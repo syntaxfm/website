@@ -66,7 +66,7 @@ export default function SponsorPage() {
           </figcaption>
         </figure>
         <p>
-          Each sponsorship spot will receive an average of 45,000 downloads. We
+          Each sponsorship spot will receive an average of 43,000 downloads. We
           get between 80-90,000 downloads per week with some of our top shows
           receiving more than 70,000 downloads.
         </p>
