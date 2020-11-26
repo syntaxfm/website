@@ -36,7 +36,7 @@ If you want to know what's happening with your errors, track them with [Sentry](
 
 40:43 - I really need advice on how to write a good resume, or any tips you may have for getting noticed in the hiring process with only a couple years of experience. I have been applying to many jobs as a front-end developer but I seem to get no response EVER.
 
-47:17 - How do I dynamically assign subdomain/wildcard/slug dynamically during signup process with React and Node? (Like the way Freshbooks does — i.e tenant1.domain.com, tenant2.domain.com, etc.)
+45:17 - How do I dynamically assign subdomain/wildcard/slug dynamically during signup process with React and Node? (Like the way Freshbooks does — i.e tenant1.domain.com, tenant2.domain.com, etc.)
 
 48:44 - Wes, I've been taking your Mastering Gatsby course, and I'm loving the course so far. My only complaint would be I wish you added a module for CSS. I think it's just because I personally struggle with styling websites. Do either of you have any suggestions on how I can improve in that aspect of web dev?
 
