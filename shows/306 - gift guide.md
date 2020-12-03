@@ -36,7 +36,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 
 17:16 - Tech
 * Headphones
-  * Sony WH1000XM4 - [https://amzn.to/2Ube8c8](https://amzn.to/2Ube8c8)
+  * Sony WH1000XM4 - [https://amzn.to/37yb1Bm](https://amzn.to/37yb1Bm)
   * Bose QC35 - [https://amzn.to/3lrKrQp](https://amzn.to/3lrKrQp)
   * Wyze Noise-Cancelling Headphones - [https://wyze.com/wyze-headphones.html](https://wyze.com/wyze-headphones.html)
 * USB-C Hub - [https://amzn.to/3keljem](https://amzn.to/3keljem)
