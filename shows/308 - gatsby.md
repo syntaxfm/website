@@ -17,7 +17,7 @@ If you want to know what's happening with your errors, track them with [Sentry](
 
 03:34 - Server-rendered
 * Both do server rendered
-* Gatsby is gone at build time
+* Gatsby is done at build time
 * Next is done at build and on deploy
 
 05:26 - Static generation
