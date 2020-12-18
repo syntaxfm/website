@@ -55,7 +55,7 @@ If you want to know what's happening with your errors, track them with [Sentry](
 
 ## ××× SIIIIICK ××× PIIIICKS ×××
 * Brian: [Begin Fingerprinting](https://begin.com/)
-* Scott: [Been Here For Too Long](https://blink-155.bandcamp.com/album/been-here-for-too-long?s=15)
+* Scott: [Been Here For Too Long](https://155pod.bandcamp.com/album/been-here-for-too-long)
 * Wes: [Grabber Tool](https://amzn.to/38qrnxU) 
 
 ## Shameless Plugs
