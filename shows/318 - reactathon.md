@@ -14,7 +14,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 MagicBell, the embeddable notification inbox - [magicbell.io](https://magicbell.io). Use the coupon code SYNTAX to get a 20% discount if you sign up in the next two weeks.
 
 ## Sentry - Sponsor
-If you want to know what's happening with your errors, track them with [Sentry](https://sentry.io/). Sentry is open-source error tracking that helps developers monitor and fix crashes in real time. Cut your time on error resolution from five hours to five minutes. It works with any language and integrates with dozens of other services. Syntax listeners can get two months for free by visiting [Sentry.io](https://sentry.io/) and using the coupon code "tastytreat".
+If you want to know what’s happening with your code, track errors and monitor performance with Sentry. Sentry’s Application Monitoring platform helps developers see performance issues, fix errors faster, and optimize their code health. Cut your time on error resolution from hours to minutes. It works with any language and integrates with dozens of other services. Syntax listeners new to Sentry can get two months for free by visiting [Sentry.io](https://sentry.io/) and using the coupon code TASTYTREAT during sign up.
 
 ## Show Notes
 04:17 - All I Want for Christmas *in React* is:
@@ -53,7 +53,7 @@ If you want to know what's happening with your errors, track them with [Sentry](
 * Q: What do you expect of [Blitz.js](https://blitzjs.com/) in the next few years?
 * Q: What's the first node module you install in a brand new React project besides React itself?
 * Q: Thoughts on using languages other than JS and TS with React like [Kotlin](https://kotlinlang.org/)?
-* Q: Do you have an approach for optimizing hi-res images that are stored in your back-end, like S3 for your Gatsby website? 
+* Q: Do you have an approach for optimizing hi-res images that are stored in your back-end, like S3 for your Gatsby website?
 
 ## Links
 * Watch the live recording of this episode: [https://www.youtube.com/watch?v=8xJpxj6T1BQ](https://www.youtube.com/watch?v=8xJpxj6T1BQ)

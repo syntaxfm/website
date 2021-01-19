@@ -67,7 +67,7 @@ If you want to know what's happening with your errors, track them with [Sentry](
 * [https://www.snowpack.dev/](https://www.snowpack.dev/)
 * [Udemy](https://www.udemy.com/)
 * [Laravel](https://laravel.com/)
-* [https://www.tempertemper.net/blog/stop-search-indexing-for-netlify-deploy-previews-and-branch-deploys](https://www.tempertemper.net/blog/stop-search-indexing-for-netlify-deploy-previews-and-branch-deploys) 
+* [https://www.tempertemper.net/blog/stop-search-indexing-for-netlify-deploy-previews-and-branch-deploys](https://www.tempertemper.net/blog/stop-search-indexing-for-netlify-deploy-previews-and-branch-deploys)
 * [Vercel](https://vercel.com/)
 * [Netlify](https://www.netlify.com/)
 * [Syntax 297: Hasty Treat - Certifications? Government Specified JavaScript Skills?](https://syntax.fm/show/297/hasty-treat-certifications-government-specified-javascript-skills)
