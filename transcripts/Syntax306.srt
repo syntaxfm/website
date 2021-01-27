@@ -1,0 +1,504 @@
+1
+00:00:01,319 --> 00:00:02,820
+Announcer: You're listening to syntax
+
+2
+00:00:02,820 --> 00:00:06,120
+Unknown: the podcast with the tastiest web development treats out there,
+
+3
+00:00:06,149 --> 00:00:10,530
+strap yourself in and get ready to whiskey and West boss.
+
+4
+00:00:10,559 --> 00:00:19,020
+Wes Bos: Welcome to syntax and happy holidays. possible to do a
+
+5
+00:00:19,410 --> 00:00:21,690
+Scott Tolinski: sleigh bell sound with your your mouth.
+
+6
+00:00:24,060 --> 00:00:34,140
+Wes Bos: Close enough. Today we have the 2020 web developer Gift Guide. or as we like to call it an entire episode of sick picks.
+
+7
+00:00:35,490 --> 00:00:37,470
+Scott Tolinski: Sick pick us out sick pick us up
+
+8
+00:00:37,500 --> 00:01:19,560
+Wes Bos: we should call it that. We're basically going through a bunch of things that make good gifts for techies. Web developers in general. Just because like we ask web developers like nice things, we like little gadgets. We like little gizmos, whether that's in fitness, or in cooking or in just in your desk in actual tech. So we're gonna go through all of that. Hopefully, there is some ideas that you can either get the web developer in your life or you can ask everyone else in your life for so we are sponsored by two awesome companies today. First one is Log Rocket and second one is Freshbooks. We'll talk about both of them partway through the episode.
+
+9
+00:01:19,620 --> 00:01:20,400
+Scott Tolinski: Yeah,
+
+10
+00:01:20,400 --> 00:01:22,620
+Wes Bos: how are you doing today? Scott, you're ready for Christmas?
+
+11
+00:01:22,620 --> 00:02:19,160
+Scott Tolinski: I am ready for Christmas. I'm ready for Christmas. Ready for all of the holidays? Everything? Yeah, just it's gonna be really sad this year considering where you know, we're an entirely different state than the rest of our family. And that's like really hard. Usually we we have Courtney's parents come out for Thanksgiving, and my parents come out for Christmas or vice versa, or swap it around. Or sometimes they both come out. And this year, it's going to be feeling really weird at our house with not everybody around and stuff like that. So it's depressing at the same time. But yeah, the kids love it. This is going to be you know, Brooklyn's first Christmas, where she could actually be more than just like sedentary just like hanging out watching everybody else enjoy the fun. She's actually going to get to rip open stuff and enjoy everything. I remember how special that was with Landon the first time so I'm very excited. And Landon is like full on like Christmas is the greatest thing in the entire world age. So he's just so ready. He's so ready. And it just I don't know makes it really fun. So I'm excited
+
+12
+00:02:19,190 --> 00:02:33,630
+Wes Bos: Christmas with kids as the basket is so fun seeing them get excited about it. And like our kids, it's we're recording this What? November 9. So Christmas is like a month and a half away at least. And they asked like every day is is tomorrow Christmas? No,
+
+13
+00:02:33,660 --> 00:02:42,470
+Scott Tolinski: no, not even close. sanded carries around is like little Duplo catalogs and is like oh on those one. I want this one. I want this one.
+
+14
+00:02:45,419 --> 00:02:58,560
+Wes Bos: Man. All right. So we've we've broken it down into bunch of different categories home and cooking games, tech, smart home desk stuff, we cannot come up with a better name for that desk stuff. Question mark. That was I wrote that.
+
+15
+00:02:58,590 --> 00:03:01,560
+Scott Tolinski: Yeah, I'm gonna say yeah, don't don't drag me into that conversation.
+
+16
+00:03:01,979 --> 00:03:18,630
+Wes Bos: We have a whole new category this year called live streaming or sick work from home setups. I think that's a very popular thing. as of lately, everyone's at home on zoom, software, little apps that are nice fitness and clothing. So should we get on into it? Start with the home and cooking?
+
+17
+00:03:18,750 --> 00:04:45,510
+Scott Tolinski: Yeah, let's do it. And I'm going to be starting with one of my favorite things, something that you can all tell I rely pretty heavily on because I talk about it nonstop. And that's my cold brew maker and people hear cold brew maker and they think like, oh, there's got to be some gadget or Gizmo or whatever, to do the thing. No, here's what these things are. So I have two of them, one of which is a gallon, one of which is two quarts. And if you ask me, Scott, which one do you have? I got both, I got the one gal and then I have two of the two quarts, and we have them in constant rotation here, because you got a little bit of time for brew. So these things are a basically a mason jar of a given size with the two or the one gallon want to having a little spout at the bottom of it. But it's basically a mason jar with a filter. Here's what you do you buy some cheap coffee, what we do is we buy these big bags of coffee from Costco giant unground bags of coffee, then we use just a little little tiny ceramic grinder, you grind it, don't get a hand grinder, because those things are a giant pain in the butt for how much you have to grind. you grind it, you get a kind of chunky, you put it in the filter, you put water of any type and then you leave it on the counter for 24 hours put in the fridge when you're done. And you got yourself cold brew, everybody is really surprised at how easy that is. But to be honest, it's very easy for me and I love cold brew because of the low acidity I can't drink normal coffee. So for me, this is way nice to have a one gallon thing with a spout of cold brew in our fridge at any given point. Just maybe I'll get another glass I'm kind of feeling a little foggy today.
+
+18
+00:04:45,540 --> 00:04:48,690
+Wes Bos: That's almost four liters for the rest of the world. That's a lot.
+
+19
+00:04:49,230 --> 00:04:54,060
+Scott Tolinski: Yeah, and like I said, we have one of the one gal and two of the two courts so that we can always have
+
+20
+00:04:54,360 --> 00:04:55,950
+Wes Bos: two leaders for the rest of the world.
+
+21
+00:04:56,310 --> 00:05:17,610
+Scott Tolinski: Just a fresh rotation going on at all times over here. So part of my routine is to fill it up when one of them gets low. And then the added benefit of having more than one is that the longer you leave the beans in there, the stronger it gets. So if you have one on deck, you can let it brew for like three or four days or so if you leave it in the fridge. And you got cold brew concentrate it get cooked
+
+22
+00:05:17,610 --> 00:05:18,510
+Wes Bos: up on it.
+
+23
+00:05:18,540 --> 00:05:28,740
+Scott Tolinski: Yeah, Yeah, you do. It's a little a little intense sometimes. What Courtney and I because we there's no way to really judge the batch other than time. So sometimes Courtney will be like,
+
+24
+00:05:28,740 --> 00:05:29,430
+Unknown: oh boy, this
+
+25
+00:05:29,430 --> 00:05:31,770
+Scott Tolinski: batch today. This is a serious batch. I
+
+26
+00:05:32,820 --> 00:05:34,020
+Unknown: got a lot done today.
+
+27
+00:05:34,020 --> 00:05:35,970
+Scott Tolinski: I got it done.
+
+28
+00:05:36,450 --> 00:06:25,680
+Wes Bos: This is my probably my most lovesick pic ever. And that is the combination of nordicware half sheet pans and pre cut parchment paper if you have someone, I feel like I've talked about this so many times on the show, so I won't spend a whole lot of time on it. But if you want to give somebody who likes cooking, the best gift ever get them really nice heavy half sheet pans or the people call them cookie trays or whatever. And they're just basically those pans that go in your oven and then get either pre cut parchment paper. So it just lays flat. You just grab one out of the out of the drawer, throw it on, or you can get these reusable silicone mats. They've come down in price quite a bit lately, which I am happy to see. And you just throw one of those on there and it makes cleanup super, super easy. So big fan of all of those tools. Yeah,
+
+29
+00:06:25,710 --> 00:07:59,550
+Scott Tolinski: we definitely took your advice on that pre cut parchment paper. Definitely. You live in that life live in that life. We got a good life. Yeah. Next one up is one of mine and West said before we started recording this, this was a really good one. And my people might not think about this a lot, but I love this and this is gaffers tape. If you have never used gaffers tape, it's widely used on film sets to tape down cables. It's a gaffers job do gaffer that cables and tape everything down. And since I used to work in an environment I used to work in a film studio where we did the CDs that came out with Guitar World Magazine. It was like a guitar lessons in Guitar World Magazine. I used to have to set up and tear down all day and I got so used to using every gaffers tape for everything it's become my go to. And so if you come to the to Lynskey household and you look at our entertainment center, you will find all of the cables gaffer down Go you come to my office, you will find all of the cables gaffer down, I am not a fan of having live cables just there for some of the especially with kids, right, you don't want to trip over it so it doesn't get sticky, right? It doesn't get sticky when you tear it off, at least in my experiences. And most surfaces I don't know about every surface and whatever. But it comes in a whole bunch of different colors. Like we have the brown that is the same color as the wood in our because we have like a craftsman old 19 1920s Craftsman house. So it's the same color as the wood molding and everything. So if you get a brown that's the same color, you don't even see it, especially if it's on like a ledge or something like that. So we use appropriate color gaffers tape for all sorts of stuff in the house to make sure that things are taped down and that it just hides away all of the unsightly cables.
+
+30
+00:07:59,940 --> 00:08:23,580
+Wes Bos: I would love a roll this and I've always looked into it and I've never found it like somewhat affordable it's kind of expensive. It's all it's like yeah, it's it's good. There's like certain things in life where you're like, why is there not like a generic cheap version of this? And it's because it's that good? I think there's there's like an Amazon version of it. I'm sure it's just as good but it's still still kind of pricey. Yeah, 10 bucks or roll?
+
+31
+00:08:23,730 --> 00:08:37,860
+Scott Tolinski: Yes, it is expensive for tape. But in my mind, it's one of those things that you you really you know, it's better than getting like this little hooks that Yeah, hook the cables down or whatever. I don't know in my mind this stuff is definitely worth the price. Next one we
+
+32
+00:08:37,980 --> 00:10:04,890
+Wes Bos: have here is a whetstone for people who have knives to sharpen them. This is probably the thing that I get asked about the most and interested about like Instagram, they're like, hey, what was the whetstone that you bought? This is just for sharpening your knives keeping them in tip top shape. And the one I use is the henckels whetstone couldn't find it online. I got to add a local like, Oh, we should also say like I we've linked a lot of Amazon links in here, but um, probably check out your local suppliers first for this type of stuff just because of COVID and a lot of stores are going under right now. So I got mine at a local restaurant supply stores, the Henkel knife block, you just want something with a double sided one, a normal grip like 1000 or something like that. And then you flip it over and you get a super high grit like a 6000 7000 something like that. And that will allow you to have a really nice, the only thing I don't like about it is it is a bit of a production. It's messy because when you use it, it's a bit of production to like bring it out into like I am sharpening my knives now, but it's worth it. I'm hoping for Christmas that somebody gives me these. They're called cardboard wheels. And they are essentially just like wheels of MDF, like like IKEA would be made out of you put it on a bench grinder and apparently they are amazing for sharpening knives like super sharp, and it's super fast. So that's why I'm going to ask for for Christmas is a set of these wheels and a bench grinder. But that's that's pretty involved to have to buy a bench grinder to sharpen your knives.
+
+33
+00:10:05,399 --> 00:10:11,820
+Scott Tolinski: Yeah that is a I we don't have anything like this we just have the drag through one which is nice okay yeah
+
+34
+00:10:11,820 --> 00:10:20,820
+Wes Bos: yeah those are pretty good like yeah look at you there and same with the home you should like a hone will get you a lot of a lot of the way there in between knife sharpens Yeah.
+
+35
+00:10:22,039 --> 00:10:23,700
+Scott Tolinski: Yeah, yeah, we use wheezes
+
+36
+00:10:23,730 --> 00:10:42,750
+Wes Bos: Yeah, you see a lot of people say like, those are garbage but they're like they're not knife sharpeners. They're just a home they if you're as you're the tip of your knife becomes bent or you cut through a chicken bone, the very fine tip of the knife will bend over and the home will sort of stand that edge back up again and it'll make it nice and sharp before in between sharpens.
+
+37
+00:10:42,960 --> 00:12:02,909
+Scott Tolinski: Yeah. Okay. Next one for me is this new vacuum cleaner that we got actually sick pick this in an episode This is the tiemco pure s 12 and this is a really need vacuum cleaner for tech heads who like vacuums, it is expensive. I am not going to lie, but it is going to do everything for you. And this thing has like a whole bunch of attachments. I've recently gotten into the little miniature roller so that Okay, so to describe this vacuum cleaner, it's sort of like a handheld vacuum cleaner like you see with the Dyson's two handheld vacuum cleaner. You can put a long tube and have it be your normal vacuum cleaner. You could put a crevice tool on and that would be a crevice vacuum cleaner. And there's a little hand roller so you can like I use this to tape to roll the countertops like we got crumbs and whatever on the countertops I just use the vacuum cleaner to roll up the crumbs. It's that it's like that useful for me. So I use this this thing for seriously everything is vacuum accordion, I watched hours and hours of vacuum YouTube. before purchasing this specific one you can do so yourself you'll find the same conclusions that this one is the best. There's swappable batteries, which is to me the killer feature for this thing because that's what we had about we had an older Dyson. And that was the worst part about is the battery always die and you'd be like oh, I guess I'm done cleaning for today. I gotta wait for this thing to charge. With this one I want I'm a vacuum Holic. So I'm vacuum in whatever, pop it out, pop a new battery in there ready to go.
+
+38
+00:12:03,480 --> 00:12:12,210
+Wes Bos: I'm glad that you're testing this one out. I'm hoping that our plugin when lasts another year or so. So we can give you can we can get the full report from you because
+
+39
+00:12:12,390 --> 00:12:13,169
+Scott Tolinski: so far so good.
+
+40
+00:12:13,860 --> 00:12:39,870
+Wes Bos: Yeah, that's awesome. Next up, I have I've said this a couple times already. So I'll say a quick is an instant read thermometer. This is a must have for anyone cooking in the kitchen. It's important to get one that is like actually instant read and not 10 second read and they have come down in price quite a lot in the last couple years. So bit one, just get an instant read thermometer. I'll link one up in the show notes. But there are tons of them out there.
+
+41
+00:12:40,169 --> 00:13:26,549
+Scott Tolinski: Totally. Next one for me is going to be a my favorite tea store. This is tea house. This is an Arbor, Michigan I used to pop in here It used to be across the street from my my office I used to pop in here all the time. But they have some of the serious best loose leaf teas, it's a small business, they do an insane amount of testing on all of their teas, they run it through all sorts of different tests, various places, they only get the best stuff. If you're into loose leaf tea, you cannot go wrong with tea house, I have the link in the description of this show. There's stuff for everybody in here. So if you're not into like the grassy green teas or whatever, you could get something with some more fruit, more flavors or whatever based on what you like. But there there's a ton of stuff here. It's a like I said small business, one of my favorite places to shop. And I absolutely love it.
+
+42
+00:13:27,059 --> 00:13:37,230
+Wes Bos: Let's move on to the second section, which is the Scott section because I don't play games. Scott always has some super fun little games. So we'll go through all the ones.
+
+43
+00:13:37,350 --> 00:15:44,880
+Scott Tolinski: Yeah, so these are all playable on the Nintendo Switch. Many of them are playable on other things. But I think the first one is for the programmers out there who like playing games, but might like something entertaining that has some programming vibes to it. This game of Baba is you is a logic puzzle game that is just so fantastic. Imagine you are getting sort of a live coding environment. And you can manipulate variables and functions and whatever and that changes the world you live in. Well, that's basically what Baba is you is your your little rabbit named Baba, and you're trying to get to the goal or whatever. But you push around little things. So let's say it says like door is solid, and then you can't go through the door. But if you remove that definition from the environment, the door no longer becomes solid, you can walk right through the door. So you're basically able to program quickly manipulate the environment, and it gets really really intense in some of the plot the like, I consider myself good at this kind of thing. Some of these puzzles are crazy hard. So this is a really great puzzle game that's very programming based. There's also the untitled goose game, which is just fun. You're a goose you cause havoc. There's a game I've been playing the most is Hades described it as a sick pick the other day, but this game is just absolutely fantastic. It's very Greek mythology based. And then the one for the family. The family game is the jackbox party pack and not like kids kids party like adult party. Not because it's like loot or anything but because kids probably won't be able to have a lot of fun with this jackbox party pack. There are seven of them are these games that people can play on their phones, and only one person needs to own the game. So what we do is we hook up my Nintendo Switch to the computer, we stream it over zoom. And then my entire family all over the country plays these games together, which are basically party games things like where your your writing and prompts or the one that we like the most is called vidiots, where you draw artwork, and then the artwork has specific values and everyone's bidding on it in an auction. The person with the most amount of value at the end of it wins. It's very fun, and it can cause for a lot of hilarity. So check out any of the jackbox party packs, they are absolutely a ton of fun.
+
+44
+00:15:44,999 --> 00:15:55,830
+Wes Bos: puti full. I wonder if I'll ever get into games as my my kids start to get older. It definitely seems fun. Whenever you're talking about them. I'm like that that will seem fun. I should try that out.
+
+45
+00:15:55,919 --> 00:17:15,990
+Scott Tolinski: Yeah, I played a lot of games. Like I grew up playing video games. My parents had like the Intellivision, which is you know, one of those old ones with keypads and whatever. So yeah, I grew up playing a lot of games, my my parents would always play like burgertime, and all sorts of things. You know, I grew up with it. And we used to play a lot of cards, you know, that Euchre, Michigan Euchre life. I don't know if you get up in Canada, but initially, it was a huge thing. So I kept a lot of family gaming, whether it's board games, video games, or whatever, and it's definitely carried on to my life. Well, let's talk about Log Rocket. And I'm talking about Log Rocket as a service not as a gift or anything like this Log Rocket is one of our sponsors today. And this service allows you to see errors and exceptions handled happening as they happened with a video scrubbable replay. It really changes the game in terms of how you can debug things. Because imagine debugging a issue and seeing exactly how that issue happened in the first place. Not only that you get your Redux store if you have it, or your network tab, or your console log or any of these things along with the scribble video, so you can see your errors happening. So check out Log rocket.com forward slash syntax, so get 14 days for free. It's one of the services that I absolutely love. I think it's changing the game in terms of being able to debug issues that other people are having on your site. Very cool idea.
+
+46
+00:17:16,649 --> 00:17:45,150
+Wes Bos: All right, let's move into tech. These are just pieces of tech that us as devs seem to love. The first one. I think this is a not a must have. But it's something that would be really nice for every developer and that is a nice pair of Bluetooth noise cancelling headphones. I personally have used the QC 35 for I don't know like four years and they are awesome and Scott you're on the Sony's right. Yeah, a little bit newer. Yeah, I'm
+
+47
+00:17:45,150 --> 00:18:22,950
+Scott Tolinski: on the Sony wh 1000 x m fours. And here's the first naming I like Coke. Okay, so like Apple Apple changed the game with naming their products A long time ago. How is nobody understood that when anybody asked what monitor I have from LG, I wish I could just say I have the LG power curve, but that's not a thing that doesn't exist. But like I'd see their LG if you're listening LG just called the power curve. Okay, that's a great name. No, I got I got some just long string of digits and numbers that are numbers and letters that I have to tell people I don't even know what it is so yeah, get on now. What's up with you?
+
+48
+00:18:24,450 --> 00:18:48,540
+Wes Bos: I also better be better I you know, I'm a a big wise fanboy. And wise, wise is the company they they had these cameras and now they're rolling out all kinds of all kinds of product crazy stuff. Lots of fans. Yeah, they just announced they're not out yet. They're on pre order. But they're they announced Bluetooth noise canceling, like half of noise cancelling headphones for 50 bucks.
+
+49
+00:18:48,560 --> 00:18:50,790
+Unknown: Random products just left and right.
+
+50
+00:18:51,050 --> 00:19:35,300
+Wes Bos: Yeah, they're coming out swinging and, like they're probably not gonna be a $300 pair of headphones. But I don't think they're gonna be six times worse. Like I bet they're gonna be pretty good. They look nice. Obviously. No one's I haven't tried them yet. So I can't say that but I'm excited to see these because bluetooth headphones are the best. Once you get them connected. That is their nightmare to get connected to your devices. We have USB C hub. This is something if anyone has one of the new MacBooks I've had the the USBC MacBook for Yeah, like three years now and like still, almost nothing that I own is USBC and there's no card reader on or anything like that. So you can find a lot of these really I'm a big fan of anchor stuff.
+
+51
+00:19:35,550 --> 00:19:37,020
+Scott Tolinski: Yeah, Yeah, me too.
+
+52
+00:19:37,340 --> 00:19:51,900
+Wes Bos: Do you see anchors coming out with this is turning into this that cool tech show. It's gotten less which I'm totally fine with. Yeah, DC anchor like launched a smart home brand called up while oofy
+
+53
+00:19:53,090 --> 00:19:55,980
+Scott Tolinski: did they existed for a while I have something that's goofy or do
+
+54
+00:19:55,980 --> 00:20:12,630
+Wes Bos: I really do I have something that doofy I am here for They got vacuums and cameras and, and all kinds of stuff. And I'm like, man, if it's any if it's as good as the bunker stuff has been for USB and battery packs and all that stuff, that's gonna be a good.
+
+55
+00:20:12,750 --> 00:20:16,020
+Scott Tolinski: I feel like I own something that's Goofy, or whatever it is.
+
+56
+00:20:17,160 --> 00:20:18,930
+Wes Bos: I feel like I do, but I mean, you fi
+
+57
+00:20:18,989 --> 00:20:27,510
+Scott Tolinski: I'm looking at their site, and I don't recognize anything. So I maybe I don't either way. Yes, I have seen them. I did not know they were related to anchor. That's neat. Yeah,
+
+58
+00:20:27,540 --> 00:21:00,990
+Wes Bos: yeah, I'm, I'm pretty excited about about that because anchor makes some good stuff Anyways, what we're talking about USBC hub. So something that you can plug in, you get extra USB ports, you get a card reader, you get an HDMI, I have one of these, I personally have a sabrent one, which I really like I bring it with me to all of my conferences, it's never flaky. So either the anchor, the sovereign ones are really good. Just having that for any depth to throw in their backpack will make sure that anything that you've stumbled upon unless it's a VGA projector, you're probably going to be covering
+
+59
+00:21:01,920 --> 00:22:31,140
+Scott Tolinski: a keyboard that I really like is the one that I use is the key Kron k two, I believe it's the K two. When I bought this keyboard, they had like one keyboard now they have like eight. No, I have Sorry, I have the K one. And the latest version is the version four, I initially bought the version two and I did not like it, it registered key presses before and then the version three came out and they fixed all their issues. So I got the the K one, version three. And it's awesome. So much so that I ordered the latest k three, the K three is their latest keyboard. So I actually jumped on this beforehand. And I even kick started it because I'm ready to have this. This thing is a Bluetooth, optical key switch keyboard. And it's primarily good for a while maybe not primarily, but it's really great for Mac users like the one thing that I always hated about the mechanical keyboard game is that because it's all gamers focused, it's very like low latency specific, right. So everything was non Bluetooth, because Bluetooth inherently has latency. But I like I wanted a nice mechanical keyboard for typing at my desk. And the key cron ones are great because they have Mac keys you can get with Mac or PC keys. Thank you. Thank you very much, because that is a very good feature, you can choose your types of key switches, optical, whatever. And the keys are very, super thin. So it feels way more like typing on an actual Mac keyboard and the best way, and it doesn't feel like a giant clunky keyboard and it's Bluetooth. And there's a lot of really neat led patterns on this thing. So my kids love playing with it too.
+
+60
+00:22:34,830 --> 00:23:58,770
+Wes Bos: Yeah, moko keyboards is something I've I've tried to get into many times over and just haven't been able to make it work. I always find myself going back to the Apple keyboard with the number pad on the side. But like the key crown one looks pretty sick. I like it a lot. Next, and this is related to the Bose QC 35. Or actually, it's related to any any headphones. There's this new company, I think their new company called wicked cushions, which is right down my alley of naming things. And they make like aftermarket ear cushions for your headphones. Because like the ear cushions on your headphones are consumable, like a year and a half in if you wear these things for eight hours a day, they start to fall apart and they rip and whatnot and yet to get new ear cushions and they're not that expensive. So it's kind of something you have to expect when you get these headphones. And there's this new company called wicked cushions that sounds like oh, like stylized ones. So I ordered the black cammo ones for my qc 35 they're not here yet, but from seeing the reviews and I've bought aftermarket cushions before and they are totally fine. aftermarket cushions for everything and they have them for all all headphones if you got beats or the Sony ones or whatever. But there's so many cool colors like the one with big palm tree leaves over them.
+
+61
+00:23:59,130 --> 00:24:12,480
+Scott Tolinski: Unfortunately American to have it for my Ultra zones, which are German company these. I had to like really, I actually got these cushions off of eBay. They were like impossible to find anywhere. And I found them on eBay of all places. Really.
+
+62
+00:24:12,480 --> 00:24:16,500
+Wes Bos: Yeah. And they're they're not just like generic circle ones.
+
+63
+00:24:16,590 --> 00:24:34,110
+Scott Tolinski: They're not generic circle ones here. They're the they're the exact same ones that you could get from the ultrasound company themselves but they're like a German company and they like didn't sell to ship their their ones here and none of their stores carry them. It was and also these headphones are like 20 years old at this point. So yeah.
+
+64
+00:24:35,190 --> 00:24:37,080
+Wes Bos: Wicked cushions,
+
+65
+00:24:37,469 --> 00:24:39,120
+Scott Tolinski: cushions that's very funny. Yeah,
+
+66
+00:24:39,570 --> 00:25:24,090
+Wes Bos: there's a replacement top band too. That's never gone out on mine like the band that goes on your head. It's good to keep an eye on what else we have here braided USB cables. This is always something I'm always going through cables. I don't know if I'm hard on my cables or what but I bought all kinds of cheap and expensive and apple and whatever. USB cables Actually, it's not USB cables. It's lightning cables that always break on me. I've never had a micro USB or USBC cable go on me. But a braided one is definitely nicer in terms of durability as well as it just I just like like the feel of it looks better aesthetic. Yeah. Good aesthetic on a braided cable. Yeah. Cool. So
+
+67
+00:25:24,090 --> 00:26:06,210
+Scott Tolinski: let's get into the Smart Home section. Now, wise cams. We've talked about wise cams, a whole bunch on this show. And one of my new favorite wise cam products is the outdoor camera. The outdoor camera is a little bit costlier. But it's all battery powered. The way you had to do it before was find some way to shelter power to a camera or have it living inside pointing outside kind of thing. These outdoor cameras. They're heavy duty for outside, but they also have a crazy good battery life. Yeah, the picture is amazing. We have the just this straight up outdoor one. And it has been nothing but awesome. Since I got it. I've only had to charge it once. It's been a long time. And I absolutely love it. This is one of my favorite products from wise and they've really come out with a bunch of great stuff.
+
+68
+00:26:06,300 --> 00:26:11,100
+Wes Bos: Yeah, I got the outdoor cam as well, full, full disclosure, they sent it to me for free.
+
+69
+00:26:11,730 --> 00:26:14,100
+Scott Tolinski: So they did not send it to me for free.
+
+70
+00:26:15,780 --> 00:28:21,750
+Wes Bos: We'll get you one side. So I had used the regular cams outside in an enclosure and they work great except the killer feature on the out the new wise outdoor cam is that the the motion detection, it actually has a sensor on the camera. The motion detection on most cameras, including the wise v twos, is def based, meaning that they'll take a photo and then they'll take another photo and they'll diff them and say oh, there was thing. So like, if like a mosquito flies really close to the camera, it's like oh, there was motion. Whereas with that PR motion detection, this thing works awesome because it actually has to detect somebody there. And that paired with the AI of is there actually a person there and it looks like they're they're working on detecting animals and packages as well using the AI. Ai which is really cool. And the battery is awesome on it. So I've had it at our cottage for two and a half months. Yeah, so probably about almost 80 days it's been plugged in or not plugged in. And we're at 55% battery life right now. Yeah, it'll go down quicker. If you're walking in front of it every single day. Like sometimes we don't get anything but if like a deer or something walks in front of it, it will trigger which is kind of cool. So big fan of the y's outdoor cam, they also just released the y's Cam v3. Yeah, I saw that. But I didn't know what's different about it. It's got a better low light sensor. So if you are running it in like a dark, somewhere that is dark, it will give you a better quality. I've seen a bunch of people on the forums already have posted, like overnight time lapse photos of it's snowing, which is so cool. And also it's water resistant. So it's ip 65 which I think the iPhone is as well. So they This is one that you can just put it outside without a without a thing. It's not yourself to plug it in. And you can't just put it anywhere then like the actual outdoor camp but like for 20 bucks an outdoor camera. Yeah, really good. Big fan. Yeah, well, yeah, they
+
+71
+00:28:21,750 --> 00:29:42,990
+Scott Tolinski: do a lot of great stuff. I have a one that's kind of expensive for what it is. And this one might shock some people when the price This is the Lutron dimmer. And this dimmer is for people who use the hue bulbs No, I really liked my hue bulbs, they are very costly, and whatever at the end of the day, but they are really cool. I have like my one in my office set up to do like change the temperature color all over the course of time like all of the lights in our houses get a little bit like more red tint as the day goes on, just to give you a little bit better sleepy times. And I really like these switches because it turns any switch into a dimmer as long as you have hue bulbs because it basically screws on to your current switch. And it gives you the ability to twist it or press it. And you might be looking at the price. It's 40 bucks, you might say Holy cow, a $40 switch and a neat we don't have one of these in every switch in our house I should say like this is for specific things like in our bedroom, we have a switch and we put one of these on there. And this switch now controls like five or six hue bulbs all at once. Oh, connected via different things. Some of them are just in the bedside lamps and stuff are being connected by this and you can you can do a lot of really neat stuff with this. They're expensive. I found at least a couple of these have been very worth it for us. It also prevents Courtney from turning off the switch making the bulb not work anymore because the hue bulbs have some that issue.
+
+72
+00:29:44,550 --> 00:31:14,070
+Wes Bos: That's awesome. I love the Levitan dimmer switches. At the time they were the only Wi Fi based switches that could do three way if you have a switch on one and then you have a switch somewhere else. Like in our house, we have two switches for most of our lights. And if you want to put a dimmer on them, that's annoying because if you dim one and then you turn it off and on on the other one, if you want to undo it, you have to walk over to the other one. So they did some kind of sneaky stuff behind the scenes where they use the neutral wire, I think, or they use one of the wires as a data wire instead of what it's meant for. And then the you can dim them from either switch, as well as dim it with your voice or you say, okay, gargle, lights, 20% and then boom, bring them down. And they are awesome. The only thing I didn't like about them is that if you want to use iOS, it's an entirely different switch. And I accidentally bought the iOS switch, installed it and then realized my mistake and I had to like get the run downstairs flip the breaker, yell up to my wife is the right one. So that's annoying. I've heard the What is it? The Lutron casita casetta dimmer. Oh, yeah, if you don't if you don't have a neutral wire, which a lot of old houses we don't you know, we don't then that one does some sneaky stuff behind the scenes in order to make it work, which is kind of cool. Yeah. Yeah, I
+
+73
+00:31:14,070 --> 00:31:26,580
+Scott Tolinski: almost got those. They were they were costly to I don't I think we went in the Hubei direction. And once we were in the new direction, it's like, well, there's a lot of like accessories here that are huge, specific. So yeah, the caseta ones are supposed to be pretty cool.
+
+74
+00:31:26,670 --> 00:31:53,340
+Wes Bos: The last thing is the Google Home. What's it called Google Home hub desktop. They changed the name. It's called the nest hub. We love ours we have to and favorite part about it is the photos. You see Yeah, photos. Kids love it. They just sit in front of it for hours and swipe through the photos. It's just a photo frame. Yeah. So yeah, it's it's and obviously they controls our lights and were able to pause our TV with it and like it's it does everything.
+
+75
+00:31:53,460 --> 00:32:00,840
+Scott Tolinski: Yeah, Courtney watches TV on it sometimes because we have we have one on our nightstand so she could just hang on we don't have a TV in our bedroom. So you do watch TV.
+
+76
+00:32:00,900 --> 00:32:07,110
+Wes Bos: Oh, does it so when you go to sleep it gets dim. Is that dim enough to sleep with it? Or do you want me Yeah, it
+
+77
+00:32:07,110 --> 00:32:33,690
+Scott Tolinski: goes black essentially, with just the time on it. Sometimes it can be a little bit like if I wanted to adjust the thermostat in the middle of the night. It can be a little bit of like ah when you when oh yeah the dark mode for it. Yes it is. It is definitively good although our our stupid baby monitor is just extremely bright all the time. With like it has all these like little like notification LEDs on it that are just constantly bright. Oh, that
+
+78
+00:32:33,690 --> 00:32:34,650
+Unknown: tells me not I really
+
+79
+00:32:34,650 --> 00:32:38,700
+Scott Tolinski: have no idea what a darkroom looks like anymore. And it drives me nuts.
+
+80
+00:32:39,090 --> 00:33:21,480
+Wes Bos: Oh, man, I have to have a totally dark love. Like I would probably have like the blackout shades. And then but still like gets through the sides. Like they they replaced all of the street lights with LED streetlights. And when they did that, it's like boom, like indoor. So we had to put like blackout curtains in front of that. And then I went around with actually this is really good. This is a sick book right here. It's just get somebody a roll of multicolored electrical tape. So you get white, red, black, blue. And then whenever you have to block off an LED light on some silly electronics. You can do that with this electrical tape that hopefully matches and doesn't look too awful. Yeah. All right.
+
+81
+00:33:21,990 --> 00:33:43,080
+Scott Tolinski: Cool. So let's get into the next section which is going to be desk stuff desk is off. This is a list this list is naming here, the desk stuff. And one of my favorite things that I have for my desk is I do a lot of standing on my standing desk. So I have a fatigue map. They're really cheap, like 1620 bucks or so and that's a nice little comfortable mat and I stand on it and it really makes standing at my desk quite a bit better.
+
+82
+00:33:43,770 --> 00:33:49,860
+Wes Bos: Oh, that looks cool. I want one of these in front of where I prepped food.
+
+83
+00:33:50,340 --> 00:33:52,470
+Scott Tolinski: This is Yeah, a lot of people would use it for that. Yeah.
+
+84
+00:33:52,470 --> 00:35:03,060
+Wes Bos: Yeah. Every now and then I see them at Costco and like this would be nice to have. Yeah, I haven't never pulled the trigger on it but it looks really nice high density foam. I'm gonna sick pick rollerblade gang chair wheels. This is something that literally hundreds of people on Twitter got after I showed them yeah, it's just basically your desk chair you pull the wheels off. And then somebody figured out you can put rollerblade wheels and it comes with all the the attachment so you just shove it in and then you have these really slick smooth rolling wheels on your office chair. It's like the benefits of it is that it is smooth rolling. And then also it saves your floor you don't have to I've even seen a lot of people say they got rid of that plastic mat you have to put on top of carpet. Because they just go straight on carpet with these which is kind of interesting. I've never tried them on carpet. We've got vinyl where in both of our spots, but huge fan. These are like they're cheap, like 30 bucks. And major major upgrade to your office chair. Just if somebody if you get in them for somebody who has an Ikea chair Get the 10 millimeter ones otherwise get them 11 millimeter.
+
+85
+00:35:03,570 --> 00:35:15,090
+Scott Tolinski: Yeah, I have them and I have a revocable rug. So if you have a rug in your office, you can definitely roll over them. It's been very nice to be able to roll over it and not have to worry about that.
+
+86
+00:35:15,360 --> 00:36:02,160
+Wes Bos: What else we have here Logitech MX three mouse, this is one, I have the MX two, mouse, but the MX three is the latest version of it. And it is an awesome mouse. It's got all kinds of little buttons on it. I used the apple mouse for probably 10 years. And when my last one broke, I thought I'll just try a new one. And I'm so glad I I put three of the buttons to volume up volume down and play pause. Like what what a benefit of that, like I never a lot of people do a lot more complicated stuff with it. But I just use mine for for doing audio and playing pause. And I can't imagine not having that anymore. Because if you need to pause your music when you have your hand on the mouse instead of on your keyboard. It's very, very easy. Yeah,
+
+87
+00:36:02,160 --> 00:36:09,900
+Scott Tolinski: I don't use the mouse. I use the the Magic Trackpad. I like trackpads. I don't know why. Oh, yeah, my wrists and hands don't like it. But my usage does.
+
+88
+00:36:10,170 --> 00:36:42,060
+Wes Bos: Yeah, I should try that. Again. I haven't tried a trackpad in probably five years. Maybe I'll get get into that again. What else we have here wireless charging pad. These are really cheap. It's a stocking stuffer at 10 bucks or so. And most phones built in the last what would you say two years. Three years. If your phone is less than two years old, you probably have a wireless charging coil in the back. And just having one of these little pads you can lay your phone on and get a little bit extra charge into it is pretty cool. Yeah.
+
+89
+00:36:42,420 --> 00:38:04,080
+Scott Tolinski: Cool. So let's get into our live streaming and work from home setup stuff. So this is going to be large Lee around audio visual stuff for your computer and your setup here. Whether you are zoom in or podcasting or YouTubing or twitching, whatever any of those things. First and foremost, I wanted to have the Elgato stream deck. This is something I'm very bullish on I like this a lot. It's basically a it's a square with some buttons. And the neat thing is you can reassign those buttons to just about anything when you're streaming. And those of you who have used OBS know that it is a giant pain to like, do anything in OBS in my mind. So this thing kind of eases some of that pain because you can assign macros and all sorts of things to your OBS, whether that's changing the source or initializing some sort of sequence or whatever it is really, really neat. And actually had another competitor to this on the list before called the loop deck loop spelled l u l o u p deck. Unfortunately, I read a bunch of reviews about it saying the software's terrible. And the really depressing part about the software being terrible is that when you might actually ask them do some of these videos like one of the reviewers was like I installed the software and there's this like Developer Tools thing open by default on it. I don't even know what this is. And oh my god, they ship software and head electron with Chrome Developer Tools. Bundled so it's always been in there. Oh
+
+90
+00:38:04,080 --> 00:38:06,840
+Wes Bos: my gosh, love Boolean got in.
+
+91
+00:38:06,960 --> 00:38:21,000
+Scott Tolinski: But also. So that tells you it's web based. But all of the reviews for it said that the interface was slow laggy terrible, awful everything. So unfortunately, I'm not going to recommend that one just yet because it seems like that their their dev team has a lot more
+
+92
+00:38:21,650 --> 00:38:29,820
+Wes Bos: box this loop deck to end though we should say that the what is the the other one Elgato one is like 120 144
+
+93
+00:38:30,110 --> 00:38:59,400
+Scott Tolinski: for the 15 key there's a 20 or 32 key that's 240 and a six key one that is cheaper. And again this The thing is like little LEDs and the keys. So the keys can even be gifts or, or neat things like that. It's very fun. I like it a lot. And Elgato makes some really neat stuff you're gonna have on here the cam link, which is the thing that we use to connect our cameras to the computer via HDMI. And I actually been using the cam cam link for a long time you have the 4k one.
+
+94
+00:38:59,820 --> 00:40:25,380
+Wes Bos: Yeah, yeah, I bought it right before the pandemic. Yeah, which is a smart man. I got it and and then the pandemic hit and no, you couldn't find them anywhere. And I had a friend that really needed it for like a real work. So I gave it to them. I just got it back recently, but I did do a brief little stint with the knockoff one. So the 4k is 60 frames per second, which is awesome if you're gaming or whatever. But if you just try to take an old or an SLR mirrorless camera and use it as a webcam. They sound like a $20 one that's just called HDMI video capture. And I was like, I'm gonna try this. I'm gonna see if it's any good. And I got it and it actually worked really good. their views are really good. And then it broke. Um, it got really hot and it stopped working. So obviously I just returned it to Amazon. I got a new one. But from what people are saying on Twitter is I probably just got a dud because there's a lot of people on Twitter Like, yeah, I've been using mine for whatever I stream for six hours at a time, and it has never overheated on me. So that is a good option because the cam link is super expensive. But if you're trying to get somebody like a $20 gift, that would be a good one. Just also get them the HDMI cables as well. I don't think many people have a micro or mini HDMI grow. Yeah, whatever the camera has,
+
+95
+00:40:25,400 --> 00:40:27,480
+Scott Tolinski: you'd have to have knowledge about their camera.
+
+96
+00:40:27,690 --> 00:40:28,770
+Wes Bos: That's that's a good point.
+
+97
+00:40:29,340 --> 00:41:06,270
+Scott Tolinski: Oh, I should say I also tried out the Blackmagic version of the same thing. Blackmagic, the company that does DaVinci Resolve has their own of these. And it was supposed to be really nice, but there was no feedback on it like not even an LED to tell you if it's working correctly, and I could never get it working correctly. So the cam link at least has an LED to show show you in it like should be working. And I've been using mine to even stream my Nintendo Switch. So when I said I was streaming Nintendo Switch, you can plug in any HDMI that has a clean output into this thing, whether it is a video game council or something like that. And suddenly it becomes your webcam. So it is not just for camera. It's for all sorts of cool stuff.
+
+98
+00:41:06,600 --> 00:42:32,400
+Wes Bos: Next one we have here and this is this is from somebody on Twitter recommended this. So I don't have this myself. But I thought this was big brain over here. He linked to a adjustable height work bench from Home Depot as a really heavy duty slick, adjustable standing desk. So what it is, is it's a big butcher block table on a metal powder coated black frame that has a manual crank on it to move the desk up and down and it's 229 bucks for a 62 inch. That's a really wide desk, you can also get a 46 inch one for 179. And I was like man that I cuz I have a butcher block from my desk. And I was like, I love it. It's it's like it's not as deep as soon as as other desks and it's super solid. It's super heavy. And I'm thinking like that would be really cool. The only weird thing is that it's it's manual crank so you have to manually crank it yourself. But I immediately started thinking well can I put my drill on that could you put a little motor on it that you you you have a button so like that's, that's way cheaper than a lot of these standing desks that I've seen before. And this has a real wood butcher block top. So big brain. Shout out to Jonathan speak who recommended that one people on Twitter are loving it. So check that one out.
+
+99
+00:42:32,550 --> 00:44:13,860
+Scott Tolinski: Nice. Cool. So next one for me is the I never say this company's name newer newer, newer n e w er This is a dimmable by color led studio key light it is a very very very bright professional studio lamp. It has 480 LED beads and it is a it's the whole thing is very thin, it's very nice that it's only 62 bucks comparatively to some other LED lights or anything like that this is to get yourself a nice light because as Wes and I were talking about before we recorded this episode lighting is really the big big difference in terms of having a okay camera look good and having a good camera look amazing, is really just the lighting setup and I use this thing it does not come with the stance so you're going to have to have a standard luckily I had just a generic stand sitting around but you can get a cheap stand for really cheap. And again this thing has a diffuser baked in what I like about this one specifically compared to I have a couple other studio LED lamps as well but the reason why I like this one so much is because every other line of LEDs is like orange tinted orange tinted so that you can have individual brightness knobs for the white light or the orangish light and that way you can tune the kind of look that you're getting out of it. If you have too much like super high white light on your face, it's going to give you a more of a pale look so you can add a little bit orange orangey light in here so my other ones my main key because I'm using it as a field my main key is a straight up white LED my back lights and main white LED but my fill light is actually straight up sepia or or the orange tint so that way it kind of fills in some of that extra light giving me a little bit more more color.
+
+100
+00:44:14,519 --> 00:44:47,520
+Wes Bos: Yeah, my wife just got a set of soft boxes from newer and I just like put them in because I'm I'm trying to like up my my game as well which is why I've got the cam link and whatnot. I'm sort of in the middle of it maybe once you've got to figure it out we can do a little rundown of our setups But yeah, I couldn't believe like I was like this camera is garbage. And then I just put this like beautiful light in front of me and hit like media and Scott also he they he turned off his lights. And I was like God looks good. And then he turned on his lights and it's like, Oh, that looks so good. Like I get it.
+
+101
+00:44:47,580 --> 00:44:48,900
+Scott Tolinski: Yep, it's a big deal.
+
+102
+00:44:49,140 --> 00:45:27,840
+Wes Bos: Another fun thing I got as I'm trying to do some colored backlight in my setup and I got these LED RGB floodlights, which are also Water resistant. So you can you could, you could throw them really anywhere like that you can for Christmas or whatever, it would be kind of cool as well. Mine came with a, just a little remote to change the colors. But now I'm seeing that there's some available that have an iPhone app, which I'm kind of, maybe I'm gonna get those. Instead, I'll return the ones that have because you can set the color to any color that you want. Except for Brown. That's a very interesting, yes, technology connections video. So
+
+103
+00:45:27,840 --> 00:45:28,410
+Unknown: watch.
+
+104
+00:45:28,440 --> 00:45:42,000
+Wes Bos: Yes, because you can't make Brown. But any other color you are allowed to have. And they just throw a really nice super bright color on it. And I was really impressed. My kids love them too. So I'll link those up as well.
+
+105
+00:45:42,000 --> 00:46:53,640
+Scott Tolinski: Cool. Next one for me is going to be this vivo pneumatic mic arm. I have tried every mic arm under the neath the sun, I had a really fancy canon one that did just was garbage. I mean, they're all they're all these external spring breaks. So when they look ugly sitting on your desk with all these springs sticking out to they never put the mic where you put the mic, I put the mic up here and then a droop down because the mics too heavy for it, you tighten it up, it doesn't care over time, the thing is just inevitably going to break down. So I was really on a run to find a good mic arm and all of the good ones like the broadcast ones basically require you to drill through your desk, or they're very expensive, or there was a lot of downfalls with all of them. And so I found this one after a lot of trying and looking. It's vivo, same company that makes my my monitor arm and it's pneumatic. And it is only 79 bucks. So compared to other professional ones, this one is a steal. Because if $70 sounds like a expensive mic arm for you, yes, it is. But compared to the other good ones, this one's a definite steal. And if I put my mic over here stays there every single time and I don't have to worry about it. It's
+
+106
+00:46:53,640 --> 00:46:58,530
+Wes Bos: like the light at the dentist. That's how I always tell people about automatic things are like when
+
+107
+00:46:58,530 --> 00:47:07,890
+Scott Tolinski: the dentist puts the light where he wants it to go. It stays there. It's easy to move. But then once you once you stop moving it it doesn't move. Yeah, it's just very good. So
+
+108
+00:47:10,650 --> 00:49:06,300
+Wes Bos: that's good. So that's it for our work from home setups and whatnot. What do I do another show on on stuff once once we've all our I've got it settled down, you obviously have yours dialed in. Let's take a quick break to talk about our sponsor, and that is Freshbooks Freshbooks is cloud accounting. And I'm going to tell you not about the features of Freshbooks. But about the support of Freshbooks. So I had it issue was Freshbooks on Thursday, last Thursday, and I logged into Freshbooks, I needed to download a tax summary for my accountant and get it off to him. So I clicked on it and the pages jumped to the top, I immediately was like JavaScript is broken because they clicked on the link and or clicked on the button. And it didn't move me to that part of the application. It just jumped to the top of the page. So I said okay, this is this is annoying what I'm gonna do about this, so I was like, I'm gonna call him. So I call them somebody picked up first ring, said, Hey, Freshbooks What's up? They didn't say what's up. They were more professional than that. And I explained the issue. I said, it looks like JavaScript broken. Trust me, I'm a developer. He could tell that the the guy on the phone was also super technical. So he understood what was going on. said all right. So he first he generated the report for me and then he also logged logged off that issue and in contacted the right people for it and it was fixed within a day. I had it working again when I tried it again the next morning. So support as Freshbooks is fantastic. Let alone they answer the phone, you know, I didn't have to like submit some sort of like contact form that they immediately email and say we got your support request and then you never hear anything back. The sport is awesome. So check it out. Freshbooks comm forward slash syntax, make sure you use syntax in the How did you hear about a section and that is going to get you a 30 day unrestricted free trial.
+
+109
+00:49:06,540 --> 00:51:01,590
+Scott Tolinski: Cool. So let's get into the last two sections really quickly breeze through some of these because these things are not sort of tech related fitness stuff. I got a concept to rower pm five is the model. Oh gosh, model d o the D concept two, model D pm five. I love this thing. I use it all the time. Now I ordered it from somebody locally on Craigslist. They are kind of difficult to find right now. So pop up in Craigslist, set up some alerts and try to find one for yourself. The reason why I really liked getting a rower is because it's going to be a good way to do cardio at home in the middle of a pandemic right because cardio at winter is really really tough to do. Especially unless you're doing like jumping up and down in your living room or something which is fine. But the rower in general is going to build muscle as as well as do cardio stuff. So very good. Another thing I want to shout out is the power blocks which are going to be difficult to find and hopefully that doesn't stay the same but who knows. The power blocks are adjustable dumbbells that go anywhere from five pounds to 70 pounds or even higher if you have the extension. We use these things every single day. They're just incredible. I've had them for now, like eight years or something, and they're just very good. Another one, this one's going to be a cheap one. Because a lot of these have been very costly. This is the band's. So I have some $19 bands here, elastic bands that you can use for different types of poundage of pressure all the way from 10 to 50 pounds. And I do this is a piece of gym equipment that costs 20 bucks, and I have only ever bought one set of these and it has been fantastic forever and ever and ever. For me, we just attach them to something in our gym, we have like a thing called sweetest stall bars that I built. But you could attach these to the doorframe, you could attach these to literally anything. And it allows you to get weighted resistance, do all sorts of stretching exercises or strength building exercises, like the possibilities are seriously endless for what you can do with good bands. So check these out $20 and it will really really make a big difference.
+
+110
+00:51:02,130 --> 00:51:41,250
+Wes Bos: I will pick one fitness thing. And that is just a couple of kettlebells. Having them in your office, if you're frustrated trying to work through something being able to lift and swing them a couple times. It really helps. I bought mine, I bought a couple new ones like a couple months ago. And they're really really hard to find I found like the last few at a Canadian Tire here. But just looking online, it looks like stock for these are starting to be replenished, which is awesome. So that's another cheap little home office fitness thing that you could just have there and get through any hard times that you're having with with frustration. I'm amazed at how helpful they can be when you just swing them a couple times.
+
+111
+00:51:42,420 --> 00:52:16,530
+Scott Tolinski: Awesome. Lastly, let's get into some clothing here really quick. I'm going to shout out developer.io that's d VLP r.io. Travis is a friend here he lives in Colorado. He's a really great guy. And he's been making these t shirts for a long time often imitated I must add. I've seen his designs that he created all over the internet from various people ripping them off. So if you want to support Travis and his awesome, awesome stuff, he's got some great t shirts and hats and stickers and stuff. Check out developer at DV lpr.io. And yeah, check it out a lot of cool stuff.
+
+112
+00:52:16,680 --> 00:53:20,070
+Wes Bos: I got a couple little pieces of clothes that I really enjoy. naked and famous makes my favorite jeans. They're Canadian company that makes Japanese salvage and the cut I really like is called the super guy. They have a whole bunch of different cuts and you might want to find a place that sells see so you can find your cut, but the super guy is kind of like not super skinny painted on but like tight around the leg. And they are fantastic quality jeans. The same company also makes these things called unbranded. I think I've talked about this before, so the unbranded brand, and they are the exact same cuts. They're just made in China instead of made in Canada, with Japanese denim. And they also they're much cheaper, they're still not like super cheap, but they're much cheaper. So there's kind of two options there. I like buying them, they could have famous ones because they, they always do collabs or they do fun stuff, like they'll they'll do like a red red inside or they'll use a different color thread on the back, things like that. It's kind of fine. I really like that. Neat.
+
+113
+00:53:20,100 --> 00:54:10,440
+Scott Tolinski: I have a link here from a store that I really like for men's clothing. So I'm sorry, this is very gendered here. But men's clothing, you know, my wife has a hard time finding stuff for me because I have very specific tastes in my clothes. But this is a place I know that she can go to and literally Close your eyes and pick and probably I'm going to love it. So this is Huck berry.com if you've never heard of this, they have a lot of stuff that's not just clothing, a lot of like gifts. So if you're looking for gifts for that dude in your life, this is a great place because it's all expensive stuff. I don't want to I don't want to get your hopes up that it's gonna be cheap stuff, but it's all very good stuff. A lot of like really, really nice crafted things brands like tobacco and Flint and Flint and Tinder I name is the name of the brand either way, a lot of really neat stuff for dudes. I got
+
+114
+00:54:10,440 --> 00:54:41,100
+Wes Bos: a couple more little things as well here. everlane makes a really awesome crewneck which is a it's called the uniform crewneck if you Google it, it's a really nice good quality sweatshirt. Levi's has my favorite denim button up called the Barstow Western and fall Raven makes a probably some of the best flannels that I've ever worn. I specifically have one called the Skog but all of the fall Raven ones are are really really nice.
+
+115
+00:54:41,220 --> 00:55:21,000
+Scott Tolinski: I love going in to the fall Raven store. There's one in Boulder and just being like this, this stuff is very Yes. The last one I wanted to have would be these Lulu lemon joggers. I have the men's jogger and my wife has the women's version of the same thing. And these things are not like they're they're not they're not yoga pants or whatever these things look like joggers, they they're kind of a, I don't know what the material is. It's very stretchy. And so she bought me a couple pairs of these pants and it's literally all I wear anymore because they don't look cheap. They look very nice. They hold up, but they're also extremely stretchy and very comfortable. They're sort of like fancy sweat pants, but they're not.
+
+116
+00:55:21,030 --> 00:55:24,030
+Wes Bos: Yeah. socially acceptable sweatpants.
+
+117
+00:55:24,030 --> 00:55:45,720
+Scott Tolinski: They're very nice. So like they are they're nice enough to wear out and not feel like oh, I'm slogging around in sweatpants. So I seriously have a couple pairs of these and I wear them all the time. I was a little skeptical about dude buying Lulu lemon stuff. But after I got these Courtney was like, I like these pants so much on you that I need to buy some for myself and the women's version is just as nice so very cool pants.
+
+118
+00:55:46,080 --> 00:55:46,710
+Unknown: All right.
+
+119
+00:55:47,160 --> 00:55:48,420
+Wes Bos: Do you have any sick pics for me?
+
+120
+00:55:50,400 --> 00:55:52,920
+Scott Tolinski: That's a good one. This one says the sick pic. So
+
+121
+00:55:53,010 --> 00:56:15,840
+Wes Bos: yeah, that's it. So hopefully that is helpful. I hear from people all the time. Like obviously it's just an entire episode of us telling talking about cool stuff. But people always tell me how much they like the sick pics and and they get to find out about neat stuff here and there that we're into. So hopefully that is helpful for you or for whoever it is that you're looking to buy some Christmas gifts for.
+
+122
+00:56:16,170 --> 00:56:29,190
+Scott Tolinski: Yeah, awesome. Well, I'm going to shamelessly plug if you would like a nice tutorial series. Well head on over to level up tutorials.com forward slash pro and sign up for a year and that would be a great gift too. So level up tutorials.com forward slash Pro.
+
+123
+00:56:29,400 --> 00:57:07,740
+Wes Bos: Yeah, actually, that's one thing I get every single year is people say how do I gift your courses? I don't have a a process for that. But generally the way it works is just buy it with your own email address and then change the email on the day we'll change the email and re send it to that person so you can just shoot me an email Wes at West boss calm or Hey at West boss calm is probably better. And we will switch that over and we can do it at or near Christmas day so you don't ruin the surprise as well. Word. Alright, Wes bos.com forward slash courses I forgot about the link and use coupon code syntax for 10 bucks off
+
+124
+00:57:07,950 --> 00:57:09,480
+Unknown: sick. Alright, thanks
+
+125
+00:57:09,480 --> 00:57:14,040
+Wes Bos: so much for tuning in. We'll catch you on Monday, B's face.
+
+126
+00:57:15,930 --> 00:57:25,680
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you liked this show.
+
