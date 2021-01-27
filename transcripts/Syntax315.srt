@@ -1,0 +1,256 @@
+1
+00:00:00,359 --> 00:00:24,000
+Announcer: Monday, Monday, Monday Open wide. Get ready to stuff your face with JavaScript CSS loadmodule BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is when Barracuda bombs and Scott tell told me
+
+2
+00:00:25,980 --> 00:00:31,320
+Scott Tolinski: Oh, welcome to syntax. And this January Monday tasty treat.
+
+3
+00:00:31,350 --> 00:00:32,360
+Unknown: Happy New Year.
+
+4
+00:00:32,399 --> 00:03:02,940
+Scott Tolinski: Yes, Happy New Year to you. We are going to be talking all about keyboard shortcuts and window management. And this is one of those things that I cannot stop talking about. Which seems crazy to say, but that's honestly how I feel. My name is Scott Tolinksi. I'm a full stack developer from Denver, Colorado and with me, as always is the West boss. Hey, hey, and with us today as well is the two of our favorite sponsors. Boom, I kidding. All of our sponsors are our favorite sponsors. But two of our favorite sponsors are Freshbooks and Sentry, I'm going to kick it off with Sentry. But sentry@sentry.io is the exception handling tool that allows you to see more than just errors happening in your project. Now, they allow you to really discover a ton about your application. For instance, one of my favorite things that Sentry has is their performance tab. Now the Performance tab allows you to monitor web traffic through your site and actually see graphs and charts about just about everything you could possibly imagine. Okay, so here, we even get our failure rate of each route. So you get the time to load, you get the app dexis score, you get how many users and how long it took them to hit these pages. And then based off of things like the failure rate or the time to load, it assigns all of your routes, a user misery score, which is like a little chart to just show you. Okay, if we check it out, we can see, okay, one of these pages here has a fairly high user misery score, but I love amount of people have hit this. And maybe if one of them had an error for some reason, maybe their ad blocker was turned on, well, maybe that's not something we need to be concerned about. And I see another route that is the exact same page in my site, just a different route for that react component. And I can see that this route has a very fast loading time and an extremely low user misery score with a with a ton of traffic. So therefore, I know, it's not actually something I need to worry about. But this allows me to see at a glance, which of my routes are the most painful for our users to hit. And it's very, very cool. I'm perfed. That's one of my big things. I love perf. Love it. Love it. Love it. So getting performance tools inside of Sentry is one of the coolest things in the world. And I've been using this since it was in beta. And let me tell you, I use it at just about every week. So check it out@sentry.io use the coupon code tasty treat all lowercase all one word, and you will get two months for free. Now let's move on to West talk a little bit about fresh books.
+
+5
+00:03:03,119 --> 00:03:41,460
+Wes Bos: Fresh books is the cloud accounting solution for your small business. So if you 2021 this is the year I'm talking to you listen to his podcast right now. You are you've been trying to start a business, New Year new you new fresh books account, you are going to start a business this year, and you're gonna log your expenses in Freshbooks. You're gonna send out all those invoices and expenses, you're going to remind your client who forgot to pay their invoice in Freshbooks. So check it out and sign up at freshbooks comm for its syntax for a 30 day unrestricted free trial. Make sure you use syntax in the How did you hear about a section? Thanks so much for Freshbooks for sponsoring
+
+6
+00:03:41,970 --> 00:05:35,670
+Scott Tolinski: CIC. Okay, so keyboard shortcuts, window management, I know we both use simultaneously the same tools and different tools. So I'm excited to hear about some of your setups, we can share setups a little bit, I think we could start with one that I knew were both pretty high on I'm not talking about Colorado air, I'm talking about carabiner elements, which we both love and use this app carabiner elements, it's for the Mac. Now unfortunately windows people I don't have an analogous software for this. But what this is doing is allows you to basically override keyboard functionality. And one time This came in handy was when I had water damage on my keyboard and my shift key just kept on pressing itself. So because of that I could just get into carabiner elements and turn off that shift key. So it gives you a lot of like neat little things like that. But I think the reason we both use it as for productivity specifically and the creation of a hyper key. Yeah, the hyper key being the combination of command control option and shift and so what we have both done I did so at the behest of West which was assigned my Caps Lock key to be command control Option Shift because really how often do you use cap lock? Never I know use caps locks and if I do, it's an accident and I'm mad at myself. For me what it's done. It's opened up this whole world where I have a blank slate of keyboard shortcuts that I just know, if I hit the command lock key and something else, it's going to be a keyboard shortcut and have to worry about overwriting other things. Like I use these heavily in my DaVinci Resolve for video editing, I do caps locks a, it normalizes my audio, I do cap locks, and it creates a new timeline with my current video clip, you know, just things like that I just start setting keyboard shortcuts willy nilly in VS code, Caps Lock l for me deletes the line by just because I want it to be that way.
+
+7
+00:05:36,000 --> 00:06:44,820
+Wes Bos: Yeah, that's all I use Karabiner elements for is the ability to remap your cap soft key. In like Mac OS settings, there are the ability to mess with the modifier keys, but you cannot remap your caps lock key to be a new modifier key. So that is what you kind of have to do. Just set it up. And then from there, once you have a hyper key, then you can use your hyper key plus literally any other key on your keyboard. In order to set up we'll talk about this window management and keyboard shortcuts and stuff like that. So one app that I absolutely love, and I can't stop talking about is and I've been using it for years is better touch tool. So better touch tool is this massive application that has tons and tons of different features built into it. And it allows you to specify custom keyboard shortcuts, custom trackpad shortcuts, drawing mouse gestures, touch bar, custom stuff, you can use the Siri remote, you can hook up a MIDI to it, you know, like those like MIDI things that you can hook up to your computer. Hold on,
+
+8
+00:06:44,850 --> 00:06:52,530
+Scott Tolinski: hold on. Let me actually ask you this. This is gonna be a fun little side. middie can you tell me without googling it? What is Midwest,
+
+9
+00:06:52,950 --> 00:06:58,050
+Wes Bos: music instrument, digital, something digital interface.
+
+10
+00:06:58,050 --> 00:08:13,560
+Scott Tolinski: I think it's good. I actually don't know what the acronym stands for. But my uncle who got me my first job in the magazine, he actually was like an early adopter of MIDI. And he'd like Britain first, some like electronic music magazine. Back in the 80s, I believe and he was like super into MIDI really early. You could think of MIDI as information about music, or information where you could say, Alright, this is like an a five. So it's the a the fifth day on the keyboard, it was hit at this time and with this velocity, so it tracks like how hard something was hit, when it was hit and what node it was hit. And so people can do many to do, you know, play on a keyboard that has no sounds within it. And then take that MIDI blueprint and run it through a computer and it's playing it back with sounds assigned to that. One of the things that I'm looking at getting right now is a MIDI drum kit, because, you know, I have a drum kit applied into my drums my whole life. But I haven't gotten to play for the past like seven years. And so I want to get an electric drum kit that will have a MIDI out which zone cable MIDI out into my thing and I can play the drums and have it go through my computer. And if I want it to be cow sounds when I hit the snare drum, the naki cow sounds when I hit the snare drum,
+
+11
+00:08:13,710 --> 00:08:26,520
+Wes Bos: and you could hook up the MIDI to better touch tool. Yes. And then when you slam the hi hat, you could do like a cowbell Yeah. middie that when you hit it, it deploys your your website or something like that, because it hooks up,
+
+12
+00:08:26,700 --> 00:08:30,060
+Scott Tolinski: you could do a beat to deploy some code, doo doo doo doo.
+
+13
+00:08:31,320 --> 00:10:05,340
+Wes Bos: So what I use better touch tool for is, first of all, all the keyboard shortcuts. So once you have this hyper key, you can set up keyboard shortcuts to like I've got hyper h opens my terminal, or hyper f opens my ScreenFlow app, or what I really use it for is window management. So I've used dozens of these window management apps, and they all come down to either you have to configure them by writing this very obtuse fig file. That's too hard for me. Or they're very simple and they don't do all of the things that I want. And bettertouchtool is there like both of those where you can get super nitty gritty into window management like I have hyper arrow keys will snap my windows to the left or to the right or to the top or the bottom I've hyper page down will move it to the left monitor and just cycle through all of my monitors. But then it also has these snap areas that you can define. So for me I'm when I record, I only record a portion of my screen and that because the monitor is too big for creating video like that, and I have defined the snap areas in my layout. I have an extended Apple keyboard so I have all these extra F keys and I have the home and Page Down page up buttons so hyper plus all those buttons I do too. Oh, there you go you in like, I never use those keys for anything do.
+
+14
+00:10:05,540 --> 00:10:11,970
+Scott Tolinski: There was like a hot minute where I was like, Oh yeah, page up page down. I'm loving this and then like no, I don't use it I'd use.
+
+15
+00:10:12,480 --> 00:10:18,120
+Wes Bos: Yeah. But even if you do hyper plus those keys are probably not assigned to anything right?
+
+16
+00:10:18,120 --> 00:10:19,710
+Scott Tolinski: I can't imagine Yeah,
+
+17
+00:10:19,740 --> 00:11:01,560
+Wes Bos: it's like a whole nother because I always have my fingers on the arrow keys. So I just moved my hand up. And I feel like I have four more arrow keys without having to look down or feel. And then I have those set to maximize my windows to the different snap areas. And they're within the portion of my screen that I'm thinking. So I used to have to resize my windows to fit inside. And now I just hit this keyboard shortcut, and it snaps them all into place. And my mind was blown. I was like, This is perfect. This is amazing. And just like the window management, it's just a small part of better touch tool. And it's like worth the $20 for a lifetime license for a better touch tool alone.
+
+18
+00:11:02,010 --> 00:12:19,650
+Scott Tolinski: You know what I gotta, I gotta make this change. I've been using DVS spelled di VVY. For a long time, actually, you can tell just by the aesthetic of this website, when I bought this in. And I challenge anybody to look at this one. This is very two point web 2.0 timing, when this thing came out. And dizzy by all means it's fantastic. And just like you, I have the same setup with my hyper key where I can hit option, or I can hit hyper to the right. I even have them set up specifically for my ultra wide because I know my ultra wide if I make the window one third of the width or whatever, that's still more than enough width for me. Yeah, or I have an option to do half and half. I also have hyper are puts all of my windows to the correct aspect ratio of my screen recording software and moves it into that recording spot. Yeah. Which is something that most people don't think about when you record your screen. Your screen isn't 16 by nine, which is the standard aspect ratio. If you're smart, you're screen recording 16 by nine so that way you're dealing with standard, you know, aspect ratio formats and stuff. But Hmm, better touch tool, it how much control does it give you because the nice thing about Divi is that Divi sort of works like CSS Grid, where you can choose how many grid items you want. And then you can choose the gap between them. So you can even like adjust the gap.
+
+19
+00:12:19,920 --> 00:13:20,820
+Wes Bos: Yeah, so I tried that with mine. And I tried like figuring out where it was. But it never was exactly the size I needed it to be. It was always off by like 10 pixels. And so better touch tool, it literally says action trigger snap area x 319 pX, why 714 width and height 19. Like, for some reason 1920 is not wide enough for me. So 1923 pixels, is the is the width I need and the height. And it's like super fine grained control, you can hook them up to keyboard shortcuts, it also gives you like visual snap areas, I have it set up where if I'm dragging a window, and I hold down hyper, it'll officially give me all the snap areas, I can drag the window into that snap area, and it will automatically expand to that size. And then it also gives you the windows like if you slam a window up into the top left or right of your screen, it will expand Oh, that
+
+20
+00:13:20,970 --> 00:13:24,000
+Scott Tolinski: Oh baby, give me that Windows around.
+
+21
+00:13:24,060 --> 00:13:51,960
+Wes Bos: Yeah. And like, I guess I'm talking about it. And I was like, how much should I pay for this tool? Oh, I was like $20, like seven years ago. And I was like, we got to do a show on this. And you can also do keyboard shortcuts specific by an app. I just have shortcuts and then I go into each app. But if you want to like say like, if I'm in Google Chrome, and then I press this keyboard shortcut, it can do something different than when I'm in VS code or something like that. You
+
+22
+00:13:51,960 --> 00:14:18,810
+Scott Tolinski: want to hear it. I'm gonna use this for Yes, hi, I'm going to use this because you know how ScreenFlow you can pinch and zoom in the timeline. Yeah, well, turns out, you can pinch and zoom in the timeline that Final Cut Pro two. And I'm still used to that workflow. But DaVinci Resolve is Command Option to increase if you do pinching in davinci resolve it like zooms in on the video or whatever. So I am going to use better touch tool here to set up pinch and zoom to remap to option plus and option minus
+
+23
+00:14:19,050 --> 00:14:43,650
+Wes Bos: Oh, because because they have a whole trackpad thing. And you can set up custom gestures that do things. Oh, that's sick. Yeah, because most apps will have the ability to set a keyboard shortcut for things like zooming in, but they won't have the ability to set a gesture. Right, right. That's like a OS level thing. And that's what this gives you full access to so it is super slick with that
+
+24
+00:14:43,650 --> 00:14:49,140
+Scott Tolinski: by lifetime mag access. Yes, please. I can't even wait till the end of the show to get my credit card out is very good.
+
+25
+00:14:49,200 --> 00:15:03,240
+Wes Bos: I'm like almost annoyed that this was only $20 because like the app does so so much like if you have one of those like five year old or 10 year olds. remotes, remember, you can't get a remote for your magic. I
+
+26
+00:15:03,240 --> 00:15:04,020
+Scott Tolinski: got one. Yeah,
+
+27
+00:15:04,079 --> 00:15:43,230
+Wes Bos: yeah, yeah, I remember that they don't work anymore. So it doesn't come with the IR thing. But like you could use that with it. And like, there's just so many little hidden features inside of it. And just for the window management alone, it's the best Window Manager I've used. But then you can also put all your keyboard shortcuts in it. And then you can also like script things. And then I also found out, you can do web overlays with better touch tool. So one thing I do is, I use this app called Uber layer. And I have just a PNG, that's the size of my monitor, and it overlays on top of my screen. And then I can see where I'm supposed to be recording within which the box doesn't ScreenFlow ScreenFlow doesn't do that for
+
+28
+00:15:43,230 --> 00:15:44,910
+Scott Tolinski: you, I saw you does,
+
+29
+00:15:44,969 --> 00:16:14,670
+Wes Bos: it allows you to specify a certain part of the screen. But at least when I was looking at it, you had to drag and drag and resize it and manually enter the numbers. You couldn't set like a thing. And then it also Gray's out the outside of it, which sometimes I want to show the menu bar of other thing, and I'm happy that it recorded that part of the screen, because I want to be able to zoom into it. Or if I want to zoom into the dock and show like oh, there's a new notification here. So I just record the whole screen.
+
+30
+00:16:14,879 --> 00:16:16,770
+Scott Tolinski: I just don't record that part of my screen.
+
+31
+00:16:16,829 --> 00:16:45,870
+Wes Bos: Oh, yeah, maybe I should look at it again. But the web overlay thing is really cool. Because you can just write HTML, CSS and make this overlay on top of your website. And I was thinking like, oh, if you were like a streamer, oh, yeah. You could code your own, like overlay in JavaScript and like, pulls data in from an API. What's it called? what's what's called Uber screening? No, this was called overlayer Brulee. But I just found out that better touch tool lets you embed a web view over top of your screen.
+
+32
+00:16:45,899 --> 00:16:50,010
+Scott Tolinski: So it seems like better touch tools to just become my daddy or something. Right?
+
+33
+00:16:50,129 --> 00:16:51,930
+Wes Bos: They should call it everything.
+
+34
+00:16:52,679 --> 00:18:13,170
+Scott Tolinski: Yeah, I'm interested in this. You know, it's so funny, because I was coming into this episode being like, Oh, yeah, I got so many things to share. I'm gonna like go nuts on this. And I'm like, this is just me gushing over better touch tool and the fact that I don't use it. It's so good. I'm not big, big, all about improving your own efficiency. For some reason. There's like some shortcuts in VS code that just don't register in my brain, right? Like, I know, you heavily invest in things like creating shortcuts and yeah, snippets and stuff like that, that will help you. And for me, like I've always found that like, one of my biggest boosters to productivity is when what's in my brain lines up directly with what that shortcut is? There was some shortcut whatever the the shortcut to delete a line, I think it's like command K or something by default. Yeah. And to me, that never felt right, because I never learned it as command K, I'm sure those of you who have learned it as command K, you know, it feels right. But for me in my head, if I delete line line line, yeah, oh, I put hyper to hyper l delete the line. And I have so many shortcuts that are just like that. Like you don't have to accept vs codes. snippets, like VS code is shoving a plate of stinky cheese in front of you. I don't know stinky cheese can be good. I'm trying to think of something that's not good. You know, it could be sending some disgusting food in front of you. And you'd be like, No, wait, I want cheesecake. Okay, and you can have cheesecake, you don't have to take what it gives you. One thing I did was in VS code, I
+
+35
+00:18:13,170 --> 00:18:21,780
+Wes Bos: set hyper h up to show code hinting. So like, you know, when you write a method like set timeout, and it's like, yeah, the first argument is
+
+36
+00:18:21,930 --> 00:18:25,550
+Unknown: the function. And then you have to delete the one word to get it to pop back up.
+
+37
+00:18:25,680 --> 00:18:33,590
+Wes Bos: Yeah, you're like, God, come back. I need you. I just set that to hyper age. And it just shows them right. It's super, super simple.
+
+38
+00:18:33,660 --> 00:18:34,710
+Scott Tolinski: What is that?
+
+39
+00:18:34,770 --> 00:18:47,010
+Wes Bos: Let me let me find out what it's called for you. Trigger parameter and static. Other things since I got the Mac extended keyboard with the number pad on it because I'm an accountant. Do you ever use your F keys?
+
+40
+00:18:47,060 --> 00:18:47,820
+Scott Tolinski: Yes.
+
+41
+00:18:47,820 --> 00:18:49,550
+Unknown: I never use my F keys.
+
+42
+00:18:50,400 --> 00:19:03,350
+Scott Tolinski: I do. This keyboard. The key Tron key one actually does a really good job of the F keys. So I do use them. Yeah. Oh, and I specifically use function f 11. What does that do? It brings the windows apart allows you to use your desktop.
+
+43
+00:19:03,390 --> 00:19:36,390
+Wes Bos: Oh, yeah. Okay, cool. So I never use my F keys. And because I have the extended keyboard, I have F 16 through F 19. And those are almost never hooked up to anything because most Macs do not have that unless you explicitly go and find that keyboard. So I hooked up my f 19, which is the top right hand corner to record and to stop the recording. Because sometimes in my recordings, you'll see me put my mouse at the top right hand corner and click stop recording. And I was like, that kind of sucks. So I set that up and then I set up so
+
+44
+00:19:36,390 --> 00:19:41,460
+Scott Tolinski: ScreenFlow Command Shift two stops the recording, just to FYI, Command Shift two.
+
+45
+00:19:41,840 --> 00:19:52,100
+Wes Bos: Well, I did that but I always forgot it. And I was thinking I need one of those either a MIDI or I need like one of those Elgato decks. Oh yeah,
+
+46
+00:19:52,100 --> 00:19:53,460
+Unknown: I won't put those so bad.
+
+47
+00:19:53,460 --> 00:20:15,420
+Wes Bos: I was like, I just need a button depressed. Yeah, that's not a crazy keyboard shortcut because like you said, like sometimes it just can't really Remember what the keyboard shortcut is. So I just hooked it up to that button. And then also, another thing is to drop a marker. When you screw up, I drop a marker. And I was like, I just need a big old button on my desk. That's dropped marker. So I hooked that up to F 17.
+
+48
+00:20:15,590 --> 00:20:18,590
+Scott Tolinski: So what are you saying you don't squawk into the microphone?
+
+49
+00:20:18,660 --> 00:20:32,880
+Wes Bos: Yeah. I usually just go or clap or something like that. So I can visually see it. But the marker is a little easier on the voice. What else? Do you have anything else, I got one more thing. But I don't want to fall over here.
+
+50
+00:20:32,910 --> 00:21:20,460
+Scott Tolinski: Don't get blown my mind because so many of my things are just based around that hyper key and then adding keyboard shortcuts galore. So for me that's like really, really the big takeaway most of the way most of the way. And then like I said, Devi, but I'm kicking Devi to the curb. Another one I like to use, I use rocket, an app called rocket Yes, to do my emojis. And you can set up bracket, so you do colon and then you can start typing. And it's sort of like the way slack gives you emojis everywhere, which is really how emoji should work in the OS. And the coolest thing about rocket is you can tell rat rocket to buzz off and VS code and Buzz off and slack and Buzz off and discord where those functionalities are there. But if I'm popping open Twitter, and I want to throw a little emoji in the tweet. Oh, yeah, it's right there for me. So yeah, I use rocket for that.
+
+51
+00:21:20,730 --> 00:22:35,850
+Wes Bos: Last thing I have here. This is not entirely keyboard, but it's just text expander I use text expander like crazy to have little snippets for little things. Like people asked me what my business number is all the time or phone number or email address or a little like people say, How do I merge my accounts, I just typed colon merge or colon, phone or colon email, and it will just expand that. And then another thing I do all the time, I guess it's not really keyboard shortcut related. But whenever I'm typing things, like if I type JavaScript, really quickly, I always do capital J. VA, s CRI PT, because I hold down the shift key and I type it really quickly. And sometimes you'll see that like it's really annoying to me. So I set up a text expander where if you ever type something with two capitals, right next to each other, it will automatically down to phi lowercase the second one because that was probably an accident. And I thought it might get in the way but it is super super handy. Do you pay the subscription? TextExpander? No, I bought it like years ago before they moved to the subscription. And I just have not upgraded because it's I'll say I love TextExpander but I don't want to spend How much is it?
+
+52
+00:22:36,210 --> 00:22:41,280
+Scott Tolinski: It's 333 when billed annually or 416. Okay, yeah,
+
+53
+00:22:41,670 --> 00:22:50,220
+Wes Bos: I don't want it I don't want the email every month. I don't want the the invoice Just let me pay my 40 bucks or whatever and give me the software
+
+54
+00:22:50,519 --> 00:23:40,710
+Scott Tolinski: and then never take a version update or something. Yeah, he really preferred paying on major version release I preferred paying for major version releases the software, especially stuff like that. I actually do have one I said I didn't but Clippy, which is the fork of Oh man, I forget what this thing was originally called. But I used to use it back when it wasn't Clippy. And thankfully, somebody picked it up at Clippy hyphen app.com. And it's also open source. So you can check out this source on GitHub. But this application is a clipboard manager with lots of features and includes snippets. So we have like all of our you know, canned email responses in here snippets, all of the working credit card for stripe kind of things in here, along with like special URLs that I use, like a discord invite URL, or even terminal commands.
+
+55
+00:23:40,769 --> 00:23:42,420
+Wes Bos: Oh, you can store stuff in it.
+
+56
+00:23:42,450 --> 00:24:26,280
+Scott Tolinski: Yeah, you can store some like global snippets. And instead of pasting things with Command V, you do Command Shift V and it pops open a little window, you can navigate it all by keyboard if you want. The cool thing here is that you can choose whether or not to paste in plain text or not. So you can paste formatted or in plain text, and I have mine set up to have 100 of my past clipboard copies. So the last 100 things I've copied into my clipboard exists in this drop down. I never lose anything in my clipboard. I will tell you that. There's never been a time where I've been like, oh, man, I copy that thing. No, it's like an older thing I copied from last week still in there. So I'm a big fan of Clippy here. It's really great app. I've been using it for a really long time.
+
+57
+00:24:26,490 --> 00:24:51,540
+Wes Bos: I think you might have talked about this on like one of the very first episodes of syntax. I've used it since then is the best. The bee's knees. Yeah. Yeah. Big fan. So I think that's it that I that I love these kinds of shows because it's just little, little handy things. I think I'm going to do a little YouTube video showing some of the more visual pieces of bettertouchtool because if you're not using hyper key you are missing out. Let me tell ya,
+
+58
+00:24:51,540 --> 00:25:07,260
+Scott Tolinski: and I just right now as we're talking, I just set up my keyboard shortcut for Clippy to go directly into clipboard history rather than the snippet or Keyboard history section. I wanted to go right into the keyboard history section by doing Hyper V. There we go. Hyper V, baby. Good idea.
+
+59
+00:25:07,260 --> 00:25:17,940
+Wes Bos: Good idea. You only have so many keys available, but with hyper, you get a whole 4050 kit ladakhi how many keys are on a keyboard?
+
+60
+00:25:18,630 --> 00:25:24,540
+Scott Tolinski: I don't know. But it's looking a lot bigger right now. I bet a mechanical keyboard heads know that because they're all about those key caps.
+
+61
+00:25:25,319 --> 00:25:33,960
+Wes Bos: 104 keys is common in the US. So you probably have probably 70 or 80 of them, you're able to set up to hyper,
+
+62
+00:25:33,960 --> 00:26:23,460
+Scott Tolinski: hyper something, my guess 72. And if you have one of those keyboards with the thumb buttons and clickers, oh, man, you got a lot of keys. So that is it for now for hyper productivity with keyboard shortcuts and window management. We know management side of things. Windows users are probably seamless Linux users. To be honest, I found that it'd be pretty nice on Linux as well. But as Mac users, yeah, they just won't give it to us. So we got to use things. And bettertouchtool plus Karabiner plus Clippy plus all of the apps you know, and love is all just a winning connection for me. So really excited to hear if anybody else has any of these killer productivity apps for Windows, PC, Mac, whatever, please share it with us on Twitter, hit us with the most retweets and especially if it's Windows or Linux considering Wes and I are not necessarily in that territory too much.
+
+63
+00:26:23,940 --> 00:26:27,690
+Wes Bos: Alright, thanks for tuning in. Catch you on Wednesday. Please
+
+64
+00:26:30,720 --> 00:26:40,500
+Scott Tolinski: head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
