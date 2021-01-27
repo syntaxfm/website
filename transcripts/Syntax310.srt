@@ -1,0 +1,548 @@
+1
+00:00:01,319 --> 00:00:02,820
+Unknown: You're listening to syntax,
+
+2
+00:00:02,849 --> 00:00:04,590
+the podcast with the tastiest web
+
+3
+00:00:04,590 --> 00:00:09,930
+development treats out there. strap yourself in and get ready to whiskey and West boss.
+
+4
+00:00:10,559 --> 00:00:46,229
+Wes Bos: Welcome to syntax. This is the podcast with the tastiest web development treats out there today we have a show much requested show we did a show on serverless I think once before but today we have Brian LaRue on today to talk to us all about serverless. And I want to ask him questions about TypeScript and maybe Dino as well. So we'll get into that in just a second. today. We've got two awesome sponsors. First one is Netlify. Second one is Sentry. We'll talk about them partway through the episode. So with me, as always is Mr. Scott Tolinksi. How you doing today, Scott?
+
+5
+00:00:46,259 --> 00:01:09,360
+Scott Tolinski: Oh, I'm doing great. I'm doing fantastic. I'm actually doing very well. Despite that, we have kind of a rough like kids day this morning. But other than that, everything's gone. Very, very good. So yeah, just ready to get into it. A little bit about serverless. This is a huge gap in my knowledge base. Because I know that the basics, but I don't know the ins and outs. Really, really completely so. Yeah, so
+
+6
+00:01:09,360 --> 00:01:12,980
+Wes Bos: that's why we have Brian on here. Hello, Brian. Thanks for coming on.
+
+7
+00:01:13,259 --> 00:01:17,700
+Unknown: Yeah, I'm stoked to be here. This is my favorite podcast.
+
+8
+00:01:17,969 --> 00:01:36,450
+Wes Bos: It's an awesome. It's funny because I initially found out about you. Probably 10 years ago, I was watching a Jay .js cough talk. He made Caesars as part of your talk. I think it was like a phone gap talk. See? Like this Canadian. Second Bloody Mary. But what oh, oysters.
+
+9
+00:01:37,860 --> 00:01:39,930
+Scott Tolinski: until just now I'm trying to figure out what Caesars was.
+
+10
+00:01:40,410 --> 00:01:47,790
+Unknown: It doesn't sound good. But it is good. So it's it's like a Bloody Mary, but with clam juice. That.
+
+11
+00:01:50,160 --> 00:02:05,280
+Wes Bos: Right? You can buy the premix gelada, which is like the Mexican kamado and beer mix together. Okay. Yeah, it's kind of like that. But instead of half beer, it's like a vodka or gin or something like that. It's very good.
+
+12
+00:02:05,370 --> 00:02:08,030
+Unknown: Yeah, I've been making them with tequila lately, actually.
+
+13
+00:02:08,030 --> 00:02:08,630
+Scott Tolinski: Oh,
+
+14
+00:02:08,910 --> 00:02:13,620
+Unknown: yeah. It's a nice way to mix it up. Hot point 2020 style season.
+
+15
+00:02:16,350 --> 00:02:23,060
+Wes Bos: So do you want to give us a quick rundown of what you used to do, as well as like what you've been doing for the last couple years?
+
+16
+00:02:23,400 --> 00:04:43,760
+Unknown: Sure. Yeah. Like you said, I used to do a lot of mobile stuff. I think this might be a consequence of being Canadian, you got brought up in the early web, and there were blackberries everywhere. And some of them, some of them could even talk to the web. Like they were the first thing that could do that. So that was that was pretty pivotal. And I was very much into mobile and iPhone happened. So that was kind of a big deal. Yeah, hit like, hit the web, kind of like a meteoric, you know, like, people were really worried at the very beginning, the native code is gonna take over as the web, you know, thing of the past this mobile form factor, and the experience is so much better. And, and the team that I was working with at the time called my Toby, we were very Webby people. And we're like, wonder if we can embed a web browser in this thing. And sure enough, we could. And everyone said, that's a terrible idea. So we knew we were onto something good, because I never people say that that's usually something unexpected good comes out of it. And yeah, that was the PhoneGap project. And later, Apache Cordova and I spent a lot of time thinking about embedding web browsers and building single page apps in the mobile form factor and, and the compilation side of it was actually another big part of the problem space, we were running a hosted service where you could upload code in the cloud and pump out iPhone apps. But the dirty secret under the hood was that we had a whole bunch of Mac minis and a beer fridge. Powering that. And really, yeah, for real, that's awesome. Yeah, and so load balancing an early monolith with actual hardware and, and that that journey led me down during the cloud thing. And eventually the cloud thing. I fell backwards into doing the serverless thing. And I thought serverless, I was late to when I started doing it. And around 2014 2015, it was like, obviously, this is where this is all going. And it was clear to me that the future was going to be on demand, it was going to be stateless. It was going to be these fast, tiny little functions that you deploy up into the cloud. And you don't think about runtime or anything like that. Helped co author a framework called architect, now, co founder of a startup called begin.com, where we make it super easy to deploy the serverless applications to AWS 30 seconds or less. You could have a URL on the internet. And yeah, that's what I've been up to these days.
+
+17
+00:04:44,040 --> 00:04:56,510
+Scott Tolinski: I'm glad you mentioned begin at the very end there because I first tried out begin on a YouTube video called Scott trice begin, it was like my first initial attempt at trying it and I loved it. It was a it was a
+
+18
+00:04:56,510 --> 00:04:58,070
+Unknown: chance to watch that video.
+
+19
+00:05:02,450 --> 00:05:03,240
+Wes Bos: people mad.
+
+20
+00:05:04,830 --> 00:05:31,650
+Scott Tolinski: Yeah, some people got really mad specifically when their product didn't work. Again, they understand. Yeah, it happens, right code happen. And like, that doesn't mean I'm never gonna try it again. But begin was one of the ones that I thought was like, just so buttoned up in terms of like, the little details being like fantastically there and, you know, lots of little joy moments. So, yeah, I'm really, really pumped with all the work you're doing over there at begin.
+
+21
+00:05:31,950 --> 00:06:12,780
+Unknown: Yeah, we have a belief that the developer experience can really be kind of like a consumer product experience, it doesn't have to be a bummer to use. It can be fun, it can be mobile, it can be Webby, and it can be friendly. And, and the cloud kind of isn't any of those things yet. you hop into the AWS console, it's it's notating, the dating nightmare, the needs of the near that's friendly for folks to approach it and figure out how to reason about it. And, you know, it's our belief that that audience just grows. And a lot of folks want to get on AWS, they want all these superpowers, but they don't want to deal with
+
+22
+00:06:15,540 --> 00:06:16,170
+like, Listen, I
+
+23
+00:06:16,170 --> 00:06:16,920
+Scott Tolinski: do not want that.
+
+24
+00:06:18,180 --> 00:06:45,090
+Wes Bos: Alright, so for those who are new to serverless, can you give us like a quick rundown of like, what is it what is serverless? Even like I, you hear this word serverless or lambda or, like spin up and all that in you people don't necessarily, especially if someone's like new to programming, they've not necessarily hit the issues that serverless solves. And they're just like, I don't get why I have to code my code differently. For this to work.
+
+25
+00:06:45,600 --> 00:08:59,190
+Unknown: Yeah, that's super important. Point two. So what it is, is definitely a nebulous thing. So it's become kind of a buzzword. Everyone wants to use the buzzword and it's spread out. But in I believe the serverless community would generally agree with me that serverless is more of an idea about how you approach your application architecture than it is a collection of logos that you need to have to implement against. And the first sort of principle of it is you want to outsource undifferentiated, heavy lifting to a third party vendor, you don't want to rack servers yourself, yet, you know, you what you want to do is probably rent that compute. And if you take that rent the compute thing to its logical conclusion, you probably don't even want to read the metaphor of a server, you just want to rent like the function execution, you want that to be ideally on demand and stateless as fast as possible. uptime is like a thing that we pride ourselves on. But when you think about it, it's just a terrible inefficiency, for pre provisioning a whole bunch of capacity, or we have a whole bunch of servers laying around doing nothing waiting for a spike to happen, we're paying for stuff that is not adding value. So the on demand model is a pretty important component to this being stateless is pretty important component to this, it can be you know, any high level service. So I can think of stripe as serverless for payments, right? You can think of Twilio is serverless for SMS. But a lot of people can play it with functions. And I think that's fair, because that's the most primitive primitives that you can get. And the function execution often often gets, you know, foisted over to AWS lambda, that's the granddaddy in the space. AWS are the first people to sort of say, Hey, we're gonna charge you by the function execution. And it all fell out from that. And those function executions are an important part of the story. But you can be serverless, without any lambda at all. You could consider s3, maybe the greatest granddaddy of all serverless things, and you put your index HTML on that thing, and it scales forever, their servers, but you're not writing about that. And that's like, the old joke, you know, there's servers and servers, and that's fine. Some service folks get a little bent out of shape over that one. But there is
+
+26
+00:08:59,190 --> 00:09:32,010
+Scott Tolinski: like, a lot of people who get fired up about the term serverless for some reason, and they're like, there's no such thing. But like, I mean, it there's there are technical reasons why, like, this is a different platform, right? I mean, it's just so weird that people hear the word serverless and get angry about the fact that they're, I mean, just like the cloud, it's somebody else's server. Who cares, right, that there's there's the advantages and reasons why and like it don't get caught up in I don't know the binding of it all or whatever.
+
+27
+00:09:32,520 --> 00:09:36,899
+Unknown: We want everything to be a one answer, which would be really great.
+
+28
+00:09:36,960 --> 00:09:38,539
+Scott Tolinski: Yeah, no, yeah, exactly.
+
+29
+00:09:38,610 --> 00:11:23,340
+Unknown: Unfortunately, reality intervenes, and there's lots of answers and they're changing all the time. And that's complicated and scary and and you know, if you know how to do something, one way that you see this new way if you know could be offensive to your, your sensibilities, you might be incentivized to think otherwise. Economically, there's lots of reasons to be worried about what certain This is gonna do to the existing application architectures that are out there, because it is such a big game changer. You know, if you're part of the last generation of software developers you might be looking at this is existential, which I don't think you should, because there's never been a moment like that in history of compute, we tend to just pile technology up on top of technology. And, and that works, you know, like, the story isn't either or it's and also, it's Yeah, how can I leverage this in my new project? or How can I bring this functionality over to our existing legacy infrastructure, like, I have a good story for this one, we're working with a client that's got huge Rails app. And some of it is written in dotnet. Somehow, and terabytes of data, they're not moving that to serverless. But they have a front end team that wants to build a modern front end for this thing. So they put it behind a graph, qL proxy. And now these teams are communicating through schemas, they're able to build up on their respective sides, they can leverage their existing investment, and they're starting to pick off functionality one by one, moving it over to Cloud Functions. So it's, it's nice to see that we're kind of getting past this either or serverless. Bad and we're now seeing more commingling of the techniques. And a lot of that's been driven by front end.
+
+30
+00:11:23,610 --> 00:11:53,039
+Wes Bos: Interesting. So in that, like graph, qL proxy, so what's happening when they're moving it over is that they have like, a bunch of serverless in the middle, if it's part of the existing app, they just pass that through to the existing app. But then they'll say, like, Alright, you know, we're gonna do like, client dashboard or PDF generation or image resizing. And is that how it works, they just pick off like pieces of functionality, and move them from this monolith to a function like taking data returns some data.
+
+31
+00:11:53,460 --> 00:12:49,830
+Unknown: Yeah. And it's, it's interesting, because the ones you're citing are good examples for like things that people can do now. So you know, we used to run these cron tasks, that would be a server that would build PDFs or something from a database dump. And, and that's incredibly common, that's a perfect use for a Cloud Function. Because you can schedule these things, they go away, you only pay for them when they use them. And you don't have to worry about any of that scheduling stuff. It's probably just a copy paste the logic. Now you're not limited by runtime, there's no reason why you can't bring any binary you want with you using lambda layers. So yeah, there's a lot of this migration stuff is starting to happen. And it's, it's neat to see because running these types of older school workloads was painful. Yeah, a lot of work that you didn't need to do. And now you don't need to do that. Why would you? Yeah, yeah, we're,
+
+32
+00:12:50,309 --> 00:13:41,309
+Scott Tolinski: it's very interesting, interesting time, I do want to go back to the whole, like, legacy technology bit just for like a one second is just just to add on to what you're saying is just that, so many of the best flash developers that I knew are now the best JavaScript developers that I know. I mean, if you're out there hearing a lot of these things and feeling overwhelmed about not knowing them, you you you have, you know, your skills will apply. And also what you were saying there reminds me a lot of how people are starting to use wisdom in bits, right? You're sort of offloading the either higher complexity bits, the heavier bits, you're offloading them in chunks rather than making some sort of grand migration all at once. And I think that's a really comforting thing for a lot of people to know that it's not like picking up and moving your platform to serverless. It doesn't need to be like that, or should be like that.
+
+33
+00:13:41,789 --> 00:14:02,250
+Unknown: Well, I learned JavaScript from ActionScript. Two. So that was definitely where you know, like, writing JavaScript 15 plus years ago was pretty out there as an activity. But writing, building flash apps was not a lot of that stuff came over into ESX. Thank God it did.
+
+34
+00:14:04,830 --> 00:14:06,179
+Yeah, yeah.
+
+35
+00:14:06,179 --> 00:14:42,270
+Wes Bos: So let's talk a bit more about like, if somebody is working on a traditional app right now, their skill set will move over. Like if you're working on a node app, you can just write JavaScript in a serverless function, even like I know, an architect there is even like an express function where you can just like literally take your Express controllers and plop them in. And there's like a couple of things that are you kind of have to like know about about serverless functions that are different than a traditional server, like what are there there's like, there's no memory, really, because like if it spins down, that's gone, right? Like that computer is now doing something else.
+
+36
+00:14:42,659 --> 00:16:15,210
+Unknown: It's completely stateless. And they do stay warm as it were. So container will get reused under the hood or a VM will get reused, but not for the same execution. So like a brand new executions happen, and this is there's concurrency. So if you get hammered with 10 requests, you probably get 10 separate instances of VM responding immediately. And then that scales up by default to 1000 on a on a stock Amazon account, but I know of people that have bumped that limit up to 40 or 50,000. So it's, it's wild, what we can do now is so the scale part of the questions is out. But the trade off, as you mentioned, is that you don't have a disk, not really, you get 500 meg temp disk, and you can have it for 15 minutes, which is pretty good, you can do a lot of stuff with that. Most web apps respond within a few seconds. So it should be should be plenty to do what you need to do. If you're building a web app, if you're building something that needs to do longer, lived, you know, invocations, this isn't the perfect technology for that today. But the thing I keep trying to remind people is, when we started this journey down serverless, it was three seconds of execution. And today, it's 15 minutes, and that number is not going to get lower and, and the cold start is going to continue to drop to zero. And as there's more competitive pressure from Azure and other players, Amazon will continue to drop prices. So this paradigm just keeps getting better. Yeah, yeah.
+
+37
+00:16:15,240 --> 00:16:26,549
+Wes Bos: Can you tell us a little bit more about a cold start? Because that's something you hear against serverless haters, they'll say, I rather give me Kubernetes or something all day long. But the cold start kills me like, what is that?
+
+38
+00:16:26,909 --> 00:17:45,800
+Unknown: Yeah. So when the lambda function gets invoked, it has to mount itself into a virtual disk of some kind. And that mounting process is effectively unzipping the file system. And if it's got a big file system, it's going to take longer, and the cold start is pretty much directly correlated to that mounting. And, you know, if you have a, if you have a bigger function, it's gonna take longer to start. So the solution is write small functions, keep them under five Meg's and you will be sub second cold starting, we typically see a begin cold starts between 70 and 100 milliseconds now. So it's not really an issue anymore. I mean, not a human perceptible issue, if you're really trying to count those milliseconds, and you're doing a real time app, this might, might not be perfect, but it's pretty close. Yeah, so older application architectures really didn't contend with cold start, because they were all intended to run for a long time. So if you're running a jar file, it didn't really matter that much if it took a minute to start up. But it matters. Now. If you've got a kind of, if you're running Java, frankly, you're gonna have a bit of a hit to that cold start, that you wouldn't see with a node j s, or a demo or a Python or even Ruby now, it's actually super fast, which is underappreciated. But a great place for for lambda functions.
+
+39
+00:17:45,860 --> 00:17:46,470
+Wes Bos: Awesome.
+
+40
+00:17:46,680 --> 00:18:10,260
+Scott Tolinski: So you mentioned briefly about like languages, what languages are and aren't suitable, because so there was like, it was briefly touched on there. But I think this can even lead into some of the talk about Dino and in TypeScript here. So like, if we're, if we're writing serverless functions, would something like let's say rust be appropriate for serverless? functions?
+
+41
+00:18:10,440 --> 00:19:13,650
+Unknown: Yeah, sure. So lambda has a few ways of extending itself. And of the popular easy ways layers, and layers let you bring anything you want to the party that can compile into Linux runtimes. So rust is in play goes and play dotnet, Java, you name it. All that would would be possible or is possible, your default is probably no j. s. Yeah, the demo thing is exciting, because Ryan and Bert are well aware of the importance of cold start, and they note are going to be competing on this more and more as time goes on. Notice amazing start properties, and then oh, still faster. So this doesn't probably matter to someone who's just building sort of like a whatever web app. But if you have a huge workload, and you're doing, you know, millions of invocations, that starts to add up, and that becomes a cost center that you will pay attention to. And so there's going to be some economic incentives to think about this over the long run.
+
+42
+00:19:13,650 --> 00:20:09,030
+Scott Tolinski: Have you heard of this ayliffe dot j s platform? I guess you could say, this just came on my radar today because Joe, I'm sorry, Joe, if I mispronounced your last name? previte or .js. Joe is maybe how more people will know him on Twitter. He just tweeted about this today. And I've never seen this before. And so this library ayliffe dot j s is basically you could think of the demo for Dino whatever for next j s comparison so you get filesystem routings static site. And I'm interested in this because I don't see anything about their whole serverless API folder structure, but I know next, j S has been pretty responsible for a lot of people using serverless functions a little bit easier in the mainstream more recently, so I don't know if this was on your radar. But I, this just popped up for me today. And I thought this was kind of interesting given the topic of, you know, Dino, Dino verse, no .js. Here,
+
+43
+00:20:09,350 --> 00:20:58,170
+Unknown: it looks cool. And I think this is where we're gonna see a flood of these because denno takes out the a lot of the config steps required to build something like this, like, you get SSRS or for free, because it's just part of how dental works. Being a TypeScript based runtime, I imagine we're gonna see a lot of these types of things. And yeah, from a, from a lambda perspective, this stuff is just another thing that can pop out a string, you know, it could be a basket, it could be done, oh, it doesn't care. And that string, if it's got markup, and you will do the right thing by, but you don't have to now think about the routing layer the way that we used to, and you don't think about the load balancing layer. And, and the cost is also way, way, way, way cheaper. I think it's something like 10 cents per million executions. So
+
+44
+00:20:59,910 --> 00:21:01,440
+Scott Tolinski: yeah, sounds good. Yeah.
+
+45
+00:21:02,040 --> 00:21:12,030
+Unknown: And you can spread that out across Amazon accounts, you can enjoy a free tier of 1 million executions. And so it's just, it's ridiculous. So cheap, it is comparatively
+
+46
+00:21:12,269 --> 00:21:44,910
+Wes Bos: amazing. Cuz like, yeah, sure, like I hear all the time that even in my own courses that we go to host a note app, and it's 510 bucks a month. And if you've got, like, you can run one $5, digitalocean server and whatnot. But that gets that gets really frustrating, especially if you just want to like have a bunch of projects, like I remember back in the day, you'd have an FTP folder. And I have 100 little fun projects in there. And that seems a lot harder nowadays, especially like you could there's a lot of free services out there that you can host them on. But who knows if that's going to be around and forever as well.
+
+47
+00:21:45,210 --> 00:22:29,130
+Unknown: This is my backwards math on Amazon, I think some people get a bit shaky on them. Because you know, it's a big scary company. But they've they've got, I guess the burden of proof would be on someone to say not Amazon, like, why would you? Why would you subject yourself to that breaking changes that you can't control from upstream? Or whatever reason, like they've been around forever, they don't break their API's. They're only getting cheaper. They're the market leader. So to me, it's easy to go there. I think as a company, I kind of understand like, if you're Walmart or the retailer, maybe you're bright. Yeah. As long. But there's a self interested web developer who doesn't have time for this. Like, yeah.
+
+48
+00:22:33,240 --> 00:22:47,640
+Wes Bos: That's, that's a good point to sort of explain how everything that you touch on sort of works together, because you've got like, there's obviously Amazon, which is the big supplier. There's, there's other ones out there, like Google Cloud, Google Cloud, does it Azure does it.
+
+49
+00:22:47,760 --> 00:24:19,830
+Unknown: And that's the thing, I kind of don't believe that they do. But I'm deep in this. So they use the word serverless, that if we start measuring on the kind of criteria that I'm thinking about about undifferentiated heavy lifting, and not managing scale and on demand only. And the other big part of this is determinism through inference code. A lot of the other providers just do not have these characteristics yet. case of Azure, they have a functions product, but you're still running instances of Kubernetes. And the functions are in a shared responsibility models, so they're all lumped together and save instance, in AWS land, these functions are really completely isolated, separated things that can interact with each other in any way whatsoever. And, and that's why you want, you're starting from the least privileged, most secure, most performant way to approach it. Thanks, GCP. I don't know they keep shipping stuff and deprecating stuff. So I honestly don't even pay attention, because I sort of feel like they're a waste of my time. And a harsh thing to like, say, but it's, you know, they're not even in the number two spot. So like, I only have time to really focus on maybe one and two, and that would be AWS and Azure, Azure, I'm excited about long run, because they've got better distribution channels to AWS, you got GitHub, you got NPM, you've got TypeScript, code, code spaces. So like that cloud is going to be important, whether we like it or not. And then finally, this is important, because they are de facto at the moment. Totally.
+
+50
+00:24:20,160 --> 00:24:37,380
+Wes Bos: Okay. So there's obviously that and then there is architect, which is the open source framework. So instead of, let's explain, like, what architect is, like, how you is an open source product, and then explain how that relates to what begin is, which is your company, right?
+
+51
+00:24:37,769 --> 00:26:58,080
+Unknown: Yeah, so architect is an open source, way to generate cloudformation. And in the future, hopefully will be open source way to generate other types of cloud infers code solutions. And so to explain what that is. cloud formation is a document type that you can hand AWS and they will generate resources for you. And the reason you want So the reason this is important to you is you can get the same thing every time. If we're telling AWS, I need three lambda functions, you're gonna always get three lambda functions on the other side. And this seems like kind of contrived. But if we don't specify our infrastructure in some kind of manifest file, there's no way for us to get a deterministic results on the other side. So it's kind of like a lock file, same idea, except for instead of code dependencies, it's your cloud dependencies, you want to check that in with your code. So you can tell the cloud Hey, I need, you know, an API gateway in s3 bucket, I need this particular security rules for it. And that document is extremely hard to write and very verbose and takes a lot of insider knowledge. So architect is a high level format that generates those documents. So you can just focus on your business logic and your app concerns without having to deal with the low level details. We don't lock you out of that, you can still modify and read the cloudformation. It's totally accessible to you. But we just make it easier and faster to generate that, run that locally, begin deploys cloud formation documents. By default, we deploy cloud formation documents generated by architect, there's nothing stopping us or in the future from deploying other kinds of cloud formation documents, but we're keeping it on the happy path right now. Because we can control the local development experience. And that's a really big key for us. So there's a lot of Amazon out there. And we can emulate all of that. But we can emulate the services that we kind of curate and pick. And the ones for web development in particular are interesting to me. So if you need to access like, machine learning stuff, or any other hardcore, like analytics stuff, you can still do all that. But we make all the web app stuff really easy to do. And we make it run all locally so that your development cadence isn't impacted by having to wait for a deploy to see what happens on the other side. Yeah,
+
+52
+00:26:58,080 --> 00:27:24,150
+Scott Tolinski: I think that's really been long, long standing. One of the biggest gripes some people have with serverless is just like what the local dev picture looks like in terms of like, ease of use and developer experience there. Because in my experience with it, it has it hasn't been always the smoothest trying to test and use these functions locally on various platforms. So it is interesting to see that that specific aspect of it improve in various ways over time here,
+
+53
+00:27:24,540 --> 00:27:45,210
+Wes Bos: like the one thing I was pleased to see was, its I was just like, oh, serverless it's just functions, right? Like you said, people just think it's all functions. But like, it also has assets like images, database under the hood. What else WebSockets scheduled functions. It's like a cron job kind of Yeah.
+
+54
+00:27:45,420 --> 00:29:24,000
+Unknown: Yeah, schedule functions. cron functions, sometimes people call them events. And functions are another one that we're starting to see other providers realize that you need but sometimes you need a background task to run for a few minutes, like when someone signs up, maybe you want to send an email, but it takes a minute for that process to run. And you don't want to block the web requests, sending emails, and yeah, then you then you've just created an API for DDoS in yourself. So you want to have that run in the background somewhere and fire off an event. So that's another capability. And queues are another one that's under appreciated, but kind of cool. So sometimes you need a background task. But you can't hit an API a whole bunch of times all at once. And you need to queue that up so that you know you're only eating out like one at a time. So that's another one that's really important. database streams is another cool one. So we support dynamodb. You can write data into and out of Dynamo. But you can also subscribe a function to that. So you can start composing your app on events in the database. Oh, that's cool. Yeah, yeah. Yeah, there's this sort of new world where our data is blending in with our compute. And the data too, is another thing that scaling to zero. So this is not intuitive, but like Redis popularized having a cache and having a timeout on that cache. There's a ton of good patterns for that. And you want to persist the data, but you only want to persist it for a little bit, like shortleaf tokens for session state for reset your Reset Password flow, you know, you might have a token that's going to expire in five minutes. That's super easy to do now, I don't know. Yeah, there's lots of lots of things that set it apart, that's for sure.
+
+55
+00:29:24,240 --> 00:30:59,340
+Scott Tolinski: So I'll take this quick moment to talk about our first sponsor today, which is sentry@sentry.io. Now, I actually just pushed a new update to level up tutorials last night, and we were watching Sentry pretty closely, because when you do a new release, it's kind of nice to have your your eye on things in case you introduced any new bugs. And this happened to be a really huge update. So we just completely rewrote the account system. before we're using meteors baked in accounts. And now we're using accounts j s, which is just like a, just a node based account system, right? And it's nice because it plays well with the current account system. We had But moving your account system, very scary, very, very scary. And we had some errors come in that kept saying invalid credentials. And that's not the kind of thing you want to see after moving your account system. And it turns out, the new account system just reports errors, it throws in a way that our other one did it. So when people are goofing up their password, it's throwing in our Sentry caught that, and we were on it at the moment, and we're able to find out, oh, oh, it's just people messing up their password, it did. The site's just throwing, there's no issues able to breed this morning. So Sentry had my butt for that, because I had my call stack, I could see how many instances of this happening, I could see the users, I could see that this was in fact introduced in the build that we deployed last night. And it's not a bug. So thank you so much to century for sponsoring us and love you every single day. So head on over to sentry.io use the coupon code at tastytrade. all lowercase, all one word, get two months for free. And you can breathe easily, just like I did this morning. So thank you.
+
+56
+00:30:59,670 --> 00:31:09,450
+Wes Bos: You're a big fan of TypeScript and types, right? I think I saw a tweet from you the other day that they were talking about bringing optional types to JavaScript. Was that you?
+
+57
+00:31:10,170 --> 00:31:13,350
+Unknown: Yes. It might have been might have been stating that.
+
+58
+00:31:14,310 --> 00:31:22,470
+Wes Bos: Why are types in JavaScript so awesome, whether it be TypeScript or like, do you even think we're gonna get types in regular JavaScript someday?
+
+59
+00:31:22,610 --> 00:32:08,280
+Unknown: I would assume so. I mean, I don't know why we would stop improving language. Now. It's, it's always been painful, for sure. But you know, Ruby, and Python have just done this too. And I think they took a lot of inspiration from the incremental typing that you see with TypeScript. And yeah, it makes for a better debugging experience, in many ways. You catch those bugs earlier. And, and that's nice. And it's especially nice in a dynamic language like JavaScript, where TypeScript can only help us right now is that author time, which is great, you know, any help is better than no help. And I particularly like using the J s doc style. So it's very unintrusive. I don't need a build step, I can just annotate my functions, and I get all the help in Visual Studio
+
+60
+00:32:08,280 --> 00:32:16,860
+Wes Bos: code for our listeners, that's where you instead of putting the types in the like function and the return, you write it in a comment above the actual function, right?
+
+61
+00:32:17,400 --> 00:32:49,410
+Unknown: Yeah, or you can import type deaths. So you can, you know, write your own type deaths, and then import those in the comment. That seems to be like a really nice way to work, but doesn't help me once I go to production and my codes running live. And now this is a can of worms. But boy, it would be nice to have some degree of contract validation on function signatures at runtime. And, you know, being able to capture that data in my submissions of forums or whatever would be really nice, because we're rewriting that code all the time anyway. Yeah.
+
+62
+00:32:50,490 --> 00:33:31,410
+Scott Tolinski: I think I'm candidate number one for the the type of developer that went from being like, Oh, TypeScript is too much work for me to being I need types everywhere across the board now. Like our API is a graph qL API that's fully typed everything is using like code generator to generate the types and types across the board. And I want I want types straight up now in in JavaScript, badly now that I've learned just how awesome they are as a non computer science person. Overall, I just think more developers as they get more into TypeScript, like I have will see that just how beneficial it is to have that stuff and having an unread time would be would be sweet.
+
+63
+00:33:31,610 --> 00:34:34,080
+Unknown: Yeah. And like Daniel gets us a little bit closer, it's still kind of a little hidden built stuff in there. And they've got some reconciliation to do right now on the TS config side. So when Dino initially launched is ay ay ay ay. He's TypeScript and will respect your Ts config. And then more than two people are using it at once. Now, they've discovered that if they don't have the same Ts config things could be bad. They're they're going to be moving to some kind of recommended system, probably that you can opt in and out of wherever and will hopefully have the same Ts config. And, and that's good. But like, yeah, once you get the runtime, there's, there's just like, slightly more I want out of this. And we don't get that with TypeScript yet. So yeah, and I'm assuming, especially after the whole promise, and the ES modules thing that Tc 39 wants to continue to improve the language. And yeah, I can't imagine that there isn't more broad consensus like that this could be a good thing. Where this becomes problematic is what happens to TypeScript.
+
+64
+00:34:34,460 --> 00:34:49,710
+Scott Tolinski: Yes. Right. Yeah. Because obviously owned by Microsoft, and there's sort of I don't know interest they're all about you know, is Microsoft become the, the owners of JavaScript, the de facto JavaScript, which is kind of happening if they're only in control of
+
+65
+00:34:49,710 --> 00:34:54,650
+Wes Bos: a log this that thing we've got to 10 years later. Miko yeah crypt.
+
+66
+00:34:56,960 --> 00:35:03,440
+Scott Tolinski: Yes. So are Would you say that, you're you're in And no Dino. However, however you say it.
+
+67
+00:35:03,510 --> 00:35:12,180
+Unknown: Yeah, I keep saying down because they were saying that but now they're all saying, you know, so I'm totally wrong.
+
+68
+00:35:12,180 --> 00:35:18,480
+Scott Tolinski: We've been saying it wrong every episode that we've said it because we've said it like eight different ways. So there's it's unavoidable. Yeah.
+
+69
+00:35:18,980 --> 00:35:20,790
+Unknown: Did a dinosaur egg you
+
+70
+00:35:20,790 --> 00:35:21,960
+Scott Tolinski: know? Yeah, yeah, you
+
+71
+00:35:21,960 --> 00:35:22,530
+Wes Bos: know,
+
+72
+00:35:22,859 --> 00:35:24,300
+Scott Tolinski: yeah, it makes sense.
+
+73
+00:35:24,380 --> 00:36:53,730
+Unknown: I am a fan. I think, you know, more VA based Linux II runtime options are awesome. Notice still great and my my go to like, you know, it's my right hand tool. But as an as a new contender, it answers a whole lot of really important questions, what how this thing could evolve, and I think it's also driving node to be better. So this is when all the way around. The other kind of angle to this. And again, that's just like our nature, we all want this to be like one answer, but there isn't one, you can mix and match this stuff, you can have a demo function, a Ruby function or Python function on the same That's true. And, and that's cool. Like you're allowed and, and it's maybe a good idea because sometimes pythons better at some stuff than Ruby is or vice versa with with demo and, and node like demo for a front end layer is sweet. It's got all the things that you kind of wanted to be there the whole time, it's thinking about the front end from the very beginning with a very browser II API, fetches built in node modules are important export or built in async await is a thing. It's not a bolt on to kind of an older way of thinking. So I can imagine, just like many of the other trends that we've seen, the front end is going to drive a ton of adoption to demo because it paves over a bunch of these ports with node. Meanwhile, nodes not slowing down, they're gonna take a cue from this and improve their story. So
+
+74
+00:36:53,960 --> 00:37:00,690
+Scott Tolinski: yeah, and I think projects like that ayliffe are going to get a long way. That mean, just make it easy, right? Make it easy for people.
+
+75
+00:37:00,920 --> 00:37:04,650
+Unknown: Yeah, the end of the day. That's what we're all looking for. We want to go home at five.
+
+76
+00:37:07,980 --> 00:37:23,250
+Wes Bos: Yes, it looks like they're they're migrating or not migrating, but they're building a lot of the node core API's, right into Dotto, so theoretically, you would be able to take a lot of your utility libraries, just bring them bring them in to denno. Right.
+
+77
+00:37:23,360 --> 00:38:12,030
+Unknown: Yeah. And the other angles of this, they're, they're paying close attention to what happened with NPM is they lived it. And they're building a lot of that in as part of the standard library for demo. So where we would normally be reaching for NPM to bring our runtime up to some kind of development stack that we need. denno has already made a lot of these choices for you. So it's got a built in linter tester, it's got the full node standard library on the way most of the browser API, and then just a ton of stuff that you probably need, like goods are built in. Other other things that like, for years, we're like, why is not built into node and the node philosophy was to be this lightweight, small core where you would compose it with userland modules. And that has come to its logical conclusion where we have a huge amount of user land.
+
+78
+00:38:15,980 --> 00:38:18,750
+Wes Bos: One guy can take down half the application
+
+79
+00:38:18,750 --> 00:38:21,150
+Scott Tolinski: in some of its mining Bitcoin on your computer.
+
+80
+00:38:21,170 --> 00:39:02,420
+Unknown: Yeah. The other angle on this, I guess, for the dental Corps is coming out from a security standpoint. So they, they want to have versions, kind of full featured standard library, and then have really tight permissions around how it accesses the underlying operating systems that you can really finely tune the permission model. This may not seem like that big of a deal, but it's a pretty big deal. And larger applications, especially in the enterprise, security is key. And if your runtime can block you from reaching out to the internet, or whatever, that's just a handy capability for isolation. So I think we could end up seeing no do some of that too, with time.
+
+81
+00:39:02,760 --> 00:40:37,950
+Wes Bos: Our sponsor today is another company that has some serverless offerings as well, and that is Netlify. So you probably know Netlify, from being able to host your static website, but they also offer we've talked about the analytics and serverless functions and all that good stuff. And they just rolled out two things recently, which I thought were very, very interesting, especially if you're running like a Gatsby website. And you do need to add some sort of functionality to it. They release background functions, which is great, because if you've got a serverless function, just like Brian said, a couple of minutes ago, if you have something that needs to run a little bit longer, not blocked, though with a web request, then you can go ahead and grab that. So background functions is pretty cool. And then they are in early access. I'm thinking I'm gonna ask for this myself of edge handlers, which I thought was really neat. And what that seems to be is at the edge, you can sort of intercept the request and run Some code at that point. So whether that's I think that'd be kind of cool with the Gatsby website, you could, you could personalize the website a little bit at the edge by running a little bit of JavaScript, they have a whole bunch of different examples here, a B testing, aggregating API localizing content. Pretty nifty. I'm excited to see them. That's like one thing that has been becoming popular in the last a year or so that I've seen pop up is this ability to run code at the edge. So check it out. netlify.com, forward slash syntax. Thanks so much to Netlify for sponsoring, do you think websites should be able to work without JavaScript?
+
+82
+00:40:37,950 --> 00:40:39,150
+Scott Tolinski: It's a great question.
+
+83
+00:40:40,020 --> 00:41:02,280
+Unknown: Yeah, I think that's a worthy goal. I don't think I'm going to say that's an edict, or, yeah, something that always is the case. But if you're going to start from a place, I think starting from the place that's most accessible is a good place to start. I think it's easy to do if you started at that place, if you haven't started at that place. It's not easy to do. And that's totally okay.
+
+84
+00:41:02,480 --> 00:41:48,170
+Wes Bos: Yeah. I remember back in the day, where you would make like a form, send a POST request to the server. And then you would just add a little bit jQuery on top to make that happen in the background. And then you display the answer. And we certainly moved, we moved away from that. And you, you take the action off your form tags now. And you handle it entirely in JavaScript. So it's always interesting to me to see people who are like, No, we can still make this thing work without JavaScript. And that's not just for like, I'm always like, well, who's turning off JavaScript, right. But there's a lot more use cases that that could happen where JavaScript thing fails or something like that, or you're you duck into the subway as a jazz files downloading or something like that, or you submit the thing, and you get back into data. And
+
+85
+00:41:48,380 --> 00:43:07,880
+Unknown: it's time to first byte, you know, you want to render that markup payload as quick as possible, it's probably the most accessible, which, you know, that doesn't mean it has to be for screen readers. It could also just mean your keyboard on your phone works, you know, the way you would expect when you hit enter kind of thing. And you can absolutely code all this stuff. Completely client side, I definitely wouldn't argue that that isn't the case. But I am saying is you probably want to start with the progressive enhancement thing, generally, because you're gonna get more accessible app. But yeah, it's not an either or it's an and also, it's, again, something also, it's easy to Cloud Functions with any provider, you can add a post handler. And then now you've got the easiest way to do a form. And you can build on top of that pretty trivially. It becomes a sort of zealotry argument to sometimes, which I don't think it's helpful. So people be like, No, you have to be accessible. And, and that's not helpful. But what you really want to do is think about, like, what is the easiest way to achieve the outcome I'm going for right now. And if that is to bundle it, and have it all run client side, and then by all means, but there is definitely Yeah, the old PHP progressive enhancement way, or just the form submits, we can see responses come back and 7200 milliseconds, probably good.
+
+86
+00:43:08,100 --> 00:43:08,790
+Wes Bos: Yeah.
+
+87
+00:43:11,130 --> 00:43:27,960
+Unknown: not actually that bad at an experience for an end user. And I guess if there is, like, really complicate, like, I had someone the other day on Twitter, it was like, How am I supposed to build an UI like figma? From from this progressive enhancement technique? Like, what why are you starting with I have to build figma?
+
+88
+00:43:28,320 --> 00:43:29,730
+Yeah.
+
+89
+00:43:31,730 --> 00:43:34,730
+Start with like, what's the easy thing I can do? And then they didn't make it?
+
+90
+00:43:34,800 --> 00:43:38,150
+Wes Bos: Yeah, most of us are writing signing forms and not.
+
+91
+00:43:40,890 --> 00:44:44,520
+Unknown: Yeah, yeah. But I think, you know, the, the client side thing is also coming back in more modern frameworks now anyways, so for the progressive enhancement, things like remix, from the React router, guys. Yeah, I got one of the indie licenses for that. And their whole thing is to render server render first and then progressive enhancement at the right time. And their whole thing is to be dynamic and and use caching headers instead of a pre render step. And you've seen the same kind of thinking right now also a spelt and spelled K. So I think the pendulum is actually gonna swing back. And I don't think the developer experience has to be any different in these places. It's just the tools right now aren't quite thinking this way. They're, they're sort of thinking like, I give a function, some data and I return a DOM string. Basically, how can I do that on both sides of the world without having to re write it twice? has been the sort of like endless struggle, but now that we have Yes, modules everywhere. That struggle seems to be coming to an end.
+
+92
+00:44:46,110 --> 00:45:12,090
+Wes Bos: Yeah, I'm so excited for that. After that, that leads me into my next question here is sharing code and serverless functions. Can you do it and there's a limitation at some point because you, you're essentially thinking like it's essentially bundled, like like you would bundle front end application for a serverless, you would bundle like a couple utility functions and a couple of libraries, you have to be at Dave, every time you use something, your function gets bigger, right?
+
+93
+00:45:12,150 --> 00:46:44,250
+Unknown: Yeah, so this is different depending on the provider, the deployment framework using so like serverless, calm and Netlify versal, all bundle. And that means that, you know, you have to sort of declare and know your whole comp file paths when that function goes up. And it's all going to get, like, compiled into one file, which comes with trade offs. So it's good for performance to have less lookups. But bad for debugging, when you've got one file, why there's an error somewhere and you don't know where. And so for our way of doing it, by default, we upload the whole function folder, and you can put a package JSON in that function folder, and we will obey it and install whatever stuff you have in there. And then an architect, we have this concept of a source shared folder, where you can put shared code in that, and then it'll get uploaded with all of the functions. So you can share code across multiple functions, it's the same. And then the last knife in your booth is layers. So all all these other techniques fail you. Lambda layers, let you compile up your own node modules. And you can order your own binaries or even your own runtime, if you want, you can put that up there and then you declare we support this and begin to you just declare the layer Arn. And then that gets bolted on to the runtime. So if you needed for some reason to write your function in PHP, you can do that. It'll work. Or if you needed to, like you know, include a different version of image magic, or actually the really popular one is puppeteer a lot of people out there.
+
+94
+00:46:44,700 --> 00:47:17,010
+Wes Bos: Yeah, that that's actually what I tried using in one of mine. Yeah, that was in Oh, is it my CloudFlare worker, I was using CloudFlare worker and I was grabbing a website and crawling it for image and then and then returning that image inside of the HTML. And I couldn't I couldn't use. I forget what I think it was puppeteer, I couldn't use like one of these really slick things. And also that probably be really slow, man, everybody was saying like, oh, if you're using AWS, you could put that in a layer and it'd be much easier,
+
+95
+00:47:17,160 --> 00:47:25,680
+Unknown: I will show you a link to a demo doing it with begin, it's pretty easy. You just give it this public layer Arn, and it'll add puppeteer to your function.
+
+96
+00:47:26,190 --> 00:47:29,880
+Wes Bos: And yet, all the popular things are already layer FIDE, right?
+
+97
+00:47:30,270 --> 00:47:59,010
+Unknown: Pretty much. I mean, I'm maintaining one right now for the demo runtime. And it's not too bad, but just about anything else you can think of is, is out there. And the student Michael Hart actually maintains this project called yonder, which lets you create lambda layers using Yum, yum, which is kind of cool. So anything you could yum install into a Docker container and create into a lambda layer. So there's plenty of mischief you can get up to that one.
+
+98
+00:47:59,490 --> 00:48:05,580
+Scott Tolinski: There's so much to learn. My gosh. It's so exciting. Yeah, it
+
+99
+00:48:05,580 --> 00:48:10,440
+Unknown: was stuff was pretty inaccessible before, but now it's Yeah, fingertips.
+
+100
+00:48:11,610 --> 00:48:39,870
+Wes Bos: So what I liked so much about like, arc and begin and all these other companies is that you mostly like most web developers listening to this podcast, probably don't have to care what yumna is, right? Like, in very, very few cases. And that's beautiful. Because it takes the like having to manage a server part out of the equation or writing it like the worst thing in the world is writing an nginx config file, right? Like all that stuff is, is almost gone now.
+
+101
+00:48:40,800 --> 00:48:54,120
+Unknown: Yeah, that's true. And I what they need to know, I think folks just need to know that it's possible, file that one away. And then you know, when the inevitable comes, and you're like, Damn, I wish Linda could do that thing. Yeah, it can.
+
+102
+00:48:56,310 --> 00:49:17,190
+Scott Tolinski: Even at one point we had, we had, like, considered rolling our own cloudinary on lambda. And it was surprisingly super easy, but I just didn't have the bandwidth to do it. It's like, yeah, yeah, that actually is is way more accessible than I was expecting. And and I think a lot of developers will over time starting to learn that. There's some really neat stuff out there we can be doing
+
+103
+00:49:17,820 --> 00:49:34,140
+Unknown: is you you try to you tried to DDoS us but you'd like, Did that image. thing back in? It's funny. It shows up in our logs. Is this one big spike? Really? Yeah. So what happened in February and then it's like, oh, yeah,
+
+104
+00:49:34,170 --> 00:50:11,640
+Wes Bos: so what I did was like, I was like, playing around with begin, and what's the database called? Again, I was screwed up. dynamodb Dynamo I always said Dinamo last time. dynamodb. And I was like, I want to make something that like, counts and saves it and then renders out. So what I did was like, you just hit a URL, it increments the value in the database, renders a PNG, and then and then serves it back off. And I was like, Oh, cool. Like I did it. Did this old school thing on new school tech, and then I like tweeted it out. And obviously people are like, well, screw this guy. And they people just started hammering it like writing. Because there was no like,
+
+105
+00:50:12,180 --> 00:50:15,690
+Unknown: there. It was just writing to the database. Yeah, straight there.
+
+106
+00:50:15,690 --> 00:50:24,840
+Wes Bos: It went up to like, I think like 800,000 or something like that in in like 20 minutes. And you showed me some logs of like, it didn't even
+
+107
+00:50:25,080 --> 00:50:48,180
+Unknown: sweat. We were watching it go down, because we're like, we might have to put a pin in this, but it was fine. People got bored of refreshing that page. So it was cool to see, Dynamo just like came up gracefully handled the load the API gateway with serviette as a dynamic pre rendered image, and no problem, which is,
+
+108
+00:50:48,780 --> 00:50:51,180
+Wes Bos: do you know how much that cost to run?
+
+109
+00:50:51,600 --> 00:50:59,130
+Unknown: Yes, nothing. So you were you were like way within the free tier limits? Man,
+
+110
+00:50:59,280 --> 00:51:07,320
+Wes Bos: it's funny that spike, that spike shows up on your like, company wide thing. And we are well within free tier limit. Oh, my gosh, yeah.
+
+111
+00:51:07,320 --> 00:51:45,420
+Unknown: Yeah. And so part of our hack, for begin on the free tiers, we smear you all these apps across a whole bunch of AWS org accounts. And the paid tier will put you on your own dedicated org account. These apps can access each other, they're locked out by I am. But there couldn't be a noisy neighbor effect. Like if you had the West boss effects, you want to avoid that. But because it's all on demand, it seems to level out quite cleanly. And whenever we see these spikes, it's just a perfect opportunity to invite someone to, hey, maybe you want to join our paid tier. Get your own isolated org account. It's totally it still
+
+112
+00:51:45,420 --> 00:51:55,560
+Wes Bos: works. I just went to it. 140,000 hits. And almost all of those came in, in 15 minutes of people writing loops.
+
+113
+00:51:58,200 --> 00:52:13,590
+Unknown: Yeah, it's a it's a different time, because this used to be a scarce resource. And we would run the server forever. And now it's a commodity. And we want this thing to go away, you want to shut off at the end of the request, which is a completely different programming model.
+
+114
+00:52:13,680 --> 00:52:46,050
+Scott Tolinski: And there's just so many, like fantastic threads in this episode, I don't want holding on them. So I hate to do this, because this was just an incredible episode, Brian, it really thank you for for coming on, because I learned a ton. And I have a long list of things to start reading now. And I love that that's the end result. So I'm sure the audience is going to be having a lot of stuff to pull out too. So thank you so much. Now it's the part of the show that we talk about sick picks, where we pick things that we find to be pretty sick things that we like can be anything, did you come prepared with the sick pick, Brian,
+
+115
+00:52:46,440 --> 00:52:47,070
+Unknown: I did.
+
+116
+00:52:48,690 --> 00:53:22,830
+Totally self interested sick pick here. But he recently added auto fingerprinting to begin. So if you wanted to try out doing an app with just pure ES modules and not have to deal with a build step, I strongly urge folks check out our fingerprinting feature, which hopefully by the time this airs has documentation. And the TLDR is with you just Radiesse modules, you put them in a folder, you reference them like normal files, but we'll do all the auto fingerprinting for you. And it'll all loads the way you would expect, which is nice. Nice. What
+
+117
+00:53:22,830 --> 00:53:24,540
+Wes Bos: What does fingerprinting mean?
+
+118
+00:53:25,170 --> 00:54:07,560
+Unknown: Oh my god, sorry. So when you, when you do a build step, often you'll see the files will have like a little Shawn would be like, oh, gosh, like to 860 or something. And that's a fingerprint of the contents of that file. And the reason we want to do that, because when it goes out to the internet, we can cache it forever. And then if the file changes, then we change the SHA, which will in the cache. So it's a technique that you kind of can't opt out of you need to do this with your apps. Most tools just do this for you already. But it's a build step, but it's a manual one and it's something you got to run yourself. So if you want to just try writing yes module straight up without having any build step in between you and Matt. And this is a way that you can achieve that.
+
+119
+00:54:07,830 --> 00:55:24,360
+Wes Bos: Cool. That sounds really neat. I got a sick pick today. This is a another bizarre tool that I had to buy. My kids threw a bunch of stuff down our vent. We have these like super old cast iron or Nate vents like our house is like 120 years old. My kids throw stuff down all the time because there's a huge place and we're like, okay, we have to get this stuff out of here. Otherwise it's gonna burn and like it's a bunch of their toys that were kind of necessary. And even a flashlight that was on got thrown down the vent. So I was like, Alright, well I couldn't take the vent off because it has like 100 years of paint sealing it on. So I ordered this grabber tool, which is a bendy magnetic has a little flashlight in it and basically you just press the end. And these four little claws come out. Then it bends wherever you want. And I think it's really popular in automotive if you drop a bolt into your your engine, you need to be able to pull it out. And this thing is awesome. Like I got all this stuff out. But also I was like I was talking to my wife was like, I'm glad we have this now like, this is definitely something I've needed in the past and it wasn't it was like, I don't know 15 bucks or so. So not not super cheap, but definitely well worth having in your tool arsenal.
+
+120
+00:55:24,360 --> 00:56:13,950
+Scott Tolinski: sick. I have a fun sick pic. Not it's a music sick pic that I found out about this morning. And I am very happy about this. This exists. This is an album called been here for too long. It is 28 versions of blink when a tos dammit, by various artists. Gosh, it's great. There's some some really talented artists out here. And if you're into that song, this is by blink 155 which has just a ridiculous bandcamp. And apparently a blink wanting to focus podcast or something. I have no idea. I just found out about this because I'm one of my favorite artists, Jeff rosenstock, who you might know West because he's on the same label as pop who I know you really enjoy. Right away pop is pop the band that you like, that's Um, I don't I don't.
+
+121
+00:56:14,399 --> 00:56:21,300
+Wes Bos: I've never publicly declared my love for pot, but they're good band. But I wouldn't say like I'm a pothead or something like that.
+
+122
+00:56:21,330 --> 00:56:41,100
+Scott Tolinski: Okay, I thought you would talk about the ones on this show. That's why I said that. Either way there. Jeff rosenstock is one of my favorite punk artists. He's on that same label. And he's on this album. So I'm very excited to be having this. And he just, yeah, so check this out of the link in the description. Blink 155 been here too long.
+
+123
+00:56:41,340 --> 00:56:46,650
+Wes Bos: Awesome. Shameless plugs. Do you have any other anything else you'd like to plug there, Brian? Oh,
+
+124
+00:56:47,160 --> 00:57:27,630
+Unknown: yeah, cool. bonus round, we also just released a thing called proxy. And it lets you proxy other websites from begin website, you declare a proxy, you can point it at your Heroku or whatever else. And then you can override individual routes to win. So one thing we're doing is they'll build a graph qL API, but they want to point to an existing app, or vice versa. This is the way to do it. We just released that, like, two days ago. And for some reason, this has been a bad week to launch stuff. So we Yeah, that's another one we're checking out.
+
+125
+00:57:27,660 --> 00:57:34,830
+Wes Bos: Oh, that's neat. So that that's something someone would want to take a look at if they were trying to move over a monolith and do it piece by piece.
+
+126
+00:57:35,160 --> 00:57:44,760
+Scott Tolinski: Yeah, exactly. Exactly. Yeah, that's a good key for anybody to have, like in their platform, because nobody wants to move all of their stuff over. You know, like,
+
+127
+00:57:45,090 --> 00:57:59,460
+Unknown: they can't usually right, like, they've got an existing inertia and data and there's just they're not going to rewrite the database. And so I think it's the future of serverless is not a big rewrite, the future is going to be these hybrid architectures for sure.
+
+128
+00:58:00,330 --> 00:58:28,050
+Wes Bos: One other thing I wanted to just note is I thought this was really interesting when I first met you guys at conference was your co founders is Ryan block, who's the end gadget and gadget guy, so the guy who was reviewing the Motorola flip phone and all that stuff back in the day, and like I cuz like, I grew up, like, like reading all of his stuff. And like, when I met him, I'm like, Oh, my gosh, you're my internet tech. So he's obviously a developer as well.
+
+129
+00:58:28,410 --> 00:58:45,510
+Unknown: Yeah, let's go web developers well, and similar to me, kind of over it on the server side and wanted to just focus on the ease of use side and yeah, Ryan's probably landing twice the commits I am these days. zacher for sure.
+
+130
+00:58:45,540 --> 00:58:46,410
+Wes Bos: What a badass.
+
+131
+00:58:46,439 --> 00:58:47,340
+Scott Tolinski: Yeah.
+
+132
+00:58:47,340 --> 00:59:01,710
+Wes Bos: Cool. I'm gonna shamelessly plug all of my courses West boss comm forward slash courses. By the time you're listening to us, I'll probably have my advanced react course re recorded as well. So check that out, use the coupon code syntax. 10 bucks off.
+
+133
+00:59:02,220 --> 00:59:17,430
+Scott Tolinski: I'm going to also shamelessly plug all of my courses at level up tutorials.com forward slash Pro, we have a new course every single month. And who knows maybe there's going to be some interesting content related to Dino on level up tutorials at some point in the future. So we'll see.
+
+134
+00:59:17,700 --> 00:59:18,960
+Unknown: Sweet. All right. Thank
+
+135
+00:59:18,960 --> 00:59:24,600
+Wes Bos: you so much again, for coming on. That was awesome. I answered all the questions that I had for you. I appreciate that.
+
+136
+00:59:24,629 --> 00:59:41,820
+Unknown: Yeah. Yeah. Thanks for having me. Super. Appreciate it. It's awesome. Well, congratulations, Scott. Now you can not think about that for a while. All of us in Canada like thank God.
+
+137
+00:59:44,310 --> 00:59:59,760
+Scott Tolinski: Thank you. Have a good one, guys. Peace out. Peace. Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you liked this show.
+
