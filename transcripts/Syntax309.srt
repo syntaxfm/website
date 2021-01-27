@@ -1,0 +1,224 @@
+1
+00:00:00,359 --> 00:00:01,350
+Unknown: Monday, Monday,
+
+2
+00:00:01,350 --> 00:00:02,580
+Monday Open wide.
+
+3
+00:00:02,580 --> 00:00:07,620
+Get ready to stuff your face with JavaScript CSS loadmodule
+
+4
+00:00:07,620 --> 00:00:09,060
+BBQ Tip Get
+
+5
+00:00:09,060 --> 00:00:19,460
+workflow breakdancing, soft skill web development hasty, as crazy as tasty as web development treats coming in hot here is Sarah
+
+6
+00:00:19,460 --> 00:00:21,300
+CUDA, Bob, and Scott
+
+7
+00:00:23,579 --> 00:00:24,149
+Tolinksi.
+
+8
+00:00:26,760 --> 00:00:56,070
+Scott Tolinski: Welcome to syntax. And this Monday tasty treat, we are going to be doing a rundown of our 300th episode talking about the tech that we use to make it happen. And some of the behind the scenes stuff that allowed us to do what we did, which was invite you on to talk to us in the middle of a live stream and how we organize that now Who are we? Well, my name is Gus winsky. And I'm a developer from Denver, Colorado and with me, as always is the West boss. Hey,
+
+9
+00:00:56,670 --> 00:00:58,950
+Wes. What's up? Dude?
+
+10
+00:00:59,700 --> 00:01:11,370
+Wes Bos: I'm very I just spent the last couple days working on the transcripts for this Yes. And every, every single time I say something like, Hey, I'm like, oh man that transcripts gonna goof that up with
+
+11
+00:01:13,860 --> 00:02:39,630
+Scott Tolinski: you. Yeah, we're gonna have to start tweaking how we talk giving a little bit more gap, I'm gonna start speaking with a little bit more Scott flavor to try to try to steer it in that era. That's good. Well, you were working on a neat, awesome feature for this new syntax website, it might have been a good use case for you to institute something like Log Rocket, which is one of our sponsors today, where you could have seen if the transcripts were breaking when somebody tried to load the page, because what Log Rocket does is it gives you a session replay of your errors and exceptions. This is a really cool service that has been sponsoring syntax for a long time now. And you'll want to want to check out Log Rocket comm forward slash syntax to check it out, you'll get 14 days for free. And what you'll see is a session replay, which is a scrubbable video with the network requests on the error logs and anything you could possibly want to help you discover any bugs you have when you're rolling out a new feature. I really love this tool. So thank you so much for Log Rocket for sponsoring syntax. All right. So before we get into maybe what we used, we should maybe do a quick rundown of the things that we tried first. And I don't want to say this came together at the last second. But we certainly did not uncover what would be the final workflow for this 300 episode until just about the day before, I would say we had tried and talked about a bunch of different stuff. So do we want to start there?
+
+12
+00:02:39,750 --> 00:04:24,000
+Wes Bos: I asked on Twitter like, hey, like, we want to be able to record the broadcast, but also have people like call in or zoom in or something like that. So I went on Twitter, and I asked like what are options out there. And it's kind of interesting. Right now we're seeing a lot of startups and new companies that are the zoom for X, Y and Z. Because like even though zoom is good, it doesn't like work for a lot of specific use cases like for conferences and things like that, right. So the most common suggestion we had was use zoom breakout rooms. So you're allowed to enable breakout rooms on zoom and you can jump into other ones and without perfect like everybody's like, yeah, that's the best solution. But when Scott and I tried it, it's just gotten I and when we both went to the breakout room, there was no way to go back into the main room. Like we both left. And there was no way to like bring people in and like know who was in the other one, you couldn't be in two rooms at once. So it just wasn't an option unless we're to have like a third person who was like full time in the room and then sending people over as we needed them. It actually didn't work out at all for us so we scrapped that one as well. Other people suggested hopping which is super expensive stream yard seem to be another good solution. But we ended up just I think I tried like three or four of them which is sucks because now I'm part of all these like onboarding emails. Did you get our last email? Yeah. Yeah, learn how blah blah blah makes you money. You know, I hate those. Yeah, onboarding sequences anyways, so none of those worked. And we ended up just going with discord and using discord chat. So you want to jump into how you did that?
+
+13
+00:04:24,240 --> 00:05:45,090
+Scott Tolinski: Yeah, this was fun because I've been on discord for a little while for the level up tutorials discord that we originally had on Slack, but I always kind of got annoyed that you know, at the time for I mean, I think they have this now where you can just sign up and login. But to do user just to allow people to create their own account by default in discord was the default behavior rather than with slack. I had to fire up a app on Heroku to have a login form that was like inviting people it's just so dumb that that was the way you had to do it on slack before but so we we've been on discord for a little bit and the discord allows you to do a video or audio and video rooms where you can do video chats. And this is actually how we do all of our meetings via discord, we just pop into our level of team room that we all have permissions for. And we just start chatting in there via video, we can screen share, and whatever. So we thought this might be a decent option because we could have a room that we could control the access to, right, you have an AV room and then based on a user role in discord, you can give people access to being able to join this room. Therefore, you could say, all right, so and so is now live, now they get the live role, they can then see access to that room, they can click it and join it and essentially call in without having to really do too much other than joining the chat room. So that was really the right workflow to me.
+
+14
+00:05:45,420 --> 00:06:15,090
+Wes Bos: Yeah, it was it was pretty seamless. And even like, I thought it was really neat UI when I would just click on your your name like the Convo that we had just between us, and then it would immediately flip on the mics. And like there was no calling or accept or Oh, yeah, add to like, the thing that drives me. nuts about zoom is I will call Scott, I'll press the call button. And then it will it'll do a pop up that says, Do you want to allow Scott? And I'm like, of course, I would like to let Scott All right.
+
+15
+00:06:15,090 --> 00:06:26,700
+Scott Tolinski: Yeah. Yeah. So zoom is is frustrating that way. And that could even be a future way that we end up recording syntax. Although zoom does have some nice features where it has like a backup recording. And
+
+16
+00:06:26,730 --> 00:07:07,890
+Wes Bos: yeah, the backup recording is is pretty pretty much for syntax. But yeah, it's it was a really slick experience. So while we were doing also, we got tons of questions about like slack versus Discord. And obviously discord is way better, especially for communities. I think like slack is sort of like turned its back on communities because I don't think there's any way for them to make a community thing that works for 20,000 people but also maintain their very lucrative teams per per person in a team. So I'm still on slack. A lot of people ask me like, why don't you move to Discord. And I have 50,000 people in my slack room and I can't just like switch over
+
+17
+00:07:07,920 --> 00:07:09,510
+Scott Tolinski: just pick up and walk over to
+
+18
+00:07:10,530 --> 00:08:08,430
+Wes Bos: pick up and walk over. And like that's like a significant asset to me as well as having these people. And there's no way everybody would move over. So you would lose a lot of people that way. But like the UI, everything about about discord is is much better. Which which is pretty cool. I'm a big fan of it. Especially like all the the video calling whatnot. Just for like my sake, I'm not going to move from slack to discord because that's just chat to chat, I'm holding out for something that's like a mix of like the real tightness that you get with a chat, but also the longevity that you get with a forum. And I also have like years of backlog in slack. So my messages Don't go away immediately. So that's not not an issue for me. That's the sort of the the downside to a lot of these big slack communities. But yeah, I wish that discord would make some sort of like, chat based form software as well. Because like I was really hopeful for spectrum.
+
+19
+00:08:08,609 --> 00:08:10,350
+Unknown: Yeah. Which went nowhere.
+
+20
+00:08:10,500 --> 00:08:25,020
+Wes Bos: That got bought by Google and sorta it sort of flops. I don't think they're working on Charlie anymore. Yeah, they got Microsoft did. No, it was bought by Microsoft. It was bought by GitHub, which got bought by Microsoft said Yeah, same thing, I guess. Yeah. Well, I
+
+21
+00:08:25,080 --> 00:08:27,000
+Scott Tolinski: mean, you said it got bought by Google, it was just clear.
+
+22
+00:08:27,020 --> 00:08:41,520
+Wes Bos: Did I? Oh, yeah. Sorry, not Google. No, no, by GitHub, different company, different company. So that's this question I get all the time when I'm over discord, because there's not it's not worth it for me just yet, but definitely like it. I know. Yeah, spectrum
+
+23
+00:08:41,520 --> 00:08:45,600
+Scott Tolinski: is a classic example of why you should wait a little bit because people were like, everybody
+
+24
+00:08:45,600 --> 00:08:47,420
+Wes Bos: gonna get on spectrum
+
+25
+00:08:47,420 --> 00:08:58,670
+Scott Tolinski: and everybody got spectrum. And it probably like no shade on spectrum here. But like, whenever I use spectrum, I feel like it hardly functions nowadays. Like I have to refresh the page several times and it's very frustrating for me.
+
+26
+00:08:59,010 --> 00:09:37,830
+Wes Bos: The other thing I get from and this isn't a maybe it maybe it's part of the tool, but the other thing I get from spectrum when I post something, I just get this feeling that nobody's gonna reply. It's you know, diva. Yeah, yeah, yeah, it's sort of like filling out a contact form on like a sketchy business website. You're not gonna ever gonna get this feeling from it, which sucks. And when you jump into a chat room, you can see that there's people there and that's why I like the the real time pneus of chat but I also like the longevity of threads on on something like spectrum or GitHub discussions. That one's looking pretty good for next year. So a big fan of that lately. Yeah,
+
+27
+00:09:37,830 --> 00:12:31,890
+Scott Tolinski: I think another big thing with slack verse discord is that discord by default you are subscribed to every room or slack you have to like hunt for the rooms you want to subscribe to. Yeah, and in Discord. It's like here are all of the rooms and you can participate in the ones you want to participate in. And that to me, it feels nice. I like the folders and everything for rooms. I know you can do that in Slack, but discord for me feels like they have way more program IQ capabilities in terms of like, oh, welcome to this room, you know, click this emoji to get access to this showing that you've read the rules, you know. So like, yeah, like that, to me is very interesting, super good. It's much more interesting than like, slack bots, because like all we ever did with slack bots, to be honest, was one of the guys on my team wrote a macho man, Randy Savage, slack bot. And like, he was like, programmed to do several things. But you would say elbow drop, and then somebody's name, then Randy Savage would pop in with this little icon, it'd be like, Randy Savage picks up as stilinski and slams him through the table. And like, that's all he does. Like, that's what we do is like, it's like fun, but it's not exactly that useful. Okay, so next up is the live streaming setup. What do we do for live streaming? Now I don't love OBS is a open broadcasting software, I believe is what it's called. It's a, it's an open source project. But I use a version, which is like a paid version of OBS, which has a bunch more features called OBS stream labs. And it recently became a Mac App, it used to only be PC. I use this because it includes a bunch of templates, it includes a bunch of extra features. But the big feature for me that it includes is like a really easy way to stream to multiple sources at once. I think it was like, up to, I don't know how many, I think up to three, because we were hitting our limit pretty much, you maybe can either do three or four. Either way, this allowed us to stream to a whole bunch of different places at once. As well as, sort of have a waiting room where people could join in had like a looping animation, which we'll talk a little bit more about how I made, we had like a looping animation that could do a countdown clock, the countdown clock was made in OBS. Once that countdown clock hit zero, we went live and, you know, OBS is one of those software's that you really have to spend some time with. Because it's, it's like missing so many basic pieces of normal functionality that you're used to in normal web apps, or normal apps in general. So like, yeah, if I want to click something, or if I want to have a source, fit the output screen size, you have to do all of that you have to jump through a bunch of hoops. Yes, you could do transform or whatever. But you can't even zoom out of the canvas. So let's say like, like in figma, you zoom out of the canvas to shift handles and whatever to make things the right way. OBS. If you drag your handles beyond the canvas, you're just you have to like start over or position in manually because you cannot zoom out of the canvas. That drives me nuts.
+
+28
+00:12:32,100 --> 00:12:44,520
+Wes Bos: Yeah, it's it's kind of like the the VLC of streaming like it's it's free. It's open source it under the hood, it does everything. But yeah, it's just the UI layer is kind of where
+
+29
+00:12:44,730 --> 00:13:36,060
+Scott Tolinski: Yes, ain't even the pant fancy paid one is, is just like a skin on top of it. So it's not great. And people who really like OBS mean they like it. And I have such a hard time with that because to me, it feels like such a half baked software it is open source. So I mean, it's okay. So one last bit, we did a screen capture. So I did a breakout of the discord window, the the video chat, I broke that out into its own window on my desktop. And then instead of telling OBS to use that output, I told the OBS to do a screen capture why, for some reason, both on zoom and OBS. The output was really choppy when you chose like the native video output rather than doing a screen recording. It was like you lost major framerate issues. So I chose to do it as a screen capture. And that seemed to work just fine.
+
+30
+00:13:36,180 --> 00:14:14,460
+Wes Bos: That's another thing about discord is the output the little rounded corners, nice little bit of padding. It just looks so much nicer than zoom where it's just squares, borders, big zoom logo, bottom right hand corner. So yeah, I thought that actually looked really nice. And luckily you have like super good internet that you're able to push it because then we took that that feed and then you were pushing it from your computer to my YouTube live stream your YouTube live stream and into mux. Yes, and and Twitch or just just max.
+
+31
+00:14:14,520 --> 00:14:23,250
+Scott Tolinski: Oh, yeah. And Twitch. So no, we had four streams going I have three sources, but no, we had four sources going. Which is uh, yeah, that's pretty wild.
+
+32
+00:14:23,310 --> 00:15:00,750
+Wes Bos: It worked. Well, it seems silly to like double up on YouTube, but both Scott and I had there was like, pretty active chatroom in on YouTube for both of those. And then we also had the chatroom in, in discord obviously, which is kind of interesting because like we said in the description and in the chat, like join the discord chat room, but there was just like, probably a couple dozen people in both YouTube chats. They just decided that that's where they were going to talk about to talk about it, which was good because like, that's my big thing that I think of is like don't push people to different platforms like just meet them meet them where they All right.
+
+33
+00:15:01,170 --> 00:18:51,210
+Scott Tolinski: Yeah. And that's actually one of the things that stream labs OBS does really well. So one of the neat features that stream labs has is that allows you to see all of the chats for both YouTube and Twitch as an aggregate. And like, then you don't have to have all those windows open, you can see all the chats. And if you need to respond to something, you can do it there, too. So we push to mcse. I'll talk a little bit about the mux setup. So how did we get our mux set up which was@syntax.fm forward slash live, we had a video player on the live site of the real life page of the website, this was really easy to build. So if you are interested in doing your own live streaming on your own platform, and not having it be on YouTube, or something like that, this lives on mugs, and we actually I don't know if you know this West, but it actually did a live DVR recording of it as well as we did it. So this video doesn't just exist on on YouTube permanently. It exists on Macs as well, in case we ever wanted. So mcse.com this the day are not sponsoring the show, I use them for my video hosting myself. And what how do we do this? Well, you can do this programmatically, but I created a new live stream via their UI, because it was just easy to click a new live stream button rather than try to write some code to do it, right. And that basically gives you an address and a key a stream key. So that key is private, you just paste basically paste in that address with your key into stream labs. And that's a video source now. And that's just my mcse source. And the next basically, we had a h l s m a three u eight stream address from mux, which is the we did a whole episode on video format. So go back and listen to that episode, if you want to learn a little bit more about that. But HLS is an interesting format. It's basically what any sort of live streaming is done with nowadays. And the problem with that is is that it's not compatible in every browser. So I found this really neat react hyphen HLS hyphen player, that is just going to play any HLS file on any browser polyfills. So you don't have to worry about it and just works right. So I basically just dropped in the HLS address into this react HLS player as if it was a standard video file. And that would just do its thing. And so that's really as easy as as when we clicked stream live or whatever the player allowed people to play it and watch live and it was basically just like a straight up video file. Next is the looping intro introductory video. So like when you were to arrive early, I think we hit this going like a half an hour early there was like a countdown clock. And there was a looping video with some music. So I made this looping video in principle for Mac, which is a prototyping software, but I use it to do all of my video animations. It's kind of like After Effects light in some sort of ways. So I basically I created the the looping animation frame in figma. Then I told principal to import it. Then I made a looping animation. And then I export it as a video in mp4. And then I told OBS to just loop that mp4 is one of the sources. I also had some music underneath it, which was a song I made called Lotus frog 64. I made it a couple years ago. And I think if it really really neat, it was kind of digitally, that kind of thing. So that just that just had it going for whatever 30 minutes before we started. And the last bit of this was the countdown clock which I did mention briefly the countdown clock was interesting because it was basically just a stream labs plugin that somebody else already made for me and I was able to click Add countdown clock I gave it a time to Countdown to and then I changed the font and dragged it wherever and that was that's how easy it was to create the countdown clock I didn't have to do anything fancy. And then somebody else already wrote this I even considered writing my own script at one point to do the countdown clock and it's just like that's dumb. Everybody's got a countdown clock like why would I? Why would I do that myself so
+
+34
+00:18:52,140 --> 00:19:37,170
+Wes Bos: yeah, next one we have here is just recording natural audio. So usually what Scott and I will do for the podcast is we both record our audio locally. That way it doesn't anytime the internet glitches out you don't get that little weird sound that is and also on zoom. Specifically, you'll you'll often hear people's audio. Like it drives me crazy when I listen to a podcast you can clearly tell that the audio is recorded on zoom because it's low bit rate I know there's just like a tinny robotic sound to it. And zoom also tries to add a bunch of like noise cancelling to it you can tell because when when someone talks the fall off on the audio sort of like the last the last like syllable of what they're saying sort of goes down
+
+35
+00:19:37,500 --> 00:19:39,350
+Unknown: like crunches out Yeah, yeah,
+
+36
+00:19:39,350 --> 00:19:43,950
+Wes Bos: don't don't like that. This is I'm awful at describing how audio stuff works. It just sounds awful. That like
+
+37
+00:19:43,950 --> 00:19:47,570
+Scott Tolinski: hollowness and sounding when you hear like an audio that sounds like that.
+
+38
+00:19:47,730 --> 00:19:48,300
+Wes Bos: It's called
+
+39
+00:19:48,300 --> 00:20:16,980
+Scott Tolinski: low bitrate. And it's basically like every you could think of like audio, digital audio, and when you have analog audio, it's a wave, right? Yeah, but in digital it's it's like vertical chunks of data. Vertical chunks of data to make up that wave. And the low bit rate is how many of those chunks exist. So if you chop out some of those chunks, then it feels like there's there, it's more hollow, there's not as much information there for it to get that smooth. To
+
+40
+00:20:17,330 --> 00:21:41,910
+Wes Bos: make sense. And so what I ended up doing is because God had such a elaborate setup on his end, he couldn't just get a clean stream of his own audio. And then also, we needed to record the guests as well, which their audio was only on Discord. So what we ended up doing is I recorded all of the audio on my computer. So I have my own microphone being piped into one on one recording. And then I took the output from discord, which was Scott and the guest. And that I pipe that into what is that loopback. loopback is an interface that allows you to create virtual audio inputs and outputs. So I took Scott the output of discord and put it in its own, like microphone, I'm using air quotes here, and then I recorded that straight from it. And luckily, because Scott's upload is so good, and my download is pretty good, it sounded great. And we also could record the guests as well. So the only downside there was that Scott and the guests were on the same track, which can be a little bit harder for our editor shout out to our editor who had to edit that that behemoth of an episode, it was like two and a half hours of raw Yes, audio. And that was it. So it worked worked really well. And then we also have the YouTube stream and the mcse thing just in case, we always like to record a backup, because stuff happens and a few times we've had to use our backup.
+
+41
+00:21:41,970 --> 00:22:44,940
+Scott Tolinski: Yeah, one thing I do want to say here is that loopback my wants to use future tech kind of bit me in the but because I've been on Big Sur beta for a while, like for a long time. And it's worked pretty fine. But one of the software that doesn't work for it is loopback, which just so happened to be like the thing that does audio routing for Mac OS and shoot. And so for, I think up until the actual stream, I was panicking that I wasn't going to be able to get the audio writing on my end working correctly. But I ended up using an open source tool called Black Hole. So Google black hole, Mac OS, and it wasn't easy to set up and it wasn't necessarily easy to make sure I got it right. But once I got it right, it just worked and basically allows you to throw all of your audio sources and inputs into a quote unquote black hole and then pull them out of a black hole later on somewhere else doesn't have any sort of nice interface like loopback but it saved my butt because it worked on Big Sur while loopback was getting their stuff together. I think they do have a Mac OS big server version now. But at the time they didn't which is you know convenient for us.
+
+42
+00:22:45,269 --> 00:23:35,670
+Wes Bos: I think that's it so what seemed like a very flip on your webcam and start going ended up being a big like wow, this is not necessarily a a thing, right? Where you want to bring people on and screen them and record the audio and the video and stream at all. So like there's definitely still I would say like a space for this type of thing. I know there's a lot of audio apps for podcast recording I think it'd be really cool to see something like this also for video that allowed you to have chat and bring people on that was it's kind of interesting because at the very high level it seems like there's tons of options and tons of really easy ways to do it. But with like a lot of things once you get into the nitty gritty of it you realize like oh wow this is not as fleshed out as as we had had thought it would be
+
+43
+00:23:36,060 --> 00:24:22,020
+Scott Tolinski: it just so happens that when you have like very specific wants and needs that like you have to find some some somebody else who has those very other specific wants and needs already and who made that software and it's just not always there when you're expecting it so yeah, I thought this was a lot of fun and it was very stressful for me because again so much routing through my computer so I mean there was there was a lot routing through both of our computers but everything worked and it was really pretty It was really pretty neat. I was really interested and excited to see just how easy it was to get our own custom live streaming setup going with monks and our own website. It was very very easy and that gives me a lot of really interesting ideas for stuff that I could do Did you know I bought the domain level up dot live that's a good domain huh?
+
+44
+00:24:22,020 --> 00:24:23,670
+Wes Bos: Yeah, yeah, that's really good.
+
+45
+00:24:23,759 --> 00:24:26,400
+Scott Tolinski: Not even level up tuts level up dot live I got that. I like
+
+46
+00:24:26,400 --> 00:24:41,070
+Wes Bos: that. That's good. Yeah, yeah. A lot of people said they loved it, they they would love to do it again. It was really cool to have like people from the audience just jump on. Surprising a lot of people had really good microphone setup. So the audio and video was very good.
+
+47
+00:24:42,060 --> 00:24:59,610
+Scott Tolinski: I know if we would have done this before. COVID I don't know if that would have necessarily been the same case. It's like seems like everybody got a neat setup. Not enough that not to say that the people who called in did for that because I know a lot of a lot of people who called in have their own YouTube stuff and whatever but it is fun. Everybody had a really neat setup and it all worked really well.
+
+48
+00:25:00,000 --> 00:25:04,680
+Wes Bos: We definitely should do it again. Maybe for Episode 350 food.
+
+49
+00:25:04,710 --> 00:25:05,220
+Unknown: Yeah.
+
+50
+00:25:05,220 --> 00:25:07,230
+350 like that. All right, let's
+
+51
+00:25:07,230 --> 00:25:09,600
+Wes Bos: plan that. 350 that should be
+
+52
+00:25:10,440 --> 00:25:11,070
+Scott Tolinski: next week. I
+
+53
+00:25:11,070 --> 00:25:16,350
+Wes Bos: think it's like next week. Yeah, that's like June or so. Alright, that's it. Anything else to add Scott?
+
+54
+00:25:16,350 --> 00:25:17,160
+Scott Tolinski: Nope.
+
+55
+00:25:17,160 --> 00:25:20,880
+Wes Bos: All right. Thanks for tuning in and we'll catch you on Wednesday. Please
+
+56
+00:25:23,280 --> 00:25:33,060
+Scott Tolinski: head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you liked this show.
+
