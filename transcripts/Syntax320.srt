@@ -1,0 +1,356 @@
+1
+00:00:01,319 --> 00:00:03,660
+Announcer: You're listening to syntax the podcast with
+
+2
+00:00:03,660 --> 00:00:04,590
+Unknown: the tastiest web
+
+3
+00:00:04,590 --> 00:00:10,530
+development treats out there. strap yourself in and get ready to whiskey and Wes Bos.
+
+4
+00:00:10,530 --> 00:00:50,280
+Wes Bos: Welcome to syntax. This is the podcast with the tastiest web development treats today, we've got a potluck for you. This is the show where you send in your questions and Scott and I will attempt to answer them. We really like these ones because it's all over the place things like we talked about VS code and JavaScript and CSS and getting a job making more than $100,000 a year some some really good ones for you today. We are sponsored by three awesome companies today. First one is Prismic, your headless graph qL CMS Log Rocket, which is JavaScript logging and session replays, and linode, which does cloud hosting and Linux servers. We'll talk about them partway through the episode. How are you doing today, Scott? Hey, I'm
+
+5
+00:00:50,280 --> 00:01:56,060
+Scott Tolinski: doing good. Hey, we should also state that if you want to get in on the fun here of these Pollak episodes and submit your own question, head on over to syntax.fm. And there is a button in the top right corner of the website that says ask a question. So that will take you to our forum. So you could submit questions, because while we do get a ton of good questions, in fact, we get so many questions, we can't even begin to answer them all. But it's always nice to have fresh perspectives and things like that. So head on over to syntax.fm and submit your question if you have one for us, overall, less, I'm doing good. Just live in life in the fast lane over here trying out some really exciting web dev tool. So I think we're gonna have like a bit of a good show topics going on with some of the stuff I'm working on right now. And I'm really cutting the edge right now on on some new tools that I'm working with and working on. I even wrote my own graph qL plugin for iOS build. It's like, that's where I'm at right now, man. It's a lot of fun. And I'm sort of loving it, but also at the same time, wondering if I should have picked something easier.
+
+6
+00:01:57,720 --> 00:03:04,770
+Wes Bos: Awesome. I'm looking forward to chatting about that. Alright, let's get into the first question here from Benny boy, not so much of a question. Oh, so this is not a question. But as me saying, thanks. I started web dev as a bartender slash college dropout in 2017. When syntax was pretty new, so about three years ago, I rarely missed an episode and this year, I'm starting my first over $100,000 .js job whole key doodle. hokey, do not is big. Your show has been fun, kept my attention in the realm of web dev and help guide my interest. I think it has been extremely valuable in my career. And I look forward to more I would like to give you and Scott 50% of my first year salary. Wow. Imagine That's amazing. Congrats, Benny Boy, that that's unreal that people can in three years, you can go from doing something totally different, which is a bartender. And then I'd like to hear like what to Benny boy do in order to skill up so quickly. And, and heartland such a sweet paying job?
+
+7
+00:03:04,979 --> 00:03:52,020
+Scott Tolinski: Yeah, Benny. Boy, if you are listening, go ahead and submit another potluck. And we'll check back in with you in the next pilot episode. Because I do want to learn a little bit more about what your approach was because this is huge. And I know this show is all about asking questions. I put this one on here. Wes, this is the only non question I just put this on here. Off the jump just so people can see that there are people out there who, you know, weren't professional web developers, you know, just a few short years ago, and they're now making some big bucks working on code and slinging code. It's it's really super inspiring to me. I went from not working on code to making $24,000 a year. So this seems like a big jump like that is pretty inspiring.
+
+8
+00:03:52,080 --> 00:04:09,569
+Wes Bos: Yeah, Yeah, no kidding. It's probably I'm, I'm willing to bet it's like San Francisco. Yeah. Something like that. Because that's, that's a decent chunk of change. Like I know, I know, senior developers that don't make that much. But Totally, yeah, a lot of that is dependent on on where you live as well. So cool. You want grab the next one.
+
+9
+00:04:09,750 --> 00:04:42,660
+Scott Tolinski: Next one is from just the Dane. Hey, guys, thanks for an awesome show. And they even put a little alert. .TECH. Weston's got are awesome. Thank you so much for that, then a listener for a few months. Now I listen to your podcast, in the car to and from work, which is about an hour each way. And the subjects are really interesting. I find myself talking to my car radio commenting on public questions. So good. luck, yes. Okay. So here's the question. Not sure if this has been brought up before, but here it goes. How do I know when to pull in a package rather than to write similar functionality myself?
+
+10
+00:04:43,320 --> 00:05:22,170
+And is there a rule when enough is enough in terms of having too many packages? What I'm concerned about is a bundle size. Overall, it doesn't seem to take a lot of packages before Webpack notifies you about a large bundle size. What is the best practice? This is Adjust there is not a hard and fast rule to any of this other than you kind of have to learn and grow with the process of it because there are some packages that you'll find that are absolutely massive. And one thing that I like to do is to add bundle, what's the package in VS code, no
+
+11
+00:05:22,350 --> 00:05:23,610
+Wes Bos: phobia. No, not
+
+12
+00:05:23,610 --> 00:05:32,160
+Scott Tolinski: bundle phobia. phobia, bundle size, size in VS code will show you in your import statement, just how large each of your imports are.
+
+13
+00:05:32,460 --> 00:05:35,010
+Wes Bos: Import costs is what it's called import cost.
+
+14
+00:05:35,040 --> 00:08:17,460
+Scott Tolinski: Yes, import cost, you got it. The best thing about that is you'll see it in your code, while you're writing to say like, holy cow, this particular package I'm using is huge. For instance, here's a good personal story, I was looking in my codebase the other day, and I was noticing that an NPM package for view had been installed those like view templates, something. And that brought in a lot of other stuff. Now granted, these things weren't being executed on the front end. So it's not like the user is giving ship this code. But I was just thinking, I don't want all this stuff in my I don't want a whole view project in my application as well, like, so I began to try to figure out which package imported this thing. And sure enough, it was something that I was not expecting to have the USD view and it wasn't something I necessarily needed in that regard. So it's nice to have an idea of like, what exactly is going on with your packages, what they're bringing in how large they are just overall their size, in terms of when you should write your own functionality for it, I would almost I don't want to say always, because I'm certainly not like this. But I would almost always err on the side of get the thing working, get it up and running, get it going with maybe a third party package or whatever. And then trimming the size as you need. That's not necessarily great advice for for huge, long term projects, where you have the team and the money behind it to be able to write everything from scratch when you need it. But even in those projects, I doubt people are writing everything from scratch. So it really depends on where you can get those savings, and being cognizant of what packages you're bringing in and what those costs are associated with those packages. And just remember that at the end of the day, you're shipping stuff to users. And if too many projects are going in the client side of your application, and you don't have even even with tree shaking or too many things coming to your client, that's going to take a hit on that load time, no matter what. So you can be as vigilant as you would like about it. But at the same time, it's a delicate balance. And it's certainly something that you need need to, like be aware of and like look into rather than just say, Alright, what is the limit here? What am I What is this limit? You mentioned bundle phobia was I use bundle phobia a lot. I use bundle phobia on some my own packages that I wrote to realize that I was importing something that should have been appear dependency, and then that like greatly reduced the package size for me. So little things like that bundle phobia is a great place to learn about bundle sizes, and how they grow. In the best case scenario, you would have something in your build tool or your ci CD that
+
+15
+00:08:17,460 --> 00:08:19,770
+Unknown: would tell you like something's too big,
+
+16
+00:08:19,770 --> 00:08:30,770
+Scott Tolinski: it would tell you something's too big, or would say your project has grown by an astronomical size between this unless commit what happened, you know, something like that, just to make you aware of it.
+
+17
+00:08:30,809 --> 00:08:47,580
+Wes Bos: Yeah. And and she said that Webpack does notify her that and though that will happen by default, I think turning on that import costs and VS code is good. First of all, it will give you an idea of what is too big, like, is 100 k big or is that is that worth it?
+
+18
+00:08:47,820 --> 00:08:48,770
+Scott Tolinski: Depends what it is.
+
+19
+00:08:48,899 --> 00:10:36,899
+Wes Bos: For me if it is something that is very cut and dry, and it's just a little function, I'll often just go and grab a copy, paste it from Stack Overflow, throw it in a lib folder, utils folder. But if it's any more complicated than that, like something like a really complicated lodash method, those things are tested super well and they've been battle tested. Not only are you you're getting the, you might be adding a little bit more, but you are making sure that that code is not going to also break in production on you because you forgot to cover one little use case somebody pops an emoji in and something like that. Like actually that's that's a problem I had once is my old course platform like years ago, I used to the URL to download the videos used to always be I would slugga phi, their name. And I had just got a little simple little one, and just called slugga phi and it replaces characters that are URL friendly and puts dashes where spaces are. And I had a bunch of Russian people by the course and their names were entirely in Cyrillic. And none of those characters are valid in the URL, right? So it broke because they would hit a URL with nothing in it and then I swapped it out for a package that was I NPM installed and they took care of that the converted Cyrillic characters to whatever URL friendly character is close enough to that so that I wouldn't sweat it too too much. But yeah, keep an eye on, on that type of stuff. And also, if it is an issue you're looking at, it will tell you what is causing the issue. And you can figure out okay, well, what am I really using this for? Am I gonna hit? Am I really like merging nested arrays? Or am I just doing this one little simple thing? You could swap it out for a little line of code? So I know that that was a long answer to say it depends. But
+
+20
+00:10:36,919 --> 00:11:49,289
+Scott Tolinski: yeah, that helps. It's not necessarily an easy answer. Overall, and I struggle with this greatly because I, I really like performance. So I, I find myself really seeing how much I can squeeze out of things. Another option that we didn't listen, I know we're done with this question. But another option that is in the pot, if you find a library that is too big, you can always look for alternatives. A good example, as we were using a react color picker that used Redux and a whole bunch of extra Redux thunk, and whatever, just to control a stinking color picker element, including tons of other inline packages. And it was huge, huge, huge package. And the biggest package I've ever seen. And of course, I found a smaller react color picker. And it worked very well for us and has about one 10th the size so that's always an option as well. Okay. Next question is from Paige neighboring house, who I just want to say Paige, she mentioned that she writes a lot of questions. And then we've answered the last three of them. paid up is an all star question writer every single time I could read her questions before even getting to her name and being like, this is a great question every single time it's Paige. So shout out to Paige neutering house for always asking great questions.
+
+21
+00:11:49,470 --> 00:12:57,480
+Wes Bos: Today, I got a new one for you. I received an email from a creator of an ID I've never heard of, with a plugin support for languages and frameworks. I don't use asking me to publish a review of their ID IE, I get these all the time. They attach a pre written guest post or said I can write my own opinion. If I choose and asked what my terms are. I wrote back saying I it wasn't a great one to review their ID for reasons I lifted listed above. I'm very happy with vs. code editor too. But it got me thinking my question is to you, what is your opinion of doing sponsored posts or guest posts on your own sites? And if you're in favor, what sort of terms payments etc? Would you outline to charge for it? sponsors posts on personal sites seems like a little disingenuous suspect to me. But maybe I need to get over that way of thinking and focus on bringing in a little bit of extra income via my site, when the opportunity presents itself. Oh, this is this is an awesome question. Because I get this all time Scott. And I get it all the time. We have people that want to come on the pocket they want to pay to come on the podcast, just to like, pump their own thing up. My
+
+22
+00:12:57,480 --> 00:12:59,760
+Scott Tolinski: boss has been working on a great project.
+
+23
+00:12:59,820 --> 00:13:15,990
+Wes Bos: Yeah, are like YouTube videos is the biggest one, someone offered to send me like three boxes of different types of drones, because I did one video and I was like, That was amazing. But I was like, not really a drone YouTube channel, I did one video on writing a drone to JavaScript, whoa,
+
+24
+00:13:15,990 --> 00:13:39,059
+Scott Tolinski: can I just say I'm going to take a little bit of anger towards this because Wes directly stepped in front of my getting a drone in the first place. And now here, Big Bucks when they're coming in with three drones. And West is like, you know what, I don't need your three drones. And you know, who doesn't need your three drones either my co host who didn't even get one drug?
+
+25
+00:13:40,200 --> 00:15:34,980
+Wes Bos: It wasn't the same, not the same company. It was totally different company. They just searched on YouTube. So that's a really good example. What was the company, IBM and telo approached me and many other creators, including Scott, and they said, Can you do a video and we'll send you a drone? And I said, Sure, I forget how much it was a couple $1,000 I'll do a video on it. And unfortunately, I asked for so much that they didn't have any money left for Gosh, so sorry about that, Scott. But whenever I approach these types of things, in most cases, it's not a good fit, like people look at ID editor. But if you do approach them in whatever use case, what I usually like to do is let me do my own thing. Like I'm not gonna use your ID or your your page builder and be like, this is amazing. I'm going to use this for all of my stuff. I'm gonna say all right, these people pay me to check it out. I'm going to try to build something with their tech and I'm going to let you know what I think about it along the way and those are the types of things that I like to do. I don't do them very often because my time is better spent actually making courses. But yeah, I think I think as long as you feel okay about it and no and are very clear that somebody is paying you to do something which unfortunately is not the case with a lot of reviews. Yours out there, I think it's totally fine and get that money if you can, because it's, you've worked hard to obviously build this thing. I think in the case that you're saying right here, these people are just straight up looking for linkbacks and SEO juice, they're just they're not looking for like to get actually like good informed reviews there, they probably found your blog, they probably found it ranks high for keywords like that they want like JavaScript, and then they're probably saying, alright, we if we pay this person 300 bucks, it's gonna really help our SEO just know trying to gain that it sounds like, yeah,
+
+26
+00:15:34,980 --> 00:16:07,380
+Scott Tolinski: I think this is an interesting question. Because it's like, as long as you feel comfortable with it, then it's good to go. That said, Be very explicit upfront, I like to say like, 800 times in my videos almost to the point where it's obnoxious. Like, you hear me gushing about Netlify right now, or who am whomever, right, this is I'm not being paid for these opinions. There was like a video I did on Skype tries begin begin.com. And I was just like, going nuts about it. And I had to say, like, Alright, I they did not pay me, they not even know I'm making
+
+27
+00:16:07,890 --> 00:16:10,799
+Wes Bos: a bummer. Part of what you do, like a company people are like, Oh,
+
+28
+00:16:12,029 --> 00:16:45,870
+Scott Tolinski: right, especially, even here on syntax, we do get paid for these advertisements, right. But the ads that we read on syntax are almost all companies that we've used before they even reached out to us in the first place. So and the ones that we have, and we test the products, and we use them and we love the the the stuff that we bring to you here. And so it's a tough call. Because yes, in some regards, you don't want to ruin your credibility. But if you are able to do a full up review of something without having to, you know, butter their biscuit the whole time,
+
+29
+00:16:45,990 --> 00:16:46,500
+Unknown: then
+
+30
+00:16:47,070 --> 00:20:09,930
+Scott Tolinski: then go right ahead and do I get that money or whatever. And if it doesn't feel like a good fit, chances are, it's not going to be a good fit. Okay, so let's transition into one of our sponsors. I always love I wouldn't rest West, right? They sponsor transition to broke speaking of getting paid, which is just weird, because the sponsor that we're transitioning to, it has nothing to do with money. Log Rocket, Log Rocket, what are they? Well, they're a visual tool to help you see bugs happening. Whoo, okay, well, maybe perhaps there's a new hot framework that wanted you to review their framework. So what do you do either a Log Rocket on that bad boy, and you check out to see if there's any errors happening. And if so, well, now you've got a better idea how they're happening with this new service. So check out Log Rocket at Log rocket.com. forward slash syntax, you're going to sign up get 14 days for free Log Rocket is this really, really cool, modern tool that allows you to see errors happening with a scrubbable video replay. You can even get access to your Redux store, your network tab, your console, logs and more. There's an on premise version, as well as the cloud version. It works with all of the tools that you know and love and even, and even integrates into many other tools that you probably or may already be using. Really just giving you that full control over seeing how your errors happen. So stop guessing when bugs happen over at Log rocket.com forward slash syntax. All right, let's get into the next question from Rob Osborne. Hey, Scott, and Wes, do you have any resources for those of us who want to learn more about digital products through e commerce the sources I found Scott's e commerce and Gatsby courses next .js commerce demo, focus more on creating stores that sell physical products? Are there any gotchas when selling digital or physical? Thanks for all that you do? Okay, let me tell you, Rob, selling digital products is way easier than selling physical products. Because physical products have so many like little edge cases, whether it's around shipping or locations that you're selling to, those things really add up. And next thing you know, you're coding a whole bunch of stuff. If you're doing it from scratch, I know, I coded my own e commerce platform from scratch. And it at large had access to both physical and digital products. And the first thing I did after like one year of running, it was just remove physical products without spending way too much time on managing that stuff. So digital products, typically what you're selling access to with digital products is either some sort of a role, you're selling access to a role, which a role on the user will give them the ability to access different features in your codebase or you're giving them access to digital files or potentially like streaming services. The additional files one might be a little bit tougher because you want to block access to non paid customers to those digital files. And typically that involves like a when they purchase something, you're giving them some sort of like a key to a very specific URL, if you're storing those files on an Amazon s3 bucket, you can get very complex with the ownership of those files and who has access to download or access them,
+
+31
+00:20:10,140 --> 00:20:16,890
+Wes Bos: like temporary keys, things like that. So that if someone sent that link to seven of their friends, they couldn't all download that.
+
+32
+00:20:17,190 --> 00:21:16,440
+Scott Tolinski: Yes. So there's a lot of stuff you have to consider there, if that's something you want to get into. But if you really just have a look at the very basic bare bones of all of this, you could have a zip file and a link somewhere, maybe it's a backblaze, v2 bucket or an Amazon s3 bucket, you got a link somewhere, they make a purchase, yes, send them that link, maybe you're sending them via email. That's the very most basics of it. Now, granted, you'll still probably want some sort of a database to store some of these things in if you're doing it from scratch, you could always set up through us a Shopify instance to do this as well. I personally wouldn't I don't think it's intense enough, I probably like me would have a database with users and orders and sales and those kinds of things. But for the most part, when you collect payment, you're giving either users a role, or you're creating a record in the database that says, here's an order this user made the order, this is what they have access to
+
+33
+00:21:16,470 --> 00:21:56,610
+Wes Bos: good. Actually, the one thing I will add is I am trying to sell some t shirts right now. Oh, yeah, I am. I'm trying out snip cart, which is they sponsored like two years ago, but it just says, going down the route. I first sign up with Shopify, and Shopify is like this massive thing that does absolutely everything. But it was just like, unfortunately, because of that it does everything. I was just so overwhelmed by everything. And I was like, I just want to sell t shirt and acid. Yeah, yeah. So I was like, oh, maybe I'll try it, snip cart. And they also do digital products. So you could build a next or Gatsby website. And then for that section of it, you could throw snip card in there, which would be kind of cool.
+
+34
+00:21:56,670 --> 00:22:10,110
+Scott Tolinski: Like, if you don't want to build it from scratch, SIM card is a great option because it can it's just front end code. You don't have to write your own database or anything like that. And it definitely a really good option. You could even throw it on the static site if you wanted.
+
+35
+00:22:10,230 --> 00:23:55,860
+Wes Bos: Next one we have here is from a non Do you have any tips on keeping your skills up to date while taking a break from work? I'm a front end Dev, currently, six months into my year long maternity leave, and I feel my brain has turned to soup. I listen to podcasts and read blog posts, but it feels like it's never enough time and energy are very limited for me to work on personal projects. That's that's a good question. Yeah. Because like, if you are away from this stuff for so long, I think like it's a bit like riding a bike, even though you might feel like you haven't touched it like, like, there's even for me, there's certain parts of code where I'm like, oh, man, I haven't worked on that website or haven't worked with this tack in seven years or something like that. And you come back to you're like, I have no idea what to do. But then you get you get back into it, you start working on it and whatnot. So I was the first day, don't sweat it. It's good to have have breaks and whatnot. And also, you probably come back to it with a renewed energy for it, even though like maybe not energy in life, but just a more excitement for it. And then like you said podcasts and blog posts are a really good i think i what i would add to this is also watching coding videos on YouTube or on just like a course like not necessarily you doing it because we know that that takes lots of time and commitment, but just watching others do it will. It's both it can be enjoyable if it if it moves at a decent pace. But also it can be good just to keep your head inside of things like that. And a year is really not that long. I know that we talk about like things changing very quickly. But I think if you were to keep up to date with the podcast and whatnot, you're not gonna you're not gonna be left behind or anything like that.
+
+36
+00:23:55,890 --> 00:25:34,530
+Scott Tolinski: Yeah, I wanted to put this one in here very specifically, because six months into a year long maternity leave, like yeah, that is going to be very tough, especially with everything else that comes along with the maternity leave. I know, you mentioned that your brain feels like mush. Yeah, I can only imagine that your brain probably feels like mush. Because first year is rough. It's very rough. You're not getting any sleep. It's hard to concentrate on things. I know my wife constantly refers to her baby brain as just being like, she can't even think straight. Right? her normal ways of doing things are just just aren't easy anymore. So whatever you can do to give yourself that ability, like Wes said, watching tutorials without even doing it is a good thing. Because you see the code being written. It puts good practices in front of your eyes most likely if you're watching talented coders, because again, it what it does is it's kind of flipping those same switches in your brain of the text on the page and what that text is actually trying to solve. It's not Going to work your your problem solving stuff as well. But it's actually going to be really good for you to really visualize a little bit more programming, which can really help. So I think Wes nailed it. Next question here is from Alejandro. Oh, and sorry for anon. Oh, good luck for you next six months. Yeah, congrats. All right, ella 100. Next question is, Hi, thank you for the awesome podcast. I've been listening for 100 episodes or so still trying to catch up below 200. Wow, is crazy. To me. It is crazy. You know what it was? I want to start at episode one and just listen to them all.
+
+37
+00:25:34,530 --> 00:25:37,950
+Wes Bos: I want to do that. That would be a lot of time.
+
+38
+00:25:37,950 --> 00:25:42,780
+Scott Tolinski: I've listened to them all when they came in again, I want to I want to go on that journey
+
+39
+00:25:42,810 --> 00:25:44,280
+Wes Bos: to go for it. Enjoy.
+
+40
+00:25:44,370 --> 00:28:10,170
+Scott Tolinski: Yes, thank you. I've learned and enjoyed a ton. I'm a web developer. So syntax allows me to stay up to date with a web dev and learn from other people's experience. Here's my question. I remember you guys saying something about making your own UI component libraries? I have been wondering, do you use some CSS library like tailwind or bootstrap for doing this? Or do you write your CSS or CSS from scratch? Thanks in advance. Okay. So ella hundra, I write my CSS from scratch. For the most part, I use styled components to make my component library. But I've been getting away from this. I don't know how you feel about this West, we can have another conversation about this another time. But I've been getting away from using styled components for everything. Specifically, because CSS variables have become my Bay, I absolutely love CSS variables to the point where they have made so much code that I've written redundant I've, I've gotten better at systems, I've gotten better at design systems. I've gotten better at Classless CSS as in my base CSS file that I wrote, where I style all of my elements and whatever has gotten me to the point where I've written such efficient CSS that I'm almost hardly having to write overrides anymore. Not that I don't have to first specific features, but like overrides or specific instances, what I've done is I've taken an approach where I have all of my base stuff. And I've started to craft my own utility CSS classes when I need them. Now, that might seem contradictory to some of the things I've said about utility CSS in the past. But what I've kind of pushed back on and utility CSS is, is just importing some utility CSS library or going from those starting points, because you don't need all the stuff they give you. And you have to learn somebody else's thing. But if I want, maybe like just a text align center on something, it's okay to make a center class and then throw that text align center on there to to augment your own things. So I think you'd be surprised if you wrote it from scratch just how little you end up having to write to do some of these things yourself, then write them for when you need them. That said, it does depend a little bit on your time time levels, how much time you have maybe using something like tailwinds could be a nice way to rapidly write some code. Me personally, I maintain it all and styled components, CSS variables, if you want to learn more, I have a course on this called modern CSS design systems. Talking about writing really, really good base level CSS,
+
+41
+00:28:10,200 --> 00:29:24,660
+Wes Bos: I write everything from scratch as well, I've got lots of different projects, some of them just use classes that target things, and you apply the CSS to that some of them use them. Lots of them use style components. I don't use any of the theming values from style components. And I very rarely actually use the ability to stick JavaScript data into the style components. But I still really like style components for what it's good for, which is scoping, CSS, making reusable components, just writing the CSS, like its regular CSS, and, and sticking in there. So I really like that I think if I were to ever switch away from style components, it would be just to something that uses like the almost the same API as components, but is a smaller footprint, because I don't necessarily need the variables thing any longer. That's not to say that you shouldn't use documents. It's just I have found myself not needing it as much now that we have CSS variables. And I want to be clear, I'm not people always take things like oh, I'm not using it as much. People always say like, oh, you're not using that at all anymore. And it's dead. No, no, I still use it all the time. I still, it's still my choice if I'm doing CSS in a react project. So
+
+42
+00:29:24,690 --> 00:29:36,420
+Scott Tolinski: that's it from scratch. And sometimes using a library can save you a bunch of time. One of our sponsors could save you a bunch of time on the back end. And I've talked about Prismic.
+
+43
+00:29:36,450 --> 00:32:21,570
+Wes Bos: Yes, Prismic is a headless CMS for your project. It's awesome, because the way that it works is you sign up for Prismic. And you log in and you don't have to write any code, you just start creating your content types. You create relationship types. They have this really neat thing called slices, which we're going to talk about and some upcoming episodes as well. And then you can give that your marketing person or your end user, the person that's using your website, they log in, create all the content types. And then on the other end, you can grab a graph qL API, we'll talk about slices coming up, as well, it's a really big thing that Prismic has rolled out. It's pretty nifty. It's awesome, because you can go ahead and make a reactor view or an extra Knox or any project you want, and pull in all the data from Prismic. So check it out for your next project, go to prismic.io forward slash syntax. And they have a really, really awesome landing page with a bunch of starter files, they have other features, slices previews is really cool. You can preview your data, and they also have image optimization. So they have images built right in. So that also solves the problem not of where do you put your data? But also, where do you put your images? So check it out. Thanks so much to Prismic for sponsoring .TECH Next question from Dan Chenery. Hey, guys would be interested to hear some common ways use dev tools, Chrome Dev Tools, React dev tools, Redux dev tools, etc. I feel like there's a lot of information out there that I'm not utilizing, to help you figure out problems during development would be here to hear an overview of how to use different different tabs, I think that this would be awesome. Like, maybe we should do a bunch of hastiness on the different tabs and how we use them. But like real quick, my most used tabs are, inspector with CSS, I use Firefox dev tools. And there are some really nifty stuff around CSS and unused properties or invalid properties, I use the Network tab a lot to see what's being pulled in when things are being pulled in. I use debugger statements in the in the DOM, they also have, you can put in break statements, which will break when some data is added, or when a DOM has DOM element is updated, and whatnot, I use the storage tab quite a bit for local storage and cookies. And those are my big ones. Firefox just rolled out this really nifty, multi line console sort of playground, you know, if you're just trying out some JavaScript, and you want to run it, and you just type it in the console, but it's multi line, and sometimes you hit enter at the wrong spot. They just, they just rolled out this sort of like little playground where you can put your write your code, and then hit a shortcut key, and it will run it in the console. So I like that a lot.
+
+44
+00:32:21,750 --> 00:32:56,730
+Scott Tolinski: I've not I've not seen that yet. I gotta update to get it. I have been using I think primarily, I mean, obviously, the elements and the styles tab are probably the the default. All right, yeah, much CSS in the styles tab. Like I really like to try things out. And that's actually another area where my variables and design system stuff has like really come in handy, because you can tweak so much by modifying a couple variables in our system. So that's always really nice. For me, even chrome added so many of the nice new layout tools now like the grid stuff that Firefox Dev Tools had. So Chrome's really been stepping it up.
+
+45
+00:32:56,760 --> 00:32:58,710
+Unknown: Did they add that? Yeah, they have
+
+46
+00:32:58,710 --> 00:34:23,790
+Scott Tolinski: a bunch of new stuff. Oh, check out that. Yeah. And then you can even extend the grid lines show that I mean, all this stuff that you can do in the Firefox version of it. It's really nice. There's some some really cool tools there that they've been adding lately, specifically, around that kind of stuff that you're used to in the Firefox developer tools. But even like color pickers, and little things like that, I think that Chrome Dev Tools has responded well, to the Firefox Dev Tools being so dope. They're just like, well, we gotta gotta step it up a little bit. I think my most used tab in Chrome Developer Tools nowadays is probably the Network tab. I really rely on the Network tab. And also, I've been doing a lot of ESM stuff lately, where you're able to see the modules being loaded as individual networker. Yeah. Like I said, I spend a lot of time in the Network tab, but it is endlessly helpful once you get to use it. Not from like, perf. I mean, perf. Yes, absolutely. But be able to see like, Alright, this thing's not working, what is actually being returned to me. Like, for instance, maybe I was expecting a file to be returned, but it's actually getting my in. My request is returning my index dot HTML file. You know, have you ever seen that? Let that error that's like, unexpected token forward slash bracket. Yeah. can be confusing. Yeah. But if you head to your network tab, and you can see, okay, what's actually being loaded with this file? Oh, it's loading an HTML file that's unexpected. I get that one all the time, or a course
+
+47
+00:34:23,790 --> 00:34:41,280
+Wes Bos: or issue? It would the error would just tell you, it blocked it, because of course, but you can actually see what came back. And if you see the data that came back properly, but it didn't come into JavaScript, because of course, then you know, okay, there's something wrong with my, my server, or I'm not sending the right cookie or
+
+48
+00:34:41,280 --> 00:35:33,110
+Scott Tolinski: and even just like inspecting individual requests, like for instance, like you might know that your your site is slow, but you might not know why it's slow and being able to see which requests specifically is taking up that amount of time. It's just endlessly useful to have all of those things right in the easy place. a side note here Last week, I said That's unexpected or something. That's what we always say to Landon when we're like, he's doing something weird and we don't want to be like, what are you doing? Now? You know, cuz you know, you don't want to shame a little kid like that. So what we're saying we always say, That was unexpected. I got that one morning. That's great. All right. Next question is from Harry. Harry says, Hey, listen, Scott, thank you for everything that you do. You are both truly a gem for the community. You know, remember when we said that, you got to say something nice about us before?
+
+49
+00:35:33,860 --> 00:35:34,670
+Unknown: Everybody is,
+
+50
+00:35:34,770 --> 00:38:07,710
+Scott Tolinski: yeah, I really need some help or advice. I'm graduating from a boot camp next month and feel like I am feeling severe insecurities, or imposter syndrome. For whatever reason, I freeze up when it comes to writing up or coming up with code myself, mainly in JavaScript, when in class or watching tutorials. following along or viewing other people's code, I can tell you exactly what's going on or why it's being done. I can change things and add things and explain them. But when it comes to starting from a blank slate, I freeze, as if everything I know about programming has gone out the window. I forget simple syntax having to Google the oddest things. And sometimes I don't even know where to start my own application. Do you have any advice on how to get past this hurdle? Like some sort of system or template that you follow? When starting out? I'm a very visual learner. When there is nothing here I choke, I know doing projects are supposed to help, but figuring them out at my own issue. I feel like at this point, I shouldn't be feeling like this. But is this normal? Okay, let me just stop you there. Yes, very normal. In fact, this just like anything else in programming is a skill that you need to practice. Now, I like to organize my code by writing out some little like notes to myself in terms of comments, usually, in the form of comments, like first thing, alright, I'm starting a new JavaScript, let's say it's a node server, and this node server needs to connect to a database. All right, what do I need to do? First, I'll leave a comment that says, very broadly, connect to dB. need another comment? Once DB is connected start server. Okay. So like, you could think of it as like, when you're writing a term paper or something, you're writing a paper in school, and they always like told you to do like an outline. First, I like to do an outline in comments, if there's a project that I'm not sure where to start, here's what I need to do. And here's what I need to do in plain English. And then what you can start to do is just start to fill in those blanks with the code that accomplishes those things that your text is saying to do. And that will at least get you through a place where like, typically, when you're solving a problem, or you're writing an application, you typically know what the problem is. And if you start at the very most broad way of describing that problem, and then drill down, drill down, drill down. And next thing you know, you're ready to write some code, that is usually a good strategy for me. But this is an entirely normal thing, Harry, and you just need more practice. And if you're struggling and googling a lot, hey, that's cool. Don't get down on yourself about it struggle in Google, because that's the only way you're gonna get that practice
+
+51
+00:38:07,770 --> 00:40:29,550
+Wes Bos: is is totally normal. Like Scott said, I think what I do, and I still do this is like you're attacking a problem. And you have no idea even where to start. And then you panic, because you don't know. And then there's this added thing about like, is what I'm writing the best way to do this. So first of all, throw out that that part, which is is this the best way to do it, it doesn't matter. Like I did a, I did a little YouTube video the other day, go to my email or my channel, and it's about like a tricky, what's it called? Can you solve this tricky JavaScript array problem. And I think that was that was a good example of how I approach it, where I explain it. And I just think like, something needs to happen here. And then just start doing a brain dump of different things you think needs to happen, and then write them in comments, like Scott was saying, and then just start to do little pieces. That's how programming works is that you are constantly just changing the way you're doing something and re approaching and refactoring and whatnot. So just know that that is is normal. The only other thing I would say is maybe even try to record yourself solving a problem as if you were going to post it on YouTube. That's not to say you should post that on YouTube but just getting comfortable with attacking a problem. Well you feel like somebody is watching I'm using air quotes here, I think is also really helpful that that's helped me over the years, tackle things better. Sometimes when I have a problem I'll flip on my screen recorder and just talk through it and probably four out of five times it's not very good and I don't post it but that one fifth time it is actually a good video but just for that for just for me thinking this might be actual video for people. It helps me post it online and also it's helpful because You get past that like imposter syndrome. I just posted my video and I had 300 people telling me I did it wrong. You know, I used to get really upset about that. And now I'm just like, there's literally lots of ways to do it. Who cares? Like, this is how I did it. And then there also is helpful little tips in the comment of Oh, you could have used this little method or maybe if it easier, faster to do that, and it's helpful. So that's what I think I think you should just, it's totally fine. Keep practicing, you'll get better at Yeah,
+
+52
+00:40:29,550 --> 00:40:36,030
+Scott Tolinski: embrace the the rough, you know, patches that you have when starting out and just know that it is totally normal.
+
+53
+00:40:36,030 --> 00:41:09,270
+Wes Bos: Next question from David P. Ah, do you think developers have a responsibility to help reduce co2 emissions caused by the web, a BBC News article, blah, blah blah.uk stated that HD video streaming on phones generates about eight times more emissions than standard definition video, but and noted that on a small screen, the viewer might not even notice the difference. Should the developer limit the resolution on the mobile device? Or should they let the end user choose? Thanks for the hard work?
+
+54
+00:41:09,270 --> 00:41:09,780
+Unknown: Oh, that's,
+
+55
+00:41:09,780 --> 00:41:31,920
+Wes Bos: that's a question. Yeah, I should maybe read this article here. But I'm assuming the processing of the video is what causes a lot of the emissions because it takes so much heat and CPU power and whatnot. So do you think that we have to reduce co2 emissions? Absolutely not. We're web developers. And we can do all with No, I'm joking.
+
+56
+00:41:35,100 --> 00:41:37,830
+Scott Tolinski: I was like, really about to get upset? It's,
+
+57
+00:41:37,880 --> 00:42:50,670
+Wes Bos: it's all fake? No, no, honestly, yes, I think if you can eke out another place in your life, where you can stop the co2 emissions from from going even just like the other day I spent, like 10 minutes trying to get my frickin monitors to sleep at the right time. Because it's sometimes that you just I leave my desk, and I come back in the morning and the my monitors are still blasting on. And I was like, Why? Why are these not going to sleep? And I had to like dig down the rabbit hole of that. But if you can find more ways, absolutely. Should you degrade the performance of the video and the quality? I think that's what an algorithm should do. Not you, or the user can do it. But I think like, if the YouTube video like YouTube does this already, they can detect if you're watching it on a specific device and the speed of urine and internet and whatnot. So there's that I would serve up your users I've worse version of a video just to help the environment. Because there are other things you can do. There's lots of environmentally friendly hosting companies, you could put it on, there's carbon offsets that can be done. I'm not an environment expert. But I think that there would be other other ways to offset.
+
+58
+00:42:50,700 --> 00:44:31,680
+Scott Tolinski: Yeah, I'm not an expert, either. I do think that what you mentioned, being like not necessarily their responsibility, because typically, if you're serving video yourself, you're serving a singular file, it's not going to get that many plays. But the companies who are doing the heavy lifting in the serving of video, whether that is YouTube, Vimeo, or let's say like even my, my host mocs, right, those companies, they're doing the heaviest of the lifting, because they're choosing which to serve up for users. And I don't think that I would imagine that those companies would like to keep their bandwidth bills, all of that as small as possible. So that's where the biggest savings are going to come in general, was going to be from those companies who are able to make those changes as well as like, let's think about like, the biggest I think carbon co2 emissions decrease is going to come from better compression and newer formats. And that's really like something that's sort of out of your control. So the things that are in your control. Yeah, absolutely. I would say go for it. And that should be even like a, that should be a differentiator, right. Let's say there's there's two hosting companies or something and one provides those types of features and one doesn't, you know, maybe start looking at the the one that provides, you know, what are they're doing for environmental causes, or whatever I am very, very, very pro environment. And I would like to see everything possible be done, but I don't think changing your video output to only allow for SD video streaming. I don't think it's really the right solution. But you know,
+
+59
+00:44:32,070 --> 00:44:54,900
+Wes Bos: yeah, they say in this article, they there's a little update at the bottom that says the story should have said 4k not not HD, so it's there, they're comparing 4k to 320 p which is massive, massive difference in video quality, and I would say like unwatchable on on 320. And in most cases, especially for me programming, the text needs to be super crisp.
+
+60
+00:44:55,050 --> 00:45:07,320
+Scott Tolinski: And you know what, like, there is going to be much bigger offenders than you, whatever your Doing. That's not to say you shouldn't do everything you can, but Netflix is serving up 4k, and they're doing it to
+
+61
+00:45:07,410 --> 00:45:09,240
+Wes Bos: they're burning diesel, you know, they're not.
+
+62
+00:45:11,910 --> 00:47:51,930
+Scott Tolinski: So far, like, you know that that's Netflix is they're gonna be the ones who are hitting that major co2 emissions bump. And in fact, if you wanted to do your part there, maybe you should just set your Netflix and your YouTube qualities to Adobe on HD rather than 4k. And then that way, you won't get that 4k if you don't need it. I think that would probably do more than whatever you're serving in terms of environmental offset or something like that. All right, let's actually this is, I don't have any, any prepared transitions for this new sponsor that we have with us. No, it's been a little while since we've had a new sponsor, because all of our current sponsors are just so amazing and keep coming back. So this new sponsor is linode. Now, if you have been around in the web development space, for any amount of time, you probably have heard of linode linode is a historically tried and tested cloud hosting platform. And if you haven't been to linode.com, lately, you're gonna want to check it out, because they offer a ton of really, really awesome services beyond just simply hosting a VPS. Because I would say like linode, as I want to go, like back in time back into time here, when we were looking for new cloud hosting providers. At some point, there were a handful of companies who did VPS stuff, and linode was always at the top of that list, right. And so they have evolved as they should have, and they have come out with a ton of cool new stuff. And I don't know about us, but I'm looking into Kubernetes more, which is I don't know why, but I am looking into Kubernetes. I've learned how to say it. And that's a good start. And there's some really, really interesting Kubernetes products available on linode. So today, you can get started with linode with $100 free credit, which we all know in the VPS world will get you a very long ways because virtual private servers especially companies like linode are cheap. So $100 in credit is going to get you a lot of stuff. So you're going to want to head on over to linode.com forward slash syntax that's Li n od e comm forward slash syntax linode has 11 global data centers and provides 20 473 65 human support with no tears or handoffs, regardless of the plan size. In addition to shared and dedicated compute instances, you can use your $100 credit on an s3 compatible object storage, managed Kubernetes or more. So check it out linode.com forward slash syntax click on the Create free account button to get started. Thank you for linode for sponsoring.
+
+63
+00:47:52,530 --> 00:51:24,000
+Alright, next question is from Ben K. What about Ben q? Isn't that a tech company? Yes. Okay. Hey, Scott West, I was hoping that you guys could give me and other listeners advice on knowing when you've bitten off more than you can chew. Often I'll be working on a project for fun and possibly building my portfolio. And I'll continue to be excited about the features that I'd have to add as my current app or what have you. At first glance, the ideas or features seemed reasonable enough to tackle but hours later, I find myself stuck. Realizing that I'm in over my head as I've tried to make something that I'm not yet experienced enough to work on, or with or having lacking the manpower to complete it in a timely manner. At the same time, I want to challenge myself so that I can grow. But sometimes I feel like I'm not using my time wisely. So my question to you is where does the line between challenging ourselves take on new and difficult tasks and scaling back our current work to make it more approachable and less overwhelming? Okay, but I think there's two things here, because the two things that stuck out to me were, I'm realizing that I'm in over my head, and I'm not experienced. Okay, so one, the experience level to tackle something to me, that's a great problem to have, because this is a good opportunity for you to become experienced in this. Number two, the lack of manpower to complete something that is a different problem, my friend, because there are problems that are just way too big for you to code up and a side project, or else everyone would just write Google and their side project, you know, it's like, there are certainly problems that are not going to be easy for you to solve or possible for you to solve as the solo individual. But if it is a problem of you don't have the experience. This is a good opportunity. If this is something that you want to learn, or you feel like could benefit you in the long term in your job hunt your career, then you're going to want to go ahead and just look at the problem for what it is okay, I'm trying to solve this problem. Here's a good one. and building a video site. I have no experience with video. What do I have to do? Well, I have to figure out how to upload video, okay, well, I gotta have a way to upload the video, look at, uh, upload the video to somewhere, Okay, I gotta find a service, okay, maybe that service is a paid service, maybe it's a free service, whatever. Maybe it's an API that already exists to Vimeo or whatever. And, okay, I picked this service. Now I have to write the code that connects the two, I got to upload the video to the service, hit the API, do that stuff. And that, to me is like fully understanding the problem and the solution before writing any code, and then you can then try to execute. Now a lot of the times when you are trying to solve a problem without writing any code, you will have missed a substantial amount of things. Or perhaps your brain did not think of the things that it does not know about it. Because imagine that if you don't know about something, you don't know about all the little things you have to think about. But it's a good opportunity for you to then dive in further dive in further dive in further. And you know what, by the end of it, you may not even get a functional product, but you will have learned a ton about the intricacies of these little things. And maybe next time when somebody says hey, can you write me a video uploader? You could say, I could possibly write you a video uploader. But these are the things that we need to consider. Do you have the budget for this? Do you have the time for this? Do you have this or that? Whatever. So it's not always about getting the code and results, but it's sometimes about like learning the things that you just don't know, exist out there.
+
+64
+00:51:24,060 --> 00:53:29,790
+Wes Bos: Yeah, that's I always would tell people push yourself maybe 12 and a half percent past your comfort level. So don't take on something that is like, like, massive, like, sometimes we see people do that, where they're like, yeah, like, I'm just gonna push myself and like, you should know how far you are pushing yourself. And how do you do that? Well, like, Okay, I'm taking on a project with like a store locator. I know, I was just saying sample, but it's a good example. I've never built one before. And I've never done mapping before. So let me do a quick little bit of googling around, let me look at some of these packages, and say, Okay, well, this thing allows me to plot map points on a map. And this thing allows me to pull in my store my data, and I can have latitude longitude, I think that with a little bit of work, I can get those two things working together. I think that's a good example of pushing yourself, right. It's not going in blind, pushing yourself as not being blind about it, and just throwing yourself into deep water and learning how to swim. It's just saying, like, I am a little bit afraid of that I'm a little bit intimidated. And there's a lot of unknown. I think, also, what is worth having is if you can find some sort of mentor, who it will be your phone a friend for this stuff. Yeah. And just like, not necessarily do the code for you. But just be like, Look, I'm trying, like, I remember my buddy Darcy, I was building a integration for a real estate website. And I was just trying to like, hack their query params and pull it into their website. And I was just like, yeah, like, it should be possible. And then I was I was in over my head, and I didn't know how to do it. And then he just came along and said, like, all right. Like, this is how I would approach it, you need to make sure you're getting the data from the client, and then like hot potato, send that over to, to whatever proxy you're working on as that Okay, good. Like, in that case, I knew that I was pushing myself. And I knew that it was possible, but I just hit like an actual technical hurdle, which I didn't know, I didn't know what the piece of technology was to, to fix what I think I had in in that case, having a phone a friend is key. So hopefully, that's helpful. Yeah,
+
+65
+00:53:30,000 --> 00:53:49,050
+Scott Tolinski: I think the phone a friend thing is, is a really good idea. But at the same time, you gotta be aware of that, you know, you're placing a cognitive burden on somebody else. So making sure that the questions are like, is this a dumb idea? Or those types of things? Where should I look to learn about this? Don't be like, learn? Yeah, for me, right?
+
+66
+00:53:49,140 --> 00:54:36,270
+Wes Bos: Yeah, just having like a shirt coming to people with your questions. Like, sometimes people will send me a DMS all the time, people send me DMS with questions. And sometimes it's just Hi. And then I'm like, Yes. What do you need? Hi, is this what you're sending to me? And then other times, people will say, hey, Wes, I know you're busy. Here's a code pen or code sandbox with the exact issue that I'm running into. What do you say inbox? Yeah, yeah. And then I was like, oh, man, like, then I can just, like dive into quickly. And And usually, it's a question where I'm like, Huh, I bet I could figure this out. Like, it's almost like, almost a challenge. You know, like, the last YouTube video I did about the array thing. That was somebody who came into my DMS was like, Well, how would you approach this? I don't like, you obviously know me very well, because I want to fix this myself.
+
+67
+00:54:36,300 --> 00:54:57,000
+Scott Tolinski: Yeah. Like if I'm in GitHub issues and, and I'm like, just pawn around some other library that I use as GitHub issues, and somebody comes in with a code pad. Man, I feel compelled to. It's bad for me my productivity, but I feel compelled to click that and be like, What is going on? Oh, yeah. And the live episode, we did that little game where we could see who could see if we could find the little bugs in
+
+68
+00:54:57,000 --> 00:54:59,670
+Unknown: the code to me syntax error. Yeah, that's a lot of fun.
+
+69
+00:55:01,140 --> 00:55:12,240
+Scott Tolinski: Okay, last question here is from Matteo Wong. And he asks, thanks for the fantastic show, Scott and Wes, I've been listening to every single one, as soon as the GitHub commit code GS Mateos on the GitHub tip,
+
+70
+00:55:12,240 --> 00:55:30,600
+Wes Bos: oh, there's the GitHub. So for those who don't know, there's a couple people who scope the shows early by watching GitHub. And the GitHub commit will have the mp3 URL in it. So we can see from our stats that there's like, between five and 12 people that do this.
+
+71
+00:55:30,629 --> 00:56:45,480
+Scott Tolinski: Yeah, right. It's very fun, Matteo, on the GitHub gang here. What is the right use case for a database? And what is the right use case for a headless CMS? is a headless CMS just a database plus a user friendly way of entering data into the database? Is there a secure way of querying Sanity directly from the front end? A lot of questions, but do I have data that I want to be only available to logged in users? Thanks, again, for the podcast. Okay. So for the large part, there is a bit of a difference between the headless CMS and a database with a user friendly way of entering the data because oftentimes, those systems, the CMS, they're taking care of things for you beyond just entering and retrieving data. There's a lot of like, you mentioned permission based things. So like you only want to have data available to logged in users. That's something that you can't just do with only a database, right? There needs to be logic in the application somewhere to look at, like, who is the current user in a secure manner? What are they doing? And what do they have access to? Well, you do need code logic in between there. And your options are to either write it yourself, or to have the CMS have it being written for you. Of course, there is trade offs there.
+
+72
+00:56:45,600 --> 00:58:10,410
+Wes Bos: Like you can't use a database straight to your front end code. Because like a database doesn't, you can't just connect JavaScript on the client to a database. Because there needs to be layers of like logic, how and things get updated. There's a layer of authentication, who can update and pull data. And then finally, I think one thing you're thinking of here is that a headless CMS gives you a GUI to actually manage all of that data. Even though you can obviously, go straight to the like an API, like the difference between an API and a database is the database is just where the data lives without any sort of restrictions on the I guess some databases do allow you. But usually, you need another layer on top of that, which is who can do it and what and the layer. And then finally, you have a GUI, which is if you log in, you want to be able to manage, update, delete, query, things like that. So that is the difference. Some people will go straight for a database and build their own layer of logic, authentication and gooey on top of it. I think in most cases, people go for a no, maybe not most cases, that's not true. But in a lot of times, she will just say, like, yeah, I have the use case that headless CMS fits. I have content, I've got data types have a relationship between the things, I just want to define what those are and to spit out an entire GUI and graph qL or REST API for me.
+
+73
+00:58:10,680 --> 00:58:28,710
+Scott Tolinski: Work. That was good. So for that one, now, we're gonna get to the part of the show that we call sick pics. take picture where we pick things that we find to be pretty sick. Sometimes it's products sometimes it's podcasts. Sometimes it's meat. I have no idea Wes, what do you got for us? This week?
+
+74
+00:58:28,830 --> 00:59:33,840
+Wes Bos: I got a sick pick a hot sauce. That is very hard to get in Canada. I had somebody send me a bottle of this and it was awesome. It's the secret secret aardvark habanero hot sauce. And it's unlike any other hot sauce I've ever had. And it's I was gonna say probably top three hot sauces I've ever had. It's thick. It's almost like almost like a salsa, but not a salsa. And it's got the right amount of heat like it's not like gonna blow your brains out super smoky. Like I get the hiccups Yeah, yeah, it's it's chunky and it comes in like a bit of a different bottle than you would think it comes in like a bottle like a squeeze bottle but it's got a big wide mouth on it because it's a little bit chunky and man, is it good? I ran out and I was really bummed because it's like $17 a bottle if you want to buy it in Canada when it's just like a couple bucks if you buy it in the states so I am waiting for the borders to open up so I can go buy some more of this because I loved it secret aardvark habanero hot sauce. Sounds good.
+
+75
+00:59:34,140 --> 00:59:58,050
+Scott Tolinski: I am a big fan of habanero. We grew our own there. You can find everywhere in Colorado. So I'm a big, big fan of that. That type of burn. It's like a little bit less upfront burn than you get with a jalapeno. Like in my experience, it's a little bit more of a younger and it's a good linger. I'm a big, big big habanero fan. I put them in my DJ a lot. That's my my jam.
+
+76
+00:59:58,050 --> 00:59:58,860
+Unknown: Ooh,
+
+77
+00:59:58,950 --> 01:00:03,480
+Scott Tolinski: there's there's so much VGA is one of them. All right.
+
+78
+01:00:03,539 --> 01:00:06,690
+Wes Bos: I never made the VGA. I need to do that. That sounds awesome.
+
+79
+01:00:06,719 --> 01:00:43,530
+Scott Tolinski: Yeah, get some nice sushi grade tuna. Chop it up real fine. dice it up. Throw it in there. Oh, yeah. Scoot squeezing fruit. That's what people don't know. They often think it's just like you squeezing grapefruit in that bad boy. Great. DJ going, Yeah. Big fan. Okay, so my sick pick is going to be kind of funny here. This is three m double sided mounting tape. Because I did not believe that double sided mounting tape would be exciting or interesting. But I have double sided mounting tape and I have my like, you know, the count digit is our hub for our computer. That count digit hub has a beefy power supply.
+
+80
+01:00:43,530 --> 01:00:54,060
+Wes Bos: It's a big old power. So Oh, mind you might just fell off. It's sitting on the ground right now because there's like 800 cables. Yep, if you get the wrong one, it falls off. So
+
+81
+01:00:54,149 --> 01:01:51,960
+Scott Tolinski: this is awesome. I need to know what I have done. In addition to having this like because I want to you know, I gotta keep my cables organized and whatever. I wanted to have a power strip underneath attached to the underside of my desk so I could plug in anything or whatever. In addition, I wanted to be able to mount that power supply that giant power supply. So I've used this three mm double sided mounting tape and I have had a you know a power strip you plug things you unplug it gets a lot of action in that up and down way. So like that has not budged it hasn't budged at all. And the power supply for my three m i just took some sticky double sided tape popped it right up in there. And it is stuck like a mouth mouth ever mouth effort. It is. It is stuck. So I've used this tape. In fact, I've used this tape so much that I already went through a whole roll and I ordered two more because I was like you know what? mountain tape double sided mounting tape by three m this stuff is legit.
+
+82
+01:01:52,169 --> 01:01:57,270
+Wes Bos: That's good. I'm gonna have to get a roll of that we have it. We have it for our rugs,
+
+83
+01:01:57,329 --> 01:02:00,390
+Scott Tolinski: keep them in place. That is so smart. Yeah, to do that.
+
+84
+01:02:00,629 --> 01:02:09,210
+Wes Bos: Yeah, I've been using Velcro for all of my stuff. So that if you do need to take it off, you still can. But this for some cases you don't.
+
+85
+01:02:09,230 --> 01:02:20,910
+Scott Tolinski: This is more sturdier than more sturdier. This is more sturdier than Velcro. Because like that Velcro the sticky isn't gonna be the weak point of it. It's gonna be the Velcro the heavy
+
+86
+01:02:20,910 --> 01:03:07,950
+Wes Bos: duty Velcro I literally I could hang like myself up with a stripper. It's so heavy duty. Like it's like you don't think like I you should see my ceiling right now I used to put all my hard drives on the ceiling because I have this like angled ceiling and I took them off and I ripped the drywall off. Because this the Velcro was so strong, so maybe go easy on that. But yeah, good sick pack. Shameless plugs, I'm gonna shamelessly plug all of my courses at West boss comm forward slash courses, you'll have a list of master Gatsby beginner JavaScript ESX for everyone. full stack, advanced react and graph qL react for beginners CSS Grid, there's lots of on there, go check it out. Use coupon code syntax, or 10 bucks off.
+
+87
+01:03:08,460 --> 01:03:41,970
+Scott Tolinski: Awesome. I'm going to plug all of my courses at level up tutorials.com. We do a new course every single month. It's like a magazine subscription. You sign up, you get the latest course. It's very cool. You get me teaching you all sorts of awesome stuff like Dino, one on one for web developers as well as animating svelte or even animating react. Love that stuff. So if you want to check all of that and more head on over to level up tutorials.com forward slash pro and sign up for the year today. All right. Thank
+
+88
+01:03:41,970 --> 01:03:47,880
+Wes Bos: you so much for tuning in. We'll catch you on Monday. Peace, peace.
+
+89
+01:03:49,560 --> 01:03:59,310
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
