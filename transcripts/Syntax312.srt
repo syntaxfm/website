@@ -1,0 +1,364 @@
+1
+00:00:01,319 --> 00:00:02,790
+Announcer: You're listening to syntax
+
+2
+00:00:02,790 --> 00:00:10,560
+Unknown: the mind cast with the tastiest web development treats out there. strap yourself in and get ready to whiskey and Wes Bos.
+
+3
+00:00:10,589 --> 00:00:20,969
+Wes Bos: Welcome to syntax. This is Oh, December 23. We're recording this in November but a very Merry Christmas to everybody who's listening in right now. Merry Christmas, Scott.
+
+4
+00:00:20,969 --> 00:00:23,460
+Scott Tolinski: Hey. Yeah.
+
+5
+00:00:25,260 --> 00:00:46,830
+Wes Bos: A sleigh bells we are having a potluck. today. We are sponsored by two awesome companies. First one is fresh books. Second one is century. Talk about the both of them partway through the episode. But we got a bunch of really awesome questions for you today. We're gonna we're gonna rip through them. So Scott, and you want to start off with the the first question here? Hey,
+
+6
+00:00:46,830 --> 00:01:11,090
+Scott Tolinski: first question is from rock to Lynskey. He says you guys are doing a downtown job with three exclamation points that is straight up from my dad. So shout out to my dad who may or may not be listening to this, but he did to watch our 200th episode or a 300th episode. And he had never heard of discord. So he's just like, well just meant a thing on the potluck. And maybe they'll see it. So thanks, dad for being so supportive.
+
+7
+00:01:11,120 --> 00:01:18,030
+Wes Bos: My dad said he was gonna try Colin as well. But then he got busy. We should have both of our dads on at some time or just like, let them and then
+
+8
+00:01:18,230 --> 00:01:30,060
+Scott Tolinski: we'll walk away. You would want that my dad is a riot. He is very friendly. Yes, he is. He's a character in the best. All of the best possible ways. He's very funny. Yeah.
+
+9
+00:01:30,870 --> 00:02:55,289
+Wes Bos: All right. Let's get into some questions. Here. We got actually two questions about computers. So I thought we'd start that off, because I don't know like maybe like a month or two ago, we got questions about the new Apple silicon max. And I was saying like, oh, it'll be years before it's out before we move over. And I was super wrong about that. They came out like a month after two months after we had talked about it. It's looking like they're moving pretty quickly. So we thought we got a question here about them. And we thought we'd sort of tackle them as to are they viable machines for web? devs? So a question is from pooky. Hey, guys, Wes, thanks for all your key courses. I am a longtime listener. Your courses helped me land a new job last month for a sweet raise. Oh, congratulation. Yeah. Yesterday, Apple announced their new Macs. They seem pretty sweet. But I was curious is what does this mean for the world of web developers? Will my current apps slowly stop being supported? Will things like brew and node and NPM still work on the new machines? Would it be smart to start learning new programs to prepare for the transition? love the show? Have a great day. All right, I thought this is really cool. Because Apple released them, it seems like a lot of the stuff that we do as creators, video editing audio, also just like running processes we haven't really seen like, What does node look like? Because it's not supported yet, but very, very excited about it. What about you, Scott? Are you looking at these new ones,
+
+10
+00:02:55,500 --> 00:04:07,860
+Scott Tolinski: I'm sort of in the same camp I was with other things where it's just like, wait and see at this point, because like, I just bought a 16 inch MacBook Pro and it is a beast and it does all the things I needed to do. So I'm not like itching for a bubbly wall. Okay, I shouldn't say that. I would love a new computer. I always love a new computer. But at this particular juncture, I am just like not even concerning myself with them. I haven't like done next to zero research about them beyond the fact that it go fast. And I'm pretty pretty pumped about that for the future. I haven't in my mind, I saw a report about a Mac Pro, not a Mac Pro Mini but a quote unquote smaller sized Mac Pro. And I'm thinking that would be really sick to have, like just sitting behind my monitor right? Something little behind my monitor or or even like a true audio setup and have it in another like cooled closet or something like that. cables. You know what? I don't know, personally, I'm not interested in any of these other ones. But I would be interested. Like if they are really that fast, then maybe Yeah, getting like a production machine? And like, maybe having that be a thing. But who knows? We'll see.
+
+11
+00:04:08,160 --> 00:05:43,860
+Wes Bos: Yeah, I think that these new ones are probably not for us as like video and content creators, I bet that they'll come out with like, they'll take like seven of the chips and throw them in another one. That's amazing. I think that will be the one for us. But for for web developers, they seem pretty attractive. And so the question is, do I need to like what about my software? Is it going to work for web developers? Or do I need to pick up new stuff? So the answer is probably not. Yeah, it looks like most of the software, either will already work, or will already work in sort of like a VM? Or would they plan to make it work at some point. So I thought it would be kind of interesting to go through the list of software that we use as web developers, and just give a quick yes, no, or it's coming. And again, we're recording this a month in advance. So a lot of the being worked on might even be it works already. So there's a couple good websites you can go to is out Apple silicon ready.com. And then there is a GitHub repo called does it arm. So arm is the technology that is underneath the apple silicon. Apparently it's not exactly the same thing. But a lot of the the .TECH that where it already works with arm because there's a lot of tablets and phones that are built on arm that already support the software. So let's the first the sort of the big thing is, is electron based apps, so apps that are built in, in JavaScript, HTML, CSS, but our desktop apps like VS code, notion missive discord is slack electron based still
+
+12
+00:05:43,860 --> 00:05:47,310
+Scott Tolinski: actually don't know if discord is, but I think it is. I know it's web based. So
+
+13
+00:05:47,310 --> 00:06:36,150
+Wes Bos: definitely, yeah, it's definitely web based. So all of those things, it looks like electron has already rolled out a blog post saying, electron 11 will start to ship a x 64 version of it. So all of these apps should work. The sort of only gotcha is when these apps have, like native dependencies under the hood, that needs to be ported over. I think the next big one is brew. So brew is the command line utility that you use to install a lot of other things. And that currently does not work natively. It does work under Rosetta, too. So you can you can run a lot of these applications under Rosetta to and they will run and it looks like they again they they already have a path forward to trying to port it over to Apple silicon, which is pretty cool.
+
+14
+00:06:36,150 --> 00:06:48,270
+Scott Tolinski: And from what I hear the like if you're running web dev stuff in Rosetta, the speeds are pretty comparable to what it was without Rosetta, as in what it would be on a standard Intel older
+
+15
+00:06:48,300 --> 00:07:15,360
+Wes Bos: just a regular Intel Mac. So that that's good because then like all of the new stuff will hopefully be faster. And then the Rosetta stuff will be just as good as you had it. Chrome. and by extension I'm assuming brave and IE are already on Apple silica and Firefox will be soon as of recording it's not VS code is insiders build will run yes soon. ScreenFlow. That's a big one. For me. That's my main recording tool. There's no Rosetta to or native.
+
+16
+00:07:15,540 --> 00:07:17,430
+Scott Tolinski: Oh, it doesn't work with Rosetta to.
+
+17
+00:07:17,910 --> 00:08:04,050
+Wes Bos: No, no, it doesn't even so like those apps that are like very heavy on video processing. They use a lot under the hood. They already said that they've been working on the developer kit all summer. So it's not like they it got released no go. Maybe we should update it. I have been working on it. So that's the one I'm really excited for. Because my biggest pain points with my laptop are slow video export times, and bad battery life when you're running node processes. I hope I hope the export like even if it gets like twice as fast. Some people are saying like five or six times faster video exports, which I have a hard time believing but like, Man while I lay down money quick. Yeah, yeah, if that happens, let's just think about all the time
+
+18
+00:08:04,050 --> 00:08:16,470
+Scott Tolinski: loss that you have from your and that's why I think about like a production machine. If I had like a Mac Pro production machine, you could just tell that go thing to export, you know, 30 videos and then pop over to your laptop or something and what else we
+
+19
+00:08:16,470 --> 00:08:32,220
+Wes Bos: have here figma unsure, it's it's browser based. So I would assume it would work because it's it's all web .TECH. Right? Yeah. I couldn't find anything online. The sketch is already updated to Apple silicon. So you get big benefits there.
+
+20
+00:08:32,220 --> 00:08:36,649
+Unknown: I couldn't find any info MongoDB DaVinci Resolve is fully supported.
+
+21
+00:08:36,720 --> 00:08:42,529
+Wes Bos: Wow. Oh, that's good. I would be very curious to see what the exports on DaVinci Resolve look like.
+
+22
+00:08:42,649 --> 00:08:43,499
+Scott Tolinski: Yeah, me too,
+
+23
+00:08:43,499 --> 00:09:47,460
+Wes Bos: how much faster they would be I turned to is being worked on. I'm assuming hypers Tron. So probably. And those are all the big ones that I'm using Oh, the other one is node node is does not work. NPM. And node does not work yet. Same with rust. I'm assuming it will work eventually. And then they have announced that they will back port some of the I think node 15 will work on this. But they'll they'll backport like some of the LTS releases, that will probably be an issue. And last Oh, that's the other one is Docker, Docker does not currently work on it. And that that's a massive one for web developers. Because if you need to run any tools in a Docker container, even like you want to run an old version of node that doesn't work on Apple, silicon is a call just run it in a VM. If the VM doesn't run, then then you're kind of out of luck. So node and Docker, probably I would hold off as a web developer for those ones, because those are those are huge ones. And those are like a large part of our tooling. Even if you don't like oh, I don't use Docker directly. I'll probably a lot of the tooling you're using does use Docker under the hood.
+
+24
+00:09:47,760 --> 00:11:10,679
+Scott Tolinski: Yeah. For me, I'm in a firmly wait and see mode with any of this, which is very contrasting to how I am with software when I like Big Sur Yeah, yeah. Okay, alpha. Let's go on my You know, livelyhood machine, let's go. So for me, it's funny that I do take a bit reserved approach with this stuff. But then again, I'm not needing a new computer. So I'm kind of checked out of that hunt anyways, but it's fascinating to see the updates, and we'll, we'll see exactly what this does to the industry. And if it shakes it up at all. All right, next question is from a Christos us, hey, great, Joe, no really great show. What is better for working at the home or office? an iMac or a Mac Book Pro? Whoo. Yeah, it really depends on some things like if you don't have an external monitor, having that big old iMac screen is really pretty sick. One time, when I worked at one of my first agencies, I was given an a large iMac as my leg death machine. And I really loved it. I really loved having that big. But before I was just used to only working on laptops. So I don't know, the big monitor is a big plus, if it's your only screen that said I am the type to always have my computer with me or you know, want to bang out some code or something. So I prefer a MacBook Pro personally, and almost always have that as my default main machine.
+
+25
+00:11:10,919 --> 00:12:20,640
+Wes Bos: Yeah, I agree. I we get I put this in here. Because this question I get all the time. Like, why don't you buy a Mac Pro and then also have a laptop? Or why don't you buy an iMac and also have a laptop or or have a dedicated machine for recording. And then another one I'm like, I don't want the overhead of maintaining two machines. And I 100% need to be able to take my work with me to a coffee shop or on a to a conference or whatever. And I just need everything with me. And I don't want to have to fuss with two different ones. So because of that, I bought the most powerful MacBook Pro that you can get and souped it up. It sounds like a rocket ship all the time. Because I'm pushing it to its limits. A lot of the time. I have it hooked up to two 4k monitors it running a doc running all of my stuff and it works it works great. So I'm a big fan of by the MacBook Pro and then also invest in desktop stuff. And it's funny i was i My battery died on me once I'm a MacBook Pro and the ladies like don't leave it plugged in all the time. I'm like, What? I'm supposed to have it plugged in I use it all day. They always have
+
+26
+00:12:20,669 --> 00:12:25,409
+Scott Tolinski: something to say for how you like it's never the machines fault or the text fault.
+
+27
+00:12:25,679 --> 00:12:27,179
+Wes Bos: Hi, you're holding it wrong.
+
+28
+00:12:27,270 --> 00:12:43,289
+Scott Tolinski: Yeah, my, my power cord literally caught on fire the power cord caught on fire. Well, you shouldn't wrap it around the hooks, but the hooks exist for you to wrap it around there. And then they took the hooks off probably because it was happening to a lot of people but like,
+
+29
+00:12:43,500 --> 00:12:44,070
+Unknown: come on, man,
+
+30
+00:12:44,070 --> 00:14:16,740
+Scott Tolinski: my thing just caught on fire. I have some empathy here. I agree with you. And I also ran two machines myself once before I had a hackintosh for a long time. People always ask me 100 Well, I've been there done that for a very long time. I know all the ins and outs of the hackintosh ecosystem. And it was a giant pain in the ass to have two computers. It definitely was. Now I say that as somebody who will jump back in and maybe get a Mac Pro and these things, you know, get into the arm territory. But we'll we'll see about that. I think all the sinking libraries and everything might make that a little bit easier now with like Apple, Apple sinking all of your everything and Dropbox or Google Drive or whatever. All right. Next question here is from Liz. Liz says hi, Scott. And Wes, thanks for all of the content. On your podcast. I was wondering two things, what are your thoughts on remix? And has your listenership gone down since COVID-19? I've heard that less people listen to podcasts now because they can no longer have a commute. Thanks for all that you do. Yeah, you know, I haven't checked the listener stats recently. But definitely in March, we saw a big hit. I think things have normalized a little bit, but I don't think they're back to where they were because yeah, most people aren't. Maybe not most people but there are a large amount of people who are tech people who are now at home. And some people can't listen to podcasts while they code or while they do other things and I listened to them in the gym while I'm doing dishes. I've actually have not personally decreased my listenership of podcasts I know a lot of people have What do you have the the stats or
+
+31
+00:14:16,830 --> 00:15:07,919
+Wes Bos: Yeah, I have them open right now and it's probably like a 10 15% drop not not as much as I was expecting. Because a large portion of the listenership does listen on a commute definitely saw like a big drop around April. Not a huge drop, but it definitely a drop. And it rebounded. After that. We're still not all time highs that we were last year around September. But also the other thing is that this podcast continues to grow listenership as well. So that probably has something to do with the fact that we just keep getting more listeners that are new and finding out about the show that sort of replaces some of the people that are not necessarily driving 45 minutes to and from Their job every single day. So yeah, pleasantly surprised. Given that, it seems like all podcasts have taken a bit of a dive lately.
+
+32
+00:15:08,159 --> 00:15:11,520
+Scott Tolinski: So what you're saying is, is that we would have seen a dip, but we're just too popular
+
+33
+00:15:11,520 --> 00:16:09,840
+Wes Bos: just way too popular. Yeah. Yeah. The other question is, here are your thoughts on remix. So if you haven't heard, remix is a new react framework from Michael Johnson, Ryan Florence and Michael Jackson, Michael Johnson. And they're the devs behind react router, one through 49. And just chuck everything time we measure rat rat, or we, we joke around about that, it's a new react framework. That is it looks like they are rivaling next j s. Not in that they are going to go toe to toe competing with features and doing the same thing. But they are doing a sort of approaching it a little bit differently, including the fact that it's it's not open source, you have to pay to get access to it. And they are which is really cool. Because like, these guys have spent their lives building and maintaining react router, and a couple other popular projects,
+
+34
+00:16:09,929 --> 00:16:14,460
+Scott Tolinski: stuff that's probably used by millions of people. And they haven't seen a dime for it, you know?
+
+35
+00:16:14,579 --> 00:16:24,120
+Wes Bos: Yeah. And also like not even that didn't see a dime. But they like get flack from people like Scott Nye when they upgrade, no really no version of react router,
+
+36
+00:16:24,149 --> 00:16:41,130
+Scott Tolinski: I am firmly on the in the camp of I love all of their updates. React router is one of those projects, no wrong and I love react router. So I know don't don't get that wrong impression, because I really do love all of their updates. In fact, some of the React router stuff is like features that I must have that they've introduced recently.
+
+37
+00:16:41,159 --> 00:17:02,039
+Wes Bos: So like, I don't really know a whole lot about it, because I haven't paid for it. And we asked Ryan to come on the show may wish asked him again to sort of explain it. But one of the features that I see just from the twittersphere is that it will work entirely just server side. And you can run it without actually having react on the on the client, which is which is pretty nifty. And
+
+38
+00:17:02,039 --> 00:17:14,970
+Scott Tolinski: I think that might be a primary driver of a lot of it is is letting the server do more than not just like in a server side rendering situation. But like a, like a caching and sending react components down the line.
+
+39
+00:17:15,149 --> 00:18:00,270
+Wes Bos: Yeah, I'm really excited about it, I don't think that it's not going to replace next jass in terms of popularity. And I don't think that that's what they're they're aiming for. They are probably aiming for like, like a license for a team license is 1000 bucks per death per year, which if somebody's building a massive application on it, that's not really necessarily a big expense for them when they're probably paying hundreds of 1000s of dollars in salaries every single month. So it's really interesting, I'm kind of excited about this different approach that they are taking to a lot of people are saying like, Oh, it's paid, it will never take off. But I think that they've thought a lot about it. And it's going to be a pretty nifty, nifty little framework. Yeah, and
+
+40
+00:18:00,270 --> 00:18:34,410
+Scott Tolinski: I don't know if we've talked about this before, but I don't know if you've ever used expression engine before. But that was a paid CMS framework that did pretty well. And it was a nice experience to use. And as a developer, I always was, you know, happy when our company got a license for it. So I think there is a market for this type of thing. And I'm excited to see where it goes. Because they understand like many other people understand right now that the process of server side rendering and then hydrating and all that stuff is way harder than it needs to be especially if you've done any of it outside of the context of an ext JS app or something that does it for you.
+
+41
+00:18:34,679 --> 00:21:59,370
+Wes Bos: Yeah, one more thing I have here, we need to have a show on open source sustainability, because I was talking to Jed who works on Keystone. And he's got a lot of thoughts about that as well because he has a consulting business. And then he also has a keystone .js which is big, open source project. And I'm just like telling them like I will pay 200 bucks. Like I always go back to paying for advanced custom fields on WordPress where Yeah, I paid I paid the 100 or 200 bucks for the plugin. And I get this amazing gallery plugin that is like a custom a really good field that I add to it and I'm keep telling them like I'll pay for that. For Keystone where you have a suite gallery you can drag and drop, reorder, add all text, crop image face detection, all of that added to it. I think there's some really neat stuff that could be done with with open source and premium plugins or just going entirely paid like remix is doing I think it's an interesting space. Next question from New York game. What is your approach for testing ecommerce sites? I'm about to launch a client's online store and I'm sick was worried that a simple plugin upgrade will impact the store and that I won't know about it until a disgruntled customer complaints. Oh, this is a good one like and this is kind of scary because this is the moneymaker right? It's not like oh this button got like a weird hover color or or something like that. It's like literally, they're not the money stopped coming in for for the business. How do you test it? Well, there's sort of like a lot of ways you can can go at it. And I recommend as many ways as possible, I'll tell you, I'll tell you what I do currently, and I'm working on doing like an automated tests for but I currently don't. So whenever I even touch a piece of code that has to do with the checkout, or even the CSS of the checkout, because I've done it in the past where the buy button wasn't visible, because I changed the font size or something. So usually, what I'll do is you can get test stripe keys, you can just run that locally on your machine, you can afford to four to four to the credit card is a fake number, and you can get credit cards that will reject you can get different credit cards that will reject for different reasons. And you can test them all to make sure that both your error handling is working as well as the actual checkout is working and the fulfillment on that. And then anytime anything changes in your code, you can rerun it. And the question here is like a plugin upgrade. It's probably WordPress. And the fact that WordPress lets you upgrade plugins in production is like it's it's good, because like a lot of people don't even have a development environment for WordPress, but you should definitely have some sort of development environment where you're just in stripe keys. You don't accidentally send emails to customers, you're totally isolated from it past that, like there's nothing wrong with sometimes I'll do this. I get emails from people all the time and like, Hey, I can't can't buy it. And then I'm like, Oh my gosh, is there something wrong with my checkout system. And at the end of the day, there's something wrong with their credit card or or whatever, and they weren't reading the error, right. But I'll just generate a coupon that gives me like, 99.9% off, it just brings it down to 50 cents or something like that. And I'll use my actual credit card to check it out. And it does cost me 40 or 50 cents, but there's something to save for that peace of mind. Every now and then just double check that it is working in production as well. Yeah, yeah, I
+
+42
+00:21:59,370 --> 00:23:37,410
+Scott Tolinski: I'm on Braintree, which has a little bit different of a way, it's the same deal with the test credit cards, and there's a sandbox environment. And we do have automated testing the end of the day, I think what this user needs is a local environment to be able to install, test it out, make sure it's going to work. And then if you want to do that you're low on production after that, then that by all means go ahead. But again, it depends on how much money is this store making you Is this your your whole livelihood and you're neglecting these things is store making you a ton of money or is it just like extra side income. And to me that the amount of money that the store is making really will change what my testing procedures around this looks like because this is my entire livelihood, and it is a lot of money coming in, then I'm going to make sure I have automated testing in place. I'm going to make sure I have that local dev environment, I'm going to make sure I have everything set up to prevent any loss of funds. Oh, in West has a West is giving me a transition into to our sponsor, his transition is not good. Okay, so let me do a touch up here. There's a better one, Wes gave me his you know, what else handles money? Okay, okay, fine. But you could have said, let's say this, this site is bringing you in lots of money and all sudden you need to start tracking that money. It's it's the same premise West, but what you've done is you've like just you've bridged the gap, but you haven't told a story. So that's really what you have to do, you have to tell a story. And if you want to make money on those stories, you can always sell your stories on your ecommerce site, and keep track of that payment with Freshbooks.
+
+43
+00:23:37,740 --> 00:24:57,450
+Wes Bos: Yes, Freshbooks is small business, accounting, EDI, your invoices, you can manage all your clients, you can see who owes you money, you can automatically follow up with them with the robot. It's awesome. It's it's the best software I've ever used to manage all of your company's expenses, invoices, all that stuff. And I just want to tell you really quick, sorry, I think I told us on a couple episodes ago, but I'm gonna tell it again, I had an issue with one of the reports that I was generating in Freshbooks. And so this is this is not working, I clicked the button and it didn't work. And so I called him up first ring picked up is that Oh, man, we can get it, we get that sorted for you. So the guy on the phone, manually generated them for me and sent them over an email so I could get them off to my accountant, and that'd be good. And then they went off and logged the bug and followed it up with their product team. And then two days later, I got an email from them saying, hey, thanks so much. This is actually affecting a couple other clients as well. We fixed it. And here it is. And it was awesome. I didn't have to chase them around. They told me when I was ready, they fix the issue temporarily for me. So just outstanding customer service at Freshbooks as well. So check it out freshbooks.com forward slash syntax for a 30 day free trial. And make sure you use syntax in the How did you hear about a section because that will keep them sponsoring. on and on. Thanks so much to Freshbooks for sponsoring. Cool.
+
+44
+00:24:57,690 --> 00:27:49,500
+Scott Tolinski: Next question from Corbin. Hey, syntax boys. I'm at getting into web development through college, and noticing that the intro courses are very hard to get into. I've been self teaching. So I'm feeling like I'm ahead. The intro to computing logic course basic algorithm teacher, very slowly forces us to use an awful software called Raptor to create pseudo programs, I've been asking to actually use a language rather than software. But the teacher doesn't have enough programming knowledge to grade actual language assignments. I feel like this course is a step back from what I already know. And I was just wondering if you have any tips on getting through the grueling required courses? Love the podcast can't wait to hear more. Okay, so I took a number of classes that I did not care for or that were behind the I took a get this I took a web design and development course at the Art School of the University of Michigan where they used Oh, gosh, what was the software it was Adobe. Go live. I forget what it's called. It was Adobe's version of Dreamweaver, before Dreamweaver existed, it was all based on dragging and dropping things on to a grid, you could do multiple layers, and it never worked. The code, it always worked in their in their little preview browser, but it never worked in any real browser. So it was total garbage. And I coated everything by hand throughout the whole course. Because why? Well, because you don't get to have control over the assignments, I recommend finding some way anyway, that you can make your assignments more exciting or interesting for you to keep you engaged. Because that's really what's going to come out of this, you're going to get the most out of this if you can use at least some inspiration from what they're doing to drive you forward in some sort of way. So I think that's an important concept is you need to keep yourself engaged if the course is not keeping you engaged. Like I had classes that were like music history, that I did really poorly and but I to get through them, what I would do would be writing computer programs to help me study. I was like trying to find some way anyway, to make it engaging. So if you're if you're getting bored with the programs that they're having you right, or any of that stuff, I still think you can find some way to make it more interesting to you. Like, what if, for instance, what if instead of just doing the assignment in Raptor, what if you didn't know programming language first, and then did it in Raptor is like, Okay, I'm the I guess that's double work, but at least you're getting something out of it. I don't know, I would, I would again, take make sure you're getting the lessons that the teacher is actually teaching and not just like what you think they're teaching, and pay attention as much as you can. And it take to take to learn the heart of the core concepts and fundamentals to the best you possibly can. And it should help you along.
+
+45
+00:27:50,820 --> 00:30:21,750
+Wes Bos: I just, I just looked up what this Raptor was. And it's like a flowchart diagramming tool. And I, I literally wrote so many flowchart diagramming tools in school, and they were not for programming, per se. They were more business processes. And like swimlanes, and things like that for like how you do order fulfillment and whatnot. It was like it was related to tech. But again, it had nothing to do with actually writing any code. It's funny because this this Raptor, the screenshot is from Windows XP, so I can feel how like, oh, the software must be to it's actually using I remember when I was doing these, I just remember being like, I have no idea what I'm doing. Like, why am I swim flow charting arrows to everything? I just remember being like, I have no idea. And it was because these teachers think like, Yeah, you got to focus on the fundamentals. You got to learn this stuff first, before you actually before you actually write any code. And we've talked about this before. And the reality is that maybe you don't necessarily have to spend your entire day on the fundamentals. And maybe you can jump in and start trying to write some stuff, it might not be good. It might not be the best stuff ever, but at least you're getting your feet wet. So that sucks for you that you have to do that. And like, what are the tips for getting through this grueling required work? Just do them, like you don't have to like slam dunk, I got 70s all through university, because I was just putting in the work that was needed to get through it. And like, I look back in hindsight, and when I when I did learn things, I look back and go, Oh, that's what that swim chart was. That's what the these ideas were. And I did look back and go, Oh, I understand now that I know these things. I look back at it. And maybe I did learn a thing or two. So definitely put in a little bit of time and get those done. But like what I really want to say here is that if you want to get good at programming, it's all about what you do and how you put in the time. So take this time that you have in school, start taking online courses or building a side project or you're obviously listening this podcast is that's getting you somewhere as well. Just keep listening to the podcast. Keep listening to the podcast, keep building things. Because when you get out of school, your career and what job you get is not going to be based on what grade or how many diagrams you built, it's going to be, what can you actually build? And what have you built in the past? And what are you familiar with in terms of real world technology? So that's my advice there.
+
+46
+00:30:21,750 --> 00:30:30,060
+Scott Tolinski: You mean to tell me West that my D and music history did not impact my career over as a web developer?
+
+47
+00:30:32,190 --> 00:32:05,850
+Wes Bos: Yes, it's, I don't know. It's funny, like we don't, I don't want to like, but pu traditional school so much, because like, there's there's a lot of good stuff that can come with that. But we get a lot of these questions where people say, like, hey, like what you guys who are real web developers are talking about, and what they're teaching me in school have almost no overlap. And it's frustrating to see because it's hard. I have also gotten emails from people who do teach in schools and are very much up on on how it works. Word. Next question from Randy. So it's been announced that sapper will never hit 1.0 and said spelt core functionality is being expanded. And sapper is going to be deprecated. Oh, so the the functionality of sapra is going to be rolled into what's felt is I know you all don't have any inside info on this, but kind of wondering how Scott feels about this. And what he's doing with his sapper site, and the nebulous time between the big announcement and the release of the next felt version. I'll really quickly just say what I say, thinking about this, I love this. I wish that react would do more, I wish that there was more rolled into what react does. There's something about the JavaScript industry where we have to pick and choose our pieces and often that's why people love next .js is that it next guest doesn't even do half the stuff you want it to do because they say go grab external packages for it, but I wish that more JavaScript frameworks would do more like like they're doing here
+
+48
+00:32:06,150 --> 00:32:18,030
+Scott Tolinski: Yeah, cuz when you control more you control more of the output right? I've gotten the the vibe with I don't know how much I know you've been doing a little bit Dino we should do another we should do like a dino Dino episode now.
+
+49
+00:32:18,060 --> 00:32:18,600
+Unknown: Yeah.
+
+50
+00:32:18,600 --> 00:35:50,520
+Scott Tolinski: I don't know how much you've been doing with it to the point where you've noticed some of this but I've really noticed that one thing I love about the dino infrastructure and community overall is that a lot of this stuff like linting and formatting and all that stuff. And testing is like baked in, which is just like it's so it's such a relief not to have to like oh, what what library Am I going to use for this? And does it does mega Lord connect to omega star and whatever doesn't make the big brain I mean, I honestly all those connections is like where things start to become a problem. So what am I going to do with mice sappers, I am not going to do a gosh darn thing with it. Not at least not for right now. Because really, what they said is that is that the spell to kit, which is what they're going to be calling it is basically going to have the functionality of sapper. So it's going to have at least some sort of file based routing system, as far as I know. Like if it has file based routing system, and maybe some things will be different. I have no idea my sapper site is basically a static site I'm reading and the markdown files and loading them up inside of this felt site. So my site is really not complex at all. My sapper site, I'm not gonna be doing anything with it until spoke it is done and released and out of the way in whatever, I have been familiarizing myself with the technologies on the production builds and everything they're going to be using roll up and then on the front end client side for development, they're going to be using snowpack. Now, we had Fred on the show talking about sky pack and pika pack in some of the projects he was working on. And snowpack is the sort of current iteration of all that stuff. And snowpack is is really super cool. If you haven't checked it out. snowpack dot Dev. One of the coolest things about snowpack is just how insanely fast it is. They're they're touting 5050 milliseconds, or Yes, 50 millisecond build times, or just outrageous stuff, because what's happening is they're just loading up a file, and if it needs compilation, then they're compiling that single file rather than your entire project. So build times are just just effortlessly tiny and In short, I've been running experimentally snowpack on a level up tutorials branch to try to see if we can have our site. We do a lot of like cute things with our repo that are kind of getting in the way but when I got it working at least a little bit, oh boy how to deal with a really cool so I'm gonna sit and wait a little bit. I'm really really excited that they're choosing to do this route with roll up and snowpack both separately for production or or Development bundles. I'd like to do something similar for us at some point in the future. But yeah, I feel really, really strongly positively about this. I think it's neat. Okay, so now we have a bunch of WordPress questions, we might be able to breeze through some of these because they're a lot of them are pretty similar WordPress questions. First one is from Jesse Woody. I currently work I'm currently working through a full stack Udemy course, to make the switch away from my day job to a freelance web development, I want to start taking on some easier freelance jobs to make extra money for my portfolio. And I see WordPress as a recommended way to do this. My basic question is, would it be worth undertaking the learning process of picking up some PHP to learn basic WordPress development so that I can start freelancing now? Or would I be better served learning HTML, CSS and JavaScript and waiting to broaden my understanding of these languages before taking on clients?
+
+51
+00:35:51,230 --> 00:38:37,730
+Wes Bos: That's a great question. Like, I was thinking about this the other day, like would WordPress still be the best intro to building freelance websites? Before you all get angry? Because we all hate WordPress? There's some some things to think about, like, Why do freelancers pick WordPress a lot of the times and it's because it's quick to get up and running, it's super cheap to host, the plugin ecosystem is massive, the client comes to you and says, Hey, I need the website to do this. There is almost always a plugin that will do something similar to that. And that's huge, because a lot of freelance developers either don't have the time or the skill to build that thing themselves. Even if you're looking at like, lucky, a headless CMS, there's there's not plugins like Gatsby has plugins, things like that. But they don't have the whole admin back end UI plugins that would be able to do that. And often the alternative to using a plugin is pay this $8 a month for this service, which is often not an option. So if you're looking at building a couple of $1,000 websites for clients, is it worth learning PHP and picking up some WordPress? I'm gonna say, Yeah, why? because learning how to like, like, how much PHP Do you really need to know in order to do WordPress not a whole lot, you need to know how to build classes and extend things? No, you need to know how to like, make a variable, loop over things, create a function that takes in data and return stuff. And all of the stuff that you learn in JavaScript can also apply to WordPress. So if that's the route you want to go, I think that's a pretty, pretty good route. If you want, you could also go the route of just doubling down on JavaScript and becoming more of a, like a JavaScript Dev and like a freelance where they just people will hire you to build UI kits and components and things like that. And you can get pretty far with just JavaScript. But there's still just so much so like, I have a lot of freelance devs friends myselves. But I think I've seen a lot of like big businesses, what do you call them? agencies either closed down that we're doing like full time, WordPress, not all of them. There's, there's lots of agencies out there that do big, big WordPress stuff, still, but I've seen a lot of them go away. But there still is a lot of freelance WordPress devs that WordPress is their choice. So yeah, I would say like it's probably don't don't bet on I'm like, I'm always hesitant with this stuff. Because everybody hates WordPress. And I always feel like I have to, like defend it to everybody. But like, I still think it is currently like I don't I've got my qualms about it. But I think it still is a really good choice for that type of thing.
+
+52
+00:38:37,919 --> 00:40:01,730
+Scott Tolinski: I think you'll have to decide like, essentially what type of developer you're wanting to be. Because, you know, if you want to be working at like thing and doing maybe like engineering, engineering, or computer science stuff, or maybe even more advanced user interfaces, then you're probably going to get more bang for your buck out of going hard on JavaScript. But if you just want to build client sites, and if you want to build if you want to build client sites in like an agency world or anything like that learning PHP, and WordPress overall will be very helpful for you in the long run. It's not going to be going anywhere anytime soon. So yeah, I would say it just all depends on what your goals are. Their next question is from Eric Butler. If I plan to use WordPress as a headless CMS, how do I make sure the WordPress site itself is not publicly accessible? As far as I know, there's no API only mode for WordPress, like there is for rails or Laravel. And if I install WordPress on a server, and it's going to be discoverable online, I'd hate to have people in the WordPress API site think it was my website, or for my static site to have to compete with my WordPress API for prominence in search engines. How do I ensure this won't happen? redirects robots only have that HTTP forward slash API or whatever the word was a WP hyphenated PCI or I forget what it is even
+
+53
+00:40:01,770 --> 00:40:05,730
+Wes Bos: Yeah, like he means like the REST endpoint of the URL. Correct? Yeah.
+
+54
+00:40:05,730 --> 00:40:31,440
+Scott Tolinski: So either way having the REST endpoint of your API or use a graph qL, where there's only the one endpoint, have those be publicly accessible. And as far as your, your WordPress site goes, redirects, like I said, redirects and robots to prevent it from being crawled. So robots, file, disallow crawlers, and then redirect, especially the home page to your other actual homepage.
+
+55
+00:40:31,650 --> 00:41:10,730
+Wes Bos: Yeah, there's likely a plugin that will do this for you. But if I if it was me, what would I do, I would make a WordPress theme called WP dash nothing, I would have an index dot php in there. Because the way WordPress works is that everything will eventually try the index dot php. If it doesn't find any other files, and you just type in PHP return, you return nothing blank in that. Okay, that's done. There's no front end to your website. And then just to be doubly safe, just like Scott says, robots dot txt, disallow star everything. And that would be good.
+
+56
+00:41:10,730 --> 00:41:16,320
+Scott Tolinski: I think, one time we had our staging environment competing with the clients actual site, because we
+
+57
+00:41:16,440 --> 00:41:59,820
+Wes Bos: got to do our robots on it. It was, Oh, you know what, I think the website needs to do that right now. Because I was, I was thinking like all these Netlify and verse cell deployment previews. Oh, those are URLs out in the wild, like, Did that does that automatically? I wonder if they automatically do that. canonically link back? Hmm. Do we need to add like a robots. txt dependent on environmental variables? interest probably do need to Yeah. But like, I also would assume that Google would put something into their search engine to make sure like, clearly it's the same website. And these things keep popping up. And all the links go back to syntax FM, but we should probably look into that. Yeah,
+
+58
+00:41:59,880 --> 00:43:31,860
+Scott Tolinski: yeah. Next question is from gage. So I'm gonna rapid fire some of these out here. If I have a Vue JS website running on WordPress, how can I dynamically insert a view components into the word from the WordPress back end, Eg have every post that insert a Vue JS poll component, I don't want to recompile. So that this is a tough one, because what the component has to be living in PHP, essentially, if you're inserting a chunk of code, and that chunk of code could be written once, and that code is hitting the back end, you so probably what would have to happen, this is me spitballing, because I've never done this. But you probably have to compile that code down to just straight up JavaScript, insert that JavaScript to be loaded via a WordPress widget or WordPress section or something, and then just have some parameters being able to be changed. I don't know how the two interact. This sounds like a tough one to me. And I always remember back in the day of working in Drupal, and there's these things called Drupal blocks. And there was this experimental way that you could turn on PHP and the Drupal blocks. And everyone who is like good at Drupal would be like, please just don't do this. Because you're essentially typing PHP into a text area on the site. And I think about how many times I was like, well, this would be a lot easier if I just copy and pasted this PHP into this text area. It almost always worked, but it never felt great. So I don't know this, this seems pretty, pretty sketchy to me. But it seems like something you could probably pull off
+
+59
+00:43:32,340 --> 00:46:25,890
+Wes Bos: West. Any thoughts here? Like you could just dynamically insert it via the React Dom dot render, or view j s Dom dot render, and then pass in the data via props into into that component. So unless I'm like, listening to this, or understanding this incorrectly, there's probably something wrong with the way that you're architecting your component if you need to recompile it based on different data that needs to be passing. Because that's that's the beauty of the components. Right? One quick thing from the last question, I just looked it up. And both versal and Netlify, will send a header called x robots tag, and they will disallow your your preview URLs from being indexed by Google. So you don't even have to do anything there. It will automatically happen. Oh, cool. Next question from Glenn. My question has to do with WordPress. I've heard you mentioned previously that you have used WordPress to host sites in the past. I'm keen to learn how you have created your own themes for those sites. Do you write your own PHP etc? Or is there another way? I'm hoping to learn a bit more about developing for WordPress, this is a skill I'd like to have in my back pocket. I'd love to hear about any resources you'd recommend for this. This is a good question. So there's sort of like three different ways that you can approach this. There's one one type of person will go and buy a theme and then just start tweaking it. To make it look like they want. So that's pretty popular thing to do, you're like, Okay, I want to make this website, I'll start with something close enough and, and we'll tweak it until it is. Another type of person will buy a theme. And they'll create a child theme which allows you to overwrite, selectively overwrite parts of a specific theme. And that's great, because if there's a this is like this weird thing in WordPress, where themes also come with a bunch of functionality, which should be a plug in, but the theme does come with all this functionality. And the theme needs to be updated to support new things and, and themes have become massive, and just, they're, they're almost a CMS in themselves. It's kind of important, if you're doing that, then you need to maintain the code base, and then just apply your stuff on top of it. That's a child theme. What I do is just had like a starter theme that I built, but it's all just totally from scratch, it had like your basic loops, your basic nav, your basic footer, all of that stuff in it. And I would just start from that, and then build out the site from there. And I wouldn't update the starter because it basically just, it's just like a little bit of starter coding. It's not something you have to update over time. So yeah, that that dude, I write all the PHP myself. Absolutely. I still have a handful of WordPress websites that I maintain my own. My own wife's website is still in WordPress. And all of that is just custom written PHP that I've done myself, along with that handful of plugins for functionality that is needed.
+
+60
+00:46:26,550 --> 00:50:25,020
+Scott Tolinski: Cool. Yeah, I honestly, I have not written PHP or WordPress in a while. So I'm gonna defer to you on that one. I think the trial themes are having a starter theme is of course the way to go. And if you are hacking a theme, you best have some sort of error in handling exception tracking because well, if you're hacking a theme too much, maybe you have broken something and me nice to know if you broke something. So I'm gonna recommend it sentry@sentry.io imagine that one of our favorite sponsors over here at syntax, so you'll want to check out century sentry.io use the coupon code tasty treat all lowercase all one word, you're going to get two months for free. And I am just a huge fan of Sentry. We use it all the time. And one of the things I mentioned here on the show about how much I like it is really just the fact that every time I go to Sentry, I feel like there's a new stuff. You know, Sentry has been a big player in the industry for a while now. And I don't feel like they've they're not resting on their laurels. That Is that a thing? Either way, they're not taking it easy here there are they're always adding new features and functionalities to century even little tweaks and enhancements to the interface. So if you want the best error Exception Handling service out there, check out sentry@sentry.io coupon code tasty treat two months for free. Okay, let's get into last couple of questions here. We have some career questions. And then I think we can wrap it up with it with these two last questions here. This first one is from Tim Hello. And it says I've been a developer for 15 years. Unfortunately, I've had to leave web development for personal reasons, I have a lot of great skills. Unfortunately, because I've been out of the game for so long. my resume is full of holes, all of the current experience I have is project based or freelance based, I do not have the ability to show long term projects or anything stable on my resume. I'm trying to get my first job back in the field after a long absence. And it's proven difficult to nearly impossible. I'm listening to your tastytrade about certifications and certified education. I agree that certifications do not show actual skill. I also agree that just because I do not have longevity and consistency on my resume that I do not have the skills to pay the bills. That's very Tim, like that confidence. How can I get my first job back in the field? I am working on small projects to highlight my skill, but no one really seems to care. What would you do? Yeah, this one's tough. You really just need to find that agency, that dev shop, whatever those those developers who will who will see through the BS that this industry has sometimes and gives you a chance because I think back to my first I know you've been a dev for 15 years. So my first hire as a dev, I got hired largely because I think the the developer, you know, knew and maybe wasn't there but to tell I was passionate about what I was doing. I really loved it. And I was always trying to strive to better myself. And I think those kind of qualities that interviewers sometimes neglect can be the qualities that make you the best hire. So you're going to want to apply for a lot of things. Obviously, you're going to want to interview for a lot of things. So you're gonna want to play a bit of a numbers game here and I don't know if I would go too heavy into the like, I don't want to say thing but like, you might be better off looking at like agency places because they be more they might be more likely to hire somebody who's not like straight out of a boot camp slinging algorithm answers like they just practice them via flashcards or something like that there might be looking for somebody who has a more breadth of experience. So I would definitely say approach to that world or the agency world, the type of things or find it maybe a small project to help out on open source code, things like that, that will look good on a resume, obviously, nobody has infinite time. So it's impossible to just say, Oh, go off and hack away on some open source projects, and whatever, and just come back and get a job. So as long as you are passionate, you're applying, you're improving your skills, somebody will take a chance on you, you just got to keep going for it.
+
+61
+00:50:25,050 --> 00:53:00,840
+Wes Bos: Yeah, that's kind of the interesting thing about like, somebody who's been at it for 15 years, your problem solving skills are amazing. And no matter how much time you've taken off your problem, solving skills are probably very good. People's skills, I'm assuming are good. If you've been a web developer for 15 years, you've probably dealt with some clients over the years and things like that. So it's hard to say without actually seeing your resume and whatnot, like what the actual problem would be. But what I would do is like, you just need to present yourself as having all of these skills in addition to the latest hotness that everybody wants, right? Like, yeah, you should probably show that you're good with JavaScript and can sling a serverless function and can connect to a database and things like that. But also, also on the flip side, you have problem solving skills and people skills. So how do you do that? Well, you say you're highlighting your skills with small projects, maybe you need to jump onto something like open source and say, Hey, I'm a maintainer, X, Y, and Z, these just attach yourself to some maybe larger projects or, like, I'm surprised he's saying that the people are don't seem to care about the small projects, because that's what everybody said, when we asked about certifications is the proof is in the pudding. Right? So maybe those projects need a little bit more like it's not just like a one or two day thing. But you spent a couple of weeks on building these these types of things. So also, what would I do blog posts, maybe YouTube videos, oh, yeah, conference talks, things like that, taking and taking the topics that I talked about, like problem solving people skills, whatever other skills you think you have, from your 15 years, write a blog post about how you think new developers can can apply those things and just kind of show off and flex the fact that you do have these things, especially like a conference talk you right now, all the conferences are online. And there's tons of them, like, there's probably like three times the amount of conferences than there were before because you can do them online. And everybody's trying to do an online conference. So you can probably do it either a YouTube video conference, talk blog posts about those skills. So that's what I would probably try next. But I also think, like, we need to do some sort of episode on, like reviewing people's resume or reviewing. I don't know what you call that. But like your presence, you know, like, people often say, like, hey, I've done these things, but it's not working. Why we don't really see much past these questions. So I'd love to be like, Alright, well, I looked at your website. And
+
+62
+00:53:01,020 --> 00:53:02,880
+Scott Tolinski: these are the first things I noticed. Yeah.
+
+63
+00:53:02,910 --> 00:53:31,650
+Wes Bos: Yeah. Something as simple as you have way too much drop shadow on this thing. That's a huge turnoff for me, you know, and just like little things like that, that could be doing it bad fonts or something. Yeah, yeah, totally. And those are things like, if you've got 100 people to look at, and somebody's gone overboard with a drop shadow seems petty, but I would be like that next. They clearly don't care about, about that type of thing where you might not even think about that. You're like, Oh, it looks fine to me. I didn't realize that.
+
+64
+00:53:32,010 --> 00:53:34,320
+Unknown: Yeah, totally. Yep. Absolutely.
+
+65
+00:53:34,980 --> 00:55:34,020
+Wes Bos: Last question from Ethan. Hey, what's up Scott. I'm currently in a food service job but would love to move into the dev and design field. I have a year of experience in JavaScript, HTML, CSS, and sass as well as react Gatsby next to node. Okay, bingo. This This guy is hit all of the all of the the bingo spots for it. I have a small amount of experience with freelance web design and development, but I feel like I am greatly underselling myself. $150 for a Gatsby site built for a friend and less than $100 for a couple of Fiverr gigs. Yeah, that's that's very cheap. I have seen freelance work worked out well for my friends and family, but I'm terrified of having to find clients. I have a hard time valuing my work and fold when money is brought up. There is always a part of me that just says shoot hi and have them talk the price down. But I hate confrontation. How should I go about finding my first $1,000 client? And how should I show the client that my work is worth it? This is a great question because and we've we have a couple freelancing episodes you can go to and we have a couple on quoting as well. Go through and listen to all of those because it is it is a hard thing to say. This is my work. Allow me to bill you like $1,000 not even a lot for a website but a lot of people are super uncomfortable with even asking that because they There's maybe some imposter syndrome there, they don't feel that their their skills are worth it, it really just boils down to not proving to the client that you are worth that, but proving to the client that the attack you're building is going to be worth it to them to their business or to 31. So you're building a new website for a realtor, if you literally get one new client from this website, like I remember when we bought our house, I went through like 15 different realtor websites. And there was one person that had a nice website, and we went with
+
+66
+00:55:35,820 --> 00:55:37,470
+Scott Tolinski: that sounds very you Yeah,
+
+67
+00:55:37,499 --> 00:56:21,750
+Wes Bos: yeah, it's like you, you paid a couple 1000 bucks to have a nice lead design website. And you got I don't know how much to realtors make tons from selling a house. Right? Right. So you just have to like sort of turn the tables and say, it's going to be worth it to your business to spend this stuff. And also, like you just the first time putting yourself out there, you just got to put them you got to put the quote forward and say, This is what I'll charge. I'm they're really excited to help your business succeed. That's it. And don't stop saying sorry. And I'm not sure. And if it's too much, let me know, you just got to put it out there. And they might walk away because it's not what they expected. But like from what you're saying, people should be jumping at $1,000 websites from you.
+
+68
+00:56:21,870 --> 00:58:08,310
+Scott Tolinski: Yeah. And in it, just think about, we did a lot of comparing to other industries in those episodes. And I do want you to think about that when you're when you're thinking about this as well. Because think about the last tradesperson that you hired who you know, I don't know, I've had people into like, look at our bathroom or something because we need a little bit of a rant on our bathroom, right? So we had several people right before the pandemic come over and look at it. And sure enough COVID head, we didn't get to do it. But I remember the process that I went through in my brain trying to decide which of these people would be the right people to go with. And I'm thinking just like, how they they talked about their work. And it's difficult to ask for money and be confident about all that stuff, when you do feel maybe a little bit of imposter II or you're not used to it. But just think about those trades people who are like, it's gonna be this much Take it or leave it, I do good work. And that's really like, kind of the mindset you need to be in in a way it's like this is definitely going to be worth it to your client. It shouldn't be you shouldn't you shouldn't work to undervalue it. There's a book called design as a job I talk about at least a few times a month on this podcast by Mike ponterio. That is really good about hyping you up to believe that your work is worth way more than you're asking for. And I highly recommend checking that book out because it can really change your mindset. But again, think about other tradespeople. And if you're hiring somebody, what type of qualities Would you like to see in that person? And try to emulate a lot of those things. Just try to be you know, even you can pretend or LARP around like you are really fancy, you know, boutique website guy. And maybe that's it. But yeah, I think that that that will go a long ways for you.
+
+69
+00:58:08,940 --> 00:59:04,440
+Wes Bos: Yeah, like even one more thing coming back to that, like Scott said about the having a contractor trade in your house. It's always like a mix of like, clearly you're competent enough to do this. But I also like you as a, a people person, I trust you to be able to say like, Oh, yeah, it's gonna look amazing in here, like, Oh, you know, what we did on another website is we made it responsive. And we did like a different nav. So like, you've got a lot of items in your nav. And I think that we could, like, rearrange this thing on mobile. So it works a little bit nicer. And then you say, Hey, have you ever been on a website where it's just like, awful to use on your phone? Just like relate to them a little bit and say, like, yeah, we can make this work well together. Awesome. It's not just like, I charge 1000 Yes, or no, you know, there's there's a, there's a lot you can do in terms of like, putting your client at ease and getting them excited for for the work that you're going to do so. Good luck with that. That sounds really cool. Heck, yes.
+
+70
+00:59:04,440 --> 00:59:18,510
+Scott Tolinski: Well, okay, that that is it for this potluck. I think it's time to get into sick pics. Sick pics are things that we picked that we find to be sick. Wes, do you have any sick pics because I at least have a few I've been podcast hunting lately.
+
+71
+00:59:18,870 --> 00:59:24,150
+Wes Bos: Oh man. Good You got even more podcast? I am going to sick pick a box of meat.
+
+72
+00:59:24,780 --> 00:59:36,540
+Scott Tolinski: See this is very on brand. I'm sick picking a podcast which is going to be some sort of a scam based fraud crime podcast and you are going to sick pick a box of meat. This is very unbranded
+
+73
+00:59:36,600 --> 01:00:43,170
+Wes Bos: Yes. Bread. So I tried out one of these local box of meat delivery companies. This is called True local. This is probably for Canadians most likely, I think they're in Ontario and check if they're in your location as well. I'm in Ontario, and it's really cool because there's a lot of farms in Ontario that do good Quality, sustainably sourced, they're kind to the cows, and pigs and things like that. And then there's also like you go into the grocery store. And there's a bit of a disconnect between, like being able to just buy it directly from your farmer. And then the stuff that's in the grocery store is not necessarily some of the best stuff. So I tried out one of these boxes from true local and it was awesome. I got bacon, bone broth, a bunch of steaks, really nice prime rib turkey bacon, which was surprisingly good. It was really cool. It's you, you can sign up, you fill out your box, they give you like 20 points. And like bacon is one point. And then like a prime rib is four or five point, something like that. And it was really cool. Big fan. Sounds
+
+74
+01:00:43,170 --> 01:00:43,680
+Scott Tolinski: cool. So
+
+75
+01:00:43,680 --> 01:00:59,010
+Wes Bos: check it out. It's true local tea, are you local.ca. And you can just sign up for one month and try it out. And it comes with dry ice, which is really cool. Because Have you ever had dry ice Scott?
+
+76
+01:00:59,250 --> 01:01:04,980
+Scott Tolinski: Hey, true local USA. Man, we've ordered some some food before that has come with dry ice as well.
+
+77
+01:01:05,040 --> 01:01:29,040
+Wes Bos: But yeah, it comes with it comes with dry ice, which I was very surprised because it went out for delivery at like 8am. And I got it at like 3pm and everything was rock hard still. And then we gave we put all the dry ice in, in a bunch of like a boiling water and our entire kitchen was full of all the steam and the kids loved it. So it was fun for the fun for the whole family.
+
+78
+01:01:29,880 --> 01:02:03,780
+Scott Tolinski: Yeah, yeah, I should check this out. I know we've been doing some some of those meal delivery services. You know, we've tried all of them out because that's what Courtney does. She does like the coupon that you get the first month of them. And since there's like 20 of them, she's just like, tried all of them. So a meat delivery. It looks cool. I'm into it. My sick pack is Whoo, I got to pick a podcast here. I've had so many interesting podcasts that I've been listening to. I could really just close my eyes and pick at some of these interesting ones I've been listening to but I think this one might be the most entertaining. And something I'd never heard of. It's called chameleon,
+
+79
+01:02:04,020 --> 01:02:05,760
+Unknown: hollywood con queen.
+
+80
+01:02:05,760 --> 01:03:17,520
+Scott Tolinski: So con, the swindling type of podcast of which I am into this one is really wild. It's a story about tradespeople in Hollywood being essentially scammed into this really bizarre scam where they're flown to Jakarta in them sort of drifting around. And they're depositing small amounts of money here and there. It is so weird. But by Episode Six, I've already had several like what moments and I can't believe I've never heard of this at all. So chameleon, hollywood con queen is very good. The storytelling is very good. You know, it's your standard, you know, 45 minute long True Crime episode where it's like, you know, each one reveals a little bit more like a Netflix documentary or something. But I really liked this one, and it just popped up on my radar. And I've been just constantly being like, Whoa, actually, let me do a twofer here. Because podcasts are a dime a dozen. Right? There's two for the second one here is this is an I Heart Radio Podcast. And it is called q clearance the hunt for Q anon if you aren't familiar with the Q anon conspiracy, it's like
+
+81
+01:03:17,580 --> 01:03:18,450
+Unknown: yo q head,
+
+82
+01:03:18,480 --> 01:04:15,270
+Scott Tolinski: Scott, come on was please. Like, it's so stupid. It's so incredibly stupid. And what this podcast is doing is is this guy who's British, so he's got like, No, no, no dog in the fight here, so to say. But he's like just trying to identify who the heck Q is as a person, maybe diving into the history of a lot of the anonymous image boards and message boards on the internet. And like talking about the likelihood of the fact that it's, it was most likely one person pulling a prank on other people, and then like now has been in the ownership of an actual white supremacist guy who is just like doing it to rile up the base. It is a very interesting and he does a lot of diving into internet stuff. So if you're like a darknet diaries, fan q clearance is very good. It's very, very good. It's also horrifying. Just how many people believe such an idiotic thing in general. So yeah, those are my two picks.
+
+83
+01:04:15,600 --> 01:04:25,350
+Wes Bos: Beautiful. All right, shamelessly plug all of my courses West boss.com forward slash courses, check it out and learn a thing or two for the upcoming 2021
+
+84
+01:04:25,800 --> 01:04:26,640
+Unknown: yeah,
+
+85
+01:04:26,640 --> 01:05:11,670
+Scott Tolinski: check out level up tutorials.com. Our latest course, at the time of recording this episode is Dino one on one for web developers. We teach you the basics of working in Dino by the end of this course. You get up and running, being able to read file, we do a contract generator where you read a file and you enter some inputs and it spits out a contract. We also work pretty heavily in Oak which is a Coca Cola like web framework for Dino where we build into actually building an API with oak we get into serving static files and static pages with oak and a lot of neat stuff along the way. So if you want to, as a web developer learn the very basics of Dino, check out Dino, one on one for web developers on level up tutorials.com. Alright, thank
+
+86
+01:05:11,670 --> 01:05:15,060
+Wes Bos: you so much for tuning in. And we will catch you on Monday America
+
+87
+01:05:15,060 --> 01:05:21,630
+Scott Tolinski: Christmas and Happy Holidays to all of those who don't celebrate Christmas as always you inconsiderate, cool.
+
+88
+01:05:23,220 --> 01:05:24,980
+Wes Bos: Happy Holidays everybody. Sorry.
+
+89
+01:05:26,250 --> 01:05:29,520
+Unknown: Face peace and love, peace and love and
+
+90
+01:05:30,420 --> 01:05:31,110
+sleigh bells.
+
+91
+01:05:32,910 --> 01:05:42,690
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you liked this show.
+
