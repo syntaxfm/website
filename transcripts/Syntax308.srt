@@ -1,0 +1,632 @@
+1
+00:00:01,319 --> 00:00:04,590
+Unknown: You're listening to syntax, the podcast with the tastiest web
+
+2
+00:00:04,590 --> 00:00:09,930
+development treats out there. strap yourself in and get ready to whiskey and West boss.
+
+3
+00:00:10,559 --> 00:00:35,520
+Wes Bos: Welcome to syntax today is I bet this is gonna be one of our most listened to episodes ever. Because the last time we did this episode was one of the most popular episodes and that is Gatsby vs. Next in 2020 2021. This is the we're recording this in early November. So I would say that this stuff will probably hold hold true for at least halfway through 2021. Would you say Scott?
+
+4
+00:00:35,520 --> 00:00:45,299
+Scott Tolinski: Yeah, it's very funny because I always thinking about changing this this episode's title to be 2021 rather than 2020. And then I was like, well,
+
+5
+00:00:45,299 --> 00:00:46,740
+Unknown: well,
+
+6
+00:00:46,740 --> 00:00:50,880
+Scott Tolinski: who knows where we're you know how things will change. But yeah, I'm excited about that.
+
+7
+00:00:52,020 --> 00:01:57,560
+Wes Bos: Awesome. Today we are sponsored by two awesome companies. First one is Sanity, which is your structure content, CMS, and second one is Sentry. It has all of your error and exception tracking. So we're gonna talk about next versus Gatsby, there's been a lot of stuff that has happened in the last couple weeks, most notably next 10 came out and they dropped the very early image component. We'll talk about that in a bit. And in next nine, they also dropped a whole bunch of statically rendered API's. So last time, we talked about this, I was saying use Gatsby for websites and next for apps. And I don't really think that's that's necessarily true any longer. They're both starting to eat into each other's space. And I I like this show because like, I have no horse in this race. I just like that both of these tools are fantastic for building websites and web apps. I've got courses on both of them. I think they're both fantastic tools. And there's not going to be a clear winner at the end of today. But we hopefully can just inform you as to what they both do.
+
+8
+00:01:57,750 --> 00:03:09,600
+Scott Tolinski: Yeah, I think you're dead on. And I think that was sort of inevitable. Even from the time that we had recorded that episode was that they would inevitably run out of room in their respective spaces and start to bleed into each other's and I don't like I would maybe agree to some extent to the fact that like, I might even still do Gatsby for websites and extra ABS if I was doing like straight up or react every time but I almost would gonna reach for things like felt for simple projects, especially for websites, because of the well, even with UI like an MDX type of thing that the the amount of code you're writing is really pretty minimal comparatively to some of these things. Like when I look at like, maybe like a template file or something like that in MDX or MD specs in the spirit world compared to a Gatsby site, which by no means is like crazy amount of syntax, there is just a lot of extra noise that kind of gets in between you and the HTML that you're working with. I don't know if I would universally say Gatsby hands next for every project as much as I would have last year anyway. So yeah, it's interesting to see how the landscape changes in any year or two.
+
+9
+00:03:10,139 --> 00:04:35,190
+Wes Bos: All right, so let's get into it. We're gonna go through sort of a whole bunch of different pieces of building a website, server rendering, statically, rendering, re rendering client side data, dynamic pages, hosting images, videos, SEO off plugins, ecommerce, we're gonna go through all these and sort of explain who does what and how to do it, and each of them, and then you can make your decision at the end of this. So let's start off with server rendered, or I'm just gonna say like, yeah, like, like, rendered to HTML, meaning that when you hit a website, you're getting HTML from the server, and you're not getting a JavaScript bundle that then has to render on the client and both do them. The difference is when they do them, so Gatsby is a build time currently is the build time rendered, meaning that they will, right before you deploy your application or as part of your deployment pipeline, it will run Gatsby build, and they'll kick out a public folder that has all your images, all of your HTML, all your JavaScript, all of your folders, and then you can take that and throw it up on a website. So that's done at build time. Next us a little bit differently where that's done on demand. So when you you can like pre render, like statically. But you can also do things statically on next .js either on demand, I guess that sort of gets into the next one as well. We'll talk about that more in just a second. So yeah, both of them do it.
+
+10
+00:04:35,610 --> 00:05:24,380
+Scott Tolinski: Yeah, both of them do it. It's a matter of of what your needs are. And sometimes we do we talked about this a bunch in the last episode is like when do you need that data? Do you need it live from the user? Or do you need it pre user and that really kind of defines which of those techniques in either platform you're going to reach for as in like, if you need statically if you need not statically If you need server side rendered data that includes user information, then index js is the only option in that regard, because Gatsby just can't do that. But Gatsby can do client side user information, but not not server side as instead of CLI rendered, or even server side rendered, because you don't know who the user is at the time of build. So that makes that kind of impossible.
+
+11
+00:05:24,630 --> 00:06:04,770
+Wes Bos: Let's move on to the next one, which is static generation. So Gatsby is entirely static generated. So you do everything at build time, like we just said. So the big sort of thing that dropped in next nine, was the ability to eat make some pages static, and some pages server side render, right? Not I think that's so cool. Because like, you can pick and choose which pages on your website are going to be statically rendered. And then you can also opt into if you want it to be a traditional server side rendered page as well. And you can decide on a page by page basis, which I think is pretty killer feature and x .js.
+
+12
+00:06:04,830 --> 00:06:43,440
+Scott Tolinski: That's something I've always wanted in my own platform, because I think about it, like, there are some pages, the about page, the, you know, the contact page, like those don't need to be created by the server, whenever a user asks for them. And like the standard SSR model of doing things they don't need to be, they could be just sitting there waiting. And I think that's really neat. You know, I wonder if there's like, the next generation of these things is like, like, essentially chunks of HTML and JavaScript that are statically, or pre rendered, or whatever, that can just pop in to given specific spots, rather than having to like fish for information and maybe do TV calls or anything like that.
+
+13
+00:06:43,470 --> 00:07:47,700
+Wes Bos: Yes, sure, like static chunk static, it's still built on demand, but the parts of it. Like, I wonder what that obviously, like, would that be a major benefit if you could still compile this thing, but not have to do the database calls for specific thing? And we should say also, like, there's probably people listening to this and be like, um, I was doing that years ago, like, anytime we talk about next, yeah, someone's like, so they invented PHP for JavaScript, right? So like, obviously, yes, you you can you can do these things like it's probably trivial to cache some URLs more aggressively than other URLs in your PHP app, or really any app, right. But I think that the the benefit that we're seeing here is that you're writing everything in JavaScript, and you're writing, like some of this dynamic stuff that happens in the browser, as well as your server render pages are all in the same languages. They're all in the same react framework, you can share components from one to another. So you don't have to pick and choose which gets rendered on the client and which doesn't,
+
+14
+00:07:47,880 --> 00:08:17,130
+Scott Tolinski: there is something to be said about having all of your code and the entire code base in one language in one, like cohesive style and everything like that, that I really, really love myself. So I do I mean, it makes it all of the entire code base approachable, like if my code base was in PHP on the back end. Yeah, sure, I'd manage. But like, I'd have to keep track of like two sets of syntax API's and tooling, and all sorts of things that just get in the way of being productive.
+
+15
+00:08:17,369 --> 00:08:24,990
+Wes Bos: Yeah, that's a that's a huge benefit to just go all in on all in on one language and in one framework for for all this.
+
+16
+00:08:25,140 --> 00:08:31,620
+Scott Tolinski: So next section is re rendering pages. You said Gatsby can be re rendered and redeployed. What do you mean by that?
+
+17
+00:08:31,800 --> 00:09:33,799
+Wes Bos: So like, let's say one page on your website, a blog post is updated, or photo on one of one of your pages has changed? And maybe you just touched one page, or maybe just touch six pages out of the 7000 that are on your website? So that's what Gatsby cloud is. Is that what you can? Yeah, yeah, it can like partially rerender, part of the Gatsby website. And it's really smart about it, it does have to know about your data source. So it only works with specific CMS is actually it works with Sanity, one of our sponsors today, and then it can redeploy it. So that whole process of I changed a website and it's live can really be boiled down to I know that they've said they've gotten it down to seconds to re regenerate it. And then redeploying I imagine would just could be seconds as well. So that's kind of interesting, if you think about it, because like let's say it takes 30 seconds altogether to make a change to your website, and then to see it live. That's almost getting into the territory of just having it entirely server rendered, which is pretty cool.
+
+18
+00:09:33,899 --> 00:09:34,470
+Scott Tolinski: Almost.
+
+19
+00:09:34,500 --> 00:09:39,630
+Wes Bos: Yeah. Almost 3030 seconds. Could be a lot in some it is right? Well, I
+
+20
+00:09:39,630 --> 00:10:15,570
+Scott Tolinski: think about clients, right? So I don't know how much client work you've done with Gatsby but I did a couple of in like, outside API's maybe like WordPress and what people don't understand with Gatsby is that when you, you know, rebuild, like they're used to the flow of saving their WordPress file and then seeing it live on the site. And so yeah, in 30 seconds This is a lot if you are rebuilding, because you save it make a change, and it's not live on the site. I actually got like, three or four. Like even after explaining to the client, that's how it works. I got like three or four emails asking about it. So like, I think that is a big holdup.
+
+21
+00:10:15,720 --> 00:10:58,710
+Wes Bos: Yeah, I think that's where the end most of these CMS says that they're using will have like a preview mode. Yeah. And you can like, I know, this is actually a perfect episode for Sanity sponsoring. Because let's, let's save that for the address. Yeah, that's perfect. Okay. And then the sort of, like, I always like to point this out is that that is a paid feature. It always gets a little bit weird. There's obviously companies building these things. And these companies need to make money. But I always like to be super clear as to if you're not paying Gatsby for that. You don't get that feature. That's that's something that gets me just has been their secret sauce. And that's how they they attempt to make their money. Yeah,
+
+22
+00:10:58,740 --> 00:12:17,039
+Scott Tolinski: yeah, that is, well, that was also a thing what like, last time we recorded this episode, what was sort of a mystery how Gatsby was going to make money? Or was like, okay, we get that next has, what was the previous name? Right? Oh, yeah. As is now. Yeah. At the time, they still had a an insight now. I mean, they still had that. So it was making money. But it's like, Well, okay, so Gatsby got a lot of money, but how, how are they going to make money. And it's funny, because that whole situation in terms of like how a company makes money, leaving the product, and the project into different places, really was sort of the downfall of meteors popularity, because they couldn't fit, they got a lot of money, the meteor developer group had got a lot of money, and they couldn't figure out how to make the money. And not that Meteor wasn't making money, because it certainly is, they started their hosting thing, it makes money, but it wasn't making enough money. So then they they come up with Apollo and graph QL. And they're like, Okay, well, we can charge for Apollo engine, we can charge for this and that, and it's like a whole more cohesive business model, and that way to actually make the money. So it is funny how, like, we as developers can sometimes discount these things as being like higher level discussions that we're not caring too much about, but it really has a huge impact on the future of the code. And
+
+23
+00:12:18,059 --> 00:12:55,980
+Wes Bos: yeah, and and before, like, whenever we talk about, like Gatsby, there, people always come swinging and saying, like, they're just taking the problems that they made, which is regenerating and charging to fix it. And last, but that's what a lot of companies do for for that like, like, they'll take the hardest part about, like, if you look at MongoDB is a good example. It's a open source database, but they also have a massive company behind them massive, and they will take the hard parts, which is finding out why your database is slow, or hosting the thing or security or replication, and they make those things easy, and you can give them money to make that easier. So that's that's a business model.
+
+24
+00:12:56,340 --> 00:13:14,399
+Scott Tolinski: Yeah, they did a business. And that's how business works. So you did a business? Yeah. One of our sponsors also does business. And they do business well, and they do business with a neat little previewing thing that we just kind of hinted at, do you. Do you want to talk about that now?
+
+25
+00:13:15,179 --> 00:14:29,370
+Wes Bos: Yeah, let's get into it, because we are talking about it. So our sponsor is Sanity, which is a headless CMS that you generally you use with want to evenly use it with whatever you want. But yeah, it's very popular to use these headless CMS is with next Yass, or Gatsby, or any of these frameworks to pull in your data from Sanity. And it's really cool, because Sanity has a plugin that will allow you to change your data. And you can preview that as if your site was updated. And then if you have build steps or anything that needs to happen, that will obviously go but your client will see what it looks like. And that was actually kind of an interesting thing. Like when I did WordPress way back in the day, it was always hard for the client to say like, I want to change this thing on this page. Now where does that field line up in the backend, right? Change it and save it and then go back. And he had to clear caches in some cases as well. So Sanity is making that really easy for the person who ends up actually editing the website. So check it out, if you are building a website or web app or anything like that, and you need a headless CMS or structured content, CMS, as they call it, go to sanity.io forward slash syntax, and that will get you double the free usage tier sick.
+
+26
+00:14:29,730 --> 00:14:31,890
+Scott Tolinski: Thank you for Sanity for sponsoring.
+
+27
+00:14:32,309 --> 00:14:45,990
+Wes Bos: Let's talk about next .js in terms of pre rendering pages, if you are doing server side props on next, yes, then it is just re rendered. But one one kind of cool thing is they helped us update the syntax website to which is
+
+28
+00:14:45,990 --> 00:14:47,250
+Scott Tolinski: statically use.
+
+29
+00:14:47,520 --> 00:16:07,350
+Wes Bos: Yeah, it's statically generated, but also it needs to update itself when a new episode is released, and we didn't really want to set up a cron job or whatever. So they have this revalidate flag. You can set on a page. Basically, the way that it works is that when you make a page called like, show, what you do is you you first you fetch all of the possible routes that you want, and you return that. So forward slash show one, forward slash, show two, forward slash, show three. So we fetch a list of our podcasts and then export that. And then for each of those shows, we go and fetch the individual data that can be done, it's cool, because it all happens server side, we don't have to have a public API for it, because we just have internal libraries. And then what happens is that there's a revalidate of one, one second on it, you can set these to whatever you want. It's the amount of time that needs to pass after somebody visits the page. And it'll check if it's stale. And it will, it will revalidate it. And in our case, so if you go to the website at nine o'clock in one second, you will probably see the new episode is not there. But that, that kicks off something in the background that says, Oh, this page is now more than one second old, and it will regenerate that page and serve it up to the next person that comes.
+
+30
+00:16:07,380 --> 00:16:10,260
+Scott Tolinski: Yeah, so you won't get it. But the next person will see,
+
+31
+00:16:11,580 --> 00:16:22,289
+Wes Bos: like, how does that work with like, like pages that maybe don't get a ton of traffic? Or can that be done on like a cron job where it would just like, check every so often, right? Yeah, cuz you don't want that? Sure.
+
+32
+00:16:22,289 --> 00:16:49,590
+Scott Tolinski: That first person. It's funny because a lot of these new services like our video streaming service, the first person who watches any of the videos that any of the given qualities gets a hit because it transcodes it on demand. So the person's gonna inherently get a slower loading video, but then they caches it for the next person, right? So it's funny that a lot of these new services, I don't I doubt this is a new idea, but like the first person takes a little bit of a hit. I mean, that's what that's how cloudinary works. Do, right.
+
+33
+00:16:49,620 --> 00:17:09,750
+Wes Bos: Yeah. And, and even, like, Heroku, someone hasn't visited your thing, it takes like a second to spin up that droplet and run a cold start. Yeah, exactly. I remember, like back in the day, people would write these little bots that would just ping the website, and it would stay hot, it would say, that'd be
+
+34
+00:17:09,750 --> 00:17:10,410
+Scott Tolinski: invalid.
+
+35
+00:17:12,720 --> 00:17:45,630
+Wes Bos: Anyway, but like with those on demand, we'll talk about that when we hit images, because like, that's a huge benefit to doing it on demand versus that build time, which is, it takes forever. That's how nex .js does it which is kind of cool. You can just revalidate it in the background. And I'm curious now, I don't actually know the answer to that. But like, what if you have a website, that's like, six people hit it a day? Yeah, then it's important for whoever visits the website to get the most up to date. If that's the case, I guess, then then you have to do server side rendered, which is probably not a big deal for here. Not a big deal,
+
+36
+00:17:45,630 --> 00:18:34,230
+Scott Tolinski: right. Because, like we act like that's a big deal. But like, at the end of the day, the server is really fast at generating HTML, it is very fast to that. And you know, like, when I actually sit down and think about the amount of work or the the process that my server has to do on each page that's hit. I'm, like, always pretty amazed at how fast it's accomplished. And I'm kind of a perfect freak, where I'm looking at the ttfb all the time, and all that stuff. Like I'm constantly evaluating those things. So for me, like, the server is very good at producing HTML. So this should not be a conversation of like statically. Always, static has its advantages, right? It can be cached, it can be served up really quick and fast. You don't have to do any processing to get it there. But the server is very good. So server side rendered applications by no means will be slow.
+
+37
+00:18:34,530 --> 00:18:41,060
+Wes Bos: Alright, I just had a little note there, but hosted graph QL. But I moved it to a different section. So hang on for that. Oh,
+
+38
+00:18:41,060 --> 00:18:41,730
+Unknown: yeah.
+
+39
+00:18:42,990 --> 00:18:45,300
+Scott Tolinski: Keep your hats on. I don't know if that's the same.
+
+40
+00:18:46,800 --> 00:18:47,910
+Wes Bos: We can we make it that way. Hold
+
+41
+00:18:47,910 --> 00:18:48,750
+Scott Tolinski: on to your hats.
+
+42
+00:18:48,750 --> 00:20:02,520
+Wes Bos: Hold on. There, keep your hats on. I got. The next one is data management. So you've you've got data, it comes from an API, it comes from markdown files, it comes from all of these different areas. How do you manage that? So Gatsby has an I personally really liked this Gatsby has a graph qL API feature, where it will it's called sourcing. So the way that it works is that when you fire up a Gatsby thing, it will go and get the data from all of your different locations, whether that's data from Sanity, whether that's data from markdown files, whether it's data from the GitHub REST API, and it will normalize it all into one big graph qL API. And then you can go ahead and use graph qL queries from your single graph qL API anywhere in your your website, which is really cool. And I personally really liked this because the you don't have to write schemas or type anything or whatever with Gatsby, it just pulls in the data from your your source, and it will automatically detect types and schemas and all that stuff for you. And just give you that That's really wicked graph qL API. Yeah.
+
+43
+00:20:02,730 --> 00:20:39,030
+Scott Tolinski: And I've always liked it, too. I've liked it for everything except for the images, because the images part, like the fact that you had to query Yeah, and do all the image transformation in the query always felt weird. But for the most part, I really loved being able to just at any given point, write that graph. qL query, it would be neat. If there was some, there is some magic involved. But it'd be neat if there is like, a little like, I don't know, I think I'm just spoiled by like single page component features that exist in view and felt like the the single page component thing is nice, because there could be a little bit of magic where you're just like, here's the data. And yeah, they're Gatsby has a little bit of that. But I don't know, what do
+
+44
+00:20:39,030 --> 00:20:46,140
+Wes Bos: you mean by that? Like, single what is the single page component? Oh, like CSS, JavaScript logic and templating?
+
+45
+00:20:46,200 --> 00:21:06,630
+Scott Tolinski: Yeah, it kind of gets out of the realm of being a straight up JavaScript file, which is why people don't like it. Shawn swix actually had a really neat little model of doing like, single page react. And I don't know if it gained any traction, because I think react people are so used to the whole Jess JavaScript thing that they I think are a little bit blinded by that sometimes. But that's just my,
+
+46
+00:21:06,990 --> 00:21:23,760
+Wes Bos: I'm here for for like, which we made up .js X, like, what more do you want? Like, or do you want more? I mean, we already changed the format of the JavaScript we're writing, we're just putting HTML tags in the middle of our JavaScript, so why not? Why not more? Yeah, right.
+
+47
+00:21:23,760 --> 00:21:50,850
+Scott Tolinski: Speaking of why not more, why not to JSX to please it with, I'm gonna stop saying salt in a second. But there's like a, you know, they do like the two brackets inside of a component. They just do like two brackets, and then the variable name to pass that variable down. So instead of doing like, prop equals prop in brackets, it's just yeah, it's Prop, like, come on, can we? Can we have that we just, I just want that that's the only thing like that.
+
+48
+00:21:51,180 --> 00:22:20,970
+Wes Bos: So next, .js doesn't have anything built in for data management. And that's not because they like haven't thought about it. It's just they're intentionally saying, No, we don't, we don't care how you manage your data. So go off and get Apollo or SW are just like, yeah, stale, while revalidate. It's definitely much smaller. in scope. It's basically like a bunch of utilities around fetching data. And when you should refetch that data, or you go get Redux,
+
+49
+00:22:21,120 --> 00:23:14,790
+Scott Tolinski: you're missing a big one. What react query? Oh, yes, is basically like, you could think of a query as Apollo for non graph. qL API's is really the way I like to think about you can do graph QL. API's with it. But it's not as nice as Apollo in that regard. But it is you get these nice little use use query hooks and use mutation hooks, and it does all the caching for you in that caching is really nice. I like yeah, React queries. And it's, it's in the definitely in the same same category as SW are here. We need a tasty on this, because this looks awesome. I've not used this before. Or hasty, we made a hasty on well, Tanner, who created it, he popped into the chat room over 300 episode. And we couldn't get him on the show cuz he had to head out of balance. But I've talked with him previously about coming on syntax. So if there's interest in having him Come on, yeah, yeah, it's a it's a really, really great, really awesome platform
+
+50
+00:23:14,790 --> 00:23:15,570
+Wes Bos: sick.
+
+51
+00:23:15,840 --> 00:23:29,940
+Scott Tolinski: Yeah, it's funny, when we were talking about this whole, like, next .js is like, bring your own data. I had this realization because I you know, I, those of you who listen to the show, not that I've been using Meteor for a long time, and and I was trying to always figure it out dead,
+
+52
+00:23:29,940 --> 00:23:31,830
+Wes Bos: Scott. Oh, yes. Shut up.
+
+53
+00:23:36,900 --> 00:24:39,210
+Scott Tolinski: So I've always been trying to put in my mind, like what is in fact, the difference between these two platforms, because they're both very encompassing platforms in a lot of ways. And I was trying to put my finger on it. And I think I really nailed it when I was thinking about this because I think Meteor is a platform where the data is not flexible, and it's bringing your own front end, where next is a platform where the front end is not flexible, and it's bring your own data. And, and that to me kind of blew it all open because I also haven't seen these things in different ways. It's like, oh, okay, if you if you like to bring your own data in your own login your own all that stuff didn't next is a great platform if you're happy with react if you want to use anything, and you want to have that database like if you want to have that freedom for the front end then I don't know Meteor Meteor is a great platform for that. So it kind of blew my mind when I just suddenly had that little bit of a realization that next was making a lot of choices for you on the front end so you can make those choices yourself on the back end and meteors like the exact opposite.
+
+54
+00:24:40,830 --> 00:24:43,350
+Wes Bos: Wow, that's that's a big revelation there, Scott.
+
+55
+00:24:43,920 --> 00:24:44,730
+Unknown: Okay,
+
+56
+00:24:44,760 --> 00:24:47,370
+oh, no, don't
+
+57
+00:24:47,370 --> 00:24:49,140
+cram it and
+
+58
+00:24:49,950 --> 00:25:16,650
+Wes Bos: no, I didn't mean to make funny I just it makes sense. I actually like think about these things and I'm like well versed. Oh, please come out with the rest of it. Yes, like They'll probably do an awesome job at it. And they're they intentionally are agnostic about, like what CMS you're using or what data management thing you're using. And they probably believe strongly in that just because like Otherwise, they probably would have rolled out a CMS by now. Yeah.
+
+59
+00:25:18,420 --> 00:25:41,790
+Scott Tolinski: It's funny, because if it seems like I'm talking a whole lot about other platforms in this episode, it might just be because I haven't worked with next and Gatsby as much this year, as I did the year before either of them, even though they both have made huge leaps and bounds. So if you're getting that that vibe that I'm kind of allowed in other platforms, it is really, really accurate. So I'm hopefully bringing that voice to this episode. That's good.
+
+60
+00:25:41,790 --> 00:25:47,940
+Wes Bos: That's good. Because these are not the only two ways to build a website. And despite
+
+61
+00:25:49,260 --> 00:25:51,390
+Scott Tolinski: Twitter or or, you know, yeah,
+
+62
+00:25:51,420 --> 00:26:27,450
+Wes Bos: yeah. It's funny, like, we originally built the website for syntax in next Yes. And and then Gatsby became super popular. And everyone's like, why is it not in Gatsby? And then, like, if you sit on it long enough now? Now, I think the pendulum is kind of swinging back to being like, Oh, yeah, it is a good use case for the syntax website. Because like, we also have have an API on there, I pull the latest syntax into my own website and the syntax that FM hosts the API. And that's actually one thing we don't have in the show is you can't host an API with Gatsby because it's all done on bill at build time. Although,
+
+63
+00:26:27,630 --> 00:26:28,140
+Unknown: although
+
+64
+00:26:28,170 --> 00:27:57,000
+Wes Bos: there I'm crossing my fingers, Oh, I got some stuff. Let's get into the next part here. Dynamic pages. So I'm going to explain what I mean about these situations. So let's say you have a website with 100. Shoes, right? You could loop over those shoes, make a page for every single shoe and that's okay, you got 100 pay 100 shoes, and then, okay, you also have like, different types of shoes, categories, basketball, shoes, runners, casual shoes, bowling. And then each of those shoes has colors. I've gotten six or seven different colors for those and and then you have like sizes, you got 12 different sizes for each of those. So that starts to get complicated when you want to have a page that you say, Okay, I want a page and somebody actually messaged me that, like, I want to have a page that shows me basketball shoes that are red in size five, I'm like, Okay, well, okay. And now if we look at both platforms with next year, as you probably throw that over to a server side rendered page, yes, with Gatsby, it has to be pre rendered. So what that means is that you have to pick out every permutation of basketball shoes in red in size five basketball shoes in red in size six basketball shoes. And, and you get the point, right? Yeah, and I just did some quick math. And that's, it gets exponentially large when you think about every single combination of it, right? And then what if you want to do size, size six and seven at the same time, like we've all seen a website with the filter on the left hand side, and you want to filter for each of those
+
+65
+00:27:57,060 --> 00:27:59,730
+Scott Tolinski: as the filter on the left hand side?
+
+66
+00:28:00,690 --> 00:29:58,230
+Wes Bos: So what happens is that you're like, Okay, we can't feasibly regenerate no 10,000 different combination pages here. So what do you do? Well, you dynamic just Yes. Yeah, it doesn't make it dynamic. you fetch the data on the client side. I think this is this is a bit of a downside to Gatsby is that, then you have to go straight from the browser to your data source. And we I showed you how to show how to do this in my Gatsby course. Because I think it's important is if the data needs to be fetched on the client side, there's no like refresh attribute, you can put on a graph qL query refresh on client. And also in Gatsby, you query all the data from the graph qL API. And that's just not available when you're when you're in production, right? Unless you are do like Big Brain run Gatsby develop on your server. So you have to go straight to the source. Like in my course, we went straight to Sanity, we bypass the graph qL API entirely. And then we have that we have to deal with loading states, which is kind of a pain. So that's a downside. And I just I've been talking about this. So for a while, and I just finally searched it. And I searched Kyle Matthews hosted graph QL. And I found a tweet from him in April 2020. It says, dynamic is a bit fixable to once we have a hosted graph qL mode. So I'm hoping What that means is that and I think what this means is that Gatsby will eventually have the option to deploy your graph qL API as well. And then you'll be able to both obviously pre generate all of your pages, but you can also have them refresh with the latest data on the client without having to do two different graph qL API's is that was frustrating because like the Sanity graph, qL API is not the same syntax as the Gatsby graph qL API. And so you can't even reuse queries. Like you can't even like ship a query to the browser and then rerun it. You have to write the query again in the client and I thought that was a bit of a pain.
+
+67
+00:29:58,380 --> 00:30:13,230
+Scott Tolinski: Yeah, it is a little Bit of a spaghetti salad at that point, like, a little bit of a rough spot, especially when you think about how elegant all these things are, then you get into the weeds or something like that. And you're just like, Why? Why is this? Why am I doing this?
+
+68
+00:30:13,259 --> 00:30:39,420
+Wes Bos: Yeah, I love getting into the weeds on this type of thing, because like this is not necessarily something you hit. Yeah, until you've your way, like way too late to switch over. So right and not, not every website needs that right or cares about that. Or maybe you decide to do the shoe searcher just on entirely on the client side, because who cares if you have a page, like who's searching red shoes and size five, maybe that's not necessary.
+
+69
+00:30:40,680 --> 00:32:55,920
+Scott Tolinski: Yeah. Next one is routing. And routing, to me is the biggest thing I don't like about both of these platforms, I do love that they both do folder based routing. And folder based routing really saves you from having to write a router, because it, it basically looks at the folder structure of your application inside of your pages directory, and then generates the routing based on that. The big problem with folder based routing is that each of your page changes basically goes all the way up to the top. And you'll see the solutions for this being unlike a wrapper file where you can wrap your code in as many providers and whatever as you need to, you know, like a file where you can import all of your providers, whatever. That way, you can do animations on mountain unmount. But the problem with that is, is specifically in react, React doesn't handle animations on unmount very well. And because of that, you would have to orchestrate your entire applications, mounting and unmounting Apple animations in the, you'd have to orchestrate this all in the provider because you'd have to have all of those data's and values whatever you're, you're moving from what I'm trying to think of how I would do like customized page transitions per route in next j s or Gatsby with framer motion, and it would not be really pretty like when one thing I really love about react router setups for this is that you can have nested routes, and nested route ORS, so nested routes, Fine, whatever, everybody can do nested routes. And that's something nobody understands is that Nesta routers, which is what react router five and four, whatever allows you to do, where you physically, let's say I have a page, and then I have a layout. And then inside of that layout, I have a whole section of the page, maybe it's like user account information. You've seen this on GitHub, where there's a menu, like a sub menu with a content area with next or Gatsby, you click on any of those, and it's having to rerender everything top down, right. And whether or not that's the layout that it's in whatever. But in react router, you can have it be so that that little thing is self contained in that little layout. When you change a page there, it only affects the mounting and unmounting of components within that sub small sub section, while changing the URL,
+
+70
+00:32:56,130 --> 00:32:58,200
+Wes Bos: it could be just like a box in the sidebar, right
+
+71
+00:32:58,200 --> 00:33:51,180
+Scott Tolinski: could just be a box in the sidebar. And then the neat thing about that is you can like for instance, I wrote a wrapper for react router that does mounting and unmounting animations of sub layouts. And that would be impossible with next or Gatsby just flat out impossible. So like the user account information, when you click any of those links, those pages can mount and unmount and whatever, without affecting anything higher up on the chain. And that to me is like the biggest, biggest biggest gripe I have about either of these platforms, when we went to move level up tutorials to next. But that was like one of the most disappointing aspects of it was that we are losing so many of those neat user interface touches that we had gained through react router. I would love to see them to add this. I think there. Some people don't necessarily get what you're talking about when you talk about nested routers. But it is it is like a thing that I really, really love and use frequently.
+
+72
+00:33:51,509 --> 00:34:35,820
+Wes Bos: Okay, that makes a lot more sense to me. Because last time you talked about it, I was like I don't understand what you're saying, which is but like I get it like even if you are on a user, like an edit user page. So you have everything for the user admin page, but then just a small subset of the user page, you were to change that you could just animate or switch and it doesn't have to mount and unmount the entire thing like in index js and Gatsby, you can you can like put your header and your footer in like a higher level component. And those won't unmount and remount. Like the the navigation won't. But everything else was the whole the whole guts of the page. Well, if that's the case, you have to have the same layout for every single page. You can sort of step outside of that,
+
+73
+00:34:35,879 --> 00:34:49,170
+Scott Tolinski: right. And I think anybody who's tried to do mounting and unmounting animations on Gatsby and next will instantly get what I'm talking about because there are so many hoops you have to jump through, especially when you're talking about like nested anything there.
+
+74
+00:34:49,830 --> 00:34:53,340
+Wes Bos: Let's talk about hosting real quick. Where can you host these things
+
+75
+00:34:53,360 --> 00:34:54,150
+Scott Tolinski: anywhere,
+
+76
+00:34:54,230 --> 00:35:15,270
+Wes Bos: anywhere. They're they're very easy to host Gatsby is just HTML, CSS and JavaScript. The other day, so you can you can literally put that anywhere. FTP in most cases, you have a build step with both of these. So you'll need something to, to push it. I think that's that's good. The hosting hosting thing looks good. We'll talk about server list in just a second. But hosting looks good for both of them.
+
+77
+00:35:15,420 --> 00:36:13,880
+Scott Tolinski: Yeah, that we will, like I said, we'll talk about the serverless thing. It's it's a little weird that you get a better hosting experience with wsl of the next .js than anywhere else. But I guess that's that's to be expected. That's how they're Yeah. Gonna make my own businesses. Yeah. You know, it does. It does sometimes feel like that's like, like, what what are they like an unintentional roadblock or put up, but I honestly don't know too much about the specifics there. So I don't want to say anything, because I honestly, I don't know. And, and it is absolutely their, it's their platform. So it would be absolutely right for them to make money off their platform in that way. So I have no problems with it. It's just It is one thing. Let's get into images. And images are a big deal. And Wes, I actually found something really neat. Because I know you have a lot to say about next new image component. I haven't used it or checked it out too much. I want to hear all about that. But regarding some of Gatsby's updates, I have some neat little information to share. So you can go ahead and I'll drop my tidbit after
+
+78
+00:36:14,040 --> 00:37:04,170
+Wes Bos: Yeah, yeah, I was just like, literally like 20 minutes before I recorded this show. There's a bunch of tweets flying about updates to Gatsby, I don't. I got code, you got code, I got code. Alright, so images in both of these platforms, you want to compress, you want to resize, you want to lazily load them, when people scroll into view, you want to blur them up so that you can you can run like blurred versions, and then while you load them, it fades in Nice. You can do that cool SVG trick. I don't, I still don't know if that's actually really cool. Or like if it's a gimmick, or if it's like real, like where some you the way that it works is that you have an image of like, Scott, it's pretty cool. And it will trace like Scott's face into an SVG and load that up while the image is downloading, and then it'll fade it from SVG, Scott into pixel raster base got, you think it's cool.
+
+79
+00:37:04,710 --> 00:37:29,360
+Scott Tolinski: I think it's cool. I think it's cool. Like, I think you're playing a dangerous game if you're using it with faces, because you're gonna get somebody who's got a really bad looking SVG face, and they're gonna get upset about it. But I think for some images, it's very cool and other images. I think it's out of maybe a per case basis, I'm definitely more likely to use the blur the blurred version than the SVG one, but I think it I think it has its use cases.
+
+80
+00:37:29,730 --> 00:37:38,850
+Wes Bos: No, it wouldn't be funny is if it automatically colored it like the Barack Obama hope poster, it'd be great for faces. Yeah. Well, it's like loving him.
+
+81
+00:37:39,750 --> 00:37:48,150
+Scott Tolinski: His name was fairly Shepherd, fairly Shepherd, fairly new. Is wasn't Spencer, Shepherd, fairly the famous obey guy.
+
+82
+00:37:48,440 --> 00:37:50,010
+Wes Bos: He is he's the one that design that.
+
+83
+00:37:50,430 --> 00:37:51,420
+Scott Tolinski: Yeah, he designed it.
+
+84
+00:37:51,420 --> 00:37:52,710
+Wes Bos: He did obey.
+
+85
+00:37:52,710 --> 00:37:55,290
+Scott Tolinski: He's done a lot of very fantastic art.
+
+86
+00:37:55,800 --> 00:39:10,320
+Wes Bos: Cool. Yeah. So with these up until, like, what about a week ago, at the time we're recording? Next, Jess had no skin in the game for how you do images. And I even when I launched my own website, people were like, Hey, why don't use next? And I was like, well, images. And they're like, Well, why don't you go and use cloudinary, or whatever. And, again, I've said this many times, I'll say it again, I love those services. But there's something to me, where if there's a core feature of your application, that can't be done, without paying for a service that sort of pushes me away, like not that you shouldn't pay for these services, they're great. And I also use them on, I use cloudinary. On a lot of them image x is another one. But if you can't do part of it, I feel a sort of the same way about search. Everyone's like, just use all golia and like level golia It looks awesome. We're trying to integrate it with our website. But like, wouldn't it be nice if you could also just run that on an airplane where you had no internet? Or if you wanted to just not have to pay for these services? Because like, I know, sooner or later, we're gonna wake up and we're gonna be like, wow, these services are costing me $100 a month for to run my own personal website. So
+
+87
+00:39:10,400 --> 00:39:12,380
+Scott Tolinski: death by 1000 services, it
+
+88
+00:39:12,380 --> 00:39:26,010
+Wes Bos: death by 1000 servers is exactly like I always thought would be funny, you know, when you like, go and pick a Mac, and you like, customize it. And you're like, what's the most expensive Mac I can make? Yes, I that would be funny. Like, what's the most expensive personal website?
+
+89
+00:39:30,690 --> 00:39:33,270
+Scott Tolinski: You know, like, very funny. I love that.
+
+90
+00:39:33,360 --> 00:39:39,650
+Wes Bos: Yeah. back end front end, continuous integration, testing. Search, but only name is
+
+91
+00:39:39,650 --> 00:39:43,050
+Scott Tolinski: compression. Yeah. Yeah. That's very good. Very good.
+
+92
+00:39:43,080 --> 00:39:45,750
+Wes Bos: Could you go 100% paid services?
+
+93
+00:39:45,810 --> 00:39:46,800
+Unknown: Yeah. No, it'd
+
+94
+00:39:46,800 --> 00:39:47,340
+Wes Bos: be good.
+
+95
+00:39:47,340 --> 00:39:51,270
+Scott Tolinski: Don't they call that no code movement. That what they call that?
+
+96
+00:39:51,510 --> 00:41:19,590
+Wes Bos: No code. So let's talk about next and next rolled out their image component. It's very early days for it. I think that they they pushed out what they had at The time so they could announce that next .js cough, because it's not as good as the Gatsby image yet. But I don't foresee that being an issue of swaying you. Either way, I guarantee it will be just as good as Gatsby image in a couple months from now or whatnot. They had a it looks like they had a dev at Google work on all of it. So it's awesome, because you just have an image tag, you give it a source. And that source can be a remote source, it can be a local source. And then you can specify the quality, the width and the height, and it will regenerate all of the different sizes for you. And it will lazy load the min as you need it. I will convert it to web P and try serve that up and Gatsby image does all of this as well. It's great. It's it just takes all the hard stuff around making images good on the web, and just puts it into a an image component. So it does doesn't do blur up currently, it does do lazy loading, both of them don't support gifts, which is super annoying, because like with Gatsby if the code your own fallback component, which I'm sure they'll fix at some point. One of the big pains to Gatsby images is you have to read a graph qL query just to get an image now you do Yeah, that looks like it's not the case anymore. There's a GitHub thread that is proposing to do very similar to what next is doing is just have an image tag and figure it out for me. You know,
+
+97
+00:41:19,940 --> 00:41:25,190
+Scott Tolinski: proper props where props are due. gritstone did that a while ago, over a year and a half ago?
+
+98
+00:41:25,560 --> 00:41:30,270
+Wes Bos: Yeah, I was just looking at the grid, some docs that you linked here. And like, this is what I've wanted forever.
+
+99
+00:41:30,420 --> 00:41:36,810
+Scott Tolinski: I know like I've been highlighted in gold, and it says the gold standard and the links to grid sums images. So check that out.
+
+100
+00:41:36,860 --> 00:42:04,320
+Wes Bos: It is the the gold standard. Cuz like also another thing when next year's currently is you have to give it a width and a height. Whereas Gatsby has this idea of fluid and fixed images where you could supply the width or the height or you can supply both. And then it's a fixed image. And it's not currently something that works with next. Yes, yeah. And then there also is an image and format Auto cloudinary has a setting where you can say format auto and quality auto. Yeah. And it just picks it for you. And I was like, Yes,
+
+101
+00:42:04,320 --> 00:42:16,460
+Scott Tolinski: that's what I thought if they support web web p given web p if they support whatever any of these new formats are literally any new format. And Gatsby do do the format thing, though they do auto format.
+
+102
+00:42:16,530 --> 00:42:29,190
+Wes Bos: Yeah, you will they not auto format, but they will try to serve up a web P. But what I'm thinking about is like, you know, sometimes like a JPEG is smaller than a PNG. And you didn't think that that would be the case? I don't think it does that.
+
+103
+00:42:29,250 --> 00:42:40,400
+Scott Tolinski: Yeah. cloudinary is amazing with that in that like, I love that photo. I just like the day I dropped that on everything was just amazed at the sizes of images I was serving up.
+
+104
+00:42:40,590 --> 00:42:44,100
+Wes Bos: So you want to tell us about the Gatsby image? Yeah,
+
+105
+00:42:44,100 --> 00:43:33,270
+Scott Tolinski: somebody linked me to Doc's Sophia andron. She linked me to the updated docs for what will be the new Gatsby images thing. So if you do go to Gatsby plugins images, there's the readme for the experimental image plugin, which will most likely I don't know if this is going to be the final code. But this seems to be the the code, which shows a static image component where you're passing in just the image rather than doing a graph qL query, which I love, and I haven't, I haven't really because she only sent us after we started recording. So I haven't really had the time to read this. I'm not good at parsing stuff like that, while we're while we're chatting here, but I'll leave this this in the show notes. So you can check this out yourself and give it a look, it seems to be pretty neat.
+
+106
+00:43:33,570 --> 00:44:02,670
+Wes Bos: Yeah, I just give it a quick scan. And it looks like you can use it anywhere. So you don't have to query them at a page level, which now page versus static query. This looks awesome. It basically just gives you a image tag static image tag. Yeah, that will allow you to do and the only downside it looks like is you can't have a dynamic width and height because you can but I think you have to use the graph qL interface still? No, because graph qL queries cannot be dynamically taken me Gatsby,
+
+107
+00:44:02,670 --> 00:44:04,380
+Unknown: you're right, you're right. You're Unless
+
+108
+00:44:04,410 --> 00:45:15,210
+Wes Bos: Unless you're at a page level, but like you can't change it in the browser. And you can change that you can't calculate it at build time. Because it has to has to be known, right? You can't put variables into a graph qL query, you get the upside of it all being static and super fast and whatnot. But then you also get I think, a hosted graph. qL will, will help us out there as well, totally. The last thing we have here is one huge pain point for Gatsby is you have to generate all your images, build time. And for websites, a lot of websites, that means a long time to generate it. And again, that's another thing Gatsby cloud will do. I personally use something on Netlify that pushes them off to Google Cloud and like does them concurrently but it's still kind of slow. And then once you do it the first time, it's not as bad but like, if you have to delete your cache folder, you're gonna be you might as well go get lunch, if you've got a lot of images on it. And the next yes doesn't on the fly, right first person that does it, it probably a little bit slow. But then then it's generated on the fly. And I and that's also what Gatsby does in. In development mode. It doesn't, it can just do them on the fly, which I wish they did in production. But obviously, it's the downside to not having a server.
+
+109
+00:45:15,660 --> 00:47:02,490
+Scott Tolinski: Yeah, right. Always a consideration. Yeah, other thing you want to take into consideration when working on applications is having issues in your application. Because if you have issues in your application, you're going to want to go ahead and use a tool like Sentry. Now, you might be thinking Sentry on a static website, well, hey, Sentry works on the front end code, as well as it works in backend code. In fact, it's really easy to drop into a react project and get all of those react errors that you might have in your application in your century. So it's not just for server side code. And it's not just for straight up node code, it's for all of your code, we use Sentry, and both our API as well as our react setup. And let me tell you, it's really nice to be able to have both of those setups and see any sort of issues and set up your react error boundaries. Or you can just capture those exceptions, it may happen. Anytime your users are getting a white screen of death, you're gonna want to check out century@century.io, use the coupon code, tasty treat all lowercase, all one word, and you're going to be able to solve any of those bugs in your front end code, as well as the back end code to if you're using any of that server side stuff. So to get into it, let's actually move to the server side stuff, which will hint there let's talk about the server and or serverless platforms here. Gatsby has nothing in terms of like, what is Gatsby do themselves, they don't do anything with your your server side code other than the static generation, there is no server list platform for Gatsby so to say. But that's could be seen as a strength because you can use whatever surrealist platform you'd like, right? If you want to use AWS, you want to use Netlify, or begin any of those serverless function platforms that exist out there. You can use that and you can do it yourself. But again, Gatsby itself does not not do anything there.
+
+110
+00:47:02,640 --> 00:48:44,190
+Wes Bos: No, no, it's just some cases. That's good, because you just like, like, you can do it, obviously, but not with with what we do. Next. Yes, has API routes. And we said, we talked about API routes when we talked about the syntax website being updated, because we moved all of the custom node code and the custom node node server that we had on syntax. And it moved all over to API routes, which if you haven't done this before, it's a it's a folder in your next app website. And then you can run server side code on there. We got a message from Tim, who runs a said he says, For some reason, it sounded like we said you can't run the API routes unless you host on wsl. But the thing was just say is that you can host API routes anywhere, it is only serverless if you host it on your cell, right? Right. So if you host it on digitalocean or something like that, then it's just a node app, which is just fine. Like in a lot of cases that that's all you need. It's only special serverless. When you host it on your cell, there is a couple community projects to try to get it to work on. Like even I reached out to Brian LaRue, who works on begin, Okay, can we host next gas on begin ended up not being possible? Hmm. Which is a bit of a bummer. because it'd be cool to to move this thing wherever you want. But that is to say, if your app goes down on wsl, like for whatever reason, if you want to move, like I'm not saying you should I love it, I host my syntax there, and I host a bunch of my projects there. But if you need the option to move somewhere else, it is doable on a server. But if you need the server less than you have to I'm sure you can configure nginx and some API gateway or something like that. Sounds like actually make it work. Yeah.
+
+111
+00:48:45,300 --> 00:49:42,060
+Scott Tolinski: I do want to say that any experience I've ever had hosting on oversell has been very positive. I think they get it in terms of the UI of things and the flow of things. Like Netlify. I think they got it first. Maybe not first, but they got it right to make it easy. And I want to say the first isn't it before varicella or something like that? I'm getting to that. They got it right. And then versaille also got a right in terms of just make it as easy as possible. The thing I hate most in life is tweaking nginx file server, like bring my server down. I goofed up an engine x file, like, No, thank you. Let's make it very, very easy for me. And in it all. I think that all goes back to like, I don't know if Heroku was the first ones to make it super easy, but like, I love it, bring on the easy hosts bring on just the Push To Deploy not having to think about continuous integration. I don't want to think about any of that stuff. Push your repo, let it go, you know,
+
+112
+00:49:42,539 --> 00:49:47,280
+Wes Bos: let's move we got we have SEO here, but both of them do SEO. Great.
+
+113
+00:49:47,340 --> 00:50:23,550
+Scott Tolinski: Yeah. So if it's rendered by the server, the Google bots can get to it then it is good. Okay, the plugin ecosystem Gatsby has a ton of plugins and you know what Gatsby's done that since day one, a Kyle himself probably wrote a ton of those initial plugins. And they existed from the very first time that I found Gatsby I clicked on Gatsby, I clicked on plugins. And I was like, What? There's a lot of stuff here. So it that kind of thing really gives you confidence in the platform and that there's people using the platform. Now this is funny that you said get next .js has plugins too, but I haven't used it as single plugin. I don't think for next year's ever. Do they make these things known?
+
+114
+00:50:23,700 --> 00:50:27,750
+Wes Bos: Yeah, there's there's a whole repo called next dash plugins.
+
+115
+00:50:27,810 --> 00:50:30,480
+Scott Tolinski: Yeah. But there's a re is it on their site? Like if you
+
+116
+00:50:30,600 --> 00:51:26,250
+Wes Bos: don't think so? Yeah, that's thinking about this. Now, I've never used the next plugin either. I think because next doesn't handle the data layer like Gatsby does. There's not a whole lot of not necessarily sure if it's neat, or whatever. But there's not a lot of plugins. And I think it's way easier with Gatsby just to throw in a plug in sitemap plugin, bam, throw it in, you're up and running. And that's not to say you can't do these things. You can do anything you want with anything. But in my experience, it's been much easier to click these things in. And I think that's key for the market that is, like WordPress, devs, who are coming from the standpoint of if you need functionality, you can just click in something without a whole lot of fanfare. I think that's part of who gets to be as targeting, which is like, I don't think next .js is targeting those types of people. So that's, it's even another thing to say is like, Who are these platforms? For? Right?
+
+117
+00:51:26,400 --> 00:52:26,640
+Scott Tolinski: Yeah. Although I, you know, I would say that that one experience that I would have liked to be better on next jazz would have been like the Apollo experience. So like, specifically getting user data available on surfer in time, I had a mess of like, almost were like circular dependencies. And I felt like very close to like, this needs that. But this needs that. And this needs this. But that needs the thing before this before it even gets going. So how am I going to get like, how I'm going to get this data and I had to like, initialize some of my code twice when like I shouldn't have and granted the cool thing about next is their examples repo is top notch, right? those examples Yeah, folder in there examples, repos. Very good. But the moment that you have to get outside of some of that stuff, I found it to be a little rough. And I would have loved for like a plugin to be like, oh, there, here's the next Apollo plugin, you install that you pass it this whatever, it's all taken care of for you, you know, granted, I don't need it, but it'd be nice.
+
+118
+00:52:26,700 --> 00:53:01,470
+Wes Bos: Yeah, I agree. There's Lewis, who actually he started this plugin. When I was building one of my react courses. It's called next with Apollo. And it is the plugin now to use it. And he does an awesome job. It works great. But just the there's often a disconnect between next and Apollo and you get like weird loading states or like, loading is true or false, but there's no data and then it re renders again. And there's lots of little edge cases and I would love to see like get those Apollo in and versatile in a room and be like, just make it easy my pizzas if you guys can I make this work?
+
+119
+00:53:01,590 --> 00:54:01,620
+Scott Tolinski: Yeah. Right? How about figure out a way to make it as easy as meteors data setup? And I'll be it'll be very Yeah, totally, next step is off. And neither of these platforms do off in my own, in my opinion here. The first to do find some way to do easy auth is going to see some big gains from that. One of the reasons why I think a lot of people really liked Meteor at first was because like, you just drop in accounts, like we're talking about how easy the image plugin and like the new Gatsby image plugin. If you want to see easy accounts, check out my author, I made a plugin for Meteor authen, spelt, and you literally import login window from accounts UI. And then you write login as a component there. You have accounts, they just work, right? You get the password reset stuff, you get a login button, you get register, you get all that stuff. And like somebody figure out the easiest way that we could get login index j. s or Gatsby, and I'll be I'll be a happy customer. That's for sure.
+
+120
+00:54:01,950 --> 00:54:14,670
+Wes Bos: Yeah, I think the next is not doing this because it's the job of the signal layer. Right? Yeah, the data layer. And that's Keystone and strappy have made that what you're asking for that's in Keystone strappy right now,
+
+121
+00:54:14,700 --> 00:54:31,500
+Scott Tolinski: but I don't like it as much. No, then no offense to Keystone and strappy. Neither of them have done it in a way that is as easy as Meteor did it. So like, okay, that's true for him did it that easily 2015? Okay, it's 2021. Can you make it that easy? Again, just make a bet. Yeah.
+
+122
+00:54:31,710 --> 00:55:33,540
+Wes Bos: I think the frustration of a lot of these things that we're saying is like, we want the rails of JavaScript, and we have lots of these things out there. But because the JavaScript ecosystem is bring your own 500 different things, and everything works interchangeably with everything, nothing in JavaScript is opinionated. And because of that, we have these things where everything can work together. It just takes like a little bit of configuring or a lot of bit of configuring to to get it to work. Think ecommerce and doing e commerce in Gatsby and next. With Gatsby, the options are limited to like headless shopping carts snipped cart is a big one Shopify, there's tons of them out there. But at the end of the day, if you're going to have a cart, and charge people's cards need server side code to be run, and that is either you have to fire up a server run serverless functions or pay a service in order to do it. So I honestly don't think Gatsby is a good use case for e commerce people ask me this all the time too many things on
+
+123
+00:55:33,540 --> 00:56:45,510
+Scott Tolinski: Gatsby e commerce. So like, I don't mean to say that isn't like you're wrong? No. But I need to say that isn't like I have a fair bit of experience there. And I have used several different ways whether it's just stripe, which changed their API on me after the tutorial is released, thank you very much stripe, and then Shopify and snip cart or anything like this. And with Gatsby, the big problem with e commerce and Gatsby is that the majority of the e commerce functionality that you're going to be doing is going to be taking place off your site. Yeah. So whether that is the cart functionality, which or you can build your own cart and submit it to Shopify or whatever, you can do that that's fine. But once you get into the shipping screen, the users like their past orders, if a user wants to check up on their order, there's a lot of things there were these platforms, you're going to need a service like snip cart, or Shopify and without those things, it's not going to be pretty because again, the user account information cannot be generated. So you're going to have to write like just about everything custom, which I guess would get you to the same point you are at with next where you do have to do everything custom anyways, but at least a lot of that can live on your site, rather than having to be an iframe on your site.
+
+124
+00:56:45,930 --> 00:57:01,710
+Wes Bos: Well, that's even another another good question is should you even be doing any of this stuff custom? Or should you just like, e commerce is a hard hard thing, right? And if you're getting into the weeds with e commerce, you're probably better off reaching for some sort of existing solution.
+
+125
+00:57:01,740 --> 00:57:43,650
+Scott Tolinski: Let me let me even plug in an existing solution that I really like is called reaction commerce. I don't know if you've seen reaction commerce used by Nola. So shout out to fella. Yeah, reaction. Commerce is a really nice, it has a 10 10,000 some stars on GitHub, and it's a really nice modern, there's a company behind it, right. But the code is on GitHub. So what's neat about this platform, I heard about them, because they are initially built on Meteor. Now they're their own custom thing. But it's a really nice modern platform compared to like this giant, monolithic Corporation, Shopify, shout out to Shopify, but I i'm not talking I'm not talking trash to Shopify by any means. But it's a little bit more of like, your own thing, rather than, you know,
+
+126
+00:57:44,129 --> 00:57:51,540
+Wes Bos: like, so is this. This is the like the back end for your commerce, or this is a, I'm pretty sure it's react in
+
+127
+00:57:51,540 --> 00:57:52,320
+Scott Tolinski: the whole thing.
+
+128
+00:57:53,189 --> 00:57:57,720
+Wes Bos: Okay, but like, this is not just a UI, this is actually like it does shipping in orders. And so,
+
+129
+00:57:57,720 --> 00:58:37,800
+Scott Tolinski: so reaction is an API, first headless commerce platform using node react and graph QL. The UI is really nice. The the plug in system is really nice. When I was initially building level up tutorials, I was building it on reaction commerce. And then I like realized, and I don't like too much custom stuff with my subscriptions to to really go for it. But now I wish I would have because they're the amount of like stuff that they do for you regarding those things, whether it is subscription orders, or shipping or whatever is like, Oh, I got a code that myself now. So I would check this one out. It's a neat platform. Pretty cool.
+
+130
+00:58:38,280 --> 00:59:11,070
+Wes Bos: So we'll talk about next they released a boilerplate for using next JS with commerce. And it's awesome because like it all the website runs on next j s, but the all the heavy lifting will go to any headless shopping cart solution Shopify snip cart, there's a million of them out there. And that's pretty cool. I also like another thing we're not really talking about with this e commerce is that a lot of times, especially Shopify, it's not just add to cart or whatever. It's the logistics of integrating with shipping providers. And
+
+131
+00:59:11,100 --> 00:59:12,630
+Scott Tolinski: there's so much there to where
+
+132
+00:59:12,630 --> 00:59:21,120
+Wes Bos: that product lives or if you're drop shipping or if like you have a store as well, where the product is shared between inventory and all that connections
+
+133
+00:59:21,120 --> 00:59:25,140
+Scott Tolinski: to all the services weighing and yeah, oh my god.
+
+134
+00:59:25,170 --> 01:00:19,140
+Wes Bos: Yeah. So that's why like next is saying like, and I think next is a great solution for doing e commerce because like you can, like I do it in my advanced react course you can do it entirely in on server side with next j s. And then just charge the card with stripe API's and all that you can do that and lots of cases and that would be a perfect use case for something like Scott and I. But as soon as you need to get into much more complex stuff, where you need fulfillment and whatnot, then yeah, you certainly lean on an existing solution out there. WooCommerce we talked to Let's shout them out. Scott and I are we're looking at doing syntax t shirts. Spoiler, we're gonna have some sick march for you pretty soon. We reached out on Twitter, David lindahl. Who runs this really cool active wear? What would you say this is Scott act mountain where now Colorado where he might
+
+135
+01:00:19,679 --> 01:00:26,670
+Scott Tolinski: be upset calling a caller right away. But it is very Colorado where it's very Patagonia where he you know that?
+
+136
+01:00:26,700 --> 01:00:52,620
+Wes Bos: Yeah, so he runs on on WooCommerce. Because he was saying just because of the the actual price of running WooCommerce is way less for his little side gig here. It's called Rainier watch.com if you want some, some sick shirts, so he gave us like half an hour of his time, just let us pick his brain. So we'll link up his brand here in the notes as well. I think if you're doing commerce next .js is a good solution over katzie, but certainly you can do both of them.
+
+137
+01:00:53,790 --> 01:01:22,260
+Scott Tolinski: There's a lot of stuff. Yeah, it's a lot of stuff. And you know, I think these both of these platforms are very good. And we will see changes and evolution over the course of this year with both of these platforms. And and I'm I'm really excited because evolution of both of these platforms means evolution and the work that we get to do. And so I'm excited about it. And hopefully a lot of great stuff comes out from both next teams, the versaille team as well as the Gatsby team.
+
+138
+01:01:22,710 --> 01:01:51,210
+Wes Bos: Yes. And like, again, shout out to everybody who's working on this stuff. Because like I sometimes I feel bad saying anything. I don't necessarily want to do these these like vs shows because like, Here I am talking running my mouth into a microphone where there's like actual developers, like working on the stuff day in and day out. So I appreciate all the work that everybody does on this stuff, because they're both two wicked platforms. And I love to use both of them.
+
+139
+01:01:51,450 --> 01:02:18,980
+Scott Tolinski: Yeah, likewise. Yeah. And I would, I would definitely stress it like don't take any bit of criticism that was there I ever have is as being like criticism of the work involved. Because I think both of us know firsthand, like, what that work looks like and how hard a lot of these problems are. So yeah, I would, I would certainly not want our critique in any regards to be used in that way. But shout out to all of the the developers working on these really tough problems.
+
+140
+01:02:19,500 --> 01:03:11,100
+Wes Bos: Alright, I think that's it, let's move into some sick pics, I am going to sick pick another kitchen tool that I absolutely love. And that is deli containers. So a deli container is basically if you get takeout from like a fall place or something like that you get this like plastic container with the plastic lid and it's clear. So I've been watching a lot of like food YouTube lately, and over the last years I've seen bone appetit, they use them for everything. You can get them in three different sizes, the recyclable the lids, and the bottoms are two different kinds. And I made sure before I bought them that they were recyclable and my where I live, because I know I'm gonna get some hate for recommending a plastic piece of plastic. But these things are the best. I took all my spices and I switch them over to using deli containers
+
+141
+01:03:11,550 --> 01:03:13,020
+Unknown: or spices. Yeah, I saw that man
+
+142
+01:03:13,020 --> 01:04:04,890
+Wes Bos: it just life changer because I can like see everything they stack really nicely. They're really durable, you can microwave them, you can throw them in the dishwasher. It's just just awesome. Like we started getting them. It's sort of like a replacement for for Tupperware. And I'm almost on the bridge we have like this like glass lock, where it's like a plastic lid and glass bottom right now. And I like it. But there's something about just these delicate handers and how how flexible they are for for storing leftovers for storing spices for storing, like pasta, you open up a bag of pasta, you can just throw it into one of these and then when you use the big one, and then once the leftovers get below a point, you throw it into a smaller one and you you can keep your fridge nice and tidy like that. So pretty big game changer for me in terms of cooking and organizing the kitchens called deli containers.
+
+143
+01:04:05,040 --> 01:04:16,710
+Scott Tolinski: Yeah, you know, the biggest problem we have with our spices is that they're in a lazy susan that's like at trial level and we have like a child lock on there. But the Oh yeah, ripped it off. So like
+
+144
+01:04:18,030 --> 01:04:18,980
+Wes Bos: drive me nuts.
+
+145
+01:04:19,290 --> 01:04:50,850
+Scott Tolinski: They do the amount of cinnamon that's been poured all over our floor. The Brooklyn just buys spice goes everywhere. That's been a huge problem in our household lately. I'm going to sick pick the this is a tool that I used several times and it is like okay, I had a prefaces we're in an old house old drains all this stuff our drains clogged up all the time. And I was reading about how bad drainage is for your drains. And I really like the ease of a solution like just pouring drainage into the drain but that's really bad.
+
+146
+01:04:51,570 --> 01:04:54,480
+Wes Bos: If you have a septic tank either you can like kill all the bacteria.
+
+147
+01:04:54,810 --> 01:05:55,380
+Scott Tolinski: Yeah, you can. You can do bad stuff with drain. Oh, so I've moved entirely to this thing called the deep Cobra drain Zipit and we've got one of these oh yeah gusting it's disgusting. It's disgusting to use because you're shoving it down a drain what it is it's like a little like it's got like little hooks on it's a long little zipper plastic thing. So it's a decently long piece of yellow plastic with these little hooks on the end and when you do is just shove it down the drain and then you pull it out and when you pull it out along comes everything that's stuck in your drain and I like I could I could fix for the most part all of our drains in about like five minutes on like just total throughout the whole off just go and just zip it on each of the drains and they're just instantly unclogged. So this thing is fantastic. It's it's $7 so like to have something around the house that is non chemical it's not going to hurt your pipes is going to be superduper easy and can get anything out. I love this Cobra drains it and I used to
+
+148
+01:05:57,240 --> 01:06:06,390
+Wes Bos: I remember like our our shower was draining like really slowly slow. And I never knew that the drain cover came off and we had had this
+
+149
+01:06:06,479 --> 01:06:08,790
+Scott Tolinski: shower for I can't figure mine off.
+
+150
+01:06:08,850 --> 01:06:31,890
+Wes Bos: I still can't figure it out. They all come off like they all have to be chopsticks in it. And turn it is threaded. It's probably yours is threaded. Or sometimes there's little it's just us gotta yank it and it'll pop out. Cuz these have little tabs anyways, yeah, put it down there. It's disgusting. It like takes up an entire like hairball says, you know, like
+
+151
+01:06:31,890 --> 01:06:35,880
+Unknown: so gross when your smells terrible. Yeah.
+
+152
+01:06:36,510 --> 01:06:44,370
+Wes Bos: Good tool. I think mine was just a couple bucks at Home Depot. Definitely. If you see one, or this is definitely one of those like buy it before you need it tools.
+
+153
+01:06:45,030 --> 01:06:51,120
+Scott Tolinski: Oh, yeah. Oh, yeah. Definitely buy before you need it. And in that like longer, the better in my mind.
+
+154
+01:06:51,150 --> 01:07:10,730
+Wes Bos: Yeah, that's that's a good tip. Some shameless plugs. I'm gonna shamelessly plug. I'm gonna go agnostic on framework. Today, I have a Master gatsby.com course which is built in Gatsby. And I have a advanced react.com, which uses next j s. And
+
+155
+01:07:10,770 --> 01:08:55,430
+Scott Tolinski: that one is just about to be updated. Let's see, this is a month out. It might even be released by the time you're listening to this. So check it out at Advanced react.com. Using Keystone as the back end and Keystone little tip. Nobody knows this yet. But by the time you're listening to this, you well as Keystone is rewriting their back end. Again, on next j s. The whole UI for editing in the CMS is going to be index j s, which is pretty cool. Neat. So I'm going to shamelessly plug in my Black Friday sale along with the latest course as of the time of recording this. For those who don't know, I release a new course every single month. The most recent one is animating svelte, and it is just showing you just how easy it is to build custom directives to toss on stuff with like, you got to see some of the stuff that I'm doing an animating spelt like for instance, I built my own drag plugin. And to make anything draggable all you do is you say use colon drag on anything. And then it can drag in any dimensions like toss it on the model, oh, you can just drag it around. Oh, you want to have actual fire. That's amazing. And the action can fire when you hit a certain threshold. And then it's so super easy. You attach it to custom JavaScript events and all sorts of neat stuff. And that's all in the course if you want to learn how to do that kind of thing, check out level up tutorials att.com forward slash pro sign up for the year and save 50% right now only right now at the time of when you're getting this because the sale is going to be over very, very soon by the time you're listening to this so head on over to level up tutorials.com get that course along with 12 other additional courses over the course of the year not to mention the entire back catalogue, which includes a mammoth amount of things at this point. So check it out, level up tutorials.com forward slash Pro.
+
+156
+01:08:55,520 --> 01:08:56,039
+Unknown: Alright,
+
+157
+01:08:56,039 --> 01:09:07,829
+Wes Bos: that wasn't long a show in the history of ever but we needed it to be so we could get through all of the different pros and cons. Hopefully you enjoyed that one and we will catch you on Monday word peace please
+
+158
+01:09:09,659 --> 01:09:19,409
+Scott Tolinski: head on over to syntax.fm for you full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you liked this show.
+
