@@ -1,0 +1,432 @@
+1
+00:00:01,319 --> 00:00:02,820
+Announcer: You're listening to syntax
+
+2
+00:00:02,820 --> 00:00:06,120
+Unknown: the podcast with the tastiest web development treats out there.
+
+3
+00:00:06,149 --> 00:00:10,530
+strap yourself in and get ready to live ski and West boss.
+
+4
+00:00:10,589 --> 00:00:47,549
+Wes Bos: Welcome to syntax. This is the podcast with the tastiest web development treats out there today. We've got a guest on for you. We've got Benjamin dumpy, he's here to talk to us about running conferences. He's run a whole handful of different web development tech conferences in the past. So we're here to talk about how conferences are run and what's hard about them and all of the all of the stuff that involves in person as well as like, now we have Coronavirus. So now we have a lot of online conferences, what makes a good online conference as well as like the tech behind running an online conference. So welcome, Ben, thanks for so much for coming on.
+
+5
+00:00:47,609 --> 00:00:49,409
+Unknown: Yeah, thank you guys so much for having me.
+
+6
+00:00:50,009 --> 00:00:54,240
+Wes Bos: Yeah. With us as always, Mr. Scott to Lynskey. Yeah, you didn't today, Scott,
+
+7
+00:00:54,359 --> 00:01:22,170
+Scott Tolinski: hey, I'm doing good. I do want to say at the job, Ben, the conferences that I don't just don't I'm not saying this to just butter Ben up here. But the conferences that I've been to that business owner have been the best conferences. So I think I have the best person to talk about this on because seriously that all of the conferences that were there's react on whatever jamstack calm those conferences were always awesome that Ben's done. So thank you very much for one throwing awesome conferences and to stopping by to talk to us about it.
+
+8
+00:01:22,560 --> 00:02:11,130
+Unknown: Yeah, absolutely. It is my pleasure both to run those events, because it's absolutely my passion. And my love of running these events and bringing these people together that hopefully shows and those events in us. Secondly, is my pleasure to to come on this podcast. I've been a fan of your podcast for a long time. And I think you guys are, are amazing individuals and amazing podcast hosts. I remember your first episode that I know in my car, actually just thinking about it. Now I was like driving across one of the bridges coming up to the San Francisco skyline and there's West, his voice and Scott's voice and you guys just awesome. And it was and you guys were like, oh, we're just figuring this out. And now you got this like amazing cadence go. And it's amazing. It's amazing stuff. Go on. So not to butter you up, but
+
+9
+00:02:12,270 --> 00:02:12,870
+Wes Bos: I'll take it
+
+10
+00:02:12,900 --> 00:02:17,340
+Scott Tolinski: Well, yeah. Yeah. Exceptionally into being buttered up lately.
+
+11
+00:02:17,940 --> 00:02:27,090
+Wes Bos: Yeah, for those who are listening are live. I think we've done two live syntaxes. And we're supposed to do three. But yeah, that didn't pan out. We
+
+12
+00:02:27,090 --> 00:02:28,310
+Unknown: had other plans for that.
+
+13
+00:02:28,350 --> 00:02:36,990
+Wes Bos: Yeah. But those were at at Ben's conferences, and he had this like, the really cool. What do you call those big signs that you have made? Oh, yeah.
+
+14
+00:02:37,350 --> 00:02:43,860
+Unknown: So it's just like an expandable like sign that we just put on the table between you guys. So he put up like
+
+15
+00:02:44,100 --> 00:02:45,210
+Wes Bos: the syntax logo,
+
+16
+00:02:45,270 --> 00:02:55,770
+Unknown: we put up the syntax logo on a table between you guys, we've got some nice couches for you. And then we put some shrubbery up there, which we like set up like quickly during a break for like everyone don't go anywhere.
+
+17
+00:02:57,660 --> 00:02:58,380
+Scott Tolinski: shrubbery, yeah. shoving
+
+18
+00:02:58,380 --> 00:03:15,270
+Unknown: everything on the stage. It was it was really great. And I believe one of you started off saying Yeah, between two ferns with the western sky. Which was, which was so amazing. Like, we didn't learn this until after that. But you guys had never met until that
+
+19
+00:03:16,650 --> 00:03:17,789
+Wes Bos: conference.
+
+20
+00:03:18,660 --> 00:03:21,030
+Unknown: Conference on stage? Well, not on stage again. I
+
+21
+00:03:21,030 --> 00:03:24,120
+Scott Tolinski: mean, like, yeah, base more or less. We went out for ramen
+
+22
+00:03:24,120 --> 00:03:28,500
+Unknown: before, which is fantastic. You gotta hear about that story sometime.
+
+23
+00:03:30,000 --> 00:03:47,370
+Wes Bos: Yeah, that was that was good. Scott is exactly what I thought he would be. So there's not. Likewise, we got to talk about our sponsors, real quick, was sponsored by Sanity, which is a structured content, CMS and fresh books, which is cloud accounting. We'll talk about them partway through the episode.
+
+24
+00:03:47,789 --> 00:04:12,600
+Scott Tolinski: So you've decided that you would like to run a conference, right? You said I think a conference is a good idea. There are a lot of variables, which I'm sure you're very aware of that there's just thousands and thousands of variables here. And there's a lot of costs. What do you do when you're thinking like, okay, now Now I need to start figuring things out, like what's step number one of starting to throw a conference?
+
+25
+00:04:12,750 --> 00:06:04,530
+Unknown: Sure. So I think there's really three things that you need when starting to run a conference. And the first thing is your motivation. Who are you? Why do you want to run this conference? Right? Are you a company? Do you want to run this conference for recruiting? Do you want to do sales of a product? Do you want to just bring people together? Are you establishing a new category? Are you an individual? Are you doing this for passion? for money? Are you doing it because you just love events? So in my personal story, you know, I have a background in sales and marketing and finance. Then I moved into web development started off in Rails. You I went to one of those boot camps. But then I really got into react. And I was fortunate enough to really start my web development career, when react was just starting to come out, like I remember I just graduated episode a little shout out to them. And in Portland, Oregon, and React Native was just announced on the stage. And I was just blown away, right. I remember Tom Aquino's keynote, amazing speaker, even better manager of the over there at Facebook for the React team. And it was just so inspiring, so amazing. And they put on quite an amazing conference. So that really inspired me to get into react. So for my personal story, it comes from a passion of the subject matter of the conference. And it comes from a passion of the events because after I graduated from Epic codice, I moved to San Francisco, which just has an amazing meetup scene, and meetup as in meetup.com, which, Curiously, has a trademark for that word. So let's call them meetings.
+
+26
+00:06:04,530 --> 00:06:05,190
+I
+
+27
+00:06:07,170 --> 00:09:06,630
+have an amazing, San Francisco has an amazing meeting scene, which are like, basically many conferences. I mean, this is happening every single night. And you have these these companies that are hosting these, these events at their offices, you know, they're promoting themselves and their company, they're saying, you know, come and work for us, and, and so on. But then just the transfer of knowledge, the sharing of knowledge, which is, which is very special, both to San Francisco, because it's such a high level here, also to just web development in general. You know, when I went to my first conference, when I was working in finance, I remember the company I was with, we had a booth. And there was this guy who comes up to us, and he just looks like a banker. You probably even smelled like a banker. I mean, he's he's clearly our competition, because we had this like, proprietary software product. And he's asking us all these probing questions, but he's pretending that he's an attendee. And we're like, dude, you took off your sponsor badge, don't even wear a badge. Yeah. And wearing a suit. You look like a banker. So he's like, infiltrating us, right? He's like coming in, I'm sure that happens in software. But among us, devs Not really, right. We're all about open source, we're about sharing knowledge. And this just, this culture was just so captivating to me. And it just really, really, I just fell in love with it. So I fell in love with the meeting scene in San Francisco, I fell in love with the knowledge transfer, the community building. And I noticed that there was really only one react meetup. And it was happening a lot in in the South Bay, and not as much in San Francisco, which is where I was at the time, I decided to start my own. And we started this meetup.com group, and it just grew from there, right. And so the motivation is really important to establish. So for me, it's a lot of passion. It's a lot of interest. And it's the magic, right, it's around a specific theme. And so this leads into my second goal that you need to understand when you're looking to make your first conference is to know who your target audience is, if you don't have a specific target audience, and you don't have like a brand already built, it's going to be tremendously difficult for you to run a conference. Like for example, let's just say there's this really hot new technology out. I don't know it could be react, it could be view, it could be once that new one by Google, the new mobile cross platform. flutter flutter, right? flutter flutter. Yeah, seems really cool. Do you have an audience for that? Are you the person to run an event like that? Like, if your motivation is more, I want to feel the demand for this? Are you the right person for that, though? You know, so you have to be connected with your audience, you have to know who they are. And you have to have specific motivations for that. Does that make sense? Yeah. Yeah.
+
+28
+00:09:06,630 --> 00:09:34,980
+Scott Tolinski: I think that's an often overlooked aspect of just about everything. Like, what are you? What are your actual motivations here? That sort of high level thought of who is this serving is stuff that we've been talked about in the context of whatever our freelance projects out, right, like, Who is this? Is this project serving your ego? I don't think it is, I think this is serving some company's goals or whatever. So what are those goals? What is your motivation? And I think those are exceedingly important questions that often get overlooked.
+
+29
+00:09:35,190 --> 00:10:04,890
+Unknown: Yeah, exactly. And since this is, you know, since your show is all about web development and tech, within that industry, specifically among us developers, it really comes down to transparency, right? You have this whole culture of open source. And so that transfers I think, into events and you want to be as transparent as possible. with who you are, how you're running the event and why you're the right person to run that event?
+
+30
+00:10:05,270 --> 00:10:39,270
+Wes Bos: Yeah. Do you mind telling us like which of the conferences that you've run in the past? Because like, I know, you've run some of yourself. And then you also have run some for for companies as well. But I always thought that was pretty interesting. Because like, your also your conferences are there for profit, right? You're not just like some sort of Meetup group that's now running a conference. There's certainly lots of those. I'm not going to name names, but there are there are conferences that are industries that you go to, and they're very much put on by companies looking to make a massive profit, because there some other sales are down right now.
+
+31
+00:10:41,370 --> 00:13:35,820
+Unknown: Yeah, so conferences are done for 2020? Of course, probably 2021. But just to give you a little background on me to answer your question, yeah. So I'm in a unique position, because I'm an independent organizer. And I have a number of skills that allow me and just experience overall that allow me to run events, almost solo. And what I mean by that is, I have a background in sales and marketing, which if, if you're thinking of running an event, and you're not comfortable speaking to people, you're not comfortable, cold calling people, you're not comfortable, cold emailing people, yeah, either get someone to do that. And be really involved in it as a major stakeholder, as in like giving them a lot of the profits if you're if you're if you're going for profits, or don't do it at all, because that is a major part of this. Because conferences are enormously expensive, enormously risky. And if you don't have the confidence to sell sponsorships, tickets and just be on it all the freakin time. Don't do it. Yeah, do it. It's just like, you have to enjoy it, right? That's part of why I'm in such a unique position. Because I really love what I'm doing. I have the experience to be able to do that with sales and marketing. And then with web development, to a lesser extent, I don't really get into code that much anymore. But when I first started, like, I built the websites and you know, I designed it and like it showed because my design. I never worked at a company as a professional designer, but it got the message across and it was it was good enough, right. You know, if you put your heart and soul into something, then it definitely shows. But just to answer your question. So I'm the organizer of react athon, which I've been organizing since 2017. React athon started as just really just a week of events supporting Facebook's react con, which at the time, was impossible to get tickets to like they'd open up tickets, like at 12pm on next day, right? And they would sell out in like, milliseconds. I'm like, Okay, how many tickets? Were there? Did people write bots for this? I don't know. They were they were just so hard to get. Secondly, it was in Santa Clara, which if you're not familiar with the Bay Area, it's a decent distance away if you're like working in San Francisco, and you're used to used to walking places. So we've been running events for over a year in San Francisco, through the variable react Meetup group. And, you know, I had been building this community. So there's a lot of interest around react and this whole event space. And so what we did was we just, we basically said, Let's run a week of events leading up to Facebook's react con. So we partnered with a number of companies, including Pinterest to run our meetup there, which we had over 350 people come there. It's just insane. Fortunately, they have a massive office or I think they used to, I think they're getting rid of that office.
+
+32
+00:13:36,360 --> 00:13:39,899
+Scott Tolinski: They make you login before going into the office. Yeah, they had
+
+33
+00:13:40,529 --> 00:17:01,620
+Unknown: the envoys there. And the line was extremely long. We had an RSVP of over 650 I think you can still see it on our meetup page. So a bunch of people did end up not coming in because the line was just so incredibly long, but like hilarious. We stacked the deck with just amazing speakers. We talked about serverless Redux, we had people fly in from the east coast. Justin Baka Rick, from formerly from NPR. I think it's a capital one now came all the way from Washington to speak at this event. But we also did seven different workshops from six different instructors. We had a hackathon at GitHub over the weekend. And then on Monday and Tuesday, which was react con we had a live viewing party of the conference. And so with all this demand, this this goes back to motivation and knowing your target audience. So I'm really understanding that wow, there's a lot of demand for this. But at the same time, there's already a conference the San Francisco react con, right that takes place q1 reactivation was taking place q1. So what do I do, but reactive on is pretty sorry, React con. Facebook's is pretty advanced, right? It's for people who are already in the React community. Right? You're going there as a quote unquote react developer, or web developer who specializes in react is actually sir JavaScript developer who loves react. But there wasn't like an introductory conference. So the idea was okay, since there's all this demand, let's create this one day conference to welcome people to react, right? So we curated all this content, basically, for people coming from, you know, other technologies or at a boot camp or just new to it in general. And that was in the works. But then Facebook announced that they weren't going to run react con. And so I said, Okay, I guess I want to advance calm, too. And that was, that was the impetus for react athon becoming a three day event. So did the workshops, and we still did the hackathon. But just a long winded answer your question I also. So Netlify was a sponsor of the very first reactive THON, which was just, you know, that week of events leading up to react con. And then they also sponsored the second one. And after that second conference, which was that three day events, I'd been talking with them for a number of months about running a jam stack calm, they had actually run a precursor to jam calm the year prior, but I think they realized that it's, it's a lot more involved, it's a lot more difficult to run than they had previously estimated. So for their second attempt, they they came to me, and they said, you know, we want you to run this. So I was hired as the program manager to run jams calm, and I ran the first two of the program manager. And then the next two, I helped at a more like, organizer capacity, because they started to build out their internal events team. And so I ran that and before before Coronavirus, ruined my career and, you know, much as much of the world. It's just so sad to say, I was in talks with AWS and talks with stripe to run events for them. And I just need to follow to help them with graph qL summit, like in a limited capacity. And, you know, all that just stopped. Including reacted on, which was Yeah, yeah, insane.
+
+34
+00:17:02,580 --> 00:17:21,720
+Wes Bos: Man. Yeah, I remember. It was like March. And I was just like, oh, like, we're, we're still going to this right. Like, yeah, we're still going to this. And there's, there was no cases in San Francisco at the time, and everything was gonna be fine. And that is reported. Yeah, at least no reported cases at all. And within a week or so it just I'm sure your email just
+
+35
+00:17:21,800 --> 00:18:01,290
+Unknown: escalated. So quickly, it escalated so quickly from Oh, there's no cases here to Oh, there's hundreds, oh, events over 100 in person gatherings are illegal. Okay. I guess it's not, we actually postponed it before they made it illegal. Because our policy is we wrote because we were monitoring this our policy was that if this is declared a pandemic, because remember, this is early March, late February, early March. Yeah, everything is still unknown. So we're like, still figuring this out. But once a who is like, hey, it's a pandemic, we need to, you know, stop this thing. We were like, okay, yeah.
+
+36
+00:18:03,390 --> 00:18:23,250
+Wes Bos: Can we talk about getting speakers and whatnot? I'm curious about like, how do you select who gets to speak at it? How do you ensure there's appropriate diversity in your speaker lineup? Paying speakers, things like that? Do you pay speakers? Should you there's a lot of opinions on whether you should speak for free or not? What any thoughts on that?
+
+37
+00:18:23,570 --> 00:20:15,860
+Unknown: Yeah, absolutely. That's a great question. So this, this goes back to my point of knowing your target audience, because your audience isn't just the people who buy tickets and come as attendees, your audience, by audience, I also mean, know who your potential sponsors are, know who your potential speakers are, right? know who your potential marketing partners are people who would be interested in coming to this event, you know, you want to get the press involved, you want to get as many people to make to make your conference as well known as possible, right? You need to make a lot of noise, because events live and die by awareness. They really do. Like, how often have you log on to Twitter, and you're like, oh, wow, this amazing conference is happening tomorrow. Right? Like, why didn't you hear about this before? It's like, Hey, I'm 10,000 miles away. So now with remote events, that's going to kind of flip that on its head a little bit. We'll get into that a little later if we have time. But to answer your question about like, speakers, specifically, well, this goes back to your motivation and knowing your audience and defining a specific theme, right? No one wants to go to a conference that doesn't have a theme. You have to convince those people to actually want to come to this event, both the the audience and the speakers. And so this also goes back to, again, your motivation of who you are and if you are the right person to run this, that will give you a bit of credibility to approach speakers and my philosophy is always that you should confirm a number of speakers by inviting them that helps to give the event a sense of Euler a sense of I'm at a loss for words right now premium this exclusive, not exclusive, but something that's more premium. Yeah.
+
+38
+00:20:16,709 --> 00:20:30,510
+Wes Bos: You often see that with a conference will launch. And it'll say Chris khariar is headlining, and then none of the other speakers are announced yet they'll be announced at a later point, but they you sort of have to anchor with like, this is legitimate. We got Chris coiour to come for the
+
+39
+00:20:30,510 --> 00:20:32,910
+Scott Tolinski: it's the list. utiliser
+
+40
+00:20:33,419 --> 00:20:36,300
+Wes Bos: legitimize there, there you go. Yeah,
+
+41
+00:20:36,539 --> 00:23:18,780
+Unknown: exactly. And, and these people who are, you know, well known, they're also many of them are like, professional or semi professional speakers. So you know, you're gonna get a good talk from them, you know, you're gonna get good content from them. And many of them have big audiences and big megaphone. So if you can get someone that has, like, 100,000 followers on Twitter, like, that's good, that helps you to market that. Because your speakers don't just become speakers, they become stakeholders, right? Because it's important for them to go to an event that's also successful you like if you're a speaker, you don't want to confirm and say yes to an event that you are unsure of, right? You can't be like, well, if I go to this event, and I fly across the country this night, you know, because in person events, again, you know, you have so much logistics, just as a speaker, you got to fly somewhere, you got to go to the hotel, how far is the actual venue from the airport to get a flight, it's just a lot of time a lot. Yeah, you're spending all this time there is it going to be worth it for you. And so that's something that you as the organizer have to convince others that it is. So if this is your first time running a conference, your job in that regard is a bit harder, so you have to have. So this goes back to me and my personal story of building a brand around rerolled react and running the meetings that have a higher cadence. And you know, we put a lot of effort into those because for us, that was also business, you know, I've been an entrepreneur since like, 2014. It wasn't just like, oh, let's do you know these meetups, because it's fun. It was lead gen for us, right? Because we ran like a react training business, right? We we started with public workshops. And our goal was to be, you know, training in house before the end of the year. And we and we were doing that, like, I think six months into rebelde react, we were training nerdwallet in their office. And then we try and Pinterest, and we tried a bunch of other companies and we even flew to Chicago, we flew to New York, because it was a lot of fun. But honestly, my my conference business really, really started to take off. And I spent a lot more time in that. And that's really where my passion lies. And so I would organize workshops with conferences, as well tie them together. But yeah, to answer your question about speakers, it's really important, I think, to have a number of invited speakers. And then for me, personally, I like to have a CFP or call for papers, a call for proposals or call for speakers, whatever you wanna call it. Yeah, basically inviting people to submit their talk some conferences, like I think react rally, correct me if I'm wrong, but I think they just operate on cfps, which is great. It's a community conference run by two amazing individuals, engineers, or maybe more. I don't know. I think it started with just
+
+42
+00:23:19,469 --> 00:23:55,620
+Wes Bos: what are your thoughts on paying speakers? One thing I hear a lot from people is when they're complaining about a conference, they say you have to pay all your speakers tons of money and pay them for their time. And then you also have to have like, super well catered lunch. And you also have to have xy. And sometimes I hear these people complaining, I'm like, you don't know how much it costs to run a conference. It's very expensive to run a conference, I think. I'm not saying you shouldn't pay speakers, I just say that. Like, there's a lot more that goes into it. And I'm saying this as somebody who has been to a lot of conferences to talk to a lot of people like you who run them.
+
+43
+00:23:55,859 --> 00:25:09,990
+Unknown: Yeah, I would encourage anyone who, like doesn't really have an idea of how expensive at conferences just to request a catering menu from a hotel and look at the price of coffee. It's ridiculous coffee at a conference of like 500 people can literally cost you that many thousands of dollars. I'm talking like 567 up to 10 for just 500 people for like a two day cost yet. It's insane. It's so expensive. And everything is so expensive. And this is why actually I started my own catering company started a company called lifted plate. And actually when I was running jam, stack calm. Fun fact for you that the last in person event that we ran at the city of metreon in San Francisco, about 500 people and we got estimates from catering companies and literally it's like the bare minimum without breakfast. We're looking at $200,000 plus Same. And this is not counting the AV. This is not counting the venue itself. This is not counting the labor. It's
+
+44
+00:25:10,260 --> 00:25:12,600
+Wes Bos: why the wife, the cat, the
+
+45
+00:25:12,600 --> 00:27:50,460
+Unknown: Wi Fi is nuts. Like people, why is the Wi Fi suck? Well, because it costs $10,000 per megabyte. It's, it's, it's really insane. And so when you hear people complaining, it's you just have to be, you have to one service that you have to address those complaints. But I think you're right, Wes, I think there there could be a little more understanding and empathy on the other side. And this goes back to, to the transparency, right. Okay, so you have all these expenses? Do we pay speakers? Well, it depends on who's running the event. If you're, if you're Amazon running a massive conference, maybe I shouldn't call it a specific company not to pick on Amazon. But if you if your record profits, and you're running an event, and you don't pay your speakers, maybe it probably doesn't look good for you. Yeah, because giving a talk is, it's a lot of work. You know, I gave a lightning talk at DEF CON SF. Last year. And, you know, it's just 10 minutes, but it took me days, and you guys have given talks, and anyone else who's given talk, you know, how much work goes into it, and how much care goes into it. And then not, that's not even counting like polishing your slides and making them look good, right. So it is a lot of work. So for me, as an independent organizer who does this for a living, I need to make a profit to you know, pay my own bills, I need to make sure that the event itself is making money. And I need to make sure that everyone is is happy that it's that simple, good event. So what I do for my speakers, I don't pay them with cash. But I provide, you know, roundtrip flights, I put them up in a nice hotel, for the duration of the conference. And I provide a really good speaker dinner. And the speaker dinner to me is really important. Because having talked with all these potential speakers and the speakers that we confirmed, for months leading up to the actual event itself, when it happens, you want to have some place where where the speakers can come together and meet and just relax. And they've all worked hard on their talks while doing a full time job and taking care of their families and maybe 20 other conferences that they're speaking at. And so I put together like this nice dinner for the speakers to come together and casually hang out and meet. And then that makes the conference experience better for them too. Because, you know, a lot of these people are meeting for the first time in person, or meeting up again from conference they've met before. And so coming to the event, this gives them a chance to, you know, hang out and meet each other and then go to the events and have a friend have a friendly face. That's that's around the conference for them.
+
+46
+00:27:50,999 --> 00:28:43,530
+Scott Tolinski: Yeah, some of those little little touches and in whatever they go, totally noticed by the people attending conferences, because I've been to a lot of conferences and I think like some of the things that have always stood out about the conferences that we went to that you ran were like you said the speaker dinner excellent. Every time had great conversation met some people that were talking to on Twitter for a long time, but just like set up in a way that definitely invoked that sense of camaraderie and you know, just getting to really experience the people that you're there with. But also, Wes has a note on here about your your speaker goodie bags. Man, the speaker goodie bags were fantastic. And I kid you not my wife yesterday, because you know what? I really love this react. athon mug you have. It's not just a crappy mug. It's a nice mug, whatever. But
+
+47
+00:28:43,770 --> 00:28:44,550
+Wes Bos: mine yesterday,
+
+48
+00:28:44,580 --> 00:28:51,750
+Scott Tolinski: you seem to go all out in the goodie bags and the boxes and whatever. And yeah, I think that oh my god, they're just like, really fan, Scott,
+
+49
+00:28:51,750 --> 00:29:25,740
+Unknown: those. Those mugs have a sordid history. So I ordered, I ordered a box of bugs. I'm not gonna call it the company who did it because they made it right. So I'm not going to give them bad press. But the first time it shipped, everything was broken. And I'm like, Okay, great. Like a couple months left, and I need to order more. They sent more these weren't broken. But then like, a few weeks later, I see like these $2,000 charges on my on my bank account. And I'm like, What the heck? That's for like Russia. But great. So I got the mugs. They're broken. Now I'm hacked by Russia.
+
+50
+00:29:26,250 --> 00:29:31,080
+Oh, no. But yeah, like guys in there. Fantastic.
+
+51
+00:29:33,000 --> 00:30:17,880
+Yeah, and, and this goes back to, you know, your motivation, like is your love of like, this event, this technology, this? Whatever it is this community going to show and what you're doing, you know, because like running a conference isn't just, oh, I'm gonna put a schedule together and find a venue and things will work itself out. It's like running a it's like running a new product within a company or even more running its own company, right. You're managing A mid six figure or seven figure budget even. And you have these deadlines and you got sales and you got marketing. And just you have all these aspects coming together in this one event that is just much more happening under the scenes than you can ever imagine.
+
+52
+00:30:18,480 --> 00:30:41,970
+Wes Bos: I'm gonna discuss a My favorite thing from the goodie bag was the jam stack jam. Where one JavaScript, one API's and one like markup jam. My kids loved it. It was they like they gobbled it right down. And I tweeted a picture of it and people loved it. I thought that was such a interesting thing way to go down is just have jamstack j,
+
+53
+00:30:42,720 --> 00:31:14,730
+Unknown: I think it was I think it was someone from the Netlify team, I think it was Jessica Parsons. Or maybe Phil Hawksworth that posted that in the company slack. And I just thought it was hilarious. And I was like, Alright, I'm doing that, as part of the stickers, I buy the jam, I remember just the the night before, actually, you know, completing the packages, just, you know, it was such a long time to get the original stickers off of those things, though, man. sitting there in the sink with like a razor. And
+
+54
+00:31:16,920 --> 00:31:37,950
+Scott Tolinski: so if you all of a sudden see some $2,000 charges for some mugs from Russia that you bought, you want to keep track of how you were reimbursed for that, you should probably reach for one of our sponsors to keep track of your finances. And I'm talking about Freshbooks. West, do you have a personal anecdote to talk about Freshbooks with the zoo involve charges from Russia,
+
+55
+00:31:38,039 --> 00:32:37,500
+Wes Bos: let's talk about expenses with Freshbooks. I think that's a good good lead in. So Freshbooks will hook up to your credit card, and you can auto import your things right from your credit card. So you would see $2,000 worth of Russian mugs that are broken or as a line item in your Freshbooks. And that should raise a red flag to you because you'd be able to filter for like something I'll do every now. And then as I'll go through my top like 20% of expenses, like the really expensive ones, and then see like, okay, make sure making sure they're all valid. And if there's places I can cut them down, even 10% that's significant. So Freshbooks would spot that for you through your reports and all that. So check it out, if you are a small business that needs to do your accounting, your invoicing, your expenses, all of that, check out freshbooks comm forward slash syntax, ooh, Freshbooks got a new logo. If anything, go to this URL for the new Freshbooks logo. And make sure you use syntax in the How did you hear about a section you're gonna get a 30 day free trial with that URL.
+
+56
+00:32:37,500 --> 00:32:38,190
+Scott Tolinski: Sick.
+
+57
+00:32:38,400 --> 00:33:13,200
+Wes Bos: last note about real life conferences is just catering. I can't believe you started your own catering company because the food was so good. Versus the like, usually conferences give you a box with a super cold Apple sandwich that's been in the fridge for three days. Yeah, and like a bag of chips. And they're cold as well, because they're, they freeze these lunches or whatever. And they're awful that I usually then everybody says, Oh, thanks, throw it in their bag, and then they go and buy their own lunch. But it was amazing. And so you just like started your own catering company just Well,
+
+58
+00:33:13,200 --> 00:35:21,060
+Unknown: it wasn't just me and I'm more the sales and marketing and lead gen like arm of the company, I have the good fortune of having a better half who has her own company. And it's it's assisted living, you know, they they run like a 30 bed assisted living, which is extremely hard in the industry a that's a that's a whole other topic. But they've been running it for a number of years. And the assisted living they run actually was was famed for their food because their grandmother who started it, you know, she started it out of a hatred for the industry. Because when she put her own mother in an assisted living home, like when she went to visit her the first time, she was wearing men's pants, shoes that were like mismatched and didn't even fit, and was just like the food was just terrible. She said Ah, so she started her own assisted living, where she focused on you know, actually like caring for the people. Just assisting them. And more importantly, will not more importantly, but equally importantly, is providing them with amazing food. And so when when my my fiance and her brothers took over the business, they really worked hard on even improving that even more. So they became basically professional chefs. And when my event business started taking off, and I showed them how much money like these catering companies are charging, which is it's fine because it's really expensive and you know, you have your ups and downs and catering. We said well we can do this right. So when we cater gem set con For example, I told you that, you know, we've got estimates for like 200,000 minimum to do this. Well we saved them over $90,000 Because we well, you know, I gave them friendly rates, you know, they're paying me as an event organizer, and I say, Here, I'm gonna give you guys, I'm gonna give you, your company, this amazing product for rates you won't get anywhere else. And that's kind of our pitch now, you know, is that we can provide, like, very top tier catering at rates, you won't find anywhere else.
+
+59
+00:35:21,480 --> 00:35:29,880
+Wes Bos: Vertical integration conference company, you can get the jam and the stack and the stack,
+
+60
+00:35:30,480 --> 00:35:31,530
+Unknown: the stack of jams.
+
+61
+00:35:31,920 --> 00:36:07,830
+Scott Tolinski: So obviously, we're living in a, like a post pandemic, or active pandemic society. Currently, I would imagine that this would be pretty detrimental to the in person events and catering businesses, when you first started having all this stuff, in your mind space was any sort of event that would prevent in person events ever on your radar? And if not, like, how did you immediately react to it? And what were now almost like a year later, how has that reaction changed? And how do you see this space evolving?
+
+62
+00:36:08,250 --> 00:36:26,730
+Unknown: Yeah, so that's a really good question. And I think to answer your first question was something like this on our radar? I would say no, I think for most people, a pandemic that completely shuts down the entire world economy kills hundreds of thousands. I don't know, it's in billions at this point. I don't know. It's a lot.
+
+63
+00:36:26,940 --> 00:36:30,440
+Scott Tolinski: It's a lot. It's I mean, there's over 200,000 in the US so
+
+64
+00:36:30,480 --> 00:40:57,600
+Unknown: but when I remember the first person who expressed concern, one of them one of my keynote speakers for reactive THON, he's like, do you have a backup plan? I'm thinking to myself, Oh, my God, like there is no backup plan for this right? in this industry. Because the contracts you sign, it's like, there's no insurance for this for an event like this. Right? There's, there's force majeure. And that's it. And when it completely decimated the industry, like this event, this industry has completely gone to zero, right. And I saw the writing was on the wall, pretty quickly, when I saw that the National Guard had quarantined an entire city in New York, when I saw what was happening in Italy. And then in Spain, I knew that this was something that is a once in a century event. And, you know, in the events industry, in every industry, in the past, what, six years or so since this booming economy, we've all just been coasting, right? It's just been easy to find money. It's been easy to to make sales, it's been easy to build a business. Nothing is easy, but comparatively speaking, right? To a recession, or I don't I don't what do you call this? Is it a depression? It's an entirely depression. Yeah. It's, it's its own category. Right? Because like, at least the Great Depression was, it was it was caused by economic forces. I mean, can you classify a pandemic as economic? I guess you could, but it's just, it's just so off everyone's radar. But I think, Scott, to answer your question about going forward. As I mentioned previously, I think in person events are done for at least through 2021, if not until 2022. There's a lot of uncertainty around this, of course. But I think that uncertainty leads to confirmation that this is not coming back anytime soon. Because, as I mentioned, running an event is enormously expensive. It's there's enormous amount of uncertainty around it. And if I'm an event organizer thinking about running a big conference, like how am I going to convince people one that it's safe, and two, that it's actually going to happen? Because I need to confirm sponsors. Now, many sponsors, many companies who sponsor events, and they now have policies against sponsoring in person events. Many companies have policies against sending their people to in person events, right. And so that reduces your potential pool of attendees, potential pool of sponsors, just overall revenue. And I haven't really looked at budgeting, but I don't think things are going to reduce in cost that much, right, you'll probably see special deals here and there. But again, with all that uncertainty, how many people unless your pockets are really deep, like unless you're a Google or Microsoft, how many people are going to risk that? Planning six months, ahead of time, six months, a year, two years, like you look at for the big conferences, like the ones that take place at Moscone Center, for example, in San Francisco, which is our big Convention Center. In 2019, that place is booking out two and a half years. You have to plan at minimum two and a half years for your event coming up. So the big events, what happens to those and then you look at the smaller meeting scene, right? The events that happen that company offices, right so let's say You're a company that used to host events. Now let's talk about you considering hosting these. Let's say in 2021, q1 q2, let's say for argument's sake that you have welcomed your employees back to your office, you've instituted strict guidelines, health and safety. Everyone's abiding by them, you know, you're taking temperatures of everyone. It's very tight, very tight security. Okay, that's great. You're doing that for your employees. You're taking a risk there. But you're doing it at from a measure approach. Are you going to welcome hundreds of strangers into your office? to potential super spreader events? Yeah, probably not. Yeah. So I think the conference scene is done. And so is the, you know, smaller meeting scene, probably through 2021. Unless something like, basically a miracle happens, like our presidents.
+
+65
+00:40:57,630 --> 00:42:56,130
+Yeah. And so when I saw this was happening, I saw it pretty early on, I saw how severe it was. And I was looking for solutions for taking events online. But everything I saw, just was not adequate. Right? The main things out there are you got your Slack, you got your Discord. And then you pair that with like a YouTube live stream. You hack it together on like, a website, use your OBS, you're dealing with rtmp you're dealing with streams. Yeah, everything's still super hacking fragmented. It's just it's, it's not a good experience for the organizer for the speakers. sponsors, like what are the sponsors, even getting an online conference, right? The attendees, you don't really have the serendipitous nature of number one, just the excitement and thrill of being in a in person location with other like minded people. And then just bumping into people and these random conversations, because, you know, a conference is so much more than the talks, right? It's running into people that are like minded from any part of the world, and having great conversations and saying, hey, you want to go grab dinner, you want to go grab a beer, it's these connections that conferences really facilitate, that make them so amazing, and which in which is why I love them so much. And so with online events, you never going to replicate that experience, you're just not going to, and anyone who promises that is, is crazy, or is just, you know, selling snake oil, because whether you have VR, or AR or what's that like video game that they're like Farmville or whatever they're playing? Now, that's like attending an event? Like I think, personally, I think those are really sad. Events. And it's like, I need to go like, like, I'm Zelda into the
+
+66
+00:42:57,000 --> 00:43:12,570
+Scott Tolinski: crossing. Yeah, you're an animal crossing your yard that you painted on yourself. Yeah, believe it or not, by character and Animal Crossing, wears a level up tutorials logo T, that I may never arrive at a live conference, I'd be wearing it.
+
+67
+00:43:12,920 --> 00:46:28,260
+Unknown: Very, very nice. Yeah. So I think that online conferences, online events, should not try to replicate that experience, because you're just not going to get it. But there are other things that you can focus on, that are more conducive to the online experience that can actually be more beneficial. And I think the main thing that is being overlooked, and something that we're working on right now, is facilitating smarter connections with people I'll give you, I'll give you an example. So an in person event, one of the main problems for sponsors, is measuring their ROI, right? How do you measure the number of people you interacted with? How many of those turned into sales or recruiting whatever your goal was? How to classify them? And then how inefficient or efficient Are you in connecting with the right people? Right, if your goal is hiring, and you're talking to people who aren't looking, Hmm, that's a waste of time, right? And the organizer can can help alleviate this and facilitate this to create hiring events and certain things that appeal to certain sponsors. And you can help that for sure with with event design, but it's not perfect. And it's always going to be limited to the amount of time and amount of resources you put in right mind of people that are there at the event and what your strategy is, but online, you can do some interesting things. So one thing we're working on with this new company event loop that I co founded, and I'm the CEO of we're working on dynamic sponsor booths. Hmm. So check this out. So you're a sponsor. You have Have your booth online. And you're at this event where there's, you know, full stack engineers, this front end engineers, this back end engineers. And there's the DevOps engineers, right? It's an engineering conference. Now, if someone from DevOps shows to your shows up to your booth, did they want to see information? That's just very general? Do they want to see stuff on front end? Or did they want to see stuff on DevOps, they want to see stuff on DevOps. So with an online experience, you can create these dynamic booths so that the attendees that show up into your booth see relevant content, relevant information that's most appealing to them. And that helps to facilitate engagement. Right. And so we create these smarter connections. And then for the company. That's smart pipeline generation for them, right? That's Yeah, integrated lead gen for them. Whereas some platforms right now they have these sponsor booths that are just like, basically a zoom call. in a chat room. Yeah. Mm hmm. Ours is helping to facilitate these connections. And the way we're thinking about this is with the passion and love that I have for conferences, and making connections with people, because we're not seeing that right now. Right. So we need something that is actually going to help facilitate that. And so so, so that, that's what event loop is, is helping to do.
+
+68
+00:46:28,920 --> 00:46:43,770
+Wes Bos: That's really neat. So it's, it's an entire product, there's, there's the you're using the good of technology to sort of further experience for the sponsors. But I also includes the whole viewing and giving a presentation experience as well.
+
+69
+00:46:44,040 --> 00:49:55,320
+Unknown: Yes, so with event loop, our mission is to make remote events easier to create, more fun to attend, and more useful to every type of user, both at the event and beyond. So it's a platform for organizers to easily very easily create events, for speakers to create their own like speaker profile and speak at any event that they want to, for attendees to browse and discover events on the homepage, RSVP to them and attend them very easily. And sponsors to easily create their own company profile, and sponsor events. And so it's important to note that this isn't just like a platform for offense, it's also a professional network. Because one of the problems that I found with other online event solutions is that it's all about the event itself. And this makes sense at an in person because all the amazing things we talked about in person events, and not amazing in person experience. But you don't really get that with online events. So you need something more. And for us, it's leveraging the power of the internet, because that's the medium were meeting over. Scott, if we were to meet at an event on event loop, you could follow me and I could follow you that's a mutual follow. So now we basically acknowledge to each other that we want to connect. And so now I can get data analytics and where we met, what event we were at. And basically see our history there. So we're providing each user with like a light CRM. Now this translates to companies and sponsors as well. So they get this this data as well. Disclaimer of being fully ccpa and GDPR compliant, of course. But the interesting thing here is that events on event loop are not just an island. It's not just Galapagos it's a continent. Because you can meet people at events, you can connect on event loop and you can stay connected beyond that event. And the integration, the smart integration for speakers, for organizers for sponsors, really just makes this simple. And our goal when we launch in a few months here, leading up to our our flagship conference, the modern web summit. Our goal is to create a community for tech. So we say that event loop is the events driven network for the tech community because you build your network out events on event loop so you can discover events happening. You can learn at events, you can engage whether you're comfortable just typing in chat, or engaging on video conversations. And not just like random right? Like the the organizers that we're onboarding or experienced organizers that helped to facilitate conversations like one of the things we do at react, athon that you guys experience is topic tables. Very simple concept. You create a table where people come in, they identify it's all Yeah, right. You facilitate conversation around a specific topic.
+
+70
+00:49:55,770 --> 00:49:56,490
+Wes Bos: I love that.
+
+71
+00:49:57,270 --> 00:50:38,130
+Unknown: It's such a more efficient way to network. You know Both for for extroverts who are like, okay, now my ROI can be, I can be much more efficient, because I can identify the things I want to talk about. And for introverts who might find it more intimidating or more difficult to start conversations, it's a lot easier to join a conversation because you know, what you're going to talk about. So we have all that integrated into event loop. And so it makes it easy for you to organize, attend events, to get analytics after the event, and just so much more. And we're, we're working so hard on this, and we're, we're really excited to launch it pretty soon. Nice.
+
+72
+00:50:38,130 --> 00:51:41,850
+Scott Tolinski: I think my favorite thing you said there was this not Galapagos, which seems like a great tagline. It's very, very catchy there. In terms of building islands or whatever. Yeah, no, it's just it's really interesting to hear you talk about about this stuff, especially because we've been firsthand experienced your, you know, your in person conferences. So we know like, what your your vibe is, and, and how, how can that be translated into these online spaces that we're facing right now? I think it might be a good time to talk about one of our sponsors, which is Sanity, which hilariously enough as a lead into this, their new feature. It's also not Galapagos as in allows you to manage and edit your content while having other people review it as in You are not alone editor on an island at writing this stuff. You can now write your code or write your your wiziwig and have it be tracked changes and have those changes be authored for review. Wes has a little note in here, which is saying it's like get blame for authoring content.
+
+73
+00:51:42,930 --> 00:51:56,580
+Wes Bos: The Sanity folks sent that to me, they're like, well, they they sent me they're like, Hey, can you talk about this? I'm like, array talked about it. But he said it. It's like get blame for content editing. I was like, that's you're writing it for us. That's a great way to put it.
+
+74
+00:51:57,990 --> 00:52:01,500
+Scott Tolinski: Wes, do you want to talk more about Sanity? I know you've used it quite extensively.
+
+75
+00:52:02,310 --> 00:53:26,280
+Wes Bos: Yeah. So Sanity, we talked about them 100 times before they are a structure content, CMS, they are a headless CMS, meaning you go and make your content types. and out the other end, you can grab their API, they have this really slick, it's called sanity studio, that really slick UI for actually editing your content. And they work on that just as hard as they work on the actual dev experience for for you. And I, which is great, because the clients love love using it. So this like review thing that they just rolled out is super slick. It's, it shows you when somebody edited something, when someone deleted something, you can see who did it, which is they said it best it's like, it's like get blamed, but for content editing. So it's pretty sweet. They just actually they just announced the other day, they raised a $9.3 million to redefine content collaboration, which I think is so cool, because so they're they're really focusing on making a good editing UI that people can use at the end day, which is, that's that's the mass at the end of the day, right? Because you can, you can have a good dev experience for you and I but you can have a really slick editing UI as well. So check them out sanity.io four slash syntax that's going to get you double the free usage tier. Thanks so much to Sanity for sponsoring. What should we talk about? Now? We're getting up near the end? Is there anything that we didn't touch upon yet?
+
+76
+00:53:26,280 --> 00:54:21,420
+Unknown: Ben? There's, I mean, there's, there's a lot, but ours is not that much to cover over this. Like, if anyone's curious they can, they can reach out to me personally been at event loop dot app. I'm happy to help you. You know, with any conference questions that you have, or any event questions, I'm sure we won't be getting too many in person questions. In the next few months, maybe that's probably even doesn't make sense to say that. But I had this whole like list of things that were like, more practical, like we talked a lot. You know, we talked very obtusely about this, which I think makes sense. But I think you also need like a part two that goes into details. Or maybe I'll turn this these notes I have into into a blog post or something.
+
+77
+00:54:21,870 --> 00:55:07,620
+Wes Bos: Yeah, no, we definitely have you back on and talk about it. I think this stuff is super interesting. Because like I personally have been to probably dozens and dozens of conferences over the year I've spoken at, actually all of them. I I'm trying to think about like I've been to a couple conferences early on, but pretty much every conference that I go to, I say speak as I see it, both from a point of view of somebody who is attending and someone who's speaking as well as like, I agree with you like probably the best part of the conference is meeting people and having good conversations with people and grabbing a drink with them and things like that. So There's a lot more to running a good conference or attending a conference that is in the the nitty gritty as you say.
+
+78
+00:55:08,220 --> 00:55:11,070
+Unknown: Yeah, yeah, totally agree. All right,
+
+79
+00:55:11,070 --> 00:55:17,280
+Wes Bos: let's move on to some sick pics, then. Did you have a chance to grab a sick pic?
+
+80
+00:55:18,000 --> 00:55:56,310
+Unknown: Yeah, I did. So my friend sweet Zach on twitter at sweet Zach. He's been really into serverless lately, and he kind of he kind of builds in public similar to how swix builds. And he has this really cool new course called serverless handbook. Oh, just really interesting. So he's been learning a lot of serverless on his own. And he's been he's a, he's one of the instructors for real world react. So he's really experienced in like teaching workshops, and publicly and privately, most training companies. So if you want to get some of that experience, and you're interested in serverless, go check out serverless handbook dot. That's, that's my sick pick.
+
+81
+00:55:56,610 --> 00:56:05,580
+Scott Tolinski: That's awesome. I am definitely lacking in my serverless expertise. So that seems like a good thing for me to pick up on. Wes, do you have a sick pic?
+
+82
+00:56:05,970 --> 00:58:02,790
+Wes Bos: I do is the new Chromecast. Google just rolled it out a couple weeks ago. And I got mine about five or six days ago. And the new Chromecast that plugs into your TV. It's 4k. But it comes with a remote. And it's awesome. Because first like I love the old Chromecast. But the not having a remote is frustrating, especially with having kids because you walk away and something happens or they want you to play the next one. And like my kids are old enough now or they can hit the button to play the next one. Yeah, so the new Chromecast is awesome. And it aggregates all of your not all of it, but a lot of your apps. So we've got Netflix, Disney plus amazon prime CVC, we've got a couple services that we pay for. And it just aggregates them all into one UI kind of like Apple TV will do. Except they don't lock it down unnecessarily like Apple TV would. Mm hmm. And it's just an awesome UI. It's nice and snappy on it. It was 70 bucks Canadian, I think they're 50 bucks American. The other thing I really like about it is that you can use just the remote, at least on my Samsung TV. It's a replacement, the remote replaces your TV's remote. So it's not like you know when like when you're a kid you had to like turn the TV on was one remote. And then you'd have like you had another remote for like the cable box. And then another one for the DVD or the VCR you'd have like six or seven. And then if somebody tried to like turn the volume up on the wrong remote, you're like, No, no, you're you're screwing it all. When you increase the volume on the Chromecast, it actually increases the native TV volume instead of having this weird, like offset volume ratio like oh, it's not loud enough. So and you can also use the original Samsung remote with all of the Chromecast features except for the voice command we have to use. So I'm so impressed. It's awesome. Big fan of it. Check it out the new Chromecast.
+
+83
+00:58:03,060 --> 01:00:09,420
+Scott Tolinski: Cool. I saw yours looked really nice aesthetically. So my second pick is going to be a vacuum. I just bought this vacuum. Yeah, I bet it was a big fan of my Dyson Handheld Vacuum before which belong to one, whatever. But we had it for many, many years. And it still functions but like, out of the plastic on the handle broke off. So it's like there's like a lot of little things about it. The batteries like really bad nowadays there. It was just really showing its age. So we jumped on this tiempo pure one s 12. And let me tell you, Courtney and I watched probably about 20 hours of vacuum review YouTube, which is a huge channel where there's so many channels where they just show you all that here's like a test course for these vacuums. And here's what it sucked up and what it didn't. Yeah. And so we got this Tinker one, let me tell you, it is so very cool. Besides having an app, it's got an app, and it's got a holder for your phone. Not that I'm going to use either of those features. But it has like a really neat LED screen that's showing you how much suction it's needing at any given point you have like a little touch slider where you can make it more suction. One of the needed neatest features about this thing is that it's got like a trigger lock, so you can lock the trigger. So you're not constantly holding the button to turn on the vacuum on the whole time. It seems like a problem that basically this company took all of the little things that annoyed me about my Dyson and made them so much, much, much, much, much better. So check this thing out. It is very futuristic. I've been really really liking it. And, man, I it's so funny that I would say pick a vacuum, because this is one of the ways that my wife psychologically manipulates me. She's a psychologist, right? She understands my psychological profile. She knows that I really like positive reinforcement. And she uncovered that my mother my entire life told me I was really good at vacuuming. So you know what, as an adult vacuuming is hilarious. It's hilarious. They don't pick up the vacuum book eight times a day. All because my mom was always like your great vacuum cleaner. I know. She knew what she was doing. So, a shout out to my mom who's most likely listening to this who got some really good vacuuming out of her house when I live there as a child, so shout out
+
+84
+01:00:09,510 --> 01:00:20,580
+Wes Bos: so is this your like main vacuum like amazing? It's like yeah, it's a battery operated you just like dock it and it charges and you don't have like a one you have to plug in everywhere and schlep up the stairs, correct?
+
+85
+01:00:20,609 --> 01:00:48,090
+Scott Tolinski: Yeah, and that's doing it before with the Dyson which was life changing itself. Yeah, we never had a bed and that thing was incredible. This is even much better because when the batteries are better, but to the batteries are swappable, so they give you two batteries. Unlike the Dyson where after the battery died, you got to go hunt you hang it up and let it charge. This one battery dies. Just toss in another battery. Oh, good to go. Nice. Yeah, I could talk about this vacuum all day. Always instagramming photos of it. And it was a little weird.
+
+86
+01:00:50,790 --> 01:00:53,100
+Wes Bos: Sick pics. God, that looks awesome.
+
+87
+01:00:53,190 --> 01:00:54,390
+Scott Tolinski: Yeah, it's very fancy.
+
+88
+01:00:56,190 --> 01:01:01,230
+Wes Bos: Let's get into some shameless plugs. Now. Ben, what do you have to plug for us today?
+
+89
+01:01:01,710 --> 01:02:52,980
+Unknown: Yeah, sure. So, you know, I told you about how we're kind of reinventing redefining conferences, events, meetings online. That's with event loop. So people can go to event loop dot app, request an invite, we're in private beta right now. So you can request an invite there. It's specific to tech right now. So if you're, if you're looking for you know, chatting about sports, this isn't the place or politics specifically, please come and talk about politics on event loop. No way. Twitter's for do it there. So event loop dot app is that. And secondly, we're we're kind of launching to the public on March 22. So this is going to be the modern web summit. So we have 10 tracks, including view, accessibility, react, and many, many more at modern web summit.com. So if you really want to see event loop in action, you want to come to this really awesome event with over 100 sessions and amazing speakers, it really shows off like what event loop is all about, go to modern web summit.com. Tickets are arranged from pre to 199. So we're also very transparent about where our funding goes for the tickets. So we're paying our speakers going back to that previous subject, an equal share of 20% of the funds. We're also donating 20%, Free Code Camp, among other areas of allocation of funding, so so check out modern web summit.com. We'd love to see as many of you there as possible. It's it takes place on event loop on the internet, so it's really easy to attend. And you can always upgrade your ticket later. So So go and grab yourself a free ticket. And then you can upgrade to a limited or a full ticket at the event or just before the event if you want. Awesome.
+
+90
+01:02:53,250 --> 01:02:59,700
+Wes Bos: Tyler McGinnis asked me to speak at this. So I believe I will be speaking here. I can't wait to see you there.
+
+91
+01:02:59,970 --> 01:03:19,770
+Unknown: Yeah, that's actually a good point. So each track that we have each of the 10 tracks are curated by experts. So Tyler McGinnis of he did one of the earliest react tutorials online, I believe alongside us, Scott, I didn't know you at that time. So I don't know if you were at that time.
+
+92
+01:03:19,830 --> 01:03:21,540
+I was okay. I was
+
+93
+01:03:22,710 --> 01:03:25,050
+Scott Tolinski: the very first one. The very first,
+
+94
+01:03:25,470 --> 01:03:32,160
+Wes Bos: that's how I met Scott. I told him not to copy my name. So we released beginner react tutorials at the same time.
+
+95
+01:03:33,570 --> 01:04:02,280
+Unknown: Yeah, so we have Matt or David curating the serverless track, Jen looper, curating the view track and just so many other amazing people that are curating this content to make it just our goal is to make it the biggest web conference in the world you know, the most relevant we might take some flack for featuring certain technologies and not featuring other is But no, we got a we got to stop it at some point. So I yeah, and Traxxas is innocently enough.
+
+96
+01:04:03,230 --> 01:04:23,100
+Scott Tolinski: Let me tell you one, though. This website slaps this website is very good. It's so so cool. With the the little the bars going down I love the visual aesthetic. The speaker lineups bananas good. You got Eric Meyer, you got Denver, Denver resident Miriam Suzanne and Susie, do you remember this do West Did you ever use Suzy?
+
+97
+01:04:23,160 --> 01:04:23,670
+Unknown: Oh yeah,
+
+98
+01:04:23,700 --> 01:05:25,620
+Scott Tolinski: yep, yep. Yep. Friend do this show Henry Helvetica I'm a Boston man. great lineup, john papa. I can just keep going on and on. Of course Wes Bos is going to be there. So you know, this thing is going to be slammin. Love it. Cool. So yeah, thanks for sharing that. My shameless plug is going to be for my course on animating spelt. spelt is an awesome framework that is continuing to improve and get better and better and better. In fact, the latest spelt summit that just happened was so cool. So I am going to be releasing a course on animation in spelt. We're doing all sorts of neat stuff including learning actions, which are a Powerful directive in svelte, that allows you to do some really neat stuff really close to the metal. And the thing that I've been loving most about it is that how close you are to Dom API's compared to some other frameworks and other things like that. So you are really tightly tightly into modifying the DOM and I love it. So check it out at level up tutorials.com. And if you sign up for the gear, you're going to save 25% that is
+
+99
+01:05:25,620 --> 01:05:41,130
+Unknown: so beautiful. And hey, we have spelt track actually at modern. And I love I love your little episodes that you guys do where like you teach each other something? I think we I think Scott, you taught you taught West view on one of the episodes of Yeah,
+
+100
+01:05:41,130 --> 01:05:42,540
+correct. Yes,
+
+101
+01:05:43,080 --> 01:05:44,550
+you should teach him some spelt.
+
+102
+01:05:44,760 --> 01:05:47,910
+We actually have one we have done it. We
+
+103
+01:05:48,240 --> 01:06:27,000
+Scott Tolinski: have a couple a couple months ago, and I taught us about and i think is pretty convincingly neat. I should note that this episode's gonna be out November 18. So our Black Friday sale will be in full affected. So if you actually, if you sign up for the year, you're going to save 50% and not 25% for a very limited time for Black Friday. So get your yearly subscription in now and you'll get access to animating spelt along with every other there's like 30 courses on level of tutorials. But in addition, if you sign up for the year, you get access to 12 new courses over the course of the upcoming year. So check it out level up tutorials comm forward slash pro
+
+104
+01:06:27,390 --> 01:06:51,300
+Wes Bos: Alright, I'm gonna shamelessly plug my master Gatsby course actually all of my courses will be on Black Friday sale so just go to West boss comm forward slash courses that will include my two most recent courses Master gatsby.com and beginner JavaScript calm. So check them all out. All right, that is it. Thank you so much, Ben for coming on. That was awesome. Yeah, a
+
+105
+01:06:51,300 --> 01:06:54,720
+Unknown: lot of fun. Thanks, guys. Great to see you too. Again. Yeah, likewise.
+
+106
+01:06:54,750 --> 01:07:03,570
+Wes Bos: Yeah. So hopefully we will meet again in person one day. Cool. All right. Thanks again and catch you later.
+
+107
+01:07:03,630 --> 01:07:05,160
+Unknown: Cheers. Bye. Please.
+
+108
+01:07:07,170 --> 01:07:16,920
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
