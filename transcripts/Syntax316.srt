@@ -1,0 +1,480 @@
+1
+00:00:01,319 --> 00:00:10,590
+Announcer: You're listening to syntax the podcast with the tastiest web development treats out there, strap yourself in and get ready to whiskey and West boss.
+
+2
+00:00:10,590 --> 00:00:48,720
+Wes Bos: Welcome to syntax. This is the podcast with the tastiest web development treats out there. Today we've got some 2021 predictions Scott and I have compiled lists of things we predict will be popular and things that will happen in web development this year. And then at the end of the year, we'll sort of revisit this list and see where we slam dunked it and where we err, balled it. Today, we are sponsored by three awesome companies. First one is Sanity, their structure content, CMS, second one is Log Rocket session replay. And the third is linode, which does Linux virtual machines. Talk about them all partway through the episode. How you doing today, Scott?
+
+3
+00:00:48,929 --> 00:00:55,530
+Scott Tolinski: I'm doing good. It's funny. We always record these in the morning and we're recording this episode in the afternoon. It feels very different.
+
+4
+00:00:55,589 --> 00:00:56,189
+Wes Bos: It does.
+
+5
+00:00:56,189 --> 00:00:57,060
+Unknown: I feel awake.
+
+6
+00:00:58,770 --> 00:01:07,500
+Wes Bos: Yeah, we usually record them at like 9am your time. So you're like, you're thrown right into it. But I it's 11 o'clock my time on record. So right. I'm just getting hungry.
+
+7
+00:01:07,830 --> 00:01:10,730
+Scott Tolinski: That's a me problem. Yeah, yeah, definitely a me problem.
+
+8
+00:01:12,660 --> 00:01:17,670
+Wes Bos: All right. So how did you want to do this show? We're gonna go back and forth with our predictions.
+
+9
+00:01:18,030 --> 00:01:38,730
+Scott Tolinski: Yeah, the way I think that would be fun, rather than just like being too organized with it is that? Well, we both made lists of our predictions, and maybe we could just start at the top. And I could do one and then you could do one, and then I could do one, and then you could do one. And if you have the exact same prediction on your list, you could say, I have that too.
+
+10
+00:01:39,180 --> 00:01:41,760
+Wes Bos: All right, let's do it. You want to grab the first one?
+
+11
+00:01:41,820 --> 00:02:51,210
+Scott Tolinski: Yeah, I had like a whole like game, not like an actual game. But like a fun way of doing this, like, involve, like ranking them. And then like, the more I thought about it, I was just like, this totally is not going to work. I like presented it to West is like I got this great idea for the episode. And then I was just like, we basically just go off and go back and forth and talk about what we want anymore. Like, what else? What else you got? Okay, so my first prediction is going to be one that I am guessing you're gonna have to say I have that too. And that's just ESM. And ESM is going to be big in 2021. I have been to the edge and back. I've seen the future. And I have used ESM. And I don't want to go back. And in fact, I use snowpack to do some ESM bundling for those of you don't know it's ECMO script modules. So it's basically JavaScript modules built in. And with the combination of a nice ESM focused build system like snow pack, you get some crazy fast reloading times your tooling gets easier. Everything overall just seems to be quite a bit nicer, in my opinion.
+
+12
+00:02:51,569 --> 00:03:44,490
+Wes Bos: Yeah, I had the same thing on mine as well. Everything is just a URL. I'm very curious to see if we'll get imports from URLs. Yeah, in a node, which would be kind of interesting, because you can do that. Actually, I think we already have that. No, I'm wrong there. You can import from a URL and node because that is part of the ACMA scripts back. The part of the script spec is that you can just import whatever from https colon slash slash etc, etc. So I had it here. Yes, modules. By default, everything going forward should always be ies modules. And everything else coming .js is considered legacy we should do an entire show on now that we have ies modules in Node. What does it look like? How do you use it? How do you mix between how do you convert a project over from one another? Because we did do a show. But that was before it was finished? And there was a couple things that we didn't quite have yet?
+
+13
+00:03:44,940 --> 00:04:50,510
+Scott Tolinski: Yeah, I think they along the lines of what you're referring to with the importing from a URL would be like a caching at package system, sort of like what Dino has, where if you import from a URL it downloads and caches that in a really nice way. I don't think node has anything like that specifically, although I'm gonna say the word snowpack a lot in this episode. But snow pack does have something like that in their version, they have like a version three release candidate released recently. And there's some very interesting stuff in here in this v3 release candidate, including one of which is called streaming NPM imports, where it's going to make some of this transferring over to importing things from URLs a little bit easier, because what you would do in snowpack would be import react from react, so to say, and then snowpack would go off and get that from the CDN with the right version, instead of having an npm install process or even a package dot JSON to set those things. So it functions a little bit more like a transparent install from URL. It's very interesting.
+
+14
+00:04:50,999 --> 00:07:06,030
+Wes Bos: Interesting. One quick question is that node does have a cache for importing things. And one thing I'm kind of curious about is can we get like hot reloading for node modules, I tweeted it out the other day, a couple of people had some like kind of half baked solutions for it. But because node has an S module loader, I'm wondering if like, Can somebody make another loader that funkified with the cache, and then every time that you run a function, it will on demand require it, that would be pretty wicked to get that because like, that's a pain I have right now is that for a lot of node processes, you have to restart the entire application in order for it to see it. And like, that's not so much of a big deal when you're doing like a small little serverless function. But for existing node applications, it can be a bit of a problem. Totally, my next prediction was remote work is obviously going to become more popular. The whole COVID thing. I don't think remote work is like a silver bullet. There's a lot of hard stuff specifically around like new hires and juniors, it's being a little bit harder for them to skill up because you don't necessarily have someone to sit beside you. But the the part where I think is going to be kind of interesting is that there's a whole new talent pool that opens up when a lot of these companies go remote. So never mind these, like rich California tech people moving into some beautiful Riverside place, like yeah, people are frustrated when we hear stories of that. But what I'm saying more is that there's a lot of really smart people all over the world. And for a lot of people, it just has not been an option to get a job as a web developer because of where they live. And now, that is going to be an option for a lot of people. Because there is this thing called remote work, which is awesome. I think like, like that might not be all that exciting to hear from people who are currently looking for a job because the talent pool probably just got much bigger. But I think that's good for people that are hiring, because now you can all sudden just like, select people from absolutely anywhere. So I think that's gonna be a big, big thing in 2021.
+
+15
+00:07:06,270 --> 00:10:15,510
+Scott Tolinski: Yeah, especially in our industry, where you can pretty easily detach, you know, the experience of working in a real environment. You know, people see it like a little hubs, I have a friend who works for a major company of which I'm not going to disclose like a major big company. And they do like crazy, intense work to you know, just to add a layer of, you know, clarification there. It's an unknown company, they do an unknown large amount of work. But they have these like little hubs where they'll have like four people in Denver. So what they'll do is they'll buy a small office for those four people in Denver. And so instead of everybody working from home, you just work from where you are. And if there is enough people in that specific spot, then they buy you an office there. And guess what, if you want to go to that office, you can go to that office, if you don't, Hey, no worries, you can also work from home. So I think there's like little fun things like this, where you will see companies maybe investing in smaller spaces in you know, various spots around the country, or even just wherever to get a little bit more control over their workspaces. But again, still in giving people that ability to technically remote work. So I did not have that one on my list. But I think you're totally right. And I think this pandemic is only accelerated that process. Next is in my list is a dino is going to grow in usage. And in just about everything, I think in 2021, I recently released a course on Dino Dino 101 for web developers. And we really looked into not only the dino core foundational basics, but we looked into the web framework side of things. And let me tell you stuff is there. There are certainly good things there. And the community is growing. But if I were to say, let's say like Scott, you were to have to choose to build level up tutorials from scratch right now, would you pick Dino? My answer is probably right now. No. That said, if I had some fun side projects or something, I might say yes. Because in my experience, there were many packages that were just flat out now working with many cases, you know, connecting to a Mongo Atlas DB within the most used Mongo package just didn't work for me. And like, I didn't have the time to debug this. But like this package in these things aren't being used by enough people to hit all of the different edge cases or even cases that exist right now. So as more people continue to experience it and use it, I think Dino's usage will continue to grow. And there will be more and more tooling and packages around it. I think it's a great platform, and I really enjoyed using it, but it is it still needs a little bit more time in the oven. I think not Dino itself but the community. One thing I noticed like, even like packages that everyone would have to use, like there's a dot E and V package. That's really good, mind you, but There's like 83 stars on it. And you're like, ooh, 83? I think not that stars are really the end all be all, but like I was, so to say a little bit surprised with how few people are using a lot of things right now in it. Yeah,
+
+16
+00:10:15,570 --> 00:10:58,919
+Wes Bos: I'm super stoked about Dino, we will probably talk a lot about it on this podcast next year just yet, we are so excited by it. I don't think that like, it's not gonna be like, Oh my gosh, everyone switched over Dino like, you will probably see that at least four years coming. Like what how old is node right now like 10 years old right now, it took them a good amount of time in order to get big. But if we see that all node API's are now compatible, and there's like a compat layer where you can just run existing node modules in Dino, that's gonna be pretty exciting, I think. Yeah. So yeah, definitely keep an eye on it for 2021. And we'll see where we are. I'm really excited to see where we we are in one year's time,
+
+17
+00:10:59,130 --> 00:11:11,640
+Scott Tolinski: I had a lot of positive experiences when working with Dino and I think this will tie into my next one, even though I just had this. So I guess you can go either way. My nice things were all about TypeScript in it.
+
+18
+00:11:12,029 --> 00:12:37,230
+Wes Bos: Oh, yeah. My next one here is that tooling will fade away. So there's sort of like two camps, I would say, of people's thought process over tooling right now. One is, we don't need it. You can use ES modules and HTML and the browser. And you can ship ES modules to node and like, you don't need a layer of tooling. Some people are going as far as to say, and then you sort of see people on the other side of thing. They're saying that, yeah, you still need tooling. There's a lot of stuff that you can't do with just HTML, CSS, and JavaScript, you still need a lot of this tooling in place, but it's gonna fade away. And I think I'm in that camp is that what I mean by fading away is that you'll notice that you're actually using tooling because Dino's perfect example, it has a linter format or transpiler. You can use TypeScript immediately tester. That's not to say that they're not doing anything. For you. It's all happening for you. But the tooling is built in, or we're excited to see what happens with Rome, personal to probably should come out snowpack, all of these tooling, you just run it and it just works. And there's no, there's no more fussing about it. And it's been like this way a couple of for a couple of years already, I think with some of the React tooling, specifically, next, jazz has been really good about this. But you just don't need to spend a whole lot of time fussing with these tooling. And I bet 2021 is the year that we say, all right, stop complaining about Webpack configs. Because that's not a thing anymore. For most people,
+
+19
+00:12:37,260 --> 00:12:42,149
+Scott Tolinski: it will be like the people who are still complaining about I can't send our things in CSS. And in 2019,
+
+20
+00:12:42,149 --> 00:12:49,230
+Wes Bos: that joke has been long gone for like, like, what, like five years we've had Flexbox centering that ship has sailed.
+
+21
+00:12:49,260 --> 00:12:54,840
+Scott Tolinski: Yeah, it reminds me of like comedians doing their material from the 90s or something. So it's not gonna work.
+
+22
+00:12:54,929 --> 00:12:55,440
+Unknown: Yeah.
+
+23
+00:12:56,940 --> 00:14:40,440
+Scott Tolinski: I mean, I definitely agree with you, I think we're gonna see more and more of these tools. And each time I try out a new thing, whether it is parcel or snowpack or whatever, they all just feel nicer than the predecessor that configs read nicer. The usage is generally nicer. You know what, like, I've been having just so many experiences lately, with new platforms where I fire up a new platform, I don't write a shred of config. I don't even tell the thing that I want to use TypeScript. And then I make a TSX file. And the builder compilers just like, no problem. I got that. For me personally, like, that's what 2021 is going to bring. It's gonna bring situations where I'm not installing, and then thinking okay, now, how do I put my TypeScript compiler into this setup? Or how do I open Nakata deal with Babel, and you know, just not having to do these things is going to be a huge productivity boost for us all, it's going to be a huge decrease in barrier to entry. Because honestly, it's really great to write TypeScript code. But when the first you know, two videos of any tutorial series have to be about setting up your environment. That means not learning TypeScript, that's learning how to, you know, get a tech stack working for the sake of getting it working. Right. So I think we'll see a lot of this stuff. I have one interesting thing on my list here, because I also had the fact that these tools will get easier. Let me follow this up with a prediction that I have that is right along the same lines of this. And this is a greater usage of other languages to build JavaScript and TypeScript. For instance, have you seen e s? build.github.io?
+
+24
+00:14:40,649 --> 00:14:46,409
+Wes Bos: Yes, I have. I didn't look out what it was. I assumed it was just a builder for ES modules.
+
+25
+00:14:46,409 --> 00:14:59,520
+Scott Tolinski: II s build is basically a Babel competitor written in go. And they do a neat little comparison, where, you know, people throw these benchmarks up and yes, they're benchmarks on somebody. Oh,
+
+26
+00:14:59,520 --> 00:15:05,250
+Wes Bos: yeah. One of them. Graphs where it's 1000 times faster in their specific use case, be like, my
+
+27
+00:15:05,250 --> 00:16:18,899
+Scott Tolinski: thing is way, way better than yours. Look at this graph that I created to show you that, like, I'm gonna make a graph that shows just how cool Scott is. And I'm gonna like so very clearly, based on this data that I'm presenting you. Very cool. So no four is built, it is very fast. But I think this is a neat trend that we've already really started to see, even if you're not aware of this. And one of the things that we've been seeing this in is Dino, specifically, Dino is built in rust, or at least the aspects of Dino that would be transforming your TypeScript. Right. And likewise, he has builders built in go. And so my prediction is that we are going to be seeing languages like go and rust, used to great effectiveness to improve JavaScript tooling. And I think that's something that we're definitely going to see this as building, regardless of if their benchmark say that it's crazy fast. I've used it, it is crazy fast. So you know, I think this is the first of many of these types of projects that we're going to see over the next year. Isn't Rome also built in rest? Am I am I tripping on that? But, bro, maybe along the same lines, too.
+
+28
+00:16:19,260 --> 00:16:28,740
+Wes Bos: Is that? Let's let's check that out. Looks like all the files on their GitHub are in TypeScript. So no, I don't think it's in raw.
+
+29
+00:16:28,740 --> 00:16:37,440
+Scott Tolinski: They're all written in TypeScript. Yeah, it looks like you are right. So this is just a classic case of me. making that up.
+
+30
+00:16:37,470 --> 00:16:58,860
+Wes Bos: broam is written in TypeScript and runs on node j. s. Rom has zero dependencies and has largely been written from scratch. Hmm, interesting. Zero dependencies is the new big thing is that there's not a whole tool chain of 40 node modules down. I would like to install them then and then see, like, what's in the node modules directory? One thing? Well,
+
+31
+00:16:58,890 --> 00:17:15,390
+Scott Tolinski: so here's, here's the quote, and this is like, the nachos connected to another Nacho with cheese. Is that one Nacho? Or is the two nachos? So like along with that, that same question? Like if you just bundle all your stuff up before putting it into your node modules? Is it one dependency? Or is it the 100? boundaries? It
+
+32
+00:17:15,390 --> 00:17:23,190
+Wes Bos: was before? In Canada, our version of that is when the timbits stick together councils one, even if the one is stuck to another one?
+
+33
+00:17:23,219 --> 00:17:28,340
+Scott Tolinski: I don't know why I thought you're gonna go butene. But nothing really falls apart in your area. Do you?
+
+34
+00:17:28,500 --> 00:17:42,510
+Wes Bos: Oh, yeah, we get put in is pretty big here. Yeah, yeah, we have this chain called smokes protein, which is just like after we used to go after the bar and get like, like an eight pound little box of protein. And you would just hate yourself the next morning.
+
+35
+00:17:42,540 --> 00:17:58,680
+Scott Tolinski: That's great drunk food. And we never had that in anywhere that I really, except for there is one place here in Denver that does a fantastic routine. But yes, I went, we went to Montreal for my brothers. My brother's bachelor party. So we definitely ate a bunch of protein. Oh, yeah. Great.
+
+36
+00:17:58,950 --> 00:19:33,540
+Wes Bos: Let's take a quick break for one of our sponsors. And that is Sanity available@sanity.io. forward slash syntax. Sanity is the structured content CMS for your next project. So what it is, is, it's like a, it's a CMS. So you sign up for Sanity. But the kind of cool thing is, it's a service, but you have control over both the front end of your application, obviously, is whether it's a reactor smelter, or view or Angular website, but then the actual editing experience is fully customizable, because they have this thing called Sanity Studio. And you can install Sanity Studio. And the code runs both locally on your own computer, as well as you can deploy it to Sanity. Or you can deploy it to your own domain name, you can deploy it anywhere. It's a react application. And I really love that because you you get the entire editing experience with Sanity Studio. But if you want to be able to control custom inputs, or theme it or do whatever you want, it's not just like, Alright, you have six color pickers and you're allowed to choose from these six colors. And you There you go, you customize it, no, you get you get access to all of the code, and you run it all yourself. So check it out on your next project. If you need a headless CMS for your project, check it out sanity.io forward slash syntax that is going to get you double the free usage tier, which is 200,000 API requests, 1 million API CDN requests, 10 gigs of assets and 20 gigs of bandwidth. So pretty generous free plan there for your next project. Check it out. Sanity io forced us syntax. Thanks so much to Sanity for sponsoring.
+
+37
+00:19:33,750 --> 00:19:35,280
+Scott Tolinski: Thank you Sanity.
+
+38
+00:19:35,489 --> 00:21:17,700
+Wes Bos: Oh, one thing I'm super stoked about is programming communities gaining some traction. So right now a lot of programming communities are either in slack or a lot of them have moved over to discord and those are awesome, but like I sometimes mourn the death of the good old message boards and forums and things like that. Right. And I think I've been looking around myself I've mentioned many times I want to move my slack to something else that is more of a real time message board than just a chat where things get lost. Yeah, after 20 minutes of talking, right? So I'm pretty excited because we've we're starting to see GitHub discussions pop up the Dev, to folks are really seeing this thing called forum fo r e m. And basically, it's just like they're open sourcing their entire platform. And it's like a Swiss Army Knife of running communities, you can make it whatever you want. It's really, really cool. I've been playing with it myself. There's another so that that one's open source, it looks like they will offer a hosted version as well, I'm not really sure about that. There's another one called circle. I think it is like what I hoped spectrum would have been. And I've been testing it out for my own community as well as a circle. So I think this one is more targeted at like kind of exactly what Scott and I do as well. So I'm stoked about that. Because it's bringing back the the form, think about how much we lost to slack, slack expiring chats, right, we I think we lost a lot of back and forth. And I would love for when somebody helps somebody, I would love for that to stay on the internet for at least five or six years so that you help other people only come in in the coming future.
+
+39
+00:21:17,840 --> 00:21:29,130
+Scott Tolinski: You know what this circle.so kind of reminds me of like, Facebook groups without Mark Zuckerberg greedy finger on that, you know? Really? Yeah, it's
+
+40
+00:21:29,130 --> 00:21:30,270
+Unknown: kind of me. Yeah.
+
+41
+00:21:30,270 --> 00:21:32,910
+Scott Tolinski: I mean, at least that's the vibe I get from looking at it.
+
+42
+00:21:32,940 --> 00:22:12,000
+Wes Bos: Yeah, kind of, I would say that's not what it is. Because Facebook groups have the same problem in that everything is not as temporal and then it's gone. The search son can't find it in Google. But yeah, and it's all all around a thread. And then when you get too many replies, the thread gets overwhelming. I hate Facebook groups, I'm part of so many of them, because that's unfortunately, where communities are right now. But this is what I'm hoping is this kind of like, like a really good forum, but with a lot of like real time nets layered on and on top of it. And so I think it looks pretty cool. I'm still between whether I'm gonna go with form or circle, I have to try it out a bit more, but get excited.
+
+43
+00:22:12,060 --> 00:22:28,620
+Scott Tolinski: Yeah, you know what it is, like you mentioned, it's like one of those things like it's what you kind of want it spectrum to be which never really fully materialized spectrum to me is just a big void. It's kind of crazy that so many, so many communities jumped on spectrum really early, when it was looking like it was gonna be awesome
+
+44
+00:22:28,650 --> 00:22:45,780
+Wes Bos: is because people were dying for a better alternative to slack and GitHub issues mash together, right? And then structure was supposed to be that but it just didn't even like max tweeted it. That's how I found circle. He tweeted it out being like, this is what spectrum was supposed to be. So I'm so excited for it.
+
+45
+00:22:46,200 --> 00:22:56,340
+Scott Tolinski: Yeah, discourse was always a decent option too. But it never seems like a ton of people use discourse. I know, the media forms on discourse. And there are aspects of it that are really nice.
+
+46
+00:22:56,520 --> 00:23:10,560
+Wes Bos: It's funny, like, I've tried out discourse, I've even installed it myself. But there's something about the UI about it. Yeah, no, I get that. I'm not sure what it is. But every time I'm on when I'm kind of irritated. Yeah. And I'm like, Ah, I'm not sure what this is.
+
+47
+00:23:10,770 --> 00:23:20,400
+Scott Tolinski: You know, one of the things is the Command F is overwritten. Like that. bugs me on that. Yeah. Like Wait, wait, and who is it gusto overrides the Command click and the gussto dashboard. I'm
+
+48
+00:23:20,400 --> 00:23:21,270
+Unknown: like, Why?
+
+49
+00:23:21,270 --> 00:23:45,660
+Scott Tolinski: Why would you do that? Like people? Okay, next up on my list is going to be something I think you have on your list too, because I did a little snooping. And oh, no, I shouldn't have done it. I'm like, Oh, it's a shaggy No. shaggy song was not I shouldn't have done it. It was it wasn't me. So it wasn't me. I wasn't snooping. I'm talking about more wisdom here. Wisdom bird stands for web assembly. What is the
+
+50
+00:23:45,660 --> 00:23:46,350
+Unknown: answer?
+
+51
+00:23:46,380 --> 00:23:49,500
+What is the N stands for and plasm for web assembly,
+
+52
+00:23:49,500 --> 00:23:52,890
+Wes Bos: a membeli, a member of the mumbly part of assembly really,
+
+53
+00:23:52,920 --> 00:25:12,330
+Scott Tolinski: there's nothing else there. I always thought it was like web assembly. So you know, Hypertext Markup Language, you know, something like that, but not. So when some is basically the ability to use other languages on the front end, or in the browser of your applications. And let me tell you, I found a taste of wisdom. I was kind of like, yeah, okay, who hasn't, we'll see whatever. I'm not a developer of any other languages, although I'm a hobbyist of a couple. But like, I'm not a great developer of any other languages. But when I saw, like, some of the coolest stuff that Mongo was doing in their app will using their compass app using rust and wasum. And I watched a talk and it looked like, wow, that was pretty easy. In fact, they were just doing the number calculation was one of them was one of them as they built a number calculation, some sort of thing that needed to run a lot of values really quickly, and they built it in rust. The rust program really wasn't that intense. They built it using Webpack. And then you were able to import the rest function as if it were JavaScript, get the correct typings and everything in it, and just use it like if it was JavaScript. So that's To me is really, really interesting. And I think though that world now that we're starting to see some wisdom in production in lots of places, I think we're gonna just see it even more. I think people are gonna be like, Wait a second. This is really really fast. I
+
+54
+00:25:12,330 --> 00:25:17,370
+Wes Bos: totally agree. I tried out the new 3d tool. Did you try that out? Oh, it was a call
+
+55
+00:25:17,400 --> 00:25:20,370
+Scott Tolinski: 3d tool spline. I have not tried out spline
+
+56
+00:25:20,400 --> 00:25:44,100
+Wes Bos: spline. Yeah, so spline is a new 3d tool. It's built in. It looks like it's built in react. It's funny, because as soon as it launched, I whipped out this. There's this tool called Charles. He went out. I whipped out Charles Charles allow you to sniff network traffic. Do you ever wondering like what an app who it's talking to? And what server Yeah,
+
+57
+00:25:44,100 --> 00:25:48,240
+Scott Tolinski: there's like Little Snitch was another one of those, but maybe a little bit more invasive?
+
+58
+00:25:48,450 --> 00:26:21,810
+Wes Bos: Yeah, Charles is more like dev tools for like the dev tools Network tab for your entire computer or for your iPhone. And you can also do SSL proxy monitoring. So you can like install your own cert. Anyways, I opened it up because I was like, what's this built in, and the entire application is hosted on Netlify. And it's just boxed into an electron app. And I thought that was bonkers. I found the URL and I just ran it in the browser, I was like, This is unreal, unreal, they can build a 3d app with wisdom and HTML, CSS JavaScript. So pretty excited about that very
+
+59
+00:26:21,810 --> 00:27:18,570
+Scott Tolinski: cool. New one I'm also excited about is one of our sponsors today. And this is one of our sponsors, that's going to allow you to see some magic happen in your browser, I'm talking about Log Rocket Log Rocket is the error an exception handling tool that allows you to see errors and exceptions as they actually happened. You get a session replay with a scrubbable video replay, including the network log and all sorts of information that you can use to detect what happened on your site. It's like being able to solve a mystery by seeing the crime happened. Wow, that sounds so good. Especially as web developers, we're often working in the dark with the earmuffs on. And with not being able to see anything in our surroundings are solutions a black box, we're just trying to fix the problem. And Log Rocket really makes fixing that problem easy. So head on over to Log rocket.com forward slash .TECH, sign up and get 14 days for free. Check it out.
+
+60
+00:27:18,960 --> 00:27:48,450
+Wes Bos: My next section here is that TypeScript will become extremely popular it obviously already is. But I think like the masses will find that it makes more sense to start a TypeScript project than just a regular JavaScript project, because of tooling VS code is just getting so dang good. With all of the tooling that surrounds TypeScript, obviously, being able to run it, no problem. And Dino is really, really cool. So I see it as a big year for TypeScript.
+
+61
+00:27:48,660 --> 00:28:49,770
+Scott Tolinski: Yeah. In fact, we just happen to line up perfectly on this one, because you see, my very next one on my list is TypeScript tooling will get even nicer, which is something I alluded to earlier on when we we talked a little bit about tooling in general, right? Like nobody wants to spend their time learning TypeScript, to learning how to get their tooling to work. Yeah, I want to create a dot TSX or a.ts file, we want to save it and we just want to have it work. And in for me, if you remove a lot of the barriers to entry around TypeScript, I think it is just totally ripe for really mass adoption. At this point, I really, really have a hard time going back to writing JavaScript anytime now. And it's crazy. If you listen to syntax, like a year or year ago, even when we're like, well, we'll see who the winner is, you know, yeah. And now I'm just like, I love TypeScript. And it's best friend, I bought at a really nice gift first birthday. I'm just very excited to be TypeScript friend at this point. So now TypeScript could just, you know, make their driveway paved, then more people will come over to his house. This is an extended metaphor.
+
+62
+00:28:51,180 --> 00:29:32,250
+Wes Bos: I like it, the latest version of VS code that came out, I think, at the beginning of December, when it rolled out, they changed something with the both with the auto import, and with the type hinting, and it got the purchase regular JavaScript I'm talking about it got so good. Like, it's obviously still not as good as writing TypeScript. But if you're using like, third party library, almost all these third party libraries that are popular ship types now and you can use those all in regular JavaScript, so like, just between that I think that will show people Oh, that's so nice to be able to use in JavaScript. Imagine he was even better in TypeScript. And so it's gonna be a big year for it. Totally. What do you got now? That
+
+63
+00:29:32,250 --> 00:29:33,150
+Scott Tolinski: was my next one. Are
+
+64
+00:29:33,150 --> 00:29:34,020
+Wes Bos: you running out?
+
+65
+00:29:34,140 --> 00:29:35,130
+Unknown: No, I'm not gonna.
+
+66
+00:29:35,400 --> 00:29:36,870
+Wes Bos: Oh, grab another one there. So well, it's
+
+67
+00:29:36,870 --> 00:30:51,420
+Scott Tolinski: funny because I'm snooping again, and I noticed your next one is about react. And my next one is also about react. However, both of ours are different. Okay, so I have to on react here specifically, maybe I'll go through both my two here just so we can save time. One scoped CSS in react will find some way to become better than it currently is. I have been on this for a little bit I think spelt CSS out. Or you just put a style tag, you get single page components. And it just works. style components are nice, but nothing is really quite dialed down in the React community as if there's always like a little bit of JavaScript barrier in between the JavaScript and CSS that would prefer just to have a little bit more magic there myself personally. And maybe that's a framework that solves that problem. I just think somebody's going to make single page components a little bit nicer in react, and we're going to get that scope CSS of my dreams. Now another one I think is going to happen, which I also think you might have something about in yours is server side rendering and hydration in react will become a lot better. Because anybody who's worked in server side in react, or even in the hydration, it's not a lot of fun. It's pretty intense on the computer when you're working in Dev, so I always turn SSR often Dev, I see remixes doing a ton there.
+
+68
+00:30:51,690 --> 00:31:31,530
+Wes Bos: Yeah, the whole like streaming react will be a thing. Instead of like thinking server side client side, it just works. And then it will stream from the server to the client. Not exactly sure how that's gonna look. But it's got to get better than it is now. Like, even right now, if you try to do something like anytime you have like a window, dot whatever, oh, yeah, it like breaks the entire bill, come on, you have to go get a special component for it to work. Like, you can't figure this out. Like they obviously are. But it's been like a year and a half, almost two years of us sort of waiting for what this is gonna be in react land. So I'm so pumped. And I bet 2021 is the year that we find that out. Yeah.
+
+69
+00:31:31,530 --> 00:31:42,900
+Scott Tolinski: And I bet that all connects somehow to suspense, and promise Based Rendering and react somehow, I'm thinking they're all related somehow. I don't know if it is, but
+
+70
+00:31:43,050 --> 00:32:47,910
+Wes Bos: that kind of ties into my own thing is like, I think we'll see. And this is, this won't be me, I doubt it. But I think we're gonna see people fall out of love with react just because of things like animation, scope, CSS, the server side rendering, there's a lot of stuff that has not gotten better and racked, ever. And there's all these other frameworks that are just slam dunking how to do this stuff. And I'm not sure if that's because react just says, Well, that's not our problem. We are the putting data in the DOM and updating the DOM, right? Yeah, people and you do the rest, right? Like this next jazz problem or something like that? Or if they say, Yeah, like, we've been looking at how to do that stuff. And we're going to show like, even the forms, why is it so hard to sync a value to state with the form input, right, like, come on, it should be a little bit easier to do that in react without having to install a whole bunch of stuff. So I think either people will fall out of love with react because of those reasons. Or we will start to see a little bit more magic added to react. Yeah,
+
+71
+00:32:47,910 --> 00:33:58,530
+Scott Tolinski: in various various ways. I agree. I think there will be something there. And I think maybe this is a related topic, but maybe you're gonna see more people on web components, because there are more web component based frameworks that are coming around whether that is like stencil or something. But there are more web component based frameworks out there that they're advertising. The point is, well, it's closer to the platform, you know, it is the platform, so why wouldn't you use the platform sort of thing? Yeah, we'll see. So my next one here is going to be markdown based formats like MDX are just going to continue to skyrocket and use because let me tell you, there's nothing better than authoring HTML with MDX. It's fantastic. I was doing a markdown post the other day, and I was like, Oh, I need to add, what did I want? I wanted to add like a counter to it, just like a simple counter. And I was like, Oh, yeah, this is markdown, like if the if this was an MDX file, I could just drop in a react counter into this. But because it was markdown, I was like, Okay, I'm, I'm in static land here. I think things like MDX, which is basically markdown with components inside of it. I think those things will continue to become more and more popular.
+
+72
+00:33:59,010 --> 00:34:50,640
+Wes Bos: I predict Gatsby will get some sort of server rendered streaming rendered on demand some way to get around the limitations of what Gatsby has right now is that it's entirely static. And now that next gas has the ability to do both. We talked about this on the whole next first Gatsby show. There's, there's like a data layer and whatnot. And there's still some benefits to Gatsby there. But I think that they've got to both to solve some of the pains of long build times as well as sometimes people do want to server render some of this stuff. I'm curious to see what they'll come out with in terms of hosted, hosted graph QL. On the flip side, I'm always curious, like, will next jazz ever implement some sort of data layer? Or is that out? Scott? Is that outside of the scope of what next? .js
+
+73
+00:34:50,640 --> 00:34:51,360
+Unknown: is? Yeah,
+
+74
+00:34:51,360 --> 00:34:55,190
+Wes Bos: I think it probably is outside, but I'm just gonna throw it on the table there.
+
+75
+00:34:55,230 --> 00:36:38,420
+Scott Tolinski: Yeah. Just toss it on the table. I think that's cool. I agree. I mean, I think for the most part What we're going to be doing next year around, I don't know, midway through the year, we are going to be having ourselves like a little bit of a next .js, Gatsby, and remix Thunderdome, where we're gonna have these platforms that are doing server side stuff. They're doing data, they're doing all sorts of stuff. And we're gonna have to say, all right, well, which one has what? which one has what? And I do think that will definitely be I think, here's the fun one, that might be a little bit of a change of pace here. I think augmented reality tech in the browser is going to continue to evolve and become much more thing that needs to be in your skill set, maybe not by the end of 2021. But I think it's going to improve like its market share will rise in terms of skills needed. because let me tell you, Courtney, was buying something from Target yesterday, and she had the she had the app up and was putting a picture on one of our walls with augmented reality. And I know people have been able to do this for a little while. But like, is this the website or the app, and she's like, this is the app. And I was just thinking, yeah, this is an aspect that web is going to be behind it, right? companies are gonna say I want to be able to see my artwork on the wall, I can't do that on the app, because I don't have the skills to do augmented reality. Now, I don't know what the status of this is. In current land, I've done a little bit of 3d, but no augmented reality. So I'm interested in checking out more about these API's, I think augmented reality is going to be something that the native app makers are going to be running wild with, while we're still held back just a little bit, but I think we need to push it,
+
+76
+00:36:38,690 --> 00:37:28,290
+Wes Bos: I'm gonna kind of tell them that with augmented reality, becoming easier for us just regular web devs. I think that somehow I don't know how, but AI will also become a little bit easier because I was thinking the other day, like, you know, when you search on a website, and you misspell it, but it still finds what you meant, I was just sitting there thinking like, Damn, that sucks that we can't just do that in the web. You know, like we you have to like, go get algolia or some sort of set up some sort of Docker container that will learn from you. And, Mike, is there not some sort of like smart, like some browser based thing or like some way to do that just in regular applications? Where it's not a huge undertaking? I don't know. But I think AI is getting huge in every industry, just like you've seen the noise cancellation AI. Have you seen that?
+
+77
+00:37:28,559 --> 00:38:04,190
+Scott Tolinski: Yeah, I have. Yeah, the What's it called? It has the name, r TX voice. It's called exploits. any of that stuff for me, I think is poised to at least grow in some sort of capacity. Because I say this as somebody who really wants it to happen. But then I'm thinking about it. On how many websites in 2020 still have really terrible search. I can think of a lot. Yeah, there's like a lot of things. We're all search. But like even like, What is a giffy? Like, giffy, you search a two word thing. And it only searches for the first or the second word like you can search this as a phrase Come on.
+
+78
+00:38:05,730 --> 00:38:06,690
+Wes Bos: That's a good point.
+
+79
+00:38:06,860 --> 00:38:09,270
+Scott Tolinski: And so might be a little bit optimistic on our part. Yeah.
+
+80
+00:38:09,570 --> 00:38:11,210
+Wes Bos: Maybe this is just our wish list.
+
+81
+00:38:11,420 --> 00:38:12,210
+Unknown: Yeah. Right.
+
+82
+00:38:12,210 --> 00:38:17,400
+Wes Bos: Do you have any predictions for next .js? What's gonna happen with that in 2020? We
+
+83
+00:38:17,400 --> 00:38:27,030
+Scott Tolinski: have no predictions for next .js. I think whatever the React team is doing around server side rendering, if they are in fact doing something around server side rendering, I think that will will dictate
+
+84
+00:38:27,090 --> 00:38:38,880
+Wes Bos: that will be what we get. Yeah, that's true. I think the image component that they released will probably get a lot better. But past that, I still want them to do some sort of CMS but I don't think they'll ever do that
+
+85
+00:38:39,090 --> 00:39:39,810
+Scott Tolinski: board. But no, I don't have anything on on next year. Specifically. Now I have one on VS code is going to continue its dominance. VS code will continue its market share dominance, it is going to continue crushing foes as it invests in cloud shared code environment, so that people can start coding easier on their iPads or their phones, whoever would want to do that. What was there was a demo of some app that I just saw the other day was like a decentralized repository for your code. And it used this really neat thing where people were able to do sort of like a multiplayer mode and their code. And I was just thinking multiplayer mode in code, kind of like it is in figma. is gonna happen. Yeah, we're gonna be able to pair code just like you said, with like, remote work things being easier. We're gonna be able to pair code where we're all typing on the same files and saving and then we're getting, you know, point 05 millisecond hot reloading on to our ESM bundles and shipping it. It's gonna be cool.
+
+86
+00:39:40,050 --> 00:40:01,400
+Wes Bos: Yeah, code space is what VS code is already working on GitHub code spaces were what will be the day where we don't even have VS code as an icon on our dock, but you just visit the URL. That will be interesting day. It's coming for sure. It's funny VS code. I was just thinking it's like, isn't it funny how VS code just tricked us Using an ID
+
+87
+00:40:01,730 --> 00:40:08,670
+Scott Tolinski: just ID light for a little bit, and then they're like, well, we'll just go a little bit more than one. Next thing you know, you're using WebStorm with a
+
+88
+00:40:09,030 --> 00:40:57,170
+Wes Bos: little bit of TypeScript. Yeah. It's true. So good on you. Good on your vs. Code. Yeah. What else we have here, just some CSS predictions, I predict color functions we will get, I think people will use more built in features. Like I posted a screenshot the other day where I refactor style components like theme props, and like using a theme provider and style components. I just refactor that just using CSS variable, yeah. And a lot of people were like, oh, you're not using that? Mmm, like No way. css variables are their native. They just work. It's an OK syntax with the dashes. I'm used to it. Now. So big fan of that. And like, that's the idea is that eventually you stop using a lot of these transpilers. And you just get CSS like one day, maybe we'll even get scoped CSS.
+
+89
+00:40:57,170 --> 00:41:07,080
+Scott Tolinski: And honestly, CSS variables to me are just endlessly better in every capacity than a theme function or whatever. And styled components, or
+
+90
+00:41:07,109 --> 00:41:08,420
+Unknown: even for rounding,
+
+91
+00:41:08,880 --> 00:41:12,980
+except for rounding. Did you see that all rounding corn?
+
+92
+00:41:13,400 --> 00:41:32,690
+Wes Bos: know somebody on StackOverflow asked, like, how do you round a value with CSS? And they had this like, insane calc function? I was like, Yeah, but like, why would you ever want to round? I guess, if you wanted to, like, I couldn't think of a reason why I wanted to round but I thought it was hilarious. I'll try to look it up.
+
+93
+00:41:32,690 --> 00:42:31,170
+Scott Tolinski: Yeah, please do. My prediction was that people are going to use and love seriousness variables. because let me tell you, man, I have a course on CSS variables. For those of you out there modern CSS design systems where we create design systems with CSS variables. And if we had like a, which we don't, if we had some sort of way to gauge the feedback that we've gotten on every single course, that is by far my most appreciated course this year, people really are blown away by what you can do with CSS variables. And I'm considering making a second part to it. Because there's a lot more you can do. For instance, we started detaching our colors to be hlsl a and then storing different parts of the variables as like I have a hue and saturation variable and then a lightness variable. So that way, we can do our own pseudo color functions by plussing, a percentage amount to a function in Eden calc, and it works really nicely. The whole system is just amazing. I have so many thoughts on CSS variables,
+
+94
+00:42:31,680 --> 00:42:39,060
+I'll save them for later, but I really love them, I think people are gonna continue to, to love them. And man, they are just very, very nice to work with.
+
+95
+00:42:39,650 --> 00:42:42,540
+Wes Bos: What about serverless, any predictions there serverless
+
+96
+00:42:42,980 --> 00:43:13,800
+Scott Tolinski: will continue to grow and evolve. And becoming easier and easier local development with serverless will get easier. The amount of platforms that make you have to think about lambda functions, less the amount of like, just, you know, the ease of use that we've seen already with serverless. like not having to think about it. Like I think most front end developers don't even want to think about it at all. They just want to have it be served to the most people as fast as possible, and be able to scale. And I think that's what we'll see.
+
+97
+00:43:13,940 --> 00:43:45,870
+Wes Bos: Did you see the other day, I just saw this today was Netlify rolled out a plugin that allows you to run next .js on Netlify. And not not just like next .js static version, but like, server rendered, and it runs all entirely in serverless functions, which is besides the serverless framework. That's the first time I've ever seen the ability to run next gas as serverless functions, instead of just a regular note app when you're outside of oversell hot, hot, hot. What else do we got here?
+
+98
+00:43:45,900 --> 00:45:30,420
+Scott Tolinski: We have time for our third sponsor of the day, which is a new sponsor. And this is a new sponsor, but not a new company by any means. Because I'm talking about linode and linode has been doing the dang thing for a long time. Do people still say dang thing? And 2021? Is that a thing? Oh, yeah. linode is just one of these cloud hosting providers that has been really innovating for a very long time. So whether you're working on a personal project or managing enterprise infrastructure, you deserve a simple, affordable and accessible cloud computing solution that allows you to take your project to the next level. They are talking my language right there. Simplify your cloud infrastructure with linode Linux virtual machines and develop, deploy and scale your modern applications faster and easier. So today, you can get started with linode with $100 free credit, which we all know in the VPS world will get you a very long ways because virtual private servers especially companies like linode are cheap. So $100 in credit is going to get you a lot of stuff. So you're going to want to head on over to linode.com forward slash syntax. That's Li n od e.com forward slash syntax linode has 11 global data centers and provides 20 473 65 human support with no tears or handouts, regardless of the plan size. In addition to shared and dedicated compute instances, you can use your $100 credit on an s3 compatible object storage, managed Kubernetes or more. So check it out linode.com forward slash syntax, click on the Create free account button to get started. Thank you for linode for sponsoring.
+
+99
+00:45:30,720 --> 00:46:19,650
+Wes Bos: Next one I have here is enterprise jam stack. This is a little bit tongue in cheek but I think that jam stack will become becoming more and more popular. I saw the other day that CloudFlare is rolling out like static hosting in the whole like build process online, which is pretty nifty. So I think like the big players are now taking note of jam stack. It's sort of outside of our whole like, people that listen to this podcast. And now I think that it is a is a much bigger thing. And we're seeing a lot of people see the benefits, especially with tools like next Gatsby sapper, whatever spelt smelt kit, it's pretty exciting to see both serverless and statically rendered or statically. refreshed pages be so easy to build word.
+
+100
+00:46:19,830 --> 00:46:30,270
+Scott Tolinski: I think that is it for our predictions. I think we'll come back to you later in the year to see how we did on these predictions just like we did, unless you have any others you'd like to touch on.
+
+101
+00:46:30,359 --> 00:46:46,050
+Wes Bos: I just asked on Twitter, a couple of people said progressive web apps are finally a thing things over thing. Maybe Apple will finally Yeah, they are but Apple always cripples them. That's the frustrating thing about everybody using an iPhone. So maybe progressive web apps will be
+
+102
+00:46:46,410 --> 00:47:16,560
+Scott Tolinski: an even bigger thing. What do you think is going to happen first? Do you think that electron based which is already happened, but electronic like apps and native apps that are written in web .TECH? will be more popular than pw A's? Or do you think pw A's will ever be more popular than web apps that have been bundled into be a native platform? Because I just don't know if I see without companies like Apple like adding pw A's to the app store? I don't see that like ever taking off?
+
+103
+00:47:16,830 --> 00:48:01,500
+Wes Bos: Yeah, that's, that's a good question. Because you can take like we talked to the missive folks and their app, I was surprised to hear that it was JavaScript, HTML, CSS. So like you can do that now. And it seems like every month now I hear about a new app that Google Whoa, this is this is actually a not necessarily React Native app, but like this is just JavaScript running inside of some sort of shell. So I probably will see that I don't think Apple will ever want you to go around the App Store, because that's how they make a lot of their money. But as long as as long as we can still just build our apps in HTML, CSS, and those things get better and faster and consume less memory and less resources and things like that. I think that's probably where, where we'll see it.
+
+104
+00:48:01,500 --> 00:49:24,420
+Scott Tolinski: Word. Cool. So let's get into sick pics, the part of the show where we pick things that are sick. Let me tell you what, my cup has been overflowing with sick pics, I cannot keep track of them all. I have too many. So I've been having to write them down in like eight different places. So much stuff to the point where it's like getting a little absurd. Let me pick one that is going to be really nice. For those of you who are looking for something fun to watch. No, nobody likes to talk about how everybody's all stressed out right now because of the current situation. So Courtney and I have been like only watching funny things or fun things because anything else is just too intense. So we've been watching Ted lasso on Apple TV. And man, that is a delightful show. Wow. It's stars Jason Sudeikis. And it's about he's a football like a college football coach who gets hired to be the coach of a premier league team. And he he has to go to England and and sort of manage the fact that everybody hates him, and all sorts of great things. But he's like this unbridled positivity in his way of doing things is just totally infectious. And we were completely hooked after completely hooked after one show. And then just like binge it after two and then by the time that we ran out of episodes we were just very sad that it was done. But they've been signed on for two more seasons. It is very very good.
+
+105
+00:49:24,810 --> 00:49:49,500
+Wes Bos: Oh, check that out. I got a sick pick something that you sick picked, I think or mentioned a couple a couple weeks ago a couple months ago and it's this newer dimmable 480 LED so like I went down the rabbit hole of of lighting. And I almost got the key light and you're like no don't there's better ones.
+
+106
+00:49:50,310 --> 00:49:56,280
+Scott Tolinski: Like rebranded like, you know, I mean it's marked up definitely marked up, even though it is cheap,
+
+107
+00:49:56,520 --> 00:51:06,810
+Wes Bos: and I couldn't like find like whatever the equivalent was just because of how they make it. And somebody on Twitter said like, Alex, excellent, I'll thanks so much for this. He said, You don't have to like light your face directly just bounce it off a wall. And I was like, Oh, that's a great idea. And I was like, Okay, I need like a super, super bright LED, and I bought a couple of them and returned them. And then finally, I was like, Scott, what's the one you have? Again, he sent it over. And like that was it because it's, it's got a dial for like the warm LEDs as well as the dial for like the cold bright light. And you can mix it just perfectly, because that's always the problem I had is that like, sometimes I come on, like very pale, or to read. And this allows me to dial that in. And this thing is awesome. It's just like the sun. And I can just I can bounce it off off my wall. And my video got so much better from it. And Scott's had this thing for years now. And it's great. I love it. So it's the newer dimmable by color led they have 480 ones is the sun they've won 660 LEDs, which I imagine is like Tucson Yeah,
+
+108
+00:51:06,810 --> 00:51:10,800
+Scott Tolinski: it's probably actually starting nuclear fission in your office.
+
+109
+00:51:12,840 --> 00:51:27,450
+Wes Bos: Yeah, so big fan of it, we need to do a show on our setups now that I think I'm pretty, pretty happy with my audio video setup right now. Specifically video. I've had my audio dialed in for years now, but I'm pretty happy with my video now. Yeah,
+
+110
+00:51:27,480 --> 00:51:50,730
+Scott Tolinski: I have recently rearranged my entire office, you you can tell us because you're now seeing my whole back, my whole set that I created is smaller and a little bit shifted in the wrong direction. So I'm gonna have to shift my set to match. And my setup is really dialed in. People were always really getting on me about my exposed cables and my cables are at tidy as a team. I
+
+111
+00:51:50,730 --> 00:52:00,540
+Wes Bos: hate the cable, the cable shamers cables, cable. Let me just say cables are beautiful. And you should never shame somebody for having a plug in their computer. Yeah,
+
+112
+00:52:00,570 --> 00:52:21,270
+Scott Tolinski: I got one of those little lick racks. I screwed it in. And I just shoved all my cables into there. So guess what? You cable people like those cables. They're still there. They're just all shoved into a rack. So you can't see. And I hope you think about that. So that's awesome. I'm glad you like the light this these things are fantastically small and just then and just amazing. So
+
+113
+00:52:21,360 --> 00:52:27,510
+Wes Bos: way smaller than I thought tiny. Yeah, it's like maybe what like maybe eight inches by eight inches.
+
+114
+00:52:27,540 --> 00:52:36,420
+Scott Tolinski: It's maybe a foot by a foot looking at my foot and then looking at the light. I actually might have the bigger one, but I'm not sure which one I have. Either way, mine's a foot. Yeah, cuz we're just by a foot. If
+
+115
+00:52:36,420 --> 00:52:39,900
+Wes Bos: when you showed me a photo of yours, it looked bigger.
+
+116
+00:52:40,110 --> 00:52:41,670
+Scott Tolinski: Yeah, it's potentially.
+
+117
+00:52:41,850 --> 00:52:49,920
+Wes Bos: It's awesome. So yeah, check it out. I'm excited to do a show on video now. Yeah. So okay, shameless plugs, level up. tutorials.com.
+
+118
+00:52:49,920 --> 00:53:29,670
+Scott Tolinski: We have just new courses out 24 seven here. The latest course at the time of recording this video, or this podcast, which is months ahead is Dino 101. For web developers. And let me tell you, this course is for those of you who hear the words Dino and maybe don't understand why you would ever want to use it or where it fits in or how to even get started. We talk all about writing your first line of Dino code to exactly what the heck that permission model is doing, how we can import and load things, what the standard best practices are, and how to get started writing your own web server that serves static as well as the API's.
+
+119
+00:53:29,760 --> 00:53:51,780
+Wes Bos: All right, I'll stick around shamelessly plug all of my courses that West boss comm forward slash courses got a list of all of my courses. And you can use the coupon code syntax for 10 bucks off that. Alright, that's it. Thank you so much for tuning in. And we will catch you on Monday. Peace, please.
+
+120
+00:53:53,520 --> 00:54:03,270
+Scott Tolinski: Head on over to syntax.fm for you full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
