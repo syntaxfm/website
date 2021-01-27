@@ -1,0 +1,268 @@
+1
+00:00:00,359 --> 00:00:24,480
+Announcer: Monday, Monday, Monday Open wide. Get ready to stuff your face with JavaScript CSS loadmodule BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA boss and Scott L. Totally ski.
+
+2
+00:00:26,010 --> 00:01:01,560
+Scott Tolinski: Oh, welcome to syntax. And this Monday tasty treats, we're gonna be talking about hosting and web servicing Web Services pricing explained. So a lot of times we head to a new service and it says, this is going to cost you 0.3 cents per whosits and whatsits. And you might just be like, whoo, I don't know what that is. So we're going to be talking all about the different types of pricing that different services can charge you what they all mean, and how that affects your bottom line. My name is Scott winsky. I'm a web developer from Denver, Colorado, and with me, as always, is the West boss.
+
+3
+00:01:01,560 --> 00:01:18,090
+Wes Bos: Hey, I'm excited about the show. It's not gonna be the most fun show ever. But this is something I'm really you're gonna you're gonna be your mind is gonna be blown. But like, I never, I like especially with like Heroku they'd say like a, how many dinos do you need?
+
+4
+00:01:18,360 --> 00:01:23,940
+Scott Tolinski: Yes, I don't know what I would like one that dinosaur base, and it's gonna be really cool. Okay,
+
+5
+00:01:24,480 --> 00:01:43,260
+Wes Bos: how many Dino dinos did Dino need? So like I pricing it? Sometimes you look at these pricing pages, like, I don't know, how much is it gonna be? You know, and now that I understand it a little bit better. I thought let's, let's, let's tell the people how it works.
+
+6
+00:01:43,410 --> 00:02:32,630
+Scott Tolinski: Yeah, it's some of it was like with even with AWS, it's just sort of like, well sign up and see how much it costs after the end of the first month. Yeah, I'm not going to be using that much of it. So it's not going to break the bank. So let's get into it. The first topic that we had here would be a lot of places charge via the minute or time that you're going to be using something. And this is oftentimes with servers that gets spun up for serverless functions, because those functions that are run are only run for that period of time. And then there's that computer interface is able to be used for something else, right, the classical, most like shared server type of thing, but just different. And so because of that you're paying for the amount of time that function is running in that amount of time that that service is being used, rather than the fact that that service needs to exist. 24 seven,
+
+7
+00:02:32,780 --> 00:03:24,150
+Wes Bos: yeah, you these ones, for me are at least the probably the easiest to estimate other than just paying a certain amount per month for a specific amount of resources. And that's just because like you can literally run your functions. And then you can do some quick back of the napkin math as to like, how long did that take? All right, 300 milliseconds or 100 milliseconds. And then how many times will that be hit, maybe a user will hit that page 100 times a year, and then you have 40 users. And you can pretty quickly do that. This is pretty popular in serverless space, because you are literally paying for time you just a couple couple seconds of a server, and then somebody else could seize that server after you. It's also popular in using graphics like you can, you can also do this for graphics cards, AI, machine learning things like that you pay by the minute, or by the second for the amount of time that you're using on those servers.
+
+8
+00:03:24,390 --> 00:04:34,760
+Scott Tolinski: Yeah, and those scale with the amount of load, you're putting it under, you're asking it to do a big heavy thing, it's gonna cost you a bigger, heavier dollar than if you were doing something that was really light, because it's inherently going to take less time. But in the same way, this one is also kind of the same thing. I mean, they're all facets of the same thing if you think about it, but in this regard, the next one that we buy resources in how many resources not be a time, will you be charged and this can be the common VPS model that you've seen for a long time. And that stands for virtual private server something like Digital Ocean where you're paying for the price of the virtual private server and you are paying for it this stats on it, you're paying for the resources as in how much CPU can this thing handle? How much RAM does this thing have? How much storage space does this server have. And then as you need more, you can always scale up and many other container based things. So this is how level up tutorials is hosted or hosted on Meteor galaxy and we pay by the resources we have auto scaling in case we get hit too hard and it can scale up our containers to use more resources if we need it or and all the good things that you're you are used to with that sort of flow.
+
+9
+00:04:35,390 --> 00:05:09,870
+Wes Bos: Yeah, if you are used to also like a Digital Ocean droplet, or what's the other one linode is another popular one space Rackspace, things like that. You say I need a gig of RAM and this was CPU and disk space is not necessarily a big one anymore because disk space is it's so cheap, but one thing you do want to look at there is are they SSDs Yeah, because when they do Read the file from that disk. It needs to be fast, right? That was the Yes. That's how digitalocean sort of got onto the scene is that they started as a SSD first hosting company.
+
+10
+00:05:10,050 --> 00:05:11,850
+Scott Tolinski: Where did you host before? digitalocean?
+
+11
+00:05:12,200 --> 00:05:34,920
+Wes Bos: I was on media temple. Me too. Yeah, yeah. Media temple was a really big one. And then I had a I had a GoDaddy server for a long, long time. I still have a Bluehost server. I do too. Yeah, that those those like GoDaddy Bluehost companies that have just like PHP LAMP stack, they like once they get somebody in there, it's gravy, because it's hard to move.
+
+12
+00:05:35,460 --> 00:05:41,700
+Scott Tolinski: Yeah. And and I think they know that because they Yeah, they pay a decent amount for referrals. Oh, yeah, ladies. Yeah.
+
+13
+00:05:41,940 --> 00:05:57,060
+Wes Bos: I think like with Bluehost, I'll often I used to have affiliate links before I denounced them. And they would pay like $100 per sign up. And they know, that's because somebody that pays is going to be with them for 810 years or something like that.
+
+14
+00:05:57,120 --> 00:05:58,410
+Scott Tolinski: Yeah, that's what they're banking on.
+
+15
+00:05:58,560 --> 00:06:23,880
+Wes Bos: The next one is per dyno. This is popular with Heroku. And you may you may hear like, I think other hosting companies have this similar similar vein. And essentially, it's just a virtual Linux server, like we were talking about earlier. But then they will give you a specific amount of CPU and memory as well. I'm not sure why they call it a dyno and not just what you're getting. What does the dyno even stand for? And
+
+16
+00:06:24,180 --> 00:06:24,900
+Unknown: Heroku?
+
+17
+00:06:25,320 --> 00:06:26,610
+Wes Bos: That's a good question.
+
+18
+00:06:26,940 --> 00:06:39,420
+Scott Tolinski: Because that's the first time that I'd ever heard that, that language. And I wonder if it is just like marketing, we need our you know, AWS is so heavy in that where everything is the AWS version of whatever it is.
+
+19
+00:06:39,630 --> 00:07:22,410
+Wes Bos: Yeah, and and the the coolest thing about Heroku. And all these other platforms is that you can just add more dinos, and it will just make your app faster. Because the way that Heroku works is your apps are stateless. And you can just run your app on multiple servers. And that's why like, if you try to use Heroku, and you upload an image, you might come back to find out like a week later that your images are gone. And that's because they don't have any state that if any files that are uploaded, Heroku will just be be cleaned up, you have to put them somewhere else like a s3 bucket or something like that. And that's great, because they they will, they will launch more versions of your app, and then they'll run it on a load balancer for you. Maybe that's why they have a special name for it.
+
+20
+00:07:22,520 --> 00:07:48,570
+Scott Tolinski: My understanding is that might be that because Heroku was like the first big primarily used one to do the container based scaling up and scaling down. I think they just called them dinos before they were called containers. And then after they had got started calling containers, I see in quotes, it says that on their site, it says a dyno, which is isolated, lightweight Linux containers. So it doesn't explain it as being anything other than that.
+
+21
+00:07:48,600 --> 00:08:47,100
+Wes Bos: Yeah. One other thing that Heroku has is they have free dyno hours. So that was another weird thing to me. When I was coming from a traditional server, you pay for the server, you get a box somewhere and it's running. And then they would be like, how many hours do you need? And I'd be like, all of them 24. Yeah, it should always be up 24, please. And I never understood it. And now I get it. Because the way that it works, like I said is that very similar to serverless functions is that that box will spin up, it will turn on when people are visiting your website. And then when you're no longer using it, it will turn off. And then when somebody hits the website, again, it will turn on. And that that's the cold start that you hear often. And that's good to know. Because sometimes you have you have a website, you could host 100 websites on there, and you might not get any traffic to them, because they're just side projects, things like that. And if they're not getting a whole lot of traffic, then they're not costing Heroku really anything in terms of resources to run them.
+
+22
+00:08:47,520 --> 00:09:26,610
+Scott Tolinski: Next is by bandwidth. And bandwidth is the amount of data that is transferred. Because we often think about like data in terms of like storage, but we do work in a medium that's primarily on the web. And on the web. One of the biggest things that you you track is how much data is sent in. And that's really what bandwidth is, is if you have big, heavy files and you have to send them then you're going to be paying more in bandwidth fees because it costs money to send them ISP are currently exploiting by data caps, not a bandwidth that is being traveled is what's going to be the thing that's tracked there. What services in your mind, do you see as companies offhand, do you know that charge by bandwidth
+
+23
+00:09:26,640 --> 00:11:09,570
+Wes Bos: the one that I use is backblaze b two which I use? Yes, do all like downloads for my my video courses. And so they have like a couple things like I pay to have my video files on their server. So for a terabyte it's five bucks a month. And then if you're uploading terabytes another five bucks a month and if you're deleting a terabyte it's another five bucks a month so they charge you for any time that you either hold data, you upload it, you download it or you delete it or sometimes they refer to as Ingress or as That you're transferring data to them. Like, I think mcse is another one that will charge you for Ingress. And so that that's another thing to think of. Because like, yeah, it might cost me I'm not saying this specifically for Microsoft for one of these platforms, it might cost me $100 a month to do this. But if I wanted to move over everything, I've got terabytes and terabytes of data, that right to move in, especially like, if you think about like a hosting platform like cloudinary, right? Like, I don't know what cloudinary uses behind the scenes, whether it's Amazon s3, but like, let's say they wanted to move from Amazon s3 to whatever the Azure image hosting version is, then they would have to calculate, okay, we've got, we've got 70 terabytes of photos from the last year, if we wanted to move those all over, that would that would be a pretty penny just to get it into the server, let alone people requesting these images and downloading. So that's something that probably most people listening this podcast don't have to necessarily think about that. But if you have a large application with loss of user content, then you would be probably thinking about that.
+
+24
+00:11:09,900 --> 00:12:34,110
+Scott Tolinski: Yeah, and some of these things, you need to take an entire course on to know how much you're gonna pay for the thing, because it is funny that I'm looking at like, muxes payment page. And granted, they do a good job of this, but it's for encoding mux is 0.5. dollars a minute, so five cents a minute, to encode. And then for storage, it's point three cents a minute to store them. And then to stream it, it's 0.13 cents per minute. So like, that's three, like fractions of $1, spread out over three different things. And so you might be like, Oh, I have no idea how I'm gonna pay for this, like what I'm going to pay for this service. But that's why a lot of these things end up giving you video calculator. So like monkey has a really neat video calculator where you can say, Alright, my average video is, let's say, my average videos, 10 minutes long, I'm going to get 25, I'm going to do 25 monthly uploads, and then the average video view count, I don't know the default is 75,000. So that's fine. And then you're going to be paying 550 bucks a month to do that. So like, hey, that that tells you pretty explicitly what that's going to cost. But you have to know that information going into it, you might be able to do some like calculations to say okay, maybe in the future, this is what it will look like. But at the end of the day, you do need to have some information about what your traffic should look like to be able to calculate a lot of these.
+
+25
+00:12:34,380 --> 00:12:51,690
+Wes Bos: Yeah, or even like another way to think about it is if you think about like what a user would do, like an average user would use in terms of traffic. You can think about that. And then and then you've hopefully, if you have a business, you can figure out what is the user worth to you? And then you can say, okay, the like, for me, I know,
+
+26
+00:12:51,720 --> 00:12:54,630
+Scott Tolinski: users are priceless. I cannot put a price on users there.
+
+27
+00:12:55,860 --> 00:13:36,000
+Wes Bos: Yeah, like if a user watches an entire course, I know how much that's gonna cost me and I know how much I'm making. And that allows me to make calculations based on other things like that, based on like, how much free courses can I offer to stream as well? Because I have to pay for bandwidth on that as well. What else do we have here by database calls? If you've got like a database service, they will often charge you either by entries, like how many entries Do you want to store in a database? Or how many calls Will you be making to that specific database? Again, for me, that's, that's really hard to calculate, because like, how many database calls are you making? Yeah, for a specific page, sometimes it's six or seven,
+
+28
+00:13:36,000 --> 00:13:44,490
+Scott Tolinski: if you have joins, that's another call. Right? But in most cases, they're peanuts. If you have graph qL, could end up being 30 calls without you even knowing.
+
+29
+00:13:45,270 --> 00:14:09,480
+Wes Bos: Yeah, yeah, it's true. Like you can sometimes forget about the database underneath graph QL. What else users This is more of a SAS thing. But it can bleed into hosting how many users are able to log into your platform and manage your specific app or whatever. And sometimes you have to be on a specific tier in order to get either features or amount of users that can access specific things.
+
+30
+00:14:09,840 --> 00:14:45,510
+Scott Tolinski: Yeah, and GitHub works that way. And then yeah, I would call GitHub. Yes, certainly a SAS but it is like a web service. Use it for our entire pipeline. And so we have to pay for more minutes in our pipeline. But we also have to pay per user for our API although I don't know how many of the features we would lose if we just went to the the free private account thing that you can do now because we have a team have a few people so I don't know I'd maybe you should look at that but doesn't Netlify also charged by seats. I thought they did but I'm looking at their I feel like we had to pay for additional seats in our account to get team support.
+
+31
+00:14:45,840 --> 00:15:12,450
+Wes Bos: Yeah, there you get one team member on their free one. And then on your your the pro account, it's $19 per member per month. So if you want more people to be able to manage your application, or see logs and things like that, then you can pay That I don't think that like every team member would need would need that though, just because you get most of the, the info about a build will be put into a GitHub comment on on a pull request. I'm like that. Yeah.
+
+32
+00:15:12,450 --> 00:15:14,130
+Unknown: Yeah. So that
+
+33
+00:15:14,130 --> 00:15:24,000
+Wes Bos: that that's kind of interesting one as well, the the way, kind of around that I see a lot of people do that as they just share the login. And especially with something like Firefox,
+
+34
+00:15:24,000 --> 00:15:41,300
+Scott Tolinski: I was gonna say, with like one password, because that's what we do, we share not not of all of our services. Granted, we paying for a lot of Team Services. But we do share services to some with one password in it, it makes it really nice, because you have a team shared one password thing, and everybody's got the passwords, and you get an auto fill in whatever. Yeah, easy.
+
+35
+00:15:41,670 --> 00:16:19,440
+Wes Bos: One little thing that I use is Firefox containers, or container tabs. I haven't used these. And it's awesome, because I can just open up a container tab for something else and just go to youtube.com. And I'm still I'm just signed into youtube.com as the one that I'm sharing with everybody. And I don't have to like log in and log out or open up an incognito tab and log in. So you get all the benefits of that. And I think in Chrome, you have to open the entire second browser. But Firefox allows you to have container tabs. So just that one tab will be an array of your own cookies and your own sign in stuff like that. That's that's I really like that.
+
+36
+00:16:19,740 --> 00:16:27,480
+Scott Tolinski: This is sort of sort of unrelated, but kind of related. Do you see that? Like, I saw a screenshot of like Chrome grouped tabs, if you see yes,
+
+37
+00:16:27,540 --> 00:16:29,010
+Wes Bos: I get it. It's a gray.
+
+38
+00:16:29,520 --> 00:16:31,230
+Scott Tolinski: Yeah, do you get in your Chrome,
+
+39
+00:16:31,260 --> 00:16:37,980
+Wes Bos: I have it every time I open Chrome. I'm not a I'm not using Chrome as my daily driver. But every time I use it, I'm like, What is this great line.
+
+40
+00:16:38,010 --> 00:16:50,790
+Scott Tolinski: And then I finally figured out that's what it was. I haven't opened actual chrome in a while. And I know brave is like kind of different because I don't have those things in brave here. So I wonder if we're gonna get container container windows in Chrome,
+
+41
+00:16:50,820 --> 00:17:00,000
+Wes Bos: you can turn it off. But I don't particularly like it. Although I don't know. Maybe I'm. Yeah, I wonder if it is coming to Chrome. Because they're they're doing that
+
+42
+00:17:00,000 --> 00:17:04,650
+Scott Tolinski: it sort of seemed like a preface to me. But I'm pulling that out of nowhere. So that's
+
+43
+00:17:04,680 --> 00:18:05,300
+Wes Bos: where most of our information comes from. Next, we have here is by apps. How many apps can you host digital oceans app platform does this now where instead of paying for resources, although you can you can increase the resources on a specific app. It's by app. So in like for me, I can grab a Digital Ocean droplet. And if you want to run all of the nginx stuff yourself all the certification, the certs, yourself, all of the renewing of the certs, if you want to run that all yourself, you can run as many apps as you want on a single digitalocean droplet. And like if they get too popular, then it will slow down, right. But digital oceans app platform is by the app, so you pay for $5 for every single app that you have. And if like for me, I have back end and front end on one of the episodes working on. And in that case, it would be $10. And that's just the price you pay. I think for all of the ease and benefits that come along with that type of thing.
+
+44
+00:18:05,810 --> 00:18:11,220
+Scott Tolinski: It really bummed me out that you can't use CloudFlare with digitalocean. Yeah,
+
+45
+00:18:11,250 --> 00:18:29,940
+Wes Bos: yeah, yeah, definitely do a whole show on the Digital Ocean app platform. Because it is awesome. But yeah, they, they're so ingrained with what they do, you just can't use CloudFlare. And for a lot of people, both for security standpoint, and for just like the stats that they give you, they don't let you do that.
+
+46
+00:18:29,940 --> 00:19:03,300
+Scott Tolinski: Also the amount of like, if you already have something that exists on a platform that's using CloudFlare, you might have some things that are pretty, not necessarily tightly integrated in, but like some things that you might be relying on that, like the DNS stuff in CloudFlare is way better than a lot of other DNS providers. Like you can do neater things with like different types of alias records that aren't necessarily like real types of records, or maybe even like we have redirects set up all the way at the CloudFlare level. And that to me, would be a bummer to lose. Because I looked at I looked into this app platform, it's pretty sick. Other than that,
+
+47
+00:19:03,900 --> 00:19:36,320
+Wes Bos: yeah, it seems like like I don't Netlify says if you use CloudFlare, with Netlify, you lose some of the I forget what it is you lose some of the edge benefits magic because they don't have control over the DNS. So in order to make it as good as possible. I think first cell does this too. But in I think in both cases you can knowing that you're giving up some of their edge benefits, then you still can use it and with digitalocean is just says not not gonna work. I bet they'll change that though, because that's a huge, huge thing for people.
+
+48
+00:19:36,780 --> 00:19:54,350
+Scott Tolinski: I was gonna say, also by apps and a different sort of way to look at this. They're like Heroku had a thing where you could add apps to your app needs to die. No. Do you remember like, you can like one click add on services to your URL. I'm using the word app in a totally different way here.
+
+49
+00:19:54,590 --> 00:19:56,970
+Wes Bos: Like Like a database or what Yeah,
+
+50
+00:19:57,120 --> 00:20:05,330
+Scott Tolinski: you could pop in like an M and I always thought that was kind of interesting, but I always got confused with like, Where's this thing? Like, is this the ownership of my app?
+
+51
+00:20:05,340 --> 00:20:38,280
+Wes Bos: Like, I think it's just the tight integration with other, it's just a tight integration Prisma did this to where you could like, quickly create a database on another service. Yeah. And I really liked that, because like, it's still on this other service, which you like to use, but you don't want to like, sign up and API keys and users and all that stuff, you can just do it from one dashboard. I don't think that that was anything other than that, although I'm not I haven't been a huge Heroku user. I've done lots of demo apps on Heroku. But I've never set a production app on Heroku, we
+
+52
+00:20:38,280 --> 00:21:04,920
+Scott Tolinski: hosted level up on Heroku for like, maybe a couple years, I only moved it to Meteor galaxy, because I wanted to help support Meteor development group and the cost the same, like I wasn't, I wasn't, it wasn't any more or less expensive, but it's like, okay, Heroku has their money, you know, media developer group could could not necessarily could use the money, but maybe they you know, that money could go back into the development of the platform that I'm using, rather than some other service, you know, last one we
+
+53
+00:21:04,920 --> 00:22:31,770
+Wes Bos: have here is just by work, the one that pops out here is cloudinary. They they do both bandwidth, obviously, because their images, but they also give you a certain number of transforms. So if you need to resize an image, or convert from JPG to PNG, that's a transform. I mean, you do that once you have like Scott dot png, you want to turn it to jpg, you transform it. And then the next person that requests got that JPEG, you don't need to transform again, unless you're changing something about it width, or the height, or the quality or something like that. Yeah. And that's kind of cool. Because if you think about, like, resources on there, and but my favorite way, just looking at all of these different ways, my favorite way that that is done is when you can just like tell me how much it's gonna be a month. And just hope that me as the user doesn't cost you more money than you're bringing in, right? Like, sometimes I look at these pricing pages. And I'm just like, I have no clue what this means to me. Obviously, it means a lot to you, because you're trying to calculate how much a user will cost in terms of how many resources they're using and transforms and all that stuff. But I, as the user, just want to know, how much is it going to be per month, generally for the the type of app that I want to run on? It's obviously a hard thing to do. But that's that's my big, big fan, when something just costs a certain amount. You don't have to be a rocket scientist to figure out how much it costs.
+
+54
+00:22:32,100 --> 00:23:26,700
+Scott Tolinski: Right? You You're you got the chalkboard out, you got all your equations, you're doing the math, I actually really I love a good a good calculator in that regard. And I think to shout out monks once more muxes calculators very good for what it is that tells you exactly I mean, they give you sliders, they make it really easy. It like feels very helpful, like they're trying to help you make that decision. And when when I first talked to the mcse, folks, they said they launched the calculator so that people would realize how cheap mcse was not so that they could see how much they were going to be paying. I mean, obviously it is. But like, that seemed like to be the message was like that people think we're too expensive. And we want you to easily see that we're not too expensive. And I thought that was a really neat way to put it. That's another service that's hard to calculate because they do the transition transforms, sort of like cloudinary does, right? where like, if you ask for a 1080 p version, it's transcoding chunks of that on the fly. It's pretty cool.
+
+55
+00:23:27,000 --> 00:23:30,150
+Wes Bos: The last one I'm just looking at here is what does CloudFlare workers cost?
+
+56
+00:23:30,390 --> 00:23:44,460
+Scott Tolinski: Because that's kind of serverless functions, but it's also like edge functions. It's its own sort of thing. We should have an episode about like, what are some projects that you could use like edge workers for essentially, that would be a little bit more generally,
+
+57
+00:23:44,460 --> 00:24:37,740
+Wes Bos: I like it. And they are 50 cents per million requests per month with a minimum charge of $5 a month. So 50 cents per million requests. Seems seems cheap. But like, again, requests not visits, because like somebody who visits your website might have 20 requests, you got yellow CSS files, you got six versus a jQuery 18 plugins. You got that every one of those is a request, right? Yeah. But and and also, they only have up to 50 milliseconds of CPU time. So if you're doing anything that takes more than 50 milliseconds, then it won't fit into a worker. And that's because the workers sit in front of your website from being loaded. I believe. So cool. I might be wrong on that. But I've used it a few times. I thought that was interesting to see how they they price there's
+
+58
+00:24:37,950 --> 00:25:00,510
+Scott Tolinski: Yeah, this has been very illuminating. And again, if you have a good calculator, good pricing calculator, share it with us on Twitter, I want to see some of these pricing calculators they're very fascinating to be those also kind of makes for fun little easy JavaScript projects to if you look at some of those pricing calculators and say, Oh, this would be some simple math in some form inputs might be something need to try to experiment with and make some like fun.
+
+59
+00:25:00,690 --> 00:25:27,300
+Wes Bos: Yeah, totally agree. I've been working on a mortgage calculator because a lot of the mortgage calculators out there are either they sell your soul to privacy people because and then you get ads for mortgages all the time, or they are not Canadian mortgages are a bit different than American mortgages. So the math is not exactly the same. So I've been trying to like make my own with like no trackers. And I love I like working on calculators. It's fun.
+
+60
+00:25:27,960 --> 00:25:32,580
+Scott Tolinski: So in Canadian math, do you use a for a variable rather than x?
+
+61
+00:25:33,810 --> 00:25:39,390
+Wes Bos: Yeah, it's pretty easy. Right. A big goal a and we report the mountain loonies.
+
+62
+00:25:39,510 --> 00:25:47,130
+Scott Tolinski: Yeah, okay. Yeah. So you could just have like a pond full of geese. And every time you slide it, more geese get added to the pond.
+
+63
+00:25:47,160 --> 00:25:51,840
+Wes Bos: Yeah, exactly. And there's no there's no wondering if you lose your house if you break your leg.
+
+64
+00:25:52,200 --> 00:25:53,340
+Unknown: Yeah, there's right.
+
+65
+00:25:54,450 --> 00:25:58,530
+Scott Tolinski: Yeah, that that come that's a little bit more on the bleak side of things. But yeah,
+
+66
+00:25:58,530 --> 00:26:13,170
+Wes Bos: we'll stick with the geese. Yeah, lots of geese in this this one. Yeah. All right. This I thought this was gonna be a 10 minute episode. I was like, oh, Scott. We'll just do a quick one explaining the differences a turned a little tasty. So let's wrap it up.
+
+67
+00:26:13,200 --> 00:26:31,680
+Scott Tolinski: Wrap it up. Well, thank you so much for watching and we will see you on Wednesday. Peace. Please. Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
