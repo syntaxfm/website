@@ -1,0 +1,192 @@
+1
+00:00:00,359 --> 00:00:24,480
+Announcer: Monday, Monday, Monday Open wide. Get ready to stuff your face with JavaScript CSS loadmodule BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is when Sarah Kuta bombs and Scott L. Totally ski.
+
+2
+00:00:25,950 --> 00:00:49,590
+Scott Tolinski: Oh, welcome to syntax in this hasty treat, we are going to be talking all about react hooks, and why you might want to use them first class components. What are the benefits over class components? And really what is the incentive to switch to function components vers class components? My name is Scott Tolinksi. I'm a developer from Denver, Colorado and with me, as always is the West boss. Hey, I'm
+
+3
+00:00:49,590 --> 00:01:02,940
+Wes Bos: excited about this one, we got a actually a potluck question that says what is the incentive to switch to react hooks versus classes? So we thought we'd turn that into a little episode and explain why we like them and why they were even made?
+
+4
+00:01:02,970 --> 00:04:22,560
+Scott Tolinski: Yes, yes. And a side note, a meta note, this is gonna be funny for anybody who's maybe seen this tweet, but I'm broadcasting live from Hamilton, Ontario, and I believe West is in Denver, Colorado, because what we did is we took photos of our background or screenshots of our backgrounds, and then swap them, and we're using them as zoom backgrounds. So I have this difficult background it was the funniest thing to me about West using my background is that he has like a photo of my son behind him. I'm like cracking up about this. So this episode is sponsored by sentry@sentry.io is one of the coolest services that Wes and I both used for a long time. This service allows you to capture all of your errors and exceptions and see them in a nice table. And you can use the coupon code tasty treat all lowercase all one word to get two months for free. This is such an amazing service that gets better all the time. You know, it's kind of interesting, I just logged into Sentry just now. And I feel like every time I pop up in Sentry, there's little subtle UI tweaks or improvements here and there. You know, when you think of products that come out and then stagnant. I never think of century because it's always adding neat stuff. For instance, one of the cool things I just noticing just now besides the fact that they got new icons for react, yeah, it looks like the icon for react is different now. It started adding unhandled tags to errors that I'm having on the site that have been unhandled. And that's kind of interesting to me, because here's a handled error, which is invalid credentials, which is one of those things, I gotta I gotta change now, because my, my new account system throws whenever somebody tries to log in with the wrong password, like I don't, I don't want that I want the UI to take care of it correctly. Either way, that's a handle exception. However, here's another one. Video j s is not defined, which is probably a race condition due to how we are loading video j s. And it's not really hitting a lot of people, but it is in fact unhandled. So that's something we're going to take a look at and figure out exactly what's going on there. I think that little label they just added really, really helps. So this is sentry@sentry.io. Again, it's a service that's constantly adding new features. So check it out. coupon code, tasty treat, all lowercase, while all one word. All right, React hooks. It's funny because it feels like react hooks came out forever ago at this point to me, but I was thinking about it like the last time we maybe recorded an episode about maybe not necessarily about react hooks. But when we did our, our intro to react hooks, I was just thinking about how we talked a lot about how the future will tell a lot about how hooks will change our workflows. And now we're kind of living in that future. Because I personally, I feel very comfortable writing react hooks. And I feel maybe even differently about how I use them, when to use them or the things that I do with them. So I'm excited to talk a lot about them verse class components in 2021. And how this has sort of changed. So I think the biggest thing with for me about react hooks is that they decouple the UI from the logic, meaning that you can take your logic and your things that you're you need to do in your site, the stuff that you need to do, you can take it with you from component component to component, just like you used to take UI from component to component to component. It's almost like building blocks, or Lego blocks for functionality rather than building blocks or Lego blocks for UI. So to say,
+
+5
+00:04:22,950 --> 00:04:33,600
+Wes Bos: Yeah, I think that's like the biggest one for me is being able to decouple state management, side effects, things like that from the actual component itself. Can you define side effects for
+
+6
+00:04:33,600 --> 00:04:37,920
+Scott Tolinski: the audience real quick? That's when I think that is a mysterious word for some people.
+
+7
+00:04:38,100 --> 00:05:18,200
+Wes Bos: Yes, the side effect is when you're specifically in react, but it This can apply to all of JavaScript is when your component needs to reach outside of its scope of duty and do something like maybe it would update the title tag on a website, or maybe it would subscribe to a database for WebSocket maybe events like that. So whenever you need to To sort of like, reach outside and also the the effect hook in and react is also another good way to rerun any code that you need when you're maybe like you're waiting for something to change. And if you want to like watch for a variable to change, you can use the use effect hook for that. Yeah,
+
+8
+00:05:18,690 --> 00:06:44,820
+Scott Tolinski: yeah. And to me, the improvements that you get out of that is, is purely a just a improvement in quality of life. I think in working with these things, it makes the code a little bit easier to understand how to function to move around to share. But you also get like, hands on the code that might not otherwise be there. For instance, like think about re hooks in the shareability. There, there's a GitHub repo called re hooks, that is a bunch of already made react hooks that you can just drop into your projects, right. And that kind of stuff couldn't have it really existed besides being in just in copying and pasting, or maybe it ends up being a component or a high order wrapper component that just really, to me, it doesn't feel the same in terms of how easy it is to just throw a function in a ref on here. One of the neat things that I have noticed here is that it makes things like graph qL codegen possible. If you don't know about graph, qL cogen, you basically pass it into schema, and it cooks out all of your react hooks for you, including like type react hooks. So now instead of importing a query, and importing a use query hook and passing that query into there, what I get is a use tutorials query, which is a specifically already made react hook that is completely typed to what I need. And I can just pop that in and spit out the tutorials and the same thing with any of my mutations or whatever. But I just can't imagine any of that would have been possible without react hooks. I guess you could do the higher order components, but it doesn't feel the same way to me.
+
+9
+00:06:45,420 --> 00:07:57,810
+Wes Bos: Yeah, like all of this stuff could be done. Yeah, previously with the hierarchical model, like Scott said, but it was really tricky before hooks to take, if you had like, maybe three different pieces of state, and you had two different pieces of functionality, you needed to inject all of those things into a component, the way to do it was either stuff it all into one component, or use it all as high order component. And you'd have to use this like render Prop, or pass it in via props or something like that. And that got a little bit hairy when you had multiple things. So it's really nice with the hooks can because you can give you a three pieces of state, you don't necessarily have to stick it all in, in one component, you can stick it in three different hooks, and they all manage their own nice tidy, do you just sweep everything into one yes, nice little hook. And then you have two little pieces of functionality. And maybe you have other hooks for that you can pull all five things in just at the top of your function, you don't necessarily have to do this weird, just from a syntax perspective alone. That has been key for me in not having to write these really weird render prop functions because the render props are awesome when we got them. But the syntax sucks. I mean, that's just a limitation of, of react at the time. Yeah.
+
+10
+00:07:57,960 --> 00:10:15,690
+Scott Tolinski: And right along with that, I think about state management for me, and not just talking about US state got a lot nicer, specifically around other libraries. So there's, there's now been sort of a state renaissance in react with hooks, because a lot of things have started working a lot nicer. I think, even like context, context is one of those things that I used, but I almost kind of used for grudgingly in the past. But with hooks, you just wrap a provider, and then you have your output of the context into its own hook. So like for instance, I have a like a use user hook, which is basically just the output of a use context with the context passed in there. So now anytime I want to get my current user, I just say const user is equal to use user. Now I have the user data anytime I want it. And it's really easy. How many lines of code did a render prop take to do that? I mean, way too much, right. And now we actually have access to the user in the body of the function rather than just in the UI part of it. So that to me is a big deal. I think about that all the time, just how better my steak got. And it also opened the door to libraries like zustand, which is like a super minimal state library where you can pass data around outside of your react. And they did another one called Joe tie. Have you seen Joe tie? No. That's Joe tie Joe tie, which is a Japanese Oh, tip. Joe tie is a Japanese word that means state. In Japanese. It's by the same team behind react spring and zustand. And so zustand that you could think of it as like a an easy way to quickly create, like a use reducer that's outside of any sort of component where Joe tie is sort of trying to compete with recoil, where you think of recoil as being the state itself is like an atom. And you can have many versions of that specific atom. So you could have many versions of the state. So Joe tie is basically the, the zustand version of recoil, and I like it a little bit better, and I really liked it. Standard, those kind of libraries that just makes working with state very easy. So like to me, I'm using zustand as sort of like a Redux replacement. And I'm using I'm not using Jota yet, but I think it looks pretty neat. I don't really have necessarily a use case for but it to me state got a lot nicer.
+
+11
+00:10:16,020 --> 00:10:22,040
+Wes Bos: That's JOT ai. Yeah. For everyone listening and trying to Google it. I had to get Scott to send me the link.
+
+12
+00:10:22,110 --> 00:10:27,650
+Scott Tolinski: Yes. Yeah. Not everybody took Japanese in college like me? No, no,
+
+13
+00:10:27,690 --> 00:10:29,190
+Wes Bos: no, not everyone did no.
+
+14
+00:10:31,140 --> 00:11:34,620
+Scott Tolinski: Next step, a big reason is, besides being able to reuse functionality of code throughout your own project, and others would be the reduction in code overall. And this is something that I don't know if people think about too much. But with the use effect, specifically, and I suppose use layout effect, we used to have to with the lifecycle methods, there is this inherent duplication that could happen between the update and the mount lifecycle hooks. So you would have several lifecycle hooks, and many of the times those lifecycle hooks were like doing the exact same thing, you were having to check a lot of things, but there was a lot of code duplication that existed in those lifecycle methods. And now they can all be reproduced essentially, in one tiny little encapsulation, which would be a use effect, which is targeted to specific dependencies as in, hey, when this thing changes, rerun these things, instead of when the component changes, here, just just run a function, hey, the component changes just run a function. Now it gets to be if this thing changed, didn't do this specific action. And that has led to a big decrease in duplication of code.
+
+15
+00:11:34,949 --> 00:12:38,670
+Wes Bos: One kind of interesting thing that I was working on an article a week or two ago, just on moving a lot of the syntax code base over to be all hooks based. And there's actually quite a bit of state in this annex website, because there's, like episode that your reading episode that you're watching where you are playing, pausing, what the what is currently streaming all of that information. And it was funny, like I just deleted a whole bunch of both duplicate code stuff that needed to happen on Mt as well as update. But also, I had like a bunch of custom methods that were simple set status, like when someone posit set the state, and those all got deleted, because the update method that you get from use state was enough just to use that directly. And there was no in between function. Because previously with state, you had to like only update part of it. And now you can just have separate use state hooks for that specific one. So I thought it was I was like, Man, this is a really big component, and it probably reduced the code size to about half.
+
+16
+00:12:39,209 --> 00:13:03,990
+Scott Tolinski: Yeah, yeah, the the reduction code for me has been big. And it's not just like removing syntactical sugar, it's removing, like, legit duplication of things that you were having to do twice, both on update and mount, even where were some of the other the hooks in the past should component update and stuff like that. I mean, it just, it reduces so much complexity, and it boils it down into a if thing changed, then do this, you know, the other
+
+17
+00:13:03,990 --> 00:13:30,450
+Wes Bos: thing was when component did update, and you only wanted to run some code when part of state updated, then you had to like say, if you'd have a whole bunch of if statements in there, your your update one that were just like, unrelated to each other. And with effect, now you can just just pass the thing that you want to watch into the second argument of use effect, and it watches that value. And if it changes, it will rerun the code. That was a big one for me as well.
+
+18
+00:13:30,450 --> 00:14:32,370
+Scott Tolinski: And not to say I don't have gripes about use effect, because I think the name is not not great. But we can talk more about that. At the end, I do think for the most part, it's made my code just an insane amount easier to read. So I don't I don't know about your code base. But I only have one component in my entire level of tutorials out of like, hundreds of components that is still a class component. And it's because it was like a react YouTube video player that I just copied from a third party library. And I really don't want to refactor it because this thing is like, this thing is big and has this like I didn't write this code to begin. So it's not my style one and two, it's like I just, I just don't want to touch it. YouTube isn't a big part of our platform anymore. So it's like, well, I'm just going to let this thing be. So I've converted my entire codebase over, they say no to do that. But it really made me understand hooks a lot better. And maybe if you have a little bit of extra time, taking that time to convert a bunch of your code to hooks might make you understand the use cases a little bit better. And I think that's a perfect way to see why it's why the code looks nicer.
+
+19
+00:14:32,730 --> 00:15:08,820
+Wes Bos: Yeah, I've been I've been just going over mine every single time that needs to work on a component, that's when I decide to convert it over. And then anything that thing touches, maybe I'll do a few more but I still have quite a few class components in my thing just because it's not worth it to touch especially like sometimes fussing with it will break it and you don't necessarily get all the edge cases and whatnot. So for me, it's just one by one as as I need to refactor the men because like it We also say this might be clear that like classes aren't going anywhere. I just much prefer to write everything in a function. You know
+
+20
+00:15:08,820 --> 00:16:50,670
+Scott Tolinski: what I do too, but it's very funny. The other day, Tom, who's a tom toms, a developer for level tutorials, he was working on refactoring, some stuff that we had for our subscriptions code. And he's like, yeah, I threw all of this stuff into a class and all these class methods. And I was thinking, Oh, that's very not how I would have done it. But then I was reading how the code actually is to work with. And it's actually very nice because the Braintree API is just about as backwards as you can imagine. And so instead of doing a whole bunch of run around in the Braintree API, we now get to call like, level up of Braintree dot cancel, cancel subscription. I'm like, Oh, that's very nice. That's very explicit what it's doing. I actually kind of did classes in that way. I have mostly functional myself. So the same classes used in this sort of normal way of object oriented programming is not really my specialty. But no, I think, yeah, classes definitely aren't going away. But class as react components. Yeah, they're going somewhere. So I would get on board with the hooks train. So simplicity. And usage is a big thing for me, for instance, like even just throughout use state or whatever thing, and then update or set thing, right thing set thing That to me is so much easier than set state, then you have an object, you don't necessarily know what's in that object, but you're going to set something in that object. This to me is way more simplistic and way more explicit in the code, the code is easier to read. But also one big thing is refs right. refs have gone through so many usages from the initial way where we had them as like string refs, where you just had like a magic string that all of a sudden became a ref. Then there was the whole function thing where you had to set this dot thing is equal to, you know, ref, whatever. Oh my gosh, that is such a nice,
+
+21
+00:16:50,700 --> 00:16:52,470
+Wes Bos: yeah. Function ref.
+
+22
+00:16:52,500 --> 00:17:24,510
+Scott Tolinski: Oh, my gosh, I've already forgotten how to do it. I parse it from I pushed out of my brain because I don't want to ever think about it. Again, it was just such a tremendous amount of waste of space in my code to do such a minimal thing. But now you get use ref, and it spits you out a raft, you drop that ref onto a component, boom, you have a DOM reference, that ref current or thing current. Either way, ref make way more sense with react hooks. And I do use them quite a bit. So yeah, this is one of those ones to me that it became it went from being obnoxious and unnecessary to Oh, yeah, this this makes perfect sense.
+
+23
+00:17:24,590 --> 00:17:28,980
+Wes Bos: Yeah, I definitely think that they are a little harder to first learn.
+
+24
+00:17:29,009 --> 00:17:30,050
+Unknown: But there's the learning curve, it's
+
+25
+00:17:30,050 --> 00:18:19,070
+Wes Bos: it's definitely worth it. Because once you get it, it's it's much easier, which is really cool. And another kind of thing that I was like sort of celebrating the other day is I stopped using, like variable functions are like const, my thing equals arrow function, implicit return, I stop using that entirely. And that that's kind of related to hooks because you can only use a hook in a proper function. And you can export it. And the other thing about that is I, even if it's a tiny little component, I don't like using, I don't like using the implicit return for it just because of the frustration with debugging. You can't put a console log in there. But you can use this little or trick and whatnot. So I've completely I'm curious what you've you've done, I've completely moved over just using the word function and exporting it if I need to.
+
+26
+00:18:19,100 --> 00:18:26,130
+Scott Tolinski: Yeah, I do the same thing. I use name functions. function. Yeah, that's it. That's what I do. Yeah.
+
+27
+00:18:26,490 --> 00:19:02,010
+Wes Bos: That's good. Yeah, it's funny. Like we I think we had a bit of a moment there with the implicit return and you saw people do it for everything. Yeah. it to a point where I get people emailing me all the time being like, why did you not use the new way? Yes, six way that implicit, like, it's, it's what we're talking about is a variable equals parentheses, arrow, and then you implicitly return like a div or something and put everything in there. And you can't use hooks inside of those. And also, they're very hard to debug. So it's not official, like you're not bad if you're doing that, but I personally have don't use those anymore, which I really like
+
+28
+00:19:02,010 --> 00:19:09,690
+Scott Tolinski: doing. No, no. Anything I don't use anymore. What default exports, don't use them anymore. Oh, you're using everything name, everything named in that way. What
+
+29
+00:19:09,690 --> 00:19:11,700
+Wes Bos: about a page and next jass?
+
+30
+00:19:11,810 --> 00:19:15,210
+Scott Tolinski: I don't have an ext JS application that I maintain.
+
+31
+00:19:15,830 --> 00:19:20,190
+Wes Bos: So there you go. Yeah. And why? Because of
+
+32
+00:19:20,670 --> 00:20:11,010
+Scott Tolinski: what because they're explicit is really what it comes down to. I've gone through a bit of a metamorphosis I one of the chrysalis or whatever it's called, I became a butterfly. And now I really understand the benefit of having things be explicitly imported and exported. The like automatic imports are easier even just like import helping is easier in general. Also, there isn't. I ended up having some situations where I would have the actual components name be refactoring or something in one component and not in another where like if I were to change the name of a component that wouldn't break things because it's a default export and you're essentially renaming it on import. So things kind of, were easier to get out of sync that way. This way, if you don't even have to think about it. If something changes the name, then the names changed everywhere. And that's just how it is.
+
+33
+00:20:11,330 --> 00:20:20,970
+Wes Bos: Because it's it's explicit. Yeah. Unless you were to, even if you were to rename it on import ready, the way you typed it in the file would still be updated. Which is pretty cool.
+
+34
+00:20:21,000 --> 00:20:36,930
+Scott Tolinski: Yeah. Yeah. And as we moved the entire code base to TypeScript, and all that stuff, becoming more explicit with everything has become one of those things where I've gone from liking a little bit of magic bear to liking less magic. And I guess this may be a transformation. I know, it's, I do still like to see
+
+35
+00:20:36,930 --> 00:20:38,250
+Wes Bos: the magic sky still,
+
+36
+00:20:38,250 --> 00:20:47,220
+Scott Tolinski: like some magic here and there. But I do I really greatly benefit or understand the benefits to explicit typing explicit everything. And
+
+37
+00:20:47,330 --> 00:20:50,520
+Wes Bos: yeah, taking a little bit of extra time in the long run,
+
+38
+00:20:50,670 --> 00:22:23,730
+Scott Tolinski: helps you, I think it also has to do with the size of our codebase. As the codebase has grown. People always say that, you know, some of these issues will become more apparent when your code base grows. And that's really true, because as our code base has grown, it becomes harder and harder to keep track of everything. Last thing I wanted to touch on is, if you had any gripes about hooks, I have just some gripes about the naming of like, use layout effect. Come on, like there couldn't have been like use Dom effect or something, something to explain, like what it actually is, or even like use effect itself, like use effect to me, is not a great name. It doesn't really say what it does. I feel like it could have been named something different. But they had to stick to the use, like maybe use on changers, I have no idea I guess that's that's a JavaScript thing. naming things is difficult, it's very difficult. Even having the the cleanup function essentially just be the return function of a user effect. That to me is completely bonkers. And like you would have to like know, that kind of arbitrarily just exists for you to actually know that you couldn't look at the code without knowing react and have any clue what that's doing. So for me, like the naming around, some of these things could have been a lot nicer. And I think that is what led to a little bit of the confusion and doubts when people try to learn these things is they're they're explicitly not as explicit as on component did mount or something like that. And that, to me, is something I think could have been done better. But that's really my only gripe with hooks is naming. And that's at the end of the day, that's just a matter of learning them. And once you once you got it, you got it,
+
+39
+00:22:24,060 --> 00:23:29,850
+Wes Bos: there's a couple things that bugged me specifically, set interval and set timeouts are so difficult. And there are like, the really good hooks out there, I just don't understand why they don't come with react like they're not you have to npm install them. And it's really frustrating, especially like, for me, I'm someone who just throws together lots of really quick examples. And whenever I hit a something that is built into the JavaScript language, set interval and set timeout, and it's so hard to use in react hooks, I wish that they would make that like a first class support and make it really easy to use. And then the second thing I have here is just if you have an a sink, use effect function, like do you want to use a sink await inside of use effect to fetch data? Because that's a very popular thing to do. You have to either switch to promise based then syntax, or you have to have a secondary function inside of your use effect function, which gets really hairy really quickly. So I've just switched to using dot then and in catch, instead of marking my thing as a sink. I, I bet they could fix that.
+
+40
+00:23:29,940 --> 00:23:33,420
+Scott Tolinski: Have you seen the view composition API?
+
+41
+00:23:33,450 --> 00:23:33,960
+Wes Bos: No,
+
+42
+00:23:33,960 --> 00:24:16,140
+Scott Tolinski: I have a tweet from Ave who did this. I mean, who did Who did this? Who did view the crater view, they got it right, in my opinion, instead of calling it use effect, they call it watch effect, which to me really describes a lot more but also the return is named on cleanup. So you know, with an unclean up, so So those are two things right off the bat that they got naming correct in all of this, where you can quickly see watch effect and on cleanup. And that's just how it should work. So to me, like, I feel like they got they got some of the naming right in a way that the React team probably could have done a better job with I think,
+
+43
+00:24:16,440 --> 00:24:39,630
+Wes Bos: all right, I think that's it. So hopefully that answers the question from secret agent. What's the incentive to switch to react hooks versus glasses? It's kind of a nice little like, Where are they now? Because, again, Scott said at the top of the episode, we haven't done a specific or hooks episode since they were new. And now that we've been coding them for like, a year and a half now. I think we get them and we can talk about how we've used them.
+
+44
+00:24:39,660 --> 00:24:40,470
+Unknown: Yeah, sorry, I
+
+45
+00:24:40,470 --> 00:25:03,210
+Scott Tolinski: want to go back to the revenue thing real quick. I forgot to mention that. The reason why I brought that up in the first place was because you can use async directly in the view version of their watch effect. You don't have to you don't have to have a function that calls another function. If you want it to do and await data fetching. You can do it right in the watch effect. Which is really how it should be. Alright, that's
+
+46
+00:25:03,210 --> 00:25:08,700
+Wes Bos: it for today. Thank you so much for tuning in. We will catch you on Monday. No on Wednesday.
+
+47
+00:25:10,349 --> 00:25:12,000
+Unknown: Please, please
+
+48
+00:25:13,920 --> 00:25:23,700
+Scott Tolinski: head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
