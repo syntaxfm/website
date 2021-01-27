@@ -1,0 +1,200 @@
+1
+00:00:00,359 --> 00:00:01,350
+Unknown: Monday, Monday,
+
+2
+00:00:01,350 --> 00:00:03,060
+Monday Open wide.
+
+3
+00:00:03,989 --> 00:00:07,620
+Get ready to stuff your face with JavaScript CSS loadmodule
+
+4
+00:00:07,620 --> 00:00:09,060
+BBQ Tip Get
+
+5
+00:00:09,060 --> 00:00:16,710
+workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming
+
+6
+00:00:16,710 --> 00:00:21,690
+in hot here is when Sarah Kuta bombs and Scott L.
+
+7
+00:00:23,579 --> 00:00:24,480
+Totally ski.
+
+8
+00:00:25,920 --> 00:02:03,690
+Scott Tolinski: Oh, welcome to syntax. In this Monday tasty treat, we're going to be talking all about the new unreal image format called Eva, if you know the pronunciation on that it's an image format. We had jpg, we had ping, we had PNG, whatever. Now we have a with. And let me tell you, it is very, very, very cool. It's also very small. So we're going to be talking all about what it is, why you might use it, how you might use it, and what the future looks like for Ava. My name is Scott Tolinksi. I'm a full stack developer from Denver, Colorado, and with me, as always, is West bow. Hey, Hey, where's this episode's sponsored by two awesome companies, one of which is sentry@sentry.io. And the other one is Freshbooks. Now Sentry is the perfect place to see all your errors and exceptions happening in your application. It does an amazing job at cataloguing all of your errors in its dashboard. It's very cool. And along with that, it gives you some really interesting features like performance tracking tools that allow you to see just about every single route on your application and get the perfect metrics that you need to debug any sort of performance issues that are happening on your site. Not only that, but you know, sometimes it's really easy to sweep those kind of things under the rug, right, you're like, Oh, this is fast, but I'm using it but you don't exactly see what all your users are seeing all the time. And this is the kind of tool that's already in all of the stuff that you're already using. So pop it into your Sentry application that you're already using. And guess what now you can see right in front of you exactly how miserable your users are on some routes. That's very, very cool. So head on over to sentry.io use the coupon code tasty treat all lowercase all one word, and you will get two months for free.
+
+9
+00:02:03,720 --> 00:03:10,200
+Wes Bos: Next sponsor is fresh books, fresh books is cloud accounting, you know what they do your invoices, your expenses, one thing I'm going to highlight in this ad right here is that you can hook it up to you directly to your bank, and have your expenses automatically imported into Freshbooks. And I was just checking it out the other day and hooking up my own bank account. And they now support tons of banks, 14,000 different banks and in Canada alone, or I am the list of possible banks as well as they hook up to your PayPal, which is really cool because like for example, my CloudFlare I pay for my domains with PayPal, and that can hook right into PayPal and automatically import those expenses, which is really slick as well as all the bank accounts you have it can both do bank accounts as well as credit cards. So depending on how you're paying for things he gets the import of they're really slick saves you tons of time, check it out freshbooks.com forward slash syntax for a 30 day unrestricted free trial. Make sure you use enter syntax in the How did you hear about a section when signing up. And thanks so much to Freshbooks for sponsoring
+
+10
+00:03:10,260 --> 00:03:31,140
+Scott Tolinski: .TECH so let's get into the meat and potatoes here. And I'm talking about a with the image format now, right off the bat I'm gonna say I don't think Western I know exactly how to pronounce this, but I don't think that's anything new with image formats. I mentioned that off the jump saying JPEGs and whatever. jpg whatever people call this. I'm gonna call it a TIFF. Is that what you're gonna call it? Wes?
+
+11
+00:03:31,140 --> 00:03:35,910
+Wes Bos: I think so. It's as if avesh sounds weird. Yeah, sounds weird.
+
+12
+00:03:35,910 --> 00:03:36,960
+Unknown: It sounds Yeah.
+
+13
+00:03:37,140 --> 00:03:51,720
+Wes Bos: It's a V is a yo media video. That's it. This format initially stems from video compression. And the i F stands for image format. So a V if a thief Yeah, that's what it is. Let's go with that.
+
+14
+00:03:51,750 --> 00:05:48,660
+Scott Tolinski: Let's go with that. So took it off the jump. What is a VIP, I think the background on it. It's derived from like you said, it's derived from a video codec and that video codec is the AV one video format. This is a royalty free Video Coding format that was designed for video transmission over the internet. So this was not a format that was designed for just display or whatever this was specifically designed for transfer over the internet. And so they basically took this AV one format and were able to create a new image codec directly from the individual frames of an AV one video, they're often seen as being so side by side but at the same time video compression has a bunch of issues that image compression doesn't have and vice versa, I would say. So they are different beasts. So it's interesting to see that this is pulled directly from a video format. Another thing is that like a v1 eva is royalty free, which to me is the most exciting thing about this, because in the past video formats and image formats has been a huge topic amongst browsers because of ownership of those formats. For instance, mp4 not royalty free. And mp4 is owned by several people. And because of that, I don't know who I think Apple owns part of it or they have their own QuickTime thing. Either way, the big meat here is really just that when something is not royalty free in any of these image formats, browsers are going to be way less likely to implement it. Because let's say Google owns this image format in Google, you have to pay Google royalties to use this image format, that's going to make apple and Firefox much less likely to implement that in their platform, or vice versa with any of those companies. So by being a royalty free format, nobody's fighting for essentially control. It's not their format. They're not cashing in the Bucks when people are using this format. So I think that's a big deal. And it's nice to see a really, really hot new image format be royalty free.
+
+15
+00:05:48,810 --> 00:06:18,420
+Wes Bos: You might be saying like, didn't we just get web P and I, I thought that myself, we had Henri Helvetica on the podcast when we I think we did our live show. And he said, when he was 10 years old, and Safari had just implemented it. The whole benefit here is that the AVI files are tiny, and can be used to compress stuff that you would traditionally use for JPEGs or web p as well as things you would normally use a PNG for, which is really cool actually doesn't
+
+16
+00:06:18,420 --> 00:06:22,770
+Unknown: have transparency. It's actually a great question. It does have transparency.
+
+17
+00:06:23,130 --> 00:06:24,090
+It does. It does,
+
+18
+00:06:24,120 --> 00:07:23,250
+Scott Tolinski: yes, cool. Because I did see in some of the comparisons, they were like talking about like that the Avi format was maybe a little bit less appropriate for something with like a lot of anti aliasing. And then when he was coming out on top in some of those situations, so that they'll be interesting to check out exactly when it will be most appropriate. One thing that I saw is they said in situations where you would use a JPEG, or even a web p right now, they said web p was basically half of the size of a JPEG, and a Vf is half of the size of a webpage. So not only we're getting faster internet, faster browsers, faster download speeds, we're getting smaller images, so that therefore anybody on a satellite connection, crappy internet connection over the phone, or whatever, people who have those connections that are not fiber, internet, hardwired to the dome, those people are going to be able to get fast loading times because the images themselves, which are often the clunkiest, heaviest things on your website, those things are going to be smaller. And that's fantastic.
+
+19
+00:07:23,250 --> 00:08:48,720
+Wes Bos: Jake Archibald has a blog post where he compares the differences between several types of images, like a photo of a race car that was clearly taken with a nice SLR, but then also something that was like export it from illustrator, that's very simple colors, and then also an SVG that has transparent background, but also a gradient underneath it. And it's unreal to see you can just click the tabs and see the difference between them both like if you go from the web p which is 50 k down to the A Vf which is 13 K, there's absolutely no difference that I can visually see between the two and then an other options are like okay, but if they're all the same size, like what does a 14 k PNG look compared to a 14 k web P versus a 14 k f. And the results is like, wow, that's incredible that it does, I think the only thing that it doesn't do is animation, which is okay, because you should probably just be using a muted video for that. Not even a GIF anymore. But man, I'm so impressed at how small these images can get. And really, there's no discernible difference between the two when you're switching between them the race car one, if you switch between them, the aVF looks better than the web p which is twice the size of it.
+
+20
+00:08:48,770 --> 00:10:11,490
+Scott Tolinski: it's astounding. It is astounding the amount Yes, we should say that this is a lossy format, which you're kind of dealing with, it's inherently going to be a lossy format as in data is removed from the image when you're taking this image and you're compressing it with a viff, there is inherently going to be some data removed. Now the thing about compression engines in general, whether you're compression, audio, video, images, whatever the key to compressing is that you want to be able to remove as much as possible without degrading the visual aesthetic of the image or audio aesthetic, whatever you want to be able to remove enough of the stuff that nobody cares about. And that people aren't going to notice that it can reduce the bytes that you're shipping, but it won't reduce what is the visual output. That's why this format is so good is because it's able to remove the information correctly, or at least to the point where you have these really fantastic looking images, but also keep the file sizes insanely small because at the end of the day, you have to think about this like an image or a video or audio all it is is just shipping bytes of code that represents something and then our brains are able to decode it via our eyes or whatever. So like, if you think about it in those terms, all we're doing is figuring out the right ways to remove information from something while keeping the end result to be as good as possible. And boy, howdy, very good.
+
+21
+00:10:11,520 --> 00:10:51,770
+Wes Bos: There is a lossless option with a Vf I was just reading. But in that case, the file is much larger than any of the other options. So like, it's not something you should be doing. It should be a lossless version. Yeah, or sorry, it should be loss lossy, which means that you do lose pixels, or you do lose metadata about it. But the loss II version is it's even smaller than the SVG version of some of these things. So if you think like, Oh, yeah, SVG is the best version, if you don't need the benefits of the SVG, which is being able to target the pieces of it, then this is possibly even even better option work on real
+
+22
+00:10:51,770 --> 00:10:52,620
+Unknown: but real,
+
+23
+00:10:52,770 --> 00:12:25,260
+Wes Bos: yeah, let's talk about how to implement it. So like, you're not going to just be like opening up Photoshop, importing your images and save as a TIFF and replacing them all, or you're not gonna be hand coding these things. Because, like, to be honest, a lot of these like next generation benefits, whether it's code splitting in your react application, or whether it's using a new image format, you need some sort of robot to do it for you. Otherwise, it's just not gonna happen. Nobody's got time for that kind of thing. So you will have to lean on tools that hopefully handle your existing images for this type of thing. cloudinary currently has this in beta. So cloudinary is a sponsor of ours, you can, but they're not sponsoring specifically this one. But you can pop the cloudinary URL in front of it and tell it to format auto or foam format. And then it will kick out the best possible option for that, which is pretty cool. Gatsby now supports it and their latest version of Gatsby. So if you're using Gatsby image component, it will kick it out. Oh, and then also, I think the thing we didn't we didn't say at all was you can support multiple versions of this because the picture element, you can give it a source or a source set and tell it Alright, this is the AIFF file. And if it doesn't support that type, it will just fall back to whatever's next. So as long as you have a JPEG or a PNG at the end of the line, the users that have browsers that support it, are going to get the benefit from that. Yeah,
+
+24
+00:12:25,320 --> 00:12:32,880
+Scott Tolinski: there's also this skoosh Sq you Oh, sh squish, squish,
+
+25
+00:12:32,880 --> 00:12:34,080
+Unknown: squish, squish, squish,
+
+26
+00:12:34,080 --> 00:12:35,310
+Scott Tolinski: squish.
+
+27
+00:12:35,310 --> 00:12:35,850
+Unknown: Yeah,
+
+28
+00:12:36,420 --> 00:12:40,410
+Scott Tolinski: that's it. Am I am I am I tripping here. What am I am I tripping?
+
+29
+00:12:41,189 --> 00:12:42,180
+Wes Bos: I think Yeah, tripping
+
+30
+00:12:42,330 --> 00:13:59,910
+Scott Tolinski: it, you said skoosh skoosh skoosh skoosh. That's the same word. Okay, whatever. This app is really neat. One of the cool things about this, there's also a COI to be able to use this in your command line for compressing images. One of the neat things about this is I'm going to go ahead and recommend you click one of the test app or one of the test photos. For instance, the 2.8 megabyte red panda image is my favorite. I love red pandas. And this gives you a little Draggy tool. So you can see the exact difference between the compression algorithm. So let's say if we wanted to give it a try. And there's a little drop down, that allows you to select a booth here. And you can actually adjust the quality. Now the cool thing is you can also pinch to zoom to like really get in like I want to, I want to see this cute little red pandas knows in a viff verse the the original image, and oh boy, I'm seeing a 70% reduction in size, this image went from 2.8 megabytes to 66 kilobytes. And this red pandas nose is looking as adorable as ever. So this is a really neat tool to give this a try. But also see this thing in action and see what what kind of benefits you can actually get out of it. But again, there's also the CL if you want to try it out, or you can actually compress an image of your own by dropping it directly into the interface here,
+
+31
+00:13:59,939 --> 00:14:47,010
+Wes Bos: we should say support for a Vf is it's in most recent Chrome as of August 2020. It's coming in Firefox 86, which by the time you're listening to this should be out. So the fact that it's in Firefox in Chrome means it's in edge as well. And a lot of the brave as well. It's not in Safari, like you probably could have guessed. But that shouldn't matter because of what we talked about earlier is that your tooling should just fall back to a web p version of that and then in 10 years when Safari implements it, it will just stop generating that one thing we had that for years with video tag as well. Yeah, you had to like have a odg and an mp4 and what was the other one?
+
+32
+00:14:48,570 --> 00:15:47,850
+Scott Tolinski: I mean, did Safari only do a movie? I feel like that might have been the thing because Safari I don't know at some point Safari got an mp4 but there was the whole format wars and on video and And now it's even like continued into like the streaming formats as well. But as long as you're able to get all of the fallbacks and everything in order, then everybody should be able to get something they'll be able to see, which is really what's important here. And another thing that to think about is like, I don't know what the Mac OS support for a Vf is, but I did find this quick look plugin because that's actually one of the things that really bugs me about like web P. And whatever that web m movie format is, you want to do like quick look on your your Mac computer to see the file. Yeah, it like has to open it in the browser or something, it doesn't give you the quick look. And so I did find a quick plug in for a viff I haven't tried it. I'm gonna try it right now where you basically just drop this into your library quick look folder, and then you can do a quick look on Avis files in your browser or in in Finder in Mac OS.
+
+33
+00:15:47,880 --> 00:16:04,440
+Wes Bos: Yeah, that's one thing I'm gonna have to get is I have this little right click Convert to JPG on my Mac. Because all the time is I airdrop a photo from my Oh, it's not web p it's whatever the apple photo version is. What is the apple photo
+
+34
+00:16:04,470 --> 00:16:08,280
+Scott Tolinski: format? Oh, gosh, he I see what is that? Whatever one?
+
+35
+00:16:08,670 --> 00:16:11,370
+Wes Bos: Yeah, hi, Casey. I see ya know what? Okay, let
+
+36
+00:16:11,370 --> 00:16:13,230
+Scott Tolinski: me let me rant for a second here. Yes,
+
+37
+00:16:13,230 --> 00:16:14,040
+Wes Bos: let's hear it.
+
+38
+00:16:14,040 --> 00:16:50,700
+Scott Tolinski: You know what you cannot do on a Mac? on an iPhone. Let's say it takes the photo in the AGI whatever the Ah, crap photo format. I don't know, whatever is the format's fine, but it takes a photo in that. And so when you're on hold, or when you're on a chat support on your phone with an apple customer service rep and they'll be like, Can you take a picture of the issue? Will you take a picture of it and then you go to upload it and bring it in there? There are things like our image uploader only allows JPG or PNG like it's your crazy your format support it. Like if you're not going to support it. Nobody else is. The End rant.
+
+39
+00:16:50,790 --> 00:17:27,900
+Wes Bos: Yeah, let's have a call to all developers is update your image uploaders to support Oh, yeah, he hike. Because like, like the iPhone is the most popular camera in the world. And the fact that most websites that ask you to upload an image kanak especially like, like, if I have to email a photo to somebody who I know is not even a lick technical, or I know they're on a Windows computer. I like have to be like, Oh, I have to convert all these images from hike to jpg. There's workflows you can do but like you shouldn't be. So it's the most popular camera in the world? Why can't we support that everywhere?
+
+40
+00:17:28,530 --> 00:17:31,850
+Scott Tolinski: A great cosigned stamp it push it push a lot.
+
+41
+00:17:31,920 --> 00:18:29,550
+Wes Bos: So this this quick look that you just posted looks super handy. So you can you can preview those values in your Finder. Next, yes does not have support for it yet. But there's a pull request in so the code has been written I'd imagine maybe even by the time you listen to this, that next .js is new image component will support this as well. I think that's it, oh, there's one more a vi f.io. It's just a drag and drop, it'll convert it to convert your JPEGs and web PS and whatnot to a vi F. So if you ever need to manually do that, you certainly can just drag drop it in this looks like a really slick one. These little these online image converters always make me a little bit uneasy. Like the other day, I had to upload that dot XML file, which is an email file, and I had to convert it to PDF. And I found this website that did it. But I was like, there's no way I'm gonna upload contents of this like sensitive email to this random server. Yeah,
+
+42
+00:18:29,550 --> 00:18:32,330
+Scott Tolinski: you know, they're there. They're copying everything. Yeah.
+
+43
+00:18:33,930 --> 00:18:49,650
+Wes Bos: But like, I'm sure that that's not to say whoever built this one, I'm sure this one is fine. Oh, wait, no, I'm so silly. Excuse me, it says, literally the first line on this website, no data is sent. The magic happens in your browser. So it's all happening client side Not, not server side.
+
+44
+00:18:49,680 --> 00:19:17,520
+Scott Tolinski: I think a good rule of thumb for a modern internet user is to just assume that everybody's out to steal your stuff. Yeah. So I don't think that's a anything you got to apologize for. But I cannot I cannot recommend reading this Jake Archibald post highly enough. It is very, very good. It gives you a ton of information. It gives you a ton of examples. And this is the type of thing you're like, this sounds great. I got to learn more. this blog post should be the first place you head to a lot of great stuff there.
+
+45
+00:19:17,520 --> 00:19:39,000
+Wes Bos: All right, I think that's it. Let us know if you're using a WPF in your own project. I'm curious to flip this on. In my own website. I should like wow, I wonder what the difference would be in load times and whatnot. When I flip it on from web p to a Vf. Yeah, I might have to find a blog post with like lots of photos or something like that. What the differences for cloudinary
+
+46
+00:19:39,000 --> 00:19:42,800
+Scott Tolinski: said it's in beta. How do we turn it on? Do you know have you checked the doc
+
+47
+00:19:42,800 --> 00:20:05,910
+Wes Bos: say just put the F underscore a Vf as the format. Okay. And then it says please contact us if you want to use this in production. So I would imagine that pretty soon that they wouldn't roll out the stable version of that but yeah, you could just pop that in your your thing or if you have auto on, I imagine that that would start delivering a gift by default eventually. Yeah.
+
+48
+00:20:05,970 --> 00:20:14,810
+Scott Tolinski: Cool. Awesome. Well, this is a great one. So I hope you really enjoyed this episode, and we'll be at you on Wednesday with an episode about TypeScript.
+
+49
+00:20:14,810 --> 00:20:16,530
+Unknown: So check it out base, please.
+
+50
+00:20:18,480 --> 00:20:28,260
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
