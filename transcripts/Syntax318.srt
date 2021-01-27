@@ -1,0 +1,656 @@
+1
+00:00:01,319 --> 00:00:02,820
+Announcer: You're listening to syntax,
+
+2
+00:00:02,820 --> 00:00:10,530
+Unknown: the podcast with the tastiest web development treats out there. strap yourself in and get ready to whiskey and West boss,
+
+3
+00:00:10,559 --> 00:00:58,830
+Wes Bos: everybody. Welcome to syntax. This is a live podcast, we got free that we did at react athon. So we're gonna cut over to that real quick, but we are sponsored today by three awesome companies. First one, the new one magic Bell the embeddable notification inbox Freshbooks, which is cloud accounting and century which does error an exception you know that but they do performance monitoring now as well. We'll talk about all of them partway through the episode. Welcome to the scary voice again. Welcome to syntax, everybody. Spooky. Thanks so much for everybody for tuning in. My name is Oh, no, we have slides for this. Welcome, Scott. How you doing? Dude, good luck behind the scenes of how unprepared we are.
+
+4
+00:01:00,090 --> 00:01:06,450
+Scott Tolinski: We didn't even clap. Oh, yeah. Put your hands up, take your hands up. And I put my hands up. And I was like, oh, we're gonna clap. No, clap. All right, let's
+
+5
+00:01:06,450 --> 00:01:12,420
+Wes Bos: do the club ready? 321. That was the best cop we've ever done.
+
+6
+00:01:12,930 --> 00:01:13,530
+Scott Tolinski: Not for me.
+
+7
+00:01:15,450 --> 00:01:28,530
+Wes Bos: Awesome. Well, let's get into it. Thanks, everybody, for coming out. This is super fun. We've got a lot of interaction today. So make sure that you're glued to the chat. And we also have some q&a and some stuff. We got links coming up in just a sec.
+
+8
+00:01:28,560 --> 00:01:49,740
+Scott Tolinski: Yeah. So to answer your question from a minute ago, I'm doing good. Good. I'm doing very good. Those of you who are listening on the podcast, this is being an originally recorded at react athon 2020. So shout out to everybody who's listening in to a post fact. But this is going down live right now. How do we want to kick this off? Wes?
+
+9
+00:01:49,800 --> 00:01:53,580
+Wes Bos: I think let's let's get into intros and then we'll get into the show.
+
+10
+00:01:53,700 --> 00:02:06,060
+Scott Tolinski: Well, okay, for those of you who have never heard of syntax, we are a twice weekly podcast. And on Mondays we have 30 minutes or shorter episodes we like to call tasty treats.
+
+11
+00:02:06,060 --> 00:02:13,740
+Wes Bos: And on Wednesdays, we've got tasty treats. That is our hour long. screenshot. And Scott, you got your cursor in the middle of the slide.
+
+12
+00:02:15,360 --> 00:02:29,780
+Scott Tolinski: My name is Scott Lynskey. I'm a developer from Denver, Colorado, you can find me at s t o LINSK. I just about everywhere, Instagram for dance moves and Twitter for code moves.
+
+13
+00:02:31,410 --> 00:02:45,750
+Wes Bos: My name is Wes Bos, I'm a full stack dev from Canada by tweet most recently fleet until they shut it down. And in Wes Bos leading down now they're not but it's not taking off as well as I thought it would. So we'll see
+
+14
+00:02:45,810 --> 00:02:47,009
+Scott Tolinski: I fleet fleet.
+
+15
+00:02:48,750 --> 00:02:59,130
+Wes Bos: Alright, what do we got next? So today's live podcast, what do we got on the gamut, we're gonna have All I want for Christmas in react JS or nay s where you
+
+16
+00:02:59,130 --> 00:03:11,280
+Scott Tolinski: have to decide if the library that we're referring to is a real JavaScript library. Or if it's fake, if we made it up, or if it's potentially something else, as well as a JavaScript library,
+
+17
+00:03:11,310 --> 00:03:21,270
+Wes Bos: we've got underrated versus overrated, where Scott and I talk about hotness you hear about often, and we're gonna give our opinion of whether you should spend your time on it or not,
+
+18
+00:03:21,330 --> 00:03:54,270
+Scott Tolinski: we're also going to be doing a fun game that we prepared. And I'm actually really excited about this one, because we have not talked a whole lot about it. But we're doing something called syntax error, where Wes and I are going to throw up a code that has a small error in it somewhere. And we're going to have to try to find it without codice styling or anything like that. We've got JavaScript hot take tweets, that's all I'll say about that for now, JavaScript pod take tweets. And we also have Q and A with Scott and West that Q is me. And the a is West in this one
+
+19
+00:03:54,330 --> 00:04:13,350
+Wes Bos: for the q&a. We've got a link. So if you have a question you'd like us to answer go to pigeonhole at forward slash tasty. There's two things on there, we're gonna play a little polling game in just a sec. And then there's also a q&a, you can add your questions in there. So if you've got something already, throw it in there, and you can upvote the good ones and whatnot.
+
+20
+00:04:13,380 --> 00:05:00,830
+Scott Tolinski: So let's get into the content here. The first thing we're going to be doing is All I want for Christmas in react is, and these are fun things. And if you think some of these things should not be added to react, that's cool. I think these are just sort of some things that maybe we've seen either elsewhere, or just things that we think could be better that we really like, we'd love to see my act. So the first one, I think this is be on top of a lot of people's list would be suspense for data fetching. You know, they're just an endless amount of jokes you could make about being in suspense about suspense, but I'm not going to go there. Once you use suspense for data fetching, or at least give it a little try, it's really nice to use, and I would love to see more of this but, man, and I think we're just going to be waiting For a little while,
+
+21
+00:05:00,870 --> 00:05:39,870
+Wes Bos: yeah, I don't I don't know, I just wish that we knew what the status of what it was. Or like, I know, they're just trying to spend their time to see like, make sure that they make the right choices and the best approach. And we have all this like possible server streaming stuff that's coming. So pretty interested to see what comes of that. Next one we have here is unmount animations. This is a general theme for me and react is that I look over at as that meme where I look over at some of these other frameworks, it looks nice. Like, I kind of wish that a lot of this stuff was just built in and you didn't have to use third party library. I wish there was just like a first party way to do this, this type of stuff. And I don't even do a lot of animations. I don't Scott, you do lots, right.
+
+22
+00:05:39,900 --> 00:06:13,740
+Scott Tolinski: Yeah, I do lots and in specifically, the unmounting animation that kills me so many times, because like if you're nested deeply, and you want to control like the delay, like even a point 03 second delay unmounting a component, it's kind of difficult to like really orchestrate that. And it's not like it's not doable, we have things but if you are several components deep and you want to unmount, the parent component orchestrating something nested like that, not superduper easy to do still,
+
+23
+00:06:13,830 --> 00:06:17,310
+Wes Bos: this next one, I'll let you take because I know this is your, your baby.
+
+24
+00:06:17,460 --> 00:07:08,430
+Scott Tolinski: Yeah, well, okay, so I would like to see single file components, which like, doesn't necessarily say that I need single file components. And really what that is, is the idea that you have a file and the framework and understand a little bit more about the application or that specific component just by the nature of the fact that it's in a file. The obvious example of this would be something like a style tag in a spell file, a style tag in HTML file automatically scopes the CSS within that file to that component, and the amount of .js you could save typing just by having writing a little style tag below your component and having a just work little sprinkling of magical rock salt. What do you do have any fancy salts we have a bulky salt which is black whoo Really?
+
+25
+00:07:08,430 --> 00:07:12,420
+Wes Bos: No we have what's the the flaky salt in diamond? Yes.
+
+26
+00:07:12,420 --> 00:07:13,110
+Scott Tolinski: Diamond.
+
+27
+00:07:13,890 --> 00:07:16,080
+What is that stuff coordinate drive I
+
+28
+00:07:16,080 --> 00:07:19,350
+Wes Bos: picked it on the podcast before not mile, don't
+
+29
+00:07:19,380 --> 00:07:20,010
+Unknown: ya mal don't
+
+30
+00:07:20,010 --> 00:07:38,310
+Wes Bos: and we bought like on Amazon, you can buy like a bucket of it. And last summer I bought a bunch of salt cellars which is like a little wooden thing with a lid on it. And I gave everybody in my family a salt cellar with the salt in it is an awesome gift. super cheap. It's kind of nice little stocking stuffer. So
+
+31
+00:07:38,340 --> 00:07:45,510
+Scott Tolinski: hot tip for you. I would take a salt flight. And a little bit to my component files and single file components. Their
+
+32
+00:07:47,010 --> 00:08:05,340
+Wes Bos: next one we have here is prevent default shortcuts just like it will one of these little things like if there was a syntax for handling events. That was like Star equals I think I don't even know maybe I think another I saw this in another framework. A lot of this others I Oh, yeah. So what's the swell syntax for that?
+
+33
+00:08:05,730 --> 00:08:12,870
+Scott Tolinski: You can just tell it to ignore that prevent default, like directly on the component via a directive. I forget what the syntax is offhand.
+
+34
+00:08:13,170 --> 00:08:19,470
+Wes Bos: Like on click or handle change star equals and it like immediately prevents the default on that. That'd be kind of cool.
+
+35
+00:08:19,500 --> 00:08:22,620
+Scott Tolinski: Yeah, I'm really trying to limit the amount of times I say svelte here.
+
+36
+00:08:23,760 --> 00:09:05,250
+Wes Bos: Jonathan says it's true. Maybe we just need to move over. What do we got next year form input state to mapping? Gosh, yeah, I just think like forms in react. Everybody uses forms in their react application. Almost everybody does. And wouldn't it be great if there was some sort of like built in thing like, I remember back to the angular days, I still remember you just like n g bind even a piece of state and it just sinks in like, Oh, my God, I miss so and like, if it's a number I will parse float or parse into it. I know, there's lots of libraries out there. Whenever I talk about forms, and everyone's like, have you heard of Formic before? I'm like, Yes, I've heard of format and like, it's awesome. But like I wish react would be default, have all that stuff baked in
+
+37
+00:09:05,270 --> 00:10:07,200
+Scott Tolinski: for you. When I look at like Formic code. It's like, this is no less complex than just writing all this data updaters myself. And that's not what I'm looking for. I'm not looking for. I mean, yes, I want complete control. But I'm not looking for endless fine tuned ability I'm looking for do it all for me. And that, that can be nice. I actually ended up even writing my own form library because I didn't like any of them. And it's still not great and maintaining your own formulae very kind of sucks in itself. So like, there has to be a better way than than making controlled state for each individual reducer or whatever. There has to be a better way. Now we're going to be kicking off something that we like to call j s, or ne s. And this is going to be a fun little game where we shout out a library title, or potential library title. And you tell us if it's a JavaScript library a an object Which we're going to define or both. So we've done this a couple of times on our live shows and our favorite game. So let's start it.
+
+38
+00:10:07,279 --> 00:10:15,450
+Wes Bos: Alright. So, is graphene, ah, carbon atoms are organized in a hexagonal lattice
+
+39
+00:10:15,529 --> 00:10:25,520
+Scott Tolinski: or an opinionated Python library for building graph. qL libraries are both are both get your votes in? We got Wow, big
+
+40
+00:10:26,460 --> 00:10:27,510
+Unknown: lion and now
+
+41
+00:10:27,649 --> 00:10:28,320
+Yeah.
+
+42
+00:10:28,980 --> 00:10:49,649
+Wes Bos: All right, we're gonna reveal the answer. Both. So I looked at job quote, graphene was it's when carbon atoms are organized in a specific way, kind of interesting Wikipedia read. Next up, we have floodlight Is it a super simple syntax highlighter for x HTML documents.
+
+43
+00:10:49,740 --> 00:10:55,470
+Scott Tolinski: A large light used to illuminate the dark outdoor spaces are both,
+
+44
+00:10:55,740 --> 00:11:24,870
+Wes Bos: by the way, shout out to pigeonhole. They make this awesome, like conference software, where you can do like live polling, like we are doing right now. And it's awesome. Like we checked out probably five or six different pieces of software. And I think I want to have one of their devs on the podcast just because of how super fast and like slick it is. Yeah. All right. Ready, reveal answer. Oh, man, Wally. 3.7%. Correct.
+
+45
+00:11:24,990 --> 00:11:28,200
+Scott Tolinski: It's literally both white. I think you might have goofed this one with
+
+46
+00:11:28,260 --> 00:11:35,399
+Wes Bos: Oh, yeah. So obviously, it's both so I get that up. But only not only. Have you got it, right.
+
+47
+00:11:36,480 --> 00:11:39,570
+Scott Tolinski: It's not the light to illuminate dark spaces.
+
+48
+00:11:39,750 --> 00:11:43,080
+Wes Bos: It is it is. Oh, man. All right. Next
+
+49
+00:11:43,080 --> 00:11:47,159
+Scott Tolinski: time machine. Is this in the early 2000s skate brand,
+
+50
+00:11:47,279 --> 00:12:03,419
+Wes Bos: or a view bass GUI for creating state machines or both? Alright, here we go. Answer boom. 51% of you were correct. It is in early 2000s. Escape Brent, although that would be a good name for totally believable.
+
+51
+00:12:03,480 --> 00:12:04,500
+Unknown: It's solely the
+
+52
+00:12:06,149 --> 00:12:16,950
+Wes Bos: view based GUI for creating state machines so believable. Yeah. All right. Next, Joplin. Is this a free open source note taking and to do application, based on
+
+53
+00:12:16,980 --> 00:12:22,950
+Scott Tolinski: markdown, a city in the northwestern corner of Missouri are both
+
+54
+00:12:23,789 --> 00:12:50,460
+Wes Bos: already both 50.9% of you guessed it is Whoa, I didn't even know this. I was just looking for I went on GitHub, like trending repos. And I saw Joplin. And I was like, Oh, I wonder what Joplin isn't. I also figured out like it's a wicked markdown app. Like you know, we were talking about, like, how I can't take markdown notes on my phone. And like have them synced to just files on my computer. Yes. Looks like this. Does that Oh,
+
+55
+00:12:51,330 --> 00:12:52,559
+Scott Tolinski: no. Something else for that.
+
+56
+00:12:52,590 --> 00:12:56,279
+Wes Bos: What is that? Do you remember? I'm very curious because I'm in that space right now.
+
+57
+00:12:56,309 --> 00:12:59,820
+Unknown: My phone is currently dead. So Scott, of course
+
+58
+00:12:59,820 --> 00:13:06,390
+Wes Bos: got but with this is the new weekly segment. What piece of technology is broken? with Scott right now?
+
+59
+00:13:06,809 --> 00:13:16,230
+Scott Tolinski: Dude, I can't even make my iPhone stop working just out of the blue. It's terrible. Lupin, and I'm gonna send it off. I have no idea what's going on with my tech. No idea.
+
+60
+00:13:16,919 --> 00:13:18,960
+Unknown: All right, next one. No, go.
+
+61
+00:13:19,350 --> 00:13:26,820
+Scott Tolinski: Is this a JavaScript library that connects to no code tools? Like what was this button bubbled? I
+
+62
+00:13:26,820 --> 00:13:32,159
+Wes Bos: Oh, I didn't realize that. Or is it a smart 12 volt car battery charger?
+
+63
+00:13:32,220 --> 00:14:00,690
+Scott Tolinski: Or both? Are both doo doo doo doo, doo doo. Alright, ready? Already done. Oh, this one was very split. This is a car vote. And in fact, it was a my battery just died because I haven't driven my car in like nine months, and I didn't drip feed it. So I was like looking at battery stuff on Amazon. And that's where I found the noco. That's how we come up with these questions here.
+
+64
+00:14:00,809 --> 00:14:07,860
+Wes Bos: So you gotta say 37.8% voted the correct answer. We got to say it for our audio only listeners audio only.
+
+65
+00:14:07,890 --> 00:14:21,090
+Scott Tolinski: Yep. Next one we have here is inner? Is it Internet of Things smart light bulb or a CSS in JS library for selecting parent selectors. And unfortunately, this one cannot be both.
+
+66
+00:14:23,070 --> 00:14:27,870
+Wes Bos: This is a good one. I kind of like not having both but both like, at least you can throw people
+
+67
+00:14:27,900 --> 00:14:33,360
+Scott Tolinski: yeah, both is definitely the wild card in my mind because it adds that little bit of like, well, could it be?
+
+68
+00:14:33,510 --> 00:14:36,029
+Unknown: Yeah, all right. Oh,
+
+69
+00:14:36,029 --> 00:14:40,110
+Scott Tolinski: it isn't an end of things smart. We got all got him got him Got him.
+
+70
+00:14:40,140 --> 00:14:44,610
+Wes Bos: Yes. 48.5% of you guessed it was the Internet of Things smart light bulb,
+
+71
+00:14:44,669 --> 00:14:57,299
+Scott Tolinski: which is funny about this is because I actually sick pick the inner bulbs on an upcoming episode. And I was like, wait, when is that episode airing? Did I Did I ruin my my .js or Nast?
+
+72
+00:14:57,360 --> 00:15:06,270
+Wes Bos: Oh yeah, you're sick. Next one is kept kkoma strand. Is it a thermoplastic carbon fiber
+
+73
+00:15:06,270 --> 00:15:15,480
+Scott Tolinski: composite rod used in modern building or a Redux like state management library for svelte or both?
+
+74
+00:15:17,010 --> 00:15:18,270
+Unknown: boats? boats.
+
+75
+00:15:19,140 --> 00:15:29,669
+Wes Bos: Alright, reveal? Yes, almost 77% of you guessed correctly, that's an odd thing to know that it is a thermoplastic carbon fiber composite rod.
+
+76
+00:15:29,850 --> 00:15:37,260
+Scott Tolinski: I think most people could look at this and say there's no way that's an actual thing. And that is like, a plastic carbon fiber composite rod.
+
+77
+00:15:39,720 --> 00:15:41,700
+Wes Bos: Oh, man. All right. Next one.
+
+78
+00:15:42,270 --> 00:15:51,630
+Scott Tolinski: Sputnik five, Sputnik v. Is this a codename for an upcoming WordPress release? With the built in headless?
+
+79
+00:15:51,659 --> 00:15:56,010
+Wes Bos: Or is it a non replicating viral vector COVID-19 vaccine?
+
+80
+00:15:56,130 --> 00:16:00,000
+Scott Tolinski: It's funny because we should be voting on the ones that the other person wrote. Because
+
+81
+00:16:00,960 --> 00:16:04,020
+Wes Bos: I made this up. So you tell me what you think it is.
+
+82
+00:16:04,380 --> 00:16:07,980
+Scott Tolinski: I think that this is the WordPress thing.
+
+83
+00:16:08,279 --> 00:16:38,429
+Wes Bos: Okay. I think people are googling it. Because it was very much cute in the early days to the wrong one. And now it's, it's going up. All right, ready? It is 45% of you guessed correctly, it's a non replicating viral vector COVID-19 vaccine. But 44% of you thought it was a codename for upcoming WordPress release. We're passable? It's not though, because WordPress only uses jazz musicians for their code names. Well, who does it know that?
+
+84
+00:16:39,240 --> 00:16:40,289
+Scott Tolinski: Okay.
+
+85
+00:16:42,299 --> 00:16:47,549
+Wes Bos: That's good. People in the chat are saying how many they got right one out of eight. All right,
+
+86
+00:16:47,760 --> 00:16:53,520
+Scott Tolinski: I bet that person the highest score person probably picked both for floodlight, and was like, come on.
+
+87
+00:16:53,610 --> 00:17:55,140
+Wes Bos: Yeah, yeah, you know what? So there's, there's two people that got all of them cracked, because obviously I goofed up the headlight one. But that was fun. That was fun. One of our sponsors today is magic Bell, they do this really wicked product. And it's an embeddable notification inbox. So if you need to notify your users of anything notification, it's a pain in the butt to do that. Why? Because you need to have preferences for what who gets notified about what and if you want to turn off notifications, or something like that, you have to have to add that in. And there's just a whole lot to think about real time updates, if someone hasn't refreshed the page in a while, all that good stuff. So magic Bell is a service where you can just drop it into your application with a few lines of JavaScript, they have an SDK and an API as well. And you get that little, I like the name magic Bell, little bell in the top right hand corner of your app, you can put it wherever you want. And you click it and they'll be able to see a list of notifications about whatever it is that you want.
+
+88
+00:17:55,770 --> 00:18:06,860
+Scott Tolinski: Yeah, I don't know if you've ever had to code anything like this to yourself West. But last time I really regretted it. It was, it was so I would have loved to have known about magic Bella at that time.
+
+89
+00:18:06,860 --> 00:18:08,160
+Unknown: Because at the time, I was just like, Oh,
+
+90
+00:18:08,160 --> 00:18:12,050
+Scott Tolinski: yeah, let me just cut up and oh my gosh, there's so many things to worry about here. So
+
+91
+00:18:12,110 --> 00:18:44,360
+Wes Bos: it's one of those things that seems so simple or like Oh, just an array of things to tell the user and then you get get into it, you're like, oh, but how do you market as seen, and then maybe like WebSockets, or something, so the whole thing to it. So magic Bell will let you do that they have a free plan of up to 1000 users. So you can just drop this into your own application. And then they gave us a coupon code, coupon code syntax all caps for 20% off. If you sign up in the next two weeks. That's magic bell.io. Thanks so much to magic bell for sponsoring.
+
+92
+00:18:44,490 --> 00:19:35,840
+Scott Tolinski: Next thing we're going to be doing is talking overrated and underrated. And this is sort of like a segment where we're just kind of gauging each other's interest or ideas on some of these new tech things. So let's kick it off with the very first one is Dino, overrated or underrated? I'm gonna say right now, it's probably underrated. It's very nice to work in. I think the permissions model of it all is very forward thinking I think the entire import via URL is not as painful as I expected it to be overall the TypeScript experience with it, not having to run a bundler not have to do any of that was just very nice. It's very nice to use. And I liked that all of their tooling is sort of what's the reasonable way to say this, not all over the place. It's not a total mess. So
+
+93
+00:19:36,050 --> 00:20:48,150
+Wes Bos: I like it. Yeah, I think it's gonna say underrated as well, not to say that you're gonna build your next app on it, because that would probably be not a good idea. Because it's very much in the early days. Yeah, there's like a lot of and you probably have heard this on the podcast. We've been talking a lot about shifting tooling right now. We've been talking a lot about ESM becoming the thing now that it's a node. We've been talking about modules and URLs, we're talking about TypeScript, and Dino seems to just nail all of those things. And that's really cool. We'll replace node, I don't think so maybe it would you would see it coming for like, in like five years. Like, it's not like you're gonna wake up tomorrow and be like, Oh my gosh, I have no skills left. And like that's the other thing about it is that if you know JavaScript, and you're in node, like, you switch over to Dino, no problem, but it's kind of cool. And I'm very curious to see how node will react to this. But also, it's it's harder for node to just do this stuff. Because they have to maintain compatibility with the rest of the node. That's why ESM in Node was so hard to get right, because they couldn't break 10 years worth of work that they've done, whereas Dino could just write a new thing. Here we go.
+
+94
+00:20:50,130 --> 00:21:30,210
+Scott Tolinski: Next one is sort of somewhat related is ESM. import from a URL. And I think this one is very, very good. In fact, it only took me a little bit to this is underrated, I would say I think importing anything from URL is really pretty underrated overall. Because to me, one of the fastest way is to try out a file. I know that when we were trying out stuff with Ts in Dino, it was like, so nice to be able, oh, let's just import this file from a URL. Yeah, I think just in general, importing from a URL and being able to access the file as an import like that. Very, very good.
+
+95
+00:21:30,239 --> 00:22:11,070
+Wes Bos: Yeah, I think so too, as well. Like, first, you can do that in literally, you can do it in JavaScript in the browser, which is super cool that you can just, you can write an app, have an HTML file, script tag type of module, and then just start importing stuff from different URLs that are out there. And I think that's pretty cool. I don't know how I feel about upgrading, like what happens when you upgrade, like a bump of version release, I'm sure there will be tools around that. And because like you literally import it from like, whatever cdn.com forward slash, the 2.2 point zero. And then what happens when 2.0 point one comes out? Do you like find a replace? Do you have to copy paste that
+
+96
+00:22:11,130 --> 00:22:36,600
+Scott Tolinski: in Dena and there's or Dino there's a like a standard of doing like a depths folder depths.ts, where you do your imports. And that sort of almost becomes a package dot JSON, if you think about it with import statements. So that's definitely a thing there are there are detractors from that. But it seems like that's what we taught in our Dino course. So like, it seems to be pretty much like a standard in that world. So who knows, maybe that becomes a thing.
+
+97
+00:22:36,630 --> 00:22:42,780
+Wes Bos: So you have like a depth such as file where you import everything you need for the project, and then it isn't global? Or
+
+98
+00:22:42,780 --> 00:22:55,680
+Scott Tolinski: then you import from that file. So it's like your Oh, it's almost like a package JSON because you're setting the virgin when you're importing it. And then you're if you want to add the version, you're only modifying in one spot. Oh, that
+
+99
+00:22:55,680 --> 00:23:10,380
+Wes Bos: makes so much sense. Yeah, cuz you can even you can use the export from syntax for that, or you say, like, export react from HTTP, whatever. And what that does is it imports it and exports in the same go. Oh, that makes so much I know. I didn't think of it. That's awesome.
+
+100
+00:23:10,410 --> 00:23:16,530
+Scott Tolinski: Yeah, it's nice. Next one is remix dot run. was do you want to take this one first?
+
+101
+00:23:16,650 --> 00:24:03,990
+Wes Bos: Yeah, this is the new react framework for building apps. And websites from Ryan Florence and Michael Jackson, to the devs are the devs, behind react router, awesome react, thought leaders in the space. And they are sort of like taking a look at the landscape and rethinking it and it's closed right now. And I think it will be you have to pay for it. But from what I've seen, it seems really interested. So I'm going to go underrated on this one. And not that we're going to everybody's going to be using it. But I think that they are rethinking a lot of things, especially with what I've heard is that streaming from the server and this pain that we have, which is server side and client side rehydration and whatnot. I'm very curious to see and I bet if they like nail something like I bet other frameworks will adopt that as well.
+
+102
+00:24:04,020 --> 00:25:33,270
+Scott Tolinski: Yeah, we're pretty much all go and one we're agreeing on everything I think is underrated. I also think that like, like he said, specifically about the streaming from server side. Yeah, that stuff sounds so good to me. I maintain our own server side rendered react application. And it's not a lot of fun. It's just not super easy, but it also feels like it also feels like it's doing more work than it needs to. And I think the remix folks are really figuring a lot of those aspects out next is going to be x state which believe it or not, I'm going to say is underrated looks that we should have had things that were underrated. Yeah, that actually might have been a problem in our approach to this. But at state Hey, I don't know if you've used state machines at all West but when we were writing the video player or the video uploading system, so we upload our videos, to the all those who have not heard we use a service called mcse to do our video so we upload our videos to bugs. And building that video uploader was like the thing that made me see the light for state machines, specifically, because there were so many states that this uploader could possibly be in. And so for me, it was pretty eye opening to control those states in the state machines world for the first time and just say, like, Alright, I really feel like this uploader is really solid compared to some of my other code, which was mostly Boolean flags set by state variables and things like that.
+
+103
+00:25:33,330 --> 00:25:45,990
+Wes Bos: I've not used that. So I'm gonna go medium rated, but it's one of those things that you just can't hear people stop talking about it. And we had David on the podcast of six months ago, and he talked about it and it I just made a lot of sense. Like, I certainly have the problems that it solves.
+
+104
+00:25:46,140 --> 00:27:49,260
+Scott Tolinski: Yeah. This episode is also sponsored by sentry@sentry.io. Use the coupon code tasty treat all lowercase all one word, and you're going to enjoy two months for free of centuries. Really just outstanding feature set, it's just really a fantastic error and Exception Handling tool. In addition to that, there is some really great new features around the performance monitoring that came in Sentry. Somewhat recently, I had a, I had a beta access to it a little while ago, just because I wanted I wanted to get in. And it was really blew me away just how useful it was to basically have a table of all of your routes and how fast they take to load. Because it really allows you to quickly and easily see which aspects of your site one get hit the most, to potentially have some failure rates, right? Maybe it gives you a failure, a percentage, but also allows you to see just how long it's taking for some users to load. Now they are constantly iterating. Upon this feature, I actually just went here just now. And although I checked this, I want to say last week, because I check it all the time, they have already added some new stuff. This is his first content, full paint, largest content, full paint, first input delay, cumulative layout shift. And what it does is it gives you these, these bars of saying how how many people have this hit 80% of my users are getting a green level first input delay, and 20% of my users are getting a yellow level of that. And then 0% of my users are getting a fire red level saying hey, yes. So as you can see, these tools are very useful to be able to see some other things like who's getting a cumulative layout shift, which that's when some content has loaded and others hasn't. And then the layout shifts, that is a huge pet peeve of mine. So it gives you the option to see all that stuff really easily. And you can even search by trends. It's very cool. So check it out@sentry.io use the coupon code tastytrade all lowercase all one word, and you will see some of their new tools.
+
+105
+00:27:49,590 --> 00:28:34,500
+Wes Bos: All right, we'll move into some hot take tweets hot topics. I asked on Twitter for some hot take tweets. What are your JavaScript hot take tweets, and everybody gave me their opinions which is hilarious because my like Twitter's been ruined for like three days now with people sending me because not because like people do it. But people reply with their hot take. And then there's like a argument every single tweet has like a 40 thread Harkey. So first one is from Lauria and .TECH. Spread syntax isn't super readable, and you probably should use something else if you can have it. Yes, I just shared a bit of code solution using it. So sue me. So I really like this one because I do it myself. But it's not super readable, heartache, tweet, what do you What's your take on this? Scott?
+
+106
+00:28:34,590 --> 00:29:10,860
+Scott Tolinski: I think it's wrong. No, I this is gonna bug like, I'm the type of person who does want to go on to Twitter and be like, no, that's wrong. Like, it doesn't matter. In fact, but i i agree with Laurie that like, when I when I don't want to say I don't want to try to claim that she just started using them because I doubt she has but like, when I first started using them personally, I felt like this is not readable. But like now that I'm I've been to the edge and back and I've been using them for so long. And I understand it. Yeah. Like I see through it. For some reason I've been able to see through the lines of the matrix. And now I just like it a lot.
+
+107
+00:29:10,950 --> 00:29:16,860
+Wes Bos: But once you know what spread is then like, yeah, obviously have to know what it is. But yeah, once you know it's the best.
+
+108
+00:29:16,890 --> 00:29:42,000
+Scott Tolinski: Yeah, best. Okay, next one is from Chris Haldeman, comes with a log is lazy and slows you down as a terrible debugging experience. Chris can be right about all of this. And I will still use console dot log until I enter the grave. So yeah, no debugger is great. debugger is fantastic. But sometimes it crashes my browser and sometimes it's slower than using deep or just a simple console log and seeing actually, if the output
+
+109
+00:29:42,090 --> 00:30:09,300
+Wes Bos: like we did a show on syntax about like advanced debugging techniques with people asking what else do you use breakpoints break on that you can you can listen for Dom changes, all of that stuff. You can view network requests and all that those are great and I use those when I'm when I'm in trouble but nothing wrong with the content. Log Rocket console log. Optional chaining makes code so much more readable and makes it harder to debug when it comes to optional props or fields.
+
+110
+00:30:10,050 --> 00:30:13,800
+Scott Tolinski: I love optional chaining. It's my, it's my baby and I will defend it,
+
+111
+00:30:13,830 --> 00:30:32,360
+Wes Bos: I've not run into a really odd bug, because that's the thing is that it could be undefined anywhere along your chain. And you wouldn't necessarily know where it was undefined unless you took them out. But you could also just pop a breakpoint in there or log the thing one step above to see what is coming in.
+
+112
+00:30:32,400 --> 00:31:18,060
+Scott Tolinski: What's funny is that I, once I moved to TypeScript, it made me realize just how unsafe some of my code was. And like sometimes the solution is, if you're in a conditional, just dropping a question mark in there to do the optional chaining and it's like, Alright, now this is safe, and it's gonna work. I don't have to worry about it ever again. This next one is from Dan. Dan says JavaScript really isn't that bad, as long as you avoid double equals and four dot.in. Yeah, Dan is dead on JavaScript is really not that bad. And it's gotten better all the time. A lot of the people I think, who criticize it, or even criticize the changes on and are maybe people who came from other languages, they're using JavaScript and all feels like hectic and chaotic at this point. And it is kind of chaotic. But once he got it, I really enjoy working in JavaScript or now TypeScript for the most part,
+
+113
+00:31:18,060 --> 00:31:22,860
+Wes Bos: big fan double equals die, don't use it as one of the other hot takes was double equals is fine.
+
+114
+00:31:23,640 --> 00:31:24,150
+Unknown: Yeah.
+
+115
+00:31:24,660 --> 00:31:59,520
+Wes Bos: And the other. For me, I use four of the dead, or I was added to the language a couple years ago. And it's awesome. Yeah, for us where it's at Next one is the NPM ecosystem has turned JavaScript development into a game of Legos rather than real programming, what and to that, I say, I'm a Lego Master, I wouldn't be able to build some of the stuff I build without some of the packages from much smarter people. That's the beauty of JavaScript is that you can reach for these much harder things like OAuth implementations, and beat crypt, when you don't necessarily have to do it. I wouldn't know how to build that myself. You know, as real programmers, they
+
+116
+00:31:59,520 --> 00:32:30,780
+Scott Tolinski: mold their own Legos out of their plastic that they have for from the oils of the earth. Yeah, I don't know about this one. All PR unless you're unless you're writing like a binary, everything you're doing is the exact same as what you're saying. NPM is, or react is the worst choice for beginners, web. So in its current state. And I kind of agree it's not the worst choice for beginners, because it's so widely used. That's why it's a good choice. For beginners. It's so widely used, you can get a job doing
+
+117
+00:32:31,110 --> 00:32:32,310
+Wes Bos: it on your resume, right?
+
+118
+00:32:32,430 --> 00:32:43,320
+Scott Tolinski: But if you are just trying to understand DOM events, and whatever, man, keep it vanilla, and if you want to move into a framework, I don't know, keeping us something way easier than that. Yeah.
+
+119
+00:32:43,350 --> 00:33:04,770
+Wes Bos: So for beginners listening, that's not to say you shouldn't learn react, I literally have a course called react for beginners. But there's a handful of things you need to know about react, you couldn't be able to just jump in, but I think that's the same for a lot of stuff. So I think I agree on this, but you could still learn it. Yes, it's still not super hard and complicated. There's just more. You gotta have like a list of like, five gotchas. You know,
+
+120
+00:33:04,799 --> 00:33:11,250
+Scott Tolinski: it's also kind of like saying like, pancakes are the worst food for breakfast. There's still pancakes man, like, they're pretty dope.
+
+121
+00:33:11,880 --> 00:33:44,430
+Wes Bos: Yeah. Next one, Aaron Bushnell says, If you work at an agency, really try to avoid using using things until it's absolutely necessary. And even then only what you need when you manage hundreds of sites, it quickly can become a tremendous source of technical debt. I agree as somebody who still has a CoffeeScript site in production, and what six or seven, I've been working this year to cover all my Gulf sites over Who in the world are you still? I'm not writing anymore, but like it's still running. And it still runs good.
+
+122
+00:33:44,430 --> 00:33:45,090
+Scott Tolinski: Yeah, yeah,
+
+123
+00:33:45,090 --> 00:34:05,760
+Wes Bos: you definitely that's the beauty. I love doing agency work and freelance work, because you could choose whatever you want it, but you can definitely fall into a whole, you just bring on a whole bunch of stuff. It's same thing with WordPress plugins, too. If you go bonkers on WordPress plugins, you're gonna have a bad time because half those things aren't going to be out of date or not maintained or break.
+
+124
+00:34:05,790 --> 00:34:07,980
+Scott Tolinski: They're gonna install eight versions of jQuery.
+
+125
+00:34:08,460 --> 00:34:11,360
+Wes Bos: Yeah. What do we got next?
+
+126
+00:34:11,360 --> 00:34:13,050
+Scott Tolinski: Do we want to get into q&a? Cuz?
+
+127
+00:34:13,230 --> 00:34:16,080
+Wes Bos: Yeah, yeah, let's move into q&a. We're running out of time here.
+
+128
+00:34:16,130 --> 00:34:18,300
+Scott Tolinski: Yeah, cuz we forever on these
+
+129
+00:34:18,860 --> 00:34:50,400
+Wes Bos: 100 more of these? Yeah, some good ones. Some good ones. Go visit that tweet and listen to all the popular unpopular opinions. So if you've got a question for us go to pigeonhole that at Ford slash tasty, and ask a question, or you can drop it in the chat as well. First question is from anonymous. If you recently started doing web dev work, which career path would you choose? Start up? Fang Fang is Facebook, Amazon. What's the other apple? Netflix and Google?
+
+130
+00:34:50,420 --> 00:34:56,630
+Scott Tolinski: Yeah, we should actually start making up like a fake thing with like different companies in here. It's Yeah, board
+
+131
+00:34:57,380 --> 00:34:58,170
+Unknown: foodora
+
+132
+00:34:59,790 --> 00:35:00,650
+Scott Tolinski: No, God,
+
+133
+00:35:00,690 --> 00:35:42,360
+Wes Bos: yeah, that would be hilarious. Yeah. Or so would you do start up Fang, or slash big tech companies or freelance or contract or if I started today? Um, it depends. For me, I look at some startups and I don't envy, the work life balance and the grind and how quickly things move. But I also know people who get into startups and they're young, and they've got nothing but time and, and whatnot. Certainly easier. And also not not to say that startups are only for young people, because there's lots of people that are running great startups, they just work nine to five, and they're done. Right. But I think On the flip side, there's also a very heavy culture in that Fang,
+
+134
+00:35:43,260 --> 00:36:09,630
+Scott Tolinski: I really like studio work a lot. Yeah, like that. That's an option to working in a design dev studio, because you get a lot of experience with many different projects. And especially early on in your career, it can give you a lot of exposure to different projects in working with clients, many times you're, you're in client meetings yourself, rather than, you know, being some project manager so you can get some managerial skills, you can get some project skills that shift very rapidly.
+
+135
+00:36:09,650 --> 00:36:56,520
+Wes Bos: Also, I'm going to say, if you can get the Fang job, go for it, just don't allow your lifestyle to inflate what they're paying you. Because it's very scary to be making $200,000 at Facebook, and before you know it, like someone's got to pay for that Tesla. If you get sick of working at a Fang and you want to go do your own thing, like I get DMS like this all the time people like, oh, Wes, I want to I want to make courses like you do. I want to be able to just dick around on the internet like you do. That would look so good on your resume. Like I work for Google. And now I'm doing my own thing ex Googler makes a new product or whatever. I think that would be kind of cool. So if you can get it, go for it. Otherwise, I'm a big fan of like Scott says studio. I went contract freelance my own and it worked out for me. I really enjoyed it.
+
+136
+00:36:56,580 --> 00:36:58,130
+Scott Tolinski: Yeah, yeah. Hey, great.
+
+137
+00:36:58,260 --> 00:37:29,250
+Wes Bos: Today, we are sponsored by fresh books. Fresh books is the cloud accounting solution for your business, whether you're a small business, big business freelancer, whatever, if you need to keep track of your time, send out invoices, convert that time into invoices, track all of your expenses, take expenses and turn them back into invoices, all of that good stuff, just to run your business, all the money stuff, check it out. freshbooks.com forward slash syntax that's gonna get you a 30 day unrestricted free trial. Thanks so much to Freshbooks for sponsoring,
+
+138
+00:37:29,480 --> 00:38:39,440
+Scott Tolinski: Eric real quick before we do the next one asked in the chat about breakdancing being added to the Paris Olympics. I have been following the breaking in the Olympics thing for maybe like 15 years now maybe longer than that they've been the group that's behind it. A lot of people have been trying to get it in since the literal 80s. So I'm very excited the Junior Olympics for when really well, you know, a lot of the the people in the scene are concerned about it becoming exploited by the masses or whatever. But to be honest, the Junior Olympics went so well. And they didn't really change it too much. So I'm pumped, anon says TypeScript, all the things and yeah, I'm pretty much in I'm pretty much in I really like it. And I don't see myself writing anything else. Even like today, I popped open a quick utility. And I find firing up a quick code utility, I'm going to hit up just some, you know, off the cuff .js, kind of like real quick stuff. And I did it in TypeScript. I wasn't any more encumbered than I was in JavaScript, like I felt, I felt like I could flow with it. And that, to me, was like a big thing. Because I always see TypeScript as this big barrier to entry. You got to set up your tooling and whatever. But as long as you're using the right kind of systems that make it easy to get going, and TypeScript, all the things yeah.
+
+139
+00:38:39,510 --> 00:39:48,380
+Wes Bos: And we were talking about this, we had a topic table on TypeScript yesterday, and I joined in and we're talking about like, Is it a barrier to entry anymore? And I don't think so. Because like, pretty much every major or even minor package out there, I have a one line code called wait and somebody submitted title, they all have types already. You can infer types for like, like I just built right before this podcast. I was like, man, I want to see my webcam, but the like Apple photo booth, they crop it like like this. So I was like I built like, it's called check my hair. And it's just it just shows your webcam really quickly. And I'm like ardabil doesn't TypeScript. It was like maybe 40 lines of code. And there was two or three spots where I had to literally type something. And everything else was inferred. And you got all the benefits from the the code completions and all that. So like, I don't think everything No, you can still write really good JavaScript. But I think the barrier to TypeScript has become very low in the last year or so. That's specifically why I'm into it now because you can get up and running even for silly projects super quickly. Next one, you know, grab it,
+
+140
+00:39:48,480 --> 00:40:40,190
+Scott Tolinski: what do you do to keep up to date with the latest and greatest changes in tech front end libraries, new languages, etc? Hey, here's actually um, do you have the GitHub app on your phone Wes No, I don't get it man, do I, the GitHub official app, it's so good for finding new packages. There's an explore tab on it. And it gives you a bunch of potential libraries that you might be interested in. And I use this like crazy for finding stuff. I don't know how or why. But this to me, like it has really changed how I find projects, because it shows you trending stuff and whatever. But it's very good. And I use it all the time to find new things. I also look at Awesome, awesome repos, you'll find things that like awesome TypeScript, and then you just go down the line of list and look for cool stuff. And just look for for neat little things. So that's what I do personally, for me,
+
+141
+00:40:40,500 --> 00:41:24,570
+Wes Bos: we can ask this question all the time. It's follow people on Twitter who who follow this stuff, like Scott, and I listen to syntax, and like, what do Scott and I actually do, I read release notes of every single browser. Anytime there's like a working group that changes a proposal, there is a good Twitter account called intent to ship, which is really good, which means that like, at that point, it's going to be in the browser in a couple of weeks. So just kind of watch those and the salic you're gonna miss something. If you listen to the podcast and follow handful of good people on Twitter, you're gonna hear about subgrid 14 times and the 15th time that you hear it. That's when you should probably pay attention because Okay, now now it's the thing I need to implement in my in my app.
+
+142
+00:41:24,650 --> 00:41:39,480
+Scott Tolinski: Speaking of cool new things, Luna tweeted this out Houdini done, how today. Oh, yeah, Houdini yokkao. Very cool stuff for CSS Houdini. So I posted in the chat somebody go and check that out. Wow, big wallet questions here.
+
+143
+00:41:39,570 --> 00:41:55,260
+Wes Bos: Yeah, they came in, we got how much time left? No time. Let's just keep going until they kick us off. What other good questions we got here. Can you share some exclusive barbecue tips? low and slow baby fish sauce. Did your mom try the fish sauce? She
+
+144
+00:41:55,260 --> 00:42:12,150
+Scott Tolinski: did? Yeah, she made it. She made it. And my, my mom was like, I'm making the recipe. And I'm like, What recipe? And she's like the one from the podcast that Wes was talking about? It's very fun. Yes, she made it. No, she loved it. We do something very similar to that all the time. We use fish sauce pretty heavy handedly over here.
+
+145
+00:42:12,150 --> 00:42:18,650
+Wes Bos: Fish sauce is the SEC, I would say, all right, what do you expect a blitz .js. In the coming years?
+
+146
+00:42:19,400 --> 00:42:45,710
+Scott Tolinski: We'll see. I don't know, it's gonna have a tough time. Because I think as somebody who's used like full stack frameworks, it takes a lot for them to like, really take off and Blitz j s is on top of next j s. So at least has that going for it where it's like, Alright, this is like next j s with Prisma. And all this other stuff, right? And that's cool to me. But like, I feel like it will have a hard time getting people to really latch on to it and building a community. But I think it's cool. And I think it's worth doing.
+
+147
+00:42:45,840 --> 00:42:50,730
+Wes Bos: I like this one. What's the first node module you install on a brand new react project besides react itself
+
+148
+00:42:50,730 --> 00:42:52,170
+Unknown: react router.
+
+149
+00:42:52,350 --> 00:43:03,860
+Wes Bos: For me, it's usually next j s, if it's multi page or parcel, if it is just a single little one off app, because personal will bundle it all for you just kind of cool
+
+150
+00:43:03,980 --> 00:43:26,250
+Scott Tolinski: thoughts on using languages other than j s or Ts with react like kotlin, for example, I think is neat. I've kind of looked into some of this myself lately. But thoughts about using it I'm not good at any other language if we're being entirely honest. So yeah, j s and Ts for me all the way right now. But you know, I'm learning. I'm learning rust, but I'm not going to be super effective with it. You know? Yeah, I
+
+151
+00:43:26,250 --> 00:44:21,330
+Wes Bos: don't have all the time in the world to learn other languages, although they probably expand my horizons. But there's literally nothing wrong with just spending all of your time in JavaScript. Alright, let's last one right here is Do you have any approach for optimizing high res images that are stored in your back end? Like s3 for a Gatsby website? We're talking about this on Twitter today? There's a lot of services that will slurp up your image, transform it on demand and return it cloudinary image x Sanity, does it whatnot. I think making your own is what I need to do, because I always I love that approach on demand rather than doing the Gatsby build, especially if it's a if it's a remote image next jass is image component does it with remote images, which is a killer feature, but not Gatsby's. I always like hesitant to be like, yeah, just pay this monthly cost for this service. And then the service will do it. Because I do that. But then also like, it sucks to have to tell someone just pay for
+
+152
+00:44:21,330 --> 00:44:21,990
+Unknown: it. Right?
+
+153
+00:44:22,380 --> 00:44:27,780
+Wes Bos: So like it wouldn't it be cool to like, run it on like a serverless function or something like that. That'd be nice. It'd
+
+154
+00:44:27,780 --> 00:44:35,010
+Scott Tolinski: be cool if there was like a spin up option where somebody had created like a pre configured one where you could just like spin up your own cloudinary. Okay. Yeah.
+
+155
+00:44:35,730 --> 00:44:50,250
+Wes Bos: I think that does exist. It's just that like cloudinary has 4 million features. Yes. And then you sometimes you use them like the they even have like CPI like if you want it to sepia tone your photos like it's a digital camera from 2001. You could
+
+156
+00:44:50,250 --> 00:44:55,350
+Scott Tolinski: or make it like into a photo booth at a Western show at Disneyland or so. Yeah.
+
+157
+00:44:56,400 --> 00:45:12,660
+Wes Bos: That's a good idea. All right. I think we should end it off. There Thank you everybody so much for tuning in. That was really fun. We always like doing these live ones it's a bummer we couldn't do it in person. But hopefully next year we get get the big shot in the arm and we'll be able to see you all in person.
+
+158
+00:45:12,690 --> 00:46:24,930
+Scott Tolinski: What about sick pics do we want to do some sick pics Oh rebounds off sick picks sick picks, we pick things that are sick, I'm overflowing with sick pics over here. So while West goes and hunts for his I'm going to pull up mine here, sick picks my sick pick the thing that I think is sick. And this is going to be a very special one. This is the coolest little extension I've ever done used in it's called color conversion color. This is a VS code extension. I'll post it real quick here. Let me find the actual links page. So I've been personally dealing with a lot of like moving colors to HSL hsla doing a lot of variable work there. And I found this really neat extension for VS code that allows me to convert colors from hex to hsla. And it is so dang fast. Because you just basically highlight your color string your hex value, you say go turns it to hsla. Again, I'll post it in the chat here. I'm like trying to google it while I'm talking about it. But it's really nice to not have to leave your editor or whatever just toggle through different types of color conversions. And this thing has been saving me some serious time.
+
+159
+00:46:25,020 --> 00:47:34,020
+Wes Bos: I mean a sick pick Allah lock picking kit. So I we have this like vintage gumball machine in our house and we bought it years ago, we every now and then we put some candy in it for the kids and they get a penny and they turn it and they get like a couple Smarties that come out. And it's getting full of money and we don't have the key, we have the key to put the candy and we don't have the key to get the money out. And it's getting full I I told kailyn I was like I'll learn to pick locks. So I bought this. It's an acrylic lock. So it's see through and you can see all of the pins in the lock so you can see what you're doing. It comes with a whole bunch of different picks. I'm trying to pick I did it, why I did it on camera. So it's a super cheap lock. That's why it's so easy to pick the real real locks are a lot harder than that. But it's cool because you can see what it's doing and how locks actually work. And that just is so helpful to understand like when you are picking a real lock. What are you trying to do right now you're not just jamming this pic in there. And it came with a whole bunch of different types of picks. And I watched lock picking lawyer on YouTube. So yeah, it was it was kind of fun.
+
+160
+00:47:34,020 --> 00:47:43,050
+Scott Tolinski: I watched so much lock picking trying to lock pick one of our doors and the doors locked and it was like a super fancy sliding lock or whatever
+
+161
+00:47:43,110 --> 00:47:44,730
+Wes Bos: slide Yeah, not a slang,
+
+162
+00:47:45,030 --> 00:48:24,870
+Scott Tolinski: block slang. I was a slang in my slang and I could not get the thing open obviously and then I had a lot bigger come over and need to use like a whole like big rig machine to get it open so I didn't feel too bad about myself after that. Awesome shameless plugs West boss comm forward slash courses as the list of all of my courses. You can use syntax for 10 bucks off and I'll shamelessly plug level up tutorials.com sign up to become a pro and you'll get access to 12 new tutorial series for the entire year as well as the entire back catalogue of 1000s of video tutorials. So check it out, level up tutorials.com. Alright, thanks
+
+163
+00:48:24,870 --> 00:48:39,300
+Wes Bos: so much to react THON for having us. Thanks everybody in the chat. I was super fun. Make sure you subscribe to our podcast syntax out of fam in whatever podcast player you're using. And leave us a review positive review. say nice things about us to pace.
+
+164
+00:48:41,040 --> 00:48:50,820
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
