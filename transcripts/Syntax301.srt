@@ -1,0 +1,188 @@
+1
+00:00:00,359 --> 00:00:24,149
+Announcer: Monday, Monday, Monday, open wide dev fans yet ready to stuff your face with JavaScript CSS node module BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is Sarah CUDA, Bob, and Scott Tolinksi.
+
+2
+00:00:27,120 --> 00:00:57,360
+Scott Tolinski: Welcome to syntax in this Monday tasty treat, we're going to be cooking up something really good for you. This is CSS of grid level three, that includes CSS Grid masonry. Now if those words don't mean a lot to you, just wait because we're going to be talking about why this is such a cool thing and why we've been waiting for it for so long. This episode is sponsored by Log Rocket. Now Log Rocket is the perfect place to see all of your exceptions happen in real time.
+
+3
+00:00:57,360 --> 00:00:57,990
+Unknown: Hey,
+
+4
+00:00:57,990 --> 00:01:55,530
+Scott Tolinski: do you use or break something on your site? Well, this allows you to see not only the Network tab, the console log, but the DOM and the user as they clicked and made the thing happen. Maybe they typed in something and it broke. Now you get to see all of that happened in a scrubbable video replay it is really, really super cool. This is one of those services that I highly recommend checking out their little landing page and then checking out the scribble videos because it's one of those things that you really have to see to understand just how amazing this is anybody who's ever tried to debug an issue that's happening in production? Well, it sometimes can be like trying to find your way in the dark without a flashlight. And this is that flashlight, so check on over to Log rocket.com forward slash syntax and you'll get 14 days for free. Give it a check. This service is really, really super neat. Before we get started, let's introduce ourselves. My name is Scotland's game developer from Denver, Colorado and with me, as always is the West boss.
+
+5
+00:01:55,650 --> 00:02:21,630
+Wes Bos: Hey, you know, something I was thinking about? Is that maybe we need to do another episode where we introduce who we are and our backgrounds because last time we did that was like two and a half years ago. And I talked to a lot of people who say I started listening six months ago or whatever. So it shout us out on Twitter if you want that episode. Not necessarily again, but yeah, an explainer episode as to who we are and and whatnot.
+
+6
+00:02:21,660 --> 00:02:29,910
+Scott Tolinski: Who is your daddy? And what does he do? movie that time? That's under Guardian cop.
+
+7
+00:02:29,910 --> 00:02:36,330
+Wes Bos: It's Kindergarten Cop. Yeah, never seen it. But like I remember like, I've probably even said that many times in my life.
+
+8
+00:02:36,359 --> 00:02:39,720
+Scott Tolinski: Yeah, yeah. There was there. Everybody had an hour an hour no face. Yeah,
+
+9
+00:02:39,750 --> 00:02:49,110
+Wes Bos: yeah, it's like the very nice, I've never actually seeing the original Bora either. But they had a very nice change of life. Yes.
+
+10
+00:02:51,330 --> 00:03:57,540
+Scott Tolinski: Likewise, I don't know when Bora came out, I think it was probably before this. But before we get started talking exactly about what this is, I figured 2015 Scott would like to pop in here and just say thank you very much for the CSS working group for adding this grid masonry because this would have saved my butt back in 2015, when the only solutions for this for JavaScript. Now when CSS Grid first launched, I think the biggest missing feature that a lot of people had on their minds was, Oh, this doesn't solve the masonry problem. But it solves so many other problems, right? So CSS Grid dropped, we all know that you got these amazing grid features that allow you to do all the things we used to have to have a 960 grid, or whatever grid in here before to assign things to a grid super easily, like basically invalidated a whole scope of libraries at the time. So CSS Grid comes out. It makes everybody's life easier, but it doesn't solve the masonry problem. Now, along comes CSS Grid, level three draft, which includes masonry style layouts. So Wes, do you want to give a little intro on these? Yeah,
+
+11
+00:03:57,570 --> 00:05:33,660
+Wes Bos: yeah, this is also something that I wanted as well, when I was working on my CSS Grid course, I thought, of course, this is gonna be doable. And I went to Rachel Andrews GitHub repo called CSS Grid ama, and this was in 2017. So three, almost four years ago. Now, I said, like, how do you do the Pinterest layout in grid? And the answer was, it's not it's not what it is. Everybody thought it was gonna be. It isn't. It's not what it is. That's more of a CSS columns thing. But the the downside of columns is you can't control the order and yet direction out of flow. So yeah, we now have CSS Grid level three. It's a draft proposal, CSS Grid, level two, added sub grid, and I believe that was it. And now we have CSS level three, which is in proposal and is adding masonry layout, which will allow you to stack items together, regardless of work. We're gonna call it height in this case, but it can go either way. And that's Good if you think about Pinterest is probably the most popular. Lots of websites do it now, when you think about D Sandro's metaphyseal. Yes, yeah, isotope or isotope that j s, were they all locked together, you have to do that in JavaScript right now. And that is going to change once this gets merged into the CSS Grid spec. And once all of the browser's implemented, it looks like Firefox already has it implemented under a flag so you can test it out. It might change but that's the whole point of the proposal is that you can see what people think about it. Before we go further than that. Could
+
+12
+00:05:33,660 --> 00:06:09,600
+Scott Tolinski: we give one giant shout out to David de Sandro very influential libraries, so many things that he's made, even just if you had to is like metaphyseal dot CEO, man, he's just on so many influential projects and things that I've used from peccary to isotope just a lot of really neat stuff. So I just want to give a big shout out to Flickr, he was the best library. Yeah, it's definitely one of my all star influential people in this space. So and all his little logos that he's been creating, just so cool.
+
+13
+00:06:09,810 --> 00:07:30,840
+Wes Bos: All right. So let's talk about how it's gonna work. So the way that it works in CSS Grid masonry is that generally, when you have a grid, you specify either your grid template columns, or you specify your grid template rows, and you specify the width or the height of them, and how many you have and whatnot. The idea with CSS masonry grid is that you pick one of those axes. So whether it's rows or columns, and you set that to be masonry. And then you also set this new property masonry auto flow, I think there's a couple options there, the example they have is as next and then what that will do is it will first layout all of your grid items that have size. So this works similar to if you're using fr units on your grid first, before it even divvies up the free space, it will say all right, well, this item here has an explicit start and stop, it starts at two and goes to four or this item here spans five, it says so in the CSS, so we'll first put all of those in your grid, and then you're left with empty space. And then we'll start taking the additional items which are not explicitly laid out, and then start to pack them into wherever they're able to fit either on the column access or the row axis.
+
+14
+00:07:31,080 --> 00:08:05,880
+Scott Tolinski: From what I read, I think that masonry autoflow. Next property prevents it from filling in. If you look at the masonry auto flow property line, like the 2.5, and you scroll down, you check out that image. So it's, it shows that the without masonry autoflow. Next, it's hard to it's such a visual medium, but the fourth item would be placed. So it would masonry into the empty space where with the masonry autoflow. Next, it moves it to the next line, either B pack or next. And by default, it's the other one, what was it packed
+
+15
+00:08:06,000 --> 00:08:07,440
+Unknown: pack? Pack?
+
+16
+00:08:07,440 --> 00:08:17,270
+Wes Bos: If you look at the 2.5 masonry auto flow property, okay, as the value can either repack or Oh yeah, or pack definite first or ordered.
+
+17
+00:08:17,820 --> 00:08:39,120
+Scott Tolinski: So next basically causes it to skip that space and go to the like the next available open line. Which that to me feels just like was that was one of my questions when I was looking at this was like, why would you use masonry at all if you're using this autoflow next business, but I guess like, this is one of those things, I really need to just get my fingers dirty again. I need to just you know, give it a test. Oh, yeah,
+
+18
+00:08:39,150 --> 00:08:45,020
+Wes Bos: yeah, well, maybe you could turn it on or off. And this is just Scott Knight trying to parse what the spec is. Oh,
+
+19
+00:08:45,020 --> 00:08:45,930
+Unknown: yeah. Oh, yeah, I
+
+20
+00:08:45,930 --> 00:08:51,410
+Wes Bos: certainly do not envy the people who have to implement this into the browser.
+
+21
+00:08:52,740 --> 00:10:20,520
+Scott Tolinski: Oh, what we need here is we need a Chris coyier CSS masonry, a complete guide, blog post, and that's gonna be all open. For me. That was like the defining thing for Flexbox for me. So one thing I thought was neat in here, it was using the direction property in CSS. And you may not have used the direction property unless you are getting into internationalization stuff. But there's a property called direction and CSS that allows you to do right to left. And this is something that's not necessarily new. But in the past, like with Flexbox, we could change the flex direction. And I think this is neat, because we can change the grid direction with masonry and have everything really hang to the far right by just simply using direction RTL grid masonry, and on the horizontal direction, it pins everything to essentially it goes from top right to lower left now in our grid, and naturally need but what's really neat about this is when we even rotate this on it access a little bit, and you do direction of right to left, so that pins it to the top right and then you do your masonry on the y axis rather than the x axis, and it goes top right, then middle right, then bottom right. And then the next one will kind of scoot up as far as it can to the top right. And this gives us an insane amount of features, I mean, just tools in general to do
+
+22
+00:10:20,850 --> 00:10:22,590
+Wes Bos: weed, you haven't been able to do that before,
+
+23
+00:10:22,620 --> 00:10:55,710
+Scott Tolinski: or at least not easily, you'd be doing like some really interesting workarounds for it. But I think this really blows open, just being able to put the content anywhere you wanted, at any given point without doing, you know, position absolute or something like that, or taking things out of the flow. I it's really, really astounding, when you look at some of these examples, I highly recommend heading to this link that we have in the show notes to check out the working group, because what they do is they have these little images that show you where all the boxes go with various bits of code. And it is very illuminating very, very cool stuff.
+
+24
+00:10:55,860 --> 00:11:34,980
+Wes Bos: It's pretty, pretty neat. And they have tons of little examples as to what happens when you use when you anchor one item here. And when you align the item, what happens to use an inline grid happens when you use a margin and a gap. Yeah, man, there's so many edge cases that could be that this direction thing I didn't even realize that we're getting this. It's a proposal for CSS right now, I'm glad you said this. Because the same thing happened with gap where we had we added direction, FOR FLEX direction. And then they're like, oh, grid, do we add grid direction? And it looks like now they're just saying direction? direction. And that will that will work with everything. Same thing with gap is no longer grid gap. It's just gap. And it works with Flexbox and grid now.
+
+25
+00:11:35,010 --> 00:11:38,310
+Scott Tolinski: So direction would also work with Flexbox? That's what you're seeing?
+
+26
+00:11:38,520 --> 00:11:39,150
+Unknown: I
+
+27
+00:11:40,710 --> 00:11:46,350
+Wes Bos: think so. I don't know. Probably? Well, no, actually. Because
+
+28
+00:11:46,350 --> 00:11:49,140
+Scott Tolinski: Because direction is a property that's existed for a while.
+
+29
+00:11:49,710 --> 00:12:32,790
+Wes Bos: Yeah, but with Flexbox. It's it's row or column or row reverse or column reverse, right? That's how you change the axes of Flexbox. And you can't change the axes of grid. Yeah, without doing an only define what the axes are. So I guess it won't work with Flexbox, then that's wrong. Well, that's okay. Yes. Awesome. So I am really excited about this. It's just another thing that's been on my wish list for a long, long time. And if we talk about like, what are the things that we still need to use JavaScript for for layouts? It was masonry. What other things can you think of that you still have to do is content queries is still something you have to use for JavaScript
+
+30
+00:12:32,970 --> 00:12:33,810
+Scott Tolinski: element queries?
+
+31
+00:12:33,810 --> 00:12:39,360
+Wes Bos: Is there element queries? Yeah. Is there anything else that you're still using JavaScript for auto height, automating
+
+32
+00:12:40,080 --> 00:13:00,930
+Scott Tolinski: aspect ratio, but that's being solved? That's coming anyways? Yeah. I like need to fire up the Can I use for aspect ratio? Can I use.com is the best place in case you have not ever been even though we talked about all the time, aspect ratio, CSS is a big fat Red's across the board forever and ever and ever. Looks like
+
+33
+00:13:01,080 --> 00:13:04,380
+Wes Bos: Flexbox sent a flag for both Firefox and Chrome though. So
+
+34
+00:13:04,380 --> 00:14:24,600
+Scott Tolinski: kind of Firefox adds IT FOR FLEX items. Oh, yeah. Okay. So it is a flag. Okay. I can deal with that. I just need to know I need to now. Right now, I wrote out a little wrapper for react to do it. I need I need that aspect ratio. So that's really really for me, it's funny that you mentioned those two things, because I have my like Final Thoughts written here. And I said, this is basically power tools for CSS layouts at this point, CSS Grid, you can do anything with it. And I like I have a hard time of like layouts that you could not to do with this kind of thing between grid and whatever it masonry was really the last holdout. And so like really like people, I think the whole complaining about CSS layouts being hard is done at once this is in it's done. Like no more if you consider things like that joke is tired. You can you can center things very easily. And CSS. That's not a thing anymore. vertical center, yes. Now I think anymore, masonry layouts, finally not going to be a thing anymore. And I wrote here, once we get element queries, my CSS thing, wishlist is essentially going to be complete that aspect ratio, those things are going to make me as happy as I could possibly be with CSS. And I think these tools, specifically open up the possibilities to create a just an endless amount of layouts. And it's going to be really, really fascinating to see this time next year. What kind of stuff people are making with this? Yeah, super
+
+35
+00:14:24,600 --> 00:14:37,320
+Wes Bos: well put. Last thing I'll say is, do you think this is going to be abused? Is everybody going to start throwing masonry layouts into their, into their designs now because it's so easy? I think we would have to get into a time machine for that to
+
+36
+00:14:37,320 --> 00:15:02,300
+Scott Tolinski: happen when people were using it already. Even with JavaScript. No, I don't I don't think so. But I do think it opens up some really neat possibilities. Now, isotope, let me pull up metaphyseal again, David de Sandro had one neat plugin that we used that was based on masonry where so like masonry is just like the grid aspect of it. Okay, so it's isotope. Oh, no, I think The top was the sorting one where did like flipo
+
+37
+00:15:02,300 --> 00:15:04,740
+Wes Bos: animations use masonry under the hood?
+
+38
+00:15:05,220 --> 00:15:22,710
+Scott Tolinski: So Oh, man and Packer, he has like drag. So I don't know if he just doesn't have this plugin anymore. But he used to have one I think it was isotope like, it might be isotope where it was masonry where you'd click something and expand and the whole layout would refill and rechange. That was isotope.
+
+39
+00:15:23,010 --> 00:15:30,630
+Wes Bos: Yeah, we just rerender it, but it would figure out the what had changed. What that's one good question I have is that will this be animatable?
+
+40
+00:15:32,400 --> 00:15:33,240
+Unknown: Or not? Yeah,
+
+41
+00:15:33,510 --> 00:15:34,020
+Wes Bos: yeah.
+
+42
+00:15:34,020 --> 00:16:15,780
+Scott Tolinski: But the good news for that is if you want to do listen, I just drew, I don't want to drop my course here. But I did a course on animating with framer emotion. And the latest version of framer motion allows you to animate properties on Flexbox, and stuff like that using flip animations. And it's just by like adding one Prop, essentially. So like, hey, if we can get that, then I'd be very psyched. Again, animating any of these properties is like really what I want to see. I want to see animating these properties I want them to be able to be you click and expand and the whole thing, relay out some whatever. That's what I want. And I think these tools will open that will be abused. I don't know maybe potentially, I abused masonry. So there is a chance that I will
+
+43
+00:16:15,780 --> 00:16:18,030
+Wes Bos: be in there. We're all guilty. Yeah.
+
+44
+00:16:19,590 --> 00:16:30,600
+Scott Tolinski: There's a chance we might see a resurgence right. New masonry ism. Like the new morphism it's a bad joke when you have to explain it. That's that's Yes.
+
+45
+00:16:31,319 --> 00:16:34,950
+Wes Bos: All right. I think that's it. Let's cut that off before Scott has a more terrible jokes, huh?
+
+46
+00:16:35,610 --> 00:16:41,520
+Thank you for tuning in. And we will catch you on Wednesday. Peace page.
+
+47
+00:16:43,470 --> 00:16:53,250
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you like this show.
+
