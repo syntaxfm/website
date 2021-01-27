@@ -1,0 +1,80 @@
+1
+00:00:00,359 --> 00:00:24,149
+Announcer: Monday, Monday, Monday Open wide. Get ready to stuff your face with JavaScript CSS loadmodule BBQ Tip Get workflow breakdancing soft skill web development hasty as crazy as tasty as web development treats coming in hot here is when Sarah kouga bombs and Scott Tolinksi
+
+2
+00:00:25,890 --> 00:01:08,220
+Scott Tolinski: was the deal with void. In this episode of syntax, this is gonna be the show about nothing and that's a Seinfeld joke off the top for you as my my best Jerry that I could do. Yep, we're gonna be talking all about nothing in this episode. And I'm not talking about absolutely nothing I'm talking about no undefined void false zero non non non bread, empty arrays, empty objects never all sorts of values. That could mean the things that do not exist. In fact, I would love to have a zero zip nada inside of JavaScript as well. My name is Scott Tolinksi. I'm a full stack developer from Denver, Colorado, and with me, as always is the West boss.
+
+3
+00:01:08,280 --> 00:02:38,550
+Wes Bos: Hey, everybody. Today we are sponsored by two awesome companies Prismic. And Log Rocket, let me tell you a little bit about Prismic. Well, you know, Prismic, it's a headless CMS gives you a graph qL API, you log in and create your content types. And it gives you an API out the other end, they have a newish feature that is called slices, I'm going to talk to you about that. And they allow you to define dynamic zones to allow your content writers to compose richer page layout. So this is actually a problem I used to have. And a lot of CMS is where you want to allow people to click together different pieces of content in order to make a page, right. And if that's the case, you can't just give them very rigid, like, here's your title, here's your hero, you can upload one image and a call to action text, right? You want to be like, Alright, well, I want a call to action button here. And I want to embed a video here and I want to have a gallery or can upload multiple pieces. That sounds like a content type. Those are just collections of different parts of a page that can be added in any order. So it's really slick because Prismic has added this thing called slices that allow you to have both non repeatable and repeatable pieces of content that can be added in any given time. And it makes it I think it kind of makes it like a page builder. So I want you to check out Prismic and the new slices feature@prismic.io forward slash syntax. And they've got a whole bunch of really good examples on there. Thanks so much to Prismic for sponsoring,
+
+4
+00:02:38,660 --> 00:04:04,440
+Scott Tolinski: cool. And this show is also sponsored by Log Rocket at Log rocket.com. forward slash syntax, this is the place where you can see all of your bugs happen in a visual scrubbable video replay is the access to the network log, the error log, the Redux store, if you have one, it also connects with all of the services that you know and love. In fact, there are so many services that it connects with, you can just check out their list on Log rocket.com. And it's going to show you exactly how it can connect it with all of these services that you probably may already have in your application already. Now, it also works on premise or in the cloud, I use the cloud version myself, it is very easy to get up and started. So check it out at Log rocket.com forward slash syntax and you will get 14 days for free. So check it out. Alright, let's get into this whole thing about nothing, right. And I think the easiest one to start off with is undefined. Now sometimes people feel like undefined is like a value. I mean, it can be set as a value. But like undefined means that the variable has been created, but it has not been given a value it is undefined. It does not have a definition. So if you are to create a variable, let's say you say var Scott, that's it var Scott semi colon, the value of Scott therefore then becomes undefined, the variable
+
+5
+00:04:04,440 --> 00:05:35,040
+Wes Bos: has been created, but not yet set. Same thing with a function that returns nothing will return undefined to mean that it did not return anything. So I like to think of undefined as being implicitly nothing, meaning that you've created it, but you've not yet set anything to it. So it is implicitly nothing. Whereas on the flip side, we also have no and no is a value of nothing. Yeah, it's a show about nothing. So that is explicitly nothing. Nothing is no until you explicitly go and set that thing to be no so what's the difference between null and undefined? No explicitly has a value of nothing. undefined does not have value. So no is a value of nothing. undefined does not have a value. You can set variables to be either but that's where it gets confusing to people because like Okay, I get it, but what about If I want to set something to be nothing like I have a variable, I want to set it to be nothing, you can set either to be undefined or null. And the way I think about it is if you want to set like a score variable to nothing, then you set it to No, if you want to unset something, meaning bring it back to its original state of not being set, then you set it to be undefined. And then finally, I always like to mention this, when we talk about them the double equals that's the one time where you could use a double equals, and that will allow you to check if a value is either set to null or undefined.
+
+6
+00:05:35,100 --> 00:06:54,930
+Scott Tolinski: Let's talk about void. Now. I don't know how much you've seen void in just normal JavaScript because I see an hour time and type definitions. You know, me I've been used things like react three fiber react spring a lot. Yeah. And the guy who created both of those Paul Henschel, he uses void somewhat frequently in his JavaScript code. So it's very funny, sometimes they'll be on like, code sandbox to look at a, an example of code that he's written. It's funny that I pull out him directly as an example, I don't know if he would even see himself this way. But like, as if this is some sort of an identity. But I noticed the most of the I saw a void being used was in a lot of his code pens, and I always be like, what, what is this void, like what's going on with void. So what is void? void is basically, in my understanding of it, at least the way that I've used is you use void when you want to say, this function returns void and returns absolutely nothing. And primarily, you'll see it being used a lot in TypeScript capacity being used in like, maybe you have like a react state function where that state function is setting the state, but it's not necessarily returning anything. So when that function gets passed into another component, you would define that as well, it could be just a function that accepts these parameters that returns void,
+
+7
+00:06:55,020 --> 00:08:32,730
+Wes Bos: yes, or returns nothing. So in JavaScript avoid can be used to ignore the return values of a function, which is kind of interesting. I've never used it myself. But if you have a function that returns three a number, you can, before you call it, you can write, like, let's say you have a function called Get a number and that function returns three, you could say, void, get a number, and then that will always return undefined, no matter what that function does. So it allows you to mark it as that one kind of neat example I did see I asked on Twitter is that you can pop it in front of an async function inside of a use effect. So with use effect, if your use effect function returns anything that is then used as the cleanup function, when this thing is unmounted, run this function, and that can get you in hot water if you have an async function as your use effect function because an async function, even if it returns nothing, it always returns a promise, right? Because if you mark a function as a sink, it will immediately return a promise, right? That's the default there. That gets into trouble because you can't have a sync function in use effect, which is weird. Some people say, if you just want to do something on component mount, and you don't care about updating, and you don't care about unmounting, or cleaning up, then you can pop a void in front of it, like fetching lists of people are fetching some data on Mount, you could pop a void in front of it, which I thought was interesting. The last one we have here is people all the time they say put it on a link like a ref equals JavaScript void. Oh, yeah,
+
+8
+00:08:32,730 --> 00:08:34,830
+Scott Tolinski: I guess I have seen it that way. Yeah,
+
+9
+00:08:34,860 --> 00:09:12,690
+Wes Bos: you shouldn't be doing that though. Because if your links go to nowhere, they shouldn't be linked, right? They should be. That's accessibility issue that screws with people's tabs. It should be a button if that's what you want it to do. So you can do that. And another thing people said is, you can do like a quick and easy prevent default on forms. So if you have a form where you don't want it to submit, normally, you'd normally put at prevent default on the on submit, but you can also use JavaScript void on the on submit, I don't think I would use that because I if I don't want the form to submit normally. Then I caught up on submit handler and prevent default anyways, but kind of interesting.
+
+10
+00:09:12,770 --> 00:09:36,020
+Scott Tolinski: Interesting. Totally. Yeah. All right. Well, let's talk about the next one, which is going to be within TypeScript specifically. And this is the never type. Now never is interesting to me, because every time I see it pop up, I'm like, I don't necessarily understand in which case you would create something that will never, it's a little bit confusing, because never it really means exactly like what it will sound like.
+
+11
+00:09:36,020 --> 00:10:39,530
+Wes Bos: So the way I see it is that some functions will never return. And that's not to say some functions return nothing that's undefined. That's what avoid is avoid is when you don't care about what comes back or returns nothing undefined, but never is when the function will never return anything. And the cases of that happening are if the function throws an error, if you throw an error that function does doesn't return anything it, it throws an error, and you have to deal with the error. Or if you have infinite loops, like a while loop, that's when you would use it. And then I finally I found if you have an unreachable variable, like if you have an if statement, if true is equal to false, then let var equals this will never be set, then I don't know, I've never run into that I've never run into that. Yeah, that is the reason why they are there. And I could see it with functions. There's a differentiation between void, which is if you don't care about the return, and it is undefined, and never meaning that function will never actually return a value.
+
+12
+00:10:39,650 --> 00:11:20,700
+Scott Tolinski: Yeah, in I've never written a never typed myself. tools that I've used to generate them or generate types have popped in and never here and there. And I see it in my own types, or I see it in third party libraries types, and I'm like, okay, and never has a value or I think I understand it a little bit better. Now after talking about this. I don't know if I would jump to write it. Maybe it's one of those things that the moment you have a use case for it, I felt just clicks into place. So you have a note here that we wanted to talk about falsy values now and like this is just sort of like other falsy values. And this is really funny hear this. So like zero and negative zero? did, I did not know that you could have a negative zero.
+
+13
+00:11:20,760 --> 00:11:25,230
+Wes Bos: Yeah, me neither. I don't think I've ever had that. I've never
+
+14
+00:11:25,230 --> 00:11:35,550
+Scott Tolinski: even thought about the idea of negative zero. And really spending too much time thinking about negative zero is gonna put me into a weird place mentally.
+
+15
+00:11:37,440 --> 00:12:16,830
+Wes Bos: So JavaScript does have this concept of false values, meaning that like, we obviously have false values, which is false. But then we also have other values, which are equate to false meaning that if you use them in a conditional like an if statement, or something like that, they will evaluate to being false. And zero, negative zero. I also learned zero n, which is the big int. If you're ever working with big numbers in JavaScript, there's some max value that numbers will go to in JavaScript, if you need to go bigger than that you have to use begin. And zero n is the zero equivalent in big end. So that was interesting.
+
+16
+00:12:17,070 --> 00:12:20,970
+Scott Tolinski: Now it's interesting here, I have an obscure falsie value for you. Yeah,
+
+17
+00:12:21,000 --> 00:12:24,810
+Wes Bos: false. Haha, yeah, false false is false E,
+
+18
+00:12:24,870 --> 00:12:43,050
+Scott Tolinski: which is so is an empty string, which is, you know, I always love when an empty string is equated to false, because like, it makes it a lot easier to not have to check for the length things or whatever. It's just one of those things where you're like, Oh, yeah, strings have got my back and empty string, obviously, it's going to be false. Right?
+
+19
+00:12:43,200 --> 00:14:39,090
+Wes Bos: All the things we have people asked about was an empty array is not falsy. An empty array is a value, it's just empty, right? But if you want to check if an array is empty, and array has nothing in it, then you check for the length attribute, and that will return a number. And then like we said, zero is a falsie value. So an empty array on its by itself, not a falsie value, but its length of zero is false a value. Yeah, if you ever see that, if an if statement, and they're just checking for if blank dot length, then they're basically saying, Hey, is this thing empty or not. And likewise, an empty object is a truthy value, an empty object is still a thing. It still exists, right? unlike an empty string, which exists as the thing but it equates to false an empty value will exist as an object, and therefore it is equal to true if you want to check if an object has things in it, you can just use keys or object keys and pass the object. And what that will do is it will return you an array of all of the properties or keys on an object. And then that will Furthermore you can use the length on that to check if there are values. So you would say if object keys, my object dot length, and that will tell you if there is anything that has been set on the actual object. And you also don't have to worry about like prototype pollution. That used to be the case when we use for loops in objects. If you had any custom prototype methods on that object, then that object might not have the property itself. But the thing that it was instantiated from or constructed from will have it on there. And that's not the case with object keys. Like that's it. All right. Thanks for tuning in. I appreciate it. Hopefully you learned a thing or to come back to reference this one. There's that's a definite interview question. explain the difference between undefined and null. And we'll catch you later. Hey, please.
+
+20
+00:14:40,800 --> 00:14:50,580
+Scott Tolinski: Head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you liked this show.
+
