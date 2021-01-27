@@ -1,0 +1,88 @@
+1
+00:00:00,359 --> 00:00:24,480
+Announcer: Monday, Monday, Monday Open wide. Get ready to stuff your face with JavaScript CSS loadmodule BBQ Tip Get workflows right dancing, soft skill web development hasty as crazy as tasty as web development traits coming in hot here is when Sarah Khuda boss and Scott L. Totally ski.
+
+2
+00:00:25,920 --> 00:02:15,330
+Scott Tolinski: Oh, welcome to syntax in this Monday tasty treat, we're gonna be talking all about conventional commits. And if that sounds like something you've never heard of before, then you are going to be very excited about this one, because this is going to be talking about commit messages, and a system for the sort of specific commit messages that you can write that can then have more intent and functionality within your application. Overall, commit messages are hard and having a system for it takes all the guesswork out of it. So we're going to be talking about conventional commits in this episode. My name is Scott Tolinksi. I am a developer from Denver, Colorado, and with me, as always, is West boss. Hey, hey, Wes. You know, one place where conventional commits will definitely come in handy is your Sentry. Because you can get what commit what version, everything happens to if you connect your repo to sentry@sentry.io, which is our favorite error and Exception Handling tool that allows you to track all of the exceptions and errors in your application. In fact, you'll want to check out sentry@sentry.io use the coupon code at tasty treat all lowercase all one word for two months for free. And again, one of the cool things here is that when we're dealing with conventional commits, right, we can attach specific commits to our code in Sentry, or specific versions, you can see which version and what kind of commits went into this code. And it's so nice that you'll be able to track all of this and say, Hey, remember that thing that you did, there was an error there. And then in your commit message, you could actually have a better idea of the bug that it fixed or anything like that, but you're attaching because maybe you're creating an issue automatically in GitHub in Sentry. And then you're referencing that issue and your conventional commit a lot of cool stuff here. So let's get into a conventional commits was, is this something you are currently using?
+
+3
+00:02:15,660 --> 00:03:30,540
+Wes Bos: No, it's it's not like we mentioned a couple episodes ago that like, pretty, pretty good, I can sometimes put garbage ones in there. And that's fine because it for yourself, because you can squash them all into into one commit. But I've been seeing a lot of pull requests come in lately with something like build colon or fix colon or chore, colon or refactor colon. And I'm like, Oh, that's cool. But then I see it over and over. I'm like, there must be something that people are following and found it. It's conventional commits. And this is really interesting to me. Because a yes, it does give you much better history as to what happened. But what I was surprised to find out is there's lots of tooling around parsing these commits, and helping you decide what to release or what changed. And that's really interesting, because like, I've been working with the folks on Keystone lately. And every time that they put in a commit, they also commit a change file, and it will describe what changed. And then when they do a release, they're able to just automatically compile all of those, what changed and they have all these, like, you know, you look at the the change releases as to what happened. I was like, Oh, that's how people are generating these things. They're automatically doing it. They're not just someone being like, oh, what did we do since the last?
+
+4
+00:03:33,780 --> 00:03:35,460
+Scott Tolinski: commit to those changes happen?
+
+5
+00:03:35,670 --> 00:04:32,250
+Wes Bos: Yeah, I thought that was really cool. And I'm assuming that's what VS code does as well, because every time VS code releases, they will link back to a commit. That actually happened. So So what is it? Well, every time you have a commit in your commit message, you will write the type of commit that can be fix, feature, breaking change, build chore, refactor, test, perf, colon, and then you write a description of what you changed. And then there is an optional, so commit messages can be multi line, you can have an optional body, which describes it a little bit more. And then you have optional footers, which is often used for custom stuff, like if you want to, if you run JIRA, and you want to link it back to a JIRA tag, you could put the JIRA if you have a specific reviewer, you want to like link up who reviewed something, you could put their name in there, and you could automatically parse those out into it. So it's sort of like a syntax format for code changes. That is also a readable,
+
+6
+00:04:32,270 --> 00:04:37,440
+Scott Tolinski: I would say it's a conventional, it's a convention for writing commits. Is that
+
+7
+00:04:37,470 --> 00:04:41,510
+Wes Bos: yeah, that's what it is. Yes, you nailed you should register that domain.
+
+8
+00:04:41,550 --> 00:05:31,950
+Scott Tolinski: Yeah. So neither of us Western. I haven't haven't necessarily started using this yet. But we're both going to give it a good try. Right. And I think we should do a check in and talk a little bit about what we've learned about conventional commits over time. So you mentioned that there's a specific format in a body potential question. That, to me seems like I'm gonna have a lot of trouble keeping track of all of the details here. Is this something that you're concerned about in your own? Like, I know I have, like, I've memory issues where I'm going to forget all of the the structure of this kind of thing. In fact, when I think about bam, I have to like, go through my brain. Alright, block, like, what is the order that they all go in for them? Yeah, like, for people who have a hard time remembering, like, really specific orders and stuff like that? Do you? Do you think? Is that going to be something that you're going to have trouble with? Are you just gonna pipe this into your brain and leave it there?
+
+9
+00:05:32,430 --> 00:05:52,620
+Wes Bos: I think I think you'll you'll get to know it. Because it's like Git committing and things like that. But like, I think I'm also thinking now like, could there be some sort of like csli that prompts you for each of the pieces, there's a VS code extension I saw. And when you do a commit, it will prompt you for each of these one, four or five different pieces of information. Yeah, I
+
+10
+00:05:52,620 --> 00:06:23,970
+Scott Tolinski: actually, it's funny, you mentioned that because I had just googled conventional commits c li to try to find the same thing. And I found commit doesn't commit as in which it does is exactly what you're referring to. It's basically prompts that are saying, Oh, hey, dude, would it what type of release is this? What does this do whatever. But I did, this is what I want, this is what you want. And there's also another one, it's Cz, c li, which is also a conventional commits. c li, which looks like it has quite a bit of people using it 10.2 1000
+
+11
+00:06:24,210 --> 00:06:26,460
+Wes Bos: Oh, yeah, we're late to the game on this,
+
+12
+00:06:26,909 --> 00:07:41,130
+Scott Tolinski: late to the game on this. But let me tell you, I also installed the the conventional commits GitHub extension, or I'm not that good at the VS code extension. And so your standard Command Shift p conventional commits, and then it gives you a drop down saying what type is this is a feature? Is this a bug, whatever, and then it asks you for the scope. Alright. And I could say no scope, no scope, 360 it asks you what kind of emoji you want to give this? Oh, that's great. This VS code one sec. If you want the lipstick emoji, or the rocketship emoji, okay, then write a short 10. It says tense description, but maybe it means terse. Either way it write a description. So I did this, that whatever. And it's going to create your commits for you. And to me, that is such a better way to do this than me trying to remember the actual syntax for conventional commits. I think this to me was the biggest barrier for this because I would look at this. And let me tell you the, the documentation for conventional commits, yeah, it's pretty easy to parse. But if you look at this page, it can specifically be a little bit overwhelming. If I look at this, I can look at it. And I would say, wow, there's a lot to learn here. But yeah, if you install one of these serializer tools, hey, that that's all of the the hard stuff out of the way for me.
+
+13
+00:07:41,490 --> 00:09:05,660
+Wes Bos: Let's talk about semver. Real quickly. So semver is, you know, when you see like a node package, and you see like 1.5 point two, we might be wondering, like, Look, what are those numbers and semver is broken down into the three major, three major parts, there's fixes which are. So let's look at 1.5 point two as an example, that point two was released, because they released 1.5, point one, and subsequently 1.5 point zero, and then they realized something was broken. So they fixed it and released a dot release, which is that the 1.5. part, the point five is they were on 1.4. But they added some new functionality to it. But they didn't break anything else. So that they went from 1.4 to 1.5. Because now there is this new method that you can, you can go ahead and use. And then finally, the the one point, the very first one is breaking changes. So let's say they released something that totally broke how a method on API worked, then they bumped it to 2.0 point two zero. And this is kind of associated with conventional commits, because you have fix, which is patch releases that the very end of it, there's feature, which is adding new stuff, that's the middle and then you have breaking changes, which is the main one. So you can you could associate these and probably even generate your semver version for your package automatically based on the tags that are in these commits.
+
+14
+00:09:05,670 --> 00:09:32,700
+Scott Tolinski: Yeah, you know what, I'm really interested in that because if you were to look in the level up tutorials, GitHub issues right now, you would see one that says automatic versioning. And then the body of the issue says I'm really tired of having to change the version myself. I really think that this could be actually something that could help us out in that regard. I'm really excited to give this a try. I know we are definitely late on the boat to this one, the boat pulled up and left and now we're like trying to we're saying wait, hold on, we're gonna miss the boat
+
+15
+00:09:32,850 --> 00:10:06,090
+Wes Bos: looks like there is already a package that will based on the commits will generate a semantic version for you and automatically published. What do you see that if you go to the bottom of this conventional commits org, there's tooling for conventional commits, there is one that's just called a semantic version, and it will automatically and I need that because I've got a couple of packages on NPM. And every single time that I have a change to one, I have to like bumpit myself, like Scott just said, and publish it myself and automating that would be, it'd be really,
+
+16
+00:10:06,359 --> 00:11:34,980
+Scott Tolinski: really slick. And also it would, it would go really well with just everything else in my workflow, especially like we mentioned in Sentry, because you can, you know, attach errors to versions, right, whenever I get an error in my Sentry, it tells me what version of the software it's on. And if this was all done automatically, and we could have version updates micro versions much more often when I'm not like every commit or whatever, or every every whatever, it's really going to nail that in just a little bit more. And I think that sounds fantastic. One thing I do want to shout out here, and this conventional commits.org is just how awesome this documentation is. Because they do everything in like the body of it's in like a big FAQ, essentially, I mean, besides the the introductory stuff, it teaches you the spec, whatever. But then there's a whole FAQ. And then below that there's some resources for about tooling for conventional commits, of which there is a lot you can always tell when something is highly used by how much tooling there is around it. And then it projects using unconventional commits. So you can check out some people who are actually using it and see what it looks like in action. And to me, this is like gold star documentation. I really love this. I think that is just the amount of tools and features around this stuff really gives you a good idea of why you should use it. And I think people should take notice about just how neat some of this documentation is it feels like you know, those like awesome GitHub repos where it could be like awesome confessional commits. This to me feels like yeah, that repo as the documentation. I wonder if that
+
+17
+00:11:34,980 --> 00:11:41,310
+Wes Bos: is the thing. Yeah, right. Yes. There's not it's because the docs are an awesome list already. Whenever
+
+18
+00:11:41,310 --> 00:11:52,380
+Scott Tolinski: I learned anything, like the first thing I do awesome blank. I mean, I'm doing a lot of Dino right now. So I was doing awesome Dino. And then you get all the awesome stuff right there. It's almost like it's in the name. All right.
+
+19
+00:11:52,380 --> 00:12:04,650
+Wes Bos: I think that's it. Scott and I are gonna try it. And maybe we will. I don't know maybe six months from now. We'll do a follow up show to see how we liked it when we didn't like it and if it made any of our our workflow and lives easier. Yeah.
+
+20
+00:12:04,889 --> 00:12:08,670
+Scott Tolinski: I am very excited to do this. And I'm on board. I'm 100% on board.
+
+21
+00:12:09,990 --> 00:12:14,700
+Wes Bos: Beautiful. All right. Well, thanks so much for tuning in and we will catch you on Wednesday. Please
+
+22
+00:12:18,000 --> 00:12:27,780
+Scott Tolinski: head on over to syntax.fm for a full archive of all of our shows. And don't forget to subscribe in your podcast player or drop a review if you liked this show.
+
