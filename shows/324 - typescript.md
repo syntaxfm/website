@@ -14,7 +14,7 @@ Sanity.io is a real-time headless CMS with a fully customizable Content Studio b
 LogRocket lets you replay what users do on your site, helping you reproduce bugs and fix issues faster. It's an exception tracker, a session re-player and a performance monitor. Get 14 days free at [logrocket.com/syntax](https://logrocket.com/syntax).
 
 ## Cloudinary - Sponsor
-[Cloudinary](https://cloudinary.com/?utm_source=Syntax.fm&utm_medium=Podcast&utm_content=Cloudinary_Syntax_podcast) is the best way to host, compress and transform your images on the web. Sign up for their free tier and get 10GB of bandwidth for free!
+[Cloudinary](https://cloudinary.com/?utm_source=Syntax.fm&utm_medium=Podcast&utm_content=Cloudinary_Syntax_podcast) is the best way to manage images and videos in the cloud. Edit and transform for any use case, from performance to personalization, using Cloudinary’s APIs, SDKs, widgets, and integrations.
 
 ## Show Notes
 
@@ -29,9 +29,9 @@ LogRocket lets you replay what users do on your site, helping you reproduce bugs
 * You write your JavaScript code, but each time you create a variable, function, parameter, you "type it" — which means you describe what that data will look like.
   * Create a variable: Will it be a string? A number? A custom type of show?
   * Create a function: What params does it take? What type are they? What does it return?
-* Types allow your code to know if there are type errors that would present themselves to the user silently. These are small errors that can be compounded and go unnoticed. 
+* Types allow your code to know if there are type errors that would present themselves to the user silently. These are small errors that can be compounded and go unnoticed.
   * This can allow you to prevent shipping code that has these errors by checking your code.
-  * Some of the biggest benefits here come via errors in your text editor 
+  * Some of the biggest benefits here come via errors in your text editor
 
 13:30 - Explaining the types
 * You can create your own types
@@ -102,7 +102,7 @@ LogRocket lets you replay what users do on your site, helping you reproduce bugs
 * Scott:
   * 1: [LumiPets](https://amzn.to/3sfw4Cp)
   * 2: [LumiPets Bear](https://amzn.to/2Lqkofk)
-* Wes: [Phomemo Label Printer](https://amzn.to/2LGXT5T) 
+* Wes: [Phomemo Label Printer](https://amzn.to/2LGXT5T)
 
 ## Shameless Plugs
 * Scott: [ESM & Snowpack](https://www.leveluptutorials.com/pro) - Sign up for the year and save 25%!
