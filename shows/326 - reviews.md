@@ -107,7 +107,7 @@ If you want to know what's happening with your errors, track them with [Sentry](
 * Good use of CSS and SVG animation
 
 46:28 - Wes' website
-* [websos.com](https://wesbos.com/)
+* [wesbos.com](https://wesbos.com/)
 * Can't view source
 * Whimsey
 * The right kind of animation
