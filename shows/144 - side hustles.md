@@ -61,6 +61,9 @@ Get a 30 day free trial of Freshbooks at [Freshbooks](https://freshbooks.com/syn
 * Scott: [Akimbo](https://www.akimbo.me/)
 * Wes: [Elastic Wallet](https://www.amazon.com/s?k=elastic+wallets)
 
+## Courtland's Startup Validation Checklist
+* [Validation Checklist](https://docs.google.com/document/d/1e-pmkZCM96V_3FhwYFK5ubY8l52YNk9j4i25HWt6oyY/edit)
+
 ## Shameless Plugs
 * Courtland: [IndieHackers Podcast](https://www.indiehackers.com/podcast)
 * Scott: [Animating React](https://www.leveluptutorials.com/tutorials/animating-react)
