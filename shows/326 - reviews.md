@@ -14,7 +14,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 Whether you’re working on a personal project or managing enterprise infrastructure, you deserve simple, affordable, and accessible cloud computing solutions that allow you to take your project to the next level. Simplify your cloud infrastructure with Linode’s Linux virtual machines and develop, deploy, and scale your modern applications faster and easier. Get started on Linode today with a $100 in free credit for listeners of Syntax. You can find all the details at [linode.com/syntax](https://linode.com/syntax). Linode has 11 global data centers and provides 24/7/365 human support with no tiers or hand-offs regardless of your plan size. In addition to shared and dedicated compute instances, you can use your $100 in credit on S3-compatible object storage, Managed Kubernetes, and more. Visit [linode.com/syntax](https://linode.com/syntax) and click on the “Create Free Account” button to get started.
 
 ## Sentry - Sponsor
-If you want to know what's happening with your errors, track them with [Sentry](https://sentry.io/). Sentry is open-source error tracking that helps developers monitor and fix crashes in real time. Cut your time on error resolution from five hours to five minutes. It works with any language and integrates with dozens of other services. Syntax listeners can get two months for free by visiting [Sentry.io](https://sentry.io/) and using the coupon code "tastytreat".
+If you want to know what’s happening with your code, track errors and monitor performance with Sentry. Sentry’s Application Monitoring platform helps developers see performance issues, fix errors faster, and optimize their code health. Cut your time on error resolution from hours to minutes. It works with any language and integrates with dozens of other services. Syntax listeners new to Sentry can get two months for free by visiting [Sentry.io](https://sentry.io/) and using the coupon code TASTYTREAT during sign up.
 
 ## Show Notes
 04:32 - Why does an impression matter?
@@ -30,7 +30,7 @@ If you want to know what's happening with your errors, track them with [Sentry](
   * Personal life
 * Blog
 * Resume
-* It's not about being popular, it's about relationships and positioning yourself as an expert. People mix up their hatred for "influencers" with having a rock solid network of people who they can help and who can help them. 
+* It's not about being popular, it's about relationships and positioning yourself as an expert. People mix up their hatred for "influencers" with having a rock solid network of people who they can help and who can help them.
 
 07:25 - A couple stories
 * [@HenriHelvetica](https://twitter.com/HenriHelvetica)
@@ -84,7 +84,7 @@ If you want to know what's happening with your errors, track them with [Sentry](
       * Same with Twitter
     * For instance, I saw on Twitter that Leah made [https://app.airport.community/app/rec1CbVg4J5aqScUQ](https://app.airport.community/app/rec1CbVg4J5aqScUQ) but there was no mention of it anywhere else. A page full of the most recent / best projects with quick links is essential for anyone.
     * Don't make them hunt for it
-  * Twitter review: 
+  * Twitter review:
     * Unreal
     * Pinned tweet
 
@@ -126,7 +126,7 @@ If you want to know what's happening with your errors, track them with [Sentry](
 * Super fast
 
 ## Links
-* [https://twitter.com/wesbos/status/1350961135269400580](https://twitter.com/wesbos/status/1350961135269400580) 
+* [https://twitter.com/wesbos/status/1350961135269400580](https://twitter.com/wesbos/status/1350961135269400580)
 * [Syntax 298: Voice Coding is Really Good with Josh Comeau](https://syntax.fm/show/298/voice-coding-is-really-good-with-josh-comeau)
 * [Josh Comeau](https://www.joshwcomeau.com/)
 * [Doug DeMuro](https://www.youtube.com/channel/UCsqjHFMB_JYTaEnf_vmTNqg)

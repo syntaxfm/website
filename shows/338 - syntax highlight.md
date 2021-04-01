@@ -5,13 +5,13 @@ date: 1616590800377
 url: https://traffic.libsyn.com/syntax/Syntax338.mp3
 ---
 
-It's another Syntax Highlight. In this episode, Scott and Wes take a look at portfolios and websites and evaluate them from the perspective of a hiring manager. 
+It's another Syntax Highlight. In this episode, Scott and Wes take a look at portfolios and websites and evaluate them from the perspective of a hiring manager.
 
 ## Sanity - Sponsor
 Sanity.io is a real-time headless CMS with a fully customizable Content Studio built in React. Get a Sanity powered site up and running in minutes at [sanity.io/create](https://www.sanity.io/create). Get an awesome supercharged free developer plan on [sanity.io/syntax](https://www.sanity.io/syntax).
 
 ## Sentry - Sponsor
-If you want to know what's happening with your errors, track them with [Sentry](https://sentry.io/). Sentry is open-source error tracking that helps developers monitor and fix crashes in real time. Cut your time on error resolution from five hours to five minutes. It works with any language and integrates with dozens of other services. Syntax listeners can get two months for free by visiting [Sentry.io](https://sentry.io/) and using the coupon code "tastytreat".
+If you want to know what’s happening with your code, track errors and monitor performance with Sentry. Sentry’s Application Monitoring platform helps developers see performance issues, fix errors faster, and optimize their code health. Cut your time on error resolution from hours to minutes. It works with any language and integrates with dozens of other services. Syntax listeners new to Sentry can get two months for free by visiting [Sentry.io](https://sentry.io/) and using the coupon code TASTYTREAT during sign up.
 
 ## Mux - Sponsor
 Mux Video is an API-first platform that makes it easy for any developer to build beautiful video. Powered by data and designed by video experts, your video will work perfectly on every device, every time. Mux Video handles storage, encoding, and delivery so you can focus on building your product. Live streaming is just as easy and Mux will scale with you as you grow, whether you're serving a few dozen streams or a few million. Visit [mux.com/syntax](https://mux.com/syntax).
@@ -43,7 +43,7 @@ Mux Video is an API-first platform that makes it easy for any developer to build
 * Portfolio is just enough
 * Nav animation should only happen on initial load
 
-29:39 - [https://codebyfil.dev/](https://codebyfil.dev/) 
+29:39 - [https://codebyfil.dev/](https://codebyfil.dev/)
 * This is a great example of something that is good, but needs a bit of polish
 * Tone down the border radius
 * Tone down the box shadow
@@ -67,7 +67,7 @@ Mux Video is an API-first platform that makes it easy for any developer to build
 * Use &times; instead of X
 * Asterisk doesn't work on mobile
 
-46:52 - [https://stordahl.dev/](https://stordahl.dev/) 
+46:52 - [https://stordahl.dev/](https://stordahl.dev/)
 * Great images
 * Nice typography
 * Sign-up for newsletter is great
@@ -89,7 +89,7 @@ Mux Video is an API-first platform that makes it easy for any developer to build
 
 ## ××× SIIIIICK ××× PIIIICKS ×××
 * Scott: [Walkabout Mini Golf](https://www.mightycoconut.com/minigolf)
-* Wes: [60w Portable Charger](https://amzn.to/2ZHrQGs) 
+* Wes: [60w Portable Charger](https://amzn.to/2ZHrQGs)
 
 ## Shameless Plugs
 * Scott: [Node Fundamentals Authentication](https://www.leveluptutorials.com/pro) - Sign up for the year and save 25%!

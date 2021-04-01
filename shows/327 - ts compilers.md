@@ -11,18 +11,18 @@ In this Hasty Treat, Scott and Wes talk about the differences between compilers 
 Sanity.io is a real-time headless CMS with a fully customizable Content Studio built in React. Get a Sanity powered site up and running in minutes at [sanity.io/create](https://www.sanity.io/create). Get an awesome supercharged free developer plan on [sanity.io/syntax](https://www.sanity.io/syntax).
 
 ## Sentry - Sponsor
-If you want to know what's happening with your errors, track them with [Sentry](https://sentry.io/). Sentry is open-source error tracking that helps developers monitor and fix crashes in real time. Cut your time on error resolution from five hours to five minutes. It works with any language and integrates with dozens of other services. Syntax listeners can get two months for free by visiting [Sentry.io](https://sentry.io/) and using the coupon code "tastytreat".
+If you want to know what’s happening with your code, track errors and monitor performance with Sentry. Sentry’s Application Monitoring platform helps developers see performance issues, fix errors faster, and optimize their code health. Cut your time on error resolution from hours to minutes. It works with any language and integrates with dozens of other services. Syntax listeners new to Sentry can get two months for free by visiting [Sentry.io](https://sentry.io/) and using the coupon code TASTYTREAT during sign up.
 
 ## Show Notes
 03:38 - What is a TypeScript compiler?
-* Do we still need [Babel](https://babeljs.io/) / [WebPack](https://webpack.js.org/)? 
+* Do we still need [Babel](https://babeljs.io/) / [WebPack](https://webpack.js.org/)?
 
 07:49 - [Babel](https://babeljs.io/)
 * Transpiler
 * It doesn't do typechecking
 * New JS features that aren't in TypeScript yet
 
-10:22 - [SWC](https://swc.rs/) 
+10:22 - [SWC](https://swc.rs/)
 * Rust based compiler
 * Doesn't do type checking (yet)
 * [https://github.com/swc-project/swc/issues/571](https://github.com/swc-project/swc/issues/571)
@@ -32,8 +32,8 @@ If you want to know what's happening with your errors, track them with [Sentry](
 * Might move to Rust
 * [https://github.com/denoland/deno/issues/5432](https://github.com/denoland/deno/issues/5432)
 
-13:36 - [Surcase](https://github.com/alangpierce/sucrase) 
-* [https://github.com/alangpierce/sucrase#transforms](https://github.com/alangpierce/sucrase#transforms) 
+13:36 - [Surcase](https://github.com/alangpierce/sucrase)
+* [https://github.com/alangpierce/sucrase#transforms](https://github.com/alangpierce/sucrase#transforms)
 
 14:46 - [ESBuild](https://esbuild.github.io/)
 * Compiles, but doesn't do any type checking

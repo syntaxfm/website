@@ -11,7 +11,7 @@ It's another potluck! In this episode, Scott and Wes answer your questions about
 Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbooks.com/syntax) and put SYNTAX in the "How did you hear about us?" section.
 
 ## Sentry - Sponsor
-If you want to know what's happening with your errors, track them with [Sentry](https://sentry.io/). Sentry is open-source error tracking that helps developers monitor and fix crashes in real time. Cut your time on error resolution from five hours to five minutes. It works with any language and integrates with dozens of other services. Syntax listeners can get two months for free by visiting [Sentry.io](https://sentry.io/) and using the coupon code "tastytreat".
+If you want to know what’s happening with your code, track errors and monitor performance with Sentry. Sentry’s Application Monitoring platform helps developers see performance issues, fix errors faster, and optimize their code health. Cut your time on error resolution from hours to minutes. It works with any language and integrates with dozens of other services. Syntax listeners new to Sentry can get two months for free by visiting [Sentry.io](https://sentry.io/) and using the coupon code TASTYTREAT during sign up.
 
 ## Vonage - Sponsor
 Vonage is a Cloud Communications platform that allows developers to integrate voice, video and messaging into their applications using their communication APIs. Whether you’re wanting to build video calls into your app, create a Facebook bot, or build applications on top of programmable phone numbers, you’ll have all the tools you need. Use promo code SYNTAX10 for €10 of free credit when signing up at [vonage.dev/syntax](https://vonage.dev/syntax).
@@ -47,12 +47,12 @@ Vonage is a Cloud Communications platform that allows developers to integrate vo
 * [Gumroad](https://gumroad.com/)
 * [Braintree](https://www.braintreepayments.com/)
 * [MJML](https://mjml.io/)
-* [https://github.com/unlayer/react-email-editor](https://github.com/unlayer/react-email-editor) 
+* [https://github.com/unlayer/react-email-editor](https://github.com/unlayer/react-email-editor)
 * [Redwings shoes](https://www.redwingshoes.com/)
 
 ## ××× SIIIIICK ××× PIIIICKS ×××
 * Scott: [Tosowoong Enyme Powder Wash](https://amzn.to/3tDFcRZ)
-* Wes: [Carhartt Gloves](https://amzn.to/2N5n16T) 
+* Wes: [Carhartt Gloves](https://amzn.to/2N5n16T)
 
 ## Shameless Plugs
 * Scott: [Testing with Cypress](https://www.leveluptutorials.com/pro) - Sign up for the year and save 25%!
