@@ -67,7 +67,7 @@ Mux Video is an API-first platform that makes it easy for any developer to build
     * Deno is event based, like the browser
 
 20:10 - A nice standard library
-* [https://github.com/denoland/deno/tree/master/std](https://github.com/denoland/deno/tree/master/std)
+* [https://github.com/denoland/deno_std](https://github.com/denoland/deno_std)
 
 22:14 - WASM
 * Deno can run WASM with the same APIs that the browsers can
