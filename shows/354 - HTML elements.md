@@ -5,7 +5,7 @@ date: 1621429200177
 url: https://traffic.libsyn.com/syntax/Syntax354.mp3
 ---
 
-In this episode of Syntax, Scott and Wes talk about HTML — interesting HTML elements, things you might not know, wish lists for the future, and more!  
+In this episode of Syntax, Scott and Wes talk about HTML — interesting HTML elements, things you might not know, wish lists for the future, and more!
 
 ## Prismic - Sponsor
 Prismic is a Headless CMS that makes it easy to build website pages as a set of components. Break pages into sections of components using React, Vue, or whatever you like. Make corresponding Slices in Prismic. Start building pages dynamically in minutes. Get started at [prismic.io/syntax](https://prismic.io/syntax).
@@ -27,52 +27,52 @@ If you want to know what’s happening with your code, track errors and monitor 
 * HTML tags that have meaning:
   * Almost all of them
   * Common ones:
-    * <p>
-    * <ul>/<ol> and <li>
-    * <a>
-    * <h1> to <h6>
+    * `<p>`
+    * `<ul>/<ol>` and `<li>`
+    * `<a>`
+    * `<h1>` to `<h6>`
 
 20:04 - Structural / Layout tags
-* <nav>
-* <header>
+* `<nav>`
+* `<header>`
   * You can have more than one header
   * Header cannot be in a footer / address / header
-* <section>
-* <footer>
-* <aside>
-* <main>
-* <article>
+* `<section>`
+* `<footer>`
+* `<aside>`
+* `<main>`
+* `<article>`
 
 26:18 - Some fun ones you might not know
-* <address>
-* <kbd>
-* <sup> / <sub>
-* <datalist>
-* <time> and strike?
-* <track>
-* <wbr>
-* <cite>
-* <dfn>
-* <mark>
-* <ruby> / <rt> / <rb>
+* `<address>`
+* `<kbd>`
+* `<sup>` / <sub>
+* `<datalist>`
+* `<time>` and strike?
+* `<track>`
+* `<wbr>`
+* `<cite>`
+* `<dfn>`
+* `<mark>`
+* `<ruby>` / `<rt>` / `<rb>`
   * A ruby annotation is a small extra text, attached to the main text to indicate the pronunciation or meaning of the corresponding characters.
-* <meter> and <progress>
-  * While <progress> is used to convey how much work in a task has been completed, the <meter> element is used to display a measurement on a known scale. This could be something like the current disk usage on your computer, or a temperature measurement (within a defined range).
-* <marquee>
+* `<meter>` and `<progress>`
+  * While `<progress>` is used to convey how much work in a task has been completed, the <meter> element is used to display a measurement on a known scale. This could be something like the current disk usage on your computer, or a temperature measurement (within a defined range).
+* `<marquee>`
 
 32:12 - Visual vs Semantic tags
 * Almost all tags in HTML are semantic
-* <i> vs <em> and <bold> vs <strong>
-  * <i> and <bold> are NOT deprecated like many have said
-  * The <strong> element is for content that is of greater importance, while the <b> element is used to draw attention to text without indicating that it's more important.
+* `<i>` vs `<em>` and `<bold>` vs `<strong>`
+  * `<i>` and `<bold>` are NOT deprecated like many have said
+  * The `<strong>` element is for content that is of greater importance, while the <b> element is used to draw attention to text without indicating that it's more important.
 
 35:40 - HTML tags with no meaning:
-* <div>
-* <span>
+* `<div>`
+* `<span>`
 
 37:51 - Some elements have special functionality or styling
-* <details> and <summary> tag
-* <fieldset> + <legend>
+* `<details>` and `<summary>` tag
+* `<fieldset>` + `<legend>`
 
 40:59 - What elements would we like to see?
 * Modal element
