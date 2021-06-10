@@ -21,9 +21,9 @@ If you want to know what’s happening with your code, track errors and monitor 
 
 05:37 - Do you care if people share cool, unique tips from your courses publicly on social media? For example, I once shared out a trick from one of Wes' courses for how to set your [VS Code](https://code.visualstudio.com/) windows different colors to distinguish your server and client code windows (giving all credit to Wes' course for the concept). But it felt a little weird that I was sharing out a portion of his paid content for free. Is that okay? Where's the line?
 
-18:18 - With official support of [IE11](https://en.wikipedia.org/wiki/Internet_Explorer_11) coming to an end on August 17, 2021, do you think developers should still try to support ir or focus only on new modern browsers? Also, will there be a new "lowest common denominator" that we should be aware of and support?
+08:18 - With official support of [IE11](https://en.wikipedia.org/wiki/Internet_Explorer_11) coming to an end on August 17, 2021, do you think developers should still try to support ir or focus only on new modern browsers? Also, will there be a new "lowest common denominator" that we should be aware of and support?
 
-07:20 - Thanks for an awesome podcast! Have you looked into [Nest.js](https://nestjs.com/) (not to be confused with [Next.js](https://nextjs.org/)) for backend work? It is an open source TypeScript Node framework that is becoming pretty popular
+17:20 - Thanks for an awesome podcast! Have you looked into [Nest.js](https://nestjs.com/) (not to be confused with [Next.js](https://nextjs.org/)) for backend work? It is an open source TypeScript Node framework that is becoming pretty popular
 
 22:48 - Do you think it’s worth learning [WordPress](https://wordpress.org/) for freelancing if you aren’t too confident in your JavaScript front-end design? Also, I don’t want to get stuck in only WordPress land just because of the money.
 
