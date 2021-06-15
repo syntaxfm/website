@@ -13,7 +13,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 ## LogRocket - Sponsor
 LogRocket lets you replay what users do on your site, helping you reproduce bugs and fix issues faster. It's an exception tracker, a session re-player and a performance monitor. Get 14 days free at [logrocket.com/syntax](https://logrocket.com/syntax).
 
-## Coudinary - Sponsor
+## Cloudinary - Sponsor
 [Cloudinary](https://cloudinary.com/?utm_source=Syntax.fm&utm_medium=Podcast&utm_content=Cloudinary_Syntax_podcast) is the best way to manage images and videos in the cloud. Edit and transform for any use case, from performance to personalization, using Cloudinary’s APIs, SDKs, widgets, and integrations.
 
 ## Show Notes
