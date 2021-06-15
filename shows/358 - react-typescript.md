@@ -20,13 +20,15 @@ Whether you’re working on a personal project or managing enterprise infrastruc
 04:55 - Components
 * Strategies
 * Example:
-```html
-type Props = {
-   value: string;
-}
 
-const App = (props: Props) => <div />
-```
+  ```tsx
+  type Props = {
+      value: string;
+  }
+
+  const App = (props: Props) => <div />
+  ```
+   
 * Return type? JSX.Element
 * FC or FunctionComponent
 * It's discouraged for this reason: `It means that all components accept children, even if they're not supposed to`
@@ -34,21 +36,21 @@ const App = (props: Props) => <div />
 
 12:13 - Props
 * Default props:
-```jsx
-const defaultJoke: JokeProps = {
-  joke: 'LOL JOE',
-  id: 'YEAH',
-  status: 200,
-};
-
-function JokeItem({ joke = defaultJoke }: JokeProps): JSX.Element {
-  return (
-    <li>
-      {joke.joke} = {joke.id}
-    </li>
-  );
-}
-```
+  ```jsx
+  const defaultJoke: JokeProps = {
+      joke: 'LOL JOE',
+      id: 'YEAH',
+      status: 200,
+  };
+  
+  function JokeItem({ joke = defaultJoke }: JokeProps): JSX.Element {
+      return (
+      <li>
+          {joke.joke} = {joke.id}
+      </li>
+      );
+  }
+  ```
 * Because props are always destructured, you often have to make a new type for your props. You can't just type each argument by itself.
 
 18:38 - State
