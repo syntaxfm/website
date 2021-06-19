@@ -11,7 +11,7 @@ In this episode of Syntax, Scott and Wes bring you the long-awaited Deno show �
 Deque’s free axe browser extension helps developers instantly catch 50% of accessibility bugs while they code. It’s lightweight, easy-to-use, and has zero false positives. Get started for free at [deque.com/axe](https://deque.com/axe/?utm_source=syntax&utm_medium=podcast&utm_campaign=axe_extension).
 
 ## Sentry - Sponsor
-If you want to know what's happening with your errors, track them with [Sentry](https://sentry.io/). Sentry is open-source error tracking that helps developers monitor and fix crashes in real time. Cut your time on error resolution from five hours to five minutes. It works with any language and integrates with dozens of other services. Syntax listeners can get two months for free by visiting [Sentry.io](https://sentry.io/) and using the coupon code "tastytreat".
+If you want to know what’s happening with your code, track errors and monitor performance with Sentry. Sentry’s Application Monitoring platform helps developers see performance issues, fix errors faster, and optimize their code health. Cut your time on error resolution from hours to minutes. It works with any language and integrates with dozens of other services. Syntax listeners new to Sentry can get two months for free by visiting [Sentry.io](https://sentry.io/) and using the coupon code TASTYTREAT during sign up.
 
 ## Mux - Sponsor
 Mux Video is an API-first platform that makes it easy for any developer to build beautiful video. Powered by data and designed by video experts, your video will work perfectly on every device, every time. Mux Video handles storage, encoding, and delivery so you can focus on building your product. Live streaming is just as easy and Mux will scale with you as you grow, whether you're serving a few dozen streams or a few million. Visit [mux.com/syntax](https://mux.com/syntax).
@@ -67,7 +67,7 @@ Mux Video is an API-first platform that makes it easy for any developer to build
     * Deno is event based, like the browser
 
 20:10 - A nice standard library
-* [https://github.com/denoland/deno/tree/master/std](https://github.com/denoland/deno/tree/master/std)
+* [https://github.com/denoland/deno_std](https://github.com/denoland/deno_std)
 
 22:14 - WASM
 * Deno can run WASM with the same APIs that the browsers can
