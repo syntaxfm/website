@@ -1,6 +1,6 @@
 ---
 number: 398
-title: Potluck — Coding for Kids × MongoDB Hosting × NoMoreFoo × Best Cities for Dev Jobs × GraphQL Resolvers × Package Security × Prototypes and Portfolios
+title: Potluck — Coding for Kids × MongoDB Hosting × NoMoreFoo × Best Cities for Dev Jobs × GraphQL Resolvers × Package Security × Prototypes and Portfolios × More!
 date: 1634734800303
 url: https://traffic.libsyn.com/syntax/Syntax398.mp3
 ---
