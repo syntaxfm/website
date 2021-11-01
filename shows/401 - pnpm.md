@@ -20,6 +20,7 @@ LogRocket lets you replay what users do on your site, helping you reproduce bugs
 * Performant npm
 * [https://www.youtube.com/watch?v=hiTmX2dW84E](https://www.youtube.com/watch?v=hiTmX2dW84E)
 * Find and remove node modules
+  *  [npkill](https://www.npmjs.com/package/npkill)
   * `find . -name "node_modules" -type d -prune -exec rm -rf '{}' +`
 
 08:30 - Why monorepo?
