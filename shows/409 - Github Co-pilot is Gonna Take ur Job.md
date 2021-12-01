@@ -7,11 +7,11 @@ url: https://traffic.libsyn.com/syntax/Syntax_-_409.mp3
 
 In this Hasty Treat, Wes and Scott talk about their experiences using Github Co-pilot.
 
-## Sanity - LogRocket
+## Sponsor - LogRocket
 
 LogRocket lets you replay what users do on your site, helping you reproduce bugs and fix issues faster. It's an exception tracker, a session re-player and a performance monitor. Get 14 days free at [logrocket.com/syntax](https://logrocket.com/syntax).
 
-## Sentry - Freshbooks
+## Sponsor - Freshbooks
 
 Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbooks.com/syntax) and put SYNTAX in the "How did you hear about us?" section.
 
