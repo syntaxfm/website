@@ -53,7 +53,7 @@ If you want to know what’s happening with your code, track errors and monitor 
 
 32:45 - Hosting
 * adapter-node
-* Hosted on [render.com](http://render.com) as a straight-up node process $7/m for more than enough RAM and CPU,
+* Hosted on [Render](https://render-web.onrender.com/) as a straight-up node process $7/m for more than enough RAM and CPU,
 * Lots of other options for static, Vercel, workers whatever, I like having just a straight-up node app you can host anywhere
 
 35:50 - Things to do
