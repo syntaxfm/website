@@ -26,7 +26,7 @@ If you want to know what's happening with your errors, track them with [Sentry](
 * Safari did - You can use rel="opener" to allow it
 * Firefox did
 * Chrome hasn't yet
-* [https://twitter.com/HugoGiraudel/status/801475801397030912](https://twitter.com/HugoGiraudel/status/801475801397030912)
+* [https://twitter.com/KittyGiraudel/status/801475801397030912](https://twitter.com/KittyGiraudel/status/801475801397030912)
 
 10:48 - Does this hurt SEO?
 
