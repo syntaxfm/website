@@ -2,7 +2,7 @@
 number: 419
 title: JS One Liners
 date: 1641211200925
-url: 
+url: https://traffic.libsyn.com/syntax/Syntax_-_419.mp3
 ---
 
 In this Hasty Treat, Scott and Wes talk about some Javascript one liners that speed up your coding experience in one line.
