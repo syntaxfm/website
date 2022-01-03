@@ -31,7 +31,7 @@ Mux Video is an API-first platform that makes it easy for any developer to build
 * [Svelte](https://svelte.dev)
 * [Svelte Kit](https://kit.svelte.dev)
 * **[19:54](#t=19:54)** Remix
-* [Remix](https://remix-project.org)
+* [Remix](https://remix.run)
 * **[20:36](#t=20:36)** Astro
 * [Astro](https://astro.build)
 * **[22:51](#t=22:51)** NextJS 11 and 12
