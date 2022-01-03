@@ -26,7 +26,7 @@ module.exports = {
       {
         test: /\.styl$/,
         use: [
-          'babel-loader',
+          // 'babel-loader',
           'raw-loader',
           'postcss-loader',
           {
