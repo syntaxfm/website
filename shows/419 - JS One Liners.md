@@ -38,7 +38,7 @@ If you want to know what’s happening with your code, track errors and monitor 
 * **[13:26:13](#t=13:26:13)** Remove a prop
 `const { propToRemove, ...rest } = obj;`
 * **[15:29:01](#t=15:29:01)** PHP style debugging
-`preElement.innerText =`{JSON.stringify(val, '', ' ')}`
+`preElement.innerText = {JSON.stringify(val, '', ' ')}`
 * **[16:31:00](#t=16:31:00)** First and Last Destructure
 `var {0: first, length, [length - 1]: last} = [1,2,3];`
 * **[17:34:17](#t=17:34:17)** Speed up audio video
