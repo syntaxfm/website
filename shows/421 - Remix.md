@@ -2,7 +2,7 @@
 number: 421
 title: Remix!
 date: 1641816000117
-url: https://traffic.libsyn.com/syntax/Syntax_-_421.mp3
+url: https://traffic.libsyn.com/syntax/Syntax_-_421_v2.mp3
 ---
 
 In this Hasty Treat, Scott and Wes talk about Remix!
@@ -17,21 +17,21 @@ If you want to know what’s happening with your code, track errors and monitor 
 
 ## Show Notes
 
-* **[00:32](#t=00:32)** Rrrremix
+* **[01:10](#t=01:10)** Rrrremix
 [Remix](https://remix.run)
-* **[02:03](#t=02:03)** Sponsor: Sentry
-* **[03:48](#t=03:48)** Sponsor: Sentry
-* **[05:51](#t=05:51)** What is Remix?
-* **[07:51](#t=07:51)** Built on Fetch
-* **[12:28](#t=12:28)** Frameworks are getting so good
-* **[13:30](#t=13:30)** Data loading
-* **[14:36](#t=14:36)** Actions
-* **[19:09](#t=19:09)** Error boundary and catch boundary differences
-* **[20:15](#t=20:15)** Differences between Remix and Gatsby, and other SSG
-* **[21:33](#t=21:33)** What about hot reloading?
-* **[22:47](#t=22:47)** Nested layouts and nested routes
-* **[24:25](#t=24:25)** Typescript support
-* **[26:33](#t=26:33)** Hosting anywhere
+* **[02:41](#t=02:41)** Sponsor: Sentry
+* **[04:27](#t=04:27)** Sponsor: Sentry
+* **[06:30](#t=06:30)** What is Remix?
+* **[08:29](#t=08:29)** Built on Fetch
+* **[13:07](#t=13:07)** Frameworks are getting so good
+* **[14:08](#t=14:08)** Data loading
+* **[15:15](#t=15:15)** Actions
+* **[19:47](#t=19:47)** Error boundary and catch boundary differences
+* **[20:54](#t=20:54)** Differences between Remix and Gatsby, and other SSG
+* **[22:11](#t=22:11)** What about hot reloading?
+* **[23:25](#t=23:25)** Nested layouts and nested routes
+* **[25:03](#t=25:03)** Typescript support
+* **[27:11](#t=27:11)** Hosting anywhere
 * [Remix Docs](https://remix.run/docs/en/v1)
 * [Remix on GitHub](https://github.com/remix-run)
 * [Remix on Twitter](https://twitter.com/remix_run)
