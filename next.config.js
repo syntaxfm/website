@@ -10,7 +10,7 @@ module.exports = {
       },
     ];
   },
-  webpack: config => {
+  webpack: (config) => {
     config.module.rules.push(
       {
         test: /\.(css|styl)/,
@@ -34,8 +34,8 @@ module.exports = {
             options: {
               stylusOptions: {
                 includePaths: ['styles', 'node_modules']
-                  .map(d => path.join(__dirname, d))
-                  .map(g => glob.sync(g))
+                  .map((d) => path.join(__dirname, d))
+                  .map((g) => glob.sync(g))
                   .reduce((a, c) => a.concat(c), []),
               },
             },

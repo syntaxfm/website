@@ -56,7 +56,6 @@ const Header = () => (
             src="https://avatars.githubusercontent.com/stolinski?size=200"
             alt="Scott Tolinski"
             className="avatar"
-            rel="noopener noreferrer"
           />
           <h3>Scott Tolinski</h3>
           <a

@@ -81,7 +81,7 @@ export default class Player extends React.Component {
     }
   }
 
-  timeUpdate = e => {
+  timeUpdate = (e) => {
     // console.log('Updating Time');
     const { show } = this.props;
     const { timeWasLoaded } = this.state;
@@ -102,7 +102,7 @@ export default class Player extends React.Component {
     }
   };
 
-  volumeUpdate = e => {
+  volumeUpdate = (e) => {
     const { timeWasLoaded } = this.state;
     // Check if the user already had a curent volume
     if (timeWasLoaded) {
@@ -114,7 +114,7 @@ export default class Player extends React.Component {
     }
   };
 
-  groupUpdates = e => {
+  groupUpdates = (e) => {
     this.timeUpdate(e);
     this.volumeUpdate(e);
   };
@@ -125,15 +125,15 @@ export default class Player extends React.Component {
     this.audio[method]();
   };
 
-  scrubTime = eventData =>
+  scrubTime = (eventData) =>
     (eventData.nativeEvent.offsetX / this.progress.offsetWidth) *
     this.audio.duration;
 
-  scrub = e => {
+  scrub = (e) => {
     this.audio.currentTime = this.scrubTime(e);
   };
 
-  seekTime = e => {
+  seekTime = (e) => {
     this.setState({
       tooltipPosition: e.nativeEvent.offsetX,
       tooltipTime: formatTime(this.scrubTime(e)),
@@ -146,7 +146,7 @@ export default class Player extends React.Component {
     onPlayPause(this.audio);
   };
 
-  volume = e => {
+  volume = (e) => {
     this.audio.volume = e.currentTarget.value;
     this.setState({
       currentVolume: `${e.currentTarget.value}`,
@@ -157,12 +157,12 @@ export default class Player extends React.Component {
     this.speed(0.25);
   };
 
-  speedDown = e => {
+  speedDown = (e) => {
     e.preventDefault();
     this.speed(-0.25);
   };
 
-  speed = change => {
+  speed = (change) => {
     const playbackRateMax = 2.5;
     const playbackRateMin = 0.75;
 
@@ -260,6 +260,7 @@ export default class Player extends React.Component {
           </div>
         </div>
         {/* eslint-disable */}
+
         <audio
           ref={audio => (this.audio = audio)}
           onPlay={this.playPause}

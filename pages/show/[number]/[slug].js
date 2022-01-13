@@ -1,4 +1,4 @@
-import { useRouter, withRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import ErrorPage from 'next/error';
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
@@ -8,7 +8,7 @@ import ShowNotes from '../../../components/ShowNotes';
 import Player from '../../../components/Player';
 import Meta from '../../../components/meta';
 import Page from '../../../components/Page';
-import { getShows, getShow } from '../../../lib/getShows';
+import { getShows, getShow, getShowsList } from '../../../lib/getShows';
 
 export async function getStaticPaths() {
   const shows = await getShows('all');
@@ -23,7 +23,7 @@ export async function getStaticPaths() {
           slug: 'latest',
         },
       },
-      ...shows.map(show => ({
+      ...shows.map((show) => ({
         params: {
           number: show.displayNumber,
           slug: slug(show.title),
@@ -34,11 +34,11 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const shows = await getShows();
+  const shows = await getShowsList();
   const showNumber =
     params.number === 'latest' ? shows[0].displayNumber : params.number;
   const show = await getShow(showNumber);
-  const props = show.date > Date.now() ? {} : { shows, showNumber };
+  const props = show.date > Date.now() ? {} : { shows, showNumber, show };
 
   return {
     revalidate: 1,
@@ -46,14 +46,13 @@ export async function getStaticProps({ params }) {
   };
 }
 
-export default function IndexPage({ showNumber, shows }) {
+export default function IndexPage({ showNumber, shows, show }) {
   const router = useRouter();
   const [currentShow, setCurrentShow] = useState(showNumber);
   const [currentPlaying, setCurrentPlaying] = useState(showNumber);
   const [isPlaying, setIsPlaying] = useState(false);
-
   useEffect(
-    function() {
+    () => {
       const { query } = router;
       if (query.number) {
         setCurrentShow(
@@ -62,7 +61,7 @@ export default function IndexPage({ showNumber, shows }) {
       }
     },
     // watch the router for changes, and when it does, the above code will change
-    [router]
+    [router, shows]
   );
 
   // When the page changes...
@@ -71,17 +70,15 @@ export default function IndexPage({ showNumber, shows }) {
     return <ErrorPage statusCode={404} />;
   }
 
-  const show = shows.find(showItem => showItem.displayNumber === currentShow);
-
   const current = shows.find(
-    showItem => showItem.displayNumber === currentPlaying
+    (showItem) => showItem.displayNumber === currentPlaying
   );
   return (
     <Page>
       <Meta show={show} />
       <div className="wrapper">
         <main className="show-wrap" id="main" tabIndex="-1">
-          <Player show={current} onPlayPause={a => setIsPlaying(!a.paused)} />
+          <Player show={current} onPlayPause={(a) => setIsPlaying(!a.paused)} />
           <ShowList
             shows={shows}
             currentShow={currentShow}
@@ -99,4 +96,5 @@ export default function IndexPage({ showNumber, shows }) {
 IndexPage.propTypes = {
   shows: PropTypes.array,
   showNumber: PropTypes.string,
+  show: PropTypes.object,
 };

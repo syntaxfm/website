@@ -16,10 +16,7 @@ class SyntaxDocument extends Document {
             property="og:image"
             content="https://syntax.fm/static/syntax-banner.png"
           />
-          <link
-            rel="shortcut icon"
-            href="https://syntax.fm/static/favicon.png"
-          />
+          <link rel="icon" href="https://syntax.fm/static/favicon.png" />
           <style
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{ __html: stylesheet.replace(/\n/g, '') }}
