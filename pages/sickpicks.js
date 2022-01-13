@@ -23,7 +23,7 @@ export default class SickPicksPage extends React.Component {
       <Page>
         <Meta staticPage={{ title: 'Sick Picks' }} />
         <div className="wrapper wrapper--text">
-          {sickPicks.map(sickPick => (
+          {sickPicks.map((sickPick) => (
             <div
               key={sickPick.id}
               dangerouslySetInnerHTML={{ __html: sickPick.html }} //eslint-disable-line

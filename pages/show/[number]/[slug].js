@@ -1,4 +1,4 @@
-import { useRouter, withRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import ErrorPage from 'next/error';
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
@@ -64,7 +64,7 @@ export default function IndexPage({ showNumber, shows, show }) {
       }
     },
     // watch the router for changes, and when it does, the above code will change
-    [router]
+    [router, shows]
   );
 
   // When the page changes...

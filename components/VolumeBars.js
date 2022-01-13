@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 // TODO Fix all eslint issues
 
 // data generator -> to create 11 volume bars
-const getItems = count =>
-  Array.from({ length: count }, (v, i) => (i + 1) * 10).map(k => {
+const getItems = (count) =>
+  Array.from({ length: count }, (v, i) => (i + 1) * 10).map((k) => {
     const decimal = k / 110;
     return {
       integer: `${k}`,
@@ -39,16 +39,16 @@ class VolumeBars extends Component {
   }
 
   // We are going to track which volume bars are "checked"
-  handleOnClick = index => {
+  handleOnClick = (index) => {
     // make a copy of state
     const { volumeBarList } = this.state;
     const volumeBarListCopy = [...volumeBarList];
     // Get the index positions from 0 till index (index clicked)
-    for (let i = 0; i <= index; i++) {
+    for (let i = 0; i <= index; i += 1) {
       volumeBarListCopy[i].checked = true;
     }
     // Get the index positions of the remaining non-checked
-    for (let i = index + 1; i < 11; i++) {
+    for (let i = index + 1; i < 11; i += 1) {
       volumeBarListCopy[i].checked = null;
     }
     // Update State
