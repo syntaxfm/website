@@ -10,7 +10,7 @@ const ShowList = ({
   isPlaying,
 }) => (
   <div className="showList">
-    {shows.map(show => (
+    {shows.map((show) => (
       <Show
         setCurrentPlaying={setCurrentPlaying}
         currentPlaying={currentPlaying}

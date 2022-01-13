@@ -23,7 +23,7 @@ export async function getStaticPaths() {
           slug: 'latest',
         },
       },
-      ...shows.map(show => ({
+      ...shows.map((show) => ({
         params: {
           number: show.displayNumber,
           slug: slug(show.title),
@@ -52,9 +52,10 @@ export default function IndexPage({ showNumber, shows, show }) {
   const [currentShow, setCurrentShow] = useState(showNumber);
   const [currentPlaying, setCurrentPlaying] = useState(showNumber);
   const [isPlaying, setIsPlaying] = useState(false);
-
+  console.log({ currentShow, show: show.title });
+  // console.log(router.query, show);
   useEffect(
-    function() {
+    () => {
       const { query } = router;
       if (query.number) {
         setCurrentShow(
@@ -75,14 +76,15 @@ export default function IndexPage({ showNumber, shows, show }) {
   // const show = shows.find(showItem => showItem.displayNumber === currentShow);
 
   const current = shows.find(
-    showItem => showItem.displayNumber === currentPlaying
+    (showItem) => showItem.displayNumber === currentPlaying
   );
+  // const current = show;
   return (
     <Page>
       <Meta show={show} />
       <div className="wrapper">
         <main className="show-wrap" id="main" tabIndex="-1">
-          <Player show={current} onPlayPause={a => setIsPlaying(!a.paused)} />
+          <Player show={current} onPlayPause={(a) => setIsPlaying(!a.paused)} />
           <ShowList
             shows={shows}
             currentShow={currentShow}
@@ -100,4 +102,5 @@ export default function IndexPage({ showNumber, shows, show }) {
 IndexPage.propTypes = {
   shows: PropTypes.array,
   showNumber: PropTypes.string,
+  show: PropTypes.object,
 };

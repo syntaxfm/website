@@ -7,13 +7,8 @@ import Bars from './bars';
 
 export default class Show extends React.Component {
   render() {
-    const {
-      show,
-      currentPlaying,
-      currentShow,
-      setCurrentPlaying,
-      isPlaying,
-    } = this.props;
+    const { show, currentPlaying, currentShow, setCurrentPlaying, isPlaying } =
+      this.props;
     return (
       <div
         className={`show ${
@@ -22,7 +17,6 @@ export default class Show extends React.Component {
       `}
       >
         <Link
-          shallow
           scroll={false}
           href="/show/[number]/[slug]"
           as={`/show/${show.displayNumber}/${slug(show.title)}`}
