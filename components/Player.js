@@ -45,7 +45,6 @@ export default class Player extends React.Component {
 
   componentDidUpdate(prevProps, prevState) { //eslint-disable-line
     const { show } = this.props;
-    console.log({ player: show });
     const { currentTime, currentVolume, playbackRate } = this.state;
     if (show.number !== prevProps.show.number) {
       const lp = localStorage.getItem(`lastPlayed${show.number}`);

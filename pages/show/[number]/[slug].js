@@ -34,7 +34,6 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  console.log('getStaticProps', params);
   const shows = await getShowsList();
   const showNumber =
     params.number === 'latest' ? shows[0].displayNumber : params.number;
@@ -52,8 +51,6 @@ export default function IndexPage({ showNumber, shows, show }) {
   const [currentShow, setCurrentShow] = useState(showNumber);
   const [currentPlaying, setCurrentPlaying] = useState(showNumber);
   const [isPlaying, setIsPlaying] = useState(false);
-  console.log({ currentShow, show: show.title });
-  // console.log(router.query, show);
   useEffect(
     () => {
       const { query } = router;
@@ -73,12 +70,9 @@ export default function IndexPage({ showNumber, shows, show }) {
     return <ErrorPage statusCode={404} />;
   }
 
-  // const show = shows.find(showItem => showItem.displayNumber === currentShow);
-
   const current = shows.find(
     (showItem) => showItem.displayNumber === currentPlaying
   );
-  // const current = show;
   return (
     <Page>
       <Meta show={show} />
