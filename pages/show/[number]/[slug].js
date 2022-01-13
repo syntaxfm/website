@@ -8,7 +8,7 @@ import ShowNotes from '../../../components/ShowNotes';
 import Player from '../../../components/Player';
 import Meta from '../../../components/meta';
 import Page from '../../../components/Page';
-import { getShows, getShow } from '../../../lib/getShows';
+import { getShows, getShow, getShowsList } from '../../../lib/getShows';
 
 export async function getStaticPaths() {
   const shows = await getShows('all');
@@ -34,11 +34,12 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const shows = await getShows();
+  console.log('getStaticProps', params);
+  const shows = await getShowsList();
   const showNumber =
     params.number === 'latest' ? shows[0].displayNumber : params.number;
   const show = await getShow(showNumber);
-  const props = show.date > Date.now() ? {} : { shows, showNumber };
+  const props = show.date > Date.now() ? {} : { shows, showNumber, show };
 
   return {
     revalidate: 1,
@@ -46,7 +47,7 @@ export async function getStaticProps({ params }) {
   };
 }
 
-export default function IndexPage({ showNumber, shows }) {
+export default function IndexPage({ showNumber, shows, show }) {
   const router = useRouter();
   const [currentShow, setCurrentShow] = useState(showNumber);
   const [currentPlaying, setCurrentPlaying] = useState(showNumber);
@@ -71,7 +72,7 @@ export default function IndexPage({ showNumber, shows }) {
     return <ErrorPage statusCode={404} />;
   }
 
-  const show = shows.find(showItem => showItem.displayNumber === currentShow);
+  // const show = shows.find(showItem => showItem.displayNumber === currentShow);
 
   const current = shows.find(
     showItem => showItem.displayNumber === currentPlaying
