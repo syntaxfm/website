@@ -2,7 +2,7 @@
 number: 424
 title: New Year, New You.  What to Focus on in 2022.
 date: 1642593600657
-url: https://traffic.libsyn.com/syntax/Syntax_-_424.mp3
+url: https://traffic.libsyn.com/syntax/Syntax_-_424_v2.mp3
 ---
 
 In this episode of Syntax, Scott and Wes talk through what to focus on at a beginner, intermediate, and advanced levels of coding skills.
@@ -45,9 +45,10 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 * [Frame 3D](https://www.framer.com/docs/three-introduction/#:~:text=%203D%3A%20Introduction%20%201%20%0AOverview.%20Framer%20Motion,animation%20options%20as...%204%20%0AExamples.%20%20More%20)
 * [React 3 Fiber](https://docs.pmnd.rs/react-three-fiber/getting-started/introduction)
 * [Svelte Cubed](https://madewithsvelte.com/svelte-cubed)
-* **[42:03](#t=42:03)** Scrape and write something to collect data
-* **[44:15](#t=44:15)** Sick Picks!
-* **[48:43](#t=48:43)** Shameless Plugs
+* **[42:01](#t=42:01)** Sponsor: Freshbooks
+* **[42:42](#t=42:42)** Scrape and write something to collect data
+* **[44:57](#t=44:57)** Sick Picks!
+* **[49:25](#t=49:25)** Shameless Plugs
 
 ## ××× SIIIIICK ××× PIIIICKS ×××
 
