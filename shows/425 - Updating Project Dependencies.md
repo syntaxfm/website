@@ -20,7 +20,7 @@ LogRocket lets you replay what users do on your site, helping you reproduce bugs
 * **[00:25](#t=00:25)** Weeeeelcome
 * **[00:52](#t=00:52)** Sponsor: LogRocket
 * **[01:29](#t=01:29)** Sponsor: Magic Bell
-* **[03:32](#t=03:32)** What are dependancies?
+* **[03:32](#t=03:32)** What are dependencies?
 * **[04:04](#t=04:04)** Wes updates all the things
 * **[05:30](#t=05:30)** How to check if there are any updates
 * **[07:05](#t=07:05)** Upgrade isolated, Minor deps first.
