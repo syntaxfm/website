@@ -5,7 +5,7 @@ date: 1643803200940
 url: 
 ---
 
-In this episode of Syntax, Scott and Wes talk
+In this episode of Syntax, Scott and Wes review your portfolios and websites including some from Harryxli, Austin Baird, Jacks Portfolio, and more!
 
 ## Linode - Sponsor
 
@@ -17,14 +17,30 @@ LogRocket lets you replay what users do on your site, helping you reproduce bugs
 
 ## Tabnine - Sponsor
 
+NBEED TO BPUT AI TAS STUFF HERE.
+
 ## Show Notes
 
 * [Wes does TikTok](https://www.tiktok.com/@wesbos)
 
+* [Harryxli](https://harryxli.com)
+
+* [AustinBaird.software](https://austinbaird.software)
+
+* [ognjenbostjancic.com](https://www.ognjenbostjancic.com)
+
+* [ndo.dev](https://ndo.dev)
+
+* [JacksPortfolio.com](https://www.jacksportfolio.com)
+
+* [einargudni.com](https://www.einargudni.com)
+
+* [hslu.cyrillappert.ch](https://hslu.cyrillappert.ch)
+
 ## ××× SIIIIICK ××× PIIIICKS ×××
 
-* Scott:
-* Wes:
+* Scott: [The Alpinist (2021) - IMDb](https://www.imdb.com/title/tt11790780/)
+* Wes: [Instant Pot Air Fryer Lid](https://amzn.to/3nQpb9R)
 
 ## Shameless Plugs
 
