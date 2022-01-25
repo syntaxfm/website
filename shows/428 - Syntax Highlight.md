@@ -1,8 +1,8 @@
 ---
 number: 428
 title: Syntax Highlight
-date: 
-url: 1643803200940
+date: 1643803200940
+url: 
 ---
 
 In this episode of Syntax, Scott and Wes talk
@@ -18,6 +18,8 @@ LogRocket lets you replay what users do on your site, helping you reproduce bugs
 ## Tabnine - Sponsor
 
 ## Show Notes
+
+* [Wes does TikTok](https://www.tiktok.com/@wesbos)
 
 ## ××× SIIIIICK ××× PIIIICKS ×××
 
