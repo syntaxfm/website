@@ -1,9 +1,11 @@
 ---
 number: 427
 title: Teamwork Makes The Dream Work
-date: 1643673960125
+date: 1643630400940
 url: https://traffic.libsyn.com/syntax/Syntax_-_427.mp3
 ---
+
+
 
 In this Hasty Treat, Scott and Wes are inspired by a Reddit post to talk about how to work better with your team.
 
