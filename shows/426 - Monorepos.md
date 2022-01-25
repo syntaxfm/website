@@ -27,7 +27,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 * **[09:37](#t=09:37)** How long have we been using monorepos?
 * **[10:16](#t=10:16)** Tools for starting a monorepo
 * [pnpm](https://pnpm.io)
-* [Nom link](https://docs.npmjs.com/cli/v6/commands/npm-link)
+* [Npm link](https://docs.npmjs.com/cli/v6/commands/npm-link)
 * **[16:22](#t=16:22)** Sponsor: Kontent by Kentico
 * **[17:33](#t=17:33)** What's the process for managing libraries?
 * **[20:10](#t=20:10)** Installing / uninstalling things
