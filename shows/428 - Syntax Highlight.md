@@ -2,7 +2,7 @@
 number: 428
 title: Syntax Highlight
 date: 1643803200940
-url: 
+url: https://traffic.libsyn.com/syntax/Syntax_-_428.mp3
 ---
 
 In this episode of Syntax, Scott and Wes review your portfolios and websites including some from Harryxli, Austin Baird, Jacks Portfolio, and more!
@@ -17,25 +17,38 @@ LogRocket lets you replay what users do on your site, helping you reproduce bugs
 
 ## Tabnine - Sponsor
 
-NBEED TO BPUT AI TAS STUFF HERE.
+Tabnine is your teams' go to AI assistant. Using a variety of machine learning models, Tabnine learns from your team's best practices, and suggests code completions based on your code.
+
+It supports over 30 languages and is available in most IDEs. Tabnine's universal models are trained **strictly on fully permissive open source code,** and can run locally, meaning that your code stays yours.
+
+Get the free version at [tabnine.com/now](http://tabnine.com/now) or go to [tabnine.com/promo/syntax](http://tabnine.com/promo/syntax) to get 50% off your first 3 months of Tabnine Teams.
 
 ## Show Notes
 
+* **[00:11](#t=00:11)** Welcome
+* **[01:05](#t=01:05)** This chapter is mid
 * [Wes does TikTok](https://www.tiktok.com/@wesbos)
-
+* **[04:28](#t=04:28)** Harry xli
 * [Harryxli](https://harryxli.com)
-
+* **[15:00](#t=15:00)** AustinBaird.software
 * [AustinBaird.software](https://austinbaird.software)
-
+* **[19:45](#t=19:45)** Sponsor: Linode
+* **[21:10](#t=21:10)** ognjenbostjancic.com
 * [ognjenbostjancic.com](https://www.ognjenbostjancic.com)
-
+* **[28:19](#t=28:19)** ndo.dev
 * [ndo.dev](https://ndo.dev)
-
+* **[35:37](#t=35:37)** Sponsor: LogRocket
+* **[37:02](#t=37:02)** jacksportfolio.com
 * [JacksPortfolio.com](https://www.jacksportfolio.com)
-
+* **[41:51](#t=41:51)** einargudni.com
 * [einargudni.com](https://www.einargudni.com)
-
+* **[43:22](#t=43:22)** Kids advert break
+* **[46:05](#t=46:05)** Back to einargudni.com
+* **[48:24](#t=48:24)** Sponsor: Tabnine
+* **[50:41](#t=50:41)** cyrillappert.ch
 * [hslu.cyrillappert.ch](https://hslu.cyrillappert.ch)
+* **[54:30](#t=54:30)** Sick Picks
+* **[59:02](#t=59:02)** Shameless Plugs
 
 ## ××× SIIIIICK ××× PIIIICKS ×××
 
