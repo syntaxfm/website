@@ -1,0 +1,79 @@
+.modal
+  z-index 999
+  background #1d1d1d
+  width 400px
+  position absolute
+  top 100px
+  left 50%
+  transform translateX(-50%)
+  border 3px solid yellow
+  border-radius 3px
+  &__header
+    padding 10px 30px
+    p
+      font-size 1.5rem
+  &__content
+    padding 10px 30px
+  &__close
+    background transparent
+    position absolute
+    right 10px
+    font-size 3rem
+    font-weight bold
+    color yellow
+    border-radius 3px
+    border 3px solid transparent
+    &:hover,
+    &:focus
+      border 3px solid yellow
+  &__backdrop
+    z-index 998
+    position absolute
+    top 0
+    left 0
+    width 100vw
+    height 100vh
+    background rgba(0,0,0,0.85)
+
+.submission
+  margin-right 4rem
+  & li::marker
+    color yellow
+    font-weight bold
+    font-size 2rem
+  &__potluck--header,
+  &__highlight--header
+    font-size 2rem
+    font-family 'Operator Mono', 'Fira Code', 'Courier New', Courier, monospace
+  &__highlight
+     font-size 1.5rem
+     &--body
+       margin-bottom 2rem
+     &--question
+       display flex
+       margin-bottom 1rem
+       & label
+         display flex
+         justify-content space-between
+         align-items center
+         padding 5px
+         width 100%
+       & input
+         padding 5px
+       & input::placeholder
+         opacity 0.4
+     &--footer
+       display flex
+       justify-content space-between
+       margin-bottom 2rem
+       & button
+         font-size 1.5rem
+         width calc(50% - 10px)
+         background transparent
+         color yellow
+         border 1px solid yellow
+         border-radius 3px
+         padding 5px 10px
+       & button:focus,
+       & button:hover
+         border: 1px dotted
