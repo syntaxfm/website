@@ -1,11 +1,14 @@
 import { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import { useLockBodyScroll, useClickAway } from 'react-use';
+import { useLockBodyScroll, useClickAway, useKeyPressEvent } from 'react-use';
 
 const SubmitModal = ({ open, setOpen }) => {
   const ref = useRef(null);
   useLockBodyScroll(open);
   useClickAway(ref, () => {
+    setOpen(false);
+  });
+  useKeyPressEvent('Escape', () => {
     setOpen(false);
   });
 
