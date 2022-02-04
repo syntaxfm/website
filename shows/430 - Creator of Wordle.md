@@ -62,7 +62,7 @@ FreshBooks users are finding strength in their numbers by saving up to 46 hours 
 
 * Josh: Tupperware
 * Scott: [Giant tub of Epsom Salt](https://amzn.to/3GmkAmt)
-* Wes:
+* Wes: [Air Fryer](https://amzn.to/3J1eUQv)
 
 ## Shameless Plugs
 
