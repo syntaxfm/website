@@ -1,6 +1,6 @@
 ---
 number: 430
-title: Creator of Wordle Josh Wardle
+title: Creator of Wordle - Josh Wardle
 date: 1644408000914
 url: https://traffic.libsyn.com/syntax/Syntax_-_430.mp3
 ---
@@ -17,13 +17,7 @@ Sanity.io is a real-time headless CMS with a fully customizable Content Studio b
 
 ## Freshbooks - Sponsor
 
-Get a 30 day free trial of Freshbooks at [[freshbooks.com/syntax](http://freshbooks.com/syntax)]([https://freshbooks.com/syntax](https://freshbooks.com/syntax))
-
-FreshBooks is made for non-accountants like you. It’s an intuitive, easy-to-use accounting and invoicing software that does it all—from sending and following up on invoices, to automatically capturing receipt data for expenses, to getting you paid twice as fast.
-
-This episode is brought to you by FreshBooks, the invoicing and accounting solution that’s built for owners—and their clients.
-
-FreshBooks users are finding strength in their numbers by saving up to 46 hours a month on stuff like building invoices and chasing late payments. They also get paid 18 days faster on average, and increase their ROI by 11 times.FreshBooks is also a crowd favorite. With an intuitive dashboard that’s easy to navigate, over 3,000 business owners have rated it an average of four and a half out of five stars on GetApp.Switch to FreshBooks today and join over 24 million people who have used it and loved it. It’s super easy to get up and running, and with award-winning support, you’re never alone.Try FreshBooks free for 30 days, no credit card required. Go to [freshbooks.com](http://freshbooks.com/) slash **SYNTAX** and enter **SYNTAX** in the “how did you hear about us” section, and start thinking about what you’ll do with an extra 46 hours a month.
+Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbooks.com/syntax).
 
 ## Show Notes
 
