@@ -5,7 +5,7 @@ date: 1644408000914
 url: https://traffic.libsyn.com/syntax/Syntax_-_430.mp3
 ---
 
-In this episode of Syntax, Wes and Scott talk with the creator of Wordle, Jsoh Wardle. What's the tech stack for Wordle? Does he care about the clones of Wordle? And how did selling Wordle work?
+In this episode of Syntax, Wes and Scott talk with the creator of Wordle, Josh Wardle. What's the tech stack for Wordle? Does he care about the clones of Wordle? And how did selling Wordle work?
 
 ## Sentry - Sponsor
 
