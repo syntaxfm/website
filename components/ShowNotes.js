@@ -13,7 +13,13 @@ const ShowNotes = ({ show, setCurrentPlaying }) => {
       <h2>{show.title}</h2>
       <button
         className="button"
-        onClick={() => setCurrentPlaying(show.displayNumber)}
+        onClick={() => {
+          console.log('Playing', show.displayNumber);
+          setCurrentPlaying(show.displayNumber);
+          // Hack to play the current show. The Audio element needs to be put into context, so we can control it from the ShowNotes component.
+          // https://github.com/wesbos/Syntax/issues/691
+          document.querySelector('audio').play();
+        }}
         type="button"
       >
         <span className="icon">🎵</span> Play Episode {show.displayNumber}
