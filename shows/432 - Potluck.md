@@ -5,7 +5,7 @@ date: 1645012800535
 url: https://traffic.libsyn.com/syntax/Syntax_-_432.mp3
 ---
 
-In this episode of Syntax, Wes and Scott answer your questions about selling themes, which browser to use, where to keep your 2FA codes, Remxi vs Svelte Kit, and more!
+In this episode of Syntax, Wes and Scott answer your questions about selling themes, which browser to use, where to keep your 2FA codes, Remix vs Svelte Kit, and more!
 
 ## Sentry - Sponsor
 
