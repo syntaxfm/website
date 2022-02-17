@@ -2,7 +2,7 @@
 number: 434
 title: Ben Vinegar × Distributed Tracing and TypeScript Migrations
 date: 1645617600667
-url: 
+url: https://traffic.libsyn.com/syntax/Syntax_-_434.mp3
 ---
 
 In this episode of Syntax, Wes and Scott talk with Ben Vinegar about his work with Sentry, their migration to TypeScript, and advice for running JavaScript on other websites.
