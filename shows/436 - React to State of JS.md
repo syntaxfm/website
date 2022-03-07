@@ -1,7 +1,7 @@
 ---
 number: 436
-title: Wes and Scott React to the State of JS 
-date: 1677758400783
+title: Wes and Scott React to the State of JS
+date: 1646230551824
 url: https://traffic.libsyn.com/syntax/Syntax_-_436.mp3
 ---
 
