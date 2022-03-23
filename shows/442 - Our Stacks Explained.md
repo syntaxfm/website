@@ -1,7 +1,7 @@
 ---
 number: 442
 title: Our Stacks Explained
-date: March 23rd 2022, 6:00:00 am CST-06:00
+date: 1648029605720
 url: https://traffic.libsyn.com/syntax/Syntax_-_442.mp3
 ---
 
