@@ -1,136 +1,158 @@
 .show {
-  border-right: 1px solid var(--grey);
-  border-bottom: 1px solid var(--grey);
-  border-left: 10px solid var(--grey);
-  background: var(--lightgrey);
-  position: relative;
-  display: flex;
-  @media (max-width: 650px) {
-	flex: 1 0 auto;
-  }
-  a {
-	flex: 1 1 auto;
-	padding: 10px;
-  }&__playcontrols {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 5rem;
-	flex-shrink: 0;
-	padding: 1rem;
-	button {
-	  background: none;
-	  border: 0;
-	  outline-color: $yellow;&:hover {
-	    color: var(--yellow);
-	  }
-	}
-  }&--dummy {
-	flex: 1 0 auto;
-  }&--active {
-	border-right-color: white;
-	background: white;
-	border-left: 0;
-	padding-left: 1rem;&:before {
-	  display: block;
-	  background: var(--grad);
-	  width: 10px;
-	  height: 100%;
-	  content: '';
-	  position: absolute;
-	  top: 0;
-	  left: 0;
-	}
-  }&__container {
-	display: flex;
-  }&__displayNumber {
-	text-transform: uppercase;
-	margin: 0 6px 0 0;
-	font-size: 11px;
-	color: var(--gray2);
-  }&__title {
-	color: var(--black);
-	font-size: 1.5rem;
-	margin: 0;
-  }&__date {
-	margin-top: 0;
-	text-align: right;
-	color: var(--gray3);
-	font-size: 1.2rem;
-  }&__modifiedDate {
-	font-size: 11px;
-	font-weight: 100;
-	color: var(--gray3);
-	margin: 0 0 0 6px;
-  }
-}.show-wrap {
-  background: white;
-  display: flex;
-  flex-wrap: wrap;
-}.showList {
-  width: 38%;
-  display: flex;
-  flex-direction: column;
-  @media (max-width: 650px) {
-	height: 300px;
-	width: 100%;
-	overflow-x: auto;
-	overflow-y: scroll;
-  }
-}.showNotes {
-  position: sticky;
-  top: 102px;
-  height: calc(100vh - 102px);
-  overflow-y: scroll;
-  padding: 2rem;
-  width: 62%;
-  font-size: 1.5rem;
-  @media (max-width: 650px) {
-	width: 100%;
-  }.button {
-	border-bottom: 0;
-  }
-  ul {
-	padding-left: 2rem;
-	list-style-type: circle;
-  }
-  li {
-	margin: 10px 0;
-  }
-  h1, h2, h3, h4, h5, h6 {
-	font-family: 'Operator Mono', 'Fira Code', 'Courier New', Courier, monospace;
-	font-weight: 200;
-	border-bottom: 1px solid var(--grey);
-	padding-bottom: 1rem;&:before {
-	  padding-right: 1rem;
-	}
-  }
-  pre {
-	background: var(--lightgrey);
-	padding: 1rem;
-  }
-  h1, h2 {
-	font-size: 2.5rem;
-  }
-  a {
-	color: lighten(var(--black), 20%);
-	border-bottom: 1px solid var(--yellow);
-	text-decoration: none;
-  }
-  code {
-	background: #f4f4f4;
-	border: 1px solid #ddd;
-	border-left: 3px solid #F1C15D;
-	color: #666;
-	page-break-inside: avoid;
-	font-family: monospace;
-	font-size: 15px;
-	line-height: 1.6;
-	margin-bottom: 1.6em;
-	max-width: 100%;
-	overflow: auto;
-	padding: 1em 1.5em;
-	display: block;
-	word-wrap: break-word;
-  }
+    border-right: 1px solid var(--grey);
+    border-bottom: 1px solid var(--grey);
+    border-left: 10px solid var(--grey);
+    background: var(--lightgrey);
+    position: relative;
+    display: flex;
+    @media (max-width: 650px) {
+        flex: 1 0 auto;
+    }
+    a {
+        flex: 1 1 auto;
+        padding: 10px;
+    }
+    &__playcontrols {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 5rem;
+        flex-shrink: 0;
+        padding: 1rem;
+        button {
+            background: none;
+            border: 0;
+            outline-color: var(--yellow);
+            &:hover {
+                color: var(--yellow);
+            }
+        }
+    }
+    &--dummy {
+        flex: 1 0 auto;
+    }
+    &--active {
+        border-right-color: white;
+        background: white;
+        border-left: 0;
+        padding-left: 1rem;
+        &:before {
+            display: block;
+            background: var(--grad);
+            width: 10px;
+            height: 100%;
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    }
+    &__container {
+        display: flex;
+    }
+    &__displayNumber {
+        text-transform: uppercase;
+        margin: 0 6px 0 0;
+        font-size: 11px;
+        color: var(--gray2);
+    }
+    &__title {
+        color: var(--black);
+        font-size: 1.5rem;
+        margin: 0;
+    }
+    &__date {
+        margin-top: 0;
+        text-align: right;
+        color: var(--gray3);
+        font-size: 1.2rem;
+    }
+    &__modifiedDate {
+        font-size: 11px;
+        font-weight: 100;
+        color: var(--gray3);
+        margin: 0 0 0 6px;
+    }
+}
+.show-wrap {
+    background: white;
+    display: flex;
+    flex-wrap: wrap;
+}
+.showList {
+    width: 38%;
+    display: flex;
+    flex-direction: column;
+    @media (max-width: 650px) {
+        height: 300px;
+        width: 100%;
+        overflow-x: auto;
+        overflow-y: scroll;
+    }
+}
+.showNotes {
+    position: sticky;
+    top: 102px;
+    height: calc(100vh - 102px);
+    overflow-y: scroll;
+    padding: 2rem;
+    width: 62%;
+    font-size: 1.5rem;
+    @media (max-width: 650px) {
+        width: 100%;
+    }
+    .button {
+        border-bottom: 0;
+    }
+    ul {
+        padding-left: 2rem;
+        list-style-type: circle;
+    }
+    li {
+        margin: 10px 0;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: "Operator Mono", "Fira Code", "Courier New", Courier,
+            monospace;
+        font-weight: 200;
+        border-bottom: 1px solid var(--grey);
+        padding-bottom: 1rem;
+        &:before {
+            padding-right: 1rem;
+        }
+    }
+    pre {
+        background: var(--lightgrey);
+        padding: 1rem;
+    }
+    h1,
+    h2 {
+        font-size: 2.5rem;
+    }
+    a {
+        color: var(--gray20);
+        border-bottom: 1px solid var(--yellow);
+        text-decoration: none;
+    }
+    code {
+        background: #f4f4f4;
+        border: 1px solid #ddd;
+        border-left: 3px solid #f1c15d;
+        color: #666;
+        page-break-inside: avoid;
+        font-family: monospace;
+        font-size: 15px;
+        line-height: 1.6;
+        margin-bottom: 1.6em;
+        max-width: 100%;
+        overflow: auto;
+        padding: 1em 1.5em;
+        display: block;
+        word-wrap: break-word;
+    }
 }
