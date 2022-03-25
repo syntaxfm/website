@@ -1,10 +1,10 @@
 :root {
     --yellow: #f1c15d;
-    --lightyellow: #f1c100; /*lighten(var(--yellow), 2%);*/
-    --darkyellow: goldenrod; /*darken(var(--yellow), 20%);*/
+    --lightyellow:#f1c260; /*lighten(var(--yellow), 2%);*/
+    --darkyellow: #eca920; /*darken(var(--yellow), 20%);*/
     --black: #1d1d1d;
-    --gray20: #555 /*lighten(var(--black), 20%); */
-    --darkgray: #333; /*lighten(#000, 5%);*/
+    --gray20: #4a4a4a /*lighten(var(--black), 20%); */
+    --darkgray: #0d0d0d; /*lighten(#000, 5%);*/
     --grey: #e4e4e4;
     --gray: var(--grey);
     --grey2: #4b4747;
@@ -13,7 +13,7 @@
     --gray3: var(--grey3);
     --lightgrey: #f9f9f9;
     --lightgray: var(--lightgrey);
-    --lightgreydarker: lightgray /* darken(var(--lightgrey), 3%);*/
+    --lightgreydarker: #f2f2f2; /* darken(var(--lightgrey), 3%);*/
     --green: #03fff3;
     --newgrey: #645555;
 
