@@ -1,7 +1,7 @@
 .button, a.button {
   border: 0;
-  background: $lightgrey;
-  color: $black;
+  background: var(--lightgrey);
+  color: var(--black);
   padding: 0;
   line-height: 1;
   font-size: 1.5rem;
@@ -9,10 +9,10 @@
   display: inline-block;
   transition: all 0.2s;
   margin-right: 1rem;&:hover {
-    background: darken($lightgrey, 3%);
+	background: darken(var(--lightgrey), 3%);
   }.icon {
-    border-right: 1px solid $grey;
-    padding-right: 0.5rem;
-    margin-right: 0.5rem;
+	border-right: 1px solid var(--grey);
+	padding-right: 0.5rem;
+	margin-right: 0.5rem;
   }
 }

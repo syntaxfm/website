@@ -3,7 +3,7 @@
   width: 40px;
   position: relative;
 }.bar  {
-  background: $green;
+  background: var(--green);
   bottom: 1px;
   height: 3px;
   position: absolute;
@@ -16,13 +16,13 @@
 
 @keyframes sound  {
   0%  {
-    opacity: 0.35;
-    background: $yellow;
-    height: 3px;
+	opacity: 0.35;
+	background: var(--yellow);
+	height: 3px;
   }100%  {
-    opacity: 1;
-    background: darken($yellow, 20%);
-    height: 28px;
+	opacity: 1;
+	background: darken(var(--yellow), 20%);
+	height: 28px;
   }
 }.bar:nth-child(1) {
   left: 1px;

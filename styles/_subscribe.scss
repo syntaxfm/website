@@ -1,5 +1,5 @@
 .subscribe__link a {
   &:focus {
-    outline-color: $yellow;
+	outline-color: var(--yellow);
   }
 }
