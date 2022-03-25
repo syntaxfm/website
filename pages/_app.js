@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import packageInfo from '../package.json';
-import '../styles/style.scss'
+import '../styles/style.css'
 
 export default function MyApp({ Component, pageProps }) {
     return <>
