@@ -1,0 +1,5 @@
+.subscribe__link a {
+  &:focus {
+    outline-color: $yellow;
+  }
+}

@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import packageInfo from '../package.json';
-import stylesheet from '../styles/style.styl';
-
+import '../styles/style.scss'
 
 export default function MyApp({ Component, pageProps }) {
     return <>
@@ -17,10 +16,10 @@ export default function MyApp({ Component, pageProps }) {
             content="https://syntax.fm/static/syntax-banner.png"
           />
           <link rel="icon" href="https://syntax.fm/static/favicon.png" />
-          <style
+          {/* <style
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{ __html: stylesheet.replace(/\n/g, '') }}
-          />
+          /> */}
         </Head>
         <Component {...pageProps} />;
     </>
