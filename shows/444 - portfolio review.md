@@ -2,14 +2,12 @@
 number: 444
 title: Syntax Highlight
 date: 1648641600930
-url: 
+url: https://traffic.libsyn.com/syntax/Syntax_-_444.mp3
 ---
 
 In this episode of Syntax, Wes and Scott review your websites that you submitted including bald.design, Anh Hoang Nguyen, bradleyshellnut.com, and more.
 
 ## Prismic  - Sponsor
-
-NEEDS AUDIO RECORDING FIRST
 
 Prismic is a Headless CMS that makes it easy to build website pages as a set of components. Break pages into sections of components using React, Vue, or whatever you like. Make corresponding Slices in Prismic. Start building pages dynamically in minutes. Get started at [prismic.io/syntax](https://prismic.io/syntax).
 
@@ -42,9 +40,10 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 <https://bradleyshellnut.com>
 * **[41:11](#t=41:11)** hunterjennings.dev
 <https://www.hunterjennings.dev>
-* **[46:22](#t=46:22)** matthewfarlymn.com
+* **[46:19:16](#t=46:19:16)** Sponsor: Prismic
+* **[47:42:19](#t=47:42:19)** matthewfarlymn.com
 <https://matthewfarlymn.com>
-* **[53:30](#t=53:30)** SIIIIICK ××× PIIIICKS
+* **[55:00:01](#t=55:00:01)** SIIIIICK ××× PIIIICKS
 
 ## ××× SIIIIICK ××× PIIIICKS ×××
 
