@@ -30,6 +30,15 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 * [React Icons](https://react-icons.github.io/react-icons/)
 * [Flat Icons](https://www.flaticon.com)
 
+* [Syntax 346 - Selling T Shirts](https://syntax.fm/show/346/selling-and-shipping-t-shirts-with-typescript)
+
+* [CodePen](https://codepen.io)
+* [Replit](https://replit.com)
+* [Netlify](https://www.netlify.com)
+
+* [Rust](https://www.rust-lang.org)
+* [PHP](https://www.php.net)
+
 ## ××× SIIIIICK ××× PIIIICKS ×××
 
 * Scott: [Glass Drinking Straws](https://amzn.to/3xDd31E)
@@ -37,7 +46,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 
 ## Shameless Plugs
 
-* Scott: [LevelUp Tutorials](https://leveluptutorials.com/tutorials/keystone-js/introduction)
+* Scott: [LevelUp Tutorials](https://leveluptutorials.com/)
 * Wes: [Wes Bos Tutorials](https://wesbos.com/courses)
 
 ## Tweet us your tasty treats
