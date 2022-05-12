@@ -1,11 +1,11 @@
 ---
-number: 455
+number: 457
 title: NX Monorepos with Victor Savkin
-date: 1651838400797
+date: 1652443200950
 url: 
 ---
 
-In this episode of Syntax, Wes and Scott talk
+In this episode of Syntax, Wes and Scott talk with Victor Savkin about NX Monorepo development.
 
 ## SPONSOR  - Sponsor
 
@@ -13,10 +13,10 @@ In this episode of Syntax, Wes and Scott talk
 
 ## Show Notes
 
-## ××× SIIIIICK ××× PIIIICKS ×××
-
-* Scott:
-* Wes:
+* [Happy Hacking KB](https://happyhackingkb.com)
+* [IntelliJ](https://www.jetbrains.com/idea/)
+* [LunarVim](https://www.lunarvim.org)
+* [VS Code](https://code.visualstudio.com)
 
 ## Shameless Plugs
 
