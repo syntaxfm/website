@@ -1,11 +1,11 @@
 ---
 number: 460
-title: Supper Club × Turbo Repo with Jared Palmer
+title: Supper Club × Turborepo with Jared Palmer
 date: 1653048000500
 url: https://traffic.libsyn.com/syntax/Syntax_-_460.mp3
 ---
 
-In this supper club episode of Syntax, Wes and Scott talk with Jared Palmer about Turbo Repo, how it fits in your tech stack, and what it was like being acquired by Vercel.
+In this supper club episode of Syntax, Wes and Scott talk with Jared Palmer about Turborepo, how it fits in your tech stack, and what it was like being acquired by Vercel.
 
 ## Whiskey Web and Whatnot  - Sponsor
 
@@ -15,25 +15,25 @@ In this supper club episode of Syntax, Wes and Scott talk with Jared Palmer abou
 
 * **[00:35](#t=00:35)** Welcome
 * [Jared Palmer](https://twitter.com/jaredpalmer)
-* **[02:15](#t=02:15)** What is Turbo Repo?
-* [Turbo Repo](https://turborepo.org)
+* **[02:15](#t=02:15)** What is Turborepo?
+* [Turborepo](https://turborepo.org)
 * [Vercel](https://vercel.com)
 * [tsdx](https://tsdx.io)
-* **[03:27](#t=03:27)** Where does Turbo Repo fit in your stack?
+* **[03:27](#t=03:27)** Where does Turborepo fit in your stack?
 * **[06:04](#t=06:04)** What are Google, Meta, or Twitter doing?
 * **[15:35](#t=15:35)** Sponsor: Whiskey, Web and Whatnot
-* **[16:45](#t=16:45)** What's the cost of adding Turbo Repo to a project?
+* **[16:45](#t=16:45)** What's the cost of adding Turborepo to a project?
 * **[21:19](#t=21:19)** Changing based on environmental variables
 * **[23:18](#t=23:18)** Does this replace how you define your workplace?
 * **[24:08](#t=24:08)** How do you share the cache?
 * **[25:25](#t=25:25)** What don't you cache?
 * **[27:35](#t=27:35)** What about Gatsby images?
-* **[28:44](#t=28:44)** Can Turbo Repo help with re-running compiles?
+* **[28:44](#t=28:44)** Can Turborepo help with re-running compiles?
 * **[36:54](#t=36:54)** Supper Rapid Fire Questions
 * [Oceanic Next](https://github.com/mhartington/oceanic-next)
 * [GitHub Dark](https://github.com/StylishThemes/Github-Dark)
 * [Kotlin](https://kotlinlang.org)
-* **[52:47](#t=52:47)** Selling Turbo Repo to Vercel
+* **[52:47](#t=52:47)** Selling Turborepo to Vercel
 * **[55:49](#t=55:49)** Shameless Plugs
 
 ## Shameless Plugs
