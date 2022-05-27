@@ -1,6 +1,6 @@
 ---
 number: 463
-title: Supper Club × Redwood JS with Tom Pretson-Werner
+title: Supper Club × Redwood JS with Tom Preston-Werner
 date: 1653652800899
 url: https://traffic.libsyn.com/syntax/Syntax_-_463.mp3
 ---
