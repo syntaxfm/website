@@ -1,11 +1,11 @@
 ---
 number: 463
-title: Supper Club × Redwood JS with Tom Preston-Werner
+title: Supper Club × RedwoodJS with Tom Preston-Werner
 date: 1653652800899
 url: https://traffic.libsyn.com/syntax/Syntax_-_463.mp3
 ---
 
-In this supper club episode of Syntax, Wes and Scott talk with Tom Pretson-Werner about his work on RedwoodJS, the importance of documentation, and the new Redwood Startup Fund.
+In this supper club episode of Syntax, Wes and Scott talk with Tom Preston-Werner about his work on RedwoodJS, the importance of documentation, and the new Redwood Startup Fund.
 
 ## AIOSEO - Sponsor
 
