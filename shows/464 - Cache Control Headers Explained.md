@@ -19,7 +19,7 @@ LogRocket lets you replay what users do on your site, helping you reproduce bugs
 
 * [Time to live calculator](https://svelte.dev/repl/a779692677d44146b9118e0008cbb4d0?version=3.48.0)
 
-* [Reminx Conf](https://remix.run/conf)
+* [Remix Conf](https://remix.run/conf)
 
 * [Opera](http://opera.com/)
 
