@@ -2,10 +2,10 @@
 number: 465
 title: Git in VS Code
 date: 1654084800314
-url: 
+url: https://traffic.libsyn.com/syntax/Syntax_-_465.mp3
 ---
 
-In this episode of Syntax, Wes and Scott talk
+In this episode of Syntax, Wes and Scott talk all about how they use Git inside of VS Code, extensions they use, and the various ways to interact with Git in VS Code.
 
 ## Linode  - Sponsor
 
@@ -21,17 +21,40 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 
 ## Show Notes
 
+* **[00:21](#t=00:21)** Recording Syntax in Riverside
+* [Riverside](http://www.riverside.fm/?via=ichris)
+* **[01:22](#t=01:22)** Welcome
+* **[04:57](#t=04:57)** CLI vs VS Code
+* [VS Code](https://code.visualstudio.com)
+* **[07:27](#t=07:27)** Git Jargon
+* **[11:50](#t=11:50)** UI tools we've used
 * [Git Tower](https://www.git-tower.com/mac)
 * [Git Kraken](https://www.gitkraken.com/)
 * [GitHub for Desktop](https://desktop.github.com/)
 * [iTerm](https://iterm2.com)
 * [Warp](https://www.warp.dev)
 * [Git SCM](https://git-scm.com)
+* **[14:09](#t=14:09)** Ways to interact with Git in VS Code
+* **[19:41](#t=19:41)** Source control tab
+* **[26:28](#t=26:28)** Sponsor: Linode
+* **[27:47](#t=27:47)** File History
+* **[30:29](#t=30:29)** Diffing or Compare
+* **[36:24](#t=36:24)** Conflict resolution
+* **[42:56](#t=42:56)** Automation with post-commit commands
+* **[46:10](#t=46:10)** Sponsor: LogRocket
+* **[47:14](#t=47:14)** Extensions
+* [GitLens](https://www.gitkraken.com/gitlens)
+* [Git History](https://marketplace.visualstudio.com/items?itemName=donjayamanne.githistory)
+* [Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph)
+* [Conventional Commits](https://marketplace.visualstudio.com/items?itemName=vivaxy.vscode-conventional-commits)
+* **[53:59](#t=53:59)** Git config tip
+* **[55:24](#t=55:24)** Sponsor: Freshbooks
+* **[56:02](#t=56:02)** ××× SIIIIICK ××× PIIIICKS ×××
 
 ## ××× SIIIIICK ××× PIIIICKS ×××
 
-* Scott:
-* Wes:
+* Scott: [Espanso](https://espanso.org)
+* Wes: [AirPod cleaning kit](https://www.aliexpress.com/item/1005004058904979.html?spm=a2g0o.order_list.0.0.59c61802UtTwRO)
 
 ## Shameless Plugs
 
