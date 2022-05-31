@@ -17,18 +17,13 @@ LogRocket lets you replay what users do on your site, helping you reproduce bugs
 
 ## Show Notes
 
-* [Time to live calculator](https://svelte.dev/repl/a779692677d44146b9118e0008cbb4d0?version=3.48.0)
-
-* [Remix Conf](https://remix.run/conf)
-
-* [Opera](http://opera.com/)
-
-* [The United States of Insanity - Official Trailer](https://www.youtube.com/watch?v=NBEK4NLcbrY)
-
 * **[00:24](#t=00:24)** Welcome
 * **[01:11](#t=01:11)** Sponsor: Sentry
 * **[02:28](#t=02:28)** Sponsor: LogRocket
 * **[03:08](#t=03:08)** My struggle has been with caching, cache control headers and would love a better explanation on some of the fields?
+* [Time to live calculator](https://svelte.dev/repl/a779692677d44146b9118e0008cbb4d0?version=3.48.0)
+* [Reminx Conf](https://remix.run/conf)
+* [Opera](http://opera.com/)
 * **[04:48](#t=04:48)** What is a header?
 * **[06:05](#t=06:05)** What is caching?
 * **[08:21](#t=08:21)** Time to live (TTL)
@@ -42,6 +37,7 @@ LogRocket lets you replay what users do on your site, helping you reproduce bugs
 * **[18:03](#t=18:03)** immutable
 * **[19:29](#t=19:29)** no-transform
 * **[20:45](#t=20:45)** Cache Control Request Directives
+* [The United States of Insanity - Official Trailer](https://www.youtube.com/watch?v=NBEK4NLcbrY)
 
 ## Tweet us your tasty treats
 
