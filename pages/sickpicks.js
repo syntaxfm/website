@@ -26,6 +26,7 @@ export default class SickPicksPage extends React.Component {
           {sickPicks.map((sickPick) => (
             <div
               key={sickPick.id}
+              id={`episode-number-${sickPick.id}`}
               dangerouslySetInnerHTML={{ __html: sickPick.html }} //eslint-disable-line
             />
           ))}
