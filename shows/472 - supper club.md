@@ -2,7 +2,7 @@
 number: 472
 title: Supper Club × Edge Functions and Deno with Eduardo Bouças of Netlify
 date: 1655467200259
-url: 
+url: https://traffic.libsyn.com/syntax/Syntax_-_472.mp3
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk edge functions and Deno with Eduardo Bouças of Netlify.
