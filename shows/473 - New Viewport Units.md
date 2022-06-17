@@ -30,7 +30,7 @@ Sanity.io is a real-time headless CMS with a fully customizable Content Studio b
 * [Keycode.info](https://keycode.info)
 * **[16:37](#t=16:37)** When can we start using new viewport units?
 
-## Tweet us your tasty treats
+## Tweet us your tasty treats!
 
 * [Scott's Instagram](https://www.instagram.com/stolinski/)
 * [LevelUpTutorials Instagram](https://www.instagram.com/LevelUpTutorials/)
