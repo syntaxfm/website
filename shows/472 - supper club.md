@@ -2,7 +2,7 @@
 number: 472
 title: Supper Club × Edge Functions and Deno with Eduardo Bouças of Netlify
 date: 1655467200259
-url: https://traffic.libsyn.com/syntax/Syntax_-_472.mp3
+url: https://traffic.libsyn.com/syntax/Syntax_-_472_v2.mp3
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk edge functions and Deno with Eduardo Bouças of Netlify.
@@ -41,16 +41,16 @@ WP Mail SMTP comes with detailed email logs, email engagement tracking, visual e
 * **[09:18](#t=09:18)** The internet is global, and server locations matter
 * **[17:09](#t=17:09)** Chaining multiple edge functions
 * **[20:18](#t=20:18)** Sponsor: WP Mail SMTP
-* **[21:01](#t=21:01)** Why use Deno?
-* **[24:38](#t=24:38)** What are the limitations of using Deno?
-* **[27:44](#t=27:44)** Why not run NodeJS servers on the edge?
-* **[29:34](#t=29:34)** Do you see a future where people are writing packages that work anywhere?
-* **[31:32](#t=31:32)** Sponsor: Postlight Podcast
-* **[32:25](#t=32:25)** What about databases and serverless functions?
+* **[21:18](#t=21:18)** Why use Deno?
+* **[25:06](#t=25:06)** What are the limitations of using Deno?
+* **[28:12](#t=28:12)** Why not run NodeJS servers on the edge?
+* **[30:02](#t=30:02)** Do you see a future where people are writing packages that work anywhere?
+* **[32:00](#t=32:00)** Sponsor: Postlight Podcast
+* **[32:53](#t=32:53)** What about databases and serverless functions?
 * [Planetscale](https://planetscale.com)
-* **[37:46](#t=37:46)** What language does Netlify use to write apps in?
+* **[38:14](#t=38:14)** What language does Netlify use to write apps in?
 * [Netlify Edge Handlers](https://www.netlify.com/blog/2020/10/06/announcing-netlify-edge-handlers-now-in-early-access/)
-* **[43:39](#t=43:39)** Supper Club questions
+* **[44:08](#t=44:08)** Supper Club questions
 * [Warp](https://www.warp.dev)
 * [S Town Podcast](https://stownpodcast.org)
 
