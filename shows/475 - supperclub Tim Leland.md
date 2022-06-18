@@ -1,11 +1,11 @@
 ---
 number: 475
 title: Supper Club × Authoring Browser Extensions with Tim Leland
-date: 
+date: 1656072000131
 url: 
 ---
 
-In this supper club episode of Syntax, Wes and Scott talk
+In this supper club episode of Syntax, Wes and Scott talk with Tim Leland - developer of browser extensions like WeatherExtension and Link Shortener Extension.
 
 ## Postlight Podcast - Sponsor
 
@@ -33,6 +33,8 @@ WP Mail SMTP comes with detailed email logs, email engagement tracking, visual e
 * [Caddy](https://caddyserver.com)
 
 * [Tim Leland /uses/](https://timleland.com/uses/)
+
+* [Tchibo Coffee machine](https://shoptchibo.com/pages/machines)
 
 ## Shameless Plugs
 
