@@ -27,7 +27,7 @@ Directus is an open-source data platform that instantly layers on top of any SQL
 * [Emily Shea](https://www.youtube.com/watch?v=YKuRkGkf5HU)
 * **[05:12](#t=05:12)** How does coding with your voice work?
 * [Talon Voice](https://talonvoice.com/)
-* [Cursorless Talon](https://github.com/cursorless-dev/cursorless-talon)
+* [Cursorless](https://cursorless.org/)
 * **[09:45](#t=09:45)** How do you handle triggering wrong words?
 * **[11:41](#t=11:41)** Sponsor: The Stack Overflow Podcast
 * **[12:26](#t=12:26)** Example of voice coding
@@ -41,10 +41,10 @@ Directus is an open-source data platform that instantly layers on top of any SQL
 * ["Incremental, zero-config Code Nav using stack graphs" by Douglas Creager](https://www.youtube.com/watch?v=l2R1PTGcwrE)
 * **[35:20](#t=35:20)** Does eye tracking work?
 * **[36:48](#t=36:48)** What kind of mic do you use?
-* [DPA Microphone](https://www.bhphotovideo.com/c/product/1407826-REG/dpa_microphones_4188_dc_f_f00_lh_d_fine_core_4188_slim.html)
+* [DPA Microphone](https://www.sweetwater.com/store/detail/4288HSBg--dpa-dfine-core-4288-omnidirectional-flex-headset-microphone-with-microdot-connector-long-length-b)
 * [The Voice Book](https://www.amazon.com/Voice-Book-Caring-Protecting-Improving-dp-1641603305/dp/1641603305/)
 * **[39:25](#t=39:25)** Supper Club questions
-* [Dark Abyss VS Code theme](https://marketplace.visualstudio.com/items?itemName=supapow.dark-abyss)
+* [Abyss VS Code built-in theme](https://code.visualstudio.com/docs/getstarted/themes)
 * [Kinesis Freestyle 2](https://kinesis-ergo.com/keyboards/freestyle2-keyboard/)
 * [Charybdis Nano keyboard](https://bastardkb.com/charybdis-nano/)
 * [Nexstand](http://www.nexstand.com)
