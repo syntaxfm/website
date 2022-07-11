@@ -2,7 +2,7 @@
 number: 483
 title: Potluck - Peer Dependencies × Vitest × NVM and PNPM × Sprites
 date: 1657713600856
-url: 
+url: https://traffic.libsyn.com/syntax/Syntax_-_483.mp3
 ---
 
 In this potluck episode of Syntax, Wes and Scott answer your questions about peer dependencies, Vitest, NVM and PNPM, using sprites for images, common MongoDB operations, and more!
