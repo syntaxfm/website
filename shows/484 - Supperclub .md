@@ -31,7 +31,7 @@ Pay for the services you use, not the number of people on your team with [Lights
 * [Kristi Perreault on Dev.to](https://dev.to/kristiperreault)
 * [Kristi Perreault AWS Hero](https://aws.amazon.com/developer/community/heroes/kristi-perreault/?did=dh_card&trk=dh_card)
 * [Liberty Mutual](https://www.libertymutual.com)
-* **[04:55](#t=04:55)** Developers at Mutual Liberty
+* **[04:55](#t=04:55)** Developers at Liberty Mutual
 * **[07:05](#t=07:05)** What did you do before serverless functions?
 * **[08:36](#t=08:36)** Why are you using serverless functions?
 * **[12:39](#t=12:39)** What languages are you writing for serverless functions?
