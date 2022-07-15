@@ -2,10 +2,10 @@
 number: 485
 title: STUMP’D Interview Coding Questions
 date: 1658145600053
-url: 
+url: https://traffic.libsyn.com/syntax/Syntax_-_485.mp3
 ---
 
-In this Hasty Treat, Scott and Wes try to stump each other with coding interview questions
+In this Hasty Treat, Scott and Wes try to stump each other with coding interview questions like what is a higher order component? What is functional programming? And more!
 
 ## Sentry - Sponsor
 
@@ -19,7 +19,19 @@ Pay for the services you use, not the number of people on your team with [Lights
 
 ## Show Notes
 
+* **[00:26](#t=00:26)** Welcome
+* **[01:47](#t=01:47)** Sponsor: Lightstep Incident Response
+* **[03:00](#t=03:00)** Sponsor: Sentry
+* **[04:10](#t=04:10)** What is a higher order component?
+* **[05:34](#t=05:34)** What is functional programming?
+* **[09:00](#t=09:00)** What's the purpose of cache busting and how do you achieve it?
 * [Wes’ course for Beginner JavaScript](https://beginnerjavascript.com)
+* **[10:37](#t=10:37)** What is short circuit evaluation?
+* **[13:19](#t=13:19)** What is a closure?
+* **[15:49](#t=15:49)** What is the reason for wrapping the contents of a JavaScript source file in a function that is then invoked?
+* **[17:30](#t=17:30)** Can you describe how CSS specificity works?
+* **[20:15](#t=20:15)** How does prototypal inheritance differ from classical inheritance?
+* **[23:56](#t=23:56)** What is the difference between a parameter and an argument?
 
 ## Tweet us your tasty treats
 
