@@ -2,7 +2,7 @@
 number: 486
 title: Our Code Styles
 date: 1658318400138
-url: https://traffic.libsyn.com/syntax/Syntax_-_486.mp3
+url: https://traffic.libsyn.com/syntax/Syntax_-_486_v2.mp3
 ---
 
 In this episode of Syntax, Wes and Scott talk about their coding styles - functional vs object oriented, interfaces vs types, tabs vs spaces, should comments exist? And a whole lot more.
