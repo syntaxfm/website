@@ -1,5 +1,5 @@
 ---
-number: 488
+number: 487
 title: Supper Club × Adam Cowley and Neo4j Database
 date: 1658491200074
 url: https://traffic.libsyn.com/syntax/Syntax_-_487.mp3
