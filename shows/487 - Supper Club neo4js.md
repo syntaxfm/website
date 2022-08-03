@@ -27,7 +27,7 @@ Pay for the services you use, not the number of people on your team with [Lights
 * [Sanity Groq](https://www.sanity.io/docs/overview-groq)
 * **[08:04](#t=08:04)** Is there a specific type of data that works best in a graph database?
 * **[11:50](#t=11:50)** Sponsor: Lightstep Incident Response
-* **[13:07](#t=13:07)** What's AuraDB vs Neo4js?
+* **[13:07](#t=13:07)** What's AuraDB vs Neo4j?
 * **[14:54](#t=14:54)** Whiteboard friendly data model
 * **[19:45](#t=19:45)** How are GraphQL and graph related?
 * **[23:01](#t=23:01)** Can you sync with MongoDB?
@@ -36,15 +36,20 @@ Pay for the services you use, not the number of people on your team with [Lights
 * [Neo4j Desktop](https://neo4j.com/download/)
 * [Neo4j Cloud](https://neo4j.com/cloud/)
 * **[30:35](#t=30:35)** Sponsor: Gatsby
-* **[31:44](#t=31:44)** Is visualization an important part of Neo4js?
+* **[31:44](#t=31:44)** Is visualization an important part of Neo4j?
 * [Neo4j Bloom](https://neo4j.com/product/bloom/)
 * **[35:54](#t=35:54)** Do you have to think about indexing with graph databases?
 * **[39:36](#t=39:36)** Are there uses Neo4j isn't as good for?
 * **[40:15](#t=40:15)** Do you have to cache queries?
 * **[41:19](#t=41:19)** Dessert questions
-* [Intellijet Idea](https://www.jetbrains.com/idea/)
+* [Intellij Idea](https://www.jetbrains.com/idea/)
 * [Cobalt 2 Theme](https://marketplace.visualstudio.com/items?itemName=wesbos.theme-cobalt2)
 * **[50:29](#t=50:29)** Shameless Plug
+* [Neo4j GraphAcademy](https://graphacademy.neo4j.com)
+* [Neo4j Courses for Beginners](https://graphacademy.neo4j.com/categories/beginners/)
+* [Neo4j Courses for Developers](https://graphacademy.neo4j.com/categories/developer/)
+* [Building an Educational Platform on Neo4j](https://dev.neo4j.com/ga-how)
+
 * **[54:38](#t=54:38)** ××× SIIIIICK ××× PIIIICKS ×××
 
 ## ××× SIIIIICK ××× PIIIICKS ×××
