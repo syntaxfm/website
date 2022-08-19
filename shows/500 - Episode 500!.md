@@ -2,7 +2,7 @@
 number: 500
 title: Episode 500!
 date: 1661169600221
-url: 
+url: NEED THE URL AND UPLOAD TO LIBSYN STILL
 ---
 
 In this Hasty Treat, Scott and Wes talk about the past 499 episodes of Syntax, what have been the most downloaded episodes, their favorite episodes, and the sickest of sick pics.
