@@ -2,7 +2,7 @@
 number: 508
 title: Supper Club × The Primeagan - Vim, Streaming, Rust, all Around Interesting Guy
 date: 1662724800226
-url: 
+url: https://traffic.libsyn.com/syntax/Syntax_-_508.mp3
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with The Primeagan about his streaming set up, how he decides what to stream, why he makes the kind of content he does, and why he loves Vim.
@@ -13,7 +13,7 @@ With Hasura, you can get a fully managed, production-ready GraphQL API as a serv
 
 ## Storyblok - Sponsor
 
-Storyblok is a headless component-based CMS with a real-time visual editor. It offers the flexibility for developers to craft their perfect tech stack, but it also empowers content creators to make changes independently. The result is that every team has the freedom to quickly and easily create the ideal website with limitless extensibility. Other key features include robust Storyblok SDKs and APIs, powerful internationalization options, and an eCommerce-ready platform.
+[Storyblok](https://www.storyblok.com/?utm_source=syntaxfm&utm_medium=sponsor&utm_campaign=AWA_SPON_SFM_TRA&utm_content=syntaxfm-podcast) is a headless component-based CMS with a real-time visual editor. It offers the flexibility for developers to craft their perfect tech stack, but it also empowers content creators to make changes independently. The result is that every team has the freedom to quickly and easily create the ideal website with limitless extensibility. Other key features include robust [Storyblok](https://www.storyblok.com/?utm_source=syntaxfm&utm_medium=sponsor&utm_campaign=AWA_SPON_SFM_TRA&utm_content=syntaxfm-podcast) SDKs and APIs, powerful internationalization options, and an eCommerce-ready platform.
 
 ## Show Notes
 
