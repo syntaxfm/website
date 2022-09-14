@@ -9,7 +9,9 @@ In this supper club episode of Syntax, Wes and Scott talk with Kristi Perreault 
 
 ## Hasura - Sponsor
 
-With Hasura, you can get a fully managed, production-ready GraphQL API as a service to help you build modern apps faster. You can get started for free in 30 seconds, or if you want to try out the Standard tier for zero cost, use the code “TryHasura” at this link: [hasura.info](https://hasura.info/freetrial). We’ve also got an amazing selection of GraphQL tutorials at [hasura.io/learn](https://hasura.io/learn).
+Hasura gives you instant GraphQL API on all your data sources to help you build modern apps faster. With built-in support for authorization and federation, Hasura makes it easy to declaratively configure permission rules and join data across multiple sources without writing any extra code. [Try out Hasura](https://hasura.io/?utm_campaign=syntaxfm-2022&utm_campaign-type=podcast&utm_medium=social) for free in 30 seconds. Hasura also features the most extensive list of open-source tutorials to get you up to speed with GraphQL, Hasura and Databases. Check it out at [hasura.io/learn](https://hasura.io/learn/?utm_campaign=syntaxfm-2022&utm_campaign-type=podcast&utm_medium=social)
+
+
 
 ## Stack Overflow Podcast - Sponsor
 
