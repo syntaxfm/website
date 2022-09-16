@@ -9,6 +9,11 @@ In this supper club episode of Syntax, Wes and Scott talk with Thomas Mann about
 
 ## FireHydrant - Sponsor
 
+Incidents are hard. Managing them shouldn’t be. FireHydrant makes it easy for anyone in your organization to respond to incidents efficiently and consistently. Intuitive, guided workflows provide turn-by-turn navigation for incident response, while thoughtful prompts and powerful integrations capture all of your incident data to drive useful retros and actionable analytics. 
+
+Did we mention that FireHydrant is free? Get started at Firehydrant.com/syntax
+
+
 ## Show Notes
 
 * [@ThomasPaulMann](https://twitter.com/thomaspaulmann)
