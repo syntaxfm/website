@@ -2,35 +2,38 @@
 number: 511
 title: Supper Club × Raycast with Thomas Mann
 date: 1663329600231
-url: https://traffic.libsyn.com/syntax/Syntax_-_511.mp3
+url: https://traffic.libsyn.com/syntax/Syntax_-_511_v2.mp3
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Thomas Mann about Raycast - an app that can replace Spotlight on your Mac, and do so much more.
 
+## FireHydrant - Sponsor
+
 ## Show Notes
 
 * [@ThomasPaulMann](https://twitter.com/thomaspaulmann)
-* **[01:49](#t=01:49)** What is Raycast?
+* **[01:58:02](#t=01:58)** What is Raycast?
 * [Raycast](https://www.raycast.com)
 * [Raycast Store](https://www.raycast.com/store)
-* **[08:11](#t=08:11)** Do you have designers on your team to help guide UI?
-* **[10:13](#t=10:13)** Why build it native instead of HTML and CSS?
-* **[13:12](#t=13:12)** Why did you choose React?
-* **[21:54](#t=21:54)** How do you figure out what's possible in system level APIs?
-* **[26:40](#t=26:40)** Snippets make use of SQLite
+* **[08:22:00](#t=08:22)** Do you have designers on your team to help guide UI?
+* **[10:23:21](#t=10:23)** Why build it native instead of HTML and CSS?
+* **[13:22:14](#t=13:22)** Why did you choose React?
+* **[22:05:03](#t=22:05)** How do you figure out what's possible in system level APIs?
+* **[26:50:20](#t=26:50)** Snippets make use of SQLite
 * [SQLite](https://www.sqlite.org)
-* **[29:05](#t=29:05)** Encrypted local storage data
-* **[33:11](#t=33:11)** Any plans for theming for Raycast?
-* **[35:20](#t=35:20)** What is the pricing model?
-* **[37:06](#t=37:06)** What was your Y combinator experience like?
+* **[29:15:14](#t=29:15)** Encrypted local storage data
+* **[33:21:09](#t=33:21)** Sponsor: FireHydrant
+* **[34:29:06](#t=34:29)** Any plans for theming for Raycast?
+* **[36:55:16](#t=36:55)** What is the pricing model?
+* **[38:42:05](#t=38:42)** What was your Y combinator experience like?
 * [Y Combinator](https://www.ycombinator.com)
 * [Careers](https://www.raycast.com/careers)
-* **[42:08](#t=42:08)** Any plans for future features?
-* **[44:08](#t=44:08)** Supper Club questions
+* **[43:44:02](#t=43:44)** Any plans for future features?
+* **[45:44:12](#t=45:44)** Supper Club questions
 * [Leopold FC660C Black 65% Dye Sub PBT Mechanical Keyboard](https://mechanicalkeyboards.com/shop/index.php?l=product_detail&p=4097)
 * [iTerm](https://iterm2.com)
 * [Starship](https://starship.rs)
-* **[51:25](#t=51:25)** SIIIIICK ××× PIIIICKS ×××
+* **[53:01:00](#t=53:01)** SIIIIICK ××× PIIIICKS ×××
 
 ## ××× SIIIIICK ××× PIIIICKS ×××
 
