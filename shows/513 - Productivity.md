@@ -1,11 +1,11 @@
 ---
 number: 513
 title: The Productivity Episode
-date: 
-url: 
+date: 1663761600892
+url: https://traffic.libsyn.com/syntax/Syntax_-_513.mp3
 ---
 
-In this episode of Syntax, Wes and Scott talk
+In this episode of Syntax, Wes and Scott talk through what they do to get things done - apps for to do list tracking, calendar blocking, and how they determine a productive day.
 
 ## StoryBlok  - Sponsor
 
@@ -21,14 +21,36 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 
 ## Show Notes
 
+* **[02:49](#t=02:49)** What is a productive day?
+* **[04:56](#t=04:56)** What's an unproductive day?
+* **[07:43](#t=07:43)** Techniques for work
 * [Getting Things Done](https://gettingthingsdone.com)
 * [Eat That Frog](https://www.amazon.com/Eat-That-Frog-Great-Procrastinating/dp/162656941X/ref=sr_1_1?crid=2RQ9XLRVKN1VP&keywords=eat+that+frog&qid=1663371437&sprefix=eat+that+frog%2Caps%2C109&sr=8-1)
 * [Height](https://height.app)
+* **[14:57](#t=14:57)** Weighting tasks
+* **[18:29](#t=18:29)** Pomodoro technique
+* **[20:53](#t=20:53)** Sponsor: StoryBlok
+* **[22:46](#t=22:46)** The hard schedule
+* **[29:24](#t=29:24)** Blocking out distractions
+* [Focus](https://meaningful-things.com/focus)
+* [Self Control](https://selfcontrolapp.com)
+* **[32:20](#t=32:20)** Sponsor: LogRocket
+* **[33:34](#t=33:34)** Tips We Have
+* **[42:55](#t=42:55)** Sponsor: Freshbooks
+* **[43:32](#t=43:32)** Software to help get things done.
+* [Things](https://culturedcode.com/things/)
+* [Todoist](https://todoist.com)
+* [Omnifocus](https://www.omnigroup.com/omnifocus)
+* [Transmit](https://panic.com/transmit/)
+* [Savvycal](https://savvycal.com)
+* [Centered](https://www.centered.app)
+* [Remarkable](https://remarkable.com)
+* **[56:21](#t=56:21)** SIIIIICK ××× PIIIICKS ×××
 
 ## ××× SIIIIICK ××× PIIIICKS ×××
 
-* Scott:
-* Wes:
+* Scott: [USB C Female to USB Male Adapter](https://amzn.to/3Bjfbxl)
+* Wes: [Measuring tape](https://www.homedepot.ca/product/dewalt-25-ft-tape-measure-2-pack-/1001071650)
 
 ## Shameless Plugs
 
