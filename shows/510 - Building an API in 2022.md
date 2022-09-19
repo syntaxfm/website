@@ -46,7 +46,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 * [Prismic](https://prismic.io): Service
 * [Hasura](https://hasura.io): Open Source and Service
 * [Contentful](https://www.contentful.com)
-* [https://hygraph.com/](hygraph)
+* [hygraph](https://hygraph.com)
 * **[48:01](#t=48:01)** Should I use x or y?
 * **[51:35](#t=51:35)** Tools
 * [GraphQL Playground](https://www.apollographql.com/docs/apollo-server/v2/testing/graphql-playground/)
