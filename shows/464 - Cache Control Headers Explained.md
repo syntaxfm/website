@@ -22,7 +22,7 @@ LogRocket lets you replay what users do on your site, helping you reproduce bugs
 * **[02:28](#t=02:28)** Sponsor: LogRocket
 * **[03:08](#t=03:08)** My struggle has been with caching, cache control headers and would love a better explanation on some of the fields?
 * [Time to live calculator](https://svelte.dev/repl/a779692677d44146b9118e0008cbb4d0?version=3.48.0)
-* [Reminx Conf](https://remix.run/conf)
+* [Remix Conf](https://remix.run/conf)
 * [Opera](http://opera.com/)
 * **[04:48](#t=04:48)** What is a header?
 * **[06:05](#t=06:05)** What is caching?
