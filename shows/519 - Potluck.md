@@ -2,7 +2,7 @@
 number: 519
 title: Potluck - Using Emoji in Naming × Project Estimates × Goal Planning
 date: 1664971200073
-url: 
+url: https://traffic.libsyn.com/syntax/Syntax_-_519.mp3
 ---
 
 In this episode of Syntax, Wes and Scott answer your questions about whether you should use emoji in naming grid elements, how to estimate project times, responsive design tips, animating gradient backgrounds, and more.
