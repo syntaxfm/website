@@ -27,7 +27,7 @@ Get started at [Firehydrant.com/syntax](https://Firehydrant.com/syntax)
 * **[01:52](#t=01:52)** Guest introduction
 * [OpenSauced.pizza](https://opensauced.pizza/)
 * [@Bdougieyo on TikTok](https://www.tiktok.com/@bdougieyo)
-* [bdougie on Twitch](https://www.twitch.tv/bdougie)
+* [bdougie on Twitch](https://www.twitch.tv/bdougieyo)
 * [Open Sauced on YouTube](https://www.youtube.com/c/OpenSauced)
 * [bdougie on YouTube](https://www.youtube.com/c/bdougie)
 * [Jamstack](https://jamstack.org)
