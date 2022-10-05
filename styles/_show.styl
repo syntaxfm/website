@@ -109,6 +109,12 @@
     color lighten(black, 20%)
     border-bottom 1px solid yellow
     text-decoration none
+  a[href]:not(.button,:where([href^="#"],[href^="/"]:not([href^="//"]),[href*="//syntax.fm"],[href*="wesbos" i],[href*="leveluptutorials" i],[href*="stolinski" i],[href*="twitter.com/syntaxfm" i]))
+      color blue
+      position relative
+      &:hover
+        color lighten(blue, 20%)
+        border-bottom-color lighten(blue, 20%)  
   code
     background: #f4f4f4;
     border: 1px solid #ddd;
