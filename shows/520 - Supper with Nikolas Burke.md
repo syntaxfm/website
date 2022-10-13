@@ -1,5 +1,5 @@
 ---
-number: 484
+number: 520
 title: Supper Club × ORMs with Nikolas Burke from Prisma
 date: 1665144000037
 url: https://traffic.libsyn.com/syntax/Syntax_-_520.mp3
