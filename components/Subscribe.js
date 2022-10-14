@@ -8,7 +8,7 @@ function Subscribe() {
             href="https://itunes.apple.com/ca/podcast/syntax-tasty-web-development-treats/id1253186678?mt=2"
             rel="noopener noreferrer"
           >
-            iTunes
+            Apple Podcasts
           </a>
         </li>
         <li className="subscribe__link subscribe__link--overcast">
@@ -26,7 +26,7 @@ function Subscribe() {
             href="https://www.google.com/podcasts?feed=aHR0cHM6Ly9mZWVkLnN5bnRheC5mbS9yc3M%3D"
             rel="noopener noreferrer"
           >
-            Google Podcast
+            Google Podcasts
           </a>
         </li>
         <li className="subscribe__link subscribe__link--stitcher">
@@ -44,7 +44,7 @@ function Subscribe() {
             href="http://pca.st/fmx9"
             rel="noopener noreferrer"
           >
-            PocketCasts
+            Pocket Casts
           </a>
         </li>
         <li className="subscribe__link subscribe__link--spotify">
