@@ -11,13 +11,13 @@ In this supper club episode of Syntax, Wes and Scott talk with Filipe Ferreira o
 
 Today’s episode was sponsored by Gatsby, the fastest frontend for the headless web. Gatsby is the framework of choice for content-rich sites backed by a headless CMS as its GraphQL data layer makes it straightforward to source website content from anywhere. Gatsby’s opinionated, React-based framework makes the hardest parts of building a performant website simpler. Visit [Gatsby.dev/Syntax](https://gatsby.dev/Syntax) to get your first Gatsby site up in minutes and experience the speed. ⚡️
 
-## Sponsorname - Sponsor
+## Retool - Sponsor
 
 Retool is the fast way to build internal tools. Visually design apps that interface with any database or API. Switch to code nearly anywhere to customize how your apps look and work. With Retool, you ship more apps and move your business forward—all in less time.
 
 [retool.com/syntax](http://retool.com/syntax)
 
-## Sponsorname - Sponsor
+## Storyblok - Sponsor
 
 [Storyblok](https://www.storyblok.com/?utm_source=syntaxfm&utm_medium=sponsor&utm_campaign=AWA_SPON_SFM_TRA&utm_content=syntaxfm-podcast) is a headless component-based CMS with a real-time visual editor. It offers the flexibility for developers to craft their perfect tech stack, but it also empowers content creators to make changes independently. The result is that every team has the freedom to quickly and easily create the ideal website with limitless extensibility. Other key features include robust Storyblok SDKs and APIs, powerful internationalization options, and an eCommerce-ready platform.
 
@@ -26,6 +26,7 @@ Retool is the fast way to build internal tools. Visually design apps that interf
 * **[00:36](#t=00:36)** Welcome
 * **[02:15](#t=02:15)** Guest introduction
 * [fbritoferreira.com](https://fbritoferreira.com)
+* [@fbritoferreira](https://twitter.com/fbritoferreira)
 * [@SkyShowtime](https://mobile.twitter.com/SkyShowtime)
 * [Peacock](https://mobile.twitter.com/peacock)
 * **[04:13](#t=04:13)** What do the systems look like inside of Sky?
