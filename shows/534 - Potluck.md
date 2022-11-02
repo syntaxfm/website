@@ -1,11 +1,11 @@
 ---
 number: 534
-title: Supper Club × Meeting IRL × SSG vs SSR × Domain Privacy
+title: Potluck × Meeting IRL × SSG vs SSR × Domain Privacy
 date: 1668020381201
 url: https://traffic.libsyn.com/syntax/Syntax_-_534.mp3
 ---
 
-In this Supper Club episode of Syntax, Wes and Scott answer your questions about meeting IRL, bookmarks, SSG vs SSR, domain privacy, deploying monorepos, and more.
+In this Potluck episode of Syntax, Wes and Scott answer your questions about meeting IRL, bookmarks, SSG vs SSR, domain privacy, deploying monorepos, and more.
 
 ## Sentry  - Sponsor
 
