@@ -1,8 +1,8 @@
 ---
 number: 539
 title: React use() hook and Async Server Components Proposal
-date: 
-url: 
+date: 1669032000626
+url: https://traffic.libsyn.com/syntax/Syntax_-_539.mp3
 ---
 
 In this Hasty Treat, Scott and Wes talk about the new proposal for React, what the basics of it are, why it's being proposed, and some benefits and issues it brings up.
