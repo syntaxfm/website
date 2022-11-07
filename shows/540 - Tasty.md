@@ -1,7 +1,7 @@
 ---
 number: 540
 title: Responsive Design Techniques
-date: 
+date: 1669204800080
 url: 
 ---
 
