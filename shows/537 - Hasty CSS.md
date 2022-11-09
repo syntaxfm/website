@@ -2,7 +2,7 @@
 number: 537
 title: CSS Trends Almanac for 2022 Part 2
 date: 1668600000985
-url: https://traffic.libsyn.com/syntax/Syntax_-_537.mp3
+url: https://traffic.libsyn.com/syntax/Syntax_-_537_v2.mp3
 ---
 
 In this episode of Syntax, it's part 2 of Wes and Scott's journey through the CSS Trends Almanac for 2022 talking through the rest of the popular CSS properties on the web.
@@ -44,10 +44,10 @@ LogRocket lets you replay what users do on your site, helping you reproduce bugs
 * [Brad Frost - Why We’re Breaking Up with CSS in JS](https://bradfrost.com/blog/link/why-were-breaking-up-with-css-in-js/)
 * **[42:28](#t=42:28)** Sass
 * **[43:20](#t=43:20)** Print styles
-* **[45:39](#t=45:39)** Sponsor: Sanity
-* **[46:25](#t=46:25)** Longhand properities
-* **[48:08](#t=48:08)** Non-existant properties
-* **[51:54](#t=51:54)** SIIIIICK ××× PIIIICKS ×××
+* **[45:38](#t=45:38)** Sponsor: Sanity
+* **[46:38](#t=46:38)** Longhand properities
+* **[48:21](#t=48:21)** Non-existant properties
+* **[52:06](#t=52:06)** SIIIIICK ××× PIIIICKS ×××
 
 ## ××× SIIIIICK ××× PIIIICKS ×××
 
