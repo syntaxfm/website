@@ -2,7 +2,7 @@
 number: 538
 title: Supper Club × Ryan Dhal and Deno
 date: 1668772800611
-url: https://traffic.libsyn.com/syntax/Syntax_-_538.mp3
+url: https://traffic.libsyn.com/syntax/Syntax_-_538_v2.mp3
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Ryan Dhal about Deno. Why was Deno created? What is Deno written in? How is Deno so much faster? And what's the future of Deno?
@@ -32,22 +32,22 @@ Sanity.io is a real-time headless CMS with a fully customizable Content Studio b
 * **[09:04](#t=09:04)** How does TypeScript fit into the landscape?
 * **[11:40](#t=11:40)** How is Deno so much faster?
 * **[13:28](#t=13:28)** Sponsor: Sanity
-* **[14:03](#t=14:03)** What is Deno written in?
-* **[15:39](#t=15:39)** Should developers be learning Rust?
-* **[18:10](#t=18:10)** Will libraries that work on npm eventually work in Deno?
-* **[21:34](#t=21:34)** Are we going to use Node API's or web spec?
-* **[24:14](#t=24:14)** Sponsor: Sentry
-* **[25:14](#t=25:14)** What is tooling like for Deno?
+* **[14:17](#t=14:17)** What is Deno written in?
+* **[15:56](#t=15:56)** Should developers be learning Rust?
+* **[18:27](#t=18:27)** Will libraries that work on npm eventually work in Deno?
+* **[21:52](#t=21:52)** Are we going to use Node API's or web spec?
+* **[24:31](#t=24:31)** Sponsor: Sentry
+* **[25:31](#t=25:31)** What is tooling like for Deno?
 * [WinterCG](https://wintercg.org/)
 * [Deno VS Code Extension](https://marketplace.visualstudio.com/items?itemName=denoland.vscode-deno)
-* **[29:10](#t=29:10)** What is Deno deploy?
+* **[29:27](#t=29:27)** What is Deno deploy?
 * [Deno Deploy](https://deno.com/deploy)
-* **[33:44](#t=33:44)** Deno's framework Fresh
-* **[38:39](#t=38:39)** Client side vs server side rendering
-* **[41:10](#t=41:10)** Sponsor: Gatsby
-* **[42:11](#t=42:11)** What's the future of Deno?
-* **[43:22](#t=43:22)** Supper club questions
-* **[53:13](#t=53:13)** SIIIIICK ××× PIIIICKS ×××
+* **[34:01](#t=34:01)** Deno's framework Fresh
+* **[38:56](#t=38:56)** Client side vs server side rendering
+* **[41:27](#t=41:27)** Sponsor: Gatsby
+* **[42:28](#t=42:28)** What's the future of Deno?
+* **[43:39](#t=43:39)** Supper club questions
+* **[53:30](#t=53:30)** SIIIIICK ××× PIIIICKS ×××
 
 ## Tweet us your tasty treats
 
