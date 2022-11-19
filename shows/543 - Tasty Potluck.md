@@ -1,8 +1,8 @@
 ---
 number: 543
-title: Potluck × 
+title: Potluck × Twitter Following × TypeScript × Playwright
 date: 1669809600215
-url: 
+url: https://traffic.libsyn.com/syntax/Syntax_-_543.mp3
 ---
 
 In this potluck episode of Syntax, Wes and Scott answer your questions about strategies to find good Twitter follows, should we use TypeScript for a company blog, what's Playwright, and more!
@@ -37,13 +37,14 @@ LogRocket lets you replay what users do on your site, helping you reproduce bugs
 * [Playwright](https://playwright.dev)
 * **[34:28](#t=34:28)** Sponsor: LogRocket
 * **[35:19](#t=35:19)** What separates a "scripting" language from a "programming" language?
-* **[39:37](#t=39:37)** Do you have any tips on how to change a defeated programmer mindset?
+* **[39:37:14](#t=39:37:14)** Sponsor: Prismic
+* **[40:23:02](#t=40:23:02)** Do you have any tips on how to change a defeated programmer mindset?
 * [Partydown](https://partytown.builder.io)
-* **[46:42](#t=46:42)** How has your use of and work in the browser changed with Arc?
+* **[47:34:07](#t=47:34:07)** How has your use of and work in the browser changed with Arc?
 * [Arc Browser](https://arc.net)
 * [Syntax 514 - Supper Club × Arc Browser with Hursh Agrawal](https://syntax.fm/show/514/supper-club-arc-browser-with-hursh-agrawal)
-* **[48:26](#t=48:26)** Why would I attach an event listener with the useCapture argument as true?
-* **[50:42](#t=50:42)** SIIIIICK ××× PIIIICKS ×××
+* **[49:18:15](#t=49:18:15)** Why would I attach an event listener with the useCapture argument as true?
+* **[51:33:24](#t=51:33:24)** SIIIIICK ××× PIIIICKS ×××
 
 ## ××× SIIIIICK ××× PIIIICKS ×××
 
