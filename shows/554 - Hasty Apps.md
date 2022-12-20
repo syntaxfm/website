@@ -1,11 +1,11 @@
 ---
 number: 554
 title: Desktop apps in JS × Electron and Tauri
-date: 
-url: 
+date: 1672056000792
+url: https://traffic.libsyn.com/syntax/Syntax_-_554.mp3
 ---
 
-In this Hasty Treat, Scott and Wes talk about
+In this Hasty Treat, Scott and Wes talk about the current state of building desktop apps with Electron or Tauri.
 
 ## Sentry - Sponsor
 
@@ -17,11 +17,18 @@ Prismic is a Headless CMS that makes it easy to build website pages as a set of 
 
 ## Show Notes
 
+* **[00:33](#t=00:33)** Welcome
+* **[01:18](#t=01:18)** Sponsor: Sentry
+* **[02:47](#t=02:47)** Sponsor: Prismic
+* **[04:01](#t=04:01)** Our experience with building desktop apps
 * [Level Up Tutorials: Level 1 Electron](https://levelup.video/tutorials/level-1-electron)
 * [Hair.WesBos.com](https://hair.wesbos.com)
-
+* **[10:04](#t=10:04)** Frameworks for building apps
+* **[10:56](#t=10:56)** Tauri vs Electron
 * [Tauri](https://tauri.app)
 * [Electron](https://www.electronjs.org)
+* **[23:38](#t=23:38)** Tooling
+* [vite-plugin-electron](https://www.npmjs.com/package/vite-plugin-electron)
 
 ## Tweet us your tasty treats
 
