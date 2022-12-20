@@ -2,7 +2,7 @@
 number: 555
 title: Were We Wrong? 2022 Predictions Revisited
 date: 1672228800120
-url: 
+url: https://traffic.libsyn.com/syntax/Syntax_-_555.mp3
 ---
 
 In this episode of Syntax, Wes and Scott revisit their 2022 predictions and see which ones they got right, and which they got wrong.
@@ -21,16 +21,32 @@ Auth0 is the easiest way for developers to add authentication and secure their a
 
 ## Show Notes
 
+* **[00:09](#t=00:09)** Welcome
 * [Syntax 420: 2022 Predictions](https://syntax.fm/show/420/2022-predictions)
-
+* **[01:44](#t=01:44)** Svelte popularity
 * [Svelte](https://svelte.dev)
 * [Svelte Kit](https://kit.svelte.dev)
-
+* **[04:09](#t=04:09)** Next.js data layer
+* **[05:06](#t=05:06)** Web components UI
 * [Open UI](https://open-ui.org)
-
+* **[06:19](#t=06:19)** Rust popularity
 * [Rust](https://www.rust-lang.org)
-
+* **[10:07](#t=10:07)** Serverless and Cloud functions
+* **[10:42](#t=10:42)** Tailwind popularity
+* **[16:20](#t=16:20)** Sponsor: Sentry
+* **[17:59](#t=17:59)** Next gen dev tools
+* **[19:46](#t=19:46)** CSS Container queries
+* **[21:45](#t=21:45)** GraphQL
+* **[26:26](#t=26:26)** Deno
+* **[29:44](#t=29:44)** TypeScript
+* **[34:28](#t=34:28)** Sponsor: Sanity
+* **[35:07](#t=35:07)** Server comeback
+* **[36:21](#t=36:21)** Checkouts and payment processers
 * [Lemon Squeezy](https://www.lemonsqueezy.com)
+* **[43:05](#t=43:05)** Sponsor: Auth0
+* **[44:18](#t=44:18)** Temporal API
+* **[46:44](#t=46:44)** Remote dev thin client popularity
+* **[49:49](#t=49:49)** SIIIIICK ××× PIIIICKS ×××
 
 ## ××× SIIIIICK ××× PIIIICKS ×××
 
