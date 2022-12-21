@@ -1,6 +1,6 @@
 ---
 number: 550
-title: Supper Club × React Video Creator with Jonny Burger
+title: Supper Club × Remotion React Video with Jonny Burger
 date: 1671192000924
 url: https://traffic.libsyn.com/syntax/Syntax_-_550.mp3
 ---
