@@ -1,6 +1,6 @@
 ---
 number: 554
-title: Desktop apps in JS × Electron and Tauri
+title: Desktop Apps in JS × Electron and Tauri
 date: 1672056000792
 url: https://traffic.libsyn.com/syntax/Syntax_-_554.mp3
 ---
