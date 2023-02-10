@@ -27,7 +27,8 @@ If you want to know what’s happening with your code, track errors and monitor 
 * **[23:50](#t=23:50)** Type Checker
 * **[25:13](#t=25:13)** MongoDB to TypScript Generator
 * **[26:44](#t=26:44)** Eslint-Typescript
-* **[28:03](#t=28:03)** Deprank
+* **[28:03](#t=28:03)** Deprank - <https://github.com/codemix/deprank>
+* **[28:03](#t=28:03)** Typesync - <https://github.com/jeffijoe/typesync>
 * [Deprank](https://github.com/codemix/deprank)
 * **[29:18](#t=29:18)** Refactor and rename to .ts
 * **[32:40](#t=32:40)** Typing your code
