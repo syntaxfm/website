@@ -2,6 +2,24 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
+function handleClick(e) {
+  const { target } = e;
+  if (target.matches(`a[href*='#t=']`)) {
+    e.preventDefault();
+    const { href } = target;
+    const seconds = href
+      .split('#t=')
+      .at(-1)
+      .split(':')
+      .reverse()
+      .map(Number)
+      .map((num, i) => num * 60 ** i)
+      .reduce((acc, num) => acc + num, 0);
+    // TODO: This shouldn't use querySelector. It should use a ref. Meh its fine
+    document.querySelector('audio').currentTime = seconds;
+  }
+}
+
 const ShowNotes = ({ show, setCurrentPlaying }) => {
   useEffect(() => {
     document.querySelector('.showNotes').scrollTop = 0;
@@ -35,7 +53,10 @@ const ShowNotes = ({ show, setCurrentPlaying }) => {
       >
         <span className="icon">✏️</span> Edit Show Notes
       </a>
-      <div dangerouslySetInnerHTML={{ __html: show.html }} />
+      <div
+        onClick={handleClick}
+        dangerouslySetInnerHTML={{ __html: show.html }}
+      />
     </div>
   );
 };
