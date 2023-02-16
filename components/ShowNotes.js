@@ -53,10 +53,12 @@ const ShowNotes = ({ show, setCurrentPlaying }) => {
       >
         <span className="icon">✏️</span> Edit Show Notes
       </a>
+      {/* eslint-disable */}
       <div
         onClick={handleClick}
         dangerouslySetInnerHTML={{ __html: show.html }}
-      />
+        />
+      {/* eslint-enable */}
     </div>
   );
 };
