@@ -2,7 +2,7 @@
 number: 585
 title: Fundamentals × What Makes a Website Slow?
 date: 1678276800567
-url: 
+url: https://traffic.libsyn.com/syntax/Syntax_-_585.mp3
 ---
 
 In this episode of Syntax, Wes and Scott talk through all the reasons your website might be slow, and how you can troubleshoot a slow website such as issues on the server, large assets, caching, CSS, JavaScript, latency, and more.
