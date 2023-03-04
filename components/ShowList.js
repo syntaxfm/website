@@ -41,10 +41,17 @@ const ShowList = ({
 
   return (
     <div className="showList">
-      <div className="filter__wrapper">
+      <div className="filterWrapper">
+        <input
+          type="text"
+          className="filterInput"
+          placeholder="Search"
+          value={searchTerm}
+          onChange={handleSearchChange}
+        />
         <select
           defaultValue="all"
-          className="filter__select"
+          className="filterSelect"
           onChange={handleFilterChange}
         >
           <option value="all">All</option>
@@ -54,13 +61,6 @@ const ShowList = ({
             </option>
           ))}
         </select>
-        <input
-          type="text"
-          className="filter__input"
-          placeholder="Search"
-          value={searchTerm}
-          onChange={handleSearchChange}
-        />
       </div>
       {filteredShows.map((show) => (
         <Show
