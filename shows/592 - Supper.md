@@ -2,7 +2,7 @@
 number: 592
 title: Supper Club × The Role Of UX Designers In Humanizing The Future with Travis Neilson
 date: 1679659200559
-url: 
+url: https://traffic.libsyn.com/syntax/Syntax_-_592.mp3
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Travis Neilson about his work at Google, YouTube music, and where AI is at now, and where it's headed in the future.
@@ -33,8 +33,6 @@ In this supper club episode of Syntax, Wes and Scott talk with Travis Neilson ab
 * [The Age of Spiritual Machines](https://amzn.to/3mwehsl)
 * [The Singularity is Near](https://amzn.to/3KWfm6R)
 * [The Shape of Design](https://amzn.to/3F2oJy6)
-
-## Shameless Plugs
 
 ## Tweet us your tasty treats
 
