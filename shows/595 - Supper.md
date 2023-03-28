@@ -2,7 +2,7 @@
 number: 595
 title: Supper Club × Web Components and Lit with Justin Fagnani of Google
 date: 1680264000571
-url: 
+url: https://traffic.libsyn.com/syntax/Syntax_-_595_wsponsor.mp3
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Justin Fagnani about working with web components, using Lit, how routing and state are handled, thoughts on signals, and what is the future of web components?
@@ -13,9 +13,10 @@ If you want to know what’s happening with your code, track errors and monitor 
 
 ## Show Notes
 
-* **[00:49](#t=00:49)** Guest introduction
-* **[01:18](#t=01:18)** Why do people use React when we have web components and lit?
-* **[02:47](#t=02:47)** Who is Justin Fagnani?
+* **[00:49:11](#t=00:49:11)** Guest introduction
+* **[01:03:00](#t=01:03:00)** Sponsor: Sentry
+* **[02:02:11](#t=02:02:11)** Why do people use React when we have web components and lit?
+* **[03:57:14](#t=03:57:14)** Who is Justin Fagnani?
 * [Justin Fagnani](https://justinfagnani.com/)
 * [Justin Fagnani (@justinfagnani)](https://twitter.com/justinfagnani)
 * [Justin Fagnani · GitHub](https://github.com/justinfagnani)
@@ -23,29 +24,31 @@ If you want to know what’s happening with your code, track errors and monitor 
 * [Lit (@buildWithLit)](https://twitter.com/buildWithLit)
 * [Lit](https://lit.dev/)
 * [Google App Maker](https://en.wikipedia.org/wiki/Google_App_Maker)
-* **[03:45](#t=03:45)** What are web components?
+* **[04:55:02](#t=04:55:02)** What are web components?
 * [The Extensible Web Manifesto](https://github.com/extensibleweb/manifesto)
-* **[04:49](#t=04:49)** What is the shadow dom?
-* **[07:46](#t=07:46)** Was there an intention for a layer on top of web components?
-* **[12:12](#t=12:12)** What is Lit?
-* **[15:10](#t=15:10)** What are the benefits of using a library for web components?
+* **[05:59:08](#t=05:59:08)** What is the shadow dom?
+* **[08:56:02](#t=08:56:02)** Was there an intention for a layer on top of web components?
+* **[13:22:09](#t=13:22:09)** What is Lit?
+* **[16:19:23](#t=16:19:23)** What are the benefits of using a library for web components?
 * [Custom Elements Everywhere](https://custom-elements-everywhere.com/)
-* **[20:10](#t=20:10)** Why would write in React and not in web components?
-* **[23:14](#t=23:14)** How does CSS work with web components and Lit?
-* **[26:50](#t=26:50)** Using constructable stylesheets
+* **[21:20:14](#t=21:20:14)** Why would write in React and not in web components?
+* **[24:24:18](#t=24:24:18)** How does CSS work with web components and Lit?
+* **[28:00:14](#t=28:00:14)** Using constructable stylesheets
 * [::part](https://developer.mozilla.org/en-US/docs/Web/CSS/::part)
 * [Constructable stylesheets/](https://web.dev/constructable-stylesheets/)
-* **[28:48](#t=28:48)** Does Lit do anything with CSS?
-* **[30:51](#t=30:51)** Does Lit do routing?
+* **[29:58:18](#t=29:58:18)** Does Lit do anything with CSS?
+* **[32:01:01](#t=32:01:01)** Does Lit do routing?
 * [Lit Mobx](https://www.npmjs.com/package/@adobe/lit-mobx)
-* **[32:56](#t=32:56)** How does Lit work with state?
-* **[33:42](#t=33:42)** What about signals?
-* **[37:39](#t=37:39)** Is Server Side Rendering possible with web components?
-* **[39:53](#t=39:53)** What websites are using Lit and/or web components?
-* **[43:16](#t=43:16)** What's the difference between Lit and Polymer?
-* **[44:34](#t=44:34)** What is the future of web components?
-* **[46:59](#t=46:59)** Supper club questions
+* **[34:06:02](#t=34:06:02)** How does Lit work with state?
+* **[34:52:15](#t=34:52:15)** What about signals?
+* **[38:49:00](#t=38:49:00)** Is Server Side Rendering possible with web components?
+* **[41:03:07](#t=41:03:07)** What websites are using Lit and/or web components?
+* **[44:26:08](#t=44:26:08)** What's the difference between Lit and Polymer?
+* **[45:44:17](#t=45:44:17)** What is the future of web components?
+* **[48:09:14](#t=48:09:14)** Supper club questions
 * [GitHub - w3c/csswg-drafts: CSS Working Group Editor Drafts](https://github.com/w3c/csswg-drafts)
+* **[56:36:20](#t=56:36:20)** SIIIIICK ××× PIIIICKS ×××
+
 * **[55:27](#t=55:27)** SIIIIICK ××× PIIIICKS ×××
 
 ## ××× SIIIIICK ××× PIIIICKS ×××
