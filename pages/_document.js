@@ -9,7 +9,7 @@ class SyntaxDocument extends Document {
         <Head>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <meta name="description" content={packageInfo.description} />
-          <meta name="theme-color" content="#F1C15D" />
+          <meta name="theme-color" content="#FABF46" />
           <meta charSet="utf-8" />
           <meta property="og:description" content={packageInfo.description} />
           <meta
