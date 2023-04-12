@@ -12,9 +12,6 @@ const Header = () => (
     </div>
     <div className="header__right">
       <div className="title">
-        <p style={{ color: 'black', position: 'absolute', top: -20 }}>
-          6ZFMP LRC7I QR4NT JPJET PX1Y2 BSGMS 3WDJM
-        </p>
         <h2 className="tagline" title="TAOWF AYR7R AWLQ5">
           A Tasty Treats Podcast for Web Developers.
         </h2>
