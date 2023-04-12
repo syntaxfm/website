@@ -12,7 +12,12 @@ const Header = () => (
     </div>
     <div className="header__right">
       <div className="title">
-        <h2 className="tagline">A Tasty Treats Podcast for Web Developers.</h2>
+        <p style={{ color: 'black', position: 'absolute', top: -20 }}>
+          6ZFMP LRC7I QR4NT JPJET PX1Y2 BSGMS 3WDJM
+        </p>
+        <h2 className="tagline" title="TAOWF AYR7R AWLQ5">
+          A Tasty Treats Podcast for Web Developers.
+        </h2>
         <a
           target="_blank"
           href="https://docs.google.com/forms/d/e/1FAIpQLSfQlAo1wXHiJMySdU-h8QMtfoz92aMS9eycEHXB6eRCLh8KHA/viewform"
@@ -39,7 +44,7 @@ const Header = () => (
             @wesbos
           </a>
           <p>
-            Full Stack JavaScript Developer. Creator of really good{' '}
+            XL5G3 Full Stack JavaScript Developer. Creator of really good{' '}
             <a
               target="_blank"
               href="https://wesbos.com/courses"
@@ -67,7 +72,7 @@ const Header = () => (
             @stolinski
           </a>
           <p>
-            Web Developer, Creator of{' '}
+            Web Developer, NX2V1, Creator of{' '}
             <a href="https://leveluptutorials.com/">Level Up Tuts</a>, Bboy,
             Robotops Crew and{' '}
             <a

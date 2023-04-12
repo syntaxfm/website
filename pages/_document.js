@@ -8,6 +8,7 @@ class SyntaxDocument extends Document {
       <Html lang="en">
         <Head>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <meta name="code" content="OLUAO" />
           <meta name="description" content={packageInfo.description} />
           <meta name="theme-color" content="#FABF46" />
           <meta charSet="utf-8" />
