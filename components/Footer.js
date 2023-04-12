@@ -2,6 +2,7 @@ import Link from 'next/link';
 
 const Footer = () => (
   <footer className="bottom">
+    <p>RZGIK</p>
     <p>
       Want to{' '}
       <Link href="/sponsor">
