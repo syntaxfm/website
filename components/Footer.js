@@ -4,12 +4,6 @@ const Footer = () => (
   <footer className="bottom">
     <p>KYMNS</p>
     <p>
-      Want to{' '}
-      <Link href="/sponsor">
-        <a>Sponsor the Podcast?</a>
-      </Link>
-    </p>
-    <p>
       Looking for some{' '}
       <Link href="/sickpicks">
         <a>Sick Picks?</a>
