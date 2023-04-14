@@ -20,15 +20,14 @@ export default function Live() {
               Ask a potluck question, give us your sick pick, do a shameless
               plug or have us ask you a Stump'd question!
             </p>
-            <a href="https://discord.gg/ccMC6kB" className="live__callin-btn">
-              Join the Discord Chat to get on!
+            <a
+              href="https://riverside.fm/studio/syntax-live"
+              className="live__callin-btn"
+            >
+              Join the Riverside to get on! Will be streaming here and on
+              YouTube as well.
             </a>
-            <p>
-              Friday Oct 30th, 10:30am PST, 1:30 EST.{' '}
-              <a href="https://everytimezone.com/s/b5906524">
-                Find your timezone
-              </a>
-            </p>
+            <p>TODAY, 12PM ET </p>
           </div>
           <VideoPlayer />
         </main>
