@@ -9,7 +9,7 @@ export default function VideoPlayer() {
       }}
     >
       <ReactHlsPlayer
-        url="https://stream.mux.com/K4SmOZ2s32j4kxoBt7sPH01wtwt00c02qxj.m3u8"
+        url="https://stream.mux.com/ASlzqxSwpCm6D8hNftrvMnI003z2kYaCi.m3u8"
         autoplay
         controls
         width="100%"
