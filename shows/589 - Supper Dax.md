@@ -3,6 +3,11 @@ number: 589
 title: Supper Club × Next.js on AWS + Serverless with Dax Raad
 date: 1679054400845
 url: https://traffic.libsyn.com/syntax/Syntax_-_589_v2.mp3
+guest:
+  name: Dax Raad
+  github: thdxr
+  twitter: thdxr
+  url: https://thdxr.com/
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Dax Raad about building on serverless infrastructure, Next.js, and SST.
