@@ -3,6 +3,11 @@ number: 601
 title: Supper Club × Nate Weinert and Tamagui
 date: 1681473600636
 url: https://traffic.libsyn.com/syntax/Syntax_-_601.mp3
+guest:
+  name: Nate Weinert
+  github: https://github.com/natew
+  twitter: natebirdman
+  url: https://tamagui.dev/
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Nate Weinert, creator of Tamagui, about what Tamagui is, how styling works in React native, building and designing the Tamagui website, and more.
