@@ -3,6 +3,11 @@ number: 538
 title: Supper Club × Ryan Dahl and Deno
 date: 1668772800611
 url: https://traffic.libsyn.com/syntax/Syntax_-_538_v2.mp3
+guest:
+  name: Ryan Dahl
+  github: ry
+  twitter: 
+  url: https://tinyclouds.org/
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Ryan Dahl about Deno. Why was Deno created? What is Deno written in? How is Deno so much faster? And what's the future of Deno?
