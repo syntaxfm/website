@@ -3,6 +3,14 @@ number: 586
 title: Supper Club × Digital Nomad with Eric Sartorius
 date: 1678449600813
 url: https://traffic.libsyn.com/syntax/Syntax_-_586.mp3
+guest:
+  name: Eric Sartorius
+  github: ericssartorius
+  twitter: EricSSartorius
+  url: 
+    - https://www.ericsartorius.com/
+    - https://www.purefunc.io/
+
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Eric Sartorius about his life as a digital nomad - including recently climbing Kilimanjaro, his tips for travel deals, crazy experiences while travelling, and what he brings on the road with him.
