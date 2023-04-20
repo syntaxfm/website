@@ -6,7 +6,7 @@ url: https://traffic.libsyn.com/syntax/Syntax_-_604.mp3
 guest:
   name: Nicholas Zakas
   github: nzakas
-  twitter: https://twitter.com/slicknet/
+  twitter: slicknet
   url: https://humanwhocodes.com/blog/
 ---
 
