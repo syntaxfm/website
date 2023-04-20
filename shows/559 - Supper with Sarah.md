@@ -3,6 +3,14 @@ number: 559
 title: Supper Club × Sarah Drasner on Engineering Management
 date: 1673006400241
 url: https://traffic.libsyn.com/syntax/Syntax_-_559_.mp3
+guest:
+  name: Sarah Drasner 
+  github: sdras
+  twitter: sarah_edo
+  url: https://sarahdrasnerdesign.com
+  social: 
+    - https://hachyderm.io/@sarah_edo
+    - https://codepen.io/sdras/
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Sarah Drasner about her new book, Engineering Management for the Rest of Us, what it's like moving from management to coding and back, the book writing process, and her Fortnite VS Code theme.
