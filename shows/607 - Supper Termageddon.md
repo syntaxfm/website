@@ -3,6 +3,17 @@ number: 607
 title: Supper Club × Privacy, Cookie Banners, GDPR with Donata and Hans Skillrud
 date: 1682683200985
 url: https://traffic.libsyn.com/syntax/Syntax_-_607.mp3
+guest:
+  - name: Donata Skillrud
+    twitter: DonataSkillrud
+    url: https://termageddon.com/
+    social:
+      - https://www.instagram.com/termageddon/
+      - https://www.linkedin.com/company/termageddon/
+  - name: Hans Skillrud
+    twitter: DeepSpaceHans
+    url: https://www.deepspacehans.com/
+    
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Donata and Hans Skillrud of Termageddon on GDPR, privacy policies, cookie pop ups, and the various legal and ethical reasons to implement them properly.
