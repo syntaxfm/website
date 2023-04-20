@@ -5,7 +5,7 @@ date: 1680868800133
 url: https://traffic.libsyn.com/syntax/Syntax_-_598.mp3
 guest:
   name: Fabian Kägy
-  github: https://github.com/fabiankaegy
+  github: fabiankaegy
   twitter: fabiankaegy
   url: https://fabian-kaegy.com/
   social: https://www.instagram.com/fabiankaegy/
