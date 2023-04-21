@@ -3,6 +3,12 @@ number: 595
 title: Supper Club × Web Components and Lit with Justin Fagnani of Google
 date: 1680264000571
 url: https://traffic.libsyn.com/syntax/Syntax_-_595_wsponsor.mp3
+guest:
+  name: Justin Fagnani
+  github: justinfagnani
+  twitter: justinfagnani
+  url: https://justinfagnani.com/
+  social: https://fosstodon.org/@justinfagnani
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Justin Fagnani about working with web components, using Lit, how routing and state are handled, thoughts on signals, and what is the future of web components?

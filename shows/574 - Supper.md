@@ -3,6 +3,11 @@ number: 574
 title: Supper Club × Qwik framework from Miško Hevery, the Creator of Angular
 date: 1676030400106
 url: https://traffic.libsyn.com/syntax/Syntax_-_574.mp3
+guest:
+  name: Miško Hevery
+  github: mhevery
+  twitter: mhevery
+  url: http://misko.hevery.com/
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Miško Hevery about why developers should check out Qwik, the benefits of lazy loading, sharing state between components, and other Builder.io projects like Partytown and Mitosis.

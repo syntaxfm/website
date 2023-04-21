@@ -3,6 +3,15 @@ number: 571
 title: Supper Club × Rust In Action with Tim McNamara
 date: 1675425600592
 url: https://traffic.libsyn.com/syntax/Syntax_-_571.mp3
+guest:
+  name: Tim McNamara
+  github: timClicks
+  twitter: timClicks
+  url: https://tim.mcnamara.nz/
+  social: 
+   - https://www.youtube.com/c/timClicks
+   - https://mastodon.nz/@timClicks
+   - https://www.linkedin.com/in/timmcnamaranz/
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Tim McNamara, author of Rust in Action about what Rust is, how to get started learning Rust, and ideas of good projects to begin learning Rust with.

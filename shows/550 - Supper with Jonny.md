@@ -3,6 +3,15 @@ number: 550
 title: Supper Club × Remotion React Video with Jonny Burger
 date: 1671192000924
 url: https://traffic.libsyn.com/syntax/Syntax_-_550.mp3
+guest:
+  name: Jonny Burger
+  github: JonnyBurger
+  twitter: JNYBGR 
+  url: https://www.jonny.io
+  social: 
+    - https://www.youtube.com/c/JonnyBurger
+    - https://www.instagram.com/jonnyburger/
+    - https://www.linkedin.com/in/jonny-burger-4115109b/
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Jonny Burger about why and how he built Remotion, his app that lets you create MP4 videos using React.

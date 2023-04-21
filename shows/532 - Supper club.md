@@ -3,6 +3,12 @@ number: 532
 title: Supper Club × Coding with ADHD with Dr. Courtney Tolinski
 date: 1667563200585
 url: https://traffic.libsyn.com/syntax/Syntax_-_532.mp3
+guest:
+  name: Dr. Courtney Tolinski 
+  twitter: DrTolinski
+  social: 
+    - https://www.linkedin.com/in/courtney-tolinski-5616b819
+    - https://www.instagram.com/learning.differently/
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Dr. Courtney Tolinski about ADHD, how to tell if you have ADHD, issues related to ADHD for computer workers, anxiety vs ADHD, and more.
