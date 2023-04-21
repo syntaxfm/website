@@ -13,7 +13,7 @@ If you want to know what’s happening with your code, track errors and monitor 
 
 ## Sanity - Sponsor
 
-Sanity.io is a real-time headless CMS with a fully customizable Content Studio built in React. Get a Sanity powered site up and running in minutes at [sanity.io/create](https://www.sanity.io/create). Get an awesome supercharged free developer plan on [sanity.io/syntax](https://www.sanity.io/syntax).
+Sanity.io is a real-time headless CMS with a fully customizable Content Studio built in React. Get a Sanity powered site up and running in minutes at [sanity.io/get-started](https://www.sanity.io/get-started). Get an awesome supercharged free developer plan on [sanity.io/syntax](https://www.sanity.io/syntax).
 
 ## Freshbooks - Sponsor
 
