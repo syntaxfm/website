@@ -3,6 +3,11 @@ number: 481
 title: Supper Club × Voice Coding with Pokey Rule
 date: 1657281600941
 url: https://traffic.libsyn.com/syntax/Syntax_-_481.mp3
+guest:
+  name: Pokey Rule
+  github: pokey
+  twitter: PokeyRule
+  social: https://www.youtube.com/channel/UCML02pamUSxtbwAcrUdVmXg
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Pokey Rule about using his voice to code, and the current state of voice coding software.
