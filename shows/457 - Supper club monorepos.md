@@ -3,6 +3,11 @@ number: 457
 title: Supper Club × NX Monorepos with Victor Savkin
 date: 1652443200950
 url: https://traffic.libsyn.com/syntax/Syntax_-_457.mp3
+guest:
+  name: Victor Savkin
+  github: vsavkin
+  twitter: victorsavkin
+  url: https://nx.app/company
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Victor Savkin about NX Monorepo development.
