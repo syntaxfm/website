@@ -3,6 +3,12 @@ number: 487
 title: Supper Club × Adam Cowley and Neo4j Database
 date: 1658491200074
 url: https://traffic.libsyn.com/syntax/Syntax_-_487.mp3
+guest:
+  name: Adam Cowley
+  github: adam-cowley
+  twitter: adamcowley
+  url: https://adamcowley.co.uk/
+  social: https://uk.linkedin.com/in/adamcowley
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Adam Cowley about how Neo4j Database can help when working with data for your next app.
