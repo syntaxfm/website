@@ -3,6 +3,11 @@ number: 310
 title: Serverless, Deno and TypeScript with Brian Leroux
 date: 1608127200805
 url: https://traffic.libsyn.com/syntax/Syntax310.mp3
+guest:
+  name: Brian Leroux
+  github: brianleroux
+  twitter: brianleroux
+  url: https://brian.io/ 
 ---
 
 In this episode of Syntax, Scott and Wes talk with Brian Leroux about severless, Deno, Typescript, and more!
