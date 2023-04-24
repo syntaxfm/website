@@ -3,6 +3,11 @@ number: 469
 title: Supper Club × Is No Code going to take our jobs? with Connor Finlayson
 date: 1654862400056
 url: https://traffic.libsyn.com/syntax/Syntax_-_469.mp3
+guest:
+  name: Connor Finlayson
+  twitter: FinlaysonConnor
+  url: https://www.connorfinlayson.com
+  social: https://www.youtube.com/c/ConnorFinlayson
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Connor Finlayson about his experience building and teaching no code projects.

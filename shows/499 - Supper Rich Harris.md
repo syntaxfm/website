@@ -3,6 +3,11 @@ number: 499
 title: Supper Club × Rich Harris, Author of Svelte
 date: 1660910400400
 url: https://traffic.libsyn.com/syntax/Syntax_-_499.mp3
+guest:
+  name: Rich Harris
+  github: Rich-Harris
+  twitter: rich_harris
+  url: https://svelte.dev 
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with the author of Svelte, Rich Harris, about what influenced the creation of Svelte, his thoughts on web components, the virtual DOM, why companies are switching to Svelte, and what's next for Svelte.

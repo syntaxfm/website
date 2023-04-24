@@ -3,6 +3,13 @@ number: 523
 title: Supper Club × Neovim, Lua, RPC and Twitch with TJ DeVries
 date: 1665748800604
 url: https://traffic.libsyn.com/syntax/Syntax_-_523.mp3
+guest:
+  name: TJ DeVries
+  github: tjdevries
+  twitter: teej_dv
+  social: 
+    - https://www.youtube.com/c/TjDeVries
+    - https://www.twitch.tv/teej_dv
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with TJ DeVries about his work on Neovim, programming in Lua, the benefits of RPC, live streaming your work day, and PDE.

@@ -3,6 +3,14 @@ number: 460
 title: Supper Club × Turborepo with Jared Palmer
 date: 1653048000500
 url: https://traffic.libsyn.com/syntax/Syntax_-_460.mp3
+guest:
+  name: Jared Palmer
+  github: jaredpalmer
+  twitter: jaredpalmer
+  url: https://jaredpalmer.com/
+  social: 
+    - https://www.instagram.com/jaredpalmer/
+    - https://www.linkedin.com/in/jaredlpalmer/
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Jared Palmer about Turborepo, how it fits in your tech stack, and what it was like being acquired by Vercel.
