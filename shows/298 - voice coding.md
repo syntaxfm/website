@@ -3,6 +3,11 @@ number: 298
 title: Voice Coding is Really Good with Josh Comeau
 date: 1604498400713
 url: https://traffic.libsyn.com/syntax/Syntax298.mp3
+guest:
+  name: Josh Comeau
+  github: joshwcomeau
+  twitter: joshwcomeau
+  url: https://www.joyofreact.com/
 ---
 
 In this episode of Syntax, Scott and Wes talk with Josh Comeau about coding with your voice, accessibility, bootcamps, animation, and more!
