@@ -3,6 +3,10 @@ number: 520
 title: Supper Club × ORMs with Nikolas Burk from Prisma
 date: 1665144000037
 url: https://traffic.libsyn.com/syntax/Syntax_-_520.mp3
+guest:
+  name: Nikolas Burk
+  github: nikolasburk
+  twitter: nikolasburk
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Nikolas Burk from Prisma about the role an ORM plays in a tech stack, how Prisma has changed over the years, ways to query data in Prisma, and how migrations work with Prisma.
