@@ -3,6 +3,11 @@ number: 496
 title: Supper Club × Headless Ecommerce with Shopify’s Josh Larson
 date: 1660305600626
 url: https://traffic.libsyn.com/syntax/Syntax_-_496.mp3
+guest:
+  name: Josh Larson
+  github: jplhomer
+  twitter: jplhomer
+  url: https://www.jplhomer.org/
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Josh Larson from Shopify about headless ecommerce, including Hydrogen from Shopify, how integrations work with Shopify, and what the tech stack is behind Hydrogen.
