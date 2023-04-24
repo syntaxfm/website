@@ -3,6 +3,12 @@ number: 478
 title: Supper Club × Developer Experience with Shawn Wang
 date: 1656676800529
 url: https://traffic.libsyn.com/syntax/Syntax_-_478.mp3
+guest:
+  name: Shawn Wan
+  github: sw-yx
+  twitter: @swyx
+  url: https://www.swyx.io/
+  social: https://www.youtube.com/swyxTV
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Shawn Wang about his thoughts on developer experience, why DX is important, and the importance of learning in public.
