@@ -3,6 +3,11 @@ number: 493
 title: Supper Club × Lee Robinson on React Suspense, Server Components
 date: 1659700800535
 url: https://traffic.libsyn.com/syntax/Syntax_-_493.mp3
+guest:
+  name: Lee Robinson
+  github: leerob
+  twitter: leeerob
+  url: https://leerob.io 
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Lee Robinson from Vercel about React Suspense, server components, the edge, and more!
