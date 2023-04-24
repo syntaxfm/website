@@ -3,6 +3,11 @@ number: 490
 title: Supper Club × Syed Balkhi and WordPress
 date: 1659096000768
 url: https://traffic.libsyn.com/syntax/Syntax_-_490.mp3
+guest:
+  name: Syed Balkhi
+  twitter: syedbalkhi
+  url: https://syedbalkhi.com/
+  social: https://www.instagram.com/syedbalkhi/
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Syed Balkhi about his experiences blogging and developing plugins in the WordPress ecosytem.
