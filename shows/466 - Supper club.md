@@ -3,6 +3,12 @@ number: 466
 title: Supper Club × Coding Burnout and Gardening with Anselm Hannemann
 date: 1654257600537
 url: https://traffic.libsyn.com/syntax/Syntax_-_466.mp3
+guest:
+  name: Anselm Hannemann
+  github: anselmh
+  twitter: helloanselm
+  url: https://helloanselm.com
+  social: https://wdrl.info/
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Anselm Hannemann about burning out, trying out gardening, and how getting away from the screen can help restore your creative energy.
