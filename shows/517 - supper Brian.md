@@ -3,6 +3,15 @@ number: 517
 title: Supper Club × Open Sauced With bdougie
 date: 1664539200239
 url: https://traffic.libsyn.com/syntax/Syntax_-_517.mp3
+guest:
+  name: bdougie
+  github: bdougie
+  twitter: bdougieYO
+  url: https://b.dougie.dev/
+  social: 
+    - https://www.tiktok.com/@bdougieyo
+    - https://www.twitch.tv/bdougieyo
+    - https://www.youtube.com/c/bdougie
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with bdougie about his work on Open Sauced, thoughts on getting into open source development, and his live streaming set up.
