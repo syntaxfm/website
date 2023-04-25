@@ -1,0 +1,103 @@
+/* Global Styles */
+:root {
+	/* Colors */
+	--yellow: #fabf46;
+	--black: #000;
+	--blackish: #1d1d1d;
+	--purple: #362d59;
+	--white: #fff;
+	--green: #3fa796;
+	--red: #eb5757;
+
+	/* Color Usage */
+	--sheet-bg: var(--white);
+
+	/* Typeography */
+	--font-size-sm: clamp(0.8rem, 0.17vw + 0.76rem, 0.89rem);
+	--font-size-base: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
+	--font-size-md: clamp(1.25rem, 0.61vw + 1.1rem, 1.58rem);
+	--font-size-lg: clamp(1.56rem, 1vw + 1.31rem, 2.11rem);
+	--font-size-xl: clamp(1.95rem, 1.56vw + 1.56rem, 2.81rem);
+	--font-size-xxl: clamp(2.44rem, 2.38vw + 1.85rem, 3.75rem);
+	--font-size-xxxl: clamp(3.05rem, 3.54vw + 2.17rem, 5rem);
+
+	/* Shadow */
+	--shadow-strength: 10%;
+	--shadow-color: 220 40% 2%;
+	--shadow-6: 0 -1px 2px 0 hsl(var(--shadow-color) / calc(var(--shadow-strength) + 2%)),
+		0 3px 2px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 3%)),
+		0 7px 5px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 3%)),
+		0 12px 10px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 4%)),
+		0 22px 18px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 5%)),
+		0 41px 33px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 6%)),
+		0 100px 80px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 7%));
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	background: var(--blackish) url('https://syntax.fm/static/background.jpg');
+	border-top: 10px solid var(--yellow);
+	padding-top: 50px;
+	box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: inherit;
+}
+
+@font-face {
+	font-family: 'rad';
+	src: url('https://syntax.fm/static/fonts/Radnika-Light.woff2') format('woff2'),
+		url('https://syntax.fm/static/fonts/Radnika-Light.woff') format('woff');
+}
+
+@font-face {
+	font-family: '💪';
+	src: url('https://syntax.fm/static/fonts/Radnika-Bold.woff2') format('woff2'),
+		url('https://syntax.fm/static/fonts/Radnika-Bold.woff') format('woff');
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: '💪';
+	font-weight: 600;
+}
+
+h1 {
+	font-size: var(--font-size-xxxl);
+}
+h2 {
+	font-size: var(--font-size-xxl);
+}
+h3 {
+	font-size: var(--font-size-xl);
+}
+h4 {
+	font-size: var(--font-size-lg);
+}
+h5 {
+	font-size: var(--font-size-md);
+}
+
+h6,
+p {
+	font-size: var(--font-size-base);
+}
+
+html {
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+		Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+a {
+	color: var(--yellow);
+}
