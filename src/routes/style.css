@@ -101,3 +101,8 @@ html {
 a {
 	color: var(--yellow);
 }
+
+/* Global Utilities */
+.center {
+	text-align: center;
+}

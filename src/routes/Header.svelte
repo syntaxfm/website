@@ -8,3 +8,10 @@
 {:else}
 	<h2>Syntax</h2>
 {/if}
+
+<nav>
+	<a href="/podcast">Podcast</a>
+	<a href="/articles">Articles</a>
+	<a href="/video">Video</a>
+	<a href="https://swag.syntax.fm">Swag</a>
+</nav>
