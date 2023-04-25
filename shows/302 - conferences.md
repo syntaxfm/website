@@ -3,6 +3,10 @@ number: 302
 title: How to Run a Conference with Benjamin Dunphy
 date: 1605708000919
 url: https://traffic.libsyn.com/syntax/Syntax302.mp3
+guest:
+  name: Benjamin Dunphy
+  github: dunphyben
+  twitter: benghamine
 ---
 
 In this episode of Syntax, Scott and Wes talk with Benjamin Dunphy about running conferences — what to do, what not to do, and what makes a good online conference in a post-Covid world!

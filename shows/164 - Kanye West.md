@@ -3,6 +3,10 @@ number: 164
 title: A Story About Kanye West and Learning to Code
 date: 1563973200176
 url: https://traffic.libsyn.com/syntax/Syntax164.mp3
+guest:
+  name: Harry Dry
+  twitter: harrydry
+  url: https://marketingexamples.com/
 ---
 
 In this episode of Syntax, Scott and Wes talk with Harry Dry about the crazy story behind his Kanye West dating site, how he taught himself to code, and how to come up with cool side projects!

@@ -3,6 +3,12 @@ number: 236
 title: Mental Health and Dev ft Dr. Courtney Tolinski - Depression, Anxiety, Imposter Syndrome, Focus, Motivation, Burnout
 date: 1585746000493
 url: https://traffic.libsyn.com/syntax/Syntax236.mp3
+guest:
+  name: Dr. Courtney Tolinski 
+  twitter: DrTolinski
+  social: 
+    - https://www.linkedin.com/in/courtney-tolinski-5616b819
+    - https://www.instagram.com/learning.differently/
 ---
 
 In this episode of Syntax, Scott and Wes talk with Dr. Courtney Tolinski PhD about mental health and web development.

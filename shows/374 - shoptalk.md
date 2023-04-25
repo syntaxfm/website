@@ -3,6 +3,19 @@ number: 374
 title: ShopTalk x Syntax
 date: 1627477200833
 url: https://traffic.libsyn.com/syntax/Syntax374.mp3
+guest:
+  - name: Chis Coyier
+    github: chriscoyier
+    twitter: chriscoyier
+    url: https://chriscoyier.net/
+    social:
+      - https://front-end.social/@chriscoyier
+      - https://codepen.io/chriscoyier
+  - name: Dave Rupert
+    github: davatron5000
+    twitter: davatron5000
+    url: https://daverupert.com/
+    social: https://mastodon.social/@davatron5000
 ---
 
 In this episode of Syntax, Scott and Wes do a collaboration with Chis Coyier and Dave Rupert from ShopTalk Show! They talk about favorite tech stacks, podcasting, learning new tech, dealing with FOMO, and more!
