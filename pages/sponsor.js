@@ -12,7 +12,6 @@ export default function SponsorPage() {
           <a href="https://blog.sentry.io/2023/04/12/syntax-sentry-mmxxiii">
             No more Sponsors!
           </a>{' '}
-          S78F4
         </p>
       </div>
     </Page>
