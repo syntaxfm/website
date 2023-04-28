@@ -7,7 +7,8 @@ This is the site that runs [Syntax.fm](https://syntax.fm) — go there to listen
 This site is built on React and Next.js
 
 ## Requirements
-- Node 8.1.2 or higher
+
+- Node 18.1.2 or higher
 
 ## Development
 
