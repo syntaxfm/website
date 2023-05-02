@@ -1,7 +1,7 @@
 ---
-number: 611
+number: 614
 title: WTF Are Signals And Why Is Everyone So Hot On Them All Of The Sudden?
-date: 1712577600831
+date: 1684152000868
 url: https://traffic.libsyn.com/syntax/Syntax_-_611.mp3
 ---
 
