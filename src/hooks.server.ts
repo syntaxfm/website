@@ -4,7 +4,6 @@ import { sequence } from '@sveltejs/kit/hooks';
 import { form_data } from 'sk-form-data';
 import { PrismaClient } from '@prisma/client';
 import type { Handle, HandleServerError } from '@sveltejs/kit';
-import { get_github_user } from '$db/auth/github_user_methods';
 import { find_user_by_access_token } from '$db/auth/users';
 // import { ADMIN_LOGIN } from '$env/static/private';
 // import { PUBLIC_SENTRY_DSN } from '$env/static/public';
