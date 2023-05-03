@@ -1,6 +1,7 @@
 <script lang="ts">
+	import { enhance } from '$app/forms';
 	import { page } from '$app/stores';
-	$: console.log('page', $page);
+	import Github from '$assets/github.svg';
 </script>
 
 {#if $page.route.id === '/'}
@@ -15,3 +16,9 @@
 	<a href="/video">Video</a>
 	<a href="https://swag.syntax.fm">Swag</a>
 </nav>
+
+<form action="/api/oauth/github" method="GET">
+	<button type="submit"
+		><img width="20" src={Github} alt="Github Logo" /> Login With Github
+	</button>
+</form>

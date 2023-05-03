@@ -2,18 +2,19 @@ import { sequence } from '@sveltejs/kit/hooks';
 // import * as SentryNode from '@sentry/node';
 // import '@sentry/tracing';
 import { form_data } from 'sk-form-data';
-// import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 import type { Handle, HandleServerError } from '@sveltejs/kit';
+import { get_github_user } from '$db/auth/github_user_methods';
+import { find_user_by_access_token } from '$db/auth/users';
 // import { ADMIN_LOGIN } from '$env/static/private';
 // import { PUBLIC_SENTRY_DSN } from '$env/static/public';
 
 // * START
 // RUNS ONCE ON FILE LOAD
-// const prisma_client = new PrismaClient();
+export const prisma_client = new PrismaClient();
 
-// END START
+// * END START
 
-//
 // * HOOKS
 // RUNS ON EVERY REQUEST
 
@@ -35,43 +36,35 @@ import type { Handle, HandleServerError } from '@sveltejs/kit';
 // 	};
 // }) satisfies HandleServerError;
 
-// export const auth: Handle = async function ({ event, resolve }) {
-// 	const url = new URL(event.request.url);
-// 	if (url.pathname.startsWith('/admin')) {
-// 		const auth = event.request.headers.get('Authorization');
+export const auth: Handle = async function ({ event, resolve }) {
+	const access_token = event.cookies.get('access_token');
+	// Get current user from session via access token
+	if (access_token) {
+		const user = await find_user_by_access_token(access_token);
+		if (user) {
+			event.locals.user = user;
+		}
+	}
 
-// 		if (auth !== `Basic ${btoa(ADMIN_LOGIN)}`) {
-// 			return new Response('Not authorized', {
-// 				status: 401,
-// 				headers: {
-// 					'WWW-Authenticate': 'Basic realm="User Visible Realm", charset="UTF-8"'
-// 				}
-// 			});
-// 		}
-// 	}
-
-// 	const response = await resolve(event);
-// 	return response;
-// };
+	const response = await resolve(event);
+	return response;
+};
 
 // This hook is used to pass our prisma instance to each action, load, and endpoint
-// export const prisma: Handle = async function ({ event, resolve }) {
-// 	const ip = event.request.headers.get('x-forwarded-for');
-// 	if (ip === '159.196.12.240') {
-// 		throw new Error('Success');
-// 	}
-// 	if (event.request.method === 'POST') {
-// 		const country = event.request.headers.get('x-vercel-ip-country');
-// 		const { headers, body } = event.request;
-// 		console.log({ ip, country });
-// 	}
+export const prisma: Handle = async function ({ event, resolve }) {
+	const ip = event.request.headers.get('x-forwarded-for') as string;
+	const country = event.request.headers.get('x-vercel-ip-country') as string;
+	event.locals.prisma = prisma_client;
+	event.locals.session = {
+		...event.locals.session,
+		ip,
+		country
+	};
+	const response = await resolve(event);
+	return response;
+};
 
-// 	event.locals.prisma = prisma_client;
-// 	const response = await resolve(event);
-// 	return response;
-// };
-
-// END HOOKS
+// * END HOOKS
 
 // Wraps requests in this sequence of hooks
-export const handle: Handle = sequence(form_data);
+export const handle: Handle = sequence(prisma, auth, form_data);

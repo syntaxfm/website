@@ -8,11 +8,14 @@ const config = {
 	kit: {
 		adapter: adapter(),
 		alias: {
-			$shows: '../shows',
-			$state: './state',
+			$shows: 'shows',
+			$state: 'src/state',
+			$assets: 'src/assets',
+			$db: 'src/db',
+			$const: 'src/const.ts',
 		}
 	},
-	
+
 };
 
 export default config;

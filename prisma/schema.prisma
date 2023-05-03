@@ -15,14 +15,27 @@ enum Role {
 }
 
 model User {
-  id            String   @id @default(uuid())
-  github_id     String   @unique
-  username      String?
-  email         String?  @unique
-  avatar_url    String?
-  access_token  String   @unique
-  refresh_token String?  @unique
+  id         String    @id @default(uuid())
+  github_id  Int       @unique
+  username   String?
+  email      String?   @unique
+  avatar_url String?
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
+  role       Role      @default(USER)
+  session    Session[]
+}
+
+model Session {
+  id            Int      @id @default(autoincrement())
+  user_id       String?
+  user          User?    @relation(fields: [user_id], references: [id])
+  access_token  String?  @unique
+  session_token String   @unique
   created_at    DateTime @default(now())
   updated_at    DateTime @updatedAt
-  role          Role     @default(USER)
+  ip            String?
+  country       String?
+
+  @@index([user_id])
 }
