@@ -39,6 +39,7 @@
 	},
 	"dependencies": {
 		"@prisma/client": "^4.13.0",
-		"sk-form-data": "^1.0.1"
+		"sk-form-data": "^1.0.1",
+		"svelte-french-toast": "1.0.4-beta.0"
 	}
 }

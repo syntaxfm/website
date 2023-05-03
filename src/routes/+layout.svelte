@@ -1,8 +1,17 @@
 <script lang="ts">
+	import { Toaster } from 'svelte-french-toast';
 	import Player from '$lib/Player.svelte';
 	import Footer from './Footer.svelte';
 	import Header from './Header.svelte';
 	import './style.css';
+
+	import type { PageData } from './$types';
+	import { setContext } from 'svelte';
+
+	// Load current user from db, put it in context so we don't have to pass as props
+	export let data: PageData;
+	$: ({ user } = data);
+	$: setContext('user', user);
 </script>
 
 <Header />
@@ -14,6 +23,7 @@
 
 <!-- Putting this here for now, will be available on every page -->
 <Player />
+<Toaster />
 
 <style>
 	main {

@@ -13,6 +13,7 @@ const config = {
 			$assets: 'src/assets',
 			$db: 'src/db',
 			$const: 'src/const.ts',
+			$actions: 'src/actions',
 		}
 	},
 

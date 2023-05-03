@@ -36,6 +36,7 @@ export async function find_user_by_access_token(access_token: string) {
 			access_token
 		}
 	});
+	console.log('session', session);
 	// If a session exists that is tied to a user
 	if (session?.user_id) {
 		return prisma_client.user.findUnique({
