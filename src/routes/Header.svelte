@@ -2,16 +2,19 @@
 	import { page } from '$app/stores';
 	import type { User } from '@prisma/client';
 	import UserMenu from './UserMenu.svelte';
+	import Logo from '$assets/logo.svg';
 
 	export let user: User | null;
+
+	$: header_element = $page.route.id === '/' ? 'h1' : 'h2';
 </script>
 
 <header>
-	{#if $page.route.id === '/'}
-		<h1>Syntax</h1>
-	{:else}
-		<h2>Syntax</h2>
-	{/if}
+	<svelte:element this={header_element}>
+		<a href="/">
+			<img src={Logo} alt="Syntax" />
+		</a>
+	</svelte:element>
 
 	<nav>
 		<a href="/podcast">Podcast</a>
