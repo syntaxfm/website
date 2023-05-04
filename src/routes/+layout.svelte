@@ -6,16 +6,14 @@
 	import './style.css';
 
 	import type { PageData } from './$types';
-	import { setContext } from 'svelte';
 	import Loading from '$lib/Loading.svelte';
 
 	// Load current user from db, put it in context so we don't have to pass as props
 	export let data: PageData;
 	$: ({ user } = data);
-	$: setContext('user', user);
 </script>
 
-<Header />
+<Header {user} />
 
 <main>
 	<slot />

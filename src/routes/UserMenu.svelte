@@ -1,13 +1,11 @@
 <script lang="ts">
 	import type { User } from '@prisma/client';
-	import { getContext } from 'svelte';
 	import Github from '$assets/github.svg';
 	import DropdownMenu from '$lib/DropdownMenu.svelte';
 	import { enhance } from '$app/forms';
 	import { loading } from '$state/loading';
 	import { form_action } from '$lib/form_action';
-
-	const user = getContext<User | null>('user');
+	export let user: User | null;
 </script>
 
 {#if user}
@@ -15,7 +13,7 @@
 	<DropdownMenu>
 		<img class="avatar" slot="dropdown-button" src={user.avatar_url} alt="User Avatar" />
 		<div slot="dropdown-links">
-			<form use:enhance={form_action({ message: 'Logout ' })} action="/api/logout" method="POST">
+			<form use:enhance={form_action({ message: 'Logout ' })} action="/?/logout" method="POST">
 				<button type="submit">Logout</button>
 			</form>
 		</div>

@@ -1,11 +1,9 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-
 	import type { User } from '@prisma/client';
-	import { getContext } from 'svelte';
 	import UserMenu from './UserMenu.svelte';
 
-	const user = getContext<User | null>('user');
+	export let user: User | null;
 </script>
 
 <header>
@@ -22,5 +20,5 @@
 		<a href="https://swag.syntax.fm">Swag</a>
 	</nav>
 
-	<UserMenu />
+	<UserMenu {user} />
 </header>
