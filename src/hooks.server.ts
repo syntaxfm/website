@@ -8,11 +8,11 @@ import { find_user_by_access_token } from '$db/auth/users';
 // import { ADMIN_LOGIN } from '$env/static/private';
 // import { PUBLIC_SENTRY_DSN } from '$env/static/public';
 
-// * START
+// * START UP
 // RUNS ONCE ON FILE LOAD
 export const prisma_client = new PrismaClient();
 
-// * END START
+// * END START UP
 
 // * HOOKS
 // RUNS ON EVERY REQUEST
@@ -37,6 +37,7 @@ export const prisma_client = new PrismaClient();
 
 export const auth: Handle = async function ({ event, resolve }) {
 	const access_token = event.cookies.get('access_token');
+	console.log('access_token re-ran auth hook', access_token);
 	// Get current user from session via access token
 	if (access_token) {
 		const user = await find_user_by_access_token(access_token);

@@ -24,7 +24,12 @@ export const GET: RequestHandler = async function ({ locals, cookies }) {
 			return new Response('Auth Failed', { status: 401 });
 		}
 		//  Redirect request to GitHub authentication endpoint with CLIENT_ID
-		throw redirect(302, `${GITHUB_AUTH_URL}?client_id=${PUBLIC_GITHUB_ID}&state=${session_token}`);
+		return new Response('Redirecting to GitHub', {
+			status: 302,
+			headers: {
+				location: `${GITHUB_AUTH_URL}?client_id=${PUBLIC_GITHUB_ID}&state=${session_token}`
+			}
+		});
 	}
 	return new Response('Already logged in', { status: 200 });
 };

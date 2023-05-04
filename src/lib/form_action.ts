@@ -15,6 +15,7 @@ export const form_action = (
 	return function form_enhance() {
 		loading.setLoading(true);
 		return async ({ result }: { result: ActionResult<any, any> }) => {
+			console.log('result', result);
 			if (message) {
 				if (result.status === 200 || result.status === 301) {
 					toast.success(message + ' success');
