@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client-js"
+  seed     = "prisma/seed.ts"
 }
 
 datasource db {
@@ -8,22 +9,35 @@ datasource db {
   relationMode = "prisma"
 }
 
-enum Role {
-  USER
-  AUTHOR
-  ADMIN
-}
-
 model User {
   id         String    @id @default(uuid())
-  github_id  Int       @unique
-  username   String?
-  email      String?   @unique
   avatar_url String?
   created_at DateTime  @default(now())
-  updated_at DateTime  @updatedAt
-  role       Role      @default(USER)
+  email      String?   @unique
+  github_id  Int       @unique
   session    Session[]
+  updated_at DateTime  @updatedAt
+  username   String?
+
+  roles UserRole[]
+}
+
+model Role {
+  id        String     @id @default(uuid())
+  name      String     @unique
+  userRoles UserRole[]
+}
+
+model UserRole {
+  id     String @id @default(uuid())
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+  role   Role   @relation(fields: [roleId], references: [id])
+  roleId String
+
+  @@unique([userId, roleId])
+  @@index([userId])
+  @@index([roleId])
 }
 
 model Session {

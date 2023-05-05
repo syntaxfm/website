@@ -1,4 +1,5 @@
 import type { GithubUser } from '$const';
+import { add_user_to_role } from '$db/roles';
 import { prisma_client } from '../../hooks.server';
 
 interface Create_User {
@@ -25,7 +26,12 @@ export async function find_or_create_user({ github_user }: Create_User) {
 	if (user) {
 		return user;
 	} else {
-		return create_user({ github_user });
+		const new_user = await create_user({ github_user });
+		// if it's Wes or Scott. Upgrade that shit
+		if (['wesbos', 'stolinski'].includes(github_user.login)) {
+			add_user_to_role(new_user.id, 'admin');
+		}
+		return new_user;
 	}
 }
 

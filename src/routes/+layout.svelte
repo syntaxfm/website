@@ -7,6 +7,7 @@
 
 	import type { PageData } from './$types';
 	import Loading from '$lib/Loading.svelte';
+	import AdminMenu from '$lib/AdminMenu.svelte';
 
 	// Load current user from db, put it in context so we don't have to pass as props
 	export let data: PageData;
@@ -24,6 +25,10 @@
 <Player />
 <Toaster />
 <Loading />
+
+{#if user?.roles?.includes('admin')}
+	<AdminMenu />
+{/if}
 
 <style>
 	main {

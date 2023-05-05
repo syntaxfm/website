@@ -11,12 +11,16 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"test:unit": "vitest",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
-		"format": "prettier --plugin-search-dir . --write ."
+		"format": "prettier --plugin-search-dir . --write .",
+		"db:studio": "prisma studio",
+		"db:push": "prisma db push",
+		"db:seed": "prisma db seed"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.28.1",
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/kit": "^1.5.0",
+		"@types/node": "^18.16.3",
 		"@typescript-eslint/eslint-plugin": "^5.45.0",
 		"@typescript-eslint/parser": "^5.45.0",
 		"eslint": "^8.28.0",
@@ -38,8 +42,13 @@
 		"pnpm": ">=8"
 	},
 	"dependencies": {
+		"@leveluptuts/svelte-side-menu": "^1.0.5",
 		"@prisma/client": "^4.13.0",
 		"sk-form-data": "^1.0.1",
-		"svelte-french-toast": "1.0.4-beta.0"
+		"svelte-french-toast": "1.0.4-beta.0",
+		"ts-node": "^10.9.1"
+	},
+	"prisma": {
+		"seed": "node --loader ts-node/esm prisma/seed.ts"
 	}
 }
