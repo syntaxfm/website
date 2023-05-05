@@ -40,6 +40,7 @@ export const auth: Handle = async function ({ event, resolve }) {
 	// Get current user from session via access token
 	if (access_token) {
 		const user = await find_user_by_access_token(access_token);
+		console.log('user', user);
 		if (user) {
 			event.locals.user = user;
 		}

@@ -35,6 +35,7 @@ export async function find_or_create_user({ github_user }: Create_User) {
 	}
 }
 
+// look up current user via their access token. First by finding the session then user
 export async function find_user_by_access_token(access_token: string) {
 	// Get session from access token
 	const session = await prisma_client.session.findUnique({
@@ -44,11 +45,37 @@ export async function find_user_by_access_token(access_token: string) {
 	});
 	// If a session exists that is tied to a user
 	if (session?.user_id) {
-		return prisma_client.user.findUnique({
-			where: {
-				id: session.user_id
-			}
-		});
+		return find_user_with_roles(session.user_id);
 	}
 	return null;
+}
+
+// Because of how roles are done, the find returns an array of objects
+// Here we select from the roles table to populate a user with their roles, but then convert the roles into
+// an array of strings
+export async function find_user_with_roles(user_id: string) {
+	const user_with_roles = await prisma_client.user.findUnique({
+		where: { id: user_id },
+		include: {
+			roles: {
+				select: {
+					role: {
+						select: {
+							name: true
+						}
+					}
+				}
+			}
+		}
+	});
+	if (!user_with_roles) {
+		throw new Error('User not found');
+	}
+
+	const user = {
+		...user_with_roles,
+		roles: user_with_roles.roles.map((user_role) => user_role.role.name)
+	};
+
+	return user;
 }
