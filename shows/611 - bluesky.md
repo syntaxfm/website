@@ -33,7 +33,7 @@ In this episode of Syntax, Wes and Scott talk all things Bluesky, the AT Protoco
 
 ## Shameless Plugs
 
-* Scott: [Sentry](https://sentry.io/welcome/))
+* Scott: [Sentry](https://sentry.io/welcome/)
 * Wes: [Wes Bos Tutorials](https://wesbos.com/courses)
 
 ## Tweet us your tasty treats
