@@ -44,6 +44,8 @@
 	"dependencies": {
 		"@leveluptuts/svelte-side-menu": "^1.0.5",
 		"@prisma/client": "^4.13.0",
+		"date-fns": "^2.30.0",
+		"gray-matter": "^4.0.3",
 		"sk-form-data": "^1.0.1",
 		"svelte-french-toast": "1.0.4-beta.0",
 		"ts-node": "^10.9.1"

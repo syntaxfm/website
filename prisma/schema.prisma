@@ -53,3 +53,35 @@ model Session {
 
   @@index([user_id])
 }
+
+model Guest {
+  id      String       @id @default(uuid())
+  name    String
+  twitter String       @unique
+  github  String?      @unique
+  social  SocialLink[]
+  show    Show?        @relation(fields: [show_id], references: [id])
+  show_id String?
+
+  @@index([show_id])
+  @@index([name])
+}
+
+model SocialLink {
+  id       String @id @default(uuid())
+  link     String
+  guest    Guest  @relation(fields: [guest_id], references: [id])
+  guest_id String
+
+  @@index([guest_id])
+}
+
+model Show {
+  id         String   @id @default(uuid())
+  number     Int
+  title      String
+  date       DateTime
+  url        String
+  guest      Guest[]
+  show_notes String   @db.Text
+}

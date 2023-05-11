@@ -6,8 +6,9 @@
 	--blackish: #1d1d1d;
 	--purple: #362d59;
 	--white: #fff;
-	--green: #3fa796;
+	--green: #cdff5c;
 	--red: #eb5757;
+	--teal: #03fff3;
 
 	/* Color Usage */
 	--sheet-bg: var(--white);

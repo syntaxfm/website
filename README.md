@@ -14,6 +14,8 @@ This site is built on SvelteKit
 
 First you `pnpm install`
 
+2nd seed the db `pnpm db:seed`
+
 Then you `pnpm dev` and visit `http://localhost:5173`.
 
 Then you do some work.
@@ -21,3 +23,9 @@ Then you do some work.
 When you are ready for prime time, you can just submit a PR to this repo and it will be deployed once it's accepted.
 
 If you want to build your own version, just run `pnpm build` and then I'd recommend deploying with `now`.
+
+### Scripts
+
+DB studio `pnpm db:studio`
+DB Migrations `pnpm db:push`
+DB Seed `pnpm db:seed`
