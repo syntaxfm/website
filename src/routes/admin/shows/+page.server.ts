@@ -9,6 +9,7 @@ export const load: PageServerLoad = async ({ locals }) => {
 
 export const actions: Actions = {
 	import_all_shows: async () => {
+		console.log('🤖 Pod Sync Requested via Admin');
 		return import_or_update_all_shows();
 	},
 

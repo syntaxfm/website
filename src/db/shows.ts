@@ -42,9 +42,10 @@ export async function import_or_update_all_shows() {
 			}
 		}
 	} catch (err) {
-		console.error('Error:', err);
+		console.error('❌ Pod Sync Error:', err);
 		throw error(500, 'Error Importing Shows');
 	}
+	console.log('🤖 Pod Sync Complete ✅');
 	return { message: 'Import All Shows' };
 }
 // Takes a string of a .md show notes and adds it to the database and adds the guests
