@@ -16,6 +16,10 @@
 	<form action="?/delete_all_shows" method="post" use:enhance={form_action()}>
 		<button type="submit">Drop All Shows</button>
 	</form>
+	<form action="/webhooks/refresh" method="post">
+		<button type="submit">Test Post</button>
+	</form>
+
 	<button>Resync All Shows</button>
 </div>
 
