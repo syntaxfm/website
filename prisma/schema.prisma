@@ -62,6 +62,7 @@ model Guest {
   social  SocialLink[]
   show    Show?        @relation(fields: [show_id], references: [id])
   show_id String?
+  url     String?
 
   @@index([show_id])
   @@index([name])

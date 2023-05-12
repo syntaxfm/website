@@ -8,7 +8,7 @@ export const load: PageServerLoad = async ({ locals }) => {
 };
 
 export const actions: Actions = {
-	import_all_shows: async (context) => {
+	import_all_shows: async () => {
 		await get_shows_from_folder();
 		return { status: 200 };
 	},
