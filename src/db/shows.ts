@@ -5,6 +5,7 @@ import fs from 'fs/promises';
 import path from 'path';
 import { get_md_from_folder } from '$utilities/file_utilities/get_md_from_folder';
 import { get_hash_from_content } from '$utilities/file_utilities/get_hash_from_content';
+import { error } from '@sveltejs/kit';
 
 interface FrontMatterGuest {
 	name: string;
@@ -15,7 +16,7 @@ interface FrontMatterGuest {
 
 const shows_folder_path = path.join(process.cwd(), 'shows');
 
-export async function get_shows_from_folder() {
+export async function import_or_update_all_shows() {
 	try {
 		// Filter only .md files
 		const md_files = await get_md_from_folder(shows_folder_path);
@@ -42,7 +43,9 @@ export async function get_shows_from_folder() {
 		}
 	} catch (err) {
 		console.error('Error:', err);
+		throw error(500, 'Error Importing Shows');
 	}
+	return { message: 'Import All Shows' };
 }
 // Takes a string of a .md show notes and adds it to the database and adds the guests
 export async function parse_and_save_show_notes(notes: string, hash: string, number: number) {
