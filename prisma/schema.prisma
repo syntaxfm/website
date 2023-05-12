@@ -55,14 +55,15 @@ model Session {
 }
 
 model Guest {
-  id      String       @id @default(uuid())
-  name    String
-  twitter String       @unique
-  github  String?      @unique
-  social  SocialLink[]
-  show    Show?        @relation(fields: [show_id], references: [id])
-  show_id String?
-  url     String?
+  id        String       @id @default(uuid())
+  name      String
+  name_slug String       @unique
+  twitter   String?      @unique
+  github    String?      @unique
+  social    SocialLink[]
+  show      Show?        @relation(fields: [show_id], references: [id])
+  show_id   String?
+  url       String?
 
   @@index([show_id])
   @@index([name])
@@ -80,7 +81,7 @@ model SocialLink {
 model Show {
   id         String   @id @default(uuid())
   number     Int
-  title      String
+  title      String   @db.Text
   date       DateTime
   url        String
   guest      Guest[]

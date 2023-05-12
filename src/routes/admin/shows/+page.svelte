@@ -10,18 +10,10 @@
 
 <h4>Shows</h4>
 <div>
-	<form
-		action="?/import_all_shows"
-		method="post"
-		use:enhance={form_action({ message: 'Import Shows' })}
-	>
+	<form action="?/import_all_shows" method="post" use:enhance={form_action()}>
 		<button type="submit">Import All Shows</button>
 	</form>
-	<form
-		action="?/delete_all_shows"
-		method="post"
-		use:enhance={form_action({ message: 'Drop Shoes' })}
-	>
+	<form action="?/delete_all_shows" method="post" use:enhance={form_action()}>
 		<button type="submit">Drop All Shows</button>
 	</form>
 	<button>Resync All Shows</button>

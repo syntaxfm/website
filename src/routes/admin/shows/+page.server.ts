@@ -10,12 +10,12 @@ export const load: PageServerLoad = async ({ locals }) => {
 export const actions: Actions = {
 	import_all_shows: async () => {
 		await get_shows_from_folder();
-		return { status: 200 };
+		return { message: 'Import All Shows' };
 	},
 	delete_all_shows: async ({ locals }) => {
+		await locals.prisma.show.deleteMany({});
 		await locals.prisma.socialLink.deleteMany({});
 		await locals.prisma.guest.deleteMany({});
-		await locals.prisma.show.deleteMany({});
-		return { status: 200 };
+		return { message: 'Delete All Shows' };
 	}
 };

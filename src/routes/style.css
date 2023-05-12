@@ -12,6 +12,7 @@
 
 	/* Color Usage */
 	--sheet-bg: var(--white);
+	--primary: var(--yellow);
 
 	/* Typeography */
 	--font-size-sm: clamp(0.8rem, 0.17vw + 0.76rem, 0.89rem);

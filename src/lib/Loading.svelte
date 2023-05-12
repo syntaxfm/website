@@ -35,6 +35,10 @@
 		align-items: center;
 	}
 
+	h3 {
+		color: var(--primary);
+	}
+
 	.loader svg {
 		width: 150px;
 		height: 150px;

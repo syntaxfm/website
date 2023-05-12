@@ -16,6 +16,9 @@ dependencies:
   sk-form-data:
     specifier: ^1.0.1
     version: 1.0.1
+  slugo:
+    specifier: ^0.4.0
+    version: 0.4.0
   svelte-french-toast:
     specifier: 1.0.4-beta.0
     version: 1.0.4-beta.0(svelte@3.59.1)
@@ -1996,6 +1999,10 @@ packages:
     resolution: {integrity: sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==}
     engines: {node: '>=8'}
     dev: true
+
+  /slugo@0.4.0:
+    resolution: {integrity: sha512-WENYU9JlHuU2vIxtsmY/6N9HxgXFG+tpkHtl8yP0a5y7FvjKDRjTtMWU/CLpX4qOZDlGhOLGOhiD4L+GqhZjRQ==}
+    dev: false
 
   /sorcery@0.11.0:
     resolution: {integrity: sha512-J69LQ22xrQB1cIFJhPfgtLuI6BpWRiWu1Y3vSsIwK/eAScqJxd/+CJlUuHQRdX2C9NGFamq+KqNywGgaThwfHw==}

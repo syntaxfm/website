@@ -7,10 +7,9 @@ guest:
   name: The Primeagan
   github: ThePrimeagen
   twitter: ThePrimeagen
-  social: 
+  social:
     - https://www.youtube.com/channel/UC8ENHE5xdFSwx71u3fDH5Xw
     - https://www.twitch.tv/ThePrimeagen
-    - 
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with The Primeagan about his streaming set up, how he decides what to stream, why he makes the kind of content he does, and why he loves Vim.
@@ -25,40 +24,40 @@ With Hasura, you can get a fully managed, production-ready GraphQL API as a serv
 
 ## Show Notes
 
-* **[00:35](#t=00:35)** Welcome
-* **[01:48](#t=01:48)** Guest introduction
-* [ThePrimeagen on YouTube](https://www.youtube.com/channel/UC8ENHE5xdFSwx71u3fDH5Xw)
-* [ThePrimeagen on Twitch](https://www.twitch.tv/ThePrimeagen)
-* [@ThePrimeagen on Twitter](https://twitter.com/ThePrimeagen)
-* [Why I Make Content](https://www.youtube.com/watch?v=7FsyXTMLPBY)
-* **[03:53](#t=03:53)** Dropping in on skateboarding
-* [Tony Hawk’s Pro Skater](https://en.wikipedia.org/wiki/Tony_Hawk%27s_Pro_Skater_(video_game))
-* **[05:43](#t=05:43)** What do you do?
-* **[07:17](#t=07:17)** How do you plan your live streams?
-* **[10:05](#t=10:05)** Sponsor: Hasura
-* **[11:27](#t=11:27)** Do you do interactive content via OBS on stream?
-* [OBS](https://obsproject.com)
-* **[16:22](#t=16:22)** What languages do you use on stream?
-* [Bun](https://bun.sh)
-* [Zig](https://ziglang.org)
-* **[22:03](#t=22:03)** What do you try to build on stream?
-* **[24:53](#t=24:53)** Sponsor: StoryBlok
-* **[25:45](#t=25:45)** Why do you use Vim?
-* **[38:42](#t=38:42)** Do you ever have to do pair programming with Vim?
-* **[40:43](#t=40:43)** What kind of hardware are you playing with?
-* [Arduino](https://www.arduino.cc)
-* **[42:52](#t=42:52)** Supper club questions
-* [Lemur](https://system76.com/laptops/lemur)
-* [Pop](https://pop.system76.com)
-* [Kinesis Advantage 2](https://kinesis-ergo.com/keyboards/advantage2-keyboard/)
-* **[56:20](#t=56:20)** SIIIIICK ××× PIIIICKS ×××
+- **[00:35](#t=00:35)** Welcome
+- **[01:48](#t=01:48)** Guest introduction
+- [ThePrimeagen on YouTube](https://www.youtube.com/channel/UC8ENHE5xdFSwx71u3fDH5Xw)
+- [ThePrimeagen on Twitch](https://www.twitch.tv/ThePrimeagen)
+- [@ThePrimeagen on Twitter](https://twitter.com/ThePrimeagen)
+- [Why I Make Content](https://www.youtube.com/watch?v=7FsyXTMLPBY)
+- **[03:53](#t=03:53)** Dropping in on skateboarding
+- [Tony Hawk’s Pro Skater](<https://en.wikipedia.org/wiki/Tony_Hawk%27s_Pro_Skater_(video_game)>)
+- **[05:43](#t=05:43)** What do you do?
+- **[07:17](#t=07:17)** How do you plan your live streams?
+- **[10:05](#t=10:05)** Sponsor: Hasura
+- **[11:27](#t=11:27)** Do you do interactive content via OBS on stream?
+- [OBS](https://obsproject.com)
+- **[16:22](#t=16:22)** What languages do you use on stream?
+- [Bun](https://bun.sh)
+- [Zig](https://ziglang.org)
+- **[22:03](#t=22:03)** What do you try to build on stream?
+- **[24:53](#t=24:53)** Sponsor: StoryBlok
+- **[25:45](#t=25:45)** Why do you use Vim?
+- **[38:42](#t=38:42)** Do you ever have to do pair programming with Vim?
+- **[40:43](#t=40:43)** What kind of hardware are you playing with?
+- [Arduino](https://www.arduino.cc)
+- **[42:52](#t=42:52)** Supper club questions
+- [Lemur](https://system76.com/laptops/lemur)
+- [Pop](https://pop.system76.com)
+- [Kinesis Advantage 2](https://kinesis-ergo.com/keyboards/advantage2-keyboard/)
+- **[56:20](#t=56:20)** SIIIIICK ××× PIIIICKS ×××
 
 ## Tweet us your tasty treats
 
-* [Scott's Instagram](https://www.instagram.com/stolinski/)
-* [LevelUpTutorials Instagram](https://www.instagram.com/LevelUpTutorials/)
-* [Wes' Instagram](https://www.instagram.com/wesbos/)
-* [Wes' Twitter](https://twitter.com/wesbos)
-* [Wes' Facebook](https://www.facebook.com/wesbos.developer)
-* [Scott's Twitter](https://twitter.com/stolinski)
-* Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets
+- [Scott's Instagram](https://www.instagram.com/stolinski/)
+- [LevelUpTutorials Instagram](https://www.instagram.com/LevelUpTutorials/)
+- [Wes' Instagram](https://www.instagram.com/wesbos/)
+- [Wes' Twitter](https://twitter.com/wesbos)
+- [Wes' Facebook](https://www.facebook.com/wesbos.developer)
+- [Scott's Twitter](https://twitter.com/stolinski)
+- Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets

@@ -1,4 +1,4 @@
-import { type Show } from '@prisma/client';
+import slugo from 'slugo';
 import matter from 'gray-matter';
 import { prisma_client as prisma } from '../hooks.server';
 import fs from 'fs/promises';
@@ -62,7 +62,7 @@ export async function parse_and_save_show_notes(notes: string) {
 				console.error('Error Importing Show and Guests:', show.number, data.guest, err);
 			}
 		}
-		console.log(`Episode # ${show.number} imported successfully}`);
+		console.log(`Episode # ${show.number} imported successfully`);
 	} catch (err) {
 		console.error('Error Importing Show:', err, data, content);
 	}
@@ -71,23 +71,30 @@ export async function parse_and_save_show_notes(notes: string) {
 async function add_or_update_guest(guest: FrontMatterGuest, show_id: string) {
 	try {
 		// Extract socials and remove it from the guest object
-		const { social, ...guest_without_socials } = guest;
+		const { social, name, ...guest_without_socials } = guest;
+
+		// Create a slug from the name
+		const name_slug = slugo(name);
 
 		// Add or update the guest
 		const guest_record = await prisma.guest.upsert({
-			where: { twitter: guest_without_socials.twitter },
-			update: { ...guest_without_socials, show: { connect: { id: show_id } } },
+			where: { name_slug },
+			update: { ...guest_without_socials, name, name_slug, show: { connect: { id: show_id } } },
 			create: {
 				...guest_without_socials,
+				name_slug,
+				name,
 				show: { connect: { id: show_id } }
 			}
 		});
 
-		// Handle the socials
-		for (const social_link of social) {
-			await prisma.socialLink.create({
-				data: { link: social_link, guest: { connect: { id: guest_record.id } } }
-			});
+		if (social) {
+			// Handle the socials
+			for (const social_link of social) {
+				await prisma.socialLink.create({
+					data: { link: social_link, guest: { connect: { id: guest_record.id } } }
+				});
+			}
 		}
 
 		return guest_record;

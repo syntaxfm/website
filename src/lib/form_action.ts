@@ -5,23 +5,17 @@ import { loading } from '$state/loading';
 import type { ActionResult } from '@sveltejs/kit';
 
 type FormActionMessage = {
-	message: string;
+	message?: string;
 };
 
-export const form_action = (
-	{ message }: FormActionMessage,
-	callback?: (data: any | unknown) => any
-) => {
+export const form_action = (opts?: FormActionMessage, callback?: (data: any | unknown) => any) => {
 	return function form_enhance() {
 		loading.setLoading(true);
 		return async ({ result }: { result: ActionResult<any, any> }) => {
-			console.log('result', result);
-			if (message) {
-				if (result.status === 200 || result.status === 301) {
-					toast.success('Siiiiick ' + message + ' was a success');
-				} else {
-					toast.error('Major bummer  ' + message + ' failed');
-				}
+			if (result.type === 'success') {
+				toast.success('Siiiiick ' + result.data.message + ' was a success');
+			} else {
+				toast.error('Major bummer  ' + result.data.message + ' failed');
 			}
 			await invalidateAll();
 			await applyAction(result);
