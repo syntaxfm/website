@@ -80,10 +80,11 @@ model SocialLink {
 
 model Show {
   id         String   @id @default(uuid())
-  number     Int
+  number     Int      @unique
   title      String   @db.Text
   date       DateTime
   url        String
   guest      Guest[]
   show_notes String   @db.Text
+  hash       String   @unique
 }

@@ -2,8 +2,9 @@ import slugo from 'slugo';
 import matter from 'gray-matter';
 import { prisma_client as prisma } from '../hooks.server';
 import fs from 'fs/promises';
-
 import path from 'path';
+import { get_md_from_folder } from '$utilities/file_utilities/get_md_from_folder';
+import { get_hash_from_content } from '$utilities/file_utilities/get_hash_from_content';
 
 interface FrontMatterGuest {
 	name: string;
@@ -16,35 +17,56 @@ const shows_folder_path = path.join(process.cwd(), 'shows');
 
 export async function get_shows_from_folder() {
 	try {
-		const files = await fs.readdir(shows_folder_path);
-
 		// Filter only .md files
-		const md_files = files.filter((file) => file.endsWith('.md'));
+		const md_files = await get_md_from_folder(shows_folder_path);
 
 		// Read and process each .md file
 		for (const md_file of md_files) {
 			const file_path = path.join(shows_folder_path, md_file);
 			const file_content = await fs.readFile(file_path, 'utf-8');
-			await parse_and_save_show_notes(file_content);
+			const hash = await get_hash_from_content(file_content);
+
+			const number = parseInt(md_file.split(' - ')[0]);
+
+			const existing_show = await prisma.show.findFirst({
+				where: { number: number }
+			});
+
+			if (!existing_show) {
+				// If the show doesn't exist, create it.
+				await parse_and_save_show_notes(file_content, hash, number);
+			} else if (existing_show.hash !== hash) {
+				// If the show exists and the hash has changed, update it.
+				await parse_and_save_show_notes(file_content, hash, number);
+			}
 		}
 	} catch (err) {
 		console.error('Error:', err);
 	}
 }
 // Takes a string of a .md show notes and adds it to the database and adds the guests
-export async function parse_and_save_show_notes(notes: string) {
+export async function parse_and_save_show_notes(notes: string, hash: string, number: number) {
 	// Parse the front matter
 	const { data, content } = matter(notes);
 
-	// Save the show
+	// Save or update the show
 	try {
-		const show = await prisma.show.create({
-			data: {
+		const show = await prisma.show.upsert({
+			where: { number: number },
+			update: {
+				title: data.title,
+				date: new Date(data.date),
+				url: data.url,
+				show_notes: content,
+				hash: hash
+			},
+			create: {
 				number: data.number,
 				title: data.title,
 				date: new Date(data.date),
 				url: data.url,
-				show_notes: content
+				show_notes: content,
+				hash: hash
 			}
 		});
 
@@ -65,6 +87,8 @@ export async function parse_and_save_show_notes(notes: string) {
 		console.log(`Episode # ${show.number} imported successfully`);
 	} catch (err) {
 		console.error('Error Importing Show:', err, data, content);
+		// Throw an error to stop the import process
+		throw new Error('Error Importing Shows');
 	}
 }
 
