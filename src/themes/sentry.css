@@ -1,0 +1,8 @@
+.theme-sentry {
+	background-image: none;
+	--bg: #2d1130;
+	--sheet-color: #000;
+	--sheet-bg: #fff;
+	--primary: #d15f7c;
+	--accent: #f9dc65;
+}

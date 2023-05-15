@@ -9,17 +9,22 @@ datasource db {
   relationMode = "prisma"
 }
 
-model User {
-  id         String    @id @default(uuid())
-  avatar_url String?
-  created_at DateTime  @default(now())
-  email      String?   @unique
-  github_id  Int       @unique
-  session    Session[]
-  updated_at DateTime  @updatedAt
-  username   String?
+enum ThemeStatus {
+  PUBLISHED
+  UNPUBLISHED
+}
 
-  roles UserRole[]
+model User {
+  id         String     @id @default(uuid())
+  avatar_url String?
+  created_at DateTime   @default(now())
+  email      String?    @unique
+  github_id  Int        @unique
+  session    Session[]
+  updated_at DateTime   @updatedAt
+  username   String?
+  roles      UserRole[]
+  theme      String     @default("system")
 }
 
 model Role {

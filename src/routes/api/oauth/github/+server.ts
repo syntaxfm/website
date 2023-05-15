@@ -1,7 +1,7 @@
 import { randomUUID } from 'crypto';
 import { GITHUB_AUTH_URL } from '$const';
 import { PUBLIC_GITHUB_ID } from '$env/static/public';
-import { redirect, type RequestHandler } from '@sveltejs/kit';
+import type { RequestHandler } from '@sveltejs/kit';
 
 export const GET: RequestHandler = async function ({ locals, cookies }) {
 	const access_token = cookies.get('access_token');

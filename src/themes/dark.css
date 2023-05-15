@@ -1,0 +1,35 @@
+/* System theme */
+.theme-system {
+	--sheet-bg: var(--white);
+	--bg: var(--blackish);
+	--color: var(--white);
+	--sheet-color: var(--black);
+	--primary: var(--yellow);
+	--accent: var(--teal);
+	--warning: var(--red);
+	@media (prefers-color-scheme: dark) {
+		--sheet-color: var(--white);
+		--sheet-bg: var(--black);
+		--primary: var(--yellow);
+		--accent: var(--teal);
+		--warning: var(--red);
+	}
+}
+/* Same as prefers color scheme dark */
+.theme-dark {
+	--sheet-color: var(--white);
+	--sheet-bg: var(--black);
+	--primary: var(--yellow);
+	--accent: var(--teal);
+	--warning: var(--red);
+}
+
+.theme-light {
+	--sheet-bg: var(--white);
+	--bg: var(--blackish);
+	--color: var(--white);
+	--sheet-color: var(--black);
+	--primary: var(--yellow);
+	--accent: var(--teal);
+	--warning: var(--red);
+}

@@ -15,6 +15,7 @@ const config = {
 			$const: 'src/const.ts',
 			$actions: 'src/actions',
 			$utilities: 'src/utilities',
+			$themes: 'src/themes',
 		}
 	},
 

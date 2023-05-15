@@ -9,7 +9,6 @@
 </script>
 
 {#if user}
-	<p>{user.username}</p>
 	<DropdownMenu>
 		<img class="avatar" slot="dropdown-button" src={user.avatar_url} alt="User Avatar" />
 		<div slot="dropdown-links">
