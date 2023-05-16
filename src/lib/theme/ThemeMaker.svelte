@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { clickOutside } from '$actions/click_outside';
 	import { theme, theme_maker } from '$state/theme';
 	import slugo from 'slugo';
 	import { fly } from 'svelte/transition';
@@ -22,7 +23,11 @@
 </script>
 
 {#if $theme_maker.status === 'OPEN'}
-	<section transition:fly={{ x: '100%', opacity: 0 }}>
+	<section
+		use:clickOutside
+		on:click-outside={theme_maker.close}
+		transition:fly={{ x: '100%', opacity: 0 }}
+	>
 		<button on:click={theme_maker.close}>Close</button>
 
 		<h4>Theme 👩‍🎨</h4>

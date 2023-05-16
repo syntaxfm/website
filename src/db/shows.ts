@@ -59,12 +59,14 @@ export async function parse_and_save_show_notes(notes: string, hash: string, num
 			where: { number: number },
 			update: {
 				title: data.title,
+				slug: slugo(data.title),
 				date: new Date(data.date),
 				url: data.url,
 				show_notes: content,
 				hash: hash
 			},
 			create: {
+				slug: slugo(data.title),
 				number: data.number,
 				title: data.title,
 				date: new Date(data.date),

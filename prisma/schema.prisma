@@ -92,4 +92,5 @@ model Show {
   guest      Guest[]
   show_notes String   @db.Text
   hash       String   @unique
+  slug       String
 }
