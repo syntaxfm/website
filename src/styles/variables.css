@@ -1,13 +1,55 @@
 :root {
-	/* Colors */
-	--yellow: #fabf46;
+	/* NEW SHIT */
+	/* 🧑‍🚒 SHIT */
+
+	--yellow-hue: 81.72;
+	--yellow-1: oklch(99% 0.05 var(--yellow-hue));
+	--yellow-2: oklch(90% 0.1 var(--yellow-hue));
+	--yellow-3: oklch(83.77% 0.148 var(--yellow-hue));
+	--yellow-4: oklch(72% 0.148 var(--yellow-hue));
+	--yellow-5: oklch(67% 0.148 var(--yellow-hue));
+	--yellow-6: oklch(50% 0.148 var(--yellow-hue));
+	--yellow-7: oklch(35% 0.148 var(--yellow-hue));
+	--yellow-8: oklch(25% 0.148 var(--yellow-hue));
+	--yellow-9: oklch(13% 0.1 var(--yellow-hue));
+	--yellow-10: oklch(5% 0.1 var(--yellow-hue));
+	--yellow: var(--yellow-3);
+
+	/* --teal: #03fff3; */
+	--teal-hue: 188.71;
+	--teal-1: oklch(99% 0.05 188.71);
+	--teal-2: oklch(95% 0.08 188.71);
+	--teal-3: oklch(90.16% 0.173 188.71);
+	--teal-4: oklch(80% 0.173 188.71);
+	--teal-5: oklch(70% 0.173 188.71);
+	--teal-6: oklch(50% 0.173 188.71);
+	--teal-7: oklch(30% 0.173 188.71);
+	--teal-8: oklch(20% 0.173 188.71);
+	--teal-9: oklch(13% 0.173 188.71);
+	--teal-10: oklch(5% 0.173 188.71);
+	--teal: var(--teal-3);
+
+	/* --green: #cdff5c; */
+	--green-hue: 124.67;
+	--green-1: oklch(99% 0.05 var(--green-hue));
+	--green-2: oklch(95% 0.1 var(--green-hue));
+	--green-3: oklch(92.06% 0.269 var(--green-hue));
+	--green-4: oklch(80% 0.269 var(--green-hue));
+	--green-5: oklch(70% 0.269 var(--green-hue));
+	--green-6: oklch(50% 0.269 var(--green-hue));
+	--green-7: oklch(35% 0.269 var(--green-hue));
+	--green-8: oklch(25% 0.269 var(--green-hue));
+	--green-9: oklch(13% 0.269 var(--green-hue));
+	--green-10: oklch(5% 0.269 var(--green-hue));
+	--green: var(--green-3);
+
+	/* OLD SHIT */
+
 	--black: #000;
 	--blackish: #1d1d1d;
 	--purple: #362d59;
 	--white: #fff;
-	--green: #cdff5c;
 	--red: #eb5757;
-	--teal: #03fff3;
 
 	/* Color Usage */
 	/* Light Theme as the default */
