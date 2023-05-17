@@ -35,10 +35,10 @@ export async function import_or_update_all_shows() {
 
 			if (!existing_show) {
 				// If the show doesn't exist, create it.
-				await parse_and_save_show_notes(file_content, hash, number);
+				await parse_and_save_show_notes(file_content, hash, number, md_file);
 			} else if (existing_show.hash !== hash) {
 				// If the show exists and the hash has changed, update it.
-				await parse_and_save_show_notes(file_content, hash, number);
+				await parse_and_save_show_notes(file_content, hash, number, md_file);
 			}
 		}
 	} catch (err) {
@@ -49,7 +49,12 @@ export async function import_or_update_all_shows() {
 	return { message: 'Import All Shows' };
 }
 // Takes a string of a .md show notes and adds it to the database and adds the guests
-export async function parse_and_save_show_notes(notes: string, hash: string, number: number) {
+export async function parse_and_save_show_notes(
+	notes: string,
+	hash: string,
+	number: number,
+	md_file: string
+) {
 	// Parse the front matter
 	const { data, content } = matter(notes);
 
@@ -63,7 +68,8 @@ export async function parse_and_save_show_notes(notes: string, hash: string, num
 				date: new Date(data.date),
 				url: data.url,
 				show_notes: content,
-				hash: hash
+				hash: hash,
+				md_file
 			},
 			create: {
 				slug: slugo(data.title),
@@ -72,7 +78,8 @@ export async function parse_and_save_show_notes(notes: string, hash: string, num
 				date: new Date(data.date),
 				url: data.url,
 				show_notes: content,
-				hash: hash
+				hash: hash,
+				md_file
 			}
 		});
 

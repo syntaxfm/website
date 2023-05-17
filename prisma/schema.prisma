@@ -93,4 +93,7 @@ model Show {
   show_notes String   @db.Text
   hash       String   @unique
   slug       String
+  md_file    String   @unique
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }

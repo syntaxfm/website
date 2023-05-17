@@ -10,7 +10,7 @@
 
 	// TODO refactor to utility function
 	function getThemeName(path: string) {
-		return path.match(themeName)[0];
+		return path.match(themeName)?.[0];
 	}
 
 	// Always use system and light which are just base styles
@@ -40,7 +40,7 @@
 					<div class="circle accent" />
 					<div class="circle warning" />
 					<span>
-						{theme_name.replaceAll('-', ' ')}
+						{theme_name?.replaceAll('-', ' ')}
 					</span>
 				</button>
 			{/each}

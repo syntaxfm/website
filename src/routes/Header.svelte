@@ -26,11 +26,11 @@
 	</svelte:element>
 
 	<nav>
-		<a href="/podcast">Podcast</a>
-		<a href="/articles">Articles</a>
-		<a href="/video">Video</a>
+		<a href="/shows">Podcast</a>
 		<a href="https://swag.syntax.fm">Swag</a>
 	</nav>
+
+	<button>Ask a potluck question</button>
 
 	<UserMenu {user} />
 	<ThemeToggle />

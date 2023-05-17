@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Toaster } from 'svelte-french-toast';
-	import Player from '$lib/Player.svelte';
+	import Player from '$lib/player/Player.svelte';
 	import Footer from './Footer.svelte';
 	import Header from './Header.svelte';
 	import './style.css';
