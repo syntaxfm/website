@@ -30,10 +30,11 @@
 		<a href="https://swag.syntax.fm">Swag</a>
 	</nav>
 
-	<button>Ask a potluck question</button>
-
-	<UserMenu {user} />
-	<ThemeToggle />
+	<div>
+		<button>Ask a potluck question</button>
+		<UserMenu {user} />
+		<ThemeToggle />
+	</div>
 </header>
 
 <style>
@@ -44,7 +45,7 @@
 
 	header {
 		display: grid;
-		grid-template-columns: 150px auto auto auto;
+		grid-template-columns: [start logo] 150px [logo nav] auto [nav actions] auto [actions end];
 	}
 
 	a {

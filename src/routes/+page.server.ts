@@ -3,7 +3,7 @@ import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ locals }) => {
 	return {
-		latest: locals.prisma.show.findMany({ limit: 10, orderBy: { number: 'desc' } })
+		latest: locals.prisma.show.findMany({ take: 10, orderBy: { number: 'desc' } })
 	};
 };
 

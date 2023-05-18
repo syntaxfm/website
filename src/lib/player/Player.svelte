@@ -26,6 +26,7 @@
 
 {#if $player.status === 'ACTIVE'}
 	<section class="player">
+		<p>{$player.current_show?.title}</p>
 		{format_time(current_time)} / {format_time(duration)}
 		<progress max={duration} value={current_time} />
 		<button on:click={play}>Play</button>
@@ -41,6 +42,10 @@
 {/if}
 
 <style>
+	p {
+		margin: 0;
+	}
+
 	.player {
 		padding: 20px;
 		position: fixed;

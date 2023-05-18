@@ -75,7 +75,7 @@
 	h5 {
 		font-weight: 600;
 		font-style: italic;
-		margin: 1rem 0;
+		margin: 2rem 0;
 	}
 
 	.featuring {

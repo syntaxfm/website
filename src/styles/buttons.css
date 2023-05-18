@@ -1,0 +1,8 @@
+:root {
+	--button-bg: var(--yellow);
+}
+
+button {
+	border: none;
+	background-color: var(--button-bg);
+}

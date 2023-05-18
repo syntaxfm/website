@@ -47,7 +47,7 @@
 		grid-column: start/end;
 		padding: 2rem 0;
 		margin-bottom: 2rem;
-		border-top: 2px solid var(--black-5);
-		border-bottom: 2px solid var(--black-5);
+		border-top: 2px solid var(--black-2);
+		border-bottom: 2px solid var(--black-2);
 	}
 </style>
