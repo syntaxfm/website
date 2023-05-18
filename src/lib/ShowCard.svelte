@@ -1,0 +1,56 @@
+<script lang="ts">
+	import { player } from '$state/player';
+	import { format_show_type } from '$utilities/format_show_type';
+	import type { Show } from '@prisma/client';
+	import { format } from 'date-fns';
+
+	export let show: Show;
+	export let highlight = false;
+</script>
+
+<article class:highlight>
+	<p>
+		{format_show_type(show.date)} - {format(new Date(show.date), 'MMMM do, yyyy')}
+	</p>
+	<h4>{show.title}</h4>
+
+	<div class="buttons">
+		<a href={`/shows/${show.number}/${show.slug}`} class="button subtle">Show Notes</a>
+		<button on:click={() => player.play_show(show)}>Play Episode {show.number}</button>
+	</div>
+</article>
+
+<style>
+	article {
+		--show-card-color: var(--sheet-color);
+		--show-card-bg: var(--sheet-bg);
+		display: grid;
+		padding: 20px;
+		color: var(--show-card-color);
+		background-color: var(--show-card-bg);
+		border: solid 1px var(--black-3);
+		border-radius: 4px;
+		&.highlight {
+			--show-card-color: var(--sheet-bg);
+			--show-card-bg: var(--sheet-color);
+			border: none;
+			grid-column: 1 / -1;
+			& h4 {
+				font-size: var(--font-size-xl);
+			}
+		}
+	}
+
+	h4 {
+		line-height: 1.7;
+		margin: 0 0 2rem;
+		font-weight: 500;
+		font-size: var(--font-size-md);
+		font-style: italic;
+	}
+
+	p {
+		margin: 0;
+		opacity: 0.6;
+	}
+</style>

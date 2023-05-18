@@ -1,8 +1,23 @@
-:root {
-	--button-bg: var(--yellow);
+.theme-wrapper {
+	--button-bg: var(--primary);
+	--button-color: var(--yellow-8);
 }
 
-button {
+button,
+.button {
+	text-decoration: none;
 	border: none;
+	font-family: var(--body-font-familly);
+	font-weight: 600;
+	padding: 8px 14px;
+	font-size: var(--body-font-size);
+	border-radius: 4px;
 	background-color: var(--button-bg);
+	width: auto;
+	color: var(--button-color);
+}
+
+:is(button, .button).subtle {
+	--button-bg: var(--black-2);
+	--button-color: var(--yellow-8);
 }

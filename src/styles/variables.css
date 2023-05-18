@@ -99,6 +99,9 @@
 	--warning: var(--red);
 	--success: var(--teal);
 
+	--body-font-familly: 'MD IO 0.6';
+	--heading-font-familly: 'MD IO 0.6';
+
 	/* Typeography */
 	--font-size-sm: clamp(0.8rem, 0.17vw + 0.76rem, 0.89rem);
 	--font-size-base: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);

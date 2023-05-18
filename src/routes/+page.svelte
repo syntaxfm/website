@@ -1,4 +1,5 @@
 <script lang="ts">
+	import ShowCard from '$lib/ShowCard.svelte';
 	import { player } from '$state/player';
 	import type { PageData } from './$types';
 
@@ -7,16 +8,21 @@
 </script>
 
 <h2>Latest Show</h2>
-<article>
-	{latest[0].title}
-	<button on:click={() => player.play_show(latest[0])}>Play Episode {latest[0].number}</button>
-</article>
+<div class="article-grid">
+	<ShowCard highlight={true} show={latest[0]} />
+</div>
 
-<h3>Last 10</h3>
+<h2>Last 10</h2>
+<div class="article-grid">
+	{#each latest as latest_ep}
+		<ShowCard show={latest_ep} />
+	{/each}
+</div>
 
-{#each latest as latest_ep}
-	<article>
-		{latest_ep.title}
-		<button on:click={() => player.play_show(latest_ep)}>Play Episode {latest_ep.number}</button>
-	</article>
-{/each}
+<style>
+	.article-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+		grid-gap: 20px;
+	}
+</style>

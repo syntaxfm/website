@@ -35,7 +35,7 @@
 	.dropdown-links {
 		background: var(--sheet-bg);
 		border-radius: 6px;
-		box-shadow: var(--level_3);
+		border: solid 1px var(--black-7);
 		display: flex;
 		justify-content: flex-end;
 		min-width: 200px;
@@ -44,8 +44,8 @@
 		right: -15px;
 		text-align: right;
 		top: 60px;
+		z-index: 1;
 		color: var(--white);
-		z-index: var(--headerLevel);
 		&::after {
 			content: '';
 			position: absolute;

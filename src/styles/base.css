@@ -68,7 +68,8 @@ body {
 	margin: 0;
 }
 
-a {
+p a,
+.a {
 	color: var(--sheet-color);
 	text-decoration: none;
 	border-bottom: solid 3px var(--primary);

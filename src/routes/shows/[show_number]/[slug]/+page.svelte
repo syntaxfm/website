@@ -17,9 +17,11 @@
 	<HostsAndGuests guests={show.guest} />
 
 	<div class="show-actions">
-		<a download href={show.url}>Download Show</a>
-		<a download href={'https://github.com/syntaxfm/website/tree/main/shows' + show.md_file}
-			>Edit Show Notes</a
+		<a class="a" download href={show.url}>Download Show</a>
+		<a
+			class="a"
+			download
+			href={'https://github.com/syntaxfm/website/tree/main/shows' + show.md_file}>Edit Show Notes</a
 		>
 	</div>
 
