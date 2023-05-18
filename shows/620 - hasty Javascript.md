@@ -5,7 +5,7 @@ date: 1685361600397
 url: https://traffic.libsyn.com/syntax/Syntax_-_620.mp3
 ---
 
-In this Hasty Treat, Scott and Wes talk about JavaScript executables - what is it? What's the benefit of them? And what kind of tooling exists to support them?
+JavaScript executables: their purpose, benefits, and use cases, such as creating standalone applications with all dependencies and the Node.js runtime bundled into a single executable for portability and easy deployment. We also address the twitter hate on the executable’s size.
 
 ## Show Notes
 
