@@ -12,7 +12,6 @@ const new_player_state = () => {
 
 	function play_show(show: Show) {
 		update((state) => {
-			console.log('state', state);
 			state.status = 'ACTIVE';
 			state.current_show = show;
 			return state;

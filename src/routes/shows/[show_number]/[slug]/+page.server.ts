@@ -12,7 +12,8 @@ export const load: PageServerLoad = async function ({ params, locals }) {
 	const { show_number } = params;
 
 	const show_raw: Show = await locals.prisma.show.findFirst({
-		where: { number: parseInt(show_number) }
+		where: { number: parseInt(show_number) },
+		include: { guest: true }
 	});
 	const body_excerpt = await unified()
 		.use(remarkParse)

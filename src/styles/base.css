@@ -40,9 +40,11 @@ h1 {
 }
 h2 {
 	font-size: var(--font-size-xxl);
+	font-weight: 700;
 }
 h3 {
 	font-size: var(--font-size-xl);
+	font-weight: 700;
 }
 h4 {
 	font-size: var(--font-size-lg);
@@ -52,7 +54,8 @@ h5 {
 }
 
 h6,
-p {
+p,
+li {
 	font-size: var(--font-size-base);
 }
 
@@ -66,9 +69,12 @@ body {
 }
 
 a {
-	color: var(--primary);
+	color: var(--sheet-color);
+	text-decoration: none;
+	border-bottom: solid 3px var(--primary);
 }
 
-p {
-	line-height: 1.5;
+p,
+li {
+	line-height: 1.7;
 }

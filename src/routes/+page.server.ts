@@ -1,4 +1,11 @@
 import type { Actions } from '@sveltejs/kit';
+import type { PageServerLoad } from './$types';
+
+export const load: PageServerLoad = async ({ locals }) => {
+	return {
+		latest: locals.prisma.show.findMany({ limit: 10, orderBy: { number: 'desc' } })
+	};
+};
 
 export const actions: Actions = {
 	logout: async function logout({ locals, cookies }) {

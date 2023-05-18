@@ -46,7 +46,6 @@
 	main {
 		background-color: var(--sheet-bg);
 		color: var(--sheet-color);
-		max-width: 1000px;
 		margin: 0px auto;
 		padding: 2rem;
 		width: 100vw;

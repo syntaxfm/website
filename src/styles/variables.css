@@ -97,6 +97,7 @@
 	--primary: var(--yellow);
 	--accent: var(--teal);
 	--warning: var(--red);
+	--success: var(--teal);
 
 	/* Typeography */
 	--font-size-sm: clamp(0.8rem, 0.17vw + 0.76rem, 0.89rem);
