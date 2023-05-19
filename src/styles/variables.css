@@ -58,6 +58,7 @@
 	--red: var(--red-5);
 
 	--black-hue: 0;
+	--blacklch: 0% 0 var(--black-hue);
 	--black-1: oklch(97% 0 var(--black-hue));
 	--black-2: oklch(90% 0 var(--black-hue));
 	--black-3: oklch(83% 0 var(--black-hue));

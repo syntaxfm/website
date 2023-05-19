@@ -12,12 +12,36 @@ button,
 	padding: 8px 14px;
 	font-size: var(--body-font-size);
 	border-radius: 4px;
-	background-color: var(--button-bg);
+	background: var(--button-bg);
 	width: auto;
 	color: var(--button-color);
+	box-shadow: inset 0 0 0 3px oklch(var(--blacklch) / 0.2);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
 }
 
 :is(button, .button).subtle {
 	--button-bg: var(--black-2);
 	--button-color: var(--yellow-8);
+}
+
+:is(button, .button).big {
+	font-size: var(--font-size-md);
+	padding: 10px 20px;
+	box-shadow: inset 0 0 0 3px oklch(var(--blacklch) / 0.2);
+}
+
+:is(button, .button).play {
+	--button-bg: linear-gradient(to right, var(--green), var(--teal));
+	--button-color: var(--black-8);
+	font-size: var(--font-size-md);
+	padding: 10px 20px;
+	box-shadow: inset 0 0 0 3px oklch(var(--blacklch) / 0.2);
+	transition: background-size 1s ease-in-out;
+	background-size: 100%;
+	&:hover {
+		background-size: 200%;
+	}
 }

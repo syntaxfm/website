@@ -45,7 +45,7 @@
 	{/if}
 </div>
 
-<style>
+<style lang="postcss">
 	.guests-and-hosts {
 		margin: 2rem 0;
 		grid-column: start/end;
@@ -66,7 +66,8 @@
 	h5 {
 		font-weight: 600;
 		font-style: italic;
-		margin: 2rem 0;
+		opacity: 0.8;
+		margin: 3rem 0 1rem;
 	}
 
 	.featuring {
@@ -77,6 +78,7 @@
 
 	figcaption p {
 		margin: 0;
+		margin-bottom: 0.5rem;
 	}
 
 	.social-icon {
