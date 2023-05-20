@@ -68,7 +68,7 @@
 	--black-7: oklch(35% 0 var(--black-hue));
 	--black-8: oklch(23.08% 0 var(--black-hue));
 	--black-9: oklch(13% 0 var(--black-hue));
-	--black-10: oklch(0% 0 var(--black-hue));
+	--black-10: oklch(var(--blacklch));
 	--black: var(--black-10);
 	--blackish: var(--black-8);
 	--white: oklch(100% 0 0);

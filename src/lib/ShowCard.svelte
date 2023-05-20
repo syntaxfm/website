@@ -1,4 +1,5 @@
 <script lang="ts">
+	import white_grit from '$assets/whitegrit.png';
 	import { player } from '$state/player';
 	import { format_show_type } from '$utilities/format_show_type';
 	import type { Show } from '@prisma/client';
@@ -8,8 +9,8 @@
 	export let highlight = false;
 </script>
 
-<article class:highlight>
-	<p>
+<article class:highlight style={`background-image: url(${white_grit})`}>
+	<p class="show-card-date">
 		{format_show_type(show.date)} - {format(new Date(show.date), 'MMMM do, yyyy')}
 	</p>
 	<h4>{show.title}</h4>
@@ -22,6 +23,7 @@
 
 <style>
 	article {
+		container: show-card / inline-size;
 		--show-card-color: var(--sheet-color);
 		--show-card-bg: var(--sheet-bg);
 		display: grid;
@@ -35,9 +37,6 @@
 			--show-card-bg: var(--sheet-color);
 			border: none;
 			grid-column: 1 / -1;
-			& h4 {
-				font-size: var(--font-size-xl);
-			}
 		}
 	}
 
@@ -47,6 +46,16 @@
 		font-weight: 500;
 		font-size: var(--font-size-md);
 		font-style: italic;
+	}
+
+	@container show-card (width > 600px) {
+		h4 {
+			font-size: var(--font-size-xl);
+		}
+	}
+
+	.show-card-date {
+		font-size: var(--font-size-sm);
 	}
 
 	p {
