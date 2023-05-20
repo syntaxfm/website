@@ -9,15 +9,29 @@
 	export let highlight = false;
 </script>
 
-<article class:highlight style={`background-image: url(${white_grit})`}>
+<article
+	class:highlight
+	style={highlight
+		? `background-image:linear-gradient(to top, #00000000, #000000ff), url(${white_grit})`
+		: ''}
+>
 	<p class="show-card-date">
 		{format_show_type(show.date)} - {format(new Date(show.date), 'MMMM do, yyyy')}
 	</p>
 	<h4>{show.title}</h4>
 
+	{#if highlight}
+		<p>
+			{show.show_notes.match(/(.*?)(?=## Show Notes)/s)[0]}
+		</p>
+	{/if}
+
 	<div class="buttons">
+		<button class:play={highlight} on:click={() => player.play_show(show)}
+			>Play Episode {show.number}</button
+		>
+		<!-- TODO consider making these links a link and not a button style -->
 		<a href={`/shows/${show.number}/${show.slug}`} class="button subtle">Show Notes</a>
-		<button on:click={() => player.play_show(show)}>Play Episode {show.number}</button>
 	</div>
 </article>
 
@@ -42,7 +56,7 @@
 
 	h4 {
 		line-height: 1.7;
-		margin: 0 0 2rem;
+		margin: 0;
 		font-weight: 500;
 		font-size: var(--font-size-md);
 		font-style: italic;
@@ -56,10 +70,11 @@
 
 	.show-card-date {
 		font-size: var(--font-size-sm);
-	}
-
-	p {
 		margin: 0;
 		opacity: 0.6;
+	}
+
+	.buttons {
+		margin-top: 4rem;
 	}
 </style>
