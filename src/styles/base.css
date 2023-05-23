@@ -68,10 +68,14 @@ body {
 	margin: 0;
 }
 
+a,
+.a {
+	text-decoration: none;
+}
+
 :is(p, li) a,
 .a {
 	color: var(--sheet-color);
-	text-decoration: none;
 	border-bottom: solid 3px var(--primary);
 }
 
