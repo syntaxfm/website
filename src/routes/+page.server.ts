@@ -1,9 +1,12 @@
 import type { Actions } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async ({ locals }) => {
+export const load: PageServerLoad = async ({ locals, setHeaders }) => {
+	setHeaders({
+		'cache-control': 'max-age=120'
+	});
 	return {
-		latest: locals.prisma.show.findMany({ take: 10, orderBy: { number: 'desc' } })
+		latest: locals.prisma.show.findMany({ take: 11, orderBy: { number: 'desc' } })
 	};
 };
 

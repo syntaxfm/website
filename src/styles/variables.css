@@ -57,8 +57,8 @@
 	--red-10: oklch(5% 0.221 var(--red-hue));
 	--red: var(--red-5);
 
-	--black-hue: 0;
-	--blacklch: 0% 0 var(--black-hue);
+	--black-hue: none;
+	--blacklch: 0% none var(--black-hue);
 	--black-1: oklch(97% 0 var(--black-hue));
 	--black-2: oklch(90% 0 var(--black-hue));
 	--black-3: oklch(83% 0 var(--black-hue));
@@ -71,7 +71,7 @@
 	--black-10: oklch(var(--blacklch));
 	--black: var(--black-10);
 	--blackish: var(--black-8);
-	--white: oklch(100% 0 0);
+	--white: oklch(100% none none);
 
 	/* --purple: #362d59; */
 	--purple-hue: 291.04;
@@ -85,7 +85,6 @@
 	--purple-8: oklch(25% 0.076 var(--purple-hue));
 	--purple-9: oklch(20% 0.076 var(--purple-hue));
 	--purple-10: oklch(10% 0.076 var(--purple-hue));
-
 	--purple: var(--purple-7);
 	/* OLD SHIT */
 

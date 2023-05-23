@@ -10,6 +10,9 @@
 	import ThemeMaker from '$lib/theme/ThemeMaker.svelte';
 	import { theme } from '$state/theme';
 	import { onMount } from 'svelte';
+	import { preparePageTransition } from '$lib/page_transition';
+
+	preparePageTransition();
 
 	// Load current user from db, put it in context so we don't have to pass as props
 	export let data: PageData;

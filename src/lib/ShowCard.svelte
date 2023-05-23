@@ -12,13 +12,13 @@
 <article
 	class:highlight
 	style={highlight
-		? `background-image:linear-gradient(to top, #00000000, #000000ff), url(${white_grit})`
+		? `background-image:linear-gradient(to top, #00000000, var(--sheet-color)), url(${white_grit})`
 		: ''}
 >
-	<p class="show-card-date">
+	<p class="show-card-date" style:--transition-name="show-date-{show.number}">
 		{format_show_type(show.date)} - {format(new Date(show.date), 'MMMM do, yyyy')}
 	</p>
-	<h4>{show.title}</h4>
+	<h4 style:--transition-name="show-title-{show.number}">{show.title}</h4>
 
 	{#if highlight}
 		<p>
@@ -55,6 +55,7 @@
 	}
 
 	h4 {
+		view-transition-name: var(--transition-name);
 		line-height: 1.7;
 		margin: 0;
 		font-weight: 500;
@@ -72,6 +73,7 @@
 		font-size: var(--font-size-sm);
 		margin: 0;
 		opacity: 0.6;
+		view-transition-name: var(--transition-name);
 	}
 
 	.buttons {

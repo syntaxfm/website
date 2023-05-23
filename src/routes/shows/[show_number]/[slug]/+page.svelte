@@ -4,18 +4,18 @@
 	import { player } from '$state/player';
 	import HostsAndGuests from './HostsAndGuests.svelte';
 
-	import play from '$assets/play.svg';
 	export let data: PageData;
 	$: ({ show } = data);
 </script>
 
 <article class="show-page">
 	<header>
-		<p>{format(new Date(show.date), 'MMMM do, yyyy')}</p>
-		<h1>{show.title}</h1>
+		<p class="show-page-date" style:--transition-name="show-date-{show.number}">
+			{format(new Date(show.date), 'MMMM do, yyyy')}
+		</p>
+		<h1 style:--transition-name="show-title-{show.number}">{show.title}</h1>
 
 		<button class="big play" on:click={() => player.play_show(show)}>
-			<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
 			<svg width="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 				<path
 					opacity="0.1"
@@ -65,6 +65,7 @@
 	}
 
 	h1 {
+		view-transition-name: var(--transition-name);
 		margin-top: 0;
 		margin-bottom: 6rem;
 		font-size: var(--font-size-xxl);
@@ -77,5 +78,9 @@
 		border-top: 2px solid var(--black-2);
 		border-bottom: 2px solid var(--black-2);
 		font-weight: 700;
+	}
+
+	.show-page-date {
+		view-transition-name: var(--transition-name);
 	}
 </style>

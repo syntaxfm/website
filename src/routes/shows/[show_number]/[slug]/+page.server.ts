@@ -8,7 +8,7 @@ import rehypeRaw from 'rehype-raw';
 import rehypeStringify from 'rehype-stringify';
 import highlight from 'rehype-highlight';
 import type { Show } from '@prisma/client';
-export const load: PageServerLoad = async function ({ params, locals }) {
+export const load: PageServerLoad = async function ({ setHeaders, params, locals }) {
 	const { show_number } = params;
 
 	const show_raw: Show = await locals.prisma.show.findFirst({
@@ -23,6 +23,11 @@ export const load: PageServerLoad = async function ({ params, locals }) {
 		.use(highlight)
 		.use(rehypeStringify)
 		.process(show_raw?.show_notes || '');
+
+	setHeaders({
+		'cache-control': 'max-age=120'
+	});
+
 	return {
 		show: {
 			...show_raw,
