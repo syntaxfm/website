@@ -98,6 +98,8 @@
 	--accent: var(--teal);
 	--warning: var(--red);
 	--success: var(--teal);
+	--zebra: oklch(var(--blacklch) / 0.05);
+	--line: var(--black-2);
 
 	--body-font-familly: 'MD IO 0.6';
 	--heading-font-familly: 'MD IO 0.6';

@@ -35,7 +35,7 @@
 	</div>
 </article>
 
-<style>
+<style lang="postcss">
 	article {
 		container: show-card / inline-size;
 		--show-card-color: var(--sheet-color);
@@ -44,13 +44,26 @@
 		padding: 20px;
 		color: var(--show-card-color);
 		background-color: var(--show-card-bg);
-		border: solid 1px var(--black-3);
-		border-radius: 4px;
+		&.card {
+			border-radius: 4px;
+			border: solid 1px var(--black-3);
+		}
+
 		&.highlight {
 			--show-card-color: var(--sheet-bg);
 			--show-card-bg: var(--sheet-color);
 			border: none;
 			grid-column: 1 / -1;
+		}
+
+		&.list {
+			border-top: solid 1px var(--line);
+			&:hover {
+				background-color: var(--zebra);
+			}
+			& h4 {
+				font-size: var(--font-size-sm);
+			}
 		}
 	}
 
@@ -64,8 +77,10 @@
 	}
 
 	@container show-card (width > 600px) {
-		h4 {
-			font-size: var(--font-size-xl);
+		.highlight {
+			& h4 {
+				font-size: var(--font-size-xl);
+			}
 		}
 	}
 

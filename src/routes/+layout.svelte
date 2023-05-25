@@ -29,7 +29,9 @@
 
 	<div class="pusher">
 		<main>
-			<slot />
+			<div class="readable">
+				<slot />
+			</div>
 		</main>
 		<ThemeMaker />
 	</div>
@@ -52,6 +54,11 @@
 		margin: 0px auto;
 		padding: 2rem;
 		width: 100vw;
+	}
+
+	.readable {
+		max-width: 1000px;
+		margin: 0 auto;
 	}
 
 	.pusher {

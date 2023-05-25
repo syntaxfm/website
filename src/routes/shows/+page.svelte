@@ -7,6 +7,8 @@
 </script>
 
 <section>
+	<h3>All Episodes</h3>
+
 	{#each shows as show (show.id)}
 		<ShowCard {show} display="list" />
 	{/each}
