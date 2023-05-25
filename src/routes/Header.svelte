@@ -59,17 +59,18 @@
 		padding: 10px;
 		align-items: baseline;
 		grid-template-columns: [start logo] 88px [logo nav] auto [nav actions] auto [actions end];
-	}
-
-	nav {
-		text-align: center;
+		gap: 20px;
 	}
 
 	nav a {
 		text-decoration: none;
 		color: var(--color);
 		text-decoration: none;
-		border-bottom: solid 3px var(--primary);
+		border-bottom: solid 3px transparent;
+		transition: border-color 0.2s ease;
+		&:hover {
+			border-bottom: solid 3px var(--primary);
+		}
 	}
 
 	.header-actions {

@@ -46,7 +46,9 @@ export async function GET({ url, cookies, locals }) {
 			cookies.set('access_token', access_token, {
 				httpOnly: true,
 				path: '/',
-				secure: true
+				secure: true,
+				sameSite: 'strict',
+				maxAge: 60 * 60 * 24 * 365 // 1 year
 			});
 
 			return new Response('', {

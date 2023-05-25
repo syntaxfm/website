@@ -22,7 +22,7 @@
 
 	{#if highlight}
 		<p>
-			{show.show_notes.match(/(.*?)(?=## Show Notes)/s)[0]}
+			{show.show_notes.match(/(.*?)(?=## Show Notes)/s)?.[0]}
 		</p>
 	{/if}
 

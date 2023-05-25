@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { format_show_type } from '$utilities/format_show_type';
+	import ShowCard from '$lib/ShowCard.svelte';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
@@ -8,14 +8,7 @@
 
 <section>
 	{#each shows as show (show.id)}
-		<article>
-			<a href="shows/{show.number}/{show.slug}">
-				<p>
-					Episode {show.number} | {format_show_type(show.date)}
-				</p>
-				<h3 style:--transition-name="show-title-{show.number}">{show.title}</h3>
-			</a>
-		</article>
+		<ShowCard {show} />
 	{/each}
 </section>
 
