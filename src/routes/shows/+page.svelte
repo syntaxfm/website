@@ -8,9 +8,10 @@
 
 <section>
 	{#each shows as show (show.id)}
-		<ShowCard {show} />
+		<ShowCard {show} display="list" />
 	{/each}
 </section>
+g
 
 <style>
 	h3 {

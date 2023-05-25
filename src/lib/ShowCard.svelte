@@ -6,12 +6,12 @@
 	import { format } from 'date-fns';
 
 	export let show: Show;
-	export let highlight = false;
+	export let display: 'list' | 'card' | 'highlight' = 'card';
 </script>
 
 <article
-	class:highlight
-	style={highlight
+	class={display}
+	style={display === 'highlight'
 		? `background-image:linear-gradient(to top, #00000000, var(--sheet-color)), url(${white_grit})`
 		: ''}
 >
@@ -20,14 +20,14 @@
 	</p>
 	<h4 style:--transition-name="show-title-{show.number}">{show.title}</h4>
 
-	{#if highlight}
+	{#if display === 'highlight'}
 		<p>
 			{show.show_notes.match(/(.*?)(?=## Show Notes)/s)?.[0]}
 		</p>
 	{/if}
 
 	<div class="buttons">
-		<button class:play={highlight} on:click={() => player.play_show(show)}
+		<button class:play={display === 'highlight'} on:click={() => player.play_show(show)}
 			>Play Episode {show.number}</button
 		>
 		<!-- TODO consider making these links a link and not a button style -->

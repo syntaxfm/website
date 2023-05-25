@@ -13,14 +13,14 @@
 	}
 </script>
 
-<h2>Latest Show</h2>
+<h4>Latest Episode</h4>
 <div class="article-grid">
 	{#if latest_show}
-		<ShowCard highlight={true} show={latest_show} />
+		<ShowCard display="highlight" show={latest_show} />
 	{/if}
 </div>
 
-<h2>Last 10</h2>
+<h4>Last 10</h4>
 <div class="article-grid">
 	{#each last_ten as latest_ep}
 		<ShowCard show={latest_ep} />

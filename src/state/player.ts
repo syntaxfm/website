@@ -5,9 +5,13 @@ const new_player_state = () => {
 	const { subscribe, update, set } = writable<{
 		status: 'HIDDEN' | 'ACTIVE' | 'EXPANDED';
 		current_show: null | Show;
+		playing: boolean;
+		audio?: HTMLAudioElement;
 	}>({
 		status: 'HIDDEN',
-		current_show: null
+		current_show: null,
+		playing: false,
+		audio: undefined
 	});
 
 	function play_show(show: Show) {
