@@ -1,21 +1,62 @@
 <script lang="ts">
+	import DropdownMenu from '$lib/DropdownMenu.svelte';
+	import Icon from '$lib/Icon.svelte';
 	import ShowCard from '$lib/ShowCard.svelte';
 	import type { PageData } from './$types';
 
+	let sort = 'nto';
 	export let data: PageData;
 	$: ({ shows } = data);
 </script>
 
 <section>
-	<h3>All Episodes</h3>
+	<div class="list-heading">
+		<h3>All Episodes</h3>
 
+		<div>
+			<DropdownMenu>
+				<button class="subtle" slot="dropdown-button">
+					<Icon name="filter" /> Episode Type
+				</button>
+				<div slot="dropdown-links" class="dropdown-links">
+					<a class="button" href="?order=desc" class:active={sort === 'nto'}>Hast</a>
+					<a class="button" href="?order=asc" class:active={sort === 'otn'}>Tasty</a>
+					<a class="button" href="?order=asc" class:active={sort === 'otn'}>Supper Club</a>
+					<a class="button" href="?order=asc" class:active={sort === 'otn'}>Special</a>
+				</div>
+			</DropdownMenu>
+
+			<DropdownMenu>
+				<button class="subtle" slot="dropdown-button">
+					<Icon name="sort" /> Sort Episodes
+				</button>
+				<div slot="dropdown-links" class="dropdown-links">
+					<a class="button" href="?order=desc" class:active={sort === 'nto'}>Newest To Oldest</a>
+					<a class="button" href="?order=asc" class:active={sort === 'otn'}>Oldest To Newest</a>
+				</div>
+			</DropdownMenu>
+		</div>
+	</div>
 	{#each shows as show (show.id)}
 		<ShowCard {show} display="list" />
 	{/each}
 </section>
-g
 
 <style>
+	.list-heading {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+	}
+
+	.dropdown-links {
+		display: flex;
+		justify-content: flex-end;
+		flex-direction: column;
+		padding: 1rem;
+		gap: 10px;
+	}
+
 	h3 {
 		view-transition-name: var(--transition-name);
 	}

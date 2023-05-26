@@ -23,8 +23,9 @@ button,
 }
 
 :is(button, .button).subtle {
-	--button-bg: var(--black-2);
+	--button-bg: var(--black-1);
 	--button-color: var(--yellow-8);
+	box-shadow: inset 0 0 0 2px oklch(var(--blacklch) / 0.2);
 }
 
 :is(button, .button).big {

@@ -10,9 +10,9 @@
 	import ThemeMaker from '$lib/theme/ThemeMaker.svelte';
 	import { theme } from '$state/theme';
 	import { onMount } from 'svelte';
-	import { preparePageTransition } from '$lib/page_transition';
+	// import { preparePageTransition } from '$lib/page_transition';
 
-	preparePageTransition();
+	// preparePageTransition();
 
 	// Load current user from db, put it in context so we don't have to pass as props
 	export let data: PageData;
@@ -27,17 +27,15 @@
 <div class={'theme-' + $theme + ' theme-wrapper'}>
 	<Header {user} />
 
-	<div class="pusher">
+	<div class="page-layout">
 		<main>
-			<div class="readable">
-				<slot />
-			</div>
+			<slot />
 		</main>
-		<ThemeMaker />
 	</div>
+
 	<Footer />
 
-	<!-- Putting this here for now, will be available on every page -->
+	<ThemeMaker />
 	<Player />
 	<Toaster />
 	<Loading />
@@ -48,21 +46,30 @@
 </div>
 
 <style lang="postcss">
-	main {
+	.theme-wrapper {
 		background-color: var(--sheet-bg);
 		color: var(--sheet-color);
-		margin: 0px auto;
-		padding: 2rem;
-		width: 100vw;
+		min-height: 100vh;
+		border-top: 8px solid var(--primary);
 	}
 
-	.readable {
-		max-width: 1000px;
+	main {
+		padding: 2rem;
+		grid-column: 2;
+	}
+
+	.page-layout {
+		max-width: 1600px;
 		margin: 0 auto;
 	}
 
-	.pusher {
-		position: relative;
-		overflow: hidden;
+	@media (min-width: 1280px) {
+		.page-layout {
+			gap: 48px;
+			display: grid;
+			grid-auto-flow: column;
+			grid-template-columns: 144px minmax(0, 18fr) 144px;
+			grid-template-rows: 1fr;
+		}
 	}
 </style>

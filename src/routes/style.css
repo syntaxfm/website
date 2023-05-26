@@ -1,20 +1,26 @@
+/* 
+░██████╗██╗░░░██╗███╗░░██╗
+██╔════╝╚██╗░██╔╝████╗░██║
+╚█████╗░░╚████╔╝░██╔██╗██║
+░╚═══██╗░░╚██╔╝░░██║╚████║
+██████╔╝░░░██║░░░██║░╚███║
+╚═════╝░░░░╚═╝░░░╚═╝░░╚══╝
+
+████████╗░█████╗░██╗░░██╗
+╚══██╔══╝██╔══██╗╚██╗██╔╝
+░░░██║░░░███████║░╚███╔╝░
+░░░██║░░░██╔══██║░██╔██╗░
+░░░██║░░░██║░░██║██╔╝╚██╗
+░░░╚═╝░░░╚═╝░░╚═╝╚═╝░░╚═╝ */
+
+/* The main css entry. Primarily used to import stuff */
+
 /* Import all css themes */
-@import-glob '../styles/variables.css';
 @import-glob '../styles/base.css';
+@import-glob '../styles/variables.css';
 @import-glob '../styles/buttons.css';
 @import-glob "../themes/*.css";
 /* FYI you have to use import-glob for all of these or else it gets mad */
-
-/* Global Styles */
-
-/* Because we can't apply a class easily to the body or even root, we need a new root wrapper */
-.theme-wrapper {
-	min-height: 100vh;
-	background-image: url('https://syntax.fm/static/background.jpg');
-	background-color: var(--bg);
-	color: var(--color);
-	border-top: 10px solid var(--primary);
-}
 
 /* Global Utilities */
 .center {

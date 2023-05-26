@@ -68,7 +68,8 @@
 		bottom: 0;
 		width: 100vw;
 		height: 150px;
-		background-color: var(--player_bg, var(--blackish));
+		color: var(--color);
+		background-color: var(--player-bg, var(--blackish));
 		border-top: 3px var(--primary) solid;
 		display: flex;
 		flex-direction: column;
