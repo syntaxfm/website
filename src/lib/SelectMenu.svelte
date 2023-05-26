@@ -1,18 +1,23 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { createEventDispatcher } from 'svelte';
+	import type { IconName } from './Icon.svelte';
+	import Icon from './Icon.svelte';
 	export let options: { value: string; label: string }[];
+
+	export let button_icon: IconName;
+	export let button_text: string;
+
+	const dispatch = createEventDispatcher();
 </script>
 
-<form
-	action="/shows"
-	method="GET"
-	on:change={(e) => {
-		goto(`?order=${e.target.value}`);
-	}}
->
+<form action="/shows" method="GET" on:change={(e) => dispatch('select', e.target.value)}>
 	<x-selectmenu id="order">
-		<div slot="button" behavior="button">
-			<slot name="dropdown-button" />
+		<div slot="button">
+			<button behavior="button" type="button" class="subtle">
+				<Icon name={button_icon} />
+				{button_text}
+			</button>
 		</div>
 		{#each options as option}
 			<x-option value={option.value}>{option.label}</x-option>

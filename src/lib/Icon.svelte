@@ -1,3 +1,7 @@
+<script lang="ts" context="module">
+	export type IconName = 'play' | 'pause' | 'stop' | 'sort' | 'filter';
+</script>
+
 <script lang="ts">
 	export let name: 'play' | 'pause' | 'stop' | 'sort' | 'filter';
 </script>

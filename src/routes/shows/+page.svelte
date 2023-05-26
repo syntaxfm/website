@@ -1,6 +1,9 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import DropdownMenu from '$lib/DropdownMenu.svelte';
 	import Icon from '$lib/Icon.svelte';
+	import { queryParameters } from 'sveltekit-search-params';
+
 	import SelectMenu from '$lib/SelectMenu.svelte';
 	import ShowCard from '$lib/ShowCard.svelte';
 	import type { PageData } from './$types';
@@ -8,40 +11,38 @@
 	let sort = 'nto';
 	export let data: PageData;
 	$: ({ shows } = data);
+	const store = queryParameters();
 </script>
 
 <section>
 	<div class="list-heading">
 		<h3>All Episodes</h3>
 
-		<div>
-			<DropdownMenu>
-				<button class="subtle" slot="dropdown-button">
-					<Icon name="filter" /> Episode Type
-				</button>
-				<div slot="dropdown-links" class="dropdown-links">
-					<a class="button" href="?order=desc" class:active={sort === 'nto'}>Hast</a>
-					<a class="button" href="?order=asc" class:active={sort === 'otn'}>Tasty</a>
-					<a class="button" href="?order=asc" class:active={sort === 'otn'}>Supper Club</a>
-					<a class="button" href="?order=asc" class:active={sort === 'otn'}>Special</a>
-				</div>
-			</DropdownMenu>
-
+		<div style="display: flex; gap: 10px;">
 			<SelectMenu
+				on:select={(e) => {
+					$store.filter = e.detail;
+				}}
+				button_text="Episode Type"
+				button_icon="filter"
+				options={[
+					{ value: 'hasty', label: 'Hasty' },
+					{ value: 'tasty', label: 'Tasty' },
+					{ value: 'supper', label: 'Supper Club' },
+					{ value: 'special', label: 'Special' }
+				]}
+			/>
+			<SelectMenu
+				on:select={(e) => {
+					$store.order = e.detail;
+				}}
+				button_text="Sort Episodes"
+				button_icon="sort"
 				options={[
 					{ value: 'desc', label: 'Newest To Oldest' },
 					{ value: 'asc', label: 'Oldest To Newest' }
 				]}
-			>
-				<button type="button" class="subtle" slot="dropdown-button">
-					<Icon name="sort" /> Sort Episodes
-				</button>
-				<div slot="dropdown-links" class="dropdown-links">
-					<option class="button" value="desc" class:active={sort === 'nto'}>Newest To Oldest</option
-					>
-					<option class="button" value="asc" class:active={sort === 'otn'}>Oldest To Newest</option>
-				</div>
-			</SelectMenu>
+			/>
 		</div>
 	</div>
 	{#each shows as show (show.id)}

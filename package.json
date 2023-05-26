@@ -63,6 +63,7 @@
 		"sk-form-data": "^1.0.1",
 		"slugo": "^0.4.0",
 		"svelte-french-toast": "1.0.4-beta.0",
+		"sveltekit-search-params": "^1.0.12",
 		"ts-node": "^10.9.1",
 		"unified": "^10.1.2"
 	},
