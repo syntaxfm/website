@@ -39,6 +39,7 @@ In this supper club episode of Syntax, Wes and Scott talk with Adam Argyle about
 * **[33:06](#t=33:06)** Cascade layers
 * **[34:40](#t=34:40)** CSS Nesting
 * **[38:03](#t=38:03)** Animate discrete properties
+* [Feature: Transitions on specified discrete properties](https://chromestatus.com/feature/5071230636392448)
 * **[39:42](#t=39:42)** Linear function
 * [Linear easing generator](https://linear-easing-generator.netlify.app/)
 * **[41:33](#t=41:33)** Media query range syntax
