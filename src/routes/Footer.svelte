@@ -5,6 +5,6 @@
 <style>
 	footer {
 		background: var(--black);
-		padding: 1rem;
+		padding: 2rem 1rem 5rem;
 	}
 </style>

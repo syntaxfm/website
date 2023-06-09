@@ -1,6 +1,6 @@
 <script lang="ts">
 	import HostSocialLink from './HostSocialLink.svelte';
-	export let guest: boolean;
+	export let guest: boolean = false;
 	export let host: {
 		name: string;
 		github: string;

@@ -1,8 +1,7 @@
 <script lang="ts">
 	import type { Guest } from '@prisma/client';
-	import twitter from '$assets/twitter.svg';
 	import Host from '$lib/hosts/Host.svelte';
-	export let guests: Guest[];
+	export let guests: { Guest: Guest }[];
 </script>
 
 <div class="guests-and-hosts">
@@ -26,13 +25,13 @@
 	{#if guests.length > 0}
 		<h5>Featuring:</h5>
 		<div class="featuring">
-			{#each guests as guest}
+			{#each guests as { Guest }}
 				<Host
 					host={{
-						name: guest.name,
-						github: guest?.github,
-						twitter: guest?.twitter,
-						slug: guest?.name_slug
+						name: Guest.name,
+						github: Guest?.github,
+						twitter: Guest?.twitter,
+						slug: Guest?.name_slug
 					}}
 					guest={true}
 				/>
@@ -47,18 +46,6 @@
 		grid-column: start/end;
 	}
 
-	figure {
-		display: grid;
-		gap: 20px;
-		grid-template-columns: 70px 1fr;
-		margin: 0;
-	}
-
-	figure img {
-		width: 100%;
-		border-radius: 4px;
-	}
-
 	h5 {
 		font-weight: 600;
 		font-style: italic;
@@ -70,14 +57,5 @@
 		display: flex;
 		gap: 20%;
 		margin-bottom: 2rem;
-	}
-
-	figcaption p {
-		margin: 0;
-		margin-bottom: 0.5rem;
-	}
-
-	.social-icon {
-		width: 20px;
 	}
 </style>

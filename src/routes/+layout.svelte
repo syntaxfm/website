@@ -60,6 +60,7 @@
 
 	.page-layout {
 		max-width: 1600px;
+		min-height: 80vh;
 		margin: 0 auto;
 	}
 

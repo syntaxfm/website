@@ -54,14 +54,6 @@
 		align-items: baseline;
 	}
 
-	.dropdown-links {
-		display: flex;
-		justify-content: flex-end;
-		flex-direction: column;
-		padding: 1rem;
-		gap: 10px;
-	}
-
 	h3 {
 		view-transition-name: var(--transition-name);
 	}

@@ -22,8 +22,8 @@
 			Play Episode {show.number}</button
 		>
 	</header>
-	<!-- 
-	<HostsAndGuests guests={show.guest} />
+
+	<HostsAndGuests guests={show.guests} />
 
 	<div class="show-actions">
 		<a class="button subtle" download href={show.url}>👇 Download Show</a>
@@ -36,7 +36,6 @@
 	</div>
 
 	{@html show.show_notes}
-	-->
 </article>
 
 <style>

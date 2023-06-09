@@ -5,7 +5,11 @@ export const load = async function ({ locals, params }) {
 				name_slug: params.name_slug
 			},
 			include: {
-				show: true
+				shows: {
+					select: {
+						Show: true
+					}
+				}
 			}
 		})
 	};
