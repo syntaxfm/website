@@ -7,6 +7,7 @@
 
 	export let data: PageData;
 	$: ({ show } = data);
+	$: console.log('show', show);
 </script>
 
 <article class="show-page">
@@ -21,19 +22,21 @@
 			Play Episode {show.number}</button
 		>
 	</header>
-
+	<!-- 
 	<HostsAndGuests guests={show.guest} />
 
 	<div class="show-actions">
-		<a class="a" download href={show.url}>Download Show</a>
+		<a class="button subtle" download href={show.url}>👇 Download Show</a>
 		<a
-			class="a"
+			class="subtle button"
 			download
-			href={'https://github.com/syntaxfm/website/tree/main/shows' + show.md_file}>Edit Show Notes</a
+			href={'https://github.com/syntaxfm/website/tree/main/shows' + show.md_file}
+			>✏️ Edit Show Notes</a
 		>
 	</div>
 
 	{@html show.show_notes}
+	-->
 </article>
 
 <style>

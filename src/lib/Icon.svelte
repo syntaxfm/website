@@ -3,7 +3,7 @@
 </script>
 
 <script lang="ts">
-	export let name: 'play' | 'pause' | 'stop' | 'sort' | 'filter';
+	export let name: 'play' | 'pause' | 'stop' | 'sort' | 'filter' | 'double_left' | 'double_right';
 </script>
 
 {#if name === 'play'}
@@ -43,6 +43,27 @@
 			fill="currentColor"
 			fill-rule="evenodd"
 			d="m8.5 8.379l.44-.44l4.56-4.56V2.5h-11v.879l4.56 4.56l.44.44v4l1-1v-3ZM10 12l-2.5 2.5L6 16V9L1.293 4.293A1 1 0 0 1 1 3.586V2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v1.586a1 1 0 0 1-.293.707L10 9v3Z"
+			clip-rule="evenodd"
+		/></svg
+	>
+{/if}
+
+{#if name === 'double_left'}
+	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
+		><path
+			fill="currentColor"
+			fill-rule="evenodd"
+			d="M7.721 2.22a.75.75 0 0 1 1.061 1.06L4.061 8.002l4.721 4.721a.75.75 0 0 1-1.06 1.061L2.47 8.532a.75.75 0 0 1 0-1.06L7.722 2.22Zm5 0a.75.75 0 0 1 1.061 1.06L9.061 8.002l4.721 4.721a.75.75 0 0 1-1.06 1.061L7.47 8.532a.75.75 0 0 1 0-1.06l5.252-5.252Z"
+			clip-rule="evenodd"
+		/></svg
+	>
+{/if}
+{#if name === 'double_right'}
+	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
+		><path
+			fill="currentColor"
+			fill-rule="evenodd"
+			d="M3.53 2.22a.75.75 0 0 0-1.06 1.06l4.72 4.722l-4.72 4.721a.75.75 0 0 0 1.06 1.061l5.252-5.252a.75.75 0 0 0 0-1.06L3.53 2.22Zm5 0a.75.75 0 0 0-1.06 1.06l4.721 4.722l-4.721 4.721a.75.75 0 0 0 1.06 1.061l5.252-5.252a.75.75 0 0 0 0-1.06L8.53 2.22Z"
 			clip-rule="evenodd"
 		/></svg
 	>

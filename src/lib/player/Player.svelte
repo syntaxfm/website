@@ -2,6 +2,8 @@
 	import Icon from '$lib/Icon.svelte';
 	import { player } from '$state/player';
 	import format_time from '$utilities/format_time';
+	import Speed from './Speed.svelte';
+	import VolumeBar from './VolumeBar.svelte';
 
 	let audio: HTMLAudioElement | undefined;
 	let duration = 0;
@@ -39,20 +41,24 @@
 
 {#if $player.status === 'ACTIVE'}
 	<section class="player">
-		<p>{$player.current_show?.title}</p>
+		<p>Episode #{$player.current_show?.number} - {$player.current_show?.title}</p>
 
 		<div>
+			<button class="player-button" on:click={pause}><Icon name="double_left" /></button>
 			{#if $player.playing}
 				<button class="player-button" on:click={pause}><Icon name="pause" /></button>
 			{:else}
 				<button class="player-button pause" on:click={play}><Icon name="play" /></button>
 			{/if}
+			<button class="player-button pause" on:click={play}><Icon name="double_right" /></button>
 		</div>
 
 		<div class="progress-bar">
 			{format_time(current_time)}
 			<progress max={duration} value={current_time} />
 			{format_time(duration)}
+			<Speed />
+			<VolumeBar />
 		</div>
 	</section>
 {/if}

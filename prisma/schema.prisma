@@ -59,6 +59,16 @@ model Session {
   @@index([user_id])
 }
 
+model ShowGuest {
+  id      String @id @default(uuid())
+  showId  String
+  guestId String
+  Show    Show   @relation(fields: [showId], references: [id])
+  Guest   Guest  @relation(fields: [guestId], references: [id])
+
+  @@unique([showId, guestId])
+}
+
 model Guest {
   id        String       @id @default(uuid())
   name      String
@@ -66,11 +76,9 @@ model Guest {
   twitter   String?      @unique
   github    String?      @unique
   social    SocialLink[]
-  show      Show?        @relation(fields: [show_id], references: [id])
-  show_id   String?
   url       String?
+  shows     ShowGuest[]
 
-  @@index([show_id])
   @@index([name])
 }
 
@@ -80,20 +88,21 @@ model SocialLink {
   guest    Guest  @relation(fields: [guest_id], references: [id])
   guest_id String
 
+  @@unique([link, guest_id])
   @@index([guest_id])
 }
 
 model Show {
-  id         String   @id @default(uuid())
-  number     Int      @unique
-  title      String   @db.Text
+  id         String      @id @default(uuid())
+  number     Int         @unique
+  title      String      @db.Text
   date       DateTime
   url        String
-  guest      Guest[]
-  show_notes String   @db.Text
-  hash       String   @unique
+  show_notes String      @db.Text
+  hash       String      @unique
   slug       String
-  md_file    String   @unique
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  md_file    String      @unique
+  created_at DateTime    @default(now())
+  updated_at DateTime    @updatedAt
+  guests     ShowGuest[] // Relation to joining model
 }

@@ -107,33 +107,61 @@ export async function parse_and_save_show_notes(
 
 async function add_or_update_guest(guest: FrontMatterGuest, show_id: string) {
 	try {
-		// Extract socials and remove it from the guest object
 		const { social, name, ...guest_without_socials } = guest;
-
-		// Create a slug from the name
 		const name_slug = slugo(name);
 
-		// Add or update the guest
-		const guest_record = await prisma.guest.upsert({
-			where: { name_slug },
-			update: { ...guest_without_socials, name, name_slug, show: { connect: { id: show_id } } },
-			create: {
-				...guest_without_socials,
-				name_slug,
-				name,
-				show: { connect: { id: show_id } }
+		const guest_record = await prisma.$transaction(async (prisma) => {
+			const existingGuest = await prisma.guest.findUnique({ where: { name_slug } });
+			if (existingGuest) {
+				return await prisma.guest.update({
+					where: { name_slug },
+					data: { ...guest_without_socials, name, name_slug }
+				});
+			} else {
+				return await prisma.guest.create({
+					data: {
+						...guest_without_socials,
+						name_slug,
+						name
+					}
+				});
+			}
+		});
+
+		// now do the same for showGuest
+		await prisma.$transaction(async (prisma) => {
+			const existingShowGuest = await prisma.showGuest.findUnique({
+				where: { showId_guestId: { showId: show_id, guestId: guest_record.id } }
+			});
+			if (existingShowGuest) {
+				return; // if the show guest already exists, we do nothing
+			} else {
+				await prisma.showGuest.create({
+					data: { showId: show_id, guestId: guest_record.id }
+				});
 			}
 		});
 
 		if (social) {
-			// Handle the socials
-			for (const social_link of social) {
-				await prisma.socialLink.create({
-					data: { link: social_link, guest: { connect: { id: guest_record.id } } }
-				});
+			let socialLinks = [];
+			// If social is a string, convert it to an array with one element
+			if (typeof social === 'string') {
+				socialLinks = [social];
+			} else if (Array.isArray(social)) {
+				socialLinks = social;
+			} else {
+				console.error('Unexpected data type for social:', typeof social);
+				return;
 			}
+			const socialLink_promises = socialLinks.map((social_link) =>
+				prisma.socialLink.upsert({
+					where: { link_guest_id: { link: social_link, guest_id: guest_record.id } },
+					update: { link: social_link, guest: { connect: { id: guest_record.id } } },
+					create: { link: social_link, guest: { connect: { id: guest_record.id } } }
+				})
+			);
+			await Promise.all(socialLink_promises);
 		}
-
 		return guest_record;
 	} catch (err) {
 		console.error('Error Importing Guests:', show_id, guest, err);

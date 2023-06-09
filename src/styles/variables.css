@@ -125,4 +125,20 @@
 		0 100px 80px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 7%));
 
 	--default_padding: 1rem;
+
+	--palette-start-color: hotpink;
+	/* The lightness of this swatch */
+	--lightness: 50%;
+	/* Chroma factor is inverted, higher number is less chroma */
+	--chroma-factor: 10;
+
+	--hi: oklch(80% 0.2 200)
+	--test: hsl(from oklch(80% 0.2 200) h s calc(l - 10%));
+	/* --test: oklch(
+		from var(--palette-start-color) var(--lightness)
+			calc((sin((l * 2 * PI) + (-1 * (PI / 2))) + 1) / var(--chroma-factor)) h
+	); */
+	--test-color: oklab(
+		from var(--test) clamp(0.2, ((sin((l * PI) + (PI / 2)) + 0.1) * 9999), 0.9) 0 0
+	);
 }

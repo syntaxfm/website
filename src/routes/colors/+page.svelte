@@ -1,7 +1,7 @@
 <script lang="ts">
 	import toast from 'svelte-french-toast';
 
-	const COLORS = ['black', 'yellow', 'teal', 'green', 'red', 'purple'];
+	const COLORS = ['black', 'yellow', 'teal', 'green', 'red', 'purple', 'test'];
 	let is_oklch: false;
 
 	function pick_color(index: number) {
@@ -56,7 +56,7 @@
 	{/each}
 </section>
 
-<style>
+<style lang="postcss">
 	section {
 		display: flex;
 		gap: 10px;

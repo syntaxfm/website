@@ -13,7 +13,13 @@ export const load: PageServerLoad = async function ({ setHeaders, params, locals
 
 	const show_raw: Show = await locals.prisma.show.findFirst({
 		where: { number: parseInt(show_number) },
-		include: { guest: true }
+		include: {
+			guests: {
+				select: {
+					Guest: true
+				}
+			}
+		}
 	});
 	const body_excerpt = await unified()
 		.use(remarkParse)
@@ -25,7 +31,7 @@ export const load: PageServerLoad = async function ({ setHeaders, params, locals
 		.process(show_raw?.show_notes || '');
 
 	setHeaders({
-		'cache-control': 'max-age=120'
+		'cache-control': 'max-age=240'
 	});
 
 	return {

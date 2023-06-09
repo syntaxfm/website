@@ -5,6 +5,7 @@
 
 button,
 .button {
+	cursor: pointer;
 	text-decoration: none;
 	border: none;
 	font-family: var(--body-font-familly);

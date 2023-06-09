@@ -38,7 +38,12 @@
 		</nav>
 
 		<div class="header-actions">
-			<button style="grid-column: 1/-1;">Ask a potluck question</button>
+			<a
+				target="_blank"
+				class="button"
+				href="https://docs.google.com/forms/d/e/1FAIpQLSfQlAo1wXHiJMySdU-h8QMtfoz92aMS9eycEHXB6eRCLh8KHA/viewform"
+				style="grid-column: 1/-1;">Ask a potluck question</a
+			>
 			<UserMenu {user} />
 			<ThemeToggle />
 		</div>

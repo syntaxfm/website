@@ -3,7 +3,7 @@ import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ locals, setHeaders }) => {
 	setHeaders({
-		'cache-control': 'max-age=120'
+		'cache-control': 'max-age=240'
 	});
 	return {
 		latest: locals.prisma.show.findMany({ take: 11, orderBy: { number: 'desc' } })

@@ -1,4 +1,8 @@
-export async function load({ locals, url }) {
+export async function load({ locals, url, setHeaders }) {
+	setHeaders({
+		'cache-control': 'max-age=240'
+	});
+
 	const order = url.searchParams.get('order') === 'desc' ? 'desc' : 'desc'; // Ensure order can only be 'asc' or 'desc'
 	const filter = url.searchParams.get('filter');
 	let whereClause = '';

@@ -1,7 +1,4 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
-	import DropdownMenu from '$lib/DropdownMenu.svelte';
-	import Icon from '$lib/Icon.svelte';
 	import { queryParameters } from 'sveltekit-search-params';
 
 	import SelectMenu from '$lib/SelectMenu.svelte';
