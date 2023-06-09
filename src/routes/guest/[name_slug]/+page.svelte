@@ -9,11 +9,13 @@
 <section>
 	<header>
 		<img src={`https://github.com/${guest.github}.png`} alt={guest.name} />
-		<h1>{guest.name}</h1>
+		<div>
+			<h1>{guest.name}</h1>
+			<div class="guest_socials">
+				<HostSocialLink link={`https://twitter.com/${guest.twitter}`} />
+			</div>
+		</div>
 	</header>
-	<div class="guest_socials">
-		<HostSocialLink link={`https://twitter.com/${guest.twitter}`} />
-	</div>
 	{#each guest.shows as { Show }}
 		<ShowCard show={Show} display="list" />
 	{/each}
@@ -25,11 +27,11 @@
 		grid-template-columns: auto 1fr;
 		gap: 20px;
 		align-items: center;
-		margin-bottom: 2rem;
+		margin: 2rem 0;
 	}
 
 	h1 {
-		margin-bottom: 0rem;
+		margin: 0rem 0 0.5rem;
 	}
 
 	img {
@@ -40,6 +42,5 @@
 	.guest_socials {
 		display: flex;
 		gap: 10px;
-		margin-bottom: 2rem;
 	}
 </style>
