@@ -2,14 +2,12 @@
 number: 625
 title: Supper Club × OpenAI, Future of programming, LLMs, and Math with Andrey Mishchenko
 date: 1686312000953
-url: 
+url: https://traffic.libsyn.com/syntax/Syntax_-_625.mp3
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Andrey Mishchenko about working at OpenAI, getting started in machine learning, what RLHF is, the impact of plugins on ChatGPT, and what the future holds for developers in a world with ChatGPT tools.
 
 ## Show Notes
-
-PENDING APPROVAL BEFORE GOING LIVE
 
 * **[00:33](#t=00:33)** Welcome
 * **[00:59](#t=00:59)** ChatGPT introduction
@@ -36,9 +34,9 @@ PENDING APPROVAL BEFORE GOING LIVE
 * [ChatGPT plugins](https://openai.com/blog/chatgpt-plugins)
 * [Introduction - OpenAI API](https://platform.openai.com/docs/plugins/introduction)
 
-## ××× SIIIIICK ××× PIIIICKS ×××
-
 ## Shameless Plugs
+
+* [ChatGPT plugins](https://openai.com/blog/chatgpt-plugins)
 
 ## Tweet us your tasty treats
 
