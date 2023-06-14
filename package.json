@@ -5,7 +5,7 @@
 	"scripts": {
 		"dev": "vite dev",
 		"start": "pnpm dev",
-		"build": "vite build",
+		"build": "prisma generate; vite build",
 		"preview": "vite preview",
 		"test": "playwright test",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
