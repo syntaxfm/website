@@ -1,10 +1,15 @@
+import * as Sentry from '@sentry/sveltekit';
 import { sequence } from '@sveltejs/kit/hooks';
-// import * as SentryNode from '@sentry/node';
-// import '@sentry/tracing';
 import { form_data } from 'sk-form-data';
 import { PrismaClient } from '@prisma/client';
-import type { Handle, HandleServerError } from '@sveltejs/kit';
+import type { Handle } from '@sveltejs/kit';
 import { find_user_by_access_token } from '$db/auth/users';
+
+Sentry.init({
+	dsn: 'https://ea134756b8f244ff99638864ce038567@o4505358925561856.ingest.sentry.io/4505358945419264',
+	tracesSampleRate: 1
+});
+
 // import { ADMIN_LOGIN } from '$env/static/private';
 // import { PUBLIC_SENTRY_DSN } from '$env/static/public';
 
@@ -16,24 +21,6 @@ export const prisma_client = new PrismaClient();
 
 // * HOOKS
 // RUNS ON EVERY REQUEST
-
-// SentryNode.init({
-// 	dsn: PUBLIC_SENTRY_DSN,
-// 	tracesSampleRate: 1.0,
-// 	// Add the Http integration for tracing
-// 	integrations: [new SentryNode.Integrations.Http()]
-// });
-
-// SentryNode.setTag('svelteKit', 'server');
-
-// use handleError to report errors during server-side data loading
-// export const handleError = (({ error, event }) => {
-// 	SentryNode.captureException(error, { contexts: { sveltekit: { event } } });
-
-// 	return {
-// 		message: (error as Error).message
-// 	};
-// }) satisfies HandleServerError;
 
 export const auth: Handle = async function ({ event, resolve }) {
 	const access_token = event.cookies.get('access_token');
@@ -66,4 +53,5 @@ export const prisma: Handle = async function ({ event, resolve }) {
 // * END HOOKS
 
 // Wraps requests in this sequence of hooks
-export const handle: Handle = sequence(prisma, auth, form_data);
+export const handle: Handle = sequence(Sentry.sentryHandle(), sequence(prisma, auth, form_data));
+export const handleError = Sentry.handleErrorWithSentry();

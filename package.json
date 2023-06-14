@@ -52,6 +52,7 @@
 	"dependencies": {
 		"@leveluptuts/svelte-side-menu": "^1.0.5",
 		"@prisma/client": "^4.15.0",
+		"@sentry/sveltekit": "^7.55.2",
 		"date-fns": "^2.30.0",
 		"gray-matter": "^4.0.3",
 		"rehype-highlight": "^6.0.0",

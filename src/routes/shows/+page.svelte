@@ -15,7 +15,7 @@
 	<div class="list-heading">
 		<h3>All Episodes</h3>
 
-		<div style="display: flex; gap: 10px;">
+		<div style="">
 			<SelectMenu
 				on:select={(e) => {
 					$store.filter = e.detail;
@@ -29,7 +29,7 @@
 					{ value: 'special', label: 'Special' }
 				]}
 			/>
-			<SelectMenu
+			<!-- <SelectMenu
 				on:select={(e) => {
 					$store.order = e.detail;
 				}}
@@ -39,7 +39,7 @@
 					{ value: 'desc', label: 'Newest To Oldest' },
 					{ value: 'asc', label: 'Oldest To Newest' }
 				]}
-			/>
+			/> -->
 		</div>
 	</div>
 	{#each shows as show (show.id)}

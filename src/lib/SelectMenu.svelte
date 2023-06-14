@@ -3,6 +3,7 @@
 	import { createEventDispatcher } from 'svelte';
 	import type { IconName } from './Icon.svelte';
 	import Icon from './Icon.svelte';
+	import { anchor } from '$actions/anchor';
 	export let options: { value: string; label: string }[];
 
 	export let button_icon: IconName;
@@ -11,37 +12,44 @@
 	const dispatch = createEventDispatcher();
 </script>
 
-<form action="/shows" method="GET" on:change={(e) => dispatch('select', e.target.value)}>
-	<x-selectmenu id="order">
-		<div slot="button">
-			<button behavior="button" type="button" class="subtle">
-				<Icon name={button_icon} />
-				{button_text}
-			</button>
+<div style="position: relative;">
+	<button popovertarget={`select-menu`} use:anchor={'select-menu'} class="subtle">
+		<Icon name={button_icon} />
+		{button_text}
+	</button>
+	<div popover id="select-menu">
+		<div class="select-menu-menu-wrapper">
+			{#each options as option}
+				<a href="/">{option.label}</a>
+			{/each}
 		</div>
-		{#each options as option}
-			<x-option value={option.value}>{option.label}</x-option>
-		{/each}
-	</x-selectmenu>
-</form>
+	</div>
+</div>
 
 <style lang="postcss">
-	x-selectmenu::part(listbox) {
+	[popover] {
 		background: var(--sheet-bg);
 		border: solid 1px var(--black-7);
 		border-radius: 6px;
 		color: var(--white);
-		translate: 0px 3px;
 		padding: 10px;
+		inset: unset;
+		position: absolute;
 	}
 
-	x-option {
+	.select-menu-menu-wrapper {
+		flex-direction: column;
+		gap: 10px;
+		display: flex;
+	}
+
+	div[popover] a {
 		background: none;
 		text-align: left;
 		font-size: var(--font-size-sm);
 		box-shadow: none;
 		white-space: nowrap;
-		font-family: var(--body-font-familly);
+		font-family: var(--body-font-family);
 		font-weight: 600;
 		padding: 8px 14px;
 		cursor: pointer;
