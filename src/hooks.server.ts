@@ -11,7 +11,6 @@ Sentry.init({
 });
 
 // import { ADMIN_LOGIN } from '$env/static/private';
-// import { PUBLIC_SENTRY_DSN } from '$env/static/public';
 
 // * START UP
 // RUNS ONCE ON FILE LOAD

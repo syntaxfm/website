@@ -17,7 +17,7 @@
 		<Icon name={button_icon} />
 		{button_text}
 	</button>
-	<div popover id="select-menu">
+	<div popover id="select-menu" class="select-menue">
 		<div class="select-menu-menu-wrapper">
 			{#each options as option}
 				<a href="/">{option.label}</a>
@@ -33,8 +33,6 @@
 		border-radius: 6px;
 		color: var(--white);
 		padding: 10px;
-		inset: unset;
-		position: absolute;
 	}
 
 	.select-menu-menu-wrapper {
