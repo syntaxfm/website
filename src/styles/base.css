@@ -25,6 +25,62 @@
 			url('https://syntax.fm/static/fonts/Radnika-Bold.woff') format('woff');
 	}
 
+	@font-face {
+		font-family: 'MDIO0.6';
+		src: url('/fonts/MDIO0.6-Regular.woff2') format('woff2'),
+			url('/fonts/MDIO0.6-Regular.woff') format('woff');
+		font-weight: normal;
+		font-style: normal;
+	}
+
+	@font-face {
+		font-family: 'MDIO0.6';
+		src: url('/fonts/MDIO0.6-Black.woff2') format('woff2'),
+			url('/fonts/MDIO0.6-Black.woff') format('woff');
+		font-weight: 900; /* Black */
+		font-style: normal;
+	}
+
+	@font-face {
+		font-family: 'MDIO0.6';
+		src: url('/fonts/MDIO0.6-Bold.woff2') format('woff2'),
+			url('/fonts/MDIO0.6-Bold.woff') format('woff');
+		font-weight: bold;
+		font-style: normal;
+	}
+
+	@font-face {
+		font-family: 'MDIO0.6';
+		src: url('/fonts/MDIO0.6-BoldItalic.woff2') format('woff2'),
+			url('/fonts/MDIO0.6-BoldItalic.woff') format('woff');
+		font-weight: bold;
+		font-style: italic;
+	}
+
+	@font-face {
+		font-family: 'MDIO0.6';
+		src: url('/fonts/MDIO0.6-BlackItalic.woff2') format('woff2'),
+			url('/fonts/MDIO0.6-BlackItalic.woff') format('woff');
+		font-weight: 900; /* Black */
+		font-style: italic;
+	}
+
+	@font-face {
+		font-family: 'MDIO0.6';
+		src: url('/fonts/MDIO0.6-Medium.woff2') format('woff2'),
+			url('/fonts/MDIO0.6-Medium.woff') format('woff');
+		font-weight: 500; /* Medium */
+		font-style: normal;
+	}
+
+	@font-face {
+		font-family: 'MDIO0.6';
+		src: url('/fonts/MDIO0.6-MediumItalic.woff2') format('woff2'),
+			url('/fonts/MDIO0.6-MediumItalic.woff') format('woff');
+		font-weight: 500; /* Medium */
+		font-style: italic;
+	}
+
 	/* FYI haven'te installed this font yet, just trying it for fun with my installed version */
 	h1,
 	h2,
@@ -32,7 +88,7 @@
 	h4,
 	h5,
 	h6 {
-		font-family: 'MD IO 0.6';
+		font-family: 'MDIO0.6';
 		font-weight: 900;
 	}
 
@@ -61,7 +117,7 @@
 	}
 
 	html {
-		font-family: 'MD IO 0.6';
+		font-family: 'MDIO0.6';
 	}
 
 	body {
