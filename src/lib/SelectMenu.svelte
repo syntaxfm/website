@@ -20,7 +20,7 @@
 	<div popover id="select-menu" class="select-menue">
 		<div class="select-menu-menu-wrapper">
 			{#each options as option}
-				<a href="/">{option.label}</a>
+				<a href={`?filter=${option.value}`}>{option.label}</a>
 			{/each}
 		</div>
 	</div>
@@ -33,6 +33,7 @@
 		border-radius: 6px;
 		color: var(--white);
 		padding: 10px;
+		translate: 0 10px;
 	}
 
 	.select-menu-menu-wrapper {

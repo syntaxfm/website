@@ -4,10 +4,12 @@ import { form_data } from 'sk-form-data';
 import { PrismaClient } from '@prisma/client';
 import type { Handle } from '@sveltejs/kit';
 import { find_user_by_access_token } from '$db/auth/users';
+import { dev } from '$app/environment';
 
 Sentry.init({
 	dsn: 'https://ea134756b8f244ff99638864ce038567@o4505358925561856.ingest.sentry.io/4505358945419264',
-	tracesSampleRate: 1
+	tracesSampleRate: 1,
+	environment: dev ? 'development' : 'production'
 });
 
 // import { ADMIN_LOGIN } from '$env/static/private';

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import toast from 'svelte-french-toast';
 
-	const COLORS = ['black', 'yellow', 'teal', 'green', 'red', 'purple', 'test'];
+	const COLORS = ['black', 'yellow', 'teal', 'green', 'red', 'purple'];
 	let is_oklch: false;
 
 	function pick_color(index: number) {

@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { queryParameters } from 'sveltekit-search-params';
-
 	import SelectMenu from '$lib/SelectMenu.svelte';
 	import ShowCard from '$lib/ShowCard.svelte';
 	import type { PageData } from './$types';

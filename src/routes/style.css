@@ -16,10 +16,10 @@
 /* The main css entry. Primarily used to import stuff */
 
 /* Import all css themes */
-@import-glob '../styles/base.css';
-@import-glob '../styles/variables.css';
-@import-glob '../styles/buttons.css';
-@import-glob "../themes/*.css";
+@import '../styles/base.css';
+@import '../styles/variables.css';
+@import '../styles/buttons.css';
+
 /* FYI you have to use import-glob for all of these or else it gets mad */
 
 /* Global Utilities */
