@@ -4,9 +4,8 @@ export async function load({ locals, url, setHeaders }) {
 	});
 
 	const order = url.searchParams.get('order') === 'desc' ? 'desc' : 'asc'; // Ensure order can only be 'asc' or 'desc'
-	console.log('order', order);
 	const filter = url.searchParams.get('filter');
-	console.log('filter', filter);
+
 	let whereClause = '';
 	const params = [];
 

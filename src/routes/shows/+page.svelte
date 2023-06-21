@@ -28,7 +28,7 @@
 					{ value: 'special', label: 'Special' }
 				]}
 			/>
-			<!-- <SelectMenu
+			<SelectMenu
 				on:select={(e) => {
 					$store.order = e.detail;
 				}}
@@ -38,7 +38,7 @@
 					{ value: 'desc', label: 'Newest To Oldest' },
 					{ value: 'asc', label: 'Oldest To Newest' }
 				]}
-			/> -->
+			/>
 		</div>
 	</div>
 	{#each shows as show (show.id)}
