@@ -1,5 +1,6 @@
 import { PUBLIC_URL } from '$env/static/public';
 import { replace_special_chars } from '$utilities/replace_special_chars';
+import type { Show } from '@prisma/client';
 
 import type { RequestHandler } from './$types';
 
@@ -14,10 +15,13 @@ export const GET: RequestHandler = async function ({ setHeaders, locals }) {
       <language>en</language>
 			${shows
 				.map(
-					(show) => `
+					(show: Show) => `
 		<item>
 			<title>${replace_special_chars(show.title)}</title>
+
 			<link>https://${PUBLIC_URL}/shows/${show.number}/${show.slug}</link>
+			<description><![CDATA[${show.show_notes}]]></description>
+			<enclosure url="${show.url}" length="0" type="audio/mpeg" />
 			<guid>${show.number}</guid>
 			<pubDate>${show.date}</pubDate>
 		</item>`
