@@ -3,7 +3,9 @@ export async function load({ locals, url, setHeaders }) {
 		'cache-control': 'max-age=240'
 	});
 
-	const order = url.searchParams.get('order') === 'desc' ? 'desc' : 'asc'; // Ensure order can only be 'asc' or 'desc'
+	const order_val = url.searchParams.get('order');
+	console.log('order_val', order_val);
+	const order = order_val === 'desc' || !order_val ? 'desc' : 'asc'; // Ensure order can only be 'asc' or 'desc'
 	const filter = url.searchParams.get('filter');
 
 	let whereClause = '';
@@ -34,7 +36,7 @@ export async function load({ locals, url, setHeaders }) {
 	if (whereClause !== '') {
 		sqlQuery += ` WHERE ${whereClause}`;
 	}
-	sqlQuery += ` ORDER BY number ${order} LIMIT 20`;
+	sqlQuery += ` ORDER BY number ${order} LIMIT 100`;
 
 	return {
 		shows: locals.prisma.$queryRawUnsafe(sqlQuery, ...params)

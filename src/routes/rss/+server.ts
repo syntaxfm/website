@@ -1,7 +1,6 @@
 import { PUBLIC_URL } from '$env/static/public';
 import { replace_special_chars } from '$utilities/replace_special_chars';
 import type { Show } from '@prisma/client';
-
 import type { RequestHandler } from './$types';
 
 export const GET: RequestHandler = async function ({ setHeaders, locals }) {

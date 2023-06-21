@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
-	import { createEventDispatcher } from 'svelte';
 	import type { IconName } from './Icon.svelte';
 	import Icon from './Icon.svelte';
 	import { anchor } from '$actions/anchor';
@@ -8,16 +6,15 @@
 
 	export let button_icon: IconName;
 	export let button_text: string;
-
-	const dispatch = createEventDispatcher();
+	export let popover_id: string;
 </script>
 
 <div style="position: relative;">
-	<button popovertarget={`select-menu`} use:anchor={'select-menu'} class="subtle">
+	<button popovertarget={popover_id} use:anchor={popover_id} class="subtle">
 		<Icon name={button_icon} />
 		{button_text}
 	</button>
-	<div popover id="select-menu" class="select-menue">
+	<div popover id={popover_id} class="select-menue">
 		<div class="select-menu-menu-wrapper">
 			{#each options as option}
 				<a href={`?filter=${option.value}`}>{option.label}</a>

@@ -14,14 +14,16 @@
 	<div class="list-heading">
 		<h3>All Episodes</h3>
 
-		<div style="">
+		<div style="display:flex;">
 			<SelectMenu
+				popover_id="filter-episodes"
 				on:select={(e) => {
 					$store.filter = e.detail;
 				}}
 				button_text="Episode Type"
 				button_icon="filter"
 				options={[
+					{ value: '', label: 'All' },
 					{ value: 'hasty', label: 'Hasty' },
 					{ value: 'tasty', label: 'Tasty' },
 					{ value: 'supper', label: 'Supper Club' },
@@ -29,6 +31,7 @@
 				]}
 			/>
 			<SelectMenu
+				popover_id="sort-episodes"
 				on:select={(e) => {
 					$store.order = e.detail;
 				}}

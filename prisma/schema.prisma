@@ -105,4 +105,6 @@ model Show {
   created_at DateTime    @default(now())
   updated_at DateTime    @updatedAt
   guests     ShowGuest[] // Relation to joining model
+
+  @@index([number, date], name: "idx_show_number_date") // Define composite index
 }
