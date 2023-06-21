@@ -107,4 +107,5 @@ model Show {
   guests     ShowGuest[] // Relation to joining model
 
   @@index([number, date], name: "idx_show_number_date") // Define composite index
+  @@index([number]) // Define composite index
 }

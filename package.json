@@ -50,6 +50,7 @@
 		"pnpm": ">=8"
 	},
 	"dependencies": {
+		"@heyputer/kv.js": "^0.1.5",
 		"@leveluptuts/svelte-side-menu": "^1.0.5",
 		"@prisma/client": "^4.16.0",
 		"@sentry/sveltekit": "^7.56.0",

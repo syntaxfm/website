@@ -1,3 +1,7 @@
+import { cache } from '$lib/cache/cache';
+
+const epoch_day = new Date().getTime() / 86400;
+
 export async function load({ locals, url, setHeaders }) {
 	setHeaders({
 		'cache-control': 'max-age=240'
@@ -32,13 +36,21 @@ export async function load({ locals, url, setHeaders }) {
 		}
 	}
 
-	let sqlQuery = 'SELECT * FROM `Show`';
+	const cache_key = `shows:${epoch_day}:${filter}:${order}`;
+
+	let sqlQuery = 'SELECT id, number, title, date, slug, url FROM `Show`';
 	if (whereClause !== '') {
 		sqlQuery += ` WHERE ${whereClause}`;
 	}
 	sqlQuery += ` ORDER BY number ${order} LIMIT 100`;
+	let shows = await cache.get(cache_key);
+
+	if (!shows) {
+		shows = await locals.prisma.$queryRawUnsafe(sqlQuery, ...params);
+		cache.set(cache_key, shows);
+	}
 
 	return {
-		shows: locals.prisma.$queryRawUnsafe(sqlQuery, ...params)
+		shows
 	};
 }
