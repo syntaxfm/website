@@ -4,7 +4,7 @@ import { replace_special_chars } from '$utilities/replace_special_chars';
 import type { RequestHandler } from './$types';
 
 export const GET: RequestHandler = async function ({ setHeaders, locals }) {
-	const shows = await locals.prisma.show.findMany({});
+	const shows = await locals.prisma.show.findMany({ orderBy: { number: 'desc' } });
 	const feed_text = `<?xml version="1.0"?>
 <rss version="2.0">
    <channel>
