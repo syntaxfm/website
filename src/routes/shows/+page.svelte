@@ -14,7 +14,7 @@
 	<div class="list-heading">
 		<h3>All Episodes</h3>
 
-		<div style="display:flex;">
+		<div style="display:flex; gap: 10px;">
 			<SelectMenu
 				popover_id="filter-episodes"
 				on:select={(e) => {
