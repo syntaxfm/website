@@ -60,11 +60,13 @@ model Session {
 }
 
 model ShowGuest {
-  id      String @id @default(uuid())
-  showId  String
-  guestId String
-  Show    Show   @relation(fields: [showId], references: [id])
-  Guest   Guest  @relation(fields: [guestId], references: [id])
+  id           String      @id @default(uuid())
+  showId       String
+  guestId      String
+  Show         Show        @relation(fields: [showId], references: [id])
+  Guest        Guest       @relation(fields: [guestId], references: [id])
+  Transcript   Transcript? @relation(fields: [transcriptId], references: [id])
+  transcriptId String?
 
   @@unique([showId, guestId])
 }
@@ -93,19 +95,54 @@ model SocialLink {
 }
 
 model Show {
-  id         String      @id @default(uuid())
-  number     Int         @unique
-  title      String      @db.Text
+  id         String       @id @default(uuid())
+  number     Int          @unique
+  title      String       @db.Text
   date       DateTime
   url        String
-  show_notes String      @db.Text
-  hash       String      @unique
+  show_notes String       @db.Text
+  hash       String       @unique
   slug       String
-  md_file    String      @unique
-  created_at DateTime    @default(now())
-  updated_at DateTime    @updatedAt
+  md_file    String       @unique
+  created_at DateTime     @default(now())
+  updated_at DateTime     @updatedAt
   guests     ShowGuest[] // Relation to joining model
+  Transcript Transcript[]
 
   @@index([number, date], name: "idx_show_number_date") // Define composite index
   @@index([number]) // Define composite index
+}
+
+model Transcript {
+  id         String                @id @default(uuid())
+  show       Show                  @relation(fields: [show_id], references: [id])
+  show_id    String
+  utterances TranscriptUtterance[]
+  ShowGuest  ShowGuest[]
+}
+
+model TranscriptUtterance {
+  id               String                    @id @default(uuid())
+  start            Float
+  end              Float
+  confidence       Float
+  channel          Int
+  transcript_value String
+  words            TranscriptUtteranceWord[]
+  speaker          Int
+  transcript       Transcript                @relation(fields: [transcriptId], references: [id])
+  transcriptId     String
+}
+
+model TranscriptUtteranceWord {
+  id                 String              @id @default(uuid())
+  word               String
+  start              Float
+  end                Float
+  confidence         Float
+  speaker            Int
+  speaker_confidence Float
+  punctuated_word    String
+  utterance          TranscriptUtterance @relation(fields: [utteranceId], references: [id])
+  utteranceId        String
 }
