@@ -32,11 +32,6 @@
 			</a>
 		</svelte:element>
 
-		<nav>
-			<a href="/shows">Podcast</a>
-			<a href="https://swag.syntax.fm">Swag</a>
-		</nav>
-
 		<div class="header-actions">
 			<a
 				target="_blank"
@@ -45,9 +40,13 @@
 				style="grid-column: 1/-1;">Ask a potluck question</a
 			>
 			<UserMenu {user} />
-			<ThemeToggle />
 		</div>
 	</div>
+
+	<nav>
+		<a href="/shows">Podcast</a>
+		<a href="https://swag.syntax.fm">Swag</a>
+	</nav>
 </header>
 
 <style>
@@ -72,7 +71,7 @@
 		display: grid;
 		align-items: center;
 		gap: 20px;
-		grid-template-columns: [start logo] 88px [logo nav] auto [nav actions] auto [actions end];
+		grid-template-columns: [start logo] 88px [logo actions] auto [actions end];
 		max-width: 1600px;
 		margin: 0 auto;
 	}
