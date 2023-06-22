@@ -22,6 +22,7 @@
 				}}
 				button_text="Episode Type"
 				button_icon="filter"
+				value={$store.filter || ''}
 				options={[
 					{ value: '', label: 'All' },
 					{ value: 'hasty', label: 'Hasty' },
@@ -35,6 +36,7 @@
 				on:select={(e) => {
 					$store.order = e.detail;
 				}}
+				value={$store.order || 'desc'}
 				button_text="Sort Episodes"
 				button_icon="sort"
 				options={[

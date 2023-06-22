@@ -11,12 +11,15 @@ import type { Show } from '@prisma/client';
 import type { PageServerLoad } from './$types';
 export const load: PageServerLoad = async function ({ setHeaders, params, locals }) {
 	const { show_number } = params;
-	let show_raw: Show = null;
+	let show_raw: Show | null = null;
 	const cache_key = `show:${show_number}`;
 
+	//Check cache first
 	const show_cached = await cache.get(cache_key);
 
-	if (!show_cached) {
+	if (show_cached) {
+		show_raw = show_cached;
+	} else {
 		show_raw = await locals.prisma.show.findFirst({
 			where: { number: parseInt(show_number) },
 			include: {
@@ -27,22 +30,8 @@ export const load: PageServerLoad = async function ({ setHeaders, params, locals
 				}
 			}
 		});
-	} else {
-		show_raw = show_cached;
-		locals.prisma.show
-			.findFirst({
-				where: { number: parseInt(show_number) },
-				include: {
-					guests: {
-						select: {
-							Guest: true
-						}
-					}
-				}
-			})
-			.then((show) => {
-				cache.set(cache_key, show);
-			});
+		//Set cache after DB query
+		cache.set(cache_key, show_raw);
 	}
 
 	const body_excerpt = await unified()

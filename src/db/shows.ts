@@ -167,3 +167,5 @@ async function add_or_update_guest(guest: FrontMatterGuest, show_id: string) {
 		console.error('Error Importing Guests:', show_id, guest, err);
 	}
 }
+
+// TODO Delete Cache for each new show

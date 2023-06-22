@@ -7,6 +7,7 @@
 	export let button_icon: IconName;
 	export let button_text: string;
 	export let popover_id: string;
+	export let value: string = '';
 </script>
 
 <div style="position: relative;">
@@ -17,7 +18,9 @@
 	<div popover id={popover_id} class="select-menue">
 		<div class="select-menu-menu-wrapper">
 			{#each options as option}
-				<a href={`?filter=${option.value}`}>{option.label}</a>
+				<a class:selected={option.value === value} href={`?filter=${option.value}`}
+					>{option.label}</a
+				>
 			{/each}
 		</div>
 	</div>
@@ -52,7 +55,8 @@
 		font-size: var(--body-font-size);
 		color: var(--button-color);
 		border-radius: 4px;
-		&:hover {
+		&:hover,
+		&.selected {
 			background: var(--zebra);
 		}
 	}
