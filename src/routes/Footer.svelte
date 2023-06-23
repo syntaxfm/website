@@ -1,4 +1,5 @@
 <footer>
+	<a href="/rss">RSS Feed</a>
 	<a href="https://sentry.io">Sentry.io</a>
 </footer>
 

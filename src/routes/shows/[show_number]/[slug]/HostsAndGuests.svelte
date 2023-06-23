@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Guest } from '@prisma/client';
 	import Host from '$lib/hosts/Host.svelte';
-	export let guests: { Guest: Guest }[];
+	export let guests: { Guest: Guest }[] = [];
 </script>
 
 <div class="guests-and-hosts">
@@ -22,7 +22,7 @@
 			}}
 		/>
 	</div>
-	{#if guests.length > 0}
+	{#if guests?.length > 0}
 		<h5>Featuring:</h5>
 		<div class="featuring">
 			{#each guests as { Guest }}

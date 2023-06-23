@@ -1,6 +1,37 @@
 export const GITHUB_USER_URL = 'https://api.github.com/user';
 export const GITHUB_AUTH_URL = 'https://github.com/login/oauth/authorize';
 
+export const PODCAST_LINKS = [
+	{
+		href: 'https://itunes.apple.com/ca/podcast/syntax-tasty-web-development-treats/id1253186678?mt=2',
+		text: 'iTunes'
+	},
+	{
+		href: 'https://overcast.fm/itunes1253186678/syntax-tasty-web-development-treats',
+		text: 'Overcast'
+	},
+	{
+		href: 'https://www.google.com/podcasts?feed=aHR0cHM6Ly9mZWVkLnN5bnRheC5mbS9yc3M%3D',
+		text: 'Google Podcasts'
+	},
+	{
+		href: 'http://www.stitcher.com/s?fid=142440&refid=stpr',
+		text: 'Stitcher'
+	},
+	{
+		href: 'http://pca.st/fmx9',
+		text: 'PocketCasts'
+	},
+	{
+		href: 'https://open.spotify.com/show/4kYCRYJ3yK5DQbP5tbfZby?si=bOe7-kl6RnOHapMsVnFWgw',
+		text: 'Spotify'
+	},
+	{
+		href: 'http://feed.syntax.fm/rss',
+		text: 'RSS'
+	}
+];
+
 export interface GithubUser {
 	login: string;
 	id: number;

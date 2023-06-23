@@ -2,6 +2,7 @@
 	import ShowCard from '$lib/ShowCard.svelte';
 	import type { Show } from '@prisma/client';
 	import type { PageData } from './$types';
+	import PodcastHero from '$lib/PodcastHero.svelte';
 
 	export let data: PageData;
 	$: ({ latest } = data);
@@ -13,18 +14,22 @@
 	}
 </script>
 
-<h4>Latest Episode</h4>
-<div class="article-grid">
-	{#if latest_show}
-		<ShowCard display="highlight" show={latest_show} />
-	{/if}
-</div>
+<PodcastHero />
 
-<h4>Last 10</h4>
-<div class="article-grid">
-	{#each last_ten as latest_ep}
-		<ShowCard show={latest_ep} />
-	{/each}
+<div style="grid-column: 2;">
+	<h4>Latest Episode</h4>
+	<div class="article-grid">
+		{#if latest_show}
+			<ShowCard display="highlight" show={latest_show} />
+		{/if}
+	</div>
+
+	<h4>Last 10</h4>
+	<div class="article-grid">
+		{#each last_ten as latest_ep}
+			<ShowCard show={latest_ep} />
+		{/each}
+	</div>
 </div>
 
 <style>
