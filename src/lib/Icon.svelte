@@ -1,21 +1,22 @@
 <script lang="ts" context="module">
-	export type IconName = 'play' | 'pause' | 'stop' | 'sort' | 'filter';
-</script>
-
-<script lang="ts">
-	export let name:
+	export type IconName =
 		| 'play'
 		| 'pause'
 		| 'stop'
 		| 'sort'
 		| 'filter'
+		| 'expand'
 		| 'double_left'
 		| 'double_right'
 		| 'twitter';
 </script>
 
+<script lang="ts">
+	export let name: IconName;
+</script>
+
 {#if name === 'play'}
-	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
+	<svg xmlns="http://www.w3.org/2000/svg" style="width: var(--icon_size, 16px);" viewBox="0 0 16 16"
 		><path
 			fill="currentColor"
 			d="M11.629 7.306a.835.835 0 0 1 0 1.388l-6.401 4.177C4.695 13.218 4 12.825 4 12.176V3.824c0-.649.695-1.042 1.228-.695l6.4 4.177Z"
@@ -24,7 +25,7 @@
 {/if}
 
 {#if name === 'pause'}
-	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
+	<svg xmlns="http://www.w3.org/2000/svg" style="width: var(--icon_size, 16px);" viewBox="0 0 16 16"
 		><path
 			fill="currentColor"
 			fill-rule="evenodd"
@@ -35,7 +36,7 @@
 {/if}
 
 {#if name === 'sort'}
-	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
+	<svg xmlns="http://www.w3.org/2000/svg" style="width: var(--icon_size, 16px);" viewBox="0 0 16 16"
 		><path
 			fill="currentColor"
 			fill-rule="evenodd"
@@ -46,7 +47,7 @@
 {/if}
 
 {#if name === 'filter'}
-	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
+	<svg xmlns="http://www.w3.org/2000/svg" style="width: var(--icon_size, 16px);" viewBox="0 0 16 16"
 		><path
 			fill="currentColor"
 			fill-rule="evenodd"
@@ -57,7 +58,7 @@
 {/if}
 
 {#if name === 'double_left'}
-	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
+	<svg xmlns="http://www.w3.org/2000/svg" style="width: var(--icon_size, 16px);" viewBox="0 0 16 16"
 		><path
 			fill="currentColor"
 			fill-rule="evenodd"
@@ -67,7 +68,7 @@
 	>
 {/if}
 {#if name === 'double_right'}
-	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
+	<svg xmlns="http://www.w3.org/2000/svg" style="width: var(--icon_size, 16px);" viewBox="0 0 16 16"
 		><path
 			fill="currentColor"
 			fill-rule="evenodd"
@@ -80,8 +81,7 @@
 {#if name === 'twitter'}
 	<svg
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		style="width: var(--icon_size, 16px);"
 		fill="none"
 		viewBox="0 0 24 24"
 		aria-hidden="true"
@@ -92,5 +92,15 @@
 				d="M21.187 5.348c1.078-.66 1.79-1.565 2.142-2.714-1.05.558-2.09.938-3.135 1.149-.938-1.008-2.124-1.519-3.549-1.519-1.392 0-2.564.488-3.525 1.44-.951.955-1.434 2.118-1.434 3.473 0 .412.051.778.154 1.092-4.1-.14-7.495-1.842-10.17-5.114-.455.801-.68 1.617-.68 2.46 0 1.735.731 3.108 2.194 4.121-.835-.07-1.57-.281-2.194-.628 0 1.237.365 2.273 1.092 3.183a4.828 4.828 0 0 0 2.822 1.72c-.417.108-.853.16-1.303.16-.417 0-.713-.033-.886-.113a4.722 4.722 0 0 0 1.72 2.456c.835.628 1.79.961 2.869.99-1.777 1.391-3.806 2.08-6.103 2.08-.563 0-.961-.009-1.205-.051C2.26 21 4.776 21.73 7.561 21.73c2.85 0 5.372-.722 7.565-2.165 2.194-1.44 3.811-3.211 4.852-5.297 1.045-2.086 1.56-4.257 1.56-6.52v-.624c1.013-.76 1.829-1.617 2.452-2.56a10.7 10.7 0 0 1-2.803.783z"
 			/></g
 		><defs><clipPath id="twitter-icon"><path fill="#fff" d="M0 0h24v24H0z" /></clipPath></defs></svg
+	>
+{/if}
+{#if name === 'expand'}
+	<svg xmlns="http://www.w3.org/2000/svg" style="width: var(--icon_size, 16px);" viewBox="0 0 16 16"
+		><path
+			fill="currentColor"
+			fill-rule="evenodd"
+			d="M11.78 5.841a.75.75 0 0 1-1.06 0l-1.97-1.97v7.379a.75.75 0 0 1-1.5 0V3.871l-1.97 1.97a.75.75 0 0 1-1.06-1.06l3.25-3.25L8 1l.53.53l3.25 3.25a.75.75 0 0 1 0 1.061ZM3.75 13.5a.75.75 0 0 0 0 1.5h8.5a.75.75 0 0 0 0-1.5h-8.5Z"
+			clip-rule="evenodd"
+		/></svg
 	>
 {/if}

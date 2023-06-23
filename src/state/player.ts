@@ -22,10 +22,26 @@ const new_player_state = () => {
 		});
 	}
 
+	function toggle_expand() {
+		update((state) => {
+			state.status = state.status === 'ACTIVE' ? 'EXPANDED' : 'ACTIVE';
+			return state;
+		});
+	}
+
+	function close() {
+		update((state) => {
+			state.status = 'HIDDEN';
+			return state;
+		});
+	}
+
 	return {
 		subscribe,
 		update,
-		play_show
+		play_show,
+		toggle_expand,
+		close
 	};
 };
 
