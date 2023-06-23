@@ -1,0 +1,40 @@
+name: Build and ReImport
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true || github.event_name == 'push'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build project
+        run: pnpm build
+
+      - name: Notify
+        run: |
+          STATUS=$?
+          if [[ "$STATUS" -eq 0 ]]; then
+            curl -X POST "http://beta.syntax.fm/webhooks/refresh" -H "Content-Type: application/json" -d '{"status":"success"}'
+          fi

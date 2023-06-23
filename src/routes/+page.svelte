@@ -16,20 +16,18 @@
 
 <PodcastHero />
 
-<div style="grid-column: 2;">
-	<h4>Latest Episode</h4>
-	<div class="article-grid">
-		{#if latest_show}
-			<ShowCard display="highlight" show={latest_show} />
-		{/if}
-	</div>
+<h4>Latest Episod e</h4>
+<div class="article-grid">
+	{#if latest_show}
+		<ShowCard display="highlight" show={latest_show} />
+	{/if}
+</div>
 
-	<h4>Last 10</h4>
-	<div class="article-grid">
-		{#each last_ten as latest_ep}
-			<ShowCard show={latest_ep} />
-		{/each}
-	</div>
+<h4>Last 10</h4>
+<div class="article-grid">
+	{#each last_ten as latest_ep}
+		<ShowCard show={latest_ep} />
+	{/each}
 </div>
 
 <style>
