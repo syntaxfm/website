@@ -16,7 +16,7 @@
 
 <PodcastHero />
 
-<h4>Latest Episod e</h4>
+<h4>Latest Episode</h4>
 <div class="article-grid">
 	{#if latest_show}
 		<ShowCard display="highlight" show={latest_show} />

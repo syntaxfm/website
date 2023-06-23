@@ -136,8 +136,10 @@
 		border-bottom: solid 3px var(--primary);
 	}
 
-	p,
-	li {
+	p {
 		line-height: 1.7;
+	}
+	li {
+		line-height: 2.2;
 	}
 }
