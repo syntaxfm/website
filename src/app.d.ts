@@ -1,6 +1,7 @@
 // See https://kit.svelte.dev/docs/types#app
 
 import type { User } from '@prisma/client';
+import { PrismaClient } from '@prisma/client/index.d.ts';
 
 // for information about these interfaces
 declare global {
