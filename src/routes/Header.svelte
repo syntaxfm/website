@@ -35,7 +35,7 @@
 		<div class="header-actions">
 			<a
 				target="_blank"
-				class="button"
+				class="button ghost"
 				href="https://docs.google.com/forms/d/e/1FAIpQLSfQlAo1wXHiJMySdU-h8QMtfoz92aMS9eycEHXB6eRCLh8KHA/viewform"
 				style="grid-column: 1/-1;">Ask a potluck question</a
 			>
