@@ -26,6 +26,7 @@ Then you `pnpm dev` and visit `http://localhost:5173`.
 
 ### Scripts
 
+Generate Types `pnpm db:generate`
 DB studio `pnpm db:studio`
 DB Migrations `pnpm db:push`
 DB Seed `pnpm db:seed`

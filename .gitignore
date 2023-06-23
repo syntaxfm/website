@@ -12,3 +12,4 @@ vite.config.ts.timestamp-*
 haters/
 # Sentry
 .sentryclirc
+transcripts-flagged/

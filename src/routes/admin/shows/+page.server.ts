@@ -1,8 +1,33 @@
-import { import_or_update_all_shows } from '../../../server/shows';
+import { import_or_update_all_shows } from '$db/shows';
+import { error } from '@sveltejs/kit';
+import type { Actions, PageServerLoad } from './$types';
+import { get_transcript } from '$db/transcripts/deepgram';
+import { generate_ai_notes } from '$db/ai/openai';
+import { ai_note_select, example_response } from '$db/ai/queries';
+import { aiNoteRequestHandler } from '$db/ai/requestHandlers';
 
 export const load = async ({ locals }) => {
 	return {
-		shows: locals.prisma.show.findMany({ orderBy: { number: 'desc' } })
+		shows: locals.prisma.show.findMany({
+			orderBy: { number: 'desc' },
+			include: {
+				aiShowNote: {
+					select: {
+						id: true
+					}
+				},
+				transcript: {
+					select: {
+						id: true
+					}
+				},
+				_count: {
+					select: {
+						guests: true
+					}
+				}
+			}
+		})
 	};
 };
 
@@ -19,5 +44,16 @@ export const actions = {
 		await locals.prisma.socialLink.deleteMany({});
 		await locals.prisma.guest.deleteMany({});
 		return { message: 'Delete All Shows' };
-	}
+	},
+	fetch_show_transcript: async ({ request }) => {
+		const data = await request.formData();
+		const show_number = parseInt(data.get('show_number')?.toString() || '');
+		if (!show_number) {
+			throw error(400, 'Invalid Show Number');
+		}
+		const result = await get_transcript(show_number);
+		console.log('🤖 transcript fetch requested');
+		return { message: 'Transcript Fetch Requestd' };
+	},
+	fetch_AI_notes: aiNoteRequestHandler
 };

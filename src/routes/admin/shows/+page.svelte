@@ -27,14 +27,18 @@
 		<tr>
 			<th>Number</th>
 			<th>Title</th>
+			<th>Type</th>
 			<th>Release Date</th>
+			<th>Guest Count</th>
+			<th>Transcript</th>
+			<th>AI Notes</th>
 		</tr>
 	</thead>
 	<tbody>
 		{#each shows as show}
 			<tr>
 				<td>
-					{'#'}{show.number}
+					<a href="/admin/shows/{show.number}">#{show.number}</a>
 				</td>
 				<td>
 					{show.title}
@@ -51,7 +55,53 @@
 				<td>
 					{format(show.date, 'EEE MMMM d yy')}
 				</td>
+				<td class="center">{show._count.guests}</td>
+				<td class="center"
+					>{#if show.transcript}
+						✅
+					{:else}
+						<form action="?/fetch_show_transcript" method="post" use:enhance={form_action()}>
+							<input type="hidden" name="show_number" value={show.number} />
+							<button type="submit">Fetch</button>
+						</form>
+					{/if}</td
+				>
+				<td class="center"
+					>{#if show.aiShowNote}
+						✅
+					{:else}
+						<form action="?/fetch_AI_notes" method="post" use:enhance={form_action()}>
+							<input type="hidden" name="show_number" value={show.number} />
+							<button type="submit">Fetch</button>
+						</form>
+					{/if}</td
+				>
 			</tr>
 		{/each}
 	</tbody>
 </table>
+
+<style>
+	table {
+		border: 1px solid black;
+		width: 100%;
+		border-collapse: collapse;
+		width: 125%;
+		left: -12.5%;
+		position: relative;
+	}
+	th {
+		padding: 10px;
+		text-align: left;
+		background: black;
+		color: white;
+	}
+	td {
+		border-bottom: 1px solid black;
+		padding: 10px;
+	}
+
+	.center {
+		text-align: center;
+	}
+</style>

@@ -16,7 +16,9 @@
 		"site:update": "pnpm update -i -L",
 		"db:studio": "prisma studio",
 		"db:push": "prisma db push",
-		"db:seed": "prisma db seed"
+		"db:generate": "prisma generate",
+		"db:seed": "prisma db seed",
+		"i-changed-the-schema": "pnpm run db:push && pnpm run db:generate"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.36.2",
@@ -51,14 +53,18 @@
 	},
 	"type": "module",
 	"engines": {
-		"node": ">=18.8.0",
+		"node": ">=20.5.0",
 		"pnpm": ">=8"
 	},
 	"dependencies": {
+		"@deepgram/sdk": "^2.4.0",
+		"@ffmpeg.wasm/core-mt": "0.13.2",
+		"@ffmpeg.wasm/main": "^0.13.0",
 		"@heyputer/kv.js": "^0.1.5",
 		"@leveluptuts/svelte-side-menu": "^1.0.5",
 		"@prisma/client": "^5.1.1",
 		"@sentry/sveltekit": "^7.62.0",
+		"@types/emscripten": "^1.39.7",
 		"date-fns": "^2.30.0",
 		"flexsearch": "^0.7.31",
 		"gray-matter": "^4.0.3",
@@ -75,7 +81,8 @@
 		"svelte-local-storage-store": "^0.5.0",
 		"sveltekit-search-params": "^1.0.14",
 		"ts-node": "^10.9.1",
-		"unified": "^10.1.2"
+		"unified": "^10.1.2",
+		"waait": "^1.0.5"
 	},
 	"prisma": {
 		"seed": "node --loader ts-node/esm prisma/seed.ts"
