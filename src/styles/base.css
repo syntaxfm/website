@@ -133,7 +133,7 @@
 	:is(p, li) a,
 	.a {
 		color: var(--sheet-color);
-		border-bottom: solid 3px var(--primary);
+		border-bottom: solid 2px var(--primary);
 	}
 
 	p {
@@ -141,5 +141,14 @@
 	}
 	li {
 		line-height: 2.2;
+		list-style-type: circle;
+	}
+
+	a[href^='#t'] {
+		background: var(--black-2);
+		padding: 4px 6px;
+		border-bottom: none;
+		font-weight: normal;
+		border-radius: 4px;
 	}
 }
