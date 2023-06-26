@@ -1,4 +1,5 @@
 <script lang="ts">
+	import 'media-chrome';
 	import { Toaster } from 'svelte-french-toast';
 	import Player from '$lib/player/Player.svelte';
 	import Footer from './Footer.svelte';

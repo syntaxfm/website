@@ -19,6 +19,9 @@ dependencies:
   gray-matter:
     specifier: ^4.0.3
     version: 4.0.3
+  media-chrome:
+    specifier: ^1.1.2
+    version: 1.1.2
   rehype-highlight:
     specifier: ^6.0.0
     version: 6.0.0
@@ -2788,6 +2791,10 @@ packages:
 
   /mdn-data@2.0.30:
     resolution: {integrity: sha512-GaqWWShW4kv/G9IEucWScBx9G1/vsFZZJUO+tD26M8J8z3Kw5RDQjaoZe03YAClgeS/SWPOcb4nkFBTEi5DUEA==}
+
+  /media-chrome@1.1.2:
+    resolution: {integrity: sha512-lMkkJUQW2fln77mdWZDNDQwPDNOwwmvt4E8pMLua15fK+TjyVHxNEHesVJwkKvEIjyXjdW8ybrGThiRJ85wxXw==}
+    dev: false
 
   /merge2@1.4.1:
     resolution: {integrity: sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==}

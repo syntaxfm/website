@@ -101,8 +101,8 @@
 	--zebra: oklch(var(--blacklch) / 0.05);
 	--line: var(--black-2);
 
-	--body-font-familly: 'MDIO0.6';
-	--heading-font-familly: 'MDIO0.6';
+	--body-font-family: 'MDIO0.6';
+	--heading-font-family: 'MDIO0.6';
 
 	/* Typeography */
 	--font-size-sm: clamp(0.8rem, 0.17vw + 0.76rem, 0.89rem);

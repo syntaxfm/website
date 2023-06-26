@@ -1,44 +1,12 @@
 <script lang="ts">
 	import Icon from '$lib/Icon.svelte';
 	import { player } from '$state/player';
-	import format_time from '$utilities/format_time';
 	import { fly, slide } from 'svelte/transition';
-	import Speed from './Speed.svelte';
-	import VolumeBar from './VolumeBar.svelte';
 
 	let audio: HTMLAudioElement | undefined;
-	let duration = 0;
-	let current_time = 0;
-
-	function play() {
-		audio?.play();
-		$player.playing = true;
-	}
-	function pause() {
-		audio?.pause();
-		$player.playing = false;
-	}
-
-	function update_meta() {
-		if (audio) {
-			duration = audio.duration;
-			current_time = audio.currentTime;
-		}
-	}
-
-	function time_update() {
-		if (audio) {
-			current_time = audio.currentTime;
-		}
-	}
 </script>
 
-<audio
-	bind:this={audio}
-	src={$player.current_show?.url}
-	on:loadedmetadata={update_meta}
-	on:timeupdate={time_update}
-/>
+<audio bind:this={audio} src={$player.current_show?.url} />
 
 {#if $player.status === 'ACTIVE' || $player.status === 'EXPANDED'}
 	<section class={`player ${$player.status}`} transition:fly={{ y: '100%' }}>
@@ -58,25 +26,25 @@
 			</div>
 		{/if}
 
-		<div class="progress-bar">
-			<div class="playback-buttons">
-				<button id="player-back" on:click={pause}><Icon name="double_left" /></button>
-				{#if $player.playing}
-					<button id="player-pause" class="player-play" on:click={pause}
-						><Icon name="pause" /></button
-					>
-				{:else}
-					<button id="player-play" class="player-play" on:click={play}
-						><Icon --icon_size="40px" name="play" /></button
-					>
-				{/if}
-				<button class="player-button pause" on:click={play}><Icon name="double_right" /></button>
-			</div>
-			{format_time(current_time)}
-			<progress max={duration} value={current_time} />
-			{format_time(duration)}
-			<Speed />
-			<VolumeBar />
+		<div class="player-container">
+			<media-controller
+				audio
+				style="--media-range-track-height: 20px; --media-range-thumb-height: 20px; --media-range-thumb-border-radius: 0;	--media-range-bar-color: var(--primary);--media-background-color: transparent; --media-control-background: transparent; width: 100%; --media-font-family: var(--body-font-family); --media-control-hover-background: transparent;"
+			>
+				<audio slot="media" src={$player.current_show?.url} />
+				<media-control-bar style="width: 100%; align-items: center;">
+					<media-seek-backward-button />
+
+					<media-play-button style="--media-button-icon-height: 40px;" />
+					<media-seek-forward-button />
+					<media-time-display />
+					<media-time-range />
+					<media-duration-display />
+					<media-playback-rate-button />
+					<media-mute-button />
+					<media-volume-range />
+				</media-control-bar>
+			</media-controller>
 		</div>
 	</section>
 {/if}
@@ -87,6 +55,7 @@
 		justify-content: space-between;
 		align-items: center;
 		width: 100%;
+		background: var(--black);
 	}
 
 	button {
@@ -109,7 +78,7 @@
 	}
 
 	.player {
-		padding: 20px;
+		padding: 0 0 20px;
 		position: fixed;
 		bottom: 0;
 		width: 100vw;
@@ -123,19 +92,8 @@
 		gap: 10px;
 	}
 
-	.progress-bar {
-		display: flex;
-		justify-content: center;
-		gap: 20px;
-		align-items: center;
-	}
-
-	progress {
-		border-radius: 0;
-		width: 60vw;
-	}
-
-	progress[value]::-webkit-progress-value {
-		background: linear-gradient(to right, var(--green), var(--teal));
+	.player-container {
+		padding: 20px;
+		width: 100%;
 	}
 </style>
