@@ -4,9 +4,12 @@
 	import { fly, slide } from 'svelte/transition';
 
 	let audio: HTMLAudioElement | undefined;
-</script>
 
-<audio bind:this={audio} src={$player.current_show?.url} />
+	$: if (audio) {
+		console.log('audio loaded');
+		audio.play();
+	}
+</script>
 
 {#if $player.status === 'ACTIVE' || $player.status === 'EXPANDED'}
 	<section class={`player ${$player.status}`} transition:fly={{ y: '100%' }}>
@@ -31,7 +34,7 @@
 				audio
 				style="--media-range-track-height: 20px; --media-range-thumb-height: 20px; --media-range-thumb-border-radius: 0;	--media-range-bar-color: var(--primary);--media-background-color: transparent; --media-control-background: transparent; width: 100%; --media-font-family: var(--body-font-family); --media-control-hover-background: transparent;"
 			>
-				<audio slot="media" src={$player.current_show?.url} />
+				<audio slot="media" src={$player.current_show?.url} bind:this={audio} />
 				<media-control-bar style="width: 100%; align-items: center;">
 					<media-seek-backward-button />
 
