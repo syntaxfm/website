@@ -7,7 +7,6 @@
 
 	export let data: PageData;
 	$: ({ show } = data);
-	$: console.log('show', show);
 </script>
 
 <article class="show-page">

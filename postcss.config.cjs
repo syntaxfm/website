@@ -1,10 +1,8 @@
 const postcssPresetEnv = require('postcss-preset-env');
 const atImport = require('postcss-import');
 
-
 const config = {
 	plugins: [
-		require('postcss-import-ext-glob'),
 		atImport(),
 		postcssPresetEnv({
 			stage: 2,
@@ -13,7 +11,7 @@ const config = {
 				'custom-media-queries': true,
 				'media-query-ranges': true
 			}
-		})
+		}),
 	]
 };
 

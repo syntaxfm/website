@@ -1,6 +1,8 @@
 :root {
 	/* NEW SHIT */
 	/* 🧑‍🚒 SHIT */
+	@custom-media --small-medium (width > 650px);
+	@custom-media --test (max-width: 30em);
 
 	--yellow-hue: 81.72;
 	--yellow-1: oklch(99% 0.02 var(--yellow-hue));

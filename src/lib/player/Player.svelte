@@ -6,7 +6,6 @@
 	let audio: HTMLAudioElement | undefined;
 
 	$: if (audio) {
-		console.log('audio loaded');
 		audio.play();
 	}
 </script>
@@ -35,17 +34,22 @@
 				style="--media-range-track-height: 20px; --media-range-thumb-height: 20px; --media-range-thumb-border-radius: 0;	--media-range-bar-color: var(--primary);--media-background-color: transparent; --media-control-background: transparent; width: 100%; --media-font-family: var(--body-font-family); --media-control-hover-background: transparent;"
 			>
 				<audio slot="media" src={$player.current_show?.url} bind:this={audio} />
-				<media-control-bar style="width: 100%; align-items: center;">
-					<media-seek-backward-button />
-
-					<media-play-button style="--media-button-icon-height: 40px;" />
-					<media-seek-forward-button />
-					<media-time-display />
-					<media-time-range />
-					<media-duration-display />
-					<media-playback-rate-button />
-					<media-mute-button />
-					<media-volume-range />
+				<media-control-bar class="media-bar" style="width: 100%; align-items: center;">
+					<div class="media-controls">
+						<media-seek-backward-button />
+						<media-play-button style="--media-button-icon-height: 40px;" />
+						<media-seek-forward-button />
+					</div>
+					<div class="media-range">
+						<media-time-display />
+						<media-time-range />
+						<media-duration-display />
+					</div>
+					<div class="media-sound">
+						<media-playback-rate-button />
+						<media-mute-button />
+						<media-volume-range />
+					</div>
 				</media-control-bar>
 			</media-controller>
 		</div>
@@ -59,6 +63,49 @@
 		align-items: center;
 		width: 100%;
 		background: var(--black);
+	}
+
+	.media-bar {
+		display: grid;
+		grid-template-rows: [start top] auto [top bottom] auto [bottom end];
+		grid-template-columns: [start controls] auto [controls range] auto [range end];
+		@container (min-width: 650px) {
+			grid-template-columns: [start controls] auto [controls range] 1fr [range sound] auto [sound end];
+			grid-template-rows: 1fr;
+			grid-column: range / range;
+		}
+	}
+
+	.media-range {
+		grid-row: top / top;
+		grid-column: start / end;
+		display: flex;
+		justify-content: space-between;
+		@container (min-width: 650px) {
+			grid-column: range / range;
+			grid-row: 1;
+		}
+	}
+
+	.media-controls {
+		grid-column: controls / controls;
+		grid-row: bottom / bottom;
+		@container (min-width: 650px) {
+			grid-column: controls / controls;
+			grid-row: 1;
+		}
+	}
+
+	.media-control-bar {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 10px;
+		width: 100;
+	}
+
+	media-time-range {
+		width: 100%;
 	}
 
 	button {
@@ -81,6 +128,7 @@
 	}
 
 	.player {
+		container: player / inline-size;
 		padding: 0 0 20px;
 		position: fixed;
 		bottom: 0;

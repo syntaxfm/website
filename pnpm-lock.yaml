@@ -93,6 +93,9 @@ devDependencies:
   postcss:
     specifier: ^8.4.24
     version: 8.4.24
+  postcss-custom-media:
+    specifier: ^9.1.5
+    version: 9.1.5(postcss@8.4.24)
   postcss-import:
     specifier: ^15.1.0
     version: 15.1.0(postcss@8.4.24)
