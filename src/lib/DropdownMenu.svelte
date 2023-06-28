@@ -1,7 +1,10 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
 	import { clickOutside } from '../actions/click_outside';
+	import { anchor } from '$actions/anchor';
 	export let isOpen: boolean = false;
+
+	let popover_id = 'user-menu';
 
 	const toggleDropdown = () => {
 		isOpen = !isOpen;
@@ -13,19 +16,32 @@
 </script>
 
 <div class="dropdown-menu" use:clickOutside on:click-outside={handleClickOutside}>
-	<div class="dropdown-button" on:click={toggleDropdown} on:keypress={toggleDropdown}>
+	<button
+		popovertarget={popover_id}
+		class="dropdown-button button-reset"
+		use:anchor={{ id: popover_id, position: ['BOTTOM', 'RIGHT'] }}
+		on:click={toggleDropdown}
+		on:keypress={toggleDropdown}
+	>
 		<slot name="dropdown-button" />
+	</button>
+	<div popover id={popover_id} class="dropdown-links">
+		<slot name="dropdown-links" />
 	</div>
-	{#if isOpen}
-		<div class="dropdown-links" transition:fade={{ duration: 200 }}>
-			<slot name="dropdown-links" />
-		</div>
-	{/if}
 </div>
 
 <style lang="postcss">
 	.dropdown-menu {
 		position: relative;
+	}
+
+	[popover] {
+		background: var(--sheet-bg);
+		border: solid 1px var(--black-7);
+		border-radius: 6px;
+		color: var(--white);
+		padding: 10px;
+		translate: 0 10px;
 	}
 
 	.dropdown-button {

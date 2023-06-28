@@ -5,6 +5,7 @@
 	import { enhance } from '$app/forms';
 	import { loading } from '$state/loading';
 	import { form_action } from '$lib/form_action';
+	import SelectMenu from '$lib/SelectMenu.svelte';
 	export let user: User | null;
 </script>
 
