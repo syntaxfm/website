@@ -1,60 +1,67 @@
-.theme-wrapper {
-	--button-bg: var(--primary);
-	--button-color: var(--yellow-8);
-}
-
-button,
-.button {
-	cursor: pointer;
-	text-decoration: none;
-	border: none;
-	font-family: var(--body-font-familly);
-	font-weight: 600;
-	padding: 8px 14px;
-	font-size: var(--body-font-size);
-	border-radius: 4px;
-	background: var(--button-bg);
-	width: auto;
-	color: var(--button-color);
-	display: inline-flex;
-	justify-content: center;
-	align-items: center;
-	gap: 10px;
-	box-shadow: inset 0 0 0 3px oklch(var(--blacklch) / 0.2);
-	transition: background 0.2s ease-in-out;
-}
-
-:is(button, .button).ghost {
-	--button-bg: transparent;
-	--button-color: var(--primary);
-	box-shadow: inset 0 0 0 3px var(--primary);
-	&:hover {
+@layer base {
+	.theme-wrapper {
 		--button-bg: var(--primary);
-		--button-color: var(--black);
+		--button-color: var(--yellow-8);
 	}
-}
 
-:is(button, .button).subtle {
-	--button-bg: var(--black-1);
-	--button-color: var(--yellow-8);
-	box-shadow: inset 0 0 0 2px oklch(var(--blacklch) / 0.2);
-}
+	button,
+	.button {
+		cursor: pointer;
+		text-decoration: none;
+		border: none;
+		font-family: var(--body-font-familly);
+		font-weight: 600;
+		padding: 8px 14px;
+		font-size: var(--body-font-size);
+		border-radius: 4px;
+		background: var(--button-bg);
+		width: auto;
+		color: var(--button-color);
+		display: inline-flex;
+		justify-content: center;
+		align-items: center;
+		gap: 10px;
+		box-shadow: inset 0 0 0 3px oklch(var(--blacklch) / 0.2);
+		transition: background 0.2s ease-in-out;
+	}
 
-:is(button, .button).big {
-	font-size: var(--font-size-md);
-	padding: 10px 20px;
-	box-shadow: inset 0 0 0 3px oklch(var(--blacklch) / 0.2);
-}
+	:is(button, .button).ghost {
+		--button-bg: transparent;
+		--button-color: var(--primary);
+		box-shadow: inset 0 0 0 3px var(--primary);
+		&:hover {
+			--button-bg: var(--primary);
+			--button-color: var(--black);
+		}
+	}
 
-:is(button, .button).play {
-	--button-bg: linear-gradient(to right, var(--green), var(--teal));
-	--button-color: var(--black-8);
-	font-size: var(--font-size-md);
-	padding: 10px 20px;
-	box-shadow: inset 0 0 0 3px oklch(var(--blacklch) / 0.2);
-	transition: background-size 1s ease-in-out;
-	background-size: 100%;
-	&:hover {
-		background-size: 200%;
+	:is(button, .button).subtle {
+		--button-bg: var(--black-1);
+		--button-color: var(--yellow-8);
+		box-shadow: inset 0 0 0 2px oklch(var(--blacklch) / 0.2);
+	}
+
+	:is(button, .button).big {
+		font-size: var(--font-size-md);
+		padding: 10px 20px;
+		box-shadow: inset 0 0 0 3px oklch(var(--blacklch) / 0.2);
+	}
+
+	:is(button, .button).play {
+		--button-bg: linear-gradient(to right, var(--green), var(--teal));
+		--button-color: var(--black-8);
+		font-size: var(--font-size-md);
+		padding: 10px 20px;
+		box-shadow: inset 0 0 0 3px oklch(var(--blacklch) / 0.2);
+		transition: background-size 1s ease-in-out;
+		background-size: 100%;
+		&:hover {
+			background-size: 200%;
+		}
+	}
+
+	button.button-reset {
+		background: transparent;
+		box-shadow: none;
 	}
 }

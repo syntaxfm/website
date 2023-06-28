@@ -11,11 +11,15 @@
 </script>
 
 <div style="position: relative;">
-	<button popovertarget={popover_id} use:anchor={popover_id} class="subtle">
+	<button
+		popovertarget={popover_id}
+		use:anchor={{ id: popover_id, position: ['BOTTOM', 'LEFT'] }}
+		class="subtle"
+	>
 		<Icon name={button_icon} />
 		{button_text}
 	</button>
-	<div popover id={popover_id} class="select-menue">
+	<div popover id={popover_id}>
 		<div class="select-menu-menu-wrapper">
 			{#each options as option}
 				<a class:selected={option.value === value} href={`?filter=${option.value}`}
