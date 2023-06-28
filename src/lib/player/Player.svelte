@@ -2,10 +2,12 @@
 	import Icon from '$lib/Icon.svelte';
 	import { player } from '$state/player';
 	import { fly, slide } from 'svelte/transition';
+	import Visualizer from './Visualizer.svelte';
 
 	let audio: HTMLAudioElement | undefined;
 
 	$: if (audio) {
+		audio.crossOrigin = 'anonymous';
 		audio.play();
 	}
 </script>
@@ -26,6 +28,10 @@
 					transcript.
 				</h2>
 			</div>
+		{/if}
+
+		{#if audio}
+			<Visualizer {audio} />
 		{/if}
 
 		<div class="player-container">

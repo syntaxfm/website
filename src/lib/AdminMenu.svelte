@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { SideMenu } from '@leveluptuts/svelte-side-menu';
+	import ThemeToggle from './theme/ThemeToggle.svelte';
 </script>
 
 <SideMenu
 	top="40px"
-	theme="exp"
 	links={[
 		{
 			text: 'Admin'
@@ -29,4 +29,6 @@
 			path: '/podcast'
 		}
 	]}
-/>
+>
+	<ThemeToggle />
+</SideMenu>

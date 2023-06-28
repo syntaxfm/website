@@ -1,0 +1,92 @@
+<script lang="ts">
+	import CD from './CD.svelte';
+	import Album from './Album.svelte';
+	const audioCtx = new (window.AudioContext || window?.webkitAudioContext)();
+	let audioSource = null;
+	let isAnimating = true;
+	let analyser: AnalyserNode;
+	export let audio: HTMLAudioElement;
+
+	audio.play();
+	audioSource = audioCtx.createMediaElementSource(audio);
+	analyser = audioCtx.createAnalyser();
+	audioSource.connect(analyser);
+	analyser.connect(audioCtx.destination);
+	analyser.fftSize = 128;
+	const bufferLength = analyser.frequencyBinCount;
+	const dataArray = new Uint8Array(bufferLength);
+	let barWidth: 10;
+	let bars: {
+		height: number;
+		width: number;
+	}[] = [];
+	let animationFrameId: number;
+	let fps = 30; // desired FPS
+	let now;
+	let then = Date.now();
+	let interval = 1000 / fps;
+	let delta;
+	let image_index = 0;
+
+	function animate() {
+		now = Date.now();
+		delta = now - then;
+
+		if (delta > interval) {
+			then = now - (delta % interval);
+			bars = [];
+			analyser?.getByteFrequencyData(dataArray);
+			for (let i = 0; i < bufferLength; i++) {
+				let barHeight = dataArray[i];
+
+				bars[i] = {
+					height: barHeight,
+					width: barWidth
+				};
+			}
+		}
+		if (isAnimating) {
+			animationFrameId = requestAnimationFrame(animate);
+		}
+	}
+
+	animate();
+
+	audio.addEventListener('pause', function () {
+		isAnimating = false;
+		cancelAnimationFrame(animationFrameId);
+	});
+
+	// When audio is played, resume the animation
+	audio.addEventListener('play', function () {
+		isAnimating = true;
+		animate();
+	});
+</script>
+
+<div style="display:flex; gap: 5px; height: 60px; width: 100%;overflow: hidden;">
+	{#each bars as bar, i (`bar-${i}`)}
+		{#if bar}
+			<div
+				class="bar"
+				style="height:{100 * (bar.height / 255)}%; background: var(--primary); flex: 1 1 0;"
+			/>
+		{/if}
+	{/each}
+</div>
+
+<div class="art-wrapper" on:click={() => (image_index = image_index ? 0 : 1)}>
+	{#if image_index === 0}
+	<Album />
+	{:else}
+	<CD spinning={isAnimating} />
+	{/if}
+</div>
+
+<style>
+	.art-wrapper {
+		right: 45px;
+		top: 50px;
+		position: absolute;
+	}
+</style>
