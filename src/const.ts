@@ -15,10 +15,6 @@ export const PODCAST_LINKS = [
 		text: 'Google Podcasts'
 	},
 	{
-		href: 'http://www.stitcher.com/s?fid=142440&refid=stpr',
-		text: 'Stitcher'
-	},
-	{
 		href: 'http://pca.st/fmx9',
 		text: 'PocketCasts'
 	},
