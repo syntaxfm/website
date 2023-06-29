@@ -1,9 +1,9 @@
 <script lang="ts">
-	import type { IconName } from './Icon.svelte';
 	import Icon from './Icon.svelte';
 	import { anchor } from '$actions/anchor';
-	export let options: { value: string; label: string }[];
+	import type { IconName } from './Icon.svelte';
 
+	export let options: { value: string; label: string }[];
 	export let button_icon: IconName;
 	export let button_text: string;
 	export let popover_id: string;

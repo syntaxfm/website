@@ -94,7 +94,9 @@
 	/* Light Theme as the default */
 	--sheet-bg: var(--white);
 	--bg: var(--blackish);
+	--bg-2: var(--black-9);
 	--color: var(--white);
+	--color-2: var(--black-2);
 	--sheet-color: var(--black);
 	--primary: var(--yellow);
 	--accent: var(--teal);

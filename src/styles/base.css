@@ -145,9 +145,10 @@
 	}
 
 	a[href^='#t'] {
-		background: var(--black-2);
+		background: var(--bg-2);
 		padding: 4px 6px;
 		border-bottom: none;
+		color: var(--color-2);
 		font-weight: normal;
 		border-radius: 4px;
 	}

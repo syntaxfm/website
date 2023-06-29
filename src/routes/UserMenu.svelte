@@ -1,16 +1,16 @@
 <script lang="ts">
-	import type { User } from '@prisma/client';
 	import Github from '$assets/github.svg';
 	import DropdownMenu from '$lib/DropdownMenu.svelte';
 	import { enhance } from '$app/forms';
 	import { loading } from '$state/loading';
 	import { form_action } from '$lib/form_action';
-	import SelectMenu from '$lib/SelectMenu.svelte';
 	export let user: User | null;
+
+	import type { User } from '@prisma/client';
 </script>
 
 {#if user}
-	<DropdownMenu>
+	<DropdownMenu popover_id="user-menu">
 		<img class="avatar" slot="dropdown-button" src={user.avatar_url} alt="User Avatar" />
 		<div slot="dropdown-links">
 			<form use:enhance={form_action({ message: 'Logout ' })} action="/?/logout" method="POST">
