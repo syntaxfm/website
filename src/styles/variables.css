@@ -1,8 +1,16 @@
 :root {
 	/* NEW SHIT */
 	/* 🧑‍🚒 SHIT */
-	@custom-media --small-medium (width > 650px);
-	@custom-media --test (max-width: 30em);
+
+	@custom-media --below_small (width < 400px);
+	@custom-media --below_med (width < 700px);
+	@custom-media --below_large (width < 900px);
+	@custom-media --below_xlarge (width < 1200px);
+
+	@custom-media --above_small (width >400px);
+	@custom-media --above_med (width > 700px);
+	@custom-media --above_large (width > 900px);
+	@custom-media --above_xlarge (width > 1200px);
 
 	--yellow-hue: 81.72;
 	--yellow-1: oklch(99% 0.02 var(--yellow-hue));
@@ -94,9 +102,9 @@
 	/* Light Theme as the default */
 	--sheet-bg: var(--white);
 	--bg: var(--blackish);
-	--bg-2: var(--black-9);
+	--bg-2: var(--black-2);
 	--color: var(--white);
-	--color-2: var(--black-2);
+	--color-2: var(--black-9);
 	--sheet-color: var(--black);
 	--primary: var(--yellow);
 	--accent: var(--teal);
