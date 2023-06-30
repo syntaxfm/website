@@ -55,7 +55,11 @@
 
 	.featuring {
 		display: flex;
+		flex-wrap: wrap;
 		gap: 20px;
 		margin-bottom: 2rem;
+		@media (--above_med) {
+			gap: 60px;
+		}
 	}
 </style>

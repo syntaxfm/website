@@ -37,8 +37,10 @@
 		width: 100%;
 		border-radius: 4px;
 	}
+
 	figcaption p {
 		margin: 0;
 		margin-bottom: 0.5rem;
+		white-space: nowrap;
 	}
 </style>
