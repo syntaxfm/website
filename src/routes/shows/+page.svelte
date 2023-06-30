@@ -2,10 +2,8 @@
 	import { queryParameters } from 'sveltekit-search-params';
 	import SelectMenu from '$lib/SelectMenu.svelte';
 	import ShowCard from '$lib/ShowCard.svelte';
-	import type { PageData } from './$types';
 
-	let sort = 'nto';
-	export let data: PageData;
+	export let data;
 	$: ({ shows } = data);
 	const store = queryParameters();
 </script>

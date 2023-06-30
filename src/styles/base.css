@@ -139,6 +139,12 @@
 	p {
 		line-height: 1.7;
 	}
+	ul {
+		@media (--below_med) {
+			padding: 0;
+		}
+	}
+
 	li {
 		line-height: 2.2;
 		list-style-type: circle;

@@ -46,7 +46,10 @@
 	}
 
 	:global(.show-page > *) {
-		grid-column: content/content;
+		grid-column: start/end;
+		@media (--above_med) {
+			grid-column: content/content;
+		}
 	}
 
 	header {
