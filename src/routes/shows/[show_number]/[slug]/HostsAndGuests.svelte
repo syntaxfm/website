@@ -55,7 +55,7 @@
 
 	.featuring {
 		display: flex;
-		gap: 20%;
+		gap: 20px;
 		margin-bottom: 2rem;
 	}
 </style>
