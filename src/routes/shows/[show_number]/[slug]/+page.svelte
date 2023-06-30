@@ -37,7 +37,7 @@
 	{@html show.show_notes}
 </article>
 
-<style>
+<style lang="postcss">
 	.show-page {
 		display: grid;
 		grid-template-columns:
@@ -70,6 +70,14 @@
 		border-top: 2px solid var(--black-2);
 		border-bottom: 2px solid var(--black-2);
 		font-weight: 700;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+		@media (--below_med) {
+			a {
+				width: 100%;
+			}
+		}
 	}
 
 	.show-page-date {

@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import UserMenu from './UserMenu.svelte';
-	import ThemeToggle from '$lib/theme/ThemeToggle.svelte';
+	import white_grit from '$assets/whitegrit.png';
 	import type { User } from '@prisma/client';
 
 	export let user: User | null;
@@ -39,11 +38,25 @@
 				href="https://docs.google.com/forms/d/e/1FAIpQLSfQlAo1wXHiJMySdU-h8QMtfoz92aMS9eycEHXB6eRCLh8KHA/viewform"
 				style="grid-column: 1/-1;">Ask a potluck question</a
 			>
-			<!-- <UserMenu {user} /> -->
+
+			<button popovertarget="menu" class="button-reset">Menu</button>
+			<div popover id="menu" class="menu" style="background-image:  url({white_grit})">
+				<button popovertarget="menu" class="button-reset close-button">×</button>
+				<nav>
+					<a href="/shows">Podcast</a>
+					<a href="https://swag.syntax.fm">Swag</a>
+				</nav>
+				<a
+					target="_blank"
+					class="button ghost"
+					href="https://docs.google.com/forms/d/e/1FAIpQLSfQlAo1wXHiJMySdU-h8QMtfoz92aMS9eycEHXB6eRCLh8KHA/viewform"
+					style="grid-column: 1/-1;">Ask a potluck question</a
+				>
+			</div>
 		</div>
 	</div>
 
-	<nav>
+	<nav class="desktop_nav">
 		<a href="/shows">Podcast</a>
 		<a href="https://swag.syntax.fm">Swag</a>
 	</nav>
@@ -92,5 +105,66 @@
 		align-items: center;
 		justify-self: flex-end;
 		gap: 20px;
+	}
+
+	button[popovertarget='menu'] {
+		color: var(--white);
+		text-transform: uppercase;
+		font-weight: 900;
+		letter-spacing: 1px;
+	}
+
+	div[popover] {
+		color: var(--white);
+		background-color: var(--black);
+		width: 100vw;
+		height: 100vh;
+		justify-content: space-between;
+		flex-direction: column;
+		&:popover-open {
+			display: flex;
+		}
+
+		nav {
+			margin-top: 30vh;
+			font-size: var(--font-size-xxl);
+			a {
+				display: block;
+				margin-bottom: 2rem;
+			}
+		}
+		> *:last-child {
+			margin: 20px;
+		}
+	}
+
+	.close-button {
+		font-size: 5rem;
+		line-height: 1;
+		margin: 0;
+		position: absolute;
+		top: 10px;
+		right: 10px;
+	}
+
+	.header-actions {
+		> a {
+			display: none;
+		}
+		@media (--above_med) {
+			> a {
+				display: block;
+			}
+			> button {
+				display: block;
+			}
+		}
+	}
+
+	.desktop_nav {
+		display: none;
+		@media (--above_med) {
+			display: block;
+		}
 	}
 </style>
