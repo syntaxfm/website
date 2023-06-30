@@ -1,10 +1,10 @@
 <script lang="ts">
 	import ShowCard from '$lib/ShowCard.svelte';
-	import type { Show } from '@prisma/client';
-	import type { PageData } from './$types';
 	import PodcastHero from '$lib/PodcastHero.svelte';
 
-	export let data: PageData;
+	import type { Show } from '@prisma/client';
+
+	export let data;
 	$: ({ latest } = data);
 	let last_ten: Show[];
 	let latest_show: Show | null = null;
