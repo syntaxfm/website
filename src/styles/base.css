@@ -158,4 +158,90 @@
 		font-weight: normal;
 		border-radius: 4px;
 	}
+
+	[popover] {
+		position: fixed;
+		z-index: 2147483647;
+		inset: 0;
+		padding: 0.25em;
+		width: fit-content;
+		height: fit-content;
+		border-width: initial;
+		border-color: initial;
+		border-image: initial;
+		border-style: solid;
+		background-color: canvas;
+		color: canvastext;
+		overflow: auto;
+		margin: auto;
+	}
+
+	/* stylelint-disable selector-class-pattern */
+	[popover]:not(.\:popover-open) {
+		display: none;
+	}
+
+	[popover]:is(dialog[open]) {
+		display: revert;
+	}
+
+	[anchor].\:popover-open {
+		inset: auto;
+	}
+
+	/* This older `:open` pseudo selector is deprecated and support will be removed
+in a later release. */
+	@supports selector([popover]:open) {
+		[popover]:not(.\:popover-open, dialog[open]) {
+			display: revert;
+		}
+
+		/* stylelint-disable selector-pseudo-class-no-unknown */
+		[anchor]:is(:open) {
+			inset: auto;
+		}
+		/* stylelint-enable selector-pseudo-class-no-unknown */
+	}
+
+	@supports selector([popover]:popover-open) {
+		[popover]:not(.\:popover-open, dialog[open]) {
+			display: revert;
+		}
+
+		/* stylelint-disable selector-pseudo-class-no-unknown */
+		[anchor]:is(:popover-open) {
+			inset: auto;
+		}
+		/* stylelint-enable selector-pseudo-class-no-unknown */
+	}
+	/* stylelint-enable selector-class-pattern */
+
+	@supports not (background-color: canvas) {
+		[popover] {
+			background-color: white;
+			color: black;
+		}
+	}
+
+	@supports (width: -moz-fit-content) {
+		[popover] {
+			/* stylelint-disable value-no-vendor-prefix */
+			width: -moz-fit-content;
+			height: -moz-fit-content;
+			/* stylelint-enable value-no-vendor-prefix */
+		}
+	}
+
+	@supports not (inset: 0) {
+		[popover] {
+			/* stylelint-disable declaration-block-no-redundant-longhand-properties */
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			/* stylelint-enable declaration-block-no-redundant-longhand-properties */
+		}
+	}
 }
+
+/* Popover */
