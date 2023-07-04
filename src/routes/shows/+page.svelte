@@ -49,11 +49,16 @@
 	{/each}
 </section>
 
-<style>
+<style lang="postcss">
 	.list-heading {
 		display: flex;
 		justify-content: space-between;
 		align-items: baseline;
+		flex-direction: column;
+		margin-bottom: 2rem;
+		@media (--above_med) {
+			flex-direction: row;
+		}
 	}
 
 	h3 {

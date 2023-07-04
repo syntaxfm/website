@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import white_grit from '$assets/whitegrit.png';
 	import type { User } from '@prisma/client';
+	import MobileNav from './MobileNav.svelte';
 
 	export let user: User | null;
 
@@ -39,20 +39,7 @@
 				style="grid-column: 1/-1;">Ask a potluck question</a
 			>
 
-			<button popovertarget="menu" class="button-reset">Menu</button>
-			<div popover id="menu" class="menu" style="background-image:  url({white_grit})">
-				<button popovertarget="menu" class="button-reset close-button">×</button>
-				<nav>
-					<a href="/shows">Podcast</a>
-					<a href="https://swag.syntax.fm">Swag</a>
-				</nav>
-				<a
-					target="_blank"
-					class="button ghost"
-					href="https://docs.google.com/forms/d/e/1FAIpQLSfQlAo1wXHiJMySdU-h8QMtfoz92aMS9eycEHXB6eRCLh8KHA/viewform"
-					style="grid-column: 1/-1;">Ask a potluck question</a
-				>
-			</div>
+			<MobileNav />
 		</div>
 	</div>
 
@@ -107,44 +94,15 @@
 		gap: 20px;
 	}
 
-	button[popovertarget='menu'] {
-		color: var(--white);
-		text-transform: uppercase;
-		font-weight: 900;
-		letter-spacing: 1px;
-	}
-
-	div[popover] {
-		color: var(--white);
-		background-color: var(--black);
-		width: 100vw;
-		height: 100vh;
-		justify-content: space-between;
-		flex-direction: column;
-		&:popover-open {
-			display: flex;
-		}
-
-		nav {
-			margin-top: 30vh;
-			font-size: var(--font-size-xxl);
-			a {
-				display: block;
-				margin-bottom: 2rem;
-			}
-		}
-		> *:last-child {
-			margin: 20px;
-		}
-	}
-
 	.close-button {
 		font-size: 5rem;
-		line-height: 1;
 		margin: 0;
 		position: absolute;
 		top: 10px;
 		right: 10px;
+		display: block;
+		line-height: 0.5;
+		padding: 0;
 	}
 
 	.header-actions {
