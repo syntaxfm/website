@@ -9,6 +9,9 @@
 	}
 </script>
 
+<div class="mobile_nav">
+
+
 <button class="button-reset" on:click={toggle}>Menu</button>
 {#if is_active}
 	<div
@@ -30,8 +33,14 @@
 		>
 	</div>
 {/if}
+</div>
 
 <style lang="postcss">
+	.mobile_nav {
+		@media (--above_med) {
+			display: none;
+		}
+	}
 	nav a {
 		text-decoration: none;
 		color: var(--color);
@@ -50,7 +59,7 @@
 		letter-spacing: 1px;
 	}
 
-	div {
+	.menu {
 		position: fixed;
 		inset: 0;
 		color: var(--white);

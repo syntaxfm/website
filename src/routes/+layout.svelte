@@ -57,6 +57,9 @@
 	main {
 		padding: 2rem;
 		grid-column: 2;
+		@media (min-width: 1280px) {
+			padding: 0;
+		}
 	}
 
 	.page-layout {
@@ -69,8 +72,8 @@
 		.page-layout {
 			gap: 48px;
 			display: grid;
-			grid-auto-flow: column;
 			grid-template-columns: 144px minmax(0, 18fr) 144px;
+			grid-auto-flow: column;
 			grid-template-rows: 1fr;
 		}
 	}
