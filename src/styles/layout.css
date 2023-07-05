@@ -1,0 +1,14 @@
+@layer layout {
+	.main-layout {
+		@media (min-width: 1280px) {
+			column-gap: 48px;
+			display: grid;
+			grid-template-columns: [start margin] 144px [margin content] minmax(0, 18fr) [content end-margin] 144px [end-margin end];	
+		}
+	}
+	
+	.place-content {
+		grid-column: content / content;	
+		width: 100%;
+	}
+}

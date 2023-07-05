@@ -15,11 +15,12 @@
 
 /* The main css entry. Primarily used to import stuff */
 
-@layer reset base theme utilities;
+@layer reset base layout theme utilities;
 
 /* Import all css themes */
 @import '../styles/base.css';
 @import '../styles/variables.css';
+@import '../styles/layout.css';
 @import '../styles/buttons.css';
 
 /* FYI you have to use import-glob for all of these or else it gets mad */

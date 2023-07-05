@@ -28,8 +28,8 @@
 <div class={'theme-' + $theme + ' theme-wrapper'}>
 	<Header {user} />
 
-	<div class="page-layout">
-		<main>
+	<div class="page-layout main-layout">
+		<main class="place-content">
 			<slot />
 		</main>
 	</div>
@@ -56,7 +56,6 @@
 
 	main {
 		padding: 2rem;
-		grid-column: 2;
 		@media (min-width: 1280px) {
 			padding: 0;
 		}
@@ -70,9 +69,6 @@
 
 	@media (min-width: 1280px) {
 		.page-layout {
-			gap: 48px;
-			display: grid;
-			grid-template-columns: 144px minmax(0, 18fr) 144px;
 			grid-auto-flow: column;
 			grid-template-rows: 1fr;
 		}

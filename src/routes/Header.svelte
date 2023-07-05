@@ -8,8 +8,8 @@
 	$: header_element = $page.route.id === '/' ? 'h1' : 'h2';
 </script>
 
-<header>
-	<div class="header-container">
+<header class="main-layout">
+	<div class="header-container place-content">
 		<svelte:element this={header_element}>
 			<a href="/">
 				<svg width="80px" viewBox="0 0 1371 1212" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -55,17 +55,12 @@
 	}
 
 	header {
-
 		background-image: url('https://syntax.fm/static/background.jpg');
 		background-color: var(--bg);
 		color: var(--color);
 		@media (min-width: 1280px) {
-			column-gap: 48px;
-			display: grid;
-			grid-template-columns: [start margin] 144px [margin content] minmax(0, 18fr) [content end-margin] 144px [end-margin end];
 			grid-auto-flow: column;
 			grid-template-rows: 1fr auto;
-			
 		}
 	}
 
@@ -73,9 +68,7 @@
 		display: grid;
 		padding: 10px 0;
 		align-items: center;
-		grid-column: content / content;
 		row-gap: 20px;
-		width: 100%;
 		grid-template-columns: [start logo] 88px [logo actions] auto [actions end];
 		max-width: 1600px;
 		margin: 0 auto;
