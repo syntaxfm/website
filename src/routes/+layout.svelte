@@ -41,9 +41,9 @@
 	<Toaster />
 	<Loading />
 
-	{#if user?.roles?.includes('admin')}
+	<!-- {#if user?.roles?.includes('admin')}
 		<AdminMenu />
-	{/if}
+	{/if} -->
 </div>
 
 <style lang="postcss">

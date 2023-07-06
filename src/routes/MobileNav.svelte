@@ -15,15 +15,15 @@
 <button class="button-reset" on:click={toggle}>Menu</button>
 {#if is_active}
 	<div
-		transition:fly={{ opacity: 0 }}
+		transition:fly={{ opacity: 0, x: "100%"}}
 		id="menu"
 		class="menu"
 		style="background-image:  url({white_grit})"
 	>
 		<button class="button-reset close-button" on:click={toggle}>×</button>
 		<nav>
-			<a href="/shows">Podcast</a>
-			<a href="https://swag.syntax.fm">Swag</a>
+			<a transition:fly={{ opacity: 0, x: "100%", delay: 1}}  on:click={toggle} href="/shows">Podcast</a>
+			<a transition:fly={{ opacity: 0, x: "100%", delay: 1}} on:click={toggle} href="https://swag.syntax.fm">Swag </a>
 		</nav>
 		<a
 			target="_blank"
@@ -46,6 +46,7 @@
 		color: var(--color);
 		text-decoration: none;
 		border-bottom: solid 3px transparent;
+		display: block;
 		transition: border-color 0.2s ease;
 		&:hover {
 			border-bottom: solid 3px var(--primary);
@@ -69,6 +70,8 @@
 		justify-content: space-between;
 		flex-direction: column;
 		z-index: 11;
+		display: flex;
+		padding: 2rem;
 
 		nav {
 			margin-top: 30vh;
@@ -76,6 +79,8 @@
 			a {
 				display: block;
 				margin-bottom: 2rem;
+				font-weight: 700;
+				text-shadow: 0 0 4px black;
 			}
 		}
 		> *:last-child {
@@ -84,11 +89,11 @@
 	}
 
 	.close-button {
-		font-size: 5rem;
+		font-size: 4rem;
 		margin: 0;
 		position: absolute;
-		top: 10px;
-		right: 10px;
+		top: 20px;
+		right: 20px;
 		display: block;
 		line-height: 0.5;
 		padding: 0;
