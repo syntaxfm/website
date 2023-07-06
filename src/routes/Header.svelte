@@ -58,7 +58,9 @@
 		background-image: url('https://syntax.fm/static/background.jpg');
 		background-color: var(--bg);
 		color: var(--color);
+		padding: 0 2rem;
 		@media (min-width: 1280px) {
+			padding: 0;
 			grid-auto-flow: column;
 			grid-template-rows: 1fr auto;
 		}
