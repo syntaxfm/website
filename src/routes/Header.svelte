@@ -1,9 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import type { User } from '@prisma/client';
 	import MobileNav from './MobileNav.svelte';
-
-	export let user: User | null;
 
 	$: header_element = $page.route.id === '/' ? 'h1' : 'h2';
 </script>
