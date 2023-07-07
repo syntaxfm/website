@@ -22,6 +22,15 @@
 	}
 </script>
 
+<svelte:window
+	on:keydown={(e) => {
+		if (e.key === 'e' && (navigator.platform === 'MacIntel' ? e.metaKey : e.ctrlKey)) {
+			e.preventDefault();
+			theme_maker.open();
+		}
+	}}
+/>
+
 {#if $theme_maker.status === 'OPEN'}
 	<section
 		use:clickOutside
