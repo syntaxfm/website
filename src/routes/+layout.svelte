@@ -7,10 +7,12 @@
 	import './style.css';
 	import type { PageData } from './$types';
 	import Loading from '$lib/Loading.svelte';
-	import AdminMenu from '$lib/AdminMenu.svelte';
+
 	import ThemeMaker from '$lib/theme/ThemeMaker.svelte';
 	import { theme } from '$state/theme';
 	import { onMount } from 'svelte';
+	import { browser } from '$app/environment';
+	import SearchBox from '$lib/search/SearchBox.svelte';
 	// import { preparePageTransition } from '$lib/page_transition';
 
 	// preparePageTransition();
@@ -26,7 +28,7 @@
 </script>
 
 <div class={'theme-' + $theme + ' theme-wrapper'}>
-	<Header {user} />
+	<Header />
 
 	<div class="page-layout main-layout">
 		<main class="place-content">
@@ -40,6 +42,9 @@
 	<Player />
 	<Toaster />
 	<Loading />
+	{#if browser}
+		<SearchBox />
+	{/if}
 
 	<!-- {#if user?.roles?.includes('admin')}
 		<AdminMenu />

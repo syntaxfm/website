@@ -1,7 +1,6 @@
 <script lang="ts">
 	import white_grit from '$assets/whitegrit.png';
-	import { fade, fly } from 'svelte/transition';
-
+	import { fly } from 'svelte/transition';
 	let is_active = false;
 
 	function toggle() {
@@ -10,7 +9,6 @@
 </script>
 
 <div class="mobile_nav">
-
 
 <button class="button-reset" on:click={toggle}>Menu</button>
 {#if is_active}

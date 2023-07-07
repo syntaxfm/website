@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import Search from '$lib/search/Search.svelte';
 	import MobileNav from './MobileNav.svelte';
 
 	$: header_element = $page.route.id === '/' ? 'h1' : 'h2';
@@ -23,6 +24,7 @@
 		</svelte:element>
 
 		<div class="header-actions">
+			<Search />
 			<a
 				target="_blank"
 				class="button ghost"
@@ -91,7 +93,6 @@
 		gap: 20px;
 	}
 
-
 	.header-actions {
 		> a {
 			display: none;
@@ -119,7 +120,7 @@
 
 	svg {
 		width: 50px;
-		@media (--above_med) { 
+		@media (--above_med) {
 			width: 88px;
 		}
 	}
