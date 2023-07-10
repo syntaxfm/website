@@ -11,7 +11,7 @@ In this episode of Syntax, Wes and Scott talk all things Bluesky, the AT Protoco
 
 * **[00:07](#t=00:07)** Welcome
 * **[00:53](#t=00:53)** Welcome to the Bluesky
-* [Wes Bos on Bluesky](https://bsky.app/profile/syntax.fm/wesbos.com)
+* [Wes Bos on Bluesky](https://bsky.app/profile/wesbos.com)
 * [Scott on Bluesky](https://bsky.app/profile/tolin.ski)
 * [Syntax on Bluesky](https://bsky.app/profile/syntax.fm)
 * **[03:14](#t=03:14)** What could the new Twitter be?
