@@ -3,6 +3,10 @@ export const GITHUB_AUTH_URL = 'https://github.com/login/oauth/authorize';
 
 export const PODCAST_LINKS = [
 	{
+		href: 'http://feed.syntax.fm/rss',
+		text: 'RSS'
+	},
+	{
 		href: 'https://itunes.apple.com/ca/podcast/syntax-tasty-web-development-treats/id1253186678?mt=2',
 		text: 'iTunes'
 	},
@@ -15,16 +19,12 @@ export const PODCAST_LINKS = [
 		text: 'Google Podcasts'
 	},
 	{
-		href: 'http://pca.st/fmx9',
-		text: 'PocketCasts'
-	},
-	{
 		href: 'https://open.spotify.com/show/4kYCRYJ3yK5DQbP5tbfZby?si=bOe7-kl6RnOHapMsVnFWgw',
 		text: 'Spotify'
 	},
 	{
-		href: 'http://feed.syntax.fm/rss',
-		text: 'RSS'
+		href: 'http://pca.st/fmx9',
+		text: 'PocketCasts'
 	}
 ];
 

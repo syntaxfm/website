@@ -100,23 +100,30 @@
 
 	/* Color Usage */
 	/* Light Theme as the default */
+	/* Backgrounds */
 	--sheet-bg: var(--white);
 	--bg: var(--blackish);
+	--bg-1: var(--black-1);
 	--bg-2: var(--black-2);
+
+	/* Foreground */
 	--color: var(--white);
+	--color-1: var(--black-8);
 	--color-2: var(--black-9);
 	--sheet-color: var(--black);
+
+	/* Interface Color */
 	--primary: var(--yellow);
 	--accent: var(--teal);
 	--warning: var(--red);
 	--success: var(--teal);
 	--zebra: oklch(var(--blacklch) / 0.05);
 	--line: var(--black-2);
-
-	--body-font-family: 'MDIO0.6';
-	--heading-font-family: 'MDIO0.6';
+	--border: solid 4px var(--sheet-color);
 
 	/* Typeography */
+	--body-font-family: 'MDIO0.6';
+	--heading-font-family: 'MDIO0.6';
 	--font-size-sm: clamp(0.8rem, 0.17vw + 0.76rem, 0.89rem);
 	--font-size-base: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
 	--font-size-md: clamp(1.25rem, 0.61vw + 1.1rem, 1.58rem);

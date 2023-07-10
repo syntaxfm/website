@@ -33,5 +33,8 @@
 		align-items: center;
 		background-color: rgba(255, 255, 255, 0.1);
 		padding: 4px;
+		@media (--below_med) {
+			display: none;
+		}
 	}
 </style>

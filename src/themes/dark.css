@@ -14,7 +14,10 @@
 		--accent: var(--teal);
 		--warning: var(--red);
 		--bg-2: var(--black);
+		--bg-1: var(--black);
+		--bg: var(--black);
 		--color-2: var(--black-3);
+		--border: solid 4px var(--sheet-color);
 	}
 }
 /* Same as prefers color scheme dark */
@@ -25,7 +28,11 @@
 	--accent: var(--teal);
 	--warning: var(--red);
 	--bg-2: var(--black);
+	--bg-1: var(--black);
+	--bg: var(--black);
 	--color-2: var(--black-3);
+	--border-color: var(--sheet-bg);
+	--border: solid 4px var(--border-color);
 }
 
 .theme-light {
