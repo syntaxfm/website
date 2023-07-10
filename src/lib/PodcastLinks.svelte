@@ -14,7 +14,7 @@
 	div {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 20px;
+		gap: 10px;
 	}
 
 	.subscribe--itunes {

@@ -56,11 +56,12 @@
 		background-color: var(--sheet-bg);
 		color: var(--sheet-color);
 		min-height: 100vh;
-		border-top: 8px solid var(--primary);
+		border-top: var(--border);
+		border-color: var(--primary);
 	}
 
 	main {
-		padding: 2rem;
+		padding: 0.5rem;
 		@media (min-width: 1280px) {
 			padding: 0;
 		}

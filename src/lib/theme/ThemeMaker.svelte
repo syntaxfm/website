@@ -72,16 +72,18 @@
 		color: var(--color);
 		padding: var(--default_padding);
 		overflow-y: scroll;
+		border-left: var(--border);
 	}
 
 	button {
 		text-transform: capitalize;
-		color: var(--sheet-color);
 		background: var(--sheet-bg);
-		border: solid 1px var(--white);
-		border-radius: 5px;
 		padding: var(--default_padding);
+		box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.2);
+		border-radius: 4px;
+		color: var(--sheet-color);
 	}
+
 	.theme-preview {
 		display: flex;
 		flex-wrap: wrap;
@@ -93,16 +95,9 @@
 	}
 
 	.circle {
-		flex-shrink: 0;
-		flex-grow: 0;
-		display: block;
-		height: 20px;
-		width: 20px;
+		height: 15px;
+		width: 15px;
 		border-radius: 20px;
-		--gap: 0.5rem;
-		flex: 0 0 calc(25% - var(--gap)); /* Subtract twice the desired gap size */
-		background: #ddd; /* Just for demo purposes */
-		margin: calc(var(--gap) / 2); /* Half the desired gap size */
 	}
 
 	.color {

@@ -67,8 +67,8 @@
 		grid-column: start/end;
 		padding: 2rem 0;
 		margin-bottom: 2rem;
-		border-top: 2px solid var(--black-2);
-		border-bottom: 2px solid var(--black-2);
+		border-top: var(--border);
+		border-bottom: var(--border);
 		font-weight: 700;
 		display: flex;
 		flex-wrap: wrap;

@@ -123,7 +123,7 @@
 			class="search-input"
 		/>
 
-		<button class="button-reset" on:click={() => modal.close()} type="submit">×</button>
+		<button class="button-reset" on:click={close} type="submit">×</button>
 	</header>
 	<div class="results">
 		{#if search?.query}
@@ -151,7 +151,7 @@
 					<SearchResultList
 						results={recent_searches}
 						recent_searches={true}
-						query={search?.query}
+						query={search?.query || ''}
 						on:select={(e) => {
 							close();
 							navigate(e.detail.href);
@@ -171,12 +171,68 @@
 
 <style lang="postcss">
 	header {
-		border-bottom: solid 4px var(--sheet-color);
+		border-bottom: solid 4px var(--border);
 		display: flex;
 	}
 
 	h5 {
 		font-style: italic;
+	}
+
+	header:focus-within {
+		outline: 1px solid var(--primary);
+		background-color: var(--sheet-bg);
+	}
+
+	dialog {
+		--search-height: 50vh;
+		padding: 0;
+		background-color: var(--bg-1);
+		height: var(--search-height);
+		border: var(--border);
+		color: var(--sheet-color);
+		max-width: 100%;
+		width: 100%;
+		@media (--above_med) {
+			width: 60vw;
+		}
+	}
+
+	h5 {
+		margin: 1rem 0;
+	}
+
+	dialog::backdrop {
+		background: rgba(0, 0, 0, 0.6);
+	}
+
+	.results {
+		padding: 10px 5px;
+		min-height: var(--search-height);
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-rows: 1fr;
+		overflow: hidden;
+		width: 100%;
+		& > * {
+			overflow: hidden;
+			width: 100%;
+			grid-row: 1 / -1;
+			grid-column: 1 / -1;
+		}
+		@media (--above_med) {
+			padding: 20px;
+		}
+	}
+
+	.search-input {
+		width: 100%;
+		border: none;
+		padding: 10px;
+		font-size: var(--font-size-md);
+		outline: none;
+		background-color: transparent;
+		color: var(--sheet-color);
 	}
 
 	footer {
@@ -192,50 +248,8 @@
 			margin: -1px;
 			display: inline-block;
 		}
-	}
-
-	header:focus-within {
-		outline: 1px solid var(--primary);
-		background-color: var(--sheet-bg);
-	}
-
-	dialog {
-		--search-height: 50vh;
-		padding: 0;
-		background-color: var(--black-1);
-		height: var(--search-height);
-		width: 60vw;
-		border: solid 4px var(--sheet-color);
-	}
-
-	dialog::backdrop {
-		background: rgba(0, 0, 0, 0.6);
-	}
-
-	.results {
-		padding: 20px;
-		min-height: var(--search-height);
-		display: grid;
-		grid-template-columns: 1fr;
-		grid-template-rows: 1fr;
-		overflow: hidden;
-		width: 100%;
-		& > * {
-			overflow: hidden;
-			width: 100%;
-			grid-row: 1 / -1;
-			grid-column: 1 / -1;
-			background-color: var(--black-1);
+		@media (--below_med) {
+			display: none;
 		}
-	}
-
-	.search-input {
-		width: 100%;
-		border: none;
-		padding: 10px;
-		font-size: var(--font-size-md);
-		outline: none;
-		background-color: transparent;
-		color: var(--sheet-color);
 	}
 </style>

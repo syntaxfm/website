@@ -22,7 +22,7 @@
 		"@playwright/test": "^1.35.1",
 		"@sveltejs/adapter-auto": "^2.1.0",
 		"@sveltejs/kit": "^1.22.1",
-		"@types/node": "^20.4.0",
+		"@types/node": "^20.4.1",
 		"@types/postcss-preset-env": "^8.0.0",
 		"@typescript-eslint/eslint-plugin": "^5.61.0",
 		"@typescript-eslint/parser": "^5.61.0",
