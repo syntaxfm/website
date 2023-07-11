@@ -4,9 +4,32 @@
 	import { player } from '$state/player';
 	import HostsAndGuests from './HostsAndGuests.svelte';
 	import Icon from '$lib/Icon.svelte';
+	import { queryParameters } from 'sveltekit-search-params';
 
 	export let data: PageData;
 	$: ({ show } = data);
+	const store = queryParameters();
+
+	async function handleClick(e) {
+		const { target } = e;
+		if (target.matches(`a[href*='#t=']`)) {
+			e.preventDefault();
+			const { href } = target;
+			const seconds = href
+				.split('#t=')
+				.at(-1)
+				.split(':')
+				.reverse()
+				.map(Number)
+				.map((num, i) => num * 60 ** i)
+				.reduce((acc, num) => acc + num, 0);
+			console.log('seconds', seconds);
+			// setCurrentPlaying(show.displayNumber);
+			// const audio = document.querySelector('audio');
+			// await audio.play();
+			// audio.currentTime = seconds;
+		}
+	}
 </script>
 
 <article class="show-page">
@@ -34,7 +57,9 @@
 		>
 	</div>
 
-	{@html show.show_notes}
+	<div class="show-notes" on:click|preventDefault={handleClick}>
+		{@html show.show_notes}
+	</div>
 </article>
 
 <style lang="postcss">

@@ -22,6 +22,8 @@ const new_player_state = () => {
 		});
 	}
 
+	function update_time(time_stamp) {}
+
 	function toggle_expand() {
 		update((state) => {
 			state.status = state.status === 'ACTIVE' ? 'EXPANDED' : 'ACTIVE';
@@ -41,7 +43,8 @@ const new_player_state = () => {
 		update,
 		play_show,
 		toggle_expand,
-		close
+		close,
+		update_time
 	};
 };
 

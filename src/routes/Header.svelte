@@ -8,7 +8,7 @@
 
 <header class="main-layout">
 	<div class="header-container place-content">
-		<svelte:element this={header_element}>
+		<svelte:element this={header_element} class="logo">
 			<a href="/">
 				<svg width="80px" viewBox="0 0 1371 1212" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path
@@ -20,6 +20,7 @@
 						fill="var(--primary, #fabf46)"
 					/>
 				</svg>
+				<span>by Sentry</span>
 			</a>
 		</svelte:element>
 
@@ -122,6 +123,20 @@
 		width: 50px;
 		@media (--above_med) {
 			width: 88px;
+		}
+	}
+
+	.logo {
+		a {
+			display: flex;
+			flex-direction: column;
+			gap: 5px;
+			align-items: center;
+		}
+		span {
+			font-size: var(--font-size-sm);
+			margin: 0;
+			color: var(--white);
 		}
 	}
 </style>
