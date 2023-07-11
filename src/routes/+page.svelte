@@ -23,10 +23,9 @@
 	{/if}
 </div>
 
-<h4>Last 10</h4>
+<h4>Last 9</h4>
 <div class="show-grid">
 	{#each last_ten as latest_ep}
 		<ShowCard show={latest_ep} />
 	{/each}
 </div>
-

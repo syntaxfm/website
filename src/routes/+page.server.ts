@@ -6,7 +6,7 @@ export const load: PageServerLoad = async ({ locals, setHeaders }) => {
 		'cache-control': 'max-age=240'
 	});
 	return {
-		latest: locals.prisma.show.findMany({ take: 11, orderBy: { number: 'desc' } })
+		latest: locals.prisma.show.findMany({ take: 10, orderBy: { number: 'desc' } })
 	};
 };
 

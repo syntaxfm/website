@@ -1,6 +1,8 @@
 export const GITHUB_USER_URL = 'https://api.github.com/user';
 export const GITHUB_AUTH_URL = 'https://github.com/login/oauth/authorize';
 
+export const CURRENT_YEAR = new Date().getFullYear();
+
 export const PODCAST_LINKS = [
 	{
 		href: 'http://feed.syntax.fm/rss',

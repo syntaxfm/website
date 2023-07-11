@@ -133,7 +133,9 @@
 	:is(p, li) a,
 	.a {
 		color: var(--sheet-color);
-		border-bottom: solid 2px var(--primary);
+		text-decoration: underline;
+		text-decoration-color: var(--primary);
+		text-decoration-thickness: 2px;
 	}
 
 	p {
@@ -154,9 +156,12 @@
 		background: var(--bg-2);
 		padding: 4px 6px;
 		border-bottom: none;
+		text-decoration: none;
 		color: var(--color-2);
 		font-weight: normal;
 		border-radius: 4px;
+		left: -17px;
+		position: relative;
 	}
 
 	[popover] {
