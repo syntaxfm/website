@@ -22,7 +22,26 @@ const new_player_state = () => {
 		});
 	}
 
-	function update_time(time_stamp) {}
+	function update_time(show: Show, href: string) {
+		const time_stamp = href
+			.split('#t=')
+			.at(-1)
+			.split(':')
+			.reverse()
+			.map(Number)
+			.map((num, i) => num * 60 ** i)
+			.reduce((acc, num) => acc + num, 0);
+
+		update((state) => {
+			state.current_show = show;
+			state.status = 'ACTIVE';
+			state.audio?.play();
+			return state;
+		});
+		subscribe((state) => {
+			if (state.audio) state.audio.currentTime = time_stamp;
+		});
+	}
 
 	function toggle_expand() {
 		update((state) => {
@@ -44,7 +63,8 @@ const new_player_state = () => {
 		play_show,
 		toggle_expand,
 		close,
-		update_time
+		update_time,
+		set
 	};
 };
 

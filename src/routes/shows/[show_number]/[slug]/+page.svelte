@@ -15,19 +15,7 @@
 		if (target.matches(`a[href*='#t=']`)) {
 			e.preventDefault();
 			const { href } = target;
-			const seconds = href
-				.split('#t=')
-				.at(-1)
-				.split(':')
-				.reverse()
-				.map(Number)
-				.map((num, i) => num * 60 ** i)
-				.reduce((acc, num) => acc + num, 0);
-			console.log('seconds', seconds);
-			// setCurrentPlaying(show.displayNumber);
-			// const audio = document.querySelector('audio');
-			// await audio.play();
-			// audio.currentTime = seconds;
+			player.update_time(show, href);
 		}
 	}
 </script>

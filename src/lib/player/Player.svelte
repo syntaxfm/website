@@ -4,11 +4,9 @@
 	import { fly, slide } from 'svelte/transition';
 	import Visualizer from './Visualizer.svelte';
 
-	let audio: HTMLAudioElement | undefined;
-
-	$: if (audio) {
-		audio.crossOrigin = 'anonymous';
-		audio.play();
+	$: if ($player.audio) {
+		$player.audio.crossOrigin = 'anonymous';
+		$player.audio.play();
 	}
 </script>
 
@@ -30,8 +28,8 @@
 			</div>
 		{/if}
 
-		{#if audio}
-			<Visualizer {audio} />
+		{#if $player.audio}
+			<Visualizer audio={$player.audio} />
 		{/if}
 
 		<div class="player-container">
@@ -39,7 +37,7 @@
 				audio
 				style="--media-range-track-height: 20px; --media-range-thumb-height: 20px; --media-range-thumb-border-radius: 0;	--media-range-bar-color: var(--primary);--media-background-color: transparent; --media-control-background: transparent; width: 100%; --media-font-family: var(--body-font-family); --media-control-hover-background: transparent;"
 			>
-				<audio slot="media" src={$player.current_show?.url} bind:this={audio} />
+				<audio slot="media" src={$player.current_show?.url} bind:this={$player.audio} />
 				<media-control-bar class="media-bar" style="width: 100%; align-items: center;">
 					<div class="media-controls">
 						<media-seek-backward-button />
