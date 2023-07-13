@@ -15,7 +15,7 @@
 		if (target.matches(`a[href*='#t=']`)) {
 			e.preventDefault();
 			const { href } = target;
-			player.update_time(show, href);
+			player.update_time(href, show);
 		}
 	}
 </script>

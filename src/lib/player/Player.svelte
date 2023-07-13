@@ -3,6 +3,69 @@
 	import { player } from '$state/player';
 	import { fly, slide } from 'svelte/transition';
 	import Visualizer from './Visualizer.svelte';
+	import Bookmarks from './Bookmarks.svelte';
+
+	let time_stamps = null;
+
+	interface Timestamp {
+		label: string;
+		time_stamp: number;
+		duration: number;
+		percentage: number;
+		startingPosition: number;
+		href: string;
+	}
+
+	function extractTimestamps(html: string, totalTime: number): Timestamp[] {
+		const parser = new DOMParser();
+		const doc = parser.parseFromString(html, 'text/html');
+		const timestampElements = doc.querySelectorAll('a[href*="#t="]');
+		const timestamps: Timestamp[] = [];
+
+		let previousTimeStamp = 0;
+		let previousDuration = 0;
+		let previousPercentage = 0;
+		let previousStartingPosition = 0;
+
+		timestampElements.forEach((element, index) => {
+			const href = element.getAttribute('href');
+			const timeString = href?.split('#t=')[1];
+			const liElement = element.closest('li');
+			const label = liElement?.textContent?.trim() || '';
+			const time_stamp = timeString ? timeStringToSeconds(timeString) : 0;
+			const duration = index === 0 ? time_stamp : time_stamp - previousTimeStamp;
+			const percentage = (duration / totalTime) * 100;
+			const startingPosition = previousPercentage + previousStartingPosition;
+
+			timestamps.push({ label, time_stamp, duration, percentage, startingPosition, href });
+
+			previousTimeStamp = time_stamp;
+			previousDuration = duration;
+			previousPercentage = percentage;
+			previousStartingPosition = startingPosition;
+		});
+
+		// Calculate the remaining percentage for the last timestamp
+		const lastTimestamp = timestamps[timestamps.length - 1];
+		lastTimestamp.percentage = 100 - lastTimestamp.startingPosition;
+
+		return timestamps;
+	}
+
+	function timeStringToSeconds(timeString: string): number {
+		const [minutes, seconds] = timeString.split(':').map(Number);
+		return minutes * 60 + seconds;
+	}
+
+	$: if ($player.audio && $player?.current_show?.show_notes) {
+		$player.audio.onloadedmetadata = function () {
+			const extractedTimestamps = extractTimestamps(
+				$player.current_show.show_notes,
+				$player.audio.duration
+			);
+			time_stamps = extractedTimestamps;
+		};
+	}
 
 	$: if ($player.audio) {
 		$player.audio.crossOrigin = 'anonymous';
@@ -35,10 +98,15 @@
 		<div class="player-container">
 			<media-controller
 				audio
-				style="--media-range-track-height: 20px; --media-range-thumb-height: 20px; --media-range-thumb-border-radius: 0;	--media-range-bar-color: var(--primary);--media-background-color: transparent; --media-control-background: transparent; width: 100%; --media-font-family: var(--body-font-family); --media-control-hover-background: transparent;"
+				style="--media-range-track-height: 20px; --media-range-thumb-height: 20px; --media-range-thumb-border-radius: 0;	--media-range-bar-color: var(--primary);--media-background-color: transparent; --media-control-background: transparent; width: 100%; --media-font-family: var(--body-font-family); --media-control-hover-background: transparent; "
 			>
-				<audio slot="media" src={$player.current_show?.url} bind:this={$player.audio} />
-				<media-control-bar class="media-bar" style="width: 100%; align-items: center;">
+				<audio
+					slot="media"
+					src={$player.current_show?.url}
+					bind:this={$player.audio}
+					preload="metadata"
+				/>
+				<media-control-bar class="media-bar">
 					<div class="media-controls">
 						<media-seek-backward-button />
 						<media-play-button style="--media-button-icon-height: 40px;" />
@@ -46,7 +114,12 @@
 					</div>
 					<div class="media-range">
 						<media-time-display />
-						<media-time-range />
+						<div class="media-range-bookmarks">
+							{#if time_stamps}
+								<Bookmarks {time_stamps} />
+							{/if}
+							<media-time-range />
+						</div>
 						<media-duration-display />
 					</div>
 					<div class="media-sound">
@@ -85,6 +158,8 @@
 		grid-column: start / end;
 		display: flex;
 		justify-content: space-between;
+		align-items: center;
+		gap: 10px;
 		@container (min-width: 650px) {
 			grid-column: range / range;
 			grid-row: 1;
@@ -131,7 +206,8 @@
 		rotate: 180deg;
 	}
 
-	.player {
+	:global(.player) {
+		--player-bg: var(--blackish);
 		container: player / inline-size;
 		padding: 0 0 20px;
 		position: fixed;
@@ -150,5 +226,15 @@
 	.player-container {
 		padding: 20px;
 		width: 100%;
+	}
+
+	.media-range-bookmarks {
+		position: relative;
+		width: 100%;
+	}
+
+	media-time-display,
+	media-time-range {
+		padding: 0;
 	}
 </style>

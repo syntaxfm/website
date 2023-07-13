@@ -71,6 +71,7 @@
 		max-width: 1600px;
 		min-height: 80vh;
 		margin: 0 auto;
+		padding-bottom: 4rem;
 	}
 
 	@media (min-width: 1280px) {

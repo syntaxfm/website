@@ -47,6 +47,9 @@
 	{#each shows as show (show.id)}
 		<ShowCard {show} display="list" />
 	{/each}
+	<div class="load-more">
+		<button>Load More ➕</button>
+	</div>
 </section>
 
 <style lang="postcss">
@@ -63,5 +66,9 @@
 
 	h3 {
 		view-transition-name: var(--transition-name);
+	}
+
+	.load-more {
+		text-align: center;
 	}
 </style>

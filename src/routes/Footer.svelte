@@ -28,6 +28,7 @@
 <style>
 	footer {
 		background: var(--black);
+		color: var(--color);
 		padding: 5rem 0.5rem 5rem;
 
 		@media (min-width: 1280px) {

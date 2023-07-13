@@ -64,7 +64,7 @@
 	});
 </script>
 
-<div style="display:flex; gap: 5px; height: 60px; width: 100%;overflow: hidden;">
+<div class="visualizer">
 	{#each bars as bar, i (`bar-${i}`)}
 		{#if bar}
 			<div
@@ -77,16 +77,31 @@
 
 <div class="art-wrapper" on:click={() => (image_index = image_index ? 0 : 1)}>
 	{#if image_index === 0}
-	<Album />
+		<Album />
 	{:else}
-	<CD spinning={isAnimating} />
+		<CD spinning={isAnimating} />
 	{/if}
 </div>
 
 <style>
+	.visualizer {
+		gap: 5px;
+		height: 60px;
+		width: 100%;
+		overflow: hidden;
+		display: none;
+		@media (--above_med) {
+			display: flex;
+		}
+	}
+
 	.art-wrapper {
 		right: 45px;
 		top: 50px;
 		position: absolute;
+		display: none;
+		@media (--above_med) {
+			display: block;
+		}
 	}
 </style>
