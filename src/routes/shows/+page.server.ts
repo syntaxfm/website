@@ -11,6 +11,7 @@ export async function load({ locals, url, setHeaders }) {
 	console.log('order_val', order_val);
 	const order = order_val === 'desc' || !order_val ? 'desc' : 'asc'; // Ensure order can only be 'asc' or 'desc'
 	const filter = url.searchParams.get('filter');
+	const limit = url.searchParams.get('limit') || 100;
 
 	let whereClause = '';
 	const params = [];
@@ -36,13 +37,13 @@ export async function load({ locals, url, setHeaders }) {
 		}
 	}
 
-	const cache_key = `shows:${epoch_day}:${filter}:${order}`;
+	const cache_key = `shows:${epoch_day}:${filter}:${order}:${limit}`;
 
 	let sqlQuery = 'SELECT id, number, title, date, slug, url FROM `Show`';
 	if (whereClause !== '') {
 		sqlQuery += ` WHERE ${whereClause}`;
 	}
-	sqlQuery += ` ORDER BY number ${order} LIMIT 100`;
+	sqlQuery += ` ORDER BY number ${order} LIMIT ${limit}`;
 	let shows = await cache.get(cache_key);
 
 	if (!shows) {

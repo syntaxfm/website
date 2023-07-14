@@ -2,10 +2,19 @@
 	import { queryParameters } from 'sveltekit-search-params';
 	import SelectMenu from '$lib/SelectMenu.svelte';
 	import ShowCard from '$lib/ShowCard.svelte';
+	import { invalidate } from '$app/navigation';
 
 	export let data;
+
+	let loading_more = false;
+	let limit = 100;
+
 	$: ({ shows } = data);
 	const store = queryParameters();
+
+	$: if (shows) {
+		loading_more = false;
+	}
 </script>
 
 <section>
@@ -48,7 +57,20 @@
 		<ShowCard {show} display="list" />
 	{/each}
 	<div class="load-more">
-		<button>Load More ➕</button>
+		<button
+			on:click={() => {
+				loading_more = true;
+				limit += 50;
+				$store.limit = limit + 50;
+				invalidate('/shows');
+			}}
+		>
+			{#if loading_more}
+				Loading More 🔄
+			{:else}
+				Load More ➕
+			{/if}
+		</button>
 	</div>
 </section>
 
@@ -69,6 +91,7 @@
 	}
 
 	.load-more {
+		padding: 2rem 0;
 		text-align: center;
 	}
 </style>
