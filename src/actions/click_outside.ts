@@ -1,3 +1,5 @@
+// * A Svelte Action for firing and event on click outside
+
 import type { Action } from 'svelte/action';
 interface Attributes {
 	'on:click-outside'?: (event: CustomEvent) => void;

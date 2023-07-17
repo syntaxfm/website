@@ -29,3 +29,20 @@ If you want to build your own version, just run `pnpm build` and then I'd recomm
 DB studio `pnpm db:studio`
 DB Migrations `pnpm db:push`
 DB Seed `pnpm db:seed`
+
+### About this codebase
+
+Just about all major code folders live in `/src` with the exception of `/shows` - the md source of truth for all podcast episodes as well as `/prisma` for our db connections and schema.
+
+|              |                                                                                               | Alias      |
+| ------------ | --------------------------------------------------------------------------------------------- | ---------- |
+| `/actions`   | Svelte Actions, these are reusable functions that act as lifecycle on DOM elements            | $actions   |
+| `/assets`    | Static assets that are used via @import                                                       | $assets    |
+| `/db`        | All database and server-side only reusable code                                               | $db        |
+| `/lib`       | (SK Paradigm) Components and files that are used in more than one route                       | $lib       |
+| `/params`    | (SK Paradigm) This is a SvelteKit specific folder to add validation on parameter based routes |            |
+| `/routes`    | (SK Paradigm) File System based routing                                                       |            |
+| `/state`     | Global State containers and resolvers                                                         | $state     |
+| `/styles`    | CSS                                                                                           |
+| `/themes`    | Dynamically Added Themes (this may move and be reworked)                                      | $themes    |
+| `/utilities` | Global Utility functions                                                                      | $utilities |

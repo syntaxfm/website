@@ -1,5 +1,4 @@
 import { cache } from '$lib/cache/cache';
-
 const epoch_day = new Date().getTime() / 86400;
 
 export async function load({ locals, url, setHeaders }) {
@@ -8,7 +7,6 @@ export async function load({ locals, url, setHeaders }) {
 	});
 
 	const order_val = url.searchParams.get('order');
-	console.log('order_val', order_val);
 	const order = order_val === 'desc' || !order_val ? 'desc' : 'asc'; // Ensure order can only be 'asc' or 'desc'
 	const filter = url.searchParams.get('filter');
 	const limit = url.searchParams.get('limit') || 100;

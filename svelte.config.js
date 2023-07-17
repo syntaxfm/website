@@ -13,7 +13,6 @@ const config = {
 				@custom-media --below_med (width < 700px);
 				@custom-media --below_large (width < 900px);
 				@custom-media --below_xlarge (width < 1200px);
-
 				@custom-media --above_small (width > 400px);
 				@custom-media --above_med (width > 700px);
 				@custom-media --above_large (width > 900px);
@@ -37,14 +36,14 @@ const config = {
 	kit: {
 		adapter: adapter(),
 		alias: {
+			$actions: 'src/actions',
+			$assets: 'src/assets',
+			$const: 'src/const.ts',
+			$db: 'src/db',
 			$shows: 'shows',
 			$state: 'src/state',
-			$assets: 'src/assets',
-			$db: 'src/db',
-			$const: 'src/const.ts',
-			$actions: 'src/actions',
-			$utilities: 'src/utilities',
-			$themes: 'src/themes'
+			$themes: 'src/themes',
+			$utilities: 'src/utilities'
 		}
 	}
 };

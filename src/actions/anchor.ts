@@ -1,3 +1,8 @@
+// * A Svelte Action for using the new html popover API
+// The new popover api works great with a polyfill but anchoring is still a shit show.
+// We need anchoring because there is no relative container positioning of popovers
+// So if you are using a popover, use:anchor will help you anchor your popover
+
 import type { Action } from 'svelte/action';
 
 type Position = ['TOP' | 'BOTTOM', 'LEFT' | 'RIGHT'];

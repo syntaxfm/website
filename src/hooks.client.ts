@@ -1,3 +1,6 @@
+// * Client side Middleware
+// https://kit.svelte.dev/docs/hooks
+
 import { dev } from '$app/environment';
 import { handleErrorWithSentry, Replay } from '@sentry/sveltekit';
 import * as Sentry from '@sentry/sveltekit';

@@ -1,3 +1,6 @@
+// * Constant variables
+// Things that won't be reassigned, although maybe more org needed here eventually
+
 export const GITHUB_USER_URL = 'https://api.github.com/user';
 export const GITHUB_AUTH_URL = 'https://github.com/login/oauth/authorize';
 
