@@ -5,7 +5,7 @@
 	import { fly } from 'svelte/transition';
 	// when a new theme is selected, apply the class directly to the correct element,
 	// and save the theme name to the user's db record
-	const themes = import.meta.glob('$themes/*.css', { eager: true });
+	const themes = import.meta.glob('$styles/themes/*.css', { eager: true });
 	const themeName = /(?<=\/src\/themes\/)(.*)(?=.css)/;
 
 	// TODO refactor to utility function

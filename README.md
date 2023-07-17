@@ -44,5 +44,22 @@ Just about all major code folders live in `/src` with the exception of `/shows` 
 | `/routes`    | (SK Paradigm) File System based routing                                                       |            |
 | `/state`     | Global State containers and resolvers                                                         | $state     |
 | `/styles`    | CSS                                                                                           |
-| `/themes`    | Dynamically Added Themes (this may move and be reworked)                                      | $themes    |
 | `/utilities` | Global Utility functions                                                                      | $utilities |
+
+### Stylin'
+
+These are the available media queries
+
+```css
+@custom-media --below_small (width < 400px);
+@custom-media --below_med (width < 700px);
+@custom-media --below_large (width < 900px);
+@custom-media --below_xlarge (width < 1200px);
+@custom-media --above_small (width > 400px);
+@custom-media --above_med (width > 700px);
+@custom-media --above_large (width > 900px);
+@custom-media --above_xlarge (width > 1200px);
+
+## Usage @media (--above_med) {
+}
+```

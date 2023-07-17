@@ -42,7 +42,7 @@ const config = {
 			$db: 'src/db',
 			$shows: 'shows',
 			$state: 'src/state',
-			$themes: 'src/themes',
+			$styles: 'src/styles',
 			$utilities: 'src/utilities'
 		}
 	}
