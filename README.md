@@ -60,6 +60,7 @@ These are the available media queries
 @custom-media --above_large (width > 900px);
 @custom-media --above_xlarge (width > 1200px);
 
-## Usage @media (--above_med) {
+// Usage
+@media (--above_med) {
 }
 ```
