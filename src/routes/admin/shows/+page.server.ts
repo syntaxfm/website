@@ -1,4 +1,4 @@
-import { import_or_update_all_shows } from '$db/shows';
+import { import_or_update_all_shows } from '../../../server/shows';
 import type { Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ locals }) => {

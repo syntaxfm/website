@@ -38,7 +38,7 @@ Just about all major code folders live in `/src` with the exception of `/shows` 
 | ------------ | --------------------------------------------------------------------------------------------- | ---------- |
 | `/actions`   | Svelte Actions, these are reusable functions that act as lifecycle on DOM elements            | $actions   |
 | `/assets`    | Static assets that are used via @import                                                       | $assets    |
-| `/db`        | All database and server-side only reusable code                                               | $db        |
+| `/server`    | All database and server-side only reusable code                                               | $server    |
 | `/lib`       | (SK Paradigm) Components and files that are used in more than one route                       | $lib       |
 | `/params`    | (SK Paradigm) This is a SvelteKit specific folder to add validation on parameter based routes |            |
 | `/routes`    | (SK Paradigm) File System based routing                                                       |            |

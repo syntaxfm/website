@@ -1,8 +1,5 @@
 import satori from 'satori';
-import path from 'path';
 import { Resvg } from '@resvg/resvg-js';
-import { fileURLToPath } from 'url';
-import { promises as fs } from 'fs';
 import { html as toReactNode } from 'satori-html';
 import Template__SvelteComponent_ from './Template.svelte';
 import type { SvelteComponent } from 'svelte';
@@ -15,33 +12,20 @@ interface MyComponent extends SvelteComponent {
 
 const temp = Template__SvelteComponent_ as unknown as MyComponent;
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const fontPath = path.join(__dirname, '../../../../static/fonts/MDIO0.6-Italic.woff');
-const fontArrayBuf = await fs.readFile(fontPath);
-console.log(temp);
-const result = temp.render();
-const element = toReactNode(`${result.html}<style>${result.css.code}</style>`);
-console.log('element', element);
+export const GET = async ({ fetch }) => {
+	const fontFile = await fetch('/fonts/MDIO0.6-Italic.woff');
+	const fontData: ArrayBuffer = await fontFile.arrayBuffer();
+	const result = temp.render();
+	const element = toReactNode(`${result.html}<style>${result.css.code}</style>`);
 
-const width = 1200;
-const height = 630;
+	const width = 1200;
+	const height = 630;
 
-export const GET = async () => {
-	const html = {
-		type: 'div',
-		props: {
-			children: 'hello world',
-			style: {
-				color: 'red'
-			}
-		}
-	};
 	const svg = await satori(element, {
 		fonts: [
 			{
 				name: 'MDIO0.6',
-				data: Buffer.from(fontArrayBuf),
+				data: Buffer.from(fontData),
 				style: 'normal'
 			}
 		],

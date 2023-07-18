@@ -39,7 +39,7 @@ const config = {
 			$actions: 'src/actions',
 			$assets: 'src/assets',
 			$const: 'src/const.ts',
-			$db: 'src/db',
+			$server: 'src/server',
 			$shows: 'shows',
 			$state: 'src/state',
 			$styles: 'src/styles',

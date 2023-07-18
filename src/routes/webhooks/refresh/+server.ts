@@ -1,4 +1,4 @@
-import { import_or_update_all_shows } from '$db/shows';
+import { import_or_update_all_shows } from '../../../server/shows';
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 

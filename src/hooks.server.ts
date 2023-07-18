@@ -6,7 +6,7 @@ import { sequence } from '@sveltejs/kit/hooks';
 import { form_data } from 'sk-form-data';
 import { PrismaClient } from '@prisma/client';
 import type { Handle } from '@sveltejs/kit';
-import { find_user_by_access_token } from '$db/auth/users';
+import { find_user_by_access_token } from './server/auth/users';
 import { dev } from '$app/environment';
 
 Sentry.init({

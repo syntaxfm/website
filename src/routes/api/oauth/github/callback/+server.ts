@@ -1,7 +1,7 @@
-import { get_access_token } from '$db/auth/access_token';
-import { get_github_user } from '$db/auth/github_user_methods';
-import { find_session } from '$db/auth/sessions';
-import { find_or_create_user } from '$db/auth/users';
+import { get_access_token } from '../../../../../server/auth/access_token';
+import { get_github_user } from '../../../../../server/auth/github_user_methods';
+import { find_session } from '../../../../../server/auth/sessions';
+import { find_or_create_user } from '../../../../../server/auth/users';
 
 // This route runs after the user has been successfully validated on GitHub
 /** @type {import('./$types').RequestHandler} */

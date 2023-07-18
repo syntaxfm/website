@@ -1,5 +1,5 @@
 import type { GithubUser } from '$const';
-import { add_user_to_role } from '$db/roles';
+import { add_user_to_role } from '../roles';
 import { prisma_client } from '../../hooks.server';
 
 interface Create_User {
