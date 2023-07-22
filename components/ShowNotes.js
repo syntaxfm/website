@@ -50,7 +50,7 @@ export default function ShowNotes({ show, setCurrentPlaying }) {
       </a>
       <a
         className="button"
-        href={`https://github.com/wesbos/Syntax/edit/master/shows/${show.notesFile}`}
+        href={`https://github.com/wesbos/Syntax/edit/main/shows/${show.notesFile}`}
         target="_blank"
         rel="noopener noreferrer"
       >
