@@ -20,6 +20,15 @@ In this episode of Syntax, Wes and Scott talk about why Threads, Instagram, and 
 * **[20:19](#t=20:19)** Facebook is tracking everything
 * **[27:57](#t=27:57)** React Native
 
+* [Stylex: A Contributor’s Story with Hammad Khalid](https://developers.facebook.com/blog/post/2021/12/14/stylex-contributor-story-hammad-khalid/)
+* [Meta Open Source](https://opensource.fb.com/)
+* [Tech stack rebuild for a new Facebook.com - Engineering at Meta](https://engineering.fb.com/2020/05/08/web/facebook-redesign/)
+* [RF21 – Naman Goel – Rethinking CSS - Introducing Stylex](https://www.youtube.com/watch?v=ur-sGzUWId4)
+* [@stylexjs/stylex - npm](https://www.npmjs.com/package/@stylexjs/stylex?activeTab=code)
+* [Facebook CSS-in-JS Solution Stylex Introduced at React Finland 2021](https://www.infoq.com/news/2021/10/facebook-css-js-stylex/)
+* [Boosts - Arc Boosts](https://arcboosts.com/boosts?page=2)
+* [/uses](https://uses.tech/)
+
 ## Shameless Plugs
 
 * Scott: [Sentry](https://sentry.io)
