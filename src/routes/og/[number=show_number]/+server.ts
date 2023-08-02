@@ -12,10 +12,18 @@ interface MyComponent extends SvelteComponent {
 
 const temp = Template__SvelteComponent_ as unknown as MyComponent;
 
-export const GET = async ({ fetch }) => {
+export const GET = async ({ fetch, locals, params }) => {
+	const show = await locals.prisma.show.findUnique({
+		where: {
+			number: parseInt(params.number)
+		}
+	});
+
 	const fontFile = await fetch('/fonts/MDIO0.6-Italic.woff');
 	const fontData: ArrayBuffer = await fontFile.arrayBuffer();
-	const result = temp.render();
+	const result = temp.render({
+		show
+	});
 	const element = toReactNode(`${result.html}<style>${result.css.code}</style>`);
 
 	const width = 1200;

@@ -13,6 +13,7 @@
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
 	import SearchBox from '$lib/search/SearchBox.svelte';
+	import Meta from '$lib/meta/Meta.svelte';
 	// import { preparePageTransition } from '$lib/page_transition';
 
 	// preparePageTransition();
@@ -26,6 +27,8 @@
 		$theme = user?.theme || 'system';
 	});
 </script>
+
+<Meta />
 
 <div class={'theme-' + $theme + ' theme-wrapper'}>
 	<Header />
