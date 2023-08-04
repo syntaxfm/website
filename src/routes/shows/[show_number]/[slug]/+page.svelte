@@ -20,7 +20,7 @@
 	}
 </script>
 
-<article class="show-page">
+<article class="show-page place-content">
 	<header>
 		<p class="show-page-date" style:--transition-name="show-date-{show.number}">
 			{format(new Date(show.date), 'MMMM do, yyyy')}
@@ -33,7 +33,9 @@
 		>
 	</header>
 
-	<HostsAndGuests guests={show.guests} />
+	<div>
+		<HostsAndGuests guests={show.guests} />
+	</div>
 
 	<div class="show-actions">
 		<a class="button subtle" download href={show.url}>👇 Download Show</a>

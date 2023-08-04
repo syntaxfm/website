@@ -33,11 +33,9 @@
 <div class={'theme-' + $theme + ' theme-wrapper'}>
 	<Header />
 
-	<div class="page-layout main-layout">
-		<main class="place-content">
-			<slot />
-		</main>
-	</div>
+	<main class="page-layout main-layout">
+		<slot />
+	</main>
 
 	<Footer />
 
@@ -56,7 +54,6 @@
 
 <style lang="postcss">
 	.theme-wrapper {
-		background-color: var(--sheet-bg);
 		color: var(--sheet-color);
 		min-height: 100vh;
 		border-top: var(--border);
@@ -64,6 +61,7 @@
 	}
 
 	main {
+		background-color: white;
 		padding: 0.5rem;
 		@media (min-width: 1280px) {
 			padding: 0;
