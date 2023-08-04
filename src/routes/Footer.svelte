@@ -2,8 +2,8 @@
 	import { CURRENT_YEAR } from '$const';
 </script>
 
-<footer class="main-layout">
-	<div class="place-content">
+<footer class="layout">
+	<div>
 		<div class="links-col">
 			<a href="/shows">Podcast</a>
 			<a href="/rss">RSS Feed</a>

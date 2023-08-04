@@ -33,7 +33,7 @@
 <div class={'theme-' + $theme + ' theme-wrapper'}>
 	<Header />
 
-	<main class="page-layout main-layout">
+	<main class="page-layout layout">
 		<slot />
 	</main>
 

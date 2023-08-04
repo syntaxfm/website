@@ -3,7 +3,7 @@
 	import PodcastLinks from './PodcastLinks.svelte';
 </script>
 
-<section class="place-content">
+<section>
 	<h3>A Tasty Treats Podcast for Web Developers</h3>
 	<HostsAndGuests />
 	<PodcastLinks />

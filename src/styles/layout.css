@@ -1,20 +1,39 @@
 @layer layout {
-	.main-layout {
+	.layout {
 		@media (min-width: 1280px) {
 			column-gap: 48px;
 			display: grid;
-			grid-template-columns: [start margin] 144px [margin content] minmax(0, 18fr) [content end-margin] 144px [end-margin end];
+			grid-template-columns: [start l-margin] 144px [l-margin content] minmax(0, 18fr) [content r-margin] 144px [r-margin end];
 		}
-	}
 
-	.place-content {
-		grid-column: content / content;
-		width: 100%;
+		> * {
+			grid-column: content / content;
+		}
+
+		.content {
+			width: 100%;
+			grid-column: content / content;
+		}
+
+		.l-margin {
+			width: 100%;
+			grid-column: l-margin / l-margin;
+		}
+
+		.r-margin {
+			width: 100%;
+			grid-column: r-margin / r-margin;
+		}
 	}
 
 	.show-grid {
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
 		grid-gap: 20px;
+	}
+
+	.sticky {
+		position: sticky;
+		top: 0;
 	}
 }

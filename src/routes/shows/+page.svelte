@@ -17,7 +17,7 @@
 	}
 </script>
 
-<section class="place-content">
+<section>
 	<div class="list-heading">
 		<h3>All Episodes</h3>
 

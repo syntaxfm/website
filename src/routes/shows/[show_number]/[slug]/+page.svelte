@@ -20,7 +20,7 @@
 	}
 </script>
 
-<article class="show-page place-content">
+<article class="show-page content">
 	<header>
 		<p class="show-page-date" style:--transition-name="show-date-{show.number}">
 			{format(new Date(show.date), 'MMMM do, yyyy')}

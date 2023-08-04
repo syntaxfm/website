@@ -6,7 +6,7 @@
 	$: ({ guest } = data);
 </script>
 
-<section class="place-content">
+<section>
 	<header>
 		<img src={`https://github.com/${guest.github}.png`} alt={guest.name} />
 		<div>

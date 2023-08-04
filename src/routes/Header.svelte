@@ -6,8 +6,8 @@
 	$: header_element = $page.route.id === '/' ? 'h1' : 'h2';
 </script>
 
-<header class="main-layout">
-	<div class="header-container place-content">
+<header class="layout">
+	<div class="header-container content">
 		<svelte:element this={header_element} class="logo">
 			<a href="/">
 				<svg width="80px" viewBox="0 0 1371 1212" fill="none" xmlns="http://www.w3.org/2000/svg">

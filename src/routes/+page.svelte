@@ -16,7 +16,7 @@
 
 <PodcastHero />
 
-<div class="place-content">
+<div>
 	<h4>Latest Episode</h4>
 	<div class="show-grid">
 		{#if latest_show}
