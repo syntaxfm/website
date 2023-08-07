@@ -20,37 +20,33 @@
 	}
 </script>
 
-<article class="show-page content">
-	<header>
-		<p class="show-page-date" style:--transition-name="show-date-{show.number}">
-			{format(new Date(show.date), 'MMMM do, yyyy')}
-		</p>
-		<h1 style:--transition-name="show-title-{show.number}">{show.title}</h1>
+<header>
+	<p class="show-page-date" style:--transition-name="show-date-{show.number}">
+		{format(new Date(show.date), 'MMMM do, yyyy')}
+	</p>
+	<h1 style:--transition-name="show-title-{show.number}">{show.title}</h1>
 
-		<button class="big play" on:click={() => player.play_show(show)}>
-			<Icon name="play" />
-			Play Episode {show.number}</button
-		>
-	</header>
+	<button class="big play" on:click={() => player.play_show(show)}>
+		<Icon name="play" />
+		Play Episode {show.number}</button
+	>
+</header>
 
-	<div>
-		<HostsAndGuests guests={show.guests} />
-	</div>
+<div>
+	<HostsAndGuests guests={show.guests} />
+</div>
 
-	<div class="show-actions">
-		<a class="button subtle" download href={show.url}>👇 Download Show</a>
-		<a
-			class="subtle button"
-			download
-			href={'https://github.com/syntaxfm/website/tree/main/shows' + show.md_file}
-			>✏️ Edit Show Notes</a
-		>
-	</div>
+<div class="show-actions">
+	<a class="button subtle" download href={show.url}>👇 Download Show</a>
+	<a
+		class="subtle button"
+		download
+		href={'https://github.com/syntaxfm/website/tree/main/shows' + show.md_file}
+		>✏️ Edit Show Notes</a
+	>
+</div>
 
-	<div class="show-notes" on:click|preventDefault={handleClick}>
-		{@html show.show_notes}
-	</div>
-</article>
+{@html show.show_notes}
 
 <style lang="postcss">
 	.show-page {
@@ -60,15 +56,17 @@
 			[sidebar end];
 	}
 
-	:global(.show-page > *) {
-		grid-column: start/end;
-		@media (--above_med) {
-			grid-column: content/content;
+	@layer theme {
+		:global(.layout > *) {
+			grid-column: start / end;
+			@media (--above_med) {
+				grid-column: main / main-end;
+			}
 		}
 	}
 
 	header {
-		grid-column: start/end;
+		grid-column: content / content-end;
 	}
 
 	h1 {
@@ -79,7 +77,7 @@
 	}
 
 	.show-actions {
-		grid-column: start/end;
+		grid-column: content / content-end;
 		padding: 2rem 0;
 		margin-bottom: 2rem;
 		border-top: var(--border);

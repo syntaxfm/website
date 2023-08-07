@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { SideMenu } from '@leveluptuts/svelte-side-menu';
-	import ThemeToggle from './theme/ThemeToggle.svelte';
+	import { debug_mode } from '$state/debug';
 </script>
 
 <SideMenu
@@ -30,5 +30,10 @@
 		}
 	]}
 >
-	<ThemeToggle />
+	<label
+		>🐛 Debug Mode:
+		<input type="checkbox" bind:checked={$debug_mode} />
+	</label>
+
+	<!-- <ThemeToggle /> -->
 </SideMenu>

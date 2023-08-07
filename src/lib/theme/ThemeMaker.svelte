@@ -32,11 +32,7 @@
 />
 
 {#if $theme_maker.status === 'OPEN'}
-	<section
-		use:clickOutside
-		on:click-outside={theme_maker.close}
-		transition:fly={{ x: '100%', opacity: 0 }}
-	>
+	<section transition:fly={{ x: '100%', opacity: 0 }}>
 		<button on:click={theme_maker.close}>Close</button>
 
 		<h4>Theme 👩‍🎨</h4>

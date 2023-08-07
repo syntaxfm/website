@@ -4,10 +4,16 @@
 
 <footer class="layout">
 	<div>
-		<div class="links-col">
-			<a href="/shows">Podcast</a>
-			<a href="/rss">RSS Feed</a>
-			<a href="https://sentry.io">Sentry.io</a>
+		<div class="grid">
+			<div class="links-col">
+				<a href="/shows">Podcast</a>
+				<a href="/rss">RSS Feed</a>
+				<a href="https://sentry.io">Sentry.io</a>
+			</div>
+			<div class="links-col">
+				<a href="/system/colors">Colors</a>
+				<a href="/system/layout">Layout</a>
+			</div>
 		</div>
 		<div>
 			<p>

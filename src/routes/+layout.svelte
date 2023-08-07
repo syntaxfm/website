@@ -14,6 +14,8 @@
 	import { browser } from '$app/environment';
 	import SearchBox from '$lib/search/SearchBox.svelte';
 	import Meta from '$lib/meta/Meta.svelte';
+	import AdminMenu from '$lib/AdminMenu.svelte';
+	import { debug_mode } from '$state/debug';
 	// import { preparePageTransition } from '$lib/page_transition';
 
 	// preparePageTransition();
@@ -30,7 +32,7 @@
 
 <Meta />
 
-<div class={'theme-' + $theme + ' theme-wrapper'}>
+<div class={'theme-' + $theme + ' theme-wrapper'} class:debug={$debug_mode}>
 	<Header />
 
 	<main class="page-layout layout">
@@ -47,9 +49,9 @@
 		<SearchBox />
 	{/if}
 
-	<!-- {#if user?.roles?.includes('admin')}
+	{#if user?.roles?.includes('admin')}
 		<AdminMenu />
-	{/if} -->
+	{/if}
 </div>
 
 <style lang="postcss">
@@ -69,7 +71,6 @@
 	}
 
 	.page-layout {
-		max-width: 1600px;
 		min-height: 80vh;
 		margin: 0 auto;
 		padding-bottom: 4rem;

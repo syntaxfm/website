@@ -3,37 +3,90 @@
 		@media (min-width: 1280px) {
 			column-gap: 48px;
 			display: grid;
-			grid-template-columns: [start l-margin] 144px [l-margin content] minmax(0, 18fr) [content r-margin] 144px [r-margin end];
+			grid-template-columns:
+				[start l-margin] minmax(144px, auto) [l-margin-end content main] minmax(0, 812px) [main-end sidebar] minmax(
+					0,
+					322px
+				)
+				[sidebar-end content-end r-margin-end] minmax(144px, auto) [r-margin-end end];
 		}
+		/* 812 */
+		/* 322 */
 
 		> * {
-			grid-column: content / content;
+			grid-column: content / content-end;
+		}
+
+		.full {
+			width: 100%;
+			grid-column: start / end;
 		}
 
 		.content {
 			width: 100%;
-			grid-column: content / content;
+			grid-column: content / content-end;
 		}
 
 		.l-margin {
 			width: 100%;
-			grid-column: l-margin / l-margin;
+			grid-column: l-margin / l-margin-end;
 		}
 
 		.r-margin {
 			width: 100%;
-			grid-column: r-margin / r-margin;
+			grid-column: r-margin / r-margin-end;
+		}
+		.sidebar {
+			width: 100%;
+			grid-column: sidebar / sidebar-end;
+		}
+		.main-content {
+			width: 100%;
+			grid-column: main / main-end;
 		}
 	}
 
-	.show-grid {
+	.grid {
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
 		grid-gap: 20px;
 	}
 
-	.sticky {
-		position: sticky;
-		top: 0;
+	.zone {
+		color: var(--color);
+		background: var(--bg);
+	}
+}
+
+.show-page {
+	display: grid;
+	grid-template-columns:
+		[start content] minmax(0, 12.6fr) [content gap] minmax(0, 1fr) [gap sidebar] minmax(0, 5fr)
+		[sidebar end];
+}
+
+.sticky {
+	position: sticky;
+	top: 0;
+}
+
+.debug :is(.layout, .grid) {
+	outline: solid 1px red;
+	&:after {
+		content: '';
+		background: red;
+		position: absolute;
+		color: white;
+	}
+}
+
+.debug .layout {
+	&:after {
+		content: '.layout';
+	}
+}
+.debug .grid {
+	&:after {
+		content: '.grid';
 	}
 }

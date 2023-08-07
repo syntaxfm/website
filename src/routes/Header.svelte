@@ -37,7 +37,7 @@
 		</div>
 	</div>
 
-	<nav class="desktop_nav">
+	<nav class="desktop_nav content">
 		<a href="/shows">Podcast</a>
 		<a href="https://swag.syntax.fm">Swag</a>
 	</nav>
@@ -72,7 +72,6 @@
 		align-items: center;
 		row-gap: 20px;
 		grid-template-columns: [start logo] 88px [logo actions] auto [actions end];
-		max-width: 1600px;
 		margin: 0 auto;
 	}
 
