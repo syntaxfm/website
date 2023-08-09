@@ -32,7 +32,7 @@
 
 <style lang="postcss">
 	[popover] {
-		background: var(--sheet-bg);
+		background: var(--bg-sheet);
 		border: solid 1px var(--black-7);
 		border-radius: 6px;
 		color: var(--white);

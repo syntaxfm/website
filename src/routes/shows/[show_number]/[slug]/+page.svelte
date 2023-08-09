@@ -1,18 +1,15 @@
 <script lang="ts">
 	import { format } from 'date-fns';
-	import type { PageData } from './$types';
 	import { player } from '$state/player';
 	import HostsAndGuests from './HostsAndGuests.svelte';
 	import Icon from '$lib/Icon.svelte';
-	import { queryParameters } from 'sveltekit-search-params';
 
-	export let data: PageData;
+	export let data;
 	$: ({ show } = data);
-	const store = queryParameters();
 
-	async function handleClick(e) {
+	async function handleClick(e: Event) {
 		const { target } = e;
-		if (target.matches(`a[href*='#t=']`)) {
+		if (target instanceof HTMLAnchorElement && target.matches(`a[href*='#t=']`)) {
 			e.preventDefault();
 			const { href } = target;
 			player.update_time(href, show);
@@ -46,16 +43,12 @@
 	>
 </div>
 
-{@html show.show_notes}
+<!-- svelte-ignore -->
+<section class="layout full" on:click|preventDefault={handleClick}>
+	{@html show.show_notes}
+</section>
 
 <style lang="postcss">
-	.show-page {
-		display: grid;
-		grid-template-columns:
-			[start content] minmax(0, 12.6fr) [content gap] minmax(0, 1fr) [gap sidebar] minmax(0, 5fr)
-			[sidebar end];
-	}
-
 	@layer theme {
 		:global(.layout > *) {
 			grid-column: start / end;

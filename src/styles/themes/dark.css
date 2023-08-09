@@ -1,15 +1,15 @@
 /* System theme */
 .theme-system {
-	--sheet-bg: var(--white);
+	--bg-sheet: var(--white);
 	--bg: var(--blackish);
 	--color: var(--white);
-	--sheet-color: var(--black);
+	--color-sheet: var(--black);
 	--primary: var(--yellow);
 	--accent: var(--teal);
 	--warning: var(--red);
 	@media (prefers-color-scheme: dark) {
-		--sheet-color: var(--white);
-		--sheet-bg: var(--black);
+		--color-sheet: var(--white);
+		--bg-sheet: var(--black);
 		--primary: var(--yellow);
 		--accent: var(--teal);
 		--warning: var(--red);
@@ -17,13 +17,13 @@
 		--bg-1: var(--black);
 		--bg: var(--black);
 		--color-2: var(--black-3);
-		--border: solid 4px var(--sheet-color);
+		--border: solid 4px var(--color-sheet);
 	}
 }
 /* Same as prefers color scheme dark */
 .theme-dark {
-	--sheet-color: var(--white);
-	--sheet-bg: var(--black);
+	--color-sheet: var(--white);
+	--bg-sheet: var(--black);
 	--primary: var(--yellow);
 	--accent: var(--teal);
 	--warning: var(--red);
@@ -31,15 +31,15 @@
 	--bg-1: var(--black);
 	--bg: var(--black);
 	--color-2: var(--black-3);
-	--border-color: var(--sheet-bg);
+	--border-color: var(--bg-sheet);
 	--border: solid 4px var(--border-color);
 }
 
 .theme-light {
-	--sheet-bg: var(--white);
+	--bg-sheet: var(--white);
 	--bg: var(--blackish);
 	--color: var(--white);
-	--sheet-color: var(--black);
+	--color-sheet: var(--black);
 	--primary: var(--yellow);
 	--accent: var(--teal);
 	--warning: var(--red);

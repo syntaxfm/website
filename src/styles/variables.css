@@ -1,6 +1,5 @@
 :root {
-	/* NEW SHIT */
-	/* 🧑‍🚒 SHIT */
+	/* 🧑‍🚒 💩 */
 
 	@custom-media --below_small (width < 400px);
 	@custom-media --below_med (width < 700px);
@@ -11,6 +10,8 @@
 	@custom-media --above_med (width > 700px);
 	@custom-media --above_large (width > 900px);
 	@custom-media --above_xlarge (width > 1200px);
+
+	/* Color System */
 
 	--yellow-hue: 81.72;
 	--yellow-1: oklch(99% 0.02 var(--yellow-hue));
@@ -96,30 +97,9 @@
 	--purple-9: oklch(20% 0.076 var(--purple-hue));
 	--purple-10: oklch(10% 0.076 var(--purple-hue));
 	--purple: var(--purple-7);
-	/* OLD SHIT */
 
-	/* Color Usage */
-	/* Light Theme as the default */
-	/* Backgrounds */
-	--sheet-bg: var(--white);
-	--bg: var(--blackish);
 	--bg-1: var(--black-1);
 	--bg-2: var(--black-2);
-
-	/* Foreground */
-	--color: var(--white);
-	--color-1: var(--black-8);
-	--color-2: var(--black-9);
-	--sheet-color: var(--black);
-
-	/* Interface Color */
-	--primary: var(--yellow);
-	--accent: var(--teal);
-	--warning: var(--red);
-	--success: var(--teal);
-	--zebra: oklch(var(--blacklch) / 0.05);
-	--line: var(--black-2);
-	--border: solid 4px var(--sheet-color);
 
 	/* Typeography */
 	--body-font-family: 'MDIO0.6';
@@ -144,4 +124,26 @@
 		0 100px 80px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 7%));
 
 	--default_padding: 1rem;
+
+	/* THEME COLORS */
+	/* Light Theme as the default */
+	/* Backgrounds */
+
+	--bg-sheet: var(--white);
+	--bg: var(--blackish);
+
+	/* Foreground */
+	--color: var(--white);
+	--color-1: var(--black-8);
+	--color-2: var(--black-9);
+	--color-sheet: var(--black);
+
+	/* Interface Color */
+	--primary: var(--yellow);
+	--accent: var(--teal);
+	--warning: var(--red);
+	--success: var(--teal);
+	--zebra: oklch(var(--blacklch) / 0.05);
+	--line: var(--black-2);
+	--border: solid 4px var(--color-sheet);
 }

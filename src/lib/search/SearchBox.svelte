@@ -103,7 +103,12 @@
 	}}
 />
 
-<dialog bind:this={modal}>
+<dialog
+	bind:this={modal}
+	class="zone"
+	style:--bg="var(--bg-sheet)"
+	style:--color="var(--color-sheet)"
+>
 	<header>
 		<input
 			autofocus
@@ -163,7 +168,7 @@
 	</div>
 	<footer>
 		<p>
-			<!-- If you came into the source to look at what vibes is, it's the feeling the powered this code -->
+			<!-- If you came into the source to look at what vibes is, it's this code -->
 			Search powered by vibes.
 		</p>
 	</footer>
@@ -181,7 +186,7 @@
 
 	header:focus-within {
 		outline: 1px solid var(--primary);
-		background-color: var(--sheet-bg);
+		background-color: var(--bg-sheet);
 	}
 
 	dialog {
@@ -190,7 +195,7 @@
 		background-color: var(--bg-1);
 		height: var(--search-height);
 		border: var(--border);
-		color: var(--sheet-color);
+
 		max-width: 100%;
 		width: 100%;
 		@media (--above_med) {
@@ -232,7 +237,6 @@
 		font-size: var(--font-size-md);
 		outline: none;
 		background-color: transparent;
-		color: var(--sheet-color);
 	}
 
 	footer {

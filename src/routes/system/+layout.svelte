@@ -8,6 +8,6 @@
 
 <style>
 	nav {
-		grid-column: l-margin / l-margin;
+		grid-row: span 5;
 	}
 </style>

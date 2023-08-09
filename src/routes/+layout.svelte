@@ -35,7 +35,11 @@
 <div class={'theme-' + $theme + ' theme-wrapper'} class:debug={$debug_mode}>
 	<Header />
 
-	<main class="page-layout layout">
+	<main
+		class="page-layout layout zone"
+		style:--bg="var(--bg-sheet)"
+		style:--color="var(--color-sheet)"
+	>
 		<slot />
 	</main>
 
@@ -56,14 +60,12 @@
 
 <style lang="postcss">
 	.theme-wrapper {
-		color: var(--sheet-color);
 		min-height: 100vh;
 		border-top: var(--border);
 		border-color: var(--primary);
 	}
 
 	main {
-		background-color: white;
 		padding: 0.5rem;
 		@media (min-width: 1280px) {
 			padding: 0;

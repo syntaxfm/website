@@ -2,7 +2,7 @@
 	import { CURRENT_YEAR } from '$const';
 </script>
 
-<footer class="layout">
+<footer class="layout zone" style:--bg="var(--black)" style:--color="var(--white)">
 	<div>
 		<div class="grid">
 			<div class="links-col">
@@ -33,8 +33,6 @@
 
 <style>
 	footer {
-		background: var(--black);
-		color: var(--color);
 		padding: 5rem 0.5rem 5rem;
 
 		@media (min-width: 1280px) {

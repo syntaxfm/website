@@ -6,15 +6,18 @@
 	// when a new theme is selected, apply the class directly to the correct element,
 	// and save the theme name to the user's db record
 	const themes = import.meta.glob('$styles/themes/*.css', { eager: true });
-	const themeName = /(?<=\/src\/themes\/)(.*)(?=.css)/;
+	const themeName = /(?<=\/src\/styles\/themes\/)(.*)(?=.css)/;
 
 	// TODO refactor to utility function
 	function getThemeName(path: string) {
-		return path.match(themeName)?.[0];
+		let match_temp = path.match(themeName)?.[0];
+
+		return match_temp;
 	}
 
 	// Always use system and light which are just base styles
 	const theme_names = ['system', 'light', ...Object.keys(themes).map(getThemeName)];
+	console.log('theme_names', theme_names);
 	function change_theme(this: HTMLButtonElement, e: Event) {
 		// 1. set to theme state, for instant ui responsiveness
 		$theme = slugo(this.innerText);
@@ -73,11 +76,11 @@
 
 	button {
 		text-transform: capitalize;
-		background: var(--sheet-bg);
+		background: var(--bg-sheet);
 		padding: var(--default_padding);
 		box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.2);
 		border-radius: 4px;
-		color: var(--sheet-color);
+		color: var(--color-sheet);
 	}
 
 	.theme-preview {
@@ -97,7 +100,7 @@
 	}
 
 	.color {
-		background: var(--sheet-color);
+		background: var(--color-sheet);
 	}
 	.primary {
 		background: var(--primary);

@@ -20,7 +20,7 @@
 			{/if}
 		</p>
 		<div class="featuring_socials">
-			<HostSocialLink link={`https://twitter.com/${host.twitter}`} />
+			<HostSocialLink {host} />
 		</div>
 	</figcaption>
 </figure>

@@ -1,19 +1,29 @@
 <script lang="ts">
-	export let link: string;
-	import twitter from '$assets/twitter.svg';
 	import Icon from '$lib/Icon.svelte';
+	export let host: {
+		name: string;
+		github: string;
+		twitter: string;
+		slug?: string;
+	};
 </script>
 
-<a href={link} class="social-icon">
+<a href={`https://twitter.com/${host.twitter}`} target="_blank" class="social-icon">
 	<Icon name="twitter" />
 </a>
+<a href={`https://github.com/${host.github}`} target="_blank" class="social-icon">
+	<Icon name="github" />
+</a>
 
-<style>
+<style lang="postcss">
 	.social-icon {
 		width: 20px;
 	}
 
 	a {
-		color: var(--sheet-color);
+		color: var(--color);
+		&:hover {
+			color: var(--accent);
+		}
 	}
 </style>

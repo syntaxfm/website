@@ -3,8 +3,8 @@
 	import { player } from '$state/player';
 	import { format_show_type } from '$utilities/format_show_type';
 	import type { Show } from '@prisma/client';
-	import { format } from 'date-fns';
 	import Icon from './Icon.svelte';
+	import { format } from 'date-fns';
 
 	export let show: Show;
 	export let display: 'list' | 'card' | 'highlight' = 'card';
@@ -13,8 +13,8 @@
 <article
 	class={display}
 	style={display === 'highlight'
-		? `background-image:linear-gradient(to top, #00000000, var(--sheet-color)), url(${white_grit})`
-		: ''}
+		? `--bg: var(--black); background-image:linear-gradient(to top, #00000000, var(--bg)), url(${white_grit})`
+		: '--bg=var(--bg-sheet)'}
 >
 	<a href={`/shows/${show.number}/${show.slug}`}>
 		{#if display === 'list'}
@@ -50,13 +50,11 @@
 <style lang="postcss">
 	article {
 		container: show-card / inline-size;
-		--show-card-color: var(--sheet-color);
-		--show-card-bg: var(--sheet-bg);
 		display: grid;
 		padding: 20px;
-		background-color: var(--show-card-bg);
+		background-color: var(--bg);
 		& a {
-			color: var(--show-card-color);
+			color: var(--color);
 			display: block;
 			display: flex;
 			align-items: center;
@@ -73,8 +71,8 @@
 		}
 
 		&.highlight {
-			--show-card-color: var(--sheet-bg);
-			--show-card-bg: var(--sheet-color);
+			--color: var(--bg-sheet);
+			--bg: var(--color-sheet);
 			border: none;
 			grid-column: 1 / -1;
 		}
