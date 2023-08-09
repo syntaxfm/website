@@ -8,8 +8,8 @@ import highlight from 'rehype-highlight';
 import { cache } from '$lib/cache/cache';
 
 import type { Show } from '@prisma/client';
-import type { PageServerLoad } from './$types';
-export const load: PageServerLoad = async function ({ setHeaders, params, locals }) {
+
+export const load = async function ({ setHeaders, params, locals }) {
 	const { show_number } = params;
 	let show_raw: Show | null = null;
 	const cache_key = `show:${show_number}`;

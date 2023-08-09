@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { clickOutside } from '$actions/click_outside';
 	import { theme, theme_maker } from '$state/theme';
 	import slugo from 'slugo';
 	import { fly } from 'svelte/transition';
@@ -17,7 +16,7 @@
 
 	// Always use system and light which are just base styles
 	const theme_names = ['system', 'light', ...Object.keys(themes).map(getThemeName)];
-	console.log('theme_names', theme_names);
+
 	function change_theme(this: HTMLButtonElement, e: Event) {
 		// 1. set to theme state, for instant ui responsiveness
 		$theme = slugo(this.innerText);

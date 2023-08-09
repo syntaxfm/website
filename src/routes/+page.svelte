@@ -1,7 +1,6 @@
 <script lang="ts">
 	import ShowCard from '$lib/ShowCard.svelte';
 	import PodcastHero from '$lib/PodcastHero.svelte';
-
 	import type { Show } from '@prisma/client';
 
 	export let data;
@@ -17,15 +16,11 @@
 <PodcastHero />
 
 <div>
-	<h4>Latest Episode</h4>
+	<h4>Latest Episodes</h4>
 	<div class="grid">
 		{#if latest_show}
 			<ShowCard display="highlight" show={latest_show} />
 		{/if}
-	</div>
-
-	<h4>Last 9</h4>
-	<div class="grid">
 		{#each last_ten as latest_ep}
 			<ShowCard show={latest_ep} />
 		{/each}

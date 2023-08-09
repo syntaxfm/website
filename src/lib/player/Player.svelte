@@ -1,20 +1,11 @@
 <script lang="ts">
 	import Icon from '$lib/Icon.svelte';
-	import { player } from '$state/player';
+	import { player, type Timestamp } from '$state/player';
 	import { fly, slide } from 'svelte/transition';
 	import Visualizer from './Visualizer.svelte';
 	import Bookmarks from './Bookmarks.svelte';
 
-	let time_stamps = null;
-
-	interface Timestamp {
-		label: string;
-		time_stamp: number;
-		duration: number;
-		percentage: number;
-		startingPosition: number;
-		href: string;
-	}
+	let time_stamps: Timestamp[] = [];
 
 	function extractTimestamps(html: string, totalTime: number): Timestamp[] {
 		const parser = new DOMParser();

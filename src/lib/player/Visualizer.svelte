@@ -1,11 +1,13 @@
 <script lang="ts">
 	import CD from './CD.svelte';
 	import Album from './Album.svelte';
+
+	export let audio: HTMLAudioElement;
+
 	const audioCtx = new (window.AudioContext || window?.webkitAudioContext)();
 	let audioSource = null;
 	let isAnimating = true;
 	let analyser: AnalyserNode;
-	export let audio: HTMLAudioElement;
 
 	audio.play();
 	audioSource = audioCtx.createMediaElementSource(audio);

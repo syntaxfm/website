@@ -86,10 +86,6 @@
 		}
 	}
 
-	h3 {
-		view-transition-name: var(--transition-name);
-	}
-
 	.load-more {
 		padding: 2rem 0;
 		text-align: center;

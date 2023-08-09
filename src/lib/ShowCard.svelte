@@ -22,8 +22,8 @@
 				<Icon name="play" />
 			</button>
 		{/if}
-		<div class="show-card-data">
-			<p class="show-card-date" style:--transition-name="show-date-{show.number}">
+		<div class="details">
+			<p class="date" style:--transition-name="show-date-{show.number}">
 				{format_show_type(show.date)} - {format(new Date(show.date), 'MMMM do, yyyy')}
 			</p>
 			<h4 style:--transition-name="show-title-{show.number}">{show.title}</h4>
@@ -48,16 +48,20 @@
 </article>
 
 <style lang="postcss">
+	h4 {
+		view-transition-name: var(--transition-name);
+	}
+
 	article {
 		container: show-card / inline-size;
 		display: grid;
 		padding: 20px;
 		background-color: var(--bg);
+
 		& a {
 			color: var(--color);
 			display: block;
 			display: flex;
-			align-items: center;
 			gap: 20px;
 		}
 
@@ -68,6 +72,13 @@
 		&.card {
 			border-radius: 4px;
 			border: solid 1px var(--black-3);
+			.details {
+				display: grid;
+				grid-template-rows: auto auto auto;
+				.buttons {
+					align-self: flex-end;
+				}
+			}
 		}
 
 		&.highlight {
@@ -109,7 +120,7 @@
 		}
 	}
 
-	.show-card-date {
+	.date {
 		font-size: var(--font-size-sm);
 		margin: 0;
 		opacity: 0.6;

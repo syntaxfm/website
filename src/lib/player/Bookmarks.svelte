@@ -1,14 +1,13 @@
 <script lang="ts">
-	import { player } from '$state/player';
+	import { player, type Timestamp } from '$state/player';
+	export let time_stamps: Timestamp[];
 
-	export let time_stamps;
-
-	async function handleClick(e) {
+	async function handleClick(e: Event) {
 		const { target } = e;
-		const time_stamp = target.getAttribute('data-timestamp');
-		console.log('time_stamp', time_stamp);
-
-		player.update_time(time_stamp);
+		if (target instanceof HTMLDivElement) {
+			const time_stamp = target.getAttribute('data-timestamp');
+			player.update_time(time_stamp || '');
+		}
 	}
 </script>
 
@@ -46,7 +45,9 @@
 		background-color: var(--white);
 		z-index: 9;
 		height: 100%;
-		transition: 0.3s ease scale, 0.3s ease opacity;
+		transition:
+			0.3s ease scale,
+			0.3s ease opacity;
 		&:hover {
 			scale: 1.1;
 			opacity: 1;

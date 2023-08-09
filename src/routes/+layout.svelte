@@ -1,13 +1,11 @@
 <script lang="ts">
+	import './style.css';
 	import 'media-chrome';
 	import { Toaster } from 'svelte-french-toast';
 	import Player from '$lib/player/Player.svelte';
 	import Footer from './Footer.svelte';
 	import Header from './Header.svelte';
-	import './style.css';
-	import type { PageData } from './$types';
 	import Loading from '$lib/Loading.svelte';
-
 	import ThemeMaker from '$lib/theme/ThemeMaker.svelte';
 	import { theme } from '$state/theme';
 	import { onMount } from 'svelte';
@@ -17,11 +15,8 @@
 	import AdminMenu from '$lib/AdminMenu.svelte';
 	import { debug_mode } from '$state/debug';
 	// import { preparePageTransition } from '$lib/page_transition';
-
 	// preparePageTransition();
-
-	// Load current user from db, put it in context so we don't have to pass as props
-	export let data: PageData;
+	export let data;
 	$: ({ user } = data);
 
 	onMount(() => {

@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { loading } from '$state/loading';
 	import { fade } from 'svelte/transition';
-	import Logo from '$assets/logo.svg';
 </script>
 
 {#if $loading.status === 'LOADING'}

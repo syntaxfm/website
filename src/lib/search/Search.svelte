@@ -2,7 +2,6 @@
 	import { browser } from '$app/environment';
 	import Icon from '$lib/Icon.svelte';
 	import { searching } from '$state/search';
-	export let q = '';
 </script>
 
 <button

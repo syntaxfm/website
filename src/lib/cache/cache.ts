@@ -3,7 +3,7 @@ import kvjs from '@heyputer/kv.js';
 export const client = new kvjs();
 
 export const cache = {
-	set: async function (key: string, value: any) {
+	set: async function (key: string, value: string) {
 		try {
 			const stringValue = JSON.stringify(value);
 			return client.set(key, stringValue);
@@ -23,7 +23,7 @@ export const cache = {
 	}
 };
 
-const reviver = (key, value) => {
+const reviver = (key: string, value: string) => {
 	if (typeof value === 'string' && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/.test(value)) {
 		return new Date(value);
 	} else {

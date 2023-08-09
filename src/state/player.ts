@@ -1,6 +1,15 @@
 import type { Show } from '@prisma/client';
 import { writable } from 'svelte/store';
 
+export interface Timestamp {
+	label: string;
+	time_stamp: number;
+	duration: number;
+	percentage: number;
+	startingPosition: number;
+	href: string;
+}
+
 const new_player_state = () => {
 	const { subscribe, update, set } = writable<{
 		status: 'HIDDEN' | 'ACTIVE' | 'EXPANDED';
