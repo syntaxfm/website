@@ -130,6 +130,7 @@
 	.play-button {
 		background: linear-gradient(to right, var(--black-2), var(--black-1));
 		border-radius: 50%;
+		align-self: center;
 		border-width: 1px;
 		padding: 10px;
 		box-shadow: inset 0 0 0 2px oklch(var(--blacklch) / 0.2);
