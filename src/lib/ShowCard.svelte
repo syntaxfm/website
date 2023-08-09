@@ -71,13 +71,16 @@
 
 		&.card {
 			border-radius: 4px;
-			border: solid 1px var(--black-3);
+			border: solid 4px var(--black);
 			.details {
 				display: grid;
 				grid-template-rows: auto auto auto;
 				.buttons {
 					align-self: flex-end;
 				}
+			}
+			&:hover {
+				background-color: var(--zebra);
 			}
 		}
 
@@ -91,9 +94,7 @@
 		&.list {
 			border-top: solid 1px var(--line);
 			padding: 20px 0;
-			&:hover {
-				background-color: var(--zebra);
-			}
+
 			& h4 {
 				font-size: var(--font-size-base);
 			}
