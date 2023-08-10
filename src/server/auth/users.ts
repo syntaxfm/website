@@ -1,6 +1,11 @@
 import type { GithubUser } from '$const';
 import { add_user_to_role } from '../roles';
 import { prisma_client } from '../../hooks.server';
+import type { User } from '@prisma/client';
+
+export interface UserWithRoles extends User {
+	roles: string[]
+}
 
 interface Create_User {
 	github_user: GithubUser;
@@ -53,7 +58,7 @@ export async function find_user_by_access_token(access_token: string) {
 // Because of how roles are done, the find returns an array of objects
 // Here we select from the roles table to populate a user with their roles, but then convert the roles into
 // an array of strings
-export async function find_user_with_roles(user_id: string) {
+export async function find_user_with_roles(user_id: string): Promise<UserWithRoles> {
 	const user_with_roles = await prisma_client.user.findUnique({
 		where: { id: user_id },
 		include: {

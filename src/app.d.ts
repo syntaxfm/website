@@ -1,6 +1,5 @@
 // See https://kit.svelte.dev/docs/types#app
-
-import type { User } from '@prisma/client';
+import type {UserWithRoles} from '$server/auth/users';
 import { PrismaClient } from '@prisma/client/index.d.ts';
 
 // for information about these interfaces
@@ -14,7 +13,7 @@ declare global {
 				ip: string;
 				country: string;
 			};
-			user: User | null;
+			user: UserWithRoles | null;
 		}
 		// interface PageData {}
 		// interface Platform {}
