@@ -20,6 +20,7 @@
 /* Import all css themes */
 @import '../styles/base.css';
 @import '../styles/variables.css';
+@import '../styles/utilities.css';
 @import '../styles/layout.css';
 @import '../styles/buttons.css';
 

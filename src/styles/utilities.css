@@ -1,0 +1,12 @@
+@layer utilities {
+	.small {
+		font-size: var(--font-size-sm);
+	}
+	.readable {
+		max-width: 900px;
+		width: 100%;
+	}
+	.center {
+		margin: 0 auto;
+	}
+}

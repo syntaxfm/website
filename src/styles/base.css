@@ -114,6 +114,8 @@
 	}
 	h4 {
 		font-size: var(--font-size-lg);
+		font-weight: 400;
+		font-style: italic;
 	}
 	h5 {
 		font-size: var(--font-size-md);
@@ -263,11 +265,10 @@ in a later release. */
 
 /* Popover */
 
-
 /* All External Links */
-a[href^="http"]:not(.social-icon, .button):after,
-a[href^="https"]:not(.social-icon, .button):after {
-  content: '↗';
+a[href^='http']:not(.social-icon, .button):after,
+a[href^='https']:not(.social-icon, .button):after {
+	content: '↗';
 	margin-left: 4px;
 	font-size: 12px;
 }

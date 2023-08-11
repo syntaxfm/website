@@ -13,9 +13,10 @@
 			<div class="links-col">
 				<a href="/system/colors">Colors</a>
 				<a href="/system/layout">Layout</a>
+				<!-- <a href="/system/components">Components</a> -->
 			</div>
 		</div>
-		<div>
+		<div class="readable">
 			<p>
 				Nearly 4M developers and 90K organizations rely on Sentry to see what actually matters,
 				solve what's urgent faster, and learn continuously about their code.

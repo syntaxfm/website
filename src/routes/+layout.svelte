@@ -6,7 +6,7 @@
 	import Footer from './Footer.svelte';
 	import Header from './Header.svelte';
 	import Loading from '$lib/Loading.svelte';
-	import ThemeMaker from '$lib/theme/ThemeMaker.svelte';
+	import ThemeMaker from '../params/ThemeMaker.svelte';
 	import { theme } from '$state/theme';
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
@@ -60,17 +60,9 @@
 		border-color: var(--primary);
 	}
 
-	main {
-		padding: 0.5rem;
-		@media (min-width: 1280px) {
-			padding: 0;
-		}
-	}
-
 	.page-layout {
 		min-height: 80vh;
 		margin: 0 auto;
-		padding-bottom: 4rem;
 	}
 
 	@media (min-width: 1280px) {

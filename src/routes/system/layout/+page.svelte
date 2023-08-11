@@ -15,7 +15,7 @@
 	}
 
 	.col {
-		background-color: red;
+		background-color: var(--black-3);
 		height: 200px;
 	}
 </style>

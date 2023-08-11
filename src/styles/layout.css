@@ -1,5 +1,11 @@
 @layer layout {
 	.layout {
+		column-gap: 10px;
+		display: grid;
+		grid-template-columns:
+			[start l-margin] 10px [l-margin content main] minmax(0, 812px) [main sidebar] minmax(0, 322px)
+			[sidebar content-end r-margin] 10px [r-margin end];
+
 		@media (min-width: 1280px) {
 			column-gap: 48px;
 			display: grid;
@@ -56,13 +62,6 @@
 		color: var(--color);
 		background: var(--bg);
 	}
-}
-
-.show-page {
-	display: grid;
-	grid-template-columns:
-		[start content] minmax(0, 12.6fr) [content gap] minmax(0, 1fr) [gap sidebar] minmax(0, 5fr)
-		[sidebar end];
 }
 
 .sticky {

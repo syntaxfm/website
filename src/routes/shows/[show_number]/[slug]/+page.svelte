@@ -3,6 +3,7 @@
 	import { player } from '$state/player';
 	import HostsAndGuests from './HostsAndGuests.svelte';
 	import Icon from '$lib/Icon.svelte';
+	import NewsletterForm from '$lib/NewsletterForm.svelte';
 
 	export let data;
 	$: ({ show } = data);
@@ -45,7 +46,15 @@
 
 <!-- svelte-ignore -->
 <section class="layout full" on:click|preventDefault={handleClick}>
-	{@html show.show_notes}
+	<div class="main">
+		{@html show.show_notes}
+	</div>
+
+	<div class="sidebar">
+		<div class="sticky">
+			<NewsletterForm />
+		</div>
+	</div>
 </section>
 
 <style lang="postcss">
