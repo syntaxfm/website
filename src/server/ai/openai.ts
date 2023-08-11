@@ -12,7 +12,7 @@ import {
 	formatAsTranscript,
 	formatTime,
 	getSlimUtterances
-} from '$db/transcripts/utils';
+} from '$server/transcripts/utils';
 import { encode } from 'gpt-3-encoder';
 import { exists } from '$utilities/file_utilities/exists';
 import wait from 'waait';

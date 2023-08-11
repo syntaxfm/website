@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { type TranscriptSelect } from '$db/ai/queries';
+	import { type TranscriptSelect } from '$server/ai/queries';
 	import format_time from '$utilities/format_time';
 	import { Prisma } from '@prisma/client';
 

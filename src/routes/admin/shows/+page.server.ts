@@ -1,10 +1,7 @@
-import { import_or_update_all_shows } from '$db/shows';
+import { import_or_update_all_shows } from '$server/shows';
 import { error } from '@sveltejs/kit';
-import type { Actions, PageServerLoad } from './$types';
-import { get_transcript } from '$db/transcripts/deepgram';
-import { generate_ai_notes } from '$db/ai/openai';
-import { ai_note_select, example_response } from '$db/ai/queries';
-import { aiNoteRequestHandler } from '$db/ai/requestHandlers';
+import { get_transcript } from '$server/transcripts/deepgram';
+import { aiNoteRequestHandler } from '$server/ai/requestHandlers';
 
 export const load = async ({ locals }) => {
 	return {

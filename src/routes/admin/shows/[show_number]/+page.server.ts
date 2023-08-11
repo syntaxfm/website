@@ -1,4 +1,4 @@
-import { transcript_select } from '$db/ai/queries';
+import { transcript_select } from '$server/ai/queries';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ locals, params }) => {
