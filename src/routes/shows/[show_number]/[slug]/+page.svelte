@@ -59,43 +59,36 @@
 
 <style lang="postcss">
 	@layer theme {
-		:global(.layout > *) {
-			grid-column: start / end;
-			@media (--above_med) {
-				grid-column: main / main-end;
+		header {
+			grid-column: content / content;
+		}
+
+		h1 {
+			view-transition-name: var(--transition-name);
+			margin-top: 0;
+			margin-bottom: 6rem;
+			font-size: var(--font-size-xxl);
+		}
+
+		.show-actions {
+			grid-column: content / content;
+			padding: 2rem 0;
+			margin-bottom: 2rem;
+			border-top: var(--border);
+			border-bottom: var(--border);
+			font-weight: 700;
+			display: flex;
+			flex-wrap: wrap;
+			gap: 1rem;
+			@media (--below_med) {
+				a {
+					width: 100%;
+				}
 			}
 		}
-	}
 
-	header {
-		grid-column: content / content-end;
-	}
-
-	h1 {
-		view-transition-name: var(--transition-name);
-		margin-top: 0;
-		margin-bottom: 6rem;
-		font-size: var(--font-size-xxl);
-	}
-
-	.show-actions {
-		grid-column: content / content-end;
-		padding: 2rem 0;
-		margin-bottom: 2rem;
-		border-top: var(--border);
-		border-bottom: var(--border);
-		font-weight: 700;
-		display: flex;
-		flex-wrap: wrap;
-		gap: 1rem;
-		@media (--below_med) {
-			a {
-				width: 100%;
-			}
+		.show-page-date {
+			view-transition-name: var(--transition-name);
 		}
-	}
-
-	.show-page-date {
-		view-transition-name: var(--transition-name);
 	}
 </style>

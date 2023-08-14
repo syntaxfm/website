@@ -43,7 +43,6 @@
 <style lang="postcss">
 	.guests-and-hosts {
 		margin: 2rem 0;
-		grid-column: start/end;
 	}
 
 	h5 {

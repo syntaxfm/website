@@ -20,7 +20,7 @@
 		/* 322 */
 
 		> * {
-			grid-column: content / content-end;
+			grid-column: content / content;
 		}
 
 		.full {

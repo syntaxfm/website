@@ -15,7 +15,7 @@
 
 /* The main css entry. Primarily used to import stuff */
 
-@layer reset base layout theme utilities;
+@layer reset base utilities layout theme;
 
 /* Import all css themes */
 @import '../styles/base.css';

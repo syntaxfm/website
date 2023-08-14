@@ -30,7 +30,7 @@
 
 	:global(.layout) .content-debug {
 		pointer-events: none;
-		grid-column: content / content-end;
+		grid-column: content / content;
 		grid-row: 1 / -1;
 		position: relative;
 	}
