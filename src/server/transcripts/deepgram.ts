@@ -1,4 +1,5 @@
-import { Deepgram } from '@deepgram/sdk';
+import DeepgramPkg from '@deepgram/sdk';
+const { Deepgram } = DeepgramPkg;
 import { prisma_client as prisma } from '../../hooks.server';
 import { error } from '@sveltejs/kit';
 import { keywords } from './fixes';
