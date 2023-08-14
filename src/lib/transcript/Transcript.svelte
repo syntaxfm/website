@@ -4,7 +4,6 @@
 	import { Prisma } from '@prisma/client';
 
 	export let transcript: Prisma.TranscriptGetPayload<TranscriptSelect>;
-	console.log(transcript);
 </script>
 
 <div>
