@@ -60,11 +60,13 @@ model Session {
 }
 
 model ShowGuest {
-  id      String @id @default(uuid())
-  showId  String
-  guestId String
-  Show    Show   @relation(fields: [showId], references: [id])
-  Guest   Guest  @relation(fields: [guestId], references: [id])
+  id           String      @id @default(uuid())
+  showId       String
+  guestId      String
+  Show         Show        @relation(fields: [showId], references: [id])
+  Guest        Guest       @relation(fields: [guestId], references: [id])
+  Transcript   Transcript? @relation(fields: [transcriptId], references: [id])
+  transcriptId String?
 
   @@unique([showId, guestId])
 }
@@ -105,7 +107,96 @@ model Show {
   created_at DateTime    @default(now())
   updated_at DateTime    @updatedAt
   guests     ShowGuest[] // Relation to joining model
+  transcript Transcript?
+  aiShowNote AiShowNote?
 
   @@index([number, date], name: "idx_show_number_date") // Define composite index
   @@index([number]) // Define composite index
+}
+
+model Transcript {
+  id          String                @id @default(uuid())
+  show        Show                  @relation(fields: [show_number], references: [number])
+  show_number Int                   @unique
+  utterances  TranscriptUtterance[]
+  ShowGuest   ShowGuest[]
+}
+
+model TranscriptUtterance {
+  id               String                    @id @default(uuid())
+  start            Float
+  end              Float
+  confidence       Float
+  channel          Int
+  transcript_value String                    @db.Text
+  words            TranscriptUtteranceWord[]
+  speaker          Int
+  speakerName      String?
+  transcript       Transcript                @relation(fields: [transcriptId], references: [id], onDelete: Cascade)
+  transcriptId     String
+}
+
+model TranscriptUtteranceWord {
+  id                    String               @id @default(uuid())
+  word                  String
+  start                 Float
+  end                   Float
+  confidence            Float
+  speaker               Int
+  speaker_confidence    Float
+  punctuated_word       String
+  TranscriptUtterance   TranscriptUtterance? @relation(fields: [transcriptUtteranceId], references: [id], onDelete: Cascade)
+  transcriptUtteranceId String
+}
+
+// AI Show Notes
+model AiShowNote {
+  id          Int              @id @default(autoincrement())
+  show        Show             @relation(fields: [show_number], references: [number])
+  show_number Int              @unique
+  title       String
+  description String           @db.VarChar(750)
+  summary     AiSummaryEntry[]
+  tweets      AiTweet[]
+  links       Link[]
+  guests      AiGuest[]
+  topics      Topic[]
+}
+
+model AiSummaryEntry {
+  id          Int        @id @default(autoincrement())
+  time        String
+  text        String
+  description String?
+  showNote    Int
+  aiShowNote  AiShowNote @relation(fields: [showNote], references: [id])
+}
+
+model AiTweet {
+  id         Int        @id @default(autoincrement())
+  content    String     @db.VarChar(250)
+  showNote   Int
+  aiShowNote AiShowNote @relation(fields: [showNote], references: [id])
+}
+
+model Link {
+  id         Int        @id @default(autoincrement())
+  name       String
+  url        String
+  showNote   Int
+  aiShowNote AiShowNote @relation(fields: [showNote], references: [id])
+}
+
+model AiGuest {
+  id         Int        @id @default(autoincrement())
+  name       String
+  showNote   Int
+  aiShowNote AiShowNote @relation(fields: [showNote], references: [id])
+}
+
+model Topic {
+  id         Int        @id @default(autoincrement())
+  name       String
+  showNote   Int
+  aiShowNote AiShowNote @relation(fields: [showNote], references: [id])
 }
