@@ -126,7 +126,7 @@ class="disc"
 		border-radius: 10px 10px 30px 30px;
 		background: linear-gradient(180deg, #000, #111);
 	}
-	
+
 	.case-glass {
 		border-radius: 10px 10px 30px 30px;
 		position: absolute;
@@ -134,7 +134,7 @@ class="disc"
 		width: 100%;
 		height: 95%;
 		background: linear-gradient(to right, #ffffff33, #ffffff66);
-		Z-index: 10;
+		z-index: 10;
 		left: 0;
 		box-shadow: inset 0 0 0px 4px #111, inset 0 0 0px 10px #222;
 		border: solid 2px #222;
@@ -151,7 +151,7 @@ class="disc"
 		border-bottom: solid 2px #111;
 		height: 60%;
 		background: radial-gradient(circle at center, #11111133,  #00000033), linear-gradient(140deg, #111, #333);
-		Z-index: 11;
+		z-index: 11;
 		left: 0;
 	}
 
@@ -161,7 +161,7 @@ class="disc"
 		width: 70px;
 		height: auto;
 	}
-	
+
 	.spinning {
 		animation: spin .5s linear infinite forwards;
 	}
