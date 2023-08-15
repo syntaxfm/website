@@ -53,7 +53,7 @@
 	},
 	"type": "module",
 	"engines": {
-		"node": ">=20.5.0",
+		"node": ">=18.0.0 <19.0.0 || =20.5.0",
 		"pnpm": ">=8"
 	},
 	"dependencies": {
@@ -67,8 +67,10 @@
 		"@types/emscripten": "^1.39.7",
 		"date-fns": "^2.30.0",
 		"flexsearch": "^0.7.31",
+		"gpt-3-encoder": "^1.1.4",
 		"gray-matter": "^4.0.3",
 		"media-chrome": "^1.2.2",
+		"openai": "^3.3.0",
 		"rehype-highlight": "^6.0.0",
 		"rehype-raw": "^6.1.1",
 		"rehype-stringify": "^9.0.3",

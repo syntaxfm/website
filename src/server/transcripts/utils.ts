@@ -79,12 +79,20 @@ export function formatTime(secs: number) {
 	return `${minutesString}:${secondsString}`;
 }
 
+function getSpeakerShortName(speaker: string | undefined) {
+	const shortForms = new Map([
+		['Scott Tolinski', 'Scott'],
+		['Wes Bos', 'Wes']
+	]);
+	return shortForms.get(speaker) || speaker;
+}
+
 export function formatAsTranscript(utterances: SlimUtterance[]) {
 	return utterances.reduce((acc, utterance) => {
 		// TODO: We might need to reinstate condensedTranscript here
 		const timestamp = formatTime(utterance.start);
-		return `${acc}\n${timestamp} ${utterance.speaker}:\n${
-			/*condensedTranscript || */ utterance.transcript
+		return `${acc}\n${timestamp} ${getSpeakerShortName(utterance.speaker)}:\n${
+			utterance.condensedTranscript || utterance.transcript
 		}\n`;
 	}, '');
 }
