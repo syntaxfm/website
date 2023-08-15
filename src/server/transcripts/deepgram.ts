@@ -8,7 +8,7 @@ import { save_transcript_to_db } from './transcripts';
 import type { PrerecordedTranscriptionResponse } from '@deepgram/sdk/dist/types';
 const deepgramApiKey = process.env.DEEPGRAM_SECRET;
 if (!deepgramApiKey) {
-	console.log('Please set the DEEPGRAM_SECRET environment variable.');
+	console.error('Please set the DEEPGRAM_SECRET environment variable.');
 	process.exit(1);
 }
 
