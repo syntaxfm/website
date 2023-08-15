@@ -61,13 +61,23 @@
 	.zone {
 		color: var(--color);
 		background: var(--bg);
+		border-radius: var(--radius, 0);
 	}
+	
+	.sticky {
+		position: sticky;
+		top: 0;
+	}
+
+	.flex {
+		display: flex;
+	}
+
+	/* END @layer layout */
 }
 
-.sticky {
-	position: sticky;
-	top: 0;
-}
+
+/* Debug -> Ignore */
 
 .debug :is(.layout, .grid) {
 	outline: solid 1px red;

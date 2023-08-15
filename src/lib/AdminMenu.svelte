@@ -19,6 +19,10 @@
 			path: '/admin/shows'
 		},
 		{
+			text: 'Transcripts',
+			path: '/admin/transcripts'
+		},
+		{
 			text: 'Front End'
 		},
 		{
