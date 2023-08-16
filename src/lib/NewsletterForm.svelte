@@ -1,35 +1,43 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
 	import Input from '$lib/forms/Input.svelte';
+	let is_hidden = false;
 	const FORM_ID = 5465361;
 	$: action = `https://app.convertkit.com/forms/${FORM_ID}/subscriptions`;
 
-	function submit(t) {
-		console.log(t);
+	function submit() {
+		document.cookie = 'newsletter=hidden';
+	}
+
+	$: if (typeof document !== 'undefined') {
+		is_hidden = document.cookie.includes('newsletter');
 	}
 </script>
 
-<form
-	{action}
-	on:submit={submit}
-	method="post"
-	data-sv-form={FORM_ID}
-	class="center readable"
-	target="_blank"
->
-	<h4>Join our newsletter</h4>
-	<p>
-		New Syntax content, tips & tricks, swag drops, and other sweet stuff to make your life as a web
-		developer even better.
-	</p>
+{#if !is_hidden}
+	<form
+		{action}
+		on:submit={submit}
+		method="post"
+		data-sv-form={FORM_ID}
+		class="center readable"
+		target="_blank"
+	>
+		<h4>Join our newsletter</h4>
+		<p>
+			New Syntax content, tips & tricks, swag drops, and other sweet stuff to make your life as a
+			web developer even better.
+		</p>
 
-	<div class="newsletter">
-		<Input type="email" label="Email" />
-		<button type="submit">Subscribe</button>
-	</div>
+		<div class="newsletter">
+			<Input required type="email" label="Email" />
+			<button type="submit">Subscribe</button>
+		</div>
 
-	<p class="small">We respect your privacy. Control your preferences or unsubscribe at any time.</p>
-</form>
+		<p class="small">
+			We respect your privacy. Control your preferences or unsubscribe at any time.
+		</p>
+	</form>
+{/if}
 
 <style lang="postcss">
 	@layer theme {

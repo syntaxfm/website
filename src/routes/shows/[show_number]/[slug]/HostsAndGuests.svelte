@@ -49,7 +49,7 @@
 		font-weight: 600;
 		font-style: italic;
 		opacity: 0.8;
-		margin: 3rem 0 1rem;
+		margin: 0 0 1rem;
 	}
 
 	.featuring {
