@@ -109,7 +109,7 @@ export async function condense(
 		})
 		.map((result) => result.value);
 
-	console.log(`Saving condensed file for ${show.number}`);
+	console.log(`Finished condensng ${show.number}`);
 	return utterances;
 }
 

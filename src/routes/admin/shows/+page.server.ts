@@ -2,6 +2,7 @@ import { import_or_update_all_shows } from '$server/shows';
 import { error } from '@sveltejs/kit';
 import { get_transcript } from '$server/transcripts/deepgram';
 import { aiNoteRequestHandler } from '$server/ai/requestHandlers';
+import wait from 'waait';
 
 export const load = async ({ locals }) => {
 	return {
@@ -52,5 +53,10 @@ export const actions = {
 		console.log('🤖 transcript fetch requested');
 		return { message: 'Transcript Fetch Requestd' };
 	},
-	fetch_AI_notes: aiNoteRequestHandler
+	fetch_AI_notes: aiNoteRequestHandler,
+	test_me: async ({ request }) => {
+		console.log('🤖 test me requested');
+		await wait(2000);
+		return { message: 'Transcript Fetch Requestd' };
+	}
 };

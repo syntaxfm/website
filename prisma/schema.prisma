@@ -169,14 +169,14 @@ model AiSummaryEntry {
   text        String
   description String?
   showNote    Int
-  aiShowNote  AiShowNote @relation(fields: [showNote], references: [id])
+  aiShowNote  AiShowNote @relation(fields: [showNote], references: [id], onDelete: Cascade)
 }
 
 model AiTweet {
   id         Int        @id @default(autoincrement())
   content    String     @db.VarChar(350)
   showNote   Int
-  aiShowNote AiShowNote @relation(fields: [showNote], references: [id])
+  aiShowNote AiShowNote @relation(fields: [showNote], references: [id], onDelete: Cascade)
 }
 
 model Link {
@@ -184,19 +184,19 @@ model Link {
   name       String
   url        String
   showNote   Int
-  aiShowNote AiShowNote @relation(fields: [showNote], references: [id])
+  aiShowNote AiShowNote @relation(fields: [showNote], references: [id], onDelete: Cascade)
 }
 
 model AiGuest {
   id         Int        @id @default(autoincrement())
   name       String
   showNote   Int
-  aiShowNote AiShowNote @relation(fields: [showNote], references: [id])
+  aiShowNote AiShowNote @relation(fields: [showNote], references: [id], onDelete: Cascade)
 }
 
 model Topic {
   id         Int        @id @default(autoincrement())
   name       String
   showNote   Int
-  aiShowNote AiShowNote @relation(fields: [showNote], references: [id])
+  aiShowNote AiShowNote @relation(fields: [showNote], references: [id], onDelete: Cascade)
 }

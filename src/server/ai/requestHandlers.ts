@@ -5,6 +5,7 @@ import { generate_ai_notes } from './openai';
 export async function aiNoteRequestHandler({ request, locals }: RequestEvent) {
 	const data = await request.formData();
 	const show_number = parseInt(data.get('show_number')?.toString() || '');
+
 	if (!show_number) {
 		throw error(400, 'Invalid Show Number');
 	}
@@ -17,11 +18,20 @@ export async function aiNoteRequestHandler({ request, locals }: RequestEvent) {
 	if (!show?.transcript) {
 		throw error(400, 'No show, or no transcript for this show');
 	}
+	// delete any existing ai notes
+	await locals.prisma.aiShowNote.deleteMany({
+		where: {
+			show: {
+				number: show_number
+			}
+		}
+	});
 
 	// Get the AI transcript for this show
 	const result = await generate_ai_notes(show);
 	// Save to DB
 	console.log(`🤖 Saving AI Notes to DB for Show ${show_number}`);
+	console.dir(result);
 	const dbResponse = await locals.prisma.aiShowNote.create({
 		data: {
 			show: {
