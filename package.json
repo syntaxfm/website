@@ -31,7 +31,7 @@
 		"@typescript-eslint/parser": "^6.4.0",
 		"eslint": "^8.47.0",
 		"eslint-config-prettier": "^9.0.0",
-		"eslint-plugin-svelte3": "^4.0.0",
+		"eslint-plugin-svelte": "^2.32.4",
 		"postcss": "^8.4.27",
 		"postcss-custom-media": "^10.0.0",
 		"postcss-import": "^15.1.0",
