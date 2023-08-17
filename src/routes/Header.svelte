@@ -39,6 +39,7 @@
 
 	<nav class="desktop_nav content">
 		<a href="/shows">Podcast</a>
+		<a href="/about">About</a>
 		<a href="https://swag.syntax.fm">Swag</a>
 	</nav>
 </header>
