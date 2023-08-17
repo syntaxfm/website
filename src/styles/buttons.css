@@ -48,7 +48,7 @@
 	}
 
 	:is(button, .button).play {
-		--button-bg: linear-gradient(to right, var(--green), var(--teal));
+		--button-bg: linear-gradient(to right, var(--success), var(--accent));
 		--button-color: var(--black-8);
 		font-size: var(--font-size-md);
 		padding: 10px 20px;

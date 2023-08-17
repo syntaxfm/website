@@ -144,7 +144,7 @@
 	--primary: var(--yellow);
 	--accent: var(--teal);
 	--warning: var(--red);
-	--success: var(--teal);
+	--success: var(--green);
 	--zebra: oklch(var(--blacklch) / 0.05);
 	--line: var(--black-2);
 	--border: solid 4px var(--color-sheet);
