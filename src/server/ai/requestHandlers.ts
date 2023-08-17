@@ -1,5 +1,5 @@
 import { error, type RequestEvent } from '@sveltejs/kit';
-import { ai_note_select } from './queries';
+import { ai_note_with_transcript, transcript_with_utterances } from './queries';
 import { generate_ai_notes } from './openai';
 
 export async function aiNoteRequestHandler({ request, locals }: RequestEvent) {
@@ -12,7 +12,9 @@ export async function aiNoteRequestHandler({ request, locals }: RequestEvent) {
 
 	const show = await locals.prisma.show.findUnique({
 		where: { number: show_number },
-		select: ai_note_select
+		include: {
+			transcript: transcript_with_utterances
+		}
 	});
 
 	if (!show?.transcript) {

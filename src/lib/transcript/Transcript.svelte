@@ -1,20 +1,37 @@
 <script lang="ts">
-	import { type TranscriptSelect } from '$server/ai/queries';
-	import format_time from '$utilities/format_time';
+	import { AINoteWithFriends, TranscriptWithUtterances } from '$server/ai/queries';
+	import { getSlimUtterances } from '$server/transcripts/utils';
+	import format_time, { tsToS } from '$utilities/format_time';
 	import { Prisma } from '@prisma/client';
-
-	export let transcript: Prisma.TranscriptGetPayload<TranscriptSelect>;
+	import { time } from 'console';
+	export let transcript: TranscriptWithUtterances;
+	export let aiShowNote: AINoteWithFriends;
+	const slim_transcript = getSlimUtterances(transcript.utterances, 1).filter(
+		(utterance) => utterance.speakerId !== 99
+	);
+	console.log(aiShowNote);
 </script>
 
 <div>
-	{#each transcript.utterances as utterance}
+	{#each slim_transcript as utterance, i}
+		{@const summary = aiShowNote?.summary?.find((summary) => {
+			const timestamp = tsToS(summary.time);
+			if (timestamp >= utterance.start && timestamp <= utterance.end) {
+				return summary;
+			}
+		})}
 		<div>
+			{#if summary}
+				<h4>{summary.text}</h4>
+			{/if}
 			<strong
-				>{utterance.speakerName || `Guest ${utterance.speaker}`} - {format_time(
+				>{utterance.speaker || `Guest ${utterance.speakerId}`} - {format_time(
 					utterance.start
 				)}</strong
 			>
-			<p>{utterance.transcript_value}</p>
+			{utterance.start}
+			{utterance.end}
+			<p>{utterance.transcript}</p>
 		</div>
 	{/each}
 </div>

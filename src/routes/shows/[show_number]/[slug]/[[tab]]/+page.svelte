@@ -1,10 +1,12 @@
 <script lang="ts">
 	import { format } from 'date-fns';
 	import { player } from '$state/player';
+	import { page } from '$app/stores';
 	import HostsAndGuests from './HostsAndGuests.svelte';
 	import Icon from '$lib/Icon.svelte';
 	import NewsletterForm from '$lib/NewsletterForm.svelte';
-
+	import Transcript from '$lib/transcript/Transcript.svelte';
+	console.log($page);
 	export let data;
 	$: ({ show } = data);
 
@@ -23,7 +25,11 @@
 		{format(new Date(show.date), 'MMMM do, yyyy')}
 	</p>
 	<h1 style:--transition-name="show-title-{show.number}">{show.title}</h1>
-
+	<p>
+		{#each show.aiShowNote?.topics?.slice(0, 5) || [] as topic}
+			<span class="topic">#{topic.name}</span>
+		{/each}
+	</p>
 	<button class="big play" on:click={() => player.play_show(show)}>
 		<Icon name="play" />
 		Play Episode {show.number}</button
@@ -44,10 +50,24 @@
 	>
 </div>
 
-<!-- svelte-ignore -->
+<div class="tabs">
+	<a data-sveltekit-noscroll href="/shows/{$page.params.show_number}/{$page.params.slug}"
+		>Show Notes</a
+	>
+	<a data-sveltekit-noscroll href="/shows/{$page.params.show_number}/{$page.params.slug}/transcript"
+		>Transcript</a
+	>
+</div>
+
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 <section class="layout full" on:click|preventDefault={handleClick}>
 	<div class="main">
-		{@html show.show_notes}
+		{#if $page.params.tab === 'transcript'}
+			<Transcript aiShowNote={show.aiShowNote} transcript={show.transcript} />
+		{:else}
+			{@html show.show_notes}
+		{/if}
 	</div>
 
 	<div class="sidebar">

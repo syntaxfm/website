@@ -68,7 +68,7 @@
 					{/if}</td
 				>
 				<td class="center">
-					<FormWithLoader global={false} action="?/test_me" method="post" let:loading>
+					<FormWithLoader global={false} action="?/fetch_AI_notes" method="post" let:loading>
 						<fieldset disabled={loading}>
 							<input type="hidden" name="show_number" value={show.number} />
 							{#if show.aiShowNote}
@@ -79,14 +79,6 @@
 							{/if}
 						</fieldset>
 					</FormWithLoader>
-					<!-- <form action="?/fetch_AI_notes" method="post" use:enhance={form_action()}>
-						<input type="hidden" name="show_number" value={show.number} />
-						{#if show.aiShowNote}
-							✅ <button type="submit">Refetch</button>
-						{:else}
-							<button type="submit">Fetch</button>
-						{/if}
-					</form> -->
 				</td>
 			</tr>
 		{/each}

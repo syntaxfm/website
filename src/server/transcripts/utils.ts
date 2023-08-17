@@ -37,8 +37,12 @@ export function getSlimUtterances(
 			'transcript_value' in utterance ? utterance.transcript_value : utterance.transcript;
 		const lastUtterance = acc[acc.length - 1];
 		// If its the same speaker as the last one. Tack it onto that last one
-		if (lastUtterance?.speakerId === speaker) {
-			lastUtterance.transcript += transcript_value;
+		const last_speaker_is_current_speaker = lastUtterance?.speakerId === speaker;
+		// If the last utterance ended in `.` or `?` or `!`
+		const last_utterance_ended_in_punctuation = lastUtterance?.transcript.match(/[\.\?!]$/);
+
+		if (last_speaker_is_current_speaker && !last_utterance_ended_in_punctuation) {
+			lastUtterance.transcript += ` ${transcript_value}`;
 			lastUtterance.end = end;
 			return acc;
 		}

@@ -48,7 +48,7 @@ export async function get_transcript(showNumber: number) {
 				detect_entities: true,
 				diarize: true,
 				smart_format: true,
-				paragraphs: false, // Not very good
+				paragraphs: true, // Not very good
 				utterances: true,
 				detect_topics: false, // not very good
 				keywords
