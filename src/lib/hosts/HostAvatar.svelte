@@ -7,7 +7,7 @@
 	};
 </script>
 
-<img src={`https://github.com/${host.github}.png`} alt={host.name} />
+<img src={`https://github.com/${host.github}.png`} alt={host.name} class="avatar"/>
 
 <style>
 	img {
