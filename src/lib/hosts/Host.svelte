@@ -1,5 +1,6 @@
 <script lang="ts">
 	import HostSocialLink from './HostSocialLink.svelte';
+	import HostAvatar from './HostAvatar.svelte';
 	export let guest: boolean = false;
 	export let host: {
 		name: string;
@@ -10,7 +11,7 @@
 </script>
 
 <figure>
-	<img src={`https://github.com/${host.github}.png`} alt={host.name} />
+	<HostAvatar host={host}/>
 	<figcaption>
 		<p>
 			{#if guest}
