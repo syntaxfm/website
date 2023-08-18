@@ -1,5 +1,4 @@
 <script lang="ts">
-	import HostAvatar from '$lib/hosts/HostAvatar.svelte';
 	import HostSocialLink from '$lib/hosts/HostSocialLink.svelte';
 
 	let hosts = {
