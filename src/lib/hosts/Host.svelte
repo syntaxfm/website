@@ -10,7 +10,7 @@
 </script>
 
 <figure>
-	<img src={`https://github.com/${host.github}.png`} alt={host.name} class="avatar"/>
+	<img src={`https://github.com/${host.github}.png`} alt={host.name} />
 	<figcaption>
 		<p>
 			{#if guest}
