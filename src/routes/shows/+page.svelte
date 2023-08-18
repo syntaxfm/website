@@ -19,7 +19,7 @@
 
 <section>
 	<div class="list-heading">
-		<h3>All Episodes</h3>
+		<h1 class="h3">All Episodes</h1>
 
 		<div style="display:flex; gap: 10px;">
 			<SelectMenu
