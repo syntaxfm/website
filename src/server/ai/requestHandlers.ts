@@ -1,5 +1,5 @@
 import { error, type RequestEvent } from '@sveltejs/kit';
-import { ai_note_with_transcript, transcript_with_utterances } from './queries';
+import { transcript_with_utterances } from './queries';
 import { generate_ai_notes } from './openai';
 
 export async function aiNoteRequestHandler({ request, locals }: RequestEvent) {
@@ -42,7 +42,7 @@ export async function aiNoteRequestHandler({ request, locals }: RequestEvent) {
 				}
 			},
 			title: result.title,
-			description: result.description,
+			description: result.description || result.short_description,
 			summary: {
 				create: result.summary
 			},
@@ -55,7 +55,8 @@ export async function aiNoteRequestHandler({ request, locals }: RequestEvent) {
 			links: {
 				create: result.links.map((link) => ({
 					name: link.name,
-					url: link.url
+					url: link.url,
+					timestamp: link.timestamp
 				}))
 			}
 		}

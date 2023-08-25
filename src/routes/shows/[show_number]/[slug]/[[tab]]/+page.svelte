@@ -6,7 +6,6 @@
 	import Icon from '$lib/Icon.svelte';
 	import NewsletterForm from '$lib/NewsletterForm.svelte';
 	import Transcript from '$lib/transcript/Transcript.svelte';
-	console.log($page);
 	export let data;
 	$: ({ show } = data);
 
@@ -62,19 +61,18 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <section class="layout full" on:click|preventDefault={handleClick}>
-	<div class="main">
-		{#if $page.params.tab === 'transcript'}
-			<Transcript aiShowNote={show.aiShowNote} transcript={show.transcript} />
-		{:else}
+	{#if $page.params.tab === 'transcript'}
+		<Transcript aiShowNote={show.aiShowNote} transcript={show.transcript} />
+	{:else}
+		<div class="main">
 			{@html show.show_notes}
-		{/if}
-	</div>
-
-	<div class="sidebar">
-		<div class="sticky">
-			<NewsletterForm />
+			<div class="sidebar">
+				<div class="sticky">
+					<NewsletterForm />
+				</div>
+			</div>
 		</div>
-	</div>
+	{/if}
 </section>
 
 <style lang="postcss">

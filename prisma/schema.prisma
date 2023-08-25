@@ -155,7 +155,7 @@ model AiShowNote {
   show        Show             @relation(fields: [show_number], references: [number])
   show_number Int              @unique
   title       String
-  description String           @db.VarChar(750)
+  description String           @db.VarChar(1500)
   summary     AiSummaryEntry[]
   tweets      AiTweet[]
   links       Link[]
@@ -183,6 +183,7 @@ model Link {
   id         Int        @id @default(autoincrement())
   name       String
   url        String
+  timestamp  String?
   showNote   Int
   aiShowNote AiShowNote @relation(fields: [showNote], references: [id], onDelete: Cascade)
 }

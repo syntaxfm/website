@@ -28,7 +28,8 @@ type PrismaUtterance = Prisma.TranscriptUtteranceGetPayload<{
 }>;
 export function getSlimUtterances(
 	utterances: (PrismaUtterance | Utterance)[],
-	showNumber: number
+	showNumber: number,
+	groupForPunctuation = true
 ): SlimUtterance[] {
 	const start: SlimUtterance[] = [];
 	const slim = utterances.reduce((acc, utterance, index) => {
@@ -36,10 +37,15 @@ export function getSlimUtterances(
 		const transcript_value =
 			'transcript_value' in utterance ? utterance.transcript_value : utterance.transcript;
 		const lastUtterance = acc[acc.length - 1];
+
 		// If its the same speaker as the last one. Tack it onto that last one
 		const last_speaker_is_current_speaker = lastUtterance?.speakerId === speaker;
 		// If the last utterance ended in `.` or `?` or `!`
-		const last_utterance_ended_in_punctuation = lastUtterance?.transcript.match(/[\.\?!]$/);
+		const last_utterance_ended_in_punctuation =
+			groupForPunctuation &&
+			(lastUtterance?.transcript.endsWith('.') ||
+				lastUtterance?.transcript.endsWith('!') ||
+				lastUtterance?.transcript.endsWith('!'));
 
 		if (last_speaker_is_current_speaker && !last_utterance_ended_in_punctuation) {
 			lastUtterance.transcript += ` ${transcript_value}`;
