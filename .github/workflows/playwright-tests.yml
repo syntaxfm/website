@@ -26,8 +26,8 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
-        env:
-          PUBLIC_GITHUB_ID: ''
 
       - name: Run Playwright tests
         run: pnpm run test
+        env:
+          PUBLIC_GITHUB_ID: ''
