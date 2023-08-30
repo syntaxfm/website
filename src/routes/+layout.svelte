@@ -2,6 +2,7 @@
 	import './style.css';
 	import 'media-chrome';
 	import { Toaster } from 'svelte-french-toast';
+	import { onNavigate } from '$app/navigation';
 	import Player from '$lib/player/Player.svelte';
 	import Footer from './Footer.svelte';
 	import Header from './Header.svelte';
@@ -22,6 +23,17 @@
 	onMount(() => {
 		// set the theme to the user's active theme
 		$theme = user?.theme || 'system';
+	});
+
+	onNavigate(async (navigation) => {
+		if (!document.startViewTransition) return;
+
+		return new Promise((oldStateCaptureResolve) => {
+			document.startViewTransition(async () => {
+				oldStateCaptureResolve();
+				await navigation.complete;
+			});
+		});
 	});
 </script>
 
