@@ -16,6 +16,11 @@
 			name: 'Kaitlin Bloom',
 			github: 'bl0om',
 			twitter: 'kaitlinblooom'
+		},
+		ben: {
+			name: 'Ben Vinegar',
+			github: 'benvinegar',
+			twitter: 'bentlegen'
 		}
 	};
 </script>
@@ -69,7 +74,18 @@
 				reach its audience.
 			</p>
 		</div>
-		<div class="team-member"><!-- intentionally empty --></div>
+		<div class="team-member">
+			<img
+				src={`https://github.com/${hosts.ben.github}.png`}
+				alt={hosts.ben.name}
+				class="avatar"
+			/>
+			<h4>Ben Vinegar</h4>
+			<HostSocialLink host={hosts.ben} />
+			<p>
+				Ben Vinegar is Syntax's General Manager. He helps with the business stuff so the team can focus on what they do best. Ben built early versions of the <a href="https://sentry.io">Sentry</a> UI and JS SDKs, and once co-wrote <a href="https://www.amazon.ca/Third-Party-JavaScript-Ben-Vinegar/dp/1617290548">a book on JavaScript</a>.
+			</p>
+		</div>
 	</div>
 </main>
 
