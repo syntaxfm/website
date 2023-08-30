@@ -1,6 +1,7 @@
 current_branch=$(git rev-parse --abbrev-ref HEAD)
+echo "Current branch: $current_branch"
 
-if [[ "$current_branch" == "main" || "$current_branch" == "master" ]]; then
+if [[ "$current_branch" == "main" ]]; then
   	echo "✅ - Build can proceed"
     exit 1
 else
