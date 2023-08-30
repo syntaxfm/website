@@ -1,4 +1,4 @@
-name: Run Playwright Tests on PRs
+name: Run_Playwright_Tests_on_PRs
 
 on:
   pull_request:
@@ -13,13 +13,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: pnpm-setup
+        uses: pnpm/action-setup@v2
+
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: 14
+          node-version: 20
 
       - name: Install dependencies
-        run: npm install
+        run: pnpm install
 
       - name: Run Playwright tests
-        run: npm run test:playwright
+        run: pnpm run test:playwright
