@@ -28,4 +28,4 @@ jobs:
         run: pnpm install
 
       - name: Run Playwright tests
-        run: pnpm run test:playwright
+        run: pnpm run test
