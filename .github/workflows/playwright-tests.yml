@@ -32,7 +32,7 @@ jobs:
         env:
           PUBLIC_GITHUB_ID: ''
           GITHUB_SECRET: ''
-          DEEPGRAM_SECRET: ''
+          DEEPGRAM_SECRET: ${{ secrets.DEEPGRAM_SECRET }}
           PUBLIC_URL: ''
           SENTRY_AUTH_TOKEN: ''
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
