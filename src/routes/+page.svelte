@@ -3,7 +3,7 @@
 	import PodcastHero from '$lib/PodcastHero.svelte';
 	import NewsletterForm from '$lib/NewsletterForm.svelte';
 	import type { Show } from '@prisma/client';
-/
+
 	export let data;
 	$: ({ latest } = data);
 	let last_ten: Show[];
