@@ -9,6 +9,7 @@
 			<div class="links-col">
 				<a href="/shows">Podcast</a>
 				<a href="/rss">RSS Feed</a>
+				<a href="/about">About</a>
 				<a href="https://sentry.io">Sentry.io</a>
 			</div>
 			<div class="links-col">
