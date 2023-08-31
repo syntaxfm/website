@@ -9,7 +9,7 @@
 </script>
 
 <a href={`https://twitter.com/${host.twitter}`} target="_blank" class="social-icon">
-	<Icon name="twitter" />
+	<Icon name="x" />
 </a>
 <a href={`https://github.com/${host.github}`} target="_blank" class="social-icon">
 	<Icon name="github" />
