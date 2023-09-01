@@ -26,7 +26,7 @@
 </script>
 
 <main style:margin-bottom="2rem">
-	<h3>About Syntax</h3>
+	<h1 class="h3">About Syntax</h1>
 	<p style:margin-bottom="2rem">
 		Hosted by Wes Bos and Scott Tolinski since 2017, Syntax has published over 600 podcast episodes
 		on full-stack web development, covering everything from HTML, CSS, JavaScript, server side
@@ -75,15 +75,18 @@
 			</p>
 		</div>
 		<div class="team-member">
-			<img
-				src={`https://github.com/${hosts.ben.github}.png`}
-				alt={hosts.ben.name}
-				class="avatar"
-			/>
+			<img src={`https://github.com/${hosts.ben.github}.png`} alt={hosts.ben.name} class="avatar" />
 			<h4>Ben Vinegar</h4>
 			<HostSocialLink host={hosts.ben} />
 			<p>
-				Ben Vinegar is Syntax's General Manager. He helps with the business stuff so the team can focus on what they do best. As a developer, Ben built early versions of the <a href="https://sentry.io">Sentry</a> UI and JS SDKs, and once co-wrote <a href="https://www.amazon.ca/Third-Party-JavaScript-Ben-Vinegar/dp/1617290548">a book on JavaScript</a>.
+				Ben Vinegar is Syntax's General Manager. He helps with the business stuff so the team can
+				focus on what they do best. As a developer, Ben built early versions of the <a
+					href="https://sentry.io">Sentry</a
+				>
+				UI and JS SDKs, and once co-wrote
+				<a href="https://www.amazon.ca/Third-Party-JavaScript-Ben-Vinegar/dp/1617290548"
+					>a book on JavaScript</a
+				>.
 			</p>
 		</div>
 	</div>
