@@ -1,6 +1,6 @@
 {
-	"name": "syntax-2",
-	"version": "0.0.1",
+	"name": "syntax",
+	"version": "2.0.0",
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",
