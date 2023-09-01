@@ -102,8 +102,8 @@
 	--bg-2: var(--black-2);
 
 	/* Typeography */
-	--body-font-family: 'MDIO0.6';
-	--heading-font-family: 'MDIO0.6';
+	--body-font-family: 'MDIO';
+	--heading-font-family: 'MDIO';
 
 	--font-size-xs: clamp(0.6rem, 0.17vw + 0.76rem, 0.7rem);
 	--font-size-sm: clamp(0.8rem, 0.17vw + 0.76rem, 0.89rem);
