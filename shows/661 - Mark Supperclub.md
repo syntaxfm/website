@@ -9,7 +9,7 @@ In this supper club episode of Syntax, Wes and Scott talk with Mark Erikson abou
 
 ## Show Notes
 
-* **[00:36](#t=00:36)** Welcome
+* **[00:36](#t=00:36)** Welcome!
 * **[01:45](#t=01:45)** Introducing Shipping ESM with Mark Erikson
 * [Mark Erikson (@acemarke)](https://twitter.com/acemarke)
 * [Wes Bos on Twitter: "publishing packages that work in esm and cjs is such a nightmare. I've run into so many issues today and took forever to get the proper package.json exports. I can't wait until we're 100% esm. I think I have every single combo covered."](https://twitter.com/wesbos/status/1610385221324619780)
