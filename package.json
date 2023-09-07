@@ -65,6 +65,7 @@
 		"@prisma/client": "^5.1.1",
 		"@sentry/sveltekit": "^7.62.0",
 		"@types/emscripten": "^1.39.7",
+		"core-js": "^3.32.1",
 		"date-fns": "^2.30.0",
 		"flexsearch": "^0.7.31",
 		"gpt-3-encoder": "^1.1.4",
