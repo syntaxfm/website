@@ -15,8 +15,6 @@
 	import Meta from '$lib/meta/Meta.svelte';
 	import AdminMenu from '$lib/AdminMenu.svelte';
 	import { debug_mode } from '$state/debug';
-	// import { preparePageTransition } from '$lib/page_transition';
-	// preparePageTransition();
 	export let data;
 	$: ({ user } = data);
 
