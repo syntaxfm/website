@@ -131,9 +131,9 @@
 	/* Light Theme as the default */
 	/* Backgrounds */
 
-	--bg-sheet: var(--white);
-	--bg: var(--blackish);
+	--bg: var(--black);
 	--bg-1: var(--black-1);
+	--bg-sheet: var(--white);
 
 	/* Foreground */
 	--fg: var(--white);

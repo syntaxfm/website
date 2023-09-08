@@ -58,6 +58,8 @@
 
 <style lang="postcss">
 	.theme-wrapper {
+		--bg-root: var(--bg);
+		--fg-root: var(--fg);
 		min-height: 100vh;
 		border-top: var(--border);
 		border-color: var(--primary);

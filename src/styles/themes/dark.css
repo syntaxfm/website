@@ -1,7 +1,7 @@
 /* System theme */
 .theme-system {
 	--bg-sheet: var(--white);
-	--bg: var(--blackish);
+	--bg: var(--black);
 	--fg: var(--white);
 	--fg-sheet: var(--black);
 	--primary: var(--yellow);
@@ -37,7 +37,7 @@
 
 .theme-light {
 	--bg-sheet: var(--white);
-	--bg: var(--blackish);
+	--bg: var(--black);
 	--fg: var(--white);
 	--fg-sheet: var(--black);
 	--primary: var(--yellow);

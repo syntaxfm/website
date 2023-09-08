@@ -13,7 +13,7 @@
 <article
 	class={display}
 	style={display === 'highlight'
-		? `--bg: var(--black); background-image:linear-gradient(to top, #00000000, var(--bg)), url(${white_grit})`
+		? `background-image:linear-gradient(to top, #00000000, var(--bg)), url(${white_grit})`
 		: '--bg=var(--bg-sheet)'}
 >
 	<a href={`/shows/${show.number}/${show.slug}`}>
@@ -85,8 +85,8 @@
 		}
 
 		&.highlight {
-			--fg: var(--bg-sheet);
-			--bg: var(--fg-sheet);
+			--bg: var(--bg-root);
+			--fg: var(--fg-root);
 			border: none;
 			grid-column: 1 / -1;
 		}
