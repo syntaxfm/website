@@ -16,12 +16,9 @@
 	import AdminMenu from '$lib/AdminMenu.svelte';
 	import { debug_mode } from '$state/debug';
 	export let data;
-	$: ({ user } = data);
+	$: ({ user, user_theme } = data);
 
-	onMount(() => {
-		// set the theme to the user's active theme
-		$theme = user?.theme || 'system';
-	});
+	$theme = user_theme;
 
 	onNavigate(async (navigation) => {
 		if (!document.startViewTransition) return;
@@ -37,14 +34,10 @@
 
 <Meta />
 
-<div class={'theme-' + $theme + ' theme-wrapper'} class:debug={$debug_mode}>
+<div class={'theme-' + ($theme || user_theme) + ' theme-wrapper'} class:debug={$debug_mode}>
 	<Header />
 
-	<main
-		class="page-layout layout zone"
-		style:--bg="var(--bg-sheet)"
-		style:--color="var(--color-sheet)"
-	>
+	<main class="page-layout layout zone" style:--bg="var(--bg-sheet)" style:--fg="var(--fg-sheet)">
 		<slot />
 	</main>
 
@@ -65,6 +58,8 @@
 
 <style lang="postcss">
 	.theme-wrapper {
+		--bg-root: var(--bg);
+		--fg-root: var(--fg);
 		min-height: 100vh;
 		border-top: var(--border);
 		border-color: var(--primary);

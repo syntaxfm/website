@@ -26,6 +26,6 @@
 	{/each}
 </div>
 
-<div class="zone layout full" style:--bg="var(--black)" style:--color="var(--white)">
+<div class="zone layout full" style:--bg="var(--black)" style:--fg="var(--white)">
 	<NewsletterForm />
 </div>

@@ -180,7 +180,7 @@
 
 	button {
 		--button-bg: transparent;
-		--button-color: var(--color);
+		--button-color: var(--fg);
 	}
 
 	p {
@@ -204,7 +204,7 @@
 		position: fixed;
 		bottom: 0;
 		width: 100vw;
-		color: var(--color);
+		color: var(--fg);
 		background-color: var(--player-bg, var(--blackish));
 		box-shadow: 0 0 10px 0 oklch(var(--blacklch) / 0.2);
 		display: flex;

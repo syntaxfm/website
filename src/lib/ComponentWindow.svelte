@@ -22,7 +22,7 @@
 	<div class="content">
 		<svelte:component this={Component} />
 	</div>
-	<div class="full zone" style:--bg="var(--black)" style:--color="var(--white)">
+	<div class="full zone" style:--bg="var(--black)" style:--fg="var(--white)">
 		<svelte:component this={Component} />
 	</div>
 </div>

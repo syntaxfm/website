@@ -1,14 +1,14 @@
 /* System theme */
 .theme-system {
 	--bg-sheet: var(--white);
-	--bg: var(--blackish);
-	--color: var(--white);
-	--color-sheet: var(--black);
+	--bg: var(--black);
+	--fg: var(--white);
+	--fg-sheet: var(--black);
 	--primary: var(--yellow);
 	--accent: var(--teal);
 	--warning: var(--red);
 	@media (prefers-color-scheme: dark) {
-		--color-sheet: var(--white);
+		--fg-sheet: var(--white);
 		--bg-sheet: var(--black);
 		--primary: var(--yellow);
 		--accent: var(--teal);
@@ -16,13 +16,13 @@
 		--bg-2: var(--black);
 		--bg-1: var(--black);
 		--bg: var(--black);
-		--color-2: var(--black-3);
-		--border: solid 4px var(--color-sheet);
+		--fg-2: var(--black-3);
+		--border: solid 4px var(--fg-sheet);
 	}
 }
 /* Same as prefers color scheme dark */
 .theme-dark {
-	--color-sheet: var(--white);
+	--fg-sheet: var(--white);
 	--bg-sheet: var(--black);
 	--primary: var(--yellow);
 	--accent: var(--teal);
@@ -30,16 +30,16 @@
 	--bg-2: var(--black);
 	--bg-1: var(--black);
 	--bg: var(--black);
-	--color-2: var(--black-3);
+	--fg-2: var(--black-3);
 	--border-color: var(--bg-sheet);
 	--border: solid 4px var(--border-color);
 }
 
 .theme-light {
 	--bg-sheet: var(--white);
-	--bg: var(--blackish);
-	--color: var(--white);
-	--color-sheet: var(--black);
+	--bg: var(--black);
+	--fg: var(--white);
+	--fg-sheet: var(--black);
 	--primary: var(--yellow);
 	--accent: var(--teal);
 	--warning: var(--red);

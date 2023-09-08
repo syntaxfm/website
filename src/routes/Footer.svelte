@@ -3,7 +3,7 @@
 	import Icon from '$lib/Icon.svelte';
 </script>
 
-<footer class="layout zone" style:--bg="var(--black)" style:--color="var(--white)">
+<footer class="layout zone" style:--bg="var(--black)" style:--fg="var(--white)">
 	<div>
 		<div class="grid">
 			<div class="links-col">
@@ -70,6 +70,6 @@
 	}
 
 	a {
-		color: var(--color);
+		color: var(--fg);
 	}
 </style>

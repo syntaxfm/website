@@ -58,7 +58,7 @@
 	header {
 		background-image: url('https://syntax.fm/static/background.jpg');
 		background-color: var(--bg);
-		color: var(--color);
+		color: var(--fg);
 		padding: 0 0.5rem;
 		@media (min-width: 1280px) {
 			padding: 0;
@@ -78,7 +78,7 @@
 
 	nav a {
 		text-decoration: none;
-		color: var(--color);
+		color: var(--fg);
 		text-decoration: none;
 		border-bottom: solid 3px transparent;
 		transition: border-color 0.2s ease;

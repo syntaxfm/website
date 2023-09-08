@@ -37,7 +37,7 @@
 			<div
 				class="primary box"
 				on:click={() => copy_color(color)}
-				style={`--color_demo_box_color: var(--${color})`}
+				style={`--fg_demo_box_color: var(--${color})`}
 			>
 				{color}
 			</div>
@@ -45,9 +45,9 @@
 				<div
 					on:click={() => copy_color(`${color}-${index + 1}`)}
 					class={`box`}
-					style={`--color_demo_color: var(--${color}-${pick_color(
+					style={`--fg_demo_color: var(--${color}-${pick_color(
 						index
-					)}); --color_demo_box_color: var(--${color}-${index + 1});`}
+					)}); --fg_demo_box_color: var(--${color}-${index + 1});`}
 				>
 					{color}-{index + 1}
 				</div>
@@ -81,7 +81,7 @@
 		padding: 5%;
 		justify-content: center;
 		align-items: flex-end;
-		background: var(--color_demo_box_color);
-		color: var(--color_demo_color);
+		background: var(--fg_demo_box_color);
+		color: var(--fg_demo_color);
 	}
 </style>

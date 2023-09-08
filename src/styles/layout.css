@@ -59,11 +59,11 @@
 	}
 
 	.zone {
-		color: var(--color);
+		color: var(--fg);
 		background: var(--bg);
 		border-radius: var(--radius, 0);
 	}
-	
+
 	.sticky {
 		position: sticky;
 		top: 0;
@@ -75,7 +75,6 @@
 
 	/* END @layer layout */
 }
-
 
 /* Debug -> Ignore */
 

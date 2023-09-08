@@ -9,28 +9,34 @@
 </script>
 
 <div class="mobile_nav">
-
-<button class="button-reset" on:click={toggle}>Menu</button>
-{#if is_active}
-	<div
-		transition:fly={{ opacity: 0, x: "100%"}}
-		id="menu"
-		class="menu"
-		style="background-image:  url({white_grit})"
-	>
-		<button class="button-reset close-button" on:click={toggle}>×</button>
-		<nav>
-			<a transition:fly={{ opacity: 0, x: "100%", delay: 1}}  on:click={toggle} href="/shows">Podcast</a>
-			<a transition:fly={{ opacity: 0, x: "100%", delay: 1}} on:click={toggle} href="https://swag.syntax.fm">Swag </a>
-		</nav>
-		<a
-			target="_blank"
-			class="button ghost"
-			href="https://docs.google.com/forms/d/e/1FAIpQLSfQlAo1wXHiJMySdU-h8QMtfoz92aMS9eycEHXB6eRCLh8KHA/viewform"
-			>Ask a potluck question</a
+	<button class="button-reset" on:click={toggle}>Menu</button>
+	{#if is_active}
+		<div
+			transition:fly={{ opacity: 0, x: '100%' }}
+			id="menu"
+			class="menu"
+			style="background-image:  url({white_grit})"
 		>
-	</div>
-{/if}
+			<button class="button-reset close-button" on:click={toggle}>×</button>
+			<nav>
+				<a transition:fly={{ opacity: 0, x: '100%', delay: 1 }} on:click={toggle} href="/shows"
+					>Podcast</a
+				>
+				<a
+					transition:fly={{ opacity: 0, x: '100%', delay: 1 }}
+					on:click={toggle}
+					href="https://swag.syntax.fm"
+					>Swag
+				</a>
+			</nav>
+			<a
+				target="_blank"
+				class="button ghost"
+				href="https://docs.google.com/forms/d/e/1FAIpQLSfQlAo1wXHiJMySdU-h8QMtfoz92aMS9eycEHXB6eRCLh8KHA/viewform"
+				>Ask a potluck question</a
+			>
+		</div>
+	{/if}
 </div>
 
 <style lang="postcss">
@@ -41,7 +47,7 @@
 	}
 	nav a {
 		text-decoration: none;
-		color: var(--color);
+		color: var(--fg);
 		text-decoration: none;
 		border-bottom: solid 3px transparent;
 		display: block;
