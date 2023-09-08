@@ -19,7 +19,6 @@ export const anchor: Action<HTMLElement, { id: string; position: Position }> = (
 
 		if (target) {
 			target.style.opacity = '0';
-			target.style.display = 'block';
 
 			const target_position = target?.getBoundingClientRect();
 			target.style.inset = 'unset';
@@ -34,7 +33,6 @@ export const anchor: Action<HTMLElement, { id: string; position: Position }> = (
 				target.style.left = anchor_position.right - target_position.width + 'px';
 			}
 			target.style.opacity = '1';
-			target.style.display = 'revert';
 		}
 	}
 
