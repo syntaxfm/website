@@ -71,5 +71,9 @@
 
 	a {
 		color: var(--fg);
+		&:hover {
+			text-decoration: underline;
+			text-decoration-color: var(--primary);
+		}
 	}
 </style>
