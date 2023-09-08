@@ -12,7 +12,7 @@ This site is built on SvelteKit
 
 ## Database
 
-Make sure to have a `DATABASE_URL` envirionmental variable set.
+Make sure to have a `DATABASE_URL` environmental variable set.
 
 If this is your first time, run `pnpm db:push` to create the tables in your database.
 
