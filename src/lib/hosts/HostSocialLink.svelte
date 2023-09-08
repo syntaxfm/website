@@ -21,7 +21,7 @@
 	}
 
 	a {
-		color: var(--color);
+		color: var(--fg);
 		&:hover {
 			color: var(--accent);
 		}

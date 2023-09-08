@@ -59,7 +59,7 @@
 		background-color: var(--bg);
 
 		& a {
-			color: var(--color);
+			color: var(--fg);
 			display: block;
 			display: flex;
 			gap: 20px;
@@ -85,8 +85,8 @@
 		}
 
 		&.highlight {
-			--color: var(--bg-sheet);
-			--bg: var(--color-sheet);
+			--fg: var(--bg-sheet);
+			--bg: var(--fg-sheet);
 			border: none;
 			grid-column: 1 / -1;
 		}

@@ -133,12 +133,13 @@
 
 	--bg-sheet: var(--white);
 	--bg: var(--blackish);
+	--bg-1: var(--black-1);
 
 	/* Foreground */
-	--color: var(--white);
-	--color-1: var(--black-8);
-	--color-2: var(--black-9);
-	--color-sheet: var(--black);
+	--fg: var(--white);
+	--fg-1: var(--black-8);
+	--fg-2: var(--black-9);
+	--fg-sheet: var(--black);
 
 	/* Interface Color */
 	--primary: var(--yellow);
@@ -147,5 +148,5 @@
 	--success: var(--green);
 	--zebra: oklch(var(--blacklch) / 0.05);
 	--line: var(--black-2);
-	--border: solid 4px var(--color-sheet);
+	--border: solid 4px var(--fg-sheet);
 }

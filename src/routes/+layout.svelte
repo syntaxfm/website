@@ -37,11 +37,7 @@
 <div class={'theme-' + ($theme || user_theme) + ' theme-wrapper'} class:debug={$debug_mode}>
 	<Header />
 
-	<main
-		class="page-layout layout zone"
-		style:--bg="var(--bg-sheet)"
-		style:--color="var(--color-sheet)"
-	>
+	<main class="page-layout layout zone" style:--bg="var(--bg-sheet)" style:--fg="var(--fg-sheet)">
 		<slot />
 	</main>
 

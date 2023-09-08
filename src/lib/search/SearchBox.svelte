@@ -103,12 +103,7 @@
 	}}
 />
 
-<dialog
-	bind:this={modal}
-	class="zone"
-	style:--bg="var(--bg-sheet)"
-	style:--color="var(--color-sheet)"
->
+<dialog bind:this={modal} class="zone" style:--bg="var(--bg-sheet)" style:--fg="var(--fg-sheet)">
 	<header>
 		<input
 			autofocus

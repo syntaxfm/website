@@ -51,7 +51,12 @@
 	</div>
 
 	<div class="sidebar">
-		<div class="sticky zone" style:--radius="20px" style:--bg="var(--black-1)">
+		<div
+			class="sticky zone"
+			style="border: solid 0.5px var(--black-1)"
+			style:--radius="20px"
+			style:--bg="var(--bg-1)"
+		>
 			<NewsletterForm />
 		</div>
 	</div>

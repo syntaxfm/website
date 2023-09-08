@@ -68,7 +68,7 @@
 		height: 100vh;
 		overflow: hidden;
 		backdrop-filter: blur(10px);
-		color: var(--color);
+		color: var(--fg);
 		padding: var(--default_padding);
 		overflow-y: scroll;
 		border-left: var(--border);
@@ -91,7 +91,7 @@
 		background: var(--bg-sheet);
 		flex-wrap: wrap;
 		background: var(--bg-sheet);
-		color: var(--color-sheet);
+		color: var(--fg-sheet);
 		justify-content: space-between;
 		& span {
 			flex-basis: 100%;
@@ -106,7 +106,7 @@
 	}
 
 	.color {
-		background: var(--color-sheet);
+		background: var(--fg-sheet);
 	}
 	.primary {
 		background: var(--primary);

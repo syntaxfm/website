@@ -23,7 +23,7 @@
 	.button-reset {
 		box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.2);
 		border-radius: 4px;
-		color: var(--color);
+		color: var(--fg);
 	}
 
 	.shortcut {
