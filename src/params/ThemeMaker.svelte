@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { theme, theme_maker } from '$state/theme';
+	import Cookie from 'js-cookie';
 	import slugo from 'slugo';
 	import { fly } from 'svelte/transition';
 	// when a new theme is selected, apply the class directly to the correct element,
@@ -20,7 +21,7 @@
 	function change_theme(this: HTMLButtonElement, e: Event) {
 		// 1. set to theme state, for instant ui responsiveness
 		$theme = slugo(this.innerText);
-		// 2. Set to db for ssr and persistance
+		Cookie.set('theme', this.innerText);
 	}
 </script>
 
@@ -35,9 +36,9 @@
 
 {#if $theme_maker.status === 'OPEN'}
 	<section transition:fly={{ x: '100%', opacity: 0 }}>
-		<button on:click={theme_maker.close}>Close</button>
+		<button class="close" on:click={theme_maker.close}>×</button>
 
-		<h4>Theme 👩‍🎨</h4>
+		<h4>👩‍🎨</h4>
 
 		<div class="theme-maker-buttons">
 			{#each theme_names as theme_name}
@@ -66,25 +67,31 @@
 		width: 300px;
 		height: 100vh;
 		overflow: hidden;
-		background: var(--bg);
+		backdrop-filter: blur(10px);
 		color: var(--color);
 		padding: var(--default_padding);
 		overflow-y: scroll;
 		border-left: var(--border);
+		border-color: var(--white);
+		box-shadow: var(--shadow-6);
+	}
+	h4 {
+		font-style: normal;
+		margin-top: 0;
 	}
 
-	button {
-		text-transform: capitalize;
-		background: var(--bg-sheet);
-		padding: var(--default_padding);
-		box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.2);
-		border-radius: 4px;
-		color: var(--color-sheet);
+	.close {
+		position: absolute;
+		top: 20px;
+		right: 20px;
 	}
 
 	.theme-preview {
 		display: flex;
+		background: var(--bg-sheet);
 		flex-wrap: wrap;
+		background: var(--bg-sheet);
+		color: var(--color-sheet);
 		justify-content: space-between;
 		& span {
 			flex-basis: 100%;

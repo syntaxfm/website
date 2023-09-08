@@ -15,15 +15,10 @@
 	import Meta from '$lib/meta/Meta.svelte';
 	import AdminMenu from '$lib/AdminMenu.svelte';
 	import { debug_mode } from '$state/debug';
-	// import { preparePageTransition } from '$lib/page_transition';
-	// preparePageTransition();
 	export let data;
-	$: ({ user } = data);
+	$: ({ user, user_theme } = data);
 
-	onMount(() => {
-		// set the theme to the user's active theme
-		$theme = user?.theme || 'system';
-	});
+	$theme = user_theme;
 
 	onNavigate(async (navigation) => {
 		if (!document.startViewTransition) return;
@@ -39,7 +34,7 @@
 
 <Meta />
 
-<div class={'theme-' + $theme + ' theme-wrapper'} class:debug={$debug_mode}>
+<div class={'theme-' + ($theme || user_theme) + ' theme-wrapper'} class:debug={$debug_mode}>
 	<Header />
 
 	<main
