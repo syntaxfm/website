@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { clickOutside } from '$actions/click_outside';
 	import { theme, theme_maker } from '$state/theme';
 	import Cookie from 'js-cookie';
 	import slugo from 'slugo';
@@ -35,7 +36,11 @@
 />
 
 {#if $theme_maker.status === 'OPEN'}
-	<section transition:fly={{ x: '100%', opacity: 0 }}>
+	<section
+		transition:fly={{ x: '100%', opacity: 0 }}
+		use:clickOutside
+		on:click-outside={theme_maker.close}
+	>
 		<button class="close" on:click={theme_maker.close}>×</button>
 
 		<h4>👩‍🎨</h4>
@@ -72,7 +77,6 @@
 		padding: var(--default_padding);
 		overflow-y: scroll;
 		border-left: var(--border);
-		border-color: var(--white);
 		box-shadow: var(--shadow-6);
 	}
 	h4 {
@@ -95,7 +99,7 @@
 		justify-content: space-between;
 		& span {
 			flex-basis: 100%;
-			margin-top: 1em;
+			font-weight: 400;
 		}
 	}
 
