@@ -47,6 +47,7 @@
 	<Player />
 	<Toaster />
 	<Loading />
+
 	{#if browser}
 		<SearchBox />
 	{/if}

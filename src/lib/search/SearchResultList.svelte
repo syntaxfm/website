@@ -115,7 +115,7 @@
 	}
 
 	a:hover {
-		background: rgba(255, 255, 255, 1);
+		background: var(--zebra);
 	}
 
 	a strong,

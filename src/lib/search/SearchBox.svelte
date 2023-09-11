@@ -7,6 +7,7 @@
 	import SearchResultList from './SearchResultList.svelte';
 	import { fade } from 'svelte/transition';
 	import type { Tree } from './types';
+	import { clickOutside } from '$actions/click_outside';
 
 	let modal: HTMLDialogElement;
 	let search: {
@@ -123,7 +124,7 @@
 			class="search-input"
 		/>
 
-		<button class="button-reset" on:click={close} type="submit">×</button>
+		<button class="close" on:click={close} type="submit">×</button>
 	</header>
 	<div class="results">
 		{#if search?.query}
@@ -203,7 +204,7 @@
 	}
 
 	dialog::backdrop {
-		background: rgba(0, 0, 0, 0.6);
+		background: rgba(0, 0, 0, 0.8);
 	}
 
 	.results {
@@ -232,6 +233,7 @@
 		font-size: var(--font-size-md);
 		outline: none;
 		background-color: transparent;
+		color: var(--fg);
 	}
 
 	footer {
