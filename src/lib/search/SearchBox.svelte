@@ -7,7 +7,7 @@
 	import SearchResultList from './SearchResultList.svelte';
 	import { fade } from 'svelte/transition';
 	import type { Tree } from './types';
-	import { clickOutside } from '$actions/click_outside';
+	import { clickOutDialog } from '$actions/click_outside_dialog';
 
 	let modal: HTMLDialogElement;
 	let search: {
@@ -104,70 +104,79 @@
 	}}
 />
 
-<dialog bind:this={modal} class="zone" style:--bg="var(--bg-sheet)" style:--fg="var(--fg-sheet)">
-	<header>
-		<input
-			autofocus
-			on:keydown={(e) => {
-				if (e.key === 'Enter' && !e.isComposing) {
-					modal.querySelector('a[data-has-node]')?.click();
-				}
-			}}
-			on:input={(e) => {
-				$search_query = e.currentTarget.value;
-			}}
-			value={$search_query}
-			placeholder="Search"
-			aria-describedby="search-description"
-			aria-label="Search"
-			spellcheck="false"
-			class="search-input"
-		/>
+<dialog
+	bind:this={modal}
+	class="zone"
+	style:--bg="var(--bg-sheet)"
+	style:--fg="var(--fg-sheet)"
+	use:clickOutDialog
+	on:click-outside={close}
+>
+	<div>
+		<header>
+			<input
+				autofocus
+				on:keydown={(e) => {
+					if (e.key === 'Enter' && !e.isComposing) {
+						modal.querySelector('a[data-has-node]')?.click();
+					}
+				}}
+				on:input={(e) => {
+					$search_query = e.currentTarget.value;
+				}}
+				value={$search_query}
+				placeholder="Search"
+				aria-describedby="search-description"
+				aria-label="Search"
+				spellcheck="false"
+				class="search-input"
+			/>
 
-		<button class="close" on:click={close} type="submit">×</button>
-	</header>
-	<div class="results">
-		{#if search?.query}
-			<div
-				transition:fade={{ duration: 300 }}
-				class="results-container"
-				on:click={() => ($searching = false)}
-			>
-				<SearchResults
-					results={search.results}
-					query={search.query}
-					on:select={(e) => {
-						close();
-						navigate(e.detail.href);
-					}}
-				/>
-			</div>
-		{:else}
-			<div transition:fade={{ duration: 300 }}>
-				<h5 class:empty={recent_searches.length === 0}>
-					{recent_searches.length ? 'Recent searches' : 'No recent searches'}
-				</h5>
-
-				{#if recent_searches.length}
-					<SearchResultList
-						results={recent_searches}
-						recent_searches={true}
-						query={search?.query || ''}
+			<button class="close" on:click={close} type="submit">×</button>
+		</header>
+		<div class="results">
+			{#if search?.query}
+				<div
+					transition:fade={{ duration: 300 }}
+					class="results-container"
+					on:click={() => ($searching = false)}
+				>
+					<SearchResults
+						results={search.results}
+						query={search.query}
 						on:select={(e) => {
 							close();
 							navigate(e.detail.href);
 						}}
 					/>
-				{/if}
-			</div>
-		{/if}
+				</div>
+			{:else}
+				<div transition:fade={{ duration: 300 }}>
+					<h5 class:empty={recent_searches.length === 0}>
+						{recent_searches.length ? 'Recent searches' : 'No recent searches'}
+					</h5>
+
+					{#if recent_searches.length}
+						<SearchResultList
+							results={recent_searches}
+							recent_searches={true}
+							query={search?.query || ''}
+							on:select={(e) => {
+								close();
+								navigate(e.detail.href);
+							}}
+						/>
+					{/if}
+				</div>
+			{/if}
+		</div>
+		<footer>
+			<p>
+				<!-- If you came into the source to look at what vibes is, it's this code -->
+				Search powered by vibes.
+			</p>
+		</footer>
 	</div>
-	<footer>
-		<p>
-			<!-- If you came into the source to look at what vibes is, it's this code -->
-			Search powered by vibes.
-		</p>
-	</footer>
 </dialog>
 
 <style lang="postcss">

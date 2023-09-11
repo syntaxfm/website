@@ -7,7 +7,6 @@
 <button
 	class="button-reset"
 	on:click={() => {
-		console.log('search');
 		$searching = true;
 	}}
 >
