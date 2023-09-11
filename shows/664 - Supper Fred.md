@@ -1,8 +1,8 @@
 ---
 number: 664
 title: Supper Club × What's New With Astro with Fred Schott
-date: https://traffic.libsyn.com/syntax/Syntax_-_664.mp3
-url: 
+date: 1694170800957
+url: https://traffic.libsyn.com/syntax/Syntax_-_664.mp3
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Fred Schott all things Astro with the announcement of Astro version 3, marketing open source projects, Starlight docs, keeping up to date, and making major version numbers less scary.
