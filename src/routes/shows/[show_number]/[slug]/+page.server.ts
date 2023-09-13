@@ -42,10 +42,15 @@ export const load = async function ({ setHeaders, params, locals }) {
 		.use(rehypeStringify)
 		.process(show_raw?.show_notes || '');
 
+	// Regular expression pattern and replacement
+	const pattern = /(<h2>)(?!Show Notes<\/h2>)(.*?)(<\/h2>)/g;
+	const replacement = '<h3>$2</h3>';
+
 	const body_string = body_excerpt.toString();
 	// the md has h2s in it, it's not reasonable to change all of the md,
 	// so I'm making them be h3s instead
-	const with_h3_body = body_string.replaceAll('h2', 'h3');
+	// maybe that's a todo for another day
+	const with_h3_body = body_string.replace(pattern, replacement);
 
 	setHeaders({
 		'cache-control': 'max-age=240'
