@@ -6,7 +6,7 @@
 
 <header class="layout">
 	<div class="header-container content">
-		<h2 class="logo">
+		<div class="logo">
 			<a href="/">
 				<svg width="80px" viewBox="0 0 1371 1212" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<title>Syntax</title>
@@ -21,7 +21,7 @@
 				</svg>
 				<span>by Sentry</span>
 			</a>
-		</h2>
+		</div>
 
 		<div class="header-actions">
 			<Search />

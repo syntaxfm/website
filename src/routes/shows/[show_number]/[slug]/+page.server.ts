@@ -6,7 +6,6 @@ import rehypeRaw from 'rehype-raw';
 import rehypeStringify from 'rehype-stringify';
 import highlight from 'rehype-highlight';
 import { cache } from '$lib/cache/cache';
-
 import type { Show } from '@prisma/client';
 
 export const load = async function ({ setHeaders, params, locals }) {
@@ -43,6 +42,11 @@ export const load = async function ({ setHeaders, params, locals }) {
 		.use(rehypeStringify)
 		.process(show_raw?.show_notes || '');
 
+	const body_string = body_excerpt.toString();
+	// the md has h2s in it, it's not reasonable to change all of the md,
+	// so I'm making them be h3s instead
+	const with_h3_body = body_string.replaceAll('h2', 'h3');
+
 	setHeaders({
 		'cache-control': 'max-age=240'
 	});
@@ -50,7 +54,7 @@ export const load = async function ({ setHeaders, params, locals }) {
 	return {
 		show: {
 			...show_raw,
-			show_notes: body_excerpt.toString()
+			show_notes: with_h3_body
 		}
 	};
 };
