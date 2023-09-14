@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { page } from '$app/stores';
 	import Search from '$lib/search/Search.svelte';
 	import MobileNav from './MobileNav.svelte';
 </script>
@@ -28,6 +27,7 @@
 			<a
 				target="_blank"
 				class="button ghost"
+				rel="noopener"
 				href="https://docs.google.com/forms/d/e/1FAIpQLSfQlAo1wXHiJMySdU-h8QMtfoz92aMS9eycEHXB6eRCLh8KHA/viewform"
 				style="grid-column: 1/-1;">Ask a potluck question</a
 			>
@@ -39,21 +39,11 @@
 	<nav class="desktop_nav content">
 		<a href="/shows">Podcast</a>
 		<a href="/about">About</a>
-		<a href="https://swag.syntax.fm">Swag</a>
+		<a rel="noopener" target="_blank" href="https://swag.sentry.io">Swag</a>
 	</nav>
 </header>
 
 <style lang="postcss">
-	:is(h1, h2) {
-		margin: 0;
-		& a {
-			display: block;
-			& svg {
-				display: block;
-			}
-		}
-	}
-
 	header {
 		background-image: url('https://syntax.fm/static/background.jpg');
 		background-color: var(--bg);

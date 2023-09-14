@@ -21,8 +21,9 @@
 		data-sv-form={FORM_ID}
 		class="center readable"
 		target="_blank"
+		aria-labelledby="newsletter-form-label"
 	>
-		<h2 class="h4">Join our newsletter</h2>
+		<h2 id="newsletter-form-label" class="h4">Join our newsletter</h2>
 		<p>
 			New Syntax content, tips & tricks, swag drops, and other sweet stuff to make your life as a
 			web developer even better.

@@ -111,9 +111,10 @@
 	style:--fg="var(--fg-sheet)"
 	use:clickOutDialog
 	on:click-outside={close}
+	aria-labelledby="search-header"
 >
-	<div>
-		<header>
+	<section aria-label="Search Results Window">
+		<header role="banner">
 			<input
 				autofocus
 				on:keydown={(e) => {
@@ -152,7 +153,9 @@
 				</div>
 			{:else}
 				<div transition:fade={{ duration: 300 }}>
-					<h2 class:empty={recent_searches.length === 0}>Recent searches</h2>
+					<h2 class="h5" id="search-header" class:empty={recent_searches.length === 0}>
+						Recent searches
+					</h2>
 					{#if !recent_searches.length}
 						No recent searches
 					{/if}
@@ -170,13 +173,13 @@
 				</div>
 			{/if}
 		</div>
-		<footer>
+		<footer role="contentinfo">
 			<p>
 				<!-- If you came into the source to look at what vibes is, it's this code -->
 				Search powered by vibes.
 			</p>
 		</footer>
-	</div>
+	</section>
 </dialog>
 
 <style lang="postcss">

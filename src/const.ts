@@ -8,7 +8,7 @@ export const CURRENT_YEAR = new Date().getFullYear();
 
 export const PODCAST_LINKS = [
 	{
-		href: 'http://feed.syntax.fm/rss',
+		href: 'https://feed.syntax.fm/rss',
 		text: 'RSS'
 	},
 	{
@@ -28,7 +28,7 @@ export const PODCAST_LINKS = [
 		text: 'Spotify'
 	},
 	{
-		href: 'http://pca.st/fmx9',
+		href: 'https://pca.st/fmx9',
 		text: 'PocketCasts'
 	}
 ];
