@@ -17,6 +17,7 @@
 	let recent_searches: Tree[] = [];
 	let worker: Worker;
 	let ready = false;
+	let active_color = 'var(--fg)';
 
 	let uid = 1;
 	const pending = new Set();
@@ -44,7 +45,6 @@
 				origin: location.origin
 			}
 		});
-		modal.showModal();
 	});
 
 	afterNavigate(() => {
@@ -82,6 +82,11 @@
 	$: if ($searching) {
 		$overlay_open = true;
 		modal.showModal();
+	}
+
+	function change_color(e) {
+		let computed = window.getComputedStyle(e.target).backgroundColor;
+		active_color = computed;
 	}
 </script>
 
@@ -152,24 +157,58 @@
 					/>
 				</div>
 			{:else}
-				<div transition:fade={{ duration: 300 }}>
-					<h2 class="h5" id="search-header" class:empty={recent_searches.length === 0}>
-						Recent searches
-					</h2>
-					{#if !recent_searches.length}
-						No recent searches
-					{/if}
-					{#if recent_searches.length}
-						<SearchResultList
-							results={recent_searches}
-							recent_searches={true}
-							query={search?.query || ''}
-							on:select={(e) => {
-								close();
-								navigate(e.detail.href);
-							}}
-						/>
-					{/if}
+				<div transition:fade={{ duration: 100 }} class="recent-searches">
+					<div>
+						<!-- prettier-ignore -->
+						<pre style:color={active_color} style="overflow: hidden; width: 201px;">
+░██████╗██╗░░░██╗███╗░░██╗
+██╔════╝╚██╗░██╔╝████╗░██║
+╚█████╗░░╚████╔╝░██╔██╗██║
+░╚═══██╗░░╚██╔╝░░██║╚████║
+██████╔╝░░░██║░░░██║░╚███║
+╚═════╝░░░░╚═╝░░░╚═╝░░╚══╝
+
+████████╗░█████╗░██╗░░██╗
+╚══██╔══╝██╔══██╗╚██╗██╔╝
+░░░██║░░░███████║░╚███╔╝░
+░░░██║░░░██╔══██║░██╔██╗░
+░░░██║░░░██║░░██║██╔╝╚██╗
+░░░╚═╝░░░╚═╝░░╚═╝╚═╝░░╚═╝
+					</pre>
+						<div on:click={change_color} class="color-boxes">
+							<div class="color-box"></div>
+							<div class="color-box"></div>
+							<div class="color-box"></div>
+							<div class="color-box"></div>
+							<div class="color-box"></div>
+							<div class="color-box"></div>
+							<div class="color-box"></div>
+							<div class="color-box"></div>
+							<div class="color-box"></div>
+							<div class="color-box"></div>
+							<div class="color-box"></div>
+							<div class="color-box"></div>
+						</div>
+					</div>
+					<div>
+						<h2 class="h5" id="search-header" class:empty={recent_searches.length === 0}>
+							Recent searches
+						</h2>
+						{#if !recent_searches.length}
+							<p>No recent searches</p>{/if}
+
+						{#if recent_searches.length}
+							<SearchResultList
+								results={recent_searches}
+								recent_searches={true}
+								query={search?.query || ''}
+								on:select={(e) => {
+									close();
+									navigate(e.detail.href);
+								}}
+							/>
+						{/if}
+					</div>
 				</div>
 			{/if}
 		</div>
@@ -184,8 +223,18 @@
 
 <style lang="postcss">
 	header {
+		--border: var(--fg);
 		border-bottom: solid 4px var(--border);
 		display: flex;
+		position: sticky;
+		top: 0;
+		z-index: 10;
+		&::before {
+			content: '> ';
+			position: relative;
+			top: 12px;
+			padding-left: 10px;
+		}
 	}
 
 	h5 {
@@ -193,8 +242,14 @@
 	}
 
 	header:focus-within {
-		outline: 1px solid var(--primary);
+		--border: var(--primary);
 		background-color: var(--bg-sheet);
+	}
+
+	.close {
+		position: absolute;
+		top: 10px;
+		right: 10px;
 	}
 
 	dialog {
@@ -203,6 +258,7 @@
 		background-color: var(--bg-1);
 		height: var(--search-height);
 		border: var(--border);
+		border-color: var(--fg);
 
 		max-width: 100%;
 		width: 100%;
@@ -234,8 +290,13 @@
 			grid-column: 1 / -1;
 		}
 		@media (--above_med) {
-			padding: 20px;
+			padding: 20px 0;
 		}
+	}
+
+	textarea {
+		background-color: transparent;
+		color: var(--fg);
 	}
 
 	.search-input {
@@ -246,6 +307,7 @@
 		outline: none;
 		background-color: transparent;
 		color: var(--fg);
+		font-family: var(--body-font-family);
 	}
 
 	footer {
@@ -264,5 +326,66 @@
 		@media (--below_med) {
 			display: none;
 		}
+	}
+	.recent-searches {
+		padding: 20px;
+		display: grid;
+		grid-template-columns: 1fr 2fr;
+		gap: 20px;
+	}
+
+	.color-boxes {
+		display: grid;
+		grid-template-columns: repeat(6, 1fr);
+	}
+
+	.color-box {
+		height: 20px;
+		background-color: var(--yellow);
+	}
+	.color-box:nth-child(2) {
+		height: 20px;
+		background-color: var(--teal);
+	}
+	.color-box:nth-child(3) {
+		height: 20px;
+		background-color: var(--green);
+	}
+	.color-box:nth-child(4) {
+		height: 20px;
+		background-color: var(--red);
+	}
+	.color-box:nth-child(5) {
+		height: 20px;
+		background-color: var(--purple);
+	}
+	.color-box:nth-child(6) {
+		height: 20px;
+		background-color: var(--black);
+	}
+
+	.color-box:nth-child(7) {
+		height: 20px;
+		background-color: var(--yellow-2);
+	}
+	.color-box:nth-child(8) {
+		height: 20px;
+		background-color: var(--teal-2);
+	}
+	.color-box:nth-child(9) {
+		height: 20px;
+		background-color: var(--green-2);
+	}
+	.color-box:nth-child(10) {
+		height: 20px;
+		background-color: var(--red-2);
+	}
+	.color-box:nth-child(11) {
+		height: 20px;
+		background-color: var(--purple-2);
+	}
+	.color-box:nth-child(12) {
+		height: 20px;
+		background-color: var(--black-2);
 	}
 </style>
