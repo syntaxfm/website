@@ -8,6 +8,8 @@
 
 	export let show: Show;
 	export let display: 'list' | 'card' | 'highlight' = 'card';
+
+	export let heading = 'h3';
 </script>
 
 <article
@@ -22,11 +24,15 @@
 				<Icon name="play" />
 			</button>
 		{/if}
+
 		<div class="details">
 			<p class="date" style:--transition-name="show-date-{show.number}">
 				{format_show_type(show.date)} - {format(new Date(show.date), 'MMMM do, yyyy')}
 			</p>
-			<h3 style:--transition-name="show-title-{show.number}">{show.title}</h3>
+
+			<svelte:element this={heading} class="h3" style:--transition-name="show-title-{show.number}">
+				{show.title}
+			</svelte:element>
 
 			{#if display === 'highlight'}
 				<p>
@@ -91,7 +97,7 @@
 			border-top: solid 1px var(--line);
 			padding: 20px 0;
 
-			& h3 {
+			& .h3 {
 				font-size: var(--font-size-base);
 			}
 			& .buttons {
@@ -100,7 +106,7 @@
 		}
 	}
 
-	h3 {
+	.h3 {
 		view-transition-name: var(--transition-name);
 		line-height: 1.7;
 		margin: 0;
@@ -111,7 +117,7 @@
 
 	@container show-card (width > 600px) {
 		.highlight {
-			& h3 {
+			& .h3 {
 				font-size: var(--font-size-xl);
 			}
 		}

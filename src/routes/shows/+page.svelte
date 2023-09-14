@@ -54,7 +54,7 @@
 		</div>
 	</div>
 	{#each shows as show (show.id)}
-		<ShowCard {show} display="list" />
+		<ShowCard {show} display="list" heading="h2" />
 	{/each}
 	<div class="load-more">
 		<button
