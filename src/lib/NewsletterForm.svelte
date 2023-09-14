@@ -22,7 +22,7 @@
 		class="center readable"
 		target="_blank"
 	>
-		<h4>Join our newsletter</h4>
+		<h2 class="h4">Join our newsletter</h2>
 		<p>
 			New Syntax content, tips & tricks, swag drops, and other sweet stuff to make your life as a
 			web developer even better.

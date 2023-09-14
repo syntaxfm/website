@@ -152,10 +152,10 @@
 				</div>
 			{:else}
 				<div transition:fade={{ duration: 300 }}>
-					<h5 class:empty={recent_searches.length === 0}>
-						{recent_searches.length ? 'Recent searches' : 'No recent searches'}
-					</h5>
-
+					<h2 class:empty={recent_searches.length === 0}>Recent searches</h2>
+					{#if !recent_searches.length}
+						No recent searches
+					{/if}
 					{#if recent_searches.length}
 						<SearchResultList
 							results={recent_searches}

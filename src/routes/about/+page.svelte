@@ -27,7 +27,7 @@
 
 <main style:margin-bottom="2rem">
 	<h1 class="h3">About Syntax</h1>
-	<p style:margin-bottom="2rem">
+	<p style:margin-bottom="2rem" class="readable">
 		Hosted by Wes Bos and Scott Tolinski since 2017, Syntax has published over 600 podcast episodes
 		on full-stack web development, covering everything from HTML, CSS, JavaScript, server side
 		languages, databases, deployment environments, and more.
@@ -36,7 +36,7 @@
 	<div class="team-row">
 		<div class="team-member">
 			<img src={`https://github.com/${hosts.wes.github}.png`} alt={hosts.wes.name} class="avatar" />
-			<h4>Wes Bos</h4>
+			<h2 class="h4">Wes Bos</h2>
 			<HostSocialLink host={hosts.wes} />
 			<p>
 				Wes Bos is co-host of Syntax and a <a href="https://wesbos.com">web development educator</a
@@ -51,7 +51,7 @@
 				alt={hosts.scott.name}
 				class="avatar"
 			/>
-			<h4>Scott Tolinski</h4>
+			<h2 class="h4">Scott Tolinski</h2>
 			<HostSocialLink host={hosts.scott} />
 			<p>
 				Scott Tolinski is co-host of Syntax and the creator of <a
@@ -66,7 +66,7 @@
 				alt={hosts.kaitlin.name}
 				class="avatar"
 			/>
-			<h4>Kaitlin Bloom</h4>
+			<h2 class="h4">Kaitlin Bloom</h2>
 			<HostSocialLink host={hosts.kaitlin} />
 			<p>
 				Kaitlin Bloom is Syntax's digital marketing manager. She publishes the Syntax Newsletter,
@@ -76,7 +76,7 @@
 		</div>
 		<div class="team-member">
 			<img src={`https://github.com/${hosts.ben.github}.png`} alt={hosts.ben.name} class="avatar" />
-			<h4>Ben Vinegar</h4>
+			<h2 class="h4">Ben Vinegar</h2>
 			<HostSocialLink host={hosts.ben} />
 			<p>
 				Ben Vinegar is Syntax's General Manager. He helps with the business stuff so the team can
@@ -99,17 +99,13 @@
 	}
 
 	.team-row {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 20px;
-		margin-bottom: 2rem;
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+		grid-gap: 40px;
 	}
+
 	.team-member {
-		flex-basis: 49%; /* feels like a hack; 50% overflows */
-		flex-grow: 1;
-		flex-shrink: 1;
-		h4 {
-			margin-bottom: 0;
+		h2 {
 			margin-top: 0.5rem;
 		}
 	}

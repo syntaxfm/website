@@ -2,9 +2,9 @@
 	import white_grit from '$assets/whitegrit.png';
 	import { player } from '$state/player';
 	import { format_show_type } from '$utilities/format_show_type';
-	import type { Show } from '@prisma/client';
 	import Icon from './Icon.svelte';
 	import { format } from 'date-fns';
+	import type { Show } from '@prisma/client';
 
 	export let show: Show;
 	export let display: 'list' | 'card' | 'highlight' = 'card';
@@ -26,7 +26,7 @@
 			<p class="date" style:--transition-name="show-date-{show.number}">
 				{format_show_type(show.date)} - {format(new Date(show.date), 'MMMM do, yyyy')}
 			</p>
-			<h4 style:--transition-name="show-title-{show.number}">{show.title}</h4>
+			<h3 style:--transition-name="show-title-{show.number}">{show.title}</h3>
 
 			{#if display === 'highlight'}
 				<p>
@@ -48,10 +48,6 @@
 </article>
 
 <style lang="postcss">
-	h4 {
-		view-transition-name: var(--transition-name);
-	}
-
 	article {
 		container: show-card / inline-size;
 		display: grid;
@@ -95,7 +91,7 @@
 			border-top: solid 1px var(--line);
 			padding: 20px 0;
 
-			& h4 {
+			& h3 {
 				font-size: var(--font-size-base);
 			}
 			& .buttons {
@@ -104,7 +100,7 @@
 		}
 	}
 
-	h4 {
+	h3 {
 		view-transition-name: var(--transition-name);
 		line-height: 1.7;
 		margin: 0;
@@ -115,7 +111,7 @@
 
 	@container show-card (width > 600px) {
 		.highlight {
-			& h4 {
+			& h3 {
 				font-size: var(--font-size-xl);
 			}
 		}
