@@ -64,6 +64,7 @@
 		"@leveluptuts/svelte-side-menu": "^1.0.5",
 		"@prisma/client": "^5.1.1",
 		"@sentry/sveltekit": "^7.62.0",
+		"@sindresorhus/slugify": "^2.2.1",
 		"@types/emscripten": "^1.39.7",
 		"core-js": "^3.32.1",
 		"date-fns": "^2.30.0",

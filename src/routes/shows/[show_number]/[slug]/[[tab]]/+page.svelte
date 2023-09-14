@@ -12,6 +12,7 @@
 	async function handleClick(e: Event) {
 		const { target } = e;
 		if (target instanceof HTMLAnchorElement && target.matches(`a[href*='#t=']`)) {
+			console.log('click');
 			e.preventDefault();
 			const { href } = target;
 			player.update_time(href, show);
@@ -60,7 +61,7 @@
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-static-element-interactions -->
-<section class="layout full" on:click|preventDefault={handleClick}>
+<section class="layout full" on:click={handleClick}>
 	{#if $page.params.tab === 'transcript'}
 		<Transcript aiShowNote={show.aiShowNote} transcript={show.transcript} />
 	{:else}

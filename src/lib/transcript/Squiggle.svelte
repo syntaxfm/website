@@ -27,7 +27,7 @@
 		--x: calc(25% + 3.5px);
 		--y: 0;
 		translate: var(--x) var(--y);
-		stroke: var(--purple);
+		stroke: var(--highlight);
 		width: 26px;
 		&.top {
 			top: 0;
