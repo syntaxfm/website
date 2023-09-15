@@ -2,8 +2,6 @@
 	import { AINoteWithFriends, TranscriptWithUtterances } from '$server/ai/queries';
 	import { SlimUtterance, getSlimUtterances } from '$server/transcripts/utils';
 	import format_time, { tsToS } from '$utilities/format_time';
-	import { Prisma } from '@prisma/client';
-	import { time } from 'console';
 	import 'core-js/full/map/group-by';
 	import slugify from '@sindresorhus/slugify';
 	export let transcript: TranscriptWithUtterances;
@@ -74,8 +72,6 @@
 		}
 	};
 	$: placeTopic = function (summary: TopicSummary, utterances: SlimUtterance[]) {
-		console.log('Running Place Topic');
-		const summaryTimestamp = tsToS(summary.time);
 		const summaryEnd = utterances.at(-1)?.end || Infinity;
 		if (currentTopic?.id === summary.id) {
 			return 'current';
@@ -86,16 +82,6 @@
 		}
 	};
 </script>
-
-<p><mark>{highlight_words}</mark></p>
-<h2>{$player.current_show?.title}</h2>
-<h2>{$player.currentTime}</h2>
-<p>{words[currentWordIndex]?.word}</p>
-<p>{currentUtterance?.transcript}</p>
-<p>{currentUtterance?.utteranceIndex}</p>
-
-<p>Current Topic:</p>
-<p>{currentTopic?.text}</p>
 
 <TableOfContents {aiShowNote} />
 
@@ -115,9 +101,6 @@
 					<Squiggle />
 				</div>
 				<div>
-					{placeTopic(summary, utterances)}
-					<br />
-					{currentTopic?.text}
 					<h4>{summary.text || 'Transcript'}</h4>
 				</div>
 			</header>
@@ -133,8 +116,9 @@
 					>
 						<div class="gutter">
 							<div>
-								{labelUtterance(utterance)}
-								<button on:click={() => ($player.currentTime = utterance.start)}
+								<button
+									class="button-nunya"
+									on:click={() => ($player.currentTime = utterance.start)}
 									>{format_time(utterance.start)}</button
 								>
 								<p class="speaker">
@@ -255,9 +239,6 @@
 		align-self: start;
 		text-align: right;
 		transform: translateX(-10px);
-		& + * {
-			/* border-left: var(--gutter-border-size) solid var(--bg-1); */
-		}
 		p {
 			margin: 0;
 		}
