@@ -1,7 +1,4 @@
 <script lang="ts">
-	import CD from './CD.svelte';
-	import Album from './Album.svelte';
-
 	export let audio: HTMLAudioElement;
 
 	const audioCtx = new (window.AudioContext || window?.webkitAudioContext)();
@@ -28,7 +25,6 @@
 	let then = Date.now();
 	let interval = 1000 / fps;
 	let delta;
-	let image_index = 0;
 
 	function animate() {
 		now = Date.now();
@@ -77,14 +73,6 @@
 	{/each}
 </div>
 
-<div class="art-wrapper" on:click={() => (image_index = image_index ? 0 : 1)}>
-	{#if image_index === 0}
-		<Album />
-	{:else}
-		<CD spinning={isAnimating} />
-	{/if}
-</div>
-
 <style>
 	.visualizer {
 		gap: 5px;
@@ -94,16 +82,6 @@
 		display: none;
 		@media (--above_med) {
 			display: flex;
-		}
-	}
-
-	.art-wrapper {
-		right: 45px;
-		top: 50px;
-		position: absolute;
-		display: none;
-		@media (--above_med) {
-			display: block;
 		}
 	}
 </style>

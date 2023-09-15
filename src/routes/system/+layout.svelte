@@ -4,6 +4,7 @@
 		<li><a href="/system/layout">Layout</a></li>
 		<li><a href="/system/typography">Typography</a></li>
 		<li><a href="/system/components">Components</a></li>
+		<li><a href="/system/theme">Theme</a></li>
 	</ul>
 </nav>
 <slot />

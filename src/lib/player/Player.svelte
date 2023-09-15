@@ -3,6 +3,7 @@
 	import { player } from '$state/player';
 	import { fly, slide } from 'svelte/transition';
 	import Visualizer from './Visualizer.svelte';
+	import AlbumArt from './AlbumArt.svelte';
 	// import Bookmarks from './Bookmarks.svelte';
 
 	// let time_stamps: Timestamp[] = [];
@@ -74,19 +75,14 @@
 
 		{#if $player.status === 'EXPANDED'}
 			<div transition:slide>
-				<!-- TODO -->
-				<h2>
-					Hi This is the expanded player. would be a good place for things like a time stamped
-					transcript.
-				</h2>
+				{#if $player.audio && $player.status === 'EXPANDED'}
+					<Visualizer audio={$player.audio} />
+				{/if}
 			</div>
 		{/if}
 
-		{#if $player.audio}
-			<Visualizer audio={$player.audio} />
-		{/if}
-
 		<div class="player-container">
+			<AlbumArt />
 			<media-controller
 				audio
 				style="--media-range-track-height: 20px; --media-range-thumb-height: 20px; --media-range-thumb-border-radius: 0;	--media-range-bar-color: var(--primary);--media-background-color: transparent; --media-control-background: transparent; width: 100%; --media-font-family: var(--body-font-family); --media-control-hover-background: transparent; "
@@ -198,7 +194,7 @@
 		rotate: 180deg;
 	}
 
-	:global(.player) {
+	.player {
 		--player-bg: var(--blackish);
 		container: player / inline-size;
 		padding: 0 0 20px;
@@ -218,6 +214,8 @@
 	.player-container {
 		padding: 20px;
 		width: 100%;
+		display: flex;
+		gap: 20px;
 	}
 
 	.media-range-bookmarks {
