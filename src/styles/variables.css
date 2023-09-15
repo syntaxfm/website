@@ -146,5 +146,11 @@
 	--success: var(--green);
 	--zebra: oklch(var(--blacklch) / 0.05);
 	--line: var(--black-2);
-	--border: solid 4px var(--fg-sheet);
+
+  /* Borders */
+  --brad: 5px;
+  --border-size: 1.5px;
+	--border: solid var(--border-size) var(--fg-sheet);
 }
+
+

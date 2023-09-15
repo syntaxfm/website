@@ -2,6 +2,7 @@
 	import { PODCAST_LINKS } from '$const';
 </script>
 
+<p>You should Subscribe!</p>
 <div>
 	{#each PODCAST_LINKS as { text, href }}
 		<a {href} class="button subscribe subscribe--{text.toLowerCase().replaceAll(' ', '-')}"
@@ -76,5 +77,8 @@
 	}
 	.subscribe--google-podcasts::before {
 		background-image: url('/icons/google_podcasts.svg');
+	}
+	a {
+		font-size: var(--font-size-xs);
 	}
 </style>

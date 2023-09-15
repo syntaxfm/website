@@ -11,6 +11,10 @@ export const PODCAST_LINKS = [
 		href: 'https://feed.syntax.fm/rss',
 		text: 'RSS'
 	},
+  {
+		href: 'https://open.spotify.com/show/4kYCRYJ3yK5DQbP5tbfZby?si=bOe7-kl6RnOHapMsVnFWgw',
+		text: 'Spotify'
+	},
 	{
 		href: 'https://itunes.apple.com/ca/podcast/syntax-tasty-web-development-treats/id1253186678?mt=2',
 		text: 'iTunes'
@@ -19,18 +23,14 @@ export const PODCAST_LINKS = [
 		href: 'https://overcast.fm/itunes1253186678/syntax-tasty-web-development-treats',
 		text: 'Overcast'
 	},
+  {
+		href: 'https://pca.st/fmx9',
+		text: 'PocketCasts'
+	},
 	{
 		href: 'https://www.google.com/podcasts?feed=aHR0cHM6Ly9mZWVkLnN5bnRheC5mbS9yc3M%3D',
 		text: 'Google Podcasts'
 	},
-	{
-		href: 'https://open.spotify.com/show/4kYCRYJ3yK5DQbP5tbfZby?si=bOe7-kl6RnOHapMsVnFWgw',
-		text: 'Spotify'
-	},
-	{
-		href: 'https://pca.st/fmx9',
-		text: 'PocketCasts'
-	}
 ];
 
 export interface GithubUser {

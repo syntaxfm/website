@@ -17,4 +17,10 @@
   .text-xl { font-size: font-size-xl; }
   .text-xxl { font-size: font-size-xxl; }
   .text-xxxl { font-size: font-size-xxxl; }
+  .text-left	{ text-align: left; }
+  .text-center	{ text-align: center; }
+  .text-right	{ text-align: right; }
+  .text-justify	{ text-align: justify; }
+  .text-start	{ text-align: start; }
+  .text-end	{ text-align: end; }
 }
