@@ -98,7 +98,10 @@
 	h5,
 	h6 {
 		font-family: 'MDIO';
-		font-weight: 900;
+		font-weight: 700;
+    letter-spacing: -0.04em;
+    /* line-height: auto; */
+    margin-block: 0.2em;
 	}
 
 	h1,
@@ -108,18 +111,17 @@
 	h2,
 	.h2 {
 		font-size: var(--font-size-xxl);
-		font-weight: 700;
+		/* font-weight: 700; */
 	}
 	h3,
 	.h3 {
 		font-size: var(--font-size-xl);
-		font-weight: 700;
+		/* font-weight: 700; */
 	}
 	h4,
 	.h4 {
 		font-size: var(--font-size-lg);
-		font-weight: 400;
-		font-style: italic;
+		/* font-weight: 400; */
 	}
 	h5,
 	.h5 {

@@ -3,11 +3,18 @@
 		max-width: 900px;
 		width: 100%;
 	}
-
 	.small {
 		font-size: var(--font-size-sm);
 	}
 	.center {
 		margin: 0 auto;
 	}
+  .text-xs { font-size: font-size-xs; }
+  .text-sm { font-size: font-size-sm; }
+  .text-base { font-size: font-size-base; }
+  .text-md { font-size: font-size-md; }
+  .text-lg { font-size: font-size-lg; }
+  .text-xl { font-size: font-size-xl; }
+  .text-xxl { font-size: font-size-xxl; }
+  .text-xxxl { font-size: font-size-xxxl; }
 }

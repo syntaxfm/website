@@ -8,6 +8,7 @@ export default defineConfig({
 		include: ['src/**/*.{test,spec}.{js,ts}']
 	},
 	css: {
+    devSourcemap: true,
 		preprocessorOptions: {
 			postcss: {
 				additionalData: `

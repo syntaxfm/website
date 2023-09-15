@@ -98,7 +98,7 @@
 	--purple-10: oklch(10% 0.076 var(--purple-hue));
 	--purple: var(--purple-7);
 
-	/* Typeography */
+	/* Typography */
 	--body-font-family: 'MDIO';
 	--heading-font-family: 'MDIO';
 
