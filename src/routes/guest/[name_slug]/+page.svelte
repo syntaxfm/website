@@ -12,7 +12,7 @@
 		<div>
 			<h1>{guest.name}</h1>
 			<div class="guest_socials">
-				<HostSocialLink link={`https://twitter.com/${guest.twitter}`} />
+				<HostSocialLink link={`https://x.com/${guest.twitter}`} />
 			</div>
 		</div>
 	</header>

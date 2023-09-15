@@ -1,4 +1,5 @@
 <section class="layout full">
+	<h3>.layout</h3>
 	<div class="l-margin col">Left Margin</div>
 	<div class="main col">Main</div>
 	<div class="sidebar col">Sidebar</div>
@@ -9,9 +10,22 @@
 	<div class="full col">Full</div>
 </section>
 
+<section class="layout full">
+	<h3>.grid</h3>
+	<section class="grid">
+		<div class="col" />
+		<div class="col" />
+		<div class="col" />
+		<div class="col" />
+		<div class="col" />
+		<div class="col" />
+	</section>
+</section>
+
 <style>
 	.layout {
 		gap: 48px;
+		margin-bottom: 2rem;
 	}
 
 	.col {

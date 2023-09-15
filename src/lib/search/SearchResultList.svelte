@@ -53,7 +53,7 @@
 				<strong>{@html excerpt(result.breadcrumbs[result.breadcrumbs.length - 1], query)}</strong>
 
 				{#if result.node?.content}
-					<span>{@html excerpt(result.node.content, query)}</span>
+					<span class="small">{@html excerpt(result.node.content, query)}</span>
 				{/if}
 			</a>
 			{#if recent_searches}
@@ -77,16 +77,20 @@
 	.remove-from-recent {
 		color: var(--warning);
 		position: absolute;
-		right: 10px;
+		right: -10px;
 		top: 50%;
 		transform: translateY(-50%);
 	}
 
 	.play-button {
-		position: absolute;
-		left: 10px;
-		top: 50%;
-		transform: translateY(-50%);
+		background: transparent;
+		color: var(--fg);
+		padding: 5px;
+		box-shadow: none;
+		--icon_size: 22px;
+		&:hover {
+			color: var(--accent);
+		}
 	}
 
 	ul {
@@ -98,7 +102,10 @@
 	li {
 		list-style: none;
 		position: relative;
-
+		padding: 0 10px;
+		display: flex;
+		align-items: center;
+		overflow: hidden;
 		margin-bottom: 0;
 	}
 
@@ -111,11 +118,11 @@
 		text-decoration: none;
 		line-height: 1;
 		padding: 1rem;
-		padding-left: 60px;
+		overflow: hidden;
 	}
 
-	a:hover {
-		background: rgba(255, 255, 255, 1);
+	li:hover {
+		background: var(--zebra);
 	}
 
 	a strong,
@@ -132,20 +139,19 @@
 	}
 
 	a span {
-		font-size: var(--font-size-sm);
 		color: #737373;
 		margin: 0.4rem 0 0 0;
 	}
 
 	a :global(mark) {
-		--highlight-color: rgba(255, 255, 0, 0.2);
+		--highlight-color: var(--primary);
+		--sk-text-1: var(--black);
 	}
 
 	a span :global(mark) {
 		background: none;
 		color: var(--sk-text-1);
 		background: var(--highlight-color);
-		outline: 2px solid var(--highlight-color);
 		border-top: 2px solid var(--highlight-color);
 		/* mix-blend-mode: darken; */
 	}
@@ -168,7 +174,6 @@
 	a strong :global(mark) {
 		color: var(--sk-text-1);
 		background: var(--highlight-color);
-		outline: 2px solid var(--highlight-color);
 		/* border-top: 2px solid var(--highlight-color); */
 		border-radius: 1px;
 	}

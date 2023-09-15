@@ -8,11 +8,11 @@
 	};
 </script>
 
-<a href={`https://twitter.com/${host.twitter}`} target="_blank" class="social-icon">
-	<Icon name="twitter" />
+<a href={`https://x.com/${host.twitter}`} target="_blank" rel="noopener" class="social-icon">
+	<Icon name="x" title={`${host.name} on X`} />
 </a>
-<a href={`https://github.com/${host.github}`} target="_blank" class="social-icon">
-	<Icon name="github" />
+<a href={`https://github.com/${host.github}`} target="_blank" rel="noopener" class="social-icon">
+	<Icon name="github" title={`${host.name} on GitHub`} />
 </a>
 
 <style lang="postcss">
@@ -21,7 +21,7 @@
 	}
 
 	a {
-		color: var(--color);
+		color: var(--fg);
 		&:hover {
 			color: var(--accent);
 		}

@@ -3,8 +3,13 @@
 	import PodcastLinks from './PodcastLinks.svelte';
 </script>
 
-<section style:--bg="var(--black)" style:--color="var(--white)" class="zone full layout">
-	<h3>A Tasty Treats Podcast for Web Developers</h3>
+<section
+	aria-label="Podcast Information Section"
+	style:--bg="var(--black)"
+	style:--fg="var(--white)"
+	class="zone full layout"
+>
+	<h1 class="h2">A Tasty Treats Podcast for Web Developers</h1>
 	<HostsAndGuests />
 	<PodcastLinks />
 </section>

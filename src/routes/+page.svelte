@@ -16,16 +16,18 @@
 
 <PodcastHero />
 
-<h4>Latest Episodes</h4>
-<div class="grid">
-	{#if latest_show}
-		<ShowCard display="highlight" show={latest_show} />
-	{/if}
-	{#each last_ten as latest_ep}
-		<ShowCard show={latest_ep} />
-	{/each}
-</div>
+<section aria-label="Latest podcast episodes">
+	<h2 class="h3">Latest Episodes</h2>
+	<div class="grid" style:margin-bottom="2rem">
+		{#if latest_show}
+			<ShowCard display="highlight" show={latest_show} />
+		{/if}
+		{#each last_ten as latest_ep}
+			<ShowCard show={latest_ep} />
+		{/each}
+	</div>
+</section>
 
-<div class="zone layout full" style:--bg="var(--black)" style:--color="var(--white)">
+<div class="zone layout full" style:--bg="var(--black)" style:--fg="var(--white)">
 	<NewsletterForm />
 </div>

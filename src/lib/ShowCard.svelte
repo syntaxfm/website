@@ -2,18 +2,20 @@
 	import white_grit from '$assets/whitegrit.png';
 	import { player } from '$state/player';
 	import { format_show_type } from '$utilities/format_show_type';
-	import type { Show } from '@prisma/client';
 	import Icon from './Icon.svelte';
 	import { format } from 'date-fns';
+	import type { Show } from '@prisma/client';
 
 	export let show: Show;
 	export let display: 'list' | 'card' | 'highlight' = 'card';
+
+	export let heading = 'h3';
 </script>
 
 <article
 	class={display}
 	style={display === 'highlight'
-		? `--bg: var(--black); background-image:linear-gradient(to top, #00000000, var(--bg)), url(${white_grit})`
+		? `background-image:linear-gradient(to top, #00000000, var(--bg)), url(${white_grit})`
 		: '--bg=var(--bg-sheet)'}
 >
 	<a href={`/shows/${show.number}/${show.slug}`}>
@@ -22,11 +24,15 @@
 				<Icon name="play" />
 			</button>
 		{/if}
+
 		<div class="details">
 			<p class="date" style:--transition-name="show-date-{show.number}">
 				{format_show_type(show.date)} - {format(new Date(show.date), 'MMMM do, yyyy')}
 			</p>
-			<h4 style:--transition-name="show-title-{show.number}">{show.title}</h4>
+
+			<svelte:element this={heading} class="h3" style:--transition-name="show-title-{show.number}">
+				{show.title}
+			</svelte:element>
 
 			{#if display === 'highlight'}
 				<p>
@@ -48,10 +54,6 @@
 </article>
 
 <style lang="postcss">
-	h4 {
-		view-transition-name: var(--transition-name);
-	}
-
 	article {
 		container: show-card / inline-size;
 		display: grid;
@@ -59,7 +61,7 @@
 		background-color: var(--bg);
 
 		& a {
-			color: var(--color);
+			color: var(--fg);
 			display: block;
 			display: flex;
 			gap: 20px;
@@ -85,8 +87,8 @@
 		}
 
 		&.highlight {
-			--color: var(--bg-sheet);
-			--bg: var(--color-sheet);
+			--bg: var(--bg-root);
+			--fg: var(--fg-root);
 			border: none;
 			grid-column: 1 / -1;
 		}
@@ -95,7 +97,7 @@
 			border-top: solid 1px var(--line);
 			padding: 20px 0;
 
-			& h4 {
+			& .h3 {
 				font-size: var(--font-size-base);
 			}
 			& .buttons {
@@ -104,7 +106,7 @@
 		}
 	}
 
-	h4 {
+	.h3 {
 		view-transition-name: var(--transition-name);
 		line-height: 1.7;
 		margin: 0;
@@ -115,7 +117,7 @@
 
 	@container show-card (width > 600px) {
 		.highlight {
-			& h4 {
+			& .h3 {
 				font-size: var(--font-size-xl);
 			}
 		}

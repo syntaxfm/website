@@ -8,7 +8,7 @@
 	}
 
 	*,
-	*::before,
+	*::before-,
 	*::after {
 		box-sizing: inherit;
 	}
@@ -28,64 +28,64 @@
 	}
 
 	@font-face {
-		font-family: 'MDIO0.6';
+		font-family: 'MDIO';
 		src:
-			url('/fonts/MDIO0.6-Regular.woff2') format('woff2'),
-			url('/fonts/MDIO0.6-Regular.woff') format('woff');
+			url('/fonts/MDIO-Regular.woff2') format('woff2'),
+			url('/fonts/MDIO-Regular.woff') format('woff');
 		font-weight: normal;
 		font-style: normal;
 	}
 
 	@font-face {
-		font-family: 'MDIO0.6';
+		font-family: 'MDIO';
 		src:
-			url('/fonts/MDIO0.6-Black.woff2') format('woff2'),
-			url('/fonts/MDIO0.6-Black.woff') format('woff');
+			url('/fonts/MDIO-Black.woff2') format('woff2'),
+			url('/fonts/MDIO-Black.woff') format('woff');
 		font-weight: 900; /* Black */
 		font-style: normal;
 	}
 
 	@font-face {
-		font-family: 'MDIO0.6';
+		font-family: 'MDIO';
 		src:
-			url('/fonts/MDIO0.6-Bold.woff2') format('woff2'),
-			url('/fonts/MDIO0.6-Bold.woff') format('woff');
+			url('/fonts/MDIO-Bold.woff2') format('woff2'),
+			url('/fonts/MDIO-Bold.woff') format('woff');
 		font-weight: bold;
 		font-style: normal;
 	}
 
 	@font-face {
-		font-family: 'MDIO0.6';
+		font-family: 'MDIO';
 		src:
-			url('/fonts/MDIO0.6-BoldItalic.woff2') format('woff2'),
-			url('/fonts/MDIO0.6-BoldItalic.woff') format('woff');
+			url('/fonts/MDIO-BoldItalic.woff2') format('woff2'),
+			url('/fonts/MDIO-BoldItalic.woff') format('woff');
 		font-weight: bold;
 		font-style: italic;
 	}
 
 	@font-face {
-		font-family: 'MDIO0.6';
+		font-family: 'MDIO';
 		src:
-			url('/fonts/MDIO0.6-BlackItalic.woff2') format('woff2'),
-			url('/fonts/MDIO0.6-BlackItalic.woff') format('woff');
+			url('/fonts/MDIO-BlackItalic.woff2') format('woff2'),
+			url('/fonts/MDIO-BlackItalic.woff') format('woff');
 		font-weight: 900; /* Black */
 		font-style: italic;
 	}
 
 	@font-face {
-		font-family: 'MDIO0.6';
+		font-family: 'MDIO';
 		src:
-			url('/fonts/MDIO0.6-Medium.woff2') format('woff2'),
-			url('/fonts/MDIO0.6-Medium.woff') format('woff');
+			url('/fonts/MDIO-Medium.woff2') format('woff2'),
+			url('/fonts/MDIO-Medium.woff') format('woff');
 		font-weight: 500; /* Medium */
 		font-style: normal;
 	}
 
 	@font-face {
-		font-family: 'MDIO0.6';
+		font-family: 'MDIO';
 		src:
-			url('/fonts/MDIO0.6-MediumItalic.woff2') format('woff2'),
-			url('/fonts/MDIO0.6-MediumItalic.woff') format('woff');
+			url('/fonts/MDIO-MediumItalic.woff2') format('woff2'),
+			url('/fonts/MDIO-MediumItalic.woff') format('woff');
 		font-weight: 500; /* Medium */
 		font-style: italic;
 	}
@@ -97,30 +97,36 @@
 	h4,
 	h5,
 	h6 {
-		font-family: 'MDIO0.6';
+		font-family: 'MDIO';
 		font-weight: 900;
 	}
 
-	h1 {
+	h1,
+	.h1 {
 		font-size: var(--font-size-xxxl);
 	}
-	h2 {
+	h2,
+	.h2 {
 		font-size: var(--font-size-xxl);
 		font-weight: 700;
 	}
-	h3 {
+	h3,
+	.h3 {
 		font-size: var(--font-size-xl);
 		font-weight: 700;
 	}
-	h4 {
+	h4,
+	.h4 {
 		font-size: var(--font-size-lg);
 		font-weight: 400;
 		font-style: italic;
 	}
-	h5 {
+	h5,
+	.h5 {
 		font-size: var(--font-size-md);
 	}
 
+	.h6,
 	h6,
 	p,
 	li {
@@ -128,7 +134,7 @@
 	}
 
 	html {
-		font-family: 'MDIO0.6';
+		font-family: 'MDIO';
 	}
 
 	body {
@@ -140,6 +146,10 @@
 	a,
 	.a {
 		text-decoration: none;
+	}
+
+	a:hover {
+		cursor: pointer;
 	}
 
 	:is(p, li) a,

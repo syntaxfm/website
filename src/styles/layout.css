@@ -2,11 +2,17 @@
 	.layout {
 		column-gap: 10px;
 		display: grid;
-		grid-template-columns:
-			[start l-margin] 10px [l-margin content main] minmax(0, 812px) [main sidebar] minmax(0, 322px)
-			[sidebar content-end r-margin] 10px [r-margin end];
 
-		@media (min-width: 1280px) {
+		@media (--above_med) {
+			grid-template-columns:
+				[start l-margin] 10px [l-margin content main] minmax(0, 812px) [main sidebar] minmax(
+					0,
+					322px
+				)
+				[sidebar content-end r-margin] 10px [r-margin end];
+		}
+
+		@media (--above_xlarge) {
 			column-gap: 48px;
 			display: grid;
 			grid-template-columns:
@@ -20,7 +26,7 @@
 		/* 322 */
 
 		> * {
-			grid-column: content / content-end;
+			grid-column: content / content;
 		}
 
 		.full {
@@ -59,15 +65,24 @@
 	}
 
 	.zone {
-		color: var(--color);
+		color: var(--fg);
 		background: var(--bg);
+		border-radius: var(--radius, 0);
 	}
+
+	.sticky {
+		position: sticky;
+		top: 0;
+	}
+
+	.flex {
+		display: flex;
+	}
+
+	/* END @layer layout */
 }
 
-.sticky {
-	position: sticky;
-	top: 0;
-}
+/* Debug -> Ignore */
 
 .debug :is(.layout, .grid) {
 	outline: solid 1px red;

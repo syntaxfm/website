@@ -1,62 +1,62 @@
 <script lang="ts">
 	import Icon from '$lib/Icon.svelte';
-	import { player, type Timestamp } from '$state/player';
+	import { player } from '$state/player';
 	import { fly, slide } from 'svelte/transition';
 	import Visualizer from './Visualizer.svelte';
-	import Bookmarks from './Bookmarks.svelte';
+	// import Bookmarks from './Bookmarks.svelte';
 
-	let time_stamps: Timestamp[] = [];
+	// let time_stamps: Timestamp[] = [];
 
-	function extractTimestamps(html: string, totalTime: number): Timestamp[] {
-		const parser = new DOMParser();
-		const doc = parser.parseFromString(html, 'text/html');
-		const timestampElements = doc.querySelectorAll('a[href*="#t="]');
-		const timestamps: Timestamp[] = [];
+	// function extractTimestamps(html: string, totalTime: number): Timestamp[] {
+	// 	const parser = new DOMParser();
+	// 	const doc = parser.parseFromString(html, 'text/html');
+	// 	const timestampElements = doc.querySelectorAll('a[href*="#t="]');
+	// 	const timestamps: Timestamp[] = [];
 
-		let previousTimeStamp = 0;
-		let previousDuration = 0;
-		let previousPercentage = 0;
-		let previousStartingPosition = 0;
+	// 	let previousTimeStamp = 0;
+	// 	let previousDuration = 0;
+	// 	let previousPercentage = 0;
+	// 	let previousStartingPosition = 0;
 
-		timestampElements.forEach((element, index) => {
-			const href = element.getAttribute('href');
-			const timeString = href?.split('#t=')[1];
-			const liElement = element.closest('li');
-			const label = liElement?.textContent?.trim() || '';
-			const time_stamp = timeString ? timeStringToSeconds(timeString) : 0;
-			const duration = index === 0 ? time_stamp : time_stamp - previousTimeStamp;
-			const percentage = (duration / totalTime) * 100;
-			const startingPosition = previousPercentage + previousStartingPosition;
+	// 	timestampElements.forEach((element, index) => {
+	// 		const href = element.getAttribute('href');
+	// 		const timeString = href?.split('#t=')[1];
+	// 		const liElement = element.closest('li');
+	// 		const label = liElement?.textContent?.trim() || '';
+	// 		const time_stamp = timeString ? timeStringToSeconds(timeString) : 0;
+	// 		const duration = index === 0 ? time_stamp : time_stamp - previousTimeStamp;
+	// 		const percentage = (duration / totalTime) * 100;
+	// 		const startingPosition = previousPercentage + previousStartingPosition;
 
-			timestamps.push({ label, time_stamp, duration, percentage, startingPosition, href });
+	// 		timestamps.push({ label, time_stamp, duration, percentage, startingPosition, href });
 
-			previousTimeStamp = time_stamp;
-			previousDuration = duration;
-			previousPercentage = percentage;
-			previousStartingPosition = startingPosition;
-		});
+	// 		previousTimeStamp = time_stamp;
+	// 		previousDuration = duration;
+	// 		previousPercentage = percentage;
+	// 		previousStartingPosition = startingPosition;
+	// 	});
 
-		// Calculate the remaining percentage for the last timestamp
-		const lastTimestamp = timestamps[timestamps.length - 1];
-		lastTimestamp.percentage = 100 - lastTimestamp.startingPosition;
+	// 	// Calculate the remaining percentage for the last timestamp
+	// 	const lastTimestamp = timestamps[timestamps.length - 1];
+	// 	lastTimestamp.percentage = 100 - lastTimestamp.startingPosition;
 
-		return timestamps;
-	}
+	// 	return timestamps;
+	// }
 
-	function timeStringToSeconds(timeString: string): number {
-		const [minutes, seconds] = timeString.split(':').map(Number);
-		return minutes * 60 + seconds;
-	}
+	// function timeStringToSeconds(timeString: string): number {
+	// 	const [minutes, seconds] = timeString.split(':').map(Number);
+	// 	return minutes * 60 + seconds;
+	// }
 
-	$: if ($player.audio && $player?.current_show?.show_notes) {
-		$player.audio.onloadedmetadata = function () {
-			const extractedTimestamps = extractTimestamps(
-				$player.current_show.show_notes,
-				$player.audio.duration
-			);
-			time_stamps = extractedTimestamps;
-		};
-	}
+	// $: if ($player.audio && $player?.current_show?.show_notes) {
+	// 	$player.audio.onloadedmetadata = function () {
+	// 		const extractedTimestamps = extractTimestamps(
+	// 			$player.current_show.show_notes,
+	// 			$player.audio.duration
+	// 		);
+	// 		time_stamps = extractedTimestamps;
+	// 	};
+	// }
 
 	$: if ($player.audio) {
 		$player.audio.crossOrigin = 'anonymous';
@@ -107,9 +107,9 @@
 					<div class="media-range">
 						<media-time-display />
 						<div class="media-range-bookmarks">
-							{#if time_stamps}
+							<!-- {#if time_stamps}
 								<Bookmarks {time_stamps} />
-							{/if}
+							{/if} -->
 							<media-time-range />
 						</div>
 						<media-duration-display />
@@ -181,7 +181,7 @@
 
 	button {
 		--button-bg: transparent;
-		--button-color: var(--color);
+		--button-color: var(--fg);
 	}
 
 	p {
@@ -205,7 +205,7 @@
 		position: fixed;
 		bottom: 0;
 		width: 100vw;
-		color: var(--color);
+		color: var(--fg);
 		background-color: var(--player-bg, var(--blackish));
 		box-shadow: 0 0 10px 0 oklch(var(--blacklch) / 0.2);
 		display: flex;

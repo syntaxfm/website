@@ -48,7 +48,7 @@
 	}
 
 	:is(button, .button).play {
-		--button-bg: linear-gradient(to right, var(--green), var(--teal));
+		--button-bg: linear-gradient(to right, var(--success), var(--accent));
 		--button-color: var(--black-8);
 		font-size: var(--font-size-md);
 		padding: 10px 20px;
@@ -58,6 +58,22 @@
 		&:hover {
 			background-size: 200%;
 		}
+	}
+
+	:is(button, .button).close {
+		--button-bg: var(--red);
+		--button-color: var(--white);
+		--size: 30px;
+		font-size: var(--font-size-md);
+		width: var(--size);
+		height: var(--size);
+		padding: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: var(--size);
+		box-shadow: inset 0 0 0 3px oklch(var(--blacklch) / 0.2);
+		transition: background-size 1s ease-in-out;
 	}
 
 	button.button-reset {

@@ -5,7 +5,7 @@
 </script>
 
 <div class="guests-and-hosts">
-	<h5>Hosted By:</h5>
+	<p style="h5">Hosted By:</p>
 	<div class="featuring">
 		<Host
 			host={{
@@ -23,7 +23,7 @@
 		/>
 	</div>
 	{#if guests?.length > 0}
-		<h5>Featuring:</h5>
+		<p style="h5">Featuring:</p>
 		<div class="featuring">
 			{#each guests as { Guest }}
 				<Host
@@ -43,14 +43,13 @@
 <style lang="postcss">
 	.guests-and-hosts {
 		margin: 2rem 0;
-		grid-column: start/end;
 	}
 
 	h5 {
 		font-weight: 600;
 		font-style: italic;
 		opacity: 0.8;
-		margin: 3rem 0 1rem;
+		margin: 0 0 1rem;
 	}
 
 	.featuring {

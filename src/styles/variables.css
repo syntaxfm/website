@@ -102,8 +102,8 @@
 	--bg-2: var(--black-2);
 
 	/* Typeography */
-	--body-font-family: 'MDIO0.6';
-	--heading-font-family: 'MDIO0.6';
+	--body-font-family: 'MDIO';
+	--heading-font-family: 'MDIO';
 	--font-size-xs: clamp(0.6rem, 0.17vw + 0.76rem, 0.7rem);
 	--font-size-sm: clamp(0.8rem, 0.17vw + 0.76rem, 0.89rem);
 	--font-size-base: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
@@ -130,21 +130,22 @@
 	/* Light Theme as the default */
 	/* Backgrounds */
 
+	--bg: var(--black);
+	--bg-1: var(--black-1);
 	--bg-sheet: var(--white);
-	--bg: var(--blackish);
 
 	/* Foreground */
-	--color: var(--white);
-	--color-1: var(--black-8);
-	--color-2: var(--black-9);
-	--color-sheet: var(--black);
+	--fg: var(--white);
+	--fg-1: var(--black-8);
+	--fg-2: var(--black-9);
+	--fg-sheet: var(--black);
 
 	/* Interface Color */
 	--primary: var(--yellow);
 	--accent: var(--teal);
 	--warning: var(--red);
-	--success: var(--teal);
+	--success: var(--green);
 	--zebra: oklch(var(--blacklch) / 0.05);
 	--line: var(--black-2);
-	--border: solid 4px var(--color-sheet);
+	--border: solid 4px var(--fg-sheet);
 }

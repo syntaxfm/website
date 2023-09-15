@@ -19,7 +19,7 @@ export const GET = async ({ fetch, locals, params }) => {
 		}
 	});
 
-	const fontFile = await fetch('/fonts/MDIO0.6-Italic.woff');
+	const fontFile = await fetch('/fonts/MDIO-Italic.woff');
 	const fontData: ArrayBuffer = await fontFile.arrayBuffer();
 	const result = temp.render({
 		show
@@ -32,7 +32,7 @@ export const GET = async ({ fetch, locals, params }) => {
 	const svg = await satori(element, {
 		fonts: [
 			{
-				name: 'MDIO0.6',
+				name: 'MDIO',
 				data: Buffer.from(fontData),
 				style: 'normal'
 			}

@@ -1,10 +1,11 @@
 @layer utilities {
-	.small {
-		font-size: var(--font-size-sm);
-	}
 	.readable {
 		max-width: 900px;
 		width: 100%;
+	}
+
+	.small {
+		font-size: var(--font-size-sm);
 	}
 	.center {
 		margin: 0 auto;

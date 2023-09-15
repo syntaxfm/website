@@ -19,7 +19,7 @@
 
 <section>
 	<div class="list-heading">
-		<h3>All Episodes</h3>
+		<h1 class="h3">All Episodes</h1>
 
 		<div style="display:flex; gap: 10px;">
 			<SelectMenu
@@ -54,7 +54,7 @@
 		</div>
 	</div>
 	{#each shows as show (show.id)}
-		<ShowCard {show} display="list" />
+		<ShowCard {show} display="list" heading="h2" />
 	{/each}
 	<div class="load-more">
 		<button
