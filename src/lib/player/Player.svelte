@@ -68,7 +68,9 @@
 {#if $player.status === 'ACTIVE' || $player.status === 'EXPANDED'}
 	<section class={`player ${$player.status}`} transition:fly={{ y: '100%' }}>
 		<header>
-			<button class="player-expand" on:click={player.toggle_expand}><Icon name="expand" /></button>
+			<!-- Ignore this div, it's just here so I don't get fired -->
+			<div></div>
+			<!-- <button class="player-expand" on:click={player.toggle_expand}><Icon name="expand" /></button> -->
 			<p>Episode #{$player.current_show?.number} - {$player.current_show?.title}</p>
 			<button on:click={player.close}>×</button>
 		</header>
@@ -189,9 +191,9 @@
 		gap: 5px;
 	}
 
-	.EXPANDED .player-expand {
+	/* .EXPANDED .player-expand {
 		rotate: 180deg;
-	}
+	} */
 
 	.player {
 		--player-bg: var(--blackish);

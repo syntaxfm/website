@@ -14,9 +14,19 @@
 	$player?.audio?.addEventListener('play', function () {
 		isAnimating = true;
 	});
+
+	function keydown(event: KeyboardEvent) {
+		if (event.key === 'Enter' || event.keyCode === 13) {
+			toggle_sicman();
+		}
+	}
+
+	function toggle_sicman() {
+		return (image_index = image_index ? 0 : 1);
+	}
 </script>
 
-<div class="art-wrapper" on:click={() => (image_index = image_index ? 0 : 1)}>
+<div class="art-wrapper" on:click={toggle_sicman} tabindex="0" on:keydown={keydown} role="button">
 	{#if image_index === 0}
 		<Album />
 	{:else}
@@ -27,5 +37,8 @@
 <style>
 	.art-wrapper {
 		width: 92px;
+		height: 85px;
+		cursor: pointer;
+		flex-shrink: 0;
 	}
 </style>
