@@ -197,6 +197,7 @@
 		z-index: 9;
 		width: 70px;
 		height: auto;
+		left: 6px;
 	}
 
 	.spinning {

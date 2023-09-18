@@ -6,14 +6,18 @@
 	let isAnimating = true;
 	let image_index = 0;
 
-	$player?.audio?.addEventListener('pause', function () {
-		isAnimating = false;
-	});
+	$: if ($player?.audio) {
+		$player?.audio?.addEventListener('pause', function () {
+			isAnimating = false;
+			console.log('isAnimating', isAnimating);
+		});
 
-	// When audio is played, resume the animation
-	$player?.audio?.addEventListener('play', function () {
-		isAnimating = true;
-	});
+		// When audio is played, resume the animation
+		$player?.audio?.addEventListener('play', function () {
+			isAnimating = true;
+			console.log('isAnimating', isAnimating);
+		});
+	}
 
 	function keydown(event: KeyboardEvent) {
 		if (event.key === 'Enter' || event.keyCode === 13) {
@@ -34,11 +38,15 @@
 	{/if}
 </div>
 
-<style>
+<style lang="postcss">
 	.art-wrapper {
-		width: 92px;
+		width: 90px;
 		height: 85px;
 		cursor: pointer;
 		flex-shrink: 0;
+		display: none;
+		@media (--above_med) {
+			display: block;
+		}
 	}
 </style>
