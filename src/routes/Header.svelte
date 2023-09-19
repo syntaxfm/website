@@ -9,7 +9,7 @@
 		<div class="logo">
 			<a href="/">
 				<Logo />
-				<span>by Sentry</span>
+				<span>× Sentry</span>
 			</a>
 		</div>
 

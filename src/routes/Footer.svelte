@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { CURRENT_YEAR } from '$const';
 	import Icon from '$lib/Icon.svelte';
+	import Logo from '$lib/Logo.svelte';
+	import ProducedBySentry from '$lib/ProducedBySentry.svelte';
 </script>
 
 <footer class="layout zone" style:--bg="var(--black)" style:--fg="var(--white)">
@@ -33,15 +35,8 @@
 				>
 			</div>
 		</div>
-		<div class="readable">
-			<p>
-				Nearly 4M developers and 90K organizations rely on Sentry to see what actually matters,
-				solve what's urgent faster, and learn continuously about their code.
-			</p>
-			<a href="https://sentry.io/signup/?original_referrer=https://syntax.fm/" class="button ghost"
-				>Try Sentry for Free</a
-			>
-		</div>
+
+		<ProducedBySentry />
 
 		<div>
 			<p>©️ {CURRENT_YEAR} - Sentry.io</p>

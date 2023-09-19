@@ -2,7 +2,6 @@
 	import { PODCAST_LINKS } from '$const';
 </script>
 
-<p>You should Subscribe!</p>
 <div>
 	{#each PODCAST_LINKS as { text, href }}
 		<a {href} class="button subscribe subscribe--{text.toLowerCase().replaceAll(' ', '-')}"
@@ -10,6 +9,8 @@
 		>
 	{/each}
 </div>
+
+<p>social..</p>
 
 <style>
 	div {
