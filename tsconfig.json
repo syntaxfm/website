@@ -5,12 +5,13 @@
 		"checkJs": true,
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
+		"noErrorTruncation": true,
 		"resolveJsonModule": true,
 		"skipLibCheck": true,
 		"sourceMap": true,
 		"strict": true,
-    "importsNotUsedAsValues": "preserve",
-    "preserveValueImports" :false
+		"importsNotUsedAsValues": "preserve",
+		"preserveValueImports": false
 	}
 	// Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias
 	//

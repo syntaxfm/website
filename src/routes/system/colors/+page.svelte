@@ -35,6 +35,13 @@
 	{#each COLORS as color}
 		<div class="wrapper">
 			<div
+				tabindex="0"
+				role="button"
+				on:keydown={(e) => {
+					if (e.key === 'Enter' || e.keyCode === 13) {
+						copy_color(color);
+					}
+				}}
 				class="primary box"
 				on:click={() => copy_color(color)}
 				style={`--fg_demo_box_color: var(--${color})`}
@@ -43,6 +50,13 @@
 			</div>
 			{#each Array(10) as item, index}
 				<div
+					tabindex="0"
+					role="button"
+					on:keydown={(e) => {
+						if (e.key === 'Enter' || e.keyCode === 13) {
+							copy_color(color);
+						}
+					}}
 					on:click={() => copy_color(`${color}-${index + 1}`)}
 					class={`box`}
 					style={`--fg_demo_color: var(--${color}-${pick_color(

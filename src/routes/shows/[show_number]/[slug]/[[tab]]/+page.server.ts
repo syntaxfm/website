@@ -8,8 +8,9 @@ import highlight from 'rehype-highlight';
 import { cache } from '$lib/cache/cache';
 import type { Prisma, Show } from '@prisma/client';
 import { transcript_with_utterances } from '$server/ai/queries.js';
+import { PageServerLoad } from './$types';
 
-export const load = async function ({ setHeaders, params, locals }) {
+export const load: PageServerLoad = async function ({ setHeaders, params, locals }) {
 	const { show_number } = params;
 	const query = {
 		where: { number: parseInt(show_number) },
@@ -30,15 +31,15 @@ export const load = async function ({ setHeaders, params, locals }) {
 			}
 		}
 	};
-	type Show = Prisma.ShowGetPayload<typeof query>;
-	let show_raw: Show | null = null;
+	type ShowTemp = Prisma.ShowGetPayload<typeof query>;
+	let show_raw: ShowTemp | null = null;
 	const cache_key = `show:${show_number}`;
 
 	//Check cache first
 	const show_cached = await cache.get(cache_key);
 
 	if (show_cached && process.env.NODE_ENV === 'production') {
-		show_raw = show_cached as Show;
+		show_raw = show_cached;
 	} else {
 		show_raw = await locals.prisma.show.findFirst(query);
 		//Set cache after DB query
@@ -72,6 +73,6 @@ export const load = async function ({ setHeaders, params, locals }) {
 		show: {
 			...show_raw,
 			show_notes: with_h3_body
-		}
+		} as ShowTemp
 	};
 };
