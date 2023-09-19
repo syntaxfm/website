@@ -94,6 +94,7 @@
 					src={$player.current_show?.url}
 					bind:this={$player.audio}
 					preload="metadata"
+					bind:currentTime={$player.currentTime}
 				/>
 				<media-control-bar class="media-bar">
 					<div class="media-controls">

@@ -16,11 +16,13 @@ const new_player_state = () => {
 		current_show: null | Show;
 		playing: boolean;
 		audio?: HTMLAudioElement;
+		currentTime: number;
 	}>({
 		status: 'HIDDEN',
 		current_show: null,
 		playing: false,
-		audio: undefined
+		audio: undefined,
+		currentTime: 0
 	});
 
 	function play_show(show: Show) {

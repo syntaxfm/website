@@ -1,5 +1,5 @@
 <script lang="ts">
-	import HostsAndGuests from '../routes/shows/[show_number]/[slug]/HostsAndGuests.svelte';
+	import HostsAndGuests from '../routes/shows/[show_number]/[slug]/[[tab]]/HostsAndGuests.svelte';
 	import PodcastLinks from './PodcastLinks.svelte';
 </script>
 

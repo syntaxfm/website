@@ -63,6 +63,8 @@
 		"@ffmpeg.wasm/main": "^0.13.1",
 		"@heyputer/kv.js": "^0.1.5",
 		"@leveluptuts/svelte-side-menu": "^1.0.5",
+		"@sindresorhus/slugify": "^2.2.1",
+		"core-js": "^3.32.1",
 		"@prisma/client": "^5.3.1",
 		"@sentry/sveltekit": "^7.69.0",
 		"date-fns": "^2.30.0",

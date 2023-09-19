@@ -80,6 +80,13 @@
 		background: transparent;
 		box-shadow: none;
 	}
+	button.button-nunya {
+		background: none;
+		appearance: none;
+		box-shadow: none;
+		padding: 0;
+		color: inherit;
+	}
 
 	.play-button {
 		background: linear-gradient(to right, var(--black-2), var(--black-1));

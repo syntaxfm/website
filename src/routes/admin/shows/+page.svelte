@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+	import FormWithLoader from '$lib/FormWithLoader.svelte';
+	import FormButton from '$lib/FormWithLoader.svelte';
 	import { form_action } from '$lib/form_action';
 	import { format } from 'date-fns';
-
 	export let data;
 	$: ({ shows } = data);
 </script>
@@ -66,16 +67,19 @@
 						</form>
 					{/if}</td
 				>
-				<td class="center"
-					>{#if show.aiShowNote}
-						✅
-					{:else}
-						<form action="?/fetch_AI_notes" method="post" use:enhance={form_action()}>
+				<td class="center">
+					<FormWithLoader global={false} action="?/fetch_AI_notes" method="post" let:loading>
+						<fieldset disabled={loading}>
 							<input type="hidden" name="show_number" value={show.number} />
-							<button type="submit">Fetch</button>
-						</form>
-					{/if}</td
-				>
+							{#if show.aiShowNote}
+								✅
+								<button type="submit"> Refetch{loading ? 'ing' : ''}</button>
+							{:else}
+								<button type="submit">Fetch{loading ? 'ing' : ''}</button>
+							{/if}
+						</fieldset>
+					</FormWithLoader>
+				</td>
 			</tr>
 		{/each}
 	</tbody>
@@ -89,6 +93,11 @@
 		width: 125%;
 		left: -12.5%;
 		position: relative;
+	}
+	fieldset {
+		border: none;
+		margin: 0;
+		padding: 0;
 	}
 	th {
 		padding: 10px;
