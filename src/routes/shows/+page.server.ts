@@ -1,5 +1,6 @@
 import { cache } from '$lib/cache/cache';
-import { PageServerLoad } from '../$types';
+import type { PageServerLoad } from './$types';
+
 const epoch_day = new Date().getTime() / 86400;
 
 export const load: PageServerLoad = async function ({ locals, url, setHeaders }) {
