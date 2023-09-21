@@ -27,26 +27,13 @@ declare global {
 				country: string;
 			};
 			user: UserWithRoles | null;
-		}
-		interface HTMLAttributes {
-			popover?: boolean;
-		}
-
-		interface HTMLElement {
-			popover?: boolean;
+			active_theme_name: string;
 		}
 
 		// interface PageData {}
 		// interface Platform {}
 	}
 
-	interface HTMLAttributes {
-		popover?: boolean;
-	}
-
-	interface HTMLElement {
-		popover?: boolean;
-	}
 	interface Document {
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		startViewTransition: (callback: any) => void; // Add your custom property/method here
