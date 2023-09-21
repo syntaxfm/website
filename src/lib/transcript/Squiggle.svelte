@@ -20,7 +20,7 @@
 	/>
 </svg>
 
-<style>
+<style lang="postcss">
 	svg {
 		position: absolute;
 		top: 100%;

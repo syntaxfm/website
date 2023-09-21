@@ -21,7 +21,7 @@
 	</svg>
 </div>
 
-<style>
+<style lang="postcss">
 	.album {
 		background-color: var(--black);
 		padding: 5px;

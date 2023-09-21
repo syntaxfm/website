@@ -14,7 +14,7 @@
 	</div>
 {/if}
 
-<style>
+<style lang="postcss">
 	:global(.layout) > .l-margin-debug {
 		pointer-events: none;
 		grid-column: l-margin / l-margin-end !important;

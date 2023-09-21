@@ -10,7 +10,7 @@
 	{/each}
 </div>
 
-<style>
+<style lang="postcss">
 	div {
 		display: flex;
 		flex-wrap: wrap;

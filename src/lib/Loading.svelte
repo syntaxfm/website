@@ -23,7 +23,7 @@
 	</div>
 {/if}
 
-<style>
+<style lang="postcss">
 	.loader {
 		z-index: 10;
 		position: fixed;

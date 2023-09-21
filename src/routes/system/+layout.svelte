@@ -9,7 +9,7 @@
 </nav>
 <slot />
 
-<style>
+<style lang="postcss">
 	nav {
 		grid-row: span 5;
 	}

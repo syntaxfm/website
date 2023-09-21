@@ -73,7 +73,7 @@
 	{/each}
 </div>
 
-<style>
+<style lang="postcss">
 	.visualizer {
 		gap: 5px;
 		height: 60px;

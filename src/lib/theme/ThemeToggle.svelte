@@ -4,7 +4,7 @@
 
 <button on:click={theme_maker.open}>🎨</button>
 
-<style>
+<style lang="postcss">
 	button {
 		background: transparent;
 		border: var(--yellow) solid 1px;

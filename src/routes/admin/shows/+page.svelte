@@ -85,7 +85,7 @@
 	</tbody>
 </table>
 
-<style>
+<style lang="postcss">
 	table {
 		border: 1px solid black;
 		width: 100%;

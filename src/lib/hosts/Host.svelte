@@ -25,7 +25,7 @@
 	</figcaption>
 </figure>
 
-<style>
+<style lang="postcss">
 	figure {
 		display: grid;
 		gap: 20px;

@@ -139,7 +139,7 @@
 	{/each}
 </div>
 
-<style>
+<style lang="postcss">
 	.timeline {
 		--highlight: var(--bg-2);
 		--future: var(--bg-2);
@@ -266,8 +266,6 @@
 
 	.timeline {
 		--gutter-border-size: 5px;
-		section {
-		}
 	}
 	.speaker {
 		font-size: var(--font-size-sm);

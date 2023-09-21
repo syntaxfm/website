@@ -14,7 +14,7 @@
 	<PodcastLinks />
 </section>
 
-<style>
+<style lang="postcss">
 	.zone {
 		padding-bottom: 2rem;
 	}

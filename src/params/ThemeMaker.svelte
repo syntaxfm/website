@@ -64,7 +64,7 @@
 <!-- Themes should be only in json or in a users settings. -->
 <!-- Saved as a cookie -->
 
-<style>
+<style lang="postcss">
 	section {
 		position: fixed;
 		top: 0;

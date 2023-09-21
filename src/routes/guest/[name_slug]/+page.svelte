@@ -25,7 +25,7 @@
 	</section>
 {/if}
 
-<style>
+<style lang="postcss">
 	header {
 		display: grid;
 		grid-template-columns: auto 1fr;
