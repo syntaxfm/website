@@ -2,6 +2,7 @@
 	import { AINoteWithFriends, TranscriptWithUtterances } from '$server/ai/queries';
 	import { SlimUtterance, getSlimUtterances } from '$server/transcripts/utils';
 	import format_time, { tsToS } from '$utilities/format_time';
+
 	import 'core-js/full/map/group-by';
 	import slugify from '@sindresorhus/slugify';
 	export let transcript: TranscriptWithUtterances;
@@ -12,6 +13,7 @@
 	// group Utterances by their summary
 	const def = { time: '00:00', text: '' };
 	type TopicSummary = (typeof aiShowNote.summary)[0];
+
 	const utterances_by_summary: Map<TopicSummary, SlimUtterance[]> = Map.groupBy(
 		slim_transcript,
 		(utterance: SlimUtterance) => {

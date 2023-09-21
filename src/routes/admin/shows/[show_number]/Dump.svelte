@@ -64,8 +64,4 @@
 		padding: 10px;
 		min-width: 50px;
 	}
-
-	.center {
-		text-align: center;
-	}
 </style>

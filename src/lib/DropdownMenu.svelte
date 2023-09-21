@@ -3,8 +3,6 @@
 	// A popover based drop down menu. Less specific than the Select Menu
 	// This uses slots instead of props
 	import { anchor } from '$actions/anchor';
-	export let isOpen: boolean = false;
-
 	export let popover_id: string;
 </script>
 

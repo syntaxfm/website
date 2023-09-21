@@ -3,7 +3,7 @@
 	export let type: HTMLInputElement['type'] = 'text';
 	export let value: string = '';
 
-	function typeAction(node) {
+	function typeAction(node: HTMLInputElement) {
 		node.type = type;
 	}
 </script>

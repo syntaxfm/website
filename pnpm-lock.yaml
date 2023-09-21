@@ -105,6 +105,9 @@ devDependencies:
   '@sveltejs/kit':
     specifier: ^1.25.0
     version: 1.25.0(svelte@4.2.0)(vite@4.4.9)
+  '@types/core-js':
+    specifier: ^2.5.6
+    version: 2.5.6
   '@types/js-cookie':
     specifier: ^3.0.4
     version: 3.0.4
@@ -1401,6 +1404,10 @@ packages:
 
   /@types/cookie@0.5.2:
     resolution: {integrity: sha512-DBpRoJGKJZn7RY92dPrgoMew8xCWc2P71beqsjyhEI/Ds9mOyVmBwtekyfhpwFIVt1WrxTonFifiOZ62V8CnNA==}
+
+  /@types/core-js@2.5.6:
+    resolution: {integrity: sha512-zLzoC7avO4EYUUYCSzDaahSP1QJEpZQcPxqs91mPeFdh2NS4hQBcnRoEc9RuXfJ8cdN/KXUWukMmZGcKaWeOvw==}
+    dev: true
 
   /@types/debug@4.1.8:
     resolution: {integrity: sha512-/vPO1EPOs306Cvhwv7KfVfYvOJqA/S/AXjaHQiJboCZzcNDb+TIJFN9/2C9DZ//ijSKWioNyUxD792QmDJ+HKQ==}

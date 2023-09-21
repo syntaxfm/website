@@ -9,6 +9,7 @@
 	import { clickOutDialog } from '$actions/click_outside_dialog';
 	import type { Tree } from './types';
 
+	let search_input: HTMLInputElement;
 	let modal: HTMLDialogElement;
 	let search: {
 		results: Tree[];
@@ -23,6 +24,7 @@
 	const pending = new Set();
 
 	onMount(async () => {
+		search_input.focus();
 		worker = new SearchWorker();
 		worker.addEventListener('message', (event) => {
 			const { type, payload } = event.data;
@@ -84,9 +86,20 @@
 		modal.showModal();
 	}
 
-	function change_color(e) {
-		let computed = window.getComputedStyle(e.target).backgroundColor;
-		active_color = computed;
+	function change_color(e: MouseEvent) {
+		if (e.target) {
+			let computed = window.getComputedStyle(e.target).backgroundColor;
+			active_color = computed;
+		}
+	}
+
+	function search_keydown(e: KeyboardEvent) {
+		if (e.key === 'Enter' && !e.isComposing) {
+			const anchor: HTMLAnchorElement | null = modal.querySelector('a[data-has-node]');
+			if (anchor) {
+				anchor.click();
+			}
+		}
 	}
 </script>
 
@@ -121,12 +134,8 @@
 	<section aria-label="Search Results Window">
 		<header role="banner">
 			<input
-				autofocus
-				on:keydown={(e) => {
-					if (e.key === 'Enter' && !e.isComposing) {
-						modal.querySelector('a[data-has-node]')?.click();
-					}
-				}}
+				bind:this={search_input}
+				on:keydown={search_keydown}
 				on:input={(e) => {
 					$search_query = e.currentTarget.value;
 				}}
@@ -237,10 +246,6 @@
 		}
 	}
 
-	h5 {
-		font-style: italic;
-	}
-
 	header:focus-within {
 		--border: var(--primary);
 		background-color: var(--bg-sheet);
@@ -267,10 +272,6 @@
 		}
 	}
 
-	h5 {
-		margin: 1rem 0;
-	}
-
 	dialog::backdrop {
 		background: rgba(0, 0, 0, 0.8);
 	}
@@ -292,11 +293,6 @@
 		@media (--above_med) {
 			padding: 20px 0;
 		}
-	}
-
-	textarea {
-		background-color: transparent;
-		color: var(--fg);
 	}
 
 	.search-input {
