@@ -87,7 +87,7 @@
 	}
 
 	function change_color(e: MouseEvent) {
-		if (e.target) {
+		if (e.target instanceof Element) {
 			let computed = window.getComputedStyle(e.target).backgroundColor;
 			active_color = computed;
 		}
