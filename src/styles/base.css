@@ -98,7 +98,26 @@
 	h5,
 	h6 {
 		font-family: 'MDIO';
-		font-weight: 900;
+		/* font-family: '💪'; */
+		font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.4;
+    margin-block: 0.2em;
+    mask-image: url($assets/Grit Mask@2x.png);
+    mask-image-repeat: repeat;
+    mask-size: 250px;
+    /* &:before {
+			display: block;
+			content: '';
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			background-image: url($assets/grunge.svg);
+			background-size: 500px;
+			background-repeat: repeat;
+		} */
 	}
 
 	h1,
@@ -108,18 +127,17 @@
 	h2,
 	.h2 {
 		font-size: var(--font-size-xxl);
-		font-weight: 700;
+		/* font-weight: 700; */
 	}
 	h3,
 	.h3 {
 		font-size: var(--font-size-xl);
-		font-weight: 700;
+		/* font-weight: 700; */
 	}
 	h4,
 	.h4 {
 		font-size: var(--font-size-lg);
-		font-weight: 400;
-		font-style: italic;
+		/* font-weight: 400; */
 	}
 	h5,
 	.h5 {
@@ -281,4 +299,10 @@ a[href^='https']:not(.social-icon, .button):after {
 	content: '↗';
 	margin-left: 4px;
 	font-size: 12px;
+}
+
+/* Selection */
+::selection {
+  background: var(--primary);
+  color: var(--bg);
 }

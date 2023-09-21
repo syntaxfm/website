@@ -53,7 +53,7 @@
 				<strong>{@html excerpt(result.breadcrumbs[result.breadcrumbs.length - 1], query)}</strong>
 
 				{#if result.node?.content}
-					<span class="small">{@html excerpt(result.node.content, query)}</span>
+					<span class="text-sm">{@html excerpt(result.node.content, query)}</span>
 				{/if}
 			</a>
 			{#if recent_searches}

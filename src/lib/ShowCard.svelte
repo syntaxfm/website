@@ -72,8 +72,8 @@
 		}
 
 		&.card {
-			border-radius: 4px;
-			border: solid 4px var(--black);
+			border-radius: var(--brad);
+			border: solid var(--border-size) var(--black);
 			.details {
 				display: grid;
 				grid-template-rows: auto auto auto;
@@ -91,6 +91,9 @@
 			--fg: var(--fg-root);
 			border: none;
 			grid-column: 1 / -1;
+			background-size: 169px;
+			background-repeat: repeat;
+			background-position: top center;
 		}
 
 		&.list {
@@ -108,11 +111,10 @@
 
 	.h3 {
 		view-transition-name: var(--transition-name);
-		line-height: 1.7;
 		margin: 0;
 		font-weight: 500;
 		font-size: var(--font-size-md);
-		font-style: italic;
+		/* font-style: italic; */
 	}
 
 	@container show-card (width > 600px) {

@@ -44,8 +44,11 @@ const config = {
 			$state: 'src/state',
 			$styles: 'src/styles',
 			$utilities: 'src/utilities'
-		}
-	}
+		},
+	},
+  compilerOptions: {
+    enableSourcemap: true,
+  }
 };
 
 export default config;

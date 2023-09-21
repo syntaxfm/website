@@ -34,9 +34,7 @@
 			<button type="submit">Subscribe</button>
 		</div>
 
-		<p class="small">
-			We respect your privacy. Control your preferences or unsubscribe at any time.
-		</p>
+		<p class="text-sm">Dip at any time.</p>
 	</form>
 {/if}
 
