@@ -12,7 +12,6 @@
 	async function handleClick(e: Event) {
 		const { target } = e;
 		if (target instanceof HTMLAnchorElement && target.matches(`a[href*='#t=']`)) {
-			console.log('click');
 			e.preventDefault();
 			const { href } = target;
 			player.update_time(href, show);
@@ -59,6 +58,9 @@
 	>
 </div>
 
+<!-- I don't feel great about this one, but it's hard, because these are click targets on show notes coming in from markdown -->
+<!-- I have no idea how we would make those timestamps into click targets correctly, maybe we can dynamically add role="button" -->
+<!-- Please submit a PR if you have a good fix here :) - Scott -->
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <section class="layout full" on:click={handleClick}>
