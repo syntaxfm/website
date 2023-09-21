@@ -1,6 +1,6 @@
 ---
 number: 670
-title: Supper Club × Anxiety and Uncertainty with Dr. Courtney Tolinski
+title: Anxiety and Uncertainty with Dr. Courtney Tolinski
 date: 1695384000565
 url: https://traffic.libsyn.com/syntax/Syntax_-_670.mp3
 ---
