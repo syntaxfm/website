@@ -3,11 +3,40 @@
 		max-width: 900px;
 		width: 100%;
 	}
-
 	.small {
 		font-size: var(--font-size-sm);
 	}
 	.center {
 		margin: 0 auto;
 	}
+  .text-xs { font-size: var(--font-size-xs); }
+  .text-sm { font-size: var(--font-size-sm); }
+  .text-base { font-size: var(--font-size-base); }
+  .text-md { font-size: var(--font-size-md); }
+  .text-lg { font-size: var(--font-size-lg); }
+  .text-xl { font-size: var(--font-size-xl); }
+  .text-xxl { font-size: var(--font-size-xxl); }
+  .text-xxxl { font-size: var(--font-size-xxxl); }
+  .text-left	{ text-align: left; }
+  .text-center	{ text-align: center; }
+  .text-right	{ text-align: right; }
+  .text-justify	{ text-align: justify; }
+  .text-start	{ text-align: start; }
+  .text-end	{ text-align: end; }
+
+
+  .lines {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    grid-gap: 1rem;
+    align-items: center;
+    &:before, &:after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: clamp(1px, 0.1ch, 2px);
+      background-color: var(--line-color, currentcolor);
+    }
+  }
 }
+

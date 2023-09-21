@@ -10,6 +10,9 @@
 	{/each}
 </div>
 
+
+<p>social..</p>
+
 <style lang="postcss">
 	div {
 		display: flex;
@@ -76,5 +79,8 @@
 	}
 	.subscribe--google-podcasts::before {
 		background-image: url('/icons/google_podcasts.svg');
+	}
+	a {
+		font-size: var(--font-size-xs);
 	}
 </style>

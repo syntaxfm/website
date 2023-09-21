@@ -3,6 +3,7 @@
 	import PodcastHero from '$lib/PodcastHero.svelte';
 	import NewsletterForm from '$lib/NewsletterForm.svelte';
 	import type { Show } from '@prisma/client';
+	import Schedule from '$lib/schedule.svelte';
 
 	export let data;
 	$: ({ latest } = data);
@@ -17,7 +18,7 @@
 <PodcastHero />
 
 <section aria-label="Latest podcast episodes">
-	<h2 class="h3">Latest Episodes</h2>
+	<h2 class="h3 lines">Latest Episodes</h2>
 	<div class="grid" style:margin-bottom="2rem">
 		{#if latest_show}
 			<ShowCard display="highlight" show={latest_show} />
