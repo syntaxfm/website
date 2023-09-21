@@ -27,7 +27,7 @@ declare global {
 				country: string;
 			};
 			user: UserWithRoles | null;
-			active_theme_name: string;
+			theme: string;
 		}
 
 		// interface PageData {}

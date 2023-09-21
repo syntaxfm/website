@@ -1,20 +1,15 @@
-import { readFile, writeFile } from 'fs/promises';
-import {
-	type ChatCompletionRequestMessage,
-	Configuration,
-	type CreateChatCompletionRequest,
-	OpenAIApi
-} from 'openai';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+// TODO remove this ts-nocheck. I've added this until this is more complete or confirmed to be complete
+import { Configuration, type CreateChatCompletionRequest, OpenAIApi } from 'openai';
 import { createCondensePrompt, summarizePrompt, summarizePrompt2 } from './prompts';
 import {
 	SlimUtterance,
 	TranscribedShow,
 	formatAsTranscript,
-	formatTime,
 	getSlimUtterances
 } from '$server/transcripts/utils';
 import { encode } from 'gpt-3-encoder';
-import { exists } from '$utilities/file_utilities/exists';
 import wait from 'waait';
 import { Prisma } from '@prisma/client';
 
