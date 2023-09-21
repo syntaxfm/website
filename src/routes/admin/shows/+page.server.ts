@@ -2,8 +2,9 @@ import { import_or_update_all_shows } from '$server/shows';
 import { error } from '@sveltejs/kit';
 import { get_transcript } from '$server/transcripts/deepgram';
 import { aiNoteRequestHandler } from '$server/ai/requestHandlers';
+import { PageServerLoad } from './$types';
 
-export const load = async ({ locals }) => {
+export const load: PageServerLoad = async ({ locals }) => {
 	return {
 		shows: locals.prisma.show.findMany({
 			orderBy: { number: 'desc' },

@@ -1,16 +1,18 @@
 <script lang="ts">
 	import { format } from 'date-fns';
 	import { player } from '$state/player';
+	import { page } from '$app/stores';
 	import HostsAndGuests from './HostsAndGuests.svelte';
 	import Icon from '$lib/Icon.svelte';
 	import NewsletterForm from '$lib/NewsletterForm.svelte';
-
+	import Transcript from '$lib/transcript/Transcript.svelte';
 	export let data;
 	$: ({ show } = data);
 
 	async function handleClick(e: Event) {
 		const { target } = e;
 		if (target instanceof HTMLAnchorElement && target.matches(`a[href*='#t=']`)) {
+			console.log('click');
 			e.preventDefault();
 			const { href } = target;
 			player.update_time(href, show);
@@ -23,7 +25,11 @@
 		{format(new Date(show.date), 'MMMM do, yyyy')}
 	</p>
 	<h1 style:--transition-name="show-title-{show.number}">{show.title}</h1>
-
+	<p>
+		{#each show.aiShowNote?.topics?.slice(0, 5) || [] as topic}
+			<span class="topic">#{topic.name}</span>
+		{/each}
+	</p>
 	<button class="big play" on:click={() => player.play_show(show)}>
 		<Icon name="play" />
 		Play Episode {show.number}</button
@@ -44,22 +50,36 @@
 	>
 </div>
 
-<!-- svelte-ignore -->
-<section class="layout full" on:click|preventDefault={handleClick}>
-	<div class="main">
-		{@html show.show_notes}
-	</div>
+<div class="tabs">
+	<a data-sveltekit-noscroll href="/shows/{$page.params.show_number}/{$page.params.slug}"
+		>Show Notes</a
+	>
+	<a data-sveltekit-noscroll href="/shows/{$page.params.show_number}/{$page.params.slug}/transcript"
+		>Transcript</a
+	>
+</div>
 
-	<div class="sidebar">
-		<div
-			class="sticky zone"
-			style="border: solid 0.5px var(--black-1)"
-			style:--radius="20px"
-			style:--bg="var(--bg-1)"
-		>
-			<NewsletterForm />
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<!-- svelte-ignore a11y-no-static-element-interactions -->
+<section class="layout full" on:click={handleClick}>
+	{#if $page.params.tab === 'transcript' && show?.transcript}
+		<Transcript aiShowNote={show.aiShowNote} transcript={show.transcript} />
+	{:else}
+		<div class="main">
+			{@html show.show_notes}
 		</div>
-	</div>
+
+		<div class="sidebar">
+			<div
+				class="sticky zone"
+				style="border: solid 0.5px var(--black-1)"
+				style:--radius="20px"
+				style:--bg="var(--bg-1)"
+			>
+				<NewsletterForm />
+			</div>
+		</div>
+	{/if}
 </section>
 
 <style lang="postcss">

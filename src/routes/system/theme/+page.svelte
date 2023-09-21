@@ -32,8 +32,10 @@
 	</p>
 </div>
 
-<h3>Grid With Cards</h3>
-<div class="grid">
-	<ShowCard display="highlight" {show} />
-	<ShowCard {show} /><ShowCard {show} /><ShowCard {show} />
-</div>
+{#if show}
+	<h3>Grid With Cards</h3>
+	<div class="grid">
+		<ShowCard display="highlight" {show} />
+		<ShowCard {show} /><ShowCard {show} /><ShowCard {show} />
+	</div>
+{/if}

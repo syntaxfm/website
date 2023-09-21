@@ -68,7 +68,9 @@
 {#if $player.status === 'ACTIVE' || $player.status === 'EXPANDED'}
 	<section class={`player ${$player.status}`} transition:fly={{ y: '100%' }}>
 		<header>
-			<button class="player-expand" on:click={player.toggle_expand}><Icon name="expand" /></button>
+			<!-- Ignore this div, it's just here so I don't get fired -->
+			<div></div>
+			<!-- <button class="player-expand" on:click={player.toggle_expand}><Icon name="expand" /></button> -->
 			<p>Episode #{$player.current_show?.number} - {$player.current_show?.title}</p>
 			<button on:click={player.close}>×</button>
 		</header>
@@ -92,11 +94,12 @@
 					src={$player.current_show?.url}
 					bind:this={$player.audio}
 					preload="metadata"
+					bind:currentTime={$player.currentTime}
 				/>
 				<media-control-bar class="media-bar">
 					<div class="media-controls">
 						<media-seek-backward-button />
-						<media-play-button style="--media-button-icon-height: 40px;" />
+						<media-play-button style:--media-button-icon-height="40px;" />
 						<media-seek-forward-button />
 					</div>
 					<div class="media-range">
@@ -105,7 +108,10 @@
 							<!-- {#if time_stamps}
 								<Bookmarks {time_stamps} />
 							{/if} -->
-							<media-time-range />
+							<media-time-range
+								style:--media-range-bar-color="var(--accent)"
+								style:--media-range-thumb-background="var(--white)"
+							/>
 						</div>
 						<media-duration-display />
 					</div>
@@ -133,6 +139,9 @@
 		display: grid;
 		grid-template-rows: [start top] auto [top bottom] auto [bottom end];
 		grid-template-columns: [start controls] auto [controls range] auto [range end];
+		height: 100%;
+		align-items: center;
+		gap: 20px;
 		@container (min-width: 650px) {
 			grid-template-columns: [start controls] auto [controls range] 1fr [range sound] auto [sound end];
 			grid-template-rows: 1fr;
@@ -189,14 +198,13 @@
 		gap: 5px;
 	}
 
-	.EXPANDED .player-expand {
+	/* .EXPANDED .player-expand {
 		rotate: 180deg;
-	}
+	} */
 
 	.player {
 		--player-bg: var(--blackish);
 		container: player / inline-size;
-		padding: 0 0 20px;
 		position: fixed;
 		bottom: 0;
 		width: 100vw;
@@ -208,6 +216,7 @@
 		justify-content: center;
 		align-items: center;
 		gap: 10px;
+		--media-control-padding: 0;
 	}
 
 	.player-container {
@@ -220,6 +229,12 @@
 	.media-range-bookmarks {
 		position: relative;
 		width: 100%;
+	}
+
+	media-duration-display,
+	media-time-display {
+		padding: 0;
+		font-size: var(--font-size-xs);
 	}
 
 	media-time-display,

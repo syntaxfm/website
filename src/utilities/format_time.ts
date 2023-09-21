@@ -15,3 +15,15 @@ export default function format_time(time: number) {
 	ret += `${secs}`;
 	return ret;
 }
+
+export function tsToS(timestamp: string): number {
+	const parts = timestamp.split(':').map(parseFloat);
+	let [hours, minutes, seconds] = parts;
+	if (parts.length === 2) {
+		seconds = minutes;
+		minutes = hours;
+		hours = 0;
+	}
+
+	return hours * 60 * 60 + minutes * 60 + seconds;
+}

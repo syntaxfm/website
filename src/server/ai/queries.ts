@@ -1,6 +1,6 @@
 import { Prisma } from '@prisma/client';
 
-export const transcript_select: Prisma.TranscriptArgs = {
+export const transcript_with_utterances = Prisma.validator<Prisma.TranscriptDefaultArgs>()({
 	include: {
 		utterances: {
 			include: {
@@ -11,15 +11,21 @@ export const transcript_select: Prisma.TranscriptArgs = {
 			}
 		}
 	}
-};
-export const ai_note_select = {
-	title: true,
-	number: true,
-	transcript: transcript_select
-};
+});
 
-export type AINoteSelect = typeof ai_note_select;
-export type TranscriptSelect = typeof transcript_select;
+export const ai_note_with_friends = Prisma.validator<Prisma.AiShowNoteDefaultArgs>()({
+	include: {
+		links: true,
+		summary: true,
+		topics: true,
+		tweets: true
+	}
+});
+
+export type TranscriptWithUtterances = Prisma.TranscriptGetPayload<
+	typeof transcript_with_utterances
+>;
+export type AINoteWithFriends = Prisma.AiShowNoteGetPayload<typeof ai_note_with_friends>;
 
 type SummaryItem = {
 	time: string;

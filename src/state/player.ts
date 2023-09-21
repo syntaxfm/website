@@ -16,11 +16,13 @@ const new_player_state = () => {
 		current_show: null | Show;
 		playing: boolean;
 		audio?: HTMLAudioElement;
+		currentTime: number;
 	}>({
 		status: 'HIDDEN',
 		current_show: null,
 		playing: false,
-		audio: undefined
+		audio: undefined,
+		currentTime: 0
 	});
 
 	function play_show(show: Show) {
@@ -32,9 +34,8 @@ const new_player_state = () => {
 	}
 
 	function update_time(href: string, show?: Show) {
-		const time_stamp = href
-			.split('#t=')
-			.at(-1)
+		const split_time_stamp = href.split('#t=').at(-1) || '';
+		const time_stamp = split_time_stamp
 			.split(':')
 			.reverse()
 			.map(Number)

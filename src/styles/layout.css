@@ -2,6 +2,7 @@
 	.layout {
 		column-gap: 10px;
 		display: grid;
+		grid-template-columns: [start content] auto [content end];
 
 		@media (--above_med) {
 			grid-template-columns:

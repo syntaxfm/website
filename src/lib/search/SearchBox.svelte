@@ -6,8 +6,8 @@
 	import SearchResults from './SearchResults.svelte';
 	import SearchResultList from './SearchResultList.svelte';
 	import { fade } from 'svelte/transition';
-	import type { Tree } from './types';
 	import { clickOutDialog } from '$actions/click_outside_dialog';
+	import type { Tree } from './types';
 
 	let modal: HTMLDialogElement;
 	let search: {

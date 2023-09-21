@@ -5,7 +5,7 @@ import {
 	type CreateChatCompletionRequest,
 	OpenAIApi
 } from 'openai';
-import { createCondensePrompt, summarizePrompt } from './prompts';
+import { createCondensePrompt, summarizePrompt, summarizePrompt2 } from './prompts';
 import {
 	SlimUtterance,
 	TranscribedShow,
@@ -18,10 +18,11 @@ import { exists } from '$utilities/file_utilities/exists';
 import wait from 'waait';
 import { Prisma } from '@prisma/client';
 
-export const TOKEN_LIMIT = 16000;
+export const TOKEN_LIMIT = 7000;
 export const COMPLETION_TOKEN_IDEAL = 1500; // how many tokens we should reserve to the completion - otherwise the responses are poor quality
 const TOKEN_INPUT_LIMIT = TOKEN_LIMIT - COMPLETION_TOKEN_IDEAL;
-export const MODEL = 'gpt-3.5-turbo-16k'; // Was gpt-4 before token limit was increased
+// export const MODEL = 'gpt-3.5-turbo-16k'; // Was gpt-4 before token limit was increased
+export const MODEL = 'gpt-4';
 export const EMBEDDING_MODEL = 'text-embedding-ada-002';
 export const CONDENSE_THRESHOLD = 100;
 const configuration = new Configuration({
@@ -49,33 +50,37 @@ export async function condense(
 	console.log(`Token input limit: ${TOKEN_INPUT_LIMIT}`);
 	const factorSmaller = 1 - TOKEN_INPUT_LIMIT / inputTokensLength;
 	console.log(`Factor smaller: ${factorSmaller}`);
+	// Group utterances
+	const slimUtterances = getSlimUtterances(show.utterances, show.number, false);
+	console.log(slimUtterances.length, show.utterances.length);
 	// Split the transcript into hunks
-	const utteranceFuncs = show.utterances.map((utterance, index) => {
+	const utteranceFuncs = slimUtterances.map((utterance, index) => {
 		return async function getCondenseUtterance(): Promise<SlimUtterance> {
 			// Wait a random amount of time to avoid rate limiting. Between 0 and 10 seconds
 			const waitTime = Math.floor(Math.random() * 10000);
 			await wait(waitTime);
-			console.time(`Condensing ${index} of ${show.utterances.length}`);
+			console.time(`Condensing ${index} of ${slimUtterances.length}`);
+			const size = encode(utterance.transcript).length;
 			// If under 50 chars, leave it alone. Return it via a promise
 			if (utterance.transcript.length < CONDENSE_THRESHOLD) {
-				console.log(`Skipping condensing of ${index} of ${show.utterances.length}`);
+				console.log(`Skipping condensing of ${index} of ${slimUtterances.length}`);
 				return Promise.resolve(utterance);
 			}
 			// If it's over 50 chars, condense it via openAI
 			const input: CreateChatCompletionRequest = {
-				model: MODEL,
+				model: 'gpt-3.5-turbo', // Summarize
 				messages: [
 					// { "role": "system", "content": `You are a helpful service that condenses text.` },
 					{ role: 'system', content: createCondensePrompt(`${Math.floor(factorSmaller * 100)}%`) },
 					{ role: 'user', content: utterance.transcript }
-				]
-				// "max_tokens": size * factorSmaller,
+				],
+				max_tokens: Math.round(size * factorSmaller)
 				// "temperature": 0.3
 			};
-			console.log(`Condensing`, index, `of`, show.utterances.length);
+			console.log(`Condensing`, index, `of`, slimUtterances.length);
 			const completion = await openai.createChatCompletion(input).catch((err) => {
 				// Catch the error in transcribing so we can at least save the utterance without the condensed transcript
-				console.log(`❗️ Error Condensing`, index, `of`, show.utterances.length);
+				console.log(`❗️ Error Condensing`, index, `of`, slimUtterances.length);
 				console.dir(err.response.data);
 				console.dir(err.response.headers);
 			});
@@ -84,17 +89,24 @@ export async function condense(
 			if (condensed) {
 				utterance.condensedTranscript = condensed;
 			}
+			if (condensed.length > utterance.transcript.length) {
+				console.log(`Condensed transcript is longer than original transcript.
+        Condensed: ${condensed}
+        Original: ${utterance.transcript}
+        `);
+				return Promise.resolve(utterance);
+			}
 			const smaller = encode(condensed || '').length;
 			const original = encode(utterance.transcript).length;
 			console.log(
 				index,
 				'/',
-				show.utterances.length,
+				slimUtterances.length,
 				`Condensed from ${original} to ${smaller} tokens - ${Math.round(
 					(smaller / original) * 100
 				)}% of original`
 			);
-			console.timeEnd(`Condensing ${index} of ${show.utterances.length}`);
+			console.timeEnd(`Condensing ${index} of ${slimUtterances.length}`);
 			// Return the modifined utterance
 			return utterance;
 		};
@@ -109,7 +121,7 @@ export async function condense(
 		})
 		.map((result) => result.value);
 
-	console.log(`Saving condensed file for ${show.number}`);
+	console.log(`Finished Condensing ${show.number}`);
 	return utterances;
 }
 
@@ -141,23 +153,33 @@ export async function generate_ai_notes(
 		utterances: slimUtterance
 	});
 	const condensedTranscript = formatAsTranscript(slimUtterancesWithCondensed);
+	const links = show.show_notes
+		.match(/\[([^\[]+)\](\(.*\))/g)
+		.filter((link) => link.includes('http'));
 
 	const input: CreateChatCompletionRequest = {
-		model: MODEL,
+		// model: 'gpt-4',
+		model: 'gpt-3.5-turbo-16k',
+		temperature: 0,
 		messages: [
-			{ role: 'system', content: 'You summarize web development podcasts' },
+			{
+				role: 'system',
+				content: 'You summarize web development podcasts. Your tone is casual and humorous'
+			},
 			{
 				role: 'user',
 				content: 'Syntax is a podcast about web development. Available at https://Syntax.fm'
 			},
 			{ role: 'user', content: `This episode is #${show.number} entitled ${show.title}` },
-			{ role: 'user', content: summarizePrompt },
+			{ role: 'user', content: summarizePrompt2 },
 			{ role: 'user', content: condensedTranscript }
 		]
 	};
 
 	console.log(`Creating AI notes for ${show.number}`);
-	const completion = await openai.createChatCompletion(input);
+	const completion = await openai.createChatCompletion(input).catch((err) => {
+		console.dir(err.response.data.error, { depth: null });
+	});
 	const maybeJSON = completion.data.choices.at(0)?.message?.content;
 	console.log(maybeJSON);
 	const parsed = JSON.parse(maybeJSON || '') as AIPodcastSummaryResponse;

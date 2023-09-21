@@ -1,4 +1,6 @@
-export const load = async ({ locals, setHeaders }) => {
+import { PageServerLoad } from './$types';
+
+export const load: PageServerLoad = async ({ locals, setHeaders }) => {
 	setHeaders({
 		'cache-control': 'max-age=240'
 	});

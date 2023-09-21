@@ -6,17 +6,31 @@
 	let isAnimating = true;
 	let image_index = 0;
 
-	$player?.audio?.addEventListener('pause', function () {
-		isAnimating = false;
-	});
+	$: if ($player?.audio) {
+		$player?.audio?.addEventListener('pause', function () {
+			isAnimating = false;
+			console.log('isAnimating', isAnimating);
+		});
 
-	// When audio is played, resume the animation
-	$player?.audio?.addEventListener('play', function () {
-		isAnimating = true;
-	});
+		// When audio is played, resume the animation
+		$player?.audio?.addEventListener('play', function () {
+			isAnimating = true;
+			console.log('isAnimating', isAnimating);
+		});
+	}
+
+	function keydown(event: KeyboardEvent) {
+		if (event.key === 'Enter' || event.keyCode === 13) {
+			toggle_sicman();
+		}
+	}
+
+	function toggle_sicman() {
+		return (image_index = image_index ? 0 : 1);
+	}
 </script>
 
-<div class="art-wrapper" on:click={() => (image_index = image_index ? 0 : 1)}>
+<div class="art-wrapper" on:click={toggle_sicman} tabindex="0" on:keydown={keydown} role="button">
 	{#if image_index === 0}
 		<Album />
 	{:else}
@@ -24,8 +38,15 @@
 	{/if}
 </div>
 
-<style>
+<style lang="postcss">
 	.art-wrapper {
-		width: 92px;
+		width: 90px;
+		height: 85px;
+		cursor: pointer;
+		flex-shrink: 0;
+		display: none;
+		@media (--above_med) {
+			display: block;
+		}
 	}
 </style>
