@@ -40,7 +40,7 @@
 	</div>
 </section>
 
-<style>
+<style lang="postcss">
 	section {
 		background-image: url($assets/whitegrit.png),
 			radial-gradient(farthest-side circle at 50% 0%, #3a006b36 4% 4%, #000 100%);
@@ -66,6 +66,7 @@
 		max-width: 850px;
 		margin: 0 auto;
 	}
+
 	.zone {
 		padding-bottom: 2rem;
 	}

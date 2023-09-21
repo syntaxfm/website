@@ -23,7 +23,7 @@
 		/>
 	</div>
 	{#if guests?.length > 0}
-		<p style="h5">Featuring:</p>
+		<p class="h5">Featuring:</p>
 		<div class="featuring">
 			{#each guests as { Guest }}
 				<Host

@@ -6,22 +6,26 @@
 	$: ({ guest } = data);
 </script>
 
-<section>
-	<header>
-		<img src={`https://github.com/${guest.github}.png`} alt={guest.name} />
-		<div>
-			<h1>{guest.name}</h1>
-			<div class="guest_socials">
-				<HostSocialLink link={`https://x.com/${guest.twitter}`} />
+{#if guest}
+	<section>
+		<header>
+			<img src={`https://github.com/${guest.github}.png`} alt={guest.name} />
+			<div>
+				<h1>{guest.name}</h1>
+				{#if guest.twitter}
+					<div class="guest_socials">
+						<HostSocialLink host={guest} />
+					</div>
+				{/if}
 			</div>
-		</div>
-	</header>
-	{#each guest.shows as { Show }}
-		<ShowCard show={Show} display="list" />
-	{/each}
-</section>
+		</header>
+		{#each guest.shows as { Show }}
+			<ShowCard show={Show} display="list" />
+		{/each}
+	</section>
+{/if}
 
-<style>
+<style lang="postcss">
 	header {
 		display: grid;
 		grid-template-columns: auto 1fr;

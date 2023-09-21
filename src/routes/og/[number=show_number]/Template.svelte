@@ -11,7 +11,7 @@
 	</footer>
 </div>
 
-<style>
+<style lang="postcss">
 	.og-template {
 		background: black;
 		color: white;

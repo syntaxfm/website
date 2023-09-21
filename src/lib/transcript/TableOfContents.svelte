@@ -18,7 +18,7 @@
 	</ul>
 </div>
 
-<style>
+<style lang="postcss">
 	ul {
 		margin: 0;
 		padding: 0;

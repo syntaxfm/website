@@ -92,7 +92,7 @@
 	</div>
 </main>
 
-<style>
+<style lang="postcss">
 	img.avatar {
 		width: 150px;
 		border-radius: 8px;

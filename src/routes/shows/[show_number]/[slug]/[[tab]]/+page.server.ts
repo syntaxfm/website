@@ -8,7 +8,7 @@ import highlight from 'rehype-highlight';
 import { cache } from '$lib/cache/cache';
 import type { Prisma, Show } from '@prisma/client';
 import { transcript_with_utterances } from '$server/ai/queries.js';
-// import { PageServerLoad } from './$types';
+import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async function ({ setHeaders, params, locals }) {
 	const { show_number } = params;
@@ -32,7 +32,7 @@ export const load: PageServerLoad = async function ({ setHeaders, params, locals
 		}
 	};
 	type ShowTemp = Prisma.ShowGetPayload<typeof query>;
-	let show_raw: ShowTemp | null = null;
+	let show_raw: (ShowTemp & Show) | null = null;
 	const cache_key = `show:${show_number}`;
 
 	//Check cache first
@@ -73,6 +73,6 @@ export const load: PageServerLoad = async function ({ setHeaders, params, locals
 		show: {
 			...show_raw,
 			show_notes: with_h3_body
-		} as ShowTemp
+		} as ShowTemp & Show
 	};
 };

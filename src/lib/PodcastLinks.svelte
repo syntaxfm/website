@@ -10,9 +10,10 @@
 	{/each}
 </div>
 
+
 <p>social..</p>
 
-<style>
+<style lang="postcss">
 	div {
 		display: flex;
 		flex-wrap: wrap;

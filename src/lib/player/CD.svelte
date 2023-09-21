@@ -151,7 +151,7 @@
 	</svg>
 </div>
 
-<style>
+<style lang="postcss">
 	.case {
 		position: relative;
 		background: black;

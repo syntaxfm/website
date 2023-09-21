@@ -17,7 +17,7 @@ Renders a list of search results
 	<p class="info">No results</p>
 {/if}
 
-<style>
+<style lang="postcss">
 	.info {
 		padding: 1rem;
 		font-size: 1.2rem;

@@ -24,7 +24,7 @@
 	>
 {/if}
 
-<style>
+<style lang="postcss">
 	.avatar {
 		width: 50px;
 		height: 50px;

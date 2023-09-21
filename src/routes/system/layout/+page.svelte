@@ -22,7 +22,7 @@
 	</section>
 </section>
 
-<style>
+<style lang="postcss">
 	.layout {
 		gap: 48px;
 		margin-bottom: 2rem;

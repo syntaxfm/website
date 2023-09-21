@@ -3,8 +3,8 @@
 	export let guest: boolean = false;
 	export let host: {
 		name: string;
-		github: string;
-		twitter: string;
+		github?: string;
+		twitter?: string;
 		slug?: string;
 	};
 </script>
@@ -25,7 +25,7 @@
 	</figcaption>
 </figure>
 
-<style>
+<style lang="postcss">
 	figure {
 		display: grid;
 		gap: 20px;
