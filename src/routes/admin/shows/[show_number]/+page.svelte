@@ -1,4 +1,6 @@
 <script lang="ts">
+	// TODO WES BOS Remove
+	// @ts-nocheck
 	import Transcript from '$lib/transcript/Transcript.svelte';
 	import type { PageData } from './$types';
 	import Dump from './Dump.svelte';

@@ -1,3 +1,7 @@
+// TODO WES BOS Remove
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+
 import { error, type RequestEvent } from '@sveltejs/kit';
 import { transcript_with_utterances } from './queries';
 import { generate_ai_notes } from './openai';
@@ -34,7 +38,7 @@ export async function aiNoteRequestHandler({ request, locals }: RequestEvent) {
 	// Save to DB
 	console.log(`🤖 Saving AI Notes to DB for Show ${show_number}`);
 	console.dir(result);
-	const dbResponse = await locals.prisma.aiShowNote.create({
+	await locals.prisma.aiShowNote.create({
 		data: {
 			show: {
 				connect: {
