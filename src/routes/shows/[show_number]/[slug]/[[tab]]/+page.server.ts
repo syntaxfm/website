@@ -49,18 +49,10 @@ export const load: PageServerLoad = async function ({ setHeaders, params, locals
 	}
 
 	const body_excerpt = await unified()
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-		// @ts-expect-error
 		.use(remarkParse)
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-		// @ts-expect-error
 		.use(remarkGfm)
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-		// @ts-expect-error
 		.use(remarkRehype, { allowDangerousHtml: true })
 		.use(rehypeRaw)
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-		// @ts-expect-error
 		.use(highlight)
 		.use(rehypeStringify)
 		.process(show_raw?.show_notes || '');
