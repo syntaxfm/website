@@ -6,8 +6,8 @@ import rehypeRaw from 'rehype-raw';
 import rehypeStringify from 'rehype-stringify';
 import highlight from 'rehype-highlight';
 import { cache } from '$lib/cache/cache';
-import type { Prisma, Show } from '@prisma/client';
 import { transcript_with_utterances } from '$server/ai/queries.js';
+import type { Prisma, Show } from '@prisma/client';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async function ({ setHeaders, params, locals }) {
@@ -43,14 +43,24 @@ export const load: PageServerLoad = async function ({ setHeaders, params, locals
 	} else {
 		show_raw = await locals.prisma.show.findFirst(query);
 		//Set cache after DB query
-		cache.set(cache_key, show_raw);
+		if (show_raw) {
+			cache.set(cache_key, show_raw);
+		}
 	}
 
 	const body_excerpt = await unified()
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		// @ts-expect-error
 		.use(remarkParse)
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		// @ts-expect-error
 		.use(remarkGfm)
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		// @ts-expect-error
 		.use(remarkRehype, { allowDangerousHtml: true })
 		.use(rehypeRaw)
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		// @ts-expect-error
 		.use(highlight)
 		.use(rehypeStringify)
 		.process(show_raw?.show_notes || '');

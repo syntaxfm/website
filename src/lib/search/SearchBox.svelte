@@ -255,7 +255,7 @@
 		max-width: 100%;
 		width: 100%;
 		@media (--above_med) {
-			width: 60vw;
+			width: clamp(600px, 90vw, 950px);
 		}
 	}
 

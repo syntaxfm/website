@@ -7,7 +7,6 @@
 
 	export let results: Tree[];
 	export let recent_searches: boolean = false;
-
 	export let query: string;
 
 	const dispatch = createEventDispatcher();
@@ -44,6 +43,7 @@
 			<button on:click|preventDefault={() => player.play_show(result.node)} class="play-button">
 				<Icon name="play" />
 			</button>
+
 			<a
 				data-sveltekit-preload-data
 				href={result.href}

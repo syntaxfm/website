@@ -12,6 +12,9 @@ declare global {
 			popovertarget?: string | null;
 		}
 	}
+	interface Window {
+		webkitAudioContext: typeof AudioContext;
+	}
 
 	interface MapConstructor<K, V> {
 		groupBy: <T>(callback: (value: V, key: K) => T) => Map<T, Map<K, V>>;
