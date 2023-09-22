@@ -29,3 +29,10 @@ jobs:
 
       - name: Run Svelte Check
         run: pnpm check
+        env:
+          PUBLIC_GITHUB_ID: ${{ secrets.PUBLIC_GITHUB_ID }}
+          GH_SECRET: ${{ secrets.GH_SECRET }}
+          DEEPGRAM_SECRET: ${{ secrets.DEEPGRAM_SECRET }}
+          PUBLIC_URL: ${{ secrets.PUBLIC_URL }}
+          SENTRY_AUTH_TOKEN: ''
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
