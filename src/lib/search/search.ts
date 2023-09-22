@@ -1,5 +1,6 @@
 import flexsearch, { type Index } from 'flexsearch';
 import type { Block, Tree } from './types';
+import { Show } from '@prisma/client';
 
 // @ts-expect-error tbh not sure about this one but sk had it in their code.
 const Index = flexsearch.Index ?? flexsearch;
@@ -63,7 +64,7 @@ export function search(query: string) {
 				(a?.block?.breadcrumbs.length || 0) - (b?.block?.breadcrumbs.length || 0) || a.rank - b.rank
 			);
 		})
-		.map(({ block }) => block) as Block[];
+		.map(({ block }) => block) as (Block & Show)[];
 
 	const results = tree([], blocks).children;
 
@@ -74,13 +75,13 @@ export function lookup(href: string) {
 	return map.get(href);
 }
 
-function tree(breadcrumbs: string[], blocks: Block[]): Tree {
+function tree(breadcrumbs: string[], blocks: (Block & Show)[]): Tree {
 	const depth = breadcrumbs.length;
 
 	const node = blocks.find((block) => {
 		if (block.breadcrumbs.length !== depth) return false;
 		return breadcrumbs.every((part, i) => block.breadcrumbs[i] === part);
-	}) as Block;
+	}) as Block & Show;
 
 	const descendants = blocks.filter((block) => {
 		if (block.breadcrumbs.length <= depth) return false;

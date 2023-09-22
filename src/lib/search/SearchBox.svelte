@@ -7,7 +7,8 @@
 	import SearchResultList from './SearchResultList.svelte';
 	import { fade } from 'svelte/transition';
 	import { clickOutDialog } from '$actions/click_outside_dialog';
-	import type { Tree } from './types';
+	import type { Block, Tree } from './types';
+	import { Show } from '@prisma/client';
 
 	let search_input: HTMLInputElement;
 	let modal: HTMLDialogElement;
@@ -15,7 +16,8 @@
 		results: Tree[];
 		query: string;
 	} | null = null;
-	let recent_searches: Tree[] = [];
+	let recent_searches: (Block & Show)[] = [];
+
 	let worker: Worker;
 	let ready = false;
 	let active_color = 'var(--fg)';
@@ -82,8 +84,10 @@
 	}
 
 	$: if ($searching) {
-		$overlay_open = true;
-		modal.showModal();
+		if (modal) {
+			$overlay_open = true;
+			modal.showModal();
+		}
 	}
 
 	function change_color(e: MouseEvent) {

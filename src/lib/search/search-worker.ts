@@ -20,7 +20,6 @@ addEventListener('message', async (event) => {
 
 	if (type === 'recents') {
 		const results = payload.map(lookup).filter(Boolean);
-
 		postMessage({ type: 'recents', payload: results });
 	}
 });

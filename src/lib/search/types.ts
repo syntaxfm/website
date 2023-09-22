@@ -1,3 +1,5 @@
+import { Show } from '@prisma/client';
+
 export interface Block {
 	breadcrumbs: string[];
 	href: string;
@@ -8,6 +10,6 @@ export interface Block {
 export interface Tree {
 	breadcrumbs: string[];
 	href: string;
-	node: Block;
+	node: Block & Show;
 	children: Tree[];
 }

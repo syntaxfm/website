@@ -3,9 +3,10 @@
 	import { player } from '$state/player';
 	import { search_recent } from '$state/search';
 	import { createEventDispatcher } from 'svelte';
-	import type { Tree } from './types';
+	import type { Tree, Block } from './types';
+	import { Show } from '@prisma/client';
 
-	export let results: Tree[];
+	export let results: (Block & Show)[] | Tree[];
 	export let recent_searches: boolean = false;
 	export let query: string;
 
@@ -35,12 +36,22 @@
 			);
 		}
 	}
+
+	function play_show(show_or_tree: (Block & Show) | Tree) {
+		const local_show: Block & Show = is_tree(show_or_tree) ? show_or_tree.node : show_or_tree;
+		player.play_show(local_show);
+	}
+
+	function is_tree(show_or_tree: (Block & Show) | Tree): show_or_tree is Tree {
+		return 'node' in show_or_tree;
+	}
 </script>
 
 <ul>
 	{#each results as result (result.href)}
 		<li>
-			<button on:click|preventDefault={() => player.play_show(result.node)} class="play-button">
+			<!-- Show data not available in recent searches -->
+			<button on:click|preventDefault={() => play_show(result)} class="play-button">
 				<Icon name="play" />
 			</button>
 
@@ -48,11 +59,11 @@
 				data-sveltekit-preload-data
 				href={result.href}
 				on:click={() => dispatch('select', { href: result.href })}
-				data-has-node={result.node ? true : undefined}
+				data-has-node={is_tree(result) ? true : undefined}
 			>
 				<strong>{@html excerpt(result.breadcrumbs[result.breadcrumbs.length - 1], query)}</strong>
 
-				{#if result.node?.content}
+				{#if is_tree(result) && result.node?.content}
 					<span class="text-sm">{@html excerpt(result.node.content, query)}</span>
 				{/if}
 			</a>
