@@ -7,6 +7,9 @@
 	import format_time, { tsToS } from '$utilities/format_time';
 	import 'core-js/full/map/group-by';
 	import slugify from '@sindresorhus/slugify';
+	import { player } from '$state/player';
+	import Squiggle from './Squiggle.svelte';
+	import TableOfContents from './TableOfContents.svelte';
 
 	export let transcript: TranscriptWithUtterances;
 	export let aiShowNote: AINoteWithFriends;
@@ -30,10 +33,6 @@
 			return summary || def;
 		}
 	);
-
-	import { player } from '$state/player';
-	import Squiggle from './Squiggle.svelte';
-	import TableOfContents from './TableOfContents.svelte';
 
 	$: currentUtterance = slim_transcript.find((utterance, index) => {
 		const nextUtteranceStart = slim_transcript[index + 1]?.start || utterance.end;
