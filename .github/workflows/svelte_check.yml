@@ -27,6 +27,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Setup DB
+        run: pnpm db:generate
+
       - name: Run Svelte Check
         run: pnpm check
         env:
