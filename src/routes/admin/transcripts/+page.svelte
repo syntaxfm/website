@@ -8,10 +8,7 @@
 	export let data: PageData;
 	$: ({ transcripts } = data);
 
-	export const stream_action = (
-		opts?: FormActionMessage,
-		callback?: (data: any | unknown) => any
-	) => {
+	export const stream_action = () => {
 		return function stream_enhance() {
 			console.log('stream_enhance start');
 			return async ({ result }: { result: ActionResult<any, any> }) => {

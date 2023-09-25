@@ -1,6 +1,6 @@
 // See https://kit.svelte.dev/docs/types#app
 import type { UserWithRoles } from '$server/auth/users';
-import { PrismaClient } from '@prisma/client/index.d.ts';
+import type { PrismaClient } from '@prisma/client';
 // Import the relevant types
 
 // for information about these interfaces
@@ -11,6 +11,9 @@ declare global {
 			popover?: string | boolean | null;
 			popovertarget?: string | null;
 		}
+	}
+	interface Window {
+		webkitAudioContext: typeof AudioContext;
 	}
 
 	interface MapConstructor<K, V> {
@@ -27,26 +30,13 @@ declare global {
 				country: string;
 			};
 			user: UserWithRoles | null;
-		}
-		interface HTMLAttributes {
-			popover?: boolean;
-		}
-
-		interface HTMLElement {
-			popover?: boolean;
+			theme: string;
 		}
 
 		// interface PageData {}
 		// interface Platform {}
 	}
 
-	interface HTMLAttributes {
-		popover?: boolean;
-	}
-
-	interface HTMLElement {
-		popover?: boolean;
-	}
 	interface Document {
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		startViewTransition: (callback: any) => void; // Add your custom property/method here

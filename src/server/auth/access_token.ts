@@ -1,5 +1,5 @@
 import { PUBLIC_GITHUB_ID } from '$env/static/public';
-import { GITHUB_SECRET } from '$env/static/private';
+import { GH_SECRET } from '$env/static/private';
 const tokenURL = 'https://github.com/login/oauth/access_token';
 
 export async function get_access_token(code: string): Promise<string> {
@@ -9,7 +9,7 @@ export async function get_access_token(code: string): Promise<string> {
 			headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
 			body: JSON.stringify({
 				client_id: PUBLIC_GITHUB_ID,
-				client_secret: GITHUB_SECRET,
+				client_secret: GH_SECRET,
 				code
 			})
 		});

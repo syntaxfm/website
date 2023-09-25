@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
 	import fries from '$assets/fries.svg';
 	import burger from '$assets/burger.svg';
 	import drinks from '$assets/drinks.svg';
@@ -73,7 +73,7 @@
 		margin: 0;
 		display: inline-block;
 		mask-image: url('$assets/Grit Mask@2x.png');
-		mask-image-repeat: repeat;
+		mask-repeat: repeat;
 		mask-size: 250px;
 		position: relative;
 		&.day {
@@ -106,4 +106,4 @@
 		letter-spacing: 3px;
 		font-size: var(--font-size-xs);
 	}
-</style>
+</style> -->

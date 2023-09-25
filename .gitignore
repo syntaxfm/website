@@ -13,3 +13,5 @@ haters/
 # Sentry
 .sentryclirc
 transcripts-flagged/
+
+test-results

@@ -16,7 +16,7 @@
 	import AdminMenu from '$lib/AdminMenu.svelte';
 	import { debug_mode } from '$state/debug';
 	export let data;
-	$: ({ user, user_theme } = data);
+	$: ({ user, user_theme, meta_description, meta_image, meta_title } = data);
 
 	$theme = user_theme;
 
@@ -32,7 +32,7 @@
 	});
 </script>
 
-<Meta />
+<Meta {meta_description} {meta_image} {meta_title} />
 
 <div class={'theme-' + ($theme || user_theme) + ' theme-wrapper'} class:debug={$debug_mode}>
 	<Header />

@@ -99,13 +99,6 @@
 		}
 	}
 
-	svg {
-		width: 50px;
-		@media (--above_med) {
-			width: 88px;
-		}
-	}
-
 	.logo {
 		a {
 			display: flex;

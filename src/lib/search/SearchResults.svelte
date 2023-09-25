@@ -1,14 +1,9 @@
-<!--@component
-Renders a list of search results
--->
-<script>
+<script lang="ts">
 	import SearchResultList from './SearchResultList.svelte';
+	import { Tree } from './types';
 
-	/** @type {import('./types').Tree[]} */
-	export let results;
-
-	/** @type {string} */
-	export let query;
+	export let results: Tree[];
+	export let query: string;
 </script>
 
 {#if results.length > 0}

@@ -7,7 +7,7 @@ import { get_md_from_folder } from '$utilities/file_utilities/get_md_from_folder
 import { get_hash_from_content } from '$utilities/file_utilities/get_hash_from_content';
 import { error } from '@sveltejs/kit';
 import type { PrerecordedTranscriptionResponse, Utterance } from '@deepgram/sdk/dist/types';
-import type { Show, TranscriptUtteranceWord } from '@prisma/client';
+import type { Show } from '@prisma/client';
 import { detectSpeakerNames, getSlimUtterances } from './utils';
 
 interface FrontMatterGuest {

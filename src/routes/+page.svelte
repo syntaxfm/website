@@ -3,7 +3,7 @@
 	import PodcastHero from '$lib/PodcastHero.svelte';
 	import NewsletterForm from '$lib/NewsletterForm.svelte';
 	import type { Show } from '@prisma/client';
-	import Schedule from '$lib/schedule.svelte';
+	// import Schedule from '$lib/schedule.svelte';
 
 	export let data;
 	$: ({ latest } = data);

@@ -1,12 +1,14 @@
 import flexsearch, { type Index } from 'flexsearch';
-import type { Block } from './types';
+import type { Block, Tree } from './types';
+import type { Show } from '@prisma/client';
 
 // @ts-expect-error tbh not sure about this one but sk had it in their code.
 const Index = flexsearch.Index ?? flexsearch;
 
 export let inited = false;
 
-let indexes: Index<any>[];
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let indexes: any[];
 
 const map: Map<string, Block> = new Map();
 
@@ -30,6 +32,8 @@ export function init(blocks: Block[]) {
 		// It's unclear how much browsers do string interning and how this might affect memory
 		// We'd probably want to test both implementations across browsers if memory usage becomes an issue
 		// https://github.com/nextapps-de/flexsearch/pull/364 is merged and released
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		// @ts-ignore
 		indexes[block.rank ?? 0].add(block.href, `${title} ${block.content}`);
 
 		hrefs.set(block.breadcrumbs.join('::'), block.href);
@@ -47,8 +51,8 @@ export function search(query: string) {
 		.map(lookup)
 		.map((block, rank) => ({ block, rank }))
 		.sort((a, b) => {
-			const a_title_matches = regex.test(/** @type {string} */ a.block.breadcrumbs.at(-1));
-			const b_title_matches = regex.test(/** @type {string} */ b.block.breadcrumbs.at(-1));
+			const a_title_matches = regex.test((a?.block?.breadcrumbs.at(-1) || '') as string);
+			const b_title_matches = regex.test((b?.block?.breadcrumbs.at(-1) || '') as string);
 
 			// massage the order a bit, so that title matches
 			// are given higher priority
@@ -56,9 +60,11 @@ export function search(query: string) {
 				return a_title_matches ? -1 : 1;
 			}
 
-			return a?.block.breadcrumbs.length - b.block.breadcrumbs.length || a.rank - b.rank;
+			return (
+				(a?.block?.breadcrumbs.length || 0) - (b?.block?.breadcrumbs.length || 0) || a.rank - b.rank
+			);
 		})
-		.map(({ block }) => block);
+		.map(({ block }) => block) as (Block & Show)[];
 
 	const results = tree([], blocks).children;
 
@@ -69,13 +75,13 @@ export function lookup(href: string) {
 	return map.get(href);
 }
 
-function tree(breadcrumbs: string[], blocks: Block[]) {
+function tree(breadcrumbs: string[], blocks: (Block & Show)[]): Tree {
 	const depth = breadcrumbs.length;
 
 	const node = blocks.find((block) => {
 		if (block.breadcrumbs.length !== depth) return false;
 		return breadcrumbs.every((part, i) => block.breadcrumbs[i] === part);
-	});
+	}) as Block & Show;
 
 	const descendants = blocks.filter((block) => {
 		if (block.breadcrumbs.length <= depth) return false;
@@ -86,7 +92,7 @@ function tree(breadcrumbs: string[], blocks: Block[]) {
 
 	return {
 		breadcrumbs,
-		href: hrefs.get(breadcrumbs.join('::')),
+		href: hrefs.get(breadcrumbs.join('::')) || '',
 		node,
 		children: child_parts.map((part) => tree([...breadcrumbs, part], descendants))
 	};

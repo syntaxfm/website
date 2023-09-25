@@ -1,10 +1,16 @@
 <script lang="ts">
-	import { AINoteWithFriends, TranscriptWithUtterances } from '$server/ai/queries';
-	import { SlimUtterance, getSlimUtterances } from '$server/transcripts/utils';
+	// TODO WES BOS Remove
+	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+	// @ts-nocheck
+	import type { AINoteWithFriends, TranscriptWithUtterances } from '$server/ai/queries';
+	import { type SlimUtterance, getSlimUtterances } from '$server/transcripts/utils';
 	import format_time, { tsToS } from '$utilities/format_time';
-
 	import 'core-js/full/map/group-by';
 	import slugify from '@sindresorhus/slugify';
+	import { player } from '$state/player';
+	import Squiggle from './Squiggle.svelte';
+	import TableOfContents from './TableOfContents.svelte';
+
 	export let transcript: TranscriptWithUtterances;
 	export let aiShowNote: AINoteWithFriends;
 	const slim_transcript = getSlimUtterances(transcript.utterances, 1).filter(
@@ -27,10 +33,6 @@
 			return summary || def;
 		}
 	);
-
-	import { player } from '$state/player';
-	import Squiggle from './Squiggle.svelte';
-	import TableOfContents from './TableOfContents.svelte';
 
 	$: currentUtterance = slim_transcript.find((utterance, index) => {
 		const nextUtteranceStart = slim_transcript[index + 1]?.start || utterance.end;

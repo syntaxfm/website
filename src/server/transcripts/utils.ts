@@ -1,5 +1,8 @@
-// import { type Utterance } from '@deepgram/sdk/dist/types';
-import { Prisma } from '@prisma/client';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+// TODO remove this ts-nocheck. I've added this until this is more complete or confirmed to be complete
+import type { Utterance } from '@deepgram/sdk/dist/types/utterance';
+import type { Prisma } from '@prisma/client';
 
 export type SlimUtterance = {
 	speaker?: string;
@@ -32,7 +35,7 @@ export function getSlimUtterances(
 	groupForPunctuation = true
 ): SlimUtterance[] {
 	const start: SlimUtterance[] = [];
-	const slim = utterances.reduce((acc, utterance, index) => {
+	const slim = utterances.reduce((acc, utterance) => {
 		const { speaker, start, end } = utterance;
 		const transcript_value =
 			'transcript_value' in utterance ? utterance.transcript_value : utterance.transcript;
@@ -64,7 +67,7 @@ export function getSlimUtterances(
 	}, start);
 	const speakerNames = detectSpeakerNames(slim);
 	// Add speaker names and index to existing utterances
-	return slim.map((utterance, utteranceIndex) => {
+	return slim.map((utterance, utteranceIndex: number) => {
 		const speakerName = speakerNames.get(utterance.speakerId);
 		return {
 			...utterance,
@@ -112,14 +115,14 @@ export function formatAsTranscript(utterances: SlimUtterance[]) {
  */
 export function formatForEmbedding(utterances: SlimUtterance[]) {
 	return utterances.reduce((acc, utterance) => {
-		const { speaker, transcript, condensedTranscript } = utterance;
+		const { transcript, condensedTranscript } = utterance;
 		return `${acc}\n${condensedTranscript || transcript}`;
 	}, '');
 }
 
-export function formatAsSTR(utterances: SlimUtterance[]) {
-	// TODO
-}
+// export function formatAsSTR(utterances: SlimUtterance[]) {
+// 	// TODO
+// }
 
 export function detectSpeakerNames(utterances: SlimUtterance[]): SpeakerMap {
 	// Logic:
