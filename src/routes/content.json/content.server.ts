@@ -1,5 +1,5 @@
-import { Show } from '@prisma/client';
 import { prisma_client } from '../../hooks.server';
+import type { Show } from '@prisma/client';
 
 interface Block {
 	breadcrumbs: string[];

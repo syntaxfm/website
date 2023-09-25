@@ -1,5 +1,4 @@
 <!-- If you want to have a page title. Simply return { meta_title: 'new title', from any loader }  same for description and OG image`-->
-
 <script lang="ts">
 	import social_banner from '$assets/syntax-banner.png';
 	import { page } from '$app/stores';

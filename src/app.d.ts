@@ -1,6 +1,6 @@
 // See https://kit.svelte.dev/docs/types#app
 import type { UserWithRoles } from '$server/auth/users';
-import { PrismaClient } from '@prisma/client/index.d.ts';
+import type { PrismaClient } from '@prisma/client';
 // Import the relevant types
 
 // for information about these interfaces

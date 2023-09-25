@@ -11,7 +11,7 @@ import {
 } from '$server/transcripts/utils';
 import { encode } from 'gpt-3-encoder';
 import wait from 'waait';
-import { Prisma } from '@prisma/client';
+import type { Prisma } from '@prisma/client';
 
 export const TOKEN_LIMIT = 7000;
 export const COMPLETION_TOKEN_IDEAL = 1500; // how many tokens we should reserve to the completion - otherwise the responses are poor quality

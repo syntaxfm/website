@@ -1,4 +1,4 @@
-import { Show } from '@prisma/client';
+import type { Show } from '@prisma/client';
 
 export interface Block {
 	breadcrumbs: string[];

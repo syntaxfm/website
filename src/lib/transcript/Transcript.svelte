@@ -2,8 +2,8 @@
 	// TODO WES BOS Remove
 	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 	// @ts-nocheck
-	import { AINoteWithFriends, TranscriptWithUtterances } from '$server/ai/queries';
-	import { SlimUtterance, getSlimUtterances } from '$server/transcripts/utils';
+	import type { AINoteWithFriends, TranscriptWithUtterances } from '$server/ai/queries';
+	import { type SlimUtterance, getSlimUtterances } from '$server/transcripts/utils';
 	import format_time, { tsToS } from '$utilities/format_time';
 	import 'core-js/full/map/group-by';
 	import slugify from '@sindresorhus/slugify';

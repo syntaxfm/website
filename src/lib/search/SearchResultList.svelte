@@ -4,7 +4,7 @@
 	import { search_recent } from '$state/search';
 	import { createEventDispatcher } from 'svelte';
 	import type { Tree, Block } from './types';
-	import { Show } from '@prisma/client';
+	import type { Show } from '@prisma/client';
 
 	export let results: (Block & Show)[] | Tree[];
 	export let recent_searches: boolean = false;

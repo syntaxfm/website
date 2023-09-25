@@ -1,6 +1,6 @@
 import flexsearch, { type Index } from 'flexsearch';
 import type { Block, Tree } from './types';
-import { Show } from '@prisma/client';
+import type { Show } from '@prisma/client';
 
 // @ts-expect-error tbh not sure about this one but sk had it in their code.
 const Index = flexsearch.Index ?? flexsearch;

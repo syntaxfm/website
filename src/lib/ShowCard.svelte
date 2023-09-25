@@ -18,19 +18,23 @@
 		? `background-image:linear-gradient(to top, #00000000, var(--bg)), url(${white_grit})`
 		: '--bg=var(--bg-sheet)'}
 >
-	<a href={`/shows/${show.number}/${show.slug}`}>
-		{#if display === 'list'}
+	<a href="/shows/{show.number}/{show.slug}">
+		<!-- {#if display === 'list'}
 			<button on:click|preventDefault={() => player.play_show(show)} class="play-button">
 				<Icon name="play" />
 			</button>
-		{/if}
+		{/if} -->
 
 		<div class="details">
 			<p class="date" style:--transition-name="show-date-{show.number}">
 				{format_show_type(show.date)} - {format(new Date(show.date), 'MMMM do, yyyy')}
 			</p>
 
-			<svelte:element this={heading} class="h3" style:--transition-name="show-title-{show.number}">
+			<svelte:element
+				this={heading}
+				class="h3 show-title"
+				style:--transition-name="show-title-{show.number}"
+			>
 				{show.title}
 			</svelte:element>
 

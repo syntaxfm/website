@@ -100,13 +100,13 @@
 		font-family: 'MDIO';
 		/* font-family: '💪'; */
 		font-weight: 700;
-    letter-spacing: -0.04em;
-    line-height: 1.4;
-    margin-block: 0.2em;
-    mask-image: url($assets/Grit Mask@2x.png);
-    mask-image-repeat: repeat;
-    mask-size: 250px;
-    /* &:before {
+		letter-spacing: -0.04em;
+		line-height: 1.4;
+		margin-block: 0.2em;
+		mask-image: url('$assets/Grit Mask@2x.png');
+		mask-image-repeat: repeat;
+		mask-size: 250px;
+		/* &:before {
 			display: block;
 			content: '';
 			width: 100%;
@@ -303,6 +303,6 @@ a[href^='https']:not(.social-icon, .button):after {
 
 /* Selection */
 ::selection {
-  background: var(--primary);
-  color: var(--bg);
+	background: var(--primary);
+	color: var(--bg);
 }

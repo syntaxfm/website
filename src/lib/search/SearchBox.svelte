@@ -8,7 +8,7 @@
 	import { fade } from 'svelte/transition';
 	import { clickOutDialog } from '$actions/click_outside_dialog';
 	import type { Block, Tree } from './types';
-	import { Show } from '@prisma/client';
+	import type { Show } from '@prisma/client';
 
 	let search_input: HTMLInputElement;
 	let modal: HTMLDialogElement;

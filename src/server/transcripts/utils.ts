@@ -2,7 +2,7 @@
 // @ts-nocheck
 // TODO remove this ts-nocheck. I've added this until this is more complete or confirmed to be complete
 import type { Utterance } from '@deepgram/sdk/dist/types/utterance';
-import { Prisma } from '@prisma/client';
+import type { Prisma } from '@prisma/client';
 
 export type SlimUtterance = {
 	speaker?: string;

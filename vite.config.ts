@@ -8,7 +8,7 @@ export default defineConfig({
 		include: ['src/**/*.{test,spec}.{js,ts}']
 	},
 	css: {
-    devSourcemap: true,
+		devSourcemap: true,
 		preprocessorOptions: {
 			postcss: {
 				additionalData: `
@@ -23,6 +23,11 @@ export default defineConfig({
 				@custom-media --above_xlarge (width > 1200px);
 				`
 			}
+		}
+	},
+	resolve: {
+		alias: {
+			'.prisma/client/index-browser': './node_modules/@prisma/client/index-browser.js'
 		}
 	}
 });
