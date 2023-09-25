@@ -5,7 +5,7 @@
 	import HostsAndGuests from './HostsAndGuests.svelte';
 	import Icon from '$lib/Icon.svelte';
 	import NewsletterForm from '$lib/NewsletterForm.svelte';
-	import Transcript from '$lib/transcript/Transcript.svelte';
+	// import Transcript from '$lib/transcript/Transcript.svelte';
 	export let data;
 	$: ({ show } = data);
 
@@ -65,7 +65,7 @@
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <section class="layout full" on:click={handleClick}>
 	{#if $page.params.tab === 'transcript' && show?.transcript && show.aiShowNote}
-		<Transcript aiShowNote={show.aiShowNote} transcript={show.transcript} />
+		<!-- <Transcript aiShowNote={show.aiShowNote} transcript={show.transcript} /> -->
 	{:else}
 		<div class="main">
 			{@html show.show_notes}
