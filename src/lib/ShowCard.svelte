@@ -19,11 +19,11 @@
 		: '--bg=var(--bg-sheet)'}
 >
 	<a href="/shows/{show.number}/{show.slug}">
-		<!-- {#if display === 'list'}
+		{#if display === 'list'}
 			<button on:click|preventDefault={() => player.play_show(show)} class="play-button">
 				<Icon name="play" />
 			</button>
-		{/if} -->
+		{/if}
 
 		<div class="details">
 			<p class="date" style:--transition-name="show-date-{show.number}">
