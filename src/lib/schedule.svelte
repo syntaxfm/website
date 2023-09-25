@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
 	import fries from '$assets/fries.svg';
 	import burger from '$assets/burger.svg';
 	import drinks from '$assets/drinks.svg';
@@ -106,4 +106,4 @@
 		letter-spacing: 3px;
 		font-size: var(--font-size-xs);
 	}
-</style>
+</style> -->
