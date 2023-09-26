@@ -1,13 +1,6 @@
-<script>
-	import fries from '$assets/fries.svg';
-	import burger from '$assets/burger.svg';
-	import drinks from '$assets/drinks.svg';
-</script>
-
 <section>
 	<p class="lines thrice">Thrice Weekly</p>
 	<div>
-		<img src={fries} alt="" />
 		<p class="tag length">15m</p>
 		<p class="tag day">Monday</p>
 		<div>
@@ -16,7 +9,6 @@
 		<p class="desc">Quick n' Informative</p>
 	</div>
 	<div>
-		<img src={burger} alt="" />
 		<p class="tag length">60</p>
 		<p class="tag day">Wednesday</p>
 		<div>
@@ -25,7 +17,6 @@
 		<p class="desc">Deep Dives</p>
 	</div>
 	<div>
-		<img src={drinks} alt="" />
 		<p class="tag length">60m</p>
 		<p class="tag day">Friday</p>
 		<div>
@@ -55,13 +46,6 @@
 		background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 4%, rgba(0, 0, 0, 0.4) 100%),
 			url($assets/whitegrit.png);
 		background-size: 269px, 30%;
-	}
-	img {
-		max-width: 100%;
-		width: 50px;
-		display: block;
-		margin: 1rem auto;
-		display: none;
 	}
 	.tag {
 		background: var(--yellow);

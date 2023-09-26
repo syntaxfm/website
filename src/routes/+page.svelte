@@ -2,11 +2,10 @@
 	import ShowCard from '$lib/ShowCard.svelte';
 	import PodcastHero from '$lib/PodcastHero.svelte';
 	import NewsletterForm from '$lib/NewsletterForm.svelte';
-	import type { Show } from '@prisma/client';
-	import Schedule from '$lib/schedule.svelte';
 
 	export let data;
 	$: ({ latest } = data);
+	type Show = (typeof latest)[0];
 	let last_ten: Show[];
 	let latest_show: Show | null = null;
 

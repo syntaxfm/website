@@ -134,3 +134,17 @@ export const example_response = {
 	links: [],
 	guests: ['Guest 2']
 };
+
+export const LATEST_SHOW_QUERY = Prisma.validator<Prisma.ShowFindManyArgs>()({
+  take: 10, orderBy: { number: 'desc' },
+  include: {
+    aiShowNote: {
+      select: {
+          description: true,
+          topics: true,
+      }
+    }
+  }
+});
+
+export type LatestShow = Prisma.ShowGetPayload<typeof LATEST_SHOW_QUERY>;
