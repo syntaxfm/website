@@ -11,10 +11,10 @@ type FormActionMessage = {
 export const form_action = (opts?: FormActionMessage, callback?: (data: any | unknown) => any) => {
 	return function form_enhance() {
 		loading.setLoading(true);
-		return async ({ result }: { result: ActionResult<any, any> }) => {
+		return async ({ result }: { result: ActionResult<{ message: string }> }) => {
 			console.log(result);
 			if (result.type === 'success') {
-				toast.success('Siiiiick ' + result.data.message + ' was a success');
+				toast.success('Siiiiick ' + result?.data?.message + ' was a success');
 			} else if (result.type === 'error') {
 				console.log(result);
 				toast.error(`Major bummer: ${result.error.message}`);

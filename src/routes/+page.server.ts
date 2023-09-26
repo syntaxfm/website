@@ -27,13 +27,5 @@ export const actions: Actions = {
 		return {
 			message: 'Logout Successful'
 		};
-	},
-
-	set_theme: async function set_theme({ locals }) {
-		locals.prisma.user.update({
-			data: {
-				active_theme_name: locals.form_data.theme_name
-			}
-		});
 	}
 };

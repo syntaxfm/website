@@ -45,13 +45,6 @@
 		margin: 2rem 0;
 	}
 
-	h5 {
-		font-weight: 600;
-		font-style: italic;
-		opacity: 0.8;
-		margin: 0 0 1rem;
-	}
-
 	.featuring {
 		display: flex;
 		flex-wrap: wrap;

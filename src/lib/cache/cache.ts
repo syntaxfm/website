@@ -3,7 +3,7 @@ import kvjs from '@heyputer/kv.js';
 export const client = new kvjs();
 
 export const cache = {
-	set: async function (key: string, value: string) {
+	set: async function (key: string, value: object) {
 		try {
 			const stringValue = JSON.stringify(value);
 			return client.set(key, stringValue);

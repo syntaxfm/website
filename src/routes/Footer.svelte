@@ -17,6 +17,8 @@
 			<div class="links-col">
 				<a href="/system/colors">Colors</a>
 				<a href="/system/layout">Layout</a>
+				<a href="/system/typography">Typography</a>
+				<a href="/system/theme">Theme</a>
 				<!-- <a href="/system/components">Components</a> -->
 			</div>
 			<div class="links-col social-links">

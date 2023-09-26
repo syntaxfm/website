@@ -1,9 +1,8 @@
-<nav class="l-margin sticky">
+<nav class="l-margin sticky zone">
 	<ul>
 		<li><a href="/system/colors">Colors</a></li>
 		<li><a href="/system/layout">Layout</a></li>
 		<li><a href="/system/typography">Typography</a></li>
-		<li><a href="/system/components">Components</a></li>
 		<li><a href="/system/theme">Theme</a></li>
 	</ul>
 </nav>
@@ -12,5 +11,11 @@
 <style lang="postcss">
 	nav {
 		grid-row: span 5;
+		ul {
+			padding: 5px;
+		}
+		li {
+			list-style: none;
+		}
 	}
 </style>

@@ -9,13 +9,11 @@
 	$: if ($player?.audio) {
 		$player?.audio?.addEventListener('pause', function () {
 			isAnimating = false;
-			console.log('isAnimating', isAnimating);
 		});
 
 		// When audio is played, resume the animation
 		$player?.audio?.addEventListener('play', function () {
 			isAnimating = true;
-			console.log('isAnimating', isAnimating);
 		});
 	}
 

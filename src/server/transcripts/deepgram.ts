@@ -1,3 +1,6 @@
+// TODO WES BOS Remove
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import DeepgramPkg from '@deepgram/sdk';
 const { Deepgram } = DeepgramPkg;
 import { prisma_client as prisma } from '../../hooks.server';

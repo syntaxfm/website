@@ -13,6 +13,10 @@
 
 <div class="bookmarks">
 	{#each time_stamps as time_stamp}
+		<!-- A11y only disabled because this file isn't being used -->
+		<!-- This whole thing will get a rewrite asap -->
+		<!-- svelte-ignore a11y-click-events-have-key-events -->
+		<!-- svelte-ignore a11y-no-static-element-interactions -->
 		<div
 			on:click|preventDefault={handleClick}
 			data-timestamp={time_stamp.href}

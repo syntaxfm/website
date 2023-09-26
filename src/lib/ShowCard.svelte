@@ -44,7 +44,7 @@
 		? `background-image:linear-gradient(to top, #00000000, var(--bg)), url(${white_grit})`
 		: '--bg=var(--bg-sheet)'}
 >
-	<a href={`/shows/${show.number}/${show.slug}`}>
+	<a href="/shows/{show.number}/{show.slug}">
 		{#if display === 'list'}
 			<button on:click|preventDefault={() => player.play_show(show)} class="play-button">
 				<Icon name="play" />
@@ -66,7 +66,11 @@
 				{format_show_type(show.date)} - {format_date(new Date(show.date))}
 			</p>
 
-			<svelte:element this={heading} class="h3" style:--transition-name="show-title-{show.number}">
+			<svelte:element
+				this={heading}
+				class="h3 show-title"
+				style:--transition-name="show-title-{show.number}"
+			>
 				{show.title}
 			</svelte:element>
 
@@ -130,6 +134,7 @@
 			--bg: var(--bg-root);
 			--fg: var(--fg-root);
 			border: none;
+			border-radius: var(--brad);
 			grid-column: 1 / -1;
 			background-size: 169px;
 			background-repeat: repeat;

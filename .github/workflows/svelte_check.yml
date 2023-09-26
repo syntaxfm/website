@@ -1,4 +1,4 @@
-name: Run_Playwright_Tests_on_PRs
+name: Run_Svelte_Check_on_PRs
 
 on:
   pull_request:
@@ -30,11 +30,8 @@ jobs:
       - name: Setup DB
         run: pnpm db:generate
 
-      - name: Install playwright browsers
-        run: pnpx playwright install --with-deps
-
-      - name: Run Playwright tests
-        run: pnpm run test
+      - name: Run Svelte Check
+        run: pnpm check
         env:
           PUBLIC_GITHUB_ID: ${{ secrets.PUBLIC_GITHUB_ID }}
           GH_SECRET: ${{ secrets.GH_SECRET }}

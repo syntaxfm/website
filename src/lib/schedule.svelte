@@ -57,7 +57,7 @@
 		margin: 0;
 		display: inline-block;
 		mask-image: url('$assets/Grit Mask@2x.png');
-		mask-image-repeat: repeat;
+		mask-repeat: repeat;
 		mask-size: 250px;
 		position: relative;
 		&.day {

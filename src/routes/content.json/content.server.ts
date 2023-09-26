@@ -1,8 +1,14 @@
-import { format_show_type } from '$utilities/format_show_type';
 import { prisma_client } from '../../hooks.server';
+import type { Show } from '@prisma/client';
+
+interface Block {
+	breadcrumbs: string[];
+	content: string;
+	href: string;
+}
 
 export async function content() {
-	const blocks = [];
+	const blocks: (Block & Show)[] = [];
 	const shows = await prisma_client.show.findMany({ orderBy: { number: 'desc' } });
 
 	shows.forEach((show) => {

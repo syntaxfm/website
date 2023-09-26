@@ -7,14 +7,17 @@
 	import SearchResultList from './SearchResultList.svelte';
 	import { fade } from 'svelte/transition';
 	import { clickOutDialog } from '$actions/click_outside_dialog';
-	import type { Tree } from './types';
+	import type { Block, Tree } from './types';
+	import type { Show } from '@prisma/client';
 
+	let search_input: HTMLInputElement;
 	let modal: HTMLDialogElement;
 	let search: {
 		results: Tree[];
 		query: string;
 	} | null = null;
-	let recent_searches: Tree[] = [];
+	let recent_searches: (Block & Show)[] = [];
+
 	let worker: Worker;
 	let ready = false;
 	let active_color = 'var(--fg)';
@@ -23,6 +26,7 @@
 	const pending = new Set();
 
 	onMount(async () => {
+		search_input.focus();
 		worker = new SearchWorker();
 		worker.addEventListener('message', (event) => {
 			const { type, payload } = event.data;
@@ -80,13 +84,26 @@
 	}
 
 	$: if ($searching) {
-		$overlay_open = true;
-		modal.showModal();
+		if (modal) {
+			$overlay_open = true;
+			modal.showModal();
+		}
 	}
 
-	function change_color(e) {
-		let computed = window.getComputedStyle(e.target).backgroundColor;
-		active_color = computed;
+	function change_color(e: MouseEvent) {
+		if (e.target instanceof Element) {
+			let computed = window.getComputedStyle(e.target).backgroundColor;
+			active_color = computed;
+		}
+	}
+
+	function search_keydown(e: KeyboardEvent) {
+		if (e.key === 'Enter' && !e.isComposing) {
+			const anchor: HTMLAnchorElement | null = modal.querySelector('a[data-has-node]');
+			if (anchor) {
+				anchor.click();
+			}
+		}
 	}
 </script>
 
@@ -121,12 +138,8 @@
 	<section aria-label="Search Results Window">
 		<header role="banner">
 			<input
-				autofocus
-				on:keydown={(e) => {
-					if (e.key === 'Enter' && !e.isComposing) {
-						modal.querySelector('a[data-has-node]')?.click();
-					}
-				}}
+				bind:this={search_input}
+				on:keydown={search_keydown}
 				on:input={(e) => {
 					$search_query = e.currentTarget.value;
 				}}
@@ -142,11 +155,7 @@
 		</header>
 		<div class="results">
 			{#if search?.query}
-				<div
-					transition:fade={{ duration: 300 }}
-					class="results-container"
-					on:click={() => ($searching = false)}
-				>
+				<div transition:fade={{ duration: 300 }} class="results-container">
 					<SearchResults
 						results={search.results}
 						query={search.query}
@@ -175,19 +184,10 @@
 ░░░██║░░░██║░░██║██╔╝╚██╗
 ░░░╚═╝░░░╚═╝░░╚═╝╚═╝░░╚═╝
 					</pre>
-						<div on:click={change_color} class="color-boxes">
-							<div class="color-box"></div>
-							<div class="color-box"></div>
-							<div class="color-box"></div>
-							<div class="color-box"></div>
-							<div class="color-box"></div>
-							<div class="color-box"></div>
-							<div class="color-box"></div>
-							<div class="color-box"></div>
-							<div class="color-box"></div>
-							<div class="color-box"></div>
-							<div class="color-box"></div>
-							<div class="color-box"></div>
+						<div class="color-boxes">
+							{#each Array(12) as _, i (i)}
+								<button on:click={change_color}></button>
+							{/each}
 						</div>
 					</div>
 					<div>
@@ -237,10 +237,6 @@
 		}
 	}
 
-	h5 {
-		font-style: italic;
-	}
-
 	header:focus-within {
 		--border: var(--primary);
 		background-color: var(--bg-sheet);
@@ -263,12 +259,8 @@
 		max-width: 100%;
 		width: 100%;
 		@media (--above_med) {
-			width: 60vw;
+			width: clamp(600px, 90vw, 950px);
 		}
-	}
-
-	h5 {
-		margin: 1rem 0;
 	}
 
 	dialog::backdrop {
@@ -292,11 +284,6 @@
 		@media (--above_med) {
 			padding: 20px 0;
 		}
-	}
-
-	textarea {
-		background-color: transparent;
-		color: var(--fg);
 	}
 
 	.search-input {
@@ -337,55 +324,45 @@
 	.color-boxes {
 		display: grid;
 		grid-template-columns: repeat(6, 1fr);
-	}
-
-	.color-box {
-		height: 20px;
-		background-color: var(--yellow);
-	}
-	.color-box:nth-child(2) {
-		height: 20px;
-		background-color: var(--teal);
-	}
-	.color-box:nth-child(3) {
-		height: 20px;
-		background-color: var(--green);
-	}
-	.color-box:nth-child(4) {
-		height: 20px;
-		background-color: var(--red);
-	}
-	.color-box:nth-child(5) {
-		height: 20px;
-		background-color: var(--purple);
-	}
-	.color-box:nth-child(6) {
-		height: 20px;
-		background-color: var(--black);
-	}
-
-	.color-box:nth-child(7) {
-		height: 20px;
-		background-color: var(--yellow-2);
-	}
-	.color-box:nth-child(8) {
-		height: 20px;
-		background-color: var(--teal-2);
-	}
-	.color-box:nth-child(9) {
-		height: 20px;
-		background-color: var(--green-2);
-	}
-	.color-box:nth-child(10) {
-		height: 20px;
-		background-color: var(--red-2);
-	}
-	.color-box:nth-child(11) {
-		height: 20px;
-		background-color: var(--purple-2);
-	}
-	.color-box:nth-child(12) {
-		height: 20px;
-		background-color: var(--black-2);
+		button {
+			appearance: none;
+			box-shadow: none;
+			border-radius: 0;
+			height: 20px;
+			background-color: var(--yellow);
+		}
+		button:nth-child(2) {
+			background-color: var(--teal);
+		}
+		button:nth-child(3) {
+			background-color: var(--green);
+		}
+		button:nth-child(4) {
+			background-color: var(--red);
+		}
+		button:nth-child(5) {
+			background-color: var(--purple);
+		}
+		button:nth-child(6) {
+			background-color: var(--black);
+		}
+		button:nth-child(7) {
+			background-color: var(--yellow-2);
+		}
+		button:nth-child(8) {
+			background-color: var(--teal-2);
+		}
+		button:nth-child(9) {
+			background-color: var(--green-2);
+		}
+		button:nth-child(10) {
+			background-color: var(--red-2);
+		}
+		button:nth-child(11) {
+			background-color: var(--purple-2);
+		}
+		button:nth-child(12) {
+			background-color: var(--black-2);
+		}
 	}
 </style>

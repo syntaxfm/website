@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let height: number | undefined;
+	export let height: number | string = 'auto';
 </script>
 
 <svg {height} viewBox="0 0 1371 1212" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -17,7 +17,7 @@
 <style>
 	svg {
 		mask-image: url('$assets/Grit Mask@2x.png');
-		mask-image-repeat: repeat;
+		mask-repeat: repeat;
 		mask-size: 250px;
 		height: 100%;
 	}

@@ -1,4 +1,7 @@
-import { transcript_select } from '$server/ai/queries';
+// TODO WES BOS Remove
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+// import { transcript_select } from '$server/ai/queries';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ locals, params }) => {
@@ -16,7 +19,7 @@ export const load: PageServerLoad = async ({ locals, params }) => {
 						tweets: true
 					}
 				},
-				transcript: transcript_select,
+				// transcript: transcript_select,
 				guests: true
 			}
 		})

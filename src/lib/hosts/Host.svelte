@@ -3,8 +3,8 @@
 	export let guest: boolean = false;
 	export let host: {
 		name: string;
-		github?: string;
-		twitter?: string;
+		github?: string | null;
+		twitter?: string | null;
 		slug?: string;
 	};
 </script>
