@@ -1,12 +1,13 @@
 import type { Actions } from '@sveltejs/kit';
-import type { PageServerLoad } from './$types';
+import type { PageServerLoad, PageServerLoadEvent,  } from './$types';
+import { LATEST_SHOW_QUERY } from '$server/ai/queries';
 
 export const load: PageServerLoad = async ({ locals, setHeaders }) => {
 	setHeaders({
 		'cache-control': 'max-age=240'
 	});
 	return {
-		latest: locals.prisma.show.findMany({ take: 10, orderBy: { number: 'desc' } })
+		latest: locals.prisma.show.findMany(LATEST_SHOW_QUERY),
 	};
 };
 

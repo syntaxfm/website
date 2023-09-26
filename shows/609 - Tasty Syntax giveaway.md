@@ -1,7 +1,7 @@
 ---
 number: 609
 title: The Syntax Giveaway Site - Codes, Bots, Tech Stack and More!
-date: 1712145600996
+date: 1680523200345
 url: https://traffic.libsyn.com/syntax/Syntax_-_609.mp3
 ---
 
