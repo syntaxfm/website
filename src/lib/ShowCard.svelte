@@ -5,12 +5,15 @@
 	import Icon from './Icon.svelte';
 	import { format } from 'date-fns';
 	import type { LatestShow } from '$server/ai/queries';
+	import Badge from './badges/Badge.svelte';
+	import Badges from './badges/Badges.svelte';
+	import FacePile from './FacePile.svelte';
 
 	export let show: LatestShow;
 	export let display: 'list' | 'card' | 'highlight' = 'card';
 
 	export let heading = 'h3';
-
+	export let show_date = new Date(show.date);
 	function format_date(date: Date, baseDate: Date = new Date()) {
 		const timeFormatter = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
 		const diff = date.getTime() - baseDate.getTime();
@@ -29,15 +32,6 @@
 	}
 </script>
 
-<!--
-
-  1. It should say the type: hasty/tasty/supper
-  2. It should say the date, but relative if it's within the last 2 weeks
-  3. It should say the title
-  4. It should have a play button
-  5. AI description. Hash tags?
-  6. Avatar of the guest?
- -->
 <article
 	class={display}
 	style={display === 'highlight'
@@ -50,20 +44,15 @@
 				<Icon name="play" />
 			</button>
 		{/if}
-		<span class="show-number">{show.number}</span>
+		<span class="show-number grit">{show.number}</span>
 
 		<div class="details">
-			<span>{format_show_type(show.date)}</span>
-			{#if show.aiShowNote?.topics}
-				<div class="topics text-sm">
-					{#each show.aiShowNote.topics.slice(0, 2) as topic}
-						<span class="topic">#{topic.name}</span>
-					{/each}
-				</div>
-			{/if}
-
 			<p class="date" style:--transition-name="show-date-{show.number}">
-				{format_show_type(show.date)} - {format_date(new Date(show.date))}
+				{format_show_type(show.date)}
+				<span aria-hidden="true">×</span>
+				<time datetime={show_date.toDateString()} title={show_date.toDateString()}
+					>{format_date(show_date)}</time
+				>
 			</p>
 
 			<svelte:element
@@ -73,22 +62,47 @@
 			>
 				{show.title}
 			</svelte:element>
+			{#if show.aiShowNote?.description}
+				<p class="description text-sm">{show.aiShowNote?.description}</p>
+			{:else}
+				<p class="description text-sm">
+					{show.show_notes.match(/(.*?)(?=## Show Notes)/s)?.[0]}
+				</p>
+			{/if}
+
+			{#if show.aiShowNote?.topics}
+				<Badges>
+					{#each show.aiShowNote.topics
+						.filter((topic) => topic.name.length < 15)
+						.slice(0, 4) as topic}
+						<Badge>#{topic.name}</Badge>
+					{/each}
+				</Badges>
+			{/if}
 
 			<!-- {#if display === 'highlight'}
 				<p>
 					{show.show_notes.match(/(.*?)(?=## Show Notes)/s)?.[0]}
 				</p>
 			{/if} -->
-			{#if show.aiShowNote?.description}
-				<p class="description text-sm">{show.aiShowNote?.description}</p>
-			{/if}
+
+			<FacePile
+				faces={[
+					{ name: 'Wes Bos', github: 'wesbos' },
+					{ name: 'Scott Tolinski', github: 'stolinski' },
+					...show.guests.map((guest) => ({
+						name: guest.Guest.name,
+						github: guest.Guest.github || ''
+					}))
+				]}
+			/>
 
 			{#if display === 'highlight' || display === 'card'}
 				<div class="buttons">
 					<button
 						class:play={display === 'highlight'}
 						on:click|preventDefault={() => player.play_show(show)}
-						><Icon name="play" /> Play Episode {show.number}</button
+						><Icon name="play" /> Play #{show.number}</button
 					>
 				</div>
 			{/if}
@@ -104,30 +118,34 @@
 		background-color: var(--bg);
 		position: relative;
 		overflow: hidden;
+		align-items: start;
 		& a {
 			color: var(--fg);
 			display: block;
 			display: flex;
 			gap: 20px;
 		}
-
 		& .buttons {
-			margin-top: 4rem;
+			/* margin-top: 4rem; */
+		}
+		.details {
+			display: grid;
+			gap: 1rem;
+			& > * {
+				margin: 0;
+			}
 		}
 
 		&.card {
 			border-radius: var(--brad);
 			border: solid var(--border-size) var(--black);
-			.details {
-				display: grid;
-				grid-template-rows: auto auto auto;
-				.buttons {
-					align-self: flex-end;
-				}
-			}
+
 			&:hover {
 				background-color: var(--zebra);
 			}
+		}
+		.button {
+			width: 100%;
 		}
 
 		&.highlight {
@@ -157,9 +175,9 @@
 	.h3 {
 		view-transition-name: var(--transition-name);
 		margin: 0;
-		font-weight: 500;
-		font-size: var(--font-size-md);
-		/* font-style: italic; */
+		font-weight: 600;
+		font-size: var(--font-size-lg);
+		line-height: 1.2;
 	}
 
 	@container show-card (width > 600px) {
@@ -188,11 +206,20 @@
 
 	.show-number {
 		position: absolute;
-		top: -1.5rem;
-		right: -1.5rem;
-		font-size: 10rem;
+		/* top: -1.5rem;
+		right: -1.5rem; */
+		right: 0;
+		top: 0;
+		transform: translate(6.9%, -22%);
+		font-size: clamp(1.5rem, 45cqw, 15rem);
 		font-weight: 900;
 		color: var(--yellow);
 		line-height: 1;
+		z-index: -1;
+	}
+
+	.show-type {
+		/* background: black;
+		color: white; */
 	}
 </style>

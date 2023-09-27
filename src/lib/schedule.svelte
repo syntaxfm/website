@@ -9,7 +9,7 @@
 		<p class="desc">Quick n' Informative</p>
 	</div>
 	<div>
-		<p class="tag length">60</p>
+		<p class="tag length">60m</p>
 		<p class="tag day">Wednesday</p>
 		<div>
 			<p class="tag">TASTY TREAT</p>
@@ -39,9 +39,7 @@
 
 		grid-template-columns: repeat(3, minmax(0, 1fr));
 		text-align: center;
-		box-shadow:
-			var(--shadow-6),
-			0 0 1px 5px rgba(255, 255, 255, 0.03);
+		box-shadow: 0 0 1px 5px rgba(255, 255, 255, 0.1);
 		background-color: black;
 		background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 4%, rgba(0, 0, 0, 0.4) 100%),
 			url($assets/whitegrit.png);
@@ -88,6 +86,6 @@
 		grid-column: 1 / -1;
 		margin: 0;
 		letter-spacing: 3px;
-		font-size: var(--font-size-xs);
+		font-size: var(--font-size-sm);
 	}
 </style>

@@ -106,18 +106,7 @@
 		mask-image: url('$assets/Grit Mask@2x.png');
 		mask-image-repeat: repeat;
 		mask-size: 250px;
-		/* &:before {
-			display: block;
-			content: '';
-			width: 100%;
-			height: 100%;
-			position: absolute;
-			top: 0;
-			left: 0;
-			background-image: url($assets/grunge.svg);
-			background-size: 500px;
-			background-repeat: repeat;
-		} */
+    text-wrap: balance;
 	}
 
 	h1,

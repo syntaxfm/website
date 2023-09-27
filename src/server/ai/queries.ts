@@ -136,8 +136,18 @@ export const example_response = {
 };
 
 export const LATEST_SHOW_QUERY = Prisma.validator<Prisma.ShowFindManyArgs>()({
-  take: 10, orderBy: { number: 'desc' },
+  take: 20, orderBy: { number: 'desc' },
   include: {
+    guests: {
+      select: {
+        Guest: {
+          select: {
+            github: true,
+            name: true,
+          }
+        }
+      }
+    },
     aiShowNote: {
       select: {
           description: true,
