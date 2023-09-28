@@ -1,4 +1,4 @@
-import { import_or_update_all_shows } from '$server/shows';
+import { import_or_update_all_changed_shows, import_or_update_all_shows } from '$server/shows';
 import { error } from '@sveltejs/kit';
 import { get_transcript } from '$server/transcripts/deepgram';
 import { aiNoteRequestHandler } from '$server/ai/requestHandlers';
@@ -32,6 +32,10 @@ export const load: PageServerLoad = async ({ locals }) => {
 export const actions = {
 	import_all_shows: async () => {
 		console.log('🤖 Pod Sync Requested via Admin');
+		return import_or_update_all_changed_shows();
+	},
+	refresh_all: async () => {
+		console.log('🤖 Pod Refresh Requested via Admin');
 		return import_or_update_all_shows();
 	},
 

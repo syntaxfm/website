@@ -14,6 +14,13 @@ enum ThemeStatus {
   UNPUBLISHED
 }
 
+enum ShowType {
+  HASTY
+  TASTY
+  SUPPER
+  SPECIAL
+}
+
 model User {
   id         String     @id @default(uuid())
   avatar_url String?
@@ -109,6 +116,7 @@ model Show {
   guests     ShowGuest[] // Relation to joining model
   transcript Transcript?
   aiShowNote AiShowNote?
+  show_type  ShowType    @default(SPECIAL)
 
   @@index([number, date], name: "idx_show_number_date") // Define composite index
   @@index([number]) // Define composite index
