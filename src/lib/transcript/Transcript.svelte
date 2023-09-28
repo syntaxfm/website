@@ -1,49 +1,54 @@
 <script lang="ts">
 	// import type { AINoteWithFriends, TranscriptWithUtterances } from '$server/ai/queries';
-	import { getSlimUtterances } from '$server/transcripts/utils';
+	// import { getSlimUtterances } from '$server/transcripts/utils';
 	import format_time, { tsToS } from '$utilities/format_time';
-	import 'core-js/full/map/group-by';
+	// import 'core-js/full/map/group-by';
 	import slugify from '@sindresorhus/slugify';
 	import { player } from '$state/player';
 	import Squiggle from './Squiggle.svelte';
-	import TableOfContents from './TableOfContents.svelte';
+	// import TableOfContents from './TableOfContents.svelte';
 
 	export let transcript;
 	export let aiShowNote;
-	const slim_transcript = getSlimUtterances(transcript.utterances, 1).filter(
-		(utterance) => utterance.speakerId !== 99
-	);
+	const slim_transcript = null;
+	// const slim_transcript = getSlimUtterances(transcript.utterances, 1).filter(
+	// 	(utterance) => utterance.speakerId !== 99
+	// );
 	// group Utterances by their summary
 	const def = { time: '00:00', text: '' };
-	type TopicSummary = (typeof aiShowNote.summary)[0];
+	// type TopicSummary = (typeof aiShowNote.summary)[0];
 
-	const utterances_by_summary: Map = Map.groupBy(slim_transcript, (utterance) => {
-		const start = utterance.start;
-		const summary = aiShowNote?.summary?.findLast((summary, i) => {
-			const nextSummary = aiShowNote?.summary?.at(i + 1);
-			const end = nextSummary ? tsToS(nextSummary.time) : Infinity;
-			const timestamp = tsToS(summary.time);
-			return start >= timestamp;
-		});
-		return summary || def;
-	});
+	const utterances_by_summary = [];
+	// const utterances_by_summary: Map = Map.groupBy(slim_transcript, (utterance) => {
+	// 	const start = utterance.start;
+	// 	const summary = aiShowNote?.summary?.findLast((summary, i) => {
+	// 		const nextSummary = aiShowNote?.summary?.at(i + 1);
+	// 		const end = nextSummary ? tsToS(nextSummary.time) : Infinity;
+	// 		const timestamp = tsToS(summary.time);
+	// 		return start >= timestamp;
+	// 	});
+	// 	return summary || def;
+	// });
 
-	$: currentUtterance = slim_transcript.find((utterance, index) => {
-		const nextUtteranceStart = slim_transcript[index + 1]?.start || utterance.end;
-		return $player.currentTime >= utterance.start && $player.currentTime <= nextUtteranceStart;
-	});
+	$: currentUtterance = null;
+	// $: currentUtterance = slim_transcript.find((utterance, index) => {
+	// 	const nextUtteranceStart = slim_transcript[index + 1]?.start || utterance.end;
+	// 	return $player.currentTime >= utterance.start && $player.currentTime <= nextUtteranceStart;
+	// });
 
-	$: currentTopic = aiShowNote.summary.find((summary, index) => {
-		const nextSummary = aiShowNote.summary[index + 1];
-		const topicEnd = nextSummary ? tsToS(nextSummary.time) : Infinity;
-		const topicStart = tsToS(summary.time);
-		return $player.currentTime >= topicStart && $player.currentTime <= topicEnd;
-	});
+	$: currentTopic = null;
+	// $: currentTopic = aiShowNote.summary.find((summary, index) => {
+	// 	const nextSummary = aiShowNote.summary[index + 1];
+	// 	const topicEnd = nextSummary ? tsToS(nextSummary.time) : Infinity;
+	// 	const topicStart = tsToS(summary.time);
+	// 	return $player.currentTime >= topicStart && $player.currentTime <= topicEnd;
+	// });
 
-	const words = transcript.utterances
-		.map((utt) => utt.words)
-		.flat()
-		.sort((a, b) => a.start - b.start);
+	const words = [];
+	// const words = transcript.utterances
+	// 	.map((utt) => utt.words)
+	// 	.flat()
+	// 	.sort((a, b) => a.start - b.start);
 
 	$: currentWordIndex = words.findIndex((word, index, words) => {
 		const nextWordStart = words[index + 1]?.start || word.end;
@@ -69,7 +74,7 @@
 			return 'future';
 		}
 	};
-	$: placeTopic = function (summary: TopicSummary, utterances) {
+	$: placeTopic = function (summary, utterances) {
 		const summaryEnd = utterances.at(-1)?.end || Infinity;
 		if (currentTopic?.id === summary.id) {
 			return 'current';
@@ -81,7 +86,7 @@
 	};
 </script>
 
-<TableOfContents {aiShowNote} />
+<!-- <TableOfContents {aiShowNote} /> -->
 
 <div class="timeline">
 	{#each Array.from(utterances_by_summary) as [summary, utterances], i}

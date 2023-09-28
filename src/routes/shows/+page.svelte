@@ -3,8 +3,8 @@
 	import SelectMenu from '$lib/SelectMenu.svelte';
 	import ShowCard from '$lib/ShowCard.svelte';
 	import { invalidate } from '$app/navigation';
-	import { PER_PAGE } from '$server/ai/queries.js';
 	import Pagination from '$lib/Pagination.svelte';
+	import { PER_PAGE } from '$const';
 
 	export let data;
 	let limit = 100;

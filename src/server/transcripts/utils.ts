@@ -29,6 +29,7 @@ type PrismaUtterance = Prisma.TranscriptUtteranceGetPayload<{
 		transcript: true;
 	};
 }>;
+
 export function getSlimUtterances(
 	utterances: (PrismaUtterance | Utterance)[],
 	showNumber: number,
