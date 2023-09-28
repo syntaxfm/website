@@ -38,5 +38,15 @@
       background-color: var(--line-color, currentcolor);
     }
   }
+
+  .grit {
+    mask-image: url('$assets/Grit Mask@2x.png');
+		mask-image-repeat: repeat;
+		mask-size: 250px;
+  }
+  .grid-center {
+     display: grid;
+     place-items: center;
+  }
 }
 

@@ -7,7 +7,19 @@
 	export let button_icon: IconName;
 	export let button_text: string;
 	export let popover_id: string;
+	let id = popover_id.replace('filter-', '');
 	export let value: string = '';
+	// let searchParams = new URLSearchParams(window.location.search);
+	import { page } from '$app/stores';
+	$: generate_search_params = (id: string, value: string) => {
+		const searchParams = new URLSearchParams($page.url.search);
+		if (!value) {
+			searchParams.delete(id);
+		} else {
+			searchParams.set(id, value);
+		}
+		return searchParams.toString();
+	};
 </script>
 
 <div style="position: relative;">
@@ -22,8 +34,9 @@
 	<div popover id={popover_id}>
 		<div class="select-menu-menu-wrapper">
 			{#each options as option}
-				<a class:selected={option.value === value} href={`?filter=${option.value}`}
-					>{option.label}</a
+				<a
+					class:selected={option.value === value}
+					href={`?${generate_search_params(id, option.value)}`}>{option.label}</a
 				>
 			{/each}
 		</div>

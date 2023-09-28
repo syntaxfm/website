@@ -25,9 +25,18 @@
 		{#each last_ten as latest_ep}
 			<ShowCard show={latest_ep} />
 		{/each}
+		<div class="grid-center">
+			<a href="/shows" class="button">See all shows</a>
+		</div>
 	</div>
 </section>
 
 <div class="zone layout full" style:--bg="var(--black)" style:--fg="var(--white)">
 	<NewsletterForm />
 </div>
+
+<style>
+	section {
+		margin-top: 5rem;
+	}
+</style>

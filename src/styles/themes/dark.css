@@ -17,7 +17,7 @@
 		--bg-1: var(--black);
 		--bg: var(--black);
 		--fg-2: var(--black-3);
-		--border: solid 4px var(--fg-sheet);
+		--border: solid var(--border-size) var(--fg-sheet);
 		--zebra: oklch(100% none none / 0.05);
 	}
 }
@@ -33,7 +33,7 @@
 	--bg: var(--black);
 	--fg-2: var(--black-3);
 	--border-color: var(--bg-sheet);
-	--border: solid 4px var(--border-color);
+	--border: solid var(--border-size) var(--border-color);
 	--zebra: oklch(100% none none / 0.05);
 }
 .theme-light {
