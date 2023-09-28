@@ -138,12 +138,16 @@ export const example_response = {
 type QueryInputs = {
   take?: number;
   order?: 'asc' | 'desc';
+  skip?: number;
 };
-export const SHOW_QUERY = ({ take, order }: QueryInputs = { take: 20, order: 'desc'}) => Prisma.validator<Prisma.ShowFindManyArgs>()({
+
+
+export const PER_PAGE = 10;
+export const SHOW_QUERY = ({ take, order, skip }: QueryInputs = { take: PER_PAGE, order: 'desc', skip: 0}) => Prisma.validator<Prisma.ShowFindManyArgs>()({
   take,
   orderBy: { number: order },
+  skip,
   include: {
-    _count: true,
     guests: {
       select: {
         Guest: {

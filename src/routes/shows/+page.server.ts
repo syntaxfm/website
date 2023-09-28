@@ -1,5 +1,5 @@
 import { cache } from '$lib/cache/cache';
-import { SHOW_QUERY } from '$server/ai/queries';
+import { PER_PAGE, SHOW_QUERY } from '$server/ai/queries';
 import type { PageServerLoad } from './$types';
 
 const epoch_day = new Date().getTime() / 86400;
@@ -10,16 +10,22 @@ export const load: PageServerLoad = async function ({ locals, url, setHeaders })
 	});
 
 	const order_val = url.searchParams.get('order');
-	const take = url.searchParams.get('perPage');
+	const take = parseInt(url.searchParams.get('perPage') || PER_PAGE.toString());
 	const order = order_val === 'desc' || !order_val ? 'desc' : 'asc'; // Ensure order can only be 'asc' or 'desc'
 	const filter = url.searchParams.get('type');
-	const limit = url.searchParams.get('limit') || 100;
+	const page = parseInt(url.searchParams.get('page') || '1');
+	// const limit = url.searchParams.get('limit') || 100;
 
+  const query = SHOW_QUERY({
+    take,
+    order,
+    skip: page ? (page * take) - take : 0
+  });
   return {
-		shows: locals.prisma.show.findMany(SHOW_QUERY({
-      take: parseInt(take || '100') ,
-      order
-    })),
+		shows: locals.prisma.show.findMany(query),
+    // Todo: This needs to include where clause when we get hasty/tasty/supper/special filtering
+    // https://github.com/prisma/prisma/discussions/3087#discussioncomment-6857217
+    count: locals.prisma.show.count()
 	};
 
 	let whereClause = '';
