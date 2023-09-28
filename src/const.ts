@@ -1,6 +1,12 @@
 // * Constant variables
 // Things that won't be reassigned, although maybe more org needed here eventually
 
+export const DAYS_OF_WEEK_TYPES = {
+	1: 'HASTY', // Monday
+	3: 'TASTY', // Wednesday
+	5: 'SUPPER' // Friday
+} as const;
+
 export const GITHUB_USER_URL = 'https://api.github.com/user';
 export const GITHUB_AUTH_URL = 'https://github.com/login/oauth/authorize';
 
@@ -11,7 +17,7 @@ export const PODCAST_LINKS = [
 		href: 'https://feed.syntax.fm/rss',
 		text: 'RSS'
 	},
-  {
+	{
 		href: 'https://open.spotify.com/show/4kYCRYJ3yK5DQbP5tbfZby?si=bOe7-kl6RnOHapMsVnFWgw',
 		text: 'Spotify'
 	},
@@ -23,14 +29,14 @@ export const PODCAST_LINKS = [
 		href: 'https://overcast.fm/itunes1253186678/syntax-tasty-web-development-treats',
 		text: 'Overcast'
 	},
-  {
+	{
 		href: 'https://pca.st/fmx9',
 		text: 'PocketCasts'
 	},
 	{
 		href: 'https://www.google.com/podcasts?feed=aHR0cHM6Ly9mZWVkLnN5bnRheC5mbS9yc3M%3D',
 		text: 'Google Podcasts'
-	},
+	}
 ];
 
 export interface GithubUser {

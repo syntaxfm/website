@@ -6,6 +6,7 @@ import path from 'path';
 import { get_md_from_folder } from '$utilities/file_utilities/get_md_from_folder';
 import { get_hash_from_content } from '$utilities/file_utilities/get_hash_from_content';
 import { error } from '@sveltejs/kit';
+import { DAYS_OF_WEEK_TYPES } from '$const';
 
 interface FrontMatterGuest {
 	name: string;
@@ -23,21 +24,32 @@ export async function import_or_update_all_shows() {
 
 		// Read and process each .md file
 		for (const md_file of md_files) {
-			const file_path = path.join(shows_folder_path, md_file);
-			const file_content = await fs.readFile(file_path, 'utf-8');
-			const hash = await get_hash_from_content(file_content);
+			const { number, hash, file_content } = await get_show_data(md_file);
+			await parse_and_save_show_notes(file_content, hash, number, md_file);
+		}
+	} catch (err) {
+		console.error('❌ Pod Sync Error:', err);
+		throw error(500, 'Error Importing Shows');
+	}
+	console.log('🤖 Pod Sync Complete ✅');
+	return { message: 'Import All Shows' };
+}
 
-			const number = parseInt(md_file.split(' - ')[0]);
+export async function import_or_update_all_changed_shows() {
+	try {
+		// Filter only .md files
+		const md_files = await get_md_from_folder(shows_folder_path);
+
+		// Read and process each .md file
+		for (const md_file of md_files) {
+			const { number, hash, file_content } = await get_show_data(md_file);
 
 			const existing_show = await prisma.show.findFirst({
 				where: { number: number }
 			});
 
-			if (!existing_show) {
-				// If the show doesn't exist, create it.
-				await parse_and_save_show_notes(file_content, hash, number, md_file);
-			} else if (existing_show.hash !== hash) {
-				// If the show exists and the hash has changed, update it.
+			// If show doesn't exist or the hash has changed. Refresh
+			if (!existing_show || existing_show.hash !== hash) {
 				await parse_and_save_show_notes(file_content, hash, number, md_file);
 			}
 		}
@@ -48,6 +60,16 @@ export async function import_or_update_all_shows() {
 	console.log('🤖 Pod Sync Complete ✅');
 	return { message: 'Import All Shows' };
 }
+
+async function get_show_data(md_file: string) {
+	const file_path = path.join(shows_folder_path, md_file);
+	const file_content = await fs.readFile(file_path, 'utf-8');
+	const hash = await get_hash_from_content(file_content);
+
+	const number = parseInt(md_file.split(' - ')[0]);
+	return { number, hash, file_content };
+}
+
 // Takes a string of a .md show notes and adds it to the database and adds the guests
 export async function parse_and_save_show_notes(
 	notes: string,
@@ -58,6 +80,12 @@ export async function parse_and_save_show_notes(
 	// Parse the front matter
 	const { data, content } = matter(notes);
 
+	const date = new Date(data.date); // Parse the date string into a Date object
+
+	const dayOfWeek: number = date.getDay(); // Get the day of the week (0 = Sunday, 1 = Monday, ...)
+
+	const show_type: 'HASTY' | 'TASTY' | 'SUPPER' | 'SPECIAL' =
+		DAYS_OF_WEEK_TYPES[dayOfWeek] || 'SPECIAL';
 	// Save or update the show
 	try {
 		const show = await prisma.show.upsert({
@@ -65,21 +93,23 @@ export async function parse_and_save_show_notes(
 			update: {
 				title: data.title,
 				slug: slugo(data.title),
-				date: new Date(data.date),
+				date,
 				url: data.url,
 				show_notes: content,
 				hash: hash,
-				md_file
+				md_file,
+				show_type // Assign the calculated show_type
 			},
 			create: {
 				slug: slugo(data.title),
 				number: data.number,
 				title: data.title,
-				date: new Date(data.date),
+				date,
 				url: data.url,
 				show_notes: content,
 				hash: hash,
-				md_file
+				md_file,
+				show_type // Assign the calculated show_type
 			}
 		});
 

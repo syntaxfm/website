@@ -135,9 +135,29 @@ export const example_response = {
 	guests: ['Guest 2']
 };
 
-export const LATEST_SHOW_QUERY = Prisma.validator<Prisma.ShowFindManyArgs>()({
-  take: 10, orderBy: { number: 'desc' },
+type QueryInputs = {
+  take?: number;
+  order?: 'asc' | 'desc';
+  skip?: number;
+};
+
+
+export const PER_PAGE = 10;
+export const SHOW_QUERY = ({ take, order, skip }: QueryInputs = { take: PER_PAGE, order: 'desc', skip: 0}) => Prisma.validator<Prisma.ShowFindManyArgs>()({
+  take,
+  orderBy: { number: order },
+  skip,
   include: {
+    guests: {
+      select: {
+        Guest: {
+          select: {
+            github: true,
+            name: true,
+          }
+        }
+      }
+    },
     aiShowNote: {
       select: {
           description: true,
@@ -147,4 +167,4 @@ export const LATEST_SHOW_QUERY = Prisma.validator<Prisma.ShowFindManyArgs>()({
   }
 });
 
-export type LatestShow = Prisma.ShowGetPayload<typeof LATEST_SHOW_QUERY>;
+export type LatestShow = Prisma.ShowGetPayload<typeof SHOW_QUERY>;
