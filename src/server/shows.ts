@@ -1,4 +1,4 @@
-import slugo from 'slugo';
+import slugify from '@sindresorhus/slugify';
 import matter from 'gray-matter';
 import { prisma_client as prisma } from '../hooks.server';
 import fs from 'fs/promises';
@@ -92,7 +92,7 @@ export async function parse_and_save_show_notes(
 			where: { number: number },
 			update: {
 				title: data.title,
-				slug: slugo(data.title),
+				slug: slugify(data.title),
 				date,
 				url: data.url,
 				show_notes: content,
@@ -101,7 +101,7 @@ export async function parse_and_save_show_notes(
 				show_type // Assign the calculated show_type
 			},
 			create: {
-				slug: slugo(data.title),
+				slug: slugify(data.title),
 				number: data.number,
 				title: data.title,
 				date,
@@ -138,7 +138,7 @@ export async function parse_and_save_show_notes(
 async function add_or_update_guest(guest: FrontMatterGuest, show_id: string) {
 	try {
 		const { social, name, ...guest_without_socials } = guest;
-		const name_slug = slugo(name);
+		const name_slug = slugify(name);
 
 		const guest_record = await prisma.$transaction(async (prisma) => {
 			const existingGuest = await prisma.guest.findUnique({ where: { name_slug } });
