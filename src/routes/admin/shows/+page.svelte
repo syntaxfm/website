@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import FormWithLoader from '$lib/FormWithLoader.svelte';
-	import FormButton from '$lib/FormWithLoader.svelte';
 	import { form_action } from '$lib/form_action';
 	import { format } from 'date-fns';
 	export let data;
@@ -17,10 +16,11 @@
 		<button type="submit">Drop All Shows</button>
 	</form>
 	<form action="/webhooks/refresh" method="post">
-		<button type="submit">Test Post</button>
+		<button type="submit">Refresh Webhook Test</button>
 	</form>
-
-	<button>Resync All Shows</button>
+	<form action="?/refresh_all" method="post" use:enhance={form_action()}>
+		<button type="submit">Resync All Shows</button>
+	</form>
 </div>
 
 <table>
