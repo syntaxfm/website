@@ -65,8 +65,9 @@
 			{#if show.aiShowNote?.description}
 				<p class="description text-sm">{show.aiShowNote?.description}</p>
 			{:else}
+				{@const description = show.show_notes?.match(/(.*?)(?=## Show Notes)/s)?.[0]}
 				<p class="description text-sm">
-					{show.show_notes.match(/(.*?)(?=## Show Notes)/s)?.[0]}
+					{description}
 				</p>
 			{/if}
 
@@ -80,17 +81,11 @@
 				</Badges>
 			{/if}
 
-			<!-- {#if display === 'highlight'}
-				<p>
-					{show.show_notes.match(/(.*?)(?=## Show Notes)/s)?.[0]}
-				</p>
-			{/if} -->
-
 			<FacePile
 				faces={[
 					{ name: 'Wes Bos', github: 'wesbos' },
 					{ name: 'Scott Tolinski', github: 'stolinski' },
-					...show.guests.map((guest) => ({
+					...(show.guests || []).map((guest) => ({
 						name: guest.Guest.name,
 						github: guest.Guest.github || ''
 					}))
@@ -125,9 +120,7 @@
 			display: flex;
 			gap: 20px;
 		}
-		& .buttons {
-			/* margin-top: 4rem; */
-		}
+
 		.details {
 			display: grid;
 			gap: 1rem;
@@ -144,9 +137,6 @@
 				background-color: var(--zebra);
 			}
 		}
-		.button {
-			width: 100%;
-		}
 
 		&.highlight {
 			--bg: var(--bg-root);
@@ -162,13 +152,7 @@
 		&.list {
 			border-top: solid 1px var(--line);
 			padding: 20px 0;
-
-			& .h3 {
-				font-size: var(--font-size-base);
-			}
-			& .buttons {
-				margin-top: 1rem;
-			}
+			margin-inline: auto;
 		}
 	}
 
@@ -178,14 +162,6 @@
 		font-weight: 600;
 		font-size: var(--font-size-lg);
 		line-height: 1.2;
-	}
-
-	@container show-card (width > 600px) {
-		.highlight {
-			& .h3 {
-				font-size: var(--font-size-xl);
-			}
-		}
 	}
 
 	.date {
@@ -206,20 +182,24 @@
 
 	.show-number {
 		position: absolute;
-		/* top: -1.5rem;
-		right: -1.5rem; */
 		right: 0;
 		top: 0;
 		transform: translate(6.9%, -22%);
-		font-size: clamp(1.5rem, 45cqw, 15rem);
+		--max-font-size: 15rem;
+		font-size: clamp(1.5rem, 45cqw, var(--max-font-size));
 		font-weight: 900;
 		color: var(--yellow);
 		line-height: 1;
 		z-index: -1;
 	}
-
-	.show-type {
-		/* background: black;
-		color: white; */
+	@container show-card (width > 600px) {
+		.highlight {
+			& .h3 {
+				font-size: var(--font-size-xl);
+			}
+		}
+		.show-number {
+			--max-font-size: 20cqw;
+		}
 	}
 </style>

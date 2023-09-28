@@ -10,7 +10,11 @@
 	let limit = 100;
 
 	$: ({ shows } = data);
-	const store = queryParameters();
+	const store = queryParameters<{
+		type?: string;
+		perPage?: string;
+		order?: string;
+	}>();
 
 	$: if (shows) {
 		loading_more = false;
@@ -23,19 +27,33 @@
 
 		<div style="display:flex; gap: 10px;">
 			<SelectMenu
-				popover_id="filter-episodes"
+				popover_id="filter-type"
 				on:select={(e) => {
-					$store.filter = e.detail;
+					$store.type = e.detail;
 				}}
 				button_text="Episode Type"
 				button_icon="filter"
-				value={$store.filter || ''}
+				value={$store.type || ''}
 				options={[
 					{ value: '', label: 'All' },
 					{ value: 'hasty', label: 'Hasty' },
 					{ value: 'tasty', label: 'Tasty' },
 					{ value: 'supper', label: 'Supper Club' },
 					{ value: 'special', label: 'Special' }
+				]}
+			/>
+			<SelectMenu
+				popover_id="filter-perPage"
+				on:select={(e) => {
+					$store.perPage = e.detail;
+				}}
+				button_text="Per Page"
+				button_icon="filter"
+				value={$store.perPage || ''}
+				options={[
+					{ value: '2', label: '2' },
+					{ value: '10', label: '10' },
+					{ value: '20', label: '20' }
 				]}
 			/>
 			<SelectMenu

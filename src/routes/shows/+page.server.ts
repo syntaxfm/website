@@ -1,4 +1,5 @@
 import { cache } from '$lib/cache/cache';
+import { SHOW_QUERY } from '$server/ai/queries';
 import type { PageServerLoad } from './$types';
 
 const epoch_day = new Date().getTime() / 86400;
@@ -9,9 +10,17 @@ export const load: PageServerLoad = async function ({ locals, url, setHeaders })
 	});
 
 	const order_val = url.searchParams.get('order');
+	const take = url.searchParams.get('perPage');
 	const order = order_val === 'desc' || !order_val ? 'desc' : 'asc'; // Ensure order can only be 'asc' or 'desc'
-	const filter = url.searchParams.get('filter');
+	const filter = url.searchParams.get('type');
 	const limit = url.searchParams.get('limit') || 100;
+
+  return {
+		shows: locals.prisma.show.findMany(SHOW_QUERY({
+      take: parseInt(take || '100') ,
+      order
+    })),
+	};
 
 	let whereClause = '';
 	const params = [];
