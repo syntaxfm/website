@@ -29,7 +29,6 @@ const new_player_state = () => {
 		update((state) => {
 			state.status = 'ACTIVE';
 			state.current_show = show;
-			console.log('state.audio', state.audio);
 			if (state.audio) {
 				state.audio.pause();
 				state.audio.src = show.url;
@@ -37,9 +36,10 @@ const new_player_state = () => {
 
 				// Wait for the audio to be ready to play
 				state.audio.addEventListener('loadedmetadata', () => {
-					console.log('state.audio', state.audio);
-					state.audio.currentTime = 0;
-					state.audio.play();
+					if (state.audio) {
+						state.audio.currentTime = 0;
+						state.audio.play();
+					}
 				});
 			}
 
