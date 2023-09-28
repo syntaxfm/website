@@ -82,7 +82,6 @@
 		"remark-parse": "^11.0.0",
 		"remark-rehype": "^11.0.0",
 		"sk-form-data": "^1.0.1",
-		"slugo": "^0.4.0",
 		"svelte-french-toast": "1.2.0",
 		"svelte-local-storage-store": "^0.6.0",
 		"sveltekit-search-params": "^1.0.15",
