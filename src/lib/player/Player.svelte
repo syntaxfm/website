@@ -59,72 +59,73 @@
 	// 	};
 	// }
 
-	$: if ($player.audio) {
-		$player.audio.crossOrigin = 'anonymous';
-		$player.audio.play();
-	}
+	// $: if ($player.audio) {
+	// 	$player.audio.crossOrigin = 'anonymous';
+	// 	$player.audio.play();
+	// }
 </script>
 
-{#if $player.status === 'ACTIVE' || $player.status === 'EXPANDED'}
-	<section class={`player ${$player.status}`} transition:fly={{ y: '100%' }}>
-		<header>
-			<!-- Ignore this div, it's just here so I don't get fired -->
-			<div></div>
-			<!-- <button class="player-expand" on:click={player.toggle_expand}><Icon name="expand" /></button> -->
-			<p>Episode #{$player.current_show?.number} - {$player.current_show?.title}</p>
-			<button on:click={player.close}>×</button>
-		</header>
+<section
+	class:expanded={$player.status === 'ACTIVE' || $player.status === 'EXPANDED'}
+	class={`player ${$player.status}`}
+>
+	<header>
+		<!-- Ignore this div, it's just here so I don't get fired -->
+		<div></div>
+		<!-- <button class="player-expand" on:click={player.toggle_expand}><Icon name="expand" /></button> -->
+		<p>Episode #{$player.current_show?.number} - {$player.current_show?.title}</p>
+		<button on:click={player.close}>×</button>
+	</header>
 
-		{#if $player.status === 'EXPANDED'}
-			<div transition:slide>
-				{#if $player.audio && $player.status === 'EXPANDED'}
-					<Visualizer audio={$player.audio} />
-				{/if}
-			</div>
-		{/if}
+	{#if $player.status === 'EXPANDED'}
+		<div transition:slide>
+			{#if $player.audio && $player.status === 'EXPANDED'}
+				<Visualizer audio={$player.audio} />
+			{/if}
+		</div>
+	{/if}
 
-		<div class="player-container">
-			<AlbumArt />
-			<media-controller
-				audio
-				style="--media-range-track-height: 20px; --media-range-thumb-height: 20px; --media-range-thumb-border-radius: 0;	--media-range-bar-color: var(--primary);--media-background-color: transparent; --media-control-background: transparent; width: 100%; --media-font-family: var(--body-font-family); --media-control-hover-background: transparent; "
-			>
-				<audio
-					slot="media"
-					src={$player.current_show?.url}
-					bind:this={$player.audio}
-					preload="metadata"
-					bind:currentTime={$player.currentTime}
-				/>
-				<media-control-bar class="media-bar">
-					<div class="media-controls">
-						<media-seek-backward-button />
-						<media-play-button style:--media-button-icon-height="40px;" />
-						<media-seek-forward-button />
-					</div>
-					<div class="media-range">
-						<media-time-display />
-						<div class="media-range-bookmarks">
-							<!-- {#if time_stamps}
+	<div class="player-container">
+		<AlbumArt />
+		<media-controller
+			audio
+			style="--media-range-track-height: 20px; --media-range-thumb-height: 20px; --media-range-thumb-border-radius: 0;	--media-range-bar-color: var(--primary);--media-background-color: transparent; --media-control-background: transparent; width: 100%; --media-font-family: var(--body-font-family); --media-control-hover-background: transparent; "
+		>
+			<audio
+				slot="media"
+				bind:this={$player.audio}
+				preload="metadata"
+				bind:currentTime={$player.currentTime}
+				crossorigin="anonymous"
+			/>
+			<media-control-bar class="media-bar">
+				<div class="media-controls">
+					<media-seek-backward-button />
+					<media-play-button style:--media-button-icon-height="40px;" />
+					<media-seek-forward-button />
+				</div>
+				<div class="media-range">
+					<media-time-display />
+					<div class="media-range-bookmarks">
+						<!-- {#if time_stamps}
 								<Bookmarks {time_stamps} />
 							{/if} -->
-							<media-time-range
-								style:--media-range-bar-color="var(--accent)"
-								style:--media-range-thumb-background="var(--white)"
-							/>
-						</div>
-						<media-duration-display />
+						<media-time-range
+							style:--media-range-bar-color="var(--accent)"
+							style:--media-range-thumb-background="var(--white)"
+						/>
 					</div>
-					<div class="media-sound">
-						<media-playback-rate-button />
-						<media-mute-button />
-						<media-volume-range />
-					</div>
-				</media-control-bar>
-			</media-controller>
-		</div>
-	</section>
-{/if}
+					<media-duration-display />
+				</div>
+				<div class="media-sound">
+					<media-playback-rate-button />
+					<media-mute-button />
+					<media-volume-range />
+				</div>
+			</media-control-bar>
+		</media-controller>
+	</div>
+</section>
 
 <style lang="postcss">
 	header {
@@ -217,6 +218,11 @@
 		align-items: center;
 		gap: 10px;
 		--media-control-padding: 0;
+		translate: 0 100% 0;
+		transition: 0.2s;
+		&.expanded {
+			translate: 0 0 0;
+		}
 	}
 
 	.player-container {

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { PER_PAGE } from '$server/ai/queries';
 	import { page as pageStore } from '$app/stores';
+	import { PER_PAGE } from '$const';
 	export let count: number;
 	export let perPage: number = PER_PAGE;
 	export let page: number = 1;
@@ -10,7 +10,7 @@
 		if (!value) {
 			searchParams.delete(id);
 		} else {
-			searchParams.set(id, value);
+			searchParams.set(id, value.toString());
 		}
 		return searchParams.toString();
 	};
