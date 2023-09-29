@@ -172,4 +172,4 @@ export const SHOW_QUERY = ({ take, order, skip, show_type }: QueryInputs = { tak
   }
 });
 
-export type LatestShow = Prisma.ShowGetPayload<typeof SHOW_QUERY>;
+export type LatestShow = Prisma.ShowGetPayload<ReturnType<typeof SHOW_QUERY>>;
