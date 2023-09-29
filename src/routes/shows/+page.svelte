@@ -76,6 +76,7 @@
 
 	<div class="shows">
 		{#each shows as show (show.id)}
+			<!-- <pre>{JSON.stringify(show, null, ' ')}</pre> -->
 			<ShowCard {show} display="list" heading="h2" />
 		{/each}
 	</div>
