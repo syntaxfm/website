@@ -78,7 +78,9 @@
 		overflow-y: scroll;
 		border-left: var(--border);
 		box-shadow: var(--shadow-6);
+		z-index: 10;
 	}
+
 	h4 {
 		font-style: normal;
 		margin-top: 0;
@@ -112,12 +114,15 @@
 	.color {
 		background: var(--fg-sheet);
 	}
+
 	.primary {
 		background: var(--primary);
 	}
+
 	.accent {
 		background: var(--accent);
 	}
+
 	.warning {
 		background: var(--warning);
 	}

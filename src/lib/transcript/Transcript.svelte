@@ -141,14 +141,14 @@
 	.timeline {
 		--highlight: var(--bg-2);
 		--future: var(--bg-2);
-		--current: var(--yellow);
-		--past: var(--yellow);
+		--current: var(--primary);
+		--past: var(--primary);
 	}
 	.past {
 		--highlight: var(--past);
 	}
 	.current {
-		--highlight: var(--yellow);
+		--highlight: var(--primary);
 		.marker {
 			/* --progress: 50%; */
 			background-image: linear-gradient(
@@ -204,7 +204,7 @@
 		font-size: var(--font-size-xs);
 		position: sticky;
 		top: 0;
-		background: white;
+		background: var(--bg);
 		z-index: 2;
 		margin-top: var(--vertical-spacing);
 		margin-bottom: var(--vertical-spacing);
