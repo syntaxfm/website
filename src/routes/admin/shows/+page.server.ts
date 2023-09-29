@@ -42,6 +42,10 @@ export const actions = {
 	delete_all_shows: async ({ locals }) => {
 		// Order of these is important because of how db relations work
 		await locals.prisma.showGuest.deleteMany({});
+		await locals.prisma.transcriptUtteranceWord.deleteMany({});
+		await locals.prisma.transcriptUtterance.deleteMany({});
+		await locals.prisma.transcript.deleteMany({});
+		await locals.prisma.aiShowNote.deleteMany({});
 		await locals.prisma.show.deleteMany({});
 		await locals.prisma.socialLink.deleteMany({});
 		await locals.prisma.guest.deleteMany({});

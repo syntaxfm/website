@@ -7,9 +7,9 @@ guest:
   name: Taylor Desseyn
   twitter: tdesseyn
   url: https://solo.to/tdesseyn
-  social: 
-  - https://www.linkedin.com/in/taylordesseyn/
-  - https://www.youtube.com/channel/UCNqJ-P5d9RUCUsQ-grhlUHw
+  social:
+    - https://www.linkedin.com/in/taylordesseyn/
+    - https://www.youtube.com/channel/UCNqJ-P5d9RUCUsQ-grhlUHw
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Taylor Desseyn about his work as a job recruiter, how hiring has changed over the last few years, what soft and tech skills developers need, what not to do when applying, and how AI is affecting the hiring process.
