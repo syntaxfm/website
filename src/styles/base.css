@@ -293,5 +293,5 @@ a[href^='https']:not(.social-icon, .button):after {
 /* Selection */
 ::selection {
 	background: var(--primary);
-	color: var(--bg);
+	color: var(--fg);
 }

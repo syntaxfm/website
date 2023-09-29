@@ -1,6 +1,7 @@
 <script lang="ts" context="module">
 	export type IconName =
 		| 'play'
+		| 'playing'
 		| 'pause'
 		| 'stop'
 		| 'sort'
@@ -37,6 +38,18 @@
 			d="M11.629 7.306a.835.835 0 0 1 0 1.388l-6.401 4.177C4.695 13.218 4 12.825 4 12.176V3.824c0-.649.695-1.042 1.228-.695l6.4 4.177Z"
 		/></svg
 	>
+{/if}
+{#if name === 'playing'}
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		style="width: var(--icon_size, 16px);"
+		viewBox="0 0 16 16"
+		class="playing"
+	>
+		<line x1="7.5" y1="1" x2="7.5" y2="15" stroke="#000000" stroke-width="2" />
+		<line x1="11.5" y1="1" x2="11.5" y2="15" stroke="#000000" stroke-width="2" />
+		<line x1="3.5" y1="1" x2="3.5" y2="15" stroke="#000000" stroke-width="2" />
+	</svg>
 {/if}
 
 {#if name === 'pause'}
@@ -203,3 +216,31 @@
 		></path></svg
 	>
 {/if}
+
+<style>
+	@keyframes pulse {
+		0% {
+			transform: scaleY(0.2);
+		}
+
+		50% {
+			transform: scaleY(1);
+		}
+
+		100% {
+			transform: scaleY(0.2);
+		}
+	}
+
+	.playing line {
+		animation: pulse 1s infinite;
+		transform-origin: 100% 100%;
+	}
+
+	.playing line:nth-child(2) {
+		animation-delay: 0.2s;
+	}
+	.playing line:nth-child(3) {
+		animation-delay: 0.4s;
+	}
+</style>

@@ -5,7 +5,7 @@
 	import HostsAndGuests from './HostsAndGuests.svelte';
 	import Icon from '$lib/Icon.svelte';
 	import NewsletterForm from '$lib/NewsletterForm.svelte';
-	// import Transcript from '$lib/transcript/Transcript.svelte';
+	import Transcript from '$lib/transcript/Transcript.svelte';
 	export let data;
 	$: ({ show } = data);
 
@@ -20,19 +20,26 @@
 </script>
 
 <header>
+	<span
+		title="Show #{show.number}"
+		style:--transition-name="show-date-{show.number}"
+		class="show-number grit">{show.number}</span
+	>
 	<p class="show-page-date" style:--transition-name="show-date-{show.number}">
 		{format(new Date(show.date), 'MMMM do, yyyy')}
+		×
+		<span class="topics">
+			{#each show.aiShowNote?.topics?.slice(0, 5) || [] as topic}
+				<span class="topic">#{topic.name}</span>
+			{/each}
+		</span>
 	</p>
+
 	<h1 style:--transition-name="show-title-{show.number}">{show.title}</h1>
-	<p>
-		{#each show.aiShowNote?.topics?.slice(0, 5) || [] as topic}
-			<span class="topic">#{topic.name}</span>
-		{/each}
-	</p>
-	<button class="big play" on:click={() => player.play_show(show)}>
-		<Icon name="play" />
-		Play Episode {show.number}</button
-	>
+	{#if show.aiShowNote?.description}
+		<p class="description">{show.aiShowNote?.description}</p>
+	{/if}
+	<p>Listen:</p>
 </header>
 
 <div>
@@ -40,6 +47,10 @@
 </div>
 
 <div class="show-actions">
+	<button on:click={() => player.play_show(show)}>
+		<Icon name="play{$player.current_show?.number === show.number ? 'ing' : ''}" />
+		Play{$player.current_show?.number === show.number ? 'ing' : ''} Episode {show.number}
+	</button>
 	<a class="button subtle" download href={show.url}>👇 Download Show</a>
 	<a
 		class="subtle button"
@@ -47,6 +58,7 @@
 		href={'https://github.com/syntaxfm/website/tree/main/shows' + show.md_file}
 		>✏️ Edit Show Notes</a
 	>
+	<pre>{JSON.stringify(show.aiShowNote?.tweets)}</pre>
 </div>
 
 <div class="tabs">
@@ -65,7 +77,7 @@
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <section class="layout full" on:click={handleClick}>
 	{#if $page.params.tab === 'transcript' && show?.transcript && show.aiShowNote}
-		<!-- <Transcript aiShowNote={show.aiShowNote} transcript={show.transcript} /> -->
+		<Transcript aiShowNote={show.aiShowNote} transcript={show.transcript} />
 	{:else}
 		<div class="main">
 			{@html show.show_notes}
@@ -88,12 +100,12 @@
 	@layer theme {
 		header {
 			grid-column: content / content;
+			position: relative;
 		}
 
 		h1 {
 			view-transition-name: var(--transition-name);
 			margin-top: 0;
-			margin-bottom: 6rem;
 			font-size: var(--font-size-xxl);
 		}
 
@@ -116,6 +128,26 @@
 
 		.show-page-date {
 			view-transition-name: var(--transition-name);
+		}
+		.topics {
+			display: inline-flex;
+			gap: 1rem;
+		}
+		.show-number {
+			position: absolute;
+			right: 0;
+			top: 10%;
+			transform: translate(6.9%, -22%);
+			--max-font-size: 15rem;
+			font-size: clamp(1.5rem, 45cqw, var(--max-font-size));
+			font-weight: 900;
+			color: var(--yellow);
+			line-height: 1;
+			transform: rotate(-2deg);
+			z-index: 0;
+			& ~ * {
+				position: relative;
+			}
 		}
 	}
 </style>

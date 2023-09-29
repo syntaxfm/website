@@ -44,7 +44,9 @@
 				<Icon name="play" />
 			</button>
 		{/if}
-		<span class="show-number grit">{show.number}</span>
+		<span style:--transition-name="show-date-{show.number}" class="show-number grit"
+			>{show.number}</span
+		>
 
 		<div class="details">
 			<p class="date" style:--transition-name="show-date-{show.number}">
@@ -65,7 +67,7 @@
 			{#if show.aiShowNote?.description}
 				<p class="description text-sm">{show.aiShowNote?.description}</p>
 			{:else}
-				{@const description = show.show_notes?.match(/(.*?)(?=## Show Notes)/s)?.[0]}
+				{@const description = show.show_notes?.match(/(.*?)(?=## )/s)?.[0]}
 				<p class="description text-sm">
 					{description}
 				</p>
