@@ -57,7 +57,7 @@
 		a {
 			color: var(--fg);
 			&.current {
-				background: var(--yellow);
+				background: var(--primary);
 			}
 		}
 	}
