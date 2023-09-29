@@ -5,7 +5,7 @@ date: 1689940800938
 url: https://traffic.libsyn.com/syntax/Syntax_-_643.mp3
 ---
 
-In this supper club episode of Syntax, Wes and Scott talk with Jake Champion about his work with Fastly and Polyfill, the difference between WASY and WASM, what Winter CG is, and what makes Fastly different.
+In this supper club episode of Syntax, Wes and Scott talk with Jake Champion about his work with Fastly and Polyfill, the difference between WASI and WASM, what Winter CG is, and what makes Fastly different.
 
 ## Show Notes
 
@@ -23,7 +23,7 @@ In this supper club episode of Syntax, Wes and Scott talk with Jake Champion abo
 * **[16:29](#t=16:29)** What is Winter CG compliance?
 * [Winter CG proposal](https://github.com/wintercg/proposal-common-minimum-api)
 * **[17:55](#t=17:55)** What about node API's being in platforms
-* **[21:18](#t=21:18)** What is WASY vs WASM?
+* **[21:18](#t=21:18)** What is WASI vs WASM?
 * **[24:37](#t=24:37)** Who is Web Assembly for?
 * **[31:34](#t=31:34)** Is there anything WASM is not good for?
 * **[41:39](#t=41:39)** What makes the Fastly runtime different from others

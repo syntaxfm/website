@@ -4,7 +4,6 @@ import { find_session } from '../../../../../server/auth/sessions';
 import { find_or_create_user } from '../../../../../server/auth/users';
 
 // This route runs after the user has been successfully validated on GitHub
-/** @type {import('./$types').RequestHandler} */
 export async function GET({ url, cookies, locals }) {
 	// ***   ฅ^•ﻌ•^ฅ   ***  //
 	// *** SyNtAx AuTh *** //
