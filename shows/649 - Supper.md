@@ -3,6 +3,11 @@ number: 649
 title: Supper Club × Ryan Florence of Remix
 date: 1691150400417
 url: https://traffic.libsyn.com/syntax/Syntax_-_649.mp3
+guest:
+  name: Ryan Florence
+  github: ryanflorence
+  twitter: ryanflorence
+  url: https://ryanflorence.com/
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Ryan Florence about Remix, working at Shopify, the history of licensing and pricing, quitting Twitter, the state of React Server components, and more.
