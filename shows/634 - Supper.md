@@ -3,6 +3,12 @@ number: 634
 title: Supper Club × Messaging Queues and Workers with Armin Ronacher
 date: 1688126400605
 url: https://traffic.libsyn.com/syntax/Syntax_-_634.mp3
+guest:
+  name: Armin Ronacher
+  github: mitsuhiko
+  twitter: mitsuhiko
+  url: http://armin.ronacher.eu/
+  social: https://www.linkedin.com/in/arminronacher/?originalSubdomain=at
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Armin Ronacher about his contributions to open source, queues and messaging in apps, scaling up a queue, and how it all works at Sentry.
