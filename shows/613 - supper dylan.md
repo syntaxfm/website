@@ -3,6 +3,11 @@ number: 613
 title: Supper Club × Dylan Jhaveri - Video for the Web and MUX
 date: 1683892800856
 url: https://traffic.libsyn.com/syntax/Syntax_-_613.mp3
+guest:
+  name: Dylan Jhaveri
+  github: dylanjha
+  twitter: dylanjha
+  url: https://www.mux.com/
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Dylan Jhaveri about his work at Mux, how Mux ingests and spits out video, and where Mux fits in a tech stack for developers working with video and audio.
