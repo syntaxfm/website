@@ -3,6 +3,12 @@ number: 670
 title: Anxiety and Uncertainty with Dr. Courtney Tolinski
 date: 1695384000565
 url: https://traffic.libsyn.com/syntax/Syntax_-_670.mp3
+guest:
+  name: Dr. Courtney Tolinski 
+  twitter: DrTolinski
+  social: 
+    - https://www.linkedin.com/in/courtney-tolinski-5616b819
+    - https://www.instagram.com/learning.differently/
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Dr. Courtney Tolinski about signs and symptoms of anxiety, what the long term effects are of anxiety, how to know if you need help, and what kinds of things you can do to deal with anxiety and uncertainty.
