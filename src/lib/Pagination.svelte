@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { PER_PAGE } from '$server/ai/queries';
 	import { page as pageStore } from '$app/stores';
+	import { PER_PAGE } from '$const';
 	export let count: number;
 	export let perPage: number = PER_PAGE;
 	export let page: number = 1;
@@ -10,7 +10,7 @@
 		if (!value) {
 			searchParams.delete(id);
 		} else {
-			searchParams.set(id, value);
+			searchParams.set(id, value.toString());
 		}
 		return searchParams.toString();
 	};
@@ -52,12 +52,12 @@
 			box-shadow: inset 0 0 0 1px oklch(var(--blacklch) / 0.05);
 			padding: 6px 15px;
 			text-align: center;
-			background-color: var(--black-1);
+			background-color: var(--bg-1);
 		}
 		a {
 			color: var(--fg);
 			&.current {
-				background: var(--yellow);
+				background: var(--primary);
 			}
 		}
 	}

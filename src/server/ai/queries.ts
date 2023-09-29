@@ -1,3 +1,4 @@
+import { PER_PAGE } from '$const';
 import { Prisma, $Enums } from '@prisma/client';
 
 export const transcript_with_utterances = Prisma.validator<Prisma.TranscriptDefaultArgs>()({
@@ -135,41 +136,41 @@ export const example_response = {
 	guests: ['Guest 2']
 };
 
-
-
 type QueryInputs = {
-  take?: number;
-  order?: 'asc' | 'desc';
-  skip?: number;
-  show_type?: $Enums.ShowType
+	take?: number;
+	order?: 'asc' | 'desc';
+	skip?: number;
+	show_type?: $Enums.ShowType;
 };
 
-export const PER_PAGE = 10;
-export const SHOW_QUERY = ({ take, order, skip, show_type }: QueryInputs = { take: PER_PAGE, order: 'desc', skip: 0}) => Prisma.validator<Prisma.ShowFindManyArgs>()({
-  take,
-  orderBy: { number: order },
-  skip,
-  where: {
-    ...(show_type && { show_type: show_type }),
-  },
-  include: {
-    guests: {
-      select: {
-        Guest: {
-          select: {
-            github: true,
-            name: true,
-          }
-        }
-      }
-    },
-    aiShowNote: {
-      select: {
-          description: true,
-          topics: true,
-      }
-    }
-  }
-});
+export const SHOW_QUERY = (
+	{ take, order, skip, show_type }: QueryInputs = { take: PER_PAGE, order: 'desc', skip: 0 }
+) =>
+	Prisma.validator<Prisma.ShowFindManyArgs>()({
+		take,
+		orderBy: { number: order },
+		skip,
+		where: {
+			...(show_type && { show_type: show_type })
+		},
+		include: {
+			guests: {
+				select: {
+					Guest: {
+						select: {
+							github: true,
+							name: true
+						}
+					}
+				}
+			},
+			aiShowNote: {
+				select: {
+					description: true,
+					topics: true
+				}
+			}
+		}
+	});
 
 export type LatestShow = Prisma.ShowGetPayload<ReturnType<typeof SHOW_QUERY>>;

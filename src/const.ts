@@ -39,6 +39,9 @@ export const PODCAST_LINKS = [
 	}
 ];
 
+// AI & Transcripts
+export const PER_PAGE = 10;
+
 export interface GithubUser {
 	login: string;
 	id: number;

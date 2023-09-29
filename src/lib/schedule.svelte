@@ -46,7 +46,7 @@
 		background-size: 269px, 30%;
 	}
 	.tag {
-		background: var(--yellow);
+		background: var(--primary);
 		color: black;
 		font-weight: 900;
 		padding: 0.5rem;

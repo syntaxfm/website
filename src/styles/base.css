@@ -106,7 +106,7 @@
 		mask-image: url('$assets/Grit Mask@2x.png');
 		mask-image-repeat: repeat;
 		mask-size: 250px;
-    text-wrap: balance;
+		text-wrap: balance;
 	}
 
 	h1,
@@ -181,7 +181,7 @@
 		list-style-type: circle;
 	}
 
-	a[href^='#t'] {
+	a[href^='#t='] {
 		background: var(--bg-2);
 		padding: 4px 6px;
 		border-bottom: none;

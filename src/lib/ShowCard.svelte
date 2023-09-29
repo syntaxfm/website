@@ -190,7 +190,7 @@
 		--max-font-size: 15rem;
 		font-size: clamp(1.5rem, 45cqw, var(--max-font-size));
 		font-weight: 900;
-		color: var(--yellow);
+		color: var(--primary);
 		line-height: 1;
 		z-index: -1;
 	}
