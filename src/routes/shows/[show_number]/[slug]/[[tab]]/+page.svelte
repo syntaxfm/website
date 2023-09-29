@@ -6,6 +6,7 @@
 	import Icon from '$lib/Icon.svelte';
 	import NewsletterForm from '$lib/NewsletterForm.svelte';
 	import Transcript from '$lib/transcript/Transcript.svelte';
+	import ListenLinks from '$lib/ListenLinks.svelte';
 	export let data;
 	$: ({ show } = data);
 
@@ -39,7 +40,6 @@
 	{#if show.aiShowNote?.description}
 		<p class="description">{show.aiShowNote?.description}</p>
 	{/if}
-	<p>Listen:</p>
 </header>
 
 <div>
@@ -51,12 +51,13 @@
 		<Icon name="play{$player.current_show?.number === show.number ? 'ing' : ''}" />
 		Play{$player.current_show?.number === show.number ? 'ing' : ''} Episode {show.number}
 	</button>
-	<a class="button subtle" download href={show.url}>👇 Download Show</a>
+	<span>or</span>
+	<ListenLinks {show} />
+	<a class="button subtle" download href={show.url}>👇</a>
 	<a
 		class="subtle button"
-		download
-		href={'https://github.com/syntaxfm/website/tree/main/shows' + show.md_file}
-		>✏️ Edit Show Notes</a
+		title="Edit Show Notes"
+		href={'https://github.com/syntaxfm/website/tree/main/shows' + show.md_file}>✏️</a
 	>
 	<pre>{JSON.stringify(show.aiShowNote?.tweets)}</pre>
 </div>
@@ -87,7 +88,9 @@
 		<Transcript aiShowNote={show.aiShowNote} transcript={show.transcript} />
 	{:else}
 		<div class="main">
-			{@html show.show_notes}
+			<div class="show-notes">
+				{@html show.show_notes}
+			</div>
 		</div>
 
 		<div class="sidebar">
@@ -136,7 +139,6 @@
 		.show-page-date {
 			view-transition-name: var(--transition-name);
 		}
-<<<<<<< HEAD
 		.topics {
 			display: inline-flex;
 			gap: 1rem;
@@ -155,8 +157,8 @@
 			z-index: 0;
 			& ~ * {
 				position: relative;
-=======
-
+			}
+		}
 		.tabs {
 			margin-bottom: 1rem;
 			display: flex;
@@ -170,7 +172,6 @@
 					text-decoration-color: var(--primary);
 					text-decoration-thickness: 2px;
 				}
->>>>>>> v2
 			}
 		}
 	}

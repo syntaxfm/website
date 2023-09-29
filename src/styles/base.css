@@ -140,6 +140,13 @@
 		font-size: var(--font-size-base);
 	}
 
+  /* Show Notes Typography - coming from markdown so it must be global */
+  .show-notes {
+    h2,h3 {
+      font-size: var(--font-size-lg);
+    }
+  }
+
 	html {
 		font-family: 'MDIO';
 	}
