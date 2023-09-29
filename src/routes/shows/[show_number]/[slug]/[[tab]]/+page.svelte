@@ -52,7 +52,8 @@
 <div class="tabs">
 	<a
 		data-sveltekit-noscroll
-		class:active={$page.url.pathname === `/shows/${$page.params.show_number}/${$page.params.slug}`}
+		class:active={decodeURIComponent($page.url.pathname) ===
+			`/shows/${$page.params.show_number}/${$page.params.slug}`}
 		href="/shows/{$page.params.show_number}/{$page.params.slug}">Show Notes</a
 	>
 	<a
