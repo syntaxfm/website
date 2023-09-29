@@ -17,6 +17,7 @@
 			player.update_time(href, show);
 		}
 	}
+	$: console.log($page.url.pathname);
 </script>
 
 <header>
@@ -50,11 +51,17 @@
 </div>
 
 <div class="tabs">
-	<a data-sveltekit-noscroll href="/shows/{$page.params.show_number}/{$page.params.slug}"
-		>Show Notes</a
+	<a
+		data-sveltekit-noscroll
+		class:active={$page.url.pathname === `/shows/${$page.params.show_number}/${$page.params.slug}`}
+		href="/shows/{$page.params.show_number}/{$page.params.slug}">Show Notes</a
 	>
-	<a data-sveltekit-noscroll href="/shows/{$page.params.show_number}/{$page.params.slug}/transcript"
-		>Transcript</a
+	<a
+		class:active={$page.url.pathname.includes(
+			`/shows/${$page.params.show_number}/${$page.params.slug}/transcript`
+		)}
+		data-sveltekit-noscroll
+		href="/shows/{$page.params.show_number}/{$page.params.slug}/transcript">Transcript</a
 	>
 </div>
 
@@ -116,6 +123,22 @@
 
 		.show-page-date {
 			view-transition-name: var(--transition-name);
+		}
+
+		.tabs {
+			margin-bottom: 1rem;
+			display: flex;
+			gap: 20px;
+			a {
+				color: var(--fg);
+				&.active,
+				&:hover {
+					color: var(--color-sheet);
+					text-decoration: underline;
+					text-decoration-color: var(--primary);
+					text-decoration-thickness: 2px;
+				}
+			}
 		}
 	}
 </style>
