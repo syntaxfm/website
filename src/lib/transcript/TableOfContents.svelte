@@ -22,7 +22,7 @@
 	ul {
 		margin: 0;
 		padding: 0;
-		border: 1px solid var(--purple);
+		border: 1px solid var(--subtle-accent);
 		border-radius: 10px;
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
@@ -32,9 +32,9 @@
 		line-height: initial;
 		list-style: none;
 		padding: 10px;
-		border-bottom: 1px solid var(--purple);
+		border-bottom: 1px solid var(--subtle-accent);
 		&:nth-child(odd) {
-			border-right: 1px solid var(--purple);
+			border-right: 1px solid var(--subtle-accent);
 		}
 		&:last-child {
 			border-bottom: none;
@@ -47,6 +47,6 @@
 	.timestamp {
 		display: block;
 		font-size: var(--font-size-xs);
-		color: var(--purple);
+		color: var(--subtle-accent);
 	}
 </style>

@@ -52,12 +52,12 @@
 			box-shadow: inset 0 0 0 1px oklch(var(--blacklch) / 0.05);
 			padding: 6px 15px;
 			text-align: center;
-			background-color: var(--black-1);
+			background-color: var(--bg-1);
 		}
 		a {
 			color: var(--fg);
 			&.current {
-				background: var(--yellow);
+				background: var(--primary);
 			}
 		}
 	}

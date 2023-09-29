@@ -220,6 +220,7 @@
 		--media-control-padding: 0;
 		translate: 0 100% 0;
 		transition: 0.2s;
+		z-index: 10;
 		&.expanded {
 			translate: 0 0 0;
 		}
