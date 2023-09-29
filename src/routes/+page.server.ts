@@ -1,5 +1,5 @@
 import type { Actions } from '@sveltejs/kit';
-import type { PageServerLoad, PageServerLoadEvent,  } from './$types';
+import type { PageServerLoad } from './$types';
 import { SHOW_QUERY } from '$server/ai/queries';
 
 export const load: PageServerLoad = async ({ locals, setHeaders }) => {
@@ -7,7 +7,7 @@ export const load: PageServerLoad = async ({ locals, setHeaders }) => {
 		'cache-control': 'max-age=240'
 	});
 	return {
-		latest: locals.prisma.show.findMany(SHOW_QUERY()),
+		latest: locals.prisma.show.findMany(SHOW_QUERY())
 	};
 };
 
