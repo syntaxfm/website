@@ -254,7 +254,7 @@
 		height: var(--size);
 		position: relative;
 		border-radius: 50%;
-		border: 1.5px solid var(--white);
+		border: 1.5px solid var(--bg);
 		background: var(--highlight);
 		justify-self: center;
 		.current & {
@@ -268,6 +268,6 @@
 	.speaker {
 		font-size: var(--font-size-sm);
 		font-weight: 600;
-		color: var(--purple);
+		color: var(--subtle-accent);
 	}
 </style>

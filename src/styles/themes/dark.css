@@ -12,6 +12,7 @@
 		--bg-sheet: var(--black);
 		--primary: var(--yellow);
 		--accent: var(--teal);
+		--subtle-accent: var(--yellow-1);
 		--warning: var(--red);
 		--bg-2: var(--black);
 		--bg-1: var(--black);
@@ -27,13 +28,14 @@
 	--bg-sheet: var(--black);
 	--primary: var(--yellow);
 	--accent: var(--teal);
+	--subtle-accent: var(--yellow-1);
 	--warning: var(--red);
-	--bg-2: var(--black);
+	--bg-2: var(--black-8);
 	--bg-1: var(--black);
 	--bg: var(--black);
 	--fg-2: var(--black-3);
 	--border-color: var(--bg-sheet);
-	--border: solid var(--border-size) var(--border-color);
+	--border: solid var(--border-size) var(--fg-sheet);
 	--zebra: oklch(100% none none / 0.05);
 }
 .theme-light {
