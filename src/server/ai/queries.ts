@@ -1,5 +1,5 @@
 import { PER_PAGE } from '$const';
-import { Prisma } from '@prisma/client';
+import { Prisma, $Enums } from '@prisma/client';
 
 export const transcript_with_utterances = Prisma.validator<Prisma.TranscriptDefaultArgs>()({
 	include: {
@@ -140,15 +140,19 @@ type QueryInputs = {
 	take?: number;
 	order?: 'asc' | 'desc';
 	skip?: number;
+	show_type?: $Enums.ShowType;
 };
 
 export const SHOW_QUERY = (
-	{ take, order, skip }: QueryInputs = { take: PER_PAGE, order: 'desc', skip: 0 }
+	{ take, order, skip, show_type }: QueryInputs = { take: PER_PAGE, order: 'desc', skip: 0 }
 ) =>
 	Prisma.validator<Prisma.ShowFindManyArgs>()({
 		take,
 		orderBy: { number: order },
 		skip,
+		where: {
+			...(show_type && { show_type: show_type })
+		},
 		include: {
 			guests: {
 				select: {
@@ -169,4 +173,4 @@ export const SHOW_QUERY = (
 		}
 	});
 
-export type LatestShow = Prisma.ShowGetPayload<typeof SHOW_QUERY>;
+export type LatestShow = Prisma.ShowGetPayload<ReturnType<typeof SHOW_QUERY>>;

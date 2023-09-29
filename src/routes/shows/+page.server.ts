@@ -1,9 +1,8 @@
 import { PER_PAGE } from '$const';
-import { cache } from '$lib/cache/cache';
+// import { cache } from '$lib/cache/cache';
 import { SHOW_QUERY } from '$server/ai/queries';
+import { $Enums } from '@prisma/client';
 import type { PageServerLoad } from './$types';
-
-const epoch_day = new Date().getTime() / 86400;
 
 export const load: PageServerLoad = async function ({ locals, url, setHeaders }) {
 	setHeaders({
@@ -13,14 +12,20 @@ export const load: PageServerLoad = async function ({ locals, url, setHeaders })
 	const order_val = url.searchParams.get('order');
 	const take = parseInt(url.searchParams.get('perPage') || PER_PAGE.toString());
 	const order = order_val === 'desc' || !order_val ? 'desc' : 'asc'; // Ensure order can only be 'asc' or 'desc'
-	const filter = url.searchParams.get('type');
+	const show_type = url.searchParams.get('type')?.toUpperCase();
 	const page = parseInt(url.searchParams.get('page') || '1');
 	// const limit = url.searchParams.get('limit') || 100;
+
+	function isShowType(type: string | null | undefined): type is $Enums.ShowType {
+		if (!type) return false;
+		return $Enums.ShowType.hasOwnProperty(type);
+	}
 
 	const query = SHOW_QUERY({
 		take,
 		order,
-		skip: page ? page * take - take : 0
+		skip: page ? page * take - take : 0,
+		show_type: isShowType(show_type) ? show_type : undefined
 	});
 	return {
 		shows: locals.prisma.show.findMany(query),
