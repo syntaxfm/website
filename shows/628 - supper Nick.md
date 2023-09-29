@@ -3,6 +3,14 @@ number: 628
 title: Supper Club × JavaScript on Hardware, Micro Controllers, ESP32 with Nick Hehr
 date: 1686916800136
 url: https://traffic.libsyn.com/syntax/Syntax_-_628.mp3
+guest:
+  name: Nick Hehr
+  github: HipsterBrown
+  twitter: hipsterbrown
+  url: https://www.hipsterbrown.com/
+  social:
+  - https://toot.cafe/@hipsterbrown
+  - https://codepen.io/HipsterBrown/
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Nick Hehr about the fun ways to get started with micro controllers, writing JavaScript for hardware, and ideas for projects to build involving hardware and software.
