@@ -1,34 +1,6 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
 // TODO remove this ts-nocheck. I've added this until this is more complete or confirmed to be complete
 import type { Utterance } from '@deepgram/sdk/dist/types/utterance';
-import type { Prisma } from '@prisma/client';
-
-export type SlimUtterance = {
-	speaker?: string;
-	speakerId: number;
-	transcript: string;
-	condensedTranscript?: string;
-	start: number;
-	end: number;
-	utteranceIndex: number;
-	showNumber: number;
-};
-
-export type TranscribedShow = {
-	name: string;
-	number: number;
-	utterances: SlimUtterance[];
-};
-
-type SpeakerMap = Map<number, 'Wes Bos' | 'Scott Tolinski' | 'Growler' | string>;
-
-// Slim Utterance joins utterances together if a speaker is the same making it easier to read as well as detect speakers names. We can run this on already saved utterances, or on utterances that have just been fetched from Deepgram
-type PrismaUtterance = Prisma.TranscriptUtteranceGetPayload<{
-	include: {
-		transcript: true;
-	};
-}>;
+import type { PrismaUtterance, SlimUtterance, SpeakerMap } from './types';
 
 export function getSlimUtterances(
 	utterances: (PrismaUtterance | Utterance)[],

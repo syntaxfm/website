@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { AINoteWithFriends } from '$server/ai/queries';
+	import type { AINoteWithFriends } from '$server/ai/queries';
 	import slugify from '@sindresorhus/slugify';
 
 	export let aiShowNote: AINoteWithFriends;
