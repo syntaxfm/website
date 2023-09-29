@@ -3,6 +3,11 @@ number: 655
 title: Supper Club × How Descript Built A Next Gen Video Editor In The Browser With Andrew Lisowski
 date: 1692360000942
 url: https://traffic.libsyn.com/syntax/Syntax_-_655.mp3
+guest:
+  name: Andrew Lisowski
+  github: hipstersmoothie
+  twitter: HipsterSmoothie
+  url: https://www.hipstersmoothie.com/
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Andrew Lisowski about working on Descript, web streams vs local storage, using state machines, writing CSS with Radix, monorepos, and more.
