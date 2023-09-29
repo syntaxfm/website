@@ -3,6 +3,11 @@ number: 652
 title: Supper Club × Flightcontrol with Brandon Bayer
 date: 1691755200455
 url: https://traffic.libsyn.com/syntax/Syntax_-_652.mp3
+guest:
+  name: Brandon Bayer
+  github: flybayer
+  twitter: flybayer
+  url: https://www.flightcontrol.dev/
 ---
 
 Can you have a Vercel like experience on your own AWS? Scott and Wes talk with Brandon Bayer about Flightcontrol - what it is, how to use it on your app, pricing, and more.

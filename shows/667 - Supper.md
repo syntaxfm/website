@@ -3,6 +3,11 @@ number: 667
 title: Supper Club × How To Get Your First Dev Job With Stuart Bloxham
 date: 1694779200689
 url: https://traffic.libsyn.com/syntax/Syntax_-_667.mp3
+guest: 
+  name: Stuart Bloxham
+  github: sbloxy123
+  url: https://www.stuartbloxham.tech/
+  social: https://www.linkedin.com/in/stuart-bloxham-a36197121/
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Stuart Bloxham about how he learned to code, what his interview process was like when applying for a job, how he found the time to make it all work, and his thoughts on bootcamps and ways to learn.

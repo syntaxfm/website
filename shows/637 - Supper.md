@@ -3,6 +3,14 @@ number: 637
 title: Supper Club × Cloudinary with Colby Fayock
 date: 1688731200993
 url: https://traffic.libsyn.com/syntax/Syntax_-_637.mp3
+guest:
+  name: Colby Fayock
+  github: colbyfayock
+  twitter: colbyfayock
+  url: https://www.colbyfayock.com/
+  social: 
+  - https://www.twitch.tv/colbyfayock
+  - https://www.instagram.com/colbyfayock/
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Colby Fayock about Cloudinary's new AI tools, media flow, removing backgrounds, using AI for video templates, and Colby's stack for creating YouTube content.
