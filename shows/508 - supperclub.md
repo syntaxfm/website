@@ -1,6 +1,6 @@
 ---
 number: 508
-title: Supper Club × The Primeagan - Vim, Streaming, Rust, all Around Interesting Guy
+title: Supper Club × The Primeagen - Vim, Streaming, Rust, all Around Interesting Guy
 date: 1662724800226
 url: https://traffic.libsyn.com/syntax/Syntax_-_508.mp3
 guest:
@@ -12,7 +12,7 @@ guest:
     - https://www.twitch.tv/ThePrimeagen
 ---
 
-In this supper club episode of Syntax, Wes and Scott talk with The Primeagan about his streaming set up, how he decides what to stream, why he makes the kind of content he does, and why he loves Vim.
+In this supper club episode of Syntax, Wes and Scott talk with The Primeagen about his streaming set up, how he decides what to stream, why he makes the kind of content he does, and why he loves Vim.
 
 ## Hasura - Sponsor
 

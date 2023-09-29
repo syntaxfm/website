@@ -15,3 +15,7 @@ haters/
 transcripts-flagged/
 
 test-results
+.vercel
+.env
+.svelte-kit
+.sentryclirc
