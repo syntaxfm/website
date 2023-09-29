@@ -5,7 +5,7 @@
 	import HostsAndGuests from './HostsAndGuests.svelte';
 	import Icon from '$lib/Icon.svelte';
 	import NewsletterForm from '$lib/NewsletterForm.svelte';
-	// import Transcript from '$lib/transcript/Transcript.svelte';
+	import Transcript from '$lib/transcript/Transcript.svelte';
 	export let data;
 	$: ({ show } = data);
 
@@ -50,11 +50,17 @@
 </div>
 
 <div class="tabs">
-	<a data-sveltekit-noscroll href="/shows/{$page.params.show_number}/{$page.params.slug}"
-		>Show Notes</a
+	<a
+		data-sveltekit-noscroll
+		class:active={$page.url.pathname === `/shows/${$page.params.show_number}/${$page.params.slug}`}
+		href="/shows/{$page.params.show_number}/{$page.params.slug}">Show Notes</a
 	>
-	<a data-sveltekit-noscroll href="/shows/{$page.params.show_number}/{$page.params.slug}/transcript"
-		>Transcript</a
+	<a
+		class:active={$page.url.pathname.includes(
+			`/shows/${$page.params.show_number}/${$page.params.slug}/transcript`
+		)}
+		data-sveltekit-noscroll
+		href="/shows/{$page.params.show_number}/{$page.params.slug}/transcript">Transcript</a
 	>
 </div>
 
@@ -64,8 +70,8 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <section class="layout full" on:click={handleClick}>
-	{#if $page.params.tab === 'transcript' && show?.transcript && show.aiShowNote}
-		<!-- <Transcript aiShowNote={show.aiShowNote} transcript={show.transcript} /> -->
+	{#if $page.params.tab === 'transcript'}
+		<Transcript aiShowNote={show.aiShowNote} transcript={show.transcript} />
 	{:else}
 		<div class="main">
 			{@html show.show_notes}
@@ -116,6 +122,22 @@
 
 		.show-page-date {
 			view-transition-name: var(--transition-name);
+		}
+
+		.tabs {
+			margin-bottom: 1rem;
+			display: flex;
+			gap: 20px;
+			a {
+				color: var(--fg);
+				&.active,
+				&:hover {
+					color: var(--color-sheet);
+					text-decoration: underline;
+					text-decoration-color: var(--primary);
+					text-decoration-thickness: 2px;
+				}
+			}
 		}
 	}
 </style>
