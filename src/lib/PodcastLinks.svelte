@@ -10,7 +10,9 @@
 	{/each}
 </div>
 
-<p>social..</p>
+<p>
+	<a href="/sentry">Produced by Sentry</a>
+</p>
 
 <style lang="postcss">
 	div {
