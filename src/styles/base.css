@@ -14,20 +14,6 @@
 	}
 
 	@font-face {
-		font-family: 'rad';
-		src:
-			url('https://syntax.fm/static/fonts/Radnika-Light.woff2') format('woff2'),
-			url('https://syntax.fm/static/fonts/Radnika-Light.woff') format('woff');
-	}
-
-	@font-face {
-		font-family: '💪';
-		src:
-			url('https://syntax.fm/static/fonts/Radnika-Bold.woff2') format('woff2'),
-			url('https://syntax.fm/static/fonts/Radnika-Bold.woff') format('woff');
-	}
-
-	@font-face {
 		font-family: 'MDIO';
 		src:
 			url('/fonts/MDIO-Regular.woff2') format('woff2'),
@@ -141,15 +127,16 @@
 		font-size: var(--font-size-base);
 	}
 
-  /* Show Notes Typography - coming from markdown so it must be global */
-  .show-notes {
-    h2,h3 {
-      font-size: var(--font-size-lg);
-    }
-    ul {
-      padding-left: 20px;
-    }
-  }
+	/* Show Notes Typography - coming from markdown so it must be global */
+	.show-notes {
+		h2,
+		h3 {
+			font-size: var(--font-size-lg);
+		}
+		ul {
+			padding-left: 20px;
+		}
+	}
 
 	html {
 		font-family: 'MDIO';
@@ -202,8 +189,8 @@
 		font-weight: normal;
 		border-radius: 4px;
 		position: relative;
-    font-size: var(--font-size-sm);
-    font-weight: 900;
+		font-size: var(--font-size-sm);
+		font-weight: 900;
 		@media (--above_med) {
 			left: -17px;
 		}
