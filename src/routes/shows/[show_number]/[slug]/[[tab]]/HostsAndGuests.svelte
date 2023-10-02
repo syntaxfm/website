@@ -5,15 +5,6 @@
 </script>
 
 <div class="guests-and-hosts">
-	<Host
-		host={{
-			name: 'Nicholas Zakas',
-			github: 'nzakas',
-			twitter: 'stolinski'
-		}}
-		guest={true}
-	/>
-
 	{#if guests?.length > 0}
 		{#each guests as { Guest }}
 			<Host
