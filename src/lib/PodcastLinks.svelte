@@ -10,7 +10,6 @@
 	{/each}
 </div>
 
-
 <p>social..</p>
 
 <style lang="postcss">
@@ -20,7 +19,7 @@
 		gap: 10px;
 	}
 
-	.subscribe--itunes {
+	.subscribe--apple-podcasts {
 		--button-bg: linear-gradient(
 			to bottom,
 			rgb(205, 102, 246) 0%,
@@ -39,7 +38,7 @@
 		pointer-events: none;
 	}
 
-	.subscribe--itunes::before {
+	.subscribe--apple-podcasts::before {
 		background-image: url('/icons/itunes.jpg');
 	}
 
