@@ -152,6 +152,7 @@
 
 	a,
 	.a {
+		color: var(--link-fg, var(--fg));
 		text-decoration: none;
 	}
 
