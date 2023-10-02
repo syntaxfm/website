@@ -36,9 +36,10 @@
 		<a
 			in:fade
 			animate:flip={{ duration: 200, easing: quintOut }}
-			class={page === pageNumber ? 'current' : ''}
-			href="?{generate_search_params('page', pageNumber)}">{pageNumber}</a
-		>
+			class:current={page === pageNumber}
+			href="?{generate_search_params('page', pageNumber)}"
+			>{pageNumber}
+		</a>
 	{/each}
 	<a href="?{generate_search_params('page', page + 1)}">→</a>
 	<a title="Last Page" href="?{generate_search_params('page', totalPages)}">→→</a>
