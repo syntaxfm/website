@@ -1,7 +1,5 @@
 import { json } from '@sveltejs/kit';
-import format from 'date-fns/format';
-
-export const prerender = true;
+import { format } from 'date-fns';
 
 export async function GET({ locals, params }) {
 	const data = await locals.prisma.show.findFirst({
