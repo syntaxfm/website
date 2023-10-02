@@ -1,6 +1,9 @@
 <script lang="ts">
+	import { flip } from 'svelte/animate';
 	import { page as pageStore } from '$app/stores';
 	import { PER_PAGE } from '$const';
+	import { quintOut } from 'svelte/easing';
+	import { fade } from 'svelte/transition';
 	export let count: number;
 	export let perPage: number = PER_PAGE;
 	export let page: number = 1;
@@ -29,8 +32,10 @@
 <div class="pagination">
 	<a title="First Page" href="?{generate_search_params('page', '')}">←←</a>
 	<a href="?{generate_search_params('page', page > 1 ? page - 1 : '')}">←</a>
-	{#each pageNumbers as pageNumber}
+	{#each pageNumbers as pageNumber (pageNumber)}
 		<a
+			in:fade
+			animate:flip={{ duration: 200, easing: quintOut }}
 			class={page === pageNumber ? 'current' : ''}
 			href="?{generate_search_params('page', pageNumber)}">{pageNumber}</a
 		>
@@ -56,6 +61,7 @@
 		}
 		a {
 			color: var(--fg);
+			transition: 0.2s ease background;
 			&.current {
 				background: var(--primary);
 			}
