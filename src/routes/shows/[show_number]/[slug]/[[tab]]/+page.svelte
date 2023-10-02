@@ -7,6 +7,8 @@
 	import NewsletterForm from '$lib/NewsletterForm.svelte';
 	import Transcript from '$lib/transcript/Transcript.svelte';
 	import ListenLinks from '$lib/ListenLinks.svelte';
+	import { json } from 'stream/consumers';
+	import Tabs from '$lib/Tabs.svelte';
 	export let data;
 	$: ({ show } = data);
 
@@ -72,21 +74,18 @@
 	</div>
 </div>
 
-<div class="tabs">
+<Tabs>
 	<a
 		data-sveltekit-noscroll
-		class:active={decodeURIComponent($page.url.pathname) ===
-			`/shows/${$page.params.show_number}/${$page.params.slug}`}
+		class:active={!$page.params.tab}
 		href="/shows/{$page.params.show_number}/{$page.params.slug}">Show Notes</a
 	>
 	<a
-		class:active={$page.url.pathname.includes(
-			`/shows/${$page.params.show_number}/${$page.params.slug}/transcript`
-		)}
+		class:active={$page.params.tab === 'transcript'}
 		data-sveltekit-noscroll
 		href="/shows/{$page.params.show_number}/{$page.params.slug}/transcript">Transcript</a
 	>
-</div>
+</Tabs>
 
 <!-- I don't feel great about this one, but it's hard, because these are click targets on show notes coming in from markdown -->
 <!-- I have no idea how we would make those timestamps into click targets correctly, maybe we can dynamically add role="button" -->
@@ -208,27 +207,12 @@
 			--max-font-size: 15rem;
 			font-size: clamp(1.5rem, 45cqw, var(--max-font-size));
 			font-weight: 900;
-			color: var(--yellow);
+			color: var(--primary);
 			line-height: 1;
 			transform: rotate(-2deg);
 			z-index: 0;
 			& ~ * {
 				position: relative;
-			}
-		}
-		.tabs {
-			margin-bottom: 1rem;
-			display: flex;
-			gap: 20px;
-			a {
-				color: var(--fg);
-				&.active,
-				&:hover {
-					color: var(--color-sheet);
-					text-decoration: underline;
-					text-decoration-color: var(--primary);
-					text-decoration-thickness: 2px;
-				}
 			}
 		}
 	}

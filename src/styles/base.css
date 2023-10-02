@@ -145,6 +145,9 @@
     h2,h3 {
       font-size: var(--font-size-lg);
     }
+    ul {
+      padding-left: 20px;
+    }
   }
 
 	html {
@@ -189,7 +192,7 @@
 	}
 
 	a[href^='#t='] {
-		background: var(--bg-2);
+		background: var(--bg-1);
 		padding: 4px 6px;
 		border-bottom: none;
 		text-decoration: none;
@@ -197,6 +200,8 @@
 		font-weight: normal;
 		border-radius: 4px;
 		position: relative;
+    font-size: var(--font-size-sm);
+    font-weight: 900;
 		@media (--above_med) {
 			left: -17px;
 		}
