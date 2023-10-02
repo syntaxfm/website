@@ -140,6 +140,13 @@
 		font-size: var(--font-size-base);
 	}
 
+  /* Show Notes Typography - coming from markdown so it must be global */
+  .show-notes {
+    h2,h3 {
+      font-size: var(--font-size-lg);
+    }
+  }
+
 	html {
 		font-family: 'MDIO';
 	}
@@ -284,8 +291,8 @@ in a later release. */
 /* Popover */
 
 /* All External Links */
-a[href^='http']:not(.social-icon, .button):after,
-a[href^='https']:not(.social-icon, .button):after {
+a[href^='http']:not(.social-icon, .button, .icon):after,
+a[href^='https']:not(.social-icon, .button, .icon):after {
 	content: '↗';
 	margin-left: 4px;
 	font-size: 12px;
@@ -294,5 +301,5 @@ a[href^='https']:not(.social-icon, .button):after {
 /* Selection */
 ::selection {
 	background: var(--primary);
-	color: var(--bg);
+	color: var(--fg);
 }

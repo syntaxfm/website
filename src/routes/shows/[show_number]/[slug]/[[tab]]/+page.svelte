@@ -6,6 +6,7 @@
 	import Icon from '$lib/Icon.svelte';
 	import NewsletterForm from '$lib/NewsletterForm.svelte';
 	import Transcript from '$lib/transcript/Transcript.svelte';
+	import ListenLinks from '$lib/ListenLinks.svelte';
 	export let data;
 	$: ({ show } = data);
 
@@ -20,33 +21,55 @@
 </script>
 
 <header>
+	<span
+		title="Show #{show.number}"
+		style:--transition-name="show-date-{show.number}"
+		class="show-number grit">{show.number}</span
+	>
 	<p class="show-page-date" style:--transition-name="show-date-{show.number}">
 		{format(new Date(show.date), 'MMMM do, yyyy')}
+		×
+		<span class="topics">
+			{#each show.aiShowNote?.topics?.slice(0, 5) || [] as topic}
+				<span class="topic">#{topic.name}</span>
+			{/each}
+		</span>
 	</p>
+
 	<h1 style:--transition-name="show-title-{show.number}">{show.title}</h1>
-	<p>
-		{#each show.aiShowNote?.topics?.slice(0, 5) || [] as topic}
-			<span class="topic">#{topic.name}</span>
-		{/each}
-	</p>
-	<button class="big play" on:click={() => player.play_show(show)}>
-		<Icon name="play" />
-		Play Episode {show.number}</button
-	>
+	{#if show.aiShowNote?.description}
+		<p class="description">{show.aiShowNote?.description}</p>
+	{/if}
 </header>
 
 <div>
 	<HostsAndGuests guests={show.guests} />
 </div>
 
-<div class="show-actions">
-	<a class="button subtle" download href={show.url}>👇 Download Show</a>
-	<a
-		class="subtle button"
-		download
-		href={'https://github.com/syntaxfm/website/tree/main/shows' + show.md_file}
-		>✏️ Edit Show Notes</a
-	>
+<div class="show-actions-wrap">
+	<div class="show-actions zone" style:--bg="var(--black)" style:--fg="var(--white)">
+		<div>
+			<button on:click={() => player.play_show(show)}>
+				<Icon name="play{$player.current_show?.number === show.number ? 'ing' : ''}" />
+				Play{$player.current_show?.number === show.number ? 'ing' : ''} Episode {show.number}
+			</button>
+			<span>or</span>
+			<ListenLinks {show} />
+		</div>
+		<div>
+			<a class="icon" title="Download Episode" download href={show.url}>
+				<Icon name="download" />
+			</a>
+			<a
+				title="Edit Show Notes"
+				class="icon"
+				href={'https://github.com/syntaxfm/website/tree/main/shows' + show.md_file}
+			>
+				<Icon name="edit" /></a
+			>
+		</div>
+		<div class="waves grit"></div>
+	</div>
 </div>
 
 <div class="tabs">
@@ -71,11 +94,13 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <section class="layout full" on:click={handleClick}>
-	{#if $page.params.tab === 'transcript'}
+	{#if $page.params.tab === 'transcript' && show?.transcript && show.aiShowNote}
 		<Transcript aiShowNote={show.aiShowNote} transcript={show.transcript} />
 	{:else}
 		<div class="main">
-			{@html show.show_notes}
+			<div class="show-notes">
+				{@html show.show_notes}
+			</div>
 		</div>
 
 		<div class="sidebar">
@@ -93,38 +118,104 @@
 
 <style lang="postcss">
 	@layer theme {
+		/* @keyframes ripple {
+			from {
+				background-position-x: 0;
+				transform: scaleX(2);
+			}
+			to {
+				background-position-x: -1000%;
+				transform: scaleX(1);
+			}
+		} */
 		header {
 			grid-column: content / content;
+			position: relative;
 		}
 
 		h1 {
 			view-transition-name: var(--transition-name);
 			margin-top: 0;
-			margin-bottom: 6rem;
 			font-size: var(--font-size-xxl);
 		}
 
+		.show-actions-wrap {
+			container: show-actions / inline-size;
+		}
+
 		.show-actions {
+			/* Spill out over edges */
+			width: 110%;
+			left: -5%;
+			overflow: hidden;
+			/* When the container is larger than 90% of the viewport
+        restrict the width to 100%
+      */
+			@container (min-width: 90vw) {
+				width: 100%;
+				left: 0;
+			}
+
+			position: relative;
+			border-radius: 50px;
 			grid-column: content / content;
-			padding: 2rem 0;
+			padding: 2rem;
 			margin-bottom: 2rem;
-			border-top: var(--border);
-			border-bottom: var(--border);
 			font-weight: 700;
 			display: flex;
 			flex-wrap: wrap;
+			place-items: center;
 			gap: 1rem;
+			justify-content: space-between;
+			align-items: center;
+			align-content: center;
+			a {
+				color: var(--fg);
+			}
 			@media (--below_med) {
 				a {
 					width: 100%;
 				}
+			}
+
+			.waves {
+				position: absolute;
+				z-index: 0;
+				background: url('$assets/waves.svg');
+				height: 20px;
+				width: 100%;
+				left: 0;
+				bottom: 0;
+				background-size: auto 20px;
+				background-repeat: repeat-x;
+				background-position: left 0;
+				animation: ripple 60s linear infinite;
 			}
 		}
 
 		.show-page-date {
 			view-transition-name: var(--transition-name);
 		}
-
+		.topics {
+			display: inline-flex;
+			gap: 1rem;
+		}
+		.show-number {
+			position: absolute;
+			right: 0;
+			top: 10%;
+			transform: translate(6.9%, -22%);
+			--max-font-size: 15rem;
+			font-size: clamp(1.5rem, 45cqw, var(--max-font-size));
+			font-weight: 900;
+			color: var(--yellow);
+			line-height: 1;
+			transform: rotate(-2deg);
+			z-index: 0;
+			& ~ * {
+				position: relative;
+			}
+		}
 		.tabs {
 			margin-bottom: 1rem;
 			display: flex;
