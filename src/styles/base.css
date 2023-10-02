@@ -290,8 +290,8 @@ in a later release. */
 /* Popover */
 
 /* All External Links */
-a[href^='http']:not(.social-icon, .button):after,
-a[href^='https']:not(.social-icon, .button):after {
+a[href^='http']:not(.social-icon, .button, .icon):after,
+a[href^='https']:not(.social-icon, .button, .icon):after {
 	content: '↗';
 	margin-left: 4px;
 	font-size: 12px;

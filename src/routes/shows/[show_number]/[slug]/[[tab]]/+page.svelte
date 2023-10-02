@@ -46,20 +46,30 @@
 	<HostsAndGuests guests={show.guests} />
 </div>
 
-<div class="show-actions">
-	<button on:click={() => player.play_show(show)}>
-		<Icon name="play{$player.current_show?.number === show.number ? 'ing' : ''}" />
-		Play{$player.current_show?.number === show.number ? 'ing' : ''} Episode {show.number}
-	</button>
-	<span>or</span>
-	<ListenLinks {show} />
-	<a class="button subtle" download href={show.url}>👇</a>
-	<a
-		class="subtle button"
-		title="Edit Show Notes"
-		href={'https://github.com/syntaxfm/website/tree/main/shows' + show.md_file}>✏️</a
-	>
-	<pre>{JSON.stringify(show.aiShowNote?.tweets)}</pre>
+<div class="show-actions-wrap">
+	<div class="show-actions zone" style:--bg="var(--black)" style:--fg="var(--white)">
+		<div>
+			<button on:click={() => player.play_show(show)}>
+				<Icon name="play{$player.current_show?.number === show.number ? 'ing' : ''}" />
+				Play{$player.current_show?.number === show.number ? 'ing' : ''} Episode {show.number}
+			</button>
+			<span>or</span>
+			<ListenLinks {show} />
+		</div>
+		<div>
+			<a class="icon" title="Download Episode" download href={show.url}>
+				<Icon name="download" />
+			</a>
+			<a
+				title="Edit Show Notes"
+				class="icon"
+				href={'https://github.com/syntaxfm/website/tree/main/shows' + show.md_file}
+			>
+				<Icon name="edit" /></a
+			>
+		</div>
+		<div class="waves grit"></div>
+	</div>
 </div>
 
 <div class="tabs">
@@ -108,6 +118,16 @@
 
 <style lang="postcss">
 	@layer theme {
+		/* @keyframes ripple {
+			from {
+				background-position-x: 0;
+				transform: scaleX(2);
+			}
+			to {
+				background-position-x: -1000%;
+				transform: scaleX(1);
+			}
+		} */
 		header {
 			grid-column: content / content;
 			position: relative;
@@ -119,20 +139,57 @@
 			font-size: var(--font-size-xxl);
 		}
 
+		.show-actions-wrap {
+			container: show-actions / inline-size;
+		}
+
 		.show-actions {
+			/* Spill out over edges */
+			width: 110%;
+			left: -5%;
+			overflow: hidden;
+			/* When the container is larger than 90% of the viewport
+        restrict the width to 100%
+      */
+			@container (min-width: 90vw) {
+				width: 100%;
+				left: 0;
+			}
+
+			position: relative;
+			border-radius: 50px;
 			grid-column: content / content;
-			padding: 2rem 0;
+			padding: 2rem;
 			margin-bottom: 2rem;
-			border-top: var(--border);
-			border-bottom: var(--border);
 			font-weight: 700;
 			display: flex;
 			flex-wrap: wrap;
+			place-items: center;
 			gap: 1rem;
+			justify-content: space-between;
+			align-items: center;
+			align-content: center;
+			a {
+				color: var(--fg);
+			}
 			@media (--below_med) {
 				a {
 					width: 100%;
 				}
+			}
+
+			.waves {
+				position: absolute;
+				z-index: 0;
+				background: url('$assets/waves.svg');
+				height: 20px;
+				width: 100%;
+				left: 0;
+				bottom: 0;
+				background-size: auto 20px;
+				background-repeat: repeat-x;
+				background-position: left 0;
+				animation: ripple 60s linear infinite;
 			}
 		}
 
