@@ -25,7 +25,7 @@
 		{#each last_ten as latest_ep}
 			<ShowCard show={latest_ep} />
 		{/each}
-		<div class="grid-center">
+		<div class="grid-center" style="grid-column: 1 / -1;">
 			<a href="/shows" class="button">See all shows</a>
 		</div>
 	</div>
