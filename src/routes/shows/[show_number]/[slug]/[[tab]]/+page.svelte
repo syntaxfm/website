@@ -93,8 +93,12 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <section class="layout full" on:click={handleClick}>
-	{#if $page.params.tab === 'transcript' && show?.transcript && show.aiShowNote}
-		<Transcript aiShowNote={show.aiShowNote} transcript={show.transcript} />
+	{#if $page.params.tab === 'transcript'}
+		{#if show?.transcript && show.aiShowNote}
+			<Transcript aiShowNote={show.aiShowNote} transcript={show.transcript} />
+		{:else}
+			<p>Transcript not available yet! We have the AI robots on the job, check back soon!</p>
+		{/if}
 	{:else}
 		<div class="main">
 			<div class="show-notes">
