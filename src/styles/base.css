@@ -107,6 +107,7 @@
 		mask-image-repeat: repeat;
 		mask-size: 250px;
 		text-wrap: balance;
+    font-style: italic;
 	}
 
 	h1,
