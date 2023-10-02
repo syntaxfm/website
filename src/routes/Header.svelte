@@ -9,7 +9,6 @@
 		<div class="logo">
 			<a href="/">
 				<Logo />
-				<span>by Sentry</span>
 			</a>
 		</div>
 
