@@ -7,7 +7,6 @@
 	import Footer from './Footer.svelte';
 	import Header from './Header.svelte';
 	import Loading from '$lib/Loading.svelte';
-	import ThemeMaker from '../params/ThemeMaker.svelte';
 	import { theme } from '$state/theme';
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
@@ -15,6 +14,7 @@
 	import Meta from '$lib/meta/Meta.svelte';
 	import AdminMenu from '$lib/AdminMenu.svelte';
 	import { debug_mode } from '$state/debug';
+	import ThemeMaker from '../../params/ThemeMaker.svelte';
 	export let data;
 	$: ({ user, user_theme, meta_description, meta_image, meta_title } = data);
 

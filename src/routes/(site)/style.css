@@ -18,12 +18,12 @@
 @layer reset base utilities layout theme;
 
 /* Import all css themes */
-@import '../styles/base.css';
-@import '../styles/variables.css';
-@import '../styles/utilities.css';
-@import '../styles/layout.css';
-@import '../styles/forms.css';
-@import '../styles/buttons.css';
+@import '../../styles/base.css';
+@import '../../styles/variables.css';
+@import '../../styles/utilities.css';
+@import '../../styles/layout.css';
+@import '../../styles/forms.css';
+@import '../../styles/buttons.css';
 
 /* FYI you have to use import-glob for all of these or else it gets mad */
 

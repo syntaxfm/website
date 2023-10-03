@@ -2,7 +2,7 @@
 	import { format } from 'date-fns';
 	import { player } from '$state/player';
 	import { page } from '$app/stores';
-	import HostsAndGuests from './HostsAndGuests.svelte';
+	import HostsAndGuests from '../../../../../../lib/HostsAndGuests.svelte';
 	import Icon from '$lib/Icon.svelte';
 	import NewsletterForm from '$lib/NewsletterForm.svelte';
 	import Transcript from '$lib/transcript/Transcript.svelte';
