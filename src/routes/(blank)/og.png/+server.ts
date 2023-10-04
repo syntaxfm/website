@@ -19,7 +19,7 @@ async function getOptions() {
 	return {
 		product: 'chrome',
 		args: chrome.args,
-		executablePath: chrome.executablePath,
+		executablePath: await chrome.executablePath(),
 		headless: chrome.headless
 	};
 }
@@ -40,7 +40,7 @@ async function getScreenshot(url) {
 	return buffer;
 }
 
-export async function GET({ locals, params, url }) {
+export async function GET({ url }) {
 	console.log('request', url);
 	const qs = new URLSearchParams(url.search);
 	const show = qs.get('show');
