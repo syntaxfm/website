@@ -19,7 +19,7 @@ async function getOptions() {
 	return {
 		product: 'chrome',
 		args: chrome.args,
-		executablePath: chrome.executablePath,
+		executablePath: await chrome.executablePath(),
 		headless: chrome.headless
 	};
 }
