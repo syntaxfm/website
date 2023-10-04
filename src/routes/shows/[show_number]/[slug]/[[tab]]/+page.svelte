@@ -52,7 +52,7 @@
 
 <div class="show-actions-wrap">
 	<div class="show-actions zone" style:--bg="var(--fg-sheet)" style:--fg="var(--bg-sheet)">
-		<div>
+		<div class="show-actions-flex">
 			<button on:click={() => player.play_show(show)}>
 				<Icon name="play{$player.current_show?.number === show.number ? 'ing' : ''}" />
 				Play{$player.current_show?.number === show.number ? 'ing' : ''} Episode {show.number}
@@ -219,6 +219,15 @@
 			z-index: 0;
 			& ~ * {
 				position: relative;
+			}
+		}
+
+		.show-actions-flex {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			span {
+				margin-inline: 5px;
 			}
 		}
 	}

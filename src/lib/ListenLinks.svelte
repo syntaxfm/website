@@ -21,8 +21,12 @@
 	<Icon name="apple-podcasts" />
 </a>
 
-<style>
+<style lang="postcss">
 	a {
 		color: white;
+		display: block;
+		:global(svg) {
+			display: block;
+		}
 	}
 </style>
