@@ -62,7 +62,9 @@
 				class="h3 show-title"
 				style:--transition-name="show-title-{show.number}"
 			>
-				{show.title}
+				<span class="spa-ran-wrap">
+					{show.title}
+				</span>
 			</svelte:element>
 			{#if show.aiShowNote?.description}
 				<p class="description text-sm">{show.aiShowNote?.description}</p>
@@ -169,7 +171,8 @@
 	.date {
 		font-size: var(--font-size-sm);
 		margin: 0;
-		opacity: 0.6;
+		font-weight: 700;
+		opacity: 0.8;
 		view-transition-name: var(--transition-name);
 	}
 

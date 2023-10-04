@@ -127,6 +127,14 @@
 		font-size: var(--font-size-base);
 	}
 
+  .spa-ran-wrap {
+    --color: var(--spa-ran-wrap-bg, transparent);
+    --size: 2.33456789ex;
+    background-image: linear-gradient(180deg, var(--color) 0%, var(--color) 50%, transparent 50%, transparent 100%);
+    background-size: auto var(--size);
+    background-position: 10px calc(var(--size) / 4);
+  }
+
 	/* Show Notes Typography - coming from markdown so it must be global */
 	.show-notes {
 		h2,
@@ -294,5 +302,5 @@ a[href^='https']:not(.social-icon, .button, .icon):after {
 /* Selection */
 ::selection {
 	background: var(--primary);
-	color: var(--fg);
+	color: var(--dark);
 }

@@ -38,7 +38,9 @@
 		</span>
 	</p>
 
-	<h1 style:--transition-name="show-title-{show.number}">{show.title}</h1>
+	<h1 style:--transition-name="show-title-{show.number}">
+		<span class="spa-ran-wrap">{show.title}</span>
+	</h1>
 	{#if show.aiShowNote?.description}
 		<p class="description">{show.aiShowNote?.description}</p>
 	{/if}
@@ -49,7 +51,7 @@
 </div>
 
 <div class="show-actions-wrap">
-	<div class="show-actions zone" style:--bg="var(--black)" style:--fg="var(--white)">
+	<div class="show-actions zone" style:--bg="var(--fg-sheet)" style:--fg="var(--bg-sheet)">
 		<div>
 			<button on:click={() => player.play_show(show)}>
 				<Icon name="play{$player.current_show?.number === show.number ? 'ing' : ''}" />
@@ -147,13 +149,13 @@
 		}
 
 		.show-actions {
-			/* Spill out over edges */
+			/* --currentFg: var(--fg);
+			--currentBg: var(--bg);
+			--bg: var(--currentFg);
+			--fg: var(--currentBg); */
 			width: 110%;
 			left: -5%;
 			overflow: hidden;
-			/* When the container is larger than 90% of the viewport
-        restrict the width to 100%
-      */
 			@container (min-width: 90vw) {
 				width: 100%;
 				left: 0;
