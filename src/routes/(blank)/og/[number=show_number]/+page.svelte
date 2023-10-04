@@ -1,8 +1,17 @@
 <script lang="ts">
-	import ShowCard from '$lib/ShowCard.svelte';
+	import ShowOg from '$lib/ShowOg.svelte';
 
 	export let data;
 	$: ({ show } = data);
 </script>
 
-<ShowCard {show} />
+<div class="og-container">
+	<ShowOg {show} />
+</div>
+
+<style lang="postcss">
+	.og-container {
+		aspect-ratio: 20 / 10;
+		outline: 1px solid white;
+	}
+</style>
