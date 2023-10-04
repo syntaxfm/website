@@ -1,8 +1,6 @@
 <script lang="ts">
-	import white_grit from '$assets/whitegrit.png';
 	import { player } from '$state/player';
 	import { format_show_type } from '$utilities/format_show_type';
-	import Icon from './Icon.svelte';
 	import { format } from 'date-fns';
 	import type { LatestShow } from '$server/ai/queries';
 	import Badge from './badges/Badge.svelte';
