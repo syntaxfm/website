@@ -10,7 +10,7 @@ import { transcript_with_utterances } from '$server/ai/queries.js';
 import type { Prisma, Show } from '@prisma/client';
 import type { PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async function ({ setHeaders, params, locals }) {
+export const load: PageServerLoad = async function ({ setHeaders, params, locals, url }) {
 	const { show_number } = params;
 	const query = {
 		where: { number: parseInt(show_number) },
@@ -75,6 +75,12 @@ export const load: PageServerLoad = async function ({ setHeaders, params, locals
 		show: {
 			...show_raw,
 			show_notes: with_h3_body
-		} as ShowTemp & Show
+		} as ShowTemp & Show,
+		meta: {
+			title: show_raw?.title,
+			image: `http://${url.host}/og.png?show=${show_number}`,
+			description:
+				show_raw?.aiShowNote?.description ?? show_raw?.show_notes?.match(/(.*?)(?=## )/s)?.[0]
+		}
 	};
 };

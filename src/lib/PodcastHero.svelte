@@ -1,8 +1,6 @@
 <script lang="ts">
-	import HostsAndGuests from '../routes/shows/[show_number]/[slug]/[[tab]]/HostsAndGuests.svelte';
 	import Logo from './Logo.svelte';
 	import PodcastLinks from './PodcastLinks.svelte';
-	import Host from './hosts/Host.svelte';
 	import Schedule from './schedule.svelte';
 </script>
 
