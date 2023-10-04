@@ -56,8 +56,15 @@ export const prisma: Handle = async function ({ event, resolve }) {
 	return response;
 };
 
+export const meta: Handle = async function ({ event, resolve }) {
+	const response = await resolve(event);
+	return response;
+};
+
 // * END HOOKS
 
 // Wraps requests in this sequence of hooks
-export const handle: Handle = sequence(Sentry.sentryHandle(), sequence(prisma, auth, form_data));
+export const handle: Handle = sequence(
+	sequence(Sentry.sentryHandle(), prisma, auth, form_data, meta)
+);
 export const handleError = Sentry.handleErrorWithSentry();

@@ -16,7 +16,7 @@
 	import { debug_mode } from '$state/debug';
 	import ThemeMaker from '../../params/ThemeMaker.svelte';
 	export let data;
-	$: ({ user, user_theme, meta_description, meta_image, meta_title } = data);
+	$: ({ user, user_theme, meta } = data);
 
 	$theme = user_theme;
 
@@ -32,7 +32,7 @@
 	});
 </script>
 
-<Meta {meta_description} {meta_image} {meta_title} />
+<Meta {meta} />
 
 <div class={'theme-' + ($theme || user_theme) + ' theme-wrapper'} class:debug={$debug_mode}>
 	<Header />

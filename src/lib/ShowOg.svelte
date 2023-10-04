@@ -59,6 +59,7 @@
 				}))
 			]}
 		/>
+		<span class="syntax-url">syntax.fm</span>
 	</div>
 </article>
 
@@ -91,7 +92,7 @@
 	}
 
 	.date {
-		font-size: var(--font-size-lg);
+		font-size: var(--font-size-xl);
 		margin: 0;
 		opacity: 0.6;
 		view-transition-name: var(--transition-name);
@@ -114,5 +115,18 @@
 		.show-number {
 			--max-font-size: 20cqw;
 		}
+	}
+
+	.syntax-url {
+		display: block;
+		position: absolute;
+		font-style: italic;
+		font-weight: 600;
+		color: var(--black);
+		background-color: var(--yellow);
+		bottom: 0;
+		right: 40px;
+		padding: 10px 20px;
+		font-size: var(--font-size-xl);
 	}
 </style>
