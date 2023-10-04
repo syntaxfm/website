@@ -18,6 +18,20 @@
 		variables.
 	</p>
 </div>
+<div class="zone" style:--bg="var(--fg-sheet)" style:--fg="var(--bg-sheet)">
+	<h3>Inverse Zone</h3>
+	<p>
+		By default zones don't have any padding, but they do enable easy setting of local --bg and --fg
+		variables.
+	</p>
+</div>
+<div class="zone" style:--bg="var(--bg-root)" style:--fg="var(--fg-root)">
+	<h3>Always Dark Zone</h3>
+	<p>
+		By default zones don't have any padding, but they do enable easy setting of local --bg and --fg
+		variables.
+	</p>
+</div>
 
 <div
 	class="zone"
