@@ -11,7 +11,8 @@
 
 <style lang="postcss">
 	.og-container {
-		aspect-ratio: 20 / 10;
-		outline: 1px solid white;
+		aspect-ratio: 1200 / 630;
+		overflow: hidden;
+		outline: 1px solid black;
 	}
 </style>

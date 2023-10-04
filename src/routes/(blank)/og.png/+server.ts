@@ -1,5 +1,4 @@
 import { dev } from '$app/environment';
-import { PUBLIC_URL } from '$env/static/public';
 import chrome from '@sparticuz/chromium';
 import puppeteer from 'puppeteer-core';
 import wait from 'waait';
@@ -20,13 +19,12 @@ async function getOptions() {
 	return {
 		product: 'chrome',
 		args: chrome.args,
-		executablePath: await chrome.executablePath,
+		executablePath: chrome.executablePath,
 		headless: chrome.headless
 	};
 }
 
 async function getScreenshot(url) {
-	console.log('url', url);
 	// first check if this value has been cached
 	const cachedImage = cached.get(url);
 	if (cachedImage) {
@@ -35,7 +33,7 @@ async function getScreenshot(url) {
 	const options = await getOptions();
 	const browser = await puppeteer.launch(options);
 	const page = await browser.newPage();
-	await page.setViewport({ width: 1200, height: 630, deviceScaleFactor: 1.5 });
+	await page.setViewport({ width: 1200, height: 630, deviceScaleFactor: 1 });
 	await page.goto(url);
 	await wait(1000);
 	const buffer = await page.screenshot({ type: 'png' });
