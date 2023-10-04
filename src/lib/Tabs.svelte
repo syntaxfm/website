@@ -24,6 +24,7 @@
 				text-decoration: none;
 				background: var(--primary);
 				position: relative;
+				color: var(--dark);
 			}
 			& :global(a) {
 				color: var(--fg);
