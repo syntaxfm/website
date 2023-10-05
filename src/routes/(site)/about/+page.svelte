@@ -110,7 +110,7 @@
 			</div>
 		</div>
 
-		<div class="team-member">
+		<div class="team-member" style:--rotate="0.2deg">
 			<img
 				src={`https://github.com/${hosts.scott.github}.png`}
 				alt={hosts.scott.name}
@@ -152,7 +152,7 @@
 				</p>
 			</div>
 		</div>
-		<div class="team-member">
+		<div class="team-member" style:--rotate="1deg">
 			<img
 				use:lol
 				src={`https://github.com/${hosts.ben.github}.png`}
@@ -191,15 +191,19 @@
 
 	.team-row {
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
 		grid-gap: 40px;
 	}
 
 	.team-member {
 		position: relative;
 		container: team-member / inline-size;
+		max-width: 350px;
 		.desc {
 			margin-top: -15cqw;
+			p {
+				margin: 0;
+			}
 		}
 		h2 {
 			position: absolute;
@@ -230,13 +234,16 @@
 	}
 	.desc {
 		background: rgba(255, 255, 255, 0.96);
-		width: 90%;
+		width: 92%;
 		border-radius: var(--brad);
 		box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.5);
 		margin: 0 auto;
 		position: relative;
 		padding: var(--default_padding);
-		rotate: -1deg;
+		rotate: var(--rotate, -1deg);
+		p {
+			font-size: var(--font-size-sm);
+		}
 	}
 
 	.time {
