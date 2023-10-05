@@ -12,10 +12,6 @@
 	{/each}
 </div>
 
-<p>
-	<a href="/sentry">Produced by Sentry</a>
-</p>
-
 <style lang="postcss">
 	div {
 		display: flex;

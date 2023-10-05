@@ -35,7 +35,8 @@
 
 <style lang="postcss">
 	header {
-		background-image: var(--bgGritDark);
+		background-image: url('/grit.svg?dark&w=1500&h=400&count=50');
+		background-size: 250px;
 		background-color: var(--bg);
 		color: var(--fg);
 		padding: 0 0.5rem;
