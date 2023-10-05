@@ -2,15 +2,16 @@
 	import { format } from 'date-fns';
 	import { player } from '$state/player';
 	import { page } from '$app/stores';
-	import HostsAndGuests from './HostsAndGuests.svelte';
+	import HostsAndGuests from '../../../../../../lib/HostsAndGuests.svelte';
 	import Icon from '$lib/Icon.svelte';
 	import NewsletterForm from '$lib/NewsletterForm.svelte';
 	import Transcript from '$lib/transcript/Transcript.svelte';
 	import ListenLinks from '$lib/ListenLinks.svelte';
 	import { json } from 'stream/consumers';
 	import Tabs from '$lib/Tabs.svelte';
+	import Meta from '$lib/meta/Meta.svelte';
 	export let data;
-	$: ({ show } = data);
+	$: ({ show, meta } = data);
 
 	async function handleClick(e: Event) {
 		const { target } = e;
@@ -21,6 +22,8 @@
 		}
 	}
 </script>
+
+<Meta {meta} />
 
 <header>
 	<span
