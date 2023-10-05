@@ -568,25 +568,26 @@ our Privacy Policy, including for the business or commercial purposes
 below.
 
 <style>
-table, caption, tbody, tfoot, thead, tr, th, td {
+table.personal-information-categories, 
+table.personal-information-categories td {
   margin: 0;
   padding: 0 1rem;
   border: 1px solid black;
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
-  font-size: 12px;
+  font-size: 16px;
 }
-table {
+table.personal-information-categories {
   border-collapse: collapse;
   border-spacing: 0;
 }
-table p {
-    font-size: 16px;
+.personal-information-categories p, li {
+    font-size: 16px; /* needs extra specificity */
 }
 </style>
 
-<table>
+<table class="personal-information-categories">
 <tbody>
 <tr class="odd">
 <td><p><strong>Category of Personal Information</strong></p></td>
@@ -595,46 +596,51 @@ table p {
 <tr class="odd">
 <td><p>Identifiers (such as name, address, email address, phone number,
 other account information, and cookies)</p></td>
-<td></td>
+<td rowspan="10">
+<ul>
+<li>Operate and provide our Service </li>
+<li>Audit interactions on our Service</li>
+<li>Prevent fraud</li>
+<li>Enhance security  </li>
+<li>Detect bugs and errors </li>
+<li>Analyze use of, or improve, the Service </li>
+<li>Customize displayed content </li>
+<li>Comply with laws; defend our legal rights</li>
+<li>Other uses that advance our commercial or economic interests </li>
+<li>Other uses about which we notify you</li>
+</ul>
+</td>
 </tr>
 <tr class="odd">
 <td>
 <p>Commercial information (such as order information, shopping
 information and support information)</p></td>
-<td></td>
 </tr>
 <tr class="odd">
 <td><p>Financial data (such as credit card information)</p></td>
-<td></td>
 </tr>
 <tr class="odd">
 <td><p>Internet or other network or device activity (such as IP address
 or service usage)</p></td>
-<td></td>
 </tr>
 <tr class="odd">
 <td><p>Geolocation information (general location)</p></td>
-<td></td>
 </tr>
 <tr class="odd">
 <td><p>Inference data about you</p></td>
-<td></td>
 </tr>
 <tr class="odd">
 <td><p>Sensory information (such as audio recordings if you chat with
 our support team)</p></td>
-<td></td>
 </tr>
 <tr class="odd">
 <td><p>Other information that identifies or can be reasonably associated
 with you</p></td>
-<td></td>
 </tr>
 <tr class="odd">
 <td><p>Sensitive personal information (account log-in, financial data,
 and password or other credentials allowing access to your
 account)</p></td>
-<td></td>
 </tr>
 </tbody>
 </table>
