@@ -4,8 +4,10 @@
 
 <div>
 	{#each PODCAST_LINKS as { text, href }}
-		<a {href} class="button subscribe subscribe--{text.toLowerCase().replaceAll(' ', '-')}"
-			>{text}</a
+		<a
+			{href}
+			target="_blank"
+			class="button subscribe subscribe--{text.toLowerCase().replaceAll(' ', '-')}">{text}</a
 		>
 	{/each}
 </div>

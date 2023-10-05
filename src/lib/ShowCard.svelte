@@ -135,8 +135,7 @@
 
 		&.card {
 			border-radius: var(--brad);
-			border: solid var(--border-size) var(--black);
-
+			border: solid var(--border-size) var(--black-8);
 			&:hover {
 				background-color: var(--zebra);
 			}
@@ -145,12 +144,12 @@
 		&.highlight {
 			--bg: var(--bg-root);
 			--fg: var(--fg-root);
-			border: none;
 			border-radius: var(--brad);
 			grid-column: 1 / -1;
 			background-size: 169px;
 			background-repeat: repeat;
 			background-position: top center;
+			border: solid var(--border-size) var(--black-8);
 		}
 
 		&.list {

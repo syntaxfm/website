@@ -67,7 +67,6 @@
 	}
 
 	.page-layout {
-		min-height: 80vh;
 		margin: 0 auto;
 	}
 

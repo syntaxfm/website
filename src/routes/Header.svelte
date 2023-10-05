@@ -35,7 +35,7 @@
 
 <style lang="postcss">
 	header {
-		background-image: url('https://syntax.fm/static/background.jpg');
+		background-image: var(--bgGritDark);
 		background-color: var(--bg);
 		color: var(--fg);
 		padding: 0 0.5rem;
