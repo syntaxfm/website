@@ -300,54 +300,46 @@ Agreement, and other appropriate legal mechanisms. This is how transfers
 of personal information between our group companies and with our
 third-party service providers will be safeguarded.
 
-**Privacy Shield Notice**
-
-While Syntax remains self-certified under the EU-U.S. Privacy Shield
-Framework, we are not currently relying on this framework for the
-transfer of personal data from the European Union or the United Kingdom
-to the U.S. 
+**Data Privacy Framework Notice**
 
 Functional Software, Inc. (our registered company name) participates in
-and complies with the EU-U.S. Privacy Shield Framework and the Privacy
-Shield Principles regarding the collection, use, and retention of
-information about you that is transferred from the European Union or the
-United Kingdom (as applicable) to the U.S.  We ensure that the Privacy
-Shield Principles apply to all information about you that is subject to
-this policy and is received from the European Union and the United
-Kingdom.
+and complies with the EU-U.S. Data Privacy Framework regarding the
+collection, use, and retention of personal information about you that is
+transferred from the European Union to the U.S.  We have self-certified
+our commitment to adhere to the Data Privacy Framework Principles for
+all information about you that is received from the European Union in
+reliance on the EU-U.S. Data Privacy Framework.
 
-Under the EU-U.S. Privacy Shield Framework, we are responsible for the
-processing of information about you we receive from the European Union
-and the United Kingdom and onward transfers to a third party acting as
-an agent on our behalf. We comply with the Privacy Shield Principles for
-such onward transfers and remain liable in accordance with the Privacy
-Shield Principles if third-party agents that we engage to process such
-information about you on our behalf do so in a manner inconsistent with
-the Privacy Shield Principles, unless we prove that we are not
-responsible for the event giving rise to the damage. We may be required
-to disclose information about you under the EU-U.S. Privacy Shield
-Framework in response to lawful requests by U.S. authorities, including
-to meet national security or law enforcement requirements.
+As required under the EU-U.S. Data Privacy Framework, when we receive
+information under the EU-U.S.Data Privacy Framework and then transfer it
+to a third party acting as an agent on our behalf, we have certain
+liability under the EU-U.S. Data Privacy Framework if the agent
+processes the information in a manner inconsistent with the EU-U.S. Data
+Privacy Framework and we are responsible for the event giving rise to
+the damage. We may be required to disclose information about you under
+the EU-U.S. Data Privacy Framework in response to lawful requests by
+public authorities, including to meet national security or law
+enforcement requirements.
 
-To learn more about the Privacy Shield Program, and to view our
-certification, please see .
+To learn more about the EU-U.S. Data Privacy Framework program, and to
+view Sentry’s certification, please see the [Data Privacy Framework website](https://www.dataprivacyframework.gov/s/).
 
-We encourage you to contact us as provided below should you have a
-Privacy Shield-related (or general privacy-related) complaint.  We have
-further committed to cooperate and comply with the panel of the European
-data protection authorities (DPAs) as our independent recourse mechanism
-in the resolution of your Privacy Shield complaint. For unresolved
-complaints, you may also contact your local data protection authority.
-Contact details for data protection authorities in the European Union
-are available and for the United Kingdom Information Commissioner are
-available .  
+We encourage you to contact us as provided below should you have an
+EU-U.S. Data Privacy Framework-related (or general privacy-related)
+complaint. We have further committed to cooperate and comply with the
+panel of the European data protection authorities (DPAs) as our
+independent recourse mechanism in the resolution of your EU-U.S. Data
+Privacy Framework complaint. For unresolved complaints, you may also
+contact your local data protection authority. Contact details for data
+protection authorities in the European Union are available [here](https://ec.europa.eu/justice/article-29/structure/data-protection-authorities/index_en.htm).
 
-Under certain conditions, more fully described on the , including when
+Under certain conditions, more fully described on the [Data Privacy Framework website](https://www.dataprivacyframework.gov/s/), including when
 other dispute resolution procedures have been exhausted, you may invoke
 binding arbitration.  
 
 We are subject to the investigatory and enforcement powers of the U.S.
 Federal Trade Commission (FTC). 
+
 
 **[Return to top](#top)**
 
