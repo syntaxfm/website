@@ -79,8 +79,8 @@
 					</span>
 				{/each} miliseconds to be exact)</span
 			>, Syntax has published
-			{data.count} podcast episodes on full-stack web development, covering everything from HTML, CSS,
-			JavaScript, server side languages, databases, deployment environments, and more.
+			{data.count} podcast episodes on full-stack web development, covering JavaScript Server + Client,
+			the latest Frameworks, HTML, CSS, databases, deployment environments, and a whole lot more!
 		</p>
 
 		<p>You should listen! It's pretty good.</p>
@@ -236,6 +236,7 @@
 		margin: 0 auto;
 		position: relative;
 		padding: var(--default_padding);
+		rotate: -1deg;
 	}
 
 	.time {
