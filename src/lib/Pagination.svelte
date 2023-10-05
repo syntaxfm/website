@@ -3,7 +3,7 @@
 	import { page as pageStore } from '$app/stores';
 	import { PER_PAGE } from '$const';
 	import { quintOut } from 'svelte/easing';
-	import { fade } from 'svelte/transition';
+	import { fade, slide, fly } from 'svelte/transition';
 	export let count: number;
 	export let perPage: number = PER_PAGE;
 	export let page: number = 1;
@@ -34,8 +34,7 @@
 	<a href="?{generate_search_params('page', page > 1 ? page - 1 : '')}">←</a>
 	{#each pageNumbers as pageNumber (pageNumber)}
 		<a
-			in:fade
-			animate:flip={{ duration: 200, easing: quintOut }}
+			animate:slide={{ duration: 200, easing: quintOut }}
 			class:current={page === pageNumber}
 			href="?{generate_search_params('page', pageNumber)}"
 			>{pageNumber}

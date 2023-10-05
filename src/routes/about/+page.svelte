@@ -1,6 +1,9 @@
 <script lang="ts">
 	import HostSocialLink from '$lib/hosts/HostSocialLink.svelte';
 	import type { Action } from 'svelte/action';
+	import { flip } from 'svelte/animate';
+	import { quintOut } from 'svelte/easing';
+	import { fade, slide, fly } from 'svelte/transition';
 	import emo from '$assets/emo.jpg';
 	import bboy from '$assets/bboy.jpg';
 	import benjamin from '$assets/benjamin.jpg';
@@ -45,15 +48,43 @@
 			}
 		};
 	};
+
+	const speed = 169;
+	$: since_start = Date.now() - 1499256000000;
+	setInterval(() => {
+		since_start = Date.now() - 1499256000000;
+	}, 500);
+
+	$: digits = since_start.toString().split('');
+
+	export let data;
 </script>
 
 <main style:margin-bottom="2rem">
-	<h1 class="h3">About Syntax</h1>
-	<p style:margin-bottom="2rem" class="readable">
-		Hosted by Wes Bos and Scott Tolinski since 2017, Syntax has published over 600 podcast episodes
-		on full-stack web development, covering everything from HTML, CSS, JavaScript, server side
-		languages, databases, deployment environments, and more.
-	</p>
+	<div style:margin-bottom="2rem">
+		<h1 class="h3 lines">About Syntax</h1>
+		<p>Syntax is a Podcast about Web Development.</p>
+
+		<p>
+			Started by Wes and Scott in 2017 <span class="time text-xs"
+				>(
+				{#each Array.from({ length: digits.length }, (_, i) => i) as i}
+					<span class="slot">
+						{#key `${digits.at(i)}-${i + 1}`}
+							<span
+								in:fly={{ duration: speed, y: -15, delay: i * 10 }}
+								out:fly={{ duration: speed, y: 15, delay: i * 10 }}>{digits.at(i)}</span
+							>
+						{/key}
+					</span>
+				{/each} miliseconds to be exact)</span
+			>, Syntax has published
+			{data.count} podcast episodes on full-stack web development, covering everything from HTML, CSS,
+			JavaScript, server side languages, databases, deployment environments, and more.
+		</p>
+
+		<p>You should listen! It's pretty good.</p>
+	</div>
 
 	<div class="team-row">
 		<div class="team-member">
@@ -167,6 +198,9 @@
 	.team-member {
 		position: relative;
 		container: team-member / inline-size;
+		.desc {
+			margin-top: -15cqw;
+		}
 		h2 {
 			position: absolute;
 			top: 0;
@@ -193,15 +227,43 @@
 				-webkit-background-clip: text;
 			}
 		}
-		.desc {
-			background: rgba(255, 255, 255, 0.96);
-			width: 90%;
-			border-radius: var(--brad);
-			box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.5);
-			margin: 0 auto;
+	}
+	.desc {
+		background: rgba(255, 255, 255, 0.96);
+		width: 90%;
+		border-radius: var(--brad);
+		box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.5);
+		margin: 0 auto;
+		position: relative;
+		padding: var(--default_padding);
+	}
+
+	.time {
+		position: relative;
+		display: inline-block;
+		span {
+			display: inline-block;
+		}
+		.slot {
+			/* border: 1px solid red; */
+			display: inline-block;
+			/* padding: 2px; */
 			position: relative;
-			margin-top: -15cqw;
-			padding: var(--default_padding);
+			& > span:first-child {
+				/* border: 1px solid blue; */
+				position: absolute;
+				bottom: 0;
+				top: 0;
+				height: 100%;
+			}
+			& > span:last-child {
+				/* border: 1px solid green; */
+				position: relative;
+			}
+			& > span:nth-child(3n) {
+				/* Sometimes for a split second there are 3 spans */
+				display: none;
+			}
 		}
 	}
 </style>
