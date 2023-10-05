@@ -54,7 +54,7 @@
 </div>
 
 <div class="show-actions-wrap">
-	<div class="show-actions zone" style:--bg="var(--fg-sheet)" style:--fg="var(--bg-sheet)">
+	<div class="show-actions zone">
 		<div class="show-actions-flex">
 			<button on:click={() => player.play_show(show)}>
 				<Icon name="play{$player.current_show?.number === show.number ? 'ing' : ''}" />
@@ -126,16 +126,6 @@
 
 <style lang="postcss">
 	@layer theme {
-		/* @keyframes ripple {
-			from {
-				background-position-x: 0;
-				transform: scaleX(2);
-			}
-			to {
-				background-position-x: -1000%;
-				transform: scaleX(1);
-			}
-		} */
 		header {
 			grid-column: content / content;
 			position: relative;
@@ -152,10 +142,8 @@
 		}
 
 		.show-actions {
-			/* --currentFg: var(--fg);
-			--currentBg: var(--bg);
-			--bg: var(--currentFg);
-			--fg: var(--currentBg); */
+			background: var(--black-9);
+			color: var(--white);
 			width: 110%;
 			left: -5%;
 			overflow: hidden;
@@ -177,9 +165,6 @@
 			justify-content: space-between;
 			align-items: center;
 			align-content: center;
-			a {
-				color: var(--fg);
-			}
 			@media (--below_med) {
 				a {
 					width: 100%;
