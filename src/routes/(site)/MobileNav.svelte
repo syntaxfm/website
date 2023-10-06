@@ -15,26 +15,15 @@
 			transition:fly={{ opacity: 0, x: '100%' }}
 			id="menu"
 			class="menu"
-			style="background-image:  url({white_grit})"
+			style="background-image:  url({white_grit}); background-size: 300px;"
 		>
 			<button class="button-reset close-button" on:click={toggle}>×</button>
 			<nav>
-				<a transition:fly={{ opacity: 0, x: '100%', delay: 1 }} on:click={toggle} href="/shows"
-					>Podcast</a
-				>
-				<a
-					transition:fly={{ opacity: 0, x: '100%', delay: 1 }}
-					on:click={toggle}
-					href="https://swag.syntax.fm"
-					>Swag
-				</a>
+				<a on:click={toggle} href="/shows">Shows</a>
+				<a on:click={toggle} href="/about">About</a>
+				<a on:click={toggle} href="/potluck">Potluck Qs</a>
+				<a rel="noopener" target="_blank" href="https://swag.sentry.io">Swag</a>
 			</nav>
-			<a
-				target="_blank"
-				class="button ghost"
-				href="https://docs.google.com/forms/d/e/1FAIpQLSfQlAo1wXHiJMySdU-h8QMtfoz92aMS9eycEHXB6eRCLh8KHA/viewform"
-				>Ask a potluck question</a
-			>
 		</div>
 	{/if}
 </div>

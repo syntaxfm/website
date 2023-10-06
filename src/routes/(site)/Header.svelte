@@ -12,39 +12,24 @@
 			</a>
 		</div>
 
-		<div class="header-actions">
+		<nav class="desktop_nav content">
+			<a href="/shows">Shows</a>
+			<a href="/about">About</a>
+			<a href="/potluck">Potluck Qs</a>
+			<a rel="noopener" target="_blank" href="https://swag.sentry.io">Swag</a>
 			<Search />
-			<a
-				target="_blank"
-				class="button ghost"
-				rel="noopener"
-				href="https://docs.google.com/forms/d/e/1FAIpQLSfQlAo1wXHiJMySdU-h8QMtfoz92aMS9eycEHXB6eRCLh8KHA/viewform"
-				style="grid-column: 1/-1;">Ask a potluck question</a
-			>
-
 			<MobileNav />
-		</div>
+		</nav>
 	</div>
-
-	<nav class="desktop_nav content">
-		<a href="/shows">Shows</a>
-		<a href="/about">About</a>
-		<a rel="noopener" target="_blank" href="https://swag.sentry.io">Swag</a>
-	</nav>
 </header>
 
 <style lang="postcss">
 	header {
-		background-image: url('/grit.svg?dark&w=1500&h=400&count=50');
+		background-image: url('/grit.svg?dark');
 		background-size: 250px;
 		background-color: var(--bg);
 		color: var(--fg);
 		padding: 0 0.5rem;
-		@media (min-width: 1280px) {
-			padding: 0;
-			grid-auto-flow: column;
-			grid-template-rows: 1fr auto;
-		}
 	}
 
 	.header-container {
@@ -52,7 +37,7 @@
 		padding: 10px 0;
 		align-items: center;
 		row-gap: 20px;
-		grid-template-columns: [start logo] 88px [logo actions] auto [actions end];
+		grid-template-columns: 88px auto;
 		margin: 0 auto;
 	}
 
@@ -67,49 +52,29 @@
 		}
 	}
 
-	.header-actions {
-		display: flex;
-		align-items: center;
-		justify-self: flex-end;
-		gap: 20px;
-	}
-
-	.header-actions {
-		> a {
-			display: none;
-		}
-		@media (--above_med) {
-			> a {
-				display: block;
-			}
-		}
-	}
-
 	.desktop_nav {
-		display: none;
+		display: flex;
+		padding: 10px 0;
+		gap: 10px;
+		justify-content: end;
+		align-items: center;
 		a {
 			display: block;
-		}
-		@media (--above_med) {
-			grid-row: 2 / 2;
-			grid-column: content / content;
-			padding: 10px 0;
-			gap: 10px;
-			display: flex;
-		}
-	}
-
-	.logo {
-		a {
-			display: flex;
-			flex-direction: column;
-			gap: 5px;
+			text-decoration: none;
+			background: rgba(255, 255, 255, 0.0786987545689);
+			padding: 10px 20px;
+			border: 0;
+			border-radius: 20px;
 			align-items: center;
-		}
-		span {
-			font-size: var(--font-size-sm);
-			margin: 0;
-			color: var(--white);
+			display: none;
+			&:hover {
+				border: 0;
+				background: var(--primary);
+				color: var(--bg);
+			}
+			@media (--above_med) {
+				display: block;
+			}
 		}
 	}
 </style>
