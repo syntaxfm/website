@@ -33,7 +33,7 @@
 		return $player.currentTime >= utterance.start && $player.currentTime <= nextUtteranceStart;
 	});
 
-	$: currentTopic = aiShowNote.summary.find((summary, index) => {
+	$: currentTopic = aiShowNote?.summary.find((summary, index) => {
 		const nextSummary = aiShowNote.summary[index + 1];
 		const topicEnd = nextSummary ? tsToS(nextSummary.time) : Infinity;
 		const topicStart = tsToS(summary.time);

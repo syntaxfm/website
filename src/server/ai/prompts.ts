@@ -64,7 +64,7 @@ Additionally, Please create the following for this podcast episode:
 
 ${misspellings}
 
-If you, the AI, have feedback or clarifications on your response, please put them in the notes section.
+If you, the AI, have feedback or clarifications on your response, please put them in the notes property.
 
 Return each of these things in JSON format that looks like this:
 
@@ -77,4 +77,8 @@ Return each of these things in JSON format that looks like this:
   "topics": ["...", "..."],
   "links": [{ "name": "Name of link", "url": "https://example.com", "timestamp": "02:45" }],
   "guests": ["..."]
-}`;
+}
+
+Your response must be 100% JSON. Do not respond with any other text or characters.
+
+`;

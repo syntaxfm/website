@@ -64,7 +64,10 @@
 						<a href="/admin/shows/{show.number}">#{show.number}</a>
 					</td>
 					<td>
-						{show.title}
+						<a href="/{show.number}" target="_blank">
+							{show.title}
+							[↗]</a
+						>
 					</td>
 					<td>
 						{#if format(show.date, 'EEE') === 'Mon'}
@@ -83,10 +86,15 @@
 						>{#if show.transcript}
 							✅
 						{:else}
-							<form action="?/fetch_show_transcript" method="post" use:enhance={form_action()}>
+							<FormWithLoader
+								global={false}
+								action="?/fetch_show_transcript"
+								method="post"
+								let:loading
+							>
 								<input type="hidden" name="show_number" value={show.number} />
-								<button type="submit">Fetch</button>
-							</form>
+								<button type="submit">Fetch{loading ? 'ing' : ''}</button>
+							</FormWithLoader>
 						{/if}</td
 					>
 					<td class="center">
