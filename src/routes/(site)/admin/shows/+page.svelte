@@ -64,7 +64,10 @@
 						<a href="/admin/shows/{show.number}">#{show.number}</a>
 					</td>
 					<td>
-						{show.title}
+						<a href="/{show.number}" target="_blank">
+							{show.title}
+							[↗]</a
+						>
 					</td>
 					<td>
 						{#if format(show.date, 'EEE') === 'Mon'}
