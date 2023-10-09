@@ -86,10 +86,15 @@
 						>{#if show.transcript}
 							✅
 						{:else}
-							<form action="?/fetch_show_transcript" method="post" use:enhance={form_action()}>
+							<FormWithLoader
+								global={false}
+								action="?/fetch_show_transcript"
+								method="post"
+								let:loading
+							>
 								<input type="hidden" name="show_number" value={show.number} />
-								<button type="submit">Fetch</button>
-							</form>
+								<button type="submit">Fetch{loading ? 'ing' : ''}</button>
+							</FormWithLoader>
 						{/if}</td
 					>
 					<td class="center">

@@ -59,6 +59,7 @@
 		"pnpm": ">=8"
 	},
 	"dependencies": {
+		"@anthropic-ai/sdk": "^0.6.2",
 		"@deepgram/sdk": "^2.4.0",
 		"@ffmpeg.wasm/core-mt": "0.13.2",
 		"@ffmpeg.wasm/main": "^0.13.1",
