@@ -14,6 +14,7 @@
 	import AdminMenu from '$lib/AdminMenu.svelte';
 	import { debug_mode } from '$state/debug';
 	import ThemeMaker from '../../params/ThemeMaker.svelte';
+	import { page } from '$app/stores';
 	export let data;
 	$: ({ user, user_theme } = data);
 
@@ -34,7 +35,9 @@
 <!-- <Meta /> -->
 
 <div class={'theme-' + ($theme || user_theme) + ' theme-wrapper'} class:debug={$debug_mode}>
-	<Header />
+	{#if $page.url.pathname !== '/'}
+		<Header />
+	{/if}
 
 	<main class="page-layout layout zone" style:--bg="var(--bg-sheet)" style:--fg="var(--fg-sheet)">
 		<slot />

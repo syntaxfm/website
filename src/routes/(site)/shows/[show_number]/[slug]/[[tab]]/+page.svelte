@@ -36,7 +36,7 @@
 		×
 		<span class="topics">
 			{#each show.aiShowNote?.topics?.slice(0, 5) || [] as topic}
-				<span class="topic">#{topic.name}</span>
+				<span class="topic">{topic.name.startsWith('#') ? '' : '#'}{topic.name}</span>
 			{/each}
 		</span>
 	</p>
