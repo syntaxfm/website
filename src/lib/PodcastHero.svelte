@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Header from '../routes/(site)/Header.svelte';
 	import Logo from './Logo.svelte';
 	import PodcastLinks from './PodcastLinks.svelte';
 	import Schedule from './schedule.svelte';
@@ -10,6 +11,7 @@
 	style:--fg="var(--white)"
 	class="zone full layout"
 >
+	<Header transparent={true} />
 	<div class="hero">
 		<div class="logo">
 			<a href="/"><Logo /></a>
