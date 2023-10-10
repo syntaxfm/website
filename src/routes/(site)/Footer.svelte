@@ -49,7 +49,8 @@
 <style lang="postcss">
 	footer {
 		padding: 5rem 0.5rem 5rem;
-
+		background-image: url('/grit.svg?dark&count=100&w=5000&h=500');
+		background-size: 1500px;
 		@media (min-width: 1280px) {
 			padding: 5rem 0 5rem;
 		}
