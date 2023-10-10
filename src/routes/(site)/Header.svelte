@@ -2,14 +2,17 @@
 	import Logo from '$lib/Logo.svelte';
 	import Search from '$lib/search/Search.svelte';
 	import MobileNav from './MobileNav.svelte';
+	import { page } from '$app/stores';
 </script>
 
 <header class="layout">
 	<div class="header-container content">
 		<div class="logo">
-			<a href="/">
-				<Logo />
-			</a>
+			{#if $page.url.pathname !== '/'}
+				<a title="Syntax Podcast" href="/">
+					<Logo />
+				</a>
+			{/if}
 		</div>
 
 		<nav class="desktop_nav content">
