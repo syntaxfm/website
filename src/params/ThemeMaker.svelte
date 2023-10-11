@@ -2,7 +2,7 @@
 	import { clickOutside } from '$actions/click_outside';
 	import { theme, theme_maker } from '$state/theme';
 	import Cookie from 'js-cookie';
-	import slugo from 'slugo';
+	import slugify from '@sindresorhus/slugify';
 	import { fly } from 'svelte/transition';
 	// when a new theme is selected, apply the class directly to the correct element,
 	// and save the theme name to the user's db record
@@ -20,7 +20,7 @@
 
 	function change_theme(this: HTMLButtonElement, e: Event) {
 		// 1. set to theme state, for instant ui responsiveness
-		$theme = slugo(this.innerText);
+		$theme = slugify(this.innerText);
 		Cookie.set('theme', this.innerText);
 	}
 </script>

@@ -62,7 +62,8 @@ export async function aiNoteRequestHandler({ request, locals }: RequestEvent) {
 					url: link.url,
 					timestamp: link.timestamp
 				}))
-			}
+			},
+			provider: 'anthropic'
 		}
 	});
 

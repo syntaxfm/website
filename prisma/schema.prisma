@@ -169,6 +169,7 @@ model AiShowNote {
   links       Link[]
   guests      AiGuest[]
   topics      Topic[]
+  provider    String           @default("gpt3.5")
 }
 
 model AiSummaryEntry {

@@ -1,4 +1,3 @@
-import slugo from 'slugo';
 import matter from 'gray-matter';
 import { prisma_client as prisma } from '../../hooks.server';
 import fs, { readFile } from 'fs/promises';
