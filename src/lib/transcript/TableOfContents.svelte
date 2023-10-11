@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { AINoteWithFriends } from '$server/ai/queries';
-	import slugify from '@sindresorhus/slugify';
+	import slug from 'speakingurl';
 
 	export let aiShowNote: AINoteWithFriends;
 </script>
@@ -9,7 +9,7 @@
 	<ul>
 		{#each aiShowNote?.summary || [] as summary}
 			<li>
-				<a href="#{slugify(summary.text)}">
+				<a href="#{slug(summary.text)}">
 					<span class="timestamp">{summary.time}</span>
 					{summary.text}
 				</a>

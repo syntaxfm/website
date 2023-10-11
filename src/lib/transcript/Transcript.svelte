@@ -2,7 +2,7 @@
 	import { getSlimUtterances } from '$server/transcripts/utils';
 	import format_time, { tsToS } from '$utilities/format_time';
 	import 'core-js/full/map/group-by';
-	import slugify from '@sindresorhus/slugify';
+	import slug from 'speakingurl';
 	import { player } from '$state/player';
 	import Squiggle from './Squiggle.svelte';
 	import type { SlimUtterance } from '$server/transcripts/types';
@@ -88,7 +88,7 @@
 		<section>
 			<header class="topic {placeTopic(summary, utterances)}">
 				<div class="gutter">
-					<div id={slugify(summary.text)}>
+					<div id={slug(summary.text)}>
 						<strong>Topic {i}</strong>
 						<span>{summary.time}</span>
 					</div>
