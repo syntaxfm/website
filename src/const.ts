@@ -23,7 +23,7 @@ export const PODCAST_LINKS = [
 	},
 	{
 		href: 'https://itunes.apple.com/ca/podcast/syntax-tasty-web-development-treats/id1253186678?mt=2',
-		text: 'iTunes'
+		text: 'Apple Podcasts'
 	},
 	{
 		href: 'https://overcast.fm/itunes1253186678/syntax-tasty-web-development-treats',
@@ -38,6 +38,9 @@ export const PODCAST_LINKS = [
 		text: 'Google Podcasts'
 	}
 ];
+
+// AI & Transcripts
+export const PER_PAGE = 10;
 
 export interface GithubUser {
 	login: string;

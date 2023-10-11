@@ -1,45 +1,39 @@
 <script lang="ts">
-	// TODO WES BOS Remove
-	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-	// @ts-nocheck
-	import type { AINoteWithFriends, TranscriptWithUtterances } from '$server/ai/queries';
-	import { type SlimUtterance, getSlimUtterances } from '$server/transcripts/utils';
+	import { getSlimUtterances } from '$server/transcripts/utils';
 	import format_time, { tsToS } from '$utilities/format_time';
 	import 'core-js/full/map/group-by';
 	import slugify from '@sindresorhus/slugify';
 	import { player } from '$state/player';
 	import Squiggle from './Squiggle.svelte';
+	import type { SlimUtterance } from '$server/transcripts/types';
 	import TableOfContents from './TableOfContents.svelte';
 
-	export let transcript: TranscriptWithUtterances;
-	export let aiShowNote: AINoteWithFriends;
-	const slim_transcript = getSlimUtterances(transcript.utterances, 1).filter(
+	export let transcript;
+	export let aiShowNote;
+	const slim_transcript: SlimUtterance[] = getSlimUtterances(transcript.utterances, 1).filter(
 		(utterance) => utterance.speakerId !== 99
 	);
 	// group Utterances by their summary
 	const def = { time: '00:00', text: '' };
 	type TopicSummary = (typeof aiShowNote.summary)[0];
 
-	const utterances_by_summary: Map<TopicSummary, SlimUtterance[]> = Map.groupBy(
-		slim_transcript,
-		(utterance: SlimUtterance) => {
-			const start = utterance.start;
-			const summary = aiShowNote?.summary?.findLast((summary, i) => {
-				const nextSummary = aiShowNote?.summary?.at(i + 1);
-				const end = nextSummary ? tsToS(nextSummary.time) : Infinity;
-				const timestamp = tsToS(summary.time);
-				return start >= timestamp;
-			});
-			return summary || def;
-		}
-	);
+	const utterances_by_summary: Map = Map.groupBy(slim_transcript, (utterance) => {
+		const start = utterance.start;
+		const summary = aiShowNote?.summary?.findLast((summary, i) => {
+			const nextSummary = aiShowNote?.summary?.at(i + 1);
+			const end = nextSummary ? tsToS(nextSummary.time) : Infinity;
+			const timestamp = tsToS(summary.time);
+			return start >= timestamp;
+		});
+		return summary || def;
+	});
 
 	$: currentUtterance = slim_transcript.find((utterance, index) => {
 		const nextUtteranceStart = slim_transcript[index + 1]?.start || utterance.end;
 		return $player.currentTime >= utterance.start && $player.currentTime <= nextUtteranceStart;
 	});
 
-	$: currentTopic = aiShowNote.summary.find((summary, index) => {
+	$: currentTopic = aiShowNote?.summary.find((summary, index) => {
 		const nextSummary = aiShowNote.summary[index + 1];
 		const topicEnd = nextSummary ? tsToS(nextSummary.time) : Infinity;
 		const topicStart = tsToS(summary.time);
@@ -66,7 +60,7 @@
 		.map((word) => word.word)
 		.join(' ');
 
-	$: labelUtterance = function (utterance: SlimUtterance) {
+	$: labelUtterance = function (utterance) {
 		if (utterance === currentUtterance) {
 			return 'current';
 		} else if (currentUtterance && currentUtterance?.end > utterance.end) {
@@ -75,7 +69,7 @@
 			return 'future';
 		}
 	};
-	$: placeTopic = function (summary: TopicSummary, utterances: SlimUtterance[]) {
+	$: placeTopic = function (summary, utterances) {
 		const summaryEnd = utterances.at(-1)?.end || Infinity;
 		if (currentTopic?.id === summary.id) {
 			return 'current';
@@ -147,14 +141,14 @@
 	.timeline {
 		--highlight: var(--bg-2);
 		--future: var(--bg-2);
-		--current: var(--yellow);
-		--past: var(--yellow);
+		--current: var(--primary);
+		--past: var(--primary);
 	}
 	.past {
 		--highlight: var(--past);
 	}
 	.current {
-		--highlight: var(--yellow);
+		--highlight: var(--primary);
 		.marker {
 			/* --progress: 50%; */
 			background-image: linear-gradient(
@@ -210,7 +204,7 @@
 		font-size: var(--font-size-xs);
 		position: sticky;
 		top: 0;
-		background: white;
+		background: var(--bg);
 		z-index: 2;
 		margin-top: var(--vertical-spacing);
 		margin-bottom: var(--vertical-spacing);
@@ -260,7 +254,7 @@
 		height: var(--size);
 		position: relative;
 		border-radius: 50%;
-		border: 1.5px solid var(--white);
+		border: 1.5px solid var(--bg);
 		background: var(--highlight);
 		justify-self: center;
 		.current & {
@@ -274,6 +268,6 @@
 	.speaker {
 		font-size: var(--font-size-sm);
 		font-weight: 600;
-		color: var(--purple);
+		color: var(--subtle-accent);
 	}
 </style>

@@ -14,20 +14,6 @@
 	}
 
 	@font-face {
-		font-family: 'rad';
-		src:
-			url('https://syntax.fm/static/fonts/Radnika-Light.woff2') format('woff2'),
-			url('https://syntax.fm/static/fonts/Radnika-Light.woff') format('woff');
-	}
-
-	@font-face {
-		font-family: '💪';
-		src:
-			url('https://syntax.fm/static/fonts/Radnika-Bold.woff2') format('woff2'),
-			url('https://syntax.fm/static/fonts/Radnika-Bold.woff') format('woff');
-	}
-
-	@font-face {
 		font-family: 'MDIO';
 		src:
 			url('/fonts/MDIO-Regular.woff2') format('woff2'),
@@ -106,7 +92,8 @@
 		mask-image: url('$assets/Grit Mask@2x.png');
 		mask-image-repeat: repeat;
 		mask-size: 250px;
-    text-wrap: balance;
+		text-wrap: balance;
+    font-style: italic;
 	}
 
 	h1,
@@ -140,6 +127,25 @@
 		font-size: var(--font-size-base);
 	}
 
+  .spa-ran-wrap {
+    --color: var(--spa-ran-wrap-bg, transparent);
+    --size: 2.33456789ex;
+    background-image: linear-gradient(180deg, var(--color) 0%, var(--color) 50%, transparent 50%, transparent 100%);
+    background-size: auto var(--size);
+    background-position: 10px calc(var(--size) / 4);
+  }
+
+	/* Show Notes Typography - coming from markdown so it must be global */
+	.show-notes {
+		h2,
+		h3 {
+			font-size: var(--font-size-lg);
+		}
+		ul {
+			padding-left: 20px;
+		}
+	}
+
 	html {
 		font-family: 'MDIO';
 	}
@@ -152,6 +158,7 @@
 
 	a,
 	.a {
+		color: var(--link-fg, var(--fg));
 		text-decoration: none;
 	}
 
@@ -181,8 +188,12 @@
 		list-style-type: circle;
 	}
 
-	a[href^='#t'] {
-		background: var(--bg-2);
+	ol li {
+		list-style-type: decimal;
+	}
+
+	a[href^='#t='] {
+		background: var(--bg-1);
 		padding: 4px 6px;
 		border-bottom: none;
 		text-decoration: none;
@@ -190,6 +201,8 @@
 		font-weight: normal;
 		border-radius: 4px;
 		position: relative;
+		font-size: var(--font-size-sm);
+		font-weight: 900;
 		@media (--above_med) {
 			left: -17px;
 		}
@@ -283,8 +296,8 @@ in a later release. */
 /* Popover */
 
 /* All External Links */
-a[href^='http']:not(.social-icon, .button):after,
-a[href^='https']:not(.social-icon, .button):after {
+a[href^='http']:not(.social-icon, .button, .icon):after,
+a[href^='https']:not(.social-icon, .button, .icon):after {
 	content: '↗';
 	margin-left: 4px;
 	font-size: 12px;
@@ -293,5 +306,5 @@ a[href^='https']:not(.social-icon, .button):after {
 /* Selection */
 ::selection {
 	background: var(--primary);
-	color: var(--bg);
+	color: var(--dark);
 }

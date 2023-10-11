@@ -12,7 +12,6 @@
 	// TODO refactor to utility function
 	function getThemeName(path: string) {
 		let match_temp = path.match(themeName)?.[0];
-
 		return match_temp;
 	}
 
@@ -53,7 +52,7 @@
 					<div class="circle accent" />
 					<div class="circle warning" />
 					<span>
-						{theme_name?.replaceAll('-', ' ')}
+						{theme_name}
 					</span>
 				</button>
 			{/each}
@@ -78,7 +77,9 @@
 		overflow-y: scroll;
 		border-left: var(--border);
 		box-shadow: var(--shadow-6);
+		z-index: 10;
 	}
+
 	h4 {
 		font-style: normal;
 		margin-top: 0;
@@ -112,12 +113,15 @@
 	.color {
 		background: var(--fg-sheet);
 	}
+
 	.primary {
 		background: var(--primary);
 	}
+
 	.accent {
 		background: var(--accent);
 	}
+
 	.warning {
 		background: var(--warning);
 	}

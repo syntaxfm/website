@@ -1,0 +1,46 @@
+/* 
+░██████╗██╗░░░██╗███╗░░██╗
+██╔════╝╚██╗░██╔╝████╗░██║
+╚█████╗░░╚████╔╝░██╔██╗██║
+░╚═══██╗░░╚██╔╝░░██║╚████║
+██████╔╝░░░██║░░░██║░╚███║
+╚═════╝░░░░╚═╝░░░╚═╝░░╚══╝
+
+████████╗░█████╗░██╗░░██╗
+╚══██╔══╝██╔══██╗╚██╗██╔╝
+░░░██║░░░███████║░╚███╔╝░
+░░░██║░░░██╔══██║░██╔██╗░
+░░░██║░░░██║░░██║██╔╝╚██╗
+░░░╚═╝░░░╚═╝░░╚═╝╚═╝░░╚═╝ */
+
+/* The main css entry. Primarily used to import stuff */
+
+@layer reset base utilities layout theme;
+
+/* Import all css themes */
+@import '../../styles/base.css';
+@import '../../styles/variables.css';
+@import '../../styles/utilities.css';
+@import '../../styles/layout.css';
+@import '../../styles/forms.css';
+@import '../../styles/buttons.css';
+
+/* FYI you have to use import-glob for all of these or else it gets mad */
+
+/* Global Utilities */
+.center {
+	text-align: center;
+}
+
+html::view-transition-old() {
+	animation-name: -ua-view-transition-fade-out;
+}
+
+html::view-transition-new() {
+	animation-name: -ua-view-transition-fade-in;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+	animation-duration: 0.2s;
+}

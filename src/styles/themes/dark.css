@@ -7,11 +7,13 @@
 	--primary: var(--yellow);
 	--accent: var(--teal);
 	--warning: var(--red);
+  --bgGrit: var(--bgGritLight);
 	@media (prefers-color-scheme: dark) {
 		--fg-sheet: var(--white);
 		--bg-sheet: var(--black);
 		--primary: var(--yellow);
 		--accent: var(--teal);
+		--subtle-accent: var(--yellow-1);
 		--warning: var(--red);
 		--bg-2: var(--black);
 		--bg-1: var(--black);
@@ -19,6 +21,8 @@
 		--fg-2: var(--black-3);
 		--border: solid var(--border-size) var(--fg-sheet);
 		--zebra: oklch(100% none none / 0.05);
+    --spa-ran-wrap-bg: var(--black);
+    --bgGrit: var(--bgGritDark);
 	}
 }
 /* Same as prefers color scheme dark */
@@ -27,14 +31,17 @@
 	--bg-sheet: var(--black);
 	--primary: var(--yellow);
 	--accent: var(--teal);
+	--subtle-accent: var(--yellow-1);
 	--warning: var(--red);
-	--bg-2: var(--black);
+	--bg-2: var(--black-8);
 	--bg-1: var(--black);
 	--bg: var(--black);
 	--fg-2: var(--black-3);
 	--border-color: var(--bg-sheet);
-	--border: solid var(--border-size) var(--border-color);
+	--border: solid var(--border-size) var(--fg-sheet);
 	--zebra: oklch(100% none none / 0.05);
+  --spa-ran-wrap-bg: var(--black);
+  --bgGrit: var(--bgGritDark);
 }
 .theme-light {
 	--bg-sheet: var(--white);
@@ -44,4 +51,5 @@
 	--primary: var(--yellow);
 	--accent: var(--teal);
 	--warning: var(--red);
+  --bgGrit: var(--bgGritLight);
 }

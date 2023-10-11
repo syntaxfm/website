@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { AINoteWithFriends } from '$server/ai/queries';
+	import type { AINoteWithFriends } from '$server/ai/queries';
 	import slugify from '@sindresorhus/slugify';
 
 	export let aiShowNote: AINoteWithFriends;
@@ -22,7 +22,7 @@
 	ul {
 		margin: 0;
 		padding: 0;
-		border: 1px solid var(--purple);
+		border: 1px solid var(--bg-2);
 		border-radius: 10px;
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
@@ -32,9 +32,10 @@
 		line-height: initial;
 		list-style: none;
 		padding: 10px;
-		border-bottom: 1px solid var(--purple);
+		border-bottom: 1px solid var(--bg-2);
+		font-size: var(--font-size-sm);
 		&:nth-child(odd) {
-			border-right: 1px solid var(--purple);
+			border-right: 1px solid var(--bg-2);
 		}
 		&:last-child {
 			border-bottom: none;
@@ -45,8 +46,9 @@
 		text-decoration: none;
 	}
 	.timestamp {
-		display: block;
+		display: inline;
 		font-size: var(--font-size-xs);
-		color: var(--purple);
+		color: var(--subtle-accent);
+		font-weight: 900;
 	}
 </style>

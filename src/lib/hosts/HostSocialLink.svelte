@@ -18,7 +18,8 @@
 
 <style lang="postcss">
 	.social-icon {
-		width: 20px;
+		display: inline-block;
+		--icon_size: 12px;
 	}
 
 	a {

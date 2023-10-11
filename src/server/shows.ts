@@ -163,6 +163,7 @@ async function add_or_update_guest(guest: FrontMatterGuest, show_id: string) {
 			const existingShowGuest = await prisma.showGuest.findUnique({
 				where: { showId_guestId: { showId: show_id, guestId: guest_record.id } }
 			});
+
 			if (existingShowGuest) {
 				return; // if the show guest already exists, we do nothing
 			} else {

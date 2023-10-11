@@ -2,7 +2,7 @@
 	.theme-wrapper {
 		--button-bg: var(--primary);
 		--button-color: var(--yellow-8);
-    --button-border-size: 1.5px;
+		--button-border-size: 1.5px;
 	}
 
 	button,
@@ -39,7 +39,13 @@
 	:is(button, .button).subtle {
 		--button-bg: var(--black-1);
 		--button-color: var(--yellow-8);
-		box-shadow: inset 0 0 0 2px oklch(var(--blacklch) / 0.2);
+		box-shadow: inset 0 0 0 var(--button-border-size) oklch(var(--blacklch) / 0.2);
+	}
+
+	:is(button, .button).warning {
+		--button-bg: var(--red);
+		--button-color: var(--white);
+		box-shadow: inset 0 0 0 var(--button-border-size) oklch(var(--blacklch) / 0.2);
 	}
 
 	:is(button, .button).big {
@@ -75,6 +81,7 @@
 		border-radius: var(--size);
 		box-shadow: inset 0 0 0 var(--button-border-size) oklch(var(--blacklch) / 0.2);
 		transition: background-size 1s ease-in-out;
+    font-weight: 100;
 	}
 
 	button.button-reset {
@@ -94,6 +101,6 @@
 		border-radius: 50%;
 		border-width: 1px;
 		padding: 10px;
-		box-shadow: inset 0 0 0 2px oklch(var(--blacklch) / 0.2);
+		box-shadow: inset 0 0 0 var(--button-border-size) oklch(var(--blacklch) / 0.2);
 	}
 }

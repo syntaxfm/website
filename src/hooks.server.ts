@@ -29,7 +29,7 @@ export const prisma_client = new PrismaClient();
 export const auth: Handle = async function ({ event, resolve }) {
 	const access_token = event.cookies.get('access_token');
 
-	event.locals.theme = event.cookies.get('theme') || 'system';
+	event.locals.theme = decodeURIComponent(event.cookies.get('theme') || 'system');
 	// Get current user from session via access token
 	if (access_token) {
 		const user = await find_user_by_access_token(access_token);
@@ -59,5 +59,5 @@ export const prisma: Handle = async function ({ event, resolve }) {
 // * END HOOKS
 
 // Wraps requests in this sequence of hooks
-export const handle: Handle = sequence(Sentry.sentryHandle(), sequence(prisma, auth, form_data));
+export const handle: Handle = sequence(sequence(Sentry.sentryHandle(), prisma, auth, form_data));
 export const handleError = Sentry.handleErrorWithSentry();

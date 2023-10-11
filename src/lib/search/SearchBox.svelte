@@ -255,6 +255,7 @@
 		height: var(--search-height);
 		border: var(--border);
 		border-color: var(--fg);
+		border-radius: var(--brad);
 
 		max-width: 100%;
 		width: 100%;

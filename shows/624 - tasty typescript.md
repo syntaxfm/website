@@ -49,6 +49,6 @@ In this episode of Syntax, Wes and Scott use the fact that Svelte is being conve
 * [Wes' Facebook](https://www.facebook.com/wesbos.developer)
 * [Scott's Twitter](https://twitter.com/stolinski)
 * Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets
-* [Wes Bos on Bluesky](https://bsky.app/profile/syntax.fm/wesbos.com)
+* [Wes Bos on Bluesky](https://bsky.app/profile/wesbos.com)
 * [Scott on Bluesky](https://bsky.app/profile/tolin.ski)
 * [Syntax on Bluesky](https://bsky.app/profile/syntax.fm)

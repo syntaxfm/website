@@ -1,5 +1,5 @@
 <section>
-	<p class="lines thrice">Thrice Weekly</p>
+	<p class="lines thrice">Served Fresh Thrice Weekly</p>
 	<div>
 		<p class="tag length">15m</p>
 		<p class="tag day">Monday</p>
@@ -46,7 +46,7 @@
 		background-size: 269px, 30%;
 	}
 	.tag {
-		background: var(--yellow);
+		background: var(--primary);
 		color: black;
 		font-weight: 900;
 		padding: 0.5rem;

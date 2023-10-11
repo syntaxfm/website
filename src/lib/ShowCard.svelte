@@ -40,11 +40,17 @@
 >
 	<a href="/shows/{show.number}/{show.slug}">
 		{#if display === 'list'}
-			<button on:click|preventDefault={() => player.play_show(show)} class="play-button">
+			<button
+				data-testid="play-show"
+				on:click|preventDefault={() => player.play_show(show)}
+				class="play-button"
+			>
 				<Icon name="play" />
 			</button>
 		{/if}
-		<span class="show-number grit">{show.number}</span>
+		<span style:--transition-name="show-date-{show.number}" class="show-number grit"
+			>{show.number}</span
+		>
 
 		<div class="details">
 			<p class="date" style:--transition-name="show-date-{show.number}">
@@ -57,15 +63,19 @@
 
 			<svelte:element
 				this={heading}
+				data-testid="show-card-title"
 				class="h3 show-title"
 				style:--transition-name="show-title-{show.number}"
 			>
-				{show.title}
+				<span class="spa-ran-wrap">
+					{show.title}
+				</span>
 			</svelte:element>
+
 			{#if show.aiShowNote?.description}
 				<p class="description text-sm">{show.aiShowNote?.description}</p>
 			{:else}
-				{@const description = show.show_notes?.match(/(.*?)(?=## Show Notes)/s)?.[0]}
+				{@const description = show.show_notes?.match(/(.*?)(?=## )/s)?.[0]}
 				<p class="description text-sm">
 					{description}
 				</p>
@@ -95,6 +105,7 @@
 			{#if display === 'highlight' || display === 'card'}
 				<div class="buttons">
 					<button
+						data-testid="play-show"
 						class:play={display === 'highlight'}
 						on:click|preventDefault={() => player.play_show(show)}
 						><Icon name="play" /> Play #{show.number}</button
@@ -131,8 +142,7 @@
 
 		&.card {
 			border-radius: var(--brad);
-			border: solid var(--border-size) var(--black);
-
+			border: solid var(--border-size) var(--black-8);
 			&:hover {
 				background-color: var(--zebra);
 			}
@@ -141,12 +151,12 @@
 		&.highlight {
 			--bg: var(--bg-root);
 			--fg: var(--fg-root);
-			border: none;
 			border-radius: var(--brad);
 			grid-column: 1 / -1;
 			background-size: 169px;
 			background-repeat: repeat;
 			background-position: top center;
+			border: solid var(--border-size) var(--black-8);
 		}
 
 		&.list {
@@ -167,7 +177,8 @@
 	.date {
 		font-size: var(--font-size-sm);
 		margin: 0;
-		opacity: 0.6;
+		font-weight: 700;
+		opacity: 0.8;
 		view-transition-name: var(--transition-name);
 	}
 
@@ -188,7 +199,7 @@
 		--max-font-size: 15rem;
 		font-size: clamp(1.5rem, 45cqw, var(--max-font-size));
 		font-weight: 900;
-		color: var(--yellow);
+		color: var(--primary);
 		line-height: 1;
 		z-index: -1;
 	}

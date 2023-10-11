@@ -140,15 +140,19 @@
 	/* Interface Color */
 	--primary: var(--yellow);
 	--accent: var(--teal);
+	--subtle-accent: var(--purple);
 	--warning: var(--red);
 	--success: var(--green);
 	--zebra: oklch(var(--blacklch) / 0.05);
 	--line: var(--black-2);
 
-  /* Borders */
-  --brad: 5px;
-  --border-size: 1.5px;
+	/* Borders */
+	--brad: 5px;
+	--border-size: 1.5px;
 	--border: solid var(--border-size) var(--fg-sheet);
+
+  /* ?? */
+  --dark: var(--black);
+  --bgGritLight: url("/grit.svg?light&count=50&w=1000&h=2000");
+  --bgGritDark: url("/grit.svg?dark&count=50&w=1000&h=2000");
 }
-
-

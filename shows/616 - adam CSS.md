@@ -3,6 +3,15 @@ number: 616
 title: Supper Club × Adam Argyle on What's New in CSS
 date: 1684497600422
 url: https://traffic.libsyn.com/syntax/Syntax_-_616.mp3
+guest:
+  name: Adam Argyle
+  github: argyleink
+  twitter: argyleink
+  url: 
+  - https://nerdy.dev/
+  - https://gradient.style/
+  social: 
+  - https://bsky.app/profile/nerdy.dev
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Adam Argyle about a ton of new CSS features that have arrived or are coming soon, as well as his new site Gradient.style.
@@ -39,6 +48,7 @@ In this supper club episode of Syntax, Wes and Scott talk with Adam Argyle about
 * **[33:06](#t=33:06)** Cascade layers
 * **[34:40](#t=34:40)** CSS Nesting
 * **[38:03](#t=38:03)** Animate discrete properties
+* [Feature: Transitions on specified discrete properties](https://chromestatus.com/feature/5071230636392448)
 * **[39:42](#t=39:42)** Linear function
 * [Linear easing generator](https://linear-easing-generator.netlify.app/)
 * **[41:33](#t=41:33)** Media query range syntax

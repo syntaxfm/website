@@ -3,10 +3,11 @@
 		name: string;
 		github: string;
 	};
+	export let size = '50px';
 	export let faces: FaceForThePile[] = [];
 </script>
 
-<div class="pile">
+<div class="pile" style:--face-size={size}>
 	{#each faces as face}
 		<img src="https://github.com/{face.github}.png" alt={face.name} />
 	{/each}
@@ -14,23 +15,23 @@
 
 <style lang="postcss">
 	.pile {
-		--size: 50px;
+		--local-size: var(--face-size, 50px);
 		display: grid;
 		grid-auto-flow: column;
-		grid-auto-columns: calc(var(--size) / 1.5);
+		grid-auto-columns: calc(var(--local-size) / 1.5);
 		gap: 0;
 		transition: all 0.2s;
 	}
 	.pile:hover {
-		gap: calc(var(--size) / 2);
+		gap: calc(var(--local-size) / 2);
 	}
 	img {
-		width: var(--size);
-		height: var(--size);
+		width: var(--local-size);
+		height: var(--local-size);
 		aspect-ratio: 1 / 1;
 		background: var(--fg);
 		color: var(--bg);
-		font-size: var(--size);
+		font-size: var(--local-size);
 		border-radius: 50%;
 		overflow: hidden;
 		border: 1.5px solid var(--bg);

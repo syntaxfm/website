@@ -46,7 +46,7 @@ export async function get_transcript(showNumber: number) {
 			},
 			{
 				punctuate: true,
-				model: 'nova',
+				model: 'nova-2-ea',
 				language: 'en-US',
 				detect_entities: true,
 				diarize: true,

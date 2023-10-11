@@ -4,14 +4,13 @@
 
 <div>
 	{#each PODCAST_LINKS as { text, href }}
-		<a {href} class="button subscribe subscribe--{text.toLowerCase().replaceAll(' ', '-')}"
-			>{text}</a
+		<a
+			{href}
+			target="_blank"
+			class="button subscribe subscribe--{text.toLowerCase().replaceAll(' ', '-')}">{text}</a
 		>
 	{/each}
 </div>
-
-
-<p>social..</p>
 
 <style lang="postcss">
 	div {
@@ -20,7 +19,7 @@
 		gap: 10px;
 	}
 
-	.subscribe--itunes {
+	.subscribe--apple-podcasts {
 		--button-bg: linear-gradient(
 			to bottom,
 			rgb(205, 102, 246) 0%,
@@ -39,7 +38,7 @@
 		pointer-events: none;
 	}
 
-	.subscribe--itunes::before {
+	.subscribe--apple-podcasts::before {
 		background-image: url('/icons/itunes.jpg');
 	}
 

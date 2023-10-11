@@ -24,16 +24,20 @@ const configuration = new Configuration({
 	apiKey: process.env.OPENAI_API_KEY
 });
 import { AINoteSelect, AIPodcastSummaryResponse } from './queries';
+import { anthropic_completion, convert_openai_to_anthropic } from './anthropic';
 export const openai = new OpenAIApi(configuration);
 
 export async function condense(
 	transcript: string,
-	show: TranscribedShow
+	show: TranscribedShow,
+	options: {
+		skip: boolean;
+	}
 ): Promise<SlimUtterance[]> {
 	// Figure out how large the input is
 	const inputTokensLength = encode(`${transcript} ${summarizePrompt}`).length;
 	// If its under the limit, return the transcript as is
-	if (inputTokensLength < TOKEN_INPUT_LIMIT) {
+	if (inputTokensLength < TOKEN_INPUT_LIMIT || options.skip) {
 		console.log(
 			`========== Skipping condensing show ${show.number} - Size is ${inputTokensLength} and acceptable ============`
 		);
@@ -137,16 +141,23 @@ type GenerateAINotesInput = {
 export async function generate_ai_notes(
 	show: Prisma.ShowGetPayload<{
 		select: AINoteSelect;
-	}>
+	}>,
+	provider: 'openai' | 'anthropic' = 'anthropic'
 ) {
 	const slimUtterance = getSlimUtterances(show.transcript?.utterances || [], show.number);
 	const transcript = formatAsTranscript(slimUtterance);
 	// Condense
-	const slimUtterancesWithCondensed = await condense(transcript, {
-		name: show.title,
-		number: show.number,
-		utterances: slimUtterance
-	});
+	const slimUtterancesWithCondensed = await condense(
+		transcript,
+		{
+			name: show.title,
+			number: show.number,
+			utterances: slimUtterance
+		},
+		{
+			skip: provider === 'anthropic'
+		}
+	);
 	const condensedTranscript = formatAsTranscript(slimUtterancesWithCondensed);
 	const links = show.show_notes
 		.match(/\[([^\[]+)\](\(.*\))/g)
@@ -159,7 +170,8 @@ export async function generate_ai_notes(
 		messages: [
 			{
 				role: 'system',
-				content: 'You summarize web development podcasts. Your tone is casual and humorous'
+				content:
+					'You summarize web development podcasts and output the result as JSON format. Your tone is casual and humorous.'
 			},
 			{
 				role: 'user',
@@ -170,13 +182,24 @@ export async function generate_ai_notes(
 			{ role: 'user', content: condensedTranscript }
 		]
 	};
-
 	console.log(`Creating AI notes for ${show.number}`);
+	if (provider === 'anthropic') {
+		console.log(`Using anthropic for ${show.number}`);
+		const anthropicInput = convert_openai_to_anthropic(input);
+		const anthropicResult = await anthropic_completion(anthropicInput);
+		const startIndex = anthropicResult.completion.indexOf('{');
+		const endIndex = anthropicResult.completion.lastIndexOf('}');
+		const jsonPart = anthropicResult.completion.substring(startIndex, endIndex + 1);
+		const aparsed = JSON.parse(jsonPart) as AIPodcastSummaryResponse;
+		return { ...aparsed, provider: 'anthropic' };
+	}
+	// OpenAI
+	console.log(`Using openai for ${show.number}`);
 	const completion = await openai.createChatCompletion(input).catch((err) => {
 		console.dir(err.response.data.error, { depth: null });
 	});
 	const maybeJSON = completion.data.choices.at(0)?.message?.content;
 	console.log(maybeJSON);
 	const parsed = JSON.parse(maybeJSON || '') as AIPodcastSummaryResponse;
-	return parsed;
+	return { ...parsed, provider: 'gpt3.5' };
 }
