@@ -188,6 +188,10 @@
 		list-style-type: circle;
 	}
 
+	ol li {
+		list-style-type: decimal;
+	}
+
 	a[href^='#t='] {
 		background: var(--bg-1);
 		padding: 4px 6px;
