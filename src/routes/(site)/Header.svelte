@@ -52,6 +52,7 @@
 		text-decoration: none;
 		color: var(--fg);
 		text-decoration: none;
+		white-space: nowrap;
 		border-bottom: solid 3px transparent;
 		transition: border-color 0.2s ease;
 		&:hover {
