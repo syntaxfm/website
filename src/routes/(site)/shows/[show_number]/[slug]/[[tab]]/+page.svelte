@@ -10,6 +10,7 @@
 	import { json } from 'stream/consumers';
 	import Tabs from '$lib/Tabs.svelte';
 	import Meta from '$lib/meta/Meta.svelte';
+	import Svg from '$lib/Svg.svelte';
 	export let data;
 	$: ({ show, meta } = data);
 
@@ -172,6 +173,7 @@
 			}
 
 			.waves {
+				color: var(--accent);
 				position: absolute;
 				z-index: 0;
 				background: url('$assets/waves.svg');

@@ -29,7 +29,7 @@
 
 <style lang="postcss">
 	header {
-		background-image: url('/grit.svg?dark');
+		background-image: url('/svg/grit.svg?dark');
 		background-size: 250px;
 		background-color: var(--bg);
 		color: var(--fg);

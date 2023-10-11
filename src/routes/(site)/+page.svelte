@@ -16,7 +16,7 @@
 
 <PodcastHero />
 
-<section aria-label="Latest podcast episodes">
+<section aria-label="Latest podcast episodes full layout">
 	<h2 class="h3 lines">Latest Episodes</h2>
 	<div class="grid" style:margin-bottom="2rem">
 		{#if latest_show}
