@@ -20,7 +20,7 @@
 			<a href="/shows">Shows</a>
 			<a href="/about">About</a>
 			<a href="/potluck">Potluck Qs</a>
-			<a rel="noopener" target="_blank" href="https://swag.sentry.io">Swag</a>
+			<!-- <a rel="noopener" target="_blank" href="https://swag.sentry.io">Swag</a> -->
 			<Search />
 			<MobileNav />
 		</nav>
