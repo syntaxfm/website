@@ -40,7 +40,11 @@
 >
 	<a href="/shows/{show.number}/{show.slug}">
 		{#if display === 'list'}
-			<button on:click|preventDefault={() => player.play_show(show)} class="play-button">
+			<button
+				data-testid="play-show"
+				on:click|preventDefault={() => player.play_show(show)}
+				class="play-button"
+			>
 				<Icon name="play" />
 			</button>
 		{/if}
@@ -59,6 +63,7 @@
 
 			<svelte:element
 				this={heading}
+				data-testid="show-card-title"
 				class="h3 show-title"
 				style:--transition-name="show-title-{show.number}"
 			>
@@ -66,6 +71,7 @@
 					{show.title}
 				</span>
 			</svelte:element>
+
 			{#if show.aiShowNote?.description}
 				<p class="description text-sm">{show.aiShowNote?.description}</p>
 			{:else}
@@ -99,6 +105,7 @@
 			{#if display === 'highlight' || display === 'card'}
 				<div class="buttons">
 					<button
+						data-testid="play-show"
 						class:play={display === 'highlight'}
 						on:click|preventDefault={() => player.play_show(show)}
 						><Icon name="play" /> Play #{show.number}</button

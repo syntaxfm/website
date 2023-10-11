@@ -56,7 +56,7 @@
 <div class="show-actions-wrap">
 	<div class="show-actions zone">
 		<div class="show-actions-flex">
-			<button on:click={() => player.play_show(show)}>
+			<button on:click={() => player.play_show(show)} data-testid="play-show">
 				<Icon name="play{$player.current_show?.number === show.number ? 'ing' : ''}" />
 				Play{$player.current_show?.number === show.number ? 'ing' : ''} Episode {show.number}
 			</button>
