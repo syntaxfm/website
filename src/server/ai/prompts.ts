@@ -43,7 +43,7 @@ Return each of these things in JSON format that looks like this:
   "guests": ["..."]
 }`;
 
-export const summarizePrompt2 = `Summarize the provided podcast transcript into very succinct bullet points, each containing just a few words. The bullet points should correspond to sections, questions or topics discussed in the podcast with points at least every 3-5 minutes.
+export const summarizePrompt2 = `Summarize the provided podcast transcript into very succinct bullet points, each containing just a few words. The bullet points should correspond to sections, questions or distinct topics discussed in the podcast with points at least every 3-5 minutes.
 
 summary: For each bullet point, provide:
 
