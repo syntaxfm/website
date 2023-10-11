@@ -191,7 +191,7 @@ export async function generate_ai_notes(
 		const endIndex = anthropicResult.completion.lastIndexOf('}');
 		const jsonPart = anthropicResult.completion.substring(startIndex, endIndex + 1);
 		const aparsed = JSON.parse(jsonPart) as AIPodcastSummaryResponse;
-		return aparsed;
+		return { ...aparsed, provider: 'anthropic' };
 	}
 	// OpenAI
 	console.log(`Using openai for ${show.number}`);
@@ -201,5 +201,5 @@ export async function generate_ai_notes(
 	const maybeJSON = completion.data.choices.at(0)?.message?.content;
 	console.log(maybeJSON);
 	const parsed = JSON.parse(maybeJSON || '') as AIPodcastSummaryResponse;
-	return parsed;
+	return { ...parsed, provider: 'gpt3.5' };
 }
