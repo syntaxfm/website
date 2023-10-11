@@ -40,7 +40,7 @@
 		border-radius: var(--brad);
 		padding: 1rem;
 		margin: 2rem 0;
-		background-image: url('https://sentry.io/static/squiggle-trans-abd5701f276211cbe57fe0748b18937c.png'),
+		background-image: url('$assets/squiggle.png'),
 			linear-gradient(315deg, #180d1c 0.57%, #452650 100%);
 		background-size:
 			300px 300px,
