@@ -2,14 +2,18 @@
 	import Logo from '$lib/Logo.svelte';
 	import Search from '$lib/search/Search.svelte';
 	import MobileNav from './MobileNav.svelte';
+	import { page } from '$app/stores';
+	export let transparent: boolean = false;
 </script>
 
-<header class="layout">
+<header class="layout" class:transparent>
 	<div class="header-container content">
 		<div class="logo">
-			<a href="/">
-				<Logo />
-			</a>
+			{#if $page.url.pathname !== '/'}
+				<a title="Syntax Podcast" href="/">
+					<Logo />
+				</a>
+			{/if}
 		</div>
 
 		<nav class="desktop_nav content">
@@ -30,6 +34,9 @@
 		background-color: var(--bg);
 		color: var(--fg);
 		padding: 0 0.5rem;
+		&.transparent {
+			background: none;
+		}
 	}
 
 	.header-container {
@@ -58,6 +65,10 @@
 		gap: 10px;
 		justify-content: end;
 		align-items: center;
+		.transparent & {
+			grid-column: 1 / -1;
+			justify-content: center;
+		}
 		a {
 			display: block;
 			text-decoration: none;

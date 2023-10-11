@@ -1,6 +1,6 @@
 <script lang="ts">
+	import Header from '../routes/(site)/Header.svelte';
 	import Logo from './Logo.svelte';
-
 	import PodcastLinks from './PodcastLinks.svelte';
 	import Schedule from './schedule.svelte';
 </script>
@@ -11,9 +11,10 @@
 	style:--fg="var(--white)"
 	class="zone full layout"
 >
+	<Header transparent={true} />
 	<div class="hero">
 		<div class="logo">
-			<div><Logo /></div>
+			<a href="/"><Logo /></a>
 		</div>
 		<h1 class="h2 text-center">
 			A <span class="tasty">Tasty Treats</span> Podcast for Web Developers
