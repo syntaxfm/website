@@ -2,6 +2,10 @@ import { error, json } from '@sveltejs/kit';
 import type { RequestEvent } from './$types';
 import { get_transcript } from '$server/transcripts/deepgram';
 
+export const config = {
+	maxDuration: 300 // vercel timeout
+};
+
 export const GET = async function transcriptCronHandler({ request, locals }: RequestEvent) {
 	const start = Date.now();
 	// await get_transcript(show_number);

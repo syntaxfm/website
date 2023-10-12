@@ -1,9 +1,12 @@
 import { error, json } from '@sveltejs/kit';
 import type { RequestEvent } from './$types';
-import { get_transcript } from '$server/transcripts/deepgram';
 import { save_ai_notes_to_db } from '$server/ai/db';
 import { generate_ai_notes } from '$server/ai/openai';
 import { transcript_with_utterances } from '$server/ai/queries';
+
+export const config = {
+	maxDuration: 300 // vercel timeout
+};
 
 export const GET = async function transcriptCronHandler({ request, locals }: RequestEvent) {
 	const start = Date.now();
