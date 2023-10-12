@@ -12,11 +12,9 @@
 >
 	<Icon name="search" />
 
-	{#if browser}
-		<div class="shortcut">
-			<kbd>{navigator.platform === 'MacIntel' ? '⌘' : 'Ctrl'}</kbd> <kbd>K</kbd>
-		</div>
-	{/if}
+	<div class="shortcut">
+		<kbd>{!browser || navigator.platform === 'MacIntel' ? '⌘' : 'Ctrl'}K</kbd>
+	</div>
 </button>
 
 <style lang="postcss">
