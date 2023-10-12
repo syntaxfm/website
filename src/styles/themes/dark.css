@@ -23,6 +23,9 @@
 		--zebra: oklch(100% none none / 0.05);
 		--spa-ran-wrap-bg: var(--black);
 		--bgGrit: var(--bgGritDark);
+		.border-on-dark {
+			border: var(--border);
+		}
 	}
 }
 /* Same as prefers color scheme dark */
@@ -42,6 +45,9 @@
 	--zebra: oklch(100% none none / 0.05);
 	--spa-ran-wrap-bg: var(--black);
 	--bgGrit: var(--bgGritDark);
+	.border-on-dark {
+		border: var(--border);
+	}
 }
 
 .theme-light {

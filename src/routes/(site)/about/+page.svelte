@@ -99,7 +99,7 @@
 				<span class="first">Wes</span>
 				<span class="last" style:--letterCount={'Bos'.length}>Bos</span>
 			</h2>
-			<div class="desc">
+			<div class="desc border-on-dark">
 				<HostSocialLink host={hosts.wes} />
 				<p>
 					Wes Bos is co-host of Syntax and a <a href="https://wesbos.com"
@@ -122,7 +122,7 @@
 				<span class="first">Scott</span>
 				<span class="last" style:--letterCount={'Tolinski'.length}>Tolinski</span>
 			</h2>
-			<div class="desc">
+			<div class="desc border-on-dark">
 				<HostSocialLink host={hosts.scott} />
 				<p>
 					Scott Tolinski is co-host of Syntax and the creator of <a
@@ -143,7 +143,7 @@
 				<span class="first">Kaitlin</span>
 				<span class="last" style:--letterCount={'Bloom'.length}>Bloom</span>
 			</h2>
-			<div class="desc">
+			<div class="desc border-on-dark">
 				<HostSocialLink host={hosts.kaitlin} />
 				<p>
 					Kaitlin Bloom is Syntax's digital marketing manager. She publishes the Syntax Newsletter,
@@ -164,7 +164,7 @@
 				<span class="first">Ben</span>
 				<span class="last" style:--letterCount={'Vinegar'.length}>Vinegar</span>
 			</h2>
-			<div class="desc">
+			<div class="desc border-on-dark">
 				<HostSocialLink host={hosts.ben} />
 				<p>
 					Ben Vinegar is Syntax's General Manager. He helps with the business stuff so the team can
