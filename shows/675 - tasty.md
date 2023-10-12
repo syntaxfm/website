@@ -2,7 +2,7 @@
 number: 675
 title: Potluck × Bun Thoughts × Guesting on Syntax × Why Rust?
 date: 1696420800295
-url: https://traffic.libsyn.com/syntax/Syntax_-_675.mp3
+url: https://traffic.libsyn.com/syntax/Syntax675ScottVersion_-_10323_12.46PM.mp3
 ---
 
 In this episode of Syntax, Wes and Scott answer your questions about Bun, using custom auth headers, the difference between trpc, REST, or GraphQL, documenting your code, why learn Rust, and more!

@@ -187,9 +187,11 @@ export async function generate_ai_notes(
 		console.log(`Using anthropic for ${show.number}`);
 		const anthropicInput = convert_openai_to_anthropic(input);
 		const anthropicResult = await anthropic_completion(anthropicInput);
+		console.log(anthropicResult);
 		const startIndex = anthropicResult.completion.indexOf('{');
 		const endIndex = anthropicResult.completion.lastIndexOf('}');
 		const jsonPart = anthropicResult.completion.substring(startIndex, endIndex + 1);
+		console.log(`JSON Part: ${jsonPart}`);
 		const aparsed = JSON.parse(jsonPart) as AIPodcastSummaryResponse;
 		return { ...aparsed, provider: 'anthropic' };
 	}
