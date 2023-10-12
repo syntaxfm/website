@@ -1,7 +1,4 @@
-import fs from 'fs/promises';
-
-export async function get_md_from_folder(folder_path: string) {
-	const files = await fs.readdir(folder_path);
-	// Filter only .md files
-	return files.filter((file) => file.endsWith('.md'));
+export async function import_all_md_files_from_glob() {
+	const context = import.meta.glob('/shows/**/*.md', { as: 'raw', eager: true });
+	return context;
 }

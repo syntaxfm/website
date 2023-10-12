@@ -1,9 +1,7 @@
 import slug from 'speakingurl';
 import matter from 'gray-matter';
 import { prisma_client as prisma } from '../hooks.server';
-import fs from 'fs/promises';
-import path from 'path';
-import { get_md_from_folder } from '$utilities/file_utilities/get_md_from_folder';
+import { import_all_md_files_from_glob } from '$utilities/file_utilities/get_md_from_folder';
 import { get_hash_from_content } from '$utilities/file_utilities/get_hash_from_content';
 import { error } from '@sveltejs/kit';
 import { DAYS_OF_WEEK_TYPES } from '$const';
@@ -15,17 +13,18 @@ interface FrontMatterGuest {
 	social: string[];
 }
 
-const shows_folder_path = path.join(process.cwd(), 'shows');
-
 export async function import_or_update_all_shows() {
 	try {
 		// Filter only .md files
-		const md_files = await get_md_from_folder(shows_folder_path);
+		const md_files = await import_all_md_files_from_glob();
 
 		// Read and process each .md file
-		for (const md_file of md_files) {
-			const { number, hash, file_content } = await get_show_data(md_file);
-			await parse_and_save_show_notes(file_content, hash, number, md_file);
+		for (const md_file_path in md_files) {
+			const { number, hash, md_file_contents } = await get_show_data_from_glob(
+				md_files[md_file_path],
+				md_file_path
+			);
+			await parse_and_save_show_notes(md_file_contents, hash, number, md_file_path);
 		}
 	} catch (err) {
 		console.error('❌ Pod Sync Error:', err);
@@ -38,11 +37,14 @@ export async function import_or_update_all_shows() {
 export async function import_or_update_all_changed_shows() {
 	try {
 		// Filter only .md files
-		const md_files = await get_md_from_folder(shows_folder_path);
+		const md_files = await import_all_md_files_from_glob();
 
 		// Read and process each .md file
-		for (const md_file of md_files) {
-			const { number, hash, file_content } = await get_show_data(md_file);
+		for (const md_file_path in md_files) {
+			const { number, hash, md_file_contents } = await get_show_data_from_glob(
+				md_files[md_file_path],
+				md_file_path
+			);
 
 			const existing_show = await prisma.show.findFirst({
 				where: { number: number }
@@ -50,7 +52,7 @@ export async function import_or_update_all_changed_shows() {
 
 			// If show doesn't exist or the hash has changed. Refresh
 			if (!existing_show || existing_show.hash !== hash) {
-				await parse_and_save_show_notes(file_content, hash, number, md_file);
+				await parse_and_save_show_notes(md_file_contents, hash, number, md_file_path);
 			}
 		}
 	} catch (err) {
@@ -61,13 +63,11 @@ export async function import_or_update_all_changed_shows() {
 	return { message: 'Import All Shows' };
 }
 
-async function get_show_data(md_file: string) {
-	const file_path = path.join(shows_folder_path, md_file);
-	const file_content = await fs.readFile(file_path, 'utf-8');
-	const hash = await get_hash_from_content(file_content);
-
-	const number = parseInt(md_file.split(' - ')[0]);
-	return { number, hash, file_content };
+async function get_show_data_from_glob(md_file_contents: string, md_file_path: string) {
+	const hash = await get_hash_from_content(md_file_contents);
+	const cleaned_path = md_file_path.replace('/shows/', '');
+	const number = parseInt(cleaned_path.split(' - ')[0]);
+	return { number, hash, md_file_contents };
 }
 
 // Takes a string of a .md show notes and adds it to the database and adds the guests

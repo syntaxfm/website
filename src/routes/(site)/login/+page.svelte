@@ -11,7 +11,7 @@
 {#if user}
 	<h4>Hell yea, You are currently Logged In</h4>
 	<form use:enhance={form_action({ message: 'Logout ' })} action="/?/logout" method="POST">
-		<button type="submit">Logout</button>
+		<button class="button" type="submit">Logout</button>
 	</form>
 {:else}
 	<a
