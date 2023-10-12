@@ -215,10 +215,10 @@
 				display: block;
 			}
 			.first {
-				color: var(--fg);
+				color: var(--bg-root);
 				font-size: var(--font-size-md);
 				letter-spacing: normal;
-				background: var(--yellow);
+				background: var(--primary);
 				width: max-content;
 				padding-inline: 0.5rem;
 			}
