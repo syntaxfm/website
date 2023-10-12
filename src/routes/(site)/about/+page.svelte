@@ -1,12 +1,11 @@
 <script lang="ts">
 	import HostSocialLink from '$lib/hosts/HostSocialLink.svelte';
 	import type { Action } from 'svelte/action';
-	import { flip } from 'svelte/animate';
-	import { quintOut } from 'svelte/easing';
-	import { fade, slide, fly } from 'svelte/transition';
+	import { fly } from 'svelte/transition';
 	import emo from '$assets/emo.jpg';
 	import bboy from '$assets/bboy.jpg';
 	import benjamin from '$assets/benjamin.jpg';
+	import number1fan from '$assets/kaitlin.jpg';
 	let hosts = {
 		wes: {
 			name: 'Wes Bos',
@@ -137,6 +136,7 @@
 				src={`https://github.com/${hosts.kaitlin.github}.png`}
 				alt={hosts.kaitlin.name}
 				class="avatar"
+				data-lol={number1fan}
 				use:lol
 			/>
 			<h2 class="h4">
