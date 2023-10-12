@@ -93,7 +93,7 @@
 		mask-image-repeat: repeat;
 		mask-size: 250px;
 		text-wrap: balance;
-    font-style: italic;
+		font-style: italic;
 	}
 
 	h1,
@@ -127,13 +127,19 @@
 		font-size: var(--font-size-base);
 	}
 
-  .spa-ran-wrap {
-    --color: var(--spa-ran-wrap-bg, transparent);
-    --size: 2.33456789ex;
-    background-image: linear-gradient(180deg, var(--color) 0%, var(--color) 50%, transparent 50%, transparent 100%);
-    background-size: auto var(--size);
-    background-position: 10px calc(var(--size) / 4);
-  }
+	.spa-ran-wrap {
+		--color: var(--spa-ran-wrap-bg, transparent);
+		--size: 2.33456789ex;
+		background-image: linear-gradient(
+			180deg,
+			var(--color) 0%,
+			var(--color) 50%,
+			transparent 50%,
+			transparent 100%
+		);
+		background-size: auto var(--size);
+		background-position: 10px calc(var(--size) / 4);
+	}
 
 	/* Show Notes Typography - coming from markdown so it must be global */
 	.show-notes {
@@ -307,4 +313,16 @@ a[href^='https']:not(.social-icon, .button, .icon):after {
 ::selection {
 	background: var(--primary);
 	color: var(--dark);
+}
+
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	border: 0;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
 }

@@ -16,9 +16,9 @@
 		<div class="logo">
 			<a href="/"><Logo /></a>
 		</div>
-		<h1 class="h2 text-center">
+		<h2 class="text-center">
 			A <span class="tasty">Tasty Treats</span> Podcast for Web Developers
-		</h1>
+		</h2>
 		<p class="hosted-by">
 			Hosted by <img
 				width="50"

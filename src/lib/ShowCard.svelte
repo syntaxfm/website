@@ -12,7 +12,7 @@
 	export let show: LatestShow;
 	export let display: 'list' | 'card' | 'highlight' = 'card';
 
-	export let heading = 'h3';
+	export let heading = 'h4';
 	export let show_date = new Date(show.date);
 	function format_date(date: Date, baseDate: Date = new Date()) {
 		const timeFormatter = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });

@@ -14,10 +14,12 @@
 	}
 </script>
 
+<h1 class="visually-hidden">Syntax Podcast</h1>
+
 <PodcastHero />
 
 <section aria-label="Latest podcast episodes full layout">
-	<h2 class="h3 lines">Latest Episodes</h2>
+	<h3 class="lines">Latest Episodes</h3>
 	<div class="grid" style:margin-bottom="2rem">
 		{#if latest_show}
 			<ShowCard display="highlight" show={latest_show} />
