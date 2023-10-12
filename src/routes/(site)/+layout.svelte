@@ -32,7 +32,7 @@
 	});
 </script>
 
-<!-- <Meta /> -->
+<Meta />
 
 <div class={'theme-' + ($theme || user_theme) + ' theme-wrapper'} class:debug={$debug_mode}>
 	{#if $page.url.pathname !== '/'}
