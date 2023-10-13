@@ -1,6 +1,6 @@
 ---
 number: 679
-title: Supper Club × Mojo with Chris Lattner
+title: Creator of Swift, Tesla Autopilot & Tensorflow. New AI language Mojo with Chris Lattner
 date: 1697198400832
 url: https://traffic.libsyn.com/syntax/Syntax_-_679.mp3
 ---
