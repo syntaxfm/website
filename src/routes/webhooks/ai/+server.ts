@@ -12,9 +12,9 @@ export const GET = async function transcriptCronHandler({ request, locals }: Req
 	const start = Date.now();
 	const url = new URL(request.url);
 	const authHeader = request.headers.get('authorization');
-	const has_webhook_key = url.searchParams.get('WEBHOOK_KEY') === process.env.WEBHOOK_KEY;
-	const has_auth_header = authHeader === process.env.WEBHOOK_KEY;
-	const has_auth = has_webhook_key || has_auth_header;
+	const has_cron_secret = url.searchParams.get('CRON_SECRET') === process.env.CRON_SECRET;
+	const has_auth_header = authHeader === process.env.CRON_SECRET;
+	const has_auth = has_cron_secret || has_auth_header;
 	// 1. Make sure we have an API key
 	if (!has_auth) {
 		throw error(401, 'Get outta here - Wrong Cron key or auth header');
