@@ -1,7 +1,7 @@
 {
 	"crons": [
 		{
-			"path": "/webooks/xtranscripts",
+			"path": "/webooks/transcripts",
 			"schedule": "*/5 * * * *"
 		},
 		{
