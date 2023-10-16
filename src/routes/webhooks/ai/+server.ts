@@ -3,7 +3,7 @@ import type { RequestEvent } from './$types';
 import { save_ai_notes_to_db } from '$server/ai/db';
 import { generate_ai_notes } from '$server/ai/openai';
 import { transcript_with_utterances } from '$server/ai/queries';
-import { has_auth } from '../transcripts/+server';
+import { has_auth } from '../transcripts/has_auth';
 
 export const config = {
 	maxDuration: 300 // vercel timeout

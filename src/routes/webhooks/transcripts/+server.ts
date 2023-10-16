@@ -1,19 +1,11 @@
 import { error, json } from '@sveltejs/kit';
 import type { RequestEvent } from './$types';
 import { get_transcript } from '$server/transcripts/deepgram';
+import { has_auth } from './has_auth';
 
 export const config = {
 	maxDuration: 300 // vercel timeout
 };
-
-export function has_auth(request: RequestEvent) {
-	const url = new URL(request.url);
-	const auth_header = request.headers.get('authorization');
-	const cron_secret = url.searchParams.get('CRON_SECRET') === process.env.CRON_SECRET;
-	const has_auth_header = auth_header === `Bearer ${process.env.CRON_SECRET}`;
-	const has_auth = cron_secret || has_auth_header;
-	return has_auth;
-}
 
 export const GET = async function transcriptCronHandler({ request, locals }: RequestEvent) {
 	const start = Date.now();
