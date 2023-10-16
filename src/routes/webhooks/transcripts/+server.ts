@@ -16,7 +16,11 @@ export const GET = async function transcriptCronHandler({ request, locals }: Req
 	const has_auth = cron_secret || has_auth_header;
 	// 1. Make sure we have an API key
 	if (!has_auth) {
-		console.log('🤖 Unauthorized Transcript Cron Request', { cron_secret, has_auth_header });
+		console.log('🤖 Unauthorized Transcript Cron Request', {
+			cron_secret,
+			has_auth_header,
+			authHeader
+		});
 		throw error(401, 'Get outta here - Wrong Cron key or auth header');
 	}
 	// 2. Get the latest show without a transcript
