@@ -5,7 +5,7 @@
 			"schedule": "*/5 * * * *"
 		},
 		{
-			"path": "/webooks/xai",
+			"path": "/webooks/[disabled]xai",
 			"schedule": "*/5 * * * *"
 		}
 	]
