@@ -6,16 +6,21 @@ export const config = {
 	maxDuration: 300 // vercel timeout
 };
 
+export function has_auth(request: RequestEvent) {
+	const url = new URL(request.url);
+	const auth_header = request.headers.get('authorization');
+	const cron_secret = url.searchParams.get('CRON_SECRET') === process.env.CRON_SECRET;
+	const has_auth_header = auth_header === `Bearer ${process.env.CRON_SECRET}`;
+	const has_auth = cron_secret || has_auth_header;
+	return has_auth;
+}
+
 export const GET = async function transcriptCronHandler({ request, locals }: RequestEvent) {
 	const start = Date.now();
-	// await get_transcript(show_number);
-	const url = new URL(request.url);
-	const authHeader = request.headers.get('authorization');
-	const has_webhook_key = url.searchParams.get('WEBHOOK_KEY') === process.env.WEBHOOK_KEY;
-	const has_auth_header = authHeader === process.env.WEBHOOK_KEY;
-	const has_auth = has_webhook_key || has_auth_header;
+	const allowed = has_auth(request);
 	// 1. Make sure we have an API key
-	if (!has_auth) {
+	if (!allowed) {
+		console.log('🤖 Unauthorized Transcript Cron Request');
 		throw error(401, 'Get outta here - Wrong Cron key or auth header');
 	}
 	// 2. Get the latest show without a transcript
