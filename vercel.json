@@ -1,11 +1,11 @@
 {
 	"crons": [
 		{
-			"path": "/webooks/transcripts",
+			"path": "/webhook/transcripts",
 			"schedule": "*/5 * * * *"
 		},
 		{
-			"path": "/webooks/[disabled]xai",
+			"path": "/webhook/[disabled]xai",
 			"schedule": "*/5 * * * *"
 		}
 	]
