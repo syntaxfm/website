@@ -3,7 +3,7 @@ import { FFmpeg } from '@ffmpeg.wasm/main';
 import type { Show } from '@prisma/client';
 import { readFile, unlink, writeFile } from 'fs/promises';
 import { logProgress } from './logProgress';
-
+import core from '@ffmpeg.wasm/core-mt';
 const flagPaths = ['./audio/wes-flagger.mp3', './audio/scott-flagger.mp3'];
 
 export type ProgressEvent = {
@@ -36,6 +36,7 @@ export async function addFlaggerAudio(show: Show): Promise<Buffer> {
 	console.log('Creating ffmpeg instance');
 	const ffmpeg = await FFmpeg.create({
 		log: true,
+		core: core,
 		logger: (type, ...message) => {
 			logProgress(message.join(' '));
 		}
