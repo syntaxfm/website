@@ -5,6 +5,7 @@ import { import_all_md_files_from_glob } from '$utilities/file_utilities/get_md_
 import { get_hash_from_content } from '$utilities/file_utilities/get_hash_from_content';
 import { error } from '@sveltejs/kit';
 import { DAYS_OF_WEEK_TYPES } from '$const';
+import { left_pad } from '$utilities/left_pad';
 
 interface FrontMatterGuest {
 	name: string;
@@ -83,17 +84,19 @@ export async function parse_and_save_show_notes(
 	const date = new Date(data.date); // Parse the date string into a Date object
 
 	const dayOfWeek: number = date.getDay(); // Get the day of the week (0 = Sunday, 1 = Monday, ...)
+	const id = get_id_from_show_number(number);
 
 	const show_type: 'HASTY' | 'TASTY' | 'SUPPER' | 'SPECIAL' =
 		DAYS_OF_WEEK_TYPES[dayOfWeek] || 'SPECIAL';
 	// Save or update the show
 	try {
 		const show = await prisma.show.upsert({
-			where: { number: number },
+			where: { id },
 			update: {
 				title: data.title,
 				slug: slug(data.title),
 				date,
+				number,
 				url: data.url,
 				show_notes: content,
 				hash: hash,
@@ -101,8 +104,9 @@ export async function parse_and_save_show_notes(
 				show_type // Assign the calculated show_type
 			},
 			create: {
+				id,
 				slug: slug(data.title),
-				number: data.number,
+				number,
 				title: data.title,
 				date,
 				url: data.url,
@@ -197,6 +201,10 @@ async function add_or_update_guest(guest: FrontMatterGuest, show_id: string) {
 	} catch (err) {
 		console.error('Error Importing Guests:', show_id, guest, err);
 	}
+}
+
+export function get_id_from_show_number(num: number) {
+	return `syntax_podcast_show_${left_pad(num)}`;
 }
 
 // TODO Delete Cache for each new show

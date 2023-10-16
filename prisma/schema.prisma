@@ -102,7 +102,7 @@ model SocialLink {
 }
 
 model Show {
-  id         String      @id @default(uuid())
+  id         String      @id
   number     Int         @unique
   title      String      @db.Text
   date       DateTime
