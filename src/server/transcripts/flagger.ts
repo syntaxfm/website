@@ -22,7 +22,7 @@ export async function addFlaggerAudio(show: Show): Promise<Buffer> {
 	console.log('ADDING FLAGGER AUDIO');
 	const url = new URL(show.url);
 	// Get the filename
-	const fileName = url.pathname.split('/').pop() || `${show.number}.mp3`;
+	const fileName = `${show.number}.mp3`;
 	//  Get the base name
 	const [baseName, extension] = fileName.split('.');
 	// create the output filename
@@ -43,6 +43,8 @@ export async function addFlaggerAudio(show: Show): Promise<Buffer> {
 	console.log('Loading ffmpeg');
 	// await ffmpeg.load();
 	// 1. download the show
+	// 1.1 See if the file exists first
+	const { ok } = await fetch(url, { method: 'HEAD' });
 	console.log(`Fetching ${url}`);
 	const fetchBuffer = await fetch(url)
 		.then((res) => res.arrayBuffer())

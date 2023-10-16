@@ -5,6 +5,7 @@
 import { error, type RequestEvent } from '@sveltejs/kit';
 import { transcript_with_utterances } from './queries';
 import { generate_ai_notes } from './openai';
+import { save_ai_notes_to_db } from './db';
 
 export async function aiNoteRequestHandler({ request, locals }: RequestEvent) {
 	const data = await request.formData();
@@ -38,34 +39,7 @@ export async function aiNoteRequestHandler({ request, locals }: RequestEvent) {
 	// Save to DB
 	console.log(`🤖 Saving AI Notes to DB for Show ${show_number}`);
 	console.dir(result);
-	await locals.prisma.aiShowNote.create({
-		data: {
-			show: {
-				connect: {
-					number: show.number
-				}
-			},
-			title: result.title,
-			description: result.description || result.short_description,
-			summary: {
-				create: result.summary
-			},
-			tweets: {
-				create: result.tweets.map((tweet) => ({ content: tweet }))
-			},
-			topics: {
-				create: result.topics.map((topic) => ({ name: topic }))
-			},
-			links: {
-				create: result.links.map((link) => ({
-					name: link.name,
-					url: link.url,
-					timestamp: link.timestamp
-				}))
-			},
-			provider: 'anthropic'
-		}
-	});
+	await save_ai_notes_to_db(result, show);
 
 	return { message: 'AI Notes Created' };
 }

@@ -1,0 +1,12 @@
+{
+	"crons": [
+		{
+			"path": "/webooks/xtranscripts",
+			"schedule": "*/5 * * * *"
+		},
+		{
+			"path": "/webooks/[disabled]xai",
+			"schedule": "*/5 * * * *"
+		}
+	]
+}
