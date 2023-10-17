@@ -6,8 +6,15 @@ import { logProgress } from './logProgress';
 import core from '@ffmpeg.wasm/core-mt';
 const flagPaths = ['./audio/wes-flagger.mp3', './audio/scott-flagger.mp3'];
 import wasmPathAb from '@ffmpeg.wasm/core-mt/dist/core.wasm?url';
+// import wasmCore from './core.wasm';
 import { join } from 'path';
 
+// import init from '@ffmpeg.wasm/core-mt/dist/core.wasm?init';
+// await init();
+await import(wasmPathAb); // maybe vercel will do this?
+
+// https://github.com/sveltejs/kit/issues/10594
+// https://github.com/sveltejs/kit/pull/8441
 const wasmPath = join(process.cwd(), wasmPathAb);
 
 export type ProgressEvent = {
@@ -23,6 +30,8 @@ export type ProgressEvent = {
  * @param {string} mp3URL - The URL of the show to concat
  **/
 export async function addFlaggerAudio(show: Show): Promise<Buffer> {
+	console.log(wasmCore);
+	return;
 	console.log('ADDING FLAGGER AUDIO');
 	const url = new URL(show.url);
 	// Get the filename
