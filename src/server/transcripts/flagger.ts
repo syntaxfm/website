@@ -5,11 +5,15 @@ import { readFile, readdir } from 'fs/promises';
 import { logProgress } from './logProgress';
 import core from '@ffmpeg.wasm/core-mt';
 const flagPaths = ['./audio/wes-flagger.mp3', './audio/scott-flagger.mp3'];
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
 import wasmPathAb from '@ffmpeg.wasm/core-mt/dist/core.wasm?url';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { env } from '$env/dynamic/private';
 import { dev } from '$app/environment';
+
+const wasmPath = require('@ffmpeg.wasm/core-mt/dist/core.wasm?url');
 
 const _dirname =
 	typeof __dirname !== 'undefined' ? __dirname : dirname(fileURLToPath(import.meta.url));
@@ -18,25 +22,7 @@ const _dirname =
 // https://github.com/sveltejs/kit/pull/8441
 // const wasmPath = join(process.cwd(), wasmPathAb);
 
-// ????
-`${_dirname}/../app/assets/core.wasm`;
-// See what files are here..
-// const files = await readdir(_dirname + '/../assets');
-// console.log('FILES FOR WES');
-// console.log(files);
-
-//twitter.com/theMosaad/status/1714148223147725266
-// const wasmPath = `${_dirname}/core.wasm`;
-
-// await readFile(wasmPathLocal);
-// let wasmPath = join(process.cwd(), wasmPathAb);
-const wasmPath = join(process.cwd(), 'src/server/transcripts/core.wasm');
-
-// when running `vite preview`, files are served from .svelte-kit
-// see https://kit.svelte.dev/docs/building-your-app#preview-your-app
-// if (!dev && !env.VERCEL) {
-// 	wasmPath = join(process.cwd(), '.svelte-kit/output/server', wasmPathAb);
-// }
+// const wasmPath = join(process.cwd(), 'src/server/transcripts/core.wasm');
 
 export type ProgressEvent = {
 	duration?: number;
