@@ -11,6 +11,5 @@ const vercelFuncDirs = (await $`ls -1d ${VERCEL_BUILD_BASE_PATH}/*.func`).stdout
 const outputDirs = [...vercelFuncDirs, LOCAL_BUILD_PATH];
 
 for (const outputDir of outputDirs) {
-	await $`copyfiles -u3 -e '**/*.ts' "src/lib/og-image/*" ${outputDir}`;
-	await $`cp node_modules/@dimfeld/create-social-card-wasm/create_social_card_wasm_bg.wasm ${outputDir}`;
+	await $`cp node_modules/@ffmpeg.wasm/core-mt/dist/core.wasm ${outputDir}`;
 }
