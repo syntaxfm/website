@@ -17,7 +17,7 @@ const _dirname =
 const wasmPath = join(process.cwd(), wasmPathAb);
 
 // See what files are here..
-const files = readdir(_dirname);
+const files = await readdir(_dirname);
 console.log('FILES FOR WES');
 console.log(files);
 
