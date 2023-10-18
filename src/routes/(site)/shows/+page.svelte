@@ -26,7 +26,7 @@
 				on:select={(e) => {
 					$store.type = e.detail;
 				}}
-				button_text="Episode Type"
+				button_text="Type"
 				button_icon="filter"
 				value={$store.type || ''}
 				options={[
@@ -42,13 +42,13 @@
 				on:select={(e) => {
 					$store.perPage = e.detail;
 				}}
+				value_as_label
 				button_text="Per Page"
-				button_icon="filter"
-				value={$store.perPage?.toString() || ''}
+				value={$store.perPage?.toString() || '10'}
 				options={[
-					{ value: '2', label: '2' },
 					{ value: '10', label: '10' },
-					{ value: '20', label: '20' }
+					{ value: '20', label: '20' },
+					{ value: '40', label: '40' }
 				]}
 			/>
 			<SelectMenu
@@ -57,7 +57,7 @@
 					$store.order = e.detail;
 				}}
 				value={$store.order || 'desc'}
-				button_text="Sort Episodes"
+				button_text="Sort"
 				button_icon="sort"
 				options={[
 					{ value: 'desc', label: 'Newest To Oldest' },

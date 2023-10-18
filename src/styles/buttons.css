@@ -25,6 +25,9 @@
 		gap: 10px;
 		box-shadow: inset 0 0 0 var(--button-border-size) oklch(var(--blacklch) / 0.2);
 		transition: background 0.2s ease-in-out;
+		@media (--below_large) {
+			font-size: var(--font-size-sm);
+		}
 	}
 
 	:is(button, .button).ghost {

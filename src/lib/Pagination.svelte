@@ -36,6 +36,7 @@
 		<a
 			in:fade
 			animate:flip={{ duration: 200, easing: quintOut }}
+			class="page-number"
 			class:current={page === pageNumber}
 			href="?{generate_search_params('page', pageNumber)}"
 			>{pageNumber}
@@ -52,6 +53,9 @@
 		grid-auto-columns: max-content;
 		gap: 20px;
 		justify-content: center;
+		@media (--below_large) {
+			gap: 8px;
+		}
 		& > * {
 			border-radius: var(--brad);
 			margin: 0;
@@ -65,6 +69,11 @@
 			transition: 0.2s ease background;
 			&.current {
 				background: var(--primary);
+			}
+			@media (--below_large) {
+				&.page-number:not(.current) {
+					display: none;
+				}
 			}
 		}
 	}

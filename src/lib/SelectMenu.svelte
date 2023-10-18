@@ -4,7 +4,8 @@
 	import type { IconName } from './Icon.svelte';
 
 	export let options: { value: string; label: string }[];
-	export let button_icon: IconName;
+	export let button_icon: IconName | null = null;
+	export let value_as_label: boolean = false;
 	export let button_text: string;
 	export let popover_id: string;
 	let id = popover_id.replace('filter-', '');
@@ -28,7 +29,12 @@
 		use:anchor={{ id: popover_id, position: ['BOTTOM', 'LEFT'] }}
 		class="subtle"
 	>
-		<Icon name={button_icon} />
+		{#if button_icon}
+			<Icon name={button_icon} />
+		{/if}
+		{#if value_as_label}
+			{value}
+		{/if}
 		{button_text}
 	</button>
 	<div popover id={popover_id}>

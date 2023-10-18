@@ -163,6 +163,11 @@
 			border-top: solid 1px var(--line);
 			padding: 20px 0;
 			margin-inline: auto;
+			@media (--below_med) {
+				.description {
+					display: none;
+				}
+			}
 		}
 	}
 
@@ -197,12 +202,13 @@
 		top: 0;
 		transform: translate(6.9%, -22%);
 		--max-font-size: 15rem;
-		font-size: clamp(1.5rem, 45cqw, var(--max-font-size));
+		font-size: clamp(1.5rem, 22cqw, var(--max-font-size));
 		font-weight: 900;
 		color: var(--primary);
 		line-height: 1;
 		z-index: -1;
 	}
+
 	@container show-card (width > 600px) {
 		.highlight {
 			& .h3 {

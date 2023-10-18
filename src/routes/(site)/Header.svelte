@@ -48,6 +48,13 @@
 		margin: 0 auto;
 	}
 
+	.logo {
+		width: 58px;
+		@media (--above_med) {
+			width: auto;
+		}
+	}
+
 	nav a {
 		text-decoration: none;
 		color: var(--fg);
