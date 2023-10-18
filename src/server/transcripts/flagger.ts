@@ -6,17 +6,6 @@ import { logProgress } from './logProgress';
 import core from '@ffmpeg.wasm/core-mt';
 const flagPaths = ['./audio/wes-flagger.mp3', './audio/scott-flagger.mp3'];
 import wasmPathAb from '@ffmpeg.wasm/core-mt/dist/core.wasm?url';
-import { dirname, join } from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { env } from '$env/dynamic/private';
-import { dev } from '$app/environment';
-
-const _dirname =
-	typeof __dirname !== 'undefined' ? __dirname : dirname(fileURLToPath(import.meta.url));
-// import wasmCore from './core.wasm';
-// https://github.com/sveltejs/kit/issues/10594
-// https://github.com/sveltejs/kit/pull/8441
-// const wasmPath = join(process.cwd(), wasmPathAb);
 
 export type ProgressEvent = {
 	duration?: number;
@@ -35,8 +24,6 @@ export async function addFlaggerAudio(show: Show): Promise<Buffer> {
 	// See what files are here
 	const files = await readdir('./');
 	console.log(files);
-	const wasmPathLocal = `${_dirname}/core.wasm`;
-	console.log({ wasmPathLocal });
 	const url = new URL(show.url);
 	// Get the filename
 	const fileName = `${show.number}.mp3`;

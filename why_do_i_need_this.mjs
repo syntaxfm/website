@@ -12,5 +12,6 @@ const outputDirs = [...vercelFuncDirs, LOCAL_BUILD_PATH];
 
 for (const outputDir of outputDirs) {
 	await $`cp node_modules/@ffmpeg.wasm/core-mt/dist/core.wasm ${outputDir}`;
+	await $`cp node_modules/@ffmpeg.wasm/core-mt/dist/core.worker.js ${outputDir}`;
 	await $`cp -r ./src/server/transcripts/audio ${outputDir}`;
 }
