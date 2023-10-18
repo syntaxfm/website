@@ -18,11 +18,6 @@ const _dirname =
 // https://github.com/sveltejs/kit/pull/8441
 // const wasmPath = join(process.cwd(), wasmPathAb);
 
-const wasmPath = `${_dirname}/core.wasm`;
-const wasmPath2 = `./core.wasm`;
-// REad it?
-await readFile(wasmPath2);
-
 export type ProgressEvent = {
 	duration?: number;
 	ratio?: number;

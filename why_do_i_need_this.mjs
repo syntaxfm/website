@@ -11,6 +11,6 @@ const vercelFuncDirs = (await $`ls -1d ${VERCEL_BUILD_BASE_PATH}/*.func`).stdout
 const outputDirs = [...vercelFuncDirs, LOCAL_BUILD_PATH];
 
 for (const outputDir of outputDirs) {
-	console.log('Skipping copy of ffmpeg.wasm');
-	// await $`cp node_modules/@ffmpeg.wasm/core-mt/dist/core.wasm ${outputDir}`;
+	await $`cp node_modules/@ffmpeg.wasm/core-mt/dist/core.wasm ${outputDir}`;
+	await $`cp -r ./src/server/transcripts/audio ${outputDir}`;
 }
