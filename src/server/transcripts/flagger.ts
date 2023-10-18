@@ -5,15 +5,11 @@ import { readFile, readdir } from 'fs/promises';
 import { logProgress } from './logProgress';
 import core from '@ffmpeg.wasm/core-mt';
 const flagPaths = ['./audio/wes-flagger.mp3', './audio/scott-flagger.mp3'];
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
 import wasmPathAb from '@ffmpeg.wasm/core-mt/dist/core.wasm?url';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { env } from '$env/dynamic/private';
 import { dev } from '$app/environment';
-
-const wasmPath = require('@ffmpeg.wasm/core-mt/dist/core.wasm?url');
 
 const _dirname =
 	typeof __dirname !== 'undefined' ? __dirname : dirname(fileURLToPath(import.meta.url));
@@ -22,7 +18,12 @@ const _dirname =
 // https://github.com/sveltejs/kit/pull/8441
 // const wasmPath = join(process.cwd(), wasmPathAb);
 
-// const wasmPath = join(process.cwd(), 'src/server/transcripts/core.wasm');
+const wasmPath = `${_dirname}/core.wasm`;
+
+// Lets try with a file from the assets dir
+import waves from '$assets/waves.svg';
+
+console.log({ waves });
 
 export type ProgressEvent = {
 	duration?: number;
@@ -37,6 +38,10 @@ export type ProgressEvent = {
  * @param {string} mp3URL - The URL of the show to concat
  **/
 export async function addFlaggerAudio(show: Show): Promise<Buffer> {
+	console.log(`Waves: ${waves}`);
+	const wavesSVG = await readFile(waves);
+	console.log(wavesSVG);
+
 	console.log('ADDING FLAGGER AUDIO');
 	const url = new URL(show.url);
 	// Get the filename
