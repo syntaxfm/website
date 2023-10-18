@@ -17,8 +17,8 @@ const _dirname =
 // const wasmPath = join(process.cwd(), wasmPathAb);
 
 //twitter.com/theMosaad/status/1714148223147725266
-const wasmPath = _dirname + 'core.wasm';
-await readFile(_dirname + 'core.wasm');
+const wasmPath = _dirname + '/core.wasm';
+await readFile(_dirname + '/core.wasm');
 
 export type ProgressEvent = {
 	duration?: number;
