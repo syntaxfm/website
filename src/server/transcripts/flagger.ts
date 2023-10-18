@@ -17,9 +17,9 @@ const _dirname =
 // const wasmPath = join(process.cwd(), wasmPathAb);
 
 // See what files are here..
-const files = await readdir(_dirname + '/../assets');
-console.log('FILES FOR WES');
-console.log(files);
+// const files = await readdir(_dirname + '/../assets');
+// console.log('FILES FOR WES');
+// console.log(files);
 
 //twitter.com/theMosaad/status/1714148223147725266
 const wasmPath = _dirname + '/../assets/core.wasm';
