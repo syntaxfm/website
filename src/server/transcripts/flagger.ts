@@ -18,6 +18,8 @@ const _dirname =
 // https://github.com/sveltejs/kit/pull/8441
 // const wasmPath = join(process.cwd(), wasmPathAb);
 
+// ????
+`${_dirname}/../app/assets/core.wasm`;
 // See what files are here..
 // const files = await readdir(_dirname + '/../assets');
 // console.log('FILES FOR WES');
