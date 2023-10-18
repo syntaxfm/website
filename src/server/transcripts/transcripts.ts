@@ -52,6 +52,9 @@ export async function save_transcript_to_db(show: Show, utterances: Utterance[])
 		};
 	});
 
+	console.log(`About to Save to the DB`);
+	console.log(create_utterances);
+
 	return prisma.transcript.create({
 		data: {
 			show_number: show.number,
