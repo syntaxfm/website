@@ -2,7 +2,6 @@
 	import { queryParameters } from 'sveltekit-search-params';
 	import SelectMenu from '$lib/SelectMenu.svelte';
 	import ShowCard from '$lib/ShowCard.svelte';
-	import { invalidate } from '$app/navigation';
 	import Pagination from '$lib/Pagination.svelte';
 	import { PER_PAGE } from '$const';
 

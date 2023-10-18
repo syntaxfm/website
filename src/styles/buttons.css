@@ -7,6 +7,7 @@
 
 	button,
 	a.button {
+		white-space: nowrap;
 		cursor: pointer;
 		text-decoration: none;
 		border: none;
@@ -81,7 +82,7 @@
 		border-radius: var(--size);
 		box-shadow: inset 0 0 0 var(--button-border-size) oklch(var(--blacklch) / 0.2);
 		transition: background-size 1s ease-in-out;
-    font-weight: 100;
+		font-weight: 100;
 	}
 
 	button.button-reset {

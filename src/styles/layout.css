@@ -1,10 +1,10 @@
 @layer layout {
 	.layout {
-		column-gap: 10px;
 		display: grid;
-		grid-template-columns: [start content] auto [content end];
+		grid-template-columns: [start] 5px [content] auto [content] 5px [end];
 
 		@media (--above_med) {
+			column-gap: 10px;
 			grid-template-columns:
 				[start l-margin] 10px [l-margin content main] minmax(0, 812px) [main sidebar] minmax(
 					0,
@@ -68,7 +68,7 @@
 	.zone {
 		color: var(--fg);
 		background: var(--bg) var(--bgGrit);
-    background-size: 250px;
+		background-size: 250px;
 		border-radius: var(--radius, 0);
 	}
 
