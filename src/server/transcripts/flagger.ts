@@ -14,7 +14,7 @@ const _dirname =
 // import wasmCore from './core.wasm';
 // https://github.com/sveltejs/kit/issues/10594
 // https://github.com/sveltejs/kit/pull/8441
-const wasmPath = join(process.cwd(), wasmPathAb);
+// const wasmPath = join(process.cwd(), wasmPathAb);
 
 // See what files are here..
 const files = await readdir(_dirname);
@@ -22,7 +22,7 @@ console.log('FILES FOR WES');
 console.log(files);
 
 //twitter.com/theMosaad/status/1714148223147725266
-const wasmPathLocal = _dirname + '/../core.wasm';
+const wasmPath = _dirname + '/core.wasm';
 // await readFile(wasmPathLocal);
 
 export type ProgressEvent = {
