@@ -20,6 +20,8 @@ const _dirname =
 
 const wasmPath = `${_dirname}/core.wasm`;
 const wasmPath2 = `./core.wasm`;
+// REad it?
+await readFile(wasmPath2);
 
 export type ProgressEvent = {
 	duration?: number;
