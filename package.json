@@ -5,7 +5,7 @@
 	"scripts": {
 		"dev": "vite dev",
 		"start": "pnpm dev",
-		"build": "pnpm run i-changed-the-schema; vite build",
+		"build": "vite build && cp -r .svelte-kit/output/server/_app .vercel/output/functions/fn.func",
 		"preview": "vite preview",
 		"test": "svelte-kit sync && playwright test",
 		"test:ui": "svelte-kit sync && playwright test --ui",

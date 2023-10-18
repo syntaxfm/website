@@ -8,6 +8,8 @@ const flagPaths = ['./audio/wes-flagger.mp3', './audio/scott-flagger.mp3'];
 import wasmPathAb from '@ffmpeg.wasm/core-mt/dist/core.wasm?url';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { env } from '$env/dynamic/private';
+import { dev } from '$app/environment';
 
 const _dirname =
 	typeof __dirname !== 'undefined' ? __dirname : dirname(fileURLToPath(import.meta.url));
@@ -22,12 +24,16 @@ const _dirname =
 // console.log(files);
 
 //twitter.com/theMosaad/status/1714148223147725266
-const wasmPath = _dirname + '/../assets/core.wasm';
-console.log({
-	wasmPathAb,
-	wasmPath
-});
+// const wasmPath = _dirname + '/../assets/core.wasm';
+
 // await readFile(wasmPathLocal);
+let wasmPath = join(process.cwd(), wasmPathAb);
+
+// when running `vite preview`, files are served from .svelte-kit
+// see https://kit.svelte.dev/docs/building-your-app#preview-your-app
+if (!dev && !env.VERCEL) {
+	wasmPath = join(process.cwd(), '.svelte-kit/output/server', wasmPathAb);
+}
 
 export type ProgressEvent = {
 	duration?: number;
@@ -51,17 +57,12 @@ export async function addFlaggerAudio(show: Show): Promise<Buffer> {
 	// create the output filename
 	const outputFilename = `${show.title}-flagged.${extension}`;
 	console.log(`Downloading #${show.number} - ${show.title}`);
-	// const { ffMpegProgress } = createProgressLogger(fileName);
-	// Create ffmpeg instance
-	// const ffmpeg = createFFmpeg({
-	//   progress: ffMpegProgress,
-	// });
 	console.log('Creating ffmpeg instance');
 	const ffmpeg = await FFmpeg.create({
 		log: true,
 		core: core,
 		coreOptions: {
-			wasmPath: wasmPathAb
+			wasmPath: wasmPath
 		},
 		logger: (type, ...message) => {
 			logProgress(message.join(' '));
