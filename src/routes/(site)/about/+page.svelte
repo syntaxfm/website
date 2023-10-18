@@ -76,7 +76,7 @@
 							>
 						{/key}
 					</span>
-				{/each} miliseconds to be exact)</span
+				{/each} milliseconds to be exact)</span
 			>, Syntax has published
 			{data.count} podcast episodes on full-stack web development, covering JavaScript Server + Client,
 			the latest Frameworks, HTML, CSS, databases, deployment environments, and a whole lot more!
@@ -85,7 +85,7 @@
 		<p>You should listen! It's pretty good.</p>
 	</div>
 
-	<div class="team-row">
+	<div class="grid">
 		<div class="team-member">
 			<img
 				use:lol
@@ -189,16 +189,9 @@
 		object-fit: cover;
 	}
 
-	.team-row {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
-		grid-gap: 40px;
-	}
-
 	.team-member {
 		position: relative;
 		container: team-member / inline-size;
-		max-width: 350px;
 		.desc {
 			margin-top: -15cqw;
 			p {
