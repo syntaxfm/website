@@ -73,7 +73,7 @@ export async function addFlaggerAudio(show: Show): Promise<Buffer> {
 	// Write Flaggers to ffmpeg memory
 	for (const [i, flagPath] of flagPaths.entries()) {
 		const __dirname = new URL('.', import.meta.url).pathname;
-		const flagBuffer = await readFile(__dirname + flagPath);
+		const flagBuffer = await readFile(flagPath);
 		ffmpeg.fs.writeFile(`flagger-${baseName}-${i}.mp3`, flagBuffer);
 		console.log(`wrote flagger-${baseName}-${i}.mp3 to ffmpeg memory`);
 	}
