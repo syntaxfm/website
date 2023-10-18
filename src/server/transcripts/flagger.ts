@@ -26,18 +26,17 @@ const _dirname =
 // console.log(files);
 
 //twitter.com/theMosaad/status/1714148223147725266
-// const wasmPath = _dirname + '/../assets/core.wasm';
+// const wasmPath = `${_dirname}/core.wasm`;
 
 // await readFile(wasmPathLocal);
-let wasmPath = join(process.cwd(), wasmPathAb);
+// let wasmPath = join(process.cwd(), wasmPathAb);
+const wasmPath = join(process.cwd(), 'src/server/transcripts/core.wasm');
 
 // when running `vite preview`, files are served from .svelte-kit
 // see https://kit.svelte.dev/docs/building-your-app#preview-your-app
 // if (!dev && !env.VERCEL) {
 // 	wasmPath = join(process.cwd(), '.svelte-kit/output/server', wasmPathAb);
 // }
-
-wasmPath = `${_dirname}/../app/assets/core.wasm`;
 
 export type ProgressEvent = {
 	duration?: number;
