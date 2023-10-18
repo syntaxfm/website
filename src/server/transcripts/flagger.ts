@@ -37,7 +37,8 @@ export async function addFlaggerAudio(show: Show): Promise<Buffer> {
 	// See what files are here
 	const files = await readdir('./');
 	console.log(files);
-	const wasmPath = `${_dirname}/core.wasm`;
+	const wasmPathLocal = `${_dirname}/core.wasm`;
+	console.log({ wasmPathLocal });
 	const url = new URL(show.url);
 	// Get the filename
 	const fileName = `${show.number}.mp3`;
@@ -51,7 +52,7 @@ export async function addFlaggerAudio(show: Show): Promise<Buffer> {
 		log: true,
 		core: core,
 		coreOptions: {
-			wasmPath: wasmPath
+			wasmPath: './core.wasm'
 		},
 		logger: (type, ...message) => {
 			logProgress(message.join(' '));
