@@ -38,8 +38,6 @@ export type ProgressEvent = {
  * @param {string} mp3URL - The URL of the show to concat
  **/
 export async function addFlaggerAudio(show: Show): Promise<Buffer> {
-	console.log(wasmCore);
-	return;
 	console.log('ADDING FLAGGER AUDIO');
 	const url = new URL(show.url);
 	// Get the filename
