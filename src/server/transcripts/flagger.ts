@@ -37,7 +37,8 @@ export async function addFlaggerAudio(show: Show): Promise<Buffer> {
 		log: true,
 		core: core,
 		coreOptions: {
-			wasmPath: './core.wasm'
+			wasmPath: './core.wasm',
+			workerPath: './core.worker.js'
 		},
 		logger: (type, ...message) => {
 			logProgress(message.join(' '));
