@@ -1,7 +1,7 @@
 // import { createFFmpeg, fetchFile, type ProgressCallback } from '@ffmpeg.wasm/main';
 import { FFmpeg } from '@ffmpeg.wasm/main';
 import type { Show } from '@prisma/client';
-import { readFile } from 'fs/promises';
+import { readFile, readdir } from 'fs/promises';
 import { logProgress } from './logProgress';
 import core from '@ffmpeg.wasm/core-mt';
 const flagPaths = ['./audio/wes-flagger.mp3', './audio/scott-flagger.mp3'];
@@ -15,6 +15,10 @@ const _dirname =
 // https://github.com/sveltejs/kit/issues/10594
 // https://github.com/sveltejs/kit/pull/8441
 const wasmPath = join(process.cwd(), wasmPathAb);
+
+// See what files are here..
+const files = readdir(_dirname);
+console.log(files);
 
 //twitter.com/theMosaad/status/1714148223147725266
 const wasmPathLocal = _dirname + '/../core.wasm';
