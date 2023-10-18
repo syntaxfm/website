@@ -33,9 +33,11 @@ let wasmPath = join(process.cwd(), wasmPathAb);
 
 // when running `vite preview`, files are served from .svelte-kit
 // see https://kit.svelte.dev/docs/building-your-app#preview-your-app
-if (!dev && !env.VERCEL) {
-	wasmPath = join(process.cwd(), '.svelte-kit/output/server', wasmPathAb);
-}
+// if (!dev && !env.VERCEL) {
+// 	wasmPath = join(process.cwd(), '.svelte-kit/output/server', wasmPathAb);
+// }
+
+wasmPath = `${_dirname}/../app/assets/core.wasm`;
 
 export type ProgressEvent = {
 	duration?: number;
