@@ -6,7 +6,7 @@ import { logProgress } from './logProgress';
 import core from '@ffmpeg.wasm/core-mt';
 const flagPaths = ['./audio/wes-flagger.mp3', './audio/scott-flagger.mp3'];
 import wasmPathAb from '@ffmpeg.wasm/core-mt/dist/core.wasm?url';
-
+import { env } from '$env/dynamic/private';
 export type ProgressEvent = {
 	duration?: number;
 	ratio?: number;
@@ -21,9 +21,6 @@ export type ProgressEvent = {
  **/
 export async function addFlaggerAudio(show: Show): Promise<Buffer> {
 	console.log('ADDING FLAGGER AUDIO');
-	// See what files are here
-	const files = await readdir('./');
-	console.log(files);
 	const url = new URL(show.url);
 	// Get the filename
 	const fileName = `${show.number}.mp3`;
@@ -36,10 +33,13 @@ export async function addFlaggerAudio(show: Show): Promise<Buffer> {
 	const ffmpeg = await FFmpeg.create({
 		log: true,
 		core: core,
-		coreOptions: {
-			wasmPath: './core.wasm',
-			workerPath: './core.worker.cjs'
-		},
+		// Specify WASM paths for Vercel. These are copied into the function via a post-build script https://github.com/syntaxfm/website/issues/1175
+		...(env.VERCEL && {
+			coreOptions: {
+				wasmPath: './core.wasm',
+				workerPath: './core.worker.cjs'
+			}
+		}),
 		logger: (type, ...message) => {
 			logProgress(message.join(' '));
 		}
@@ -61,7 +61,7 @@ export async function addFlaggerAudio(show: Show): Promise<Buffer> {
 	// Write Flaggers to ffmpeg memory
 	for (const [i, flagPath] of flagPaths.entries()) {
 		const __dirname = new URL('.', import.meta.url).pathname;
-		const flagBuffer = await readFile(flagPath);
+		const flagBuffer = await readFile(env.VERCEL ? flagPath : `${__dirname}/${flagPath}`);
 		ffmpeg.fs.writeFile(`flagger-${baseName}-${i}.mp3`, flagBuffer);
 		console.log(`wrote flagger-${baseName}-${i}.mp3 to ffmpeg memory`);
 	}
