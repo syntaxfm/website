@@ -23,6 +23,10 @@ const _dirname =
 
 //twitter.com/theMosaad/status/1714148223147725266
 const wasmPath = _dirname + '/../assets/core.wasm';
+console.log({
+	wasmPathAb,
+	wasmPath
+});
 // await readFile(wasmPathLocal);
 
 export type ProgressEvent = {
