@@ -20,4 +20,4 @@ test-results
 .svelte-kit
 .sentryclirc
 # Temp
-core.wasm
+# core.wasm
