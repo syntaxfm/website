@@ -20,9 +20,6 @@ const _dirname =
 
 const wasmPath = `${_dirname}/core.wasm`;
 
-// Lets try with a file from the assets dir
-import waves from '$assets/waves.svg';
-
 console.log({ waves });
 
 export type ProgressEvent = {
@@ -38,6 +35,7 @@ export type ProgressEvent = {
  * @param {string} mp3URL - The URL of the show to concat
  **/
 export async function addFlaggerAudio(show: Show): Promise<Buffer> {
+	const waves = join(process.cwd(), 'src', 'assets', 'waves.svg');
 	console.log(`Waves: ${waves}`);
 	const wavesSVG = await readFile(waves, 'utf-8');
 	console.log({ wavesSVG });
