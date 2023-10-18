@@ -6,20 +6,19 @@ import { logProgress } from './logProgress';
 import core from '@ffmpeg.wasm/core-mt';
 const flagPaths = ['./audio/wes-flagger.mp3', './audio/scott-flagger.mp3'];
 import wasmPathAb from '@ffmpeg.wasm/core-mt/dist/core.wasm?url';
-import { dirname } from 'node:path';
+import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const _dirname =
 	typeof __dirname !== 'undefined' ? __dirname : dirname(fileURLToPath(import.meta.url));
 // import wasmCore from './core.wasm';
-import { join } from 'path';
 // https://github.com/sveltejs/kit/issues/10594
 // https://github.com/sveltejs/kit/pull/8441
 // const wasmPath = join(process.cwd(), wasmPathAb);
 
 //twitter.com/theMosaad/status/1714148223147725266
-const wasmPath = _dirname + './core.wasm';
-await readFile(_dirname + './core.wasm');
+const wasmPath = _dirname + 'core.wasm';
+await readFile(_dirname + 'core.wasm');
 
 export type ProgressEvent = {
 	duration?: number;
