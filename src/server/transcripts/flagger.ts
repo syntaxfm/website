@@ -34,6 +34,10 @@ export type ProgressEvent = {
  **/
 export async function addFlaggerAudio(show: Show): Promise<Buffer> {
 	console.log('ADDING FLAGGER AUDIO');
+	// See what files are here
+	const files = await readdir('./');
+	console.log(files);
+	const wasmPath = `${_dirname}/core.wasm`;
 	const url = new URL(show.url);
 	// Get the filename
 	const fileName = `${show.number}.mp3`;
