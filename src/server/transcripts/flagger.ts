@@ -20,8 +20,6 @@ const _dirname =
 
 const wasmPath = `${_dirname}/core.wasm`;
 
-console.log({ waves });
-
 export type ProgressEvent = {
 	duration?: number;
 	ratio?: number;
