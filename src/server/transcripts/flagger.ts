@@ -39,8 +39,8 @@ export type ProgressEvent = {
  **/
 export async function addFlaggerAudio(show: Show): Promise<Buffer> {
 	console.log(`Waves: ${waves}`);
-	const wavesSVG = await readFile(waves);
-	console.log(wavesSVG);
+	const wavesSVG = await readFile(waves, 'utf-8');
+	console.log({ wavesSVG });
 
 	console.log('ADDING FLAGGER AUDIO');
 	const url = new URL(show.url);
