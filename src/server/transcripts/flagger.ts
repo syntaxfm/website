@@ -19,6 +19,7 @@ const _dirname =
 // const wasmPath = join(process.cwd(), wasmPathAb);
 
 const wasmPath = `${_dirname}/core.wasm`;
+const wasmPath2 = `./core.wasm`;
 
 export type ProgressEvent = {
 	duration?: number;
