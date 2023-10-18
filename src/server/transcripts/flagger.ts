@@ -6,9 +6,19 @@ import { logProgress } from './logProgress';
 import core from '@ffmpeg.wasm/core-mt';
 const flagPaths = ['./audio/wes-flagger.mp3', './audio/scott-flagger.mp3'];
 import wasmPathAb from '@ffmpeg.wasm/core-mt/dist/core.wasm?url';
-import { join } from 'path';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
+const _dirname =
+	typeof __dirname !== 'undefined' ? __dirname : dirname(fileURLToPath(import.meta.url));
+// import wasmCore from './core.wasm';
+// https://github.com/sveltejs/kit/issues/10594
+// https://github.com/sveltejs/kit/pull/8441
 const wasmPath = join(process.cwd(), wasmPathAb);
+
+//twitter.com/theMosaad/status/1714148223147725266
+const wasmPathLocal = _dirname + '/../core.wasm';
+// await readFile(wasmPathLocal);
 
 export type ProgressEvent = {
 	duration?: number;
@@ -23,6 +33,8 @@ export type ProgressEvent = {
  * @param {string} mp3URL - The URL of the show to concat
  **/
 export async function addFlaggerAudio(show: Show): Promise<Buffer> {
+	console.log(wasmCore);
+	return;
 	console.log('ADDING FLAGGER AUDIO');
 	const url = new URL(show.url);
 	// Get the filename
