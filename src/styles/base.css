@@ -302,8 +302,8 @@ in a later release. */
 /* Popover */
 
 /* All External Links */
-a[href^='http']:not(.social-icon, .button, .icon):after,
-a[href^='https']:not(.social-icon, .button, .icon):after {
+a[href^='http']:not(.social-icon, .button, .icon, .naked):after,
+a[href^='https']:not(.social-icon, .button, .icon, .naked):after {
 	content: '↗';
 	margin-left: 4px;
 	font-size: 12px;
