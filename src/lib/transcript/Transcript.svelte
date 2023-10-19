@@ -143,7 +143,7 @@
 
 <style lang="postcss">
 	.timeline {
-		--highlight: var(--bg-2);
+		--highlight: var(--subtle);
 		--future: var(--bg-2);
 		--current: var(--primary);
 		--past: var(--primary);

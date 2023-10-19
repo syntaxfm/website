@@ -70,6 +70,7 @@
 		background: var(--bg) var(--bgGrit);
 		background-size: 250px;
 		border-radius: var(--radius, 0);
+		--subtle: color-mix(in lch, var(--fg), var(--bg) 90%);
 	}
 
 	.sticky {
