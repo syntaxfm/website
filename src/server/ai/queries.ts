@@ -5,7 +5,7 @@ export const transcript_with_utterances = Prisma.validator<Prisma.TranscriptDefa
 	include: {
 		utterances: {
 			include: {
-				words: true
+				words: false // Way too big for client side
 			},
 			orderBy: {
 				start: 'asc'
