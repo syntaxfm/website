@@ -326,3 +326,11 @@ a[href^='https']:not(.social-icon, .button, .icon, .naked):after {
 	clip: rect(0, 0, 0, 0);
 	white-space: nowrap;
 }
+
+/* Scrollbars */
+html {
+	--track: var(--black);
+	--thumb: var(--primary);
+	scrollbar-color: var(--thumb) var(--track);
+	scrollbar-width: thin;
+}
