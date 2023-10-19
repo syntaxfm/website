@@ -42,25 +42,25 @@
 
 	$: playing_show_is_this_show = $player.current_show?.number === transcript.show_number;
 
-	const words = transcript.utterances
-		.map((utt) => utt.words)
-		.flat()
-		.sort((a, b) => a.start - b.start);
+	// const words = transcript.utterances
+	// 	.map((utt) => utt.words)
+	// 	.flat()
+	// 	.sort((a, b) => a.start - b.start);
 
-	$: currentWordIndex = words.findIndex((word, index, words) => {
-		const nextWordStart = words[index + 1]?.start || word.end;
-		const currentWord = $player.currentTime >= word.start && $player.currentTime <= nextWordStart;
-		return currentWord;
-	});
+	// $: currentWordIndex = words.findIndex((word, index, words) => {
+	// 	const nextWordStart = words[index + 1]?.start || word.end;
+	// 	const currentWord = $player.currentTime >= word.start && $player.currentTime <= nextWordStart;
+	// 	return currentWord;
+	// });
 
-	let wordCount = 3;
-	$: highlight_words = words
-		.slice(
-			Math.floor(currentWordIndex / wordCount) * wordCount,
-			Math.floor(currentWordIndex / wordCount) * wordCount + wordCount
-		)
-		.map((word) => word.word)
-		.join(' ');
+	// let wordCount = 3;
+	// $: highlight_words = words
+	// 	.slice(
+	// 		Math.floor(currentWordIndex / wordCount) * wordCount,
+	// 		Math.floor(currentWordIndex / wordCount) * wordCount + wordCount
+	// 	)
+	// 	.map((word) => word.word)
+	// 	.join(' ');
 
 	$: labelUtterance = function (utterance: SlimUtterance) {
 		if (!playing_show_is_this_show) return ''; // not playing this show

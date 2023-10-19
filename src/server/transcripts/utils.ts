@@ -130,7 +130,7 @@ export function detectSpeakerNames(utterances: SlimUtterance[]): SpeakerMap {
 	];
 	// First get a list of all speakers
 	const speakerNumbers = new Set(utterances.map((utt) => utt.speakerId));
-	console.log(`We have ${speakerNumbers.size} speakers`);
+	// console.log(`We have ${speakerNumbers.size} speakers`);
 	const speakers = new Map();
 	for (const utterance of utterances) {
 		// If this speaker has already been identified, skip it
@@ -140,7 +140,7 @@ export function detectSpeakerNames(utterances: SlimUtterance[]): SpeakerMap {
 			// console.log('Checking', saying, speaker,);
 			const regex = typeof saying === 'string' ? new RegExp(saying, 'i') : saying;
 			if (regex.test(utterance.transcript)) {
-				console.log(`Found ${speaker}!`, saying);
+				// console.log(`Found ${speaker}!`, saying);
 				speakers.set(utterance.speakerId, speaker);
 				break;
 			}
