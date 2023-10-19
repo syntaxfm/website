@@ -105,7 +105,7 @@
 	<a
 		class:active={$page.params.tab === 'transcript'}
 		data-sveltekit-noscroll
-		href="/shows/{$page.params.show_number}/{$page.params.slug}/transcript">Transcript</a
+		href="/show/{$page.params.show_number}/{$page.params.slug}/transcript">Transcript</a
 	>
 </Tabs>
 
