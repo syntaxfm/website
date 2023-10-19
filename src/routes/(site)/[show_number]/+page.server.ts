@@ -8,6 +8,6 @@ export const load: PageServerLoad = async function ({ params, locals, setHeaders
 
 	const { show_number } = params;
 	const show = await locals.prisma.show.findFirst({ where: { number: parseInt(show_number) } });
-	if (show) throw redirect(302, `/shows/${show_number}/${show.slug}`);
-	throw redirect(302, `/shows`);
+	if (show) throw redirect(302, `/show/${show_number}/${show.slug}`);
+	throw redirect(302, `/show`);
 };
