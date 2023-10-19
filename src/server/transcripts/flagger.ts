@@ -27,7 +27,7 @@ export async function addFlaggerAudio(show: Show): Promise<Buffer> {
 	//  Get the base name
 	const [baseName, extension] = fileName.split('.');
 	// create the output filename
-	const outputFilename = `${show.title}-flagged.${extension}`;
+	const outputFilename = `${show.number}-flagged.${extension}`;
 	console.log(`Downloading #${show.number} - ${show.title}`);
 	console.log('Creating ffmpeg instance');
 	const ffmpeg = await FFmpeg.create({
