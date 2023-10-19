@@ -19,8 +19,9 @@
 		Nearly 4M developers and 90K organizations rely on Sentry to see what actually matters, solve
 		what's urgent faster, and learn continuously about their code.
 	</p>
-	<a href="https://sentry.io/signup/?original_referrer=https://syntax.fm/" class="button ghost"
-		>Try Sentry for Free</a
+	<a
+		href="https://sentry.io/welcome/?utm_medium=site&utm_source=syntax&utm_campaign=syntax-sentry-evergreen&utm_content=footer"
+		class="button ghost">Try Sentry for Free</a
 	>
 </div>
 

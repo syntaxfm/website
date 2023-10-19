@@ -179,7 +179,8 @@ export async function generate_ai_notes(
 			},
 			{ role: 'user', content: `This episode is #${show.number} entitled ${show.title}` },
 			{ role: 'user', content: summarizePrompt2 },
-			{ role: 'user', content: condensedTranscript }
+			{ role: 'user', content: `<transcript>${condensedTranscript}</transcript>` },
+			{ role: 'user', content: `Remember to only return JSON in the format specified` }
 		]
 	};
 	console.log(`Creating AI notes for ${show.number}`);

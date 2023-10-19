@@ -19,7 +19,11 @@ export const GET = async function transcriptCronHandler({ request, locals }: Req
 	// 2. Get the latest show without a transcript
 	const show = await locals.prisma.show.findFirst({
 		where: {
-			aiShowNote: null
+			// Where there is no AI Show Note, and there is a transcript
+			aiShowNote: null,
+			transcript: {
+				isNot: null
+			}
 		},
 		include: {
 			transcript: transcript_with_utterances

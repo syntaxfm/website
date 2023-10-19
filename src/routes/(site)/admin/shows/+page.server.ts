@@ -4,6 +4,10 @@ import { get_transcript } from '$server/transcripts/deepgram';
 import { aiNoteRequestHandler } from '$server/ai/requestHandlers';
 import type { PageServerLoad } from './$types';
 
+export const config = {
+	maxDuration: 300 // vercel timeout
+};
+
 export const load: PageServerLoad = async ({ locals }) => {
 	return {
 		shows: locals.prisma.show.findMany({
@@ -50,6 +54,19 @@ export const actions = {
 		await locals.prisma.socialLink.deleteMany({});
 		await locals.prisma.guest.deleteMany({});
 		return { message: 'Delete All Shows' };
+	},
+	delete_transcript: async ({ locals, request }) => {
+		const data = await request.formData();
+		const show_number = parseInt(data.get('show_number')?.toString() || '');
+		if (!show_number) {
+			throw error(400, 'Invalid Show Number');
+		}
+		await locals.prisma.transcript.delete({
+			where: {
+				show_number
+			}
+		});
+		return { message: `Deleted Transcript for Show ${show_number}` };
 	},
 	fetch_show_transcript: async ({ request }) => {
 		const data = await request.formData();

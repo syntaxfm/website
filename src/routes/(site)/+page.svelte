@@ -15,7 +15,6 @@
 </script>
 
 <h1 class="visually-hidden">Syntax Podcast</h1>
-
 <PodcastHero />
 
 <section aria-label="Latest podcast episodes full layout">

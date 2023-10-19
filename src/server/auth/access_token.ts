@@ -19,6 +19,11 @@ export async function get_access_token(code: string): Promise<string> {
 		}
 
 		const data = await response.json();
+
+		if (data.error) {
+			throw new Error(`Error fetching access token: ${data.error_description}`);
+		}
+
 		return data.access_token;
 	} catch (error) {
 		console.error('Error:', error);

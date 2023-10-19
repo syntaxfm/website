@@ -7,12 +7,20 @@
 	import Squiggle from './Squiggle.svelte';
 	import type { SlimUtterance } from '$server/transcripts/types';
 	import TableOfContents from './TableOfContents.svelte';
-
-	export let transcript;
-	export let aiShowNote;
-	const slim_transcript: SlimUtterance[] = getSlimUtterances(transcript.utterances, 1).filter(
-		(utterance) => utterance.speakerId !== 99
-	);
+	import type { AINoteWithFriends, TranscriptWithUtterances } from '$server/ai/queries';
+	export let transcript: TranscriptWithUtterances;
+	export let aiShowNote: AINoteWithFriends;
+	const slim_transcript: SlimUtterance[] = getSlimUtterances(transcript.utterances, 1)
+		.filter((utterance) => utterance.speakerId !== 99)
+		.filter((utterance) => {
+			// Remove the flagging utterances
+			const scott = new RegExp(/purple cheese before meeting/gi);
+			if (utterance.transcript?.match(scott)) return false;
+			if (utterance.transcript.toLowerCase().startsWith('my name is scott')) return false;
+			const wes = new RegExp(/my dog eats food ?(?:on)? the moon/i);
+			if (utterance.transcript?.match(wes)) return false;
+			return true;
+		});
 	// group Utterances by their summary
 	const def = { time: '00:00', text: '' };
 	type TopicSummary = (typeof aiShowNote.summary)[0];
@@ -40,27 +48,30 @@
 		return $player.currentTime >= topicStart && $player.currentTime <= topicEnd;
 	});
 
-	const words = transcript.utterances
-		.map((utt) => utt.words)
-		.flat()
-		.sort((a, b) => a.start - b.start);
+	$: playing_show_is_this_show = $player.current_show?.number === transcript.show_number;
 
-	$: currentWordIndex = words.findIndex((word, index, words) => {
-		const nextWordStart = words[index + 1]?.start || word.end;
-		const currentWord = $player.currentTime >= word.start && $player.currentTime <= nextWordStart;
-		return currentWord;
-	});
+	// const words = transcript.utterances
+	// 	.map((utt) => utt.words)
+	// 	.flat()
+	// 	.sort((a, b) => a.start - b.start);
 
-	let wordCount = 3;
-	$: highlight_words = words
-		.slice(
-			Math.floor(currentWordIndex / wordCount) * wordCount,
-			Math.floor(currentWordIndex / wordCount) * wordCount + wordCount
-		)
-		.map((word) => word.word)
-		.join(' ');
+	// $: currentWordIndex = words.findIndex((word, index, words) => {
+	// 	const nextWordStart = words[index + 1]?.start || word.end;
+	// 	const currentWord = $player.currentTime >= word.start && $player.currentTime <= nextWordStart;
+	// 	return currentWord;
+	// });
 
-	$: labelUtterance = function (utterance) {
+	// let wordCount = 3;
+	// $: highlight_words = words
+	// 	.slice(
+	// 		Math.floor(currentWordIndex / wordCount) * wordCount,
+	// 		Math.floor(currentWordIndex / wordCount) * wordCount + wordCount
+	// 	)
+	// 	.map((word) => word.word)
+	// 	.join(' ');
+
+	$: labelUtterance = function (utterance: SlimUtterance) {
+		if (!playing_show_is_this_show) return ''; // not playing this show
 		if (utterance === currentUtterance) {
 			return 'current';
 		} else if (currentUtterance && currentUtterance?.end > utterance.end) {
@@ -69,8 +80,9 @@
 			return 'future';
 		}
 	};
-	$: placeTopic = function (summary, utterances) {
+	$: placeTopic = function (summary: TopicSummary, utterances: SlimUtterance[]) {
 		const summaryEnd = utterances.at(-1)?.end || Infinity;
+		if (!playing_show_is_this_show) return ''; // not playing this show
 		if (currentTopic?.id === summary.id) {
 			return 'current';
 		} else if ($player.currentTime > summaryEnd) {
@@ -110,7 +122,7 @@
 						style="
               --progress: {progress > 0 && progress < 100 ? `${progress}%` : '100%'};
               "
-						class="utterance {labelUtterance(utterance, currentUtterance)}"
+						class="utterance {labelUtterance(utterance)}"
 					>
 						<div class="gutter">
 							<div>
@@ -139,7 +151,7 @@
 
 <style lang="postcss">
 	.timeline {
-		--highlight: var(--bg-2);
+		--highlight: var(--subtle);
 		--future: var(--bg-2);
 		--current: var(--primary);
 		--past: var(--primary);

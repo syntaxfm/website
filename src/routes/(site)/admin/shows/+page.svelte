@@ -84,7 +84,15 @@
 					<td class="center">{show._count.guests}</td>
 					<td class="center"
 						>{#if show.transcript}
-							✅
+							✅ <FormWithLoader
+								global={false}
+								action="?/delete_transcript"
+								method="post"
+								let:loading
+							>
+								<input type="hidden" name="show_number" value={show.number} />
+								<button class="warning" type="submit">{loading ? 'Deleting' : 'Delete'}</button>
+							</FormWithLoader>
 						{:else}
 							<FormWithLoader
 								global={false}

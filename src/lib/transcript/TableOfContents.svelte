@@ -22,7 +22,8 @@
 	ul {
 		margin: 0;
 		padding: 0;
-		border: 1px solid var(--bg-2);
+		--border-color: var(--subtle);
+		border: 1px solid var(--border-color);
 		border-radius: 10px;
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
@@ -32,12 +33,13 @@
 		line-height: initial;
 		list-style: none;
 		padding: 10px;
-		border-bottom: 1px solid var(--bg-2);
+		border-bottom: 1px solid var(--border-color);
 		font-size: var(--font-size-sm);
 		&:nth-child(odd) {
-			border-right: 1px solid var(--bg-2);
+			border-right: 1px solid var(--border-color);
 		}
-		&:last-child {
+		&:last-child,
+		&:nth-last-child(2) {
 			border-bottom: none;
 		}
 	}

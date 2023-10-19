@@ -17,9 +17,11 @@
 		</div>
 
 		<nav class="desktop_nav content">
-			<a href="/shows">Shows</a>
-			<a href="/about">About</a>
-			<a href="/potluck">Potluck Qs</a>
+			<a class={$page.url.pathname.startsWith('/shows') ? 'active' : ''} href="/shows">Shows</a>
+			<a class={$page.url.pathname.startsWith('/about') ? 'active' : ''} href="/about">About</a>
+			<a class={$page.url.pathname.startsWith('/potluck') ? 'active' : ''} href="/potluck"
+				>Potluck Qs</a
+			>
 			<!-- <a rel="noopener" target="_blank" href="https://swag.sentry.io">Swag</a> -->
 			<Search />
 			<MobileNav />
@@ -89,6 +91,10 @@
 			&:hover {
 				border: 0;
 				background: var(--primary);
+				color: var(--bg);
+			}
+			&.active {
+				background-color: var(--primary);
 				color: var(--bg);
 			}
 			@media (--above_med) {
