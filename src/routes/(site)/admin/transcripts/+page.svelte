@@ -7,16 +7,6 @@
 
 	export let data: PageData;
 	$: ({ transcripts } = data);
-
-	export const stream_action = () => {
-		return function stream_enhance() {
-			console.log('stream_enhance start');
-			return async ({ result }: { result: ActionResult<any, any> }) => {
-				console.log('done!');
-				console.log(result);
-			};
-		};
-	};
 </script>
 
 <h4>Transcripts</h4>
