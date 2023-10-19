@@ -4,6 +4,7 @@
 	import { fly, slide } from 'svelte/transition';
 	import Visualizer from './Visualizer.svelte';
 	import AlbumArt from './AlbumArt.svelte';
+	import get_show_path from '$utilities/slug';
 	// import Bookmarks from './Bookmarks.svelte';
 
 	// let time_stamps: Timestamp[] = [];
@@ -73,7 +74,14 @@
 		<!-- Ignore this div, it's just here so I don't get fired -->
 		<div></div>
 		<!-- <button class="player-expand" on:click={player.toggle_expand}><Icon name="expand" /></button> -->
-		<p>Episode #{$player.current_show?.number} - {$player.current_show?.title}</p>
+		{#if $player.current_show}
+			<p>
+				<a href={get_show_path($player.current_show)}
+					>Show #{$player.current_show?.number} - {$player.current_show?.title}</a
+				>
+			</p>
+		{/if}
+
 		<button on:click={player.close}>×</button>
 	</header>
 
@@ -133,7 +141,11 @@
 		justify-content: space-between;
 		align-items: center;
 		width: 100%;
+		padding: 5px;
 		background: var(--black);
+		a {
+			text-decoration: none;
+		}
 	}
 
 	.media-bar {
@@ -211,6 +223,8 @@
 		width: 100vw;
 		color: var(--fg);
 		background-color: var(--player-bg, var(--blackish));
+		background-image: var(--bgGritDark);
+		background-size: 400px;
 		box-shadow: 0 0 10px 0 oklch(var(--blacklch) / 0.2);
 		display: flex;
 		flex-direction: column;

@@ -8,6 +8,7 @@
 	import Badge from './badges/Badge.svelte';
 	import Badges from './badges/Badges.svelte';
 	import FacePile from './FacePile.svelte';
+	import get_show_path from '$utilities/slug';
 
 	export let show: LatestShow;
 	export let display: 'list' | 'card' | 'highlight' = 'card';
@@ -38,7 +39,7 @@
 		? `background-image:linear-gradient(to top, #00000000, var(--bg)), url(${white_grit})`
 		: '--bg=var(--bg-sheet)'}
 >
-	<a href="/shows/{show.number}/{show.slug}">
+	<a href={get_show_path(show)}>
 		{#if display === 'list'}
 			<button
 				data-testid="play-show"
