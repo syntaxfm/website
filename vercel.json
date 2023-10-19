@@ -2,11 +2,11 @@
 	"crons": [
 		{
 			"path": "/webhooks/transcripts",
-			"schedule": "*/5 * * * *"
+			"schedule": "*/10 * * * *"
 		},
 		{
-			"path": "/webhooks/[disabled]xai",
-			"schedule": "*/5 * * * *"
+			"path": "/webhooks/ai",
+			"schedule": "*/10 * * * *"
 		}
 	]
 }
