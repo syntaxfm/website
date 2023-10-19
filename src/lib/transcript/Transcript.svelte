@@ -10,9 +10,17 @@
 	import type { AINoteWithFriends, TranscriptWithUtterances } from '$server/ai/queries';
 	export let transcript: TranscriptWithUtterances;
 	export let aiShowNote: AINoteWithFriends;
-	const slim_transcript: SlimUtterance[] = getSlimUtterances(transcript.utterances, 1).filter(
-		(utterance) => utterance.speakerId !== 99
-	);
+	const slim_transcript: SlimUtterance[] = getSlimUtterances(transcript.utterances, 1)
+		.filter((utterance) => utterance.speakerId !== 99)
+		.filter((utterance) => {
+			// Remove the flagging utterances
+			const scott = new RegExp(/purple cheese before meeting/gi);
+			if (utterance.transcript?.match(scott)) return false;
+			if (utterance.transcript.toLowerCase().startsWith('my name is scott')) return false;
+			const wes = new RegExp(/my dog eats food ?(?:on)? the moon/i);
+			if (utterance.transcript?.match(wes)) return false;
+			return true;
+		});
 	// group Utterances by their summary
 	const def = { time: '00:00', text: '' };
 	type TopicSummary = (typeof aiShowNote.summary)[0];
