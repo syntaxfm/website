@@ -7,7 +7,7 @@
 	import Squiggle from './Squiggle.svelte';
 	import type { SlimUtterance } from '$server/transcripts/types';
 	import TableOfContents from './TableOfContents.svelte';
-	import { AINoteWithFriends, TranscriptWithUtterances } from '$server/ai/queries';
+	import type { AINoteWithFriends, TranscriptWithUtterances } from '$server/ai/queries';
 	export let transcript: TranscriptWithUtterances;
 	export let aiShowNote: AINoteWithFriends;
 	const slim_transcript: SlimUtterance[] = getSlimUtterances(transcript.utterances, 1).filter(
