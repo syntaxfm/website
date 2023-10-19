@@ -1,5 +1,6 @@
 <script lang="ts">
 	import toast from 'svelte-french-toast';
+	import ColorsInJs from './colors-in-js.svelte';
 
 	const COLORS = ['black', 'yellow', 'teal', 'green', 'red', 'purple'];
 	let is_oklch: false;
@@ -68,6 +69,8 @@
 			{/each}
 		</div>
 	{/each}
+
+	<ColorsInJs />
 </section>
 
 <style lang="postcss">
