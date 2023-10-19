@@ -66,13 +66,19 @@ type QueryInputs = {
 
 export const SHOW_QUERY = (
 	{ take, order, skip, show_type }: QueryInputs = { take: PER_PAGE, order: 'desc', skip: 0 }
-) =>
-	Prisma.validator<Prisma.ShowFindManyArgs>()({
+) => {
+	const today = new Date();
+	today.setHours(0, 0, 0, 0); // set time to start of the day
+
+	return Prisma.validator<Prisma.ShowFindManyArgs>()({
 		take,
 		orderBy: { number: order },
 		skip,
 		where: {
-			...(show_type && { show_type: show_type })
+			...(show_type && { show_type: show_type }),
+			date: {
+				lte: today
+			}
 		},
 		include: {
 			guests: {
@@ -93,5 +99,6 @@ export const SHOW_QUERY = (
 			}
 		}
 	});
+};
 
 export type LatestShow = Prisma.ShowGetPayload<ReturnType<typeof SHOW_QUERY>>;
