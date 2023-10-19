@@ -4,6 +4,10 @@ import { get_transcript } from '$server/transcripts/deepgram';
 import { aiNoteRequestHandler } from '$server/ai/requestHandlers';
 import type { PageServerLoad } from './$types';
 
+export const config = {
+	maxDuration: 300 // vercel timeout
+};
+
 export const load: PageServerLoad = async ({ locals }) => {
 	return {
 		shows: locals.prisma.show.findMany({
