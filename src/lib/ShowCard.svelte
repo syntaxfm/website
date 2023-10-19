@@ -60,6 +60,8 @@
 				<time datetime={show_date.toDateString()} title={show_date.toDateString()}
 					>{format_date(show_date)}</time
 				>
+				<span aria-hidden="true">×</span>
+				<span title="Show #{show.number}">{show.number}</span>
 			</p>
 
 			<svelte:element
@@ -130,7 +132,8 @@
 			color: var(--fg);
 			display: block;
 			display: flex;
-			gap: 20px;
+			gap: 10px;
+			padding: 5px;
 		}
 
 		.details {
@@ -161,12 +164,17 @@
 		}
 
 		&.list {
-			border-top: solid 1px var(--line);
+			border: solid 1px var(--subtle);
+			margin-bottom: 20px;
 			padding: 20px 0;
 			margin-inline: auto;
 			@media (--below_med) {
 				.description {
 					display: none;
+				}
+				h2 {
+					mask-image: none;
+					font-style: normal;
 				}
 			}
 		}
@@ -183,9 +191,12 @@
 	.date {
 		font-size: var(--font-size-sm);
 		margin: 0;
-		font-weight: 700;
-		opacity: 0.8;
+		font-weight: 500;
 		view-transition-name: var(--transition-name);
+		width: max-content;
+		@media (prefers-color-scheme: dark) {
+			background: var(--bg);
+		}
 	}
 
 	.play-button {
@@ -203,7 +214,11 @@
 		top: 0;
 		transform: translate(6.9%, -22%);
 		--max-font-size: 15rem;
-		font-size: clamp(1.5rem, 22cqw, var(--max-font-size));
+		--ideal-font-size: 45cqw;
+		font-size: clamp(1.5rem, var(--ideal-font-size), var(--max-font-size));
+		@media (prefers-color-scheme: dark) {
+			--ideal-font-size: 22cqw;
+		}
 		font-weight: 900;
 		color: var(--primary);
 		line-height: 1;
