@@ -59,7 +59,7 @@
 		& > * {
 			border-radius: var(--brad);
 			margin: 0;
-			box-shadow: inset 0 0 0 1px oklch(var(--blacklch) / 0.05);
+			box-shadow: inset 0 0 0 1px var(--subtle);
 			padding: 6px 15px;
 			text-align: center;
 			background-color: var(--bg-1);
@@ -69,6 +69,7 @@
 			transition: 0.2s ease background;
 			&.current {
 				background: var(--primary);
+				color: var(--dark);
 			}
 			@media (--below_large) {
 				&.page-number:not(.current) {
