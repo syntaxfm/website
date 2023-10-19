@@ -6,7 +6,7 @@
 		},
 		{
 			"path": "/webhooks/ai",
-			"schedule": "*/10 * * * *"
+			"schedule": "*/5 * * * *"
 		}
 	]
 }
