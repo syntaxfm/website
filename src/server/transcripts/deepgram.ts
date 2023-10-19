@@ -38,6 +38,7 @@ export async function get_transcript(showNumber: number) {
 	const showBuffer = await addFlaggerAudio(show);
 	console.log(`Fetching transcript for show #${show.number} - ${show.title}...`);
 	console.log(showBuffer);
+	// const filePath = join(process.cwd(), 'temp-transcript.json');
 	const transcript: PrerecordedTranscriptionResponse = await deepgramClient.transcription
 		.preRecorded(
 			{
@@ -61,6 +62,9 @@ export async function get_transcript(showNumber: number) {
 			console.log(`Error fetching transcript for show #${show.number} - ${show.title}.`);
 			console.log(e);
 		});
+	// Temp: Write to disk as temp-transcript.json
+	// const transcript = JSON.parse(await readFile(filePath, 'utf-8'));
+	// await writeFile(filePath, JSON.stringify(transcript, null, 2));
 	console.log(`Transcript for show #${show.number} - ${show.title} fetched.`);
 	await save_transcript_to_db(show, transcript.results?.utterances || []);
 
