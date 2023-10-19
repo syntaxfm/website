@@ -7,9 +7,9 @@
 	import Squiggle from './Squiggle.svelte';
 	import type { SlimUtterance } from '$server/transcripts/types';
 	import TableOfContents from './TableOfContents.svelte';
-
-	export let transcript;
-	export let aiShowNote;
+	import { AINoteWithFriends, TranscriptWithUtterances } from '$server/ai/queries';
+	export let transcript: TranscriptWithUtterances;
+	export let aiShowNote: AINoteWithFriends;
 	const slim_transcript: SlimUtterance[] = getSlimUtterances(transcript.utterances, 1).filter(
 		(utterance) => utterance.speakerId !== 99
 	);
@@ -40,6 +40,8 @@
 		return $player.currentTime >= topicStart && $player.currentTime <= topicEnd;
 	});
 
+	$: playing_show_is_this_show = $player.current_show?.number === transcript.show_number;
+
 	const words = transcript.utterances
 		.map((utt) => utt.words)
 		.flat()
@@ -60,7 +62,8 @@
 		.map((word) => word.word)
 		.join(' ');
 
-	$: labelUtterance = function (utterance) {
+	$: labelUtterance = function (utterance: SlimUtterance) {
+		if (!playing_show_is_this_show) return ''; // not playing this show
 		if (utterance === currentUtterance) {
 			return 'current';
 		} else if (currentUtterance && currentUtterance?.end > utterance.end) {
@@ -69,8 +72,9 @@
 			return 'future';
 		}
 	};
-	$: placeTopic = function (summary, utterances) {
+	$: placeTopic = function (summary: TopicSummary, utterances: SlimUtterance[]) {
 		const summaryEnd = utterances.at(-1)?.end || Infinity;
+		if (!playing_show_is_this_show) return ''; // not playing this show
 		if (currentTopic?.id === summary.id) {
 			return 'current';
 		} else if ($player.currentTime > summaryEnd) {
@@ -110,7 +114,7 @@
 						style="
               --progress: {progress > 0 && progress < 100 ? `${progress}%` : '100%'};
               "
-						class="utterance {labelUtterance(utterance, currentUtterance)}"
+						class="utterance {labelUtterance(utterance)}"
 					>
 						<div class="gutter">
 							<div>
