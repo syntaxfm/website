@@ -36,7 +36,7 @@
 		</p>
 		<p class="brought-by">
 			Brought to you by <a
-				href="https://sentry.io/signup/?original_referrer=https://syntax.fm/"
+				href="https://sentry.io/welcome/?utm_medium=site&utm_source=syntax&utm_campaign=syntax-sentry-evergreen&utm_content=homepage"
 				target="_blank"
 				title="Sentry"
 				class="naked"

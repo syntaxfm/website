@@ -13,7 +13,10 @@
 				<a href="/rss">RSS Feed</a>
 				<a href="/about">About</a>
 				<a href="/pages/privacy">Privacy Policy</a>
-				<a href="https://sentry.io">Sentry.io</a>
+				<a
+					href="https://sentry.io/welcome/?utm_medium=site&utm_source=syntax&utm_campaign=syntax-sentry-evergreen&utm_content=footer"
+					>Sentry.io</a
+				>
 			</div>
 			<div class="links-col">
 				<a href="/system/colors">Colors</a>
