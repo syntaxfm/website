@@ -1,9 +1,6 @@
-import matter from 'gray-matter';
 import { prisma_client as prisma } from '../../hooks.server';
 import fs, { readFile } from 'fs/promises';
 import path from 'path';
-import { get_md_from_folder } from '$utilities/file_utilities/get_md_from_folder';
-import { get_hash_from_content } from '$utilities/file_utilities/get_hash_from_content';
 import { error } from '@sveltejs/kit';
 import type { PrerecordedTranscriptionResponse, Utterance } from '@deepgram/sdk/dist/types';
 import type { Show } from '@prisma/client';
@@ -52,17 +49,59 @@ export async function save_transcript_to_db(show: Show, utterances: Utterance[])
 		};
 	});
 
+	const start = Date.now();
 	console.log(`About to Save to the DB`);
-	console.log(create_utterances);
 
-	return prisma.transcript.create({
+	// 1. Create the Transcript Record
+	const transcript = await prisma.transcript.create({
 		data: {
-			show_number: show.number,
-			utterances: {
-				create: create_utterances
-			}
+			show_number: show.number
 		}
 	});
+	// console.log(`Created Transcript Record: ${transcript.id}`);
+	// 2. Create the Utterances
+	for (const { words, ...utterance } of create_utterances) {
+		const utteranceRecord = await prisma.transcriptUtterance.create({
+			data: {
+				...utterance,
+				transcriptId: transcript.id // Associate the Utterance with the Transcript
+			}
+		});
+		// console.log(`Created Utterance Record: ${utteranceRecord.id}`);
+		// 3. Create the Words
+		const wordIds = await prisma.transcriptUtteranceWord.createMany({
+			data: words.create.map((word) => {
+				return {
+					...word,
+					// Associate the Word with the Utterance
+					transcriptUtteranceId: utteranceRecord.id
+				};
+			})
+		});
+		// console.log(`Created ${wordIds.count} Word Records for Utterance ${utteranceRecord.id}`);
+	}
+
+	return transcript;
+
+	// // Loop over each utterance and create it
+	// for (const utterance of create_utterances) {
+	// 	console.log('Create Word REcords');
+	// 	const wordIds = await prisma.transcriptUtteranceWord.createMany({
+	// 		data: [
+	//       { tra}
+	//     ]
+	// 	});
+	// 	console.log('Word Ids: ', wordIds);
+	// }
+
+	// const create = prisma.transcript.create({
+	// 	data: {
+	// 		show_number: show.number,
+	// 		utterances: {
+	// 			create: create_utterances
+	// 		}
+	// 	}
+	// });
 }
 
 // Import Transcripts from JSON file - used for the initial import
