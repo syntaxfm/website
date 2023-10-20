@@ -20,7 +20,7 @@
 		--bg: var(--black);
 		--fg-2: var(--black-3);
 		--border: solid var(--border-size) var(--fg-sheet);
-		--zebra: oklch(100% none none / 0.05);
+
 		--spa-ran-wrap-bg: var(--black);
 		--bgGrit: var(--bgGritDark);
 		.border-on-dark {
@@ -42,7 +42,6 @@
 	--fg-2: var(--black-3);
 	--border-color: var(--bg-sheet);
 	--border: solid var(--border-size) var(--fg-sheet);
-	--zebra: oklch(100% none none / 0.05);
 	--spa-ran-wrap-bg: var(--black);
 	--bgGrit: var(--bgGritDark);
 	.border-on-dark {

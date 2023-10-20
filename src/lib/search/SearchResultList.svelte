@@ -133,7 +133,7 @@
 	}
 
 	li:hover {
-		background: var(--zebra);
+		background: var(--subtle);
 	}
 
 	a strong,

@@ -143,7 +143,6 @@
 	--subtle-accent: var(--purple);
 	--warning: var(--red);
 	--success: var(--green);
-	--zebra: oklch(var(--blacklch) / 0.05);
 	--line: var(--black-2);
 
 	/* Borders */
