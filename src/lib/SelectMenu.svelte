@@ -51,12 +51,12 @@
 
 <style lang="postcss">
 	[popover] {
-		background: var(--bg-sheet);
-		border: solid 1px var(--black-7);
-		border-radius: 6px;
-		color: var(--white);
+		background: var(--bg-1);
+		box-shadow: inset 0 0 0 1px var(--subtle);
+		border-radius: var(--brad);
 		padding: 10px;
 		translate: 0 10px;
+		border: none;
 	}
 
 	.select-menu-menu-wrapper {
@@ -72,11 +72,10 @@
 		box-shadow: none;
 		white-space: nowrap;
 		font-family: var(--body-font-family);
-		font-weight: 600;
 		padding: 8px 14px;
 		cursor: pointer;
 		font-size: var(--body-font-size);
-		color: var(--button-color);
+		color: var(--fg);
 		border-radius: 4px;
 		&:hover,
 		&.selected {

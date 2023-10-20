@@ -38,10 +38,10 @@
 	}
 
 	.dropdown-links {
-		background: var(--bg-sheet);
-		border: solid 1px var(--black-7);
-		border-radius: 6px;
-		color: var(--white);
+		background: var(--bg-1);
+		box-shadow: inset 0 0 0 1px var(--subtle);
+		border-radius: var(--brad);
+		color: var(--fg);
 		translate: 0px 3px;
 		position: absolute;
 		z-index: 10;
