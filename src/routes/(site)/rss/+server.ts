@@ -9,7 +9,7 @@ export const GET: RequestHandler = async function ({ setHeaders, locals }) {
 <rss version="2.0">
    <channel>
       <title>Syntax - Tasty Web Development Treats</title>
-      <link>https://${PUBLIC_URL}/shows</link>
+      <link>https://${PUBLIC_URL}/show</link>
 			<description>Full Stack Developers Wes Bos and Scott Tolinski dive deep into web development topics, explaining how they work and talking about their own experiences. They cover from JavaScript frameworks like React, to the latest advancements in CSS to simplifying web tooling.></description>
       <language>en</language>
 			${shows
@@ -18,7 +18,7 @@ export const GET: RequestHandler = async function ({ setHeaders, locals }) {
 		<item>
 			<title>${replace_special_chars(show.title)}</title>
 
-			<link>https://${PUBLIC_URL}/shows/${show.number}/${show.slug}</link>
+			<link>https://${PUBLIC_URL}/show/${show.number}/${show.slug}</link>
 			<description><![CDATA[${show.show_notes}]]></description>
 			<enclosure url="${show.url}" length="0" type="audio/mpeg" />
 			<guid>${show.number}</guid>

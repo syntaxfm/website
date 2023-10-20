@@ -15,7 +15,7 @@ export async function content() {
 		blocks.push({
 			breadcrumbs: [show.title],
 			content: show.show_notes,
-			href: `/shows/${show.number}/${show.slug}`,
+			href: `/show/${show.number}/${show.slug}`,
 			...show
 		});
 	});
