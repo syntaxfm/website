@@ -16,6 +16,7 @@
 	import ThemeMaker from '../../params/ThemeMaker.svelte';
 	import { page } from '$app/stores';
 	import PageLoadingIndicator from '$lib/page_loading_indicator.svelte';
+	import UnderConstruction from '$lib/UnderConstruction.svelte';
 	export let data;
 	$: ({ user, user_theme } = data);
 
@@ -36,7 +37,9 @@
 <Meta />
 
 <PageLoadingIndicator />
+
 <div class={'theme-' + ($theme || user_theme) + ' theme-wrapper'} class:debug={$debug_mode}>
+	<UnderConstruction />
 	{#if $page.url.pathname !== '/'}
 		<Header />
 	{/if}
