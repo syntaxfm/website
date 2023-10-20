@@ -145,7 +145,7 @@
 		}
 
 		&:hover {
-			background-color: var(--zebra);
+			background-color: color-mix(in lch, var(--fg), var(--bg) 96%);
 		}
 		&.card {
 			border-radius: var(--brad);
