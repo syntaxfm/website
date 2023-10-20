@@ -144,12 +144,12 @@
 			}
 		}
 
+		&:hover {
+			background-color: var(--zebra);
+		}
 		&.card {
 			border-radius: var(--brad);
 			border: solid var(--border-size) var(--black-8);
-			&:hover {
-				background-color: var(--zebra);
-			}
 		}
 
 		&.highlight {
