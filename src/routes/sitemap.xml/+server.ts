@@ -1,8 +1,4 @@
 import type { RequestHandler } from '@sveltejs/kit';
-// import { courses } from '$db/models/courses/collection';
-// import { posts } from '$db/models/posts/collection';
-// import { tutorials } from '$db/models/tutorials/collection';
-// import { paths } from '$db/models/paths/collection';
 import { PUBLIC_URL } from '$env/static/public';
 
 const site = `https://${PUBLIC_URL}`;
