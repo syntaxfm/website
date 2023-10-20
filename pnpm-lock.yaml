@@ -4,6 +4,10 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 dependencies:
   '@anthropic-ai/sdk':
     specifier: ^0.6.2
@@ -32,6 +36,9 @@ dependencies:
   '@sparticuz/chromium':
     specifier: ^117.0.0
     version: 117.0.0
+  '@svelte-put/shortcut':
+    specifier: ^3.0.0
+    version: 3.0.0
   core-js:
     specifier: ^3.33.1
     version: 3.33.1
@@ -1341,7 +1348,11 @@ packages:
       - debug
     dev: false
 
-  /@sveltejs/adapter-auto@2.1.0(@sveltejs/kit@1.27.1):
+  /@svelte-put/shortcut@3.0.0:
+    resolution: {integrity: sha512-nZg3pwpTi9wUsvQPlqOzEsxZcF2jmY5j+VBq/20IUjjd2OpM92XqZAga0PCCjE6OuEobOt58UMnC2QZgOvk0tQ==}
+    dev: false
+
+  /@sveltejs/adapter-auto@2.1.0(@sveltejs/kit@1.25.2):
     resolution: {integrity: sha512-o2pZCfATFtA/Gw/BB0Xm7k4EYaekXxaPGER3xGSY3FvzFJGTlJlZjBseaXwYSM94lZ0HniOjTokN3cWaLX6fow==}
     peerDependencies:
       '@sveltejs/kit': ^1.0.0
