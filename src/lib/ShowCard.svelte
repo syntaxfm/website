@@ -18,13 +18,12 @@
 	function format_date(date: Date, baseDate: Date = new Date()) {
 		const timeFormatter = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
 		const diff = date.getTime() - baseDate.getTime();
-		// If less than 12 days, show days
-		// If less than 30 days, show weeks
-		// Otherwise show the date
-		const days = Math.floor(diff / (1000 * 60 * 60 * 24)) * -1;
+		const days = (diff / (1000 * 60 * 60 * 24)) * -1;
 		switch (true) {
+			case days < 1:
+				return timeFormatter.format(-Math.round(days * 24), 'hour');
 			case days < 12:
-				return timeFormatter.format(-days, 'day');
+				return timeFormatter.format(-Math.floor(days), 'day');
 			case days < 30:
 				return timeFormatter.format(-Math.floor(days / 7), 'week');
 			default:
