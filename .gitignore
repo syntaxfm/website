@@ -1,9 +1,23 @@
+.DS_Store
+node_modules
+/build
+/.svelte-kit
+/package
+.env
+.env.*
+!.env.example
 .next/
-node_modules/
-.DS_store
-*.log
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
 haters/
+# Sentry
+.sentryclirc
+transcripts-flagged/
+
+test-results
 .vercel
 .env
 .svelte-kit
 .sentryclirc
+# Temp
+# core.wasm

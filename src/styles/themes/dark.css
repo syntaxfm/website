@@ -1,0 +1,61 @@
+/* System theme */
+.theme-system {
+	--bg-sheet: var(--white);
+	--bg: var(--black);
+	--fg: var(--white);
+	--fg-sheet: var(--black);
+	--primary: var(--yellow);
+	--accent: var(--teal);
+	--warning: var(--red);
+	--bgGrit: var(--bgGritLight);
+	@media (prefers-color-scheme: dark) {
+		--fg-sheet: var(--white);
+		--bg-sheet: var(--black);
+		--primary: var(--yellow);
+		--accent: var(--teal);
+		--subtle-accent: var(--yellow-1);
+		--warning: var(--red);
+		--bg-2: var(--black);
+		--bg-1: var(--black);
+		--bg: var(--black);
+		--fg-2: var(--black-3);
+		--border: solid var(--border-size) var(--fg-sheet);
+
+		--spa-ran-wrap-bg: var(--black);
+		--bgGrit: var(--bgGritDark);
+		.border-on-dark {
+			border: var(--border);
+		}
+	}
+}
+/* Same as prefers color scheme dark */
+.theme-dark {
+	--fg-sheet: var(--white);
+	--bg-sheet: var(--black);
+	--primary: var(--yellow);
+	--accent: var(--teal);
+	--subtle-accent: var(--yellow-1);
+	--warning: var(--red);
+	--bg-2: var(--black-8);
+	--bg-1: var(--black);
+	--bg: var(--black);
+	--fg-2: var(--black-3);
+	--border-color: var(--bg-sheet);
+	--border: solid var(--border-size) var(--fg-sheet);
+	--spa-ran-wrap-bg: var(--black);
+	--bgGrit: var(--bgGritDark);
+	.border-on-dark {
+		border: var(--border);
+	}
+}
+
+.theme-light {
+	--bg-sheet: var(--white);
+	--bg: var(--black);
+	--fg: var(--white);
+	--fg-sheet: var(--black);
+	--primary: var(--yellow);
+	--accent: var(--teal);
+	--warning: var(--red);
+	--bgGrit: var(--bgGritLight);
+}

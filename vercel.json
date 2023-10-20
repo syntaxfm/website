@@ -1,0 +1,12 @@
+{
+	"crons": [
+		{
+			"path": "/webhooks/transcripts",
+			"schedule": "*/10 * * * *"
+		},
+		{
+			"path": "/webhooks/ai",
+			"schedule": "*/5 * * * *"
+		}
+	]
+}

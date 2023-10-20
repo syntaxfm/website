@@ -1,0 +1,44 @@
+name: Run_Playwright_Tests_on_PRs
+
+on:
+  pull_request:
+    branches:
+      - v2
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: pnpm-setup
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.5.0
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Setup DB
+        run: pnpm db:generate
+
+      - name: Install playwright browsers
+        run: pnpx playwright install --with-deps
+
+      - name: Run Playwright tests
+        run: pnpm run test
+        env:
+          PUBLIC_GITHUB_ID: ${{ secrets.PUBLIC_GITHUB_ID }}
+          GH_SECRET: ${{ secrets.GH_SECRET }}
+          DEEPGRAM_SECRET: ${{ secrets.DEEPGRAM_SECRET }}
+          PUBLIC_URL: ${{ secrets.PUBLIC_URL }}
+          SENTRY_AUTH_TOKEN: ''
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}

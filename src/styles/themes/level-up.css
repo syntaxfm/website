@@ -1,0 +1,13 @@
+/* Level Up Theme */
+.theme-level-up {
+	background-image: none;
+	--fg-sheet: #ebebe3;
+	--bg: #191324;
+	--bg-1: #191324;
+	--bg-2: var(--black-6);
+	--bg-sheet: #191324;
+	--primary: #82d8d8;
+	--border-color: #82d8d8;
+	--border: solid 4px var(--border-color);
+	--subtle-accent: var(--purple-3);
+}

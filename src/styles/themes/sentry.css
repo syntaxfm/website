@@ -1,0 +1,9 @@
+.theme-sentry {
+	--bg-sheet: var(--white);
+	--bg: #2d1130;
+	--fg: var(--white);
+	--fg-sheet: var(--black);
+	--bgGrit: var(--bgGritLight);
+	--primary: #d15f7c;
+	--accent: #f9dc65;
+}

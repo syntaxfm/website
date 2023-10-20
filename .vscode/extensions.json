@@ -1,0 +1,7 @@
+{
+  "recommendations": [
+    "svelte.svelte-vscode",
+    "ardenivanov.svelte-intellisense",
+    "fivethree.vscode-svelte-snippets",
+  ]
+}

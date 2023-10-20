@@ -1,0 +1,111 @@
+@layer base {
+	.theme-wrapper {
+		--button-bg: var(--primary);
+		--button-color: var(--yellow-8);
+		--button-border-size: 1.5px;
+	}
+
+	button,
+	a.button {
+		white-space: nowrap;
+		cursor: pointer;
+		text-decoration: none;
+		border: none;
+		font-family: var(--body-font-familly);
+		font-weight: 600;
+		padding: 6px 15px;
+		font-size: var(--body-font-size);
+		border-radius: var(--brad);
+		background: var(--button-bg);
+		width: auto;
+		color: var(--button-color);
+		display: inline-flex;
+		justify-content: center;
+		align-items: center;
+		gap: 10px;
+		box-shadow: inset 0 0 0 var(--button-border-size) oklch(var(--blacklch) / 0.2);
+		transition: background 0.2s ease-in-out;
+		@media (--below_large) {
+			font-size: var(--font-size-sm);
+		}
+	}
+
+	:is(button, .button).ghost {
+		--button-bg: transparent;
+		--button-color: var(--primary);
+		box-shadow: inset 0 0 0 var(--button-border-size) var(--primary);
+		&:hover {
+			--button-bg: var(--primary);
+			--button-color: var(--black);
+		}
+	}
+
+	:is(button, .button).subtle {
+		--button-bg: var(--bg-1);
+		--button-color: var(--fg);
+		font-weight: 400;
+		box-shadow: inset 0 0 0 1px var(--subtle);
+	}
+
+	:is(button, .button).warning {
+		--button-bg: var(--red);
+		--button-color: var(--white);
+		box-shadow: inset 0 0 0 var(--button-border-size) oklch(var(--blacklch) / 0.2);
+	}
+
+	:is(button, .button).big {
+		font-size: var(--font-size-md);
+		padding: 10px 20px;
+		box-shadow: inset 0 0 0 var(--button-border-size) oklch(var(--blacklch) / 0.2);
+	}
+
+	:is(button, .button).play {
+		--button-bg: linear-gradient(to right, var(--success), var(--accent));
+		--button-color: var(--black-8);
+		font-size: var(--font-size-md);
+		padding: 10px 20px;
+		box-shadow: inset 0 0 0 var(--button-border-size) oklch(var(--blacklch) / 0.2);
+		transition: background-size 1s ease-in-out;
+		background-size: 100%;
+		&:hover {
+			background-size: 200%;
+		}
+	}
+
+	:is(button, .button).close {
+		--button-bg: var(--red);
+		--button-color: var(--white);
+		--size: 30px;
+		font-size: var(--font-size-md);
+		width: var(--size);
+		height: var(--size);
+		padding: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: var(--size);
+		box-shadow: inset 0 0 0 var(--button-border-size) oklch(var(--blacklch) / 0.2);
+		transition: background-size 1s ease-in-out;
+		font-weight: 100;
+	}
+
+	button.button-reset {
+		background: transparent;
+		box-shadow: none;
+	}
+	button.button-nunya {
+		background: none;
+		appearance: none;
+		box-shadow: none;
+		padding: 0;
+		color: inherit;
+	}
+
+	.play-button {
+		background: linear-gradient(to right, var(--black-2), var(--black-1));
+		border-radius: 50%;
+		border-width: 1px;
+		padding: 10px;
+		box-shadow: inset 0 0 0 var(--button-border-size) oklch(var(--blacklch) / 0.2);
+	}
+}

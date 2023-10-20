@@ -1,0 +1,16 @@
+{
+	"overrides": [
+		{
+			"files": "*.svelte",
+			"options": {
+				"parser": "svelte"
+			}
+		}
+	],
+	"pluginSearchDirs": ["."],
+	"plugins": ["prettier-plugin-svelte"],
+	"printWidth": 100,
+	"singleQuote": true,
+	"trailingComma": "none",
+	"useTabs": true
+}

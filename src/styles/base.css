@@ -1,0 +1,336 @@
+@layer base {
+	* {
+		box-sizing: border-box;
+	}
+
+	html {
+		box-sizing: border-box;
+	}
+
+	*,
+	*::before-,
+	*::after {
+		box-sizing: inherit;
+	}
+
+	@font-face {
+		font-family: 'MDIO';
+		src:
+			url('/fonts/MDIO-Regular.woff2') format('woff2'),
+			url('/fonts/MDIO-Regular.woff') format('woff');
+		font-weight: normal;
+		font-style: normal;
+	}
+
+	@font-face {
+		font-family: 'MDIO';
+		src:
+			url('/fonts/MDIO-Black.woff2') format('woff2'),
+			url('/fonts/MDIO-Black.woff') format('woff');
+		font-weight: 900; /* Black */
+		font-style: normal;
+	}
+
+	@font-face {
+		font-family: 'MDIO';
+		src:
+			url('/fonts/MDIO-Bold.woff2') format('woff2'),
+			url('/fonts/MDIO-Bold.woff') format('woff');
+		font-weight: bold;
+		font-style: normal;
+	}
+
+	@font-face {
+		font-family: 'MDIO';
+		src:
+			url('/fonts/MDIO-BoldItalic.woff2') format('woff2'),
+			url('/fonts/MDIO-BoldItalic.woff') format('woff');
+		font-weight: bold;
+		font-style: italic;
+	}
+
+	@font-face {
+		font-family: 'MDIO';
+		src:
+			url('/fonts/MDIO-BlackItalic.woff2') format('woff2'),
+			url('/fonts/MDIO-BlackItalic.woff') format('woff');
+		font-weight: 900; /* Black */
+		font-style: italic;
+	}
+
+	@font-face {
+		font-family: 'MDIO';
+		src:
+			url('/fonts/MDIO-Medium.woff2') format('woff2'),
+			url('/fonts/MDIO-Medium.woff') format('woff');
+		font-weight: 500; /* Medium */
+		font-style: normal;
+	}
+
+	@font-face {
+		font-family: 'MDIO';
+		src:
+			url('/fonts/MDIO-MediumItalic.woff2') format('woff2'),
+			url('/fonts/MDIO-MediumItalic.woff') format('woff');
+		font-weight: 500; /* Medium */
+		font-style: italic;
+	}
+
+	/* FYI haven'te installed this font yet, just trying it for fun with my installed version */
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-family: 'MDIO';
+		/* font-family: '💪'; */
+		font-weight: 700;
+		letter-spacing: -0.04em;
+		line-height: 1.4;
+		margin-block: 0.2em;
+		mask-image: url('$assets/Grit Mask@2x.png');
+		mask-image-repeat: repeat;
+		mask-size: 250px;
+		text-wrap: balance;
+		font-style: italic;
+	}
+
+	h1,
+	.h1 {
+		font-size: var(--font-size-xxxl);
+	}
+	h2,
+	.h2 {
+		font-size: var(--font-size-xxl);
+		/* font-weight: 700; */
+	}
+	h3,
+	.h3 {
+		font-size: var(--font-size-xl);
+		/* font-weight: 700; */
+	}
+	h4,
+	.h4 {
+		font-size: var(--font-size-lg);
+		/* font-weight: 400; */
+	}
+	h5,
+	.h5 {
+		font-size: var(--font-size-md);
+	}
+
+	.h6,
+	h6,
+	p,
+	li {
+		font-size: var(--font-size-base);
+	}
+
+	.spa-ran-wrap {
+		--color: var(--spa-ran-wrap-bg, transparent);
+		--size: 2.33456789ex;
+		background-image: linear-gradient(
+			180deg,
+			var(--color) 0%,
+			var(--color) 50%,
+			transparent 50%,
+			transparent 100%
+		);
+		background-size: auto var(--size);
+		background-position: 10px calc(var(--size) / 4);
+	}
+
+	/* Show Notes Typography - coming from markdown so it must be global */
+	.show-notes {
+		h2,
+		h3 {
+			font-size: var(--font-size-lg);
+		}
+		ul {
+			padding-left: 20px;
+		}
+	}
+
+	html {
+		font-family: 'MDIO';
+	}
+
+	body {
+		padding: 0;
+		margin: 0;
+		background: var(--black);
+	}
+
+	a,
+	.a {
+		color: var(--link-fg, var(--fg));
+		text-decoration: none;
+	}
+
+	a:hover {
+		cursor: pointer;
+	}
+
+	:is(p, li) a,
+	.a {
+		color: var(--color-sheet);
+		text-decoration: underline;
+		text-decoration-color: var(--primary);
+		text-decoration-thickness: 1.5px;
+	}
+
+	p {
+		line-height: 1.7;
+	}
+	ul {
+		@media (--below_med) {
+			padding: 0;
+		}
+	}
+
+	li {
+		line-height: 2.2;
+		list-style-type: circle;
+	}
+
+	ol li {
+		list-style-type: decimal;
+	}
+
+	a[href^='#t='] {
+		background: var(--bg-1);
+		padding: 4px 6px;
+		border-bottom: none;
+		text-decoration: none;
+		color: var(--color-2);
+		font-weight: normal;
+		border-radius: 4px;
+		position: relative;
+		font-size: var(--font-size-sm);
+		font-weight: 900;
+		@media (--above_med) {
+			left: -17px;
+		}
+	}
+
+	[popover] {
+		position: fixed;
+		z-index: 2147483647;
+		inset: 0;
+		padding: 0.25em;
+		width: fit-content;
+		height: fit-content;
+		border-width: initial;
+		border-color: initial;
+		border-image: initial;
+		border-style: solid;
+		background-color: canvas;
+		color: canvastext;
+		overflow: auto;
+		margin: auto;
+	}
+
+	/* stylelint-disable selector-class-pattern */
+	[popover]:not(.\:popover-open) {
+		display: none;
+	}
+
+	[popover]:is(dialog[open]) {
+		display: revert;
+	}
+
+	[anchor].\:popover-open {
+		inset: auto;
+	}
+
+	/* This older `:open` pseudo selector is deprecated and support will be removed
+in a later release. */
+	@supports selector([popover]:open) {
+		[popover]:not(.\:popover-open, dialog[open]) {
+			display: revert;
+		}
+
+		/* stylelint-disable selector-pseudo-class-no-unknown */
+		[anchor]:is(:open) {
+			inset: auto;
+		}
+		/* stylelint-enable selector-pseudo-class-no-unknown */
+	}
+
+	@supports selector([popover]:popover-open) {
+		[popover]:not(.\:popover-open, dialog[open]) {
+			display: revert;
+		}
+
+		/* stylelint-disable selector-pseudo-class-no-unknown */
+		[anchor]:is(:popover-open) {
+			inset: auto;
+		}
+		/* stylelint-enable selector-pseudo-class-no-unknown */
+	}
+	/* stylelint-enable selector-class-pattern */
+
+	@supports not (background-color: canvas) {
+		[popover] {
+			background-color: white;
+			color: black;
+		}
+	}
+
+	@supports (width: -moz-fit-content) {
+		[popover] {
+			/* stylelint-disable value-no-vendor-prefix */
+			width: -moz-fit-content;
+			height: -moz-fit-content;
+			/* stylelint-enable value-no-vendor-prefix */
+		}
+	}
+
+	@supports not (inset: 0) {
+		[popover] {
+			/* stylelint-disable declaration-block-no-redundant-longhand-properties */
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			/* stylelint-enable declaration-block-no-redundant-longhand-properties */
+		}
+	}
+}
+
+/* Popover */
+
+/* All External Links */
+a[href^='http']:not(.social-icon, .button, .icon, .naked):after,
+a[href^='https']:not(.social-icon, .button, .icon, .naked):after {
+	content: '↗';
+	margin-left: 4px;
+	font-size: 12px;
+}
+
+/* Selection */
+::selection {
+	background: var(--primary);
+	color: var(--dark);
+}
+
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	border: 0;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+}
+
+/* Scrollbars */
+html {
+	--track: var(--black);
+	--thumb: var(--primary);
+	scrollbar-color: var(--thumb) var(--track);
+	scrollbar-width: thin;
+}
