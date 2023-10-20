@@ -2,12 +2,8 @@ name: Build and ReImport
 
 on:
   push:
-    branches:
-      - main
   pull_request:
     types: [closed]
-    branches:
-      - main
 
 jobs:
   build:
@@ -36,5 +32,5 @@ jobs:
         run: |
           STATUS=$?
           if [[ "$STATUS" -eq 0 ]]; then
-            curl -X POST "http://beta.syntax.fm/webhooks/refresh" -H "Content-Type: application/json" -d '{"status":"success"}'
+            curl -X POST "https://syntax.fm/webhooks/refresh" -H "Content-Type: application/json" -d '{"status":"success"}'
           fi

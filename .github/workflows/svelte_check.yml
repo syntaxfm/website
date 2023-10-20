@@ -2,8 +2,6 @@ name: Run_Svelte_Check_on_PRs
 
 on:
   pull_request:
-    branches:
-      - v2
 
 jobs:
   test:

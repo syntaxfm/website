@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { dev } from '$app/environment';
 	import { enhance } from '$app/forms';
 	import FormWithLoader from '$lib/FormWithLoader.svelte';
 	import { form_action } from '$lib/form_action';
@@ -12,36 +13,39 @@
 <h4>Shows</h4>
 <div class="flex" style="gap: 10px;">
 	<form action="?/import_all_shows" method="post" use:enhance={form_action()}>
-		<button type="submit">Import All Shows</button>
+		<button type="submit">Sync Changed/New Shows</button>
+	</form>
+
+	<form action="?/refresh_all" method="post" use:enhance={form_action()}>
+		<button class="subtle" type="submit">Sync All Shows</button>
 	</form>
 
 	<form action="/webhooks/refresh" method="post">
-		<button type="submit">Refresh Webhook Test</button>
-	</form>
-	<form action="?/refresh_all" method="post" use:enhance={form_action()}>
-		<button type="submit">Resync All Shows</button>
+		<button class="subtle" type="submit">Test Refresh Webhook </button>
 	</form>
 
-	<form
-		action="?/delete_all_shows"
-		method="post"
-		style="position: relative;"
-		use:enhance={form_action()}
-	>
-		{#if !confirm}
-			<button
-				on:click={() => {
-					confirm = true;
-				}}
-				class="warning">Drop All Shows</button
-			>
-		{:else}
-			<p class="small" style="position: absolute; top: -120%; width: auto; white-space: nowrap;">
-				This will delete all shows, guests, transcripts (utterance, word and transcripts)
-			</p>
-			<button type="submit" class="warning">For real, drop um'</button>
-		{/if}
-	</form>
+	{#if dev}
+		<form
+			action="?/delete_all_shows"
+			method="post"
+			style="position: relative;"
+			use:enhance={form_action()}
+		>
+			{#if !confirm}
+				<button
+					on:click={() => {
+						confirm = true;
+					}}
+					class="warning">Drop All Shows</button
+				>
+			{:else}
+				<p class="small" style="position: absolute; top: -120%; width: auto; white-space: nowrap;">
+					This will delete all shows, guests, transcripts (utterance, word and transcripts)
+				</p>
+				<button type="submit" class="warning">For real, drop um'</button>
+			{/if}
+		</form>
+	{/if}
 </div>
 
 <div>
