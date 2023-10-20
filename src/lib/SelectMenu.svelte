@@ -79,7 +79,7 @@
 		border-radius: 4px;
 		&:hover,
 		&.selected {
-			background: var(--zebra);
+			background: var(--subtle);
 		}
 	}
 </style>
