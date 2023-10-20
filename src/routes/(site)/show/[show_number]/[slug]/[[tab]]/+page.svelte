@@ -21,6 +21,11 @@
 		if (target instanceof HTMLAnchorElement && target.matches(`a[href*='#t=']`)) {
 			e.preventDefault();
 			const { href } = target;
+			// If we aren't already playing this episode, load it up and then jump it
+			if ($player.current_show?.number !== show.number) {
+				await player.play_show(show);
+			}
+			// Jump to timestamp
 			player.update_time(href, show);
 		}
 	}

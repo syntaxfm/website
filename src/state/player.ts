@@ -25,25 +25,28 @@ const new_player_state = () => {
 		currentTime: 0
 	});
 
-	function play_show(show: Show) {
-		update((state) => {
-			state.status = 'ACTIVE';
-			state.current_show = show;
-			if (state.audio) {
-				state.audio.pause();
-				state.audio.src = show.url;
-				state.audio.crossOrigin = 'anonymous';
+	async function play_show(show: Show) {
+		return new Promise((resolve) => {
+			update((state) => {
+				state.status = 'ACTIVE';
+				state.current_show = show;
+				if (state.audio) {
+					state.audio.pause();
+					state.audio.src = show.url;
+					state.audio.crossOrigin = 'anonymous';
 
-				// Wait for the audio to be ready to play
-				state.audio.addEventListener('loadedmetadata', () => {
-					if (state.audio) {
-						state.audio.currentTime = 0;
-						state.audio.play();
-					}
-				});
-			}
+					// Wait for the audio to be ready to play
+					state.audio.addEventListener('loadedmetadata', () => {
+						console.log('loadedmetadata');
+						if (state.audio) {
+							state.audio.currentTime = 0;
+							resolve(state.audio.play());
+						}
+					});
+				}
 
-			return state;
+				return state;
+			});
 		});
 	}
 
@@ -60,14 +63,13 @@ const new_player_state = () => {
 			update((state) => {
 				state.current_show = show;
 				state.status = 'ACTIVE';
-				state.audio?.play();
+				state.audio?.play().then(() => {
+					// Wait for the audio to be ready to play before setting the new timestamp
+					if (state.audio) state.audio.currentTime = time_stamp;
+				});
 				return state;
 			});
 		}
-
-		subscribe((state) => {
-			if (state.audio) state.audio.currentTime = time_stamp;
-		});
 	}
 
 	function toggle_expand() {
