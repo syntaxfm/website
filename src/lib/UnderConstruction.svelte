@@ -13,9 +13,10 @@
 
 <style lang="postcss">
 	div {
+		padding: 5px;
 		color: var(--white);
 		display: flex;
-		gap: 20px;
+		gap: 10px;
 		align-items: center;
 		justify-content: center;
 	}
