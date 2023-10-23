@@ -3,6 +3,7 @@ import { PER_PAGE } from '$const';
 import { SHOW_QUERY } from '$server/ai/queries';
 import { $Enums } from '@prisma/client';
 import type { PageServerLoad } from './$types';
+import { redirect } from '@sveltejs/kit';
 
 export const load: PageServerLoad = async function ({ locals, url, setHeaders }) {
 	setHeaders({
@@ -27,8 +28,19 @@ export const load: PageServerLoad = async function ({ locals, url, setHeaders })
 		skip: page ? page * take - take : 0,
 		show_type: isShowType(show_type) ? show_type : undefined
 	});
+
+	const shows = await locals.prisma.show.findMany(query);
+
+	if (!shows.length) {
+		// If there are no shows for this page, redirect them to the first page but keep their query params. This happens when someone changes the perPage value and that makes their page no longer have anything to show.
+		console.log(`No shows on this page, redirecting to page 1`);
+		const params = new URLSearchParams(url.searchParams);
+		params.delete('page');
+		throw redirect(302, `/shows?${params.toString()}`);
+	}
+
 	return {
-		shows: locals.prisma.show.findMany(query),
+		shows,
 		// Todo: This needs to include where clause when we get hasty/tasty/supper/special filtering
 		// https://github.com/prisma/prisma/discussions/3087#discussioncomment-6857217
 		count: locals.prisma.show.count()
