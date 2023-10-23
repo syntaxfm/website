@@ -40,9 +40,7 @@
 		use:clickOutside
 		on:click-outside={theme_maker.close}
 	>
-		<button class="close" on:click={theme_maker.close}>×</button>
-
-		<h4>👩‍🎨</h4>
+		<h4>👩‍🎨 <button class="close" on:click={theme_maker.close}>×</button></h4>
 
 		<div class="theme-maker-buttons">
 			{#each theme_names as theme_name}
