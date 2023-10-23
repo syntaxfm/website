@@ -67,10 +67,6 @@ export const load: PageServerLoad = async function ({ setHeaders, params, locals
 	// maybe that's a todo for another day
 	const with_h3_body = body_string.replace(pattern, replacement);
 
-	setHeaders({
-		'cache-control': 'max-age=240'
-	});
-
 	return {
 		show: {
 			...show_raw,
