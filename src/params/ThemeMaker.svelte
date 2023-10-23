@@ -11,7 +11,7 @@
 
 	// TODO refactor to utility function
 	function getThemeName(path: string) {
-		let match_temp = path.match(themeName)?.[0];
+		let match_temp = path.split('/').pop()?.split('.')[0];
 		return match_temp;
 	}
 
