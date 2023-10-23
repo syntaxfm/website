@@ -57,13 +57,15 @@ export const prisma: Handle = async function ({ event, resolve }) {
 	return response;
 };
 
-export const redirects: Handle = async function ({ event, resolve, ...rest }) {
+export const redirects: Handle = async function ({ event, resolve }) {
 	const { pathname } = event.url;
 	const path_parts = pathname.split('/');
 	// Not something we care about
-	if (path_parts.length > 2) resolve(event);
+	if (path_parts.length > 2) return resolve(event);
+
 	const maybe_show_number = parseInt(path_parts.at(1) || '');
 	// Not a number, so not a show, pass it down the middleware chain
+
 	if (isNaN(maybe_show_number)) return resolve(event);
 	// Is there a show with this number?
 	const show = await prisma_client.show.findFirst({ where: { number: maybe_show_number } });
@@ -77,7 +79,5 @@ export const redirects: Handle = async function ({ event, resolve, ...rest }) {
 // * END HOOKS
 
 // Wraps requests in this sequence of hooks
-export const handle: Handle = sequence(
-	sequence(Sentry.sentryHandle(), prisma, auth, form_data, redirects)
-);
+export const handle: Handle = sequence(Sentry.sentryHandle(), prisma, auth, form_data, redirects);
 export const handleError = Sentry.handleErrorWithSentry();

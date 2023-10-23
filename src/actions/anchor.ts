@@ -23,9 +23,9 @@ export const anchor: Action<HTMLElement, { id: string; position: Position }> = (
 			const target_position = target?.getBoundingClientRect();
 			target.style.inset = 'unset';
 			if (vert === 'BOTTOM') {
-				target.style.top = anchor_position.bottom + 'px';
+				target.style.top = anchor_position.bottom - target_position.height + 'px';
 			} else {
-				target.style.top = anchor_position.bottom + 'px';
+				target.style.top = anchor_position.top + 'px';
 			}
 			if (horizontal === 'LEFT') {
 				target.style.left = anchor_position.left + 'px';
