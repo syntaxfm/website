@@ -59,8 +59,6 @@
 				<time datetime={show_date.toDateString()} title={show_date.toDateString()}
 					>{format_date(show_date)}</time
 				>
-				<span aria-hidden="true">×</span>
-				<span title="Show #{show.number}">{show.number}</span>
 			</p>
 
 			<svelte:element
