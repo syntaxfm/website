@@ -229,6 +229,7 @@
 		position: sticky;
 		top: 0;
 		z-index: 10;
+		background-color: var(--bg-sheet);
 		&::before {
 			content: '> ';
 			position: relative;
@@ -239,7 +240,6 @@
 
 	header:focus-within {
 		--border: var(--primary);
-		background-color: var(--bg-sheet);
 	}
 
 	.close {
