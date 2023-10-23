@@ -109,6 +109,8 @@ const new_player_state = () => {
 	function close() {
 		update((state) => {
 			state.status = 'HIDDEN';
+			state.audio?.pause();
+			state.current_show = null;
 			return state;
 		});
 	}
