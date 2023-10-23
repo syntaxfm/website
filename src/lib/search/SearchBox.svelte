@@ -229,6 +229,7 @@
 		position: sticky;
 		top: 0;
 		z-index: 10;
+		background-color: var(--bg-sheet);
 		&::before {
 			content: '> ';
 			position: relative;
@@ -239,7 +240,6 @@
 
 	header:focus-within {
 		--border: var(--primary);
-		background-color: var(--bg-sheet);
 	}
 
 	.close {
@@ -256,7 +256,7 @@
 		border: var(--border);
 		border-color: var(--fg);
 		border-radius: var(--brad);
-
+		position: relative;
 		max-width: 100%;
 		width: 100%;
 		@media (--above_med) {
@@ -308,7 +308,6 @@
 			font-style: italic;
 			background: black;
 			padding: 5px 5px;
-			margin: -1px;
 			display: inline-block;
 		}
 		@media (--below_med) {
