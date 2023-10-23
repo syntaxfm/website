@@ -9,7 +9,7 @@
 		<div class="grid">
 			<div class="links-col">
 				<a href="/shows">Podcast</a>
-				<a href="/rss">RSS Feed</a>
+				<a href="https://feed.syntax.fm">RSS Feed</a>
 				<a href="/about">About</a>
 				<a href="/pages/privacy">Privacy Policy</a>
 				<a

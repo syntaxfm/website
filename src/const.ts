@@ -14,7 +14,7 @@ export const CURRENT_YEAR = new Date().getFullYear();
 
 export const PODCAST_LINKS = [
 	{
-		href: 'https://feed.syntax.fm/rss',
+		href: 'https://feed.syntax.fm',
 		text: 'RSS'
 	},
 	{
