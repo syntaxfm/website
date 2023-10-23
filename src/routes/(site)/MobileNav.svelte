@@ -34,6 +34,7 @@
 			display: none;
 		}
 	}
+
 	nav a {
 		text-decoration: none;
 		color: var(--fg);
