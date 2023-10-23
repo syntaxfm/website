@@ -92,7 +92,7 @@
 			<a
 				title="Edit Show Notes"
 				class="icon"
-				href={'https://github.com/syntaxfm/website/tree/main/shows' + show.md_file}
+				href={'https://github.com/syntaxfm/website/tree/main' + show.md_file}
 			>
 				<Icon name="edit" /></a
 			>
