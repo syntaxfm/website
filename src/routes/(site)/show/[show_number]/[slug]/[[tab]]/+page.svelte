@@ -76,7 +76,7 @@
 </div>
 
 <div class="show-actions-wrap">
-	<div class="show-actions zone">
+	<div class="show-actions zone" style="--bg: var(--black); --fg: var(--white);">
 		<div class="show-actions-flex">
 			<button on:click={() => player.play_show(show)} data-testid="play-show">
 				<Icon name="play{$player.current_show?.number === show.number ? 'ing' : ''}" />
@@ -187,6 +187,9 @@
 			justify-content: space-between;
 			align-items: center;
 			align-content: center;
+			a {
+				color: var(--fg);
+			}
 			@media (--below_med) {
 				a {
 					width: 100%;
