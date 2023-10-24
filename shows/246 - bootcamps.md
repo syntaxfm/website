@@ -3,6 +3,12 @@ number: 246
 title: Bootcamps, Getting a Job, and Income Share Agreements with Heather Payne
 date: 1588770000626
 url: https://traffic.libsyn.com/syntax/Syntax246.mp3
+guest:
+  name: Heather Payne
+  github: heatherpayne
+  twitter: heatherpayne
+  url: https://bento.me/heatherpayne
+  social: https://www.linkedin.com/in/heatherpayneintoronto
 ---
 
 In this episode of Syntax, Scott and Wes talk with Heather Payne about bootcamps — how to get the most out of them and what to look out for!
