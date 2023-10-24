@@ -6,6 +6,7 @@ url: https://traffic.libsyn.com/syntax/Syntax404.mp3
 guest: 
   name: Tomek Sułkowski
   twitter: sulco
+  github: sulco
   social: https://www.linkedin.com/in/tsulkowski/
 ---
 
