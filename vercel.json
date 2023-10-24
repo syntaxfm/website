@@ -5,6 +5,10 @@
 			"schedule": "*/10 * * * *"
 		},
 		{
+			"path": "/webhooks/refresh",
+			"schedule": "0 */3 * * *"
+		},
+		{
 			"path": "/webhooks/ai",
 			"schedule": "*/5 * * * *"
 		}
