@@ -13,30 +13,32 @@
 	}
 </script>
 
-{#if !is_hidden}
-	<form
-		{action}
-		on:submit={submit}
-		method="post"
-		data-sv-form={FORM_ID}
-		class="center readable"
-		target="_blank"
-		aria-labelledby="newsletter-form-label"
-	>
-		<h3 id="newsletter-form-label" class="h4">Join our newsletter</h3>
-		<p>
-			New Syntax content, tips & tricks, swag drops, and other sweet stuff to make your life as a
-			web developer even better.
-		</p>
+<!-- {#if !is_hidden} -->
+<form
+	{action}
+	on:submit={submit}
+	method="post"
+	data-sv-form={FORM_ID}
+	data-uid="05d939b74d"
+	class="center readable"
+	target="_blank"
+	aria-labelledby="newsletter-form-label"
+>
+	<h3 id="newsletter-form-label" class="h4">Join our newsletter</h3>
+	<p>
+		New Syntax content, tips & tricks, swag drops, and other sweet stuff to make your life as a web
+		developer even better.
+	</p>
 
-		<div class="newsletter">
-			<Input required type="email" label="Email" id="email_address" />
-			<button type="submit">Subscribe</button>
-		</div>
+	<div class="newsletter">
+		<Input required type="email" label="Email" id="email_address" />
+		<button type="submit">Subscribe</button>
+	</div>
 
-		<p class="text-sm">Dip at any time.</p>
-	</form>
-{/if}
+	<p class="text-sm">Dip at any time.</p>
+</form>
+
+<!-- {/if} -->
 
 <style lang="postcss">
 	@layer theme {
