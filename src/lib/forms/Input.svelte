@@ -11,7 +11,7 @@
 
 <div class="input">
 	{#if label}<label for={label}>{label}</label>{/if}
-	<input {...$$restProps} use:typeAction bind:value {id} />
+	<input {...$$restProps} use:typeAction bind:value {id} name={id} />
 </div>
 
 <style lang="postcss">
