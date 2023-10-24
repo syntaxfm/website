@@ -3,6 +3,11 @@ number: 184
 title: Desktop & Mobile Apps With a Single Codebase
 date: 1570021200962
 url: https://traffic.libsyn.com/syntax/Syntax184.mp3
+guest:
+  name: Etienne Lemay
+  github: EtienneLem
+  twitter: EtienneLem
+  social: https://www.linkedin.com/in/etienne-lemay-6b8b0638/
 ---
 
 In this episode, Scott and Wes talk with Etienne Lemay, developer of [Missive](https://missiveapp.com/), about his experience building Missive, best practices, and the pros and cons of building desktop and mobile apps with a single codebase.
