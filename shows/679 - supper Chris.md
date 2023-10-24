@@ -3,6 +3,12 @@ number: 679
 title: Creator of Swift, Tesla Autopilot & Tensorflow. New AI language Mojo with Chris Lattner
 date: 1697198400832
 url: https://traffic.libsyn.com/syntax/Syntax_-_679.mp3
+guest:
+    name: Chris Lattner
+    of: Modular AI
+    github: lattner
+    twitter: clattner_llvm
+    url: https://www.nondot.org/sabre/
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Chris Lattner about Mojo, a new programming language for AI developers. Should developers learn Python? Where does Mojo run? What is Chris excited about in AI's future?
