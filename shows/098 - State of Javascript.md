@@ -3,6 +3,11 @@ number: 98
 title: The State of JavaScript 2018
 date: 1544018400079
 url: https://traffic.libsyn.com/syntax/Syntax098.mp3
+guest:
+  name: Sacha Greif
+  github: sachag
+  twitter: SachaGreif
+  url: https://sachagreif.com/
 ---
 
 In this episode Wes and Scott are joined by their first ever guest on the show: Sacha Greif. Sacha is one of the makers of the [State of Javascript](https://stateofjs.com/) - the topic for today's show. Wes, Scott and Sacha discuss the results of 2018's survey, what they think, and implications for the industry.
