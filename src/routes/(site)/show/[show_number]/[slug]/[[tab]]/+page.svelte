@@ -79,18 +79,19 @@
 	<div class="show-actions zone" style="--bg: var(--black); --fg: var(--white);">
 		<div class="show-actions-flex">
 			<button on:click={() => player.play_show(show)} data-testid="play-show">
-				<Icon name="play{$player.current_show?.number === show.number ? 'ing' : ''}" />
+				<Icon title="" name="play{$player.current_show?.number === show.number ? 'ing' : ''}" />
 				Play{$player.current_show?.number === show.number ? 'ing' : ''} Episode {show.number}
 			</button>
 			<span>or</span>
 			<ListenLinks {show} />
 		</div>
 		<div>
-			<a class="icon" title="Download Episode" download href={show.url}>
+			<a class="icon" title="Download Episode" aria-label="Download" download href={show.url}>
 				<Icon name="download" />
 			</a>
 			<a
 				title="Edit Show Notes"
+				aria-label="Edit Show Notes"
 				class="icon"
 				href={'https://github.com/syntaxfm/website/tree/main' + show.md_file}
 			>

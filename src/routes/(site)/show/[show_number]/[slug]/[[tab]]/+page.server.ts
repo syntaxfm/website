@@ -9,6 +9,7 @@ import { cache } from '$lib/cache/cache';
 import { transcript_with_utterances } from '$server/ai/queries.js';
 import type { Prisma, Show } from '@prisma/client';
 import type { PageServerLoad } from './$types';
+import { error } from '@sveltejs/kit';
 
 export const load: PageServerLoad = async function ({ setHeaders, params, locals, url }) {
 	const { show_number } = params;
@@ -46,6 +47,14 @@ export const load: PageServerLoad = async function ({ setHeaders, params, locals
 		if (show_raw) {
 			cache.set(cache_key, show_raw);
 		}
+	}
+
+	// Check if this is a future show
+	const now = new Date();
+	const show_date = new Date(show_raw?.date || '');
+	const is_admin = locals?.user?.roles?.includes('admin');
+	if (show_date > now && !is_admin) {
+		throw error(401, `That is a show, but it's in the future! \n\nCome back ${show_date}`);
 	}
 
 	const body_excerpt = await unified()

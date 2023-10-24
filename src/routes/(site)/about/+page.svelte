@@ -96,7 +96,7 @@
 			/>
 			<h2 class="h4">
 				<span class="first">Wes</span>
-				<span class="last" style:--letterCount={'Bos'.length}>Bos</span>
+				<span class="last">Bos</span>
 			</h2>
 			<div class="desc border-on-dark">
 				<HostSocialLink host={hosts.wes} />
@@ -119,7 +119,7 @@
 			/>
 			<h2 class="h4">
 				<span class="first">Scott</span>
-				<span class="last" style:--letterCount={'Tolinski'.length}>Tolinski</span>
+				<span class="last">Tolinski</span>
 			</h2>
 			<div class="desc border-on-dark">
 				<HostSocialLink host={hosts.scott} />
@@ -141,7 +141,7 @@
 			/>
 			<h2 class="h4">
 				<span class="first">Kaitlin</span>
-				<span class="last" style:--letterCount={'Bloom'.length}>Bloom</span>
+				<span class="last">Bloom</span>
 			</h2>
 			<div class="desc border-on-dark">
 				<HostSocialLink host={hosts.kaitlin} />
@@ -152,7 +152,7 @@
 				</p>
 			</div>
 		</div>
-		<div class="team-member" style:--rotate="1deg">
+		<div class="team-member benjamin" style:--rotate="1deg">
 			<img
 				use:lol
 				src={`https://github.com/${hosts.ben.github}.png`}
@@ -162,7 +162,7 @@
 			/>
 			<h2 class="h4">
 				<span class="first">Ben</span>
-				<span class="last" style:--letterCount={'Vinegar'.length}>Vinegar</span>
+				<span class="last">Vinegar</span>
 			</h2>
 			<div class="desc border-on-dark">
 				<HostSocialLink host={hosts.ben} />
@@ -198,12 +198,17 @@
 				margin: 0;
 			}
 		}
+		--text-color: var(--white);
+		&.benjamin:hover {
+			/* Bens photo is too light to see this */
+			--text-color: var(--black);
+		}
 		h2 {
 			position: absolute;
 			top: 0;
 			line-height: 1;
 			overflow: visible;
-			color: white;
+			color: var(--white);
 			span {
 				display: block;
 			}
@@ -219,7 +224,12 @@
 				/* text-shadow: 0 0 5px rgba(0, 0, 0, 0.2); */
 				padding-left: 5px;
 				font-size: 20cqw;
-				background-image: linear-gradient(-1.69deg, white 0% 45%, transparent 45% 49%, white 49%);
+				background-image: linear-gradient(
+					-1.69deg,
+					var(--text-color) 0% 45%,
+					transparent 45% 49%,
+					var(--text-color) 49%
+				);
 				color: transparent;
 				-webkit-background-clip: text;
 			}
