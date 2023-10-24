@@ -18,11 +18,11 @@
 				>
 			</div>
 			<div class="links-col">
-				<a href="https://github.com/syntaxfm/website"
+				<!-- <a href="https://github.com/syntaxfm/website"
 					>{process.env.VITE_VERCEL_GIT_COMMIT_SHA
 						? process.env.VITE_VERCEL_GIT_COMMIT_SHA.slice(0, 7)
 						: ''} Source Code</a
-				>
+				> -->
 				<a href="/system/colors">Colors</a>
 				<a href="/system/layout">Layout</a>
 				<a href="/system/typography">Typography</a>

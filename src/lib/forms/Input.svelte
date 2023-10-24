@@ -2,6 +2,7 @@
 	export let label = '';
 	export let type: HTMLInputElement['type'] = 'text';
 	export let value: string = '';
+	export let id: string;
 
 	function typeAction(node: HTMLInputElement) {
 		node.type = type;
@@ -10,7 +11,7 @@
 
 <div class="input">
 	{#if label}<label for={label}>{label}</label>{/if}
-	<input {...$$restProps} use:typeAction bind:value id={label} />
+	<input {...$$restProps} use:typeAction bind:value {id} />
 </div>
 
 <style lang="postcss">

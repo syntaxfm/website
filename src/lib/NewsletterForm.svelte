@@ -30,7 +30,7 @@
 		</p>
 
 		<div class="newsletter">
-			<Input required type="email" label="Email" />
+			<Input required type="email" label="Email" id="email_address" />
 			<button type="submit">Subscribe</button>
 		</div>
 
