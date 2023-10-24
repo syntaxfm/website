@@ -86,11 +86,12 @@
 			<ListenLinks {show} />
 		</div>
 		<div>
-			<a class="icon" title="Download Episode" download href={show.url}>
+			<a class="icon" title="Download Episode" aria-label="Download" download href={show.url}>
 				<Icon name="download" />
 			</a>
 			<a
 				title="Edit Show Notes"
+				aria-label="Edit Show Notes"
 				class="icon"
 				href={'https://github.com/syntaxfm/website/tree/main' + show.md_file}
 			>
