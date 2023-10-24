@@ -2,7 +2,7 @@
 number: 690
 title: How To Dark Mode and Beyond
 date: 1699444800846
-url: 
+url: https://traffic.libsyn.com/syntax/Syntax_-_690.mp3
 ---
 
 In this episode of Syntax, Wes and Scott talk about the process they are using for extending the Syntax website with themes, including a dark mode and secret custom themes. They also talk about issues encountered with theming and CSS, including flashes of un-themed content.
@@ -31,7 +31,6 @@ In this episode of Syntax, Wes and Scott talk about the process they are using f
 * **[54:32](#t=54:32)** Help is on the way!
 * **[58:33](#t=58:33)** SIIIIICK ××× PIIIICKS ×××
 
-
 - [website/src/styles/themes/level-up.css at v2](https://github.com/syntaxfm/website/blob/v2/src/styles/themes/level-up.css)
 - [The 2023 State of CSS Survey Part 2 × CSS Frameworks × Tooling × Browser Usage](https://syntax.fm/show/678/the-2023-state-of-css-survey-part-2-css-frameworks-tooling-browser-usage)
 - ["color-contrast" | Can I use... Support tables for HTML5, CSS3, etc](https://caniuse.com/?search=color-contrast)
@@ -46,16 +45,10 @@ In this episode of Syntax, Wes and Scott talk about the process they are using f
 * Scott: [Sentry](https://sentry.io)
 * Wes: [Wes Bos Tutorials](https://wesbos.com/courses)
 
-### Tweet us your tasty treats
+### Hit us up on Socials!
 
-* [Scott's Instagram](https://www.instagram.com/stolinski/)
-* [LevelUpTutorials Instagram](https://www.instagram.com/LevelUpTutorials/)
-* [Wes' Instagram](https://www.instagram.com/wesbos/)
-* [Wes' Twitter](https://twitter.com/wesbos)
-* [Wes' Facebook](https://www.facebook.com/wesbos.developer)
-* [Scott's Twitter](https://twitter.com/stolinski)
-* Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets
-* [Wes Bos on Bluesky](https://bsky.app/profile/wesbos.com)
-* [Scott on Bluesky](https://bsky.app/profile/tolin.ski)
-* [Syntax on Bluesky](https://bsky.app/profile/syntax.fm)
+Syntax: [X](https://twitter.com/syntaxfm) [Instagram](https://www.instagram.com/syntax_fm/) [Tiktok](https://www.tiktok.com/@syntaxfm) [LinkedIn](https://www.linkedin.com/company/96077407/admin/feed/posts/) [Threads](https://www.threads.net/@syntax_fm)
 
+Wes: [X](https://twitter.com/wesbos) [Instagram](https://www.instagram.com/wesbos/) [Tiktok](https://www.tiktok.com/@wesbos) [LinkedIn](https://www.linkedin.com/in/wesbos/) [Threads](https://www.threads.net/@wesbos)
+
+Scott: [X](https://twitter.com/stolinski) [Instagram](https://www.instagram.com/stolinski/) [Tiktok](https://www.tiktok.com/@stolinski) [LinkedIn](https://www.linkedin.com/in/stolinski/) [Threads](https://www.threads.net/@stolinski)
