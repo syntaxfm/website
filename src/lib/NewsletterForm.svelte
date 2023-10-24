@@ -5,40 +5,39 @@
 	$: action = `https://app.convertkit.com/forms/${FORM_ID}/subscriptions`;
 
 	function submit() {
-		document.cookie = 'newsletter=hidden';
+		document.cookie = 'newsletter_visible=hidden';
 	}
 
 	$: if (typeof document !== 'undefined') {
-		is_hidden = document.cookie.includes('newsletter');
+		is_hidden = document.cookie.includes('newsletter_visible');
 	}
 </script>
 
-<!-- {#if !is_hidden} -->
-<form
-	{action}
-	on:submit={submit}
-	method="post"
-	data-sv-form={FORM_ID}
-	data-uid="05d939b74d"
-	class="center readable"
-	target="_blank"
-	aria-labelledby="newsletter-form-label"
->
-	<h3 id="newsletter-form-label" class="h4">Join our newsletter</h3>
-	<p>
-		New Syntax content, tips & tricks, swag drops, and other sweet stuff to make your life as a web
-		developer even better.
-	</p>
+{#if !is_hidden}
+	<form
+		{action}
+		on:submit={submit}
+		method="post"
+		data-sv-form={FORM_ID}
+		data-uid="05d939b74d"
+		class="center readable"
+		target="_blank"
+		aria-labelledby="newsletter-form-label"
+	>
+		<h3 id="newsletter-form-label" class="h4">Join our newsletter</h3>
+		<p>
+			New Syntax content, tips & tricks, swag drops, and other sweet stuff to make your life as a
+			web developer even better.
+		</p>
 
-	<div class="newsletter">
-		<Input required type="email" label="Email" id="email_address" />
-		<button type="submit">Subscribe</button>
-	</div>
+		<div class="newsletter">
+			<Input required type="email" label="Email" id="email_address" />
+			<button type="submit">Subscribe</button>
+		</div>
 
-	<p class="text-sm">Dip at any time.</p>
-</form>
-
-<!-- {/if} -->
+		<p class="text-sm">Dip at any time.</p>
+	</form>
+{/if}
 
 <style lang="postcss">
 	@layer theme {
