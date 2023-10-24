@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Input from '$lib/forms/Input.svelte';
 	let is_hidden = false;
-	const FORM_ID = 5465361;
+	const FORM_ID = 5687460;
 	$: action = `https://app.convertkit.com/forms/${FORM_ID}/subscriptions`;
 
 	function submit() {
