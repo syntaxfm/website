@@ -5,6 +5,7 @@ date: 1544018400079
 url: https://traffic.libsyn.com/syntax/Syntax098.mp3
 guest:
   name: Sacha Greif
+  of: State of JS Survey
   github: sachag
   twitter: SachaGreif
   url: https://sachagreif.com/
