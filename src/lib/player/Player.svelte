@@ -4,7 +4,6 @@
 	import Visualizer from './Visualizer.svelte';
 	import AlbumArt from './AlbumArt.svelte';
 	import get_show_path from '$utilities/slug';
-	import Hotkeys from './Hotkeys.svelte';
 	import VisibilityControls from './VisibilityControls.svelte';
 	// import Bookmarks from './Bookmarks.svelte';
 
@@ -67,7 +66,6 @@
 	// }
 </script>
 
-<Hotkeys />
 <section
 	class:expanded={$player.status === 'ACTIVE' || $player.status === 'EXPANDED'}
 	class={`player ${$player.status}`}
