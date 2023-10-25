@@ -3,6 +3,7 @@
 	import Icon from '$lib/Icon.svelte';
 	import ProducedBySentry from '$lib/ProducedBySentry.svelte';
 	let commit_sha = import.meta.env.VITE_VERCEL_GIT_COMMIT_SHA;
+	import { VERCEL_GIT_COMMIT_SHA } from '$env/dynamic/private';
 </script>
 
 <footer class="layout zone" style:--bg="var(--black)" style:--fg="var(--white)">
@@ -19,9 +20,7 @@
 				>
 			</div>
 			<div class="links-col">
-				<a href="https://github.com/syntaxfm/website"
-					>{commit_sha ? commit_sha.slice(0, 7) : ''} Source Code</a
-				>
+				<a href="https://github.com/syntaxfm/website">{VERCEL_GIT_COMMIT_SHA} Source Code</a>
 				<a href="/system/colors">Colors</a>
 				<a href="/system/layout">Layout</a>
 				<a href="/system/typography">Typography</a>
