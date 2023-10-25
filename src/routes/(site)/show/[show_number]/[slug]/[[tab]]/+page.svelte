@@ -123,7 +123,7 @@
 <section class="layout full" on:click={handleClick}>
 	{#if $page.params.tab === 'transcript'}
 		{#if show?.transcript}
-			<Transcript aiShowNote={show.aiShowNote} transcript={show.transcript} />
+			<Transcript {show} aiShowNote={show.aiShowNote} transcript={show.transcript} />
 		{:else}
 			<p>Transcript not available yet! We have the AI robots on the job, check back soon!</p>
 		{/if}
