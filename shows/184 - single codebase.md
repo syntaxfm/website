@@ -5,6 +5,7 @@ date: 1570021200962
 url: https://traffic.libsyn.com/syntax/Syntax184.mp3
 guest:
   name: Etienne Lemay
+  of: Missive
   github: EtienneLem
   twitter: EtienneLem
   social: https://www.linkedin.com/in/etienne-lemay-6b8b0638/
