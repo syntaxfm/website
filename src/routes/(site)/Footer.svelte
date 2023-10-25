@@ -2,8 +2,7 @@
 	import { CURRENT_YEAR } from '$const';
 	import Icon from '$lib/Icon.svelte';
 	import ProducedBySentry from '$lib/ProducedBySentry.svelte';
-	let commit_sha = import.meta.env.VITE_VERCEL_GIT_COMMIT_SHA;
-	import { VERCEL_GIT_COMMIT_SHA } from '$env/dynamic/private';
+	import { VERCEL_COMMIT_REF, VERCEL_GIT_COMMIT_SHA } from '$env/static/private';
 </script>
 
 <footer class="layout zone" style:--bg="var(--black)" style:--fg="var(--white)">
@@ -20,7 +19,9 @@
 				>
 			</div>
 			<div class="links-col">
-				<a href="https://github.com/syntaxfm/website">{VERCEL_GIT_COMMIT_SHA} Source Code</a>
+				<a href="https://github.com/syntaxfm/website"
+					>{VERCEL_GIT_COMMIT_SHA} Source Code {VERCEL_COMMIT_REF}</a
+				>
 				<a href="/system/colors">Colors</a>
 				<a href="/system/layout">Layout</a>
 				<a href="/system/typography">Typography</a>
