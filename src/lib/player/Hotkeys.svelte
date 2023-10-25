@@ -8,8 +8,12 @@
 		}
 	}
 
-	function togglePlayer() {
-		$player.status === 'HIDDEN' ? player.toggle_expand() : player.close();
+	function toggleMinimize() {
+		if ($player.current_show && $player.status !== 'MINIMIZED') {
+			player.toggle_minimize();
+		} else {
+			player.toggle_expand();
+		}
 	}
 
 	function handlePlayPause() {
@@ -84,7 +88,7 @@
 	use:shortcut={{
 		trigger: {
 			key: 'i',
-			callback: togglePlayer
+			callback: toggleMinimize
 		}
 	}}
 	use:shortcut={{

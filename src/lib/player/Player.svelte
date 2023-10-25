@@ -1,11 +1,11 @@
 <script lang="ts">
-	import Icon from '$lib/Icon.svelte';
 	import { player } from '$state/player';
 	import { fly, slide } from 'svelte/transition';
 	import Visualizer from './Visualizer.svelte';
 	import AlbumArt from './AlbumArt.svelte';
 	import get_show_path from '$utilities/slug';
 	import Hotkeys from './Hotkeys.svelte';
+	import VisibilityControls from './VisibilityControls.svelte';
 	// import Bookmarks from './Bookmarks.svelte';
 
 	// let time_stamps: Timestamp[] = [];
@@ -72,20 +72,21 @@
 	class:expanded={$player.status === 'ACTIVE' || $player.status === 'EXPANDED'}
 	class={`player ${$player.status}`}
 >
-	<header>
-		<!-- Ignore this div, it's just here so I don't get fired -->
-		<div></div>
-		<!-- <button class="player-expand" on:click={player.toggle_expand}><Icon name="expand" /></button> -->
-		{#if $player.current_show}
-			<p>
-				<a href={get_show_path($player.current_show)}
-					>Show #{$player.current_show?.number} - {$player.current_show?.title}</a
-				>
-			</p>
-		{/if}
+	{#if $player.status !== 'MINIMIZED'}
+		<header>
+			<!-- Ignore this div, it's just here so I don't get fired -->
+			<div></div>
+			{#if $player.current_show}
+				<p>
+					<a href={get_show_path($player.current_show)}
+						>Show #{$player.current_show?.number} - {$player.current_show?.title}</a
+					>
+				</p>
+			{/if}
 
-		<button on:click={player.close}>×</button>
-	</header>
+			<VisibilityControls />
+		</header>
+	{/if}
 
 	{#if $player.status === 'EXPANDED'}
 		<div transition:slide>
@@ -134,6 +135,7 @@
 				</div>
 			</media-control-bar>
 		</media-controller>
+		<VisibilityControls hidden={$player.status === 'ACTIVE' || $player.status === 'EXPANDED'} />
 	</div>
 </section>
 
@@ -198,11 +200,6 @@
 		width: 100%;
 	}
 
-	button {
-		--button-bg: transparent;
-		--button-color: var(--fg);
-	}
-
 	p {
 		margin: 0;
 	}
@@ -239,6 +236,29 @@
 		z-index: 10;
 		&.expanded {
 			translate: 0 0 0;
+		}
+		&.MINIMIZED {
+			translate: 0 0 0;
+			.media-controls,
+			.media-sound {
+				display: none;
+			}
+
+			.media-range {
+				width: 100%;
+			}
+
+			.media-bar,
+			.player-container {
+				height: max-content;
+				padding: 10px;
+			}
+
+			media-control-bar {
+				display: flex;
+				width: 100%;
+				align-items: center;
+			}
 		}
 	}
 
