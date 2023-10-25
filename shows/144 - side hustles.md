@@ -6,6 +6,7 @@ url: https://traffic.libsyn.com/syntax/Syntax144.mp3
 guest:
   name: Courtland Allen
   github: courthead
+  of: Indie Hackers
   twitter: csallen
   url: https://www.indiehackers.com/csallen
 ---
