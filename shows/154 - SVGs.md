@@ -3,6 +3,11 @@ number: 154
 title: SVGs with Sara Soueidan
 date: 1560949200687
 url: https://traffic.libsyn.com/syntax/Syntax154.mp3
+guest:
+  name: Sara Soueidan
+  github: SaraSoueidan
+  twitter: SaraSoueidan
+  url: https://www.sarasoueidan.com/
 ---
 
 In this episode of Syntax, Wes is joined by Sara Soueidan, a freelance front-end UI developer and trainer. While Scott is taking a break to spend time with his new baby girl, Wes and Sara dive into all things SVG!  
