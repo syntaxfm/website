@@ -6,6 +6,7 @@ url: https://traffic.libsyn.com/syntax/Syntax246.mp3
 guest:
   name: Heather Payne
   github: heatherpayne
+  of: Juno College / Hacker You
   twitter: heatherpayne
   url: https://bento.me/heatherpayne
   social: https://www.linkedin.com/in/heatherpayneintoronto
