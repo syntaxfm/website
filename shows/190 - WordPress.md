@@ -3,6 +3,12 @@ number: 190
 title: Migrating, Deploying, and Hosting WordPress
 date: 1571835600494
 url: https://traffic.libsyn.com/syntax/Syntax190.mp3
+guest:
+  name: Brad Touesnard
+  github: bradt
+  twitter: bradt
+  url: https://bradt.ca
+  social: https://www.linkedin.com/in/bradt
 ---
 
 In this episode of Syntax, Scott and Wes talk with Brad Touesnard of [Delicious Brains](https://deliciousbrains.com/) about migrating, deploying, and hosting WordPress.  
