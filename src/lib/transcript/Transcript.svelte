@@ -5,11 +5,14 @@
 	import slug from 'speakingurl';
 	import { player } from '$state/player';
 	import Squiggle from './Squiggle.svelte';
-	import type { SlimUtterance } from '$server/transcripts/types';
 	import TableOfContents from './TableOfContents.svelte';
+
+	import type { SlimUtterance } from '$server/transcripts/types';
 	import type { AINoteWithFriends, TranscriptWithUtterances } from '$server/ai/queries';
+
 	export let transcript: TranscriptWithUtterances;
 	export let aiShowNote: AINoteWithFriends;
+
 	const slim_transcript: SlimUtterance[] = getSlimUtterances(transcript.utterances, 1)
 		.filter((utterance) => utterance.speakerId !== 99)
 		.filter((utterance) => {
