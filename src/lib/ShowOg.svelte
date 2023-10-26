@@ -2,14 +2,13 @@
 	import { format_show_type } from '$utilities/format_show_type';
 	import { format } from 'date-fns';
 	import type { LatestShow } from '$server/ai/queries';
-	import Badge from './badges/Badge.svelte';
-	import Badges from './badges/Badges.svelte';
 	import FacePile from './FacePile.svelte';
-
+	import wait from 'waait';
 	export let show: LatestShow;
 	export let show_date = new Date(show.date);
 
 	function fitText(node: HTMLHeadElement) {
+		node.classList.remove('finish-sizing-text');
 		// Find out how many lines this text needs to be.
 		let lineLimit = 1;
 		const text = node.innerText;
@@ -21,9 +20,11 @@
 			lineLimit = 4;
 		}
 		let fontSize = 0.5;
-		let increment = 0.05;
-		function sizeText() {
-			console.log(`sizeText ${fontSize}`);
+		let increment = 0.1;
+		node.style.fontSize = `${fontSize}cqw`;
+
+		async function sizeText() {
+			await wait(0); //
 			node.style.fontSize = `${fontSize}cqw`;
 			const lineHeight = parseInt(getComputedStyle(node).lineHeight, 10);
 			const height = node.offsetHeight;
@@ -32,12 +33,14 @@
 				fontSize += increment;
 				sizeText();
 			} else if (lines >= lineLimit + 1) {
-				console.log(`DONE`, lines);
-				node.style.fontSize = `${fontSize - increment}cqw`;
+				// node.style.fontSize = `${fontSize - increment}cqw`;
+				// Add a class so Puppeteer can tell when the text is sized.
+				node.classList.add('finish-sizing-text');
+				// node.insertAdjacentHTML('beforebegin', `<small>${fontSize - increment}</small>`);
 			}
 		}
 
-		sizeText();
+		return sizeText();
 	}
 </script>
 
@@ -120,7 +123,7 @@
 		margin: 0;
 		font-weight: 600;
 		line-height: 1;
-		font-size: 10cqw;
+		font-size: 50px;
 		width: 90%;
 		font-style: italic;
 		transform: rotate(-1deg);
@@ -168,14 +171,5 @@
 			width: 100%;
 			height: auto;
 		}
-	}
-	.syntax-url {
-		font-style: italic;
-		display: block;
-		padding: 10px 20px;
-		font-size: var(--font-size-lg);
-		font-weight: 600;
-		color: var(--black);
-		background-color: var(--yellow);
 	}
 </style>
