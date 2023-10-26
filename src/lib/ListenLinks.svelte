@@ -1,5 +1,5 @@
 <script lang="ts">
-	// import type { LatestShow } from '$server/ai/queries';
+	import type { LatestShow } from '$server/ai/queries';
 	import Icon from './Icon.svelte';
 	export let show: LatestShow;
 </script>

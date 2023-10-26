@@ -8,7 +8,7 @@
 	import TableOfContents from './TableOfContents.svelte';
 
 	import type { SlimUtterance } from '$server/transcripts/types';
-	// import type { AINoteWithFriends, TranscriptWithUtterances } from '$server/ai/queries';
+	import type { AINoteWithFriends, TranscriptWithUtterances } from '$server/ai/queries';
 	import type { Show } from '@prisma/client';
 
 	export let transcript: TranscriptWithUtterances;

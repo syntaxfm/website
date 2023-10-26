@@ -1,4 +1,5 @@
-import adapter from '@sveltejs/adapter-auto';
+// import adapter from '@sveltejs/adapter-auto';
+import adapter from '@sveltejs/adapter-vercel';
 import preprocess from 'svelte-preprocess';
 import postcssPresetEnv from 'postcss-preset-env';
 import atImport from 'postcss-import';
@@ -44,11 +45,11 @@ const config = {
 			$state: 'src/state',
 			$styles: 'src/styles',
 			$utilities: 'src/utilities'
-		},
+		}
 	},
-  compilerOptions: {
-    enableSourcemap: true,
-  }
+	compilerOptions: {
+		enableSourcemap: true
+	}
 };
 
 export default config;

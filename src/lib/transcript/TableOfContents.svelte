@@ -1,5 +1,5 @@
 <script lang="ts">
-	// import type { AINoteWithFriends } from '$server/ai/queries';
+	import type { AINoteWithFriends } from '$server/ai/queries';
 	import slug from 'speakingurl';
 
 	export let aiShowNote: AINoteWithFriends;

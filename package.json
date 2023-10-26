@@ -71,6 +71,7 @@
 		"@prisma/client": "5.4.2",
 		"@sentry/sveltekit": "^7.75.1",
 		"@sparticuz/chromium": "^117.0.0",
+		"@sveltejs/adapter-vercel": "^3.0.3",
 		"core-js": "^3.33.1",
 		"date-fns": "^2.30.0",
 		"flexsearch": "^0.7.31",

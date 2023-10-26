@@ -4,7 +4,7 @@
 	import { format_show_type } from '$utilities/format_show_type';
 	import Icon from './Icon.svelte';
 	import { format } from 'date-fns';
-	// import type { LatestShow } from '$server/ai/queries';
+	import type { LatestShow } from '$server/ai/queries';
 	import Badge from './badges/Badge.svelte';
 	import Badges from './badges/Badges.svelte';
 	import FacePile from './FacePile.svelte';

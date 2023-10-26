@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { format_show_type } from '$utilities/format_show_type';
 	import { format } from 'date-fns';
-	// import type { LatestShow } from '$server/ai/queries';
+	import type { LatestShow } from '$server/ai/queries';
 	import FacePile from './FacePile.svelte';
 	import wait from 'waait';
 	export let show: LatestShow;
