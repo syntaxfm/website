@@ -26,7 +26,9 @@ let browser: Browser | null = null;
 async function getScreenshot(url) {
 	// first check if this value has been cached
 	const cachedImage = cached.get(url);
+	console.log(cached);
 	if (cachedImage) {
+		console.log(`returning cached image for ${show}`);
 		return cachedImage;
 	}
 	const options = await getOptions();
