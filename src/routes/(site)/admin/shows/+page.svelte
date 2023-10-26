@@ -12,15 +12,15 @@
 
 <h4>Shows</h4>
 <div class="flex" style="gap: 10px;">
-	<form action="?/import_all_shows" method="post" use:enhance={form_action()}>
+	<form action="?/import_all_shows" method="POST" use:enhance={form_action()}>
 		<button type="submit">Sync Changed/New Shows</button>
 	</form>
 
-	<form action="?/refresh_all" method="post" use:enhance={form_action()}>
+	<form action="?/refresh_all" method="POST" use:enhance={form_action()}>
 		<button class="subtle" type="submit">Sync All Shows</button>
 	</form>
 
-	<form action="/webhooks/refresh" method="post">
+	<form action="/webhooks/refresh" method="POST">
 		<button class="subtle" type="submit">Test Refresh Webhook </button>
 	</form>
 
