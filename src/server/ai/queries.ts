@@ -1,5 +1,5 @@
 import { PER_PAGE } from '$const';
-import { Prisma, $Enums } from './node_modules/.prisma/client'
+import { Prisma, $Enums } from '@prisma/client';
 
 console.log(Prisma);
 export const transcript_with_utterances = Prisma.validator<Prisma.TranscriptDefaultArgs>()({
