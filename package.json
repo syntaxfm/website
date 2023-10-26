@@ -73,7 +73,7 @@
 		"@sentry/sveltekit": "^7.75.1",
 		"@sparticuz/chromium": "^117.0.0",
 		"@svelte-put/shortcut": "^3.0.0",
-		"core-js": "^3.33.0",
+		"core-js": "^3.33.1",
 		"date-fns": "^2.30.0",
 		"flexsearch": "^0.7.31",
 		"gpt-3-encoder": "^1.1.4",

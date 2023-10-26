@@ -36,8 +36,8 @@ dependencies:
     specifier: ^3.0.0
     version: 3.0.0
   core-js:
-    specifier: ^3.33.0
-    version: 3.33.0
+    specifier: ^3.33.1
+    version: 3.33.1
   date-fns:
     specifier: ^2.30.0
     version: 2.30.0
@@ -1439,7 +1439,7 @@ packages:
       svelte: 4.2.2
       svelte-hmr: 0.15.3(svelte@4.2.2)
       vite: 4.5.0(@types/node@20.8.9)
-      vitefu: 0.2.5(vite@4.5.0)
+      vitefu: 0.2.4(vite@4.5.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -2195,8 +2195,8 @@ packages:
     resolution: {integrity: sha512-YZ3GUyn/o8gfKJlnlX7g7xq4gyO6OSuhGPKaaGssGB2qgDUS0gPgtTvoyZLTt9Ab6dC4hfc9dV5arkvc/OCmrw==}
     engines: {node: '>= 0.6'}
 
-  /core-js@3.33.0:
-    resolution: {integrity: sha512-HoZr92+ZjFEKar5HS6MC776gYslNOKHt75mEBKWKnPeFDpZ6nH5OeF3S6HFT1mUAUZKrzkez05VboaX8myjSuw==}
+  /core-js@3.33.1:
+    resolution: {integrity: sha512-qVSq3s+d4+GsqN0teRCJtM6tdEEXyWxjzbhVrCHmBS5ZTM0FS2MOS0D13dUXAWDUN6a+lHI/N1hF9Ytz6iLl9Q==}
     requiresBuild: true
     dev: false
 
