@@ -22,7 +22,7 @@
 		"db:generate": "prisma generate",
 		"db:seed": "prisma db seed",
 		"i-changed-the-schema": "pnpm run db:push && pnpm run db:generate",
-		"postinstall": "db:push && pnpm run db:generate"
+		"postinstall": "pnpm db:push && pnpm db:generate"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.39.0",
