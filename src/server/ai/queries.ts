@@ -1,5 +1,5 @@
 import { PER_PAGE } from '$const';
-import { Prisma, $Enums } from '@prisma/client';
+import { Prisma } from '@prisma/client';
 
 
 console.log(Prisma);
@@ -63,7 +63,7 @@ type QueryInputs = {
 	take?: number;
 	order?: 'asc' | 'desc';
 	skip?: number;
-	show_type?: $Enums.ShowType;
+	show_type?: 'HASTY' | 'TASTY';
 };
 
 export const SHOW_QUERY = (
