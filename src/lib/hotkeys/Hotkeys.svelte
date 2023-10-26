@@ -1,42 +1,29 @@
 <script lang="ts">
-	import { shortcut, type ShortcutTrigger } from '@svelte-put/shortcut';
+	import HotkeyDialog from './HotkeyDialog.svelte';
+	import { shortcut } from '@svelte-put/shortcut';
+	import type { Hotkeys } from '$lib/hotkeys/types';
+	import { getHotkeyTrigger } from '$lib/hotkeys/utils';
 	import { player } from '$state/player';
 
 	// This is where hotkeys are defined
-	interface Hotkeys {
-		[key: string]: {
-			description: string;
-			trigger: ShortcutTrigger;
-		};
-	}
-
-	const hotkeys = {
-		showHideHotkeys: {
-			description: 'Show or hide the hotkeys',
-			trigger: {
-				key: '?',
-				callback: () => {
-					console.log(`Hotkeys being shown or hidden`);
-				}
-			}
-		},
-		minimize: {
-			description: 'Minimize or expand the player',
-			trigger: {
-				key: 'i',
-				callback: toggleMinimize
-			}
-		},
+	let hotkeys = {
 		playPause: {
-			description: 'Play or pause the audio',
+			description: 'Play / pause the audio',
 			trigger: {
 				key: ' ', // the space key
 				preventDefault: true,
 				callback: handlePlayPause
 			}
 		},
+		minimize: {
+			description: 'Minimize / expand the player',
+			trigger: {
+				key: 'i',
+				callback: toggleMinimize
+			}
+		},
 		mute: {
-			description: 'Mute or unmute the audio',
+			description: 'Mute / unmute the audio',
 			trigger: {
 				key: 'm',
 				callback: handleMute
@@ -72,11 +59,8 @@
 		}
 	} satisfies Hotkeys;
 
-	function getHotkeyTrigger(hotkey: keyof typeof hotkeys) {
-		return hotkeys[hotkey].trigger;
-	}
+	// These functions are called when hotkeys are triggered
 
-	// Callback functions called when hotkeys are triggered
 	function showPlayer() {
 		if ($player.current_show) {
 			if ($player.status == 'HIDDEN') {
@@ -162,12 +146,14 @@
 </script>
 
 <svelte:window
-	use:shortcut={{ trigger: getHotkeyTrigger('showHideHotkeys') }}
-	use:shortcut={{ trigger: getHotkeyTrigger('minimize') }}
-	use:shortcut={{ trigger: getHotkeyTrigger('mute') }}
-	use:shortcut={{ trigger: getHotkeyTrigger('seekBackward') }}
-	use:shortcut={{ trigger: getHotkeyTrigger('seekForward') }}
-	use:shortcut={{ trigger: getHotkeyTrigger('increasePlaybackRate') }}
-	use:shortcut={{ trigger: getHotkeyTrigger('decreasePlaybackRate') }}
-	use:shortcut={{ trigger: getHotkeyTrigger('playPause') }}
+	use:shortcut={{ trigger: getHotkeyTrigger('showHideHotkeys', hotkeys) }}
+	use:shortcut={{ trigger: getHotkeyTrigger('minimize', hotkeys) }}
+	use:shortcut={{ trigger: getHotkeyTrigger('mute', hotkeys) }}
+	use:shortcut={{ trigger: getHotkeyTrigger('seekBackward', hotkeys) }}
+	use:shortcut={{ trigger: getHotkeyTrigger('seekForward', hotkeys) }}
+	use:shortcut={{ trigger: getHotkeyTrigger('increasePlaybackRate', hotkeys) }}
+	use:shortcut={{ trigger: getHotkeyTrigger('decreasePlaybackRate', hotkeys) }}
+	use:shortcut={{ trigger: getHotkeyTrigger('playPause', hotkeys) }}
 />
+
+<HotkeyDialog {hotkeys} />
