@@ -52,5 +52,12 @@ export async function GET({ url }) {
 	const photoBuffer = await getScreenshot(`${url.origin}/og/${show}`);
 	const end = performance.now();
 	console.log(`time to render ${show}:`, (end - start) / 1000);
-	return new Response(photoBuffer, { status: 200 });
+	return new Response(photoBuffer, {
+    status: 200,
+    headers: {
+      'Content-Type': 'image/png',
+      // cache for 1 day, allow stale for 1 more day
+      'Cache-Control': 's-max-age=86400, stale-while-revalidate=86400'
+    }
+  });
 }
