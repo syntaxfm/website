@@ -34,7 +34,7 @@ async function getScreenshot(url) {
 	const options = await getOptions();
 	// We load the browser outside the handler so we can re-use a warm instance
 	if (!browser) {
-    console.log(`launching browser`);
+    console.log(`launching browser` );
 		browser = await puppeteer.launch(options);
 	}
   console.log(`creating new page`);
@@ -62,7 +62,7 @@ export async function GET({ url }) {
     headers: {
       'Content-Type': 'image/png',
       // cache for 1 day, allow stale for 1 more day
-      'Cache-Control': 's-max-age=86400, stale-while-revalidate=86400'
+      'Cache-Control': 'public s-max-age=86400, stale-while-revalidate=86400'
     }
   });
 }
