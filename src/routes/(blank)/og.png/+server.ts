@@ -1,6 +1,6 @@
 import { dev } from '$app/environment';
 import chrome from '@sparticuz/chromium';
-import puppeteer from 'puppeteer-core';
+import puppeteer, { Browser } from 'puppeteer-core';
 const cached = new Map();
 const exePath = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 
@@ -21,8 +21,7 @@ async function getOptions() {
 	};
 }
 
-const options = await getOptions();
-const browser = await puppeteer.launch(options);
+let browser: Browser | null = null;
 
 async function getScreenshot(url) {
 	// first check if this value has been cached
@@ -30,6 +29,12 @@ async function getScreenshot(url) {
 	if (cachedImage) {
 		return cachedImage;
 	}
+	const options = await getOptions();
+	// We load the browser outside the handler so we can re-use a warm instance
+	if (!browser) {
+		browser = await puppeteer.launch(options);
+	}
+
 	const page = await browser.newPage();
 	await page.setViewport({ width: 1200, height: 630, deviceScaleFactor: 2 });
 	await page.goto(url);
