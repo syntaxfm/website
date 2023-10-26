@@ -1,6 +1,5 @@
 import { PER_PAGE } from '$const';
-import { Prisma } from '@prisma/client';
-
+import { Prisma, $Enums } from './node_modules/.prisma/client'
 
 console.log(Prisma);
 export const transcript_with_utterances = Prisma.validator<Prisma.TranscriptDefaultArgs>()({
@@ -63,7 +62,7 @@ type QueryInputs = {
 	take?: number;
 	order?: 'asc' | 'desc';
 	skip?: number;
-	show_type?: 'HASTY' | 'TASTY';
+	show_type?: $Enums.ShowType;
 };
 
 export const SHOW_QUERY = (
