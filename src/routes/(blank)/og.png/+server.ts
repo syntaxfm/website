@@ -46,7 +46,7 @@ async function getScreenshot(url) {
 	await page.setViewport({ width: 1200, height: 630, deviceScaleFactor: 1 });
 	await page.goto(url);
 	await page.waitForSelector('.finish-sizing-text');
-	const buffer = await page.screenshot({ type: 'png' });
+	const buffer = await page.screenshot({ type: 'jpeg' });
 	return buffer;
 }
 
@@ -66,9 +66,9 @@ export async function GET({ url }) {
 	return new Response(photoBuffer, {
     status: 200,
     headers: {
-      'Content-Type': 'image/png',
+      'Content-Type': 'image/jpeg',
       // cache for 1 day, allow stale for 1 more day
-      // 'Cache-Control': 'public s-max-age=86400, stale-while-revalidate=86400'
+      // 'Cache-Control': 'public s-max-age=1, stale-while-revalidate=86400'
     }
   });
 }
