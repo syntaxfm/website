@@ -34,9 +34,10 @@ async function getScreenshot(url) {
 	const options = await getOptions();
 	// We load the browser outside the handler so we can re-use a warm instance
 	if (!browser) {
+    console.log(`launching browser`);
 		browser = await puppeteer.launch(options);
 	}
-
+  console.log(`creating new page`);
 	const page = await browser.newPage();
 	await page.setViewport({ width: 1200, height: 630, deviceScaleFactor: 2 });
 	await page.goto(url);
@@ -44,6 +45,10 @@ async function getScreenshot(url) {
 	const buffer = await page.screenshot({ type: 'png' });
 	return buffer;
 }
+
+export const config = {
+	maxDuration: 30 // vercel timeout 30s
+};
 
 export async function GET({ url }) {
 	const start = performance.now();
