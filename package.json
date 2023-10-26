@@ -6,7 +6,7 @@
 		"dev": "vite dev",
 		"start": "pnpm dev",
 		"copy-files": "zx ./why_do_i_need_this.mjs",
-		"build": "run-s db:push db:generate build:svelte",
+		"build": "run-s db:push db:generate build:svelte copy-files",
 		"build:svelte": "vite build",
 		"preview": "vite preview",
 		"test": "svelte-kit sync && playwright test",
