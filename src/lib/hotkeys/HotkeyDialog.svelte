@@ -94,7 +94,7 @@
 	}
 
 	dialog {
-		--search-height: 50vh;
+		--search-height: 40vh;
 		padding: 0;
 		background-color: var(--bg-1);
 		height: var(--search-height);
@@ -105,7 +105,7 @@
 		max-width: 100%;
 		width: 100%;
 		@media (--above_med) {
-			width: clamp(600px, 90vw, 950px);
+			width: clamp(600px, 40vw, 950px);
 		}
 	}
 
