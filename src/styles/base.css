@@ -5,6 +5,7 @@
 
 	html {
 		box-sizing: border-box;
+		-webkit-text-size-adjust: none;
 	}
 
 	*,
