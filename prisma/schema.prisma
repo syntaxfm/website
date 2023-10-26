@@ -85,6 +85,7 @@ model Guest {
   name_slug String       @unique
   twitter   String?      @unique
   github    String?      @unique
+  of        String?      @default("")
   social    SocialLink[]
   url       String?
   shows     ShowGuest[]

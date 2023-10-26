@@ -5,11 +5,17 @@
 	import slug from 'speakingurl';
 	import { player } from '$state/player';
 	import Squiggle from './Squiggle.svelte';
-	import type { SlimUtterance } from '$server/transcripts/types';
 	import TableOfContents from './TableOfContents.svelte';
+
+	import type { SlimUtterance } from '$server/transcripts/types';
 	import type { AINoteWithFriends, TranscriptWithUtterances } from '$server/ai/queries';
+  import type { Show } from '@prisma/client';
+
 	export let transcript: TranscriptWithUtterances;
 	export let aiShowNote: AINoteWithFriends;
+
+	export let show: Show;
+
 	const slim_transcript: SlimUtterance[] = getSlimUtterances(transcript.utterances, 1)
 		.filter((utterance) => utterance.speakerId !== 99)
 		.filter((utterance) => {
@@ -128,8 +134,10 @@
 							<div>
 								<button
 									class="button-nunya"
-									on:click={() => ($player.currentTime = utterance.start)}
-									>{format_time(utterance.start)}</button
+									on:click={async () => {
+										await player.play_show(show);
+										$player.currentTime = utterance.start;
+									}}>{format_time(utterance.start)}</button
 								>
 								<p class="speaker">
 									{utterance.speaker || `Guest ${utterance.speakerId}`}

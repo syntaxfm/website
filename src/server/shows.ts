@@ -90,7 +90,7 @@ export async function parse_and_save_show_notes(
 		DAYS_OF_WEEK_TYPES[dayOfWeek] || 'SPECIAL';
 	// Save or update the show
 	try {
-		const show = await prisma.show.upsert({
+		await prisma.show.upsert({
 			where: { id },
 			update: {
 				title: data.title,
@@ -120,18 +120,18 @@ export async function parse_and_save_show_notes(
 		// If data guest
 		if (data?.guest && Array.isArray(data?.guest)) {
 			// Iterate through guests and save or update them
-			const guest_promises = data.guest.map((guest) => add_or_update_guest(guest, show.id));
+			const guest_promises = data.guest.map((guest) => add_or_update_guest(guest, id));
 			// Save guests
 			await Promise.all(guest_promises);
 			// Otherwise as long as data.guest exists
 		} else if (data?.guest) {
 			try {
-				await add_or_update_guest(data?.guest, show.id);
+				await add_or_update_guest(data?.guest, id);
 			} catch (err) {
-				console.error('Error Importing Show and Guests:', show.number, data.guest, err);
+				console.error('Error Importing Show and Guests:', id, data.guest, err);
 			}
 		}
-		console.log(`Episode # ${show.number} imported successfully`);
+		console.log(`Episode # ${id} imported successfully`);
 	} catch (err) {
 		console.error('Error Importing Show:', err, data, content);
 		// Throw an error to stop the import process
