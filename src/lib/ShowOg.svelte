@@ -7,48 +7,58 @@
 	import FacePile from './FacePile.svelte';
 
 	export let show: LatestShow;
-
-	export let heading = 'h3';
 	export let show_date = new Date(show.date);
-	function format_date(date: Date) {
-		return format(date, 'MMMM do, yyyy');
+
+	function fitText(node: HTMLHeadElement) {
+		// Find out how many lines this text needs to be.
+		let lineLimit = 1;
+		const text = node.innerText;
+		if (text.length > 20 && text.length < 50) {
+			lineLimit = 2;
+		} else if (text.length >= 50 && text.length < 80) {
+			lineLimit = 3;
+		} else if (text.length >= 80) {
+			lineLimit = 4;
+		}
+		let fontSize = 0.5;
+		let increment = 0.05;
+		function sizeText() {
+			console.log(`sizeText ${fontSize}`);
+			node.style.fontSize = `${fontSize}cqw`;
+			const lineHeight = parseInt(getComputedStyle(node).lineHeight, 10);
+			const height = node.offsetHeight;
+			const lines = height / lineHeight;
+			if (lines <= lineLimit + 1) {
+				fontSize += increment;
+				sizeText();
+			} else if (lines >= lineLimit + 1) {
+				console.log(`DONE`, lines);
+				node.style.fontSize = `${fontSize - increment}cqw`;
+			}
+		}
+
+		sizeText();
 	}
 </script>
 
-<article>
-	<span style:--transition-name="show-date-{show.number}" class="show-number grit"
-		>{show.number}</span
-	>
+<article class="grit" style="--title-length: {show.title.length}">
+	<span class="show-number">{show.number}</span>
 
 	<div class="details">
-		<p class="date" style:--transition-name="show-date-{show.number}">
+		<p class="date">
 			{format_show_type(show.date)}
 			<span aria-hidden="true">×</span>
 			<time datetime={show_date.toDateString()} title={show_date.toDateString()}
-				>{format_date(show_date)}</time
+				>{format(show_date, 'MMMM do, yyyy')}</time
 			>
 		</p>
 
-		<svelte:element
-			this={heading}
-			class="h1 show-title"
-			style:--transition-name="show-title-{show.number}"
-		>
+		<h1 use:fitText class="show-title">
 			{show.title}
-		</svelte:element>
-
-		{#if show.aiShowNote?.topics}
-			<Badges>
-				{#each show.aiShowNote.topics
-					.filter((topic) => topic.name.length < 15)
-					.slice(0, 4) as topic}
-					<Badge>#{topic.name}</Badge>
-				{/each}
-			</Badges>
-		{/if}
+		</h1>
 
 		<FacePile
-			size="150px"
+			size="80px"
 			faces={[
 				{ name: 'Wes Bos', github: 'wesbos' },
 				{ name: 'Scott Tolinski', github: 'stolinski' },
@@ -71,18 +81,25 @@
 					fill="var(--primary, #fabf46)"
 				/>
 			</svg>
-			<span class="sentry">by Sentry</span>
-			<span class="syntax-url">syntax.fm</span>
+
+			<svg class="sentry" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 44"
+				><path
+					d="M29,2.26a4.67,4.67,0,0,0-8,0L14.42,13.53A32.21,32.21,0,0,1,32.17,40.19H27.55A27.68,27.68,0,0,0,12.09,17.47L6,28a15.92,15.92,0,0,1,9.23,12.17H4.62A.76.76,0,0,1,4,39.06l2.94-5a10.74,10.74,0,0,0-3.36-1.9l-2.91,5a4.54,4.54,0,0,0,1.69,6.24A4.66,4.66,0,0,0,4.62,44H19.15a19.4,19.4,0,0,0-8-17.31l2.31-4A23.87,23.87,0,0,1,23.76,44H36.07a35.88,35.88,0,0,0-16.41-31.8l4.67-8a.77.77,0,0,1,1.05-.27c.53.29,20.29,34.77,20.66,35.17a.76.76,0,0,1-.68,1.13H40.6q.09,1.91,0,3.81h4.78A4.59,4.59,0,0,0,50,39.43a4.49,4.49,0,0,0-.62-2.28Z M124.32,28.28,109.56,9.22h-3.68V34.77h3.73V15.19l15.18,19.58h3.26V9.22h-3.73ZM87.15,23.54h13.23V20.22H87.14V12.53h14.93V9.21H83.34V34.77h18.92V31.45H87.14ZM71.59,20.3h0C66.44,19.06,65,18.08,65,15.7c0-2.14,1.89-3.59,4.71-3.59a12.06,12.06,0,0,1,7.07,2.55l2-2.83a14.1,14.1,0,0,0-9-3c-5.06,0-8.59,3-8.59,7.27,0,4.6,3,6.19,8.46,7.52C74.51,24.74,76,25.78,76,28.11s-2,3.77-5.09,3.77a12.34,12.34,0,0,1-8.3-3.26l-2.25,2.69a15.94,15.94,0,0,0,10.42,3.85c5.48,0,9-2.95,9-7.51C79.75,23.79,77.47,21.72,71.59,20.3ZM195.7,9.22l-7.69,12-7.64-12h-4.46L186,24.67V34.78h3.84V24.55L200,9.22Zm-64.63,3.46h8.37v22.1h3.84V12.68h8.37V9.22H131.08ZM169.41,24.8c3.86-1.07,6-3.77,6-7.63,0-4.91-3.59-8-9.38-8H154.67V34.76h3.8V25.58h6.45l6.48,9.2h4.44l-7-9.82Zm-10.95-2.5V12.6h7.17c3.74,0,5.88,1.77,5.88,4.84s-2.29,4.86-5.84,4.86Z"
+					fill="#ffffff"
+				></path></svg
+			>
 		</div>
 	</div>
 </article>
 
 <style lang="postcss">
 	article {
+		border: 10px solid var(--yellow);
 		container: show-card / inline-size;
 		display: grid;
 		padding: 20px;
-		background-image: var(--bgGritDark);
+		background-image: var(--bgGritDark),
+			radial-gradient(farthest-side circle at 50% 0%, #3a006b66 4% 4%, #000 100%);
 		background-color: var(--bg);
 		color: var(--fg);
 		position: relative;
@@ -99,22 +116,24 @@
 		}
 	}
 
-	.h1 {
-		view-transition-name: var(--transition-name);
-		margin-bottom: 2rem;
+	h1 {
+		margin: 0;
 		font-weight: 600;
-		line-height: 1.2;
+		line-height: 1;
+		font-size: 10cqw;
+		width: 90%;
+		font-style: italic;
+		transform: rotate(-1deg);
 	}
 
 	.date {
-		font-size: var(--font-size-xl);
+		font-size: var(--font-size-md);
 		margin: 0;
-		opacity: 0.6;
-		view-transition-name: var(--transition-name);
 	}
 
 	.sentry {
-		font-size: var(--font-size-md);
+		font-size: var(--font-size-sm);
+		width: 100%;
 	}
 
 	.show-number {
@@ -122,10 +141,9 @@
 		right: 0;
 		top: 0;
 		transform: translate(6.9%, -22%);
-		--max-font-size: 15rem;
-		font-size: clamp(1.5rem, 45cqw, var(--max-font-size));
+		font-size: 20cqw;
 		font-weight: 900;
-		color: var(--primary);
+		color: var(--yellow);
 		line-height: 1;
 		z-index: -1;
 	}
@@ -138,14 +156,17 @@
 
 	.brand-footer {
 		position: absolute;
-		bottom: 0;
-		right: 20px;
-		gap: 20px;
+		bottom: 10px;
+		right: 10px;
+		gap: 10px;
 		display: flex;
 		flex-direction: column;
 		align-items: flex-end;
+		width: 100px;
 		svg {
 			display: block;
+			width: 100%;
+			height: auto;
 		}
 	}
 	.syntax-url {
