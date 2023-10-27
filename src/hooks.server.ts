@@ -21,13 +21,8 @@ Sentry.init({
 	release: `syntax@${__VER__}`,
 	dsn: 'https://ea134756b8f244ff99638864ce038567@o4505358925561856.ingest.sentry.io/4505358945419264',
 	tracesSampleRate: 1,
-	profilesSampleRate: 1.0, // Profiling sample rate is relative to tracesSampleRate
 	environment: dev ? 'development' : 'production',
-	integrations: [
-		// Add profiling integration to list of integrations
-		new ProfilingIntegration(),
-		new Sentry.Integrations.Prisma({ client: prisma_client })
-	]
+	integrations: [new Sentry.Integrations.Prisma({ client: prisma_client })]
 });
 
 // * END START UP
