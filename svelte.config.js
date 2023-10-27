@@ -52,4 +52,5 @@ const config = {
 	}
 };
 
+// Test
 export default config;
