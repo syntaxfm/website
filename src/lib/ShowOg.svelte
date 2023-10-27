@@ -54,6 +54,8 @@
 			<time datetime={show_date.toDateString()} title={show_date.toDateString()}
 				>{format(show_date, 'MMMM do, yyyy')}</time
 			>
+			<br />
+			Debug: Generated on {format(new Date(), 'MMM do H:MMa')}
 		</p>
 
 		<h1 use:fitText class="show-title">
@@ -109,6 +111,7 @@
 		overflow: hidden;
 		align-items: start;
 		height: 100%;
+		border-radius: 30px;
 
 		.details {
 			gap: 1rem;
