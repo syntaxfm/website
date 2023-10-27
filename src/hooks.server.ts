@@ -11,22 +11,24 @@ import { find_user_by_access_token } from './server/auth/users';
 import { dev } from '$app/environment';
 import get_show_path from '$utilities/slug';
 
+// import { ADMIN_LOGIN } from '$env/static/private';
+
+// * START UP
+// RUNS ONCE ON FILE LOAD
+export const prisma_client = new PrismaClient();
+
 Sentry.init({
+	release: `syntax@${__VERSION__}`,
 	dsn: 'https://ea134756b8f244ff99638864ce038567@o4505358925561856.ingest.sentry.io/4505358945419264',
 	tracesSampleRate: 1,
 	profilesSampleRate: 1.0, // Profiling sample rate is relative to tracesSampleRate
 	environment: dev ? 'development' : 'production',
 	integrations: [
 		// Add profiling integration to list of integrations
-		new ProfilingIntegration()
+		new ProfilingIntegration(),
+		new Sentry.Integrations.Prisma({ client: prisma_client })
 	]
 });
-
-// import { ADMIN_LOGIN } from '$env/static/private';
-
-// * START UP
-// RUNS ONCE ON FILE LOAD
-export const prisma_client = new PrismaClient();
 
 // * END START UP
 
