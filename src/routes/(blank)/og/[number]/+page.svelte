@@ -13,6 +13,6 @@
 	.og-container {
 		aspect-ratio: 1200 / 630;
 		overflow: hidden;
-		outline: 1px solid black;
+		box-shadow: inset 0 0 0 10px var(--yellow);
 	}
 </style>
