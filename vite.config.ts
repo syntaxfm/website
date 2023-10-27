@@ -29,5 +29,8 @@ export default defineConfig({
 		alias: {
 			'.prisma/client/index-browser': './node_modules/@prisma/client/index-browser.js'
 		}
+	},
+	define: {
+		__VERSION__: JSON.stringify(process.env.npm_package_version)
 	}
 });
