@@ -2,6 +2,7 @@
 // https://kit.svelte.dev/docs/hooks
 
 import * as Sentry from '@sentry/sveltekit';
+import { ProfilingIntegration } from '@sentry/profiling-node';
 import { sequence } from '@sveltejs/kit/hooks';
 import { form_data } from 'sk-form-data';
 import { PrismaClient } from '@prisma/client';
@@ -13,7 +14,12 @@ import get_show_path from '$utilities/slug';
 Sentry.init({
 	dsn: 'https://ea134756b8f244ff99638864ce038567@o4505358925561856.ingest.sentry.io/4505358945419264',
 	tracesSampleRate: 1,
-	environment: dev ? 'development' : 'production'
+	profilesSampleRate: 1.0, // Profiling sample rate is relative to tracesSampleRate
+	environment: dev ? 'development' : 'production',
+	integrations: [
+		// Add profiling integration to list of integrations
+		new ProfilingIntegration()
+	]
 });
 
 // import { ADMIN_LOGIN } from '$env/static/private';
