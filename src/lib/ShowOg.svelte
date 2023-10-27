@@ -55,7 +55,7 @@
 				>{format(show_date, 'MMMM do, yyyy')}</time
 			>
 			<br />
-			Debug: Generated on {format(new Date(), 'MMM do H:MMa')}
+			Debug: Generated on {format(new Date(), 'MMM do H:MM:ssa')}
 		</p>
 
 		<h1 use:fitText class="show-title">
