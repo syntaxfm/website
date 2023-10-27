@@ -21,16 +21,17 @@
 		"db:push": "prisma db push",
 		"db:generate": "prisma generate",
 		"db:seed": "prisma db seed",
-		"i-changed-the-schema": "pnpm run db:push && pnpm run db:generate"
+		"i-changed-the-schema": "pnpm run db:push && pnpm run db:generate",
+		"postinstall": "pnpm db:push && pnpm db:generate"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.39.0",
 		"@resvg/resvg-js": "^2.4.1",
 		"@sveltejs/adapter-auto": "^2.1.0",
-		"@sveltejs/kit": "^1.27.0",
+		"@sveltejs/kit": "^1.27.1",
 		"@types/core-js": "^2.5.7",
 		"@types/js-cookie": "^3.0.5",
-		"@types/node": "^20.8.8",
+		"@types/node": "^20.8.9",
 		"@types/speakingurl": "^13.0.5",
 		"@typescript-eslint/eslint-plugin": "^6.9.0",
 		"@typescript-eslint/parser": "^6.9.0",
