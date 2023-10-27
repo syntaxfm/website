@@ -2,7 +2,6 @@
 // https://kit.svelte.dev/docs/hooks
 
 import * as Sentry from '@sentry/sveltekit';
-import { ProfilingIntegration } from '@sentry/profiling-node';
 import { sequence } from '@sveltejs/kit/hooks';
 import { form_data } from 'sk-form-data';
 import { PrismaClient } from '@prisma/client';
