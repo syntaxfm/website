@@ -7,7 +7,22 @@ export const load = async function ({ locals, params }) {
 			include: {
 				shows: {
 					select: {
-						Show: true
+						Show: {
+              include: {
+                guests:{
+                  select: {
+                    Guest: {
+                      select: {
+                        name: true,
+                        name_slug: true,
+                        id: true,
+                        github: true,
+                      }
+                    }
+                  }
+                }
+              }
+            }
 					}
 				}
 			}
