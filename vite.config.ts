@@ -31,6 +31,6 @@ export default defineConfig({
 		}
 	},
 	define: {
-		__VERSION__: JSON.stringify(process.env.npm_package_version)
+		__VER__: JSON.stringify(process.env.npm_package_version)
 	}
 });

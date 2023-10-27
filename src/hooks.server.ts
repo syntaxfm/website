@@ -18,7 +18,7 @@ import get_show_path from '$utilities/slug';
 export const prisma_client = new PrismaClient();
 
 Sentry.init({
-	release: `syntax@${__VERSION__}`,
+	release: `syntax@${__VER__}`,
 	dsn: 'https://ea134756b8f244ff99638864ce038567@o4505358925561856.ingest.sentry.io/4505358945419264',
 	tracesSampleRate: 1,
 	profilesSampleRate: 1.0, // Profiling sample rate is relative to tracesSampleRate
