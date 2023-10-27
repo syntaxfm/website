@@ -54,8 +54,6 @@
 			<time datetime={show_date.toDateString()} title={show_date.toDateString()}
 				>{format(show_date, 'MMMM do, yyyy')}</time
 			>
-			<br />
-			Debug: Generated on {format(new Date(), 'MMM do H:MM:ssa')}
 		</p>
 
 		<h1 use:fitText class="show-title">
@@ -100,6 +98,8 @@
 <style lang="postcss">
 	article {
 		border: 10px solid var(--yellow);
+		border-radius: 30px;
+		box-shadow: 0 0 0 10px red;
 		container: show-card / inline-size;
 		display: grid;
 		padding: 20px;
@@ -108,10 +108,8 @@
 		background-color: var(--bg);
 		color: var(--fg);
 		position: relative;
-		overflow: hidden;
 		align-items: start;
 		height: 100%;
-		border-radius: 30px;
 
 		.details {
 			gap: 1rem;

@@ -59,8 +59,8 @@ export async function GET({ url }) {
     status: 200,
     headers: {
       'Content-Type': 'image/jpeg',
-      // cache for 1 second, allow stale for 1 more day
-      'Cache-Control': 'public s-max-age=1, stale-while-revalidate=86400'
+      // cache for 10 minutes, allow stale to be served for up for another 10 mins
+      'Cache-Control': 'public s-max-age=600, stale-while-revalidate=600'
     }
   });
 }
