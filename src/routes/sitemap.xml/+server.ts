@@ -81,6 +81,18 @@ export const GET: RequestHandler = async function GET({ setHeaders, locals }) {
   `
 			)
 			.join('')}
+			
+		${shows
+			?.map(
+				(show) => `
+  <url>
+    <loc>${site}/show/${show?.number}/${show?.slug}/transcript</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  `
+			)
+			.join('')}
 		${guests
 			?.map(
 				(guest) => `
