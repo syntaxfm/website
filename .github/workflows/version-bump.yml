@@ -1,0 +1,40 @@
+name: Bump package.json version
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
+
+jobs:
+  bump_version:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Bump version in package.json
+        run: |
+          # Extract current version from package.json
+          current_version=$(node -p "require('./package.json').version")
+
+          # Split the version into major, minor, and patch
+          IFS='.' read -ra version_parts <<< "$current_version"
+
+          # Increment the patch version
+          new_patch_version=$(( ${version_parts[2]} + 1 ))
+
+          # Construct the new version string
+          new_version="${version_parts[0]}.${version_parts[1]}.$new_patch_version"
+
+          # Update the version in package.json
+          npm version --no-git-tag-version $new_version
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -am "Bump package.json version [skip ci]"
+          git push
