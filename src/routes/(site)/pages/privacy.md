@@ -234,8 +234,8 @@ We use cookies and similar tracking technology (collectively,
 including to power and improve our Service, understand and save your
 preferences, and to compile aggregate data about Service interaction.
 This includes Cookies that we use to power our Store with Shopify, our
-e-commerce platform provider ("**Shopify Cookies**". For specific
-information about Shopify Cookies, see [Shopify's Cookie Policy](https://www.shopify.com/legal/cookies)).
+e-commerce platform provider ("**Shopify Cookies**"). For specific
+information about Shopify Cookies, see [Shopify's Cookie Policy](https://www.shopify.com/legal/cookies).
 
 Cookies may be associated with de-identified data linked to or derived
 from data you voluntarily have submitted to us (e.g., your email
@@ -493,7 +493,7 @@ displayed at the top of this policy.
 #### 13.  How to contact us  <a name="contact-us"></a>
 
 If you have any questions or concerns about our use of your personal
-information, please contact us by sending us an email at .
+information, please contact us by sending us an email at [syntax-privacy@sentry.io](mailto:syntax-privacy@sentry.io).
 
 The data controller of your personal information is Functional Software,
 Inc. Our address is Functional Software, Inc., 45 Fremont Street, 8th
