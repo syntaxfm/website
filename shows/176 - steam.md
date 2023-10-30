@@ -3,6 +3,12 @@ number: 176
 title: Building Steam Games with React
 date: 1567602000219
 url: https://traffic.libsyn.com/syntax/Syntax176.mp3
+guest:
+  name: Drew Conley
+  github: drewconley
+  twitter: drewconley13
+  url: https://www.coopmode.dev
+  social: https://www.linkedin.com/in/drew-conley-a7865a29/
 ---
 
 In this episode, Scott and Wes talk with Drew Conley about building games with Javascript. 

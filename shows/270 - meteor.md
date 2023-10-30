@@ -3,6 +3,12 @@ number: 270
 title: Meteor's 2nd Life
 date: 1596027600426
 url: https://traffic.libsyn.com/syntax/Syntax270.mp3
+guest:
+  name: Filipe Névola
+  github: filipenevola
+  twitter: filipenevola
+  url: https://www.filipenevola.com
+  social: https://medium.com/@filipenevola
 ---
 
 In this episode of Syntax, Scott and Wes talk with Filipe Névola about Meteor and the exciting things happening in the Meteor world!

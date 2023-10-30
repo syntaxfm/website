@@ -14,7 +14,7 @@
 	import { theme } from '$state/theme';
 	import wait from 'waait';
 	export let data;
-	$: ({ show, meta } = data);
+	$: ({ show } = data);
 
 	async function handleClick(e: Event) {
 		const { target } = e;
@@ -45,8 +45,6 @@
 	}
 </script>
 
-<Meta {meta} />
-
 <header>
 	<span
 		title="Show #{show.number}"
@@ -76,28 +74,29 @@
 </div>
 
 <div class="show-actions-wrap">
-	<div class="show-actions zone">
+	<div class="show-actions zone" style="--bg: var(--black); --fg: var(--white);">
 		<div class="show-actions-flex">
 			<button on:click={() => player.play_show(show)} data-testid="play-show">
-				<Icon name="play{$player.current_show?.number === show.number ? 'ing' : ''}" />
+				<Icon title="" name="play{$player.current_show?.number === show.number ? 'ing' : ''}" />
 				Play{$player.current_show?.number === show.number ? 'ing' : ''} Episode {show.number}
 			</button>
 			<span>or</span>
 			<ListenLinks {show} />
 		</div>
 		<div>
-			<a class="icon" title="Download Episode" download href={show.url}>
+			<a class="icon" title="Download Episode" aria-label="Download" download href={show.url}>
 				<Icon name="download" />
 			</a>
 			<a
 				title="Edit Show Notes"
+				aria-label="Edit Show Notes"
 				class="icon"
-				href={'https://github.com/syntaxfm/website/tree/main/shows' + show.md_file}
+				href={'https://github.com/syntaxfm/website/tree/main' + show.md_file}
 			>
 				<Icon name="edit" /></a
 			>
 		</div>
-		<div use:variableColorSvg class="waves grit"></div>
+		<div use:variableColorSvg class="waves grit" />
 	</div>
 </div>
 
@@ -122,7 +121,7 @@
 <section class="layout full" on:click={handleClick}>
 	{#if $page.params.tab === 'transcript'}
 		{#if show?.transcript}
-			<Transcript aiShowNote={show.aiShowNote} transcript={show.transcript} />
+			<Transcript {show} aiShowNote={show.aiShowNote} transcript={show.transcript} />
 		{:else}
 			<p>Transcript not available yet! We have the AI robots on the job, check back soon!</p>
 		{/if}
@@ -187,6 +186,9 @@
 			justify-content: space-between;
 			align-items: center;
 			align-content: center;
+			a {
+				color: var(--fg);
+			}
 			@media (--below_med) {
 				a {
 					width: 100%;

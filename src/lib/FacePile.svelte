@@ -9,7 +9,7 @@
 
 <div class="pile" style:--face-size={size}>
 	{#each faces as face}
-		<img src="https://github.com/{face.github}.png" alt={face.name} />
+		<img src="https://github.com/{face.github || 'null'}.png" alt={face.name} />
 	{/each}
 </div>
 

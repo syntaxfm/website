@@ -1,7 +1,7 @@
 generator client {
   provider = "prisma-client-js"
   seed     = "prisma/seed.ts"
-  output   = "../node_modules/.prisma/client"
+  // output   = "../node_modules/.prisma/client"
 }
 
 datasource db {
@@ -85,6 +85,7 @@ model Guest {
   name_slug String       @unique
   twitter   String?      @unique
   github    String?      @unique
+  of        String?      @default("")
   social    SocialLink[]
   url       String?
   shows     ShowGuest[]

@@ -3,6 +3,11 @@ number: 256
 title: WebRTC and Peer-to-Peer Video Calling with Ian Ramzy
 date: 1591794000494
 url: https://traffic.libsyn.com/syntax/Syntax256.mp3
+guest:
+  name: Ian Ramzy
+  github: ianramzy
+  url: https://ianramzy.com
+  social: https://www.linkedin.com/in/ianramzy
 ---
 
 In this episode of Syntax, Scott and Wes talk with Ian Ramzy about ZipCall.io — how he built it, why, and some of the surprising choices he made along the way.

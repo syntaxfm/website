@@ -1,4 +1,6 @@
-import social_banner from '$assets/syntax-banner.png';
+import { PUBLIC_URL } from '$env/static/public';
+
+const social_banner = `https://${PUBLIC_URL}/syntax-banner.png`;
 
 export const load = async ({ locals }) => {
 	return {

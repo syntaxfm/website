@@ -3,6 +3,11 @@ number: 160
 title: GraphQL and WordPress
 date: 1562763600835
 url: https://traffic.libsyn.com/syntax/Syntax160.mp3
+guest:
+  name: Jason Bahl
+  github: jasonbahl
+  twitter: jasonbahl
+  url: https://www.wpgraphql.com
 ---
 
 In this episode of Syntax, Scott and Wes talk with Jason Bahl (author of WPGraphQL) about GraphQL, headless WordPress, frameworks in WordPress, React in WordPress, and more!

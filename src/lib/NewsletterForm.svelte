@@ -5,11 +5,11 @@
 	$: action = `https://app.convertkit.com/forms/${FORM_ID}/subscriptions`;
 
 	function submit() {
-		document.cookie = 'newsletter=hidden';
+		document.cookie = 'newsletter_visible=hidden';
 	}
 
 	$: if (typeof document !== 'undefined') {
-		is_hidden = document.cookie.includes('newsletter');
+		is_hidden = document.cookie.includes('newsletter_visible');
 	}
 </script>
 
@@ -19,6 +19,7 @@
 		on:submit={submit}
 		method="post"
 		data-sv-form={FORM_ID}
+		data-uid="05d939b74d"
 		class="center readable"
 		target="_blank"
 		aria-labelledby="newsletter-form-label"
@@ -30,7 +31,7 @@
 		</p>
 
 		<div class="newsletter">
-			<Input required type="email" label="Email" />
+			<Input required type="email" label="Email" id="email_address" />
 			<button type="submit">Subscribe</button>
 		</div>
 

@@ -5,6 +5,7 @@
 
 	html {
 		box-sizing: border-box;
+		-webkit-text-size-adjust: none;
 	}
 
 	*,
@@ -216,7 +217,7 @@
 
 	[popover] {
 		position: fixed;
-		z-index: 2147483647;
+		z-index: 10;
 		inset: 0;
 		padding: 0.25em;
 		width: fit-content;

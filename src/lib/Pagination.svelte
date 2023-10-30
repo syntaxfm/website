@@ -7,7 +7,7 @@
 	export let count: number;
 	export let perPage: number = PER_PAGE;
 	export let page: number = 1;
-	let totalPages = Math.ceil(count / perPage);
+	$: totalPages = Math.ceil(count / perPage);
 	$: generate_search_params = (id: string, value: string | number) => {
 		const searchParams = new URLSearchParams($pageStore.url.search);
 		if (!value) {

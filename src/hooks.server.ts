@@ -5,21 +5,24 @@ import * as Sentry from '@sentry/sveltekit';
 import { sequence } from '@sveltejs/kit/hooks';
 import { form_data } from 'sk-form-data';
 import { PrismaClient } from '@prisma/client';
-import type { Handle } from '@sveltejs/kit';
+import { redirect, type Handle } from '@sveltejs/kit';
 import { find_user_by_access_token } from './server/auth/users';
 import { dev } from '$app/environment';
-
-Sentry.init({
-	dsn: 'https://ea134756b8f244ff99638864ce038567@o4505358925561856.ingest.sentry.io/4505358945419264',
-	tracesSampleRate: 1,
-	environment: dev ? 'development' : 'production'
-});
+import get_show_path from '$utilities/slug';
 
 // import { ADMIN_LOGIN } from '$env/static/private';
 
 // * START UP
 // RUNS ONCE ON FILE LOAD
 export const prisma_client = new PrismaClient();
+
+Sentry.init({
+	release: `syntax@${__VER__}`,
+	dsn: 'https://ea134756b8f244ff99638864ce038567@o4505358925561856.ingest.sentry.io/4505358945419264',
+	tracesSampleRate: 1,
+	environment: dev ? 'development' : 'production',
+	integrations: [new Sentry.Integrations.Prisma({ client: prisma_client })]
+});
 
 // * END START UP
 
@@ -56,8 +59,27 @@ export const prisma: Handle = async function ({ event, resolve }) {
 	return response;
 };
 
+export const redirects: Handle = async function ({ event, resolve }) {
+	const { pathname } = event.url;
+	const path_parts = pathname.split('/');
+	// Not something we care about
+	if (path_parts.length > 2) return resolve(event);
+
+	const maybe_show_number = parseInt(path_parts.at(1) || '');
+	// Not a number, so not a show, pass it down the middleware chain
+
+	if (isNaN(maybe_show_number)) return resolve(event);
+	// Is there a show with this number?
+	const show = await prisma_client.show.findUnique({ where: { number: maybe_show_number } });
+	// No show found, pass it down the middleware chain - will probably 404, but thats sveltekit's job to figure that out, not ours!
+	if (!show) return resolve(event);
+	const url = get_show_path(show);
+	// Redirect to the page for this show
+	throw redirect(302, url);
+};
+
 // * END HOOKS
 
 // Wraps requests in this sequence of hooks
-export const handle: Handle = sequence(sequence(Sentry.sentryHandle(), prisma, auth, form_data));
+export const handle: Handle = sequence(Sentry.sentryHandle(), prisma, auth, form_data, redirects);
 export const handleError = Sentry.handleErrorWithSentry();

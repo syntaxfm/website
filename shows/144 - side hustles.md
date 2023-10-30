@@ -3,6 +3,12 @@ number: 144
 title: Side Hustles with Courtland Allen from Indie Hackers
 date: 1557925200608
 url: https://traffic.libsyn.com/syntax/Syntax144.mp3
+guest:
+  name: Courtland Allen
+  github: courthead
+  of: Indie Hackers
+  twitter: csallen
+  url: https://www.indiehackers.com/csallen
 ---
 
 In this episode of Syntax, Scott and Wes talk all about side hustles with special guest Courtland Allen, from Indie Hackers! They talk about the story behind Indie Hackers, how to start your own side hustle, where to find ideas, listener questions, and more.

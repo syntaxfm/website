@@ -23,7 +23,7 @@ export const CONDENSE_THRESHOLD = 100;
 const configuration = new Configuration({
 	apiKey: process.env.OPENAI_API_KEY
 });
-import { AINoteSelect, AIPodcastSummaryResponse } from './queries';
+import type { AINoteSelect, AIPodcastSummaryResponse } from './queries';
 import { anthropic_completion, convert_openai_to_anthropic } from './anthropic';
 export const openai = new OpenAIApi(configuration);
 

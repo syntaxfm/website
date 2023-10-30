@@ -32,12 +32,7 @@
 	}
 </script>
 
-<article
-	class={display}
-	style={display === 'highlight'
-		? `background-image:linear-gradient(to top, #00000000, var(--bg)), url(${white_grit})`
-		: '--bg=var(--bg-sheet)'}
->
+<article class={display}>
 	<a href={get_show_path(show)}>
 		{#if display === 'list'}
 			<button
@@ -59,8 +54,6 @@
 				<time datetime={show_date.toDateString()} title={show_date.toDateString()}
 					>{format_date(show_date)}</time
 				>
-				<span aria-hidden="true">×</span>
-				<span title="Show #{show.number}">{show.number}</span>
 			</p>
 
 			<svelte:element
@@ -88,7 +81,7 @@
 					{#each show.aiShowNote.topics
 						.filter((topic) => topic.name.length < 15)
 						.slice(0, 4) as topic}
-						<Badge>#{topic.name}</Badge>
+						<Badge>{topic.name.startsWith('#') ? '' : '#'}{topic.name}</Badge>
 					{/each}
 				</Badges>
 			{/if}
@@ -120,10 +113,12 @@
 
 <style lang="postcss">
 	article {
+		--bg: var(--bg-sheet);
 		container: show-card / inline-size;
 		display: grid;
 		padding: 20px;
 		background-color: var(--bg);
+		background-image: var(--bgGrit);
 		position: relative;
 		overflow: hidden;
 		align-items: start;
@@ -154,9 +149,12 @@
 		&.highlight {
 			--bg: var(--bg-root);
 			--fg: var(--fg-root);
+			/* background-image: linear-gradient(to top, #00000000, var(--bg)), url('$assets/whitegrit.png');
+       */
+
 			border-radius: var(--brad);
 			grid-column: 1 / -1;
-			background-size: 169px;
+			background-size: 269px;
 			background-repeat: repeat;
 			background-position: top center;
 			border: solid var(--border-size) var(--black-8);

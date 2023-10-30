@@ -22,7 +22,7 @@
 				<a on:click={toggle} href="/shows">Shows</a>
 				<a on:click={toggle} href="/about">About</a>
 				<a on:click={toggle} href="/potluck">Potluck Qs</a>
-				<!-- <a rel="noopener" target="_blank" href="https://swag.sentry.io">Swag</a> -->
+				<a on:click={toggle} target="_blank" href="https://sentry.shop">Swag</a>
 			</nav>
 		</div>
 	{/if}
@@ -34,6 +34,7 @@
 			display: none;
 		}
 	}
+
 	nav a {
 		text-decoration: none;
 		color: var(--fg);

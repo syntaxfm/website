@@ -3,6 +3,15 @@ number: 142
 title: Travis Neilson on Skills Gap, Design, Focus and Working at Google
 date: 1557320400042
 url: https://traffic.libsyn.com/syntax/Syntax142.mp3
+guest:
+  name: Travis Neilson
+  of: Google
+  github: travisneilson
+  twitter: travisneilson
+  url: http://travisneilson.com/
+  social:
+  - https://www.youtube.com/travisneilson/
+  - https://www.instagram.com/travisneilson/
 ---
 
 In this episode of Syntax, Scott and Wes talk to Travis Neilson about his career at Google, the challenges he faced, how to choose projects tips for devs wanting to get better at design, and more.

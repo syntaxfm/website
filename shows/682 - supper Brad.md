@@ -3,6 +3,17 @@ number: 682
 title: Design Systems with Brad Frost
 date: 1697803200320
 url: https://traffic.libsyn.com/syntax/Syntax_-_682.mp3
+guest:
+  name: Brad Frost
+  of: Big Medium
+  github: bradfrost
+  twitter: brad_frost
+  url: https://bradfrost.com/
+  social: 
+  - https://mastodon.social/@brad_frost
+  - https://www.linkedin.com/in/bradfrost/
+  - https://www.youtube.com/@brad_frost
+  - https://codepen.io/bradfrost/
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Brad Frost about how to implement design systems in small and large scale projects, best practices around naming things, keeping everything in sync across different codebases, and how design systems help projects.

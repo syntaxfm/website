@@ -1,5 +1,7 @@
 import type { Show } from '@prisma/client';
 import { writable } from 'svelte/store';
+import coverArt from '$assets/coverart-128.png';
+import coverArt512 from '$assets/coverart-512.png';
 
 export interface Timestamp {
 	label: string;
@@ -8,6 +10,30 @@ export interface Timestamp {
 	percentage: number;
 	startingPosition: number;
 	href: string;
+}
+
+function loadMediaSession(show: Show) {
+	if (!('mediaSession' in navigator)) {
+		console.log(`The Media Session API is not supported on this platform.`);
+		return;
+	}
+	console.log(`The Media Session API is supported on this platform.`);
+	navigator.mediaSession.metadata = new MediaMetadata({
+		title: show.title,
+		artist: 'Syntax Podcast',
+		artwork: [
+			{
+				src: coverArt,
+				sizes: '128x128',
+				type: 'image/png'
+			},
+			{
+				src: coverArt512,
+				sizes: '512x512',
+				type: 'image/png'
+			}
+		]
+	});
 }
 
 const new_player_state = () => {
@@ -27,6 +53,7 @@ const new_player_state = () => {
 
 	async function play_show(show: Show) {
 		return new Promise((resolve) => {
+			loadMediaSession(show);
 			update((state) => {
 				state.status = 'ACTIVE';
 				state.current_show = show;

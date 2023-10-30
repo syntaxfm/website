@@ -3,6 +3,16 @@ number: 150
 title: Gatsby Themes
 date: 1559739600837
 url: https://traffic.libsyn.com/syntax/Syntax150.mp3
+guest:
+  name: Jason Lengstorf
+  github: jlengstorf
+  twitter: jlengstorf
+  url: https://jason.energy/
+  social:
+    - https://youtube.com/@learnwithjason
+    - https://www.twitch.tv/jlengstorf
+    - https://hachyderm.io/@jlengstorf
+    - https://www.linkedin.com/in/jlengstorf/
 ---
 
 In this episode of Syntax, Scott and Wes talk with Jason Lengstorf from the Gatsby team about Gatsby themes, and the future of Gatsby in general.
