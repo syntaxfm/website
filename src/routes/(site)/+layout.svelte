@@ -34,7 +34,7 @@
 	});
 </script>
 
-<!-- <Meta /> -->
+<!-- <Meta /> double -->
 
 <PageLoadingIndicator />
 
