@@ -35,7 +35,7 @@ async function getScreenshot(url) {
 
   console.log(`creating new page`);
 	const page = await browser.newPage();
-	await page.setViewport({ width: 1200, height: 630, deviceScaleFactor: 2 });
+	await page.setViewport({ width: 1200, height: 630, deviceScaleFactor: 1 });
 	await page.goto(url);
 	await page.waitForSelector('.finish-sizing-text');
 	const buffer = await page.screenshot({ type: 'jpeg' });
