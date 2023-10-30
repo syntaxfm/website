@@ -14,7 +14,7 @@
 	import { theme } from '$state/theme';
 	import wait from 'waait';
 	export let data;
-	$: ({ show, meta } = data);
+	$: ({ show } = data);
 
 	async function handleClick(e: Event) {
 		const { target } = e;
@@ -44,8 +44,6 @@
 		});
 	}
 </script>
-
-<Meta {meta} />
 
 <header>
 	<span
@@ -98,7 +96,7 @@
 				<Icon name="edit" /></a
 			>
 		</div>
-		<div use:variableColorSvg class="waves grit"></div>
+		<div use:variableColorSvg class="waves grit" />
 	</div>
 </div>
 

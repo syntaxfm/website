@@ -46,10 +46,12 @@ export const config = {
 	maxDuration: 30 // vercel timeout 30s
 };
 
-export async function GET({ url }) {
+export async function GET({ url, params }) {
 	const start = performance.now();
 	const qs = new URLSearchParams(url.search);
-	const show = qs.get('show');
+	// const show = qs.get('show');
+  const show = params.show_number;
+
   console.time(`Taking screenshot of ${show}`);
 	const photoBuffer = await getScreenshot(`${url.origin}/og/${show}`);
   console.timeEnd(`Taking screenshot of ${show}`);

@@ -13,9 +13,8 @@
 	<meta property="og:image" content={$page.data.meta.image} />
 	<meta property="og:image:secure_url" content={$page.data.meta.image} />
 	<!-- Twitter -->
+	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:title" content={$page.data.meta.title} />
-	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:site" content="@syntaxfm" />
 	<meta name="twitter:description" content={$page.data.meta.description} />
 	<meta name="twitter:image" content={$page.data.meta.image} />
