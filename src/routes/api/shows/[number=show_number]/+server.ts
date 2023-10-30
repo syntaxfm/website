@@ -2,11 +2,10 @@ import { json } from '@sveltejs/kit';
 import { format } from 'date-fns';
 
 export async function GET({ locals, params }) {
-	const data = await locals.prisma.show.findFirst({
+	const data = await locals.prisma.show.findUnique({
 		where: {
 			number: parseInt(params.number)
 		},
-		orderBy: { number: 'desc' },
 		include: {
 			guests: {
 				select: {

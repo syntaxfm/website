@@ -47,7 +47,7 @@ export async function import_or_update_all_changed_shows() {
 				md_file_path
 			);
 
-			const existing_show = await prisma.show.findFirst({
+			const existing_show = await prisma.show.findUnique({
 				where: { number: number }
 			});
 

@@ -6,13 +6,14 @@ export const load: PageServerLoad = async function ({ setHeaders, params, locals
 		'cache-control': 'max-age=240'
 	});
 	const show_number = parseInt(params.number);
-	const query = SHOW_QUERY();
+	const { include } = SHOW_QUERY();
+
 	return {
-		show: locals.prisma.show.findFirst({
-			...query,
+		show: locals.prisma.show.findUnique({
 			where: {
-				number: parseInt(params.number)
-			}
+				number: show_number
+			},
+			include
 		})
 	};
 };

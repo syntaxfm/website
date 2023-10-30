@@ -70,7 +70,7 @@ export const redirects: Handle = async function ({ event, resolve }) {
 
 	if (isNaN(maybe_show_number)) return resolve(event);
 	// Is there a show with this number?
-	const show = await prisma_client.show.findFirst({ where: { number: maybe_show_number } });
+	const show = await prisma_client.show.findUnique({ where: { number: maybe_show_number } });
 	// No show found, pass it down the middleware chain - will probably 404, but thats sveltekit's job to figure that out, not ours!
 	if (!show) return resolve(event);
 	const url = get_show_path(show);
