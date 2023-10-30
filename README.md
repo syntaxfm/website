@@ -4,7 +4,7 @@ A tasty treats podcast for Web Developers.
 
 This is the site that runs [Syntax.fm](https://syntax.fm) — go there to listen to it!
 
-This site is built on SvelteKit
+This site is built on SvelteKit.
 
 ## Requirements
 
@@ -20,7 +20,7 @@ Then run `pnpm db:seed` to scaffold out the user roles.
 
 ## Development
 
-First you `pnpm install`
+First you `pnpm install`.
 
 Then you `pnpm dev` and visit `http://localhost:5173`.
 
@@ -49,7 +49,7 @@ Just about all major code folders live in `/src` with the exception of `/shows` 
 
 ### Stylin'
 
-These are the available media queries
+These are the available media queries:
 
 ```css
 @custom-media --below_small (width < 400px);
@@ -65,3 +65,7 @@ These are the available media queries
 @media (--above_med) {
 }
 ```
+# Our Contributors
+<a href="https://github.com/syntaxfm/website/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=syntaxfm/website" />
+</a>
