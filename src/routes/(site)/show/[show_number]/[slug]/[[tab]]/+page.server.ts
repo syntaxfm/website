@@ -42,7 +42,7 @@ export const load: PageServerLoad = async function ({ setHeaders, params, locals
 	if (show_cached && process.env.NODE_ENV === 'production') {
 		show_raw = show_cached;
 	} else {
-		show_raw = await locals.prisma.show.findFirst(query);
+		show_raw = await locals.prisma.show.findUnique(query);
 		//Set cache after DB query
 		if (show_raw) {
 			cache.set(cache_key, show_raw);
