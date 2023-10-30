@@ -35,7 +35,7 @@ async function getScreenshot(url) {
 
   console.log(`creating new page`);
 	const page = await browser.newPage();
-	await page.setViewport({ width: 1200, height: 630, deviceScaleFactor: 1 });
+	await page.setViewport({ width: 1200, height: 630, deviceScaleFactor: 2 });
 	await page.goto(url);
 	await page.waitForSelector('.finish-sizing-text');
 	const buffer = await page.screenshot({ type: 'jpeg' });
@@ -46,10 +46,13 @@ export const config = {
 	maxDuration: 30 // vercel timeout 30s
 };
 
-export async function GET({ url }) {
+export async function GET({ url, params }) {
+  console.log(params);
 	const start = performance.now();
 	const qs = new URLSearchParams(url.search);
-	const show = qs.get('show');
+	// const show = qs.get('show');
+  const show = params.show_number;
+
   console.time(`Taking screenshot of ${show}`);
 	const photoBuffer = await getScreenshot(`${url.origin}/og/${show}`);
   console.timeEnd(`Taking screenshot of ${show}`);
