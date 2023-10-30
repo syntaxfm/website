@@ -11,7 +11,7 @@
 
 <style lang="postcss">
 	.og-container {
-		aspect-ratio: 1200 / 600;
+		aspect-ratio: 1200 / 630;
 		overflow: hidden;
 		box-shadow: inset 0 0 0 10px var(--yellow);
 	}
