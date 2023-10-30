@@ -12,6 +12,7 @@
 				<a href="https://feed.syntax.fm">RSS Feed</a>
 				<a href="/about">About</a>
 				<a href="/pages/privacy">Privacy Policy</a>
+				<a href="/pages/terms-of-service">Terms of Service</a>
 				<a
 					href="https://sentry.io/welcome/?utm_medium=site&utm_source=syntax&utm_campaign=syntax-sentry-evergreen&utm_content=footer"
 					>Sentry.io</a
