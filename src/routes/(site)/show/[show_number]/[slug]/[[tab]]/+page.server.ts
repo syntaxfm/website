@@ -83,7 +83,7 @@ export const load: PageServerLoad = async function ({ setHeaders, params, locals
 		} as ShowTemp & Show,
 		meta: {
 			title: show_raw?.title,
-			image: `https://${url.host}/og.png?show=${show_number}`,
+			image: `https://${url.host}/og.jpg?show=${show_number}`,
 			description:
 				show_raw?.aiShowNote?.description ?? show_raw?.show_notes?.match(/(.*?)(?=## )/s)?.[0]
 		}
