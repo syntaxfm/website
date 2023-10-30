@@ -192,6 +192,9 @@
 	.team-member {
 		position: relative;
 		container: team-member / inline-size;
+    &:hover {
+      cursor: url('https://fav.farm/🥴') 15 0, auto;
+    }
 		.desc {
 			margin-top: -15cqw;
 			p {
@@ -208,6 +211,7 @@
 			top: 0;
 			line-height: 1;
 			overflow: visible;
+      pointer-events: none;
 			color: var(--white);
 			span {
 				display: block;
