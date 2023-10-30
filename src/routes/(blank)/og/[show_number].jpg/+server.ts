@@ -35,7 +35,7 @@ async function getScreenshot(url) {
 
   console.log(`creating new page`);
 	const page = await browser.newPage();
-	await page.setViewport({ width: 1200, height: 630, deviceScaleFactor: 2 });
+	await page.setViewport({ width: 1260, height: 630, deviceScaleFactor: 2 });
 	await page.goto(url);
 	await page.waitForSelector('.finish-sizing-text');
 	const buffer = await page.screenshot({ type: 'jpeg' });
@@ -47,7 +47,6 @@ export const config = {
 };
 
 export async function GET({ url, params }) {
-  console.log(params);
 	const start = performance.now();
 	const qs = new URLSearchParams(url.search);
 	// const show = qs.get('show');
