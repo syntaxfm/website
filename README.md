@@ -8,7 +8,7 @@ This site is built on SvelteKit.
 
 ## Requirements
 
-- Node 20.0.0 or higher
+- Node 20.0.0 or higher.
 
 ## Database
 
@@ -35,17 +35,17 @@ DB Seed `pnpm db:seed`
 
 Just about all major code folders live in `/src` with the exception of `/shows` - the md source of truth for all podcast episodes as well as `/prisma` for our db connections and schema.
 
-|              |                                                                                               | Alias      |
-| ------------ | --------------------------------------------------------------------------------------------- | ---------- |
-| `/actions`   | Svelte Actions, these are reusable functions that act as lifecycle on DOM elements            | $actions   |
-| `/assets`    | Static assets that are used via @import                                                       | $assets    |
-| `/server`    | All database and server-side only reusable code                                               | $server    |
-| `/lib`       | (SK Paradigm) Components and files that are used in more than one route                       | $lib       |
-| `/params`    | (SK Paradigm) This is a SvelteKit specific folder to add validation on parameter based routes |            |
-| `/routes`    | (SK Paradigm) File System based routing                                                       |            |
-| `/state`     | Global State containers and resolvers                                                         | $state     |
-| `/styles`    | CSS                                                                                           |
-| `/utilities` | Global Utility functions                                                                      | $utilities |
+|              |                                                                                                | Alias      |
+| ------------ | ---------------------------------------------------------------------------------------------- | ---------- |
+| `/actions`   | Svelte Actions, these are reusable functions that act as lifecycle on DOM elements.            | $actions   |
+| `/assets`    | Static assets that are used via @import.                                                       | $assets    |
+| `/server`    | All database and server-side only reusable code.                                               | $server    |
+| `/lib`       | (SK Paradigm) Components and files that are used in more than one route.                       | $lib       |
+| `/params`    | (SK Paradigm) This is a SvelteKit specific folder to add validation on parameter based routes. |            |
+| `/routes`    | (SK Paradigm) File System based routing.                                                       |            |
+| `/state`     | Global State containers and resolvers.                                                         | $state     |
+| `/styles`    | CSS.                                                                                           |
+| `/utilities` | Global Utility functions.                                                                      | $utilities |
 
 ### Stylin'
 
