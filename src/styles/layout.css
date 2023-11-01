@@ -17,11 +17,8 @@
 			column-gap: 48px;
 			display: grid;
 			grid-template-columns:
-				[start l-margin] minmax(144px, auto) [l-margin content main] minmax(0, 812px) [main sidebar] minmax(
-					0,
-					322px
-				)
-				[sidebar content-end r-margin] minmax(144px, auto) [r-margin end];
+				[start l-margin] minmax(144px, auto) [l-margin content main] minmax(0, 812px) [main sidebar]
+				minmax(0, 322px) [sidebar content-end r-margin] minmax(144px, auto) [r-margin end];
 		}
 		/* 812 */
 		/* 322 */
