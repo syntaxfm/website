@@ -9,7 +9,7 @@
 	}
 
 	*,
-	*::before-,
+	*::before,
 	*::after {
 		box-sizing: inherit;
 	}
@@ -77,7 +77,7 @@
 		font-style: italic;
 	}
 
-	/* FYI haven'te installed this font yet, just trying it for fun with my installed version */
+	/* FYI haven't installed this font yet, just trying it for fun with my installed version */
 	h1,
 	h2,
 	h3,
@@ -302,9 +302,8 @@ in a later release. */
 
 /* Popover */
 
-/* All External Links */
-a[href^='http']:not(.social-icon, .button, .icon, .naked):after,
-a[href^='https']:not(.social-icon, .button, .icon, .naked):after {
+/* All External Links (links starting with http(s)) */
+a[href^='http']:not(.social-icon, .button, .icon, .naked):after {
 	content: '↗';
 	margin-left: 4px;
 	font-size: 12px;
