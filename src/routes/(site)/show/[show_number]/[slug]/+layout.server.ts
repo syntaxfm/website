@@ -6,12 +6,10 @@ import rehypeRaw from 'rehype-raw';
 import rehypeStringify from 'rehype-stringify';
 import highlight from 'rehype-highlight';
 import { cache } from '$lib/cache/cache';
-import { transcript_with_utterances } from '$server/ai/queries.js';
 import type { Prisma, Show } from '@prisma/client';
-import type { PageServerLoad } from './$types';
 import { error } from '@sveltejs/kit';
 
-export const load: PageServerLoad = async function ({ setHeaders, params, locals, url }) {
+export const load = async function ({ params, locals, url }) {
 	const { show_number } = params;
 	const query = {
 		where: { number: parseInt(show_number) },
@@ -21,7 +19,6 @@ export const load: PageServerLoad = async function ({ setHeaders, params, locals
 					Guest: true
 				}
 			},
-			transcript: transcript_with_utterances,
 			aiShowNote: {
 				include: {
 					topics: true,

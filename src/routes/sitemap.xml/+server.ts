@@ -109,7 +109,7 @@ export const GET: RequestHandler = async function GET({ setHeaders, locals }) {
 `;
 
 	setHeaders({
-		'Cache-Control': 'max-age=0, s-maxage=3600',
+		'cache-control': 'max-age=0, s-maxage=3600',
 		'Content-Type': 'application/xml'
 	});
 

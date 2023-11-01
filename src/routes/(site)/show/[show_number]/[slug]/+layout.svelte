@@ -2,15 +2,10 @@
 	import { format } from 'date-fns';
 	import { player } from '$state/player';
 	import { page } from '$app/stores';
-	import HostsAndGuests from '../../../../../../lib/HostsAndGuests.svelte';
+	import HostsAndGuests from '$lib/HostsAndGuests.svelte';
 	import Icon from '$lib/Icon.svelte';
-	import NewsletterForm from '$lib/NewsletterForm.svelte';
-	import Transcript from '$lib/transcript/Transcript.svelte';
 	import ListenLinks from '$lib/ListenLinks.svelte';
-	import { json } from 'stream/consumers';
 	import Tabs from '$lib/Tabs.svelte';
-	import Meta from '$lib/meta/Meta.svelte';
-	import Svg from '$lib/Svg.svelte';
 	import { theme } from '$state/theme';
 	import wait from 'waait';
 	export let data;
@@ -103,11 +98,11 @@
 <Tabs>
 	<a
 		data-sveltekit-noscroll
-		class:active={!$page.params.tab}
+		class:active={!$page.url.pathname.includes('transcript')}
 		href="/show/{$page.params.show_number}/{$page.params.slug}">Show Notes</a
 	>
 	<a
-		class:active={$page.params.tab === 'transcript'}
+		class:active={$page.url.pathname.includes('transcript')}
 		data-sveltekit-noscroll
 		href="/show/{$page.params.show_number}/{$page.params.slug}/transcript">Transcript</a
 	>
@@ -119,30 +114,7 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <section class="layout full" on:click={handleClick}>
-	{#if $page.params.tab === 'transcript'}
-		{#if show?.transcript}
-			<Transcript {show} aiShowNote={show.aiShowNote} transcript={show.transcript} />
-		{:else}
-			<p>Transcript not available yet! We have the AI robots on the job, check back soon!</p>
-		{/if}
-	{:else}
-		<div class="main">
-			<div class="show-notes">
-				{@html show.show_notes}
-			</div>
-		</div>
-
-		<div class="sidebar">
-			<div
-				class="sticky zone"
-				style="border: solid 0.5px var(--black-1)"
-				style:--radius="20px"
-				style:--bg="var(--bg-1)"
-			>
-				<NewsletterForm />
-			</div>
-		</div>
-	{/if}
+	<slot />
 </section>
 
 <style lang="postcss">
