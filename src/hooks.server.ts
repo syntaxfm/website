@@ -90,8 +90,21 @@ export const redirects: Handle = async function ({ event, resolve }) {
 	throw redirect(302, url);
 };
 
+export const document_policy: Handle = async function ({ event, resolve }) {
+	const response = await resolve(event);
+	response.headers.set('Document-Policy', 'js-profiling');
+	return response;
+};
+
 // * END HOOKS
 
 // Wraps requests in this sequence of hooks
-export const handle: Handle = sequence(Sentry.sentryHandle(), prisma, auth, form_data, redirects);
+export const handle: Handle = sequence(
+	Sentry.sentryHandle(),
+	prisma,
+	auth,
+	form_data,
+	redirects,
+	document_policy
+);
 export const handleError = Sentry.handleErrorWithSentry();
