@@ -6,7 +6,7 @@
 		"dev": "vite dev",
 		"start": "pnpm dev",
 		"copy-files": "zx ./why_do_i_need_this.mjs",
-		"build": "pnpm build:svelte && copy-files",
+		"build": "pnpm build:svelte && pnpm copy-files",
 		"build:svelte": "vite build",
 		"preview": "vite preview",
 		"test": "svelte-kit sync && playwright test",
@@ -22,7 +22,7 @@
 		"db:generate": "prisma generate",
 		"db:seed": "prisma db seed",
 		"i-changed-the-schema": "pnpm run db:push && pnpm run db:generate",
-		"postinstall": "pnpm db:push && pnpm db:generate"
+		"postinstall": "pnpm db:push && pnpm db:generate && pnpm exec playwright install"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.39.0",

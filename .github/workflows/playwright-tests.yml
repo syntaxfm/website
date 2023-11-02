@@ -27,6 +27,13 @@ jobs:
 
       - name: Setup DB
         run: pnpm db:generate
+        env:
+          PUBLIC_GITHUB_ID: ${{ secrets.PUBLIC_GITHUB_ID }}
+          GH_SECRET: ${{ secrets.GH_SECRET }}
+          DEEPGRAM_SECRET: ${{ secrets.DEEPGRAM_SECRET }}
+          PUBLIC_URL: ${{ secrets.PUBLIC_URL }}
+          SENTRY_AUTH_TOKEN: ''
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
       - name: Install playwright browsers
         run: pnpx playwright install --with-deps
