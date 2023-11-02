@@ -19,9 +19,9 @@ function formatNumber(n: number) {
 }
 
 export const load: PageServerLoad = async function ({ setHeaders, params, locals }) {
-	// 3 min cache with 1 min stale allowed
+	// 1 min cache with 1 min stale allowed
 	setHeaders({
-		'cache-control': `public s-max-age=240, stale-while-revalidate=60`
+		'cache-control': `public s-max-age=60, stale-while-revalidate=60`
 	});
 	const subs = await fetch(
 		`https://api.convertkit.com/v3/subscribers?api_secret=${env.CONVERT_KIT_SECRET}`
