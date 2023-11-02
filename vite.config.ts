@@ -25,6 +25,9 @@ export default defineConfig({
 			}
 		}
 	},
+	ssr: {
+		external: ['@sentry/profiling-node']
+	},
 	esbuild: {
 		exclude: '@sentry/profiling-node'
 	},
