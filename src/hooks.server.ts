@@ -11,6 +11,7 @@ import { dev } from '$app/environment';
 import get_show_path from '$utilities/slug';
 import { Redis } from '@upstash/redis';
 import { UPSPLASH_TOKEN } from '$env/static/private';
+import { ProfilingIntegration } from '@sentry/profiling-node';
 
 const redis = new Redis({
 	url: 'https://usw1-pet-kid-33258.upstash.io',
@@ -27,8 +28,12 @@ Sentry.init({
 	release: `syntax@${__VER__}`,
 	dsn: 'https://ea134756b8f244ff99638864ce038567@o4505358925561856.ingest.sentry.io/4505358945419264',
 	tracesSampleRate: 1,
+	profilesSampleRate: 1.0, // Profiling sample rate is relative to tracesSampleRate
 	environment: dev ? 'development' : 'production',
-	integrations: [new Sentry.Integrations.Prisma({ client: prisma_client })]
+	integrations: [
+		new ProfilingIntegration(),
+		new Sentry.Integrations.Prisma({ client: prisma_client })
+	]
 });
 
 // * END START UP
