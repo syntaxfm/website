@@ -3,7 +3,7 @@
 
 import * as Sentry from '@sentry/sveltekit';
 import { sequence } from '@sveltejs/kit/hooks';
-import { ProfilingIntegration } from '@sentry/profiling-node';
+// import { ProfilingIntegration } from '@sentry/profiling-node';
 import { form_data } from 'sk-form-data';
 import { PrismaClient } from '@prisma/client';
 import { redirect, type Handle } from '@sveltejs/kit';
@@ -28,10 +28,10 @@ Sentry.init({
 	release: `syntax@${__VER__}`,
 	dsn: 'https://ea134756b8f244ff99638864ce038567@o4505358925561856.ingest.sentry.io/4505358945419264',
 	tracesSampleRate: 1,
-	profilesSampleRate: 1.0, // Profiling sample rate is relative to tracesSampleRate
+	// profilesSampleRate: 1.0, // Profiling sample rate is relative to tracesSampleRate
 	environment: dev ? 'development' : 'production',
 	integrations: [
-		new ProfilingIntegration(),
+		// new ProfilingIntegration(),
 		new Sentry.Integrations.Prisma({ client: prisma_client })
 	]
 });
