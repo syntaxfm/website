@@ -81,26 +81,3 @@
 
 	/* END @layer layout */
 }
-
-/* Debug -> Ignore */
-
-.debug :is(.layout, .grid) {
-	outline: solid 1px red;
-	&:after {
-		content: '';
-		background: red;
-		position: absolute;
-		color: white;
-	}
-}
-
-.debug .layout {
-	&:after {
-		content: '.layout';
-	}
-}
-.debug .grid {
-	&:after {
-		content: '.grid';
-	}
-}

@@ -3,6 +3,15 @@ name: Run_Playwright_Tests_on_PRs
 on:
   pull_request:
 
+env:
+  PUBLIC_GITHUB_ID: ${{ secrets.PUBLIC_GITHUB_ID }}
+  GH_SECRET: ${{ secrets.GH_SECRET }}
+  DEEPGRAM_SECRET: ${{ secrets.DEEPGRAM_SECRET }}
+  PUBLIC_URL: ${{ secrets.PUBLIC_URL }}
+  SENTRY_AUTH_TOKEN: ''
+  DATABASE_URL: ${{ secrets.DATABASE_URL }}
+  UPSPLASH_TOKEN: ''
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -19,7 +28,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 20.5.0
+          node-version: 18.18.2
           cache: 'pnpm'
 
       - name: Install dependencies
@@ -33,10 +42,3 @@ jobs:
 
       - name: Run Playwright tests
         run: pnpm run test
-        env:
-          PUBLIC_GITHUB_ID: ${{ secrets.PUBLIC_GITHUB_ID }}
-          GH_SECRET: ${{ secrets.GH_SECRET }}
-          DEEPGRAM_SECRET: ${{ secrets.DEEPGRAM_SECRET }}
-          PUBLIC_URL: ${{ secrets.PUBLIC_URL }}
-          SENTRY_AUTH_TOKEN: ''
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
