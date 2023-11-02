@@ -83,7 +83,11 @@ export const load = async function ({ params, locals, url }) {
 		} as ShowTemp & Show,
 		meta: {
 			title: show_raw?.title,
+<<<<<<< Updated upstream:src/routes/(site)/show/[show_number]/[slug]/+layout.server.ts
 			image: `https://${url.host}/og/${show_number}.jpg`,
+=======
+			image: `https://${url.host}/og.png?show=${show_number}`,
+>>>>>>> Stashed changes:src/routes/(site)/shows/[show_number]/[slug]/[[tab]]/+page.server.ts
 			description:
 				show_raw?.aiShowNote?.description ?? show_raw?.show_notes?.match(/(.*?)(?=## )/s)?.[0]
 		}
