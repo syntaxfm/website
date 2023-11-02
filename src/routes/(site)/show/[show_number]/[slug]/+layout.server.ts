@@ -6,6 +6,7 @@ import rehypeRaw from 'rehype-raw';
 import rehypeStringify from 'rehype-stringify';
 import highlight from 'rehype-highlight';
 // import { cache } from '$lib/cache/cache';
+
 import type { Prisma, Show } from '@prisma/client';
 import { error } from '@sveltejs/kit';
 
@@ -31,6 +32,7 @@ export const load = async function ({ params, locals, url }) {
 	};
 	type ShowTemp = Prisma.ShowGetPayload<typeof query>;
 	let show_raw: (ShowTemp & Show) | null = null;
+
 	// const cache_key = `show:${show_number}`;
 
 	//Check cache first
@@ -45,6 +47,7 @@ export const load = async function ({ params, locals, url }) {
 	// cache.set(cache_key, show_raw);
 	// }
 	// }
+
 
 	// Check if this is a future show
 	const now = new Date();
