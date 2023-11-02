@@ -10,6 +10,7 @@ env:
   PUBLIC_URL: ${{ secrets.PUBLIC_URL }}
   SENTRY_AUTH_TOKEN: ''
   DATABASE_URL: ${{ secrets.DATABASE_URL }}
+  UPSPLASH_TOKEN: ''
 
 jobs:
   test:
