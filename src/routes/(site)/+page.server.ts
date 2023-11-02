@@ -3,9 +3,12 @@ import type { PageServerLoad } from './$types';
 import { SHOW_QUERY } from '$server/ai/queries';
 
 export const load: PageServerLoad = async ({ locals, setHeaders }) => {
+	const cache_ms = 600;
+
 	setHeaders({
-		'cache-control': 'max-age=240'
+		'cache-control': `public s-max-age=${cache_ms}, stale-while-revalidate=${cache_ms}`
 	});
+
 	return {
 		latest: locals.prisma.show.findMany(SHOW_QUERY())
 	};

@@ -5,7 +5,7 @@ import remarkRehype from 'remark-rehype';
 import rehypeRaw from 'rehype-raw';
 import rehypeStringify from 'rehype-stringify';
 import highlight from 'rehype-highlight';
-import { cache } from '$lib/cache/cache';
+// import { cache } from '$lib/cache/cache';
 import type { Prisma, Show } from '@prisma/client';
 import { error } from '@sveltejs/kit';
 
@@ -31,20 +31,20 @@ export const load = async function ({ params, locals, url }) {
 	};
 	type ShowTemp = Prisma.ShowGetPayload<typeof query>;
 	let show_raw: (ShowTemp & Show) | null = null;
-	const cache_key = `show:${show_number}`;
+	// const cache_key = `show:${show_number}`;
 
 	//Check cache first
-	const show_cached = await cache.get(cache_key);
+	// const show_cached = await cache.get(cache_key);
 
-	if (show_cached && process.env.NODE_ENV === 'production') {
-		show_raw = show_cached;
-	} else {
-		show_raw = await locals.prisma.show.findUnique(query);
-		//Set cache after DB query
-		if (show_raw) {
-			cache.set(cache_key, show_raw);
-		}
-	}
+	// if (show_cached && process.env.NODE_ENV === 'production') {
+	// show_raw = show_cached;
+	// } else {
+	show_raw = await locals.prisma.show.findUnique(query);
+	//Set cache after DB query
+	// if (show_raw) {
+	// cache.set(cache_key, show_raw);
+	// }
+	// }
 
 	// Check if this is a future show
 	const now = new Date();
