@@ -1,7 +1,6 @@
 <script>
 	import NewsletterForm from '$lib/NewsletterForm.svelte';
 	export let data;
-	console.log(data);
 </script>
 
 <main>
