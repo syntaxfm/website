@@ -28,7 +28,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 20.5.0
+          node-version: 18.18.2
           cache: 'pnpm'
 
       - name: Install dependencies
