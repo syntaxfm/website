@@ -18,6 +18,7 @@ jobs:
       - name: Bump
         uses: tool3/bump@master
         with:
+          branch: main
           github_token: ${{ secrets.GITHUB_TOKEN }}
           user: 'Scott Tolinski'
           email: 'scott.tolinski@gmail.com'
