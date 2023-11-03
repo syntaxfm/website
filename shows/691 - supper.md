@@ -9,6 +9,7 @@ guest:
     twitter: irvinebroque
     social: https://www.linkedin.com/in/brendanirvinebroque/
   - name: Rita Kozlov
+    github: rita3ko
     twitter: ritakozlov_
     url: https://ritakozlov.com/
     social: https://www.linkedin.com/in/ritakozlov/
