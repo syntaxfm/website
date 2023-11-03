@@ -11,29 +11,12 @@ export const load: PageServerLoad = async ({ locals, setHeaders }) => {
 		'cache-control': `public s-max-age=${cache_s}, stale-while-revalidate=${cache_s}`
 	});
 
-	// let latest;
-
 	const latest = await cache_mang(
 		`homepage:latest_shows`,
 		locals.prisma.show.findMany,
 		SHOW_QUERY(),
 		cache_s
 	);
-
-	// const latest_cached = await redis.get<LatestShow[]>(cache_key).catch((e) => {
-	// 	console.log(e);
-	// });
-	// if (latest_cached) {
-	// 	latest = latest_cached;
-	// 	console.log('latest', latest);
-	// } else {
-	// 	latest = await locals.prisma.show.findMany(SHOW_QUERY());
-	// 	if (latest) {
-	// 		redis.set(cache_key, latest, {
-	// 			ex: cache_s
-	// 		});
-	// 	}
-	// }
 
 	return {
 		latest

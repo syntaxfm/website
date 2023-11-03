@@ -8,7 +8,7 @@ export async function cache_mang<T>(
 	cache_key: string,
 	db_call: Prisma.ShowDelegate['findMany'],
 	db_query: QueryInputs,
-	seconds_to_expire: number
+	seconds_to_expire?: number
 ) {
 	let temp;
 	const temp_cached = await redis.get<T>(cache_key).catch();
@@ -17,6 +17,7 @@ export async function cache_mang<T>(
 		return temp_cached.map(convert_dates);
 	} else {
 		temp = await db_call(db_query);
+		// TODO check if it's an object and type of show, if so adjust cache between 300 and 6000 seconds
 		if (temp) {
 			redis.set(cache_key, temp, {
 				ex: seconds_to_expire

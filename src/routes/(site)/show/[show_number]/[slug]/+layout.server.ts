@@ -10,6 +10,7 @@ import type { Prisma, Show } from '@prisma/client';
 import { error } from '@sveltejs/kit';
 import { redis } from '../../../../../hooks.server';
 import { get_show_cache_s } from '$utilities/get_show_cache_ms';
+import { cache_mang } from '$utilities/cache_mang';
 
 export const load = async function ({ params, locals, url }) {
 	const { show_number } = params;
@@ -34,7 +35,15 @@ export const load = async function ({ params, locals, url }) {
 	type ShowTemp = Prisma.ShowGetPayload<typeof query>;
 	let show_raw: (ShowTemp & Show) | null = null;
 
-	const cache_key = `show:${show_number}`;
+	const cache_s = get_show_cache_s(show_raw.date);
+	const show = await cache_mang(
+		`show:${show_number}`
+		locals.prisma.show.findUnique,
+		query
+	);
+
+
+
 	const show_cached = await redis.get<ShowTemp & Show>(cache_key).catch((e) => {
 		console.log(e);
 	});
