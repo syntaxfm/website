@@ -1,6 +1,6 @@
 {
 	"buildCommand": "pnpm build",
-	"installCommand": "npm install",
+	"installCommand": "pnpm install",
 	"crons": [
 		{
 			"path": "/webhooks/transcripts",
