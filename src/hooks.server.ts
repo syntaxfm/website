@@ -13,11 +13,10 @@ import { Redis } from '@upstash/redis';
 import { UPSPLASH_TOKEN } from '$env/static/private';
 // import { ProfilingIntegration } from '@sentry/profiling-node';
 
-const redis = new Redis({
+export const redis = new Redis({
 	url: 'https://usw1-pet-kid-33258.upstash.io',
 	token: UPSPLASH_TOKEN
 });
-
 // import { ADMIN_LOGIN } from '$env/static/private';
 
 // * START UP

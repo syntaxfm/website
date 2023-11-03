@@ -5,10 +5,11 @@ import remarkRehype from 'remark-rehype';
 import rehypeRaw from 'rehype-raw';
 import rehypeStringify from 'rehype-stringify';
 import highlight from 'rehype-highlight';
-// import { cache } from '$lib/cache/cache';
 
 import type { Prisma, Show } from '@prisma/client';
 import { error } from '@sveltejs/kit';
+import { redis } from '../../../../../hooks.server';
+import { get_show_cache_s } from '$utilities/get_show_cache_ms';
 
 export const load = async function ({ params, locals, url }) {
 	const { show_number } = params;
@@ -33,21 +34,21 @@ export const load = async function ({ params, locals, url }) {
 	type ShowTemp = Prisma.ShowGetPayload<typeof query>;
 	let show_raw: (ShowTemp & Show) | null = null;
 
-	// const cache_key = `show:${show_number}`;
-
-	//Check cache first
-	// const show_cached = await cache.get(cache_key);
-
-	// if (show_cached && process.env.NODE_ENV === 'production') {
-	// show_raw = show_cached;
-	// } else {
-	show_raw = await locals.prisma.show.findUnique(query);
-	//Set cache after DB query
-	// if (show_raw) {
-	// cache.set(cache_key, show_raw);
-	// }
-	// }
-
+	const cache_key = `show:${show_number}`;
+	const show_cached = await redis.get<ShowTemp & Show>(cache_key).catch((e) => {
+		console.log(e);
+	});
+	if (show_cached) {
+		show_raw = show_cached;
+	} else {
+		show_raw = await locals.prisma.show.findUnique(query);
+		if (show_raw) {
+			const cache_s = get_show_cache_s(show_raw.date);
+			redis.set(cache_key, show_raw, {
+				ex: cache_s
+			});
+		}
+	}
 
 	// Check if this is a future show
 	const now = new Date();
