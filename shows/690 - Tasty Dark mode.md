@@ -2,34 +2,35 @@
 number: 690
 title: How To Dark Mode and Beyond
 date: 1699444800846
-url: https://traffic.libsyn.com/syntax/Syntax_-_690.mp3
+url: https://traffic.libsyn.com/syntax/Syntax_-_690_v2.mp3
 ---
 
 In this episode of Syntax, Wes and Scott talk about the process they are using for extending the Syntax website with themes, including a dark mode and secret custom themes. They also talk about issues encountered with theming and CSS, including flashes of un-themed content.
 
 ### Show Notes
 
-* **[00:10](#t=00:10)** Welcome
-* **[00:58](#t=00:58)** Syntax Brought to you by Sentry
-* **[01:51](#t=01:51)** How to implement a theme
-* **[09:02](#t=09:02)** Writing the CSS
-* **[10:14](#t=10:14)** Glasses wearers protip
-* **[11:37](#t=11:37)** Class on the body and server side rendering issue
-* **[12:37](#t=12:37)** CSS Variables
-* **[13:40](#t=13:40)** Color variables in CSS
-* **[19:42](#t=19:42)** Working in half pixel sizes
-* **[21:16](#t=21:16)** Variable usage
-* **[23:58](#t=23:58)** Naming variables after what they style
-* **[29:17](#t=29:17)** Component level variables
-* **[32:02](#t=32:02)** Using zones
-* **[37:16](#t=37:16)** Themes should be defined as light or dark
-* **[37:55](#t=37:55)** Issues: Moving from light to dark
-* **[41:05](#t=41:05)** Issues: Drop shadow in dark mode
-* **[42:35](#t=42:35)** Issues: Flash of un-themed content
-* **[43:15](#t=43:15)** Issues: Opacity values
-* **[48:21](#t=48:21)** Issues: SVG need change color
-* **[54:32](#t=54:32)** Help is on the way!
-* **[58:33](#t=58:33)** SIIIIICK ××× PIIIICKS ×××
+* **[00:00](#t=00:00)** Syntax + Sentry Announcement!
+* **[01:35](#t=01:35)** Welcome
+* **[02:23](#t=02:23)** Syntax Brought to you by Sentry
+* **[03:16](#t=03:16)** How to implement a theme
+* **[10:27](#t=10:27)** Writing the CSS
+* **[11:38](#t=11:38)** Glasses wearers protip
+* **[13:02](#t=13:02)** Class on the body and server side rendering issue
+* **[14:02](#t=14:02)** CSS Variables
+* **[15:05](#t=15:05)** Color variables in CSS
+* **[21:07](#t=21:07)** Working in half pixel sizes
+* **[22:40](#t=22:40)** Variable usage
+* **[25:23](#t=25:23)** Naming variables after what they style
+* **[30:42](#t=30:42)** Component level variables
+* **[33:27](#t=33:27)** Using zones
+* **[38:41](#t=38:41)** Themes should be defined as light or dark
+* **[39:20](#t=39:20)** Issues: Moving from light to dark
+* **[42:29](#t=42:29)** Issues: Drop shadow in dark mode
+* **[44:00](#t=44:00)** Issues: Flash of unthemed content
+* **[44:40](#t=44:40)** Issues: Opacity values
+* **[49:45](#t=49:45)** Issues: SVG need change color
+* **[55:56](#t=55:56)** Help is on the way!
+* **[59:57](#t=59:57)** SIIIIICK ××× PIIIICKS ×××
 
 - [website/src/styles/themes/level-up.css at v2](https://github.com/syntaxfm/website/blob/v2/src/styles/themes/level-up.css)
 - [The 2023 State of CSS Survey Part 2 × CSS Frameworks × Tooling × Browser Usage](https://syntax.fm/show/678/the-2023-state-of-css-survey-part-2-css-frameworks-tooling-browser-usage)
