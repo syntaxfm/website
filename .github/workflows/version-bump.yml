@@ -12,9 +12,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
       - name: Bump
         uses: tool3/bump@master
         with:
+          branch: main
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          user: 'Scott Tolinski'
-          email: 'scott.tolinski@gmail.com'
+          user: 'github-actions[bot]'
+          email: 'github-actions[bot]@users.noreply.github.com'

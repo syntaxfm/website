@@ -9,7 +9,15 @@ interface Block {
 
 export async function content() {
 	const blocks: (Block & Show)[] = [];
-	const shows = await prisma_client.show.findMany({ orderBy: { number: 'desc' } });
+	const today = new Date();
+	const shows = await prisma_client.show.findMany({
+		where: {
+			date: {
+				lte: today
+			}
+		},
+		orderBy: { number: 'desc' }
+	});
 
 	shows.forEach((show) => {
 		blocks.push({

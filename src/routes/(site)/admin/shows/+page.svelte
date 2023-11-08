@@ -20,7 +20,7 @@
 		<button class="subtle" type="submit">Sync All Shows</button>
 	</form>
 
-	<form action="/webhooks/refresh" method="POST">
+	<form action="/webhooks/refresh" method="GET">
 		<button class="subtle" type="submit">Test Refresh Webhook </button>
 	</form>
 

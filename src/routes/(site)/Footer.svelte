@@ -9,17 +9,19 @@
 		<div class="grid">
 			<div class="links-col">
 				<a href="/shows">Podcast</a>
-				<a href="https://feed.syntax.fm">RSS Feed</a>
+				<a target="_blank" rel="noopener" href="https://feed.syntax.fm">RSS Feed</a>
 				<a href="/about">About</a>
 				<a href="/pages/privacy">Privacy Policy</a>
 				<a href="/pages/terms-of-service">Terms of Service</a>
 				<a
+					target="_blank" 
+					rel="noopener"
 					href="https://sentry.io/welcome/?utm_medium=site&utm_source=syntax&utm_campaign=syntax-sentry-evergreen&utm_content=footer"
 					>Sentry.io</a
 				>
 			</div>
 			<div class="links-col">
-				<a href="https://github.com/syntaxfm/website">
+				<a target="_blank" rel="noopener" href="https://github.com/syntaxfm/website">
 					<!-- {process.env.VITE_VERCEL_GIT_COMMIT_SHA
 						? process.env.VITE_VERCEL_GIT_COMMIT_SHA.slice(0, 7)
 						: ''}  -->

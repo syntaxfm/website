@@ -4,6 +4,7 @@ import { SHOW_QUERY } from '$server/ai/queries';
 import { $Enums } from '@prisma/client';
 import type { PageServerLoad } from './$types';
 import { redirect } from '@sveltejs/kit';
+import { count_shows } from '$server/shows/count_shows';
 
 export const load: PageServerLoad = async function ({ locals, url, setHeaders }) {
 	setHeaders({
@@ -43,7 +44,7 @@ export const load: PageServerLoad = async function ({ locals, url, setHeaders })
 		shows,
 		// Todo: This needs to include where clause when we get hasty/tasty/supper/special filtering
 		// https://github.com/prisma/prisma/discussions/3087#discussioncomment-6857217
-		count: locals.prisma.show.count()
+		count: count_shows()
 	};
 
 	// let whereClause = '';
