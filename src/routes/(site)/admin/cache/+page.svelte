@@ -1,9 +1,7 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-
 	export let data: PageData;
 	$: ({ cache } = data);
-	$: console.log('cache', cache);
 </script>
 
 <h1>Cache</h1>

@@ -20,7 +20,7 @@ export const load: PageServerLoad = async function ({ locals, url, setHeaders })
 
 	function isShowType(type: string | null | undefined): type is $Enums.ShowType {
 		if (!type) return false;
-		return $Enums.ShowType.hasOwnProperty(type);
+		return Object.prototype.hasOwnProperty.call($Enums.ShowType, type);
 	}
 
 	const query = SHOW_QUERY({
