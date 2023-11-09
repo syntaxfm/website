@@ -15,13 +15,10 @@ import { UPSPLASH_TOKEN, UPSPLASH_URL } from '$env/static/private';
 
 export const cache_status = UPSPLASH_URL || UPSPLASH_TOKEN ? 'ONLINE' : 'OFFLINE';
 
-export const redis =
-	cache_status === 'ONLINE'
-		? new Redis({
-				url: UPSPLASH_URL || '',
-				token: UPSPLASH_TOKEN || ''
-		  })
-		: null;
+export const redis = new Redis({
+	url: UPSPLASH_URL,
+	token: UPSPLASH_TOKEN
+});
 
 console.log(`🤓 Cache Status... ${cache_status}`);
 

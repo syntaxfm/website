@@ -1,5 +1,5 @@
 import type { Prisma } from '@prisma/client';
-import { redis } from '../hooks.server';
+import { cache_status, redis } from '../hooks.server';
 import { get_show_cache_s } from './get_show_cache_ms';
 // Eyyyy it's the cache mang, coming to cache this ish up.
 // Nobody likes a stale cache
@@ -23,7 +23,8 @@ export async function cache_mang<T>(
 	let ex: number;
 	let temp;
 
-	if (redis) {
+	// If the cache is ready or not
+	if (cache_status === 'ONLINE') {
 		const temp_cached = await redis.get<T>(cache_key).catch();
 
 		if (temp_cached) {
