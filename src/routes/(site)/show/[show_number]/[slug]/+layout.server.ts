@@ -35,16 +35,10 @@ export const load = async function ({ params, locals, url }) {
 	type ShowTemp = Prisma.ShowGetPayload<typeof query>;
 	let show_raw: (ShowTemp & Show) | null = null;
 
-	const cache_s = get_show_cache_s(show_raw.date);
-	const show = await cache_mang(
-		`show:${show_number}`
-		locals.prisma.show.findUnique,
-		query
-	);
+	// const cache_s = get_show_cache_s(show_raw.date);
+	// const show = await cache_mang(`show:${show_number}`, locals.prisma.show.findUnique, query);
 
-
-
-	const show_cached = await redis.get<ShowTemp & Show>(cache_key).catch((e) => {
+	const show_cached = await redis.get<ShowTemp & Show>(`show:${show_number}`).catch((e) => {
 		console.log(e);
 	});
 	if (show_cached) {
@@ -53,7 +47,7 @@ export const load = async function ({ params, locals, url }) {
 		show_raw = await locals.prisma.show.findUnique(query);
 		if (show_raw) {
 			const cache_s = get_show_cache_s(show_raw.date);
-			redis.set(cache_key, show_raw, {
+			redis.set(`show:${show_number}`, show_raw, {
 				ex: cache_s
 			});
 		}
