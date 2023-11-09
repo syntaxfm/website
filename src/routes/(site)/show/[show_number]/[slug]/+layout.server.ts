@@ -31,6 +31,7 @@ export const load = async function ({ params, locals, url }) {
 	};
 	type ShowTemp = Prisma.ShowGetPayload<typeof query>;
 
+	// Caches and gets show dynamically based on release date
 	const show = await cache_mang<ShowTemp & Show>(
 		`show:${show_number}`,
 		locals.prisma.show.findUnique,

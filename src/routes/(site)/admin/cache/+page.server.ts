@@ -1,7 +1,7 @@
-import { redis } from '../../../../hooks.server';
+import { cache_status, redis } from '../../../../hooks.server';
 
 export const load = async () => {
 	return {
-		cache: redis.keys('*')
+		cache: cache_status === 'ONLINE' ? redis?.keys('*') : ['Cache offline']
 	};
 };

@@ -41,7 +41,7 @@ export const actions: Actions = {
 		};
 	},
 	dump_cache: async function dump_cache() {
-		await redis.flushall();
+		await redis?.flushall();
 		return {
 			message: 'Dump Cache '
 		};

@@ -1,5 +1,4 @@
 import { PER_PAGE } from '$const';
-// import { cache } from '$lib/cache/cache';
 import { SHOW_QUERY } from '$server/ai/queries';
 import { $Enums } from '@prisma/client';
 import type { PageServerLoad } from './$types';

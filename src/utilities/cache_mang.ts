@@ -1,4 +1,3 @@
-import type { QueryInputs } from '$server/ai/queries';
 import type { Prisma } from '@prisma/client';
 import { redis } from '../hooks.server';
 import { get_show_cache_s } from './get_show_cache_ms';
@@ -13,35 +12,41 @@ import { get_show_cache_s } from './get_show_cache_ms';
 // 	query, // The query of the call
 // 	'SHOW' // ms time for non dynamic caching, or SHOW to cache an individual show based on it's release date
 // );
+// Some of the TS here is rough and I'm very sorry for that. - Scott
 
 export async function cache_mang<T>(
 	cache_key: string,
 	db_call: Prisma.ShowDelegate['findMany'] | Prisma.ShowDelegate['findUnique'],
-	db_query: QueryInputs,
+	db_query: Prisma.ShowFindUniqueArgs,
 	to_expire: number | 'SHOW' = 600 //default cache time
-): T {
+): Promise<T> {
 	let ex: number;
 	let temp;
-	const temp_cached = await redis.get<T>(cache_key).catch();
 
-	if (temp_cached) {
-		return convert_dates<T>(temp_cached);
-	} else {
-		temp = await db_call(db_query);
-		//  If you set to_expire to type of SHOW, adjust cache between 300 and 6000 seconds based on release date
-		if (to_expire === 'SHOW') {
-			ex = get_show_cache_s(temp.date);
+	if (redis) {
+		const temp_cached = await redis.get<T>(cache_key).catch();
+
+		if (temp_cached) {
+			return convert_dates<T>(temp_cached);
 		} else {
-			ex = to_expire;
-		}
+			temp = await db_call(db_query);
+			//  If you set to_expire to type of SHOW, adjust cache between 300 and 6000 seconds based on release date
+			if (to_expire === 'SHOW') {
+				ex = get_show_cache_s(temp.date);
+			} else {
+				ex = to_expire;
+			}
 
-		if (temp) {
-			redis.set(cache_key, temp, {
-				ex
-			});
+			if (temp) {
+				redis.set(cache_key, temp, {
+					ex
+				});
+			}
 		}
+		return temp;
+	} else {
+		return db_call(db_query);
 	}
-	return temp;
 }
 
 const is_date_like_string = (value: unknown): value is string => {
@@ -57,7 +62,7 @@ const is_date_like_string = (value: unknown): value is string => {
 const convert_dates = <T>(data: unknown): T => {
 	// If it's an array, convert each element
 	if (Array.isArray(data)) {
-		return data.map(convert_dates);
+		return data.map(convert_dates) as T;
 	}
 	// If it's an object, convert each property
 	else if (data !== null && typeof data === 'object') {
@@ -66,8 +71,8 @@ const convert_dates = <T>(data: unknown): T => {
 				key,
 				is_date_like_string(value) ? new Date(value) : convert_dates(value)
 			])
-		);
+		) as T;
 	}
 	// If it's neither, return it as is
-	return data;
+	return data as T;
 };
