@@ -5,10 +5,9 @@ import remarkRehype from 'remark-rehype';
 import rehypeRaw from 'rehype-raw';
 import rehypeStringify from 'rehype-stringify';
 import highlight from 'rehype-highlight';
-// import { cache } from '$lib/cache/cache';
-
-import type { Prisma, Show } from '@prisma/client';
 import { error } from '@sveltejs/kit';
+import { cache_mang } from '$utilities/cache_mang';
+import type { Prisma, Show } from '@prisma/client';
 
 export const load = async function ({ params, locals, url }) {
 	const { show_number } = params;
@@ -31,27 +30,18 @@ export const load = async function ({ params, locals, url }) {
 		}
 	};
 	type ShowTemp = Prisma.ShowGetPayload<typeof query>;
-	let show_raw: (ShowTemp & Show) | null = null;
 
-	// const cache_key = `show:${show_number}`;
-
-	//Check cache first
-	// const show_cached = await cache.get(cache_key);
-
-	// if (show_cached && process.env.NODE_ENV === 'production') {
-	// show_raw = show_cached;
-	// } else {
-	show_raw = await locals.prisma.show.findUnique(query);
-	//Set cache after DB query
-	// if (show_raw) {
-	// cache.set(cache_key, show_raw);
-	// }
-	// }
-
+	// Caches and gets show dynamically based on release date
+	const show = await cache_mang<ShowTemp & Show>(
+		`show:${show_number}`,
+		locals.prisma.show.findUnique,
+		query,
+		'SHOW'
+	);
 
 	// Check if this is a future show
 	const now = new Date();
-	const show_date = new Date(show_raw?.date || '');
+	const show_date = new Date(show?.date || '');
 	const is_admin = locals?.user?.roles?.includes('admin');
 	if (show_date > now && !is_admin) {
 		throw error(401, `That is a show, but it's in the future! \n\nCome back ${show_date}`);
@@ -64,7 +54,7 @@ export const load = async function ({ params, locals, url }) {
 		.use(rehypeRaw)
 		.use(highlight)
 		.use(rehypeStringify)
-		.process(show_raw?.show_notes || '');
+		.process(show?.show_notes || '');
 
 	// Regular expression pattern and replacement
 	const pattern = /(<h2>)(?!Show Notes<\/h2>)(.*?)(<\/h2>)/g;
@@ -78,14 +68,13 @@ export const load = async function ({ params, locals, url }) {
 
 	return {
 		show: {
-			...show_raw,
+			...show,
 			show_notes: with_h3_body
 		} as ShowTemp & Show,
 		meta: {
-			title: show_raw?.title,
+			title: show?.title,
 			image: `https://${url.host}/og/${show_number}.jpg`,
-			description:
-				show_raw?.aiShowNote?.description ?? show_raw?.show_notes?.match(/(.*?)(?=## )/s)?.[0]
+			description: show?.aiShowNote?.description ?? show?.show_notes?.match(/(.*?)(?=## )/s)?.[0]
 		}
 	};
 };

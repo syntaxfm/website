@@ -11,6 +11,7 @@ env:
   SENTRY_AUTH_TOKEN: ''
   DATABASE_URL: ${{ secrets.DATABASE_URL }}
   UPSPLASH_TOKEN: ''
+  UPSPLASH_URL: ''
 
 jobs:
   test:

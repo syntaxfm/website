@@ -18,5 +18,5 @@
 		"editor.formatOnSave": true,
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
-	"cSpell.words": ["Deepgram", "openai", "popovertarget", "testid", "Tolinski", "waait"]
+	"cSpell.words": ["Deepgram", "flushall", "openai", "popovertarget", "testid", "Tolinski", "waait"]
 }

@@ -1,16 +1,25 @@
 import type { Actions } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import { SHOW_QUERY } from '$server/ai/queries';
+import { redis } from '../../hooks.server';
+import { cache_mang } from '$utilities/cache_mang';
 
 export const load: PageServerLoad = async ({ locals, setHeaders }) => {
-	const cache_ms = 600;
+	const cache_s = 600;
 
 	setHeaders({
-		'cache-control': `public s-max-age=${cache_ms}, stale-while-revalidate=${cache_ms}`
+		'cache-control': `public s-max-age=${cache_s}, stale-while-revalidate=${cache_s}`
 	});
 
+	const latest = await cache_mang(
+		`homepage:latest_shows`,
+		locals.prisma.show.findMany,
+		SHOW_QUERY(),
+		cache_s
+	);
+
 	return {
-		latest: locals.prisma.show.findMany(SHOW_QUERY())
+		latest
 	};
 };
 
@@ -29,6 +38,12 @@ export const actions: Actions = {
 		});
 		return {
 			message: 'Logout Successful'
+		};
+	},
+	dump_cache: async function dump_cache() {
+		await redis?.flushall();
+		return {
+			message: 'Dump Cache '
 		};
 	}
 };

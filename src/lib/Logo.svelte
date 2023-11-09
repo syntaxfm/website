@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let height: number | string = 'auto';
+	export let height: number | string = '100%';
 </script>
 
 <svg {height} viewBox="0 0 1371 1212" fill="none" xmlns="http://www.w3.org/2000/svg">

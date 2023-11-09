@@ -9,14 +9,18 @@ import { redirect, type Handle } from '@sveltejs/kit';
 import { find_user_by_access_token } from './server/auth/users';
 import { dev } from '$app/environment';
 import get_show_path from '$utilities/slug';
-// import { Redis } from '@upstash/redis';
-// import { UPSPLASH_TOKEN } from '$env/static/private';
+import { Redis } from '@upstash/redis';
+import { UPSPLASH_TOKEN, UPSPLASH_URL } from '$env/static/private';
 // import { ProfilingIntegration } from '@sentry/profiling-node';
 
-// const redis = new Redis({
-// 	url: 'https://usw1-pet-kid-33258.upstash.io',
-// 	token: UPSPLASH_TOKEN
-// });
+export const cache_status = UPSPLASH_URL || UPSPLASH_TOKEN ? 'ONLINE' : 'OFFLINE';
+
+export const redis = new Redis({
+	url: UPSPLASH_URL,
+	token: UPSPLASH_TOKEN
+});
+
+console.log(`🤓 Cache Status... ${cache_status}`);
 
 // import { ADMIN_LOGIN } from '$env/static/private';
 
