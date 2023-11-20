@@ -22,7 +22,6 @@ What are @Layers in CSS, when and where should you be using them, how do you wri
 * [Adam Argyle](https://nerdy.dev/)
 * [Una Kravets](https://una.im/)
 
-
 ### Hit us up on Socials!
 
 Syntax: [X](https://twitter.com/syntaxfm) [Instagram](https://www.instagram.com/syntax_fm/) [Tiktok](https://www.tiktok.com/@syntaxfm) [LinkedIn](https://www.linkedin.com/company/96077407/admin/feed/posts/) [Threads](https://www.threads.net/@syntax_fm)
