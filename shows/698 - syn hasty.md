@@ -16,6 +16,12 @@ What are @Layers in CSS, when and where should you be using them, how do you wri
 * **[10:47](#t=10:47)** How do you write your CSS?
 * **[16:20](#t=16:20)** Nesting
 * **[20:35](#t=20:35)** Who else is using @Layer?
+* [CSS Analytics - Project Wallace](https://www.projectwallace.com/)
+* [Tailwind CSS](https://tailwindcss.com/)
+* [Netlify](https://www.netlify.com/)
+* [Adam Argyle](https://nerdy.dev/)
+* [Una Kravets](https://una.im/)
+
 
 ### Hit us up on Socials!
 
