@@ -6,6 +6,7 @@ url: https://traffic.libsyn.com/syntax/Syntax_-_697.mp3
 guest:
   name: Salma Alam-Naylor
   github: whitep4nth3r
+  twitter: whitep4nth3r
   url: https://whitep4nth3r.com/
   social:
   - https://www.twitch.tv/whitep4nth3r
