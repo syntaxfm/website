@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { afterNavigate } from '$app/navigation';
 	import ShowCard from '$lib/ShowCard.svelte';
 	import { theme_maker } from '$state/theme';
 	import { onMount } from 'svelte';
@@ -7,6 +8,9 @@
 	const { show } = data;
 
 	onMount(() => {
+		theme_maker.open();
+	});
+	afterNavigate(() => {
 		theme_maker.open();
 	});
 </script>
