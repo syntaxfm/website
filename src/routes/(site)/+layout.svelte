@@ -38,7 +38,7 @@
 <PageLoadingIndicator />
 
 <div class={'theme-' + ($theme || user_theme) + ' theme-wrapper'}>
-	<UnderConstruction />
+	<!-- <UnderConstruction /> -->
 	{#if $page.url.pathname !== '/'}
 		<Header />
 	{/if}

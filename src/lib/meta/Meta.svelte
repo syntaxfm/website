@@ -24,5 +24,5 @@
 	<meta name="twitter:title" content={$page.data.meta.title} />
 	<meta name="twitter:site" content="@syntaxfm" />
 	<meta name="twitter:description" content={$page.data.meta.description} />
-	<meta name="twitter:image" content={`${$page.data.meta.image}?v=2`} />
+	<meta name="twitter:image" content={$page.data.meta.image} />
 </svelte:head>
