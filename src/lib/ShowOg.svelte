@@ -98,14 +98,13 @@
 <style lang="postcss">
 	article {
 		border: 10px solid var(--yellow);
-		border-radius: 30px;
-		box-shadow: 0 0 0 10px red;
+		border-radius: 35px;
 		container: show-card / inline-size;
 		display: grid;
 		padding: 20px;
 		background-image: var(--bgGritDark),
 			radial-gradient(farthest-side circle at 50% 0%, #3a006b66 4% 4%, #000 100%);
-		background-color: var(--bg);
+		background-color: black;
 		color: var(--fg);
 		position: relative;
 		align-items: start;
