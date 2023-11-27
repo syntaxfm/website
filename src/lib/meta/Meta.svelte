@@ -16,7 +16,7 @@
 		<meta property="og:url" content={$page.data.meta.canonical} />
 	{/if}
 	<meta name="description" content={$page.data.meta.description} />
-	<meta property="og:image" content={$page.data.meta.image} />
+	<meta name="image" property="og:image" content={$page.data.meta.image} />
 	<meta property="og:image:secure_url" content={$page.data.meta.image} />
 	<!-- Twitter -->
 	<meta name="twitter:card" content="summary_large_image" />
