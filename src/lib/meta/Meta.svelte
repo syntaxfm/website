@@ -16,8 +16,8 @@
 		<meta property="og:url" content={$page.data.meta.canonical} />
 	{/if}
 	<meta name="description" content={$page.data.meta.description} />
-	<meta prefix="og: http://ogp.me/ns#" property="og:image" content={$page.data.meta.image} />
-	<meta property="og:image:secure_url" content={$page.data.meta.image} />
+	<meta content={$page.data.meta.image} property="og:image" />
+	<!-- <meta property="og:image:secure_url" content={$page.data.meta.image} /> -->
 	<!-- Twitter -->
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:title" content={$page.data.meta.title} />
