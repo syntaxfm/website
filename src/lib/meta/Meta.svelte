@@ -4,6 +4,7 @@
 
 <svelte:head>
 	<title>{$page.data.meta.title}</title>
+	<meta name="image" property="og:image" content={$page.data.meta.image} />
 	<meta name="theme-color" content="#000000" />
 	{#if $page.data.meta.canonical}
 		<link rel="canonical" href={$page.data.meta.canonical} />
@@ -16,7 +17,7 @@
 		<meta property="og:url" content={$page.data.meta.canonical} />
 	{/if}
 	<meta name="description" content={$page.data.meta.description} />
-	<meta content={$page.data.meta.image} property="og:image" />
+
 	<!-- <meta property="og:image:secure_url" content={$page.data.meta.image} /> -->
 	<!-- Twitter -->
 	<meta name="twitter:card" content="summary_large_image" />
