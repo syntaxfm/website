@@ -1,5 +1,6 @@
 import { dev } from '$app/environment';
 import chrome from '@sparticuz/chromium';
+import { readFile } from 'fs/promises';
 import puppeteer, { Browser } from 'puppeteer-core';
 const exePath = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 
@@ -34,7 +35,7 @@ async function getScreenshot(url) {
 
 	console.log(`creating new page`);
 	const page = await browser.newPage();
-	await page.setViewport({ width: 1200, height: 627, deviceScaleFactor: 1 });
+	await page.setViewport({ width: 1200, height: 630, deviceScaleFactor: 1 });
 	await page.goto(url);
 	await page.waitForSelector('.finish-sizing-text');
 	const buffer = await page.screenshot({ type: 'jpeg' });
@@ -46,6 +47,16 @@ export const config = {
 };
 
 export async function GET({ url, params }) {
+	const buf = await readFile('./698.jpg');
+	return new Response(buf, {
+		status: 200,
+		headers: {
+			'Content-Type': 'image/jpeg',
+			// cache for 10 minutes, allow stale to be served for up for another 10 mins
+			'cache-control': 'public s-max-age=600, stale-while-revalidate=600'
+		}
+	});
+
 	const start = performance.now();
 	const qs = new URLSearchParams(url.search);
 	// const show = qs.get('show');
