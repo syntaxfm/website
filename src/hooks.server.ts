@@ -13,7 +13,7 @@ import { Redis } from '@upstash/redis';
 import { UPSPLASH_TOKEN, UPSPLASH_URL } from '$env/static/private';
 // import { ProfilingIntegration } from '@sentry/profiling-node';
 
-export const cache_status = UPSPLASH_URL || UPSPLASH_TOKEN ? 'ONLINE' : 'OFFLINE';
+export const cache_status = UPSPLASH_URL && UPSPLASH_TOKEN ? 'ONLINE' : 'OFFLINE';
 
 export const redis =
 	cache_status == 'ONLINE'
