@@ -10,7 +10,7 @@
 </script>
 
 <div class="input">
-	{#if label}<label for={label}>{label}</label>{/if}
+	{#if label}<label for={id}>{label}</label>{/if}
 	<input {...$$restProps} use:typeAction bind:value {id} name={id} />
 </div>
 
