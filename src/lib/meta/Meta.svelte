@@ -1,13 +1,10 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { PUBLIC_URL } from '$env/static/public';
-
-	const social_banner = `https://${PUBLIC_URL}/syntax-banner.png`;
 </script>
 
 <svelte:head>
 	<title>{$page.data.meta.title}</title>
-	<meta name="image" property="og:image" content={social_banner} />
+	<meta name="image" property="og:image" content={$page.data.meta.image} />
 	<meta name="theme-color" content="#000000" />
 	{#if $page.data.meta.canonical}
 		<link rel="canonical" href={$page.data.meta.canonical} />
