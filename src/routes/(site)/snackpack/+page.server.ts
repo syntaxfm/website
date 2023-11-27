@@ -18,7 +18,7 @@ function formatNumber(n: number) {
 	return `${numberformatter.format(n)}${suffix}`;
 }
 
-export const load: PageServerLoad = async function ({ setHeaders, params, locals }) {
+export const load: PageServerLoad = async function ({ setHeaders }) {
 	// 1 min cache with 1 min stale allowed
 	setHeaders({
 		'cache-control': `public s-max-age=60, stale-while-revalidate=60`
