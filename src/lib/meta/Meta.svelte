@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	console.log($page.path);
 </script>
 
 <svelte:head>
@@ -13,6 +14,7 @@
 		property="og:description"
 		content={$page.data.meta.description}
 	/>
+
 	<meta name="description" content={$page.data.meta.description} />
 	<meta prefix="og: http://ogp.me/ns#" property="og:image" content={$page.data.meta.image} />
 	<meta
