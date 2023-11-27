@@ -1,27 +1,23 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	console.log($page.path);
 </script>
 
 <svelte:head>
 	<title>{$page.data.meta.title}</title>
 	<meta name="theme-color" content="#000000" />
+	{#if $page.data.meta.canonical}
+		<link rel="canonical" href={$page.data.meta.canonical} />
+	{/if}
 	<!-- OG -->
-	<meta prefix="og: http://ogp.me/ns#" property="og:type" content="website" />
-	<meta prefix="og: http://ogp.me/ns#" property="og:title" content={$page.data.meta.title} />
-	<meta
-		prefix="og: http://ogp.me/ns#"
-		property="og:description"
-		content={$page.data.meta.description}
-	/>
-
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content={$page.data.meta.title} />
+	<meta property="og:description" content={$page.data.meta.description} />
+	{#if $page.data.meta.canonical}
+		<meta property="og:url" content={$page.data.meta.canonical} />
+	{/if}
 	<meta name="description" content={$page.data.meta.description} />
-	<meta prefix="og: http://ogp.me/ns#" property="og:image" content={$page.data.meta.image} />
-	<meta
-		prefix="og: http://ogp.me/ns#"
-		property="og:image:secure_url"
-		content={$page.data.meta.image}
-	/>
+	<meta property="og:image" content={$page.data.meta.image} />
+	<meta property="og:image:secure_url" content={$page.data.meta.image} />
 	<!-- Twitter -->
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:title" content={$page.data.meta.title} />
