@@ -21,3 +21,5 @@ test-results
 .sentryclirc
 # Temp
 # core.wasm
+
+start_script/target

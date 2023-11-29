@@ -3,7 +3,7 @@
 	"version": "2.0.26",
 	"private": true,
 	"scripts": {
-		"dev": "vite dev",
+		"dev": "./syntax_website_go",
 		"copy-files": "zx ./why_do_i_need_this.mjs",
 		"build": "run-s --print-name build:svelte copy-files",
 		"build:svelte": "vite build",

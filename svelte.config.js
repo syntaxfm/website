@@ -36,6 +36,7 @@ const config = {
 	kit: {
 		adapter: adapter(),
 		alias: {
+			$: 'src',
 			$actions: 'src/actions',
 			$assets: 'src/assets',
 			$const: 'src/const.ts',
