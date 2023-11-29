@@ -17,8 +17,8 @@ In this Supper Club episode of Syntax, Wes and Scott talk with Feross Aboukhadij
 * **[00:30](#t=00:30)** Welcome
 * **[00:57](#t=00:57)** Who is Feross Aboukhadijeh?
 * **[01:33](#t=01:33)** What is Socket?
-* [Socket.dev](https://socket.dev
-* [dominictarr (Dominic Tarr)](https://github.com/dominictarr)
+* [Socket.dev](https://socket.dev)
+* [Dominic Tarr on GitHub](https://github.com/dominictarr)
 * [pull-stream/pull-stream: minimal streams](https://github.com/pull-stream/pull-stream)
 * **[03:59](#t=03:59)** Introducing AI package summaries
 * [Example of the AI summaries](https://socket.dev/npm/package/lodash)
