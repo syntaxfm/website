@@ -1,5 +1,5 @@
-use std::{env, fs, process::{Command, Output}, path::Path};
-use regex::Regex;
+use std::{env, fs::{self, File, OpenOptions}, process::{Command}, path::Path, collections::{HashSet, HashMap}};
+use std::io::{ BufRead, Write, BufReader, self};
 use serde_json::Value;
 use dotenv::dotenv;
 use mysql::{self, Pool, OptsBuilder};
@@ -33,17 +33,32 @@ fn check_pnpm_version() -> Result<(), String> {
 }
 
 
-// Function to check and copy .env file if needed
-fn check_and_copy_env() -> Result<(), Box<dyn std::error::Error>> {
-    if !Path::new(".env").exists() {
-        fs::copy(".env.example", ".env")?;
+// Function to check and update .env file with missing variables from .env.example
+fn check_and_update_env() -> Result<(), Box<dyn std::error::Error>> {
+    let env_path = Path::new(".env");
+    let env_example_path = Path::new(".env.example");
+
+    if !env_path.exists() {
+        fs::copy(env_example_path, env_path)?;
         println!("🤝 .env.example copied to .env");
-        println!("✅ env Check"); 
     } else {
-        println!("✅ env Check"); 
+        let existing_vars = read_env_vars_and_values(env_path)?;
+        let example_vars = read_env_vars_and_values(env_example_path)?;
+
+        let missing_vars: HashSet<_> = example_vars.keys()
+                                                    .filter(|key| !existing_vars.contains_key(*key))
+                                                    .cloned()
+                                                    .collect();
+
+        if !missing_vars.is_empty() {
+            append_missing_vars_to_env(env_path, &missing_vars, &example_vars)?;
+        }
     }
+
+    println!("✅ env Check");
     Ok(())
 }
+
 
 // Function to check DATABASE_URL in .env
 fn check_database_url() -> Result<(), &'static str> {
@@ -103,6 +118,39 @@ fn execute_command(command: &str, args: &[&str]) {
     }
 }
 
+
+// Function to read environment variables and their values from a file into a HashMap
+fn read_env_vars_and_values(path: &Path) -> Result<HashMap<String, String>, io::Error> {
+    let file = File::open(path)?;
+    let reader = BufReader::new(file);
+
+    let vars = reader.lines()
+        .filter_map(Result::ok)
+        .filter(|line| !line.trim().is_empty() && !line.starts_with('#'))
+        .map(|line| {
+            let mut parts = line.splitn(2, '=');
+            let key = parts.next().unwrap_or("").to_string();
+            let value = parts.next().unwrap_or("").to_string();
+            (key, value)
+        })
+        .collect();
+
+    Ok(vars)
+}
+
+// Function to append missing variables and their values to the .env file
+fn append_missing_vars_to_env(path: &Path, missing_vars: &HashSet<String>, example_vars: &HashMap<String, String>) -> Result<(), io::Error> {
+    let mut file = OpenOptions::new().write(true).append(true).open(path)?;
+
+    for var in missing_vars {
+        if let Some(value) = example_vars.get(var) {
+            writeln!(file, "{}={}", var, value)?;
+        }
+    }
+
+    Ok(())
+}
+
 // Main function
 fn main() {
     if let Err(e) = check_pnpm_version() {
@@ -112,7 +160,7 @@ fn main() {
         println!("✅ pnpm Check");
     }
 
-    if let Err(e) = check_and_copy_env() {
+    if let Err(e) = check_and_update_env() {
         eprintln!("Error checking/copying .env file: {}", e);
         return;
     }
