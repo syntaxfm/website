@@ -22,7 +22,6 @@ export const redis =
 				token: UPSPLASH_TOKEN
 		  })
 		: null;
-
 console.log(`🤓 Cache Status... ${cache_status}`);
 
 // import { ADMIN_LOGIN } from '$env/static/private';

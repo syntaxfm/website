@@ -1,6 +1,7 @@
 import { dev } from '$app/environment';
 import chrome from '@sparticuz/chromium';
 import puppeteer, { Browser } from 'puppeteer-core';
+import { redis } from '../../../../hooks.server.js';
 const exePath = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 
 const cache = new Map<string, string>();
@@ -47,6 +48,12 @@ export const config = {
 	maxDuration: 30 // vercel timeout 30s
 };
 
+const headers = {
+	'Content-Type': 'image/jpeg',
+	// cache for 10 minutes, allow stale to be served for up for another 10 mins
+	'cache-control': 'public s-max-age=600, stale-while-revalidate=600'
+};
+
 export async function GET({ url, params }) {
 	const start = performance.now();
 	const qs = new URLSearchParams(url.search);
@@ -54,15 +61,12 @@ export async function GET({ url, params }) {
 	const show = params.show_number;
 
 	// Check if we have a cached version
-	if (cache.has(show)) {
-		console.log(`serving cached version of ${show}`);
-		return new Response(Buffer.from(cache.get(show), 'base64'), {
+	const cache = redis ? await redis.get(`show-og-${show}`) : null;
+	if (cache) {
+		console.log(`serving cached version of ${show}`, cache);
+		return new Response(Buffer.from(cache, 'base64'), {
 			status: 200,
-			headers: {
-				'Content-Type': 'image/jpeg',
-				// cache for 10 minutes, allow stale to be served for up for another 10 mins
-				'cache-control': 'public s-max-age=600, stale-while-revalidate=600'
-			}
+			headers
 		});
 	}
 	console.time(`Taking screenshot of ${show}`);
@@ -71,13 +75,11 @@ export async function GET({ url, params }) {
 	const end = performance.now();
 	console.log(`time to render ${show}:`, (end - start) / 1000);
 	// Store buffer in cache
-	cache.set(show, photoBuffer.toString('base64'));
+	console.log(`caching ${show} in redis`);
+	redis?.append(`show-og-${show}`, photoBuffer.toString('base64'));
+	redis?.expire(`show-og-${show}`, 60 * 60 * 5); // 5 hour cache
 	return new Response(photoBuffer, {
 		status: 200,
-		headers: {
-			'Content-Type': 'image/jpeg',
-			// cache for 10 minutes, allow stale to be served for up for another 10 mins
-			'cache-control': 'public s-max-age=600, stale-while-revalidate=600'
-		}
+		headers
 	});
 }
