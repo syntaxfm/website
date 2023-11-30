@@ -16,11 +16,12 @@
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
 		"format": "prettier --plugin-search-dir . --write .",
 		"site:update": "pnpm update -i -L",
-		"db:init": "run-s --print-name i-changed-the-schema db:seed",
+		"db:init": "run-s --print-name i-changed-the-schema db:seed-dev",
 		"db:studio": "prisma studio",
 		"db:generate": "prisma generate",
 		"db:push": "prisma db push",
 		"db:seed": "prisma db seed",
+		"db:seed-dev": "pnpm prisma db seed -- --environment=development",
 		"i-changed-the-schema": "pnpm run db:push && pnpm run db:generate",
 		"postinstall": "pnpm db:push && pnpm db:generate && pnpm exec playwright install"
 	},

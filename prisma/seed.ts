@@ -1,8 +1,17 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import { PrismaClient } from '@prisma/client';
+import { parseArgs } from 'node:util';
+
+const options = {
+	environment: { type: 'string' }
+};
 
 const prisma = new PrismaClient();
 
 async function main() {
+	const { values } = parseArgs({ options });
+
 	// Check if roles already exist, if not, create them
 	const existingRoles = await prisma.role.findMany();
 	if (existingRoles.length === 0) {
@@ -13,6 +22,11 @@ async function main() {
 	} else {
 		console.log('Roles already exist. No action taken.');
 	}
+
+	// If you are in dev seeding, hit the API and pull in even more
+	// if (values.environment === 'development') {
+	// 	const data = await fetch('');
+	// }
 }
 
 main()
