@@ -15,7 +15,7 @@
 			<a href="/snackpack">← Back to all issues</a>
 		</p>
 	</header>
-	<div>
+	<div class="newsletter-output">
 		{@html data.html}
 	</div>
 </main>
@@ -23,5 +23,12 @@
 <style>
 	header {
 		padding: var(--default_padding);
+	}
+	.newsletter-output {
+		border: 5px solid black;
+		background: white;
+		:global(img) {
+			max-width: 100%;
+		}
 	}
 </style>
