@@ -148,7 +148,7 @@
 		}
 		&.card {
 			border-radius: var(--brad);
-			border: solid var(--border-size) var(--black-8);
+			border: solid var(--border-size) var(--subtle);
 		}
 
 		&.highlight {
