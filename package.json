@@ -3,8 +3,7 @@
 	"version": "2.0.28",
 	"private": true,
 	"scripts": {
-		"dev": "vite dev",
-		"start": "pnpm dev",
+		"dev": "./syntax_website_go",
 		"copy-files": "zx ./why_do_i_need_this.mjs",
 		"build": "run-s --print-name build:svelte copy-files",
 		"build:svelte": "vite build",
@@ -17,10 +16,12 @@
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
 		"format": "prettier --plugin-search-dir . --write .",
 		"site:update": "pnpm update -i -L",
+		"db:init": "run-s --print-name i-changed-the-schema db:seed-dev",
 		"db:studio": "prisma studio",
-		"db:push": "prisma db push",
 		"db:generate": "prisma generate",
+		"db:push": "prisma db push",
 		"db:seed": "prisma db seed",
+		"db:seed-dev": "pnpm prisma db seed -- --environment=development",
 		"i-changed-the-schema": "pnpm run db:push && pnpm run db:generate",
 		"postinstall": "pnpm db:push && pnpm db:generate && pnpm exec playwright install"
 	},

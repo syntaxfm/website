@@ -10,19 +10,18 @@ This site is built on SvelteKit.
 
 - Node 20.0.0 or higher
 
+## Getting Started
+
+1. Run -> `mv ./.env.example ./env`
+2. Add valid mysql connection string to DATABASE_URL in `./env`.
+3. Run -> `pnpm install`
+4. Run -> `pnpm db:init`
+5. Run -> `pnpm dev`
+6. Visit `http://localhost:5173`
+
 ## Database
 
-Make sure to have a `DATABASE_URL` environmental variable set.
-
-If this is your first time, run `pnpm db:push` to create the tables in your database.
-
-Then run `pnpm db:seed` to scaffold out the user roles.
-
-## Development
-
-First you `pnpm install`.
-
-Then you `pnpm dev` and visit `http://localhost:5173`.
+This site uses MySQL via Prisma, so you will need a valid MySQL connection string.
 
 ### Scripts
 
@@ -65,7 +64,9 @@ These are the available media queries:
 @media (--above_med) {
 }
 ```
+
 # Our Contributors
+
 <a href="https://github.com/syntaxfm/website/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=syntaxfm/website" />
 </a>
