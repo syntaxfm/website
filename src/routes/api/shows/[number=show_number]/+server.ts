@@ -20,10 +20,17 @@ export async function GET({ locals, params }) {
 		}
 	});
 	if (data)
-		return json({
-			...data,
-			notesFile: data?.md_file,
-			displayNumber: data?.number.toString(),
-			displayDate: format(new Date(data.date), 'MMMM do, yyyy')
-		});
+		return json(
+			{
+				...data,
+				notesFile: data?.md_file,
+				displayNumber: data?.number.toString(),
+				displayDate: format(new Date(data.date), 'MMMM do, yyyy')
+			},
+			{
+				headers: {
+					'Access-Control-Allow-Origin': '*'
+				}
+			}
+		);
 }
