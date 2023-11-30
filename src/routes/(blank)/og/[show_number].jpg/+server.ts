@@ -4,8 +4,6 @@ import puppeteer, { Browser } from 'puppeteer-core';
 import { redis } from '../../../../hooks.server.js';
 const exePath = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 
-const cache = new Map<string, string>();
-
 async function getOptions() {
 	if (dev) {
 		return {
