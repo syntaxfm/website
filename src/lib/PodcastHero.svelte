@@ -20,19 +20,24 @@
 			A <span class="tasty">Tasty Treats</span> Podcast for Web Developers
 		</h2>
 		<p class="hosted-by">
-			Hosted by <img
-				width="50"
-				height="50"
-				src={`https://github.com/wesbos.png`}
-				alt="A rather handsome Wes Bos"
-			/><a href="/about">Wes Bos</a>
+			<span>Hosted by<wbr /></span>
+			<span>
+				<img
+					width="50"
+					height="50"
+					src={`https://github.com/wesbos.png`}
+					alt="A rather handsome Wes Bos"
+				/><a href="/about">Wes Bos</a>
+			</span>
 			<span class="amp">&</span>
-			<img
-				width="50"
-				height="50"
-				src={`https://github.com/stolinski.png`}
-				alt="Scott lookin absolutely fresh"
-			/> <a href="/about">Scott Tolinski</a>
+			<span>
+				<img
+					width="50"
+					height="50"
+					src={`https://github.com/stolinski.png`}
+					alt="Scott lookin absolutely fresh"
+				/> <a href="/about">Scott Tolinski</a>
+			</span>
 		</p>
 		<p class="brought-by">
 			Brought to you by <a
@@ -87,6 +92,12 @@
 
 	.hosted-by {
 		display: flex;
+		flex-wrap: wrap;
+		& > span {
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+		}
 		width: 100%;
 		justify-content: center;
 		place-items: center;
