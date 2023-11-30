@@ -1,6 +1,7 @@
 import { dev } from '$app/environment';
 import chrome from '@sparticuz/chromium';
 import { readFile } from 'fs/promises';
+import path from 'path';
 import puppeteer, { Browser } from 'puppeteer-core';
 const exePath = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 
@@ -46,9 +47,9 @@ export const config = {
 	maxDuration: 30 // vercel timeout 30s
 };
 
-const __dirname = new URL('.', import.meta.url).pathname;
 export async function GET({ url, params }) {
-	const buf = await readFile(__dirname + './698.jpg');
+	const file = path.join(process.cwd(), 'src/routes/(blank)/og/[show_number].jpg', '698.jpg');
+	const buf = await readFile(file);
 	return new Response(buf, {
 		status: 200,
 		headers: {
