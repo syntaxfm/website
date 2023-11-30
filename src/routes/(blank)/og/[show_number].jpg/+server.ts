@@ -76,8 +76,10 @@ export async function GET({ url, params }) {
 	console.log(`time to render ${show}:`, (end - start) / 1000);
 	// Store buffer in cache
 	console.log(`caching ${show} in redis`);
-	redis?.append(`show-og-${show}`, photoBuffer.toString('base64'));
-	redis?.expire(`show-og-${show}`, 60 * 60 * 5); // 5 hour cache
+	redis?.set(`show-og-${show}`, photoBuffer.toString('base64'), {
+		ex: 60 * 60 * 5
+	});
+
 	return new Response(photoBuffer, {
 		status: 200,
 		headers
