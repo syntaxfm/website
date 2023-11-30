@@ -1,7 +1,5 @@
 import { dev } from '$app/environment';
 import chrome from '@sparticuz/chromium';
-import { readFile } from 'fs/promises';
-import path from 'path';
 import puppeteer, { Browser } from 'puppeteer-core';
 const exePath = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 
@@ -48,18 +46,6 @@ export const config = {
 };
 
 export async function GET({ url, params }) {
-	const buf = await fetch(
-		'https://p201.p0.n0.cdn.getcloudapp.com/items/4guRB0vd/9dfc34a6-c197-4f10-b44d-e2c049824584.jpg?source=viewer&v=7dbdaa80953a2cf83f6b2caf6f5b5cea'
-	).then((x) => x.arrayBuffer());
-	return new Response(buf, {
-		status: 200,
-		headers: {
-			'Content-Type': 'image/jpeg',
-			// cache for 10 minutes, allow stale to be served for up for another 10 mins
-			'cache-control': 'public s-max-age=600, stale-while-revalidate=600'
-		}
-	});
-
 	const start = performance.now();
 	const qs = new URLSearchParams(url.search);
 	// const show = qs.get('show');
