@@ -48,16 +48,9 @@ export const config = {
 };
 
 export async function GET({ url, params }) {
-	const file = path.join(
-		process.cwd(),
-		'src',
-		'routes',
-		'(blank)',
-		'og',
-		'[show_number].jpg',
-		'698.jpg'
-	);
-	const buf = await readFile(file);
+	const buf = await fetch(
+		'https://p201.p0.n0.cdn.getcloudapp.com/items/4guRB0vd/9dfc34a6-c197-4f10-b44d-e2c049824584.jpg?source=viewer&v=7dbdaa80953a2cf83f6b2caf6f5b5cea'
+	).then((x) => x.arrayBuffer());
 	return new Response(buf, {
 		status: 200,
 		headers: {
