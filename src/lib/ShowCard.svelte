@@ -30,10 +30,15 @@
 				return format(date, 'MMMM do, yyyy');
 		}
 	}
+	export const aria_key = `show${show.number}-description`;
 </script>
 
 <article class={display}>
-	<a href={get_show_path(show)}>
+	<a
+		href={get_show_path(show)}
+		aria-label="Show #{show.number} posted {format_date(show_date)}, {show.title}"
+		aria-describedby={aria_key}
+	>
 		{#if display === 'list'}
 			<button
 				data-testid="play-show"
@@ -68,10 +73,10 @@
 			</svelte:element>
 
 			{#if show.aiShowNote?.description}
-				<p class="description text-sm">{show.aiShowNote?.description}</p>
+				<p id={aria_key} class="description text-sm">{show.aiShowNote?.description}</p>
 			{:else}
 				{@const description = show.show_notes?.match(/(.*?)(?=## )/s)?.[0]}
-				<p class="description text-sm">
+				<p id={aria_key} class="description text-sm">
 					{description}
 				</p>
 			{/if}
