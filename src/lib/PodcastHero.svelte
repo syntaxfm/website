@@ -80,7 +80,7 @@
 		width: 50%;
 		max-width: 200px;
 	}
-	h1 {
+	h2 {
 		text-wrap: balance;
 		max-width: 850px;
 		margin: 0 auto;

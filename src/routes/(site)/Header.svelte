@@ -73,7 +73,7 @@
 		display: flex;
 		padding: 10px 0;
 		gap: 10px;
-		justify-content: end;
+		justify-content: flex-end;
 		align-items: center;
 		.transparent & {
 			grid-column: 1 / -1;
