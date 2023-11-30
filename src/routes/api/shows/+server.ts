@@ -27,5 +27,10 @@ export async function GET({ locals }) {
 		};
 	});
 
-	if (data) return json(shows);
+	if (data)
+		return json(shows, {
+			headers: {
+				'Access-Control-Allow-Origin': '*'
+			}
+		});
 }
