@@ -198,11 +198,6 @@
 				margin: 0;
 			}
 		}
-		img:hover {
-			cursor:
-				url('https://fav.farm/🥴') 15 0,
-				auto;
-		}
 		--text-color: var(--white);
 		&.benjamin:hover {
 			/* Bens photo is too light to see this */
