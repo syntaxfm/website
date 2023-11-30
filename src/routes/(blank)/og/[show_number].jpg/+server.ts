@@ -46,8 +46,9 @@ export const config = {
 	maxDuration: 30 // vercel timeout 30s
 };
 
+const __dirname = new URL('.', import.meta.url).pathname;
 export async function GET({ url, params }) {
-	const buf = await readFile('./698.jpg');
+	const buf = await readFile(__dirname + './698.jpg');
 	return new Response(buf, {
 		status: 200,
 		headers: {
