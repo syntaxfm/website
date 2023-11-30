@@ -48,7 +48,15 @@ export const config = {
 };
 
 export async function GET({ url, params }) {
-	const file = path.join(process.cwd(), 'src/routes/(blank)/og/[show_number].jpg', '698.jpg');
+	const file = path.join(
+		process.cwd(),
+		'src',
+		'routes',
+		'(blank)',
+		'og',
+		'[show_number].jpg',
+		'698.jpg'
+	);
 	const buf = await readFile(file);
 	return new Response(buf, {
 		status: 200,
