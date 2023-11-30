@@ -3,6 +3,8 @@ import chrome from '@sparticuz/chromium';
 import puppeteer, { Browser } from 'puppeteer-core';
 const exePath = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 
+const cache = new Map<string, string>();
+
 async function getOptions() {
 	if (dev) {
 		return {
@@ -51,11 +53,25 @@ export async function GET({ url, params }) {
 	// const show = qs.get('show');
 	const show = params.show_number;
 
+	// Check if we have a cached version
+	if (cache.has(show)) {
+		console.log(`serving cached version of ${show}`);
+		return new Response(Buffer.from(cache.get(show), 'base64'), {
+			status: 200,
+			headers: {
+				'Content-Type': 'image/jpeg',
+				// cache for 10 minutes, allow stale to be served for up for another 10 mins
+				'cache-control': 'public s-max-age=600, stale-while-revalidate=600'
+			}
+		});
+	}
 	console.time(`Taking screenshot of ${show}`);
 	const photoBuffer = await getScreenshot(`${url.origin}/og/${show}`);
 	console.timeEnd(`Taking screenshot of ${show}`);
 	const end = performance.now();
 	console.log(`time to render ${show}:`, (end - start) / 1000);
+	// Store buffer in cache
+	cache.set(show, photoBuffer.toString('base64'));
 	return new Response(photoBuffer, {
 		status: 200,
 		headers: {
