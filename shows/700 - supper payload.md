@@ -5,6 +5,7 @@ date: 1701428400253
 url: https://traffic.libsyn.com/syntax/Syntax_-_700.mp3
 guest:
   name: James Mikrut
+  github: jmikrut
   twitter: jamesmikrut
   url: https://payloadcms.com/
 ---
