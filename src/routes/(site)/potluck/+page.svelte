@@ -7,7 +7,7 @@
 		</p>
 
 		<p>
-			Have a question about web development? It can literally be about anything!. Submit it in the
+			Have a question about web development? It can literally be about anything! Submit it in the
 			form below and we will try and answer it on a future show! Feel free to ask anonymously if you
 			prefer us not to mention your name.
 		</p>
