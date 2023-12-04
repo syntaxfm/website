@@ -36,14 +36,16 @@ function loadMediaSession(show: Show) {
 	});
 }
 
+interface PlayerState {
+	status: 'HIDDEN' | 'ACTIVE' | 'EXPANDED';
+	current_show: null | Show;
+	playing: boolean;
+	currentTime: number;
+	audio?: HTMLAudioElement;
+}
+
 const new_player_state = () => {
-	const { subscribe, update, set } = writable<{
-		status: 'HIDDEN' | 'ACTIVE' | 'EXPANDED';
-		current_show: null | Show;
-		playing: boolean;
-		audio?: HTMLAudioElement;
-		currentTime: number;
-	}>({
+	const { subscribe, update, set } = writable<PlayerState>({
 		status: 'HIDDEN',
 		current_show: null,
 		playing: false,
@@ -109,6 +111,16 @@ const new_player_state = () => {
 	function close() {
 		update((state) => {
 			state.status = 'HIDDEN';
+			state.current_show = null;
+			state.playing = false;
+			state.currentTime = 0;
+
+			if (state.audio) {
+				state.audio.pause();
+				state.audio.src = '';
+				state.audio.crossOrigin = null;
+				state.audio.currentTime = 0;
+			}
 			return state;
 		});
 	}
