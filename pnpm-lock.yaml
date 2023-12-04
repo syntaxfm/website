@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 dependencies:
   '@anthropic-ai/sdk':
     specifier: ^0.6.2
@@ -14,8 +18,8 @@ dependencies:
     specifier: ^0.13.1
     version: 0.13.1
   '@leveluptuts/svelte-side-menu':
-    specifier: ^1.0.5
-    version: 1.0.5
+    specifier: ^1.0.7
+    version: 1.0.7
   '@prisma/client':
     specifier: 5.5.2
     version: 5.5.2(prisma@5.5.2)
@@ -936,8 +940,8 @@ packages:
       '@jridgewell/resolve-uri': 3.1.1
       '@jridgewell/sourcemap-codec': 1.4.15
 
-  /@leveluptuts/svelte-side-menu@1.0.5:
-    resolution: {integrity: sha512-czPmr0LEjVhr7qXYZtH4PrUrfHPYg9nS7ZHH+xDINKoajkERWlHlsBtdoJC5ZTMzGvdhLCLfF70q4xeMzJgS7w==}
+  /@leveluptuts/svelte-side-menu@1.0.7:
+    resolution: {integrity: sha512-+8ynGfoCEH62zALLAIuqy5gF2A+sEpZjJKk97Hj2GeufJFe2Eu8cW36yOx71WkZJKtBA3fwgI9Pkerbex6LpAw==}
     dev: false
 
   /@mapbox/node-pre-gyp@1.0.11:
@@ -1478,8 +1482,8 @@ packages:
     resolution: {integrity: sha512-ASCxdbsrwNfSMXALlC3Decif9rwDMu+80KGp5zI2RLRotfMsTv7fHL8W8VDp24wymzDyIFudhUeSCugrgRFfHQ==}
     dev: false
 
-  /@types/yauzl@2.10.2:
-    resolution: {integrity: sha512-Km7XAtUIduROw7QPgvcft0lIupeG8a8rdKL8RiSyKvlE7dYY31fEn41HVuQsRFDuROA8tA4K2UVL+WdfFmErBA==}
+  /@types/yauzl@2.10.3:
+    resolution: {integrity: sha512-oJoftv0LSuaDZE3Le4DbKX+KS9G36NzOeSap90UIK0yMA/NhKJhqlSGtNDORNRaIbQfzjXDrQa0ytJ6mNRGz/Q==}
     requiresBuild: true
     dependencies:
       '@types/node': 20.8.10
@@ -2813,7 +2817,7 @@ packages:
       get-stream: 5.2.0
       yauzl: 2.10.0
     optionalDependencies:
-      '@types/yauzl': 2.10.2
+      '@types/yauzl': 2.10.3
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -6892,7 +6896,3 @@ packages:
       which: 3.0.1
       yaml: 2.3.2
     dev: false
-
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
