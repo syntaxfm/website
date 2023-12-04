@@ -1,11 +1,20 @@
 use std::{env, fs::{self, File, OpenOptions}, process::{Command}, path::Path, collections::{HashSet, HashMap}};
 use std::io::{ BufRead, Write, BufReader, self};
+use csv::Reader;
 use serde_json::Value;
 use dotenv::dotenv;
 use mysql::{self, Pool, OptsBuilder};
 use url::Url;
 use mysql::prelude::*;
 use semver::Version;
+
+// This Rust script performs the following steps:
+// 1. Checks if the installed pnpm version meets the requirement specified in package.json.
+// 2. Ensures the .env file is updated with any missing variables found in .env.example.
+// 3. Validates that the DATABASE_URL in .env is a proper MySQL URL.
+// 4. Checks if the 'Show' table in the database has data.
+//    - If not, seeds the database with data from a .sql file.
+// 5. Runs a custom pnpm command if there's a change in the database schema.
 
 // Function to check pnpm version against package.json
 fn check_pnpm_version() -> Result<(), String> {
@@ -20,7 +29,6 @@ fn check_pnpm_version() -> Result<(), String> {
     let package_json: Value = serde_json::from_str(&fs::read_to_string("package.json").expect("Failed to read package.json")).expect("Failed to parse package.json");
     let required_version_str = package_json["engines"]["pnpm"].as_str().expect("pnpm version not specified in package.json");
 
-    // Extract the major version number from the required version string
     let required_major_version = required_version_str.trim_matches(|c: char| !c.is_digit(10))
                                                        .parse::<u64>()
                                                        .map_err(|_| "Invalid required version format in package.json")?;
@@ -31,7 +39,6 @@ fn check_pnpm_version() -> Result<(), String> {
         Err(format!("❌ Please install pnpm version {} or newer before proceeding", required_version_str))
     }
 }
-
 
 // Function to check and update .env file with missing variables from .env.example
 fn check_and_update_env() -> Result<(), Box<dyn std::error::Error>> {
@@ -59,7 +66,6 @@ fn check_and_update_env() -> Result<(), Box<dyn std::error::Error>> {
     Ok(())
 }
 
-
 // Function to check DATABASE_URL in .env
 fn check_database_url() -> Result<(), &'static str> {
     dotenv().ok();
@@ -73,39 +79,77 @@ fn check_database_url() -> Result<(), &'static str> {
     }
 }
 
-// Function to check if 'Show' table has data
-fn check_show_table_data() -> Result<(), Box<dyn std::error::Error>> {
+fn get_db_ops() -> OptsBuilder {
     let database_url = env::var("DATABASE_URL").unwrap();
     let url = Url::parse(&database_url).expect("Invalid database URL");
 
     let username = url.username();
     let password = url.password().unwrap_or("");
     let host = url.host_str().expect("Database host is required");
-    let port = url.port().unwrap_or(3306); // Default MySQL port
+    let port = url.port().unwrap_or(3306);
     let database = url.path().trim_start_matches('/');
 
-    let opts = OptsBuilder::new()
+    OptsBuilder::new()
         .user(Some(username))
         .pass(Some(password))
         .ip_or_hostname(Some(host))
         .tcp_port(port)
-        .db_name(Some(database));
+        .db_name(Some(database))
+}
 
+// Function to check if 'Show' table has data
+fn check_show_table_data() -> Result<(), Box<dyn std::error::Error>> {
+    let opts = get_db_ops();
     let pool = Pool::new(opts)?;
     let mut conn = pool.get_conn()?;
 
     let count: i32 = conn.query_first("SELECT COUNT(*) FROM `Show`")?.unwrap_or(0);
     if count > 0 {
-				println!("✅ Data Check");
+        println!("✅ Data Check");
         Ok(())
     } else {
-        // Run 'pnpm db:init' command if no data
-				println!("❌ Data Check");
-				println!("🏃‍♀️ Running db:init....");
-        Command::new("pnpm").args(["db:init"]).status()?;
-				println!("✅ db:init completed");
-        Err("Initialized database with 'pnpm db:init'".into())
+        println!("❌ Data Check - Seeding database...");
+        seed_database(&pool, "./seed/db")?;
+        println!("✅ Database seeded");
+        Command::new("pnpm").args(["i-changed-the-schema"]).status()?;
+        println!("✅ Schema change command executed");
+        Ok(())
     }
+}
+
+// Function to import CSV data into the database
+fn import_csv_to_table(pool: &Pool, file_path: &Path, table_name: &str) -> Result<(), Box<dyn std::error::Error>> {
+    let mut rdr = Reader::from_path(file_path)?;
+
+    for result in rdr.records() {
+        let record = result?;
+        let mut values = vec![];
+        
+        for field in record.iter() {
+            values.push(format!("'{}'", field.replace("'", "''")));
+        }
+
+        let query = format!("INSERT INTO {} VALUES({})", table_name, values.join(", "));
+        pool.get_conn()?.query_drop(query)?;
+    }
+
+    Ok(())
+}
+
+// Function to seed the database with CSV files
+fn seed_database(pool: &Pool, folder_path: &str) -> Result<(), Box<dyn std::error::Error>> {
+    let paths = fs::read_dir(folder_path)?;
+
+    for path in paths {
+        let file_path = path?.path();
+        if file_path.is_file() {
+            let file_name = file_path.file_name().unwrap().to_str().unwrap();
+            let table_name = file_name.trim_end_matches(".csv");
+            import_csv_to_table(pool, &file_path, table_name)?;
+        }
+    }
+
+    Ok(())
 }
 
 // Function to execute a command and print its output
@@ -117,7 +161,6 @@ fn execute_command(command: &str, args: &[&str]) {
         Err(e) => eprintln!("Failed to run command '{}': {}", command, e),
     }
 }
-
 
 // Function to read environment variables and their values from a file into a HashMap
 fn read_env_vars_and_values(path: &Path) -> Result<HashMap<String, String>, io::Error> {
@@ -173,11 +216,20 @@ fn main() {
         }
     }
 
+    let opts = get_db_ops();
+    let pool = Pool::new(opts).expect("Failed to create pool.");
+
     if let Err(e) = check_show_table_data() {
         eprintln!("{}", e);
+
+        let folder_path = "path/to/csv/folder"; // Replace with your CSV folder path
+        if let Err(err) = seed_database(&pool, folder_path) {
+            eprintln!("Failed to seed database from CSV files: {}", err);
+        } else {
+            println!("Database seeded successfully from CSV files.");
+        }
     }
 
     // Run 'pnpm vite dev' command
     execute_command("pnpm", &["vite", "dev"]);
 }
-

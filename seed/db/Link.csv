@@ -1,0 +1,1349 @@
+id,name,url,timestamp,showNote
+1,Syntax Survey,https://syntax.fm/survey,00:00,2
+2,Syntax Toronto Meetup,https://syntax.fm/meetup,00:24,2
+3,Sentry,https://sentry.io/,02:10,2
+4,Century,https://century.io/,02:33,2
+5,Bun JS,https://bun.sh/,02:47,2
+6,Hasura,https://hasura.io/,32:51,2
+7,Algolia,https://www.algolia.com/,32:58,2
+8,Stripe,https://stripe.com/,32:58,2
+9,Capacitor,https://capacitorjs.com/,32:58,2
+10,Headings Map (Firefox),https://addons.mozilla.org/en-US/firefox/addon/headingsmap/,22:34,3
+11,Headings Map (Chrome),https://chrome.google.com/webstore/detail/headingsmap/flbjommegcjonpdmenkdiocclhjacmbi?hl=en,22:34,3
+12,ally.ac,https://www.ally.ac/,22:19,3
+13,Guidance Counselor podcast,https://podcasts.apple.com/us/podcast/the-guidance-counselor/id1499882229,55:24,4
+14,Unicorn Finders podcast,https://podcasts.apple.com/us/podcast/unicorn-finders/id1608561091,55:32,4
+15,"Taylor's website",https://www.tdesseyn.com/,55:44,4
+16,State of CSS Survey,https://stateofcss.com,00:21,5
+17,Sentry,https://sentry.io,03:59,5
+18,Kodiak Cakes,https://kodiakcakes.com/,56:09,5
+19,Beba Clip Containers,https://bebacomfort.com/products/beba-clip-container,55:29,5
+20,FITC Web Unleashed,https://fitc.ca/event/webu22/,58:25,5
+21,Syntax TikTok,https://www.tiktok.com/@syntaxfm,01:00:08,5
+22,Tori,https://tori.js.org/,00:00,6
+23,Electron,https://electronjs.org/,00:00,6
+24,Psychology Today,https://www.psychologytoday.com,22:14,7
+25,Headspace,https://www.headspace.com,27:15,7
+26,Calm,https://www.calm.com,27:22,7
+27,Svelte,https://svelte.dev/,00:02:24,8
+28,SvelteKit,https://kit.svelte.dev/,00:03:25,8
+29,Prisma,https://www.prisma.io/,00:21:05,8
+30,Charles Proxy,https://www.charlesproxy.com/,16:45,9
+31,Proxyman,https://proxyman.io,25:25,9
+32,HTTP Toolkit,https://httptoolkit.tech/,26:55,9
+33,mitmproxy,https://mitmproxy.org/,28:56,9
+34,Little Snitch,https://www.obdev.at/products/littlesnitch/index.html,29:43,9
+35,Fiddler,https://www.telerik.com/fiddler,32:10,9
+36,"Stuart's Portfolio",https://www.stuartblockson.tech/,26:29,10
+37,Sentry,https://sentry.io,00:11,11
+38,Vampire Survivors,https://store.steampowered.com/app/1794680/Vampire_Survivors/,36:29,11
+39,Better Display,https://github.com/waydabber/BetterDisplay,45:54,11
+40,Syntax FM,https://syntax.fm,00:25,12
+41,"Wes' CSS nesting tweet",https://twitter.com/wesbos/status/1627697402181840896,00:43,12
+42,Bling.js,https://github.com/ericelliott/blingjs,28:14,12
+43,Lightning CSS,https://lightningcss.dev/,29:39,12
+44,Astro,https://astro.build,00:39,13
+45,Sentry,https://sentry.io/,01:41,13
+46,Vercel,https://vercel.com,23:02,13
+47,Civet,https://github.com/civetweb/civet,06:53,14
+48,Sanity Grok,https://www.sanity.io/docs/graphql,17:16,14
+49,Ask the Code plugin,https://www.askthecode.com/,37:53,14
+50,Talk with the Docs plugin,https://talkwithdocs.com/,38:39,14
+51,Web Performance Resources,https://www.webperf.tips/,23:12,14
+52,Syntax.fm Podcast,https://syntax.fm,00:21,15
+53,"Wes' Beginner JS Course",https://LearnJavaScript.today,01:19,15
+54,Tricky Bits: Closures Article,https://wesbos.com/javascript-closures,20:34,15
+55,"Mark Erikson's ESM blog post",https://blog.isquaredsoftware.com/posts/publishing-packages-esm/,00:36,16
+56,Are The Types Wrong?,https://www.arethetypeswrong.com/,32:13,16
+57,Satori,https://satori.dev,11:32,17
+58,Vercel,https://vercel.com,11:14,17
+59,Cloudinary,https://cloudinary.com,14:22,17
+60,Puppeteer,https://github.com/puppeteer/puppeteer,18:05,17
+61,Playwright,https://playwright.dev/,26:37,17
+62,Canva,https://www.canva.com/,29:08,17
+63,Sentry,https://sentry.io,00:30,18
+64,MacroFactor,https://macrofactorapp.com/,19:21,18
+65,Million.js,https://millionjs.org,00:54,19
+66,JS Framework Benchmark,https://github.com/krausest/js-framework-benchmark,14:08,19
+67,Million.js Kitchen Sink,https://sink.millionjs.org/,48:56,19
+68,Syntax Podcast,https://syntax.fm,00:01,20
+69,Sentry,https://sentry.io/,04:41,20
+70,Syntax podcast,https://syntax.fm,00:01,21
+71,Syntax Podcast,https://syntax.fm,00:39,22
+72,Dev Tools FM Podcast,https://devtools.fm,02:04,22
+73,libavjs,https://github.com/Descript/libavjs,11:24,22
+74,Radix UI,https://www.radix-ui.com/,18:41,22
+75,XState,https://xstate.js.org/,19:57,22
+76,Playwright,https://playwright.dev/,31:49,22
+77,Iosevka font,https://typeof.net/Iosevka/,51:51,22
+78,Lexical,https://lexical.dev/,56:34,22
+79,Shad CN,https://shadcn.com/,58:27,22
+80,Sentry,https://sentry.io,00:34,23
+81,Promise resolvers,https://github.com/tc39/proposal-promise-with-resolvers,01:37,23
+82,Array.at(),https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/at,04:08,23
+83,Immutable array methods,https://v8.dev/features/immutable-array-builtins,05:40,23
+84,Array.fromAsync(),https://github.com/tc39/proposal-array-from-async,21:51,23
+85,Array grouping,https://github.com/tc39/proposal-array-grouping,27:21,23
+86,Observable events,https://github.com/allenwb/ESObservables/,31:17,23
+87,Import assertions,https://github.com/tc39/proposal-import-assertions,35:18,23
+88,Map.emplace(),https://github.com/tc39/proposal-upsert,39:25,23
+89,Decorators,https://github.com/tc39/proposal-decorators/,41:31,23
+90,Pattern matching,https://github.com/tc39/proposal-pattern-matching,43:49,23
+91,Angular,https://angular.io/,05:55,24
+92,Lit,https://lit.dev/,05:55,24
+93,TC39 Decorator Proposal,https://github.com/tc39/proposal-decorators,04:06,24
+94,Flight Control,https://flightcontrol.dev/,00:26,25
+95,Blitz JS,https://blitzjs.com/,01:33,25
+96,Temporal,https://temporal.io/,25:31,25
+97,StackBlitz example,https://stackblitz.com/edit/typescript-8svz9m?file=index.ts,06:07,26
+98,Past Syntax episode on stretching,https://syntax.fm/show/157/hasty-treat-stretching-at-your-desk,20:15,26
+99,Stylex,https://www.stylex.com,04:25,27
+100,Remix,https://remix.run,00:36,28
+101,React Router,https://reactrouter.com,00:48,28
+102,Cloudflare Workers,https://workers.cloudflare.com,09:49,28
+103,Vercel,https://vercel.com,11:55,28
+104,Tailwind UI,https://tailwindui.com,17:11,28
+105,Structured Clone,https://developer.mozilla.org/en-US/docs/Web/API/StructuredClone,26:19,29
+106,Worker Tools,https://worker.tools/,29:19,29
+107,Fetch API,https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API,11:10,29
+108,new URL(),https://developer.mozilla.org/en-US/docs/Web/API/URL/URL,14:55,29
+109,URLSearchParams,https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams,15:20,29
+110,Web Streams,https://developer.mozilla.org/en-US/docs/Web/API/Streams_API,23:00,29
+111,File System Access API,https://developer.mozilla.org/en-US/docs/Web/API/File_System_Access_API,36:56,29
+112,File API,https://developer.mozilla.org/en-US/docs/Web/API/File,39:36,29
+113,Rust By Example - Doc Comments,https://doc.rust-lang.org/rust-by-example/meta/doc.html,14:36,30
+114,Cargo,https://doc.rust-lang.org/cargo/,07:09,30
+115,Nodemailer,https://nodemailer.com,01:18,31
+116,Mailtrain,https://mailtrain.org/,01:30,31
+117,Ethereal Email,https://ethereal.email/,01:36,31
+118,Email Engine,https://emailengine.app/,01:59,31
+119,"Scott's July 4th Post",https://www.stolinski.com/blog/july-4th,01:02,32
+120,Miri Smart WiFi Air Purifier,https://mirismart.com/products/wifi-air-purifier,49:21,32
+121,Self Closing Braided Cable Sleeve,https://www.aliexpress.com/item/1005004579680213.html,56:34,32
+122,Shruti Kapoor Blog Post,https://www.freecodecamp.org/news/form-validation-with-html5-and-javascript/,35:45,33
+123,Polyfill.io,https://polyfill.io,00:51,34
+124,Fastly,https://fastly.com,01:31,34
+125,WASI,https://webassembly.org/docs/wasi/,21:37,34
+126,Hono,https://honojs.dev/,37:18,34
+127,Worker Tools,https://worktools.dev/,36:23,34
+128,"Manuel Matjovic's CSS corrections blog post",https://manuel.matjovic.com/blog/syntax-css-nothing/,10:27,35
+129,TS Lab,https://github.com/yuvipanda/tslab,20:38,35
+130,Numi,https://numi.app/,25:13,35
+131,Light Table,https://www.lighttable.com/,25:20,35
+132,Domain name sales Twitter account,https://twitter.com/domainnamesales,40:09,35
+133,Syntax.fm,https://syntax.fm,00:03,36
+134,val.town,https://val.town,00:39,37
+135,Sunbeam,https://sunbeam.io/,40:48,37
+136,Seymour Papert,https://en.wikipedia.org/wiki/Seymour_Papert,42:26,37
+137,Brett Victor,http://worrydream.com/,48:43,37
+138,Dynamic Land,https://dynamicland.org/,48:54,37
+139,Future of Coding,https://futureofcoding.org/,49:01,37
+140,Tom McWright,https://twitter.com/TMWC,55:37,37
+141,Syntax.fm Podcast,https://syntax.fm,00:02,38
+142,Wikipedia on Netflix,https://en.wikipedia.org/wiki/Netflix,02:29,38
+143,CSS Zen Garden,http://www.csszengarden.com/,44:54,38
+144,CodeAI,https://github.com/withspectrum/codeai,04:16,39
+145,Amazon CodeWhisperer,https://aws.amazon.com/codewhisperer/,09:59,39
+146,GitHub Copilot Labs,https://github.com/features/copilot-labs,10:48,39
+147,lintrule,https://lintrule.com/,14:32,39
+148,opencommit,https://www.opencommit.dev/,18:15,39
+149,Replit Ghostwriter,https://blog.replit.com/ghostwriter,21:15,39
+150,Anthropic Model,https://www.anthropic.com/,22:17,39
+151,Codegeeks,https://codegeex.com/,24:05,39
+152,Codeum AI,https://codeum.ai/,26:37,39
+153,TabNine,https://www.tabnine.com/,31:12,39
+154,Cloudinary,https://cloudinary.com,00:40,40
+155,Space Jellyfish,https://spacejelly.dev/,03:15,40
+156,Cloudinary AI,https://cloudinary.com/solutions/ai,05:03,40
+157,Midjourney,https://www.midjourney.com/,06:02,40
+158,Function Calls API,https://platform.openai.com/docs/guides/function,22:55,40
+159,Mojo,https://mojo.dev/,23:14,40
+160,Unpick,https://unpick.app/,30:54,40
+161,Sentry,https://sentry.io/,34:22,40
+162,Next.js Examples,https://github.com/vercel/next.js/tree/canary/examples,35:41,40
+163,Microsoft Edge Select Menu,https://github.com/MicrosoftEdge/Demos/blob/main/select-menu/README.md,17:00,41
+164,Shoelace Web Components,https://shoelace.style/,26:32,41
+165,WonderCraft AI,https://www.wondercraft.ai/,39:29,41
+166,Lightning CSS,https://www.lightningcss.dev/,00:27,42
+167,oklch.com,https://www.oklch.com/,06:18,42
+168,Syntax.fm,https://syntax.fm,28:54,42
+169,Flask,https://flask.palletsprojects.com/,02:33,43
+170,Jinja,https://jinja.palletsprojects.com/,02:47,43
+171,Twig,https://twig.symfony.com/,02:55,43
+172,Celery,https://docs.celeryq.dev/,06:50,43
+173,RabbitMQ,https://www.rabbitmq.com/,09:09,43
+174,Kafka,https://kafka.apache.org/,08:41,43
+175,Stripe,https://stripe.com/,12:17,43
+176,GlobalCollect,https://www.ingenico.com/globalcollect,12:17,43
+177,PyO3,https://pyo3.rs/,42:36,43
+178,Maturin,https://github.com/PyO3/maturin,42:50,43
+179,NumPy,https://numpy.org/,43:12,43
+180,SciPy,https://www.scipy.org/,43:12,43
+181,Next.js,https://nextjs.org/,47:43,43
+182,Rye,https://github.com/mitsuhiko/pipsi,55:18,43
+183,Syntax,https://syntax.fm,00:01,44
+184,Prisma,https://www.prisma.io/,24:41,44
+185,Drizzle,https://drizzle.dev/,34:26,44
+186,I Think You Should Leave,https://www.netflix.com/title/80986854,53:49,44
+187,Namecheap,https://www.namecheap.com/,12:51,45
+188,GoDaddy,https://www.godaddy.com/,18:06,45
+189,Gandi,https://www.gandi.net/,19:48,45
+190,Hover,https://www.hover.com/,22:17,45
+191,Name.com,https://www.name.com/,24:26,45
+192,Cloudflare,https://www.cloudflare.com/,26:53,45
+193,Porkbun,https://porkbun.com/,21:37,45
+194,101 Domain,https://www.101domain.com/,20:28,45
+195,DNSimple,https://dnsimple.com/,31:46,45
+196,Domainer,https://domainr.com/,33:10,45
+197,I Want My Name,https://iwantmyname.com/,33:16,45
+198,"Dustin's dotfiles",https://github.com/dshauforward/dotfiles,46:54,46
+199,Fly.io,https://fly.io/,51:38,46
+200,Figma database deep dive,https://www.figma.com/blog/how-figmas-database-infrastructure-evolved-over-10-years/,52:23,46
+201,JS Nation,https://www.js-nation.com/,01:56,47
+202,Render Atlanta,https://renderatl.com/,02:38,47
+203,OpenAI,https://openai.com/,04:55,47
+204,Async Context API Proposal,https://github.com/tc39/proposal-async-context,02:13,48
+205,Next.js Usage,https://nextjs.org/docs/basic-features/data-fetching#accessing-the-request-and-response-objects,10:18,48
+206,Excess,https://www.exceedjs.com/,04:14,49
+207,JerryScript,https://jerryscript.net/,05:15,49
+208,Rocky.js,https://developer.pebble.com/docs/rockyjs/,05:15,49
+209,Tesla,https://tessel.github.io/,06:34,49
+210,Hoodie,https://hood.ie/,07:40,49
+211,Stack-Chan,https://www.niche-life.com/stack-chan/,17:18,49
+212,Arduino,https://www.arduino.cc/,25:59,49
+213,Johnny-Five,http://johnny-five.io/,27:09,49
+214,J5e,https://j5e.dev/,27:19,49
+215,ECMA-419,https://www.ecma-international.org/publications-and-standards/standards/ecma-419/,22:39,49
+216,WLED,https://github.com/Aircoookie/WLED,07:17,50
+217,Unraveling the mysteries of resistors,https://www.youtube.com/watch?v=WxipoY0y7XM,38:29,50
+218,ESP Rust book,https://esp-rs.github.io/book/,51:16,50
+219,Syntax Website Repo,https://github.com/SyntaxFM/syntaxfm.github.io,12:46,51
+220,GitHub Actions Course,https://leveluptutorials.com,22:36,51
+221,OpenAI,https://openai.com,00:36,52
+222,ChatGPT,https://chat.openai.com/,01:28,52
+223,GitHub Copilot,https://copilot.github.com/,08:45,52
+224,JSDoc Documentation,https://jsdoc.app/,00:00,53
+225,TypeScript Handbook - JSDoc Reference,https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html,00:00,53
+226,SvelteJS,https://svelte.dev/,00:33,53
+227,Rich Harris on Svelte without TypeScript,https://www.youtube.com/watch?v=YAlrNjDLhaA,00:33,53
+228,Syntax.fm,https://syntax.fm,00:37,54
+229,LCH color,https://lea.verou.me/2020/04/lch-colors-in-css-what-why-and-how/,14:32,54
+230,GitHub Next,https://githubnext.com,00:59,55
+231,Ariakit,https://ariakit.org,01:00,55
+232,Liveblocks,https://liveblocks.io,01:01,55
+233,Syntax GitHub Repo,https://github.com/SyntaxFM/syntaxfm,04:53,56
+234,Node executable docs,https://nodejs.org/api/cli.html#executable,00:30,57
+235,Dino,https://deno.land/,15:34,57
+236,Bun,https://bun.sh/,15:49,57
+237,Scroll Driven Animations,https://scroll-driven-animations.style/,55:22,58
+238,Reactathon,https://www.reactathon.com/,00:02,59
+239,SvelteKit,https://kit.svelte.dev/,05:12,59
+240,CSS custom properties,https://developer.mozilla.org/en-US/docs/Web/CSS/--*,08:20,59
+241,AWS Certifications,https://aws.amazon.com/certification/,22:01,59
+242,Sentry,https://sentry.io,30:47,59
+243,Lodash,https://lodash.com/,37:55,59
+244,Fetch API,https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API,43:55,59
+245,React Native,https://reactnative.dev/,45:18,59
+246,DaisyDisk,https://daisydiskapp.com,04:30,60
+247,BundlePhobia,https://bundlephobia.com,10:35,60
+248,core-js,https://www.npmjs.com/package/core-js,10:11,60
+249,PNPM,https://pnpm.io/,18:08,60
+250,npkill,https://www.npmjs.com/package/npkill,23:00,60
+251,gradient.style,https://gradient.style,08:25,61
+252,Disney Animation Principles,https://www.youtube.com/watch?v=haa7n3UGyDc,19:09,61
+253,live-transitions.pages.dev,https://live-transitions.pages.dev/,20:53,61
+254,Open Props CSS gradients,https://open-props.style/,23:49,61
+255,Syntax.fm,https://syntax.fm,00:01,62
+256,FlightControl,https://flightcontrol.dev/,12:01,62
+257,Railway,https://railway.app/,14:08,62
+258,Preact Signals,https://github.com/preactjs/signals,12:34,63
+259,Mux,https://mux.com,01:40,64
+260,Open UI,https://open-ui.org,20:08,65
+261,Century,https://century.io,53:51,65
+262,Blue Sky,https://blueskyweb.org/,00:10,66
+263,Mastodon,https://mastodon.social/,02:20,66
+264,Nostr,https://nostr.io/,02:55,66
+265,Substack,https://substack.com/,02:45,66
+266,Damo,https://damus.io/,02:55,66
+267,Warp,https://www.warp.dev/,00:47,67
+268,"Zach's Blog",https://zach.lloyd.co/,00:52,67
+269,Flutter,https://flutter.dev/,19:27,67
+270,HarfBuzz,https://www.freedesktop.org/wiki/Software/HarfBuzz/,28:57,67
+271,Prisma,https://www.prisma.io/,06:34,68
+272,Voucherify,https://voucherify.io/,20:06,68
+273,Vercel,https://vercel.com/,10:05,68
+274,PlanetScale,https://planetscale.com/,35:00,68
+275,SvelteKit,https://kit.svelte.dev/,11:29,68
+276,Sentry,https://sentry.io/,09:40,68
+277,Syntax.fm,https://syntax.fm,00:06,69
+278,Solid JS,https://www.solidjs.com/,10:04,69
+279,Termageddon,https://termageddon.com,00:39,70
+280,Neumann,https://www.neumann.com/,01:50,71
+281,MT48,https://www.neumann.com/mt48,02:50,71
+282,Better Color Tools,https://better-color-tools.com/,15:08,72
+283,ESLint RFCs,https://github.com/eslint/rfcs,43:56,73
+284,Languages Plugin RFC,https://github.com/eslint/rfcs/pull/86,43:56,73
+285,Lea Verou CSS Nesting Explainer,https://lea.verou.me/2020/09/nesting-in-css-with-scope/,17:24,74
+286,MDN Dialog,https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog,19:39,75
+287,W3C Spec,https://www.w3.org/TR/html53/interactive-elements.html#the-dialog-element,19:39,75
+288,Tomagui,https://tomagui.dev,00:37,76
+289,Syntax.fm,https://Syntax.fm,00:00,76
+290,Sentry,https://sentry.io,00:43,77
+291,Syntax.fm,https://syntax.fm,00:58,77
+292,OAuth 2 Simplified,https://aaronparecki.com/oauth-2-simplified/,00:30,78
+293,10up,https://10up.com,01:12,79
+294,Syntax podcast,https://syntax.fm,00:01,80
+295,Custom Elements Everywhere,https://custom-elements-everywhere.com/,21:43,82
+296,Template Instantiation proposal,https://github.com/tc39/proposal-template-instantiation,13:07,82
+297,Sentry,https://sentry.io/,00:33,83
+298,Obsidian,https://obsidian.md/,27:45,83
+299,"Travis's YouTube Channel",https://www.youtube.com/travisneilson,04:45,84
+300,Midjourney,https://www.midjourney.com/,34:37,84
+301,Spotify,https://www.spotify.com/,20:07,84
+302,Syntax podcast,https://Syntax.fm,00:00,85
+303,Sentry,https://sentry.io/,00:37,85
+304,Tailwind UI,https://tailwindui.com,17:00,85
+305,ngrok,https://ngrok.com,20:53,86
+306,Cloudflare Tunnel,https://developers.cloudflare.com/cloudflare-one/connections/connect-apps,23:24,86
+307,Sentry,https://sentry.io/,01:12,87
+308,SST,https://sst.dev/,03:15,87
+309,Vercel,https://vercel.com/,06:02,87
+310,Open Next.js,https://opennextjs.org/,07:59,87
+311,Serverless Next.js,https://github.com/serverless-nextjs/serverless-next.js,09:09,87
+312,Cloudflare Workers,https://workers.cloudflare.com/,15:03,87
+313,Sentry,https://sentry.io/,01:21,88
+314,FlexSearch,https://github.com/nextapps-de/flexsearch,10:59,88
+315,OpenAI Whisper,https://github.com/openai/whisper,15:33,88
+316,MDN Web Streams,https://developer.mozilla.org/en-US/docs/Web/API/Streams_API,02:33,89
+317,Sentry,https://sentry.io/,01:03,89
+318,"Eric's Company PureFunk",https://purefunk.co/,01:51,90
+319,Sentry,https://sentry.io/,03:03,91
+320,StackBlitz,https://stackblitz.com,02:49,92
+321,CodeSandbox,https://codesandbox.io,02:49,92
+322,Svelte,https://svelte.dev,04:32,92
+323,Replit,https://replit.com,06:19,92
+324,Figma,https://figma.com,21:11,92
+325,PenPod,https://penpot.app,22:46,92
+326,Builder.io Demo,https://www.builder.io/demo,13:01,93
+327,Sentry,https://sentry.io,02:45,94
+328,OpenAI,https://openai.com/,09:48,94
+329,Midjourney,https://www.midjourney.com/,10:17,94
+330,TensorFlow,https://www.tensorflow.org/,18:36,94
+331,Sentry,https://sentry.io,00:52,95
+332,Prettier,https://prettier.io,20:39,95
+333,ESLint,https://eslint.org,27:08,95
+334,Stylint,https://stylelint.io,27:10,95
+335,Astro,https://astro.build,00:43,96
+336,MDX,https://mdxjs.com/,12:47,96
+337,Remix,https://remix.run/,15:05,96
+338,SvelteKit,https://kit.svelte.dev/,15:05,96
+339,Open Next,https://open-next.js.org/,17:55,96
+340,Syntax.fm,https://Syntax.fm,00:01,97
+341,Command Line Power User,https://commandlinepoweruser.com,10:25,97
+342,Sentry,https://sentry.io/,01:48,98
+343,Better Stack,https://betterstack.com/logtail,21:18,98
+344,Winston,https://github.com/winstonjs/winston,22:54,98
+345,Solid JS,https://www.solidjs.com/,00:00,99
+346,Knockout JS,https://knockoutjs.com/,05:00,99
+347,Marco JS,https://github.com/paypal/marco,07:06,99
+348,Sentry,https://sentry.io/,01:24,100
+349,Syntax,https://syntax.fm/,00:03,100
+350,Klein wire strippers,https://www.kleintools.com/catalog/combination-cutting-tools/hybrid-pliers-stripper-cutter-long-nose-k12065cr,05:58,101
+351,Server-side rendering web components,https://www.toptal.com/front-end/server-side-rendering-web-components,14:05,101
+352,SSR with Next.js,https://css-tricks.com/building-web-components-with-vanilla-javascript/,14:56,101
+353,Vite Auto Open File,https://gist.github.com/wesbos/da56b8700e5f2025e118bfa8f57e5c0c,08:24,102
+354,Kent C Dodds Twitter thread,https://twitter.com/kentcdodds/status/1292092713911312385,13:11,102
+355,Qwik,https://qwik.builder.io/,01:14,103
+356,Syntax.fm,https://syntax.fm,00:00,103
+357,Sentry,https://sentry.io/,00:39,104
+358,Lighthouse,https://developers.google.com/web/tools/lighthouse,06:58,105
+359,PageSpeed Insights,https://pagespeed.web.dev/,07:20,105
+360,Polypane,https://polypane.app/,06:58,105
+361,Partytown,https://partytown.builder.io/,15:26,105
+362,SvelteKit,https://kit.svelte.dev/,15:26,105
+363,Gatsby,https://www.gatsbyjs.com/,17:31,105
+364,Rust in Action book,https://www.manning.com/books/rust-in-action,03:45,106
+365,Bevy game engine,https://bevyengine.org/,24:09,106
+366,Syntax.fm,https://syntax.fm,00:39,107
+367,Sentry.io,https://sentry.io/,01:44,107
+368,Svelte,https://svelte.dev/,22:17,108
+369,CSS color function,https://drafts.csswg.org/css-color/#modifying-colors,20:03,108
+370,Alpine JS,https://alpinejs.dev/,00:47,109
+371,LiveWire,https://laravel-livewire.com/,00:47,109
+372,State of JS 2022,https://2022.stateofjs.com/,00:31,110
+373,Data Explorer,https://2022.stateofjs.com/en-US/data-explorer/,03:22,110
+374,Can I Use,https://caniuse.com,17:40,111
+375,Container Query Polyfill,https://github.com/jonathantneal/container-query-polyfill,24:05,111
+376,Sanity,https://www.sanity.io/,00:39,112
+377,YNAB,https://www.youneedabudget.com/,17:01,113
+378,Copilot,https://www.copilot.money/,17:10,113
+379,Syntax.fm,https://syntax.fm,00:01,114
+380,Tangible,https://www.tangiblematerials.com/,00:49,115
+381,Observable,https://observablehq.com/,25:47,115
+382,Data Visualization Society,https://www.datavisualizationsociety.com/,29:33,115
+383,UpLift Desk,https://www.upliftdesk.com/,44:26,115
+384,Container Queries,https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Container_Queries,07:18,116
+385,Rust,https://www.rust-lang.org/,09:13,116
+386,Touri,https://touri.dev/,10:39,116
+387,Shoelace Web Components,https://shoelace.style/,20:55,116
+388,Syntax.fm,https://syntax.fm,00:01,117
+389,Scrivener,https://www.literatureandlatte.com/scrivener/overview,32:13,118
+390,Mayfly,https://www.mayfly.com/,34:21,118
+391,Engineering Management for the Rest of Us,https://www.amazon.com/Engineering-Management-Rest-Sarah-Drasner/dp/1492075046,00:48,118
+392,Syntax podcast,https://syntax.fm,00:01,119
+393,Syntax,https://syntax.fm,00:31,120
+394,Polypane,https://polypane.app,01:02,121
+395,Fix Ally,https://fixaoneoney.com,55:51,121
+396,Superposition,https://superposition.design/,57:06,121
+397,SvelteKit,https://kit.svelte.dev/,02:26,122
+398,Rome tools,https://rome.tools/,07:01,122
+399,Deno,https://deno.land/,08:32,122
+400,Tailwind CSS,https://tailwindcss.com/,10:58,122
+401,Open props,https://open-props.style/,11:12,122
+402,GitHub Copilot,https://copilot.github.com/,18:13,122
+403,Temporal API,https://tc39.es/proposal-temporal/,46:37,122
+404,Tori,https://tori.dev/,11:12,123
+405,Electron,https://www.electronjs.org/,10:17,123
+406,ResortPass,https://www.resortpass.com/,12:20,124
+407,Suavecito,https://suavecito.com/,46:21,124
+408,Firebase,https://firebase.google.com,00:26,125
+409,Nix package manager,https://nixos.org/,14:25,125
+410,Cobalt2 theme,https://github.com/wesbos/cobalt2-vscode,52:58,125
+411,Linode,https://linode.com/syntax,00:26,126
+412,Sentry,https://sentry.io/,00:39,126
+413,Freshbooks,https://freshbooks.com/syntax,00:54,126
+414,Prismic,https://prismic.io/,01:46,127
+415,LogRocket,https://logrocket.com/,00:51,127
+416,PlanetScale,https://planetscale.com/,06:01,127
+417,Supabase,https://supabase.io/,18:23,127
+418,Neon,https://neon.tech/,22:45,127
+419,Railway,https://railway.app/,23:19,127
+420,MongoDB Atlas,https://www.mongodb.com/atlas/database,24:18,127
+421,Fauna,https://fauna.com/,20:47,127
+422,DynamoDB,https://aws.amazon.com/dynamodb/,19:51,127
+423,Remotion,https://remotion.dev/,00:36,128
+424,After Effects,https://www.adobe.com/products/aftereffects.html,04:05,128
+425,Web Almanac,https://almanac.httparchive.org/en/2022/,00:21,129
+426,Syntax Podcast,https://syntax.fm,00:38,131
+427,Tuple,https://tuple.app/,01:15,131
+428,Linode,https://www.linode.com/,00:54,132
+429,LogRocket,https://logrocket.com/,00:54,132
+430,FreshBooks,https://www.freshbooks.com/,00:54,132
+431,GitHub Next,https://githubnext.com,00:01,133
+432,Container queries enabled in Firefox Nightly,https://bugzilla.mozilla.org/show_bug.cgi?id=1764279,02:15,133
+433,bun.sh,https://bun.sh,00:38,134
+434,tuple.app/syntax,https://tuple.app/syntax,01:09,134
+435,TweetDeck,https://tweetdeck.twitter.com,05:34,135
+436,Syntax.fm,https://syntax.fm,00:16,136
+437,Sentry,https://sentry.io/,01:03,136
+438,Magic Bell,https://magicbell.com/,02:05,136
+439,Saskatoon Berries,https://en.wikipedia.org/wiki/Amelanchier_alnifolia,04:34,137
+440,Syntax podcast,https://syntax.fm,00:01,138
+441,React Use RFC,https://github.com/reactjs/rfcs/blob/main/text/0398-react-use.md,00:35,139
+442,Node.js,https://nodejs.org/,00:37,140
+443,Deno,https://deno.land/,00:37,140
+444,Rust,https://www.rust-lang.org/,06:40,140
+445,Tokio,https://tokio.rs/,12:22,140
+446,HTTP Archive CSS Almanac,https://almanac.httparchive.org/en/2020/css,00:21,141
+447,Sentry,https://sentry.io/,02:00,142
+448,Freshbooks,https://www.freshbooks.com/,02:50,142
+449,Descript,https://www.descript.com/,31:55,142
+450,Syntax Podcast,https://syntax.fm,00:00,143
+451,Vercel,https://vercel.com,04:30,143
+452,Zod,https://zod.dev/,00:33,145
+453,LogRocket,https://logrocket.com/signup/,02:55,145
+454,Linode,https://www.linode.com/syntax,04:00,145
+455,Zod Discord,https://zod.dev/,23:05,145
+456,CHADD,https://chadd.org,08:03,146
+457,Docker GitHub incident,https://github.com/moby/moby/issues/22801,21:00,147
+458,Zod,https://github.com/colinhacks/zod,06:43,148
+459,Sanity,https://www.sanity.io/,03:18,148
+460,Shaka Player,https://shaka-player-demo.appspot.com/,20:44,149
+461,Sentry,https://sentry.io/,22:18,150
+462,React Virtualized,https://github.com/bvaughn/react-virtualized,08:24,150
+463,React Window,https://github.com/bvaughn/react-window,08:24,150
+464,Quick,https://quickjs.dev,05:19,151
+465,Quick Optimizer,https://quickjs.dev/docs/optimizing/optimizer,16:13,151
+466,Quick City,https://quickjs.dev/guides/quick-start,19:51,151
+467,Tola,https://www.tola.io/,02:05,152
+468,React Query,https://tanstack.com/query,04:43,152
+469,Wolf Stoves,https://www.wolfstoves.com/,02:47,153
+470,Bookmarklet maker,https://github.com/mrcoles/bookmarklet-maker,07:42,154
+471,CSS Tricks - Useful Bookmarklets,https://css-tricks.com/useful-bookmarklets/,08:34,154
+472,Neovim,https://neovim.io/,03:52,155
+473,LuaJIT,https://luajit.org/,07:21,155
+474,Telescope,https://github.com/nvim-telescope/telescope.nvim,14:33,155
+475,FVim,https://github.com/Kethku/neovide,16:28,155
+476,LunarVim,https://www.lunarvim.org/,17:56,155
+477,Syntax.fm,https://syntax.fm,00:00,156
+478,Prismic,https://prismic.io/syntax,20:45,156
+479,Level Up Tutorials,https://LevelUpTutorials.com,07:43,156
+480,Stack Overflow post,https://stackoverflow.com/questions/38394767/are-es6-classes-just-syntactic-sugar-over-prototypal-inheritance,08:43,157
+481,Prisma,https://www.prisma.io/,00:38,158
+482,Graphcool,https://www.graph.cool/,02:29,158
+483,GraphQL,https://graphql.org/,05:25,158
+484,Syntax.fm,https://syntax.fm,00:11,159
+485,Linode,https://linode.com/syntax,02:13,160
+486,LogRocket,https://logrocket.com/syntax,03:02,160
+487,OpenSauced,https://opensauced.pizza,00:39,161
+488,OpenSauced Beta,https://beta.insights.opensauced.pizza,06:55,161
+489,Prismic,https://prismic.io,00:48,162
+490,LogRocket,https://logrocket.com,00:56,162
+491,FreshBooks,https://www.freshbooks.com,00:56,162
+492,Enhance JS,https://enhance.dev/,00:30,163
+493,Enhance JS Talk,https://www.youtube.com/watch?v=mTpjpR4v158,04:06,163
+494,Arc,https://arc.net,42:11,164
+495,Arc on Twitter,https://twitter.com/ArcInternet,42:07,164
+496,Eat That Frog,https://www.eatthatfrog.com/,03:13,165
+497,Pomodoro technique,https://francescocirillo.com/pages/pomodoro-technique,18:30,165
+498,TabNine,https://www.tabnine.com/,21:17,166
+499,Kite,https://www.kite.com/,21:22,166
+500,CodeWhisperer,https://aws.amazon.com/codewhisperer/,21:43,166
+501,Raycast,https://www.raycast.com,00:48,167
+502,Spotlight,https://support.apple.com/en-us/HT204014,02:24,167
+503,React reconciler,https://reactjs.org/docs/reconciliation.html,18:53,167
+504,SQLite,https://www.sqlite.org/index.html,27:36,167
+505,Syntax.fm,https://syntax.fm,00:01,168
+506,PaymentsHub,https://developer.paymentshub.com/syntax,00:48,168
+507,LogRocket,https://logrocket.com/syntax,33:27,168
+508,Freshbooks,https://www.freshbooks.com/syntax,45:53,168
+509,Prismic,https://prismic.io,01:43,169
+510,Sentry Dex,https://sentry.io/events/dex/,03:34,169
+511,Hasura,https://hasura.io,10:17,170
+512,JSPerf,https://jsperf.com,04:12,171
+513,TS Quick Fixes,https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.ts-quick-fix,08:36,171
+514,Big Changes Ahead for Deno,https://deno.com/blog/v1.26,00:29,172
+515,TLDraw,https://www.tldraw.com,04:56,173
+516,Globbs,https://globbs.design,06:54,173
+517,Excalidraw,https://excalidraw.com/,08:18,173
+518,TLDraw GitHub,https://github.com/tldraw/tldraw,10:12,173
+519,Syntax.fm,https://syntax.fm,00:01,174
+520,Sanity.io,https://www.sanity.io/,00:11,174
+521,LogRocket,https://logrocket.com/,00:11,174
+522,MagicBell,https://magicbell.com/,00:11,174
+523,Sentry,https://sentry.io/,01:40,175
+524,Auth0,https://auth0.com/,02:52,175
+525,AppRight,https://appright.io,00:36,176
+526,Hasura,https://hasura.io/,00:59,176
+527,LightStep,https://lightstep.com/,15:39,176
+528,MySQL,https://www.mysql.com/,03:25,176
+529,MongoDB,https://www.mongodb.com/,03:34,176
+530,Postgres,https://www.postgresql.org/,03:54,176
+531,NGRX,https://ngrx.io/,01:33,176
+532,Remix,https://remix.run/,31:53,176
+533,Ionic,https://ionicframework.com/,29:00,176
+534,Angular,https://angular.io/,30:09,176
+535,Firebase,https://firebase.google.com/,02:11,176
+536,DigitalOcean,https://www.digitalocean.com/,13:18,176
+537,Kubernetes,https://kubernetes.io/,26:12,176
+538,Docker Swarm,https://docs.docker.com/engine/swarm/,27:17,176
+539,Syntax Podcast,https://Syntax.fm,00:01,177
+540,Sentry Conference,https://sentry.io/events/dex/,02:45,178
+541,Svelte,https://svelte.dev,00:03,179
+542,SvelteKit,https://kit.svelte.dev/,27:18,179
+543,LightStep,https://lightstep.com/,00:37,180
+544,FreshBooks,https://freshbooks.com/,00:37,180
+545,LogRocket,https://logrocket.com/,00:37,180
+546,Sentry,https://sentry.io/,00:53,181
+547,Sanity,https://www.sanity.io/,02:14,181
+548,Shopify,https://www.shopify.com/,02:36,181
+549,Hydrogen,https://hydrogen.shopify.dev/,00:57,182
+550,Shopify,https://www.shopify.com,01:13,182
+551,Vercel,https://vercel.com,04:25,182
+552,Netlify,https://www.netlify.com,04:25,182
+553,Heroku,https://www.heroku.com,04:25,182
+554,Gatsby,https://www.gatsbyjs.com/,04:44,182
+555,Next.js,https://nextjs.org/,04:44,182
+556,Remix,https://remix.run/,05:03,182
+557,React,https://reactjs.org/,05:33,182
+558,Vue,https://vuejs.org/,05:33,182
+559,Svelte,https://svelte.dev/,05:33,182
+560,Angular,https://angular.io/,05:33,182
+561,Ember,https://emberjs.com/,05:33,182
+562,Laravel,https://laravel.com/,15:06,182
+563,Vite,https://vitejs.dev/,19:22,182
+564,Webpack,https://webpack.js.org/,19:22,182
+565,Veet,https://vitejs.dev/,19:22,182
+566,Evan Yu,https://github.com/yyx990803,20:03,182
+567,Node.js,https://nodejs.org/,20:03,182
+568,React Server Components,https://reactjs.org/docs/react-server-components.html,21:43,182
+569,npm,https://www.npmjs.com/,23:35,182
+570,Next.js,https://nextjs.org/,23:35,182
+571,Remix,https://remix.run/,23:35,182
+572,React 18,https://reactjs.org/blog/2022/03/29/react-v18.html,22:32,182
+573,V8 isolates,https://v8.dev/features/isolates,28:41,182
+574,Deno,https://deno.land/,29:01,182
+575,Bun,https://bun.sh/,30:42,182
+576,Cloudflare Workers,https://workers.cloudflare.com/,30:42,182
+577,Winter CG,https://wicg.github.io/admin/charter.html,27:18,182
+578,Web interoperability runtimes CG,https://wicg.github.io/admin/charter.html,31:21,182
+579,Agalia,https://www.agalia.com/,33:41,182
+580,WebKit,https://webkit.org/,33:41,182
+581,bite dance,https://www.bytedance.com/,33:41,182
+582,TikTok,https://www.tiktok.com/,33:41,182
+583,SvelteKit API changes,https://github.com/sveltejs/kit,09:12,183
+584,Arc Browser,https://arcbrowser.io/,08:11,184
+585,Can I Use,https://caniuse.com,18:04,184
+586,Next.js,https://nextjs.org,00:37,185
+587,Vercel,https://vercel.com,00:45,185
+588,React,https://reactjs.org/,04:09,185
+589,Lightstep,https://www.lightstep.com/,13:15,185
+590,Date input values,https://twitter.com/wesbos/status/1624320583301242880,04:08,186
+591,Web Authentication API,https://developer.mozilla.org/en-US/docs/Web/API/Web_Authentication_API,14:50,186
+592,LogRocket,https://logrocket.com/,02:55,187
+593,Linode,https://www.linode.com/,04:04,187
+594,WPBeginner,https://wpbeginner.com/,02:19,188
+595,OptinMonster,https://optinmonster.com/,03:16,188
+596,MonsterInsights,https://www.monsterinsights.com/,11:22,188
+597,All in One SEO,https://www.seobetter.com/,12:04,188
+598,AwesomeMotive YouTube,https://www.youtube.com/@awesomemotive,18:50,188
+599,Prismic,https://prismic.io/,00:21,189
+600,Sentry,https://sentry.io/,00:21,189
+601,FreshBooks,https://www.freshbooks.com/,00:21,189
+602,Gatsby,https://www.gatsbyjs.com/,02:57,189
+603,Bun,https://bun.sh,00:27,190
+604,FreshBooks,https://freshbooks.com/syntax,01:13,190
+605,LightStep,https://lightstep.com/syntax,02:08,190
+606,Neo4j,https://neo4j.com/,05:05,191
+607,GraphAcademy,https://neo4j.com/graphacademy/,02:12,191
+608,Wikipedia naming conventions,https://en.wikipedia.org/wiki/Naming_convention_(programming),13:55,192
+609,30 Seconds of Interviews,https://30secondsofinterviews.org,00:49,193
+610,Sentry,https://sentry.io/,03:04,193
+611,LightStep,https://lightstep.com/syntax,02:48,193
+612,AWS CDK,https://aws.amazon.com/cdk/,23:53,194
+613,CDK workshop,https://cdkworkshop.com,23:43,194
+614,PPPoE,https://en.wikipedia.org/wiki/Point-to-Point_Protocol_over_Ethernet,02:26,195
+615,Home Assistant,https://www.home-assistant.io/,04:51,195
+616,Mushroom Theme,https://github.com/piitaya/lovelace-mushroom,05:40,195
+617,d3-interpolate,https://github.com/d3/d3-interpolate,10:34,196
+618,"Emily Shea's video",https://www.youtube.com/watch?v=GyZtYzFq4WY,03:20,197
+619,Talon Voice,https://talonvoice.com/,06:01,197
+620,Syntax.fm Podcast,https://syntax.fm,00:01,198
+621,CFP Weekly,https://www.cfpweekly.com/,16:32,198
+622,Color for the Color Challenged,https://www.cambridgeincolour.com/tutorials/color-perception.htm,10:38,199
+623,Better Color Tools,https://better-color-tools.pages.dev/,20:32,199
+624,Taming the Meta Language,https://overreacted.io/the-elements-of-ui-engineering/,07:31,200
+625,The Pragmatic Engineer,https://blog.pragmaticengineer.com/,20:05,200
+626,Syntax Podcast,https://syntax.fm,00:01,201
+627,Page Transitions API explainer,https://github.com/WICG/page-transitions,00:15,202
+628,Chrome flags,chrome://flags/#document-transition,17:28,202
+629,Homebridge,https://homebridge.io/,11:31,204
+630,Demo of viewport units,https://www.bram.us/2020/07/28/experimenting-with-new-viewport-units/,06:09,205
+631,API for keyboard info,https://wicg.github.io/keyboard-map/,13:50,205
+632,Netlify,https://netlify.com,00:37:39,206
+633,PlanetScale,https://planetscale.com,00:35:23,206
+634,S-Town,https://stownpodcast.org/,00:52:23,206
+635,Sentry,https://sentry.io,00:50,207
+636,Sanity,https://www.sanity.io,00:50,207
+637,.tech Domains,https://get.tech/,00:50,207
+638,Magic Bell,https://www.magicbell.com/,01:21,208
+639,LogRocket,https://logrocket.com/,02:37,208
+640,Webflow,https://webflow.com,05:48,209
+641,Airtable,https://airtable.com,16:54,209
+642,Zapier,https://zapier.com,18:04,209
+643,Make,https://make.com,19:01,209
+644,Bubble,https://bubble.io,18:11,209
+645,Makerpad,https://www.makerpad.co/,24:50,209
+646,SeedProd,https://seedprod.com/,25:32,209
+647,Strapi,https://strapi.io/,40:16,209
+648,Century,https://sentry.io,00:36,210
+649,FreshBooks,https://www.freshbooks.com,39:07,210
+650,PaymentsHub,https://developer.paymentshub.com/syntax,25:04,210
+651,Sentry,https://sentry.io/,09:08,210
+652,Syntax.fm,https://syntax.fm/,00:00,210
+653,Linode,https://linode.com/syntax,00:59,211
+654,Sentry,https://sentry.io/,02:08,211
+655,"Anselm's Website",https://anselm-hannemann.com/,22:05,212
+656,"Anselm's Instagram",https://www.instagram.com/schaufel_und_gabel/,59:22,212
+657,Riverside,https://riverside.fm/,00:35,213
+658,GitHub,https://github.com,12:10,213
+659,Tower,https://www.git-tower.com/,12:36,213
+660,Kraken,https://www.gitkraken.com/,12:36,213
+661,Espanso,https://espanso.org/,56:39,213
+662,FreshBooks,https://www.freshbooks.com/,55:31,213
+663,Level Up Tutorials,https://leveluptutorials.com/,01:00:46,213
+664,Wes Bos Courses,https://wesbos.com/courses,01:01:29,213
+665,Cache Control Header Docs,https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control,,214
+666,RedwoodJS,https://redwoodjs.com,01:33,215
+667,Where Good Ideas Come From,https://www.amazon.com/Where-Good-Ideas-Come-Innovation/dp/1594485380,21:29,215
+668,RedwoodJS Startup Fund,https://www.redwoodjs.com/startups,37:35,215
+669,esbuild,https://esbuild.github.io/,05:48,216
+670,SWC,https://swc.rs/,05:51,216
+671,Vite,https://vitejs.dev/,29:09,216
+672,Parcel,https://parceljs.org/,29:21,216
+673,Bun,https://bun.sh/,32:13,216
+674,Deno,https://deno.land/,15:48,216
+675,esno,https://github.com/antfu/esno,16:55,216
+676,tsnode,https://github.com/TypeStrong/ts-node,22:07,216
+677,Sentry,https://sentry.io,06:21,217
+678,Sanity.io,https://www.sanity.io/,05:40,217
+679,Structured Content Conference,https://structuredcontent.com/,05:40,217
+680,Fully Jarvis Standing Desk,https://www.fully.com/standing-desks/jarvis.html,14:54,217
+681,Turborepo,https://turborepo.org,56:09,218
+682,Vercel,https://vercel.com,56:09,218
+683,Soma,https://www.soma.com,56:37,218
+684,Prismic,https://prismic.io,17:45,219
+685,LogRocket,https://logrocket.com,30:50,219
+686,Auth0,https://auth0.com,47:27,219
+687,wintercg.org,https://wintercg.org,20:42,220
+688,NX,https://nx.dev,00:00,221
+689,Basil,https://bazel.build/,06:22,221
+690,HHKB keyboard,https://hhkeyboard.us/,54:13,221
+691,MDN Web Docs,https://developer.mozilla.org/en-US/,00:00,222
+692,JavaScript30,https://javascript30.com/,06:56,222
+693,Level Up Tutorials,https://www.leveluptutorials.com/,07:56,222
+694,Motion One,https://motion.dev/,24:45,222
+695,Sentry,https://sentry.io/,02:20,223
+696,PaymentsHub,https://www.paymentshub.com/,04:00,223
+697,Syntax.fm,https://syntax.fm,00:02,224
+698,Linode,http://linode.com/syntax,00:37,224
+699,LogRocket,https://logrocket.com/syntax/,00:37,224
+700,Freshbooks,https://freshbooks.com/syntax,00:37,224
+701,Linode,https://linode.com/syntax,01:26,225
+702,Sentry,https://sentry.io/,02:09,225
+703,WeakMap MDN,https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap,05:08,226
+704,StackOverflow,https://stackoverflow.com/,18:41,226
+705,Prismic,https://prismic.io,01:04,227
+706,LogRocket,https://logrocket.com,02:26,227
+707,"5280's Best Coffee Shops in Denver",https://www.5280.com/2019/10/the-best-coffee-shops-in-denver/,11:04,228
+708,React Icons,https://react-icons.github.io/react-icons/,21:27,228
+709,Svelte Cubed,https://svelte-cubed.vercel.app/,02:46,229
+710,Three.js,https://threejs.org/,05:15,229
+711,Hyundai Ioniq 5,https://www.hyundaiusa.com/us/en/vehicles/ioniq-5,00:59,230
+712,Doug DeMuro Ioniq 5 video,https://www.youtube.com/user/ddemuro,02:54,230
+713,Century,https://sentry.io/,02:33,231
+714,Magic Bell,https://www.magicbell.com/,03:36,231
+715,Reactathon Conference,https://www.reactathon.com,15:50,232
+716,Level Up Links Newsletter,https://www.leveluptutorials.com/pro,24:35,232
+717,Blog Post,https://devblogs.microsoft.com/typescript/types-for-javascript/,02:04,233
+718,Proposal Repo,https://github.com/microsoft/TypeScript-TC39-Proposals,05:13,233
+719,bald.design,https://bald.design,04:13,234
+720,huangande.dev,https://huangande.dev,08:11,234
+721,Kenny Thai,https://kennythai.com,09:19,234
+722,abgn.me,https://abgn.me,11:17,234
+723,bradleyshellnut.com,https://bradleyshellnut.com,14:53,234
+724,hunterjennings.dev,https://hunterjennings.dev,18:01,234
+725,matthewfarlim.com,https://matthewfarlim.com,21:13,234
+726,Vitest,https://vitest.dev,00:27,235
+727,Sentry,https://sentry.io/,02:39,235
+728,Magicbell,https://magicbell.com/,03:53,235
+729,State of JS,https://stateofjs.com/,05:02,235
+730,Vite,https://vitejs.dev/,05:16,235
+731,Jest,https://jestjs.io/,05:25,235
+732,Testing Library,https://testing-library.com/,12:58,235
+733,C8,https://github.com/bcoe/c8,10:45,235
+734,TinyPool,https://github.com/vitejs/tinypool,10:16,235
+735,Tiny Spy,https://github.com/Aslemammad/tinyspy,10:45,235
+736,Syntax.fm,https://syntax.fm,00:02,236
+737,.tech Domain Game,https://get.tech/syntax,01:51,236
+738,Render,https://render.com,03:32,237
+739,Cloudflare,https://www.cloudflare.com/,04:28,237
+740,"Let's Encrypt",https://letsencrypt.org/,05:43,237
+741,sanity.io,https://www.sanity.io/,38:35,238
+742,Haul - Sanity Shopify Starter,https://www.sanity.io/create?template=sanity-io%2Fsanity-template-nextjs-ecommerce,39:17,238
+743,Syntax.fm,https://Syntax.fm,00:24,239
+744,LogRocket,https://logrocket.com/syntax,01:28,239
+745,Retool,https://retool.com/syntax,02:27,239
+746,State of JS,https://2022.stateofjs.com/en-US/,00:11,240
+747,Touri,https://tauri.studio/,10:11,240
+748,Sentry,https://sentry.io/,18:38,240
+749,Sanity,https://www.sanity.io/,27:11,240
+750,FreshBooks,https://www.freshbooks.com/,53:05,240
+751,Level Up Tutorials,https://www.leveluptutorials.com/,57:28,240
+752,Zig Pak,https://www.zigpak.com/,05:24,241
+753,Stallion Express,https://www.stallionexpress.com/,20:38,241
+754,State of JS Survey,https://stateofjs.com,00:11,242
+755,MDN Web Docs - Optional chaining,https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining,10:23,242
+756,MDN Web Docs - Nullish coalescing,https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing_operator,10:23,242
+757,Motion Design,https://motion.dev/,15:29,242
+758,MDN Web Docs - Intl,https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl,16:43,242
+759,MDN Web Docs - Page Visibility API,https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API,19:01,242
+760,MDN Web Docs - Broadcast Channel API,https://developer.mozilla.org/en-US/docs/Web/API/Broadcast_Channel_API,19:10,242
+761,MDN Web Docs - Web Share API,https://developer.mozilla.org/en-US/docs/Web/API/Web_Share_API,20:53,242
+762,Vite,https://vitejs.dev/,43:14,242
+763,Rome,https://rome.tools/,44:30,242
+764,Sentry,https://sentry.io,02:59,243
+765,Prismic,https://prismic.io/,01:32,243
+766,AWS X-Ray,https://aws.amazon.com/xray/,12:50,244
+767,ClickHouse,https://clickhouse.com/,28:32,244
+768,Calypso,https://github.com/Automattic/wp-calypso,37:51,244
+769,Magic Bell,https://magicbell.com,01:27,245
+770,Sentry,https://sentry.io,02:50,245
+771,SvelteKit,https://kit.svelte.dev/,33:15,246
+772,Remix,https://remix.run/,33:44,246
+773,Sanity and Remix,https://www.sanity.io/blog/build-remix-website-with-sanity-studio-live-preview,37:04,246
+774,Svelte RFCs,https://github.com/sveltejs/rfcs,06:44,247
+775,React RFCs,https://github.com/reactjs/rfcs,06:44,247
+776,Vue RFCs,https://github.com/vuejs/rfcs,06:44,247
+777,Josh Wardle,https://www.powerlanguage.co.uk/,00:48,248
+778,Syntax FM,https://syntax.fm/,00:11,248
+779,Wordle,https://www.powerlanguage.co.uk/wordle/,00:21,248
+780,New York Times,https://www.nytimes.com/,05:15,248
+781,Hashnode,https://hashnode.com/,01:09,249
+782,Linode,https://linode.com/syntax,03:00,249
+783,Works With Workers,https://workers.cloudflare.com/works-with/,22:55,249
+784,Syntax.fm,https://syntax.fm,00:04,250
+785,Linode,https://linode.com/syntax,00:19,250
+786,Sanity,https://www.sanity.io/,03:19,251
+787,Sentry,https://sentry.io/,02:01,251
+788,Turborepo,https://turborepo.org/,30:21,252
+789,NX,https://nx.dev/,39:38,252
+790,Lerna,https://lerna.js.org/,47:17,252
+791,Rush.js,https://rushjs.io/,48:15,252
+792,LogRocket,https://logrocket.com/syntax/,00:48,253
+793,Magic Bell,https://magicbell.com/,01:19,253
+794,Level Up Tutorials,https://www.leveluptutorials.com/,05:33,254
+795,Level Up Tutorials Discord,https://discord.gg/leveluptutorials,06:38,254
+796,Syntax Highlight,https://syntax.fm/show/317/syntax-highlight-portfolio-reviews-for-developers,05:51,254
+797,Emailing Busy People,https://syntax.fm/show/117/how-to-email-busy-people,11:52,254
+798,Stripe,https://stripe.com/,20:04,254
+799,Subatomic CSS,https://github.com/davidkpiano/subatomic,20:15,254
+800,Stylent,https://stylent.dev/,35:05,254
+801,Linode,https://linode.com/syntax,33:37,254
+802,Freshbooks,https://freshbooks.com/syntax,42:07,254
+803,Level Up Tutorials Pro,https://www.leveluptutorials.com/pro,49:54,254
+804,Wes Bos Courses,https://wesbos.com/courses,50:32,254
+805,Level Up Tutorials,https://leveluptutorials.com,07:15,255
+806,Svelte,https://svelte.dev,24:12,255
+807,Syntax.fm,https://syntax.fm,00:02,256
+808,Prismic,https://prismic.io,00:57,256
+809,Slice Machine,https://slicemachine.dev,18:44,256
+810,LogRocket,https://logrocket.com,33:52,256
+811,Retool,https://retool.com,53:05,256
+812,Remix Docs,https://remix.run/docs,01:08,257
+813,Open UI,https://open-ui.org,10:58,258
+814,Starship,https://starship.rs/,26:53,258
+815,Level Up Tutorials,https://www.leveluptutorials.com/,27:04,258
+816,Wes Bos Courses,https://wesbos.com/courses,28:01,258
+817,Wise,https://wise.com/,57:07,258
+818,Paul Irish random color,https://www.paulirish.com/2009/random-hex-color-code-snippets/,06:15,259
+819,Wes Bos dump,https://github.com/wesbos/dump,16:07,259
+820,Syntax.fm,https://syntax.fm,00:42,260
+821,Sentry,https://sentry.io/,00:52,260
+822,Mux,https://mux.com,00:52,260
+823,Syntax.fm,https://syntax.fm,00:01,261
+824,Sanity,https://www.sanity.io/,03:27,261
+825,LogRocket,https://logrocket.com/,04:34,261
+826,Gitpod,https://www.gitpod.io/,00:27,262
+827,NFT Bay,https://nftbay.org/,07:14,262
+828,No Yammer,https://noyammer.com/,12:10,262
+829,Helinox,https://www.helinox.com/,54:06,262
+830,Zombo,https://zombo.com/,55:18,262
+831,West Boss Courses,https://westbosst.com/courses,58:50,262
+832,Level Up Tutorials,https://leveluptutorials.com/,58:58,262
+833,Gitpod Community,https://www.gitpod.io/chat/,59:51,262
+834,Gitpod Workshops,https://www.gitpod.io/blog/gitpod-workshops/,01:00:33,262
+835,Syntax.fm,https://syntax.fm,00:03,263
+836,Prismic,https://prismic.io/syntax,02:22,263
+837,Sentry,https://sentry.io/,02:44,263
+838,Lighthouse,https://github.com/GoogleChrome/lighthouse,02:22,264
+839,Figma + Rust Blog Post,https://www.figma.com/blog/how-figmas-multiplayer-technology-works/,15:34,264
+840,Conventional Commits,https://www.conventionalcommits.org/en/v1.0.0/,43:06,264
+841,React Hooks in Svelte,https://github.com/beyonk-adventures/svelte-reactive-store-hooks,14:31,265
+842,Node-RED,https://nodered.org,27:05,266
+843,Daily.dev,https://daily.dev,58:12,266
+844,Spotless App,https://spotlessapp.com/,58:51,266
+845,MDN web docs on meta tags,https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta,00:29,267
+846,"That's a Nice Touch TikTok",https://www.tiktok.com/@thatsanicetouch,13:58,267
+847,Syntax Podcast,https://syntax.fm,00:02,268
+848,Freshbooks,https://freshbooks.com/,00:45,268
+849,Sentry,https://sentry.io/,00:45,268
+850,Linode,https://www.linode.com/,00:45,268
+851,Stripe,https://stripe.com/,39:30,268
+852,Syntax.fm,https://syntax.fm,00:27,269
+853,LogRocket,https://logrocket.com/,02:44,269
+854,FreshBooks,https://freshbooks.com/,03:25,269
+855,Forehead,https://apps.apple.com/us/app/forehead/id1648551921,52:14,270
+856,Exynos Charger,https://www.kickstarter.com/projects/2091139540/exynos-the-240w-6port-charger,53:02,270
+857,Sentry,https://sentry.io/,02:34,271
+858,Sanity CMS,https://www.sanity.io/,02:45,271
+859,Stranger in a Strangeland,https://en.wikipedia.org/wiki/Stranger_in_a_Strange_Land,21:08,272
+860,Chamberlain Smart Garage Control,https://www.chamberlain.com/smart-garage-control/p/MYQ-G0401-SP,54:23,272
+861,Next.js,https://nextjs.org,00:03,273
+862,Sanity,https://www.sanity.io/,01:19,273
+863,LogRocket,https://logrocket.com/,01:38,273
+864,StackBlitz,https://stackblitz.com,00:33,274
+865,Fugu API Tracker,https://fugue.status.im/,10:04,274
+866,Astro,https://astro.build,53:17,274
+867,Astro,https://astro.build,00:33,275
+868,Syntax.fm,https://syntax.fm,00:37,275
+869,Linode,https://linode.com/syntax,02:50,275
+870,Syntax podcast,https://Syntax.fm,00:01,276
+871,What is PNPM video,https://www.youtube.com/watch?v=6iZiqQZBQJY,04:40,277
+872,LogRocket,https://logrocket.com/signup/,04:08,277
+873,Paige Niedringhaus monorepo post,https://www.paigeniedringhaus.com/blog/monorepos-with-lerna-and-yarn-workspaces/,16:33,277
+874,LogRocket,https://logrocket.com/,18:09,278
+875,Mux,https://mux.com/,38:24,278
+876,Linode,https://www.linode.com/,30:22,278
+877,Syntax.fm Podcast,https://syntax.fm,00:00,279
+878,Sentry,http://sentry.io/,01:34,279
+879,Linode,http://linode.com/,02:23,279
+880,Prismic,https://prismic.io/,00:34,280
+881,Sentry,https://sentry.io/,00:34,280
+882,Cloudinary,https://cloudinary.com/,00:34,280
+883,MongoDB Atlas,https://www.mongodb.com/atlas,12:27,280
+884,SvelteKit,https://kit.svelte.dev/,42:39,280
+885,Gatsby,https://www.gatsbyjs.com/,41:55,280
+886,Next.js,https://nextjs.org/,41:55,280
+887,JUST,https://github.com/angus-c/just,03:43,281
+888,FreshBooks,https://freshbooks.com/syntax,09:04,282
+889,LogRocket,https://logrocket.com/syntax,19:45,282
+890,Cloudinary,https://cloudinary.com,34:03,282
+891,Sentry,https://sentry.io,01:33,283
+892,Sanity CMS,https://www.sanity.io/,02:34,283
+893,Cloudinary,https://cloudinary.com/,07:00,284
+894,Auth0,https://auth0.com/,19:15,284
+895,Sentry,https://sentry.io/,33:48,284
+896,Laravel,https://laravel.com/,13:12,285
+897,Syntax,https://syntax.fm,00:01,286
+898,.tech Domains,https://get.tech/syntax,00:51,286
+899,LogRocket,https://logrocket.com/syntax,34:24,286
+900,Mux,https://mux.com/syntax,47:16,286
+901,Lucy Language,https://lucylang.org,03:36,287
+902,MD Specs,https://md.specs.zone/,06:33,287
+903,Fig,https://fig.io/,13:29,287
+904,Warp,https://www.warp.dev/,16:17,287
+905,Raycast,https://www.raycast.com/,19:49,287
+906,Obsidian,https://obsidian.md/,24:00,287
+907,Descript,https://www.descript.com/,27:00,287
+908,Level Up Tutorials,https://www.leveluptutorials.com/,00:47,288
+909,Prismic,https://prismic.io/,00:54,288
+910,Sentry,https://sentry.io/,01:09,288
+911,Cloudinary,https://cloudinary.com/,01:13,288
+912,SvelteKit,https://kit.svelte.dev/,02:15,288
+913,Sean Sicks blog post,https://seansm.dev/posts/2022-10-14-svelte-feedback/,03:52,288
+914,Vime,https://vimejs.com/,10:36,288
+915,Prismic,https://prismic.io/,13:52,288
+916,Render,https://render.com/,34:23,288
+917,Vercel,https://vercel.com/,35:30,288
+918,Cloudflare,https://www.cloudflare.com/,35:30,288
+919,Pancake,https://pancake-charts.surge.sh/,36:36,288
+920,Svelte REPL,https://svelte.dev/repl,43:33,288
+921,Svelte Motion,https://sveltemotion.com/,40:46,288
+922,Snell,https://snell.be/,50:25,288
+923,Level Up Tutorials,https://www.leveluptutorials.com/,55:00,288
+924,Level Up Tutorials,https://www.leveluptutorials.com/pro,54:57,288
+925,Linode,https://www.linode.com/syntax,02:23,289
+926,LogRocket,https://logrocket.com/syntax,03:30,289
+927,ngrok,https://ngrok.com,14:18,289
+928,Stripe Webhooks,https://stripe.com/webhooks,17:51,289
+929,Insomnia,https://insomnia.rest/,16:58,289
+930,Webhook.site,https://webhook.site/,19:40,289
+931,Sanity,https://www.sanity.io/,11:58,290
+932,LogRocket,https://logrocket.com/,20:57,290
+933,Auth0,https://auth0.com/,28:18,290
+934,Ultraloq,https://ultraloq.com/,32:40,290
+935,Starlink,https://www.starlink.com/,08:29,291
+936,Unifi,https://unifi-network.ui.com/,16:48,291
+937,Is Houdini Ready Yet,https://ishoudinireadyyet.com,05:59,292
+938,Linode,https://linode.com/syntax,46:46,292
+939,Auth0,https://auth0.com/syntax,27:47,292
+940,Sentry,https://sentry.io/syntax,15:47,292
+941,Frontity,https://frontity.org/,42:08,292
+942,Century,https://sentry.io,02:23,293
+943,Netlify,https://www.netlify.com/,04:23,293
+944,Builder.io,https://www.builder.io/,20:02,293
+945,SvelteKit,https://kit.svelte.dev/,29:25,293
+946,Turborepo,https://turborepo.org/,38:34,293
+947,Sentry,https://sentry.io,41:20,293
+948,SvelteKit,https://kit.svelte.dev/,05:11,294
+949,Mux,https://mux.com/,06:46,294
+950,FlexSearch,https://github.com/nextapps-de/flexsearch,07:29,294
+951,Deepgram,https://www.deepgram.com/,21:31,294
+952,OpenAI,https://openai.com/,21:31,294
+953,Anthropic,https://www.anthropic.com/,21:31,294
+954,Prisma,https://www.prisma.io/,19:00,294
+955,Vercel,https://vercel.com/,24:37,294
+956,Fly.io,https://fly.io/,24:37,294
+957,PlanetScale,https://planetscale.com/,27:35,294
+958,Syntax.fm,https://syntax.fm,00:01,295
+959,Sentry,https://sentry.io/,00:11,295
+960,Mojo,https://mojo.ai,54:23,297
+961,Modular,https://modular.ai,54:23,297
+962,"Brad Frost's website",https://bradfrost.com,01:42,298
+963,Atomic Design book,https://atomicdesign.bradfrost.com/,03:51,298
+964,Material Design,https://material.io,09:55,298
+965,Shopify Polaris,https://polaris.shopify.com/,09:55,298
+966,Carbon Design System,https://www.carbondesignsystem.com/,09:55,298
+967,Anthropic,https://www.anthropic.com/,09:34,299
+968,Claude,https://www.anthropic.com/,09:36,299
+969,Cloudflare,https://www.cloudflare.com/,18:48,299
+970,Syntax podcast,https://syntax.fm/,00:00,300
+971,Sentry,https://sentry.io/,02:02,300
+972,960 Grid System,https://960.gs/,23:33,300
+973,State of CSS 2023,https://stateofcss.com,00:11,301
+974,Tailwind CSS,https://tailwindcss.com/,01:43,301
+975,Bootstrap,https://getbootstrap.com/,04:08,301
+976,Lightning CSS,https://github.com/pigment/lightning,21:45,301
+977,Project Wallace,https://www.projectwallace.com/,23:25,301
+978,Atomizer,https://acss.io/,24:49,301
+979,Open Props,https://open-props.style/,26:27,301
+980,Shoelace,https://shoelace.style/,28:09,301
+981,Styled Components,https://styled-components.com/,32:10,301
+982,CSS Modules,https://github.com/css-modules/css-modules,32:10,301
+983,Prettier,https://prettier.io/,33:30,301
+984,AutoPrefixer,https://github.com/postcss/autoprefixer,33:47,301
+985,Stylelint,https://stylelint.io/,33:55,301
+986,Boxing 1970s,https://www.youtube.com/playlist?list=PLLUh6UiTrixYzLUBXx18B3jMfe2avhSxz,53:56,301
+987,Birch desktop grommets,https://amzn.to/3HObT7l,10:04,302
+988,VIVO monitor arm,https://amzn.to/3If6Uoi,22:12,302
+989,Syntax,https://syntax.fm,00:00,303
+990,Builderment,https://builderment.com,46:21,304
+991,Level Up Tutorials,https://www.leveluptutorials.com/,48:30,304
+992,Wes Bos Courses,https://wesbos.com/courses,48:14,304
+993,Syntax Podcast,https://syntax.fm,00:00,305
+994,Linode,https://linode.com/syntax,01:38,305
+995,Sanity,https://www.sanity.io/,00:02,306
+996,Sentry,https://sentry.io/,00:03,306
+997,Cloudinary,https://cloudinary.com/,00:04,306
+998,CSS Tricks Flexbox Guide,https://css-tricks.com/snippets/css/a-guide-to-flexbox/,04:09,307
+999,flexbox.io,https://flexbox.io,07:10,307
+1000,cssgrid.io,https://cssgrid.io,07:10,307
+1001,Syntax.fm Question Submission,https://syntax.fm/,00:37,308
+1002,Sanitize HTML in JS,https://wesbos.com/sanitization-html-es6-template-strings/,12:01,308
+1003,Level Up Tutorials,https://LevelUpTutorials.com,55:44,308
+1004,Wes Bos Courses,https://wesbos.com/courses,54:56,308
+1005,Ship Weird Blog Post,https://www.ryanflorence.com/2023/ship-weird/,04:16,309
+1006,MDN Link Tag,https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link,05:26,309
+1007,HTML Spec,https://html.spec.whatwg.org/,05:43,310
+1008,Type Challenges,https://github.com/type-challenges/type-challenges,06:02,311
+1009,TypeScript Utility Types,https://www.typescriptlang.org/docs/handbook/utility-types.html,07:19,311
+1010,Prismic,https://prismic.io/,15:03,312
+1011,LogRocket,https://logrocket.com/,16:34,312
+1012,Render,https://render.com/,18:28,312
+1013,Drupal,https://www.drupal.org/,27:11,312
+1014,I Was There Too,https://www.iwasheretoo.com/,45:22,312
+1015,GitHub Copilot,https://copilot.github.com/,02:53,313
+1016,Next.js,https://nextjs.org,08:16,313
+1017,Astro,https://astro.build/,08:56,313
+1018,Notion API,https://developers.notion.com/,09:51,313
+1019,Petite Vue,https://github.com/vuejs/petite-vue,11:34,313
+1020,Stackblitz,https://stackblitz.com,14:01,313
+1021,Solid JS,https://www.solidjs.com/,15:32,313
+1022,Stately,https://stately.ai/,16:41,313
+1023,Web3.js,https://web3js.readthedocs.io/,18:20,313
+1024,Syntax.fm,https://syntax.fm,00:01,314
+1025,SvelteKit,https://kit.svelte.dev/,08:23,314
+1026,Next.js,https://nextjs.org/,14:08,314
+1027,KeystoneJS,https://keystonejs.com/,15:42,314
+1028,Prismic,https://prismic.io/,25:09,314
+1029,Sentry,https://sentry.io/,24:05,314
+1030,Cloudinary,https://cloudinary.com/,50:51,314
+1031,Favicon Wikipedia,https://en.wikipedia.org/wiki/Favicon,00:52,315
+1032,LogRocket,https://logrocket.com/syntax,02:25,315
+1033,Sanity,https://www.sanity.io/syntax,03:08,315
+1034,MDN Web Manifest,https://developer.mozilla.org/en-US/docs/Web/Manifest,06:02,315
+1035,CSS Tricks - Favicon,https://css-tricks.com/favicon-quiz/,09:44,315
+1036,Can I Use - SVG Favicon,https://caniuse.com/?search=svg%20favicon,11:44,315
+1037,Key Code Info,https://keycode.info/,14:48,315
+1038,Fav.farm,https://fav.farm/,19:29,315
+1039,Use Wicked Favicon,https://github.com/wesbos/use-wicked-favicon,21:42,315
+1040,Uses Tech,https://usesthis.com/,21:03,315
+1041,Syntax.fm,https://syntax.fm,00:50,316
+1042,Level Up Tutorials,https://www.leveluptutorials.com/pro,58:32,316
+1043,Wes Bos Courses,https://wesbos.com/courses,59:12,316
+1044,Awesome Stylelint,https://github.com/stylelint/awesome-stylelint,07:00,317
+1045,Change Log Podcast with Ryan Dahl,https://changelog.com/podcast/460,39:07,318
+1046,Beginner JavaScript Course,https://beginnerjavascript.com/,44:33,318
+1047,Level Up Tutorials Svelte Course,https://leveluptutorials.com/pro,43:41,318
+1048,Vite,https://vitejs.dev,00:28,319
+1049,Parcel,https://parceljs.org,00:28,319
+1050,LogRocket,https://logrocket.com/syntax,01:13,319
+1051,Prismic,https://prismic.io/syntax,02:07,319
+1052,Coolors Contrast Checker,https://coolors.co/contrast-checker,06:05,320
+1053,Sentry,https://sentry.io/,01:10,321
+1054,Freshbooks,https://www.freshbooks.com/,01:53,321
+1055,Draggable,https://draggablejs.netlify.app,05:21,322
+1056,Sentry,https://sentry.io/,29:17,322
+1057,Linode,https://linode.com/syntax,15:41,322
+1058,Mux,https://mux.com/syntax,42:01,322
+1059,GitHub ECMAScript Proposals Repo,https://github.com/tc39/proposals,05:25,323
+1060,JSON Modules Proposal,https://github.com/tc39/proposal-json-modules,07:34,323
+1061,Async Do Proposal,https://github.com/tc39/proposal-async-do-expressions,13:18,323
+1062,Change Array By Copy Proposal,https://github.com/tc39/proposal-change-array-by-copy,15:12,323
+1063,Temporal Proposal,https://github.com/tc39/proposal-temporal,17:58,323
+1064,As Pattern Proposal,https://github.com/tc39/proposal-as-pattern,18:48,323
+1065,Pattern Matching Proposal,https://github.com/tc39/proposal-pattern-matching,21:45,323
+1066,SvelteKit Course,https://leveluptutorials.com/pro,01:11,324
+1067,Sanity CMS,https://www.sanity.io/,00:42,324
+1068,LogRocket,https://logrocket.com/,00:42,324
+1069,Linode,https://www.linode.com/,00:42,324
+1070,Lit HTML,https://lit.dev/,08:13,324
+1071,React to Web Components,https://github.com/IfeanyiMala/react-to-webcomponent,05:26,324
+1072,Affinity,https://affinity.serif.com/en-us/,56:25,324
+1073,Igalia,https://www.igalia.com/,30:45,326
+1074,StackEdit,https://stackedit.io/,31:50,326
+1075,oddbird.net,http://oddbird.net/,56:59,326
+1076,SvelteKit,https://kit.svelte.dev/,02:39,327
+1077,Svelte,https://svelte.dev/,03:37,327
+1078,Vite,https://vitejs.dev/,04:09,327
+1079,Next.js,https://nextjs.org/,06:11,327
+1080,Sapper,https://sapper.svelte.dev/,10:39,327
+1081,Tailwind CSS,https://tailwindcss.com/,14:17,327
+1082,MDsveX,https://mdsvex.com/,20:18,327
+1083,TinaCMS,https://tina.io,19:37,328
+1084,Cloudinary,https://cloudinary.com/,48:31,328
+1085,Secret Hub,https://secrethub.io/,28:27,328
+1086,Svelte,https://svelte.dev/,53:20,328
+1087,Level Up Tutorials,https://leveluptutorials.com/,59:21,328
+1088,Wes Bos Courses,https://wesbos.com/courses,01:01:57,328
+1089,"Wes Bos' GitHub",https://github.com/wesbos,23:05,329
+1090,React TypeScript Cheatsheet,https://react-typescript-cheatsheet.netlify.app/,02:55,330
+1091,Deque,https://deque.com/,01:15,331
+1092,LogRocket,https://logrocket.com/,02:18,331
+1093,Prismic,https://prismic.io/syntax,00:19,332
+1094,LogRocket,https://logrocket.com/syntax,00:53,332
+1095,Mux,https://mux.com,00:53,332
+1096,Sentry,https://sentry.io/,02:33,333
+1097,.tech,https://go.tech/,03:59,333
+1098,Misiv,https://misiv.com/,17:19,333
+1099,Transmat,https://github.com/GoogleChromeLabs/transmat,26:25,333
+1100,MDN list of HTML Elements,https://developer.mozilla.org/en-US/docs/Web/HTML/Element,00:17,334
+1101,Prismic,https://prismic.io/,18:41,334
+1102,Sentry,https://sentry.io/,34:42,334
+1103,Cloudinary,https://cloudinary.com/,56:16,334
+1104,Sanity,https://www.sanity.io/,02:11,335
+1105,LogRocket,https://logrocket.com/,03:17,335
+1106,Open UI,https://open-ui.org/,17:47,335
+1107,Sentry,https://sentry.io,01:11,337
+1108,Prismic,https://prismic.io,02:05,337
+1109,Sanity,https://www.sanity.io/,16:51,338
+1110,Sentry,https://sentry.io/,00:09,338
+1111,Cloudinary,https://cloudinary.com/,27:59,338
+1112,Astro,https://astro.build,00:27,339
+1113,Vitkit,https://vitekit.dev,12:08,339
+1114,SvelteKit,https://kit.svelte.dev,16:02,339
+1115,Remix,https://remix.run,19:03,339
+1116,Whitley Print Shop,https://whitley.co/,02:30,342
+1117,Sticker Mule,http://stickermule.com,30:45,342
+1118,AS Color,https://ascolour.com/,49:58,342
+1119,Baratza Encore Conical Burr Coffee Grinder,https://www.baratza.com/grinder/encore/,50:36,342
+1120,"Miriam Suzanne's post",https://css-tricks.com/css-container-queries/,03:57,343
+1121,Codepens,https://codepen.io/collection/ABmJVj,19:58,343
+1122,Syntax.fm,https://syntax.fm,,344
+1123,Syntax podcast,https://Syntax.fm,00:00,345
+1124,CSS Nesting specification,https://drafts.csswg.org/css-nesting-1/,05:47,345
+1125,Mux,https://mux.com,07:06,346
+1126,Vimeo,https://vimeo.com,11:49,346
+1127,Cloudinary,https://cloudinary.com/,13:34,346
+1128,Easy Snippet,https://marketplace.visualstudio.com/items?itemName=PavelGershteyn.easy-snippet,04:01,347
+1129,Add Missing Function Declaration,https://devblogs.microsoft.com/typescript/announcing-typescript-4-2/#add-missing-function-declaration,05:33,347
+1130,Error Lens,https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens,07:41,347
+1131,Caddy,https://caddyserver.com,00:11,348
+1132,"Let's Encrypt",https://letsencrypt.org,05:22,348
+1133,ACME Protocol,https://en.wikipedia.org/wiki/ACME_Protocol,08:39,348
+1134,Hasura,https://hasura.io,01:49,349
+1135,Sentry,https://sentry.io/,03:43,349
+1136,Apollo,https://www.apollographql.com/,11:33,349
+1137,Mercurius,https://mercurius.dev/,11:33,349
+1138,DataLoader,https://github.com/facebook/dataloader,11:33,349
+1139,Apollo Studio,https://www.apollographql.com/studio,17:45,349
+1140,Prisma,https://www.prisma.io/,18:52,349
+1141,shaquillehansford.com,https://www.shaquillehansford.com/,04:54,350
+1142,benlamers.dev,https://benlamers.dev/,11:39,350
+1143,zubairaziz.com,https://zubairaziz.com/,20:28,350
+1144,codebyphil.dev,https://codebyphil.dev/,29:45,350
+1145,sample.johngeorge.me,https://sample.johngeorge.me/,37:44,350
+1146,stordahl.dev,https://stordahl.dev/,46:49,350
+1147,GraphQL Code Generator,https://graphql-code-generator.com/,03:32,351
+1148,Apollo Day talk on GraphQL tools,,03:58,351
+1149,The Guild,https://the-guild.dev/,15:00,351
+1150,GraphQL Scalars,https://github.com/Urigo/graphql-scalars,15:15,351
+1151,Pericles,https://github.com/costajob/pericles,16:00,351
+1152,Prismic,https://prismic.io/,01:32,352
+1153,Caddy,https://caddyserver.com/,32:46,352
+1154,Hasura,https://hasura.io/,43:06,352
+1155,NextAuth,https://next-auth.js.org/,52:11,352
+1156,Passport.js,http://www.passportjs.org/,52:11,352
+1157,Sanity,https://www.sanity.io/,01:16,353
+1158,Sentry,https://sentry.io/,02:50,353
+1159,crossenv,https://www.npmjs.com/package/cross-env,19:31,353
+1160,Vonage,https://www.vonage.com/,45:20,354
+1161,Advanced React Course,https://AdvancedReact.com,57:20,354
+1162,Syntax.fm Podcast,https://syntax.fm,00:00,355
+1163,Prismic,https://prismic.io/,01:26,355
+1164,LogRocket,https://logrocket.com/,02:45,355
+1165,Next.js,https://nextjs.org/,12:59,355
+1166,Vue,https://vuejs.org/,24:30,355
+1167,React,https://reactjs.org/,24:30,355
+1168,Clubhouse,https://www.joinclubhouse.com/,17:52,355
+1169,syntax.fm,https://syntax.fm,00:01,356
+1170,Cypress,https://www.cypress.io/,00:56,356
+1171,Sanity CMS,https://www.sanity.io/,00:56,356
+1172,LogRocket,https://logrocket.com/,00:56,356
+1173,Hasura,https://hasura.io/,00:58,356
+1174,Sentry,https://sentry.io/,02:10,357
+1175,FreshBooks,https://www.freshbooks.com/,02:32,357
+1176,LeetCode,https://leetcode.com/,19:12,357
+1177,React Query,https://react-query.tanstack.com/,00:20,358
+1178,Nozzle,https://usenozzle.com/,02:01,358
+1179,React Query GitHub,https://github.com/tannerlinsley/react-query,03:10,358
+1180,Relay GitHub,https://github.com/facebook/relay,03:10,358
+1181,React Query Devtools,https://react-query.tanstack.com/guides/devtools,25:10,358
+1182,Remix Runway,https://remix.run/,45:50,358
+1183,Cypress,https://www.cypress.io,02:23,359
+1184,Syntax,https://syntax.fm,00:02,359
+1185,LogRocket,https://logrocket.com/signup/,01:53,359
+1186,Deque Systems,https://www.deque.com/,02:23,359
+1187,FileReader API,https://developer.mozilla.org/en-US/docs/Web/API/FileReader,31:23,360
+1188,q,https://github.com/kriskowal/q,42:26,360
+1189,SWC,https://swc.rs/,10:23,361
+1190,Esbuild,https://esbuild.github.io/,13:42,361
+1191,"Ash Connolly's site",https://ashc0nn0lly.com/,09:44,362
+1192,"Maddy Bidwell's site",https://maddy.dev/,20:58,362
+1193,"Lea Lundqvist's site",https://lea.link/,24:49,362
+1194,"Ismael Galu's site",https://smakosh.com/,32:29,362
+1195,keycode.info,https://keycode.info,03:10,363
+1196,LogRocket,https://logrocket.com/syntax,01:28,363
+1197,Prismic,https://prismic.io/syntax,02:48,363
+1198,Overkill,https://github.com/sindresorhus/overkill-for-mac,18:08,363
+1199,LevelUpTutorials,https://www.leveluptutorials.com/,00:16,364
+1200,LogRocket,https://logrocket.com/signup/,10:28,364
+1201,Sanity,https://www.sanity.io/,19:27,364
+1202,Cloudinary,https://cloudinary.com/,27:34,364
+1203,LevelUpTutorials,https://www.leveluptutorials.com/pro,57:05,364
+1204,Wes Bos Courses,https://wesbos.com/courses,56:35,364
+1205,LevelUpTutorials,https://www.leveluptutorials.com,00:00,365
+1206,FreshBooks,https://freshbooks.com/syntax,01:17,365
+1207,Sentry,https://sentry.io/,01:48,365
+1208,Snowpack,https://www.snowpack.dev/,07:49,365
+1209,Mercurius,https://mercurius.dev/,12:30,365
+1210,Render,https://render.com,15:20,365
+1211,Cypress,https://www.cypress.io/,21:14,365
+1212,Deno,https://deno.land/,00:21,366
+1213,Oak,https://github.com/oakserver/oak,06:08,366
+1214,Axe,https://www.deque.com/axe/,14:01,366
+1215,Sentry,https://sentry.io/,24:30,366
+1216,Mux,https://mux.com/,35:23,366
+1217,Begin,https://begin.com/,47:13,366
+1218,Sentry,https://sentry.io/,00:59,367
+1219,FreshBooks,https://www.freshbooks.com/,01:59,367
+1220,Jake Archibald on AVIF,https://jakearchibald.com/2020/avif-has-landed/,19:03,367
+1221,Syntax.fm,https://syntax.fm,00:44,368
+1222,LogRocket,https://logrocket.com/syntax,17:13,368
+1223,Prismic,https://prismic.io/syntax,29:57,368
+1224,Linode,https://linode.com,45:54,368
+1225,type-scale.com,https://type-scale.com/,20:56,369
+1226,Syntax,https://syntax.fm/,25:45,369
+1227,Pigeonhole,https://pigeonhole.at/,04:03,370
+1228,React Router,https://reactrouter.com/,42:19,370
+1229,Houdini.how,https://houdini.how/,41:52,370
+1230,Prismic,https://prismic.io/syntax,01:17,371
+1231,LogRocket,https://logrocket.com/syntax,02:43,371
+1232,Syntax podcast,https://syntax.fm,00:01,372
+1233,Sanity CMS,https://www.sanity.io/,00:45,372
+1234,LogRocket,https://logrocket.com/,00:45,372
+1235,Linode,https://www.linode.com/,00:45,372
+1236,ES Modules,https://hacks.mozilla.org/2018/03/es-modules-a-cartoon-deep-dive/,02:15,372
+1237,Snowpack,https://www.snowpack.dev/,02:48,372
+1238,Deno,https://deno.land/,08:24,372
+1239,WebAssembly,https://webassembly.org/,09:43,372
+1240,ESBuild,https://esbuild.github.io/,14:41,372
+1241,Rome,https://rome.tools/,16:22,372
+1242,MDX,https://mdxjs.com/,33:31,372
+1243,Gatsby,https://www.gatsbyjs.com/,34:14,372
+1244,Next.js,https://nextjs.org/,34:41,372
+1245,Circle,https://circle.so/,20:44,372
+1246,GitHub Discussions,https://github.blog/2020-05-06-new-from-satellite-2020-github-codespaces-github-discussions-securing-code-in-private-repositories-and-more/,20:10,372
+1247,Forum,https://www.forumproduct.com/,20:24,372
+1248,CSS Variables,https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties,41:38,372
+1249,Ted Lasso,https://tv.apple.com/us/show/ted-lasso/umc.cmc.3fecri5zv7buc3i36fhcn2z89,49:25,372
+1250,Dimmable Bi-Color LED Light,https://www.amazon.com/Dimmable-Bi-Color-3300-5600K-Photography-Lighting/dp/B078JZTM8Z,49:39,372
+1251,Carabiner Elements,https://bjango.com/mac/carabinelements/,03:42,373
+1252,BetterTouchTool,https://folivora.ai/,05:36,373
+1253,Uberlayer,https://infinitapps.com/uberlayer/,15:41,373
+1254,Rocket,https://matthewpalmer.net/rocket/,20:32,373
+1255,TextExpander,https://textexpander.com/,21:26,373
+1256,Clippy,https://bjango.com/mac/carabinelements/,24:06,373
+1257,LogRocket,https://logrocket.com/syntax,21:45,374
+1258,FreshBooks,http://freshbooks.com/syntax,22:47,374
+1259,Mux,https://mux.com,11:27,375
+1260,Cloudflare Workers,https://workers.cloudflare.com/,23:36,375
+1261,FreshBooks,https://freshbooks.com,00:25,376
+1262,Sentry,https://sentry.io,00:33,376
+1263,mcbroken.com,https://mcbroken.com/,05:56,377
+1264,LowDB,https://github.com/typicode/lowdb,08:45,377
+1265,Twilio,https://www.twilio.com/,10:42,377
+1266,Postmark,https://postmarkapp.com/,10:42,377
+1267,Architect,https://architect.io,25:23,378
+1268,Begin,https://begin.com,26:15,378
+1269,Aleph.js,https://alephjs.org,19:17,378
+1270,Netlify,https://netlify.com,39:04,378
+1271,LogRocket,https://logrocket.com/syntax,02:11,379
+1272,OBS,https://obsproject.com/,05:14,379
+1273,Principle,https://principleformac.com/,17:42,379
+1274,Mux,https://mux.com,15:29,379
+1275,React HLS Player,https://github.com/video-dev/react-hls-player,15:34,379
+1276,Loopback,https://rogueamoeba.com/loopback/,20:59,379
+1277,Blackhole,https://github.com/ExistentialAudio/BlackHole,22:03,379
+1278,Gatsby,https://gatsbyjs.com,00:11,380
+1279,Next.js,https://nextjs.org,00:11,380
+1280,Sentry,https://sentry.io/,01:36,381
+1281,Zustand,https://github.com/pmndrs/zustand,08:01,381
+1282,Jotai,https://jotai.org/,09:10,381
+1283,Vue Composition API,https://vuejs.org/guide/extras/composition-api-faq.html,23:32,381
+1284,Syntax.fm,https://syntax.fm,00:01,382
+1285,LogRocket,https://logrocket.com/syntax,17:06,382
+1286,FreshBooks,https://freshbooks.com/syntax,47:59,382
+1287,Sentry,https://sentry.io/,01:02,383
+1288,Conventional Commits,https://www.conventionalcommits.org/,00:26,383
+1289,syntax.fm,https://syntax.fm,00:26,384
+1290,daily.co,https://daily.co,02:45,384
+1291,Svelte,https://svelte.dev,03:35,384
+1292,Lodash,https://lodash.com,06:33,384
+1293,Storybook,https://storybook.js.org,21:40,384
+1294,Sanity Blog Post,https://www.sanity.io/blog/create-custom-diff-components,27:53,384
+1295,disable-react-devtools,https://github.com/wix/disable-react-devtools,17:54,385
+1296,Reactathon Conference,https://www.reactathon.com/,00:50,386
+1297,CSS Grid Level 3,https://drafts.csswg.org/css-grid-3/,03:57,387
+1298,David DeSandro,https://desandro.github.io/,05:35,387
+1299,caniuse.com,https://caniuse.com/,12:47,387
+1300,Sentry,https://sentry.io,00:56,388
+1301,Learn with Jason,https://www.learnwithjason.dev,57:45,389
+1302,Cloudflare Workers,https://workers.cloudflare.com,00:33,390
+1303,Sentry,https://sentry.io/,00:59,390
+1304,Winter CG,https://wintercg.com/,37:28,390
+1305,Volt,https://volt.sh,22:23,391
+1306,Socket,https://socket.dev/,45:48,391
+1307,Manifest Confusion blog post,https://blog.volt.sh/2022/06/06/the-massive-bug-at-the-heart-of-the-npm-ecosystem-manifest-confusion/,48:56,391
+1308,Syntax.fm,https://syntax.fm,00:17,392
+1309,Sentry.io,https://sentry.io/,01:36,392
+1310,Centux Replay,https://sentry.io/,01:05,393
+1311,Syntax Open Graph Images,https://syntax.fm/og/600.jpeg,02:24,393
+1312,Caching Headers Episode,https://syntax.fm/show/464/caching-control-headers-explained,21:37,393
+1313,Syntax.fm,https://syntax.fm,00:11,394
+1314,Vercel,https://vercel.com,22:07,394
+1315,Sentry,https://sentry.io/,00:42,394
+1316,Statamic,https://statamic.com,33:54,395
+1317,Syntax Website Components,https://syntax.fm/components,22:57,395
+1318,Syntax Website Themes,https://syntax.fm/themes,22:57,395
+1319,Angular.dev,https://angular.io,05:20,396
+1320,Syntax.fm,https://syntax.fm,06:22,396
+1321,Thoughtworks Tech Radar,https://www.thoughtworks.com/radar,47:39,396
+1322,nth child microsyntax,https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-child,02:10,397
+1323,CSS motion path,https://developer.mozilla.org/en-US/docs/Web/CSS/motion_path,07:16,397
+1324,scroll snap,https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Scroll_Snap,11:23,397
+1325,scroll driven animations,https://web.dev/scroll-animations/,15:12,397
+1326,margin trim,https://developer.mozilla.org/en-US/docs/Web/CSS/margin-trim,17:48,397
+1327,Stripe Flow to TypeScript,https://stripe.com/blog/typed-configuration,05:59,398
+1328,Flutter for Web,https://flutter.dev/multi-platform/web,08:37,398
+1329,Tailscale,https://tailscale.com/,14:06,398
+1330,Bandcamp,https://bandcamp.com/,17:16,398
+1331,Comment Tagged Templates,https://marketplace.visualstudio.com/items?itemName=bierner.comment-tagged-templates,51:14,398
+1332,Shoelace Web Components,https://shoelace.style/,36:41,398
+1333,Syntax.fm Podcast,https://syntax.fm,00:01,399
+1334,Sentry,https://sentry.io/,00:27,399
+1335,Tailwind CSS,https://tailwindcss.com/,19:07,399
+1336,Nerdy.dev,https://nerdy.dev,23:19,399
+1337,Una.im,https://una.im/,25:04,399
+1338,"whitep4nth3r's Twitch",https://twitch.tv/whitep4nth3r,58:39,400
+1339,Hell.com,https://en.wikipedia.org/wiki/Hell.com,55:39,400
+1340,Sentry,https://sentry.io/,02:24,401
+1341,Payload,https://payloadcms.com,00:33,402
+1342,Drizzle,https://drizzle.dev/,13:55,402
+1343,Syntax,https://syntax.fm,38:09,402
+1344,ally Project ARIA roles,https://www.theallyproject.com/blog/aria-roles/,14:18,403
+1345,socket.dev,https://socket.dev,00:34,404
+1346,WebTorrent,https://webtorrent.io,36:37,404
+1347,Wormhole,https://wormhole.app,44:00,404
+1348,sentry.io,https://sentry.io/,01:50,405
