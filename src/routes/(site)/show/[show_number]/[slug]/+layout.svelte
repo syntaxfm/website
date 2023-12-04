@@ -189,7 +189,8 @@
 		}
 		.topics {
 			display: inline-flex;
-			gap: 1rem;
+			flex-wrap: wrap;
+			gap: 0 1rem;
 		}
 		.show-number {
 			position: absolute;

@@ -220,7 +220,7 @@
 		container: player / inline-size;
 		position: fixed;
 		bottom: 0;
-		width: 100vw;
+		width: 100%;
 		color: var(--fg);
 		background-color: var(--player-bg, var(--blackish));
 		background-image: var(--bgGritDark);
