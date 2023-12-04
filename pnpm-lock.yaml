@@ -14,8 +14,8 @@ dependencies:
     specifier: ^0.13.1
     version: 0.13.1
   '@leveluptuts/svelte-side-menu':
-    specifier: ^1.0.5
-    version: 1.0.5
+    specifier: ^1.0.7
+    version: 1.0.7
   '@prisma/client':
     specifier: 5.5.2
     version: 5.5.2(prisma@5.5.2)
@@ -936,8 +936,8 @@ packages:
       '@jridgewell/resolve-uri': 3.1.1
       '@jridgewell/sourcemap-codec': 1.4.15
 
-  /@leveluptuts/svelte-side-menu@1.0.5:
-    resolution: {integrity: sha512-czPmr0LEjVhr7qXYZtH4PrUrfHPYg9nS7ZHH+xDINKoajkERWlHlsBtdoJC5ZTMzGvdhLCLfF70q4xeMzJgS7w==}
+  /@leveluptuts/svelte-side-menu@1.0.7:
+    resolution: {integrity: sha512-+8ynGfoCEH62zALLAIuqy5gF2A+sEpZjJKk97Hj2GeufJFe2Eu8cW36yOx71WkZJKtBA3fwgI9Pkerbex6LpAw==}
     dev: false
 
   /@mapbox/node-pre-gyp@1.0.11:
