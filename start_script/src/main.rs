@@ -48,6 +48,12 @@ fn check_and_update_env() -> Result<(), Box<dyn std::error::Error>> {
     if !env_path.exists() {
         fs::copy(env_example_path, env_path)?;
         println!("🤝 .env.example copied to .env");
+				let mysql_query = prompt_for_mysql_query();
+				let env_contents = fs::read_to_string(env_path)?;
+				let new_env_contents = env_contents.replace("DATABASE_URL='REQUIRED__YOU_NEED_A_MYSQL_URL'", &format!("DATABASE_URL='{}'", mysql_query));
+				fs::write(env_path, new_env_contents)?;
+
+				println!("✅ Updated DATABASE_URL in .env");
     } else {
         let existing_vars = read_env_vars_and_values(env_path)?;
         let example_vars = read_env_vars_and_values(env_example_path)?;
@@ -62,13 +68,7 @@ fn check_and_update_env() -> Result<(), Box<dyn std::error::Error>> {
         }
     }
 
-    // Prompt for MySQL query string and update DATABASE_URL in .env
-    let mysql_query = prompt_for_mysql_query();
-    let env_contents = fs::read_to_string(env_path)?;
-    let new_env_contents = env_contents.replace("DATABASE_URL='REQUIRED__YOU_NEED_A_MYSQL_URL'", &format!("DATABASE_URL='{}'", mysql_query));
-    fs::write(env_path, new_env_contents)?;
-
-    println!("✅ Updated DATABASE_URL in .env");
+    println!("✅ .env");
     Ok(())
 }
 
