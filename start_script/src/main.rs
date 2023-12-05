@@ -224,7 +224,8 @@ fn main() {
         if let Err(e) = check_and_update_env() {
             eprintln!("Error checking/copying .env file: {}", e);
         } else {
-            println!("✅ .env file handling complete");
+					execute_command("pnpm", &["install"]); 
+					println!("🥘 Website preheated to 450°F (232°C)");
         }
         return;
     }
@@ -261,5 +262,5 @@ fn main() {
     }
 
     // Run 'pnpm vite dev' command
-    execute_command("pnpm", &["vite", "dev"]);
+    execute_command("pnpm", &["vite", "dev"]); 
 }

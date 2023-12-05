@@ -21,7 +21,7 @@ This site uses MySQL via Prisma, so you will need a valid MySQL connection strin
 ## Getting Started
 
 0. Read Prerequisites above ^^ before starting
-1. Run -> `pnpm install`
+1. Run -> `pnpm preheat`
 2. Run -> `pnpm dev`
 3. Visit `http://localhost:5173`
 
