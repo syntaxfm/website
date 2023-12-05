@@ -62,7 +62,13 @@ fn check_and_update_env() -> Result<(), Box<dyn std::error::Error>> {
         }
     }
 
-    println!("✅ env Check");
+    // Prompt for MySQL query string and update DATABASE_URL in .env
+    let mysql_query = prompt_for_mysql_query();
+    let env_contents = fs::read_to_string(env_path)?;
+    let new_env_contents = env_contents.replace("DATABASE_URL='REQUIRED__YOU_NEED_A_MYSQL_URL'", &format!("DATABASE_URL='{}'", mysql_query));
+    fs::write(env_path, new_env_contents)?;
+
+    println!("✅ Updated DATABASE_URL in .env");
     Ok(())
 }
 
@@ -116,6 +122,15 @@ fn check_show_table_data() -> Result<(), Box<dyn std::error::Error>> {
         Ok(())
     }
 }
+
+// Add a function to prompt the user for the MySQL query string
+fn prompt_for_mysql_query() -> String {
+    println!("Please enter the MySQL query string:");
+    let mut query = String::new();
+    io::stdin().read_line(&mut query).expect("Failed to read line");
+    query.trim().to_string()
+}
+
 
 
 // Function to seed the database with an SQL file
