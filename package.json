@@ -4,6 +4,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "./syntax_website_go",
+		"init": "./syntax_website_go --env-only",
 		"copy-files": "zx ./why_do_i_need_this.mjs",
 		"build": "run-s --print-name build:svelte copy-files",
 		"build:svelte": "vite build",

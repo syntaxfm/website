@@ -215,6 +215,21 @@ fn append_missing_vars_to_env(path: &Path, missing_vars: &HashSet<String>, examp
 
 // Main function
 fn main() {
+
+    // Parse command line arguments
+    let args: Vec<String> = env::args().collect();
+
+    // Check if '--env-only' flag is provided
+    if args.contains(&"--env-only".to_string()) {
+        if let Err(e) = check_and_update_env() {
+            eprintln!("Error checking/copying .env file: {}", e);
+        } else {
+            println!("✅ .env file handling complete");
+        }
+        return;
+    }
+
+
     if let Err(e) = check_pnpm_version() {
         eprintln!("{}", e);
         return;
