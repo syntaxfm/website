@@ -1,6 +1,6 @@
 use std::{env, fs::{self, File, OpenOptions}, process::{Command}, path::Path, collections::{HashSet, HashMap}};
 use std::io::{ BufRead, Write, BufReader, self};
-use csv::Reader;
+
 use serde_json::Value;
 use dotenv::dotenv;
 use mysql::{self, Pool, OptsBuilder};
@@ -109,7 +109,7 @@ fn check_show_table_data() -> Result<(), Box<dyn std::error::Error>> {
         Ok(())
     } else {
         println!("❌ Data Check - Seeding database...");
-        seed_database(&pool, "./seed/db")?;
+        seed_database()?;
         println!("✅ Database seeded");
         Command::new("pnpm").args(["i-changed-the-schema"]).status()?;
         println!("✅ Schema change command executed");
@@ -117,38 +117,42 @@ fn check_show_table_data() -> Result<(), Box<dyn std::error::Error>> {
     }
 }
 
-// Function to import CSV data into the database
-fn import_csv_to_table(pool: &Pool, file_path: &Path, table_name: &str) -> Result<(), Box<dyn std::error::Error>> {
-    let mut rdr = Reader::from_path(file_path)?;
 
-    for result in rdr.records() {
-        let record = result?;
-        let mut values = vec![];
-        
-        for field in record.iter() {
-            values.push(format!("'{}'", field.replace("'", "''")));
-        }
-
-        let query = format!("INSERT INTO {} VALUES({})", table_name, values.join(", "));
-        pool.get_conn()?.query_drop(query)?;
+// Function to seed the database with an SQL file
+// Function to seed the database with an SQL file
+fn seed_database() -> Result<(), Box<dyn std::error::Error>> {
+    // Check if mysql command is available
+    if Command::new("mysql").arg("--version").output().is_err() {
+        return Err("❌ MySQL is not installed. Please install MySQL first.".into());
     }
 
-    Ok(())
-}
+    dotenv().ok();
+    let database_url = env::var("DATABASE_URL").expect("DATABASE_URL not set in .env");
+    let url = Url::parse(&database_url).expect("Invalid database URL");
 
-// Function to seed the database with CSV files
-fn seed_database(pool: &Pool, folder_path: &str) -> Result<(), Box<dyn std::error::Error>> {
-    let paths = fs::read_dir(folder_path)?;
+    let username = url.username();
+    let password = url.password().unwrap_or("");
+    let host = url.host_str().expect("Database host is required");
+    let port = url.port().unwrap_or(3306);
+    let database = url.path().trim_start_matches('/');
 
-    for path in paths {
-        let file_path = path?.path();
-        if file_path.is_file() {
-            let file_name = file_path.file_name().unwrap().to_str().unwrap();
-            let table_name = file_name.trim_end_matches(".csv");
-            import_csv_to_table(pool, &file_path, table_name)?;
-        }
+    let seed_file_path = "./seed/seed.sql";
+    let mysql_command = format!(
+        "mysql -h {} -P {} -u {} -p{} {} < {}",
+        host, port, username, password, database, seed_file_path
+    );
+
+    let status = Command::new("sh")
+        .arg("-c")
+        .arg(&mysql_command)
+        .status()
+        .expect("Failed to execute MySQL command");
+
+    if !status.success() {
+        return Err("Failed to seed the database using MySQL command".into());
     }
 
+    println!("✅ Database seeded with SQL file");
     Ok(())
 }
 
@@ -216,17 +220,13 @@ fn main() {
         }
     }
 
-    let opts = get_db_ops();
-    let pool = Pool::new(opts).expect("Failed to create pool.");
-
     if let Err(e) = check_show_table_data() {
         eprintln!("{}", e);
 
-        let folder_path = "path/to/csv/folder"; // Replace with your CSV folder path
-        if let Err(err) = seed_database(&pool, folder_path) {
-            eprintln!("Failed to seed database from CSV files: {}", err);
+        if let Err(err) = seed_database() {
+            eprintln!("Failed to seed database from sql file: {}", err);
         } else {
-            println!("Database seeded successfully from CSV files.");
+            println!("Database seeded successfully from sql file.");
         }
     }
 
