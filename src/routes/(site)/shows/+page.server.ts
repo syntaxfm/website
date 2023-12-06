@@ -40,6 +40,9 @@ export const load: PageServerLoad = async function ({ locals, url, setHeaders })
 
 	return {
 		shows,
-		count: count_shows()
+		count: count_shows(),
+		meta: {
+			title: `Shows ${page > 1 ? `- Page ${page}` : ''}`
+		}
 	};
 };
