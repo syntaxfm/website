@@ -25,9 +25,9 @@
 	import { capitalize } from '$utilities/capitalize';
 
 	export let name: IconName;
-	export let title: string = '';
+	export let title: string | boolean;
 
-	if (!title) title = capitalize(name);
+	if (!title && title !== false) title = capitalize(name);
 </script>
 
 {#if name === 'play'}
@@ -36,7 +36,10 @@
 		style="width: var(--icon_size, 16px);"
 		viewBox="0 0 16 16"
 	>
-		<title>{title}</title>
+		{#if title}
+			<title>{title}</title>
+		{/if}
+
 		<path
 			fill="currentColor"
 			d="M11.629 7.306a.835.835 0 0 1 0 1.388l-6.401 4.177C4.695 13.218 4 12.825 4 12.176V3.824c0-.649.695-1.042 1.228-.695l6.4 4.177Z"
