@@ -63,7 +63,7 @@
 				data-has-node={is_tree(result) ? true : undefined}
 			>
 				<strong class="wrap">
-					<mark>#{result.node.number}</mark>
+					<mark>#{result?.node?.number}</mark>
 					{@html excerpt(result.breadcrumbs[result.breadcrumbs.length - 1], query, false)}
 				</strong>
 
