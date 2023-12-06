@@ -17,15 +17,19 @@ export const load: PageServerLoad = async ({ params }) => {
 		.use(rehypeRaw) // allow html within markdown files
 		.use(rehypeStringify);
 
-	console.log('contentFiles', contentFiles);
-
 	const key = `../${params.page}.md`;
 
 	if (contentFiles[key]) {
+		// Parse the title. We could move this into front matter if we wanted more control over these pages, but I don't think we need it.
+		const title = contentFiles[key].split('\n')[0].replaceAll('#', '').trim();
 		const content = processor.processSync(contentFiles[key]).value;
+
 		return {
 			props: {
 				html: content
+			},
+			meta: {
+				title
 			}
 		};
 	} else {

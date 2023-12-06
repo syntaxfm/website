@@ -73,7 +73,7 @@ export const load = async function ({ params, locals, url }) {
 			show_notes: with_h3_body
 		} as ShowTemp & Show,
 		meta: {
-			title: show?.title,
+			title: `${show?.title} - Syntax #${show_number}`,
 			image: `${url.protocol}//${url.host}/og/${show_number}.jpg`,
 			url: `${url.protocol}//${url.host}${get_show_path(show)}`,
 			canonical: `${url.protocol}//${url.host}${get_show_path(show)}`,
