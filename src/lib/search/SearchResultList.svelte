@@ -148,9 +148,9 @@
 		line-height: 1.5;
 		overflow: hidden;
 		text-overflow: ellipsis;
-		&.wrap {
-			white-space: normal;
-		}
+	}
+	a strong.wrap {
+		white-space: normal;
 	}
 
 	a strong {
