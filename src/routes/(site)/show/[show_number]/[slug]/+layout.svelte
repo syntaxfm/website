@@ -73,7 +73,7 @@
 		<div class="show-actions-flex">
 			<button on:click={() => player.play_show(show)} data-testid="play-show">
 				<Icon
-					title={false}
+					aria-hidden="true"
 					name="play{$player.current_show?.number === show.number ? 'ing' : ''}"
 				/>
 				Play{$player.current_show?.number === show.number ? 'ing' : ''} Episode {show.number}
