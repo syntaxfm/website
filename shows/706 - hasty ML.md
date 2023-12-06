@@ -2,10 +2,10 @@
 number: 706
 title: AI and ML - The Pieces Explained
 date: 1702900800931
-url:
+url: https://traffic.libsyn.com/syntax/Syntax_-_706.mp3
 ---
 
-In this episode of Syntax, Wes and Scott talk
+In this episode of Syntax, Wes and Scott talk about understanding the integration of different components in AI models, the choice between traditional models and Language Learning Models (LLM), the relevance of the Hugging Face library, demystify Llama, discuss spaces in AI, and highlight available services.
 
 ### Show Notes
 
@@ -39,8 +39,8 @@ In this episode of Syntax, Wes and Scott talk
 - [openai/tiktoken: tiktoken is a fast BPE tokeniser for use with OpenAI's models.](https://github.com/openai/tiktoken)
 - [Supper Club × OpenAI, Future of programming, LLMs, and Math with Andrey Mishchenko](https://syntax.fm/show/625/supper-club-openai-future-of-programming-llms-and-math-with-andrey-mishchenko)
 - [Raycast Pro](https://www.raycast.com/pro)
-- [Amazon SageMaker (AMS SSPS) - AMS Advanced User Guide](https://docs.aws.amazon.com/managedservices/latest/userguide/sagemaker.html)
-- [openai/evals: Evals is a framework for evaluating LLMs and LLM systems, and an open-source registry of benchmarks.](https://github.com/openai/evals)
+- [Amazon SageMaker (AMS SSPS)](https://docs.aws.amazon.com/managedservices/latest/userguide/sagemaker.html)
+- [openai/evals](https://github.com/openai/evals)
 - [LangChain](https://www.langchain.com/)
 - [PyTorch](https://pytorch.org/)
 - [TensorFlow](https://www.tensorflow.org/)
