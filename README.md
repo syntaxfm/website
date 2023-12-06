@@ -8,20 +8,22 @@ This site is built on SvelteKit.
 
 ## Requirements
 
-- Node 20.0.0 or higher
+- Node 18.0.0 or higher
+
+## Prerequisite
+
+Install pnpm - https://pnpm.io/installation
+Install mysql
+Install Node - https://nodejs.org/en
+
+This site uses MySQL via Prisma, so you will need a valid MySQL connection string.
 
 ## Getting Started
 
-1. Run -> `mv ./.env.example ./env`
-2. Add valid mysql connection string to DATABASE_URL in `./env`.
-3. Run -> `pnpm install`
-4. Run -> `pnpm db:init`
-5. Run -> `pnpm dev`
-6. Visit `http://localhost:5173`
-
-## Database
-
-This site uses MySQL via Prisma, so you will need a valid MySQL connection string.
+0. Read Prerequisites above ^^ before starting
+1. Run -> `pnpm preheat`
+2. Run -> `pnpm dev`
+3. Visit `http://localhost:5173`
 
 ### Scripts
 
@@ -45,6 +47,7 @@ Just about all major code folders live in `/src` with the exception of `/shows` 
 | `/state`     | Global State containers and resolvers                                                         | $state     |
 | `/styles`    | CSS                                                                                           |
 | `/utilities` | Global Utility functions                                                                      | $utilities |
+| `/`          | Root                                                                                          | $          |
 
 ### Stylin'
 
