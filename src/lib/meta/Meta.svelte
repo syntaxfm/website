@@ -1,11 +1,16 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { PUBLIC_URL } from '$env/static/public';
+
+	let title = `Syntax - A Tasty Treats Podcast for Web Developers.`;
+
 	$: meta = {
 		//·defaults
 		description: `Full Stack Web Developers Wes Bos and Scott Tolinski dive deep into web development, CSS, JavaScript, Frameworks, Typescript, Servers and more. Listen in 3 times a week!`,
-		image: `https://${PUBLIC_URL}/syntax-banner.png`,
-		title: `Syntax - A Tasty Treats Podcast for Web Developers.`,
+		image: `${$page.url.protocol}//${$page.url.host}/og/${encodeURIComponent(
+			$page.data.meta.title || title
+		)}.jpg`,
+		title,
 		// any page customizations
 		...$page.data.meta
 	};
@@ -31,8 +36,6 @@
 		<meta property="og:url" content={meta.canonical} />
 	{/if}
 	<meta name="description" content={meta.description} />
-
-	<!-- <meta property="og:image:secure_url" content={meta.image} /> -->
 	<!-- Twitter -->
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:title" content={generateTitle(meta.title)} />
