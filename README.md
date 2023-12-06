@@ -13,7 +13,9 @@ This site is built on SvelteKit.
 ## Prerequisite
 
 Install pnpm - https://pnpm.io/installation
+
 Install mysql
+
 Install Node - https://nodejs.org/en
 
 This site uses MySQL via Prisma, so you will need a valid MySQL connection string.
