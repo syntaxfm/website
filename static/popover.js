@@ -529,4 +529,3 @@ function apply() {
 
 // src/index.ts
 if (!isSupported()) apply();
-//# sourceMappingURL=popover.js.map
