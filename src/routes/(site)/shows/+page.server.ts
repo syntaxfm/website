@@ -28,9 +28,12 @@ export const load: PageServerLoad = async function ({ locals, url, setHeaders })
 		show_type: isShowType(show_type) ? show_type : undefined
 	});
 
-	const shows = await locals.prisma.show.findMany(query);
+	const [shows_result, count_result] = await Promise.allSettled([
+		locals.prisma.show.findMany(query),
+		count_shows()
+	]);
 
-	if (!shows.length) {
+	if (shows_result.status === 'rejected' || shows_result.value.length <= 0) {
 		// If there are no shows for this page, redirect them to the first page but keep their query params. This happens when someone changes the perPage value and that makes their page no longer have anything to show.
 		console.log(`No shows on this page, redirecting to page 1`);
 		const params = new URLSearchParams(url.searchParams);
@@ -43,9 +46,12 @@ export const load: PageServerLoad = async function ({ locals, url, setHeaders })
 		throw redirect(302, `/shows?${params_string}`);
 	}
 
+	const { value: shows } = shows_result;
+	const total_show_count = count_result.status === 'fulfilled' ? count_result.value : 42;
+
 	return {
 		shows,
-		count: count_shows(),
+		count: total_show_count,
 		meta: {
 			title: `Shows ${page > 1 ? `- Page ${page}` : ''}`
 		}
