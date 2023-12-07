@@ -1,9 +1,5 @@
 lockfileVersion: '6.0'
 
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
-
 dependencies:
   '@anthropic-ai/sdk':
     specifier: ^0.6.2
@@ -20,6 +16,9 @@ dependencies:
   '@leveluptuts/svelte-side-menu':
     specifier: ^1.0.7
     version: 1.0.7
+  '@oddbird/popover-polyfill':
+    specifier: ^0.3.6
+    version: 0.3.6
   '@prisma/client':
     specifier: 5.5.2
     version: 5.5.2(prisma@5.5.2)
@@ -995,6 +994,10 @@ packages:
     dependencies:
       mkdirp: 1.0.4
       rimraf: 3.0.2
+    dev: false
+
+  /@oddbird/popover-polyfill@0.3.6:
+    resolution: {integrity: sha512-9y9vWw6svuva+pLahuK1CBScoXhk70yiS9l+Ll7IBsUC3gTmdHDGXBv+H0EwGsJ3iCytvTd98Ds3+fcQQABrPg==}
     dev: false
 
   /@playwright/test@1.39.0:
@@ -6896,3 +6899,7 @@ packages:
       which: 3.0.1
       yaml: 2.3.2
     dev: false
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
