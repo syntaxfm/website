@@ -1,5 +1,5 @@
-import { processor } from '../pages/[page]/+page.server';
 import type { PageServerLoad } from './$types';
+import { processor } from '$/utilities/markdown';
 
 function cleanUpLines(string: string) {
 	return string
