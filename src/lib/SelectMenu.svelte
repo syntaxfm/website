@@ -2,6 +2,12 @@
 	import Icon from './Icon.svelte';
 	import { anchor } from '$actions/anchor';
 	import type { IconName } from './Icon.svelte';
+	// Polyfill for Popover. Remove once Firefox supports it. https://caniuse.com/?search=popover
+	import { apply, isSupported } from '@oddbird/popover-polyfill/fn';
+	import { browser } from '$app/environment';
+	if (!isSupported() && browser) {
+		apply();
+	}
 
 	export let options: { value: string; label: string }[];
 	export let button_icon: IconName | null = null;
