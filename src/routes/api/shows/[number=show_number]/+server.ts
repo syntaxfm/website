@@ -1,25 +1,27 @@
-import { json } from '@sveltejs/kit';
+import { error, json } from '@sveltejs/kit';
 import { format } from 'date-fns';
+import { shows_api_query } from '../query.js';
+
+const query = shows_api_query();
 
 export async function GET({ locals, params }) {
-	const data = await locals.prisma.show.findUnique({
+	const show_number = parseInt(params.number);
+	const data = await locals.prisma.show.findFirst({
 		where: {
-			number: parseInt(params.number)
-		},
-		include: {
-			guests: {
-				select: {
-					Guest: {
-						select: {
-							github: true,
-							name: true
-						}
+			AND: [
+				{ number: show_number },
+				{
+					date: {
+						lte: new Date()
 					}
 				}
-			}
+			]
+		},
+		include: {
+			...query.include
 		}
 	});
-	if (data)
+	if (data) {
 		return json(
 			{
 				...data,
@@ -33,4 +35,7 @@ export async function GET({ locals, params }) {
 				}
 			}
 		);
+	} else {
+		throw error(404, 'Show not found');
+	}
 }
