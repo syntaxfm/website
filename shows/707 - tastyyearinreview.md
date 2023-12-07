@@ -22,7 +22,7 @@ In this episode of Syntax, Wes and Scott review their 2023 predictions and see h
 - [ECMAScript proposal for type syntax that is erased - Stage 1](https://github.com/tc39/proposal-type-annotations)
 - **[07:55](#t=07:55)** Deno gets hotter
 - **[11:12](#t=11:12)** JS runtimes mature
-- [</> htmx ](https://htmx.org/)
+- [htmx ](https://htmx.org/)
 - **[11:50](#t=11:50)** We will see a new TS Type Checker written in Rust
 - **[14:06](#t=14:06)** New JS APIs
 - [What's the status of this project? · Issue #1101 · dudykr/stc](https://github.com/dudykr/stc/issues/1101)
