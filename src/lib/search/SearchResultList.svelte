@@ -16,14 +16,15 @@
 		return text.replace(/</g, '&lt;').replace(/>/g, '&gt;');
 	}
 
-	function excerpt(content: string, query: string) {
+	function excerpt(content: string, query: string, trim: boolean = true) {
 		if (content) {
 			const index = content.toLowerCase().indexOf(query?.toLowerCase());
 			if (index === -1) {
 				return escape(content.slice(0, 100));
 			}
 
-			const prefix = index > 20 ? `…${content.slice(index - 15, index)}` : content.slice(0, index);
+			const prefix =
+				index > 20 && trim ? `…${content.slice(index - 15, index)}` : content.slice(0, index);
 			const suffix = content.slice(
 				index + query.length,
 				index + query.length + (80 - (prefix.length + query.length))
@@ -61,7 +62,10 @@
 				on:click={() => dispatch('select', { href: result.href })}
 				data-has-node={is_tree(result) ? true : undefined}
 			>
-				<strong>{@html excerpt(result.breadcrumbs[result.breadcrumbs.length - 1], query)}</strong>
+				<strong class="wrap">
+					<mark>#{result?.node?.number}</mark>
+					{@html excerpt(result.breadcrumbs[result.breadcrumbs.length - 1], query, false)}
+				</strong>
 
 				{#if is_tree(result) && result.node?.content}
 					<span class="text-sm">{@html excerpt(result.node.content, query)}</span>
@@ -94,7 +98,8 @@
 	}
 
 	.play-button {
-		background: transparent;
+		background: var(--bg);
+		border: 2px solid var(--fg);
 		color: var(--fg);
 		padding: 5px;
 		box-shadow: none;
@@ -140,9 +145,12 @@
 	a span {
 		display: block;
 		white-space: nowrap;
-		line-height: 1;
+		line-height: 1.5;
 		overflow: hidden;
 		text-overflow: ellipsis;
+	}
+	a strong.wrap {
+		white-space: normal;
 	}
 
 	a strong {

@@ -4,25 +4,28 @@ A tasty treats podcast for Web Developers.
 
 This is the site that runs [Syntax.fm](https://syntax.fm) — go there to listen to it!
 
-This site is built on SvelteKit
+This site is built on SvelteKit.
 
 ## Requirements
 
-- Node 20.0.0 or higher
+- Node 18.0.0 or higher
 
-## Database
+## Prerequisite
 
-Make sure to have a `DATABASE_URL` environmental variable set.
+Install pnpm - https://pnpm.io/installation
 
-If this is your first time, run `pnpm db:push` to create the tables in your database.
+Install mysql
 
-Then run `pnpm db:seed` to scaffold out the user roles.
+Install Node - https://nodejs.org/en
 
-## Development
+This site uses MySQL via Prisma, so you will need a valid MySQL connection string.
 
-First you `pnpm install`
+## Getting Started
 
-Then you `pnpm dev` and visit `http://localhost:5173`.
+0. Read Prerequisites above ^^ before starting
+1. Run -> `pnpm preheat`
+2. Run -> `pnpm dev`
+3. Visit `http://localhost:5173`
 
 ### Scripts
 
@@ -46,10 +49,11 @@ Just about all major code folders live in `/src` with the exception of `/shows` 
 | `/state`     | Global State containers and resolvers                                                         | $state     |
 | `/styles`    | CSS                                                                                           |
 | `/utilities` | Global Utility functions                                                                      | $utilities |
+| `/`          | Root                                                                                          | $          |
 
 ### Stylin'
 
-These are the available media queries
+These are the available media queries:
 
 ```css
 @custom-media --below_small (width < 400px);
@@ -65,3 +69,9 @@ These are the available media queries
 @media (--above_med) {
 }
 ```
+
+# Our Contributors
+
+<a href="https://github.com/syntaxfm/website/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=syntaxfm/website" />
+</a>

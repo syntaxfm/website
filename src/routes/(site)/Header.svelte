@@ -22,7 +22,7 @@
 			<a class={$page.url.pathname.startsWith('/potluck') ? 'active' : ''} href="/potluck"
 				>Potluck Qs</a
 			>
-			<!-- <a rel="noopener" target="_blank" href="https://swag.sentry.io">Swag</a> -->
+			<a target="_blank" href="https://sentry.shop">Swag</a>
 			<Search />
 			<MobileNav />
 		</nav>
@@ -73,7 +73,7 @@
 		display: flex;
 		padding: 10px 0;
 		gap: 10px;
-		justify-content: end;
+		justify-content: flex-end;
 		align-items: center;
 		.transparent & {
 			grid-column: 1 / -1;

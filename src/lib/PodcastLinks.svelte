@@ -77,8 +77,14 @@
 	.subscribe--google-podcasts {
 		--button-bg: linear-gradient(to bottom, rgb(245, 121, 23) 0%, rgb(254, 185, 90) 100%);
 	}
+	.subscribe--amazon-music {
+		--button-bg: linear-gradient(to bottom, #25d1da 0%, #399a9e 100%);
+	}
 	.subscribe--google-podcasts::before {
 		background-image: url('/icons/google_podcasts.svg');
+	}
+	.subscribe--amazon-music::before {
+		background-image: url('/icons/amznMusic.png');
 	}
 	a {
 		font-size: var(--font-size-xs);

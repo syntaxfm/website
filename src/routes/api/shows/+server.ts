@@ -1,22 +1,9 @@
 import { json } from '@sveltejs/kit';
 import { format } from 'date-fns';
+import { shows_api_query } from './query.js';
 
 export async function GET({ locals }) {
-	const data = await locals.prisma.show.findMany({
-		orderBy: { number: 'desc' },
-		include: {
-			guests: {
-				select: {
-					Guest: {
-						select: {
-							github: true,
-							name: true
-						}
-					}
-				}
-			}
-		}
-	});
+	const data = await locals.prisma.show.findMany(shows_api_query());
 
 	const shows = data.map((show) => {
 		return {
@@ -27,5 +14,10 @@ export async function GET({ locals }) {
 		};
 	});
 
-	if (data) return json(shows);
+	if (data)
+		return json(shows, {
+			headers: {
+				'Access-Control-Allow-Origin': '*'
+			}
+		});
 }

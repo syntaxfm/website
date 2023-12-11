@@ -208,6 +208,7 @@
 			top: 0;
 			line-height: 1;
 			overflow: visible;
+			pointer-events: none;
 			color: var(--white);
 			span {
 				display: block;

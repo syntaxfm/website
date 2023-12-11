@@ -25,9 +25,18 @@ export default defineConfig({
 			}
 		}
 	},
+	ssr: {
+		external: ['@sentry/profiling-node']
+	},
+	esbuild: {
+		exclude: '@sentry/profiling-node'
+	},
 	resolve: {
 		alias: {
 			'.prisma/client/index-browser': './node_modules/@prisma/client/index-browser.js'
 		}
+	},
+	define: {
+		__VER__: JSON.stringify(process.env.npm_package_version)
 	}
 });

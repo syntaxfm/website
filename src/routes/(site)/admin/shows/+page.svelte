@@ -20,7 +20,7 @@
 		<button class="subtle" type="submit">Sync All Shows</button>
 	</form>
 
-	<form action="/webhooks/refresh" method="POST">
+	<form action="/webhooks/refresh" method="GET">
 		<button class="subtle" type="submit">Test Refresh Webhook </button>
 	</form>
 
@@ -72,6 +72,10 @@
 							{show.title}
 							[↗]</a
 						>
+						<p class="text-xs">
+							{show.date.getTime() > Date.now() ? 'Scheduled' : 'Published'}
+							{format(show.date, 'EEE MMM d yyyy h:mm:ss a z')}
+						</p>
 					</td>
 					<td>
 						{#if format(show.date, 'EEE') === 'Mon'}
@@ -83,7 +87,7 @@
 						{/if}
 					</td>
 					<td>
-						{format(show.date, 'EEE MMMM d yy')}
+						{format(show.date, 'EEE MMM d yy ')}
 					</td>
 					<td class="center">{show._count.guests}</td>
 					<td class="center"

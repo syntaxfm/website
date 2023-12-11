@@ -38,7 +38,7 @@ function loadMediaSession(show: Show) {
 
 const new_player_state = () => {
 	const { subscribe, update, set } = writable<{
-		status: 'HIDDEN' | 'ACTIVE' | 'EXPANDED' | 'MINIMIZED';
+		status: 'HIDDEN' | 'ACTIVE' | 'EXPANDED' | 'MINI';
 		current_show: null | Show;
 		playing: boolean;
 		audio?: HTMLAudioElement;
@@ -108,7 +108,7 @@ const new_player_state = () => {
 
 	function toggle_minimize() {
 		update((state) => {
-			state.status = state.status !== 'MINIMIZED' ? 'MINIMIZED' : 'EXPANDED';
+			state.status = state.status !== 'MINIMIZED' ? 'MINI' : 'EXPANDED';
 			return state;
 		});
 	}
@@ -122,6 +122,13 @@ const new_player_state = () => {
 		});
 	}
 
+	function minimize() {
+		update((state) => {
+			state.status = 'MINI';
+			return state;
+		});
+	}
+
 	return {
 		subscribe,
 		update,
@@ -130,7 +137,8 @@ const new_player_state = () => {
 		toggle_minimize,
 		close,
 		update_time,
-		set
+		set,
+		minimize
 	};
 };
 

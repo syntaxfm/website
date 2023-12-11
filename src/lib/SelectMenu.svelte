@@ -2,6 +2,12 @@
 	import Icon from './Icon.svelte';
 	import { anchor } from '$actions/anchor';
 	import type { IconName } from './Icon.svelte';
+	// Polyfill for Popover. Remove once Firefox supports it. https://caniuse.com/?search=popover
+	import { apply, isSupported } from '@oddbird/popover-polyfill/fn';
+	import { browser } from '$app/environment';
+	if (!isSupported() && browser) {
+		apply();
+	}
 
 	export let options: { value: string; label: string }[];
 	export let button_icon: IconName | null = null;
@@ -21,6 +27,27 @@
 		}
 		return searchParams.toString();
 	};
+
+	// TODO: remove  this when typescirpt dom ships HTMLPopoverElement
+	interface HTMLPopoverElement extends HTMLElement {
+		showPopover: () => void;
+		hidePopover: () => void;
+		togglePopover: () => void;
+		popover: 'auto' | 'manual';
+	}
+	function closePopoverWhenSelected(node: HTMLPopoverElement) {
+		function handlePopoverSelection(event) {
+			if (event.target instanceof HTMLAnchorElement) {
+				node.hidePopover();
+			}
+		}
+		node.addEventListener('click', handlePopoverSelection);
+		return {
+			destroy() {
+				node.removeEventListener('click', handlePopoverSelection);
+			}
+		};
+	}
 </script>
 
 <div style="position: relative;">
@@ -37,7 +64,7 @@
 		{/if}
 		{button_text}
 	</button>
-	<div popover id={popover_id}>
+	<div popover id={popover_id} use:closePopoverWhenSelected>
 		<div class="select-menu-menu-wrapper">
 			{#each options as option}
 				<a

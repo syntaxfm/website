@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { SideMenu } from '@leveluptuts/svelte-side-menu';
 	import ThemeToggle from './theme/ThemeToggle.svelte';
+	import { enhance } from '$app/forms';
+	import { form_action } from './form_action';
 </script>
 
 <SideMenu
@@ -35,4 +37,9 @@
 	]}
 >
 	<ThemeToggle />
+	<div>
+		<form action="/?/dump_cache" use:enhance={form_action()} method="POST">
+			<button>Dump Cache</button>
+		</form>
+	</div>
 </SideMenu>

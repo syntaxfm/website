@@ -57,7 +57,7 @@ export type AIPodcastSummaryResponse = {
 	guests: string[];
 };
 
-type QueryInputs = {
+export type QueryInputs = {
 	take?: number;
 	order?: 'asc' | 'desc';
 	skip?: number;

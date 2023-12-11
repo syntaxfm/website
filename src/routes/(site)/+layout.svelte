@@ -13,11 +13,10 @@
 	import SearchBox from '$lib/search/SearchBox.svelte';
 	import Meta from '$lib/meta/Meta.svelte';
 	import AdminMenu from '$lib/AdminMenu.svelte';
-	import { debug_mode } from '$state/debug';
 	import ThemeMaker from '../../params/ThemeMaker.svelte';
 	import { page } from '$app/stores';
 	import PageLoadingIndicator from '$lib/page_loading_indicator.svelte';
-	import UnderConstruction from '$lib/UnderConstruction.svelte';
+
 	export let data;
 	$: ({ user, user_theme } = data);
 
@@ -39,8 +38,8 @@
 
 <PageLoadingIndicator />
 
-<div class={'theme-' + ($theme || user_theme) + ' theme-wrapper'} class:debug={$debug_mode}>
-	<UnderConstruction />
+<div class={'theme-' + ($theme || user_theme) + ' theme-wrapper'}>
+	<!-- <UnderConstruction /> -->
 	{#if $page.url.pathname !== '/'}
 		<Header />
 	{/if}

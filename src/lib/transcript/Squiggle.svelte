@@ -7,7 +7,7 @@
 </script>
 
 <svg
-	preserveAspectRatio="no"
+	preserveAspectRatio="none"
 	style="--stroke: {stroke}px"
 	xmlns="http://www.w3.org/2000/svg"
 	viewBox="0 0 {width} {height}"

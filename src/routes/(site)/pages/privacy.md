@@ -1,6 +1,6 @@
 ## Privacy Policy
 
-*Last updated: 08/30/2023*
+*Last updated: 10/30/2023*
 
 This Privacy Policy sets out how Syntax, operated by Functional
 Software, Inc. dba Sentry, collects, discloses, and uses personal
@@ -234,8 +234,8 @@ We use cookies and similar tracking technology (collectively,
 including to power and improve our Service, understand and save your
 preferences, and to compile aggregate data about Service interaction.
 This includes Cookies that we use to power our Store with Shopify, our
-e-commerce platform provider ("**Shopify Cookies**". For specific
-information about Shopify Cookies, see .
+e-commerce platform provider ("**Shopify Cookies**"). For specific
+information about Shopify Cookies, see [Shopify's Cookie Policy](https://www.shopify.com/legal/cookies).
 
 Cookies may be associated with de-identified data linked to or derived
 from data you voluntarily have submitted to us (e.g., your email
@@ -420,7 +420,7 @@ address).
     our collection and use of your personal information. For more
     information, please contact your local supervisory authority.
     (Contact details for supervisory authorities in Europe are available
-    .) Certain supervisory authorities may require that you exhaust our
+    [here](https://ec.europa.eu/justice/article-29/structure/data-protection-authorities/index_en.htm).) Certain supervisory authorities may require that you exhaust our
     own internal complaints process before looking into your complaint.
 
 We respond to all requests we receive from individuals wishing to
@@ -493,7 +493,7 @@ displayed at the top of this policy.
 #### 13.  How to contact us  <a name="contact-us"></a>
 
 If you have any questions or concerns about our use of your personal
-information, please contact us by sending us an email at .
+information, please contact us by sending us an email at [syntax-privacy@sentry.io](mailto:syntax-privacy@sentry.io).
 
 The data controller of your personal information is Functional Software,
 Inc. Our address is Functional Software, Inc., 45 Fremont Street, 8th
@@ -695,7 +695,7 @@ you. If you ask us to delete it, you may no longer be able to access or
 use the Service.
 
 10\. **How to exercise your rights**. If you would like to exercise any
-of these rights, you can submit a request at . You will be required to
+of these rights, you can submit a request at [syntax-privacy@sentry.io](mailto:syntax-privacy@sentry.io). You will be required to
 verify your identity before we fulfill your request. To do so, you will
 need to provide information to match with our existing records to verify
 your identity depending on the nature of the request and the sensitivity
@@ -781,7 +781,7 @@ Service. If you ask us to delete it, you may no longer be able to access
 or use the Service.
 
 4\. **How to exercise your rights**. If you would like to exercise any
-of these rights, you can submit a request at . You will be required to
+of these rights, you can submit a request at [syntax-privacy@sentry.io](mailto:syntax-privacy@sentry.io). You will be required to
 verify your identity before we fulfil your request. To do so, you will
 need to provide information to match with our existing records to verify
 your identity depending on the nature of the request and the sensitivity

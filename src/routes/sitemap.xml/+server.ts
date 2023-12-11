@@ -81,6 +81,18 @@ export const GET: RequestHandler = async function GET({ setHeaders, locals }) {
   `
 			)
 			.join('')}
+			
+		${shows
+			?.map(
+				(show) => `
+  <url>
+    <loc>${site}/show/${show?.number}/${show?.slug}/transcript</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  `
+			)
+			.join('')}
 		${guests
 			?.map(
 				(guest) => `
@@ -97,7 +109,7 @@ export const GET: RequestHandler = async function GET({ setHeaders, locals }) {
 `;
 
 	setHeaders({
-		'Cache-Control': 'max-age=0, s-maxage=3600',
+		'cache-control': 'max-age=0, s-maxage=3600',
 		'Content-Type': 'application/xml'
 	});
 

@@ -18,7 +18,8 @@ Sentry.init({
 	replaysOnErrorSampleRate: 1.0,
 
 	// If you don't want to use Session Replay, just remove the line below:
-	integrations: [new Replay()],
+	integrations: [new Sentry.BrowserProfilingIntegration(), new Replay()],
+	profilesSampleRate: 1.0,
 	environment: dev ? 'development' : 'production'
 });
 

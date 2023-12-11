@@ -2,19 +2,14 @@
 	import { format } from 'date-fns';
 	import { player } from '$state/player';
 	import { page } from '$app/stores';
-	import HostsAndGuests from '../../../../../../lib/HostsAndGuests.svelte';
+	import HostsAndGuests from '$lib/HostsAndGuests.svelte';
 	import Icon from '$lib/Icon.svelte';
-	import NewsletterForm from '$lib/NewsletterForm.svelte';
-	import Transcript from '$lib/transcript/Transcript.svelte';
 	import ListenLinks from '$lib/ListenLinks.svelte';
-	import { json } from 'stream/consumers';
 	import Tabs from '$lib/Tabs.svelte';
-	import Meta from '$lib/meta/Meta.svelte';
-	import Svg from '$lib/Svg.svelte';
 	import { theme } from '$state/theme';
 	import wait from 'waait';
 	export let data;
-	$: ({ show, meta } = data);
+	$: ({ show } = data);
 
 	async function handleClick(e: Event) {
 		const { target } = e;
@@ -44,8 +39,6 @@
 		});
 	}
 </script>
-
-<Meta {meta} />
 
 <header>
 	<span
@@ -79,7 +72,10 @@
 	<div class="show-actions zone" style="--bg: var(--black); --fg: var(--white);">
 		<div class="show-actions-flex">
 			<button on:click={() => player.play_show(show)} data-testid="play-show">
-				<Icon title="" name="play{$player.current_show?.number === show.number ? 'ing' : ''}" />
+				<Icon
+					aria-hidden="true"
+					name="play{$player.current_show?.number === show.number ? 'ing' : ''}"
+				/>
 				Play{$player.current_show?.number === show.number ? 'ing' : ''} Episode {show.number}
 			</button>
 			<span>or</span>
@@ -98,18 +94,18 @@
 				<Icon name="edit" /></a
 			>
 		</div>
-		<div use:variableColorSvg class="waves grit"></div>
+		<div use:variableColorSvg class="waves grit" />
 	</div>
 </div>
 
 <Tabs>
 	<a
 		data-sveltekit-noscroll
-		class:active={!$page.params.tab}
+		class:active={!$page.url.pathname.includes('transcript')}
 		href="/show/{$page.params.show_number}/{$page.params.slug}">Show Notes</a
 	>
 	<a
-		class:active={$page.params.tab === 'transcript'}
+		class:active={$page.url.pathname.includes('transcript')}
 		data-sveltekit-noscroll
 		href="/show/{$page.params.show_number}/{$page.params.slug}/transcript">Transcript</a
 	>
@@ -121,30 +117,7 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <section class="layout full" on:click={handleClick}>
-	{#if $page.params.tab === 'transcript'}
-		{#if show?.transcript}
-			<Transcript {show} aiShowNote={show.aiShowNote} transcript={show.transcript} />
-		{:else}
-			<p>Transcript not available yet! We have the AI robots on the job, check back soon!</p>
-		{/if}
-	{:else}
-		<div class="main">
-			<div class="show-notes">
-				{@html show.show_notes}
-			</div>
-		</div>
-
-		<div class="sidebar">
-			<div
-				class="sticky zone"
-				style="border: solid 0.5px var(--black-1)"
-				style:--radius="20px"
-				style:--bg="var(--bg-1)"
-			>
-				<NewsletterForm />
-			</div>
-		</div>
-	{/if}
+	<slot />
 </section>
 
 <style lang="postcss">
@@ -219,7 +192,8 @@
 		}
 		.topics {
 			display: inline-flex;
-			gap: 1rem;
+			flex-wrap: wrap;
+			gap: 0 1rem;
 		}
 		.show-number {
 			position: absolute;
