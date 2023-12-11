@@ -106,9 +106,18 @@ const new_player_state = () => {
 		});
 	}
 
+	function toggle_minimize() {
+		update((state) => {
+			state.status = state.status !== 'MINIMIZED' ? 'MINI' : 'EXPANDED';
+			return state;
+		});
+	}
+
 	function close() {
 		update((state) => {
 			state.status = 'HIDDEN';
+			state.audio?.pause();
+			state.current_show = null;
 			return state;
 		});
 	}
@@ -125,6 +134,7 @@ const new_player_state = () => {
 		update,
 		play_show,
 		toggle_expand,
+		toggle_minimize,
 		close,
 		update_time,
 		set,

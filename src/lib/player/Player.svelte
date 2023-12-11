@@ -4,7 +4,10 @@
 	import Visualizer from './Visualizer.svelte';
 	import AlbumArt from './AlbumArt.svelte';
 	import get_show_path from '$utilities/slug';
+	import VisibilityControls from './VisibilityControls.svelte';
 	import Icon from '../Icon.svelte';
+  // TODO. Manually clean up
+  
 	// import Bookmarks from './Bookmarks.svelte';
 
 	// let time_stamps: Timestamp[] = [];
@@ -70,11 +73,37 @@
 	class:expanded={$player.status === 'ACTIVE' || $player.status === 'EXPANDED'}
 	class={`player ${$player.status}`}
 >
+
+	{#if $player.status !== 'MINIMIZED'}
+		<header>
+			<!-- Ignore this div, it's just here so I don't get fired -->
+			<div></div>
+			{#if $player.current_show}
+				<p>
+					<a href={get_show_path($player.current_show)}
+						>Show #{$player.current_show?.number} - {$player.current_show?.title}</a
+					>
+				</p>
+			{/if}
+
+			<VisibilityControls />
+		</header>
+	{/if}
+
+	{#if $player.status === 'EXPANDED'}
+		<div transition:slide>
+			{#if $player.audio && $player.status === 'EXPANDED'}
+				<Visualizer audio={$player.audio} />
+			{/if}
+		</div>
+	{/if}
+
 	<div class="window-controls">
 		<button class="share" on:click={player.close}><Icon name="share" /></button>
 		<button class="minimize" on:click={player.minimize}><Icon name="minimize" /></button>
 		<button class="close" on:click={player.close}>×</button>
 	</div>
+
 
 	<div class="player-container">
 		<AlbumArt />
@@ -137,9 +166,22 @@
 						<media-mute-button />
 						<media-volume-range />
 					</div>
+
+					<media-duration-display />
+				</div>
+				<div class="media-sound">
+					<media-playback-rate-button />
+					<media-mute-button />
+					<media-volume-range />
+				</div>
+			</media-control-bar>
+		</media-controller>
+		<VisibilityControls hidden={$player.status === 'ACTIVE' || $player.status === 'EXPANDED'} />
+
 				</media-control-bar>
 			</media-controller>
 		</div>
+
 	</div>
 </section>
 
@@ -205,11 +247,6 @@
 		width: 100%;
 	}
 
-	button {
-		--button-bg: transparent;
-		--button-color: var(--fg);
-	}
-
 	p {
 		margin-top: 0;
 		font-size: var(--font-size-sm);
@@ -246,6 +283,29 @@
 		z-index: 10;
 		&.expanded {
 			translate: 0 0 0;
+		}
+		&.MINIMIZED {
+			translate: 0 0 0;
+			.media-controls,
+			.media-sound {
+				display: none;
+			}
+
+			.media-range {
+				width: 100%;
+			}
+
+			.media-bar,
+			.player-container {
+				height: max-content;
+				padding: 10px;
+			}
+
+			media-control-bar {
+				display: flex;
+				width: 100%;
+				align-items: center;
+			}
 		}
 	}
 

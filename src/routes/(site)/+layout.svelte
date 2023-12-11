@@ -7,6 +7,7 @@
 	import Footer from './Footer.svelte';
 	import Header from './Header.svelte';
 	import Loading from '$lib/Loading.svelte';
+	import Hotkeys from '$lib/hotkeys/Hotkeys.svelte';
 	import { theme } from '$state/theme';
 	import { browser } from '$app/environment';
 	import SearchBox from '$lib/search/SearchBox.svelte';
@@ -53,6 +54,7 @@
 	<Player />
 	<Toaster />
 	<Loading />
+	<Hotkeys />
 
 	{#if browser}
 		<SearchBox />
