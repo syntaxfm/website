@@ -17,6 +17,15 @@ In this episode of Syntax, Wes and Scott talk through the ways they improved per
 * **[13:41](#t=13:41)** Caching
 * **[21:16](#t=21:16)** Caching Headers
 
+
+* [Apollo GraphQL](https://www.apollographql.com/)
+* [Vercel KV](https://vercel.com/docs/storage/vercel-kv)
+* [Upstash](https://upstash.com/)
+* [You Need Stale While Revalidate - Syntax #692](https://syntax.fm/show/692/you-need-stale-while-revalidate)
+* [Puppeteer ](https://pptr.dev/)
+* [LinkedIn Post Inspector](https://www.linkedin.com/post-inspector/)
+* [Polypane](https://polypane.app/)
+
 ### Hit us up on Socials!
 
 Syntax: [X](https://twitter.com/syntaxfm) [Instagram](https://www.instagram.com/syntax_fm/) [Tiktok](https://www.tiktok.com/@syntaxfm) [LinkedIn](https://www.linkedin.com/company/96077407/admin/feed/posts/) [Threads](https://www.threads.net/@syntax_fm)
