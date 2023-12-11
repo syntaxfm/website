@@ -11,10 +11,11 @@
 				<a href="/shows">Podcast</a>
 				<a target="_blank" rel="noopener" href="https://feed.syntax.fm">RSS Feed</a>
 				<a href="/about">About</a>
+				<a href="/sickpicks">Sick Picks</a>
 				<a href="/pages/privacy">Privacy Policy</a>
 				<a href="/pages/terms-of-service">Terms of Service</a>
 				<a
-					target="_blank" 
+					target="_blank"
 					rel="noopener"
 					href="https://sentry.io/welcome/?utm_medium=site&utm_source=syntax&utm_campaign=syntax-sentry-evergreen&utm_content=footer"
 					>Sentry.io</a

@@ -35,11 +35,19 @@ export const load: PageServerLoad = async function ({ locals, url, setHeaders })
 		console.log(`No shows on this page, redirecting to page 1`);
 		const params = new URLSearchParams(url.searchParams);
 		params.delete('page');
-		throw redirect(302, `/shows?${params.toString()}`);
+		const params_string = params.toString();
+		if (params_string.length <= 0) {
+			console.log(`No params for this page redirect. Abort to the homepage!`);
+			throw redirect(302, `/`);
+		}
+		throw redirect(302, `/shows?${params_string}`);
 	}
 
 	return {
 		shows,
-		count: count_shows()
+		count: count_shows(),
+		meta: {
+			title: `Shows ${page > 1 ? `- Page ${page}` : ''}`
+		}
 	};
 };
