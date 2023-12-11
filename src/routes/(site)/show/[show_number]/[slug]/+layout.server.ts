@@ -8,7 +8,6 @@ import highlight from 'rehype-highlight';
 import { error } from '@sveltejs/kit';
 import { cache_mang } from '$utilities/cache_mang';
 import type { Prisma, Show } from '@prisma/client';
-import get_show_path from '$utilities/slug.ts';
 
 export const load = async function ({ params, locals, url }) {
 	const { show_number } = params;
