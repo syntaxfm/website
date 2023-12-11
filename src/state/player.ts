@@ -36,11 +36,20 @@ function loadMediaSession(show: Show) {
 	});
 }
 
+
+interface PlayerState {
+	current_show: null | Show;
+	playing: boolean;
+	currentTime: number;
+	audio?: HTMLAudioElement;
+}
+
+
 // Having this state in the same writeable was causing hiccups ins the audio when updating the store
 export const player_status = writable<'HIDDEN' | 'ACTIVE' | 'MINI'>('HIDDEN');
 
 const new_player_state = () => {
-	const { subscribe, update, set } = writable<{
+	const { subscribe, update, set } = writable<PlayerState>({
 		current_show: null | Show;
 		playing: boolean;
 		audio?: HTMLAudioElement;
@@ -110,8 +119,17 @@ const new_player_state = () => {
 	function close() {
 		player_status.set('HIDDEN');
 		update((state) => {
-			state.audio?.pause();
 			state.current_show = null;
+			state.playing = false;
+			state.currentTime = 0;
+
+			if (state.audio) {
+				state.audio.pause();
+				state.audio.src = '';
+				state.audio.crossOrigin = null;
+				state.audio.currentTime = 0;
+			}
+
 			return state;
 		});
 	}
