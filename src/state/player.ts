@@ -38,7 +38,7 @@ function loadMediaSession(show: Show) {
 
 const new_player_state = () => {
 	const { subscribe, update, set } = writable<{
-		status: 'HIDDEN' | 'ACTIVE' | 'EXPANDED';
+		status: 'HIDDEN' | 'ACTIVE' | 'EXPANDED' | 'MINI';
 		current_show: null | Show;
 		playing: boolean;
 		audio?: HTMLAudioElement;
@@ -113,6 +113,13 @@ const new_player_state = () => {
 		});
 	}
 
+	function minimize() {
+		update((state) => {
+			state.status = 'MINI';
+			return state;
+		});
+	}
+
 	return {
 		subscribe,
 		update,
@@ -120,7 +127,8 @@ const new_player_state = () => {
 		toggle_expand,
 		close,
 		update_time,
-		set
+		set,
+		minimize
 	};
 };
 

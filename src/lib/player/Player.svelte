@@ -1,10 +1,10 @@
 <script lang="ts">
-	import Icon from '$lib/Icon.svelte';
 	import { player } from '$state/player';
-	import { fly, slide } from 'svelte/transition';
+	import { slide } from 'svelte/transition';
 	import Visualizer from './Visualizer.svelte';
 	import AlbumArt from './AlbumArt.svelte';
 	import get_show_path from '$utilities/slug';
+	import Icon from '../Icon.svelte';
 	// import Bookmarks from './Bookmarks.svelte';
 
 	// let time_stamps: Timestamp[] = [];
@@ -70,84 +70,80 @@
 	class:expanded={$player.status === 'ACTIVE' || $player.status === 'EXPANDED'}
 	class={`player ${$player.status}`}
 >
-	<header>
-		<!-- Ignore this div, it's just here so I don't get fired -->
-		<div></div>
-		<!-- <button class="player-expand" on:click={player.toggle_expand}><Icon name="expand" /></button> -->
-		{#if $player.current_show}
-			<p>
-				<a href={get_show_path($player.current_show)}
-					>Show #{$player.current_show?.number} - {$player.current_show?.title}</a
-				>
-			</p>
-		{/if}
-
-		<button on:click={player.close}>×</button>
-	</header>
-
-	{#if $player.status === 'EXPANDED'}
-		<div transition:slide>
-			{#if $player.audio && $player.status === 'EXPANDED'}
-				<Visualizer audio={$player.audio} />
-			{/if}
-		</div>
-	{/if}
+	<div class="window-controls">
+		<button class="share" on:click={player.close}><Icon name="share" /></button>
+		<button class="minimize" on:click={player.minimize}><Icon name="minimize" /></button>
+		<button class="close" on:click={player.close}>×</button>
+	</div>
 
 	<div class="player-container">
 		<AlbumArt />
-		<media-controller
-			audio
-			style="--media-range-track-height: 20px; --media-range-thumb-height: 20px; --media-range-thumb-border-radius: 0;	--media-range-bar-color: var(--primary);--media-background-color: transparent; --media-control-background: transparent; width: 100%; --media-font-family: var(--body-font-family); --media-control-hover-background: transparent; "
-		>
-			<audio
-				slot="media"
-				bind:this={$player.audio}
-				preload="metadata"
-				bind:currentTime={$player.currentTime}
-				crossorigin="anonymous"
-			/>
-			<media-control-bar class="media-bar">
-				<div class="media-controls">
-					<media-seek-backward-button />
-					<media-play-button style:--media-button-icon-height="40px;" />
-					<media-seek-forward-button />
-				</div>
-				<div class="media-range">
-					<media-time-display />
-					<div class="media-range-bookmarks">
-						<!-- {#if time_stamps}
-								<Bookmarks {time_stamps} />
-							{/if} -->
-						<media-time-range
-							style:--media-range-bar-color="var(--accent)"
-							style:--media-range-thumb-background="var(--white)"
-						/>
+
+		<div style="flex-grow: 1;">
+			{#if $player.current_show}
+				<p>
+					<a href={get_show_path($player.current_show)}
+						>Show #{$player.current_show?.number} - {$player.current_show?.title}</a
+					>
+				</p>
+			{/if}
+			<media-controller
+				audio
+				style="--media-range-track-height: 5px; --media-range-thumb-height: 15px; --media-range-thumb-border-radius: 0;	--media-range-track-border-radius: 5px; --media-range-bar-color: var(--primary);--media-background-color: transparent; --media-control-background: transparent; width: 100%; --media-font-family: var(--body-font-family); --media-control-hover-background: transparent; "
+			>
+				<audio
+					slot="media"
+					bind:this={$player.audio}
+					preload="metadata"
+					bind:currentTime={$player.currentTime}
+					crossorigin="anonymous"
+				/>
+				<media-control-bar class="media-bar">
+					<div class="media-controls">
+						<media-seek-backward-button>
+							<span slot="icon">
+								<Icon name="back-30" />
+							</span>
+						</media-seek-backward-button>
+						<media-play-button>
+							<span slot="play" style="--icon_size: 26px;">
+								<Icon name="play" />
+							</span>
+							<span slot="pause" style="--icon_size: 26px;">
+								<Icon name="pause" />
+							</span>
+						</media-play-button>
+						<media-seek-forward-button>
+							<span slot="icon">
+								<Icon name="forward-30" />
+							</span>
+						</media-seek-forward-button>
 					</div>
-					<media-duration-display />
-				</div>
-				<div class="media-sound">
-					<media-playback-rate-button />
-					<media-mute-button />
-					<media-volume-range />
-				</div>
-			</media-control-bar>
-		</media-controller>
+					<div class="media-range">
+						<media-time-display />
+						<div class="media-range-bookmarks">
+							<!-- {#if time_stamps}
+								<Bookmarks {time_stamps}. />
+							{/if} -->
+							<media-time-range
+								style:--media-range-bar-color="var(--white)"
+								style:--media-range-thumb-background="var(--primary)"
+							/>
+						</div>
+						<media-duration-display />
+					</div>
+					<div class="media-sound">
+						<media-playback-rate-button />
+						<media-mute-button />
+						<media-volume-range />
+					</div>
+				</media-control-bar>
+			</media-controller>
+		</div>
 	</div>
 </section>
 
 <style lang="postcss">
-	header {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		width: 100%;
-		padding: 5px;
-		background: var(--black);
-		a {
-			text-decoration: none;
-		}
-	}
-
 	.media-bar {
 		display: grid;
 		grid-template-rows: [start top] auto [top bottom] auto [bottom end];
@@ -160,6 +156,9 @@
 			grid-template-rows: 1fr;
 			grid-column: range / range;
 		}
+	}
+	media-controller {
+		flex-grow: 1;
 	}
 
 	.media-range {
@@ -178,6 +177,9 @@
 	.media-controls {
 		grid-column: controls / controls;
 		grid-row: bottom / bottom;
+		display: flex;
+		gap: 16px;
+		align-items: baseline;
 		@container (min-width: 650px) {
 			grid-column: controls / controls;
 			grid-row: 1;
@@ -192,6 +194,13 @@
 		width: 100;
 	}
 
+	.window-controls {
+		position: absolute;
+		top: 0;
+		right: 0;
+		display: flex;
+	}
+
 	media-time-range {
 		width: 100%;
 	}
@@ -202,7 +211,12 @@
 	}
 
 	p {
-		margin: 0;
+		margin-top: 0;
+		font-size: var(--font-size-sm);
+	}
+
+	a {
+		text-decoration: none;
 	}
 
 	.playback-buttons {
@@ -211,26 +225,21 @@
 		gap: 5px;
 	}
 
-	/* .EXPANDED .player-expand {
-		rotate: 180deg;
-	} */
-
 	.player {
-		--player-bg: var(--blackish);
+		--player-bg: var(--black);
 		container: player / inline-size;
 		position: fixed;
 		bottom: 0;
 		width: 100%;
 		color: var(--fg);
-		background-color: var(--player-bg, var(--blackish));
+		background-color: var(--player-bg, var(--black));
 		background-image: var(--bgGritDark);
 		background-size: 400px;
-		box-shadow: 0 0 10px 0 oklch(var(--blacklch) / 0.2);
+		box-shadow: 0 -5px 10px 0 oklch(var(--blacklch) / 0.4);
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		gap: 10px;
 		--media-control-padding: 0;
 		translate: 0 100% 0;
 		transition: 0.2s;
@@ -241,7 +250,7 @@
 	}
 
 	.player-container {
-		padding: 20px;
+		padding: 10px;
 		width: 100%;
 		display: flex;
 		gap: 20px;

@@ -15,7 +15,7 @@
 	import ThemeMaker from '../../params/ThemeMaker.svelte';
 	import { page } from '$app/stores';
 	import PageLoadingIndicator from '$lib/page_loading_indicator.svelte';
-	import UnderConstruction from '$lib/UnderConstruction.svelte';
+
 	export let data;
 	$: ({ user, user_theme } = data);
 
