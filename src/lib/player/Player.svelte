@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { player } from '$state/player';
-	import { slide } from 'svelte/transition';
-	import Visualizer from './Visualizer.svelte';
+	import { player, player_status } from '$state/player';
 	import AlbumArt from './AlbumArt.svelte';
 	import get_show_path from '$utilities/slug';
-	import VisibilityControls from './VisibilityControls.svelte';
 	import Icon from '../Icon.svelte';
-  // TODO. Manually clean up
-  
+
+	$: console.log($player_status);
+
+	// TODO. Manually clean up
+
 	// import Bookmarks from './Bookmarks.svelte';
 
 	// let time_stamps: Timestamp[] = [];
@@ -69,44 +69,17 @@
 	// }
 </script>
 
-<section
-	class:expanded={$player.status === 'ACTIVE' || $player.status === 'EXPANDED'}
-	class={`player ${$player.status}`}
->
-
-	{#if $player.status !== 'MINIMIZED'}
-		<header>
-			<!-- Ignore this div, it's just here so I don't get fired -->
-			<div></div>
-			{#if $player.current_show}
-				<p>
-					<a href={get_show_path($player.current_show)}
-						>Show #{$player.current_show?.number} - {$player.current_show?.title}</a
-					>
-				</p>
-			{/if}
-
-			<VisibilityControls />
-		</header>
-	{/if}
-
-	{#if $player.status === 'EXPANDED'}
-		<div transition:slide>
-			{#if $player.audio && $player.status === 'EXPANDED'}
-				<Visualizer audio={$player.audio} />
-			{/if}
-		</div>
-	{/if}
-
+<section class={`player ${$player_status}`}>
 	<div class="window-controls">
 		<button class="share" on:click={player.close}><Icon name="share" /></button>
-		<button class="minimize" on:click={player.minimize}><Icon name="minimize" /></button>
+		<button class="minimize" on:click={player.toggle_minimize}><Icon name="minimize" /></button>
 		<button class="close" on:click={player.close}>×</button>
 	</div>
 
-
 	<div class="player-container">
-		<AlbumArt />
+		{#if $player_status === 'ACTIVE'}
+			<AlbumArt />
+		{/if}
 
 		<div style="flex-grow: 1;">
 			{#if $player.current_show}
@@ -127,61 +100,47 @@
 					bind:currentTime={$player.currentTime}
 					crossorigin="anonymous"
 				/>
-				<media-control-bar class="media-bar">
-					<div class="media-controls">
-						<media-seek-backward-button>
-							<span slot="icon">
-								<Icon name="back-30" />
-							</span>
-						</media-seek-backward-button>
-						<media-play-button>
-							<span slot="play" style="--icon_size: 26px;">
-								<Icon name="play" />
-							</span>
-							<span slot="pause" style="--icon_size: 26px;">
-								<Icon name="pause" />
-							</span>
-						</media-play-button>
-						<media-seek-forward-button>
-							<span slot="icon">
-								<Icon name="forward-30" />
-							</span>
-						</media-seek-forward-button>
-					</div>
-					<div class="media-range">
-						<media-time-display />
-						<div class="media-range-bookmarks">
-							<!-- {#if time_stamps}
-								<Bookmarks {time_stamps}. />
-							{/if} -->
-							<media-time-range
-								style:--media-range-bar-color="var(--white)"
-								style:--media-range-thumb-background="var(--primary)"
-							/>
+				{#if $player_status === 'ACTIVE'}
+					<media-control-bar class="media-bar">
+						<div class="media-controls">
+							<media-seek-backward-button>
+								<span slot="icon">
+									<Icon name="back-30" />
+								</span>
+							</media-seek-backward-button>
+							<media-play-button>
+								<span slot="play" style="--icon_size: 26px;">
+									<Icon name="play" />
+								</span>
+								<span slot="pause" style="--icon_size: 26px;">
+									<Icon name="pause" />
+								</span>
+							</media-play-button>
+							<media-seek-forward-button>
+								<span slot="icon">
+									<Icon name="forward-30" />
+								</span>
+							</media-seek-forward-button>
 						</div>
-						<media-duration-display />
-					</div>
-					<div class="media-sound">
-						<media-playback-rate-button />
-						<media-mute-button />
-						<media-volume-range />
-					</div>
-
-					<media-duration-display />
-				</div>
-				<div class="media-sound">
-					<media-playback-rate-button />
-					<media-mute-button />
-					<media-volume-range />
-				</div>
-			</media-control-bar>
-		</media-controller>
-		<VisibilityControls hidden={$player.status === 'ACTIVE' || $player.status === 'EXPANDED'} />
-
-				</media-control-bar>
+						<div class="media-range">
+							<media-time-display />
+							<div class="media-range-bookmarks">
+								<media-time-range
+									style:--media-range-bar-color="var(--white)"
+									style:--media-range-thumb-background="var(--primary)"
+								/>
+							</div>
+							<media-duration-display />
+						</div>
+						<div class="media-sound">
+							<media-playback-rate-button />
+							<media-mute-button />
+							<media-volume-range />
+						</div>
+					</media-control-bar>
+				{/if}
 			</media-controller>
 		</div>
-
 	</div>
 </section>
 
@@ -241,6 +200,8 @@
 		top: 0;
 		right: 0;
 		display: flex;
+		padding: 5px 10px;
+		background-color: var(--player-bg, var(--black));
 	}
 
 	media-time-range {
@@ -254,6 +215,10 @@
 
 	a {
 		text-decoration: none;
+	}
+
+	.minimize :global(svg) {
+		transition: 0.3s ease rotate;
 	}
 
 	.playback-buttons {
@@ -279,16 +244,28 @@
 		align-items: center;
 		--media-control-padding: 0;
 		translate: 0 100% 0;
-		transition: 0.2s;
+		transition: 0.2s ease translate;
 		z-index: 10;
-		&.expanded {
+		&.ACTIVE {
 			translate: 0 0 0;
 		}
-		&.MINIMIZED {
+		&.MINI {
 			translate: 0 0 0;
-			.media-controls,
-			.media-sound {
-				display: none;
+
+			media-controller {
+				overflow: hidden;
+				height: 0;
+				position: absolute;
+			}
+
+			.minimize {
+				:global(svg) {
+					rotate: 180deg;
+				}
+			}
+
+			p {
+				margin: 0;
 			}
 
 			.media-range {
@@ -330,5 +307,9 @@
 	media-time-display,
 	media-time-range {
 		padding: 0;
+	}
+	button {
+		--button-bg: transparent;
+		--button-color: var(--fg);
 	}
 </style>
