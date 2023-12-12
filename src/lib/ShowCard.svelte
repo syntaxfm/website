@@ -42,7 +42,7 @@
 		{#if display === 'list'}
 			<button
 				data-testid="play-show"
-				on:click|preventDefault={() => player.play_show(show)}
+				on:click|preventDefault={() => player.start_show(show)}
 				class="play-button"
 			>
 				<Icon name="play" />
@@ -107,7 +107,7 @@
 					<button
 						data-testid="play-show"
 						class:play={display === 'highlight'}
-						on:click|preventDefault={() => player.play_show(show)}
+						on:click|preventDefault={() => player.start_show(show)}
 						><Icon name="play" /> Play #{show.number}</button
 					>
 				</div>

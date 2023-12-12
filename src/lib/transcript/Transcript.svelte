@@ -135,7 +135,7 @@
 								<button
 									class="button-nunya"
 									on:click={async () => {
-										await player.play_show(show);
+										await player.start_show(show);
 										$player.currentTime = utterance.start;
 									}}>{format_time(utterance.start)}</button
 								>

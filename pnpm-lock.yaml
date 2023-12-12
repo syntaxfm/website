@@ -63,8 +63,8 @@ dependencies:
     specifier: ^3.0.5
     version: 3.0.5
   media-chrome:
-    specifier: ^2.0.0
-    version: 2.0.0
+    specifier: ^2.0.1
+    version: 2.0.1
   npm-run-all:
     specifier: ^4.1.5
     version: 4.1.5
@@ -4070,8 +4070,8 @@ packages:
   /mdn-data@2.0.30:
     resolution: {integrity: sha512-GaqWWShW4kv/G9IEucWScBx9G1/vsFZZJUO+tD26M8J8z3Kw5RDQjaoZe03YAClgeS/SWPOcb4nkFBTEi5DUEA==}
 
-  /media-chrome@2.0.0:
-    resolution: {integrity: sha512-UIeBzZ3QQFoSLjz6SR1EXAX1nVbUWKDVXyNZRnb6HXQw19prk/MVWgBflDUx+IRR9UzRuJTHwYk/fbxwMgMg4g==}
+  /media-chrome@2.0.1:
+    resolution: {integrity: sha512-6hoC5OY993t4o/YKYXn7YoWUAKG1UFAhnDXNN6kRRa5mnuL+Cwct/2Md16S4jjmTSmN5XjhEWwfCVM5NLHavOA==}
     dev: false
 
   /memorystream@0.3.1:

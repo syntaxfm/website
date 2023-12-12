@@ -1,5 +1,5 @@
 import type { Show } from '@prisma/client';
-import { writable } from 'svelte/store';
+import { writable, get } from 'svelte/store';
 import coverArt from '$assets/coverart-128.png';
 import coverArt512 from '$assets/coverart-512.png';
 
@@ -36,54 +36,76 @@ function loadMediaSession(show: Show) {
 	});
 }
 
-
 interface PlayerState {
 	current_show: null | Show;
 	playing: boolean;
 	currentTime: number;
 	audio?: HTMLAudioElement;
+	media_controller?: HTMLAudioElement;
+	status: 'INITIAL' | 'LOADED' | 'PAUSED' | 'PLAYING';
 }
 
-
 // Having this state in the same writeable was causing hiccups ins the audio when updating the store
-export const player_status = writable<'HIDDEN' | 'ACTIVE' | 'MINI'>('HIDDEN');
+export const player_window_status = writable<'HIDDEN' | 'ACTIVE' | 'MINI'>('HIDDEN');
 
 const new_player_state = () => {
-	const { subscribe, update, set } = writable<PlayerState>({
-		current_show: null | Show;
-		playing: boolean;
-		audio?: HTMLAudioElement;
-		currentTime: number;
-	}>({
+	const player_state = writable<PlayerState>({
 		current_show: null,
 		playing: false,
 		audio: undefined,
-		currentTime: 0
+		media_controller: undefined,
+		currentTime: 0,
+		status: 'INITIAL'
 	});
+	const { update, subscribe, set } = player_state;
 
-	async function play_show(show: Show) {
-		return new Promise((resolve) => {
-			loadMediaSession(show);
-			update((state) => {
-				state.current_show = show;
-				if (state.audio) {
-					state.audio.pause();
-					state.audio.src = show.url;
-					state.audio.crossOrigin = 'anonymous';
+	async function start_show(show: Show) {
+		// Get current state
+		const current_state = get(player_state);
+		if (current_state.status === 'PLAYING') {
+			pause();
+		} else if (current_state.status === 'PAUSED') {
+			play();
+		} else {
+			return new Promise((resolve) => {
+				loadMediaSession(show);
+				update((state) => {
+					state.current_show = show;
+					state.status = 'LOADED';
+					// state.audio should always exist because it's the audio element
+					if (state.audio) {
+						pause();
+						state.audio.src = show.url;
+						state.audio.crossOrigin = 'anonymous';
 
-					// Wait for the audio to be ready to play
-					state.audio.addEventListener('loadedmetadata', () => {
-						console.log('loadedmetadata');
-						if (state.audio) {
-							state.audio.currentTime = 0;
-							resolve(state.audio.play());
-						}
-					});
-				}
+						// Wait for the audio to be ready to play
+						state.audio.addEventListener('loadedmetadata', () => {
+							if (state.audio) {
+								state.audio.currentTime = 0;
+								resolve(play());
+							}
+						});
+					}
 
-				return state;
+					return state;
+				});
+				player_window_status.set('ACTIVE');
 			});
-			player_status.set('ACTIVE');
+		}
+	}
+
+	function play() {
+		update((state) => {
+			state?.audio?.play();
+			state.status = 'PLAYING';
+			return state;
+		});
+	}
+	function pause() {
+		update((state) => {
+			state?.audio?.pause();
+			state.status = 'PAUSED';
+			return state;
 		});
 	}
 
@@ -106,23 +128,19 @@ const new_player_state = () => {
 				});
 				return state;
 			});
-			player_status.set('ACTIVE');
+			player_window_status.set('ACTIVE');
 		}
 	}
 
 	function toggle_minimize() {
-		player_status.update((state) => {
+		player_window_status.update((state) => {
 			return state !== 'MINI' ? 'MINI' : 'ACTIVE';
 		});
 	}
 
 	function close() {
-		player_status.set('HIDDEN');
+		player_window_status.set('HIDDEN');
 		update((state) => {
-			state.current_show = null;
-			state.playing = false;
-			state.currentTime = 0;
-
 			if (state.audio) {
 				state.audio.pause();
 				state.audio.src = '';
@@ -130,23 +148,30 @@ const new_player_state = () => {
 				state.audio.currentTime = 0;
 			}
 
+			state.current_show = null;
+			state.playing = false;
+			state.currentTime = 0;
+			state.status = 'INITIAL';
+
 			return state;
 		});
 	}
 
 	function minimize() {
-		player_status.set('MINI');
+		player_window_status.set('MINI');
 	}
 
 	return {
 		subscribe,
 		update,
-		play_show,
+		start_show,
 		toggle_minimize,
 		close,
 		update_time,
 		set,
-		minimize
+		minimize,
+		pause,
+		play
 	};
 };
 

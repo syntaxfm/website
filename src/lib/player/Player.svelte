@@ -1,75 +1,13 @@
 <script lang="ts">
-	import { player, player_status } from '$state/player';
+	import { player, player_window_status } from '$state/player';
 	import AlbumArt from './AlbumArt.svelte';
 	import get_show_path from '$utilities/slug';
 	import Icon from '../Icon.svelte';
 
-	$: console.log($player_status);
-
-	// TODO. Manually clean up
-
-	// import Bookmarks from './Bookmarks.svelte';
-
-	// let time_stamps: Timestamp[] = [];
-
-	// function extractTimestamps(html: string, totalTime: number): Timestamp[] {
-	// 	const parser = new DOMParser();
-	// 	const doc = parser.parseFromString(html, 'text/html');
-	// 	const timestampElements = doc.querySelectorAll('a[href*="#t="]');
-	// 	const timestamps: Timestamp[] = [];
-
-	// 	let previousTimeStamp = 0;
-	// 	let previousDuration = 0;
-	// 	let previousPercentage = 0;
-	// 	let previousStartingPosition = 0;
-
-	// 	timestampElements.forEach((element, index) => {
-	// 		const href = element.getAttribute('href');
-	// 		const timeString = href?.split('#t=')[1];
-	// 		const liElement = element.closest('li');
-	// 		const label = liElement?.textContent?.trim() || '';
-	// 		const time_stamp = timeString ? timeStringToSeconds(timeString) : 0;
-	// 		const duration = index === 0 ? time_stamp : time_stamp - previousTimeStamp;
-	// 		const percentage = (duration / totalTime) * 100;
-	// 		const startingPosition = previousPercentage + previousStartingPosition;
-
-	// 		timestamps.push({ label, time_stamp, duration, percentage, startingPosition, href });
-
-	// 		previousTimeStamp = time_stamp;
-	// 		previousDuration = duration;
-	// 		previousPercentage = percentage;
-	// 		previousStartingPosition = startingPosition;
-	// 	});
-
-	// 	// Calculate the remaining percentage for the last timestamp
-	// 	const lastTimestamp = timestamps[timestamps.length - 1];
-	// 	lastTimestamp.percentage = 100 - lastTimestamp.startingPosition;
-
-	// 	return timestamps;
-	// }
-
-	// function timeStringToSeconds(timeString: string): number {
-	// 	const [minutes, seconds] = timeString.split(':').map(Number);
-	// 	return minutes * 60 + seconds;
-	// }
-
-	// $: if ($player.audio && $player?.current_show?.show_notes) {
-	// 	$player.audio.onloadedmetadata = function () {
-	// 		const extractedTimestamps = extractTimestamps(
-	// 			$player.current_show.show_notes,
-	// 			$player.audio.duration
-	// 		);
-	// 		time_stamps = extractedTimestamps;
-	// 	};
-	// }
-
-	// $: if ($player.audio) {
-	// 	$player.audio.crossOrigin = 'anonymous';
-	// 	$player.audio.play();
-	// }
+	$: console.log($player_window_status);
 </script>
 
-<section class={`player ${$player_status}`}>
+<section class={`player ${$player_window_status}`}>
 	<div class="window-controls">
 		<button class="share" on:click={player.close}><Icon name="share" /></button>
 		<button class="minimize" on:click={player.toggle_minimize}><Icon name="minimize" /></button>
@@ -77,7 +15,7 @@
 	</div>
 
 	<div class="player-container">
-		{#if $player_status === 'ACTIVE'}
+		{#if $player_window_status === 'ACTIVE'}
 			<AlbumArt />
 		{/if}
 
@@ -91,6 +29,8 @@
 			{/if}
 			<media-controller
 				audio
+				nohotkeys
+				bind:this={$player.media_controller}
 				style="--media-range-track-height: 5px; --media-range-thumb-height: 15px; --media-range-thumb-border-radius: 0;	--media-range-track-border-radius: 5px; --media-range-bar-color: var(--primary);--media-background-color: transparent; --media-control-background: transparent; width: 100%; --media-font-family: var(--body-font-family); --media-control-hover-background: transparent; "
 			>
 				<audio
@@ -100,7 +40,7 @@
 					bind:currentTime={$player.currentTime}
 					crossorigin="anonymous"
 				/>
-				{#if $player_status === 'ACTIVE'}
+				{#if $player_window_status === 'ACTIVE'}
 					<media-control-bar class="media-bar">
 						<div class="media-controls">
 							<media-seek-backward-button>

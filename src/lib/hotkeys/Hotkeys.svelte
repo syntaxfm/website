@@ -3,18 +3,18 @@
 	import { shortcut } from '@svelte-put/shortcut';
 	import type { Hotkeys } from '$lib/hotkeys/types';
 	import { getHotkeyTrigger } from '$lib/hotkeys/utils';
-	import { player } from '$state/player';
+	import { player, player_window_status } from '$state/player';
 
 	// This is where hotkeys are defined
 	let hotkeys = {
-		playPause: {
-			description: 'Play / pause the audio',
-			trigger: {
-				key: ' ', // the space key
-				preventDefault: true,
-				callback: handlePlayPause
-			}
-		},
+		// playPause: {
+		// 	description: 'Play / pause the audio',
+		// 	trigger: {
+		// 		key: ' ', // the space key
+		// 		preventDefault: true,
+		// 		callback: handlePlayPause
+		// 	}
+		// },
 		minimize: {
 			description: 'Minimize / expand the player',
 			trigger: {
@@ -61,36 +61,22 @@
 
 	// These functions are called when hotkeys are triggered
 
-	function showPlayer() {
-		if ($player.current_show) {
-			if ($player.status == 'HIDDEN') {
-				player.toggle_expand();
-			}
-		}
-	}
-
 	function toggleMinimize() {
-		if ($player.current_show && $player.status !== 'MINIMIZED') {
-			player.toggle_minimize();
-		} else {
-			player.toggle_expand();
-		}
+		player.toggle_minimize();
 	}
 
 	function handlePlayPause() {
 		if ($player.audio && $player.current_show) {
-			showPlayer();
 			// play or pause the audio
 			if ($player.audio.paused) {
-				$player.audio.play();
+				player.play();
 			} else {
-				$player.audio.pause();
+				player.pause();
 			}
 		}
 	}
 
 	function handleMute() {
-		showPlayer();
 		if ($player.audio) {
 			$player.audio.muted = !$player.audio.muted;
 		}
@@ -98,7 +84,6 @@
 
 	function seekBackward() {
 		if ($player.audio) {
-			showPlayer();
 			player.update((state) => {
 				state.currentTime -= 30;
 				return state;
@@ -108,7 +93,6 @@
 
 	function seekForward() {
 		if ($player.audio) {
-			showPlayer();
 			player.update((state) => {
 				state.currentTime += 30;
 				return state;
@@ -118,7 +102,6 @@
 
 	function increasePlaybackRate() {
 		if ($player.audio) {
-			showPlayer();
 			player.update((state) => {
 				if (state.audio) {
 					if (state.audio.playbackRate < 2) {
@@ -132,7 +115,6 @@
 
 	function decreasePlaybackRate() {
 		if ($player.audio) {
-			showPlayer();
 			player.update((state) => {
 				if (state.audio) {
 					if (state.audio.playbackRate > 1) {
@@ -153,7 +135,6 @@
 	use:shortcut={{ trigger: getHotkeyTrigger('seekForward', hotkeys) }}
 	use:shortcut={{ trigger: getHotkeyTrigger('increasePlaybackRate', hotkeys) }}
 	use:shortcut={{ trigger: getHotkeyTrigger('decreasePlaybackRate', hotkeys) }}
-	use:shortcut={{ trigger: getHotkeyTrigger('playPause', hotkeys) }}
 />
 
 <HotkeyDialog {hotkeys} />

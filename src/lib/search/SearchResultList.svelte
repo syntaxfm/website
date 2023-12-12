@@ -40,7 +40,7 @@
 
 	function play_show(show_or_tree: (Block & Show) | Tree) {
 		const local_show: Block & Show = is_tree(show_or_tree) ? show_or_tree.node : show_or_tree;
-		player.play_show(local_show);
+		player.start_show(local_show);
 	}
 
 	function is_tree(show_or_tree: (Block & Show) | Tree): show_or_tree is Tree {

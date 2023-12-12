@@ -18,7 +18,7 @@
 			const { href } = target;
 			// If we aren't already playing this episode, load it up and then jump it
 			if ($player.current_show?.number !== show.number) {
-				await player.play_show(show);
+				await player.start_show(show);
 			}
 			// Jump to timestamp
 			player.update_time(href, show);
@@ -37,6 +37,10 @@
 			);
 			node.style.backgroundImage = newBg;
 		});
+	}
+
+	function play_show() {
+		player.start_show(show);
 	}
 </script>
 
@@ -71,7 +75,7 @@
 <div class="show-actions-wrap">
 	<div class="show-actions zone" style="--bg: var(--black); --fg: var(--white);">
 		<div class="show-actions-flex">
-			<button on:click={() => player.play_show(show)} data-testid="play-show">
+			<button on:click={play_show} data-testid="play-show">
 				<Icon
 					aria-hidden="true"
 					name="play{$player.current_show?.number === show.number ? 'ing' : ''}"
