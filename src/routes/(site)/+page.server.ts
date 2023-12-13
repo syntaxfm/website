@@ -4,7 +4,7 @@ import { SHOW_QUERY } from '$server/ai/queries';
 import { redis } from '../../hooks.server';
 import { cache_mang } from '$utilities/cache_mang';
 
-export const load: PageServerLoad = async ({ locals, setHeaders }) => {
+export const load: PageServerLoad = async ({ locals, setHeaders, url }) => {
 	const cache_s = 600;
 
 	setHeaders({
@@ -19,7 +19,11 @@ export const load: PageServerLoad = async ({ locals, setHeaders }) => {
 	);
 
 	return {
-		latest
+		latest,
+		meta: {
+			// canonical tells google to use `syntax.fm`, and not syntax.fm?ref=someBlog
+			canonical: `${url.protocol}//${url.host}`
+		}
 	};
 };
 

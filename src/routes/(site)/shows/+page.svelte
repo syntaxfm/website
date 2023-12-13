@@ -4,6 +4,7 @@
 	import ShowCard from '$lib/ShowCard.svelte';
 	import Pagination from '$lib/Pagination.svelte';
 	import { PER_PAGE } from '$const';
+	import { page } from '$app/stores';
 
 	export let data;
 	let limit = 100;
@@ -16,7 +17,18 @@
 		order?: string;
 		page: string;
 	}>();
+
+	// We tell google to ignore filters, BUT not ?page=2...Infinity
+	$: isNoindexPage = ['order', 'type', 'sort', 'perPage'].some((filter) =>
+		$page.url.searchParams.has(filter)
+	);
 </script>
+
+<svelte:head>
+	{#if isNoindexPage}
+		<meta name="robots" content="noindex" />
+	{/if}
+</svelte:head>
 
 <section>
 	<div class="list-heading">
@@ -65,6 +77,7 @@
 					{ value: 'asc', label: 'Oldest To Newest' }
 				]}
 			/>
+			<a class="button subtle" href="/guests">Guests →</a>
 		</div>
 	</div>
 
