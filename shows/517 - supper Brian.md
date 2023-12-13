@@ -6,9 +6,10 @@ url: https://traffic.libsyn.com/syntax/Syntax_-_517.mp3
 guest:
   name: bdougie
   github: bdougie
+  of: OpenSauced
   twitter: bdougieYO
   url: https://b.dougie.dev/
-  social: 
+  social:
     - https://www.tiktok.com/@bdougieyo
     - https://www.twitch.tv/bdougieyo
     - https://www.youtube.com/c/bdougie
@@ -32,70 +33,70 @@ Get started at [Firehydrant.com/syntax](https://Firehydrant.com/syntax)
 
 ## Show Notes
 
-* **[00:36](#t=00:36)** Welcome
-* **[01:52](#t=01:52)** Guest introduction
-* [OpenSauced.pizza](https://opensauced.pizza/)
-* [@Bdougieyo on TikTok](https://www.tiktok.com/@bdougieyo)
-* [bdougie on Twitch](https://www.twitch.tv/bdougieyo)
-* [Open Sauced on YouTube](https://www.youtube.com/c/OpenSauced)
-* [bdougie on YouTube](https://www.youtube.com/c/bdougie)
-* [Jamstack](https://jamstack.org)
-* [Netlify](https://www.netlify.com)
-* **[03:36](#t=03:36)** What was the inspiration for Open Sauced?
-* **[08:23](#t=08:23)** GitHub GraphQL API
-* **[13:22](#t=13:22)** What are your thoughts on GraphQL?
-* [GraphQL](https://www.graphql.com)
-* **[14:36](#t=14:36)** What is the T3 stack?
-* **[16:30](#t=16:30)** Sponsor: Hasura
-* **[17:53](#t=17:53)** What is the goal for Open Sauced?
-* [Open Sauced Beta for Hacktoberfest](https://beta.insights.opensauced.pizza)
-* **[20:08](#t=20:08)** What is your focus with live streaming?
-* [T3 Stack](https://github.com/topics/t3-stack)
-* [Vite](https://vitejs.dev)
-* [The Primeagan on Syntax Episode 508](https://syntax.fm/show/508/supper-club-the-primeagan-vim-streaming-rust-all-around-interesting-guy)
-* [Octoverse](https://octoverse.github.com)
-* [Hot Open Sauced Pizza](https://hot.opensauced.pizza)
-* **[21:39](#t=21:39)** What hardware and software do you live stream with?
-* [Rode Procaster](https://rode.com/en/microphones/broadcast/procaster)
-* [Wave XLR](https://www.elgato.com/en/wave-xlr)
-* [GoXLR](https://www.tc-helicon.com/series.html?category=R-TCHELICON-GOXLRSERIES)
-* [OBS](https://obsproject.com)
-* **[25:26](#t=25:26)** Should adults be on TikTok?
-* **[30:31](#t=30:31)** How do you build an algorithm?
-* **[32:44](#t=32:44)** Sponsor: Storyblok
-* **[34:01](#t=34:01)** Supper club questions
-* [Keychron K2](https://www.keychron.com/products/keychron-k2-wireless-mechanical-keyboard)
-* [Warp](https://www.warp.dev)
-* [Ghostwriter from Replit](https://docs.replit.com/programming-ide/GhostWriter-FAQ#what-is-ghostwriter)
-* [A first look at GitHub Copilot](https://www.youtube.com/watch?v=XASH3z3TORo)
-* [Stable Diffusion](https://stablediffusionweb.com)
-* [Fig](https://fig.io)
-* **[43:17](#t=43:17)** Sponsor: FireHydrant
-* **[44:36](#t=44:36)** Interviews with open source maintainers
-* **[45:55](#t=45:55)** How should maintainers get paid?
-* [Patreon](http://patreon.com)
-* [GitHub Sponsors](https://github.com/sponsors)
-* [Neovim](https://neovim.io)
-* [Vim Adventures](https://vim-adventures.com)
-* [Lunar Vim](https://www.lunarvim.org)
-* **[47:47](#t=47:47)** SIIIIICK ××× PIIIICKS ×××
-* **[51:34](#t=51:34)** Shameless Plugs
+- **[00:36](#t=00:36)** Welcome
+- **[01:52](#t=01:52)** Guest introduction
+- [OpenSauced.pizza](https://opensauced.pizza/)
+- [@Bdougieyo on TikTok](https://www.tiktok.com/@bdougieyo)
+- [bdougie on Twitch](https://www.twitch.tv/bdougieyo)
+- [Open Sauced on YouTube](https://www.youtube.com/c/OpenSauced)
+- [bdougie on YouTube](https://www.youtube.com/c/bdougie)
+- [Jamstack](https://jamstack.org)
+- [Netlify](https://www.netlify.com)
+- **[03:36](#t=03:36)** What was the inspiration for Open Sauced?
+- **[08:23](#t=08:23)** GitHub GraphQL API
+- **[13:22](#t=13:22)** What are your thoughts on GraphQL?
+- [GraphQL](https://www.graphql.com)
+- **[14:36](#t=14:36)** What is the T3 stack?
+- **[16:30](#t=16:30)** Sponsor: Hasura
+- **[17:53](#t=17:53)** What is the goal for Open Sauced?
+- [Open Sauced Beta for Hacktoberfest](https://beta.insights.opensauced.pizza)
+- **[20:08](#t=20:08)** What is your focus with live streaming?
+- [T3 Stack](https://github.com/topics/t3-stack)
+- [Vite](https://vitejs.dev)
+- [The Primeagan on Syntax Episode 508](https://syntax.fm/show/508/supper-club-the-primeagan-vim-streaming-rust-all-around-interesting-guy)
+- [Octoverse](https://octoverse.github.com)
+- [Hot Open Sauced Pizza](https://hot.opensauced.pizza)
+- **[21:39](#t=21:39)** What hardware and software do you live stream with?
+- [Rode Procaster](https://rode.com/en/microphones/broadcast/procaster)
+- [Wave XLR](https://www.elgato.com/en/wave-xlr)
+- [GoXLR](https://www.tc-helicon.com/series.html?category=R-TCHELICON-GOXLRSERIES)
+- [OBS](https://obsproject.com)
+- **[25:26](#t=25:26)** Should adults be on TikTok?
+- **[30:31](#t=30:31)** How do you build an algorithm?
+- **[32:44](#t=32:44)** Sponsor: Storyblok
+- **[34:01](#t=34:01)** Supper club questions
+- [Keychron K2](https://www.keychron.com/products/keychron-k2-wireless-mechanical-keyboard)
+- [Warp](https://www.warp.dev)
+- [Ghostwriter from Replit](https://docs.replit.com/programming-ide/GhostWriter-FAQ#what-is-ghostwriter)
+- [A first look at GitHub Copilot](https://www.youtube.com/watch?v=XASH3z3TORo)
+- [Stable Diffusion](https://stablediffusionweb.com)
+- [Fig](https://fig.io)
+- **[43:17](#t=43:17)** Sponsor: FireHydrant
+- **[44:36](#t=44:36)** Interviews with open source maintainers
+- **[45:55](#t=45:55)** How should maintainers get paid?
+- [Patreon](http://patreon.com)
+- [GitHub Sponsors](https://github.com/sponsors)
+- [Neovim](https://neovim.io)
+- [Vim Adventures](https://vim-adventures.com)
+- [Lunar Vim](https://www.lunarvim.org)
+- **[47:47](#t=47:47)** SIIIIICK ××× PIIIICKS ×××
+- **[51:34](#t=51:34)** Shameless Plugs
 
 ## ××× SIIIIICK ××× PIIIICKS ×××
 
-* bdougie: [Warp](https://www.warp.dev)
+- bdougie: [Warp](https://www.warp.dev)
 
 ## Shameless Plugs
 
-* [bdougie on Twitter](https://twitter.com/bdougieYO)
-* [saucedopen on Twitter](https://twitter.com/saucedopen)
+- [bdougie on Twitter](https://twitter.com/bdougieYO)
+- [saucedopen on Twitter](https://twitter.com/saucedopen)
 
 ## Tweet us your tasty treats
 
-* [Scott's Instagram](https://www.instagram.com/stolinski/)
-* [LevelUpTutorials Instagram](https://www.instagram.com/LevelUpTutorials/)
-* [Wes' Instagram](https://www.instagram.com/wesbos/)
-* [Wes' Twitter](https://twitter.com/wesbos)
-* [Wes' Facebook](https://www.facebook.com/wesbos.developer)
-* [Scott's Twitter](https://twitter.com/stolinski)
-* Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets
+- [Scott's Instagram](https://www.instagram.com/stolinski/)
+- [LevelUpTutorials Instagram](https://www.instagram.com/LevelUpTutorials/)
+- [Wes' Instagram](https://www.instagram.com/wesbos/)
+- [Wes' Twitter](https://twitter.com/wesbos)
+- [Wes' Facebook](https://www.facebook.com/wesbos.developer)
+- [Scott's Twitter](https://twitter.com/stolinski)
+- Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets
