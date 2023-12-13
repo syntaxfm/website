@@ -65,6 +65,7 @@
 					{ value: 'asc', label: 'Oldest To Newest' }
 				]}
 			/>
+			<a class="button subtle" href="/guests">Guests →</a>
 		</div>
 	</div>
 
