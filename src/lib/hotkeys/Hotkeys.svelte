@@ -135,6 +135,7 @@
 	use:shortcut={{ trigger: getHotkeyTrigger('seekForward', hotkeys) }}
 	use:shortcut={{ trigger: getHotkeyTrigger('increasePlaybackRate', hotkeys) }}
 	use:shortcut={{ trigger: getHotkeyTrigger('decreasePlaybackRate', hotkeys) }}
+	use:shortcut={{ trigger: getHotkeyTrigger('playPause', hotkeys) }}
 />
 
 <HotkeyDialog {hotkeys} />
