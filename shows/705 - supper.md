@@ -5,6 +5,7 @@ date: 1702641600697
 url: https://traffic.libsyn.com/syntax/Syntax_-_705.mp3
 guest:
   name: Feross Aboukhadijeh
+  of: Socket
   github: feross
   twitter: feross
   url: https://feross.org/
