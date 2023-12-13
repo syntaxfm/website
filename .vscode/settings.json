@@ -1,8 +1,8 @@
 {
 	"editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit",
-    "source.fixAll.prettier": "explicit"
-  },
+		"source.fixAll.eslint": "explicit",
+		"source.fixAll.prettier": "explicit"
+	},
 	"[javascript]": {
 		"editor.formatOnSave": true,
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
