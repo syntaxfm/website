@@ -5,6 +5,7 @@ date: 1687521600710
 url: https://traffic.libsyn.com/syntax/Syntax_-_631.mp3
 guest:
   name: Dustin Schau
+  of: Gatsby, Netlify
   github: DSchau
   twitter: SchauDustin
   url: https://dustinschau.com/

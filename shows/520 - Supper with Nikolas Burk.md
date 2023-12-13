@@ -6,6 +6,7 @@ url: https://traffic.libsyn.com/syntax/Syntax_-_520.mp3
 guest:
   name: Nikolas Burk
   github: nikolasburk
+  of: Prisma
   twitter: nikolasburk
 ---
 
@@ -27,46 +28,46 @@ Did we mention that FireHydrant is free? Get started at [Firehydrant.com/syntax]
 
 ## Show Notes
 
-* **[00:35](#t=00:35)** Welcome
-* **[01:30](#t=01:30)** Guest intro
-* [@NikolasBurk on Twitter](https://twitter.com/nikolasburk)
-* **[04:56](#t=04:56)** How has Prisma evolved?
-* [Prisma](https://www.prisma.io)
-* [Keystone](https://keystonejs.com)
-* [GraphQL](https://www.graphql.com)
-* **[10:44](#t=10:44)** What was Prisma V1?
-* **[17:04](#t=17:04)** Is there any GraphQL specific functions in Prismic?
-* **[21:26](#t=21:26)** Sponsor: Hasura
-* **[22:26](#t=22:26)** What role does an ORM play in a tech stack?
-* **[29:54](#t=29:54)** What is Planetscale?
-* [Planetscale](https://planetscale.com)
-* [The T3 Stack](https://github.com/topics/t3-stack)
-* **[32:22](#t=32:22)** Where does TRPC fit?
-* [tRPC](https://trpc.io)
-* **[33:46](#t=33:46)** Sponsor: Storyblok
-* **[35:28](#t=35:28)** What is an ORM?
-* [Prisma VS Code plugin](https://marketplace.visualstudio.com/items?itemName=Prisma.prisma)
-* **[42:00](#t=42:00)** How do migrations work with Prisma?
-* **[45:58](#t=45:58)** Query your data with Prisma client
-* **[49:43](#t=49:43)** Have you looked into alternative JavaScript environments?
-* **[55:16](#t=55:16)** Sponsor: FireHydrant
-* **[57:05](#t=57:05)** Supper Club questions
-* **[58:50](#t=58:50)** SIIIIICK ××× PIIIICKS ×××
+- **[00:35](#t=00:35)** Welcome
+- **[01:30](#t=01:30)** Guest intro
+- [@NikolasBurk on Twitter](https://twitter.com/nikolasburk)
+- **[04:56](#t=04:56)** How has Prisma evolved?
+- [Prisma](https://www.prisma.io)
+- [Keystone](https://keystonejs.com)
+- [GraphQL](https://www.graphql.com)
+- **[10:44](#t=10:44)** What was Prisma V1?
+- **[17:04](#t=17:04)** Is there any GraphQL specific functions in Prismic?
+- **[21:26](#t=21:26)** Sponsor: Hasura
+- **[22:26](#t=22:26)** What role does an ORM play in a tech stack?
+- **[29:54](#t=29:54)** What is Planetscale?
+- [Planetscale](https://planetscale.com)
+- [The T3 Stack](https://github.com/topics/t3-stack)
+- **[32:22](#t=32:22)** Where does TRPC fit?
+- [tRPC](https://trpc.io)
+- **[33:46](#t=33:46)** Sponsor: Storyblok
+- **[35:28](#t=35:28)** What is an ORM?
+- [Prisma VS Code plugin](https://marketplace.visualstudio.com/items?itemName=Prisma.prisma)
+- **[42:00](#t=42:00)** How do migrations work with Prisma?
+- **[45:58](#t=45:58)** Query your data with Prisma client
+- **[49:43](#t=49:43)** Have you looked into alternative JavaScript environments?
+- **[55:16](#t=55:16)** Sponsor: FireHydrant
+- **[57:05](#t=57:05)** Supper Club questions
+- **[58:50](#t=58:50)** SIIIIICK ××× PIIIICKS ×××
 
 ## ××× SIIIIICK ××× PIIIICKS ×××
 
-* [Lichess](https://lichess.org/)
+- [Lichess](https://lichess.org/)
 
 ## Shameless Plugs
 
-* [Prisma blog](https://www.prisma.io/blog/)
+- [Prisma blog](https://www.prisma.io/blog/)
 
 ## Tweet us your tasty treats
 
-* [Scott's Instagram](https://www.instagram.com/stolinski/)
-* [LevelUpTutorials Instagram](https://www.instagram.com/LevelUpTutorials/)
-* [Wes' Instagram](https://www.instagram.com/wesbos/)
-* [Wes' Twitter](https://twitter.com/wesbos)
-* [Wes' Facebook](https://www.facebook.com/wesbos.developer)
-* [Scott's Twitter](https://twitter.com/stolinski)
-* Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets
+- [Scott's Instagram](https://www.instagram.com/stolinski/)
+- [LevelUpTutorials Instagram](https://www.instagram.com/LevelUpTutorials/)
+- [Wes' Instagram](https://www.instagram.com/wesbos/)
+- [Wes' Twitter](https://twitter.com/wesbos)
+- [Wes' Facebook](https://www.facebook.com/wesbos.developer)
+- [Scott's Twitter](https://twitter.com/stolinski)
+- Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets
