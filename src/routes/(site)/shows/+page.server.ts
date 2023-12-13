@@ -47,7 +47,8 @@ export const load: PageServerLoad = async function ({ locals, url, setHeaders })
 		shows,
 		count: count_shows(),
 		meta: {
-			title: `Shows ${page > 1 ? `- Page ${page}` : ''}`
+			title: `Syntax Podcast Shows ${page > 1 ? `- Page ${page}` : ''}`,
+			canonical: `${url.protocol}//${url.host}${url.pathname}${page > 1 ? `?page=${page}` : ''}`
 		}
 	};
 };
