@@ -61,11 +61,11 @@ export const actions = {
 		if (!show_number) {
 			error(400, 'Invalid Show Number');
 		}
-		await /* @migration task: add path argument */ locals.prisma.transcript.delete({
-        			where: {
-        				show_number
-        			}
-        		});
+		await locals.prisma.transcript.delete({
+			where: {
+				show_number
+			}
+		});
 		return { message: `Deleted Transcript for Show ${show_number}` };
 	},
 	fetch_show_transcript: async ({ request }) => {

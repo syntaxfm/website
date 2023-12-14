@@ -29,7 +29,7 @@ export const load: PageServerLoad = async ({ locals, setHeaders, url }) => {
 
 export const actions: Actions = {
 	logout: async function logout({ locals, cookies }) {
-		await /* @migration task: add path argument */ locals.prisma.session.delete({
+		await locals.prisma.session.delete({
 			where: {
 				access_token: cookies.get('access_token')
 			}
