@@ -36,6 +36,6 @@ export async function GET({ locals, params }) {
 			}
 		);
 	} else {
-		throw error(404, 'Show not found');
+		error(404, 'Show not found');
 	}
 }

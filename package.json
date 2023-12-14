@@ -27,7 +27,7 @@
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.39.0",
-		"@sveltejs/kit": "^1.27.2",
+		"@sveltejs/kit": "^2.0.0",
 		"@types/core-js": "^2.5.7",
 		"@types/js-cookie": "^3.0.5",
 		"@types/node": "^20.8.10",
@@ -46,13 +46,14 @@
 		"prettier": "^3.0.3",
 		"prettier-plugin-svelte": "^3.0.3",
 		"prisma": "5.5.2",
-		"svelte": "^4.2.2",
+		"svelte": "^4.2.8",
 		"svelte-check": "^3.5.2",
 		"svelte-preprocess": "^5.0.4",
 		"tslib": "^2.6.2",
 		"typescript": "^5.2.2",
-		"vite": "^4.5.1",
-		"vitest": "^0.34.6"
+		"vite": "^5.0.9",
+		"vitest": "^1.0.4",
+		"@sveltejs/vite-plugin-svelte": "^3.0.0"
 	},
 	"type": "module",
 	"engines": {
@@ -70,7 +71,7 @@
 		"@sentry/profiling-node": "^1.2.6",
 		"@sentry/sveltekit": "^7.77.0",
 		"@sparticuz/chromium": "^117.0.0",
-		"@sveltejs/adapter-vercel": "^3.0.3",
+		"@sveltejs/adapter-vercel": "^4.0.0",
 		"@upstash/redis": "^1.24.3",
 		"core-js": "^3.33.2",
 		"date-fns": "^2.30.0",

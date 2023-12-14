@@ -59,20 +59,20 @@ export const actions = {
 		const data = await request.formData();
 		const show_number = parseInt(data.get('show_number')?.toString() || '');
 		if (!show_number) {
-			throw error(400, 'Invalid Show Number');
+			error(400, 'Invalid Show Number');
 		}
-		await locals.prisma.transcript.delete({
-			where: {
-				show_number
-			}
-		});
+		await /* @migration task: add path argument */ locals.prisma.transcript.delete({
+        			where: {
+        				show_number
+        			}
+        		});
 		return { message: `Deleted Transcript for Show ${show_number}` };
 	},
 	fetch_show_transcript: async ({ request }) => {
 		const data = await request.formData();
 		const show_number = parseInt(data.get('show_number')?.toString() || '');
 		if (!show_number) {
-			throw error(400, 'Invalid Show Number');
+			error(400, 'Invalid Show Number');
 		}
 		const result = await get_transcript(show_number);
 		console.log('🤖 transcript fetch requested');
