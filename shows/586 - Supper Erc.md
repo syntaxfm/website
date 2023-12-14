@@ -5,6 +5,7 @@ date: 1678449600813
 url: https://traffic.libsyn.com/syntax/Syntax_-_586.mp3
 guest:
   name: Eric Sartorius
+  of: Digital Nomad
   github: ericssartorius
   twitter: EricSSartorius
   url: https://www.purefunc.io/

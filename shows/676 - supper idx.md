@@ -3,12 +3,13 @@ number: 676
 title: Google IDX - VS Code in the Browser with David East
 date: 1696593600289
 url: https://traffic.libsyn.com/syntax/Syntax_-_676.mp3
-guest: 
+guest:
   name: David East
+  of: Google + Firebase
   github: davideast
   twitter: _davideast
   url: https://davidea.st/
-  social: https://www.linkedin.com/in/eastdavid/ 
+  social: https://www.linkedin.com/in/eastdavid/
 ---
 
 In this episode of Syntax, Wes and Scott talk with David East about Google's new cloud based full-stack, multiplatform app development workflow, Project IDX.

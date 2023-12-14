@@ -4,17 +4,28 @@
 		name: string;
 		github?: string | null;
 		twitter?: string | null;
+		url?: string | null;
 		slug?: string;
 	};
 </script>
 
-<a href={`https://x.com/${host.twitter}`} target="_blank" rel="noopener" class="social-icon">
-	<Icon name="x" title={`${host.name} on X`} />
-</a>
+{#if host.twitter}
+	<a href={`https://x.com/${host.twitter}`} target="_blank" class="social-icon">
+		<Icon name="x" title={`${host.name} on X`} />
+	</a>
+{/if}
 
-<a href={`https://github.com/${host.github}`} target="_blank" rel="noopener" class="social-icon">
-	<Icon name="github" title={`${host.name} on GitHub`} />
-</a>
+{#if host.github}
+	<a href={`https://github.com/${host.github}`} target="_blank" class="social-icon">
+		<Icon name="github" title={`${host.name} on GitHub`} />
+	</a>
+{/if}
+
+{#if host.url}
+	<a href={`https://github.com/${host.url}`} target="_blank" class="social-icon">
+		<Icon name="monitor" title={`${host.name}'s website'`} />
+	</a>
+{/if}
 
 <style lang="postcss">
 	.social-icon {

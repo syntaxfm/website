@@ -6,6 +6,7 @@ url: https://traffic.libsyn.com/syntax/Syntax_-_688.mp3
 guest:
   name: Darcy Clarke
   github: darcyclarke
+  of: Vlt Package Manager
   twitter: darcy
   url: https://www.darcyclarke.me
 ---

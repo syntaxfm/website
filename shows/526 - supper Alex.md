@@ -6,6 +6,7 @@ url: https://traffic.libsyn.com/syntax/Syntax_-_526.mp3
 guest:
   name: Alex Johansson
   github: KATT
+  of: tRPC
   twitter: alexdotjs
   url: https://katt.dev/
   social: https://www.linkedin.com/in/johanssonalexander/
@@ -27,37 +28,37 @@ Kontent by Kentico is a headless CMS that provides live editing experience to no
 
 ## Show Notes
 
-* **[00:37](#t=00:37)** Welcome
-* **[01:56](#t=01:56)** Guest introduction
-* [@Alexdotjs on Twitter](https://twitter.com/alexdotjs)
-* [Alex on GitHub](https://github.com/KATT)
-* [Katt.dev](https://katt.dev)
-* [tRPC.io](https://trpc.io)
-* **[02:47](#t=02:47)** What is tRPC?
-* **[06:56](#t=06:56)** How does type safety work?
-* **[10:38](#t=10:38)** Sponsor: Polypane
-* **[13:20](#t=13:20)** What is Zod?
-* **[17:39](#t=17:39)** How does tRPC relate to GraphQL?
-* **[23:47](#t=23:47)** Sponsor: FireHydrant
-* **[25:25](#t=25:25)** What about a data loader?
-* **[29:04](#t=29:04)** React or NextJS adapters
-* **[30:41](#t=30:41)** How does it feel when people start building off your project?
-* **[33:58](#t=33:58)** Sponsor: Kontent by Kentico
-* **[37:34](#t=37:34)** What's next for tRPC?
-* **[42:42](#t=42:42)** How is error handling done?
-* **[48:43](#t=48:43)** Supper Club questions
-* **[54:42](#t=54:42)** SIIIIICK ××× PIIIICKS ×××
+- **[00:37](#t=00:37)** Welcome
+- **[01:56](#t=01:56)** Guest introduction
+- [@Alexdotjs on Twitter](https://twitter.com/alexdotjs)
+- [Alex on GitHub](https://github.com/KATT)
+- [Katt.dev](https://katt.dev)
+- [tRPC.io](https://trpc.io)
+- **[02:47](#t=02:47)** What is tRPC?
+- **[06:56](#t=06:56)** How does type safety work?
+- **[10:38](#t=10:38)** Sponsor: Polypane
+- **[13:20](#t=13:20)** What is Zod?
+- **[17:39](#t=17:39)** How does tRPC relate to GraphQL?
+- **[23:47](#t=23:47)** Sponsor: FireHydrant
+- **[25:25](#t=25:25)** What about a data loader?
+- **[29:04](#t=29:04)** React or NextJS adapters
+- **[30:41](#t=30:41)** How does it feel when people start building off your project?
+- **[33:58](#t=33:58)** Sponsor: Kontent by Kentico
+- **[37:34](#t=37:34)** What's next for tRPC?
+- **[42:42](#t=42:42)** How is error handling done?
+- **[48:43](#t=48:43)** Supper Club questions
+- **[54:42](#t=54:42)** SIIIIICK ××× PIIIICKS ×××
 
 ## ××× SIIIIICK ××× PIIIICKS ×××
 
-* [Kysely](https://github.com/koskimas/kysely)
+- [Kysely](https://github.com/koskimas/kysely)
 
 ## Tweet us your tasty treats
 
-* [Scott's Instagram](https://www.instagram.com/stolinski/)
-* [LevelUpTutorials Instagram](https://www.instagram.com/LevelUpTutorials/)
-* [Wes' Instagram](https://www.instagram.com/wesbos/)
-* [Wes' Twitter](https://twitter.com/wesbos)
-* [Wes' Facebook](https://www.facebook.com/wesbos.developer)
-* [Scott's Twitter](https://twitter.com/stolinski)
-* Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets
+- [Scott's Instagram](https://www.instagram.com/stolinski/)
+- [LevelUpTutorials Instagram](https://www.instagram.com/LevelUpTutorials/)
+- [Wes' Instagram](https://www.instagram.com/wesbos/)
+- [Wes' Twitter](https://twitter.com/wesbos)
+- [Wes' Facebook](https://www.facebook.com/wesbos.developer)
+- [Scott's Twitter](https://twitter.com/stolinski)
+- Make sure to include [@SyntaxFM](https://twitter.com/SyntaxFM) in your tweets
