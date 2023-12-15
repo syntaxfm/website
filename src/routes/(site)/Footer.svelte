@@ -12,8 +12,8 @@
 				<a target="_blank" rel="noopener" href="https://feed.syntax.fm">RSS Feed</a>
 				<a href="/about">About</a>
 				<a href="/sickpicks">Sick Picks</a>
-				<a href="/pages/privacy">Privacy Policy</a>
-				<a href="/pages/terms-of-service">Terms of Service</a>
+				<a href="/guests">Guest List</a>
+
 				<a
 					target="_blank"
 					rel="noopener"
@@ -32,6 +32,8 @@
 				<a href="/system/layout">Layout</a>
 				<a href="/system/typography">Typography</a>
 				<a href="/system/theme">Theme</a>
+				<a href="/pages/privacy">Privacy Policy</a>
+				<a href="/pages/terms-of-service">Terms of Service</a>
 				<!-- <a href="/system/components">Components</a> -->
 			</div>
 			<div class="links-col social-links">

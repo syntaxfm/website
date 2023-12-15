@@ -6,6 +6,7 @@ url: https://traffic.libsyn.com/syntax/Syntax_-_508.mp3
 guest:
   name: The Primeagan
   github: ThePrimeagen
+  of: Netflix
   twitter: ThePrimeagen
   social:
     - https://www.youtube.com/channel/UC8ENHE5xdFSwx71u3fDH5Xw

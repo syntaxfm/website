@@ -8,7 +8,6 @@ import highlight from 'rehype-highlight';
 import { error } from '@sveltejs/kit';
 import { cache_mang } from '$utilities/cache_mang';
 import type { Prisma, Show } from '@prisma/client';
-import get_show_path from '$utilities/slug.ts';
 
 export const load = async function ({ params, locals, url }) {
 	const { show_number } = params;
@@ -74,10 +73,12 @@ export const load = async function ({ params, locals, url }) {
 		} as ShowTemp & Show,
 		time_start: url.searchParams.get('t') || '0',
 		meta: {
-			title: `${show?.title} - Syntax #${show_number}`,
+			title: `${
+				url.pathname.includes('/transcript') ? 'Transcript: ' : ''
+			}${show?.title} - Syntax #${show_number}`,
 			image: `${url.protocol}//${url.host}/og/${show_number}.jpg`,
-			url: `${url.protocol}//${url.host}${get_show_path(show)}`,
-			canonical: `${url.protocol}//${url.host}${get_show_path(show)}`,
+			url: `${url.protocol}//${url.host}${url.pathname}`,
+			canonical: `${url.protocol}//${url.host}${url.pathname}`,
 			description: show?.aiShowNote?.description ?? show?.show_notes?.match(/(.*?)(?=## )/s)?.[0]
 		}
 	};

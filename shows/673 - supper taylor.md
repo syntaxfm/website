@@ -5,6 +5,7 @@ date: 1695988800937
 url: https://traffic.libsyn.com/syntax/Syntax_-_673.mp3
 guest:
   name: Taylor Desseyn
+  of: Gun.io
   twitter: tdesseyn
   url: https://solo.to/tdesseyn
   social:

@@ -26,6 +26,7 @@
 		| 'back-30'
 		| 'forward-30'
 		| 'share'
+		| 'monitor'
 		| 'download';
 </script>
 
@@ -310,6 +311,7 @@
 		/>
 	</svg>
 {/if}
+
 {#if name === 'back-30'}
 	<svg width="10" height="19" viewBox="0 0 10 19" fill="none" xmlns="http://www.w3.org/2000/svg">
 		<path
@@ -403,9 +405,33 @@
 			fill="currentColor"
 		/></svg
 	>
+{#if name === 'monitor'}
+	<svg
+		fill="currentColor"
+		height="24"
+		width="24"
+		version="1.1"
+		xmlns="http://www.w3.org/2000/svg"
+		xmlns:xlink="http://www.w3.org/1999/xlink"
+		viewBox="0 0 512 512"
+		xml:space="preserve"
+	>
+		<g>
+			<g>
+				<path
+					d="M512,380.121V38.788H0v341.333h186.182v46.545h-38.788v46.545h217.212v-46.545h-38.788v-46.545H512z M279.273,426.667
+			h-46.545v-46.545h46.545V426.667z M46.545,333.576V85.333h418.909v248.242H46.545z"
+				/>
+			</g>
+		</g>
+	</svg>
+
 {/if}
 
 <style>
+	svg {
+		height: var(--icon-size, 16px);
+	}
 	@keyframes pulse {
 		0% {
 			transform: scaleY(0.2);
