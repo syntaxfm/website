@@ -93,7 +93,7 @@ export const redirects: Handle = async function ({ event, resolve }) {
 	if (!show) return resolve(event);
 	const url = get_show_path(show);
 	// Redirect to the page for this show
-	throw redirect(302, url);
+	throw redirect(302, url + event.url.search);
 };
 
 export const document_policy: Handle = async function ({ event, resolve }) {
