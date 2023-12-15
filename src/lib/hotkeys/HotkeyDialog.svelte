@@ -23,7 +23,7 @@
 		trigger: {
 			key: '?',
 			callback: toggleModalOpen
-		}
+		} //
 	};
 
 	const hotkeyNames = Object.keys(hotkeys);
@@ -40,7 +40,7 @@
 >
 	<section aria-label="Hotkey Help Window">
 		<header role="banner">
-			<h2 class="h5" id="hotkey-header">Hotkeys</h2>
+			<h3 class="h5" id="hotkey-header">Hotkeys</h3>
 			<button class="close" on:click={close} type="submit">×</button>
 		</header>
 		<div class="hotkeys">
