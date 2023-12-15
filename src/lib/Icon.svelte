@@ -405,6 +405,7 @@
 			fill="currentColor"
 		/></svg
 	>
+{/if}
 {#if name === 'monitor'}
 	<svg
 		fill="currentColor"
@@ -425,7 +426,6 @@
 			</g>
 		</g>
 	</svg>
-
 {/if}
 
 <style>
