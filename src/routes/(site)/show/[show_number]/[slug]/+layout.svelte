@@ -8,8 +8,10 @@
 	import Tabs from '$lib/Tabs.svelte';
 	import { theme } from '$state/theme';
 	import wait from 'waait';
+	import ShareWindow from '$lib/share/ShareWindow.svelte';
+	import { time_param_to_seconds } from '$/utilities/time_param_to_seconds.js';
 	export let data;
-	$: ({ show } = data);
+	$: ({ show, time_start } = data);
 
 	async function handleClick(e: Event) {
 		const { target } = e;
@@ -18,7 +20,7 @@
 			const { href } = target;
 			// If we aren't already playing this episode, load it up and then jump it
 			if ($player.current_show?.number !== show.number) {
-				await player.play_show(show);
+				await player.start_show(show);
 			}
 			// Jump to timestamp
 			player.update_time(href, show);
@@ -37,6 +39,10 @@
 			);
 			node.style.backgroundImage = newBg;
 		});
+	}
+
+	function play_show() {
+		player.start_show(show, time_param_to_seconds(time_start));
 	}
 </script>
 
@@ -71,10 +77,13 @@
 <div class="show-actions-wrap">
 	<div class="show-actions zone" style="--bg: var(--black); --fg: var(--white);">
 		<div class="show-actions-flex">
-			<button on:click={() => player.play_show(show)} data-testid="play-show">
+			<button on:click={play_show} data-testid="play-show">
 				<Icon
+					--icon_size="12px"
 					aria-hidden="true"
-					name="play{$player.current_show?.number === show.number ? 'ing' : ''}"
+					name="play{$player.current_show?.number === show.number && $player.status === 'PLAYING'
+						? 'ing'
+						: ''}"
 				/>
 				Play{$player.current_show?.number === show.number ? 'ing' : ''} Episode {show.number}
 			</button>
@@ -119,6 +128,8 @@
 <section class="layout full" on:click={handleClick}>
 	<slot />
 </section>
+
+<ShareWindow {show} />
 
 <style lang="postcss">
 	@layer theme {

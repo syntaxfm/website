@@ -71,6 +71,7 @@ export const load = async function ({ params, locals, url }) {
 			...show,
 			show_notes: with_h3_body
 		} as ShowTemp & Show,
+		time_start: url.searchParams.get('t') || '0',
 		meta: {
 			title: `${
 				url.pathname.includes('/transcript') ? 'Transcript: ' : ''

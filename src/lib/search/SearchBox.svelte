@@ -308,6 +308,7 @@
 			font-style: italic;
 			background: black;
 			padding: 5px 5px;
+			margin: 0;
 			display: inline-block;
 		}
 		@media (--below_med) {

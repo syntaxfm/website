@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 dependencies:
   '@anthropic-ai/sdk':
     specifier: ^0.6.2
@@ -31,6 +35,9 @@ dependencies:
   '@sparticuz/chromium':
     specifier: ^117.0.0
     version: 117.0.0
+  '@svelte-put/shortcut':
+    specifier: ^3.0.0
+    version: 3.0.0
   '@sveltejs/adapter-vercel':
     specifier: ^3.0.3
     version: 3.0.3(@sveltejs/kit@1.27.2)
@@ -56,8 +63,8 @@ dependencies:
     specifier: ^3.0.5
     version: 3.0.5
   media-chrome:
-    specifier: ^1.4.4
-    version: 1.4.4
+    specifier: ^2.0.1
+    version: 2.0.1
   npm-run-all:
     specifier: ^4.1.5
     version: 4.1.5
@@ -1275,6 +1282,10 @@ packages:
       tar-fs: 3.0.4
     transitivePeerDependencies:
       - debug
+    dev: false
+
+  /@svelte-put/shortcut@3.0.0:
+    resolution: {integrity: sha512-nZg3pwpTi9wUsvQPlqOzEsxZcF2jmY5j+VBq/20IUjjd2OpM92XqZAga0PCCjE6OuEobOt58UMnC2QZgOvk0tQ==}
     dev: false
 
   /@sveltejs/adapter-vercel@3.0.3(@sveltejs/kit@1.27.2):
@@ -4059,8 +4070,8 @@ packages:
   /mdn-data@2.0.30:
     resolution: {integrity: sha512-GaqWWShW4kv/G9IEucWScBx9G1/vsFZZJUO+tD26M8J8z3Kw5RDQjaoZe03YAClgeS/SWPOcb4nkFBTEi5DUEA==}
 
-  /media-chrome@1.4.4:
-    resolution: {integrity: sha512-L3EImWE2ft3dEXnku7mwEl71L8GWFvsnqQQsmtlbuLqekCkIACjL1KjLErReALB9JmrY19ffB4GeGZjLZDwALg==}
+  /media-chrome@2.0.1:
+    resolution: {integrity: sha512-6hoC5OY993t4o/YKYXn7YoWUAKG1UFAhnDXNN6kRRa5mnuL+Cwct/2Md16S4jjmTSmN5XjhEWwfCVM5NLHavOA==}
     dev: false
 
   /memorystream@0.3.1:
@@ -6899,7 +6910,3 @@ packages:
       which: 3.0.1
       yaml: 2.3.2
     dev: false
-
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false

@@ -28,13 +28,15 @@
 	}
 </script>
 
-<div class="art-wrapper" on:click={toggle_sicman} tabindex="0" on:keydown={keydown} role="button">
-	{#if image_index === 0}
-		<Album />
-	{:else}
-		<CD spinning={isAnimating} />
-	{/if}
-</div>
+{#if $player.status !== 'MINIMIZED'}
+	<div class="art-wrapper" on:click={toggle_sicman} tabindex="0" on:keydown={keydown} role="button">
+		{#if image_index === 0}
+			<Album />
+		{:else}
+			<CD spinning={isAnimating} />
+		{/if}
+	</div>
+{/if}
 
 <style lang="postcss">
 	.art-wrapper {

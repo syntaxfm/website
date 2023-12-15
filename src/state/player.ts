@@ -1,5 +1,5 @@
 import type { Show } from '@prisma/client';
-import { writable } from 'svelte/store';
+import { writable, get } from 'svelte/store';
 import coverArt from '$assets/coverart-128.png';
 import coverArt512 from '$assets/coverart-512.png';
 
@@ -36,44 +36,78 @@ function loadMediaSession(show: Show) {
 	});
 }
 
+interface PlayerState {
+	current_show: null | Show;
+	playing: boolean;
+	currentTime: number;
+	audio?: HTMLAudioElement;
+	media_controller?: HTMLAudioElement;
+	status: 'INITIAL' | 'LOADED' | 'PAUSED' | 'PLAYING';
+}
+
+// Having this state in the same writeable was causing hiccups ins the audio when updating the store
+export const player_window_status = writable<'HIDDEN' | 'ACTIVE' | 'MINI'>('HIDDEN');
+export const episode_share_status = writable<boolean>(false);
+
 const new_player_state = () => {
-	const { subscribe, update, set } = writable<{
-		status: 'HIDDEN' | 'ACTIVE' | 'EXPANDED';
-		current_show: null | Show;
-		playing: boolean;
-		audio?: HTMLAudioElement;
-		currentTime: number;
-	}>({
-		status: 'HIDDEN',
+	const player_state = writable<PlayerState>({
 		current_show: null,
 		playing: false,
 		audio: undefined,
-		currentTime: 0
+		media_controller: undefined,
+		currentTime: 0,
+		status: 'INITIAL'
 	});
+	const { update, subscribe, set } = player_state;
 
-	async function play_show(show: Show) {
-		return new Promise((resolve) => {
-			loadMediaSession(show);
-			update((state) => {
-				state.status = 'ACTIVE';
-				state.current_show = show;
-				if (state.audio) {
-					state.audio.pause();
-					state.audio.src = show.url;
-					state.audio.crossOrigin = 'anonymous';
+	async function start_show(show: Show, start_time = 0) {
+		// Get current state
+		const current_state = get(player_state);
+		if (current_state.status === 'PLAYING') {
+			pause();
+		} else if (current_state.status === 'PAUSED') {
+			play();
+		} else {
+			return new Promise((resolve) => {
+				loadMediaSession(show);
+				update((state) => {
+					state.current_show = show;
+					state.status = 'LOADED';
+					// state.audio should always exist because it's the audio element
+					if (state.audio) {
+						pause();
+						state.audio.src = show.url;
+						state.audio.crossOrigin = 'anonymous';
 
-					// Wait for the audio to be ready to play
-					state.audio.addEventListener('loadedmetadata', () => {
-						console.log('loadedmetadata');
-						if (state.audio) {
-							state.audio.currentTime = 0;
-							resolve(state.audio.play());
-						}
-					});
-				}
+						// Wait for the audio to be ready to play
+						state.audio.addEventListener('loadedmetadata', () => {
+							if (state.audio) {
+								resolve(play(start_time));
+							}
+						});
+					}
 
-				return state;
+					return state;
+				});
+				player_window_status.set('ACTIVE');
 			});
+		}
+	}
+
+	function play(time_stamp: number = 0) {
+		update((state) => {
+			state?.audio?.play().then(() => {
+				if (time_stamp && state.audio) state.audio.currentTime = time_stamp;
+			});
+			state.status = 'PLAYING';
+			return state;
+		});
+	}
+	function pause() {
+		update((state) => {
+			state?.audio?.pause();
+			state.status = 'PAUSED';
+			return state;
 		});
 	}
 
@@ -89,38 +123,57 @@ const new_player_state = () => {
 		if (show) {
 			update((state) => {
 				state.current_show = show;
-				state.status = 'ACTIVE';
+
 				state.audio?.play().then(() => {
 					// Wait for the audio to be ready to play before setting the new timestamp
 					if (state.audio) state.audio.currentTime = time_stamp;
 				});
 				return state;
 			});
+			player_window_status.set('ACTIVE');
 		}
 	}
 
-	function toggle_expand() {
-		update((state) => {
-			state.status = state.status === 'ACTIVE' ? 'EXPANDED' : 'ACTIVE';
-			return state;
+	function toggle_minimize() {
+		player_window_status.update((state) => {
+			return state !== 'MINI' ? 'MINI' : 'ACTIVE';
 		});
 	}
 
 	function close() {
+		player_window_status.set('HIDDEN');
 		update((state) => {
-			state.status = 'HIDDEN';
+			if (state.audio) {
+				state.audio.pause();
+				state.audio.src = '';
+				state.audio.crossOrigin = null;
+				state.audio.currentTime = 0;
+			}
+
+			state.current_show = null;
+			state.playing = false;
+			state.currentTime = 0;
+			state.status = 'INITIAL';
+
 			return state;
 		});
+	}
+
+	function minimize() {
+		player_window_status.set('MINI');
 	}
 
 	return {
 		subscribe,
 		update,
-		play_show,
-		toggle_expand,
+		start_show,
+		toggle_minimize,
 		close,
 		update_time,
-		set
+		set,
+		minimize,
+		pause,
+		play
 	};
 };
 
