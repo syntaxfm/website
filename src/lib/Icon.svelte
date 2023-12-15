@@ -14,8 +14,12 @@
 		| 'github'
 		| 'discord'
 		| 'tiktok'
-		| 'youtube'
+		| 'facebook'
+		| 'linkedin'
+		| 'link'
 		| 'edit'
+		| 'code'
+		| 'youtube'
 		| 'spotify'
 		| 'apple-podcasts'
 		| 'minimize'
@@ -358,6 +362,44 @@
 			fill-rule="evenodd"
 			clip-rule="evenodd"
 			d="M2.22 5.22a.75.75 0 0 0 0 1.06l5.252 5.252a.75.75 0 0 0 1.06 0l5.252-5.252a.75.75 0 1 0-1.06-1.06L8.001 9.94 3.28 5.22a.75.75 0 0 0-1.06 0Z"
+			fill="currentColor"
+		/></svg
+	>
+{/if}
+{#if name === 'facebook'}
+	<svg xmlns="http://www.w3.org/2000/svg" style="width: var(--icon_size, 16px);" viewBox="0 0 24 24"
+		><path
+			fill="currentColor"
+			d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95"
+		/></svg
+	>
+{/if}
+{#if name === 'code'}
+	<svg style="width: var(--icon_size, 16px);" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
+		><path
+			fill-rule="evenodd"
+			clip-rule="evenodd"
+			d="M9.424 2.023a.75.75 0 0 1 .556.904L7.48 13.42a.75.75 0 0 1-1.46-.348L8.52 2.58a.75.75 0 0 1 .904-.556ZM11.16 4.22a.75.75 0 0 1 1.06 0l3.25 3.25L16 8l-.53.53-3.25 3.25a.75.75 0 1 1-1.06-1.06L13.88 8l-2.72-2.72a.75.75 0 0 1 0-1.06ZM4.84 5.28a.75.75 0 1 0-1.06-1.06L.53 7.47 0 8l.53.53 3.25 3.25a.75.75 0 0 0 1.06-1.06L2.12 8l2.72-2.72Z"
+			fill="currentColor"
+		/></svg
+	>
+{/if}
+{#if name === 'link'}
+	<svg style="width: var(--icon_size, 16px);" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
+		><path
+			fill-rule="evenodd"
+			clip-rule="evenodd"
+			d="M9.929 3.132a2.078 2.078 0 1 1 2.94 2.94l-.65.648a.75.75 0 0 0 1.061 1.06l.649-.648a3.579 3.579 0 0 0-5.06-5.06L6.218 4.72a3.578 3.578 0 0 0 0 5.06.75.75 0 0 0 1.061-1.06 2.078 2.078 0 0 1 0-2.94L9.93 3.132Zm-.15 3.086a.75.75 0 0 0-1.057 1.064c.816.81.818 2.13.004 2.942l-2.654 2.647a2.08 2.08 0 0 1-2.94-2.944l.647-.647a.75.75 0 0 0-1.06-1.06l-.648.647a3.58 3.58 0 0 0 5.06 5.066l2.654-2.647a3.575 3.575 0 0 0-.007-5.068Z"
+			fill="currentColor"
+		/></svg
+	>
+{/if}
+{#if name === 'linkedin'}
+	<svg style="width: var(--icon_size, 16px);" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
+		><path
+			fill-rule="evenodd"
+			clip-rule="evenodd"
+			d="M3 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H3Zm1.102 4.297a1.195 1.195 0 1 0 0-2.39 1.195 1.195 0 0 0 0 2.39Zm1 7.516V6.234h-2v6.579h2ZM6.43 6.234h2v.881c.295-.462.943-1.084 2.148-1.084 1.438 0 2.219.953 2.219 2.766 0 .087.008.484.008.484v3.531h-2v-3.53c0-.485-.102-1.438-1.18-1.438-1.079 0-1.17 1.198-1.195 1.982v2.986h-2V6.234Z"
 			fill="currentColor"
 		/></svg
 	>

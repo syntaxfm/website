@@ -7,14 +7,14 @@
 
 	// This is where hotkeys are defined
 	let hotkeys = {
-		// playPause: {
-		// 	description: 'Play / pause the audio',
-		// 	trigger: {
-		// 		key: ' ', // the space key
-		// 		preventDefault: true,
-		// 		callback: handlePlayPause
-		// 	}
-		// },
+		playPause: {
+			description: 'Play / pause the audio',
+			trigger: {
+				key: ' ', // the space key
+				preventDefault: true,
+				callback: handlePlayPause
+			}
+		},
 		minimize: {
 			description: 'Minimize / expand the player',
 			trigger: {

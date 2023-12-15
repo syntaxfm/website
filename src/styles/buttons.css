@@ -1,7 +1,7 @@
 @layer base {
 	.theme-wrapper {
 		--button-bg: var(--primary);
-		--button-color: var(--yellow-8);
+		--button-fg: var(--yellow-8);
 		--button-border-size: 1.5px;
 	}
 
@@ -18,7 +18,7 @@
 		border-radius: var(--brad);
 		background: var(--button-bg);
 		width: auto;
-		color: var(--button-color);
+		color: var(--button-fg);
 		display: inline-flex;
 		justify-content: center;
 		align-items: center;
@@ -32,24 +32,24 @@
 
 	:is(button, .button).ghost {
 		--button-bg: transparent;
-		--button-color: var(--primary);
+		--button-fg: var(--primary);
 		box-shadow: inset 0 0 0 var(--button-border-size) var(--primary);
 		&:hover {
 			--button-bg: var(--primary);
-			--button-color: var(--black);
+			--button-fg: var(--black);
 		}
 	}
 
 	:is(button, .button).subtle {
 		--button-bg: var(--bg-1);
-		--button-color: var(--fg);
+		--button-fg: var(--fg);
 		font-weight: 400;
 		box-shadow: inset 0 0 0 1px var(--subtle);
 	}
 
 	:is(button, .button).warning {
 		--button-bg: var(--red);
-		--button-color: var(--white);
+		--button-fg: var(--white);
 		box-shadow: inset 0 0 0 var(--button-border-size) oklch(var(--blacklch) / 0.2);
 	}
 
@@ -61,7 +61,7 @@
 
 	:is(button, .button).play {
 		--button-bg: linear-gradient(to right, var(--success), var(--accent));
-		--button-color: var(--black-8);
+		--button-fg: var(--black-8);
 		font-size: var(--font-size-md);
 		padding: 10px 20px;
 		box-shadow: inset 0 0 0 var(--button-border-size) oklch(var(--blacklch) / 0.2);
@@ -74,7 +74,7 @@
 
 	:is(button, .button).close {
 		--button-bg: var(--red);
-		--button-color: var(--white);
+		--button-fg: var(--white);
 		--size: 30px;
 		font-size: var(--font-size-md);
 		width: var(--size);

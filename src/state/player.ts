@@ -47,6 +47,7 @@ interface PlayerState {
 
 // Having this state in the same writeable was causing hiccups ins the audio when updating the store
 export const player_window_status = writable<'HIDDEN' | 'ACTIVE' | 'MINI'>('HIDDEN');
+export const episode_share_status = writable<boolean>(false);
 
 const new_player_state = () => {
 	const player_state = writable<PlayerState>({

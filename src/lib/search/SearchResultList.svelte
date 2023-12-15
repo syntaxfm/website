@@ -101,9 +101,11 @@
 		background: var(--bg);
 		border: 2px solid var(--fg);
 		color: var(--fg);
-		padding: 5px;
+		padding: 5px 3px 5px 5px;
 		box-shadow: none;
-		--icon_size: 22px;
+		--icon_size: 14px;
+		height: 31px;
+		width: 31px;
 		&:hover {
 			color: var(--accent);
 		}

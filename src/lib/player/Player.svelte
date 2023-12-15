@@ -3,13 +3,12 @@
 	import AlbumArt from './AlbumArt.svelte';
 	import get_show_path from '$utilities/slug';
 	import Icon from '../Icon.svelte';
-
-	$: console.log($player_window_status);
+	import ShareButton from '../share/ShareButton.svelte';
 </script>
 
 <section class={`player ${$player_window_status}`}>
 	<div class="window-controls">
-		<button class="share" on:click={player.close}><Icon name="share" /></button>
+		<ShareButton />
 		<button class="minimize" on:click={player.toggle_minimize}><Icon name="minimize" /></button>
 		<button class="close" on:click={player.close}>×</button>
 	</div>
@@ -250,6 +249,6 @@
 	}
 	button {
 		--button-bg: transparent;
-		--button-color: var(--fg);
+		--button-fg: var(--fg);
 	}
 </style>

@@ -8,6 +8,7 @@
 	import Tabs from '$lib/Tabs.svelte';
 	import { theme } from '$state/theme';
 	import wait from 'waait';
+	import ShareWindow from '$lib/share/ShareWindow.svelte';
 	export let data;
 	$: ({ show } = data);
 
@@ -77,8 +78,11 @@
 		<div class="show-actions-flex">
 			<button on:click={play_show} data-testid="play-show">
 				<Icon
+					--icon_size="12px"
 					aria-hidden="true"
-					name="play{$player.current_show?.number === show.number ? 'ing' : ''}"
+					name="play{$player.current_show?.number === show.number && $player.status === 'PLAYING'
+						? 'ing'
+						: ''}"
 				/>
 				Play{$player.current_show?.number === show.number ? 'ing' : ''} Episode {show.number}
 			</button>
@@ -123,6 +127,8 @@
 <section class="layout full" on:click={handleClick}>
 	<slot />
 </section>
+
+<ShareWindow {show} />
 
 <style lang="postcss">
 	@layer theme {
