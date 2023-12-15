@@ -60,7 +60,7 @@ const new_player_state = () => {
 	});
 	const { update, subscribe, set } = player_state;
 
-	async function start_show(show: Show) {
+	async function start_show(show: Show, start_time = 0) {
 		// Get current state
 		const current_state = get(player_state);
 		if (current_state.status === 'PLAYING') {
@@ -82,8 +82,7 @@ const new_player_state = () => {
 						// Wait for the audio to be ready to play
 						state.audio.addEventListener('loadedmetadata', () => {
 							if (state.audio) {
-								state.audio.currentTime = 0;
-								resolve(play());
+								resolve(play(start_time));
 							}
 						});
 					}
@@ -95,9 +94,11 @@ const new_player_state = () => {
 		}
 	}
 
-	function play() {
+	function play(time_stamp: number = 0) {
 		update((state) => {
-			state?.audio?.play();
+			state?.audio?.play().then(() => {
+				if (time_stamp && state.audio) state.audio.currentTime = time_stamp;
+			});
 			state.status = 'PLAYING';
 			return state;
 		});

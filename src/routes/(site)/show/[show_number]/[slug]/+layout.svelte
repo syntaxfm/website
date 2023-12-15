@@ -9,8 +9,9 @@
 	import { theme } from '$state/theme';
 	import wait from 'waait';
 	import ShareWindow from '$lib/share/ShareWindow.svelte';
+	import { time_param_to_seconds } from '$/utilities/time_param_to_seconds.js';
 	export let data;
-	$: ({ show } = data);
+	$: ({ show, time_start } = data);
 
 	async function handleClick(e: Event) {
 		const { target } = e;
@@ -41,7 +42,7 @@
 	}
 
 	function play_show() {
-		player.start_show(show);
+		player.start_show(show, time_param_to_seconds(time_start));
 	}
 </script>
 

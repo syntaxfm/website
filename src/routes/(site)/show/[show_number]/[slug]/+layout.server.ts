@@ -72,6 +72,7 @@ export const load = async function ({ params, locals, url }) {
 			...show,
 			show_notes: with_h3_body
 		} as ShowTemp & Show,
+		time_start: url.searchParams.get('t') || '0',
 		meta: {
 			title: `${show?.title} - Syntax #${show_number}`,
 			image: `${url.protocol}//${url.host}/og/${show_number}.jpg`,
