@@ -430,7 +430,7 @@
 
 <style>
 	svg {
-		height: var(--icon-size, 16px);
+		height: var(--icon_size, 16px);
 	}
 	@keyframes pulse {
 		0% {

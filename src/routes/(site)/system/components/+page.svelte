@@ -7,3 +7,11 @@
 </script>
 
 <ComponentWindow Component={comp} />
+<div class="content">
+	<iframe
+		scrolling="no"
+		src="/embed/600"
+		title="Show Embed"
+		style="width: 100%; height: 230px; max-width: 1200px; border: 1px solid black"
+	/>
+</div>
