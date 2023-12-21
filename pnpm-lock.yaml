@@ -1,9 +1,5 @@
 lockfileVersion: '6.0'
 
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
-
 dependencies:
   '@anthropic-ai/sdk':
     specifier: ^0.6.2
@@ -41,6 +37,9 @@ dependencies:
   '@sveltejs/adapter-vercel':
     specifier: ^3.0.3
     version: 3.0.3(@sveltejs/kit@1.27.2)
+  '@types/density-clustering':
+    specifier: ^1.3.3
+    version: 1.3.3
   '@upstash/redis':
     specifier: ^1.24.3
     version: 1.24.3
@@ -50,6 +49,9 @@ dependencies:
   date-fns:
     specifier: ^2.30.0
     version: 2.30.0
+  density-clustering:
+    specifier: ^1.3.0
+    version: 1.3.0
   flexsearch:
     specifier: ^0.7.31
     version: 0.7.31
@@ -69,8 +71,8 @@ dependencies:
     specifier: ^4.1.5
     version: 4.1.5
   openai:
-    specifier: ^3.3.0
-    version: 3.3.0
+    specifier: ^4.24.0
+    version: 4.24.0
   puppeteer-core:
     specifier: ^21.4.1
     version: 21.4.1
@@ -113,6 +115,9 @@ dependencies:
   unified:
     specifier: ^11.0.4
     version: 11.0.4
+  vector-cosine-similarity:
+    specifier: ^1.8.0
+    version: 1.8.0
   waait:
     specifier: ^1.0.5
     version: 1.0.5
@@ -1406,6 +1411,10 @@ packages:
       '@types/ms': 0.7.31
     dev: false
 
+  /@types/density-clustering@1.3.3:
+    resolution: {integrity: sha512-p2zEz57kHxWVg39XZ9QQVW6ity4rC3/1cCeLqm2eqqomvOrf8CFYaw7jO8gdYuchO4532ak0Z0f/vBr9irwG/w==}
+    dev: false
+
   /@types/estree@1.0.3:
     resolution: {integrity: sha512-CS2rOaoQ/eAgAfcTfq6amKG7bsN+EMcgGY4FAFQdvSj2y1ixvOZTUA9mOtCai7E1SYu283XNw7urKK30nP3wkQ==}
 
@@ -1934,14 +1943,6 @@ packages:
     engines: {node: '>= 0.4'}
     dev: false
 
-  /axios@0.26.1:
-    resolution: {integrity: sha512-fPwcX4EvnSHuInCMItEhAGnaSEXRBjtzh9fOtsE6E1G6p7vl7edEeZe11QHf18+6+9gR5PbKV/sGKNaD8YaMeA==}
-    dependencies:
-      follow-redirects: 1.15.3
-    transitivePeerDependencies:
-      - debug
-    dev: false
-
   /axobject-query@3.2.1:
     resolution: {integrity: sha512-jsyHu61e6N4Vbz/v18DHwWYKK0bSWLqn47eeDSKPB7m8tqMHF9YJ+mhIk2lVteyZrY8tnSj/jHOv4YiTCuCJgg==}
     dependencies:
@@ -2414,6 +2415,10 @@ packages:
 
   /delegates@1.0.0:
     resolution: {integrity: sha512-bd2L678uiWATM6m5Z1VzNCErI3jiGzt6HGY8OVICs40JQq/HALfbyNJmp0UDakEY4pMMaN0Ly5om/B1VI/+xfQ==}
+    dev: false
+
+  /density-clustering@1.3.0:
+    resolution: {integrity: sha512-icpmBubVTwLnsaor9qH/4tG5+7+f61VcqMN3V3pm9sxxSCt2Jcs0zWOgwZW9ARJYaKD3FumIgHiMOcIMRRAzFQ==}
     dev: false
 
   /dequal@2.0.3:
@@ -4677,13 +4682,21 @@ packages:
     dependencies:
       wrappy: 1.0.2
 
-  /openai@3.3.0:
-    resolution: {integrity: sha512-uqxI/Au+aPRnsaQRe8CojU0eCR7I0mBiKjD3sNMzY6DaC1ZVrc85u98mtJW6voDug8fgGN+DIZmTDxTthxb7dQ==}
+  /openai@4.24.0:
+    resolution: {integrity: sha512-h8fsas4lu0ul18oDzFIZpEQryh2SJEUJWanyfEwjME/klcKWZM/blDz2cKiT+aFBqPJzcYdCUj/8E7n20f0jEw==}
+    hasBin: true
     dependencies:
-      axios: 0.26.1
-      form-data: 4.0.0
+      '@types/node': 18.18.8
+      '@types/node-fetch': 2.6.6
+      abort-controller: 3.0.0
+      agentkeepalive: 4.5.0
+      digest-fetch: 1.3.0
+      form-data-encoder: 1.7.2
+      formdata-node: 4.4.1
+      node-fetch: 2.7.0
+      web-streams-polyfill: 3.2.1
     transitivePeerDependencies:
-      - debug
+      - encoding
     dev: false
 
   /optionator@0.9.3:
@@ -6526,6 +6539,10 @@ packages:
       spdx-expression-parse: 3.0.1
     dev: false
 
+  /vector-cosine-similarity@1.8.0:
+    resolution: {integrity: sha512-wBVLmJX/Mh/9Jw6MNhVWP4w/cYCLvTjFifKP3io6OaKZrSPL9d+pS9u5EIYVF6CdtMsa5JgHu0eIyhhOkVoGog==}
+    dev: false
+
   /vfile-location@5.0.2:
     resolution: {integrity: sha512-NXPYyxyBSH7zB5U6+3uDdd6Nybz6o6/od9rk8bp9H8GR3L+cm/fC0uUTbqBmUTnMCUDslAGBOIKNfvvb+gGlDg==}
     dependencies:
@@ -6910,3 +6927,7 @@ packages:
       which: 3.0.1
       yaml: 2.3.2
     dev: false
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false

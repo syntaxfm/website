@@ -1,7 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
 // TODO remove this ts-nocheck. I've added this until this is more complete or confirmed to be complete
-import { Configuration, type CreateChatCompletionRequest, OpenAIApi } from 'openai';
+import { OpenAI } from 'openai';
 import { createCondensePrompt, summarizePrompt, summarizePrompt2 } from './prompts';
 import {
 	SlimUtterance,
@@ -20,12 +19,12 @@ const TOKEN_INPUT_LIMIT = TOKEN_LIMIT - COMPLETION_TOKEN_IDEAL;
 export const MODEL = 'gpt-4';
 export const EMBEDDING_MODEL = 'text-embedding-ada-002';
 export const CONDENSE_THRESHOLD = 100;
-const configuration = new Configuration({
-	apiKey: process.env.OPENAI_API_KEY
-});
+
 import type { AINoteSelect, AIPodcastSummaryResponse } from './queries';
 import { anthropic_completion, convert_openai_to_anthropic } from './anthropic';
-export const openai = new OpenAIApi(configuration);
+export const openai = new OpenAI({
+	apiKey: process.env.OPENAI_API_KEY
+});
 
 export async function condense(
 	transcript: string,
@@ -66,7 +65,7 @@ export async function condense(
 				return Promise.resolve(utterance);
 			}
 			// If it's over 50 chars, condense it via openAI
-			const input: CreateChatCompletionRequest = {
+			const input: OpenAI.ChatCompletionCreateParams = {
 				model: 'gpt-3.5-turbo', // Summarize
 				messages: [
 					// { "role": "system", "content": `You are a helpful service that condenses text.` },
@@ -77,18 +76,18 @@ export async function condense(
 				// "temperature": 0.3
 			};
 			console.log(`Condensing`, index, `of`, slimUtterances.length);
-			const completion = await openai.createChatCompletion(input).catch((err) => {
+			const completion = await openai.chat.completions.create(input).catch((err) => {
 				// Catch the error in transcribing so we can at least save the utterance without the condensed transcript
 				console.log(`❗️ Error Condensing`, index, `of`, slimUtterances.length);
 				console.dir(err.response.data);
 				console.dir(err.response.headers);
 			});
-			const condensed = completion?.data?.choices?.at(0)?.message?.content;
+			const condensed = completion?.choices?.at(0)?.message?.content;
 			// Inject the condensed transcript into the utterance
 			if (condensed) {
 				utterance.condensedTranscript = condensed;
 			}
-			if (condensed.length > utterance.transcript.length) {
+			if (condensed && condensed.length > utterance.transcript.length) {
 				console.log(`Condensed transcript is longer than original transcript.
         Condensed: ${condensed}
         Original: ${utterance.transcript}
@@ -163,7 +162,7 @@ export async function generate_ai_notes(
 		.match(/\[([^\[]+)\](\(.*\))/g)
 		.filter((link) => link.includes('http'));
 
-	const input: CreateChatCompletionRequest = {
+	const input: OpenAI.ChatCompletionCreateParams = {
 		// model: 'gpt-4',
 		model: 'gpt-3.5-turbo-16k',
 		temperature: 0,
@@ -198,10 +197,10 @@ export async function generate_ai_notes(
 	}
 	// OpenAI
 	console.log(`Using openai for ${show.number}`);
-	const completion = await openai.createChatCompletion(input).catch((err) => {
+	const completion = await openai.chat.completions.create(input).catch((err) => {
 		console.dir(err.response.data.error, { depth: null });
 	});
-	const maybeJSON = completion.data.choices.at(0)?.message?.content;
+	const maybeJSON = completion?.choices?.at(0)?.message?.content;
 	console.log(maybeJSON);
 	const parsed = JSON.parse(maybeJSON || '') as AIPodcastSummaryResponse;
 	return { ...parsed, provider: 'gpt3.5' };

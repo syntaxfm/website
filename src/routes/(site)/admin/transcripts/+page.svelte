@@ -4,10 +4,30 @@
 	import { ActionResult } from '@sveltejs/kit';
 	import type { PageData } from './$types';
 	import { format } from 'date-fns';
+	import FormWithLoader from '$/lib/FormWithLoader.svelte';
 
 	export let data: PageData;
-	$: ({ transcripts } = data);
+	$: ({ transcripts, utterances_with_embeddings } = data);
+	$: utterance_total = transcripts.map((t) => t._count.utterances).reduce((a, b) => a + b, 0);
 </script>
+
+<h4>Embeddings</h4>
+
+<FormWithLoader global={false} action="?/fetch_embedding" method="post" let:loading>
+	<button type="submit">Fetch{loading ? 'ing' : ''} an Embedding</button>
+</FormWithLoader>
+<FormWithLoader global={false} action="?/cluster_embeddings" method="post" let:loading>
+	<button type="submit">Cluster{loading ? 'ing' : ''} an Embedding</button>
+</FormWithLoader>
+<FormWithLoader global={false} action="?/embed_entire_episode" method="post" let:loading>
+	<button type="submit">Embed{loading ? 'ing' : ''} Entire Episode!</button>
+</FormWithLoader>
+
+<p>
+	There are <mark>{utterances_with_embeddings.toLocaleString()}</mark> Utterances with Embeddings. {(
+		utterance_total - utterances_with_embeddings
+	).toLocaleString()} left to embed
+</p>
 
 <h4>Transcripts</h4>
 <div>

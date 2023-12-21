@@ -1,6 +1,7 @@
 generator client {
-  provider = "prisma-client-js"
-  seed     = "prisma/seed.ts"
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextIndex"]
+  seed            = "prisma/seed.ts"
   // output   = "../node_modules/.prisma/client"
 }
 
@@ -125,11 +126,14 @@ model Show {
 }
 
 model Transcript {
-  id          String                @id @default(uuid())
-  show        Show                  @relation(fields: [show_number], references: [number])
-  show_number Int                   @unique
-  utterances  TranscriptUtterance[]
-  ShowGuest   ShowGuest[]
+  id            String                @id @default(uuid())
+  show          Show                  @relation(fields: [show_number], references: [number])
+  show_number   Int                   @unique
+  utterances    TranscriptUtterance[]
+  ShowGuest     ShowGuest[]
+  // This is an average embedding of the entire transcript
+  embedding     String?               @db.Text
+  embedding_set Boolean               @default(false)
 }
 
 model TranscriptUtterance {
@@ -139,6 +143,9 @@ model TranscriptUtterance {
   confidence       Float
   channel          Int
   transcript_value String                    @db.Text
+  // Storing the DB embedding as a string - Mysql/planetscale doefsnt support embeddings yet, so we have to pull them out to analyize
+  embedding        String?                   @db.Text
+  embedding_set    Boolean                   @default(false)
   words            TranscriptUtteranceWord[]
   speaker          Int
   speakerName      String?
