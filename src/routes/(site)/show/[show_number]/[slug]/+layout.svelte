@@ -10,6 +10,7 @@
 	import wait from 'waait';
 	import ShareWindow from '$lib/share/ShareWindow.svelte';
 	import { time_param_to_seconds } from '$/utilities/time_param_to_seconds.js';
+	import ShareButton from '$/lib/share/ShareButton.svelte';
 	export let data;
 	$: ({ show, time_start } = data);
 
@@ -89,6 +90,7 @@
 			</button>
 			<span>or</span>
 			<ListenLinks {show} />
+			<ShareButton {show} />
 		</div>
 		<div>
 			<a class="icon" title="Download Episode" aria-label="Download" download href={show.url}>

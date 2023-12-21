@@ -26,5 +26,6 @@
 	button {
 		--button-bg: transparent;
 		--button-fg: var(--fg);
+		padding: 0;
 	}
 </style>

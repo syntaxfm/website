@@ -34,6 +34,9 @@
 	style="width: 100%; height: 230px; max-width: 1200px; border: 1px solid black"
 />
 		`);
+		toast.success(
+			`Copied embed HTML to clipboard, if you post, let us know, we're happy to share.`
+		);
 	}
 
 	$: time_stamp = share_at_ts ? `%3Ft%3D${toHMS(Math.trunc($player.audio?.currentTime))}` : ``;
