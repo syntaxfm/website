@@ -18,6 +18,7 @@
 
 		<nav class="desktop_nav content">
 			<a class={$page.url.pathname.startsWith('/shows') ? 'active' : ''} href="/shows">Shows</a>
+			<a class={$page.url.pathname.startsWith('/snackpack') ? 'active' : ''} href="/snackpack">Newsletter</a>
 			<a class={$page.url.pathname.startsWith('/about') ? 'active' : ''} href="/about">About</a>
 			<a class={$page.url.pathname.startsWith('/potluck') ? 'active' : ''} href="/potluck"
 				>Potluck Qs</a
