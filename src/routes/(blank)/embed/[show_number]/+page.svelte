@@ -73,7 +73,7 @@
 		</div>
 
 		<div class="embed-actions">
-			<ShareButton />
+			<ShareButton {show} />
 			<ListenLinks {show} />
 			<a
 				target="_blank"
