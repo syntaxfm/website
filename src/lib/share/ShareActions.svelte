@@ -25,6 +25,16 @@
 		navigator.clipboard.writeText(decodeURIComponent(link));
 		toast.success(`Copied show link to clipboard`);
 	}
+	function copy_embed() {
+		navigator.clipboard.writeText(`
+<iframe
+	scrolling="no"
+	src="https://syntax.fm/embed/${show.number}"
+	title="Show Embed"
+	style="width: 100%; height: 230px; max-width: 1200px; border: 1px solid black"
+/>
+		`);
+	}
 
 	$: time_stamp = share_at_ts ? `%3Ft%3D${toHMS(Math.trunc($player.audio?.currentTime))}` : ``;
 	$: share_url = `https%3A//syntax.fm/${show.number}${time_stamp}`;
@@ -39,7 +49,7 @@
 	</p>
 {/if}
 
-<button><Icon name="code" /> Embed</button>
+<button on:click={copy_embed}><Icon name="code" /> Embed</button>
 <button on:click={() => copy(share_url)}><Icon name="link" /> Link</button>
 <a
 	class="button share--x"
