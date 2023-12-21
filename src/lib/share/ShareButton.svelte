@@ -7,6 +7,7 @@
 			/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
 		if (is_possibly_mobile) {
+			// TODO make this share use a real link
 			navigator.share();
 		} else {
 			$episode_share_status = true;

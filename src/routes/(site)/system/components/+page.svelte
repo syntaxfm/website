@@ -7,3 +7,8 @@
 </script>
 
 <ComponentWindow Component={comp} />
+<iframe
+	src="/show/600/600th-episode-major-announcement-and-swag-giveaway/embed"
+	title="Show Embed"
+	style="width: 100%; max-width: 800px;"
+/>
