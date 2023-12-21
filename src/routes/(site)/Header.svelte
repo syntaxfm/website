@@ -37,6 +37,10 @@
 		background-color: var(--bg);
 		color: var(--fg);
 		padding: 0 0.5rem;
+		@media(--below_large) {
+			padding: 0;
+		}
+
 		&.transparent {
 			background: none;
 		}
@@ -74,6 +78,10 @@
 		display: flex;
 		padding: 10px 0;
 		gap: 10px;
+		@media (--below_large) {
+			gap: 5px;
+		}
+
 		justify-content: flex-end;
 		align-items: center;
 		.transparent & {
@@ -85,6 +93,9 @@
 			text-decoration: none;
 			background: rgba(255, 255, 255, 0.0786987545689);
 			padding: 10px 20px;
+			@media (--below_large) {
+				padding: 8px 16px;
+			}
 			border: 0;
 			border-radius: 20px;
 			align-items: center;
