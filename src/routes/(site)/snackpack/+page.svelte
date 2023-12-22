@@ -8,7 +8,7 @@
 	<div style:margin-top="2rem">
 		<h1 class="h3 lines">Syntax Snack Pack</h1>
 		<p class="center">Wanna be the <strong>{data.count}</strong> coolest person in the world?</p>
-		<NewsletterForm />
+		<NewsletterForm show_logo={false}/>
 		<div class="center">
 			<h2 class="lines">Past Issues</h2>
 			<p class="readable center">

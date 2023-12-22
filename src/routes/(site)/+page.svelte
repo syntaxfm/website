@@ -32,12 +32,20 @@
 	</div>
 </section>
 
-<div class="zone layout full" style:--bg="var(--black)" style:--fg="var(--white)">
-	<NewsletterForm />
-</div>
+<section class="zone layout full" style:--bg="var(--black)" style:--fg="var(--white)">
+	<div class="newsletter-container">
+		<NewsletterForm />
+	</div>
+</section>
 
 <style>
 	section {
 		margin-top: 5rem;
+	}
+
+	.newsletter-container {
+		border: solid var(--border-size) var(--white);
+		margin-top: 2rem;
+		border-radius: var(--brad);
 	}
 </style>

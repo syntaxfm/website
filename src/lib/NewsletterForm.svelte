@@ -1,6 +1,9 @@
 <script lang="ts">
 	import Input from '$lib/forms/Input.svelte';
 	let is_hidden = false;
+
+	export let show_logo = true;
+
 	const FORM_ID = 5465361;
 	$: action = `https://app.convertkit.com/forms/${FORM_ID}/subscriptions`;
 
@@ -14,37 +17,64 @@
 </script>
 
 {#if !is_hidden}
-	<form
-		{action}
-		on:submit={submit}
-		method="post"
-		data-sv-form={FORM_ID}
-		data-uid="05d939b74d"
-		class="center readable"
-		target="_blank"
-		aria-labelledby="newsletter-form-label"
-	>
-		<h3 id="newsletter-form-label" class="h4">Join our newsletter</h3>
-		<p>
-			New Syntax content, tips & tricks, swag drops, and other sweet stuff to make your life as a
-			web developer even better.
-		</p>
-
-		<div class="newsletter">
-			<Input required type="email" label="Email" id="email_address" />
-			<button type="submit">Subscribe</button>
+	<div class="newsletter-layout">
+		{#if show_logo}
+		<div class="newsletter-logo">
+			<a href="/snackpack"><img src="/snackpack/snackpack-submark-logo-light-2.png" alt="Syntax Snack Pack Logo"/></a>
 		</div>
+		{/if}
+		<form
+			{action}
+			on:submit={submit}
+			method="post"
+			data-sv-form={FORM_ID}
+			data-uid="05d939b74d"
+			class="center readable"
+			target="_blank"
+			aria-labelledby="newsletter-form-label"
+		>
+			<h3 id="newsletter-form-label" class="h4">Join our newsletter</h3>
+			<p>
+				New Syntax content, tips & tricks, swag drops, and other sweet stuff to make your life as
+				a web developer even better.
+			</p>
 
-		<p class="text-sm">Dip at any time.</p>
-	</form>
+			<div class="newsletter">
+				<Input required type="email" label="Email" id="email_address" />
+				<button type="submit">Subscribe</button>
+			</div>
+
+			<p class="text-sm">Dip at any time.</p>
+		</form>
+	</div>
 {/if}
 
 <style lang="postcss">
 	@layer theme {
-		form {
+		.newsletter-layout {
+
 			container: newsletter-form / inline-size;
+			display: flex;
+			flex-flow: wrap;
+			justify-content: center;
+			flex-direction: row;
+
+			.newsletter-logo {
+				display: flex;
+				align-items: center;
+				flex: 0 0 250px;
+				margin: 2rem 0 2rem 2rem;
+				img {
+					width: 100%;
+				}
+			}
+		}
+
+		form {
+			flex: 1 0 500px;
 			text-align: center;
 			padding: 2rem;
+			/* max-width: 500px; */
 			> *:first-child {
 				margin-top: 0;
 			}
@@ -64,7 +94,15 @@
 			}
 		}
 
-		@container newsletter-form (width < 400px) {
+		@container newsletter-form (width < 600px) {
+			.newsletter-layout .newsletter-logo {
+				flex: 0 1 180px;
+				margin: 1rem 0 0 1rem;
+			}
+			form {
+				/* shrink form when small container */
+				flex: 1 1 100%;
+			}
 			p {
 				font-size: var(--font-size-sm);
 			}
@@ -78,7 +116,7 @@
 			}
 		}
 
-		@container newsletter-form (width > 600px) {
+		@container newsletter-form (width >= 600px) {
 			button {
 				width: auto;
 			}
