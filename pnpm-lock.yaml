@@ -44,6 +44,9 @@ dependencies:
   '@upstash/redis':
     specifier: ^1.24.3
     version: 1.24.3
+  chroma-js:
+    specifier: ^2.4.2
+    version: 2.4.2
   core-js:
     specifier: ^3.33.2
     version: 3.33.2
@@ -127,6 +130,9 @@ devDependencies:
   '@sveltejs/kit':
     specifier: ^1.27.2
     version: 1.27.2(svelte@4.2.2)(vite@4.5.1)
+  '@types/chroma-js':
+    specifier: ^2.4.3
+    version: 2.4.3
   '@types/core-js':
     specifier: ^2.5.7
     version: 2.5.7
@@ -1393,6 +1399,10 @@ packages:
     resolution: {integrity: sha512-VOVRLM1mBxIRxydiViqPcKn6MIxZytrbMpd6RJLIWKxUNr3zux8no0Oc7kJx0WAPIitgZ0gkrDS+btlqQpubpw==}
     dev: true
 
+  /@types/chroma-js@2.4.3:
+    resolution: {integrity: sha512-1ly5ly/7S/YF8aD7MxUQnFOZxdegimuOunJl0xDsLlguu5JrwuSTVGVH3UpIUlh6YauI0RMNT4cqjBonhgbdIQ==}
+    dev: true
+
   /@types/cookie@0.5.3:
     resolution: {integrity: sha512-SLg07AS9z1Ab2LU+QxzU8RCmzsja80ywjf/t5oqw+4NSH20gIGlhLOrBDm1L3PBWzPa4+wkgFQVZAjE6Ioj2ug==}
 
@@ -2154,6 +2164,10 @@ packages:
   /chownr@2.0.0:
     resolution: {integrity: sha512-bIomtDF5KGpdogkLd9VspvFzk9KfpyyGlS8YFVZl7TGPBHL5snIOnxeshwVgPteQ9b4Eydl+pVbIyE1DcvCWgQ==}
     engines: {node: '>=10'}
+    dev: false
+
+  /chroma-js@2.4.2:
+    resolution: {integrity: sha512-U9eDw6+wt7V8z5NncY2jJfZa+hUH8XEj8FQHgFJTrUFnJfXYf4Ml4adI2vXZOjqRDpFWtYVWypDfZwnJ+HIR4A==}
     dev: false
 
   /chromium-bidi@0.4.32(devtools-protocol@0.0.1191157):

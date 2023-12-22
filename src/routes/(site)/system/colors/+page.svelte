@@ -1,9 +1,10 @@
 <script lang="ts">
 	import toast from 'svelte-french-toast';
 	import ColorsInJs from './colors-in-js.svelte';
+	import { oklchToRgba, rgbaToHex } from '$/utilities/colors';
 
 	const COLORS = ['black', 'yellow', 'teal', 'green', 'red', 'purple'];
-	let is_oklch: false;
+	let type: 'VARIABLE' | 'OKLCH' | 'RGBA' | 'HEX';
 
 	function pick_color(index: number) {
 		if (index >= 5) {
@@ -14,12 +15,17 @@
 		return Math.abs(index - 9);
 	}
 
-	function copy_color(color: string) {
+	function copy_color(color: string, currentTarget: HTMLElement) {
 		let local_color = color;
-		if (is_oklch) {
+		if (type === 'OKLCH') {
 			local_color = getComputedStyle(document.documentElement).getPropertyValue(`--${color}`);
-		} else {
+		} else if (type === 'VARIABLE') {
 			local_color = `var(--${color})`;
+		} else if (type === 'RGBA') {
+			local_color = oklchToRgba(getComputedStyle(currentTarget).backgroundColor);
+		} else if (type === 'HEX') {
+			let oklch = oklchToRgba(getComputedStyle(currentTarget).backgroundColor);
+			local_color = rgbaToHex(oklch);
 		}
 
 		navigator.clipboard.writeText(local_color);
@@ -28,8 +34,12 @@
 </script>
 
 <label>
-	<input type="checkbox" bind:checked={is_oklch} />
-	Copy OKLCH value
+	<select bind:value={type} name="" id="">
+		<option value="HEX">HEX</option>
+		<option value="VARIABLE">Variable</option>
+		<option value="OKLCH">OKLCH</option>
+		<option value="RGBA">RGBA</option>
+	</select>
 </label>
 
 <section>
@@ -39,12 +49,13 @@
 				tabindex="0"
 				role="button"
 				on:keydown={(e) => {
+					let { currentTarget } = e;
 					if (e.key === 'Enter' || e.keyCode === 13) {
-						copy_color(color);
+						copy_color(color, currentTarget);
 					}
 				}}
 				class="primary box"
-				on:click={() => copy_color(color)}
+				on:click={({ currentTarget }) => copy_color(color, currentTarget)}
 				style={`--fg_demo_box_color: var(--${color})`}
 			>
 				{color}
@@ -54,11 +65,12 @@
 					tabindex="0"
 					role="button"
 					on:keydown={(e) => {
+						let { currentTarget } = e;
 						if (e.key === 'Enter' || e.keyCode === 13) {
-							copy_color(color);
+							copy_color(color, currentTarget);
 						}
 					}}
-					on:click={() => copy_color(`${color}-${index + 1}`)}
+					on:click={({ currentTarget }) => copy_color(`${color}-${index + 1}`, currentTarget)}
 					class={`box`}
 					style={`--fg_demo_color: var(--${color}-${pick_color(
 						index

@@ -28,6 +28,7 @@
 	"devDependencies": {
 		"@playwright/test": "^1.39.0",
 		"@sveltejs/kit": "^1.27.2",
+		"@types/chroma-js": "^2.4.3",
 		"@types/core-js": "^2.5.7",
 		"@types/js-cookie": "^3.0.5",
 		"@types/node": "^20.8.10",
@@ -73,6 +74,7 @@
 		"@svelte-put/shortcut": "^3.0.0",
 		"@sveltejs/adapter-vercel": "^3.0.3",
 		"@upstash/redis": "^1.24.3",
+		"chroma-js": "^2.4.2",
 		"core-js": "^3.33.2",
 		"date-fns": "^2.30.0",
 		"flexsearch": "^0.7.31",

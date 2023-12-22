@@ -11,6 +11,21 @@ export const load: PageServerLoad = async ({ locals, setHeaders }) => {
 					lte: new Date()
 				}
 			},
+			include: {
+				guests: {
+					select: {
+						Guest: true
+					}
+				},
+				aiShowNote: {
+					include: {
+						topics: true,
+						links: true,
+						summary: true,
+						tweets: true
+					}
+				}
+			},
 			orderBy: { number: 'desc' }
 		})
 	};

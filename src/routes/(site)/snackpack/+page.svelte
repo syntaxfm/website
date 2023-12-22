@@ -29,7 +29,7 @@
 	</div>
 </main>
 
-<style>
+<style lang="postcss">
 	p {
 		text-wrap: balance;
 	}

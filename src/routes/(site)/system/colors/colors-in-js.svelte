@@ -2,15 +2,17 @@
 	import { browser } from '$app/environment';
 	export let colors: [string, string][] = [['load', 'ing']];
 	if (browser) {
-		const variables = getComputedStyle(document.querySelector('.theme-wrapper'));
-		console.log(variables);
-		colors = Object.values(variables)
-			.filter((value) => {
-				return value.startsWith('--');
-			})
-			.map((variableName) => {
-				return [variableName, variables.getPropertyValue(variableName)];
-			});
+		const wrapper = document.querySelector('.theme-wrapper');
+		if (wrapper) {
+			const variables = getComputedStyle(wrapper);
+			colors = Object.values(variables)
+				.filter((value) => {
+					return value.startsWith('--');
+				})
+				.map((variableName) => {
+					return [variableName, variables.getPropertyValue(variableName)];
+				});
+		}
 	}
 </script>
 
@@ -20,6 +22,3 @@
 		<p style:background={key}>{val} {key}</p>
 	{/each}
 </div>
-
-<style>
-</style>
