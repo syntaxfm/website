@@ -12,20 +12,21 @@ This site is built on SvelteKit.
 
 ## Prerequisite
 
+Install Node - https://nodejs.org/en
+
 Install pnpm - https://pnpm.io/installation
 
 Install mysql
-
-Install Node - https://nodejs.org/en
 
 This site uses MySQL via Prisma, so you will need a valid MySQL connection string.
 
 ## Getting Started
 
-0. Read Prerequisites above ^^ before starting
+1. Read Prerequisites above ^^ before starting
+1. Copy `.env.example` to `.env` and specify env variables (needs at least `DATABASE_URL`)
 1. Run -> `pnpm preheat`
-2. Run -> `pnpm dev`
-3. Visit `http://localhost:5173`
+1. Run -> `pnpm dev`
+1. Visit `http://localhost:5173`
 
 ### Scripts
 
