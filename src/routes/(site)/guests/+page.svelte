@@ -62,11 +62,11 @@
 	</div>
 
 	<div class="guests">
-		{#each guests as guest}
+		{#each guests as guest, index}
 			<div class="guest">
 				<div>
 					<a href="/guest/{guest.name_slug}">
-						<img src="https://github.com/{guest.github || 'null'}.png" alt={guest.name} />
+						<img src="https://github.com/{guest.github || 'null'}.png" alt={guest.name} width="460" height="460" loading={index < 10 ? 'eager' : 'lazy'} />
 					</a>
 				</div>
 				<div class="info">
