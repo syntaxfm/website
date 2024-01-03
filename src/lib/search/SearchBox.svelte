@@ -292,7 +292,7 @@
 		border: none;
 		padding: 10px;
 		font-size: var(--font-size-md);
-		outline: none;
+		outline-color: transparent;
 		background-color: transparent;
 		color: var(--fg);
 		font-family: var(--body-font-family);
