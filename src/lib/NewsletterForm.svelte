@@ -20,7 +20,10 @@
 	<div class="newsletter-layout">
 		{#if show_logo}
 		<div class="newsletter-logo">
-			<a href="/snackpack"><img src="/snackpack/snackpack-submark-logo-light-2.png" alt="Syntax Snack Pack Logo"/></a>
+			<a href="/snackpack">
+				<img class="newsletter-nugs" src="/snackpack/snackpack-submark-nuggets.webp" alt="Syntax Snack Pack Logo"/>
+			</a>
+
 		</div>
 		{/if}
 		<form
@@ -64,8 +67,15 @@
 				align-items: center;
 				flex: 0 0 250px;
 				margin: 2rem 0 2rem 2rem;
+
+				/* use mask so that text can match foreground text color (--fg) */
 				img {
 					width: 100%;
+					mask-image: url(/snackpack/snackpack-submark-mask.webp);
+					mask-position: 0 0;
+					mask-size: 100% 100%;
+					background: var(--fg);
+					mask-type: alpha;
 				}
 			}
 		}
