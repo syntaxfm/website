@@ -122,6 +122,9 @@ export const load: PageServerLoad = async function ({ setHeaders, params, locals
 		typeof subs?.total_subscribers === 'number' ? formatNumber(subs.total_subscribers) : '';
 	return {
 		count,
-		issues
+		issues,
+		meta: {
+			title: 'Syntax Newsletter • Tips, tricks, swag drops and more'
+		}
 	};
 };
