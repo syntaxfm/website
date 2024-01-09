@@ -1,4 +1,5 @@
 <script lang="ts">
+	import NewsletterLogo from './newsletter/NewsletterLogo.svelte';
 	import Input from '$lib/forms/Input.svelte';
 	let is_hidden = false;
 
@@ -19,12 +20,11 @@
 {#if !is_hidden}
 	<div class="newsletter-layout">
 		{#if show_logo}
-		<div class="newsletter-logo">
-			<a href="/snackpack">
-				<img class="newsletter-nugs" src="/snackpack/snackpack-submark-nuggets.webp" alt="Syntax Snack Pack Logo"/>
-			</a>
-
-		</div>
+			<div class="newsletter-logo-container">
+				<a href="/snackpack">
+					<NewsletterLogo />
+				</a>
+			</div>
 		{/if}
 		<form
 			{action}
@@ -38,8 +38,8 @@
 		>
 			<h3 id="newsletter-form-label" class="h4">Join our newsletter</h3>
 			<p>
-				New Syntax content, tips & tricks, swag drops, and other sweet stuff to make your life as
-				a web developer even better.
+				New Syntax content, tips & tricks, swag drops, and other sweet stuff to make your life as a
+				web developer even better.
 			</p>
 
 			<div class="newsletter">
@@ -55,28 +55,17 @@
 <style lang="postcss">
 	@layer theme {
 		.newsletter-layout {
-
 			container: newsletter-form / inline-size;
 			display: flex;
 			flex-flow: wrap;
 			justify-content: center;
 			flex-direction: row;
 
-			.newsletter-logo {
+			.newsletter-logo-container {
 				display: flex;
 				align-items: center;
 				flex: 0 0 250px;
-				margin: 2rem 0 2rem 2rem;
-
-				/* use mask so that text can match foreground text color (--fg) */
-				img {
-					width: 100%;
-					mask-image: url(/snackpack/snackpack-submark-mask.webp);
-					mask-position: 0 0;
-					mask-size: 100% 100%;
-					background: var(--fg);
-					mask-type: alpha;
-				}
+				margin: 2rem;
 			}
 		}
 
