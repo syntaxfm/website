@@ -1,5 +1,6 @@
 <script>
 	import NewsletterForm from '$lib/NewsletterForm.svelte';
+	import NewsletterLogo from '$lib/newsletter/NewsletterLogo.svelte';
 	import { format } from 'date-fns';
 	export let data;
 </script>
@@ -7,7 +8,11 @@
 <main>
 	<div style:margin-top="2rem">
 		<h1 class="h3 lines">Syntax Snack Pack</h1>
+
 		<p class="center">Wanna be the <strong>{data.count}</strong> coolest person in the world?</p>
+		<div class="newsletter-logo-container">
+			<NewsletterLogo></NewsletterLogo>
+		</div>
 		<NewsletterForm show_logo={false}/>
 		<div class="center">
 			<h2 class="lines">Past Issues</h2>
@@ -49,5 +54,11 @@
 				text-decoration: underline;
 			}
 		}
+	}
+	.newsletter-logo-container {
+		width: 300px;
+		/* center */
+		margin: 0 auto;
+		margin-top: 2rem;
 	}
 </style>
