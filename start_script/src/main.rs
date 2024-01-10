@@ -1,6 +1,6 @@
 use std::{env, fs::{self, File, OpenOptions}, process::{Command}, path::Path, collections::{HashSet, HashMap}};
 use std::io::{ BufRead, Write, BufReader, self};
-
+use std::str;
 use serde_json::Value;
 use dotenv::dotenv;
 use mysql::{self, Pool, OptsBuilder};
@@ -103,13 +103,57 @@ fn get_db_ops() -> OptsBuilder {
         .db_name(Some(database))
 }
 
-// Function to check if 'Show' table has data
-fn check_show_table_data() -> Result<(), Box<dyn std::error::Error>> {
-    let opts = get_db_ops();
-    let pool = Pool::new(opts)?;
-    let mut conn = pool.get_conn()?;
 
-    let count: i32 = conn.query_first("SELECT COUNT(*) FROM `Show`")?.unwrap_or(0);
+
+fn get_db_command_prefix() -> String {
+    dotenv().ok();
+    let database_url = env::var("DATABASE_URL").unwrap();
+    let url = Url::parse(&database_url).expect("Invalid database URL");
+
+    let username = url.username();
+    let password = url.password().unwrap_or("");
+    let host = url.host_str().expect("Database host is required");
+    let port = url.port().unwrap_or(3306);
+    let database = url.path().trim_start_matches('/');
+
+    let command = format!(
+        "mysql -h {host} -u {username} -p{password} {database}",
+        host=host, username=username, password=password, database=database
+    );
+		
+		return command
+}
+
+fn parse_count_from_output(output: &str) -> Result<i32, Box<dyn std::error::Error>> {
+    let lines: Vec<&str> = output.split('\n').collect();
+    if let Some(&count_line) = lines.get(1) {  // Typically, the count is on the second line of the output
+        let count: i32 = count_line.trim().parse()?;
+        Ok(count)
+    } else {
+        Err("Failed to parse the count from the output".into())
+    }
+}
+
+
+// Function to check if 'Show' table has data
+// Modified function to check if 'Show' table has data using the mysql command
+fn check_show_table_data() -> Result<(), Box<dyn std::error::Error>> {
+    let mysql_command_prefix = get_db_command_prefix();
+    let check_data_command = format!("{} -e 'SELECT COUNT(*) FROM `Show`'", mysql_command_prefix);
+    let output = Command::new("sh")
+		.arg("-c")
+		.arg(&check_data_command)
+		.output()?;
+	
+    if !output.status.success() {
+        let stderr = str::from_utf8(&output.stderr)?;
+        return Err(Box::new(std::io::Error::new(std::io::ErrorKind::Other, stderr)));
+    }
+
+		let output_str = str::from_utf8(&output.stdout)?;
+		let count = parse_count_from_output(output_str)?;
+
+
     if count > 0 {
         println!("✅ Data Check");
         Ok(())

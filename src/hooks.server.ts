@@ -1,13 +1,13 @@
 // * Server Side Middleware
 // https://kit.svelte.dev/docs/hooks
 
-import * as Sentry from '@sentry/sveltekit';
+// import * as Sentry from '@sentry/sveltekit';
 import { sequence } from '@sveltejs/kit/hooks';
 import { form_data } from 'sk-form-data';
 import { PrismaClient } from '@prisma/client';
 import { redirect, type Handle } from '@sveltejs/kit';
 import { find_user_by_access_token } from './server/auth/users';
-import { dev } from '$app/environment';
+// import { dev } from '$app/environment';
 import get_show_path from '$utilities/slug';
 import { Redis } from '@upstash/redis';
 import { UPSPLASH_TOKEN, UPSPLASH_URL } from '$env/static/private';
@@ -30,17 +30,17 @@ console.log(`🤓 Cache Status... ${cache_status}`);
 // RUNS ONCE ON FILE LOAD
 export const prisma_client = new PrismaClient();
 
-Sentry.init({
-	release: `syntax@${__VER__}`,
-	dsn: 'https://ea134756b8f244ff99638864ce038567@o4505358925561856.ingest.sentry.io/4505358945419264',
-	tracesSampleRate: 1,
-	// profilesSampleRate: 1.0, // Profiling sample rate is relative to tracesSampleRate
-	environment: dev ? 'development' : 'production',
-	integrations: [
-		// new ProfilingIntegration(),
-		new Sentry.Integrations.Prisma({ client: prisma_client })
-	]
-});
+// Sentry.init({
+// 	release: `syntax@${__VER__}`,
+// 	dsn: 'https://ea134756b8f244ff99638864ce038567@o4505358925561856.ingest.sentry.io/4505358945419264',
+// 	tracesSampleRate: 1,
+// 	// profilesSampleRate: 1.0, // Profiling sample rate is relative to tracesSampleRate
+// 	environment: dev ? 'development' : 'production',
+// 	integrations: [
+// 		// new ProfilingIntegration(),
+// 		new Sentry.Integrations.Prisma({ client: prisma_client })
+// 	]
+// });
 
 // * END START UP
 
@@ -93,7 +93,7 @@ export const redirects: Handle = async function ({ event, resolve }) {
 	if (!show) return resolve(event);
 	const url = get_show_path(show);
 	// Redirect to the page for this show
-	redirect(302, url);
+	throw redirect(302, url + event.url.search);
 };
 
 export const document_policy: Handle = async function ({ event, resolve }) {
@@ -106,11 +106,11 @@ export const document_policy: Handle = async function ({ event, resolve }) {
 
 // Wraps requests in this sequence of hooks
 export const handle: Handle = sequence(
-	Sentry.sentryHandle(),
+	// Sentry.sentryHandle(),
 	prisma,
 	auth,
 	form_data,
 	redirects,
 	document_policy
 );
-export const handleError = Sentry.handleErrorWithSentry();
+// export const handleError = Sentry.handleErrorWithSentry();

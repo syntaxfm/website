@@ -1,6 +1,6 @@
 ---
 number: 707
-title: 2023 Predictions Results
+title: What happened in JS, CSS And Web Dev in 2023? 2023 Predictions Results! 
 date: 1703070000818
 url: https://traffic.libsyn.com/syntax/Syntax_-_707.mp3
 ---

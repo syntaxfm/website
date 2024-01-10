@@ -109,11 +109,22 @@ export const load: PageServerLoad = async function ({ setHeaders, params, locals
 		.then((res) => res.json())
 		.catch(console.error);
 
-	const issues = await fetchBroadcastList();
+	const issues = env.CONVERT_KIT_SECRET
+		? await fetchBroadcastList()
+		: [
+				{
+					published_at: Date.now(),
+					subject: 'ConvertKit API key not set (this is a fake issue)',
+					id: 1337
+				}
+		  ];
 	const count =
 		typeof subs?.total_subscribers === 'number' ? formatNumber(subs.total_subscribers) : '';
 	return {
 		count,
-		issues
+		issues,
+		meta: {
+			title: 'Syntax Newsletter • Tips, tricks, swag drops and more'
+		}
 	};
 };

@@ -22,7 +22,7 @@
 {/if}
 
 {#if host.url}
-	<a href={`https://github.com/${host.url}`} target="_blank" class="social-icon">
+	<a href={host.url} target="_blank" class="social-icon">
 		<Icon name="monitor" title={`${host.name}'s website'`} />
 	</a>
 {/if}

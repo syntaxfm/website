@@ -1,7 +1,12 @@
 <script lang="ts">
 	import CD from './CD.svelte';
 	import Album from './Album.svelte';
-	import { player } from '$state/player';
+	import { player, player_window_status } from '$state/player';
+	import { PUBLIC_URL } from '$env/static/public';
+	import { Show } from '@prisma/client';
+
+	export let is_link = false;
+	export let show: Show = null;
 
 	let isAnimating = true;
 	let image_index = 0;
@@ -28,13 +33,27 @@
 	}
 </script>
 
-<div class="art-wrapper" on:click={toggle_sicman} tabindex="0" on:keydown={keydown} role="button">
-	{#if image_index === 0}
-		<Album />
+{#if $player_window_status !== 'MINI'}
+	{#if is_link}
+		<a class="art-wrapper" href="https://{PUBLIC_URL}/{show.number}">
+			<Album />
+		</a>
 	{:else}
-		<CD spinning={isAnimating} />
+		<div
+			class="art-wrapper"
+			on:click={toggle_sicman}
+			tabindex="0"
+			on:keydown={keydown}
+			role="button"
+		>
+			{#if image_index === 0}
+				<Album />
+			{:else}
+				<CD spinning={isAnimating} />
+			{/if}
+		</div>
 	{/if}
-</div>
+{/if}
 
 <style lang="postcss">
 	.art-wrapper {

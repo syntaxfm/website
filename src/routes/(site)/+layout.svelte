@@ -7,6 +7,7 @@
 	import Footer from './Footer.svelte';
 	import Header from './Header.svelte';
 	import Loading from '$lib/Loading.svelte';
+	import Hotkeys from '$lib/hotkeys/Hotkeys.svelte';
 	import { theme } from '$state/theme';
 	import { browser } from '$app/environment';
 	import SearchBox from '$lib/search/SearchBox.svelte';
@@ -15,7 +16,7 @@
 	import ThemeMaker from '../../params/ThemeMaker.svelte';
 	import { page } from '$app/stores';
 	import PageLoadingIndicator from '$lib/page_loading_indicator.svelte';
-	import UnderConstruction from '$lib/UnderConstruction.svelte';
+
 	export let data;
 	$: ({ user, user_theme } = data);
 
@@ -53,6 +54,7 @@
 	<Player />
 	<Toaster />
 	<Loading />
+	<Hotkeys />
 
 	{#if browser}
 		<SearchBox />

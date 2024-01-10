@@ -1,6 +1,6 @@
 {
 	"name": "syntax",
-	"version": "2.0.60",
+	"version": "2.0.72",
 	"private": true,
 	"scripts": {
 		"dev": "./scripts/syntax_website_go",
@@ -57,7 +57,7 @@
 	},
 	"type": "module",
 	"engines": {
-		"node": ">=18.0.0 <19.0.0 || >=20.0.0 <21.0.0",
+		"node": "^18 || ^20",
 		"pnpm": ">=8"
 	},
 	"dependencies": {
@@ -72,6 +72,7 @@
 		"@sentry/sveltekit": "^7.77.0",
 		"@sparticuz/chromium": "^117.0.0",
 		"@sveltejs/adapter-vercel": "^4.0.0",
+		"@svelte-put/shortcut": "^3.0.0",
 		"@upstash/redis": "^1.24.3",
 		"core-js": "^3.33.2",
 		"date-fns": "^2.30.0",
@@ -79,7 +80,7 @@
 		"gpt-3-encoder": "^1.1.4",
 		"gray-matter": "^4.0.3",
 		"js-cookie": "^3.0.5",
-		"media-chrome": "^1.4.4",
+		"media-chrome": "^2.0.1",
 		"npm-run-all": "^4.1.5",
 		"openai": "^3.3.0",
 		"puppeteer-core": "^21.4.1",

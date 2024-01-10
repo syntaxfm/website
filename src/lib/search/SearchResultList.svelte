@@ -40,7 +40,7 @@
 
 	function play_show(show_or_tree: (Block & Show) | Tree) {
 		const local_show: Block & Show = is_tree(show_or_tree) ? show_or_tree.node : show_or_tree;
-		player.play_show(local_show);
+		player.start_show(local_show);
 	}
 
 	function is_tree(show_or_tree: (Block & Show) | Tree): show_or_tree is Tree {
@@ -63,7 +63,7 @@
 				data-has-node={is_tree(result) ? true : undefined}
 			>
 				<strong class="wrap">
-					<mark>#{result?.node?.number}</mark>
+					<mark>#{is_tree(result) ? result.node.number : result.number}</mark>
 					{@html excerpt(result.breadcrumbs[result.breadcrumbs.length - 1], query, false)}
 				</strong>
 
@@ -101,9 +101,11 @@
 		background: var(--bg);
 		border: 2px solid var(--fg);
 		color: var(--fg);
-		padding: 5px;
+		padding: 5px 3px 5px 5px;
 		box-shadow: none;
-		--icon_size: 22px;
+		--icon_size: 14px;
+		height: 31px;
+		width: 31px;
 		&:hover {
 			color: var(--accent);
 		}

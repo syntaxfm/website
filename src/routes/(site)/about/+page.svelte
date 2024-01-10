@@ -76,7 +76,7 @@
 							>
 						{/key}
 					</span>
-				{/each} milliseconds to be exact)</span
+				{/each} milliseconds ago to be exact)</span
 			>, Syntax has published
 			{data.count} podcast episodes on full-stack web development, covering JavaScript Server + Client,
 			the latest Frameworks, HTML, CSS, databases, deployment environments, and a whole lot more!
