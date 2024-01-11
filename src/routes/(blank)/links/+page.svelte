@@ -22,10 +22,10 @@
 	</div>
 	<main class="page-layout layout zone" style:--bg="var(--bg-sheet)" style:--fg="var(--fg-sheet)">
 		<section>
-			<h3 class="lines" style="margin: 2rem 0;">Subscribe to the podcast</h3>
+			<h3 class="h4 lines" style="margin: 2rem 0;">Subscribe to the podcast</h3>
 			<PodcastLinks />
 			<br />
-			<h3 class="h3 lines">Links</h3>
+			<h3 class="h4 lines">Links</h3>
 
 			<div class="links">
 				<a
