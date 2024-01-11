@@ -27,13 +27,13 @@ export async function get_transcript(showNumber: number) {
 	});
 
 	if (!show) {
-		throw error(500, `Show #${showNumber} not found.`);
+		error(500, `Show #${showNumber} not found.`);
 	}
 	if (show.transcript) {
-		throw error(
-			409,
-			`Transcript for show #${show.number} already exists. Delete it if you want to re-fetch it.`
-		);
+		error(
+        			409,
+        			`Transcript for show #${show.number} already exists. Delete it if you want to re-fetch it.`
+        		);
 	}
 	const showBuffer = await addFlaggerAudio(show);
 	console.log(`Fetching transcript for show #${show.number} - ${show.title}...`);

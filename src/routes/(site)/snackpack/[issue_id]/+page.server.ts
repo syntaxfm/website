@@ -14,7 +14,7 @@ export const load: PageServerLoad = async function ({ setHeaders, params, locals
 		!response.broadcast.public ||
 		new Date(response.broadcast.created_at) > new Date()
 	) {
-		throw error(404, `HrM! Broadcast with the id ${params.issue_id} Not found`);
+		error(404, `HrM! Broadcast with the id ${params.issue_id} Not found`);
 	}
 
 	// If we have a response, we can cache it for 30 days

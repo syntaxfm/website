@@ -146,10 +146,10 @@ export async function import_transcripts() {
 			message: `Transcripts Import finished: ${success.length} out of ${transcript_promises.length} successfull`
 		};
 	} catch (err) {
-		if (typeof err === 'string') throw error(500, err);
+		if (typeof err === 'string') error(500, err);
 		if (err instanceof Error) {
 			console.error('❌ Transcript Import Error:', err.message);
-			throw error(500, `Error Importing Transcript: ${err.message}`);
+			error(500, `Error Importing Transcript: ${err.message}`);
 		}
 	}
 }

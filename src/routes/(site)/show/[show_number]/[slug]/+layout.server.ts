@@ -44,7 +44,7 @@ export const load = async function ({ params, locals, url }) {
 	const show_date = new Date(show?.date || '');
 	const is_admin = locals?.user?.roles?.includes('admin');
 	if (show_date > now && !is_admin) {
-		throw error(401, `That is a show, but it's in the future! \n\nCome back ${show_date}`);
+		error(401, `That is a show, but it's in the future! \n\nCome back ${show_date}`);
 	}
 
 	const body_excerpt = await unified()

@@ -38,9 +38,9 @@ export const load: PageServerLoad = async function ({ locals, url, setHeaders })
 		const params_string = params.toString();
 		if (params_string.length <= 0) {
 			console.log(`No params for this page redirect. Abort to the homepage!`);
-			throw redirect(302, `/`);
+			redirect(302, `/`);
 		}
-		throw redirect(302, `/shows?${params_string}`);
+		redirect(302, `/shows?${params_string}`);
 	}
 
 	return {
