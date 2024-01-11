@@ -1,6 +1,7 @@
 // * Server Side Middleware
 // https://kit.svelte.dev/docs/hooks
 
+// TODO Fix sentry
 // import * as Sentry from '@sentry/sveltekit';
 import { sequence } from '@sveltejs/kit/hooks';
 import { form_data } from 'sk-form-data';

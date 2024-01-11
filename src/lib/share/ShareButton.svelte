@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { episode_share_status, player } from '$/state/player';
-	import { Show } from '@prisma/client';
+	import type { Show } from '@prisma/client';
 	import Icon from '../Icon.svelte';
 	export let show: Show;
 
