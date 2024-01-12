@@ -40,7 +40,7 @@ In this supper club episode of Syntax, Wes and Scott talk with Eric Meyer about 
 * [Thunderbird — Free Your Inbox. — Thunderbird](https://www.thunderbird.net/en-US/)
 * [Arc from The Browser Company](https://arc.net/)
 * [Mozilla Foundation - Homepage](https://foundation.mozilla.org/en/)
-* **[01:58](#t=01:58)** Sick Picks
+* **[01:01:58](#t=01:01:58)** Sick Picks
 
 ### Sick Picks
 
