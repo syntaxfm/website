@@ -12,7 +12,7 @@ export const load: PageServerLoad = async function ({ setHeaders, params, locals
 	const { show_number } = params;
 
 	return {
-		transcript: locals.prisma.transcript.findUnique({
+		transcript: await locals.prisma.transcript.findUnique({
 			where: { show_number: parseInt(show_number) },
 			...transcript_with_utterances
 		})
