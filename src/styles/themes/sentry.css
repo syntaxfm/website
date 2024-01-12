@@ -2,6 +2,7 @@
 	--bg-sheet: var(--white);
 	--bg: #2d1130;
 	--fg: var(--white);
+	--fg-1: var(--white);
 	--fg-sheet: var(--black);
 	--bgGrit: var(--bgGritLight);
 	--primary: #d15f7c;

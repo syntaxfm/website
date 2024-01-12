@@ -53,9 +53,7 @@
 			</div>
 		</div>
 
-		<div style:--fg="var(--white)">
-			<ProducedBySentry />
-		</div>
+		<ProducedBySentry />
 
 		<div>
 			<p>©️ {CURRENT_YEAR} - Sentry.io</p>
