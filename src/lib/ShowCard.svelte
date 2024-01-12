@@ -118,7 +118,7 @@
 
 <style lang="postcss">
 	article {
-		--bg: var(--bg-sheet);
+		--bg: var(--bg-1);
 		container: show-card / inline-size;
 		display: grid;
 		padding: 20px;
