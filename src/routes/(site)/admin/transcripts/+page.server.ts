@@ -3,7 +3,7 @@ import type { Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ locals }) => {
 	return {
-		transcripts: locals.prisma.transcript.findMany({
+		transcripts: await locals.prisma.transcript.findMany({
 			include: {
 				show: true,
 				_count: {

@@ -10,7 +10,7 @@ export const config = {
 
 export const load: PageServerLoad = async ({ locals }) => {
 	return {
-		shows: locals.prisma.show.findMany({
+		shows: await locals.prisma.show.findMany({
 			orderBy: { number: 'desc' },
 			include: {
 				aiShowNote: {
