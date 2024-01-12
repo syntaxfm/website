@@ -238,7 +238,7 @@
 	}
 	.desc {
 		color: var(--sheet-fg);
-		background: color-mix(in oklab, var(--bg), transparent 4%);
+		background: color-mix(in oklab, var(--bg-1), transparent 4%);
 		width: 92%;
 		border-radius: var(--brad);
 		box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.5);
