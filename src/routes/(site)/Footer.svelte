@@ -4,7 +4,7 @@
 	import ProducedBySentry from '$lib/ProducedBySentry.svelte';
 </script>
 
-<footer class="layout zone" style:--bg="var(--black)" style:--fg="var(--white)">
+<footer class="layout zone" style:--bg="var(--bg-root)" style:--fg="var(--fg-root)">
 	<div>
 		<div class="grid">
 			<div class="links-col">
@@ -53,7 +53,9 @@
 			</div>
 		</div>
 
-		<ProducedBySentry />
+		<div style:--fg="var(--white)">
+			<ProducedBySentry />
+		</div>
 
 		<div>
 			<p>©️ {CURRENT_YEAR} - Sentry.io</p>
