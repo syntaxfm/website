@@ -8,7 +8,7 @@
 <section
 	aria-label="Podcast Information Section"
 	style:--bg="var(--black)"
-	style:--fg="var(--white)"
+	style:--fg="var(--fg-1)"
 	class="zone full layout"
 >
 	<Header transparent={true} />

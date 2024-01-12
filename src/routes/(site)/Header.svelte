@@ -6,7 +6,7 @@
 	export let transparent: boolean = false;
 </script>
 
-<header class="layout" class:transparent>
+<header class="layout" class:transparent style:--fg="var(--fg-1)">
 	<div class="header-container content">
 		<div class="logo">
 			{#if $page.url.pathname !== '/'}
