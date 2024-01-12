@@ -133,7 +133,7 @@
 
 	/* Foreground */
 	--fg: var(--white);
-	--fg-1: var(--black-8);
+	--fg-1: var(--black-8); /* used in header */
 	--fg-2: var(--black-9);
 	--fg-sheet: var(--black);
 

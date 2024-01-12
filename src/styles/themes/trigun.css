@@ -8,6 +8,10 @@
 	--accent: #f9dc65;
 	--hero-gradient-1: #253535;
 	--hero-gradient-2: #E5D7BA;
+
+
 	--fg: #E5D7BA;
+	--fg-1: white;
 	--fg-sheet: #43524D;
+	--line: var(--bg);
 }
