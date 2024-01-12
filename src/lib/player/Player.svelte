@@ -167,7 +167,7 @@
 	}
 
 	.player {
-		--player-bg: var(--black);
+		--player-bg: var(--bg-root);
 		container: player / inline-size;
 		position: fixed;
 		bottom: 0;

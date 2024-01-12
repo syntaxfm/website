@@ -76,8 +76,8 @@
 </div>
 
 <div class="show-actions-wrap">
-	<div class="show-actions zone" style="--bg: var(--black); --fg: var(--white);">
-		<div class="show-actions-flex">
+	<div class="show-actions zone">
+		<div class="show-actions-flex" style="--fg: var(--fg-root);">
 			<button on:click={play_show} data-testid="play-show">
 				<Icon
 					--icon_size="12px"
@@ -151,8 +151,9 @@
 		}
 
 		.show-actions {
-			background: var(--black-9);
-			color: var(--white);
+			background: var(--bg-root);
+			color: var(--fg-root);
+			/* color: color-mix(as lch, var(--bg-sheet), transparent 50%); */
 			width: 110%;
 			left: -5%;
 			overflow: hidden;
