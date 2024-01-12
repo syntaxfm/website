@@ -62,7 +62,7 @@
 <style lang="postcss">
 	section {
 		background-image: url($assets/whitegrit.png),
-			radial-gradient(farthest-side circle at 50% 0%, #3a006b36 4% 4%, #000 100%);
+			radial-gradient(farthest-side circle at 50% 0%, var(--hero-gradient-1) 4% 4%, var(--hero-gradient-2) 100%);
 		background-size: 269px, 30%;
 	}
 	.hero {

@@ -1,0 +1,32 @@
+/* Level Up Theme */
+
+/* .theme-trigun {
+	background-image: none;
+	--fg: #E5E9D8;
+	--fg-sheet: #E5E9D8;
+	--bg: #E5E9D8;
+	--bg-1: #E5E9D8;
+	--bg-2: #E5E9D8;
+	--bg-sheet: #253535;
+	--primary: #F26784;
+	--border-color: #93C9BB;
+	--border: solid 4px var(--border-color);
+	--subtle-accent: var(--purple-3);
+
+	--hero-gradient-1: #253535;
+	--hero-gradient-2: #000;
+	--bgGrit: #E5E9D8;
+	--accent: #f9dc65;
+} */
+
+.theme-trigun {
+	--bg-sheet: #E5D7BA;
+	--bg: #43524D;
+	--bgGrit: var(--bgGritLight);
+	--primary: #d15f7c;
+	--accent: #f9dc65;
+	--hero-gradient-1: #253535;
+	--hero-gradient-2: #E5D7BA;
+	--fg: #93C9BB;
+	--fg-sheet: #43524D;
+}
