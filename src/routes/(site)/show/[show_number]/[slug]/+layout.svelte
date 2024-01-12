@@ -76,8 +76,8 @@
 </div>
 
 <div class="show-actions-wrap">
-	<div class="show-actions zone">
-		<div class="show-actions-flex" style="--fg: var(--fg-root);">
+	<div class="show-actions zone" style="--fg: var(--fg-root);">
+		<div class="show-actions-flex">
 			<button on:click={play_show} data-testid="play-show">
 				<Icon
 					--icon_size="12px"
