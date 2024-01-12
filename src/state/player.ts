@@ -66,7 +66,6 @@ const new_player_state = () => {
 	const { update, subscribe, set } = player_state;
 
 	async function start_show(show: Show, start_time = 0) {
-		console.log('start_time', start_time);
 		// Get current state
 		const current_state = get(player_state);
 		if (show.url !== current_state?.audio?.src) {
