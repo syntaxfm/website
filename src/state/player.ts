@@ -49,6 +49,11 @@ interface PlayerState {
 export const player_window_status = writable<'HIDDEN' | 'ACTIVE' | 'MINI'>('HIDDEN');
 export const episode_share_status = writable<boolean>(false);
 
+const reset_state = {
+	playing: false,
+	status: 'INITIAL'
+} as const;
+
 const new_player_state = () => {
 	const player_state = writable<PlayerState>({
 		current_show: null,
@@ -63,35 +68,45 @@ const new_player_state = () => {
 	async function start_show(show: Show, start_time = 0) {
 		// Get current state
 		const current_state = get(player_state);
-		if (current_state.status === 'PLAYING') {
-			pause();
-		} else if (current_state.status === 'PAUSED') {
-			play();
+		if (show.url !== current_state?.audio?.src) {
+			return initialize_audio(show, start_time);
 		} else {
-			return new Promise((resolve) => {
-				loadMediaSession(show);
-				update((state) => {
-					state.current_show = show;
-					state.status = 'LOADED';
-					// state.audio should always exist because it's the audio element
-					if (state.audio) {
-						pause();
-						state.audio.src = show.url;
-						state.audio.crossOrigin = 'anonymous';
-
-						// Wait for the audio to be ready to play
-						state.audio.addEventListener('loadedmetadata', () => {
-							if (state.audio) {
-								resolve(play(start_time));
-							}
-						});
-					}
-
-					return state;
-				});
-				player_window_status.set('ACTIVE');
-			});
+			if (current_state.status === 'PLAYING') {
+				return pause();
+			} else if (current_state.status === 'PAUSED') {
+				return play();
+			} else {
+				return initialize_audio(show, start_time);
+			}
 		}
+	}
+
+	function initialize_audio(show: Show, start_time: number = 0) {
+		return new Promise((resolve) => {
+			loadMediaSession(show);
+			update((state) => {
+				state.current_show = show;
+				state.status = 'LOADED';
+				if (state.audio) {
+					pause();
+
+					state.audio.src = show.url;
+					state.audio.crossOrigin = 'anonymous';
+					state.audio.currentTime = 0;
+
+					// Wait for the audio to be ready to play
+					state.audio.addEventListener('loadedmetadata', () => {
+						if (state.audio) {
+							resolve(play(start_time));
+						}
+					});
+					state.audio.addEventListener('ended', reset);
+				}
+
+				return state;
+			});
+			player_window_status.set('ACTIVE');
+		});
 	}
 
 	function play(time_stamp: number = 0) {
@@ -99,14 +114,28 @@ const new_player_state = () => {
 			state?.audio?.play().then(() => {
 				if (time_stamp && state.audio) state.audio.currentTime = time_stamp;
 			});
+			state.currentTime = time_stamp;
 			state.status = 'PLAYING';
 			return state;
 		});
 	}
+
 	function pause() {
 		update((state) => {
 			state?.audio?.pause();
 			state.status = 'PAUSED';
+			return state;
+		});
+	}
+
+	function reset() {
+		update((state) => {
+			state.audio.currentTime = 0;
+			state = {
+				...state,
+				...reset_state,
+				currentTime: 0 // Explicitly set currentTime in the state as well
+			};
 			return state;
 		});
 	}
