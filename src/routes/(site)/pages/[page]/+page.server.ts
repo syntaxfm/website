@@ -10,7 +10,7 @@ export const load: PageServerLoad = async ({ params }) => {
 	if (contentFiles[key]) {
 		// Parse the title. We could move this into front matter if we wanted more control over these pages, but I don't think we need it.
 		const title = contentFiles[key].split('\n')[0].replaceAll('#', '').trim();
-		const content = processor.processSync(contentFiles[key]).value;
+		const content = (await processor.process(contentFiles[key])).value;
 
 		return {
 			props: {
