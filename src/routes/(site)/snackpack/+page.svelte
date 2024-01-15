@@ -6,7 +6,7 @@
 </script>
 
 <main>
-	<div style:margin-top="2rem">
+	<div>
 		<h1 class="h3 lines">Syntax Snack Pack</h1>
 
 		<p class="center">Wanna be the <strong>{data.count}</strong> coolest person in the world?</p>

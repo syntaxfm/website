@@ -133,8 +133,8 @@
 
 	/* Foreground */
 	--fg: var(--white);
-	--fg-1: var(--black-8); /* used in header */
-	--fg-2: var(--black-9);
+	--fg-1: var(--white); /* used in header */
+	--fg-2: var(--black-9); /* currently unused */
 	--fg-sheet: var(--black);
 
 	/* Interface Color */
@@ -158,4 +158,9 @@
 	/* Hero gradient */
 	--hero-gradient-1: #3a006b36;
 	--hero-gradient-2: var(--black);
+
+	/* Sentry footer gradient */
+	--sentry-footer-bg: url('$assets/squiggle-greyscale.webp'),
+	linear-gradient(315deg, #180d1c 0.57%, #452650 100%);
+
 }
