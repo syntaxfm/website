@@ -2,7 +2,7 @@
 	import Logo from './Logo.svelte';
 </script>
 
-<div class=" presented">
+<div class="presented">
 	<div class="cred">
 		<Logo height={35} />
 		<span>×</span>
@@ -36,17 +36,17 @@
 		font-weight: 500;
 	}
 	.presented {
-		/* border: 1px solid var(--fg); */
 		box-shadow: inset 0 0 0 4px rgb(from black r g b / 0.2);
 		border-radius: var(--brad);
 		padding: 1rem;
 		margin: 2rem 0;
-		background-image: url('$assets/squiggle.png'),
-			linear-gradient(315deg, #180d1c 0.57%, #452650 100%);
+		background: var(--sentry-footer-bg);
+		background-blend-mode: hard-light;
 		background-size:
 			300px 300px,
 			cover;
 		margin-inline: auto;
 		max-width: none;
 	}
+
 </style>

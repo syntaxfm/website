@@ -32,12 +32,6 @@
 	</div>
 </section>
 
-<section class="zone layout full" style:--bg="var(--bg-root)" style:--fg="var(--fg-root)">
-	<div class="newsletter-container">
-		<NewsletterForm />
-	</div>
-</section>
-
 <style>
 	section {
 		margin-top: 5rem;
