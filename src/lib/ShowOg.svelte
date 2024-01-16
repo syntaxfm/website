@@ -57,9 +57,9 @@
 	}
 </script>
 
-<article class="grit" style="--title-length: {show.title.length}">
+<article style="--title-length: {show.title.length}">
 	{#if show.number}
-		<span class="show-number">{show.number}</span>
+		<span class="grit show-number">{show.number}</span>
 	{/if}
 
 	<div class="details">
@@ -81,7 +81,7 @@
 
 		<div class="brand-footer">
 			<FacePile
-				size="80px"
+				size="120px"
 				faces={[
 					{ name: 'Wes Bos', github: 'wesbos' },
 					{ name: 'Scott Tolinski', github: 'stolinski' },
@@ -91,7 +91,7 @@
 					}))
 				]}
 			/>
-			<div class="logos">
+			<div class="grit logos">
 				<svg height="100px" viewBox="0 0 1371 1212" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<title>Syntax</title>
 					<path
@@ -148,8 +148,10 @@
 		width: 100%;
 		font-style: italic;
 		transform: rotate(-1deg);
-		/* align-self: end; */
 		text-align: center;
+
+		/* black text outline in case white h1 text goes over yellow show number */
+		text-shadow: 2px 0 0 black, 0 2px 0 black, -2px 0 0 black, 0 -2px 0 black;
 	}
 
 	.date {
@@ -186,6 +188,7 @@
 		gap: 5rem;
 		justify-content: center;
 		align-items: center;
+		margin-bottom: 4rem;
 	}
 	.logos {
 		bottom: 10px;
