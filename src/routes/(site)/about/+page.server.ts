@@ -3,7 +3,7 @@ import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async function () {
 	return {
-		count: count_shows(),
+		count: await count_shows(),
 		meta: {
 			title: 'About Syntax'
 		}
