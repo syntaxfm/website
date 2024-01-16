@@ -81,7 +81,7 @@
 
 		<div class="brand-footer">
 			<FacePile
-				size="80px"
+				size="120px"
 				faces={[
 					{ name: 'Wes Bos', github: 'wesbos' },
 					{ name: 'Scott Tolinski', github: 'stolinski' },
@@ -148,8 +148,10 @@
 		width: 100%;
 		font-style: italic;
 		transform: rotate(-1deg);
-		/* align-self: end; */
 		text-align: center;
+
+		/* black text outline in case white h1 text goes over yellow show number */
+		text-shadow: 2px 0 0 black, 0 2px 0 black, -2px 0 0 black, 0 -2px 0 black;
 	}
 
 	.date {
@@ -186,6 +188,7 @@
 		gap: 5rem;
 		justify-content: center;
 		align-items: center;
+		margin-bottom: 4rem;
 	}
 	.logos {
 		bottom: 10px;
