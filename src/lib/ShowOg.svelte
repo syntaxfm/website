@@ -57,9 +57,9 @@
 	}
 </script>
 
-<article class="grit" style="--title-length: {show.title.length}">
+<article style="--title-length: {show.title.length}">
 	{#if show.number}
-		<span class="show-number">{show.number}</span>
+		<span class="grit show-number">{show.number}</span>
 	{/if}
 
 	<div class="details">
@@ -91,7 +91,7 @@
 					}))
 				]}
 			/>
-			<div class="logos">
+			<div class="grit logos">
 				<svg height="100px" viewBox="0 0 1371 1212" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<title>Syntax</title>
 					<path
