@@ -2,7 +2,7 @@
 number: 719
 title: Fullstack TypeScript Apps with No Build Step?! with Brian LeRoux
 date: 1705662000711
-url: https://traffic.libsyn.com/syntax/Syntax_-_719.mp3
+url: https://traffic.libsyn.com/syntax/Syntax_-_719fx.mp3
 # A Single Guest looks like this:
 guest:
   name: Brian LeRoux
@@ -32,10 +32,10 @@ Wes and Scott talk with Brian LeRoux about not using a bundler, handling TypeScr
 * **[33:24](#t=33:24)** Can you refresh part of the application?
 * **[36:22](#t=36:22)** What about state management and Enhance?
 * **[42:52](#t=42:52)** How does Enhance handle CSS?
-* **[49:29](#t=49:29)** How was AWS: Reinvent?
-* **[55:50](#t=55:50)** What's happening with the Begin CLI?
-* **[56:58](#t=56:58)** Any thoughts on new JavaScript run times?
-* **[59:54](#t=59:54)** Sick Picks
+* **[48:26](#t=48:26)** How was AWS: Reinvent?
+* **[54:47](#t=54:47)** What's happening with the Begin CLI?
+* **[55:55](#t=55:55)** Any thoughts on new JavaScript run times?
+* **[59:51](#t=59:51)** Sick Picks
 
 * [brian.io](https://brian.io/)
 * [Quickstart - Architect documentation](https://arc.codes/docs/en/get-started/quickstart)
