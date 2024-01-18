@@ -165,21 +165,31 @@
 			border: solid var(--border-size) var(--black-8);
 		}
 
+		
 		&.list {
 			border: solid 1px var(--subtle);
 			margin-bottom: 20px;
 			padding: 20px 0;
 			margin-inline: auto;
-			@media (--below_med) {
-				.description {
-					display: none;
-				}
-				h2 {
-					mask-image: none;
-					font-style: normal;
-				}
+		}
+
+		.description {
+			span {
+				/* helps a11y when light text overlaps show number */
+				background-color: color-mix(in lch, var(--bg), transparent 50%);				
 			}
 		}
+
+		/* readability improvements for mobile viewports */
+		@media (--below_med) {
+			padding: 10px;
+
+			.description {
+				display: none;
+				mask-image: none;
+			}
+		}
+
 	}
 
 	.h3 {
@@ -189,11 +199,6 @@
 		font-size: var(--font-size-lg);
 		line-height: 1.2;
 		text-shadow: 1px 0 0 var(--bg), 0 1px 0 var(--bg), -1px 0 0 var(--bg), 0 -1px 0 var(--bg);
-	}
-
-	.description span {
-		/* helps a11y when light text overlaps show number */
-		background-color: color-mix(in lch, var(--bg), transparent 50%);
 	}
 
 	.date {
@@ -233,6 +238,10 @@
 		color: var(--primary);
 		line-height: 1;
 		z-index: -1;
+
+		@media (--below_med) {
+			--max-font-size: 8rem;
+		}
 	}
 
 	@container show-card (width > 600px) {
