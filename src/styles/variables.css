@@ -154,6 +154,7 @@
 	--dark: var(--black);
 	--bgGritLight: url('/svg/grit.svg?light&count=50&w=1000&h=2000');
 	--bgGritDark: url('/svg/grit.svg?dark&count=50&w=1000&h=2000');
+	--bgGrit: var(--bgGritLight);
 
 	/* Hero gradient */
 	--hero-gradient-1: #3a006b36;
