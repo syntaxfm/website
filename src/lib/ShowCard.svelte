@@ -91,7 +91,8 @@
 				</Badges>
 			{/if}
 
-			<FacePile
+			<div class="bottom-row">
+				<FacePile
 				faces={[
 					{ name: 'Wes Bos', github: 'wesbos' },
 					{ name: 'Scott Tolinski', github: 'stolinski' },
@@ -112,6 +113,8 @@
 					>
 				</div>
 			{/if}
+			</div>
+
 		</div>
 	</a>
 </article>
@@ -129,7 +132,6 @@
 		align-items: start;
 		& a {
 			color: var(--fg);
-			display: block;
 			display: flex;
 			gap: 10px;
 			padding: 5px;
@@ -137,6 +139,7 @@
 
 		.details {
 			display: grid;
+			flex-grow: 1;
 			gap: 1rem;
 			& > * {
 				margin: 0;
@@ -190,6 +193,20 @@
 			}
 		}
 
+		.bottom-row {
+			align-self: end;
+
+			/* lay out horizontally */
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 1rem;
+
+			.buttons {
+				text-align: right;
+				align-self: center;
+			}
+		}
+
 	}
 
 	.h3 {
@@ -210,6 +227,8 @@
 		@media (prefers-color-scheme: dark) {
 			background: var(--bg);
 		}
+		/* adds contrast when light text overlaps show number */
+		text-shadow: 2px 1px 0px var(--bg);
 	}
 
 	.play-button {
