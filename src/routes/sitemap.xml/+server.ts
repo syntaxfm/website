@@ -81,7 +81,7 @@ export const GET: RequestHandler = async function GET({ setHeaders, locals }) {
   `
 			)
 			.join('')}
-			
+
 		${shows
 			?.map(
 				(show) => `
@@ -93,6 +93,11 @@ export const GET: RequestHandler = async function GET({ setHeaders, locals }) {
   `
 			)
 			.join('')}
+      <url>
+        <loc>${site}/guests</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+      </url>
 		${guests
 			?.map(
 				(guest) => `

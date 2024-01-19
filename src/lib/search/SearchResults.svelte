@@ -1,6 +1,6 @@
 <script lang="ts">
 	import SearchResultList from './SearchResultList.svelte';
-	import { Tree } from './types';
+	import type { Tree } from './types';
 
 	export let results: Tree[];
 	export let query: string;

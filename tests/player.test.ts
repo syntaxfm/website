@@ -18,7 +18,7 @@ test('Player works episode button and check if audio is playing', async ({ page 
 
 	expect(isPlaying).toBe(true); // Assert that the audio is playing
 
-	const playerHeader = await page.waitForSelector('.player header p');
+	const playerHeader = await page.waitForSelector('#player_show_title');
 	const playerTitle = await playerHeader.textContent();
 
 	expect(playerTitle).toContain(title);

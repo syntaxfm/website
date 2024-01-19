@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { player } from '$state/player';
 	import Icon from '$lib/Icon.svelte';
-	import { Show } from '@prisma/client';
+	import type { Show } from '@prisma/client';
 	import toast from 'svelte-french-toast';
 
 	export let timestamp = true;

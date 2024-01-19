@@ -1,0 +1,23 @@
+/* Trigun Theme */
+
+.theme-trigun {
+	--primary: #d15f7c;
+	--accent: #f9dc65;
+
+	--fg: #E5D7BA;
+	--fg-1: white;
+	--fg-sheet: #43524D;
+
+	--bg: #43524D;
+	--bg-1: #eaede0;
+	--bg-sheet: #E5D7BA;
+	--bgGrit: var(--bgGritLight);
+	
+	--line: var(--bg);
+
+	--hero-gradient-1: #253535;
+	--hero-gradient-2: #E5D7BA;
+	--sentry-footer-bg: url('$assets/squiggle-greyscale.webp'),
+	linear-gradient(315deg, #43524D 0.57%, #452650 100%);
+
+}

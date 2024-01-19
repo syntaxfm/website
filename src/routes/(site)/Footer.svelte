@@ -4,7 +4,7 @@
 	import ProducedBySentry from '$lib/ProducedBySentry.svelte';
 </script>
 
-<footer class="layout zone" style:--bg="var(--black)" style:--fg="var(--white)">
+<footer class="layout zone" style:--bg="var(--bg-root)" style:--fg="var(--fg-1)">
 	<div>
 		<div class="grid">
 			<div class="links-col">
@@ -63,11 +63,11 @@
 
 <style lang="postcss">
 	footer {
-		padding: 5rem 0.5rem 5rem;
+		padding: 2rem 0.5rem 5rem;
 		background-image: url('/svg/grit.svg?dark&count=100&w=5000&h=500');
 		background-size: 1500px;
 		@media (min-width: 1280px) {
-			padding: 5rem 0 5rem;
+			padding: 2rem 0 5rem;
 		}
 	}
 

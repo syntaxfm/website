@@ -13,7 +13,7 @@ export const GET = async function transcriptCronHandler({ request, locals }: Req
 	// 1. Make sure we have an API key
 	if (!allowed) {
 		console.log('🤖 Unauthorized Transcript Cron Request');
-		throw error(401, 'Get outta here - Wrong Cron key or auth header');
+		error(401, 'Get outta here - Wrong Cron key or auth header');
 	}
 	// 2. Get the latest show without a transcript
 	const show = await locals.prisma.show.findFirst({

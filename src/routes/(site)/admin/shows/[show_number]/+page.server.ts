@@ -5,7 +5,7 @@ import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ locals, params }) => {
 	return {
-		show: locals.prisma.show.findUnique({
+		show: await locals.prisma.show.findUnique({
 			where: {
 				number: parseInt(params.show_number)
 			},

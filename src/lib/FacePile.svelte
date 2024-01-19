@@ -18,12 +18,12 @@
 		--local-size: var(--face-size, 50px);
 		display: grid;
 		grid-auto-flow: column;
-		grid-auto-columns: calc(var(--local-size) / 1.5);
+		grid-auto-columns: calc(var(--local-size) / 1.2);
 		gap: 0;
 		transition: all 0.2s;
 	}
 	.pile:hover {
-		gap: calc(var(--local-size) / 2);
+		gap: calc(var(--local-size) / 4);
 	}
 	img {
 		width: var(--local-size);

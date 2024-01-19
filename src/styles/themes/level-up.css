@@ -1,6 +1,7 @@
 /* Level Up Theme */
 .theme-level-up {
 	background-image: none;
+	--fg-1: var(--white);
 	--fg-sheet: #ebebe3;
 	--bg: #191324;
 	--bg-1: #191324;

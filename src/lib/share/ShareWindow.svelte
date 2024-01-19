@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { clickOutDialog } from '$/actions/click_outside_dialog';
 	import { episode_share_status, player } from '$/state/player';
-	import { Show } from '@prisma/client';
+	import type { Show } from '@prisma/client';
 	import ShareActions from './ShareActions.svelte';
 	let modal: HTMLDialogElement;
 	export let show: Show;

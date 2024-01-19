@@ -40,9 +40,9 @@
 		grid-template-columns: repeat(3, minmax(0, 1fr));
 		text-align: center;
 		box-shadow: 0 0 1px 5px rgba(255, 255, 255, 0.1);
-		background-color: black;
-		background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 4%, rgba(0, 0, 0, 0.4) 100%),
-			url($assets/whitegrit.png);
+		color: var(--fg-root);
+		background-color: var(--bg-root);
+		background-image: url($assets/whitegrit.png);
 		background-size: 269px, 30%;
 	}
 	.tag {

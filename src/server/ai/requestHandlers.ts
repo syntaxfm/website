@@ -12,7 +12,7 @@ export async function aiNoteRequestHandler({ request, locals }: RequestEvent) {
 	const show_number = parseInt(data.get('show_number')?.toString() || '');
 
 	if (!show_number) {
-		throw error(400, 'Invalid Show Number');
+		error(400, 'Invalid Show Number');
 	}
 
 	const show = await locals.prisma.show.findUnique({
@@ -23,7 +23,7 @@ export async function aiNoteRequestHandler({ request, locals }: RequestEvent) {
 	});
 
 	if (!show?.transcript) {
-		throw error(400, 'No show, or no transcript for this show');
+		error(400, 'No show, or no transcript for this show');
 	}
 	// delete any existing ai notes
 	await locals.prisma.aiShowNote.deleteMany({

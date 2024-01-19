@@ -290,9 +290,9 @@
 	.search-input {
 		width: 100%;
 		border: none;
-		padding: 10px;
+		padding: 10px 50px 10px 10px;
 		font-size: var(--font-size-md);
-		outline: none;
+		outline-color: transparent;
 		background-color: transparent;
 		color: var(--fg);
 		font-family: var(--body-font-family);

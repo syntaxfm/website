@@ -87,11 +87,11 @@
 			</svelte:element>
 
 			{#if show.aiShowNote?.description}
-				<p id={aria_key} class="description text-sm">{show.aiShowNote?.description}</p>
+				<p id={aria_key} class="description text-sm"><span>{show.aiShowNote?.description}</span></p>
 			{:else}
 				{@const description = show.show_notes?.match(/(.*?)(?=## )/s)?.[0]}
 				<p id={aria_key} class="description text-sm">
-					{description}
+					<span>{description}</span>
 				</p>
 			{/if}
 
@@ -132,7 +132,7 @@
 
 <style lang="postcss">
 	article {
-		--bg: var(--bg-sheet);
+		--bg: var(--bg-1);
 		container: show-card / inline-size;
 		display: grid;
 		padding: 20px;
@@ -202,6 +202,12 @@
 		font-weight: 600;
 		font-size: var(--font-size-lg);
 		line-height: 1.2;
+		text-shadow: 1px 0 0 var(--bg), 0 1px 0 var(--bg), -1px 0 0 var(--bg), 0 -1px 0 var(--bg);
+	}
+
+	.description span {
+		/* helps a11y when light text overlaps show number */
+		background-color: color-mix(in lch, var(--bg), transparent 50%);
 	}
 
 	.date {
@@ -216,12 +222,14 @@
 	}
 
 	.play-button {
-		background: linear-gradient(to right, var(--black-2), var(--black-1));
+		background: transparent;
 		border-radius: 50%;
 		align-self: center;
 		border-width: 1px;
 		padding: 10px;
-		box-shadow: inset 0 0 0 2px oklch(var(--blacklch) / 0.2);
+		box-shadow: inset 0 0 0 2px color-mix(in lch, var(--fg) 50%, transparent 94%);
+		color: var(--fg);
+
 	}
 
 	.show-number {

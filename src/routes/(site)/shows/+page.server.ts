@@ -28,7 +28,10 @@ export const load: PageServerLoad = async function ({ locals, url, setHeaders })
 		show_type: isShowType(show_type) ? show_type : undefined
 	});
 
-	const shows = await locals.prisma.show.findMany(query);
+	const [shows, total_show_count] = await Promise.all([
+		locals.prisma.show.findMany(query),
+		count_shows()
+	]);
 
 	if (!shows.length) {
 		// If there are no shows for this page, redirect them to the first page but keep their query params. This happens when someone changes the perPage value and that makes their page no longer have anything to show.
@@ -38,14 +41,14 @@ export const load: PageServerLoad = async function ({ locals, url, setHeaders })
 		const params_string = params.toString();
 		if (params_string.length <= 0) {
 			console.log(`No params for this page redirect. Abort to the homepage!`);
-			throw redirect(302, `/`);
+			redirect(302, `/`);
 		}
-		throw redirect(302, `/shows?${params_string}`);
+		redirect(302, `/shows?${params_string}`);
 	}
 
 	return {
 		shows,
-		count: count_shows(),
+		count: total_show_count,
 		meta: {
 			title: `Syntax Podcast Shows ${page > 1 ? `- Page ${page}` : ''}`,
 			canonical: `${url.protocol}//${url.host}${url.pathname}${page > 1 ? `?page=${page}` : ''}`

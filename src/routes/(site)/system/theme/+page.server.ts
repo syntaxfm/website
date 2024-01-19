@@ -26,6 +26,7 @@ export const load: PageServerLoad = async ({ locals, setHeaders }) => {
 					}
 				}
 			},
+
 			orderBy: { number: 'desc' }
 		})
 	};

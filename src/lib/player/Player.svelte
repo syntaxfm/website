@@ -21,7 +21,7 @@
 		<div style="flex-grow: 1;">
 			{#if $player.current_show}
 				<p>
-					<a href={get_show_path($player.current_show)}
+					<a id="player_show_title" href={get_show_path($player.current_show)}
 						>Show #{$player.current_show?.number} - {$player.current_show?.title}</a
 					>
 				</p>
@@ -167,7 +167,7 @@
 	}
 
 	.player {
-		--player-bg: var(--black);
+		--player-bg: var(--bg-root);
 		container: player / inline-size;
 		position: fixed;
 		bottom: 0;

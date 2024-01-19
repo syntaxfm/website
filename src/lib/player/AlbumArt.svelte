@@ -3,7 +3,7 @@
 	import Album from './Album.svelte';
 	import { player, player_window_status } from '$state/player';
 	import { PUBLIC_URL } from '$env/static/public';
-	import { Show } from '@prisma/client';
+	import type { Show } from '@prisma/client';
 
 	export let is_link = false;
 	export let show: Show = null;

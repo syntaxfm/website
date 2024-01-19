@@ -18,6 +18,7 @@
 		--bg-2: var(--black);
 		--bg-1: var(--black);
 		--bg: var(--black);
+		--fg-1: var(--white);
 		--fg-2: var(--black-3);
 		--border: solid var(--border-size) var(--fg-sheet);
 
@@ -39,6 +40,7 @@
 	--bg-2: var(--black-8);
 	--bg-1: var(--black);
 	--bg: var(--black);
+	--fg-1: var(--white);
 	--fg-2: var(--black-3);
 	--border-color: var(--bg-sheet);
 	--border: solid var(--border-size) var(--fg-sheet);

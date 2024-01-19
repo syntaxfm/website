@@ -67,7 +67,7 @@
 		<span class="spa-ran-wrap">{show.title}</span>
 	</h1>
 	{#if show.aiShowNote?.description}
-		<p class="description">{show.aiShowNote?.description}</p>
+		<p class="description"><span>{show.aiShowNote?.description}</span></p>
 	{/if}
 </header>
 
@@ -76,7 +76,7 @@
 </div>
 
 <div class="show-actions-wrap">
-	<div class="show-actions zone" style="--bg: var(--black); --fg: var(--white);">
+	<div class="show-actions zone" style="--fg: var(--fg-root);">
 		<div class="show-actions-flex">
 			<button on:click={play_show} data-testid="play-show">
 				<Icon
@@ -144,6 +144,12 @@
 			view-transition-name: var(--transition-name);
 			margin-top: 0;
 			font-size: var(--font-size-xxl);
+			text-shadow: 1px 0 0 var(--bg), 0 1px 0 var(--bg), -1px 0 0 var(--bg), 0 -1px 0 var(--bg);
+		}
+
+		.description span {
+			/* helps a11y when light text overlaps show number */
+			background-color: color-mix(in lch, var(--bg), transparent 50%);
 		}
 
 		.show-actions-wrap {
@@ -151,8 +157,9 @@
 		}
 
 		.show-actions {
-			background: var(--black-9);
-			color: var(--white);
+			background: var(--bg-root);
+			color: var(--fg-root);
+			/* color: color-mix(as lch, var(--bg-sheet), transparent 50%); */
 			width: 110%;
 			left: -5%;
 			overflow: hidden;

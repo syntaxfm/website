@@ -14,7 +14,7 @@
 <div class="sidebar">
 	<div
 		class="sticky zone"
-		style="border: solid 0.5px var(--black-1)"
+		style="border: solid 0.5px var(--line); margin-bottom: 2rem;"
 		style:--radius="20px"
 		style:--bg="var(--bg-1)"
 	>

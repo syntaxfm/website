@@ -22,7 +22,7 @@ export const load: PageServerLoad = async function ({ setHeaders, params, locals
 	// If its a Show, we need to return the show from the DB
 	const { include } = SHOW_QUERY();
 	return {
-		show: locals.prisma.show.findUnique({
+		show: await locals.prisma.show.findUnique({
 			where: {
 				number: show_number
 			},

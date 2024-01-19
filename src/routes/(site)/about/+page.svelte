@@ -76,7 +76,7 @@
 							>
 						{/key}
 					</span>
-				{/each} milliseconds to be exact)</span
+				{/each} milliseconds ago to be exact)</span
 			>, Syntax has published
 			{data.count} podcast episodes on full-stack web development, covering JavaScript Server + Client,
 			the latest Frameworks, HTML, CSS, databases, deployment environments, and a whole lot more!
@@ -238,7 +238,7 @@
 	}
 	.desc {
 		color: var(--sheet-fg);
-		background: color-mix(in oklab, var(--bg), transparent 4%);
+		background: color-mix(in oklab, var(--bg-1), transparent 4%);
 		width: 92%;
 		border-radius: var(--brad);
 		box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.5);

@@ -29,7 +29,7 @@ export async function import_or_update_all_shows() {
 		}
 	} catch (err) {
 		console.error('❌ Pod Sync Error:', err);
-		throw error(500, 'Error Importing Shows');
+		error(500, 'Error Importing Shows');
 	}
 	console.log('🤖 Pod Sync Complete ✅');
 	return { message: 'Import All Shows' };
@@ -58,7 +58,7 @@ export async function import_or_update_all_changed_shows() {
 		}
 	} catch (err) {
 		console.error('❌ Pod Sync Error:', err);
-		throw error(500, 'Error Importing Shows');
+		error(500, 'Error Importing Shows');
 	}
 	console.log('🤖 Pod Sync Complete ✅');
 	return { message: 'Import All Shows' };
