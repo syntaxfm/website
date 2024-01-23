@@ -5,7 +5,7 @@ date: 1705060800650
 url: https://traffic.libsyn.com/syntax/Syntax_-_716.mp3
 guest:
   name: Yagiz Nizipli
-  github: nzakas
+  github: anonrig
   twitter: yagiznizipli
   of: Node.js
   url: https://www.yagiz.co/
