@@ -135,11 +135,13 @@
 			display: flex;
 			gap: 10px;
 			padding: 5px;
+			height: 100%;
 		}
 
 		.details {
 			display: grid;
 			flex-grow: 1;
+			grid-template-rows: 1rem auto 1fr 1rem auto;
 			gap: 1rem;
 			& > * {
 				margin: 0;
