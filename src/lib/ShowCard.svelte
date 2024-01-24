@@ -134,14 +134,13 @@
 			color: var(--fg);
 			display: flex;
 			gap: 10px;
-			padding: 5px;
 			height: 100%;
 		}
 
 		.details {
 			display: grid;
 			flex-grow: 1;
-			grid-template-rows: 1rem auto 1fr 1rem auto;
+			grid-template-rows: auto auto 1fr auto auto;
 			gap: 1rem;
 			& > * {
 				margin: 0;
@@ -189,6 +188,11 @@
 		@media (--below_med) {
 			padding: 10px;
 
+			.details {
+				/* since we're hiding the description row at these dimensions (which was 100% height), 
+				   need a new row to become 100% height -- the show title */
+				grid-template-rows: auto 1fr auto auto;
+			}
 			.description {
 				display: none;
 				mask-image: none;
