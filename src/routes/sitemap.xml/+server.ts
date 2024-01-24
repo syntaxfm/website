@@ -4,9 +4,14 @@ import { PUBLIC_URL } from '$env/static/public';
 const site = `https://${PUBLIC_URL}`;
 
 export const GET: RequestHandler = async function GET({ setHeaders, locals }) {
-	const shows = await locals.prisma.show.findMany();
+	const shows = await locals.prisma.show.findMany({
+		where: {
+			date: {
+				lte: new Date() // only shows in the future
+			}
+		}
+	});
 	const guests = await locals.prisma.guest.findMany();
-
 	const xml = `<?xml version="1.0" encoding="UTF-8" ?>
     <urlset
       xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"
