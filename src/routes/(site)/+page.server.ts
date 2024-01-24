@@ -1,8 +1,8 @@
-import type { Actions } from '@sveltejs/kit';
-import type { PageServerLoad } from './$types';
-import { SHOW_QUERY } from '$server/ai/queries';
-import { redis } from '../../hooks.server';
+import { SHOW_QUERY, type LatestShow } from '$server/ai/queries';
 import { cache_mang } from '$utilities/cache_mang';
+import type { Actions } from '@sveltejs/kit';
+import { redis } from '../../hooks.server';
+import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ locals, setHeaders, url }) => {
 	const cache_s = 600;
@@ -11,7 +11,7 @@ export const load: PageServerLoad = async ({ locals, setHeaders, url }) => {
 		'cache-control': `public s-max-age=${cache_s}, stale-while-revalidate=${cache_s}`
 	});
 
-	const latest = await cache_mang(
+	const latest: LatestShow[] = await cache_mang(
 		`homepage:latest_shows`,
 		locals.prisma.show.findMany,
 		SHOW_QUERY(),

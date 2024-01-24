@@ -81,7 +81,7 @@
 			<button on:click={play_show} data-testid="play-show">
 				<Icon
 					--icon_size="12px"
-					aria-hidden="true"
+					ariaHidden={true}
 					name="play{$player.current_show?.number === show.number && $player.status === 'PLAYING'
 						? 'ing'
 						: ''}"

@@ -1,17 +1,16 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
-// TODO remove this ts-nocheck. I've added this until this is more complete or confirmed to be complete
-import { Configuration, type CreateChatCompletionRequest, OpenAIApi } from 'openai';
-import { createCondensePrompt, summarizePrompt, summarizePrompt2 } from './prompts';
 import {
 	SlimUtterance,
 	TranscribedShow,
 	formatAsTranscript,
 	getSlimUtterances
 } from '$server/transcripts/utils';
-import { encode } from 'gpt-3-encoder';
-import wait from 'waait';
 import type { Prisma } from '@prisma/client';
+import { encode } from 'gpt-3-encoder';
+import { Configuration, OpenAIApi, type CreateChatCompletionRequest } from 'openai';
+import wait from 'waait';
+import { anthropic_completion, convert_openai_to_anthropic } from './anthropic';
+import { createCondensePrompt, summarizePrompt, summarizePrompt2 } from './prompts';
+import type { AINoteSelect, AIPodcastSummaryResponse } from './queries';
 
 export const TOKEN_LIMIT = 7000;
 export const COMPLETION_TOKEN_IDEAL = 1500; // how many tokens we should reserve to the completion - otherwise the responses are poor quality
@@ -23,8 +22,6 @@ export const CONDENSE_THRESHOLD = 100;
 const configuration = new Configuration({
 	apiKey: process.env.OPENAI_API_KEY
 });
-import type { AINoteSelect, AIPodcastSummaryResponse } from './queries';
-import { anthropic_completion, convert_openai_to_anthropic } from './anthropic';
 export const openai = new OpenAIApi(configuration);
 
 export async function condense(

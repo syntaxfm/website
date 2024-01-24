@@ -1,10 +1,9 @@
 <script lang="ts">
-	import { applyAction } from '$app/forms';
+	import { applyAction, enhance } from '$app/forms';
 	import { invalidateAll } from '$app/navigation';
-	import { enhance } from '$app/forms';
-	import toast from 'svelte-french-toast';
-	import { ActionResult } from '@sveltejs/kit';
 	import { loading } from '$state/loading';
+	import type { ActionResult } from '@sveltejs/kit';
+	import toast from 'svelte-french-toast';
 	let formLoading = false;
 	export let global = true; // By default, the global loader UI is used
 

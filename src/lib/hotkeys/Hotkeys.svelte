@@ -1,9 +1,9 @@
 <script lang="ts">
-	import HotkeyDialog from './HotkeyDialog.svelte';
-	import { shortcut } from '@svelte-put/shortcut';
 	import type { Hotkeys } from '$lib/hotkeys/types';
 	import { getHotkeyTrigger } from '$lib/hotkeys/utils';
-	import { player, player_window_status } from '$state/player';
+	import { player } from '$state/player';
+	import { shortcut } from '@svelte-put/shortcut';
+	import HotkeyDialog from './HotkeyDialog.svelte';
 
 	// This is where hotkeys are defined
 	let hotkeys = {

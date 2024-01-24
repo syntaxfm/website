@@ -1,4 +1,3 @@
-import get_show_path from '$/utilities/slug';
 import { transcript_with_utterances } from '$server/ai/queries';
 import { get_show_cache_s } from '$utilities/get_show_cache_ms';
 import type { PageServerLoad } from './$types';

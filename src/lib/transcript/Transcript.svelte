@@ -1,19 +1,19 @@
 <script lang="ts">
 	import { getSlimUtterances } from '$server/transcripts/utils';
+	import { player } from '$state/player';
 	import format_time, { tsToS } from '$utilities/format_time';
 	import 'core-js/full/map/group-by';
 	import slug from 'speakingurl';
-	import { player } from '$state/player';
 	import Squiggle from './Squiggle.svelte';
 	import TableOfContents from './TableOfContents.svelte';
 
-	import type { SlimUtterance } from '$server/transcripts/types';
 	import type { AINoteWithFriends, TranscriptWithUtterances } from '$server/ai/queries';
+	import type { SlimUtterance } from '$server/transcripts/types';
+	import type { Utterance } from '@deepgram/sdk/dist/types';
 	import type { Show } from '@prisma/client';
 
 	export let transcript: TranscriptWithUtterances;
-	export let aiShowNote: AINoteWithFriends;
-
+	export let aiShowNote: AINoteWithFriends | null;
 	export let show: Show;
 
 	const slim_transcript: SlimUtterance[] = getSlimUtterances(transcript.utterances, 1)
@@ -29,9 +29,8 @@
 		});
 	// group Utterances by their summary
 	const def = { time: '00:00', text: '' };
-	type TopicSummary = (typeof aiShowNote.summary)[0];
 
-	const utterances_by_summary: Map = Map.groupBy(slim_transcript, (utterance) => {
+	const utterances_by_summary = Map.groupBy(slim_transcript, (utterance: Utterance) => {
 		const start = utterance.start;
 		const summary = aiShowNote?.summary?.findLast((summary, i) => {
 			const nextSummary = aiShowNote?.summary?.at(i + 1);
@@ -48,7 +47,7 @@
 	});
 
 	$: currentTopic = aiShowNote?.summary.find((summary, index) => {
-		const nextSummary = aiShowNote.summary[index + 1];
+		const nextSummary = aiShowNote?.summary[index + 1];
 		const topicEnd = nextSummary ? tsToS(nextSummary.time) : Infinity;
 		const topicStart = tsToS(summary.time);
 		return $player.currentTime >= topicStart && $player.currentTime <= topicEnd;
@@ -86,7 +85,10 @@
 			return 'future';
 		}
 	};
-	$: placeTopic = function (summary: TopicSummary, utterances: SlimUtterance[]) {
+	$: placeTopic = function (
+		summary: { text: string; time: string; id: number },
+		utterances: SlimUtterance[]
+	) {
 		const summaryEnd = utterances.at(-1)?.end || Infinity;
 		if (!playing_show_is_this_show) return ''; // not playing this show
 		if (currentTopic?.id === summary.id) {
@@ -99,62 +101,66 @@
 	};
 </script>
 
-<TableOfContents {aiShowNote} />
+{#if aiShowNote}
+	<TableOfContents {aiShowNote} />
+{/if}
 
 <div class="timeline">
-	{#each Array.from(utterances_by_summary) as [summary, utterances], i}
-		<section>
-			<header class="topic {placeTopic(summary, utterances)}">
-				<div class="gutter">
-					<div id={slug(summary.text)}>
-						<strong>Topic {i}</strong>
-						<span>{summary.time}</span>
+	{#if Array.isArray(utterances_by_summary)}
+		{#each Array.from(utterances_by_summary) as [summary, utterances], i}
+			<section>
+				<header class="topic {placeTopic(summary, utterances)}">
+					<div class="gutter">
+						<div id={slug(summary.text)}>
+							<strong>Topic {i}</strong>
+							<span>{summary.time}</span>
+						</div>
 					</div>
-				</div>
-				<div class="marker">
-					<Squiggle top={true} />
-					<span class="dot"></span>
-					<Squiggle />
-				</div>
+					<div class="marker">
+						<Squiggle top={true} />
+						<span class="dot"></span>
+						<Squiggle />
+					</div>
+					<div>
+						<h4>{summary.text || 'Transcript'}</h4>
+					</div>
+				</header>
 				<div>
-					<h4>{summary.text || 'Transcript'}</h4>
-				</div>
-			</header>
-			<div>
-				{#each utterances as utterance}
-					{@const progress =
-						(($player.currentTime - utterance.start) / (utterance.end - utterance.start)) * 100}
-					<div
-						style="
+					{#each utterances as utterance}
+						{@const progress =
+							(($player.currentTime - utterance.start) / (utterance.end - utterance.start)) * 100}
+						<div
+							style="
               --progress: {progress > 0 && progress < 100 ? `${progress}%` : '100%'};
               "
-						class="utterance {labelUtterance(utterance)}"
-					>
-						<div class="gutter">
-							<div>
-								<button
-									class="button-nunya"
-									on:click={async () => {
-										await player.start_show(show);
-										$player.currentTime = utterance.start;
-									}}>{format_time(utterance.start)}</button
-								>
-								<p class="speaker">
-									{utterance.speaker || `Guest ${utterance.speakerId}`}
-								</p>
+							class="utterance {labelUtterance(utterance)}"
+						>
+							<div class="gutter">
+								<div>
+									<button
+										class="button-nunya"
+										on:click={async () => {
+											await player.start_show(show);
+											$player.currentTime = utterance.start;
+										}}>{format_time(utterance.start)}</button
+									>
+									<p class="speaker">
+										{utterance.speaker || `Guest ${utterance.speakerId}`}
+									</p>
+								</div>
+							</div>
+							<div class="marker">
+								<span class="dot"></span>
+							</div>
+							<div class="text">
+								<p>{utterance.transcript}</p>
 							</div>
 						</div>
-						<div class="marker">
-							<span class="dot"></span>
-						</div>
-						<div class="text">
-							<p>{utterance.transcript}</p>
-						</div>
-					</div>
-				{/each}
-			</div>
-		</section>
-	{/each}
+					{/each}
+				</div>
+			</section>
+		{/each}
+	{/if}
 </div>
 
 <style lang="postcss">

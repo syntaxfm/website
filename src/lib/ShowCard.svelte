@@ -1,16 +1,30 @@
 <script lang="ts">
-	import white_grit from '$assets/whitegrit.png';
 	import { player } from '$state/player';
 	import { format_show_type } from '$utilities/format_show_type';
-	import Icon from './Icon.svelte';
+	import get_show_path from '$utilities/slug';
+	import type { Show } from '@prisma/client';
 	import { format } from 'date-fns';
-	import type { LatestShow } from '$server/ai/queries';
+	import FacePile from './FacePile.svelte';
+	import Icon from './Icon.svelte';
 	import Badge from './badges/Badge.svelte';
 	import Badges from './badges/Badges.svelte';
-	import FacePile from './FacePile.svelte';
-	import get_show_path from '$utilities/slug';
 
-	export let show: LatestShow;
+	// Scott - I hand wrote this type to be exactly what this component needs. Lots of TS errors
+	// Due to what generated type we're asking to satisfy here
+	export let show: Show & {
+		aiShowNote?: {
+			description?: string;
+			topics?: {
+				name: string;
+			}[];
+		} | null;
+		guests?: {
+			Guest: {
+				name: string;
+				github: string | null;
+			};
+		}[];
+	};
 	export let display: 'list' | 'card' | 'highlight' = 'card';
 
 	export let heading = 'h4';
@@ -188,7 +202,11 @@
 		font-weight: 600;
 		font-size: var(--font-size-lg);
 		line-height: 1.2;
-		text-shadow: 1px 0 0 var(--bg), 0 1px 0 var(--bg), -1px 0 0 var(--bg), 0 -1px 0 var(--bg);
+		text-shadow:
+			1px 0 0 var(--bg),
+			0 1px 0 var(--bg),
+			-1px 0 0 var(--bg),
+			0 -1px 0 var(--bg);
 	}
 
 	.description span {
@@ -215,7 +233,6 @@
 		padding: 10px;
 		box-shadow: inset 0 0 0 2px color-mix(in lch, var(--fg) 50%, transparent 94%);
 		color: var(--fg);
-
 	}
 
 	.show-number {

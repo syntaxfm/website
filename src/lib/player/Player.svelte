@@ -8,7 +8,7 @@
 
 <section class={`player ${$player_window_status}`}>
 	<div class="window-controls">
-		<ShareButton show={$player.current_show} />
+		{#if $player.current_show}<ShareButton show={$player.current_show} />{/if}
 		<button class="minimize" on:click={player.toggle_minimize}><Icon name="minimize" /></button>
 		<button class="close" on:click={player.close}>×</button>
 	</div>

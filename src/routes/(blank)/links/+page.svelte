@@ -1,10 +1,9 @@
 <script lang="ts">
-	import '../../(site)/style.css';
 	import Icon from '$/lib/Icon.svelte';
+	import Logo from '$/lib/Logo.svelte';
 	import NewsletterForm from '$/lib/NewsletterForm.svelte';
 	import PodcastLinks from '$/lib/PodcastLinks.svelte';
-	import Schedule from '$/lib/schedule.svelte';
-	import Logo from '$/lib/Logo.svelte';
+	import '../../(site)/style.css';
 
 	const POD_DATA = {
 		name: 'Syntax',
@@ -12,8 +11,9 @@
 		instagram: 'syntax_fm',
 		tiktok: 'syntaxfm',
 		linkedin_company: 'syntaxfm',
-		threads: 'syntax_fm'
-	};
+		threads: 'syntax_fm',
+		github: 'syntaxfm'
+	} as const;
 </script>
 
 <div class="theme-wrapper theme-light">
