@@ -28,18 +28,24 @@
 			return true;
 		});
 	// group Utterances by their summary
-	const def = { time: '00:00', text: '' };
+	type SummaryTitle = { time: string; text: string; id?: number };
+	const def: SummaryTitle = { time: '00:00', text: '' };
+	// TODO: This is a type for Map.groupBy(). We can remove this once TypeScript ships the types for it
+	type UtteranceMap = Map<typeof def, SlimUtterance[]>;
 
-	const utterances_by_summary = Map.groupBy(slim_transcript, (utterance: Utterance) => {
-		const start = utterance.start;
-		const summary = aiShowNote?.summary?.findLast((summary, i) => {
-			const nextSummary = aiShowNote?.summary?.at(i + 1);
-			const end = nextSummary ? tsToS(nextSummary.time) : Infinity;
-			const timestamp = tsToS(summary.time);
-			return start >= timestamp;
-		});
-		return summary || def;
-	});
+	const utterances_by_summary: UtteranceMap = Map.groupBy(
+		slim_transcript,
+		(utterance: Utterance) => {
+			const start = utterance.start;
+			const summary = aiShowNote?.summary?.findLast((summary, i) => {
+				const nextSummary = aiShowNote?.summary?.at(i + 1);
+				const end = nextSummary ? tsToS(nextSummary.time) : Infinity;
+				const timestamp = tsToS(summary.time);
+				return start >= timestamp;
+			});
+			return summary || def;
+		}
+	);
 
 	$: currentUtterance = slim_transcript.find((utterance, index) => {
 		const nextUtteranceStart = slim_transcript[index + 1]?.start || utterance.end;
@@ -85,10 +91,7 @@
 			return 'future';
 		}
 	};
-	$: placeTopic = function (
-		summary: { text: string; time: string; id: number },
-		utterances: SlimUtterance[]
-	) {
+	$: placeTopic = function (summary: SummaryTitle, utterances: SlimUtterance[]) {
 		const summaryEnd = utterances.at(-1)?.end || Infinity;
 		if (!playing_show_is_this_show) return ''; // not playing this show
 		if (currentTopic?.id === summary.id) {
@@ -106,61 +109,59 @@
 {/if}
 
 <div class="timeline">
-	{#if Array.isArray(utterances_by_summary)}
-		{#each Array.from(utterances_by_summary) as [summary, utterances], i}
-			<section>
-				<header class="topic {placeTopic(summary, utterances)}">
-					<div class="gutter">
-						<div id={slug(summary.text)}>
-							<strong>Topic {i}</strong>
-							<span>{summary.time}</span>
-						</div>
+	{#each Array.from(utterances_by_summary) as [summary, utterances], i}
+		<section>
+			<header class="topic {placeTopic(summary, utterances)}">
+				<div class="gutter">
+					<div id={slug(summary.text)}>
+						<strong>Topic {i}</strong>
+						<span>{summary.time}</span>
 					</div>
-					<div class="marker">
-						<Squiggle top={true} />
-						<span class="dot"></span>
-						<Squiggle />
-					</div>
-					<div>
-						<h4>{summary.text || 'Transcript'}</h4>
-					</div>
-				</header>
+				</div>
+				<div class="marker">
+					<Squiggle top={true} />
+					<span class="dot"></span>
+					<Squiggle />
+				</div>
 				<div>
-					{#each utterances as utterance}
-						{@const progress =
-							(($player.currentTime - utterance.start) / (utterance.end - utterance.start)) * 100}
-						<div
-							style="
+					<h4>{summary.text || 'Transcript'}</h4>
+				</div>
+			</header>
+			<div>
+				{#each utterances as utterance}
+					{@const progress =
+						(($player.currentTime - utterance.start) / (utterance.end - utterance.start)) * 100}
+					<div
+						style="
               --progress: {progress > 0 && progress < 100 ? `${progress}%` : '100%'};
               "
-							class="utterance {labelUtterance(utterance)}"
-						>
-							<div class="gutter">
-								<div>
-									<button
-										class="button-nunya"
-										on:click={async () => {
-											await player.start_show(show);
-											$player.currentTime = utterance.start;
-										}}>{format_time(utterance.start)}</button
-									>
-									<p class="speaker">
-										{utterance.speaker || `Guest ${utterance.speakerId}`}
-									</p>
-								</div>
-							</div>
-							<div class="marker">
-								<span class="dot"></span>
-							</div>
-							<div class="text">
-								<p>{utterance.transcript}</p>
+						class="utterance {labelUtterance(utterance)}"
+					>
+						<div class="gutter">
+							<div>
+								<button
+									class="button-nunya"
+									on:click={async () => {
+										await player.start_show(show);
+										$player.currentTime = utterance.start;
+									}}>{format_time(utterance.start)}</button
+								>
+								<p class="speaker">
+									{utterance.speakerName || `Guest ${utterance.speakerId}`}
+								</p>
 							</div>
 						</div>
-					{/each}
-				</div>
-			</section>
-		{/each}
-	{/if}
+						<div class="marker">
+							<span class="dot"></span>
+						</div>
+						<div class="text">
+							<p>{utterance.transcript}</p>
+						</div>
+					</div>
+				{/each}
+			</div>
+		</section>
+	{/each}
 </div>
 
 <style lang="postcss">

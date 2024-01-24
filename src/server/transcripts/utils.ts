@@ -1,14 +1,20 @@
 import type { Utterance } from '@deepgram/sdk/dist/types/utterance';
 import type { PrismaUtterance, SlimUtterance, SpeakerMap } from './types';
 
+/**
+ * Get the slim version of the utterances. This is used for the transcript and embedding functions. It groups together utterances that have the same speaker.
+ * @param utterances the utterances to slim. This can be used on both Prisma Database Utterances and straight from Deepgram.
+ */
+
 export function getSlimUtterances(
-	utterances: (PrismaUtterance | Utterance)[],
+	utterances: PrismaUtterance[] | Pick<Utterance, 'transcript' | 'speaker' | 'start' | 'end'>[],
 	showNumber: number,
 	groupForPunctuation = true
 ): SlimUtterance[] {
-	const start: SlimUtterance[] = [];
+	const start: Omit<SlimUtterance, 'utteranceIndex' | 'speakerName'>[] = [];
 	const slim = utterances.reduce((acc, utterance) => {
 		const { speaker, start, end } = utterance;
+		// Prisma uses transcript_value, deepgram uses transcript
 		const transcript_value =
 			'transcript_value' in utterance ? utterance.transcript_value : utterance.transcript;
 		const lastUtterance = acc[acc.length - 1];
@@ -27,8 +33,8 @@ export function getSlimUtterances(
 			lastUtterance.end = end;
 			return acc;
 		}
-		// Otherwise create a new item in the utterance array
-		const slimUtterance: Partial<SlimUtterance> = {
+		// Otherwise create a new item in the utterance array. We add the speaker name and utterance index in the next step
+		const slimUtterance = {
 			speakerId: speaker as number, // we always have a speaker id
 			transcript: transcript_value,
 			start,
@@ -44,7 +50,7 @@ export function getSlimUtterances(
 		return {
 			...utterance,
 			utteranceIndex,
-			speaker: speakerName
+			speakerName: speakerName
 		};
 	});
 }
@@ -64,7 +70,7 @@ export function formatTime(secs: number) {
 	return `${minutesString}:${secondsString}`;
 }
 
-function getSpeakerShortName(speaker: string | undefined) {
+function getSpeakerShortName(speaker: number | undefined) {
 	const shortForms = new Map([
 		['Scott Tolinski', 'Scott'],
 		['Wes Bos', 'Wes']
@@ -76,7 +82,7 @@ export function formatAsTranscript(utterances: SlimUtterance[]) {
 	return utterances.reduce((acc, utterance) => {
 		// TODO: We might need to reinstate condensedTranscript here
 		const timestamp = formatTime(utterance.start);
-		return `${acc}\n${timestamp} ${getSpeakerShortName(utterance.speaker)}:\n${
+		return `${acc}\n${timestamp} ${getSpeakerShortName(utterance.speaker as number)}:\n${
 			utterance.condensedTranscript || utterance.transcript
 		}\n`;
 	}, '');
@@ -92,11 +98,9 @@ export function formatForEmbedding(utterances: SlimUtterance[]) {
 	}, '');
 }
 
-// export function formatAsSTR(utterances: SlimUtterance[]) {
-// 	// TODO
-// }
-
-export function detectSpeakerNames(utterances: SlimUtterance[]): SpeakerMap {
+export function detectSpeakerNames(
+	utterances: Pick<SlimUtterance, 'transcript' | 'speakerId'>[]
+): SpeakerMap {
 	// Logic:
 	// Scott always says "drop a review if you like this show" at the end of each podcast
 	// Wes wes Often says "the podcast with the tastiest" web development treats

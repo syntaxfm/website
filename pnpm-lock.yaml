@@ -1,9 +1,5 @@
 lockfileVersion: '6.0'
 
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
-
 dependencies:
   '@anthropic-ai/sdk':
     specifier: ^0.6.2
@@ -41,6 +37,9 @@ dependencies:
   '@sveltejs/adapter-vercel':
     specifier: ^4.0.0
     version: 4.0.4(@sveltejs/kit@2.3.0)
+  '@types/core-js':
+    specifier: ^2.5.8
+    version: 2.5.8
   '@upstash/redis':
     specifier: ^1.24.3
     version: 1.24.3
@@ -136,9 +135,6 @@ devDependencies:
   '@types/chroma-js':
     specifier: ^2.4.3
     version: 2.4.3
-  '@types/core-js':
-    specifier: ^2.5.8
-    version: 2.5.8
   '@types/js-cookie':
     specifier: ^3.0.6
     version: 3.0.6
@@ -1540,7 +1536,7 @@ packages:
 
   /@types/core-js@2.5.8:
     resolution: {integrity: sha512-VgnAj6tIAhJhZdJ8/IpxdatM8G4OD3VWGlp6xIxUGENZlpbob9Ty4VVdC1FIEp0aK6DBscDDjyzy5FB60TuNqg==}
-    dev: true
+    dev: false
 
   /@types/debug@4.1.9:
     resolution: {integrity: sha512-8Hz50m2eoS56ldRlepxSBa6PWEVCtzUo/92HgLc2qTMnotJNIm7xP+UZhyWoYsyOdd5dxZ+NZLb24rsKyFs2ow==}
@@ -6894,3 +6890,7 @@ packages:
       which: 3.0.1
       yaml: 2.3.2
     dev: false
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false

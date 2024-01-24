@@ -9,7 +9,3 @@
 	<h2>AI Show Notes</h2>
 	<Dump data={show?.aiShowNote} />
 {/if}
-{#if show?.transcript}
-	<h2>Transcript</h2>
-	<!-- <Transcript transcript={show?.transcript} /> -->
-{/if}

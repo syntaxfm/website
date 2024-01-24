@@ -14,6 +14,22 @@ export const transcript_with_utterances = Prisma.validator<Prisma.TranscriptDefa
 	}
 });
 
+export const transcript_without_ai_notes_query = Prisma.validator<Prisma.ShowFindFirstArgs>()({
+	where: {
+		// Where there is no AI Show Note, and there is a transcript
+		aiShowNote: null,
+		transcript: {
+			isNot: null
+		}
+	},
+	include: {
+		transcript: transcript_with_utterances
+	},
+	orderBy: {
+		number: 'desc'
+	}
+});
+
 export const ai_note_with_friends = Prisma.validator<Prisma.AiShowNoteDefaultArgs>()({
 	include: {
 		links: true,
@@ -37,6 +53,7 @@ type SummaryItem = {
 type Link = {
 	name: string;
 	url: string;
+	timestamp: string;
 };
 
 type SpeakerTime = {

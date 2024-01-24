@@ -13,7 +13,6 @@ export async function save_transcript_to_db(show: Show, utterances: Utterance[])
 	const slim_utterances = getSlimUtterances(utterances, show.number);
 	// Detect Speakers
 	const speakerMap = detectSpeakerNames(slim_utterances);
-	// const who = speakerMap.get(0);
 
 	// Create Utterances
 	const create_utterances = utterances.map((utterance) => {
