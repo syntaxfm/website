@@ -1,8 +1,8 @@
-import type { Actions } from '@sveltejs/kit';
-import type { PageServerLoad } from './$types';
-import { LatestShow, SHOW_QUERY } from '$server/ai/queries';
-import { redis } from '../../hooks.server';
+import { SHOW_QUERY, type LatestShow } from '$server/ai/queries';
 import { cache_mang } from '$utilities/cache_mang';
+import type { Actions } from '@sveltejs/kit';
+import { redis } from '../../hooks.server';
+import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ locals, setHeaders, url }) => {
 	const cache_s = 600;

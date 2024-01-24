@@ -1,9 +1,9 @@
-import { error, json } from '@sveltejs/kit';
-import type { RequestEvent } from './$types';
 import { save_ai_notes_to_db } from '$server/ai/db';
 import { generate_ai_notes } from '$server/ai/openai';
 import { transcript_with_utterances } from '$server/ai/queries';
+import { error, json } from '@sveltejs/kit';
 import { has_auth } from '../transcripts/has_auth';
+import type { RequestEvent } from './$types';
 
 export const config = {
 	maxDuration: 300 // vercel timeout

@@ -1,13 +1,18 @@
 <script lang="ts">
-	import ShowOg from '$lib/ShowOg.svelte';
-
+	import type { LatestShow } from '$/server/ai/queries';
+	import ShowOg from './ShowOg.svelte';
 	export let data;
 	$: ({ show } = data);
+	// This sucks but the type error made no sense.
+	// Was using the exact query to generate the type
+	$: show_casted = show as LatestShow;
 </script>
 
-<div class="og-container">
-	<ShowOg {show} />
-</div>
+{#if show}
+	<div class="og-container">
+		<ShowOg show={show_casted} />
+	</div>
+{/if}
 
 <style lang="postcss">
 	.og-container {

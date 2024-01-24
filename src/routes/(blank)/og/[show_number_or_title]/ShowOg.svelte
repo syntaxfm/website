@@ -1,10 +1,11 @@
 <script lang="ts">
+	import type { LatestShow } from '$server/ai/queries';
 	import { format_show_type } from '$utilities/format_show_type';
 	import { format } from 'date-fns';
-	import type { LatestShow } from '$server/ai/queries';
-	import FacePile from './FacePile.svelte';
-	import wait from 'waait';
-	export let show: LatestShow;
+	import { tick } from 'svelte';
+	import FacePile from '../../../../lib/FacePile.svelte';
+
+	export let show: LatestShow & { isPage?: boolean };
 	export let show_date = show.date ? new Date(show.date) : null;
 
 	function fitText(node: HTMLHeadElement) {
@@ -23,8 +24,9 @@
 		let increment = 0.1;
 		node.style.fontSize = `${fontSize}cqw`;
 
-		async function sizeText() {
-			await wait(0); //
+		function sizeText() {
+			// We use tick here instead of await wait(), same technique, no async required since the action was complaining about returning a promise
+			tick();
 			node.style.fontSize = `${fontSize}cqw`;
 			const lineHeight = parseInt(getComputedStyle(node).lineHeight, 10);
 			const height = node.offsetHeight;
@@ -151,7 +153,11 @@
 		text-align: center;
 
 		/* black text outline in case white h1 text goes over yellow show number */
-		text-shadow: 2px 0 0 black, 0 2px 0 black, -2px 0 0 black, 0 -2px 0 black;
+		text-shadow:
+			2px 0 0 black,
+			0 2px 0 black,
+			-2px 0 0 black,
+			0 -2px 0 black;
 	}
 
 	.date {

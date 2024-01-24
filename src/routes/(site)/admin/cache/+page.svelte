@@ -3,7 +3,7 @@
 	import { form_action } from '$lib/form_action';
 	import type { PageData } from './$types';
 	export let data: PageData;
-	$: ({ cache } = data);
+	$: ({ cache = [] } = data);
 </script>
 
 <h1>Cache</h1>

@@ -1,7 +1,7 @@
-import type { Show } from '@prisma/client';
-import { writable, get } from 'svelte/store';
 import coverArt from '$assets/coverart-128.png';
 import coverArt512 from '$assets/coverart-512.png';
+import type { Show } from '@prisma/client';
+import { get, writable } from 'svelte/store';
 
 export interface Timestamp {
 	label: string;
@@ -17,6 +17,7 @@ function loadMediaSession(show: Show) {
 		console.log(`The Media Session API is not supported on this platform.`);
 		return;
 	}
+
 	console.log(`The Media Session API is supported on this platform.`);
 	navigator.mediaSession.metadata = new MediaMetadata({
 		title: show.title,
@@ -63,6 +64,7 @@ const new_player_state = () => {
 		currentTime: 0,
 		status: 'INITIAL'
 	});
+
 	const { update, subscribe, set } = player_state;
 
 	async function start_show(show: Show, start_time = 0) {
@@ -130,12 +132,14 @@ const new_player_state = () => {
 
 	function reset() {
 		update((state) => {
-			state.audio.currentTime = 0;
-			state = {
-				...state,
-				...reset_state,
-				currentTime: 0 // Explicitly set currentTime in the state as well
-			};
+			if (state.audio) {
+				state.audio.currentTime = 0;
+				state = {
+					...state,
+					...reset_state,
+					currentTime: 0 // Explicitly set currentTime in the state as well
+				};
+			}
 			return state;
 		});
 	}

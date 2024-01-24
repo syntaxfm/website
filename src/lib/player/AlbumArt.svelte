@@ -1,12 +1,12 @@
 <script lang="ts">
-	import CD from './CD.svelte';
-	import Album from './Album.svelte';
-	import { player, player_window_status } from '$state/player';
 	import { PUBLIC_URL } from '$env/static/public';
+	import { player, player_window_status } from '$state/player';
 	import type { Show } from '@prisma/client';
+	import Album from './Album.svelte';
+	import CD from './CD.svelte';
 
 	export let is_link = false;
-	export let show: Show = null;
+	export let show: Show | null = null;
 
 	let isAnimating = true;
 	let image_index = 0;
@@ -33,7 +33,7 @@
 	}
 </script>
 
-{#if $player_window_status !== 'MINI'}
+{#if $player_window_status !== 'MINI' && show}
 	{#if is_link}
 		<a class="art-wrapper" href="https://{PUBLIC_URL}/{show.number}">
 			<Album />

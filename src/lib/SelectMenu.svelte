@@ -1,10 +1,11 @@
 <script lang="ts">
-	import Icon from './Icon.svelte';
 	import { anchor } from '$actions/anchor';
 	import type { IconName } from './Icon.svelte';
+	import Icon from './Icon.svelte';
 	// Polyfill for Popover. Remove once Firefox supports it. https://caniuse.com/?search=popover
-	import { apply, isSupported } from '@oddbird/popover-polyfill/fn';
 	import { browser } from '$app/environment';
+	import { page } from '$app/stores';
+	import { apply, isSupported } from '@oddbird/popover-polyfill/fn';
 	if (!isSupported() && browser) {
 		apply();
 	}
@@ -17,7 +18,7 @@
 	let id = popover_id.replace('filter-', '');
 	export let value: string = '';
 	// let searchParams = new URLSearchParams(window.location.search);
-	import { page } from '$app/stores';
+
 	$: generate_search_params = (id: string, value: string) => {
 		const searchParams = new URLSearchParams($page.url.search);
 		if (!value) {
@@ -28,15 +29,8 @@
 		return searchParams.toString();
 	};
 
-	// TODO: remove  this when typescirpt dom ships HTMLPopoverElement
-	interface HTMLPopoverElement extends HTMLElement {
-		showPopover: () => void;
-		hidePopover: () => void;
-		togglePopover: () => void;
-		popover: 'auto' | 'manual';
-	}
-	function closePopoverWhenSelected(node: HTMLPopoverElement) {
-		function handlePopoverSelection(event) {
+	function closePopoverWhenSelected(node: HTMLDivElement) {
+		function handlePopoverSelection(event: MouseEvent) {
 			if (event.target instanceof HTMLAnchorElement) {
 				node.hidePopover();
 			}

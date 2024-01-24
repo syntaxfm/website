@@ -50,7 +50,7 @@
 	</p>
 </div>
 
-{#if show.id}
+{#if show?.id}
 	<h3>Grid With Cards</h3>
 	<div class="grid">
 		<ShowCard display="highlight" {show} />

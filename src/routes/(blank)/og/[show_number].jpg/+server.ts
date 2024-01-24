@@ -1,20 +1,20 @@
 import { dev } from '$app/environment';
 import chrome from '@sparticuz/chromium';
-import puppeteer, { Browser } from 'puppeteer-core';
+import puppeteer, { Browser, type Product } from 'puppeteer-core';
 import { redis } from '../../../../hooks.server.js';
 const exePath = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 
 async function getOptions() {
 	if (dev) {
 		return {
-			product: 'chrome',
+			product: 'chrome' as Product,
 			args: [],
 			executablePath: exePath,
 			headless: true
 		};
 	}
 	return {
-		product: 'chrome',
+		product: 'chrome' as Product,
 		args: chrome.args,
 		executablePath: await chrome.executablePath(),
 		headless: chrome.headless
@@ -23,7 +23,7 @@ async function getOptions() {
 
 let browser: Browser | null = null;
 
-async function getScreenshot(url) {
+async function getScreenshot(url: string) {
 	const options = await getOptions();
 	console.time(`launching browser`);
 	// We load the browser outside the handler so we can re-use a warm instance
@@ -54,12 +54,12 @@ const headers = {
 
 export async function GET({ url, params }) {
 	const start = performance.now();
-	const qs = new URLSearchParams(url.search);
+	// const qs = new URLSearchParams(url.search);
 	// const show = qs.get('show');
 	const show = params.show_number;
 
 	// Check if we have a cached version
-	const cache = redis ? await redis.get(`show-og-${show}`) : null;
+	const cache: string = redis ? (await redis.get(`show-og-${show}`)) || '' : '';
 	if (cache) {
 		console.log(`serving cached version of ${show}`, cache);
 		return new Response(Buffer.from(cache, 'base64'), {

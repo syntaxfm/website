@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { player } from '$state/player';
 	import Icon from '$lib/Icon.svelte';
+	import { player } from '$state/player';
 	import type { Show } from '@prisma/client';
 	import toast from 'svelte-french-toast';
 
@@ -39,7 +39,10 @@
 		);
 	}
 
-	$: time_stamp = share_at_ts ? `%3Ft%3D${toHMS(Math.trunc($player.audio?.currentTime))}` : ``;
+	$: time_stamp =
+		share_at_ts && $player?.audio?.currentTime
+			? `%3Ft%3D${toHMS(Math.trunc($player.audio?.currentTime))}`
+			: ``;
 	$: share_url = `https%3A//syntax.fm/${show.number}${time_stamp}`;
 </script>
 
@@ -48,7 +51,7 @@
 		<label>
 			<input bind:checked={share_at_ts} type="checkbox" />
 		</label>
-		Start at: <input type="text" value={toHMS(Math.trunc($player.audio?.currentTime))} />
+		Start at: <input type="text" value={toHMS(Math.trunc($player?.audio?.currentTime || 0))} />
 	</p>
 {/if}
 

@@ -14,17 +14,21 @@ import { get_show_cache_s } from './get_show_cache_ms';
 // );
 // Some of the TS here is rough and I'm very sorry for that. - Scott
 
+// Good luck if you would like to fix this
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type PrismaFindMethod = (args: any) => Promise<any>;
+
 export async function cache_mang<T>(
 	cache_key: string,
-	db_call: Prisma.ShowDelegate['findMany'] | Prisma.ShowDelegate['findUnique'],
-	db_query: Prisma.ShowFindUniqueArgs,
+	db_call: PrismaFindMethod,
+	db_query: Prisma.ShowFindManyArgs,
 	to_expire: number | 'SHOW' = 600 //default cache time
 ): Promise<T> {
 	let ex: number;
 	let temp;
 
 	// If the cache is ready or not
-	if (cache_status === 'ONLINE') {
+	if (cache_status === 'ONLINE' && redis) {
 		const temp_cached = await redis.get<T>(cache_key).catch();
 
 		if (temp_cached) {

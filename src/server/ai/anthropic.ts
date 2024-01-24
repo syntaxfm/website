@@ -1,14 +1,14 @@
 import Anthropic from '@anthropic-ai/sdk';
-import { CreateChatCompletionRequest } from 'openai';
+import type { CreateChatCompletionRequest } from 'openai';
 
 export const anthropic = new Anthropic({
 	apiKey: process.env.ANTHROPIC_KEY
 });
 
-const promptMap = new Map([
-	['system', Anthropic.AI_PROMPT],
-	['user', Anthropic.HUMAN_PROMPT]
-]);
+// const promptMap = new Map([
+// 	['system', Anthropic.AI_PROMPT],
+// 	['user', Anthropic.HUMAN_PROMPT]
+// ]);
 
 export function convert_openai_to_anthropic(completion: CreateChatCompletionRequest) {
 	const messages = completion.messages.map((message) => {

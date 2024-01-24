@@ -1,6 +1,6 @@
-import { describe, it, expect } from 'vitest';
+import type { ShortcutTrigger } from '@svelte-put/shortcut';
+import { describe, expect, it } from 'vitest';
 import { formatShortcut } from './utils';
-import { ShortcutTrigger } from '@svelte-put/shortcut';
 
 describe('Format shortcuts', () => {
 	it('Simple hotkeys', () => {

@@ -1,9 +1,7 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import { form_action } from '$lib/form_action';
-	import { ActionResult } from '@sveltejs/kit';
 	import type { PageData } from './$types';
-	import { format } from 'date-fns';
 
 	export let data: PageData;
 	$: ({ transcripts } = data);

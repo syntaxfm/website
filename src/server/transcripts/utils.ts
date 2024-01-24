@@ -1,4 +1,3 @@
-// TODO remove this ts-nocheck. I've added this until this is more complete or confirmed to be complete
 import type { Utterance } from '@deepgram/sdk/dist/types/utterance';
 import type { PrismaUtterance, SlimUtterance, SpeakerMap } from './types';
 
