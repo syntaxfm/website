@@ -3,7 +3,6 @@
 
 	export let data;
 	$: ({ transcript, show } = data);
-	$: console.log('transcript', transcript);
 </script>
 
 {#if transcript}
