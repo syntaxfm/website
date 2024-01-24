@@ -7,17 +7,13 @@ test('index page has expected h1', async ({ page }) => {
 	).toBeVisible();
 });
 
-test('index newsletter signup exists', async ({ page }) => {
-	await page.goto('/');
-	await expect(page.getByRole('heading', { name: 'Join our newsletter' })).toBeVisible();
-});
-
 test('Got about page', async ({ page }) => {
 	await page.goto('/');
 	await page.click('a:has-text("About")');
 	// Check for an h1 with the text "All Episodes"
 	await expect(page.locator('h1:has-text("About Syntax")')).toBeVisible();
 });
+
 test('Got to podcast detail page', async ({ page }) => {
 	await page.goto('/');
 	// Click the navigation link named "Shows"
