@@ -46,8 +46,8 @@ In this supper club episode of Syntax, Wes and Scott talk with Darcy Clarke abou
 - **[41:59](#t=41:59)** How does on-prem registry work?
 - **[47:29](#t=47:29)** Where does Socket.dev and Snyk security fit?
 - **[52:46](#t=52:46)** Sick Picks
-- **[04:41](#t=04:41)** How did you get vlt.sh?
-- **[05:30](#t=05:30)** How did you get @Darcy?
+- **[1:04:41](#t=01:04:41)** How did you get vlt.sh?
+- **[1:05:30](#t=01:05:30)** How did you get @Darcy?
 
 ### Sick Picks
 
