@@ -5,7 +5,7 @@ date: 1706529600007
 url: https://traffic.libsyn.com/syntax/723_-_Svelte_5_Speed_Simplicity__Size.mp3
 ---
 
-Get ready! Join Scott and Wes in this Hasty Treat as they unveil the eagerly anticipated Svelte 5, delving into its latest features. From the impressive speed and simplicity to its compact size, discover what makes this new release so exciting.
+Unveiling Svelte 5! delving into its latest features. From the impressive speed and simplicity to its compact size, discover what makes this new release so exciting.
 
 ### Show Notes
 
