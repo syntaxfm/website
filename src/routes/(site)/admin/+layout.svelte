@@ -1,4 +1,5 @@
 <nav>
+	<a href="/admin">Dashboard</a>
 	<a href="/admin/shows">Shows</a>
 	<a href="/admin/transcripts">Transcripts</a>
 	<a href="/admin/cache">Cache</a>

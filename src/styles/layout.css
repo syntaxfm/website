@@ -68,6 +68,8 @@
 		background-size: 250px;
 		border-radius: var(--radius, 0);
 		--subtle: color-mix(in lch, var(--fg), var(--bg) 90%);
+		/* Like subtle but transparent */
+		--tint-or-shade: color-mix(in oklab, var(--fg), transparent 90%);
 	}
 
 	.sticky {
