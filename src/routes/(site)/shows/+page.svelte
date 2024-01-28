@@ -1,13 +1,12 @@
 <script lang="ts">
-	import { queryParameters } from 'sveltekit-search-params';
+	import { page } from '$app/stores';
+	import { PER_PAGE } from '$const';
+	import Pagination from '$lib/Pagination.svelte';
 	import SelectMenu from '$lib/SelectMenu.svelte';
 	import ShowCard from '$lib/ShowCard.svelte';
-	import Pagination from '$lib/Pagination.svelte';
-	import { PER_PAGE } from '$const';
-	import { page } from '$app/stores';
+	import { queryParameters } from 'sveltekit-search-params';
 
 	export let data;
-	let limit = 100;
 
 	$: ({ shows } = data);
 

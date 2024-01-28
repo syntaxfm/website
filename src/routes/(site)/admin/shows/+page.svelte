@@ -1,5 +1,6 @@
 <script lang="ts">
 	import AdminActions from '$/lib/AdminActions.svelte';
+	import AdminSearch from '$/lib/AdminSearch.svelte';
 	import { dev } from '$app/environment';
 	import { enhance } from '$app/forms';
 	import FormWithLoader from '$lib/FormWithLoader.svelte';
@@ -9,6 +10,7 @@
 	$: ({ shows } = data);
 
 	let confirm = false;
+	let search_text = '';
 </script>
 
 <h1 class="h4">Shows</h1>
@@ -51,6 +53,8 @@
 </AdminActions>
 
 <div>
+	<AdminSearch bind:text={search_text} />
+
 	<div class="table-container">
 		<table>
 			<thead>
@@ -58,14 +62,15 @@
 					<th>Number</th>
 					<th>Title</th>
 					<th>Type</th>
-					<th>Release Date</th>
 					<th>Guest Count</th>
 					<th>Transcript</th>
 					<th>AI Notes</th>
 				</tr>
 			</thead>
 			<tbody>
-				{#each shows as show}
+				{#each shows.filter((s) => s.title
+						.toLowerCase()
+						.includes(search_text.toLowerCase())) as show}
 					<tr>
 						<td>
 							<a href="/admin/shows/{show.number}">#{show.number}</a>
@@ -74,12 +79,14 @@
 							<a href="/{show.number}" target="_blank">
 								{show.title}
 								[↗]</a
-							></td
-						>
-						<td class="text-xs">
-							{show.date.getTime() > Date.now() ? 'Scheduled' : 'Published'}
-							{format(show.date, 'EEE MMM d yyyy h:mm:ss a z')}
+							>
+							<br />
+							<span class="text-xs">
+								{show.date.getTime() > Date.now() ? 'Scheduled' : 'Published'}
+								{format(show.date, 'EEE MMM d yyyy h:mm:ss a z')}
+							</span>
 						</td>
+
 						<td>
 							{#if format(show.date, 'EEE') === 'Mon'}
 								Hasty
@@ -89,9 +96,7 @@
 								Supper Club
 							{/if}
 						</td>
-						<td>
-							{format(show.date, 'EEE MMM dd yy')}
-						</td>
+
 						<td class="center">{show._count.guests}</td>
 						<td class="center"
 							>{#if show.transcript}
