@@ -1,8 +1,7 @@
-import flexsearch, { type Index } from 'flexsearch';
-import type { Block, Tree } from './types';
 import type { Show } from '@prisma/client';
+import flexsearch from 'flexsearch';
+import type { Block, Tree } from './types';
 
-// @ts-expect-error tbh not sure about this one but sk had it in their code.
 const Index = flexsearch.Index ?? flexsearch;
 
 export let inited = false;

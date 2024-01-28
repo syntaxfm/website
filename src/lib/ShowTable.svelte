@@ -2,7 +2,20 @@
 	import type { Show } from '@prisma/client';
 	import { format } from 'date-fns';
 
-	export let shows: Show[];
+	export let shows: (Show & {
+		aiShowNote: {
+			id: number;
+			show_number: number;
+			title: string;
+			description: string;
+			provider: string;
+			topics: {
+				id: number;
+				name: string;
+				showNote: number;
+			}[];
+		} | null;
+	})[];
 </script>
 
 <div class="table-container">
