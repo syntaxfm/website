@@ -70,7 +70,7 @@
 			<tbody>
 				{#each shows.filter((s) => s.title
 						.toLowerCase()
-						.includes(search_text?.toLowerCase() || '')) as show}
+						.includes(search_text.toLowerCase())) as show}
 					<tr>
 						<td>
 							<a href="/admin/shows/{show.number}">#{show.number}</a>
