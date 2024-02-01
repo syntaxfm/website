@@ -15,6 +15,16 @@
 </a>
 <a
 	class="icon"
+	target="_blank"
+	title="Listen on Youtube"
+	aria-label="Youtube"
+	style:--fg="#F61C0D"
+	href="https://www.youtube.com/@syntaxfm"
+>
+	<Icon name="youtube" />
+</a>
+<a
+	class="icon"
 	title="Listen on Apple Podcasts"
 	aria-label="Apple Podcasts"
 	target="_blank"
