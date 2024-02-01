@@ -1,18 +1,18 @@
 <script lang="ts">
+	import AdminActions from '$/lib/AdminActions.svelte';
 	import { enhance } from '$app/forms';
 	import { form_action } from '$lib/form_action';
-	import type { PageData } from './$types';
-	export let data: PageData;
+	export let data;
 	$: ({ cache = [] } = data);
 </script>
 
-<h1>Cache</h1>
+<h1 class="h4">Cache</h1>
 
-<div>
+<AdminActions>
 	<form action="/?/dump_cache" use:enhance={form_action()} method="POST">
 		<button>Dump Cache</button>
 	</form>
-</div>
+</AdminActions>
 
 <table>
 	<thead>
@@ -21,10 +21,16 @@
 		</tr>
 	</thead>
 	<tbody>
-		{#each cache as key}
+		{#if cache.length > 0}
+			{#each cache as key}
+				<tr>
+					<td>{key}</td>
+				</tr>
+			{/each}
+		{:else}
 			<tr>
-				<td>{key}</td>
+				<td>Cache Not Available</td>
 			</tr>
-		{/each}
+		{/if}
 	</tbody>
 </table>

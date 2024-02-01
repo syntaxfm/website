@@ -136,6 +136,7 @@
 	--fg-1: var(--white); /* used in header */
 	--fg-2: var(--black-9); /* currently unused */
 	--fg-sheet: var(--black);
+	
 
 	/* Interface Color */
 	--primary: var(--yellow);
@@ -144,6 +145,8 @@
 	--warning: var(--red);
 	--success: var(--green);
 	--line: var(--black-2);
+
+	--tint-or-shade: color-mix(in oklab, var(--fg), transparent 75%);
 
 	/* Borders */
 	--brad: 5px;

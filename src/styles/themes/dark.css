@@ -21,7 +21,6 @@
 		--fg-1: var(--white);
 		--fg-2: var(--black-3);
 		--border: solid var(--border-size) var(--fg-sheet);
-
 		--spa-ran-wrap-bg: var(--black);
 		--bgGrit: var(--bgGritDark);
 		.border-on-dark {

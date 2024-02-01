@@ -5,7 +5,9 @@
 	$: ({ show } = data);
 </script>
 
+<h1 class="h4">AI Show Notes</h1>
 {#if show?.aiShowNote}
-	<h2>AI Show Notes</h2>
 	<Dump data={show?.aiShowNote} />
+{:else}
+	<p>Notes not available</p>
 {/if}

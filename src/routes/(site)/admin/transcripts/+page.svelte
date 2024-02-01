@@ -1,4 +1,5 @@
 <script lang="ts">
+	import AdminActions from '$/lib/AdminActions.svelte';
 	import { enhance } from '$app/forms';
 	import { form_action } from '$lib/form_action';
 	import type { PageData } from './$types';
@@ -7,18 +8,18 @@
 	$: ({ transcripts } = data);
 </script>
 
-<h4>Transcripts</h4>
-<div>
+<h1 class="h4">Transcripts</h1>
+<AdminActions>
 	<form action="?/import_transcripts" method="post" use:enhance={form_action()}>
 		<button type="submit">Import All Transcripts</button>
 	</form>
 	<form action="?/delete_all_transcripts" method="post" use:enhance={form_action()}>
-		<button type="submit">Drop All transcripts</button>
+		<button class="warning" type="submit">Drop All transcripts</button>
 	</form>
 	<form action="/webhooks/refresh" method="post">
-		<button type="submit">Test Post</button>
+		<button class="subtle" type="submit">Test Post</button>
 	</form>
-</div>
+</AdminActions>
 
 <table>
 	<thead>
