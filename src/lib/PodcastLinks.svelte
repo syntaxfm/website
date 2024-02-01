@@ -71,6 +71,12 @@
 	.subscribe--pocketcasts {
 		--button-bg: linear-gradient(to bottom, rgb(242, 43, 36) 0%, rgb(215, 12, 11) 100%);
 	}
+	.subscribe--youtube::before {
+		background-image: url('/icons/youtube.svg');
+	}
+	.subscribe--youtube {
+		--button-bg: linear-gradient(to bottom, rgb(255, 255, 255) 0%, rgb(215, 215, 215) 100%);
+	}
 	.subscribe--pocketcasts::before {
 		background-image: url('/icons/pocketcasts.jpg');
 	}

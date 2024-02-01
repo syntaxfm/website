@@ -26,6 +26,10 @@ export const PODCAST_LINKS = [
 		text: 'Apple Podcasts'
 	},
 	{
+		href: 'https://www.youtube.com/@syntaxfm',
+		text: 'YouTube'
+	},
+	{
 		href: 'https://overcast.fm/itunes1253186678/syntax-tasty-web-development-treats',
 		text: 'Overcast'
 	},
