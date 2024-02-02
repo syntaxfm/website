@@ -7,7 +7,7 @@
 <a
 	class="icon"
 	target="_blank"
-	title="Listen on Spotify"
+	title="Watch or Listen on Spotify"
 	aria-label="Spotify"
 	href="https://open.spotify.com/search/syntax.fm {encodeURI(show.title)}/episodes"
 >
@@ -16,7 +16,7 @@
 <a
 	class="icon"
 	target="_blank"
-	title="Listen on Youtube"
+	title="Watch on Youtube"
 	aria-label="Youtube"
 	style:--fg="#F61C0D"
 	href="https://www.youtube.com/@syntaxfm"
