@@ -3,6 +3,7 @@ number: 725
 title: Safari is the new Chrome - Jen Simmons of Apple
 date: 1706875201005
 url: https://traffic.libsyn.com/syntax/Safari_is_the_new_Chrome_725.mp3
+youtube_url: https://www.youtube.com/watch?v=IoC-4GpBaiA
 guest:
   name: Jen Simmons
   github: jensimmons
