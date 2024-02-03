@@ -1,16 +1,16 @@
 <script lang="ts">
-	import { format } from 'date-fns';
-	import { player } from '$state/player';
+	import ShareButton from '$/lib/share/ShareButton.svelte';
+	import { time_param_to_seconds } from '$/utilities/time_param_to_seconds.js';
 	import { page } from '$app/stores';
 	import HostsAndGuests from '$lib/HostsAndGuests.svelte';
 	import Icon from '$lib/Icon.svelte';
 	import ListenLinks from '$lib/ListenLinks.svelte';
 	import Tabs from '$lib/Tabs.svelte';
-	import { theme } from '$state/theme';
-	import wait from 'waait';
 	import ShareWindow from '$lib/share/ShareWindow.svelte';
-	import { time_param_to_seconds } from '$/utilities/time_param_to_seconds.js';
-	import ShareButton from '$/lib/share/ShareButton.svelte';
+	import { player } from '$state/player';
+	import { theme } from '$state/theme';
+	import { format } from 'date-fns';
+	import wait from 'waait';
 	export let data;
 	$: ({ show, time_start } = data);
 
@@ -66,6 +66,7 @@
 	<h1 style:--transition-name="show-title-{show.number}">
 		<span class="spa-ran-wrap">{show.title}</span>
 	</h1>
+
 	{#if show.aiShowNote?.description}
 		<p class="description"><span>{show.aiShowNote?.description}</span></p>
 	{/if}
@@ -144,7 +145,11 @@
 			view-transition-name: var(--transition-name);
 			margin-top: 0;
 			font-size: var(--font-size-xxl);
-			text-shadow: 1px 0 0 var(--bg), 0 1px 0 var(--bg), -1px 0 0 var(--bg), 0 -1px 0 var(--bg);
+			text-shadow:
+				1px 0 0 var(--bg),
+				0 1px 0 var(--bg),
+				-1px 0 0 var(--bg),
+				0 -1px 0 var(--bg);
 		}
 
 		.description span {
