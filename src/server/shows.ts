@@ -11,6 +11,7 @@ interface FrontMatterGuest {
 	name: string;
 	twitter: string;
 	url: string;
+	youtube_url?: string;
 	social: string[];
 }
 
@@ -97,7 +98,7 @@ export async function parse_and_save_show_notes(
 				slug: slug(data.title),
 				date,
 				number,
-				url: data.url,
+				youtube_url: data.youtube_url,
 				show_notes: content,
 				hash: hash,
 				md_file,
@@ -110,6 +111,7 @@ export async function parse_and_save_show_notes(
 				title: data.title,
 				date,
 				url: data.url,
+				youtube_url: data.youtube_url,
 				show_notes: content,
 				hash: hash,
 				md_file,

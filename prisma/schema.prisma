@@ -104,21 +104,22 @@ model SocialLink {
 }
 
 model Show {
-  id         String      @id
-  number     Int         @unique
-  title      String      @db.Text
-  date       DateTime
-  url        String
-  show_notes String      @db.Text
-  hash       String      @unique
-  slug       String
-  md_file    String      @unique
-  created_at DateTime    @default(now())
-  updated_at DateTime    @updatedAt
-  guests     ShowGuest[] // Relation to joining model
-  transcript Transcript?
-  aiShowNote AiShowNote?
-  show_type  ShowType    @default(SPECIAL)
+  id          String      @id
+  number      Int         @unique
+  title       String      @db.Text
+  date        DateTime
+  url         String
+  youtube_url String?
+  show_notes  String      @db.Text
+  hash        String      @unique
+  slug        String
+  md_file     String      @unique
+  created_at  DateTime    @default(now())
+  updated_at  DateTime    @updatedAt
+  guests      ShowGuest[] // Relation to joining model
+  transcript  Transcript?
+  aiShowNote  AiShowNote?
+  show_type   ShowType    @default(SPECIAL)
 
   @@index([number, date], name: "idx_show_number_date") // Define composite index
   @@index([number]) // Define composite index

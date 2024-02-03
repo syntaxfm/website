@@ -13,16 +13,18 @@
 >
 	<Icon name="spotify" />
 </a>
-<a
-	class="icon"
-	target="_blank"
-	title="Watch on Youtube"
-	aria-label="Youtube"
-	style:--fg="#F61C0D"
-	href="https://www.youtube.com/@syntaxfm"
->
-	<Icon name="youtube" />
-</a>
+{#if show.youtube_url}
+	<a
+		class="icon"
+		target="_blank"
+		title="Watch on Youtube"
+		aria-label="Youtube"
+		style:--fg="#F61C0D"
+		href={show.youtube_url}
+	>
+		<Icon name="youtube" />
+	</a>
+{/if}
 <a
 	class="icon"
 	title="Listen on Apple Podcasts"
