@@ -2,8 +2,8 @@
 number: 727
 title: "How to Code: Opinionated TypeScript Stack + Tooling Choices Explained"
 date: 1707307200755
-url: https://www.youtube.com/watch?v=eqzdnkVkk18
-youtube_url: https://traffic.libsyn.com/syntax/Syntax_-_727.mp3
+youtube_url: https://www.youtube.com/watch?v=eqzdnkVkk18
+url: https://traffic.libsyn.com/syntax/Syntax_-_727.mp3
 ---
 
 Join Wes and Scott for a 30,000 foot, 'soup-to-nuts' view of web development. From choosing design tools, website styling, and programming languages, to backend infrastructure, data management, and hosting.
