@@ -13,6 +13,11 @@ jobs:
         with:
           fetch-depth: 0 # Ensure the entire history is fetched
 
+      - name: Fetch base branch
+        run: git fetch origin ${GITHUB_BASE_REF}:${GITHUB_BASE_REF}
+        env:
+          GITHUB_BASE_REF: ${{ github.base_ref }}
+
       - name: pnpm-setup
         uses: pnpm/action-setup@v2
         with:
