@@ -37,8 +37,10 @@ const processFile = async (filePath) => {
 const getNewMarkdownFiles = async () => {
 	const baseBranch = process.env.GITHUB_BASE_REF; // Use the base branch of the PR
 	const { stdout } = await execAsync(
-		`git diff --diff-filter=A --name-only HEAD $(git merge-base HEAD ${baseBranch}) '*.md'`
+		`git diff --diff-filter=A --name-only ${baseBranch} HEAD '*.md'`
 	);
+	console.log('stdout', stdout);
+
 	return stdout.split('\n').filter((line) => line.endsWith('.md'));
 };
 
