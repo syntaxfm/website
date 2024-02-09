@@ -65,6 +65,7 @@
 		"@deepgram/sdk": "^2.4.0",
 		"@ffmpeg.wasm/core-mt": "0.13.2",
 		"@ffmpeg.wasm/main": "^0.13.1",
+		"@googleapis/youtube": "^13.1.0",
 		"@leveluptuts/svelte-side-menu": "^1.0.7",
 		"@oddbird/popover-polyfill": "^0.3.8",
 		"@prisma/client": "5.9.1",
