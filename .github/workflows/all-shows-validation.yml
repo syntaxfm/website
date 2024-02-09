@@ -6,15 +6,22 @@ on:
       - 'shows/**'
 
 jobs:
-  check-md-extension:
+  validate-md-extension:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Check for MD file extensions in ./shows folder
+      - name: Validate all .md files in ./shows folder
         run: |
-          for file in $(git diff --name-only HEAD~1 -- './shows/*'); do
+          # List all files in the ./shows directory
+          files=$(find ./shows -type f)
+          error=0
+          for file in $files; do
             if [[ ! "$file" =~ \.md$ ]]; then
-              echo "::error ::File $file does not have a .md extension."
-              exit 1
+              echo "::error file=$file::File does not have a .md extension."
+              error=1
             fi
           done
+
+          if [ "$error" -ne 0 ]; then
+            exit 1
+          fi
