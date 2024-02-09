@@ -29,4 +29,6 @@ jobs:
         run: pnpm install
 
       - name: Check for broken links in new MD files
-        run: node merging-show-validation.js
+        run: node ./scripts/node merging-show-validation.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
