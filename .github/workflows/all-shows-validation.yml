@@ -9,7 +9,7 @@ jobs:
   validate-md-extension:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Validate all .md files in ./shows folder
         run: |
           # List all files in the ./shows directory
