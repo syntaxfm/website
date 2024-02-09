@@ -1,0 +1,26 @@
+name: Check Links in New Markdown Files
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - '**/*.md'
+
+jobs:
+  check-new-links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Ensure the entire history is fetched
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.18.2
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Check for broken links in new MD files
+        run: node merging-show-validation.js
