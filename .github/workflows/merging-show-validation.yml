@@ -31,3 +31,4 @@ jobs:
         run: node ./scripts/merging-show-validation.js
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_BASE_REF: ${{ github.base_ref }}
