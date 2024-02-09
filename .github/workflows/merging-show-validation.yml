@@ -2,7 +2,6 @@ name: Check Links in New Markdown Files
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
     paths:
       - '**/*.md'
 
