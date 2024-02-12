@@ -35,34 +35,34 @@ const processFile = async (filePath) => {
 	const results = await Promise.all(checkPromises);
 	return urls.filter((_, index) => !results[index]);
 };
-// Modified function to get .md files from ./shows
-const getMarkdownFiles = async () => {
-	const directoryPath = './shows'; // Target directory
-	const files = await fs.readdir(directoryPath);
-	return files.filter((file) => file.endsWith('.md')).map((file) => path.join(directoryPath, file));
+// Function to get all new files added in the PR within ./shows directory
+const getNewFilesInShows = async () => {
+	const baseBranch = process.env.GITHUB_BASE_REF; // Use the base branch of the PR
+	const { stdout } = await execAsync(
+		`git diff --diff-filter=A --name-only ${baseBranch} HEAD './shows/'`
+	);
+	// Split the output by new lines to get an array of file paths
+	return stdout.split('\n').filter((line) => line.startsWith('shows/'));
 };
 
-// New function to check for non-.md files in ./shows
-const checkForNonMarkdownFiles = async () => {
-	const directoryPath = './shows';
-	const files = await fs.readdir(directoryPath);
-	const nonMarkdownFiles = files.filter((file) => !file.endsWith('.md'));
+// Function to check for non-.md files and process .md files
+const checkAndProcessNewFiles = async () => {
+	const newFiles = await getNewFilesInShows();
+	if (newFiles.length === 0) {
+		console.log('No new files in ./shows.');
+		return;
+	}
+
+	// Filter non-markdown files
+	const nonMarkdownFiles = newFiles.filter((file) => !file.endsWith('.md'));
 	if (nonMarkdownFiles.length > 0) {
 		console.error('Non-markdown files found in ./shows:', nonMarkdownFiles);
 		process.exit(1); // Fail if there are non-markdown files
 	}
-};
 
-const main = async () => {
-	await checkForNonMarkdownFiles(); // Check for non-markdown files first
-
-	const markdownFiles = await getMarkdownFiles();
-	if (markdownFiles.length === 0) {
-		console.log('No markdown files to check in ./shows.');
-		return;
-	}
+	// Proceed with markdown files
 	let hasBrokenLinks = false;
-	for (const file of markdownFiles) {
+	for (const file of newFiles) {
 		const brokenLinks = await processFile(file);
 		if (brokenLinks.length > 0) {
 			hasBrokenLinks = true;
@@ -75,4 +75,4 @@ const main = async () => {
 	}
 };
 
-await main();
+await checkAndProcessNewFiles();
