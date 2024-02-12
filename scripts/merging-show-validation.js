@@ -35,34 +35,35 @@ const processFile = async (filePath) => {
 	const results = await Promise.all(checkPromises);
 	return urls.filter((_, index) => !results[index]);
 };
-// Function to get all new files added in the PR within ./shows directory
+// Function to get new files added in the PR within ./shows directory
 const getNewFilesInShows = async () => {
 	const baseBranch = process.env.GITHUB_BASE_REF; // Use the base branch of the PR
 	const { stdout } = await execAsync(
-		`git diff --diff-filter=A --name-only ${baseBranch} HEAD './shows/'`
+		`git diff --diff-filter=A --name-only ${baseBranch} HEAD -- 'shows/'`
 	);
-	// Split the output by new lines to get an array of file paths
 	return stdout.split('\n').filter((line) => line.startsWith('shows/'));
 };
 
-// Function to check for non-.md files and process .md files
-const checkAndProcessNewFiles = async () => {
+// Main function modified to check for non-.md files in ./shows
+const main = async () => {
 	const newFiles = await getNewFilesInShows();
-	if (newFiles.length === 0) {
-		console.log('No new files in ./shows.');
-		return;
-	}
+	const nonMdFiles = newFiles.filter((file) => !file.endsWith('.md'));
 
-	// Filter non-markdown files
-	const nonMarkdownFiles = newFiles.filter((file) => !file.endsWith('.md'));
-	if (nonMarkdownFiles.length > 0) {
-		console.error('Non-markdown files found in ./shows:', nonMarkdownFiles);
+	if (nonMdFiles.length > 0) {
+		console.error('Error: Non-markdown files found in ./shows:', nonMdFiles);
 		process.exit(1); // Fail if there are non-markdown files
 	}
 
-	// Proceed with markdown files
+	// Filter out .md files for further processing
+	const mdFiles = newFiles.filter((file) => file.endsWith('.md'));
+
+	if (mdFiles.length === 0) {
+		console.log('No new markdown files to check in ./shows.');
+		return;
+	}
+
 	let hasBrokenLinks = false;
-	for (const file of newFiles) {
+	for (const file of mdFiles) {
 		const brokenLinks = await processFile(file);
 		if (brokenLinks.length > 0) {
 			hasBrokenLinks = true;
@@ -70,9 +71,10 @@ const checkAndProcessNewFiles = async () => {
 			brokenLinks.forEach((link) => console.log(`- ${link}`));
 		}
 	}
+
 	if (hasBrokenLinks) {
 		process.exit(1);
 	}
 };
 
-await checkAndProcessNewFiles();
+await main();
