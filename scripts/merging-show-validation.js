@@ -4,11 +4,6 @@ import { promisify } from 'util';
 // import path from 'path';
 const execAsync = promisify(exec);
 
-async function setup() {
-	// Fetch all branches to ensure all references are up to date
-	await execAsync('git fetch --all');
-}
-
 // Function to check URL availability
 async function isUrlValid(url) {
 	try {
@@ -42,7 +37,6 @@ const processFile = async (filePath) => {
 };
 // Function to get new files added in the PR within ./shows directory
 const getNewFilesInShows = async () => {
-	await setup(); // Make sure all branches are fetched
 	const baseBranch = process.env.GITHUB_BASE_REF; // Use the base branch of the PR
 	const { stdout } = await execAsync(
 		`git diff --diff-filter=A --name-only ${baseBranch} HEAD -- 'shows/'`
