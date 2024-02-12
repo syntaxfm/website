@@ -24,7 +24,7 @@ Scott and Wes talk about the benefits of owning your own PaaS (platform as a ser
 * [Nelify](https://www.netlify.com/)
 * [Bluehost](https://www.bluehost.com/)
 * **[15:05](#t=15:05)** "Pokémon or Web Service"
-* [Original 150 Pekémon Characters](https://www.giantbomb.com/profile/wakka/lists/the-150-original-pokemon/59579/)
+* [Original 150 Pokémon Characters](https://www.giantbomb.com/profile/wakka/lists/the-150-original-pokemon/59579/)
 * **[16:49](#t=16:49)** The players and their pros and cons.
 * **[18:51](#t=18:51)** Where can you host these services?
     * **[19:47](#t=19:47)** Kubero.
