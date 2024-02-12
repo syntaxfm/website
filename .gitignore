@@ -23,3 +23,4 @@ test-results
 # core.wasm
 
 start_script/target
+bin
