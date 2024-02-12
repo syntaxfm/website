@@ -2,7 +2,6 @@ name: Check Links in New Markdown Files
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
     paths:
       - '**/*.md'
 
@@ -13,6 +12,11 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0 # Ensure the entire history is fetched
+
+      - name: Fetch base branch
+        run: git fetch origin ${GITHUB_BASE_REF}:${GITHUB_BASE_REF}
+        env:
+          GITHUB_BASE_REF: ${{ github.base_ref }}
 
       - name: pnpm-setup
         uses: pnpm/action-setup@v2
@@ -29,4 +33,7 @@ jobs:
         run: pnpm install
 
       - name: Check for broken links in new MD files
-        run: node merging-show-validation.js
+        run: node ./scripts/merging-show-validation.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_BASE_REF: ${{ github.base_ref }}
