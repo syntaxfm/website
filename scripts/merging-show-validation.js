@@ -3,9 +3,13 @@ import fs from 'fs/promises';
 import { promisify } from 'util';
 // import path from 'path';
 const execAsync = promisify(exec);
-
-// Function to check URL availability
-async function isUrlValid(url) {
+// Function to check URL availability, modified to accept an optional skipUrls array
+async function isUrlValid(url, skipUrls = []) {
+	// Skip URL check if url is in skipUrls array
+	if (skipUrls.includes(url)) {
+		console.log(`Skipping URL check for future-dated content: ${url}`);
+		return true; // Assume the URL is valid if we are skipping the check
+	}
 	try {
 		const response = await fetch(url, {
 			headers: {
@@ -13,7 +17,6 @@ async function isUrlValid(url) {
 					'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
 			}
 		});
-		// Consider valid if the status code is in the range 200-399, covering success and redirection
 		return response.status !== 404;
 	} catch (error) {
 		console.error(`Error checking URL: ${url}`, error);
@@ -25,6 +28,16 @@ async function isUrlValid(url) {
 const extractUrls = (content) => {
 	const urlRegex = /https?:\/\/[^\s\)]+/g;
 	return content.match(urlRegex) || [];
+};
+
+// Function to extract date and URL from markdown content
+const extractDateAndUrl = (content) => {
+	const dateMatch = content.match(/^date:\s*(\d+)/m);
+	const urlMatch = content.match(/^url:\s*(https?:\/\/[^\s]+)/m);
+	return {
+		date: dateMatch ? parseInt(dateMatch[1], 10) : null,
+		url: urlMatch ? urlMatch[1] : null
+	};
 };
 
 const validateTimestamps = (content) => {
@@ -50,16 +63,24 @@ const validateTimestamps = (content) => {
 
 // Function to process a single markdown file for broken links
 
-// Modify the processFile function to also check for invalid timestamps
+// Modified processFile function to check for future date and specific URL
 const processFile = async (filePath) => {
 	const content = await fs.readFile(filePath, 'utf8');
-	// Checking for broken links
+	const { date, url } = extractDateAndUrl(content);
+
+	const currentTime = Date.now();
+	let skipUrls = [];
+	if (date > currentTime && url) {
+		// If the date is in the future, add the URL to skipUrls
+		skipUrls.push(url);
+	}
+
 	const urls = extractUrls(content);
-	const check_urls_promises = urls.map(isUrlValid);
-	const results = await Promise.all(check_urls_promises);
+	const checkPromises = urls.map((url) => isUrlValid(url, skipUrls));
+	const results = await Promise.all(checkPromises);
 	const brokenLinks = urls.filter((_, index) => !results[index]);
 
-	// Checking for invalid timestamps
+	// No need to modify for invalid timestamps part
 	const invalidTimestamps = validateTimestamps(content);
 
 	return {
@@ -67,6 +88,7 @@ const processFile = async (filePath) => {
 		invalidTimestamps
 	};
 };
+
 // Function to get new files added in the PR within ./shows directory
 const getNewFilesInShows = async () => {
 	const baseBranch = process.env.GITHUB_BASE_REF; // Use the base branch of the PR
