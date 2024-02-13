@@ -2,7 +2,7 @@
 number: 730
 title: Own your own PaaS
 date: 1707912000321
-url: https://traffic.libsyn.com/syntax/Syntax_-_730.mp3
+url: https://traffic.libsyn.com/syntax/Syntax_-_729.mp3
 youtube_url: https://youtu.be/nCWznQ0HY9c
 ---
 
