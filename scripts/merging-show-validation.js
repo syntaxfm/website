@@ -27,13 +27,45 @@ const extractUrls = (content) => {
 	return content.match(urlRegex) || [];
 };
 
+const validateTimestamps = (content) => {
+	// Regex to match HH:MM:SS or MM:SS format
+	const timestampRegex = /\b((?:[0-5]?[0-9]:)?[0-5]?[0-9]:[0-5][0-9])\b/g;
+	const timestamps = content.match(timestampRegex) || [];
+	const invalidTimestamps = timestamps.filter((timestamp) => {
+		// Splitting timestamp into parts to validate HH:MM:SS or MM:SS format
+		const parts = timestamp.split(':').map(Number);
+		// Checking if parts are in valid range
+		if (parts.length === 3) {
+			// HH:MM:SS format
+			return parts[0] > 59 || parts[1] > 59 || parts[2] > 59;
+		} else if (parts.length === 2) {
+			// MM:SS format
+			return parts[0] > 59 || parts[1] > 59;
+		}
+		// Invalid format
+		return true;
+	});
+	return invalidTimestamps;
+};
+
 // Function to process a single markdown file for broken links
+
+// Modify the processFile function to also check for invalid timestamps
 const processFile = async (filePath) => {
 	const content = await fs.readFile(filePath, 'utf8');
+	// Checking for broken links
 	const urls = extractUrls(content);
-	const checkPromises = urls.map(isUrlValid);
-	const results = await Promise.all(checkPromises);
-	return urls.filter((_, index) => !results[index]);
+	const check_urls_promises = urls.map(isUrlValid);
+	const results = await Promise.all(check_urls_promises);
+	const brokenLinks = urls.filter((_, index) => !results[index]);
+
+	// Checking for invalid timestamps
+	const invalidTimestamps = validateTimestamps(content);
+
+	return {
+		brokenLinks,
+		invalidTimestamps
+	};
 };
 // Function to get new files added in the PR within ./shows directory
 const getNewFilesInShows = async () => {
@@ -62,17 +94,18 @@ const main = async () => {
 		return;
 	}
 
-	let hasBrokenLinks = false;
+	let hasIssues = false;
 	for (const file of mdFiles) {
-		const brokenLinks = await processFile(file);
-		if (brokenLinks.length > 0) {
-			hasBrokenLinks = true;
-			console.log(`Broken links found in ${file}:`);
-			brokenLinks.forEach((link) => console.log(`- ${link}`));
+		const { brokenLinks, invalidTimestamps } = await processFile(file);
+		if (brokenLinks.length > 0 || invalidTimestamps.length > 0) {
+			hasIssues = true;
+			console.log(`Issues found in ${file}:`);
+			brokenLinks.forEach((link) => console.log(`Broken link: ${link}`));
+			invalidTimestamps.forEach((timestamp) => console.log(`Invalid timestamp: ${timestamp}`));
 		}
 	}
 
-	if (hasBrokenLinks) {
+	if (hasIssues) {
 		process.exit(1);
 	}
 };
