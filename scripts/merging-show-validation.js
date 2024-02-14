@@ -81,36 +81,38 @@ const getNewFilesInShows = async () => {
 };
 
 // Main function modified to check for non-.md files in ./shows
+// Main function modified to accumulate and display detailed error messages
 const main = async () => {
 	const newFiles = await getNewFilesInShows();
 	const nonMdFiles = newFiles.filter((file) => !file.endsWith('.md'));
 
+	let errorMessages = []; // Accumulate error messages here
+
 	if (nonMdFiles.length > 0) {
-		console.error('Error: Non-markdown files found in ./shows:', nonMdFiles);
-		process.exit(1); // Fail if there are non-markdown files
+		errorMessages.push(`Error: Non-markdown files found in ./shows: ${nonMdFiles.join(', ')}`);
 	}
 
-	// Filter out .md files for further processing
 	const mdFiles = newFiles.filter((file) => file.endsWith('.md'));
 
 	if (mdFiles.length === 0) {
 		console.log('No new markdown files to check in ./shows.');
-		return;
-	}
-
-	let hasIssues = false;
-	for (const file of mdFiles) {
-		const { brokenLinks, invalidTimestamps } = await processFile(file);
-		if (brokenLinks.length > 0 || invalidTimestamps.length > 0) {
-			hasIssues = true;
-			console.log(`Issues found in ${file}:`);
-			brokenLinks.forEach((link) => console.log(`Broken link: ${link}`));
-			invalidTimestamps.forEach((timestamp) => console.log(`Invalid timestamp: ${timestamp}`));
+	} else {
+		for (const file of mdFiles) {
+			const { brokenLinks, invalidTimestamps } = await processFile(file);
+			if (brokenLinks.length > 0 || invalidTimestamps.length > 0) {
+				errorMessages.push(`Issues found in ${file}:`);
+				brokenLinks.forEach((link) => errorMessages.push(`- Broken link: ${link}`));
+				invalidTimestamps.forEach((timestamp) =>
+					errorMessages.push(`- Invalid timestamp: ${timestamp}`)
+				);
+			}
 		}
 	}
 
-	if (hasIssues) {
-		process.exit(1);
+	if (errorMessages.length > 0) {
+		// Print all accumulated error messages
+		console.error('Validation Errors:\n' + errorMessages.join('\n'));
+		process.exitCode = 1; // Set the exit code to indicate failure, but allow the process to exit naturally
 	}
 };
 
