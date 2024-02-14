@@ -41,22 +41,29 @@ const extractDateAndUrl = (content) => {
 };
 
 const validateTimestamps = (content) => {
-	// Regex to match HH:MM:SS or MM:SS format
-	const timestampRegex = /\b((?:[0-5]?[0-9]:)?[0-5]?[0-9]:[0-5][0-9])\b/g;
-	const timestamps = content.match(timestampRegex) || [];
-	const invalidTimestamps = timestamps.filter((timestamp) => {
-		// Splitting timestamp into parts to validate HH:MM:SS or MM:SS format
-		const parts = timestamp.split(':').map(Number);
-		// Checking if parts are in valid range
-		if (parts.length === 3) {
-			// HH:MM:SS format
-			return parts[0] > 59 || parts[1] > 59 || parts[2] > 59;
-		} else if (parts.length === 2) {
-			// MM:SS format
-			return parts[0] > 59 || parts[1] > 59;
+	// Updated regex to catch more patterns, including incorrect ones
+	const timestampRegex = /\b([0-5]?\d:[0-5]?\d(:[0-5]\d)?)\b|\b(\d{4})\b/g;
+	const potentialTimestamps = content.match(timestampRegex) || [];
+	const invalidTimestamps = potentialTimestamps.filter((timestamp) => {
+		if (!timestamp.includes(':')) {
+			// Catching cases like '0702' which should be invalid
+			return true;
 		}
-		// Invalid format
-		return true;
+		const parts = timestamp.split(':').map(Number);
+		if (parts.some(isNaN)) {
+			// Catching cases with invalid numbers, e.g., '01:-12'
+			return true;
+		}
+		if (parts.length === 3 && (parts[0] > 23 || parts[1] > 59 || parts[2] > 59)) {
+			// Checking HH:MM:SS format
+			return true;
+		}
+		if (parts.length === 2 && (parts[0] > 59 || parts[1] > 59)) {
+			// Checking MM:SS format
+			return true;
+		}
+		// Assuming a correct format if none of the above conditions are met
+		return false;
 	});
 	return invalidTimestamps;
 };
