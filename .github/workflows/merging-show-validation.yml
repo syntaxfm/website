@@ -1,4 +1,4 @@
-name: Check Links in New Markdown Files
+name: Validate Markdown Files
 
 on:
   pull_request:
@@ -32,7 +32,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Check for broken links in new MD files
+      - name: Validate Markdown Files
         run: node ./scripts/merging-show-validation.js
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
