@@ -4,12 +4,8 @@ import { promisify } from 'util';
 // import path from 'path';
 const execAsync = promisify(exec);
 // Function to check URL availability, modified to accept an optional skipUrls array
-async function isUrlValid(url, skipUrls = []) {
-	// Skip URL check if url is in skipUrls array
-	if (skipUrls.includes(url)) {
-		console.log(`Skipping URL check for future-dated content: ${url}`);
-		return true; // Assume the URL is valid if we are skipping the check
-	}
+// Simplified Function to check URL availability
+async function isUrlValid(url) {
 	try {
 		const response = await fetch(url, {
 			method: 'HEAD',
@@ -29,16 +25,6 @@ async function isUrlValid(url, skipUrls = []) {
 const extractUrls = (content) => {
 	const urlRegex = /https?:\/\/[^\s\)]+/g;
 	return content.match(urlRegex) || [];
-};
-
-// Function to extract date and URL from markdown content
-const extractDateAndUrl = (content) => {
-	const dateMatch = content.match(/^date:\s*(\d+)/m);
-	const urlMatch = content.match(/^url:\s*(https?:\/\/[^\s]+)/m);
-	return {
-		date: dateMatch ? parseInt(dateMatch[1], 10) : null,
-		url: urlMatch ? urlMatch[1] : null
-	};
 };
 
 const validateTimestamps = (content) => {
@@ -70,25 +56,13 @@ const validateTimestamps = (content) => {
 };
 
 // Function to process a single markdown file for broken links
-
-// Modified processFile function to check for future date and specific URL
 const processFile = async (filePath) => {
 	const content = await fs.readFile(filePath, 'utf8');
-	const { date, url } = extractDateAndUrl(content);
-
-	const currentTime = Date.now();
-	let skipUrls = [];
-	if (date > currentTime && url) {
-		// If the date is in the future, add the URL to skipUrls
-		skipUrls.push(url);
-	}
-
 	const urls = extractUrls(content);
-	const checkPromises = urls.map((url) => isUrlValid(url, skipUrls));
+	const checkPromises = urls.map(isUrlValid);
 	const results = await Promise.all(checkPromises);
 	const brokenLinks = urls.filter((_, index) => !results[index]);
 
-	// No need to modify for invalid timestamps part
 	const invalidTimestamps = validateTimestamps(content);
 
 	return {
