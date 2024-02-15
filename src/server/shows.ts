@@ -54,6 +54,7 @@ export async function import_or_update_all_changed_shows() {
 
 			// If show doesn't exist or the hash has changed. Refresh
 			if (!existing_show || existing_show.hash !== hash) {
+        console.log(`Refreshing Show # ${number}`);
 				await parse_and_save_show_notes(md_file_contents, hash, number, md_file_path);
 			}
 		}
@@ -98,6 +99,7 @@ export async function parse_and_save_show_notes(
 				slug: slug(data.title),
 				date,
 				number,
+        url: data.url,
 				youtube_url: data.youtube_url,
 				show_notes: content,
 				hash: hash,
