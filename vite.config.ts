@@ -1,11 +1,20 @@
 // import { sentrySvelteKit } from '@sentry/sveltekit';
+import { sentrySvelteKit } from '@sentry/sveltekit';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vitest/config';
 
-// TODO Fix sentry
 export default defineConfig({
-	plugins: [sveltekit()],
-	// plugins: [sentrySvelteKit(), sveltekit()],
+	plugins: [
+		sentrySvelteKit({
+			sourceMapsUploadOptions: {
+				org: 'syntax-fm',
+				project: 'website',
+				authToken: process.env.SENTRY_AUTH_TOKEN,
+				cleanArtifacts: true
+			}
+		}),
+		sveltekit()
+	],
 	test: {
 		include: ['src/**/*.{test,spec}.{js,ts}']
 	},
