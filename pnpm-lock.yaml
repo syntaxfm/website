@@ -62,9 +62,6 @@ dependencies:
   flexsearch:
     specifier: ^0.7.43
     version: 0.7.43
-  googleapis:
-    specifier: ^132.0.0
-    version: 132.0.0
   gpt-3-encoder:
     specifier: ^1.1.4
     version: 1.1.4
@@ -3463,17 +3460,6 @@ packages:
       qs: 6.11.2
       url-template: 2.0.8
       uuid: 9.0.1
-    transitivePeerDependencies:
-      - encoding
-      - supports-color
-    dev: false
-
-  /googleapis@132.0.0:
-    resolution: {integrity: sha512-3TvliWpfcpxqIOxAKyxUtS13VbwVM62BLfjxFhDjSSRmNLI3jh+4zfj2hcL2UvzU5yfHZJUfb8tXmumx2e+ruQ==}
-    engines: {node: '>=14.0.0'}
-    dependencies:
-      google-auth-library: 9.6.3
-      googleapis-common: 7.0.1
     transitivePeerDependencies:
       - encoding
       - supports-color
