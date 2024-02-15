@@ -6,7 +6,7 @@ url: https://traffic.libsyn.com/syntax/730.mp3
 youtube_url: https://youtu.be/nCWznQ0HY9c
 ---
 
-Scott and Wes discuss about the benefits of owning your own PaaS (platform as a service), the main alternatives in the space, and ways to make passion projects more financially viable.
+Scott and Wes discuss about the benefits of owning your own PaaS (platform as a service), the main alternatives in the space, and ways to make passion projects more financially viable!
 
 ### Show Notes
 
