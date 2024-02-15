@@ -40,7 +40,10 @@ Sentry.init({
 	integrations: [
 		// new ProfilingIntegration(),
 		new Sentry.Integrations.Prisma({ client: prisma_client })
-	]
+	],
+	_experiments: {
+		metricsAggregator: true
+	}
 });
 
 // * END START UP
