@@ -1,0 +1,10 @@
+{
+	"pull_request": {
+		"base": {
+			"ref": "show-ci"
+		},
+		"head": {
+			"ref": "pr-actions-tester"
+		}
+	}
+}

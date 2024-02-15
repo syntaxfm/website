@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { SideMenu } from '@leveluptuts/svelte-side-menu';
-	import ThemeToggle from './theme/ThemeToggle.svelte';
 	import { enhance } from '$app/forms';
+	import { SideMenu } from '@leveluptuts/svelte-side-menu';
 	import { form_action } from './form_action';
+	import ThemeToggle from './theme/ThemeToggle.svelte';
 </script>
 
 <SideMenu

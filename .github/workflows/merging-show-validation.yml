@@ -1,0 +1,39 @@
+name: Validate Markdown Files
+
+on:
+  pull_request:
+    paths:
+      - '**/*.md'
+
+jobs:
+  check-new-links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Ensure the entire history is fetched
+
+      - name: Fetch base branch
+        run: git fetch origin ${GITHUB_BASE_REF}:${GITHUB_BASE_REF}
+        env:
+          GITHUB_BASE_REF: ${{ github.base_ref }}
+
+      - name: pnpm-setup
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.18.2
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Validate Markdown Files
+        run: node ./scripts/merging-show-validation.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_BASE_REF: ${{ github.base_ref }}
