@@ -31,7 +31,9 @@
 					<td>
 						<svelte:self data={val} />
 					</td>
-				{:else if typeof val === 'object'}
+				{:else if val instanceof Date}
+					<td>{val}</td>
+				{:else if typeof val === 'object' && val !== null}
 					{#each Object.entries(val) as [key, value]}
 						<td>
 							{value}
