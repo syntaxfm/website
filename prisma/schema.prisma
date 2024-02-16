@@ -77,6 +77,8 @@ model ShowGuest {
   transcriptId String?
 
   @@unique([showId, guestId])
+  @@index([transcriptId])
+  @@index([guestId])
 }
 
 model Guest {
@@ -145,6 +147,8 @@ model TranscriptUtterance {
   speakerName      String?
   transcript       Transcript                @relation(fields: [transcriptId], references: [id], onDelete: Cascade)
   transcriptId     String
+
+  @@index([transcriptId])
 }
 
 model TranscriptUtteranceWord {
@@ -158,6 +162,8 @@ model TranscriptUtteranceWord {
   punctuated_word       String
   TranscriptUtterance   TranscriptUtterance? @relation(fields: [transcriptUtteranceId], references: [id], onDelete: Cascade)
   transcriptUtteranceId String
+
+  @@index([transcriptUtteranceId])
 }
 
 // AI Show Notes
@@ -182,6 +188,8 @@ model AiSummaryEntry {
   description String?
   showNote    Int
   aiShowNote  AiShowNote @relation(fields: [showNote], references: [id], onDelete: Cascade)
+
+  @@index([showNote])
 }
 
 model AiTweet {
@@ -212,4 +220,6 @@ model Topic {
   name       String
   showNote   Int
   aiShowNote AiShowNote @relation(fields: [showNote], references: [id], onDelete: Cascade)
+
+  @@index([showNote])
 }
