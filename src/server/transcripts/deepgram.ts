@@ -9,7 +9,6 @@ import { keywords } from './fixes';
 import { addFlaggerAudio } from './flagger';
 import { save_transcript_to_db } from './transcripts';
 import type { PrerecordedTranscriptionResponse } from '@deepgram/sdk/dist/types';
-import { readFile, writeFile } from 'fs/promises';
 const deepgramApiKey = process.env.DEEPGRAM_SECRET;
 if (!deepgramApiKey) {
 	console.error('Please set the DEEPGRAM_SECRET environment variable.');
@@ -36,41 +35,37 @@ export async function get_transcript(showNumber: number) {
 			`Transcript for show #${show.number} already exists. Delete it if you want to re-fetch it.`
 		);
 	}
-	// const showBuffer = await addFlaggerAudio(show);
-	// console.log(`Fetching transcript for show #${show.number} - ${show.title}...`);
-	// console.log(showBuffer);
-	// // const filePath = join(process.cwd(), 'temp-transcript.json');
-	// const transcript: PrerecordedTranscriptionResponse = await deepgramClient.transcription
-	// 	.preRecorded(
-	// 		{
-	// 			buffer: showBuffer,
-	// 			mimetype: 'audio/mpeg'
-	// 		},
-	// 		{
-	// 			punctuate: true,
-	// 			model: 'nova-2-ea',
-	// 			language: 'en-US',
-	// 			detect_entities: true,
-	// 			diarize: true,
-	// 			smart_format: true,
-	// 			paragraphs: true, // Not very good
-	// 			utterances: true,
-	// 			detect_topics: false, // not very good
-	// 			keywords
-	// 		}
-	// 	)
-	// 	.catch((e) => {
-	// 		console.log(`Error fetching transcript for show #${show.number} - ${show.title}.`);
-	// 		console.log(e);
-	// 	});
+	const showBuffer = await addFlaggerAudio(show);
+	console.log(`Fetching transcript for show #${show.number} - ${show.title}...`);
+	console.log(showBuffer);
+	// const filePath = join(process.cwd(), 'temp-transcript.json');
+	const transcript: PrerecordedTranscriptionResponse = await deepgramClient.transcription
+		.preRecorded(
+			{
+				buffer: showBuffer,
+				mimetype: 'audio/mpeg'
+			},
+			{
+				punctuate: true,
+				model: 'nova-2-ea',
+				language: 'en-US',
+				detect_entities: true,
+				diarize: true,
+				smart_format: true,
+				paragraphs: true, // Not very good
+				utterances: true,
+				detect_topics: false, // not very good
+				keywords
+			}
+		)
+		.catch((e) => {
+			console.log(`Error fetching transcript for show #${show.number} - ${show.title}.`);
+			console.log(e);
+		});
 	// Temp: Write to disk as temp-transcript.json
 	// const transcript = JSON.parse(await readFile(filePath, 'utf-8'));
 	// await writeFile(filePath, JSON.stringify(transcript, null, 2));
 	console.log(`Transcript for show #${show.number} - ${show.title} fetched.`);
-	// save locally temporarily
-	// await writeFile(`./temp-transcript-${showNumber}.json`, JSON.stringify(transcript, null, 2));
-	const transcript = JSON.parse(await readFile(`./temp-transcript-${showNumber}.json`, 'utf-8'));
-	console.log('Transcript read locally');
 	await save_transcript_to_db(show, transcript.results?.utterances || []);
 
 	// await writeFile(filePath, JSON.stringify(transcript, null, 2));

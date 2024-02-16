@@ -5,7 +5,7 @@ import fs, { readFile } from 'fs/promises';
 import path from 'path';
 import { prisma_client as prisma } from '../../hooks.server';
 import { detectSpeakerNames, getSlimUtterances } from './utils';
-
+import pMap from 'p-map';
 const transcripts_path = path.join(process.cwd(), 'src/assets/transcripts-flagged');
 
 export async function save_transcript_to_db(show: Show, utterances: Utterance[]) {
@@ -50,17 +50,19 @@ export async function save_transcript_to_db(show: Show, utterances: Utterance[])
 			show_number: show.number
 		}
 	});
-	// console.log(`Created Transcript Record: ${transcript.id}`);
+	console.log(`Created Transcript Record: ${transcript.id}`);
+	console.log(`About to create ${create_utterances.length} utterances`);
 	// 2. Create the Utterances
-	for (const { words, ...utterance } of create_utterances) {
+
+	async function saveUtterance({ words, ...utterance }: (typeof create_utterances)[0]) {
+		console.log(`Creating Utterance: ${utterance.start}`);
 		const utteranceRecord = await prisma.transcriptUtterance.create({
 			data: {
 				...utterance,
 				transcriptId: transcript.id // Associate the Utterance with the Transcript
 			}
 		});
-		// console.log(`Created Utterance Record: ${utteranceRecord.id}`);
-		// 3. Create the Words
+		console.log(`Creating Words for Utterance: ${utterance.start} (${words.create.length})`);
 		await prisma.transcriptUtteranceWord.createMany({
 			data: words.create.map((word) => {
 				return {
@@ -70,30 +72,12 @@ export async function save_transcript_to_db(show: Show, utterances: Utterance[])
 				};
 			})
 		});
-		// console.log(`Created ${wordIds.count} Word Records for Utterance ${utteranceRecord.id}`);
+		return;
 	}
+	// Only save 100 at a time so we dont hit DB limits
+	await pMap(create_utterances, saveUtterance, { concurrency: 100 });
 
 	return transcript;
-
-	// // Loop over each utterance and create it
-	// for (const utterance of create_utterances) {
-	// 	console.log('Create Word REcords');
-	// 	const wordIds = await prisma.transcriptUtteranceWord.createMany({
-	// 		data: [
-	//       { tra}
-	//     ]
-	// 	});
-	// 	console.log('Word Ids: ', wordIds);
-	// }
-
-	// const create = prisma.transcript.create({
-	// 	data: {
-	// 		show_number: show.number,
-	// 		utterances: {
-	// 			create: create_utterances
-	// 		}
-	// 	}
-	// });
 }
 
 // Import Transcripts from JSON file - used for the initial import
