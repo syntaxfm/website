@@ -31,9 +31,9 @@ export async function get_transcript(showNumber: number) {
 	}
 	if (show.transcript) {
 		error(
-        			409,
-        			`Transcript for show #${show.number} already exists. Delete it if you want to re-fetch it.`
-        		);
+			409,
+			`Transcript for show #${show.number} already exists. Delete it if you want to re-fetch it.`
+		);
 	}
 	const showBuffer = await addFlaggerAudio(show);
 	console.log(`Fetching transcript for show #${show.number} - ${show.title}...`);
