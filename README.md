@@ -37,11 +37,11 @@ DATABASE_NAME=syntax
 DATABASE_ROOT_PASSWORD=syntax
 DATABASE_URL=mysql://${DATABASE_USER}:${DATABASE_PASSWORD}@${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
 ```
-2a. If using docker, run -> `docker compose up`
-3. Run -> `pnpm preheat`
-4. Run -> `pnpm db:push`
-5. Run -> `pnpm dev`
-6. Visit `http://localhost:5173`
+3. If using docker, run -> `docker compose up`
+4. Run -> `pnpm preheat`
+5. Run -> `pnpm db:push`
+6. Run -> `pnpm dev`
+7. Visit `http://localhost:5173`
 
 ### Scripts
 
