@@ -12,21 +12,36 @@ This site is built on SvelteKit.
 
 ## Prerequisite
 
-Install Node - https://nodejs.org/en
-
-Install pnpm - https://pnpm.io/installation
-
-Install mysql
+* Install Node - https://nodejs.org/en
+* Install pnpm - https://pnpm.io/installation
+  * If you are on a Mac, there is an issue with the curl install.
+  * Preferably, use homebrew to install:
+    * `brew install pnpm`
+* Install mysql or use docker with the provided `docker-compose.yml` file.
 
 This site uses MySQL via Prisma, so you will need a valid MySQL connection string.
 
 ## Getting Started
 
 1. Read Prerequisites above ^^ before starting
-1. Copy `.env.example` to `.env` and specify env variables (needs at least `DATABASE_URL`)
-1. Run -> `pnpm preheat`
-1. Run -> `pnpm dev`
-1. Visit `http://localhost:5173`
+2. Copy `.env.example` to `.env` and specify env variables (needs at least `DATABASE_URL`)
+  * If using Docker, add the following at the top of your `.env` file to share variables with the `docker-compose.yml` (replace the existing DATABASE_URL with the one below)
+
+```sh
+DOCKER=true # this is required to make sure the seed commands are run within the container
+DATABASE_HOST=localhost
+DATABASE_PORT=3306
+DATABASE_USER=syntax
+DATABASE_PASSWORD=syntax
+DATABASE_NAME=syntax
+DATABASE_ROOT_PASSWORD=syntax
+DATABASE_URL=mysql://${DATABASE_USER}:${DATABASE_PASSWORD}@${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
+```
+2a. If using docker, run -> `docker compose up`
+3. Run -> `pnpm preheat`
+4. Run -> `pnpm db:push`
+5. Run -> `pnpm dev`
+6. Visit `http://localhost:5173`
 
 ### Scripts
 

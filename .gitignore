@@ -24,3 +24,5 @@ test-results
 
 start_script/target
 bin
+
+db-data
