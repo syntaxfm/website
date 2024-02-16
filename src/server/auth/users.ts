@@ -33,7 +33,7 @@ export async function find_or_create_user({ github_user }: Create_User) {
 	} else {
 		const new_user = await create_user({ github_user });
 		// if it's Wes or Scott. Upgrade that shit
-		if (['wesbos', 'stolinski', 'bl0om', 'benvinegar'].includes(github_user.login)) {
+		if (['wesbos', 'stolinski', 'bl0om', 'benvinegar', 'w3cj'].includes(github_user.login)) {
 			add_user_to_role(new_user.id, 'admin');
 		}
 		return new_user;
