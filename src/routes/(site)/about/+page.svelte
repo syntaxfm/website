@@ -6,6 +6,8 @@
 	import bboy from '$assets/bboy.jpg';
 	import benjamin from '$assets/benjamin.jpg';
 	import number1fan from '$assets/kaitlin.jpg';
+	import runonlove from '$assets/runonlove.jpg';
+	import cj from '$assets/cj.jpg';
 	let hosts = {
 		wes: {
 			name: 'Wes Bos',
@@ -26,6 +28,16 @@
 			name: 'Ben Vinegar',
 			github: 'benvinegar',
 			twitter: 'bentlegen'
+		},
+		randy: {
+			name: 'Randy Rektor',
+			github: 'randyrektor',
+			twitter: 'randyrektor'
+		},
+		cj: {
+			name: 'CJ Reynolds',
+			github: 'w3cj',
+			twitter: 'coding_garden'
 		}
 	};
 
@@ -175,6 +187,45 @@
 					<a href="https://www.amazon.ca/Third-Party-JavaScript-Ben-Vinegar/dp/1617290548"
 						>a book on JavaScript</a
 					>.
+				</p>
+			</div>
+		</div>
+		<div class="team-member" style:--rotate="1deg">
+			<img
+				use:lol
+				src={`https://github.com/${hosts.randy.github}.png`}
+				alt={hosts.randy.name}
+				class="avatar"
+				data-lol={runonlove}
+			/>
+			<h2 class="h4">
+				<span class="first">Randy</span>
+				<span class="last">Rektor</span>
+			</h2>
+			<div class="desc border-on-dark">
+				<HostSocialLink host={hosts.randy} />
+				<p>
+					Randy Rektor is Syntax's producer. He edits the episodes, produces the videos for YouTube, and helps keep Syntax's production gears oiled. He is a musician, <a href="https://www.youtube.com/@randyrektor">YouTuber</a>, and a self-proclaimed ‘massive audio geek’.
+				</p>
+			</div>
+		</div>
+		<div class="team-member" style:--rotate="1deg">
+			<img
+				use:lol
+				src={`https://github.com/${hosts.cj.github}.png`}
+				alt={hosts.cj.name}
+				class="avatar"
+				data-lol={cj}
+			/>
+			<h2 class="h4">
+				<span class="first">CJ</span>
+				<span class="last">Reynolds</span>
+			</h2>
+			<div class="desc border-on-dark">
+				<HostSocialLink host={hosts.cj} />
+				<p>
+					CJ is a Senior Creator at Syntax and the host of <a href="https://coding.garden/">Coding Garden</a>.
+					In his spare time CJ enjoys skateboarding, playing board games, collecting VHS tapes and hanging out with his dog.
 				</p>
 			</div>
 		</div>
