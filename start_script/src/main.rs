@@ -117,7 +117,7 @@ fn get_db_command_prefix() -> String {
     let database = url.path().trim_start_matches('/');
 
     let is_docker = match env::var("DOCKER") {
-        Ok(_) => true,
+        Ok(value) => value.to_lowercase() == "true",
         Err(_) => false,
     };
 
@@ -188,10 +188,9 @@ fn prompt_for_mysql_query() -> String {
 
 
 // Function to seed the database with an SQL file
-// Function to seed the database with an SQL file
 fn seed_database() -> Result<(), Box<dyn std::error::Error>> {
     let is_docker = match env::var("DOCKER") {
-        Ok(_) => true,
+        Ok(value) => value.to_lowercase() == "true",
         Err(_) => false,
     };
 

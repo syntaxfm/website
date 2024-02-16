@@ -28,7 +28,7 @@ This site uses MySQL via Prisma, so you will need a valid MySQL connection strin
   * If using Docker, add the following at the top of your `.env` file to share variables with the `docker-compose.yml` (replace the existing DATABASE_URL with the one below)
 
 ```sh
-DOCKER=true # this is required to make sure the seed commands are run within the container
+DOCKER=true # this is required to make sure the seed commands are run within the container, any value other than "true" is considered false
 DATABASE_HOST=localhost
 DATABASE_PORT=3306
 DATABASE_USER=syntax
@@ -37,7 +37,7 @@ DATABASE_NAME=syntax
 DATABASE_ROOT_PASSWORD=syntax
 DATABASE_URL=mysql://${DATABASE_USER}:${DATABASE_PASSWORD}@${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
 ```
-3. If using docker, run -> `docker compose up`
+3. If using docker, in a separate tab run -> `docker compose up`
 4. Run -> `pnpm preheat`
 5. Run -> `pnpm db:push`
 6. Run -> `pnpm dev`
