@@ -3,7 +3,7 @@ number: 732
 title: "Stop going to Spam: DMARC, SPF and DKIM Explained"
 date: 1708344000810
 url: https://traffic.libsyn.com/syntax/Syntax_-_732.mp3
-youtube_url: https://youtu.be/ERiQc8hoDvo
+youtube_url: https://www.youtube.com/watch?v=ERiQc8hoDvo
 ---
 
 Wes and Scott explore the web standards and email authentication methods that keep your email from going to spam; DMARC, SPF and DKIM. If you send email via a custom domain name, you need to listen to this!
@@ -11,7 +11,7 @@ Wes and Scott explore the web standards and email authentication methods that ke
 ### Show Notes
 
 * **[00:00](#t=00:00)** Welcome to Syntax!
-* **[01:06](#t=01:06)** Brought to you by Sentry.io.
+* **[01:06](#t=01:06)** Brought to you by [Sentry.io](https://sentry.io/syntax).
 * **[02:08](#t=02:08)** What exactly are SPF, DKIM, and DMARC?
 * **[02:53](#t=02:53)** Different ways that you may want to send email.
     * **[03:23](#t=03:23)** Transactional emails.
