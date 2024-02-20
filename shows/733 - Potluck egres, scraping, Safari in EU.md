@@ -1,6 +1,6 @@
 ---
 number: 733
-title: Egress, scraping, Safari EU changes, is SetInterval worth it.mp4
+title: Egress, scraping, Safari EU changes, is SetInterval worth it?
 date: 1708516800514
 url: https://traffic.libsyn.com/syntax/Syntax_-_733.mp3
 youtube_url: https://www.youtube.com/watch?v=1dufGxB1v68
@@ -34,6 +34,7 @@ In this potluck episode of Syntax, Wes and Scott discuss egress, scraping, Safar
 ### Sick Picks
 
 - Scott: [LED Flashlight](https://amzn.to/48jcg4W)
+- Wes: Weighted blankets
 
 ### Shameless Plugs
 
