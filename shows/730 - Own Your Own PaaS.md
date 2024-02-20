@@ -21,7 +21,7 @@ Scott and Wes discuss about the benefits of owning your own PaaS (platform as a 
 * **[07:51](#t=07:51)** What are the differences between Kubernetes and Docker?
 * [Docker Swarm](https://docs.docker.com/engine/swarm/)
 * **[09:15](#t=09:15)** Reasons to own your own PaaS.
-* [Nelify](https://www.netlify.com/)
+* [Netlify](https://www.netlify.com/)
 * [Bluehost](https://www.bluehost.com/)
 * **[15:05](#t=15:05)** "Pokémon or Web Service"
 * [Original 150 Pokémon Characters](https://www.giantbomb.com/profile/wakka/lists/the-150-original-pokemon/59579/)
