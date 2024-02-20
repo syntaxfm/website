@@ -112,11 +112,9 @@
 	{#each Array.from(utterances_by_summary) as [summary, utterances], i}
 		<section>
 			<header class="topic {placeTopic(summary, utterances)}">
-				<div class="gutter">
-					<div id={slug(summary.text)}>
-						<strong>Topic {i}</strong>
-						<span>{summary.time}</span>
-					</div>
+				<div class="gutter" id={slug(summary.text)}>
+					<strong>Topic {i}</strong>
+					<span>{summary.time}</span>
 				</div>
 				<div class="marker">
 					<Squiggle top={true} />
@@ -138,18 +136,16 @@
 						class="utterance {labelUtterance(utterance)}"
 					>
 						<div class="gutter">
-							<div>
-								<button
-									class="button-nunya"
-									on:click={async () => {
-										await player.start_show(show);
-										$player.currentTime = utterance.start;
-									}}>{format_time(utterance.start)}</button
-								>
-								<p class="speaker">
-									{utterance.speakerName || `Guest ${utterance.speakerId}`}
-								</p>
-							</div>
+							<button
+								class="button-nunya"
+								on:click={async () => {
+									await player.start_show(show);
+									$player.currentTime = utterance.start;
+								}}>{format_time(utterance.start)}</button
+							>
+							<p class="speaker">
+								{utterance.speakerName || `Guest ${utterance.speakerId}`}
+							</p>
 						</div>
 						<div class="marker">
 							<span class="dot"></span>
@@ -216,8 +212,19 @@
 		position: relative;
 		display: grid;
 		grid-template-columns: 120px auto 1fr;
-		gap: 20px;
+		gap: 0 20px;
 		font-size: var(--font-size-xs);
+		@media (--below_med) {
+			grid-template-columns: 67px 1fr;
+			grid-template-rows: auto auto;
+			.gutter {
+				grid-column: 2;
+			}
+			.marker {
+				grid-column: 1;
+				grid-row: 1 / -1;
+			}
+		}
 	}
 	.topic {
 		--vertical-spacing: 26px; /* must be in px for the SVG */
@@ -237,6 +244,17 @@
 		margin-bottom: var(--vertical-spacing);
 		.marker {
 			place-content: center;
+		}
+		@media (--below_med) {
+			grid-template-columns: var(--horizonal-spacing) 1fr;
+			grid-template-rows: auto auto;
+			.marker {
+				grid-column: 1;
+				grid-row: 1 / -1;
+			}
+			.gutter {
+				display: none;
+			}
 		}
 	}
 	h4 {
@@ -264,6 +282,13 @@
 		align-self: start;
 		text-align: right;
 		transform: translateX(-10px);
+		@media (--below_med) {
+			display: flex;
+			position: relative;
+			top: 0;
+			width: 100%;
+			justify-content: space-between;
+		}
 		p {
 			margin: 0;
 		}

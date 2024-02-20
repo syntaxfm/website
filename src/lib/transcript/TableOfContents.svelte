@@ -26,7 +26,11 @@
 		border: 1px solid var(--border-color);
 		border-radius: 10px;
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+		--min: 400px;
+		grid-template-columns: repeat(auto-fill, minmax(var(--min), 1fr));
+		@media (--below_med) {
+			--min: 200px;
+		}
 	}
 	li {
 		padding: 0;
