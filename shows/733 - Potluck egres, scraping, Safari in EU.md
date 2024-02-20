@@ -34,7 +34,7 @@ In this potluck episode of Syntax, Wes and Scott discuss egress, scraping, Safar
 ### Sick Picks
 
 - Scott: [LED Flashlight](https://amzn.to/48jcg4W)
-- Wes: Weighted blankets
+- Wes: [Weighted blanket](https://amzn.to/3uIh3iE)
 
 ### Shameless Plugs
 
