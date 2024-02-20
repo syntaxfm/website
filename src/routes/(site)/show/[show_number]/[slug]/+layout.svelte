@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ShareButton from '$/lib/share/ShareButton.svelte';
+	import ShareButton from '$/lib/share/HairButton.svelte';
 	import { time_param_to_seconds } from '$/utilities/time_param_to_seconds.js';
 	import { page } from '$app/stores';
 	import HostsAndGuests from '$lib/HostsAndGuests.svelte';
