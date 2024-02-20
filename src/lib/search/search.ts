@@ -63,7 +63,14 @@ export function search(query: string) {
 				(a?.block?.breadcrumbs.length || 0) - (b?.block?.breadcrumbs.length || 0) || a.rank - b.rank
 			);
 		})
-		.map(({ block }) => block) as (Block & Show)[];
+		.map(({ block }) => {
+			return { 
+				...block,
+				// replace md links with the square brackets so the search looks better
+				content: block?.content?.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+			};
+
+		}) as (Block & Show)[];
 
 	const results = tree([], blocks).children;
 
