@@ -5,7 +5,7 @@
 	import Icon from '$/lib/Icon.svelte';
 	import ListenLinks from '$/lib/ListenLinks.svelte';
 	import AlbumArt from '$/lib/player/AlbumArt.svelte';
-	import ShareButton from '$/lib/share/ShareButton.svelte';
+	import ShareButton from '$/lib/share/HairButton.svelte';
 	import { Toaster } from 'svelte-french-toast';
 	import ShareActions from '$/lib/share/ShareActions.svelte';
 	import { fade } from 'svelte/transition';
