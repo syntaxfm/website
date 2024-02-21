@@ -10,7 +10,6 @@ guest:
   twitter: htmx_org
   of: Big Sky Software
   url: https://bigsky.software/
-
 ---
 
 Scott and Wes welcome HTMX creator Carson Gross to discuss the versatile applications and optimal scenarios for using HTMX, alongside insights into its creation and evolution. Join us as we explore the future prospects and improvements as we look towards HTMX 2.0.
