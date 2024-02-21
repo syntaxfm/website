@@ -64,12 +64,12 @@ export function search(query: string) {
 			);
 		})
 		.map(({ block }) => {
-			return { 
+			return {
 				...block,
-				// replace md links with the square brackets so the search looks better
-				content: block?.content?.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+				content: block?.content
+					// strip markdown braces but preserve the link text as well as the link, delimited by a hyphen
+					.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '$1 - $2')
 			};
-
 		}) as (Block & Show)[];
 
 	const results = tree([], blocks).children;
