@@ -63,7 +63,14 @@ export function search(query: string) {
 				(a?.block?.breadcrumbs.length || 0) - (b?.block?.breadcrumbs.length || 0) || a.rank - b.rank
 			);
 		})
-		.map(({ block }) => block) as (Block & Show)[];
+		.map(({ block }) => {
+			return {
+				...block,
+				content: block?.content
+					// strip markdown braces but preserve the link text as well as the link, delimited by a hyphen
+					.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '$1 - $2')
+			};
+		}) as (Block & Show)[];
 
 	const results = tree([], blocks).children;
 
