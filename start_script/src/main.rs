@@ -116,12 +116,22 @@ fn get_db_command_prefix() -> String {
     let port = url.port().unwrap_or(3306);
     let database = url.path().trim_start_matches('/');
 
+    let is_docker = match env::var("DOCKER") {
+        Ok(value) => value.to_lowercase() == "true",
+        Err(_) => false,
+    };
+
+    let mysql_command = if is_docker {
+        "docker exec -i $(docker-compose ps -q db) mysql"
+    } else {
+        "mysql"
+    };
+
     let command = format!(
-        "mysql -h {host} -u {username} -p{password} {database}",
-        host=host, username=username, password=password, database=database
+        "{mysql_command} -h {host} -P {port} -u {username} -p{password} {database}",
     );
-		
-		return command
+	
+    return command
 }
 
 fn parse_count_from_output(output: &str) -> Result<i32, Box<dyn std::error::Error>> {
@@ -178,27 +188,21 @@ fn prompt_for_mysql_query() -> String {
 
 
 // Function to seed the database with an SQL file
-// Function to seed the database with an SQL file
 fn seed_database() -> Result<(), Box<dyn std::error::Error>> {
-    // Check if mysql command is available
-    if Command::new("mysql").arg("--version").output().is_err() {
+    let is_docker = match env::var("DOCKER") {
+        Ok(value) => value.to_lowercase() == "true",
+        Err(_) => false,
+    };
+
+    // Check if not using docker and mysql command is available
+    if !is_docker && Command::new("mysql").arg("--version").output().is_err()  {
         return Err("❌ MySQL is not installed. Please install MySQL first.".into());
     }
 
-    dotenv().ok();
-    let database_url = env::var("DATABASE_URL").expect("DATABASE_URL not set in .env");
-    let url = Url::parse(&database_url).expect("Invalid database URL");
-
-    let username = url.username();
-    let password = url.password().unwrap_or("");
-    let host = url.host_str().expect("Database host is required");
-    let port = url.port().unwrap_or(3306);
-    let database = url.path().trim_start_matches('/');
-
     let seed_file_path = "./seed/seed.sql";
     let mysql_command = format!(
-        "mysql -h {} -P {} -u {} -p{} {} < {}",
-        host, port, username, password, database, seed_file_path
+        "{} < {}",
+        get_db_command_prefix(), seed_file_path
     );
 
     let status = Command::new("sh")
