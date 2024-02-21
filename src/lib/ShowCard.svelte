@@ -105,7 +105,8 @@
 				</Badges>
 			{/if}
 
-			<FacePile
+			<div class="bottom-row">
+				<FacePile
 				faces={[
 					{ name: 'Wes Bos', github: 'wesbos' },
 					{ name: 'Scott Tolinski', github: 'stolinski' },
@@ -126,6 +127,8 @@
 					>
 				</div>
 			{/if}
+			</div>
+
 		</div>
 	</a>
 </article>
@@ -143,14 +146,15 @@
 		align-items: start;
 		& a {
 			color: var(--fg);
-			display: block;
 			display: flex;
 			gap: 10px;
-			padding: 5px;
+			height: 100%;
 		}
 
 		.details {
 			display: grid;
+			flex-grow: 1;
+			grid-template-rows: auto auto 1fr auto auto;
 			gap: 1rem;
 			& > * {
 				margin: 0;
@@ -179,21 +183,50 @@
 			border: solid var(--border-size) var(--black-8);
 		}
 
+		
 		&.list {
 			border: solid 1px var(--subtle);
 			margin-bottom: 20px;
 			padding: 20px 0;
 			margin-inline: auto;
-			@media (--below_med) {
-				.description {
-					display: none;
-				}
-				h2 {
-					mask-image: none;
-					font-style: normal;
-				}
+		}
+
+		.description {
+			span {
+				/* helps a11y when light text overlaps show number */
+				background-color: color-mix(in lch, var(--bg), transparent 50%);				
 			}
 		}
+
+		/* readability improvements for mobile viewports */
+		@media (--below_med) {
+			padding: 10px;
+
+			.details {
+				/* since we're hiding the description row at these dimensions (which was 100% height), 
+				   need a new row to become 100% height -- the show title */
+				grid-template-rows: auto 1fr auto auto;
+			}
+			.description {
+				display: none;
+				mask-image: none;
+			}
+		}
+
+		.bottom-row {
+			align-self: end;
+
+			/* lay out horizontally */
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 1rem;
+
+			.buttons {
+				text-align: right;
+				align-self: center;
+			}
+		}
+
 	}
 
 	.h3 {
@@ -209,11 +242,6 @@
 			0 -1px 0 var(--bg);
 	}
 
-	.description span {
-		/* helps a11y when light text overlaps show number */
-		background-color: color-mix(in lch, var(--bg), transparent 50%);
-	}
-
 	.date {
 		font-size: var(--font-size-sm);
 		margin: 0;
@@ -223,6 +251,8 @@
 		@media (prefers-color-scheme: dark) {
 			background: var(--bg);
 		}
+		/* adds contrast when light text overlaps show number */
+		text-shadow: 2px 1px 0px var(--bg);
 	}
 
 	.play-button {
@@ -250,6 +280,10 @@
 		color: var(--primary);
 		line-height: 1;
 		z-index: -1;
+
+		@media (--below_med) {
+			--max-font-size: 8rem;
+		}
 	}
 
 	@container show-card (width > 600px) {
