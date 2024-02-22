@@ -14,7 +14,6 @@
 
 	export let data;
 	$: ({ show, user_theme } = data);
-	$theme = user_theme;
 
 	function toggle_share() {
 		$episode_share_status = !$episode_share_status;
