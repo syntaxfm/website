@@ -81,5 +81,11 @@
 		display: flex;
 	}
 
+	.card {
+		border: solid 0.5px var(--line);
+		margin-bottom: 2rem;
+		border-radius: var(--brad);
+		--bg: var(--bg-1);
+	}
 	/* END @layer layout */
 }
