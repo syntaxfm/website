@@ -1,9 +1,4 @@
 import { writable } from 'svelte/store';
-import Cookie from 'js-cookie';
-
-const default_theme = Cookie.get('theme') || null;
-
-export const theme = writable(default_theme);
 
 const new_theme_maker = () => {
 	const { subscribe, update, set } = writable({

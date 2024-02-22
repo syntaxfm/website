@@ -1,7 +1,6 @@
 <script lang="ts">
 	import '$/routes/(site)/style.css';
 	import { format } from 'date-fns';
-	import { theme } from '$state/theme';
 	import Icon from '$/lib/Icon.svelte';
 	import ListenLinks from '$/lib/ListenLinks.svelte';
 	import AlbumArt from '$/lib/player/AlbumArt.svelte';
@@ -14,7 +13,6 @@
 
 	export let data;
 	$: ({ show, user_theme } = data);
-	$theme = user_theme;
 
 	function toggle_share() {
 		$episode_share_status = !$episode_share_status;
