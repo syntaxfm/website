@@ -12,12 +12,7 @@
 </div>
 
 <div class="sidebar">
-	<div
-		class="sticky zone"
-		style="border: solid 0.5px var(--line); margin-bottom: 2rem;"
-		style:--radius="20px"
-		style:--bg="var(--bg-1)"
-	>
+	<div class="sticky zone card">
 		<NewsletterForm />
 	</div>
 </div>

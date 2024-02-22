@@ -4,7 +4,6 @@
 	import { invalidate } from '$app/navigation';
 	import { theme_maker } from '$state/theme';
 	import Cookie from 'js-cookie';
-	import { onMount } from 'svelte';
 	import { fly } from 'svelte/transition';
 	// when a new theme is selected, apply the class directly to the correct element,
 	// and save the theme name to the user's db record
@@ -23,7 +22,6 @@
 		// Set cookie for server side theme change
 		Cookie.set('theme', this.innerText);
 		const theme_wrapper = document.querySelector('.theme-wrapper');
-
 		// Update the dom manually
 		if (theme_wrapper) theme_wrapper.className = 'theme-' + this.innerText + ' theme-wrapper';
 		// Invalidate the route

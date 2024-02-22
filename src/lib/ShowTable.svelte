@@ -63,7 +63,7 @@
 				{/each}
 			{:else}
 				<tr>
-					<td>No shows scheduled, if there should be, please let someone know</td>
+					<td class="td-full">No shows scheduled, if there should be, please let someone know</td>
 				</tr>
 			{/if}
 		</tbody>
@@ -76,6 +76,7 @@
 		align-items: center;
 		grid-template-columns: 150px 100px min(550px) 300px;
 	}
+
 	.show-type {
 		background: var(--yellow);
 		color: var(--black);
