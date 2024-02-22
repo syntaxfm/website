@@ -8,7 +8,6 @@
 	import Tabs from '$lib/Tabs.svelte';
 	import ShareWindow from '$lib/share/ShareWindow.svelte';
 	import { player } from '$state/player';
-	import { theme } from '$state/theme';
 	import { format } from 'date-fns';
 	import wait from 'waait';
 	export let data;
