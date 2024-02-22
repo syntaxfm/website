@@ -3,7 +3,6 @@
 	import { invalidate } from '$app/navigation';
 	import { theme_maker } from '$state/theme';
 	import Cookie from 'js-cookie';
-	import slug from 'speakingurl';
 	import { fly } from 'svelte/transition';
 	// when a new theme is selected, apply the class directly to the correct element,
 	// and save the theme name to the user's db record
