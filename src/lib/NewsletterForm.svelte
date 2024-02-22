@@ -65,14 +65,13 @@
 				display: flex;
 				align-items: center;
 				flex: 0 0 250px;
-				margin: 2rem;
+				margin: 0 0 2rem;
 			}
 		}
 
 		form {
 			flex: 1 0 500px;
 			text-align: center;
-			padding: 2rem;
 			/* max-width: 500px; */
 			> *:first-child {
 				margin-top: 0;

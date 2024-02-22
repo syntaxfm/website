@@ -86,6 +86,7 @@
 		margin-bottom: 2rem;
 		border-radius: var(--brad);
 		--bg: var(--bg-1);
+		padding: 20px;
 	}
 	/* END @layer layout */
 }
