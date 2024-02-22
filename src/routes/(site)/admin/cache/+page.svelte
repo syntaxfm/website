@@ -14,23 +14,25 @@
 	</form>
 </AdminActions>
 
-<table>
-	<thead>
-		<tr>
-			<th>key</th>
-		</tr>
-	</thead>
-	<tbody>
-		{#if cache.length > 0}
-			{#each cache as key}
-				<tr>
-					<td>{key}</td>
-				</tr>
-			{/each}
-		{:else}
+<div class="table-container">
+	<table>
+		<thead>
 			<tr>
-				<td>Cache Not Available</td>
+				<th>key</th>
 			</tr>
-		{/if}
-	</tbody>
-</table>
+		</thead>
+		<tbody>
+			{#if cache.length > 0}
+				{#each cache as key}
+					<tr>
+						<td>{key}</td>
+					</tr>
+				{/each}
+			{:else}
+				<tr>
+					<td>Cache Not Available</td>
+				</tr>
+			{/if}
+		</tbody>
+	</table>
+</div>

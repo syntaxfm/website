@@ -10,7 +10,8 @@
 		background: transparent;
 		border: var(--border);
 		padding: 10px;
-		font-size: var(--font-size-lg);
+		font-size: var(--font-size-base);
 		color: var(--fg);
+		border-radius: var(--brad);
 	}
 </style>

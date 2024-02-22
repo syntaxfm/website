@@ -21,27 +21,29 @@
 	</form>
 </AdminActions>
 
-<table>
-	<thead>
-		<tr>
-			<th>Show Number</th>
-			<th>Show Name</th>
-			<th>Utterance Count</th>
-		</tr>
-	</thead>
-	<tbody>
-		{#if !transcripts}
+<div class="table-container">
+	<table>
+		<thead>
 			<tr>
-				<td colspan="4">No Transcripts found</td>
+				<th>Number</th>
+				<th>Name</th>
+				<th>Utterance Count</th>
 			</tr>
-		{:else}
-			{#each transcripts as transcript}
+		</thead>
+		<tbody>
+			{#if !transcripts}
 				<tr>
-					<td>{transcript.show_number}</td>
-					<td>{transcript.show.title}</td>
-					<td>{transcript._count.utterances}</td>
+					<td colspan="4">No Transcripts found</td>
 				</tr>
-			{/each}
-		{/if}
-	</tbody>
-</table>
+			{:else}
+				{#each transcripts as transcript}
+					<tr>
+						<td>{transcript.show_number}</td>
+						<td>{transcript.show.title}</td>
+						<td>{transcript._count.utterances}</td>
+					</tr>
+				{/each}
+			{/if}
+		</tbody>
+	</table>
+</div>

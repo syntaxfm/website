@@ -62,7 +62,7 @@
 					<th>Number</th>
 					<th>Title</th>
 					<th>Type</th>
-					<th>Guest Count</th>
+					<th>Guests</th>
 					<th>Transcript</th>
 					<th>AI Notes</th>
 				</tr>
@@ -144,7 +144,7 @@
 <style lang="postcss">
 	tr {
 		display: grid;
-		grid-template-columns: 80px 550px 150px 90px auto auto auto auto;
+		grid-template-columns: 80px 550px 150px 90px auto auto;
 	}
 
 	fieldset {
