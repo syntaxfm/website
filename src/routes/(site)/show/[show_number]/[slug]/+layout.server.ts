@@ -1,6 +1,7 @@
 import remarkGfm from 'remark-gfm';
 import { unified } from 'unified';
 import remarkParse from 'remark-parse';
+import remarkHeadingId from 'remark-heading-id';
 import remarkRehype from 'remark-rehype';
 import rehypeRaw from 'rehype-raw';
 import rehypeStringify from 'rehype-stringify';
@@ -49,6 +50,7 @@ export const load = async function ({ params, locals, url }) {
 
 	const body_excerpt = await unified()
 		.use(remarkParse)
+		.use(remarkHeadingId)
 		.use(remarkGfm)
 		.use(remarkRehype, { allowDangerousHtml: true })
 		.use(rehypeRaw)
