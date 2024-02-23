@@ -95,6 +95,20 @@
 		mask-size: 250px;
 		text-wrap: balance;
 		font-style: italic;
+    /* Markdown Links show on hover */
+    --opacity: 0;
+    &:hover {
+      --opacity: 1;
+    }
+    a[href^='#'] {
+      display: inline-block;
+      height: 100%;
+      margin-left: .25rem;
+      opacity: var(--opacity);
+      &:before {
+        content: '#';
+      }
+    }
 	}
 
 	h1,
