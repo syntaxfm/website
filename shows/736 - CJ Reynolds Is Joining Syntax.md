@@ -6,7 +6,7 @@ url: https://traffic.libsyn.com/syntax/Syntax_-_736.mp3
 youtube_url: https://www.youtube.com/watch?v=S4yAx0r2wkY
 guest:
   name: CJ Reynolds
-  github: nw3cj
+  github: w3cj
   twitter: Coding_Garden
   of: Coding Garden
   url: https://coding.garden/
@@ -22,7 +22,7 @@ Scott and Wes introduce Syntax's new Senior Content Producer, CJ Reynolds, who w
 * **[00:00](#t=00:00)** Welcome to Syntax!
 * **[01:06](#t=01:06)** Brought to you by [Sentry.io](www.sentry.io).
 * **[04:39](#t=04:39)** What got you into web development?
-* **[09:23](#t=09:23)** Does a degree in computer sciences help you in your day to day as a web developer?
+* **[09:23](#t=09:23)** Does a degree in computer science help you in your day to day as a web developer?
 * [Bell Curve Meme](https://x.com/_hariti/status/1761059582229573895?s=20)
 * **[11:39](#t=11:39)** Wes downloads every single .com domain name.
 * **[15:19](#t=15:19)** What was your very first web development job?
