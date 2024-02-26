@@ -54,7 +54,7 @@ Scott and Wes introduce Syntax's new Senior Content Producer, CJ Reynolds, who w
 
 - CJ: [Ergonomics](https://en.wikipedia.org/wiki/Ergonomics), [More on Ergonomics](https://www.cuh.nhs.uk/patient-information/seating-and-ergonomics/)
 - Scott: [Project Farm YouTube trash bag comparison](https://www.youtube.com/watch?v=uw9SMpywYHY&ab_channel=ProjectFarm)
-- Wes: [Kitchy Pizza Cutter Wheel](https://www.amazon.ca/dp/B019S3W8AO?crid=2318NXG9JQ4PC&keywords=kitchy+pizza+cutter+wheel&sprefix=Kitchy+,aps,235&language=en_US&dib_tag=se&ref_=as_li_ss_tl&dib=eyJ2IjoiMSJ9.5GOxDTt8x_TajE-EzbID_c9K9tecJLxRGEpMbjRKq2uRGa6jCWrIqUVuSLQxXEoJmugLZrrVyal-RKhqaV8Vg7fPKPlwJ07msnHCGWjlHVJDeWr3TG5ELGpFqpc4JkxeiPELWuQaCxLayq9UIwjONNLt4QGYc3lVK4SqmKjpJ-9-LVtIKEq_CYmQOXmczsFXJhQYl69pftezvdwyhpQoUD9hBZ0K3I4oRXsqUzSZpd4XLrdnB1Vp1iee1Ny7i-42JzoW2M-s0pwUX71iROhHvAS7spVhBxKPnPxr2-NxPM0.rjqi8ZaItYx9mGugQmudhgcaoxZ3nP_EwNzyLRWr5LM&sr=8-5&linkCode=gs2&linkId=dcdd68d1c4400e58c0cdb10527761659&tag=isi777-20)
+- Wes: [Kitchy Pizza Cutter Wheel](https://www.amazon.ca/dp/B019S3W8AO)
 
 ### Shameless Plugs
 
