@@ -8,7 +8,7 @@ guest:
   name: CJ Reynolds
   github: w3cj
   twitter: Coding_Garden
-  of: Coding Garden
+  of: Coding Garden & Syntax
   url: https://coding.garden/
   social:
   - https://www.youtube.com/@CodingGarden
