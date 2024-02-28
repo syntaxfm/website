@@ -20,7 +20,10 @@ Sentry.init({
 	// If you don't want to use Session Replay, just remove the line below:
 	integrations: [
 		Sentry.browserProfilingIntegration(),
-		Sentry.replayIntegration(),
+		Sentry.replayIntegration({
+			maskAllText: false,
+			blockAllMedia: false
+		}),
 		Sentry.metrics.metricsAggregatorIntegration()
 	],
 	profilesSampleRate: 1.0,
