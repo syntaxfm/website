@@ -94,7 +94,7 @@
 		a {
 			display: block;
 			text-decoration: none;
-			background: rgba(255, 255, 255, 0.0786987545689);
+			background: var(--nav_a_bg, rgba(255, 255, 255, 0.0786987545689));
 			padding: 10px 20px;
 			@media (--below_large) {
 				padding: 8px 16px;
