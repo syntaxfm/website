@@ -46,18 +46,20 @@
 		use:clickOutside
 		on:click-outside={theme_maker.close}
 	>
-		<h4>👩‍🎨 <button class="close" on:click={theme_maker.close}>×</button></h4>
+		<h4>Theme Picker <button class="close" on:click={theme_maker.close}>×</button></h4>
 
 		<div class="theme-maker-buttons">
 			{#each theme_names as theme_name}
 				<button on:click={change_theme} class={'theme-preview theme-' + theme_name}>
-					<div class="circle color" />
-					<div class="circle primary" />
-					<div class="circle accent" />
-					<div class="circle warning" />
-					<span>
+					<div class="preview">
+						<div class="circle color" />
+						<div class="circle primary" />
+						<div class="circle accent" />
+						<div class="circle warning" />
+					</div>
+					<p>
 						{theme_name}
-					</span>
+					</p>
 				</button>
 			{/each}
 		</div>
@@ -72,11 +74,11 @@
 		position: fixed;
 		top: 0;
 		right: 0;
-		width: 300px;
+		width: 360px;
 		height: 100vh;
 		overflow: hidden;
 		backdrop-filter: blur(10px);
-		color: var(--fg);
+		color: var(--sheet-fg);
 		padding: var(--default_padding);
 		overflow-y: scroll;
 		border-left: var(--border);
@@ -95,16 +97,18 @@
 		right: 20px;
 	}
 
-	.theme-preview {
+	.preview {
 		display: flex;
-		background: var(--bg-sheet);
-		flex-wrap: wrap;
+		justify-content: space-around;
+	}
+
+	.theme-preview {
+		display: block;
 		background: var(--bg-sheet);
 		color: var(--fg-sheet);
-		justify-content: space-between;
-		& span {
-			flex-basis: 100%;
-			font-weight: 400;
+		padding: 10px;
+		& p {
+			margin: 1rem 0 0;
 		}
 	}
 

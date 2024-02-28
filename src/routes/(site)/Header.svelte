@@ -18,7 +18,9 @@
 
 		<nav class="desktop_nav content">
 			<a class={$page.url.pathname.startsWith('/shows') ? 'active' : ''} href="/shows">Shows</a>
-			<a class={$page.url.pathname.startsWith('/snackpack') ? 'active' : ''} href="/snackpack">Newsletter</a>
+			<a class={$page.url.pathname.startsWith('/snackpack') ? 'active' : ''} href="/snackpack"
+				>Newsletter</a
+			>
 			<a class={$page.url.pathname.startsWith('/about') ? 'active' : ''} href="/about">About</a>
 			<a class={$page.url.pathname.startsWith('/potluck') ? 'active' : ''} href="/potluck"
 				>Potluck Qs</a
@@ -32,12 +34,13 @@
 
 <style lang="postcss">
 	header {
-		background-image: url('/svg/grit.svg?dark');
+		background-image: url('/svg/grit.svg?dark'),
+			linear-gradient(to bottom, var(--header-gradient-1) 0%, var(--header-gradient-2) 100%);
 		background-size: 250px;
 		background-color: var(--bg);
 		color: var(--fg);
 		padding: 0 0.5rem;
-		@media(--below_large) {
+		@media (--below_large) {
 			padding: 0;
 		}
 
@@ -91,7 +94,7 @@
 		a {
 			display: block;
 			text-decoration: none;
-			background: rgba(255, 255, 255, 0.0786987545689);
+			background: var(--nav_a_bg, rgba(255, 255, 255, 0.0786987545689));
 			padding: 10px 20px;
 			@media (--below_large) {
 				padding: 8px 16px;
