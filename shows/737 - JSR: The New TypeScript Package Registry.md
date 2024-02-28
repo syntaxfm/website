@@ -10,7 +10,6 @@ guest:
   twitter: lcasdev
   of: Deno
   url: https://deno.com/
-  # A single social Link:
   social: https://lcas.dev/
 ---
 
