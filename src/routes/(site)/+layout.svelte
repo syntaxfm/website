@@ -1,6 +1,7 @@
 <script lang="ts">
 	import './style.css';
 	import 'media-chrome';
+	import Cookie from 'js-cookie';
 	import { Toaster } from 'svelte-french-toast';
 	import { onNavigate } from '$app/navigation';
 	import Player from '$lib/player/Player.svelte';
@@ -18,6 +19,7 @@
 
 	export let data;
 	$: ({ user, user_theme } = data);
+
 	onNavigate(async (navigation) => {
 		if (!document.startViewTransition) return;
 
