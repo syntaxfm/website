@@ -53,7 +53,7 @@ Sentry.init({
 
 export const auth: Handle = async function ({ event, resolve }) {
 	const access_token = event.cookies.get('access_token');
-	console.log(event.cookies.get('theme'));
+	console.log('GETTING THEME IN HOOKS', event.cookies.get('theme'));
 	event.locals.theme = decodeURIComponent(event.cookies.get('theme') || 'system');
 	// Get current user from session via access token
 	if (access_token) {
