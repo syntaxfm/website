@@ -7,10 +7,6 @@ import type { PageServerLoad } from './$types';
 export const load: PageServerLoad = async ({ locals, url }) => {
 	const cache_s = 600;
 
-	// setHeaders({
-	// 	'cache-control': `public s-max-age=${cache_s}, stale-while-revalidate=${cache_s}`
-	// });
-
 	const latest: LatestShow[] = await cache_mang(
 		`homepage:latest_shows`,
 		locals.prisma.show.findMany,
