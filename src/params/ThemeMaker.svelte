@@ -20,13 +20,13 @@
 
 	function change_theme(this: HTMLButtonElement, e: Event) {
 		// Set cookie for server side theme change
-		Cookie.set('theme', this.innerText),
-			{
-				expires: 999,
-				sameSite: 'strict',
-				secure: true,
-				path: '/'
-			};
+		Cookie.set('theme', this.innerText, {
+			expires: 999,
+			sameSite: 'strict',
+			secure: true,
+			path: '/'
+		});
+
 		const theme_wrapper = document.querySelector('.theme-wrapper');
 		// Update the dom manually
 		if (theme_wrapper) theme_wrapper.className = 'theme-' + this.innerText + ' theme-wrapper';
