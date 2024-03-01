@@ -2,7 +2,7 @@
 number: 738
 title: "Little Scripts: Coding for your Co-workers"
 date: 1709553600882
-url:
+url: https://traffic.libsyn.com/syntax/Syntax_-_738.mp3
 youtube_url: https://www.youtube.com/watch?v=JFYGqxtD82s
 ---
 
