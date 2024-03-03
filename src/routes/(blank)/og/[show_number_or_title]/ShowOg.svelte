@@ -70,9 +70,9 @@
 				<p class="date">
 					{format_show_type(show.date)}
 					<span aria-hidden="true">×</span>
-					<time datetime={show_date.toDateString()} title={show_date.toDateString()}
-						>{format(show_date, 'MMMM do, yyyy')}</time
-					>
+					<time datetime={show_date.toISOString()}>
+						{format(show_date, 'MMMM do, yyyy')}
+					</time>
 				</p>
 			{/if}
 		</header>

@@ -70,8 +70,7 @@
 			<p class="date" style:--transition-name="show-date-{show.number}">
 				{format_show_type(show.date)}
 				<span aria-hidden="true">×</span>
-				<time datetime={show_date.toDateString()} title={show_date.toDateString()}
-					>{format_date(show_date)}</time
+				<time datetime={show_date.toISOString()}>{format_date(show_date)}</time
 				>
 			</p>
 
