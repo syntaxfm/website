@@ -27,7 +27,7 @@ Scott and Wes are joined by special guest Xenova to explore local AI models in J
 * **[09:04](#t=09:04)** How is it able to run?
 * **[10:09](#t=10:09)** Do they have to run in Python and how does Onnx work?
 * [Onnx.ai](https://onnx.ai/)
-* [Hugging Face Optimimum](https://huggingface.co/docs/optimum/index)
+* [Hugging Face Optimum](https://huggingface.co/docs/optimum/index)
 * **[14:19](#t=14:19)** What are some things you can do with this tech?
 * **[16:15](#t=16:15)** Vision tools.
 * **[17:38](#t=17:38)** This is actually running locally.
