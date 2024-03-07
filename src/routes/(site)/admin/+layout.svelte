@@ -26,7 +26,9 @@
 	{/each}
 </nav>
 
-<slot />
+<div class="admin">
+	<slot />
+</div>
 
 <style lang="postcss">
 	nav {
@@ -39,5 +41,8 @@
 		.active {
 			text-decoration: underline;
 		}
+	}
+	.admin {
+		padding-bottom: 4rem;
 	}
 </style>

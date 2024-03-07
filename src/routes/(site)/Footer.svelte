@@ -50,6 +50,9 @@
 				<a target="_blank" rel="noopener" href="https://www.tiktok.com/@syntaxfm"
 					><Icon name="tiktok" /></a
 				>
+				<a target="_blank" rel="noopener" href="https://www.instagram.com/syntax_fm/"
+					><Icon name="instagram" /></a
+				>
 			</div>
 		</div>
 

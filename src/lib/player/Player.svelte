@@ -3,7 +3,7 @@
 	import AlbumArt from './AlbumArt.svelte';
 	import get_show_path from '$utilities/slug';
 	import Icon from '../Icon.svelte';
-	import ShareButton from '../share/ShareButton.svelte';
+	import ShareButton from '../share/HairButton.svelte';
 </script>
 
 <section class={`player ${$player_window_status}`}>

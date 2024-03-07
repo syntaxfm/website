@@ -1,6 +1,7 @@
 import remarkGfm from 'remark-gfm';
 import { unified } from 'unified';
 import remarkParse from 'remark-parse';
+import remarkHeadingId from 'remark-heading-id';
 import remarkRehype from 'remark-rehype';
 import rehypeRaw from 'rehype-raw';
 import rehypeStringify from 'rehype-stringify';
@@ -8,6 +9,7 @@ import highlight from 'rehype-highlight';
 import { error } from '@sveltejs/kit';
 import { cache_mang } from '$utilities/cache_mang';
 import type { Prisma, Show } from '@prisma/client';
+import { processor } from '$/utilities/markdown.js';
 
 export const load = async function ({ params, locals, url }) {
 	const { show_number } = params;
@@ -47,14 +49,7 @@ export const load = async function ({ params, locals, url }) {
 		error(401, `That is a show, but it's in the future! \n\nCome back ${show_date}`);
 	}
 
-	const body_excerpt = await unified()
-		.use(remarkParse)
-		.use(remarkGfm)
-		.use(remarkRehype, { allowDangerousHtml: true })
-		.use(rehypeRaw)
-		.use(highlight)
-		.use(rehypeStringify)
-		.process(show?.show_notes || '');
+	const body_excerpt = await processor.process(show?.show_notes || '');
 
 	// Regular expression pattern and replacement
 	const pattern = /(<h2>)(?!Show Notes<\/h2>)(.*?)(<\/h2>)/g;

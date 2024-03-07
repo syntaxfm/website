@@ -1,6 +1,7 @@
 <script lang="ts">
 	import './style.css';
 	import 'media-chrome';
+	import Cookie from 'js-cookie';
 	import { Toaster } from 'svelte-french-toast';
 	import { onNavigate } from '$app/navigation';
 	import Player from '$lib/player/Player.svelte';
@@ -8,7 +9,6 @@
 	import Header from './Header.svelte';
 	import Loading from '$lib/Loading.svelte';
 	import Hotkeys from '$lib/hotkeys/Hotkeys.svelte';
-	import { theme } from '$state/theme';
 	import { browser } from '$app/environment';
 	import SearchBox from '$lib/search/SearchBox.svelte';
 	import Meta from '$lib/meta/Meta.svelte';
@@ -19,8 +19,6 @@
 
 	export let data;
 	$: ({ user, user_theme } = data);
-
-	$theme = user_theme;
 
 	onNavigate(async (navigation) => {
 		if (!document.startViewTransition) return;
@@ -38,7 +36,7 @@
 
 <PageLoadingIndicator />
 
-<div class={'theme-' + ($theme || user_theme) + ' theme-wrapper'}>
+<div class={'theme-' + user_theme + ' theme-wrapper'}>
 	<!-- <UnderConstruction /> -->
 	{#if $page.url.pathname !== '/'}
 		<Header />

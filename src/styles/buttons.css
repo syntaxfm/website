@@ -11,7 +11,7 @@
 		cursor: pointer;
 		text-decoration: none;
 		border: none;
-		font-family: var(--body-font-familly);
+		font-family: var(--body-font-family);
 		font-weight: 600;
 		padding: 6px 15px;
 		font-size: var(--body-font-size);

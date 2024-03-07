@@ -136,7 +136,6 @@
 	--fg-1: var(--white); /* used in header */
 	--fg-2: var(--black-9); /* currently unused */
 	--fg-sheet: var(--black);
-	
 
 	/* Interface Color */
 	--primary: var(--yellow);
@@ -165,6 +164,5 @@
 
 	/* Sentry footer gradient */
 	--sentry-footer-bg: url('$assets/squiggle-greyscale.webp'),
-	linear-gradient(315deg, #180d1c 0.57%, #452650 100%);
-
+		linear-gradient(315deg, #180d1c 0.57%, #452650 100%);
 }

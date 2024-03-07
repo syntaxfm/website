@@ -1,5 +1,6 @@
 <script lang="ts">
-	import ShareButton from '$/lib/share/ShareButton.svelte';
+	import ShareButton from '$/lib/share/HairButton.svelte';
+	import { replace_color } from '$/lib/theme/variable_color_svg.js';
 	import { time_param_to_seconds } from '$/utilities/time_param_to_seconds.js';
 	import { page } from '$app/stores';
 	import HostsAndGuests from '$lib/HostsAndGuests.svelte';
@@ -8,9 +9,7 @@
 	import Tabs from '$lib/Tabs.svelte';
 	import ShareWindow from '$lib/share/ShareWindow.svelte';
 	import { player } from '$state/player';
-	import { theme } from '$state/theme';
 	import { format } from 'date-fns';
-	import wait from 'waait';
 	export let data;
 	$: ({ show, time_start } = data);
 
@@ -28,22 +27,12 @@
 		}
 	}
 
-	function variableColorSvg(node: HTMLElement) {
-		theme.subscribe(async () => {
-			await wait(1);
-			const style = getComputedStyle(node);
-			const bg = style.getPropertyValue('background-image');
-			const primary = style.getPropertyValue('--primary');
-			const newBg = bg.replaceAll(
-				/fill\s*=\s*['"].*?['"]/gi,
-				`fill='${encodeURIComponent(primary)}'`
-			);
-			node.style.backgroundImage = newBg;
-		});
-	}
-
 	function play_show() {
 		player.start_show(show, time_param_to_seconds(time_start));
+	}
+
+	function variable_svg(node: HTMLElement) {
+		replace_color(node);
 	}
 </script>
 
@@ -106,7 +95,7 @@
 				<Icon name="edit" /></a
 			>
 		</div>
-		<div use:variableColorSvg class="waves grit" />
+		<div use:variable_svg class="variable-color-svg waves grit" />
 	</div>
 </div>
 

@@ -1,0 +1,34 @@
+/* Wave Race 64 Theme */
+
+.theme-wave-race-64 {
+	--purp: #a37592;
+	--green: hsl(111deg 100% 54%);
+	--blue: hsl(208deg 97% 37%);
+	--primary: var(--green);
+	--accent: var(--blue);
+	--warning: hsl(356deg 58% 55%);
+
+	--fg: #eee;
+	--fg-1: white;
+	--fg-sheet: #111;
+
+	--logo_color: #111;
+	--bg: #111;
+	--bg-1: #eaede0;
+	--bg-sheet: #eee;
+	--bgGrit: var(--bgGritLight);
+
+	--line: var(--bg);
+	--hero-gradient-1: #69cffa;
+	--hero-gradient-2: #3d4ef6;
+	--header-gradient-1: var(--hero-gradient-1);
+	--header-gradient-2: var(--hero-gradient-2);
+
+	--sentry-footer-bg: url('$assets/squiggle-greyscale.webp'),
+		linear-gradient(315deg, var(--purp) 0.57%, var(--blue) 100%);
+
+	nav {
+		--fg: #111;
+		--nav_a_bg: rgba(255, 255, 255, 0.8);
+	}
+}

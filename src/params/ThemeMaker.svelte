@@ -1,13 +1,13 @@
 <script lang="ts">
+	import { variable_color_svg } from '$/lib/theme/variable_color_svg';
 	import { clickOutside } from '$actions/click_outside';
-	import { theme, theme_maker } from '$state/theme';
+	import { invalidate } from '$app/navigation';
+	import { theme_maker } from '$state/theme';
 	import Cookie from 'js-cookie';
-	import slug from 'speakingurl';
 	import { fly } from 'svelte/transition';
 	// when a new theme is selected, apply the class directly to the correct element,
 	// and save the theme name to the user's db record
 	const themes = import.meta.glob('$styles/themes/*.css', { eager: true });
-	const themeName = /(?<=\/src\/styles\/themes\/)(.*)(?=.css)/;
 
 	// TODO refactor to utility function
 	function getThemeName(path: string) {
@@ -19,9 +19,21 @@
 	const theme_names = ['system', 'light', ...Object.keys(themes).map(getThemeName)];
 
 	function change_theme(this: HTMLButtonElement, e: Event) {
-		// 1. set to theme state, for instant ui responsiveness
-		$theme = slug(this.innerText);
-		Cookie.set('theme', this.innerText);
+		// Set cookie for server side theme change
+		Cookie.set('theme', this.innerText, {
+			expires: 999,
+			sameSite: 'strict',
+			secure: true,
+			path: '/'
+		});
+
+		const theme_wrapper = document.querySelector('.theme-wrapper');
+		// Update the dom manually
+		if (theme_wrapper) theme_wrapper.className = 'theme-' + this.innerText + ' theme-wrapper';
+		// Invalidate the route
+		// Load new server data
+		invalidate('/');
+		variable_color_svg();
 	}
 </script>
 
@@ -40,18 +52,20 @@
 		use:clickOutside
 		on:click-outside={theme_maker.close}
 	>
-		<h4>👩‍🎨 <button class="close" on:click={theme_maker.close}>×</button></h4>
+		<h4>Theme Picker <button class="close" on:click={theme_maker.close}>×</button></h4>
 
 		<div class="theme-maker-buttons">
 			{#each theme_names as theme_name}
 				<button on:click={change_theme} class={'theme-preview theme-' + theme_name}>
-					<div class="circle color" />
-					<div class="circle primary" />
-					<div class="circle accent" />
-					<div class="circle warning" />
-					<span>
+					<div class="preview">
+						<div class="circle color" />
+						<div class="circle primary" />
+						<div class="circle accent" />
+						<div class="circle warning" />
+					</div>
+					<p>
 						{theme_name}
-					</span>
+					</p>
 				</button>
 			{/each}
 		</div>
@@ -66,11 +80,11 @@
 		position: fixed;
 		top: 0;
 		right: 0;
-		width: 300px;
+		width: 360px;
 		height: 100vh;
 		overflow: hidden;
 		backdrop-filter: blur(10px);
-		color: var(--fg);
+		color: var(--sheet-fg);
 		padding: var(--default_padding);
 		overflow-y: scroll;
 		border-left: var(--border);
@@ -89,16 +103,18 @@
 		right: 20px;
 	}
 
-	.theme-preview {
+	.preview {
 		display: flex;
-		background: var(--bg-sheet);
-		flex-wrap: wrap;
+		justify-content: space-around;
+	}
+
+	.theme-preview {
+		display: block;
 		background: var(--bg-sheet);
 		color: var(--fg-sheet);
-		justify-content: space-between;
-		& span {
-			flex-basis: 100%;
-			font-weight: 400;
+		padding: 10px;
+		& p {
+			margin: 1rem 0 0;
 		}
 	}
 

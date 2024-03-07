@@ -95,6 +95,20 @@
 		mask-size: 250px;
 		text-wrap: balance;
 		font-style: italic;
+    /* Markdown Links show on hover */
+    --opacity: 0;
+    &:hover {
+      --opacity: 1;
+    }
+    a[href^='#'] {
+      display: inline-block;
+      height: 100%;
+      margin-left: .25rem;
+      opacity: var(--opacity);
+      &:before {
+        content: '#';
+      }
+    }
 	}
 
 	h1,
@@ -333,4 +347,9 @@ html {
 	--thumb: var(--primary);
 	scrollbar-color: var(--thumb) var(--track);
 	scrollbar-width: thin;
+}
+
+.admin :is(h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6) {
+	font-weight: 400;
+	font-style: normal;
 }
