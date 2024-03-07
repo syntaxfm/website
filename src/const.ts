@@ -84,3 +84,6 @@ export interface GithubUser {
 	created_at: string;
 	updated_at: string;
 }
+
+// Youtube
+export const YOUTUBE_CHANNEL_ID = 'UCyU5wkjgQYGRB0hIHMwm2Sg';

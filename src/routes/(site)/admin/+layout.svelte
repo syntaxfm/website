@@ -14,6 +14,10 @@
 			link: '/admin/transcripts'
 		},
 		{
+			name: 'Video',
+			link: '/admin/video'
+		},
+		{
 			name: 'Cache',
 			link: '/admin/cache'
 		}
