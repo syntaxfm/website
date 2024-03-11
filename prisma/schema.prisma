@@ -226,20 +226,20 @@ model Topic {
 
 // For a many-to-many relationship where a video can be in multiple playlists and a playlist contains multiple videos with order, 
 // include an `order` field in the relation model to maintain the correct order of videos in each playlist.
-
 model Video {
-  id            String            @id @default(uuid())
-  title         String
-  description   String?
-  url           String
-  publishedAt   DateTime
-  playlistItems PlaylistOnVideo[]
+  id             String            @id @default(uuid())
+  title          String
+  description    String?           @db.Text
+  url            String
+  published_at   DateTime
+  thumbnail      String
+  playlist_items PlaylistOnVideo[]
 }
 
 model Playlist {
   id             String            @id @default(uuid())
   title          String
-  description    String?
+  description    String?           @db.Text
   created_at     DateTime          @default(now())
   playlist_items PlaylistOnVideo[]
 }
@@ -254,6 +254,8 @@ model PlaylistOnVideo {
 
   @@id([playlist_id, order])
   @@unique([video_id, playlist_id])
+  @@index([video_id])
+  @@index([playlist_id])
 }
 
 // The playlists on YouTube, used to select which we'd like to import

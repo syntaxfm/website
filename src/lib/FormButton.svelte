@@ -21,5 +21,6 @@
 		}
 	)}
 >
+	<slot />
 	<button disabled={thinking} type="submit">{thinking ? thinking_text : text}</button>
 </form>
