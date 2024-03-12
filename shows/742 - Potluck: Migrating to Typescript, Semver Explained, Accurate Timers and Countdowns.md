@@ -52,4 +52,6 @@ Wes: [X](https://twitter.com/wesbos) [Instagram](https://www.instagram.com/wesbo
 
 Scott:[X](https://twitter.com/stolinski) [Instagram](https://www.instagram.com/stolinski/) [Tiktok](https://www.tiktok.com/@stolinski) [LinkedIn](https://www.linkedin.com/in/stolinski/) [Threads](https://www.threads.net/@stolinski)
 
+CJ: [X](https://twitter.com/coding_garden) [Instagram](https://www.instagram.com/coding.garden/) [Tiktok](https://www.tiktok.com/@coding.garden) [TwitchTV](https://www.twitch.tv/codinggarden) [YouTube](https://www.youtube.com/@CodingGarden)
+
 Randy: [X](https://twitter.com/randyrektor) [Instagram](https://www.instagram.com/randyrektor/) [YouTube](https://www.youtube.com/@randyrektor) [Threads](https://www.threads.net/@randyrektor)
