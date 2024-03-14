@@ -1,6 +1,7 @@
 import { YOUTUBE_CHANNEL_ID } from '$/const';
 import { prisma_client } from '$/hooks.server';
 import { YOUTUBE_API_KEY } from '$env/static/private';
+import slug from 'speakingurl';
 
 export async function get_remote_playlists(): Promise<void> {
 	const base_url = 'https://www.googleapis.com/youtube/v3/playlists';
@@ -64,17 +65,20 @@ export async function import_playlist(playlist_id: string) {
 		where: { id: playlist_id },
 		update: {
 			title: playlist_data.items[0].snippet.title,
-			description: playlist_data.items[0].snippet.description
+			description: playlist_data.items[0].snippet.description,
+			slug: slug(playlist_data.items[0].snippet.title)
 		},
 		create: {
 			id: playlist_id,
 			title: playlist_data.items[0].snippet.title,
-			description: playlist_data.items[0].snippet.description
+			description: playlist_data.items[0].snippet.description,
+			slug: slug(playlist_data.items[0].snippet.title)
 		}
 	});
 
 	let video_ids: string[] = [];
 	let next_page_token: string | undefined = undefined;
+	let playlist_items: any[] = [];
 
 	do {
 		// Time to fetch those video details, page by page!
@@ -84,12 +88,16 @@ export async function import_playlist(playlist_id: string) {
 			}`
 		);
 		const video_data = await video_response.json();
+		console.log('video_data', video_data);
 
 		// Extract the video IDs from the playlist items
 		video_ids = [
 			...video_ids,
 			...video_data.items.map((item: any) => item.snippet.resourceId.videoId)
 		];
+
+		// Store the playlist items for later use
+		playlist_items = [...playlist_items, ...video_data.items];
 
 		next_page_token = video_data.nextPageToken;
 	} while (next_page_token);
@@ -112,23 +120,25 @@ export async function import_playlist(playlist_id: string) {
 				where: { id: item.id },
 				update: {
 					title: item.snippet.title,
+					slug: slug(item.snippet.title),
 					description: item.snippet.description,
 					url: `https://www.youtube.com/watch?v=${item.id}`,
 					published_at: new Date(item.snippet.publishedAt),
-					thumbnail: item.snippet.thumbnails.default.url
+					thumbnail: item.snippet.thumbnails.maxres.url
 				},
 				create: {
 					id: item.id,
 					title: item.snippet.title,
+					slug: slug(item.snippet.title),
 					description: item.snippet.description,
 					url: `https://www.youtube.com/watch?v=${item.id}`,
 					published_at: new Date(item.snippet.publishedAt),
-					thumbnail: item.snippet.thumbnails.default.url
+					thumbnail: item.snippet.thumbnails.maxres.url
 				}
 			});
 
 			// Find the corresponding playlist item to get the position
-			const playlistItem = video_data.items.find(
+			const playlistItem = playlist_items.find(
 				(i: any) => i.snippet.resourceId.videoId === item.id
 			);
 

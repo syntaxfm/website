@@ -233,6 +233,7 @@ model Video {
   url            String
   published_at   DateTime
   thumbnail      String
+  slug           String            @unique
   playlist_items PlaylistOnVideo[]
 }
 
@@ -241,6 +242,7 @@ model Playlist {
   title          String
   description    String?           @db.Text
   created_at     DateTime          @default(now())
+  slug           String            @unique
   playlist_items PlaylistOnVideo[]
 }
 

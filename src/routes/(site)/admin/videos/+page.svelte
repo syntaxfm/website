@@ -9,16 +9,11 @@
 	let search_text = '';
 </script>
 
-<h1 class="h4">Synced Playlists</h1>
+<h1 class="h4">🔄 Synced Playlists</h1>
 
 <AdminActions>
 	<a href="/admin/video/import">Import New Videos</a>
 </AdminActions>
-
-<p class="small">
-	Playlists listed here are what exists on Youtube, if you need to import or update a specific
-	playlist select import/update
-</p>
 
 <div>
 	<AdminSearch bind:text={search_text} />
@@ -31,7 +26,6 @@
 					<th>Videos</th>
 					<th>Published At</th>
 					<th>Id</th>
-					<th>Action</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -40,28 +34,18 @@
 						.includes(search_text.toLowerCase())) as playlist}
 					<tr>
 						<td>
-							{playlist.title}
+							<a href="/admin/video/{playlist.id}">
+								{playlist.title}
+							</a>
 						</td>
 						<td>
-							{playlist.videos_count}
+							{playlist.item_count}
 						</td>
 						<td>
 							{format(playlist.created_at, 'MMM d, yyyy')}
 						</td>
-						<td class="center">
-							{playlist.playlist_id}
-						</td>
-						<td class="center">
-							<FormButton
-								text="Link To Local"
-								thinking_text="Linking..."
-								action_path="?/import_playlist"
-							>
-								<input type="hidden" name="playlist_id" value={playlist.playlist_id} />
-							</FormButton>
-
-							<div>🔄 Syncing</div>
-							<button class="warning">Unlink</button>
+						<td>
+							{playlist.id}
 						</td>
 					</tr>
 				{/each}

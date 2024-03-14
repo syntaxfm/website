@@ -15,7 +15,7 @@
 		},
 		{
 			name: 'Video',
-			link: '/admin/video'
+			link: '/admin/videos'
 		},
 		{
 			name: 'Cache',

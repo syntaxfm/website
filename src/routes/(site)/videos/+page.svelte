@@ -1,7 +1,12 @@
 <script lang="ts">
 	import SelectMenu from '$/lib/SelectMenu.svelte';
+	import PlaylistCard from '$lib/videos/PlaylistCard.svelte';
 	import { page } from '$app/stores';
 	import { queryParameters } from 'sveltekit-search-params';
+
+	export let data;
+	$: ({ playlists } = data);
+	$: console.log('playlists', playlists);
 
 	const store = queryParameters<{
 		type?: string;
@@ -15,17 +20,6 @@
 		$page.url.searchParams.has(filter)
 	);
 </script>
-
-<!-- 
-THOUGHTS
-Filters
-Sorting
-Cards
-- Tutorial Card
-	- Indication that it's a single video
-- Course Card
-	- Indication that it's a playlist
- -->
 
 <svelte:head>
 	{#if isNoindexPage}
@@ -89,11 +83,11 @@ Cards
 		perPage={parseInt($store.perPage || PER_PAGE.toString())}
 	/> -->
 
-	<!-- <div class="shows">
-		{#each shows as show (show.id)}
-			<ShowCard {show} display="list" heading="h2" />
+	<div class="playlists">
+		{#each playlists as playlist (playlist.id)}
+			<PlaylistCard {playlist} />
 		{/each}
-	</div> -->
+	</div>
 
 	<!-- <Pagination
 		page={parseInt($store.page || '1')}

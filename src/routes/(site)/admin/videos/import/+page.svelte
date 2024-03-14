@@ -53,17 +53,15 @@
 							{playlist.playlist_id}
 						</td>
 						<td class="center">
-							{#if local_playlists.includes(playlist.playlist_id)}
-								<div>🔄 Syncing</div>
-							{:else}
-								<FormButton
-									text="Link To Local"
-									thinking_text="Linking..."
-									action_path="?/import_playlist"
-								>
-									<input type="hidden" name="playlist_id" value={playlist.playlist_id} />
-								</FormButton>
-							{/if}
+							<FormButton
+								text={local_playlists.includes(playlist.playlist_id)
+									? '🔄 Syncing'
+									: 'Link To Local'}
+								thinking_text="Linking..."
+								action_path="?/import_playlist"
+							>
+								<input type="hidden" name="playlist_id" value={playlist.playlist_id} />
+							</FormButton>
 						</td>
 					</tr>
 				{/each}

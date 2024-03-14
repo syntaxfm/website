@@ -21,11 +21,11 @@
 		},
 		{
 			text: 'Video',
-			path: '/admin/video'
+			path: '/admin/videos'
 		},
 		{
 			text: 'Video Import',
-			path: '/admin/video/import'
+			path: '/admin/videos/import'
 		},
 		{
 			text: 'Transcripts',
