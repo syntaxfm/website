@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 dependencies:
   '@anthropic-ai/sdk':
     specifier: ^0.6.2
@@ -1501,7 +1505,7 @@ packages:
     resolution: {integrity: sha512-MXvxLgGt7e1bjOu6AwpemRnhrF+wxLxsHpkiOuJOLsfHAtT0VNlsnhAULQZ7hNXGhr37cTM2sCifUHwgrVH+sA==}
     engines: {node: '>= 16'}
     dependencies:
-      follow-redirects: 1.15.3
+      follow-redirects: 1.15.6
       tar-fs: 3.0.4
     transitivePeerDependencies:
       - debug
@@ -2158,7 +2162,7 @@ packages:
   /axios@0.26.1:
     resolution: {integrity: sha512-fPwcX4EvnSHuInCMItEhAGnaSEXRBjtzh9fOtsE6E1G6p7vl7edEeZe11QHf18+6+9gR5PbKV/sGKNaD8YaMeA==}
     dependencies:
-      follow-redirects: 1.15.3
+      follow-redirects: 1.15.6
     transitivePeerDependencies:
       - debug
     dev: false
@@ -3164,8 +3168,8 @@ packages:
     resolution: {integrity: sha512-c5o/+Um8aqCSOXGcZoqZOm+NqtVwNsvVpWv6lfmSclU954O3wvQKxxK8zj74fPaSJbXpSLTs4PRhh+wnoCXnKg==}
     dev: false
 
-  /follow-redirects@1.15.3:
-    resolution: {integrity: sha512-1VzOtuEM8pC9SFU1E+8KfTjZyMztRsgEfwQl44z8A25uy13jSzTj6dyK2Df52iV0vgHCfBwLhDWevLn95w5v6Q==}
+  /follow-redirects@1.15.6:
+    resolution: {integrity: sha512-wWN62YITEaOpSK584EZXJafH1AGpO8RVgElfkuXbTOrPX4fIfOyEpW/CsiNd8JdYrAoOvafRTOEnvsO++qCqFA==}
     engines: {node: '>=4.0'}
     peerDependencies:
       debug: '*'
@@ -7146,7 +7150,3 @@ packages:
       which: 3.0.1
       yaml: 2.3.2
     dev: false
-
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
