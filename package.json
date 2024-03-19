@@ -70,7 +70,7 @@
 		"@prisma/client": "5.9.1",
 		"@sentry/profiling-node": "^7.101.1",
 		"@sentry/sveltekit": "^7.101.1",
-		"@sparticuz/chromium": "^117.0.0",
+		"@sparticuz/chromium": "^122.0.0",
 		"@svelte-put/shortcut": "^3.0.0",
 		"@sveltejs/adapter-vercel": "^5.1.0",
 		"@types/core-js": "^2.5.8",
