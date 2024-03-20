@@ -12,7 +12,7 @@
 	<h3><a href={`/videos/${playlist.slug}`}>{playlist.title}</a></h3>
 
 	<div class="grid playlist-grid">
-		{#each playlist.playlist_items as playlist_video}
+		{#each playlist.videos as playlist_video}
 			<PlaylistVideo video={playlist_video.video} {playlist} />
 		{/each}
 	</div>

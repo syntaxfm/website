@@ -6,7 +6,7 @@ export const load = async ({ params, locals }) => {
 		const playlist = await locals.prisma.playlist.findUnique({
 			where: { id: playlist_id },
 			include: {
-				playlist_items: {
+				videos: {
 					include: {
 						video: true
 					},
@@ -26,7 +26,7 @@ export const load = async ({ params, locals }) => {
 		}
 
 		// Extract the video details from the playlist items
-		const videos = playlist.playlist_items.map((item) => item.video);
+		const videos = playlist.videos.map((item) => item.video);
 		console.log('videos', videos);
 
 		return {

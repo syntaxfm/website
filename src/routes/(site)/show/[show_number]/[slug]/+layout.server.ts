@@ -13,6 +13,19 @@ export const load = async function ({ params, locals, url }) {
 					Guest: true
 				}
 			},
+			videos: {
+				include: {
+					video: {
+						include: {
+							playlists: {
+								include: {
+									playlist: true
+								}
+							}
+						}
+					}
+				}
+			},
 			aiShowNote: {
 				include: {
 					topics: true,

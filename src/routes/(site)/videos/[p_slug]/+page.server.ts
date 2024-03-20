@@ -3,7 +3,7 @@ export const load = async function ({ locals, params }) {
 	const playlist = await locals.prisma.playlist.findUnique({
 		where: { slug: p_slug },
 		include: {
-			playlist_items: {
+			videos: {
 				include: {
 					video: true
 				}

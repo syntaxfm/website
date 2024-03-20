@@ -12,7 +12,7 @@
 <h1 class="h4">🔄 Synced Playlists</h1>
 
 <AdminActions>
-	<a href="/admin/video/import">Import New Videos</a>
+	<a href="/admin/videos/import">Import New Videos</a>
 </AdminActions>
 
 <div>
@@ -34,7 +34,7 @@
 						.includes(search_text.toLowerCase())) as playlist}
 					<tr>
 						<td>
-							<a href="/admin/video/{playlist.id}">
+							<a href="/admin/videos/{playlist.id}">
 								{playlist.title}
 							</a>
 						</td>

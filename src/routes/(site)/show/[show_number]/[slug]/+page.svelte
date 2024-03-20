@@ -3,6 +3,7 @@
 
 	export let data;
 	$: ({ show } = data);
+	$: console.log('playlist', show.videos);
 </script>
 
 <div class="main">
@@ -12,7 +13,30 @@
 </div>
 
 <div class="sidebar">
+	{#if show.videos.length > 0}
+		<div class="related-videos">
+			<h2 class="h5">Related Videos</h2>
+
+			{#each show.videos as { video }}
+				<a href={`/videos/${video.playlists[0].slug}/${video.slug}`}>
+					<img src={video.thumbnail} class="thumbnail" alt={video.title} />
+				</a>
+			{/each}
+		</div>
+	{/if}
 	<div class="sticky zone card">
 		<NewsletterForm />
 	</div>
 </div>
+
+<style lang="postcss">
+	.thumbnail {
+		width: 100%;
+		overflow: hidden;
+		border-radius: var(--brad);
+	}
+
+	.related-videos {
+		margin-block: 0 2rem;
+	}
+</style>

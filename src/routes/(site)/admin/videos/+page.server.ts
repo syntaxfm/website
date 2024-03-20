@@ -4,13 +4,13 @@ export const load = async ({ locals }) => {
 			created_at: 'desc'
 		},
 		include: {
-			playlist_items: true
+			videos: true
 		}
 	});
 
 	const playlists_with_item_count = local_playlists.map((playlist) => ({
 		...playlist,
-		item_count: playlist.playlist_items.length
+		item_count: playlist.videos.length
 	}));
 
 	return {

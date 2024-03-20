@@ -23,6 +23,11 @@
 		margin-top: 0;
 	}
 
+	.thumbnail {
+		overflow: hidden;
+		border-radius: var(--brad);
+	}
+
 	img {
 		width: 100%;
 	}

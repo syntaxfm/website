@@ -4,7 +4,7 @@ export const load = async function ({ locals }) {
 			created_at: 'desc'
 		},
 		include: {
-			playlist_items: {
+			videos: {
 				take: 3,
 				orderBy: {
 					order: 'asc'
@@ -12,13 +12,18 @@ export const load = async function ({ locals }) {
 				include: {
 					video: true
 				}
+			},
+			_count: {
+				select: {
+					videos: true
+				}
 			}
 		}
 	});
 
 	const playlists_with_item_count = playlists.map((playlist) => ({
 		...playlist,
-		item_count: playlist.playlist_items.length
+		item_count: playlist._count.videos
 	}));
 	return {
 		playlists: playlists_with_item_count

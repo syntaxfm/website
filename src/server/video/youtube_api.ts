@@ -3,6 +3,13 @@ import { prisma_client } from '$/hooks.server';
 import { YOUTUBE_API_KEY } from '$env/static/private';
 import slug from 'speakingurl';
 
+// Youtube importer
+// Important things to know -> Youtube is the source of truth for all the data
+// If you want to update something, update it on youtube and manually re-sync or wait for the auto sync to run
+
+// To link a video it needs a tag on youtube as syntax-shownumber
+// To relate a video to a show it needs a tag on youtube as syntax-related-shownumber
+
 export async function get_remote_playlists(): Promise<void> {
 	const base_url = 'https://www.googleapis.com/youtube/v3/playlists';
 	const params = new URLSearchParams({
@@ -26,6 +33,7 @@ export async function get_remote_playlists(): Promise<void> {
 			}
 			const data = await response.json();
 
+			// Iterate over all the playlists to upsert them
 			for (const playlist of data.items) {
 				await prisma_client.remotePlaylist.upsert({
 					where: { playlist_id: playlist.id },
@@ -78,7 +86,7 @@ export async function import_playlist(playlist_id: string) {
 
 	let video_ids: string[] = [];
 	let next_page_token: string | undefined = undefined;
-	let playlist_items: any[] = [];
+	let videos: any[] = [];
 
 	do {
 		// Time to fetch those video details, page by page!
@@ -88,7 +96,6 @@ export async function import_playlist(playlist_id: string) {
 			}`
 		);
 		const video_data = await video_response.json();
-		console.log('video_data', video_data);
 
 		// Extract the video IDs from the playlist items
 		video_ids = [
@@ -97,7 +104,7 @@ export async function import_playlist(playlist_id: string) {
 		];
 
 		// Store the playlist items for later use
-		playlist_items = [...playlist_items, ...video_data.items];
+		videos = [...videos, ...video_data.items];
 
 		next_page_token = video_data.nextPageToken;
 	} while (next_page_token);
@@ -138,15 +145,13 @@ export async function import_playlist(playlist_id: string) {
 			});
 
 			// Find the corresponding playlist item to get the position
-			const playlistItem = playlist_items.find(
-				(i: any) => i.snippet.resourceId.videoId === item.id
-			);
+			const playlistItem = videos.find((i: any) => i.snippet.resourceId.videoId === item.id);
 
 			await prisma_client.playlistOnVideo.upsert({
 				where: {
-					playlist_id_order: {
-						playlist_id: playlist_id,
-						order: playlistItem.snippet.position
+					video_id_playlist_id: {
+						video_id: video.id,
+						playlist_id: playlist.id
 					}
 				},
 				update: {
@@ -158,8 +163,41 @@ export async function import_playlist(playlist_id: string) {
 					order: playlistItem.snippet.position
 				}
 			});
+			console.log('item.snippet.tags', item.snippet.tags);
+			// Check for "syntax-shownumber" tags and connect to the corresponding shows
+			const syntaxShowNumberTags = item.snippet.tags?.filter((tag: string) =>
+				/^syntax-related-\d+$/.test(tag)
+			);
+			console.log('syntaxShowNumberTags', syntaxShowNumberTags);
+
+			if (syntaxShowNumberTags) {
+				for (const tag of syntaxShowNumberTags) {
+					const showNumber = parseInt(tag.split('-')[2]);
+					console.log('showNumber', showNumber);
+					const show = await prisma_client.show.findUnique({
+						where: { number: showNumber }
+					});
+
+					if (show) {
+						await prisma_client.showVideo.upsert({
+							where: {
+								showId_videoId: {
+									showId: show.id,
+									videoId: video.id
+								}
+							},
+							update: {},
+							create: {
+								showId: show.id,
+								videoId: video.id
+							}
+						});
+					}
+				}
+			}
 		} catch (error) {
 			console.error(`Error processing video ${item.id}:`, error);
+			throw error;
 		}
 	}
 
