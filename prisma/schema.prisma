@@ -122,6 +122,7 @@ model Show {
   transcript  Transcript?
   aiShowNote  AiShowNote?
   show_type   ShowType    @default(SPECIAL)
+  videos      ShowVideo[]
 
   @@index([number, date], name: "idx_show_number_date") // Define composite index
   @@index([number]) // Define composite index
@@ -222,4 +223,61 @@ model Topic {
   aiShowNote AiShowNote @relation(fields: [showNote], references: [id], onDelete: Cascade)
 
   @@index([showNote])
+}
+
+// For a many-to-many relationship where a video can be in multiple playlists and a playlist contains multiple videos with order, 
+// include an `order` field in the relation model to maintain the correct order of videos in each playlist.
+model Video {
+  id           String            @id @default(uuid())
+  title        String
+  description  String?           @db.Text
+  url          String
+  published_at DateTime
+  thumbnail    String
+  slug         String            @unique
+  playlists    PlaylistOnVideo[]
+  shows        ShowVideo[]
+}
+
+model Playlist {
+  id          String            @id @default(uuid())
+  title       String
+  description String?           @db.Text
+  created_at  DateTime          @default(now())
+  slug        String            @unique
+  unlisted    Boolean?          @default(false)
+  videos      PlaylistOnVideo[]
+}
+
+// Relational Table for playlist/video
+model PlaylistOnVideo {
+  video_id    String
+  playlist_id String
+  order       Int
+  video       Video    @relation(fields: [video_id], references: [id])
+  playlist    Playlist @relation(fields: [playlist_id], references: [id])
+
+  @@id([video_id, playlist_id])
+  @@unique([video_id, playlist_id])
+  @@index([video_id])
+  @@index([playlist_id])
+}
+
+// The playlists on YouTube, used to select which we'd like to import
+model RemotePlaylist {
+  playlist_id  String   @id
+  title        String
+  videos_count Int
+  created_at   DateTime
+}
+
+model ShowVideo {
+  show    Show   @relation(fields: [showId], references: [id])
+  showId  String
+  video   Video  @relation(fields: [videoId], references: [id])
+  videoId String
+
+  @@id([showId, videoId])
+  @@index([showId])
+  @@index([videoId])
 }

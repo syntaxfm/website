@@ -1,11 +1,3 @@
-import remarkGfm from 'remark-gfm';
-import { unified } from 'unified';
-import remarkParse from 'remark-parse';
-import remarkHeadingId from 'remark-heading-id';
-import remarkRehype from 'remark-rehype';
-import rehypeRaw from 'rehype-raw';
-import rehypeStringify from 'rehype-stringify';
-import highlight from 'rehype-highlight';
 import { error } from '@sveltejs/kit';
 import { cache_mang } from '$utilities/cache_mang';
 import type { Prisma, Show } from '@prisma/client';
@@ -19,6 +11,19 @@ export const load = async function ({ params, locals, url }) {
 			guests: {
 				select: {
 					Guest: true
+				}
+			},
+			videos: {
+				include: {
+					video: {
+						include: {
+							playlists: {
+								include: {
+									playlist: true
+								}
+							}
+						}
+					}
 				}
 			},
 			aiShowNote: {

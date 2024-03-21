@@ -8,8 +8,13 @@ type FormActionMessage = {
 	message?: string;
 };
 
-export const form_action = (opts?: FormActionMessage, callback?: (data: any | unknown) => any) => {
+export const form_action = (
+	opts?: FormActionMessage,
+	pre?: (data?: any | unknown) => any,
+	callback?: (data?: any | unknown) => any
+) => {
 	return function form_enhance() {
+		if (pre) pre();
 		loading.setLoading(true);
 		return async ({ result }: { result: ActionResult<{ message: string }> }) => {
 			console.log(result);

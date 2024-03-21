@@ -20,6 +20,14 @@
 			path: '/admin/shows'
 		},
 		{
+			text: 'Video',
+			path: '/admin/videos'
+		},
+		{
+			text: 'Video Import',
+			path: '/admin/videos/import'
+		},
+		{
 			text: 'Transcripts',
 			path: '/admin/transcripts'
 		},
