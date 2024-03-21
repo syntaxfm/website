@@ -1,5 +1,6 @@
+import { get_first_paragraph } from '$/utilities/get_first_paragraph';
 import { processor } from '$/utilities/markdown.js';
-export const load = async function ({ locals, params }) {
+export const load = async function ({ locals, params, url }) {
 	const { v_slug } = params;
 	const video = await locals.prisma.video.findUnique({
 		where: { slug: v_slug },
@@ -22,6 +23,12 @@ export const load = async function ({ locals, params }) {
 		video: {
 			...video,
 			description: desc.toString()
+		},
+		meta: {
+			title: video.title,
+			url: `${url.protocol}//${url.host}${url.pathname}`,
+			canonical: `${url.protocol}//${url.host}${url.pathname}`,
+			description: get_first_paragraph(video?.description || '')
 		}
 	};
 };

@@ -1,19 +1,9 @@
 <script lang="ts">
-	import SelectMenu from '$/lib/SelectMenu.svelte';
 	import PlaylistCard from '$lib/videos/PlaylistCard.svelte';
 	import { page } from '$app/stores';
-	import { queryParameters } from 'sveltekit-search-params';
 
 	export let data;
 	$: ({ playlists } = data);
-	$: console.log('playlists', playlists);
-
-	const store = queryParameters<{
-		type?: string;
-		perPage?: string;
-		order?: string;
-		page: string;
-	}>();
 
 	// We tell google to ignore filters, BUT not ?page=2...Infinity
 	$: isNoindexPage = ['order', 'type', 'sort', 'perPage'].some((filter) =>

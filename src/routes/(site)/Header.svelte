@@ -6,7 +6,7 @@
 	export let transparent: boolean = false;
 </script>
 
-<header class="layout" class:transparent style:--fg="var(--fg-1)">
+<header class="layout full" class:transparent style:--fg="var(--fg-1)">
 	<div class="header-container content">
 		<div class="logo">
 			{#if $page.url.pathname !== '/'}
@@ -99,6 +99,7 @@
 			padding: 10px 20px;
 			@media (--below_large) {
 				padding: 8px 16px;
+				font-size: var(--font-size-xs);
 			}
 			border: 0;
 			border-radius: 20px;

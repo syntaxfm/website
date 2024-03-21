@@ -39,7 +39,7 @@ export const actions = {
 	},
 	async import_playlist({ locals }) {
 		try {
-			await import_playlist(locals.form_data.playlist_id);
+			await import_playlist(locals.form_data.playlist_id as string);
 			return {
 				message: 'Imported Playlist amd Videos'
 			};

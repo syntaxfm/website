@@ -10,6 +10,45 @@ import slug from 'speakingurl';
 // To link a video it needs a tag on youtube as syntax-shownumber
 // To relate a video to a show it needs a tag on youtube as syntax-related-shownumber
 
+interface YouTubePlaylist {
+	id: string;
+	snippet: {
+		title: string;
+		description: string;
+		publishedAt: string;
+	};
+	contentDetails: {
+		itemCount: number;
+	};
+}
+
+interface YouTubePlaylistResponse {
+	items: YouTubePlaylist[];
+	nextPageToken?: string;
+}
+
+interface YouTubePlaylistItem {
+	snippet: {
+		publishedAt: string;
+		title: string;
+		description: string;
+		thumbnails: {
+			maxres: {
+				url: string;
+			};
+		};
+		resourceId: {
+			videoId: string;
+		};
+		position: number;
+	};
+}
+
+interface YouTubePlaylistItemResponse {
+	items: YouTubePlaylistItem[];
+	nextPageToken?: string;
+}
+
 export async function get_remote_playlists(): Promise<void> {
 	const base_url = 'https://www.googleapis.com/youtube/v3/playlists';
 	const params = new URLSearchParams({
@@ -31,7 +70,7 @@ export async function get_remote_playlists(): Promise<void> {
 			if (!response.ok) {
 				throw new Error(`HTTP error! Status: ${response.status}`);
 			}
-			const data = await response.json();
+			const data: YouTubePlaylistResponse = await response.json();
 
 			// Iterate over all the playlists to upsert them
 			for (const playlist of data.items) {
@@ -66,7 +105,7 @@ export async function import_playlist(playlist_id: string) {
 	const playlist_response = await fetch(
 		`https://www.googleapis.com/youtube/v3/playlists?part=snippet&id=${playlist_id}&key=${process.env.YOUTUBE_API_KEY}`
 	);
-	const playlist_data = await playlist_response.json();
+	const playlist_data: YouTubePlaylistResponse = await playlist_response.json();
 
 	// Upsert that playlist like a boss!
 	const playlist = await prisma_client.playlist.upsert({
@@ -86,7 +125,7 @@ export async function import_playlist(playlist_id: string) {
 
 	let video_ids: string[] = [];
 	let next_page_token: string | undefined = undefined;
-	let videos: any[] = [];
+	let videos: YouTubePlaylistItem[] = [];
 
 	do {
 		// Time to fetch those video details, page by page!
@@ -95,13 +134,10 @@ export async function import_playlist(playlist_id: string) {
 				next_page_token ? `&pageToken=${next_page_token}` : ''
 			}`
 		);
-		const video_data = await video_response.json();
+		const video_data: YouTubePlaylistItemResponse = await video_response.json();
 
 		// Extract the video IDs from the playlist items
-		video_ids = [
-			...video_ids,
-			...video_data.items.map((item: any) => item.snippet.resourceId.videoId)
-		];
+		video_ids = [...video_ids, ...video_data.items.map((item) => item.snippet.resourceId.videoId)];
 
 		// Store the playlist items for later use
 		videos = [...videos, ...video_data.items];
@@ -145,7 +181,7 @@ export async function import_playlist(playlist_id: string) {
 			});
 
 			// Find the corresponding playlist item to get the position
-			const playlistItem = videos.find((i: any) => i.snippet.resourceId.videoId === item.id);
+			const playlistItem = videos.find((i) => i.snippet.resourceId.videoId === item.id);
 
 			await prisma_client.playlistOnVideo.upsert({
 				where: {
@@ -160,20 +196,17 @@ export async function import_playlist(playlist_id: string) {
 				create: {
 					video_id: video.id,
 					playlist_id: playlist.id,
-					order: playlistItem.snippet.position
+					order: playlistItem?.snippet.position || 0
 				}
 			});
-			console.log('item.snippet.tags', item.snippet.tags);
 			// Check for "syntax-shownumber" tags and connect to the corresponding shows
 			const syntaxShowNumberTags = item.snippet.tags?.filter((tag: string) =>
 				/^syntax-related-\d+$/.test(tag)
 			);
-			console.log('syntaxShowNumberTags', syntaxShowNumberTags);
 
 			if (syntaxShowNumberTags) {
 				for (const tag of syntaxShowNumberTags) {
 					const showNumber = parseInt(tag.split('-')[2]);
-					console.log('showNumber', showNumber);
 					const show = await prisma_client.show.findUnique({
 						where: { number: showNumber }
 					});

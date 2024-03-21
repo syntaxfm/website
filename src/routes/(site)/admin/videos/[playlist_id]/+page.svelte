@@ -7,6 +7,8 @@
 	const { playlist, videos } = data;
 
 	let search_text = '';
+
+	$: filtered = videos?.filter((s) => s.title.toLowerCase().includes(search_text.toLowerCase()));
 </script>
 
 <h1>{playlist?.title}</h1>
@@ -25,16 +27,17 @@
 					<th>Action</th>
 				</tr>
 			</thead>
+
 			<tbody>
-				{#each videos?.filter((s) => s.title
-						.toLowerCase()
-						.includes(search_text.toLowerCase())) as playlist}
-					<tr>
-						<td>
-							{playlist.title}
-						</td>
-					</tr>
-				{/each}
+				{#if filtered}
+					{#each filtered as playlist}
+						<tr>
+							<td>
+								{playlist.title}
+							</td>
+						</tr>
+					{/each}
+				{/if}
 			</tbody>
 		</table>
 	</div>

@@ -3,7 +3,6 @@
 
 	export let data;
 	$: ({ show } = data);
-	$: console.log('playlist', show.videos);
 </script>
 
 <div class="main">
@@ -18,7 +17,7 @@
 			<h2 class="h5">Related Videos</h2>
 
 			{#each show.videos as { video }}
-				<a href={`/videos/${video.playlists[0].slug}/${video.slug}`}>
+				<a href={`/videos/${video.playlists[0].playlist.slug}/${video.slug}`}>
 					<img src={video.thumbnail} class="thumbnail" alt={video.title} />
 				</a>
 			{/each}

@@ -3,16 +3,17 @@
 	$: ({ playlist } = data);
 </script>
 
-<h1 class="h3">{playlist.title}</h1>
-
-<div class="playlist-grid grid">
-	{#each playlist.videos as { video }}
-		<a href={`/videos/${playlist.slug}/${video.slug}`}>
-			<img src={video.thumbnail} class="thumbnail" alt={video.title} />
-			<h3 class="h6">{video.title}</h3>
-		</a>
-	{/each}
-</div>
+{#if playlist}
+	<h1 class="h3">{playlist.title}</h1>
+	<div class="playlist-grid grid">
+		{#each playlist.videos as { video }}
+			<a href={`/videos/${playlist.slug}/${video.slug}`}>
+				<img src={video.thumbnail} class="thumbnail" alt={video.title} />
+				<h3 class="h6">{video.title}</h3>
+			</a>
+		{/each}
+	</div>
+{/if}
 
 <style lang="postcss">
 	img {

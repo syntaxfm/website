@@ -20,24 +20,28 @@
 	}
 </script>
 
-<div class="video_page layout full">
-	<div class="content">
-		<youtube-video controls src="https://www.youtube.com/watch?v={video.id}"></youtube-video>
-		<h1 class="h3">{video.title}</h1>
-	</div>
+{#if video}
+	<div class="video_page layout full">
+		<div class="content">
+			<youtube-video controls src="https://www.youtube.com/watch?v={video.id}"></youtube-video>
+			<h1 class="h3">{video.title}</h1>
+		</div>
 
-	<div class="main">
-		{@html prepare_description(video.description)}
+		<section class="layout full">
+			<div class="main">
+				{@html prepare_description(video.description)}
+			</div>
+			<aside class="sidebar">
+				{#if video.shows.length > 0}
+					<h2 class="h5">Related Shows</h2>
+				{/if}
+				{#each video.shows as { show }}
+					<ShowCard {show} />
+				{/each}
+			</aside>
+		</section>
 	</div>
-	<aside class="sidebar">
-		{#if video.shows.length > 0}
-			<h2 class="h5">Related Shows</h2>
-		{/if}
-		{#each video.shows as { show }}
-			<ShowCard {show} />
-		{/each}
-	</aside>
-</div>
+{/if}
 
 <style lang="postcss">
 	.video_page {

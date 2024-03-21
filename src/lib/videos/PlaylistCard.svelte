@@ -1,7 +1,14 @@
-<script>
+<script lang="ts">
+	import type { Playlist, PlaylistOnVideo, Video } from '@prisma/client';
 	import PlaylistVideo from './PlaylistVideo.svelte';
 
-	export let playlist;
+	export let playlist: Playlist & {
+		item_count: number;
+		videos: PlaylistOnVideo[] &
+			{
+				video: Video;
+			}[];
+	};
 </script>
 
 <article class="card">
@@ -59,34 +66,10 @@
 
 		@media (--below_med) {
 			padding: 10px;
-
-			.details {
-				/* since we're hiding the description row at these dimensions (which was 100% height), 
-				   need a new row to become 100% height -- the show title */
-				grid-template-rows: auto 1fr auto auto;
-			}
-			.description {
-				display: none;
-				mask-image: none;
-			}
-		}
-
-		.bottom-row {
-			align-self: end;
-
-			/* lay out horizontally */
-			display: grid;
-			grid-template-columns: 1fr 1fr;
-			gap: 1rem;
-
-			.buttons {
-				text-align: right;
-				align-self: center;
-			}
 		}
 	}
 
-	.h3 {
+	h3 {
 		view-transition-name: var(--transition-name);
 		margin: 0;
 		font-weight: 600;
@@ -110,47 +93,5 @@
 		}
 		/* adds contrast when light text overlaps show number */
 		text-shadow: 2px 1px 0px var(--bg);
-	}
-
-	.play-button {
-		background: transparent;
-		border-radius: 50%;
-		align-self: center;
-		border-width: 1px;
-		padding: 10px;
-		box-shadow: inset 0 0 0 2px color-mix(in lch, var(--fg) 50%, transparent 94%);
-		color: var(--fg);
-	}
-
-	.show-number {
-		position: absolute;
-		right: 0;
-		top: 0;
-		transform: translate(6.9%, -22%);
-		--max-font-size: 15rem;
-		--ideal-font-size: 45cqw;
-		font-size: clamp(1.5rem, var(--ideal-font-size), var(--max-font-size));
-		@media (prefers-color-scheme: dark) {
-			--ideal-font-size: 22cqw;
-		}
-		font-weight: 900;
-		color: var(--primary);
-		line-height: 1;
-		z-index: -1;
-
-		@media (--below_med) {
-			--max-font-size: 8rem;
-		}
-	}
-
-	@container show-card (width > 600px) {
-		.highlight {
-			& .h3 {
-				font-size: var(--font-size-xl);
-			}
-		}
-		.show-number {
-			--max-font-size: 20cqw;
-		}
 	}
 </style>
