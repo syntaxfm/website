@@ -12,6 +12,7 @@ env:
   DATABASE_URL: ${{ secrets.DATABASE_URL }}
   UPSPLASH_TOKEN: ''
   UPSPLASH_URL: ''
+  YOUTUBE_API_KEY: ''
 
 jobs:
   test:
