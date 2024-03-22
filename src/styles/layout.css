@@ -89,4 +89,9 @@
 		padding: 20px;
 	}
 	/* END @layer layout */
+
+	/* Hack */
+	.main a {
+		overflow-wrap: anywhere;
+	}
 }
