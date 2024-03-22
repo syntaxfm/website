@@ -12,6 +12,16 @@ export const GET: RequestHandler = async function GET({ setHeaders, locals }) {
 		}
 	});
 	const guests = await locals.prisma.guest.findMany();
+	const playlists = await locals.prisma.playlist.findMany();
+	const videos = await locals.prisma.video.findMany({
+		include: {
+			playlists: {
+				include: {
+					playlist: true
+				}
+			}
+		}
+	});
 	const xml = `<?xml version="1.0" encoding="UTF-8" ?>
     <urlset
       xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"
@@ -35,6 +45,11 @@ export const GET: RequestHandler = async function GET({ setHeaders, locals }) {
 
 			<url>
         <loc>${site}/shows</loc>
+        <changefreq>daily</changefreq>
+        <priority>1</priority>
+      </url>
+			<url>
+        <loc>${site}/videos</loc>
         <changefreq>daily</changefreq>
         <priority>1</priority>
       </url>
@@ -75,6 +90,7 @@ export const GET: RequestHandler = async function GET({ setHeaders, locals }) {
         <priority>0.2</priority>
       </url>
 
+
 		${shows
 			?.map(
 				(show) => `
@@ -98,11 +114,38 @@ export const GET: RequestHandler = async function GET({ setHeaders, locals }) {
   `
 			)
 			.join('')}
+
+			${playlists
+				?.map(
+					(playlist) => `
+  <url>
+    <loc>${site}/videos/${playlist?.slug}</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  `
+				)
+				.join('')}
+
+			${videos
+				?.map(
+					(video) => `
+  <url>
+    <loc>${site}/videos/${video.playlists[0].playlist?.slug}/${video.slug}</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  `
+				)
+				.join('')}
+
+
       <url>
         <loc>${site}/guests</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
       </url>
+
 		${guests
 			?.map(
 				(guest) => `
