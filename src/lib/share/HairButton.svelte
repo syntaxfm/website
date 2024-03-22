@@ -9,7 +9,7 @@
 		const is_possibly_mobile =
 			/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-		if (is_possibly_mobile) {
+		if (is_possibly_mobile && navigator?.share) {
 			navigator.share({
 				url: `https://syntax.fm/show/${show.number}`,
 				text: 'Syntax podcast ' + show.title,
