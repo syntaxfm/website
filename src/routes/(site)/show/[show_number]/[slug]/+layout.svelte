@@ -38,8 +38,8 @@
 
 <header>
 	<div class="pagination-buttons">
-		<a href={`/${show.number - 1}`}> PREVIOUS </a>
-		<a href={`/${show.number + 1}`}> NEXT </a>
+		<a href={`/show/${show.number - 1}/${show.slug}`}> PREVIOUS </a>
+		<a href={`/show/${show.number + 1}/${show.slug}`}> NEXT </a>
 	</div>
 	<span
 		title="Show #{show.number}"
