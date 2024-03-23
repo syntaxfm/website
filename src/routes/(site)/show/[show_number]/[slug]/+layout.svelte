@@ -37,6 +37,10 @@
 </script>
 
 <header>
+	<div class="pagination-buttons">
+		<a href={`/show/${show.number - 1}/${show.slug}`}> PREVIOUS </a>
+		<a href={`/show/${show.number + 1}/${show.slug}`}> NEXT </a>
+	</div>
 	<span
 		title="Show #{show.number}"
 		style:--transition-name="show-date-{show.number}"
@@ -232,6 +236,39 @@
 			gap: 8px;
 			span {
 				margin-inline: 5px;
+			}
+		}
+
+		.pagination-buttons {
+			display: flex;
+			gap: 0 1rem;
+
+			a {
+				display: block;
+				text-decoration: none;
+				background: var(--nav_a_bg, rgba(255, 255, 255, 0.0786987545689));
+				padding: 10px 20px;
+				@media (--below_large) {
+					padding: 8px 16px;
+					font-size: var(--font-size-xs);
+				}
+				border: 0;
+				border-radius: 20px;
+				align-items: center;
+				display: none;
+				max-width: 100;
+				&:hover {
+					border: 0;
+					background: var(--primary);
+					color: var(--bg);
+				}
+				&.active {
+					background-color: var(--primary);
+					color: var(--bg);
+				}
+				@media (--above_med) {
+					display: block;
+				}
 			}
 		}
 	}
