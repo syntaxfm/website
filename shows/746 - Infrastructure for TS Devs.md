@@ -45,7 +45,7 @@ Deploy your own tech stack: Wes and Scott are joined by Kubernetes expert David 
 * [Fermyon Spin](https://www.fermyon.com/blog/introducing-spin)
 * **[39:56](#t=39:56)** What type of processors are used in these servers?
 * **[42:27](#t=42:27)** What are home servers running on?
-* [Turning Pi 2](https://www.kickstarter.com/projects/turingpi/turing-pi-cluster-board)
+* [Turing Pi 2](https://www.kickstarter.com/projects/turingpi/turing-pi-cluster-board)
 * [Daniel Mangum](https://danielmangum.com/)
 * [Universal Blue](https://universal-blue.org/)
 * **[46:40](#t=46:40)** How should someone get started with Kubernetes?
