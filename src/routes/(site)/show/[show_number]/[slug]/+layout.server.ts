@@ -4,9 +4,9 @@ import type { Prisma, Show } from '@prisma/client';
 import { processor } from '$/utilities/markdown.js';
 
 export const load = async function ({ params, locals, url }) {
-	const { show_number } = params;
+	const show_number = parseInt(params.show_number);
 	const query = {
-		where: { number: parseInt(show_number) },
+		where: { number: show_number },
 		include: {
 			guests: {
 				select: {
@@ -39,12 +39,31 @@ export const load = async function ({ params, locals, url }) {
 	type ShowTemp = Prisma.ShowGetPayload<typeof query>;
 
 	// Caches and gets show dynamically based on release date
-	const show = await cache_mang<ShowTemp & Show>(
+	const show_promise = cache_mang<ShowTemp & Show>(
 		`show:${show_number}`,
 		locals.prisma.show.findUnique,
 		query,
 		'SHOW'
 	);
+
+	const prev_next_show_promise = locals.prisma.show.findMany({
+		where: {
+			number: {
+				in: [show_number - 1, show_number + 1]
+			},
+			date: {
+				lte: new Date() // Only published shows
+			}
+		},
+		select: {
+			number: true,
+			title: true,
+			slug: true
+		},
+		take: 2
+	});
+
+	const [show, prev_next] = await Promise.all([show_promise, prev_next_show_promise]);
 
 	// Check if this is a future show
 	const now = new Date();
@@ -72,6 +91,8 @@ export const load = async function ({ params, locals, url }) {
 			show_notes: with_h3_body
 		} as ShowTemp & Show,
 		time_start: url.searchParams.get('t') || '0',
+		prev_show: prev_next.find((s) => s.number === show_number - 1),
+		next_show: prev_next.find((s) => s.number === show_number + 1),
 		meta: {
 			title: `${
 				url.pathname.includes('/transcript') ? 'Transcript: ' : ''
