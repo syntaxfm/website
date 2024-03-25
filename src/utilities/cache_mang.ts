@@ -1,28 +1,29 @@
 import type { Prisma } from '@prisma/client';
 import { cache_status, redis } from '../hooks.server';
 import { get_show_cache_s } from './get_show_cache_ms';
-// Eyyyy it's the cache mang, coming to cache this ish up.
-// Nobody likes a stale cache
-
-// Cache mange makes sense to use for the heaviest queries on the site or when we need xtreme perf
-// Example usage:
-// const show = await cache_mang<ShowTemp & Show>(
-// 	`show:${show_number}`, // The key for the cache, something unique
-// 	locals.prisma.show.findUnique, // The db call function itself
-// 	query, // The query of the call
-// 	'SHOW' // ms time for non dynamic caching, or SHOW to cache an individual show based on it's release date
-// );
-// Some of the TS here is rough and I'm very sorry for that. - Scott
 
 // Good luck if you would like to fix this
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type PrismaFindMethod = (args: any) => Promise<any>;
-
+/**
+ * Caches a query result in Redis.
+ * Cache mange makes sense to use for the heaviest queries on the site or when we need xtreme perf.
+ * Some of the TS here is rough and I'm very sorry for that. - Scott
+ * @example
+```ts
+const show = await cache_mang<ShowTemp & Show>(
+	`show:${show_number}`, // The key for the cache, something unique
+	locals.prisma.show.findUnique, // The db call function itself
+	query, // The query of the call
+	'SHOW' // ms time for non dynamic caching, or SHOW to cache an individual show based on it's release date
+);
+```
+ */
 export async function cache_mang<T>(
 	cache_key: string,
 	db_call: PrismaFindMethod,
 	db_query: Prisma.ShowFindManyArgs,
-	to_expire: number | 'SHOW' = 600 //default cache time
+	to_expire: number | 'SHOW' = 600 // default cache time
 ): Promise<T> {
 	let ex: number;
 	let temp;
