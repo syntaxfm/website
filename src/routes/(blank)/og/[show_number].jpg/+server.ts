@@ -17,7 +17,7 @@ async function getOptions() {
 		product: 'chrome' as Product,
 		args: chrome.args,
 		executablePath: await chrome.executablePath(),
-		headless: chrome.headless
+		headless: !!chrome.headless
 	};
 }
 
