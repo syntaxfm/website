@@ -64,7 +64,7 @@
 </div>
 
 <style lang="postcss">
-	.theme-wrapper {
+	:global(.theme-wrapper) {
 		--bg-root: var(--bg);
 		--fg-root: var(--fg);
 		min-height: 100vh;
