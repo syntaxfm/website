@@ -7,6 +7,7 @@ import * as Sentry from '@sentry/sveltekit';
 
 Sentry.init({
 	dsn: 'https://ea134756b8f244ff99638864ce038567@o4505358925561856.ingest.sentry.io/4505358945419264',
+	tunnel: '/api/errors',
 	tracesSampleRate: 1.0,
 
 	// This sets the sample rate to be 10%. You may want this to be 100% while
