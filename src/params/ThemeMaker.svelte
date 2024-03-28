@@ -2,9 +2,10 @@
 	import { variable_color_svg } from '$/lib/theme/variable_color_svg';
 	import { clickOutside } from '$actions/click_outside';
 	import { invalidate } from '$app/navigation';
-	import { theme_maker } from '$state/theme';
+	import { theme, theme_maker } from '$state/theme';
 	import Cookie from 'js-cookie';
 	import { fly } from 'svelte/transition';
+	import { browser } from '$app/environment';
 	// when a new theme is selected, apply the class directly to the correct element,
 	// and save the theme name to the user's db record
 	const themes = import.meta.glob('$styles/themes/*.css', { eager: true });
@@ -18,22 +19,28 @@
 	// Always use system and light which are just base styles
 	const theme_names = ['system', 'light', ...Object.keys(themes).map(getThemeName)];
 
-	function change_theme(this: HTMLButtonElement, e: Event) {
+	function change_theme(theme_name: string) {
 		// Set cookie for server side theme change
-		Cookie.set('theme', this.innerText, {
+		Cookie.set('theme', theme_name, {
 			expires: 999,
 			sameSite: 'strict',
 			secure: true,
 			path: '/'
 		});
-
-		const theme_wrapper = document.querySelector('.theme-wrapper');
+		theme.set({
+			current: theme_name
+		});
+		// const theme_wrapper = document.querySelector('.theme-wrapper');
 		// Update the dom manually
-		if (theme_wrapper) theme_wrapper.className = 'theme-' + this.innerText + ' theme-wrapper';
+		// if (theme_wrapper) theme_wrapper.className = `theme-${theme_name} theme-wrapper`;
 		// Invalidate the route
 		// Load new server data
-		invalidate('/');
+		// invalidate('/');
 		variable_color_svg();
+		// console.log('done');
+	}
+	if (browser) {
+		change_theme('dark');
 	}
 </script>
 
@@ -56,7 +63,10 @@
 
 		<div class="theme-maker-buttons">
 			{#each theme_names as theme_name}
-				<button on:click={change_theme} class={'theme-preview theme-' + theme_name}>
+				<button
+					on:click={() => change_theme(theme_name || '')}
+					class={'theme-preview theme-' + theme_name}
+				>
 					<div class="preview">
 						<div class="circle color" />
 						<div class="circle primary" />
