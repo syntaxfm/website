@@ -18,7 +18,7 @@ export const GET = async function transcriptCronHandler({ request, locals }: Req
 	// 2. Get the latest show without a transcript
 	const show = await locals.prisma.show.findFirst({
 		where: {
-			transcript: null
+			AND: [{ transcript: null }, { number: { gt: 700 } }]
 		},
 		orderBy: {
 			number: 'desc'
