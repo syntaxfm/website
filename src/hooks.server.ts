@@ -105,6 +105,11 @@ export const document_policy: Handle = async function ({ event, resolve }) {
 	return response;
 };
 
+export const safe_form_data: Handle = async function ({ event, resolve }) {
+	if (event.url.pathname === '/api/errors') return resolve(event);
+	return form_data({ event, resolve });
+};
+
 // * END HOOKS
 
 // Wraps requests in this sequence of hooks
@@ -112,7 +117,7 @@ export const handle: Handle = sequence(
 	Sentry.sentryHandle(),
 	prisma,
 	auth,
-	form_data,
+	safe_form_data,
 	redirects,
 	document_policy
 );
