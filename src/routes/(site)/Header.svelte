@@ -3,6 +3,7 @@
 	import Search from '$lib/search/Search.svelte';
 	import MobileNav from './MobileNav.svelte';
 	import { page } from '$app/stores';
+	import { theme } from '$/state/theme';
 	export let transparent: boolean = false;
 </script>
 
@@ -17,6 +18,7 @@
 		</div>
 
 		<nav class="desktop_nav content">
+			THEME: {$theme.current}
 			<a class={$page.url.pathname.startsWith('/shows') ? 'active' : ''} href="/shows">Shows</a>
 			<a class={$page.url.pathname.startsWith('/videos') ? 'active' : ''} href="/videos">Video</a>
 			<a class={$page.url.pathname.startsWith('/snackpack') ? 'active' : ''} href="/snackpack"

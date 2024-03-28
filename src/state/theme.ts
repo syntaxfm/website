@@ -33,4 +33,8 @@ const new_theme_maker = () => {
 	};
 };
 
+export const theme = writable({
+	current: 'light'
+});
+
 export const theme_maker = new_theme_maker();
