@@ -7,7 +7,12 @@
 
 <div>
 	<a href={`/videos/${playlist.slug}/${video.slug}`}>
-		<img src={video.thumbnail} class="thumbnail" alt={video.title} />
+		<div class="thumbnail-wrapper">
+			<img src={video.thumbnail} class="thumbnail" alt={video.title} />
+			{#if video.duration}
+				<span class="duration">{video.duration}</span>
+			{/if}
+		</div>
 		<h3 class="h6">{video.title}</h3>
 	</a>
 </div>
@@ -23,9 +28,25 @@
 		margin-top: 0;
 	}
 
-	.thumbnail {
-		overflow: hidden;
-		border-radius: var(--brad);
+	
+	.thumbnail-wrapper {
+		position: relative;
+		
+		.thumbnail {
+			overflow: hidden;
+			border-radius: var(--brad);
+		}
+		.duration {
+			position: absolute;
+			display: inline-block;
+			background: var(--yellow);
+			color: var(--black);
+			border-radius: 1rem;
+			padding: 0.25rem;
+			right: 1rem;
+			top: 1rem;
+			font-weight: 600;
+		}
 	}
 
 	img {
