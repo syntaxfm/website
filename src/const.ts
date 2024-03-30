@@ -38,10 +38,6 @@ export const PODCAST_LINKS = [
 		text: 'PocketCasts'
 	},
 	{
-		href: 'https://www.google.com/podcasts?feed=aHR0cHM6Ly9mZWVkLnN5bnRheC5mbS9yc3M%3D',
-		text: 'Google Podcasts'
-	},
-	{
 		href: 'https://music.amazon.com/podcasts/3f16a46b-6281-4fc7-99de-380fbeb6d970/syntax---tasty-web-development-treats',
 		text: 'Amazon Music'
 	}
