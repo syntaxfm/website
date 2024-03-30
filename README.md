@@ -46,10 +46,10 @@ This site uses MySQL via Prisma, so you will need a valid MySQL connection strin
 
 ### Scripts
 
-Generate Types `pnpm db:generate`
-DB studio `pnpm db:studio`
-DB Migrations `pnpm db:push`
-DB Seed `pnpm db:seed`
+* Generate Types `pnpm db:generate`
+* DB studio `pnpm db:studio`
+* DB Migrations `pnpm db:push`
+* DB Seed `pnpm db:seed`
 
 ### About this codebase
 
