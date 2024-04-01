@@ -86,9 +86,6 @@
 	.subscribe--amazon-music {
 		--button-bg: linear-gradient(to bottom, #25d1da 0%, #399a9e 100%);
 	}
-	.subscribe--google-podcasts::before {
-		background-image: url('/icons/google_podcasts.svg');
-	}
 	.subscribe--amazon-music::before {
 		background-image: url('/icons/amznMusic.png');
 	}
