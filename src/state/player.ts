@@ -1,5 +1,6 @@
 import coverArt from '$assets/coverart-128.png';
 import coverArt512 from '$assets/coverart-512.png';
+import * as Sentry from '@sentry/sveltekit';
 import type { Show } from '@prisma/client';
 import { get, writable } from 'svelte/store';
 
@@ -78,6 +79,10 @@ const new_player_state = () => {
 			} else if (current_state.status === 'PAUSED') {
 				return play();
 			} else {
+				// # Increment a counter for a specific episode
+				Sentry.metrics.increment('episode_start', 1, { tags: { episode: show.number } });
+				// # Increment a total counter for all episodes
+				Sentry.metrics.increment('all_episode_start', 1);
 				return initialize_audio(show, start_time);
 			}
 		}
