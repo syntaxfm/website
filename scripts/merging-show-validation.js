@@ -3,19 +3,35 @@ import fs from 'fs/promises';
 import { promisify } from 'util';
 // import path from 'path';
 const execAsync = promisify(exec);
+
+const URL_CHECK_TIMEOUT = 2 * 1000; // 2 second timeout for url validations
 // Function to check URL availability, modified to accept an optional skipUrls array
 // Simplified Function to check URL availability
-async function isUrlValid(url) {
+async function isUrlValid(url, method = 'HEAD') {
 	try {
+		const abortController = new AbortController();
+		let complete = false;
+		setTimeout(() => {
+			if (!complete) {
+				abortController.abort();
+			}
+		}, URL_CHECK_TIMEOUT);
 		const response = await fetch(url, {
-			method: 'HEAD',
+			method,
 			headers: {
 				'User-Agent':
 					'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
-			}
+			},
+			signal: abortController.signal
 		});
+		complete = true;
 		return response.status !== 404;
 	} catch (error) {
+		if (error.name === 'AbortError' && method === 'HEAD') {
+			// HEAD request timed out after URL_CHECK_TIMEOUT ms
+			// try again with GET method instead
+			return isUrlValid(url, 'GET');
+		}
 		console.error(`Error checking URL: ${url}`, error);
 		return false; // Treat any error as an invalid URL
 	}
