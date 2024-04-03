@@ -89,6 +89,10 @@ const new_player_state = () => {
 	}
 
 	function initialize_audio(show: Show, start_time: number = 0) {
+		// # Increment a counter for a specific episode
+		Sentry.metrics.increment('episode_start', 1, { tags: { episode: show.number } });
+		// # Increment a total counter for all episodes
+		Sentry.metrics.increment('all_episode_start', 1);
 		return new Promise((resolve) => {
 			loadMediaSession(show);
 			update((state) => {
