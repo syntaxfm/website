@@ -32,7 +32,7 @@
 </div>
 
 <div class="sidebar">
-	{#if show.videos.length > 0}
+	{#if show?.videos?.length > 0}
 		<div class="related-videos">
 			<h2 class="h5">Related Videos</h2>
 
