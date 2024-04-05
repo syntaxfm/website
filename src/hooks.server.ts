@@ -105,8 +105,9 @@ export const document_policy: Handle = async function ({ event, resolve }) {
 	return response;
 };
 
+const safe_paths = new Set(['/api/errors', '/api/57475/3v3n7']);
 export const safe_form_data: Handle = async function ({ event, resolve }) {
-	if (event.url.pathname === '/api/errors') return resolve(event);
+	if (safe_paths.has(event.url.pathname)) return resolve(event);
 	return form_data({ event, resolve });
 };
 

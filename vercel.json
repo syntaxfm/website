@@ -14,15 +14,5 @@
 			"path": "/webhooks/ai",
 			"schedule": "*/5 * * * *"
 		}
-	],
-	"rewrites": [
-    {
-      "source": "/57475/j5/script.js",
-      "destination": "https://plausible.io/js/script.js"
-    },
-    {
-      "source": "/57475/4p1/3v3n7",
-      "destination": "https://plausible.io/api/event"
-    }
-  ]
+	]
 }
