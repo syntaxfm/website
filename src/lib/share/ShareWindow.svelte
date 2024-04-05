@@ -30,6 +30,7 @@
 	style:--bg="var(--bg-sheet)"
 	style:--fg="var(--fg-sheet)"
 	use:clickOutDialog
+	on:close={close}
 	on:click-outside={close}
 	aria-labelledby="search-header"
 >
