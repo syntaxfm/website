@@ -7,7 +7,7 @@
 	export let faces: FaceForThePile[] = [];
 </script>
 
-<div class="pile" style:--face-size={size}>
+<div class="pile" style:--face-size={size} style:--face-count={faces.length}>
 	{#each faces as face}
 		<img src="https://github.com/{face.github || 'null'}.png" alt={face.name} />
 	{/each}
@@ -18,11 +18,15 @@
 		--local-size: var(--face-size, 50px);
 		display: grid;
 		grid-auto-flow: column;
-		grid-auto-columns: calc(var(--local-size) / 1.2);
+		grid-auto-columns: calc(var(--local-size) / 1.5);
 		gap: 0;
 		transition: all 0.2s;
 	}
 	.pile:hover {
+		z-index: 2;
+		&:has(img:nth-child(n + 4)) {
+			gap: calc(var(--local-size) / 8);
+		}
 		gap: calc(var(--local-size) / 4);
 	}
 	img {
