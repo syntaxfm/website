@@ -1,4 +1,8 @@
+import * as Sentry from '@sentry/sveltekit';
 import type { RequestHandler } from '@sveltejs/kit';
+import optionsHandler from '../../optionsHandler';
+
+export const OPTIONS = optionsHandler();
 
 export const POST: RequestHandler = async ({ request, locals }) => {
 	const body = await request.text();
@@ -13,10 +17,20 @@ export const POST: RequestHandler = async ({ request, locals }) => {
 	});
 	const responseBody = await response.text();
 	if (!response.ok) {
-		console.error('Error proxying plausible event:', {
-			status: response.status,
-			statusText: response.statusText,
-			body: responseBody
+		const message = `Error proxying plausible event: ${JSON.stringify(
+			{
+				status: response.status,
+				statusText: response.statusText,
+				headers: [...response.headers.entries()],
+				body: responseBody
+			},
+			null,
+			2
+		)}`;
+		console.error(message);
+		const errorId = crypto.randomUUID();
+		Sentry.captureException(new Error(message), {
+			extra: { event, errorId, status: response.status }
 		});
 	}
 	return new Response(responseBody, {

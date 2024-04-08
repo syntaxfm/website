@@ -108,7 +108,17 @@ export const document_policy: Handle = async function ({ event, resolve }) {
 const safe_paths = new Set(['/api/errors', '/api/57475/3v3n7']);
 export const safe_form_data: Handle = async function ({ event, resolve }) {
 	if (safe_paths.has(event.url.pathname)) return resolve(event);
-	return form_data({ event, resolve });
+	const contentType = event.request.headers.get('content-type');
+	if (contentType?.includes('form-data')) {
+		try {
+			const result = await form_data({ event, resolve });
+			return result;
+		} catch (error) {
+			console.error('Error parsing form-data:');
+			console.error(error);
+		}
+	}
+	return resolve(event);
 };
 
 // * END HOOKS
