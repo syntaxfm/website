@@ -70,7 +70,8 @@
 			<p class="date" style:--transition-name="show-date-{show.number}">
 				{format_show_type(show.date)}
 				<span aria-hidden="true">×</span>
-				<time datetime={show_date.toISOString()} title={show_date.toDateString()}>{format_date(show_date)}</time
+				<time datetime={show_date.toISOString()} title={show_date.toDateString()}
+					>{format_date(show_date)}</time
 				>
 			</p>
 
@@ -106,28 +107,27 @@
 
 			<div class="bottom-row">
 				<FacePile
-				faces={[
-					{ name: 'Wes Bos', github: 'wesbos' },
-					{ name: 'Scott Tolinski', github: 'stolinski' },
-					...(show.guests || []).map((guest) => ({
-						name: guest.Guest.name,
-						github: guest.Guest.github || ''
-					}))
-				]}
-			/>
+					faces={[
+						{ name: 'Wes Bos', github: 'wesbos' },
+						{ name: 'Scott Tolinski', github: 'stolinski' },
+						...(show.guests || []).map((guest) => ({
+							name: guest.Guest.name,
+							github: guest.Guest.github || ''
+						}))
+					]}
+				/>
 
-			{#if display === 'highlight' || display === 'card'}
-				<div class="buttons">
-					<button
-						data-testid="play-show"
-						class:play={display === 'highlight'}
-						on:click|preventDefault={() => player.start_show(show)}
-						><Icon name="play" /> Play #{show.number}</button
-					>
-				</div>
-			{/if}
+				{#if display === 'highlight' || display === 'card'}
+					<div class="buttons">
+						<button
+							data-testid="play-show"
+							class:play={display === 'highlight'}
+							on:click|preventDefault={() => player.start_show(show)}
+							><Icon name="play" /> Play #{show.number}</button
+						>
+					</div>
+				{/if}
 			</div>
-
 		</div>
 	</a>
 </article>
@@ -182,7 +182,6 @@
 			border: solid var(--border-size) var(--black-8);
 		}
 
-		
 		&.list {
 			border: solid 1px var(--subtle);
 			margin-bottom: 20px;
@@ -193,7 +192,7 @@
 		.description {
 			span {
 				/* helps a11y when light text overlaps show number */
-				background-color: color-mix(in lch, var(--bg), transparent 50%);				
+				background-color: color-mix(in lch, var(--bg), transparent 50%);
 			}
 		}
 
@@ -214,18 +213,16 @@
 
 		.bottom-row {
 			align-self: end;
-
 			/* lay out horizontally */
 			display: grid;
-			grid-template-columns: 1fr 1fr;
+			grid-template-columns: minmax(0, 1fr) auto;
 			gap: 1rem;
-
 			.buttons {
+				flex: 1 0 auto;
 				text-align: right;
 				align-self: center;
 			}
 		}
-
 	}
 
 	.h3 {
