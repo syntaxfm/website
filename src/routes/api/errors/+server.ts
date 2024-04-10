@@ -1,7 +1,10 @@
 import type { RequestHandler } from '@sveltejs/kit';
+import optionsHandler from '../optionsHandler';
 
 const SENTRY_HOST = 'o4505358925561856.ingest.sentry.io';
 const SENTRY_PROJECT_IDS = ['4505358945419264'];
+
+export const OPTIONS = optionsHandler();
 
 export const POST: RequestHandler = async ({ request }) => {
 	try {
@@ -25,6 +28,10 @@ export const POST: RequestHandler = async ({ request }) => {
 		return Response.json({}, { status: 200 });
 	} catch (e) {
 		console.error('error tunneling to sentry', e);
-		return Response.json({ error: 'error tunneling to sentry' }, { status: 500 });
+		let message: string | undefined = undefined;
+		if (e instanceof Error) {
+			message = e.message;
+		}
+		return Response.json({ error: 'error tunneling to sentry', message }, { status: 500 });
 	}
 };
