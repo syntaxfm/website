@@ -66,6 +66,7 @@ Scott and Wes explore UI Components, discussing functionality, styling, accessib
     * [Downshift JS](https://github.com/downshift-js/downshift)
     * [Mantine](https://mantine.dev/)
     * [AgnosUI](https://amadeusitgroup.github.io/AgnosUI/latest/)
+    * [Ariakit](https://ariakit.org/)
 * **[59:02](#t=59:02)** Sick Picks & Shameless Plugs.
 
 ### Sick Picks
