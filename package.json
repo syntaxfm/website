@@ -26,6 +26,7 @@
 		"postinstall": "pnpm db:generate && pnpm exec playwright install"
 	},
 	"devDependencies": {
+		"@codecov/vite-plugin": "0.0.1-beta.6",
 		"@playwright/test": "^1.42.1",
 		"@sveltejs/kit": "^2.5.5",
 		"@sveltejs/vite-plugin-svelte": "^3.0.2",
