@@ -3,7 +3,7 @@ number: 761
 title: Cloudflare Analytics Engine, Workers + more with Ben Vinegar
 date: 1714129200000
 url: https://traffic.libsyn.com/syntax/Syntax_-_761.mp3
-youtube_url: https://www.youtube.com/watch?v=3PWmhbJnB1Q
+youtube_url: https://www.youtube.com/watch?v=p6JBv0tyu4I
 guest:
   name: Ben Vinegar
   github: benvinegar
