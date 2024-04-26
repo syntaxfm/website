@@ -24,6 +24,7 @@ Scott and Wes serve up top tools and tricks for rapid idea execution, from JavaS
 * **[13:14](#t=13:14)** Full stack services.
 * **[13:47](#t=13:47)** Your own stack. Hot Tips & Cool Treats.
     * [Wes's Hot Tips](https://github.com/wesbos/hot-tips/).
+    * [Vite Dir](https://www.npmjs.com/package/vite-dir)
     * [Scott's Cool Treats](https://github.com/stolinski/cool-treats).
     * **[21:01](#t=21:01)** [Bun file routing](https://bun.sh/docs/api/file-system-router).
     * **[24:25](#t=24:25)** Tooling and tips.
