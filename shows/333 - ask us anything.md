@@ -3,6 +3,7 @@ number: 333
 title: Hasty Treat - Ask Us Anything!
 date: 1615212000016
 url: https://traffic.libsyn.com/syntax/Syntax333.mp3
+spotify_url: https://open.spotify.com/episode/3HXVPgoLe5q6mSO9mUTViC
 ---
 
 In this Hasty Treat, Scott and Wes are doing an AMA — answering questions about self-employment, time-management, course creation, Clubhouse, and more!

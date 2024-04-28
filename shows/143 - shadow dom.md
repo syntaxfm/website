@@ -3,6 +3,7 @@ number: 143
 title: Hasty Treat - The SHADOW DOM
 date: 1557752400187
 url: https://traffic.libsyn.com/syntax/Syntax143.mp3
+spotify_url: https://open.spotify.com/episode/0z87l7WHbVkHj9tIycrNtx
 ---
 
 In this Hasty Treat, Scott and Wes talk about Shadow Doms - what they are, the individual pieces involved with them, why they're important, and how to get started using them.

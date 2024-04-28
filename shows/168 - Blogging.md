@@ -3,6 +3,7 @@ number: 168
 title: Blogging
 date: 1565182800295
 url: https://traffic.libsyn.com/syntax/Syntax168.mp3
+spotify_url: https://open.spotify.com/episode/4hgjw72tAw5jsxjxAtU3QT
 ---
 
 In this episode of Syntax, Scott and Wes talk about blogging — both the specifics of content (how to make great content), as well as the mechanics of where and how to publish blog posts.

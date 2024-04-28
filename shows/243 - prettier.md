@@ -3,6 +3,7 @@ number: 243
 title: Hasty Treat - Getting Buy-in for a Tool Like Prettier From Your Team
 date: 1587992400312
 url: https://traffic.libsyn.com/syntax/Syntax243.mp3
+spotify_url: https://open.spotify.com/episode/26QnBWaOD41iRksHVtPDV1
 ---
 
 In this Hasty Treat, Scott and Wes talk about getting buy-in from your team when using new tools. 

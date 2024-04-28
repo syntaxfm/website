@@ -3,6 +3,7 @@ number: 583
 title: Supper Club × Visual Coding Languages With Steve Sewell
 date: 1677844800026
 url: https://traffic.libsyn.com/syntax/Syntax_-_583.mp3
+spotify_url: https://open.spotify.com/episode/6AfbwdIhTGTgF9X62YDqla
 guest:
   name: Steve Sewell
   of: Builder.io

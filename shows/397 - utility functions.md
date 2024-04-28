@@ -3,6 +3,7 @@ number: 397
 title: Hasty Treat - Handy Utility Functions with Just
 date: 1634562000303
 url: https://traffic.libsyn.com/syntax/Syntax397.mp3
+spotify_url: https://open.spotify.com/episode/2wl54pP9lxxXiFDCDBdN3y
 ---
 
 In this Hasty Treat, Scott and Wes talk about handy utility functions with Just!

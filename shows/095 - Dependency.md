@@ -3,6 +3,7 @@ number: 95
 title: Hasty Treat - Should you install a dependency or roll your own?
 date: 1543240800404
 url: https://traffic.libsyn.com/syntax/Syntax095.mp3
+spotify_url: https://open.spotify.com/episode/6KN4LZK9AzkXnqG8pF0hRS
 ---
 
 In this Hasty Treat, Scott and Wes talk about installing dependencies vs rolling your own - the advantages and disadvantages, and how to know when to do either.

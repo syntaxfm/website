@@ -3,6 +3,7 @@ number: 400
 title: Horror Web Dev Stories - 2021
 date: 1635339600889
 url: https://traffic.libsyn.com/syntax/Syntax400.mp3
+spotify_url: https://open.spotify.com/episode/29jTPscr3zg5Ejne959kut
 ---
 
 For episode 400, Scott and Wes talk about web dev horror stories - 2021 edition!

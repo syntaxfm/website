@@ -3,6 +3,7 @@ number: 199
 title: Hasty Treat - So you want to make a course... Will people buy it?
 date: 1574690400961
 url: https://traffic.libsyn.com/syntax/Syntax199.mp3
+spotify_url: https://open.spotify.com/episode/31OtpLuNWauOdrcnF13Sr2
 ---
 
 In this Hasty Treat, Scott and Wes talk about making courses — techniques, best practices, things to avoid, and more!

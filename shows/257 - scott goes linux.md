@@ -3,6 +3,7 @@ number: 257
 title: Hasty Treat - Scott Goes Linux with Pop OS
 date: 1592226000818
 url: https://traffic.libsyn.com/syntax/Syntax257.mp3
+spotify_url: https://open.spotify.com/episode/1sr0ihRzrHVSA8AEYeb6Uw
 ---
 
 In this Hasty Treat, Scott tells Wes about his new Linux laptop — what it is, why he did it, pros and cons, and more!

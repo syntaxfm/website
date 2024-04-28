@@ -3,6 +3,7 @@ number: 37
 title: Recording Screencasts - Hardware, Software, Dos and Don'ts
 date: 1521046080243
 url: https://traffic.libsyn.com/syntax/Syntax037.mp3
+spotify_url: https://open.spotify.com/episode/7iYNkiUOuC1Wvyjzx2Nf6n
 ---
 
 In this episode, Scott and Wes everything about their recording — from gear to software to tips and tricks for creating a good screencast.

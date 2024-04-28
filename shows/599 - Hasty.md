@@ -3,6 +3,7 @@ number: 599
 title: oAuth APIs Explained
 date: 1681128000216
 url: https://traffic.libsyn.com/syntax/Syntax_-_599.mp3
+spotify_url: https://open.spotify.com/episode/1dR03rIasyMKXXl929WYnV
 ---
 
 In this Hasty Treat, Scott and Wes talk all things oAuth - what is oAuth? What terms do you need to understand when working with oAuth? And tips for working with oAuth.

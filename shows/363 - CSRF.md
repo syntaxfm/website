@@ -3,6 +3,7 @@ number: 363
 title: Hasty Treat - CSRF Explained
 date: 1624280400183
 url: https://traffic.libsyn.com/syntax/Syntax363.mp3
+spotify_url: https://open.spotify.com/episode/2IhNT0nmRiu1tkVnVw2RHS
 ---
 
 In this Hasty Treat, Scott and Wes talk about CSRF (Cross Site Request Forgery)!

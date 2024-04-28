@@ -3,6 +3,7 @@ number: 347
 title: Hasty Treat - Git Rebase Explained
 date: 1619442000543
 url: https://traffic.libsyn.com/syntax/Syntax347.mp3
+spotify_url: https://open.spotify.com/episode/0Sxv86yBWWA9RJRisMUj7C
 ---
 
 In this Hasty Treat, Scott and Wes talk about Git Rebase — what it is and how and when to use it!

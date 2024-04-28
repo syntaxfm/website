@@ -3,6 +3,7 @@ number: 589
 title: Supper Club × Next.js on AWS + Serverless with Dax Raad
 date: 1679054400845
 url: https://traffic.libsyn.com/syntax/Syntax_-_589_v2.mp3
+spotify_url: https://open.spotify.com/episode/4JMsm4IEv7QJEPcALyK4Xw
 guest:
   name: Dax Raad
   of: SST, Open Next.js

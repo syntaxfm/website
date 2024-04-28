@@ -3,6 +3,7 @@ number: 281
 title: Hasty Treat - Backyard Offices
 date: 1599483600709
 url: https://traffic.libsyn.com/syntax/Syntax281.mp3
+spotify_url: https://open.spotify.com/episode/2xexvKPnLN5VbEjgKBCjlE
 ---
 
 In this Hasty Treat, Scott and Wes talk about home offices, backyard offices, costs, and pros and cons!

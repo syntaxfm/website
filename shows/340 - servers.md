@@ -3,6 +3,7 @@ number: 340
 title: Servers with Matt from Caddy
 date: 1617195600832
 url: https://traffic.libsyn.com/syntax/Syntax340.mp3
+spotify_url: https://open.spotify.com/episode/5FPS3rKBHnny42kvtelf60
 guest:
   name: Matt Holt
   github: mholt

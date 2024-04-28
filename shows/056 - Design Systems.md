@@ -3,6 +3,7 @@ number: 56
 title: Design Systems
 date: 1531314000456
 url: https://traffic.libsyn.com/syntax/Syntax056.mp3
+spotify_url: https://open.spotify.com/episode/2gVNiC0yjwiANPHTdTm2mG
 ---
 
 In this highly requested episode, Scott and Wes talk about design systems, what they are, why you may want or need one, how to use them, efficiency, best practices, and much more...

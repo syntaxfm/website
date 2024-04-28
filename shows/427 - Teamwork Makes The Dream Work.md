@@ -3,6 +3,7 @@ number: 427
 title: Teamwork Makes The Dream Work
 date: 1643630400940
 url: https://traffic.libsyn.com/syntax/Syntax_-_427.mp3
+spotify_url: https://open.spotify.com/episode/06N9PKx0kSlA7CMUkUAWdA
 ---
 
 

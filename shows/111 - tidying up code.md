@@ -3,6 +3,7 @@ number: 111
 title: Hasty Treat - Tidying Up Code #MarieKondo
 date: 1548079200149
 url: https://traffic.libsyn.com/syntax/Syntax111.mp3
+spotify_url: https://open.spotify.com/episode/2W1J3STkyW5v7Lg6jYGS1a
 ---
 
 In this Hasty Treat, Scott and Wes talk about tidying up your code - why it's important and how it can make your (dev) life better.

@@ -3,6 +3,7 @@ number: 164
 title: A Story About Kanye West and Learning to Code
 date: 1563973200176
 url: https://traffic.libsyn.com/syntax/Syntax164.mp3
+spotify_url: https://open.spotify.com/episode/1z3GXWFQHcWDYtw5SZqrpC
 guest:
   name: Harry Dry
   twitter: harrydry

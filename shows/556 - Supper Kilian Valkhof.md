@@ -3,6 +3,7 @@ number: 556
 title: Supper Club × Polypane with Kilian Valkhof
 date: 1672401600689
 url: https://traffic.libsyn.com/syntax/Syntax_-_556.mp3
+spotify_url: https://open.spotify.com/episode/6sAHpE9GiLGWowMxCVvgL3
 guest:
   name: Kilian Valkhof
   github: Kilian

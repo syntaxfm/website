@@ -3,6 +3,7 @@ number: 394
 title: Potluck — Corn Shucking × Self-Hosting Images × WordPress × Getting Scammed × Portfolios
 date: 1633525200877
 url: https://traffic.libsyn.com/syntax/Syntax394.mp3
+spotify_url: https://open.spotify.com/episode/0TZl8vCvKQ0aQrj7V9qWjZ
 ---
 
 It's another Potluck! In this episode, Scott and Wes answer your questions about corn shucking, self-hosting images, WordPress, getting scammed, portfolios, more!

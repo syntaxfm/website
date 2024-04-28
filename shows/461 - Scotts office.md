@@ -3,6 +3,7 @@ number: 461
 title: Scott’s New Office × The Levelup Lodge
 date: 1653307200859
 url: https://traffic.libsyn.com/syntax/Syntax_-_461.mp3
+spotify_url: https://open.spotify.com/episode/78YzbawgVzuxs1VEXiTjW0
 ---
 
 In this episode of Syntax, Scott talks about his new office setup where he records videos and podcasts, writes codes, and gets his steps in.

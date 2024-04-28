@@ -3,6 +3,7 @@ number: 185
 title: Hasty Treat - Feature + Release Planning
 date: 1570453200237
 url: https://traffic.libsyn.com/syntax/SFF185.mp3
+spotify_url: https://open.spotify.com/episode/4qskm3BZ9C3XgJP7k1ZEzL
 ---
 
 In this Hasty Treat, Scott and Wes talk about feature and release planning — dealing with bugs, task management, best practices, and more!

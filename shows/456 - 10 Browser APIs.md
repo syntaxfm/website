@@ -3,6 +3,7 @@ number: 456
 title: 10 Nifty Browser APIs
 date: 1652270400911
 url: https://traffic.libsyn.com/syntax/Syntax_-_456.mp3
+spotify_url: https://open.spotify.com/episode/2jlFP7YjCuMbVhIcQCNIn6
 ---
 
 In this episode of Syntax, Wes and Scott talk about 10 browser API's you might not be familiar with including getUserMedia, Resize Observer, SpeechRecognition, and more!

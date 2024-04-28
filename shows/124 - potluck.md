@@ -3,6 +3,7 @@ number: 124
 title: Potluck - Are classes dead? × Tutorials vs Real Life × CRA vs Next × Scraping × More
 date: 1551880800713
 url: https://traffic.libsyn.com/syntax/Syntax124.mp3
+spotify_url: https://open.spotify.com/episode/324MnbXqfUx7wvMMTJHtcr
 ---
 
 It's another potluck episode in which Wes and Scott answer your questions! This month - are classes dead?, tutorials vs real life, the smart home, developers and mental health, and more!

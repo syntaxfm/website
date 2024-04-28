@@ -3,6 +3,7 @@ number: 258
 title: The Fundamentals Leftovers - Terminal, Shortcuts, View Source, Github + More!
 date: 1592398800818
 url: https://traffic.libsyn.com/syntax/Syntax258.mp3
+spotify_url: https://open.spotify.com/episode/4TVf9ldzZpa4LKTQecAqCy
 ---
 
 In this episode of Syntax, Scott and Wes continue their discussion of fundamentals — Bash, text editors, Regex, Github, Dev tools, and more!

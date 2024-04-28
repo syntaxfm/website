@@ -3,6 +3,7 @@ number: 559
 title: Supper Club × Sarah Drasner on Engineering Management
 date: 1673006400241
 url: https://traffic.libsyn.com/syntax/Syntax_-_559_.mp3
+spotify_url: https://open.spotify.com/episode/7kolWHzxOmf6kdTEcrrwtx
 guest:
   name: Sarah Drasner
   github: sdras

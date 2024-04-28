@@ -3,6 +3,7 @@ number: 165
 title: Hasty Treat - VSCode Treats Part 2
 date: 1564416000607
 url: https://traffic.libsyn.com/syntax/Syntax165.mp3
+spotify_url: https://open.spotify.com/episode/7FSBUOYoYrAe2hcYSUImkw
 ---
 
 In this Hasty Treat, Scott and Wes talk about more of their favorite VSCode tasty treats - extensions, features, keyboard shortcuts and more!

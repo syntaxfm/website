@@ -3,6 +3,7 @@ number: 9
 title: Dang, that's handy! JavaScript Utility Libraries 🛠️
 date: 1504098731000
 url: https://traffic.libsyn.com/syntax/Syntax009.mp3
+spotify_url: https://open.spotify.com/episode/0XmsXLsgcgdv8xC5tQKtU1
 ---
 
 Scott and Wes talk all about different JavaScript utility libraries that make you say "Dang, that's handy!"

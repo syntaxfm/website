@@ -3,6 +3,7 @@ number: 712
 title: 2024 Predictions
 date: 1704283200936
 url: https://traffic.libsyn.com/syntax/Syntax_-_712.mp3
+spotify_url: https://open.spotify.com/episode/7D6mGNepa1Pvgo4FXklbnz
 ---
 
 Wes and Scott give their predictions for 2024 in JavaScript, frameworks, server-side JS, tooling, CSS, developer ecosystem, and AI tooling.

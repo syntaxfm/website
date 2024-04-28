@@ -3,6 +3,7 @@ number: 98
 title: The State of JavaScript 2018
 date: 1544018400079
 url: https://traffic.libsyn.com/syntax/Syntax098.mp3
+spotify_url: https://open.spotify.com/episode/5rNQEhW2vDcYyepW3DHdTJ
 guest:
   name: Sacha Greif
   of: State of JS Survey

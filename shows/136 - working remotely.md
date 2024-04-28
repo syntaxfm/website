@@ -3,6 +3,7 @@ number: 136
 title: 9 Ways to Stay Sane While Working Remotely
 date: 1555506000635
 url: https://traffic.libsyn.com/syntax/Syntax136.mp3
+spotify_url: https://open.spotify.com/episode/7girDIx8yrkwAwCbP7EJbj
 ---
 
 In this episode of Syntax, Scott and Wes talk about working remotely — problems, challenges, and how to keep yourself sane, productive and efficient.

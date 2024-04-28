@@ -3,6 +3,7 @@ number: 733
 title: Egress, scraping, Safari EU changes, is SetInterval worth it?
 date: 1708516800514
 url: https://traffic.libsyn.com/syntax/Syntax_-_733.mp3
+spotify_url: https://open.spotify.com/episode/7iuMmhBjc0oCDtWjpg3BS9
 youtube_url: https://www.youtube.com/watch?v=1dufGxB1v68
 ---
 

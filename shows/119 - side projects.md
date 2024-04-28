@@ -3,6 +3,7 @@ number: 119
 title: Hasty Treat - Better Living Through Side Projects
 date: 1550498400321
 url: https://traffic.libsyn.com/syntax/Syntax119.mp3
+spotify_url: https://open.spotify.com/episode/78dHBqNE5dsQ19SxyrV1JX
 ---
 
 In this Hasty Treat, Scott and Wes talk about side projects — what you can learn, why they're great, how to come up with ideas, and more!

@@ -3,6 +3,7 @@ number: 378
 title: How to Build a Website — The Show For Beginners
 date: 1628686800325
 url: https://traffic.libsyn.com/syntax/Syntax378.mp3
+spotify_url: https://open.spotify.com/episode/2HuTAqQjohOErTbk1xrwIM
 ---
 
 In this episode of Syntax, Scott and Wes talk about the basics of building a website — how to get started for beginners!

@@ -3,6 +3,7 @@ number: 104
 title: CSS Layout
 date: 1545832800650
 url: https://traffic.libsyn.com/syntax/Syntax104.mp3
+spotify_url: https://open.spotify.com/episode/1sQaSIJJshH7X3eyjR4Jpr
 ---
 
 In this episode Wes and Scott are talking all about CSS layout - how it works, things to watch out for and more!

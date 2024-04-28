@@ -3,6 +3,7 @@ number: 28
 title: Async + Await
 date: 1516207708549
 url: https://traffic.libsyn.com/syntax/Syntax028.mp3
+spotify_url: https://open.spotify.com/episode/1BOScFua30MIIZ2mZZ7N9D
 ---
 
 ## Freshbooks — Sponsor

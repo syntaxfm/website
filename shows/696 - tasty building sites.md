@@ -3,6 +3,7 @@ number: 696
 title: How to Build a Website or App
 date: 1700654400619
 url: https://traffic.libsyn.com/syntax/Syntax_-_696.mp3
+spotify_url: https://open.spotify.com/episode/09bEiH2t4i66CZCfEHbzIv
 ---
 
 In this episode of Syntax, Wes and Scott answer a listener's question about their process for building a website in 2023. Do you start with design? With code? How do you decide on which CMS or if you need a CMS? How do you choose a backend framework? And where do you host it?

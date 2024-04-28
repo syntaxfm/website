@@ -3,6 +3,7 @@ number: 680
 title: Getting jQuery’d × Honourable Deaths of libraries We Don’t Use Anymore
 date: 1697457600465
 url: https://traffic.libsyn.com/syntax/Syntax_-_680.mp3
+spotify_url: https://open.spotify.com/episode/1bH17Bxs7HMr26Xug2LbTd
 ---
 
 In this Hasty Treat, Scott and Wes talk about all the libraries we don't need to use anymore thanks to their features being built into the browsers now.

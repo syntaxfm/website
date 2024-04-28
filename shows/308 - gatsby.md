@@ -3,6 +3,7 @@ number: 308
 title: Gatsby vs Next.js in 2021
 date: 1607522400135
 url: https://traffic.libsyn.com/syntax/Syntax308.mp3
+spotify_url: https://open.spotify.com/episode/0hLMCoxt1wvaNsiSJtad6i
 ---
 
 In this episode of Syntax, Scott and Wes talk about Gatsby vs Next. A lot has changed in the last year — what are the differences, and do the recommendations from Syntax 120 still hold true?

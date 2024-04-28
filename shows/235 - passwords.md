@@ -3,6 +3,7 @@ number: 235
 title: Hasty Treat - Get Gud at Passwords & Password Management
 date: 1585573200493
 url: https://traffic.libsyn.com/syntax/Syntax235.mp3
+spotify_url: https://open.spotify.com/episode/0dnuVvYdHdMy3Y23S9Kkh5
 ---
 
 In this Hasty Treat, Scott and Wes talk about security and how to get good at passwords.

@@ -3,6 +3,7 @@ number: 391
 title: Hasty Treat - Desktop Apps + New Tech We Love
 date: 1632747600655
 url: https://traffic.libsyn.com/syntax/Syntax391.mp3
+spotify_url: https://open.spotify.com/episode/3wGutWemmH36bIyJU0ochd
 ---
 
 In this Hasty Treat, Scott and Wes talk about the hottest new tech they love! 

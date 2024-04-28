@@ -3,6 +3,7 @@ number: 737
 title: "JSR: The New TypeScript Package Registry (NPM Killer)"
 date: 1709294400412
 url: https://traffic.libsyn.com/syntax/Syntax_-_737.mp3
+spotify_url: https://open.spotify.com/episode/03BQU8l5m6i6SlTxe7nW6f
 youtube_url: https://www.youtube.com/watch?v=dHfZiqVWVhk
 guest:
   name: Luca Casonato

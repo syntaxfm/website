@@ -3,6 +3,7 @@ number: 50
 title: Progressive Web Apps
 date: 1528894800021
 url: https://traffic.libsyn.com/syntax/Syntax050.mp3
+spotify_url: https://open.spotify.com/episode/3P7xaDjlcobUQ5qlXKNaQ4
 ---
 
 Scott and Wes dive into the ins and outs, best practices and tasty tidbits of Progressive Web Apps.

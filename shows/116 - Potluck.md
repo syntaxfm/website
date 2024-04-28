@@ -3,6 +3,7 @@ number: 116
 title: Potluck - Changing careers × Repo organization × CSS Grid × Certifications × Freelancing × Spammers × More
 date: 1549476600560
 url: https://traffic.libsyn.com/syntax/Syntax116.mp3
+spotify_url: https://open.spotify.com/episode/0jSbGfgZjl1jo7OisHbzLw
 ---
 
 It's another potluck episode in which Wes and Scott answer your questions! This month - organizing your Git repos, the difference between freelancing and contracting, changing careers, how to deal with spammers and more!

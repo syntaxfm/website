@@ -3,6 +3,7 @@ number: 653
 title: JS Fundamentals - Decorators
 date: 1692014400681
 url: https://traffic.libsyn.com/syntax/Syntax_-_653.mp3
+spotify_url: https://open.spotify.com/episode/6rxmTeoO4k5MBRn5RQYLlS
 ---
 
 In this Hasty Treat, Scott and Wes talk about whether decorators are finally here, what the uses cases are for decorators, how to define a decorator, and what auto accessor is.

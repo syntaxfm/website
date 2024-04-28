@@ -3,6 +3,7 @@ number: 468
 title: Syntax Live at Reactathon
 date: 1654689600857
 url: https://traffic.libsyn.com/syntax/Syntax_-_468.mp3
+spotify_url: https://open.spotify.com/episode/0a19OxwdBQDfTT5JDYQnkJ
 ---
 
 In this episode of Syntax, Wes and Scott are live from Reactathon 2022!

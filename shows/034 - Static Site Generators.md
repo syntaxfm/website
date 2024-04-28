@@ -3,6 +3,7 @@ number: 34
 title: Why Static Site Generators are Awesome
 date: 1519785998881
 url: https://traffic.libsyn.com/syntax/Syntax034.mp3
+spotify_url: https://open.spotify.com/episode/5YFmXUSP6wHKh2uztZqKYH
 ---
 
 Wes and Scott talk all about Static Site Generators!

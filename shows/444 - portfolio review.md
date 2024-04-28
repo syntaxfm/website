@@ -3,6 +3,7 @@ number: 444
 title: Syntax Highlight
 date: 1648641600930
 url: https://traffic.libsyn.com/syntax/Syntax_-_444.mp3
+spotify_url: https://open.spotify.com/episode/7B8dh5bY0eyou5StAn1vv0
 ---
 
 In this episode of Syntax, Wes and Scott review your websites that you submitted including bald.design, Anh Hoang Nguyen, bradleyshellnut.com, and more.

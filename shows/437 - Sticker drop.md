@@ -3,6 +3,7 @@ number: 437
 title: Sticker Mogul 2022
 date: 1646654400605
 url: https://traffic.libsyn.com/syntax/Syntax_-_437.mp3
+spotify_url: https://open.spotify.com/episode/4U90R785vrrdI34pAvW1U8
 ---
 
 In this Hasty Treat, Scott and Wes talk about Wes' experience designing, printing, and shipping out his sticker packs.

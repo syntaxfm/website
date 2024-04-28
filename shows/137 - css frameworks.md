@@ -3,6 +3,7 @@ number: 137
 title: Hasty Treat - CSS Frameworks
 date: 1555938000358
 url: https://traffic.libsyn.com/syntax/Syntax137.mp3
+spotify_url: https://open.spotify.com/episode/67hs3dyTRYDxDMIyzZnn9Z
 ---
 
 In this Hasty Treat, Scott and Wes talk about CSS frameworks - what they are, why they're important, and when (and when not) to use them.

@@ -3,6 +3,7 @@ number: 129
 title: Hasty Treat - Why Use a Frontend Framework at All?
 date: 1553518800643
 url: https://traffic.libsyn.com/syntax/Syntax129.mp3
+spotify_url: https://open.spotify.com/episode/4CDQjvJ6T9R0ugKtR3kB71
 ---
 
 In this Hasty Treat, Scott and Wes talk about frontend frameworks — what they are, when you need one, how to organize your code for maximum efficiency, and more!

@@ -3,6 +3,7 @@ number: 704
 title: Stump'd JS + CSS Interview Questions 
 date: 1702468800546
 url: https://traffic.libsyn.com/syntax/Syntax_-_704.mp3
+spotify_url: https://open.spotify.com/episode/4KVL2D8qRHEzbxa4aif4jr
 ---
 
 In this episode of Syntax, Wes and Scott try to stump each other with JavaScript and CSS interview style questions including CSS contain, naming the 7 parts of Houdini, what ARIA stands for, 5 limitations of serverless, and more.

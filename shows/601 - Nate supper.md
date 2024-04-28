@@ -3,6 +3,7 @@ number: 601
 title: Supper Club × Nate Weinert and Tamagui
 date: 1681473600636
 url: https://traffic.libsyn.com/syntax/Syntax_-_601.mp3
+spotify_url: https://open.spotify.com/episode/4EBp7tGuMDqc7qLfy8m6DD
 guest:
   name: Nate Weinert
   twitter: natebirdman

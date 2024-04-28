@@ -3,6 +3,7 @@ number: 108
 title: Potluck - Where to start with JS × Freelancing × Cron jobs × Split testing × Frameworks in 2019 × More
 date: 1547128800920
 url: https://traffic.libsyn.com/syntax/Syntax108.mp3
+spotify_url: https://open.spotify.com/episode/2BTtmDorRtMsv6MJ2usKRl
 ---
 
 It's another potluck episode in which Wes and Scott answer your questions! This month - thoughts on frameworks for 2019, React Native, when should you start freelancing, where to start with JS, cron jobs, split testing and more!

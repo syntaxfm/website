@@ -3,6 +3,7 @@ number: 239
 title: Hasty Treat - 5 Things That Make Your Site Slow
 date: 1586782800171
 url: https://traffic.libsyn.com/syntax/Syntax239.mp3
+spotify_url: https://open.spotify.com/episode/1K5LRFq2dmVeaWM3Fkyn2L
 ---
 
 In this Hasty Treat, Scott and Wes talk about five things that could potentially be making your website slow.

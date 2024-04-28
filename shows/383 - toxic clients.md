@@ -3,6 +3,7 @@ number: 383
 title: Hasty Treat - Freelance Tips - Toxic Clients
 date: 1630328400382
 url: https://traffic.libsyn.com/syntax/Syntax383.mp3
+spotify_url: https://open.spotify.com/episode/7i2ODqJmfh1tItHr6KekFs
 ---
 
 In this Hasty Treat, Scott and Wes talk about toxic clients — how to identify them, and what to do about them.

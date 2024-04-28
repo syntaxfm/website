@@ -3,6 +3,7 @@ number: 215
 title: Hasty Treat - Picking the Stack for uses.tech - Gatsby, React, Context, Styled Components
 date: 1579528800890
 url: https://traffic.libsyn.com/syntax/Syntax215.mp3
+spotify_url: https://open.spotify.com/episode/3OgOP524Yj7dNYTqHiDzlE
 ---
 
 In this Hasty Treat, Scott and Wes talk about Wes' new website uses.tech — the stack he chose for building it, as well as what it does and how to use it!

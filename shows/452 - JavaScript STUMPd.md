@@ -3,6 +3,7 @@ number: 452
 title: JavaScript × STUMP’D
 date: 1651060800988
 url: https://traffic.libsyn.com/syntax/Syntax_-_452.mp3
+spotify_url: https://open.spotify.com/episode/1Zim8X4YGoEQv9rvnFYfrH
 ---
 
 In this episode of Syntax, Wes and Scott ask each other hiring questions asked of JavaScript developers in job interviews.

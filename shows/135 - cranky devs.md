@@ -3,6 +3,7 @@ number: 135
 title: Hasty Treat - Cranky Developers
 date: 1555333200976
 url: https://traffic.libsyn.com/syntax/Syntax135.mp3
+spotify_url: https://open.spotify.com/episode/6WDIB6wR58ziO2AbBMuqzi
 ---
 
 In this Hasty Treat, Scott and Wes talk about cranky developers — those devs who never seem happy about anything, always mad about tech choices, and constantly writing off any new tech as simply a "fad" or unnecessary. 

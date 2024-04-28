@@ -3,6 +3,7 @@ number: 562
 title: Supper Club × Katherine Mello on Liberal Arts → Coding, Bootcamps,  and Sustainability
 date: 1673611200466
 url: https://traffic.libsyn.com/syntax/Syntax_-_562.mp3
+spotify_url: https://open.spotify.com/episode/015MmR7WNgSadji3zTlLeI
 guest:
   name: Katherine Mello
   of: Tangible Materials

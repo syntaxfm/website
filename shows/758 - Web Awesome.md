@@ -3,6 +3,7 @@ number: 758
 title: Web Awesome with Konnor Rogers + Cory LaViska
 date: 1713524400000
 url: https://traffic.libsyn.com/syntax/Syntax_-_758.mp3
+spotify_url: https://open.spotify.com/episode/1QCgbmxYCLKkG1wZ1yPT14
 youtube_url: https://www.youtube.com/watch?v=TjHp2Ml0Sx4
 guest:
   - name: Konnor Rogers

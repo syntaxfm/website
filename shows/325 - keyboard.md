@@ -3,6 +3,7 @@ number: 325
 title: Hasty Treat - Keyboard Events Are Surprisingly Interesting
 date: 1612792800788
 url: https://traffic.libsyn.com/syntax/Syntax325.mp3
+spotify_url: https://open.spotify.com/episode/0IEWdtbMd5grBNFulmz6o2
 ---
 
 In this Hasty Treat, Scott and Wes talk about keyboard events and some of the fascinating things you can do with them!

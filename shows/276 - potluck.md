@@ -3,6 +3,7 @@ number: 276
 title: Potluck - Subscriptions × ES Modules in Node × Chicken Thigh × Being a Good Dad × Refactoring × More!
 date: 1597842000031
 url: https://traffic.libsyn.com/syntax/Syntax276.mp3
+spotify_url: https://open.spotify.com/episode/3LBAN6BT6BtPQXOb2rryn4
 ---
 
 It's another potluck! In this episode, Scott and Wes answer your questions about React subscriptions, ES Modules in Node, how to cook a chicken thigh, being a good dad and more!

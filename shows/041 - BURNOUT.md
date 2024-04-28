@@ -3,6 +3,7 @@ number: 41
 title: Preventing and Dealing with Burnout in Web Development
 date: 1523452776374
 url: https://traffic.libsyn.com/syntax/Syntax041.mp3
+spotify_url: https://open.spotify.com/episode/3aSPduXL2VKLc0CqPePhUc
 ---
 
 Scott and Wes Chat about burnout!

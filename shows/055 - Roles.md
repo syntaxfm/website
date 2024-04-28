@@ -3,6 +3,7 @@ number: 55
 title: Hasty Treat - User Role Systems
 date: 1531141200658
 url: https://traffic.libsyn.com/syntax/Syntax055.mp3
+spotify_url: https://open.spotify.com/episode/5Gl8iBCccJDkrq4Z1tKcSQ
 ---
 
 In this Hasty Treat (Short episode) Scott and Wes discuss user roles, what to think about when creating your own, security implications, etc.

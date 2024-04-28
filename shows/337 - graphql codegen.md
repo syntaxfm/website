@@ -3,6 +3,7 @@ number: 337
 title: Hasty Treat - Effortless Custom GraphQL with GraphQL Codegen
 date: 1616418000377
 url: https://traffic.libsyn.com/syntax/Syntax337.mp3
+spotify_url: https://open.spotify.com/episode/6Oj3xpnkJa7hMB9kMSnhR2
 ---
 
 In this Hasty Treat, Scott and Wes talk about GraphQL tooling, and specifically a couple tools we use that will change your experience with GraphQL.

@@ -3,6 +3,7 @@ number: 644
 title: User Feedback UI - Toasts, Flash, Validation
 date: 1690200000959
 url: https://traffic.libsyn.com/syntax/Syntax_-_644.mp3
+spotify_url: https://open.spotify.com/episode/2h0p2cTbcoNILCn3bIRUs5
 ---
 
 In this Hasty Treat, Scott and Wes talk about toast messages for validation, errors, confirmations, and more.

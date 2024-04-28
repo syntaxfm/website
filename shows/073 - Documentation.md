@@ -3,6 +3,7 @@ number: 73
 title: Hasty Treat - Reading Documentation
 date: 1536584400827
 url: https://traffic.libsyn.com/syntax/Syntax073.mp3
+spotify_url: https://open.spotify.com/episode/389sHu3xn9nI5xXqXUqRlc
 ---
 
 In this Hasty Treat, Scott and Wes dive into documentation - how to avoid common pitfalls and overwhelm, as well as how to read, understand and get the most out of documentation.

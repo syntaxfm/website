@@ -3,6 +3,7 @@ number: 518
 title: How to Get Past the Blahs and Finish Your Project
 date: 1664798400454
 url: https://traffic.libsyn.com/syntax/Syntax_-_518.mp3
+spotify_url: https://open.spotify.com/episode/1wCTCiUm2bpKPojjZqPimJ
 ---
 
 In this Hasty Treat, Scott and Wes talk about the ways they get unstuck when working on the last bit of a project to help push it over the finish line.

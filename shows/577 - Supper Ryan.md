@@ -3,6 +3,7 @@ number: 577
 title: Supper Club × Solid.js with Ryan Carniato
 date: 1676635200341
 url: https://traffic.libsyn.com/syntax/Syntax_-_577.mp3
+spotify_url: https://open.spotify.com/episode/2Ef7lHXrfkJKUV0JTiPd3r
 guest:
   name: Ryan Carniato
   twitter: RyanCarniato

@@ -3,6 +3,7 @@ number: 297
 title: Hasty Treat - Certifications? Government Specified JavaScript Skills?
 date: 1604325600713
 url: https://traffic.libsyn.com/syntax/Syntax297.mp3
+spotify_url: https://open.spotify.com/episode/1xKB0oK1pAZq3ux7jiiVl3
 ---
 
 In this Hasty Treat, Scott and Wes talk about web dev certifications — are they worth it, or a waste of time?

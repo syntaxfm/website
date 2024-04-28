@@ -3,6 +3,7 @@ number: 515
 title: WTF Is Enhance Framework?
 date: 1664193600742
 url: https://traffic.libsyn.com/syntax/Syntax_-_515.mp3
+spotify_url: https://open.spotify.com/episode/4V3dWd0jrycQ8SnF5cAFCp
 ---
 
 In this Hasty Treat, Scott and Wes talk about a new framework called Enhance. What is Enhance and how does it differ from other new frameworks like Astro?

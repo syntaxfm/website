@@ -3,6 +3,7 @@ number: 548
 title: Rendering Methods Explained
 date: 1670846400288
 url: https://traffic.libsyn.com/syntax/Syntax_-_548.mp3
+spotify_url: https://open.spotify.com/episode/3wDkAXEAJlaRzvMLLD9Wim
 ---
 
 In this Hasty Treat, Scott and Wes talk through the various rendering methods in use today and the pros / cons of each.

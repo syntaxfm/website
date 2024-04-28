@@ -3,6 +3,7 @@ number: 416
 title: Gitpod, iPad Coding, Web3, WTF NFT
 date: 1640174400735
 url: https://traffic.libsyn.com/syntax/Syntax_-_416.mp3
+spotify_url: https://open.spotify.com/episode/4cxTZcsIYkZ9t172YPF2cH
 guest:
   - name: Geoffrey Huntley
     of: Gitpod

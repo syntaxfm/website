@@ -3,6 +3,7 @@ number: 2
 title: Webcam and audio access with WebRTC and getUserMedia()
 date: 1499860800000
 url: https://traffic.libsyn.com/syntax/syntax002.mp3
+spotify_url: https://open.spotify.com/episode/4yc2lro530uSpssBBIaanl
 ---
 
 ## Show Notes

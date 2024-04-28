@@ -3,6 +3,7 @@ number: 154
 title: SVGs with Sara Soueidan
 date: 1560949200687
 url: https://traffic.libsyn.com/syntax/Syntax154.mp3
+spotify_url: https://open.spotify.com/episode/623G7dDaAzylsbPCik3g82
 guest:
   name: Sara Soueidan
   github: SaraSoueidan

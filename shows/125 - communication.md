@@ -3,6 +3,7 @@ number: 125
 title: Hasty Treat - Communication Skillz
 date: 1552309200131
 url: https://traffic.libsyn.com/syntax/Syntax125.mp3
+spotify_url: https://open.spotify.com/episode/0PIBEnfJbauSY0vuz8Yzpt
 ---
 
 In this Hasty Treat, Scott and Wes talk about communication — why it's important, how to improve, building good habits, tools and more!

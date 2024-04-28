@@ -3,6 +3,7 @@ number: 404
 title: Web Containers, StackBlitz, and Node.js in the Browser with Tomek Sulkowski
 date: 1636552800049
 url: https://traffic.libsyn.com/syntax/Syntax404.mp3
+spotify_url: https://open.spotify.com/episode/6Rm9SmYVe9mdLpF5Ru8XUP
 guest: 
   name: Tomek Sułkowski
   twitter: sulco

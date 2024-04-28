@@ -3,6 +3,7 @@ number: 570
 title: Node.js CJS → ESM
 date: 1675252800145
 url: https://traffic.libsyn.com/syntax/Syntax_-_570.mp3
+spotify_url: https://open.spotify.com/episode/6VaHsW37GPkDAWmc5qa5n3
 ---
 
 In this episode of Syntax, Wes and Scott talk through what ESM is, and why you want to move your projects to ESM.

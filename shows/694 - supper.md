@@ -3,6 +3,7 @@ number: 694
 title: What's Up With Angular with Mark Techson
 date: 1700222400247
 url: https://traffic.libsyn.com/syntax/Syntax_-_694.mp3
+spotify_url: https://open.spotify.com/episode/2AltI2Ge9qflH1iMyr48tW
 guest:
   name: Mark Techson
   of: Angular, Google

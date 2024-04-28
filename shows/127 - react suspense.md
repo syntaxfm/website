@@ -3,6 +3,7 @@ number: 127
 title: Hasty Treat - React Suspense
 date: 1552914000479
 url: https://traffic.libsyn.com/syntax/Syntax127.mp3
+spotify_url: https://open.spotify.com/episode/0vr8SEEJ7NHYmf4EbvZERj
 ---
 
 In this Hasty Treat, Scott and Wes talk about React Suspense — what it is, how it works, support and more!

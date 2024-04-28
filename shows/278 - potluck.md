@@ -3,6 +3,7 @@ number: 278
 title: Potluck - MDX × Portfolio Projects × Code Commenting × CSS Properties × Reusable Components × More!
 date: 1598446800463
 url: https://traffic.libsyn.com/syntax/Syntax278.mp3
+spotify_url: https://open.spotify.com/episode/52UB1WrS5feIKdPW3ygJR4
 ---
 
 It's another potluck! In this episode, Scott and Wes answer your questions about MDX, portfolio projects for junior devs, code commenting, CSS property order, and more!

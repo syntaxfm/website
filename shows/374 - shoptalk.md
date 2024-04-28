@@ -3,6 +3,7 @@ number: 374
 title: ShopTalk x Syntax
 date: 1627477200833
 url: https://traffic.libsyn.com/syntax/Syntax374.mp3
+spotify_url: https://open.spotify.com/episode/3vMipT7dHGHBRkf7xWra9g
 guest:
   - name: Chis Coyier
     github: chriscoyier

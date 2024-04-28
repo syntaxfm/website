@@ -3,6 +3,7 @@ number: 285
 title: Hasty Treat - Our First Bucks Made From Web Dev, Teaching, YouTube and Tutorials
 date: 1600693200882
 url: https://traffic.libsyn.com/syntax/Syntax285.mp3
+spotify_url: https://open.spotify.com/episode/6dWBgSbmQhbZjMsX52hout
 ---
 
 In this Hasty Treat, Scott and Wes talk about their first steps in the word of entrepreneurship and web dev specifically.

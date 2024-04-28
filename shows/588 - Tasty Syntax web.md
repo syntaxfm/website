@@ -3,6 +3,7 @@ number: 588
 title: New Syntax Website Brainstorm! IRL!
 date: 1678881600619
 url: https://traffic.libsyn.com/syntax/Syntax_-_588.mp3
+spotify_url: https://open.spotify.com/episode/6HOeM07nrA2XSDedz9tXQl
 ---
 
 In this episode of Syntax, Wes and Scott are in the same room together brainstorming new ideas for the Syntax.fm website: search, transcripts, video, tags, audio player, podcast hosting, and more!

@@ -3,6 +3,7 @@ number: 524
 title: Bookmarklets
 date: 1666008000227
 url: https://traffic.libsyn.com/syntax/Syntax_-_524.mp3
+spotify_url: https://open.spotify.com/episode/5Mv4XpThuneuPfqDXZZ26x
 ---
 
 In this Hasty Treat, Scott and Wes take Matt Busche's suggestion and talk all about bookmarklets and scripts to modify or manipulate web pages.

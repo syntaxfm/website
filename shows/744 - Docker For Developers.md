@@ -3,6 +3,7 @@ number: 744
 title: Docker For Developers
 date: 1710759600328
 url: https://traffic.libsyn.com/syntax/Syntax_-_744.mp3
+spotify_url: https://open.spotify.com/episode/6JLfwpgXVml49tVeHfD3Zc
 youtube_url: https://www.youtube.com/watch?v=TeU0RJgL6y4
 ---
 

@@ -3,6 +3,7 @@ number: 754
 title: How to Level Up Your Web Development Career
 date: 1712746800000
 url: https://traffic.libsyn.com/syntax/Syntax_-_754.mp3
+spotify_url: https://open.spotify.com/episode/1CTJwjJRTYy8yQN5iCMRUf
 youtube_url: https://www.youtube.com/watch?v=58iwH5q5BKA
 ---
 

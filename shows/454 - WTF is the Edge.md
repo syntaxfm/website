@@ -3,6 +3,7 @@ number: 454
 title: WTF is the Edge? Edge Compute / Functions
 date: 1651665600813
 url: https://traffic.libsyn.com/syntax/Syntax_-_454.mp3
+spotify_url: https://open.spotify.com/episode/2bxDDdy8qS4UkHm8RLAgFy
 ---
 
 In this episode of Syntax, Wes and Scott talk about what edge functions are, the upsides and downsides of edge functions, and what they're used for.

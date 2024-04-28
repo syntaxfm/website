@@ -3,6 +3,7 @@ number: 514
 title: Supper Club × Arc Browser with Hursh Agrawal
 date: 1663934400417
 url: https://traffic.libsyn.com/syntax/Syntax_-_514.mp3
+spotify_url: https://open.spotify.com/episode/1RKz5nqCv76IysF7brO9m9
 guest:
   name: Hursh Agrawal
   github: hurshagrawal

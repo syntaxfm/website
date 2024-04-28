@@ -3,6 +3,7 @@ number: 660
 title: Anything but Coding - Landscaping, Fitness, and more!
 date: 1693396800953
 url: https://traffic.libsyn.com/syntax/Syntax_-_660.mp3
+spotify_url: https://open.spotify.com/episode/2coDfkKUKV31WTSpSPDhPq
 ---
 
 In this episode of Syntax, Wes and Scott talk about concerts, getting tired because of being old, landscaping, spinning on your head, gym updates, awful search engines and awful ethics for YouTubers, rewiring old engines, and what's being streamed.

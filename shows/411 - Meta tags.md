@@ -3,6 +3,7 @@ number: 411
 title: Meta Tags
 date: 1638799200774
 url: https://traffic.libsyn.com/syntax/Syntax_-_411.mp3
+spotify_url: https://open.spotify.com/episode/3h3565EjQWE5zyu5ZuGlGC
 ---
 
 In this Hasty Treat, Wes and Scott talk about Meta Tags.

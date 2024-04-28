@@ -3,6 +3,7 @@ number: 682
 title: Design Systems with Brad Frost
 date: 1697803200320
 url: https://traffic.libsyn.com/syntax/Syntax_-_682.mp3
+spotify_url: https://open.spotify.com/episode/3cmlkdnusASALKv88pobw0
 guest:
   name: Brad Frost
   of: Big Medium

@@ -3,6 +3,7 @@ number: 513
 title: The Productivity Episode
 date: 1663761600892
 url: https://traffic.libsyn.com/syntax/Syntax_-_513.mp3
+spotify_url: https://open.spotify.com/episode/7on3ZUGzNmTHzJx40euFvi
 ---
 
 In this episode of Syntax, Wes and Scott talk through what they do to get things done - apps for to do list tracking, calendar blocking, and how they determine a productive day.

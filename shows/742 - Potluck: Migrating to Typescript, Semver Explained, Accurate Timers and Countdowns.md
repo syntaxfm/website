@@ -3,6 +3,7 @@ number: 742
 title: "Potluck: Migrating to Typescript, Semver Explained, Accurate Timers and Countdowns"
 date: 1710327600372
 url: https://traffic.libsyn.com/syntax/Syntax_-_742.mp3
+spotify_url: https://open.spotify.com/episode/3jQ6pQKrifOL19CBfQVGFj
 youtube_url: https://www.youtube.com/watch?v=ZzDQjSqPhcU
 ---
 

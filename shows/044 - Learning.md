@@ -3,6 +3,7 @@ number: 44
 title: How to Learn New Things Quickly
 date: 1525266395740
 url: https://traffic.libsyn.com/syntax/Syntax044.mp3
+spotify_url: https://open.spotify.com/episode/6YdmOCTrRxHF0fvGasE6Y4
 ---
 
 Scott and Wes talk about how they learn new things quickly. Scott also tells a crazy story about his weekend.

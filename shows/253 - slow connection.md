@@ -3,6 +3,7 @@ number: 253
 title: Hasty Treat - Developing for Slow and Spotty Connections
 date: 1591016400405
 url: https://traffic.libsyn.com/syntax/Syntax253.mp3
+spotify_url: https://open.spotify.com/episode/2aklvfv0u9KRieAoyiuuXS
 ---
 
 In this Hasty Treat, Scott and Wes talk about how to develop for slow internet connections. 

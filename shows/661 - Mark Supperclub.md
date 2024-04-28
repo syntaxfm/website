@@ -3,6 +3,7 @@ number: 661
 title: Supper Club × Shipping ESM with Mark Erikson
 date: 1693569600565
 url: https://traffic.libsyn.com/syntax/Syntax_-_661.mp3
+spotify_url: https://open.spotify.com/episode/0XRRB8K85FcXCQ6nAGDz0X
 guest:
   name: Mark Erikson
   of: Redux

@@ -3,6 +3,7 @@ number: 122
 title: How We Manage Our Lives — Notion, Todos, Notes, Focusing, Calendars, Goal tracking, and more!
 date: 1551276000663
 url: https://traffic.libsyn.com/syntax/Syntax122.mp3
+spotify_url: https://open.spotify.com/episode/1TXQT3HLza94a1JAN8Y7Vf
 ---
 
 In this episode, Wes and Scott talk about life management — the systems and tools for managing all the the busy details of life and work. 

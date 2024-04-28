@@ -3,6 +3,7 @@ number: 412
 title: JavaScript and Hardware × Cars, Factories, Heavy Industry, Robots, and the Internet of Things
 date: 1638964815142
 url: https://traffic.libsyn.com/syntax/Syntax_-_412.mp3
+spotify_url: https://open.spotify.com/episode/1etA6Mu57mFue6vTdU59h6
 guest:
   name: Anth Rogan
   github: anthrogan

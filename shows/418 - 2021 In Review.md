@@ -3,6 +3,7 @@ number: 418
 title: 2021 In Review
 date: 1640786400759
 url: https://traffic.libsyn.com/syntax/Syntax_-_418.mp3
+spotify_url: https://open.spotify.com/episode/0qKAjKMZElYRJVWVbVuqP1
 ---
 
 In this episode of Syntax, Scott and Wes review their predictions and highlights for 2021.

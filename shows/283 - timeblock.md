@@ -3,6 +3,7 @@ number: 283
 title: Hasty Treat - Time Block Planning
 date: 1600088400352
 url: https://traffic.libsyn.com/syntax/Syntax283.mp3
+spotify_url: https://open.spotify.com/episode/3aP3TQ1ppWq8iJlzg2U6kC
 ---
 
 In this Hasty Treat, Scott and Wes talk about time block planning — what it is and how it can help you increase your productivity!

@@ -3,6 +3,7 @@ number: 268
 title: Potluck - Beating Procrastination × Rollup vs Webpack × Leadership × Code Planning × Styled Components × More!
 date: 1595422800426
 url: https://traffic.libsyn.com/syntax/Syntax268.mp3
+spotify_url: https://open.spotify.com/episode/78tgR2OE8aXU6E6Q6esevw
 ---
 
 It's another potluck! In this episode, Scott and Wes answer your questions about transitioning to backend dev, tips for beating procrastination, Rollup vs Webpack, code planning, growing as a leader and more!

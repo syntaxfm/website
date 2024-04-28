@@ -3,6 +3,7 @@ number: 138
 title: What's New in Web Development
 date: 1556110800230
 url: https://traffic.libsyn.com/syntax/Syntax138.mp3
+spotify_url: https://open.spotify.com/episode/1TS5d9Odgxe7civJ3Net5C
 ---
 
 In this episode of Syntax, Scott and Wes talk about what's new in web development: new promise static methods, new CSS functions, PWAs and more!

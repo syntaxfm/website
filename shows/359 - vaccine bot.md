@@ -3,6 +3,7 @@ number: 359
 title: Hasty Treat - Making a Vaccine Bot with JavaScript
 date: 1623070800700
 url: https://traffic.libsyn.com/syntax/Syntax359.mp3
+spotify_url: https://open.spotify.com/episode/3HLWcYtRkH2F6FCwUsum1D
 ---
 
 In this Hasty Treat, Scott and Wes talk about Wes' experiment building a vaccine bot!

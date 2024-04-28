@@ -3,6 +3,7 @@ number: 649
 title: Supper Club × Ryan Florence of Remix
 date: 1691150400417
 url: https://traffic.libsyn.com/syntax/Syntax_-_649.mp3
+spotify_url: https://open.spotify.com/episode/5lzcYgXEuZP3Vxndltax3N
 guest:
   name: Ryan Florence
   of: Remix

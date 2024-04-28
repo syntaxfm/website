@@ -3,6 +3,7 @@ number: 619
 title: Supper Club × Bramus Van Damme on CSS
 date: 1685102400778
 url: https://traffic.libsyn.com/syntax/Syntax_-_619.mp3
+spotify_url: https://open.spotify.com/episode/2MR3eCv6PFfkYSemfs9dZk
 guest:
   name: Bramus Van Damme
   of: Google, CSS WG

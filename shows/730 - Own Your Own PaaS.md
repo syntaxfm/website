@@ -3,6 +3,7 @@ number: 730
 title: Own your own PaaS
 date: 1707912000321
 url: https://traffic.libsyn.com/syntax/730.mp3
+spotify_url: https://open.spotify.com/episode/6MHBiY9rUzyQo9KOBwOxWE
 youtube_url: https://youtu.be/nCWznQ0HY9c
 ---
 

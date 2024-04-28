@@ -3,6 +3,7 @@ number: 481
 title: Supper Club × Voice Coding with Pokey Rule
 date: 1657281600941
 url: https://traffic.libsyn.com/syntax/Syntax_-_481.mp3
+spotify_url: https://open.spotify.com/episode/5FwvTlOrjl0Tr9ZCzERlQT
 guest:
   name: Pokey Rule
   github: pokey

@@ -3,6 +3,7 @@ number: 320
 title: Potluck — $100k Dev Jobs × Sponsored Blog Posts × How To Keep Your Skills Up To Date × Libraries vs Custom × Dev Tools × More!
 date: 1611151200813
 url: https://traffic.libsyn.com/syntax/Syntax320.mp3
+spotify_url: https://open.spotify.com/episode/36FQ4kRHQgQL1Wqlq4A6PI
 ---
 
 It's another potluck! In this episode, Scott and Wes answer your questions about VS Code, JavaScript, $100k-per-year dev jobs, sponsored blog posts, how to use dev tools, how to keep your skills up to date, and more!

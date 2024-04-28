@@ -3,6 +3,7 @@ number: 204
 title: 2019 Gift Guide
 date: 1576072800500
 url: https://traffic.libsyn.com/syntax/Syntax204.mp3
+spotify_url: https://open.spotify.com/episode/3tuy4YqShnn6mWmHBdBoh0
 ---
 
 In this episode of Syntax, Scott and Wes bring you an entire episode of sick picks — the 2019 gift guide!

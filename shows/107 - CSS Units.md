@@ -3,6 +3,7 @@ number: 107
 title: Hasty Treat - CSS Units
 date: 1546869600660
 url: https://traffic.libsyn.com/syntax/Syntax107.mp3
+spotify_url: https://open.spotify.com/episode/3EcsliayXuiJaxVTFuwtyw
 ---
 
 In this Hasty Treat, Scott and Wes talk about CSS units (e.g. rems vs ems, px, ch, vmax), when and why you want to be using them, tips and tricks, and more! 

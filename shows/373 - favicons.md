@@ -3,6 +3,7 @@ number: 373
 title: Hasty Treat - The Surprisingly Exciting World of Favicons
 date: 1627304400833
 url: https://traffic.libsyn.com/syntax/Syntax373.mp3
+spotify_url: https://open.spotify.com/episode/1dQFDqAqocI8LdqOv0Se12
 ---
 
 In this Hasty Treat, Scott and Wes talk about favicons. Favicons are a bit of mystery and something people don't talk about that often. 

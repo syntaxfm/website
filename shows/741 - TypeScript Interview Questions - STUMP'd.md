@@ -3,6 +3,7 @@ number: 741
 title: TypeScript Interview Questions -  STUMP’d
 date: 1710154800289
 url: https://traffic.libsyn.com/syntax/Syntax_-_741.mp3
+spotify_url: https://open.spotify.com/episode/3DjAv7rR5rowQ4BYy9AR3Q
 youtube_url: https://www.youtube.com/watch?v=o5NrF0Ny9K8
 ---
 

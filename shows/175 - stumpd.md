@@ -3,6 +3,7 @@ number: 175
 title: Hasty Treat - Stump'd
 date: 1567429200493
 url: https://traffic.libsyn.com/syntax/Syntax175.mp3
+spotify_url: https://open.spotify.com/episode/4GiZeA9vAt509y1szod4yO
 ---
 
 In this Hasty Treat, Scott and Wes are back with another edition of Stump'd! where they try to stump each other with interview questions. 

@@ -3,6 +3,7 @@ number: 542
 title: Serverless Limitations 
 date: 1669636800439
 url: https://traffic.libsyn.com/syntax/Syntax_-_542.mp3
+spotify_url: https://open.spotify.com/episode/3l75bUcxx0yPlBgcHbZgMt
 ---
 
 In this episode of Syntax, Wes and Scott talk through some of the limitations of using serverless in your project.

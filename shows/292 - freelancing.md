@@ -3,6 +3,7 @@ number: 292
 title: How to Make Freelancing Easier 
 date: 1602507600281
 url: https://traffic.libsyn.com/syntax/Syntax292.mp3
+spotify_url: https://open.spotify.com/episode/4lfCq6XqybyInMevI8fULK
 ---
 
 In this episode of Syntax, Scott and Wes talk about how to make freelancing easier — how to avoid burnout, and tips and tricks to make it successful. 

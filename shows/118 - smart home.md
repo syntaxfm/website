@@ -3,6 +3,7 @@ number: 118
 title: The Smart Home
 date: 1550066400423
 url: https://traffic.libsyn.com/syntax/Syntax118.mp3
+spotify_url: https://open.spotify.com/episode/2wtxgf9nhcDLqrkTBN17rI
 ---
 
 In this episode, Wes and Scott talk about the Smart Home — all the different tech available, how it works together, pitfalls to avoid, hardware, software, and more!

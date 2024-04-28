@@ -3,6 +3,7 @@ number: 541
 title: Supper Club × Anything But Coding with Wes and Scott
 date: 1669381200200
 url: https://traffic.libsyn.com/syntax/Syntax_-_541.mp3
+spotify_url: https://open.spotify.com/episode/4i4MnDfrjwuyBgQVinHRC9
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Scott and Wes! Talking about BBQ, electric cars, workout equipment, home renos - but they do sneak in a bit of coding talk!

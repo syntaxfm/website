@@ -3,6 +3,7 @@ number: 630
 title: Potluck × Warp × Skeleton UI × Edge Functions × Donut Scoping
 date: 1687348800872
 url: https://traffic.libsyn.com/syntax/Syntax_-_630.mp3
+spotify_url: https://open.spotify.com/episode/021B8BH3oYxt4zqPJjRwdC
 ---
 
 In this potluck episode of Syntax, Wes and Scott answer your questions about rate-limiting an API, using Wasp, Enums in TypeScript, styling React projects, using Edge functions, and more.

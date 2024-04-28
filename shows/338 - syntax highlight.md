@@ -3,6 +3,7 @@ number: 338
 title: Syntax Highlight (We Review Your Portfolio)
 date: 1616590800377
 url: https://traffic.libsyn.com/syntax/Syntax338.mp3
+spotify_url: https://open.spotify.com/episode/6wlNZsutKmtvKBCoEDOkWr
 ---
 
 It's another Syntax Highlight. In this episode, Scott and Wes take a look at portfolios and websites and evaluate them from the perspective of a hiring manager.

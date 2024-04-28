@@ -3,6 +3,7 @@ number: 691
 title: Cloudflare Workers Are Next Level With Rita Kozlov And Brendan Irvine-Broque
 date: 1699617600000
 url: https://traffic.libsyn.com/syntax/Syntax_-_691.mp3
+spotify_url: https://open.spotify.com/episode/3KAwrEcpBljWaZ1CMWHfvj
 guest:
   - name: Brendan Irvine-Broque
     of: Cloudflare

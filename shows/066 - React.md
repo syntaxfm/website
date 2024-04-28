@@ -3,6 +3,7 @@ number: 66
 title: The React Episode
 date: 1534338000260
 url: https://traffic.libsyn.com/syntax/Syntax066.mp3
+spotify_url: https://open.spotify.com/episode/4O8hvYXho9kQlgl8HJdTT5
 ---
 
 In this episode Wes and Scott do a deep dive into React - what it is, best practices and all the ins and outs of how the framework works.

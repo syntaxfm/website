@@ -3,6 +3,7 @@ number: 748
 title: Fitness Will Make You a Better Developer
 date: 1711537200075
 url: https://traffic.libsyn.com/syntax/Syntax_-_748.mp3
+spotify_url: https://open.spotify.com/episode/3sKW811QJ2heDEKzZLVE2P
 youtube_url: https://www.youtube.com/watch?v=DArcOe9B4Xw
 ---
 

@@ -3,6 +3,7 @@ number: 734
 title: HTMX Web Apps with Carson Gross
 date: 1708689600588
 url: https://traffic.libsyn.com/syntax/Syntax_-_734.mp3
+spotify_url: https://open.spotify.com/episode/5NspOjGNyjBvP0yYnpAIIh
 youtube_url: https://www.youtube.com/watch?v=5LOAGWGQwRA
 guest:
   name: Carson Gross

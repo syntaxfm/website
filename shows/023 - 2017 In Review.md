@@ -3,6 +3,7 @@ number: 23
 title: Web Development in 2017 && a look ahead at 2018 🍾🍷
 date: 1513178281000
 url: https://traffic.libsyn.com/syntax/Syntax023.mp3
+spotify_url: https://open.spotify.com/episode/6UZC5qB28eD8hmUmvE0xU1
 ---
 
 What happened in web development in 2017? What were our personal and professional feats in 2017? What should we look forward to in 2018?

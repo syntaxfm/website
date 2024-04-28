@@ -3,6 +3,7 @@ number: 714
 title: CSS :has() in Every Browser! 10 Uses
 date: 1704715200888
 url: https://traffic.libsyn.com/syntax/Syntax_-_714.mp3
+spotify_url: https://open.spotify.com/episode/7nrYmt41BRkTGuxOAspGvk
 ---
 
 CSS :has() is out in all browsers and Wes and Scott have got the top 10 reasons you should start using :has() now.

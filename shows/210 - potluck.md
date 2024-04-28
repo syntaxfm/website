@@ -3,6 +3,7 @@ number: 210
 title: Potluck - Fonts × Frameworks × Teas × Coding Subscriptions × Client Work × More!
 date: 1577887200995
 url: https://traffic.libsyn.com/syntax/Syntax210.mp3
+spotify_url: https://open.spotify.com/episode/3bktBVChDHgDnOFqU8Cakv
 ---
 
 It's another potluck! In this episode, Scott and Wes answer your questions about fonts, frameworks vs custom, drinking tea, learning to code, client work, and more!

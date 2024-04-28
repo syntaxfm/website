@@ -3,6 +3,7 @@ number: 205
 title: Hasty Treat - The New MacBook Pro for Web Development
 date: 1576504800785
 url: https://traffic.libsyn.com/syntax/Syntax205.mp3
+spotify_url: https://open.spotify.com/episode/5Pd12JnRZlSdiKyBcMXr9x
 ---
 
 In this Hasty Treat, Scott and Wes talk about the new 16" MacBook Pro and how it performs as a web development machine.

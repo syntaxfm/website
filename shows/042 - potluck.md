@@ -3,6 +3,7 @@ number: 42
 title: Potluck EP × Vue.js × Headless WP × Typescript & Flow × Productivity × Server Side Rendering × Yeoman
 date: 1524057971080
 url: https://traffic.libsyn.com/syntax/Syntax042.mp3
+spotify_url: https://open.spotify.com/episode/6bM2h0hViK6VBazqawHgWB
 ---
 
 It's a Potluck episode - you bring the questions and we turn them into tasty treats.

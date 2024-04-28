@@ -3,6 +3,7 @@ number: 379
 title: Hasty Treat - The Weird and Wonderful <link> Tag
 date: 1629118800910
 url: https://traffic.libsyn.com/syntax/Syntax379.mp3
+spotify_url: https://open.spotify.com/episode/3T1TlF3vsPlczVTGk65lUi
 ---
 
 In this Hasty Treat, Scott and Wes talk about the `<link>` tag — why it's weird and wonderful, and what you can do with it!

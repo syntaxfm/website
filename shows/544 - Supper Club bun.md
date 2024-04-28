@@ -3,6 +3,7 @@ number: 544
 title: Supper Club × Bun with Jared Sumner
 date: 1669982400952
 url: https://traffic.libsyn.com/syntax/Syntax_-_544.mp3
+spotify_url: https://open.spotify.com/episode/4N3XMvj4IXhdEFqVeFR2o7
 guest:
   name: Jared Sumner
   of: Bun

@@ -3,6 +3,7 @@ number: 389
 title: Hasty Treat - Webhooks
 date: 1632142800657
 url: https://traffic.libsyn.com/syntax/Syntax389.mp3
+spotify_url: https://open.spotify.com/episode/3Ym6RMEidIuLASs9QdoszU
 ---
 
 In this Hasty Treat, Scott and Wes talk about webhooks — one of those concepts that seems a lot scarier than it actually is. 

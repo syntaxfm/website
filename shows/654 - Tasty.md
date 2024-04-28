@@ -3,6 +3,7 @@ number: 654
 title: 6 or so New Approved and Proposed JavaScript APIs
 date: 1692187200499
 url: https://traffic.libsyn.com/syntax/Syntax_-_654.mp3
+spotify_url: https://open.spotify.com/episode/33NSLDvCuSdrerdtBQseor
 ---
 
 In this episode of Syntax, Wes and Scott talk about new approved and proposed JavaScript API changes including Promise.withResolvers, .at(), Immutable Array Methods, Array.fromAsync, and more.

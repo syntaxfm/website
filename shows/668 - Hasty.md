@@ -3,6 +3,7 @@ number: 668
 title: Hacking the Tonal - Proxying, Intercepting + Debugging Traffic?
 date: 1695038400132
 url: https://traffic.libsyn.com/syntax/Syntax_-_668.mp3
+spotify_url: https://open.spotify.com/episode/4fk5ecfR7OU4q6XXxpunNE
 ---
 
 In this Hasty Treat, Scott and Wes talk about how you can intercept and debug traffic going out from your computer or other internet connected devices in your home, or your garage!

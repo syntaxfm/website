@@ -3,6 +3,7 @@ number: 211
 title: Hasty Treat - Modules in Node
 date: 1578319200102
 url: https://traffic.libsyn.com/syntax/Syntax211.mp3
+spotify_url: https://open.spotify.com/episode/64TORH3xleuD1wcnFsrH1E
 ---
 
 In this Hasty Treat, Scott and Wes talk about modules in Node — what are they, how they're different from browser modules, and more!

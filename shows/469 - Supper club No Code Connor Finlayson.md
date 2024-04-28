@@ -3,6 +3,7 @@ number: 469
 title: Supper Club × Is No Code going to take our jobs? with Connor Finlayson
 date: 1654862400056
 url: https://traffic.libsyn.com/syntax/Syntax_-_469.mp3
+spotify_url: https://open.spotify.com/episode/2GPc08w1kCvthkkdHTTcoG
 guest:
   name: Connor Finlayson
   twitter: FinlaysonConnor

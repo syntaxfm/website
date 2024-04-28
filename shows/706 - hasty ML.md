@@ -3,6 +3,7 @@ number: 706
 title: AI and ML - The Pieces Explained
 date: 1702900800931
 url: https://traffic.libsyn.com/syntax/Syntax_-_706.mp3
+spotify_url: https://open.spotify.com/episode/1YZ3YoqnEcSYDwkdJT6Y8e
 ---
 
 In this episode of Syntax, Wes and Scott talk about understanding the integration of different components in AI models, the choice between traditional models and Language Learning Models (LLM), the relevance of the Hugging Face library, demystify Llama, discuss spaces in AI, and highlight available services.

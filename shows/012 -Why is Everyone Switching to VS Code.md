@@ -3,6 +3,7 @@ number: 12
 title: Why is everyone switching to VS Code?
 date: 1505913216876
 url: https://traffic.libsyn.com/syntax/Syntax012.mp3
+spotify_url: https://open.spotify.com/episode/6in3pfOeGG9Fo1DSa1rM9O
 ---
 
 Scott and Wes talk about switching to VS Code. What is so good about it? Killer features? Must have Plugins!

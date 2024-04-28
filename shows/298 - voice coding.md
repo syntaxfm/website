@@ -3,6 +3,7 @@ number: 298
 title: Voice Coding is Really Good with Josh Comeau
 date: 1604498400713
 url: https://traffic.libsyn.com/syntax/Syntax298.mp3
+spotify_url: https://open.spotify.com/episode/0E5fUDdS9ji4v2iJs8SJXE
 guest:
   name: Josh Comeau
   github: joshwcomeau

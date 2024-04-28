@@ -3,6 +3,7 @@ number: 749
 title: Coding Shopify with Anne and Trudy of Design Packs
 date: 1711710000247
 url: https://traffic.libsyn.com/syntax/Syntax_-_749.mp3
+spotify_url: https://open.spotify.com/episode/6mQN7gV6EACq3ObbbLsJwG
 youtube_url: https://www.youtube.com/watch?v=WY9q2PVd2q4
 guest:
   - name: Anne Thomas

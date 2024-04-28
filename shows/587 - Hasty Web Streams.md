@@ -3,6 +3,7 @@ number: 587
 title: Web Streams Explained
 date: 1678708800952
 url: https://traffic.libsyn.com/syntax/Syntax_-_587.mp3
+spotify_url: https://open.spotify.com/episode/6M6VbeVEbYpqxL18VQrJ97
 ---
 
 In this Hasty Treat, Scott and Wes explain the what, why, and how of web streaming, and some of the jargon you might encounter with web streams.

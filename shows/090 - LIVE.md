@@ -3,6 +3,7 @@ number: 90
 title: Live at JAMstack_conf
 date: 1541599200956
 url: https://traffic.libsyn.com/syntax/Syntax090.mp3
+spotify_url: https://open.spotify.com/episode/0iIbOwtwjyBA2RRp8TtfG9
 ---
 
 This week Scott and Wes are live at JAMstack_conf with games, Spicy JAM Tips, Q&As and more.

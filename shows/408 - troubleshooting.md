@@ -3,6 +3,7 @@ number: 408
 title: Troubleshooting
 date: 1637755200318
 url: https://traffic.libsyn.com/syntax/Syntax_-_408.mp3
+spotify_url: https://open.spotify.com/episode/16OqVYFo9BlHfRLwnOPdwF
 ---
 
 In this episode of Syntax, Scott and Wes talk about ways they troubleshoot issues with their code.

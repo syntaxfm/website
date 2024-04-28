@@ -3,6 +3,7 @@ number: 392
 title: Changelog Frontend Feud
 date: 1632920400655
 url: https://traffic.libsyn.com/syntax/Syntax392.mp3
+spotify_url: https://open.spotify.com/episode/0gRlUacBqpNng13HByVE9z
 ---
 
 In this episode of Syntax, Scott and Wes do a crossover episode with Changelog's JS Party! Your favorite web dev podcasts join forces for a super collab that’ll knock you frontend off! Amelia joins Chris Coyier and Dave Rupert from ShopTalk Show, while Divya teams up with Wes Bos and Scott Tolinski from Syntax. Let the FEUDing begin!

@@ -3,6 +3,7 @@ number: 252
 title: Potluck - Courses for Kids × Sub-Components × Recursion × DB Hosting × Frameworks × Data Structures & Algorithms × More!
 date: 1590584400446
 url: https://traffic.libsyn.com/syntax/Syntax252.mp3
+spotify_url: https://open.spotify.com/episode/0JHMivDelHH6OMU3Uz8q7R
 ---
 
 It's another potluck! In this episode, Scott and Wes answer your questions about kids learning to code, React sub-components, why it's so hard to scale, new frameworks, data structures, and more!

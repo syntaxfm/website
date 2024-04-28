@@ -3,6 +3,7 @@ number: 441
 title: SSL Certs, Approvals and Cloudflare
 date: 1647864000500
 url: https://traffic.libsyn.com/syntax/Syntax_-_441.mp3
+spotify_url: https://open.spotify.com/episode/1EYulNayfT9pQLDqkYimxh
 ---
 
 In this Hasty Treat, Scott and Wes talk about getting SSL certificates set up between your hosting, Cloudflare, and other web apps you may use.

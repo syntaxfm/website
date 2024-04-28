@@ -3,6 +3,7 @@ number: 719
 title: Fullstack TypeScript Apps with No Build Step?! with Brian LeRoux
 date: 1705662000711
 url: https://traffic.libsyn.com/syntax/Syntax_-_719fx.mp3
+spotify_url: https://open.spotify.com/episode/6KxFRlGETstKa2edEjAlPe
 # A Single Guest looks like this:
 guest:
   name: Brian LeRoux

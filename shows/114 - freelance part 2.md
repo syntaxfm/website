@@ -3,6 +3,7 @@ number: 114
 title: The Freelance Client Lifecycle - Part 2
 date: 1548856800983
 url: https://traffic.libsyn.com/syntax/Syntax114.mp3
+spotify_url: https://open.spotify.com/episode/50L5uEEg7h9z26WD7I1D9K
 ---
 
 In this episode Scott and Wes continue their discussion about the freelance client lifecycle—from design and development, to project hand-off, and everything in between.

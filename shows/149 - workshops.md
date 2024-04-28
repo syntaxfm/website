@@ -3,6 +3,7 @@ number: 149
 title: Hasty Treat - Workshops
 date: 1559566800837
 url: https://traffic.libsyn.com/syntax/Syntax149.mp3
+spotify_url: https://open.spotify.com/episode/2OiVu7X30Zt038FksRD2hf
 ---
 
 In this Hasty Treat, Scott and Wes talk about how to give a killer workshop, as well as benefits and best practices!

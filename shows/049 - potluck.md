@@ -3,6 +3,7 @@ number: 49
 title: Potluck EP × SSR × SEO × Tips for Students × Music × Security × GraphQL
 date: 1528290000736
 url: https://traffic.libsyn.com/syntax/Syntax049.mp3
+spotify_url: https://open.spotify.com/episode/3POUbxYlvScW7hhFZeFm15
 ---
 
 It's a Potluck episode - you bring the questions and we turn them into tasty treats.

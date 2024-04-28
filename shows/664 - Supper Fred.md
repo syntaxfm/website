@@ -3,6 +3,7 @@ number: 664
 title: Supper Club × What's New With Astro with Fred Schott
 date: 1694170800957
 url: https://traffic.libsyn.com/syntax/Syntax_-_664.mp3
+spotify_url: https://open.spotify.com/episode/5E5a38mCaV6gwTmfj91Jxc
 guest: 
   name: Fred Schott
   github: fredkschott

@@ -3,6 +3,7 @@ number: 240
 title: Thinking Ahead for Emergency UI When Building a Website
 date: 1586955600171
 url: https://traffic.libsyn.com/syntax/Syntax240.mp3
+spotify_url: https://open.spotify.com/episode/651C7EVW5ujanf5Pt0G6Vv
 ---
 
 In this episode of Syntax, Scott and Wes talk about emergency UI when building a website. During an emergency, you need to relay information to your website visitors as quickly and efficiently as possible. How do you do that?  What do you need in place on your website?

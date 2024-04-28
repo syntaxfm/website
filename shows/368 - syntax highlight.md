@@ -3,6 +3,7 @@ number: 368
 title: Syntax Highlight — We Review Your Portfolios
 date: 1625662800210
 url: https://traffic.libsyn.com/syntax/Syntax368.mp3
+spotify_url: https://open.spotify.com/episode/48b4E2kMBPlN7E6X1KKtr1
 ---
 
 In this episode of Syntax, Scott and Wes review your portfolios!

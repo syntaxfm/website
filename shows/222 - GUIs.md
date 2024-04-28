@@ -3,6 +3,7 @@ number: 222
 title: Are Web Dev GUIs Going to Replace Us?
 date: 1581516000789
 url: https://traffic.libsyn.com/syntax/Syntax222.mp3
+spotify_url: https://open.spotify.com/episode/2ga4aoA7XtbrN3vXUaKNhp
 ---
 
 In this episode of Syntax, Scott and Wes talk about web dev GUIs — what are they, are they going to replace developers, are they good or bad, and more!

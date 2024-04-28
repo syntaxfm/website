@@ -3,6 +3,7 @@ number: 708
 title: How We Made Syntax.fm Faster
 date: 1703505600803
 url: https://traffic.libsyn.com/syntax/Syntax_-_708.mp3
+spotify_url: https://open.spotify.com/episode/4i7m2xcd1iyfQOhjvrXBcE
 ---
 
 In this episode of Syntax, Wes and Scott talk through the ways they improved performance on the Syntax.fm website, how they knew it was slow to begin with, and the various changes they made to caching, and loading transcripts to improve the speed of the site.

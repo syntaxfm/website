@@ -3,6 +3,7 @@ number: 57
 title: Hasty Treat - Dot Files
 date: 1531746000805
 url: https://traffic.libsyn.com/syntax/Syntax057.mp3
+spotify_url: https://open.spotify.com/episode/5HaCIqXBcoLwdTnc2imwl7
 ---
 
 In this Hasty Treat (Short episode) Scott and Wes discuss dot files, what they are, how to use and manage them as well as best practices and more.

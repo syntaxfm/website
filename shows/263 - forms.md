@@ -3,6 +3,7 @@ number: 263
 title: Hasty Treat - Forms, Captchas, Honeypots, Dealing With Malicious Users and the Sad State of Contact Forms
 date: 1594040400843
 url: https://traffic.libsyn.com/syntax/Syntax263.mp3
+spotify_url: https://open.spotify.com/episode/687oyzlE7fMoeOge27Wqpz
 ---
 
 In this Hasty Treat, Scott and Wes talk about forms, captchas, dealing with malicious users, and more!

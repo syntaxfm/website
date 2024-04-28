@@ -3,6 +3,7 @@ number: 152
 title: Debugging Tools + Tips
 date: 1560344400254
 url: https://traffic.libsyn.com/syntax/Syntax152.mp3
+spotify_url: https://open.spotify.com/episode/3xo35XDcLxlODRItBSEQEb
 ---
 
 In this episode of Syntax, Scott and Wes talk about debugging — tools, techniques, and the mindset needed to debug a problem and get through it as quickly as possible.

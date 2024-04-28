@@ -3,6 +3,7 @@ number: 627
 title: Electronics for Beginners
 date: 1686744000805
 url: https://traffic.libsyn.com/syntax/Syntax_-_627.mp3
+spotify_url: https://open.spotify.com/episode/1i3PSVY9e962rzUalCI8Ol
 ---
 
 In this episode of Syntax, Wes and Scott talk through an introduction to electronics that you can do in your own home with microcontrollers.

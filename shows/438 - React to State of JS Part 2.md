@@ -3,6 +3,7 @@ number: 438
 title: Part 2 of Wes and Scott React to the State of JS
 date: 1646827200412
 url: https://traffic.libsyn.com/syntax/Syntax_-_438.mp3
+spotify_url: https://open.spotify.com/episode/4uCc8g0PlXY9bUtcm7MhCJ
 ---
 
 In this second part episode of Syntax, Wes and Scott continue talking about the 2021 State of JavaScript survey: mobile and desktop libraries, testing, monorepo, runtimes, flavors of JavaScript, and more!

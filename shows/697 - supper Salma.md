@@ -3,6 +3,7 @@ number: 697
 title: What is DevRel with Salma Alam-Naylor
 date: 1700827200123
 url: https://traffic.libsyn.com/syntax/Syntax_-_697.mp3
+spotify_url: https://open.spotify.com/episode/1CTWOZKM9rCsz3VnshiAFp
 guest:
   name: Salma Alam-Naylor
   of: DevRel @ Sentry

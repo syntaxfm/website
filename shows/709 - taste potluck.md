@@ -3,6 +3,7 @@ number: 709
 title: Potluck × Naming Tech × Generators × Layers Follow Up × Sick Picks Page
 date: 1703678400187
 url: https://traffic.libsyn.com/syntax/Syntax_-_709.mp3
+spotify_url: https://open.spotify.com/episode/5CxB2u1XpV9cSU9VIw15oQ
 ---
 
 In this potluck episode of Syntax, Wes and Scott answer your questions about naming things in programming, use case for generators, CSS @Layers follow up, database prefixes, generalist vs specialist, where's the sick pick page, and more!

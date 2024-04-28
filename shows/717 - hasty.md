@@ -3,6 +3,7 @@ number: 717
 title: How to be Productive
 date: 1705320000623
 url: https://traffic.libsyn.com/syntax/Syntax_-_717.mp3
+spotify_url: https://open.spotify.com/episode/69a7xxIYLfDtzgc2KExaY3
 ---
 
 We're kicking off 2024 by talking about productivity tips we're using to stay focused, to do apps, calendars, focus states, and customizing our code editor.

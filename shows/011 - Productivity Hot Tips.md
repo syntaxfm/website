@@ -3,6 +3,7 @@ number: 11
 title: Our favourite Productivity Hacks 🔥
 date: 1505307081000
 url: https://traffic.libsyn.com/syntax/Syntax011.mp3
+spotify_url: https://open.spotify.com/episode/3bti7hLq4GqB9VUtketeUC
 ---
 
 Scott and Wes - Do you sleep? How do you get so much done? You replied to me way too fast! We share our best productivity hot tips and the apps we use the GSD.

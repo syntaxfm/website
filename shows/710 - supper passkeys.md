@@ -3,6 +3,7 @@ number: 710
 title: A Passwordless Future Passkeys with Anna Pobletts
 date: 1703847600902
 url: https://traffic.libsyn.com/syntax/Syntax_-_710.mp3
+spotify_url: https://open.spotify.com/episode/13TzvPFzo86BFOohWMVPW3
 guest:
   name: Anna Poblets
   social: https://www.linkedin.com/in/anna-pobletts/

@@ -3,6 +3,7 @@ number: 121
 title: Hasty Treat - Tips to Succeed on YouTube
 date: 1551103200787
 url: https://traffic.libsyn.com/syntax/Syntax121.mp3
+spotify_url: https://open.spotify.com/episode/1DWiVyxtu9Q0clWAvgTE87
 ---
 
 In this Hasty Treat, Scott and Wes talk tips to succeed on YouTube!

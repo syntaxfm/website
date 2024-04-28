@@ -3,6 +3,7 @@ number: 679
 title: Creator of Swift, Tesla Autopilot & Tensorflow. New AI language Mojo with Chris Lattner
 date: 1697198400832
 url: https://traffic.libsyn.com/syntax/Syntax_-_679.mp3
+spotify_url: https://open.spotify.com/episode/2ZFLTlorV8PyEhvSB1R9HR
 guest:
     name: Chris Lattner
     of: Modular AI

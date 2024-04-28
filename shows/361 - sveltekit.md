@@ -3,6 +3,7 @@ number: 361
 title: Hasty Treat - What is SvelteKit?
 date: 1623675600113
 url: https://traffic.libsyn.com/syntax/Syntax361.mp3
+spotify_url: https://open.spotify.com/episode/1ArcSgm8NXjlJBdFypOnJs
 ---
 
 In this Hasty Treat, Scott and Wes talk about SvelteKit — what it is and why you might want to use it.

@@ -3,6 +3,7 @@ number: 106
 title: A Look Forward to 2019
 date: 1546437600727
 url: https://traffic.libsyn.com/syntax/Syntax106.mp3
+spotify_url: https://open.spotify.com/episode/6OSju8MgKMsvlLVeX3dRr1
 ---
 
 In this episode Wes and Scott take a look back at 2018 as well as a look forward to what's coming in 2019. 

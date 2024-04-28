@@ -3,6 +3,7 @@ number: 384
 title: STUMP'D - Coding Interview Questions
 date: 1630501200382
 url: https://traffic.libsyn.com/syntax/Syntax384.mp3
+spotify_url: https://open.spotify.com/episode/6bO5D1jjC5OQxDmnv1Z1RD
 ---
 
 In this episode of Syntax, Scott and Wes are back with another edition of Stump'd! where they try to stump each other with interview questions.

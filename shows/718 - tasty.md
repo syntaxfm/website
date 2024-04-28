@@ -3,6 +3,7 @@ number: 718
 title: React Server Components
 date: 1705492800308
 url: https://traffic.libsyn.com/syntax/Syntax_-_718.mp3
+spotify_url: https://open.spotify.com/episode/5JwAbbhNapEXfWGyByNEDL
 ---
 
 Wes and Scott talk through server components, the difference between server components and client components, reasons to run something server side, how server components work, using forms and buttons, what they like and don't like about it, and tips to learn more.

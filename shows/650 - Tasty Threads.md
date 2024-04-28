@@ -3,6 +3,7 @@ number: 650
 title: Why is Facebook’s HTML + CSS Such a Mess?
 date: 1691409600257
 url: https://traffic.libsyn.com/syntax/Syntax_-_650.mp3
+spotify_url: https://open.spotify.com/episode/6x1caVKCUVg2LHRChZzQfm
 ---
 
 In this episode of Syntax, Wes and Scott talk about why Threads, Instagram, and all things Facebook have what seems like really messy HTML and CSS?

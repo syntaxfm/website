@@ -3,6 +3,7 @@ number: 703
 title: The Observer Pattern
 date: 1702296000874
 url: https://traffic.libsyn.com/syntax/Syntax_-_703.mp3
+spotify_url: https://open.spotify.com/episode/3fWa8UXTg9ctI2y6hAfsCl
 ---
 
 In this episode of Syntax, Wes and Scott give a high level overview of the observer pattern, what is the observer, what are downsides to too many observers, and more.

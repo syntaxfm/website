@@ -3,6 +3,7 @@ number: 651
 title: Potluck × Is TypeScript Fancy Duct Tape × Back Pain × Cloud Service Rate Limits
 date: 1691582400184
 url: https://traffic.libsyn.com/syntax/Syntax_-_651.mp3
+spotify_url: https://open.spotify.com/episode/0SoOLeNGEb91UWfs3X7bAj
 ---
 
 In this potluck episode of Syntax, Wes and Scott answer your questions about TypeScript just being fancy duct tape, dealing with back pain while coding, rate limits on cloud services, what to use for email provider, is Firebase a legit platform, and more!

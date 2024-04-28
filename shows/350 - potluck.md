@@ -3,6 +3,7 @@ number: 350
 title: Potluck — Is it worth it to still learn WordPress? × Is Safari the new IE11? × Mobile website testing × Pirated content × Styled components × SSGs × Transitioning to full-time freelance × More!
 date: 1620219600877
 url: https://traffic.libsyn.com/syntax/Syntax350.mp3
+spotify_url: https://open.spotify.com/episode/6fm4fxZ7Um3ZrtXH4nggaC
 ---
 
 It's another Potluck! In this episode, Scott and Wes answer your questions about blogging best practices, support IE11, Nest.js, mobile website testing, pirated course content, building .edu websites, transitioning to full-time freelance work, and more!

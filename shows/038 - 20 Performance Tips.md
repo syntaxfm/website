@@ -3,6 +3,7 @@ number: 38
 title: 20 Easy Win Performance Tips
 date: 1521640416110
 url: https://traffic.libsyn.com/syntax/Syntax038.mp3
+spotify_url: https://open.spotify.com/episode/00q3pKHqWhAqV9IhcXendZ
 ---
 
 In this episode, Scott and Wes chat about 20 different ways you can improve the perf, speed and overall user experience of your websites.

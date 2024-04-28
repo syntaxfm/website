@@ -3,6 +3,7 @@ number: 413
 title: How To Do Things In Svelte
 date: 1639396800259
 url: https://traffic.libsyn.com/syntax/Syntax_-_413.mp3
+spotify_url: https://open.spotify.com/episode/5ToWTCq4n54SAET5pJYVmR
 ---
 
 In this Hasty Treat, Wes and Scott talk about how to do things in Svelte.

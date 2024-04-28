@@ -3,6 +3,7 @@ number: 549
 title: JavaScript in 2022
 date: 1671019200216
 url: https://traffic.libsyn.com/syntax/Syntax_-_549.mp3
+spotify_url: https://open.spotify.com/episode/24L3dSIrcOUSLSMfV8gPSo
 ---
 
 In this episode of Syntax, Wes and Scott look at the the Web Almanac's report on the role of JavaScript on the web in 2022.

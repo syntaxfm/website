@@ -3,6 +3,7 @@ number: 647
 title: Rust for JavaScript Developers - Node vs Rust Concepts
 date: 1690804800384
 url: https://traffic.libsyn.com/syntax/Syntax_-_647.mp3
+spotify_url: https://open.spotify.com/episode/4GUUAiFO4HLOkIhR1cfQiK
 ---
 
 In this Hasty Treat, Scott and Wes talk about Rust, and how the concepts might translate for JavaScript developers looking to try writing in Rust.

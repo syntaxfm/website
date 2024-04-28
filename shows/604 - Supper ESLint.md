@@ -3,6 +3,7 @@ number: 604
 title: Supper Club × ESLint with Nicholas Zakas
 date: 1682078400507
 url: https://traffic.libsyn.com/syntax/Syntax_-_604.mp3
+spotify_url: https://open.spotify.com/episode/1PdksSRDK0K4px1G7gTXNS
 guest:
   name: Nicholas Zakas
   of: ESLint

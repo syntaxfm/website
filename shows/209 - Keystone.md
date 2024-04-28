@@ -3,6 +3,7 @@ number: 209
 title: Hasty Treat - Wes Teaches Scott about Keystone.js
 date: 1577714400995
 url: https://traffic.libsyn.com/syntax/Syntax209.mp3
+spotify_url: https://open.spotify.com/episode/0BwG5VNYSArJtWq7uhg3nC
 ---
 
 In this Hasty Treat, Wes teaches Scott about Keystone.js — best practices, things to avoid, why you should check it out, and more!

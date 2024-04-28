@@ -3,6 +3,7 @@ number: 324
 title: TypeScript Fundamentals
 date: 1612360800858
 url: https://traffic.libsyn.com/syntax/Syntax324.mp3
+spotify_url: https://open.spotify.com/episode/30LSJlaMSCUE7zputusS3X
 ---
 
 In this episode of Syntax, Scott and Wes talk about TypeScript fundamentals — what it is, how you use it, why people love it so much, and more!

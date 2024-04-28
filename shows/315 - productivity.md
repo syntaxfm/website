@@ -3,6 +3,7 @@ number: 315
 title: Hasty Treat - Hyper Productivity with Keyboard Shortcuts + Window Management
 date: 1609768800918
 url: https://traffic.libsyn.com/syntax/Syntax315.mp3
+spotify_url: https://open.spotify.com/episode/4cQLZglMxnMySVlutbdA4b
 ---
 
 In this Hasty Treat, Scott and Wes talk about keyboard shortcuts, window management, and how to stay productive.

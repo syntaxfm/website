@@ -3,6 +3,7 @@ number: 690
 title: How To Dark Mode and Beyond
 date: 1699448400939
 url: https://traffic.libsyn.com/syntax/Syntax_-_690_v2.mp3
+spotify_url: https://open.spotify.com/episode/28KYRKgvWZG99o0KxP8hNR
 ---
 
 In this episode of Syntax, Wes and Scott talk about the process they are using for extending the Syntax website with themes, including a dark mode and secret custom themes. They also talk about issues encountered with theming and CSS, including flashes of un-themed content.

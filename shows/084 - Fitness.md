@@ -3,6 +3,7 @@ number: 84
 title: Fitness for Developers
 date: 1539781200331
 url: https://traffic.libsyn.com/syntax/Syntax084.mp3
+spotify_url: https://open.spotify.com/episode/3CLIfzgplNxG5UeSHPbvkK
 ---
 
 In this episode Wes and Scott discuss fitness for developers. As a follow-up to [Episode 20](https://syntax.fm/show/020/fitness-nutrition-and-losing-weight), they talk about the status of their fitness goals from that episode, what's worked, what hasn't, and how you can be more fit yourself in 2018.

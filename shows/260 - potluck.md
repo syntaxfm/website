@@ -3,6 +3,7 @@ number: 260
 title: Potluck - Libraries vs Frameworks × Firefox × Career Advice For Teenagers × Who Would Win a Thumb War? × More!
 date: 1593003600219
 url: https://traffic.libsyn.com/syntax/Syntax260.mp3
+spotify_url: https://open.spotify.com/episode/2vR82BzfOsP10YeyJnpW9j
 ---
 
 It's another potluck! In this episode, Scott and Wes answer your questions about libraries vs frameworks, Firefox, who would win a thumb war, and more!
