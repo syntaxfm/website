@@ -112,6 +112,7 @@ model Show {
   date        DateTime
   url         String
   youtube_url String?
+  spotify_url String?
   show_notes  String      @db.Text
   hash        String      @unique
   slug        String

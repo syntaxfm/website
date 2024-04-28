@@ -12,6 +12,7 @@ interface FrontMatterGuest {
 	twitter: string;
 	url: string;
 	youtube_url?: string;
+	spotify_url?: string;
 	social: string[];
 }
 
@@ -54,7 +55,7 @@ export async function import_or_update_all_changed_shows() {
 
 			// If show doesn't exist or the hash has changed. Refresh
 			if (!existing_show || existing_show.hash !== hash) {
-        console.log(`Refreshing Show # ${number}`);
+				console.log(`Refreshing Show # ${number}`);
 				await parse_and_save_show_notes(md_file_contents, hash, number, md_file_path);
 			}
 		}
@@ -99,8 +100,9 @@ export async function parse_and_save_show_notes(
 				slug: slug(data.title),
 				date,
 				number,
-        url: data.url,
+				url: data.url,
 				youtube_url: data.youtube_url,
+				spotify_url: data.spotify_url,
 				show_notes: content,
 				hash: hash,
 				md_file,
@@ -114,6 +116,7 @@ export async function parse_and_save_show_notes(
 				date,
 				url: data.url,
 				youtube_url: data.youtube_url,
+				spotify_url: data.spotify_url,
 				show_notes: content,
 				hash: hash,
 				md_file,
