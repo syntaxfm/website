@@ -5,7 +5,7 @@ date: 1691755200455
 url: https://traffic.libsyn.com/syntax/Syntax_-_652.mp3
 guest:
   name: Brandon Bayer
-  if: Flightcontrol
+  of: Flightcontrol
   github: flybayer
   twitter: flybayer
   url: https://www.flightcontrol.dev/
