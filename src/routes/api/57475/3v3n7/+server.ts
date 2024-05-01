@@ -12,7 +12,8 @@ export const POST: RequestHandler = async ({ request, locals }) => {
 	req.headers.delete('cookie');
 	// 3. Set the IP address of the client. Because we use cloudflare, we need to get the IP address from the headers
 	const ip =
-		request.headers.get('true-client-ip') || // Cloudflare
+		request.headers.get('true-client-ip') || // Cloudflare Enterprise
+		request.headers.get('CF-Connecting-IP') || // Cloudflare Free, IPV6
 		request.headers.get('x-forwarded-for') || // Common Proxy / Load Balancer (Vercel included)
 		locals.session.ip; // Svelte backup, probably just x-forwarded-for
 	// Logging for testing, delete for production
