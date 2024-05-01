@@ -13,8 +13,9 @@ export const POST: RequestHandler = async ({ request, locals }) => {
 		request.headers.get('CF-Connecting-IP') || // Cloudflare Free, apparently the same thing as true-client-ip but free??
 		request.headers.get('x-forwarded-for') || // Common Proxy / Load Balancer (Vercel included)
 		locals.session.ip; // Svelte backup, probably just x-forwarded-for
+	// overwrite the IP address with the one we found
 	req.headers.set('X-Forwarded-For', ip);
-	// Recreate the request with the new headers, we have to do it this way because the headers are immutable
+	// Forward the request to Plausible
 	const res = await fetch('https://plausible.io/api/event', req);
 	return new Response(res.body, res);
 };
