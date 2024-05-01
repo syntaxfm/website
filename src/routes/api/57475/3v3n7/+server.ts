@@ -24,6 +24,7 @@ export const POST: RequestHandler = async ({ request, locals }) => {
 	// Recreate the request with the new headers, we have to do it this way because the headers are immutable
 	return fetch('https://plausible.io/api/event', {
 		body: request.body,
+		duplex: 'half',
 		cache: request.cache,
 		credentials: request.credentials,
 		headers,
