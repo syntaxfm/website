@@ -7,8 +7,9 @@ const SENTRY_PROJECT_IDS = ['4505358945419264'];
 export const OPTIONS = optionsHandler();
 
 export const POST: RequestHandler = async ({ request }) => {
+	let envelope: string = '';
 	try {
-		const envelope = await request.text();
+		envelope = await request.text();
 		const piece = envelope.split('\n')[0];
 		const header = JSON.parse(piece);
 		const dsn = new URL(header['dsn']);
@@ -27,7 +28,7 @@ export const POST: RequestHandler = async ({ request }) => {
 
 		return Response.json({}, { status: 200 });
 	} catch (e) {
-		console.error('error tunneling to sentry', e);
+		console.error('error tunneling to sentry', e, envelope);
 		let message: string | undefined = undefined;
 		if (e instanceof Error) {
 			message = e.message;
