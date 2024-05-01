@@ -22,7 +22,7 @@ function get_client_ip(request: Request) {
 
 export const POST: RequestHandler = async ({ request, locals }) => {
 	// 1. dupliate the request:
-	const req = new Request(request);
+	const req = request.clone();
 	// 2. Delete any cookies - we dont need them
 	req.headers.delete('cookie');
 	// 3. Set the IP address of the client. Because we use cloudflare, we need to get the IP address from the headers
@@ -36,7 +36,8 @@ export const POST: RequestHandler = async ({ request, locals }) => {
 		xForwardedFor: req.headers.get('x-forwarded-for')
 	});
 	req.headers.set('X-Forwarded-For', ip);
-	return fetch('https://plausible.io/api/event', req);
+	const res = await fetch('https://plausible.io/api/event', req);
+	return res;
 
 	const body = await request.text();
 	const response = await fetch('https://plausible.io/api/event', {
