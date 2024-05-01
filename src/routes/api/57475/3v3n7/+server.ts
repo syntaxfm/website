@@ -24,19 +24,19 @@ export const POST: RequestHandler = async ({ request, locals }) => {
 	// 1. dupliate the request:
 	const req = new Request(request);
 	// 2. Delete any cookies - we dont need them
-	request.headers.delete('cookie');
+	req.headers.delete('cookie');
 	// 3. Set the IP address of the client. Because we use cloudflare, we need to get the IP address from the headers
 	const ip =
-		request.headers.get('true-client-ip') || // Cloudflare
-		request.headers.get('x-forwarded-for') || // Common Proxy / Load Balancer (Vercel included)
+		req.headers.get('true-client-ip') || // Cloudflare
+		req.headers.get('x-forwarded-for') || // Common Proxy / Load Balancer (Vercel included)
 		locals.session.ip; // Svelte backup, probably just x-forwarded-for
 	// Logging for testing, delete for production
 	console.log('IP:', ip, {
-		trueClientIp: request.headers.get('true-client-ip'),
-		xForwardedFor: request.headers.get('x-forwarded-for')
+		trueClientIp: req.headers.get('true-client-ip'),
+		xForwardedFor: req.headers.get('x-forwarded-for')
 	});
-	request.headers.set('X-Forwarded-For', ip);
-	return fetch('https://plausible.io/api/event', request);
+	req.headers.set('X-Forwarded-For', ip);
+	return fetch('https://plausible.io/api/event', req);
 
 	const body = await request.text();
 	const response = await fetch('https://plausible.io/api/event', {
