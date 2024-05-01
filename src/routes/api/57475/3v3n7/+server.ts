@@ -4,40 +4,38 @@ import optionsHandler from '../../optionsHandler';
 
 export const OPTIONS = optionsHandler();
 
-function get_client_ip(request: Request) {
-	const headerIPs = [
-		'true-client-ip', // Cloudflare
-		'x-forwarded-for'
-	];
-	return (
-		request.headers.get('x-real-ip') ||
-		request.headers.get('x-client-ip') ||
-		request.headers.get('x-remote-ip') ||
-		request.headers.get('x-cluster-client-ip') ||
-		request.headers.get('forwarded') ||
-		request.headers.get('forwarded-for') ||
-		request.headers.get('forwarded-for')
-	);
-}
-
 export const POST: RequestHandler = async ({ request, locals }) => {
-	// 1. dupliate the request:
-	const req = request.clone();
+	// 1. Make a copy of the headers so we can modify them. This is necessary because the headers are immutable.
+	const headers = new Headers(request.headers);
 	// 2. Delete any cookies - we dont need them
-	req.headers.delete('cookie');
+	headers.delete('cookie');
 	// 3. Set the IP address of the client. Because we use cloudflare, we need to get the IP address from the headers
 	const ip =
-		req.headers.get('true-client-ip') || // Cloudflare
-		req.headers.get('x-forwarded-for') || // Common Proxy / Load Balancer (Vercel included)
+		request.headers.get('true-client-ip') || // Cloudflare
+		request.headers.get('x-forwarded-for') || // Common Proxy / Load Balancer (Vercel included)
 		locals.session.ip; // Svelte backup, probably just x-forwarded-for
 	// Logging for testing, delete for production
 	console.log('IP:', ip, {
-		trueClientIp: req.headers.get('true-client-ip'),
-		xForwardedFor: req.headers.get('x-forwarded-for')
+		trueClientIp: request.headers.get('true-client-ip'),
+		xForwardedFor: request.headers.get('x-forwarded-for')
 	});
-	req.headers.set('X-Forwarded-For', ip);
-	const res = await fetch('https://plausible.io/api/event', req);
-	return res;
+	// const headers = req.headers;
+	headers.set('X-Forwarded-For', ip);
+	// Recreate the request with the new headers, we have to do it this way because the headers are immutable
+	return fetch('https://plausible.io/api/event', {
+		body: request.body,
+		cache: request.cache,
+		credentials: request.credentials,
+		headers,
+		integrity: request.integrity,
+		keepalive: request.keepalive,
+		method: request.method,
+		mode: request.mode,
+		redirect: request.redirect,
+		referrer: request.referrer,
+		referrerPolicy: request.referrerPolicy,
+		signal: request.signal
+	});
 
 	const body = await request.text();
 	const response = await fetch('https://plausible.io/api/event', {
