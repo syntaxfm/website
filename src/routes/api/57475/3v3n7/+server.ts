@@ -19,7 +19,8 @@ export const POST: RequestHandler = async ({ request, locals }) => {
 	// Logging for testing, delete for production
 	console.log('IP:', ip, {
 		trueClientIp: request.headers.get('true-client-ip'),
-		xForwardedFor: request.headers.get('x-forwarded-for')
+		xForwardedFor: request.headers.get('x-forwarded-for'),
+		cfConnectingIp: request.headers.get('CF-Connecting-IP')
 	});
 	// const headers = req.headers;
 	req.headers.set('X-Forwarded-For', ip);
