@@ -22,7 +22,7 @@ function get_client_ip(request: Request) {
 
 export const POST: RequestHandler = async ({ request, locals }) => {
 	// 1. dupliate the request:
-	const req = new Request(req);
+	const req = new Request(request);
 	// 2. Delete any cookies - we dont need them
 	request.headers.delete('cookie');
 	// 3. Set the IP address of the client. Because we use cloudflare, we need to get the IP address from the headers
