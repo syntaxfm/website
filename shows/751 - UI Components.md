@@ -67,6 +67,7 @@ Scott and Wes explore UI Components, discussing functionality, styling, accessib
     * [Mantine](https://mantine.dev/)
     * [AgnosUI](https://amadeusitgroup.github.io/AgnosUI/latest/)
     * [Ariakit](https://ariakit.org/)
+    * [drab](https://drab.robino.dev)
 * **[59:02](#t=59:02)** Sick Picks & Shameless Plugs.
 
 ### Sick Picks
