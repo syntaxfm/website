@@ -3,6 +3,7 @@ number: 763
 title: Web Scraping + Reverse Engineering APIs
 date: 1714561200000
 url: https://traffic.libsyn.com/syntax/Syntax_-_763.mp3
+spotify_url: https://open.spotify.com/episode/6QuwVPSE0iSORqDnx4VSVN
 youtube_url: https://www.youtube.com/watch?v=5xWZT0MWz-4
 ---
 
