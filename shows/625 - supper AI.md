@@ -3,7 +3,6 @@ number: 625
 title: Supper Club × OpenAI, Future of programming, LLMs, and Math with Andrey Mishchenko
 date: 1686312000953
 url: https://traffic.libsyn.com/syntax/Syntax_-_625.mp3
-spotify_url: https://open.spotify.com/episode/5fbLq4ixlKbIwepRbLyU2j
 guest:
   name: Andrey Mishchenko
   of: Open AI

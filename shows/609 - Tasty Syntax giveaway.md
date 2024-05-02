@@ -3,7 +3,6 @@ number: 609
 title: The Syntax Giveaway Site - Codes, Bots, Tech Stack and More!
 date: 1680523200345
 url: https://traffic.libsyn.com/syntax/Syntax_-_609.mp3
-spotify_url: https://open.spotify.com/episode/2YsO3oN11pnVtTZlaVeEy8
 ---
 
 In this episode of Syntax, Wes and Scott talk about the tech stack they used to create the Syntax giveaway site for the Sentry + Syntax announcement week. What were the features of the site, how'd they generate proper codes, and how'd they stop developers from hacking the system?
