@@ -6,7 +6,7 @@ url: https://traffic.libsyn.com/syntax/Syntax_-_652.mp3
 spotify_url: https://open.spotify.com/episode/36tVWSISn6QJVsCkzqSUlp
 guest:
   name: Brandon Bayer
-  if: Flightcontrol
+  of: Flightcontrol
   github: flybayer
   twitter: flybayer
   url: https://www.flightcontrol.dev/
