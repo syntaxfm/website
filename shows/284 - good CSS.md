@@ -3,7 +3,6 @@ number: 284
 title: Writing Good CSS
 date: 1600261200352
 url: https://traffic.libsyn.com/syntax/Syntax284.mp3
-spotify_url: https://open.spotify.com/episode/2jO7AmwScorS9FhSh1Uxtm
 ---
 
 In this episode of Syntax, Scott and Wes talk about writing good CSS. 

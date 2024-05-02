@@ -3,7 +3,6 @@ number: 207
 title: Hasty Treat - How We Launch Courses
 date: 1577109600835
 url: https://traffic.libsyn.com/syntax/Syntax207.mp3
-spotify_url: https://open.spotify.com/episode/5Gtc4TQ9vUBwDN6JF9JCpK
 ---
 
 In this Hasty Treat, Scott and Wes talk about launching courses — a behind-the-scenes look at their platforms, processes, best practices, and what it takes to get a course published. 

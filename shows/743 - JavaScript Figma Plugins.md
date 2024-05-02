@@ -3,7 +3,6 @@ number: 743
 title: JavaScript Figma Plugins & Working at GitHub With Cameron McEfee
 date: 1710500400860
 url: https://traffic.libsyn.com/syntax/Syntax_-_743.mp3
-spotify_url: https://open.spotify.com/episode/4VXoFBqV6RKXCH7mDrA5uS
 youtube_url: https://www.youtube.com/watch?v=0CXs2IdXneY
 guest:
   name: Cameron McEfee

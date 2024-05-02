@@ -3,7 +3,6 @@ number: 613
 title: Supper Club × Dylan Jhaveri - Video for the Web and MUX
 date: 1683892800856
 url: https://traffic.libsyn.com/syntax/Syntax_-_613.mp3
-spotify_url: https://open.spotify.com/episode/0X5R9RdGiX9fZikFzZUFXc
 guest:
   name: Dylan Jhaveri
   of: Mux

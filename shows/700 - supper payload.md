@@ -3,7 +3,6 @@ number: 700
 title: Payload is Rails for JS with TypeScript, React and Drizzle (James Mikrut)
 date: 1701428400253
 url: https://traffic.libsyn.com/syntax/Syntax_-_700.mp3
-spotify_url: https://open.spotify.com/episode/1mSCeXYHnk78f40DKytS9F
 guest:
   name: James Mikrut
   of: Payload

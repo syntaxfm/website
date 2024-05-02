@@ -3,7 +3,6 @@ number: 535
 title: Supper Club × Open Table LIVE SHOW
 date: 1668168000919
 url: https://traffic.libsyn.com/syntax/Syntax_-_535.mp3
-spotify_url: https://open.spotify.com/episode/0TdSCZathNHBmqR0agkAyn
 ---
 
 In this supper club episode of Syntax, Wes and Scott recorded a live open table episode with guests calling in to talk about Wasm, building Riverside.fm, home networking, getting a job at Microsoft, Svelte and Sveltekit, htmx, and more!

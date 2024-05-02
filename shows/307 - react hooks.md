@@ -3,7 +3,6 @@ number: 307
 title: Hasty Treat - Why should I use React Hooks?
 date: 1607349600135
 url: https://traffic.libsyn.com/syntax/Syntax307.mp3
-spotify_url: https://open.spotify.com/episode/6MyHjjbDmwiNHXpVcvnL7n
 ---
 
 In this Hasty Treat, Scott and Wes talk about React Hooks and why you might want to use them instead of class components.

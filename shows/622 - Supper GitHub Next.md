@@ -3,7 +3,6 @@ number: 622
 title: Supper Club × Matt Rothenberg and Idan Gazit on Github Next
 date: 1685707200587
 url: https://traffic.libsyn.com/syntax/Syntax_-_622.mp3
-spotify_url: https://open.spotify.com/episode/1YVr3egTJTCRDekcfMOiKl
 guest:
   - name: Matt Rothenberg
     github: mattrothenberg

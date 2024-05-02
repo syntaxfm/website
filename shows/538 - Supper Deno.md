@@ -3,7 +3,6 @@ number: 538
 title: Supper Club × Ryan Dahl and Deno
 date: 1668772800611
 url: https://traffic.libsyn.com/syntax/Syntax_-_538_v2.mp3
-spotify_url: https://open.spotify.com/episode/2LaR8MjBq8s28ztLwZTktq
 guest:
   name: Ryan Dahl
   of: Deno

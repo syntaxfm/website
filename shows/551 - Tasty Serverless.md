@@ -3,7 +3,6 @@ number: 551
 title: “Serverless” Databases
 date: 1671451200552
 url: https://traffic.libsyn.com/syntax/Syntax_-_551.mp3
-spotify_url: https://open.spotify.com/episode/1CzlMTg49hg0CNHinDQ6XB
 ---
 
 In this episode of Syntax, Wes and Scott talk about your options for database when you're working with serverless.

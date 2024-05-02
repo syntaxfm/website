@@ -3,7 +3,6 @@ number: 565
 title: Supper Club × Simen Svale Skogsrud and Espen Hovlandsdal from Sanity
 date: 1674216000661
 url: https://traffic.libsyn.com/syntax/Syntax_-_565.mp3
-spotify_url: https://open.spotify.com/episode/6bHHAfEggujMea025YgLfR
 guest:
   - name: Simen Svale Skogsrud
     github: simen

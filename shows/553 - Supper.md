@@ -3,7 +3,6 @@ number: 553
 title: Supper Club × Switching into Coding and climbing the Pommade ladder with Kenneth Lyerly
 date: 1671796800550
 url: https://traffic.libsyn.com/syntax/Syntax_-_553.mp3
-spotify_url: https://open.spotify.com/episode/5kFEoIydISdog3OQtgqJId
 guest:
   name: Kenneth Lyerly
   github: kenput3r

@@ -3,7 +3,6 @@ number: 595
 title: Supper Club × Web Components and Lit with Justin Fagnani of Google
 date: 1680264000571
 url: https://traffic.libsyn.com/syntax/Syntax_-_595_wsponsor.mp3
-spotify_url: https://open.spotify.com/episode/49S6pFX7vbEKmMnnd2IGKZ
 guest:
   name: Justin Fagnani
   of: Google, Lit

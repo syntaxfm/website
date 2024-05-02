@@ -3,7 +3,6 @@ number: 100
 title: Not a Clip Show - Episode 100! 
 date: 1544623200959
 url: https://traffic.libsyn.com/syntax/Syntax100.mp3
-spotify_url: https://open.spotify.com/episode/2p83bu7zLqLtwiJvpM4b97
 ---
 
 To celebrate episode 100, Wes and Scott are talking about Syntax - their most popular episodes, stats, Q&A, and a bunch of cool stuff about what it's been like making this show for 100 episodes.  

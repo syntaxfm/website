@@ -3,7 +3,6 @@ number: 96
 title: Holiday Gift Guide
 date: 1543413600637
 url: https://traffic.libsyn.com/syntax/Syntax096.mp3
-spotify_url: https://open.spotify.com/episode/5TSkrDH84mwGsjrtuaVFnh
 ---
 
 In this episode Wes and Scott bring you their holiday gift guide - things, ideas or experiences that would make great gifts for any developer, ranging from a few bucks to a few hundred bucks.

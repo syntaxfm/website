@@ -3,7 +3,6 @@ number: 295
 title: Hasty Treat - Temporal Date Objects in JavaScript 
 date: 1603717200713
 url: https://traffic.libsyn.com/syntax/Syntax295.mp3
-spotify_url: https://open.spotify.com/episode/49f4Ew8vmPV0MYic8OGFs9
 ---
 
 In this Hasty Treat, Scott and Wes talk about Temporal Date Objects in JavaScript — a WICKED AWESOME API for working with times and dates.

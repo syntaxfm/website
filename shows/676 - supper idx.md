@@ -3,7 +3,6 @@ number: 676
 title: Google IDX - VS Code in the Browser with David East
 date: 1696593600289
 url: https://traffic.libsyn.com/syntax/Syntax_-_676.mp3
-spotify_url: https://open.spotify.com/episode/1uEo9ObxreYndBhlwgfWPP
 guest:
   name: David East
   of: Google + Firebase

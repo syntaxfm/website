@@ -3,7 +3,6 @@ number: 445
 title: Types in JS?
 date: 1649073600425
 url: https://traffic.libsyn.com/syntax/Syntax_-_445.mp3
-spotify_url: https://open.spotify.com/episode/6uQhvYZL7WzEOaALlgaKgM
 ---
 
 In this Hasty Treat, Scott and Wes talk about a proposal for type syntax in JavaScript.

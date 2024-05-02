@@ -3,7 +3,6 @@ number: 220
 title: The Synology Show - Backups and Home Server
 date: 1580911200816
 url: https://traffic.libsyn.com/syntax/Syntax220.mp3
-spotify_url: https://open.spotify.com/episode/1nOmhf1tAwFRECzPG1gt0Y
 ---
 
 In this episode of Syntax, Scott and Wes talk about running backups and a home server — Synology setups, apps, and more!

@@ -3,7 +3,6 @@ number: 584
 title: Node in the Browser × WebContainers + NodeBox
 date: 1678104000674
 url: https://traffic.libsyn.com/syntax/Syntax_-_584.mp3
-spotify_url: https://open.spotify.com/episode/46UJd2q1J3G8YARNqu2mby
 ---
 
 In this Hasty Treat, Scott and Wes talk about two new services that allow you to run Node in the browser, WebContainers + NodeBox. Why Node in the browser? How does it work? And what are the differences and limitations of the services?

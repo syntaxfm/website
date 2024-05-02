@@ -3,7 +3,6 @@ number: 126
 title: Bootcamps vs School vs Self-learning
 date: 1552482000426
 url: https://traffic.libsyn.com/syntax/Syntax126.mp3
-spotify_url: https://open.spotify.com/episode/0hLIQPCuI9OjBoL2BhtDu4
 ---
 
 In this episode Wes and Scott talk about developer education — what to look for, what to avoid, and how to be a life-long learner with good problem solving skills.

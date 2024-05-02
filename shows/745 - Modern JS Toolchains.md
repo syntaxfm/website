@@ -3,7 +3,6 @@ number: 745
 title: Modern JS Toolchains (Biome, Oxc + More)
 date: 1710932400354
 url: https://traffic.libsyn.com/syntax/Syntax_-_745.mp3
-spotify_url: https://open.spotify.com/episode/6T1DSEfgkWX9a9xroxMaP5
 youtube_url: https://www.youtube.com/watch?v=CawsIaarxAE
 ---
 

@@ -3,7 +3,6 @@ number: 568
 title: Supper Club × Caleb Porzio
 date: 1674820800625
 url: https://traffic.libsyn.com/syntax/Syntax_-_568.mp3
-spotify_url: https://open.spotify.com/episode/1HIvO1mM3gsv5TcN4zltXj
 guest:
   name: Caleb Porzio
   of: Livewire, Alpine.js

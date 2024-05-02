@@ -3,7 +3,6 @@ number: 638
 title: Roundup - Sick AI Tools For Developers
 date: 1688990400829
 url: https://traffic.libsyn.com/syntax/Syntax_-_638.mp3
-spotify_url: https://open.spotify.com/episode/2TeiB68pkGjZkfHhZppOSD
 ---
 
 In this Hasty Treat, Scott and Wes talk about various AI tools for developers that are available.

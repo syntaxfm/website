@@ -3,7 +3,6 @@ number: 540
 title: Responsive Design Techniques
 date: 1669204800589
 url: https://traffic.libsyn.com/syntax/Syntax_-_540.mp3
-spotify_url: https://open.spotify.com/episode/6dnxrQvkzG1O6rEUxtzJZn
 ---
 
 In this episode of Syntax, Wes and Scott talk through some modern responsive design techniques that you may not have heard of, or haven't had a chance to use yet.

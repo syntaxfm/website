@@ -3,7 +3,6 @@ number: 155
 title: Hasty Treat - Making Yourself Uncomfortable To Grow
 date: 1561381200757
 url: https://traffic.libsyn.com/syntax/Syntax155.mp3
-spotify_url: https://open.spotify.com/episode/1BXRZGp49EOIFS8bMyuCkW
 ---
 
 In this Hasty Treat, Scott and Wes talk about pushing yourself in uncomfortable areas to grow as a programmer, be a better developer, and become more efficient in general.

@@ -3,7 +3,6 @@ number: 3
 title: CSS Preprocessors and Structuring CSS
 date: 1500465600000
 url: https://traffic.libsyn.com/syntax/Syntax003.mp3
-spotify_url: https://open.spotify.com/episode/4XezPlgbw8oQOqEENePFLp
 ---
 
 ## Show Notes

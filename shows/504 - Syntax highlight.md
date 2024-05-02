@@ -3,7 +3,6 @@ number: 504
 title: Syntax Highlight
 date: 1661947200162
 url: https://traffic.libsyn.com/syntax/Syntax_-_504.mp3
-spotify_url: https://open.spotify.com/episode/6ZY942pufKDK1GSH7UGsZs
 ---
 
 In this episode of Syntax, Wes and Scott review the websites you've submitted including Ruben Oliveira, Adam Collier, Consolecmnd, Brad Preston, and more!

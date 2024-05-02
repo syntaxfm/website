@@ -3,7 +3,6 @@ number: 187
 title: Hasty Treat - Float Tank Experiences
 date: 1571058000188
 url: https://traffic.libsyn.com/syntax/Syntax187.mp3
-spotify_url: https://open.spotify.com/episode/52ZiW58GifKVSG9kzpw6fR
 ---
 
 In this Hasty Treat, Scott and Wes talk about their experiences with float tanks!

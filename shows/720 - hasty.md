@@ -3,7 +3,6 @@ number: 720
 title: Where Does Time Come From?
 date: 1705924800738
 url: https://traffic.libsyn.com/syntax/Syntax_-_720.mp3
-spotify_url: https://open.spotify.com/episode/3M1J1NATuoeVya0s3CfWA8
 ---
 
 It is time. Wes and Scott attempt to blow your minds by talking about time, who's tracking time, where does time come from, what time is it in your browser vs someone else's server, and standards around time.

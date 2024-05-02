@@ -3,7 +3,6 @@ number: 550
 title: Supper Club × Remotion React Video with Jonny Burger
 date: 1671192000924
 url: https://traffic.libsyn.com/syntax/Syntax_-_550.mp3
-spotify_url: https://open.spotify.com/episode/22syxAMYni7GOa4l0KHHyB
 guest:
   name: Jonny Burger
   github: JonnyBurger

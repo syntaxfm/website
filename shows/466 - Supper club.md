@@ -3,7 +3,6 @@ number: 466
 title: Supper Club × Coding Burnout and Gardening with Anselm Hannemann
 date: 1654257600537
 url: https://traffic.libsyn.com/syntax/Syntax_-_466.mp3
-spotify_url: https://open.spotify.com/episode/7rZqDXzvlIXIcU1pCKH6UD
 guest:
   name: Anselm Hannemann
   github: anselmh

@@ -3,7 +3,6 @@ number: 265
 title: Hasty Treat - The Domain Name Game
 date: 1594645200954
 url: https://traffic.libsyn.com/syntax/Syntax265.mp3
-spotify_url: https://open.spotify.com/episode/7JIvtvyakwXeh9TbhFecoe
 ---
 
 In this Hasty Treat it's another edition of the Top Level Domain Game! 

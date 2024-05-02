@@ -3,7 +3,6 @@ number: 475
 title: Supper Club × Authoring Browser Extensions with Tim Leland
 date: 1656072000131
 url: https://traffic.libsyn.com/syntax/Syntax_-_475.mp3
-spotify_url: https://open.spotify.com/episode/3Worxx9xMcDVmiaH6hgoVk
 guest:
   name: Tim Leland
   twitter: TimLeland

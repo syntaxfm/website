@@ -3,7 +3,6 @@ number: 177
 title: Hasty Treat - Moving from PHP to Node
 date: 1568034000490
 url: https://traffic.libsyn.com/syntax/Syntax177.mp3
-spotify_url: https://open.spotify.com/episode/5wswfsZZ5DQP7cKKiuhPSG
 ---
 
 In this Hasty Treat, Scott and Wes talk about moving from PHP to Node — pitfalls to avoid, best practices and more!

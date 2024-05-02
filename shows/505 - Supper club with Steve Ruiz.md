@@ -3,7 +3,6 @@ number: 505
 title: Supper Club × Steve Ruiz Building a Drawing App
 date: 1662120000212
 url: https://traffic.libsyn.com/syntax/Syntax_-_505.mp3
-spotify_url: https://open.spotify.com/episode/4lLX15Y4gOitb1hc3UMXwj
 guest:
   name: Steve Ruiz
   of: TLDraw

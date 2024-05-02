@@ -3,7 +3,6 @@ number: 578
 title: Logging
 date: 1676894400302
 url: https://traffic.libsyn.com/syntax/Syntax_-_578.mp3
-spotify_url: https://open.spotify.com/episode/2SrgmtOPNkcpnmRlj613Tb
 ---
 
 In this Hasty Treat, Scott and Wes talk about the reasons why you should log errors, how it's not just for debugging, where to save logs, and apps and packages to help with logging.

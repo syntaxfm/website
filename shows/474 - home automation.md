@@ -3,7 +3,6 @@ number: 474
 title: Home Automation - A Look Ahead
 date: 1655899200696
 url: https://traffic.libsyn.com/syntax/Syntax_-_474.mp3
-spotify_url: https://open.spotify.com/episode/1N0tQVB9OOAjGID31215Xc
 ---
 
 In this Tasty Treat, Scott and Wes talk about the current state of home automation, and the kinds of software and hardware they're using in their homes to automate their lives.

@@ -3,7 +3,6 @@ number: 472
 title: Supper Club × Edge Functions and Deno with Eduardo Bouças of Netlify
 date: 1655467200259
 url: https://traffic.libsyn.com/syntax/Syntax_-_472_v2.mp3
-spotify_url: https://open.spotify.com/episode/2KNq6PdZrCihHxbEibfSBG
 guest:
   name: Eduardo Bouças
   github: eduardoboucas

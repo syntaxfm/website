@@ -3,7 +3,6 @@ number: 317
 title: Hasty Treat - A Podcast About Nothing
 date: 1610373600125
 url: https://traffic.libsyn.com/syntax/Syntax317.mp3
-spotify_url: https://open.spotify.com/episode/7MsamYAgpg6hog6tp7Hrhp
 ---
 
 In this Hasty Treat, Scott and Wes talk about nothing — null, undefined, void, false, 0, '', NaN, [], {}, never — all sorts of values that could mean the things that do not exist.

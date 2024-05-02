@@ -3,7 +3,6 @@ number: 723
 title: 'Svelte 5: Speed, Simplicity & Size'
 date: 1706529600007
 url: https://traffic.libsyn.com/syntax/723_-_Svelte_5_Speed_Simplicity__Size.mp3
-spotify_url: https://open.spotify.com/episode/0itaKjYpW1HQvUJknAQpmy
 ---
 
 Unveiling Svelte 5! delving into its latest features. From the impressive speed and simplicity to its compact size, discover what makes this new release so exciting.

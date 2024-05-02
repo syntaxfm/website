@@ -3,7 +3,6 @@ number: 335
 title: Hasty Treat - Environmental Variables
 date: 1615813200954
 url: https://traffic.libsyn.com/syntax/Syntax335.mp3
-spotify_url: https://open.spotify.com/episode/0wedlP7Q14Ra7vgbhQpiKd
 ---
 
 In this Hasty Treat, Scott and Wes talk about environment variables — what they are, where you should keep them, and more!

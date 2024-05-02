@@ -3,7 +3,6 @@ number: 93
 title: Hasty Treat - How to become well liked at work
 date: 1542636000892
 url: https://traffic.libsyn.com/syntax/Syntax093.mp3
-spotify_url: https://open.spotify.com/episode/0rmcR9dABP2n8teL0RZItt
 ---
 
 In this Hasty Treat, Scott and Wes talk about how to be well liked at work - dealing with difficult co-workers, being a better co-worker yourself, and general tips for improving your people skills.

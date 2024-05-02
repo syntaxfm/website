@@ -3,7 +3,6 @@ number: 534
 title: Potluck × Meeting IRL × SSG vs SSR × Domain Privacy
 date: 1668020381201
 url: https://traffic.libsyn.com/syntax/Syntax_-_534.mp3
-spotify_url: https://open.spotify.com/episode/44DPe7oD56YHaz2Z1IpXyI
 ---
 
 In this Potluck episode of Syntax, Wes and Scott answer your questions about meeting IRL, bookmarks, SSG vs SSR, domain privacy, deploying monorepos, and more.

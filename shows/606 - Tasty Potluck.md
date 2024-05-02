@@ -3,7 +3,6 @@ number: 606
 title: Potluck × Crypto × SEO × Status Pages × Learning Tools
 date: 1682510400439
 url: https://traffic.libsyn.com/syntax/Syntax_-_606.mp3
-spotify_url: https://open.spotify.com/episode/7trjHogVR2xHx7qFX2swf5
 ---
 
 In this potluck episode of Syntax, Wes and Scott answer your questions about type guards vs type casting, crypto usage, feedback for Syntax, custom status pages, SEO and metadata, uploading images, home automation, and more!

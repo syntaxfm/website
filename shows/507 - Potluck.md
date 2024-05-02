@@ -3,7 +3,6 @@ number: 507
 title: Potluck - How to Pick a Tech Stack × useEffect × setTimeout × Staying Focused
 date: 1662552000991
 url: https://traffic.libsyn.com/syntax/Syntax_-_507.mp3
-spotify_url: https://open.spotify.com/episode/0EmrXJmm8lAHcewID9aI1x
 ---
 
 In this episode of Syntax, Wes and Scott answer your questions about picking the right tech stack, whether useEffect is still useful, benefit to use uses setTimeout, and more!

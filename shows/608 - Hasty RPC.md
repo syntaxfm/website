@@ -3,7 +3,6 @@ number: 608
 title: RPC in JavaScript!
 date: 1682942400125
 url: https://traffic.libsyn.com/syntax/Syntax_-_608.mp3
-spotify_url: https://open.spotify.com/episode/1U07Dnaa13gWzJNTXIMdtx
 ---
 
 In this Hasty Treat, Scott and Wes talk about RPC, what it means, why are we talking about it now, tRPC, and will RPC take off?

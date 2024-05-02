@@ -3,7 +3,6 @@ number: 545
 title: GitHub Next Projects
 date: 1670241600525
 url: https://traffic.libsyn.com/syntax/Syntax_-_545.mp3
-spotify_url: https://open.spotify.com/episode/2d9TTf28Nk3dN1T0WolxUb
 ---
 
 In this Hasty Treat, Scott and Wes talk about new features coming to GitHub including Hey, GitHub!, GitHub Blocks, GitHub Copilot CLI, and more!

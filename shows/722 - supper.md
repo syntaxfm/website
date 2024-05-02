@@ -3,7 +3,6 @@ number: 722
 title: Next Level Web APIs. Bluetooth, File Access, Thomas Steiner - Project Fugu
 date: 1706270400604
 url: https://traffic.libsyn.com/syntax/Syntax_-_722.mp3
-spotify_url: https://open.spotify.com/episode/1ADyunOv5UnQZGk7TDzJWT
 guest:
   name: Thomas Steiner
   github: tomayac

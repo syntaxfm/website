@@ -3,7 +3,6 @@ number: 489
 title: Potluck! Node Versions, Old Man Internet, Responsive Design + MORE
 date: 1658923200457
 url: https://traffic.libsyn.com/syntax/Syntax_-_489.mp3
-spotify_url: https://open.spotify.com/episode/0WgFE7jhB6CxQ0wY6PXNZ2
 ---
 
 In this Potluck episode of Syntax, Wes and Scott answer your questions about resolving node version errors, using social media, bundler for building React component, and how does Syntax get made?

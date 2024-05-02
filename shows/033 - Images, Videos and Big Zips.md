@@ -3,7 +3,6 @@ number: 33
 title: Large Files - CDNs, Image Compression, Video Hosting, and Big Zips
 date: 1519222248753
 url: https://traffic.libsyn.com/syntax/Syntax033.mp3
-spotify_url: https://open.spotify.com/episode/1Stb1exYsINCXkp6nFp4XS
 ---
 
 Scott and Wes talk about working with images, videos and big zips. How do you host them? Do you need a CDN? What about compression?!

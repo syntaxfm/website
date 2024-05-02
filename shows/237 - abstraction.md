@@ -3,7 +3,6 @@ number: 237
 title: Hasty Treat - Abstraction
 date: 1586178000870
 url: https://traffic.libsyn.com/syntax/Syntax237.mp3
-spotify_url: https://open.spotify.com/episode/5eNacnfPNVSmVXoFKdhpHa
 ---
 
 In this Hasty Treat, Scott and Wes talk about abstraction in general as well as javascript programming.

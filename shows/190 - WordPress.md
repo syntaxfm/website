@@ -3,7 +3,6 @@ number: 190
 title: Migrating, Deploying, and Hosting WordPress
 date: 1571835600494
 url: https://traffic.libsyn.com/syntax/Syntax190.mp3
-spotify_url: https://open.spotify.com/episode/5MYhN87tlHcBiZfzajlCto
 guest:
   name: Brad Touesnard
   github: bradt

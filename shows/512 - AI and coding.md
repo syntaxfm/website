@@ -3,7 +3,6 @@ number: 512
 title: AI and Coding - Is Github Co-Pilot Worth It?
 date: 1663588800806
 url: https://traffic.libsyn.com/syntax/Syntax_-_512.mp3
-spotify_url: https://open.spotify.com/episode/5wEVE96C0QT6a52l5PwDyg
 ---
 
 In this Hasty Treat, Scott and Wes talk all about GitHub Co-Pilot and whether it's ethical, secure, worth it, gonna make you dumb, just going to get in your way, or the greatest thing for programmers to use.

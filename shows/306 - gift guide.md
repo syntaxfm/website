@@ -3,7 +3,6 @@ number: 306
 title: Sickpickisode - 2020 Web Developer Gift Guide
 date: 1606917600101
 url: https://traffic.libsyn.com/syntax/Syntax306.mp3
-spotify_url: https://open.spotify.com/episode/76ycyPEVpgSFbwxB6SAcfj
 ---
 
 It's an entire episode of Sick Picks! In this episode of Syntax, Scott and Wes talk about their 2020 developer gift guide!

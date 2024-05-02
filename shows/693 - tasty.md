@@ -3,7 +3,6 @@ number: 693
 title: Lessons Learned & Bugs Fixed from Launching Syntax.fm 
 date: 1700049600101
 url: https://traffic.libsyn.com/syntax/Syntax_-_693.mp3
-spotify_url: https://open.spotify.com/episode/6LND0bVAdZIDRTUs5aAp8D
 ---
 
 In this episode of Syntax, Wes and Scott talk about the lessons they learned while launching the new Syntax website including launching now, transcription bugs, error monitoring, black text on black backgrounds, and more.

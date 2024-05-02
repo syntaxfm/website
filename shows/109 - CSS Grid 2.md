@@ -3,7 +3,6 @@ number: 109
 title: Hasty Treat - CSS Grid Level 2 aka Subgrid
 date: 1547474400311
 url: https://traffic.libsyn.com/syntax/Syntax109.mp3
-spotify_url: https://open.spotify.com/episode/5UNZylmW4pssPYMkOq7Khs
 ---
 
 In this Hasty Treat, Scott and Wes talk about CSS Grid Level 2 - aka subgrid.

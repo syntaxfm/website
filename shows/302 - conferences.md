@@ -3,7 +3,6 @@ number: 302
 title: How to Run a Conference with Benjamin Dunphy
 date: 1605708000919
 url: https://traffic.libsyn.com/syntax/Syntax302.mp3
-spotify_url: https://open.spotify.com/episode/4X9kyCF5Ku9bHbUzVVsCxc
 guest:
   name: Benjamin Dunphy
   github: dunphyben

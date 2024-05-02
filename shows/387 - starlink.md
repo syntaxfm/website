@@ -3,7 +3,6 @@ number: 387
 title: Hasty Treat - Starlink Rural Internet
 date: 1631538000481
 url: https://traffic.libsyn.com/syntax/Syntax387.mp3
-spotify_url: https://open.spotify.com/episode/62FVIo0JUJ9yJvpbvj2nza
 ---
 
 In this Hasty Treat, Scott and Wes talk about Wes' new satellite internet setup — best use-cases and how to set it up.

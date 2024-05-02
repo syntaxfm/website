@@ -3,7 +3,6 @@ number: 646
 title: Supper Club × Email Sending, Spam, DMARC, SPF, Styling, and more with Andris Reinman
 date: 1690545600686
 url: https://traffic.libsyn.com/syntax/Syntax_-_646.mp3
-spotify_url: https://open.spotify.com/episode/3gV4I1u2PnbA1A80UQRTOq
 guest:
   name: Andris Reinman
   github: andris9

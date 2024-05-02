@@ -3,7 +3,6 @@ number: 331
 title: Hasty Treat - Hireable Skills for 2021
 date: 1614607200422
 url: https://traffic.libsyn.com/syntax/Syntax331.mp3
-spotify_url: https://open.spotify.com/episode/0kl5k6WyLBan6jyC6YvNb4
 ---
 
 In this Hasty Treat, Scott and Wes talk about hireable skills or 2021 — what you need to know to get a job and grow in your career this year!

@@ -3,7 +3,6 @@ number: 407
 title: The Macbook Pro Show - Wes and Scott Get New Laptops
 date: 1637582400146
 url: https://traffic.libsyn.com/syntax/Syntax_-_407.mp3
-spotify_url: https://open.spotify.com/episode/3XbjcqOGirzr4S7bTl7nea
 ---
 
 In this Hasty Treat, Wes and Scott talk about their new Apple MacBook Pro's with the M1 Max CPU.

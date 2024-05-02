@@ -3,7 +3,6 @@ number: 701
 title: A11y Treats - Labels & Roles
 date: 1701691200946
 url: https://traffic.libsyn.com/syntax/Syntax_-_701.mp3
-spotify_url: https://open.spotify.com/episode/5fS7VHeJBd178w1yD9Eyev
 ---
 
 In this episode of Syntax, Wes and Scott explain ARIA, aria-label, Roles, and the overall importance of accessibility in your web projects.

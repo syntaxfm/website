@@ -3,7 +3,6 @@ number: 7
 title: Scott Tolinski Origin Story 🎧 📹 💻 🕺
 date: 1502292600000
 url: https://traffic.libsyn.com/syntax/Syntax007.mp3
-spotify_url: https://open.spotify.com/episode/5XYmQF5bT0tTvIxzJspQAa
 ---
 
 In this episode, Scott talks about his unconventional career path and how to grow your career by working on what you love.

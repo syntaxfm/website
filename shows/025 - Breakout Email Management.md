@@ -3,7 +3,6 @@ number: 25
 title: Dealing With Email Overload && Prettier Setups
 date: 1514383200000
 url: https://traffic.libsyn.com/syntax/Syntax025.mp3
-spotify_url: https://open.spotify.com/episode/6CFdeqyI4HGLew6x4Zb3nm
 ---
 
 Wes details "Breakout" — his email management strategy for overwhelmed creatives and Scott and Wes chat about how they have their prettier setup.

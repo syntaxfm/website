@@ -3,7 +3,6 @@ number: 491
 title: How to Spark your Imagination and Get Excited about Coding
 date: 1659355200077
 url: https://traffic.libsyn.com/syntax/Syntax_-_491.mp3
-spotify_url: https://open.spotify.com/episode/0rRA4cLB2eQ0LD102GOI91
 ---
 
 In this Hasty Treat, Scott and Wes talk the appreciation of coding projects that supposedly serve no purpose, but can be great ways to learn something new.

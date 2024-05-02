@@ -3,7 +3,6 @@ number: 683
 title: Spooky Coding Horror Stories 2023 - Part 1
 date: 1698062400366
 url: https://traffic.libsyn.com/syntax/Syntax_-_683_v2.mp3
-spotify_url: https://open.spotify.com/episode/3GQMklMXiLh8JF44qopOAt
 ---
 
 In this Hasty Treat, Scott and Wes relate some spooky listener submitted coding horrors including updates for a large furniture retailer, pull request oversights, disallowing everything in a robots.txt, massive email fail, and more.

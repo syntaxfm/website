@@ -3,7 +3,6 @@ number: 415
 title: Gatsby v4
 date: 1640001600925
 url: https://traffic.libsyn.com/syntax/Syntax_-_415.mp3
-spotify_url: https://open.spotify.com/episode/69IFujGi7Cjh9In8hgJqzu
 ---
 
 In this Hasty Treat, Wes and Scott talk about what's new in Gatsby v4.

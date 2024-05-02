@@ -3,7 +3,6 @@ number: 731
 title: Client side security, XSS attacks & CSP with Stripe’s Alex Sexton
 date: 1708084800410
 url: https://traffic.libsyn.com/syntax/Syntax_-_731.mp3
-spotify_url: https://open.spotify.com/episode/667lbdVgz5jzhQB5x1QxtS
 youtube_url: https://youtu.be/aJLBIoIPdhA
 guest:
   name: Alex Sexton

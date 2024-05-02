@@ -3,7 +3,6 @@ number: 117
 title: Hasty Treat - How To Email Busy People
 date: 1549893600896
 url: https://traffic.libsyn.com/syntax/Syntax117.mp3
-spotify_url: https://open.spotify.com/episode/6LXbo4hYErwxHGegSQwRT9
 ---
 
 In this Hasty Treat, Scott and Wes tackle email, specifically, how to email busy people — how to write emails that actually get read, and don't just get tossed in the archive.

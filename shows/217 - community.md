@@ -3,7 +3,6 @@ number: 217
 title: Hasty Treat - Building A Community Slack, Discord, Spectrum, Discourse, Forums
 date: 1580133600470
 url: https://traffic.libsyn.com/syntax/Syntax217.mp3
-spotify_url: https://open.spotify.com/episode/2Pnm8ZFv10EE6624gFgozE
 ---
 
 In this Hasty Treat, Scott and Wes talk about community building online — some of the different software techniques and things you can do to either get started with a web community or join one.

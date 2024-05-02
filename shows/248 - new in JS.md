@@ -3,7 +3,6 @@ number: 248
 title: What's New in Javascript
 date: 1589374800345
 url: https://traffic.libsyn.com/syntax/Syntax248.mp3
-spotify_url: https://open.spotify.com/episode/4L8ztRjkgdgedTuWLJfSKz
 ---
 
 In this episode of Syntax, Scott and Wes talk about what is new in Javascript — a whole bunch of new stuff that you can use now and in the next sixth months or so.

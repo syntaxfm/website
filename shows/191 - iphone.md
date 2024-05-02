@@ -3,7 +3,6 @@ number: 191
 title: Hasty Treat - Scott Moves to iPhone
 date: 1572267600974
 url: https://traffic.libsyn.com/syntax/Syntax191.mp3
-spotify_url: https://open.spotify.com/episode/7Ki7dEQ5pdN701vIha9BVV
 ---
 
 In this Hasty Treat, Scott talks about moving to iPhone — his experiences with both Android and iOS, the advantages and disadvantages of both, and more! 

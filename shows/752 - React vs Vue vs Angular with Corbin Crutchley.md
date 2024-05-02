@@ -3,7 +3,6 @@ number: 752
 title: React vs Vue vs Angular with Corbin Crutchley
 date: 1712314800828
 url: https://traffic.libsyn.com/syntax/Syntax_-_752.mp3
-spotify_url: https://open.spotify.com/episode/3ojDcYaexODdHjtYF1FrAC
 youtube_url: https://www.youtube.com/watch?v=_licnRxAVk0
 guest:
   name: Corbin Crutchley

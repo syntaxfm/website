@@ -3,7 +3,6 @@ number: 401
 title: Hasty Treat - How to Setup a PNPM Monorepo
 date: 1635771600142
 url: https://traffic.libsyn.com/syntax/Syntax401.mp3
-spotify_url: https://open.spotify.com/episode/0eHndbJcfNMvMrCIqqPTOv
 ---
 
 In this Hasty Treat, Scott and Wes talk about PNPM and monorepos!

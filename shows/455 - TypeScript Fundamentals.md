@@ -3,7 +3,6 @@ number: 455
 title: TypeScript Fundamentals × Narrowing, Discriminating Unions, and Type Guards
 date: 1652097600119
 url: https://traffic.libsyn.com/syntax/Syntax_-_455.mp3
-spotify_url: https://open.spotify.com/episode/2j3xXB303Qnj1ZjXbsz9Jo
 ---
 
 In this Hasty Treat, Scott and Wes talk about TypeScript Fundamentals, including narrowing, discriminating unions, and type guards.

@@ -3,7 +3,6 @@ number: 632
 title: Where to Register a Domain
 date: 1687780800943
 url: https://traffic.libsyn.com/syntax/Syntax_-_632.mp3
-spotify_url: https://open.spotify.com/episode/3IfMIG1zj5mvwdv4A4F8xE
 ---
 
 In this Hasty Treat, Scott and Wes talk about where you should register a domain name, explain DNS, and the process for moving a domain from one registrar to another.

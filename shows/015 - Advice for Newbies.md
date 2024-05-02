@@ -3,7 +3,6 @@ number: 15
 title: Advice for New Developers, Imposter Syndrome and Interviewing at Google
 date: 1507727231000
 url: https://traffic.libsyn.com/syntax/Syntax015.mp3
-spotify_url: https://open.spotify.com/episode/0nnETVXUsiylo4Q396npdA
 ---
 
 Scott and Wes dish out some tasty advice to developers who are new to web development. How do you get better? How do you deal with imposter syndrome?

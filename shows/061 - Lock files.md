@@ -3,7 +3,6 @@ number: 61
 title: Hasty Treat - Whats the deal with npm, yarn and lock files?!
 date: 1532955600332
 url: https://traffic.libsyn.com/syntax/Syntax061.mp3
-spotify_url: https://open.spotify.com/episode/09QaueXMygwbioRbbGVuzR
 ---
 
 In this Hasty Treat, Scott and Wes discuss npm, yarn, lock files, why they're useful, why you would or wouldn't want to track them in Git and much more!

@@ -3,7 +3,6 @@ number: 1
 title: React Tools
 date: 1499256000000
 url: https://traffic.libsyn.com/syntax/syntax001_4.mp3
-spotify_url: https://open.spotify.com/episode/190pr2exMSrb6eeqAyFKWV
 ---
 
 ## Show Notes

@@ -3,7 +3,6 @@ number: 346
 title: Selling and Shipping T-Shirts with TypeScript
 date: 1619010000543
 url: https://traffic.libsyn.com/syntax/Syntax346.mp3
-spotify_url: https://open.spotify.com/episode/19IrRurvWBY4E3KOuRyqt2
 ---
 
 In this episode of Syntax, Scott and Wes talk about selling and shipping t-shirts, and how to do it all in TypeScript!

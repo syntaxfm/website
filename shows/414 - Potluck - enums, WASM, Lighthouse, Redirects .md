@@ -3,7 +3,6 @@ number: 414
 title: Potluck - enums, WASM, Lighthouse, Redirects
 date: 1639576800886
 url: https://traffic.libsyn.com/syntax/Syntax_-_414.mp3
-spotify_url: https://open.spotify.com/episode/7eZWe1gA00bfF65lYTzrbj
 ---
 
 In this episode of Syntax, Scott and Wes answer your questions on a Potluck episode of Syntax.

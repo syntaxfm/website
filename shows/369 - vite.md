@@ -3,7 +3,6 @@ number: 369
 title: Hasty Treat - Vite + Parcel 2
 date: 1626094800216
 url: https://traffic.libsyn.com/syntax/Syntax369.mp3
-spotify_url: https://open.spotify.com/episode/5JyrR6cbky9eo3MB9VNri8
 ---
 
 In this Hasty Treat, Scott and Wes talk about modern build tools, comparisons between them, and makes them modern and next-level.

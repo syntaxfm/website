@@ -3,7 +3,6 @@ number: 225
 title: Hasty Treat - What makes a server fast?
 date: 1582552800129
 url: https://traffic.libsyn.com/syntax/Syntax225.mp3
-spotify_url: https://open.spotify.com/episode/0NqiSqPzkKFnBH34g6Cvxg
 ---
 
 In this Hasty Treat, Scott and Wes talk about how to make servers fast!

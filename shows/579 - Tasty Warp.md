@@ -3,7 +3,6 @@ number: 579
 title: Warp Terminal × Next Gen Terminals
 date: 1677067200619
 url: https://traffic.libsyn.com/secure/syntax/Syntax_-_579.mp3
-spotify_url: https://open.spotify.com/episode/71A8dZ28V2p3ZKkC2kJEoo
 ---
 
 In this episode of Syntax, Wes and Scott talk about why they're digging Warp as their terminal app of choice, what the terminal is, and some of their wishlist items for Warp.

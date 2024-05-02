@@ -3,7 +3,6 @@ number: 670
 title: Anxiety and Uncertainty with Dr. Courtney Tolinski
 date: 1695384000565
 url: https://traffic.libsyn.com/syntax/Syntax_-_670.mp3
-spotify_url: https://open.spotify.com/episode/00ANHlyEzJBowXkrljDvzr
 guest:
   name: Dr. Courtney Tolinski 
   twitter: DrTolinski

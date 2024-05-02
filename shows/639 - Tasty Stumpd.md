@@ -3,7 +3,6 @@ number: 639
 title: Stump’d × JavaScript × GraphQL × Memory Safety × Web History
 date: 1689163200347
 url: https://traffic.libsyn.com/syntax/Syntax_-_639.mp3
-spotify_url: https://open.spotify.com/episode/1CWEydYwMPM3OZlNEyYsXY
 ---
 
 In this episode of Syntax, Wes and Scott try to stump each other with questions about JavaScript, HTTP status error codes, memory safety, and a bit of web history thrown in.

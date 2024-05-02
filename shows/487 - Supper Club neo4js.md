@@ -3,7 +3,6 @@ number: 487
 title: Supper Club × Adam Cowley and Neo4j Database
 date: 1658491200074
 url: https://traffic.libsyn.com/syntax/Syntax_-_487.mp3
-spotify_url: https://open.spotify.com/episode/6N99HzTbe3INzTxH8Bk0Xu
 guest:
   name: Adam Cowley
   github: adam-cowley

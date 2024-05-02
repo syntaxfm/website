@@ -3,7 +3,6 @@ number: 321
 title: Hasty Treat - The New AVIF Image Format Is Unreal
 date: 1611583200813
 url: https://traffic.libsyn.com/syntax/Syntax321.mp3
-spotify_url: https://open.spotify.com/episode/3YzRngSrrdioQGSWJ0oDS2
 ---
 
 In this Hasty Treat, Scott and Wes talk about AVIF — what it is and how you might use it!

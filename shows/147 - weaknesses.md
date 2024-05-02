@@ -3,7 +3,6 @@ number: 147
 title: Hasty Treat - Knowing Your Weaknesses
 date: 1558962000031
 url: https://traffic.libsyn.com/syntax/Syntax147.mp3
-spotify_url: https://open.spotify.com/episode/2v2y8Vf8DBgI61n4KoIP1h
 ---
 
 In this Hasty Treat, Scott and Wes talk about how to identify and work on your weaknesses.

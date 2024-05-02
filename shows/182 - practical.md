@@ -3,7 +3,6 @@ number: 182
 title: Practical - How would we build Airbnb, Twitter, or Reddit?
 date: 1569416400529
 url: https://traffic.libsyn.com/syntax/Syntax182.mp3
-spotify_url: https://open.spotify.com/episode/2KaS4dExYy3nHPZn4ctOtV
 ---
 
 In this episode, Scott and Wes are trying something new! It's called Practical, in which Scott and Wes take a topic and flesh out all the theory into something super practical. Today's topic comes from a listener question asking how they would build a simple version of a modern web app like Twitter, Reddit, or Airbnb. 

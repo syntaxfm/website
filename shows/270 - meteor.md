@@ -3,7 +3,6 @@ number: 270
 title: Meteor's 2nd Life
 date: 1596027600426
 url: https://traffic.libsyn.com/syntax/Syntax270.mp3
-spotify_url: https://open.spotify.com/episode/6iNj49Zcb7pAzKoLdeFb8U
 guest:
   name: Filipe Névola
   github: filipenevola

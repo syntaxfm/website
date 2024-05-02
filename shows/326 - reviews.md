@@ -3,7 +3,6 @@ number: 326
 title: We Review Resumes, Websites, and Online Presence
 date: 1612965600788
 url: https://traffic.libsyn.com/syntax/Syntax326.mp3
-spotify_url: https://open.spotify.com/episode/2W6Oz25ZxToXkZgF8ck1du
 ---
 
 In this episode of Syntax, Scott and Wes review resumes, websites, and online presences, and discuss pros and cons, what you should focus on, and more!

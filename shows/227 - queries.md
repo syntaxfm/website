@@ -3,7 +3,6 @@ number: 227
 title: Hasty Treat - The Status of Element Queries / Container Queries
 date: 1583157600634
 url: https://traffic.libsyn.com/syntax/Syntax227.mp3
-spotify_url: https://open.spotify.com/episode/1rOsiUYKl6j5CbBQ2a6IfE
 ---
 
 In this Hasty Treat, Scott and Wes talk about container queries, what they are and how you can use them.

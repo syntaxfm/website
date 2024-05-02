@@ -3,7 +3,6 @@ number: 573
 title: Converting JS to TypeScript
 date: 1675857600319
 url: https://traffic.libsyn.com/syntax/Syntax_-_573.mp3
-spotify_url: https://open.spotify.com/episode/0qVJSrjLshR8PTEY4FWl6K
 ---
 
 In this episode of Syntax, Wes and Scott talk about their respective processes for converting JavaScript to TypeScript in their projects, why you might want to, and tooling for moving to TypeScript.

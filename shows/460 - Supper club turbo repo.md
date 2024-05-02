@@ -3,7 +3,6 @@ number: 460
 title: Supper Club × Turborepo with Jared Palmer
 date: 1653048000500
 url: https://traffic.libsyn.com/syntax/Syntax_-_460.mp3
-spotify_url: https://open.spotify.com/episode/2wsAGmjBEHrgqjGHizt7fB
 guest:
   name: Jared Palmer
   github: jaredpalmer

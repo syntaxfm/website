@@ -3,7 +3,6 @@ number: 657
 title: Rust for JS Devs — Part 2
 date: 1692792000000
 url: https://traffic.libsyn.com/syntax/Syntax_-_657.mp3
-spotify_url: https://open.spotify.com/episode/4Wvzqoub9haSdMwAjYxyfM
 ---
 
 In this episode of Syntax, Wes and Scott jump into part 2 of their look at Rust for JavaScript developers, including variables in Rust, type systems in Rust, signed and unsigned integers, and more.

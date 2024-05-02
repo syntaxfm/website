@@ -3,7 +3,6 @@ number: 526
 title: Supper Club × tRPC With Alex KATT Johansson
 date: 1666353600648
 url: https://traffic.libsyn.com/syntax/Syntax_-_526.mp3
-spotify_url: https://open.spotify.com/episode/39NgY0TiK4vCyil2bj6Mtm
 guest:
   name: Alex Johansson
   github: KATT

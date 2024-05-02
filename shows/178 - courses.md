@@ -3,7 +3,6 @@ number: 178
 title: How We Record, Edit, and Host Our Courses
 date: 1568206800490
 url: https://traffic.libsyn.com/syntax/Syntax178.mp3
-spotify_url: https://open.spotify.com/episode/4oNTQeGRvj4kJVNZrEdGBD
 ---
 
 In this episode, Scott and Wes talk about how they make courses — recording, editing, hosting, best practices, and more!  

@@ -3,7 +3,6 @@ number: 293
 title: Hasty Treat - Stretching For Developers with Scott
 date: 1603112400482
 url: https://traffic.libsyn.com/syntax/Syntax293.mp3
-spotify_url: https://open.spotify.com/episode/0jPiFpqOOi7Jrnsvmks7vi
 ---
 
 In this Hasty Treat, Scott and Wes talk about stretching for developers — techniques, misconceptions, and how to feel better. 

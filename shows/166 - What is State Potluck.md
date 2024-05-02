@@ -3,7 +3,6 @@ number: 166
 title: Potluck - What is "State"? × Web Sockets × Remote Working × Firefox × Machines Taking Our Jobs × More!
 date: 1564578000672
 url: https://traffic.libsyn.com/syntax/Syntax166.mp3
-spotify_url: https://open.spotify.com/episode/2xEHzGJMMqiNWlcHWi6eJN
 ---
 
 It's another Syntax potluck! In this episode, Scott and Wes answer your questions about remote work, AI agendas, motivation, fitness, the future of coding, and much more!

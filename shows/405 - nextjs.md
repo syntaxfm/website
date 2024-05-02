@@ -3,7 +3,6 @@ number: 405
 title: Hasty Treat - Next.js 12
 date: 1636984800119
 url: https://traffic.libsyn.com/syntax/Syntax405.mp3
-spotify_url: https://open.spotify.com/episode/7BiM4HCXAcVk39SAidsUry
 ---
 
 In this Hasty Treat, Scott and Wes talk about Next.js 12 and all of its hot new goodness and updates!

@@ -3,7 +3,6 @@ number: 172
 title: Potluck - Deploying Applications × Typescript × Live Coding with Twitch × Fullstack Architecture × More!
 date: 1566392400892
 url: https://traffic.libsyn.com/syntax/Syntax172.mp3
-spotify_url: https://open.spotify.com/episode/0nZkOBpQcDaZqqXzwp7beq
 ---
 
 It's another potluck! In this episode, Scott and Wes answer your questions about deploying applications, the value of Typescript, live coding via Twitch and more!

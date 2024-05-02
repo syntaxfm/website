@@ -3,7 +3,6 @@ number: 643
 title: Supper Club × WASM, Fastly Edge, and Polyfill.io with Jake Champion
 date: 1689940800938
 url: https://traffic.libsyn.com/syntax/Syntax_-_643.mp3
-spotify_url: https://open.spotify.com/episode/3knt8CEBbg1Y2pF3RBJSOv
 guest:
   name: Jake Champion
   of: Fastly

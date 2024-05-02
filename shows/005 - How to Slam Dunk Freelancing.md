@@ -3,7 +3,6 @@ number: 5
 title: How to Slam Dunk Freelancing
 date: 1501684018000
 url: https://traffic.libsyn.com/syntax/Syntax005.mp3
-spotify_url: https://open.spotify.com/episode/71e8fmP9WEX84f0rdeJzVU
 ---
 
 ## Sponsor

@@ -3,7 +3,6 @@ number: 409
 title: Github Co-pilot is Gonna Take ur Job
 date: 1638194400902
 url: https://traffic.libsyn.com/syntax/Syntax_-_409.mp3
-spotify_url: https://open.spotify.com/episode/36fHc350Wdyspeb7aeyFEG
 ---
 
 In this Hasty Treat, Wes and Scott talk about their experiences using Github Co-pilot.

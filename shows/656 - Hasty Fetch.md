@@ -3,7 +3,6 @@ number: 656
 title: 8 Tricks When Using the Fetch() API
 date: 1692619200247
 url: https://traffic.libsyn.com/syntax/Syntax_-_656.mp3
-spotify_url: https://open.spotify.com/episode/3fnT0Sa9xWaMz7JB0DpzX5
 ---
 
 In this Hasty Treat, Scott and Wes talk about 8 tricks to try when using the Fetch() API.

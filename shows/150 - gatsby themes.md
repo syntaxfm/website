@@ -3,7 +3,6 @@ number: 150
 title: Gatsby Themes
 date: 1559739600837
 url: https://traffic.libsyn.com/syntax/Syntax150.mp3
-spotify_url: https://open.spotify.com/episode/5ZbWcpIFhdiw1fwnz8SrH3
 guest:
   name: Jason Lengstorf
   github: jlengstorf

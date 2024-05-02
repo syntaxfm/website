@@ -3,7 +3,6 @@ number: 40
 title: The Testing Show
 date: 1522847433583
 url: https://traffic.libsyn.com/syntax/Syntax040.mp3
-spotify_url: https://open.spotify.com/episode/0FkIyv9U3eO2yV5HtwNLe4
 ---
 
 Wes and Scott talk all about testing!

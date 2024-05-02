@@ -3,7 +3,6 @@ number: 699
 title: Potluck × TypeScript's Longevity × Canvas-Rendered Apps × Learning Rust × Executing Untrusted JS Code
 date: 1701259200604
 url: https://traffic.libsyn.com/syntax/Syntax_-_699.mp3
-spotify_url: https://open.spotify.com/episode/5S0FUpfUBI3daYUlxZF4Er
 ---
 
 In this potluck episode of Syntax, Wes and Scott answer your questions, including: Will TypeScript ever go away? Should I write canvas-rendered web apps? How can I execute untrusted JS code in node? How can I use continuous integration with WordPress? Any advice for learning Rust?

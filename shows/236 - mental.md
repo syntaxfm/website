@@ -3,7 +3,6 @@ number: 236
 title: Mental Health and Dev ft Dr. Courtney Tolinski - Depression, Anxiety, Imposter Syndrome, Focus, Motivation, Burnout
 date: 1585746000493
 url: https://traffic.libsyn.com/syntax/Syntax236.mp3
-spotify_url: https://open.spotify.com/episode/3DLvl4cumxAGTocVWyE92Z
 guest:
   name: Dr. Courtney Tolinski 
   twitter: DrTolinski

@@ -3,7 +3,6 @@ number: 87
 title: Hasty Treat - Old Browsers, Fallbacks and Polyfills - Part 3
 date: 1540818000720
 url: https://traffic.libsyn.com/syntax/Syntax087.mp3
-spotify_url: https://open.spotify.com/episode/5nUDBJUM5HOrgJSlfjf9Ib
 ---
 
 In this Hasty Treat, Scott and Wes conclude a three-part series about old browsers, fallbacks and polyfills. In part three, they talk specifically about transpiling and polyfilling.

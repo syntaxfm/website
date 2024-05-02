@@ -3,7 +3,6 @@ number: 305
 title: Hasty Treat - Writing Good Commit Messages
 date: 1606744800101
 url: https://traffic.libsyn.com/syntax/Syntax305.mp3
-spotify_url: https://open.spotify.com/episode/0GS1UgzVtfnZPM944Gzy9u
 ---
 
 In this Hasty Treat, Scott and Wes talk about a system for writing good commit messages.

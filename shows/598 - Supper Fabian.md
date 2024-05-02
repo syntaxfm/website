@@ -3,7 +3,6 @@ number: 598
 title: Supper Club × Fabian Kägy - Modern WordPress - Blocks, Page builders, Headless, Custom Fields
 date: 1680868800133
 url: https://traffic.libsyn.com/syntax/Syntax_-_598.mp3
-spotify_url: https://open.spotify.com/episode/0kGDOdzEs19LHLzuMMWwNa
 guest:
   name: Fabian Kägy
   of: 10up, WordPress

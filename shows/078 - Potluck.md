@@ -3,7 +3,6 @@ number: 78
 title: Potluck - JS × Web Components × Security × They took our jobs!
 date: 1537966800879
 url: https://traffic.libsyn.com/syntax/Syntax078.mp3
-spotify_url: https://open.spotify.com/episode/4KaH2DfQFyVNd6zMu2DEiO
 ---
 
 It's another potluck episode in which Wes and Scott answer your questions! This month - all things JS, go-to dev stacks, website security and the ever-changing nature of development.

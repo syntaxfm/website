@@ -3,7 +3,6 @@ number: 729
 title: CSS Native @scope 
 date: 1707739200705
 url: https://traffic.libsyn.com/syntax/Syntax_-_729.mp3
-spotify_url: https://open.spotify.com/episode/1PJR7G3oNRek0oq43KgWIa
 youtube_url: https://youtu.be/YPmUIwVh5vk
 ---
 

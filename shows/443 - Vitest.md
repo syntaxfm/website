@@ -3,7 +3,6 @@ number: 443
 title: What’s Up With Vitest?
 date: 1648468800183
 url: https://traffic.libsyn.com/syntax/Syntax_-_443.mp3
-spotify_url: https://open.spotify.com/episode/6r3JbpqklANpSaaP5YcJzj
 ---
 
 In this Hasty Treat, Scott and Wes talk about Vitest, how testing is handled, how code coverage works, and whether they think they'll use it.

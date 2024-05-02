@@ -3,7 +3,6 @@ number: 436
 title: Wes and Scott React to the State of JS
 date: 1646230551824
 url: https://traffic.libsyn.com/syntax/Syntax_-_436.mp3
-spotify_url: https://open.spotify.com/episode/2aSwOZ5o3jfUhtq7alYEZN
 ---
 
 In this episode of Syntax, Wes and Scott take a look at the 2021 State of JS survey that was recently published, including demographics, salary, browser APIs, overall happiness, and more!

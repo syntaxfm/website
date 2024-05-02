@@ -3,7 +3,6 @@ number: 71
 title: Hasty Treat - Stumped! Interview Questions
 date: 1535979600141
 url: https://traffic.libsyn.com/syntax/Syntax071.mp3
-spotify_url: https://open.spotify.com/episode/4UIHpbVR0Ids5BgctSM9yI
 ---
 
 In this Hasty Treat, Scott and Wes try to stump each other with interview questions from [30 Seconds of Interviews](https://30secondsofinterviews.org/).

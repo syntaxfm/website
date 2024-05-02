@@ -3,7 +3,6 @@ number: 580
 title: Supper Club × Astro 2.0 with Fred Schott
 date: 1677240000833
 url: https://traffic.libsyn.com/syntax/Syntax_-_580.mp3
-spotify_url: https://open.spotify.com/episode/0B5U3lAG8ZzpZB9Lj6z06W
 guest:
   name: Fred Schott
   of: Astro

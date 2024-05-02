@@ -3,7 +3,6 @@ number: 231
 title: Hasty Treat - Hiring an Assistant
 date: 1584363600920
 url: https://traffic.libsyn.com/syntax/Syntax231.mp3
-spotify_url: https://open.spotify.com/episode/0eVp0DrsCdmuZt6ik768oy
 ---
 
 In this Hasty Treat, Scott and Wes talk about how to hire an assistant — something that can make your life a lot easier as a solo developer.

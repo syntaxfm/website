@@ -3,7 +3,6 @@ number: 480
 title: 10 years of Speaking + Conferences
 date: 1657108800351
 url: https://traffic.libsyn.com/syntax/Syntax_-_480.mp3
-spotify_url: https://open.spotify.com/episode/6rhZY66AZgGer16Y6ZoVv4
 ---
 
 In this episode of Syntax, Wes and Scott talk about their experiences speaking at conferences, why they've done it, how they prepare talks, and tips for anyone interested in wanting to give talks.

@@ -3,7 +3,6 @@ number: 132
 title: Potluck - Interview Qs × Headless CMS × React Hooks × Resume Design × Redux vs Context × More!
 date: 1554296400815
 url: https://traffic.libsyn.com/syntax/Syntax132.mp3
-spotify_url: https://open.spotify.com/episode/72BVPJmQ78RSEBvXK7H53e
 ---
 
 It's another potluck episode in which Wes and Scott answer your questions! This month - interview questions, headless CMSs, resume design, redux vs context, and more!

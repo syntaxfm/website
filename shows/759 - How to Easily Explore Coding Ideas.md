@@ -3,7 +3,6 @@ number: 759
 title: How to Easily Explore Coding Ideas
 date: 1713783600000
 url: https://traffic.libsyn.com/syntax/Syntax_-_759.mp3
-spotify_url: https://open.spotify.com/episode/2LVVvwq99ms6OapOW0Fa0h
 youtube_url: https://www.youtube.com/watch?v=LuS64TMzT48
 ---
 

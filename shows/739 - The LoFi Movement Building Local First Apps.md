@@ -3,7 +3,6 @@ number: 739
 title: "The LoFi Movement: Building Local First Apps"
 date: 1709726400294
 url: https://traffic.libsyn.com/syntax/Syntax_-_739.mp3
-spotify_url: https://open.spotify.com/episode/0gESw53EsRVKiT0hoskP9F
 youtube_url: https://www.youtube.com/watch?v=U1uhILa-wmI
 ---
 

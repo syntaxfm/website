@@ -3,7 +3,6 @@ number: 146
 title: CSS the 😎😎😎 Cool Parts
 date: 1558530000178
 url: https://traffic.libsyn.com/syntax/Syntax146.mp3
-spotify_url: https://open.spotify.com/episode/5xJA9hTJg3nGzdQOkMIJj1
 ---
 
 In this episode Wes and Scott talk about the cool parts of CSS! From filters to variables, here are some cool (and amazing) things you can do with CSS in 2019.

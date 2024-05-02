@@ -3,7 +3,6 @@ number: 48
 title: VS Code Round Two
 date: 1527685200617
 url: https://traffic.libsyn.com/syntax/Syntax048.mp3
-spotify_url: https://open.spotify.com/episode/1TNPTmGSYXpvaFLhA4yrhN
 ---
 
 Scott and Wes are back with another round of tips, tricks and tasty treats for their favorite code editor, [VS Code](https://code.visualstudio.com/).

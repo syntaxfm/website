@@ -3,7 +3,6 @@ number: 102
 title: Potluck - Typescript × E-commerce platforms × Job-hopping × Working for agencies × more
 date: 1545228000031
 url: https://traffic.libsyn.com/syntax/Syntaxt102.mp3
-spotify_url: https://open.spotify.com/episode/6U3voUG15ttDqph7RDPa1y
 ---
 
 It's another potluck episode in which Wes and Scott answer your questions! This month - thoughts on Typescript, e-commerce platforms vs custom, working for agencies, job-hopping and more!

@@ -3,7 +3,6 @@ number: 72
 title: Accessibility
 date: 1536152400467
 url: https://traffic.libsyn.com/syntax/Syntax072.mp3
-spotify_url: https://open.spotify.com/episode/2uCj4VWNWkkCAUH3xgs35g
 ---
 
 In this episode Wes and Scott dive into the very big topic of accessibility, from the basics and easy wins to best practices, tools, resources and more!

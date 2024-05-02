@@ -3,7 +3,6 @@ number: 254
 title: Headless CMS Break Down & Roundup
 date: 1591189200405
 url: https://traffic.libsyn.com/syntax/Syntax254.mp3
-spotify_url: https://open.spotify.com/episode/6CbQzRqyHqoK5RuWyr9BDp
 ---
 
 In this episode of Syntax, Scott and Wes talk about headless content management systems — why you might want to use one, things you should take into account, and more! 

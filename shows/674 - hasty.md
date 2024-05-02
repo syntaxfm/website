@@ -3,7 +3,6 @@ number: 674
 title: A11y Treats - Heading Design
 date: 1696248000379
 url: https://traffic.libsyn.com/syntax/Syntax_-_674.mp3
-spotify_url: https://open.spotify.com/episode/4L0CBD5lmIAcWlIeEahzAr
 ---
 
 In this Hasty Treat, Scott and Wes talk about headings on your website, why you should care, how to structure your headings, and what tooling is there for testing your website?

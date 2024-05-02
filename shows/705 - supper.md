@@ -3,7 +3,6 @@ number: 705
 title: Is Running Random Code From npm Safe? With Feross Aboukhadijeh
 date: 1702641600697
 url: https://traffic.libsyn.com/syntax/Syntax_-_705.mp3
-spotify_url: https://open.spotify.com/episode/0cDI2NBqY4uZltnByKioqS
 guest:
   name: Feross Aboukhadijeh
   of: Socket

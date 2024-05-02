@@ -3,7 +3,6 @@ number: 476
 title: Browser CSS Page Transitions API aka Shared Element Transitions
 date: 1656331200110
 url: https://traffic.libsyn.com/secure/syntax/Syntax_-_476.mp3
-spotify_url: https://open.spotify.com/episode/69r4qSzqUGJ0j4Gkely2HY
 ---
 
 In this Hasty Treat, Scott and Wes talk about the new Browser CSS Page Transitions API proposal and what features it opens up for developers on the web.

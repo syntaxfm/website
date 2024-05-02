@@ -3,7 +3,6 @@ number: 153
 title: Hasty Treat - New Intl Methods Are Straight Fire
 date: 1560776400687
 url: https://traffic.libsyn.com/syntax/Syntax153.mp3
-spotify_url: https://open.spotify.com/episode/2k3OYquRE9R8CZOEzoy3mx
 ---
 
 In this Hasty Treat, Scott and Wes talk about internationalization - how to deal with different languages, different currencies, and more!

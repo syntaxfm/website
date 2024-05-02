@@ -3,7 +3,6 @@ number: 695
 title: 5 New CSS Features You Should Know
 date: 1700481600149
 url: https://traffic.libsyn.com/syntax/Syntax_-_695.mp3
-spotify_url: https://open.spotify.com/episode/7DZQD1tDIfDjYVUazbDGxP
 ---
 
 In this episode of Syntax, Wes and Scott talk about 5 new CSS features :nth-child(4 of .neat), CSS Motion Path, Scroll Snap, Scroll Driven Animations, and Margin Trim.

@@ -3,7 +3,6 @@ number: 362
 title: CSS Container Queries, Layers, Scoping and More with Miriam Suzanne
 date: 1623848400113
 url: https://traffic.libsyn.com/syntax/Syntax362.mp3
-spotify_url: https://open.spotify.com/episode/5WHFz4lB7Yq2jSFSJ2MzpY
 guest:
   name: Miriam Suzanne
   github: mirisuzanne

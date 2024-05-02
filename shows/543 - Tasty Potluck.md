@@ -3,7 +3,6 @@ number: 543
 title: Potluck × Twitter Following × TypeScript × Playwright
 date: 1669809600215
 url: https://traffic.libsyn.com/syntax/Syntax_-_543.mp3
-spotify_url: https://open.spotify.com/episode/0cGrD2Ql9ltYqz8Xbbm8qE
 ---
 
 In this potluck episode of Syntax, Wes and Scott answer your questions about strategies to find good Twitter follows, should we use TypeScript for a company blog, what's Playwright, and more!

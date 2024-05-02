@@ -3,7 +3,6 @@ number: 360
 title: Potluck - Immutability × Turning Off Your Brain × Types vs Interfaces × Hooks vs Components × Making the Most of Your First Job × Confidence in Svelte × More!
 date: 1623243600700
 url: https://traffic.libsyn.com/syntax/Syntax360.mp3
-spotify_url: https://open.spotify.com/episode/5Sny2sPAAyZm8t2C9g85Td
 ---
 
 It's another Potluck! In this episode, Scott and Wes answer your questions about immutability, turning off your brain, managing copy on a website, problem-solving, types vs interfaces, hooks vs components, and more!

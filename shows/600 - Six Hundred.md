@@ -3,7 +3,6 @@ number: 600
 title: 600th Episode! Major Announcement and Swag Giveaway!
 date: 1681300800887
 url: https://traffic.libsyn.com/syntax/Syntax_-_600-jZ8nX5DfKp.mp3
-spotify_url: https://open.spotify.com/episode/0ndleefV48Q3fSJjNphXan
 guest:
   name: David Cramer
   of: Sentry

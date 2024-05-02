@@ -3,7 +3,6 @@ number: 566
 title: Container Queries Explained
 date: 1674475200605
 url: https://traffic.libsyn.com/syntax/Syntax_-_566.mp3
-spotify_url: https://open.spotify.com/episode/5yvMfoVQXS4RdEZy1od937
 ---
 
 In this Hasty Treat, Scott and Wes explain what container queries are, use cases for them, new units of measurement, and possible issues with container queries.

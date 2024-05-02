@@ -3,7 +3,6 @@ number: 113
 title: Hasty Treat - Code Quality Tooling
 date: 1548684000294
 url: https://traffic.libsyn.com/syntax/Syntax113.mp3
-spotify_url: https://open.spotify.com/episode/12SvjvVT92Npm3J3crMdiw
 ---
 
 In this Hasty Treat, Scott and Wes talk about code quality tooling - how to get your code extra nice and clean, and the tools that will help you along the way.

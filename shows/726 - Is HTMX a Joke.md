@@ -3,7 +3,6 @@ number: 726
 title: Is HTMX a Joke?
 date: 1707134400722
 url: https://traffic.libsyn.com/syntax/ISHTMX_Joke_726.mp3
-spotify_url: https://open.spotify.com/episode/3ZBGSqxActYRq26q01O9Oc
 youtube_url: https://www.youtube.com/watch?v=L2QNCTCIRfc
 ---
 

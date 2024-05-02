@@ -3,7 +3,6 @@ number: 173
 title: Hasty Treat - Wes & Scott Look At Svelte 3
 date: 1566824400550
 url: https://traffic.libsyn.com/syntax/Syntax173.mp3
-spotify_url: https://open.spotify.com/episode/70kLtk90mR5P3DVPcwSqeT
 ---
 
 In this Hasty Treat, Scott and Wes talk about Svelte 3 — initial impressions and more!

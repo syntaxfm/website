@@ -3,7 +3,6 @@ number: 429
 title: Pros + Cons of JavaScript Servers, Serverless, and Cloudflare Workers
 date: 1644235200333
 url: https://traffic.libsyn.com/syntax/Syntax_-_429.mp3
-spotify_url: https://open.spotify.com/episode/2pEWOZH7ARR5mkXJAi1cqr
 ---
 
 In this Hasty Treat, Scott and Wes talk about the pros and cons of JavaScript servers, Serverless, and Cloudflare Workers.

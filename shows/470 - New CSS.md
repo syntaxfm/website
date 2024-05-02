@@ -3,7 +3,6 @@ number: 470
 title: I can has() new CSS Selector?!
 date: 1655121600726
 url: https://traffic.libsyn.com/syntax/Syntax_-_470.mp3
-spotify_url: https://open.spotify.com/episode/0ziYGaacN0aXgEG2Eijaoa
 ---
 
 In this Hasty Treat, Scott and Wes talk about new CSS selectors :has, :where, and :is.

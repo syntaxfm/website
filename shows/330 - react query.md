@@ -3,7 +3,6 @@ number: 330
 title: React Query + More React with Tanner Linsley
 date: 1614175200905
 url: https://traffic.libsyn.com/syntax/Syntax330.mp3
-spotify_url: https://open.spotify.com/episode/3X6l45vUykSOTL5IyReBUT
 guest:
   name: Tanner Linsley
   github: tannerlinsley

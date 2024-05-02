@@ -3,7 +3,6 @@ number: 262
 title: Our React Wish List
 date: 1593608400843
 url: https://traffic.libsyn.com/syntax/Syntax262.mp3
-spotify_url: https://open.spotify.com/episode/5lKFclLFEPL7Q8RAALo0gs
 ---
 
 In this episode of Syntax, Scott and Wes talk about what they wish existed in React!

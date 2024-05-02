@@ -3,7 +3,6 @@ number: 226
 title: Potluck - Next vs Gatsby × Headless CMS × Vue.js × Is Ruby on Rails still good? × More!
 date: 1582725600129
 url: https://traffic.libsyn.com/syntax/Syntax226.mp3
-spotify_url: https://open.spotify.com/episode/4zd0oseJ3zKaKA84OqEoCu
 ---
 
 It's another potluck! In this episode, Scott and Wes answer your questions about Gastby vs everything, Next, Vue, Rails, working with agencies, CSS, and more!

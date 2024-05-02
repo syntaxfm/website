@@ -3,7 +3,6 @@ number: 457
 title: Supper Club × NX Monorepos with Victor Savkin
 date: 1652443200950
 url: https://traffic.libsyn.com/syntax/Syntax_-_457.mp3
-spotify_url: https://open.spotify.com/episode/4qLZdUPibBMYW8tfZ1KcO7
 guest:
   name: Victor Savkin
   github: vsavkin

@@ -3,7 +3,6 @@ number: 624
 title: Is JSDoc Better than TypeScript?
 date: 1686139200514
 url: https://traffic.libsyn.com/syntax/Syntax_-_624.mp3
-spotify_url: https://open.spotify.com/episode/0HCsMYcynWROzrh9ODIoFa
 ---
 
 In this episode of Syntax, Wes and Scott use the fact that Svelte is being converted from TypeScript to JavaScript with JSDoc to talk about the benefits of working that way, why they are doing it, and what you can do with JSDoc that TypeScript alone doesn't let you do.

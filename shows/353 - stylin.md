@@ -3,7 +3,6 @@ number: 353
 title: Hasty Treat - Stylin the Unstylables
 date: 1621256400177
 url: https://traffic.libsyn.com/syntax/Syntax353.mp3
-spotify_url: https://open.spotify.com/episode/1ng1RKkmDQqz5f7bLVThHY
 ---
 
 In this Hasty Treat, Scott and Wes talk about the different kinds of things that are difficult to style, how you can style them, and some future tech to look out for!

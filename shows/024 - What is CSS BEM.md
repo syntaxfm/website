@@ -3,7 +3,6 @@ number: 24
 title: All About CSS BEM!
 date: 1513817245817
 url: https://traffic.libsyn.com/syntax/Syntax024.mp3
-spotify_url: https://open.spotify.com/episode/5mKjM6cUglNSjdHwXwhTZb
 ---
 
 Scott and Wes dive into CSS BEM — What is it? Why do you need it? How does it work?

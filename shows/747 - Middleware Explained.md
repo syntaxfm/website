@@ -3,7 +3,6 @@ number: 747
 title: Middleware Explained
 date: 1711364400286
 url: https://traffic.libsyn.com/syntax/Syntax_-_747.mp3
-spotify_url: https://open.spotify.com/episode/1PLmV74PkO2vegHqKHrIyN
 youtube_url: https://www.youtube.com/watch?v=JKb_rYvdmpo
 ---
 

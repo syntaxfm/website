@@ -3,7 +3,6 @@ number: 571
 title: Supper Club × Rust In Action with Tim McNamara
 date: 1675425600592
 url: https://traffic.libsyn.com/syntax/Syntax_-_571.mp3
-spotify_url: https://open.spotify.com/episode/5nNpYk9kZIoChWOIMYkCnw
 guest:
   name: Tim McNamara
   of: Rust in Action

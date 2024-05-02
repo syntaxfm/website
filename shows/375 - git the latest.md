@@ -3,7 +3,6 @@ number: 375
 title: Hasty Treat - Git the Latest - New Things In Tech - CoPilot, Petite Vue, Stackblitz, Web3 + More!
 date: 1627909200699
 url: https://traffic.libsyn.com/syntax/Syntax375.mp3
-spotify_url: https://open.spotify.com/episode/6NfcEIo9mij2iEJkQBEfGJ
 ---
 
 In this Hasty Treat, Scott and Wes launch a new series called Git the Latest — New Things In Tech.

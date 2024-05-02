@@ -3,7 +3,6 @@ number: 422
 title: Potluck
 date: 1641988800286
 url: https://traffic.libsyn.com/syntax/Syntax_-_422.mp3
-spotify_url: https://open.spotify.com/episode/7k9PkuANYtaJy0U5d5gKXY
 ---
 
 In this episode of Syntax, Scott and Wes answer your questions on a Potluck episode of Syntax.

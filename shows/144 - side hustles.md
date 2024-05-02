@@ -3,7 +3,6 @@ number: 144
 title: Side Hustles with Courtland Allen from Indie Hackers
 date: 1557925200608
 url: https://traffic.libsyn.com/syntax/Syntax144.mp3
-spotify_url: https://open.spotify.com/episode/4pEGcO7s4GkCwccTnocQKM
 guest:
   name: Courtland Allen
   github: courthead

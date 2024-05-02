@@ -3,7 +3,6 @@ number: 53
 title: Hasty Treat - Domain Management
 date: 1530536400092
 url: https://traffic.libsyn.com/syntax/Syntax053.mp3
-spotify_url: https://open.spotify.com/episode/3t2HlOzHZ6H1p10szeSH4U
 ---
 
 In this Hasty Treat (Short episode) Scott and Wes discus all things domains. Where to get them, how to set them up and how to save time managing them all in one place.

@@ -3,7 +3,6 @@ number: 477
 title: Tips for Communicating
 date: 1656504000336
 url: https://traffic.libsyn.com/syntax/Syntax_-_477.mp3
-spotify_url: https://open.spotify.com/episode/3SXyDZapY9LmqvreIGDMdF
 ---
 
 In this episode of Syntax, Wes and Scott talk about their tips for better communication in email, Zoom calls, code reviews, or asking for help.

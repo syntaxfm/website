@@ -3,7 +3,6 @@ number: 214
 title: 2020 Fitness
 date: 1579096800672
 url: https://traffic.libsyn.com/syntax/Syntax214.mp3
-spotify_url: https://open.spotify.com/episode/1x4l8TDQrLPSiYQumPHhyv
 ---
 
 In this episode of Syntax, Scott and Wes talk about fitness — how to stay in shape as a developer, nutrition, goals, and more!

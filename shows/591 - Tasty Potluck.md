@@ -3,7 +3,6 @@ number: 591
 title: Potluck × Learning Web Dev × Video Streaming × Mono Repos
 date: 1679486400216
 url: https://traffic.libsyn.com/syntax/Syntax_-_591.mp3
-spotify_url: https://open.spotify.com/episode/6nJchxAzO6TmgN9pzIXdCx
 ---
 
 In this episode of Syntax, Wes and Scott answer your questions about learning web dev at an older age, making your apps look better, building a video streaming site, mono repo vs regular, and more!

@@ -3,7 +3,6 @@ number: 255
 title: Hasty Treat - Slow Connections Part 2
 date: 1591621200494
 url: https://traffic.libsyn.com/syntax/Syntax255.mp3
-spotify_url: https://open.spotify.com/episode/4BmnQLiaC1YHYIUgA3BoFe
 ---
 
 In this Hasty Treat, Scott and Wes are back with part 2 on how to develop for slow internet connections. 

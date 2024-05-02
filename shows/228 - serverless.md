@@ -3,7 +3,6 @@ number: 228
 title: More on Severless - Databases × Files × Secrets × Auth × More!
 date: 1583330400634
 url: https://traffic.libsyn.com/syntax/Syntax228.mp3
-spotify_url: https://open.spotify.com/episode/0b8nPlIlP8B1XmIHv6H238
 ---
 
 In this episode of Syntax, Scott and Wes do a part 2 about Serverless — databases, files, secrets, auth, and more!

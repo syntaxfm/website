@@ -3,7 +3,6 @@ number: 569
 title: CSS Wishlist
 date: 1675080000474
 url: https://traffic.libsyn.com/syntax/Syntax_-_569.mp3
-spotify_url: https://open.spotify.com/episode/2HcyObUBs5qFRBxYQZLONF
 ---
 
 In this Hasty Treat, Scott and Wes talk through their wishlist for CSS in 2023 including mixins, range selectors, fit text, robust color functions, overflown, and more.

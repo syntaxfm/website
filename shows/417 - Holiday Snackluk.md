@@ -3,7 +3,6 @@ number: 417
 title: Holiday Snackluk
 date: 1640613600125
 url: https://traffic.libsyn.com/syntax/Syntax_-_417.mp3
-spotify_url: https://open.spotify.com/episode/1shSSinXuOPLuVYvRsn5Nn
 ---
 
 In this Hasty Treat, Wes and Scott talk about Package-lock, Angular, package updates, how to learn, and media servers on planes.

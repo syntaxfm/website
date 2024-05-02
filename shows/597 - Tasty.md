@@ -3,7 +3,6 @@ number: 597
 title: Stump’d Gameshow! Answering Coding Interview Questions from AI
 date: 1680696000084
 url: https://traffic.libsyn.com/syntax/Syntax_-_597.mp3
-spotify_url: https://open.spotify.com/episode/0FM0SWKphjJ2Euda0EBO44
 ---
 
 In this episode of Syntax, Wes and Scott answer coding questions posed by ChatGPT like what's the difference between rem and em in CSS, the difference between a callback function and a promse in Node, what are Fastify plugins, and more!

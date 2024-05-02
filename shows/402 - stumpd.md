@@ -3,7 +3,6 @@ number: 402
 title: STUMP'D Interview Questions - CSS Edition
 date: 1635944400142
 url: https://traffic.libsyn.com/syntax/Syntax402.mp3
-spotify_url: https://open.spotify.com/episode/6bPcoo1FVQLsgYJ4K2TPIB
 ---
 
 In this episode of Syntax, Scott and Wes are back with another edition of "Stump'd!" where they try to stump each other with interview questions.

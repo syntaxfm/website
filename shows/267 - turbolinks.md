@@ -3,7 +3,6 @@ number: 267
 title: Hasty Treat - Turbolinks + Server Generated HTML + JS Sprinkles
 date: 1595250000426
 url: https://traffic.libsyn.com/syntax/Syntax267.mp3
-spotify_url: https://open.spotify.com/episode/7DAoytfYdPLAVCiIayPvGh
 ---
 
 In this Hasty Treat, Scott and Wes talk about turbolinks — what it is, how to use is, popular apps using is, and more!

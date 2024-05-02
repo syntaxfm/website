@@ -3,7 +3,6 @@ number: 590
 title: HTTPS + Tunnel Your Localhost - Cloudflare Tunnels, Ngrok, and more!
 date: 1679313600227
 url: https://traffic.libsyn.com/syntax/Syntax_-_590.mp3
-spotify_url: https://open.spotify.com/episode/5W12UyGmeutLLtWIzUQj1B
 ---
 
 In this Hasty Treat, Scott and Wes talk about why you might need to tunnel to your local computer, and how to set that up securely.

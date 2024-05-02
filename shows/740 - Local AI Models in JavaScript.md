@@ -3,7 +3,6 @@ number: 740
 title: Local AI Models in JavaScript - Machine Learning Deep Dive With Xenova
 date: 1709899200296
 url: https://traffic.libsyn.com/syntax/Syntax_-_740.mp3
-spotify_url: https://open.spotify.com/episode/0tEgAkbtKyZf9uDBASIco8
 youtube_url: https://www.youtube.com/watch?v=GVY__H89Ysk
 guest:
   name: Xenova
