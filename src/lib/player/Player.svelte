@@ -1,13 +1,16 @@
 <script lang="ts">
-	import { player, player_window_status } from '$state/player';
+	import { player } from '$state/player';
+	import { player_window_status } from '$state/player_window_status';
 	import AlbumArt from './AlbumArt.svelte';
 	import get_show_path from '$utilities/slug';
 	import Icon from '../Icon.svelte';
 	import ShareButton from '../share/HairButton.svelte';
+	import SaveOffline from './SaveOffline.svelte';
 </script>
 
 <section class={`player ${$player_window_status}`}>
 	<div class="window-controls">
+		{#if $player.current_show}<SaveOffline show={$player.current_show} />{/if}
 		{#if $player.current_show}<ShareButton show={$player.current_show} />{/if}
 		<button class="minimize" on:click={player.toggle_minimize}><Icon name="minimize" /></button>
 		<button class="close" on:click={player.close}>×</button>

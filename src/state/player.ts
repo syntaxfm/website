@@ -1,8 +1,9 @@
-import coverArt from '$assets/coverart-128.png';
-import coverArt512 from '$assets/coverart-512.png';
 import * as Sentry from '@sentry/sveltekit';
 import type { Show } from '@prisma/client';
 import { get, writable } from 'svelte/store';
+import { load_media_session } from '$utilities/media/load_media_session';
+import { minimize, player_window_status, toggle_minimize } from './player_window_status';
+import { get_cached_or_network_show } from './player_offline';
 
 export interface Timestamp {
 	label: string;
@@ -11,31 +12,6 @@ export interface Timestamp {
 	percentage: number;
 	startingPosition: number;
 	href: string;
-}
-
-function loadMediaSession(show: Show) {
-	if (!('mediaSession' in navigator)) {
-		console.log(`The Media Session API is not supported on this platform.`);
-		return;
-	}
-
-	console.log(`The Media Session API is supported on this platform.`);
-	navigator.mediaSession.metadata = new MediaMetadata({
-		title: show.title,
-		artist: 'Syntax Podcast',
-		artwork: [
-			{
-				src: coverArt,
-				sizes: '128x128',
-				type: 'image/png'
-			},
-			{
-				src: coverArt512,
-				sizes: '512x512',
-				type: 'image/png'
-			}
-		]
-	});
 }
 
 interface PlayerState {
@@ -47,8 +23,6 @@ interface PlayerState {
 	status: 'INITIAL' | 'LOADED' | 'PAUSED' | 'PLAYING';
 }
 
-// Having this state in the same writeable was causing hiccups ins the audio when updating the store
-export const player_window_status = writable<'HIDDEN' | 'ACTIVE' | 'MINI'>('HIDDEN');
 export const episode_share_status = writable<boolean>(false);
 
 const reset_state = {
@@ -59,17 +33,17 @@ const reset_state = {
 const new_player_state = () => {
 	const player_state = writable<PlayerState>({
 		current_show: null,
-		playing: false,
 		audio: undefined,
 		media_controller: undefined,
 		currentTime: 0,
-		status: 'INITIAL'
+		...reset_state
 	});
 
 	const { update, subscribe, set } = player_state;
 
-	async function start_show(show: Show, start_time = 0) {
-		// Get current state
+	async function start_show(requested_show: Show, start_time = 0) {
+		// First we check to see if the use has cached the mp3 offline
+		const show = await get_cached_or_network_show(requested_show);
 		const current_state = get(player_state);
 		if (show.url !== current_state?.audio?.src) {
 			return initialize_audio(show, start_time);
@@ -79,10 +53,6 @@ const new_player_state = () => {
 			} else if (current_state.status === 'PAUSED') {
 				return play();
 			} else {
-				// # Increment a counter for a specific episode
-				Sentry.metrics.increment('episode_start', 1, { tags: { episode: show.number } });
-				// # Increment a total counter for all episodes
-				Sentry.metrics.increment('all_episode_start', 1);
 				return initialize_audio(show, start_time);
 			}
 		}
@@ -93,8 +63,9 @@ const new_player_state = () => {
 		Sentry.metrics.increment('episode_start', 1, { tags: { episode: show.number } });
 		// # Increment a total counter for all episodes
 		Sentry.metrics.increment('all_episode_start', 1);
+
 		return new Promise((resolve) => {
-			loadMediaSession(show);
+			load_media_session(show);
 			update((state) => {
 				state.current_show = show;
 				state.status = 'LOADED';
@@ -176,12 +147,6 @@ const new_player_state = () => {
 		}
 	}
 
-	function toggle_minimize() {
-		player_window_status.update((state) => {
-			return state !== 'MINI' ? 'MINI' : 'ACTIVE';
-		});
-	}
-
 	function close() {
 		player_window_status.set('HIDDEN');
 		update((state) => {
@@ -199,10 +164,6 @@ const new_player_state = () => {
 
 			return state;
 		});
-	}
-
-	function minimize() {
-		player_window_status.set('MINI');
 	}
 
 	return {
