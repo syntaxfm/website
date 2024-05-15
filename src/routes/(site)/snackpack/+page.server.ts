@@ -68,7 +68,7 @@ async function fetchBroadcastList() {
 		})
 		// Filter for subjects that contain "Snack Pack"
 		.filter((broadcast) => {
-			return broadcast.subject.toLowerCase().includes('snack pack');
+			return broadcast.subject.toLowerCase().includes('snack pack' || 'issue #');
 		});
 
 	// Now we need to hit the ConvertKit API for every single broadcast to get info on if this broadcast was published, as well as the associated HTML for each snackpack
@@ -117,7 +117,7 @@ export const load: PageServerLoad = async function ({ setHeaders, params, locals
 					subject: 'ConvertKit API key not set (this is a fake issue)',
 					id: 1337
 				}
-		  ];
+			];
 	const count =
 		typeof subs?.total_subscribers === 'number' ? formatNumber(subs.total_subscribers) : '';
 	return {
