@@ -68,7 +68,8 @@ async function fetchBroadcastList() {
 		})
 		// Filter for subjects that contain "Snack Pack"
 		.filter((broadcast) => {
-			return broadcast.subject.toLowerCase().includes('snack pack' || 'issue #');
+			const subject = broadcast.subject.toLowerCase();
+			return subject.includes('snack pack') || subject.includes('issue #');
 		});
 
 	// Now we need to hit the ConvertKit API for every single broadcast to get info on if this broadcast was published, as well as the associated HTML for each snackpack
