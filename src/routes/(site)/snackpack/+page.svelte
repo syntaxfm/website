@@ -13,7 +13,7 @@
 		<div class="newsletter-logo-container">
 			<NewsletterLogo></NewsletterLogo>
 		</div>
-		<NewsletterForm show_logo={false}/>
+		<NewsletterForm show_logo={false} />
 		<div class="center">
 			<h2 class="lines">Past Issues</h2>
 			<p class="readable center">
@@ -23,9 +23,9 @@
 			<ul>
 				{#each data.issues as issue}
 					<li>
-						<a href="/snackpack/{issue.id}"
-							>{issue.subject}
+						<a href="/snackpack/{issue.id}">
 							<small class="text-xs">{format(new Date(issue.published_at), 'MMM dd, yyyy')}</small>
+							<p>{issue.subject}</p>
 						</a>
 					</li>
 				{/each}
@@ -41,15 +41,23 @@
 	ul {
 		margin: 2rem 0;
 		padding: 0;
+		text-align: left;
 	}
 	li {
 		list-style: none;
+		border-bottom: 1px solid var(--line);
+		&:first-child {
+			border-top: 1px solid var(--line);
+		}
+		p {
+			margin: 0;
+		}
 		a {
-			display: flex;
-			justify-content: center;
+			display: grid;
+			justify-content: start;
 			align-items: center;
-			gap: 1rem;
 			text-decoration: none;
+			padding-block: 5px;
 			&:hover {
 				text-decoration: underline;
 			}
