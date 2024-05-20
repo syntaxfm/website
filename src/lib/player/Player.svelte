@@ -5,7 +5,6 @@
 	import get_show_path from '$utilities/slug';
 	import Icon from '../Icon.svelte';
 	import ShareButton from '../share/HairButton.svelte';
-	import SaveOffline from './SaveOffline.svelte';
 </script>
 
 <section class={`player ${$player_window_status}`}>

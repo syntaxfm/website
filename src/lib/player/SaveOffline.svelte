@@ -59,6 +59,11 @@
 	button {
 		--button-bg: transparent;
 		--button-fg: var(--fg);
+		border-color: transparent;
+		border-radius: 22.5px;
+		padding: 0;
+		height: 25px;
+		width: 25px;
 	}
 	button > div {
 		transition:
@@ -77,6 +82,10 @@
 
 	.SAVING {
 		animation: pulse 1s infinite;
+	}
+
+	button:has(.SAVED) {
+		border: 1px solid var(--accent);
 	}
 
 	.SAVED {
