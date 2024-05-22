@@ -22,7 +22,7 @@
 	<div class="newsletter-layout card">
 		<h5 class="h6">15% off your swag order</h5>
 		<img src={swag} alt="Syntax Swag Photos" />
-		<p>Subscribe to the Syntax <a href="/snackpack">Snack Pack Newsletter</a></p>
+		<p>Subscribe to the Syntax<br /><a href="/snackpack">Snack Pack Newsletter</a></p>
 		<form
 			{action}
 			on:submit={submit}
@@ -60,6 +60,7 @@
 		font-style: italic;
 		margin: 0.5rem 0 1.5rem;
 		text-align: center;
+		font-size: var(--font-size-s);
 	}
 
 	.newsletter {
