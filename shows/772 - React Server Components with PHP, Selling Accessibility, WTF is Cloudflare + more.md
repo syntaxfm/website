@@ -29,7 +29,7 @@ In this Potluck episode of Syntax, Scott and Wes tackle community questions on h
 * **[45:42](#t=45:42)** Cloudflare, what the heck is it?
 * **[50:49](#t=50:49)** Sick Picks + Shameless Plugs.
 
-You're looking for this > https://sentry.shop/products/sentry-aint-broke-tee 
+You're looking for this > [Swag Drop](https://sentry.shop/discount/0MTCV1BCQQDW?redirect=%2Fproducts%2Fsentry-aint-broke-tee)
 
 ### Sick Picks
 
