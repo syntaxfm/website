@@ -1,14 +1,17 @@
 import type { Show } from '@prisma/client';
 
 export async function check_for_cached_mp3(path: string) {
-	const cache = await caches.open('mp3-cache');
-	try {
-		const cache_response = await cache.match(path);
-		return cache_response;
-	} catch (error) {
-		console.error('Failed to retrieve MP3 file from cache:', error);
-		return null;
+	if (typeof caches !== 'undefined') {
+		try {
+			const cache = await caches.open('mp3-cache');
+			const cache_response = await cache.match(path);
+			return cache_response;
+		} catch (error) {
+			console.error('Failed to retrieve MP3 file from cache:', error);
+			return null;
+		}
 	}
+	return null;
 }
 
 // takes in a show and returns either a cached or network mp3.
