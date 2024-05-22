@@ -10,6 +10,7 @@
 	import ShareWindow from '$lib/share/ShareWindow.svelte';
 	import { player } from '$state/player';
 	import { format } from 'date-fns';
+	import SaveOffline from '$lib/player/SaveOffline.svelte';
 	export let data;
 	$: ({ show, time_start } = data);
 
@@ -83,6 +84,7 @@
 			<ShareButton {show} />
 		</div>
 		<div>
+			<SaveOffline {show} />
 			<a class="icon" title="Download Episode" aria-label="Download" download href={show.url}>
 				<Icon name="download" />
 			</a>

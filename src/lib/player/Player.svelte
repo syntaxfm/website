@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { player, player_window_status } from '$state/player';
+	import { player } from '$state/player';
+	import { player_window_status } from '$state/player_window_status';
 	import AlbumArt from './AlbumArt.svelte';
 	import get_show_path from '$utilities/slug';
 	import Icon from '../Icon.svelte';
