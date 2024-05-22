@@ -17,39 +17,37 @@
 	}
 </script>
 
-{#if !is_hidden}
-	<div class="newsletter-layout">
-		{#if show_logo}
-			<div class="newsletter-logo-container">
-				<a href="/snackpack">
-					<NewsletterLogo />
-				</a>
-			</div>
-		{/if}
-		<form
-			{action}
-			on:submit={submit}
-			method="post"
-			data-sv-form={FORM_ID}
-			data-uid="05d939b74d"
-			class="center readable"
-			target="_blank"
-			aria-labelledby="newsletter-form-label"
-		>
-			<h5 class="readable join">
-				Join our newsletter for <strong>15% off</strong> all Syntax & Sentry swag
-			</h5>
+<div class="newsletter-layout">
+	{#if show_logo}
+		<div class="newsletter-logo-container">
+			<a href="/snackpack">
+				<NewsletterLogo />
+			</a>
+		</div>
+	{/if}
+	<form
+		{action}
+		on:submit={submit}
+		method="post"
+		data-sv-form={FORM_ID}
+		data-uid="05d939b74d"
+		class="center readable"
+		target="_blank"
+		aria-labelledby="newsletter-form-label"
+	>
+		<h5 class="readable join">
+			Join our newsletter for <strong>15% off</strong> all Syntax & Sentry swag
+		</h5>
 
-			<div class="newsletter">
-				<Input required type="email" label="Email" id="email_address" />
-				<button type="submit">Subscribe</button>
-			</div>
-			<p>Hot takes, tips & tricks, new content, swag drops & more</p>
+		<div class="newsletter">
+			<Input required type="email" label="Email" id="email_address" />
+			<button type="submit">Subscribe</button>
+		</div>
+		<p>Hot takes, tips & tricks, new content, swag drops & more</p>
 
-			<p class="text-sm">Dip at any time.</p>
-		</form>
-	</div>
-{/if}
+		<p class="text-sm">Dip at any time.</p>
+	</form>
+</div>
 
 <style lang="postcss">
 	.join {
