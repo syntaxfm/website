@@ -72,6 +72,9 @@
 		font-size: var(--font-size-s);
 		width: 100%;
 	}
+	.newsletter-layout :global(.input) {
+		width: 100%;
+	}
 
 	a {
 		text-decoration: underline;
