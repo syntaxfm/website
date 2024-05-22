@@ -1,5 +1,5 @@
 <script lang="ts">
-	import NewsletterLogo from './newsletter/NewsletterLogo.svelte';
+	import NewsletterLogo from './NewsletterLogo.svelte';
 	import Input from '$lib/forms/Input.svelte';
 	let is_hidden = false;
 

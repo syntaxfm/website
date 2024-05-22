@@ -1,5 +1,5 @@
 <script>
-	import NewsletterForm from '$lib/NewsletterForm.svelte';
+	import NewsletterForm from '$/lib/newsletter/NewsletterForm.svelte';
 	import NewsletterLogo from '$lib/newsletter/NewsletterLogo.svelte';
 	import { format } from 'date-fns';
 	export let data;

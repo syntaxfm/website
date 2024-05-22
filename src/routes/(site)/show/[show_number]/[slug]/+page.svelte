@@ -1,6 +1,6 @@
 <script lang="ts">
 	import get_show_path from '$/utilities/slug.js';
-	import NewsletterForm from '$lib/NewsletterForm.svelte';
+	import SwaggyNewsletterForm from '$lib/newsletter/SwaggyNewsletterForm.svelte';
 
 	export let data;
 	$: ({ show, prev_show, next_show } = data);
