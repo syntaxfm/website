@@ -2,20 +2,10 @@ import type { PageServerLoad } from './$types';
 // import env from svelte kit environment
 import { env } from '$env/dynamic/private';
 
-const pr = new Intl.PluralRules('en-US', { type: 'ordinal' });
 const numberformatter = new Intl.NumberFormat('en-US');
 
-const suffixes = new Map([
-	['one', 'st'],
-	['two', 'nd'],
-	['few', 'rd'],
-	['other', 'th']
-]);
-
 function formatNumber(n: number) {
-	const rule = pr.select(n); // 'one', 'two', 'few', 'other'
-	const suffix = suffixes.get(rule);
-	return `${numberformatter.format(n)}${suffix}`;
+	return `${numberformatter.format(n)}`;
 }
 
 export type Broadcast = {
