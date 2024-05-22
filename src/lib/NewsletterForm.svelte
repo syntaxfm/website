@@ -36,16 +36,15 @@
 			target="_blank"
 			aria-labelledby="newsletter-form-label"
 		>
-			<h3 id="newsletter-form-label" class="h4">Join our newsletter</h3>
-			<p>
-				New Syntax content, tips & tricks, swag drops, and other sweet stuff to make your life as a
-				web developer even better.
-			</p>
+			<h5 class="readable join">
+				Join our newsletter for <strong>15% off</strong> all Syntax & Sentry swag
+			</h5>
 
 			<div class="newsletter">
 				<Input required type="email" label="Email" id="email_address" />
 				<button type="submit">Subscribe</button>
 			</div>
+			<p>Hot takes, tips & tricks, new content, swag drops & more</p>
 
 			<p class="text-sm">Dip at any time.</p>
 		</form>
@@ -53,6 +52,11 @@
 {/if}
 
 <style lang="postcss">
+	.join {
+		margin: 3rem 0;
+		font-weight: 100;
+	}
+
 	@layer theme {
 		.newsletter-layout {
 			container: newsletter-form / inline-size;

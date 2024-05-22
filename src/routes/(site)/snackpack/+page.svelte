@@ -7,9 +7,11 @@
 
 <main>
 	<div>
-		<h1 class="h3 lines">Syntax Snack Pack</h1>
+		<h1 class="h3 lines" id="newsletter-form-label">Syntax Snack Pack</h1>
 
-		<p class="center">Wanna be the <strong>{data.count}</strong> coolest person in the world?</p>
+		<p class="center">
+			Wanna be one of the <strong>{data.count}</strong> coolest people in the world?
+		</p>
 		<div class="newsletter-logo-container">
 			<NewsletterLogo></NewsletterLogo>
 		</div>
