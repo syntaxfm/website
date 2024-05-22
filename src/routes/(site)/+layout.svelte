@@ -52,7 +52,6 @@
 	<Player />
 	<Toaster />
 	<Loading />
-	<Hotkeys />
 
 	{#if browser}
 		<SearchBox />

@@ -43,8 +43,8 @@
 			{/each}
 		</div>
 	{/if}
-	<div class="sticky zone card">
-		<NewsletterForm />
+	<div class="sticky zone">
+		<SwaggyNewsletterForm />
 	</div>
 </div>
 

@@ -53,6 +53,11 @@
 		box-shadow: inset 0 0 0 var(--button-border-size) oklch(var(--blacklch) / 0.2);
 	}
 
+	:is(button, .button).black {
+		--button-bg: var(--black);
+		--button-fg: var(--white);
+	}
+
 	:is(button, .button).big {
 		font-size: var(--font-size-md);
 		padding: 10px 20px;

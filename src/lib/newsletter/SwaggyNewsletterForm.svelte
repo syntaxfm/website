@@ -1,6 +1,7 @@
 <script lang="ts">
 	import NewsletterLogo from './NewsletterLogo.svelte';
 	import Input from '$lib/forms/Input.svelte';
+	import swag from './swag.png';
 	let is_hidden = false;
 
 	export let show_logo = true;
@@ -18,14 +19,10 @@
 </script>
 
 {#if !is_hidden}
-	<div class="newsletter-layout">
-		{#if show_logo}
-			<div class="newsletter-logo-container">
-				<a href="/snackpack">
-					<NewsletterLogo />
-				</a>
-			</div>
-		{/if}
+	<div class="newsletter-layout card">
+		<h5 class="h6">15% off your swag order</h5>
+		<img src={swag} alt="Syntax Swag Photos" />
+		<p>Subscribe to the Syntax <a href="/snackpack">Snack Pack Newsletter</a></p>
 		<form
 			{action}
 			on:submit={submit}
@@ -36,92 +33,52 @@
 			target="_blank"
 			aria-labelledby="newsletter-form-label"
 		>
-			<h5 class="readable join">
-				Join our newsletter for <strong>15% off</strong> all Syntax & Sentry swag
-			</h5>
-
 			<div class="newsletter">
 				<Input required type="email" label="Email" id="email_address" />
-				<button type="submit">Subscribe</button>
+				<button class="black small" type="submit">Subscribe</button>
 			</div>
-			<p>Hot takes, tips & tricks, new content, swag drops & more</p>
-
-			<p class="text-sm">Dip at any time.</p>
 		</form>
 	</div>
 {/if}
 
 <style lang="postcss">
-	.join {
-		margin: 3rem 0;
-		font-weight: 100;
+	h5 {
+		background: var(--black);
+		color: var(--white);
+		padding: 10px 15px;
+		rotate: -2deg;
+		z-index: 3;
+		position: relative;
 	}
 
-	@layer theme {
-		.newsletter-layout {
-			container: newsletter-form / inline-size;
-			display: flex;
-			flex-flow: wrap;
-			justify-content: center;
-			flex-direction: row;
+	img {
+		margin: -10px -20px 0;
+		width: calc(100% + 40px);
+	}
 
-			.newsletter-logo-container {
-				display: flex;
-				align-items: center;
-				flex: 0 0 250px;
-				margin: 0 0 2rem;
-			}
-		}
+	p {
+		font-style: italic;
+		margin: 0.5rem 0 1.5rem;
+		text-align: center;
+	}
 
-		form {
-			flex: 1 0 500px;
-			text-align: center;
-			/* max-width: 500px; */
-			> *:first-child {
-				margin-top: 0;
-			}
-			> *:last-child {
-				margin-bottom: 0;
-			}
-		}
+	.newsletter {
+		display: flex;
+		gap: 2px;
+	}
 
-		.newsletter {
-			display: flex;
-			gap: 10px;
-			justify-content: center;
-			flex-wrap: wrap;
-			margin: 2rem 0;
-			:global(.input) {
-				width: clamp(200px, 300px, 400px);
-			}
-		}
+	.newsletter-layout :global(input) {
+		box-shadow: inset 0 0 0 3px var(--black);
+		font-size: var(--font-size-s);
+		width: 100%;
+	}
 
-		@container newsletter-form (width < 600px) {
-			.newsletter-layout .newsletter-logo {
-				flex: 0 1 180px;
-				margin: 1rem 0 0 1rem;
-			}
-			form {
-				/* shrink form when small container */
-				flex: 1 1 100%;
-			}
-			p {
-				font-size: var(--font-size-sm);
-			}
+	a {
+		text-decoration: underline;
+	}
 
-			.newsletter button {
-				width: 100%;
-				max-width: 300px;
-			}
-			.small {
-				font-size: var(--font-size-xs);
-			}
-		}
-
-		@container newsletter-form (width >= 600px) {
-			button {
-				width: auto;
-			}
-		}
+	.newsletter-layout {
+		background: var(--primary);
+		color: var(--black);
 	}
 </style>
