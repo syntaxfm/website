@@ -22,12 +22,21 @@
 		fetch(mp3Url)
 			.then((response) => response.blob())
 			.then((blob) => {
+				// Make a show without the show notes for the cache
+				let pruned_show = {
+					id: show.id,
+					title: show.title,
+					number: show.number,
+					date: show.date,
+					url: show.url,
+					show: show.slug
+				};
 				// Create a new response with the MP3 blob
 				const response = new Response(blob, {
 					headers: {
 						'Content-Type': 'audio/mpeg',
 						'Content-Length': blob.size.toString(),
-						Metadata: JSON.stringify(show)
+						Metadata: JSON.stringify(pruned_show)
 					}
 				});
 
@@ -90,7 +99,7 @@
 
 	.SAVED {
 		rotate: -46deg;
-		translate: 2px 1px;
+		translate: 1.5px 1px;
 	}
 
 	@keyframes pulse {

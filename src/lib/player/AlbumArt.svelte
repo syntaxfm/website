@@ -33,7 +33,7 @@
 	}
 </script>
 
-{#if is_link}
+{#if is_link && show}
 	<a class="art-wrapper" href="https://{PUBLIC_URL}/{show.number}">
 		<Album />
 	</a>
