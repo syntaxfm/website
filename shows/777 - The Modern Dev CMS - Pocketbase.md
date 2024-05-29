@@ -3,7 +3,7 @@ number: 777
 title: The Modern Dev CMS - Pocketbase
 date: 1717412400000
 url: https://traffic.libsyn.com/syntax/Syntax_-_777.mp3
-youtube_url: https://www.youtube.com/watch?v=2PVh5uKK5pg
+youtube_url: https://www.youtube.com/watch?v=Eg38JbgbttA
 ---
 
 Today, Scott and Wes are diving into Pocketbase, a fantastic tool for web developers to quickly set up a CMS without breaking a sweat. We'll cover everything from its Go-based architecture to its slick admin interface and how you can get started hosting it for free on Fly.io.
