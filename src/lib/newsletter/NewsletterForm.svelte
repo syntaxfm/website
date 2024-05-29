@@ -17,7 +17,6 @@
 	}
 </script>
 
-{#if !is_hidden}
 	<div class="newsletter-layout">
 		{#if show_logo}
 			<div class="newsletter-logo-container">
@@ -40,16 +39,15 @@
 				Join our newsletter for <strong>15% off</strong> all Syntax & Sentry swag
 			</h5>
 
-			<div class="newsletter">
-				<Input required type="email" label="Email" id="email_address" />
-				<button type="submit">Subscribe</button>
-			</div>
-			<p>Hot takes, tips & tricks, new content, swag drops & more</p>
+		<div class="newsletter">
+			<Input required type="email" label="Email" id="email_address" />
+			<button type="submit">Subscribe</button>
+		</div>
+		<p>Hot takes, tips & tricks, new content, swag drops & more</p>
 
-			<p class="text-sm">Dip at any time.</p>
-		</form>
-	</div>
-{/if}
+		<p class="text-sm">Dip at any time.</p>
+	</form>
+</div>
 
 <style lang="postcss">
 	.join {
