@@ -12,7 +12,7 @@
 		text-decoration: none;
 		border: none;
 		font-family: var(--body-font-family);
-		font-weight: 600;
+		font-variation-settings: var(--600);
 		padding: 6px 15px;
 		font-size: var(--body-font-size);
 		border-radius: var(--brad);
@@ -43,7 +43,7 @@
 	:is(button, .button).subtle {
 		--button-bg: var(--bg-1);
 		--button-fg: var(--fg);
-		font-weight: 400;
+		font-variation-settings: var(--400);
 		box-shadow: inset 0 0 0 1px var(--subtle);
 	}
 
@@ -91,7 +91,7 @@
 		border-radius: var(--size);
 		box-shadow: inset 0 0 0 var(--button-border-size) oklch(var(--blacklch) / 0.2);
 		transition: background-size 1s ease-in-out;
-		font-weight: 100;
+		font-variation-settings: var(--100);
 	}
 
 	button.button-reset {

@@ -98,8 +98,8 @@
 	--purple: var(--purple-7);
 
 	/* Typography */
-	--body-font-family: 'MDIO', 'Operator Mono', Consolas, Menlo, Monaco, 'Courier New', monospace;
-	--heading-font-family: 'MDIO', 'Operator Mono', Consolas, Menlo, Monaco, 'Courier New', monospace;
+	--body-font-family: '💪', 'Operator Mono', Consolas, Menlo, Monaco, 'Courier New', monospace;
+	--heading-font-family: '💪', 'Operator Mono', Consolas, Menlo, Monaco, 'Courier New', monospace;
 	--font-size-xs: clamp(0.6rem, 0.17vw + 0.76rem, 0.7rem);
 	--font-size-sm: clamp(0.8rem, 0.17vw + 0.76rem, 0.89rem);
 	--font-size-base: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
@@ -108,6 +108,27 @@
 	--font-size-xl: clamp(1.95rem, 1.56vw + 1.56rem, 2.81rem);
 	--font-size-xxl: clamp(2.44rem, 2.38vw + 1.85rem, 3rem);
 	--font-size-xxxl: clamp(3.05rem, 3.54vw + 2.17rem, 5rem);
+
+	--100: 'wght' 100;
+	--100-italic: 'wght' 100, 'ital' 1;
+
+	--400: 'wght' 400;
+	--400-italic: 'wght' 400, 'ital' 1;
+
+	--500: 'wght' 500;
+	--500-italic: 'wght' 500, 'ital' 1;
+
+	--600: 'wght' 600;
+	--600-italic: 'wght' 600, 'ital' 1;
+
+	--700: 'wght' 700;
+	--700-italic: 'wght' 700, 'ital' 1;
+
+	--800: 'wght' 800;
+	--800-italic: 'wght' 800, 'ital' 1;
+
+	--900: 'wght' 900;
+	--900-italic: 'wght' 900, 'ital' 1;
 
 	/* Shadow */
 	--shadow-strength: 10%;

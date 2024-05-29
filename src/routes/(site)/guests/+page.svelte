@@ -66,7 +66,13 @@
 			<div class="guest">
 				<div>
 					<a href="/guest/{guest.name_slug}">
-						<img src="https://github.com/{guest.github || 'null'}.png" alt={guest.name} width="460" height="460" loading={index < 10 ? 'eager' : 'lazy'} />
+						<img
+							src="https://github.com/{guest.github || 'null'}.png"
+							alt={guest.name}
+							width="460"
+							height="460"
+							loading={index < 10 ? 'eager' : 'lazy'}
+						/>
 					</a>
 				</div>
 				<div class="info">
@@ -140,7 +146,7 @@
 			background: var(--primary);
 			color: var(--dark);
 			display: block;
-			font-weight: 600;
+			font-variation-settings: var(--600);
 			padding: 1px;
 			line-height: 1;
 		}

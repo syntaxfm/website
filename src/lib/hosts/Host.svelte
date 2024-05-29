@@ -19,7 +19,7 @@
 				{:else}
 					{host.name}
 				{/if}
-				<span class="host-guest-tag grit">{guest ? 'Guest' : 'Host'}</span>
+				<span class="host-guest-tag fst-900-i grit">{guest ? 'Guest' : 'Host'}</span>
 			</p>
 			<div class="featuring_socials">
 				<HostSocialLink {host} />
@@ -62,12 +62,11 @@
 		align-items: center;
 		gap: 0.5rem;
 	}
+
 	.host-guest-tag {
 		background: var(--yellow);
 		color: var(--black);
 		padding: 0 4px;
-		font-weight: 900;
-		font-style: italic;
 		transform: rotate(-3deg);
 		font-size: var(--font-size-xs);
 	}

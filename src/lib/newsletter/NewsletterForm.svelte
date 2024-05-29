@@ -36,7 +36,7 @@
 			target="_blank"
 			aria-labelledby="newsletter-form-label"
 		>
-			<h5 class="readable join">
+			<h5 class="readable join fst-400-i">
 				Join our newsletter for <strong>15% off</strong> all Syntax & Sentry swag
 			</h5>
 
@@ -54,7 +54,10 @@
 <style lang="postcss">
 	.join {
 		margin: 3rem 0;
-		font-weight: 100;
+	}
+
+	strong {
+		font-variation-settings: var(--800-italic);
 	}
 
 	@layer theme {

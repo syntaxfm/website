@@ -21,7 +21,7 @@
 
 <div class={'theme-system theme-wrapper zone'}>
 	<figure class="zone" style:--bg="var(--black)" style:--fg="var(--white)">
-		<span style:--transition-name="show-date-{show.number}" class="show-number grit"
+		<span style:--transition-name="show-date-{show.number}" class="show-number fst-900 grit"
 			>{show.number}</span
 		>
 
@@ -167,7 +167,6 @@
 		@media (prefers-color-scheme: dark) {
 			--ideal-font-size: 22cqw;
 		}
-		font-weight: 900;
 		color: var(--primary);
 		line-height: 1;
 		z-index: -1;
