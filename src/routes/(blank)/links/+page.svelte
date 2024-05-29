@@ -106,6 +106,6 @@
 
 	a {
 		font-size: var(--font-size-md);
-		font-weight: 400;
+		font-variation-settings: var(--400);
 	}
 </style>

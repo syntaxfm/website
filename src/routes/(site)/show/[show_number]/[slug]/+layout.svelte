@@ -41,7 +41,7 @@
 	<span
 		title="Show #{show.number}"
 		style:--transition-name="show-date-{show.number}"
-		class="show-number grit">{show.number}</span
+		class="show-number fst-900 grit">{show.number}</span
 	>
 	<p class="show-page-date" style:--transition-name="show-date-{show.number}">
 		{format(new Date(show.date), 'MMMM do, yyyy')}
@@ -169,7 +169,7 @@
 			grid-column: content / content;
 			padding: 2rem;
 			margin-bottom: 2rem;
-			font-weight: 700;
+			font-variation-settings: var(--700);
 			display: flex;
 			flex-wrap: wrap;
 			place-items: center;
@@ -218,7 +218,6 @@
 			transform: translate(6.9%, -22%);
 			--max-font-size: 15rem;
 			font-size: clamp(1.5rem, 45cqw, var(--max-font-size));
-			font-weight: 900;
 			color: var(--primary);
 			line-height: 1;
 			transform: rotate(-2deg);

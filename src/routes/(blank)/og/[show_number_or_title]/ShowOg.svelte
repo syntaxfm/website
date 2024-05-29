@@ -61,7 +61,7 @@
 
 <article style="--title-length: {show.title.length}">
 	{#if show.number}
-		<span class="grit show-number">{show.number}</span>
+		<span class="grit show-number fst-900">{show.number}</span>
 	{/if}
 
 	<div class="details">
@@ -144,11 +144,10 @@
 
 	h1 {
 		margin: 0;
-		font-weight: 600;
 		line-height: 1;
 		font-size: 50px;
 		width: 100%;
-		font-style: italic;
+		font-variation-settings: var(--700-italic);
 		transform: rotate(-1deg);
 		text-align: center;
 
@@ -176,7 +175,6 @@
 		top: 0;
 		transform: translate(6.9%, -22%);
 		font-size: 20cqw;
-		font-weight: 900;
 		color: var(--yellow);
 		line-height: 1;
 		z-index: -1;

@@ -62,7 +62,7 @@
 				<Icon name="play" />
 			</button>
 		{/if}
-		<span style:--transition-name="show-date-{show.number}" class="show-number grit"
+		<span style:--transition-name="show-date-{show.number}" class="show-number fst-900 grit"
 			>{show.number}</span
 		>
 
@@ -228,7 +228,6 @@
 	.h3 {
 		view-transition-name: var(--transition-name);
 		margin: 0;
-		font-weight: 600;
 		font-size: var(--font-size-lg);
 		line-height: 1.2;
 		text-shadow:
@@ -241,7 +240,7 @@
 	.date {
 		font-size: var(--font-size-sm);
 		margin: 0;
-		font-weight: 500;
+		font-variation-settings: 'wght' 500;
 		view-transition-name: var(--transition-name);
 		width: max-content;
 		@media (prefers-color-scheme: dark) {
@@ -272,7 +271,6 @@
 		@media (prefers-color-scheme: dark) {
 			--ideal-font-size: 22cqw;
 		}
-		font-weight: 900;
 		color: var(--primary);
 		line-height: 1;
 		z-index: -1;

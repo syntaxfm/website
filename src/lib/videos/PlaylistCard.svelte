@@ -72,7 +72,6 @@
 	h3 {
 		view-transition-name: var(--transition-name);
 		margin: 0;
-		font-weight: 600;
 		font-size: var(--font-size-lg);
 		line-height: 1.2;
 		text-shadow:
@@ -85,7 +84,6 @@
 	.date {
 		font-size: var(--font-size-sm);
 		margin: 0;
-		font-weight: 500;
 		view-transition-name: var(--transition-name);
 		width: max-content;
 		@media (prefers-color-scheme: dark) {

@@ -86,7 +86,7 @@ th {
 	text-align: left;
 	background: var(--bg);
 	color: var(--fg);
-	font-weight: 400;
+	font-variation-settings: var(--400);
 	font-size: var(--font-size-sm);
 }
 

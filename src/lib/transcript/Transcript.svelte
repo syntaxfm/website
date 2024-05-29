@@ -143,7 +143,7 @@
 									$player.currentTime = utterance.start;
 								}}>{format_time(utterance.start)}</button
 							>
-							<p class="speaker">
+							<p class="speaker fst-600">
 								{utterance.speakerName || `Guest ${utterance.speakerId}`}
 							</p>
 						</div>
@@ -319,7 +319,6 @@
 	}
 	.speaker {
 		font-size: var(--font-size-sm);
-		font-weight: 600;
 		color: var(--subtle-accent);
 	}
 </style>

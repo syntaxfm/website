@@ -33,7 +33,7 @@
 		gap: 0.69rem;
 		align-items: center;
 		font-size: 22px;
-		font-weight: 500;
+		font-variation-settings: var(--500);
 	}
 	.presented {
 		box-shadow: inset 0 0 0 4px rgb(from black r g b / 0.2);
@@ -48,5 +48,4 @@
 		margin-inline: auto;
 		max-width: none;
 	}
-
 </style>

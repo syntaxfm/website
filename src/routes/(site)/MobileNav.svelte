@@ -52,8 +52,8 @@
 	.button-reset {
 		color: var(--white);
 		text-transform: uppercase;
-		font-weight: 900;
 		letter-spacing: 1px;
+		font-variation-settings: var(--900);
 	}
 
 	.menu {
@@ -75,7 +75,7 @@
 			a {
 				display: block;
 				margin-bottom: 2rem;
-				font-weight: 700;
+				font-variation-settings: var(--700);
 				text-shadow: 0 0 4px black;
 			}
 		}

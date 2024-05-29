@@ -15,66 +15,69 @@
 	}
 
 	@font-face {
-		font-family: 'MDIO';
+		font-family: '💪';
 		src:
-			url('/fonts/MDIO-Regular.woff2') format('woff2'),
-			url('/fonts/MDIO-Regular.woff') format('woff');
-		font-weight: normal;
-		font-style: normal;
+			url('https://fonts.tolin.ski/fonts/MDIOVariable.woff2') format('woff2'),
+			url('https://fonts.tolin.ski/fonts/MDIOVariable.woff') format('woff'),
+			local('MD IO Variable Regular'),
+			local('MDIOVariable-Regular');
+		font-weight: 100 900;
+		font-style: normal italic;
 	}
 
-	@font-face {
-		font-family: 'MDIO';
-		src:
-			url('/fonts/MDIO-Black.woff2') format('woff2'),
-			url('/fonts/MDIO-Black.woff') format('woff');
-		font-weight: 900; /* Black */
-		font-style: normal;
+	.fst-100 {
+		font-variation-settings: var(--100);
 	}
 
-	@font-face {
-		font-family: 'MDIO';
-		src:
-			url('/fonts/MDIO-Bold.woff2') format('woff2'),
-			url('/fonts/MDIO-Bold.woff') format('woff');
-		font-weight: bold;
-		font-style: normal;
+	.fst-100-i {
+		font-variation-settings: var(--100-italic);
 	}
 
-	@font-face {
-		font-family: 'MDIO';
-		src:
-			url('/fonts/MDIO-BoldItalic.woff2') format('woff2'),
-			url('/fonts/MDIO-BoldItalic.woff') format('woff');
-		font-weight: bold;
-		font-style: italic;
+	.fst-400 {
+		font-variation-settings: var(--400);
 	}
 
-	@font-face {
-		font-family: 'MDIO';
-		src:
-			url('/fonts/MDIO-BlackItalic.woff2') format('woff2'),
-			url('/fonts/MDIO-BlackItalic.woff') format('woff');
-		font-weight: 900; /* Black */
-		font-style: italic;
+	.fst-400-i {
+		font-variation-settings: var(--400-italic);
 	}
 
-	@font-face {
-		font-family: 'MDIO';
-		src:
-			url('/fonts/MDIO-Medium.woff2') format('woff2'),
-			url('/fonts/MDIO-Medium.woff') format('woff');
-		font-weight: 500; /* Medium */
-		font-style: normal;
+	.fst-500 {
+		font-variation-settings: var(--500);
 	}
 
-	@font-face {
-		font-family: 'MDIO';
-		src:
-			url('/fonts/MDIO-MediumItalic.woff2') format('woff2'),
-			url('/fonts/MDIO-MediumItalic.woff') format('woff');
-		font-weight: 500; /* Medium */
-		font-style: italic;
+	.fst-500-i {
+		font-variation-settings: var(--500-italic);
+	}
+
+	.fst-600 {
+		font-variation-settings: var(--600);
+	}
+
+	.fst-600-i {
+		font-variation-settings: var(--600-italic);
+	}
+
+	.fst-700 {
+		font-variation-settings: var(--700);
+	}
+
+	.fst-700-i {
+		font-variation-settings: var(--700-italic);
+	}
+
+	.fst-800 {
+		font-variation-settings: var(--800);
+	}
+
+	.fst-800-i {
+		font-variation-settings: var(--800-italic);
+	}
+	.fst-900 {
+		font-variation-settings: var(--900);
+	}
+
+	.fst-900-i {
+		font-variation-settings: var(--900-italic);
 	}
 
 	h1,
@@ -83,9 +86,7 @@
 	h4,
 	h5,
 	h6 {
-		font-family: 'MDIO';
-		/* font-family: '💪'; */
-		font-weight: 700;
+		font-family: '💪';
 		letter-spacing: -0.04em;
 		line-height: 1.4;
 		margin-block: 0.2em;
@@ -93,8 +94,10 @@
 		mask-image-repeat: repeat;
 		mask-size: 250px;
 		text-wrap: balance;
-		font-style: italic;
-		/* Markdown Links show on hover */
+		font-variation-settings:
+			'wght' 700,
+			'ital' 1;
+
 		--opacity: 0;
 		&:hover {
 			--opacity: 1;
@@ -117,17 +120,14 @@
 	h2,
 	.h2 {
 		font-size: var(--font-size-xxl);
-		/* font-weight: 700; */
 	}
 	h3,
 	.h3 {
 		font-size: var(--font-size-xl);
-		/* font-weight: 700; */
 	}
 	h4,
 	.h4 {
 		font-size: var(--font-size-lg);
-		/* font-weight: 400; */
 	}
 	h5,
 	.h5 {
@@ -167,7 +167,7 @@
 	}
 
 	html {
-		font-family: 'MDIO';
+		font-family: '💪';
 	}
 
 	body {
@@ -218,11 +218,10 @@
 		border-bottom: none;
 		text-decoration: none;
 		color: var(--color-2);
-		font-weight: normal;
 		border-radius: 4px;
 		position: relative;
 		font-size: var(--font-size-sm);
-		font-weight: 900;
+		font-variation-settings: var(--800);
 		@media (--above_med) {
 			left: -17px;
 		}
@@ -349,6 +348,5 @@ html {
 }
 
 .admin :is(h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6) {
-	font-weight: 400;
-	font-style: normal;
+	font-variation-settings: var(--400);
 }

@@ -33,7 +33,7 @@
 				{#each shows as show}
 					<tr>
 						<td>
-							<span class="show-type">
+							<span class="show-type fst-500">
 								{#if format(show.date, 'EEE') === 'Mon'}
 									Hasty
 								{:else if format(show.date, 'EEE') === 'Wed'}
@@ -80,7 +80,6 @@
 	.show-type {
 		background: var(--yellow);
 		color: var(--black);
-		font-weight: 500;
 		font-size: var(--font-size-xs);
 		rotate: 2deg;
 		margin-bottom: -4px;
