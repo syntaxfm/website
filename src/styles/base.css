@@ -17,10 +17,10 @@
 	@font-face {
 		font-family: '💪';
 		src:
-			local('MD IO Variable Regular'),
-			local('MDIOVariable-Regular'),
 			url('https://fonts.tolin.ski/fonts/MDIOVariable.woff2') format('woff2'),
-			url('https://fonts.tolin.ski/fonts/MDIOVariable.woff') format('woff');
+			url('https://fonts.tolin.ski/fonts/MDIOVariable.woff') format('woff'),
+			local('MD IO Variable Regular'),
+			local('MDIOVariable-Regular');
 		font-weight: 100 900;
 		font-style: normal italic;
 	}
