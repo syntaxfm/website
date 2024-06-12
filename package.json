@@ -109,9 +109,5 @@
 	},
 	"prisma": {
 		"seed": "node --loader ts-node/esm prisma/seed.ts"
-	},
-	"volta": {
-		"node": "20.14.0",
-		"pnpm": "8.1.0"
 	}
 }
