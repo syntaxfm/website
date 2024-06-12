@@ -26,7 +26,7 @@
 		"postinstall": "pnpm db:generate && pnpm exec playwright install"
 	},
 	"devDependencies": {
-		"@codecov/vite-plugin": "0.0.1-beta.6",
+		"@codecov/sveltekit-plugin": "0.0.1-beta.9",
 		"@playwright/test": "^1.42.1",
 		"@sveltejs/kit": "^2.5.5",
 		"@sveltejs/vite-plugin-svelte": "^3.0.2",
@@ -109,5 +109,9 @@
 	},
 	"prisma": {
 		"seed": "node --loader ts-node/esm prisma/seed.ts"
+	},
+	"volta": {
+		"node": "20.14.0",
+		"pnpm": "8.1.0"
 	}
 }
