@@ -1,10 +1,7 @@
 <script lang="ts">
-	import NewsletterLogo from './NewsletterLogo.svelte';
 	import Input from '$lib/forms/Input.svelte';
 	import swag from './swag.png';
 	let is_hidden = false;
-
-	export let show_logo = true;
 
 	const FORM_ID = 5465361;
 	$: action = `https://app.convertkit.com/forms/${FORM_ID}/subscriptions`;
