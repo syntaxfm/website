@@ -139,9 +139,9 @@ dependencies:
     version: 7.2.3
 
 devDependencies:
-  '@codecov/vite-plugin':
-    specifier: 0.0.1-beta.6
-    version: 0.0.1-beta.6(vite@5.2.8)
+  '@codecov/sveltekit-plugin':
+    specifier: 0.0.1-beta.9
+    version: 0.0.1-beta.9(@sveltejs/kit@2.5.5)(svelte@4.2.12)(vite@5.2.8)
   '@playwright/test':
     specifier: ^1.42.1
     version: 1.42.1
@@ -290,8 +290,8 @@ packages:
       to-fast-properties: 2.0.0
     dev: false
 
-  /@codecov/bundler-plugin-core@0.0.1-beta.6:
-    resolution: {integrity: sha512-dGk/s90fZm7D1O00gRtuE2gqM/CW9nglaPzcIT0v10VOV2tj+aHRrdB+yjas+RW8QP8Qf/sMqSmjkufP1iqggw==}
+  /@codecov/bundler-plugin-core@0.0.1-beta.9:
+    resolution: {integrity: sha512-zxMpUhhplvjuwNVmLtOi64d7LGPAhoLsQwVky9Rkx8oRHaDKqDvuisrs+NP5mIE9tQYPnGZKgiv0gnEJ3AHULw==}
     engines: {node: '>=18.0.0'}
     dependencies:
       chalk: 4.1.2
@@ -300,13 +300,30 @@ packages:
       zod: 3.22.4
     dev: true
 
-  /@codecov/vite-plugin@0.0.1-beta.6(vite@5.2.8):
-    resolution: {integrity: sha512-eIi3M9R1om/T+6FoZGaffWMmwSZ0nx1fIGgidFRFkQdXtKAwHU0//YjCXOg17vJsPXlaSatM81EQBU/qmSXQ1Q==}
+  /@codecov/sveltekit-plugin@0.0.1-beta.9(@sveltejs/kit@2.5.5)(svelte@4.2.12)(vite@5.2.8):
+    resolution: {integrity: sha512-wAp1IenXKNfFGrnsfts1xRRANMfoDUrXA2JgJmHu52Uj0ZAKKBqxWlByVvji7cBEYSI9GYoYfQsC4C7iHDPfkg==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      '@sveltejs/kit': 2.x
+      svelte: 4.x
+    dependencies:
+      '@codecov/bundler-plugin-core': 0.0.1-beta.9
+      '@codecov/vite-plugin': 0.0.1-beta.9(vite@5.2.8)
+      '@sveltejs/kit': 2.5.5(@sveltejs/vite-plugin-svelte@3.0.2)(svelte@4.2.12)(vite@5.2.8)
+      svelte: 4.2.12
+      unplugin: 1.10.1
+    transitivePeerDependencies:
+      - vite
+    dev: true
+
+  /@codecov/vite-plugin@0.0.1-beta.9(vite@5.2.8):
+    resolution: {integrity: sha512-SbJagAnmiFb1YRdTjDOt5fisc7GTRLPJIbth/rvSFIuX9HZLM0Effb/XniLBQrD/IL5znL/7e75Lhcez2ryKnA==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       vite: 4.x || 5.x
     dependencies:
-      '@codecov/bundler-plugin-core': 0.0.1-beta.6
+      '@codecov/bundler-plugin-core': 0.0.1-beta.9
+      unplugin: 1.10.1
       vite: 5.2.8(@types/node@20.12.3)
     dev: true
 

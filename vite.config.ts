@@ -1,8 +1,7 @@
-// import { sentrySvelteKit } from '@sentry/sveltekit';
 import { sentrySvelteKit } from '@sentry/sveltekit';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vitest/config';
-import { codecovVitePlugin } from '@codecov/vite-plugin';
+import { codecovSvelteKitPlugin } from '@codecov/sveltekit-plugin';
 import { loadEnv } from 'vite';
 
 export default defineConfig(({ mode }) => {
@@ -19,7 +18,7 @@ export default defineConfig(({ mode }) => {
 				}
 			}),
 			sveltekit(),
-			codecovVitePlugin({
+			codecovSvelteKitPlugin({
 				enableBundleAnalysis: env.CODECOV_TOKEN !== undefined,
 				bundleName: 'website',
 				uploadToken: env.CODECOV_TOKEN
