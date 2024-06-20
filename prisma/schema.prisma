@@ -239,6 +239,16 @@ model Video {
   shows        ShowVideo[]
 }
 
+enum PlaylistOrder {
+  // Use playlist order as it is on YouTube
+  YouTubeAsc
+  // Reverse playlist order as it is on YouTube
+  YouTubeDesc
+  // Order playlist by video publish date accordingly
+  VideoPublishedAtAsc
+  VideoPublishedAtDesc
+}
+
 model Playlist {
   id          String            @id @default(uuid())
   title       String
@@ -246,6 +256,7 @@ model Playlist {
   created_at  DateTime          @default(now())
   slug        String            @unique
   unlisted    Boolean?          @default(false)
+  order       PlaylistOrder     @default(YouTubeAsc)
   videos      PlaylistOnVideo[]
 }
 
