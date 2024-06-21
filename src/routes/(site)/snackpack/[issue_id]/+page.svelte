@@ -30,5 +30,11 @@
 		:global(img) {
 			max-width: 100%;
 		}
+		:global(.ck-inner-section) {
+			border: 0 !important;
+		}
+		:global(table) {
+			border: 0 !important;
+		}
 	}
 </style>
