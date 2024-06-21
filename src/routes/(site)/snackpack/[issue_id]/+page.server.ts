@@ -2,6 +2,7 @@ import { error, json } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import { env } from '$env/dynamic/private';
 import type { Broadcast } from '../proxy+page.server';
+import { parseHTML } from 'linkedom';
 
 export const load: PageServerLoad = async function ({ setHeaders, params, locals }) {
 	// 1. Fetch a broadcast by this ID
@@ -22,11 +23,18 @@ export const load: PageServerLoad = async function ({ setHeaders, params, locals
 		'cache-control': 'public, max-age=2592000, s-maxage=2592000'
 	});
 
+	// Scope the CSS in the returned HTML
+	const { document } = parseHTML(response.broadcast.content);
+	const styleTags = document.querySelectorAll('style');
+	styleTags.forEach((style) => {
+		style.innerHTML = `.newsletter-output { ${style.innerHTML} }`;
+	});
+
 	return {
 		subject: response.broadcast.subject,
 		published_at: response.broadcast.published_at,
 		id: response.broadcast.id,
-		html: response.broadcast.content,
+		html: document.toString(),
 		meta: {
 			title: `Syntax Newsletter - Issue ${response.broadcast.id}`
 		}
