@@ -1,6 +1,6 @@
 ---
 number: 785
-title: What’s Next for NextJS with Tim Neutkens
+title: What’s Next for Next.js with Tim Neutkens
 date: 1718967600000
 url: https://traffic.libsyn.com/syntax/Syntax_-_785.mp3
 youtube_url: https://www.youtube.com/watch?v=fXugpgknScY
