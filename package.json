@@ -1,6 +1,6 @@
 {
 	"name": "syntax",
-	"version": "2.1.69",
+	"version": "2.1.70",
 	"private": true,
 	"scripts": {
 		"dev": "./scripts/syntax_website_go",
