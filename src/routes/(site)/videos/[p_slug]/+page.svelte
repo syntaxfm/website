@@ -1,4 +1,6 @@
 <script lang="ts">
+	import PlaylistVideo from "$/lib/videos/PlaylistVideo.svelte";
+
 	export let data;
 	$: ({ playlist } = data);
 </script>
@@ -7,21 +9,12 @@
 	<h1 class="h3">{playlist.title}</h1>
 	<div class="playlist-grid grid">
 		{#each playlist.videos as { video }}
-			<a href={`/videos/${playlist.slug}/${video.slug}`}>
-				<img src={video.thumbnail} class="thumbnail" alt={video.title} />
-				<h3 class="h6">{video.title}</h3>
-			</a>
+			<PlaylistVideo {playlist} {video} />
 		{/each}
 	</div>
 {/if}
 
 <style lang="postcss">
-	img {
-		width: 100%;
-	}
-	.h6 {
-		margin-bottom: 0;
-	}
 	.playlist-grid {
 		display: grid;
 		grid-gap: 20px;

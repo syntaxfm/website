@@ -1,6 +1,8 @@
 import { YOUTUBE_CHANNEL_ID } from '$/const';
 import { prisma_client } from '$/hooks.server';
+import parseDuration from '$/lib/videos/parseDuration';
 import { YOUTUBE_API_KEY } from '$env/static/private';
+import type { Video } from '@prisma/client';
 import slug from 'speakingurl';
 
 // Youtube importer
@@ -147,7 +149,7 @@ export async function import_playlist(playlist_id: string) {
 
 	// Fetch video details using the videos endpoint
 	const videos_response = await fetch(
-		`https://www.googleapis.com/youtube/v3/videos?part=snippet,status&id=${video_ids.join(',')}&key=${process.env.YOUTUBE_API_KEY}`
+		`https://www.googleapis.com/youtube/v3/videos?part=snippet,status,contentDetails&id=${video_ids.join(',')}&key=${process.env.YOUTUBE_API_KEY}`
 	);
 	const videos_data = await videos_response.json();
 
@@ -159,24 +161,22 @@ export async function import_playlist(playlist_id: string) {
 		}
 
 		try {
+			const duration = parseDuration(item.contentDetails.duration);
+			const data: Omit<Video, 'id'> = {
+				title: item.snippet.title,
+				slug: slug(item.snippet.title),
+				description: item.snippet.description,
+				duration,
+				url: `https://www.youtube.com/watch?v=${item.id}`,
+				published_at: new Date(item.snippet.publishedAt),
+				thumbnail: item.snippet.thumbnails.maxres.url
+			};
 			const video = await prisma_client.video.upsert({
 				where: { id: item.id },
-				update: {
-					title: item.snippet.title,
-					slug: slug(item.snippet.title),
-					description: item.snippet.description,
-					url: `https://www.youtube.com/watch?v=${item.id}`,
-					published_at: new Date(item.snippet.publishedAt),
-					thumbnail: item.snippet.thumbnails.maxres.url
-				},
+				update: data,
 				create: {
 					id: item.id,
-					title: item.snippet.title,
-					slug: slug(item.snippet.title),
-					description: item.snippet.description,
-					url: `https://www.youtube.com/watch?v=${item.id}`,
-					published_at: new Date(item.snippet.publishedAt),
-					thumbnail: item.snippet.thumbnails.maxres.url
+					...data
 				}
 			});
 
