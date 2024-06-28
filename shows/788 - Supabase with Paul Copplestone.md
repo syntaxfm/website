@@ -4,6 +4,9 @@ title: "Supabase: Open Source Firebase for Fullstack JS Apps"
 date: 1719572400000
 url: https://traffic.libsyn.com/syntax/Syntax_-_788.mp3
 youtube_url: https://www.youtube.com/watch?v=KtxoJUZDgIU
+hosts:
+  - stolinski
+  - w3cj
 guest:
   name: Paul Copplestone
   github: kiwicopple

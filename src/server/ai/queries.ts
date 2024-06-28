@@ -107,6 +107,14 @@ export const SHOW_QUERY = (
 					}
 				}
 			},
+			hosts: {
+				select: {
+					id: true,
+					username: true,
+					name: true,
+					twitter: true
+				}
+			},
 			aiShowNote: {
 				select: {
 					description: true,

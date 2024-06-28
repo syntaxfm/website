@@ -4,6 +4,9 @@ title: Do More With AI - LLMs With Big Token Counts
 date: 1719831600000
 url: https://traffic.libsyn.com/syntax/Syntax_-_789.mp3
 youtube_url: https://www.youtube.com/watch?v=81DY1IsMckE
+hosts:
+  - stolinski
+  - w3cj
 ---
 
 Join Scott and CJ as they dive into the fascinating world of AI, exploring topics from LLM token sizes and context windows to understanding input length. They discuss practical use cases and share insights on how web developers can leverage larger token counts to maximize the potential of AI and LLMs.

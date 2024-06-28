@@ -63,7 +63,7 @@
 </header>
 
 <div>
-	<HostsAndGuests guests={show.guests} />
+	<HostsAndGuests hosts={show.hosts} guests={show.guests} />
 </div>
 
 <div class="show-actions-wrap">

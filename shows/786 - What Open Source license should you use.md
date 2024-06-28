@@ -4,6 +4,9 @@ title: What Open Source license should you use?
 date: 1719226800000
 url: https://traffic.libsyn.com/syntax/Syntax_-_786.mp3
 youtube_url: https://www.youtube.com/watch?v=FcieXP8T4R4
+hosts:
+  - stolinski
+  - w3cj
 ---
 
 Scott and CJ dive into the world of open source, breaking down its meaning, benefits, and the various types of licenses you'll encounter. From permissive licenses like MIT and Apache 2.0 to copy-left licenses such as GNU GPLv3, they'll help you choose and apply the right license for your project.

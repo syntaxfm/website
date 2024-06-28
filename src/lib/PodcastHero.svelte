@@ -17,10 +17,10 @@
 			<a href="/"><Logo /></a>
 		</div>
 		<h2 class="text-center">
-			A <span class="tasty">Tasty Treats</span> Podcast for Web Developers
+			<span class="tasty">Tasty Treats</span> for Web Developers
 		</h2>
 		<p class="hosted-by">
-			<span>Hosted by<wbr /></span>
+			<span>With<wbr /></span>
 			<span>
 				<img
 					width="50"
@@ -29,7 +29,7 @@
 					alt="A rather handsome Wes Bos"
 				/><a href="/about">Wes Bos</a>
 			</span>
-			<span class="amp">&</span>
+			<span class="amp">×</span>
 			<span>
 				<img
 					width="50"
@@ -37,6 +37,11 @@
 					src={`https://github.com/stolinski.png`}
 					alt="Scott lookin absolutely fresh"
 				/> <a href="/about">Scott Tolinski</a>
+			</span>
+			<span class="amp">×</span>
+			<span>
+				<img width="50" height="50" src={`https://github.com/w3cj.png`} alt="A very dapper CJ" />
+				<a href="/about">CJ Reynolds</a>
 			</span>
 		</p>
 		<p class="brought-by">

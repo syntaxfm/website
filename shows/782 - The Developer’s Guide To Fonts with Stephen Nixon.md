@@ -13,6 +13,9 @@ guest:
   social:
   - https://www.youtube.com/arrowtype
   - https://www.instagram.com/arrowtype
+hosts:
+  - stolinski
+  - w3cj
 ---
 
 Scott and CJ are joined by Stephen Nixon of ArrowType to delve into the world of fonts and type for developers. They explore the intricacies of font creation, the utility of variable fonts, and offer tips for making visually appealing typography on the web.
