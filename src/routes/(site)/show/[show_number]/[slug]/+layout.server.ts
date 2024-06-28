@@ -26,6 +26,14 @@ export const load = async function ({ params, locals, url }) {
 					}
 				}
 			},
+			hosts: {
+				select: {
+					id: true,
+					username: true,
+					name: true,
+					twitter: true
+				}
+			},
 			aiShowNote: {
 				include: {
 					topics: true,

@@ -23,16 +23,19 @@ enum ShowType {
 }
 
 model User {
-  id         String     @id @default(uuid())
-  avatar_url String?
-  created_at DateTime   @default(now())
-  email      String?    @unique
-  github_id  Int        @unique
-  session    Session[]
-  updated_at DateTime   @updatedAt
-  username   String?
-  roles      UserRole[]
-  theme      String     @default("system")
+  id          String     @id @default(uuid())
+  avatar_url  String?
+  created_at  DateTime   @default(now())
+  email       String?    @unique
+  github_id   Int        @unique
+  session     Session[]
+  updated_at  DateTime   @updatedAt
+  username    String?
+  roles       UserRole[]
+  theme       String     @default("system")
+  name        String?
+  twitter     String?
+  hostedShows Show[]
 }
 
 model Role {
@@ -123,6 +126,7 @@ model Show {
   aiShowNote  AiShowNote?
   show_type   ShowType    @default(SPECIAL)
   videos      ShowVideo[]
+  hosts       User[]
 
   @@index([number, date], name: "idx_show_number_date") // Define composite index
   @@index([number]) // Define composite index

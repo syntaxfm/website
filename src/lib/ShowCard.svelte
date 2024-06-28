@@ -24,11 +24,15 @@
 				github: string | null;
 			};
 		}[];
+		hosts?: {
+			name: string;
+			username: string | null;
+		}[];
 	};
 	export let display: 'list' | 'card' | 'highlight' = 'card';
-
 	export let heading = 'h4';
 	export let show_date = new Date(show.date);
+
 	function format_date(date: Date, baseDate: Date = new Date()) {
 		const timeFormatter = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
 		const diff = date.getTime() - baseDate.getTime();
@@ -45,6 +49,21 @@
 		}
 	}
 	export const aria_key = `show${show.number}-description`;
+
+	let hosts = [];
+	if ((show?.hosts?.length || 0) > 0) {
+		show.hosts?.forEach((host) => {
+			hosts.push({
+				name: host.name,
+				github: host.username || ''
+			});
+		});
+	} else {
+		hosts = [
+			{ name: 'Wes Bos', github: 'wesbos' },
+			{ name: 'Scott Tolinski', github: 'stolinski' }
+		];
+	}
 </script>
 
 <article class={display}>
@@ -108,8 +127,7 @@
 			<div class="bottom-row">
 				<FacePile
 					faces={[
-						{ name: 'Wes Bos', github: 'wesbos' },
-						{ name: 'Scott Tolinski', github: 'stolinski' },
+						...hosts,
 						...(show.guests || []).map((guest) => ({
 							name: guest.Guest.name,
 							github: guest.Guest.github || ''

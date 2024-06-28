@@ -97,6 +97,28 @@ export async function parse_and_save_show_notes(
 		DAYS_OF_WEEK_TYPES[dayOfWeek] || 'SPECIAL';
 	// Save or update the show
 	try {
+		// Prepare the hosts connection if hosts exist in the frontmatter
+		let hostsConnection = {};
+		if (data.hosts && Array.isArray(data.hosts)) {
+			const hostUsers = await prisma.user.findMany({
+				where: {
+					username: {
+						in: data.hosts
+					}
+				}
+			});
+
+			if (hostUsers.length > 0) {
+				hostsConnection = {
+					hosts: {
+						connect: hostUsers.map((user) => ({ id: user.id }))
+					}
+				};
+			}
+		}
+
+		console.log('hostsConnection', hostsConnection);
+
 		await prisma.show.upsert({
 			where: { id },
 			update: {
@@ -109,7 +131,8 @@ export async function parse_and_save_show_notes(
 				show_notes: content,
 				hash: hash,
 				md_file,
-				show_type // Assign the calculated show_type
+				show_type, // Assign the calculated show_type
+				...hostsConnection
 			},
 			create: {
 				id,
@@ -122,7 +145,8 @@ export async function parse_and_save_show_notes(
 				show_notes: content,
 				hash: hash,
 				md_file,
-				show_type // Assign the calculated show_type
+				show_type, // Assign the calculated show_type
+				...hostsConnection
 			}
 		});
 
