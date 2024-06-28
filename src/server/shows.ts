@@ -117,8 +117,6 @@ export async function parse_and_save_show_notes(
 			}
 		}
 
-		console.log('hostsConnection', hostsConnection);
-
 		await prisma.show.upsert({
 			where: { id },
 			update: {

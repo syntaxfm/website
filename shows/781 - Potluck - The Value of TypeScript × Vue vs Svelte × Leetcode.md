@@ -4,6 +4,9 @@ title: Potluck - The Value of TypeScript × Vue vs Svelte × Leetcode
 date: 1718190000000
 url: https://traffic.libsyn.com/syntax/Syntax_-_781.mp3
 youtube_url: https://www.youtube.com/watch?v=Vj9Z4Dso8y4
+hosts:
+  - stolinski
+  - w3cj
 ---
 
 In this potluck episode of Syntax, Scott and CJ serve up a variety of community questions, from the nuances of beginner vs. advanced TypeScript to the pros and cons of SvelteKit. They also discuss falling out of love with React, shipping private packages via NPM, and the eternal struggle of always starting but never finishing projects.
