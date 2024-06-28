@@ -4,14 +4,15 @@ title: Supper Club × WASM, Fastly Edge, and Polyfill.io with Jake Champion
 date: 1689940800938
 url: https://traffic.libsyn.com/syntax/Syntax_-_643.mp3
 guest:
-  name: Jake Champion
-  of: Fastly
+  name: Jake Champion of: Fastly
   github: JakeChampion
   twitter: jakedchampion
   url: https://jakechampion.name/
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Jake Champion about his work with Fastly and Polyfill, the difference between WASI and WASM, what Winter CG is, and what makes Fastly different.
+
+**Note**: This episode mentions polyfill.io, which has since been sold and is [serving up malware](https://www.securityweek.com/polyfill-domain-shut-down-as-owner-disputes-accusations-of-malicious-activity/). You should not use this service, both because likely no longer need a polyfill and for the obvious security issue.
 
 ## Show Notes
 
