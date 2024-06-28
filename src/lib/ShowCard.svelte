@@ -25,7 +25,7 @@
 			};
 		}[];
 		hosts?: {
-			name: string;
+			name: string | null;
 			username: string | null;
 		}[];
 	};
@@ -50,11 +50,14 @@
 	}
 	export const aria_key = `show${show.number}-description`;
 
-	let hosts = [];
+	let hosts: {
+		name: string;
+		github: string;
+	}[] = [];
 	if ((show?.hosts?.length || 0) > 0) {
 		show.hosts?.forEach((host) => {
 			hosts.push({
-				name: host.name,
+				name: host.name || '',
 				github: host.username || ''
 			});
 		});

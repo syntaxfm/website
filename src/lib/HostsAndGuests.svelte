@@ -1,9 +1,12 @@
 <script lang="ts">
-	import type { Guest, User } from '@prisma/client';
+	import type { Guest } from '@prisma/client';
 	import Host from '$lib/hosts/Host.svelte';
 	export let guests: { Guest: Guest }[] = [];
-	export let hosts: User[] = [];
-	$: console.log('hosts', hosts);
+	export let hosts: {
+		name: string | null;
+		username: string | null;
+		twitter: string | null;
+	}[] = [];
 </script>
 
 <div class="guests-and-hosts">

@@ -12,7 +12,7 @@
 	import { browser } from '$app/environment';
 
 	export let data;
-	$: ({ show, user_theme } = data);
+	$: ({ show } = data);
 
 	function toggle_share() {
 		$episode_share_status = !$episode_share_status;
