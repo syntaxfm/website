@@ -48,13 +48,3 @@ export const load_state_from_indexed_db = async (): Promise<Partial<PlayerState>
 		return null;
 	}
 };
-
-export function get_time_stamp_from_href(href: string) {
-	const split_time_stamp = href.split('#t=').at(-1) || '';
-	return split_time_stamp
-		.split(':')
-		.reverse()
-		.map(Number)
-		.map((num, i) => num * 60 ** i)
-		.reduce((acc, num) => acc + num, 0);
-}

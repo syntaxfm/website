@@ -11,7 +11,8 @@
 	import { player } from '$state/player';
 	import { format } from 'date-fns';
 	import SaveOffline from '$lib/player/SaveOffline.svelte';
-	import { get_time_stamp_from_href } from '$/state/player_utils.js';
+	import { tsToS } from '$/utilities/format_time.js';
+
 	export let data;
 	$: ({ show, time_start } = data);
 
@@ -20,7 +21,7 @@
 		if (target instanceof HTMLAnchorElement && target.matches(`a[href*='#t=']`)) {
 			e.preventDefault();
 			const href = target.getAttribute('href');
-			const timestamp = href ? get_time_stamp_from_href(href) : 0;
+			const timestamp = href ? tsToS(href) : 0;
 			// If we aren't already playing this episode, load it up and then jump it
 			if ($player.current_show?.number !== show.number) {
 				await player.start_show(show, timestamp);

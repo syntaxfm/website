@@ -252,7 +252,7 @@ const new_player_state = () => {
 						);
 					}
 					state.audio.pause();
-					state.audio.src = '';
+					state.audio.removeAttribute('src');
 				}
 				return { ...initial_state, audio: state.audio, media_controller: state.media_controller };
 			});
