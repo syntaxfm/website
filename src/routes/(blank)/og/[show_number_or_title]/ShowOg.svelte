@@ -8,6 +8,18 @@
 	export let show: LatestShow & { isPage?: boolean };
 	export let show_date = show.date ? new Date(show.date) : null;
 
+	let hosts = (show.hosts || []).map((host) => ({
+		name: host.name || '',
+		github: host.username || ''
+	}));
+
+	if (!hosts.length) {
+		hosts = [
+			{ name: 'Wes Bos', github: 'wesbos' },
+			{ name: 'Scott Tolinski', github: 'stolinski' }
+		];
+	}
+
 	function fitText(node: HTMLHeadElement) {
 		node.classList.remove('finish-sizing-text');
 		// Find out how many lines this text needs to be.
@@ -85,8 +97,7 @@
 			<FacePile
 				size="120px"
 				faces={[
-					{ name: 'Wes Bos', github: 'wesbos' },
-					{ name: 'Scott Tolinski', github: 'stolinski' },
+					...hosts,
 					...(show.guests || []).map((guest) => ({
 						name: guest.Guest.name,
 						github: guest.Guest.github || ''
