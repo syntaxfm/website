@@ -112,6 +112,11 @@ fn get_db_command_prefix() -> String {
 
     let username = url.username();
     let password = url.password().unwrap_or("");
+    let password_command = if password.is_empty() {
+        ""
+    } else {
+        "-p {password}"
+    };
     let host = url.host_str().expect("Database host is required");
     let port = url.port().unwrap_or(3306);
     let database = url.path().trim_start_matches('/');
@@ -128,9 +133,9 @@ fn get_db_command_prefix() -> String {
     };
 
     let command = format!(
-        "{mysql_command} -h {host} -P {port} -u {username} -p{password} {database}",
+        "{mysql_command} -h {host} -P {port} -u {username} {password_command} {database}",
     );
-	
+
     return command
 }
 
@@ -150,11 +155,12 @@ fn parse_count_from_output(output: &str) -> Result<i32, Box<dyn std::error::Erro
 fn check_show_table_data() -> Result<(), Box<dyn std::error::Error>> {
     let mysql_command_prefix = get_db_command_prefix();
     let check_data_command = format!("{} -e 'SELECT COUNT(*) FROM `Show`'", mysql_command_prefix);
-    let output = Command::new("sh")
+    let shell = std::env::var("SHELL").unwrap_or_else(|_| String::from("sh"));
+    let output = Command::new(shell)
 		.arg("-c")
 		.arg(&check_data_command)
 		.output()?;
-	
+
     if !output.status.success() {
         let stderr = str::from_utf8(&output.stderr)?;
         return Err(Box::new(std::io::Error::new(std::io::ErrorKind::Other, stderr)));
@@ -272,7 +278,7 @@ fn main() {
         if let Err(e) = check_and_update_env() {
             eprintln!("Error checking/copying .env file: {}", e);
         } else {
-					execute_command("pnpm", &["install"]); 
+					execute_command("pnpm", &["install"]);
 					println!("🥘 Website preheated to 450°F (232°C)");
         }
         return;
@@ -310,5 +316,5 @@ fn main() {
     }
 
     // Run 'pnpm vite dev' command
-    execute_command("pnpm", &["vite", "dev"]); 
+    execute_command("pnpm", &["vite", "dev"]);
 }
