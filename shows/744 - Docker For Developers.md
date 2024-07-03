@@ -4,6 +4,9 @@ title: Docker For Developers
 date: 1710759600328
 url: https://traffic.libsyn.com/syntax/Syntax_-_744.mp3
 youtube_url: https://www.youtube.com/watch?v=TeU0RJgL6y4
+hosts:
+  - stolinski
+  - w3cj
 ---
 
 Join Scott and CJ on a rapid-fire journey through Docker. From unraveling containerization to practical advice on incorporating Docker into your workflow, this quick-paced episode has everything you need to navigate the world of container technology.
