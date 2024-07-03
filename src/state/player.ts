@@ -30,9 +30,6 @@ const new_player_state = () => {
 	const player_state = writable<PlayerState>(initial_state);
 	const { update, subscribe, set } = player_state;
 
-	// An interval that saves time stamps to localstorage
-	let save_position_interval: number | null = null;
-
 	// Save state to IndexedDB
 	const save_state_to_indexed_db = async () => {
 		try {
@@ -63,24 +60,17 @@ const new_player_state = () => {
 	};
 
 	// Starts timer that save listening position.
-	function start_save_position_interval(show_number: number) {
-		stop_save_position_interval();
-		save_position_interval = window.setInterval(() => {
-			const current_state = get(player_state);
-			if (current_state.status === 'PLAYING' && current_state.audio) {
-				localStorage.setItem(
-					`last_played_position_${show_number}`,
-					current_state.audio.currentTime.toString()
-				);
-			}
-		}, 1000); // Save every 5 seconds
-	}
-
-	// Clears interval. happesn on pause or stop
-	function stop_save_position_interval() {
-		if (save_position_interval) {
-			clearInterval(save_position_interval);
-			save_position_interval = null;
+	function save_position() {
+		const current_state = get(player_state);
+		if (
+			current_state.status === 'PLAYING' &&
+			current_state.audio &&
+			current_state?.current_show?.number
+		) {
+			localStorage.setItem(
+				`last_played_position_${current_state.current_show.number}`,
+				current_state.audio.currentTime.toString()
+			);
 		}
 	}
 
@@ -144,16 +134,21 @@ const new_player_state = () => {
 		update((state) => ({ ...state, status: 'PLAYING' }));
 		const current_state = get(player_state);
 		if (current_state.current_show) {
-			start_save_position_interval(current_state.current_show.number);
+			save_position();
 		}
 	}
 
 	function onpause() {
 		update((state) => ({ ...state, status: 'PAUSED' }));
-		stop_save_position_interval();
+		save_position();
+	}
+
+	function ontimeupdate() {
+		save_position();
 	}
 
 	return {
+		ontimeupdate,
 		subscribe,
 		set,
 		update,
@@ -175,10 +170,6 @@ const new_player_state = () => {
 				// https://developer.mozilla.org/en-US/docs/Web/API/MediaSession
 				load_media_session(incoming_show);
 
-				// Starts timer that save listening position.
-				// We're listening to this because the event from audio is firing too often and set to 0 when a new episode is loaded. This works better.
-				start_save_position_interval(incoming_show.number);
-
 				save_state_to_indexed_db();
 
 				// This opens the UI Player drawer
@@ -198,13 +189,11 @@ const new_player_state = () => {
 					state.audio.play();
 				}
 				state.status = 'PLAYING';
-				if (state?.current_show?.number) start_save_position_interval(state.current_show.number);
 				return state;
 			});
 		},
 
 		pause() {
-			stop_save_position_interval();
 			// On pause, update the state writable and play audio
 			update((state) => {
 				if (state.audio) {
@@ -217,9 +206,6 @@ const new_player_state = () => {
 
 		reset() {
 			// Resetting the player state.
-			// First stop the local storage save interval
-			stop_save_position_interval();
-
 			//  Reset the player state and pause audio
 			// Set currentTime to 0 (probably doesn't need to happen)
 			update((state) => {
@@ -242,7 +228,6 @@ const new_player_state = () => {
 		},
 
 		close() {
-			stop_save_position_interval();
 			update((state) => {
 				if (state.audio) {
 					if (state.current_show) {

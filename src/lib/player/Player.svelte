@@ -43,6 +43,7 @@
 				style="--media-range-track-height: 5px; --media-range-thumb-height: 15px; --media-range-thumb-border-radius: 0;	--media-range-track-border-radius: 5px; --media-range-bar-color: var(--primary);--media-background-color: transparent; --media-control-background: transparent; width: 100%; --media-font-family: var(--body-font-family); --media-control-hover-background: transparent; "
 			>
 				<audio
+					on:timeupdate={player.ontimeupdate}
 					on:play={player.onplay}
 					on:pause={player.onpause}
 					slot="media"
