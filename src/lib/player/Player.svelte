@@ -7,7 +7,7 @@
 	import ShareButton from '../share/HairButton.svelte';
 </script>
 
-<section class={`player ${$player_window_status}`}>
+<section class="player {$player_window_status} {$player.status}">
 	<div class="window-controls">
 		{#if $player.current_show}<ShareButton show={$player.current_show} />{/if}
 		<button class="minimize" on:click={player.toggle_minimize}><Icon name="minimize" /></button>
@@ -37,7 +37,7 @@
 					slot="media"
 					bind:this={$player.audio}
 					preload="metadata"
-					bind:currentTime={$player.currentTime}
+					bind:currentTime={$player.current_time}
 					crossorigin="anonymous"
 				/>
 				{#if $player_window_status === 'ACTIVE'}
@@ -186,6 +186,7 @@
 		translate: 0 100% 0;
 		transition: 0.2s ease translate;
 		z-index: 10;
+
 		&.ACTIVE {
 			translate: 0 0 0;
 		}
@@ -227,10 +228,10 @@
 	}
 
 	.player-container {
-		padding: 10px;
+		padding: 10px 20px;
 		width: 100%;
 		display: flex;
-		gap: 20px;
+		gap: 25px;
 	}
 
 	.media-range-bookmarks {
