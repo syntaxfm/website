@@ -21,8 +21,8 @@ importers:
         specifier: ^0.13.1
         version: 0.13.1
       '@leveluptuts/svelte-side-menu':
-        specifier: ^1.0.7
-        version: 1.0.7
+        specifier: ^1.1.0
+        version: 1.1.0(svelte@4.2.18)
       '@oddbird/popover-polyfill':
         specifier: ^0.4.3
         version: 0.4.3
@@ -865,8 +865,10 @@ packages:
   '@jridgewell/trace-mapping@0.3.9':
     resolution: {integrity: sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ==}
 
-  '@leveluptuts/svelte-side-menu@1.0.7':
-    resolution: {integrity: sha512-+8ynGfoCEH62zALLAIuqy5gF2A+sEpZjJKk97Hj2GeufJFe2Eu8cW36yOx71WkZJKtBA3fwgI9Pkerbex6LpAw==}
+  '@leveluptuts/svelte-side-menu@1.1.0':
+    resolution: {integrity: sha512-j5O6GDKZ/Cvftn1SD0wpwV9ATwq35GiD79QQ53gTmFtJewp9yTBWYzgpIukfXyoXVSeeGwbdAgw1Cwli+II6+w==}
+    peerDependencies:
+      svelte: ^4.0.0
 
   '@mapbox/node-pre-gyp@1.0.11':
     resolution: {integrity: sha512-Yhlar6v9WQgUp/He7BdgzOz8lqMQ8sU+jkCq7Wx8Myc5YFJLbEe7lgui/V7G1qB1DJykHSGwreceSaD60Y0PUQ==}
@@ -4709,7 +4711,9 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.1
       '@jridgewell/sourcemap-codec': 1.4.15
 
-  '@leveluptuts/svelte-side-menu@1.0.7': {}
+  '@leveluptuts/svelte-side-menu@1.1.0(svelte@4.2.18)':
+    dependencies:
+      svelte: 4.2.18
 
   '@mapbox/node-pre-gyp@1.0.11':
     dependencies:
