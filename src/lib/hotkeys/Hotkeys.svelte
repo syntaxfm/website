@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
 	import type { Hotkeys } from '$lib/hotkeys/types';
 	import { getHotkeyTrigger } from '$lib/hotkeys/utils';
 	import { player } from '$state/player';
@@ -85,7 +85,7 @@
 	function seekBackward() {
 		if ($player.audio) {
 			player.update((state) => {
-				state.currentTime -= 30;
+				state.audio.currentTime -= 30;
 				return state;
 			});
 		}
@@ -94,7 +94,7 @@
 	function seekForward() {
 		if ($player.audio) {
 			player.update((state) => {
-				state.currentTime += 30;
+				state.current_time += 30;
 				return state;
 			});
 		}
@@ -138,4 +138,4 @@
 	use:shortcut={{ trigger: getHotkeyTrigger('playPause', hotkeys) }}
 />
 
-<HotkeyDialog {hotkeys} />
+<HotkeyDialog {hotkeys} /> -->

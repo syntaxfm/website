@@ -49,14 +49,16 @@
 
 	$: currentUtterance = slim_transcript.find((utterance, index) => {
 		const nextUtteranceStart = slim_transcript[index + 1]?.start || utterance.end;
-		return $player.currentTime >= utterance.start && $player.currentTime <= nextUtteranceStart;
+		const current_time = $player?.audio?.currentTime || 0;
+		return current_time >= utterance.start && current_time <= nextUtteranceStart;
 	});
 
 	$: currentTopic = aiShowNote?.summary.find((summary, index) => {
 		const nextSummary = aiShowNote?.summary[index + 1];
 		const topicEnd = nextSummary ? tsToS(nextSummary.time) : Infinity;
 		const topicStart = tsToS(summary.time);
-		return $player.currentTime >= topicStart && $player.currentTime <= topicEnd;
+		const current_time = $player?.audio?.currentTime || 0;
+		return current_time >= topicStart && current_time <= topicEnd;
 	});
 
 	$: playing_show_is_this_show = $player.current_show?.number === transcript.show_number;
@@ -68,7 +70,7 @@
 
 	// $: currentWordIndex = words.findIndex((word, index, words) => {
 	// 	const nextWordStart = words[index + 1]?.start || word.end;
-	// 	const currentWord = $player.currentTime >= word.start && $player.currentTime <= nextWordStart;
+	// 	const currentWord = $player.current_time >= word.start && $player.current_time <= nextWordStart;
 	// 	return currentWord;
 	// });
 
@@ -93,10 +95,11 @@
 	};
 	$: placeTopic = function (summary: SummaryTitle, utterances: SlimUtterance[]) {
 		const summaryEnd = utterances.at(-1)?.end || Infinity;
+		const current_time = $player?.audio?.currentTime || 0;
 		if (!playing_show_is_this_show) return ''; // not playing this show
 		if (currentTopic?.id === summary.id) {
 			return 'current';
-		} else if ($player.currentTime > summaryEnd) {
+		} else if (current_time > summaryEnd) {
 			return 'past';
 		} else {
 			return 'future';
@@ -128,7 +131,9 @@
 			<div>
 				{#each utterances as utterance}
 					{@const progress =
-						(($player.currentTime - utterance.start) / (utterance.end - utterance.start)) * 100}
+						((($player?.audio?.currentTime || 0) - utterance.start) /
+							(utterance.end - utterance.start)) *
+						100}
 					<div
 						style="
               --progress: {progress > 0 && progress < 100 ? `${progress}%` : '100%'};
@@ -140,7 +145,7 @@
 								class="button-nunya"
 								on:click={async () => {
 									await player.start_show(show);
-									$player.currentTime = utterance.start;
+									player.update_time(utterance.start);
 								}}>{format_time(utterance.start)}</button
 							>
 							<p class="speaker fst-600">
