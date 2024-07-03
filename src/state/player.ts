@@ -16,7 +16,6 @@ export interface Timestamp {
 
 interface PlayerState {
 	current_show: null | Show;
-	current_time: number;
 	audio: null | HTMLAudioElement;
 	media_controller: null | HTMLAudioElement;
 	duration: number;
@@ -25,19 +24,97 @@ interface PlayerState {
 
 export const episode_share_status = writable<boolean>(false);
 
-const initial_state: PlayerState = {
-	current_show: null,
-	audio: null,
-	media_controller: null,
-	current_time: 0,
-	duration: 0,
-	status: 'INITIAL'
+const DB_NAME = 'SyntaxDB';
+const STORE_NAME = 'player_state';
+
+const open_db = (): Promise<IDBDatabase> => {
+	return new Promise((resolve, reject) => {
+		const request = indexedDB.open(DB_NAME, 1);
+
+		request.onerror = () => reject(request.error);
+		request.onsuccess = () => resolve(request.result);
+
+		request.onupgradeneeded = (event) => {
+			const db = (event.target as IDBOpenDBRequest).result;
+			db.createObjectStore(STORE_NAME, { keyPath: 'id' });
+		};
+	});
 };
 
-const new_player_state = () => {
-	const player_state = writable<PlayerState>(initial_state);
+const load_state_from_indexed_db = async (): Promise<Partial<PlayerState> | null> => {
+	try {
+		const database = await open_db();
+		return new Promise((resolve, reject) => {
+			const transaction = database.transaction([STORE_NAME], 'readonly');
+			const store = transaction.objectStore(STORE_NAME);
+			const request = store.get('current_state');
 
+			request.onerror = () => reject(request.error);
+			request.onsuccess = () => {
+				if (request.result) {
+					console.log('Loaded state from IndexedDB');
+					resolve(request.result);
+				} else {
+					resolve(null);
+				}
+			};
+		});
+	} catch (error) {
+		console.error('Error loading state from IndexedDB:', error);
+		return null;
+	}
+};
+
+const new_player_state = async () => {
+	let initial_state: PlayerState = {
+		current_show: null,
+		audio: null,
+		media_controller: null,
+		duration: 0,
+		status: 'INITIAL'
+	};
+
+	const saved_state = await load_state_from_indexed_db();
+	console.log('saved_state', saved_state);
+	if (saved_state) {
+		initial_state = {
+			...initial_state,
+			...saved_state,
+			audio: null,
+			media_controller: null
+		};
+	}
+
+	const player_state = writable<PlayerState>(initial_state);
 	const { update, subscribe, set } = player_state;
+
+	const save_state_to_indexed_db = async (state: PlayerState) => {
+		try {
+			const database = await open_db();
+			return new Promise<void>((resolve, reject) => {
+				const transaction = database.transaction([STORE_NAME], 'readwrite');
+				const store = transaction.objectStore(STORE_NAME);
+
+				const request = store.put({
+					id: 'current_state',
+					status: state.status,
+					current_show: state.current_show,
+					duration: state.duration
+				});
+
+				request.onerror = () => reject(request.error);
+				request.onsuccess = () => {
+					console.log('Saved state to IndexedDB');
+					return resolve();
+				};
+
+				transaction.oncomplete = () => resolve();
+				transaction.onerror = () => reject(transaction.error);
+			});
+		} catch (error) {
+			console.error('Error saving state to IndexedDB:', error);
+		}
+	};
 
 	let save_position_interval: number | null = null;
 
@@ -67,7 +144,6 @@ const new_player_state = () => {
 		update,
 
 		async start_show(requested_show: Show, play_from_position?: number) {
-			console.log('requested_show', requested_show);
 			update((state) => ({ ...state, status: 'LOADING' }));
 			try {
 				const incoming_show = await get_cached_or_network_show(requested_show);
@@ -105,8 +181,7 @@ const new_player_state = () => {
 						}
 						state.current_show = incoming_show;
 						state.status = 'LOADED';
-						// TODO: figure out if I realllllly need this current_time state. why not just use the audio element itself? - Scott - I worte it.
-						state.current_time = resume_time;
+						save_state_to_indexed_db(state);
 						return state;
 					});
 
@@ -170,7 +245,6 @@ const new_player_state = () => {
 				if (state.audio) {
 					state.audio.currentTime = time;
 				}
-				state.current_time = time;
 				return state;
 			});
 		},
@@ -198,4 +272,4 @@ const new_player_state = () => {
 	};
 };
 
-export const player = new_player_state();
+export const player = await new_player_state();
