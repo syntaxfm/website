@@ -17,7 +17,7 @@ export interface Timestamp {
 
 export const episode_share_status = writable<boolean>(false);
 
-const new_player_state = async () => {
+const new_player_state = () => {
 	const initial_state: PlayerState = {
 		current_show: null,
 		audio: null,
@@ -264,4 +264,4 @@ const new_player_state = async () => {
 	};
 };
 
-export const player = await new_player_state();
+export const player = new_player_state();
