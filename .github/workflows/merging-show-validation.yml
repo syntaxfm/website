@@ -19,7 +19,7 @@ jobs:
           GITHUB_BASE_REF: ${{ github.base_ref }}
 
       - name: pnpm-setup
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v4
         with:
           version: 8
 
