@@ -26,9 +26,9 @@
 		"postinstall": "pnpm db:generate && pnpm exec playwright install"
 	},
 	"devDependencies": {
-		"@codecov/sveltekit-plugin": "0.0.1-beta.9",
+		"@codecov/sveltekit-plugin": "0.0.1-beta.10",
 		"@playwright/test": "^1.45.0",
-		"@sveltejs/kit": "^2.5.17",
+		"@sveltejs/kit": "^2.5.18",
 		"@sveltejs/vite-plugin-svelte": "^3.1.1",
 		"@types/chroma-js": "^2.4.4",
 		"@types/js-cookie": "^3.0.6",
@@ -97,7 +97,7 @@
 		"remark-heading-id": "^1.0.1",
 		"remark-parse": "^11.0.0",
 		"remark-rehype": "^11.1.0",
-		"sk-form-data": "^1.0.1",
+		"sk-form-data": "^2.0.2",
 		"speakingurl": "^14.0.1",
 		"svelte-french-toast": "1.2.0",
 		"svelte-local-storage-store": "^0.6.4",

@@ -4,6 +4,7 @@ import { get, writable } from 'svelte/store';
 import { load_media_session } from '$utilities/media/load_media_session';
 import { minimize, player_window_status, toggle_minimize } from './player_window_status';
 import { get_cached_or_network_show } from './player_offline';
+import { load_state_from_indexed_db, open_db, STORE_NAME, type PlayerState } from './player_utils';
 
 export interface Timestamp {
 	label: string;
@@ -14,82 +15,28 @@ export interface Timestamp {
 	href: string;
 }
 
-interface PlayerState {
-	current_show: null | Show;
-	audio: null | HTMLAudioElement;
-	media_controller: null | HTMLAudioElement;
-	duration: number;
-	status: 'INITIAL' | 'LOADED' | 'LOADING' | 'PAUSED' | 'PLAYING';
-}
-
 export const episode_share_status = writable<boolean>(false);
 
-const DB_NAME = 'SyntaxDB';
-const STORE_NAME = 'player_state';
-
-const open_db = (): Promise<IDBDatabase> => {
-	return new Promise((resolve, reject) => {
-		const request = indexedDB.open(DB_NAME, 1);
-
-		request.onerror = () => reject(request.error);
-		request.onsuccess = () => resolve(request.result);
-
-		request.onupgradeneeded = (event) => {
-			const db = (event.target as IDBOpenDBRequest).result;
-			db.createObjectStore(STORE_NAME, { keyPath: 'id' });
-		};
-	});
-};
-
-const load_state_from_indexed_db = async (): Promise<Partial<PlayerState> | null> => {
-	try {
-		const database = await open_db();
-		return new Promise((resolve, reject) => {
-			const transaction = database.transaction([STORE_NAME], 'readonly');
-			const store = transaction.objectStore(STORE_NAME);
-			const request = store.get('current_state');
-
-			request.onerror = () => reject(request.error);
-			request.onsuccess = () => {
-				if (request.result) {
-					console.log('Loaded state from IndexedDB');
-					resolve(request.result);
-				} else {
-					resolve(null);
-				}
-			};
-		});
-	} catch (error) {
-		console.error('Error loading state from IndexedDB:', error);
-		return null;
-	}
-};
-
 const new_player_state = async () => {
-	let initial_state: PlayerState = {
+	const initial_state: PlayerState = {
 		current_show: null,
 		audio: null,
 		media_controller: null,
 		duration: 0,
-		status: 'INITIAL'
+		status: 'INITIAL',
+		initial_load: true
 	};
-
-	const saved_state = await load_state_from_indexed_db();
-	console.log('saved_state', saved_state);
-	if (saved_state) {
-		initial_state = {
-			...initial_state,
-			...saved_state,
-			audio: null,
-			media_controller: null
-		};
-	}
 
 	const player_state = writable<PlayerState>(initial_state);
 	const { update, subscribe, set } = player_state;
 
-	const save_state_to_indexed_db = async (state: PlayerState) => {
+	// An interval that saves time stamps to localstorage
+	let save_position_interval: number | null = null;
+
+	// Save state to IndexedDB
+	const save_state_to_indexed_db = async () => {
 		try {
+			const state = get(player_state);
 			const database = await open_db();
 			return new Promise<void>((resolve, reject) => {
 				const transaction = database.transaction([STORE_NAME], 'readwrite');
@@ -116,8 +63,7 @@ const new_player_state = async () => {
 		}
 	};
 
-	let save_position_interval: number | null = null;
-
+	// Starts timer that save listening position.
 	function start_save_position_interval(show_number: number) {
 		stop_save_position_interval();
 		save_position_interval = window.setInterval(() => {
@@ -131,6 +77,7 @@ const new_player_state = async () => {
 		}, 1000); // Save every 5 seconds
 	}
 
+	// Clears interval. happesn on pause or stop
 	function stop_save_position_interval() {
 		if (save_position_interval) {
 			clearInterval(save_position_interval);
@@ -138,65 +85,109 @@ const new_player_state = async () => {
 		}
 	}
 
+	// Prepares the player for the initial page load. Only called once.
+	async function initialize(latest_show: Show) {
+		const saved_state = await load_state_from_indexed_db();
+		if (saved_state?.current_show) {
+			load_show(saved_state.current_show, true);
+		} else {
+			load_show(latest_show, true);
+		}
+	}
+
+	// Load show gets player state loaded and audio into playable state
+	// This is automatically run if you call start_show
+	async function load_show(
+		requested_show: Show,
+		is_initial_load = false,
+		play_from_position?: number
+	) {
+		if (!is_initial_load) {
+			update((state) => {
+				state.initial_load = false;
+				return state;
+			});
+		}
+
+		// Check to see if requested show is saved into cache
+		const incoming_show = await get_cached_or_network_show(requested_show);
+
+		// Load position from local storate
+		const local_storage_episode_state = localStorage.getItem(
+			`last_played_position_${incoming_show.number}`
+		);
+
+		// If it exists, make string a number, otherwise set it to 0
+		const actual_episode_state = local_storage_episode_state
+			? parseFloat(local_storage_episode_state)
+			: 0;
+
+		// If playback is coming from timestamp, use timestamp, otherwise user last played position or 0.
+		const resume_time = play_from_position ?? actual_episode_state;
+
+		// Update state for new incomming show
+		update((state) => {
+			if (state.audio && state.media_controller) {
+				state.audio.src = incoming_show.url;
+				state.audio.currentTime = resume_time;
+				state.current_show = incoming_show;
+				state.status = 'LOADED';
+			}
+			return state;
+		});
+
+		return incoming_show;
+	}
+
+	// EVENTS
+	// Add these new functions
+	function onplay() {
+		update((state) => ({ ...state, status: 'PLAYING' }));
+		const current_state = get(player_state);
+		if (current_state.current_show) {
+			start_save_position_interval(current_state.current_show.number);
+		}
+	}
+
+	function onpause() {
+		update((state) => ({ ...state, status: 'PAUSED' }));
+		stop_save_position_interval();
+	}
+
 	return {
 		subscribe,
 		set,
 		update,
+		load_show,
+		initialize,
+		onpause,
+		onplay,
 
+		// The main method for playing a show
 		async start_show(requested_show: Show, play_from_position?: number) {
-			update((state) => ({ ...state, status: 'LOADING' }));
+			const incoming_show = await load_show(requested_show, false, play_from_position);
 			try {
-				const incoming_show = await get_cached_or_network_show(requested_show);
-				const current_state = get(player_state);
+				// Analytics
+				Sentry.metrics.increment('episode_start', 1, { tags: { episode: incoming_show.number } });
+				Sentry.metrics.increment('all_episode_start', 1);
 
-				// Load position from local storate
-				const local_storage_episode_state = localStorage.getItem(
-					`last_played_position_${incoming_show.number}`
-				);
+				// Load incomming show into media session
+				// Side note: the mediaSession API is neat
+				// https://developer.mozilla.org/en-US/docs/Web/API/MediaSession
+				load_media_session(incoming_show);
 
-				// If it exists, make string a number, otherwise set it to 0
-				const actual_episode_state = local_storage_episode_state
-					? parseFloat(local_storage_episode_state)
-					: 0;
+				// Starts timer that save listening position.
+				// We're listening to this because the event from audio is firing too often and set to 0 when a new episode is loaded. This works better.
+				start_save_position_interval(incoming_show.number);
 
-				// If playback is coming from timestamp, use timestamp, otherwise user last played position or 0.
-				const resume_time = play_from_position ?? actual_episode_state;
+				save_state_to_indexed_db();
 
-				// If the incoming show is different from the current show
-				if (incoming_show.url !== current_state.audio?.src) {
-					// Analytics
-					Sentry.metrics.increment('episode_start', 1, { tags: { episode: incoming_show.number } });
-					Sentry.metrics.increment('all_episode_start', 1);
-
-					// Load incomming show into media session
-					// Side note: the mediaSession API is neat
-					// https://developer.mozilla.org/en-US/docs/Web/API/MediaSession
-					load_media_session(incoming_show);
-
-					// Update state for new incomming show
-					update((state) => {
-						if (state.audio) {
-							state.audio.src = incoming_show.url;
-							state.audio.currentTime = resume_time;
-						}
-						state.current_show = incoming_show;
-						state.status = 'LOADED';
-						save_state_to_indexed_db(state);
-						return state;
-					});
-
-					// Starts timer that save listening position.
-					// We're listening to this because the event from audio is firing too often and set to 0 when a new episode is loaded. This works better.
-					start_save_position_interval(incoming_show.number);
-
-					// This opens the UI Player drawer
-					player_window_status.set('ACTIVE');
-				}
+				// This opens the UI Player drawer
+				player_window_status.set('ACTIVE');
 
 				// Finally Start Playing
 				this.play();
 			} catch (error) {
-				console.error('Error loading show:', error);
 				update((state) => ({ ...state, status: 'INITIAL' }));
 			}
 		},
@@ -208,11 +199,13 @@ const new_player_state = async () => {
 					state.audio.play();
 				}
 				state.status = 'PLAYING';
+				if (state?.current_show?.number) start_save_position_interval(state.current_show.number);
 				return state;
 			});
 		},
 
 		pause() {
+			stop_save_position_interval();
 			// On pause, update the state writable and play audio
 			update((state) => {
 				if (state.audio) {

@@ -5,8 +5,15 @@
 	import get_show_path from '$utilities/slug';
 	import Icon from '../Icon.svelte';
 	import ShareButton from '../share/HairButton.svelte';
+	import { onMount } from 'svelte';
+	import type { Show } from '@prisma/client';
 
-	$: console.log('player', $player);
+	export let initial_show: Show;
+
+	onMount(() => {
+		// Load latest show by default
+		player.initialize(initial_show);
+	});
 </script>
 
 <section class="player {$player_window_status} {$player.status}">
@@ -35,7 +42,14 @@
 				bind:this={$player.media_controller}
 				style="--media-range-track-height: 5px; --media-range-thumb-height: 15px; --media-range-thumb-border-radius: 0;	--media-range-track-border-radius: 5px; --media-range-bar-color: var(--primary);--media-background-color: transparent; --media-control-background: transparent; width: 100%; --media-font-family: var(--body-font-family); --media-control-hover-background: transparent; "
 			>
-				<audio slot="media" bind:this={$player.audio} preload="metadata" crossorigin="anonymous" />
+				<audio
+					on:play={player.onplay}
+					on:pause={player.onpause}
+					slot="media"
+					bind:this={$player.audio}
+					preload="metadata"
+					crossorigin="anonymous"
+				/>
 				{#if $player_window_status === 'ACTIVE'}
 					<media-control-bar class="media-bar">
 						<div class="media-controls">

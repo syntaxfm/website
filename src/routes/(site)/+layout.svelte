@@ -8,7 +8,6 @@
 	import Footer from './Footer.svelte';
 	import Header from './Header.svelte';
 	import Loading from '$lib/Loading.svelte';
-	import Hotkeys from '$lib/hotkeys/Hotkeys.svelte';
 	import { browser } from '$app/environment';
 	import SearchBox from '$lib/search/SearchBox.svelte';
 	import Meta from '$lib/meta/Meta.svelte';
@@ -18,7 +17,7 @@
 	import PageLoadingIndicator from '$lib/page_loading_indicator.svelte';
 
 	export let data;
-	$: ({ user, user_theme } = data);
+	$: ({ user, user_theme, latest } = data);
 
 	onNavigate(async (navigation) => {
 		if (!document.startViewTransition) return;
@@ -49,7 +48,9 @@
 	<Footer />
 
 	<ThemeMaker />
-	<Player />
+	{#if browser}
+		<Player initial_show={latest[0]} />
+	{/if}
 	<Toaster />
 	<Loading />
 

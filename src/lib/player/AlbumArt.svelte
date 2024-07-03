@@ -15,9 +15,11 @@
 {:else}
 	<div class="art-wrapper" class:loading={$player.status === 'LOADING'}>
 		<Album />
-		{#key $player?.current_show?.id}
-			<div class="cd">📀</div>
-		{/key}
+		{#if !$player.initial_load}
+			{#key $player?.current_show?.id}
+				<div class="cd">📀</div>
+			{/key}
+		{/if}
 	</div>
 {/if}
 
