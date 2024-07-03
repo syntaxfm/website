@@ -51,7 +51,6 @@ const new_player_state = async () => {
 
 				request.onerror = () => reject(request.error);
 				request.onsuccess = () => {
-					console.log('Saved state to IndexedDB');
 					return resolve();
 				};
 
