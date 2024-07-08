@@ -23,7 +23,7 @@ export async function save_transcript_to_db(show: Show, utterances: Utterance[])
 				punctuated_word: word.punctuated_word || word.word,
 				word: word.word,
 				speaker_confidence: word.confidence,
-				speaker: word.speaker || 99,
+				speaker: word.speaker ?? 99,
 				confidence: word.confidence
 			};
 		});
@@ -33,8 +33,8 @@ export async function save_transcript_to_db(show: Show, utterances: Utterance[])
 			transcript_value: utterance.transcript,
 			channel: utterance.channel,
 			confidence: utterance.confidence,
-			speaker: utterance.speaker || 99,
-			speakerName: speakerMap.get(utterance.speaker || 99),
+			speaker: utterance.speaker ?? 99,
+			speakerName: speakerMap.get(utterance.speaker ?? 99),
 			words: {
 				create: words
 			}

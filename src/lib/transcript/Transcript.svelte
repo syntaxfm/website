@@ -17,7 +17,7 @@
 	export let show: Show;
 
 	const slim_transcript: SlimUtterance[] = getSlimUtterances(transcript.utterances, 1)
-		.filter((utterance) => utterance.speakerId !== 99)
+		// .filter((utterance) => utterance.speakerId !== 99)
 		.filter((utterance) => {
 			// Remove the flagging utterances
 			const scott = new RegExp(/purple cheese before meeting/gi);
