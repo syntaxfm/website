@@ -60,16 +60,12 @@ const new_player_state = () => {
 	};
 
 	// Starts timer that save listening position.
-	function save_position() {
+	function save_position(position?: number) {
 		const current_state = get(player_state);
-		if (
-			current_state.status === 'PLAYING' &&
-			current_state.audio &&
-			current_state?.current_show?.number
-		) {
+		if (current_state.audio && current_state?.current_show?.number) {
 			localStorage.setItem(
 				`last_played_position_${current_state.current_show.number}`,
-				current_state.audio.currentTime.toString()
+				position != null ? position.toString() : current_state.audio.currentTime.toString()
 			);
 		}
 	}
@@ -147,6 +143,10 @@ const new_player_state = () => {
 		save_position();
 	}
 
+	function onended() {
+		save_position(0);
+	}
+
 	return {
 		ontimeupdate,
 		subscribe,
@@ -156,6 +156,7 @@ const new_player_state = () => {
 		initialize,
 		onpause,
 		onplay,
+		onended,
 
 		// The main method for playing a show
 		async start_show(requested_show: Show, play_from_position?: number) {

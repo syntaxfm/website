@@ -45,6 +45,7 @@
 				<audio
 					on:timeupdate={player.ontimeupdate}
 					on:play={player.onplay}
+					on:ended={player.onended}
 					on:pause={player.onpause}
 					slot="media"
 					bind:this={$player.audio}
