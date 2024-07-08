@@ -5,14 +5,14 @@
 
 	// error page does not automatically infer layout data...
 	export let data: {
-		user: UserWithRoles,
+		user: UserWithRoles;
 		user_theme: string;
 	};
 	$: ({ user, user_theme } = data);
 </script>
 
 <!-- Manually render (site) layout around error -->
-<Layout data={{ user: user, user_theme }}>
+<Layout data={{ user: user, user_theme, latest: [] }}>
 	<div>
 		<h2>Oopsie-daisy</h2>
 		{#if $page?.error?.message}

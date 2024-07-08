@@ -5,9 +5,18 @@
 	import get_show_path from '$utilities/slug';
 	import Icon from '../Icon.svelte';
 	import ShareButton from '../share/HairButton.svelte';
+	import { onMount } from 'svelte';
+	import type { Show } from '@prisma/client';
+
+	export let initial_show: Show;
+
+	onMount(() => {
+		// Load latest show by default
+		player.initialize(initial_show);
+	});
 </script>
 
-<section class={`player ${$player_window_status}`}>
+<section class="player {$player_window_status} {$player.status}">
 	<div class="window-controls">
 		{#if $player.current_show}<ShareButton show={$player.current_show} />{/if}
 		<button class="minimize" on:click={player.toggle_minimize}><Icon name="minimize" /></button>
@@ -34,10 +43,13 @@
 				style="--media-range-track-height: 5px; --media-range-thumb-height: 15px; --media-range-thumb-border-radius: 0;	--media-range-track-border-radius: 5px; --media-range-bar-color: var(--primary);--media-background-color: transparent; --media-control-background: transparent; width: 100%; --media-font-family: var(--body-font-family); --media-control-hover-background: transparent; "
 			>
 				<audio
+					on:timeupdate={player.ontimeupdate}
+					on:play={player.onplay}
+					on:ended={player.onended}
+					on:pause={player.onpause}
 					slot="media"
 					bind:this={$player.audio}
 					preload="metadata"
-					bind:currentTime={$player.currentTime}
 					crossorigin="anonymous"
 				/>
 				{#if $player_window_status === 'ACTIVE'}
@@ -186,6 +198,7 @@
 		translate: 0 100% 0;
 		transition: 0.2s ease translate;
 		z-index: 10;
+
 		&.ACTIVE {
 			translate: 0 0 0;
 		}
@@ -227,10 +240,10 @@
 	}
 
 	.player-container {
-		padding: 10px;
+		padding: 10px 20px;
 		width: 100%;
 		display: flex;
-		gap: 20px;
+		gap: 25px;
 	}
 
 	.media-range-bookmarks {

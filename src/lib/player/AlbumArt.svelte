@@ -1,36 +1,11 @@
 <script lang="ts">
 	import { PUBLIC_URL } from '$env/static/public';
-	import { player } from '$state/player';
 	import type { Show } from '@prisma/client';
 	import Album from './Album.svelte';
-	import CD from './CD.svelte';
+	import { player } from '$/state/player';
 
 	export let is_link = false;
 	export let show: Show | null = null;
-
-	let isAnimating = true;
-	let image_index = 0;
-
-	$: if ($player?.audio) {
-		$player?.audio?.addEventListener('pause', function () {
-			isAnimating = false;
-		});
-
-		// When audio is played, resume the animation
-		$player?.audio?.addEventListener('play', function () {
-			isAnimating = true;
-		});
-	}
-
-	function keydown(event: KeyboardEvent) {
-		if (event.key === 'Enter' || event.keyCode === 13) {
-			toggle_sicman();
-		}
-	}
-
-	function toggle_sicman() {
-		return (image_index = image_index ? 0 : 1);
-	}
 </script>
 
 {#if is_link && show}
@@ -38,11 +13,12 @@
 		<Album />
 	</a>
 {:else}
-	<div class="art-wrapper" on:click={toggle_sicman} tabindex="0" on:keydown={keydown} role="button">
-		{#if image_index === 0}
-			<Album />
-		{:else}
-			<CD spinning={isAnimating} />
+	<div class="art-wrapper" class:loading={$player.status === 'LOADING'}>
+		<Album />
+		{#if !$player.initial_load}
+			{#key $player?.current_show?.id}
+				<div class="cd">📀</div>
+			{/key}
 		{/if}
 	</div>
 {/if}
@@ -54,8 +30,36 @@
 		cursor: pointer;
 		flex-shrink: 0;
 		display: none;
+		position: relative;
 		@media (--above_med) {
 			display: block;
+		}
+	}
+	.cd {
+		position: absolute;
+		inset: 0;
+		font-size: 68px;
+		animation:
+			spin 0.5s linear 5,
+			slide-in 1s ease-in-out 2 alternate;
+		transform-origin: center center;
+		text-align: center;
+		z-index: -1;
+	}
+
+	/* Define the second animation */
+	@keyframes slide-in {
+		80% {
+			translate: 35px;
+		}
+		100% {
+			translate: 35px;
+		}
+	}
+
+	@keyframes spin {
+		to {
+			rotate: 360deg;
 		}
 	}
 </style>
