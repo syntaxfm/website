@@ -21,7 +21,7 @@
 		if (target instanceof HTMLAnchorElement && target.matches(`a[href*='#t=']`)) {
 			e.preventDefault();
 			const href = target.getAttribute('href');
-			const timestamp = href ? tsToS(href) : 0;
+			const timestamp = href ? tsToS(href.replace('#t=', '')) : 0;
 			// If we aren't already playing this episode, load it up and then jump it
 			if ($player.current_show?.number !== show.number) {
 				await player.start_show(show, timestamp);
