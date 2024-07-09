@@ -113,9 +113,6 @@ importers:
       remark-rehype:
         specifier: ^11.1.0
         version: 11.1.0
-      rollup:
-        specifier: ^4.18.1
-        version: 4.18.1
       sk-form-data:
         specifier: ^2.0.2
         version: 2.0.2
