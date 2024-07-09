@@ -52,7 +52,6 @@ That's it!
      ```
 1. If using docker, in a separate tab run -> `docker compose up`
 1. Run -> `pnpm preheat`
-1. Run -> `pnpm db:push`
 1. Run -> `pnpm dev`
 1. Visit `http://localhost:5173`
 
