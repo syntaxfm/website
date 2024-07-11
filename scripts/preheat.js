@@ -103,6 +103,9 @@ function checkDatabaseUrl() {
 async function checkShowTableData() {
 	const connection = await createMysqlConnection();
 	try {
+		execSync('pnpm i-changed-the-schema', { stdio: 'inherit' });
+		console.log('✅ Schema updated');
+
 		const [rows] = await connection.execute('SELECT COUNT(*) as count FROM `Show`');
 		const count = rows[0].count;
 
@@ -112,8 +115,6 @@ async function checkShowTableData() {
 			console.log('❌ Data Check - Seeding database...');
 			await seedDatabase();
 			console.log('✅ Database seeded');
-			execSync('pnpm i-changed-the-schema', { stdio: 'inherit' });
-			console.log('✅ Schema change command executed');
 		}
 	} finally {
 		await connection.end();
@@ -123,13 +124,9 @@ async function checkShowTableData() {
 async function seedDatabase() {
 	const seedFilePath = './seed/seed.sql';
 	const seedContent = await fs.readFile(seedFilePath, 'utf8');
-
 	const connection = await createMysqlConnection();
 	try {
-		const queries = seedContent.split(';').filter((query) => query.trim() !== '');
-		for (const query of queries) {
-			await connection.execute(query);
-		}
+		await connection.query(seedContent);
 	} finally {
 		await connection.end();
 	}
@@ -142,7 +139,8 @@ async function createMysqlConnection() {
 		port: parseInt(url.port),
 		user: url.username,
 		password: url.password,
-		database: url.pathname.substr(1)
+		database: url.pathname.substr(1),
+		multipleStatements: true
 	});
 }
 
