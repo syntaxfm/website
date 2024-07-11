@@ -4,10 +4,11 @@ import { promises as fs } from 'fs';
 import { execSync } from 'child_process';
 import { createConnection } from 'mysql2/promise';
 import dotenv from 'dotenv';
+import { expand } from 'dotenv-expand';
 import semver from 'semver';
 
 // Load environment variables
-dotenv.config();
+expand(dotenv.config());
 
 async function main() {
 	const args = process.argv.slice(2);
@@ -24,6 +25,7 @@ async function main() {
 		await checkPnpmVersion();
 		await checkAndUpdateEnv();
 		checkDatabaseUrl();
+		await createUpdateSchema();
 		await checkShowTableData();
 		console.log('🥘 Website preheated to 450°F (232°C)');
 		execSync('pnpm vite dev', { stdio: 'inherit' });
@@ -98,6 +100,15 @@ function checkDatabaseUrl() {
 		throw new Error('❌ Please set DATABASE_URL in .env to be a proper mysql url');
 	}
 	console.log('✅ DATABASE_URL Check');
+}
+
+async function createUpdateSchema() {
+	try {
+		execSync('pnpm db:push', { stdio: 'inherit' });
+		console.log('✅ Database schema created / updated');
+	} catch {
+		throw new Error('❌ Unable to create / update DB schema');
+	}
 }
 
 async function checkShowTableData() {
