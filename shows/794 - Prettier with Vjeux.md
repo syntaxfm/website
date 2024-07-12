@@ -1,6 +1,6 @@
 ---
 number: 794
-title: Making Code Prettier with Vjeux
+title: Prettier JavaScript with Vjeux
 date: 1720782000000
 url: https://traffic.libsyn.com/syntax/Syntax_-_794.mp3
 youtube_url: https://www.youtube.com/watch?v=i3_Eia6_SoQ
