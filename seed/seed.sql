@@ -1,22 +1,3 @@
--- -------------------------------------------------------------
--- TablePlus 5.5.2(512)
---
--- https://tableplus.com/
---
--- Database: syntaxfm
--- Generation Time: 2023-11-30 11:11:22.7000
--- -------------------------------------------------------------
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
 INSERT INTO `AiShowNote` (`id`, `show_number`, `title`, `description`, `provider`) VALUES
 (2, 675, 'Potluck: Bun JS, APIs, Rust, Documentation, and More', 'In this potluck episode, Scott and Wes answer audience questions on web development topics like Bun JS, REST vs GraphQL APIs, learning Rust, documenting code, WordPress APIs, becoming a podcast guest, and using home gym equipment.', 'anthropic'),
 (3, 674, 'Proper Heading Hierarchy for Accessible Websites', 'Discussion on proper semantic usage of h1 through h6 headings for accessibility, SEO, and screen reader navigation.', 'anthropic'),
@@ -14456,13 +14437,3 @@ INSERT INTO `UserRole` (`id`, `userId`, `roleId`) VALUES
 ('b14fefb2-5c17-4973-bc59-6f1e2c0a60bd', '629459b1-4100-43c5-b666-90d3d6b1ddfb', '9fb9c286-7504-4ce7-b939-765561e28e53'),
 ('b2a02721-7eec-4f70-9588-52ed8f8ee79c', '11dca6c4-235d-470d-9e96-925ee686035b', '9fb9c286-7504-4ce7-b939-765561e28e53'),
 ('f3afb68c-bae2-4ceb-b96f-a757384b00d7', '495e1db3-678a-4648-a4bd-f50bc603618c', '9fb9c286-7504-4ce7-b939-765561e28e53');
-
-
-
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
