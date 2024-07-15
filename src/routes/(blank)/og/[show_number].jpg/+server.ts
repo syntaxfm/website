@@ -49,7 +49,7 @@ export const config = {
 const headers = {
 	'Content-Type': 'image/jpeg',
 	// cache for 10 minutes, allow stale to be served for up for another 10 mins
-	'cache-control': 'public s-max-age=600, stale-while-revalidate=600'
+	'cache-control': 'public s-maxage=600, stale-while-revalidate=600'
 };
 
 export async function GET({ url, params }) {
