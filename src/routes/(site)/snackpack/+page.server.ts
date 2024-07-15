@@ -91,7 +91,7 @@ async function fetchBroadcastList() {
 export const load: PageServerLoad = async function ({ setHeaders, params, locals }) {
 	// 1 min cache with 1 min stale allowed
 	setHeaders({
-		'cache-control': `public s-max-age=60, stale-while-revalidate=60`
+		'cache-control': `public s-maxage=60, stale-while-revalidate=60`
 	});
 
 	const subs = await fetch(
