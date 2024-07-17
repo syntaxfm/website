@@ -42,7 +42,7 @@
 	{/if}
 
 	<main class="page-layout layout zone" style:--bg="var(--bg-sheet)" style:--fg="var(--fg-sheet)">
-		<slot />
+		<!-- <slot /> -->
 	</main>
 
 	<Footer />
