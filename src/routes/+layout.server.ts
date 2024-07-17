@@ -1,15 +1,9 @@
-import { SHOW_QUERY, type LatestShow } from '$/server/ai/queries';
-import { cache_mang } from '$/utilities/cache_mang';
-
+import { cache } from '$/server/cache/cache';
 export const load = async ({ locals }) => {
 	const cache_s = 600;
 
-	const latest: LatestShow[] = await cache_mang(
-		`homepage:latest_shows`,
-		locals.prisma.show.findMany,
-		SHOW_QUERY(),
-		cache_s
-	);
+	// TODO allow for s override
+	const latest = cache.shows.latest_shows();
 
 	return {
 		latest,

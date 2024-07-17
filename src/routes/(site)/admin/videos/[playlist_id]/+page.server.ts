@@ -27,7 +27,6 @@ export const load = async ({ params, locals }) => {
 
 		// Extract the video details from the playlist items
 		const videos = playlist.videos.map((item) => item.video);
-		console.log('videos', videos);
 
 		return {
 			playlist,
