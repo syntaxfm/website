@@ -49,6 +49,10 @@ That's it!
      DATABASE_NAME=syntax
      DATABASE_ROOT_PASSWORD=syntax
      DATABASE_URL=mysql://${DATABASE_USER}:${DATABASE_PASSWORD}@${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
+     REDIS_PORT=6379
+     REDIS_HTTP_PORT=8079
+     UPSPLASH_TOKEN=supersecret
+     UPSPLASH_URL=http://localhost:${REDIS_HTTP_PORT}
      ```
 1. If using docker, in a separate tab run -> `docker compose up`
 1. Run -> `pnpm preheat`
