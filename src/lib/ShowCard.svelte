@@ -9,8 +9,6 @@
 	import Badges from './badges/Badges.svelte';
 	import type { ShowCard } from '$/server/shows/shows_queries';
 
-	// Scott - I hand wrote this type to be exactly what this component needs. Lots of TS errors
-	// Due to what generated type we're asking to satisfy here
 	export let show: ShowCard;
 	export let display: 'list' | 'card' | 'highlight' = 'card';
 	export let heading = 'h4';
