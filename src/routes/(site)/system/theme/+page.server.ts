@@ -1,33 +1,10 @@
-import type { PageServerLoad } from './$types';
+import { cache } from '$/server/cache/cache';
 
-export const load: PageServerLoad = async ({ locals, setHeaders }) => {
+export const load = async ({ setHeaders }) => {
 	setHeaders({
 		'cache-control': 'max-age=240'
 	});
 	return {
-		show: await locals.prisma.show.findFirst({
-			where: {
-				date: {
-					lte: new Date()
-				}
-			},
-			include: {
-				guests: {
-					select: {
-						Guest: true
-					}
-				},
-				aiShowNote: {
-					include: {
-						topics: true,
-						links: true,
-						summary: true,
-						tweets: true
-					}
-				}
-			},
-
-			orderBy: { number: 'desc' }
-		})
+		show: await cache.shows.show(100)
 	};
 };

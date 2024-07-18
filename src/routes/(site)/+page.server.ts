@@ -1,21 +1,9 @@
-import { SHOW_QUERY, type LatestShow } from '$server/ai/queries';
-import { cache_mang } from '$utilities/cache_mang';
 import type { Actions } from '@sveltejs/kit';
 import { redis } from '../../hooks.server';
 import type { PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async ({ locals, url }) => {
-	const cache_s = 600;
-
-	const latest: LatestShow[] = await cache_mang(
-		`homepage:latest_shows`,
-		locals.prisma.show.findMany,
-		SHOW_QUERY(),
-		cache_s
-	);
-
+export const load: PageServerLoad = async ({ url }) => {
 	return {
-		latest,
 		meta: {
 			// canonical tells google to use `syntax.fm`, and not syntax.fm?ref=someBlog
 			canonical: `${url.protocol}//${url.host}`

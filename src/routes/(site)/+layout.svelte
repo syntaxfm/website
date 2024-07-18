@@ -36,7 +36,6 @@
 <PageLoadingIndicator />
 
 <div class={'theme-' + user_theme + ' theme-wrapper'}>
-	<!-- <UnderConstruction /> -->
 	{#if $page.url.pathname !== '/'}
 		<Header />
 	{/if}
@@ -48,9 +47,11 @@
 	<Footer />
 
 	<ThemeMaker />
+
 	{#if browser}
 		<Player initial_show={latest[0]} />
 	{/if}
+
 	<Toaster />
 	<Loading />
 

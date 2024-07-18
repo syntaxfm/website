@@ -1,6 +1,10 @@
-export const load = async function ({ locals, params }) {
+import { prisma_client } from '$/hooks.server';
+import { get_show_card_query } from '$/server/shows/shows_queries';
+
+export const load = async function ({ params }) {
+	const show_card_query = get_show_card_query();
 	return {
-		guest: await locals.prisma.guest.findUnique({
+		guest: await prisma_client.guest.findUnique({
 			where: {
 				name_slug: params.name_slug
 			},
@@ -11,20 +15,7 @@ export const load = async function ({ locals, params }) {
 					},
 					select: {
 						Show: {
-							include: {
-								guests: {
-									select: {
-										Guest: {
-											select: {
-												name: true,
-												name_slug: true,
-												id: true,
-												github: true
-											}
-										}
-									}
-								}
-							}
+							...show_card_query
 						}
 					}
 				}

@@ -1,9 +1,8 @@
-import { count_shows } from '$server/shows/count_shows';
-import type { PageServerLoad } from './$types';
+import { cache } from '$/server/cache/cache';
 
-export const load: PageServerLoad = async function () {
+export const load = async function () {
 	return {
-		count: await count_shows(),
+		count: await cache.shows.count_shows(),
 		meta: {
 			title: 'About Syntax'
 		}
