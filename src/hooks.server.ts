@@ -20,7 +20,8 @@ export const redis =
 	cache_status == 'ONLINE'
 		? new Redis({
 				url: UPSPLASH_URL,
-				token: UPSPLASH_TOKEN
+				token: UPSPLASH_TOKEN,
+				automaticDeserialization: false
 			})
 		: null;
 console.log(`🤓 Cache Status... ${cache_status}`);
