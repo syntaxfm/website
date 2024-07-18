@@ -12,6 +12,7 @@ interface FrontMatterGuest {
 	twitter: string;
 	url: string;
 	youtube_url?: string;
+	spotify_url?: string;
 	social: string[];
 }
 
@@ -126,6 +127,7 @@ export async function parse_and_save_show_notes(
 				number,
 				url: data.url,
 				youtube_url: data.youtube_url,
+				spotify_url: data.spotify_url,
 				show_notes: content,
 				hash: hash,
 				md_file,
@@ -140,6 +142,7 @@ export async function parse_and_save_show_notes(
 				date,
 				url: data.url,
 				youtube_url: data.youtube_url,
+				spotify_url: data.spotify_url,
 				show_notes: content,
 				hash: hash,
 				md_file,
