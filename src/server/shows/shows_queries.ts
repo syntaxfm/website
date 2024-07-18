@@ -1,8 +1,12 @@
 import { PER_PAGE } from '$/const';
-import type { Prisma } from '@prisma/client';
+import { $Enums, Prisma } from '@prisma/client';
 
 const take_homepage = PER_PAGE;
-const take_listing = PER_PAGE;
+
+function isShowType(type: string | null | undefined): type is $Enums.ShowType {
+	if (!type) return false;
+	return Object.prototype.hasOwnProperty.call($Enums.ShowType, type);
+}
 
 const hosts = {
 	select: {
@@ -12,20 +16,16 @@ const hosts = {
 		twitter: true
 	}
 };
+
 const guests = {
 	select: {
 		Guest: true
 	}
 };
 
-export function last_10_shows(): Prisma.ShowFindManyArgs {
-	const today = new Date();
-	return {
-		take: take_homepage,
-		orderBy: { number: 'desc' },
-		where: {
-			date: { lte: today }
-		},
+// Need a show card? this is your query
+export function get_show_card_query() {
+	return Prisma.validator<Prisma.ShowFindManyArgs>()({
 		include: {
 			guests,
 			hosts,
@@ -36,11 +36,50 @@ export function last_10_shows(): Prisma.ShowFindManyArgs {
 				}
 			}
 		}
-	};
+	});
 }
+export type ShowCard = Prisma.ShowGetPayload<ReturnType<typeof get_show_card_query>>;
 
-export function get_show_detail_query(number: number): Prisma.ShowFindUniqueArgs {
-	return {
+// A list of show cards, for the /shows page
+export function get_list_shows(
+	page: number,
+	take: number,
+	order: 'desc' | 'asc',
+	show_type: string | undefined
+) {
+	const today = new Date();
+	const parsed_show_type = isShowType(show_type) ? show_type : undefined;
+	// The query needed for Show Cards to be complete
+	const show_card_query = get_show_card_query();
+	return Prisma.validator<Prisma.ShowFindManyArgs>()({
+		take,
+		skip: page ? page * take - take : 0,
+		orderBy: { number: order },
+		where: {
+			...(parsed_show_type && { show_type: parsed_show_type }),
+			date: { lte: today }
+		},
+		...show_card_query
+	});
+}
+export type ShowList = Prisma.ShowGetPayload<ReturnType<typeof get_list_shows>>;
+
+export function get_last_10_shows_query() {
+	const today = new Date();
+	const show_card_query = get_show_card_query();
+	return Prisma.validator<Prisma.ShowFindManyArgs>()({
+		take: take_homepage,
+		orderBy: { number: 'desc' },
+		where: {
+			date: { lte: today }
+		},
+		...show_card_query
+	});
+}
+export type ShowLast10 = Prisma.ShowGetPayload<ReturnType<typeof get_last_10_shows_query>>;
+
+export function get_show_detail_query(number: number) {
+	return Prisma.validator<Prisma.ShowFindUniqueArgs>()({
 		where: { number },
 		include: {
 			guests,
@@ -67,5 +106,7 @@ export function get_show_detail_query(number: number): Prisma.ShowFindUniqueArgs
 				}
 			}
 		}
-	};
+	});
 }
+
+export type ShowDetail = Prisma.ShowGetPayload<ReturnType<typeof get_show_detail_query>>;

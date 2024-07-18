@@ -1,11 +1,15 @@
+import { prisma_client } from '$/hooks.server';
+import { get_show_card_query } from '$/server/shows/shows_queries';
 import { get_first_paragraph } from '$/utilities/get_first_paragraph';
 import { processor } from '$/utilities/markdown.js';
-export const load = async function ({ locals, params, url }) {
+
+export const load = async function ({ params, url }) {
 	const { v_slug } = params;
-	const video = await locals.prisma.video.findUnique({
+	const show_card_query = get_show_card_query();
+	const video = await prisma_client.video.findUnique({
 		where: { slug: v_slug },
 		include: {
-			shows: { include: { show: true }, orderBy: { showId: 'desc' } }
+			shows: { include: { show: show_card_query }, orderBy: { showId: 'desc' } }
 		}
 	});
 

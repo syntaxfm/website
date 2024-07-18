@@ -1,11 +1,9 @@
 import { PER_PAGE } from '$const';
-import { SHOW_QUERY } from '$server/ai/queries';
-import { $Enums } from '@prisma/client';
 import type { PageServerLoad } from './$types';
 import { redirect } from '@sveltejs/kit';
-import { count_shows } from '$server/shows/count_shows';
+import { cache } from '$/server/cache/cache';
 
-export const load: PageServerLoad = async function ({ locals, url, setHeaders }) {
+export const load: PageServerLoad = async function ({ url, setHeaders }) {
 	setHeaders({
 		'cache-control': 'max-age=240'
 	});
@@ -16,21 +14,9 @@ export const load: PageServerLoad = async function ({ locals, url, setHeaders })
 	const show_type = url.searchParams.get('type')?.toUpperCase();
 	const page = parseInt(url.searchParams.get('page') || '1');
 
-	function isShowType(type: string | null | undefined): type is $Enums.ShowType {
-		if (!type) return false;
-		return Object.prototype.hasOwnProperty.call($Enums.ShowType, type);
-	}
-
-	const query = SHOW_QUERY({
-		take,
-		order,
-		skip: page ? page * take - take : 0,
-		show_type: isShowType(show_type) ? show_type : undefined
-	});
-
 	const [shows, total_show_count] = await Promise.all([
-		locals.prisma.show.findMany(query),
-		count_shows()
+		cache.shows.list_shows(page, take, order, show_type),
+		cache.shows.count_shows()
 	]);
 
 	if (!shows.length) {

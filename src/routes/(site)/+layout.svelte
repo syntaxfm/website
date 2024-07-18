@@ -36,21 +36,22 @@
 <PageLoadingIndicator />
 
 <div class={'theme-' + user_theme + ' theme-wrapper'}>
-	<!-- <UnderConstruction /> -->
 	{#if $page.url.pathname !== '/'}
 		<Header />
 	{/if}
 
 	<main class="page-layout layout zone" style:--bg="var(--bg-sheet)" style:--fg="var(--fg-sheet)">
-		<!-- <slot /> -->
+		<slot />
 	</main>
 
 	<Footer />
 
 	<ThemeMaker />
+
 	{#if browser}
 		<Player initial_show={latest[0]} />
 	{/if}
+
 	<Toaster />
 	<Loading />
 
