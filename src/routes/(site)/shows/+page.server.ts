@@ -1,9 +1,8 @@
 import { PER_PAGE } from '$const';
-import type { PageServerLoad } from './$types';
 import { redirect } from '@sveltejs/kit';
 import { cache } from '$/server/cache/cache';
 
-export const load: PageServerLoad = async function ({ url, setHeaders }) {
+export const load = async function ({ url, setHeaders }) {
 	setHeaders({
 		'cache-control': 'max-age=240'
 	});
