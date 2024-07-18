@@ -16,7 +16,6 @@ import { Redis } from '@upstash/redis';
 
 export const cache_status = UPSPLASH_URL && UPSPLASH_TOKEN ? 'ONLINE' : 'OFFLINE';
 
-// TODO move this to it's own file
 export const redis =
 	cache_status == 'ONLINE'
 		? new Redis({
@@ -30,7 +29,6 @@ console.log(`🤓 Cache Status... ${cache_status}`);
 
 // * START UP
 // RUNS ONCE ON FILE LOAD
-// TODO move this to it's own file
 export const prisma_client = new PrismaClient();
 
 Sentry.init({

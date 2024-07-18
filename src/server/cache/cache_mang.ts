@@ -59,3 +59,33 @@ function convert_dates<T>(data: T, date_fields: string[]): T {
 	}
 	return data;
 }
+
+export async function delete_keys_by_prefix(prefix: string): Promise<number> {
+	let cursor = 0;
+	let deleted_count = 0;
+
+	do {
+		// Scan for keys with the given prefix
+		const scan_result = await redis?.scan(cursor, {
+			match: `${prefix}*`
+		});
+
+		// Ensure scan_result is defined and has the expected structure
+		if (!scan_result || !Array.isArray(scan_result) || scan_result.length !== 2) {
+			throw new Error('Unexpected scan result structure');
+		}
+
+		const [next_cursor, keys] = scan_result;
+
+		cursor = typeof next_cursor === 'string' ? parseInt(next_cursor) : next_cursor;
+
+		if (Array.isArray(keys) && keys.length > 0) {
+			// Delete the found keys
+			const delete_count = await redis?.del(...keys);
+			deleted_count += typeof delete_count === 'number' ? delete_count : 0;
+			console.log('Deleted keys:', ...keys);
+		}
+	} while (cursor !== 0);
+
+	return deleted_count;
+}

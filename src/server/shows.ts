@@ -5,7 +5,8 @@ import { left_pad } from '$utilities/left_pad';
 import { error } from '@sveltejs/kit';
 import matter from 'gray-matter';
 import slug from 'speakingurl';
-import { prisma_client as prisma } from '../hooks.server';
+import { prisma_client as prisma, redis } from '../hooks.server';
+import { cache } from './cache/cache';
 
 interface FrontMatterGuest {
 	name: string;
@@ -56,6 +57,8 @@ export async function import_or_update_all_changed_shows() {
 			if (!existing_show || existing_show.hash !== hash) {
 				console.log(`Refreshing Show # ${number}`);
 				await parse_and_save_show_notes(md_file_contents, hash, number, md_file_path);
+				// Remove cache of updated show
+				cache.shows.drop_show_cache(number);
 			} else {
 				console.log(`Skipping Show # ${number}`, {
 					existing_show: !!existing_show,
@@ -67,6 +70,7 @@ export async function import_or_update_all_changed_shows() {
 		console.error('❌ Pod Sync Error:', err);
 		error(500, 'Error Importing Shows');
 	}
+	cache.shows.drop_shows_list_cache();
 	console.log('🤖 Pod Sync Complete ✅');
 	return { message: 'Import All Shows' };
 }
@@ -237,5 +241,3 @@ async function add_or_update_guest(guest: FrontMatterGuest, show_id: string) {
 export function get_id_from_show_number(num: number) {
 	return `syntax_podcast_show_${left_pad(num)}`;
 }
-
-// TODO Delete Cache for each new show
