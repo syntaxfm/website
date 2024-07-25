@@ -9,7 +9,7 @@ guest:
   github: jeresig
   twitter: jeresig
   of: Khan Academy
-  url: https://www.khanacademy.org/
+  url: https://www.khanacademy.org
   social: https://johnresig.com/
 ---
 
