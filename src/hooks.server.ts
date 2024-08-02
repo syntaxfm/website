@@ -67,6 +67,16 @@ export const auth: Handle = async function ({ event, resolve }) {
 	return response;
 };
 
+export const admin: Handle = async function ({ event, resolve }) {
+	if (
+		event.route.id?.startsWith('/(site)/admin') &&
+		!event.locals?.user?.roles?.includes('admin')
+	) {
+		throw redirect(302, '/login');
+	}
+	return resolve(event);
+};
+
 // This hook is used to pass our prisma instance to each action, load, and endpoint
 export const prisma: Handle = async function ({ event, resolve }) {
 	const ip = event.request.headers.get('x-forwarded-for') as string;
@@ -126,6 +136,7 @@ export const handle: Handle = sequence(
 	Sentry.sentryHandle(),
 	prisma,
 	auth,
+	admin,
 	safe_form_data,
 	redirects,
 	document_policy

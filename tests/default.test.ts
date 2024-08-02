@@ -1,9 +1,12 @@
 import { expect, test } from '@playwright/test';
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
 
 test('index page has expected h1', async ({ page }) => {
 	await page.goto('/');
 	await expect(
-		page.getByRole('heading', { name: 'A Tasty Treats Podcast for Web Developers' })
+		page.getByRole('heading', { name: 'Tasty Treats for Web Developers' })
 	).toBeVisible();
 });
 
@@ -12,6 +15,23 @@ test('Got about page', async ({ page }) => {
 	await page.click('a:has-text("About")');
 	// Check for an h1 with the text "All Episodes"
 	await expect(page.locator('h1:has-text("About Syntax")')).toBeVisible();
+});
+
+test('admin action should require login', async ({ request, baseURL }) => {
+	const response = await request.post(`/admin/shows?/delete_all_shows`, {
+		headers: {
+			'Content-Type': 'multipart/form-data',
+			Origin: `${baseURL}`
+		}
+	});
+
+	expect(response.ok()).toBeTruthy();
+	const body = await response.json();
+	expect(body.status).toBe(302);
+	expect(body.location).toBe('/login');
+
+	const result = await prisma.guest.findMany();
+	expect(result.length).not.toBe(0);
 });
 
 test('Got to podcast detail page', async ({ page }) => {
