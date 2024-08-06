@@ -23,6 +23,12 @@
 
 <svelte:head>
 	<title>{generateTitle(meta.title)}</title>
+	<link
+		rel="alternate"
+		type="application/rss+xml"
+		href="https://feed.syntax.fm/"
+		title="Syntax RSS Feed"
+	/>
 	<meta name="image" property="og:image" content={meta.image} />
 	<meta name="theme-color" content="#000000" />
 	{#if meta.canonical}
