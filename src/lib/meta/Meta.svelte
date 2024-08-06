@@ -26,7 +26,7 @@
 	<link
 		rel="alternate"
 		type="application/rss+xml"
-		href="https://feed.syntax.fm/"
+		href="https://feed.syntax.fm"
 		title="Syntax RSS Feed"
 	/>
 	<meta name="image" property="og:image" content={meta.image} />
