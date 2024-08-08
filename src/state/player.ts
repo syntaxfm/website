@@ -116,7 +116,7 @@ const new_player_state = () => {
 				state.audio.src = incoming_show.url;
 				state.audio.currentTime = resume_time;
 				state.current_show = incoming_show;
-				state.status = 'LOADED';
+				state.status = resume_time > 0 ? 'PAUSED' : 'LOADED';
 			}
 			return state;
 		});
@@ -179,6 +179,7 @@ const new_player_state = () => {
 				// Finally Start Playing
 				this.play();
 			} catch (error) {
+				console.log('setting initial...');
 				update((state) => ({ ...state, status: 'INITIAL' }));
 			}
 		},
