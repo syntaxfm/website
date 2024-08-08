@@ -1,23 +1,36 @@
+import playlistOrderBy from '$/lib/videos/playlistOrderBy.js';
+
 export const load = async function ({ locals, params }) {
 	const { p_slug } = params;
-	const playlist = await locals.prisma.playlist.findUnique({
+	const playlistMeta = await locals.prisma.playlist.findUnique({
 		where: { slug: p_slug },
-		include: {
-			videos: {
-				include: {
-					video: true
-				}
-			}
+		select: {
+			id: true,
+			order: true
 		}
 	});
 
-	if (!playlist) {
+	if (!playlistMeta) {
 		// Playlist not found
 		return {
 			status: 404,
 			error: 'Playlist not found'
 		};
 	}
+
+	const playlist = await locals.prisma.playlist.findUnique({
+		where: {
+			id: playlistMeta.id
+		},
+		include: {
+			videos: {
+				include: {
+					video: true
+				},
+				orderBy: playlistOrderBy[playlistMeta.order]
+			}
+		}
+	});
 
 	return {
 		playlist
