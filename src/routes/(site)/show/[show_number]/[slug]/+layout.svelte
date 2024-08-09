@@ -34,12 +34,19 @@
 	}
 
 	function play_show() {
-		player.start_show(show, time_param_to_seconds(time_start));
+		if ($player.current_show?.number !== show.number || $player.status === 'INITIAL') {
+			player.start_show(show, time_param_to_seconds(time_start));
+		} else if ($player.status === 'PLAYING') {
+			player.pause();
+		} else {
+			player.play();
+		}
 	}
 
 	function variable_svg(node: HTMLElement) {
 		replace_color(node);
 	}
+	
 </script>
 
 <header>
@@ -82,7 +89,12 @@
 						? 'ing'
 						: ''}"
 				/>
-				Play{$player.current_show?.number === show.number ? 'ing' : ''} Episode {show.number}
+				{#if $player.status === 'PAUSED' && $player.current_show?.number === show.number}
+					Resume
+				{:else}
+					Play{$player.current_show?.number === show.number ? 'ing' : ''} 
+				{/if}
+				Episode {show.number}
 			</button>
 			<span>or</span>
 			<ListenLinks {show} />
