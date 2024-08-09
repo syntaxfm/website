@@ -238,6 +238,7 @@ model Video {
   url          String
   published_at DateTime
   thumbnail    String
+  duration     String            @default("00:00")
   slug         String            @unique
   playlists    PlaylistOnVideo[]
   shows        ShowVideo[]
