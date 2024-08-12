@@ -1,5 +1,5 @@
 import { generate_ai_notes } from './openai';
-import { prisma_client } from '../../hooks.server';
+import { prisma_client } from '$/server/prisma-client';
 
 type Show = { number: number };
 type Result = Awaited<ReturnType<typeof generate_ai_notes>>;

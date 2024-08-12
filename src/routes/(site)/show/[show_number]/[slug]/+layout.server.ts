@@ -1,7 +1,7 @@
 import { error } from '@sveltejs/kit';
 import { processor } from '$/utilities/markdown.js';
 import { cache } from '$/server/cache/cache';
-import { prisma_client } from '$/hooks.server';
+import { prisma_client } from '$/server/prisma-client';
 
 export const load = async function ({ params, locals, url }) {
 	const show_number = parseInt(params.show_number);

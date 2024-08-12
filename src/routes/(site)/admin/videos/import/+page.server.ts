@@ -1,4 +1,4 @@
-import { prisma_client } from '$/hooks.server';
+import { prisma_client } from '$/server/prisma-client';
 import { get_remote_playlists, import_playlist } from '$/server/video/youtube_api';
 import { fail } from '@sveltejs/kit';
 

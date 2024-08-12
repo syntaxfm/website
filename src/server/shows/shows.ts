@@ -1,5 +1,6 @@
 import { get_show_detail_query, get_last_10_shows_query, get_list_shows } from './shows_queries';
-import { prisma_client, redis } from '$/hooks.server';
+import { prisma_client } from '$/server/prisma-client';
+import { redis } from '$/hooks.server';
 import { delete_keys_by_prefix, super_cache_mang } from '../cache/cache_mang';
 
 export async function show(show_number: number) {

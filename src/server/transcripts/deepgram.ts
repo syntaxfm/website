@@ -3,7 +3,7 @@
 // @ts-nocheck
 import DeepgramPkg from '@deepgram/sdk';
 const { Deepgram } = DeepgramPkg;
-import { prisma_client as prisma } from '../../hooks.server';
+import { prisma_client as prisma } from '$/server/prisma-client';
 import { error } from '@sveltejs/kit';
 import { keywords } from './fixes';
 import { addFlaggerAudio } from './flagger';

@@ -1,5 +1,5 @@
 import { YOUTUBE_CHANNEL_ID } from '$/const';
-import { prisma_client } from '$/hooks.server';
+import { prisma_client } from '$/server/prisma-client';
 import { YOUTUBE_API_KEY } from '$env/static/private';
 import slug from 'speakingurl';
 

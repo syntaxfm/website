@@ -1,7 +1,7 @@
 import { dev } from '$app/environment';
 import chrome from '@sparticuz/chromium';
 import puppeteer, { Browser, type Product } from 'puppeteer-core';
-import { redis } from '../../../../hooks.server.js';
+import { redis } from '$/hooks.server.js';
 const exePath = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 
 async function getOptions() {

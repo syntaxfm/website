@@ -5,7 +5,7 @@ import { left_pad } from '$utilities/left_pad';
 import { error } from '@sveltejs/kit';
 import matter from 'gray-matter';
 import slug from 'speakingurl';
-import { prisma_client as prisma, redis } from '../hooks.server';
+import { prisma_client as prisma } from '$/server/prisma-client';
 import { cache } from './cache/cache';
 
 interface FrontMatterGuest {

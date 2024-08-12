@@ -1,6 +1,6 @@
 import type { RequestHandler } from '@sveltejs/kit';
 import { PUBLIC_URL } from '$env/static/public';
-import { prisma_client } from '$/hooks.server';
+import { prisma_client } from '$/server/prisma-client';
 
 const site = `https://${PUBLIC_URL}`;
 
