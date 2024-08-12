@@ -1,7 +1,8 @@
+import { prisma_client } from '$/hooks.server';
 import { SHOW_QUERY } from '$server/ai/queries.js';
 import type { PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async function ({ setHeaders, params, locals }) {
+export const load: PageServerLoad = async function ({ setHeaders, params }) {
 	setHeaders({
 		'cache-control': 'max-age=240'
 	});
@@ -22,7 +23,7 @@ export const load: PageServerLoad = async function ({ setHeaders, params, locals
 	// If its a Show, we need to return the show from the DB
 	const { include } = SHOW_QUERY();
 	return {
-		show: await locals.prisma.show.findUnique({
+		show: await prisma_client.show.findUnique({
 			where: {
 				number: show_number
 			},

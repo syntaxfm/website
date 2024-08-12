@@ -1,12 +1,13 @@
 import { error, json } from '@sveltejs/kit';
 import { format } from 'date-fns';
 import { shows_api_query } from '../query.js';
+import { prisma_client } from '$/hooks.server.js';
 
 const query = shows_api_query();
 
-export async function GET({ locals, params }) {
+export async function GET({ params }) {
 	const show_number = parseInt(params.number);
-	const data = await locals.prisma.show.findFirst({
+	const data = await prisma_client.show.findFirst({
 		where: {
 			AND: [
 				{ number: show_number },

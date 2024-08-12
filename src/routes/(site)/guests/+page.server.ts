@@ -1,5 +1,7 @@
-export const load = async function ({ locals, params }) {
-	const guests = await locals.prisma.guest.findMany({
+import { prisma_client } from '$/hooks.server';
+
+export const load = async function () {
+	const guests = await prisma_client.guest.findMany({
 		include: {
 			shows: {
 				select: {

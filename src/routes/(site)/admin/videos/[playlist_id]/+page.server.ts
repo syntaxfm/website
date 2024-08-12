@@ -1,9 +1,11 @@
-export const load = async ({ params, locals }) => {
+import { prisma_client } from '$/hooks.server';
+
+export const load = async ({ params }) => {
 	const { playlist_id } = params;
 
 	try {
 		// Fetch the playlist details
-		const playlist = await locals.prisma.playlist.findUnique({
+		const playlist = await prisma_client.playlist.findUnique({
 			where: { id: playlist_id },
 			include: {
 				videos: {

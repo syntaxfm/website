@@ -1,9 +1,10 @@
+import { prisma_client } from '$/hooks.server';
 import { import_transcripts } from '$server/transcripts/transcripts';
 import type { Actions, PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async ({ locals }) => {
+export const load: PageServerLoad = async () => {
 	return {
-		transcripts: await locals.prisma.transcript.findMany({
+		transcripts: await prisma_client.transcript.findMany({
 			include: {
 				show: true,
 				_count: {
@@ -29,9 +30,9 @@ export const actions: Actions = {
 		});
 	},
 
-	delete_all_transcripts: async ({ locals }) => {
+	delete_all_transcripts: async () => {
 		// Order of these is important because of how db relations work
-		await locals.prisma.transcript.deleteMany({});
+		await prisma_client.transcript.deleteMany({});
 		return { message: 'Deleted All Transcripts!' };
 	}
 };

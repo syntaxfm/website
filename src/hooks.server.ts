@@ -81,7 +81,6 @@ export const admin: Handle = async function ({ event, resolve }) {
 export const prisma: Handle = async function ({ event, resolve }) {
 	const ip = event.request.headers.get('x-forwarded-for') as string;
 	const country = event.request.headers.get('x-vercel-ip-country') as string;
-	event.locals.prisma = prisma_client;
 	event.locals.session = {
 		...event.locals.session,
 		ip,
