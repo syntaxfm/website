@@ -24,8 +24,7 @@ Sentry.init({
 		Sentry.replayIntegration({
 			maskAllText: false,
 			blockAllMedia: false
-		}),
-		Sentry.metrics.metricsAggregatorIntegration()
+		})
 	],
 	profilesSampleRate: 1.0,
 	environment: dev ? 'development' : 'production'
