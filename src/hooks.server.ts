@@ -1,11 +1,11 @@
 // * Server Side Middleware
 // https://kit.svelte.dev/docs/hooks
 
-import { PrismaClient } from '@prisma/client';
 import * as Sentry from '@sentry/sveltekit';
 import { redirect, type Handle } from '@sveltejs/kit';
 import { sequence } from '@sveltejs/kit/hooks';
 import { form_data } from 'sk-form-data';
+import { prisma_client } from '$/server/prisma-client';
 import { find_user_by_access_token } from './server/auth/users';
 // import { dev } from '$app/environment';
 import { dev } from '$app/environment';
@@ -30,7 +30,6 @@ console.log(`🤓 Cache Status... ${cache_status}`);
 
 // * START UP
 // RUNS ONCE ON FILE LOAD
-export const prisma_client = new PrismaClient();
 
 Sentry.init({
 	release: `syntax@${__VER__}`,

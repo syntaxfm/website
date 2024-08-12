@@ -1,4 +1,4 @@
-import { prisma_client } from '$/hooks.server';
+import { prisma_client } from '$/server/prisma-client';
 
 export const load = async () => {
 	const local_playlists = await prisma_client.playlist.findMany({

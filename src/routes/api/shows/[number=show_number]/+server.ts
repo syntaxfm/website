@@ -1,7 +1,7 @@
 import { error, json } from '@sveltejs/kit';
 import { format } from 'date-fns';
 import { shows_api_query } from '../query.js';
-import { prisma_client } from '$/hooks.server.js';
+import { prisma_client } from '$/server/prisma-client';
 
 const query = shows_api_query();
 

@@ -1,4 +1,4 @@
-import { prisma_client } from '$/hooks.server';
+import { prisma_client } from '$/server/prisma-client';
 import { get_show_card_query } from '$/server/shows/shows_queries';
 
 export const load = async function ({ params }) {

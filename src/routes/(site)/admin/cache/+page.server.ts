@@ -1,4 +1,4 @@
-import { cache_status, redis } from '../../../../hooks.server';
+import { cache_status, redis } from '$/hooks.server';
 
 export const load = async () => {
 	return {

@@ -3,7 +3,7 @@ import { error } from '@sveltejs/kit';
 import { get_transcript } from '$server/transcripts/deepgram';
 import { aiNoteRequestHandler } from '$server/ai/requestHandlers';
 import type { PageServerLoad } from './$types';
-import { prisma_client } from '$/hooks.server';
+import { prisma_client } from '$/server/prisma-client';
 
 export const config = {
 	maxDuration: 300 // vercel timeout

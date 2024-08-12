@@ -2,7 +2,7 @@ import { error, json } from '@sveltejs/kit';
 import type { RequestEvent } from './$types';
 import { get_transcript } from '$server/transcripts/deepgram';
 import { has_auth } from './has_auth';
-import { prisma_client } from '$/hooks.server';
+import { prisma_client } from '$/server/prisma-client';
 
 export const config = {
 	maxDuration: 300 // vercel timeout

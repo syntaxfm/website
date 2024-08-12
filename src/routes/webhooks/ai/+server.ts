@@ -4,7 +4,7 @@ import { transcript_without_ai_notes_query } from '$server/ai/queries';
 import { error, json } from '@sveltejs/kit';
 import { has_auth } from '../transcripts/has_auth';
 import type { RequestEvent } from './$types';
-import { prisma_client } from '$/hooks.server';
+import { prisma_client } from '$/server/prisma-client';
 
 export const config = {
 	maxDuration: 300 // vercel timeout

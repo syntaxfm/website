@@ -1,4 +1,4 @@
-import { prisma_client } from '$/hooks.server';
+import { prisma_client } from '$/server/prisma-client';
 import { import_transcripts } from '$server/transcripts/transcripts';
 import type { Actions, PageServerLoad } from './$types';
 

@@ -1,4 +1,4 @@
-import { prisma_client } from '$/hooks.server';
+import { prisma_client } from '$/server/prisma-client';
 import { transcript_with_utterances } from '$server/ai/queries';
 import { get_show_cache_s } from '$utilities/get_show_cache_ms';
 import type { PageServerLoad } from './$types';

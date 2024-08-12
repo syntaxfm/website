@@ -3,7 +3,7 @@ import type { PageServerLoad } from './$types';
 import type { Actions } from './$types';
 import { fail } from '@sveltejs/kit';
 import { cache } from '$/server/cache/cache';
-import { prisma_client } from '$/hooks.server';
+import { prisma_client } from '$/server/prisma-client';
 
 type AiShowNoteUpdate = Pick<AiShowNote, 'title' | 'description'>;
 
