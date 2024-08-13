@@ -12,7 +12,7 @@ import { dev } from '$app/environment';
 import { UPSPLASH_TOKEN, UPSPLASH_URL } from '$env/static/private';
 import get_show_path from '$utilities/slug';
 import { Redis } from '@upstash/redis';
-// import { ProfilingIntegration } from '@sentry/profiling-node';
+import { nodeProfilingIntegration } from '@sentry/profiling-node';
 
 export const cache_status = UPSPLASH_URL && UPSPLASH_TOKEN ? 'ONLINE' : 'OFFLINE';
 
@@ -35,12 +35,9 @@ Sentry.init({
 	release: `syntax@${__VER__}`,
 	dsn: 'https://ea134756b8f244ff99638864ce038567@o4505358925561856.ingest.sentry.io/4505358945419264',
 	tracesSampleRate: 1,
-	// profilesSampleRate: 1.0, // Profiling sample rate is relative to tracesSampleRate
+	profilesSampleRate: 1.0, // Profiling sample rate is relative to tracesSampleRate
 	environment: dev ? 'development' : 'production',
-	integrations: [
-		// new ProfilingIntegration(),
-		new Sentry.Integrations.Prisma({ client: prisma_client })
-	],
+	integrations: [nodeProfilingIntegration, Sentry.prismaIntegration()],
 	_experiments: {
 		metricsAggregator: true
 	}

@@ -13,8 +13,7 @@ export default defineConfig(({ mode }) => {
 				sourceMapsUploadOptions: {
 					org: 'syntax-fm',
 					project: 'website',
-					authToken: env.SENTRY_AUTH_TOKEN,
-					cleanArtifacts: true
+					authToken: env.SENTRY_AUTH_TOKEN
 				}
 			}),
 			sveltekit(),
