@@ -3,6 +3,7 @@ import type { PageServerLoad } from './$types';
 import type { Actions } from './$types';
 import { fail } from '@sveltejs/kit';
 import { cache } from '$/server/cache/cache';
+import { prisma_client } from '$/server/prisma-client';
 
 type AiShowNoteUpdate = Pick<AiShowNote, 'title' | 'description'>;
 
@@ -17,7 +18,7 @@ export const actions = {
 		}
 
 		const show_number = parseInt(params.show_number);
-		await locals.prisma.aiShowNote.update({
+		await prisma_client.aiShowNote.update({
 			where: {
 				show_number
 			},
@@ -33,9 +34,9 @@ export const actions = {
 	}
 } satisfies Actions;
 
-export const load: PageServerLoad = async ({ locals, params }) => {
+export const load: PageServerLoad = async ({ params }) => {
 	return {
-		show: await locals.prisma.show.findUnique({
+		show: await prisma_client.show.findUnique({
 			where: {
 				number: parseInt(params.show_number)
 			},

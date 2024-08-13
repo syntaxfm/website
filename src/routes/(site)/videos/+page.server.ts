@@ -1,5 +1,7 @@
-export const load = async function ({ locals }) {
-	const playlists = await locals.prisma.playlist.findMany({
+import { prisma_client } from '$/server/prisma-client';
+
+export const load = async function () {
+	const playlists = await prisma_client.playlist.findMany({
 		orderBy: {
 			created_at: 'desc'
 		},

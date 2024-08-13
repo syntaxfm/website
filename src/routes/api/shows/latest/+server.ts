@@ -1,9 +1,10 @@
 import { json } from '@sveltejs/kit';
 import { format } from 'date-fns';
 import { shows_api_query } from '../query.js';
+import { prisma_client } from '$/server/prisma-client';
 
-export async function GET({ locals }) {
-	const data = await locals.prisma.show.findFirst(shows_api_query());
+export async function GET() {
+	const data = await prisma_client.show.findFirst(shows_api_query());
 	if (data)
 		return json(
 			{

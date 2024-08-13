@@ -1,6 +1,7 @@
 import { error } from '@sveltejs/kit';
 import { processor } from '$/utilities/markdown.js';
 import { cache } from '$/server/cache/cache';
+import { prisma_client } from '$/server/prisma-client';
 
 export const load = async function ({ params, locals, url }) {
 	const show_number = parseInt(params.show_number);
@@ -8,7 +9,7 @@ export const load = async function ({ params, locals, url }) {
 	// Caches and gets show dynamically based on release date
 	const show_promise = cache.shows.show(show_number);
 
-	const prev_next_show_promise = locals.prisma.show.findMany({
+	const prev_next_show_promise = prisma_client.show.findMany({
 		where: {
 			number: {
 				in: [show_number - 1, show_number + 1]

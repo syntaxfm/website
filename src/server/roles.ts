@@ -1,4 +1,4 @@
-import { prisma_client } from '../hooks.server';
+import { prisma_client } from '$/server/prisma-client';
 
 export async function add_user_to_role(userId: string, roleName: string) {
 	// Find the role by its name

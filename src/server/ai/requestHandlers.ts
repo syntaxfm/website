@@ -1,13 +1,10 @@
-// TODO WES BOS Remove
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
-
 import { error, type RequestEvent } from '@sveltejs/kit';
 import { transcript_with_utterances } from './queries';
 import { generate_ai_notes } from './openai';
 import { save_ai_notes_to_db } from './db';
+import { prisma_client } from '$/server/prisma-client';
 
-export async function aiNoteRequestHandler({ request, locals }: RequestEvent) {
+export async function aiNoteRequestHandler({ request }: RequestEvent) {
 	const data = await request.formData();
 	const show_number = parseInt(data.get('show_number')?.toString() || '');
 
@@ -15,7 +12,7 @@ export async function aiNoteRequestHandler({ request, locals }: RequestEvent) {
 		error(400, 'Invalid Show Number');
 	}
 
-	const show = await locals.prisma.show.findUnique({
+	const show = await prisma_client.show.findUnique({
 		where: { number: show_number },
 		include: {
 			transcript: transcript_with_utterances
@@ -26,7 +23,7 @@ export async function aiNoteRequestHandler({ request, locals }: RequestEvent) {
 		error(400, 'No show, or no transcript for this show');
 	}
 	// delete any existing ai notes
-	await locals.prisma.aiShowNote.deleteMany({
+	await prisma_client.aiShowNote.deleteMany({
 		where: {
 			show: {
 				number: show_number

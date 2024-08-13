@@ -1,13 +1,14 @@
+import { prisma_client } from '$/server/prisma-client';
 import { get_remote_playlists, import_playlist } from '$/server/video/youtube_api';
 import { fail } from '@sveltejs/kit';
 
-export const load = async ({ locals }) => {
-	const playlists = await locals.prisma.remotePlaylist.findMany({
+export const load = async () => {
+	const playlists = await prisma_client.remotePlaylist.findMany({
 		orderBy: {
 			created_at: 'desc'
 		}
 	});
-	const local_playlists = await locals.prisma.playlist.findMany({
+	const local_playlists = await prisma_client.playlist.findMany({
 		orderBy: {
 			created_at: 'desc'
 		},

@@ -1,5 +1,6 @@
 import type { PageServerLoad } from './$types';
 import { processor } from '$/utilities/markdown';
+import { prisma_client } from '$/server/prisma-client';
 
 function cleanUpLines(string: string) {
 	return string
@@ -10,9 +11,9 @@ function cleanUpLines(string: string) {
 		.join('\n');
 }
 
-export const load: PageServerLoad = async function ({ locals, setHeaders }) {
+export const load: PageServerLoad = async function ({ setHeaders }) {
 	// Load ALL shows from the database
-	const shows = await locals.prisma.show.findMany({
+	const shows = await prisma_client.show.findMany({
 		select: {
 			show_type: true,
 			number: true,

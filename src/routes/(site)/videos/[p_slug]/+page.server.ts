@@ -1,6 +1,8 @@
-export const load = async function ({ locals, params }) {
+import { prisma_client } from '$/server/prisma-client';
+
+export const load = async function ({ params }) {
 	const { p_slug } = params;
-	const playlist = await locals.prisma.playlist.findUnique({
+	const playlist = await prisma_client.playlist.findUnique({
 		where: { slug: p_slug },
 		include: {
 			videos: {

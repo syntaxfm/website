@@ -1,19 +1,20 @@
 import type { RequestHandler } from '@sveltejs/kit';
 import { PUBLIC_URL } from '$env/static/public';
+import { prisma_client } from '$/server/prisma-client';
 
 const site = `https://${PUBLIC_URL}`;
 
-export const GET: RequestHandler = async function GET({ setHeaders, locals }) {
-	const shows = await locals.prisma.show.findMany({
+export const GET: RequestHandler = async function GET({ setHeaders }) {
+	const shows = await prisma_client.show.findMany({
 		where: {
 			date: {
 				lte: new Date() // only shows in the future
 			}
 		}
 	});
-	const guests = await locals.prisma.guest.findMany();
-	const playlists = await locals.prisma.playlist.findMany();
-	const videos = await locals.prisma.video.findMany({
+	const guests = await prisma_client.guest.findMany();
+	const playlists = await prisma_client.playlist.findMany();
+	const videos = await prisma_client.video.findMany({
 		include: {
 			playlists: {
 				include: {

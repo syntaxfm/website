@@ -3,14 +3,15 @@ import { error } from '@sveltejs/kit';
 import { get_transcript } from '$server/transcripts/deepgram';
 import { aiNoteRequestHandler } from '$server/ai/requestHandlers';
 import type { PageServerLoad } from './$types';
+import { prisma_client } from '$/server/prisma-client';
 
 export const config = {
 	maxDuration: 300 // vercel timeout
 };
 
-export const load: PageServerLoad = async ({ locals }) => {
+export const load: PageServerLoad = async () => {
 	return {
-		shows: await locals.prisma.show.findMany({
+		shows: await prisma_client.show.findMany({
 			orderBy: { number: 'desc' },
 			include: {
 				aiShowNote: {
@@ -43,25 +44,25 @@ export const actions = {
 		return import_or_update_all_shows();
 	},
 
-	delete_all_shows: async ({ locals }) => {
+	delete_all_shows: async () => {
 		// Order of these is important because of how db relations work
-		await locals.prisma.showGuest.deleteMany({});
-		await locals.prisma.transcriptUtteranceWord.deleteMany({});
-		await locals.prisma.transcriptUtterance.deleteMany({});
-		await locals.prisma.transcript.deleteMany({});
-		await locals.prisma.aiShowNote.deleteMany({});
-		await locals.prisma.show.deleteMany({});
-		await locals.prisma.socialLink.deleteMany({});
-		await locals.prisma.guest.deleteMany({});
+		await prisma_client.showGuest.deleteMany({});
+		await prisma_client.transcriptUtteranceWord.deleteMany({});
+		await prisma_client.transcriptUtterance.deleteMany({});
+		await prisma_client.transcript.deleteMany({});
+		await prisma_client.aiShowNote.deleteMany({});
+		await prisma_client.show.deleteMany({});
+		await prisma_client.socialLink.deleteMany({});
+		await prisma_client.guest.deleteMany({});
 		return { message: 'Delete All Shows' };
 	},
-	delete_transcript: async ({ locals, request }) => {
+	delete_transcript: async ({ request }) => {
 		const data = await request.formData();
 		const show_number = parseInt(data.get('show_number')?.toString() || '');
 		if (!show_number) {
 			error(400, 'Invalid Show Number');
 		}
-		await locals.prisma.transcript.delete({
+		await prisma_client.transcript.delete({
 			where: {
 				show_number
 			}

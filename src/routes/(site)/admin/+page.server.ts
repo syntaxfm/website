@@ -1,5 +1,7 @@
-export const load = async (event) => {
-	const next_shows = await event.locals.prisma.show.findMany({
+import { prisma_client } from '$/server/prisma-client';
+
+export const load = async () => {
+	const next_shows = await prisma_client.show.findMany({
 		where: {
 			date: {
 				gt: new Date()
@@ -8,7 +10,7 @@ export const load = async (event) => {
 		include: {
 			aiShowNote: {
 				include: {
-					topics: true,
+					topics: true
 				}
 			}
 		},
@@ -17,7 +19,7 @@ export const load = async (event) => {
 		},
 		take: 9
 	});
-	const last_9_shows = await event.locals.prisma.show.findMany({
+	const last_9_shows = await prisma_client.show.findMany({
 		where: {
 			date: {
 				lt: new Date()
@@ -26,7 +28,7 @@ export const load = async (event) => {
 		include: {
 			aiShowNote: {
 				include: {
-					topics: true,
+					topics: true
 				}
 			}
 		},

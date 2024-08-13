@@ -3,7 +3,7 @@ import type { Show } from '@prisma/client';
 import { error } from '@sveltejs/kit';
 import fs, { readFile } from 'fs/promises';
 import path from 'path';
-import { prisma_client as prisma } from '../../hooks.server';
+import { prisma_client as prisma } from '$/server/prisma-client';
 import { detectSpeakerNames, getSlimUtterances } from './utils';
 import pMap from 'p-map';
 const transcripts_path = path.join(process.cwd(), 'src/assets/transcripts-flagged');

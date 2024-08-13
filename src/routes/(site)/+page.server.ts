@@ -1,5 +1,6 @@
 import type { Actions } from '@sveltejs/kit';
-import { redis } from '../../hooks.server';
+import { redis } from '$/hooks.server';
+import { prisma_client } from '$/server/prisma-client';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ url }) => {
@@ -12,8 +13,8 @@ export const load: PageServerLoad = async ({ url }) => {
 };
 
 export const actions: Actions = {
-	logout: async function logout({ locals, cookies }) {
-		await locals.prisma.session.delete({
+	logout: async function logout({ cookies }) {
+		await prisma_client.session.delete({
 			where: {
 				access_token: cookies.get('access_token')
 			}

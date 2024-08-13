@@ -1,6 +1,6 @@
 import type { GithubUser } from '$const';
 import { add_user_to_role } from '../roles';
-import { prisma_client } from '../../hooks.server';
+import { prisma_client } from '$/server/prisma-client';
 import type { User } from '@prisma/client';
 
 export interface UserWithRoles extends User {
