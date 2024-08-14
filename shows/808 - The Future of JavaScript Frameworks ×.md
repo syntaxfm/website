@@ -10,31 +10,31 @@ In this potluck episode of Syntax, Wes and Scott answer your questions about the
 
 ### Show Notes
 
-* **[00:00](#t=00:00)** - Welcome to Syntax!
-* **[01:48](#t=01:48)** - Brought to you by [Sentry.io](https://sentry.io)
-* **[04:37](#t=04:37)** - The future of JavaScript frameworks
-* **[09:09](#t=09:09)** - How to use [Caddy](https://caddyserver.com/) for local development
-  * [SvelteKit](https://kit.svelte.dev/)
-  * [Vite](https://vitejs.dev/)
-* **[14:27](#t=14:27)** - When to use an API
-  * [Strapi](https://strapi.io/)
-* **[17:38](#t=17:38)** - Where does Scott get his amazing t-shirts?
-  * [Sentry.shop](https://sentry.shop)
-  * [Syntax Snack Pack](https://syntax.fm/snackpack)
-* **[21:33](#t=21:33)** - Best screwdriver for kids toys
-  * [PicQuic Sixpac Plus](https://amzn.to/3SjnS2E)
-  * [LTT Screwdriver](https://www.lttstore.com/products/screwdriver)
-* **[24:31](#t=24:31)** - Strategies for database design
-  * [MongoDB](https://www.mongodb.com/)
-  * [Prisma](https://www.prisma.io/)
-* **[30:21](#t=30:21)** - Do we need frameworks?
-  * [796 - Do We Need JS Frameworks × Are You Over-Engineering? × Webview vs Native](https://syntax.fm/show/796/do-we-need-js-frameworks-are-you-over-engineering-webview-vs-native)
-  * [Frontend Masters](https://frontendmasters.com/)
-* **[32:19](#t=32:19)** - Best tech stack for building a basic login system
-  * [336 - How To Build Your Own Auth](https://syntax.fm/show/336/how-to-build-your-own-auth)
-* **[37:56](#t=37:56)** - Syntax video episodes
-* **[40:25](#t=40:25)** - Component props in JSX
-* **[45:26](#t=45:26)** - Sick Picks & Shameless Plugs
+- **[00:00](#t=00:00)** - Welcome to Syntax!
+- **[01:48](#t=01:48)** - Brought to you by [Sentry.io](https://sentry.io)
+- **[04:37](#t=04:37)** - The future of JavaScript frameworks
+- **[09:09](#t=09:09)** - How to use [Caddy](https://caddyserver.com/) for local development
+  - [SvelteKit](https://kit.svelte.dev/)
+  - [Vite](https://vitejs.dev/)
+- **[14:27](#t=14:27)** - When to use an API
+  - [Strapi](https://strapi.io/)
+- **[17:38](#t=17:38)** - Where does Scott get his amazing t-shirts?
+  - [Sentry.shop](https://sentry.shop)
+  - [Syntax Snack Pack](https://syntax.fm/snackpack)
+- **[21:33](#t=21:33)** - Best screwdriver for kids toys
+  - [PicQuic Sixpac Plus](https://amzn.to/3SjnS2E)
+  - [LTT Screwdriver](https://www.lttstore.com/products/screwdriver)
+- **[24:31](#t=24:31)** - Strategies for database design
+  - [MongoDB](https://www.mongodb.com/)
+  - [Prisma](https://www.prisma.io/)
+- **[30:21](#t=30:21)** - Do we need frameworks?
+  - [796 - Do We Need JS Frameworks × Are You Over-Engineering? × Webview vs Native](https://syntax.fm/show/796/do-we-need-js-frameworks-are-you-over-engineering-webview-vs-native)
+  - [Frontend Masters](https://frontendmasters.com/)
+- **[32:19](#t=32:19)** - Best tech stack for building a basic login system
+  - [336 - How To Build Your Own Auth](https://syntax.fm/show/336/how-to-build-your-own-auth)
+- **[37:56](#t=37:56)** - Syntax video episodes
+- **[40:25](#t=40:25)** - Component props in JSX
+- **[45:26](#t=45:26)** - Sick Picks & Shameless Plugs
 
 ### Sick Picks
 
@@ -54,3 +54,4 @@ Wes: [X](https://twitter.com/wesbos) [Instagram](https://www.instagram.com/wesbo
 Scott: [X](https://twitter.com/stolinski) [Instagram](https://www.instagram.com/stolinski/) [Tiktok](https://www.tiktok.com/@stolinski) [LinkedIn](https://www.linkedin.com/in/stolinski/) [Threads](https://www.threads.net/@stolinski)
 
 Randy: [X](https://twitter.com/randyrektor) [Instagram](https://www.instagram.com/randyrektor/) [YouTube](https://www.youtube.com/@randyrektor) [Threads](https://www.threads.net/@randyrektor)
+
