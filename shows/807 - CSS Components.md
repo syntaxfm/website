@@ -18,7 +18,7 @@ In this episode of Syntax, Wes and Scott talk about CSS components, including cl
 - **[15:56](#t=15:56)** - Scoped CSS
   - [@scope](https://caniuse.com/mdn-css_at-rules_scope) - (82% support!) ff behind flag
     - [https://developer.mozilla.org/en-US/docs/Web/CSS/@scope](https://developer.mozilla.org/en-US/docs/Web/CSS/@scope)
-- **[21:07](#t=21:07)** - How is Panda different from style components?
+- **[21:07](#t=21:07)** - How is Panda different from styled components?
   - [Panda](https://panda-css.com/)
   - [StyleX](https://stylexjs.com/)
 - **[00:00](#t=00:00)** - Utility CSS
