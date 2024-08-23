@@ -6,14 +6,14 @@ url: https://traffic.libsyn.com/syntax/Syntax_812_final.mp3
 youtube_url: https://www.youtube.com/watch?v=lNbHrjIuwxc
 guest:
   - name: Una Kravets
-    github: https://github.com/una
-    twitter: https://x.com/Una
+    github: una
+    twitter: una
     of: Google Chrome
     url: https://una.im
     social: 
   - name: Adam Argyle
-    github: https://github.com/argyleink
-    twitter: https://x.com/argyleink
+    github: argyleink
+    twitter: argyleink
     of: Google Chrome
     url: https://nerdy.dev
 ---
