@@ -2,6 +2,8 @@ name: Run_Playwright_Tests_on_PRs
 
 on:
   pull_request:
+    paths-ignore:
+      - 'shows/*.md'
 
 env:
   PUBLIC_GITHUB_ID: ${{ secrets.PUBLIC_GITHUB_ID }}
