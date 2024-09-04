@@ -46,12 +46,12 @@
 	function variable_svg(node: HTMLElement) {
 		replace_color(node);
 	}
-	
 </script>
 
 <header>
 	<span
 		title="Show #{show.number}"
+		aria-label="Show #{show.number}"
 		style:--transition-name="show-date-{show.number}"
 		class="show-number fst-900 grit">{show.number}</span
 	>
@@ -92,7 +92,7 @@
 				{#if $player.status === 'PAUSED' && $player.current_show?.number === show.number}
 					Resume
 				{:else}
-					Play{$player.current_show?.number === show.number ? 'ing' : ''} 
+					Play{$player.current_show?.number === show.number ? 'ing' : ''}
 				{/if}
 				Episode {show.number}
 			</button>
