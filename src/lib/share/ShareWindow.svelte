@@ -32,9 +32,9 @@
 	use:clickOutDialog
 	on:close={close}
 	on:click-outside={close}
-	aria-labelledby="search-header"
+	aria-labelledby="share-header"
 >
-	<h3>Share</h3>
+	<h3 id="share-header">Share</h3>
 	<section aria-label="Share Window" class="share-window">
 		<button on:click={close} class="close">×</button>
 		<ShareActions {timestamp} {show} />
