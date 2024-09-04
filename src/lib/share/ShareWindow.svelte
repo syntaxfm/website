@@ -34,7 +34,7 @@
 	on:click-outside={close}
 	aria-labelledby="share-header"
 >
-	<h3 id="share-header">Share</h3>
+	<h2 class="h3" id="share-header">Share</h2>
 	<section aria-label="Share Window" class="share-window">
 		<button on:click={close} class="close">×</button>
 		<ShareActions {timestamp} {show} />
