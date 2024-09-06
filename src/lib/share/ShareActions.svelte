@@ -2,7 +2,7 @@
 	import Icon from '$lib/Icon.svelte';
 	import { player } from '$state/player';
 	import type { Show } from '@prisma/client';
-	import toast from 'svelte-french-toast';
+	import toast, { Toaster } from 'svelte-french-toast';
 
 	export let timestamp = true;
 	export let show: Show;
@@ -50,28 +50,35 @@
 	<p>
 		<label>
 			<input bind:checked={share_at_ts} type="checkbox" />
+			Start at timestamp:
 		</label>
-		Start at: <input type="text" value={toHMS(Math.trunc($player?.audio?.currentTime || 0))} />
+		<input type="text" value={toHMS(Math.trunc($player?.audio?.currentTime || 0))} />
 	</p>
 {/if}
-
-<button on:click={copy_embed}><Icon name="code" /> Embed</button>
-<button on:click={() => copy(share_url)}><Icon name="link" /> Link</button>
+<Toaster />
+<button on:click={copy_embed} aria-label="Copy Embed Code for this show"
+	><Icon name="code" /> Embed</button
+>
+<button on:click={() => copy(share_url)} aria-label="Copy link to this show"
+	><Icon name="link" /> Link</button
+>
 <a
 	class="button share--x"
 	target="_blank"
 	href="https://twitter.com/intent/tweet?url={share_url}&text={show.title}&via=syntaxfm"
-	><Icon name="x" /> X</a
+	aria-label="Share on Twitter"><Icon name="x" /></a
 >
 <a
 	class="button share--facebook"
 	target="_blank"
+	aria-label="Share on Facebook"
 	href="https://facebook.com/sharer/sharer.php?u={share_url}&quote={show.title}"
 	><Icon name="facebook" /> Facebook</a
 >
 <a
 	target="_blank"
 	class="button share--linkedin"
+	aria-label="Share on LinkedIn"
 	href="https://www.linkedin.com/sharing/share-offsite/?url={share_url}"
 	><Icon name="linkedin" /> LinkedIn</a
 >

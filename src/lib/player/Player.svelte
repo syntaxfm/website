@@ -14,13 +14,22 @@
 		// Load latest show by default
 		player.initialize(initial_show);
 	});
+
+	$: mix_max_verb = $player_window_status === 'MINI' ? 'Maximize' : 'Minimize';
 </script>
 
 <section class="player {$player_window_status} {$player.status}">
 	<div class="window-controls">
 		{#if $player.current_show}<ShareButton show={$player.current_show} />{/if}
-		<button class="minimize" on:click={player.toggle_minimize}><Icon name="minimize" /></button>
-		<button class="close" on:click={player.close}>×</button>
+		<button
+			class="minimize"
+			on:click={player.toggle_minimize}
+			aria-label={`${mix_max_verb} Player`}
+			title={`${mix_max_verb} Player`}><Icon name="minimize" /></button
+		>
+		<button class="close" on:click={player.close} aria-label="Close Player" title="Close Player"
+			>×</button
+		>
 	</div>
 
 	<div class="player-container">

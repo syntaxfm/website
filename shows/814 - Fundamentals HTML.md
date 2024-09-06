@@ -1,9 +1,9 @@
 ---
 number: 814
-title: "814 - Fundamentals: HTML"
+title: "Fundamentals: HTML"
 date: 1724842800000
 url: https://traffic.libsyn.com/syntax/Syntax_814_final.mp3
-youtube_url: https://youtu.be/jNG_tLuj4Vg
+youtube_url: https://www.youtube.com/watch?v=0BHxZQm7ILk
 ---
 
 In this episode of Syntax, Wes and Scott talk about HTML fundamentals — from basic structure and semantics to practical tips for better accessibility and SEO. They also discuss the difference between block and inline elements, form functionalities, HTML5 elements like dialog and canvas, and more.

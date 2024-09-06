@@ -11,7 +11,8 @@
 
 <div class="person">
 	<figure>
-		<img src={`https://github.com/${host.github}.png`} alt={host.name} />
+		<!--Kind of an interesting exemption to this: https://twitter.com/wesbos/status/1831327448266326385 -->
+		<img src={`https://github.com/${host.github}.png`} alt={host.name} role="presentation" />
 		<figcaption>
 			<p>
 				{#if guest}

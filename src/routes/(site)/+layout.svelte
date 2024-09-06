@@ -32,7 +32,7 @@
 </script>
 
 <Meta />
-
+<a href="#main-content" class="skip-to-main-content">Skip to main content</a>
 <PageLoadingIndicator />
 
 <div class={'theme-' + user_theme + ' theme-wrapper'}>
@@ -40,7 +40,12 @@
 		<Header />
 	{/if}
 
-	<main class="page-layout layout zone" style:--bg="var(--bg-sheet)" style:--fg="var(--fg-sheet)">
+	<main
+		id="main-content"
+		class="page-layout layout zone"
+		style:--bg="var(--bg-sheet)"
+		style:--fg="var(--fg-sheet)"
+	>
 		<slot />
 	</main>
 
@@ -75,6 +80,20 @@
 
 	.page-layout {
 		margin: 0 auto;
+	}
+
+	.skip-to-main-content {
+		position: absolute;
+		top: -1000px;
+		left: -1000px;
+		z-index: 1000;
+		background-color: var(--primary);
+		color: var(--bg);
+		padding: 0.5rem;
+		&:focus {
+			top: 0;
+			left: 0;
+		}
 	}
 
 	@media (min-width: 1280px) {
