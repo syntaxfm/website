@@ -22,7 +22,6 @@
 @import '../../styles/variables.css';
 @import '../../styles/utilities.css';
 @import '../../styles/layout.css';
-@import '../../styles/forms.css';
 @import '../../styles/buttons.css';
 
 /* FYI you have to use import-glob for all of these or else it gets mad */
@@ -54,7 +53,6 @@ html::view-transition-new() {
 }
 
 table:not(.newsleter-output table) {
-	border: 1px solid black;
 	border-collapse: collapse;
 	position: relative;
 	min-width: 100%;
@@ -77,17 +75,17 @@ tr:hover {
 	background: var(--tint-or-shade);
 }
 
-thead th + th {
-	border-left: var(--border);
-}
-
 th {
 	padding: 6px;
 	text-align: left;
 	background: var(--bg);
 	color: var(--fg);
-	font-variation-settings: var(--400);
+	font-variation-settings: var(--fw-400);
 	font-size: var(--font-size-sm);
+}
+
+thead th + th {
+	border-left: var(--border);
 }
 
 td {

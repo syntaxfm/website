@@ -31,15 +31,15 @@ export default defineConfig(({ mode }) => {
 			preprocessorOptions: {
 				postcss: {
 					additionalData: `
-				@custom-media --below_small (width < 400px);
-				@custom-media --below_med (width < 700px);
-				@custom-media --below_large (width < 900px);
-				@custom-media --below_xlarge (width < 1200px);
+				@custom-media --below-small (width < 400px);
+				@custom-media --below-med (width < 700px);
+				@custom-media --below-large (width < 900px);
+				@custom-media --below-xlarge (width < 1200px);
 
-				@custom-media --above_small (width > 400px);
-				@custom-media --above_med (width > 700px);
-				@custom-media --above_large (width > 900px);
-				@custom-media --above_xlarge (width > 1200px);
+				@custom-media --above-small (width > 400px);
+				@custom-media --above-med (width > 700px);
+				@custom-media --above-large (width > 900px);
+				@custom-media --above-xlarge (width > 1200px);
 				`
 				}
 			}

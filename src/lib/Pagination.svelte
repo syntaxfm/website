@@ -53,7 +53,7 @@
 		grid-auto-columns: max-content;
 		gap: 20px;
 		justify-content: center;
-		@media (--below_large) {
+		@media (--below-large) {
 			gap: 8px;
 		}
 		& > * {
@@ -71,7 +71,7 @@
 				background: var(--primary);
 				color: var(--dark);
 			}
-			@media (--below_large) {
+			@media (--below-large) {
 				&.page-number:not(.current) {
 					display: none;
 				}

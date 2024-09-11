@@ -3,51 +3,67 @@
 		max-width: 900px;
 		width: 100%;
 	}
+
 	.small {
 		font-size: var(--font-size-sm);
 	}
+
 	.center {
 		margin: 0 auto;
 	}
+
 	.text-xs {
 		font-size: var(--font-size-xs);
 	}
+
 	.text-sm {
 		font-size: var(--font-size-sm);
 	}
+
 	.text-base {
 		font-size: var(--font-size-base);
 	}
+
 	.text-md {
 		font-size: var(--font-size-md);
 	}
+
 	.text-lg {
 		font-size: var(--font-size-lg);
 	}
+
 	.text-xl {
 		font-size: var(--font-size-xl);
 	}
+
 	.text-xxl {
 		font-size: var(--font-size-xxl);
 	}
+
 	.text-xxxl {
 		font-size: var(--font-size-xxxl);
 	}
+
 	.text-left {
 		text-align: left;
 	}
+
 	.text-center {
 		text-align: center;
 	}
+
 	.text-right {
 		text-align: right;
 	}
+
 	.text-justify {
 		text-align: justify;
 	}
+
 	.text-start {
 		text-align: start;
 	}
+
 	.text-end {
 		text-align: end;
 	}
@@ -57,8 +73,9 @@
 		grid-template-columns: 1fr auto 1fr;
 		grid-gap: 1rem;
 		align-items: center;
-		&:before,
-		&:after {
+
+		&::before,
+		&::after {
 			content: '';
 			display: block;
 			width: 100%;
@@ -69,9 +86,10 @@
 
 	.grit {
 		mask-image: url('$assets/Grit Mask@2x.png');
-		mask-image-repeat: repeat;
+		mask-repeat: repeat;
 		mask-size: 250px;
 	}
+
 	.grid-center {
 		display: grid;
 		place-items: center;
@@ -79,7 +97,8 @@
 
 	.hidden-mobile {
 		display: none;
-		@media (--below_med) {
+
+		@media (--below-med) {
 			display: initial;
 		}
 	}

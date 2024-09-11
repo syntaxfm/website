@@ -41,7 +41,7 @@
 		background-color: var(--bg);
 		color: var(--fg);
 		padding: 0 0.5rem;
-		@media (--below_large) {
+		@media (--below-large) {
 			padding: 0;
 		}
 
@@ -61,7 +61,7 @@
 
 	.logo {
 		width: 58px;
-		@media (--above_med) {
+		@media (--above-med) {
 			width: auto;
 		}
 	}
@@ -82,7 +82,7 @@
 		display: flex;
 		padding: 10px 0;
 		gap: 10px;
-		@media (--below_large) {
+		@media (--below-large) {
 			gap: 5px;
 		}
 
@@ -95,9 +95,9 @@
 		a {
 			display: block;
 			text-decoration: none;
-			background: var(--nav_a_bg, rgba(255, 255, 255, 0.0786987545689));
+			background: var(--nav-a-bg, rgba(255, 255, 255, 0.0786987545689));
 			padding: 10px 20px;
-			@media (--below_large) {
+			@media (--below-large) {
 				padding: 8px 16px;
 				font-size: var(--font-size-xs);
 			}
@@ -114,7 +114,7 @@
 				background-color: var(--primary);
 				color: var(--bg);
 			}
-			@media (--above_med) {
+			@media (--above-med) {
 				display: block;
 			}
 		}

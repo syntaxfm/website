@@ -1,6 +1,6 @@
 ## Privacy Policy
 
-*Last updated: 10/30/2023*
+_Last updated: 10/30/2023_
 
 This Privacy Policy sets out how Syntax, operated by Functional
 Software, Inc. dba Sentry, collects, discloses, and uses personal
@@ -22,21 +22,21 @@ jump to that section.
 
 1.  [What personal information does Syntax collect?](#personal-info-collect)
 
-2. [What does Syntax use my personal information for?](#personal-info-for)
+2.  [What does Syntax use my personal information for?](#personal-info-for)
 
-3. [Who does Syntax disclose my personal information to?](#personal-info-who)
+3.  [Who does Syntax disclose my personal information to?](#personal-info-who)
 
-4. [Cookies and similar tracking technology](#cookies)
+4.  [Cookies and similar tracking technology](#cookies)
 
-5. [How does Syntax keep my personal information secure?](#personal-info-secure)
+5.  [How does Syntax keep my personal information secure?](#personal-info-secure)
 
-6. [International Data Transfers](#intl-data-transfers)
+6.  [International Data Transfers](#intl-data-transfers)
 
-7. [Data retention](#data-retention)
+7.  [Data retention](#data-retention)
 
-8. [Your data protection rights](#your-data-rights)
+8.  [Your data protection rights](#your-data-rights)
 
-9. [Children's privacy](#childrens-privacy)
+9.  [Children's privacy](#childrens-privacy)
 
 10. [User generated content](#user-generated-content)
 
@@ -54,12 +54,12 @@ jump to that section.
 
 ---
 
-#### 1.  What personal information does Syntax collect? <a name="personal-info-collect"></a>
+#### 1. What personal information does Syntax collect? <a name="personal-info-collect"></a>
 
 The personal information that we may collect about you broadly falls
 into the following categories:
 
--   *Information that you provide*
+- _Information that you provide_
 
 We collect information about you when you input it into our Service or
 otherwise provide it directly to us.
@@ -102,7 +102,7 @@ and payment information. Please note that any payment information you
 provide is sent directly to a third-party payment processor. We have no
 access to and do not store your payment information.
 
--   *_Information that we collect from your device and usage_*
+- _*Information that we collect from your device and usage*_
 
 We collect certain information about your device and how you and your
 device interact with us and our Service. In some countries, including
@@ -122,8 +122,8 @@ Some of this information is collected using cookies and similar tracking
 technology, as explained further under the heading ["Cookies and similar
 tracking technology"](#cookies) below.
 
--   *_Information that we obtain from third party sources_*
-    
+- _*Information that we obtain from third party sources*_
+
 From time to time, we receive personal information about you from
 third-party sources, including from vendors and service providers who
 may collect information on our behalf, such as companies who support our
@@ -144,35 +144,35 @@ services that may be of interest to you.
 We use your information for business and commercial purposes, such as
 to:
 
--   Provide, maintain, and improve our Service, including process your
-    payments and fulfill your orders;
+- Provide, maintain, and improve our Service, including process your
+  payments and fulfill your orders;
 
--   Manage your account and send you related information, including
-    notifications and confirmations related to your account, purchases,
-    returns, exchanges, or other transactions;
+- Manage your account and send you related information, including
+  notifications and confirmations related to your account, purchases,
+  returns, exchanges, or other transactions;
 
--   Respond to your comments, questions, and requests, and provide
-    support services;
+- Respond to your comments, questions, and requests, and provide
+  support services;
 
--   Communicate with you about Content and other products and services,
-    and news and information we think may be of interest to you;
+- Communicate with you about Content and other products and services,
+  and news and information we think may be of interest to you;
 
--   Monitor and analyse trends, usage, and activities in connection with
-    the Service and our communications to you;
+- Monitor and analyse trends, usage, and activities in connection with
+  the Service and our communications to you;
 
--   Detect, investigate, and prevent fraudulent transactions and other
-    illegal activities, protect the rights and property of Syntax and
-    others, and comply with legal requirements;
+- Detect, investigate, and prevent fraudulent transactions and other
+  illegal activities, protect the rights and property of Syntax and
+  others, and comply with legal requirements;
 
--   Personalize and improve the Service and provide Content and features
-    that match your profile and interests, and remember information
-    about your preferences for the Service;
+- Personalize and improve the Service and provide Content and features
+  that match your profile and interests, and remember information
+  about your preferences for the Service;
 
--   Administer surveys, contests, promotions, sweepstakes, and other
-    activities; and
+- Administer surveys, contests, promotions, sweepstakes, and other
+  activities; and
 
--   Carry out any other purpose for which the information was
-    collected. 
+- Carry out any other purpose for which the information was
+  collected.
 
 We may aggregate or de-identify information collected through the
 Service. We may use aggregated or de-identified data for any purpose,
@@ -187,43 +187,43 @@ limitation, advertisers, promotional partners, and others.
 We disclose your personal information to the following categories of
 recipients:
 
--   **Affiliate companies** who help operate and improve our Service
-    (including to support the delivery of, provide functionality on, or
-    help to enhance the security of our Service), offer other Syntax
-    affiliated services to you, or who otherwise process personal
-    information for the purposes described in this policy. The
-    protections of this policy apply to the information we disclose in
-    these circumstances.
+- **Affiliate companies** who help operate and improve our Service
+  (including to support the delivery of, provide functionality on, or
+  help to enhance the security of our Service), offer other Syntax
+  affiliated services to you, or who otherwise process personal
+  information for the purposes described in this policy. The
+  protections of this policy apply to the information we disclose in
+  these circumstances.
 
--   **Third-party service providers** who provide hosting, support,
-    payment processing, billing, order fulfillment, communication,
-    analytics, analysis, and other services to us, which may require
-    them to access or use information about you. If a service provider
-    needs to access or use information about you to perform services on
-    our behalf, they do so under appropriate security and
-    confidentiality procedures designed to protect your information.
+- **Third-party service providers** who provide hosting, support,
+  payment processing, billing, order fulfillment, communication,
+  analytics, analysis, and other services to us, which may require
+  them to access or use information about you. If a service provider
+  needs to access or use information about you to perform services on
+  our behalf, they do so under appropriate security and
+  confidentiality procedures designed to protect your information.
 
--   **Third-party business partners** when you choose to use their
-    accelerated checkout options for purchases at our Store, including
-    Shopify Shop Pay ("**Third-Party Checkout Services**". By doing so
-    you consent to Syntax disclosing your account and applicable order
-    information with the business partner. Please note that when you use
-    Third-Party Checkout Services, your use will be governed by their
-    own terms and privacy policies.
+- **Third-party business partners** when you choose to use their
+  accelerated checkout options for purchases at our Store, including
+  Shopify Shop Pay ("**Third-Party Checkout Services**". By doing so
+  you consent to Syntax disclosing your account and applicable order
+  information with the business partner. Please note that when you use
+  Third-Party Checkout Services, your use will be governed by their
+  own terms and privacy policies.
 
--   Any **competent law enforcement body, regulatory, government agency,
-    court, or other third party** where we believe disclosure is
-    necessary (i) as a matter of applicable law or regulation, (ii) to
-    exercise, establish, or defend our legal rights, or (iii) to protect
-    your vital interests or those of any other person.
+- Any **competent law enforcement body, regulatory, government agency,
+  court, or other third party** where we believe disclosure is
+  necessary (i) as a matter of applicable law or regulation, (ii) to
+  exercise, establish, or defend our legal rights, or (iii) to protect
+  your vital interests or those of any other person.
 
--   An **actual or** **potential buyer** (and its agents and advisers)
-    in connection with any actual or** **proposed purchase, merger, or
-    acquisition of any part of our business, provided that we inform the
-    buyer it must use your personal information only for the purposes
-    disclosed in this policy.
+- An **actual or** **potential buyer** (and its agents and advisers)
+  in connection with any actual or\*\* \*\*proposed purchase, merger, or
+  acquisition of any part of our business, provided that we inform the
+  buyer it must use your personal information only for the purposes
+  disclosed in this policy.
 
--   Any **other person with your consent** to the disclosure.
+- Any **other person with your consent** to the disclosure.
 
 **[Return to top](#top)**
 
@@ -266,7 +266,7 @@ we cannot guarantee that information, during transmission through the
 Internet or while stored on our systems or otherwise in our care, is
 absolutely safe from intrusion by others. In particular, email sent to
 or from Syntax may not be secure, and you should therefore take special
-care in deciding what information you send to us via email. 
+care in deciding what information you send to us via email.
 
 **[Return to top](#top)**
 
@@ -335,11 +335,10 @@ protection authorities in the European Union are available [here](https://ec.eur
 
 Under certain conditions, more fully described on the [Data Privacy Framework website](https://www.dataprivacyframework.gov/s/), including when
 other dispute resolution procedures have been exhausted, you may invoke
-binding arbitration.  
+binding arbitration.
 
 We are subject to the investigatory and enforcement powers of the U.S.
-Federal Trade Commission (FTC). 
-
+Federal Trade Commission (FTC).
 
 **[Return to top](#top)**
 
@@ -358,24 +357,24 @@ retention periods depend on the nature of the information and why it is
 collected and processed and the nature of any legal requirement. The
 criteria we use to determine the retention period include:
 
--   *How long is the personal information needed to provide the Service
-    or operate our business?* This includes such things as maintaining
-    and improving the performance of the Service, keeping our systems
-    secure, and maintaining appropriate business and financial records.
-    This is the general rule that establishes the baseline for most data
-    retention periods.
+- *How long is the personal information needed to provide the Service
+  or operate our business?* This includes such things as maintaining
+  and improving the performance of the Service, keeping our systems
+  secure, and maintaining appropriate business and financial records.
+  This is the general rule that establishes the baseline for most data
+  retention periods.
 
--   *Is the personal information of a sensitive type?* If so, a
-    shortened retention time would generally be appropriate.
+- *Is the personal information of a sensitive type?* If so, a
+  shortened retention time would generally be appropriate.
 
--   *Has consent been provided for a longer retention period?* If so, we
-    will retain the data in accordance with your consent.
+- *Has consent been provided for a longer retention period?* If so, we
+  will retain the data in accordance with your consent.
 
--   *Is Syntax subject to a legal, contractual, or similar obligation to
-    retain the data?* Examples can include mandatory data retention laws
-    in the applicable jurisdiction, government orders to preserve data
-    relevant to an investigation, or data that must be retained for the
-    purposes of litigation.
+- *Is Syntax subject to a legal, contractual, or similar obligation to
+  retain the data?* Examples can include mandatory data retention laws
+  in the applicable jurisdiction, government orders to preserve data
+  relevant to an investigation, or data that must be retained for the
+  purposes of litigation.
 
 When we have no ongoing legitimate business need or legal reason to
 process your personal information, we will either delete or anonymise it
@@ -397,31 +396,31 @@ records to verify your identity depending on the nature of the request
 and the sensitivity of the information sought (e.g., provide your email
 address).
 
--   You may **access, correct, update, or request deletion** of your
-    personal information.
+- You may **access, correct, update, or request deletion** of your
+  personal information.
 
--   You can **object to processing** of your personal information, ask
-    us to **restrict processing** of your personal information or
-    **request portability** of your personal information.
+- You can **object to processing** of your personal information, ask
+  us to **restrict processing** of your personal information or
+  **request portability** of your personal information.
 
--   You have the right to **opt-out of marketing communications** we
-    send you at any time. You can exercise this right by clicking on the
-    "unsubscribe"or "opt-out" link in the marketing emails we send you or
-    otherwise following the directions in the emails.
+- You have the right to **opt-out of marketing communications** we
+  send you at any time. You can exercise this right by clicking on the
+  "unsubscribe"or "opt-out" link in the marketing emails we send you or
+  otherwise following the directions in the emails.
 
--   If we have collected and processed your personal information with
-    your consent, then you can **withdraw your consent** at any time.
-    Withdrawing your consent will not affect the lawfulness of any
-    processing we conducted prior to your withdrawal, nor will it affect
-    processing of your personal information conducted in reliance on
-    lawful processing grounds other than consent.
+- If we have collected and processed your personal information with
+  your consent, then you can **withdraw your consent** at any time.
+  Withdrawing your consent will not affect the lawfulness of any
+  processing we conducted prior to your withdrawal, nor will it affect
+  processing of your personal information conducted in reliance on
+  lawful processing grounds other than consent.
 
--   You have the **right to complain to a supervisory authority** about
-    our collection and use of your personal information. For more
-    information, please contact your local supervisory authority.
-    (Contact details for supervisory authorities in Europe are available
-    [here](https://ec.europa.eu/justice/article-29/structure/data-protection-authorities/index_en.htm).) Certain supervisory authorities may require that you exhaust our
-    own internal complaints process before looking into your complaint.
+- You have the **right to complain to a supervisory authority** about
+  our collection and use of your personal information. For more
+  information, please contact your local supervisory authority.
+  (Contact details for supervisory authorities in Europe are available
+  [here](https://ec.europa.eu/justice/article-29/structure/data-protection-authorities/index_en.htm).) Certain supervisory authorities may require that you exhaust our
+  own internal complaints process before looking into your complaint.
 
 We respond to all requests we receive from individuals wishing to
 exercise their data protection rights in accordance with applicable data
@@ -476,7 +475,7 @@ actions of third parties.
 
 **[Return to top](#top)**
 
-#### 12. Updates to this Privacy Policy  <a name="updates"></a>
+#### 12. Updates to this Privacy Policy <a name="updates"></a>
 
 We may update this policy from time to time in response to changing
 legal, regulatory, technical, or business developments. When we update
@@ -490,7 +489,7 @@ displayed at the top of this policy.
 
 **[Return to top](#top)**
 
-#### 13.  How to contact us  <a name="contact-us"></a>
+#### 13. How to contact us <a name="contact-us"></a>
 
 If you have any questions or concerns about our use of your personal
 information, please contact us by sending us an email at [syntax-privacy@sentry.io](mailto:syntax-privacy@sentry.io).
@@ -501,7 +500,7 @@ Floor, San Francisco, CA 94105.
 
 **[Return to top](#top)**
 
-#### Supplemental notice for EU or UK individual  <a name="supplemental-eu-and-uk"></a>
+#### Supplemental notice for EU or UK individual <a name="supplemental-eu-and-uk"></a>
 
 1\. **Who this notice applies to**. This supplemental notice supplements
 the information above in our Privacy Policy and, except as provided
@@ -512,23 +511,23 @@ supplemental notice have the meanings set forth in our Privacy Policy.
 2\. **What is our legal basis of processing**. We collect and process
 information about you only where we have a legal basis for doing so
 under applicable data protection laws. This means we collect and process
-your information only where: 
+your information only where:
 
--   We need it to perform our contract with you, including to provide
-    the Service, register you as a new user, and provide support;
+- We need it to perform our contract with you, including to provide
+  the Service, register you as a new user, and provide support;
 
--   It satisfies our legitimate interests, such as to market and promote
-    the Service, to protect the safety and security of the Service, and
-    to protect our legal rights and interests, which are not overridden
-    by your own interests, rights and freedoms;
+- It satisfies our legitimate interests, such as to market and promote
+  the Service, to protect the safety and security of the Service, and
+  to protect our legal rights and interests, which are not overridden
+  by your own interests, rights and freedoms;
 
--   It is necessary to comply with a legal obligation or in connection
-    with a legal claim, such as to respond to judicial orders or
-    subpoenas; or
+- It is necessary to comply with a legal obligation or in connection
+  with a legal claim, such as to respond to judicial orders or
+  subpoenas; or
 
--   You provide consent for a specific purpose, such as for marketing
-    communications (where consent is required under applicable marketing
-    laws).
+- You provide consent for a specific purpose, such as for marketing
+  communications (where consent is required under applicable marketing
+  laws).
 
 The legal bases depend on the type of information and the purpose for
 our processing. In some contexts, more than one legal basis applies.
@@ -672,20 +671,20 @@ in the CCPA) your personal information to third parties.
 resident, you may have certain rights. California law may permit you to
 request that we:
 
--   Provide you the categories of personal information we have collected
-    or disclosed about you; the categories of sources of such
-    information; the business or commercial purpose for collecting,
-    "selling,"or "sharing"your personal information; the categories of
-    third parties to whom we disclose or "sell,"or with whom we
-    "share,"personal information; and the categories of personal
-    information we "sell."
+- Provide you the categories of personal information we have collected
+  or disclosed about you; the categories of sources of such
+  information; the business or commercial purpose for collecting,
+  "selling,"or "sharing"your personal information; the categories of
+  third parties to whom we disclose or "sell,"or with whom we
+  "share,"personal information; and the categories of personal
+  information we "sell."
 
--   Provide access to and/or a copy of certain information we hold about
-    you.
+- Provide access to and/or a copy of certain information we hold about
+  you.
 
--   Delete certain information we have about you.
+- Delete certain information we have about you.
 
--   Correct inaccurate personal information that we maintain about you.
+- Correct inaccurate personal information that we maintain about you.
 
 You also have the right to not be discriminated against (as provided for
 in applicable law) for exercising certain of your rights. Certain
@@ -745,8 +744,8 @@ practices" sections in the Supplemental notice for California Residents,
 which can be found [here](#supplemental-california)
 
 2\. **Do not sell**. We do not sell your personal information or use
-your personal information for targeted advertising or for profiling **
-**in furtherance of decisions that produce legal effects or effects of
+your personal information for targeted advertising or for profiling \*\*
+\*\*in furtherance of decisions that produce legal effects or effects of
 similar significance, as those terms are defined in the CPA and other
 applicable privacy laws.
 
@@ -755,25 +754,25 @@ Consumer Data Protection Act, and the Connecticut Data Privacy Act) may
 give you certain rights. The law of your jurisdiction may permit you to
 request that we:
 
--   Confirm whether or not we are processing your personal information
-    and provide you with access such personal information;
+- Confirm whether or not we are processing your personal information
+  and provide you with access such personal information;
 
--   Correct inaccuracies in your personal information, taking into
-    account the nature of the personal information and the purposes of
-    the processing of the personal information;
+- Correct inaccuracies in your personal information, taking into
+  account the nature of the personal information and the purposes of
+  the processing of the personal information;
 
--   Delete your personal information;
+- Delete your personal information;
 
--   Provide you a copy of personal information that you previously
-    provided to us in a portable and, to the extent technically
-    feasible, readily usable format that allows you to transmit the data
-    to another business, where our processing is carried out by
-    automated means; and
+- Provide you a copy of personal information that you previously
+  provided to us in a portable and, to the extent technically
+  feasible, readily usable format that allows you to transmit the data
+  to another business, where our processing is carried out by
+  automated means; and
 
--   Opt you out of the processing of personal information for purposes
-    of targeted advertising, the sale of personal information, or
-    profiling in furtherance of decisions that produce legal or
-    similarly significant effects concerning you.
+- Opt you out of the processing of personal information for purposes
+  of targeted advertising, the sale of personal information, or
+  profiling in furtherance of decisions that produce legal or
+  similarly significant effects concerning you.
 
 Certain information may be exempt from such requests under applicable
 law. We need certain types of information so that we can provide our

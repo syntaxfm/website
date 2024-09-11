@@ -186,7 +186,7 @@
 			grid-column: content / content;
 			padding: 2rem;
 			margin-bottom: 2rem;
-			font-variation-settings: var(--700);
+			font-variation-settings: var(--fw-700);
 			display: flex;
 			flex-wrap: wrap;
 			place-items: center;
@@ -197,7 +197,7 @@
 			a {
 				color: var(--fg);
 			}
-			@media (--below_med) {
+			@media (--below-med) {
 				a {
 					width: 100%;
 				}

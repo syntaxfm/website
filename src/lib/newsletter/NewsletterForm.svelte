@@ -17,27 +17,27 @@
 	}
 </script>
 
-	<div class="newsletter-layout">
-		{#if show_logo}
-			<div class="newsletter-logo-container">
-				<a href="/snackpack">
-					<NewsletterLogo />
-				</a>
-			</div>
-		{/if}
-		<form
-			{action}
-			on:submit={submit}
-			method="post"
-			data-sv-form={FORM_ID}
-			data-uid="05d939b74d"
-			class="center readable"
-			target="_blank"
-			aria-labelledby="newsletter-form-label"
-		>
-			<h5 class="readable join fst-400-i">
-				Join our newsletter for <strong>15% off</strong> all Syntax & Sentry swag
-			</h5>
+<div class="newsletter-layout">
+	{#if show_logo}
+		<div class="newsletter-logo-container">
+			<a href="/snackpack">
+				<NewsletterLogo />
+			</a>
+		</div>
+	{/if}
+	<form
+		{action}
+		on:submit={submit}
+		method="post"
+		data-sv-form={FORM_ID}
+		data-uid="05d939b74d"
+		class="center readable"
+		target="_blank"
+		aria-labelledby="newsletter-form-label"
+	>
+		<h5 class="readable join fst-400-i">
+			Join our newsletter for <strong>15% off</strong> all Syntax & Sentry swag
+		</h5>
 
 		<div class="newsletter">
 			<Input required type="email" label="Email" id="email_address" />
@@ -55,7 +55,7 @@
 	}
 
 	strong {
-		font-variation-settings: var(--800-italic);
+		font-variation-settings: var(--fw-800-italic);
 	}
 
 	@layer theme {

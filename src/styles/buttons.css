@@ -12,7 +12,7 @@
 		text-decoration: none;
 		border: none;
 		font-family: var(--body-font-family);
-		font-variation-settings: var(--600);
+		font-variation-settings: var(--fw-600);
 		padding: 6px 15px;
 		font-size: var(--body-font-size);
 		border-radius: var(--brad);
@@ -25,7 +25,8 @@
 		gap: 10px;
 		box-shadow: inset 0 0 0 var(--button-border-size) oklch(var(--blacklch) / 0.2);
 		transition: background 0.2s ease-in-out;
-		@media (--below_large) {
+
+		@media (--below-large) {
 			font-size: var(--font-size-sm);
 		}
 	}
@@ -33,7 +34,9 @@
 	:is(button, .button).ghost {
 		--button-bg: transparent;
 		--button-fg: var(--primary);
+
 		box-shadow: inset 0 0 0 var(--button-border-size) var(--primary);
+
 		&:hover {
 			--button-bg: var(--primary);
 			--button-fg: var(--black);
@@ -43,13 +46,15 @@
 	:is(button, .button).subtle {
 		--button-bg: var(--bg-1);
 		--button-fg: var(--fg);
-		font-variation-settings: var(--400);
+
+		font-variation-settings: var(--fw-400);
 		box-shadow: inset 0 0 0 1px var(--subtle);
 	}
 
 	:is(button, .button).warning {
 		--button-bg: var(--red);
 		--button-fg: var(--white);
+
 		box-shadow: inset 0 0 0 var(--button-border-size) oklch(var(--blacklch) / 0.2);
 	}
 
@@ -67,11 +72,13 @@
 	:is(button, .button).play {
 		--button-bg: linear-gradient(to right, var(--success), var(--accent));
 		--button-fg: var(--black-8);
+
 		font-size: var(--font-size-md);
 		padding: 10px 20px;
 		box-shadow: inset 0 0 0 var(--button-border-size) oklch(var(--blacklch) / 0.2);
 		transition: background-size 1s ease-in-out;
 		background-size: 100%;
+
 		&:hover {
 			background-size: 200%;
 		}
@@ -81,6 +88,7 @@
 		--button-bg: var(--red);
 		--button-fg: var(--white);
 		--size: 30px;
+
 		font-size: var(--font-size-md);
 		width: var(--size);
 		height: var(--size);
@@ -91,13 +99,14 @@
 		border-radius: var(--size);
 		box-shadow: inset 0 0 0 var(--button-border-size) oklch(var(--blacklch) / 0.2);
 		transition: background-size 1s ease-in-out;
-		font-variation-settings: var(--100);
+		font-variation-settings: var(--fw-100);
 	}
 
 	button.button-reset {
 		background: transparent;
 		box-shadow: none;
 	}
+
 	button.button-nunya {
 		background: none;
 		appearance: none;

@@ -28,7 +28,7 @@
 		display: grid;
 		--min: 400px;
 		grid-template-columns: repeat(auto-fill, minmax(var(--min), 1fr));
-		@media (--below_med) {
+		@media (--below-med) {
 			--min: 200px;
 		}
 	}

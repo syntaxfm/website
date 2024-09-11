@@ -259,7 +259,7 @@
 		position: relative;
 		max-width: 100%;
 		width: 100%;
-		@media (--above_med) {
+		@media (--above-med) {
 			width: clamp(600px, 90vw, 950px);
 		}
 	}
@@ -282,7 +282,7 @@
 			grid-row: 1 / -1;
 			grid-column: 1 / -1;
 		}
-		@media (--above_med) {
+		@media (--above-med) {
 			padding: 20px 0;
 		}
 	}
@@ -311,7 +311,7 @@
 			margin: 0;
 			display: inline-block;
 		}
-		@media (--below_med) {
+		@media (--below-med) {
 			display: none;
 		}
 	}

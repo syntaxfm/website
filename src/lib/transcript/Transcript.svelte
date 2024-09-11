@@ -219,7 +219,7 @@
 		grid-template-columns: 120px auto 1fr;
 		gap: 0 20px;
 		font-size: var(--font-size-xs);
-		@media (--below_med) {
+		@media (--below-med) {
 			grid-template-columns: 67px 1fr;
 			grid-template-rows: auto auto;
 			.gutter {
@@ -250,7 +250,7 @@
 		.marker {
 			place-content: center;
 		}
-		@media (--below_med) {
+		@media (--below-med) {
 			grid-template-columns: var(--horizonal-spacing) 1fr;
 			grid-template-rows: auto auto;
 			.marker {
@@ -287,7 +287,7 @@
 		align-self: start;
 		text-align: right;
 		transform: translateX(-10px);
-		@media (--below_med) {
+		@media (--below-med) {
 			display: flex;
 			position: relative;
 			top: 0;

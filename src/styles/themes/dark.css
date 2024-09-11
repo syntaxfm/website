@@ -7,7 +7,8 @@
 	--primary: var(--yellow);
 	--accent: var(--teal);
 	--warning: var(--red);
-	--bgGrit: var(--bgGritLight);
+	--bg-grit: var(--bg-grit-light);
+
 	@media (prefers-color-scheme: dark) {
 		--fg-sheet: var(--white);
 		--bg-sheet: var(--black);
@@ -22,12 +23,14 @@
 		--fg-2: var(--black-3);
 		--border: solid var(--border-size) var(--fg-sheet);
 		--spa-ran-wrap-bg: var(--black);
-		--bgGrit: var(--bgGritDark);
+		--bg-grit: var(--bg-grit-dark);
+
 		.border-on-dark {
 			border: var(--border);
 		}
 	}
 }
+
 /* Same as prefers color scheme dark */
 .theme-dark {
 	--fg-sheet: var(--white);
@@ -44,7 +47,8 @@
 	--border-color: var(--bg-sheet);
 	--border: solid var(--border-size) var(--fg-sheet);
 	--spa-ran-wrap-bg: var(--black);
-	--bgGrit: var(--bgGritDark);
+	--bg-grit: var(--bg-grit-dark);
+
 	.border-on-dark {
 		border: var(--border);
 	}
@@ -58,5 +62,5 @@
 	--primary: var(--yellow);
 	--accent: var(--teal);
 	--warning: var(--red);
-	--bgGrit: var(--bgGritLight);
+	--bg-grit: var(--bg-grit-light);
 }

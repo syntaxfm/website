@@ -85,7 +85,7 @@
 		overflow: hidden;
 		backdrop-filter: blur(10px);
 		color: var(--sheet-fg);
-		padding: var(--default_padding);
+		padding: var(--default-padding);
 		overflow-y: scroll;
 		border-left: var(--border);
 		box-shadow: var(--shadow-6);
