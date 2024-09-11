@@ -112,7 +112,7 @@
 		appearance: none;
 		box-shadow: none;
 		padding: 0;
-		color: inherit;
+		color: var(--fg);
 	}
 
 	.play-button {
