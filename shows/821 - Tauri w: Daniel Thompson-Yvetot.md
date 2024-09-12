@@ -1,6 +1,6 @@
 ---
 number: 821
-title: "Tauri w/ Daniel Thompson-Yvetot"
+title: "Is Tauri the Electron Killer?"
 date: 1726225200000
 url: https://traffic.libsyn.com/syntax/Syntax_-_821.mp3
 youtube_url: https://youtu.be/nYNxnLXFbKE
