@@ -26,7 +26,9 @@
 	}
 </script>
 
-<button class="share" on:click={share}><Icon name="share" /></button>
+<button class="share" on:click={share} title="Share this episode" aria-label="Share this episode"
+	><Icon name="share" /></button
+>
 
 <style>
 	button {

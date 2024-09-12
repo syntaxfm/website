@@ -2,10 +2,12 @@
 	import { browser } from '$app/environment';
 	import Icon from '$lib/Icon.svelte';
 	import { searching } from '$state/search';
+	const shortcut = !browser || navigator.platform === 'MacIntel' ? '⌘' : 'Ctrl';
 </script>
 
 <button
 	class="button-reset"
+	aria-label="Search (shortcut: {shortcut}K)"
 	on:click={() => {
 		$searching = true;
 	}}
@@ -13,7 +15,7 @@
 	<Icon name="search" />
 
 	<div class="shortcut">
-		<kbd>{!browser || navigator.platform === 'MacIntel' ? '⌘' : 'Ctrl'}K</kbd>
+		<kbd>{shortcut}K</kbd>
 	</div>
 </button>
 

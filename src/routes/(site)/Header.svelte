@@ -10,7 +10,7 @@
 	<div class="header-container content">
 		<div class="logo">
 			{#if $page.url.pathname !== '/'}
-				<a title="Syntax Podcast" href="/">
+				<a title="Syntax Podcast Home" href="/">
 					<Logo />
 				</a>
 			{/if}
