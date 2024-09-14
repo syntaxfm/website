@@ -15,6 +15,7 @@
 
 	export let data;
 	$: ({ show, time_start } = data);
+	$: downloadName = `Show #${show.number} - ${show.title}`;
 
 	async function handleClick(e: Event) {
 		const { target } = e;
@@ -102,7 +103,13 @@
 		</div>
 		<div>
 			<SaveOffline {show} />
-			<a class="icon" title="Download Episode" aria-label="Download" download href={show.url}>
+			<a
+				class="icon"
+				title="Download Episode"
+				aria-label="Download"
+				download={downloadName}
+				href={show.url}
+			>
 				<Icon name="download" />
 			</a>
 			<a
