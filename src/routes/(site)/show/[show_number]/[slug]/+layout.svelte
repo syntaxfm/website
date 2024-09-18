@@ -15,7 +15,7 @@
 
 	export let data;
 	$: ({ show, time_start } = data);
-	$: downloadName = `Show #${show.number} - ${show.title}`;
+	$: downloadName = `Syntax #${show.number} - ${show.title}`;
 
 	async function handleClick(e: Event) {
 		const { target } = e;
