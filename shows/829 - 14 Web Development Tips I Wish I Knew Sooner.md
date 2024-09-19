@@ -32,7 +32,7 @@ Scott and Wes share 14 game-changing tips they wish they'd known earlier in thei
 ### Sick Picks
 
 - Scott: [Glasses](https://amzn.to/4esNa6W).
-- Wes: [Oxo Wisk](https://amzn.to/3ZsRcIh), [Danish Wisk](https://amzn.to/3ziQpz7).
+- Wes: [Oxo Whisk](https://amzn.to/3ZsRcIh), [Danish Whisk](https://amzn.to/3ziQpz7).
 
 ### Shameless Plugs
 
