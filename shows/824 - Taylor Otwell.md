@@ -12,7 +12,7 @@ guest:
   url: https://laravel.com
 ---
 
-In this episode of Syntax, Wes and Scott talk with Taylor Otwell, the creator of Laravel. Taylor shares insights on his journey from creating Laravel in his free time to building a strong community and user base. He discusses Laravel's growth, including the major features and tools that were developed over the years. Taylor also shares his outlook on the PHP ecosystem, productivity tips, and plans for Laravel Cloud, a new deployment platform for PHP and Laravel applications.
+Wes and Scott talk with Taylor Otwell, the creator of Laravel. Taylor shares insights on his journey from creating Laravel in his free time to building a strong community and user base. He discusses Laravel's growth, including the major features and tools that were developed over the years. Taylor also shares his outlook on the PHP ecosystem, productivity tips, and plans for Laravel Cloud, a new deployment platform for PHP and Laravel applications.
 
 ### Show Notes
 
