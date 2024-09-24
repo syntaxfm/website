@@ -146,7 +146,7 @@
 			background: var(--primary);
 			color: var(--dark);
 			display: block;
-			font-variation-settings: var(--600);
+			font-variation-settings: var(--fw-600);
 			padding: 1px;
 			line-height: 1;
 		}

@@ -135,7 +135,7 @@
 		container: show-card / inline-size;
 		display: grid;
 		padding: 20px;
-		background-image: var(--bgGritDark),
+		background-image: var(--bg-grit-dark),
 			radial-gradient(farthest-side circle at 50% 0%, #3a006b66 4% 4%, #000 100%);
 		background-color: black;
 		color: var(--fg);
@@ -158,7 +158,7 @@
 		line-height: 1;
 		font-size: 50px;
 		width: 100%;
-		font-variation-settings: var(--700-italic);
+		font-variation-settings: var(--fw-700-italic);
 		transform: rotate(-1deg);
 		text-align: center;
 

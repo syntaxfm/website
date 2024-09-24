@@ -31,7 +31,7 @@
 		flex-shrink: 0;
 		display: none;
 		position: relative;
-		@media (--above_med) {
+		@media (--above-med) {
 			display: block;
 		}
 	}

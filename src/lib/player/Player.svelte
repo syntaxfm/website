@@ -196,7 +196,7 @@
 		width: 100%;
 		color: var(--fg);
 		background-color: var(--player-bg, var(--black));
-		background-image: var(--bgGritDark);
+		background-image: var(--bg-grit-dark);
 		background-size: 400px;
 		box-shadow: 0 -5px 10px 0 oklch(var(--blacklch) / 0.4);
 		display: flex;

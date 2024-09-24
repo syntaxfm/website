@@ -54,7 +54,7 @@
 		align-items: baseline;
 		flex-direction: column;
 		margin-bottom: 2rem;
-		@media (--above_med) {
+		@media (--above-med) {
 			flex-direction: row;
 		}
 	}

@@ -205,7 +205,10 @@
 			<div class="desc border-on-dark">
 				<HostSocialLink host={hosts.randy} />
 				<p>
-					Randy Rektor is Syntax's producer. He edits the episodes, produces the videos for YouTube, and helps keep Syntax's production gears oiled. He is a musician, <a href="https://www.youtube.com/@randyrektor">YouTuber</a>, and a self-proclaimed ‘massive audio geek’.
+					Randy Rektor is Syntax's producer. He edits the episodes, produces the videos for YouTube,
+					and helps keep Syntax's production gears oiled. He is a musician, <a
+						href="https://www.youtube.com/@randyrektor">YouTuber</a
+					>, and a self-proclaimed ‘massive audio geek’.
 				</p>
 			</div>
 		</div>
@@ -224,8 +227,10 @@
 			<div class="desc border-on-dark">
 				<HostSocialLink host={hosts.cj} />
 				<p>
-					CJ is a Senior Creator at Syntax and the host of <a href="https://coding.garden/">Coding Garden</a>.
-					In his spare time CJ enjoys skateboarding, playing board games, collecting VHS tapes and hanging out with his dog.
+					CJ is a Senior Creator at Syntax and the host of <a href="https://coding.garden/"
+						>Coding Garden</a
+					>. In his spare time CJ enjoys skateboarding, playing board games, collecting VHS tapes
+					and hanging out with his dog.
 				</p>
 			</div>
 		</div>
@@ -295,7 +300,7 @@
 		box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.5);
 		margin: 0 auto;
 		position: relative;
-		padding: var(--default_padding);
+		padding: var(--default-padding);
 		rotate: var(--rotate, -1deg);
 		p {
 			font-size: var(--font-size-sm);

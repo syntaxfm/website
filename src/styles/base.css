@@ -5,7 +5,8 @@
 
 	html {
 		box-sizing: border-box;
-		-webkit-text-size-adjust: none;
+		text-size-adjust: none;
+		font-family: '💪';
 	}
 
 	*,
@@ -26,58 +27,91 @@
 	}
 
 	.fst-100 {
-		font-variation-settings: var(--100);
+		font-variation-settings: var(--fw-100);
 	}
 
 	.fst-100-i {
-		font-variation-settings: var(--100-italic);
+		font-variation-settings: var(--fw-100-italic);
 	}
 
 	.fst-400 {
-		font-variation-settings: var(--400);
+		font-variation-settings: var(--fw-400);
 	}
 
 	.fst-400-i {
-		font-variation-settings: var(--400-italic);
+		font-variation-settings: var(--fw-400-italic);
 	}
 
 	.fst-500 {
-		font-variation-settings: var(--500);
+		font-variation-settings: var(--fw-500);
 	}
 
 	.fst-500-i {
-		font-variation-settings: var(--500-italic);
+		font-variation-settings: var(--fw-500-italic);
 	}
 
 	.fst-600 {
-		font-variation-settings: var(--600);
+		font-variation-settings: var(--fw-600);
 	}
 
 	.fst-600-i {
-		font-variation-settings: var(--600-italic);
+		font-variation-settings: var(--fw-600-italic);
 	}
 
 	.fst-700 {
-		font-variation-settings: var(--700);
+		font-variation-settings: var(--fw-700);
 	}
 
 	.fst-700-i {
-		font-variation-settings: var(--700-italic);
+		font-variation-settings: var(--fw-700-italic);
 	}
 
 	.fst-800 {
-		font-variation-settings: var(--800);
+		font-variation-settings: var(--fw-800);
 	}
 
 	.fst-800-i {
-		font-variation-settings: var(--800-italic);
+		font-variation-settings: var(--fw-800-italic);
 	}
+
 	.fst-900 {
-		font-variation-settings: var(--900);
+		font-variation-settings: var(--fw-900);
 	}
 
 	.fst-900-i {
-		font-variation-settings: var(--900-italic);
+		font-variation-settings: var(--fw-900-italic);
+	}
+
+	h1,
+	.h1 {
+		font-size: var(--font-size-xxxl);
+	}
+
+	h2,
+	.h2 {
+		font-size: var(--font-size-xxl);
+	}
+
+	h3,
+	.h3 {
+		font-size: var(--font-size-xl);
+	}
+
+	h4,
+	.h4 {
+		font-size: var(--font-size-lg);
+	}
+
+	h5,
+	.h5 {
+		font-size: var(--font-size-md);
+	}
+
+	.h6,
+	h6,
+	p,
+	li {
+		font-size: var(--font-size-base);
 	}
 
 	h1,
@@ -91,7 +125,7 @@
 		line-height: 1.4;
 		margin-block: 0.2em;
 		mask-image: url('$assets/Grit Mask@2x.png');
-		mask-image-repeat: repeat;
+		mask-repeat: repeat;
 		mask-size: 250px;
 		text-wrap: balance;
 		font-variation-settings:
@@ -99,51 +133,27 @@
 			'ital' 1;
 
 		--opacity: 0;
+
 		&:hover {
 			--opacity: 1;
 		}
+
 		a[href^='#'] {
 			display: inline-block;
 			height: 100%;
 			margin-left: 0.25rem;
 			opacity: var(--opacity);
-			&:before {
+
+			&::before {
 				content: '#';
 			}
 		}
 	}
 
-	h1,
-	.h1 {
-		font-size: var(--font-size-xxxl);
-	}
-	h2,
-	.h2 {
-		font-size: var(--font-size-xxl);
-	}
-	h3,
-	.h3 {
-		font-size: var(--font-size-xl);
-	}
-	h4,
-	.h4 {
-		font-size: var(--font-size-lg);
-	}
-	h5,
-	.h5 {
-		font-size: var(--font-size-md);
-	}
-
-	.h6,
-	h6,
-	p,
-	li {
-		font-size: var(--font-size-base);
-	}
-
 	.spa-ran-wrap {
 		--color: var(--spa-ran-wrap-bg, transparent);
-		--size: 2.33456789ex;
+		--size: 2.3345ex;
+
 		background-image: linear-gradient(
 			180deg,
 			var(--color) 0%,
@@ -153,21 +163,6 @@
 		);
 		background-size: auto var(--size);
 		background-position: 10px calc(var(--size) / 4);
-	}
-
-	/* Show Notes Typography - coming from markdown so it must be global */
-	.show-notes {
-		h2,
-		h3 {
-			font-size: var(--font-size-lg);
-		}
-		ul {
-			padding-left: 20px;
-		}
-	}
-
-	html {
-		font-family: '💪';
 	}
 
 	body {
@@ -182,10 +177,6 @@
 		text-decoration: none;
 	}
 
-	a:hover {
-		cursor: pointer;
-	}
-
 	:is(p, li) a,
 	.a {
 		color: var(--color-sheet);
@@ -194,12 +185,29 @@
 		text-decoration-thickness: 1.5px;
 	}
 
+	a:hover {
+		cursor: pointer;
+	}
+
 	p {
 		line-height: 1.7;
 	}
+
 	ul {
-		@media (--below_med) {
+		@media (--below-med) {
 			padding: 0;
+		}
+	}
+
+	/* Show Notes Typography - coming from markdown so it must be global */
+	.show-notes {
+		h2,
+		h3 {
+			font-size: var(--font-size-lg);
+		}
+
+		ul {
+			padding-left: 20px;
 		}
 	}
 
@@ -221,8 +229,9 @@
 		border-radius: 4px;
 		position: relative;
 		font-size: var(--font-size-sm);
-		font-variation-settings: var(--800);
-		@media (--above_med) {
+		font-variation-settings: var(--fw-800);
+
+		@media (--above-med) {
 			left: -17px;
 		}
 	}
@@ -234,12 +243,8 @@
 		padding: 0.25em;
 		width: fit-content;
 		height: fit-content;
-		border-width: initial;
-		border-color: initial;
 		border-image: initial;
 		border-style: solid;
-		background-color: canvas;
-		color: canvastext;
 		overflow: auto;
 		margin: auto;
 	}
@@ -283,13 +288,6 @@ in a later release. */
 		/* stylelint-enable selector-pseudo-class-no-unknown */
 	}
 	/* stylelint-enable selector-class-pattern */
-
-	@supports not (background-color: canvas) {
-		[popover] {
-			background-color: white;
-			color: black;
-		}
-	}
 
 	@supports (width: -moz-fit-content) {
 		[popover] {
@@ -343,10 +341,11 @@ a[href^='http']:not(.social-icon, .button, .icon, .naked)::after {
 html {
 	--track: var(--black);
 	--thumb: var(--primary);
+
 	scrollbar-color: var(--thumb) var(--track);
 	scrollbar-width: thin;
 }
 
 .admin :is(h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6) {
-	font-variation-settings: var(--400);
+	font-variation-settings: var(--fw-400);
 }
