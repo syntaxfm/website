@@ -37,7 +37,11 @@ Sentry.init({
 	tracesSampleRate: 1,
 	profilesSampleRate: 1.0, // Profiling sample rate is relative to tracesSampleRate
 	environment: dev ? 'development' : 'production',
-	integrations: [nodeProfilingIntegration, Sentry.prismaIntegration()],
+	integrations: [
+		nodeProfilingIntegration,
+		Sentry.prismaIntegration(),
+		Sentry.redisIntegration({ cachePrefixes: ['show:', 'shows:', 'show-og:'] })
+	],
 	_experiments: {
 		metricsAggregator: true
 	}
