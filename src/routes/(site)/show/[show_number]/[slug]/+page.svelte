@@ -78,7 +78,7 @@
 			margin: 0;
 			padding: 0.5rem 1rem;
 			&:first-child {
-				font-variation-settings: var(--900);
+				font-variation-settings: var(--fw-900);
 				border-bottom: 1px solid var(--fg);
 			}
 		}

@@ -5,10 +5,9 @@
 	--fg-1: var(--white);
 	--black: #131516;
 	--fg-sheet: var(--black);
-	--bgGrit: var(--bgGritLight);
+	--bg-grit: var(--bg-grit-light);
 	--primary: #ffcb05;
 	--accent: #ffcb05;
-
 	--warning: #9a3324;
 	--success: #ffcb05;
 	--line: #cfc096;

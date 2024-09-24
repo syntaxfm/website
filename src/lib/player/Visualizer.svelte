@@ -80,7 +80,7 @@
 		width: 100%;
 		overflow: hidden;
 		display: none;
-		@media (--above_med) {
+		@media (--above-med) {
 			display: flex;
 		}
 	}

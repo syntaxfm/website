@@ -48,7 +48,7 @@
 	.tag {
 		background: var(--primary);
 		color: black;
-		font-variation-settings: var(--800);
+		font-variation-settings: var(--fw-800);
 		padding: 0.5rem;
 		line-height: 1;
 		display: block;
@@ -61,7 +61,7 @@
 		&.day {
 			background: var(--purple);
 			color: white;
-			font-variation-settings: var(--500);
+			font-variation-settings: var(--fw-500);
 			font-size: var(--font-size-xs);
 			rotate: 2deg;
 			margin-bottom: -4px;
@@ -71,7 +71,7 @@
 		&.length {
 			background: var(--white);
 			color: black;
-			font-variation-settings: var(--500);
+			font-variation-settings: var(--fw-500);
 			font-size: var(--font-size-xs);
 			rotate: -1deg;
 			margin-bottom: -4px;

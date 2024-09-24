@@ -141,7 +141,7 @@
 		display: grid;
 		padding: 20px;
 		background-color: var(--bg);
-		background-image: var(--bgGrit);
+		background-image: var(--bg-grit);
 		position: relative;
 		overflow: hidden;
 		align-items: start;
@@ -199,7 +199,7 @@
 		}
 
 		/* readability improvements for mobile viewports */
-		@media (--below_med) {
+		@media (--below-med) {
 			padding: 10px;
 
 			.details {
@@ -277,7 +277,7 @@
 		line-height: 1;
 		z-index: -1;
 
-		@media (--below_med) {
+		@media (--below-med) {
 			--max-font-size: 8rem;
 		}
 	}

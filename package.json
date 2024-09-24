@@ -15,7 +15,7 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"test:unit": "svelte-kit sync && vitest",
-		"lint": "prettier --plugin-search-dir . --check . && eslint .",
+		"lint": "prettier --plugin-search-dir . --check . && eslint . && pnpm stylelint",
 		"format": "prettier --plugin-search-dir . --write .",
 		"site:update": "pnpm update -i -L",
 		"db:studio": "prisma studio",
@@ -23,7 +23,8 @@
 		"db:push": "prisma db push",
 		"db:seed": "prisma db seed",
 		"i-changed-the-schema": "pnpm run db:push && pnpm run db:generate",
-		"postinstall": "pnpm db:generate && pnpm exec playwright install"
+		"postinstall": "pnpm db:generate && pnpm exec playwright install",
+		"stylelint": "NODE_OPTIONS=--no-deprecation stylelint \"**/*.css\""
 	},
 	"devDependencies": {
 		"@codecov/sveltekit-plugin": "0.0.1-beta.12",
@@ -51,6 +52,9 @@
 		"prettier-plugin-svelte": "^3.2.6",
 		"prisma": "5.18.0",
 		"semver": "^7.6.3",
+		"stylelint": "^16.9.0",
+		"stylelint-config-standard": "^36.0.1",
+		"stylelint-declaration-strict-value": "^1.10.6",
 		"svelte": "^4.2.18",
 		"svelte-check": "^3.8.5",
 		"svelte-preprocess": "^6.0.2",

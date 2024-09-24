@@ -32,7 +32,7 @@
 
 <style lang="postcss">
 	.mobile_nav {
-		@media (--above_med) {
+		@media (--above-med) {
 			display: none;
 		}
 	}
@@ -53,7 +53,7 @@
 		color: var(--white);
 		text-transform: uppercase;
 		letter-spacing: 1px;
-		font-variation-settings: var(--900);
+		font-variation-settings: var(--fw-900);
 	}
 
 	.menu {
@@ -75,7 +75,7 @@
 			a {
 				display: block;
 				margin-bottom: 2rem;
-				font-variation-settings: var(--700);
+				font-variation-settings: var(--fw-700);
 				text-shadow: 0 0 4px black;
 			}
 		}

@@ -25,7 +25,7 @@
 	.playlist-grid {
 		display: grid;
 		grid-gap: 20px;
-		@media (--above_med) {
+		@media (--above-med) {
 			grid-template-columns: repeat(3, minmax(260px, 1fr));
 		}
 	}
