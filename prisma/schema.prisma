@@ -229,7 +229,7 @@ model Topic {
   @@index([showNote])
 }
 
-// For a many-to-many relationship where a video can be in multiple playlists and a playlist contains multiple videos with order, 
+// For a many-to-many relationship where a video can be in multiple playlists and a playlist contains multiple videos with order,
 // include an `order` field in the relation model to maintain the correct order of videos in each playlist.
 model Video {
   id           String            @id @default(uuid())
@@ -284,4 +284,31 @@ model ShowVideo {
   @@id([showId, videoId])
   @@index([showId])
   @@index([videoId])
+}
+
+enum UserSubmissionStatus {
+  PENDING
+  APPROVED
+  COMPLETED
+  REJECTED
+}
+
+enum UserSubmissionType {
+  POTLUCK
+  SPOOKY
+  GUEST
+  FEEDBACK
+  OTHER
+}
+
+model UserSubmission {
+  id              String               @id @default(uuid())
+  name            String?
+  email           String?
+  body            String               @db.Text
+  created_at      DateTime             @default(now())
+  updated_at      DateTime             @updatedAt
+  audio_url       String?
+  status          UserSubmissionStatus @default(PENDING)
+  submission_type UserSubmissionType   @default(OTHER)
 }
