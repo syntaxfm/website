@@ -1,9 +1,5 @@
 <script lang="ts">
-	import AdminActions from '$/lib/AdminActions.svelte';
-	import { enhance } from '$app/forms';
-	import { form_action } from '$lib/form_action';
 	import { format, formatDistance, subDays } from 'date-fns';
-	import Dump from '../shows/[show_number]/Dump.svelte';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
