@@ -5,18 +5,7 @@
 
 <main>
 	<div style:margin-bottom="2rem">
-		<h1 class="h3">Ask a Potluck Question</h1>
-		<!-- <p>
-			Once a month we do <strong>Potluck</strong> episodes. That's a stupid name for a show where we
-			answer your questions.
-		</p>
-
-		<p>
-			Have a question about web development? It can literally be about anything! Submit it in the
-			form below and we will try and answer it on a future show! Feel free to ask anonymously if you
-			prefer us not to mention your name.
-		</p> -->
-
+		<h1 class="h3">Submit a Spooky Story!</h1>
 		<UserSubmissionForm {form} />
 	</div>
 </main>
