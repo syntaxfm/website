@@ -8,6 +8,17 @@
 	let reset: () => void | undefined;
 </script>
 
+{#if form?.error}
+	<div class="error status">
+		<p>Shoot! {form.message}</p>
+		<p class="text-sm">Error: {form.error}</p>
+	</div>
+{:else if form?.status === 200}
+	<div class="success status">
+		<p>Success!</p>
+		<p class="text-sm">{form.message}</p>
+	</div>
+{/if}
 <form
 	action="?"
 	method="post"
@@ -46,6 +57,7 @@
 				name="body"
 				placeholder="What do you have to say? Write as much as you like!"
 				required
+				minlength={25}
 				maxlength={15000}
 			></textarea>
 		</div>
@@ -83,17 +95,6 @@
 	</div>
 	<button type="submit">Send</button>
 </form>
-{#if form?.error}
-	<div class="error status">
-		<p>Shoot! {form.message}</p>
-		<p class="text-sm">Error: {form.error}</p>
-	</div>
-{:else if form?.status === 200}
-	<div class="success status">
-		<p>Success!</p>
-		<p class="text-sm">{form.message}</p>
-	</div>
-{/if}
 
 <style lang="postcss">
 	form {

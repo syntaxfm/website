@@ -12,18 +12,3 @@ export const load: PageServerLoad = async () => {
 		submissions
 	};
 };
-
-export const actions: Actions = {
-	import_transcripts: async () => {
-		return import_transcripts().catch((err) => {
-			console.error(err);
-			return err;
-		});
-	},
-
-	delete_all_transcripts: async () => {
-		// Order of these is important because of how db relations work
-		await prisma_client.transcript.deleteMany({});
-		return { message: 'Deleted All Transcripts!' };
-	}
-};

@@ -8,8 +8,8 @@
 
 <style>
 	.inline-error {
-		color: red;
-		font-size: 0.8rem;
+		color: var(--red);
+		font-size: var(--font-size-xs);
 		margin: 0;
 	}
 </style>

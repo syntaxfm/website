@@ -5,20 +5,23 @@ import { env } from '$env/dynamic/private';
 import { user_submission_schema } from '$/lib/forms/userSubmissionSchema';
 import { z } from 'zod';
 
-export const UserSubmissionAction: Action = async function ({ request }) {
+export const UserSubmissionAction: Action = async function ({ request, locals }) {
 	const form = await request.formData();
 	// Validate Turnsile Token
-	const token = form.get('cf-turnstile-response');
-	let { success, error } = await validateToken(token, env.TURNSTILE_SECRET);
+
+	let { success, error } = await validateToken(
+		locals.form_data['cf-turnstile-response'],
+		env.TURNSTILE_SECRET
+	);
 	if (error) {
 		return fail(400, { message: 'Failed Captcha', error });
 	}
 	// Save to DB
 	const data = {
-		submission_type: form.get('submission_type'),
-		body: form.get('body'),
-		name: form.get('name'),
-		email: form.get('email')
+		submission_type: locals.form_data['submission_type'],
+		body: locals.form_data['body'],
+		name: locals.form_data['name'],
+		email: locals.form_data['email']
 	};
 	// Validate
 	const parsed = user_submission_schema.safeParse(data);
@@ -36,7 +39,7 @@ export const UserSubmissionAction: Action = async function ({ request }) {
 	let err;
 	await prisma_client.userSubmission
 		.create({
-			data
+			data: parsed.data
 		})
 		.catch((error: Error) => (err = error));
 
