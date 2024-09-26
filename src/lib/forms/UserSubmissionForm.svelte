@@ -91,7 +91,7 @@
 		</div>
 	</div>
 	<div class="input-group turnstile">
-		<Turnstile siteKey={env.PUBLIC_TURNSTILE_SITE_KEY} bind:reset />
+		<Turnstile appearance="interaction-only" siteKey={env.PUBLIC_TURNSTILE_SITE_KEY} bind:reset />
 	</div>
 	<button type="submit">Send</button>
 </form>
@@ -103,7 +103,7 @@
 		margin: 2rem;
 		grid-template-columns: auto 1fr;
 		max-width: 800px;
-		@media (--below_med) {
+		@media (--below-med) {
 			grid-template-columns: 1fr;
 		}
 	}
@@ -113,7 +113,7 @@
 		grid-template-columns: subgrid;
 		justify-items: end;
 		align-items: baseline;
-		@media (--below_med) {
+		@media (--below-med) {
 			justify-items: start;
 		}
 	}
@@ -132,7 +132,7 @@
 		width: 100%;
 		display: block;
 		grid-column: 2 / -1;
-		@media (--below_med) {
+		@media (--below-med) {
 			grid-column: 1 / -1;
 		}
 	}
