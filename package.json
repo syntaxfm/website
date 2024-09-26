@@ -109,11 +109,13 @@
 		"speakingurl": "^14.0.1",
 		"svelte-french-toast": "1.2.0",
 		"svelte-local-storage-store": "^0.6.4",
+		"svelte-turnstile": "^0.8.0",
 		"sveltekit-search-params": "^2.1.2",
 		"ts-node": "^10.9.2",
 		"unified": "^11.0.5",
 		"waait": "^1.0.5",
 		"youtube-video-element": "^1.1.6",
+		"zod": "^3.23.8",
 		"zx": "^7.2.3"
 	},
 	"prisma": {

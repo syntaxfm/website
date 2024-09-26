@@ -18,6 +18,10 @@
 			link: '/admin/videos'
 		},
 		{
+			name: 'Submissions',
+			link: '/admin/submissions'
+		},
+		{
 			name: 'Cache',
 			link: '/admin/cache'
 		}

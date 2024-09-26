@@ -128,6 +128,9 @@ importers:
       svelte-local-storage-store:
         specifier: ^0.6.4
         version: 0.6.4(svelte@4.2.18)
+      svelte-turnstile:
+        specifier: ^0.8.0
+        version: 0.8.0(svelte@4.2.18)
       sveltekit-search-params:
         specifier: ^2.1.2
         version: 2.1.2(@sveltejs/kit@2.5.22(@sveltejs/vite-plugin-svelte@3.1.1(svelte@4.2.18)(vite@5.4.0(@types/node@22.2.0)))(svelte@4.2.18)(vite@5.4.0(@types/node@22.2.0)))(svelte@4.2.18)(vite@5.4.0(@types/node@22.2.0))
@@ -143,6 +146,9 @@ importers:
       youtube-video-element:
         specifier: ^1.1.6
         version: 1.1.6
+      zod:
+        specifier: ^3.23.8
+        version: 3.23.8
       zx:
         specifier: ^7.2.3
         version: 7.2.3
@@ -3980,6 +3986,11 @@ packages:
       typescript:
         optional: true
 
+  svelte-turnstile@0.8.0:
+    resolution: {integrity: sha512-7sr8NoAW7P9MRjHjCkj22tV/UozPNUlWT9dw1KX/fR+xNSOhP56qSASUUgxLCgPZ0wZSl+I6ZebZ3v47B6/LaA==}
+    peerDependencies:
+      svelte: ^3.58.0 || ^4.0.0
+
   svelte-writable-derived@3.1.0:
     resolution: {integrity: sha512-cTvaVFNIJ036vSDIyPxJYivKC7ZLtcFOPm1Iq6qWBDo1fOHzfk6ZSbwaKrxhjgy52Rbl5IHzRcWgos6Zqn9/rg==}
     peerDependencies:
@@ -4082,6 +4093,9 @@ packages:
 
   tslib@2.6.3:
     resolution: {integrity: sha512-xNvxJEOUiWPGhUuUdQgAJPKOOJfGnIyKySOc09XkKsgdUV/3E2zvwZYdejjmRgPCgcym1juLH3226yA7sEFJKQ==}
+
+  turnstile-types@1.2.3:
+    resolution: {integrity: sha512-EDjhDB9TDwda2JRbhzO/kButPio3JgrC3gXMVAMotxldybTCJQVMvPNJ89rcAiN9vIrCb2i1E+VNBCqB8wue0A==}
 
   type-check@0.4.0:
     resolution: {integrity: sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==}
@@ -8594,6 +8608,11 @@ snapshots:
       postcss-load-config: 6.0.1(postcss@8.4.41)
       typescript: 5.5.4
 
+  svelte-turnstile@0.8.0(svelte@4.2.18):
+    dependencies:
+      svelte: 4.2.18
+      turnstile-types: 1.2.3
+
   svelte-writable-derived@3.1.0(svelte@4.2.18):
     dependencies:
       svelte: 4.2.18
@@ -8713,6 +8732,8 @@ snapshots:
       yn: 3.1.1
 
   tslib@2.6.3: {}
+
+  turnstile-types@1.2.3: {}
 
   type-check@0.4.0:
     dependencies:
