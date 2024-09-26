@@ -21,7 +21,7 @@ In part 2 of covering the best apps for web developers, Scott and Wes dive into 
     * **[14:54](#t=14:54)** [Pearcleaner](https://github.com/alienator88/Pearcleaner)
     * **[16:40](#t=16:40)** [App Cleaner](https://freemacsoft.net/appcleaner/).
     * **[17:35](#t=17:35)** [Rocket Emoji](https://matthewpalmer.net/rocket/).
-    * **[20:27](#t=20:27)** [Clippy](https://chromewebstore.google.com/detail/clippy-screen-recorder-pr/hkmfocnghbljmfapeakdfeajmakgjcjk?hl=en).
+    * **[20:27](#t=20:27)** [Clipy](https://github.com/Clipy/Clipy).
 * **[23:37](#t=23:37)** Screenshots and Screen Recordings.
     * **[24:05](#t=24:05)** [Dropshare](https://dropshare.app/).
     * **[25:29](#t=25:29)** OBS with [Source Record](https://obsproject.com/forum/resources/source-record.1285/).
@@ -43,13 +43,13 @@ In part 2 of covering the best apps for web developers, Scott and Wes dive into 
     * **[47:00](#t=47:00)** [Wireshark](https://www.wireshark.org/).
     * **[47:31](#t=47:31)** [Polypane](https://polypane.app/).
     * **[48:30](#t=48:30)** [Setapp](https://setapp.com/).
-    * **[49:44](#t=49:44)** [SVG Grabber](https://chromewebstore.google.com/detail/svg-grabber/ejohfdpadoelnddkobgdaggfeokpfnfg?hl=en).
+    * **[49:44](#t=49:44)** [SVG Grabber](https://chromewebstore.google.com/detail/svg-grabber-get-all-the-s/eafjmnaiohflfhelegodfedimibnjpgp).
 * **[51:42](#t=51:42)** Sick Picks & Shameless Plugs.
 
 ### Sick Picks
 
 - Scott: [Untold Sign Stealer]( https://www.netflix.com/title/81757014).
-- Wes: [Magentiles Marble Run](https://www.amazon.com/MAGBLOCK-Magnetic-Magnets-Toys-Toddler-Toys-Magnetic-Building-Set-Magnet-Tiles-Building/dp/B09H2V467B/).
+- Wes: [Magnet tiles Marble Run](https://www.amazon.com/MAGBLOCK-Magnetic-Magnets-Toys-Toddler-Toys-Magnetic-Building-Set-Magnet-Tiles-Building/dp/B09H2V467B/).
 
 ### Shameless Plugs
 
