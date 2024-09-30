@@ -3,7 +3,7 @@ import get_show_path from '$/utilities/slug';
 import { error, redirect } from '@sveltejs/kit';
 
 export async function load(event) {
-	let maybe_show_number = parseInt(event?.params?.all || '');
+	let maybe_show_number = parseInt(event?.params?.number || '');
 	if (isNaN(maybe_show_number)) error(404, 'Not found');
 
 	// Is there a show with this number?

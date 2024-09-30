@@ -90,25 +90,6 @@ export const prisma: Handle = async function ({ event, resolve }) {
 	return response;
 };
 
-export const redirects: Handle = async function ({ event, resolve }) {
-	const { pathname } = event.url;
-	const path_parts = pathname.split('/');
-	// Not something we care about
-	if (path_parts.length > 2) return resolve(event);
-
-	const maybe_show_number = parseInt(path_parts.at(1) || '');
-	// Not a number, so not a show, pass it down the middleware chain
-
-	if (isNaN(maybe_show_number)) return resolve(event);
-	// Is there a show with this number?
-	const show = await prisma_client.show.findUnique({ where: { number: maybe_show_number } });
-	// No show found, pass it down the middleware chain - will probably 404, but thats sveltekit's job to figure that out, not ours!
-	if (!show) return resolve(event);
-	const url = get_show_path(show);
-	// Redirect to the page for this show
-	throw redirect(302, url + event.url.search);
-};
-
 export const document_policy: Handle = async function ({ event, resolve }) {
 	const response = await resolve(event);
 	response.headers.set('Document-Policy', 'js-profiling');
@@ -137,7 +118,6 @@ export const handle: Handle = sequence(
 	auth,
 	admin,
 	safe_form_data,
-	redirects,
 	document_policy
 );
 
