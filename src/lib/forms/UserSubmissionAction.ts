@@ -34,21 +34,24 @@ export const UserSubmissionAction: Action = async function ({ request, locals })
 				fieldErrors: errors.fieldErrors
 			});
 		}
+		return fail(400, {
+			message: 'Failed to validate form',
+			error: 'Unknown error'
+		});
 	}
 
-	let err;
-	await prisma_client.userSubmission
+	return prisma_client.userSubmission
 		.create({
 			data: parsed.data
 		})
-		.catch((error: Error) => (err = error));
-
-	if (err) {
-		console.log('ERROR saving', err);
-		return fail(500, { message: 'Failed to save to DB', error: err.name });
-	}
-	return {
-		status: 200,
-		message: 'Form Submitted Successfully! Thank you.'
-	};
+		.then((result) => {
+			return {
+				status: 200,
+				message: 'Form Submitted Successfully! Thank you.'
+			};
+		})
+		.catch((error: Error) => {
+			console.log('ERROR saving', error);
+			return fail(500, { message: 'Failed to save to DB', error: error.name });
+		});
 };

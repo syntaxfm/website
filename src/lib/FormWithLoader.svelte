@@ -2,7 +2,7 @@
 	import { applyAction, enhance } from '$app/forms';
 	import { invalidateAll } from '$app/navigation';
 	import { loading } from '$state/loading';
-	import type { ActionResult } from '@sveltejs/kit';
+	import type { ActionResult, SubmitFunction } from '@sveltejs/kit';
 	import toast from 'svelte-french-toast';
 	let formLoading = false;
 	export let global = true; // By default, the global loader UI is used
@@ -15,7 +15,7 @@
 	export const form_action = (
 		opts?: FormActionMessage,
 		callback?: (data: any | unknown) => any
-	) => {
+	): SubmitFunction => {
 		return function form_enhance({ cancel }) {
 			if (global) {
 				loading.setLoading(true);
