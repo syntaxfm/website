@@ -13,5 +13,5 @@ export async function load(event) {
 
 	const url = get_show_path(show);
 	// Redirect to the page for this show
-	throw redirect(302, url + event.url.search);
+	redirect(302, url + event.url.search);
 }
