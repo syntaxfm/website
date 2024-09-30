@@ -6,6 +6,7 @@
 	import toast from 'svelte-french-toast';
 	let formLoading = false;
 	export let global = true; // By default, the global loader UI is used
+	export let confirm = '';
 
 	type FormActionMessage = {
 		message?: string;
@@ -15,9 +16,14 @@
 		opts?: FormActionMessage,
 		callback?: (data: any | unknown) => any
 	) => {
-		return function form_enhance() {
+		return function form_enhance({ cancel }) {
 			if (global) {
 				loading.setLoading(true);
+			}
+			if (confirm) {
+				if (!window.confirm(confirm)) {
+					return cancel();
+				}
 			}
 			formLoading = true;
 			return async ({ result }: { result: ActionResult<any, any> }) => {
