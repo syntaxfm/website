@@ -5,8 +5,11 @@ interface TokenValidateResponse {
 	cdata: string;
 }
 
-export async function validateToken(token: string | FormDataEntryValue | null, secret: string) {
-	if (!token) {
+export async function validateToken(
+	token: string | FormDataEntryValue | null | unknown,
+	secret: string
+) {
+	if (!token || typeof token !== 'string') {
 		return {
 			success: false,
 			error: 'Missing Captcha Token'

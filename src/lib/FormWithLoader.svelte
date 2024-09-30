@@ -2,10 +2,11 @@
 	import { applyAction, enhance } from '$app/forms';
 	import { invalidateAll } from '$app/navigation';
 	import { loading } from '$state/loading';
-	import type { ActionResult } from '@sveltejs/kit';
+	import type { ActionResult, SubmitFunction } from '@sveltejs/kit';
 	import toast from 'svelte-french-toast';
 	let formLoading = false;
 	export let global = true; // By default, the global loader UI is used
+	export let confirm = '';
 
 	type FormActionMessage = {
 		message?: string;
@@ -14,10 +15,15 @@
 	export const form_action = (
 		opts?: FormActionMessage,
 		callback?: (data: any | unknown) => any
-	) => {
-		return function form_enhance() {
+	): SubmitFunction => {
+		return function form_enhance({ cancel }) {
 			if (global) {
 				loading.setLoading(true);
+			}
+			if (confirm) {
+				if (!window.confirm(confirm)) {
+					return cancel();
+				}
 			}
 			formLoading = true;
 			return async ({ result }: { result: ActionResult<any, any> }) => {
