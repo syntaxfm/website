@@ -5,6 +5,7 @@ interface Block {
 	breadcrumbs: string[];
 	content: string;
 	href: string;
+	number: number;
 }
 
 export async function content() {
