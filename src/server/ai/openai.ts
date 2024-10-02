@@ -4,7 +4,7 @@ import { encode } from 'gpt-3-encoder';
 import { Configuration, OpenAIApi, type CreateChatCompletionRequest } from 'openai';
 import wait from 'waait';
 import { anthropic_completion, convert_openai_to_anthropic } from './anthropic';
-import { createCondensePrompt, summarizePrompt, summarizePrompt2 } from './prompts';
+import { create_condensed_prompt, summarize_prompt, summarize_prompt_2 } from './prompts';
 import type { AIPodcastSummaryResponse, transcript_without_ai_notes_query } from './queries';
 import type { SlimUtterance, TranscribedShow } from '../transcripts/types';
 
@@ -28,34 +28,34 @@ export async function condense(
 	}
 ): Promise<SlimUtterance[]> {
 	// Figure out how large the input is
-	const inputTokensLength = encode(`${transcript} ${summarizePrompt}`).length;
+	const input_tokens_length = encode(`${transcript} ${summarize_prompt}`).length;
 	// If its under the limit, return the transcript as is
-	if (inputTokensLength < TOKEN_INPUT_LIMIT || options.skip) {
+	if (input_tokens_length < TOKEN_INPUT_LIMIT || options.skip) {
 		console.log(
-			`========== Skipping condensing show ${show.number} - Size is ${inputTokensLength} and acceptable ============`
+			`========== Skipping condensing show ${show.number} - Size is ${input_tokens_length} and acceptable ============`
 		);
 		return show.utterances;
 	}
 	console.log(`========== Condensing show ${show.number} ============`);
 	// Figure out how many hunks we need to split this string into
-	console.log(`inputTokensLength size: ${inputTokensLength}`);
+	console.log(`input Tokens size: ${input_tokens_length}`);
 	console.log(`Token input limit: ${TOKEN_INPUT_LIMIT}`);
-	const factorSmaller = 1 - TOKEN_INPUT_LIMIT / inputTokensLength;
-	console.log(`Factor smaller: ${factorSmaller}`);
+	const factor_smaller = 1 - TOKEN_INPUT_LIMIT / input_tokens_length;
+	console.log(`Factor smaller: ${factor_smaller}`);
 	// Group utterances
-	const slimUtterances = getSlimUtterances(show.utterances, show.number, false);
-	console.log(slimUtterances.length, show.utterances.length);
+	const slim_utterances = getSlimUtterances(show.utterances, show.number, false);
+	console.log(slim_utterances.length, show.utterances.length);
 	// Split the transcript into hunks
-	const utteranceFuncs = slimUtterances.map((utterance, index) => {
+	const utterance_funcs = slim_utterances.map((utterance, index) => {
 		return async function getCondenseUtterance(): Promise<SlimUtterance> {
 			// Wait a random amount of time to avoid rate limiting. Between 0 and 10 seconds
-			const waitTime = Math.floor(Math.random() * 10000);
-			await wait(waitTime);
-			console.time(`Condensing ${index} of ${slimUtterances.length}`);
+			const wait_time = Math.floor(Math.random() * 10000);
+			await wait(wait_time);
+			console.time(`Condensing ${index} of ${slim_utterances.length}`);
 			const size = encode(utterance.transcript).length;
 			// If under 50 chars, leave it alone. Return it via a promise
 			if (utterance.transcript.length < CONDENSE_THRESHOLD) {
-				console.log(`Skipping condensing of ${index} of ${slimUtterances.length}`);
+				console.log(`Skipping condensing of ${index} of ${slim_utterances.length}`);
 				return Promise.resolve(utterance);
 			}
 			// If it's over 50 chars, condense it via openAI
@@ -63,16 +63,19 @@ export async function condense(
 				model: 'gpt-3.5-turbo', // Summarize
 				messages: [
 					// { "role": "system", "content": `You are a helpful service that condenses text.` },
-					{ role: 'system', content: createCondensePrompt(`${Math.floor(factorSmaller * 100)}%`) },
+					{
+						role: 'system',
+						content: create_condensed_prompt(`${Math.floor(factor_smaller * 100)}%`)
+					},
 					{ role: 'user', content: utterance.transcript }
 				],
-				max_tokens: Math.round(size * factorSmaller)
+				max_tokens: Math.round(size * factor_smaller)
 				// "temperature": 0.3
 			};
-			console.log(`Condensing`, index, `of`, slimUtterances.length);
+			console.log(`Condensing`, index, `of`, slim_utterances.length);
 			const completion = await openai.createChatCompletion(input).catch((err) => {
 				// Catch the error in transcribing so we can at least save the utterance without the condensed transcript
-				console.log(`❗️ Error Condensing`, index, `of`, slimUtterances.length);
+				console.log(`❗️ Error Condensing`, index, `of`, slim_utterances.length);
 				console.dir(err.response.data);
 				console.dir(err.response.headers);
 			});
@@ -93,21 +96,21 @@ export async function condense(
 			console.log(
 				index,
 				'/',
-				slimUtterances.length,
+				slim_utterances.length,
 				`Condensed from ${original} to ${smaller} tokens - ${Math.round(
 					(smaller / original) * 100
 				)}% of original`
 			);
-			console.timeEnd(`Condensing ${index} of ${slimUtterances.length}`);
+			console.timeEnd(`Condensing ${index} of ${slim_utterances.length}`);
 			// Return the modifined utterance
 			return utterance;
 		};
 	});
 	// Run the functions in parallel
-	const utteranceResults = await Promise.allSettled(utteranceFuncs.map((func) => func()));
+	const utterance_results = await Promise.allSettled(utterance_funcs.map((func) => func()));
 	console.log('Done condensing');
 	// Get the results
-	const utterances = utteranceResults
+	const utterances = utterance_results
 		.filter((result): result is PromiseFulfilledResult<SlimUtterance> => {
 			return result.status === 'fulfilled';
 		})
@@ -124,22 +127,22 @@ export async function generate_ai_notes(
 	if (!show || !show.transcript?.utterances) {
 		throw new Error(`No transcript found for show ${show.number}`);
 	}
-	const slimUtterance = getSlimUtterances(show.transcript?.utterances, show.number);
-	const transcript = formatAsTranscript(slimUtterance);
+	const slim_utterance = getSlimUtterances(show.transcript?.utterances, show.number);
+	const transcript = formatAsTranscript(slim_utterance);
 	// Condense
-	const slimUtterancesWithCondensed = await condense(
+	const slim_utterances_with_condensed = await condense(
 		transcript,
 		{
 			name: show.title,
 			number: show.number,
-			utterances: slimUtterance
+			utterances: slim_utterance
 		},
 		{
 			// anthropic doesnt need to condense
 			skip: provider === 'anthropic'
 		}
 	);
-	const condensedTranscript = formatAsTranscript(slimUtterancesWithCondensed);
+	const condensed_transcript = formatAsTranscript(slim_utterances_with_condensed);
 
 	const input: CreateChatCompletionRequest = {
 		// model: 'gpt-4',
@@ -156,22 +159,22 @@ export async function generate_ai_notes(
 				content: 'Syntax is a podcast about web development. Available at https://Syntax.fm'
 			},
 			{ role: 'user', content: `This episode is #${show.number} entitled ${show.title}` },
-			{ role: 'user', content: summarizePrompt2 },
-			{ role: 'user', content: `<transcript>${condensedTranscript}</transcript>` },
+			{ role: 'user', content: summarize_prompt_2 },
+			{ role: 'user', content: `<transcript>${condensed_transcript}</transcript>` },
 			{ role: 'user', content: `Remember to only return JSON in the format specified` }
 		]
 	};
 	console.log(`Creating AI notes for ${show.number}`);
 	if (provider === 'anthropic') {
 		console.log(`Using anthropic for ${show.number}`);
-		const anthropicInput = convert_openai_to_anthropic(input);
-		const anthropicResult = await anthropic_completion(anthropicInput);
-		console.log(anthropicResult);
-		const startIndex = anthropicResult.completion.indexOf('{');
-		const endIndex = anthropicResult.completion.lastIndexOf('}');
-		const jsonPart = anthropicResult.completion.substring(startIndex, endIndex + 1);
-		console.log(`JSON Part: ${jsonPart}`);
-		const aparsed = JSON.parse(jsonPart) as AIPodcastSummaryResponse;
+		const anthropic_input = convert_openai_to_anthropic(input);
+		const anthropic_result = await anthropic_completion(anthropic_input);
+		console.log(anthropic_result);
+		const start_index = anthropic_result.completion.indexOf('{');
+		const end_index = anthropic_result.completion.lastIndexOf('}');
+		const json_part = anthropic_result.completion.substring(start_index, end_index + 1);
+		console.log(`JSON Part: ${json_part}`);
+		const aparsed = JSON.parse(json_part) as AIPodcastSummaryResponse;
 		return { ...aparsed, provider: 'anthropic' };
 	}
 	// OpenAI
@@ -179,8 +182,8 @@ export async function generate_ai_notes(
 	const completion = await openai.createChatCompletion(input).catch((err) => {
 		console.dir(err.response.data.error, { depth: null });
 	});
-	const maybeJSON = completion?.data.choices.at(0)?.message?.content;
-	console.log(maybeJSON);
-	const parsed = JSON.parse(maybeJSON || '') as AIPodcastSummaryResponse;
+	const maybe_json = completion?.data.choices.at(0)?.message?.content;
+	console.log(maybe_json);
+	const parsed = JSON.parse(maybe_json || '') as AIPodcastSummaryResponse;
 	return { ...parsed, provider: 'gpt3.5' };
 }
