@@ -28,6 +28,18 @@ module.exports = {
 		}
 	],
 	rules: {
-		'@typescript-eslint/ban-ts-comment': 'error'
+		'@typescript-eslint/ban-ts-comment': 'error',
+		'@typescript-eslint/naming-convention': [
+			'error',
+			{
+				selector: 'default',
+				format: ['snake_case']
+			},
+			{
+				selector: 'variable',
+				modifiers: ['const'],
+				format: ['UPPER_CASE']
+			}
+		]
 	}
 };
