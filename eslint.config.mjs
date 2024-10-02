@@ -51,7 +51,7 @@ export default [
 				{
 					selector: 'variable',
 					modifiers: ['const'],
-					format: ['UPPER_CASE']
+					format: ['snake_case', 'UPPER_CASE']
 				},
 				{
 					selector: 'typeLike',
