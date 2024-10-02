@@ -15,6 +15,7 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"test:unit": "svelte-kit sync && vitest",
+		"eslint": "eslint .",
 		"lint": "prettier --plugin-search-dir . --check . && eslint . && pnpm stylelint",
 		"format": "prettier --plugin-search-dir . --write .",
 		"site:update": "pnpm update -i -L",
