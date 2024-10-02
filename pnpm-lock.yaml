@@ -156,6 +156,9 @@ importers:
       '@codecov/sveltekit-plugin':
         specifier: 0.0.1-beta.12
         version: 0.0.1-beta.12(@sveltejs/kit@2.5.22(@sveltejs/vite-plugin-svelte@3.1.1(svelte@4.2.18)(vite@5.4.0(@types/node@22.2.0)))(svelte@4.2.18)(vite@5.4.0(@types/node@22.2.0)))(svelte@4.2.18)(vite@5.4.0(@types/node@22.2.0))
+      '@eslint/compat':
+        specifier: ^1.1.1
+        version: 1.1.1
       '@eslint/eslintrc':
         specifier: ^3.1.0
         version: 3.1.0
@@ -774,6 +777,10 @@ packages:
   '@eslint-community/regexpp@4.11.1':
     resolution: {integrity: sha512-m4DVN9ZqskZoLU5GlWZadwDnYo3vAEydiUayB9widCl9ffWx2IvPnp6n3on5rJmziJSw9Bv+Z3ChDVdMwXCY8Q==}
     engines: {node: ^12.0.0 || ^14.0.0 || >=16.0.0}
+
+  '@eslint/compat@1.1.1':
+    resolution: {integrity: sha512-lpHyRyplhGPL5mGEh6M9O5nnKk0Gz4bFI+Zu6tKlPpDUN7XshWvH9C/px4UVm87IAANE0W81CEsNGbS1KlzXpA==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
   '@eslint/config-array@0.17.1':
     resolution: {integrity: sha512-BlYOpej8AQ8Ev9xVqroV7a02JK3SkBAaN9GfMMH9W6Ch8FlQlkjGw4Ir7+FgYwfirivAf4t+GtzuAxqfukmISA==}
@@ -4930,6 +4937,8 @@ snapshots:
   '@eslint-community/regexpp@4.11.0': {}
 
   '@eslint-community/regexpp@4.11.1': {}
+
+  '@eslint/compat@1.1.1': {}
 
   '@eslint/config-array@0.17.1':
     dependencies:
