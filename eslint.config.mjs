@@ -44,9 +44,14 @@ export default [
 				},
 				{
 					selector: 'variable',
-					format: ['snake_case', 'UPPER_CASE'],
+					format: ['snake_case'],
 					leadingUnderscore: 'allow',
 					trailingUnderscore: 'allow'
+				},
+				{
+					selector: 'variable',
+					modifiers: ['const'],
+					format: ['UPPER_CASE']
 				},
 				{
 					selector: 'typeLike',
