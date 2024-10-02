@@ -10,15 +10,15 @@ type FormActionMessage = {
 
 export const form_action = (
 	opts?: FormActionMessage,
-	pre?: (data?: unknown) => unknown,
+	pre?: (data?: any | unknown) => any,
 	callback?: (
-		data?: unknown,
+		data?: any | unknown,
 		{
 			formElement
 		}?: {
 			formElement: HTMLFormElement;
 		}
-	) => unknown
+	) => any | unknown
 ) => {
 	return function form_enhance({ formElement }: { formElement: HTMLFormElement }) {
 		if (pre) pre();
