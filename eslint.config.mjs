@@ -7,7 +7,14 @@ import js from '@eslint/js';
 export default [
 	js.configs.recommended,
 	{
-		ignores: ['**/node_modules/**', 'build/**', '.svelte-kit/**', 'package/**']
+		ignores: [
+			'**/node_modules/**',
+			'build/**',
+			'.svelte-kit/**',
+			'package/**',
+			'**/*.d.ts',
+			'.vercel/**'
+		]
 	},
 	{
 		files: ['**/*.{js,ts,svelte}'],
@@ -17,7 +24,8 @@ export default [
 		languageOptions: {
 			globals: {
 				...globals.browser,
-				...globals.node
+				...globals.node,
+				__VER__: 'readonly'
 			},
 			parser: tsParser,
 			parserOptions: {
@@ -47,6 +55,14 @@ export default [
 				{
 					selector: 'property',
 					format: null
+				}
+			],
+			'@typescript-eslint/no-unused-vars': [
+				'error',
+				{
+					argsIgnorePattern: '^_',
+					varsIgnorePattern: '^_',
+					caughtErrorsIgnorePattern: '^_'
 				}
 			]
 		}
