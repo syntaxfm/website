@@ -7,12 +7,12 @@ import tsParser from '@typescript-eslint/parser';
 import svelteParser from 'svelte-eslint-parser';
 import js from '@eslint/js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const gitignorePath = path.resolve(__dirname, '.gitignore');
+const _filename = fileURLToPath(import.meta.url);
+const _dirname = path.dirname(_filename);
+const gitignore_path = path.resolve(_dirname, '.gitignore');
 
 export default [
-	includeIgnoreFile(gitignorePath),
+	includeIgnoreFile(gitignore_path),
 	js.configs.recommended,
 	{
 		ignores: ['**/*.d.ts']
@@ -52,7 +52,9 @@ export default [
 				{
 					selector: 'variable',
 					modifiers: ['const'],
-					format: ['snake_case', 'UPPER_CASE']
+					format: ['snake_case', 'UPPER_CASE'],
+					leadingUnderscore: 'allow',
+					trailingUnderscore: 'allow'
 				},
 				{
 					selector: 'typeLike',
