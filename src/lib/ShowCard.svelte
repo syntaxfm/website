@@ -203,7 +203,7 @@
 			padding: 10px;
 
 			.details {
-				/* since we're hiding the description row at these dimensions (which was 100% height), 
+				/* since we're hiding the description row at these dimensions (which was 100% height),
 				   need a new row to become 100% height -- the show title */
 				grid-template-rows: auto 1fr auto auto;
 			}
@@ -245,6 +245,7 @@
 		font-variation-settings: 'wght' 500;
 		view-transition-name: var(--transition-name);
 		width: max-content;
+		position: relative;
 		@media (prefers-color-scheme: dark) {
 			background: var(--bg);
 		}
@@ -275,8 +276,6 @@
 		}
 		color: var(--primary);
 		line-height: 1;
-		z-index: -1;
-
 		@media (--below-med) {
 			--max-font-size: 8rem;
 		}
