@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	// Pull current specific css var, calculate it's value, pass it as a query param into request.
 	// Wave / Grit / Icon
 	export let name: 'wave';

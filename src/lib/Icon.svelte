@@ -38,7 +38,7 @@
 
 	export let name: IconName;
 	export let title: string | boolean = '';
-	export let ariaHidden = true;
+	export let aria_hidden = true;
 	if (!title && title !== false) title = capitalize(name);
 </script>
 
@@ -46,7 +46,7 @@
 	<svg
 		style="width: var(--icon_size, 16px);"
 		viewBox="0 0 8 10"
-		aria-hidden={ariaHidden}
+		aria-hidden={aria_hidden}
 		fill="none"
 		xmlns="http://www.w3.org/2000/svg"
 	>

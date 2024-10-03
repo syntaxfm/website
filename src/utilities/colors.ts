@@ -32,8 +32,8 @@ export function rgbaToHex(rgba: string): string {
 	const [r, g, b] = matches.slice(0, 3).map((num) => Math.min(255, Math.max(0, parseInt(num))));
 
 	// Convert each color component to a two-digit hexadecimal value
-	const toHex = (value: number) => value.toString(16).padStart(2, '0').toUpperCase();
+	const to_hex = (value: number) => value.toString(16).padStart(2, '0').toUpperCase();
 
 	// Combine the R, G, B, and A components into a single HEX color string
-	return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+	return `#${to_hex(r)}${to_hex(g)}${to_hex(b)}`;
 }

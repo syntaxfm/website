@@ -18,7 +18,7 @@ export const form_action = (
 		}?: {
 			formElement: HTMLFormElement;
 		}
-	) => any
+	) => any | unknown
 ) => {
 	return function form_enhance({ formElement }: { formElement: HTMLFormElement }) {
 		if (pre) pre();
