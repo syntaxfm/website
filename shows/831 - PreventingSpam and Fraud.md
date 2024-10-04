@@ -4,7 +4,6 @@ title: Preventing Spam and Fraud
 date: 1728298800000
 url: https://traffic.libsyn.com/syntax/Syntax_-_831.mp3
 youtube_url: https://www.youtube.com/watch?v=k4wyxLR9UYo
-
 ---
 
 From CAPTCHAs to shadow banning, Scott and Wes break down the best strategies for keeping your app safe from spam and fraud. They cover tools like email verification, rate limiting, shadow banning, and more to protect your users and data.
@@ -20,6 +19,7 @@ From CAPTCHAs to shadow banning, Scott and Wes break down the best strategies fo
 * **[09:12](#t=09:12)** Rate limiting.
 * **[11:34](#t=11:34)** Shadow banning.
 * **[13:53](#t=13:53)** Email verification.
+  * [Wes' Burner Emails](https://github.com/wesbos/burner-email-providers).
 * **[15:38](#t=15:38)** Tie to accounts.
 * **[16:23](#t=16:23)** Tied to real identity.
 * **[19:36](#t=19:36)** Manual approval.
