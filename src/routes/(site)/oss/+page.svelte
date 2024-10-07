@@ -5,11 +5,7 @@
 
 <main>
 	<div style:margin-bottom="2rem">
-		<h1 class="h3 lines">
-			Syntax Pledging
-			<br />
-			$50,000 for Open Source
-		</h1>
+		<h1 class="h3 lines">Syntax Pledging $50,000 for Open Source</h1>
 		<div class="oss">
 			<div>
 				<img
@@ -53,16 +49,19 @@
 	</div>
 </main>
 
-<style>
+<style lang="postcss">
 	.oss {
 		margin: 0 auto;
 		text-wrap: pretty;
 		display: grid;
-		grid-template-columns: 250px 1fr;
+		@media (--above-med) {
+			grid-template-columns: 250px 1fr;
+		}
 		gap: 2rem;
 		place-items: center;
 		img {
 			width: 100%;
+			max-width: 200px;
 		}
 	}
 	h1 {
