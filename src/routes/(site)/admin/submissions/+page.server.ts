@@ -5,7 +5,6 @@ import type { Actions, PageServerLoad } from './$types';
 import type { equal } from 'assert';
 
 export const load: PageServerLoad = async ({ url }) => {
-	console.log('params', url.searchParams.entries());
 	const submission_type = url.searchParams.get('submission_type');
 	const status = url.searchParams.get('status');
 	const per_page = parseInt(url.searchParams.get('perPage') || '') || 100;
@@ -31,7 +30,7 @@ export const load: PageServerLoad = async ({ url }) => {
 		};
 	}
 
-	const submissionCount = await prisma_client.userSubmission.count({
+	const submission_count = await prisma_client.userSubmission.count({
 		...submissions_query,
 		take: undefined
 	});
@@ -39,7 +38,7 @@ export const load: PageServerLoad = async ({ url }) => {
 	const submissions = await prisma_client.userSubmission.findMany(submissions_query);
 	return {
 		submissions,
-		submissionCount
+		submission_count
 	};
 };
 

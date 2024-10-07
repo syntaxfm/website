@@ -4,7 +4,7 @@
 	import { Turnstile } from 'svelte-turnstile';
 	import { env } from '$env/dynamic/public';
 	import InlineError from './InlineError.svelte';
-	import type { UserSubmissionType } from '@prisma/client';
+	import { UserSubmissionType } from '@prisma/client';
 	export let form;
 	let reset: () => void | undefined;
 	export let selected_submission_type: UserSubmissionType = 'SPOOKY';
