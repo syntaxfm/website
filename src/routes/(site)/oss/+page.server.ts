@@ -1,6 +1,6 @@
 import { type Actions } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
-import { UserSubmissionAction } from '$/lib/forms/UserSubmissionAction';
+import { user_submission_action } from '$/lib/forms/UserSubmissionAction';
 export const load: PageServerLoad = async function () {
 	return {
 		meta: {
@@ -11,5 +11,5 @@ export const load: PageServerLoad = async function () {
 };
 
 export const actions: Actions = {
-	default: UserSubmissionAction
+	default: user_submission_action
 };

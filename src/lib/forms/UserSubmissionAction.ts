@@ -5,11 +5,9 @@ import { env } from '$env/dynamic/private';
 import { user_submission_schema } from '$/lib/forms/userSubmissionSchema';
 import { z } from 'zod';
 
-export const UserSubmissionAction: Action = async function ({ request, locals }) {
-	const form = await request.formData();
+export const user_submission_action: Action = async function ({ locals }) {
 	// Validate Turnsile Token
-
-	let { success, error } = await validateToken(
+	let { error } = await validateToken(
 		locals.form_data['cf-turnstile-response'],
 		env.TURNSTILE_SECRET
 	);
@@ -44,7 +42,7 @@ export const UserSubmissionAction: Action = async function ({ request, locals })
 		.create({
 			data: parsed.data
 		})
-		.then((result) => {
+		.then(() => {
 			return {
 				status: 200,
 				message: 'Form Submitted Successfully! Thank you.'

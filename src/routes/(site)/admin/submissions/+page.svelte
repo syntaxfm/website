@@ -4,6 +4,7 @@
 	import { queryParameters } from 'sveltekit-search-params';
 	import SelectMenu from '$/lib/SelectMenu.svelte';
 	import FormWithLoader from '$/lib/FormWithLoader.svelte';
+	import { UserSubmissionStatus, UserSubmissionType } from '@prisma/client';
 	const store = queryParameters<{
 		submission_type?: string;
 		status?: string;
@@ -13,10 +14,10 @@
 	}>();
 
 	export let data: PageData;
-	$: ({ submissions, submissionCount } = data);
+	$: ({ submissions, submission_count } = data);
 </script>
 
-<h1 class="h4">Submissions ({submissionCount})</h1>
+<h1 class="h4">Submissions ({submission_count})</h1>
 
 <div class="submission-filter">
 	<nav>
@@ -30,11 +31,7 @@
 			value={$store.submission_type || ''}
 			options={[
 				{ value: '', label: 'All' },
-				{ value: 'POTLUCK', label: 'POTLUCK' },
-				{ value: 'SPOOKY', label: 'SPOOKY' },
-				{ value: 'GUEST', label: 'GUEST' },
-				{ value: 'FEEDBACK', label: 'FEEDBACK' },
-				{ value: 'OTHER', label: 'OTHER' }
+				...Object.keys(UserSubmissionType).map((key) => ({ value: key, label: key }))
 			]}
 		/>
 		<SelectMenu
@@ -47,10 +44,7 @@
 			value={$store.status || ''}
 			options={[
 				{ value: '', label: 'All' },
-				{ value: 'PENDING', label: 'PENDING' },
-				{ value: 'APPROVED', label: 'APPROVED' },
-				{ value: 'COMPLETED', label: 'COMPLETED' },
-				{ value: 'REJECTED', label: 'REJECTED' }
+				...Object.keys(UserSubmissionStatus).map((key) => ({ value: key, label: key }))
 			]}
 		/>
 		<SelectMenu
