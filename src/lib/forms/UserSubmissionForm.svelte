@@ -4,8 +4,10 @@
 	import { Turnstile } from 'svelte-turnstile';
 	import { env } from '$env/dynamic/public';
 	import InlineError from './InlineError.svelte';
+	import type { UserSubmissionType } from '@prisma/client';
 	export let form;
 	let reset: () => void | undefined;
+	export let selected_submission_type: UserSubmissionType = 'SPOOKY';
 </script>
 
 {#if form?.error}
@@ -36,11 +38,12 @@
 		<label for="submission_type">Submission Type</label>
 		<div class="input">
 			<InlineError displayError={form?.fieldErrors?.['submission_type']} />
-			<select name="submission_type" id="submission_type">
+			<select name="submission_type" id="submission_type" value={selected_submission_type}>
 				<option value="POTLUCK">Potluck Question</option>
-				<option selected value="SPOOKY">👻🎃 Spooky Story Submission</option>
+				<option value="SPOOKY">👻🎃 Spooky Story Submission</option>
 				<option value="GUEST">Guest Suggestion</option>
 				<option value="FEEDBACK">Show Feedback</option>
+				<option value="OSS">💰 OSS Funding Suggestion</option>
 				<option value="OTHER">Other</option>
 			</select>
 		</div>

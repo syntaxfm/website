@@ -299,6 +299,7 @@ enum UserSubmissionType {
   GUEST
   FEEDBACK
   OTHER
+  OSS
 }
 
 model UserSubmission {
