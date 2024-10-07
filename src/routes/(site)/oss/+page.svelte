@@ -14,10 +14,10 @@
 				/>
 			</div>
 			<div>
-				<p><a href="https://opensourcepledge.com/">The Open source Pledge</a> just launched.</p>
+				<p><a href="https://opensourcepledge.com/">The Open Source Pledge</a> just launched.</p>
 
 				<p>
-					Sentry has Pledged <strong>$750,000</strong> and given us
+					Sentry has Pledged <strong>$750,000</strong> for this year, of which we get
 					<strong>$50,000</strong> to distribute to open source projects!
 				</p>
 
@@ -34,13 +34,13 @@
 				</p>
 
 				<p>
-					We will collect submissions until $DATE, and announce them on an upcoming episode of
-					Syntax.
+					We will collect submissions until mid November, and announce them on an upcoming episode
+					of Syntax.
 				</p>
 
 				<p>
 					Do you work at a company that uses open source software? We would like to encourage you to
-					join <a href="https://opensourcepledge.com/">The Open source Pledge</a>.
+					join <a href="https://opensourcepledge.com/">The Open Source Pledge</a>.
 				</p>
 			</div>
 		</div>
