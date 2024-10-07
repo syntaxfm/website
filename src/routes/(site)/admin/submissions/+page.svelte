@@ -4,7 +4,6 @@
 	import { queryParameters } from 'sveltekit-search-params';
 	import SelectMenu from '$/lib/SelectMenu.svelte';
 	import FormWithLoader from '$/lib/FormWithLoader.svelte';
-	import { UserSubmissionStatus, UserSubmissionType } from '@prisma/client';
 	const store = queryParameters<{
 		submission_type?: string;
 		status?: string;
@@ -14,7 +13,7 @@
 	}>();
 
 	export let data: PageData;
-	$: ({ submissions, submission_count } = data);
+	$: ({ submissions, submission_count, user_submission_status, user_submission_type } = data);
 </script>
 
 <h1 class="h4">Submissions ({submission_count})</h1>
@@ -31,7 +30,7 @@
 			value={$store.submission_type || ''}
 			options={[
 				{ value: '', label: 'All' },
-				...Object.keys(UserSubmissionType).map((key) => ({ value: key, label: key }))
+				...Object.keys(user_submission_type).map((key) => ({ value: key, label: key }))
 			]}
 		/>
 		<SelectMenu
@@ -44,7 +43,7 @@
 			value={$store.status || ''}
 			options={[
 				{ value: '', label: 'All' },
-				...Object.keys(UserSubmissionStatus).map((key) => ({ value: key, label: key }))
+				...Object.keys(user_submission_status).map((key) => ({ value: key, label: key }))
 			]}
 		/>
 		<SelectMenu
