@@ -17,7 +17,7 @@
 				<p><a href="https://opensourcepledge.com/">The Open Source Pledge</a> just launched.</p>
 
 				<p>
-					Sentry has Pledged <strong>$750,000</strong> for this year, of which we get
+					Sentry has pledged <strong>$750,000</strong> for this year, of which we get
 					<strong>$50,000</strong> to distribute to open source projects!
 				</p>
 
