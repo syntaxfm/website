@@ -1,8 +1,6 @@
 import { prisma_client } from '$/server/prisma-client';
-import { import_transcripts } from '$server/transcripts/transcripts';
-import { Prisma } from '@prisma/client';
+import { Prisma, UserSubmissionStatus, UserSubmissionType } from '@prisma/client';
 import type { Actions, PageServerLoad } from './$types';
-import type { equal } from 'assert';
 
 export const load: PageServerLoad = async ({ url }) => {
 	const submission_type = url.searchParams.get('submission_type');
@@ -38,7 +36,10 @@ export const load: PageServerLoad = async ({ url }) => {
 	const submissions = await prisma_client.userSubmission.findMany(submissions_query);
 	return {
 		submissions,
-		submission_count
+		submission_count,
+		// Since we cant access Prisma enums on the client, we pass them to the client as an object
+		user_submission_status: UserSubmissionStatus,
+		user_submission_type: UserSubmissionType
 	};
 };
 
