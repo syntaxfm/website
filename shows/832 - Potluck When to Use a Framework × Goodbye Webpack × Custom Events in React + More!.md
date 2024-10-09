@@ -1,6 +1,6 @@
 ---
 number: 832
-title: "Potluck: When to Use a Framework × Goodbye Webpack × Custom Events in React + More!"
+title: "Potluck: When to Use a Framework Ã— Goodbye Webpack Ã— Custom Events in React + More!"
 date: 1728471600000
 url: https://traffic.libsyn.com/syntax/Syntax_-_832.mp3
 youtube_url: https://www.youtube.com/watch?v=ZgoReT1as58
