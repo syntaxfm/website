@@ -159,6 +159,7 @@
 			gap: 1rem;
 			& > * {
 				margin: 0;
+				position: relative;
 			}
 		}
 
