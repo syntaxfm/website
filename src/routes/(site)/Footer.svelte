@@ -82,6 +82,7 @@
 
 	.social-links {
 		flex-direction: row;
+		align-items: flex-start;
 		a {
 			display: block;
 		}
