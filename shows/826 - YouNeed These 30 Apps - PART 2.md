@@ -17,6 +17,7 @@ In part 2 of covering the best apps for web developers, Scott and Wes dive into 
     * **[09:31](#t=09:31)** [Hyperkey](https://hyperkey.app/).
     * **[11:46](#t=11:46)** [Amethyst](https://github.com/ianyh/Amethyst).
     * **[12:51](#t=12:51)** [Klack](https://tryklack.com/).
+    * **[12:51](#t=13:08)** [Mechvibes](https://mechvibes.com/).
     * **[13:47](#t=13:47)** [Bottom (Btm)](https://github.com/ClementTsang/bottom).
     * **[14:54](#t=14:54)** [Pearcleaner](https://github.com/alienator88/Pearcleaner)
     * **[16:40](#t=16:40)** [App Cleaner](https://freemacsoft.net/appcleaner/).
