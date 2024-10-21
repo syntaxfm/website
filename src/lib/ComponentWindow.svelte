@@ -1,29 +1,33 @@
 <script lang="ts">
 	import type { SvelteComponent } from 'svelte';
-	export let Component: typeof SvelteComponent;
+	interface Props {
+		Component: typeof SvelteComponent;
+	}
 
-	let window_width;
+	let { Component }: Props = $props();
+
+	let window_width = $state();
 </script>
 
 <h4>NewsletterForm</h4>
 
 <div class="window" bind:clientWidth={window_width}>
 	<span>{window_width}</span>
-	<svelte:component this={Component} />
+	<Component />
 </div>
 
 <div class="layout full">
 	<div class="main">
-		<svelte:component this={Component} />
+		<Component />
 	</div>
 	<div class="sidebar">
-		<svelte:component this={Component} />
+		<Component />
 	</div>
 	<div class="content">
-		<svelte:component this={Component} />
+		<Component />
 	</div>
 	<div class="full zone" style:--bg="var(--black)" style:--fg="var(--white)">
-		<svelte:component this={Component} />
+		<Component />
 	</div>
 </div>
 

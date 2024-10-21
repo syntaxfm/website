@@ -3,7 +3,11 @@
 	import { episode_share_status } from '$/state/player';
 	import type { Show } from '@prisma/client';
 	import Icon from '../Icon.svelte';
-	export let show: Show;
+	interface Props {
+		show: Show;
+	}
+
+	let { show }: Props = $props();
 
 	async function share() {
 		const is_possibly_mobile =
@@ -26,7 +30,7 @@
 	}
 </script>
 
-<button class="share" on:click={share} title="Share this episode" aria-label="Share this episode"
+<button class="share" onclick={share} title="Share this episode" aria-label="Share this episode"
 	><Icon name="share" /></button
 >
 

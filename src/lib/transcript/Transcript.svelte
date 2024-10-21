@@ -12,9 +12,13 @@
 	import type { Utterance } from '@deepgram/sdk/dist/types';
 	import type { Show } from '@prisma/client';
 
-	export let transcript: TranscriptWithUtterances;
-	export let aiShowNote: AINoteWithFriends | null;
-	export let show: Show;
+	interface Props {
+		transcript: TranscriptWithUtterances;
+		aiShowNote: AINoteWithFriends | null;
+		show: Show;
+	}
+
+	let { transcript, aiShowNote, show }: Props = $props();
 
 	const slim_transcript: SlimUtterance[] = getSlimUtterances(transcript.utterances, 1)
 		// .filter((utterance) => utterance.speakerId !== 99)
@@ -47,21 +51,21 @@
 		}
 	);
 
-	$: currentUtterance = slim_transcript.find((utterance, index) => {
+	let currentUtterance = $derived(slim_transcript.find((utterance, index) => {
 		const nextUtteranceStart = slim_transcript[index + 1]?.start || utterance.end;
 		const current_time = $player?.audio?.currentTime || 0;
 		return current_time >= utterance.start && current_time <= nextUtteranceStart;
-	});
+	}));
 
-	$: currentTopic = aiShowNote?.summary.find((summary, index) => {
+	let currentTopic = $derived(aiShowNote?.summary.find((summary, index) => {
 		const nextSummary = aiShowNote?.summary[index + 1];
 		const topicEnd = nextSummary ? tsToS(nextSummary.time) : Infinity;
 		const topicStart = tsToS(summary.time);
 		const current_time = $player?.audio?.currentTime || 0;
 		return current_time >= topicStart && current_time <= topicEnd;
-	});
+	}));
 
-	$: playing_show_is_this_show = $player.current_show?.number === transcript.show_number;
+	let playing_show_is_this_show = $derived($player.current_show?.number === transcript.show_number);
 
 	// const words = transcript.utterances
 	// 	.map((utt) => utt.words)
@@ -83,7 +87,7 @@
 	// 	.map((word) => word.word)
 	// 	.join(' ');
 
-	$: labelUtterance = function (utterance: SlimUtterance) {
+	let labelUtterance = $derived(function (utterance: SlimUtterance) {
 		if (!playing_show_is_this_show) return ''; // not playing this show
 		if (utterance === currentUtterance) {
 			return 'current';
@@ -92,8 +96,8 @@
 		} else {
 			return 'future';
 		}
-	};
-	$: placeTopic = function (summary: SummaryTitle, utterances: SlimUtterance[]) {
+	});
+	let placeTopic = $derived(function (summary: SummaryTitle, utterances: SlimUtterance[]) {
 		const summaryEnd = utterances.at(-1)?.end || Infinity;
 		const current_time = $player?.audio?.currentTime || 0;
 		if (!playing_show_is_this_show) return ''; // not playing this show
@@ -104,7 +108,7 @@
 		} else {
 			return 'future';
 		}
-	};
+	});
 </script>
 
 {#if aiShowNote}
@@ -143,7 +147,7 @@
 						<div class="gutter">
 							<button
 								class="button-nunya"
-								on:click={async () => {
+								onclick={async () => {
 									await player.start_show(show);
 									player.update_time(utterance.start);
 								}}>{format_time(utterance.start)}</button

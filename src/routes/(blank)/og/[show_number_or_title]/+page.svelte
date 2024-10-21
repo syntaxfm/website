@@ -1,11 +1,15 @@
 <script lang="ts">
 	import type { LatestShow } from '$/server/ai/queries';
 	import ShowOg from './ShowOg.svelte';
-	export let data;
-	$: ({ show } = data);
+	interface Props {
+		data: any;
+	}
+
+	let { data }: Props = $props();
+	let { show } = $derived(data);
 	// This sucks but the type error made no sense.
 	// Was using the exact query to generate the type
-	$: show_casted = show as LatestShow;
+	let show_casted = $derived(show as LatestShow);
 </script>
 
 {#if show}

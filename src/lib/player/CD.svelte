@@ -1,5 +1,9 @@
 <script lang="ts">
-	export let spinning: boolean;
+	interface Props {
+		spinning: boolean;
+	}
+
+	let { spinning }: Props = $props();
 </script>
 
 <div class="case">
@@ -102,9 +106,9 @@
 			</linearGradient>
 		</defs>
 	</svg>
-	<div class="case-lid" />
-	<div class="case-glass" />
-	<div class="shadow" />
+	<div class="case-lid"></div>
+	<div class="case-glass"></div>
+	<div class="shadow"></div>
 	<svg
 		class="sic-man"
 		width="1713"

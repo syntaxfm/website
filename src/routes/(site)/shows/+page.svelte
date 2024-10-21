@@ -6,9 +6,13 @@
 	import ShowCard from '$lib/ShowCard.svelte';
 	import { queryParameters } from 'sveltekit-search-params';
 
-	export let data;
+	interface Props {
+		data: any;
+	}
 
-	$: ({ shows } = data);
+	let { data }: Props = $props();
+
+	let { shows } = $derived(data);
 
 	const store = queryParameters<{
 		type?: string;
@@ -18,9 +22,9 @@
 	}>();
 
 	// We tell google to ignore filters, BUT not ?page=2...Infinity
-	$: isNoindexPage = ['order', 'type', 'sort', 'perPage'].some((filter) =>
+	let isNoindexPage = $derived(['order', 'type', 'sort', 'perPage'].some((filter) =>
 		$page.url.searchParams.has(filter)
-	);
+	));
 </script>
 
 <svelte:head>

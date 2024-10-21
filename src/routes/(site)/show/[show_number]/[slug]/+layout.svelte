@@ -13,9 +13,14 @@
 	import SaveOffline from '$lib/player/SaveOffline.svelte';
 	import { tsToS } from '$/utilities/format_time.js';
 
-	export let data;
-	$: ({ show, time_start } = data);
-	$: downloadName = `Syntax #${show.number} - ${show.title}`;
+	interface Props {
+		data: any;
+		children?: import('svelte').Snippet;
+	}
+
+	let { data, children }: Props = $props();
+	let { show, time_start } = $derived(data);
+	let downloadName = $derived(`Syntax #${show.number} - ${show.title}`);
 
 	async function handleClick(e: Event) {
 		const { target } = e;
@@ -82,7 +87,7 @@
 <div class="show-actions-wrap">
 	<div class="show-actions zone" style="--fg: var(--fg-root);">
 		<div class="show-actions-flex">
-			<button on:click={play_show} data-testid="play-show">
+			<button onclick={play_show} data-testid="play-show">
 				<Icon
 					--icon_size="12px"
 					aria_hidden={true}
@@ -121,7 +126,7 @@
 				<Icon name="edit" /></a
 			>
 		</div>
-		<div use:variable_svg class="variable-color-svg waves grit" />
+		<div use:variable_svg class="variable-color-svg waves grit"></div>
 	</div>
 </div>
 
@@ -141,10 +146,10 @@
 <!-- I don't feel great about this one, but it's hard, because these are click targets on show notes coming in from markdown -->
 <!-- I have no idea how we would make those timestamps into click targets correctly, maybe we can dynamically add role="button" -->
 <!-- Please submit a PR if you have a good fix here :) - Scott -->
-<!-- svelte-ignore a11y-click-events-have-key-events -->
-<!-- svelte-ignore a11y-no-static-element-interactions -->
-<section class="layout full" on:click={handleClick}>
-	<slot />
+<!-- svelte-ignore a11y_click_events_have_key_events -->
+<!-- svelte-ignore a11y_no_static_element_interactions -->
+<section class="layout full" onclick={handleClick}>
+	{@render children?.()}
 </section>
 
 <ShareWindow {show} />

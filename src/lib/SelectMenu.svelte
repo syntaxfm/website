@@ -10,16 +10,27 @@
 		apply();
 	}
 
-	export let options: { value: string; label: string }[];
-	export let button_icon: IconName | null = null;
-	export let value_as_label: boolean = false;
-	export let button_text: string;
-	export let popover_id: string;
 	let id = popover_id.replace('filter-', '');
-	export let value: string = '';
+	interface Props {
+		options: { value: string; label: string }[];
+		button_icon?: IconName | null;
+		value_as_label?: boolean;
+		button_text: string;
+		popover_id: string;
+		value?: string;
+	}
+
+	let {
+		options,
+		button_icon = null,
+		value_as_label = false,
+		button_text,
+		popover_id,
+		value = ''
+	}: Props = $props();
 	// let searchParams = new URLSearchParams(window.location.search);
 
-	$: generate_search_params = (id: string, value: string) => {
+	let generate_search_params = $derived((id: string, value: string) => {
 		const searchParams = new URLSearchParams($page.url.search);
 		if (!value) {
 			searchParams.delete(id);
@@ -27,7 +38,7 @@
 			searchParams.set(id, value);
 		}
 		return searchParams.toString();
-	};
+	});
 
 	function closePopoverWhenSelected(node: HTMLDivElement) {
 		function handlePopoverSelection(event: MouseEvent) {

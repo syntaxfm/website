@@ -2,8 +2,12 @@
 	import AdminActions from '$/lib/AdminActions.svelte';
 	import { enhance } from '$app/forms';
 	import { form_action } from '$lib/form_action';
-	export let data;
-	$: ({ cache = [] } = data);
+	interface Props {
+		data: any;
+	}
+
+	let { data }: Props = $props();
+	let { cache = [] } = $derived(data);
 </script>
 
 <h1 class="h4">Cache</h1>

@@ -5,13 +5,17 @@
 	import { tick } from 'svelte';
 	import FacePile from '../../../../lib/FacePile.svelte';
 
-	export let show: LatestShow & { isPage?: boolean };
-	export let show_date = show.date ? new Date(show.date) : null;
+	interface Props {
+		show: LatestShow & { isPage?: boolean };
+		show_date?: any;
+	}
 
-	let hosts = (show.hosts || []).map((host) => ({
+	let { show, show_date = show.date ? new Date(show.date) : null }: Props = $props();
+
+	let hosts = $state((show.hosts || []).map((host) => ({
 		name: host.name || '',
 		github: host.username || ''
-	}));
+	})));
 
 	if (!hosts.length) {
 		hosts = [

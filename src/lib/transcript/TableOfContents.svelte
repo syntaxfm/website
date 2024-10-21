@@ -2,7 +2,11 @@
 	import type { AINoteWithFriends } from '$server/ai/queries';
 	import slug from 'speakingurl';
 
-	export let aiShowNote: AINoteWithFriends;
+	interface Props {
+		aiShowNote: AINoteWithFriends;
+	}
+
+	let { aiShowNote }: Props = $props();
 </script>
 
 <div class="toc">

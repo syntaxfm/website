@@ -1,8 +1,12 @@
 <script lang="ts">
 	import Transcript from '$lib/transcript/Transcript.svelte';
 
-	export let data;
-	$: ({ transcript, show } = data);
+	interface Props {
+		data: any;
+	}
+
+	let { data }: Props = $props();
+	let { transcript, show } = $derived(data);
 </script>
 
 {#if transcript}

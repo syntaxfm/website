@@ -4,7 +4,11 @@
 	import { theme_maker } from '$state/theme';
 	import { onMount } from 'svelte';
 
-	export let data;
+	interface Props {
+		data: any;
+	}
+
+	let { data }: Props = $props();
 	const { show } = data;
 
 	onMount(() => {

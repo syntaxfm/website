@@ -16,8 +16,13 @@
 	import { page } from '$app/stores';
 	import PageLoadingIndicator from '$lib/page_loading_indicator.svelte';
 
-	export let data;
-	$: ({ user, user_theme, latest } = data);
+	interface Props {
+		data: any;
+		children?: import('svelte').Snippet;
+	}
+
+	let { data, children }: Props = $props();
+	let { user, user_theme, latest } = $derived(data);
 
 	onNavigate(async (navigation) => {
 		if (!document.startViewTransition) return;
@@ -46,7 +51,7 @@
 		style:--bg="var(--bg-sheet)"
 		style:--fg="var(--fg-sheet)"
 	>
-		<slot />
+		{@render children?.()}
 	</main>
 
 	<Footer />

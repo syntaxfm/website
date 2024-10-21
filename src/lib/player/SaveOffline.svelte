@@ -3,9 +3,13 @@
 	import Icon from '../Icon.svelte';
 	import { check_for_cached_mp3 } from '$state/player_offline';
 
-	export let show: Show;
+	interface Props {
+		show: Show;
+	}
 
-	let save_status: 'INITIAL' | 'UNSAVED' | 'SAVING' | 'SAVED' = 'INITIAL';
+	let { show }: Props = $props();
+
+	let save_status: 'INITIAL' | 'UNSAVED' | 'SAVING' | 'SAVED' = $state('INITIAL');
 	check_for_cached_mp3(show.url).then((response) => {
 		if (response) {
 			save_status = 'SAVED';
@@ -58,7 +62,7 @@
 	}
 </script>
 
-<button on:click={save_show_for_offline} title="Save for offline">
+<button onclick={save_show_for_offline} title="Save for offline">
 	<div class={save_status}>
 		<Icon name="thumbtack" />
 	</div>

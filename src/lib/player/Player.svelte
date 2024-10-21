@@ -8,14 +8,18 @@
 	import { onMount } from 'svelte';
 	import type { Show } from '@prisma/client';
 
-	export let initial_show: Show;
+	interface Props {
+		initial_show: Show;
+	}
+
+	let { initial_show }: Props = $props();
 
 	onMount(() => {
 		// Load latest show by default
 		player.initialize(initial_show);
 	});
 
-	$: mix_max_verb = $player_window_status === 'MINI' ? 'Maximize' : 'Minimize';
+	let mix_max_verb = $derived($player_window_status === 'MINI' ? 'Maximize' : 'Minimize');
 </script>
 
 <section class="player {$player_window_status} {$player.status}">
@@ -23,11 +27,11 @@
 		{#if $player.current_show}<ShareButton show={$player.current_show} />{/if}
 		<button
 			class="minimize"
-			on:click={player.toggle_minimize}
+			onclick={player.toggle_minimize}
 			aria-label={`${mix_max_verb} Player`}
 			title={`${mix_max_verb} Player`}><Icon name="minimize" /></button
 		>
-		<button class="close" on:click={player.close} aria-label="Close Player" title="Close Player"
+		<button class="close" onclick={player.close} aria-label="Close Player" title="Close Player"
 			>×</button
 		>
 	</div>
@@ -52,15 +56,15 @@
 				style="--media-range-track-height: 5px; --media-range-thumb-height: 15px; --media-range-thumb-border-radius: 0;	--media-range-track-border-radius: 5px; --media-range-bar-color: var(--primary);--media-background-color: transparent; --media-control-background: transparent; width: 100%; --media-font-family: var(--body-font-family); --media-control-hover-background: transparent; "
 			>
 				<audio
-					on:timeupdate={player.ontimeupdate}
-					on:play={player.onplay}
-					on:ended={player.onended}
-					on:pause={player.onpause}
+					ontimeupdate={player.ontimeupdate}
+					onplay={player.onplay}
+					onended={player.onended}
+					onpause={player.onpause}
 					slot="media"
 					bind:this={$player.audio}
 					preload="metadata"
 					crossorigin="anonymous"
-				/>
+				></audio>
 				{#if $player_window_status === 'ACTIVE'}
 					<media-control-bar class="media-bar">
 						<div class="media-controls">
@@ -84,19 +88,19 @@
 							</media-seek-forward-button>
 						</div>
 						<div class="media-range">
-							<media-time-display />
+							<media-time-display></media-time-display>
 							<div class="media-range-bookmarks">
 								<media-time-range
 									style:--media-range-bar-color="var(--white)"
 									style:--media-range-thumb-background="var(--primary)"
-								/>
+								></media-time-range>
 							</div>
-							<media-duration-display />
+							<media-duration-display></media-duration-display>
 						</div>
 						<div class="media-sound">
-							<media-playback-rate-button />
-							<media-mute-button />
-							<media-volume-range />
+							<media-playback-rate-button></media-playback-rate-button>
+							<media-mute-button></media-mute-button>
+							<media-volume-range></media-volume-range>
 						</div>
 					</media-control-bar>
 				{/if}

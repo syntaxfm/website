@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import HostSocialLink from '$lib/hosts/HostSocialLink.svelte';
 	import type { Action } from 'svelte/action';
 	import { fly } from 'svelte/transition';
@@ -61,14 +63,21 @@
 	};
 
 	const speed = 169;
-	$: since_start = Date.now() - 1499256000000;
+	let since_start;
+	run(() => {
+		since_start = Date.now() - 1499256000000;
+	});
 	setInterval(() => {
 		since_start = Date.now() - 1499256000000;
 	}, 500);
 
-	$: digits = since_start.toString().split('');
+	let digits = $derived(since_start.toString().split(''));
 
-	export let data;
+	interface Props {
+		data: any;
+	}
+
+	let { data }: Props = $props();
 </script>
 
 <main style:margin-bottom="2rem">

@@ -2,13 +2,17 @@
 	import type { Playlist, PlaylistOnVideo, Video } from '@prisma/client';
 	import PlaylistVideo from './PlaylistVideo.svelte';
 
-	export let playlist: Playlist & {
+	interface Props {
+		playlist: Playlist & {
 		item_count: number;
 		videos: PlaylistOnVideo[] &
 			{
 				video: Video;
 			}[];
 	};
+	}
+
+	let { playlist }: Props = $props();
 </script>
 
 <article class="card">

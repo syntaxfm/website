@@ -1,6 +1,10 @@
 <script lang="ts">
-	export let data;
-	$: ({ playlist } = data);
+	interface Props {
+		data: any;
+	}
+
+	let { data }: Props = $props();
+	let { playlist } = $derived(data);
 </script>
 
 {#if playlist}

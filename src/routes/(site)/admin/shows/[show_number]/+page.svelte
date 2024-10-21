@@ -1,16 +1,24 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import type { PageData, ActionData } from './$types';
 	import Dump from './Dump.svelte';
-	export let data: PageData;
-	export let form: ActionData;
-	let formRef: HTMLFormElement | null = null;
-	$: ({ show } = data);
-
-	$: if (form) {
-		formRef?.scrollIntoView({
-			behavior: 'smooth',
-		});
+	interface Props {
+		data: PageData;
+		form: ActionData;
 	}
+
+	let { data, form }: Props = $props();
+	let formRef: HTMLFormElement | null = $state(null);
+	let { show } = $derived(data);
+
+	run(() => {
+		if (form) {
+			formRef?.scrollIntoView({
+				behavior: 'smooth',
+			});
+		}
+	});
 </script>
 
 <h1 class="h4">DB dump</h1>

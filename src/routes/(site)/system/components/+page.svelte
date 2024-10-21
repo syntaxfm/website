@@ -13,5 +13,5 @@
 		src="/embed/600"
 		title="Show Embed"
 		style="width: 100%; height: 230px; max-width: 1200px; border: 1px solid black"
-	/>
+	></iframe>
 </div>

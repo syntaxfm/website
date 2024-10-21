@@ -4,10 +4,14 @@
 	import FormButton from '$/lib/FormButton.svelte';
 	import { format } from 'date-fns';
 
-	export let data;
-	$: ({ playlists, local_playlists } = data);
+	interface Props {
+		data: any;
+	}
 
-	let search_text = '';
+	let { data }: Props = $props();
+	let { playlists, local_playlists } = $derived(data);
+
+	let search_text = $state('');
 </script>
 
 <h1 class="h4">Youtube Playlists</h1>
