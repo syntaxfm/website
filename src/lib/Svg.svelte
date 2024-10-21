@@ -1,6 +1,6 @@
 <script lang="ts">
 	// Pull current specific css var, calculate it's value, pass it as a query param into request.
-	
+
 	interface Props {
 		// Wave / Grit / Icon
 		name: 'wave';
@@ -9,7 +9,7 @@
 	}
 
 	let { name, fill = 'var(--accent)', stroke }: Props = $props();
-	let img: HTMLImageElement = $state();
+	let img: HTMLImageElement = $state(null!);
 </script>
 
 <img

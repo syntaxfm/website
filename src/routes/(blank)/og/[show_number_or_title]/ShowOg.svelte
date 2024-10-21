@@ -1,9 +1,9 @@
 <script lang="ts">
+	import FacePile from '$/lib/FacePile.svelte';
 	import type { LatestShow } from '$server/ai/queries';
 	import { format_show_type } from '$utilities/format_show_type';
 	import { format } from 'date-fns';
 	import { tick } from 'svelte';
-	import FacePile from '../../../../lib/FacePile.svelte';
 
 	interface Props {
 		show: LatestShow & { isPage?: boolean };
@@ -12,17 +12,15 @@
 
 	let { show, show_date = show.date ? new Date(show.date) : null }: Props = $props();
 
-	let hosts = $state((show.hosts || []).map((host) => ({
-		name: host.name || '',
-		github: host.username || ''
-	})));
-
-	if (!hosts.length) {
-		hosts = [
+	let hosts = (
+		show.hosts || [
 			{ name: 'Wes Bos', github: 'wesbos' },
 			{ name: 'Scott Tolinski', github: 'stolinski' }
-		];
-	}
+		]
+	).map((host) => ({
+		name: host.name || '',
+		github: host.username || ''
+	}));
 
 	function fitText(node: HTMLHeadElement) {
 		node.classList.remove('finish-sizing-text');

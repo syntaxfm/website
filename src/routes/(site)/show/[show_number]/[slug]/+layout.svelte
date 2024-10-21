@@ -13,12 +13,7 @@
 	import SaveOffline from '$lib/player/SaveOffline.svelte';
 	import { tsToS } from '$/utilities/format_time.js';
 
-	interface Props {
-		data: any;
-		children?: import('svelte').Snippet;
-	}
-
-	let { data, children }: Props = $props();
+	let { data, children } = $props();
 	let { show, time_start } = $derived(data);
 	let downloadName = $derived(`Syntax #${show.number} - ${show.title}`);
 

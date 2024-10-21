@@ -5,9 +5,10 @@
 	import { env } from '$env/dynamic/public';
 	import InlineError from './InlineError.svelte';
 	import { UserSubmissionType } from '@prisma/client';
-	let reset: () => void | undefined = $state();
+	import type { ActionData } from '../../routes/(site)/oss/$types';
+	let reset: (() => void) | undefined = $state();
 	interface Props {
-		form: any;
+		form: ActionData;
 		selected_submission_type?: UserSubmissionType;
 	}
 
@@ -34,7 +35,7 @@
 		}
 		if (data.error) {
 			console.info('Resetting turnstile');
-			reset();
+			reset?.();
 		}
 	})}
 >

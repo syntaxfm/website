@@ -6,11 +6,10 @@
 	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
 	import { apply, isSupported } from '@oddbird/popover-polyfill/fn';
+
 	if (!isSupported() && browser) {
 		apply();
 	}
-
-	let id = popover_id.replace('filter-', '');
 	interface Props {
 		options: { value: string; label: string }[];
 		button_icon?: IconName | null;
@@ -18,6 +17,7 @@
 		button_text: string;
 		popover_id: string;
 		value?: string;
+		onselect: (e: CustomEvent) => void;
 	}
 
 	let {
@@ -26,8 +26,10 @@
 		value_as_label = false,
 		button_text,
 		popover_id,
-		value = ''
+		value = '',
+		onselect
 	}: Props = $props();
+	let id = popover_id.replace('filter-', '');
 	// let searchParams = new URLSearchParams(window.location.search);
 
 	let generate_search_params = $derived((id: string, value: string) => {

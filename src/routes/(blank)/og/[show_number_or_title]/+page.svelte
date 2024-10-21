@@ -1,11 +1,8 @@
 <script lang="ts">
 	import type { LatestShow } from '$/server/ai/queries';
 	import ShowOg from './ShowOg.svelte';
-	interface Props {
-		data: any;
-	}
 
-	let { data }: Props = $props();
+	let { data } = $props();
 	let { show } = $derived(data);
 	// This sucks but the type error made no sense.
 	// Was using the exact query to generate the type

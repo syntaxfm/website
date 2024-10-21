@@ -1,17 +1,10 @@
 <script lang="ts">
-	import { run } from 'svelte/legacy';
-
 	import get_show_path from '$/utilities/slug.js';
-	import ShowCard from '$lib/ShowCard.svelte';
 	import HostSocialLink from '$lib/hosts/HostSocialLink.svelte';
 
-	interface Props {
-		data: any;
-	}
-
-	let { data }: Props = $props();
-	let guests;
-	run(() => {
+	let { data } = $props();
+	let guests: any[] = $state([]);
+	$effect(() => {
 		({ guests } = data);
 	});
 
@@ -38,7 +31,7 @@
 		});
 	}
 	let name_size_direction = $state('');
-	
+
 	function name_size() {
 		name_size_direction = name_size_direction === 'asc' ? 'desc' : 'asc';
 		guests = guests.sort((a, b) => {

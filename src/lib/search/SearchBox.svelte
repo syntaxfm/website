@@ -12,15 +12,15 @@
 	import type { Block, Tree } from './types';
 	import type { Show } from '@prisma/client';
 
-	let search_input: HTMLInputElement = $state();
-	let modal: HTMLDialogElement = $state();
+	let search_input: HTMLInputElement = $state(null!);
+	let modal: HTMLDialogElement = $state(null!);
 	let search: {
 		results: Tree[];
 		query: string;
 	} | null = $state(null);
 	let recent_searches: (Block & Show)[] = $state([]);
 
-	let worker: Worker = $state();
+	let worker: Worker = $state(null!);
 	let ready = $state(false);
 	let active_color = $state('var(--fg)');
 
@@ -194,7 +194,7 @@
 					</pre>
 						<div class="color-boxes">
 							{#each Array(12) as _, i (i)}
-								<button onclick={change_color}></button>
+								<button aria-label={`ASCII Color ${i + 1}`} onclick={change_color}></button>
 							{/each}
 						</div>
 					</div>

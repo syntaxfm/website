@@ -4,7 +4,7 @@
 	import { oklchToRgba, rgbaToHex } from '$/utilities/colors';
 
 	const COLORS = ['black', 'yellow', 'teal', 'green', 'red', 'purple'];
-	let type: 'VARIABLE' | 'OKLCH' | 'RGBA' | 'HEX' = $state();
+	let type: 'VARIABLE' | 'OKLCH' | 'RGBA' | 'HEX' = $state('HEX');
 
 	function pick_color(index: number) {
 		if (index >= 5) {

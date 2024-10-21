@@ -1,11 +1,6 @@
-<script>
+<script lang="ts">
 	import UserSubmissionForm from '$/lib/forms/UserSubmissionForm.svelte';
-	/**
-	 * @typedef {Object} Props
-	 * @property {any} form
-	 */
 
-	/** @type {Props} */
 	let { form } = $props();
 </script>
 

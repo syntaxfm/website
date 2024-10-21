@@ -4,11 +4,7 @@
 	import { loading } from '$state/loading';
 	import { form_action } from '$lib/form_action';
 
-	interface Props {
-		data: any;
-	}
-
-	let { data }: Props = $props();
+	let { data } = $props();
 	const { user } = data;
 </script>
 

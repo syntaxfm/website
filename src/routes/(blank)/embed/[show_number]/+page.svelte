@@ -11,11 +11,7 @@
 	import { episode_share_status } from '$/state/player.js';
 	import { browser } from '$app/environment';
 
-	interface Props {
-		data: any;
-	}
-
-	let { data }: Props = $props();
+	let { data } = $props();
 	let { show } = $derived(data);
 
 	function toggle_share() {

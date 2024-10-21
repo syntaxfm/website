@@ -1,9 +1,9 @@
 <script lang="ts">
 	import ComponentWindow from '$lib/ComponentWindow.svelte';
 	import NewsletterForm from '$/lib/newsletter/NewsletterForm.svelte';
-	import type { ComponentType } from 'svelte';
+	import type { Component } from 'svelte';
 
-	const comp: ComponentType = NewsletterForm;
+	const comp: Component = NewsletterForm;
 </script>
 
 <ComponentWindow Component={comp} />

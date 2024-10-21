@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { run } from 'svelte/legacy';
-
 	import NewsletterLogo from './NewsletterLogo.svelte';
 	import Input from '$lib/forms/Input.svelte';
 	let is_hidden = $state(false);
@@ -18,7 +16,7 @@
 		document.cookie = 'newsletter_visible=hidden';
 	}
 
-	run(() => {
+	$effect(() => {
 		if (typeof document !== 'undefined') {
 			is_hidden = document.cookie.includes('newsletter_visible');
 		}

@@ -17,7 +17,8 @@
 	}
 
 	let { data }: Props = $props();
-	let { submissions, submission_count, user_submission_status, user_submission_type } = $derived(data);
+	let { submissions, submission_count, user_submission_status, user_submission_type } =
+		$derived(data);
 </script>
 
 <h1 class="h4">Submissions ({submission_count})</h1>
@@ -26,7 +27,7 @@
 	<nav>
 		<SelectMenu
 			popover_id="filter-submission_type"
-			on:select={(e) => {
+			onselect={(e) => {
 				$store.submission_type = e.detail;
 			}}
 			button_text={`Type ${$store.submission_type ? `(${$store.submission_type})` : ''}`}
@@ -39,7 +40,7 @@
 		/>
 		<SelectMenu
 			popover_id="filter-status"
-			on:select={(e) => {
+			onselect={(e) => {
 				$store.status = e.detail;
 			}}
 			button_text={`Status ${$store.status ? `(${$store.status})` : ''}`}
@@ -52,7 +53,7 @@
 		/>
 		<SelectMenu
 			popover_id="filter-perPage"
-			on:select={(e) => {
+			onselect={(e) => {
 				$store.perPage = e.detail;
 			}}
 			value_as_label
@@ -67,7 +68,7 @@
 		/>
 		<SelectMenu
 			popover_id="filter-order"
-			on:select={(e) => {
+			onselect={(e) => {
 				$store.order = e.detail;
 			}}
 			value={$store.order || 'desc'}
@@ -104,9 +105,9 @@
 					>{submission.body.replaceAll('\n', '\n\n').trim()}
 				</textarea>
 				<footer>
-					<FormWithLoader global={false} action="?/update_submission" method="post" >
+					<FormWithLoader global={false} action="?/update_submission" method="post">
 						{#snippet children({ loading })}
-												<select
+							<select
 								name="status"
 								id="status"
 								value={submission.status}
@@ -121,20 +122,19 @@
 							</select>
 							<input type="hidden" name="id" value={submission.id} />
 							<button style:display="none" type="submit">{loading ? 'Updating' : 'Update'}</button>
-																	{/snippet}
-										</FormWithLoader>
+						{/snippet}
+					</FormWithLoader>
 					<FormWithLoader
 						global={false}
 						confirm="Are you sure you want to delete this submission?"
 						action="?/delete_submission"
 						method="post"
-						
 					>
 						{#snippet children({ loading })}
-												<input type="hidden" name="id" value={submission.id} />
+							<input type="hidden" name="id" value={submission.id} />
 							<button class="warning" type="submit">{loading ? 'Deleting' : 'Delete'}</button>
-																	{/snippet}
-										</FormWithLoader>
+						{/snippet}
+					</FormWithLoader>
 				</footer>
 			</div>
 		{/each}

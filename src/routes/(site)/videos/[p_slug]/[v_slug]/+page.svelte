@@ -1,11 +1,7 @@
 <script lang="ts">
 	import ShowCard from '$/lib/ShowCard.svelte';
 
-	interface Props {
-		data: any;
-	}
-
-	let { data }: Props = $props();
+	let { data } = $props();
 	let { video } = $derived(data);
 
 	function insertBreaks(str: string) {

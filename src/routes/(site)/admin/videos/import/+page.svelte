@@ -4,11 +4,7 @@
 	import FormButton from '$/lib/FormButton.svelte';
 	import { format } from 'date-fns';
 
-	interface Props {
-		data: any;
-	}
-
-	let { data }: Props = $props();
+	let { data } = $props();
 	let { playlists, local_playlists } = $derived(data);
 
 	let search_text = $state('');

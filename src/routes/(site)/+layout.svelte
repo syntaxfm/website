@@ -16,12 +16,7 @@
 	import { page } from '$app/stores';
 	import PageLoadingIndicator from '$lib/page_loading_indicator.svelte';
 
-	interface Props {
-		data: any;
-		children?: import('svelte').Snippet;
-	}
-
-	let { data, children }: Props = $props();
+	let { data, children } = $props();
 	let { user, user_theme, latest } = $derived(data);
 
 	onNavigate(async (navigation) => {

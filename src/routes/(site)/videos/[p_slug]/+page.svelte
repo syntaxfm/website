@@ -1,9 +1,5 @@
 <script lang="ts">
-	interface Props {
-		data: any;
-	}
-
-	let { data }: Props = $props();
+	let { data } = $props();
 	let { playlist } = $derived(data);
 </script>
 

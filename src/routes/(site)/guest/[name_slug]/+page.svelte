@@ -2,11 +2,7 @@
 	import ShowCard from '$lib/ShowCard.svelte';
 	import HostSocialLink from '$lib/hosts/HostSocialLink.svelte';
 
-	interface Props {
-		data: any;
-	}
-
-	let { data }: Props = $props();
+	let { data } = $props();
 	let { guest } = $derived(data);
 </script>
 

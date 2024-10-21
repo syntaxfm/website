@@ -2,17 +2,11 @@
 	import PodcastHero from '$lib/PodcastHero.svelte';
 	import ShowCard from '$lib/ShowCard.svelte';
 
-	interface Props {
-		data: any;
-	}
-
-	let { data }: Props = $props();
+	let { data } = $props();
 	let { latest } = $derived(data);
 	type Show = (typeof latest)[0];
 	let last_ten: Show[] = $derived(latest);
 	let latest_show: Show | null = $state(null);
-
-	
 </script>
 
 <h1 class="visually-hidden">Syntax Podcast</h1>

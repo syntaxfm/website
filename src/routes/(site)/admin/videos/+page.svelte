@@ -1,13 +1,9 @@
 <script lang="ts">
 	import AdminActions from '$/lib/AdminActions.svelte';
 	import AdminSearch from '$/lib/AdminSearch.svelte';
-	import FormButton from '$/lib/FormButton.svelte';
 	import { format } from 'date-fns';
-	interface Props {
-		data: any;
-	}
 
-	let { data }: Props = $props();
+	let { data } = $props();
 	let { local_playlists } = $derived(data);
 
 	let search_text = $state('');

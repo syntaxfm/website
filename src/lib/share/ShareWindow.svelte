@@ -1,11 +1,9 @@
 <script lang="ts">
-	import { run } from 'svelte/legacy';
-
 	import { clickOutDialog } from '$/actions/click_outside_dialog';
-	import { episode_share_status, player } from '$/state/player';
+	import { episode_share_status } from '$/state/player';
 	import type { Show } from '@prisma/client';
 	import ShareActions from './ShareActions.svelte';
-	let modal: HTMLDialogElement = $state();
+	let modal: HTMLDialogElement = $state(null!);
 	interface Props {
 		show: Show;
 		timestamp?: boolean;
@@ -17,16 +15,12 @@
 		$episode_share_status = false;
 	}
 
-	run(() => {
+	$effect(() => {
 		if ($episode_share_status) {
 			if (modal) {
 				modal.showModal();
 			}
-		}
-	});
-
-	run(() => {
-		if (!$episode_share_status) {
+		} else {
 			if (modal) {
 				modal.close();
 			}

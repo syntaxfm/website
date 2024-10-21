@@ -6,11 +6,8 @@
 	import FormWithLoader from '$lib/FormWithLoader.svelte';
 	import { form_action } from '$lib/form_action';
 	import { format } from 'date-fns';
-	interface Props {
-		data: any;
-	}
 
-	let { data }: Props = $props();
+	let { data } = $props();
 	let { shows } = $derived(data);
 
 	let confirm = $state(false);
@@ -104,35 +101,25 @@
 						<td class="center">{show._count.guests}</td>
 						<td class="center"
 							>{#if show.transcript}
-								✅ <FormWithLoader
-									global={false}
-									action="?/delete_transcript"
-									method="post"
-									
-								>
+								✅ <FormWithLoader global={false} action="?/delete_transcript" method="post">
 									{#snippet children({ loading })}
-																		<input type="hidden" name="show_number" value={show.number} />
+										<input type="hidden" name="show_number" value={show.number} />
 										<button class="warning" type="submit">{loading ? 'Deleting' : 'Delete'}</button>
-																										{/snippet}
-																</FormWithLoader>
+									{/snippet}
+								</FormWithLoader>
 							{:else}
-								<FormWithLoader
-									global={false}
-									action="?/fetch_show_transcript"
-									method="post"
-									
-								>
+								<FormWithLoader global={false} action="?/fetch_show_transcript" method="post">
 									{#snippet children({ loading })}
-																		<input type="hidden" name="show_number" value={show.number} />
+										<input type="hidden" name="show_number" value={show.number} />
 										<button type="submit">Fetch{loading ? 'ing' : ''}</button>
-																										{/snippet}
-																</FormWithLoader>
+									{/snippet}
+								</FormWithLoader>
 							{/if}</td
 						>
 						<td class="center">
-							<FormWithLoader global={false} action="?/fetch_AI_notes" method="post" >
+							<FormWithLoader global={false} action="?/fetch_AI_notes" method="post">
 								{#snippet children({ loading })}
-																<fieldset disabled={loading}>
+									<fieldset disabled={loading}>
 										<input type="hidden" name="show_number" value={show.number} />
 										{#if show.aiShowNote}
 											✅
@@ -141,8 +128,8 @@
 											<button type="submit">Fetch{loading ? 'ing' : ''}</button>
 										{/if}
 									</fieldset>
-																							{/snippet}
-														</FormWithLoader>
+								{/snippet}
+							</FormWithLoader>
 						</td>
 					</tr>
 				{/each}
