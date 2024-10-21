@@ -1,10 +1,18 @@
-<!-- @migration-task Error while migrating Svelte code: This migration would change the name of a slot making the component unusable -->
 <script lang="ts">
 	// ? What is this
 	// A popover based drop down menu. Less specific than the Select Menu
 	// This uses slots instead of props
 	import { anchor } from '$actions/anchor';
-	export let popover_id: string;
+	import type { Snippet } from 'svelte';
+	let {
+		children,
+		button,
+		popover_id
+	}: {
+		children: Snippet;
+		button: Snippet;
+		popover_id: string;
+	} = $props();
 </script>
 
 <div class="dropdown-menu">
@@ -13,10 +21,10 @@
 		class="dropdown-button button-reset"
 		use:anchor={{ id: popover_id, position: ['BOTTOM', 'RIGHT'] }}
 	>
-		<slot name="dropdown-button" />
+		{@render button()}
 	</button>
 	<div popover id={popover_id} class="dropdown-links">
-		<slot name="dropdown-links" />
+		{@render children()}
 	</div>
 </div>
 

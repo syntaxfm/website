@@ -15,10 +15,11 @@
 
 {#if user}
 	<DropdownMenu popover_id="user-menu">
-		<!-- @migration-task: migrate this slot by hand, `dropdown-button` is an invalid identifier -->
-	<img class="avatar" slot="dropdown-button" src={user.avatar_url} alt="User Avatar" />
-		<!-- @migration-task: migrate this slot by hand, `dropdown-links` is an invalid identifier -->
-	<div slot="dropdown-links">
+		{#snippet button()}
+			<img class="avatar" src={user.avatar_url} alt="User Avatar" />
+		{/snippet}
+
+		<div>
 			<form use:enhance={form_action({ message: 'Logout ' })} action="/?/logout" method="POST">
 				<button type="submit">Logout</button>
 			</form>
