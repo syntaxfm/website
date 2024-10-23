@@ -1,24 +1,26 @@
 <script lang="ts">
+	import FacePile from '$/lib/FacePile.svelte';
 	import type { LatestShow } from '$server/ai/queries';
 	import { format_show_type } from '$utilities/format_show_type';
 	import { format } from 'date-fns';
 	import { tick } from 'svelte';
-	import FacePile from '../../../../lib/FacePile.svelte';
 
-	export let show: LatestShow & { isPage?: boolean };
-	export let show_date = show.date ? new Date(show.date) : null;
+	interface Props {
+		show: LatestShow & { isPage?: boolean };
+		show_date?: any;
+	}
 
-	let hosts = (show.hosts || []).map((host) => ({
+	let { show, show_date = show.date ? new Date(show.date) : null }: Props = $props();
+
+	let hosts = (
+		show.hosts || [
+			{ name: 'Wes Bos', github: 'wesbos' },
+			{ name: 'Scott Tolinski', github: 'stolinski' }
+		]
+	).map((host) => ({
 		name: host.name || '',
 		github: host.username || ''
 	}));
-
-	if (!hosts.length) {
-		hosts = [
-			{ name: 'Wes Bos', github: 'wesbos' },
-			{ name: 'Scott Tolinski', github: 'stolinski' }
-		];
-	}
 
 	function fitText(node: HTMLHeadElement) {
 		node.classList.remove('finish-sizing-text');

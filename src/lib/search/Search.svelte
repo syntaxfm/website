@@ -8,7 +8,7 @@
 <button
 	class="button-reset"
 	aria-label="Search (shortcut: {shortcut}K)"
-	on:click={() => {
+	onclick={() => {
 		$searching = true;
 	}}
 >

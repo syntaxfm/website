@@ -4,9 +4,15 @@
 	import { loading } from '$state/loading';
 	import type { ActionResult, SubmitFunction } from '@sveltejs/kit';
 	import toast from 'svelte-french-toast';
-	let formLoading = false;
-	export let global = true; // By default, the global loader UI is used
-	export let confirm = '';
+	let formLoading = $state(false);
+	interface Props {
+		global?: boolean;
+		confirm?: string;
+		children?: import('svelte').Snippet<[any]>;
+		[key: string]: any
+	}
+
+	let { global = true, confirm = '', children, ...rest }: Props = $props();
 
 	type FormActionMessage = {
 		message?: string;
@@ -48,6 +54,6 @@
 	};
 </script>
 
-<form {...$$restProps} use:enhance={form_action()}>
-	<slot loading={formLoading} />
+<form {...rest} use:enhance={form_action()}>
+	{@render children?.({ loading: formLoading, })}
 </form>

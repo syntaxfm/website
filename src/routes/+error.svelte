@@ -3,12 +3,17 @@
 	import Layout from './(site)/+layout.svelte';
 	import type { UserWithRoles } from '$/server/auth/users';
 
-	// error page does not automatically infer layout data...
-	export let data: {
+	
+	interface Props {
+		// error page does not automatically infer layout data...
+		data: {
 		user: UserWithRoles;
 		user_theme: string;
 	};
-	$: ({ user, user_theme } = data);
+	}
+
+	let { data }: Props = $props();
+	let { user, user_theme } = $derived(data);
 </script>
 
 <!-- Manually render (site) layout around error -->

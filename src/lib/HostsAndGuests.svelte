@@ -1,12 +1,16 @@
 <script lang="ts">
 	import type { Guest } from '@prisma/client';
 	import Host from '$lib/hosts/Host.svelte';
-	export let guests: { Guest: Guest }[] = [];
-	export let hosts: {
+	interface Props {
+		guests?: { Guest: Guest }[];
+		hosts?: {
 		name: string | null;
 		username: string | null;
 		twitter: string | null;
-	}[] = [];
+	}[];
+	}
+
+	let { guests = [], hosts = [] }: Props = $props();
 </script>
 
 <div class="guests-and-hosts">

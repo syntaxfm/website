@@ -2,8 +2,8 @@
 	import ShowCard from '$lib/ShowCard.svelte';
 	import HostSocialLink from '$lib/hosts/HostSocialLink.svelte';
 
-	export let data;
-	$: ({ guest } = data);
+	let { data } = $props();
+	let { guest } = $derived(data);
 </script>
 
 {#if guest}

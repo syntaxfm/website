@@ -4,7 +4,7 @@
 	import { loading } from '$state/loading';
 	import { form_action } from '$lib/form_action';
 
-	export let data;
+	let { data } = $props();
 	const { user } = data;
 </script>
 
@@ -20,7 +20,7 @@
 			<p>If you are not on the Syntax team, this login will do nothing for you.</p>
 			<a
 				class="button subtle"
-				on:click={() => loading.setLoading(true)}
+				onclick={() => loading.setLoading(true)}
 				href="/api/oauth/github"
 				rel="external"
 			>

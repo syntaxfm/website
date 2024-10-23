@@ -3,7 +3,11 @@
 	const height = 26;
 	const stroke = 6;
 	const halfStroke = stroke / 2;
-	export let top: boolean = false;
+	interface Props {
+		top?: boolean;
+	}
+
+	let { top = false }: Props = $props();
 </script>
 
 <svg

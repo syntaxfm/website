@@ -6,11 +6,12 @@
 	import FormWithLoader from '$lib/FormWithLoader.svelte';
 	import { form_action } from '$lib/form_action';
 	import { format } from 'date-fns';
-	export let data;
-	$: ({ shows } = data);
 
-	let confirm = false;
-	let search_text = '';
+	let { data } = $props();
+	let { shows } = $derived(data);
+
+	let confirm = $state(false);
+	let search_text = $state('');
 </script>
 
 <h1 class="h4">Shows</h1>
@@ -37,7 +38,7 @@
 		>
 			{#if !confirm}
 				<button
-					on:click={() => {
+					onclick={() => {
 						confirm = true;
 					}}
 					class="warning">Drop All Shows</button
@@ -100,38 +101,34 @@
 						<td class="center">{show._count.guests}</td>
 						<td class="center"
 							>{#if show.transcript}
-								✅ <FormWithLoader
-									global={false}
-									action="?/delete_transcript"
-									method="post"
-									let:loading
-								>
-									<input type="hidden" name="show_number" value={show.number} />
-									<button class="warning" type="submit">{loading ? 'Deleting' : 'Delete'}</button>
+								✅ <FormWithLoader global={false} action="?/delete_transcript" method="post">
+									{#snippet children({ loading })}
+										<input type="hidden" name="show_number" value={show.number} />
+										<button class="warning" type="submit">{loading ? 'Deleting' : 'Delete'}</button>
+									{/snippet}
 								</FormWithLoader>
 							{:else}
-								<FormWithLoader
-									global={false}
-									action="?/fetch_show_transcript"
-									method="post"
-									let:loading
-								>
-									<input type="hidden" name="show_number" value={show.number} />
-									<button type="submit">Fetch{loading ? 'ing' : ''}</button>
+								<FormWithLoader global={false} action="?/fetch_show_transcript" method="post">
+									{#snippet children({ loading })}
+										<input type="hidden" name="show_number" value={show.number} />
+										<button type="submit">Fetch{loading ? 'ing' : ''}</button>
+									{/snippet}
 								</FormWithLoader>
 							{/if}</td
 						>
 						<td class="center">
-							<FormWithLoader global={false} action="?/fetch_AI_notes" method="post" let:loading>
-								<fieldset disabled={loading}>
-									<input type="hidden" name="show_number" value={show.number} />
-									{#if show.aiShowNote}
-										✅
-										<button type="submit"> Refetch{loading ? 'ing' : ''}</button>
-									{:else}
-										<button type="submit">Fetch{loading ? 'ing' : ''}</button>
-									{/if}
-								</fieldset>
+							<FormWithLoader global={false} action="?/fetch_AI_notes" method="post">
+								{#snippet children({ loading })}
+									<fieldset disabled={loading}>
+										<input type="hidden" name="show_number" value={show.number} />
+										{#if show.aiShowNote}
+											✅
+											<button type="submit"> Refetch{loading ? 'ing' : ''}</button>
+										{:else}
+											<button type="submit">Fetch{loading ? 'ing' : ''}</button>
+										{/if}
+									</fieldset>
+								{/snippet}
 							</FormWithLoader>
 						</td>
 					</tr>

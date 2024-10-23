@@ -2,7 +2,8 @@
 	import type { Show } from '@prisma/client';
 	import { format } from 'date-fns';
 
-	export let shows: (Show & {
+	interface Props {
+		shows: (Show & {
 		aiShowNote: {
 			id: number;
 			show_number: number;
@@ -16,6 +17,9 @@
 			}[];
 		} | null;
 	})[];
+	}
+
+	let { shows }: Props = $props();
 </script>
 
 <div class="table-container">

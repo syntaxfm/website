@@ -3,12 +3,16 @@
 	import AdminSearch from '$/lib/AdminSearch.svelte';
 	import type { PageData } from './$types';
 
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
+
+	let { data }: Props = $props();
 	const { playlist, videos } = data;
 
-	let search_text = '';
+	let search_text = $state('');
 
-	$: filtered = videos?.filter((s) => s.title.toLowerCase().includes(search_text.toLowerCase()));
+	let filtered = $derived(videos?.filter((s) => s.title.toLowerCase().includes(search_text.toLowerCase())));
 </script>
 
 <h1>{playlist?.title}</h1>

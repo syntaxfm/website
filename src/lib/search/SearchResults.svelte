@@ -2,8 +2,12 @@
 	import SearchResultList from './SearchResultList.svelte';
 	import type { Tree } from './types';
 
-	export let results: Tree[];
-	export let query: string;
+	interface Props {
+		results: Tree[];
+		query: string;
+	}
+
+	let { results, query }: Props = $props();
 </script>
 
 {#if results.length > 0}

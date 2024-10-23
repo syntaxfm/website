@@ -4,10 +4,14 @@
 	import type { Show } from '@prisma/client';
 	import toast, { Toaster } from 'svelte-french-toast';
 
-	export let timestamp = true;
-	export let show: Show;
+	interface Props {
+		timestamp?: boolean;
+		show: Show;
+	}
 
-	let share_at_ts = false;
+	let { timestamp = true, show }: Props = $props();
+
+	let share_at_ts = $state(false);
 
 	const toHMS = (seconds: number) => {
 		const hours = Math.floor(seconds / 3600);
@@ -39,11 +43,11 @@
 		);
 	}
 
-	$: time_stamp =
-		share_at_ts && $player?.audio?.currentTime
+	let time_stamp =
+		$derived(share_at_ts && $player?.audio?.currentTime
 			? `%3Ft%3D${toHMS(Math.trunc($player.audio?.currentTime))}`
-			: ``;
-	$: share_url = `https%3A//syntax.fm/${show.number}${time_stamp}`;
+			: ``);
+	let share_url = $derived(`https%3A//syntax.fm/${show.number}${time_stamp}`);
 </script>
 
 {#if timestamp}
@@ -56,10 +60,10 @@
 	</p>
 {/if}
 <Toaster />
-<button on:click={copy_embed} aria-label="Copy Embed Code for this show"
+<button onclick={copy_embed} aria-label="Copy Embed Code for this show"
 	><Icon name="code" /> Embed</button
 >
-<button on:click={() => copy(share_url)} aria-label="Copy link to this show"
+<button onclick={() => copy(share_url)} aria-label="Copy link to this show"
 	><Icon name="link" /> Link</button
 >
 <a

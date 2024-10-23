@@ -4,7 +4,7 @@
 	import { oklchToRgba, rgbaToHex } from '$/utilities/colors';
 
 	const COLORS = ['black', 'yellow', 'teal', 'green', 'red', 'purple'];
-	let type: 'VARIABLE' | 'OKLCH' | 'RGBA' | 'HEX';
+	let type: 'VARIABLE' | 'OKLCH' | 'RGBA' | 'HEX' = $state('HEX');
 
 	function pick_color(index: number) {
 		if (index >= 5) {
@@ -48,14 +48,14 @@
 			<div
 				tabindex="0"
 				role="button"
-				on:keydown={(e) => {
+				onkeydown={(e) => {
 					let { currentTarget } = e;
 					if (e.key === 'Enter' || e.keyCode === 13) {
 						copy_color(color, currentTarget);
 					}
 				}}
 				class="primary box"
-				on:click={({ currentTarget }) => copy_color(color, currentTarget)}
+				onclick={({ currentTarget }) => copy_color(color, currentTarget)}
 				style={`--fg_demo_box_color: var(--${color})`}
 			>
 				{color}
@@ -64,13 +64,13 @@
 				<div
 					tabindex="0"
 					role="button"
-					on:keydown={(e) => {
+					onkeydown={(e) => {
 						let { currentTarget } = e;
 						if (e.key === 'Enter' || e.keyCode === 13) {
 							copy_color(color, currentTarget);
 						}
 					}}
-					on:click={({ currentTarget }) => copy_color(`${color}-${index + 1}`, currentTarget)}
+					onclick={({ currentTarget }) => copy_color(`${color}-${index + 1}`, currentTarget)}
 					class={`box`}
 					style={`--fg_demo_color: var(--${color}-${pick_color(
 						index

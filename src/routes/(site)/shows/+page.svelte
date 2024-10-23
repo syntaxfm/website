@@ -6,9 +6,8 @@
 	import ShowCard from '$lib/ShowCard.svelte';
 	import { queryParameters } from 'sveltekit-search-params';
 
-	export let data;
-
-	$: ({ shows } = data);
+	let { data } = $props();
+	let { shows } = $derived(data);
 
 	const store = queryParameters<{
 		type?: string;
@@ -18,8 +17,8 @@
 	}>();
 
 	// We tell google to ignore filters, BUT not ?page=2...Infinity
-	$: isNoindexPage = ['order', 'type', 'sort', 'perPage'].some((filter) =>
-		$page.url.searchParams.has(filter)
+	let isNoindexPage = $derived(
+		['order', 'type', 'sort', 'perPage'].some((filter) => $page.url.searchParams.has(filter))
 	);
 </script>
 
@@ -35,7 +34,7 @@
 		<div style="display:flex; gap: 10px;">
 			<SelectMenu
 				popover_id="filter-type"
-				on:select={(e) => {
+				onselect={(e) => {
 					$store.type = e.detail;
 				}}
 				button_text="Type"
@@ -51,7 +50,7 @@
 			/>
 			<SelectMenu
 				popover_id="filter-perPage"
-				on:select={(e) => {
+				onselect={(e) => {
 					$store.perPage = e.detail;
 				}}
 				value_as_label
@@ -65,7 +64,7 @@
 			/>
 			<SelectMenu
 				popover_id="filter-order"
-				on:select={(e) => {
+				onselect={(e) => {
 					$store.order = e.detail;
 				}}
 				value={$store.order || 'desc'}

@@ -1,10 +1,14 @@
 <script lang="ts">
-	let modal: HTMLDialogElement;
+	let modal: HTMLDialogElement = $state(null!);
 	import { clickOutDialog } from '$actions/click_outside_dialog';
 	import type { Hotkeys } from './types';
 	import { formatShortcut } from './utils';
 
-	export let hotkeys: Hotkeys;
+	interface Props {
+		hotkeys: Hotkeys;
+	}
+
+	let { hotkeys = $bindable() }: Props = $props();
 
 	async function close() {
 		modal.close();
@@ -35,13 +39,13 @@
 	style:--bg="var(--bg-sheet)"
 	style:--fg="var(--fg-sheet)"
 	use:clickOutDialog
-	on:click-outside={close}
+	onclick-outside={close}
 	aria-labelledby="hotkey-header"
 >
 	<section aria-label="Hotkey Help Window">
 		<header role="banner">
 			<h3 class="h5" id="hotkey-header">Hotkeys</h3>
-			<button class="close" on:click={close} type="submit">×</button>
+			<button class="close" onclick={close} type="submit">×</button>
 		</header>
 		<div class="hotkeys">
 			{#each hotkeyNames as hotkey}

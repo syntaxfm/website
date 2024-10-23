@@ -13,12 +13,12 @@
 <section class="layout full">
 	<h3>.grid</h3>
 	<section class="grid">
-		<div class="col" />
-		<div class="col" />
-		<div class="col" />
-		<div class="col" />
-		<div class="col" />
-		<div class="col" />
+		<div class="col"></div>
+		<div class="col"></div>
+		<div class="col"></div>
+		<div class="col"></div>
+		<div class="col"></div>
+		<div class="col"></div>
 	</section>
 </section>
 

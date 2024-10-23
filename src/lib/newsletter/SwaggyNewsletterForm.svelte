@@ -1,18 +1,20 @@
 <script lang="ts">
 	import Input from '$lib/forms/Input.svelte';
 	import swag from './swag.png';
-	let is_hidden = false;
+	let is_hidden = $state(false);
 
 	const FORM_ID = 5465361;
-	$: action = `https://app.convertkit.com/forms/${FORM_ID}/subscriptions`;
+	let action = $derived(`https://app.convertkit.com/forms/${FORM_ID}/subscriptions`);
 
 	function submit() {
 		document.cookie = 'newsletter_visible=hidden';
 	}
 
-	$: if (typeof document !== 'undefined') {
-		is_hidden = document.cookie.includes('newsletter_visible');
-	}
+	$effect(() => {
+		if (typeof document !== 'undefined') {
+			is_hidden = document.cookie.includes('newsletter_visible');
+		}
+	});
 </script>
 
 {#if !is_hidden}
@@ -22,7 +24,7 @@
 		<p>Subscribe to the Syntax<br /><a href="/snackpack">Snack Pack Newsletter</a></p>
 		<form
 			{action}
-			on:submit={submit}
+			onsubmit={submit}
 			method="post"
 			data-sv-form={FORM_ID}
 			data-uid="05d939b74d"

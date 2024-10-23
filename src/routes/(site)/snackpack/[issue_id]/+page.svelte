@@ -1,6 +1,12 @@
 <script>
 	import { format } from 'date-fns';
-	export let data;
+	/**
+	 * @typedef {Object} Props
+	 * @property {any} data
+	 */
+
+	/** @type {Props} */
+	let { data } = $props();
 </script>
 
 <main>

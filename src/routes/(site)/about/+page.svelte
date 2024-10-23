@@ -61,14 +61,19 @@
 	};
 
 	const speed = 169;
-	$: since_start = Date.now() - 1499256000000;
-	setInterval(() => {
-		since_start = Date.now() - 1499256000000;
-	}, 500);
+	let since_start = $state(Date.now() - 1499256000000);
 
-	$: digits = since_start.toString().split('');
+	let interval: ReturnType<typeof setInterval>;
+	$effect(() => {
+		interval = setInterval(() => {
+			since_start = Date.now() - 1499256000000;
+		}, 500);
+		return () => clearInterval(interval);
+	});
 
-	export let data;
+	let digits = $derived(since_start.toString().split(''));
+
+	let { data } = $props();
 </script>
 
 <main style:margin-bottom="2rem">

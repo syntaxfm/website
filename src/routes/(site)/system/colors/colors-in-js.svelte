@@ -1,6 +1,10 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
-	export let colors: [string, string][] = [['load', 'ing']];
+	interface Props {
+		colors?: [string, string][];
+	}
+
+	let { colors = $bindable([['load', 'ing']]) }: Props = $props();
 	if (browser) {
 		const wrapper = document.querySelector('.theme-wrapper');
 		if (wrapper) {

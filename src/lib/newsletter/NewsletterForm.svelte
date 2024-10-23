@@ -1,20 +1,26 @@
 <script lang="ts">
 	import NewsletterLogo from './NewsletterLogo.svelte';
 	import Input from '$lib/forms/Input.svelte';
-	let is_hidden = false;
+	let is_hidden = $state(false);
 
-	export let show_logo = true;
+	interface Props {
+		show_logo?: boolean;
+	}
+
+	let { show_logo = true }: Props = $props();
 
 	const FORM_ID = 5465361;
-	$: action = `https://app.convertkit.com/forms/${FORM_ID}/subscriptions`;
+	let action = $derived(`https://app.convertkit.com/forms/${FORM_ID}/subscriptions`);
 
 	function submit() {
 		document.cookie = 'newsletter_visible=hidden';
 	}
 
-	$: if (typeof document !== 'undefined') {
-		is_hidden = document.cookie.includes('newsletter_visible');
-	}
+	$effect(() => {
+		if (typeof document !== 'undefined') {
+			is_hidden = document.cookie.includes('newsletter_visible');
+		}
+	});
 </script>
 
 <div class="newsletter-layout">
@@ -27,7 +33,7 @@
 	{/if}
 	<form
 		{action}
-		on:submit={submit}
+		onsubmit={submit}
 		method="post"
 		data-sv-form={FORM_ID}
 		data-uid="05d939b74d"

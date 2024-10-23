@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	export type IconName =
 		| 'play'
 		| 'playing'
@@ -36,9 +36,13 @@
 <script lang="ts">
 	import { capitalize } from '$utilities/capitalize';
 
-	export let name: IconName;
-	export let title: string | boolean = '';
-	export let aria_hidden = true;
+	interface Props {
+		name: IconName;
+		title?: string | boolean;
+		aria_hidden?: boolean;
+	}
+
+	let { name, title = $bindable(''), aria_hidden = true }: Props = $props();
 	if (!title && title !== false) title = capitalize(name);
 </script>
 

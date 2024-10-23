@@ -1,11 +1,21 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import { form_action } from './form_action';
-	export let text: string;
-	export let thinking_text: string;
-	export let action_path: string;
+	interface Props {
+		text: string;
+		thinking_text: string;
+		action_path: string;
+		children?: import('svelte').Snippet;
+	}
 
-	let thinking = false;
+	let {
+		text,
+		thinking_text,
+		action_path,
+		children
+	}: Props = $props();
+
+	let thinking = $state(false);
 </script>
 
 <form
@@ -21,6 +31,6 @@
 		}
 	)}
 >
-	<slot />
+	{@render children?.()}
 	<button disabled={thinking} type="submit">{thinking ? thinking_text : text}</button>
 </form>

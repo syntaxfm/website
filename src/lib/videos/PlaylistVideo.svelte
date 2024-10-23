@@ -1,8 +1,12 @@
 <script lang="ts">
 	import type { Playlist, Video } from '@prisma/client';
 
-	export let video: Video;
-	export let playlist: Playlist;
+	interface Props {
+		video: Video;
+		playlist: Playlist;
+	}
+
+	let { video, playlist }: Props = $props();
 </script>
 
 <div>

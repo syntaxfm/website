@@ -4,8 +4,12 @@
 	import { form_action } from '$lib/form_action';
 	import type { PageData } from './$types';
 
-	export let data: PageData;
-	$: ({ transcripts } = data);
+	interface Props {
+		data: PageData;
+	}
+
+	let { data }: Props = $props();
+	let { transcripts } = $derived(data);
 </script>
 
 <h1 class="h4">Transcripts</h1>

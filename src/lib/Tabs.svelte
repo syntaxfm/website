@@ -1,5 +1,15 @@
+<script>
+	/**
+	 * @typedef {Object} Props
+	 * @property {import('svelte').Snippet} [children]
+	 */
+
+	/** @type {Props} */
+	let { children } = $props();
+</script>
+
 <div class="tabs grit">
-	<slot />
+	{@render children?.()}
 </div>
 
 <style>

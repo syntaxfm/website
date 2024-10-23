@@ -1,5 +1,11 @@
 <script>
-	export let displayError;
+	/**
+	 * @typedef {Object} Props
+	 * @property {any} displayError
+	 */
+
+	/** @type {Props} */
+	let { displayError } = $props();
 </script>
 
 {#if displayError}

@@ -1,7 +1,12 @@
 <script lang="ts">
+	import Dump from './Dump.svelte';
 	import { onMount } from 'svelte';
 
-	export let data: Record<any, any> | any[];
+	interface Props {
+		data: Record<any, any> | any[];
+	}
+
+	let { data }: Props = $props();
 	let entries = Object.entries(data);
 
 	function getHeadersFromKeys(data: Record<string, any>[]) {
@@ -29,7 +34,7 @@
 				<td>{key}</td>
 				{#if Array.isArray(val)}
 					<td>
-						<svelte:self data={val} />
+						<Dump data={val} />
 					</td>
 				{:else if val instanceof Date}
 					<td>{val}</td>

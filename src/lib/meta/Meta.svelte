@@ -4,7 +4,7 @@
 
 	let title = `Syntax - Web Development Podcast`;
 
-	$: meta = {
+	let meta = $derived({
 		//·defaults
 		description: `Full Stack Web Developers Wes Bos and Scott Tolinski dive deep into web development, CSS, JavaScript, Frameworks, Typescript, Servers and more. Listen in 3 times a week!`,
 		image: `${$page.url.protocol}//${$page.url.host}/og/${encodeURIComponent(
@@ -13,7 +13,7 @@
 		title,
 		// any page customizations
 		...$page.data.meta
-	};
+	});
 
 	function generateTitle(title: string) {
 		if (title.toLowerCase().includes('syntax')) return title;
