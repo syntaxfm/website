@@ -1,8 +1,8 @@
 ---
-number: 843
+number: 846
 title: "Talking EVs: Range Anxiety, Charging, and Tech"
 date: 1731326400000
-url: https://traffic.libsyn.com/syntax/Syntax_-_843.mp3
+url: https://traffic.libsyn.com/syntax/Syntax_-_846.mp3
 youtube_url: https://www.youtube.com/watch?v=U1TDq3h2OW0
 ---
 
