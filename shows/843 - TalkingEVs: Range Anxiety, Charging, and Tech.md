@@ -14,7 +14,7 @@ Scott and Wes unpack their experiences as electric car owners, sharing the highs
 * **[02:11](#t=02:11)** Brought to you by [Sentry.io](https://sentry.io/syntax).
 * **[03:14](#t=03:14)** What cars and how long have we had them.
     * [Hyundai IONIQ 5](https://www.hyundai.com/uk/en/models/new-ioniq5.html).
-    * [Tesla Model Y Long Range](https://www.tesla.com/modely).
+    * [Tesla Model Y Long Range](https://ts.la/wes189166).
 * **[10:41](#t=10:41)** Range and dealing with range anxiety.
 * **[11:45](#t=11:45)** The [EPA](https://www.epa.gov/) specs.
 * **[12:24](#t=12:24)** Things that affect range.
