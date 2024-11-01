@@ -25,7 +25,8 @@
 		"db:seed": "prisma db seed",
 		"i-changed-the-schema": "pnpm run db:push && pnpm run db:generate",
 		"postinstall": "pnpm db:generate && pnpm exec playwright install",
-		"stylelint": "NODE_OPTIONS=--no-deprecation stylelint \"**/*.css\""
+		"stylelint": "NODE_OPTIONS=--no-deprecation stylelint \"**/*.css\"",
+		"test:ci": "svelte-kit sync && playwright test --reporter=dot"
 	},
 	"devDependencies": {
 		"@codecov/sveltekit-plugin": "0.0.1-beta.12",
