@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { preventDefault } from 'svelte/legacy';
+
 	import { player } from '$state/player';
 	import { format_show_type } from '$utilities/format_show_type';
 	import get_show_path from '$utilities/slug';
@@ -9,10 +11,19 @@
 	import Badges from './badges/Badges.svelte';
 	import type { ShowCard } from '$/server/shows/shows_queries';
 
-	export let show: ShowCard;
-	export let display: 'list' | 'card' | 'highlight' = 'card';
-	export let heading = 'h4';
-	export let show_date = new Date(show.date);
+	interface Props {
+		show: ShowCard;
+		display?: 'list' | 'card' | 'highlight';
+		heading?: string;
+		show_date?: any;
+	}
+
+	let {
+		show,
+		display = 'card',
+		heading = 'h4',
+		show_date = new Date(show.date)
+	}: Props = $props();
 
 	function format_date(date: Date, baseDate: Date = new Date()) {
 		const timeFormatter = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
@@ -34,7 +45,7 @@
 	let hosts: {
 		name: string;
 		github: string;
-	}[] = [];
+	}[] = $state([]);
 	if ((show?.hosts?.length || 0) > 0) {
 		show.hosts?.forEach((host) => {
 			hosts.push({
@@ -59,7 +70,7 @@
 		{#if display === 'list'}
 			<button
 				data-testid="play-show"
-				on:click|preventDefault={() => player.start_show(show)}
+				onclick={preventDefault(() => player.start_show(show))}
 				class="play-button"
 			>
 				<Icon name="play" />
@@ -124,7 +135,7 @@
 						<button
 							data-testid="play-show"
 							class:play={display === 'highlight'}
-							on:click|preventDefault={() => player.start_show(show)}
+							onclick={preventDefault(() => player.start_show(show))}
 							><Icon name="play" /> Play #{show.number}</button
 						>
 					</div>

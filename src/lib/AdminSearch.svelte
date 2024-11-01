@@ -1,5 +1,9 @@
 <script lang="ts">
-	export let text = '';
+	interface Props {
+		text?: string;
+	}
+
+	let { text = $bindable('') }: Props = $props();
 </script>
 
 <input type="text" bind:value={text} placeholder="Search" />

@@ -12,8 +12,13 @@
 		page: string;
 	}>();
 
-	export let data: PageData;
-	$: ({ submissions, submission_count, user_submission_status, user_submission_type } = data);
+	interface Props {
+		data: PageData;
+	}
+
+	let { data }: Props = $props();
+	let { submissions, submission_count, user_submission_status, user_submission_type } =
+		$derived(data);
 </script>
 
 <h1 class="h4">Submissions ({submission_count})</h1>
@@ -22,7 +27,7 @@
 	<nav>
 		<SelectMenu
 			popover_id="filter-submission_type"
-			on:select={(e) => {
+			onselect={(e) => {
 				$store.submission_type = e.detail;
 			}}
 			button_text={`Type ${$store.submission_type ? `(${$store.submission_type})` : ''}`}
@@ -35,7 +40,7 @@
 		/>
 		<SelectMenu
 			popover_id="filter-status"
-			on:select={(e) => {
+			onselect={(e) => {
 				$store.status = e.detail;
 			}}
 			button_text={`Status ${$store.status ? `(${$store.status})` : ''}`}
@@ -48,7 +53,7 @@
 		/>
 		<SelectMenu
 			popover_id="filter-perPage"
-			on:select={(e) => {
+			onselect={(e) => {
 				$store.perPage = e.detail;
 			}}
 			value_as_label
@@ -63,7 +68,7 @@
 		/>
 		<SelectMenu
 			popover_id="filter-order"
-			on:select={(e) => {
+			onselect={(e) => {
 				$store.order = e.detail;
 			}}
 			value={$store.order || 'desc'}
@@ -100,32 +105,35 @@
 					>{submission.body.replaceAll('\n', '\n\n').trim()}
 				</textarea>
 				<footer>
-					<FormWithLoader global={false} action="?/update_submission" method="post" let:loading>
-						<select
-							name="status"
-							id="status"
-							value={submission.status}
-							on:change={(e) => {
-								e.currentTarget.form?.requestSubmit();
-							}}
-						>
-							<option value="PENDING">PENDING</option>
-							<option value="APPROVED">APPROVED</option>
-							<option value="COMPLETED">COMPLETED</option>
-							<option value="REJECTED">REJECTED</option>
-						</select>
-						<input type="hidden" name="id" value={submission.id} />
-						<button style:display="none" type="submit">{loading ? 'Updating' : 'Update'}</button>
+					<FormWithLoader global={false} action="?/update_submission" method="post">
+						{#snippet children({ loading })}
+							<select
+								name="status"
+								id="status"
+								value={submission.status}
+								onchange={(e) => {
+									e.currentTarget.form?.requestSubmit();
+								}}
+							>
+								<option value="PENDING">PENDING</option>
+								<option value="APPROVED">APPROVED</option>
+								<option value="COMPLETED">COMPLETED</option>
+								<option value="REJECTED">REJECTED</option>
+							</select>
+							<input type="hidden" name="id" value={submission.id} />
+							<button style:display="none" type="submit">{loading ? 'Updating' : 'Update'}</button>
+						{/snippet}
 					</FormWithLoader>
 					<FormWithLoader
 						global={false}
 						confirm="Are you sure you want to delete this submission?"
 						action="?/delete_submission"
 						method="post"
-						let:loading
 					>
-						<input type="hidden" name="id" value={submission.id} />
-						<button class="warning" type="submit">{loading ? 'Deleting' : 'Delete'}</button>
+						{#snippet children({ loading })}
+							<input type="hidden" name="id" value={submission.id} />
+							<button class="warning" type="submit">{loading ? 'Deleting' : 'Delete'}</button>
+						{/snippet}
 					</FormWithLoader>
 				</footer>
 			</div>

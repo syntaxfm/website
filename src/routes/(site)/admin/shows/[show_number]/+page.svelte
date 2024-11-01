@@ -1,16 +1,22 @@
 <script lang="ts">
 	import type { PageData, ActionData } from './$types';
 	import Dump from './Dump.svelte';
-	export let data: PageData;
-	export let form: ActionData;
-	let formRef: HTMLFormElement | null = null;
-	$: ({ show } = data);
-
-	$: if (form) {
-		formRef?.scrollIntoView({
-			behavior: 'smooth',
-		});
+	interface Props {
+		data: PageData;
+		form: ActionData;
 	}
+
+	let { data, form }: Props = $props();
+	let formRef: HTMLFormElement | null = $state(null);
+	let { show } = $derived(data);
+
+	$effect(() => {
+		if (form) {
+			formRef?.scrollIntoView({
+				behavior: 'smooth'
+			});
+		}
+	});
 </script>
 
 <h1 class="h4">DB dump</h1>
@@ -29,7 +35,8 @@
 		<label for="title">Title</label>
 		<input name="title" id="title" value={show?.aiShowNote.title} />
 		<label for="description">Description</label>
-		<textarea name="description" id="description" rows={4} value={show?.aiShowNote.description}></textarea>
+		<textarea name="description" id="description" rows={4} value={show?.aiShowNote.description}
+		></textarea>
 		<button>Update</button>
 	</form>
 	<Dump data={show?.aiShowNote} />

@@ -1,12 +1,16 @@
 <script lang="ts">
 	import HostSocialLink from './HostSocialLink.svelte';
-	export let guest: boolean = false;
-	export let host: {
+	interface Props {
+		guest?: boolean;
+		host: {
 		name: string;
 		github?: string | null;
 		twitter?: string | null;
 		slug?: string;
 	};
+	}
+
+	let { guest = false, host }: Props = $props();
 </script>
 
 <div class="person">

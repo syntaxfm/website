@@ -1,6 +1,6 @@
 <script lang="ts">
-	export let data;
-	$: ({ playlist } = data);
+	let { data } = $props();
+	let { playlist } = $derived(data);
 </script>
 
 {#if playlist}

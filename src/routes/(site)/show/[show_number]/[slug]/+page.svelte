@@ -2,8 +2,8 @@
 	import get_show_path from '$/utilities/slug.js';
 	import SwaggyNewsletterForm from '$lib/newsletter/SwaggyNewsletterForm.svelte';
 
-	export let data;
-	$: ({ show, prev_show, next_show } = data);
+	let { data } = $props();
+	let { show, prev_show, next_show } = $derived(data);
 </script>
 
 <div class="main">

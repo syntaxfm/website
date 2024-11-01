@@ -1,10 +1,12 @@
 <script lang="ts">
 	import get_show_path from '$/utilities/slug.js';
-	import ShowCard from '$lib/ShowCard.svelte';
 	import HostSocialLink from '$lib/hosts/HostSocialLink.svelte';
 
-	export let data;
-	$: ({ guests } = data);
+	let { data } = $props();
+	let guests: any[] = $state([]);
+	$effect(() => {
+		({ guests } = data);
+	});
 
 	function jumble() {
 		let currentIndex = guests.length,
@@ -28,7 +30,8 @@
 			return b.shows[0].Show.number - a.shows[0].Show.number;
 		});
 	}
-	$: name_size_direction = '';
+	let name_size_direction = $state('');
+
 	function name_size() {
 		name_size_direction = name_size_direction === 'asc' ? 'desc' : 'asc';
 		guests = guests.sort((a, b) => {
@@ -54,9 +57,9 @@
 
 	<div class="center" style:margin-bottom="1rem">
 		<p class="text-sm lines">&hearts; hardly useful filters &hearts;</p>
-		<button on:click={jumble}>Jumble</button>
-		<button on:click={most_recent}>Most Recent</button>
-		<button on:click={name_size}
+		<button onclick={jumble}>Jumble</button>
+		<button onclick={most_recent}>Most Recent</button>
+		<button onclick={name_size}
 			>Name Size {name_size_direction ? (name_size_direction === 'desc' ? '↓' : '↑') : ''}</button
 		>
 	</div>

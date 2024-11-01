@@ -1,7 +1,7 @@
 <script lang="ts">
 	import white_grit from '$assets/whitegrit.png';
 	import { fly } from 'svelte/transition';
-	let is_active = false;
+	let is_active = $state(false);
 
 	function toggle() {
 		return (is_active = !is_active);
@@ -9,7 +9,7 @@
 </script>
 
 <div class="mobile_nav">
-	<button class="button-reset" on:click={toggle}>Menu</button>
+	<button class="button-reset" onclick={toggle}>Menu</button>
 	{#if is_active}
 		<div
 			transition:fly={{ opacity: 0, x: '100%' }}
@@ -17,14 +17,14 @@
 			class="menu"
 			style="background-image:  url({white_grit}); background-size: 300px;"
 		>
-			<button class="button-reset close-button" on:click={toggle}>×</button>
+			<button class="button-reset close-button" onclick={toggle}>×</button>
 			<nav>
-				<a on:click={toggle} href="/shows">Shows</a>
-				<a on:click={toggle} href="/videos">Video</a>
-				<a on:click={toggle} href="/snackpack">Newsletter</a>
-				<a on:click={toggle} href="/about">About</a>
-				<a on:click={toggle} href="/potluck">Potluck Qs</a>
-				<a on:click={toggle} target="_blank" href="https://sentry.shop">Swag</a>
+				<a onclick={toggle} href="/shows">Shows</a>
+				<a onclick={toggle} href="/videos">Video</a>
+				<a onclick={toggle} href="/snackpack">Newsletter</a>
+				<a onclick={toggle} href="/about">About</a>
+				<a onclick={toggle} href="/potluck">Potluck Qs</a>
+				<a onclick={toggle} target="_blank" href="https://sentry.shop">Swag</a>
 			</nav>
 		</div>
 	{/if}

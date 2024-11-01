@@ -3,7 +3,11 @@
 	import Search from '$lib/search/Search.svelte';
 	import MobileNav from './MobileNav.svelte';
 	import { page } from '$app/stores';
-	export let transparent: boolean = false;
+	interface Props {
+		transparent?: boolean;
+	}
+
+	let { transparent = false }: Props = $props();
 </script>
 
 <header class="layout full" class:transparent style:--fg="var(--fg-1)">

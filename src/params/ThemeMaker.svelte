@@ -5,6 +5,7 @@
 	import { theme_maker } from '$state/theme';
 	import Cookie from 'js-cookie';
 	import { fly } from 'svelte/transition';
+
 	// when a new theme is selected, apply the class directly to the correct element,
 	// and save the theme name to the user's db record
 	const themes = import.meta.glob('$styles/themes/*.css', { eager: true });
@@ -38,7 +39,7 @@
 </script>
 
 <svelte:window
-	on:keydown={(e) => {
+	onkeydown={(e) => {
 		if (e.key === 'e' && (navigator.platform === 'MacIntel' ? e.metaKey : e.ctrlKey)) {
 			e.preventDefault();
 			theme_maker.open();
@@ -50,18 +51,18 @@
 	<section
 		transition:fly={{ x: '100%', opacity: 0 }}
 		use:clickOutside
-		on:click-outside={theme_maker.close}
+		onclick-outside={theme_maker.close}
 	>
-		<h4>Theme Picker <button class="close" on:click={theme_maker.close}>×</button></h4>
+		<h4>Theme Picker <button class="close" onclick={theme_maker.close}>×</button></h4>
 
 		<div class="theme-maker-buttons">
 			{#each theme_names as theme_name}
-				<button on:click={change_theme} class={'theme-preview theme-' + theme_name}>
+				<button onclick={change_theme} class={'theme-preview theme-' + theme_name}>
 					<div class="preview">
-						<div class="circle color" />
-						<div class="circle primary" />
-						<div class="circle accent" />
-						<div class="circle warning" />
+						<div class="circle color"></div>
+						<div class="circle primary"></div>
+						<div class="circle accent"></div>
+						<div class="circle warning"></div>
 					</div>
 					<p>
 						{theme_name}
