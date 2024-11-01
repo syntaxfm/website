@@ -38,6 +38,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Info
+        run: npx envinfo --preset playwright
+
       - name: Setup DB
         run: pnpm db:generate
 
