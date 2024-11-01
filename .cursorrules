@@ -14,7 +14,7 @@ Code Style and Structure
 - Use functional and declarative programming patterns; avoid unnecessary classes except for state machines.
 - Prefer iteration and modularization over code duplication.
 - Structure files: types, component logic, markup, styles.
-- Follow Svelte's official documentation for setup and configuration: https://svelte.dev/docs
+- Follow Svelte's official documentation for setup and configuration: https://svelte.dev/docs/svelte/overview
 
 Naming Conventions
 
@@ -190,9 +190,8 @@ Key Conventions
 
 Documentation
 
-- Svelte 5 Runes: https://svelte-5-preview.vercel.app/docs/runes
-- Svelte Documentation: https://svelte.dev/docs
-- SvelteKit Documentation: https://kit.svelte.dev/docs
+- Svelte Documentation: https://svelte.dev/docs/svelte/overview
+- SvelteKit Documentation: https://svelte.dev/docs/kit/introduction
 - Prisma Documentation: https://www.prisma.io/docs
 
 Refer to Svelte, SvelteKit, and Prisma documentation for detailed information on components, database queries, and best practices.
