@@ -22,7 +22,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: pnpm-setup
         uses: pnpm/action-setup@v4
@@ -30,9 +30,9 @@ jobs:
           version: 8
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 18.18.2
+          node-version: lts/*
           cache: 'pnpm'
 
       - name: Install dependencies
@@ -45,4 +45,4 @@ jobs:
         run: pnpx playwright install --with-deps
 
       - name: Run Playwright tests
-        run: pnpm run test
+        run: pnpx playwright test
