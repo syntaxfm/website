@@ -36,7 +36,7 @@ jobs:
           cache: 'pnpm'
 
       - name: Install dependencies
-        run: pnpm install --ignore-optional
+        run: pnpm install --no-optional
 
       - name: Info
         run: npx envinfo --preset playwright
