@@ -38,12 +38,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Prune incompatible dependencies
-        run: pnpm prune --prod
-
-      - name: Info
-        run: npx envinfo --preset playwright
-
       - name: Setup DB
         run: pnpm db:generate
 
