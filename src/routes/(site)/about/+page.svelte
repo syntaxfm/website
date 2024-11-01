@@ -4,7 +4,6 @@
 	import { fly } from 'svelte/transition';
 	import emo from '$assets/emo.jpg';
 	import bboy from '$assets/bboy.jpg';
-	import benjamin from '$assets/benjamin.jpg';
 	import number1fan from '$assets/kaitlin.jpg';
 	import runonlove from '$assets/runonlove.jpg';
 	import cj from '$assets/cj.jpg';
@@ -23,11 +22,6 @@
 			name: 'Kaitlin Bloom',
 			github: 'bl0om',
 			twitter: 'kaitlinblooom'
-		},
-		ben: {
-			name: 'Ben Vinegar',
-			github: 'benvinegar',
-			twitter: 'bentlegen'
 		},
 		randy: {
 			name: 'Randy Rektor',
@@ -169,32 +163,6 @@
 				</p>
 			</div>
 		</div>
-		<div class="team-member benjamin" style:--rotate="1deg">
-			<img
-				use:lol
-				src={`https://github.com/${hosts.ben.github}.png`}
-				alt={hosts.ben.name}
-				class="avatar"
-				data-lol={benjamin}
-			/>
-			<h2 class="h4">
-				<span class="first">Ben</span>
-				<span class="last">Vinegar</span>
-			</h2>
-			<div class="desc border-on-dark">
-				<HostSocialLink host={hosts.ben} />
-				<p>
-					Ben Vinegar is Syntax's General Manager. He helps with the business stuff so the team can
-					focus on what they do best. As a developer, Ben built early versions of the <a
-						href="https://sentry.io">Sentry</a
-					>
-					UI and JS SDKs, and once co-wrote
-					<a href="https://www.amazon.ca/Third-Party-JavaScript-Ben-Vinegar/dp/1617290548"
-						>a book on JavaScript</a
-					>.
-				</p>
-			</div>
-		</div>
 		<div class="team-member" style:--rotate="1deg">
 			<img
 				use:lol
@@ -260,10 +228,6 @@
 			}
 		}
 		--text-color: var(--white);
-		&.benjamin:hover {
-			/* Bens photo is too light to see this */
-			--text-color: var(--black);
-		}
 		h2 {
 			position: absolute;
 			top: 0;
