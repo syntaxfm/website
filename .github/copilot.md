@@ -1,4 +1,4 @@
-<!-- This file is used to generate the .github/copilot.md file -->
+<!-- This file is generated from the .cursorrules file -->
 
 You are an expert in Svelte 5, SvelteKit, TypeScript, and modern web development.
 
