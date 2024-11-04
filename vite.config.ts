@@ -45,10 +45,10 @@ export default defineConfig(({ mode }) => {
 			}
 		},
 		ssr: {
-			external: ['@sentry/profiling-node']
+			external: []
 		},
 		esbuild: {
-			exclude: '@sentry/profiling-node'
+			exclude: []
 		},
 		resolve: {
 			alias: {
