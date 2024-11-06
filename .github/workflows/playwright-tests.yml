@@ -42,7 +42,7 @@ jobs:
         run: pnpm db:generate
 
       - name: Install playwright browsers
-        run: pnpm exec playwright install --with-deps
+        run: pnpm exec playwright install --with-deps chromium
 
       - name: Run Playwright tests
         run: pnpm exec playwright test
