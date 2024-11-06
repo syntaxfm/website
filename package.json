@@ -24,7 +24,7 @@
 		"db:push": "prisma db push",
 		"db:seed": "prisma db seed",
 		"i-changed-the-schema": "pnpm run db:push && pnpm run db:generate",
-		"postinstall": "pnpm db:generate && pnpm exec playwright install",
+		"postinstall": "pnpm db:generate && pnpm exec playwright install chromium",
 		"stylelint": "NODE_OPTIONS=--no-deprecation stylelint \"**/*.css\""
 	},
 	"devDependencies": {
