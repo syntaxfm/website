@@ -57,7 +57,7 @@ Scott and Wes are back with their annual Syntax Holiday Gift Guide! They’ve cu
     * [Super Clamp](https://amzn.to/4dYeXMb).
     * [Fishskyn](https://fishskyn.com/).
 * **[45:02](#t=45:02)** Kids gifts.
-    * [Yoto Player](https://amzn.to/4dYeXMb).
+    * [Yoto Player](https://www.amazon.com/Yoto-Player-Gen-Make-Wake/dp/B0C7HFFTQD/?tag=webo080-20).
     * [Toniebox](https://amzn.to/3A9RWb0).
     * [First Cat in Space](https://amzn.to/3YeYGfU).
     * [Bathbombs](https://amzn.to/48NhUxT).
