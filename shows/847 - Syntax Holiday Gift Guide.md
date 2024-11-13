@@ -19,7 +19,7 @@ Scott and Wes are back with their annual Syntax Holiday Gift Guide! They’ve cu
     * [Peak Design Everyday](https://amzn.to/4eSis84).
     * [1.5 KG of Maldon](https://amzn.to/3BVE194), [Salt Cellars](https://amzn.to/48eDKu7).
     * [Anker Cube](https://amzn.to/4fhBNiV).
-    * [Anker MagGo](https://amzn.to/3A9RWb0).
+    * [Anker MagGo](https://amzn.to/48VbCfW).
     * [Theragun](https://amzn.to/3UfSses), [Off-Brand Massage Gun](https://amzn.to/4dYOPke).
     * Subscription to [Cursor](https://www.cursor.com/), [Claude](https://claude.ai/), [ChatGPT](https://chatgpt.com/).
     * [Syntax Swag](https://sentry.shop/).
@@ -30,10 +30,10 @@ Scott and Wes are back with their annual Syntax Holiday Gift Guide! They’ve cu
     * [SteamDeck](https://store.steampowered.com/steamdeck).
 * **[19:01](#t=19:01)** Gifts under $30.
     * Braided USB-C Cables
-    * [Right Angle Thunderbolt](https://amzn.to/3A9RWb0).
+    * [Right Angle Thunderbolt](https://amzn.to/4exv7w2).
     * [Battery Daddy](https://amzn.to/3YAJ6N7).
-    * [MagSafe Popsocket](https://amzn.to/3A9RWb0).
-    * [Hempz Apple Cider + Nutmeg Hand Lotion](https://amzn.to/4hcFnfV).
+    * [MagSafe Popsocket](https://www.amazon.com/PopSockets-Compatible-Included-Wireless-Charging/dp/B0CDFCWYNT/?tag=leveluptuts01-20).
+    * [Hempz Apple Cider + Nutmeg Hand Lotion](https://www.amazon.ca/Limited-Nutmeg-Herbal-Moisturizing-Lotion/dp/B0CCQV56HH?tag=webo080-20).
     * [Mens Cremo Body Wash](https://amzn.to/3YxHq6L).
 * **[27:50](#t=27:50)** Clothing gifts.
     * [Uniqlo Stretch Selvedge Denim](https://www.uniqlo.com/us/en/men/bottoms/jeans/selvedge).
@@ -44,7 +44,7 @@ Scott and Wes are back with their annual Syntax Holiday Gift Guide! They’ve cu
 * **[35:02](#t=35:02)** Desk item gifts.
     * [MX3s Master Mouse](https://www.logitech.com/en-us/products/mice/mx-master-3s.html)
     * [Target Candles](https://www.target.com/p/7oz-navy-exterior-painted-glass-with-glass-lid-introvert-candle-blue-opalhouse-8482/-/A-87674088#lnk=sametab)
-    * [Candle Melter Wax](https://amzn.to/4eUER4u).
+    * [Candle Melter Wax](https://www.amazon.ca/gp/product/B0BZ7ZDVRW/?tag=webo080-20).
     * Laptop Stand
         * [Rain Design mStand](https://www.raindesigninc.com/mstand.html).
         * Any Foldable Amazon Stand
@@ -60,7 +60,7 @@ Scott and Wes are back with their annual Syntax Holiday Gift Guide! They’ve cu
     * [Yoto Player](https://amzn.to/4dYeXMb).
     * [Toniebox](https://amzn.to/3A9RWb0).
     * [First Cat in Space](https://amzn.to/3YeYGfU).
-    * [Bathbombs](https://amzn.to/3A9RWb0).
+    * [Bathbombs](https://amzn.to/48NhUxT).
     * [Kahn Academy Kids App](https://learn.khanacademy.org/khan-academy-kids/).
     * [Codespark](https://codespark.com/).
 * **[51:11](#t=51:11)** Kitchen gifts.
