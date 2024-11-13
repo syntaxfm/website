@@ -19,7 +19,7 @@ You’ve got a project, and you need the right tool—but how do you know if tha
     * **[06:02](#t=06:02)** Searching via [Reddit](https://www.reddit.com/).
     * **[06:24](#t=06:24)** Searching via [Perplexity](https://www.perplexity.ai/).
     * **[08:31](#t=08:31)** Searching via Google autocomplete.
-    * **[09:25](#t=09:25)** Searching via Awesome repo.
+    * **[09:25](#t=09:25)** Searching via [Awesome repo](https://github.com/sindresorhus/awesome).
     * **[09:51](#t=09:51)** Searching via social networks.
     * **[10:47](#t=10:47)** Searching via established projects.
 * **[11:19](#t=11:19)** Evaluating the quality of a package.
