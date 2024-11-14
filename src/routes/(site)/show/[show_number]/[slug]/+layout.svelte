@@ -47,8 +47,31 @@
 	function variable_svg(node: HTMLElement) {
 		replace_color(node);
 	}
+
+	const showSchema = {
+		'@context': 'https://schema.org/',
+		'@type': 'PodcastEpisode',
+		url: $page.url,
+		name: show.title,
+		datePublished: format(show.date, 'yyyy-LL-dd'),
+		// TODO: add duration once we are saving it
+		// timeRequired: 'PT37M',
+		description: show.aiShowNote?.description,
+		associatedMedia: {
+			'@type': 'MediaObject',
+			contentUrl: show.url
+		},
+		partOfSeries: {
+			'@type': 'PodcastSeries',
+			name: 'Syntax',
+			url: 'https://syntax.fm'
+		}
+	};
 </script>
 
+<svelte:head>
+	{@html `<script type="application/ld+json">\n${JSON.stringify(showSchema, null, 2)}\n</script>`}
+</svelte:head>
 <header>
 	<span
 		title="Show #{show.number}"
