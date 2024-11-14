@@ -1,7 +1,7 @@
 {
-  "recommendations": [
-    "svelte.svelte-vscode",
-    "ardenivanov.svelte-intellisense",
-    "fivethree.vscode-svelte-snippets",
-  ]
+	"recommendations": [
+		"svelte.svelte-vscode",
+		"fivethree.vscode-svelte-snippets",
+		"stylelint.vscode-stylelint"
+	]
 }

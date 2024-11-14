@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	export type IconName =
 		| 'play'
 		| 'playing'
@@ -36,9 +36,13 @@
 <script lang="ts">
 	import { capitalize } from '$utilities/capitalize';
 
-	export let name: IconName;
-	export let title: string | boolean = '';
-	export let ariaHidden = true;
+	interface Props {
+		name: IconName;
+		title?: string | boolean;
+		aria_hidden?: boolean;
+	}
+
+	let { name, title = $bindable(''), aria_hidden = true }: Props = $props();
 	if (!title && title !== false) title = capitalize(name);
 </script>
 
@@ -46,7 +50,7 @@
 	<svg
 		style="width: var(--icon_size, 16px);"
 		viewBox="0 0 8 10"
-		aria-hidden={ariaHidden}
+		aria-hidden={aria_hidden}
 		fill="none"
 		xmlns="http://www.w3.org/2000/svg"
 	>
@@ -465,10 +469,10 @@
 		xmlns:xlink="http://www.w3.org/1999/xlink"
 		viewBox="0 0 461.001 461.001"
 		xml:space="preserve"
+		fill="currentColor"
 	>
 		<g>
 			<path
-				style="fill:var(--fg);"
 				d="M365.257,67.393H95.744C42.866,67.393,0,110.259,0,163.137v134.728
 		c0,52.878,42.866,95.744,95.744,95.744h269.513c52.878,0,95.744-42.866,95.744-95.744V163.137
 		C461.001,110.259,418.135,67.393,365.257,67.393z M300.506,237.056l-126.06,60.123c-3.359,1.602-7.239-0.847-7.239-4.568V168.607

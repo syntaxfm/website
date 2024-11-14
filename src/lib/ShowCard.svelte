@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { preventDefault } from 'svelte/legacy';
+
 	import { player } from '$state/player';
 	import { format_show_type } from '$utilities/format_show_type';
 	import get_show_path from '$utilities/slug';
@@ -9,10 +11,19 @@
 	import Badges from './badges/Badges.svelte';
 	import type { ShowCard } from '$/server/shows/shows_queries';
 
-	export let show: ShowCard;
-	export let display: 'list' | 'card' | 'highlight' = 'card';
-	export let heading = 'h4';
-	export let show_date = new Date(show.date);
+	interface Props {
+		show: ShowCard;
+		display?: 'list' | 'card' | 'highlight';
+		heading?: string;
+		show_date?: any;
+	}
+
+	let {
+		show,
+		display = 'card',
+		heading = 'h4',
+		show_date = new Date(show.date)
+	}: Props = $props();
 
 	function format_date(date: Date, baseDate: Date = new Date()) {
 		const timeFormatter = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
@@ -34,7 +45,7 @@
 	let hosts: {
 		name: string;
 		github: string;
-	}[] = [];
+	}[] = $state([]);
 	if ((show?.hosts?.length || 0) > 0) {
 		show.hosts?.forEach((host) => {
 			hosts.push({
@@ -59,7 +70,7 @@
 		{#if display === 'list'}
 			<button
 				data-testid="play-show"
-				on:click|preventDefault={() => player.start_show(show)}
+				onclick={preventDefault(() => player.start_show(show))}
 				class="play-button"
 			>
 				<Icon name="play" />
@@ -124,7 +135,7 @@
 						<button
 							data-testid="play-show"
 							class:play={display === 'highlight'}
-							on:click|preventDefault={() => player.start_show(show)}
+							onclick={preventDefault(() => player.start_show(show))}
 							><Icon name="play" /> Play #{show.number}</button
 						>
 					</div>
@@ -141,7 +152,7 @@
 		display: grid;
 		padding: 20px;
 		background-color: var(--bg);
-		background-image: var(--bgGrit);
+		background-image: var(--bg-grit);
 		position: relative;
 		overflow: hidden;
 		align-items: start;
@@ -159,6 +170,7 @@
 			gap: 1rem;
 			& > * {
 				margin: 0;
+				position: relative;
 			}
 		}
 
@@ -199,11 +211,11 @@
 		}
 
 		/* readability improvements for mobile viewports */
-		@media (--below_med) {
+		@media (--below-med) {
 			padding: 10px;
 
 			.details {
-				/* since we're hiding the description row at these dimensions (which was 100% height), 
+				/* since we're hiding the description row at these dimensions (which was 100% height),
 				   need a new row to become 100% height -- the show title */
 				grid-template-rows: auto 1fr auto auto;
 			}
@@ -245,6 +257,7 @@
 		font-variation-settings: 'wght' 500;
 		view-transition-name: var(--transition-name);
 		width: max-content;
+		position: relative;
 		@media (prefers-color-scheme: dark) {
 			background: var(--bg);
 		}
@@ -275,9 +288,7 @@
 		}
 		color: var(--primary);
 		line-height: 1;
-		z-index: -1;
-
-		@media (--below_med) {
+		@media (--below-med) {
 			--max-font-size: 8rem;
 		}
 	}

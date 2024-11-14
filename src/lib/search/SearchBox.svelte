@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import { afterNavigate } from '$app/navigation';
 	import { overlay_open, search_query, search_recent, searching } from '$state/search';
 	import { onMount, tick } from 'svelte';
@@ -10,19 +12,19 @@
 	import type { Block, Tree } from './types';
 	import type { Show } from '@prisma/client';
 
-	let search_input: HTMLInputElement;
-	let modal: HTMLDialogElement;
+	let search_input: HTMLInputElement = $state(null!);
+	let modal: HTMLDialogElement = $state(null!);
 	let search: {
 		results: Tree[];
 		query: string;
-	} | null = null;
-	let recent_searches: (Block & Show)[] = [];
+	} | null = $state(null);
+	let recent_searches: (Block & Show)[] = $state([]);
 
-	let worker: Worker;
-	let ready = false;
-	let active_color = 'var(--fg)';
+	let worker: Worker = $state(null!);
+	let ready = $state(false);
+	let active_color = $state('var(--fg)');
 
-	let uid = 1;
+	let uid = $state(1);
 	const pending = new Set();
 
 	onMount(async () => {
@@ -69,26 +71,32 @@
 		close();
 	}
 
-	$: if (ready) {
-		const id = uid++;
-		pending.add(id);
-		worker.postMessage({ type: 'query', id, payload: $search_query });
-	}
-
-	$: if (ready) {
-		worker.postMessage({ type: 'recents', payload: $search_recent });
-	}
-
-	$: {
-		tick().then(() => ($overlay_open = $searching));
-	}
-
-	$: if ($searching) {
-		if (modal) {
-			$overlay_open = true;
-			modal.showModal();
+	run(() => {
+		if (ready) {
+			const id = uid++;
+			pending.add(id);
+			worker.postMessage({ type: 'query', id, payload: $search_query });
 		}
-	}
+	});
+
+	run(() => {
+		if (ready) {
+			worker.postMessage({ type: 'recents', payload: $search_recent });
+		}
+	});
+
+	run(() => {
+		tick().then(() => ($overlay_open = $searching));
+	});
+
+	run(() => {
+		if ($searching) {
+			if (modal) {
+				$overlay_open = true;
+				modal.showModal();
+			}
+		}
+	});
 
 	function change_color(e: MouseEvent) {
 		if (e.target instanceof Element) {
@@ -108,7 +116,7 @@
 </script>
 
 <svelte:window
-	on:keydown={(e) => {
+	onkeydown={(e) => {
 		if (e.key === 'k' && (navigator.platform === 'MacIntel' ? e.metaKey : e.ctrlKey)) {
 			e.preventDefault();
 			$search_query = '';
@@ -132,15 +140,15 @@
 	style:--bg="var(--bg-sheet)"
 	style:--fg="var(--fg-sheet)"
 	use:clickOutDialog
-	on:click-outside={close}
+	onclick-outside={close}
 	aria-labelledby="search-header"
 >
 	<section aria-label="Search Results Window">
 		<header role="banner">
 			<input
 				bind:this={search_input}
-				on:keydown={search_keydown}
-				on:input={(e) => {
+				onkeydown={search_keydown}
+				oninput={(e) => {
 					$search_query = e.currentTarget.value;
 				}}
 				value={$search_query}
@@ -151,7 +159,7 @@
 				class="search-input"
 			/>
 
-			<button class="close" on:click={close} type="submit">×</button>
+			<button class="close" onclick={close} type="submit">×</button>
 		</header>
 		<div class="results">
 			{#if search?.query}
@@ -186,7 +194,7 @@
 					</pre>
 						<div class="color-boxes">
 							{#each Array(12) as _, i (i)}
-								<button on:click={change_color}></button>
+								<button aria-label={`ASCII Color ${i + 1}`} onclick={change_color}></button>
 							{/each}
 						</div>
 					</div>
@@ -259,7 +267,7 @@
 		position: relative;
 		max-width: 100%;
 		width: 100%;
-		@media (--above_med) {
+		@media (--above-med) {
 			width: clamp(600px, 90vw, 950px);
 		}
 	}
@@ -282,7 +290,7 @@
 			grid-row: 1 / -1;
 			grid-column: 1 / -1;
 		}
-		@media (--above_med) {
+		@media (--above-med) {
 			padding: 20px 0;
 		}
 	}
@@ -311,7 +319,7 @@
 			margin: 0;
 			display: inline-block;
 		}
-		@media (--below_med) {
+		@media (--below-med) {
 			display: none;
 		}
 	}

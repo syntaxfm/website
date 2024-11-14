@@ -21,7 +21,7 @@ export function getSlimUtterances(
 
 		// If its the same speaker as the last one. Tack it onto that last one
 		const last_speaker_is_current_speaker = lastUtterance?.speakerId === speaker;
-		// If the last utterance ended in `.` or `?` or `!`
+		// If the last utterance ended in `.` or `?` or `!``
 		const last_utterance_ended_in_punctuation =
 			groupForPunctuation &&
 			(lastUtterance?.transcript.endsWith('.') ||

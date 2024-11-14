@@ -2,7 +2,11 @@
 	import type { AINoteWithFriends } from '$server/ai/queries';
 	import slug from 'speakingurl';
 
-	export let aiShowNote: AINoteWithFriends;
+	interface Props {
+		aiShowNote: AINoteWithFriends;
+	}
+
+	let { aiShowNote }: Props = $props();
 </script>
 
 <div class="toc">
@@ -28,7 +32,7 @@
 		display: grid;
 		--min: 400px;
 		grid-template-columns: repeat(auto-fill, minmax(var(--min), 1fr));
-		@media (--below_med) {
+		@media (--below-med) {
 			--min: 200px;
 		}
 	}

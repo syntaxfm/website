@@ -2,8 +2,12 @@
 	import ShowTable from '$/lib/ShowTable.svelte';
 	import type { PageData } from './$types';
 
-	export let data: PageData;
-	$: ({ next_shows, last_9_shows } = data);
+	interface Props {
+		data: PageData;
+	}
+
+	let { data }: Props = $props();
+	let { next_shows, last_9_shows } = $derived(data);
 </script>
 
 <h2 class="h5">Next Shows</h2>

@@ -2,7 +2,7 @@
 	import { theme_maker } from '$state/theme';
 </script>
 
-<button on:click={theme_maker.open}>🎨</button>
+<button onclick={theme_maker.open}>🎨</button>
 
 <style lang="postcss">
 	button {

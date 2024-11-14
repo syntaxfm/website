@@ -1,5 +1,10 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	interface Props {
+		children?: import('svelte').Snippet;
+	}
+
+	let { children }: Props = $props();
 	const LINKS = [
 		{
 			name: 'Dashboard',
@@ -18,6 +23,10 @@
 			link: '/admin/videos'
 		},
 		{
+			name: 'Submissions',
+			link: '/admin/submissions'
+		},
+		{
 			name: 'Cache',
 			link: '/admin/cache'
 		}
@@ -31,7 +40,7 @@
 </nav>
 
 <div class="admin">
-	<slot />
+	{@render children?.()}
 </div>
 
 <style lang="postcss">

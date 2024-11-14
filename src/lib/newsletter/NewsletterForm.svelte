@@ -1,43 +1,49 @@
 <script lang="ts">
 	import NewsletterLogo from './NewsletterLogo.svelte';
 	import Input from '$lib/forms/Input.svelte';
-	let is_hidden = false;
+	let is_hidden = $state(false);
 
-	export let show_logo = true;
+	interface Props {
+		show_logo?: boolean;
+	}
+
+	let { show_logo = true }: Props = $props();
 
 	const FORM_ID = 5465361;
-	$: action = `https://app.convertkit.com/forms/${FORM_ID}/subscriptions`;
+	let action = $derived(`https://app.convertkit.com/forms/${FORM_ID}/subscriptions`);
 
 	function submit() {
 		document.cookie = 'newsletter_visible=hidden';
 	}
 
-	$: if (typeof document !== 'undefined') {
-		is_hidden = document.cookie.includes('newsletter_visible');
-	}
+	$effect(() => {
+		if (typeof document !== 'undefined') {
+			is_hidden = document.cookie.includes('newsletter_visible');
+		}
+	});
 </script>
 
-	<div class="newsletter-layout">
-		{#if show_logo}
-			<div class="newsletter-logo-container">
-				<a href="/snackpack">
-					<NewsletterLogo />
-				</a>
-			</div>
-		{/if}
-		<form
-			{action}
-			on:submit={submit}
-			method="post"
-			data-sv-form={FORM_ID}
-			data-uid="05d939b74d"
-			class="center readable"
-			target="_blank"
-			aria-labelledby="newsletter-form-label"
-		>
-			<h5 class="readable join fst-400-i">
-				Join our newsletter for <strong>15% off</strong> all Syntax & Sentry swag
-			</h5>
+<div class="newsletter-layout">
+	{#if show_logo}
+		<div class="newsletter-logo-container">
+			<a href="/snackpack">
+				<NewsletterLogo />
+			</a>
+		</div>
+	{/if}
+	<form
+		{action}
+		onsubmit={submit}
+		method="post"
+		data-sv-form={FORM_ID}
+		data-uid="05d939b74d"
+		class="center readable"
+		target="_blank"
+		aria-labelledby="newsletter-form-label"
+	>
+		<h5 class="readable join fst-400-i">
+			Join our newsletter for <strong>15% off</strong> all Syntax & Sentry swag
+		</h5>
 
 		<div class="newsletter">
 			<Input required type="email" label="Email" id="email_address" />
@@ -55,7 +61,7 @@
 	}
 
 	strong {
-		font-variation-settings: var(--800-italic);
+		font-variation-settings: var(--fw-800-italic);
 	}
 
 	@layer theme {

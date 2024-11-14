@@ -2,13 +2,17 @@
 	import type { Playlist, PlaylistOnVideo, Video } from '@prisma/client';
 	import PlaylistVideo from './PlaylistVideo.svelte';
 
-	export let playlist: Playlist & {
+	interface Props {
+		playlist: Playlist & {
 		item_count: number;
 		videos: PlaylistOnVideo[] &
 			{
 				video: Video;
 			}[];
 	};
+	}
+
+	let { playlist }: Props = $props();
 </script>
 
 <article class="card">
@@ -39,7 +43,7 @@
 		display: grid;
 		padding: 20px;
 		background-color: var(--bg);
-		background-image: var(--bgGrit);
+		background-image: var(--bg-grit);
 		position: relative;
 		overflow: hidden;
 		align-items: start;
@@ -59,12 +63,12 @@
 			display: grid;
 			grid-gap: 20px;
 			grid-template-columns: 1fr;
-			@media (--above_med) {
+			@media (--above-med) {
 				grid-template-columns: repeat(3, minmax(190px, 1fr));
 			}
 		}
 
-		@media (--below_med) {
+		@media (--below-med) {
 			padding: 10px;
 		}
 	}

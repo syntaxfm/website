@@ -1,11 +1,11 @@
 ## Syntax Terms of Service
 
-*Last Updated: 08/30/2023*
+_Last Updated: 08/30/2023_
 
 ### Introduction
 
-*If you want to use Syntax, follow these Terms. Sometimes, we update
-these Terms so check back here to see the latest updates.*
+_If you want to use Syntax, follow these Terms. Sometimes, we update
+these Terms so check back here to see the latest updates._
 
 - These Terms of Service (these “Terms” apply to Syntax.fm and its other
   sites, applications, platforms and services (collectively, “Syntax”.
@@ -22,9 +22,9 @@ these Terms so check back here to see the latest updates.*
 
 ### Copyrights
 
-*Creating content is a lot of work. Our podcasts and content are
+_Creating content is a lot of work. Our podcasts and content are
 protected by intellectual property laws. Please don’t use them for
-anything other than personal use without our permission.*
+anything other than personal use without our permission._
 
 - The contents of Syntax are protected by U.S. and international
   copyright laws. The contents of Syntax are owned by us or licensed to
@@ -47,9 +47,9 @@ anything other than personal use without our permission.*
 
 ### Trademarks
 
-*Like our podcast, the names and logos on our site are protected by
+_Like our podcast, the names and logos on our site are protected by
 intellectual property laws. Please don’t use those without our
-permission.*
+permission._
 
 - Syntax, the Syntax logo, Sentry, the Sentry logo and the names, logos
   and program names of Content Providers and any other trademarks or
@@ -64,10 +64,10 @@ permission.*
 
 ### User Materials
 
-*If you post any content to Syntax, you still own your content, but we
+_If you post any content to Syntax, you still own your content, but we
 have the right to show that content throughout Syntax. Please be mindful
 of the content you post and be respectful of our other users. We can
-take down anything you post that we think violates these terms.*
+take down anything you post that we think violates these terms._
 
 - Users of Syntax may post, upload, transmit and otherwise submit
   ("Post") comments, messages, recommendations, reviews, photos, images,
@@ -137,10 +137,10 @@ take down anything you post that we think violates these terms.*
 
 ### Rules for Use of Syntax
 
-*You’ll need to be 18 years or older to use some of the features of the
+_You’ll need to be 18 years or older to use some of the features of the
 site. Don’t use Syntax for any illegal purposes or to try to cause harm
 to Syntax or anybody else. If you don’t follow these rules, we have the
-right to block your access to Syntax.*
+right to block your access to Syntax._
 
 - You must be at least 18 years of age to submit any User Materials or
   personal information on or through Syntax, create a public profile,
@@ -174,9 +174,9 @@ right to block your access to Syntax.*
 
 ### Online Store Purchases
 
-*If you want to buy something from our swag store (and who wouldn’t?),
+_If you want to buy something from our swag store (and who wouldn’t?),
 please read the terms below for more details about placing orders,
-returns and payment.*
+returns and payment._
 
 - Our store is hosted on Shopify Inc. They provide us with the online
   e-commerce platform that allows us to sell our swag to you. In order
@@ -229,10 +229,10 @@ returns and payment.*
 
 ### Links to Third-Party Sites
 
-*Sometimes we link to other sites that we find interesting. We don’t
+_Sometimes we link to other sites that we find interesting. We don’t
 operate those sites and just because we think something is worth
 checking out doesn’t mean that we endorse or are making any guarantees
-about the products or services provided on those sites.*
+about the products or services provided on those sites._
 
 - Syntax contain links to sites, applications, platforms and services
   maintained by third parties over which we have no control. We do not
@@ -248,9 +248,9 @@ about the products or services provided on those sites.*
 
 ### Representations; Indemnity
 
-*If you post anything on Syntax, you’ll make the promises below about
+_If you post anything on Syntax, you’ll make the promises below about
 anything you post. You’ll also agree to be responsible if anything you
-post puts us in a bad position.*
+post puts us in a bad position._
 
 - You represent and warrant that if you Post any User Materials or
   personal information on or through Syntax, (a) you are at least 18
@@ -274,9 +274,9 @@ post puts us in a bad position.*
 
 ### Disclaimer
 
-*We aren’t responsible for content that you or other users post to
+_We aren’t responsible for content that you or other users post to
 Syntax. Use Syntax at your own discretion –even though we like it, we
-don’t promise that you will.*
+don’t promise that you will._
 
 - We are not responsible or liable for any User Materials Posted by you
   or a third party, on or through Syntax. We cannot verify the accuracy
@@ -320,9 +320,9 @@ don’t promise that you will.*
 
 ### Limitation of Liability
 
-*Since we don’t charge you to use Syntax, we aren’t going to be liable
+_Since we don’t charge you to use Syntax, we aren’t going to be liable
 to you for your use of Syntax. You can stop using Syntax any time you
-like.*
+like._
 
 - IN NO EVENT WILL WE, OUR OFFICERS, DIRECTORS, EMPLOYEES, AGENTS OR
   CONTENT PROVIDERS HAVE ANY LIABILITY ARISING OUT OF OR RELATED TO
@@ -335,9 +335,9 @@ like.*
 
 ### International Users
 
-*We love having an international audience, but we’re not experts on
+_We love having an international audience, but we’re not experts on
 international law. Please make sure your use of Syntax is permitted
-wherever you are located.*
+wherever you are located._
 
 - Syntax is controlled and operated within the United States. We make no
   representation that content, materials or products available on or
@@ -349,7 +349,7 @@ wherever you are located.*
 
 ## Changes to Syntax
 
-*If we need to make changes to Syntax, we can.*
+_If we need to make changes to Syntax, we can._
 
 - We reserve the right to change, terminate or suspend Syntax, any
   features of Syntax (including, but not limited to, podcasts), and any
@@ -359,8 +359,8 @@ wherever you are located.*
 
 ## Digital Millennium Copyright Act (DMCA) Notices; Copyright Agent
 
-*If you believe that your work has been copied and posted on Syntax,
-please follow the procedures below to register a DMCA complaint.*
+_If you believe that your work has been copied and posted on Syntax,
+please follow the procedures below to register a DMCA complaint._
 
 - We respect the intellectual property rights of others. If you believe
   that your work has been copied in a way that constitutes copyright
@@ -432,6 +432,7 @@ Functional Software, Inc. dba Sentry
 San Francisco, CA 94105
 
 Email: copyright@sentry.io
+
 </blockquote>
 
 Only DMCA notices should be sent to the Copyright Agent. For other
@@ -440,7 +441,7 @@ Contact Us page.
 
 ### Miscellaneous
 
-*And the rest of the legal boilerplate…*
+_And the rest of the legal boilerplate…_
 
 - These Terms, together with the [Privacy Policy](/pages/privacy),
   represent the entire understanding of the parties regarding the use of

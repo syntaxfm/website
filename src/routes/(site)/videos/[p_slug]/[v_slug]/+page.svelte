@@ -1,8 +1,8 @@
 <script lang="ts">
 	import ShowCard from '$/lib/ShowCard.svelte';
 
-	export let data;
-	$: ({ video } = data);
+	let { data } = $props();
+	let { video } = $derived(data);
 
 	function insertBreaks(str: string) {
 		return str.replace(/(\d{2}:\d{2})/g, (match, p1, offset) => {

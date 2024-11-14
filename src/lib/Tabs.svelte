@@ -1,5 +1,15 @@
+<script>
+	/**
+	 * @typedef {Object} Props
+	 * @property {import('svelte').Snippet} [children]
+	 */
+
+	/** @type {Props} */
+	let { children } = $props();
+</script>
+
 <div class="tabs grit">
-	<slot />
+	{@render children?.()}
 </div>
 
 <style>
@@ -14,7 +24,7 @@
 			& > a {
 				padding: 10px 1rem;
 				border-radius: var(--brad) var(--brad) 0 0;
-				font-variation-settings: var(--900);
+				font-variation-settings: var(--fw-900);
 			}
 
 			a:hover {

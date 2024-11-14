@@ -1,8 +1,19 @@
 <script lang="ts">
-	export let label = '';
-	export let type: HTMLInputElement['type'] = 'text';
-	export let value: string = '';
-	export let id: string;
+	interface Props {
+		label?: string;
+		type?: HTMLInputElement['type'];
+		value?: string;
+		id: string;
+		[key: string]: any
+	}
+
+	let {
+		label = '',
+		type = 'text',
+		value = $bindable(''),
+		id,
+		...rest
+	}: Props = $props();
 
 	function typeAction(node: HTMLInputElement) {
 		node.type = type;
@@ -11,7 +22,7 @@
 
 <div class="input">
 	{#if label}<label for={id}>{label}</label>{/if}
-	<input {...$$restProps} use:typeAction bind:value {id} name={id} />
+	<input {...rest} use:typeAction bind:value {id} name={id} />
 </div>
 
 <style lang="postcss">

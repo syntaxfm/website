@@ -4,7 +4,6 @@
 	import { fly } from 'svelte/transition';
 	import emo from '$assets/emo.jpg';
 	import bboy from '$assets/bboy.jpg';
-	import benjamin from '$assets/benjamin.jpg';
 	import number1fan from '$assets/kaitlin.jpg';
 	import runonlove from '$assets/runonlove.jpg';
 	import cj from '$assets/cj.jpg';
@@ -23,11 +22,6 @@
 			name: 'Kaitlin Bloom',
 			github: 'bl0om',
 			twitter: 'kaitlinblooom'
-		},
-		ben: {
-			name: 'Ben Vinegar',
-			github: 'benvinegar',
-			twitter: 'bentlegen'
 		},
 		randy: {
 			name: 'Randy Rektor',
@@ -61,14 +55,19 @@
 	};
 
 	const speed = 169;
-	$: since_start = Date.now() - 1499256000000;
-	setInterval(() => {
-		since_start = Date.now() - 1499256000000;
-	}, 500);
+	let since_start = $state(Date.now() - 1499256000000);
 
-	$: digits = since_start.toString().split('');
+	let interval: ReturnType<typeof setInterval>;
+	$effect(() => {
+		interval = setInterval(() => {
+			since_start = Date.now() - 1499256000000;
+		}, 500);
+		return () => clearInterval(interval);
+	});
 
-	export let data;
+	let digits = $derived(since_start.toString().split(''));
+
+	let { data } = $props();
 </script>
 
 <main style:margin-bottom="2rem">
@@ -164,32 +163,6 @@
 				</p>
 			</div>
 		</div>
-		<div class="team-member benjamin" style:--rotate="1deg">
-			<img
-				use:lol
-				src={`https://github.com/${hosts.ben.github}.png`}
-				alt={hosts.ben.name}
-				class="avatar"
-				data-lol={benjamin}
-			/>
-			<h2 class="h4">
-				<span class="first">Ben</span>
-				<span class="last">Vinegar</span>
-			</h2>
-			<div class="desc border-on-dark">
-				<HostSocialLink host={hosts.ben} />
-				<p>
-					Ben Vinegar is Syntax's General Manager. He helps with the business stuff so the team can
-					focus on what they do best. As a developer, Ben built early versions of the <a
-						href="https://sentry.io">Sentry</a
-					>
-					UI and JS SDKs, and once co-wrote
-					<a href="https://www.amazon.ca/Third-Party-JavaScript-Ben-Vinegar/dp/1617290548"
-						>a book on JavaScript</a
-					>.
-				</p>
-			</div>
-		</div>
 		<div class="team-member" style:--rotate="1deg">
 			<img
 				use:lol
@@ -205,7 +178,10 @@
 			<div class="desc border-on-dark">
 				<HostSocialLink host={hosts.randy} />
 				<p>
-					Randy Rektor is Syntax's producer. He edits the episodes, produces the videos for YouTube, and helps keep Syntax's production gears oiled. He is a musician, <a href="https://www.youtube.com/@randyrektor">YouTuber</a>, and a self-proclaimed ‘massive audio geek’.
+					Randy Rektor is Syntax's producer. He edits the episodes, produces the videos for YouTube,
+					and helps keep Syntax's production gears oiled. He is a musician, <a
+						href="https://www.youtube.com/@randyrektor">YouTuber</a
+					>, and a self-proclaimed ‘massive audio geek’.
 				</p>
 			</div>
 		</div>
@@ -224,8 +200,10 @@
 			<div class="desc border-on-dark">
 				<HostSocialLink host={hosts.cj} />
 				<p>
-					CJ is a Senior Creator at Syntax and the host of <a href="https://coding.garden/">Coding Garden</a>.
-					In his spare time CJ enjoys skateboarding, playing board games, collecting VHS tapes and hanging out with his dog.
+					CJ is a Senior Creator at Syntax and the host of <a href="https://coding.garden/"
+						>Coding Garden</a
+					>. In his spare time CJ enjoys skateboarding, playing board games, collecting VHS tapes
+					and hanging out with his dog.
 				</p>
 			</div>
 		</div>
@@ -250,10 +228,6 @@
 			}
 		}
 		--text-color: var(--white);
-		&.benjamin:hover {
-			/* Bens photo is too light to see this */
-			--text-color: var(--black);
-		}
 		h2 {
 			position: absolute;
 			top: 0;
@@ -295,7 +269,7 @@
 		box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.5);
 		margin: 0 auto;
 		position: relative;
-		padding: var(--default_padding);
+		padding: var(--default-padding);
 		rotate: var(--rotate, -1deg);
 		p {
 			font-size: var(--font-size-sm);

@@ -4,8 +4,12 @@
 	import Album from './Album.svelte';
 	import { player } from '$/state/player';
 
-	export let is_link = false;
-	export let show: Show | null = null;
+	interface Props {
+		is_link?: boolean;
+		show?: Show | null;
+	}
+
+	let { is_link = false, show = null }: Props = $props();
 </script>
 
 {#if is_link && show}
@@ -31,7 +35,7 @@
 		flex-shrink: 0;
 		display: none;
 		position: relative;
-		@media (--above_med) {
+		@media (--above-med) {
 			display: block;
 		}
 	}

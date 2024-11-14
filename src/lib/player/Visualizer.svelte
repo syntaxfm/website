@@ -1,5 +1,9 @@
 <script lang="ts">
-	export let audio: HTMLAudioElement;
+	interface Props {
+		audio: HTMLAudioElement;
+	}
+
+	let { audio }: Props = $props();
 
 	const audioCtx = new (window.AudioContext || window?.webkitAudioContext)();
 	let audioSource = null;
@@ -18,7 +22,7 @@
 	let bars: {
 		height: number;
 		width: number;
-	}[] = [];
+	}[] = $state([]);
 	let animationFrameId: number;
 	let fps = 30; // desired FPS
 	let now;
@@ -68,7 +72,7 @@
 			<div
 				class="bar"
 				style="height:{100 * (bar.height / 255)}%; background: var(--primary); flex: 1 1 0;"
-			/>
+			></div>
 		{/if}
 	{/each}
 </div>
@@ -80,7 +84,7 @@
 		width: 100%;
 		overflow: hidden;
 		display: none;
-		@media (--above_med) {
+		@media (--above-med) {
 			display: flex;
 		}
 	}

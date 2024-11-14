@@ -11,8 +11,8 @@
 	import { episode_share_status } from '$/state/player.js';
 	import { browser } from '$app/environment';
 
-	export let data;
-	$: ({ show } = data);
+	let { data } = $props();
+	let { show } = $derived(data);
 
 	function toggle_share() {
 		$episode_share_status = !$episode_share_status;
@@ -40,7 +40,7 @@
 					audio
 					style="--media-range-track-height: 5px; --media-range-thumb-height: 15px; --media-range-thumb-border-radius: 0;	--media-range-track-border-radius: 5px; --media-range-bar-color: var(--primary);--media-background-color: transparent; --media-control-background: transparent; width: 100%; --media-font-family: var(--body-font-family); --media-control-hover-background: transparent; "
 				>
-					<audio slot="media" preload="metadata" crossorigin="anonymous" src={show.url} />
+					<audio slot="media" preload="metadata" crossorigin="anonymous" src={show.url}></audio>
 					<media-control-bar class="media-bar">
 						<div class="media-controls">
 							<media-play-button>
@@ -53,17 +53,17 @@
 							</media-play-button>
 						</div>
 						<div class="media-range">
-							<media-time-display />
+							<media-time-display></media-time-display>
 							<div class="media-range-bookmarks">
 								<media-time-range
 									style:--media-range-bar-color="var(--white)"
 									style:--media-range-thumb-background="var(--primary)"
-								/>
+								></media-time-range>
 							</div>
-							<media-duration-display />
+							<media-duration-display></media-duration-display>
 						</div>
 						<div class="media-sound">
-							<media-playback-rate-button />
+							<media-playback-rate-button></media-playback-rate-button>
 						</div>
 					</media-control-bar>
 				</media-controller>
@@ -86,7 +86,7 @@
 		</div>
 		{#if $episode_share_status}
 			<div class="overtake" transition:fade={{ duration: 200 }}>
-				<button on:click={toggle_share} class="close">×</button>
+				<button onclick={toggle_share} class="close">×</button>
 				<ShareActions {show} timestamp={false} />
 			</div>
 		{/if}
@@ -106,7 +106,7 @@
 		overflow: hidden;
 		padding: 20px;
 		background-size: contain;
-		background-image: var(--bgGritDark),
+		background-image: var(--bg-grit-dark),
 			radial-gradient(farthest-side circle at 50% 0%, #3a006b66 4% 4%, #000 100%);
 	}
 	p {

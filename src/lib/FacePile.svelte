@@ -3,8 +3,12 @@
 		name: string;
 		github: string;
 	};
-	export let size = '50px';
-	export let faces: FaceForThePile[] = [];
+	interface Props {
+		size?: string;
+		faces?: FaceForThePile[];
+	}
+
+	let { size = '50px', faces = [] }: Props = $props();
 </script>
 
 <div class="pile" style:--face-size={size} style:--face-count={faces.length}>

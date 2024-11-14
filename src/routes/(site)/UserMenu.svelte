@@ -6,20 +6,27 @@
 	import { form_action } from '$lib/form_action';
 	import type { User } from '@prisma/client';
 
-	export let user: User | null;
+	interface Props {
+		user: User | null;
+	}
+
+	let { user }: Props = $props();
 </script>
 
 {#if user}
 	<DropdownMenu popover_id="user-menu">
-		<img class="avatar" slot="dropdown-button" src={user.avatar_url} alt="User Avatar" />
-		<div slot="dropdown-links">
+		{#snippet button()}
+			<img class="avatar" src={user.avatar_url} alt="User Avatar" />
+		{/snippet}
+
+		<div>
 			<form use:enhance={form_action({ message: 'Logout ' })} action="/?/logout" method="POST">
 				<button type="submit">Logout</button>
 			</form>
 		</div>
 	</DropdownMenu>
 {:else}
-	<a on:click={() => loading.setLoading(true)} href="/api/oauth/github" rel="external">
+	<a onclick={() => loading.setLoading(true)} href="/api/oauth/github" rel="external">
 		<img width="20" src={Github} alt="Github Logo" /> Login With Github</a
 	>
 {/if}

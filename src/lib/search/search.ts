@@ -33,7 +33,7 @@ export function init(blocks: Block[]) {
 		// https://github.com/nextapps-de/flexsearch/pull/364 is merged and released
 		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 		// @ts-ignore
-		indexes[block.rank ?? 0].add(block.href, `${title} ${block.content}`);
+		indexes[block.rank ?? 0].add(block.href, `${title} ${block.content} ${block.number}`);
 
 		hrefs.set(block.breadcrumbs.join('::'), block.href);
 	}

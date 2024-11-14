@@ -1,6 +1,6 @@
 <script lang="ts">
-	export let data;
-	$: ({ playlist } = data);
+	let { data } = $props();
+	let { playlist } = $derived(data);
 </script>
 
 {#if playlist}
@@ -25,7 +25,7 @@
 	.playlist-grid {
 		display: grid;
 		grid-gap: 20px;
-		@media (--above_med) {
+		@media (--above-med) {
 			grid-template-columns: repeat(3, minmax(260px, 1fr));
 		}
 	}

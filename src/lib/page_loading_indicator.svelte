@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { navigating } from '$app/stores';
 	import { onNavigate } from '$app/navigation';
-	let visible = false;
-	let progress = 0;
-	let load_durations: number[] = [];
-	$: average_load = load_durations.reduce((a, b) => a + b, 0) / load_durations.length;
+	let visible = $state(false);
+	let progress = $state(0);
+	let load_durations: number[] = $state([]);
+	let average_load = $derived(load_durations.reduce((a, b) => a + b, 0) / load_durations.length);
 	const increment = 1;
 	onNavigate((navigation) => {
 		const typical_load_time = average_load || 200; //ms

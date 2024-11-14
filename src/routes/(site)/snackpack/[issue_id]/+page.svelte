@@ -1,6 +1,12 @@
 <script>
 	import { format } from 'date-fns';
-	export let data;
+	/**
+	 * @typedef {Object} Props
+	 * @property {any} data
+	 */
+
+	/** @type {Props} */
+	let { data } = $props();
 </script>
 
 <main>
@@ -22,7 +28,7 @@
 
 <style>
 	header {
-		padding: var(--default_padding);
+		padding: var(--default-padding);
 	}
 	.newsletter-output {
 		border: 5px solid black;

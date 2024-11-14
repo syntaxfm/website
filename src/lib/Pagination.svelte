@@ -4,11 +4,15 @@
 	import { PER_PAGE } from '$const';
 	import { quintOut } from 'svelte/easing';
 	import { fade } from 'svelte/transition';
-	export let count: number;
-	export let perPage: number = PER_PAGE;
-	export let page: number = 1;
-	$: totalPages = Math.ceil(count / perPage);
-	$: generate_search_params = (id: string, value: string | number) => {
+	interface Props {
+		count: number;
+		perPage?: number;
+		page?: number;
+	}
+
+	let { count, perPage = PER_PAGE, page = 1 }: Props = $props();
+	let totalPages = $derived(Math.ceil(count / perPage));
+	let generate_search_params = $derived((id: string, value: string | number) => {
 		const searchParams = new URLSearchParams($pageStore.url.search);
 		if (!value) {
 			searchParams.delete(id);
@@ -16,7 +20,7 @@
 			searchParams.set(id, value.toString());
 		}
 		return searchParams.toString();
-	};
+	});
 	function getNeighboringNumbers(number: number, maxNumber: number): number[] {
 		const start: number = Math.max(1, number - 3);
 		const end: number = Math.min(maxNumber, number + 3);
@@ -26,7 +30,7 @@
 		return result;
 	}
 
-	$: pageNumbers = getNeighboringNumbers(page, totalPages);
+	let pageNumbers = $derived(getNeighboringNumbers(page, totalPages));
 </script>
 
 <div class="pagination">
@@ -53,7 +57,7 @@
 		grid-auto-columns: max-content;
 		gap: 20px;
 		justify-content: center;
-		@media (--below_large) {
+		@media (--below-large) {
 			gap: 8px;
 		}
 		& > * {
@@ -71,7 +75,7 @@
 				background: var(--primary);
 				color: var(--dark);
 			}
-			@media (--below_large) {
+			@media (--below-large) {
 				&.page-number:not(.current) {
 					display: none;
 				}

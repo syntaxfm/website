@@ -8,7 +8,7 @@
 <button
 	class="button-reset"
 	aria-label="Search (shortcut: {shortcut}K)"
-	on:click={() => {
+	onclick={() => {
 		$searching = true;
 	}}
 >
@@ -32,7 +32,7 @@
 		align-items: center;
 		background-color: rgba(255, 255, 255, 0.1);
 		padding: 4px;
-		@media (--below_med) {
+		@media (--below-med) {
 			display: none;
 		}
 	}

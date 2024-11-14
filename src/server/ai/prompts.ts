@@ -1,7 +1,7 @@
-export const createCondensePrompt = (size = '50%') =>
+export const create_condensed_prompt = (size = '50%') =>
 	`You will condense this text to about ${size} shorter - give or take 15%. You keep every detail, even if you think it does not matter. You keep the tone and style of speaking as well:`;
 
-export const grammarPrompt = `Apply spelling, grammar and incorrectly transcribed word fixes to this transcript. Do not remove or add anything except paragraph spacing where you feel necessary.`;
+export const grammar_prompt = `Apply spelling, grammar and incorrectly transcribed word fixes to this transcript. Do not remove or add anything except paragraph spacing where you feel necessary.`;
 
 export const midjourney = `simple vector. visualization of accepting money online, in the style of Netflix movie cover, golden yellow background. black and white , monochrome. painted illustrations, grainy. --v 5 --ar 16:9`;
 
@@ -12,7 +12,7 @@ Please replace all instances of the following words with the correct spelling:
 2. Replace "Cintax", "Cintech", and "Cintacs" with "Syntax"
 `;
 
-export const summarizePrompt = `Summarize the provided podcast transcript into very succinct bullet points, each containing just a few words. The bullet points should correspond to sections, questions or topics discussed in the podcast with points at least every 3-5 minutes. For each bullet point, you may also provide a longer 1-2 sentence summary of the topic if necessary, which may also include the host's opinions, names and thoughts. Do not skip topics.
+export const summarize_prompt = `Summarize the provided podcast transcript into very succinct bullet points, each containing just a few words. The bullet points should correspond to sections, questions or topics discussed in the podcast with points at least every 3-5 minutes. For each bullet point, you may also provide a longer 1-2 sentence summary of the topic if necessary, which may also include the host's opinions, names and thoughts. Do not skip topics.
 
 Remember, the key here is to read through the transcript carefully, identify all points, topics, questions and even banter, and then condense each one into a very brief, clear statement. It's also important to include timestamps if they're provided in the transcript, as they can help give a sense of the flow and structure of the podcast.
 
@@ -43,7 +43,7 @@ Return each of these things in JSON format that looks like this:
   "guests": ["..."]
 }`;
 
-export const summarizePrompt2 = `Summarize the provided podcast transcript into very succinct bullet points, each containing just a few words. The bullet points should correspond to sections, questions or distinct topics discussed in the podcast with points at least every 3-5 minutes.
+export const summarize_prompt_2 = `Summarize the provided podcast transcript into very succinct bullet points, each containing just a few words. The bullet points should correspond to sections, questions or distinct topics discussed in the podcast with points at least every 3-5 minutes.
 
 summary: For each bullet point, provide:
 
