@@ -13,7 +13,7 @@ Explore the power of Cloudflare Tunnels with Scott and Wes as they break down th
 * **[00:00](#t=00:00)** Welcome to Syntax!
 * **[01:17](#t=01:17)** Brought to you by [Sentry.io](www.sentry.io/syntax).
 * **[02:09](#t=02:09)** How do Cloudflare Tunnels work?
-  * **[03:52](#t=03:52)** Publically exposed webhooks.
+  * **[03:52](#t=03:52)** Publicly exposed webhooks.
   * **[04:09](#t=04:09)** Apple Pay.
   * **[04:40](#t=04:40)** [Snipcart](https://snipcart.com/).
 * **[04:54](#t=04:54)** Accessing servers when away.
