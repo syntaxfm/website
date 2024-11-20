@@ -29,7 +29,7 @@ Scott and Wes serve up state management in JavaScript, breaking down key concept
 * **[12:41](#t=12:41)** Approaches to state management.
     * **[12:52](#t=12:52)** Reducer based.
     * **[16:39](#t=16:39)** Mutation based state.
-    * **[21:17](#t=21:17)** Adam based state.
+    * **[21:17](#t=21:17)** Atom based state.
 * **[25:15](#t=25:15)** Ways to hold state.
     * **[25:17](#t=25:17)** Holding state in an object.
     * **[27:38](#t=27:38)** Holding state in the URL.
