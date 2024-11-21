@@ -1,6 +1,6 @@
 ---
 number: 852
-title: Safe Server Exposure with Cloudflare Tunnels
+title: Cloudflare Tunnels
 date: 1732532400000
 url: https://traffic.libsyn.com/syntax/Syntax_-_852.mp3
 youtube_url: https://www.youtube.com/watch?v=20rdAb2JpDs
