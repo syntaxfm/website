@@ -1,6 +1,6 @@
 ---
 number: 851
-title: "GHU with Cassidy Williams and Harald Kirschner"
+title: "The Future of VS Code and Copilot"
 date: 1732276800000
 url: https://traffic.libsyn.com/syntax/Sytnax_-_851.mp3
 youtube_url: https://www.youtube.com/watch?v=AiFXT_zyR9M
