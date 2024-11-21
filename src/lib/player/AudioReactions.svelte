@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { player_time } from '$/state/player_time';
 	import { player } from '$state/player';
 	import { DotLottieSvelte } from '@lottiefiles/dotlottie-svelte';
 	import { onMount } from 'svelte';
@@ -11,12 +12,12 @@
 		showAnimation?: boolean;
 		userIp?: string;
 		createdAt: number;
+		playbackTriggered?: boolean;
 	}
 
 	let reactions: Reaction[] = [];
 	let reactionContainer: HTMLElement;
 	let userIp: string = '';
-	let lastReactionTime = 0;
 
 	onMount(async () => {
 		try {
@@ -30,10 +31,39 @@
 	});
 
 	$: {
-		reactions = reactions.map((reaction) => ({
-			...reaction,
-			isPlaying: Math.abs(reaction.timestamp - ($player.audio?.currentTime || 0)) < 0.5
-		}));
+		reactions = reactions.map((reaction) => {
+			if (!$player_time) return reaction;
+
+			const isNearTimestamp = Math.abs(reaction.timestamp - $player_time) < 6;
+
+			if (isNearTimestamp && !reaction.playbackTriggered) {
+				setTimeout(() => {
+					reactions = reactions.map((r) =>
+						r.id === reaction.id ? { ...r, playbackTriggered: false, showAnimation: false } : r
+					);
+				}, 3000);
+
+				return {
+					...reaction,
+					isPlaying: true,
+					showAnimation: true,
+					playbackTriggered: true
+				};
+			}
+
+			if (!isNearTimestamp && reaction.playbackTriggered) {
+				return {
+					...reaction,
+					isPlaying: false,
+					playbackTriggered: false
+				};
+			}
+
+			return {
+				...reaction,
+				isPlaying: isNearTimestamp
+			};
+		});
 	}
 
 	const REACTION_TYPES = {
@@ -83,10 +113,10 @@
 			isPlaying: false,
 			showAnimation: true,
 			userIp,
-			createdAt: Date.now()
+			createdAt: Date.now(),
+			playbackTriggered: false
 		};
 
-		lastReactionTime = Date.now();
 		console.log(`Adding reaction at timestamp: ${newReaction.timestamp}`);
 		reactions = [...reactions, newReaction];
 
@@ -95,6 +125,8 @@
 				reaction.id === newReaction.id ? { ...reaction, showAnimation: false } : reaction
 			);
 		}, 5000);
+
+		console.log('reactions', reactions);
 	}
 
 	function removeReaction(reactionId: string) {
