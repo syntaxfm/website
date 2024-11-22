@@ -18,7 +18,7 @@
 	analyser.fftSize = 128;
 	const bufferLength = analyser.frequencyBinCount;
 	const dataArray = new Uint8Array(bufferLength);
-	let barWidth: 10;
+	let barWidth = 10;
 	let bars: {
 		height: number;
 		width: number;
