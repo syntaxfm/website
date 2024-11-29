@@ -1,6 +1,6 @@
 ---
 number: 854
-title: “Animating the Web With Matt Perry: Exploring Motion”
+title: "Animating the Web With Matt Perry: Exploring Motion"
 date: 1732881600000
 url: https://traffic.libsyn.com/syntax/Syntax_-_854.mp3
 youtube_url: https://www.youtube.com/watch?v=r6oXsC1gGHc
