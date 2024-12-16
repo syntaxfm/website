@@ -52,7 +52,7 @@ Wes and Scott talk with Syntax Producer Randy Rektor. From mastering mic techniq
   * [Insta360 Link 2](https://www.amazon.com/Insta360-Link-Tracking-Noise-Canceling-Streaming/dp/B0DDTH3HX8)
   * [Insta360 Link 2c](https://www.amazon.com/Insta360-Link-2C-Noise-Canceling-Streaming/dp/B0DDTGY8FG)
   * [Elgato Cam Link 4k](https://www.amazon.com/Elgato-Cam-Link-Broadcast-Camcorder/dp/B07K3FN5MR)
-  * [Sonay a6000](https://amzn.to/3O3KOjJ)
+  * [Sony a6000](https://amzn.to/3O3KOjJ)
 * **[51:07](#t=51:07)** Mic stand recommendations
   * [VIVO](https://amzn.to/3Z2t1jd)
 * **[56:50](#t=56:50)** Sick Picks & Shameless Plugs
