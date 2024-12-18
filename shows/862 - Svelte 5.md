@@ -18,7 +18,7 @@ Is Svelte becoming React? Scott and Wes explore the exciting updates in Svelte 5
         * **[04:47](#t=04:47)** [$state](https://svelte.dev/docs/svelte/$state)
         * **[07:00](#t=07:00)** $state.snapshot
         * **[11:47](#t=11:47)** [$derived](https://svelte.dev/docs/svelte/$derived)
-        * **[12:46](#t=12:46)** $derived.buy
+        * **[12:46](#t=12:46)** $derived.by
         * **[15:41](#t=15:41)** [$effect](https://svelte.dev/docs/svelte/$effect)
         * **[17:24](#t=17:24)** $effect.pre
         * **[18:05](#t=18:05)** $effect use cases.
