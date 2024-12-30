@@ -1,6 +1,6 @@
 ---
 number: 864
-title: Durable Objects, Tab State Hacks, and Headless CMS Choices
+title: Durable Objects × Tab State Hacks × Headless CMS Choices + More
 date: 1735729200000
 url: https://traffic.libsyn.com/syntax/Syntax_-_864.mp3
 youtube_url: https://www.youtube.com/watch?v=hxUDQEpXv6c
