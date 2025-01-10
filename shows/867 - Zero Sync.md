@@ -1,6 +1,6 @@
 ---
 number: 867
-title: Zero Sync
+title: Zero Sync is the Future of Data Loading
 date: 1736766000000
 url: https://traffic.libsyn.com/syntax/Syntax_-_867.mp3
 youtube_url: https://www.youtube.com/watch?v=Mv6BzoO_H0w
