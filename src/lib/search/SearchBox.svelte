@@ -81,7 +81,6 @@
 
 	run(() => {
 		if (ready) {
-			console.log('recents', $search_recent);
 			worker.postMessage({ type: 'recents', payload: $state.snapshot($search_recent) });
 		}
 	});
