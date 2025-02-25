@@ -125,6 +125,5 @@
 	},
 	"prisma": {
 		"seed": "node --loader ts-node/esm prisma/seed.ts"
-	},
-	"packageManager": "pnpm@9.10.0+sha1.216899f511c8dfde183c7cb50b69009c779534a8"
+	}
 }
