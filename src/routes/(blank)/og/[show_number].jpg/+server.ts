@@ -4,6 +4,8 @@ import puppeteer, { Browser, type Product } from 'puppeteer-core';
 import { redis } from '$/hooks.server.js';
 const exePath = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 
+chrome.setGraphicsMode = true;
+
 async function getOptions() {
 	if (dev) {
 		return {
