@@ -42,7 +42,7 @@ Scott and Wes answer your listener questions! They debate Axios vs. Fetch, discu
 ### Sick Picks
 
 - Scott: [Nothing Ear (a)](https://amzn.to/4i4mcoc).
-- Wes: [SmallRig Phone Cage](https://www.amazon.com/stores/page/B740EE6C-F37A-43D0-B963-BEFFCD7744AE).
+- Wes: [SmallRig Phone Cage](https://amzn.to/4hPskkz).
 
 ### Shameless Plugs
 
