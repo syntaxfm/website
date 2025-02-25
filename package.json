@@ -70,7 +70,7 @@
 	},
 	"type": "module",
 	"engines": {
-		"node": ">=18.13 || ^20",
+		"node": ">=18.13 || ^22",
 		"pnpm": ">=8"
 	},
 	"dependencies": {
@@ -125,5 +125,6 @@
 	},
 	"prisma": {
 		"seed": "node --loader ts-node/esm prisma/seed.ts"
-	}
+	},
+	"packageManager": "pnpm@9.10.0+sha1.216899f511c8dfde183c7cb50b69009c779534a8"
 }
