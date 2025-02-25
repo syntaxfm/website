@@ -70,7 +70,7 @@
 	},
 	"type": "module",
 	"engines": {
-		"node": ">=18.13 || ^22",
+		"node": "18.13",
 		"pnpm": ">=8"
 	},
 	"dependencies": {

@@ -12,7 +12,7 @@ import { dev } from '$app/environment';
 import { UPSPLASH_TOKEN, UPSPLASH_URL } from '$env/static/private';
 import get_show_path from '$utilities/slug';
 import { Redis } from '@upstash/redis';
-import { nodeProfilingIntegration } from '@sentry/profiling-node';
+// import { nodeProfilingIntegration } from '@sentry/profiling-node';
 
 export const cache_status = UPSPLASH_URL && UPSPLASH_TOKEN ? 'ONLINE' : 'OFFLINE';
 
@@ -38,7 +38,7 @@ Sentry.init({
 	profilesSampleRate: 1.0, // Profiling sample rate is relative to tracesSampleRate
 	environment: dev ? 'development' : 'production',
 	integrations: [
-		nodeProfilingIntegration,
+		// nodeProfilingIntegration,
 		Sentry.prismaIntegration(),
 		Sentry.redisIntegration({ cachePrefixes: ['show:', 'shows:', 'show-og:'] })
 	],
