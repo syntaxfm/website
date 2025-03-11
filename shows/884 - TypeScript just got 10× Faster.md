@@ -33,7 +33,12 @@ Wes and Scott talk with Anders Hejlsberg and Daniel Rosenwasser about TypeScript
 * **[54:11](#t=54:11)** What's the timeline for the new compiler?  
 * **[58:39](#t=58:39)** Optimization and AI  
 * **[01:00:32](#t=01:00:32)** New features?  
-* **[01:04:15](#t=01:04:15)** Sick Picks + Shameless Plugs  
+* **[01:04:15](#t=01:04:15)** Sick Picks + Shameless Plugs
+
+* [Read the Microsoft Announcement](https://devblogs.microsoft.com/typescript/typescript-native-port/).
+* [Watch the announcement from Anders](https://www.youtube.com/watch?v=pNlq-EVld70).
+* [View the native Port](https://github.com/microsoft/typescript-go).
+* [Read the FAQs](https://github.com/microsoft/typescript-go/discussions/categories/faqs).
 
 ### Sick Picks
 
