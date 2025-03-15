@@ -7,6 +7,7 @@
 	import ShareButton from '../share/HairButton.svelte';
 	import { onMount } from 'svelte';
 	import type { Show } from '@prisma/client';
+	import AudioReactions from './AudioReactions.svelte';
 
 	interface Props {
 		initial_show: Show;
@@ -94,6 +95,7 @@
 									style:--media-range-bar-color="var(--white)"
 									style:--media-range-thumb-background="var(--primary)"
 								></media-time-range>
+								<AudioReactions />
 							</div>
 							<media-duration-display></media-duration-display>
 						</div>

@@ -79,6 +79,7 @@
 		"@ffmpeg.wasm/core-mt": "0.13.2",
 		"@ffmpeg.wasm/main": "^0.13.1",
 		"@leveluptuts/svelte-side-menu": "^1.1.0",
+		"@lottiefiles/dotlottie-svelte": "^0.4.0",
 		"@oddbird/popover-polyfill": "^0.4.4",
 		"@prisma/client": "5.18.0",
 		"@sentry/profiling-node": "^8.28.0",
