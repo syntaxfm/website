@@ -29,16 +29,26 @@ type BroadCastResponse = {
 	broadcasts: BroadcastSkinny[];
 };
 
+async function parseResponse(res: Response) {
+	try {
+		return await res.json() as Promise<BroadCastResponse>;
+	} catch {
+		return {
+			broadcasts: [],
+		}
+	}
+}
+
 async function fetchBroadcastList() {
 	// 1. Fetch all broadcasts from ConvertKit
 	// 2 pages - 100 broadcasts should be enough. This will need to be updated if we ever have more than 100 issues
 	const responses = await Promise.all([
 		fetch(
 			`https://api.convertkit.com/v3/broadcasts?page=1&api_secret=${env.CONVERT_KIT_SECRET}`
-		).then((res) => res.json() as Promise<BroadCastResponse>),
+		).then(parseResponse),
 		fetch(
 			`https://api.convertkit.com/v3/broadcasts?page=2&api_secret=${env.CONVERT_KIT_SECRET}`
-		).then((res) => res.json() as Promise<BroadCastResponse>)
+		).then(parseResponse),
 	]);
 
 	const broadcasts = responses
@@ -63,29 +73,33 @@ async function fetchBroadcastList() {
 		});
 
 	// Now we need to hit the ConvertKit API for every single broadcast to get info on if this broadcast was published, as well as the associated HTML for each snackpack
-	const broadcastsWithData = (
-		await Promise.all(
-			broadcasts.map(async (broadcast) => {
-				const res = await fetch(
-					`https://api.convertkit.com/v3/broadcasts/${broadcast.id}?api_secret=${env.CONVERT_KIT_SECRET}`
-				);
-				const data = await res.json();
-				return data.broadcast as Broadcast;
-			})
+	try {
+		const broadcastsWithData = (
+			await Promise.all(
+				broadcasts.map(async (broadcast) => {
+					const res = await fetch(
+						`https://api.convertkit.com/v3/broadcasts/${broadcast.id}?api_secret=${env.CONVERT_KIT_SECRET}`
+					);
+					const data = await res.json();
+					return data.broadcast as Broadcast;
+				})
+			)
 		)
-	)
-		// filter for public broadcasts
-		.filter((broadcast) => broadcast.public)
-		// trim to only the fields we need (published_at, subject)
-		.map((broadcast) => {
-			return {
-				published_at: broadcast.published_at,
-				subject: broadcast.subject,
-				id: broadcast.id
-			};
-		});
-
-	return broadcastsWithData;
+			// filter for public broadcasts
+			.filter((broadcast) => broadcast.public)
+			// trim to only the fields we need (published_at, subject)
+			.map((broadcast) => {
+				return {
+					published_at: broadcast.published_at,
+					subject: broadcast.subject,
+					id: broadcast.id
+				};
+			});
+	
+		return broadcastsWithData;
+	} catch (error) {
+		return [];
+	}
 }
 
 export const load: PageServerLoad = async function ({ setHeaders, params, locals }) {
