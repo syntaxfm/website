@@ -28,6 +28,11 @@
 				Wanna see how good our snackpack is? Looking for something mentioned in the past?
 			</p>
 			<!-- Loop over data.issues -->
+			{#if !data.issues.length}
+				<p class="error">
+					Oopsie daisy! Unable to load past issues.
+				</p>
+			{/if}
 			<ul>
 				{#each data.issues as issue}
 					<li>
@@ -76,5 +81,8 @@
 		/* center */
 		margin: 0 auto;
 		margin-top: 2rem;
+	}
+	.error {
+		color: var(--warning);
 	}
 </style>
