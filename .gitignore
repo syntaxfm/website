@@ -26,3 +26,4 @@ start_script/target
 bin
 
 db-data
+*storybook.log
