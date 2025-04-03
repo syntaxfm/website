@@ -33,7 +33,7 @@ export type Pagination = {
 	per_page: number;
 };
 
-type BroadcastSkinny = Pick<Broadcast, 'id' | 'published_at' | 'created_at' | 'subject'>;
+type BroadcastSkinny = Pick<Broadcast, 'id' | 'subject'> & { published_at: string };
 
 type BroadCastResponse = {
 	broadcasts: Broadcast[];
@@ -79,8 +79,7 @@ async function fetchBroadcastList() {
 					if (is_published || is_snackpack_issue) {
 						results.push({
 							id,
-							published_at,
-							created_at,
+							published_at: published_at || created_at,
 							subject
 						});
 					}
@@ -89,9 +88,7 @@ async function fetchBroadcastList() {
 		}
 
 		return results.sort(
-			(a, b) =>
-				new Date(b.published_at || b.created_at).getTime() -
-				new Date(a.published_at || a.created_at).getTime()
+			(a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime()
 		);
 	} catch {
 		return [];
@@ -110,11 +107,11 @@ export const load: PageServerLoad = async function ({ setHeaders }) {
 			.catch(console.error)
 	);
 
-	const issues = env.CONVERT_KIT_SECRET
+	const issues: BroadcastSkinny[] = env.CONVERT_KIT_SECRET
 		? await super_cache_mang('snackpack:issues', () => fetchBroadcastList())
 		: [
 				{
-					published_at: Date.now(),
+					published_at: new Date().toUTCString(),
 					subject: 'ConvertKit API key not set (this is a fake issue)',
 					id: 1337
 				}

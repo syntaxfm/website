@@ -24,15 +24,13 @@
 			</p>
 			<!-- Loop over data.issues -->
 			{#if !data.issues.length}
-				<p class="error">
-					Oopsie daisy! Unable to load past issues.
-				</p>
+				<p class="error">Oopsie daisy! Unable to load past issues.</p>
 			{/if}
 			<ul>
 				{#each data.issues as issue}
 					<li>
 						<a href="/snackpack/{issue.id}">
-							<small class="text-xs">{format(new Date(issue.published_at || issue.created_at), 'MMM dd, yyyy')}</small>
+							<small class="text-xs">{format(new Date(issue.published_at), 'MMM dd, yyyy')}</small>
 							<p>{issue.subject}</p>
 						</a>
 					</li>
