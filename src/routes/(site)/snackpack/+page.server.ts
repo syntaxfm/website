@@ -67,11 +67,13 @@ async function fetchBroadcastList() {
 			}
 		};
 		const now = new Date();
+		const start = new Date(2022, 0, 1);
 		while (current_response?.pagination.has_next_page) {
 			current_response = await getBroadcastsPage(current_response.pagination.end_cursor);
 			current_response?.broadcasts.forEach(
 				({ id, published_at, created_at, subject, public: isPublic }) => {
-					const is_published = new Date(published_at || created_at) <= now && isPublic;
+					const date = new Date(published_at || created_at);
+					const is_published = isPublic && date >= start && date <= now;
 					const title = subject.toLowerCase();
 					const is_snackpack_issue = title.includes('snack pack') || title.includes('issue #');
 					if (is_published || is_snackpack_issue) {

@@ -1,13 +1,8 @@
-<script>
+<script lang="ts">
 	import NewsletterForm from '$/lib/newsletter/NewsletterForm.svelte';
 	import NewsletterLogo from '$lib/newsletter/NewsletterLogo.svelte';
 	import { format } from 'date-fns';
-	/**
-	 * @typedef {Object} Props
-	 * @property {any} data
-	 */
 
-	/** @type {Props} */
 	let { data } = $props();
 </script>
 
@@ -37,7 +32,7 @@
 				{#each data.issues as issue}
 					<li>
 						<a href="/snackpack/{issue.id}">
-							<small class="text-xs">{format(new Date(issue.published_at), 'MMM dd, yyyy')}</small>
+							<small class="text-xs">{format(new Date(issue.published_at || issue.created_at), 'MMM dd, yyyy')}</small>
 							<p>{issue.subject}</p>
 						</a>
 					</li>
