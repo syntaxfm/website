@@ -108,7 +108,7 @@ export const load: PageServerLoad = async function ({ setHeaders }) {
 	);
 
 	const issues: BroadcastSkinny[] = env.CONVERT_KIT_SECRET
-		? await fetchBroadcastList() // await super_cache_mang('snackpack:issues', () => fetchBroadcastList())
+		? await super_cache_mang('snackpack:issues', () => fetchBroadcastList())
 		: [
 				{
 					published_at: new Date().toUTCString(),
