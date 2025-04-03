@@ -45,10 +45,10 @@ async function getBroadcastsPage(after?: string) {
 	if (after) {
 		params.append('after', after);
 	}
+	const headers = new Headers();
+	headers.append('X-Kit-Api-Key', env.CONVERT_KIT_V4_API_KEY);
 	const response = await fetch(`https://api.convertkit.com/v4/broadcasts?${params.toString()}`, {
-		headers: {
-			'X-Kit-Api-Key': env.CONVERT_KIT_V4_API_KEY
-		}
+		headers
 	});
 	return response.json() as Promise<BroadCastResponse | undefined>;
 }
@@ -71,12 +71,12 @@ async function fetchBroadcastList() {
 		while (current_response?.pagination.has_next_page) {
 			current_response = await getBroadcastsPage(current_response.pagination.end_cursor);
 			current_response?.broadcasts.forEach(
-				({ id, published_at, created_at, subject, public: isPublic }) => {
+				({ id, published_at, created_at, send_at, subject, public: isPublic }) => {
 					const date = new Date(published_at || created_at);
-					const is_published = isPublic && date >= start && date <= now;
+					const is_published = isPublic && send_at && date >= start && date <= now;
 					const title = subject.toLowerCase();
 					const is_snackpack_issue = title.includes('snack pack') || title.includes('issue #');
-					if (is_published || is_snackpack_issue) {
+					if (is_published && is_snackpack_issue) {
 						results.push({
 							id,
 							published_at: published_at || created_at,
@@ -108,7 +108,7 @@ export const load: PageServerLoad = async function ({ setHeaders }) {
 	);
 
 	const issues: BroadcastSkinny[] = env.CONVERT_KIT_SECRET
-		? await super_cache_mang('snackpack:issues', () => fetchBroadcastList())
+		? await fetchBroadcastList() // await super_cache_mang('snackpack:issues', () => fetchBroadcastList())
 		: [
 				{
 					published_at: new Date().toUTCString(),
