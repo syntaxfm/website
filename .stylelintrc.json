@@ -1,8 +1,9 @@
 {
 	"extends": ["stylelint-config-standard"],
-	"plugins": ["stylelint-declaration-strict-value"],
+	"plugins": ["stylelint-declaration-strict-value", "stylelint-media-use-custom-media"],
 	"rules": {
 		"alpha-value-notation": "number",
+		"csstools/media-use-custom-media": "always",
 		"font-family-no-missing-generic-family-keyword": null,
 		"import-notation": "string",
 		"scale-unlimited/declaration-strict-value": "/color$/"

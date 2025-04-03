@@ -249,6 +249,9 @@ importers:
       stylelint-declaration-strict-value:
         specifier: ^1.10.6
         version: 1.10.6(stylelint@16.9.0(typescript@5.5.4))
+      stylelint-media-use-custom-media:
+        specifier: ^4.0.0
+        version: 4.0.0(stylelint@16.9.0(typescript@5.5.4))
       svelte:
         specifier: ^5.0.0
         version: 5.0.4
@@ -3942,6 +3945,12 @@ packages:
     engines: {node: '>=18.12.0'}
     peerDependencies:
       stylelint: '>=7 <=16'
+
+  stylelint-media-use-custom-media@4.0.0:
+    resolution: {integrity: sha512-RluE9cNHF97zM6lx5pUCte1CshP8wTN7Pyz1kj5UUT5sNrBsNU0uu+AbGBcxwaupux+nwGUAHHpAgmO0+F7F9A==}
+    engines: {node: '>=18.12.0'}
+    peerDependencies:
+      stylelint: '>=16'
 
   stylelint@16.9.0:
     resolution: {integrity: sha512-31Nm3WjxGOBGpQqF43o3wO9L5AC36TPIe6030Lnm13H3vDMTcS21DrLh69bMX+DBilKqMMVLian4iG6ybBoNRQ==}
@@ -8588,6 +8597,10 @@ snapshots:
       stylelint-config-recommended: 14.0.1(stylelint@16.9.0(typescript@5.5.4))
 
   stylelint-declaration-strict-value@1.10.6(stylelint@16.9.0(typescript@5.5.4)):
+    dependencies:
+      stylelint: 16.9.0(typescript@5.5.4)
+
+  stylelint-media-use-custom-media@4.0.0(stylelint@16.9.0(typescript@5.5.4)):
     dependencies:
       stylelint: 16.9.0(typescript@5.5.4)
 

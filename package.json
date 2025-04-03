@@ -60,6 +60,7 @@
 		"stylelint": "^16.9.0",
 		"stylelint-config-standard": "^36.0.1",
 		"stylelint-declaration-strict-value": "^1.10.6",
+		"stylelint-media-use-custom-media": "^4.0.0",
 		"svelte": "^5.0.0",
 		"svelte-check": "^4.0.0",
 		"svelte-preprocess": "^6.0.2",

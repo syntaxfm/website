@@ -20,7 +20,7 @@
 		if (type === 'OKLCH') {
 			local_color = getComputedStyle(document.documentElement).getPropertyValue(`--${color}`);
 		} else if (type === 'VARIABLE') {
-			local_color = `var(--${color})`;
+			local_color = `var(--c-${color})`;
 		} else if (type === 'RGBA') {
 			local_color = oklchToRgba(getComputedStyle(currentTarget).backgroundColor);
 		} else if (type === 'HEX') {
@@ -33,34 +33,19 @@
 	}
 </script>
 
-<label>
-	<select bind:value={type} name="" id="">
-		<option value="HEX">HEX</option>
-		<option value="VARIABLE">Variable</option>
-		<option value="OKLCH">OKLCH</option>
-		<option value="RGBA">RGBA</option>
-	</select>
-</label>
+<div>
+	<label>
+		<select bind:value={type} name="" id="">
+			<option value="HEX">HEX</option>
+			<option value="VARIABLE">Variable</option>
+			<option value="OKLCH">OKLCH</option>
+			<option value="RGBA">RGBA</option>
+		</select>
+	</label>
 
-<section>
-	{#each COLORS as color}
-		<div class="wrapper">
-			<div
-				tabindex="0"
-				role="button"
-				onkeydown={(e) => {
-					let { currentTarget } = e;
-					if (e.key === 'Enter' || e.keyCode === 13) {
-						copy_color(color, currentTarget);
-					}
-				}}
-				class="primary box"
-				onclick={({ currentTarget }) => copy_color(color, currentTarget)}
-				style={`--fg_demo_box_color: var(--${color})`}
-			>
-				{color}
-			</div>
-			{#each Array(10) as item, index}
+	<section>
+		{#each COLORS as color}
+			<div class="wrapper">
 				<div
 					tabindex="0"
 					role="button"
@@ -70,20 +55,35 @@
 							copy_color(color, currentTarget);
 						}
 					}}
-					onclick={({ currentTarget }) => copy_color(`${color}-${index + 1}`, currentTarget)}
-					class={`box`}
-					style={`--fg_demo_color: var(--${color}-${pick_color(
-						index
-					)}); --fg_demo_box_color: var(--${color}-${index + 1});`}
+					class="primary box"
+					onclick={({ currentTarget }) => copy_color(color, currentTarget)}
+					style={`--fg_demo_box_color: var(--${color})`}
 				>
-					{color}-{index + 1}
+					{color}
 				</div>
-			{/each}
-		</div>
-	{/each}
-
-	<ColorsInJs />
-</section>
+				{#each Array(10) as item, index}
+					<div
+						tabindex="0"
+						role="button"
+						onkeydown={(e) => {
+							let { currentTarget } = e;
+							if (e.key === 'Enter' || e.keyCode === 13) {
+								copy_color(color, currentTarget);
+							}
+						}}
+						onclick={({ currentTarget }) => copy_color(`${color}-${index + 1}`, currentTarget)}
+						class={`box`}
+						style={`--fg_demo_color: var(--c-${color}-${pick_color(
+							index
+						)}); --fg_demo_box_color: var(--c-${color}-${index + 1});`}
+					>
+						{color}-{index + 1}
+					</div>
+				{/each}
+			</div>
+		{/each}
+	</section>
+</div>
 
 <style lang="postcss">
 	section {
