@@ -1,5 +1,5 @@
 @layer utilities {
-	.readable {
+	/* .readable {
 		max-width: 900px;
 		width: 100%;
 	}
@@ -101,5 +101,5 @@
 		@media (--below-med) {
 			display: initial;
 		}
-	}
+	} */
 }

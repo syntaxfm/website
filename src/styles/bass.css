@@ -1,4 +1,14 @@
-@layer base {
+/* Freeze!
+Rock (rock rock rock rock rock rock rock)
+Aaah, aaah, aaah, aaah
+Uh raah!
+Bass! */
+
+/* FR tho, base styles should only be styles on elements themselves. */
+
+/* BASS */
+
+@layer bass {
 	* {
 		box-sizing: border-box;
 	}
@@ -26,63 +36,7 @@
 		font-style: normal italic;
 	}
 
-	.fst-100 {
-		font-variation-settings: var(--fw-100);
-	}
-
-	.fst-100-i {
-		font-variation-settings: var(--fw-100-italic);
-	}
-
-	.fst-400 {
-		font-variation-settings: var(--fw-400);
-	}
-
-	.fst-400-i {
-		font-variation-settings: var(--fw-400-italic);
-	}
-
-	.fst-500 {
-		font-variation-settings: var(--fw-500);
-	}
-
-	.fst-500-i {
-		font-variation-settings: var(--fw-500-italic);
-	}
-
-	.fst-600 {
-		font-variation-settings: var(--fw-600);
-	}
-
-	.fst-600-i {
-		font-variation-settings: var(--fw-600-italic);
-	}
-
-	.fst-700 {
-		font-variation-settings: var(--fw-700);
-	}
-
-	.fst-700-i {
-		font-variation-settings: var(--fw-700-italic);
-	}
-
-	.fst-800 {
-		font-variation-settings: var(--fw-800);
-	}
-
-	.fst-800-i {
-		font-variation-settings: var(--fw-800-italic);
-	}
-
-	.fst-900 {
-		font-variation-settings: var(--fw-900);
-	}
-
-	.fst-900-i {
-		font-variation-settings: var(--fw-900-italic);
-	}
-
-	h1,
+	/* h1,
 	.h1 {
 		font-size: var(--font-size-xxxl);
 	}
@@ -112,8 +66,9 @@
 	p,
 	li {
 		font-size: var(--font-size-base);
-	}
+	} */
 
+	/* 
 	h1,
 	h2,
 	h3,
@@ -200,7 +155,8 @@
 	}
 
 	/* Show Notes Typography - coming from markdown so it must be global */
-	.show-notes {
+
+	/* .show-notes {
 		h2,
 		h3 {
 			font-size: var(--font-size-lg);
@@ -209,18 +165,19 @@
 		ul {
 			padding-left: 20px;
 		}
-	}
+	} */
 
+	/* 
 	li {
 		line-height: 2.2;
 		list-style-type: circle;
-	}
+	} */
 
-	ol li {
+	/* ol li {
 		list-style-type: decimal;
-	}
+	} */
 
-	a[href^='#t='] {
+	/* a[href^='#t='] {
 		background: var(--bg-1);
 		padding: 4px 6px;
 		border-bottom: none;
@@ -234,8 +191,9 @@
 		@media (--above-med) {
 			left: -17px;
 		}
-	}
+	} */
 
+	/* 
 	[popover] {
 		position: fixed;
 		z-index: 10;
@@ -247,10 +205,11 @@
 		border-style: solid;
 		overflow: auto;
 		margin: auto;
-	}
+	} */
 
 	/* stylelint-disable selector-class-pattern */
-	[popover]:not(.\:popover-open) {
+
+	/* [popover]:not(.\:popover-open) {
 		display: none;
 	}
 
@@ -260,72 +219,69 @@
 
 	[anchor].\:popover-open {
 		inset: auto;
-	}
+	} */
 
 	/* This older `:open` pseudo selector is deprecated and support will be removed
 in a later release. */
-	@supports selector([popover]:open) {
+
+	/* @supports selector([popover]:open) {
 		[popover]:not(.\:popover-open, dialog[open]) {
 			display: revert;
 		}
 
-		/* stylelint-disable selector-pseudo-class-no-unknown */
 		[anchor]:is(:open) {
 			inset: auto;
 		}
-		/* stylelint-enable selector-pseudo-class-no-unknown */
-	}
 
+	} */
+
+	/* 
 	@supports selector([popover]:popover-open) {
 		[popover]:not(.\:popover-open, dialog[open]) {
 			display: revert;
 		}
 
-		/* stylelint-disable selector-pseudo-class-no-unknown */
 		[anchor]:is(:popover-open) {
 			inset: auto;
 		}
-		/* stylelint-enable selector-pseudo-class-no-unknown */
-	}
-	/* stylelint-enable selector-class-pattern */
 
-	@supports (width: -moz-fit-content) {
+	} */
+
+	/* @supports (width: -moz-fit-content) {
 		[popover] {
-			/* stylelint-disable value-no-vendor-prefix */
 			width: -moz-fit-content;
 			height: -moz-fit-content;
-			/* stylelint-enable value-no-vendor-prefix */
 		}
 	}
 
 	@supports not (inset: 0) {
 		[popover] {
-			/* stylelint-disable declaration-block-no-redundant-longhand-properties */
 			top: 0;
 			left: 0;
 			right: 0;
 			bottom: 0;
-			/* stylelint-enable declaration-block-no-redundant-longhand-properties */
 		}
 	}
-}
+} */
 
-/* Popover */
+	/* Popover */
 
-/* All External Links (links starting with http(s)) */
-a[href^='http']:not(.social-icon, .button, .icon, .naked)::after {
+	/* All External Links (links starting with http(s)) */
+
+	/* a[href^='http']:not(.social-icon, .button, .icon, .naked)::after {
 	content: '↗';
 	margin-left: 4px;
 	font-size: 12px;
-}
+} */
 
-/* Selection */
-::selection {
+	/* Selection */
+
+	/* ::selection {
 	background: var(--primary);
 	color: var(--dark);
-}
+} */
 
-.visually-hidden {
+	/* .visually-hidden {
 	position: absolute;
 	width: 1px;
 	height: 1px;
@@ -335,10 +291,11 @@ a[href^='http']:not(.social-icon, .button, .icon, .naked)::after {
 	overflow: hidden;
 	clip: rect(0, 0, 0, 0);
 	white-space: nowrap;
-}
+} */
 
-/* Scrollbars */
-html {
+	/* Scrollbars */
+
+	/* html {
 	--track: var(--black);
 	--thumb: var(--primary);
 
@@ -348,4 +305,5 @@ html {
 
 .admin :is(h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6) {
 	font-variation-settings: var(--fw-400);
+} */
 }

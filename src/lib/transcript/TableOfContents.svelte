@@ -14,7 +14,7 @@
 		{#each aiShowNote?.summary || [] as summary}
 			<li>
 				<a href="#{slug(summary.text)}">
-					<span class="timestamp fst-900">{summary.time}</span>
+					<span class="timestamp fv-900">{summary.time}</span>
 					{summary.text}
 				</a>
 			</li>

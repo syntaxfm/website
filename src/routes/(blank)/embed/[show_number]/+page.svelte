@@ -21,7 +21,7 @@
 
 <div class={'theme-system theme-wrapper zone'}>
 	<figure class="zone" style:--bg="var(--black)" style:--fg="var(--white)">
-		<span style:--transition-name="show-date-{show.number}" class="show-number fst-900 grit"
+		<span style:--transition-name="show-date-{show.number}" class="show-number fv-900 grit"
 			>{show.number}</span
 		>
 

@@ -1,0 +1,58 @@
+@layer utilities {
+	/* Font Variation Settings */
+	.fv-100 {
+		font-variation-settings: var(--fw-100);
+	}
+
+	.fv-100-i {
+		font-variation-settings: var(--fw-100-italic);
+	}
+
+	.fv-400 {
+		font-variation-settings: var(--fw-400);
+	}
+
+	.fv-400-i {
+		font-variation-settings: var(--fw-400-italic);
+	}
+
+	.fv-500 {
+		font-variation-settings: var(--fw-500);
+	}
+
+	.fv-500-i {
+		font-variation-settings: var(--fw-500-italic);
+	}
+
+	.fv-600 {
+		font-variation-settings: var(--fw-600);
+	}
+
+	.fv-600-i {
+		font-variation-settings: var(--fw-600-italic);
+	}
+
+	.fv-700 {
+		font-variation-settings: var(--fw-700);
+	}
+
+	.fv-700-i {
+		font-variation-settings: var(--fw-700-italic);
+	}
+
+	.fv-800 {
+		font-variation-settings: var(--fw-800);
+	}
+
+	.fv-800-i {
+		font-variation-settings: var(--fw-800-italic);
+	}
+
+	.fv-900 {
+		font-variation-settings: var(--fw-900);
+	}
+
+	.fv-900-i {
+		font-variation-settings: var(--fw-900-italic);
+	}
+}

@@ -13,7 +13,7 @@
 {#if results.length > 0}
 	<SearchResultList {results} {query} on:select />
 {:else if query}
-	<p class="info fst-400">No results</p>
+	<p class="info fv-400">No results</p>
 {/if}
 
 <style lang="postcss">

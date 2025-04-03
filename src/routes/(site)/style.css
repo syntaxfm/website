@@ -15,19 +15,25 @@
 
 /* The main css entry. Primarily used to import stuff */
 
-@layer reset, base, utilities, layout, theme;
+@layer reset, bass, utilities, layout, theme;
 
 /* Import all css themes */
-@import '../../styles/base.css';
+@import '../../styles/reset.css';
 @import '../../styles/variables.css';
-@import '../../styles/utilities.css';
+@import '../../styles/bass.css';
+@import '../../styles/typography.css';
+
+/* @import '../../styles/utilities.css';
 @import '../../styles/layout.css';
-@import '../../styles/buttons.css';
+@import '../../styles/buttons.css'; */
 
 /* FYI you have to use import-glob for all of these or else it gets mad */
 
+/* OLD */
+
 /* Global Utilities */
-.center {
+
+/* .center {
 	text-align: center;
 }
 
@@ -94,4 +100,4 @@ td {
 
 .td-full {
 	grid-column: 1 / -1;
-}
+} */

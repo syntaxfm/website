@@ -4,19 +4,19 @@
 
 	interface Props {
 		shows: (Show & {
-		aiShowNote: {
-			id: number;
-			show_number: number;
-			title: string;
-			description: string;
-			provider: string;
-			topics: {
+			aiShowNote: {
 				id: number;
-				name: string;
-				showNote: number;
-			}[];
-		} | null;
-	})[];
+				show_number: number;
+				title: string;
+				description: string;
+				provider: string;
+				topics: {
+					id: number;
+					name: string;
+					showNote: number;
+				}[];
+			} | null;
+		})[];
 	}
 
 	let { shows }: Props = $props();
@@ -37,7 +37,7 @@
 				{#each shows as show}
 					<tr>
 						<td>
-							<span class="show-type fst-500">
+							<span class="show-type fv-500">
 								{#if format(show.date, 'EEE') === 'Mon'}
 									Hasty
 								{:else if format(show.date, 'EEE') === 'Wed'}

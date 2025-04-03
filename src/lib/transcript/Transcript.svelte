@@ -51,19 +51,23 @@
 		}
 	);
 
-	let currentUtterance = $derived(slim_transcript.find((utterance, index) => {
-		const nextUtteranceStart = slim_transcript[index + 1]?.start || utterance.end;
-		const current_time = $player?.audio?.currentTime || 0;
-		return current_time >= utterance.start && current_time <= nextUtteranceStart;
-	}));
+	let currentUtterance = $derived(
+		slim_transcript.find((utterance, index) => {
+			const nextUtteranceStart = slim_transcript[index + 1]?.start || utterance.end;
+			const current_time = $player?.audio?.currentTime || 0;
+			return current_time >= utterance.start && current_time <= nextUtteranceStart;
+		})
+	);
 
-	let currentTopic = $derived(aiShowNote?.summary.find((summary, index) => {
-		const nextSummary = aiShowNote?.summary[index + 1];
-		const topicEnd = nextSummary ? tsToS(nextSummary.time) : Infinity;
-		const topicStart = tsToS(summary.time);
-		const current_time = $player?.audio?.currentTime || 0;
-		return current_time >= topicStart && current_time <= topicEnd;
-	}));
+	let currentTopic = $derived(
+		aiShowNote?.summary.find((summary, index) => {
+			const nextSummary = aiShowNote?.summary[index + 1];
+			const topicEnd = nextSummary ? tsToS(nextSummary.time) : Infinity;
+			const topicStart = tsToS(summary.time);
+			const current_time = $player?.audio?.currentTime || 0;
+			return current_time >= topicStart && current_time <= topicEnd;
+		})
+	);
 
 	let playing_show_is_this_show = $derived($player.current_show?.number === transcript.show_number);
 
@@ -152,7 +156,7 @@
 									player.update_time(utterance.start);
 								}}>{format_time(utterance.start)}</button
 							>
-							<p class="speaker fst-600">
+							<p class="speaker fv-600">
 								{utterance.speakerName || `Guest ${utterance.speakerId}`}
 							</p>
 						</div>

@@ -54,7 +54,7 @@
 		title="Show #{show.number}"
 		aria-label="Show #{show.number}"
 		style:--transition-name="show-date-{show.number}"
-		class="show-number fst-900 grit">{show.number}</span
+		class="show-number fv-900 grit">{show.number}</span
 	>
 	<p class="show-page-date" style:--transition-name="show-date-{show.number}">
 		{format(new Date(show.date), 'MMMM do, yyyy')}

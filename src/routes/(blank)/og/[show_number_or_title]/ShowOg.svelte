@@ -75,7 +75,7 @@
 
 <article style="--title-length: {show.title.length}">
 	{#if show.number}
-		<span class="grit show-number fst-900">{show.number}</span>
+		<span class="grit show-number fv-900">{show.number}</span>
 	{/if}
 
 	<div class="details">

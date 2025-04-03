@@ -18,12 +18,7 @@
 		show_date?: any;
 	}
 
-	let {
-		show,
-		display = 'card',
-		heading = 'h4',
-		show_date = new Date(show.date)
-	}: Props = $props();
+	let { show, display = 'card', heading = 'h4', show_date = new Date(show.date) }: Props = $props();
 
 	function format_date(date: Date, baseDate: Date = new Date()) {
 		const timeFormatter = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
@@ -76,7 +71,7 @@
 				<Icon name="play" />
 			</button>
 		{/if}
-		<span style:--transition-name="show-date-{show.number}" class="show-number fst-900 grit"
+		<span style:--transition-name="show-date-{show.number}" class="show-number fv-900 grit"
 			>{show.number}</span
 		>
 
