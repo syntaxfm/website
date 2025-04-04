@@ -1,13 +1,8 @@
-<script>
+<script lang="ts">
 	import NewsletterForm from '$/lib/newsletter/NewsletterForm.svelte';
 	import NewsletterLogo from '$lib/newsletter/NewsletterLogo.svelte';
 	import { format } from 'date-fns';
-	/**
-	 * @typedef {Object} Props
-	 * @property {any} data
-	 */
 
-	/** @type {Props} */
 	let { data } = $props();
 </script>
 
@@ -29,9 +24,7 @@
 			</p>
 			<!-- Loop over data.issues -->
 			{#if !data.issues.length}
-				<p class="error">
-					Oopsie daisy! Unable to load past issues.
-				</p>
+				<p class="error">Oopsie daisy! Unable to load past issues.</p>
 			{/if}
 			<ul>
 				{#each data.issues as issue}
