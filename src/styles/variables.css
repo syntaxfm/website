@@ -136,8 +136,8 @@
 	--s: 0 7.5px 7.5px rgb(0 0 0 / 0.25);
 
 	/* Color Usage */
-	--bg: var(--c-black);
-	--fg: var(--c-white);
+	--c-fg: var(--c-black);
+	--c-bg: var(--c-white);
 
 	/* Interface Color */
 	--c-primary: var(--yellow);

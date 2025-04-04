@@ -42,6 +42,14 @@ Bass! */
 		font-size: var(--fs-body);
 	}
 
+	li {
+		list-style-type: circle;
+	}
+
+	ol li {
+		list-style-type: decimal;
+	}
+
 	h1,
 	.h1 {
 		font-size: var(--fs-1);
@@ -88,75 +96,28 @@ Bass! */
 		line-height: 1.2;
 	}
 
-	/* 
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6 {
-		font-family: '💪';
-		letter-spacing: -0.04em;
-		line-height: 1.4;
-		margin-block: 0.2em;
-		mask-image: url('$assets/Grit Mask@2x.png');
-		mask-repeat: repeat;
-		mask-size: 250px;
-		text-wrap: balance;
-		font-variation-settings:
-			'wght' 700,
-			'ital' 1;
-
-		--opacity: 0;
-
-		&:hover {
-			--opacity: 1;
-		}
-
-		a[href^='#'] {
-			display: inline-block;
-			height: 100%;
-			margin-left: 0.25rem;
-			opacity: var(--opacity);
-
-			&::before {
-				content: '#';
-			}
-		}
+	html::view-transition-old() {
+		animation-name: -ua-view-transition-fade-out;
 	}
 
-	.spa-ran-wrap {
-		--color: var(--spa-ran-wrap-bg, transparent);
-		--size: 2.3345ex;
-
-		background-image: linear-gradient(
-			180deg,
-			var(--color) 0%,
-			var(--color) 50%,
-			transparent 50%,
-			transparent 100%
-		);
-		background-size: auto var(--size);
-		background-position: 10px calc(var(--size) / 4);
+	html::view-transition-new() {
+		animation-name: -ua-view-transition-fade-in;
 	}
 
-	body {
-		padding: 0;
-		margin: 0;
-		background: var(--black);
+	::view-transition-old(root),
+	::view-transition-new(root) {
+		animation-duration: 0.2s;
 	}
 
 	a,
 	.a {
-		color: var(--link-fg, var(--fg));
 		text-decoration: none;
 	}
 
 	:is(p, li) a,
 	.a {
-		color: var(--color-sheet);
 		text-decoration: underline;
-		text-decoration-color: var(--primary);
+		text-decoration-color: var(--c-primary);
 		text-decoration-thickness: 1.5px;
 	}
 
@@ -164,166 +125,26 @@ Bass! */
 		cursor: pointer;
 	}
 
-	p {
-		line-height: 1.7;
+	thead {
+		top: 0;
+		position: sticky;
 	}
 
-	ul {
-		@media (--below-med) {
-			padding: 0;
-		}
+	th {
+		padding: 6px;
+		text-align: left;
 	}
 
-	/* Show Notes Typography - coming from markdown so it must be global */
-
-	/* .show-notes {
-		h2,
-		h3 {
-			font-size: var(--font-size-lg);
-		}
-
-		ul {
-			padding-left: 20px;
-		}
-	} */
-
-	/* 
-	li {
-		line-height: 2.2;
-		list-style-type: circle;
-	} */
-
-	/* ol li {
-		list-style-type: decimal;
-	} */
-
-	/* a[href^='#t='] {
-		background: var(--bg-1);
-		padding: 4px 6px;
-		border-bottom: none;
-		text-decoration: none;
-		color: var(--color-2);
-		border-radius: 4px;
-		position: relative;
-		font-size: var(--font-size-sm);
-		font-variation-settings: var(--fv-800);
-
-		@media (--above-med) {
-			left: -17px;
-		}
-	} */
-
-	/* 
-	[popover] {
-		position: fixed;
-		z-index: 10;
-		inset: 0;
-		padding: 0.25em;
-		width: fit-content;
-		height: fit-content;
-		border-image: initial;
-		border-style: solid;
-		overflow: auto;
-		margin: auto;
-	} */
-
-	/* stylelint-disable selector-class-pattern */
-
-	/* [popover]:not(.\:popover-open) {
-		display: none;
+	thead th + th {
+		border-left: var(--border);
 	}
 
-	[popover]:is(dialog[open]) {
-		display: revert;
+	td {
+		padding: 6px;
 	}
 
-	[anchor].\:popover-open {
-		inset: auto;
-	} */
-
-	/* This older `:open` pseudo selector is deprecated and support will be removed
-in a later release. */
-
-	/* @supports selector([popover]:open) {
-		[popover]:not(.\:popover-open, dialog[open]) {
-			display: revert;
-		}
-
-		[anchor]:is(:open) {
-			inset: auto;
-		}
-
-	} */
-
-	/* 
-	@supports selector([popover]:popover-open) {
-		[popover]:not(.\:popover-open, dialog[open]) {
-			display: revert;
-		}
-
-		[anchor]:is(:popover-open) {
-			inset: auto;
-		}
-
-	} */
-
-	/* @supports (width: -moz-fit-content) {
-		[popover] {
-			width: -moz-fit-content;
-			height: -moz-fit-content;
-		}
+	::selection {
+		background: var(--c-primary);
+		color: var(--c-dark);
 	}
-
-	@supports not (inset: 0) {
-		[popover] {
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
-		}
-	}
-} */
-
-	/* Popover */
-
-	/* All External Links (links starting with http(s)) */
-
-	/* a[href^='http']:not(.social-icon, .button, .icon, .naked)::after {
-	content: '↗';
-	margin-left: 4px;
-	font-size: 12px;
-} */
-
-	/* Selection */
-
-	/* ::selection {
-	background: var(--primary);
-	color: var(--dark);
-} */
-
-	/* .visually-hidden {
-	position: absolute;
-	width: 1px;
-	height: 1px;
-	margin: -1px;
-	padding: 0;
-	border: 0;
-	overflow: hidden;
-	clip: rect(0, 0, 0, 0);
-	white-space: nowrap;
-} */
-
-	/* Scrollbars */
-
-	/* html {
-	--track: var(--black);
-	--thumb: var(--primary);
-
-	scrollbar-color: var(--thumb) var(--track);
-	scrollbar-width: thin;
-}
-
-.admin :is(h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6) {
-	font-variation-settings: var(--fv-400);
-} */
 }

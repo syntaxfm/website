@@ -54,4 +54,29 @@
 	.errors {
 		color: red;
 	}
+	/* a[href^='#t='] {
+		background: var(--bg-1);
+		padding: 4px 6px;
+		border-bottom: none;
+		text-decoration: none;
+		color: var(--color-2);
+		border-radius: 4px;
+		position: relative;
+		font-size: var(--font-size-sm);
+		font-variation-settings: var(--fv-800);
+
+		@media (--above-med) {
+			left: -17px;
+		}
+	} 
+	 .show-notes {
+		h2,
+		h3 {
+			font-size: var(--font-size-lg);
+		}
+
+		ul {
+			padding-left: 20px;
+		}
+	} */
 </style>
