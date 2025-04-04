@@ -6,6 +6,13 @@
 		"csstools/media-use-custom-media": "always",
 		"font-family-no-missing-generic-family-keyword": null,
 		"import-notation": "string",
-		"scale-unlimited/declaration-strict-value": "/color$/"
+		"scale-unlimited/declaration-strict-value": [
+			["/color$/", "font-size"],
+			{
+				"disableFix": true,
+				"expandShorthand": true,
+				"ignoreValues": ["inherit", "unset", "initial"]
+			}
+		]
 	}
 }

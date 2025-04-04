@@ -61,7 +61,7 @@
 	}
 
 	strong {
-		font-variation-settings: var(--fw-800-italic);
+		font-variation-settings: var(--fv-800-italic);
 	}
 
 	@layer theme {

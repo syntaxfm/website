@@ -160,7 +160,7 @@
 		line-height: 1;
 		font-size: 50px;
 		width: 100%;
-		font-variation-settings: var(--fw-700-italic);
+		font-variation-settings: var(--fv-700-italic);
 		transform: rotate(-1deg);
 		text-align: center;
 

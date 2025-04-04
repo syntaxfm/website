@@ -53,7 +53,7 @@
 		color: var(--white);
 		text-transform: uppercase;
 		letter-spacing: 1px;
-		font-variation-settings: var(--fw-900);
+		font-variation-settings: var(--fv-900);
 	}
 
 	.menu {
@@ -75,7 +75,7 @@
 			a {
 				display: block;
 				margin-bottom: 2rem;
-				font-variation-settings: var(--fw-700);
+				font-variation-settings: var(--fv-700);
 				text-shadow: 0 0 4px black;
 			}
 		}

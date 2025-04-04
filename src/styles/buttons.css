@@ -12,7 +12,7 @@
 		text-decoration: none;
 		border: none;
 		font-family: var(--body-font-family);
-		font-variation-settings: var(--fw-600);
+		font-variation-settings: var(--fv-600);
 		padding: 6px 15px;
 		font-size: var(--body-font-size);
 		border-radius: var(--brad);
@@ -47,7 +47,7 @@
 		--button-bg: var(--bg-1);
 		--button-fg: var(--fg);
 
-		font-variation-settings: var(--fw-400);
+		font-variation-settings: var(--fv-400);
 		box-shadow: inset 0 0 0 1px var(--subtle);
 	}
 
@@ -99,7 +99,7 @@
 		border-radius: var(--size);
 		box-shadow: inset 0 0 0 var(--button-border-size) oklch(var(--blacklch) / 0.2);
 		transition: background-size 1s ease-in-out;
-		font-variation-settings: var(--fw-100);
+		font-variation-settings: var(--fv-100);
 	}
 
 	button.button-reset {

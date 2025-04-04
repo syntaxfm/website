@@ -36,37 +36,57 @@ Bass! */
 		font-style: normal italic;
 	}
 
-	/* h1,
+	p,
+	li {
+		line-height: 1.7;
+		font-size: var(--fs-body);
+	}
+
+	h1,
 	.h1 {
-		font-size: var(--font-size-xxxl);
+		font-size: var(--fs-1);
 	}
 
 	h2,
 	.h2 {
-		font-size: var(--font-size-xxl);
+		font-size: var(--fs-2);
 	}
 
 	h3,
 	.h3 {
-		font-size: var(--font-size-xl);
+		font-size: var(--fs-3);
 	}
 
 	h4,
 	.h4 {
-		font-size: var(--font-size-lg);
+		font-size: var(--fs-4);
 	}
 
 	h5,
 	.h5 {
-		font-size: var(--font-size-md);
+		font-size: var(--fs-5);
 	}
 
-	.h6,
 	h6,
-	p,
-	li {
-		font-size: var(--font-size-base);
-	} */
+	.h6 {
+		font-size: var(--fs-6);
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	.h1,
+	.h2,
+	.h3,
+	.h4,
+	.h5,
+	.h6 {
+		font-family: '💪';
+		line-height: 1.2;
+	}
 
 	/* 
 	h1,
@@ -186,7 +206,7 @@ Bass! */
 		border-radius: 4px;
 		position: relative;
 		font-size: var(--font-size-sm);
-		font-variation-settings: var(--fw-800);
+		font-variation-settings: var(--fv-800);
 
 		@media (--above-med) {
 			left: -17px;
@@ -304,6 +324,6 @@ in a later release. */
 }
 
 .admin :is(h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6) {
-	font-variation-settings: var(--fw-400);
+	font-variation-settings: var(--fv-400);
 } */
 }
