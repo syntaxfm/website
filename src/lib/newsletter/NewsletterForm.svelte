@@ -41,7 +41,7 @@
 		target="_blank"
 		aria-labelledby="newsletter-form-label"
 	>
-		<h5 class="readable join fst-400-i">
+		<h5 class="readable join fv-400-i">
 			Join our newsletter for <strong>15% off</strong> all Syntax & Sentry swag
 		</h5>
 
@@ -61,7 +61,7 @@
 	}
 
 	strong {
-		font-variation-settings: var(--fw-800-italic);
+		font-variation-settings: var(--fv-800-italic);
 	}
 
 	@layer theme {

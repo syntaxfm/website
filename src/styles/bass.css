@@ -1,0 +1,150 @@
+/* Freeze!
+Rock (rock rock rock rock rock rock rock)
+Aaah, aaah, aaah, aaah
+Uh raah!
+Bass! */
+
+/* FR tho, base styles should only be styles on elements themselves. */
+
+/* BASS */
+
+@layer bass {
+	* {
+		box-sizing: border-box;
+	}
+
+	html {
+		box-sizing: border-box;
+		text-size-adjust: none;
+		font-family: '💪';
+	}
+
+	*,
+	*::before,
+	*::after {
+		box-sizing: inherit;
+	}
+
+	@font-face {
+		font-family: '💪';
+		src:
+			url('https://fonts.tolin.ski/fonts/MDIOVariable.woff2') format('woff2'),
+			url('https://fonts.tolin.ski/fonts/MDIOVariable.woff') format('woff'),
+			local('MD IO Variable Regular'),
+			local('MDIOVariable-Regular');
+		font-weight: 100 900;
+		font-style: normal italic;
+	}
+
+	p,
+	li {
+		line-height: 1.7;
+		font-size: var(--fs-body);
+	}
+
+	li {
+		list-style-type: circle;
+	}
+
+	ol li {
+		list-style-type: decimal;
+	}
+
+	h1,
+	.h1 {
+		font-size: var(--fs-1);
+	}
+
+	h2,
+	.h2 {
+		font-size: var(--fs-2);
+	}
+
+	h3,
+	.h3 {
+		font-size: var(--fs-3);
+	}
+
+	h4,
+	.h4 {
+		font-size: var(--fs-4);
+	}
+
+	h5,
+	.h5 {
+		font-size: var(--fs-5);
+	}
+
+	h6,
+	.h6 {
+		font-size: var(--fs-6);
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	.h1,
+	.h2,
+	.h3,
+	.h4,
+	.h5,
+	.h6 {
+		font-family: '💪';
+		line-height: 1.2;
+	}
+
+	html::view-transition-old() {
+		animation-name: -ua-view-transition-fade-out;
+	}
+
+	html::view-transition-new() {
+		animation-name: -ua-view-transition-fade-in;
+	}
+
+	::view-transition-old(root),
+	::view-transition-new(root) {
+		animation-duration: 0.2s;
+	}
+
+	a,
+	.a {
+		text-decoration: none;
+	}
+
+	:is(p, li) a,
+	.a {
+		text-decoration: underline;
+		text-decoration-color: var(--c-primary);
+		text-decoration-thickness: 1.5px;
+	}
+
+	a:hover {
+		cursor: pointer;
+	}
+
+	thead {
+		top: 0;
+		position: sticky;
+	}
+
+	th {
+		padding: 6px;
+		text-align: left;
+	}
+
+	thead th + th {
+		border-left: var(--border);
+	}
+
+	td {
+		padding: 6px;
+	}
+
+	::selection {
+		background: var(--c-primary);
+		color: var(--c-dark);
+	}
+}

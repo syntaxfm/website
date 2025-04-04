@@ -24,7 +24,7 @@
 			& > a {
 				padding: 10px 1rem;
 				border-radius: var(--brad) var(--brad) 0 0;
-				font-variation-settings: var(--fw-900);
+				font-variation-settings: var(--fv-900);
 			}
 
 			a:hover {

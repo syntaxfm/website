@@ -1,8 +1,6 @@
 :root {
 	/* 🧑‍🚒 💩 */
 
-	/* NEW */
-
 	/* BREAKPOINTS */
 
 	@custom-media --below-small (width < 400px);
@@ -23,6 +21,7 @@
 	--c-red: #ff474e;
 	--c-purple: #362d59;
 	--c-black: #000;
+	--c-white: #fff;
 
 	/* Realtive Colors */
 
@@ -98,86 +97,59 @@
 	--c-black-9: oklch(from var(--c-black) calc(l + 0.15) c h);
 	--c-black-10: oklch(from var(--c-black) calc(l + 0.05) c h);
 
-	/* OLD */
-
 	/* Typography */
 	--body-font-family: '💪', 'Operator Mono', consolas, menlo, monaco, 'Courier New', monospace;
 	--heading-font-family: '💪', 'Operator Mono', consolas, menlo, monaco, 'Courier New', monospace;
-	--fs-xs: clamp(0.6rem, 0.17vw + 0.76rem, 0.7rem);
-	--fs-sm: clamp(0.8rem, 0.17vw + 0.76rem, 0.89rem);
-	--fs-base: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
-	--fs-md: clamp(1.25rem, 0.61vw + 1.1rem, 1.58rem);
-	--fs-lg: clamp(1.56rem, 1vw + 1.31rem, 2.11rem);
-	--fs-xl: clamp(1.95rem, 1.56vw + 1.56rem, 2.81rem);
-	--fs-xxl: clamp(2.44rem, 2.38vw + 1.85rem, 3rem);
-	--fs-xxxl: clamp(3.05rem, 3.54vw + 2.17rem, 5rem);
-	--fw-100: 'wght' 100;
-	--fw-100-italic: 'wght' 100, 'ital' 1;
-	--fw-400: 'wght' 400;
-	--fw-400-italic: 'wght' 400, 'ital' 1;
-	--fw-500: 'wght' 500;
-	--fw-500-italic: 'wght' 500, 'ital' 1;
-	--fw-600: 'wght' 600;
-	--fw-600-italic: 'wght' 600, 'ital' 1;
-	--fw-700: 'wght' 700;
-	--fw-700-italic: 'wght' 700, 'ital' 1;
-	--fw-800: 'wght' 800;
-	--fw-800-italic: 'wght' 800, 'ital' 1;
-	--fw-900: 'wght' 900;
-	--fw-900-italic: 'wght' 900, 'ital' 1;
+	--fs-micro: 14px;
+	--fs-caption: 17px;
+	--fs-body: 20px;
+	--fs-6: 24px;
+	--fs-5: 29px;
+	--fs-4: 35px;
+	--fs-3: 41px;
+	--fs-2: 50px;
+	--fs-1: 60px;
 
-	/* Shadow */
-	--shadow-strength: 10%;
-	--shadow-color: 220 40% 2%;
-	--shadow-6: 0 -1px 2px 0 hsl(var(--shadow-color) / calc(var(--shadow-strength) + 2%)),
-		0 3px 2px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 3%)),
-		0 7px 5px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 3%)),
-		0 12px 10px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 4%)),
-		0 22px 18px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 5%)),
-		0 41px 33px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 6%)),
-		0 100px 80px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 7%));
-	--default-padding: 1rem;
+	/* Font variations vars */
 
-	/* THEME COLORS */
+	/* Don't use these directly in components, use the fv-* classes instead */
+	--fv-100: 'wght' 100;
+	--fv-100-italic: 'wght' 100, 'ital' 1;
+	--fv-400: 'wght' 400;
+	--fv-400-italic: 'wght' 400, 'ital' 1;
+	--fv-500: 'wght' 500;
+	--fv-500-italic: 'wght' 500, 'ital' 1;
+	--fv-600: 'wght' 600;
+	--fv-600-italic: 'wght' 600, 'ital' 1;
+	--fv-700: 'wght' 700;
+	--fv-700-italic: 'wght' 700, 'ital' 1;
+	--fv-800: 'wght' 800;
+	--fv-800-italic: 'wght' 800, 'ital' 1;
+	--fv-900: 'wght' 900;
+	--fv-900-italic: 'wght' 900, 'ital' 1;
 
-	/* Light Theme as the default */
+	/* Shadows */
+	--s-graphic: -4px 4px 0 var(--c-black);
+	--s-graphic-medium: -10px 10px 0 var(--c-black);
+	--s-graphic-heavy: -5px 5px 0 var(--c-black), -10px 10px 0 var(--c-black),
+		-15px -15px 0 var(--c-black), -20px 20px 0 var(--c-black);
+	--s: 0 7.5px 7.5px rgb(0 0 0 / 0.25);
 
-	/* Backgrounds */
-
-	--bg: var(--black);
-	--bg-1: var(--black-1);
-	--bg-2: var(--black-2);
-	--bg-sheet: var(--white);
-
-	/* Foreground */
-	--fg: var(--white);
-	--fg-1: var(--white); /* used in header */
-	--fg-2: var(--black-9); /* currently unused */
-	--fg-sheet: var(--black);
+	/* Color Usage */
+	--c-fg: var(--c-black);
+	--c-bg: var(--c-white);
 
 	/* Interface Color */
-	--primary: var(--yellow);
-	--accent: var(--teal);
-	--subtle-accent: var(--purple);
-	--warning: var(--red);
-	--success: var(--green);
-	--line: var(--black-2);
-	--tint-or-shade: color-mix(in oklab, var(--fg), transparent 75%);
+	--c-primary: var(--yellow);
 
 	/* Borders */
-	--brad: 5px;
-	--border-size: 1.5px;
-	--border: solid var(--border-size) var(--fg-sheet);
-
-	/* ?? */
-	--dark: var(--black);
-	--bg-grit-light: url('/svg/grit.svg?light&count=50&w=1000&h=2000');
-	--bg-grit-dark: url('/svg/grit.svg?dark&count=50&w=1000&h=2000');
-	--bg-grit: var(--bg-grit-light);
-
-	/* Hero gradient */
-	--hero-gradient-1: #3a006b36;
-	--hero-gradient-2: var(--black);
+	--b-feed: solid 12px var(--c-primary);
+	--b-xtra-light: soild 1px var(--c-fg);
+	--b-light: soild 2px var(--c-fg);
+	--b-medium: soild 4px var(--c-fg);
+	--b-heavy: soild 5px var(--c-fg);
+	--grit-light: url('/svg/grit.svg?light&count=50&w=1000&h=2000');
+	--grit-dark: url('/svg/grit.svg?dark&count=50&w=1000&h=2000');
 
 	/* Sentry footer gradient */
 	--sentry-footer-bg: url('$assets/squiggle-greyscale.webp'),

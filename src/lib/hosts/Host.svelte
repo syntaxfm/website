@@ -3,11 +3,11 @@
 	interface Props {
 		guest?: boolean;
 		host: {
-		name: string;
-		github?: string | null;
-		twitter?: string | null;
-		slug?: string;
-	};
+			name: string;
+			github?: string | null;
+			twitter?: string | null;
+			slug?: string;
+		};
 	}
 
 	let { guest = false, host }: Props = $props();
@@ -24,7 +24,7 @@
 				{:else}
 					{host.name}
 				{/if}
-				<span class="host-guest-tag fst-900-i grit">{guest ? 'Guest' : 'Host'}</span>
+				<span class="host-guest-tag fv-900-i grit">{guest ? 'Guest' : 'Host'}</span>
 			</p>
 			<div class="featuring_socials">
 				<HostSocialLink {host} />

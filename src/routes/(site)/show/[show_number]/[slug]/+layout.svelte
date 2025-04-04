@@ -54,7 +54,7 @@
 		title="Show #{show.number}"
 		aria-label="Show #{show.number}"
 		style:--transition-name="show-date-{show.number}"
-		class="show-number fst-900 grit">{show.number}</span
+		class="show-number fv-900 grit">{show.number}</span
 	>
 	<p class="show-page-date" style:--transition-name="show-date-{show.number}">
 		{format(new Date(show.date), 'MMMM do, yyyy')}
@@ -193,7 +193,7 @@
 			grid-column: content / content;
 			padding: 2rem;
 			margin-bottom: 2rem;
-			font-variation-settings: var(--fw-700);
+			font-variation-settings: var(--fv-700);
 			display: flex;
 			flex-wrap: wrap;
 			place-items: center;
