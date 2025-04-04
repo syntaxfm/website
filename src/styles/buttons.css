@@ -5,12 +5,14 @@
 
 	a.button,
 	button {
+		font-size: var(--fs-6);
 		border-radius: 4px;
 		appearance: none;
 		border: none;
 		background: var(--c-fg);
 		color: var(--c-bg);
-		padding: 6px 16px;
+		padding: 4px 16px;
+		line-height: 1.7;
 		transition: 0.2s ease background;
 
 		&:hover {

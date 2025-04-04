@@ -24,30 +24,3 @@
 @import '../../styles/typography.css';
 @import '../../styles/utilities.css';
 @import '../../styles/buttons.css';
-
-/* 
-@import '../../styles/layout.css';
- */
-
-/* FYI you have to use import-glob for all of these or else it gets mad */
-
-/* OLD */
-
-/* Global Utilities */
-
-/* 
-
-
-
-table:not(.newsleter-output table) {
-	border-collapse: collapse;
-	position: relative;
-	min-width: 100%;
-	border: var(--border);
-	background: var(--bg);
-	font-size: var(--font-size-sm);
-}
-
-
-	
-*/
