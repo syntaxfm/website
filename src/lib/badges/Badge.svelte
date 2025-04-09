@@ -8,7 +8,7 @@
 	let { children } = $props();
 </script>
 
-<span class="badge text-sm">
+<span class="badge fs-caption">
 	{@render children?.()}
 </span>
 

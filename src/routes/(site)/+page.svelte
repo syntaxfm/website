@@ -13,7 +13,7 @@
 <PodcastHero />
 
 <section aria-label="Latest podcast episodes full layout">
-	<h3 class="lines">Latest Episodes</h3>
+	<h3>Latest Episodes</h3>
 	<div class="grid" style:margin-bottom="2rem">
 		{#if latest_show}
 			<ShowCard display="highlight" show={latest_show} />
@@ -21,14 +21,8 @@
 		{#each last_ten as latest_ep}
 			<ShowCard show={latest_ep} />
 		{/each}
-		<div class="grid-center" style="grid-column: 1 / -1;">
+		<div style="grid-column: 1 / -1;">
 			<a href="/shows" class="button">See all shows</a>
 		</div>
 	</div>
 </section>
-
-<style>
-	section {
-		margin-top: 5rem;
-	}
-</style>

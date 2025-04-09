@@ -2,7 +2,6 @@
 	import Header from '../routes/(site)/Header.svelte';
 	import Logo from './Logo.svelte';
 	import PodcastLinks from './PodcastLinks.svelte';
-	import Schedule from './schedule.svelte';
 </script>
 
 <section
@@ -61,7 +60,6 @@
 			</a>
 		</p>
 		<PodcastLinks />
-		<Schedule />
 	</div>
 </section>
 
@@ -75,6 +73,7 @@
 			);
 		background-size: 269px, 30%;
 	}
+
 	.hero {
 		display: grid;
 		place-items: center;
@@ -82,14 +81,17 @@
 		padding-top: 20px;
 		align-content: space-around;
 	}
+
 	.tasty {
 		/* color: var(--yellow); */
 	}
+
 	.logo {
 		margin: 0 auto;
 		width: 50%;
 		max-width: 200px;
 	}
+
 	h2 {
 		text-wrap: balance;
 		max-width: 850px;
@@ -103,21 +105,25 @@
 	.hosted-by {
 		display: flex;
 		flex-wrap: wrap;
+
 		& > span {
 			display: flex;
 			align-items: center;
 			gap: 0.5rem;
 		}
+
 		width: 100%;
 		justify-content: center;
 		place-items: center;
 		gap: 0.5rem;
+
 		img {
 			width: 40px;
 			display: inline-block;
 			height: auto;
 			border-radius: 50%;
 		}
+
 		.amp {
 			font-size: var(--font-size-xs);
 		}
@@ -128,18 +134,21 @@
 		gap: 1ch;
 		align-items: center;
 		margin-top: 0;
+
 		a {
 			display: inline-flex;
 			text-decoration: none;
-			background: rgba(255, 255, 255, 0.04);
+			background: rgb(255 255 255 / 0.04);
 			padding-inline: 15px;
 			padding-block: 10px;
 			border-radius: 20px;
 			align-items: center;
 			gap: 5px;
+
 			& > * {
 				flex: 1;
 			}
+
 			svg {
 				/* width: 20px; */
 				height: 2ch;

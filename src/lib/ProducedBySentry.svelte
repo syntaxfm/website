@@ -21,11 +21,9 @@
 	</p>
 	<a
 		href="https://sentry.io/welcome/?utm_medium=site&utm_source=syntax&utm_campaign=syntax-sentry-evergreen&utm_content=footer"
-		class="button ghost">Try Sentry for Free</a
+		class="button">Try Sentry for Free</a
 	>
 </div>
-
-<div class="bg-indigo-600 bg-opacity-25"></div>
 
 <style>
 	.cred {
@@ -35,6 +33,7 @@
 		font-size: 22px;
 		font-variation-settings: var(--fv-500);
 	}
+
 	.presented {
 		box-shadow: inset 0 0 0 4px rgb(from black r g b / 0.2);
 		border-radius: var(--brad);

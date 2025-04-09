@@ -51,7 +51,7 @@
 		</div>
 		<p>Hot takes, tips & tricks, new content, swag drops & more</p>
 
-		<p class="text-sm">Dip at any time.</p>
+		<p class="fs-caption">Dip at any time.</p>
 	</form>
 </div>
 

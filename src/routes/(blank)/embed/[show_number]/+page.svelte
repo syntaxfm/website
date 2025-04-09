@@ -29,7 +29,7 @@
 			{format(new Date(show.date), 'MMMM do, yyyy')}
 		</p>
 		<h1>
-			<span class="spa-ran-wrap">{show.title} </span>
+			<span>{show.title} </span>
 		</h1>
 
 		<div class="player-container">
@@ -38,16 +38,32 @@
 			{#if browser}
 				<media-controller
 					audio
-					style="--media-range-track-height: 5px; --media-range-thumb-height: 15px; --media-range-thumb-border-radius: 0;	--media-range-track-border-radius: 5px; --media-range-bar-color: var(--primary);--media-background-color: transparent; --media-control-background: transparent; width: 100%; --media-font-family: var(--body-font-family); --media-control-hover-background: transparent; "
+					style="
+
+--media-range-track-height: 5px; --media-range-thumb-height: 15px; --media-range-thumb-border-radius: 0;	--media-range-track-border-radius: 5px; --media-range-bar-color: var(--primary);--media-background-color: transparent; --media-control-background: transparent;
+
+ width: 100%;
+
+ --media-font-family: var(--body-font-family); --media-control-hover-background: transparent; "
 				>
 					<audio slot="media" preload="metadata" crossorigin="anonymous" src={show.url}></audio>
 					<media-control-bar class="media-bar">
 						<div class="media-controls">
 							<media-play-button>
-								<span slot="play" style="--icon_size: 32px;">
+								<span
+									slot="play"
+									style="
+
+--icon_size: 32px;"
+								>
 									<Icon name="play" />
 								</span>
-								<span slot="pause" style="--icon_size: 32px;">
+								<span
+									slot="pause"
+									style="
+
+--icon_size: 32px;"
+								>
 									<Icon name="pause" />
 								</span>
 							</media-play-button>
@@ -62,7 +78,7 @@
 							</div>
 							<media-duration-display></media-duration-display>
 						</div>
-						<div class="media-sound">
+						<div>
 							<media-playback-rate-button></media-playback-rate-button>
 						</div>
 					</media-control-bar>
@@ -97,7 +113,6 @@
 
 <style lang="postcss">
 	figure {
-		--spa-ran-wrap-bg: var(--black);
 		border-bottom: solid var(--fg) 1px;
 		position: relative;
 		z-index: 1;
@@ -109,6 +124,7 @@
 		background-image: var(--bg-grit-dark),
 			radial-gradient(farthest-side circle at 50% 0%, #3a006b66 4% 4%, #000 100%);
 	}
+
 	p {
 		margin-top: 0;
 	}
@@ -121,8 +137,7 @@
 		padding: 20px;
 		display: flex;
 		height: 100%;
-		align-content: center;
-		justify-content: center;
+		place-content: center center;
 		align-items: center;
 		gap: 10px;
 	}
@@ -141,6 +156,7 @@
 	media-time-range {
 		width: 100%;
 	}
+
 	.player-container {
 		width: 100%;
 		display: flex;
@@ -161,12 +177,16 @@
 		right: 0;
 		top: 0;
 		transform: translate(6.9%, -22%);
+
 		--max-font-size: 15rem;
 		--ideal-font-size: 45cqw;
+
 		font-size: clamp(1.5rem, var(--ideal-font-size), var(--max-font-size));
+
 		@media (prefers-color-scheme: dark) {
 			--ideal-font-size: 22cqw;
 		}
+
 		color: var(--primary);
 		line-height: 1;
 		z-index: -1;
@@ -202,6 +222,7 @@
 		grid-column: controls / controls;
 		grid-row: 1;
 	}
+
 	.embed-actions {
 		display: flex;
 		gap: 10px;

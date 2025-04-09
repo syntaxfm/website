@@ -21,7 +21,7 @@
 		<button class="warning" type="submit">Drop All transcripts</button>
 	</form>
 	<form action="/webhooks/refresh" method="post">
-		<button class="subtle" type="submit">Test Post</button>
+		<button type="submit">Test Post</button>
 	</form>
 </AdminActions>
 

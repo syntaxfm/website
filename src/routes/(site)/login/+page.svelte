@@ -19,7 +19,7 @@
 		{:else}
 			<p>If you are not on the Syntax team, this login will do nothing for you.</p>
 			<a
-				class="button subtle"
+				class="button"
 				onclick={() => loading.setLoading(true)}
 				href="/api/oauth/github"
 				rel="external"
@@ -29,13 +29,3 @@
 		{/if}
 	</div>
 </section>
-
-<style>
-	.content {
-		padding: 4rem 0;
-	}
-	.card {
-		max-width: 400px;
-		margin: 0 auto;
-	}
-</style>

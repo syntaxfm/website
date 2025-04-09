@@ -39,7 +39,7 @@
 	aria-labelledby="share-header"
 >
 	<h2 class="h3" id="share-header">Share</h2>
-	<section aria-label="Share Window" class="share-window">
+	<section aria-label="Share Window">
 		<button onclick={close} class="close" aria-label="close">×</button>
 		<ShareActions {timestamp} {show} />
 	</section>
@@ -53,6 +53,6 @@
 	}
 
 	dialog::backdrop {
-		background: rgba(0, 0, 0, 0.8);
+		background: rgb(0 0 0 / 0.8);
 	}
 </style>

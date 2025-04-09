@@ -22,11 +22,11 @@
 	</form>
 
 	<form action="?/refresh_all" method="POST" use:enhance={form_action()}>
-		<button class="subtle" type="submit">Sync All Shows</button>
+		<button type="submit">Sync All Shows</button>
 	</form>
 
 	<form action="/webhooks/refresh" method="GET">
-		<button class="subtle" type="submit">Test Refresh Webhook </button>
+		<button type="submit">Test Refresh Webhook </button>
 	</form>
 
 	{#if dev}
@@ -82,7 +82,7 @@
 								[↗]</a
 							>
 							<br />
-							<span class="text-xs">
+							<span>
 								{show.date.getTime() > Date.now() ? 'Scheduled' : 'Published'}
 								{format(show.date, 'EEE MMM d yyyy h:mm:ss a z')}
 							</span>

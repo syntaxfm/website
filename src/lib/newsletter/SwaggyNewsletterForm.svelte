@@ -34,7 +34,7 @@
 		>
 			<div class="newsletter">
 				<Input required type="email" label="Email" id="email_address" />
-				<button class="black small" type="submit">Subscribe</button>
+				<button type="submit">Subscribe</button>
 			</div>
 		</form>
 	</div>
@@ -72,6 +72,7 @@
 		font-size: var(--font-size-s);
 		width: 100%;
 	}
+
 	.newsletter-layout :global(.input) {
 		width: 100%;
 	}

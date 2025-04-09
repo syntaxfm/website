@@ -30,7 +30,7 @@
 	}
 </script>
 
-<button class="share" onclick={share} title="Share this episode" aria-label="Share this episode"
+<button onclick={share} title="Share this episode" aria-label="Share this episode"
 	><Icon name="share" /></button
 >
 
@@ -38,6 +38,7 @@
 	button {
 		--button-bg: transparent;
 		--button-fg: var(--fg);
+
 		padding: 0;
 	}
 </style>

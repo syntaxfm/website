@@ -74,7 +74,7 @@
 				</strong>
 
 				{#if is_tree(result) && result.node?.content}
-					<span class="text-sm">{@html excerpt(result.node.content, query)}</span>
+					<span class="fs-caption">{@html excerpt(result.node.content, query)}</span>
 				{/if}
 			</a>
 			{#if recent_searches}

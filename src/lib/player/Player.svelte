@@ -53,7 +53,13 @@
 				audio
 				nohotkeys
 				bind:this={$player.media_controller}
-				style="--media-range-track-height: 5px; --media-range-thumb-height: 15px; --media-range-thumb-border-radius: 0;	--media-range-track-border-radius: 5px; --media-range-bar-color: var(--primary);--media-background-color: transparent; --media-control-background: transparent; width: 100%; --media-font-family: var(--body-font-family); --media-control-hover-background: transparent; "
+				style="
+
+--media-range-track-height: 5px; --media-range-thumb-height: 15px; --media-range-thumb-border-radius: 0;	--media-range-track-border-radius: 5px; --media-range-bar-color: var(--primary);--media-background-color: transparent; --media-control-background: transparent;
+
+ width: 100%;
+
+ --media-font-family: var(--body-font-family); --media-control-hover-background: transparent; "
 			>
 				<audio
 					ontimeupdate={player.ontimeupdate}
@@ -74,10 +80,20 @@
 								</span>
 							</media-seek-backward-button>
 							<media-play-button>
-								<span slot="play" style="--icon_size: 26px;">
+								<span
+									slot="play"
+									style="
+
+--icon_size: 26px;"
+								>
 									<Icon name="play" />
 								</span>
-								<span slot="pause" style="--icon_size: 26px;">
+								<span
+									slot="pause"
+									style="
+
+--icon_size: 26px;"
+								>
 									<Icon name="pause" />
 								</span>
 							</media-play-button>
@@ -97,7 +113,7 @@
 							</div>
 							<media-duration-display></media-duration-display>
 						</div>
-						<div class="media-sound">
+						<div>
 							<media-playback-rate-button></media-playback-rate-button>
 							<media-mute-button></media-mute-button>
 							<media-volume-range></media-volume-range>
@@ -117,12 +133,14 @@
 		height: 100%;
 		align-items: center;
 		gap: 20px;
+
 		@container (min-width: 650px) {
 			grid-template-columns: [start controls] auto [controls range] 1fr [range sound] auto [sound end];
 			grid-template-rows: 1fr;
 			grid-column: range / range;
 		}
 	}
+
 	media-controller {
 		flex-grow: 1;
 	}
@@ -134,6 +152,7 @@
 		justify-content: space-between;
 		align-items: center;
 		gap: 10px;
+
 		@container (min-width: 650px) {
 			grid-column: range / range;
 			grid-row: 1;
@@ -146,6 +165,7 @@
 		display: flex;
 		gap: 16px;
 		align-items: baseline;
+
 		@container (min-width: 650px) {
 			grid-column: controls / controls;
 			grid-row: 1;
@@ -194,6 +214,7 @@
 
 	.player {
 		--player-bg: var(--bg-root);
+
 		container: player / inline-size;
 		position: fixed;
 		bottom: 0;
@@ -207,7 +228,9 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
+
 		--media-control-padding: 0;
+
 		translate: 0 100% 0;
 		transition: 0.2s ease translate;
 		z-index: 10;
@@ -215,6 +238,7 @@
 		&.ACTIVE {
 			translate: 0 0 0;
 		}
+
 		&.MINI {
 			translate: 0 0 0;
 
@@ -274,6 +298,7 @@
 	media-time-range {
 		padding: 0;
 	}
+
 	button {
 		--button-bg: transparent;
 		--button-fg: var(--fg);

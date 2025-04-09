@@ -87,19 +87,21 @@
 			<svelte:element
 				this={heading}
 				data-testid="show-card-title"
-				class="h3 show-title"
+				class="h3"
 				style:--transition-name="show-title-{show.number}"
 			>
-				<span class="spa-ran-wrap">
+				<span>
 					{show.title}
 				</span>
 			</svelte:element>
 
 			{#if show.aiShowNote?.description}
-				<p id={aria_key} class="description text-sm"><span>{show.aiShowNote?.description}</span></p>
+				<p id={aria_key} class="description fs-caption">
+					<span>{show.aiShowNote?.description}</span>
+				</p>
 			{:else}
 				{@const description = show.show_notes?.match(/(.*?)(?=## )/s)?.[0]}
-				<p id={aria_key} class="description text-sm">
+				<p id={aria_key} class="description fs-caption">
 					<span>{description}</span>
 				</p>
 			{/if}
@@ -143,6 +145,7 @@
 <style lang="postcss">
 	article {
 		--bg: var(--bg-1);
+
 		container: show-card / inline-size;
 		display: grid;
 		padding: 20px;
@@ -151,6 +154,7 @@
 		position: relative;
 		overflow: hidden;
 		align-items: start;
+
 		& a {
 			color: var(--fg);
 			display: flex;
@@ -163,6 +167,7 @@
 			flex-grow: 1;
 			grid-template-rows: auto auto 1fr auto auto;
 			gap: 1rem;
+
 			& > * {
 				margin: 0;
 				position: relative;
@@ -172,6 +177,7 @@
 		&:hover {
 			background-color: color-mix(in lch, var(--fg), var(--bg) 96%);
 		}
+
 		&.card {
 			border-radius: var(--brad);
 			border: solid var(--border-size) var(--subtle);
@@ -180,6 +186,7 @@
 		&.highlight {
 			--bg: var(--bg-root);
 			--fg: var(--fg-root);
+
 			/* background-image: linear-gradient(to top, #00000000, var(--bg)), url('$assets/whitegrit.png');
        */
 
@@ -214,6 +221,7 @@
 				   need a new row to become 100% height -- the show title */
 				grid-template-rows: auto 1fr auto auto;
 			}
+
 			.description {
 				display: none;
 				mask-image: none;
@@ -222,10 +230,12 @@
 
 		.bottom-row {
 			align-self: end;
+
 			/* lay out horizontally */
 			display: grid;
 			grid-template-columns: minmax(0, 1fr) auto;
 			gap: 1rem;
+
 			.buttons {
 				flex: 1 0 auto;
 				text-align: right;
@@ -253,11 +263,13 @@
 		view-transition-name: var(--transition-name);
 		width: max-content;
 		position: relative;
+
 		@media (prefers-color-scheme: dark) {
 			background: var(--bg);
 		}
+
 		/* adds contrast when light text overlaps show number */
-		text-shadow: 2px 1px 0px var(--bg);
+		text-shadow: 2px 1px 0 var(--bg);
 	}
 
 	.play-button {
@@ -275,14 +287,19 @@
 		right: 0;
 		top: 0;
 		transform: translate(6.9%, -22%);
+
 		--max-font-size: 15rem;
 		--ideal-font-size: 45cqw;
+
 		font-size: clamp(1.5rem, var(--ideal-font-size), var(--max-font-size));
+
 		@media (prefers-color-scheme: dark) {
 			--ideal-font-size: 22cqw;
 		}
+
 		color: var(--primary);
 		line-height: 1;
+
 		@media (--below-med) {
 			--max-font-size: 8rem;
 		}
@@ -294,6 +311,7 @@
 				font-size: var(--font-size-xl);
 			}
 		}
+
 		.show-number {
 			--max-font-size: 20cqw;
 		}

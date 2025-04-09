@@ -42,7 +42,7 @@
 
 	<main
 		id="main-content"
-		class="page-layout layout zone"
+		class="layout zone"
 		style:--bg="var(--bg-sheet)"
 		style:--fg="var(--fg-sheet)"
 	>
@@ -70,18 +70,6 @@
 </div>
 
 <style lang="postcss">
-	:global(.theme-wrapper) {
-		--bg-root: var(--bg);
-		--fg-root: var(--fg);
-		min-height: 100vh;
-		border-top: var(--border);
-		border-color: var(--primary);
-	}
-
-	.page-layout {
-		margin: 0 auto;
-	}
-
 	.skip-to-main-content {
 		position: absolute;
 		top: -1000px;
@@ -90,16 +78,10 @@
 		background-color: var(--primary);
 		color: var(--bg);
 		padding: 0.5rem;
+
 		&:focus {
 			top: 0;
 			left: 0;
-		}
-	}
-
-	@media (min-width: 1280px) {
-		.page-layout {
-			grid-auto-flow: column;
-			grid-template-rows: 1fr;
 		}
 	}
 </style>

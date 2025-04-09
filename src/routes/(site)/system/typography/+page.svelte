@@ -48,5 +48,5 @@
 		for developers seeking to enhance their skills and stay up-to-date with the latest trends in web
 		development.
 	</p>
-	<p class="text-sm">Small Paragraph</p>
+	<p class="fs-caption">Small Paragraph</p>
 </section>

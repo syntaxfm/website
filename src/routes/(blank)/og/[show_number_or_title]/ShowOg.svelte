@@ -73,7 +73,11 @@
 	}
 </script>
 
-<article style="--title-length: {show.title.length}">
+<article
+	style="
+
+--title-length: {show.title.length}"
+>
 	{#if show.number}
 		<span class="grit show-number fv-900">{show.number}</span>
 	{/if}
@@ -91,7 +95,7 @@
 			{/if}
 		</header>
 
-		<h1 use:fitText class="show-title" class:center={show.isPage}>
+		<h1 use:fitText class:center={show.isPage}>
 			{show.title}
 		</h1>
 
@@ -207,6 +211,7 @@
 		align-items: center;
 		margin-bottom: 4rem;
 	}
+
 	.logos {
 		bottom: 10px;
 		right: 10px;
@@ -215,6 +220,7 @@
 		flex-direction: column;
 		align-items: flex-end;
 		width: 100px;
+
 		svg {
 			display: block;
 			width: 100%;
