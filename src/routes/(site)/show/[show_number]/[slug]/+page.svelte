@@ -1,15 +1,13 @@
 <script lang="ts">
 	import get_show_path from '$/utilities/slug.js';
 	import SwaggyNewsletterForm from '$lib/newsletter/SwaggyNewsletterForm.svelte';
-
+	import ShowNotes from '$lib/shows/ShowNotes.svelte';
 	let { data } = $props();
 	let { show, prev_show, next_show } = $derived(data);
 </script>
 
 <div class="main">
-	<div class="show-notes">
-		{@html show.show_notes}
-	</div>
+	<ShowNotes show_notes={show.show_notes} />
 	<nav class="prev-next">
 		<div class="prev">
 			{#if prev_show}

@@ -4,7 +4,7 @@
 
 	// More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 	const { Story } = defineMeta({
-		title: 'Content/SwaggyNewsletterForm',
+		title: 'Blocks/SwaggyNewsletterForm',
 		component: SwaggyNewsletterForm
 	});
 </script>
