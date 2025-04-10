@@ -10,6 +10,7 @@
 		flex-direction: column;
 		gap: 10px;
 		align-items: flex-start;
+
 		& > * {
 			flex-grow: 0;
 		}
