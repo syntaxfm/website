@@ -1,10 +1,10 @@
 <script module>
 	import { defineMeta } from '@storybook/addon-svelte-csf';
-	import Buttons from './Buttons.svelte';
+	import Feed from './Feed.svelte';
 
 	const { Story } = defineMeta({
-		title: 'System/Buttons',
-		component: Buttons
+		title: 'Feed/Feed',
+		component: Feed
 	});
 </script>
 

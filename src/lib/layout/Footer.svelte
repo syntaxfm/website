@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { CURRENT_YEAR } from '$const';
 	import Icon from '$lib/Icon.svelte';
-	import ProducedBySentry from '$lib/ProducedBySentry.svelte';
+	import ProducedBySentry from './ProducedBySentry.svelte';
 </script>
 
 <footer class="layout zone" style:--bg="var(--bg-root)" style:--fg="var(--fg-1)">

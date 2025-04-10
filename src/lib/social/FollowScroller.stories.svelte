@@ -1,10 +1,10 @@
 <script module>
 	import { defineMeta } from '@storybook/addon-svelte-csf';
-	import Buttons from './Buttons.svelte';
+	import FollowScroller from './FollowScroller.svelte';
 
 	const { Story } = defineMeta({
-		title: 'System/Buttons',
-		component: Buttons
+		title: 'Social/FollowScroller',
+		component: FollowScroller
 	});
 </script>
 

@@ -50,7 +50,6 @@ export const load = async function ({ params, locals, url }) {
 	// so I'm making them be h3s instead
 	// maybe that's a todo for another day
 	const with_h3_body = body_string.replace(pattern, replacement);
-	console.log('with_h3_body', with_h3_body);
 	show.show_notes = with_h3_body;
 
 	return {
