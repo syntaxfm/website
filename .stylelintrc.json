@@ -9,11 +9,13 @@
 	"plugins": [
 		"stylelint-declaration-strict-value",
 		"stylelint-media-use-custom-media",
-		"stylelint-no-undefined-classes"
+		"stylelint-no-undefined-classes",
+		"stylelint-value-no-unknown-custom-properties"
 	],
 	"rules": {
 		"alpha-value-notation": "number",
 		"csstools/media-use-custom-media": "always",
+		"csstools/value-no-unknown-custom-properties": true,
 		"font-family-no-missing-generic-family-keyword": null,
 		"import-notation": "string",
 		"plugin/no-undefined-classes": [
