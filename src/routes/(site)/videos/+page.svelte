@@ -22,24 +22,11 @@
 		<h1 class="h3">All Playlists</h1>
 	</div>
 
-	<!-- Maybe bring back later -->
-	<!-- <Pagination
-		page={parseInt($store.page || '1')}
-		count={data.count || 69}
-		perPage={parseInt($store.perPage || PER_PAGE.toString())}
-	/> -->
-
-	<div class="playlists">
+	<div>
 		{#each playlists as playlist (playlist.id)}
 			<PlaylistCard {playlist} />
 		{/each}
 	</div>
-
-	<!-- <Pagination
-		page={parseInt($store.page || '1')}
-		count={data.count || 69}
-		perPage={parseInt($store.perPage || PER_PAGE.toString())}
-	/> -->
 </section>
 
 <style lang="postcss">
@@ -48,12 +35,14 @@
 		gap: 20px;
 		margin-bottom: 20px;
 	}
+
 	.list-heading {
 		display: flex;
 		justify-content: space-between;
 		align-items: baseline;
 		flex-direction: column;
 		margin-bottom: 2rem;
+
 		@media (--above-med) {
 			flex-direction: row;
 		}

@@ -1,10 +1,4 @@
-<script>
-	/**
-	 * @typedef {Object} Props
-	 * @property {import('svelte').Snippet} [children]
-	 */
-
-	/** @type {Props} */
+<script lang="ts">
 	let { children } = $props();
 </script>
 
@@ -16,16 +10,4 @@
 		<li><a href="/system/theme">Theme</a></li>
 	</ul>
 </nav>
-{@render children?.()}
-
-<style lang="postcss">
-	nav {
-		grid-row: span 5;
-		ul {
-			padding: 5px;
-		}
-		li {
-			list-style: none;
-		}
-	}
-</style>
+{@render children()}

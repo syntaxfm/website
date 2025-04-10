@@ -1,13 +1,7 @@
-<script>
-	/**
-	 * @typedef {Object} Props
-	 * @property {any} data
-	 */
-
-	/** @type {Props} */
+<script lang="ts">
 	let { data } = $props();
 </script>
 
 <div>
-{@html data.props.html}
+	{@html data.props.html}
 </div>

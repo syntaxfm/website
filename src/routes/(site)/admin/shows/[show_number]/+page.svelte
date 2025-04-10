@@ -26,7 +26,7 @@
 {/if}
 <h1 class="h4">AI Show Notes</h1>
 {#if show?.aiShowNote}
-	<form class="flex flex-col" method="POST" bind:this={formRef}>
+	<form class="flex" method="POST" bind:this={formRef}>
 		{#if form?.message}
 			<div class="errors">
 				{form?.message}
@@ -51,6 +51,7 @@
 		flex-direction: column;
 		gap: 0.25rem;
 	}
+
 	.errors {
 		color: red;
 	}

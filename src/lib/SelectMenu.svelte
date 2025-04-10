@@ -58,11 +58,7 @@
 </script>
 
 <div style="position: relative;">
-	<button
-		popovertarget={popover_id}
-		use:anchor={{ id: popover_id, position: ['BOTTOM', 'LEFT'] }}
-		class="subtle"
-	>
+	<button popovertarget={popover_id} use:anchor={{ id: popover_id, position: ['BOTTOM', 'LEFT'] }}>
 		{#if button_icon}
 			<Icon name={button_icon} />
 		{/if}
@@ -102,7 +98,6 @@
 	div[popover] a {
 		background: none;
 		text-align: left;
-		font-size: var(--font-size-sm);
 		box-shadow: none;
 		white-space: nowrap;
 		font-family: var(--body-font-family);
@@ -111,6 +106,7 @@
 		font-size: var(--body-font-size);
 		color: var(--fg);
 		border-radius: 4px;
+
 		&:hover,
 		&.selected {
 			background: var(--subtle);

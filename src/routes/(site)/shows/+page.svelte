@@ -75,7 +75,7 @@
 					{ value: 'asc', label: 'Oldest To Newest' }
 				]}
 			/>
-			<a class="button subtle" href="/guests">Guests →</a>
+			<a class="button" href="/guests">Guests →</a>
 		</div>
 	</div>
 
@@ -85,7 +85,7 @@
 		perPage={parseInt($store.perPage || PER_PAGE.toString())}
 	/>
 
-	<div class="shows">
+	<div>
 		{#each shows as show (show.id)}
 			<ShowCard {show} display="list" heading="h2" />
 		{/each}
@@ -97,21 +97,3 @@
 		perPage={parseInt($store.perPage || PER_PAGE.toString())}
 	/>
 </section>
-
-<style lang="postcss">
-	section {
-		display: grid;
-		gap: 20px;
-		margin-bottom: 20px;
-	}
-	.list-heading {
-		display: flex;
-		justify-content: space-between;
-		align-items: baseline;
-		flex-direction: column;
-		margin-bottom: 2rem;
-		@media (--above_med) {
-			flex-direction: row;
-		}
-	}
-</style>

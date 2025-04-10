@@ -4,7 +4,7 @@
 	--purp: #a37592;
 	--green: hsl(111deg 100% 54%);
 	--blue: hsl(208deg 97% 37%);
-	--primary: var(--green);
+	--c-primary: var(--green);
 	--accent: var(--blue);
 	--warning: hsl(356deg 58% 55%);
 	--fg: #eee;

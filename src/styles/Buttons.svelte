@@ -1,7 +1,7 @@
 <div>
 	<button>Basic Button</button>
 	<a class="button" href="https://tolin.ski">Link Button</a>
-	<button class="graphic">Tilted Button</button>
+	<button>Tilted Button</button>
 </div>
 
 <style>

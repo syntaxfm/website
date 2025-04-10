@@ -1,17 +1,11 @@
-<script>
-	/**
-	 * @typedef {Object} Props
-	 * @property {any} data
-	 */
-
-	/** @type {Props} */
+<script lang="ts">
 	let { data } = $props();
 </script>
 
 <main>
 	<div style:margin-bottom="2rem">
 		<h2 class="h3">Sick Picks</h2>
-		<p class="text-xs">(things we pick that are sick)</p>
+		<p>(things we pick that are sick)</p>
 		{#each data.sickPicks as show}
 			<h3 class="h5">
 				<a href={`/${show.number}`}>#{show.number}</a>

@@ -9,7 +9,7 @@
 	let { aiShowNote }: Props = $props();
 </script>
 
-<div class="toc">
+<div>
 	<ul>
 		{#each aiShowNote?.summary || [] as summary}
 			<li>
@@ -26,35 +26,44 @@
 	ul {
 		margin: 0;
 		padding: 0;
+
 		--border-color: var(--subtle);
+
 		border: 1px solid var(--border-color);
 		border-radius: 10px;
 		display: grid;
+
 		--min: 400px;
+
 		grid-template-columns: repeat(auto-fill, minmax(var(--min), 1fr));
+
 		@media (--below-med) {
 			--min: 200px;
 		}
 	}
+
 	li {
-		padding: 0;
 		line-height: initial;
 		list-style: none;
 		padding: 10px;
 		border-bottom: 1px solid var(--border-color);
 		font-size: var(--font-size-sm);
+
 		&:nth-child(odd) {
 			border-right: 1px solid var(--border-color);
 		}
+
 		&:last-child,
 		&:nth-last-child(2) {
 			border-bottom: none;
 		}
 	}
+
 	a {
 		font-size: var(--font-size-s);
 		text-decoration: none;
 	}
+
 	.timestamp {
 		display: inline;
 		font-size: var(--font-size-xs);

@@ -144,13 +144,13 @@
 						100}
 					<div
 						style="
+
               --progress: {progress > 0 && progress < 100 ? `${progress}%` : '100%'};
               "
 						class="utterance {labelUtterance(utterance)}"
 					>
 						<div class="gutter">
 							<button
-								class="button-nunya"
 								onclick={async () => {
 									await player.start_show(show);
 									player.update_time(utterance.start);
@@ -177,14 +177,17 @@
 	.timeline {
 		--highlight: var(--subtle);
 		--future: var(--bg-2);
-		--current: var(--primary);
-		--past: var(--primary);
+		--current: var(--c-primary);
+		--past: var(--c-primary);
 	}
+
 	.past {
 		--highlight: var(--past);
 	}
+
 	.current {
-		--highlight: var(--primary);
+		--highlight: var(--c-primary);
+
 		.marker {
 			/* --progress: 50%; */
 			background-image: linear-gradient(
@@ -202,9 +205,11 @@
 		0% {
 			transform: scale(1);
 		}
+
 		50% {
 			transform: scale(1.5);
 		}
+
 		100% {
 			transform: scale(1);
 		}
@@ -221,28 +226,32 @@
 		margin: 0;
 		z-index: 2;
 	}
+
 	.utterance {
 		position: relative;
 		display: grid;
 		grid-template-columns: 120px auto 1fr;
 		gap: 0 20px;
 		font-size: var(--font-size-xs);
+
 		@media (--below-med) {
 			grid-template-columns: 67px 1fr;
 			grid-template-rows: auto auto;
+
 			.gutter {
 				grid-column: 2;
 			}
+
 			.marker {
 				grid-column: 1;
 				grid-row: 1 / -1;
 			}
 		}
 	}
+
 	.topic {
 		--vertical-spacing: 26px; /* must be in px for the SVG */
 		--horizonal-spacing: 26px;
-		position: relative;
 
 		display: grid;
 		grid-template-columns: 95px var(--horizonal-spacing) 1fr;
@@ -255,39 +264,46 @@
 		z-index: 2;
 		margin-top: var(--vertical-spacing);
 		margin-bottom: var(--vertical-spacing);
+
 		.marker {
 			place-content: center;
 		}
+
 		@media (--below-med) {
 			grid-template-columns: var(--horizonal-spacing) 1fr;
 			grid-template-rows: auto auto;
+
 			.marker {
 				grid-column: 1;
 				grid-row: 1 / -1;
 			}
+
 			.gutter {
 				display: none;
 			}
 		}
 	}
+
 	h4 {
 		padding: 1rem 0;
 		background: var(--bg);
 	}
+
 	.marker {
 		position: relative;
 		display: grid;
 		grid-template-columns: 1fr;
-		background: var(--bg-1);
 		align-items: start;
 		background: linear-gradient(0deg, var(--highlight) 0%, var(--highlight) 50%);
 		background-size: 6px 100%;
 		background-repeat: repeat-y;
 		background-position: center;
+
 		& > * {
 			grid-column: 1;
 		}
 	}
+
 	.gutter {
 		position: sticky;
 		top: 100px;
@@ -295,6 +311,7 @@
 		align-self: start;
 		text-align: right;
 		transform: translateX(-10px);
+
 		@media (--below-med) {
 			display: flex;
 			position: relative;
@@ -302,10 +319,12 @@
 			width: 100%;
 			justify-content: space-between;
 		}
+
 		p {
 			margin: 0;
 		}
 	}
+
 	.text {
 		p:first-child {
 			margin-top: 0;
@@ -314,6 +333,7 @@
 
 	.dot {
 		--size: 16px;
+
 		display: block;
 		width: var(--size);
 		height: var(--size);
@@ -322,6 +342,7 @@
 		border: 1.5px solid var(--bg);
 		background: var(--highlight);
 		justify-self: center;
+
 		.current & {
 			animation: pop 1s 1;
 		}
@@ -330,6 +351,7 @@
 	.timeline {
 		--gutter-border-size: 5px;
 	}
+
 	.speaker {
 		font-size: var(--font-size-sm);
 		color: var(--subtle-accent);

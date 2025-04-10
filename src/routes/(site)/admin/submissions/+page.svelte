@@ -23,7 +23,7 @@
 
 <h1 class="h4">Submissions ({submission_count})</h1>
 
-<div class="submission-filter">
+<div>
 	<nav>
 		<SelectMenu
 			popover_id="filter-submission_type"
@@ -79,7 +79,7 @@
 				{ value: 'asc', label: 'Oldest To Newest' }
 			]}
 		/>
-		<a class="button subtle" href="/admin/submissions">× Clear</a>
+		<a class="button" href="/admin/submissions">× Clear</a>
 	</nav>
 </div>
 
@@ -147,9 +147,11 @@
 		gap: 2rem;
 		grid-template-columns: minmax(0, 1fr);
 	}
+
 	h4 {
 		word-wrap: break-word;
 	}
+
 	.submission {
 		border: 1px solid var(--fg);
 		padding: 2rem;
@@ -164,6 +166,7 @@
 		flex-wrap: wrap;
 		gap: 1rem;
 	}
+
 	.submission_body {
 		max-height: 400px;
 		overflow-x: auto;
@@ -172,17 +175,20 @@
 		field-sizing: content;
 		border: none;
 	}
+
 	.pill {
 		font-size: 12px;
 		background: var(--subtle);
 		padding: 2px 5px;
 		border-radius: 5px;
 	}
+
 	nav {
 		display: flex;
 		gap: 1rem;
 		padding: 1rem 0;
 	}
+
 	footer {
 		border-top: 2px solid var(--fg);
 		display: grid;

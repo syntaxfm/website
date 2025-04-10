@@ -18,12 +18,12 @@
 {#if form?.error}
 	<div class="error status">
 		<p>Shoot! {form.message}</p>
-		<p class="text-sm">Error: {form.error}</p>
+		<p class="fs-caption">Error: {form.error}</p>
 	</div>
 {:else if form?.status === 200}
-	<div class="success status">
+	<div class="status">
 		<p>Success!</p>
-		<p class="text-sm">{form.message}</p>
+		<p class="fs-caption">{form.message}</p>
 	</div>
 {/if}
 <form
@@ -111,25 +111,29 @@
 		margin: 2rem;
 		grid-template-columns: auto 1fr;
 		max-width: 800px;
+
 		@media (--below-med) {
 			grid-template-columns: 1fr;
 		}
 	}
+
 	.input-group {
 		display: grid;
 		grid-column: 1 / -1;
 		grid-template-columns: subgrid;
-		justify-items: end;
-		align-items: baseline;
+		place-items: baseline end;
+
 		@media (--below-med) {
 			justify-items: start;
 		}
 	}
+
 	.input {
 		width: 100%;
 		display: grid;
 		grid-template-columns: subgrid;
 	}
+
 	.turnstile {
 		grid-column: 1 / -1;
 		display: block;
@@ -140,24 +144,29 @@
 		width: 100%;
 		display: block;
 		grid-column: 2 / -1;
+
 		@media (--below-med) {
 			grid-column: 1 / -1;
 		}
 	}
+
 	.status {
 		padding: 10px;
 		background: var(--subtle);
-		border-left: 8px solid var(--primary);
+		border-left: 8px solid var(--c-primary);
 		font-size: var(--font-size-sm);
 		margin: 1rem 0;
 		width: fit-content;
+
 		&.error {
 			border-color: var(--warning);
 		}
+
 		p {
 			margin: 0;
 		}
 	}
+
 	input,
 	textarea,
 	select {
@@ -167,10 +176,12 @@
 		font-family: var(--body-font-family);
 		border: 1px solid var(--fg);
 	}
+
 	textarea {
 		min-height: 150px;
 		resize: vertical;
 	}
+
 	.required {
 		color: var(--warning);
 		font-size: 8px;

@@ -18,8 +18,10 @@
 			margin-bottom: 1rem;
 			display: flex;
 			gap: 20px;
+
 			--border-size: 5px;
-			border-bottom: var(--border-size) solid var(--primary);
+
+			border-bottom: var(--border-size) solid var(--c-primary);
 
 			& > a {
 				padding: 10px 1rem;
@@ -33,10 +35,11 @@
 
 			a.active {
 				text-decoration: none;
-				background: var(--primary);
+				background: var(--c-primary);
 				position: relative;
 				color: var(--dark);
 			}
+
 			& :global(a) {
 				color: var(--fg);
 			}

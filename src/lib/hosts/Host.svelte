@@ -26,7 +26,7 @@
 				{/if}
 				<span class="host-guest-tag fv-900-i grit">{guest ? 'Guest' : 'Host'}</span>
 			</p>
-			<div class="featuring_socials">
+			<div>
 				<HostSocialLink {host} />
 			</div>
 		</figcaption>
@@ -41,6 +41,7 @@
 		border-left: 0;
 		padding-right: 0.5rem;
 	}
+
 	figure {
 		display: grid;
 		grid-template-columns: 70px 1fr;
@@ -60,6 +61,7 @@
 		flex-direction: column;
 		justify-content: center;
 	}
+
 	figcaption p {
 		margin: 0;
 		white-space: nowrap;

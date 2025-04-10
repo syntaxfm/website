@@ -27,7 +27,7 @@
 	.loader {
 		z-index: 10;
 		position: fixed;
-		background: #000000ee;
+		background: #000e;
 		inset: 0;
 		display: flex;
 		justify-content: center;
@@ -35,7 +35,7 @@
 	}
 
 	h3 {
-		color: var(--primary);
+		color: var(--c-primary);
 	}
 
 	.loader svg {

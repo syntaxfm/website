@@ -1,4 +1,4 @@
-<section class="layout full">
+<!-- <section class="layout full">
 	<h3>.layout</h3>
 	<div class="l-margin col">Left Margin</div>
 	<div class="main col">Main</div>
@@ -20,16 +20,4 @@
 		<div class="col"></div>
 		<div class="col"></div>
 	</section>
-</section>
-
-<style lang="postcss">
-	.layout {
-		gap: 48px;
-		margin-bottom: 2rem;
-	}
-
-	.col {
-		background-color: var(--black-3);
-		height: 200px;
-	}
-</style>
+</section> -->

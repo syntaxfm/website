@@ -1,11 +1,29 @@
 {
 	"extends": ["stylelint-config-standard"],
-	"plugins": ["stylelint-declaration-strict-value", "stylelint-media-use-custom-media"],
+	"overrides": [
+		{
+			"customSyntax": "postcss-html",
+			"files": ["**/*.svelte"]
+		}
+	],
+	"plugins": [
+		"stylelint-declaration-strict-value",
+		"stylelint-media-use-custom-media",
+		"stylelint-no-undefined-classes"
+	],
 	"rules": {
 		"alpha-value-notation": "number",
 		"csstools/media-use-custom-media": "always",
 		"font-family-no-missing-generic-family-keyword": null,
 		"import-notation": "string",
+		"plugin/no-undefined-classes": [
+			true,
+			{
+				"cssFiles": ["**/*.css"],
+				"htmlFiles": ["**/*.html", "**/*.svelte"],
+				"ignoreClasses": ["sr-only", "visually-hidden", "/^js-/"]
+			}
+		],
 		"scale-unlimited/declaration-strict-value": [
 			["/color$/", "font-size"],
 			{
