@@ -177,8 +177,8 @@
 	.timeline {
 		--highlight: var(--subtle);
 		--future: var(--bg-2);
-		--current: var(--primary);
-		--past: var(--primary);
+		--current: var(--c-primary);
+		--past: var(--c-primary);
 	}
 
 	.past {
@@ -186,7 +186,7 @@
 	}
 
 	.current {
-		--highlight: var(--primary);
+		--highlight: var(--c-primary);
 
 		.marker {
 			/* --progress: 50%; */

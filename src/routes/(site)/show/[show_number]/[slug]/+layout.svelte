@@ -252,7 +252,7 @@
 			--max-font-size: 15rem;
 
 			font-size: clamp(1.5rem, 45cqw, var(--max-font-size));
-			color: var(--primary);
+			color: var(--c-primary);
 			line-height: 1;
 			transform: rotate(-2deg);
 			z-index: 0;

@@ -114,6 +114,7 @@
 		background: var(--bg-sheet);
 		color: var(--fg-sheet);
 		padding: 10px;
+
 		& p {
 			margin: 1rem 0 0;
 		}
@@ -130,7 +131,7 @@
 	}
 
 	.primary {
-		background: var(--primary);
+		background: var(--c-primary);
 	}
 
 	.accent {

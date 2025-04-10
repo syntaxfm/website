@@ -75,7 +75,7 @@
 		top: -1000px;
 		left: -1000px;
 		z-index: 1000;
-		background-color: var(--primary);
+		background-color: var(--c-primary);
 		color: var(--bg);
 		padding: 0.5rem;
 

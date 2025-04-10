@@ -55,7 +55,7 @@
 				bind:this={$player.media_controller}
 				style="
 
---media-range-track-height: 5px; --media-range-thumb-height: 15px; --media-range-thumb-border-radius: 0;	--media-range-track-border-radius: 5px; --media-range-bar-color: var(--primary);--media-background-color: transparent; --media-control-background: transparent;
+--media-range-track-height: 5px; --media-range-thumb-height: 15px; --media-range-thumb-border-radius: 0;	--media-range-track-border-radius: 5px; --media-range-bar-color: var(--c-primary);--media-background-color: transparent; --media-control-background: transparent;
 
  width: 100%;
 
@@ -108,7 +108,7 @@
 							<div class="media-range-bookmarks">
 								<media-time-range
 									style:--media-range-bar-color="var(--white)"
-									style:--media-range-thumb-background="var(--primary)"
+									style:--media-range-thumb-background="var(--c-primary)"
 								></media-time-range>
 							</div>
 							<media-duration-display></media-duration-display>

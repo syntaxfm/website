@@ -109,9 +109,12 @@
 		color: var(--fg);
 		padding: 5px 3px 5px 5px;
 		box-shadow: none;
+
 		--icon_size: 14px;
+
 		height: 31px;
 		width: 31px;
+
 		&:hover {
 			color: var(--accent);
 		}
@@ -157,6 +160,7 @@
 		overflow: hidden;
 		text-overflow: ellipsis;
 	}
+
 	a strong.wrap {
 		white-space: normal;
 	}
@@ -167,24 +171,24 @@
 
 	a span {
 		color: #737373;
-		margin: 0.4rem 0 0 0;
+		margin: 0.4rem 0 0;
 	}
 
 	a :global(mark) {
-		--highlight-color: var(--primary);
+		--highlight-color: var(--c-primary);
 		--sk-text-1: var(--black);
 	}
 
 	a span :global(mark) {
-		background: none;
 		color: var(--sk-text-1);
 		background: var(--highlight-color);
 		border-top: 2px solid var(--highlight-color);
+
 		/* mix-blend-mode: darken; */
 	}
 
 	a:focus span {
-		color: rgba(255, 255, 255, 0.6);
+		color: rgb(255 255 255 / 0.6);
 	}
 
 	a:focus strong {
@@ -193,7 +197,8 @@
 
 	a:focus span :global(mark),
 	a:focus strong :global(mark) {
-		--highlight-color: hsl(240, 8%, 54%);
+		--highlight-color: hsl(240deg 8% 54%);
+
 		mix-blend-mode: lighten;
 		color: white;
 	}
@@ -201,6 +206,7 @@
 	a strong :global(mark) {
 		color: var(--sk-text-1);
 		background: var(--highlight-color);
+
 		/* border-top: 2px solid var(--highlight-color); */
 		border-radius: 1px;
 	}

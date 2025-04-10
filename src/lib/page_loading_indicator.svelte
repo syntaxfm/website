@@ -6,6 +6,7 @@
 	let load_durations: number[] = $state([]);
 	let average_load = $derived(load_durations.reduce((a, b) => a + b, 0) / load_durations.length);
 	const increment = 1;
+
 	onNavigate((navigation) => {
 		const typical_load_time = average_load || 200; //ms
 		const frequency = typical_load_time / 100;
@@ -45,17 +46,20 @@
 		top: 0;
 		transform: translateY(-100%);
 		transition: transform 0.5s;
+
 		&.visible {
 			transition: none;
 			transform: translateY(0);
 		}
 	}
+
 	.track {
 		height: 4px;
 		width: calc(var(--progress, 0) * 1%);
-		background: var(--primary);
+		background: var(--c-primary);
 		border-radius: 0 4px 4px 0;
 		transition: width 0.05s;
+
 		.progress.visible & {
 			transition: none;
 		}

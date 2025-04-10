@@ -297,7 +297,7 @@
 			--ideal-font-size: 22cqw;
 		}
 
-		color: var(--primary);
+		color: var(--c-primary);
 		line-height: 1;
 
 		@media (--below-med) {

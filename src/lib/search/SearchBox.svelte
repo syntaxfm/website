@@ -249,7 +249,7 @@
 	}
 
 	header:focus-within {
-		--border: var(--primary);
+		--border: var(--c-primary);
 	}
 
 	.close {

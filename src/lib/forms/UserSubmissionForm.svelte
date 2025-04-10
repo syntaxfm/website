@@ -153,7 +153,7 @@
 	.status {
 		padding: 10px;
 		background: var(--subtle);
-		border-left: 8px solid var(--primary);
+		border-left: 8px solid var(--c-primary);
 		font-size: var(--font-size-sm);
 		margin: 1rem 0;
 		width: fit-content;

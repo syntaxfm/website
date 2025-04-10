@@ -5,6 +5,6 @@
 	--fg-1: var(--white);
 	--fg-sheet: var(--black);
 	--bg-grit: var(--bg-grit-light);
-	--primary: #d15f7c;
+	--c-primary: #d15f7c;
 	--accent: #f9dc65;
 }

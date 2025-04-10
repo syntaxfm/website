@@ -82,7 +82,7 @@
 	}
 
 	.newsletter-layout {
-		background: var(--primary);
+		background: var(--c-primary);
 		color: var(--black);
 	}
 </style>

@@ -62,9 +62,11 @@
 		grid-auto-columns: max-content;
 		gap: 20px;
 		justify-content: center;
+
 		@media (--below-large) {
 			gap: 8px;
 		}
+
 		& > * {
 			border-radius: var(--brad);
 			margin: 0;
@@ -73,13 +75,16 @@
 			text-align: center;
 			background-color: var(--bg-1);
 		}
+
 		a {
 			color: var(--fg);
 			transition: 0.2s ease background;
+
 			&.current {
-				background: var(--primary);
+				background: var(--c-primary);
 				color: var(--dark);
 			}
+
 			@media (--below-large) {
 				&.page-number:not(.current) {
 					display: none;
