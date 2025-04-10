@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Icon from '$/lib/Icon.svelte';
-	import Logo from '$/lib/Logo.svelte';
+	import Logo from '$/lib/layout/Logo.svelte';
 	import NewsletterForm from '$/lib/newsletter/NewsletterForm.svelte';
 	import PodcastLinks from '$/lib/PodcastLinks.svelte';
 	import '../../(site)/style.css';

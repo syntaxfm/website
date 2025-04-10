@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Logo from '$lib/Logo.svelte';
+	import Logo from '$/lib/layout/Logo.svelte';
 	import Search from '$lib/search/Search.svelte';
 	import { page } from '$app/state';
 	interface Props {

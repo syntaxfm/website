@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Header from '../routes/(site)/Header.svelte';
-	import Logo from './Logo.svelte';
+	import Logo from './layout/Logo.svelte';
 	import PodcastLinks from './PodcastLinks.svelte';
 </script>
 
@@ -65,7 +65,8 @@
 
 <style lang="postcss">
 	section {
-		background-image: url($assets/whitegrit.png),
+		background-image:
+			url($assets/whitegrit.png),
 			radial-gradient(
 				farthest-side circle at 50% 0%,
 				var(--hero-gradient-1) 4% 4%,
