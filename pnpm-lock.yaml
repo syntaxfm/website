@@ -288,6 +288,9 @@ importers:
       stylelint-no-undefined-classes:
         specifier: ^0.2.0
         version: 0.2.0(stylelint@16.18.0(typescript@5.8.3))
+      stylelint-value-no-unknown-custom-properties:
+        specifier: ^6.0.1
+        version: 6.0.1(stylelint@16.18.0(typescript@5.8.3))
       svelte:
         specifier: ^5.25.10
         version: 5.25.10
@@ -5129,6 +5132,12 @@ packages:
     engines: {node: '>=14.0.0'}
     peerDependencies:
       stylelint: '>=13.0.0'
+
+  stylelint-value-no-unknown-custom-properties@6.0.1:
+    resolution: {integrity: sha512-N60PTdaTknB35j6D4FhW0GL2LlBRV++bRpXMMldWMQZ240yFQaoltzlLY4lXXs7Z0J5mNUYZQ/gjyVtU2DhCMA==}
+    engines: {node: '>=18.12.0'}
+    peerDependencies:
+      stylelint: '>=16'
 
   stylelint@16.18.0:
     resolution: {integrity: sha512-OXb68qzesv7J70BSbFwfK3yTVLEVXiQ/ro6wUE4UrSbKCMjLLA02S8Qq3LC01DxKyVjk7z8xh35aB4JzO3/sNA==}
@@ -11254,6 +11263,12 @@ snapshots:
     dependencies:
       cheerio: 1.0.0
       glob: 8.1.0
+      stylelint: 16.18.0(typescript@5.8.3)
+
+  stylelint-value-no-unknown-custom-properties@6.0.1(stylelint@16.18.0(typescript@5.8.3)):
+    dependencies:
+      postcss-value-parser: 4.2.0
+      resolve: 1.22.10
       stylelint: 16.18.0(typescript@5.8.3)
 
   stylelint@16.18.0(typescript@5.8.3):
