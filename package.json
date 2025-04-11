@@ -35,6 +35,7 @@
     "@eslint/eslintrc": "^3.3.1",
     "@eslint/js": "^9.24.0",
     "@playwright/test": "^1.51.1",
+    "@spiriit/vite-plugin-svg-spritemap": "^4.0.1",
     "@storybook/addon-essentials": "^8.6.12",
     "@storybook/addon-interactions": "^8.6.12",
     "@storybook/addon-queryparams": "^7.0.1",
