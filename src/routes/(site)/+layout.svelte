@@ -5,8 +5,8 @@
 	import { Toaster } from 'svelte-french-toast';
 	import { onNavigate } from '$app/navigation';
 	import Player from '$lib/player/Player.svelte';
-	import Footer from '../../lib/layout/Footer.svelte';
-	import Header from './Header.svelte';
+	import Footer from '$lib/layout/Footer.svelte';
+	import Header from '$lib/layout/Header.svelte';
 	import Loading from '$lib/Loading.svelte';
 	import { browser } from '$app/environment';
 	import SearchBox from '$lib/search/SearchBox.svelte';

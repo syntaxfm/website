@@ -1,3 +1,4 @@
+import VitePluginSvgSpritemap from '@spiriit/vite-plugin-svg-spritemap';
 import { sentrySvelteKit } from '@sentry/sveltekit';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vitest/config';
@@ -21,6 +22,9 @@ export default defineConfig(({ mode }) => {
 				enableBundleAnalysis: env.CODECOV_TOKEN !== undefined,
 				bundleName: 'website',
 				uploadToken: env.CODECOV_TOKEN
+			}),
+			VitePluginSvgSpritemap('./src/icons/*.svg', {
+				prefix: ''
 			})
 		],
 		test: {

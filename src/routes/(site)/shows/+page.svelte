@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { PER_PAGE } from '$const';
-	import Pagination from '$lib/Pagination.svelte';
+	import Pagination from '$lib/layout/Pagination.svelte';
 	import SelectMenu from '$lib/SelectMenu.svelte';
 	import ShowCard from '$lib/ShowCard.svelte';
 	import { queryParameters } from 'sveltekit-search-params';

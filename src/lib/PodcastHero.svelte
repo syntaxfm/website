@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Header from '../routes/(site)/Header.svelte';
-	import Logo from './layout/Logo.svelte';
-	import PodcastLinks from './PodcastLinks.svelte';
+	import Header from '$lib/layout/Header.svelte';
+	import Logo from '$lib/layout/Logo.svelte';
+	import PodcastLinks from '$lib/PodcastLinks.svelte';
 </script>
 
 <section
