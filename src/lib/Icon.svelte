@@ -10,10 +10,23 @@
 		name: IconName;
 		title?: string | boolean;
 		aria_hidden?: boolean;
+		height?: number;
+		width?: number;
 	}
 
-	let { name, title = $bindable(''), aria_hidden = true }: Props = $props();
+	let {
+		name,
+		title = $bindable(''),
+		aria_hidden = true,
+		height = 16,
+		width = 16
+	}: Props = $props();
 	if (!title && title !== false) title = capitalize(name);
 </script>
 
-<img src="/__spritemap#{name}" />
+<img
+	src="/__spritemap#{name}"
+	style="height: {height}px; width: {width}px;"
+	alt={title || name}
+	aria-hidden={aria_hidden}
+/>

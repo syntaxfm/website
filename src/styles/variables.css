@@ -140,7 +140,7 @@
 	--c-bg: var(--c-white);
 
 	/* Interface Color */
-	--c-primary: var(--yellow);
+	--c-primary: var(--c-yellow);
 
 	/* Borders */
 	--b-feed: solid 12px var(--c-primary);

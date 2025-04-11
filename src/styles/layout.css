@@ -1,6 +1,13 @@
 /* TODO REVIST THIS */
 @layer layout {
-	.layout {
+	.flex {
+		display: flex;
+	}
+
+	.grid {
+		display: grid;
+	}
+	/* .layout {
 		display: grid;
 		grid-template-columns: [start] 5px [content] auto [content] 5px [end];
 
@@ -24,8 +31,9 @@
 
 		/* 812 */
 
-		/* 322 */
+	/* 322 */
 
+	/* 
 		> * {
 			grid-column: content / content;
 		}
@@ -59,8 +67,9 @@
 			width: 100%;
 			grid-column: main / main;
 		}
-	}
+	} */
 
+	/* 
 	.grid {
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
@@ -73,10 +82,11 @@
 		background-size: 250px;
 		border-radius: var(--radius, 0);
 
-		--subtle: color-mix(in lch, var(--fg), var(--bg) 90%);
+		--subtle: color-mix(in lch, var(--fg), var(--bg) 90%); */
 
-		/* Like subtle but transparent */
-		--tint-or-shade: color-mix(in oklab, var(--fg), transparent 90%);
+	/* Like subtle but transparent */
+
+	/* --tint-or-shade: color-mix(in oklab, var(--fg), transparent 90%);
 	}
 
 	.sticky {
@@ -96,12 +106,13 @@
 		--bg: var(--bg-1);
 
 		padding: 20px;
-	}
+	} */
 
 	/* END @layer layout */
 
 	/* Hack */
-	.main a {
+
+	/* .main a {
 		overflow-wrap: anywhere;
-	}
+	} */
 }
