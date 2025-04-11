@@ -15,6 +15,7 @@
 	import ThemeMaker from '../../params/ThemeMaker.svelte';
 	import { page } from '$app/stores';
 	import PageLoadingIndicator from '$lib/page_loading_indicator.svelte';
+	import Icon from '$/lib/Icon.svelte';
 
 	let { data, children } = $props();
 	let { user, user_theme, latest } = $derived(data);
@@ -39,6 +40,10 @@
 	{#if $page.url.pathname !== '/'}
 		<Header />
 	{/if}
+
+	<Icon name="grid" />
+	<Icon name="list" />
+	<Icon name="mail-send" />
 
 	<main
 		id="main-content"

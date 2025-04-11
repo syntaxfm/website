@@ -8,4 +8,12 @@
 	});
 </script>
 
-<Story name="Default" />
+<Story
+	name="Default"
+	args={{
+		label: 'Toggle',
+		checked: false,
+		on_icon: 'grid',
+		off_icon: 'list'
+	}}
+/>

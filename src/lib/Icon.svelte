@@ -1,5 +1,5 @@
 <script lang="ts" module>
-	export const icon_names = ['mail-send'] as const;
+	export const icon_names = ['mail-send', 'list', 'grid'] as const;
 	export type IconName = (typeof icon_names)[number];
 </script>
 
@@ -24,9 +24,6 @@
 	if (!title) title = capitalize(name);
 </script>
 
-<img
-	src="/__spritemap#{name}"
-	style="height: {height}px; width: {width}px;"
-	alt={title}
-	aria-hidden={aria_hidden}
-/>
+<svg style="height: {height}px; width: {width}px;" alt={title} aria-hidden={aria_hidden}>
+	<use xlink:href="/__spritemap#{name}"></use>
+</svg>
