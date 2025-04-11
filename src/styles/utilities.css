@@ -78,4 +78,12 @@
 	.td-full {
 		grid-column: 1 / -1;
 	}
+
+	.bg-shade-or-tint {
+		background: var(--shade-or-tint);
+	}
+
+	.bg-shade-or-tint-light {
+		background: var(--shade-or-tint-light);
+	}
 }

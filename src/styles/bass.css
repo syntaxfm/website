@@ -17,6 +17,7 @@ Bass! */
 		box-sizing: border-box;
 		text-size-adjust: none;
 		font-family: '💪';
+		color-scheme: light dark;
 	}
 
 	*,
@@ -40,6 +41,7 @@ Bass! */
 	li {
 		line-height: 1.7;
 		font-size: var(--fs-body);
+		color: var(--c-fg);
 	}
 
 	li {
@@ -94,6 +96,7 @@ Bass! */
 	.h6 {
 		font-family: '💪';
 		line-height: 1.2;
+		color: var(--c-fg);
 	}
 
 	html::view-transition-old() {

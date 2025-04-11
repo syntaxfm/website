@@ -8,7 +8,7 @@
 
 	interface Props {
 		name: IconName;
-		title?: string | boolean;
+		title?: string;
 		aria_hidden?: boolean;
 		height?: number;
 		width?: number;
@@ -21,12 +21,12 @@
 		height = 16,
 		width = 16
 	}: Props = $props();
-	if (!title && title !== false) title = capitalize(name);
+	if (!title) title = capitalize(name);
 </script>
 
 <img
 	src="/__spritemap#{name}"
 	style="height: {height}px; width: {width}px;"
-	alt={title || name}
+	alt={title}
 	aria-hidden={aria_hidden}
 />

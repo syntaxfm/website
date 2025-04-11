@@ -136,8 +136,8 @@
 	--s: 0 7.5px 7.5px rgb(0 0 0 / 0.25);
 
 	/* Color Usage */
-	--c-fg: var(--c-black);
-	--c-bg: var(--c-white);
+	--c-fg: light-dark(var(--c-black), var(--c-white));
+	--c-bg: light-dark(var(--c-white), var(--c-black));
 
 	/* Interface Color */
 	--c-primary: var(--c-yellow);
@@ -154,4 +154,6 @@
 	/* Sentry footer gradient */
 	--sentry-footer-bg: url('$assets/squiggle-greyscale.webp'),
 		linear-gradient(315deg, #180d1c 0.57%, #452650 100%);
+	--shade-or-tint: light-dark(rgb(0 0 0 / 0.1), rgb(255 255 255 / 0.1));
+	--shade-or-tint-light: light-dark(rgb(0 0 0 / 0.03), rgb(255 255 255 / 0.03));
 }

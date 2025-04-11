@@ -2,11 +2,19 @@
 @layer layout {
 	.flex {
 		display: flex;
+		gap: 10px;
+	}
+
+	.flex-column {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
 	}
 
 	.grid {
 		display: grid;
 	}
+
 	/* .layout {
 		display: grid;
 		grid-template-columns: [start] 5px [content] auto [content] 5px [end];
