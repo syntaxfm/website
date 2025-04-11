@@ -30,10 +30,4 @@
 	.flex {
 		align-items: center;
 	}
-
-	.dot {
-		translate: 0 -3px;
-		font-size: 12px;
-		display: inline-block;
-	}
 </style>

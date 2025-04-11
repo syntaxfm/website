@@ -86,4 +86,20 @@
 	.bg-shade-or-tint-light {
 		background: var(--shade-or-tint-light);
 	}
+
+	.br-small {
+		border-radius: var(--br-small);
+	}
+
+	.br-medium {
+		border-radius: var(--br-medium);
+	}
+
+	.br-large {
+		border-radius: var(--br-large);
+	}
+
+	.br-xlarge {
+		border-radius: var(--br-xlarge);
+	}
 }

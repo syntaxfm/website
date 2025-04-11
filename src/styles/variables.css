@@ -148,6 +148,16 @@
 	--b-light: soild 2px var(--c-fg);
 	--b-medium: soild 4px var(--c-fg);
 	--b-heavy: soild 5px var(--c-fg);
+
+	/* Border Radius */
+	--br-small: 4px;
+	--br-medium: 8px;
+	--br-large: 12px;
+	--br-xlarge: 16px;
+	--br-xxlarge: 20px;
+	--br-huge: 24px;
+
+	/* Grit */
 	--grit-light: url('/svg/grit.svg?light&count=50&w=1000&h=2000');
 	--grit-dark: url('/svg/grit.svg?dark&count=50&w=1000&h=2000');
 

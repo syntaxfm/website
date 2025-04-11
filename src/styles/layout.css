@@ -11,8 +11,14 @@
 		gap: 10px;
 	}
 
+	.flex-column-reverse {
+		flex-direction: column-reverse;
+	}
+
 	.grid {
 		display: grid;
+		gap: 10px;
+		grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
 	}
 
 	/* .layout {
