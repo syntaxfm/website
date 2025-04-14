@@ -12,7 +12,7 @@
 	name="Default"
 	args={{
 		label: 'Toggle',
-		checked: false,
+		checked: true,
 		on_icon: 'grid',
 		off_icon: 'list'
 	}}

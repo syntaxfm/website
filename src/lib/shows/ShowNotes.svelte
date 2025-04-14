@@ -5,3 +5,9 @@
 <div class="show-notes">
 	{@html show_notes}
 </div>
+
+<style>
+	.icon-link {
+		background: var(--c-primary);
+	}
+</style>

@@ -15,7 +15,21 @@
 	"rules": {
 		"alpha-value-notation": "number",
 		"csstools/media-use-custom-media": "always",
-		"csstools/value-no-unknown-custom-properties": true,
+		"csstools/value-no-unknown-custom-properties": [
+			true,
+			{
+				"importFrom": [
+					"src/styles/bass.css",
+					"src/styles/buttons.css",
+					"src/styles/layout.css",
+					"src/styles/reset.css",
+					"src/styles/theme.css",
+					"src/styles/typography.css",
+					"src/styles/utilities.css",
+					"src/styles/variables.css"
+				]
+			}
+		],
 		"font-family-no-missing-generic-family-keyword": null,
 		"import-notation": "string",
 		"plugin/no-undefined-classes": [
