@@ -33,7 +33,7 @@
 		"@eslint/eslintrc": "^3.1.0",
 		"@eslint/js": "^9.11.1",
 		"@playwright/test": "^1.46.0",
-		"@sveltejs/kit": "^2.5.27",
+		"@sveltejs/kit": "^2.20.6",
 		"@sveltejs/vite-plugin-svelte": "^4.0.0",
 		"@types/chroma-js": "^2.4.4",
 		"@types/js-cookie": "^3.0.6",
