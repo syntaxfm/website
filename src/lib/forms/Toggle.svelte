@@ -8,7 +8,7 @@
 		off_icon: IconName;
 	}
 
-	let { label, checked = $bindable(true), on_icon, off_icon }: Props = $props();
+	let { checked = $bindable(true), on_icon, off_icon }: Props = $props();
 </script>
 
 <div class="toggle">

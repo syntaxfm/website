@@ -8,4 +8,6 @@
 	});
 </script>
 
-<Story name="Default" />
+<Story name="Default">
+	<Tag>Tag</Tag>
+</Story>
