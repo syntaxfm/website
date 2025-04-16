@@ -28,7 +28,7 @@
 		width: auto;
 		display: inline-flex;
 		position: relative;
-		background: var(--shade-or-tint);
+		background: var(--c-shade-or-tint);
 		border-radius: var(--size);
 
 		.background {

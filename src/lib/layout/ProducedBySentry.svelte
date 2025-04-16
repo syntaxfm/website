@@ -39,7 +39,7 @@
 		border-radius: var(--brad);
 		padding: 1rem;
 		margin: 2rem 0;
-		background: var(--sentry-footer-bg);
+		background: var(--c-sentry-footer-bg);
 		background-blend-mode: hard-light;
 		background-size:
 			300px 300px,

@@ -1,8 +1,5 @@
 :root {
-	/* 🧑‍🚒 💩 */
-
 	/* BREAKPOINTS */
-
 	@custom-media --below-small (width < 400px);
 	@custom-media --below-med (width < 700px);
 	@custom-media --below-large (width < 900px);
@@ -23,9 +20,9 @@
 	--c-black: #000;
 	--c-white: #fff;
 
-	/* Realtive Colors */
+	/* Relative Colors */
 
-	/* Yellow variants */
+	/** Yellow variants **/
 	--c-yellow-1: oklch(from var(--c-yellow) calc(l + 0.35) c h);
 	--c-yellow-2: oklch(from var(--c-yellow) calc(l + 0.25) c h);
 	--c-yellow-3: oklch(from var(--c-yellow) calc(l + 0.15) c h);
@@ -37,7 +34,7 @@
 	--c-yellow-9: oklch(from var(--c-yellow) calc(l - 0.3) c h);
 	--c-yellow-10: oklch(from var(--c-yellow) calc(l - 0.4) c h);
 
-	/* Teal variants */
+	/** Teal variants **/
 	--c-teal-1: oklch(from var(--c-teal) calc(l + 0.35) c h);
 	--c-teal-2: oklch(from var(--c-teal) calc(l + 0.25) c h);
 	--c-teal-3: oklch(from var(--c-teal) calc(l + 0.15) c h);
@@ -49,7 +46,7 @@
 	--c-teal-9: oklch(from var(--c-teal) calc(l - 0.3) c h);
 	--c-teal-10: oklch(from var(--c-teal) calc(l - 0.4) c h);
 
-	/* Green variants */
+	/** Green variants **/
 	--c-green-1: oklch(from var(--c-green) calc(l + 0.35) c h);
 	--c-green-2: oklch(from var(--c-green) calc(l + 0.25) c h);
 	--c-green-3: oklch(from var(--c-green) calc(l + 0.15) c h);
@@ -61,7 +58,7 @@
 	--c-green-9: oklch(from var(--c-green) calc(l - 0.3) c h);
 	--c-green-10: oklch(from var(--c-green) calc(l - 0.4) c h);
 
-	/* Red variants */
+	/** Red variants **/
 	--c-red-1: oklch(from var(--c-red) calc(l + 0.35) c h);
 	--c-red-2: oklch(from var(--c-red) calc(l + 0.25) c h);
 	--c-red-3: oklch(from var(--c-red) calc(l + 0.15) c h);
@@ -73,7 +70,7 @@
 	--c-red-9: oklch(from var(--c-red) calc(l - 0.3) c h);
 	--c-red-10: oklch(from var(--c-red) calc(l - 0.4) c h);
 
-	/* Purple variants */
+	/** Purple variants **/
 	--c-purple-1: oklch(from var(--c-purple) calc(l + 0.35) c h);
 	--c-purple-2: oklch(from var(--c-purple) calc(l + 0.25) c h);
 	--c-purple-3: oklch(from var(--c-purple) calc(l + 0.15) c h);
@@ -85,7 +82,7 @@
 	--c-purple-9: oklch(from var(--c-purple) calc(l - 0.3) c h);
 	--c-purple-10: oklch(from var(--c-purple) calc(l - 0.4) c h);
 
-	/* Black variants */
+	/** Black variants **/
 	--c-black-1: oklch(from var(--c-black) calc(l + 0.95) c h);
 	--c-black-2: oklch(from var(--c-black) calc(l + 0.85) c h);
 	--c-black-3: oklch(from var(--c-black) calc(l + 0.75) c h);
@@ -97,9 +94,23 @@
 	--c-black-9: oklch(from var(--c-black) calc(l + 0.15) c h);
 	--c-black-10: oklch(from var(--c-black) calc(l + 0.05) c h);
 
-	/* Typography */
-	--body-font-family: '💪', 'Operator Mono', consolas, menlo, monaco, 'Courier New', monospace;
-	--heading-font-family: '💪', 'Operator Mono', consolas, menlo, monaco, 'Courier New', monospace;
+	/* Color Usage */
+	--c-fg: light-dark(var(--c-black), var(--c-white));
+	--c-bg: light-dark(var(--c-white), var(--c-black));
+	--c-primary: var(--c-yellow);
+	--c-shade-or-tint: light-dark(rgb(0 0 0 / 0.1), rgb(255 255 255 / 0.1));
+	--c-shade-or-tint-light: light-dark(rgb(0 0 0 / 0.03), rgb(255 255 255 / 0.03));
+	--c-shade-or-tint-hard: light-dark(rgb(0 0 0 / 0.64), rgb(255 255 255 / 0.64));
+	--c-sentry-footer-bg:
+		url('$assets/squiggle-greyscale.webp'), linear-gradient(315deg, #180d1c 0.57%, #452650 100%);
+
+	/* TYPOGRAPHY */
+
+	/* Font Families */
+	--ff-body: '💪', 'Operator Mono', consolas, menlo, monaco, 'Courier New', monospace;
+	--ff-heading: '💪', 'Operator Mono', consolas, menlo, monaco, 'Courier New', monospace;
+
+	/* Font Sizes */
 	--fs-micro: 14px;
 	--fs-caption: 17px;
 	--fs-body: 20px;
@@ -110,9 +121,7 @@
 	--fs-2: 50px;
 	--fs-1: 60px;
 
-	/* Font variations vars */
-
-	/* Don't use these directly in components, use the fv-* classes instead */
+	/* Font Variations */
 	--fv-100: 'wght' 100;
 	--fv-100-italic: 'wght' 100, 'ital' 1;
 	--fv-400: 'wght' 400;
@@ -128,30 +137,25 @@
 	--fv-900: 'wght' 900;
 	--fv-900-italic: 'wght' 900, 'ital' 1;
 
-	/* Shadows */
-	--s-graphic: -4px 4px 0 var(--c-black);
-	--s-graphic-medium: -10px 10px 0 var(--c-black);
+	/* SHADOWS */
+	--s-graphic: -4px 4px 0 var(--c-fg);
+	--s-graphic-medium: -10px 10px 0 var(--c-fg);
 	--s-graphic-heavy:
-		-5px 5px 0 var(--c-black), -10px 10px 0 var(--c-black), -15px -15px 0 var(--c-black),
-		-20px 20px 0 var(--c-black);
+		-5px 5px 0 var(--c-fg), -10px 10px 0 var(--c-fg), -11px 11px 0 var(--c-fg),
+		-12px 12px 0 var(--c-fg), -13px 13px 0 var(--c-fg), -14px 14px 0 var(--c-fg),
+		-15px 15px 0 var(--c-fg), -20px 20px 0 var(--c-fg);
 	--s-light: 0 0 4px rgb(0 0 0 / 0.25);
 	--s: 0 7.5px 7.5px rgb(0 0 0 / 0.25);
 
-	/* Color Usage */
-	--c-fg: light-dark(var(--c-black), var(--c-white));
-	--c-bg: light-dark(var(--c-white), var(--c-black));
+	/* BORDERS */
 
-	/* Interface Color */
-	--c-primary: var(--c-yellow);
-
-	/* Borders */
 	--b-feed: solid 12px var(--c-primary);
 	--b-xtra-light: soild 1px var(--c-fg);
 	--b-light: soild 2px var(--c-fg);
 	--b-medium: soild 4px var(--c-fg);
 	--b-heavy: soild 5px var(--c-fg);
 
-	/* Border Radius */
+	/* BORDER RADIUS */
 	--br-small: 4px;
 	--br-medium: 8px;
 	--br-large: 12px;
@@ -159,14 +163,7 @@
 	--br-xxlarge: 20px;
 	--br-huge: 24px;
 
-	/* Grit */
+	/* GRIT */
 	--grit-light: url('/svg/grit.svg?light&count=50&w=1000&h=2000');
 	--grit-dark: url('/svg/grit.svg?dark&count=50&w=1000&h=2000');
-
-	/* Sentry footer gradient */
-	--sentry-footer-bg:
-		url('$assets/squiggle-greyscale.webp'), linear-gradient(315deg, #180d1c 0.57%, #452650 100%);
-	--shade-or-tint: light-dark(rgb(0 0 0 / 0.1), rgb(255 255 255 / 0.1));
-	--shade-or-tint-light: light-dark(rgb(0 0 0 / 0.03), rgb(255 255 255 / 0.03));
-	--shade-or-tint-hard: light-dark(rgb(0 0 0 / 0.64), rgb(255 255 255 / 0.64));
 }

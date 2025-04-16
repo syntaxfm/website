@@ -13,6 +13,6 @@
 	--line: var(--bg);
 	--hero-gradient-1: #253535;
 	--hero-gradient-2: #e5d7ba;
-	--sentry-footer-bg: url('$assets/squiggle-greyscale.webp'),
-		linear-gradient(315deg, #43524d 0.57%, #452650 100%);
+	--c-sentry-footer-bg:
+		url('$assets/squiggle-greyscale.webp'), linear-gradient(315deg, #43524d 0.57%, #452650 100%);
 }

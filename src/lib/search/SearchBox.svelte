@@ -309,7 +309,7 @@
 		outline-color: transparent;
 		background-color: transparent;
 		color: var(--fg);
-		font-family: var(--body-font-family);
+		font-family: var(--ff-body);
 	}
 
 	footer {

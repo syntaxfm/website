@@ -80,11 +80,11 @@
 	}
 
 	.bg-shade-or-tint {
-		background: var(--shade-or-tint);
+		background: var(--c-shade-or-tint);
 	}
 
 	.bg-shade-or-tint-light {
-		background: var(--shade-or-tint-light);
+		background: var(--c-shade-or-tint-light);
 	}
 
 	.br-small {

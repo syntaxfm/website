@@ -100,7 +100,7 @@
 		text-align: left;
 		box-shadow: none;
 		white-space: nowrap;
-		font-family: var(--body-font-family);
+		font-family: var(--ff-body);
 		padding: 8px 14px;
 		cursor: pointer;
 		font-size: var(--body-font-size);

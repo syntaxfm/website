@@ -59,7 +59,7 @@
 
  width: 100%;
 
- --media-font-family: var(--body-font-family); --media-control-hover-background: transparent; "
+ --media-font-family: var(--ff-body); --media-control-hover-background: transparent; "
 			>
 				<audio
 					ontimeupdate={player.ontimeupdate}

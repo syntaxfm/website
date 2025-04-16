@@ -44,7 +44,7 @@
 
  width: 100%;
 
- --media-font-family: var(--body-font-family); --media-control-hover-background: transparent; "
+ --media-font-family: var(--ff-body); --media-control-hover-background: transparent; "
 				>
 					<audio slot="media" preload="metadata" crossorigin="anonymous" src={show.url}></audio>
 					<media-control-bar class="media-bar">
@@ -121,7 +121,8 @@
 		overflow: hidden;
 		padding: 20px;
 		background-size: contain;
-		background-image: var(--bg-grit-dark),
+		background-image:
+			var(--bg-grit-dark),
 			radial-gradient(farthest-side circle at 50% 0%, #3a006b66 4% 4%, #000 100%);
 	}
 

@@ -20,7 +20,8 @@
 	--hero-gradient-2: #3d4ef6;
 	--header-gradient-1: var(--hero-gradient-1);
 	--header-gradient-2: var(--hero-gradient-2);
-	--sentry-footer-bg: url('$assets/squiggle-greyscale.webp'),
+	--c-sentry-footer-bg:
+		url('$assets/squiggle-greyscale.webp'),
 		linear-gradient(315deg, var(--purp) 0.57%, var(--blue) 100%);
 
 	nav {

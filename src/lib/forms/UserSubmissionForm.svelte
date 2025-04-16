@@ -173,7 +173,7 @@
 		width: 100%;
 		padding: 0.6rem;
 		border-radius: 5px;
-		font-family: var(--body-font-family);
+		font-family: var(--ff-body);
 		border: 1px solid var(--fg);
 	}
 
