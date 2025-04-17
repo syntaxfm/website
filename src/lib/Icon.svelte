@@ -24,6 +24,6 @@
 	if (!title) title = capitalize(name);
 </script>
 
-<svg style="height: {height}px; width: {width}px;" alt={title} aria-hidden={aria_hidden}>
+<svg style="height: {height}px; width: {width}px;" aria-hidden={aria_hidden}>
 	<use xlink:href="/__spritemap#{name}"></use>
 </svg>
