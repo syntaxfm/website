@@ -8,6 +8,36 @@
 	let { name }: Props = $props();
 </script>
 
-{#each icon_names as icon_name}
-	<Icon name={icon_name} />
-{/each}
+<div class="icons-grid">
+	{#each icon_names as icon_name}
+		<div class="icon-box">
+			<Icon name={icon_name} />
+			<span class="icon-name">{icon_name}</span>
+		</div>
+	{/each}
+</div>
+
+<style>
+	.icons-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+		gap: 1rem;
+		padding: 1rem;
+	}
+
+	.icon-box {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 1rem;
+		border: 1px solid var(--c-fg);
+		border-radius: 0.5rem;
+	}
+
+	.icon-name {
+		font-size: var(--fs-caption);
+		color: var(--c-fg);
+		text-align: center;
+	}
+</style>

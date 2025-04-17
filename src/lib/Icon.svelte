@@ -1,5 +1,17 @@
 <script lang="ts" module>
-	export const icon_names = ['mail-send', 'list', 'grid'] as const;
+	export const icon_names = [
+		'mail-send',
+		'list',
+		'grid',
+		'twitter',
+		'spotify',
+		'applepod',
+		'calendar',
+		'link',
+		'mute',
+		'tshirt',
+		'youtube'
+	] as const;
 	export type IconName = (typeof icon_names)[number];
 </script>
 

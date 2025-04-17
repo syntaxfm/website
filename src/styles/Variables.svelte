@@ -160,7 +160,7 @@
 		<section class="main-section">
 			<h2>{section.title}</h2>
 			{#if section.variables.length}
-				<div class="var-section">
+				<div>
 					{#if section.title === 'COLORS'}
 						<div class="var-grid">
 							{#each section.variables as variable}
@@ -233,7 +233,7 @@
 				{#each Object.entries(section.subsections) as [subsectionKey, subsection]}
 					<section class="subsection">
 						<h3>{subsection.title}</h3>
-						<div class="var-section">
+						<div>
 							{#if section.title === 'COLORS'}
 								<div class="var-grid">
 									{#each subsection.variables as variable}
@@ -277,7 +277,7 @@
 							{#each Object.entries(subsection.subgroups) as [groupKey, group]}
 								<section class="subgroup">
 									<h4>{group.title}</h4>
-									<div class="var-section">
+									<div>
 										{#if section.title === 'COLORS'}
 											<div class="var-grid">
 												{#each group.variables as variable}
