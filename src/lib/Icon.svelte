@@ -10,7 +10,11 @@
 		'link',
 		'mute',
 		'tshirt',
-		'youtube'
+		'youtube',
+		'instagram',
+		'discord',
+		'github',
+		'tiktok'
 	] as const;
 	export type IconName = (typeof icon_names)[number];
 </script>

@@ -1,60 +1,12 @@
 <script lang="ts">
 	import { CURRENT_YEAR } from '$const';
-	import Icon from '$lib/Icon.svelte';
+	import FooterLinks from './FooterLinks.svelte';
 	import ProducedBySentry from './ProducedBySentry.svelte';
 </script>
 
 <footer class="layout zone" style:--bg="var(--bg-root)" style:--fg="var(--fg-1)">
 	<div>
-		<div>
-			<div>
-				<a href="/shows">Podcast</a>
-				<a target="_blank" rel="noopener" href="https://feed.syntax.fm">RSS Feed</a>
-				<a href="/about">About</a>
-				<a href="/sickpicks">Sick Picks</a>
-				<a href="/guests">Guest List</a>
-
-				<a
-					target="_blank"
-					rel="noopener"
-					href="https://sentry.io/welcome/?utm_medium=site&utm_source=syntax&utm_campaign=syntax-sentry-evergreen&utm_content=footer"
-					>Sentry.io</a
-				>
-			</div>
-			<div>
-				<a target="_blank" rel="noopener" href="https://github.com/syntaxfm/website">
-					<!-- {process.env.VITE_VERCEL_GIT_COMMIT_SHA
-						? process.env.VITE_VERCEL_GIT_COMMIT_SHA.slice(0, 7)
-						: ''}  -->
-					Source Code
-				</a>
-				<a href="/system/colors">Colors</a>
-				<a href="/system/layout">Layout</a>
-				<a href="/system/typography">Typography</a>
-				<a href="/system/theme">Theme</a>
-				<a href="/pages/privacy">Privacy Policy</a>
-				<a href="/pages/terms-of-service">Terms of Service</a>
-				<!-- <a href="/system/components">Components</a> -->
-			</div>
-			<div>
-				<a target="_blank" rel="noopener" href="https://x.com/syntaxfm"><Icon name="x" /></a>
-				<a target="_blank" rel="noopener" href="https://github.com/syntaxfm"
-					><Icon name="github" /></a
-				>
-				<a target="_blank" rel="noopener" href="https://discord.gg/W5y68HMfZV"
-					><Icon name="discord" /></a
-				>
-				<a target="_blank" rel="noopener" href="https://www.youtube.com/@syntaxfm"
-					><Icon name="youtube" /></a
-				>
-				<a target="_blank" rel="noopener" href="https://www.tiktok.com/@syntaxfm"
-					><Icon name="tiktok" /></a
-				>
-				<a target="_blank" rel="noopener" href="https://www.instagram.com/syntax_fm/"
-					><Icon name="instagram" /></a
-				>
-			</div>
-		</div>
+		<FooterLinks />
 
 		<ProducedBySentry />
 
