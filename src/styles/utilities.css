@@ -103,3 +103,8 @@
 		border-radius: var(--br-xlarge);
 	}
 }
+
+.size {
+	width: var(--size);
+	height: var(--size);
+}
