@@ -24,6 +24,7 @@
 	.button-graphic {
 		display: flex;
 		align-items: center;
+		font-variation-settings: var(--fv-700-italic);
 		gap: 10px;
 		border-radius: var(--br-medium);
 		border: solid 4px var(--c-bg);
@@ -37,7 +38,7 @@
 	.primary-ghost {
 		background: transparent;
 		color: var(--c-primary);
-		border: 1px solid var(--c-primary);
+		border: 2px solid var(--c-primary);
 
 		&:hover {
 			background: var(--c-primary);
