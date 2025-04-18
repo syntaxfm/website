@@ -38,51 +38,57 @@
 	let pageNumbers = $derived(getNeighboringNumbers(page, totalPages));
 </script>
 
-<div class="pagination">
-	<a title="First Page" href="?{generate_search_params('page', '')}">←←</a>
-	<a href="?{generate_search_params('page', page > 1 ? page - 1 : '')}">←</a>
-	{#each pageNumbers as pageNumber (pageNumber)}
-		<a
-			in:fade
-			animate:flip={{ duration: 200, easing: quintOut }}
-			class="page-number"
-			class:current={page === pageNumber}
-			href="?{generate_search_params('page', pageNumber)}"
-			>{pageNumber}
-		</a>
-	{/each}
-	<a href="?{generate_search_params('page', page + 1)}">→</a>
-	<a title="Last Page" href="?{generate_search_params('page', totalPages)}">→→</a>
+<div class="pagination-container">
+	<div class="pagination">
+		<a title="First Page" href="?{generate_search_params('page', '')}">←←</a>
+		<a href="?{generate_search_params('page', page > 1 ? page - 1 : '')}">←</a>
+		{#each pageNumbers as pageNumber (pageNumber)}
+			<a
+				in:fade
+				animate:flip={{ duration: 200, easing: quintOut }}
+				class="page-number"
+				class:current={page === pageNumber}
+				href="?{generate_search_params('page', pageNumber)}"
+				>{pageNumber}
+			</a>
+		{/each}
+		<a href="?{generate_search_params('page', page + 1)}">→</a>
+		<a title="Last Page" href="?{generate_search_params('page', totalPages)}">→→</a>
+	</div>
 </div>
 
 <style lang="postcss">
+	.pagination-container {
+		display: flex;
+		justify-content: center;
+	}
+
 	.pagination {
 		display: grid;
 		grid-auto-flow: column;
 		grid-auto-columns: max-content;
-		gap: 20px;
 		justify-content: center;
-
-		@media (--below-large) {
-			gap: 8px;
-		}
+		border: solid 2px var(--c-fg);
+		border-radius: var(--br-medium);
 
 		& > * {
-			border-radius: var(--brad);
 			margin: 0;
-			box-shadow: inset 0 0 0 1px var(--subtle);
-			padding: 6px 15px;
+			padding: 10px 20px;
 			text-align: center;
-			background-color: var(--bg-1);
 		}
 
 		a {
-			color: var(--fg);
+			color: var(--c-fg);
 			transition: 0.2s ease background;
+			font-variation-settings: var(--fv-700-italic);
+
+			& + & {
+				border-left: solid 2px var(--c-fg);
+			}
 
 			&.current {
 				background: var(--c-primary);
-				color: var(--dark);
+				color: var(--c-black);
 			}
 
 			@media (--below-large) {
