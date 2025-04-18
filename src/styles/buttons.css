@@ -19,4 +19,15 @@
 			background: oklch(from var(--c-fg) calc(l + 0.35) c h);
 		}
 	}
+
+	a.primary-ghost {
+		background: transparent;
+		color: var(--c-primary);
+		border: 1px solid var(--c-primary);
+
+		&:hover {
+			background: var(--c-primary);
+			color: var(--c-black);
+		}
+	}
 }

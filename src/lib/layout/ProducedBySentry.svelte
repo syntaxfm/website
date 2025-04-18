@@ -2,8 +2,8 @@
 	import Logo from '$/lib/layout/Logo.svelte';
 </script>
 
-<div class="presented">
-	<div class="cred">
+<div class="presented flex-column">
+	<div class="cred h5">
 		<Logo height={35} />
 		<span>×</span>
 		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 44" height="35px"
@@ -21,7 +21,7 @@
 	</p>
 	<a
 		href="https://sentry.io/welcome/?utm_medium=site&utm_source=syntax&utm_campaign=syntax-sentry-evergreen&utm_content=footer"
-		class="button">Try Sentry for Free</a
+		class="button primary-ghost">Try Sentry for Free</a
 	>
 </div>
 
@@ -30,13 +30,18 @@
 		display: flex;
 		gap: 0.69rem;
 		align-items: center;
-		font-size: 22px;
-		font-variation-settings: var(--fv-500);
+		color: var(--c-white);
+	}
+
+	p {
+		color: var(--c-white);
 	}
 
 	.presented {
+		align-items: start;
+		gap: 20px;
 		box-shadow: inset 0 0 0 4px rgb(from black r g b / 0.2);
-		border-radius: var(--brad);
+		border-radius: var(--br-medium);
 		padding: 1rem;
 		margin: 2rem 0;
 		background: var(--c-sentry-footer-bg);

@@ -45,7 +45,7 @@
 			{
 				"disableFix": true,
 				"expandShorthand": true,
-				"ignoreValues": ["inherit", "unset", "initial"]
+				"ignoreValues": ["inherit", "unset", "initial", "transparent"]
 			}
 		]
 	}
