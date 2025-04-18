@@ -1,11 +1,5 @@
 <script lang="ts">
 	import Icon, { type IconName, icon_names } from '$lib/Icon.svelte';
-
-	interface Props {
-		name: IconName;
-	}
-
-	let { name }: Props = $props();
 </script>
 
 <div class="icons-grid">
