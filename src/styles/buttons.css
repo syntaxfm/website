@@ -6,7 +6,7 @@
 	a.button,
 	button {
 		font-size: var(--fs-6);
-		border-radius: 4px;
+		border-radius: var(--br-small);
 		appearance: none;
 		border: none;
 		background: var(--c-fg);
@@ -20,7 +20,21 @@
 		}
 	}
 
-	a.primary-ghost {
+	a.button-graphic,
+	.button-graphic {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		border-radius: var(--br-medium);
+		border: solid 4px var(--c-bg);
+		box-shadow:
+			-5px 5px 0 var(--c-fg),
+			-5px 5px 0 var(--c-fg),
+			-5px 5px 0 var(--c-fg);
+	}
+
+	a.primary-ghost,
+	.primary-ghost {
 		background: transparent;
 		color: var(--c-primary);
 		border: 1px solid var(--c-primary);

@@ -1,7 +1,8 @@
 <div>
 	<button>Basic Button</button>
 	<a class="button" href="https://tolin.ski">Link Button</a>
-	<button>Tilted Button</button>
+	<button class="button-graphic button">Graphic Button</button>
+	<button class="primary-ghost">Primary Ghost Button</button>
 </div>
 
 <style>

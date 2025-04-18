@@ -150,4 +150,9 @@ Bass! */
 		background: var(--c-primary);
 		color: var(--c-dark);
 	}
+
+	a[href^='http']:not(.social-icon)::after {
+		content: '↗';
+		margin-left: 8px;
+	}
 }
