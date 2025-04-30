@@ -1,7 +1,7 @@
 ---
 number: 899
 title: "GSAP: Killer Web Animations With Cassie Evans"
-date: 1746010800000
+date: 1746424800000
 url: https://traffic.libsyn.com/syntax/Syntax_-_899.mp3
 youtube_url: https://www.youtube.com/watch?v=shotcE73Vns
 guest:
