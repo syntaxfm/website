@@ -19,7 +19,7 @@ Wes and Scott talk about underrated but game-changing new CSS features like shap
   - [https://caniuse.com/?search=scrollbar-gutter](https://caniuse.com/?search=scrollbar-gutter)
 * **[15:40](#t=15:40)** Text-wrap
 * **[19:42](#t=19:42)** Media Query Range Syntax 
-* **[23:35](#t=23:35)** Brought to you by [Sentry.io](https://Sentry.io)
+* **[23:35](#t=23:35)** Brought to you by [Sentry.io](https://sentry.io/syntax)
 * **[23:35](#t=23:35)** Content-visibility  
   - [https://caniuse.com/?search=content-visibility](https://caniuse.com/?search=content-visibility)  
   - [https://developer.mozilla.org/en-US/docs/Web/API/Element/contentvisibilityautostatechange_event](https://developer.mozilla.org/en-US/docs/Web/API/Element/contentvisibilityautostatechange_event)
