@@ -32,8 +32,8 @@ CJ steps in for Scott and joins Wes to share his experience working with Nuxt, f
 * **[17:29](#t=17:29)** Core Modules and Community Modules?
   * [Nuxt Modules](https://nuxt.com/modules).
   * [shadcn-nuxt](https://nuxt.com/modules/shadcn).
-  * [@nuxt/ui](https://nuxt.com/modules/ui).
-  * [DaisyUI](https://tailwindcss.nuxtjs.org/examples/daisyui).
+  * [nuxt/ui](https://nuxt.com/modules/ui).
+  * [DaisyUI](https://daisyui.com/).
   * [Pinia](https://pinia.vuejs.org/ssr/nuxt.html).
 * **[21:17](#t=21:17)** Nuxt Hosting.
   * [Deploy](https://nuxt.com/deploy).
