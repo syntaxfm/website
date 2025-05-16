@@ -14,7 +14,8 @@
 		'instagram',
 		'discord',
 		'github',
-		'tiktok'
+		'tiktok',
+		'search'
 	] as const;
 	export type IconName = (typeof icon_names)[number];
 </script>

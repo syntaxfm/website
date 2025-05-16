@@ -13,10 +13,14 @@
 
 <div class="toggle">
 	<div class="background" style={`translate: ${checked ? '0' : '100%'} 0px;`}></div>
-	<button class={checked ? 'active' : ''} onclick={() => (checked = true)}>
+	<button class={checked ? 'active' : ''} onclick={() => (checked = true)} data-testid="toggle-on">
 		<Icon width={16} height={16} name={on_icon} />
 	</button>
-	<button class={!checked ? 'active' : ''} onclick={() => (checked = false)}>
+	<button
+		class={!checked ? 'active' : ''}
+		onclick={() => (checked = false)}
+		data-testid="toggle-off"
+	>
 		<Icon width={16} height={16} name={off_icon} />
 	</button>
 </div>
