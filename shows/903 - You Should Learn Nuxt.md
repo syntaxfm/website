@@ -1,8 +1,8 @@
 ---
-number: 903
+number: 905
 title: You Should Learn Nuxt!
-date: 1747652400000
-url: https://traffic.libsyn.com/syntax/Syntax_-_903.mp3
+date: 1748257200000
+url: https://traffic.libsyn.com/syntax/Syntax_-_905.mp3
 youtube_url: https://www.youtube.com/watch?v=sMYOigI5NjM
 ---
 	
