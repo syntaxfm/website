@@ -37,20 +37,24 @@
 			<!-- <a href="/system/components">Components</a> -->
 		</ul>
 	</div>
-	<div>
-		<a target="_blank" rel="noopener" href="https://x.com/syntaxfm"><Icon name="twitter" /></a>
-		<a target="_blank" rel="noopener" href="https://github.com/syntaxfm"><Icon name="github" /></a>
+	<div class="social-links">
+		<a target="_blank" rel="noopener" href="https://x.com/syntaxfm"
+			><Icon name="twitter" width={24} height={24} /></a
+		>
+		<a target="_blank" rel="noopener" href="https://github.com/syntaxfm"
+			><Icon name="github" width={24} height={24} /></a
+		>
 		<a target="_blank" rel="noopener" href="https://discord.gg/W5y68HMfZV"
-			><Icon name="discord" /></a
+			><Icon name="discord" width={24} height={24} /></a
 		>
 		<a target="_blank" rel="noopener" href="https://www.youtube.com/@syntaxfm"
-			><Icon name="youtube" /></a
+			><Icon name="youtube" width={24} height={24} /></a
 		>
 		<a target="_blank" rel="noopener" href="https://www.tiktok.com/@syntaxfm"
-			><Icon name="tiktok" /></a
+			><Icon name="tiktok" width={24} height={24} /></a
 		>
 		<a target="_blank" rel="noopener" href="https://www.instagram.com/syntax_fm/"
-			><Icon name="instagram" /></a
+			><Icon name="instagram" width={24} height={24} /></a
 		>
 	</div>
 </section>
@@ -76,6 +80,22 @@
 		a {
 			color: var(--c-fg);
 			text-decoration: none;
+		}
+
+		@media (width < 700px) {
+			.flex {
+				flex-direction: column;
+			}
+		}
+	}
+
+	.social-links {
+		display: flex;
+		gap: 20px;
+		margin-top: 1.25rem;
+
+		a::after {
+			display: none;
 		}
 	}
 </style>
