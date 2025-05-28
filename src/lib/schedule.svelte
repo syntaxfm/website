@@ -1,28 +1,34 @@
 <section>
 	<p class="lines thrice">Served Fresh Thrice Weekly</p>
 	<div>
-		<p class="tag length">15m</p>
-		<p class="tag day">Monday</p>
-		<div>
-			<p class="tag">HASTY TREAT</p>
-		</div>
-		<p class="desc">Quick n' Informative</p>
+		<a href="/shows?type=hasty">
+			<p class="tag length">15m</p>
+			<p class="tag day">Monday</p>
+			<div>
+				<p class="tag">HASTY TREAT</p>
+			</div>
+			<p class="desc">Quick n' Informative</p>
+		</a>
 	</div>
 	<div>
-		<p class="tag length">60m</p>
-		<p class="tag day">Wednesday</p>
-		<div>
-			<p class="tag">TASTY TREAT</p>
-		</div>
-		<p class="desc">Deep Dives</p>
+		<a href="/shows?type=tasty">
+			<p class="tag length">60m</p>
+			<p class="tag day">Wednesday</p>
+			<div>
+				<p class="tag">TASTY TREAT</p>
+			</div>
+			<p class="desc">Deep Dives</p>
+		</a>
 	</div>
 	<div>
-		<p class="tag length">60m</p>
-		<p class="tag day">Friday</p>
-		<div>
-			<p class="tag">SUPPER CLUB</p>
-		</div>
-		<p class="desc">Industry Experts</p>
+		<a href="/shows?type=supper">
+			<p class="tag length">60m</p>
+			<p class="tag day">Friday</p>
+			<div>
+				<p class="tag">SUPPER CLUB</p>
+			</div>
+			<p class="desc">Industry Experts</p>
+		</a>
 	</div>
 </section>
 
