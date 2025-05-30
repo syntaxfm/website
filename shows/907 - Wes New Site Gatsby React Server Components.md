@@ -1,6 +1,6 @@
 ---
 number: 907
-title: Wes’ New Site Gatsby React Server Components
+title: "Wes’ New Site: Gatsby → React Server Components"
 date: 1748862000000
 url: https://traffic.libsyn.com/syntax/Syntax_-_907.mp3
 youtube_url: https://www.youtube.com/watch?v=YKRfTA-Vx9M
