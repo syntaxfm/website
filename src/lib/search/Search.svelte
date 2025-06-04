@@ -36,4 +36,9 @@
 			display: none;
 		}
 	}
+
+	.shortcut kbd {
+		font-family: system-ui, sans-serif;
+		font-size: var(--font-size-xs);
+	}
 </style>
