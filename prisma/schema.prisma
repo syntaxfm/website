@@ -127,6 +127,7 @@ model Show {
   show_type   ShowType    @default(SPECIAL)
   videos      ShowVideo[]
   hosts       User[]
+  embedding   EpisodeEmbedding? // New relation to embeddings
 
   @@index([number, date], name: "idx_show_number_date") // Define composite index
   @@index([number]) // Define composite index
@@ -312,4 +313,18 @@ model UserSubmission {
   audio_url       String?
   status          UserSubmissionStatus @default(PENDING)
   submission_type UserSubmissionType   @default(OTHER)
+}
+
+// New model for storing episode embeddings
+model EpisodeEmbedding {
+  id          String   @id @default(uuid())
+  show        Show     @relation(fields: [show_number], references: [number])
+  show_number Int      @unique
+  embedding   Json     // Store the embedding vector as JSON
+  content_hash String  // Hash of the content used to generate embedding
+  model       String   @default("text-embedding-3-small") // OpenAI model used
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
+  @@index([show_number])
 }
