@@ -2,7 +2,6 @@
 	<p class="lines thrice">Served Fresh Twice Weekly</p>
 	<div>
 		<p class="tag length">15m</p>
-		<p class="tag day">Monday</p>
 		<div>
 			<p class="tag">HASTY TREAT</p>
 		</div>
@@ -10,7 +9,6 @@
 	</div>
 	<div>
 		<p class="tag length">60m</p>
-		<p class="tag day">Wednesday</p>
 		<div>
 			<p class="tag">TASTY TREAT</p>
 		</div>
@@ -18,7 +16,6 @@
 	</div>
 	<div>
 		<p class="tag length">60m</p>
-		<p class="tag day">Friday</p>
 		<div>
 			<p class="tag">SUPPER CLUB</p>
 		</div>

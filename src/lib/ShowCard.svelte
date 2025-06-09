@@ -82,7 +82,7 @@
 
 		<div class="details">
 			<p class="date" style:--transition-name="show-date-{show.number}">
-				{format_show_type(show.date)}
+				{format_show_type(show.show_type)}
 				<span aria-hidden="true">×</span>
 				<time datetime={show_date.toISOString()} title={show_date.toDateString()}
 					>{format_date(show_date)}</time

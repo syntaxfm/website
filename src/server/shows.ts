@@ -1,4 +1,3 @@
-import { DAYS_OF_WEEK_TYPES } from '$const';
 import { get_hash_from_content } from '$utilities/file_utilities/get_hash_from_content';
 import { import_all_md_files_from_glob } from '$utilities/file_utilities/get_md_from_folder';
 import { left_pad } from '$utilities/left_pad';
@@ -94,11 +93,12 @@ export async function parse_and_save_show_notes(
 
 	const date = new Date(data.date); // Parse the date string into a Date object
 
-	const dayOfWeek: number = date.getDay(); // Get the day of the week (0 = Sunday, 1 = Monday, ...)
 	const id = get_id_from_show_number(number);
 
-	const show_type: 'HASTY' | 'TASTY' | 'SUPPER' | 'SPECIAL' =
-		DAYS_OF_WEEK_TYPES[dayOfWeek] || 'SPECIAL';
+	// Get show type from frontmatter or default to 'SPECIAL'
+	const show_type: 'HASTY' | 'TASTY' | 'SUPPER' | 'SPECIAL' = 
+		data.show_type || 'SPECIAL';
+
 	// Save or update the show
 	try {
 		// Prepare the hosts connection if hosts exist in the frontmatter
@@ -155,7 +155,7 @@ export async function parse_and_save_show_notes(
 		// If data guest
 		if (data?.guest && Array.isArray(data?.guest)) {
 			// Iterate through guests and save or update them
-			const guest_promises = data.guest.map((guest) => add_or_update_guest(guest, id));
+			const guest_promises = data.guest.map((guest: FrontMatterGuest) => add_or_update_guest(guest, id));
 			// Save guests
 			await Promise.all(guest_promises);
 			// Otherwise as long as data.guest exists

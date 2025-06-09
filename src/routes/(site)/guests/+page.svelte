@@ -45,7 +45,7 @@
 <section>
 	<h1 class="lines">Guests</h1>
 	<p>
-		Every Friday we have an industry expert on the show - we call it <strong>"Supper Club"</strong>.
+		Our "Supper Club" episodes feature industry experts on the show.
 		This isn't a book tour, these are real developers who write the code and shape what the future
 		of web development looks like.
 	</p>

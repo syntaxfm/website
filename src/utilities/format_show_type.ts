@@ -1,7 +1,7 @@
-export function format_show_type(show_date: Date) {
-	// Check if the show is released on monday
-	if (show_date.getDay() === 1) return 'Hasty';
-	if (show_date.getDay() === 3) return 'Tasty';
-	if (show_date.getDay() === 5) return 'Supper Club';
+export function format_show_type(show_type: 'HASTY' | 'TASTY' | 'SUPPER' | 'SPECIAL') {
+	// Format the show type for display
+	if (show_type === 'HASTY') return 'Hasty';
+	if (show_type === 'TASTY') return 'Tasty';
+	if (show_type === 'SUPPER') return 'Supper Club';
 	return 'Special';
 }

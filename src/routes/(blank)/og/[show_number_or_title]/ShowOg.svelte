@@ -82,7 +82,7 @@
 		<header>
 			{#if show_date}
 				<p class="date">
-					{format_show_type(show.date)}
+					{format_show_type(show.show_type)}
 					<span aria-hidden="true">×</span>
 					<time datetime={show_date.toISOString()}>
 						{format(show_date, 'MMMM do, yyyy')}
