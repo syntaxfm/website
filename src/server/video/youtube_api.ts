@@ -1,7 +1,10 @@
 import { YOUTUBE_CHANNEL_ID } from '$/const';
 import { prisma_client } from '$/server/prisma-client';
-import { YOUTUBE_API_KEY } from '$env/static/private';
+import { env } from '$env/dynamic/private';
 import slug from 'speakingurl';
+
+// Safely access environment variable
+const YOUTUBE_API_KEY = env.YOUTUBE_API_KEY;
 
 // Youtube importer
 // Important things to know -> Youtube is the source of truth for all the data
@@ -50,6 +53,11 @@ interface YouTubePlaylistItemResponse {
 }
 
 export async function get_remote_playlists(): Promise<void> {
+	if (!YOUTUBE_API_KEY) {
+		console.error('YOUTUBE_API_KEY is not defined');
+		return;
+	}
+
 	const base_url = 'https://www.googleapis.com/youtube/v3/playlists';
 	const params = new URLSearchParams({
 		part: 'snippet,contentDetails',

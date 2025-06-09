@@ -6,6 +6,11 @@ import { user_submission_schema } from '$/lib/forms/userSubmissionSchema';
 import { z } from 'zod';
 
 export const user_submission_action: Action = async function ({ locals }) {
+	// Check if TURNSTILE_SECRET is available
+	if (!env.TURNSTILE_SECRET) {
+		return fail(400, { message: 'Server configuration error', error: 'Missing TURNSTILE_SECRET' });
+	}
+
 	// Validate Turnsile Token
 	let { error } = await validateToken(
 		locals.form_data['cf-turnstile-response'],

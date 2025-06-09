@@ -41,6 +41,10 @@ type BroadCastResponse = {
 };
 
 async function getBroadcastsPage(after?: string) {
+	if (!env.CONVERT_KIT_V4_API_KEY) {
+		throw new Error('CONVERT_KIT_V4_API_KEY is not defined');
+	}
+
 	const params = new URLSearchParams();
 	if (after) {
 		params.append('after', after);

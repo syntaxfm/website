@@ -1,10 +1,17 @@
 import { randomUUID } from 'crypto';
 import { GITHUB_AUTH_URL } from '$const';
-import { PUBLIC_GITHUB_ID } from '$env/static/public';
+import { env } from '$env/dynamic/public';
 import type { RequestHandler } from '@sveltejs/kit';
 import { prisma_client } from '$/server/prisma-client';
 
+// Safely access environment variable
+const PUBLIC_GITHUB_ID = env.PUBLIC_GITHUB_ID;
+
 export const GET: RequestHandler = async function ({ locals, cookies }) {
+	if (!PUBLIC_GITHUB_ID) {
+		return new Response('GitHub OAuth not configured', { status: 500 });
+	}
+
 	const access_token = cookies.get('access_token');
 
 	if (!access_token) {

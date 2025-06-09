@@ -1,6 +1,9 @@
 import type { RequestHandler } from '@sveltejs/kit';
-import { PUBLIC_URL } from '$env/static/public';
+import { env } from '$env/dynamic/public';
 import { prisma_client } from '$/server/prisma-client';
+
+// Safely access environment variable
+const PUBLIC_URL = env.PUBLIC_URL;
 
 const site = `https://${PUBLIC_URL}`;
 

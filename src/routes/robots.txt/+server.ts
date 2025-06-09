@@ -1,13 +1,17 @@
 import type { RequestHandler } from '@sveltejs/kit';
-import { PUBLIC_URL } from '$env/static/public';
+import { env } from '$env/dynamic/public';
+
+// Safely access environment variable
+const PUBLIC_URL = env.PUBLIC_URL;
 
 export const GET: RequestHandler = async function GET({ setHeaders }) {
+	const baseUrl = PUBLIC_URL || 'syntax.fm';
 	const robotsTxt = `User-agent: *
 Disallow: /admin
 Disallow: /haters
 Disallow: /api
 
-Sitemap:  https://${PUBLIC_URL}/sitemap.xml`;
+Sitemap:  https://${baseUrl}/sitemap.xml`;
 
 	setHeaders({
 		'cache-control': 'max-age=0, s-maxage=3600',
