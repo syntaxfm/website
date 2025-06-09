@@ -45,8 +45,8 @@ model EpisodeEmbedding {
    - Shows similarity scores, episode metadata, and topics
    - Responsive design with loading and error states
 
-4. **Generation Script** (`scripts/generate-embeddings.js`)
-   - Batch processing script for generating embeddings
+4. **Generation Script** (`scripts/generate-embeddings.ts`)
+   - TypeScript batch processing script for generating embeddings
    - Handles rate limiting and error recovery
    - Can be run via `pnpm embeddings:generate`
 
@@ -147,7 +147,7 @@ Generate embeddings for existing episodes:
 pnpm embeddings:generate
 ```
 
-This script will:
+This TypeScript script will:
 - Find episodes without embeddings
 - Process them in batches to respect rate limits
 - Add delays to avoid hitting OpenAI API limits
@@ -227,6 +227,7 @@ When contributing to this feature:
 3. Monitor OpenAI API usage and costs
 4. Update this documentation for any changes
 5. Consider backwards compatibility for API changes
+6. All code should be written in TypeScript (.ts files)
 
 ## Resources
 
@@ -234,3 +235,4 @@ When contributing to this feature:
 - [Vector Similarity Search](https://en.wikipedia.org/wiki/Cosine_similarity)
 - [Semantic Search Best Practices](https://www.pinecone.io/learn/what-is-similarity-search/)
 - [SvelteKit API Routes](https://kit.svelte.dev/docs/routing#server)
+- [TypeScript Documentation](https://www.typescriptlang.org/docs/)

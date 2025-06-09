@@ -5,7 +5,7 @@ import { batchProcessEmbeddings } from '../src/server/ai/embeddings.js';
 
 const prisma = new PrismaClient();
 
-async function main() {
+async function main(): Promise<void> {
 	try {
 		console.log('🤖 Starting embedding generation for all episodes...');
 		
@@ -32,7 +32,7 @@ async function main() {
 
 		console.log(`📊 Found ${shows.length} episodes without embeddings`);
 		
-		const showNumbers = shows.map(show => show.number);
+		const showNumbers = shows.map((show) => show.number);
 		
 		// Process in batches to avoid overwhelming the API
 		const batchSize = 10;
@@ -46,7 +46,7 @@ async function main() {
 			// Longer delay between batches to respect rate limits
 			if (i + batchSize < showNumbers.length) {
 				console.log('⏳ Waiting 30 seconds before next batch...');
-				await new Promise(resolve => setTimeout(resolve, 30000));
+				await new Promise<void>((resolve) => setTimeout(resolve, 30000));
 			}
 		}
 		

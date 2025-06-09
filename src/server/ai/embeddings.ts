@@ -19,9 +19,9 @@ export function prepareEpisodeContent(show: ShowDetail): string {
 		// Include AI-generated summary if available
 		show.aiShowNote?.description,
 		// Include topics
-		show.aiShowNote?.topics?.map((t: any) => t.name).join(', '),
+		show.aiShowNote?.topics?.map((t) => t.name).join(', '),
 		// Include guest information
-		show.guests?.map((g: any) => `${g.Guest.name} ${g.Guest.of || ''}`).join(', ')
+		show.guests?.map((g) => `${g.Guest.name} ${g.Guest.of || ''}`).join(', ')
 	].filter(Boolean);
 
 	return parts.join('\n\n');
@@ -30,7 +30,7 @@ export function prepareEpisodeContent(show: ShowDetail): string {
 /**
  * Generate embedding for episode content using OpenAI v3 API
  */
-export async function generateEpisodeEmbedding(content: string) {
+export async function generateEpisodeEmbedding(content: string): Promise<number[]> {
 	try {
 		const response = await openai.createEmbedding({
 			model: 'text-embedding-ada-002',
@@ -54,7 +54,7 @@ export function createContentHash(content: string): string {
 /**
  * Process and store embedding for a show
  */
-export async function processShowEmbedding(showNumber: number) {
+export async function processShowEmbedding(showNumber: number): Promise<void> {
 	try {
 		// Get full show details
 		const show = await prisma_client.show.findUnique(get_show_detail_query(showNumber));
@@ -133,6 +133,11 @@ export function cosineSimilarity(vectorA: number[], vectorB: number[]): number {
 	return dotProduct / (normA * normB);
 }
 
+interface RelatedEpisodeResult {
+	show: ShowDetail;
+	similarity: number;
+}
+
 /**
  * Find related episodes based on embedding similarity
  */
@@ -140,7 +145,7 @@ export async function findRelatedEpisodes(
 	showNumber: number, 
 	limit: number = 5,
 	threshold: number = 0.7
-) {
+): Promise<RelatedEpisodeResult[]> {
 	try {
 		// Get the target show's embedding
 		const targetEmbedding = await prisma_client.episodeEmbedding.findUnique({
@@ -178,7 +183,7 @@ export async function findRelatedEpisodes(
 
 		// Calculate similarities
 		const similarities = allEmbeddings
-			.map((embedding: any) => {
+			.map((embedding) => {
 				const similarity = cosineSimilarity(
 					targetEmbedding.embedding as number[],
 					embedding.embedding as number[]
@@ -189,8 +194,8 @@ export async function findRelatedEpisodes(
 					similarity
 				};
 			})
-			.filter((item: any) => item.similarity >= threshold)
-			.sort((a: any, b: any) => b.similarity - a.similarity)
+			.filter((item) => item.similarity >= threshold)
+			.sort((a, b) => b.similarity - a.similarity)
 			.slice(0, limit);
 
 		return similarities;
@@ -203,14 +208,14 @@ export async function findRelatedEpisodes(
 /**
  * Batch process embeddings for multiple shows
  */
-export async function batchProcessEmbeddings(showNumbers: number[]) {
+export async function batchProcessEmbeddings(showNumbers: number[]): Promise<void> {
 	console.log(`Processing embeddings for ${showNumbers.length} shows`);
 	
 	for (const showNumber of showNumbers) {
 		try {
 			await processShowEmbedding(showNumber);
 			// Add a small delay to avoid hitting rate limits
-			await new Promise((resolve: any) => setTimeout(resolve, 100));
+			await new Promise<void>((resolve) => setTimeout(resolve, 100));
 		} catch (error) {
 			console.error(`Failed to process embedding for show ${showNumber}:`, error);
 			// Continue with other shows
@@ -223,7 +228,7 @@ export async function batchProcessEmbeddings(showNumbers: number[]) {
 /**
  * Get or generate embedding for a show
  */
-export async function getOrCreateEmbedding(showNumber: number) {
+export async function getOrCreateEmbedding(showNumber: number): Promise<number[]> {
 	const existing = await prisma_client.episodeEmbedding.findUnique({
 		where: { show_number: showNumber }
 	});

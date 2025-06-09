@@ -23,7 +23,7 @@
 		"db:generate": "prisma generate",
 		"db:push": "prisma db push",
 		"db:seed": "prisma db seed",
-		"embeddings:generate": "node ./scripts/generate-embeddings.js",
+		"embeddings:generate": "ts-node --esm ./scripts/generate-embeddings.ts",
 		"i-changed-the-schema": "pnpm run db:push && pnpm run db:generate",
 		"postinstall": "pnpm db:generate && pnpm exec playwright install",
 		"stylelint": "NODE_OPTIONS=--no-deprecation stylelint \"**/*.css\""

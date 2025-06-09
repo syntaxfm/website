@@ -1,7 +1,8 @@
 import { error, json } from '@sveltejs/kit';
+import type { RequestHandler } from '@sveltejs/kit';
 import { findRelatedEpisodes } from '$/server/ai/embeddings.js';
 
-export async function GET({ params, url }) {
+export const GET: RequestHandler = async ({ params, url }) => {
 	const show_number = parseInt(params.number);
 	const limit = parseInt(url.searchParams.get('limit') || '5');
 	const threshold = parseFloat(url.searchParams.get('threshold') || '0.7');
@@ -41,7 +42,7 @@ export async function GET({ params, url }) {
 	} catch (err) {
 		console.error(`Error getting related episodes for show ${show_number}:`, err);
 		
-		if (err instanceof Error && err.message.includes('No embedding found')) {
+		if (err instanceof Error && err.message && err.message.includes('No embedding found')) {
 			return json({
 				show_number,
 				related_episodes: [],
@@ -56,4 +57,4 @@ export async function GET({ params, url }) {
 
 		error(500, 'Failed to get related episodes');
 	}
-}
+};
