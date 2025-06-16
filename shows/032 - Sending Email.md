@@ -2,7 +2,8 @@
 number: 32
 title: Designing, Templating, Inlining and Sending Email.
 date: 1518616928511
-url: https://traffic.libsyn.com/syntax/Syntax032.mp3
+url: https://traffic.megaphone.fm/FSI6857607970.mp3
+completed: true
 ---
 
 In this show, Scott and Wes talk about about sending both transactional and marketing email. Everything from designing to templating to inlining the CSS to getting it sent. Enjoy!

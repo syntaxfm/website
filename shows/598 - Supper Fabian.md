@@ -2,14 +2,14 @@
 number: 598
 title: Supper Club × Fabian Kägy - Modern WordPress - Blocks, Page builders, Headless, Custom Fields
 date: 1680868800133
-url: https://traffic.libsyn.com/syntax/Syntax_-_598.mp3
-guest:
-  name: Fabian Kägy
-  of: 10up, WordPress
-  github: fabiankaegy
-  twitter: fabiankaegy
-  url: https://fabian-kaegy.com/
-  social: https://www.instagram.com/fabiankaegy/
+url: https://traffic.megaphone.fm/FSI7294652767.mp3
+guest: 
+name: Fabian Kägy
+of: 10up, WordPress
+github: fabiankaegy
+twitter: fabiankaegy
+social: https://www.instagram.com/fabiankaegy/
+completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Fabian Kägy about modern WordPress development, including what the local dev experience is like, changes to the block editor, how version control is handled, and more!

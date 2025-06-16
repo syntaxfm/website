@@ -2,7 +2,8 @@
 number: 141
 title: Hasty Treat - Async + Await Error Handling Strategies
 date: 1557147600789
-url: https://traffic.libsyn.com/syntax/Syntax141.mp3
+url: https://traffic.megaphone.fm/FSI2432182758.mp3
+completed: true
 ---
 
 In this Hasty Treat, Scott and Wes discuss different error handling strategies.

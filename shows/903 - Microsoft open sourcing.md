@@ -2,21 +2,15 @@
 number: 903
 title: "Fork Yeah! Microsoft open sourcing Copilot"
 date: 1747670400000
-url: https://traffic.libsyn.com/syntax/Syntax_-_903.mp3
+url: https://traffic.megaphone.fm/FSI9751589457.mp3
 youtube_url: https://www.youtube.com/watch?v=GMmaYUcdMyU
-guest:
-  - name: Erich Gamma
-    github: egamma
-    twitter: ErichGamma
-    of: VS Code
-    url: https://code.visualstudio.com/
-    social: https://ch.linkedin.com/in/erichgamma
-  - name: Kai Maetzel
-    github: kieferrm
-    twitter: kaimaetzel
-    of: VS Code
-    url: https://code.visualstudio.com/
-    social: https://www.linkedin.com/in/kai-maetzel-88ba9857
+guest: 
+- name: Kai Maetzel
+github: kieferrm
+twitter: kaimaetzel
+of: VS Code
+social: https://www.linkedin.com/in/kai-maetzel-88ba9857
+completed: true
 ---
 
 Scott and Wes are joined by Erich Gamma, creator of VS Code, and Kai Maetzel, Copilot Lead, to share some big news about the future of VS Code and Copilot. They discuss what it means for developers, how AI is shaping the future of coding, and why staying open to the community is key.

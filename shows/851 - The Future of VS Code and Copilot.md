@@ -2,19 +2,14 @@
 number: 851
 title: "The Future of VS Code and Copilot"
 date: 1732276800000
-url: https://traffic.libsyn.com/syntax/Sytnax_-_851.mp3
+url: https://traffic.megaphone.fm/FSI9895671696.mp3
 youtube_url: https://www.youtube.com/watch?v=AiFXT_zyR9M
-guest:
-  - name: Cassidy Williams
-    github: cassidoo
-    twitter: cassidoo
-    of: Github
-    url: https://cassidoo.co
-  - name: Harald Kirschner
-    github: digitarald
-    twitter: digitarald
-    of: VS Code
-    url: https://digitarald.de
+guest: 
+- name: Harald Kirschner
+github: digitarald
+twitter: digitarald
+of: VS Code
+completed: true
 ---
 
 Wes and Scott talk with Cassidy Williams and Harald Kirschner about exciting new features in VS Code and GitHub Copilot, including custom instructions, UI/UX improvements, and the future of AI and Copilot within different editors.

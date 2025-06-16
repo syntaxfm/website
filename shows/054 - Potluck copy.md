@@ -2,7 +2,8 @@
 number: 54
 title: Potluck EP × Remote Work × Headless WordPress × Good Client Questions × Alternate Careers × React API Credentials
 date: 1530709200341
-url: https://traffic.libsyn.com/syntax/Syntax054.mp3
+url: https://traffic.megaphone.fm/FSI4824240975.mp3
+completed: true
 ---
 
 It's another potluck episode in which Wes and Scott talk about freelancing best practices, tips for working remotely, what they would do if they had to pick a different career, and much more!

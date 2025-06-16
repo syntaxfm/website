@@ -2,16 +2,14 @@
 number: 616
 title: Supper Club × Adam Argyle on What's New in CSS
 date: 1684497600422
-url: https://traffic.libsyn.com/syntax/Syntax_-_616.mp3
-guest:
-  name: Adam Argyle
-  github: argyleink
-  twitter: argyleink
-  url: 
-  - https://nerdy.dev/
-  - https://gradient.style/
-  social: 
-  - https://bsky.app/profile/nerdy.dev
+url: https://traffic.megaphone.fm/FSI9227950595.mp3
+guest: 
+name: Adam Argyle
+github: argyleink
+twitter: argyleink
+- https: //bsky.app/profile/nerdy.dev
+social: 
+completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Adam Argyle about a ton of new CSS features that have arrived or are coming soon, as well as his new site Gradient.style.

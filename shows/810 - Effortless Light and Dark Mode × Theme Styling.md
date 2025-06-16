@@ -2,8 +2,9 @@
 number: 810
 title: "Effortless Light and Dark Mode × Theme Styling"
 date: 1724047200000
-url: https://traffic.libsyn.com/syntax/Syntax_810_final.mp3
+url: https://traffic.megaphone.fm/FSI3987039617.mp3
 youtube_url: https://www.youtube.com/watch?v=rj4KQEdzK_U
+completed: true
 ---
 
 In this episode of Syntax, Wes and Scott talk about the latest CSS theming properties and techniques for better controlling light and dark modes, as well as creating comprehensive color systems for applications and websites. Make sure to check out the video version of this episode for practical code examples, and explanations of light/dark function, CSS variables, meta tags for theme colors, accent color, color mix, and upcoming features like style queries and color contrast.

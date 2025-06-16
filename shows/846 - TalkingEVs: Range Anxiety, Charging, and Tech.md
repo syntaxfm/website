@@ -2,8 +2,9 @@
 number: 846
 title: "Talking EVs: Range Anxiety, Charging, and Tech"
 date: 1731326400000
-url: https://traffic.libsyn.com/syntax/Syntax_-_846.mp3
+url: https://traffic.megaphone.fm/FSI1760231002.mp3
 youtube_url: https://www.youtube.com/watch?v=U1TDq3h2OW0
+completed: true
 ---
 
 Scott and Wes unpack their experiences as electric car owners, sharing the highs and lows of making the switch. From range anxiety to charging infrastructure and cost savings, they talk about everything from the tech perks to the unexpected challenges of driving electric.

@@ -2,12 +2,13 @@
 number: 404
 title: Web Containers, StackBlitz, and Node.js in the Browser with Tomek Sulkowski
 date: 1636552800049
-url: https://traffic.libsyn.com/syntax/Syntax404.mp3
+url: https://traffic.megaphone.fm/FSI4279434373.mp3
 guest: 
-  name: Tomek Sułkowski
-  twitter: sulco
-  github: sulco
-  social: https://www.linkedin.com/in/tsulkowski/
+name: Tomek Sułkowski
+twitter: sulco
+github: sulco
+social: https://www.linkedin.com/in/tsulkowski/
+completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk with Tomek Sulkowski about web containers, StackBlitz and more!

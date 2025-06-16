@@ -2,7 +2,8 @@
 number: 131
 title: Hasty Treat - Bike Shedding
 date: 1554123600740
-url: https://traffic.libsyn.com/syntax/Syntax131.mp3
+url: https://traffic.megaphone.fm/FSI5702903084.mp3
+completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about bike shedding - issues that are hotly debated, but may not matter that much in the long run.

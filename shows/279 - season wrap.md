@@ -2,7 +2,8 @@
 number: 279
 title: Hasty Treat - End of Season Wrap Up
 date: 1598878800529
-url: https://traffic.libsyn.com/syntax/Syntax279.mp3
+url: https://traffic.megaphone.fm/FSI9441485114.mp3
+completed: true
 ---
 
 In this Hasty Treat, Scott and Wes wrap up season one of the podcast and talk about what's coming.

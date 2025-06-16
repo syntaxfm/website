@@ -2,14 +2,14 @@
 number: 833
 title: Next Gen Fullstack React with TanStack
 date: 1728644400000
-url: https://traffic.libsyn.com/syntax/Syntax_-_833.mp3
+url: https://traffic.megaphone.fm/FSI8986913003.mp3
 youtube_url: https://www.youtube.com/watch?v=4PymccvinIo
-guest:
-  name: Tanner Linsley
-  github: tanstack
-  twitter: tannerlinsley
-  of: TanStack
-  url: https://tanstack.com
+guest: 
+name: Tanner Linsley
+github: tanstack
+twitter: tannerlinsley
+of: TanStack
+completed: true
 ---
 
 Scott and Wes talk with Tanner Linsley, creator of TanStack, about the React ecosystem, and the evolution and futue of TanStack's suite of tools, including TanStack Router and TanStack Start. 

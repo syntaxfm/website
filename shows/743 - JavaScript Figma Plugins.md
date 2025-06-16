@@ -2,17 +2,16 @@
 number: 743
 title: JavaScript Figma Plugins & Working at GitHub With Cameron McEfee
 date: 1710500400860
-url: https://traffic.libsyn.com/syntax/Syntax_-_743.mp3
+url: https://traffic.megaphone.fm/FSI7712067697.mp3
 youtube_url: https://www.youtube.com/watch?v=0CXs2IdXneY
-guest:
-  name: Cameron McEfee
-  github: cameronmcefee
-  twitter: cameronmcefee
-  of: Independent Creative Director
-  url: https://cameronmcefee.com/
-  social:
-  - https://mastodon.social/@cameronmcefee
-  - https://www.linkedin.com/in/cameronmcefee/
+guest: 
+name: Cameron McEfee
+github: cameronmcefee
+twitter: cameronmcefee
+of: Independent Creative Director
+social: 
+- https: //www.linkedin.com/in/cameronmcefee/
+completed: true
 ---
 
 Wes and Scott welcome Cameron McEfee, a seasoned creative director whose journey spans GitHub, Sentry.io, and the innovative realm of JavaScript plugins with his creation, GuideGuide. Cameron explores plugin building, iterating on the iconic Octocat for GitHub, and shedding light on the multifaceted roles of a creative director.

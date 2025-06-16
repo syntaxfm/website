@@ -2,7 +2,8 @@
 number: 105
 title: Hasty Treat - CSS and JS Pointer Events
 date: 1546264800065
-url: https://traffic.libsyn.com/syntax/Syntax105.mp3
+url: https://traffic.megaphone.fm/FSI9384422665.mp3
+completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about pointer events in CSS and JS - what they are, their differences, why you may want to use them, potential downfalls and more! 

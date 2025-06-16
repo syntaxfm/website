@@ -2,15 +2,15 @@
 number: 908
 title: "Storybook Has Evolved w/ Jeppe Reinhold"
 date: 1749034800000
-url: https://traffic.libsyn.com/syntax/Syntax_-_908.mp3
+url: https://traffic.megaphone.fm/FSI2076830184.mp3
 youtube_url: https://www.youtube.com/watch?v=-QRzlQbUHcc
-guest:
-  name: Jeppe Reinhold
-  github: jreinhold
-  twitter: drreinhold
-  of: Storybook
-  url: https://storybook.js.org/
-  social: https://reinhold.is/
+guest: 
+name: Jeppe Reinhold
+github: jreinhold
+twitter: drreinhold
+of: Storybook
+social: https://reinhold.is/
+completed: true
 ---
 
 Wes and Scott talk with Jeppe Reinhold about Storybook 9’s powerful new features—including drastically reduced bloat, seamless Vite integration, and next-level component testing. They dive into visual regression testing, accessibility, performance, and best practices for writing robust, isolated UI components developers can actually enjoy testing and documenting.

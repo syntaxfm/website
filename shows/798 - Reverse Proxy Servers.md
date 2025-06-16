@@ -2,8 +2,9 @@
 number: 798
 title: "Self Hosting: Reverse Proxy Servers"
 date: 1721646000000
-url: https://traffic.libsyn.com/syntax/Syntax_-_798.mp3
+url: https://traffic.megaphone.fm/FSI1502876238.mp3
 youtube_url: https://www.youtube.com/watch?v=aU_JPYFmyW0
+completed: true
 ---
 
 Scott and Wes serve up an episode on reverse proxy servers. They discuss popular options like CF Tunnels, Caddy, Nginx, Apache, and more, explaining why you might need one for load balancing, SSL certificates, security, and managing multiple servers.

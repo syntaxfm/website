@@ -2,8 +2,9 @@
 number: 869
 title: Node + TypeScript in 2025
 date: 1737111600000
-url: https://traffic.libsyn.com/syntax/Syntax_-_869.mp3
+url: https://traffic.megaphone.fm/FSI7468445537.mp3
 youtube_url: https://www.youtube.com/watch?v=28Mjeo0Esnw
+completed: true
 ---
 	
 Scott and Wes explore the experimental world of running TypeScript in Node, breaking down the differences between type stripping and compiling. They cover the pros, cons, and quirks of the current implementation, plus explore tools like tsx, ts-node, and even alternatives like Deno.

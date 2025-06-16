@@ -2,7 +2,8 @@
 number: 280
 title: Potluck - RIP Firefox? × Safari × Changing Careers × Regression Testing × Google Analytics Alternatives × Malicious Github Users? × Mac vs Windows × More!
 date: 1599051600439
-url: https://traffic.libsyn.com/syntax/Syntax280.mp3
+url: https://traffic.megaphone.fm/FSI7129050774.mp3
+completed: true
 ---
 
 It's another potluck! In this episode, Scott and Wes answer your questions about the recent Mozilla layoffs, Safari, finding time to learn coding, Google Analytics alternatives, malicious Github users, and more!

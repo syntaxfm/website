@@ -1,8 +1,9 @@
 ---
 number: 157
-title: Hasty Treat - What is a Headless CMS? 
+title: Hasty Treat - What is a Headless CMS?
 date: 1561986000933
-url: https://traffic.libsyn.com/syntax/Syntax157.mp3
+url: https://traffic.megaphone.fm/FSI8606733089.mp3
+completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about headless CMSs - why to use them, how they work, pros and cons, examples and more!

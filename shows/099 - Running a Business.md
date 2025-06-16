@@ -2,7 +2,8 @@
 number: 99
 title: Hasty Treat - Costs of Running a Business
 date: 1544450400837
-url: https://traffic.libsyn.com/syntax/Syntax099.mp3
+url: https://traffic.megaphone.fm/FSI3474009940.mp3
+completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about the costs of running a business when you're a solopreneur or solo founder.

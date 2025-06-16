@@ -2,13 +2,13 @@
 number: 842
 title: "There's Python in my JavaScript! with Andrea Giammarchi"
 date: 1730458800000
-url: https://traffic.libsyn.com/syntax/Syntax_-_842.mp3
+url: https://traffic.megaphone.fm/FSI2905171016.mp3
 youtube_url: https://www.youtube.com/watch?v=8WAntUHM_CY
-guest:
-  name: Andrea Giammarchi
-  github: webreflection
-  twitter: webreflection
-  url: https://webreflection.medium.com
+guest: 
+name: Andrea Giammarchi
+github: webreflection
+twitter: webreflection
+completed: true
 ---
 
 Scott and Wes talk with Andrea Giammarchi (aka WebReflection) about his projects, including LinkDOM and PyScript, and the exciting future of running Python in the browser via WebAssembly.

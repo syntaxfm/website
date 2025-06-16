@@ -2,8 +2,9 @@
 number: 762
 title: What to Steal. Finding Inspiration in Web Development
 date: 1714388400000
-url: https://traffic.libsyn.com/syntax/Syntax_-_762.mp3
+url: https://traffic.megaphone.fm/FSI9653569593.mp3
 youtube_url: https://www.youtube.com/watch?v=35Uzg40lVnA
+completed: true
 ---
 
 Scott and Wes discuss the delicate balance of what's acceptable to borrow or be inspired by in web development and what crosses into territory that's off-limits. Tune in as they share personal experiences, discuss where to find ethical inspiration, and offer tips on how to effectively capture and utilize it.

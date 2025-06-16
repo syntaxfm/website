@@ -2,7 +2,8 @@
 number: 323
 title: Hasty Treat - New Level Up Tutorials Site
 date: 1612188000858
-url: https://traffic.libsyn.com/syntax/Syntax323.mp3
+url: https://traffic.megaphone.fm/FSI9655179778.mp3
+completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about the new Level Up Tutorials website — some of the new tech powering the site, behind-the-scenes decisions, previous iterations, and more!

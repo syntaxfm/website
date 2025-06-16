@@ -2,21 +2,15 @@
 number: 758
 title: Web Awesome with Konnor Rogers + Cory LaViska
 date: 1713524400000
-url: https://traffic.libsyn.com/syntax/Syntax_-_758.mp3
+url: https://traffic.megaphone.fm/FSI3103341723.mp3
 youtube_url: https://www.youtube.com/watch?v=TjHp2Ml0Sx4
-guest:
-  - name: Konnor Rogers
-    github: KonnorRogers
-    twitter: RogersKonnor
-    of: Shoelace
-    url: https://shoelace.style/
-    social: https://www.konnorrogers.com/
-  - name: Cory LaViska
-    github: claviska
-    twitter: claviska
-    of: Shoelace
-    url: https://shoelace.style/
-    social: https://www.abeautifulsite.net/
+guest: 
+- name: Cory LaViska
+github: claviska
+twitter: claviska
+of: Shoelace
+social: https://www.abeautifulsite.net/
+completed: true
 ---
 
 Font Awesome is back with Web Awesome, an open source library of web components that will work with any framework because it’s based on standards. Today on Syntax we have Konnor Rogers and Cory LaViska here to talk all things Web Awesome.

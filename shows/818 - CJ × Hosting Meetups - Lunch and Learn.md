@@ -2,14 +2,14 @@
 number: 818
 title: "CJ × Hosting Meetups - Lunch and Learn"
 date: 1725620400000
-url: https://traffic.libsyn.com/syntax/Syntax_-_818.mp3
+url: https://traffic.megaphone.fm/FSI1265147787.mp3
 youtube_url: https://youtu.be/McEyirnJqBM
-guest:
-  name: CJ Reynolds
-  github: w3cj
-  twitter: CodingGarden
-  of: Syntax
-  url: https://coding.garden/
+guest: 
+name: CJ Reynolds
+github: w3cj
+twitter: CodingGarden
+of: Syntax
+completed: true
 ---
 
 In this episode of Syntax, Wes and Scott talk with CJ Reynolds about the resurgence of meetups in a post-COVID world. They discuss the benefits of attending and speaking at meetups, and the logistics of organizing them. CJ also shares his experiences running the DenverScript meetup, including sourcing speakers, finding venues, and ensuring a welcoming community.

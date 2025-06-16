@@ -2,13 +2,13 @@
 number: 553
 title: Supper Club × Switching into Coding and climbing the Pommade ladder with Kenneth Lyerly
 date: 1671796800550
-url: https://traffic.libsyn.com/syntax/Syntax_-_553.mp3
-guest:
-  name: Kenneth Lyerly
-  github: kenput3r
-  of: Suavacito
-  twitter: kenput3r
-  url: https://ken.dev
+url: https://traffic.megaphone.fm/FSI2130035305.mp3
+guest: 
+name: Kenneth Lyerly
+github: kenput3r
+of: Suavacito
+twitter: kenput3r
+completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Kenneth Lyerly about his career path into coding, and how he manages to hold two jobs.

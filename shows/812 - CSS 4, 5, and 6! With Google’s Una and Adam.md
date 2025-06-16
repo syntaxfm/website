@@ -2,20 +2,15 @@
 number: 812
 title: CSS 4, 5, and 6! With Google’s Una and Adam
 date: 1724392800000
-url: https://traffic.libsyn.com/syntax/Syntax_812_final.mp3
+url: https://traffic.megaphone.fm/FSI7853563695.mp3
 youtube_url: https://www.youtube.com/watch?v=lNbHrjIuwxc
-guest:
-  - name: Una Kravets
-    github: una
-    twitter: una
-    of: Google Chrome
-    url: https://una.im
-    social: 
-  - name: Adam Argyle
-    github: argyleink
-    twitter: argyleink
-    of: Google Chrome
-    url: https://nerdy.dev
+guest: 
+- name: Adam Argyle
+github: argyleink
+twitter: argyleink
+of: Google Chrome
+social: 
+completed: true
 ---
 
 In this episode of Syntax, Wes and Scott talk with Una Kravetz and Adam Argyle from Google Chrome about the evolution of CSS, new features, and the push toward more advanced UI capabilities on the web. They discuss the introduction of CSS versioning, exciting new properties like text-box-trim, state queries and scroll state functionalities, select, and more!  

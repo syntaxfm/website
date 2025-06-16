@@ -2,13 +2,13 @@
 number: 700
 title: Payload is Rails for JS with TypeScript, React and Drizzle (James Mikrut)
 date: 1701428400253
-url: https://traffic.libsyn.com/syntax/Syntax_-_700.mp3
-guest:
-  name: James Mikrut
-  of: Payload
-  github: jmikrut
-  twitter: jamesmikrut
-  url: https://payloadcms.com/
+url: https://traffic.megaphone.fm/FSI3043467887.mp3
+guest: 
+name: James Mikrut
+of: Payload
+github: jmikrut
+twitter: jamesmikrut
+completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with James Mikrut about Payload, how Payload isn't just a CMS, where Payload fits in a tech stack, why they picked Drizzle for an ORM, what Payload Cloud is, and where's the Rails for JavaScript?

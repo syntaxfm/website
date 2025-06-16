@@ -2,19 +2,16 @@
 number: 770
 title: Design Systems With Brad Frost (Rereleased)
 date: 1715943600000
-url: https://traffic.libsyn.com/syntax/Syntax_-_770.mp3
+url: https://traffic.megaphone.fm/FSI3381811548.mp3
 youtube_url: https://www.youtube.com/watch?v=8GngWugEOCc
-guest:
-  name: Brad Frost
-  github: bradfrost
-  twitter: brad_frost
-  of: Big Medium
-  url: https://bradfrost.com/
-  social: 
-  - https://mastodon.social/@brad_frost
-  - https://www.linkedin.com/in/bradfrost/
-  - https://www.youtube.com/@brad_frost
-  - https://codepen.io/bradfrost/
+guest: 
+name: Brad Frost
+github: bradfrost
+twitter: brad_frost
+of: Big Medium
+social: 
+- https: //codepen.io/bradfrost/
+completed: true
 ---
 
 In this revisited supper club episode, Wes and Scott talk with Brad Frost about how to implement design systems in small and large scale projects, best practices around naming things, keeping everything in sync across different codebases, and how design systems help projects.

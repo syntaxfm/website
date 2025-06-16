@@ -2,7 +2,8 @@
 number: 497
 title: CSS Proposals @when, CSS Masonry, Carets
 date: 1660564800137
-url: https://traffic.libsyn.com/syntax/Syntax_-_497.mp3
+url: https://traffic.megaphone.fm/FSI5928410478.mp3
+completed: true
 ---
 
 In this episode of Syntax, Wes and Scott talk about proposals to CSS including @when, CSS Masonry, CSS Caret, ENV Vars, and Media Query Ranges.

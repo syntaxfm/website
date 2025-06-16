@@ -2,8 +2,9 @@
 number: 890
 title: "Accepting Money on the Internet in 2025"
 date: 1743591600000
-url: https://traffic.libsyn.com/syntax/Syntax_-_890.mp3
+url: https://traffic.megaphone.fm/FSI6915967537.mp3
 youtube_url: https://www.youtube.com/watch?v=mfoklsT7wvk
+completed: true
 ---
 
 Wes and Scott talk about the ins and outs of accepting payments online—from choosing processors like Stripe and PayPal to handling fraud, taxes, custom checkouts, and more.

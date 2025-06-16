@@ -2,14 +2,14 @@
 number: 845
 title: "Are Companies Hiring? State of the Dev Job Market With Taylor Desseyn"
 date: 1731067200000
-url: https://traffic.libsyn.com/syntax/Syntax_-_845.mp3
+url: https://traffic.megaphone.fm/FSI8122533832.mp3
 youtube_url: https://www.youtube.com/watch?v=Xeaqos_qyTQ
-guest:
-  name: Taylor Desseyn
-  twitter: tdesseyn
-  of: Torc
-  url: https://www.torc.dev
-  social: https://solo.to/tdesseyn
+guest: 
+name: Taylor Desseyn
+twitter: tdesseyn
+of: Torc
+social: https://solo.to/tdesseyn
+completed: true
 ---
 
 Scott and Wes talk with Taylor Desseyn about the shifting developer job market. Taylor shares practical tips for standing out, building genuine connections, and finding opportunities in a competitive hiring landscape.

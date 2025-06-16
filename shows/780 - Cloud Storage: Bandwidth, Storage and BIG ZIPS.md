@@ -2,8 +2,9 @@
 number: 780
 title: "Cloud Storage: Bandwidth, Storage and BIG ZIPS"
 date: 1718017200000
-url: https://traffic.libsyn.com/syntax/Syntax_-_780.mp3
+url: https://traffic.megaphone.fm/FSI2400489438.mp3
 youtube_url: https://www.youtube.com/watch?v=U9zSqTISnOE
+completed: true
 ---
 
 Today, Scott and Wes dive into cloud storage solutions—why you might need them, how they use them, and what you need to know about the big players, fees, and more.

@@ -2,7 +2,8 @@
 number: 427
 title: Teamwork Makes The Dream Work
 date: 1643630400940
-url: https://traffic.libsyn.com/syntax/Syntax_-_427.mp3
+url: https://traffic.megaphone.fm/FSI5522805152.mp3
+completed: true
 ---
 
 

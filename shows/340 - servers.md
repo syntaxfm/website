@@ -2,12 +2,12 @@
 number: 340
 title: Servers with Matt from Caddy
 date: 1617195600832
-url: https://traffic.libsyn.com/syntax/Syntax340.mp3
-guest:
-  name: Matt Holt
-  github: mholt
-  twitter: mholt6
-  url: https://matt.life/
+url: https://traffic.megaphone.fm/FSI5674537717.mp3
+guest: 
+name: Matt Holt
+github: mholt
+twitter: mholt6
+completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk Matt Holt about Caddy, SSL, web servers, best practices, and more!

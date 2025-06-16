@@ -2,14 +2,14 @@
 number: 502
 title: Supper Club × Self Hosted Backend-as-a-service with Brandon Roberts
 date: 1661515200388
-url: https://traffic.libsyn.com/syntax/Syntax_-_502.mp3
-guest:
-  name: Brandon Roberts
-  github: brandonroberts
-  of: Appwrite
-  twitter: brandontroberts
-  url: https://brandonroberts.dev
-  social: https://www.youtube.com/@BrandonRobertsDev
+url: https://traffic.megaphone.fm/FSI2235208441.mp3
+guest: 
+name: Brandon Roberts
+github: brandonroberts
+of: Appwrite
+twitter: brandontroberts
+social: https://www.youtube.com/@BrandonRobertsDev
+completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Brandon Roberts about Appwrite, how Appwrite works, who it's for, as well as his thoughts on Angular, Remix, and more.

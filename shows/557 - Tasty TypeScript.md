@@ -2,7 +2,8 @@
 number: 557
 title: TypeScript Fundamentals × Type Narrowing, Guards, and Predicates
 date: 1672660800521
-url: https://traffic.libsyn.com/syntax/Syntax_-_557.mp3
+url: https://traffic.megaphone.fm/FSI5897143932.mp3
+completed: true
 ---
 
 In this episode of Syntax, Wes and Scott talk through some TypeScript Fundamentals around type narrowing, type guards, and type predicates.

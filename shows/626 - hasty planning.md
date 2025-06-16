@@ -2,7 +2,8 @@
 number: 626
 title: GitHub Projects, Milestones, Labels, and Actions
 date: 1686571200327
-url: https://traffic.libsyn.com/syntax/Syntax_-_626.mp3
+url: https://traffic.megaphone.fm/FSI4749711381.mp3
+completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about some of the GitHub features you may not have used very much including projects, milestones, labels, and actions.

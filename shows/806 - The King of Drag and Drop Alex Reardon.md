@@ -2,16 +2,16 @@
 number: 806
 title: "The King of Drag and Drop: Alex Reardon"
 date: 1723183200000
-url: https://traffic.libsyn.com/syntax/Syntax_806_final.mp3
+url: https://traffic.megaphone.fm/FSI1051593054.mp3
 youtube_url: https://www.youtube.com/watch?v=CjGn0HahbDE
-guest:
-  name: Alex Reardon
-  github: alexreardon
-  twitter: alexandereardon
-  of: Atlassian
-  url: https://www.atlassian.com
-  # A single social Link:
-  social: https://www.linkedin.com/in/alexreardon
+guest: 
+name: Alex Reardon
+github: alexreardon
+twitter: alexandereardon
+of: Atlassian
+# A single social Link: 
+social: https://www.linkedin.com/in/alexreardon
+completed: true
 ---
 
 Scott and Wes talk with Alex Reardon from Atlassian about developing drag-and-drop libraries, specifically the challenges with creating efficient and accessible drag-and-drop functionalities for the web. They also explore what it takes to build and implement a system that works seamlessly across various frameworks.

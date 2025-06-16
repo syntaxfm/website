@@ -1,8 +1,9 @@
 ---
 number: 707
-title: What happened in JS, CSS And Web Dev in 2023? 2023 Predictions Results! 
+title: What happened in JS, CSS And Web Dev in 2023? 2023 Predictions Results!
 date: 1703070000818
-url: https://traffic.libsyn.com/syntax/Syntax_-_707.mp3
+url: https://traffic.megaphone.fm/FSI5233200232.mp3
+completed: true
 ---
 
 In this episode of Syntax, Wes and Scott review their 2023 predictions and see how they did on ideas like Deno getting hotter, new JS APIs, WASM, Houdini, CSS Container Queries, and more!

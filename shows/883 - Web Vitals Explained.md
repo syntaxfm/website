@@ -2,8 +2,9 @@
 number: 883
 title: Web Vitals Explained
 date: 1741604400000
-url: https://traffic.libsyn.com/syntax/Syntax_-_883.mp3
+url: https://traffic.megaphone.fm/FSI3512005804.mp3
 youtube_url: https://www.youtube.com/watch?v=KY6Cr6t-cuA
+completed: true
 ---
 	
 What are Web Vitals, and why should you care? Scott and Wes break down metrics like LCP, FCP, CLS, and INP, explaining what they measure, how they impact your site's performance, and how to track them yourself.

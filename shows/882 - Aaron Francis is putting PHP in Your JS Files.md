@@ -2,17 +2,16 @@
 number: 882
 title: "Aaron Francis is putting PHP in Your JS Files"
 date: 1741176000000
-url: https://traffic.libsyn.com/syntax/Syntax_-_882.mp3
+url: https://traffic.megaphone.fm/FSI6140051896.mp3
 youtube_url: https://www.youtube.com/watch?v=VqMEhP-EHC4
-guest:
-  name: Aaron Francis
-  github: aarondfrancis
-  twitter: aarondfrancis
-  of: Try Hard Studios
-  url: https://tryhardstudios.com/
-  social:
-  - https://aaronfrancis.com/
-  - https://www.youtube.com/@aarondfrancis
+guest: 
+name: Aaron Francis
+github: aarondfrancis
+twitter: aarondfrancis
+of: Try Hard Studios
+social: 
+- https: //www.youtube.com/@aarondfrancis
+completed: true
 ---
 
 Wes and Scott talk with Aaron Francis about Fusion for Laravel, a new way to seamlessly integrate PHP into JavaScript. They discuss how Fusion expands on Inertia, its potential for React support, and how it simplifies full-stack development.

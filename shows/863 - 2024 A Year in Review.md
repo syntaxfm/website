@@ -2,8 +2,9 @@
 number: 863
 title: "2024: A Year in Review"
 date: 1734951600000
-url: https://traffic.libsyn.com/syntax/Syntax_-_863.mp3
+url: https://traffic.megaphone.fm/FSI5942195629.mp3
 youtube_url: https://www.youtube.com/watch?v=v2x7fYRE2P4
+completed: true
 ---
 	
 Scott and Wes look back at 2024 and share highlights from a big year for Syntax and the web dev world. They review their 2024 predictions to see what they got right (and wrong), and break down the major moments in web development from CSS improvements to AI editors and beyond.

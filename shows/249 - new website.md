@@ -2,7 +2,8 @@
 number: 249
 title: Hasty Treat - Scott's New Personal Website
 date: 1589806800555
-url: https://traffic.libsyn.com/syntax/Syntax249.mp3
+url: https://traffic.megaphone.fm/FSI1890325116.mp3
+completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about Scott's new website!

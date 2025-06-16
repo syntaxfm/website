@@ -2,14 +2,14 @@
 number: 906
 title: "Tech Startups and Raising Money with Dan Levine (Vercel, Sentry, Mux…)"
 date: 1748430000000
-url: https://traffic.libsyn.com/syntax/Syntax_-_906.mp3
+url: https://traffic.megaphone.fm/FSI2969221589.mp3
 youtube_url: https://www.youtube.com/watch?v=ouHSTlykS2U
-guest:
-  name: Dan Levine
-  github: daniellevine
-  twitter: daniel_levine
-  of: Accel
-  url: https://www.accel.com/
+guest: 
+name: Dan Levine
+github: daniellevine
+twitter: daniel_levine
+of: Accel
+completed: true
 ---
 
 Wes and Scott talk with VC Dan Levine about how developers can raise venture capital, what investors look for in early-stage startups, the realities of bootstrapping vs. fundraising, and why great ideas often start as simple side projects.

@@ -2,15 +2,15 @@
 number: 821
 title: "Is Tauri the Electron Killer?"
 date: 1726225200000
-url: https://traffic.libsyn.com/syntax/Syntax_-_821.mp3
+url: https://traffic.megaphone.fm/FSI9328348115.mp3
 youtube_url: https://youtu.be/nYNxnLXFbKE
-guest:
-  name: Daniel Thompson-Yvetot
-  github: tauri-apps
-  twitter: TauriApps
-  of: Tauri
-  url: https://tauri.app
-  social: https://denjell.com
+guest: 
+name: Daniel Thompson-Yvetot
+github: tauri-apps
+twitter: TauriApps
+of: Tauri
+social: https://denjell.com
+completed: true
 ---
 
 In this episode of Syntax, Wes and Scott talk with Daniel Thompson-Yvetot about Tauri. They dive into what Tauri is, the motivations behind its development, its open-source ecosystem, use cases, and more.

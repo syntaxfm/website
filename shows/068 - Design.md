@@ -2,7 +2,8 @@
 number: 68
 title: Design Tips for Developers
 date: 1534942800119
-url: https://traffic.libsyn.com/syntax/Syntax068.mp3
+url: https://traffic.megaphone.fm/FSI3833485498.mp3
+completed: true
 ---
 
 In this episode Wes and Scott dive into designing for developers - tips and tricks for improving your designs, and how to up your game in small ways that will have a big impact on your projects.

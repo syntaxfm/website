@@ -2,7 +2,8 @@
 number: 442
 title: Our Stacks Explained
 date: 1648029605720
-url: https://traffic.libsyn.com/syntax/Syntax_-_442.mp3
+url: https://traffic.megaphone.fm/FSI6588566598.mp3
+completed: true
 ---
 
 In this episode of Syntax, Wes and Scott talk through the tech stack they use to manage their course websites.

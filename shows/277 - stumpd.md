@@ -2,7 +2,8 @@
 number: 277
 title: Hasty Treat - Stump'd
 date: 1598274000463
-url: https://traffic.libsyn.com/syntax/Syntax277.mp3
+url: https://traffic.megaphone.fm/FSI6107544628.mp3
+completed: true
 ---
 
 In this Hasty Treat, Scott and Wes are back with another edition of Stump'd! where they try to stump each other with interview questions. 

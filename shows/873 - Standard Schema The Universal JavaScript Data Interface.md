@@ -2,8 +2,9 @@
 number: 873
 title: "Standard Schema: The Universal JavaScript Data Interface"
 date: 1738584000000
-url: https://traffic.libsyn.com/syntax/Syntax_-_873.mp3
+url: https://traffic.megaphone.fm/FSI5093595228.mp3
 youtube_url: https://www.youtube.com/watch?v=P_etHPMftyY
+completed: true
 ---
 
 Wes and Scott talk about the standard schema for data validation, a collective effort by various library authors to create a unified interface. They discuss the benefits, how it works, and its impact on developers and libraries.

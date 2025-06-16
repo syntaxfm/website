@@ -2,7 +2,8 @@
 number: 352
 title: Potluck — Freelancing × Leveraging your experience × Component size × Dealing with mediocrity × How to spend "extra time" × Rust vs Node × Free hosting? × More!
 date: 1620824400610
-url: https://traffic.libsyn.com/syntax/Syntax352.mp3
+url: https://traffic.megaphone.fm/FSI7129050774.mp3
+completed: true
 ---
 
 It's another Potluck! In this episode, Scott and Wes answer your questions about freelancing, climbing the corporate ladder, Throttling vs debounce, how to build skills with your free time, and more!

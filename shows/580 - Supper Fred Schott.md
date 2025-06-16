@@ -2,13 +2,13 @@
 number: 580
 title: Supper Club × Astro 2.0 with Fred Schott
 date: 1677240000833
-url: https://traffic.libsyn.com/syntax/Syntax_-_580.mp3
-guest:
-  name: Fred Schott
-  of: Astro
-  github: fredkschott
-  twitter: fredkschott
-  url: https://fredkschott.com
+url: https://traffic.megaphone.fm/FSI5292436084.mp3
+guest: 
+name: Fred Schott
+of: Astro
+github: fredkschott
+twitter: fredkschott
+completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Fred Schott about all things Astro v2.0. What is Astro and why should you use it? How do islands work? Images, edge, AI, error overlays, hybrid rendering, and more!

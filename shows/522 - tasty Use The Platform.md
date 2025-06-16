@@ -2,7 +2,8 @@
 number: 522
 title: Use The Platform!
 date: 1665576000048
-url: https://traffic.libsyn.com/syntax/Syntax_-_522.mp3
+url: https://traffic.megaphone.fm/FSI5594535886.mp3
+completed: true
 ---
 
 In this episode of Syntax, Wes and Scott talk about the benefits of sticking to the web platform that is available to you through APIs you may not know about.

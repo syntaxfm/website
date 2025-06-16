@@ -2,15 +2,15 @@
 number: 857
 title: "How to Look and Sound Good at $10, $100 and $1000 With Producer Randy"
 date: 1733486400000
-url: https://traffic.libsyn.com/syntax/Syntax_-_857.mp3
+url: https://traffic.megaphone.fm/FSI6111000417.mp3
 youtube_url: https://www.youtube.com/watch?v=tGlfyC5dwA4
-guest:
-  name: Randy Rektor
-  github: randyrektor
-  twitter: randyrektor
-  of: Syntax
-  url: https://syntax.fm
-  social: https://www.youtube.com/@randyrektor
+guest: 
+name: Randy Rektor
+github: randyrektor
+twitter: randyrektor
+of: Syntax
+social: https://www.youtube.com/@randyrektor
+completed: true
 ---
 
 Wes and Scott talk with Syntax Producer Randy Rektor. From mastering mic technique to lighting hacks and choosing the right camera, they discuss the best ways to upgrade your audio and video setup on any budget.

@@ -2,15 +2,15 @@
 number: 837
 title: You Should Drop Express and Try Hono
 date: 1729508400000
-url: https://traffic.libsyn.com/syntax/Syntax_-_837.mp3
+url: https://traffic.megaphone.fm/FSI6158954478.mp3
 youtube_url: https://www.youtube.com/watch?v=1XyL9cbFooE
-guest:
-  name: CJ Reynolds
-  github: w3cj
-  twitter: CodingGarden
-  of: Syntax
-  url: https://syntax.fm/
-  social: https://coding.garden/
+guest: 
+name: CJ Reynolds
+github: w3cj
+twitter: CodingGarden
+of: Syntax
+social: https://coding.garden/
+completed: true
 ---
 
 CJ joins Scott and Wes to dive into why he's all-in on Hono, a fast and lightweight web framework for every JavaScript runtime. From familiar route creation to type-safe middleware, find out how Hono keeps things simple, powerful, and ready to use inside Next.js.

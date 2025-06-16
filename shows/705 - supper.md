@@ -2,13 +2,13 @@
 number: 705
 title: Is Running Random Code From npm Safe? With Feross Aboukhadijeh
 date: 1702641600697
-url: https://traffic.libsyn.com/syntax/Syntax_-_705.mp3
-guest:
-  name: Feross Aboukhadijeh
-  of: Socket
-  github: feross
-  twitter: feross
-  url: https://feross.org/
+url: https://traffic.megaphone.fm/FSI5749354122.mp3
+guest: 
+name: Feross Aboukhadijeh
+of: Socket
+github: feross
+twitter: feross
+completed: true
 ---
 
 In this Supper Club episode of Syntax, Wes and Scott talk with Feross Aboukhadijeh about his work on Socket which helps to make sure the code you get from npm is safe and secure. They also touch on his work on Wormhole and Web Torrent.

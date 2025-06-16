@@ -2,7 +2,8 @@
 number: 299
 title: Hasty Treat - Bundlers in 2020
 date: 1604930400984
-url: https://traffic.libsyn.com/syntax/Syntax299.mp3
+url: https://traffic.megaphone.fm/FSI1347198341.mp3
+completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about the state of bundlers in 2020 — Rome, Snowpack, Parcel, Webpack, Rollup, Vite, and more!

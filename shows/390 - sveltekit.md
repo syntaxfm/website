@@ -2,7 +2,8 @@
 number: 390
 title: From React To SvelteKit
 date: 1632315600657
-url: https://traffic.libsyn.com/syntax/Syntax390.mp3
+url: https://traffic.megaphone.fm/FSI9461669300.mp3
+completed: true
 ---
 
 In this episode of Syntax, Scott talks with Wes about moving Level Up Tutorials from React to SvelteKit — why he did it, how, benefits, things to watch out for, and more!

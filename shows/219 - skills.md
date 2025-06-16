@@ -2,7 +2,8 @@
 number: 219
 title: Hasty Treat - Non-Glamorous Skills You Should Have
 date: 1580738400816
-url: https://traffic.libsyn.com/syntax/Syntax219.mp3
+url: https://traffic.megaphone.fm/FSI3470782308.mp3
+completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about the non-glamorous skills that will improve your life as a developer!

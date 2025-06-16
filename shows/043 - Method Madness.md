@@ -2,7 +2,8 @@
 number: 43
 title: 20 JavaScript Array and Object Methods to make you a better developer
 date: 1524654511142
-url: https://traffic.libsyn.com/syntax/Syntax043.mp3
+url: https://traffic.megaphone.fm/FSI4961905699.mp3
+completed: true
 ---
 
 Wes and Scott rattle through ~20 different Object and Array Methods that will make you a better JavaScript developer.

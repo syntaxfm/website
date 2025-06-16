@@ -2,15 +2,15 @@
 number: 776
 title: How 1Password Uses WASM and Rust for Local First Dev With Andrew Burkhart
 date: 1717153200000
-url: https://traffic.libsyn.com/syntax/Syntax_-_776.mp3
+url: https://traffic.megaphone.fm/FSI2735125283.mp3
 youtube_url: https://www.youtube.com/watch?v=DjfnxkqANIk
-guest:
-  name: Andrew Burkhart
-  github: DrewBurkhart
-  twitter: Andrew_Burkhart
-  of: 1Password
-  url: https://1password.com/
-  social: https://www.linkedin.com/in/andrewburkhartdev/
+guest: 
+name: Andrew Burkhart
+github: DrewBurkhart
+twitter: Andrew_Burkhart
+of: 1Password
+social: https://www.linkedin.com/in/andrewburkhartdev/
+completed: true
 ---
 
 Today we're serving up an episode on 1Password with Senior Rust Developer Andrew Burkhart, delving into how 1Password works, tackling conflict resolution and security challenges, and exploring the benefits of using Rust.

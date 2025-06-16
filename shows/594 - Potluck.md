@@ -2,7 +2,8 @@
 number: 594
 title: Potluck × Testing Animations × Tools for Learning × Coding Related Injuries
 date: 1680091200148
-url: https://traffic.libsyn.com/syntax/Syntax_-_594.mp3
+url: https://traffic.megaphone.fm/FSI7129050774.mp3
+completed: true
 ---
 
 In this potluck episode of Syntax, Wes and Scott answer your questions about what to do with client projects, testing animations, evaluating front-end frameworks, tools to use when learning, and coding related injuries.

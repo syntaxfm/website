@@ -2,7 +2,8 @@
 number: 365
 title: Hasty Treat - Seven Interesting JavaScript Proposals - Async Do, JSON Modules, Immutable Array Methods, and More!
 date: 1624885200043
-url: https://traffic.libsyn.com/syntax/Syntax365.mp3
+url: https://traffic.megaphone.fm/FSI7599455022.mp3
+completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about seven new JavaScript proposals — what they do, where they're at, and how you might use them.

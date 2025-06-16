@@ -2,7 +2,8 @@
 number: 334
 title: Potluck — VSCode × Vercel vs Netlify × Models × Mutations × Multi-Vendor Platforms × Websites vs Web Apps × More!
 date: 1615384800016
-url: https://traffic.libsyn.com/syntax/Syntax334.mp3
+url: https://traffic.megaphone.fm/FSI7129050774.mp3
+completed: true
 ---
 
 It's another potluck! In this episode, Scott and Wes answer your questions about VSCode, Vercel vs Netlify, staying up to date with dev concepts, models and mutations, websites vs seb apps, adaptive vs responsive design, and more!

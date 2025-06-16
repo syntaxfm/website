@@ -2,15 +2,15 @@
 number: 764
 title: Biome JS with Emanuele Stoppa
 date: 1714734000000
-url: https://traffic.libsyn.com/syntax/Syntax_-_764.mp3
+url: https://traffic.megaphone.fm/FSI3942589874.mp3
 youtube_url: https://www.youtube.com/watch?v=GZgwcSTZkD0
-guest:
-  name: Emanuele Stoppa
-  github: ematipico
-  twitter: ematipico
-  of: BiomeJS
-  url: https://biomejs.dev/
-  social: https://fosstodon.org/@ematipico
+guest: 
+name: Emanuele Stoppa
+github: ematipico
+twitter: ematipico
+of: BiomeJS
+social: https://fosstodon.org/@ematipico
+completed: true
 ---
 
 Join Scott and Wes as they delve into the fascinating realm of Biome.JS alongside Emanuele Stoppa, the mastermind behind it all. Why is it written in Rust? Why are other tools so slow? Could Biome be the ultimate successor to ESLint or Prettier? Grab a seat at the table and find out!

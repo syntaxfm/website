@@ -2,15 +2,15 @@
 number: 737
 title: "JSR: The New TypeScript Package Registry (NPM Killer)"
 date: 1709294400412
-url: https://traffic.libsyn.com/syntax/Syntax_-_737.mp3
+url: https://traffic.megaphone.fm/FSI1013647098.mp3
 youtube_url: https://www.youtube.com/watch?v=dHfZiqVWVhk
-guest:
-  name: Luca Casonato
-  github: lucacasonato
-  twitter: lcasdev
-  of: Deno
-  url: https://deno.com/
-  social: https://lcas.dev/
+guest: 
+name: Luca Casonato
+github: lucacasonato
+twitter: lcasdev
+of: Deno
+social: https://lcas.dev/
+completed: true
 ---
 
 Get ready to learn all about the JSR package registry with Wes, Scott, and special guest Luca Casonato of Deno, as they discuss its benefits, share insights on when to use it, and teasing some secret features that promise to enhance your coding journey.

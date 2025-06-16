@@ -2,7 +2,8 @@
 number: 345
 title: Hasty Treat - Container Queries Are Here
 date: 1618837200543
-url: https://traffic.libsyn.com/syntax/Syntax345.mp3
+url: https://traffic.megaphone.fm/FSI6564200275.mp3
+completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about CSS container queries, what they are and how to use them. 

@@ -2,8 +2,9 @@
 number: 877
 title: Tailwind 4
 date: 1739790000000
-url: https://traffic.libsyn.com/syntax/Syntax_-_877.mp3
+url: https://traffic.megaphone.fm/FSI1624500979.mp3
 youtube_url: https://www.youtube.com/watch?v=I0jtMgXnbo0
+completed: true
 ---
 	
 Tailwind 4.0 is here, and Scott and Wes break down all the spicy new features, from CSS-powered configs to first-class container queries. Plus, they dig into Tailwind Oxide, @property magic, and whether it's finally time to stop asking, "Why not just use normal CSS?"

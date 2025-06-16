@@ -2,15 +2,15 @@
 number: 694
 title: What's Up With Angular with Mark Techson
 date: 1700222400247
-url: https://traffic.libsyn.com/syntax/Syntax_-_694.mp3
-guest:
-  name: Mark Techson
-  of: Angular, Google
-  github: marktechson
-  twitter: marktechson
-  url: https://marktechson.com
-  # A single social Link:
-  social: https://www.youtube.com/@marktechson/
+url: https://traffic.megaphone.fm/FSI6331035624.mp3
+guest: 
+name: Mark Techson
+of: Angular, Google
+github: marktechson
+twitter: marktechson
+# A single social Link: 
+social: https://www.youtube.com/@marktechson/
+completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Mark Techson about the recent Angular announcements and updates. How did Angular implement signals? What's new in Angular 17? How does Angular handle CSS or UI component libraries?

@@ -2,14 +2,14 @@
 number: 658
 title: Supper Club × Make React 70% Faster! Million.js with 18 Year Old Aiden Bai
 date: 1692966480632
-url: https://traffic.libsyn.com/syntax/Syntax_-_658.mp3
-guest:
-  name: Aiden Bai
-  of: Million.js
-  github: aidenybai
-  twitter: aidenybai
-  url: https://aidenybai.com/
-  social: https://www.youtube.com/@aidenbai
+url: https://traffic.megaphone.fm/FSI7799579840.mp3
+guest: 
+name: Aiden Bai
+of: Million.js
+github: aidenybai
+twitter: aidenybai
+social: https://www.youtube.com/@aidenbai
+completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Aiden Bai about his work on Million.js that aims to make React a lot faster. How does Million.js make React faster? And most importantly: has Aiden ever used a VCR?

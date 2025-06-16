@@ -2,8 +2,9 @@
 number: 897
 title: Making Your App Feel Faster Than It Really Is
 date: 1745838000000
-url: https://traffic.libsyn.com/syntax/Syntax_-_897.mp3
+url: https://traffic.megaphone.fm/FSI5015977734.mp3
 youtube_url: https://www.youtube.com/watch?v=nxzVZ7FYdwE
+completed: true
 ---
 	
 Scott and Wes break down the tricks and techniques for making your app feel blazing fast—even when it’s not. From optimistic UI to preload-on-hover, it's all about perception, not just performance.

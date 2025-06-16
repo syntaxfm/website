@@ -2,7 +2,8 @@
 number: 181
 title: Hasty Treat - Automating Stuff
 date: 1569243600529
-url: https://traffic.libsyn.com/syntax/Syntax181.mp3
+url: https://traffic.megaphone.fm/FSI6990659143.mp3
+completed: true
 ---
 
 In this Hasty Treat, Scott and Wes are talking about automation — apps, workflows, resources, and more!

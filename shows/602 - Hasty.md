@@ -2,7 +2,8 @@
 number: 602
 title: Modals, Popups, Popovers, Lightboxes
 date: 1681732800237
-url: https://traffic.libsyn.com/syntax/Syntax_-_602.mp3
+url: https://traffic.megaphone.fm/FSI2070939713.mp3
+completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk through the differences between modals, popups, popovers, lightboxes, and dialog boxes.

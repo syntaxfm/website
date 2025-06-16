@@ -2,7 +2,8 @@
 number: 288
 title: Tales from Web Dev Past - Part 2
 date: 1601470800368
-url: https://traffic.libsyn.com/syntax/Syntax288.mp3
+url: https://traffic.megaphone.fm/FSI3557569706.mp3
+completed: true
 ---
 
 In this episode of Syntax, Scott and Wes are back with part 2 of Tales from Web Dev Past — this time looking at iFrames, layout trends, icon fonts, web rings, and more!

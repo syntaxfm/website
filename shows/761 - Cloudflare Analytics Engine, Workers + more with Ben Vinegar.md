@@ -2,16 +2,16 @@
 number: 761
 title: Cloudflare Analytics Engine, Workers + more with Ben Vinegar
 date: 1714129200000
-url: https://traffic.libsyn.com/syntax/Syntax_-_761.mp3
+url: https://traffic.megaphone.fm/FSI1301609130.mp3
 youtube_url: https://www.youtube.com/watch?v=p6JBv0tyu4I
-guest:
-  name: Ben Vinegar
-  github: benvinegar
-  twitter: bentlegen
-  of: Syntax
-  url: https://www.syntax.fm/
-  # A single social Link:
-  social: https://benv.ca/
+guest: 
+name: Ben Vinegar
+github: benvinegar
+twitter: bentlegen
+of: Syntax
+# A single social Link: 
+social: https://benv.ca/
+completed: true
 ---
 
 Scott and Wes dive into Cloudflare's Analytics Engine and Workers with special guest Ben Vinegar, Syntax's General Manager. Tune in as they explore Clickhouse, data tracking, infrastructure costs, and transitioning from software products to managing a podcast.

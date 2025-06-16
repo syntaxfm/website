@@ -2,15 +2,15 @@
 number: 860
 title: "Module Federation Microfrontends with ByteDance’s Zack Jackson"
 date: 1734091200000
-url: https://traffic.libsyn.com/syntax/Syntax_-_860.mp3
+url: https://traffic.megaphone.fm/FSI8192580318.mp3
 youtube_url: https://www.youtube.com/watch?v=aFhysuTUoQY
-guest:
-  name: Zack Jackson
-  github: ScriptedAlchemy
-  twitter: ScriptedAlchemy
-  of: Rspack
-  url: https://rspack.dev
-  social: https://linktr.ee/scriptedalchemy
+guest: 
+name: Zack Jackson
+github: ScriptedAlchemy
+twitter: ScriptedAlchemy
+of: Rspack
+social: https://linktr.ee/scriptedalchemy
+completed: true
 ---
 
 Wes and Scott talk with Zack Jackson about Module Federation, and the innovative ways it streamlines collaboration across large teams and complex applications. Zack also dives into simplifying microfrontends, optimizing builds with Rspack, and his work at ByteDance.

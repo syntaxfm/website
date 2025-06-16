@@ -2,8 +2,9 @@
 number: 819
 title: Fun & Profitable Side Projects for Developers
 date: 1725879600000
-url: https://traffic.libsyn.com/syntax/Syntax_-_819.mp3
+url: https://traffic.megaphone.fm/FSI5370691192.mp3
 youtube_url: https://www.youtube.com/watch?v=jNG_tLuj4Vg
+completed: true
 ---
 
 Scott and Wes serve up a hasty discussion on side projects, sharing their latest Hack Week experiments and tips on how to turn fun ideas into profitable ventures. They cover everything from finding inspiration to choosing the right tech, and even offer advice on how to finish what you start.

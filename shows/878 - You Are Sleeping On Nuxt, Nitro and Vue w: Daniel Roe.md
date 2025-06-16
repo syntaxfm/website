@@ -2,16 +2,15 @@
 number: 878
 title: "You Are Sleeping On Nuxt, Nitro and Vue w/ Daniel Roe"
 date: 1739966400000
-url: https://traffic.libsyn.com/syntax/Syntax_-_878.mp3
+url: https://traffic.megaphone.fm/FSI3913534257.mp3
 youtube_url: https://www.youtube.com/watch?v=tq8EluL70hw
-guest:
-  name: Daniel Roe
-  github: danielroe
-  of: Nuxt
-  url: https://nuxt.com/
-  social:
-  - https://roe.dev/
-  - https://bsky.app/profile/danielroe.dev
+guest: 
+name: Daniel Roe
+github: danielroe
+of: Nuxt
+social: 
+- https: //bsky.app/profile/danielroe.dev
+completed: true
 ---
 
 Wes and Scott talk with Daniel Roe about Nuxt and Nitro, demystifying the UnJS ecosystem, serverless deployments, open-source sustainability, and the future of full-stack web development.

@@ -2,8 +2,9 @@
 number: 895
 title: "React Server Components: Where are we at?"
 date: 1745233200000
-url: https://traffic.libsyn.com/syntax/Syntax_-_895.mp3
+url: https://traffic.megaphone.fm/FSI1177945972.mp3
 youtube_url: https://www.youtube.com/watch?v=1QXqWQ0yNfg
+completed: true
 ---
 	
 Scott and Wes break down the current state of React Server Components — what they are, how they work, and why they’re so controversial. From framework support to bundling complexity, it’s everything you need to know about RSC in 2025.

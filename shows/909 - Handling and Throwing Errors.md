@@ -2,8 +2,9 @@
 number: 909
 title: Handling and Throwing Errors
 date: 1749466800000
-url: https://traffic.libsyn.com/syntax/Syntax_-_909.mp3
+url: https://traffic.megaphone.fm/FSI2583073811.mp3
 youtube_url: https://www.youtube.com/watch?v=pGc6x3Z-xM0
+completed: true
 ---
 	
 Scott and Wes break down how to properly throw, catch, and log errors in JavaScript and TypeScript. They cover client-side and server-side strategies, using tools like Sentry, and how to handle errors without taking down your whole app.

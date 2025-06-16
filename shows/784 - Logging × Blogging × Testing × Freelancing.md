@@ -2,8 +2,9 @@
 number: 784
 title: Logging × Blogging × Testing × Freelancing
 date: 1718794800000
-url: https://traffic.libsyn.com/syntax/Syntax_-_784.mp3
+url: https://traffic.megaphone.fm/FSI2212542277.mp3
 youtube_url: https://www.youtube.com/watch?v=LbhGwLH7U2k
+completed: true
 ---
 
 In this Potluck episode, Scott and Wes tackle listener questions on modern blogging, website environmental impact, and using LangChain with LLMs. They also cover CSS hyphens, unit vs. integration testing, and balancing web development with new parenthood.

@@ -2,8 +2,9 @@
 number: 850
 title: Manage State in JavaScript Like a Pro!
 date: 1732100400000
-url: https://traffic.libsyn.com/syntax/Syntax_-_850.mp3
+url: https://traffic.megaphone.fm/FSI7635830633.mp3
 youtube_url: https://www.youtube.com/watch?v=7i1f4PKSlxo
+completed: true
 ---
 	
 Scott and Wes serve up state management in JavaScript, breaking down key concepts like reactive state, state updaters, and global vs local state. They also explore various approaches and libraries, mutation-based state, and tools like Zustand and xState, to help you manage state like a pro.

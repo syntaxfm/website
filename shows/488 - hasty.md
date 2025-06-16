@@ -2,7 +2,8 @@
 number: 488
 title: What is Bun? The New JS Runtime
 date: 1658750400141
-url: https://traffic.libsyn.com/syntax/Syntax_-_488.mp3
+url: https://traffic.megaphone.fm/FSI7405431124.mp3
+completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about Bun, a new all-in-one JavaScript runtime. What makes Bun so fast? What's on Bun's roadmap? And why do we need another JavaScript runtime?

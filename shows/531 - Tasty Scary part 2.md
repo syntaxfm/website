@@ -2,7 +2,8 @@
 number: 531
 title: Spooky Web Dev Stories Part 2
 date: 1667390400415
-url: https://traffic.libsyn.com/syntax/Syntax_-_531.mp3
+url: https://traffic.megaphone.fm/FSI5453800521.mp3
+completed: true
 ---
 
 In this episode of Syntax, Wes and Scott tell more of your scary web dev stories including lorem ipsum mistakes, naming something Skynet, blackouts, Twitch streaming, and more!

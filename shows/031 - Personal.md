@@ -2,7 +2,8 @@
 number: 31
 title: Wes and Scott's Lives - Breakdancing, BBQ, Wives, Work/Life Balance, Problem Solving, YouTube Subscriptions
 date: 1518011156482
-url: https://traffic.libsyn.com/syntax/Syntax031.mp3
+url: https://traffic.megaphone.fm/FSI6232601384.mp3
+completed: true
 ---
 
 ## Freshbooks - Sponsor

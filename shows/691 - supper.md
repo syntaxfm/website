@@ -2,19 +2,14 @@
 number: 691
 title: Cloudflare Workers Are Next Level With Rita Kozlov And Brendan Irvine-Broque
 date: 1699617600000
-url: https://traffic.libsyn.com/syntax/Syntax_-_691.mp3
-guest:
-  - name: Brendan Irvine-Broque
-    of: Cloudflare
-    github: irvinebroque
-    twitter: irvinebroque
-    social: https://www.linkedin.com/in/brendanirvinebroque/
-  - name: Rita Kozlov
-    of: Cloudflare
-    github: rita3ko
-    twitter: ritakozlov_
-    url: https://ritakozlov.com/
-    social: https://www.linkedin.com/in/ritakozlov/
+url: https://traffic.megaphone.fm/FSI2810992376.mp3
+guest: 
+- name: Rita Kozlov
+of: Cloudflare
+github: rita3ko
+twitter: ritakozlov_
+social: https://www.linkedin.com/in/ritakozlov/
+completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Rita Kozlov And Brendan Irvine-Broque about Cloudflare Workers, Cloudflare AI, browser rendering API, Cloudflare's D1 database, WinterCG, miniflare, and more!

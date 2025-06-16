@@ -2,7 +2,8 @@
 number: 672
 title: Reacting to State of CSS Survey
 date: 1695816000800
-url: https://traffic.libsyn.com/syntax/Syntax_-_672.mp3
+url: https://traffic.megaphone.fm/FSI7543864575.mp3
+completed: true
 ---
 
 In this episode of Syntax, Wes and Scott go over some of the results the State of CSS survey for 2023, including drop-shadow, subgrid, logical properties, media range, and more!

@@ -2,7 +2,8 @@
 number: 195
 title: Hasty Treat - Buying and Selling Domain Names
 date: 1573480800714
-url: https://traffic.libsyn.com/syntax/Syntax195.mp3
+url: https://traffic.megaphone.fm/FSI9158518482.mp3
+completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about domain names — buying and selling, best practices and more!

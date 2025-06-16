@@ -2,17 +2,16 @@
 number: 752
 title: React vs Vue vs Angular with Corbin Crutchley
 date: 1712314800828
-url: https://traffic.libsyn.com/syntax/Syntax_-_752.mp3
+url: https://traffic.megaphone.fm/FSI5969349929.mp3
 youtube_url: https://www.youtube.com/watch?v=_licnRxAVk0
-guest:
-  name: Corbin Crutchley
-  github: crutchcorn
-  twitter: crutchcorn
-  of: Framework Field Guide
-  url: https://unicorn-utterances.com/collections/framework-field-guide
-  social:
-  - https://unicorn-utterances.com/unicorns/crutchcorn
-  - https://www.twitch.tv/crutchcorn
+guest: 
+name: Corbin Crutchley
+github: crutchcorn
+twitter: crutchcorn
+of: Framework Field Guide
+social: 
+- https: //www.twitch.tv/crutchcorn
+completed: true
 ---
 
 Which framework is best? Join Scott and Wes as they chat with Corbin Crutchley, author of the "Framework Field Guide", diving into the world of frameworks, metaframeworks, and tips to stay up-to-date on the latest trends in web development.

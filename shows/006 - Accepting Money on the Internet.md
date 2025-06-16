@@ -2,7 +2,8 @@
 number: 6
 title: Accepting Money on the Internet 💰💸
 date: 1502292600000
-url: https://traffic.libsyn.com/syntax/Syntax006.mp3
+url: https://traffic.megaphone.fm/FSI2521301123.mp3
+completed: true
 ---
 
 In this episode we talk about how to accept money on the internet including the ups of Stripe, the downs of PayPal.

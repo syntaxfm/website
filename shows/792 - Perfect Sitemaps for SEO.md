@@ -2,8 +2,9 @@
 number: 792
 title: Perfect Sitemaps for SEO
 date: 1720436400000
-url: https://traffic.libsyn.com/syntax/Syntax_-_792.mp3
+url: https://traffic.megaphone.fm/FSI7303532136.mp3
 youtube_url: https://www.youtube.com/watch?v=W18o_qlWBtM
+completed: true
 ---
 
 Scott and Wes break down the importance of sitemaps for SEO. They dive into the different file formats, essential fields, and common pitfalls to avoid when creating and submitting your sitemap to search engines.

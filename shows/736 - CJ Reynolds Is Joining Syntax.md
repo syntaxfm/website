@@ -2,17 +2,16 @@
 number: 736
 title: CJ Reynolds is Joining Syntax
 date: 1709121600575
-url: https://traffic.libsyn.com/syntax/Syntax_-_736.mp3
+url: https://traffic.megaphone.fm/FSI3928005263.mp3
 youtube_url: https://www.youtube.com/watch?v=S4yAx0r2wkY
-guest:
-  name: CJ Reynolds
-  github: w3cj
-  twitter: Coding_Garden
-  of: Coding Garden & Syntax
-  url: https://coding.garden/
-  social:
-  - https://www.youtube.com/@CodingGarden
-  - https://www.twitch.tv/codinggarden
+guest: 
+name: CJ Reynolds
+github: w3cj
+twitter: Coding_Garden
+of: Coding Garden & Syntax
+social: 
+- https: //www.twitch.tv/codinggarden
+completed: true
 ---
 
 Scott and Wes introduce Syntax's new Senior Content Producer, CJ Reynolds, who will be creating video deep-dives and companion content for topics covered on the podcast. CJ, also known as the host of Coding Garden, shares his passions for web development, teaching and experimenting with new technologies.

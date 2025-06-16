@@ -2,12 +2,12 @@
 number: 212
 title: Pika Pkg
 date: 1578492000511
-url: https://traffic.libsyn.com/syntax/Syntax212.mp3
-guest:
-  name: Fred Schott
-  github: fredkschott
-  twitter: fredkschott
-  url: https://fredkschott.com
+url: https://traffic.megaphone.fm/FSI7302479828.mp3
+guest: 
+name: Fred Schott
+github: fredkschott
+twitter: fredkschott
+completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk with Fred Schott about Pika Pkg, a new kind of package registry for the modern web.

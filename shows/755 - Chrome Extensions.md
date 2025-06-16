@@ -2,15 +2,15 @@
 number: 755
 title: Chrome Extensions and Ad Blockers VS Google with Oliver Dunk
 date: 1712919600000
-url: https://traffic.libsyn.com/syntax/Syntax_-_755.mp3
+url: https://traffic.megaphone.fm/FSI9576336282.mp3
 youtube_url: https://www.youtube.com/watch?v=TO1Ypwr2Pzw
-guest:
-  name: Oliver Dunk
-  github: oliverdunk
-  twitter: oliverdunk_
-  of: Google
-  url: https://google.com
-  social: https://oliverdunk.com/
+guest: 
+name: Oliver Dunk
+github: oliverdunk
+twitter: oliverdunk_
+of: Google
+social: https://oliverdunk.com/
+completed: true
 ---
 
 We were wrong, Manifest V3 is a big deal. Scott and Wes sit down with Oliver Dunk from Google to dive into the intricate world of Chrome Extensions development. From dissecting Manifest V3 to exploring the evolving landscape of browser security and extension reviews, this conversation covers the present and future of browser customization.

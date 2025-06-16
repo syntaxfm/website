@@ -2,15 +2,15 @@
 number: 899
 title: "GSAP: Killer Web Animations With Cassie Evans"
 date: 1746424800000
-url: https://traffic.libsyn.com/syntax/Syntax_-_899.mp3
+url: https://traffic.megaphone.fm/FSI7370305228.mp3
 youtube_url: https://www.youtube.com/watch?v=shotcE73Vns
-guest:
-  name: Cassie Evans
-  github: cassieevans
-  twitter: cassiecodes
-  of: GSAP
-  url: https://gsap.com/
-  social: https://www.cassie.codes/
+guest: 
+name: Cassie Evans
+github: cassieevans
+twitter: cassiecodes
+of: GSAP
+social: https://www.cassie.codes/
+completed: true
 ---
 	
 Scott and Wes sit down with Cassie Evans of GSAP to talk all things animation—from SVGs and scroll timelines to GSAP's new rebrand and exciting features. They also dig into performance, plugins, and what makes GSAP such a powerful tool for web developers.

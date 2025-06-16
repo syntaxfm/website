@@ -2,7 +2,8 @@
 number: 188
 title: The Fundamentals - Server Side
 date: 1571230800982
-url: https://traffic.libsyn.com/syntax/Syntax188.mp3
+url: https://traffic.megaphone.fm/FSI2443103060.mp3
+completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk about server side fundamentals — the important things you should know if you're interested in diving into server side. 

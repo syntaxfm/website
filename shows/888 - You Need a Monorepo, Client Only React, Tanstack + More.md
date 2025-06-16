@@ -2,8 +2,9 @@
 number: 888
 title: "You Need a Monorepo × Client Only React × TanStack + More"
 date: 1742986800000
-url: https://traffic.libsyn.com/syntax/Syntax_-_888.mp3
+url: https://traffic.megaphone.fm/FSI3885346052.mp3
 youtube_url: https://www.youtube.com/watch?v=khUwj39q5PU
+completed: true
 ---
 
 In this potluck episode, Wes and Scott answer your questions about monorepos, fullstack vs. frontend careers, the Node.js ecosystem, zero-sync magic with SvelteKit, and more!

@@ -2,7 +2,8 @@
 number: 711
 title: The Surprisingly Exciting World of Print + PDF CSS
 date: 1704110400502
-url: https://traffic.libsyn.com/syntax/Syntax_-_711fix.mp3
+url: https://traffic.megaphone.fm/FSI7289709114.mp3
+completed: true
 ---
 
 In this episode of Syntax, Wes and Scott talk about things to consider when printing something from your website or app including loading CSS only for printing, using units in CSS, CSS counters, creating a PDF, naming pages when printing, and more.

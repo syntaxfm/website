@@ -2,14 +2,14 @@
 number: 824
 title: Taylor Otwell's opinions on PHP, React, Laravel and Lamborghini Memes
 date: 1726830000000
-url: https://traffic.libsyn.com/syntax/Syntax_-_824.mp3
+url: https://traffic.megaphone.fm/FSI6514892822.mp3
 youtube_url: https://youtu.be/aitlUO8nAA0
-guest:
-  name: Taylor Otwell
-  github: taylorotwell
-  twitter: taylorotwell
-  of: Laravel
-  url: https://laravel.com
+guest: 
+name: Taylor Otwell
+github: taylorotwell
+twitter: taylorotwell
+of: Laravel
+completed: true
 ---
 
 Wes and Scott talk with Taylor Otwell, the creator of Laravel. Taylor shares insights on his journey from creating Laravel in his free time to building a strong community and user base. He discusses Laravel's growth, including the major features and tools that were developed over the years. Taylor also shares his outlook on the PHP ecosystem, productivity tips, and plans for Laravel Cloud, a new deployment platform for PHP and Laravel applications.

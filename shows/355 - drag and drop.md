@@ -2,7 +2,8 @@
 number: 355
 title: Hasty Treat - JavaScript's Drag and Drop API
 date: 1621861200010
-url: https://traffic.libsyn.com/syntax/Syntax355.mp3
+url: https://traffic.megaphone.fm/FSI5542997466.mp3
+completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about JavaScript's drag and drop API — how it works, concerns, best practices, and more!

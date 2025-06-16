@@ -2,7 +2,8 @@
 number: 425
 title: Updating Project Dependencies
 date: 1643025600796
-url: https://traffic.libsyn.com/syntax/Syntax_-_425.mp3
+url: https://traffic.megaphone.fm/FSI3039374135.mp3
+completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about their process for updating project dependencies.

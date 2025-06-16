@@ -2,14 +2,14 @@
 number: 854
 title: "Animating the Web With Matt Perry: Exploring Motion"
 date: 1732881600000
-url: https://traffic.libsyn.com/syntax/Syntax_-_854.mp3
+url: https://traffic.megaphone.fm/FSI1777104283.mp3
 youtube_url: https://www.youtube.com/watch?v=r6oXsC1gGHc
-guest:
-  name: Matt Perry
-  github: mattgperry
-  twitter: mattgperry
-  of: Motion
-  url: https://motion.dev
+guest: 
+name: Matt Perry
+github: mattgperry
+twitter: mattgperry
+of: Motion
+completed: true
 ---
 
 Wes and Scott talk with Matt Perry, the creator of Motion (formerly Framer Motion). Matt discusses building intuitive tools, transitioning Motion to open source, and the future of web animation.

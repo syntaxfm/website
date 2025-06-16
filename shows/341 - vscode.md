@@ -2,7 +2,8 @@
 number: 341
 title: Hasty Treat - VSCode Extensions and Tips
 date: 1617627600929
-url: https://traffic.libsyn.com/syntax/Syntax341.mp3
+url: https://traffic.megaphone.fm/FSI3482466688.mp3
+completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about their favorite VSCode extensions, tips, and workflows!

@@ -2,13 +2,13 @@
 number: 604
 title: Supper Club × ESLint with Nicholas Zakas
 date: 1682078400507
-url: https://traffic.libsyn.com/syntax/Syntax_-_604.mp3
-guest:
-  name: Nicholas Zakas
-  of: ESLint
-  github: nzakas
-  twitter: slicknet
-  url: https://humanwhocodes.com/blog/
+url: https://traffic.megaphone.fm/FSI7862440526.mp3
+guest: 
+name: Nicholas Zakas
+of: ESLint
+github: nzakas
+twitter: slicknet
+completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Nicholas Zakas about his creation of ESLint, what's coming up in ESLint, and his work as a coach and mentor for programmers.

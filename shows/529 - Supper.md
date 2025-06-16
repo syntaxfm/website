@@ -2,12 +2,12 @@
 number: 529
 title: Supper Club × GraphQL as an Aggregation Layer with Filipe Ferreira of Sky TV
 date: 1666958400729
-url: https://traffic.libsyn.com/syntax/Syntax_-_529.mp3
-guest:
-  name: Filipe Ferreira
-  github: fbritoferreira
-  twitter: fbritoferreira
-  url: https://fbritoferreira.com
+url: https://traffic.megaphone.fm/FSI8033242234.mp3
+guest: 
+name: Filipe Ferreira
+github: fbritoferreira
+twitter: fbritoferreira
+completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Filipe Ferreira of Sky TV about the tech stack used to deliver streaming TV content, build Apple TV apps, host media, and more.

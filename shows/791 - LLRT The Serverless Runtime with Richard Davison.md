@@ -2,14 +2,14 @@
 number: 791
 title: LLRT The Serverless Runtime w/ Richard Davison
 date: 1720177200000
-url: https://traffic.libsyn.com/syntax/Syntax_-_791.mp3
+url: https://traffic.megaphone.fm/FSI7195131449.mp3
 youtube_url: https://www.youtube.com/watch?v=DfY1_6uBdSE
-guest:
-  name: Richard Davison
-  github: richarddd
-  of: Amazon Web Services (AWS)
-  url: https://aws.amazon.com/
-  social: https://www.linkedin.com/in/richard-davison-992462101/
+guest: 
+name: Richard Davison
+github: richarddd
+of: Amazon Web Services (AWS)
+social: https://www.linkedin.com/in/richard-davison-992462101/
+completed: true
 ---
 
 Scott and Wes chat with Richard Davison from AWS about LLRT, a new runtime tailored specifically for Lambda. They dive into the benefits of using LLRT, challenges with JavaScript in serverless, and why Rust was chosen for its development.

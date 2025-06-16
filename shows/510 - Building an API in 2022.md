@@ -2,7 +2,8 @@
 number: 510
 title: How To Build an API in 2022
 date: 1663164000681
-url: https://traffic.libsyn.com/syntax/Syntax_-_510.mp3
+url: https://traffic.megaphone.fm/FSI1626705947.mp3
+completed: true
 ---
 
 In this episode of Syntax, Wes and Scott talk about what APIs are, the API standards that exist, and walk through the various layers of what goes into making an API.

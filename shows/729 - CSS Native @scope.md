@@ -1,9 +1,10 @@
 ---
 number: 729
-title: CSS Native @scope 
+title: CSS Native @scope
 date: 1707739200705
-url: https://traffic.libsyn.com/syntax/Syntax_-_729.mp3
+url: https://traffic.megaphone.fm/FSI3732022318.mp3
 youtube_url: https://youtu.be/YPmUIwVh5vk
+completed: true
 ---
 
 In this very hasty treat, Wes and Scott cover CSS Native @scope, the implementation of this tool, and some of its limitations.

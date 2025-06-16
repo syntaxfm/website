@@ -2,18 +2,16 @@
 number: 788
 title: "Supabase: Open Source Firebase for Fullstack JS Apps"
 date: 1719572400000
-url: https://traffic.libsyn.com/syntax/Syntax_-_788.mp3
+url: https://traffic.megaphone.fm/FSI1863795576.mp3
 youtube_url: https://www.youtube.com/watch?v=KtxoJUZDgIU
-hosts:
-  - stolinski
-  - w3cj
-guest:
-  name: Paul Copplestone
-  github: kiwicopple
-  twitter: kiwicopple
-  of: Supabase
-  url: https://supabase.com/
-  social: https://paul.copplest.one/
+hosts: 
+guest: 
+name: Paul Copplestone
+github: kiwicopple
+twitter: kiwicopple
+of: Supabase
+social: https://paul.copplest.one/
+completed: true
 ---
 
 Scott and CJ chat with Paul Copplestone, CEO and co-founder of Supabase, about the journey of building an open source alternative to Firebase. Learn about the tech stack, the story behind their excellent documentation, and how Supabase balances business goals with open-source values.

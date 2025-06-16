@@ -2,7 +2,8 @@
 number: 103
 title: Hasty Treat - Where are they now? Part 2
 date: 1545660000489
-url: https://traffic.libsyn.com/syntax/Syntax103.mp3
+url: https://traffic.megaphone.fm/FSI9319204016.mp3
+completed: true
 ---
 
 In this Hasty Treat, Scott and Wes continue their discussion of libraries and tech that where super hot in the past, but not so much any more. 

@@ -2,15 +2,15 @@
 number: 785
 title: What’s Next for Next.js with Tim Neutkens
 date: 1718967600000
-url: https://traffic.libsyn.com/syntax/Syntax_-_785.mp3
+url: https://traffic.megaphone.fm/FSI6248858355.mp3
 youtube_url: https://www.youtube.com/watch?v=fXugpgknScY
-guest:
-  name: Tim Neutkens
-  github: timneutkens
-  twitter: timneutkens
-  of: Vercel
-  url: https://vercel.com/
-  social: https://timn.tech/
+guest: 
+name: Tim Neutkens
+github: timneutkens
+twitter: timneutkens
+of: Vercel
+social: https://timn.tech/
+completed: true
 ---
 
 Scott and Wes dive into the world of Next.js with special guest Tim Neutkens from Vercel. They explore the latest updates, including the React Compiler and React Server Components, discussing their impact on developer workflows and the future of Next.js development.

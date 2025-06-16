@@ -2,8 +2,9 @@
 number: 828
 title: "Logging in Verification: Magic Links, 2FA, SMS Codes"
 date: 1727694000000
-url: https://traffic.libsyn.com/syntax/Syntax_-_828.mp3
+url: https://traffic.megaphone.fm/FSI7527432926.mp3
 youtube_url: https://www.youtube.com/watch?v=UXFY5tqlq3c
+completed: true
 ---
 
 Scott and Wes break down the pros and cons of modern authentication methods like magic links, 2FA, and SMS codes. Learn how each technique works, the security trade-offs, and what might be the best approach for your apps.

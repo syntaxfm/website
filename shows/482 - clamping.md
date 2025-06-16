@@ -2,7 +2,8 @@
 number: 482
 title: Clamp & Interpolate
 date: 1657540800012
-url: https://traffic.libsyn.com/syntax/Syntax_-_482.mp3
+url: https://traffic.megaphone.fm/FSI2406263725.mp3
+completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about clamp and interpolate and how you might want to use them in your next project.

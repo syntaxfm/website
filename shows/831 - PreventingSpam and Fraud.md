@@ -2,8 +2,9 @@
 number: 831
 title: Preventing Spam and Fraud
 date: 1728298800000
-url: https://traffic.libsyn.com/syntax/Syntax_-_831.mp3
+url: https://traffic.megaphone.fm/FSI7306550621.mp3
 youtube_url: https://www.youtube.com/watch?v=k4wyxLR9UYo
+completed: true
 ---
 
 From CAPTCHAs to shadow banning, Scott and Wes break down the best strategies for keeping your app safe from spam and fraud. They cover tools like email verification, rate limiting, shadow banning, and more to protect your users and data.

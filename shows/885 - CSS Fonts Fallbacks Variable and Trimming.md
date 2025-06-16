@@ -2,8 +2,9 @@
 number: 885
 title: CSS Fonts Fallbacks, Variable and Trimming
 date: 1742209200000
-url: https://traffic.libsyn.com/syntax/Syntax_-_885.mp3
+url: https://traffic.megaphone.fm/FSI1620960625.mp3
 youtube_url: https://www.youtube.com/watch?v=m1_k3OlHSJU
+completed: true
 ---
 	
 Scott and Wes dig into the wild world of CSS fonts—covering fallbacks, variable fonts, and new tricks like text-box-trim. They also break down font-display, font kits, and how to avoid layout shifts when loading custom type.

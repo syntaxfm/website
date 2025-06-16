@@ -2,15 +2,15 @@
 number: 894
 title: "Open Source Matters w/ Chad Whitacre"
 date: 1744801200000
-url: https://traffic.libsyn.com/syntax/Syntax_-_894.mp3
+url: https://traffic.megaphone.fm/FSI9203926789.mp3
 youtube_url: https://www.youtube.com/watch?v=erO12sRUJ2s
-guest:
-  name: Chad Whitacre
-  github: chadwhitacre
-  twitter: chadwhitacre_
-  of: Sentry
-  url: https://sentry.io/
-  social: https://chadwhitacre.com/
+guest: 
+name: Chad Whitacre
+github: chadwhitacre
+twitter: chadwhitacre_
+of: Sentry
+social: https://chadwhitacre.com/
+completed: true
 ---
 
 Wes and Scott talk with Chad Whitacre, the newest member of the Syntax team, about all things open source—licenses, controversies, economics, and ethics. Chad breaks down what most people misunderstand, and how companies can support sustainable software development the right way.

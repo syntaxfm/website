@@ -2,7 +2,8 @@
 number: 148
 title: Potluck - CSS × Angular × Dev job preparation × Svelte × File organization × Gear × More!
 date: 1559134800777
-url: https://traffic.libsyn.com/syntax/Syntax148.mp3
+url: https://traffic.megaphone.fm/FSI7129050774.mp3
+completed: true
 ---
 
 It's another Potluck! In this episode, Scott and Wes answer your questions about CSS, Angular, Svelte, dev job preparation and more!

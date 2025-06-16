@@ -2,7 +2,8 @@
 number: 171
 title: Hasty Treat - How To Publish A React Component To NPM
 date: 1566219600892
-url: https://traffic.libsyn.com/syntax/Syntax171.mp3
+url: https://traffic.megaphone.fm/FSI9878063243.mp3
+completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about documentation libraries, starting and maintaining projects, how to publish React components to NPM, and more!

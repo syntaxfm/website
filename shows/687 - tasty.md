@@ -2,7 +2,8 @@
 number: 687
 title: Hosting NextJS × Spicy Sidedishes × Modern Forms × Abandoning TypeScript
 date: 1698840000120
-url: https://traffic.libsyn.com/syntax/Syntax_-_687.mp3
+url: https://traffic.megaphone.fm/FSI7338420580.mp3
+completed: true
 ---
 
 In this potluck episode of Syntax, Wes and Scott answer your questions about hosting NextJS, spicy sidedishes, putting forms in modern websites, why is everyone abandoning TypeScript, CSS Survey follow up, do devs need to be into CSS, and more!

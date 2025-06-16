@@ -2,7 +2,8 @@
 number: 229
 title: Hasty Treat - Scott asks Wes about Cloudflare
 date: 1583758800768
-url: https://traffic.libsyn.com/syntax/Syntax229.mp3
+url: https://traffic.megaphone.fm/FSI6079271689.mp3
+completed: true
 ---
 
 In this Hasty Treat, Scott asks Wes about Cloudflare — which services he uses, which ones he doesn't, why, and more! 

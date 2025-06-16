@@ -2,8 +2,9 @@
 number: 807
 title: 'CSS Components: Tailwind, Panda, Scoped, Modules, Classes, Variables, CSS-in-JS and Sprinkles!'
 date: 1723442400000
-url: https://traffic.libsyn.com/syntax/Syntax_807_final.mp3
+url: https://traffic.megaphone.fm/FSI3792841942.mp3
 youtube_url: https://www.youtube.com/watch?v=Y7fNBj_rhGE
+completed: true
 ---
 
 In this episode of Syntax, Wes and Scott talk about CSS components, including class-based components, CSS modules, scoped CSS, utility CSS, and CSS-in-JS strategies. They share their thoughts, what differentiates these approaches, and why you may (or may not) want to use them.

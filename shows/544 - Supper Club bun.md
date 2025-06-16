@@ -2,13 +2,13 @@
 number: 544
 title: Supper Club × Bun with Jared Sumner
 date: 1669982400952
-url: https://traffic.libsyn.com/syntax/Syntax_-_544.mp3
-guest:
-  name: Jared Sumner
-  of: Bun
-  github: Jarred-Sumner
-  twitter: jarredsumner
-  url: https://bun.sh
+url: https://traffic.megaphone.fm/FSI7015955648.mp3
+guest: 
+name: Jared Sumner
+of: Bun
+github: Jarred-Sumner
+twitter: jarredsumner
+completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Jared Sumner about why and how he created Bun, what Zig is, and the future of Bun.

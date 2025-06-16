@@ -2,15 +2,15 @@
 number: 767
 title: Local First and TypeScript’s Missing Library with Johannes Schickling
 date: 1715338800000
-url: https://traffic.libsyn.com/syntax/Syntax_-_767.mp3
+url: https://traffic.megaphone.fm/FSI8742067066.mp3
 youtube_url: https://www.youtube.com/watch?v=TrVYBfIsOa0
-guest:
-  name: Johannes Schickling
-  github: schickling
-  twitter: schickling
-  of: Prisma
-  url: https://www.prisma.io/
-  social: https://www.schickling.dev/
+guest: 
+name: Johannes Schickling
+github: schickling
+twitter: schickling
+of: Prisma
+social: https://www.schickling.dev/
+completed: true
 ---
 
 In this episode, Scott and Wes dive into the world of local-first apps with Johannes Schickling, the mastermind behind Prisma. From databases, WASM for non-JS, to authentication challenges, they explore the ins and outs of crafting apps that prioritize local functionality.

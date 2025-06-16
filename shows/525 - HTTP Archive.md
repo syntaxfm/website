@@ -2,7 +2,8 @@
 number: 525
 title: 2022 CSS Trends and Usage Web Almanac
 date: 1666180800437
-url: https://traffic.libsyn.com/syntax/Syntax_-_525.mp3
+url: https://traffic.megaphone.fm/FSI5522533653.mp3
+completed: true
 ---
 
 In this episode of Syntax, Wes and Scott talk about some of the CSS Trends and Usage for 2022 as documented by the Web Almanac - and give some great cleaning tips along the way.

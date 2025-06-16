@@ -2,15 +2,15 @@
 number: 880
 title: "Creator of Home Assistant: Web Components, Self Hosting and Home Hacking"
 date: 1740571200000
-url: https://traffic.libsyn.com/syntax/Syntax_-_880.mp3
+url: https://traffic.megaphone.fm/FSI9108834294.mp3
 youtube_url: https://www.youtube.com/watch?v=0meKcaebg38
-guest:
-  name: Paulus Schoutsen
-  github: balloob
-  twitter: balloob
-  of: Home Assistant
-  url: https://www.home-assistant.io
-  social: https://bsky.app/profile/paulusschoutsen.nl
+guest: 
+name: Paulus Schoutsen
+github: balloob
+twitter: balloob
+of: Home Assistant
+social: https://bsky.app/profile/paulusschoutsen.nl
+completed: true
 ---
 
 Wes and CJ talk with Paulus Schoutsen, creator of Home Assistant, about the future of smart homes, AI-powered automation, and open-source innovation.

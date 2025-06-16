@@ -2,8 +2,9 @@
 number: 892
 title: "The History of Syntax"
 date: 1744196400000
-url: https://traffic.libsyn.com/syntax/Syntax_-_892.mp3
+url: https://traffic.megaphone.fm/FSI3478630376.mp3
 youtube_url: https://www.youtube.com/watch?v=7NSlQ4BrSS8
+completed: true
 ---
 
 Wes and Scott talk about the origins of Syntax, sharing how a friendly course name conflict led to a mastermind group, then a podcast, and eventually a full-blown media brand. They also reflect on key milestones, from early episodes and sponsorships to joining Sentry, expanding the team, and what's next.

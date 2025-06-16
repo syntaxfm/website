@@ -2,18 +2,13 @@
 number: 565
 title: Supper Club × Simen Svale Skogsrud and Espen Hovlandsdal from Sanity
 date: 1674216000661
-url: https://traffic.libsyn.com/syntax/Syntax_-_565.mp3
-guest:
-  - name: Simen Svale Skogsrud
-    github: simen
-    of: Sanity
-    twitter: svale
-    url: https://sanity.io
-  - name: Espen Hovlandsdal
-    of: Sanity
-    github: rexxars
-    twitter: rexxars
-    url: https://espen.codes/
+url: https://traffic.megaphone.fm/FSI9876876569.mp3
+guest: 
+- name: Espen Hovlandsdal
+github: rexxars
+of: Sanity
+twitter: rexxars
+completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Simen & Espen from Sanity about what Sanity is, who uses Sanity, what is a content lake, how Sanity works with React or TypeScript, what GROQ is, how portable text works, and of course, the supper club questions.

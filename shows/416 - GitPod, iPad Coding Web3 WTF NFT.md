@@ -2,21 +2,15 @@
 number: 416
 title: Gitpod, iPad Coding, Web3, WTF NFT
 date: 1640174400735
-url: https://traffic.libsyn.com/syntax/Syntax_-_416.mp3
-guest:
-  - name: Geoffrey Huntley
-    of: Gitpod
-    github: ghuntley
-    twitter: GeoffreyHuntley
-    url: https://www.ghuntley.com
-  - name: Pauline Narvas
-    of: Gitpod
-    github: pawlean
-    twitter: paulienuh
-    url: https://www.paulinenarvas.com
-    social:
-      - https://youtube.com/c/paulinenarvas
-      - https://linkedin.com/in/pnarvas
+url: https://traffic.megaphone.fm/FSI7338763205.mp3
+guest: 
+- name: Pauline Narvas
+of: Gitpod
+github: pawlean
+twitter: paulienuh
+social: 
+- https: //linkedin.com/in/pnarvas
+completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk with Geoff and Pauline from Gitpod about developing on Gitpod, Web3, and The NFT Bay.

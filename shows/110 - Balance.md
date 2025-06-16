@@ -2,7 +2,8 @@
 number: 110
 title: Tips for Work Life Balance
 date: 1547647200132
-url: https://traffic.libsyn.com/syntax/Syntax110.mp3
+url: https://traffic.megaphone.fm/FSI7647443688.mp3
+completed: true
 ---
 
 In this episode Scott and Wes talk about work life balance. These tips aren't hard-and-fast - part of the beauty of being a web developer is that you do get to enjoy some flexibility. Work is a big part of our live and these are tips that will hopefully allow you to get the most enjoyment out of both work and life.

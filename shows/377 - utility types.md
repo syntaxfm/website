@@ -2,7 +2,8 @@
 number: 377
 title: Hasty Treat - TypeScript Utility Types
 date: 1628514000325
-url: https://traffic.libsyn.com/syntax/Syntax377.mp3
+url: https://traffic.megaphone.fm/FSI1731698508.mp3
+completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about TypeScript utility types — what they are, why you might use them, why they exist, and more!

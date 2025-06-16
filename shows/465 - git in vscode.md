@@ -2,7 +2,8 @@
 number: 465
 title: Git in VS Code
 date: 1654084800314
-url: https://traffic.libsyn.com/syntax/Syntax_-_465.mp3
+url: https://traffic.megaphone.fm/FSI1490112856.mp3
+completed: true
 ---
 
 In this episode of Syntax, Wes and Scott talk all about how they use Git inside of VS Code, extensions they use, and the various ways to interact with Git in VS Code.

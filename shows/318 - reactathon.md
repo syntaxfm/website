@@ -2,7 +2,8 @@
 number: 318
 title: Reactathon LIVE
 date: 1610546400125
-url: https://traffic.libsyn.com/syntax/Syntax318.mp3
+url: https://traffic.megaphone.fm/FSI6103443686.mp3
+completed: true
 ---
 
 In this episode of Syntax, Scott and Wes are coming at you live from Reactathon with audience-favorite segments including All I Want for Christmas *in React*, JS or Nay-s (or Both), Overrated / Underrated, Hot Take Tweets, Listener Questions, and more!

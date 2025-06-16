@@ -2,7 +2,8 @@
 number: 196
 title: Design Foundations For Developers
 date: 1573653600714
-url: https://traffic.libsyn.com/syntax/Syntax196.mp3
+url: https://traffic.megaphone.fm/FSI9263096408.mp3
+completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk about design foundations for developers — tips to follow that will make your designs better!

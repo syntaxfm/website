@@ -2,7 +2,8 @@
 number: 403
 title: Hasty Treat - What's the deal with Astro?
 date: 1636380000049
-url: https://traffic.libsyn.com/syntax/Syntax403.mp3
+url: https://traffic.megaphone.fm/FSI8026163120.mp3
+completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about Astro — what it is and why you should check it out!

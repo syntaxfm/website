@@ -2,8 +2,9 @@
 number: 855
 title: "Fast Websites: The New Speculation Rules API"
 date: 1733137200000
-url: https://traffic.libsyn.com/syntax/Syntax_-_855.mp3
+url: https://traffic.megaphone.fm/FSI5114240785.mp3
 youtube_url: https://www.youtube.com/watch?v=qhEGU3xt0gc
+completed: true
 ---
 	
 Scott and Wes dive into the Speculation Rules API and why it’s a game-changer for building blazing-fast websites. They break down how pre-loading, prefetching, and pre-connecting work together to boost performance while weighing the costs for both users and developers.

@@ -2,8 +2,9 @@
 number: 834
 title: AI Will Improve Your Web Development Workflow
 date: 1728903600000
-url: https://traffic.libsyn.com/syntax/Syntax_-_834.mp3
+url: https://traffic.megaphone.fm/FSI9823468088.mp3
 youtube_url: https://www.youtube.com/watch?v=qpWxsQdCGTQ
+completed: true
 ---
 
 Scott and Wes serve up ways developers can use AI tools like Claude, GitHub Copilot, and more to boost productivity. From error tracing to refactoring code and automating mundane tasks, they break down how AI can handle the heavy lifting so you can focus on the fun stuff!

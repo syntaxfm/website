@@ -2,8 +2,9 @@
 number: 820
 title: "Potluck: 8000 ESLint Errors × HTML Time Tag × 7 Meg React Bundle × CSS Modules"
 date: 1726052400000
-url: https://traffic.libsyn.com/syntax/Syntax_-_820.mp3
+url: https://traffic.megaphone.fm/FSI4279981452.mp3
 youtube_url: https://www.youtube.com/watch?v=RBUU3mOwo-E
+completed: true
 ---
 
 In this Potluck episode of Syntax, Scott and Wes answer your questions, from weighing the trade-offs between numerous small npm packages and a few larger ones to managing the challenges of work-from-home life. They also explore CSS modules, strategies for shrinking JavaScript bundles, and even where to find the best replacement ear cups for your headphones.

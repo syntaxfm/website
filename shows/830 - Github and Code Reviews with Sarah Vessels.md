@@ -2,15 +2,15 @@
 number: 830
 title: GitHub and Code Reviews with Sarah Vessels
 date: 1728039600000
-url: https://traffic.libsyn.com/syntax/Syntax_-_830.mp3
+url: https://traffic.megaphone.fm/FSI8262154649.mp3
 youtube_url: https://youtu.be/Az1ELhRw4sk
-# A Single Guest looks like this:
-guest:
-  name: Sarah Vessels
-  github: cheshire137
-  twitter: cheshire137
-  of: GitHub
-  url: https://sarahvessels.com
+# A Single Guest looks like this: 
+guest: 
+name: Sarah Vessels
+github: cheshire137
+twitter: cheshire137
+of: GitHub
+completed: true
 ---
 
 Scott and Wes talk with GitHub’s Sarah Vessels about the ins and outs of code reviews, their critical role in collaborative development, and tips for making your reviews more effective.

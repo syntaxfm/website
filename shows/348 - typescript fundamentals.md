@@ -2,7 +2,8 @@
 number: 348
 title: TypeScript Fundamentals — Getting a Bit Deeper
 date: 1619614800543
-url: https://traffic.libsyn.com/syntax/Syntax348.mp3
+url: https://traffic.megaphone.fm/FSI9486078763.mp3
+completed: true
 ---
 
 In this episode of Syntax, Scott and Wes continue their discussion of TypeScript Fundamentals with a deeper diver into more advanced use cases. 

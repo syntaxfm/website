@@ -2,7 +2,8 @@
 number: 450
 title: Potluck - Working on a Team × Dealing with Imposter Syndrome × Animating on the Web × Icon Libraries × Demanding Clients
 date: 1650456000166
-url: https://traffic.libsyn.com/syntax/Syntax_-_450.mp3
+url: https://traffic.megaphone.fm/FSI7129050774.mp3
+completed: true
 ---
 
 In this potluck episode of Syntax, Wes and Scott answer your questions about working on a team, dealing with imposter syndrome, animating on the web, using the table element, landing pages for apps, and building full stack apps with NextJS.

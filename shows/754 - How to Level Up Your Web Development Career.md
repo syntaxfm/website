@@ -2,8 +2,9 @@
 number: 754
 title: How to Level Up Your Web Development Career
 date: 1712746800000
-url: https://traffic.libsyn.com/syntax/Syntax_-_754.mp3
+url: https://traffic.megaphone.fm/FSI7445797940.mp3
 youtube_url: https://www.youtube.com/watch?v=58iwH5q5BKA
+completed: true
 ---
 
 Ready to level up your career in web development? Join Wes and Scott as they discuss techniques and best practices for advancing in the field. From mastering technical skills to navigating workplace dynamics, this episode offers actionable advice to help you thrive in your career.

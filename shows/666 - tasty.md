@@ -2,7 +2,8 @@
 number: 666
 title: Hackweek Projects - Realtime Markdown Editor and a Hardware Recording Button
 date: 1694606400945
-url: https://traffic.libsyn.com/syntax/Syntax_-_666.mp3
+url: https://traffic.megaphone.fm/FSI5788534256.mp3
+completed: true
 ---
 
 In this episode of Syntax, Wes and Scott review the projects they built during Sentry's Hackweek: a realtime Markdown multiplayer editor, and a hardware recording button.

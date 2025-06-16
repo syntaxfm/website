@@ -2,7 +2,8 @@
 number: 193
 title: Hasty Treat - Spooky Stories
 date: 1572876000779
-url: https://traffic.libsyn.com/syntax/Syntax193.mp3
+url: https://traffic.megaphone.fm/FSI6860261688.mp3
+completed: true
 ---
 
 In this Hasty Treat, Scott and Wes bring you _more_ web dev horror stories! 

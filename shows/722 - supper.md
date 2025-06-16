@@ -2,15 +2,15 @@
 number: 722
 title: Next Level Web APIs. Bluetooth, File Access, Thomas Steiner - Project Fugu
 date: 1706270400604
-url: https://traffic.libsyn.com/syntax/Syntax_-_722.mp3
-guest:
-  name: Thomas Steiner
-  github: tomayac
-  twitter: tomayac
-  of: Google
-  url: https://blog.tomayac.com/
-  social:
-  - https://toot.cafe/@tomayac
+url: https://traffic.megaphone.fm/FSI2402902145.mp3
+guest: 
+name: Thomas Steiner
+github: tomayac
+twitter: tomayac
+of: Google
+social: 
+- https: //toot.cafe/@tomayac
+completed: true
 ---
 
 Thomas Steiner talks with us about Project Fugu, an effort from Google to enable new classes of applications to run on the web. What is Project Fugu? What are some of Thomas' favorite APIs to use? What is an IWA vs a PWA? And more!

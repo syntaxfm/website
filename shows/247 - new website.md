@@ -2,7 +2,8 @@
 number: 247
 title: Hasty Treat - Wes' New Personal Website
 date: 1589202000345
-url: https://traffic.libsyn.com/syntax/Syntax247.mp3
+url: https://traffic.megaphone.fm/FSI3441353623.mp3
+completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about Wes' new website - its first update since 2014!

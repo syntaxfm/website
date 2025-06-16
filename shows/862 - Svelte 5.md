@@ -2,8 +2,9 @@
 number: 862
 title: Svelte 5 Is Here!
 date: 1734519600000
-url: https://traffic.libsyn.com/syntax/Syntax_-_862.mp3
+url: https://traffic.megaphone.fm/FSI9735243316.mp3
 youtube_url: https://www.youtube.com/watch?v=t6-znHs8DDM
+completed: true
 ---
 	
 Is Svelte becoming React? Scott and Wes explore the exciting updates in Svelte 5, including Runes, Snippets, odd font choices, and performance benchmarks, while discussing custom event updates, migration tips, and potential performance gains.

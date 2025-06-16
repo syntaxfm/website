@@ -2,11 +2,10 @@
 number: 904
 title: "React vs Svelte × Windsurf Worth $3B × Typescript as Const × Layout Shift Tricks × More"
 date: 1747825200000
-url: https://traffic.libsyn.com/syntax/Syntax_-_904.mp3
+url: https://traffic.megaphone.fm/FSI7392894223.mp3
 youtube_url: https://www.youtube.com/watch?v=b9sECYG-qmI
-hosts:
-  - wesbos
-  - w3cj
+hosts: 
+completed: true
 ---
 
 In this potluck episode of Syntax, Wes and CJ answer your questions about OpenAI’s $3B Windsurf acquisition, the evolving role of UI in an AI-driven world, why good design still matters, React vs. Svelte, and more!

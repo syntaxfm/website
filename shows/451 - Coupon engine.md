@@ -2,7 +2,8 @@
 number: 451
 title: Building a Coupon Engine
 date: 1650888000372
-url: https://traffic.libsyn.com/syntax/Syntax_-_451.mp3
+url: https://traffic.megaphone.fm/FSI8405873308.mp3
+completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about the coupon engines they've built and use on their courses.

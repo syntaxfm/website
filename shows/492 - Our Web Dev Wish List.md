@@ -2,7 +2,8 @@
 number: 492
 title: Our Web Dev Wish List
 date: 1659528000245
-url: https://traffic.libsyn.com/syntax/Syntax_-_492.mp3
+url: https://traffic.megaphone.fm/FSI5018733407.mp3
+completed: true
 ---
 
 In this episode of Syntax, Wes and Scott talk through their web dev wish list of things they want to just work already!

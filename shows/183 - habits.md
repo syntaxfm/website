@@ -2,7 +2,8 @@
 number: 183
 title: Hasty Treat - Developing Better Habits
 date: 1569848400962
-url: https://traffic.libsyn.com/syntax/Syntax183.mp3
+url: https://traffic.megaphone.fm/FSI8629260531.mp3
+completed: true
 ---
 
 In this Hasty Treat, Scott and Wes are talking about developing better habits — strategies, avoiding distractions, best practices, and more!

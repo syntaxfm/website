@@ -2,7 +2,8 @@
 number: 684
 title: Spooky Coding Horror Stories 2023 - Part 2
 date: 1698235200009
-url: https://traffic.libsyn.com/syntax/Syntax_-_684.mp3
+url: https://traffic.megaphone.fm/FSI3432416354.mp3
+completed: true
 ---
 
 In this episode of Syntax, Wes and Scott relate even more spooky listener submitted coding horrors including crypto copy paste, Big Brother bug, losing $50,000, 2,000 SMS, a $20,000 hour, and more.

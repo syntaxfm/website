@@ -2,7 +2,8 @@
 number: 75
 title: Hasty Treat - Feedback and Criticism
 date: 1537189200983
-url: https://traffic.libsyn.com/syntax/Syntax075.mp3
+url: https://traffic.megaphone.fm/FSI8705136120.mp3
+completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about feedback and criticism in the web industry.

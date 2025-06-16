@@ -2,7 +2,8 @@
 number: 382
 title: Advice for New Devs
 date: 1629896400488
-url: https://traffic.libsyn.com/syntax/Syntax382.mp3
+url: https://traffic.megaphone.fm/FSI5566650677.mp3
+completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk about advice for new devs, our advice and opinions for how new devs can level up.

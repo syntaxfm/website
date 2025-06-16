@@ -2,8 +2,9 @@
 number: 816
 title: Why Your CSS Sucks
 date: 1725274800000
-url: https://traffic.libsyn.com/syntax/Syntax_-_816.mp3
+url: https://traffic.megaphone.fm/FSI8116099197.mp3
 youtube_url: https://www.youtube.com/watch?v=NwX9uPWs2t0
+completed: true
 ---
 
 Scott and Wes break down why your CSS might suck—from misusing specificity to not leveraging CSS variables. Tune in as they dive into common pitfalls that are making your stylesheets a hot mess.

@@ -2,13 +2,13 @@
 number: 547
 title: Supper Club × Coding at Disney with Vu Le
 date: 1670587200712
-url: https://traffic.libsyn.com/syntax/Syntax_-_547.mp3
-guest:
-  name: Vu Le
-  of: Disney
-  github: vukyle
-  twitter: vukyle
-  url: https://www.vukyle.com/
+url: https://traffic.megaphone.fm/FSI2301812699.mp3
+guest: 
+name: Vu Le
+of: Disney
+github: vukyle
+twitter: vukyle
+completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Vu Le about his path to working at Disney. How did he learn to code? How do you get a job at Disney? What's the tech stack inside a Disney team?

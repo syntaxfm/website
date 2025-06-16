@@ -2,7 +2,8 @@
 number: 261
 title: Hasty Treat - Rural and Mobile Internet Revisited
 date: 1593435600843
-url: https://traffic.libsyn.com/syntax/Syntax261.mp3
+url: https://traffic.megaphone.fm/FSI1401692499.mp3
+completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about rural and mobile internet — options, tools, and things to be aware of.

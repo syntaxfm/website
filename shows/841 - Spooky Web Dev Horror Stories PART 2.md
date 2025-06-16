@@ -2,8 +2,9 @@
 number: 841
 title: Spooky Web Dev Horror Stories - PART 2
 date: 1730286000000
-url: https://traffic.libsyn.com/syntax/Syntax_-_841.mp3
+url: https://traffic.megaphone.fm/FSI4225504928.mp3
 youtube_url: https://www.youtube.com/watch?v=oOFrLNItiX8
+completed: true
 ---
 
 Scott and Wes continue to share hair-raising developer horror stories submitted by listeners. From accidentally severing access to crucial databases to a limitless coupon code that cost millions, these tales will have you on the edge of your seat. Tune in for more wild mishaps, close calls, and hard-learned lessons from the dark side of coding. You won’t want to miss this second round of spooky web dev stories!

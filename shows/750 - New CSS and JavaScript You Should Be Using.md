@@ -2,8 +2,9 @@
 number: 750
 title: New CSS and JavaScript You Should Be Using
 date: 1711969200199
-url: https://traffic.libsyn.com/syntax/Syntax_-_750.mp3
+url: https://traffic.megaphone.fm/FSI6628758248.mp3
 youtube_url: https://www.youtube.com/watch?v=bPJ8gDGQH9E
+completed: true
 ---
 
 Get stoked, jQuery 1.2 is here! Join Scott and Wes as they discuss jQuery Mobile, slicing PSD files, CSS rounded corners, CoffeeScript features, WordPress 2.3, and the rise of Skeuomorphism, shaping the landscape of web development this year.

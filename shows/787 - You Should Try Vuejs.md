@@ -2,11 +2,10 @@
 number: 787
 title: You Should Try Vue.js
 date: 1719399600000
-url: https://traffic.libsyn.com/syntax/Syntax_-_787.mp3
+url: https://traffic.megaphone.fm/FSI8282041316.mp3
 youtube_url: https://www.youtube.com/watch?v=TkJMtssND-U
-hosts:
-  - stolinski
-  - w3cj
+hosts: 
+completed: true
 ---
 
 Scott and CJ dive deep into the world of Vue.js, exploring what makes this frontend framework unique and why it stands out from React and Svelte. CJ gives a comprehensive tour, covering everything from getting started to advanced features like state management and Vue’s built-in styles.

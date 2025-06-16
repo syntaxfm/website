@@ -2,16 +2,15 @@
 number: 697
 title: What is DevRel with Salma Alam-Naylor
 date: 1700827200123
-url: https://traffic.libsyn.com/syntax/Syntax_-_697.mp3
-guest:
-  name: Salma Alam-Naylor
-  of: DevRel @ Sentry
-  github: whitep4nth3r
-  twitter: whitep4nth3r
-  url: https://whitep4nth3r.com/
-  social:
-    - https://www.twitch.tv/whitep4nth3r
-    - https://www.youtube.com/whitep4nth3r
+url: https://traffic.megaphone.fm/FSI9095678627.mp3
+guest: 
+name: Salma Alam-Naylor
+of: DevRel @ Sentry
+github: whitep4nth3r
+twitter: whitep4nth3r
+social: 
+- https: //www.youtube.com/whitep4nth3r
+completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Salma Alam-Naylor all about her role in DevRel, what's involved in working in DevRel, avoiding burnout, which platforms to focus on, and so much more.

@@ -2,8 +2,9 @@
 number: 826
 title: You Need These 30 Apps - PART 2
 date: 1727262000000
-url: https://traffic.libsyn.com/syntax/Syntax_-_826.mp3
+url: https://traffic.megaphone.fm/FSI1560099975.mp3
 youtube_url: https://www.youtube.com/watch?v=wOR_Xx38mxk
+completed: true
 ---
 
 In part 2 of covering the best apps for web developers, Scott and Wes dive into must-have tools that will level up your workflow. From screenshot utilities to development tools and video production apps, this episode is packed with recommendations to boost your productivity and creativity.

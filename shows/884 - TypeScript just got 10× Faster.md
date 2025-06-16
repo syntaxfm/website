@@ -2,17 +2,14 @@
 number: 884
 title: "Typescript Just Got 10x Faster"
 date: 1741703700310
-url: https://traffic.libsyn.com/syntax/Syntax_-_884.mp3
+url: https://traffic.megaphone.fm/FSI9491475836.mp3
 youtube_url: https://www.youtube.com/watch?v=ZlGza4oIleY
-guest:
-  - name: Anders Hejlsberg
-    github: ahejlsberg
-    twitter: ahejlsberg
-    of: TypeScript, Microsoft
-  - name: Daniel Rosenwasser
-    github: danielrosenwasser
-    twitter: drosenwasser
-    of: TypeScript, Microsoft
+guest: 
+- name: Daniel Rosenwasser
+github: danielrosenwasser
+twitter: drosenwasser
+of: TypeScript, Microsoft
+completed: true
 ---
 
 Wes and Scott talk with Anders Hejlsberg and Daniel Rosenwasser about TypeScript’s leap to native code. They discuss the challenges, trade-offs, and the decision to port TypeScript to Go, unlocking faster compilation, better concurrency, and new possibilities for AI-assisted development.

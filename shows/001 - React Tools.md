@@ -2,7 +2,8 @@
 number: 1
 title: React Tools
 date: 1499256000000
-url: https://traffic.libsyn.com/syntax/syntax001_4.mp3
+url: https://traffic.megaphone.fm/FSI1907504541.mp3
+completed: true
 ---
 
 ## Show Notes

@@ -2,7 +2,8 @@
 number: 615
 title: Where Should You Host Your App? Hosting Providers Compared
 date: 1684335600785
-url: https://traffic.libsyn.com/syntax/Syntax_-_615.mp3
+url: https://traffic.megaphone.fm/FSI7389700355.mp3
+completed: true
 ---
 
 In this episode of Syntax, Wes and Scott talk about your options for hosting your app including some of the big players, but also others you may not have heard of.

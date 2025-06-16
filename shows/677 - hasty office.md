@@ -2,7 +2,8 @@
 number: 677
 title: Home Office Tips
 date: 1696852800558
-url: https://traffic.libsyn.com/syntax/Syntax_-_677.mp3
+url: https://traffic.megaphone.fm/FSI8902622863.mp3
+completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk through tips for upping your home office vibe, including cable management, lighting, ergonomics, and even roller blade wheels.

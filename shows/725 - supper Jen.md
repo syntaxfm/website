@@ -2,17 +2,16 @@
 number: 725
 title: Safari is the new Chrome - Jen Simmons of Apple
 date: 1706875201005
-url: https://traffic.libsyn.com/syntax/Safari_is_the_new_Chrome_725.mp3
+url: https://traffic.megaphone.fm/FSI6122155846.mp3
 youtube_url: https://www.youtube.com/watch?v=IoC-4GpBaiA
-guest:
-  name: Jen Simmons
-  github: jensimmons
-  twitter: jensimmons
-  of: Apple
-  url: https://jensimmons.com/
-  social:
-    - https://www.linkedin.com/in/jensimmons/
-    - https://front-end.social/@jensimmons
+guest: 
+name: Jen Simmons
+github: jensimmons
+twitter: jensimmons
+of: Apple
+social: 
+- https: //front-end.social/@jensimmons
+completed: true
 ---
 
 Wes and Scott talk with Jen Simmons about the latest updates to Safari, reporting bugs to Apple, understanding color in CSS, new CSS switch controls, and testing your websites in Vision Pro hardware.

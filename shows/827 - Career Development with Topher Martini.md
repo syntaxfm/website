@@ -2,14 +2,14 @@
 number: 827
 title: Career Development with Topher Martini
 date: 1727434800000
-url: https://traffic.libsyn.com/syntax/Syntax_-_827.mp3
+url: https://traffic.megaphone.fm/FSI3763028598.mp3
 youtube_url: https://youtu.be/LGe_uH5e4Rs
-guest:
-  name: Topher Martini
-  twitter: tophermartini
-  of: Apple
-  url: https://tophermartini.com
-  social: https://www.linkedin.com/in/tophermartini
+guest: 
+name: Topher Martini
+twitter: tophermartini
+of: Apple
+social: https://www.linkedin.com/in/tophermartini
+completed: true
 ---
 
 Scott and Wes talk with Topher Martini, a former Engineering Program Manager at Apple, about his extensive experience over two decades in the tech industry. Topher shares his journey at Apple, from starting as an intern in 2001 to working on groundbreaking products like iPhone, iPad, and Vision Pro. 

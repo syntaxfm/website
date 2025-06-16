@@ -2,17 +2,16 @@
 number: 809
 title: "How To Stay Up To Date with Daily.dev’s Francesco Ciulla"
 date: 1723788000000
-url: https://traffic.libsyn.com/syntax/Syntax_809_final.mp3
+url: https://traffic.megaphone.fm/FSI8920848510.mp3
 youtube_url: https://www.youtube.com/watch?v=D9kW5RW4tAU
-guest:
-  name: Francesco Ciulla
-  github: FrancescoXX
-  twitter: FrancescoCiull4
-  of: daily.dev
-  url: https://daily.dev
-  social:
-  - https://francescociulla.gumroad.com
-  - https://www.linkedin.com/in/francesco-ciulla-roma
+guest: 
+name: Francesco Ciulla
+github: FrancescoXX
+twitter: FrancescoCiull4
+of: daily.dev
+social: 
+- https: //www.linkedin.com/in/francesco-ciulla-roma
+completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk with Daily.dev’s Francesco Ciulla about the platform's history, community features, and significant growth. They dive into the core ideas behind daily.dev, including its personalized feed for developers, new features like squads, community contributions, and tech stack. Francesco also shares his passion for Rust, and highlights the importance of content creation in the ever-evolving tech landscape. 

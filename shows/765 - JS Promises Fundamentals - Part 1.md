@@ -2,8 +2,9 @@
 number: 765
 title: JS Promises Fundamentals - Part 1
 date: 1714993200000
-url: https://traffic.libsyn.com/syntax/Syntax_-_765.mp3
+url: https://traffic.megaphone.fm/FSI6956344473.mp3
 youtube_url: https://www.youtube.com/watch?v=bmOzRI5Job0
+completed: true
 ---
 
 In this 3-course series, Scott and Wes serve up some JavaScript Promises treats.  In part 1, they unravel the concept of promises and delve into common examples of their usage, from creating and waiting on promises, to database queries and user permissions.

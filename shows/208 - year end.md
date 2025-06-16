@@ -2,7 +2,8 @@
 number: 208
 title: 2019 YEAR END Definitely Not a Clip Show
 date: 1577282400835
-url: https://traffic.libsyn.com/syntax/Syntax208.mp3
+url: https://traffic.megaphone.fm/FSI9821212522.mp3
+completed: true
 ---
 
 In this episode of Syntax, Scott and Wes do a 2019 year in review — the most popular Syntax episodes, what they learned, some personal updates, plans for next year, and more!

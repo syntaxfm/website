@@ -2,7 +2,8 @@
 number: 449
 title: Svelte Cubed + 3D In Browser
 date: 1650283200876
-url: https://traffic.libsyn.com/syntax/Syntax_-_449.mp3
+url: https://traffic.megaphone.fm/FSI5294007537.mp3
+completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about Svelte Cubed and working in 3D in the browser.

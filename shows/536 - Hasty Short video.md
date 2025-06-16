@@ -2,7 +2,8 @@
 number: 536
 title: Short Form Content with Tiktok, Reels, Shorts, Tweets
 date: 1668427200409
-url: https://traffic.libsyn.com/syntax/Syntax_-_536.mp3
+url: https://traffic.megaphone.fm/FSI7568481585.mp3
+completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about creating short form content for TikTok, Reels, Shorts, and tweets. What are some of the benefits and limitations of creating for vertical video, and what tools are they using to create videos.

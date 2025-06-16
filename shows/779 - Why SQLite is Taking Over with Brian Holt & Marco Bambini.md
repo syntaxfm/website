@@ -2,24 +2,16 @@
 number: 779
 title: Why SQLite is Taking Over with Brian Holt & Marco Bambini
 date: 1717758000000
-url: https://traffic.libsyn.com/syntax/Syntax_-_779.mp3
+url: https://traffic.megaphone.fm/FSI7880207768.mp3
 youtube_url: https://www.youtube.com/watch?v=tJ3wCtT0hfY
-guest:
-  - name: Brian Holt
-    github: btholt
-    twitter: holtbt
-    of: SQLite Cloud
-    url: https://sqlitecloud.io/
-    social: https://www.linkedin.com/in/btholt/
-  - name: Marco Bambini
-    github: marcobambini
-    twitter: _marcobambini
-    of: SQLite Cloud
-    url: https://sqlitecloud.io/
-    social: https://www.linkedin.com/in/marcobambini/
-hosts:
-  - stolinski
-  - w3cj
+guest: 
+- name: Marco Bambini
+github: marcobambini
+twitter: _marcobambini
+of: SQLite Cloud
+social: https://www.linkedin.com/in/marcobambini/
+hosts: 
+completed: true
 ---
 
 Scott and CJ dive into the world of SQLite Cloud with special guests Brian Holt and Marco Bambini. They explore why SQLite is gaining traction, its unique features, and the misconceptions surrounding its use—let's get into it!

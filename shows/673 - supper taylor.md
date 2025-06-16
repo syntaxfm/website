@@ -2,15 +2,14 @@
 number: 673
 title: Getting Hired, Interviewing, and Why Recruiters Suck with Taylor Desseyn
 date: 1695988800937
-url: https://traffic.libsyn.com/syntax/Syntax_-_673.mp3
-guest:
-  name: Taylor Desseyn
-  of: Gun.io
-  twitter: tdesseyn
-  url: https://solo.to/tdesseyn
-  social:
-    - https://www.linkedin.com/in/taylordesseyn/
-    - https://www.youtube.com/channel/UCNqJ-P5d9RUCUsQ-grhlUHw
+url: https://traffic.megaphone.fm/FSI4652307202.mp3
+guest: 
+name: Taylor Desseyn
+of: Gun.io
+twitter: tdesseyn
+social: 
+- https: //www.youtube.com/channel/UCNqJ-P5d9RUCUsQ-grhlUHw
+completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Taylor Desseyn about his work as a job recruiter, how hiring has changed over the last few years, what soft and tech skills developers need, what not to do when applying, and how AI is affecting the hiring process.

@@ -2,7 +2,8 @@
 number: 161
 title: Hasty Treat - VSCode Extensions & Themes
 date: 1563195600334
-url: https://traffic.libsyn.com/syntax/Syntax161.mp3
+url: https://traffic.megaphone.fm/FSI6370225311.mp3
+completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about everything they love regarding VSCode: themes, fonts, extensions, techniques and more!

@@ -2,16 +2,15 @@
 number: 562
 title: Supper Club × Katherine Mello on Liberal Arts → Coding, Bootcamps,  and Sustainability
 date: 1673611200466
-url: https://traffic.libsyn.com/syntax/Syntax_-_562.mp3
-guest:
-  name: Katherine Mello
-  of: Tangible Materials
-  github: mell0kat
-  twitter: mell0kat
-  url: https://www.rolling-with-kat.blog
-  social:
-    - https://www.linkedin.com/in/katherinemello
-    - https://medium.com/@katherine.mello8
+url: https://traffic.megaphone.fm/FSI7157733739.mp3
+guest: 
+name: Katherine Mello
+of: Tangible Materials
+github: mell0kat
+twitter: mell0kat
+social: 
+- https: //medium.com/@katherine.mello8
+completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Katherine Mello about her journey into coding from liberal arts to bootcamp education, data visualization, and coding for a sustainable focused company.

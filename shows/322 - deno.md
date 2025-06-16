@@ -2,7 +2,8 @@
 number: 322
 title: The Deno Show
 date: 1611756000813
-url: https://traffic.libsyn.com/syntax/Syntax322.mp3
+url: https://traffic.megaphone.fm/FSI8042122360.mp3
+completed: true
 ---
 
 In this episode of Syntax, Scott and Wes bring you the long-awaited Deno show — what it is, what it replaces, how you can use it, and more!

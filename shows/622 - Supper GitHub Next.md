@@ -2,18 +2,13 @@
 number: 622
 title: Supper Club × Matt Rothenberg and Idan Gazit on Github Next
 date: 1685707200587
-url: https://traffic.libsyn.com/syntax/Syntax_-_622.mp3
-guest:
-  - name: Matt Rothenberg
-    github: mattrothenberg
-    of: Github, Copilot
-    twitter: mattrothenberg
-    url: https://mattrothenberg.com/
-  - name: Idan Gazit
-    of: Github, Copilot
-    github: idan
-    twitter: idangazit
-    url: https://gazit.me/
+url: https://traffic.megaphone.fm/FSI6965395399.mp3
+guest: 
+- name: Idan Gazit
+github: idan
+of: Github, Copilot
+twitter: idangazit
+completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Matt Rothenberg and Idan Gazit from GitHub about GitHub Next, Copilot, AI based projects at Github, and what the future is for developers with AI.

@@ -2,15 +2,15 @@
 number: 740
 title: Local AI Models in JavaScript - Machine Learning Deep Dive With Xenova
 date: 1709899200296
-url: https://traffic.libsyn.com/syntax/Syntax_-_740.mp3
+url: https://traffic.megaphone.fm/FSI8181544760.mp3
 youtube_url: https://www.youtube.com/watch?v=GVY__H89Ysk
-guest:
-  name: Xenova
-  github: xenova
-  twitter: xenovacom
-  of: Transformers.js
-  url: https://huggingface.co/docs/transformers.js/en/index
-  social: https://huggingface.co/Xenova
+guest: 
+name: Xenova
+github: xenova
+twitter: xenovacom
+of: Transformers.js
+social: https://huggingface.co/Xenova
+completed: true
 ---
 
 Scott and Wes are joined by special guest Xenova to explore local AI models in JavaScript. From Hugging Face to Transformers.js and practical applications like real-time speech recognition and object detection, this episode dives deep into the world of machine learning.

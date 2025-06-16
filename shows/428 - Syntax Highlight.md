@@ -2,7 +2,8 @@
 number: 428
 title: Syntax Highlight
 date: 1643803200940
-url: https://traffic.libsyn.com/syntax/Syntax_-_428.mp3
+url: https://traffic.megaphone.fm/FSI2281081267.mp3
+completed: true
 ---
 
 In this episode of Syntax, Scott and Wes review your portfolios and websites including some from Harryxli, Austin Baird, Jacks Portfolio, and more!

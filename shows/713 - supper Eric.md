@@ -2,16 +2,15 @@
 number: 713
 title: The CSS OG Eric Meyer. 1994 CSS, JS in Fridges, Tailwind, and Web Standards
 date: 1704456000113
-url: https://traffic.libsyn.com/syntax/Syntax_-_713.mp3 
-guest:
-  name: Eric Meyer
-  github: meyerweb
-  twitter: meyerweb
-  of: Igalia
-  url: https://meyerweb.com/
-  social:
-  - https://www.linkedin.com/in/meyerweb/
-  - https://meyerweb@mastodon.social/@Meyerweb
+url: https://traffic.megaphone.fm/FSI5790377556.mp3
+guest: 
+name: Eric Meyer
+github: meyerweb
+twitter: meyerweb
+of: Igalia
+social: 
+- https: //meyerweb@mastodon.social/@Meyerweb
+completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Eric Meyer about his start on the web, the early days of CSS, where CSS is headed, are we going to lose a browser, and more!

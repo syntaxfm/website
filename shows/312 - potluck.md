@@ -2,7 +2,8 @@
 number: 312
 title: Potluck — New Macs × Podcast Statistics × E-commerce Testing × WordPress × Charging More × Learning Web Dev × More!
 date: 1608732000434
-url: https://traffic.libsyn.com/syntax/Syntax312.mp3
+url: https://traffic.megaphone.fm/FSI7129050774.mp3
+completed: true
 ---
 
 It's another potluck! In this episode, Scott and Wes answer your questions about new Macs and web development, podcast statistics during COVID, is it still worth it to learn WordPress, dealing with imposter syndrome, and more!

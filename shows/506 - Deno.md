@@ -2,7 +2,8 @@
 number: 506
 title: Big Deno Changes
 date: 1662379200044
-url: https://traffic.libsyn.com/syntax/Syntax_-_506.mp3
+url: https://traffic.megaphone.fm/FSI8490797788.mp3
+completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about the changes announced by Deno and their thoughts on the changes.

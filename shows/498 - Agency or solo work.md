@@ -2,7 +2,8 @@
 number: 498
 title: Job Types Agency, Tech, Startup, Entrepreneur VS Tech company VS In House
 date: 1660737600380
-url: https://traffic.libsyn.com/syntax/Syntax_-_498.mp3
+url: https://traffic.megaphone.fm/FSI8986711071.mp3
+completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about their thoughts on the different types of tech jobs you can get, and the pros and cons of each style of job in tech.

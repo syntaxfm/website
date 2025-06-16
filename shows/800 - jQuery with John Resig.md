@@ -2,15 +2,15 @@
 number: 800
 title: Why the jQuery Creator Uses React and Typescript - John Resig
 date: 1721991600000
-url: https://traffic.libsyn.com/syntax/Syntax_-_800.mp3
+url: https://traffic.megaphone.fm/FSI6735753519.mp3
 youtube_url: https://www.youtube.com/watch?v=aE9mIWqC8cs
-guest:
-  name: John Resig
-  github: jeresig
-  twitter: jeresig
-  of: Khan Academy
-  url: https://www.khanacademy.org
-  social: https://johnresig.com/
+guest: 
+name: John Resig
+github: jeresig
+twitter: jeresig
+of: Khan Academy
+social: https://johnresig.com/
+completed: true
 ---
 
 In episode 800 of Syntax, Scott and Wes sit down with John Resig, the creator of jQuery, to discuss the current state of React and TypeScript. They dive into the evolution of frontend frameworks, the challenges of server-side rendering, and the tech stack at Khan Academy.

@@ -2,15 +2,15 @@
 number: 719
 title: Fullstack TypeScript Apps with No Build Step?! with Brian LeRoux
 date: 1705662000711
-url: https://traffic.libsyn.com/syntax/Syntax_-_719fx.mp3
-# A Single Guest looks like this:
-guest:
-  name: Brian LeRoux
-  github: brianleroux
-  twitter: brianleroux
-  of: Begin
-  url: https://brian.io/
-  social: https://indieweb.social/@brianleroux
+url: https://traffic.megaphone.fm/FSI6720563042.mp3
+# A Single Guest looks like this: 
+guest: 
+name: Brian LeRoux
+github: brianleroux
+twitter: brianleroux
+of: Begin
+social: https://indieweb.social/@brianleroux
+completed: true
 ---
 
 Wes and Scott talk with Brian LeRoux about not using a bundler, handling TypeScript, live reloading, Enhance being a meta framework, how Enhance handles CSS, his experience at AWS: Reinvent, and the state of JavaScript run times in 2024.

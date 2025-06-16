@@ -2,12 +2,12 @@
 number: 330
 title: React Query + More React with Tanner Linsley
 date: 1614175200905
-url: https://traffic.libsyn.com/syntax/Syntax330.mp3
-guest:
-  name: Tanner Linsley
-  github: tannerlinsley
-  twitter: tannerlinsley
-  url: https://tannerlinsley.com/
+url: https://traffic.megaphone.fm/FSI3554017365.mp3
+guest: 
+name: Tanner Linsley
+github: tannerlinsley
+twitter: tannerlinsley
+completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk with Tanner Linsley about React Query, how it works, why you might want to use it, and more!

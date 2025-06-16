@@ -2,7 +2,8 @@
 number: 156
 title: Potluck - Career Switch at 33 × Cover Letters × Kids × Learning Quickly × More!
 date: 1561554000423
-url: https://traffic.libsyn.com/syntax/Syntax156.mp3
+url: https://traffic.megaphone.fm/FSI7129050774.mp3
+completed: true
 ---
 
 It's another potluck! In this episode, Scott and Wes answer your questions about career changes, preprocessors, moving, "the gap", hip hop and more!

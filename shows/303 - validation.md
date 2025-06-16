@@ -2,7 +2,8 @@
 number: 303
 title: Hasty Treat - Client vs Server Data Validation
 date: 1606140000666
-url: https://traffic.libsyn.com/syntax/Syntax303.mp3
+url: https://traffic.megaphone.fm/FSI4817098812.mp3
+completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about client- and server-side validation, and what each is used for!

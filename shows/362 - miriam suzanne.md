@@ -2,14 +2,13 @@
 number: 362
 title: CSS Container Queries, Layers, Scoping and More with Miriam Suzanne
 date: 1623848400113
-url: https://traffic.libsyn.com/syntax/Syntax362.mp3
-guest:
-  name: Miriam Suzanne
-  github: mirisuzanne
-  url: https://www.miriamsuzanne.com/
-  social: 
-    - https://front-end.social/@mia
-    - https://codepen.io/miriamsuzanne/
+url: https://traffic.megaphone.fm/FSI7581037580.mp3
+guest: 
+name: Miriam Suzanne
+github: mirisuzanne
+social: 
+- https: //codepen.io/miriamsuzanne/
+completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk with Miriam Suzanne about all things CSS — container queries, layers, scoping, and more!

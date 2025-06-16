@@ -2,8 +2,9 @@
 number: 866
 title: 2025 Web Development Predictions
 date: 1736334000000
-url: https://traffic.libsyn.com/syntax/Syntax_-_866.mp3
+url: https://traffic.megaphone.fm/FSI1084464035.mp3
 youtube_url: https://www.youtube.com/watch?v=lkf1Y5qHpwE
+completed: true
 ---
 	
 Scott and Wes look into their crystal ball to predict what's coming in web development next year. From the rise of on-device AI to the vanilla CSS comeback, Bun’s big moves, and React’s evolution, this episode is packed with bold predictions and hot takes!

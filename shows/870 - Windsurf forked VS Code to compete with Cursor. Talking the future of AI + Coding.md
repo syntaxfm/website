@@ -2,18 +2,14 @@
 number: 870
 title: "Windsurf forked VS Code to compete with Cursor. Talking the future of AI + Coding"
 date: 1737547200000
-url: https://traffic.libsyn.com/syntax/Syntax_-_870.mp3
+url: https://traffic.megaphone.fm/FSI8519246305.mp3
 youtube_url: https://www.youtube.com/watch?v=ptekg6GNzIQ
-guest:
-  - name: Kevin Hou
-    github: khou22
-    twitter: kevinhou22
-    of: Windsurf
-    url: https://wind.surf/
-  - name: Varun Mohan
-    twitter: _mohansolo
-    of: Windsurf
-    url: https://wind.surf/
+guest: 
+- name: Varun Mohan
+github: khou22
+twitter: _mohansolo
+of: Windsurf
+completed: true
 ---
 
 Wes and Scott talk with Kevin Hou and Varun Mohan from Windsurf about the evolving landscape of AI in coding, and the future of software development.

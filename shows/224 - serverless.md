@@ -2,7 +2,8 @@
 number: 224
 title: Serverless / Cloud Functions - Part 1
 date: 1582120800347
-url: https://traffic.libsyn.com/syntax/Syntax224.mp3
+url: https://traffic.megaphone.fm/FSI1426091169.mp3
+completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk about serverless and cloud providers - the benefits, limitations, providers and more!

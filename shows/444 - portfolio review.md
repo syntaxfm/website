@@ -2,7 +2,8 @@
 number: 444
 title: Syntax Highlight
 date: 1648641600930
-url: https://traffic.libsyn.com/syntax/Syntax_-_444.mp3
+url: https://traffic.megaphone.fm/FSI5920571512.mp3
+completed: true
 ---
 
 In this episode of Syntax, Wes and Scott review your websites that you submitted including bald.design, Anh Hoang Nguyen, bradleyshellnut.com, and more.

@@ -2,11 +2,12 @@
 number: 710
 title: A Passwordless Future Passkeys with Anna Pobletts
 date: 1703847600902
-url: https://traffic.libsyn.com/syntax/Syntax_-_710.mp3
-guest:
-  name: Anna Poblets
-  social: https://www.linkedin.com/in/anna-pobletts/
-  of: Passwordless at 1Password
+url: https://traffic.megaphone.fm/FSI1972375931.mp3
+guest: 
+name: Anna Poblets
+social: https://www.linkedin.com/in/anna-pobletts/
+of: Passwordless at 1Password
+completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Anna Pobletts of Passage about passkeys, how passkeys work, how to implement passkeys on your website or app, what the recommended UI is for passkeys, what happens to your passkey if you lose your phone, and more.

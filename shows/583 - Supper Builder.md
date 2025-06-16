@@ -2,13 +2,14 @@
 number: 583
 title: Supper Club × Visual Coding Languages With Steve Sewell
 date: 1677844800026
-url: https://traffic.libsyn.com/syntax/Syntax_-_583.mp3
-guest:
-  name: Steve Sewell
-  of: Builder.io
-  github: steve8708
-  twitter: Steve8708
-  social: https://www.linkedin.com/in/ssewell
+url: https://traffic.megaphone.fm/FSI9840406917.mp3
+guest: 
+name: Steve Sewell
+of: Builder.io
+github: steve8708
+twitter: Steve8708
+social: https://www.linkedin.com/in/ssewell
+completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Steve Sewell about Builder.io, Qwik, Partytown, and the tricks and tips he's learned in building apps for the modern web.

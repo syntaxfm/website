@@ -2,14 +2,14 @@
 number: 734
 title: HTMX Web Apps with Carson Gross
 date: 1708689600588
-url: https://traffic.libsyn.com/syntax/Syntax_-_734.mp3
+url: https://traffic.megaphone.fm/FSI8680487617.mp3
 youtube_url: https://www.youtube.com/watch?v=5LOAGWGQwRA
-guest:
-  name: Carson Gross
-  github: bigskysoftware
-  twitter: htmx_org
-  of: Big Sky Software
-  url: https://bigsky.software/
+guest: 
+name: Carson Gross
+github: bigskysoftware
+twitter: htmx_org
+of: Big Sky Software
+completed: true
 ---
 
 Scott and Wes welcome HTMX creator Carson Gross to discuss the versatile applications and optimal scenarios for using HTMX, alongside insights into its creation and evolution. Join us as we explore the future prospects and improvements as we look towards HTMX 2.0.

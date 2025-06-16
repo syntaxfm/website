@@ -2,7 +2,8 @@
 number: 232
 title: React Hooks - 1 Year Later
 date: 1584536400920
-url: https://traffic.libsyn.com/syntax/Syntax232.mp3
+url: https://traffic.megaphone.fm/FSI3697552106.mp3
+completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk about React Hooks, one year later — what's changed, how to use them, and more!

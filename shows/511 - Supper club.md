@@ -2,13 +2,13 @@
 number: 511
 title: Supper Club × Raycast with Thomas Mann
 date: 1663329600231
-url: https://traffic.libsyn.com/syntax/Syntax_-_511_v2.mp3
-guest:
-  name: Thomas Mann
-  github: thomaspaulmann
-  of: Raycast
-  twitter: thomaspaulmann
-  url: thomaspaulmann.com
+url: https://traffic.megaphone.fm/FSI3141811326.mp3
+guest: 
+name: Thomas Mann
+github: thomaspaulmann
+of: Raycast
+twitter: thomaspaulmann
+completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Thomas Mann about Raycast - an app that can replace Spotlight on your Mac, and do so much more.

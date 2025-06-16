@@ -2,15 +2,15 @@
 number: 815
 title: "Deno 2 with Ryan Dahl"
 date: 1725015600000
-url: https://traffic.libsyn.com/syntax/Syntax_-_815.mp3
+url: https://traffic.megaphone.fm/FSI6665585176.mp3
 youtube_url: https://youtu.be/tZBCq8Ijkgw
-guest:
-  name: Ryan Dahl
-  github: ry
-  twitter: rough__sea
-  of: Deno
-  url: https://deno.com
-  social: https://tinyclouds.org
+guest: 
+name: Ryan Dahl
+github: ry
+twitter: rough__sea
+of: Deno
+social: https://tinyclouds.org
+completed: true
 ---
 
 In this episode of Syntax, Wes and Scott talk with Ryan Dahl about Deno 2.0, its new features and use of web standards, and how it seamlessly integrates with popular frameworks like Next.js. Ryan shares insights on the motivations behind Deno's creation, its emphasis on simplicity and security, and offers his take on the evolving JavaScript ecosystem.

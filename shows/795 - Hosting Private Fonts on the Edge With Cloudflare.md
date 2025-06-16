@@ -2,8 +2,9 @@
 number: 795
 title: Hosting Private Fonts on the Edge With Cloudflare
 date: 1721041200000
-url: https://traffic.libsyn.com/syntax/Syntax_-_795.mp3
+url: https://traffic.megaphone.fm/FSI2766771437.mp3
 youtube_url: https://www.youtube.com/watch?v=P0jwGsCWmPs
+completed: true
 ---
 
 Scott and Wes dish out the intricacies of hosting private fonts using Cloudflare Pages. They explore the challenges of font security, the benefits of a font server, and the nuances of caching and whitelisting to keep your fonts secure and efficient.

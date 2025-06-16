@@ -2,21 +2,15 @@
 number: 749
 title: Coding Shopify with Anne and Trudy of Design Packs
 date: 1711710000247
-url: https://traffic.libsyn.com/syntax/Syntax_-_749.mp3
+url: https://traffic.megaphone.fm/FSI2013372517.mp3
 youtube_url: https://www.youtube.com/watch?v=WY9q2PVd2q4
-guest:
-  - name: Anne Thomas
-    github: AlfalfaAnne
-    twitter: AlfalfaAnne
-    of: Design Packs
-    url: https://design-packs.com/
-    social: https://www.linkedin.com/in/annethomas8
-  - name: Trudy MacNabb
-    github: deartrudence
-    twitter: dear_trudence
-    of: Design Packs
-    url: https://design-packs.com/
-    social: https://www.linkedin.com/in/trudy-macnabb-7b19104a
+guest: 
+- name: Trudy MacNabb
+github: deartrudence
+twitter: dear_trudence
+of: Design Packs
+social: https://www.linkedin.com/in/trudy-macnabb-7b19104a
+completed: true
 ---
 
 Scott and Wes are joined by special guests Trudy MacNabb and Anne Thomas from Design Packs, diving into the nitty-gritty of Shopify design. Tune in as they dissect the pros and cons, challenges, and unveil their daily toolkit for crafting stunning Shopify websites.

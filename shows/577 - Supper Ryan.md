@@ -2,15 +2,15 @@
 number: 577
 title: Supper Club × Solid.js with Ryan Carniato
 date: 1676635200341
-url: https://traffic.libsyn.com/syntax/Syntax_-_577.mp3
-guest:
-  name: Ryan Carniato
-  twitter: RyanCarniato
-  of: Solid.js
-  github: ryansolid
-  social:
-    - https://www.youtube.com/@ryansolid
-    - https://dev.to/ryansolid
+url: https://traffic.megaphone.fm/FSI9561867164.mp3
+guest: 
+name: Ryan Carniato
+twitter: RyanCarniato
+of: Solid.js
+github: ryansolid
+social: 
+- https: //dev.to/ryansolid
+completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Ryan Carniato about Solid.JS, SolidStart, how web components work with Solid, why he chose JSX, and what the future of Solid is.

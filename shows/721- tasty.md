@@ -2,7 +2,8 @@
 number: 721
 title: You should learn Drizzle, the TypeScript SQL ORM
 date: 1706097600956
-url: https://traffic.libsyn.com/syntax/Syntax_-_721.mp3
+url: https://traffic.megaphone.fm/FSI6858738403.mp3
+completed: true
 ---
 
 We're doing a Tasty overview of Drizzle in this episode. What is Drizzle? What are different types of databases? How do you host databases? What have we built with Drizzle? And how does Drizzle handle relational data, TypeScript, querying, selects, transactions, and more!

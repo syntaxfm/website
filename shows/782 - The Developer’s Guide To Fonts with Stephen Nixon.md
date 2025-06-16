@@ -2,20 +2,17 @@
 number: 782
 title: The Developer’s Guide To Fonts with Stephen Nixon
 date: 1718362800000
-url: https://traffic.libsyn.com/syntax/Syntax_-_782.mp3
+url: https://traffic.megaphone.fm/FSI4196444829.mp3
 youtube_url: https://www.youtube.com/watch?v=RBxMgALZR9o
-guest:
-  name: Stephen Nixon
-  github: arrowtype
-  twitter: ArrowType
-  of: ArrowType
-  url: https://www.arrowtype.com/
-  social:
-  - https://www.youtube.com/arrowtype
-  - https://www.instagram.com/arrowtype
-hosts:
-  - stolinski
-  - w3cj
+guest: 
+name: Stephen Nixon
+github: arrowtype
+twitter: ArrowType
+of: ArrowType
+social: 
+- https: //www.instagram.com/arrowtype
+hosts: 
+completed: true
 ---
 
 Scott and CJ are joined by Stephen Nixon of ArrowType to delve into the world of fonts and type for developers. They explore the intricacies of font creation, the utility of variable fonts, and offer tips for making visually appealing typography on the web.

@@ -2,13 +2,13 @@
 number: 688
 title: Ex-npm Employee Making a New Package Manager?! Vlt with Darcy Clarke
 date: 1699012800605
-url: https://traffic.libsyn.com/syntax/Syntax_-_688.mp3
-guest:
-  name: Darcy Clarke
-  github: darcyclarke
-  of: Vlt Package Manager
-  twitter: darcy
-  url: https://www.darcyclarke.me
+url: https://traffic.megaphone.fm/FSI4521934228.mp3
+guest: 
+name: Darcy Clarke
+github: darcyclarke
+of: Vlt Package Manager
+twitter: darcy
+completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Darcy Clarke about his career path in tech, working with Wes back in the day, why he decided to build vlt volt, and the biggest sick pick list yet!

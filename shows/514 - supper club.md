@@ -2,14 +2,14 @@
 number: 514
 title: Supper Club × Arc Browser with Hursh Agrawal
 date: 1663934400417
-url: https://traffic.libsyn.com/syntax/Syntax_-_514.mp3
-guest:
-  name: Hursh Agrawal
-  github: hurshagrawal
-  of: Arc Browser
-  twitter: hursh
-  url: http://www.hurshagrawal.com
-  social: https://www.linkedin.com/in/hurshagrawal/
+url: https://traffic.megaphone.fm/FSI9168356000.mp3
+guest: 
+name: Hursh Agrawal
+github: hurshagrawal
+of: Arc Browser
+twitter: hursh
+social: https://www.linkedin.com/in/hurshagrawal/
+completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Hursh Agrawal of The Browser Company about Scott's favorite browser, Arc. How do you make a browser in 2022? Will there be a Windows version? And who is the target market for Arc?

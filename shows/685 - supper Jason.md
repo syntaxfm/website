@@ -2,17 +2,16 @@
 number: 685
 title: Jason Lengstorf on Live Streaming, Creating Content, and Building a Studio Space
 date: 1698408000510
-url: https://traffic.libsyn.com/syntax/Syntax_-_685.mp3
-guest:
-  name: Jason Lengstorf
-  of: Learn with Jason
-  github: learnwithjason
-  twitter: jlengstorf
-  url: https://www.learnwithjason.dev/
-  social:
-    - https://twitch.tv/jlengstorf
-    - https://youtube.com/@learnwithjason
-      https://discord.gg/lwj
+url: https://traffic.megaphone.fm/FSI5442016531.mp3
+guest: 
+name: Jason Lengstorf
+of: Learn with Jason
+github: learnwithjason
+twitter: jlengstorf
+social: 
+- https: //youtube.com/@learnwithjason
+https: //discord.gg/lwj
+completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Jason Lengstorf about his journey in video creation, live streaming, and tech education. What's up with Jason's new studio? How does he prep for a live stream?

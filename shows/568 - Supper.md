@@ -2,13 +2,13 @@
 number: 568
 title: Supper Club × Caleb Porzio
 date: 1674820800625
-url: https://traffic.libsyn.com/syntax/Syntax_-_568.mp3
-guest:
-  name: Caleb Porzio
-  of: Livewire, Alpine.js
-  github: calebporzio
-  twitter: calebporzio
-  url: https://calebporzio.com/
+url: https://traffic.megaphone.fm/FSI3528022599.mp3
+guest: 
+name: Caleb Porzio
+of: Livewire, Alpine.js
+github: calebporzio
+twitter: calebporzio
+completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Caleb Porzio about Livewire, Alpine.js, what is it with PHP devs making cool stuff, TypeScript thoughts, and more.

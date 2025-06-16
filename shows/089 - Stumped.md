@@ -2,7 +2,8 @@
 number: 89
 title: Hasty Treat - Stumped! 03
 date: 1541426400602
-url: https://traffic.libsyn.com/syntax/Syntax089.mp3
+url: https://traffic.megaphone.fm/FSI8490229772.mp3
+completed: true
 ---
 
 In this Hasty Treat, Scott and Wes are back for another edition of Stumped! where they try to stump each other with interview questions. Today's questions are from [Flashcards for Developers](https://www.flashcardsfordevelopers.com/).

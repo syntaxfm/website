@@ -2,7 +2,8 @@
 number: 83
 title: Hasty Treat - Old Browsers, Fallbacks and Polyfills - Part 1
 date: 1539608400808
-url: https://traffic.libsyn.com/syntax/Syntax083.mp3
+url: https://traffic.megaphone.fm/FSI8821409806.mp3
+completed: true
 ---
 
 In this Hasty Treat, Scott and Wes kickoff a three-part series about old browsers, fallbacks and polyfills. In part one, Scott and Wes talk specifically about old browsers, how best to support them, and whether or not you should support them at all.

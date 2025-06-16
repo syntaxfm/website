@@ -2,7 +2,8 @@
 number: 720
 title: Where Does Time Come From?
 date: 1705924800738
-url: https://traffic.libsyn.com/syntax/Syntax_-_720.mp3
+url: https://traffic.megaphone.fm/FSI4871034503.mp3
+completed: true
 ---
 
 It is time. Wes and Scott attempt to blow your minds by talking about time, who's tracking time, where does time come from, what time is it in your browser vs someone else's server, and standards around time.

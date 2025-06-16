@@ -2,15 +2,15 @@
 number: 835
 title: How to Pick a JavaScript Framework
 date: 1729076400000
-url: https://traffic.libsyn.com/syntax/Syntax_-_835.mp3
+url: https://traffic.megaphone.fm/FSI5146691118.mp3
 youtube_url: https://www.youtube.com/watch?v=zo20Mwwrtp0
-guest:
-  name: CJ Reynolds
-  github: w3cj
-  twitter: CodingGarden
-  of: Syntax
-  url: https://syntax.fm/
-  social: https://coding.garden/
+guest: 
+name: CJ Reynolds
+github: w3cj
+twitter: CodingGarden
+of: Syntax
+social: https://coding.garden/
+completed: true
 ---
 
 Do you really need a framework? Scott and Wes bring on CJ to break down when frameworks like Vue, Svelte, and Astro are worth it—and when they might just add complexity. They dive into everything from rendering strategies to auth solutions, deployment options, and how to choose the right tool for the job.

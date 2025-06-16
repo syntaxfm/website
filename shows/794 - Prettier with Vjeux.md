@@ -2,15 +2,15 @@
 number: 794
 title: Prettier JavaScript with Vjeux
 date: 1720782000000
-url: https://traffic.libsyn.com/syntax/Syntax_-_794.mp3
+url: https://traffic.megaphone.fm/FSI9667690726.mp3
 youtube_url: https://www.youtube.com/watch?v=i3_Eia6_SoQ
-guest:
-  name: Christopher 'Vjeux' Chedeau
-  github: vjeux
-  twitter: Vjeux
-  of: Meta & Prettier
-  url: https://prettier.io/
-  social: https://blog.vjeux.com/
+guest: 
+name: Christopher 'Vjeux' Chedeau
+github: vjeux
+twitter: Vjeux
+of: Meta & Prettier
+social: https://blog.vjeux.com/
+completed: true
 ---
 
 Scott and Wes sit down with Vjeux from Meta to dive deep into the origins and evolution of Prettier, the widely-used code formatter. They discuss the challenges faced, the decision-making process behind its features, and what the future holds for this indispensable tool in the developer's toolkit.

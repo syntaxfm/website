@@ -2,7 +2,8 @@
 number: 528
 title: Spooky Web Dev Stories 2022
 date: 1666785600184
-url: https://traffic.libsyn.com/syntax/Syntax_-_528.mp3
+url: https://traffic.megaphone.fm/FSI6909874967.mp3
+completed: true
 ---
 
 In this episode of Syntax, Wes and Scott tell your spookiest scary web dev stories including spooky render times, push notification hell, dark Friday, and more!

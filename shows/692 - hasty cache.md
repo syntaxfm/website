@@ -2,7 +2,8 @@
 number: 692
 title: You Need Stale While Revalidate
 date: 1699876800396
-url: https://traffic.libsyn.com/syntax/Syntax_-_692.mp3
+url: https://traffic.megaphone.fm/FSI5057873602.mp3
+completed: true
 ---
 
 In this episode of Syntax, Wes and Scott explain what Stale While Revalidate is, why you should use it, and explore whether you should use it all the time on all the things.

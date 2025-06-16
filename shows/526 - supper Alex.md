@@ -2,14 +2,14 @@
 number: 526
 title: Supper Club × tRPC With Alex KATT Johansson
 date: 1666353600648
-url: https://traffic.libsyn.com/syntax/Syntax_-_526.mp3
-guest:
-  name: Alex Johansson
-  github: KATT
-  of: tRPC
-  twitter: alexdotjs
-  url: https://katt.dev/
-  social: https://www.linkedin.com/in/johanssonalexander/
+url: https://traffic.megaphone.fm/FSI1118597533.mp3
+guest: 
+name: Alex Johansson
+github: KATT
+of: tRPC
+twitter: alexdotjs
+social: https://www.linkedin.com/in/johanssonalexander/
+completed: true
 ---
 
 In this supper club episode of Syntax, Scott talks with Alex Johansson about his work on tRPC, how it compares to other tools like GraphQL, and what's next for tRPC?

@@ -2,7 +2,8 @@
 number: 81
 title: Hasty Treat - Hacktoberfest
 date: 1539003600284
-url: https://traffic.libsyn.com/syntax/Syntax081.mp3
+url: https://traffic.megaphone.fm/FSI8287107697.mp3
+completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about this year's [Hacktoberfest](https://hacktoberfest.digitalocean.com/) - a great way to support open source.

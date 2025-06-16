@@ -2,21 +2,16 @@
 number: 797
 title: "Drizzle: The TypeScript SQL ORM"
 date: 1721386800000
-url: https://traffic.libsyn.com/syntax/Syntax_-_797.mp3
+url: https://traffic.megaphone.fm/FSI5048751142.mp3
 youtube_url: https://www.youtube.com/watch?v=Hh9xqRWYEJs
-guest:
-  - name: Alex Blokh
-    github: AlexBlokh
-    twitter: _alexblokh
-    of: Drizzle
-    url: https://orm.drizzle.team/
-  - name: Andrew Sherman
-    github: AndriiSherman
-    twitter: andrii_sherman
-    of: Drizzle
-    url: https://orm.drizzle.team/
-    social:
-      - https://www.linkedin.com/in/andrii-sherman-45a573164/
+guest: 
+- name: Andrew Sherman
+github: AndriiSherman
+twitter: andrii_sherman
+of: Drizzle
+social: 
+- https: //www.linkedin.com/in/andrii-sherman-45a573164/
+completed: true
 ---
 
 Scott and Wes chat with Alex Blokh and Andrew Sherman, the co-founders of Drizzle ORM, about building a modern ORM from the ground up. They dive into the importance of type safety, creating filters with Drizzle, and the differences between Drizzle and other ORMs like Prisma.

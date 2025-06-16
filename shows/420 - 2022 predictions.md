@@ -2,7 +2,8 @@
 number: 420
 title: 2022 Predictions
 date: 1641384000143
-url: https://traffic.libsyn.com/syntax/Syntax_-_420.mp3
+url: https://traffic.megaphone.fm/FSI1395109000.mp3
+completed: true
 ---
 
 In this episode of Syntax, Wes and Scott talk through their predictions for 2022.

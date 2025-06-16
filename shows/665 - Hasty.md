@@ -2,7 +2,8 @@
 number: 665
 title: CSS Nesting is Here!
 date: 1694433600253
-url: https://traffic.libsyn.com/syntax/Syntax_-_665.mp3
+url: https://traffic.megaphone.fm/FSI3731375396.mp3
+completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about the arrival of CSS nesting. What is CSS nesting? How does CSS nesting work? And does it work in all browsers?

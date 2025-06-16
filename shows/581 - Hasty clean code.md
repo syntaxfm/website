@@ -2,7 +2,8 @@
 number: 581
 title: Clean vs Sloppy Code
 date: 1677499200598
-url: https://traffic.libsyn.com/syntax/Syntax_-_581.mp3
+url: https://traffic.megaphone.fm/FSI3115385393.mp3
+completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about the difference between sloppy code and clean code, how to establish rules for your code base, and how to enforce your rules.

@@ -2,7 +2,8 @@
 number: 82
 title: Top 18 New Things in JS - Part 2
 date: 1539176400685
-url: https://traffic.libsyn.com/syntax/Syntax082.mp3
+url: https://traffic.megaphone.fm/FSI4625106838.mp3
+completed: true
 ---
 
 In this episode Wes and Scott continue the discussion of their favorite top 18 new things in Javascript.

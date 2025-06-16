@@ -2,13 +2,13 @@
 number: 505
 title: Supper Club × Steve Ruiz Building a Drawing App
 date: 1662120000212
-url: https://traffic.libsyn.com/syntax/Syntax_-_505.mp3
-guest:
-  name: Steve Ruiz
-  of: TLDraw
-  github: steveruizok
-  twitter: steveruizok
-  url: https://www.steveruiz.me/
+url: https://traffic.megaphone.fm/FSI5897543947.mp3
+guest: 
+name: Steve Ruiz
+of: TLDraw
+github: steveruizok
+twitter: steveruizok
+completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Steve Ruiz about how he built tldraw, how he manages state, what was done to support mobile, and more.

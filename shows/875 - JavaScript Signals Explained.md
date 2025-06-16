@@ -2,8 +2,9 @@
 number: 875
 title: JavaScript Signals Explained
 date: 1739185200000
-url: https://traffic.libsyn.com/syntax/Syntax_-_875.mp3
+url: https://traffic.megaphone.fm/FSI8545847836.mp3
 youtube_url: https://www.youtube.com/watch?v=kZnQSrP-Yo4
+completed: true
 ---
 	
 JavaScript is missing a built-in way to make variables reactive—but Signals might change that. Scott and Wes break down what Signals are, how they compare to React state, and how different frameworks like Preact, Solid, Vue, and Qwik are already using them.

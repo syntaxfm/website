@@ -2,8 +2,9 @@
 number: 901
 title: "JS News: New React & Svelte APIs, RSC Updates, Redwood and Storybook"
 date: 1747047600000
-url: https://traffic.libsyn.com/syntax/Syntax_-_901.mp3
+url: https://traffic.megaphone.fm/FSI8146635815.mp3
 youtube_url: https://www.youtube.com/watch?v=hosIXZOq3xM
+completed: true
 ---
 	
 Scott and Wes break down the latest in JavaScript news, including new async patterns in Svelte, React Server Component tooling with Parcel, and Redwood’s push into Cloudflare with its new SDK. They also cover what’s new in Storybook 9 Beta, from visual testing to a sleeker, lighter build.

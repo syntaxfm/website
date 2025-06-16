@@ -2,8 +2,9 @@
 number: 811
 title: "NodeJS Evolves"
 date: 1724220000000
-url: https://traffic.libsyn.com/syntax/Syntax_811_final.mp3
+url: https://traffic.megaphone.fm/FSI2338549697.mp3
 youtube_url: https://youtu.be/8oU_TTbG-O8
+completed: true
 ---
 
 In this episode of Syntax, Wes and Scott talk about the latest features in Node.js, including native support for TypeScript, .env parsing, a built-in test runner, watch mode, SQLite integration, glob support, and top-level await. They also discuss some wishlist items, and experimental features like WebSocket support and the require module.

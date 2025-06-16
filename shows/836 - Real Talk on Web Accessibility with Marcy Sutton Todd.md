@@ -2,15 +2,15 @@
 number: 836
 title: Real Talk on Web Accessibility with Marcy Sutton Todd
 date: 1729249200000
-url: https://traffic.libsyn.com/syntax/Syntax_-_836.mp3
+url: https://traffic.megaphone.fm/FSI1638814177.mp3
 youtube_url: https://www.youtube.com/watch?v=A7cVW-8tCXY
-guest:
-  name: Marcy Sutton Todd
-  github: marcysutton
-  twitter: marcysutton
-  of: Testing Accessibility
-  url: https://testingaccessibility.com
-  social: https://marcysutton.com
+guest: 
+name: Marcy Sutton Todd
+github: marcysutton
+twitter: marcysutton
+of: Testing Accessibility
+social: https://marcysutton.com
+completed: true
 ---
 
 Scott and Wes talk with Marcy Sutton Todd, a senior front-end developer and accessibility advocate, about practical ways for developers to learn about and improve web accessibility.

@@ -2,8 +2,9 @@
 number: 757
 title: "Potluck: Is Gatsby Dead? Shadow Dom, AI Summaries, Self Hosting + More"
 date: 1713351600000
-url: https://traffic.libsyn.com/syntax/Syntax_-_757.mp3
+url: https://traffic.megaphone.fm/FSI1136166536.mp3
 youtube_url: https://www.youtube.com/watch?v=bHavi6-S1Y4
+completed: true
 ---
 
 Scott and Wes serve up answers to community questions, from navigating Light DOM vs. Shadow DOM to diving into tools for data extraction. Plus, they dish out insights on Gatsby in 2024, utilizing JavaScript 'wheel events', and explore the possibilities of hosting a website at home.

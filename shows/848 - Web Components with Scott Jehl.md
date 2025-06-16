@@ -2,15 +2,15 @@
 number: 848
 title: "Web Components Can’t Save Us with Scott Jehl"
 date: 1731672000000
-url: https://traffic.libsyn.com/syntax/Syntax_-_848.mp3
+url: https://traffic.megaphone.fm/FSI3067809142.mp3
 youtube_url: https://www.youtube.com/watch?v=SGFx71uNbe4
-guest:
-  name: Scott Jehl
-  github: scottjehl
-  twitter: scottjehl
-  of: Squarespace
-  url: https://scottjehl.com/
-  social: https://mstdn.social/@scottjehl
+guest: 
+name: Scott Jehl
+github: scottjehl
+twitter: scottjehl
+of: Squarespace
+social: https://mstdn.social/@scottjehl
+completed: true
 ---
 
 Scott and Wes talk with Scott Jehl about the benefits, challenges, and use cases of web components, particularly in design systems and performance.
