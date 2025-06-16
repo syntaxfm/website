@@ -3,7 +3,6 @@ number: 67
 title: Hasty Treat - Goal Setting
 date: 1534770000249
 url: https://traffic.megaphone.fm/FSI4561156074.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk goal setting - why it's important, when to do it, how to stick to them, and more. Tweet us your goals with the hashtag #syntaxgoals.

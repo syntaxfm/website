@@ -3,7 +3,6 @@ number: 402
 title: STUMP'D Interview Questions - CSS Edition
 date: 1635944400142
 url: https://traffic.megaphone.fm/FSI5760854049.mp3
-completed: true
 ---
 
 In this episode of Syntax, Scott and Wes are back with another edition of "Stump'd!" where they try to stump each other with interview questions.

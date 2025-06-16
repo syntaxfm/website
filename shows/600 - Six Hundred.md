@@ -10,7 +10,6 @@ github: dcramer
 twitter: zeeg
 social: 
 - https: //www.threads.net/@zeeg
-completed: true
 ---
 
 In the 600th episode of Syntax, Wes and Scott talk about the big announcement about Syntax's future, exciting new opportunities coming for the show, and more!

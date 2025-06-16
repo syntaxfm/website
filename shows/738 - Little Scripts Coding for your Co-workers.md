@@ -4,7 +4,6 @@ title: "Little Scripts: Coding for your Co-workers"
 date: 1709553600882
 url: https://traffic.megaphone.fm/FSI2609879365.mp3
 youtube_url: https://www.youtube.com/watch?v=JFYGqxtD82s
-completed: true
 ---
 
 Process is important. This show is dedicated to examples of non-developer tasks that can be improved by coding scripts. Join Scott and Wes for a deep dive into automation magic.

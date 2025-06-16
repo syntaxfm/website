@@ -9,7 +9,6 @@ github: jaredpalmer
 twitter: jaredpalmer
 social: 
 - https: //www.linkedin.com/in/jaredlpalmer/
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Jared Palmer about Turborepo, how it fits in your tech stack, and what it was like being acquired by Vercel.

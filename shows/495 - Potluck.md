@@ -3,7 +3,6 @@ number: 495
 title: Potluck - API Fetching × PDF Creation × tRPC × Stripe vs PayPal
 date: 1660132800533
 url: https://traffic.megaphone.fm/FSI7129050774.mp3
-completed: true
 ---
 
 In this potluck episode of Syntax, Wes and Scott answer your questions about middleman for API fetching, when to introduce SvelteKit, generating PDFs server side, trade offs of being an entrepreneur vs employee, and more!

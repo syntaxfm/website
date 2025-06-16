@@ -4,7 +4,6 @@ title: Is Cursor AI the VS Code Killer?
 date: 1726657200000
 url: https://traffic.megaphone.fm/FSI2377868727.mp3
 youtube_url: https://www.youtube.com/watch?v=0V7RePtB33g
-completed: true
 ---
 
 Scott and Wes serve up a discussion on AI coding assistants with a deep look at Cursor AI, exploring its unique features like multi-line auto-complete and Smart Rewrites. They also discuss why Cursor’s intuitive UI stands out and tackle the big question: is it worth the investment?

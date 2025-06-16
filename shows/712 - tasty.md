@@ -3,7 +3,6 @@ number: 712
 title: 2024 Predictions
 date: 1704283200936
 url: https://traffic.megaphone.fm/FSI6343632460.mp3
-completed: true
 ---
 
 Wes and Scott give their predictions for 2024 in JavaScript, frameworks, server-side JS, tooling, CSS, developer ecosystem, and AI tooling.

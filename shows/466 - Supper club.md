@@ -8,7 +8,6 @@ name: Anselm Hannemann
 github: anselmh
 twitter: helloanselm
 social: https://wdrl.info/
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Anselm Hannemann about burning out, trying out gardening, and how getting away from the screen can help restore your creative energy.

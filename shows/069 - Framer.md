@@ -3,7 +3,6 @@ number: 69
 title: Hasty Treat - Framer X and Prototyping Tools
 date: 1535374800304
 url: https://traffic.megaphone.fm/FSI9091109562.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about prototyping and design tools in the development space, specifically Framer X - what it is, what it isn't, and some cool stuff coming down the pipeline.

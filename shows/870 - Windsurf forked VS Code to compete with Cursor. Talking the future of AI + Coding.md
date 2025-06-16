@@ -9,7 +9,6 @@ guest:
 github: khou22
 twitter: _mohansolo
 of: Windsurf
-completed: true
 ---
 
 Wes and Scott talk with Kevin Hou and Varun Mohan from Windsurf about the evolving landscape of AI in coding, and the future of software development.

@@ -3,7 +3,6 @@ number: 199
 title: Hasty Treat - So you want to make a course... Will people buy it?
 date: 1574690400961
 url: https://traffic.megaphone.fm/FSI5927772234.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about making courses — techniques, best practices, things to avoid, and more!

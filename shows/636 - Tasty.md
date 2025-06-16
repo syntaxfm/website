@@ -3,7 +3,6 @@ number: 636
 title: What are Headless Components?
 date: 1688558400349
 url: https://traffic.megaphone.fm/FSI7613503122.mp3
-completed: true
 ---
 
 In this episode of Syntax, Wes and Scott talk about what headless components are, the why and when to use headless components, and how to best implement them.

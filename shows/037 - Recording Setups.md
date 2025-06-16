@@ -3,7 +3,6 @@ number: 37
 title: Recording Screencasts - Hardware, Software, Dos and Don'ts
 date: 1521046080243
 url: https://traffic.megaphone.fm/FSI7155822872.mp3
-completed: true
 ---
 
 In this episode, Scott and Wes everything about their recording — from gear to software to tips and tricks for creating a good screencast.

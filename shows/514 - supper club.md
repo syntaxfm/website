@@ -9,7 +9,6 @@ github: hurshagrawal
 of: Arc Browser
 twitter: hursh
 social: https://www.linkedin.com/in/hurshagrawal/
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Hursh Agrawal of The Browser Company about Scott's favorite browser, Arc. How do you make a browser in 2022? Will there be a Windows version? And who is the target market for Arc?

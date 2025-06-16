@@ -10,7 +10,6 @@ github: colbyfayock
 twitter: colbyfayock
 social: 
 - https: //www.instagram.com/colbyfayock/
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Colby Fayock about Cloudinary's new AI tools, media flow, removing backgrounds, using AI for video templates, and Colby's stack for creating YouTube content.

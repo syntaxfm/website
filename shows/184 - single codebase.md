@@ -9,7 +9,6 @@ of: Missive
 github: EtienneLem
 twitter: EtienneLem
 social: https://www.linkedin.com/in/etienne-lemay-6b8b0638/
-completed: true
 ---
 
 In this episode, Scott and Wes talk with Etienne Lemay, developer of [Missive](https://missiveapp.com/), about his experience building Missive, best practices, and the pros and cons of building desktop and mobile apps with a single codebase.

@@ -3,7 +3,6 @@ number: 27
 title: GraphQL? Here is what you need to know!
 date: 1515593606009
 url: https://traffic.megaphone.fm/FSI2818862462.mp3
-completed: true
 ---
 
 ## Snipcart — Sponsor

@@ -3,7 +3,6 @@ number: 485
 title: STUMP’D Interview Coding Questions
 date: 1658145600053
 url: https://traffic.megaphone.fm/FSI9031132505.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes try to stump each other with coding interview questions like what is a higher order component? What is functional programming? And more!

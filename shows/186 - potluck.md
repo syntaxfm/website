@@ -3,7 +3,6 @@ number: 186
 title: Potluck - Terminal Configs × CSS Reset × Flexbox × Freelancing × NPM Dependencies × Project Hand-off × More!
 date: 1570626000237
 url: https://traffic.megaphone.fm/FSI7129050774.mp3
-completed: true
 ---
 
 It's another potluck! In this episode, Scott and Wes answer your questions about freelancing, handing off projects to other developers, terminal configs, podcast apps, how much flexbox is too much flexbox, npm dependencies, and more!

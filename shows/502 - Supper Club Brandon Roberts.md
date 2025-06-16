@@ -9,7 +9,6 @@ github: brandonroberts
 of: Appwrite
 twitter: brandontroberts
 social: https://www.youtube.com/@BrandonRobertsDev
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Brandon Roberts about Appwrite, how Appwrite works, who it's for, as well as his thoughts on Angular, Remix, and more.

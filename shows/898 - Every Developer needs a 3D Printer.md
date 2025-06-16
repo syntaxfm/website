@@ -4,7 +4,6 @@ title: "Every Developer Needs a 3D Printer"
 date: 1746010800000
 url: https://traffic.megaphone.fm/FSI7524369618.mp3
 youtube_url: https://www.youtube.com/watch?v=n0wkGjIyqiU
-completed: true
 ---
 
 Wes and Scott talk all things 3D printing—from fixing every day items to organizing tools, printing gadgets, and even teaching their kids entrepreneurship.

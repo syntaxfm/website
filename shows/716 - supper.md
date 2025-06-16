@@ -8,7 +8,6 @@ name: Yagiz Nizipli
 github: anonrig
 twitter: yagiznizipli
 of: Node.js
-completed: true
 ---
 
 Yagiz Nizipli talks about his involvement with Node.js, implementing .env, how he finds areas to improve in performance, the happy path vs the hot path, and new features coming to Node.js.

@@ -3,7 +3,6 @@ number: 36
 title: Hasty Treat — Freelancing Hot Tips 🔥
 date: 1520615390261
 url: https://traffic.megaphone.fm/FSI8518642032.mp3
-completed: true
 ---
 
 In this Hasty Treat (Short episode) we answer your questions about Freelancing - how to charge more, building a portfolio, finding clients and our thoughts on using pre-made WordPress themes.

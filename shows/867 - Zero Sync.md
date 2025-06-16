@@ -4,7 +4,6 @@ title: Zero Sync is the Future of Data Loading
 date: 1736766000000
 url: https://traffic.megaphone.fm/FSI7945713798.mp3
 youtube_url: https://www.youtube.com/watch?v=Mv6BzoO_H0w
-completed: true
 ---
 	
 What’s the deal with Zero Sync? Scott and Wes dive into this cutting-edge database tech, exploring its real-time interactivity, blazing-fast performance, and how it stacks up against the competition. Plus, they break down setup, querying, authentication, and whether it’s ready for prime time.

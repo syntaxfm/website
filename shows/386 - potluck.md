@@ -3,7 +3,6 @@ number: 386
 title: Potluck - Sass × Houdini × No JS? × Solid Project × First Dev Job Tips × Bartering × DRM × Dev Laptops × Databases × Frontity × More!
 date: 1631106000824
 url: https://traffic.megaphone.fm/FSI7129050774.mp3
-completed: true
 ---
 
 It's another Potluck! In this episode, Scott and Wes answer your questions about Sass, Houdini, JS requirements, tips for your first dev job, dev laptops, databases, Frontity, and more!

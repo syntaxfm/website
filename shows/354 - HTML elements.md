@@ -3,7 +3,6 @@ number: 354
 title: The Surprisingly Exciting World of HTML Elements
 date: 1621429200177
 url: https://traffic.megaphone.fm/FSI6994722930.mp3
-completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk about HTML — interesting HTML elements, things you might not know, wish lists for the future, and more!

@@ -3,7 +3,6 @@ number: 621
 title: The New Syntax Site × Ingest, Stack, AI and more
 date: 1685534400903
 url: https://traffic.megaphone.fm/FSI1746824648.mp3
-completed: true
 ---
 
 In this episode of Syntax, Wes and Scott talk through the work in progress on the new Syntax website, how to tackle all the moving parts, what stack they picked, AI, and more.

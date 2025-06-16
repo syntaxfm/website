@@ -3,7 +3,6 @@ number: 165
 title: Hasty Treat - VSCode Treats Part 2
 date: 1564416000607
 url: https://traffic.megaphone.fm/FSI6398921915.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about more of their favorite VSCode tasty treats - extensions, features, keyboard shortcuts and more!

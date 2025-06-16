@@ -10,7 +10,6 @@ of: Netflix
 twitter: ThePrimeagen
 social: 
 - https: //www.twitch.tv/ThePrimeagen
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with The Primeagen about his streaming set up, how he decides what to stream, why he makes the kind of content he does, and why he loves Vim.

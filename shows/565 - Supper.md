@@ -8,7 +8,6 @@ guest:
 github: rexxars
 of: Sanity
 twitter: rexxars
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Simen & Espen from Sanity about what Sanity is, who uses Sanity, what is a content lake, how Sanity works with React or TypeScript, what GROQ is, how portable text works, and of course, the supper club questions.

@@ -10,7 +10,6 @@ github: timClicks
 twitter: timClicks
 social: 
 - https: //www.linkedin.com/in/timmcnamaranz/
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Tim McNamara, author of Rust in Action about what Rust is, how to get started learning Rust, and ideas of good projects to begin learning Rust with.

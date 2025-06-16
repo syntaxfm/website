@@ -10,7 +10,6 @@ of: Neovim
 twitter: teej_dv
 social: 
 - https: //www.twitch.tv/teej_dv
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with TJ DeVries about his work on Neovim, programming in Lua, the benefits of RPC, live streaming your work day, and PDE.

@@ -3,7 +3,6 @@ number: 671
 title: Tauri Vs Electron - Desktop Apps with Web Tech
 date: 1695643200113
 url: https://traffic.megaphone.fm/FSI3309628087.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about the building desktop apps using Electron vs Tauri.

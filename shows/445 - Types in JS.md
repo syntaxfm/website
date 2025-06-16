@@ -3,7 +3,6 @@ number: 445
 title: Types in JS?
 date: 1649073600425
 url: https://traffic.megaphone.fm/FSI7605162922.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about a proposal for type syntax in JavaScript.

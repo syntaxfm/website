@@ -4,7 +4,6 @@ title: Components We Need on Every Project
 date: 1716980400000
 url: https://traffic.megaphone.fm/FSI5987287236.mp3
 youtube_url: https://www.youtube.com/watch?v=st2JGON63Kg
-completed: true
 ---
 
 In today's episode, Scott and Wes dive into the essential components they need on every web project, discussing whether to build them from scratch or leverage existing libraries—everything from navigation bars and modals to toast messages and icons.

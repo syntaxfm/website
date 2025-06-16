@@ -11,7 +11,6 @@ github: kiwicopple
 twitter: kiwicopple
 of: Supabase
 social: https://paul.copplest.one/
-completed: true
 ---
 
 Scott and CJ chat with Paul Copplestone, CEO and co-founder of Supabase, about the journey of building an open source alternative to Firebase. Learn about the tech stack, the story behind their excellent documentation, and how Supabase balances business goals with open-source values.

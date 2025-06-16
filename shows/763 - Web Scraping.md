@@ -4,7 +4,6 @@ title: Web Scraping + Reverse Engineering APIs
 date: 1714561200000
 url: https://traffic.megaphone.fm/FSI7974999435.mp3
 youtube_url: https://www.youtube.com/watch?v=5xWZT0MWz-4
-completed: true
 ---
 
 Web scraping 101! Dive into the world of web scraping with Scott and Wes as they explore everything from tooling setup and navigating protected routes to effective data management. In this Tasty Treat episode, you'll gain invaluable insights and techniques to scrape (almost) any website with ease.

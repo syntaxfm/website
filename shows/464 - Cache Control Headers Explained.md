@@ -3,7 +3,6 @@ number: 464
 title: Cache Control Headers Explained
 date: 1653912000466
 url: https://traffic.megaphone.fm/FSI7365098917.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes answer a question about caching, cache control headers, an explanation of the fields for caching.

@@ -8,7 +8,6 @@ name: Nikolas Burk
 github: nikolasburk
 of: Prisma
 twitter: nikolasburk
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Nikolas Burk from Prisma about the role an ORM plays in a tech stack, how Prisma has changed over the years, ways to query data in Prisma, and how migrations work with Prisma.

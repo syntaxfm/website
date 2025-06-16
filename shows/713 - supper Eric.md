@@ -10,7 +10,6 @@ twitter: meyerweb
 of: Igalia
 social: 
 - https: //meyerweb@mastodon.social/@Meyerweb
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Eric Meyer about his start on the web, the early days of CSS, where CSS is headed, are we going to lose a browser, and more!

@@ -11,7 +11,6 @@ twitter: glcst
 of: Turso
 # A single social Link: 
 social: https://www.linkedin.com/in/glommer/
-completed: true
 ---
 
 Scott and Wes chat with Glauber Costa from Turso about the evolution of databases and the fascinating technology behind Turso. They dive into topics like the benefits of massive multi-tenancy, vector search, and why Glauber made the switch from NoSQL to relational databases.

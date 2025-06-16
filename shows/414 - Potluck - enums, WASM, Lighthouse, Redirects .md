@@ -3,7 +3,6 @@ number: 414
 title: Potluck - enums, WASM, Lighthouse, Redirects
 date: 1639576800886
 url: https://traffic.megaphone.fm/FSI7572824628.mp3
-completed: true
 ---
 
 In this episode of Syntax, Scott and Wes answer your questions on a Potluck episode of Syntax.

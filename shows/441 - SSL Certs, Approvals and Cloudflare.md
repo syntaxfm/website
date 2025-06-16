@@ -3,7 +3,6 @@ number: 441
 title: SSL Certs, Approvals and Cloudflare
 date: 1647864000500
 url: https://traffic.megaphone.fm/FSI4352180995.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about getting SSL certificates set up between your hosting, Cloudflare, and other web apps you may use.

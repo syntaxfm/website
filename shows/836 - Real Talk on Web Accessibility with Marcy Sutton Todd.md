@@ -10,7 +10,6 @@ github: marcysutton
 twitter: marcysutton
 of: Testing Accessibility
 social: https://marcysutton.com
-completed: true
 ---
 
 Scott and Wes talk with Marcy Sutton Todd, a senior front-end developer and accessibility advocate, about practical ways for developers to learn about and improve web accessibility.

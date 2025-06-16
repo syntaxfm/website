@@ -3,7 +3,6 @@ number: 301
 title: Hasty Treat - CSS Grid Masonry (Grid Level 3)
 date: 1605535200919
 url: https://traffic.megaphone.fm/FSI6263148178.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about CSS Grid Level 3 — why it's such a cool thing and why they've been waiting for it for so long.

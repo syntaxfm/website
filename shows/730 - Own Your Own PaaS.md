@@ -4,7 +4,6 @@ title: Own your own PaaS
 date: 1707912000321
 url: https://traffic.megaphone.fm/FSI7657829299.mp3
 youtube_url: https://youtu.be/nCWznQ0HY9c
-completed: true
 ---
 
 Scott and Wes discuss about the benefits of owning your own PaaS (platform as a service), the main alternatives in the space, and ways to make passion projects more financially viable!

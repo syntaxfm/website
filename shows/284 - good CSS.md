@@ -3,7 +3,6 @@ number: 284
 title: Writing Good CSS
 date: 1600261200352
 url: https://traffic.megaphone.fm/FSI9154164704.mp3
-completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk about writing good CSS. 

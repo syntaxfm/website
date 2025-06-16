@@ -9,7 +9,6 @@ of: Google, CSS WG
 github: bramus
 twitter: bramus
 social: https://front-end.social/@bramus
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Bramus Van Damme all about CSS, what the CSS Working Group is, how he got good at blogging, setting custom property types in CSS, view transition API, and so much more.

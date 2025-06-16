@@ -4,7 +4,6 @@ title: Streaming Video in 2025
 date: 1733914800000
 url: https://traffic.megaphone.fm/FSI6092964068.mp3
 youtube_url: https://www.youtube.com/watch?v=JsRdilMlRjA
-completed: true
 ---
 	
 Scott and Wes break down the tech behind video streaming for the web, from transcoding and variants to CDN and access control. They also share insights on tools like Mux, Cloudflare Stream, and ffmpeg, plus tips for managing bandwidth, hosting, and costs.

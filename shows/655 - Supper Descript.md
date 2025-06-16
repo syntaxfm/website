@@ -8,7 +8,6 @@ name: Andrew Lisowski
 of: Descript
 github: hipstersmoothie
 twitter: HipsterSmoothie
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Andrew Lisowski about working on Descript, web streams vs local storage, using state machines, writing CSS with Radix, monorepos, and more.

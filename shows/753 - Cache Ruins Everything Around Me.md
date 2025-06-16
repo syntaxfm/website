@@ -4,7 +4,6 @@ title: Cache Ruins Everything Around Me
 date: 1712574000293
 url: https://traffic.megaphone.fm/FSI7601371047.mp3
 youtube_url: https://www.youtube.com/watch?v=j8oD976nhZk
-completed: true
 ---
 
 Scott and Wes dive into the cache problem, tackling user-specific data and caching security. From marketing A/B testing to content negotiation, they explore various challenges and solutions, including different URL/query parameters, edge logic, and client-side caching.

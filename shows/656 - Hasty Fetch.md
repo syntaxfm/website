@@ -3,7 +3,6 @@ number: 656
 title: 8 Tricks When Using the Fetch() API
 date: 1692619200247
 url: https://traffic.megaphone.fm/FSI9157464443.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about 8 tricks to try when using the Fetch() API.

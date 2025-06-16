@@ -7,7 +7,6 @@ guest:
 name: Benjamin Dunphy
 github: dunphyben
 twitter: benghamine
-completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk with Benjamin Dunphy about running conferences — what to do, what not to do, and what makes a good online conference in a post-Covid world!

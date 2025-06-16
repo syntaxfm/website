@@ -3,7 +3,6 @@ number: 211
 title: Hasty Treat - Modules in Node
 date: 1578319200102
 url: https://traffic.megaphone.fm/FSI6792721796.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about modules in Node — what are they, how they're different from browser modules, and more!

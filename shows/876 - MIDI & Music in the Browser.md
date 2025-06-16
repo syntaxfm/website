@@ -4,7 +4,6 @@ title: "MIDI & Music in the Browser"
 date: 1739361600000
 url: https://traffic.megaphone.fm/FSI5349566916.mp3
 youtube_url: https://www.youtube.com/watch?v=ZP3yfGwVjio
-completed: true
 ---
 
 Wes and Scott talk about the Web Audio and Web MIDI APIs, diving into how they enable powerful music and sound manipulation in the browser. They explore MIDI messaging, synthesizing audio, creative coding with music, and share hands-on projects, tips, and libraries to get started.

@@ -11,7 +11,6 @@ twitter: andrii_sherman
 of: Drizzle
 social: 
 - https: //www.linkedin.com/in/andrii-sherman-45a573164/
-completed: true
 ---
 
 Scott and Wes chat with Alex Blokh and Andrew Sherman, the co-founders of Drizzle ORM, about building a modern ORM from the ground up. They dive into the importance of type safety, creating filters with Drizzle, and the differences between Drizzle and other ORMs like Prisma.

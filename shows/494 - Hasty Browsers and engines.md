@@ -3,7 +3,6 @@ number: 494
 title: Browsers, Engines, Support and the Other Guys
 date: 1659960000726
 url: https://traffic.megaphone.fm/FSI8578730387.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about the various web browers that might show up in your analytics and whether you need to worry about supporting them or not.

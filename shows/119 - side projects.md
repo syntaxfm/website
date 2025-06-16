@@ -3,7 +3,6 @@ number: 119
 title: Hasty Treat - Better Living Through Side Projects
 date: 1550498400321
 url: https://traffic.megaphone.fm/FSI8825277327.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about side projects — what you can learn, why they're great, how to come up with ideas, and more!

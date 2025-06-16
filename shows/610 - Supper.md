@@ -8,7 +8,6 @@ name: Zach Lloyd
 twitter: zachlloydtweets
 linkedin: zachlloyd
 github: zachlloyd
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Zach Lloyd about how Google Sheets works, why Zach wanted to build Warp, why did they use Rust to write Warp in, is Warp going to come to Windows, and more!

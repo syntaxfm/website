@@ -3,7 +3,6 @@ number: 438
 title: Part 2 of Wes and Scott React to the State of JS
 date: 1646827200412
 url: https://traffic.megaphone.fm/FSI6067632287.mp3
-completed: true
 ---
 
 In this second part episode of Syntax, Wes and Scott continue talking about the 2021 State of JavaScript survey: mobile and desktop libraries, testing, monorepo, runtimes, flavors of JavaScript, and more!

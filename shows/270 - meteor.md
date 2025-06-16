@@ -8,7 +8,6 @@ name: Filipe Névola
 github: filipenevola
 twitter: filipenevola
 social: https://medium.com/@filipenevola
-completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk with Filipe Névola about Meteor and the exciting things happening in the Meteor world!

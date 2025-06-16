@@ -3,7 +3,6 @@ number: 724
 title: "Potluck: Is Virtual Dom Bad?"
 date: 1706702400791
 url: https://traffic.megaphone.fm/FSI5683143424.mp3
-completed: true
 ---
 
 In this potluck episode of Syntax, Wes and Scott answer your questions about Alpine JS or HTMX as a replacement for Pug, what powers in-app browsers, the importance of key-commands and shortcuts, and why Virtual Dom is 'bad'.

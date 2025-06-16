@@ -10,7 +10,6 @@ of: OpenSauced
 twitter: bdougieYO
 social: 
 - https: //www.youtube.com/c/bdougie
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with bdougie about his work on Open Sauced, thoughts on getting into open source development, and his live streaming set up.

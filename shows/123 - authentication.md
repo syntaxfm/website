@@ -3,7 +3,6 @@ number: 123
 title: Hasty Treat - Authentication - LocalStorage vs Cookies vs Sessions vs Tokens
 date: 1551708000946
 url: https://traffic.megaphone.fm/FSI6926050796.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about authentication — the difference between localStorage, cookies, session, tokens and more!

@@ -4,7 +4,6 @@ title: "Too much AI × Disappointed in Firefox × Planning New Projects × Hard 
 date: 1738152000000
 url: https://traffic.megaphone.fm/FSI5471756758.mp3
 youtube_url: https://www.youtube.com/watch?v=UgN_LGsD2GE
-completed: true
 ---
 
 Wes and Scott answer questions about HTML semantics, TypeScript, adapting to AI’s impact on web development, and the best and worst browsers for developers. They also tackle project planning, deploying SvelteKit apps, and navigating online opinions in tech.

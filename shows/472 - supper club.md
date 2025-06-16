@@ -9,7 +9,6 @@ github: eduardoboucas
 twitter: eduardoboucas
 social: 
 - https: //speakerdeck.com/eduardoboucas
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk edge functions and Deno with Eduardo Bouças of Netlify.

@@ -9,7 +9,6 @@ github: Kilian
 of: Polypane
 twitter: kilianvalkhof
 social: https://mastodon.social/@Kilian
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Kilian Valkhof about his work on Polypane, a browser for developers. How is Polypane built? Why does he have a focus on accessibility in Polypane?

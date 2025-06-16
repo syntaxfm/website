@@ -10,7 +10,6 @@ github: argyleink
 twitter: argyleink
 of: Google Chrome
 social: 
-completed: true
 ---
 
 In this episode of Syntax, Wes and Scott talk with Una Kravetz and Adam Argyle from Google Chrome about the evolution of CSS, new features, and the push toward more advanced UI capabilities on the web. They discuss the introduction of CSS versioning, exciting new properties like text-box-trim, state queries and scroll state functionalities, select, and more!  

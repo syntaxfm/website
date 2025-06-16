@@ -3,7 +3,6 @@ number: 56
 title: Design Systems
 date: 1531314000456
 url: https://traffic.megaphone.fm/FSI5596026205.mp3
-completed: true
 ---
 
 In this highly requested episode, Scott and Wes talk about design systems, what they are, why you may want or need one, how to use them, efficiency, best practices, and much more...

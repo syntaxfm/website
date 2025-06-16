@@ -3,7 +3,6 @@ number: 5
 title: How to Slam Dunk Freelancing
 date: 1501684018000
 url: https://traffic.megaphone.fm/FSI9949265567.mp3
-completed: true
 ---
 
 ## Sponsor

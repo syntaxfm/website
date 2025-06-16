@@ -4,7 +4,6 @@ title: React Miami Live Show
 date: 1715770800000
 url: https://traffic.megaphone.fm/FSI7919560163.mp3
 youtube_url: https://www.youtube.com/watch?v=oOoBlD7zHRo
-completed: true
 ---
 
 Welcome to a special live edition of Syntax, recorded at React Miami! Join Scott and Wes as they dish out games galore, from Spot the Syntax Error to JS or NAYS, all while engaging with the audience in this lively session of coding camaraderie. Plus, who's the better programmer? Stay tuned to find out!

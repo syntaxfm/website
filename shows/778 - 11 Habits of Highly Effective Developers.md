@@ -4,7 +4,6 @@ title: 11 Habits of Highly Effective Developers
 date: 1717585200000
 url: https://traffic.megaphone.fm/FSI2064227687.mp3
 youtube_url: https://www.youtube.com/watch?v=wZoJBLjS6Tw
-completed: true
 ---
 
 Today, Scott and Wes dive into the 11 habits of effective web developers, from understanding stakeholder goals to maintaining a work-life balance. We'll explore the importance of continuous learning, having a problem-solver mentality, and being empathetic towards coworkers and users—let's get into it!

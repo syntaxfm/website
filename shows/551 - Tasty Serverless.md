@@ -3,7 +3,6 @@ number: 551
 title: “Serverless” Databases
 date: 1671451200552
 url: https://traffic.megaphone.fm/FSI6312576143.mp3
-completed: true
 ---
 
 In this episode of Syntax, Wes and Scott talk about your options for database when you're working with serverless.

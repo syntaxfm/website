@@ -3,7 +3,6 @@ number: 408
 title: Troubleshooting
 date: 1637755200318
 url: https://traffic.megaphone.fm/FSI5290317391.mp3
-completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk about ways they troubleshoot issues with their code.

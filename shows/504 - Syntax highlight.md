@@ -3,7 +3,6 @@ number: 504
 title: Syntax Highlight
 date: 1661947200162
 url: https://traffic.megaphone.fm/FSI2281081267.mp3
-completed: true
 ---
 
 In this episode of Syntax, Wes and Scott review the websites you've submitted including Ruben Oliveira, Adam Collier, Consolecmnd, Brad Preston, and more!

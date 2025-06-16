@@ -3,7 +3,6 @@ number: 715
 title: Google & MS Duopoly, Frontend to Fullstack, Where to Put Business Logic + more(Potluck)
 date: 1704888000771
 url: https://traffic.megaphone.fm/FSI3975021478.mp3
-completed: true
 ---
 
 Wes and Scott answer your questions about duopoly in tech, tech stacks for creating content, switching from frontend to full stack, DSA knowledge, email HTML, and more!

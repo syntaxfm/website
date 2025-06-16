@@ -3,7 +3,6 @@ number: 325
 title: Hasty Treat - Keyboard Events Are Surprisingly Interesting
 date: 1612792800788
 url: https://traffic.megaphone.fm/FSI5329611907.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about keyboard events and some of the fascinating things you can do with them!

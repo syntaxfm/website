@@ -3,7 +3,6 @@ number: 683
 title: Spooky Coding Horror Stories 2023 - Part 1
 date: 1698062400366
 url: https://traffic.megaphone.fm/FSI9299656955.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes relate some spooky listener submitted coding horrors including updates for a large furniture retailer, pull request oversights, disallowing everything in a robots.txt, massive email fail, and more.

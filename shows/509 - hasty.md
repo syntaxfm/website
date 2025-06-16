@@ -3,7 +3,6 @@ number: 509
 title: Use Next-gen CSS Today (Post CSS Configs)
 date: 1662984000065
 url: https://traffic.megaphone.fm/FSI3304540368.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about next generation CSS that you can use today with PostCSS including importing, nesting, variables, media query ranges, custom media queries, and more.

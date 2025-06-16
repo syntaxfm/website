@@ -4,7 +4,6 @@ title: React Server Components with PHP, Selling Accessibility, WTF is Cloudflar
 date: 1716375600000
 url: https://traffic.megaphone.fm/FSI9279554213.mp3
 youtube_url: https://www.youtube.com/watch?v=pRLrhv1HgcE
-completed: true
 ---
 
 In this Potluck episode of Syntax, Scott and Wes tackle community questions on handling overwork, teaching programming to family, and React’s Server Components. They also discuss quantifying accessibility improvements, choosing course platforms, and navigating professional growth in challenging workplaces.

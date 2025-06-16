@@ -7,7 +7,6 @@ guest:
 name: Josh Comeau
 github: joshwcomeau
 twitter: joshwcomeau
-completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk with Josh Comeau about coding with your voice, accessibility, bootcamps, animation, and more!

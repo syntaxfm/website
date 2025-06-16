@@ -3,7 +3,6 @@ number: 177
 title: Hasty Treat - Moving from PHP to Node
 date: 1568034000490
 url: https://traffic.megaphone.fm/FSI5455360123.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about moving from PHP to Node — pitfalls to avoid, best practices and more!

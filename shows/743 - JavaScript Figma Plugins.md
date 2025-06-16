@@ -11,7 +11,6 @@ twitter: cameronmcefee
 of: Independent Creative Director
 social: 
 - https: //www.linkedin.com/in/cameronmcefee/
-completed: true
 ---
 
 Wes and Scott welcome Cameron McEfee, a seasoned creative director whose journey spans GitHub, Sentry.io, and the innovative realm of JavaScript plugins with his creation, GuideGuide. Cameron explores plugin building, iterating on the iconic Octocat for GitHub, and shedding light on the multifaceted roles of a creative director.

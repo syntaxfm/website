@@ -7,7 +7,6 @@ guest:
 name: Fred Schott
 github: fredkschott
 twitter: fredkschott
-completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk with Fred Schott about Pika Pkg, a new kind of package registry for the modern web.

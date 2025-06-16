@@ -8,7 +8,6 @@ name: Syed Balkhi
 of: Awesome Motive
 twitter: syedbalkhi
 social: https://www.instagram.com/syedbalkhi/
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Syed Balkhi about his experiences blogging and developing plugins in the WordPress ecosytem.

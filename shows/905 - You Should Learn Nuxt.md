@@ -5,7 +5,6 @@ date: 1748257200000
 url: https://traffic.megaphone.fm/FSI4803318106.mp3
 youtube_url: https://www.youtube.com/watch?v=sMYOigI5NjM
 hosts: 
-completed: true
 ---
 	
 CJ steps in for Scott and joins Wes to share his experience working with Nuxt, from routing and data fetching to the pros and cons of the framework. They break down the Nuxt ecosystem, directory structure, and how it handles server routes and modules.

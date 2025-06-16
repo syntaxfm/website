@@ -4,7 +4,6 @@ title: Copilot Kills Cursor? Reacting to Github Universe Keynote
 date: 1730718000000
 url: https://traffic.megaphone.fm/FSI4649458362.mp3
 youtube_url: https://www.youtube.com/watch?v=tw8WngbNsJA
-completed: true
 ---
 	
 Scott and Wes react to the big GitHub Universe announcements, recorded live at GitHub Universe. They dive into Copilot’s new features, exploring how its advancements stack up against Cursor AI in the battle for the ultimate AI-driven developer tool.

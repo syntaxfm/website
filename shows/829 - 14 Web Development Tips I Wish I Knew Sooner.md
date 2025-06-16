@@ -4,7 +4,6 @@ title: 14 Web Development Tips I Wish I Knew Sooner
 date: 1727866800000
 url: https://traffic.megaphone.fm/FSI4975083534.mp3
 youtube_url: https://www.youtube.com/watch?v=Ifh6mCMS9CQ
-completed: true
 ---
 
 Scott and Wes share 14 game-changing tips they wish they'd known earlier in their web dev careers. From embracing tools to learning by doing, these insights will help you level up your skills faster!

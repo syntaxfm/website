@@ -3,7 +3,6 @@ number: 618
 title: Potluck × JR Devs & Copilot × CSS Variable Limitations × SvelteKit
 date: 1684929600388
 url: https://traffic.megaphone.fm/FSI7129050774.mp3
-completed: true
 ---
 
 In this potluck episode of Syntax, Wes and Scott answer your questions about not becoming dependent on Copilot, CSS variable limitations, finding Sick Picks, lodash hate, and more!

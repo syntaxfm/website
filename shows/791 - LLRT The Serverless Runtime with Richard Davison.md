@@ -9,7 +9,6 @@ name: Richard Davison
 github: richarddd
 of: Amazon Web Services (AWS)
 social: https://www.linkedin.com/in/richard-davison-992462101/
-completed: true
 ---
 
 Scott and Wes chat with Richard Davison from AWS about LLRT, a new runtime tailored specifically for Lambda. They dive into the benefits of using LLRT, challenges with JavaScript in serverless, and why Rust was chosen for its development.

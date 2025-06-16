@@ -7,7 +7,6 @@ guest:
 name: Tanner Linsley
 github: tannerlinsley
 twitter: tannerlinsley
-completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk with Tanner Linsley about React Query, how it works, why you might want to use it, and more!

@@ -10,7 +10,6 @@ github: brianleroux
 twitter: brianleroux
 of: Begin
 social: https://indieweb.social/@brianleroux
-completed: true
 ---
 
 Wes and Scott talk with Brian LeRoux about not using a bundler, handling TypeScript, live reloading, Enhance being a meta framework, how Enhance handles CSS, his experience at AWS: Reinvent, and the state of JavaScript run times in 2024.

@@ -8,7 +8,6 @@ name: Rich Harris
 of: Svelte
 github: Rich-Harris
 twitter: rich_harris
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with the author of Svelte, Rich Harris, about what influenced the creation of Svelte, his thoughts on web components, the virtual DOM, why companies are switching to Svelte, and what's next for Svelte.

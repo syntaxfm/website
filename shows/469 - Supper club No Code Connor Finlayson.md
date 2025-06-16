@@ -7,7 +7,6 @@ guest:
 name: Connor Finlayson
 twitter: FinlaysonConnor
 social: https://www.youtube.com/c/ConnorFinlayson
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Connor Finlayson about his experience building and teaching no code projects.

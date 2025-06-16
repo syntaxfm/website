@@ -6,7 +6,6 @@ url: https://traffic.megaphone.fm/FSI4739732683.mp3
 guest: 
 name: Travis Neilson
 twitter: travisneilson
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Travis Neilson about his work at Google, YouTube music, and where AI is at now, and where it's headed in the future.

@@ -3,7 +3,6 @@ number: 521
 title: Syntactic Sugar, Declarative and First Class Citizens? What does that even mean?
 date: 1665403200711
 url: https://traffic.megaphone.fm/FSI9651592595.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes explain what the jargon you hear in JavaScript means.

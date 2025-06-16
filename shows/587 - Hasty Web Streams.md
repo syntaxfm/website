@@ -3,7 +3,6 @@ number: 587
 title: Web Streams Explained
 date: 1678708800952
 url: https://traffic.megaphone.fm/FSI6324485238.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes explain the what, why, and how of web streaming, and some of the jargon you might encounter with web streams.

@@ -8,7 +8,6 @@ name: Steve Ruiz
 of: TLDraw
 github: steveruizok
 twitter: steveruizok
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Steve Ruiz about how he built tldraw, how he manages state, what was done to support mobile, and more.

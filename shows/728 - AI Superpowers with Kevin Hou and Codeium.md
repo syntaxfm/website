@@ -9,7 +9,6 @@ name: Kevin Hou
 github: khou22
 twitter: kevinhou22
 of: Codeium
-completed: true
 ---
 
 In this supper club, Scott and Wes welcome Kevin Hou, Head of Product Engineering at Codeium, a blazing fast AI-powered code completion and chat tool for developers.

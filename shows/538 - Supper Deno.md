@@ -8,7 +8,6 @@ name: Ryan Dahl
 of: Deno
 github: ry
 twitter: 
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Ryan Dahl about Deno. Why was Deno created? What is Deno written in? How is Deno so much faster? And what's the future of Deno?

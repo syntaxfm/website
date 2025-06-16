@@ -3,7 +3,6 @@ number: 316
 title: 2021 Predictions
 date: 1609941600918
 url: https://traffic.megaphone.fm/FSI7744409423.mp3
-completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk about their predictions for 2021!

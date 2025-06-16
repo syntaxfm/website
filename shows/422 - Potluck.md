@@ -3,7 +3,6 @@ number: 422
 title: Potluck
 date: 1641988800286
 url: https://traffic.megaphone.fm/FSI7129050774.mp3
-completed: true
 ---
 
 In this episode of Syntax, Scott and Wes answer your questions on a Potluck episode of Syntax.

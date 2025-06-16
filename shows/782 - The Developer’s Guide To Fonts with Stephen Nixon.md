@@ -12,7 +12,6 @@ of: ArrowType
 social: 
 - https: //www.instagram.com/arrowtype
 hosts: 
-completed: true
 ---
 
 Scott and CJ are joined by Stephen Nixon of ArrowType to delve into the world of fonts and type for developers. They explore the intricacies of font creation, the utility of variable fonts, and offer tips for making visually appealing typography on the web.

@@ -4,7 +4,6 @@ title: Syntax Holiday Gift Guide
 date: 1731495600000
 url: https://traffic.megaphone.fm/FSI9412600012.mp3
 youtube_url: https://www.youtube.com/watch?v=7uh2ChvlbQg
-completed: true
 ---
 	
 Scott and Wes are back with their annual Syntax Holiday Gift Guide! They’ve curated the best gadgets, tools, games, and even kitchen essentials for the dev in your life — plus a few treats anyone would love to unwrap.

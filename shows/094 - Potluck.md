@@ -3,7 +3,6 @@ number: 94
 title: Potluck - $100/hr × Redux Replacements × Full Stack Designers × JWT × VS Code Tips × More
 date: 1542808800053
 url: https://traffic.megaphone.fm/FSI7129050774.mp3
-completed: true
 ---
 
 It's another potluck episode in which Wes and Scott answer your questions! This month - raising your rates, full stack designers, JWT, VS Code tips, and more.

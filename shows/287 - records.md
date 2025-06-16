@@ -3,7 +3,6 @@ number: 287
 title: Hasty Treat - Records and Tuples in JavaScript
 date: 1601298000368
 url: https://traffic.megaphone.fm/FSI6487752080.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about records and tuples in javascript — what they are, why you might want to use them, and more!

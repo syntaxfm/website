@@ -8,7 +8,6 @@ name: Drew Conley
 github: drewconley
 twitter: drewconley13
 social: https://www.linkedin.com/in/drew-conley-a7865a29/
-completed: true
 ---
 
 In this episode, Scott and Wes talk with Drew Conley about building games with Javascript. 

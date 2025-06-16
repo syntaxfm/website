@@ -9,7 +9,6 @@ github: argyleink
 twitter: argyleink
 - https: //bsky.app/profile/nerdy.dev
 social: 
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Adam Argyle about a ton of new CSS features that have arrived or are coming soon, as well as his new site Gradient.style.

@@ -3,7 +3,6 @@ number: 290
 title: Potluck - Is Angular good? × Stencil.js × Self XSS × SVGs in React × Social Platforms for Devs × Project Handoff × Cleaning Knives × More!
 date: 1602075600592
 url: https://traffic.megaphone.fm/FSI7129050774.mp3
-completed: true
 ---
 
 It's another potluck! In this episode, Scott and Wes answer your questions about getting your first web dev job, what makes a software engineer senior, handing off projects to clients, Angular vs React, the best social platforms for devs, and more!

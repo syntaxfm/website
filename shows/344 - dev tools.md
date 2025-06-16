@@ -3,7 +3,6 @@ number: 344
 title: Dev Tools Tabs Explained — Plus Tips & Tricks
 date: 1618405200771
 url: https://traffic.megaphone.fm/FSI8615768114.mp3
-completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk about dev tools tabs, what each tab does and how you can use them. 

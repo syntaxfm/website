@@ -8,7 +8,6 @@ name: Shawn Wang
 github: sw-yx
 twitter: swyx
 social: https://www.youtube.com/swyxTV
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Shawn Wang about his thoughts on developer experience, why DX is important, and the importance of learning in public.

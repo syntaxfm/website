@@ -9,7 +9,6 @@ name: CJ Reynolds
 github: w3cj
 twitter: CodingGarden
 of: Syntax
-completed: true
 ---
 
 In this episode of Syntax, Wes and Scott talk with CJ Reynolds about the resurgence of meetups in a post-COVID world. They discuss the benefits of attending and speaking at meetups, and the logistics of organizing them. CJ also shares his experiences running the DenverScript meetup, including sourcing speakers, finding venues, and ensuring a welcoming community.

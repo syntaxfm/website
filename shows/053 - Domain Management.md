@@ -3,7 +3,6 @@ number: 53
 title: Hasty Treat - Domain Management
 date: 1530536400092
 url: https://traffic.megaphone.fm/FSI8432350272.mp3
-completed: true
 ---
 
 In this Hasty Treat (Short episode) Scott and Wes discus all things domains. Where to get them, how to set them up and how to save time managing them all in one place.

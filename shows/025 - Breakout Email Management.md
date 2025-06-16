@@ -3,7 +3,6 @@ number: 25
 title: Dealing With Email Overload && Prettier Setups
 date: 1514383200000
 url: https://traffic.megaphone.fm/FSI6451609117.mp3
-completed: true
 ---
 
 Wes details "Breakout" — his email management strategy for overwhelmed creatives and Scott and Wes chat about how they have their prettier setup.

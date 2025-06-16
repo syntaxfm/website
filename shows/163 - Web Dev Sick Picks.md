@@ -3,7 +3,6 @@ number: 163
 title: Hasty Treat - Web Dev Resource Sick Picks
 date: 1563800400176
 url: https://traffic.megaphone.fm/FSI7859336556.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about all of their favorite web dev resources — a full episode of sick picks!

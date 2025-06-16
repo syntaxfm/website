@@ -3,7 +3,6 @@ number: 351
 title: Hasty Treat - Technical Debt
 date: 1620651600610
 url: https://traffic.megaphone.fm/FSI4996204242.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about technical debt — what it is, why does it occur, and some techniques for reducing and avoiding it. 

@@ -4,7 +4,6 @@ title: 6 New JavaScript Proposals
 date: 1722250800000
 url: https://traffic.megaphone.fm/FSI7599446883.mp3
 youtube_url: https://www.youtube.com/watch?v=xxN6xTQ22CM
-completed: true
 ---
 
 Scott and Wes serve up six exciting new JavaScript proposals, including Promise.try and Math.sumPrecise. They break down what each proposal means for developers and how these new features could change the way we write JavaScript.

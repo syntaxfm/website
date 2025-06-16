@@ -3,7 +3,6 @@ number: 207
 title: Hasty Treat - How We Launch Courses
 date: 1577109600835
 url: https://traffic.megaphone.fm/FSI7703313988.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about launching courses — a behind-the-scenes look at their platforms, processes, best practices, and what it takes to get a course published. 

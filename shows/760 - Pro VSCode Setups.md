@@ -4,7 +4,6 @@ title: Pro VSCode Setups
 date: 1713956400000
 url: https://traffic.megaphone.fm/FSI7207326393.mp3
 youtube_url: https://www.youtube.com/watch?v=VIdM5VSlJVw
-completed: true
 ---
 
 Join Scott and Wes as they dish out the juiciest VSCode secrets for coding like a boss (or a Tolinski)! From speedy navigation to must-have extensions and the sickest themes, get ready to level up your coding game.

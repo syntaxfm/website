@@ -3,7 +3,6 @@ number: 213
 title: Hasty Treat - A Month On Firefox
 date: 1578924000521
 url: https://traffic.megaphone.fm/FSI4128023130.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about a month of using Firefox — what they liked, what they didn't, and whether or not they'll keep using it.

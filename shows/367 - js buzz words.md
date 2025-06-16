@@ -3,7 +3,6 @@ number: 367
 title: Hasty Treat - JavaScript Event Buzzwords — Sync, Concurrent, Defer, Blocking, Workers
 date: 1625490000210
 url: https://traffic.megaphone.fm/FSI5169153618.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes define some JavaScript Buzzwords and talk about what they mean!

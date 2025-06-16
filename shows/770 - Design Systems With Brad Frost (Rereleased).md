@@ -11,7 +11,6 @@ twitter: brad_frost
 of: Big Medium
 social: 
 - https: //codepen.io/bradfrost/
-completed: true
 ---
 
 In this revisited supper club episode, Wes and Scott talk with Brad Frost about how to implement design systems in small and large scale projects, best practices around naming things, keeping everything in sync across different codebases, and how design systems help projects.

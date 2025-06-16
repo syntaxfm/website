@@ -11,7 +11,6 @@ twitter: jlengstorf
 social: 
 - https: //youtube.com/@learnwithjason
 https: //discord.gg/lwj
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Jason Lengstorf about his journey in video creation, live streaming, and tech education. What's up with Jason's new studio? How does he prep for a live stream?

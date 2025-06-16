@@ -3,7 +3,6 @@ number: 459
 title: Potluck - Protestware × NoSQL × Next.js × ESM × Jest
 date: 1652875200281
 url: https://traffic.megaphone.fm/FSI7129050774.mp3
-completed: true
 ---
 
 In this potluck episode of Syntax, Wes and Scott answer your questions about protestware, NoSQL, Next.js, the Syntax.fm website, ESM, Jest, and more!

@@ -4,7 +4,6 @@ title: Durable Objects × Tab State Hacks × Headless CMS Choices + More
 date: 1735729200000
 url: https://traffic.megaphone.fm/FSI9963392736.mp3
 youtube_url: https://www.youtube.com/watch?v=hxUDQEpXv6c
-completed: true
 ---
 	
 Scott and Wes ring in the new year, answering listener questions on the rise of durable objects, handling tricky tab state in e-commerce apps, and their top picks for headless CMS. They also chat about the future of CSS, deployment platforms, and whether Syntax beanies might finally be a thing!

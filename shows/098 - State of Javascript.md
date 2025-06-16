@@ -8,7 +8,6 @@ name: Sacha Greif
 of: State of JS Survey
 github: sachag
 twitter: SachaGreif
-completed: true
 ---
 
 In this episode Wes and Scott are joined by their first ever guest on the show: Sacha Greif. Sacha is one of the makers of the [State of Javascript](https://stateofjs.com/) - the topic for today's show. Wes, Scott and Sacha discuss the results of 2018's survey, what they think, and implications for the industry.

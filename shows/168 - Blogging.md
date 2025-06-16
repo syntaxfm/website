@@ -3,7 +3,6 @@ number: 168
 title: Blogging
 date: 1565182800295
 url: https://traffic.megaphone.fm/FSI9652506504.mp3
-completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk about blogging — both the specifics of content (how to make great content), as well as the mechanics of where and how to publish blog posts.

@@ -3,7 +3,6 @@ number: 411
 title: Meta Tags
 date: 1638799200774
 url: https://traffic.megaphone.fm/FSI7509681418.mp3
-completed: true
 ---
 
 In this Hasty Treat, Wes and Scott talk about Meta Tags.

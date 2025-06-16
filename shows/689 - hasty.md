@@ -3,7 +3,6 @@ number: 689
 title: You Should Be Using JavaScript Maps & Sets
 date: 1699272000311
 url: https://traffic.megaphone.fm/FSI7192117045.mp3
-completed: true
 ---
 
 In this episode of Syntax, Wes and Scott talk about why you should be using JavaScript maps sets, whether you can access them directly, what makes them great, and what weak versions of both are.

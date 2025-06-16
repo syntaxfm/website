@@ -8,7 +8,6 @@ name: Darcy Clarke
 github: darcyclarke
 of: Vlt Package Manager
 twitter: darcy
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Darcy Clarke about his career path in tech, working with Wes back in the day, why he decided to build vlt volt, and the biggest sick pick list yet!

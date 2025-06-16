@@ -11,7 +11,6 @@ twitter: Coding_Garden
 of: Coding Garden & Syntax
 social: 
 - https: //www.twitch.tv/codinggarden
-completed: true
 ---
 
 Scott and Wes introduce Syntax's new Senior Content Producer, CJ Reynolds, who will be creating video deep-dives and companion content for topics covered on the podcast. CJ, also known as the host of Coding Garden, shares his passions for web development, teaching and experimenting with new technologies.

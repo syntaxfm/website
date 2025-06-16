@@ -3,7 +3,6 @@ number: 125
 title: Hasty Treat - Communication Skillz
 date: 1552309200131
 url: https://traffic.megaphone.fm/FSI9712963579.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about communication — why it's important, how to improve, building good habits, tools and more!

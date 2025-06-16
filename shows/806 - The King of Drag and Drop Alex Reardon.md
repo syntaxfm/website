@@ -11,7 +11,6 @@ twitter: alexandereardon
 of: Atlassian
 # A single social Link: 
 social: https://www.linkedin.com/in/alexreardon
-completed: true
 ---
 
 Scott and Wes talk with Alex Reardon from Atlassian about developing drag-and-drop libraries, specifically the challenges with creating efficient and accessible drag-and-drop functionalities for the web. They also explore what it takes to build and implement a system that works seamlessly across various frameworks.

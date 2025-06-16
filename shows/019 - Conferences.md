@@ -3,7 +3,6 @@ number: 19
 title: How to get into Speaking At Conferences
 date: 1510756086658
 url: https://traffic.megaphone.fm/FSI9631502370.mp3
-completed: true
 ---
 
 Wes talks to Scott about speaking at conferences. What are the benefits of speaking? How do you apply? What talk should you give? What makes a good conference talk?

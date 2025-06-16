@@ -8,7 +8,6 @@ name: Dax Raad
 of: SST, Open Next.js
 github: thdxr
 twitter: thdxr
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Dax Raad about building on serverless infrastructure, Next.js, and SST.

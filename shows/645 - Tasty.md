@@ -3,7 +3,6 @@ number: 645
 title: Polyfills, Transpiling and Monkey Patching
 date: 1690372800235
 url: https://traffic.megaphone.fm/FSI4371103406.mp3
-completed: true
 ---
 
 In this episode of Syntax, Wes and Scott talk about what polyfills, transpiling, and monkey patching mean, how and when to do it, and libraries that can help you out.

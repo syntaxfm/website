@@ -7,7 +7,6 @@ guest:
 name: Anna Poblets
 social: https://www.linkedin.com/in/anna-pobletts/
 of: Passwordless at 1Password
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Anna Pobletts of Passage about passkeys, how passkeys work, how to implement passkeys on your website or app, what the recommended UI is for passkeys, what happens to your passkey if you lose your phone, and more.

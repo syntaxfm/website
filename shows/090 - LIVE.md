@@ -3,7 +3,6 @@ number: 90
 title: Live at JAMstack_conf
 date: 1541599200956
 url: https://traffic.megaphone.fm/FSI4733252369.mp3
-completed: true
 ---
 
 This week Scott and Wes are live at JAMstack_conf with games, Spicy JAM Tips, Q&As and more.

@@ -9,7 +9,6 @@ of: Google, Lit
 github: justinfagnani
 twitter: justinfagnani
 social: https://fosstodon.org/@justinfagnani
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Justin Fagnani about working with web components, using Lit, how routing and state are handled, thoughts on signals, and what is the future of web components?

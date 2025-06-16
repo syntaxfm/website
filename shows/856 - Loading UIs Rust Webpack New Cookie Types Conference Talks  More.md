@@ -4,7 +4,6 @@ title: Loading UIs, Rust Webpack, New Cookie Types, Conference Talks + More
 date: 1733310000000
 url: https://traffic.megaphone.fm/FSI7651238363.mp3
 youtube_url: https://www.youtube.com/watch?v=NjhIi-9uNmc
-completed: true
 ---
 	
 Scott and Wes dive into your questions on Hono and SvelteKit, partitioned cookies, redirect codes, and using Rspack instead of Vite. Plus, they share insights on quoting projects, interview best practices, and whether you should slow down those speedy loading spinners.

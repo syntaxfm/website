@@ -4,7 +4,6 @@ title: TypeScript Interview Questions -  STUMP’d
 date: 1710154800289
 url: https://traffic.megaphone.fm/FSI9370456817.mp3
 youtube_url: https://www.youtube.com/watch?v=o5NrF0Ny9K8
-completed: true
 ---
 
 Wes and Scott tackle TypeScript trivia, from combining string literal types to unraveling the mystery of d.ts files. Join them as they challenge each other on conditional types, interfaces, triple-slash directives, and TypeScript records.

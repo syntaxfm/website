@@ -4,7 +4,6 @@ title: "AWS and IAC for Dummies with SST"
 date: 1742382000000
 url: https://traffic.megaphone.fm/FSI3219767058.mp3
 youtube_url: https://www.youtube.com/watch?v=cMj8IgWHODg
-completed: true
 ---
 
 Wes and Scott talk about Infrastructure as Code and how SST makes deploying to AWS easier than ever. They dive into SST’s features, developer experience, and how it simplifies managing services like databases, email, and more. Plus, insights on Cloudflare integration, auto-scaling, and real-world use cases.

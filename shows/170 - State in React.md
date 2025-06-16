@@ -3,7 +3,6 @@ number: 170
 title: State In React
 date: 1565787600542
 url: https://traffic.megaphone.fm/FSI1836821922.mp3
-completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk about state in React: local state, global state, UI state, data state, caching, API data and more!

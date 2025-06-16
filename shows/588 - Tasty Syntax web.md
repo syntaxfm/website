@@ -3,7 +3,6 @@ number: 588
 title: New Syntax Website Brainstorm! IRL!
 date: 1678881600619
 url: https://traffic.megaphone.fm/FSI5049728218.mp3
-completed: true
 ---
 
 In this episode of Syntax, Wes and Scott are in the same room together brainstorming new ideas for the Syntax.fm website: search, transcripts, video, tags, audio player, podcast hosting, and more!

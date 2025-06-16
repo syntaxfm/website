@@ -3,7 +3,6 @@ number: 285
 title: Hasty Treat - Our First Bucks Made From Web Dev, Teaching, YouTube and Tutorials
 date: 1600693200882
 url: https://traffic.megaphone.fm/FSI7046551717.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about their first steps in the word of entrepreneurship and web dev specifically.

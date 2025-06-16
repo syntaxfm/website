@@ -7,7 +7,6 @@ guest:
 name: Filipe Ferreira
 github: fbritoferreira
 twitter: fbritoferreira
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Filipe Ferreira of Sky TV about the tech stack used to deliver streaming TV content, build Apple TV apps, host media, and more.

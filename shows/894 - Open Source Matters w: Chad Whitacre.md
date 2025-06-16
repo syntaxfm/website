@@ -10,7 +10,6 @@ github: chadwhitacre
 twitter: chadwhitacre_
 of: Sentry
 social: https://chadwhitacre.com/
-completed: true
 ---
 
 Wes and Scott talk with Chad Whitacre, the newest member of the Syntax team, about all things open source—licenses, controversies, economics, and ethics. Chad breaks down what most people misunderstand, and how companies can support sustainable software development the right way.

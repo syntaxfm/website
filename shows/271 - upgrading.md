@@ -3,7 +3,6 @@ number: 271
 title: Hasty Treat - Upgrading Next.js Syntax Site
 date: 1596459600595
 url: https://traffic.megaphone.fm/FSI4785807219.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about their experience upgrading Syntax.fm and some of the site's big changes. 

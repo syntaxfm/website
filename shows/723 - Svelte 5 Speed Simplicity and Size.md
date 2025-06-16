@@ -3,7 +3,6 @@ number: 723
 title: 'Svelte 5: Speed, Simplicity & Size'
 date: 1706529600007
 url: https://traffic.megaphone.fm/FSI9904943121.mp3
-completed: true
 ---
 
 Unveiling Svelte 5! delving into its latest features. From the impressive speed and simplicity to its compact size, discover what makes this new release so exciting.

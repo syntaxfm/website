@@ -3,7 +3,6 @@ number: 9
 title: Dang, that's handy! JavaScript Utility Libraries 🛠️
 date: 1504098731000
 url: https://traffic.megaphone.fm/FSI4196638658.mp3
-completed: true
 ---
 
 Scott and Wes talk all about different JavaScript utility libraries that make you say "Dang, that's handy!"

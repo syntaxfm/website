@@ -11,7 +11,6 @@ twitter: aarondfrancis
 of: Try Hard Studios
 social: 
 - https: //www.youtube.com/@aarondfrancis
-completed: true
 ---
 
 Wes and Scott talk with Aaron Francis about Fusion for Laravel, a new way to seamlessly integrate PHP into JavaScript. They discuss how Fusion expands on Inertia, its potential for React support, and how it simplifies full-stack development.

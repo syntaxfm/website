@@ -4,7 +4,6 @@ title: Everyone Is Talking About MCP
 date: 1744628400000
 url: https://traffic.megaphone.fm/FSI3542554899.mp3
 youtube_url: https://www.youtube.com/watch?v=gFjk6uko-0U
-completed: true
 ---
 	
 Scott and Wes break down the Model Context Protocol (MCP), a new open standard that gives AI agents secure, tool-like access to your dev environment. They cover how it works, why it's a big deal for AI coding workflows, and real-world use cases like GitHub, Sentry, and YouTube.

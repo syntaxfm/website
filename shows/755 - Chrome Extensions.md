@@ -10,7 +10,6 @@ github: oliverdunk
 twitter: oliverdunk_
 of: Google
 social: https://oliverdunk.com/
-completed: true
 ---
 
 We were wrong, Manifest V3 is a big deal. Scott and Wes sit down with Oliver Dunk from Google to dive into the intricate world of Chrome Extensions development. From dissecting Manifest V3 to exploring the evolving landscape of browser security and extension reviews, this conversation covers the present and future of browser customization.

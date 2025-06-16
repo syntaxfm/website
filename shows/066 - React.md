@@ -3,7 +3,6 @@ number: 66
 title: The React Episode
 date: 1534338000260
 url: https://traffic.megaphone.fm/FSI9701138712.mp3
-completed: true
 ---
 
 In this episode Wes and Scott do a deep dive into React - what it is, best practices and all the ins and outs of how the framework works.

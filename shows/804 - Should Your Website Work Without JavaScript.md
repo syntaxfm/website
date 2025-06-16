@@ -4,7 +4,6 @@ title: Should Your Website Work Without JavaScript?
 date: 1722855600000
 url: https://traffic.megaphone.fm/FSI9992286599.mp3
 youtube_url: https://www.youtube.com/watch?v=NDK66t7SrSY
-completed: true
 ---
 
 Scott and Wes discuss whether your website really needs JavaScript to function. They explore the principles of web standards, progressive enhancement, and test popular websites like Shopify and Netflix to see how they perform without JavaScript.

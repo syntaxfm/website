@@ -3,7 +3,6 @@ number: 309
 title: Hasty Treat - 300th Episode Tech Chat
 date: 1607954400805
 url: https://traffic.megaphone.fm/FSI4677745551.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about their 300th episode and the tech behind it.

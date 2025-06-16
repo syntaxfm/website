@@ -3,7 +3,6 @@ number: 410
 title: Everything in web dev is Amazing!
 date: 1638338880801
 url: https://traffic.megaphone.fm/FSI8766592544.mp3
-completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk about all the things that have improved the lives of web developers over the years.

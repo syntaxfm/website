@@ -8,7 +8,6 @@ name: Dr. Courtney Tolinski
 twitter: DrTolinski
 social: 
 - https: //www.instagram.com/learning.differently/
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Dr. Courtney Tolinski about ADHD, how to tell if you have ADHD, issues related to ADHD for computer workers, anxiety vs ADHD, and more.

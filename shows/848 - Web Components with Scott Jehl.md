@@ -10,7 +10,6 @@ github: scottjehl
 twitter: scottjehl
 of: Squarespace
 social: https://mstdn.social/@scottjehl
-completed: true
 ---
 
 Scott and Wes talk with Scott Jehl about the benefits, challenges, and use cases of web components, particularly in design systems and performance.

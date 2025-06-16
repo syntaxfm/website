@@ -4,7 +4,6 @@ title: "CSS: Scroll Driven Animations"
 date: 1724655600000
 url: https://traffic.megaphone.fm/FSI8981110003.mp3
 youtube_url: https://youtu.be/JhTMIBLCaNw
-completed: true
 ---
 
 In this episode of Syntax, Wes and Scott talk about CSS' new scroll-driven animations, its implementation, uses, and potential pitfalls. They also discuss animation-timeline and animation-range, and how they can be utilized to control animations based on scroll positions.

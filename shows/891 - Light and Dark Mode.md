@@ -4,7 +4,6 @@ title: Light and Dark Mode
 date: 1744023600000
 url: https://traffic.megaphone.fm/FSI1443220463.mp3
 youtube_url: https://www.youtube.com/watch?v=SrDQyiaf9ls
-completed: true
 ---
 	
 Light mode? Dark mode? Scott and Wes break down the best ways to implement theme switching in CSS, from prefers-color-scheme to manual overrides. Plus, tips on handling shadows, icons, and the dreaded flash of dark mode!

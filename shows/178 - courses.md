@@ -3,7 +3,6 @@ number: 178
 title: How We Record, Edit, and Host Our Courses
 date: 1568206800490
 url: https://traffic.megaphone.fm/FSI5365956760.mp3
-completed: true
 ---
 
 In this episode, Scott and Wes talk about how they make courses — recording, editing, hosting, best practices, and more!  

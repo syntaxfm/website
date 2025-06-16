@@ -8,7 +8,6 @@ name: Jared Sumner
 of: Bun
 github: Jarred-Sumner
 twitter: jarredsumner
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Jared Sumner about why and how he created Bun, what Zig is, and the future of Bun.

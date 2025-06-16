@@ -11,7 +11,6 @@ twitter: crutchcorn
 of: Framework Field Guide
 social: 
 - https: //www.twitch.tv/crutchcorn
-completed: true
 ---
 
 Which framework is best? Join Scott and Wes as they chat with Corbin Crutchley, author of the "Framework Field Guide", diving into the world of frameworks, metaframeworks, and tips to stay up-to-date on the latest trends in web development.

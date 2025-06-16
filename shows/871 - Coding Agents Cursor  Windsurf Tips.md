@@ -4,7 +4,6 @@ title: Coding Agents Cursor + Windsurf Tips
 date: 1737975600000
 url: https://traffic.megaphone.fm/FSI8840729992.mp3
 youtube_url: https://www.youtube.com/watch?v=yOAKXYm7Ffg
-completed: true
 ---
 	
 Scott and Wes explore the world of coding agents, diving into tools like Cursor and Windsurf that promise to change how we write and manage code. They discuss modes, workflows, and practical tips for experimenting with these AI-powered tools in your next project.

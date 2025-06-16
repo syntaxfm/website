@@ -3,7 +3,6 @@ number: 241
 title: Hasty Treat - 5 More Things That Make Your Site Slow
 date: 1587387600416
 url: https://traffic.megaphone.fm/FSI2237295884.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes continue their discussion of website page speed — five more things that make your site slow!

@@ -3,7 +3,6 @@ number: 333
 title: Hasty Treat - Ask Us Anything!
 date: 1615212000016
 url: https://traffic.megaphone.fm/FSI6004685663.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes are doing an AMA — answering questions about self-employment, time-management, course creation, Clubhouse, and more!

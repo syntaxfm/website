@@ -3,7 +3,6 @@ number: 49
 title: Potluck EP × SSR × SEO × Tips for Students × Music × Security × GraphQL
 date: 1528290000736
 url: https://traffic.megaphone.fm/FSI7129050774.mp3
-completed: true
 ---
 
 It's a Potluck episode - you bring the questions and we turn them into tasty treats.

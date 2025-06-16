@@ -9,7 +9,6 @@ github: heatherpayne
 of: Juno College / Hacker You
 twitter: heatherpayne
 social: https://www.linkedin.com/in/heatherpayneintoronto
-completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk with Heather Payne about bootcamps — how to get the most out of them and what to look out for!

@@ -4,7 +4,6 @@ title: Receipt Printer with JavaScript
 date: 1726484400000
 url: https://traffic.megaphone.fm/FSI5338156400.mp3
 youtube_url: https://www.youtube.com/watch?v=tqZjSY-8N1E
-completed: true
 ---
 
 Wes unveils his Hack-Week project —a thermal printer controlled by JavaScript that prints out Sentry.io errors in real-time. Scott and Wes dive into the nitty-gritty of how it works, from the ESC/POS protocol to tackling socket issues, and whether the project was worth the effort.

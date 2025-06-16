@@ -3,7 +3,6 @@ number: 431
 title: Code Explorers
 date: 1644840000749
 url: https://traffic.megaphone.fm/FSI4396298583.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about how best to explore and contribute to code on GitHub repos.

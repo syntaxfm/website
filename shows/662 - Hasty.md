@@ -3,7 +3,6 @@ number: 662
 title: JavaScript Closures & Scope Explained
 date: 1693828800811
 url: https://traffic.megaphone.fm/FSI1913429733.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes explain closures and the different types of scope used, and examples of where a closure is useful.

@@ -10,7 +10,6 @@ of: Solid.js
 github: ryansolid
 social: 
 - https: //dev.to/ryansolid
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Ryan Carniato about Solid.JS, SolidStart, how web components work with Solid, why he chose JSX, and what the future of Solid is.

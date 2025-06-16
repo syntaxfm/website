@@ -4,7 +4,6 @@ title: "UI Components: ShadCN, Tailwind UI, Headless, React Aria, Radix UI"
 date: 1712142000253
 url: https://traffic.megaphone.fm/FSI4103626328.mp3
 youtube_url: https://www.youtube.com/watch?v=9-6deom3ZdY
-completed: true
 ---
 
 Scott and Wes explore UI Components, discussing functionality, styling, accessibility, and theming. From headless components to styled starters, they share valuable insights to elevate your UI game.

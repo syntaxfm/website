@@ -10,7 +10,6 @@ github: xenova
 twitter: xenovacom
 of: Transformers.js
 social: https://huggingface.co/Xenova
-completed: true
 ---
 
 Scott and Wes are joined by special guest Xenova to explore local AI models in JavaScript. From Hugging Face to Transformers.js and practical applications like real-time speech recognition and object detection, this episode dives deep into the world of machine learning.

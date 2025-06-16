@@ -8,7 +8,6 @@ name: Nate Weinert
 twitter: natebirdman
 of: Vercel, Tamagui
 github: natew
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Nate Weinert, creator of Tamagui, about what Tamagui is, how styling works in React native, building and designing the Tamagui website, and more.

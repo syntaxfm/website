@@ -3,7 +3,6 @@ number: 474
 title: Home Automation - A Look Ahead
 date: 1655899200696
 url: https://traffic.megaphone.fm/FSI9929416428.mp3
-completed: true
 ---
 
 In this Tasty Treat, Scott and Wes talk about the current state of home automation, and the kinds of software and hardware they're using in their homes to automate their lives.

@@ -3,7 +3,6 @@ number: 132
 title: Potluck - Interview Qs × Headless CMS × React Hooks × Resume Design × Redux vs Context × More!
 date: 1554296400815
 url: https://traffic.megaphone.fm/FSI7129050774.mp3
-completed: true
 ---
 
 It's another potluck episode in which Wes and Scott answer your questions! This month - interview questions, headless CMSs, resume design, redux vs context, and more!

@@ -9,7 +9,6 @@ of: Google + Firebase
 github: davideast
 twitter: _davideast
 social: https://www.linkedin.com/in/eastdavid/
-completed: true
 ---
 
 In this episode of Syntax, Wes and Scott talk with David East about Google's new cloud based full-stack, multiplatform app development workflow, Project IDX.

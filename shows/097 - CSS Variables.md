@@ -3,7 +3,6 @@ number: 97
 title: Hasty Treat - Uses for CSS Variables
 date: 1543845600958
 url: https://traffic.megaphone.fm/FSI6501500632.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about CSS variables, a.k.a CSS Custom Properties - why you might want to use them, why they're better than various preprocessor's variables, and pitfalls to watch out for and avoid.

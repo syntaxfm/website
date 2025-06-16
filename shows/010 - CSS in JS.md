@@ -3,7 +3,6 @@ number: 10
 title: CSS in JS 💅👩‍🎤💁🚒 (Drama Free!)
 date: 1504705105555
 url: https://traffic.megaphone.fm/FSI6533907865.mp3
-completed: true
 ---
 
 The most requested syntax episode ever! We break down CSS in JavaScript. Pros/Cons? What is it? What problems does it solve? What libraries should you use? Is it stupid or amazing?

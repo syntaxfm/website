@@ -3,7 +3,6 @@ number: 203
 title: Hasty Treat - What Are Github Actions?
 date: 1575900000500
 url: https://traffic.megaphone.fm/FSI3942432677.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about Gihub Actions — what they do, why you might be interested in them, best practices and more!

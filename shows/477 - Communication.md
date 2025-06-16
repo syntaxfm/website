@@ -3,7 +3,6 @@ number: 477
 title: Tips for Communicating
 date: 1656504000336
 url: https://traffic.megaphone.fm/FSI7443308048.mp3
-completed: true
 ---
 
 In this episode of Syntax, Wes and Scott talk about their tips for better communication in email, Zoom calls, code reviews, or asking for help.

@@ -3,7 +3,6 @@ number: 169
 title: Hasty Treat - Remote Internet
 date: 1565614800542
 url: https://traffic.megaphone.fm/FSI8745814926.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about remote internet! Remote internet is an important because it opens up living options to developers as the industry moves toward more remote work.

@@ -3,7 +3,6 @@ number: 387
 title: Hasty Treat - Starlink Rural Internet
 date: 1631538000481
 url: https://traffic.megaphone.fm/FSI4650176909.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about Wes' new satellite internet setup — best use-cases and how to set it up.

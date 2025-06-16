@@ -3,7 +3,6 @@ number: 391
 title: Hasty Treat - Desktop Apps + New Tech We Love
 date: 1632747600655
 url: https://traffic.megaphone.fm/FSI2884071300.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about the hottest new tech they love! 

@@ -4,7 +4,6 @@ title: How to Go Deeper With Your Learning
 date: 1733742000000
 url: https://traffic.megaphone.fm/FSI2559137311.mp3
 youtube_url: https://www.youtube.com/watch?v=8YqcESrS_0I
-completed: true
 ---
 	
 Want to level up your web dev game? Scott and Wes share their top tips for going deeper with your learning—covering everything from reading the docs and source code to finding mentorship and engaging with the community.

@@ -8,7 +8,6 @@ name: Fred Schott
 of: Astro
 github: fredkschott
 twitter: fredkschott
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Fred Schott about all things Astro v2.0. What is Astro and why should you use it? How do islands work? Images, edge, AI, error overlays, hybrid rendering, and more!

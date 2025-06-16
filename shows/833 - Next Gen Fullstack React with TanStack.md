@@ -9,7 +9,6 @@ name: Tanner Linsley
 github: tanstack
 twitter: tannerlinsley
 of: TanStack
-completed: true
 ---
 
 Scott and Wes talk with Tanner Linsley, creator of TanStack, about the React ecosystem, and the evolution and futue of TanStack's suite of tools, including TanStack Router and TanStack Start. 

@@ -4,7 +4,6 @@ title: State of JS 2023 Reactions
 date: 1720004400000
 url: https://traffic.megaphone.fm/FSI2991525125.mp3
 youtube_url: https://www.youtube.com/watch?v=dj6tUUTDXAo
-completed: true
 ---
 
 Scott and Wes dive into the 2023 State of JavaScript survey, breaking down the latest trends and pain points in front-end frameworks, build tools, and JavaScript runtimes. Tune in for their hot takes and insights on what’s shaping the JavaScript landscape this year!

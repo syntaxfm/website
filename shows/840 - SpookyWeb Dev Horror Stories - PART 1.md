@@ -4,7 +4,6 @@ title: Spooky Web Dev Horror Stories - PART 1
 date: 1730113200000
 url: https://traffic.megaphone.fm/FSI6064563649.mp3
 youtube_url: https://www.youtube.com/watch?v=u8EC6IsEkmo
-completed: true
 ---
 
 Scott and Wes unpack the spookiest web dev stories submitted by listeners in this episode. From forgotten MX records to infinite loops, these real-life coding horrors will have you double-checking your WHERE clauses and git backups.

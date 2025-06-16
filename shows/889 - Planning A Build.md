@@ -4,7 +4,6 @@ title: Planning A Build
 date: 1743418800000
 url: https://traffic.megaphone.fm/FSI9181467847.mp3
 youtube_url: https://www.youtube.com/watch?v=PaS6FUtgAh8
-completed: true
 ---
 	
 Scott and Wes talk about the planning process for a major redesign of the Syntax.fm website. They share their thoughts on organizing tasks, choosing tech, handling styling, and the debates that come with deciding what to keep and what to change.

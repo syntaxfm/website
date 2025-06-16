@@ -3,7 +3,6 @@ number: 50
 title: Progressive Web Apps
 date: 1528894800021
 url: https://traffic.megaphone.fm/FSI5307897283.mp3
-completed: true
 ---
 
 Scott and Wes dive into the ins and outs, best practices and tasty tidbits of Progressive Web Apps.

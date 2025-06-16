@@ -10,7 +10,6 @@ github: DrewBurkhart
 twitter: Andrew_Burkhart
 of: 1Password
 social: https://www.linkedin.com/in/andrewburkhartdev/
-completed: true
 ---
 
 Today we're serving up an episode on 1Password with Senior Rust Developer Andrew Burkhart, delving into how 1Password works, tackling conflict resolution and security challenges, and exploring the benefits of using Rust.

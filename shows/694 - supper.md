@@ -10,7 +10,6 @@ github: marktechson
 twitter: marktechson
 # A single social Link: 
 social: https://www.youtube.com/@marktechson/
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Mark Techson about the recent Angular announcements and updates. How did Angular implement signals? What's new in Angular 17? How does Angular handle CSS or UI component libraries?

@@ -4,7 +4,6 @@ title: Vibe Coding Is a Problem
 date: 1742814000000
 url: https://traffic.megaphone.fm/FSI2229157541.mp3
 youtube_url: https://www.youtube.com/watch?v=2b_KlROMfp8
-completed: true
 ---
 	
 Is Vibe Coding the future of software development or just a fun way to experiment? Scott and Wes talk about coding with AI, the risks of ignoring the details, and the cool (and sometimes cursed) projects they've Vibe Coded.

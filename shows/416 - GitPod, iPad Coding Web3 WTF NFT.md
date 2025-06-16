@@ -10,7 +10,6 @@ github: pawlean
 twitter: paulienuh
 social: 
 - https: //linkedin.com/in/pnarvas
-completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk with Geoff and Pauline from Gitpod about developing on Gitpod, Web3, and The NFT Bay.

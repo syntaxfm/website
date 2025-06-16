@@ -8,7 +8,6 @@ name: Eric Sartorius
 of: Digital Nomad
 github: ericssartorius
 twitter: EricSSartorius
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Eric Sartorius about his life as a digital nomad - including recently climbing Kilimanjaro, his tips for travel deals, crazy experiences while travelling, and what he brings on the road with him.

@@ -4,7 +4,6 @@ title: Do We Need JS Frameworks × Are You Over-Engineering? × Webview vs Nativ
 date: 1721214000000
 url: https://traffic.megaphone.fm/FSI6797983029.mp3
 youtube_url: https://www.youtube.com/watch?v=eJFgBXHc69k
-completed: true
 ---
 
 Scott and Wes tackle a variety of audience questions, from the nuances of over-engineering to the energy consumption of AI LLMs. They also discuss the pros and cons of monorepos, frameworks, and the ever-important question: Do you really need to learn all the developer tooling?

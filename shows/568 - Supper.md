@@ -8,7 +8,6 @@ name: Caleb Porzio
 of: Livewire, Alpine.js
 github: calebporzio
 twitter: calebporzio
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Caleb Porzio about Livewire, Alpine.js, what is it with PHP devs making cool stuff, TypeScript thoughts, and more.

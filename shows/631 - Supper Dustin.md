@@ -8,7 +8,6 @@ name: Dustin Schau
 of: Gatsby, Netlify
 github: DSchau
 twitter: SchauDustin
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Dustin Schau about Netlify Connect, Gatsby, GraphQL, and more.

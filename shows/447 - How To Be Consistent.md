@@ -3,7 +3,6 @@ number: 447
 title: How To Be Consistent
 date: 1649678400368
 url: https://traffic.megaphone.fm/FSI9442215750.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about their tips and tricks for being consistent if you're trying to create.

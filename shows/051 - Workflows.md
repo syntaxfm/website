@@ -3,7 +3,6 @@ number: 51
 title: Our Workflows — Design, Development, Git and Deployment
 date: 1529499600620
 url: https://traffic.megaphone.fm/FSI3480690132.mp3
-completed: true
 ---
 
 It's a workflow extravaganza! Scott and Wes talk about their development workflows, covering everything from design to deployment.

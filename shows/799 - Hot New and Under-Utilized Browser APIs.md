@@ -4,7 +4,6 @@ title: Hot New and Under-Utilized Browser APIs
 date: 1721818800000
 url: https://traffic.megaphone.fm/FSI3020168768.mp3
 youtube_url: https://www.youtube.com/watch?v=OsYtOth7cRw
-completed: true
 ---
 
 Scott and Wes serve up the latest and most under-utilized browser APIs that are changing the game for web development. From the @starting-style CSS API to scroll-snap and popovers, they break down how these tools can elevate your projects with minimal effort.

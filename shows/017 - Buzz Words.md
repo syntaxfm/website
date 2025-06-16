@@ -3,7 +3,6 @@ number: 17
 title: 22 Buzz Words Explained — Mutations, Pure Functions , Serverless, Hoisting, MVC + More
 date: 1509540868534
 url: https://traffic.megaphone.fm/FSI6083556495.mp3
-completed: true
 ---
 
 Buzz Words! WTF Do they mean?! Do They Mean Things?? Let's Find Out!

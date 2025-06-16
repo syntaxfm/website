@@ -8,7 +8,6 @@ name: David K Piano
 github: davidkpiano
 twitter: davidkpiano
 social: https://linkedin.com/in/davidkpiano
-completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk with David K Piano about state machines, CSS, animations and more!

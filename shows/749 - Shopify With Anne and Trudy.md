@@ -10,7 +10,6 @@ github: deartrudence
 twitter: dear_trudence
 of: Design Packs
 social: https://www.linkedin.com/in/trudy-macnabb-7b19104a
-completed: true
 ---
 
 Scott and Wes are joined by special guests Trudy MacNabb and Anne Thomas from Design Packs, diving into the nitty-gritty of Shopify design. Tune in as they dissect the pros and cons, challenges, and unveil their daily toolkit for crafting stunning Shopify websites.

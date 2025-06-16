@@ -7,7 +7,6 @@ guest:
 name: Matt Holt
 github: mholt
 twitter: mholt6
-completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk Matt Holt about Caddy, SSL, web servers, best practices, and more!

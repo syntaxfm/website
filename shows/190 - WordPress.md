@@ -8,7 +8,6 @@ name: Brad Touesnard
 github: bradt
 twitter: bradt
 social: https://www.linkedin.com/in/bradt
-completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk with Brad Touesnard of [Delicious Brains](https://deliciousbrains.com/) about migrating, deploying, and hosting WordPress.  

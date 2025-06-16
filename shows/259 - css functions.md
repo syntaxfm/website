@@ -3,7 +3,6 @@ number: 259
 title: Hasty Treat - Some Neat CSS Functions That You Should Know About
 date: 1592830800219
 url: https://traffic.megaphone.fm/FSI6011453703.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about CSS functions, what they are, how to use them, and more!

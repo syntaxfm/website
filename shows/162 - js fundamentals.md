@@ -3,7 +3,6 @@ number: 162
 title: The Fundamentals — JS
 date: 1563368400334
 url: https://traffic.megaphone.fm/FSI9610481433.mp3
-completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk about the fundamentals of JavaScript - the set of core skills you should know before branching off into other frameworks, libraries, etc.

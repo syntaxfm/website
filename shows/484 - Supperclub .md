@@ -7,7 +7,6 @@ guest:
 name: Kristi Perreault
 github: kristiperreault
 twitter: kperreault95
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Kristi Perreault of Liberty Mutual about why they're using serverless functions, what languages they write in, managing security and montoring, and Kristi's journey into tech as a career.

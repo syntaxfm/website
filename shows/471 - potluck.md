@@ -3,7 +3,6 @@ number: 471
 title: Potluck - Headless WordPress, Databases, Regex
 date: 1655294400175
 url: https://traffic.megaphone.fm/FSI7129050774.mp3
-completed: true
 ---
 
 In this episode of Syntax, Wes and Scott answer your questions about headless WordPress, Regex, their health and fitness, CSS custom properties in media queries, and more.

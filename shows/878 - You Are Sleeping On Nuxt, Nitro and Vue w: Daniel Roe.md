@@ -10,7 +10,6 @@ github: danielroe
 of: Nuxt
 social: 
 - https: //bsky.app/profile/danielroe.dev
-completed: true
 ---
 
 Wes and Scott talk with Daniel Roe about Nuxt and Nitro, demystifying the UnJS ecosystem, serverless deployments, open-source sustainability, and the future of full-stack web development.

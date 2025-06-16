@@ -3,7 +3,6 @@ number: 644
 title: User Feedback UI - Toasts, Flash, Validation
 date: 1690200000959
 url: https://traffic.megaphone.fm/FSI6286619088.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about toast messages for validation, errors, confirmations, and more.

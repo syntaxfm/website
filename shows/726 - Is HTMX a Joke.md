@@ -4,7 +4,6 @@ title: Is HTMX a Joke?
 date: 1707134400722
 url: https://traffic.megaphone.fm/FSI4108859556.mp3
 youtube_url: https://www.youtube.com/watch?v=L2QNCTCIRfc
-completed: true
 ---
 
 Scott and Wes unravel the mysteries of HTMX, exploring the essentials for getting started, its powerful capabilities, limitations, and possible stacks for building primarily server rendered applications.

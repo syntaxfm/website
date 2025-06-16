@@ -3,7 +3,6 @@ number: 560
 title: TypeScript Fundamentals × Satisfies and as const
 date: 1673265600317
 url: https://traffic.megaphone.fm/FSI3878906803.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about Satisfies and as const.

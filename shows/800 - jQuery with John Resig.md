@@ -10,7 +10,6 @@ github: jeresig
 twitter: jeresig
 of: Khan Academy
 social: https://johnresig.com/
-completed: true
 ---
 
 In episode 800 of Syntax, Scott and Wes sit down with John Resig, the creator of jQuery, to discuss the current state of React and TypeScript. They dive into the evolution of frontend frameworks, the challenges of server-side rendering, and the tech stack at Khan Academy.

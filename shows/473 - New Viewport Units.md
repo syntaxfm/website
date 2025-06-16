@@ -3,7 +3,6 @@ number: 473
 title: New Viewport Units
 date: 1655726400782
 url: https://traffic.megaphone.fm/FSI7970243947.mp3
-completed: true
 ---
 
 In this episode of Syntax, Wes and Scott talk about the new viewport units coming to the web - what are they and when can we use them?

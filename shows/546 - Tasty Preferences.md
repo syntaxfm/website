@@ -3,7 +3,6 @@ number: 546
 title: Code Styles × Readable Rules and Petty Preferences
 date: 1670414400676
 url: https://traffic.megaphone.fm/FSI4310745345.mp3
-completed: true
 ---
 
 In this episode of Syntax, Wes and Scott talk about their preferred coding styles and preferences they use, and why.

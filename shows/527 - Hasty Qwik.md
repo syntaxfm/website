@@ -3,7 +3,6 @@ number: 527
 title: Hydration & New Frameworks Like Qwik
 date: 1666612800935
 url: https://traffic.megaphone.fm/FSI1339916588.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about Qwik, a new framework designed for the edge. How are things like hydration, lazy loading, rendering, and optimization handled by Qwik?

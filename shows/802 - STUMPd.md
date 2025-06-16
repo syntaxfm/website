@@ -4,7 +4,6 @@ title: Tree Shaking × useMemo vs useCallback × JavaScript Event Loop - STUMP'd
 date: 1722423600000
 url: https://traffic.megaphone.fm/FSI8577699909.mp3
 youtube_url: https://www.youtube.com/watch?v=7Vao9J4rAQU
-completed: true
 ---
 
 Scott and Wes serve up a gameshow-style quiz with STUMP'd, challenging each other on web development trivia. From the differences between useMemo and useCallback to the intricacies of the JavaScript event loop, join them for a fun and informative session packed with web dev insights!

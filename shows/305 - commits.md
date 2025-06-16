@@ -3,7 +3,6 @@ number: 305
 title: Hasty Treat - Writing Good Commit Messages
 date: 1606744800101
 url: https://traffic.megaphone.fm/FSI4395916382.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about a system for writing good commit messages.

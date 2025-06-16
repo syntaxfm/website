@@ -3,7 +3,6 @@ number: 347
 title: Hasty Treat - Git Rebase Explained
 date: 1619442000543
 url: https://traffic.megaphone.fm/FSI6103230031.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about Git Rebase — what it is and how and when to use it!

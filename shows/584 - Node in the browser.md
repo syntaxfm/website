@@ -3,7 +3,6 @@ number: 584
 title: Node in the Browser × WebContainers + NodeBox
 date: 1678104000674
 url: https://traffic.megaphone.fm/FSI3274802288.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about two new services that allow you to run Node in the browser, WebContainers + NodeBox. Why Node in the browser? How does it work? And what are the differences and limitations of the services?

@@ -9,7 +9,6 @@ of: Million.js
 github: aidenybai
 twitter: aidenybai
 social: https://www.youtube.com/@aidenbai
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Aiden Bai about his work on Million.js that aims to make React a lot faster. How does Million.js make React faster? And most importantly: has Aiden ever used a VCR?

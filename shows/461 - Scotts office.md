@@ -3,7 +3,6 @@ number: 461
 title: Scott’s New Office × The Levelup Lodge
 date: 1653307200859
 url: https://traffic.megaphone.fm/FSI5485484448.mp3
-completed: true
 ---
 
 In this episode of Syntax, Scott talks about his new office setup where he records videos and podcasts, writes codes, and gets his steps in.

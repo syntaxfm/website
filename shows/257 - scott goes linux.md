@@ -3,7 +3,6 @@ number: 257
 title: Hasty Treat - Scott Goes Linux with Pop OS
 date: 1592226000818
 url: https://traffic.megaphone.fm/FSI9722650083.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott tells Wes about his new Linux laptop — what it is, why he did it, pros and cons, and more!

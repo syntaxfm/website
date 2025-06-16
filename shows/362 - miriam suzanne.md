@@ -8,7 +8,6 @@ name: Miriam Suzanne
 github: mirisuzanne
 social: 
 - https: //codepen.io/miriamsuzanne/
-completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk with Miriam Suzanne about all things CSS — container queries, layers, scoping, and more!

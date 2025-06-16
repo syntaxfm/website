@@ -3,7 +3,6 @@ number: 398
 title: Potluck — Coding for Kids × MongoDB Hosting × NoMoreFoo × Best Cities for Dev Jobs × GraphQL Resolvers × Package Security × Prototypes and Portfolios × More!
 date: 1634734800303
 url: https://traffic.megaphone.fm/FSI7129050774.mp3
-completed: true
 ---
 
 It's another Potluck! In this episode, Scott and Wes answer your questions about privacy policies, coding for kids, MongaDB hosting, cloud backups, system design, #NoMoreFoo, and much more!

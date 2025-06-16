@@ -3,7 +3,6 @@ number: 72
 title: Accessibility
 date: 1536152400467
 url: https://traffic.megaphone.fm/FSI9252220747.mp3
-completed: true
 ---
 
 In this episode Wes and Scott dive into the very big topic of accessibility, from the basics and easy wins to best practices, tools, resources and more!

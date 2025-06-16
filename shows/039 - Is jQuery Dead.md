@@ -3,7 +3,6 @@ number: 39
 title: Is jQuery Dead?
 date: 1522239820413
 url: https://traffic.megaphone.fm/FSI2478377513.mp3
-completed: true
 ---
 
 Wes and Scott dive into jQuery. Is it dead? Should you still use it? Why not? What are some alternatives?

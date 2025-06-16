@@ -3,7 +3,6 @@ number: 419
 title: JS One Liners
 date: 1641211200925
 url: https://traffic.megaphone.fm/FSI1617503586.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about some Javascript one liners that speed up your coding experience in one line.

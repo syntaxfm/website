@@ -9,7 +9,6 @@ name: Taylor Desseyn
 twitter: tdesseyn
 of: Torc
 social: https://solo.to/tdesseyn
-completed: true
 ---
 
 Scott and Wes talk with Taylor Desseyn about the shifting developer job market. Taylor shares practical tips for standing out, building genuine connections, and finding opportunities in a competitive hiring landscape.

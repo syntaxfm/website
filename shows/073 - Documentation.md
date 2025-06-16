@@ -3,7 +3,6 @@ number: 73
 title: Hasty Treat - Reading Documentation
 date: 1536584400827
 url: https://traffic.megaphone.fm/FSI6995536888.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes dive into documentation - how to avoid common pitfalls and overwhelm, as well as how to read, understand and get the most out of documentation.

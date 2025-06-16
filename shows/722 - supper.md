@@ -10,7 +10,6 @@ twitter: tomayac
 of: Google
 social: 
 - https: //toot.cafe/@tomayac
-completed: true
 ---
 
 Thomas Steiner talks with us about Project Fugu, an effort from Google to enable new classes of applications to run on the web. What is Project Fugu? What are some of Thomas' favorite APIs to use? What is an IWA vs a PWA? And more!

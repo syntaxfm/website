@@ -3,7 +3,6 @@ number: 567
 title: We React to State of JS 2022
 date: 1674648000984
 url: https://traffic.megaphone.fm/FSI2517735017.mp3
-completed: true
 ---
 
 In this episode of Syntax, Wes and Scott look through the results of the State of JS survey for 2022.

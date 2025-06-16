@@ -3,7 +3,6 @@ number: 269
 title: Hasty Treat - Target=_blank security issue? What's the deal with noopener and noreferrer?
 date: 1595854800426
 url: https://traffic.megaphone.fm/FSI5738655268.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about noopener and noreferrer and why you should use them with links that have blank targets.

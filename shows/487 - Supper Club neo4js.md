@@ -9,7 +9,6 @@ github: adam-cowley
 of: Neo4j
 twitter: adamcowley
 social: https://uk.linkedin.com/in/adamcowley
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Adam Cowley about how Neo4j Database can help when working with data for your next app.

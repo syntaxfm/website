@@ -3,7 +3,6 @@ number: 64
 title: Our Office Setups (Gotta Get The Gear)
 date: 1533733200987
 url: https://traffic.megaphone.fm/FSI8513695054.mp3
-completed: true
 ---
 
 Scott and Wes talk office setups and all things gear. [Gotta get the gear!](https://www.youtube.com/watch?v=R3SFqV0hMyo)

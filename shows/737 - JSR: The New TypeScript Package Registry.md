@@ -10,7 +10,6 @@ github: lucacasonato
 twitter: lcasdev
 of: Deno
 social: https://lcas.dev/
-completed: true
 ---
 
 Get ready to learn all about the JSR package registry with Wes, Scott, and special guest Luca Casonato of Deno, as they discuss its benefits, share insights on when to use it, and teasing some secret features that promise to enhance your coding journey.

@@ -10,7 +10,6 @@ github: peterp
 twitter: appfactory
 of: RedwoodSDK
 social: http://peterp.org/
-completed: true
 ---
 
 Wes talks with Peter Pistorius about RedwoodSDK, a new React framework built natively for Cloudflare. They dive into real-time React, server components, zero-cost infrastructure, and why RedwoodSDK empowers developers to ship faster with fewer tradeoffs and more control.

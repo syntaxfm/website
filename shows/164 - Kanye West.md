@@ -6,7 +6,6 @@ url: https://traffic.megaphone.fm/FSI6619353164.mp3
 guest: 
 name: Harry Dry
 twitter: harrydry
-completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk with Harry Dry about the crazy story behind his Kanye West dating site, how he taught himself to code, and how to come up with cool side projects!

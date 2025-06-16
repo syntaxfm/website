@@ -7,7 +7,6 @@ guest:
 name: Victor Savkin
 github: vsavkin
 twitter: victorsavkin
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Victor Savkin about NX Monorepo development.

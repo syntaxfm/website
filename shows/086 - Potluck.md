@@ -3,7 +3,6 @@ number: 86
 title: Potluck - Working with designers × Is WordPress Crap? × When to stop working × More
 date: 1540558800879
 url: https://traffic.megaphone.fm/FSI7129050774.mp3
-completed: true
 ---
 
 It's another potluck episode in which Wes and Scott answer your questions! This month - working with designers, criticisms of WordPress, avoiding burnout, time management, and more.

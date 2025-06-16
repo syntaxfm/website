@@ -3,7 +3,6 @@ number: 242
 title: Potluck - Mobile First × Arrow Functions × Deno × JSON APIs × Refactoring Tips × More!
 date: 1587560400416
 url: https://traffic.megaphone.fm/FSI7129050774.mp3
-completed: true
 ---
 
 It's another potluck! In this episode, Scott and Wes answer your questions about mobile first development, ES6 arrow functions, Deno.js, tips for refactoring your code, best e-commerce platforms and more!

@@ -3,7 +3,6 @@ number: 417
 title: Holiday Snackluk
 date: 1640613600125
 url: https://traffic.megaphone.fm/FSI6045415953.mp3
-completed: true
 ---
 
 In this Hasty Treat, Wes and Scott talk about Package-lock, Angular, package updates, how to learn, and media servers on planes.

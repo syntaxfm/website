@@ -4,7 +4,6 @@ title: "Stop going to Spam: DMARC, SPF and DKIM Explained"
 date: 1708344000810
 url: https://traffic.megaphone.fm/FSI7439722942.mp3
 youtube_url: https://www.youtube.com/watch?v=ERiQc8hoDvo
-completed: true
 ---
 
 Wes and Scott explore the web standards and email authentication methods that keep your email from going to spam; DMARC, SPF and DKIM. If you send email via a custom domain name, you need to listen to this!

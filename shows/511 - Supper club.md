@@ -8,7 +8,6 @@ name: Thomas Mann
 github: thomaspaulmann
 of: Raycast
 twitter: thomaspaulmann
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Thomas Mann about Raycast - an app that can replace Spotlight on your Mac, and do so much more.

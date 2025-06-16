@@ -3,7 +3,6 @@ number: 582
 title: AI and Coding with ChatGPT
 date: 1677672000240
 url: https://traffic.megaphone.fm/FSI8411836057.mp3
-completed: true
 ---
 
 In this episode of Syntax, Wes and Scott talk about the current landscape of AI, how AI is trained, is AI going to take your job, who's going to train AI, and adding AI to your applications.

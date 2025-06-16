@@ -3,7 +3,6 @@ number: 124
 title: Potluck - Are classes dead? × Tutorials vs Real Life × CRA vs Next × Scraping × More
 date: 1551880800713
 url: https://traffic.megaphone.fm/FSI7129050774.mp3
-completed: true
 ---
 
 It's another potluck episode in which Wes and Scott answer your questions! This month - are classes dead?, tutorials vs real life, the smart home, developers and mental health, and more!

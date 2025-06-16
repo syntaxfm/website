@@ -3,7 +3,6 @@ number: 289
 title: Hasty Treat - Enums in JS (GraphQL and Typescript)
 date: 1601902800592
 url: https://traffic.megaphone.fm/FSI6632930530.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about enums in JS — what they are, what they do, and how they work in JavaScript. 

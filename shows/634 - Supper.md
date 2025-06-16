@@ -9,7 +9,6 @@ of: Sentry, Flask
 github: mitsuhiko
 twitter: mitsuhiko
 social: https://www.linkedin.com/in/arminronacher/?originalSubdomain=at
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Armin Ronacher about his contributions to open source, queues and messaging in apps, scaling up a queue, and how it all works at Sentry.

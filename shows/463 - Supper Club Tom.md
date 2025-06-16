@@ -7,7 +7,6 @@ guest:
 name: Tom Preston-Werner
 github: mojombo
 twitter: mojombo
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Tom Preston-Werner about his work on RedwoodJS, the importance of documentation, and the new Redwood Startup Fund.

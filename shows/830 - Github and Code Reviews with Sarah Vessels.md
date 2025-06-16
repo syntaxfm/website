@@ -10,7 +10,6 @@ name: Sarah Vessels
 github: cheshire137
 twitter: cheshire137
 of: GitHub
-completed: true
 ---
 
 Scott and Wes talk with GitHub’s Sarah Vessels about the ins and outs of code reviews, their critical role in collaborative development, and tips for making your reviews more effective.

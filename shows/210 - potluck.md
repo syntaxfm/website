@@ -3,7 +3,6 @@ number: 210
 title: Potluck - Fonts × Frameworks × Teas × Coding Subscriptions × Client Work × More!
 date: 1577887200995
 url: https://traffic.megaphone.fm/FSI7129050774.mp3
-completed: true
 ---
 
 It's another potluck! In this episode, Scott and Wes answer your questions about fonts, frameworks vs custom, drinking tea, learning to code, client work, and more!

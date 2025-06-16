@@ -3,7 +3,6 @@ number: 13
 title: The Command Line for Web Developers
 date: 1506522152009
 url: https://traffic.megaphone.fm/FSI8713115635.mp3
-completed: true
 ---
 
 This episode is all about how to become comfortable and proficient with the command line. This one includes windows users too!

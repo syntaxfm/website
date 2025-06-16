@@ -7,7 +7,6 @@ guest:
 name: Ian Ramzy
 github: ianramzy
 social: https://www.linkedin.com/in/ianramzy
-completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk with Ian Ramzy about ZipCall.io — how he built it, why, and some of the surprising choices he made along the way.

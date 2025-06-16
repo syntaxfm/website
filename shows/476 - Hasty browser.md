@@ -3,7 +3,6 @@ number: 476
 title: Browser CSS Page Transitions API aka Shared Element Transitions
 date: 1656331200110
 url: https://traffic.megaphone.fm/FSI5980650473.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about the new Browser CSS Page Transitions API proposal and what features it opens up for developers on the web.

@@ -3,7 +3,6 @@ number: 389
 title: Hasty Treat - Webhooks
 date: 1632142800657
 url: https://traffic.megaphone.fm/FSI4181122888.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about webhooks — one of those concepts that seems a lot scarier than it actually is. 

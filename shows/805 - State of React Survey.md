@@ -4,7 +4,6 @@ title: We React to State of React Survey
 date: 1723028400000
 url: https://traffic.megaphone.fm/FSI2881148912.mp3
 youtube_url: https://www.youtube.com/watch?v=lvDkauXwuI0
-completed: true
 ---
 
 Scott and Wes serve up their reaction to the "State of React 2023" survey results, discussing the main API pain points like forwardRef and memo. They also explore the latest on state management, hooks pain points, and exciting new libraries in the React ecosystem.

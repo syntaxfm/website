@@ -10,7 +10,6 @@ github: timneutkens
 twitter: timneutkens
 of: Vercel
 social: https://timn.tech/
-completed: true
 ---
 
 Scott and Wes dive into the world of Next.js with special guest Tim Neutkens from Vercel. They explore the latest updates, including the React Compiler and React Server Components, discussing their impact on developer workflows and the future of Next.js development.

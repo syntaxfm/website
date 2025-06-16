@@ -3,7 +3,6 @@ number: 328
 title: Potluck — Do titles matter? × Should clients pay for plugins? × Can I debug my baby? × How we prepare for Syntax × Deno × Learning things quickly × More!
 date: 1613570400264
 url: https://traffic.megaphone.fm/FSI7129050774.mp3
-completed: true
 ---
 
 It's another potluck! In this episode, Scott and Wes answer your questions about job titles, clients and freelancing, debugging, the creative process behind the Syntax podcast, Deno, how to learn things quickly, and more!

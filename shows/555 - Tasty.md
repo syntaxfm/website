@@ -3,7 +3,6 @@ number: 555
 title: Were We Wrong? 2022 Predictions Revisited
 date: 1672228800120
 url: https://traffic.megaphone.fm/FSI8661345555.mp3
-completed: true
 ---
 
 In this episode of Syntax, Wes and Scott revisit their 2022 predictions and see which ones they got right, and which they got wrong.

@@ -8,7 +8,6 @@ name: Ryan Florence
 of: Remix
 github: ryanflorence
 twitter: ryanflorence
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Ryan Florence about Remix, working at Shopify, the history of licensing and pricing, quitting Twitter, the state of React Server components, and more.

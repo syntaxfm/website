@@ -7,7 +7,6 @@ guest:
 name: Stuart Bloxham
 github: sbloxy123
 social: https://www.linkedin.com/in/stuart-bloxham-a36197121/
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Stuart Bloxham about how he learned to code, what his interview process was like when applying for a job, how he found the time to make it all work, and his thoughts on bootcamps and ways to learn.

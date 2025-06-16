@@ -3,7 +3,6 @@ number: 421
 title: Remix!
 date: 1641816000117
 url: https://traffic.megaphone.fm/FSI6770255852.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about Remix!

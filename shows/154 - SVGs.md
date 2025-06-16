@@ -7,7 +7,6 @@ guest:
 name: Sara Soueidan
 github: SaraSoueidan
 twitter: SaraSoueidan
-completed: true
 ---
 
 In this episode of Syntax, Wes is joined by Sara Soueidan, a freelance front-end UI developer and trainer. While Scott is taking a break to spend time with his new baby girl, Wes and Sara dive into all things SVG!  

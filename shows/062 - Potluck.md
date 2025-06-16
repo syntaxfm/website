@@ -3,7 +3,6 @@ number: 62
 title: Potluck - Editor Fonts × Portfolios × Meetup Tips × Switching to Windows × Freelancing Sources
 date: 1533128400841
 url: https://traffic.megaphone.fm/FSI7129050774.mp3
-completed: true
 ---
 
 It's another potluck episode in which Wes and Scott answer your questions about freelancing, portfolios, code editors, meetup tips, switching to windows and more!

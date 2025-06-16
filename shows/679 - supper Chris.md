@@ -8,7 +8,6 @@ name: Chris Lattner
 of: Modular AI
 github: lattner
 twitter: clattner_llvm
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Chris Lattner about Mojo, a new programming language for AI developers. Should developers learn Python? Where does Mojo run? What is Chris excited about in AI's future?

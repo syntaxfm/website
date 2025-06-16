@@ -3,7 +3,6 @@ number: 605
 title: CSS Color Functions
 date: 1682337600125
 url: https://traffic.megaphone.fm/FSI4751960987.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about CSS Color Functions, the benefits of dynamic css color, relative color syntax, color contrast, and color mix.

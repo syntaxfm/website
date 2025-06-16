@@ -9,7 +9,6 @@ of: Gun.io
 twitter: tdesseyn
 social: 
 - https: //www.youtube.com/channel/UCNqJ-P5d9RUCUsQ-grhlUHw
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Taylor Desseyn about his work as a job recruiter, how hiring has changed over the last few years, what soft and tech skills developers need, what not to do when applying, and how AI is affecting the hiring process.

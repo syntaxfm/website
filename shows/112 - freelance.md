@@ -3,7 +3,6 @@ number: 112
 title: The Freelance Client Lifecycle - Part 1
 date: 1548252000058
 url: https://traffic.megaphone.fm/FSI1766432304.mp3
-completed: true
 ---
 
 In this episode Scott and Wes talk about the freelance client lifecycle—from gathering requirements, to project hand-off, and everything in between.

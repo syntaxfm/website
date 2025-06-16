@@ -7,7 +7,6 @@ guest:
 name: Jerome Hardaway
 github: jeromehardaway
 twitter: JeromeHardaway
-completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk with Jerome Hardaway about web dev, vets who code, diversity in tech, and more!

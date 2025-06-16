@@ -10,7 +10,6 @@ github: whitep4nth3r
 twitter: whitep4nth3r
 social: 
 - https: //www.youtube.com/whitep4nth3r
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Salma Alam-Naylor all about her role in DevRel, what's involved in working in DevRel, avoiding burnout, which platforms to focus on, and so much more.

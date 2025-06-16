@@ -3,7 +3,6 @@ number: 516
 title: Wes’ New Soundproof Office
 date: 1664366400557
 url: https://traffic.megaphone.fm/FSI5910344661.mp3
-completed: true
 ---
 
 In this episode of Syntax, Wes talks through all the gear, renovations, and upgrades he's made to his new home office. Lighting, soundproofing, desk, windows, and more!

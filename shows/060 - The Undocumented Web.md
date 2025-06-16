@@ -3,7 +3,6 @@ number: 60
 title: The Undocumented Web - scraping, private APIs, proxies and “alternative solutions”
 date: 1532437200084
 url: https://traffic.megaphone.fm/FSI9567031028.mp3
-completed: true
 ---
 
 What is the undocumented web? Scott and Wes dive into it, discussing APIs, faking, scraping, automation, proxies as well as tips and tricks for best practices.

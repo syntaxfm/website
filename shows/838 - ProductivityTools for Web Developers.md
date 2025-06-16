@@ -4,7 +4,6 @@ title: Productivity Tools for Web Developers
 date: 1729681200000
 url: https://traffic.megaphone.fm/FSI7994848106.mp3
 youtube_url: https://www.youtube.com/watch?v=meic3RLFZo0
-completed: true
 ---
 
 Get your productivity game on point! Scott and Wes serve up the best tools for web developers, covering everything from password managers and to-do apps to mind-mapping tools and little scripts that make life easier. Plus, find out what snippet managers they swear by and how they keep their email under control.

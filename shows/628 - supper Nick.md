@@ -10,7 +10,6 @@ github: HipsterBrown
 twitter: hipsterbrown
 social: 
 - https: //codepen.io/HipsterBrown/
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Nick Hehr about the fun ways to get started with micro controllers, writing JavaScript for hardware, and ideas for projects to build involving hardware and software.

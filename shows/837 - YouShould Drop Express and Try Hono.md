@@ -10,7 +10,6 @@ github: w3cj
 twitter: CodingGarden
 of: Syntax
 social: https://coding.garden/
-completed: true
 ---
 
 CJ joins Scott and Wes to dive into why he's all-in on Hono, a fast and lightweight web framework for every JavaScript runtime. From familiar route creation to type-safe middleware, find out how Hono keeps things simple, powerful, and ready to use inside Next.js.

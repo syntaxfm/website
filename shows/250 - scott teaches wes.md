@@ -3,7 +3,6 @@ number: 250
 title: Scott Teaches Wes Svelte and Sapper
 date: 1589979600555
 url: https://traffic.megaphone.fm/FSI7174316056.mp3
-completed: true
 ---
 
 In this episode of Syntax, Scott teaches Wes about Svelte and Sapper — general premise, best practices, and more!

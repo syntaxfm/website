@@ -8,7 +8,6 @@ name: Tomek Sułkowski
 twitter: sulco
 github: sulco
 social: https://www.linkedin.com/in/tsulkowski/
-completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk with Tomek Sulkowski about web containers, StackBlitz and more!

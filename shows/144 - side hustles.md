@@ -8,7 +8,6 @@ name: Courtland Allen
 github: courthead
 of: Indie Hackers
 twitter: csallen
-completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk all about side hustles with special guest Courtland Allen, from Indie Hackers! They talk about the story behind Indie Hackers, how to start your own side hustle, where to find ideas, listener questions, and more.

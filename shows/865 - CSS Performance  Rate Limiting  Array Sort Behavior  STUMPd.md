@@ -4,7 +4,6 @@ title: CSS Performance × Rate Limiting × Array Sort Behavior - STUMP'd
 date: 1736161200000
 url: https://traffic.megaphone.fm/FSI6169530063.mp3
 youtube_url: https://www.youtube.com/watch?v=nSYiEN4t-kg
-completed: true
 ---
 	
 Scott and Wes challenge each other's knowledge on everything from array sorting quirks to browser isolation types in a rapid-fire trivia format. They dive deep into performance optimizations, TypeScript type safety, and HTML best practices while uncovering surprising edge cases that every web developer should know about.

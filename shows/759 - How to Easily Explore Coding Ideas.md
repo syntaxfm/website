@@ -4,7 +4,6 @@ title: How to Easily Explore Coding Ideas
 date: 1713783600000
 url: https://traffic.megaphone.fm/FSI8617224912.mp3
 youtube_url: https://www.youtube.com/watch?v=LuS64TMzT48
-completed: true
 ---
 
 Scott and Wes serve up top tools and tricks for rapid idea execution, from JavaScript services like Valtown and Observable to database solutions including LowDB and Google Sheets integration. Get ready to streamline your development ideation process with these tasty insights!

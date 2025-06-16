@@ -9,7 +9,6 @@ guest:
 github: danielrosenwasser
 twitter: drosenwasser
 of: TypeScript, Microsoft
-completed: true
 ---
 
 Wes and Scott talk with Anders Hejlsberg and Daniel Rosenwasser about TypeScript’s leap to native code. They discuss the challenges, trade-offs, and the decision to port TypeScript to Go, unlocking faster compilation, better concurrency, and new possibilities for AI-assisted development.

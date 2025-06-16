@@ -3,7 +3,6 @@ number: 542
 title: Serverless Limitations
 date: 1669636800439
 url: https://traffic.megaphone.fm/FSI8911146545.mp3
-completed: true
 ---
 
 In this episode of Syntax, Wes and Scott talk through some of the limitations of using serverless in your project.

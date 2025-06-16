@@ -3,7 +3,6 @@ number: 153
 title: Hasty Treat - New Intl Methods Are Straight Fire
 date: 1560776400687
 url: https://traffic.megaphone.fm/FSI1245469897.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about internationalization - how to deal with different languages, different currencies, and more!

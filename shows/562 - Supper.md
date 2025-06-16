@@ -10,7 +10,6 @@ github: mell0kat
 twitter: mell0kat
 social: 
 - https: //medium.com/@katherine.mello8
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Katherine Mello about her journey into coding from liberal arts to bootcamp education, data visualization, and coding for a sustainable focused company.

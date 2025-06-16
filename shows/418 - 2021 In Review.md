@@ -3,7 +3,6 @@ number: 418
 title: 2021 In Review
 date: 1640786400759
 url: https://traffic.megaphone.fm/FSI6753029151.mp3
-completed: true
 ---
 
 In this episode of Syntax, Scott and Wes review their predictions and highlights for 2021.

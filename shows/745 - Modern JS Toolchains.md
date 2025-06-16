@@ -4,7 +4,6 @@ title: Modern JS Toolchains (Biome, Oxc + More)
 date: 1710932400354
 url: https://traffic.megaphone.fm/FSI6545519117.mp3
 youtube_url: https://www.youtube.com/watch?v=CawsIaarxAE
-completed: true
 ---
 
 Wes and Scott dive deep into the world of JavaScript toolchains, exploring everything from linters and compilers to transpilers and formatters. Tune in as they shed light on cutting-edge technologies like Biome, UnJS, and Ezno that are shaping the future for developers.

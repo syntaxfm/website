@@ -3,7 +3,6 @@ number: 336
 title: How To Build Your Own Auth
 date: 1615986000954
 url: https://traffic.megaphone.fm/FSI3748056922.mp3
-completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk about building your own authentication — diving deep into JWT, sessions, tokens, cookies, local storage, CSRF, and how it all works!

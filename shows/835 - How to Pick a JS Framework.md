@@ -10,7 +10,6 @@ github: w3cj
 twitter: CodingGarden
 of: Syntax
 social: https://coding.garden/
-completed: true
 ---
 
 Do you really need a framework? Scott and Wes bring on CJ to break down when frameworks like Vue, Svelte, and Astro are worth it—and when they might just add complexity. They dive into everything from rendering strategies to auth solutions, deployment options, and how to choose the right tool for the job.

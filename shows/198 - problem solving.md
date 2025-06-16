@@ -3,7 +3,6 @@ number: 198
 title: How To Get Better At Problem Solving
 date: 1574258400266
 url: https://traffic.megaphone.fm/FSI9259805944.mp3
-completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk about how to get better at problem solving — one of the most important skills to build as a developer.

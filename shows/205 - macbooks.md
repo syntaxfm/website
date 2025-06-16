@@ -3,7 +3,6 @@ number: 205
 title: Hasty Treat - The New MacBook Pro for Web Development
 date: 1576504800785
 url: https://traffic.megaphone.fm/FSI7567224059.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about the new 16" MacBook Pro and how it performs as a web development machine.

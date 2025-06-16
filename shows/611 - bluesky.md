@@ -3,7 +3,6 @@ number: 611
 title: Bluesky + AT Protocol
 date: 1683547200703
 url: https://traffic.megaphone.fm/FSI6456153575.mp3
-completed: true
 ---
 
 In this episode of Syntax, Wes and Scott talk all things Bluesky, the AT Protocol it's built in, the terminology of Bluesky, and how the API currently works.

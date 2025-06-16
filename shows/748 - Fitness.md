@@ -4,7 +4,6 @@ title: Fitness Will Make You a Better Developer
 date: 1711537200075
 url: https://traffic.megaphone.fm/FSI9199303020.mp3
 youtube_url: https://www.youtube.com/watch?v=DArcOe9B4Xw
-completed: true
 ---
 
 Level up your coding game -and your gains! Today, Scott and Wes weigh in on the importance of physical fitness for developers, covering motivation, diet, lifting basics, routines, and swole-inducing supplements.

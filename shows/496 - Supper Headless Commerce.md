@@ -8,7 +8,6 @@ name: Josh Larson
 github: jplhomer
 of: Shopify
 twitter: jplhomer
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Josh Larson from Shopify about headless ecommerce, including Hydrogen from Shopify, how integrations work with Shopify, and what the tech stack is behind Hydrogen.

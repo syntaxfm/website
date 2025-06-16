@@ -3,7 +3,6 @@ number: 55
 title: Hasty Treat - User Role Systems
 date: 1531141200658
 url: https://traffic.megaphone.fm/FSI7777677514.mp3
-completed: true
 ---
 
 In this Hasty Treat (Short episode) Scott and Wes discuss user roles, what to think about when creating your own, security implications, etc.

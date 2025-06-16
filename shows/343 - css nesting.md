@@ -3,7 +3,6 @@ number: 343
 title: Hasty Treat - CSS Nesting 1
 date: 1618232400771
 url: https://traffic.megaphone.fm/FSI5364255922.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about CSS nesting — what it is, when to use it, and why. 

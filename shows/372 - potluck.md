@@ -3,7 +3,6 @@ number: 372
 title: Potluck - Svelte × Bleeding-Edge Tech × Git Process × Screencasts × Government Jobs × Permissions-Based APIs × Rescript × More!
 date: 1626872400669
 url: https://traffic.megaphone.fm/FSI7129050774.mp3
-completed: true
 ---
 
 It's another Potluck! In this episode, Scott and Wes answer your questions about Svelte, bleeding-edge tech, best Git processes, Create React App, screencast software, FitBit API, government jobs, Syntax sponsors, and more!

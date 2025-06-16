@@ -4,7 +4,6 @@ title: The Future of JavaScript Frameworks × Building Auth × DB Design Tips, a
 date: 1723615200000
 url: https://traffic.megaphone.fm/FSI7764745116.mp3
 youtube_url: https://www.youtube.com/watch?v=4u0M_AqQPbo
-completed: true
 ---
 
 In this potluck episode of Syntax, Wes and Scott answer your questions about the future of JavaScript frameworks, building custom authentication systems, limiting API access, using Caddy server proxy for local development, component props in JSX, structuring a relational database, and more!

@@ -4,7 +4,6 @@ title: How to Pick a JS Package
 date: 1731927600000
 url: https://traffic.megaphone.fm/FSI2281194015.mp3
 youtube_url: https://www.youtube.com/watch?v=sEB_YuymznQ
-completed: true
 ---
 	
 You’ve got a project, and you need the right tool—but how do you know if that JavaScript package is the one? Scott and Wes guide you through finding and validating packages, from checking NPM to scoping out social proof, so you can pick tools you can trust.

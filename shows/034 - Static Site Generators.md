@@ -3,7 +3,6 @@ number: 34
 title: Why Static Site Generators are Awesome
 date: 1519785998881
 url: https://traffic.megaphone.fm/FSI6460687338.mp3
-completed: true
 ---
 
 Wes and Scott talk all about Static Site Generators!

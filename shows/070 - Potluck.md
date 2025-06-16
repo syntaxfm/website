@@ -3,7 +3,6 @@ number: 70
 title: Potluck - Programming Languages × Soft Skills × PHP vs JS × Breakdancing x Spice Blends
 date: 1535547600798
 url: https://traffic.megaphone.fm/FSI7129050774.mp3
-completed: true
 ---
 
 It's another potluck episode in which Wes and Scott answer your questions! This month - programming languages, how to practice soft skills, PHP vs JS, is it every too late to become a developer, and more.

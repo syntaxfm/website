@@ -10,7 +10,6 @@ github: balloob
 twitter: balloob
 of: Home Assistant
 social: https://bsky.app/profile/paulusschoutsen.nl
-completed: true
 ---
 
 Wes and CJ talk with Paulus Schoutsen, creator of Home Assistant, about the future of smart homes, AI-powered automation, and open-source innovation.

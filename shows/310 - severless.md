@@ -7,7 +7,6 @@ guest:
 name: Brian Leroux
 github: brianleroux
 twitter: brianleroux
-completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk with Brian Leroux about severless, Deno, Typescript, and more!

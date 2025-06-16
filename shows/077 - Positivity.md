@@ -3,7 +3,6 @@ number: 77
 title: Hasty Treat - Positivity and Web Development
 date: 1537794000377
 url: https://traffic.megaphone.fm/FSI6415582109.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about positivity in the web industry - how it can affect you, your work, and the people around you.

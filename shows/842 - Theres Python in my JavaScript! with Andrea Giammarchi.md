@@ -8,7 +8,6 @@ guest:
 name: Andrea Giammarchi
 github: webreflection
 twitter: webreflection
-completed: true
 ---
 
 Scott and Wes talk with Andrea Giammarchi (aka WebReflection) about his projects, including LinkDOM and PyScript, and the exciting future of running Python in the browser via WebAssembly.

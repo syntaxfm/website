@@ -8,7 +8,6 @@ name: Dr. Courtney Tolinski
 twitter: DrTolinski
 social: 
 - https: //www.instagram.com/learning.differently/
-completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk with Dr. Courtney Tolinski PhD about mental health and web development.

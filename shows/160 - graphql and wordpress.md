@@ -7,7 +7,6 @@ guest:
 name: Jason Bahl
 github: jasonbahl
 twitter: jasonbahl
-completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk with Jason Bahl (author of WPGraphQL) about GraphQL, headless WordPress, frameworks in WordPress, React in WordPress, and more!

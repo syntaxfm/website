@@ -10,7 +10,6 @@ github: tauri-apps
 twitter: TauriApps
 of: Tauri
 social: https://denjell.com
-completed: true
 ---
 
 In this episode of Syntax, Wes and Scott talk with Daniel Thompson-Yvetot about Tauri. They dive into what Tauri is, the motivations behind its development, its open-source ecosystem, use cases, and more.

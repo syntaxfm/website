@@ -8,7 +8,6 @@ name: Nicholas Zakas
 of: ESLint
 github: nzakas
 twitter: slicknet
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Nicholas Zakas about his creation of ESLint, what's coming up in ESLint, and his work as a coach and mentor for programmers.

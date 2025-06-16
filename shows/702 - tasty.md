@@ -3,7 +3,6 @@ number: 702
 title: New + Proposed JS APIs for 2024
 date: 1701864000821
 url: https://traffic.megaphone.fm/FSI3222998556.mp3
-completed: true
 ---
 
 In this episode of Syntax, Wes and Scott talk through new and proposed JavaScript APIs including ones related to regex, sourcemaps, structured clone, temporal, JSON modules, and more!

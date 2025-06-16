@@ -3,7 +3,6 @@ number: 397
 title: Hasty Treat - Handy Utility Functions with Just
 date: 1634562000303
 url: https://traffic.megaphone.fm/FSI4329157196.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about handy utility functions with Just!

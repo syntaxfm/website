@@ -3,7 +3,6 @@ number: 663
 title: Potluck × Soft Skills × Release Notes × Headless CMS × Organizing Code × Inet CSS?
 date: 1694001600531
 url: https://traffic.megaphone.fm/FSI4514655828.mp3
-completed: true
 ---
 
 In this potluck episode of Syntax, Wes and Scott answer your questions about learning soft skills, using release notes, headless CMS, dealing with web components and scripts, what inet is, better ways to use ChatGPT, and more!

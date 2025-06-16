@@ -6,7 +6,6 @@ url: https://traffic.megaphone.fm/FSI1756834713.mp3
 guest: 
 name: Tim Leland
 twitter: TimLeland
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Tim Leland - developer of browser extensions like WeatherExtension and Link Shortener Extension.

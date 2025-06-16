@@ -10,7 +10,6 @@ twitter: bentlegen
 social: 
 - https: //www.linkedin.com/in/benvinegar/
 - http: //bentlegen.bsky.social/
-completed: true
 ---
 
 In this episode of Syntax, Wes and Scott talk with Ben Vinegar about his work with Sentry, their migration to TypeScript, and advice for running JavaScript on other websites.

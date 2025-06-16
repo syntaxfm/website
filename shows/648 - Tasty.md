@@ -3,7 +3,6 @@ number: 648
 title: Standard Server JavaScript - Deno, Workers, Bun and More
 date: 1690977600908
 url: https://traffic.megaphone.fm/FSI3639322984.mp3
-completed: true
 ---
 
 In this episode of Syntax, Wes and Scott talk about JavaScript runtimes available to use, what to consider, and packages to use.

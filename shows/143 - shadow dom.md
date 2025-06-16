@@ -3,7 +3,6 @@ number: 143
 title: Hasty Treat - The SHADOW DOM
 date: 1557752400187
 url: https://traffic.megaphone.fm/FSI7498717616.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about Shadow Doms - what they are, the individual pieces involved with them, why they're important, and how to get started using them.

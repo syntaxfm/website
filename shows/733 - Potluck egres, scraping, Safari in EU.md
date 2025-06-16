@@ -4,7 +4,6 @@ title: Egress, scraping, Safari EU changes, is SetInterval worth it?
 date: 1708516800514
 url: https://traffic.megaphone.fm/FSI7509355117.mp3
 youtube_url: https://www.youtube.com/watch?v=1dufGxB1v68
-completed: true
 ---
 
 In this potluck episode of Syntax, Wes and Scott discuss egress, scraping, Safari EU changes, and answer questions on updating dependencies and SetInterval.

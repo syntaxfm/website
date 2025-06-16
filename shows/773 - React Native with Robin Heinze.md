@@ -10,7 +10,6 @@ github: robinheinze
 twitter: robin_heinze
 of: Infinite Red
 social: https://www.linkedin.com/in/robin-heinze/
-completed: true
 ---
 
 Scott and Wes dish out a feast with Robin Heinze from Infinite Red, diving into the world of React Native. They discuss how React Native differs from other webview platforms, highlight popular apps built with it, and serve up essential tools and libraries to spice up every React Native project.

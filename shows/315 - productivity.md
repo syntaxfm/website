@@ -3,7 +3,6 @@ number: 315
 title: Hasty Treat - Hyper Productivity with Keyboard Shortcuts + Window Management
 date: 1609768800918
 url: https://traffic.megaphone.fm/FSI9299103876.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about keyboard shortcuts, window management, and how to stay productive.

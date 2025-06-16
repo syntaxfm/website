@@ -3,7 +3,6 @@ number: 135
 title: Hasty Treat - Cranky Developers
 date: 1555333200976
 url: https://traffic.megaphone.fm/FSI8123035367.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about cranky developers — those devs who never seem happy about anything, always mad about tech choices, and constantly writing off any new tech as simply a "fad" or unnecessary. 

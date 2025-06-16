@@ -10,7 +10,6 @@ github: claviska
 twitter: claviska
 of: Shoelace
 social: https://www.abeautifulsite.net/
-completed: true
 ---
 
 Font Awesome is back with Web Awesome, an open source library of web components that will work with any framework because it’s based on standards. Today on Syntax we have Konnor Rogers and Cory LaViska here to talk all things Web Awesome.

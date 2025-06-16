@@ -3,7 +3,6 @@ number: 231
 title: Hasty Treat - Hiring an Assistant
 date: 1584363600920
 url: https://traffic.megaphone.fm/FSI4666804081.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about how to hire an assistant — something that can make your life a lot easier as a solo developer.

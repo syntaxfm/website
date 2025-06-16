@@ -3,7 +3,6 @@ number: 192
 title: Spooky Web Dev Horror Stories
 date: 1572440400741
 url: https://traffic.megaphone.fm/FSI5540929671.mp3
-completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk about web dev horror stories — things you can only hope will never happen to you!   

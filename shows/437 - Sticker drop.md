@@ -3,7 +3,6 @@ number: 437
 title: Sticker Mogul 2022
 date: 1646654400605
 url: https://traffic.megaphone.fm/FSI2045340325.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about Wes' experience designing, printing, and shipping out his sticker packs.

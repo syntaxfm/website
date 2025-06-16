@@ -8,7 +8,6 @@ name: Lee Robinson
 of: Vercel
 github: leerob
 twitter: leeerob
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Lee Robinson from Vercel about React Suspense, server components, the edge, and more!

@@ -3,7 +3,6 @@ number: 617
 title: Why Is node_modules So Big?
 date: 1684756800433
 url: https://traffic.megaphone.fm/FSI2596460713.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about the reasons your node_modules folder gets so large, and what you can do to help keep the file size down.

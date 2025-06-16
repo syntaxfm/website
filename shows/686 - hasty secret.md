@@ -3,7 +3,6 @@ number: 686
 title: We Need Your Help With The Secret Sauce
 date: 1698667200061
 url: https://traffic.megaphone.fm/FSI7630798335.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about the secret sauce that's going into the creation of the new Syntax.fm website including the styling, search, tooling, database, hosting, and more.

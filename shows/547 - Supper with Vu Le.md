@@ -8,7 +8,6 @@ name: Vu Le
 of: Disney
 github: vukyle
 twitter: vukyle
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Vu Le about his path to working at Disney. How did he learn to code? How do you get a job at Disney? What's the tech stack inside a Disney team?

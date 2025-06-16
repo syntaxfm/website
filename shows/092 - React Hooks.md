@@ -3,7 +3,6 @@ number: 92
 title: React Hooks
 date: 1542204000772
 url: https://traffic.megaphone.fm/FSI3697552106.mp3
-completed: true
 ---
 
 In this episode Wes and Scott discuss React Hooks - what they are, why you might want to use them, their differences with regular classes, and more.

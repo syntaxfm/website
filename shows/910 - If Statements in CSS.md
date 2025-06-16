@@ -4,7 +4,6 @@ title: 'If Statements in CSS?'
 date: 1749639600000
 url: https://traffic.megaphone.fm/FSI2413522351.mp3
 youtube_url: https://www.youtube.com/watch?v=fTdqR9ZmHHU
-completed: true
 ---
 
 Wes and Scott talk about the new If statements in CSS, breaking down how they work, why they matter, and when to use them. They explore use cases, syntax quirks, and how this feature pushes CSS closer to true conditional logic—no JavaScript required.

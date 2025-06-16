@@ -10,7 +10,6 @@ github: randyrektor
 twitter: randyrektor
 of: Syntax
 social: https://www.youtube.com/@randyrektor
-completed: true
 ---
 
 Wes and Scott talk with Syntax Producer Randy Rektor. From mastering mic technique to lighting hacks and choosing the right camera, they discuss the best ways to upgrade your audio and video setup on any budget.

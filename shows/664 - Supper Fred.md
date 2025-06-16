@@ -7,7 +7,6 @@ guest:
 name: Fred Schott
 github: fredkschott
 twitter: fredkschott
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Fred Schott all things Astro with the announcement of Astro version 3, marketing open source projects, Starlight docs, keeping up to date, and making major version numbers less scary.

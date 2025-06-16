@@ -3,7 +3,6 @@ number: 603
 title: Can Vanilla CSS Replace Sass Yet?
 date: 1681905600431
 url: https://traffic.megaphone.fm/FSI9143578242.mp3
-completed: true
 ---
 
 In this episode of Syntax, Wes and Scott go through all the features of Sass and decide where we are at with Native CSS alternatives, giving each feature a rating of replaceable, plausible, or missing.

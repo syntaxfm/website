@@ -3,7 +3,6 @@ number: 118
 title: The Smart Home
 date: 1550066400423
 url: https://traffic.megaphone.fm/FSI8519817736.mp3
-completed: true
 ---
 
 In this episode, Wes and Scott talk about the Smart Home — all the different tech available, how it works together, pitfalls to avoid, hardware, software, and more!

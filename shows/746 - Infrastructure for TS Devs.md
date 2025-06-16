@@ -11,7 +11,6 @@ twitter: rawkode
 of: Rawkode Academy
 social: 
 - https: //www.linkedin.com/in/rawkode/
-completed: true
 ---
 
 Deploy your own tech stack: Wes and Scott are joined by Kubernetes expert David Flanagan to be schooled on how Kubernetes, Docker and even WASM containers work.

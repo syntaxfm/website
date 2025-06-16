@@ -3,7 +3,6 @@ number: 448
 title: Potluck - Multi Tenant Apps, JS Sprinkles,  Kids Coding, Server Error Handling
 date: 1649851200332
 url: https://traffic.megaphone.fm/FSI7129050774.mp3
-completed: true
 ---
 
 In this episode of Syntax, Wes and Scott answer your questions about multi tenant apps, JS sprinkles, kids coding, server error handling, and more.

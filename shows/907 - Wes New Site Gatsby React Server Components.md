@@ -4,7 +4,6 @@ title: "Wes’ New Site: Gatsby → React Server Components"
 date: 1748862000000
 url: https://traffic.megaphone.fm/FSI3865490348.mp3
 youtube_url: https://www.youtube.com/watch?v=YKRfTA-Vx9M
-completed: true
 ---
 	
 Wes rebuilt his personal site from Gatsby to a modern stack using Waku, React Server Components, and Cloudflare Workers — all while keeping the same design. Scott and Wes break down the pain points with Next.js, MDX, image handling, caching, and the custom setup that now powers a blazing-fast blog.

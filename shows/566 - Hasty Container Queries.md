@@ -3,7 +3,6 @@ number: 566
 title: Container Queries Explained
 date: 1674475200605
 url: https://traffic.megaphone.fm/FSI1599572631.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes explain what container queries are, use cases for them, new units of measurement, and possible issues with container queries.

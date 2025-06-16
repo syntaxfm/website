@@ -10,7 +10,6 @@ github: jreinhold
 twitter: drreinhold
 of: Storybook
 social: https://reinhold.is/
-completed: true
 ---
 
 Wes and Scott talk with Jeppe Reinhold about Storybook 9’s powerful new features—including drastically reduced bloat, seamless Vite integration, and next-level component testing. They dive into visual regression testing, accessibility, performance, and best practices for writing robust, isolated UI components developers can actually enjoy testing and documenting.

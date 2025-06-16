@@ -8,7 +8,6 @@ name: Miško Hevery
 of: Qwik
 github: mhevery
 twitter: mhevery
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Miško Hevery about why developers should check out Qwik, the benefits of lazy loading, sharing state between components, and other Builder.io projects like Partytown and Mitosis.

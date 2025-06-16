@@ -3,7 +3,6 @@ number: 440
 title: Potluck - Handling Auth × Are Web Dev Real Developers? × Handling Git Conflicts × Converting PNG to Box-Shadow × Bad Docs vs No Docs × Making Shopify Headless
 date: 1647432000308
 url: https://traffic.megaphone.fm/FSI2387233941.mp3
-completed: true
 ---
 
 In this potluck episode of Syntax, Wes and Scott answer your questions about handling auth, are web dev real developers, handling Git conflicts,  converting PNG to Box-Shadow, bad docs vs no docs, making Shopify headless, and more.

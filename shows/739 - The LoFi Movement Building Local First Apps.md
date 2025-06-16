@@ -4,7 +4,6 @@ title: "The LoFi Movement: Building Local First Apps"
 date: 1709726400294
 url: https://traffic.megaphone.fm/FSI4989187681.mp3
 youtube_url: https://www.youtube.com/watch?v=U1uhILa-wmI
-completed: true
 ---
 
 Join Wes and Scott as they explore LoFi (local first) web development, delving into CRDT, Websockets, IndexedDB, SQLite, and more. Discover when Local-First shines and when it's better to steer clear in this episode packed with practical insights.

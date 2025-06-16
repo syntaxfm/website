@@ -3,7 +3,6 @@ number: 486
 title: Our Code Styles
 date: 1658318400138
 url: https://traffic.megaphone.fm/FSI2604101393.mp3
-completed: true
 ---
 
 In this episode of Syntax, Wes and Scott talk about their coding styles - functional vs object oriented, interfaces vs types, tabs vs spaces, should comments exist? And a whole lot more.

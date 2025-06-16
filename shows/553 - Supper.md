@@ -8,7 +8,6 @@ name: Kenneth Lyerly
 github: kenput3r
 of: Suavacito
 twitter: kenput3r
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Kenneth Lyerly about his career path into coding, and how he manages to hold two jobs.

@@ -4,7 +4,6 @@ title: "Promises: Error Handling, Aborts, and Helper Methods - Part 2"
 date: 1716202800000
 url: https://traffic.megaphone.fm/FSI4844035809.mp3
 youtube_url: https://www.youtube.com/watch?v=7gTwa9ofqcM
-completed: true
 ---
 
 We're diving into part 2 of our 3-part series on Promises, focusing on error handling, aborts, and essential helper methods. We'll explore how to manage errors effectively and improve performance with abort signals. Let's get into it!

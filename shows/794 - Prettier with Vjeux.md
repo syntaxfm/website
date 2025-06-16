@@ -10,7 +10,6 @@ github: vjeux
 twitter: Vjeux
 of: Meta & Prettier
 social: https://blog.vjeux.com/
-completed: true
 ---
 
 Scott and Wes sit down with Vjeux from Meta to dive deep into the origins and evolution of Prettier, the widely-used code formatter. They discuss the challenges faced, the decision-making process behind its features, and what the future holds for this indispensable tool in the developer's toolkit.

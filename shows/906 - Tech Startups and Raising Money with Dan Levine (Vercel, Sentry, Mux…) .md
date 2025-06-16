@@ -9,7 +9,6 @@ name: Dan Levine
 github: daniellevine
 twitter: daniel_levine
 of: Accel
-completed: true
 ---
 
 Wes and Scott talk with VC Dan Levine about how developers can raise venture capital, what investors look for in early-stage startups, the realities of bootstrapping vs. fundraising, and why great ideas often start as simple side projects.

@@ -4,7 +4,6 @@ title: The Taliban Stole My Domain
 date: 1708948800283
 url: https://traffic.megaphone.fm/FSI5492059987.mp3
 youtube_url: https://www.youtube.com/watch?v=q_yAu7rYmiM
-completed: true
 ---
 
 Wes shares the story of how the Taliban stole his .af domain. Scott and Wes discuss top-level domain (TLD) best practices, how to find unique custom domain names for your website, and how to avoid having yours stolen.

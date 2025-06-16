@@ -3,7 +3,6 @@ number: 446
 title: Making Content × What is our Process? Youtube, Blog Posts, Courses, Conference Talks, and Podcasts
 date: 1649246400197
 url: https://traffic.megaphone.fm/FSI3388882506.mp3
-completed: true
 ---
 
 In this episode of Syntax, Wes and Scott talk through their process for making content on the internet for their YouTube channels, blog posts, courses, conference talks, and podcasts.

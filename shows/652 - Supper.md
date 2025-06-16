@@ -8,7 +8,6 @@ name: Brandon Bayer
 of: Flightcontrol
 github: flybayer
 twitter: flybayer
-completed: true
 ---
 
 Can you have a Vercel like experience on your own AWS? Scott and Wes talk with Brandon Bayer about Flightcontrol - what it is, how to use it on your app, pricing, and more.

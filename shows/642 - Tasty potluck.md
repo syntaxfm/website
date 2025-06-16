@@ -3,7 +3,6 @@ number: 642
 title: Potluck × CSS Variables in React × JS Notebooks × Selling a Domain
 date: 1689768000829
 url: https://traffic.megaphone.fm/FSI9669453529.mp3
-completed: true
 ---
 
 In this potluck episode of Syntax, Wes and Scott answer your questions about Prisma, CSS variables in React components, JS notebooks, transcribing podcasts, keeping up with dev skills, selling a domain, and more.

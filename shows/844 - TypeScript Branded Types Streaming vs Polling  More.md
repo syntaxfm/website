@@ -4,7 +4,6 @@ title: TypeScript, Branded Types, Streaming vs Polling + More
 date: 1730890800000
 url: https://traffic.megaphone.fm/FSI9538283672.mp3
 youtube_url: https://www.youtube.com/watch?v=Xlptzh4oo2E
-completed: true
 ---
 	
 Scott and Wes serve up listener questions on everything from SvelteKit’s limits and the quirks of branded types in TypeScript to handling email queues and secure token storage in cookies. Plus, they get into app security, the evolution of checkout flows, and why QA teams can *actually* be game-changers for dev teams.

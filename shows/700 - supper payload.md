@@ -8,7 +8,6 @@ name: James Mikrut
 of: Payload
 github: jmikrut
 twitter: jamesmikrut
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with James Mikrut about Payload, how Payload isn't just a CMS, where Payload fits in a tech stack, why they picked Drizzle for an ORM, what Payload Cloud is, and where's the Rails for JavaScript?

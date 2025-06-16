@@ -3,7 +3,6 @@ number: 578
 title: Logging
 date: 1676894400302
 url: https://traffic.megaphone.fm/FSI9293590880.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about the reasons why you should log errors, how it's not just for debugging, where to save logs, and apps and packages to help with logging.

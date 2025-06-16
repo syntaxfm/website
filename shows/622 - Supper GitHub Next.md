@@ -8,7 +8,6 @@ guest:
 github: idan
 of: Github, Copilot
 twitter: idangazit
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Matt Rothenberg and Idan Gazit from GitHub about GitHub Next, Copilot, AI based projects at Github, and what the future is for developers with AI.

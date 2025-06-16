@@ -3,7 +3,6 @@ number: 253
 title: Hasty Treat - Developing for Slow and Spotty Connections
 date: 1591016400405
 url: https://traffic.megaphone.fm/FSI7353322471.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about how to develop for slow internet connections. 

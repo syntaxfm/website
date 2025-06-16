@@ -4,7 +4,6 @@ title: CSS Is Getting Mixins + Functions
 date: 1713178800000
 url: https://traffic.megaphone.fm/FSI7196889298.mp3
 youtube_url: https://www.youtube.com/watch?v=MwXht_lBcHo
-completed: true
 ---
 
 Scott and Wes chomp through CSS Mixins and Functions, discussing the latest features making their way into CSS. From Tailwind-like classes to fluid typography, join us as we explore the possibilities and practical applications of these new tools.

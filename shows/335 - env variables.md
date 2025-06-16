@@ -3,7 +3,6 @@ number: 335
 title: Hasty Treat - Environmental Variables
 date: 1615813200954
 url: https://traffic.megaphone.fm/FSI4275646816.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about environment variables — what they are, where you should keep them, and more!

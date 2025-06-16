@@ -10,7 +10,6 @@ of: Remotion
 twitter: JNYBGR
 social: 
 - https: //www.linkedin.com/in/jonny-burger-4115109b/
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Jonny Burger about why and how he built Remotion, his app that lets you create MP4 videos using React.

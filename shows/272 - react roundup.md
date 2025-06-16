@@ -3,7 +3,6 @@ number: 272
 title: React State Round Up
 date: 1596632400603
 url: https://traffic.megaphone.fm/FSI6552856734.mp3
-completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk about React State libraries, should you use them, pros, cons, and more!

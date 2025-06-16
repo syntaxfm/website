@@ -3,7 +3,6 @@ number: 363
 title: Hasty Treat - CSRF Explained
 date: 1624280400183
 url: https://traffic.megaphone.fm/FSI8465029315.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about CSRF (Cross Site Request Forgery)!

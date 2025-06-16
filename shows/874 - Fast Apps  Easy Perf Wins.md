@@ -4,7 +4,6 @@ title: Fast Apps - Easy Perf Wins
 date: 1738753200000
 url: https://traffic.megaphone.fm/FSI4331138814.mp3
 youtube_url: https://www.youtube.com/watch?v=1iAeSCwh92c
-completed: true
 ---
 	
 Is your app feeling sluggish? Scott and Wes break down the biggest performance bottlenecks—like bloated assets, slow databases, and waterfall requests—and share easy wins to make your site feel lightning fast. From smarter caching to preloading tricks, these tips will have your app zipping along in no time!

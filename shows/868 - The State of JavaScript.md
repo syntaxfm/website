@@ -4,7 +4,6 @@ title: The State of JavaScript
 date: 1736942400000
 url: https://traffic.megaphone.fm/FSI5675818059.mp3
 youtube_url: https://www.youtube.com/watch?v=VSRAvg9wA4g
-completed: true
 ---
 
 Wes and Scott talk about the State of JavaScript survey, tends, popular features, and the evolving landscape of tools and frameworks. 

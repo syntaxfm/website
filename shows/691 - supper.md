@@ -9,7 +9,6 @@ of: Cloudflare
 github: rita3ko
 twitter: ritakozlov_
 social: https://www.linkedin.com/in/ritakozlov/
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Rita Kozlov And Brendan Irvine-Broque about Cloudflare Workers, Cloudflare AI, browser rendering API, Cloudflare's D1 database, WinterCG, miniflare, and more!

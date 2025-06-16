@@ -11,7 +11,6 @@ twitter: _marcobambini
 of: SQLite Cloud
 social: https://www.linkedin.com/in/marcobambini/
 hosts: 
-completed: true
 ---
 
 Scott and CJ dive into the world of SQLite Cloud with special guests Brian Holt and Marco Bambini. They explore why SQLite is gaining traction, its unique features, and the misconceptions surrounding its use—let's get into it!

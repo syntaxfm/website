@@ -9,7 +9,6 @@ github: KATT
 of: tRPC
 twitter: alexdotjs
 social: https://www.linkedin.com/in/johanssonalexander/
-completed: true
 ---
 
 In this supper club episode of Syntax, Scott talks with Alex Johansson about his work on tRPC, how it compares to other tools like GraphQL, and what's next for tRPC?

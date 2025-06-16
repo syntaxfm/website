@@ -3,7 +3,6 @@ number: 327
 title: Hasty Treat - TypeScript Compilers and Build Tools
 date: 1613397600264
 url: https://traffic.megaphone.fm/FSI1056514617.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about the differences between compilers and build tools in TypeScript.

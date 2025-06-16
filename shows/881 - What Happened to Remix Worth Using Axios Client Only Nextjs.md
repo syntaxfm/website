@@ -4,7 +4,6 @@ title: What Happened to Remix. Worth Using Axios? Client Only Next.js?
 date: 1740999600000
 url: https://traffic.megaphone.fm/FSI7600027027.mp3
 youtube_url: https://www.youtube.com/watch?v=jiF66cbjapQ
-completed: true
 ---
 	
 Scott and Wes answer your listener questions! They debate Axios vs. Fetch, discuss whether Next.js is overkill without a backend, talk htmx and Alpine, dive into tech career transitions, and tackle everything from podcast ads to password hashing myths.

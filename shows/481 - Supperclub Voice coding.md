@@ -8,7 +8,6 @@ name: Pokey Rule
 github: pokey
 twitter: PokeyRule
 social: https://www.youtube.com/channel/UCML02pamUSxtbwAcrUdVmXg
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Pokey Rule about using his voice to code, and the current state of voice coding software.

@@ -3,7 +3,6 @@ number: 175
 title: Hasty Treat - Stump'd
 date: 1567429200493
 url: https://traffic.megaphone.fm/FSI9568336146.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes are back with another edition of Stump'd! where they try to stump each other with interview questions. 

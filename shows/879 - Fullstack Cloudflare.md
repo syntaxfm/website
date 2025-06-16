@@ -4,7 +4,6 @@ title: Fullstack Cloudflare
 date: 1740394800000
 url: https://traffic.megaphone.fm/FSI7558039240.mp3
 youtube_url: https://www.youtube.com/watch?v=RKxjMIDCwS8
-completed: true
 ---
 	
 Wes and CJ break down everything Cloudflare—from Workers and R2 Storage to Hyperdrive and AI Gateway. Get the scoop on what makes Cloudflare tick, the quirks of their ecosystem, and whether vendor lock-in is a real concern.

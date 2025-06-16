@@ -9,7 +9,6 @@ guest:
 github: digitarald
 twitter: digitarald
 of: VS Code
-completed: true
 ---
 
 Wes and Scott talk with Cassidy Williams and Harald Kirschner about exciting new features in VS Code and GitHub Copilot, including custom instructions, UI/UX improvements, and the future of AI and Copilot within different editors.

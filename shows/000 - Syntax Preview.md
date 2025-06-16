@@ -3,7 +3,6 @@ number: 0
 title: Preview
 date: 1498579200000
 url: https://traffic.megaphone.fm/FSI4118418224.mp3
-completed: true
 ---
 
 ## Show Notes

@@ -9,7 +9,6 @@ name: Matt Perry
 github: mattgperry
 twitter: mattgperry
 of: Motion
-completed: true
 ---
 
 Wes and Scott talk with Matt Perry, the creator of Motion (formerly Framer Motion). Matt discusses building intuitive tools, transitioning Motion to open source, and the future of web animation.

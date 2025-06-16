@@ -9,7 +9,6 @@ name: Alex Sexton
 github: slexaxton
 twitter: slexaxton
 of: Stripe
-completed: true
 ---
 
 Scott and Wes are joined by security expert, Alex Sexton of Stripe to cover all things: client security, XSS, attack vectors, and CSP (content security policy).

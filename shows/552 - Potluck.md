@@ -3,7 +3,6 @@ number: 552
 title: Potluck × Twitter Thoughts × Business Models × Senior Developer
 date: 1671624000769
 url: https://traffic.megaphone.fm/FSI7129050774.mp3
-completed: true
 ---
 
 In this potluck episode of Syntax, Wes and Scott answer your questions about how to give feedback on the podcast, deciding on a business model for courses, what to do about Twitter, and more.

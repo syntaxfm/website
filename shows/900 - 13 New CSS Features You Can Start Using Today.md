@@ -4,7 +4,6 @@ title: "13 New CSS Features You Can Start Using Today"
 date: 1746615600000
 url: https://traffic.megaphone.fm/FSI9960156259.mp3
 youtube_url: https://www.youtube.com/watch?v=6BjvBxilIE8
-completed: true
 ---
 
 Wes and Scott talk about underrated but game-changing new CSS features like shape(), zoom, text-wrap, scroll bar styling, content-visibility, and more—many of which are now supported across modern browsers and ready for real-world use without fallbacks.

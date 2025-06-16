@@ -10,7 +10,6 @@ github: ematipico
 twitter: ematipico
 of: BiomeJS
 social: https://fosstodon.org/@ematipico
-completed: true
 ---
 
 Join Scott and Wes as they delve into the fascinating realm of Biome.JS alongside Emanuele Stoppa, the mastermind behind it all. Why is it written in Rust? Why are other tools so slow? Could Biome be the ultimate successor to ESLint or Prettier? Grab a seat at the table and find out!

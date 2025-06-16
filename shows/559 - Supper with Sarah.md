@@ -10,7 +10,6 @@ of: Google
 twitter: sarah_edo
 social: 
 - https: //codepen.io/sdras/
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Sarah Drasner about her new book, Engineering Management for the Rest of Us, what it's like moving from management to coding and back, the book writing process, and her Fortnite VS Code theme.

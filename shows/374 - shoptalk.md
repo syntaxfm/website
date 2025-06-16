@@ -9,7 +9,6 @@ github: davatron5000
 twitter: davatron5000
 social: https://mastodon.social/@davatron5000
 - https: //codepen.io/chriscoyier
-completed: true
 ---
 
 In this episode of Syntax, Scott and Wes do a collaboration with Chis Coyier and Dave Rupert from ShopTalk Show! They talk about favorite tech stacks, podcasting, learning new tech, dealing with FOMO, and more!

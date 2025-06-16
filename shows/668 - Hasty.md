@@ -3,7 +3,6 @@ number: 668
 title: Hacking the Tonal - Proxying, Intercepting + Debugging Traffic?
 date: 1695038400132
 url: https://traffic.megaphone.fm/FSI5844836630.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about how you can intercept and debug traffic going out from your computer or other internet connected devices in your home, or your garage!

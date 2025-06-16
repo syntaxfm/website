@@ -8,7 +8,6 @@ name: Mark Erikson
 of: Redux
 github: markerikson
 twitter: acemarke
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Mark Erikson about his work in helping others understand shipping ESM, how to deal with permutations, whether default imports are helpful, whether TypeScript has made it easier, and what Mark's tool stack is for building.

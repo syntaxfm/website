@@ -10,7 +10,6 @@ github: cassieevans
 twitter: cassiecodes
 of: GSAP
 social: https://www.cassie.codes/
-completed: true
 ---
 	
 Scott and Wes sit down with Cassie Evans of GSAP to talk all things animation—from SVGs and scroll timelines to GSAP's new rebrand and exciting features. They also dig into performance, plugins, and what makes GSAP such a powerful tool for web developers.

@@ -3,7 +3,6 @@ number: 356
 title: Bike Shedding — Developer Opinions Explained
 date: 1622034000010
 url: https://traffic.megaphone.fm/FSI7126995754.mp3
-completed: true
 ---
 
 In this episode of Syntax, Scott and Wes bike shed some common developer opinions.

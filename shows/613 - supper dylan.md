@@ -8,7 +8,6 @@ name: Dylan Jhaveri
 of: Mux
 github: dylanjha
 twitter: dylanjha
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Dylan Jhaveri about his work at Mux, how Mux ingests and spits out video, and where Mux fits in a tech stack for developers working with video and audio.

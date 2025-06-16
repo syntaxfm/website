@@ -11,7 +11,6 @@ twitter: bentlegen
 of: Syntax
 # A single social Link: 
 social: https://benv.ca/
-completed: true
 ---
 
 Scott and Wes dive into Cloudflare's Analytics Engine and Workers with special guest Ben Vinegar, Syntax's General Manager. Tune in as they explore Clickhouse, data tracking, infrastructure costs, and transitioning from software products to managing a podcast.

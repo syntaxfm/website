@@ -4,7 +4,6 @@ title: How We Built a Netflix Style “Save for Offline” Feature Into Syntax
 date: 1718622000000
 url: https://traffic.megaphone.fm/FSI5949321422.mp3
 youtube_url: https://www.youtube.com/watch?v=ynuAaDf_bz4
-completed: true
 ---
 
 Scott and Wes dive into the world of browser caching for audio files, exploring the File System API and the Cache API. They discuss size restrictions across different browsers, how tools like Riverside.fm leverage IndexedDB, and walk through code examples for creating, retrieving, and managing cached audio data.

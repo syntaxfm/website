@@ -3,7 +3,6 @@ number: 561
 title: 2023 Goals × Learning and Doing
 date: 1673438400093
 url: https://traffic.megaphone.fm/FSI5928862642.mp3
-completed: true
 ---
 
 In this episode of Syntax, Wes and Scott talk through their goals for 2023 including coding, tooling, courses and platforms, social media, and fitness.

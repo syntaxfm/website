@@ -3,7 +3,6 @@ number: 85
 title: Hasty Treat - Old Browsers, Fallbacks and Polyfills - Part 2
 date: 1540213200399
 url: https://traffic.megaphone.fm/FSI2143102699.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes continue a three-part series about old browsers, fallbacks and polyfills. In part two, they talk specifically about CSS Grid, Flexbox, new features and fallbacks, and how to use them.

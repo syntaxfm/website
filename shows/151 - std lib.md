@@ -3,7 +3,6 @@ number: 151
 title: Hasty Treat - Std Lib in JavaScript
 date: 1560171600514
 url: https://traffic.megaphone.fm/FSI8714351566.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes discuss the Javascript standard library proposal — what it is, how it could influence dev, and what they'd like to see.

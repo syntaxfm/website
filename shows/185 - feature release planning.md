@@ -3,7 +3,6 @@ number: 185
 title: Hasty Treat - Feature + Release Planning
 date: 1570453200237
 url: https://traffic.megaphone.fm/FSI3119583404.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about feature and release planning — dealing with bugs, task management, best practices, and more!

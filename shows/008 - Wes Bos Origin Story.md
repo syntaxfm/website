@@ -3,7 +3,6 @@ number: 8
 title: Wes Bos Origin Story 🎸💼💻🔥🐷
 date: 1503493200000
 url: https://traffic.megaphone.fm/FSI4509528363.mp3
-completed: true
 ---
 
 In this episode, Wes talks about his career path from a MySpace customizer to where he is now.

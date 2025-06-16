@@ -4,7 +4,6 @@ title: The State of Frontend
 date: 1732705200000
 url: https://traffic.megaphone.fm/FSI3348939917.mp3
 youtube_url: https://www.youtube.com/watch?v=FIYurQvJY2E
-completed: true
 ---
 	
 Scott and Wes dive into the State of Frontend 2024 Survey, breaking down the latest trends, tools, and frameworks shaping the developer ecosystem. Tune in as they react to hot takes on frameworks, state management, hosting, and what’s next for frontend devs!

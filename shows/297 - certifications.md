@@ -3,7 +3,6 @@ number: 297
 title: Hasty Treat - Certifications? Government Specified JavaScript Skills?
 date: 1604325600713
 url: https://traffic.megaphone.fm/FSI5826325986.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about web dev certifications — are they worth it, or a waste of time?

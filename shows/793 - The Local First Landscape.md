@@ -4,7 +4,6 @@ title: The Local First Landscape
 date: 1720609200000
 url: https://traffic.megaphone.fm/FSI7358083091.mp3
 youtube_url: https://www.youtube.com/watch?v=aKaSOVzquqA
-completed: true
 ---
 
 Scott and Wes dive into the local first landscape, exploring the benefits and possibilities of local first apps. They highlight some of their favorite tools and discuss why local first is gaining traction among developers.

@@ -3,7 +3,6 @@ number: 120
 title: Gatsby vs Next
 date: 1550671200938
 url: https://traffic.megaphone.fm/FSI2068317801.mp3
-completed: true
 ---
 
 In this episode, Wes and Scott debate Gatsby vs Next — how they compare, the pros and cons of each, why you might chose one over the other for your next project, and more!

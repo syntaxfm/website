@@ -9,7 +9,6 @@ name: Topher Martini
 twitter: tophermartini
 of: Apple
 social: https://www.linkedin.com/in/tophermartini
-completed: true
 ---
 
 Scott and Wes talk with Topher Martini, a former Engineering Program Manager at Apple, about his extensive experience over two decades in the tech industry. Topher shares his journey at Apple, from starting as an intern in 2001 to working on groundbreaking products like iPhone, iPad, and Vision Pro. 

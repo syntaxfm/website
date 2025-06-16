@@ -3,7 +3,6 @@ number: 104
 title: CSS Layout
 date: 1545832800650
 url: https://traffic.megaphone.fm/FSI8543125220.mp3
-completed: true
 ---
 
 In this episode Wes and Scott are talking all about CSS layout - how it works, things to watch out for and more!

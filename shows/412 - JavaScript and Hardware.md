@@ -8,7 +8,6 @@ name: Anth Rogan
 github: anthrogan
 twitter: RoganFPS
 social: https://www.linkedin.com/in/anth-rogan-59955429/
-completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk with Anth Rogan about JavaScript and hardware - from cars, to factories, and the internet.

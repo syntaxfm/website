@@ -3,7 +3,6 @@ number: 324
 title: TypeScript Fundamentals
 date: 1612360800858
 url: https://traffic.megaphone.fm/FSI9486078763.mp3
-completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk about TypeScript fundamentals — what it is, how you use it, why people love it so much, and more!

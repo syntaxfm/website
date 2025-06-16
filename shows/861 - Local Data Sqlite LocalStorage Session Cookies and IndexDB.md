@@ -4,7 +4,6 @@ title: "Local Data: Sqlite, LocalStorage, Session, Cookies and IndexDB"
 date: 1734346800000
 url: https://traffic.megaphone.fm/FSI5970288166.mp3
 youtube_url: https://www.youtube.com/watch?v=VzUHeLsJOrs
-completed: true
 ---
 	
 Scott and Wes dive into the world of local data storage, breaking down the pros and cons of Sqlite, LocalStorage, SessionStorage, Cookies, and IndexedDB. They cover real-world use cases like user settings, offline data, and auth tokens, while sharing their favorite tools and strategies for keeping your data fast and secure.

@@ -8,7 +8,6 @@ name: Feross Aboukhadijeh
 of: Socket
 github: feross
 twitter: feross
-completed: true
 ---
 
 In this Supper Club episode of Syntax, Wes and Scott talk with Feross Aboukhadijeh about his work on Socket which helps to make sure the code you get from npm is safe and secure. They also touch on his work on Wormhole and Web Torrent.

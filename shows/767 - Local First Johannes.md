@@ -10,7 +10,6 @@ github: schickling
 twitter: schickling
 of: Prisma
 social: https://www.schickling.dev/
-completed: true
 ---
 
 In this episode, Scott and Wes dive into the world of local-first apps with Johannes Schickling, the mastermind behind Prisma. From databases, WASM for non-JS, to authentication challenges, they explore the ins and outs of crafting apps that prioritize local functionality.

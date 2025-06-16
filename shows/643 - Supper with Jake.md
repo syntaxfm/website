@@ -8,7 +8,6 @@ name: Jake Champion
 of: Fastly
 github: JakeChampion
 twitter: jakedchampion
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Jake Champion about his work with Fastly and Polyfill, the difference between WASI and WASM, what Winter CG is, and what makes Fastly different.

@@ -3,7 +3,6 @@ number: 44
 title: How to Learn New Things Quickly
 date: 1525266395740
 url: https://traffic.megaphone.fm/FSI5716705773.mp3
-completed: true
 ---
 
 Scott and Wes talk about how they learn new things quickly. Scott also tells a crazy story about his weekend.

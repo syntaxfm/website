@@ -9,7 +9,6 @@ github: jlengstorf
 twitter: jlengstorf
 social: 
 - https: //www.linkedin.com/in/jlengstorf/
-completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk with Jason Lengstorf from the Gatsby team about Gatsby themes, and the future of Gatsby in general.

@@ -11,7 +11,6 @@ twitter: jensimmons
 of: Apple
 social: 
 - https: //front-end.social/@jensimmons
-completed: true
 ---
 
 Wes and Scott talk with Jen Simmons about the latest updates to Safari, reporting bugs to Apple, understanding color in CSS, new CSS switch controls, and testing your websites in Vision Pro hardware.

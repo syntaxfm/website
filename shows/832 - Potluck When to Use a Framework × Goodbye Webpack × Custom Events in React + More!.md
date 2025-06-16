@@ -4,7 +4,6 @@ title: "Potluck: When to Use a Framework × Goodbye Webpack × Custom Events in 
 date: 1728471600000
 url: https://traffic.megaphone.fm/FSI9707213465.mp3
 youtube_url: https://www.youtube.com/watch?v=ZgoReT1as58
-completed: true
 ---
 
 Scott and Wes answer your burning questions! They cover everything from moving off create-react-app and the benefits of Next.js, to transitioning from junior to senior dev, working with QA teams, and even dive into game development with Godot.

@@ -10,7 +10,6 @@ github: travisneilson
 twitter: travisneilson
 social: 
 - https: //www.instagram.com/travisneilson/
-completed: true
 ---
 
 In this episode of Syntax, Scott and Wes talk to Travis Neilson about his career at Google, the challenges he faced, how to choose projects tips for devs wanting to get better at design, and more.

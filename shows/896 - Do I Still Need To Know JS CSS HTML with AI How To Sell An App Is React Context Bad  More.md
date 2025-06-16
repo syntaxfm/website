@@ -4,7 +4,6 @@ title: 'Do I Still Need To Know JS/CSS/HTML with AI? × How To Sell An App × Is
 date: 1745406000000
 url: https://traffic.megaphone.fm/FSI2053811581.mp3
 youtube_url: https://www.youtube.com/watch?v=tEt3OEFd1OY
-completed: true
 ---
 
 In this potluck episode of Syntax, Wes and Scott answer your questions about AI’s role in web dev, modernizing legacy codebases, selling side projects, React context best practices, the Discord vs forum debate, and more!

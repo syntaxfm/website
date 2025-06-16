@@ -3,7 +3,6 @@ number: 40
 title: The Testing Show
 date: 1522847433583
 url: https://traffic.megaphone.fm/FSI5249840862.mp3
-completed: true
 ---
 
 Wes and Scott talk all about testing!

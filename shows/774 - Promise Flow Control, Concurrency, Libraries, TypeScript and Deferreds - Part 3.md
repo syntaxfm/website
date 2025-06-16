@@ -4,7 +4,6 @@ title: Promise Flow Control, Concurrency, Libraries, TypeScript and Deferreds - 
 date: 1716807600000
 url: https://traffic.megaphone.fm/FSI8328944349.mp3
 youtube_url: https://www.youtube.com/watch?v=wLNnTEQdyvo
-completed: true
 ---
 
 In today's episode, Scott and Wes dive into the final part of our JavaScript Promises series, covering deferred promises, fetch, flow control, concurrency with libraries like p-map and p-limit, and integrating TypeScript.

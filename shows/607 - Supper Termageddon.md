@@ -9,7 +9,6 @@ of: Termageddon
 twitter: DeepSpaceHans
 social: 
 - https: //www.linkedin.com/company/termageddon/
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Donata and Hans Skillrud of Termageddon on GDPR, privacy policies, cookie pop ups, and the various legal and ethical reasons to implement them properly.

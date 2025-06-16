@@ -8,7 +8,6 @@ name: Steve Krouse
 of: Val Town
 github: stevekrouse
 twitter: stevekrouse
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Steve Krouse about val.town, what it is, his philosophies on teaching people to code, the tech stack for val.town, and the benefits of inspiring kids to learn to code.

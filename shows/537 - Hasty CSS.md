@@ -3,7 +3,6 @@ number: 537
 title: CSS Trends Almanac for 2022 Part 2
 date: 1668600000985
 url: https://traffic.megaphone.fm/FSI7712437418.mp3
-completed: true
 ---
 
 In this episode of Syntax, it's part 2 of Wes and Scott's journey through the CSS Trends Almanac for 2022 talking through the rest of the popular CSS properties on the web.

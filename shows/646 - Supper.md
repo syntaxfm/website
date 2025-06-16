@@ -8,7 +8,6 @@ name: Andris Reinman
 github: andris9
 of: Nodemailer
 twitter: andrisreinman
-completed: true
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Andris Reinman about his work on all things email - spam, DMARC, SPF, why there's no good CSS in email, and his current project: Email Engine.

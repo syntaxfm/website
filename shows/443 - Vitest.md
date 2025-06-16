@@ -3,7 +3,6 @@ number: 443
 title: What’s Up With Vitest?
 date: 1648468800183
 url: https://traffic.megaphone.fm/FSI9353655971.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott and Wes talk about Vitest, how testing is handled, how code coverage works, and whether they think they'll use it.

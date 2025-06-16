@@ -3,7 +3,6 @@ number: 564
 title: Potluck × JS Modules × HTML Tags × Recession × Budgeting
 date: 1674043200266
 url: https://traffic.megaphone.fm/FSI7129050774.mp3
-completed: true
 ---
 
 In this potluck episode of Syntax, Wes and Scott answer your questions about HTML tags, budgeting, recession proofing your business, software dev vs software engineer, taking payments, and more.

@@ -8,7 +8,6 @@ name: Josh Wardle
 github: powerlanguage
 twitter: powerlanguish
 social: https://www.linkedin.com/in/joshwardle/
-completed: true
 ---
 
 In this episode of Syntax, Wes and Scott talk with the creator of Wordle, Josh Wardle. What's the tech stack for Wordle? Does he care about the clones of Wordle? And how did selling Wordle work?

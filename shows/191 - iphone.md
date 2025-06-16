@@ -3,7 +3,6 @@ number: 191
 title: Hasty Treat - Scott Moves to iPhone
 date: 1572267600974
 url: https://traffic.megaphone.fm/FSI8709091867.mp3
-completed: true
 ---
 
 In this Hasty Treat, Scott talks about moving to iPhone — his experiences with both Android and iOS, the advantages and disadvantages of both, and more! 

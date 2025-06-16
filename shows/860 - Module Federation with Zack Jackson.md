@@ -10,7 +10,6 @@ github: ScriptedAlchemy
 twitter: ScriptedAlchemy
 of: Rspack
 social: https://linktr.ee/scriptedalchemy
-completed: true
 ---
 
 Wes and Scott talk with Zack Jackson about Module Federation, and the innovative ways it streamlines collaboration across large teams and complex applications. Zack also dives into simplifying microfrontends, optimizing builds with Rspack, and his work at ByteDance.

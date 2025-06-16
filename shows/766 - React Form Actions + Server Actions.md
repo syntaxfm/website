@@ -4,7 +4,6 @@ title: "React Server Components: Form Actions + Server Actions"
 date: 1715166000000
 url: https://traffic.megaphone.fm/FSI1029325630.mp3
 youtube_url: https://www.youtube.com/watch?v=wI_nxb4h1As
-completed: true
 ---
 
 Scott and Wes are here to guide you through the world of React Server Components, shedding light on the intricacies of Form Actions and Server Actions. Get ready to level up your React skills as they discuss the ins and outs of these powerful features and share their expert advice on optimizing your applications.

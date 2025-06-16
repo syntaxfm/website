@@ -3,7 +3,6 @@ number: 413
 title: How To Do Things In Svelte
 date: 1639396800259
 url: https://traffic.megaphone.fm/FSI5596576927.mp3
-completed: true
 ---
 
 In this Hasty Treat, Wes and Scott talk about how to do things in Svelte.
