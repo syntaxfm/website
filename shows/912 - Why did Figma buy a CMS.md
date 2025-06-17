@@ -13,7 +13,7 @@ guest:
   social: https://www.linkedin.com/in/james-mikrut-3202985a
 ---
 
-Wes chats with James Mikrut, founder of Payload CMS, about being acquired by Figma! They discuss building an open source business, the future of UI design, AI interfces, and what this means for the future of Payload and Figma.
+Wes chats with James Mikrut, founder of Payload CMS, about being acquired by Figma! They discuss building an open source business, the future of UI design, AI interfaces, and what this means for the future of Payload and Figma.
 
 ### Show Notes
 
