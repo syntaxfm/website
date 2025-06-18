@@ -2,7 +2,7 @@
 number: 793
 title: The Local First Landscape
 date: 1720609200000
-url: https://traffic.libsyn.com/syntax/Syntax_-_793.mp3
+url: https://traffic.megaphone.fm/FSI7358083091.mp3
 youtube_url: https://www.youtube.com/watch?v=aKaSOVzquqA
 ---
 

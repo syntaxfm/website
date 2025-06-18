@@ -2,7 +2,7 @@
 number: 194
 title: Potluck - Gatsby vs Next × Is Google Home spying on you? × Flat File CMS × CSS Frameworks × Hosting Client Sites × More!
 date: 1573048800779
-url: https://traffic.libsyn.com/syntax/Syntax194.mp3
+url: https://traffic.megaphone.fm/FSI7129050774.mp3
 ---
 
 It's another potluck! In this episode, Scott and Wes answer your questions about Gatsby vs Next, Google Home and privacy, flat file CMS, working with designers, CSS frameworks and more!

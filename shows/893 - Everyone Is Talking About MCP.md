@@ -2,7 +2,7 @@
 number: 893
 title: Everyone Is Talking About MCP
 date: 1744628400000
-url: https://traffic.libsyn.com/syntax/Syntax_-_893.mp3
+url: https://traffic.megaphone.fm/FSI3542554899.mp3
 youtube_url: https://www.youtube.com/watch?v=gFjk6uko-0U
 ---
 	

@@ -2,7 +2,7 @@
 number: 869
 title: Node + TypeScript in 2025
 date: 1737111600000
-url: https://traffic.libsyn.com/syntax/Syntax_-_869.mp3
+url: https://traffic.megaphone.fm/FSI7468445537.mp3
 youtube_url: https://www.youtube.com/watch?v=28Mjeo0Esnw
 ---
 	

@@ -2,7 +2,7 @@
 number: 810
 title: "Effortless Light and Dark Mode × Theme Styling"
 date: 1724047200000
-url: https://traffic.libsyn.com/syntax/Syntax_810_final.mp3
+url: https://traffic.megaphone.fm/FSI3987039617.mp3
 youtube_url: https://www.youtube.com/watch?v=rj4KQEdzK_U
 ---
 

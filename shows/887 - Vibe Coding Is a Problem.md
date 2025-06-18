@@ -2,7 +2,7 @@
 number: 887
 title: Vibe Coding Is a Problem
 date: 1742814000000
-url: https://traffic.libsyn.com/syntax/Syntax_-_887.mp3
+url: https://traffic.megaphone.fm/FSI2229157541.mp3
 youtube_url: https://www.youtube.com/watch?v=2b_KlROMfp8
 ---
 	

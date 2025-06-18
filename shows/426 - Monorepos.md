@@ -2,7 +2,7 @@
 number: 426
 title: Monorepos! Workspaces, pnpm, turborepo + more!
 date: 1643198400399
-url: https://traffic.libsyn.com/syntax/Syntax_-_426.mp3
+url: https://traffic.megaphone.fm/FSI4866332736.mp3
 ---
 
 In this episode of Syntax, Scott and Wes talk all about monorepos - the why's and the how's of using them on your projects.

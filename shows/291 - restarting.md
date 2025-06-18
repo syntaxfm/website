@@ -2,7 +2,7 @@
 number: 291
 title: Hasty Treat - Updating / Restarting Long-Running Web Apps
 date: 1602680400281
-url: https://traffic.libsyn.com/syntax/Syntax291.mp3
+url: https://traffic.megaphone.fm/FSI9034667847.mp3
 ---
 
 In this Hasty Treat, Scott and Wes talk about updating web apps that have running for a long time — the problems to look out for and how to avoid them.

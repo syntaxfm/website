@@ -2,7 +2,7 @@
 number: 439
 title: Hasty Treat WTF × SSR vs JamStack vs Serverless?
 date: 1647259200645
-url: https://traffic.libsyn.com/syntax/Syntax_-_439.mp3
+url: https://traffic.megaphone.fm/FSI7351691019.mp3
 ---
 
 In this Hasty Treat, Scott and Wes talk about the differences between SSR, JamStack, and Serverless.

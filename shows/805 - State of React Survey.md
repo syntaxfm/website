@@ -2,7 +2,7 @@
 number: 805
 title: We React to State of React Survey
 date: 1723028400000
-url: https://traffic.libsyn.com/syntax/Syntax_-_805.mp3
+url: https://traffic.megaphone.fm/FSI2881148912.mp3
 youtube_url: https://www.youtube.com/watch?v=lvDkauXwuI0
 ---
 

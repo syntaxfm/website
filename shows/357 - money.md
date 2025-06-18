@@ -2,7 +2,7 @@
 number: 357
 title: Hasty Treat - How to Make Money as a Creator
 date: 1622466000141
-url: https://traffic.libsyn.com/syntax/Syntax357.mp3
+url: https://traffic.megaphone.fm/FSI1095472247.mp3
 ---
 
 In this Hasty Treat, Scott and Wes talk about making money as a creator — how to do what you love, make money doing it, and not feel yucky about it!

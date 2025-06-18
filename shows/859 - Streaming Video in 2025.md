@@ -2,7 +2,7 @@
 number: 859
 title: Streaming Video in 2025
 date: 1733914800000
-url: https://traffic.libsyn.com/syntax/Syntax_-_859.mp3
+url: https://traffic.megaphone.fm/FSI6092964068.mp3
 youtube_url: https://www.youtube.com/watch?v=JsRdilMlRjA
 ---
 	

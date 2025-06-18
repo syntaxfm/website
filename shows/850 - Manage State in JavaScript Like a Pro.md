@@ -2,7 +2,7 @@
 number: 850
 title: Manage State in JavaScript Like a Pro!
 date: 1732100400000
-url: https://traffic.libsyn.com/syntax/Syntax_-_850.mp3
+url: https://traffic.megaphone.fm/FSI7635830633.mp3
 youtube_url: https://www.youtube.com/watch?v=7i1f4PKSlxo
 ---
 	

@@ -2,7 +2,7 @@
 number: 424
 title: New Year, New You.  What to Focus on in 2022.
 date: 1642593600657
-url: https://traffic.libsyn.com/syntax/Syntax_-_424_v2.mp3
+url: https://traffic.megaphone.fm/FSI8587070284.mp3
 ---
 
 In this episode of Syntax, Scott and Wes talk through what to focus on at a beginner, intermediate, and advanced levels of coding skills.

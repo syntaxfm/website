@@ -2,7 +2,7 @@
 number: 895
 title: "React Server Components: Where are we at?"
 date: 1745233200000
-url: https://traffic.libsyn.com/syntax/Syntax_-_895.mp3
+url: https://traffic.megaphone.fm/FSI1177945972.mp3
 youtube_url: https://www.youtube.com/watch?v=1QXqWQ0yNfg
 ---
 	

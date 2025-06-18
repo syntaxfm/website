@@ -2,7 +2,7 @@
 number: 294
 title: Spooky Web Dev Stories — Part 1
 date: 1603285200659
-url: https://traffic.libsyn.com/syntax/Syntax294.mp3
+url: https://traffic.megaphone.fm/FSI7283659106.mp3
 ---
 
 In this episode of Syntax, Scott and Wes talk about spooky web dev stories — listener-submitted stories about web dev gone wrong.

@@ -2,7 +2,7 @@
 number: 732
 title: "Stop going to Spam: DMARC, SPF and DKIM Explained"
 date: 1708344000810
-url: https://traffic.libsyn.com/syntax/Syntax_-_732.mp3
+url: https://traffic.megaphone.fm/FSI7439722942.mp3
 youtube_url: https://www.youtube.com/watch?v=ERiQc8hoDvo
 ---
 

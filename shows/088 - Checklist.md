@@ -2,7 +2,7 @@
 number: 88
 title: Pre-launch Checklist
 date: 1540990800680
-url: https://traffic.libsyn.com/syntax/Syntax088.mp3
+url: https://traffic.megaphone.fm/FSI7645370186.mp3
 ---
 
 In this episode Wes and Scott discuss their pre-launch checklists. They talk about performance, accessibility, compatibility, SEO, analytics, and more - all the things you should check before launching something to the world.

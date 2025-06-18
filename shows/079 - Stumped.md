@@ -2,7 +2,7 @@
 number: 79
 title: Hasty Treat - Stumped! 02
 date: 1538398800682
-url: https://traffic.libsyn.com/syntax/Syntax079.mp3
+url: https://traffic.megaphone.fm/FSI3058598844.mp3
 ---
 
 In this Hasty Treat, Scott and Wes are back for a second edition of Stumped! where they try to stump each other with interview questions from [30 Seconds of Interviews](https://30secondsofinterviews.org/).

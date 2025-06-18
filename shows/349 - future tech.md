@@ -2,7 +2,7 @@
 number: 349
 title: Hasty Treat - Future Tech We're Excited About
 date: 1620046800877
-url: https://traffic.libsyn.com/syntax/Syntax349.mp3
+url: https://traffic.megaphone.fm/FSI8747938652.mp3
 ---
 
 In this Hasty Treat, Scott and Wes talk about future tech — some things you may not have heard about yet, and why we're excited about them!

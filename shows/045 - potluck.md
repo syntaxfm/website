@@ -2,7 +2,7 @@
 number: 45
 title: Potluck EP × Is Redux Dead × Learning Quickly × Developing Solo × Specialist vs Generalist × Funnest Projects × Wes’ BBQ Course
 date: 1525870800364
-url: https://traffic.libsyn.com/syntax/Syntax045.mp3
+url: https://traffic.megaphone.fm/FSI7129050774.mp3
 ---
 
 It's a Potluck episode - you bring the questions and we turn them into tasty treats.

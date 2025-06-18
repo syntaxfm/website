@@ -2,7 +2,7 @@
 number: 769
 title: React Miami Live Show
 date: 1715770800000
-url: https://traffic.libsyn.com/syntax/Syntax_-_769.mp3
+url: https://traffic.megaphone.fm/FSI7919560163.mp3
 youtube_url: https://www.youtube.com/watch?v=oOoBlD7zHRo
 ---
 

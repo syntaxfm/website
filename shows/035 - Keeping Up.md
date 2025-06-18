@@ -2,7 +2,7 @@
 number: 35
 title: Keeping Up with the Codeashians. Dealing with our fast paced industry.
 date: 1520431956331
-url: https://traffic.libsyn.com/syntax/Syntax035.mp3
+url: https://traffic.megaphone.fm/FSI9304169704.mp3
 ---
 
 Scott and Wes talk about how to deal with being overwhelmed with our fast paced industry. How do you keep you and your team's skills up to date?

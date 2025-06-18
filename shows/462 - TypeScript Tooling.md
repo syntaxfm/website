@@ -2,7 +2,7 @@
 number: 462
 title: TypeScript Tooling Explained
 date: 1653480000476
-url: https://traffic.libsyn.com/syntax/Syntax_-_462.mp3
+url: https://traffic.megaphone.fm/FSI5672131110.mp3
 ---
 
 In this episode of Syntax, Wes and Scott talk through TypeScript tooling, build tools, configs, and editors.

@@ -2,7 +2,7 @@
 number: 406
 title: Potluck — Copilot × Glasses × Databases × Dealing with Stress × Employment vs Self-Employment × Auth in GraphQL × Headless CMS × More!
 date: 1637157600119
-url: https://traffic.libsyn.com/syntax/Syntax406.mp3
+url: https://traffic.megaphone.fm/FSI7129050774.mp3
 ---
 
 It's another Potluck! In this episode, Scott and Wes answer your questions about GitHub Copilot, glasses, databases, dealing with stress, self-employment vs employment, design, CORS, and much more!

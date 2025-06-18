@@ -2,7 +2,7 @@
 number: 877
 title: Tailwind 4
 date: 1739790000000
-url: https://traffic.libsyn.com/syntax/Syntax_-_877.mp3
+url: https://traffic.megaphone.fm/FSI1624500979.mp3
 youtube_url: https://www.youtube.com/watch?v=I0jtMgXnbo0
 ---
 	

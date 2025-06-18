@@ -2,7 +2,7 @@
 number: 558
 title: Our Predictions for 2023
 date: 1672833600241
-url: https://traffic.libsyn.com/syntax/Syntax_-_558.mp3
+url: https://traffic.megaphone.fm/FSI1966723251.mp3
 ---
 
 In this episode of Syntax, Wes and Scott talk about their predictions in web development for 2023.

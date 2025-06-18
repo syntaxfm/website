@@ -2,7 +2,7 @@
 number: 623
 title: Nothing in CSS - 0 vs 0px, no, none, hidden, initial and unset
 date: 1685966400934
-url: https://traffic.libsyn.com/syntax/Syntax_-_623.mp3
+url: https://traffic.megaphone.fm/FSI1777721731.mp3
 ---
 
 In this Hasty Treat, Scott and Wes talk about all the nothing in CSS: 0 vs 0px, no, none, hidden, initial and unset.

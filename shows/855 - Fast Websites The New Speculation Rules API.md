@@ -2,7 +2,7 @@
 number: 855
 title: "Fast Websites: The New Speculation Rules API"
 date: 1733137200000
-url: https://traffic.libsyn.com/syntax/Syntax_-_855.mp3
+url: https://traffic.megaphone.fm/FSI5114240785.mp3
 youtube_url: https://www.youtube.com/watch?v=qhEGU3xt0gc
 ---
 	

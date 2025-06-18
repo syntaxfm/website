@@ -2,7 +2,7 @@
 number: 202
 title: Potluck - Tabs are better? × Coding Music × SEO × Is Angular good? × Biggie Smalls × Soy Sauce × More!
 date: 1575468000678
-url: https://traffic.libsyn.com/syntax/Syntax202.mp3
+url: https://traffic.megaphone.fm/FSI7129050774.mp3
 ---
 
 It's another potluck! In this episode Scott and Wes talk about tabs vs spaces, coding music, SEO, React vs Angular vs Vue vs Svelte, Rapping, Soy sauce and more!

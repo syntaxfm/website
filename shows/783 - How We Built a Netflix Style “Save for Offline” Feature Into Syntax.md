@@ -2,7 +2,7 @@
 number: 783
 title: How We Built a Netflix Style “Save for Offline” Feature Into Syntax
 date: 1718622000000
-url: https://traffic.libsyn.com/syntax/Syntax_-_783.mp3
+url: https://traffic.megaphone.fm/FSI5949321422.mp3
 youtube_url: https://www.youtube.com/watch?v=ynuAaDf_bz4
 ---
 

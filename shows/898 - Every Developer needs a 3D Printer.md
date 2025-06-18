@@ -2,7 +2,7 @@
 number: 898
 title: "Every Developer Needs a 3D Printer"
 date: 1746010800000
-url: https://traffic.libsyn.com/syntax/Syntax_-_898.mp3
+url: https://traffic.megaphone.fm/FSI7524369618.mp3
 youtube_url: https://www.youtube.com/watch?v=n0wkGjIyqiU
 ---
 

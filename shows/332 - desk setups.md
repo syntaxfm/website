@@ -2,7 +2,7 @@
 number: 332
 title: Syntax Desk Setups
 date: 1614780000422
-url: https://traffic.libsyn.com/syntax/Syntax332.mp3
+url: https://traffic.megaphone.fm/FSI1131732236.mp3
 ---
 
 In this episode of Syntax, Scott and Wes talk about their desk setups and how they've evolved, both as coders and video and course creators.

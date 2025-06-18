@@ -2,7 +2,7 @@
 number: 59
 title: Hasty Treat - Refactoring
 date: 1532350800929
-url: https://traffic.libsyn.com/syntax/Syntax059.mp3
+url: https://traffic.megaphone.fm/FSI9874383220.mp3
 ---
 
 In this Hasty Treat, Scott and Wes discuss refactoring, what it is, why you should do it, when to do it, as well as best practices and much more.

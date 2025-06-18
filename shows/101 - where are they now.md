@@ -2,7 +2,7 @@
 number: 101
 title: Hasty Treat - Where are they now?! Gulp, Grunt, Bower, Backbone and Compass
 date: 1545055200601
-url: https://traffic.libsyn.com/syntax/Syntax101.mp3
+url: https://traffic.megaphone.fm/FSI6257007234.mp3
 ---
 
 In this Hasty Treat, Scott and Wes talk about libraries that have been super hot in the past, but not so much any more. 

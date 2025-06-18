@@ -2,7 +2,7 @@
 number: 501
 title: Fundamentals - Web Workers and Service Workers
 date: 1661342400112
-url: https://traffic.libsyn.com/syntax/Syntax_-_501.mp3
+url: https://traffic.megaphone.fm/FSI6184765388.mp3
 ---
 
 In this episode of Syntax, Wes and Scott talk through the fundamentals of web workers and service workers - examples, when you should use them, how to debug, local dev, and more.

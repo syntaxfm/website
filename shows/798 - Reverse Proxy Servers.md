@@ -2,7 +2,7 @@
 number: 798
 title: "Self Hosting: Reverse Proxy Servers"
 date: 1721646000000
-url: https://traffic.libsyn.com/syntax/Syntax_-_798.mp3
+url: https://traffic.megaphone.fm/FSI1502876238.mp3
 youtube_url: https://www.youtube.com/watch?v=aU_JPYFmyW0
 ---
 

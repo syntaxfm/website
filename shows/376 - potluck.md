@@ -2,7 +2,7 @@
 number: 376
 title: Potluck - WordPress × 3rd-Party Cloud Services × Backend Hosting × Drupal × Getting Clients × GPS vs BEM × More!
 date: 1628082000699
-url: https://traffic.libsyn.com/syntax/Syntax376.mp3
+url: https://traffic.megaphone.fm/FSI7129050774.mp3
 ---
 
 It's another Potluck! In this episode, Scott and Wes answer your questions about WordPress, Drupal, using SSGs, finding clients when you're just starting out, scoped CSS, and more!

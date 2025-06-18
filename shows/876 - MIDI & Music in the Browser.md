@@ -2,7 +2,7 @@
 number: 876
 title: "MIDI & Music in the Browser"
 date: 1739361600000
-url: https://traffic.libsyn.com/syntax/Syntax_-_876.mp3
+url: https://traffic.megaphone.fm/FSI5349566916.mp3
 youtube_url: https://www.youtube.com/watch?v=ZP3yfGwVjio
 ---
 

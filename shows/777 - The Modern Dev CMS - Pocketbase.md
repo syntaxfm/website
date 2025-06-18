@@ -2,7 +2,7 @@
 number: 777
 title: The Modern Dev CMS - Pocketbase
 date: 1717412400000
-url: https://traffic.libsyn.com/syntax/Syntax_-_777.mp3
+url: https://traffic.megaphone.fm/FSI3750182579.mp3
 youtube_url: https://www.youtube.com/watch?v=Eg38JbgbttA
 ---
 

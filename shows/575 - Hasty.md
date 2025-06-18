@@ -2,7 +2,7 @@
 number: 575
 title: Save us from Config File Hell
 date: 1676289600407
-url: https://traffic.libsyn.com/syntax/Syntax_-_575.mp3
+url: https://traffic.megaphone.fm/FSI7164459743.mp3
 ---
 
 In this Hasty Treat, Scott and Wes talk about what you can do to better organize your config files.

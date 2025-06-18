@@ -2,7 +2,7 @@
 number: 820
 title: "Potluck: 8000 ESLint Errors × HTML Time Tag × 7 Meg React Bundle × CSS Modules"
 date: 1726052400000
-url: https://traffic.libsyn.com/syntax/Syntax_-_820.mp3
+url: https://traffic.megaphone.fm/FSI4279981452.mp3
 youtube_url: https://www.youtube.com/watch?v=RBUU3mOwo-E
 ---
 

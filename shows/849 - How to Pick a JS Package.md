@@ -2,7 +2,7 @@
 number: 849
 title: How to Pick a JS Package
 date: 1731927600000
-url: https://traffic.libsyn.com/syntax/Syntax_-_849.mp3
+url: https://traffic.megaphone.fm/FSI2281194015.mp3
 youtube_url: https://www.youtube.com/watch?v=sEB_YuymznQ
 ---
 	

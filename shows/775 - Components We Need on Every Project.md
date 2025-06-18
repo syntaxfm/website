@@ -2,7 +2,7 @@
 number: 775
 title: Components We Need on Every Project
 date: 1716980400000
-url: https://traffic.libsyn.com/syntax/Syntax_-_775.mp3
+url: https://traffic.megaphone.fm/FSI5987287236.mp3
 youtube_url: https://www.youtube.com/watch?v=st2JGON63Kg
 ---
 

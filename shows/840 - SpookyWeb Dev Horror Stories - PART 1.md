@@ -2,7 +2,7 @@
 number: 840
 title: Spooky Web Dev Horror Stories - PART 1
 date: 1730113200000
-url: https://traffic.libsyn.com/syntax/Syntax_-_840.mp3
+url: https://traffic.megaphone.fm/FSI6064563649.mp3
 youtube_url: https://www.youtube.com/watch?v=u8EC6IsEkmo
 ---
 

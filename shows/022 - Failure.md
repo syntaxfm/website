@@ -2,7 +2,7 @@
 number: 22
 title: Failure
 date: 1512572446998
-url: https://traffic.libsyn.com/syntax/Syntax022.mp3
+url: https://traffic.megaphone.fm/FSI1629940463.mp3
 ---
 
 Failure. How do you deal with it? How to learn from it? How do you know when you should give up vs keep pushing?

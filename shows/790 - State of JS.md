@@ -2,7 +2,7 @@
 number: 790
 title: State of JS 2023 Reactions
 date: 1720004400000
-url: https://traffic.libsyn.com/syntax/Syntax_-_790.mp3
+url: https://traffic.megaphone.fm/FSI2991525125.mp3
 youtube_url: https://www.youtube.com/watch?v=dj6tUUTDXAo
 ---
 

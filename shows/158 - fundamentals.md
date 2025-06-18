@@ -2,7 +2,7 @@
 number: 158
 title: The Fundamentals - HTML + CSS
 date: 1562158800933
-url: https://traffic.libsyn.com/syntax/Syntax158.mp3
+url: https://traffic.megaphone.fm/FSI4747586714.mp3
 ---
 
 In this episode of Syntax, Scott and Wes talk about the "fundamentals" of web development and what you need to know - HTML, CSS foundations and more!

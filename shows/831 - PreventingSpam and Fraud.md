@@ -2,7 +2,7 @@
 number: 831
 title: Preventing Spam and Fraud
 date: 1728298800000
-url: https://traffic.libsyn.com/syntax/Syntax_-_831.mp3
+url: https://traffic.megaphone.fm/FSI7306550621.mp3
 youtube_url: https://www.youtube.com/watch?v=k4wyxLR9UYo
 ---
 

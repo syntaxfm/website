@@ -2,7 +2,7 @@
 number: 399
 title: Hasty Treat - Hasty Horror Stories
 date: 1635166800889
-url: https://traffic.libsyn.com/syntax/Syntax399.mp3
+url: https://traffic.megaphone.fm/FSI7581963013.mp3
 ---
 
 In this Hasty Treat, Scott and Wes talk about web dev horror stories — real things that have happened to real developers

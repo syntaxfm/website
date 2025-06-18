@@ -2,7 +2,7 @@
 number: 828
 title: "Logging in Verification: Magic Links, 2FA, SMS Codes"
 date: 1727694000000
-url: https://traffic.libsyn.com/syntax/Syntax_-_828.mp3
+url: https://traffic.megaphone.fm/FSI7527432926.mp3
 youtube_url: https://www.youtube.com/watch?v=UXFY5tqlq3c
 ---
 

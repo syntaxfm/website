@@ -2,7 +2,7 @@
 number: 799
 title: Hot New and Under-Utilized Browser APIs
 date: 1721818800000
-url: https://traffic.libsyn.com/syntax/Syntax_-_799.mp3
+url: https://traffic.megaphone.fm/FSI3020168768.mp3
 youtube_url: https://www.youtube.com/watch?v=OsYtOth7cRw
 ---
 

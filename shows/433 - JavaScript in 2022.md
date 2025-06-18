@@ -2,7 +2,7 @@
 number: 433
 title: JavaScript in 2022 - New, Coming and Proposed Features
 date: 1645444800470
-url: https://traffic.libsyn.com/syntax/Syntax_-_433.mp3
+url: https://traffic.megaphone.fm/FSI9923169270.mp3
 ---
 
 In this Hasty Treat, Scott and Wes talk about new proposed features coming to JavaScript in 2022.
