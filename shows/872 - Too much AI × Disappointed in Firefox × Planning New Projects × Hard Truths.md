@@ -2,7 +2,7 @@
 number: 872
 title: "Too much AI × Disappointed in Firefox × Planning New Projects × Hard Truths"
 date: 1738152000000
-url: https://traffic.libsyn.com/syntax/Syntax_-_872.mp3
+url: https://traffic.megaphone.fm/FSI5471756758.mp3
 youtube_url: https://www.youtube.com/watch?v=UgN_LGsD2GE
 ---
 

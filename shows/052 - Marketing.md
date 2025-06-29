@@ -2,7 +2,7 @@
 number: 52
 title: Marketing for Developers
 date: 1530104400172
-url: https://traffic.libsyn.com/syntax/Syntax052.mp3
+url: https://traffic.megaphone.fm/FSI9577767511.mp3
 ---
 
 Scott and Wes talk about marketing. Specifically how to do marketing if you're a developer wondering where to start.

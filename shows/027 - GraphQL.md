@@ -2,7 +2,7 @@
 number: 27
 title: GraphQL? Here is what you need to know!
 date: 1515593606009
-url: https://traffic.libsyn.com/syntax/Syntax027.mp3
+url: https://traffic.megaphone.fm/FSI2818862462.mp3
 ---
 
 ## Snipcart — Sponsor

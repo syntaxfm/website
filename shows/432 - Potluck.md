@@ -2,7 +2,7 @@
 number: 432
 title: Potluck - Selling Themes × Which Browser Should Devs Use? × Where Do You Keep 2FA Codes? × Remix vs Svelte Kit × Getting Unstuck from Tutorial Hell
 date: 1645012800535
-url: https://traffic.libsyn.com/syntax/Syntax_-_432.mp3
+url: https://traffic.megaphone.fm/FSI7129050774.mp3
 ---
 
 In this episode of Syntax, Wes and Scott answer your questions about selling themes, which browser to use, where to keep your 2FA codes, Remix vs Svelte Kit, and more!

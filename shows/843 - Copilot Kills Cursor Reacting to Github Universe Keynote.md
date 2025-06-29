@@ -2,7 +2,7 @@
 number: 843
 title: Copilot Kills Cursor? Reacting to Github Universe Keynote
 date: 1730718000000
-url: https://traffic.libsyn.com/syntax/Syntax_-_843.mp3
+url: https://traffic.megaphone.fm/FSI4649458362.mp3
 youtube_url: https://www.youtube.com/watch?v=tw8WngbNsJA
 ---
 	

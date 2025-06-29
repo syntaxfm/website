@@ -2,7 +2,7 @@
 number: 865
 title: CSS Performance × Rate Limiting × Array Sort Behavior - STUMP'd
 date: 1736161200000
-url: https://traffic.libsyn.com/syntax/Syntax_-_865.mp3
+url: https://traffic.megaphone.fm/FSI6169530063.mp3
 youtube_url: https://www.youtube.com/watch?v=nSYiEN4t-kg
 ---
 	

@@ -2,7 +2,7 @@
 number: 234
 title: Potluck - Bootcamps × Career Change × Figma × Gatsby × AMP × Mongoose × More!
 date: 1585141200415
-url: https://traffic.libsyn.com/syntax/Syntax234.mp3
+url: https://traffic.megaphone.fm/FSI7129050774.mp3
 ---
 
 It's another potluck! In this episode, Scott and Wes answer your questions about bootcamps, Figma, Gatsby, AMP, Mongoose, imposter syndrome, and more!

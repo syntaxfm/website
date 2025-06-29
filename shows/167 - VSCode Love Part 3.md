@@ -2,7 +2,7 @@
 number: 167
 title: Hasty Treat - VSCode Love Part 3
 date: 1565010000295
-url: https://traffic.libsyn.com/syntax/Syntax167.mp3
+url: https://traffic.megaphone.fm/FSI5935382230.mp3
 ---
 
 It's another VSCode episode! In this Hasty Treat, Scott and Wes talk all the things they love about VSCode — things to learn, how to get around more quickly, using keyboard commands, being more efficient, using snippets and more!

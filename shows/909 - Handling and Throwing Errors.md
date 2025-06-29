@@ -2,7 +2,7 @@
 number: 909
 title: Handling and Throwing Errors
 date: 1749466800000
-url: https://traffic.libsyn.com/syntax/Syntax_-_909.mp3
+url: https://traffic.megaphone.fm/FSI2583073811.mp3
 youtube_url: https://www.youtube.com/watch?v=pGc6x3Z-xM0
 ---
 	

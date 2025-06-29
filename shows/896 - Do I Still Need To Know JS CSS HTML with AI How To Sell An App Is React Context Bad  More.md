@@ -2,7 +2,7 @@
 number: 896
 title: 'Do I Still Need To Know JS/CSS/HTML with AI? × How To Sell An App × Is React Context Bad? × More'
 date: 1745406000000
-url: https://traffic.libsyn.com/syntax/Syntax_-_896.mp3
+url: https://traffic.megaphone.fm/FSI2053811581.mp3
 youtube_url: https://www.youtube.com/watch?v=tEt3OEFd1OY
 ---
 

@@ -2,7 +2,7 @@
 number: 313
 title: Hasty Treat - Hosting + Web Services Pricing Explainer
 date: 1609164000935
-url: https://traffic.libsyn.com/syntax/Syntax313.mp3
+url: https://traffic.megaphone.fm/FSI1240230202.mp3
 ---
 
 In this Hasty Treat, Scott and Wes talk about how hosting and web services pricing works, and how to figure out what you need, and what you don't. 

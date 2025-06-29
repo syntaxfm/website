@@ -2,7 +2,7 @@
 number: 554
 title: Desktop Apps in JS × Electron and Tauri
 date: 1672056000792
-url: https://traffic.libsyn.com/syntax/Syntax_-_554.mp3
+url: https://traffic.megaphone.fm/FSI3478863959.mp3
 ---
 
 In this Hasty Treat, Scott and Wes talk about the current state of building desktop apps with Electron or Tauri.

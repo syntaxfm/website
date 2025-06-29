@@ -2,7 +2,7 @@
 number: 593
 title: Coding with the Open AI / Chat GPT API
 date: 1679918400527
-url: https://traffic.libsyn.com/syntax/Syntax_-_593.mp3
+url: https://traffic.megaphone.fm/FSI6281981012.mp3
 ---
 
 In this Hasty Treat, Scott and Wes talk about what can be done with the OpenAI API, how to get started with it, pricing, tuning your model, and gotchas for getting started with the OpenAI API.

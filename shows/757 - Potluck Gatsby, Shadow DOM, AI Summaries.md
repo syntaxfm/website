@@ -2,7 +2,7 @@
 number: 757
 title: "Potluck: Is Gatsby Dead? Shadow Dom, AI Summaries, Self Hosting + More"
 date: 1713351600000
-url: https://traffic.libsyn.com/syntax/Syntax_-_757.mp3
+url: https://traffic.megaphone.fm/FSI1136166536.mp3
 youtube_url: https://www.youtube.com/watch?v=bHavi6-S1Y4
 ---
 

@@ -2,7 +2,7 @@
 number: 659
 title: OG Image Options
 date: 1693224000717
-url: https://traffic.libsyn.com/syntax/Syntax_-_659.mp3
+url: https://traffic.megaphone.fm/FSI5470294345.mp3
 ---
 
 In this Hasty Treat, Scott and Wes talk about OG images, interesting ways you can work with them, and ways you can work dynamically with them.

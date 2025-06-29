@@ -2,7 +2,7 @@
 number: 766
 title: "React Server Components: Form Actions + Server Actions"
 date: 1715166000000
-url: https://traffic.libsyn.com/syntax/Syntax_-_766.mp3
+url: https://traffic.megaphone.fm/FSI1029325630.mp3
 youtube_url: https://www.youtube.com/watch?v=wI_nxb4h1As
 ---
 

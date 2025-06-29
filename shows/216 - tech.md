@@ -2,7 +2,7 @@
 number: 216
 title: Tech To Watch In 2020
 date: 1579701600890
-url: https://traffic.libsyn.com/syntax/Syntax216.mp3
+url: https://traffic.megaphone.fm/FSI5944121552.mp3
 ---
 
 In this episode of Syntax, Scott and Wes talk about tech to watch in 2020 — things you should keep an eye on and learn this year!

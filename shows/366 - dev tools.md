@@ -2,7 +2,7 @@
 number: 366
 title: Dev Tools Power — Elements Tab
 date: 1625058000043
-url: https://traffic.libsyn.com/syntax/Syntax366.mp3
+url: https://traffic.megaphone.fm/FSI1654310854.mp3
 ---
 
 In this episode of Syntax, Scott and Wes talk about the Dev Tools Elements Tab — all the features, and when you would use them!

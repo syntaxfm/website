@@ -2,7 +2,7 @@
 number: 572
 title: Polish and Perf
 date: 1675684800291
-url: https://traffic.libsyn.com/syntax/Syntax_-_572.mp3
+url: https://traffic.megaphone.fm/FSI1671313609.mp3
 ---
 
 In this Hasty Treat, Scott and Wes talk through quick tips to improve performance of your website, and the tools available to help diagnose and fix perf issues.

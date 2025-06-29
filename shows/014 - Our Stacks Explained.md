@@ -2,7 +2,7 @@
 number: 14
 title: Our Stacks Explained
 date: 1507122874000
-url: https://traffic.libsyn.com/syntax/Syntax014.mp3
+url: https://traffic.megaphone.fm/FSI6588566598.mp3
 ---
 
 Scott and Wes detail their current stacks that run their training platforms. From front end code linting to the server side and databases.

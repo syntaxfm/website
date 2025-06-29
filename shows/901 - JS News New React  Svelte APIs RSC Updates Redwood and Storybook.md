@@ -2,7 +2,7 @@
 number: 901
 title: "JS News: New React & Svelte APIs, RSC Updates, Redwood and Storybook"
 date: 1747047600000
-url: https://traffic.libsyn.com/syntax/Syntax_-_901.mp3
+url: https://traffic.megaphone.fm/FSI8146635815.mp3
 youtube_url: https://www.youtube.com/watch?v=hosIXZOq3xM
 ---
 	

@@ -2,13 +2,12 @@
 number: 661
 title: Supper Club × Shipping ESM with Mark Erikson
 date: 1693569600565
-url: https://traffic.libsyn.com/syntax/Syntax_-_661.mp3
-guest:
-  name: Mark Erikson
-  of: Redux
-  github: markerikson
-  twitter: acemarke
-  url: https://blog.isquaredsoftware.com/
+url: https://traffic.megaphone.fm/FSI9436853235.mp3
+guest: 
+name: Mark Erikson
+of: Redux
+github: markerikson
+twitter: acemarke
 ---
 
 In this supper club episode of Syntax, Wes and Scott talk with Mark Erikson about his work in helping others understand shipping ESM, how to deal with permutations, whether default imports are helpful, whether TypeScript has made it easier, and what Mark's tool stack is for building.

@@ -2,7 +2,7 @@
 number: 304
 title: Potluck - Frameworks vs Libraries × Debugging × CSS Modules vs Styled Components × Resumes × Stress Management × More!
 date: 1606312800666
-url: https://traffic.libsyn.com/syntax/Syntax304.mp3
+url: https://traffic.megaphone.fm/FSI7129050774.mp3
 ---
 
 It's another potluck! In this episode, Scott and Wes answer your questions about frameworks vs libraries, improving your debugging skills, building a component library, CSS modules vs styled components, writing a good resume, stress management, and more!

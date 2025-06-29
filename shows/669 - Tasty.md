@@ -2,7 +2,7 @@
 number: 669
 title: The Svelte + SvelteKit Show
 date: 1695211200020
-url: https://traffic.libsyn.com/syntax/Syntax_-_669.mp3
+url: https://traffic.megaphone.fm/FSI6114311163.mp3
 ---
 
 In this episode of Syntax, Wes reviews his experience building with Svelte and SvelteKit including templating, data fetching, actions, managing state, request handlers, and more.

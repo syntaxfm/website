@@ -2,7 +2,7 @@
 number: 46
 title: What's New in Javascript
 date: 1526475600202
-url: https://traffic.libsyn.com/syntax/Syntax046.mp3
+url: https://traffic.megaphone.fm/FSI4105615253.mp3
 ---
 
 Scott and West talk about what’s new in JavaScript.

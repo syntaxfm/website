@@ -2,7 +2,7 @@
 number: 40
 title: The Testing Show
 date: 1522847433583
-url: https://traffic.libsyn.com/syntax/Syntax040.mp3
+url: https://traffic.megaphone.fm/FSI5249840862.mp3
 ---
 
 Wes and Scott talk all about testing!

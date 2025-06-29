@@ -2,7 +2,7 @@
 number: 380
 title: Potluck - Moist code × Memoization × Ready for full-time? × Deadlines × Design ethics × React components × Video hosting × Local fonts × More!
 date: 1629291600910
-url: https://traffic.libsyn.com/syntax/Syntax380.mp3
+url: https://traffic.megaphone.fm/FSI7129050774.mp3
 ---
 
 It's another Potluck! In this episode, Scott and Wes answer your questions about memoization, how to know when you're ready for a full-time dev job, what to do when you underestimate projects, design ethics, local fonts, and more!

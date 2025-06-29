@@ -2,7 +2,7 @@
 number: 826
 title: You Need These 30 Apps - PART 2
 date: 1727262000000
-url: https://traffic.libsyn.com/syntax/Syntax_-_826.mp3
+url: https://traffic.megaphone.fm/FSI1560099975.mp3
 youtube_url: https://www.youtube.com/watch?v=wOR_Xx38mxk
 ---
 

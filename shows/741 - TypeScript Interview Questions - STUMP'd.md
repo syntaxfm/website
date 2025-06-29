@@ -2,7 +2,7 @@
 number: 741
 title: TypeScript Interview Questions -  STUMP’d
 date: 1710154800289
-url: https://traffic.libsyn.com/syntax/Syntax_-_741.mp3
+url: https://traffic.megaphone.fm/FSI9370456817.mp3
 youtube_url: https://www.youtube.com/watch?v=o5NrF0Ny9K8
 ---
 

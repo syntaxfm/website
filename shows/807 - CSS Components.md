@@ -2,7 +2,7 @@
 number: 807
 title: 'CSS Components: Tailwind, Panda, Scoped, Modules, Classes, Variables, CSS-in-JS and Sprinkles!'
 date: 1723442400000
-url: https://traffic.libsyn.com/syntax/Syntax_807_final.mp3
+url: https://traffic.megaphone.fm/FSI3792841942.mp3
 youtube_url: https://www.youtube.com/watch?v=Y7fNBj_rhGE
 ---
 

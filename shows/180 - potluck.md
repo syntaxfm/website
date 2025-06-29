@@ -2,7 +2,7 @@
 number: 180
 title: Potluck - Why Webpack? × Serverless × Agencies × Recruiters × CSS Grid × MQ in Styled Components
 date: 1568811600822
-url: https://traffic.libsyn.com/syntax/Syntax180.mp3
+url: https://traffic.megaphone.fm/FSI7129050774.mp3
 ---
 
 It's another potluck! In this episode, Scott and Wes answer your questions about webpack, serverless, agencies, recruiters, CSS Grid, media queries and more!

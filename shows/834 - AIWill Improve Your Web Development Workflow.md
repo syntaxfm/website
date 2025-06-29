@@ -2,7 +2,7 @@
 number: 834
 title: AI Will Improve Your Web Development Workflow
 date: 1728903600000
-url: https://traffic.libsyn.com/syntax/Syntax_-_834.mp3
+url: https://traffic.megaphone.fm/FSI9823468088.mp3
 youtube_url: https://www.youtube.com/watch?v=qpWxsQdCGTQ
 ---
 

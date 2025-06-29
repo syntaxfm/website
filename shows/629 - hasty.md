@@ -2,7 +2,7 @@
 number: 629
 title: AsyncLocalStorage + AsyncContext API
 date: 1687176000338
-url: https://traffic.libsyn.com/syntax/Syntax_-_629.mp3
+url: https://traffic.megaphone.fm/FSI9701222012.mp3
 ---
 
 In this Hasty Treat, Scott and Wes talk about AsyncLocalStorage, why more frameworks aren't using it yet, some examples, as well as some footguns.

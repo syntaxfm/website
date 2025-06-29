@@ -2,7 +2,7 @@
 number: 358
 title: React + TypeScript
 date: 1622638800141
-url: https://traffic.libsyn.com/syntax/Syntax358.mp3
+url: https://traffic.megaphone.fm/FSI3025318036.mp3
 ---
 
 In this episode of Syntax, Scott and Wes talk about using React with Typescript — how to set it up, components, state, props, passing data, custom hooks, and more!

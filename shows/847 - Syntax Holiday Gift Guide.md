@@ -2,7 +2,7 @@
 number: 847
 title: Syntax Holiday Gift Guide
 date: 1731495600000
-url: https://traffic.libsyn.com/syntax/Syntax_-_847.mp3
+url: https://traffic.megaphone.fm/FSI9412600012.mp3
 youtube_url: https://www.youtube.com/watch?v=7uh2ChvlbQg
 ---
 	

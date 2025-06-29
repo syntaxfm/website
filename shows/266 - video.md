@@ -2,7 +2,7 @@
 number: 266
 title: Video for the Web 2020 and Beyond
 date: 1594818000954
-url: https://traffic.libsyn.com/syntax/Syntax266.mp3
+url: https://traffic.megaphone.fm/FSI8609117804.mp3
 ---
 
 In this episode of Syntax, Scott and Wes talk about the future of video for the web!

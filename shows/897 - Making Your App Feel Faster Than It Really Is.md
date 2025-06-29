@@ -2,7 +2,7 @@
 number: 897
 title: Making Your App Feel Faster Than It Really Is
 date: 1745838000000
-url: https://traffic.libsyn.com/syntax/Syntax_-_897.mp3
+url: https://traffic.megaphone.fm/FSI5015977734.mp3
 youtube_url: https://www.youtube.com/watch?v=nxzVZ7FYdwE
 ---
 	

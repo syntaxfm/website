@@ -2,7 +2,7 @@
 number: 756
 title: CSS Is Getting Mixins + Functions
 date: 1713178800000
-url: https://traffic.libsyn.com/syntax/Syntax_-_756.mp3
+url: https://traffic.megaphone.fm/FSI7196889298.mp3
 youtube_url: https://www.youtube.com/watch?v=MwXht_lBcHo
 ---
 

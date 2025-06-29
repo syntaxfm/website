@@ -2,7 +2,7 @@
 number: 889
 title: Planning A Build
 date: 1743418800000
-url: https://traffic.libsyn.com/syntax/Syntax_-_889.mp3
+url: https://traffic.megaphone.fm/FSI9181467847.mp3
 youtube_url: https://www.youtube.com/watch?v=PaS6FUtgAh8
 ---
 	

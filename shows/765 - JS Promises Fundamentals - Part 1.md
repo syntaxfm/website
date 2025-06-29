@@ -2,7 +2,7 @@
 number: 765
 title: JS Promises Fundamentals - Part 1
 date: 1714993200000
-url: https://traffic.libsyn.com/syntax/Syntax_-_765.mp3
+url: https://traffic.megaphone.fm/FSI6956344473.mp3
 youtube_url: https://www.youtube.com/watch?v=bmOzRI5Job0
 ---
 

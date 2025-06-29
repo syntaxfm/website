@@ -2,7 +2,7 @@
 number: 886
 title: "AWS and IAC for Dummies with SST"
 date: 1742382000000
-url: https://traffic.libsyn.com/syntax/Syntax_-_886.mp3
+url: https://traffic.megaphone.fm/FSI3219767058.mp3
 youtube_url: https://www.youtube.com/watch?v=cMj8IgWHODg
 ---
 

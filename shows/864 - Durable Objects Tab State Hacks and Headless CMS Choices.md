@@ -2,7 +2,7 @@
 number: 864
 title: Durable Objects × Tab State Hacks × Headless CMS Choices + More
 date: 1735729200000
-url: https://traffic.libsyn.com/syntax/Syntax_-_864.mp3
+url: https://traffic.megaphone.fm/FSI9963392736.mp3
 youtube_url: https://www.youtube.com/watch?v=hxUDQEpXv6c
 ---
 	

@@ -2,7 +2,7 @@
 number: 411
 title: Meta Tags
 date: 1638799200774
-url: https://traffic.libsyn.com/syntax/Syntax_-_411.mp3
+url: https://traffic.megaphone.fm/FSI7509681418.mp3
 ---
 
 In this Hasty Treat, Wes and Scott talk about Meta Tags.

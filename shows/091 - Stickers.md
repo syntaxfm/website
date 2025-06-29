@@ -2,7 +2,7 @@
 number: 91
 title: Hasty Treat - How to become a Sticker Mogul
 date: 1542031200406
-url: https://traffic.libsyn.com/syntax/Syntax091.mp3
+url: https://traffic.megaphone.fm/FSI5502639233.mp3
 ---
 
 In this Hasty Treat, Scott and Wes talk about stickers and break down Wes' entire process for creating and selling his sticker packs. Check out [Bos.af](https://bos.af/) for more info.

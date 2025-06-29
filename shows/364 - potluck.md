@@ -2,7 +2,7 @@
 number: 364
 title: Potluck - Web components × Gear × Docker × Web Dev Frameworks × Golden Handcuffs × Browser Testing × SSR React × Code Prediction × More!
 date: 1624453200183
-url: https://traffic.libsyn.com/syntax/Syntax364.mp3
+url: https://traffic.megaphone.fm/FSI7129050774.mp3
 ---
 
 It's another Potluck! In this episode, Scott and Wes answer your questions about web components, gear, Docker, web dev frameworks, golden handcuffs, browser testing, SSR React, code prediction, and more!

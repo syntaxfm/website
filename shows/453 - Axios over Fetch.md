@@ -2,7 +2,7 @@
 number: 453
 title: Why do people still use Axios over Fetch?
 date: 1651492800833
-url: https://traffic.libsyn.com/syntax/Syntax_-_453.mp3
+url: https://traffic.megaphone.fm/FSI1015216049.mp3
 ---
 
 In this Hasty Treat, Scott and Wes talk about why people still use Axios over Fetch, and why people wouldn't use Axios.

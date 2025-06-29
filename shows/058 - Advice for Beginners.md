@@ -2,7 +2,7 @@
 number: 58
 title: Advice For Beginners - Tech Skills, Applying for Jobs, Focus, Imposter Syndrome + More
 date: 1531918800645
-url: https://traffic.libsyn.com/syntax/Syntax058.mp3
+url: https://traffic.megaphone.fm/FSI1827116789.mp3
 ---
 
 Scott and Wes give their best advice for beginners, including tech skills, applying for jobs, focus, imposter syndrome, and more...
