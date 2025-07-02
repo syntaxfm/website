@@ -2,7 +2,7 @@
 number: 282
 title: Tales from Webdev Past - Clearfix × Floats × Cufon × Guestbooks × PNG Fix × More!
 date: 1599656400709
-url: https://traffic.libsyn.com/syntax/Syntax282.mp3
+url: https://traffic.megaphone.fm/FSI9501442764.mp3
 ---
 
 In this episode of Syntax, Scott and Wes talk about tales from web dev past — clearfix, floats, flash, cufon, guestbooks, hit counters, and more!

@@ -2,7 +2,7 @@
 number: 770
 title: Design Systems With Brad Frost (Rereleased)
 date: 1715943600000
-url: https://traffic.libsyn.com/syntax/Syntax_-_770.mp3
+url: https://traffic.megaphone.fm/FSI3381811548.mp3
 youtube_url: https://www.youtube.com/watch?v=8GngWugEOCc
 guest:
   name: Brad Frost

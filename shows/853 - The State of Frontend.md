@@ -2,7 +2,7 @@
 number: 853
 title: The State of Frontend
 date: 1732705200000
-url: https://traffic.libsyn.com/syntax/Syntax_-_853.mp3
+url: https://traffic.megaphone.fm/FSI3348939917.mp3
 youtube_url: https://www.youtube.com/watch?v=FIYurQvJY2E
 ---
 	

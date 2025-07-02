@@ -2,7 +2,7 @@
 number: 467
 title: Stopping Malicious Actors
 date: 1654516800049
-url: https://traffic.libsyn.com/syntax/Syntax_-_467.mp3
+url: https://traffic.megaphone.fm/FSI9006354348.mp3
 ---
 
 In this Hasty Treat, Scott and Wes talk about ways to prevent malicious people from using or abusing your app.

@@ -2,7 +2,7 @@
 number: 264
 title: Jerome Hardaway + Vets Who Code
 date: 1594213200843
-url: https://traffic.libsyn.com/syntax/Syntax264.mp3
+url: https://traffic.megaphone.fm/FSI2608470878.mp3
 guest:
   name: Jerome Hardaway
   github: jeromehardaway

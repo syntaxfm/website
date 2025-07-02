@@ -2,7 +2,7 @@
 number: 910
 title: 'If Statements in CSS?'
 date: 1749639600000
-url: https://traffic.libsyn.com/syntax/Syntax_-_910.mp3
+url: https://traffic.megaphone.fm/FSI2413522351.mp3
 youtube_url: https://www.youtube.com/watch?v=fTdqR9ZmHHU
 ---
 

@@ -2,7 +2,7 @@
 number: 329
 title: Hasty Treat - The Future of Testing with Cypress
 date: 1614002400062
-url: https://traffic.libsyn.com/syntax/Syntax329.mp3
+url: https://traffic.megaphone.fm/FSI7622858106.mp3
 ---
 
 In this Hasty Treat, Scott and Wes talk about the future of testing with Cypress — what it is, how to use it, and more!

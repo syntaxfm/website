@@ -2,7 +2,7 @@
 number: 134
 title: Syntax Live React Edition
 date: 1554901200966
-url: https://traffic.libsyn.com/syntax/Syntax134.mp3
+url: https://traffic.megaphone.fm/FSI7648226439.mp3
 ---
 
 It's another live episode of Syntax in which Wes and Scott do Hook'd on Hooks, Who's Snackin' on React, Stump'd, Unpopular Opinions, Q & Eh, and more!

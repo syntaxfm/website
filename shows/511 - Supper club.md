@@ -2,7 +2,7 @@
 number: 511
 title: Supper Club × Raycast with Thomas Mann
 date: 1663329600231
-url: https://traffic.libsyn.com/syntax/Syntax_-_511_v2.mp3
+url: https://traffic.megaphone.fm/FSI3141811326.mp3
 guest:
   name: Thomas Mann
   github: thomaspaulmann

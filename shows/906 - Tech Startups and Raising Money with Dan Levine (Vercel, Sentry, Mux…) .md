@@ -2,7 +2,7 @@
 number: 906
 title: "Tech Startups and Raising Money with Dan Levine (Vercel, Sentry, Mux…)"
 date: 1748430000000
-url: https://traffic.libsyn.com/syntax/Syntax_-_906.mp3
+url: https://traffic.megaphone.fm/FSI2969221589.mp3
 youtube_url: https://www.youtube.com/watch?v=ouHSTlykS2U
 guest:
   name: Dan Levine

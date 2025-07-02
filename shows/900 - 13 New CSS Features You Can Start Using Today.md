@@ -2,7 +2,7 @@
 number: 900
 title: "13 New CSS Features You Can Start Using Today"
 date: 1746615600000
-url: https://traffic.libsyn.com/syntax/Syntax_-_900.mp3
+url: https://traffic.megaphone.fm/FSI9960156259.mp3
 youtube_url: https://www.youtube.com/watch?v=6BjvBxilIE8
 ---
 

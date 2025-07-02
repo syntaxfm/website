@@ -2,7 +2,7 @@
 number: 673
 title: Getting Hired, Interviewing, and Why Recruiters Suck with Taylor Desseyn
 date: 1695988800937
-url: https://traffic.libsyn.com/syntax/Syntax_-_673.mp3
+url: https://traffic.megaphone.fm/FSI4652307202.mp3
 guest:
   name: Taylor Desseyn
   of: Gun.io

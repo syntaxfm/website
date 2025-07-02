@@ -2,7 +2,7 @@
 number: 523
 title: Supper Club × Neovim, Lua, RPC and Twitch with TJ DeVries
 date: 1665748800604
-url: https://traffic.libsyn.com/syntax/Syntax_-_523.mp3
+url: https://traffic.megaphone.fm/FSI9995153762.mp3
 guest:
   name: TJ DeVries
   github: tjdevries

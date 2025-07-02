@@ -2,7 +2,7 @@
 number: 286
 title: Git Fundamentals
 date: 1600866000882
-url: https://traffic.libsyn.com/syntax/Syntax286.mp3
+url: https://traffic.megaphone.fm/FSI3639129149.mp3
 ---
 
 In this episode of Syntax, Scott and Wes talk about Git fundamentals — what it is, why you need it, best practices and more!

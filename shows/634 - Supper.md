@@ -2,7 +2,7 @@
 number: 634
 title: Supper Club × Messaging Queues and Workers with Armin Ronacher
 date: 1688126400605
-url: https://traffic.libsyn.com/syntax/Syntax_-_634.mp3
+url: https://traffic.megaphone.fm/FSI2221780408.mp3
 guest:
   name: Armin Ronacher
   of: Sentry, Flask

@@ -2,7 +2,7 @@
 number: 880
 title: "Creator of Home Assistant: Web Components, Self Hosting and Home Hacking"
 date: 1740571200000
-url: https://traffic.libsyn.com/syntax/Syntax_-_880.mp3
+url: https://traffic.megaphone.fm/FSI9108834294.mp3
 youtube_url: https://www.youtube.com/watch?v=0meKcaebg38
 guest:
   name: Paulus Schoutsen

@@ -2,7 +2,7 @@
 number: 767
 title: Local First and TypeScript’s Missing Library with Johannes Schickling
 date: 1715338800000
-url: https://traffic.libsyn.com/syntax/Syntax_-_767.mp3
+url: https://traffic.megaphone.fm/FSI8742067066.mp3
 youtube_url: https://www.youtube.com/watch?v=TrVYBfIsOa0
 guest:
   name: Johannes Schickling

@@ -2,7 +2,7 @@
 number: 76
 title: Specialization vs Generalization
 date: 1537362000095
-url: https://traffic.libsyn.com/syntax/Syntax076.mp3
+url: https://traffic.megaphone.fm/FSI9550980603.mp3
 ---
 
 In this episode Wes and Scott discuss specialization vs generalization - the different ways one can be a generalist or a specialist, advantages and disadvantages to both, and, ultimately, which is the better career path.

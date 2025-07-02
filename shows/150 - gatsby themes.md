@@ -2,7 +2,7 @@
 number: 150
 title: Gatsby Themes
 date: 1559739600837
-url: https://traffic.libsyn.com/syntax/Syntax150.mp3
+url: https://traffic.megaphone.fm/FSI6241240797.mp3
 guest:
   name: Jason Lengstorf
   github: jlengstorf

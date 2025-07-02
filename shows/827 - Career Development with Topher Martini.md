@@ -2,7 +2,7 @@
 number: 827
 title: Career Development with Topher Martini
 date: 1727434800000
-url: https://traffic.libsyn.com/syntax/Syntax_-_827.mp3
+url: https://traffic.megaphone.fm/FSI3763028598.mp3
 youtube_url: https://youtu.be/LGe_uH5e4Rs
 guest:
   name: Topher Martini

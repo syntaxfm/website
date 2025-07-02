@@ -2,7 +2,7 @@
 number: 774
 title: Promise Flow Control, Concurrency, Libraries, TypeScript and Deferreds - Part 3
 date: 1716807600000
-url: https://traffic.libsyn.com/syntax/Syntax_-_774.mp3
+url: https://traffic.megaphone.fm/FSI8328944349.mp3
 youtube_url: https://www.youtube.com/watch?v=wLNnTEQdyvo
 ---
 

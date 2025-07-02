@@ -2,7 +2,7 @@
 number: 868
 title: The State of JavaScript
 date: 1736942400000
-url: https://traffic.libsyn.com/syntax/syntax_-_868.mp3
+url: https://traffic.megaphone.fm/FSI5675818059.mp3
 youtube_url: https://www.youtube.com/watch?v=VSRAvg9wA4g
 ---
 

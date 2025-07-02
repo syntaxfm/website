@@ -2,7 +2,7 @@
 number: 503
 title: Margins
 date: 1661774400171
-url: https://traffic.libsyn.com/syntax/Syntax_-_503.mp3
+url: https://traffic.megaphone.fm/FSI5831698455.mp3
 ---
 
 In this Hasty Treat, Scott and Wes talk about margins. There are a lot of techniques for dealing with margins - padding instead of margin, only margin or padding bottom, Flexbox for everything, Grid for everything, or a spacing Div.

@@ -2,7 +2,7 @@
 number: 902
 title: "Fullstack Cloudflare with React and Vite (Redwood SDK)"
 date: 1747220400000
-url: https://traffic.libsyn.com/syntax/Syntax_-_902.mp3
+url: https://traffic.megaphone.fm/FSI3616542505.mp3
 youtube_url: https://www.youtube.com/watch?v=bj2pL1amHow
 guest:
   name: Peter Pistorius

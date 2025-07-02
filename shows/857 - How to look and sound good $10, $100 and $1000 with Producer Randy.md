@@ -2,7 +2,7 @@
 number: 857
 title: "How to Look and Sound Good at $10, $100 and $1000 With Producer Randy"
 date: 1733486400000
-url: https://traffic.libsyn.com/syntax/Syntax_-_857.mp3
+url: https://traffic.megaphone.fm/FSI6111000417.mp3
 youtube_url: https://www.youtube.com/watch?v=tGlfyC5dwA4
 guest:
   name: Randy Rektor

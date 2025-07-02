@@ -2,7 +2,7 @@
 number: 883
 title: Web Vitals Explained
 date: 1741604400000
-url: https://traffic.libsyn.com/syntax/Syntax_-_883.mp3
+url: https://traffic.megaphone.fm/FSI3512005804.mp3
 youtube_url: https://www.youtube.com/watch?v=KY6Cr6t-cuA
 ---
 	

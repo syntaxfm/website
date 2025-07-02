@@ -2,7 +2,7 @@
 number: 502
 title: Supper Club × Self Hosted Backend-as-a-service with Brandon Roberts
 date: 1661515200388
-url: https://traffic.libsyn.com/syntax/Syntax_-_502.mp3
+url: https://traffic.megaphone.fm/FSI2235208441.mp3
 guest:
   name: Brandon Roberts
   github: brandonroberts

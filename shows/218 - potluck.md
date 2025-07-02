@@ -2,7 +2,7 @@
 number: 218
 title: Potluck - Dev Culture Fit × Slack Communities × Vanilla JS × Backpacks × Raspberry Pi × More!
 date: 1580306400470
-url: https://traffic.libsyn.com/syntax/Syntax218.mp3
+url: https://traffic.megaphone.fm/FSI7129050774.mp3
 ---
 
 It's another potluck! In this episode, Scott and Wes answer your questions about dev culture fit, Slack communities, vanilla Javascript, backpacks, Raspberry Pi, beards, and more! 

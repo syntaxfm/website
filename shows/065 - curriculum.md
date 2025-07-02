@@ -2,7 +2,7 @@
 number: 65
 title: Hasty Treat - Building Curriculum for Courses
 date: 1534165200725
-url: https://traffic.libsyn.com/syntax/Syntax065.mp3
+url: https://traffic.megaphone.fm/FSI9252252959.mp3
 ---
 
 In this Hasty Treat, Scott and Wes discuss how they create courses, design and build curriculum, as well as insights and best practices for content creation.

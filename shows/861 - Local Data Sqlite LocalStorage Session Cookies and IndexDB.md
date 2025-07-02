@@ -2,7 +2,7 @@
 number: 861
 title: "Local Data: Sqlite, LocalStorage, Session, Cookies and IndexDB"
 date: 1734346800000
-url: https://traffic.libsyn.com/syntax/Syntax_-_861.mp3
+url: https://traffic.megaphone.fm/FSI5970288166.mp3
 youtube_url: https://www.youtube.com/watch?v=VzUHeLsJOrs
 ---
 	

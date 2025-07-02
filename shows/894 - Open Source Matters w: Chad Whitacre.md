@@ -2,7 +2,7 @@
 number: 894
 title: "Open Source Matters w/ Chad Whitacre"
 date: 1744801200000
-url: https://traffic.libsyn.com/syntax/Syntax_-_894.mp3
+url: https://traffic.megaphone.fm/FSI9203926789.mp3
 youtube_url: https://www.youtube.com/watch?v=erO12sRUJ2s
 guest:
   name: Chad Whitacre

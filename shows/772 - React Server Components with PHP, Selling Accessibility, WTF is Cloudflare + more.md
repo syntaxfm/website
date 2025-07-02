@@ -2,7 +2,7 @@
 number: 722
 title: React Server Components with PHP, Selling Accessibility, WTF is Cloudflare + more
 date: 1716375600000
-url: https://traffic.libsyn.com/syntax/Syntax_-_772.mp3
+url: https://traffic.megaphone.fm/FSI9279554213.mp3
 youtube_url: https://www.youtube.com/watch?v=pRLrhv1HgcE
 ---
 

@@ -2,7 +2,7 @@
 number: 713
 title: The CSS OG Eric Meyer. 1994 CSS, JS in Fridges, Tailwind, and Web Standards
 date: 1704456000113
-url: https://traffic.libsyn.com/syntax/Syntax_-_713.mp3 
+url: https://traffic.megaphone.fm/FSI5790377556.mp3
 guest:
   name: Eric Meyer
   github: meyerweb

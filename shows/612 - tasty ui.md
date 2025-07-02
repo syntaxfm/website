@@ -2,7 +2,7 @@
 number: 612
 title: UI Elements - Basics, Best Practice, and Built Ins
 date: 1683720000221
-url: https://traffic.libsyn.com/syntax/Syntax_-_612.mp3
+url: https://traffic.megaphone.fm/FSI2047005249.mp3
 ---
 
 In this episode of Syntax, Wes and Scott talk about UI elements and best practices with UI elements, as well as UI elements that exist in browsers.

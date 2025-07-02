@@ -2,7 +2,7 @@
 number: 430
 title: Creator of Wordle - Josh Wardle
 date: 1644408000914
-url: https://traffic.libsyn.com/syntax/Syntax_-_430.mp3
+url: https://traffic.megaphone.fm/FSI4217595930.mp3
 guest:
   name: Josh Wardle
   github: powerlanguage

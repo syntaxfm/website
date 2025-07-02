@@ -2,7 +2,7 @@
 number: 532
 title: Supper Club × Coding with ADHD with Dr. Courtney Tolinski
 date: 1667563200585
-url: https://traffic.libsyn.com/syntax/Syntax_-_532.mp3
+url: https://traffic.megaphone.fm/FSI9008818697.mp3
 guest:
   name: Dr. Courtney Tolinski 
   twitter: DrTolinski

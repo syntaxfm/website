@@ -2,7 +2,7 @@
 number: 685
 title: Jason Lengstorf on Live Streaming, Creating Content, and Building a Studio Space
 date: 1698408000510
-url: https://traffic.libsyn.com/syntax/Syntax_-_685.mp3
+url: https://traffic.megaphone.fm/FSI5442016531.mp3
 guest:
   name: Jason Lengstorf
   of: Learn with Jason
