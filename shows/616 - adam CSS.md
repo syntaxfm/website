@@ -2,7 +2,7 @@
 number: 616
 title: Supper Club × Adam Argyle on What's New in CSS
 date: 1684497600422
-url: https://traffic.libsyn.com/syntax/Syntax_-_616.mp3
+url: https://traffic.megaphone.fm/FSI9227950595.mp3
 guest:
   name: Adam Argyle
   github: argyleink

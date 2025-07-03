@@ -2,7 +2,7 @@
 number: 753
 title: Cache Ruins Everything Around Me
 date: 1712574000293
-url: https://traffic.libsyn.com/syntax/Syntax_-_753.mp3
+url: https://traffic.megaphone.fm/FSI7601371047.mp3
 youtube_url: https://www.youtube.com/watch?v=j8oD976nhZk
 ---
 

@@ -2,7 +2,7 @@
 number: 435
 title: This vs That × map vs reduce, forEach vs for in, and more! 
 date: 1646049600690
-url: https://traffic.libsyn.com/syntax/Syntax_-_435.mp3
+url: https://traffic.megaphone.fm/FSI5502081746.mp3
 ---
 
 In this Hasty Treat, Scott and Wes do a little this vs that with map vs reduce, forEach vs for in, .hasOwnProperty() vs in vs .hasOwn(), CSS absolute + left/right/top/bottom vs transform, and more.

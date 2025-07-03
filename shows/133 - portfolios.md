@@ -2,7 +2,7 @@
 number: 133
 title: Hasty Treat - Tips For A Good Portfolio
 date: 1554728400344
-url: https://traffic.libsyn.com/syntax/Syntax133.mp3
+url: https://traffic.megaphone.fm/FSI4142916729.mp3
 ---
 
 In this Hasty Treat, Scott and Wes talk about portfolios - best practices, organization, and how to use what people are looking for to stand out in the right ways.

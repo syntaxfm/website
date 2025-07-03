@@ -2,7 +2,7 @@
 number: 245
 title: Hasty Treat - Things You Should Know About Javascript Events
 date: 1588597200626
-url: https://traffic.libsyn.com/syntax/Syntax245.mp3
+url: https://traffic.megaphone.fm/FSI8804426693.mp3
 ---
 
 In this Hasty Treat, Scott and Wes talk about javascript events, and how to avoid some common pitfalls!

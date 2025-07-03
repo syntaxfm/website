@@ -2,7 +2,7 @@
 number: 905
 title: You Should Learn Nuxt!
 date: 1748257200000
-url: https://traffic.libsyn.com/syntax/Syntax_-_905.mp3
+url: https://traffic.megaphone.fm/FSI4803318106.mp3
 youtube_url: https://www.youtube.com/watch?v=sMYOigI5NjM
 hosts:
   - wesbos

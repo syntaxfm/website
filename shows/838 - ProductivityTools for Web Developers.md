@@ -2,7 +2,7 @@
 number: 838
 title: Productivity Tools for Web Developers
 date: 1729681200000
-url: https://traffic.libsyn.com/syntax/Syntax_-_838.mp3
+url: https://traffic.megaphone.fm/FSI7994848106.mp3
 youtube_url: https://www.youtube.com/watch?v=meic3RLFZo0
 ---
 

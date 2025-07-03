@@ -2,7 +2,7 @@
 number: 830
 title: GitHub and Code Reviews with Sarah Vessels
 date: 1728039600000
-url: https://traffic.libsyn.com/syntax/Syntax_-_830.mp3
+url: https://traffic.megaphone.fm/FSI8262154649.mp3
 youtube_url: https://youtu.be/Az1ELhRw4sk
 # A Single Guest looks like this:
 guest:

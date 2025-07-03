@@ -2,7 +2,7 @@
 number: 275
 title: Hasty Treat - Gatsby Tips
 date: 1597669200031
-url: https://traffic.libsyn.com/syntax/Syntax275.mp3
+url: https://traffic.megaphone.fm/FSI5799016225.mp3
 ---
 
 In this Hasty Treat, Scott and Wes talk about tips and tricks for using Gatsby in your projects

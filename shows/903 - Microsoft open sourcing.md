@@ -2,7 +2,7 @@
 number: 903
 title: "Fork Yeah! Microsoft open sourcing Copilot"
 date: 1747670400000
-url: https://traffic.libsyn.com/syntax/Syntax_-_903.mp3
+url: https://traffic.megaphone.fm/FSI9751589457.mp3
 youtube_url: https://www.youtube.com/watch?v=GMmaYUcdMyU
 guest:
   - name: Erich Gamma

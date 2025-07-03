@@ -2,7 +2,7 @@
 number: 823
 title: Is Cursor AI the VS Code Killer?
 date: 1726657200000
-url: https://traffic.libsyn.com/syntax/Syntax_-_823.mp3
+url: https://traffic.megaphone.fm/FSI2377868727.mp3
 youtube_url: https://www.youtube.com/watch?v=0V7RePtB33g
 ---
 

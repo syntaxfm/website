@@ -2,7 +2,7 @@
 number: 728
 title: AI Superpowers with Kevin Hou and Codeium
 date: 1707480000553
-url: https://traffic.libsyn.com/syntax/Syntax_-_728.mp3
+url: https://traffic.megaphone.fm/FSI2349359193.mp3
 youtube_url: https://youtu.be/lYXYmcDjGMA
 guest:
   name: Kevin Hou

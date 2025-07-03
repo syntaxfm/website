@@ -2,7 +2,7 @@
 number: 664
 title: Supper Club × What's New With Astro with Fred Schott
 date: 1694170800957
-url: https://traffic.libsyn.com/syntax/Syntax_-_664.mp3
+url: https://traffic.megaphone.fm/FSI5553449218.mp3
 guest: 
   name: Fred Schott
   github: fredkschott

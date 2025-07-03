@@ -2,7 +2,7 @@
 number: 508
 title: Supper Club × The Primeagen - Vim, Streaming, Rust, all Around Interesting Guy
 date: 1662724800226
-url: https://traffic.libsyn.com/syntax/Syntax_-_508.mp3
+url: https://traffic.megaphone.fm/FSI2997443635.mp3
 guest:
   name: The Primeagan
   github: ThePrimeagen

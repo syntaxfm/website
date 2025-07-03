@@ -2,7 +2,7 @@
 number: 801
 title: 6 New JavaScript Proposals
 date: 1722250800000
-url: https://traffic.libsyn.com/syntax/Syntax_-_801.mp3
+url: https://traffic.megaphone.fm/FSI7599446883.mp3
 youtube_url: https://www.youtube.com/watch?v=xxN6xTQ22CM
 ---
 

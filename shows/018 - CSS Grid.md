@@ -2,7 +2,7 @@
 number: 18
 title: All About CSS Grid
 date: 1510149992171
-url: https://traffic.libsyn.com/syntax/Syntax018.mp3
+url: https://traffic.megaphone.fm/FSI3742460376.mp3
 ---
 
 It's a long awaited CSS Grid show! How does it work? When do you use it? What's the difference between Grid and Flexbox?

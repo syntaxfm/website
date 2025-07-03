@@ -2,7 +2,7 @@
 number: 746
 title: "Infrastructure for TS Devs: Kubernetes, WASM and Containers with David Flanagan"
 date: 1711105200885
-url: https://traffic.libsyn.com/syntax/Syntax_-_746.mp3
+url: https://traffic.megaphone.fm/FSI5123862729.mp3
 youtube_url: https://www.youtube.com/watch?v=DzAco4Aq3mw
 guest:
   name: David Flanagan

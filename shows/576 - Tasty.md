@@ -2,7 +2,7 @@
 number: 576
 title: Potluck × Native Web Components × JS Class Mixins × Application Secrets
 date: 1676462400575
-url: https://traffic.libsyn.com/syntax/Syntax_-_576.mp3
+url: https://traffic.megaphone.fm/FSI2160517421.mp3
 ---
 
 In this potluck episode, Scott and Wes talk home electicity, and then answer your questions about native web components, JS class mixins, JavaScript for marketers, managing application secrets, and more!

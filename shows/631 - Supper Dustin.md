@@ -2,7 +2,7 @@
 number: 631
 title: Supper Club × Why Netlify bought Gatsby, GraphQL Data Layer, and Headless CMS with Dustin Schau
 date: 1687521600710
-url: https://traffic.libsyn.com/syntax/Syntax_-_631.mp3
+url: https://traffic.megaphone.fm/FSI7811754857.mp3
 guest:
   name: Dustin Schau
   of: Gatsby, Netlify

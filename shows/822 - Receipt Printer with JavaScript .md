@@ -2,7 +2,7 @@
 number: 822
 title: Receipt Printer with JavaScript
 date: 1726484400000
-url: https://traffic.libsyn.com/syntax/Syntax_-_822.mp3
+url: https://traffic.megaphone.fm/FSI5338156400.mp3
 youtube_url: https://www.youtube.com/watch?v=tqZjSY-8N1E
 ---
 

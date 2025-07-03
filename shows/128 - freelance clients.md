@@ -2,7 +2,7 @@
 number: 128
 title: How To Find Freelance Clients
 date: 1553086800865
-url: https://traffic.libsyn.com/syntax/Syntax128.mp3
+url: https://traffic.megaphone.fm/FSI3718819662.mp3
 ---
 
 In this episode Wes and Scott talk about how to find freelance clients — tangible things you can do to position yourself and set yourself up for success.

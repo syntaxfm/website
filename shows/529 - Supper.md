@@ -2,7 +2,7 @@
 number: 529
 title: Supper Club × GraphQL as an Aggregation Layer with Filipe Ferreira of Sky TV
 date: 1666958400729
-url: https://traffic.libsyn.com/syntax/Syntax_-_529.mp3
+url: https://traffic.megaphone.fm/FSI8033242234.mp3
 guest:
   name: Filipe Ferreira
   github: fbritoferreira

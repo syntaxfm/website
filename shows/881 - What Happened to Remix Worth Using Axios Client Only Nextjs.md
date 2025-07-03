@@ -2,7 +2,7 @@
 number: 881
 title: What Happened to Remix. Worth Using Axios? Client Only Next.js?
 date: 1740999600000
-url: https://traffic.libsyn.com/syntax/Syntax_-_881.mp3
+url: https://traffic.megaphone.fm/FSI7600027027.mp3
 youtube_url: https://www.youtube.com/watch?v=jiF66cbjapQ
 ---
 	

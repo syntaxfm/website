@@ -2,7 +2,7 @@
 number: 771
 title: "Promises: Error Handling, Aborts, and Helper Methods - Part 2"
 date: 1716202800000
-url: https://traffic.libsyn.com/syntax/Syntax_-_771.mp3
+url: https://traffic.megaphone.fm/FSI4844035809.mp3
 youtube_url: https://www.youtube.com/watch?v=7gTwa9ofqcM
 ---
 

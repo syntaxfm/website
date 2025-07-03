@@ -2,7 +2,7 @@
 number: 892
 title: "The History of Syntax"
 date: 1744196400000
-url: https://traffic.libsyn.com/syntax/Syntax_-_892.mp3
+url: https://traffic.megaphone.fm/FSI3478630376.mp3
 youtube_url: https://www.youtube.com/watch?v=7NSlQ4BrSS8
 ---
 

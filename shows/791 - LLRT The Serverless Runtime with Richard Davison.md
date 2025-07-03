@@ -2,7 +2,7 @@
 number: 791
 title: LLRT The Serverless Runtime w/ Richard Davison
 date: 1720177200000
-url: https://traffic.libsyn.com/syntax/Syntax_-_791.mp3
+url: https://traffic.megaphone.fm/FSI7195131449.mp3
 youtube_url: https://www.youtube.com/watch?v=DfY1_6uBdSE
 guest:
   name: Richard Davison

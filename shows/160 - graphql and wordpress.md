@@ -2,7 +2,7 @@
 number: 160
 title: GraphQL and WordPress
 date: 1562763600835
-url: https://traffic.libsyn.com/syntax/Syntax160.mp3
+url: https://traffic.megaphone.fm/FSI1623463226.mp3
 guest:
   name: Jason Bahl
   github: jasonbahl

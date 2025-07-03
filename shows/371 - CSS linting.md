@@ -2,7 +2,7 @@
 number: 371
 title: Hasty Treat - Stylelint for Linting CSS
 date: 1626699600669
-url: https://traffic.libsyn.com/syntax/Syntax371.mp3
+url: https://traffic.megaphone.fm/FSI6527338799.mp3
 ---
 
 In this Hasty Treat, Scott and Wes talk about Stylelint, what it is and why you should use it!

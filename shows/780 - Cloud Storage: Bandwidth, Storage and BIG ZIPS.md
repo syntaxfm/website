@@ -2,7 +2,7 @@
 number: 780
 title: "Cloud Storage: Bandwidth, Storage and BIG ZIPS"
 date: 1718017200000
-url: https://traffic.libsyn.com/syntax/Syntax_-_780.mp3
+url: https://traffic.megaphone.fm/FSI2400489438.mp3
 youtube_url: https://www.youtube.com/watch?v=U9zSqTISnOE
 ---
 

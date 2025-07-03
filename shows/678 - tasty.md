@@ -2,7 +2,7 @@
 number: 678
 title: The 2023 State of CSS Survey Part 2 × CSS Frameworks × Tooling × Browser Usage
 date: 1697025600291
-url: https://traffic.libsyn.com/syntax/Syntax_-_678.mp3
+url: https://traffic.megaphone.fm/FSI6600907409.mp3
 ---
 
 In this episode of Syntax, it's part 2 of Wes and Scott's reactions to the 2023 State of CSS survey including CSS frameworks, tooling, browser usage, SVG and CSS, and the CSS Awards.

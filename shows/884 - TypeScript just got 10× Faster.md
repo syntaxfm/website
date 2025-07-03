@@ -2,7 +2,7 @@
 number: 884
 title: "Typescript Just Got 10x Faster"
 date: 1741703700310
-url: https://traffic.libsyn.com/syntax/Syntax_-_884.mp3
+url: https://traffic.megaphone.fm/FSI9491475836.mp3
 youtube_url: https://www.youtube.com/watch?v=ZlGza4oIleY
 guest:
   - name: Anders Hejlsberg

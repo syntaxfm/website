@@ -2,7 +2,7 @@
 number: 870
 title: "Windsurf forked VS Code to compete with Cursor. Talking the future of AI + Coding"
 date: 1737547200000
-url: https://traffic.libsyn.com/syntax/Syntax_-_870.mp3
+url: https://traffic.megaphone.fm/FSI8519246305.mp3
 youtube_url: https://www.youtube.com/watch?v=ptekg6GNzIQ
 guest:
   - name: Kevin Hou

@@ -2,7 +2,7 @@
 number: 789
 title: Do More With AI - LLMs With Big Token Counts
 date: 1719831600000
-url: https://traffic.libsyn.com/syntax/Syntax_-_789.mp3
+url: https://traffic.megaphone.fm/FSI4965820266.mp3
 youtube_url: https://www.youtube.com/watch?v=81DY1IsMckE
 hosts:
   - stolinski
