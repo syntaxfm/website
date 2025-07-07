@@ -2,7 +2,7 @@
 number: 814
 title: "Fundamentals: HTML"
 date: 1724842800000
-url: https://traffic.libsyn.com/syntax/Syntax_814_final.mp3
+url: https://traffic.megaphone.fm/FSI4350675800.mp3
 youtube_url: https://www.youtube.com/watch?v=0BHxZQm7ILk
 ---
 

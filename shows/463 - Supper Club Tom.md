@@ -2,7 +2,7 @@
 number: 463
 title: Supper Club × RedwoodJS with Tom Preston-Werner
 date: 1653652800899
-url: https://traffic.libsyn.com/syntax/Syntax_-_463.mp3
+url: https://traffic.megaphone.fm/FSI9807072423.mp3
 guest:
   name: Tom Preston-Werner
   github: mojombo

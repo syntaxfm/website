@@ -2,7 +2,7 @@
 number: 176
 title: Building Steam Games with React
 date: 1567602000219
-url: https://traffic.libsyn.com/syntax/Syntax176.mp3
+url: https://traffic.megaphone.fm/FSI9476642975.mp3
 guest:
   name: Drew Conley
   github: drewconley

@@ -2,7 +2,7 @@
 number: 835
 title: How to Pick a JavaScript Framework
 date: 1729076400000
-url: https://traffic.libsyn.com/syntax/Syntax_-_835.mp3
+url: https://traffic.megaphone.fm/FSI5146691118.mp3
 youtube_url: https://www.youtube.com/watch?v=zo20Mwwrtp0
 guest:
   name: CJ Reynolds

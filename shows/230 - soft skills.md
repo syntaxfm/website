@@ -2,7 +2,7 @@
 number: 230
 title: Soft Skills Tips
 date: 1583931600768
-url: https://traffic.libsyn.com/syntax/Syntax230.mp3
+url: https://traffic.megaphone.fm/FSI1507257943.mp3
 ---
 
 In this episode of Syntax, Scott and Wes talk about soft skills tips — productivity, planning, communication, and more. 

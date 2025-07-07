@@ -2,7 +2,7 @@
 number: 637
 title: Supper Club × Cloudinary with Colby Fayock
 date: 1688731200993
-url: https://traffic.libsyn.com/syntax/Syntax_-_637.mp3
+url: https://traffic.megaphone.fm/FSI8923526258.mp3
 guest:
   name: Colby Fayock
   of: Cloudinary

@@ -2,7 +2,7 @@
 number: 655
 title: Supper Club × How Descript Built A Next Gen Video Editor In The Browser With Andrew Lisowski
 date: 1692360000942
-url: https://traffic.libsyn.com/syntax/Syntax_-_655.mp3
+url: https://traffic.megaphone.fm/FSI3387758828.mp3
 guest:
   name: Andrew Lisowski
   of: Descript

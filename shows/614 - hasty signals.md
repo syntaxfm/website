@@ -2,7 +2,7 @@
 number: 614
 title: WTF Are Signals And Why Is Everyone So Hot On Them All Of The Sudden?
 date: 1684152000868
-url: https://traffic.libsyn.com/syntax/Syntax_-_611.mp3
+url: https://traffic.megaphone.fm/FSI3037542815.mp3
 ---
 
 In this Hasty Treat, Scott and Wes talk about Signals - what are signals and why is everyone talking about them suddenly?

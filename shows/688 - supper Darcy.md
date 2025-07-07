@@ -2,7 +2,7 @@
 number: 688
 title: Ex-npm Employee Making a New Package Manager?! Vlt with Darcy Clarke
 date: 1699012800605
-url: https://traffic.libsyn.com/syntax/Syntax_-_688.mp3
+url: https://traffic.megaphone.fm/FSI4521934228.mp3
 guest:
   name: Darcy Clarke
   github: darcyclarke

@@ -2,7 +2,7 @@
 number: 530
 title: Explained - Buzz Words and Concepts 
 date: 1667217600415
-url: https://traffic.libsyn.com/syntax/Syntax_-_530.mp3
+url: https://traffic.megaphone.fm/FSI1638587214.mp3
 ---
 
 In this Hasty Treat, Scott and Wes explain more buzz words like schema, promises, async, sync, dom vs shadow dom vs page HTML, props, and more.

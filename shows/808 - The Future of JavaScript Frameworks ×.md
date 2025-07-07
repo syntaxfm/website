@@ -2,7 +2,7 @@
 number: 808
 title: The Future of JavaScript Frameworks × Building Auth × DB Design Tips, and more!
 date: 1723615200000
-url: https://traffic.libsyn.com/syntax/Syntax_808_final.mp3
+url: https://traffic.megaphone.fm/FSI7764745116.mp3
 youtube_url: https://www.youtube.com/watch?v=4u0M_AqQPbo
 ---
 

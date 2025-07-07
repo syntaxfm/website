@@ -2,7 +2,7 @@
 number: 20
 title: Fitness, Nutrition, and Losing Weight
 date: 1511360754493
-url: https://traffic.libsyn.com/syntax/Syntax020.mp3
+url: https://traffic.megaphone.fm/FSI8027073481.mp3
 ---
 
 Wes and Scott talk about their fitness journey and how it relates to being a web developer in terms of energy, focus and mental clarity.

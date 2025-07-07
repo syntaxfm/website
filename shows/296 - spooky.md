@@ -2,7 +2,7 @@
 number: 296
 title: Spooky Web Dev Stories — Part 2
 date: 1603890000713
-url: https://traffic.libsyn.com/syntax/Syntax296.mp3
+url: https://traffic.megaphone.fm/FSI1193152863.mp3
 ---
 
 In this episode of Syntax, Scott and Wes are back for another episode of spooky web dev stories — listener-submitted stories about web dev gone wrong.

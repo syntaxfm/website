@@ -2,7 +2,7 @@
 number: 806
 title: "The King of Drag and Drop: Alex Reardon"
 date: 1723183200000
-url: https://traffic.libsyn.com/syntax/Syntax_806_final.mp3
+url: https://traffic.megaphone.fm/FSI1051593054.mp3
 youtube_url: https://www.youtube.com/watch?v=CjGn0HahbDE
 guest:
   name: Alex Reardon

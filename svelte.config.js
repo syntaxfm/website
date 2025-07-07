@@ -34,7 +34,9 @@ const config = {
 	],
 
 	kit: {
-		adapter: adapter(),
+		adapter: adapter({
+			runtime: 'nodejs22.x'
+		}),
 		alias: {
 			$: 'src',
 			$actions: 'src/actions',
@@ -46,9 +48,6 @@ const config = {
 			$styles: 'src/styles',
 			$utilities: 'src/utilities'
 		}
-	},
-	compilerOptions: {
-		enableSourcemap: true
 	}
 };
 

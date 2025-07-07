@@ -2,7 +2,7 @@
 number: 233
 title: Hasty Treat - Purchasing Power Parity
 date: 1584968400415
-url: https://traffic.libsyn.com/syntax/Syntax233.mp3
+url: https://traffic.megaphone.fm/FSI7971414197.mp3
 ---
 
 In this Hasty Treat, Scott and Wes talk about purchasing power parity — what it is, and how Wes has implemented it on his course website.  

@@ -2,7 +2,7 @@
 number: 273
 title: Hasty Treat - How To Refine Your Process
 date: 1597064400502
-url: https://traffic.libsyn.com/syntax/Syntax273.mp3
+url: https://traffic.megaphone.fm/FSI5499916667.mp3
 ---
 
 In this Hasty Treat, Scott and Wes talk about refining your processes, how to evaluate them, make them better, and more!

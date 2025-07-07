@@ -2,7 +2,7 @@
 number: 206
 title: State Machines, CSS and Animations with David K Piano
 date: 1576677600785
-url: https://traffic.libsyn.com/syntax/Syntax206.mp3
+url: https://traffic.megaphone.fm/FSI4787417788.mp3
 guest:
   name: David K Piano
   github: davidkpiano

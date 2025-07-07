@@ -2,7 +2,7 @@
 number: 385
 title: Hasty Treat - TypeScripts Strict Explained
 date: 1630933200824
-url: https://traffic.libsyn.com/syntax/Syntax385.mp3
+url: https://traffic.megaphone.fm/FSI4377636497.mp3
 ---
 
 In this Hasty Treat, Scott and Wes talk about the Typescript `strict` flag — what it does and why you might use it.

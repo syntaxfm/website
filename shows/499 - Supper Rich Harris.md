@@ -2,7 +2,7 @@
 number: 499
 title: Supper Club × Rich Harris, Author of Svelte
 date: 1660910400400
-url: https://traffic.libsyn.com/syntax/Syntax_-_499.mp3
+url: https://traffic.megaphone.fm/FSI1763310746.mp3
 guest:
   name: Rich Harris
   of: Svelte

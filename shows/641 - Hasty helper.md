@@ -2,7 +2,7 @@
 number: 641
 title: Help Me Help You - How To Ask For Help
 date: 1689595200139
-url: https://traffic.libsyn.com/syntax/Syntax_-_641.mp3
+url: https://traffic.megaphone.fm/FSI8648323613.mp3
 ---
 
 In this Hasty Treat, Scott and Wes talk about how to get help for a bug or error you're getting in someone else's code.
