@@ -33,7 +33,7 @@ Scott and Wes break down the state of web browsers in 2025, from the rise and fa
   - [There Still Arent Any iPhone Browsers With Custom Engines](https://tech.yahoo.com/phones/articles/still-arent-iphone-browsers-custom-151159611.html)
 - **[29:18](#t=29:18)** Wtf is [Ladybird](https://ladybird.org/)?
 - **[34:14](#t=34:14)** Usage statistics.
-  - [StatCounter.com](www.statcounter.com).
+  - [StatCounter.com](https://www.statcounter.com).
 - **[39:32](#t=39:32)** Dev Tools experience ranked.
 - **[42:06](#t=42:06)** Tab experience.
 - **[43:37](#t=43:37)** Containers and profiles.
