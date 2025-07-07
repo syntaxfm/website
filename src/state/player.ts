@@ -5,6 +5,7 @@ import { load_media_session } from '$utilities/media/load_media_session';
 import { minimize, player_window_status, toggle_minimize } from './player_window_status';
 import { get_cached_or_network_show } from './player_offline';
 import { load_state_from_indexed_db, open_db, STORE_NAME, type PlayerState } from './player_utils';
+import { player_time } from './player_time';
 
 export interface Timestamp {
 	label: string;
@@ -140,6 +141,10 @@ const new_player_state = () => {
 	}
 
 	function ontimeupdate() {
+		const current_state = get(player_state);
+		if (current_state.audio && current_state?.current_show?.number) {
+			player_time.set(current_state.audio.currentTime);
+		}
 		save_position();
 	}
 
