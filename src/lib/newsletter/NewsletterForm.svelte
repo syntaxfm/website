@@ -104,10 +104,6 @@
 		}
 
 		@container newsletter-form (width < 600px) {
-			.newsletter-layout .newsletter-logo {
-				flex: 0 1 180px;
-				margin: 1rem 0 0 1rem;
-			}
 			form {
 				/* shrink form when small container */
 				flex: 1 1 100%;
@@ -119,9 +115,6 @@
 			.newsletter button {
 				width: 100%;
 				max-width: 300px;
-			}
-			.small {
-				font-size: var(--font-size-xs);
 			}
 		}
 

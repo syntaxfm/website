@@ -48,9 +48,6 @@ const config = {
 			$styles: 'src/styles',
 			$utilities: 'src/utilities'
 		}
-	},
-	compilerOptions: {
-		enableSourcemap: true
 	}
 };
 
