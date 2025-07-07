@@ -2,7 +2,7 @@
 number: 140
 title: Potluck - Media Queries × NPM Vulnerabilities × Fullstack JS vs JAMstack × Web VR/AR × Switching Jobs × More!
 date: 1556726400977
-url: https://traffic.libsyn.com/syntax/Syntax140.mp3
+url: https://traffic.megaphone.fm/FSI7129050774.mp3
 ---
 
 It's another potluck episode in which Wes and Scott answer your questions! This month - Media Queries, NPM Vulnerabilities, Web VR and AR, Fullstack JS vs JAMstack for freelancers, switching jobs, and more!

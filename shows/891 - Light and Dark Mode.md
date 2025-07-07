@@ -2,7 +2,7 @@
 number: 891
 title: Light and Dark Mode
 date: 1744023600000
-url: https://traffic.libsyn.com/syntax/Syntax_-_891.mp3
+url: https://traffic.megaphone.fm/FSI1443220463.mp3
 youtube_url: https://www.youtube.com/watch?v=SrDQyiaf9ls
 ---
 	

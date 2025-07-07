@@ -2,7 +2,7 @@
 number: 874
 title: Fast Apps - Easy Perf Wins
 date: 1738753200000
-url: https://traffic.libsyn.com/syntax/Syntax_-_874.mp3
+url: https://traffic.megaphone.fm/FSI4331138814.mp3
 youtube_url: https://www.youtube.com/watch?v=1iAeSCwh92c
 ---
 	

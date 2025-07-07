@@ -2,7 +2,7 @@
 number: 484
 title: Supper Club × 70,000 Serverless Functions with Kristi Perreault of Liberty Mutual
 date: 1657886400091
-url: https://traffic.libsyn.com/syntax/Syntax_-_484.mp3
+url: https://traffic.megaphone.fm/FSI9971743742.mp3
 guest:
   name: Kristi Perreault
   github: kristiperreault

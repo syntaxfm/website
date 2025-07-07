@@ -2,7 +2,7 @@
 number: 841
 title: Spooky Web Dev Horror Stories - PART 2
 date: 1730286000000
-url: https://traffic.libsyn.com/syntax/Syntax_-_841.mp3
+url: https://traffic.megaphone.fm/FSI4225504928.mp3
 youtube_url: https://www.youtube.com/watch?v=oOFrLNItiX8
 ---
 

@@ -2,7 +2,7 @@
 number: 815
 title: "Deno 2 with Ryan Dahl"
 date: 1725015600000
-url: https://traffic.libsyn.com/syntax/Syntax_-_815.mp3
+url: https://traffic.megaphone.fm/FSI6665585176.mp3
 youtube_url: https://youtu.be/tZBCq8Ijkgw
 guest:
   name: Ryan Dahl

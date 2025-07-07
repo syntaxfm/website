@@ -2,7 +2,7 @@
 number: 851
 title: "The Future of VS Code and Copilot"
 date: 1732276800000
-url: https://traffic.libsyn.com/syntax/Sytnax_-_851.mp3
+url: https://traffic.megaphone.fm/FSI9895671696.mp3
 youtube_url: https://www.youtube.com/watch?v=AiFXT_zyR9M
 guest:
   - name: Cassidy Williams

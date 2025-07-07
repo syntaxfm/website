@@ -2,7 +2,7 @@
 number: 908
 title: "Storybook Has Evolved w/ Jeppe Reinhold"
 date: 1749034800000
-url: https://traffic.libsyn.com/syntax/Syntax_-_908.mp3
+url: https://traffic.megaphone.fm/FSI2076830184.mp3
 youtube_url: https://www.youtube.com/watch?v=-QRzlQbUHcc
 guest:
   name: Jeppe Reinhold

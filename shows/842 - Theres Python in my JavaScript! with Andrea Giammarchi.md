@@ -2,7 +2,7 @@
 number: 842
 title: "There's Python in my JavaScript! with Andrea Giammarchi"
 date: 1730458800000
-url: https://traffic.libsyn.com/syntax/Syntax_-_842.mp3
+url: https://traffic.megaphone.fm/FSI2905171016.mp3
 youtube_url: https://www.youtube.com/watch?v=8WAntUHM_CY
 guest:
   name: Andrea Giammarchi

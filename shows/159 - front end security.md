@@ -2,7 +2,7 @@
 number: 159
 title: Hasty Treat - Front End Security
 date: 1562590800835
-url: https://traffic.libsyn.com/syntax/Syntax159.mp3
+url: https://traffic.megaphone.fm/FSI1609262259.mp3
 ---
 
 In this Hasty Treat, Scott and Wes talk about front end security and what to do in order to avoid hacking.

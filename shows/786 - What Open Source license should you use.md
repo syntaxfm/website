@@ -2,7 +2,7 @@
 number: 786
 title: What Open Source license should you use?
 date: 1719226800000
-url: https://traffic.libsyn.com/syntax/Syntax_-_786.mp3
+url: https://traffic.megaphone.fm/FSI3532704044.mp3
 youtube_url: https://www.youtube.com/watch?v=FcieXP8T4R4
 hosts:
   - stolinski

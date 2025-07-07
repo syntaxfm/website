@@ -2,7 +2,7 @@
 number: 809
 title: "How To Stay Up To Date with Daily.dev’s Francesco Ciulla"
 date: 1723788000000
-url: https://traffic.libsyn.com/syntax/Syntax_809_final.mp3
+url: https://traffic.megaphone.fm/FSI8920848510.mp3
 youtube_url: https://www.youtube.com/watch?v=D9kW5RW4tAU
 guest:
   name: Francesco Ciulla

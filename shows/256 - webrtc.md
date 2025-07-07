@@ -2,7 +2,7 @@
 number: 256
 title: WebRTC and Peer-to-Peer Video Calling with Ian Ramzy
 date: 1591794000494
-url: https://traffic.libsyn.com/syntax/Syntax256.mp3
+url: https://traffic.megaphone.fm/FSI4887403149.mp3
 guest:
   name: Ian Ramzy
   github: ianramzy

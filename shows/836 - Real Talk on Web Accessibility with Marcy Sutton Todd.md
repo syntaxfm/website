@@ -2,7 +2,7 @@
 number: 836
 title: Real Talk on Web Accessibility with Marcy Sutton Todd
 date: 1729249200000
-url: https://traffic.libsyn.com/syntax/Syntax_-_836.mp3
+url: https://traffic.megaphone.fm/FSI1638814177.mp3
 youtube_url: https://www.youtube.com/watch?v=A7cVW-8tCXY
 guest:
   name: Marcy Sutton Todd

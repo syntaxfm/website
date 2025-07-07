@@ -2,7 +2,7 @@
 number: 871
 title: Coding Agents Cursor + Windsurf Tips
 date: 1737975600000
-url: https://traffic.libsyn.com/syntax/Syntax_-_871.mp3
+url: https://traffic.megaphone.fm/FSI8840729992.mp3
 youtube_url: https://www.youtube.com/watch?v=yOAKXYm7Ffg
 ---
 	

@@ -2,7 +2,7 @@
 number: 862
 title: Svelte 5 Is Here!
 date: 1734519600000
-url: https://traffic.libsyn.com/syntax/Syntax_-_862.mp3
+url: https://traffic.megaphone.fm/FSI9735243316.mp3
 youtube_url: https://www.youtube.com/watch?v=t6-znHs8DDM
 ---
 	

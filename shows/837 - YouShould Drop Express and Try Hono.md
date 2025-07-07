@@ -2,7 +2,7 @@
 number: 837
 title: You Should Drop Express and Try Hono
 date: 1729508400000
-url: https://traffic.libsyn.com/syntax/Syntax_-_837.mp3
+url: https://traffic.megaphone.fm/FSI6158954478.mp3
 youtube_url: https://www.youtube.com/watch?v=1XyL9cbFooE
 guest:
   name: CJ Reynolds

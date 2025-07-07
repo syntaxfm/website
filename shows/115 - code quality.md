@@ -2,7 +2,7 @@
 number: 115
 title: Hasty Treat - Code Quality Tooling Part 2
 date: 1549288800743
-url: https://traffic.libsyn.com/syntax/Syntax115.mp3
+url: https://traffic.megaphone.fm/FSI8864144335.mp3
 ---
 
 In this Hasty Treat, Scott and Wes continue their discussion about code quality tooling - how to get your code extra nice and clean, and the tools that will help you along the way.

@@ -2,7 +2,7 @@
 number: 342
 title: Potluck — Video Hosting × Fake Names? × Portfolio Projects × Monorepos × APIs × TLDs × Recording Tips × More! 
 date: 1617800400929
-url: https://traffic.libsyn.com/syntax/Syntax342.mp3
+url: https://traffic.megaphone.fm/FSI7129050774.mp3
 ---
 
 In this episode of Syntax, Scott and Wes talk about how to keep your skill up to date when you have a job and a family, when you should start looking for your first job, monorepos, video hosting, TLDs, APIs, fake names, and more!

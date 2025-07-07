@@ -2,7 +2,7 @@
 number: 478
 title: Supper Club × Developer Experience with Shawn Wang
 date: 1656676800529
-url: https://traffic.libsyn.com/syntax/Syntax_-_478.mp3
+url: https://traffic.megaphone.fm/FSI9102473854.mp3
 guest:
   name: Shawn Wang
   github: sw-yx

@@ -1,11 +1,11 @@
 ---
 number: 911
-title: "Browsers in 2025: Whats up with Arc, Dia, Firefox, Chrome and Opera GX?"
+title: 'Browsers in 2025: Whats up with Arc, Dia, Firefox, Chrome and Opera GX?'
 date: 1750071600000
-url: https://traffic.libsyn.com/syntax/Syntax_-_911.mp3
+url: https://traffic.megaphone.fm/FSI2794389335.mp3
 youtube_url: https://www.youtube.com/watch?v=RecFUQ7eQKU
 ---
-	
+
 Scott and Wes break down the state of web browsers in 2025, from the rise and fall of Arc and the fate of Firefox to hot takes on Opera GX, Raycast, and why power users might not be profitable. They compare rendering engines, rant about dev tools, and reveal what browser stats say about Syntax listeners.
 
 ### Show Notes

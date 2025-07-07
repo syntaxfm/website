@@ -2,7 +2,7 @@
 number: 879
 title: Fullstack Cloudflare
 date: 1740394800000
-url: https://traffic.libsyn.com/syntax/Syntax_-_879.mp3
+url: https://traffic.megaphone.fm/FSI7558039240.mp3
 youtube_url: https://www.youtube.com/watch?v=RKxjMIDCwS8
 ---
 	

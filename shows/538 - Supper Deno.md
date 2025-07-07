@@ -2,7 +2,7 @@
 number: 538
 title: Supper Club × Ryan Dahl and Deno
 date: 1668772800611
-url: https://traffic.libsyn.com/syntax/Syntax_-_538_v2.mp3
+url: https://traffic.megaphone.fm/FSI2936982512.mp3
 guest:
   name: Ryan Dahl
   of: Deno

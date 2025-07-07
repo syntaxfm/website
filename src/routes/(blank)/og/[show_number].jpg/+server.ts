@@ -1,6 +1,6 @@
 import { dev } from '$app/environment';
 import chrome from '@sparticuz/chromium';
-import puppeteer, { Browser, type Product } from 'puppeteer-core';
+import puppeteer, { Browser } from 'puppeteer-core';
 import { redis } from '$/hooks.server.js';
 const exePath = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 
@@ -9,14 +9,14 @@ chrome.setGraphicsMode = true;
 async function getOptions() {
 	if (dev) {
 		return {
-			product: 'chrome' as Product,
+			product: 'chrome',
 			args: [],
 			executablePath: exePath,
 			headless: true
 		};
 	}
 	return {
-		product: 'chrome' as Product,
+		product: 'chrome',
 		args: chrome.args,
 		executablePath: await chrome.executablePath(),
 		headless: !!chrome.headless
@@ -76,7 +76,7 @@ export async function GET({ url, params }) {
 	console.log(`time to render ${show}:`, (end - start) / 1000);
 	// Store buffer in cache
 	console.log(`caching ${show} in redis`);
-	redis?.set(`show-og-${show}`, photoBuffer.toString('base64'), {
+	redis?.set(`show-og-${show}`, photoBuffer.toString(), {
 		ex: 60 * 60 * 5
 	});
 

@@ -2,7 +2,7 @@
 number: 607
 title: Supper Club × Privacy, Cookie Banners, GDPR with Donata and Hans Skillrud
 date: 1682683200985
-url: https://traffic.libsyn.com/syntax/Syntax_-_607.mp3
+url: https://traffic.megaphone.fm/FSI1169294037.mp3
 guest:
   - name: Donata Skillrud
     of: Termageddon

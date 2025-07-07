@@ -2,7 +2,7 @@
 number: 797
 title: "Drizzle: The TypeScript SQL ORM"
 date: 1721386800000
-url: https://traffic.libsyn.com/syntax/Syntax_-_797.mp3
+url: https://traffic.megaphone.fm/FSI5048751142.mp3
 youtube_url: https://www.youtube.com/watch?v=Hh9xqRWYEJs
 guest:
   - name: Alex Blokh

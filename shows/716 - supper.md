@@ -2,7 +2,7 @@
 number: 716
 title: JS Perf Wins & New Node.js Features with Yagiz Nizipli
 date: 1705060800650
-url: https://traffic.libsyn.com/syntax/Syntax_-_716.mp3
+url: https://traffic.megaphone.fm/FSI1271550947.mp3
 guest:
   name: Yagiz Nizipli
   github: anonrig

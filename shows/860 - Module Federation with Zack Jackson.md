@@ -2,7 +2,7 @@
 number: 860
 title: "Module Federation Microfrontends with ByteDance’s Zack Jackson"
 date: 1734091200000
-url: https://traffic.libsyn.com/syntax/Syntax_-_860.mp3
+url: https://traffic.megaphone.fm/FSI8192580318.mp3
 youtube_url: https://www.youtube.com/watch?v=aFhysuTUoQY
 guest:
   name: Zack Jackson
