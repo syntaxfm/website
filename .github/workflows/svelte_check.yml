@@ -17,6 +17,7 @@ env:
   YOUTUBE_API_KEY: ''
   TURNSTILE_SECRET: ''
   PUBLIC_TURNSTILE_SITE_KEY: ''
+  CONVERT_KIT_V4_API_KEY: ''
 
 jobs:
   test:
