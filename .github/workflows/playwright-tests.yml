@@ -15,6 +15,7 @@ env:
   UPSPLASH_TOKEN: ''
   UPSPLASH_URL: ''
   YOUTUBE_API_KEY: ''
+  CONVERT_KIT_V4_API_KEY: ''
 
 jobs:
   test:
