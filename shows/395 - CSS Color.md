@@ -2,7 +2,7 @@
 number: 395
 title: Hasty Treat - Neat Things in CSS Color - Current and Coming!
 date: 1633957200825
-url: https://traffic.libsyn.com/syntax/Syntax395.mp3
+url: https://traffic.megaphone.fm/FSI5020823439.mp3
 ---
 
 In this Hasty Treat, Scott and Wes talk about all things color in CSS, both current and coming soon!

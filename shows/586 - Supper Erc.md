@@ -2,7 +2,7 @@
 number: 586
 title: Supper Club × Digital Nomad with Eric Sartorius
 date: 1678449600813
-url: https://traffic.libsyn.com/syntax/Syntax_-_586.mp3
+url: https://traffic.megaphone.fm/FSI3036231431.mp3
 guest:
   name: Eric Sartorius
   of: Digital Nomad

@@ -2,7 +2,7 @@
 number: 764
 title: Biome JS with Emanuele Stoppa
 date: 1714734000000
-url: https://traffic.libsyn.com/syntax/Syntax_-_764.mp3
+url: https://traffic.megaphone.fm/FSI3942589874.mp3
 youtube_url: https://www.youtube.com/watch?v=GZgwcSTZkD0
 guest:
   name: Emanuele Stoppa

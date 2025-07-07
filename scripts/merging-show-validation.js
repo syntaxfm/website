@@ -44,9 +44,12 @@ const extractUrls = (content) => {
 };
 
 const validateTimestamps = (content) => {
-	// Updated regex to catch more patterns, including incorrect ones
-	const timestampRegex = /\b([0-5]?\d:[0-5]?\d(:[0-5]\d)?)\b|\b(\d{4})\b/g;
-	const potentialTimestamps = content.match(timestampRegex) || [];
+	// only check timestamps in show notes
+	content = content.split('### Show Notes')[1] || content;
+	// Regex to match timestamps with [ or = prefix, in formats HH:MM, HH:MM:SS, or HHMM
+	const timestampRegex = /(?:\[|=)(?:\d{2}:\d{2}(?::\d{2})?|\d{4})\b/g;
+	// Remove prefix from matched timestamps
+	const potentialTimestamps = (content.match(timestampRegex) || []).map((t) => t.slice(1));
 	const invalidTimestamps = potentialTimestamps.filter((timestamp) => {
 		if (!timestamp.includes(':')) {
 			// Catching cases like '0702' which should be invalid

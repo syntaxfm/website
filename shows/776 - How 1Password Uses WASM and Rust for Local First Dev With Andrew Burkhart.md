@@ -2,7 +2,7 @@
 number: 776
 title: How 1Password Uses WASM and Rust for Local First Dev With Andrew Burkhart
 date: 1717153200000
-url: https://traffic.libsyn.com/syntax/Syntax_-_776.mp3
+url: https://traffic.megaphone.fm/FSI2735125283.mp3
 youtube_url: https://www.youtube.com/watch?v=DjfnxkqANIk
 guest:
   name: Andrew Burkhart

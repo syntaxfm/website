@@ -2,7 +2,7 @@
 number: 784
 title: Logging × Blogging × Testing × Freelancing
 date: 1718794800000
-url: https://traffic.libsyn.com/syntax/Syntax_-_784.mp3
+url: https://traffic.megaphone.fm/FSI2212542277.mp3
 youtube_url: https://www.youtube.com/watch?v=LbhGwLH7U2k
 ---
 

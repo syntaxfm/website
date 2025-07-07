@@ -2,7 +2,7 @@
 number: 592
 title: Supper Club × The Role Of UX Designers In Humanizing The Future with Travis Neilson
 date: 1679659200559
-url: https://traffic.libsyn.com/syntax/Syntax_-_592.mp3
+url: https://traffic.megaphone.fm/FSI4739732683.mp3
 guest:
   name: Travis Neilson
   twitter: travisneilson

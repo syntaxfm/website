@@ -2,7 +2,7 @@
 number: 635
 title: Lightning CSS
 date: 1688385600576
-url: https://traffic.libsyn.com/syntax/Syntax_-_635.mp3
+url: https://traffic.megaphone.fm/FSI5570142681.mp3
 ---
 
 In this Hasty Treat, Scott and Wes talk about what Lightning CSS is, how it works, and why you should consider using it in your projects.

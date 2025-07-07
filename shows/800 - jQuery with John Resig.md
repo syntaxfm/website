@@ -2,7 +2,7 @@
 number: 800
 title: Why the jQuery Creator Uses React and Typescript - John Resig
 date: 1721991600000
-url: https://traffic.libsyn.com/syntax/Syntax_-_800.mp3
+url: https://traffic.megaphone.fm/FSI6735753519.mp3
 youtube_url: https://www.youtube.com/watch?v=aE9mIWqC8cs
 guest:
   name: John Resig

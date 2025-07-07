@@ -2,7 +2,7 @@
 number: 778
 title: 11 Habits of Highly Effective Developers
 date: 1717585200000
-url: https://traffic.libsyn.com/syntax/Syntax_-_778.mp3
+url: https://traffic.megaphone.fm/FSI2064227687.mp3
 youtube_url: https://www.youtube.com/watch?v=wZoJBLjS6Tw
 ---
 

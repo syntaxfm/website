@@ -2,7 +2,7 @@
 number: 633
 title: WTF is an ORM
 date: 1687953600977
-url: https://traffic.libsyn.com/syntax/Syntax_-_633.mp3
+url: https://traffic.megaphone.fm/FSI8061263326.mp3
 ---
 
 In this episode of Syntax, Wes and Scott talk about the benefits and potential drawbacks of using an ORM on your next project, as well as what some of the popular ORMs are.

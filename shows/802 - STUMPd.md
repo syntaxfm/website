@@ -2,7 +2,7 @@
 number: 802
 title: Tree Shaking × useMemo vs useCallback × JavaScript Event Loop - STUMP'd
 date: 1722423600000
-url: https://traffic.libsyn.com/syntax/Syntax_-_802.mp3
+url: https://traffic.megaphone.fm/FSI8577699909.mp3
 youtube_url: https://www.youtube.com/watch?v=7Vao9J4rAQU
 ---
 

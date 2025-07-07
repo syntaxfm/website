@@ -2,7 +2,7 @@
 number: 833
 title: Next Gen Fullstack React with TanStack
 date: 1728644400000
-url: https://traffic.libsyn.com/syntax/Syntax_-_833.mp3
+url: https://traffic.megaphone.fm/FSI8986913003.mp3
 youtube_url: https://www.youtube.com/watch?v=4PymccvinIo
 guest:
   name: Tanner Linsley

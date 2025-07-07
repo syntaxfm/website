@@ -2,7 +2,7 @@
 number: 496
 title: Supper Club × Headless Ecommerce with Shopify’s Josh Larson
 date: 1660305600626
-url: https://traffic.libsyn.com/syntax/Syntax_-_496.mp3
+url: https://traffic.megaphone.fm/FSI7900053580.mp3
 guest:
   name: Josh Larson
   github: jplhomer

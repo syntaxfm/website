@@ -2,7 +2,7 @@
 number: 63
 title: Hasty Treat - JSON, JSONP and CORS
 date: 1533560400265
-url: https://traffic.libsyn.com/syntax/Syntax063.mp3
+url: https://traffic.megaphone.fm/FSI9619616358.mp3
 ---
 
 In this Hasty Treat, Scott and Wes discuss all things cross-origin - APIs, Javascript, JSON, CORS, and more.

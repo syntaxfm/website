@@ -2,7 +2,7 @@
 number: 782
 title: The Developer’s Guide To Fonts with Stephen Nixon
 date: 1718362800000
-url: https://traffic.libsyn.com/syntax/Syntax_-_782.mp3
+url: https://traffic.megaphone.fm/FSI4196444829.mp3
 youtube_url: https://www.youtube.com/watch?v=RBxMgALZR9o
 guest:
   name: Stephen Nixon

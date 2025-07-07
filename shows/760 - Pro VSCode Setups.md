@@ -2,7 +2,7 @@
 number: 760
 title: Pro VSCode Setups
 date: 1713956400000
-url: https://traffic.libsyn.com/syntax/Syntax_-_760.mp3
+url: https://traffic.megaphone.fm/FSI7207326393.mp3
 youtube_url: https://www.youtube.com/watch?v=VIdM5VSlJVw
 ---
 

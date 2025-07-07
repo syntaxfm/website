@@ -2,7 +2,7 @@
 number: 423
 title: CSS + JS Hacks We’re Fine With
 date: 1642420800996
-url: https://traffic.libsyn.com/syntax/Syntax_-_423.mp3
+url: https://traffic.megaphone.fm/FSI1058065270.mp3
 ---
 
 In this Hasty Treat, Scott and Wes talk about CSS + JS Hacks that they're ok with using.

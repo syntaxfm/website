@@ -2,7 +2,7 @@
 number: 520
 title: Supper Club × ORMs with Nikolas Burk from Prisma
 date: 1665144000037
-url: https://traffic.libsyn.com/syntax/Syntax_-_520.mp3
+url: https://traffic.megaphone.fm/FSI5096738748.mp3
 guest:
   name: Nikolas Burk
   github: nikolasburk

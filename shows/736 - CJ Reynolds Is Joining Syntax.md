@@ -2,7 +2,7 @@
 number: 736
 title: CJ Reynolds is Joining Syntax
 date: 1709121600575
-url: https://traffic.libsyn.com/syntax/Syntax_-_736.mp3
+url: https://traffic.megaphone.fm/FSI3928005263.mp3
 youtube_url: https://www.youtube.com/watch?v=S4yAx0r2wkY
 guest:
   name: CJ Reynolds

@@ -2,7 +2,7 @@
 number: 396
 title: A Podcast on Running a Podcast
 date: 1634130000825
-url: https://traffic.libsyn.com/syntax/Syntax396.mp3
+url: https://traffic.megaphone.fm/FSI8942074407.mp3
 ---
 
 In this episode of Syntax, Scott and Wes talk about running a podcast — recording, sponsoring, where to start, and more!

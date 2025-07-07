@@ -2,7 +2,7 @@
 number: 184
 title: Desktop & Mobile Apps With a Single Codebase
 date: 1570021200962
-url: https://traffic.libsyn.com/syntax/Syntax184.mp3
+url: https://traffic.megaphone.fm/FSI4672361434.mp3
 guest:
   name: Etienne Lemay
   of: Missive

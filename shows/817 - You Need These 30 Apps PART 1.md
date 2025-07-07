@@ -2,7 +2,7 @@
 number: 817
 title: You Need These 30 Apps - PART 1
 date: 1725447600000
-url: https://traffic.libsyn.com/syntax/Syntax_-_817.mp3
+url: https://traffic.megaphone.fm/FSI7229543410.mp3
 youtube_url: https://www.youtube.com/watch?v=U5VRgE_YXo4
 ---
 

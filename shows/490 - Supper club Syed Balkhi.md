@@ -2,7 +2,7 @@
 number: 490
 title: Supper Club × Syed Balkhi and WordPress
 date: 1659096000768
-url: https://traffic.libsyn.com/syntax/Syntax_-_490.mp3
+url: https://traffic.megaphone.fm/FSI8656572518.mp3
 guest:
   name: Syed Balkhi
   of: Awesome Motive

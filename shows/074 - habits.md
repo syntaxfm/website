@@ -2,7 +2,7 @@
 number: 74
 title: 11 Habits of Highly Effective Developers
 date: 1536757200069
-url: https://traffic.libsyn.com/syntax/Syntax074.mp3
+url: https://traffic.megaphone.fm/FSI2064227687.mp3
 ---
 
 In this episode Wes and Scott discuss 11 habits that will make you a better developer - everything from understanding the business goals behind your projects to maintaining work-life balance, staying curious, and developing empathy.

@@ -2,7 +2,7 @@
 number: 779
 title: Why SQLite is Taking Over with Brian Holt & Marco Bambini
 date: 1717758000000
-url: https://traffic.libsyn.com/syntax/Syntax_-_779.mp3
+url: https://traffic.megaphone.fm/FSI7880207768.mp3
 youtube_url: https://www.youtube.com/watch?v=tJ3wCtT0hfY
 guest:
   - name: Brian Holt

@@ -2,7 +2,7 @@
 number: 781
 title: Potluck - The Value of TypeScript × Vue vs Svelte × Leetcode
 date: 1718190000000
-url: https://traffic.libsyn.com/syntax/Syntax_-_781.mp3
+url: https://traffic.megaphone.fm/FSI9885836502.mp3
 youtube_url: https://www.youtube.com/watch?v=Vj9Z4Dso8y4
 hosts:
   - stolinski

@@ -2,7 +2,7 @@
 number: 640
 title: Supper Club × val.town with Steve Krouse
 date: 1689336000056
-url: https://traffic.libsyn.com/syntax/Syntax_-_640.mp3
+url: https://traffic.megaphone.fm/FSI9650716334.mp3
 guest:
   name: Steve Krouse
   of: Val Town

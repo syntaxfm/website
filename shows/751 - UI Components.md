@@ -2,7 +2,7 @@
 number: 751
 title: "UI Components: ShadCN, Tailwind UI, Headless, React Aria, Radix UI"
 date: 1712142000253
-url: https://traffic.libsyn.com/syntax/Syntax_-_751.mp3
+url: https://traffic.megaphone.fm/FSI4103626328.mp3
 youtube_url: https://www.youtube.com/watch?v=9-6deom3ZdY
 ---
 

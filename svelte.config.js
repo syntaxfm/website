@@ -34,7 +34,9 @@ const config = {
 	],
 
 	kit: {
-		adapter: adapter(),
+		adapter: adapter({
+			runtime: 'nodejs22.x'
+		}),
 		alias: {
 			$: 'src',
 			$actions: 'src/actions',

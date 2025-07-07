@@ -2,7 +2,7 @@
 number: 652
 title: Supper Club × Flightcontrol with Brandon Bayer
 date: 1691755200455
-url: https://traffic.libsyn.com/syntax/Syntax_-_652.mp3
+url: https://traffic.megaphone.fm/FSI4635924046.mp3
 guest:
   name: Brandon Bayer
   of: Flightcontrol

@@ -2,7 +2,7 @@
 number: 755
 title: Chrome Extensions and Ad Blockers VS Google with Oliver Dunk
 date: 1712919600000
-url: https://traffic.libsyn.com/syntax/Syntax_-_755.mp3
+url: https://traffic.megaphone.fm/FSI9576336282.mp3
 youtube_url: https://www.youtube.com/watch?v=TO1Ypwr2Pzw
 guest:
   name: Oliver Dunk

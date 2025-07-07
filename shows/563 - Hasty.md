@@ -2,7 +2,7 @@
 number: 563
 title: Buy It or Build It? A Service is Not a Solution
 date: 1673877600784
-url: https://traffic.libsyn.com/syntax/Syntax_-_563.mp3
+url: https://traffic.megaphone.fm/FSI5259693897.mp3
 ---
 
 In this Hasty Treat, Scott and Wes talk about the differences between building it yourself vs paying for a service to do it for you, such as cron jobs, checkout, hosting, images, video, and more.
