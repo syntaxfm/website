@@ -20,16 +20,6 @@
 			<p class="desc">Deep Dives</p>
 		</a>
 	</div>
-	<div>
-		<a href="/shows?type=supper">
-			<p class="tag length">60m</p>
-			<p class="tag day">Friday</p>
-			<div>
-				<p class="tag">SUPPER CLUB</p>
-			</div>
-			<p class="desc">Industry Experts</p>
-		</a>
-	</div>
 </section>
 
 <style>
@@ -43,7 +33,7 @@
 		margin-bottom: calc(var(--offset) * -1);
 		display: grid;
 
-		grid-template-columns: repeat(3, minmax(0, 1fr));
+		grid-template-columns: repeat(2, minmax(0, 1fr));
 		text-align: center;
 		box-shadow: 0 0 1px 5px rgba(255, 255, 255, 0.1);
 		color: var(--fg-root);
