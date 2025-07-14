@@ -13,7 +13,9 @@
 	target="_blank"
 	title="Watch or Listen on Spotify"
 	aria-label="Spotify"
-	href="https://open.spotify.com/search/syntax.fm {encodeURI(show.title)}/episodes"
+	href={show.spotify_id
+		? `https://open.spotify.com/episode/${show.spotify_id}`
+		: `https://open.spotify.com/search/syntax.fm ${encodeURI(show.title)}/episodes`}
 >
 	<Icon name="spotify" />
 </a>

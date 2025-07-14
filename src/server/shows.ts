@@ -38,6 +38,8 @@ export async function import_or_update_all_shows() {
 }
 
 export async function import_or_update_all_changed_shows() {
+	const updatedShows: number[] = [];
+
 	try {
 		// Filter only .md files
 		const md_files = await import_all_md_files_from_glob();
@@ -59,6 +61,7 @@ export async function import_or_update_all_changed_shows() {
 				await parse_and_save_show_notes(md_file_contents, hash, number, md_file_path);
 				// Remove cache of updated show
 				cache.shows.drop_show_cache(number);
+				updatedShows.push(number);
 			} else {
 				console.log(`Skipping Show # ${number}`, {
 					existing_show: !!existing_show,
@@ -72,7 +75,7 @@ export async function import_or_update_all_changed_shows() {
 	}
 	cache.shows.drop_shows_list_cache();
 	console.log('🤖 Pod Sync Complete ✅');
-	return { message: 'Import All Shows' };
+	return { message: 'Import All Shows', updatedShows };
 }
 
 async function get_show_data_from_glob(md_file_contents: string, md_file_path: string) {
