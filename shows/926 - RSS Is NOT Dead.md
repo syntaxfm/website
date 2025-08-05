@@ -3,7 +3,7 @@ number: 926
 title: "RSS Is NOT Dead"
 date: 1754478000000
 url: https://traffic.megaphone.fm/FSI1474884990.mp3
-youtube_url: https://www.youtube.com/watch?v=xmxza-CXdu8
+youtube_url: https://www.youtube.com/watch?v=hSgpW0j2eOk
 ---
 
 Scott and CJ explore why RSS still matters and how it’s more underused than outdated. They discuss how to self-host RSS readers, escape the noise of the modern web, and reclaim a cleaner, ad-free reading experience across devices.
