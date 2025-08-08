@@ -114,7 +114,7 @@ async function createUpdateSchema() {
 
 async function createHostUsers() {
 	const prisma = new PrismaClient();
-	
+
 	try {
 		const hosts = [
 			{
@@ -188,7 +188,7 @@ async function checkShowTableData() {
 			await seedDatabase();
 			console.log('✅ Database seeded');
 		}
-		
+
 		// Always ensure host users exist
 		await createHostUsers();
 	} finally {

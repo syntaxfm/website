@@ -186,7 +186,7 @@
 		right: 0;
 		display: flex;
 		padding: 5px 10px;
-		background-color: var(--player-bg, var(--black));
+		background-color: var(--player-bg, var(--c-black));
 	}
 
 	media-time-range {
@@ -220,7 +220,7 @@
 		bottom: 0;
 		width: 100%;
 		color: var(--fg);
-		background-color: var(--player-bg, var(--black));
+		background-color: var(--player-bg, var(--c-black));
 		background-image: var(--bg-grit-dark);
 		background-size: 400px;
 		box-shadow: 0 -5px 10px 0 oklch(var(--blacklch) / 0.4);
