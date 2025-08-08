@@ -2,7 +2,7 @@
 number: 852
 title: Cloudflare Tunnels
 date: 1732532400000
-url: https://traffic.libsyn.com/syntax/Syntax_-_852.mp3
+url: https://traffic.megaphone.fm/FSI9139232081.mp3
 youtube_url: https://www.youtube.com/watch?v=20rdAb2JpDs
 ---
 	

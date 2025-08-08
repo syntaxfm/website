@@ -2,7 +2,7 @@
 number: 458
 title: Why do we need Web Interop? Another Standards Body?
 date: 1652702400762
-url: https://traffic.libsyn.com/syntax/Syntax_-_458.mp3
+url: https://traffic.megaphone.fm/FSI3123980251.mp3
 ---
 
 In this Hasty Treat, Scott and Wes talk about why we need Web Interop? Yet another standards body? Our thoughts on Serverless, Edge Compute, and more.

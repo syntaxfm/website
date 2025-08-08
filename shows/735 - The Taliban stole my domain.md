@@ -2,7 +2,7 @@
 number: 735
 title: The Taliban Stole My Domain
 date: 1708948800283
-url: https://traffic.libsyn.com/syntax/Syntax_-_735.mp3
+url: https://traffic.megaphone.fm/FSI5492059987.mp3
 youtube_url: https://www.youtube.com/watch?v=q_yAu7rYmiM
 ---
 

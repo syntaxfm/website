@@ -2,7 +2,7 @@
 number: 658
 title: Supper Club × Make React 70% Faster! Million.js with 18 Year Old Aiden Bai
 date: 1692966480632
-url: https://traffic.libsyn.com/syntax/Syntax_-_658.mp3
+url: https://traffic.megaphone.fm/FSI7799579840.mp3
 guest:
   name: Aiden Bai
   of: Million.js

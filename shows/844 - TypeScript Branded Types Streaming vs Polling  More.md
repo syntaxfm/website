@@ -2,7 +2,7 @@
 number: 844
 title: TypeScript, Branded Types, Streaming vs Polling + More
 date: 1730890800000
-url: https://traffic.libsyn.com/syntax/Syntax_-_844.mp3
+url: https://traffic.megaphone.fm/FSI9538283672.mp3
 youtube_url: https://www.youtube.com/watch?v=Xlptzh4oo2E
 ---
 	

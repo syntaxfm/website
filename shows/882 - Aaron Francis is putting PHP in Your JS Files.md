@@ -2,7 +2,7 @@
 number: 882
 title: "Aaron Francis is putting PHP in Your JS Files"
 date: 1741176000000
-url: https://traffic.libsyn.com/syntax/Syntax_-_882.mp3
+url: https://traffic.megaphone.fm/FSI6140051896.mp3
 youtube_url: https://www.youtube.com/watch?v=VqMEhP-EHC4
 guest:
   name: Aaron Francis

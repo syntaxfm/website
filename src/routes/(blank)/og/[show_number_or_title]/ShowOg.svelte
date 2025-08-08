@@ -13,14 +13,23 @@
 	let { show, show_date = show.date ? new Date(show.date) : null }: Props = $props();
 
 	let hosts = (
-		show.hosts || [
-			{ name: 'Wes Bos', github: 'wesbos' },
-			{ name: 'Scott Tolinski', github: 'stolinski' }
+		show.hosts?.length > 0 ? show.hosts : [
+			{ name: 'Wes Bos', username: 'wesbos' },
+			{ name: 'Scott Tolinski', username: 'stolinski' }
 		]
 	).map((host) => ({
 		name: host.name || '',
 		github: host.username || ''
 	}));
+
+	let allFaces = [
+		...hosts,
+		...(show.guests || []).map((guest) => ({
+			name: guest.Guest.name,
+			github: guest.Guest.github || ''
+		}))
+	];
+
 
 	function fitText(node: HTMLHeadElement) {
 		node.classList.remove('finish-sizing-text');
@@ -102,13 +111,7 @@
 		<div class="brand-footer">
 			<FacePile
 				size="120px"
-				faces={[
-					...hosts,
-					...(show.guests || []).map((guest) => ({
-						name: guest.Guest.name,
-						github: guest.Guest.github || ''
-					}))
-				]}
+				faces={allFaces}
 			/>
 			<div class="grit logos">
 				<svg height="100px" viewBox="0 0 1371 1212" fill="none" xmlns="http://www.w3.org/2000/svg">

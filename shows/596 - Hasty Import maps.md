@@ -2,7 +2,7 @@
 number: 596
 title: The New Import Map Standard
 date: 1680523200794
-url: https://traffic.libsyn.com/syntax/Syntax_-_596.mp3
+url: https://traffic.megaphone.fm/FSI5167162369.mp3
 ---
 
 In this Hasty Treat, Scott and Wes talk about the fact that import maps are in Safari Technical preview, and what that means for web developers.

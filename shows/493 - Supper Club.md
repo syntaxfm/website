@@ -2,7 +2,7 @@
 number: 493
 title: Supper Club × Lee Robinson on React Suspense, Server Components
 date: 1659700800535
-url: https://traffic.libsyn.com/syntax/Syntax_-_493.mp3
+url: https://traffic.megaphone.fm/FSI1119488850.mp3
 guest:
   name: Lee Robinson
   of: Vercel

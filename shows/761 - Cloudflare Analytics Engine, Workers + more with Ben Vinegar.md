@@ -2,7 +2,7 @@
 number: 761
 title: Cloudflare Analytics Engine, Workers + more with Ben Vinegar
 date: 1714129200000
-url: https://traffic.libsyn.com/syntax/Syntax_-_761.mp3
+url: https://traffic.megaphone.fm/FSI1301609130.mp3
 youtube_url: https://www.youtube.com/watch?v=p6JBv0tyu4I
 guest:
   name: Ben Vinegar

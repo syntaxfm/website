@@ -2,7 +2,7 @@
 number: 824
 title: Taylor Otwell's opinions on PHP, React, Laravel and Lamborghini Memes
 date: 1726830000000
-url: https://traffic.libsyn.com/syntax/Syntax_-_824.mp3
+url: https://traffic.megaphone.fm/FSI6514892822.mp3
 youtube_url: https://youtu.be/aitlUO8nAA0
 guest:
   name: Taylor Otwell

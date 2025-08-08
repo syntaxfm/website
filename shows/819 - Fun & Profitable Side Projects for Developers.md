@@ -2,7 +2,7 @@
 number: 819
 title: Fun & Profitable Side Projects for Developers
 date: 1725879600000
-url: https://traffic.libsyn.com/syntax/Syntax_-_819.mp3
+url: https://traffic.megaphone.fm/FSI5370691192.mp3
 youtube_url: https://www.youtube.com/watch?v=jNG_tLuj4Vg
 ---
 

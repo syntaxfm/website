@@ -2,7 +2,7 @@
 number: 610
 title: Supper Club × Zach Lloyd from Warp
 date: 1683288000317
-url: https://traffic.libsyn.com/syntax/Syntax_-_610.mp3
+url: https://traffic.megaphone.fm/FSI7028552678.mp3
 guest:
   name: Zach Lloyd
   twitter: zachlloydtweets

@@ -2,7 +2,7 @@
 number: 547
 title: Supper Club × Coding at Disney with Vu Le
 date: 1670587200712
-url: https://traffic.libsyn.com/syntax/Syntax_-_547.mp3
+url: https://traffic.megaphone.fm/FSI2301812699.mp3
 guest:
   name: Vu Le
   of: Disney

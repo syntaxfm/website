@@ -2,7 +2,7 @@
 number: 246
 title: Bootcamps, Getting a Job, and Income Share Agreements with Heather Payne
 date: 1588770000626
-url: https://traffic.libsyn.com/syntax/Syntax246.mp3
+url: https://traffic.megaphone.fm/FSI9226483640.mp3
 guest:
   name: Heather Payne
   github: heatherpayne

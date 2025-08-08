@@ -2,7 +2,7 @@
 number: 818
 title: "CJ × Hosting Meetups - Lunch and Learn"
 date: 1725620400000
-url: https://traffic.libsyn.com/syntax/Syntax_-_818.mp3
+url: https://traffic.megaphone.fm/FSI1265147787.mp3
 youtube_url: https://youtu.be/McEyirnJqBM
 guest:
   name: CJ Reynolds

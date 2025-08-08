@@ -17,6 +17,7 @@ env:
   YOUTUBE_API_KEY: ''
   TURNSTILE_SECRET: ''
   PUBLIC_TURNSTILE_SITE_KEY: ''
+  CONVERT_KIT_V4_API_KEY: ''
 
 jobs:
   test:
@@ -29,12 +30,12 @@ jobs:
       - name: pnpm-setup
         uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 10
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18.18.2
+          node-version: 22
           cache: 'pnpm'
 
       - name: Install dependencies

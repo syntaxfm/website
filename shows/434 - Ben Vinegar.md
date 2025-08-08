@@ -2,7 +2,7 @@
 number: 434
 title: Ben Vinegar × Distributed Tracing and TypeScript Migrations
 date: 1645617600667
-url: https://traffic.libsyn.com/syntax/Syntax_-_434.mp3
+url: https://traffic.megaphone.fm/FSI2799332725.mp3
 guest:
   name: Ben Vinegar
   github: benvinegar

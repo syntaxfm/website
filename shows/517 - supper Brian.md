@@ -2,7 +2,7 @@
 number: 517
 title: Supper Club × Open Sauced With bdougie
 date: 1664539200239
-url: https://traffic.libsyn.com/syntax/Syntax_-_517.mp3
+url: https://traffic.megaphone.fm/FSI4872647300.mp3
 guest:
   name: bdougie
   github: bdougie

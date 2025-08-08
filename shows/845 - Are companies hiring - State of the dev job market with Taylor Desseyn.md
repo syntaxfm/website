@@ -2,7 +2,7 @@
 number: 845
 title: "Are Companies Hiring? State of the Dev Job Market With Taylor Desseyn"
 date: 1731067200000
-url: https://traffic.libsyn.com/syntax/Syntax_-_845.mp3
+url: https://traffic.megaphone.fm/FSI8122533832.mp3
 youtube_url: https://www.youtube.com/watch?v=Xeaqos_qyTQ
 guest:
   name: Taylor Desseyn

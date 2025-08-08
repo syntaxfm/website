@@ -2,7 +2,7 @@
 number: 212
 title: Pika Pkg
 date: 1578492000511
-url: https://traffic.libsyn.com/syntax/Syntax212.mp3
+url: https://traffic.megaphone.fm/FSI7302479828.mp3
 guest:
   name: Fred Schott
   github: fredkschott

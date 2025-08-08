@@ -2,7 +2,7 @@
 number: 628
 title: Supper Club × JavaScript on Hardware, Micro Controllers, ESP32 with Nick Hehr
 date: 1686916800136
-url: https://traffic.libsyn.com/syntax/Syntax_-_628.mp3
+url: https://traffic.megaphone.fm/FSI9844443485.mp3
 guest:
   name: Nick Hehr
   of: Electronics Hacker

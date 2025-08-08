@@ -2,7 +2,7 @@
 number: 773
 title: React Native with Robin Heinze
 date: 1716548400000
-url: https://traffic.libsyn.com/syntax/Syntax_-_773.mp3
+url: https://traffic.megaphone.fm/FSI6210609358.mp3
 youtube_url: https://www.youtube.com/watch?v=0NIctHvfH10
 guest:
   name: Robin Heinze

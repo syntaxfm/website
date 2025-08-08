@@ -2,7 +2,7 @@
 number: 858
 title: How to Go Deeper With Your Learning
 date: 1733742000000
-url: https://traffic.libsyn.com/syntax/Syntax_-_858.mp3
+url: https://traffic.megaphone.fm/FSI2559137311.mp3
 youtube_url: https://www.youtube.com/watch?v=8YqcESrS_0I
 ---
 	

@@ -2,7 +2,7 @@
 number: 574
 title: Supper Club × Qwik framework from Miško Hevery, the Creator of Angular
 date: 1676030400106
-url: https://traffic.libsyn.com/syntax/Syntax_-_574.mp3
+url: https://traffic.megaphone.fm/FSI3899066289.mp3
 guest:
   name: Miško Hevery
   of: Qwik

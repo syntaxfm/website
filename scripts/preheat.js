@@ -6,6 +6,7 @@ import { createConnection } from 'mysql2/promise';
 import dotenv from 'dotenv';
 import { expand } from 'dotenv-expand';
 import semver from 'semver';
+import { PrismaClient } from '@prisma/client';
 
 // Load environment variables
 expand(dotenv.config());
@@ -111,6 +112,66 @@ async function createUpdateSchema() {
 	}
 }
 
+async function createHostUsers() {
+	const prisma = new PrismaClient();
+	
+	try {
+		const hosts = [
+			{
+				username: 'wesbos',
+				name: 'Wes Bos',
+				github_id: 176013,
+				avatar_url: 'https://avatars.githubusercontent.com/u/176013?v=4',
+				email: 'wes@wesbos.com',
+				twitter: 'wesbos'
+			},
+			{
+				username: 'stolinski',
+				name: 'Scott Tolinski',
+				github_id: 669383,
+				avatar_url: 'https://avatars.githubusercontent.com/u/669383?v=4',
+				email: 'scott.tolinski@gmail.com',
+				twitter: 'stolinski'
+			},
+			{
+				username: 'w3cj',
+				name: 'CJ',
+				github_id: 14241866,
+				avatar_url: 'https://avatars.githubusercontent.com/u/14241866?v=4',
+				email: 'cj@null.computer',
+				twitter: 'CodingGarden'
+			}
+		];
+
+		for (const host of hosts) {
+			await prisma.user.upsert({
+				where: { github_id: host.github_id },
+				update: {
+					username: host.username,
+					name: host.name,
+					avatar_url: host.avatar_url,
+					email: host.email,
+					twitter: host.twitter
+				},
+				create: {
+					id: `user_${host.username}`,
+					username: host.username,
+					name: host.name,
+					github_id: host.github_id,
+					avatar_url: host.avatar_url,
+					email: host.email,
+					twitter: host.twitter
+				}
+			});
+		}
+		console.log('✅ Host users created/updated');
+	} catch (error) {
+		console.error('❌ Error creating host users:', error);
+	} finally {
+		await prisma.$disconnect();
+	}
+}
+
 async function checkShowTableData() {
 	const connection = await createMysqlConnection();
 	try {
@@ -127,6 +188,9 @@ async function checkShowTableData() {
 			await seedDatabase();
 			console.log('✅ Database seeded');
 		}
+		
+		// Always ensure host users exist
+		await createHostUsers();
 	} finally {
 		await connection.end();
 	}

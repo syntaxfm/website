@@ -2,7 +2,7 @@
 number: 813
 title: "CSS: Scroll Driven Animations"
 date: 1724655600000
-url: https://traffic.libsyn.com/syntax/Syntax_813_final.mp3
+url: https://traffic.megaphone.fm/FSI8981110003.mp3
 youtube_url: https://youtu.be/JhTMIBLCaNw
 ---
 

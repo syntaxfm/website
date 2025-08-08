@@ -2,7 +2,7 @@
 number: 174
 title: How to Build an API
 date: 1566997200488
-url: https://traffic.libsyn.com/syntax/Syntax174.mp3
+url: https://traffic.megaphone.fm/FSI6229859614.mp3
 ---
 
 In this episode, Scott and Wes talk about creating APIs — what's happening behind the scenes and why it's important.

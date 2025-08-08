@@ -2,7 +2,7 @@
 number: 829
 title: 14 Web Development Tips I Wish I Knew Sooner
 date: 1727866800000
-url: https://traffic.libsyn.com/syntax/Syntax_-_829.mp3
+url: https://traffic.megaphone.fm/FSI4975083534.mp3
 youtube_url: https://www.youtube.com/watch?v=Ifh6mCMS9CQ
 ---
 

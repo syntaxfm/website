@@ -2,7 +2,7 @@
 number: 697
 title: What is DevRel with Salma Alam-Naylor
 date: 1700827200123
-url: https://traffic.libsyn.com/syntax/Syntax_-_697.mp3
+url: https://traffic.megaphone.fm/FSI9095678627.mp3
 guest:
   name: Salma Alam-Naylor
   of: DevRel @ Sentry

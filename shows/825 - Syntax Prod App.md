@@ -2,7 +2,7 @@
 number: 825
 title: Syntax Assistant Desktop App
 date: 1727089200000
-url: https://traffic.libsyn.com/syntax/Syntax_-_825.mp3
+url: https://traffic.megaphone.fm/FSI1637287556.mp3
 youtube_url: https://www.youtube.com/watch?v=BWQNs771mZs
 ---
 

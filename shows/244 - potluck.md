@@ -2,7 +2,7 @@
 number: 244
 title: Potluck Part 2 - Magic GQLess × Are classes dead? × Custom Hooks × Staying Up To Date × CSS × More!
 date: 1588165200312
-url: https://traffic.libsyn.com/syntax/Syntax244.mp3
+url: https://traffic.megaphone.fm/FSI7129050774.mp3
 ---
 
 It's another potluck! In this episode, Scott and Wes answer your questions about custom hooks, static site generators, code management, CSS, and more!

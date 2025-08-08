@@ -2,7 +2,7 @@
 number: 803
 title: The SQLite Takeover with Turso’s Glauber Costa
 date: 1722596400000
-url: https://traffic.libsyn.com/syntax/Syntax_-_803.mp3
+url: https://traffic.megaphone.fm/FSI5146756213.mp3
 youtube_url: https://www.youtube.com/watch?v=pMSdxRgB8R0 
 guest:
   name: Glauber Costa

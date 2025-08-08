@@ -2,7 +2,7 @@
 number: 875
 title: JavaScript Signals Explained
 date: 1739185200000
-url: https://traffic.libsyn.com/syntax/Syntax_-_875.mp3
+url: https://traffic.megaphone.fm/FSI8545847836.mp3
 youtube_url: https://www.youtube.com/watch?v=kZnQSrP-Yo4
 ---
 	
