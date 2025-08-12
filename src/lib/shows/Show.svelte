@@ -25,7 +25,7 @@
 			alt={show.title}
 		/>
 	</div>
-	<div class="flex-column {[type === 'grid' && 'flex-column-reverse']}">
+	<div class="stack {[type === 'grid' && 'stack-reverse']}">
 		<h3 class="fs-body fv-700-i">{show.title}</h3>
 		<div class="flex">
 			{#if type === 'list'}

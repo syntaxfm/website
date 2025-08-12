@@ -1,6 +1,5 @@
 {
 	"buildCommand": "pnpm build",
-	"installCommand": "pnpm install",
 	"crons": [
 		{
 			"path": "/webhooks/transcripts",
@@ -14,5 +13,6 @@
 			"path": "/webhooks/ai",
 			"schedule": "*/5 * * * *"
 		}
-	]
+	],
+	"installCommand": "pnpm install"
 }

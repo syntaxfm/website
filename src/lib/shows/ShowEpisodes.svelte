@@ -23,7 +23,7 @@
 {/if}
 
 {#if type === 'list'}
-	<div class="flex-column">
+	<div class="stack">
 		{#each shows as show}
 			<Show {show} {type} />
 		{/each}

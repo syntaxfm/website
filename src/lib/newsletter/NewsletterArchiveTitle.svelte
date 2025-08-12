@@ -11,7 +11,7 @@
 	let { title, date, issue }: Props = $props();
 </script>
 
-<article class="newsletter-archive-title flex-column">
+<article class="newsletter-archive-title stack">
 	<div class="flex">
 		<Icon name="mail-send" height={21} width={21} />
 		<p>Issue #{issue}</p>

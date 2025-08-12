@@ -218,6 +218,7 @@
 		container: player / inline-size;
 		position: fixed;
 		bottom: 0;
+		left: 0;
 		width: 100%;
 		color: var(--fg);
 		background-color: var(--player-bg, var(--c-black));

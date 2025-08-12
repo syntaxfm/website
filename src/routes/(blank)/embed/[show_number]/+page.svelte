@@ -20,10 +20,8 @@
 </script>
 
 <div class={'theme-system theme-wrapper zone'}>
-	<figure class="zone" style:--bg="var(--black)" style:--fg="var(--white)">
-		<span style:--transition-name="show-date-{show.number}" class="show-number fv-900 grit"
-			>{show.number}</span
-		>
+	<figure class="zone" style:--transition-name-bg="var(--black)" style:--fg="var(--white)">
+		<span style:--="show-date-{show.number}" class="show-number fv-900 grit">{show.number}</span>
 
 		<p class="show-page-date" style:--transition-name="show-date-{show.number}">
 			{format(new Date(show.date), 'MMMM do, yyyy')}

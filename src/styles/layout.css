@@ -1,17 +1,16 @@
-/* TODO REVIST THIS */
 @layer layout {
 	.flex {
 		display: flex;
-		gap: 10px;
+		gap: var(--flex-gap, 10px);
 	}
 
-	.flex-column {
+	.stack {
 		display: flex;
 		flex-direction: column;
-		gap: 10px;
+		gap: var(--stack-gap, 10px);
 	}
 
-	.flex-column-reverse {
+	.stack-reverse {
 		flex-direction: column-reverse;
 	}
 
@@ -20,113 +19,4 @@
 		gap: 10px;
 		grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
 	}
-
-	/* .layout {
-		display: grid;
-		grid-template-columns: [start] 5px [content] auto [content] 5px [end];
-
-		@media (--above-med) {
-			column-gap: 10px;
-			grid-template-columns:
-				[start l-margin] 10px [l-margin content main] minmax(0, 812px) [main sidebar] minmax(
-					0,
-					322px
-				)
-				[sidebar content-end r-margin] 10px [r-margin end];
-		}
-
-		@media (--above-xlarge) {
-			column-gap: 48px;
-			display: grid;
-			grid-template-columns:
-				[start l-margin] minmax(144px, auto) [l-margin content main] minmax(0, 812px) [main sidebar]
-				minmax(0, 322px) [sidebar content-end r-margin] minmax(144px, auto) [r-margin end];
-		}
-
-		/* 812 */
-
-	/* 322 */
-
-	/* 
-		> * {
-			grid-column: content / content;
-		}
-
-		.full {
-			width: 100%;
-			grid-column: start / end;
-		}
-
-		.content {
-			width: 100%;
-			grid-column: content / content;
-		}
-
-		.l-margin {
-			width: 100%;
-			grid-column: l-margin / l-margin;
-		}
-
-		.r-margin {
-			width: 100%;
-			grid-column: r-margin / r-margin;
-		}
-
-		.sidebar {
-			width: 100%;
-			grid-column: sidebar / sidebar;
-		}
-
-		.main {
-			width: 100%;
-			grid-column: main / main;
-		}
-	} */
-
-	/* 
-	.grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-		grid-gap: 20px;
-	}
-
-	.zone {
-		color: var(--fg);
-		background: var(--bg) var(--bg-grit);
-		background-size: 250px;
-		border-radius: var(--radius, 0);
-
-		--subtle: color-mix(in lch, var(--fg), var(--bg) 90%); */
-
-	/* Like subtle but transparent */
-
-	/* --tint-or-shade: color-mix(in oklab, var(--fg), transparent 90%);
-	}
-
-	.sticky {
-		position: sticky;
-		top: 0;
-	}
-
-	.flex {
-		display: flex;
-	}
-
-	.card {
-		border: solid 0.5px var(--line);
-		margin-bottom: 2rem;
-		border-radius: var(--brad);
-
-		--bg: var(--bg-1);
-
-		padding: 20px;
-	} */
-
-	/* END @layer layout */
-
-	/* Hack */
-
-	/* .main a {
-		overflow-wrap: anywhere;
-	} */
 }
