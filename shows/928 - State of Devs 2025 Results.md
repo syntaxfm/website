@@ -3,7 +3,7 @@ number: 928
 title: "State of Devs 2025 Results"
 date: 1755082800000
 url: https://traffic.megaphone.fm/FSI4165913924.mp3
-youtube_url: https://www.youtube.com/watch?v=qOxcDHhHX38
+youtube_url: https://www.youtube.com/watch?v=WXoZte-ZavU
 ---
 
 Wes and Scott talk about the [2025 State of Devs](https://2025.stateofdevs.com/) survey, diving into trends in salaries, job titles, remote work, health, hobbies, and more.
