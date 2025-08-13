@@ -2,7 +2,7 @@
 	import Logo from '$/lib/layout/Logo.svelte';
 </script>
 
-<div class="presented flex-column">
+<div class="presented stack">
 	<div class="cred h5">
 		<Logo height={35} />
 		<span>×</span>

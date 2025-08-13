@@ -23,46 +23,46 @@
 	/* Relative Colors */
 
 	/** Yellow variants **/
-	--c-yellow-1: oklch(from var(--c-yellow) calc(l + 0.35) c h);
-	--c-yellow-2: oklch(from var(--c-yellow) calc(l + 0.25) c h);
-	--c-yellow-3: oklch(from var(--c-yellow) calc(l + 0.15) c h);
+	--c-yellow-1: oklch(from var(--c-yellow) calc(l + 0.35) calc(c - 0.12) h);
+	--c-yellow-2: oklch(from var(--c-yellow) calc(l + 0.25) calc(c - 0.08) h);
+	--c-yellow-3: oklch(from var(--c-yellow) calc(l + 0.15) calc(c - 0.05) h);
 	--c-yellow-4: oklch(from var(--c-yellow) calc(l + 0.07) c h);
 	--c-yellow-5: var(--c-yellow);
 	--c-yellow-6: oklch(from var(--c-yellow) calc(l - 0.07) c h);
 	--c-yellow-7: oklch(from var(--c-yellow) calc(l - 0.15) c h);
 	--c-yellow-8: oklch(from var(--c-yellow) calc(l - 0.22) c h);
 	--c-yellow-9: oklch(from var(--c-yellow) calc(l - 0.3) c h);
-	--c-yellow-10: oklch(from var(--c-yellow) calc(l - 0.4) c h);
+	--c-yellow-10: oklch(from var(--c-yellow) calc(l - 0.75) c h);
 
 	/** Teal variants **/
-	--c-teal-1: oklch(from var(--c-teal) calc(l + 0.35) c h);
-	--c-teal-2: oklch(from var(--c-teal) calc(l + 0.25) c h);
-	--c-teal-3: oklch(from var(--c-teal) calc(l + 0.15) c h);
-	--c-teal-4: oklch(from var(--c-teal) calc(l + 0.07) c h);
+	--c-teal-1: oklch(from var(--c-teal) calc(l + 0.2) calc(c - 0.14) h);
+	--c-teal-2: oklch(from var(--c-teal) calc(l + 0.25) calc(c - 0.1) h);
+	--c-teal-3: oklch(from var(--c-teal) calc(l + 0.15) calc(c - 0.05) h);
+	--c-teal-4: oklch(from var(--c-teal) calc(l + 0.07) calc(c - 0.03) h);
 	--c-teal-5: var(--c-teal);
 	--c-teal-6: oklch(from var(--c-teal) calc(l - 0.07) c h);
 	--c-teal-7: oklch(from var(--c-teal) calc(l - 0.15) c h);
 	--c-teal-8: oklch(from var(--c-teal) calc(l - 0.22) c h);
 	--c-teal-9: oklch(from var(--c-teal) calc(l - 0.3) c h);
-	--c-teal-10: oklch(from var(--c-teal) calc(l - 0.4) c h);
+	--c-teal-10: oklch(from var(--c-teal) calc(l - 0.75) c h);
 
 	/** Green variants **/
-	--c-green-1: oklch(from var(--c-green) calc(l + 0.35) c h);
-	--c-green-2: oklch(from var(--c-green) calc(l + 0.25) c h);
-	--c-green-3: oklch(from var(--c-green) calc(l + 0.15) c h);
-	--c-green-4: oklch(from var(--c-green) calc(l + 0.07) c h);
+	--c-green-1: oklch(from var(--c-green) calc(l + 0.35) calc(c - 0.15) h);
+	--c-green-2: oklch(from var(--c-green) calc(l + 0.25) calc(c - 0.1) h);
+	--c-green-3: oklch(from var(--c-green) calc(l + 0.15) calc(c - 0.05) h);
+	--c-green-4: oklch(from var(--c-green) calc(l + 0.07) calc(c - 0.03) h);
 	--c-green-5: var(--c-green);
 	--c-green-6: oklch(from var(--c-green) calc(l - 0.07) c h);
 	--c-green-7: oklch(from var(--c-green) calc(l - 0.15) c h);
 	--c-green-8: oklch(from var(--c-green) calc(l - 0.22) c h);
 	--c-green-9: oklch(from var(--c-green) calc(l - 0.3) c h);
-	--c-green-10: oklch(from var(--c-green) calc(l - 0.4) c h);
+	--c-green-10: oklch(from var(--c-green) calc(l - 0.75) calc(c - 0.1) h);
 
 	/** Red variants **/
-	--c-red-1: oklch(from var(--c-red) calc(l + 0.35) c h);
-	--c-red-2: oklch(from var(--c-red) calc(l + 0.25) c h);
-	--c-red-3: oklch(from var(--c-red) calc(l + 0.15) c h);
-	--c-red-4: oklch(from var(--c-red) calc(l + 0.07) c h);
+	--c-red-1: oklch(from var(--c-red) calc(l + 0.35) calc(c - 0.1) h);
+	--c-red-2: oklch(from var(--c-red) calc(l + 0.25) calc(c - 0.09) h);
+	--c-red-3: oklch(from var(--c-red) calc(l + 0.15) calc(c - 0.07) h);
+	--c-red-4: oklch(from var(--c-red) calc(l + 0.07) calc(c - 0.03) h);
 	--c-red-5: var(--c-red);
 	--c-red-6: oklch(from var(--c-red) calc(l - 0.07) c h);
 	--c-red-7: oklch(from var(--c-red) calc(l - 0.15) c h);
@@ -71,10 +71,10 @@
 	--c-red-10: oklch(from var(--c-red) calc(l - 0.4) c h);
 
 	/** Purple variants **/
-	--c-purple-1: oklch(from var(--c-purple) calc(l + 0.35) c h);
-	--c-purple-2: oklch(from var(--c-purple) calc(l + 0.25) c h);
-	--c-purple-3: oklch(from var(--c-purple) calc(l + 0.15) c h);
-	--c-purple-4: oklch(from var(--c-purple) calc(l + 0.07) c h);
+	--c-purple-1: oklch(from var(--c-purple) calc(l + 0.6) c h);
+	--c-purple-2: oklch(from var(--c-purple) calc(l + 0.5) c h);
+	--c-purple-3: oklch(from var(--c-purple) calc(l + 0.3) c h);
+	--c-purple-4: oklch(from var(--c-purple) calc(l + 0.1) c h);
 	--c-purple-5: var(--c-purple);
 	--c-purple-6: oklch(from var(--c-purple) calc(l - 0.07) c h);
 	--c-purple-7: oklch(from var(--c-purple) calc(l - 0.15) c h);
@@ -107,6 +107,7 @@
 	/* TYPOGRAPHY */
 
 	/* Font Families */
+
 	--ff-body: '💪', 'Operator Mono', consolas, menlo, monaco, 'Courier New', monospace;
 	--ff-heading: '💪', 'Operator Mono', consolas, menlo, monaco, 'Courier New', monospace;
 

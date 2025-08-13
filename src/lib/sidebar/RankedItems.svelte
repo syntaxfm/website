@@ -12,7 +12,7 @@
 
 <div>
 	<SidebarTitle title="_MOST_POPULAR_SHOWS()" />
-	<div class="ranked-items flex-column">
+	<div class="ranked-items stack">
 		{#each shows as show, index (show.id)}
 			<RankedItem {show} rank={index + 1} />
 		{/each}

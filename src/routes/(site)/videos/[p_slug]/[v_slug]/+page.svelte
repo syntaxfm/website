@@ -27,7 +27,7 @@
 			<h1 class="h3">{video.title}</h1>
 		</div>
 
-		<section class="layout full">
+		<section>
 			<div class="main">
 				{@html prepare_description(video.description)}
 			</div>

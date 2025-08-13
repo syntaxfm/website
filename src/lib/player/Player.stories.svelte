@@ -1,11 +1,11 @@
 <script module>
 	import { defineMeta } from '@storybook/addon-svelte-csf';
-	import Tag from './Tag.svelte';
+	import Player from './Player.svelte';
 
 	const { Story } = defineMeta({
-		title: 'Tags/Tag',
-		component: Tag
+		title: 'Media/Player',
+		component: Player
 	});
 </script>
 
-<Story name="Default">JavaScript</Story>
+<Story name="Default" />

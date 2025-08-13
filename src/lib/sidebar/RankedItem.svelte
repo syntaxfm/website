@@ -13,7 +13,7 @@
 <article class="flex">
 	<span class="rank fs-caption size">{rank}</span>
 
-	<div class="flex-column ranked-item-info">
+	<div class="stack ranked-item-info">
 		<p class="fs-body">{show.show} - #{show.number}</p>
 		<img src={show.thumbnail} alt={show.title} />
 		<h4 class="fs-body fv-700-i">{show.title}</h4>

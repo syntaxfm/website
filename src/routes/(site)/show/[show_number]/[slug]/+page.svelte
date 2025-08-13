@@ -23,7 +23,7 @@
 			{/each}
 		</div>
 	{/if}
-	<div class="sticky zone">
+	<div class="sticky">
 		<SwaggyNewsletterForm />
 	</div>
 </div>
