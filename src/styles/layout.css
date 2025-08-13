@@ -11,6 +11,8 @@
 	}
 
 	.stack-reverse {
+		display: flex;
+		gap: var(--stack-gap, 10px);
 		flex-direction: column-reverse;
 	}
 
