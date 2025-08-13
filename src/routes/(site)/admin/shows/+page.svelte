@@ -44,7 +44,10 @@
 					class="warning">Drop All Shows</button
 				>
 			{:else}
-				<p class="small" style="position: absolute; top: -120%; width: auto; white-space: nowrap;">
+				<p
+					class="fs-micro"
+					style="position: absolute; top: -120%; width: auto; white-space: nowrap;"
+				>
 					This will delete all shows, guests, transcripts (utterance, word and transcripts)
 				</p>
 				<button type="submit" class="warning">For real, drop um'</button>

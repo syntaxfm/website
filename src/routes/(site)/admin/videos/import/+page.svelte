@@ -16,7 +16,7 @@
 	<FormButton text="Sync Playlists" thinking_text="Syncing..." action_path="?/import" />
 </AdminActions>
 
-<p class="small">
+<p class="fs-micro">
 	Playlists listed here are what exists on Youtube, if you need to import or update a specific
 	playlist select import/update
 </p>
