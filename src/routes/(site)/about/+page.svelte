@@ -262,7 +262,7 @@
 		}
 	}
 	.desc {
-		color: var(--sheet-fg);
+		color: var(--fg-sheet);
 		background: color-mix(in oklab, var(--bg-1), transparent 4%);
 		width: 92%;
 		border-radius: var(--brad);
