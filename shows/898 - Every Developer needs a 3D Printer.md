@@ -22,7 +22,7 @@ Wes and Scott talk all things 3D printing—from fixing every day items to organ
   - [Bamboo Lab](https://bambulab.com/en-us)
   - [Elegoo](https://elegoo.com)
   - [Prusa](https://www.prusa3d.com/)
-  - [Flashorge](https://www.flashforge.com/)
+  - [Flashforge](https://www.flashforge.com/)
 * **[25:26](#t=25:26)** Projects and ideas
   - [Multiboard](https://x.com/calebsylvest/status/1902045363973902705)
 * **[31:33](#t=31:33)** Filament types and their uses
