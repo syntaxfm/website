@@ -25,7 +25,16 @@ async function isUrlValid(url, method = 'HEAD') {
 			signal: abortController.signal
 		});
 		complete = true;
-		return response.status !== 404;
+
+		// Retry with GET if HEAD fails with common Megaphone quirks
+		if (
+			method === 'HEAD' &&
+			(response.status === 403 || response.status === 405 || response.status === 404)
+		) {
+			return isUrlValid(url, 'GET');
+		}
+
+		return response.status >= 200 && response.status < 400;
 	} catch (error) {
 		if (error.name === 'AbortError' && method === 'HEAD') {
 			// HEAD request timed out after URL_CHECK_TIMEOUT ms
