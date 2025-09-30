@@ -7,7 +7,7 @@ const execAsync = promisify(exec);
 const URL_CHECK_TIMEOUT = 2 * 1000; // 2 second timeout for url validations
 // Function to check URL availability, modified to accept an optional skipUrls array
 // Simplified Function to check URL availability
-async function isUrlValid(url, method = 'HEAD') {
+async function isUrlValid(url) {
 	try {
 		const abortController = new AbortController();
 		let complete = false;
@@ -19,7 +19,7 @@ async function isUrlValid(url, method = 'HEAD') {
 		}, URL_CHECK_TIMEOUT);
 
 		const response = await fetch(url, {
-			method,
+			method: 'HEAD',
 			headers: {
 				'User-Agent':
 					'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
@@ -29,25 +29,33 @@ async function isUrlValid(url, method = 'HEAD') {
 
 		complete = true;
 
-		// Retry with GET if HEAD fails with common Megaphone quirks
-		if (
-			method === 'HEAD' &&
-			(response.status === 403 ||
-				response.status === 405 ||
-				response.status === 404)
-		) {
-			return isUrlValid(url, 'GET');
-		}
-
 		return response.status >= 200 && response.status < 400;
 	} catch (error) {
-		if (error.name === 'AbortError' && method === 'HEAD') {
-			return isUrlValid(url, 'GET'); // retry with GET if timeout
-		}
 		console.error(`Error checking URL: ${url}`, error);
 		return false;
 	}
 }
+
+// Function to parse front-matter and get the episode date
+const getEpisodeDate = (content) => {
+	const frontMatterMatch = content.match(/^---\n([\s\S]*?)\n---/);
+	if (!frontMatterMatch) return null;
+
+	const frontMatter = frontMatterMatch[1];
+	const dateMatch = frontMatter.match(/date:\s*(\d+)/);
+	if (!dateMatch) return null;
+
+	return parseInt(dateMatch[1], 10);
+};
+
+// Function to check if episode is published
+const isEpisodePublished = (content) => {
+	const episodeDate = getEpisodeDate(content);
+	if (!episodeDate) return true; // If we can't find a date, assume it's published to be safe
+
+	const now = Date.now();
+	return episodeDate <= now;
+};
 
 // Function to extract URLs from markdown content
 const extractUrls = (content) => {
@@ -90,9 +98,20 @@ const validateTimestamps = (content) => {
 const processFile = async (filePath) => {
 	const content = await fs.readFile(filePath, 'utf8');
 	const urls = extractUrls(content);
-	const checkPromises = urls.map(isUrlValid);
+	const published = isEpisodePublished(content);
+
+	// Filter URLs to check - skip traffic.megaphone.fm for unpublished episodes
+	const urlsToCheck = urls.filter((url) => {
+		if (!published && url.includes('traffic.megaphone.fm')) {
+			console.log(`Skipping validation for unpublished episode URL: ${url}`);
+			return false;
+		}
+		return true;
+	});
+
+	const checkPromises = urlsToCheck.map(isUrlValid);
 	const results = await Promise.all(checkPromises);
-	const brokenLinks = urls.filter((_, index) => !results[index]);
+	const brokenLinks = urlsToCheck.filter((_, index) => !results[index]);
 
 	const invalidTimestamps = validateTimestamps(content);
 
