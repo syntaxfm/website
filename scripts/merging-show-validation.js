@@ -11,11 +11,13 @@ async function isUrlValid(url, method = 'HEAD') {
 	try {
 		const abortController = new AbortController();
 		let complete = false;
+
 		setTimeout(() => {
 			if (!complete) {
 				abortController.abort();
 			}
 		}, URL_CHECK_TIMEOUT);
+
 		const response = await fetch(url, {
 			method,
 			headers: {
@@ -24,16 +26,26 @@ async function isUrlValid(url, method = 'HEAD') {
 			},
 			signal: abortController.signal
 		});
+
 		complete = true;
-		return response.status !== 404;
-	} catch (error) {
-		if (error.name === 'AbortError' && method === 'HEAD') {
-			// HEAD request timed out after URL_CHECK_TIMEOUT ms
-			// try again with GET method instead
+
+		// Retry with GET if HEAD fails with common Megaphone quirks
+		if (
+			method === 'HEAD' &&
+			(response.status === 403 ||
+				response.status === 405 ||
+				response.status === 404)
+		) {
 			return isUrlValid(url, 'GET');
 		}
+
+		return response.status >= 200 && response.status < 400;
+	} catch (error) {
+		if (error.name === 'AbortError' && method === 'HEAD') {
+			return isUrlValid(url, 'GET'); // retry with GET if timeout
+		}
 		console.error(`Error checking URL: ${url}`, error);
-		return false; // Treat any error as an invalid URL
+		return false;
 	}
 }
 
