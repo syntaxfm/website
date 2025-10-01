@@ -9,8 +9,10 @@
 
 	import type { AINoteWithFriends, TranscriptWithUtterances } from '$server/ai/queries';
 	import type { SlimUtterance } from '$server/transcripts/types';
-	import type { Utterance } from '@deepgram/sdk/dist/types';
+	import type { SyncPrerecordedResponse } from '@deepgram/sdk';
 	import type { Show } from '@prisma/client';
+
+	type Utterance = NonNullable<SyncPrerecordedResponse['results']['utterances']>[0];
 
 	interface Props {
 		transcript: TranscriptWithUtterances;
