@@ -25,7 +25,7 @@ async function isUrlValid(url, method = 'HEAD') {
 			signal: abortController.signal
 		});
 		complete = true;
-		return response.status !== 404;
+		return response.status >= 200 && response.status < 400;
 	} catch (error) {
 		if (error.name === 'AbortError' && method === 'HEAD') {
 			// HEAD request timed out after URL_CHECK_TIMEOUT ms
@@ -36,6 +36,27 @@ async function isUrlValid(url, method = 'HEAD') {
 		return false; // Treat any error as an invalid URL
 	}
 }
+
+// Function to parse front-matter and get the episode date
+const getEpisodeDate = (content) => {
+	const frontMatterMatch = content.match(/^---\n([\s\S]*?)\n---/);
+	if (!frontMatterMatch) return null;
+
+	const frontMatter = frontMatterMatch[1];
+	const dateMatch = frontMatter.match(/date:\s*(\d+)/);
+	if (!dateMatch) return null;
+
+	return parseInt(dateMatch[1], 10);
+};
+
+// Function to check if episode is published
+const isEpisodePublished = (content) => {
+	const episodeDate = getEpisodeDate(content);
+	if (!episodeDate) return true; // If we can't find a date, assume it's published to be safe
+
+	const now = Date.now();
+	return episodeDate <= now;
+};
 
 // Function to extract URLs from markdown content
 const extractUrls = (content) => {
@@ -78,9 +99,20 @@ const validateTimestamps = (content) => {
 const processFile = async (filePath) => {
 	const content = await fs.readFile(filePath, 'utf8');
 	const urls = extractUrls(content);
-	const checkPromises = urls.map(isUrlValid);
+	const published = isEpisodePublished(content);
+
+	// Filter URLs to check - skip traffic.megaphone.fm for unpublished episodes
+	const urlsToCheck = urls.filter((url) => {
+		if (!published && url.includes('traffic.megaphone.fm')) {
+			console.log(`Skipping validation for unpublished episode URL: ${url}`);
+			return false;
+		}
+		return true;
+	});
+
+	const checkPromises = urlsToCheck.map(isUrlValid);
 	const results = await Promise.all(checkPromises);
-	const brokenLinks = urls.filter((_, index) => !results[index]);
+	const brokenLinks = urlsToCheck.filter((_, index) => !results[index]);
 
 	const invalidTimestamps = validateTimestamps(content);
 
