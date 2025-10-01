@@ -25,7 +25,7 @@ async function isUrlValid(url, method = 'HEAD') {
 			signal: abortController.signal
 		});
 		complete = true;
-		return response.status >= 200 && response.status < 400;
+		return response.status !== 404;
 	} catch (error) {
 		if (error.name === 'AbortError' && method === 'HEAD') {
 			// HEAD request timed out after URL_CHECK_TIMEOUT ms
