@@ -76,7 +76,7 @@
 	},
 	"dependencies": {
 		"@anthropic-ai/sdk": "^0.6.8",
-		"@deepgram/sdk": "^2.4.0",
+		"@deepgram/sdk": "^4.11.2",
 		"@ffmpeg.wasm/core-mt": "0.13.2",
 		"@ffmpeg.wasm/main": "^0.13.1",
 		"@leveluptuts/svelte-side-menu": "^1.1.0",

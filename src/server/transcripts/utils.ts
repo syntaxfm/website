@@ -1,5 +1,8 @@
-import type { Utterance } from '@deepgram/sdk/dist/types/utterance';
+/* eslint-disable @typescript-eslint/naming-convention */
+import type { SyncPrerecordedResponse } from '@deepgram/sdk';
 import type { PrismaUtterance, SlimUtterance, SpeakerMap } from './types';
+
+type Utterance = NonNullable<SyncPrerecordedResponse['results']['utterances']>[0];
 
 /**
  * Get the slim version of the utterances. This is used for the transcript and embedding functions. It groups together utterances that have the same speaker.
