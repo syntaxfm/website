@@ -26,3 +26,6 @@ start_script/target
 bin
 
 db-data
+
+core.wasm
+core.worker.cjs
