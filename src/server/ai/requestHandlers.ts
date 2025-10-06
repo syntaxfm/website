@@ -4,9 +4,8 @@ import { generate_ai_notes } from './openai';
 import { save_ai_notes_to_db } from './db';
 import { prisma_client } from '$/server/prisma-client';
 
-export async function aiNoteRequestHandler({ request }: RequestEvent) {
-	const data = await request.formData();
-	const show_number = parseInt(data.get('show_number')?.toString() || '');
+export async function aiNoteRequestHandler({ locals }: RequestEvent) {
+	const show_number = parseInt(locals.form_data.show_number?.toString() || '');
 
 	if (!show_number) {
 		error(400, 'Invalid Show Number');

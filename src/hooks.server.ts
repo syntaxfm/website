@@ -5,12 +5,9 @@ import * as Sentry from '@sentry/sveltekit';
 import { redirect, type Handle } from '@sveltejs/kit';
 import { sequence } from '@sveltejs/kit/hooks';
 import { form_data } from 'sk-form-data';
-import { prisma_client } from '$/server/prisma-client';
 import { find_user_by_access_token } from './server/auth/users';
-// import { dev } from '$app/environment';
 import { dev } from '$app/environment';
 import { UPSPLASH_TOKEN, UPSPLASH_URL } from '$env/static/private';
-import get_show_path from '$utilities/slug';
 import { Redis } from '@upstash/redis';
 import { nodeProfilingIntegration } from '@sentry/profiling-node';
 
