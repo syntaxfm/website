@@ -102,9 +102,8 @@ export const actions = {
 		await prisma_client.guest.deleteMany({});
 		return { message: 'Delete All Shows' };
 	},
-	delete_transcript: async ({ request }) => {
-		const data = await request.formData();
-		const show_number = parseInt(data.get('show_number')?.toString() || '');
+	delete_transcript: async ({ locals }) => {
+		const show_number = parseInt(locals.form_data.show_number?.toString() || '');
 		if (!show_number) {
 			error(400, 'Invalid Show Number');
 		}
@@ -115,9 +114,8 @@ export const actions = {
 		});
 		return { message: `Deleted Transcript for Show ${show_number}` };
 	},
-	fetch_show_transcript: async ({ request }) => {
-		const data = await request.formData();
-		const show_number = parseInt(data.get('show_number')?.toString() || '');
+	fetch_show_transcript: async ({ locals }) => {
+		const show_number = parseInt(locals.form_data.show_number?.toString() || '');
 		if (!show_number) {
 			error(400, 'Invalid Show Number');
 		}
