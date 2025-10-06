@@ -1,19 +1,16 @@
 import { createWriteStream, existsSync } from 'fs';
-import { readFile } from 'fs/promises';
 import { Readable } from 'stream';
 import { finished } from 'stream/promises';
 import { FFmpeg } from '@ffmpeg.wasm/main';
 import type { Show } from '@prisma/client';
 import core from '@ffmpeg.wasm/core-mt';
-import { VERCEL } from '$env/static/private';
+import { read } from '$app/server';
 import { logProgress } from './logProgress';
 
 import wes_flagger from './audio/wes-flagger.mp3';
 import scott_flagger from './audio/scott-flagger.mp3';
 
-const flag_paths = [wes_flagger, scott_flagger].map((path) =>
-	VERCEL ? `.vercel/output/static${path}` : path
-);
+const flag_paths = [wes_flagger, scott_flagger];
 
 export type ProgressEvent = {
 	duration?: number;
@@ -84,7 +81,7 @@ export async function addFlaggerAudio(show: Show): Promise<Buffer> {
 	console.log(`wrote ${file_name} to ffmpeg memory`);
 	// Write Flaggers to ffmpeg memory
 	for (const [i, flag_path] of flag_paths.entries()) {
-		const flag_buffer = await readFile(flag_path);
+		const flag_buffer = Buffer.from(new Uint8Array(await read(flag_path).arrayBuffer()));
 		ffmpeg.fs.writeFile(`flagger-${base_name}-${i}.mp3`, flag_buffer);
 		console.log(`wrote flagger-${base_name}-${i}.mp3 to ffmpeg memory`);
 	}
