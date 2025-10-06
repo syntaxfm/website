@@ -2,10 +2,10 @@ import { createWriteStream, existsSync } from 'fs';
 import { readFile } from 'fs/promises';
 import { Readable } from 'stream';
 import { finished } from 'stream/promises';
+import path from 'path';
 import { FFmpeg } from '@ffmpeg.wasm/main';
 import type { Show } from '@prisma/client';
 import core from '@ffmpeg.wasm/core-mt';
-import { env } from '$env/dynamic/private';
 import { logProgress } from './logProgress';
 
 const flag_paths = ['./audio/wes-flagger.mp3', './audio/scott-flagger.mp3'];
@@ -81,7 +81,7 @@ export async function addFlaggerAudio(show: Show): Promise<Buffer> {
 	for (const [i, flag_path] of flag_paths.entries()) {
 		// eslint-disable-next-line @typescript-eslint/naming-convention
 		const __dirname = new URL('.', import.meta.url).pathname;
-		const flag_buffer = await readFile(env.VERCEL ? flag_path : `${__dirname}/${flag_path}`);
+		const flag_buffer = await readFile(path.join(__dirname, flag_path));
 		ffmpeg.fs.writeFile(`flagger-${base_name}-${i}.mp3`, flag_buffer);
 		console.log(`wrote flagger-${base_name}-${i}.mp3 to ffmpeg memory`);
 	}
