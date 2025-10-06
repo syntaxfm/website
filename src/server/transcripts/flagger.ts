@@ -46,18 +46,18 @@ export async function addFlaggerAudio(show: Show): Promise<Buffer> {
 	console.log('Creating ffmpeg instance');
 	await downloadFile(
 		'https://cdn.jsdelivr.net/npm/@ffmpeg.wasm/core-mt@0.13.2/dist/core.wasm',
-		'./core.wasm'
+		'/tmp/core.wasm'
 	);
 	await downloadFile(
 		'https://cdn.jsdelivr.net/npm/@ffmpeg.wasm/core-mt@0.13.2/dist/core.worker.js',
-		'./core.worker.cjs'
+		'/tmp/core.worker.cjs'
 	);
 	const ffmpeg = await FFmpeg.create({
 		log: true,
 		core: core,
 		coreOptions: {
-			wasmPath: './core.wasm',
-			workerPath: './core.worker.cjs'
+			wasmPath: '/tmp/core.wasm',
+			workerPath: '/tmp/core.worker.cjs'
 		},
 		logger: (type, ...message) => {
 			logProgress(message.join(' '));
