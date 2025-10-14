@@ -15,7 +15,7 @@ import { transport } from './lib/mcp';
 export const cache_status = UPSPLASH_URL && UPSPLASH_TOKEN ? 'ONLINE' : 'OFFLINE';
 
 export const redis =
-	cache_status == 'ONLINE' && false
+	cache_status == 'ONLINE'
 		? new Redis({
 				url: UPSPLASH_URL,
 				token: UPSPLASH_TOKEN,
