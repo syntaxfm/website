@@ -70,7 +70,7 @@ export const admin: Handle = async function ({ event, resolve }) {
 		event.route.id?.startsWith('/(site)/admin') &&
 		!event.locals?.user?.roles?.includes('admin')
 	) {
-		// throw redirect(302, '/login');
+		throw redirect(302, '/login');
 	}
 	return resolve(event);
 };
