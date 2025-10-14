@@ -44,6 +44,12 @@ importers:
       '@sveltejs/adapter-vercel':
         specifier: ^5.7.2
         version: 5.7.2(@sveltejs/kit@2.5.27(@sveltejs/vite-plugin-svelte@4.0.4(svelte@5.35.3)(vite@5.4.19(@types/node@22.16.0)))(svelte@5.35.3)(vite@5.4.19(@types/node@22.16.0)))(rollup@4.44.2)
+      '@tmcp/adapter-zod-v3':
+        specifier: ^0.2.1
+        version: 0.2.1(tmcp@1.14.0(typescript@5.8.3))(zod@3.25.75)
+      '@tmcp/transport-http':
+        specifier: ^0.6.3
+        version: 0.6.3(tmcp@1.14.0(typescript@5.8.3))
       '@types/core-js':
         specifier: ^2.5.8
         version: 2.5.8
@@ -134,6 +140,9 @@ importers:
       sveltekit-search-params:
         specifier: ^2.1.2
         version: 2.1.2(@sveltejs/kit@2.5.27(@sveltejs/vite-plugin-svelte@4.0.4(svelte@5.35.3)(vite@5.4.19(@types/node@22.16.0)))(svelte@5.35.3)(vite@5.4.19(@types/node@22.16.0)))(svelte@5.35.3)(vite@5.4.19(@types/node@22.16.0))
+      tmcp:
+        specifier: ^1.14.0
+        version: 1.14.0(typescript@5.8.3)
       ts-node:
         specifier: ^10.9.2
         version: 10.9.2(@types/node@22.16.0)(typescript@5.8.3)
@@ -1636,6 +1645,9 @@ packages:
     resolution: {integrity: sha512-7SAhVa4nHAP7bxEhnMFuwV7KNDqAF4RVGZNwRhvyss8lJNT7Syi9nPwIPYvsHtjJ1S7Nx8OL8uqe9V3a/ED/Mg==}
     engines: {node: '>= 16'}
 
+  '@standard-schema/spec@1.0.0':
+    resolution: {integrity: sha512-m2bOd0f2RT9k8QJx1JN85cZYyH1RqFBdlwtkSlf4tBDYLCiiZnv1fIIwacK6cqwXavOydf0NPToMQgpKq+dVlA==}
+
   '@svelte-put/shortcut@3.2.0':
     resolution: {integrity: sha512-3VFU6TX4DwXT7vrtKGqwWa5WqEsFWQVZMSffE0owCwKUIBAhjGtZGy69G4+2quGhl/r+qi4jLrXkE00xw38M7g==}
     peerDependencies:
@@ -1689,6 +1701,20 @@ packages:
     peerDependencies:
       svelte: ^5.0.0-next.96 || ^5.0.0
       vite: ^5.0.0
+
+  '@tmcp/adapter-zod-v3@0.2.1':
+    resolution: {integrity: sha512-0CwZqyy1UFYlGvzBPdkxaMZJx7FKVUNqnU41VgZ4X5LCxHgf2/31ZGWcpFjCZNwoorrjcbFeABQ81ABJThRJ0w==}
+    peerDependencies:
+      tmcp: ^1.10.2
+      zod: ^3.0.0
+
+  '@tmcp/session-manager@0.1.2':
+    resolution: {integrity: sha512-hNkEeMt7/CdD8JdjPXMlIv5OMPTp5LnBqeo1Tb/AXcm31DpgwlNbf4voJ3CeWxWAZPPZ/MgHZ682TtgGhsvXiw==}
+
+  '@tmcp/transport-http@0.6.3':
+    resolution: {integrity: sha512-GBU1elN9eqRYR6aU+hvFBX+Ivq5ouspREQBtQo1Av2JOfhxozbViXvZZyeyNAx+v6iprTkblI6Qm0ai/IdHQ8g==}
+    peerDependencies:
+      tmcp: ^1.14.0
 
   '@tootallnate/quickjs-emscripten@0.23.0':
     resolution: {integrity: sha512-C5Mc6rdnsaJDjO3UpGW/CQTHtCKaYlScZTly4JIu97Jxo/odCiH0ITnDXSJPTOrEKk/ycSZ0AOgTmkDtkOsvIA==}
@@ -3184,6 +3210,9 @@ packages:
     resolution: {integrity: sha512-fi0NG4bPjCHunUJffmLd0gxssIgkNmArMvis4iNah6Owg1MCJjWhEcDLmsK6iGkJq3tHwbDkTlce70/tmXN4cQ==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
 
+  json-rpc-2.0@1.7.1:
+    resolution: {integrity: sha512-JqZjhjAanbpkXIzFE7u8mE/iFblawwlXtONaCvRqI+pyABVz7B4M1EUNpyVW+dZjqgQ2L5HFmZCmOCgUKm00hg==}
+
   json-schema-traverse@0.4.1:
     resolution: {integrity: sha512-xbbCH5dCYU5T8LcEhhuh7HJ88HXuW3qsI3Y0zOZFKfZEHcpWiHU/Jxzk629Brsab/mMiHQti9wMP+845RPe3Vg==}
 
@@ -4251,6 +4280,9 @@ packages:
   sprintf-js@1.1.3:
     resolution: {integrity: sha512-Oo+0REFV59/rz3gfJNKQiBlwfHaSESl1pcGyABQsnnIfWOFt6JNj5gCog2U6MLZ//IGYD+nA8nI+mTShREReaA==}
 
+  sqids@0.3.0:
+    resolution: {integrity: sha512-lOQK1ucVg+W6n3FhRwwSeUijxe93b51Bfz5PMRMihVf1iVkl82ePQG7V5vwrhzB11v0NtsR25PSZRGiSomJaJw==}
+
   sqlstring@2.3.3:
     resolution: {integrity: sha512-qC9iz2FlN7DQl3+wjwn3802RTyjCx7sDvfQEXchwa6CWOx07/WVfh91gBmQ9fahw8snwGEWU3xGzOt4tFyHLxg==}
     engines: {node: '>= 0.6'}
@@ -4471,6 +4503,9 @@ packages:
     resolution: {integrity: sha512-n1cw8k1k0x4pgA2+9XrOkFydTerNcJ1zWCO5Nn9scWHTD+5tp8dghT2x1uduQePZTZgd3Tupf+x9BxJjeJi77Q==}
     engines: {node: '>=14.0.0'}
 
+  tmcp@1.14.0:
+    resolution: {integrity: sha512-9TUZ6Qm2yNjqXcEyqjvsK38n/7z937ingf2fQtXLcUfcS5n9fsweuWRgKvaDCoCiE4Ibihoy7i+MqUWvHw/VNA==}
+
   to-regex-range@5.0.1:
     resolution: {integrity: sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==}
     engines: {node: '>=8.0'}
@@ -4594,6 +4629,9 @@ packages:
   uri-js@4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
 
+  uri-template-matcher@1.1.1:
+    resolution: {integrity: sha512-ooMjzxaqlquLZZU0Y+Ol+RAp5xav3oJ3qc3gO585QFmB9iX88ip8pflaCKKtkwPd40ro2noB8yQG2OhFddmddg==}
+
   utf-8-validate@5.0.10:
     resolution: {integrity: sha512-Z6czzLq4u8fPOyx7TU6X3dvUZVvoJmxSQ+IcrlmagKhilxlhZgxPK6C5Jqbkw1IDUmFTM+cz9QDnnLTwDz/2gQ==}
     engines: {node: '>=6.14.2'}
@@ -4606,6 +4644,14 @@ packages:
 
   v8-compile-cache-lib@3.0.1:
     resolution: {integrity: sha512-wa7YjyUGfNZngI/vtK0UHAN+lgDCxBPCylVXGp0zu59Fz5aiGtNXaq3DhIov063MorB+VfufLh3JlF2KdTK3xg==}
+
+  valibot@1.1.0:
+    resolution: {integrity: sha512-Nk8lX30Qhu+9txPYTwM0cFlWLdPFsFr6LblzqIySfbZph9+BFsAHsNvHOymEviUepeIW6KFHzpX8TKhbptBXXw==}
+    peerDependencies:
+      typescript: '>=5'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
 
   vfile-location@5.0.2:
     resolution: {integrity: sha512-NXPYyxyBSH7zB5U6+3uDdd6Nybz6o6/od9rk8bp9H8GR3L+cm/fC0uUTbqBmUTnMCUDslAGBOIKNfvvb+gGlDg==}
@@ -4828,6 +4874,11 @@ packages:
 
   zimmerframe@1.1.2:
     resolution: {integrity: sha512-rAbqEGa8ovJy4pyBxZM70hg4pE6gDgaQ0Sl9M3enG3I0d6H4XSAM3GeNGLKnsBpuijUow064sf7ww1nutC5/3w==}
+
+  zod-to-json-schema@3.24.6:
+    resolution: {integrity: sha512-h/z3PKvcTcTetyjl1fkj79MHNEjm+HpD6NXheWjzOekY7kV+lwDYnHw+ivHkijnCSMz1yJaWBD9vu/Fcmk+vEg==}
+    peerDependencies:
+      zod: ^3.24.1
 
   zod@3.24.1:
     resolution: {integrity: sha512-muH7gBL9sI1nciMZV67X5fTKKBLtwpZ5VBp1vsOQzj1MhrBZ4wlVCm3gedKZWLp0Oyel8sIGfeiz54Su+OVT+A==}
@@ -6251,6 +6302,8 @@ snapshots:
       - bare-buffer
       - debug
 
+  '@standard-schema/spec@1.0.0': {}
+
   '@svelte-put/shortcut@3.2.0(svelte@5.35.3)':
     dependencies:
       svelte: 5.35.3
@@ -6331,6 +6384,21 @@ snapshots:
       vitefu: 1.1.1(vite@5.4.19(@types/node@22.16.0))
     transitivePeerDependencies:
       - supports-color
+
+  '@tmcp/adapter-zod-v3@0.2.1(tmcp@1.14.0(typescript@5.8.3))(zod@3.25.75)':
+    dependencies:
+      '@standard-schema/spec': 1.0.0
+      '@types/json-schema': 7.0.15
+      tmcp: 1.14.0(typescript@5.8.3)
+      zod: 3.25.75
+      zod-to-json-schema: 3.24.6(zod@3.25.75)
+
+  '@tmcp/session-manager@0.1.2': {}
+
+  '@tmcp/transport-http@0.6.3(tmcp@1.14.0(typescript@5.8.3))':
+    dependencies:
+      '@tmcp/session-manager': 0.1.2
+      tmcp: 1.14.0(typescript@5.8.3)
 
   '@tootallnate/quickjs-emscripten@0.23.0': {}
 
@@ -7937,6 +8005,8 @@ snapshots:
 
   json-parse-even-better-errors@3.0.2: {}
 
+  json-rpc-2.0@1.7.1: {}
+
   json-schema-traverse@0.4.1: {}
 
   json-schema-traverse@1.0.0: {}
@@ -9251,6 +9321,8 @@ snapshots:
 
   sprintf-js@1.1.3: {}
 
+  sqids@0.3.0: {}
+
   sqlstring@2.3.3: {}
 
   stackback@0.0.2: {}
@@ -9506,6 +9578,16 @@ snapshots:
 
   tinyspy@3.0.2: {}
 
+  tmcp@1.14.0(typescript@5.8.3):
+    dependencies:
+      '@standard-schema/spec': 1.0.0
+      json-rpc-2.0: 1.7.1
+      sqids: 0.3.0
+      uri-template-matcher: 1.1.1
+      valibot: 1.1.0(typescript@5.8.3)
+    transitivePeerDependencies:
+      - typescript
+
   to-regex-range@5.0.1:
     dependencies:
       is-number: 7.0.0
@@ -9639,6 +9721,8 @@ snapshots:
     dependencies:
       punycode: 2.3.1
 
+  uri-template-matcher@1.1.1: {}
+
   utf-8-validate@5.0.10:
     dependencies:
       node-gyp-build: 4.8.4
@@ -9655,6 +9739,10 @@ snapshots:
       which-typed-array: 1.1.13
 
   v8-compile-cache-lib@3.0.1: {}
+
+  valibot@1.1.0(typescript@5.8.3):
+    optionalDependencies:
+      typescript: 5.8.3
 
   vfile-location@5.0.2:
     dependencies:
@@ -9856,6 +9944,10 @@ snapshots:
   youtube-video-element@1.6.0: {}
 
   zimmerframe@1.1.2: {}
+
+  zod-to-json-schema@3.24.6(zod@3.25.75):
+    dependencies:
+      zod: 3.25.75
 
   zod@3.24.1: {}
 

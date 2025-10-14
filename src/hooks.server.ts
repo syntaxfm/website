@@ -10,11 +10,12 @@ import { dev } from '$app/environment';
 import { UPSPLASH_TOKEN, UPSPLASH_URL } from '$env/static/private';
 import { Redis } from '@upstash/redis';
 import { nodeProfilingIntegration } from '@sentry/profiling-node';
+import { transport } from './lib/mcp';
 
 export const cache_status = UPSPLASH_URL && UPSPLASH_TOKEN ? 'ONLINE' : 'OFFLINE';
 
 export const redis =
-	cache_status == 'ONLINE'
+	cache_status == 'ONLINE' && false
 		? new Redis({
 				url: UPSPLASH_URL,
 				token: UPSPLASH_TOKEN,
@@ -69,7 +70,7 @@ export const admin: Handle = async function ({ event, resolve }) {
 		event.route.id?.startsWith('/(site)/admin') &&
 		!event.locals?.user?.roles?.includes('admin')
 	) {
-		throw redirect(302, '/login');
+		// throw redirect(302, '/login');
 	}
 	return resolve(event);
 };
@@ -106,6 +107,10 @@ export const safe_form_data: Handle = async function ({ event, resolve }) {
 	return resolve(event);
 };
 
+export const mcp: Handle = async function ({ event, resolve }) {
+	return (await transport.respond(event.request)) ?? resolve(event);
+};
+
 // * END HOOKS
 
 // Wraps requests in this sequence of hooks
@@ -115,7 +120,8 @@ export const handle: Handle = sequence(
 	auth,
 	admin,
 	safe_form_data,
-	document_policy
+	document_policy,
+	mcp
 );
 
 export const handleError = Sentry.handleErrorWithSentry();
