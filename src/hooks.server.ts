@@ -108,7 +108,22 @@ export const safe_form_data: Handle = async function ({ event, resolve }) {
 };
 
 export const mcp: Handle = async function ({ event, resolve }) {
-	return (await transport.respond(event.request)) ?? resolve(event);
+	const mcp_response = await transport.respond(event.request);
+	// we are deploying on vercel the SSE connection will timeout after 5 minutes...for
+	// the moment we are not sending back any notifications (logs, or list changed notifications)
+	// so it's a waste of resources to keep a connection open that will error
+	// after 5 minutes making the logs dirty. For this reason if we have a response from
+	// the MCP server and it's a GET request we just return an empty response (it has to be
+	// 200 or the MCP client will complain)
+	if (mcp_response && event.request.method === 'GET') {
+		try {
+			await mcp_response.body?.cancel();
+		} catch {
+			// ignore
+		}
+		return new Response('', { status: 200 });
+	}
+	return mcp_response ?? resolve(event);
 };
 
 // * END HOOKS
