@@ -1,5 +1,6 @@
 import { prisma_client } from '$/server/prisma-client.js';
 import type { SyntaxMCP } from '../index.js';
+import { transcript_to_string } from '../utils.js';
 
 export function setup_resources(server: SyntaxMCP) {
 	server.template(
@@ -59,7 +60,11 @@ export function setup_resources(server: SyntaxMCP) {
 					show_type: true,
 					url: true,
 					videos: true,
-					transcript: true
+					transcript: {
+						select: {
+							utterances: true
+						}
+					}
 				},
 				where: {
 					slug: {
@@ -75,7 +80,12 @@ export function setup_resources(server: SyntaxMCP) {
 					{
 						uri,
 						mimeType: 'application/json',
-						text: JSON.stringify({ show })
+						text: JSON.stringify({
+							show: {
+								...show,
+								transcript: show.transcript ? transcript_to_string(show.transcript) : ''
+							}
+						})
 					}
 				]
 			};

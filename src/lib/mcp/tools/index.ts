@@ -1,6 +1,7 @@
 import z from 'zod';
 import type { SyntaxMCP } from '../index.js';
 import { prisma_client } from '$/server/prisma-client.js';
+import { transcript_to_string } from '../utils.js';
 
 export function setup_tools(server: SyntaxMCP) {
 	server.tool(
@@ -103,7 +104,11 @@ export function setup_tools(server: SyntaxMCP) {
 					show_type: true,
 					url: true,
 					videos: true,
-					transcript: true
+					transcript: {
+						select: {
+							utterances: true
+						}
+					}
 				},
 				where: {
 					number: {
@@ -128,7 +133,12 @@ export function setup_tools(server: SyntaxMCP) {
 				content: [
 					{
 						type: 'text',
-						text: JSON.stringify({ show })
+						text: JSON.stringify({
+							show: {
+								...show,
+								transcript: show.transcript ? transcript_to_string(show.transcript) : ''
+							}
+						})
 					}
 				]
 			};
@@ -169,11 +179,7 @@ export function setup_tools(server: SyntaxMCP) {
 				};
 			}
 
-			const text = transcript.utterances
-				.map((utterance) => {
-					return `${utterance.start}-${utterance.end} ${utterance.speaker}: ${utterance.transcript_value}`;
-				})
-				.join('\n');
+			const text = transcript_to_string(transcript);
 
 			return {
 				content: [
