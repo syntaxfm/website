@@ -4,16 +4,15 @@
 	import type { Show } from '@prisma/client';
 
 	type Props = {
-		shows: Show[];
+		items: Show[];
 	};
-
-	let { shows }: Props = $props();
+	let { items }: Props = $props();
 </script>
 
 <div>
 	<SidebarTitle title="_MOST_POPULAR_SHOWS()" />
 	<div class="ranked-items stack">
-		{#each shows as show, index (show.id)}
+		{#each items as show, index (show.id)}
 			<RankedItem {show} rank={index + 1} />
 		{/each}
 	</div>

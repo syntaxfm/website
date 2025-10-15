@@ -8,11 +8,12 @@
 	let { children }: Props = $props();
 </script>
 
-<div class="tag fs-caption">#{@render children()}</div>
+<!-- TODO make this the actual tag -->
+<a href="/tags/" class="tag fs-caption">#{@render children()}</a>
 
 <style>
 	.tag {
-		background-color: var(--c-bg);
+		display: inline-block;
 		border: solid 2px var(--c-shade-or-tint-hard);
 		border-radius: var(--br-small);
 		padding: 4px 8px;

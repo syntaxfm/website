@@ -1,35 +1,18 @@
 <script lang="ts">
-	import Dot from '$/icons/Dot.svelte';
 	import type { Show } from '@prisma/client';
-	import Tag from '../tags/Tag.svelte';
+	import FeedItemShow from './FeedItemShow.svelte';
 
 	type Props = {
 		show: Show;
 	};
 
-	let { show }: Props = $props();
+	const { show }: Props = $props();
 </script>
 
-<article>
-	<div>
-		<h3>{show.name}</h3>
-		<p><Dot /> 4 Hours Ago</p>
-	</div>
-	<div>GUESTS</div>
-	<div>
-		<span class="number fv-700-i">#{show.number}</span>
-		{#if show.thumbnail}
-			<img src={show.thumbnail} alt={show.title} />
-		{:else}
-			DEFAULT AUDIO THUMBNAIL
-		{/if}
-	</div>
-	<h4>{show.title}</h4>
-	<p>{show.aiShowNote?.description}</p>
-	{#each show.aiShowNote?.topics as topic}
-		<Tag>{topic.name}</Tag>
-	{/each}
-</article>
+<!-- TODO make this if item type === show, swag social ect -->
+{#if show}
+	<FeedItemShow />
+{/if}
 
 <style>
 	img {

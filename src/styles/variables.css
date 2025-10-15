@@ -91,6 +91,7 @@
 	/* Color Usage */
 	--c-fg: light-dark(var(--c-black), var(--c-white));
 	--c-bg: light-dark(var(--c-white), var(--c-black));
+
 	--c-primary: var(--c-yellow);
 	--c-shade-or-tint: light-dark(rgb(0 0 0 / 0.1), rgb(255 255 255 / 0.1));
 	--c-shade-or-tint-light: light-dark(rgb(0 0 0 / 0.03), rgb(255 255 255 / 0.03));
@@ -166,4 +167,6 @@
 
 	/* Some of these are to appease stylelint */
 	--transition-name: 'null';
+
+
 }

@@ -1,28 +1,42 @@
 <script lang="ts">
-import PodcastHero from "$lib/PodcastHero.svelte";
-import ShowCard from "$lib/ShowCard.svelte";
+	import FeedItem from '$/lib/feed/FeedItem.svelte';
+	import FeedTitle from '$/lib/feed/FeedTitle.svelte';
+	import MostPopularThisWeek from '$/lib/sidebar/MostPopularThisWeek.svelte';
+	import TrendingTopics from '$/lib/sidebar/TrendingTopics.svelte';
 
-const { data } = $props();
-const { latest } = $derived(data);
-type Show = (typeof latest)[0];
-const last_ten: Show[] = $derived(latest);
-const latest_show: Show | null = $state(null);
+	import { getFeed } from '$lib/feed/feed.remote';
 </script>
 
 <h1 class="visually-hidden">Syntax Podcast</h1>
-<PodcastHero />
 
-<section aria-label="Latest podcast episodes full layout">
-	<h3>Latest Episodes</h3>
-	<div class="grid" style:margin-bottom="2rem">
-		{#if latest_show}
-			<ShowCard display="highlight" show={latest_show} />
-		{/if}
-		{#each last_ten as latest_ep}
-			<ShowCard show={latest_ep} />
-		{/each}
-		<div style="grid-column: 1 / -1;">
-			<a href="/shows" class="button">See all shows</a>
-		</div>
-	</div>
+<!-- Video Header -->
+
+<!-- Graphic  Hero -->
+
+<!-- Today's Feed -->
+
+<section class="layout-sidebar">
+	<section>
+		<FeedTitle />
+		<svelte:boundary>
+			{#each await getFeed() as post}
+				<FeedItem show={post} />
+			{/each}
+			{#snippet pending()}{/snippet}
+		</svelte:boundary>
+	</section>
+	<aside>
+		<svelte:boundary>
+			<MostPopularThisWeek />
+			<TrendingTopics />
+			<!-- 3d skateboard -->
+			<!-- Newsletter Signup -->
+
+			<!-- Fetured Guests -->
+			<!-- Staff Picks -->
+			<!-- Fan Favorites -->
+			<!-- Recent Shorts -->
+			{#snippet pending()}{/snippet}
+		</svelte:boundary>
+	</aside>
 </section>

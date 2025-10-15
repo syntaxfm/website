@@ -1,7 +1,7 @@
-import adapter from '@sveltejs/adapter-vercel';
-import preprocess from 'svelte-preprocess';
-import postcssPresetEnv from 'postcss-preset-env';
-import atImport from 'postcss-import';
+import adapter from "@sveltejs/adapter-vercel";
+import atImport from "postcss-import";
+import postcssPresetEnv from "postcss-preset-env";
+import preprocess from "svelte-preprocess";
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -23,32 +23,40 @@ const config = {
 					postcssPresetEnv({
 						stage: 2,
 						features: {
-							'nesting-rules': true,
-							'custom-media-queries': true,
-							'media-query-ranges': true
-						}
-					})
-				]
-			}
-		})
+							"nesting-rules": true,
+							"custom-media-queries": true,
+							"media-query-ranges": true,
+						},
+					}),
+				],
+			},
+		}),
 	],
 
 	kit: {
+		experimental: {
+			remoteFunctions: true,
+		},
 		adapter: adapter({
-			runtime: 'nodejs22.x'
+			runtime: "nodejs22.x",
 		}),
 		alias: {
-			$: 'src',
-			$actions: 'src/actions',
-			$assets: 'src/assets',
-			$const: 'src/const.ts',
-			$server: 'src/server',
-			$shows: 'shows',
-			$state: 'src/state',
-			$styles: 'src/styles',
-			$utilities: 'src/utilities'
-		}
-	}
+			$: "src",
+			$actions: "src/actions",
+			$assets: "src/assets",
+			$const: "src/const.ts",
+			$server: "src/server",
+			$shows: "shows",
+			$state: "src/state",
+			$styles: "src/styles",
+			$utilities: "src/utilities",
+		},
+	},
+	compilerOptions: {
+		experimental: {
+			async: true,
+		},
+	},
 };
 
 export default config;

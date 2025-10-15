@@ -2,23 +2,22 @@
 	import './style.css';
 	import 'media-chrome';
 	import 'youtube-video-element';
-	import { Toaster } from 'svelte-french-toast';
+	import Icon from '$/lib/Icon.svelte';
+	import { browser } from '$app/environment';
 	import { onNavigate } from '$app/navigation';
-	import Player from '$lib/player/Player.svelte';
+	import { page } from '$app/stores';
+	import AdminMenu from '$lib/AdminMenu.svelte';
+	import Loading from '$lib/Loading.svelte';
 	import Footer from '$lib/layout/Footer.svelte';
 	import Header from '$lib/layout/Header.svelte';
-	import Loading from '$lib/Loading.svelte';
-	import { browser } from '$app/environment';
-	import SearchBox from '$lib/search/SearchBox.svelte';
 	import Meta from '$lib/meta/Meta.svelte';
-	import AdminMenu from '$lib/AdminMenu.svelte';
-	import ThemeMaker from '../../params/ThemeMaker.svelte';
-	import { page } from '$app/stores';
 	import PageLoadingIndicator from '$lib/page_loading_indicator.svelte';
-	import Icon from '$/lib/Icon.svelte';
+	import Player from '$lib/player/Player.svelte';
+	import SearchBox from '$lib/search/SearchBox.svelte';
+	import ThemeMaker from '../../params/ThemeMaker.svelte';
 
-	let { data, children } = $props();
-	let { user, user_theme, latest } = $derived(data);
+	const { data, children } = $props();
+	const { user, user_theme, latest } = $derived(data);
 
 	onNavigate(async (navigation) => {
 		if (!document.startViewTransition) return;
@@ -37,15 +36,9 @@
 <PageLoadingIndicator />
 
 <div class={'theme-' + user_theme + ' theme-wrapper'}>
-	{#if $page.url.pathname !== '/'}
-		<Header />
-	{/if}
+	<Header />
 
-	<Icon name="grid" />
-	<Icon name="list" />
-	<Icon name="mail-send" />
-
-	<main id="main-content" class="layout zone" style:--c-bg="var(--c-bg)" style:--c-fg="var(--c-fg)">
+	<main id="main-content">
 		{@render children?.()}
 	</main>
 
@@ -57,7 +50,6 @@
 		<Player initial_show={latest[0]} />
 	{/if}
 
-	<Toaster />
 	<Loading />
 
 	{#if browser}
