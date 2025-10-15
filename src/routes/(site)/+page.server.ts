@@ -1,38 +1,39 @@
-import type { Actions } from '@sveltejs/kit';
-import { redis } from '$/hooks.server';
-import { prisma_client } from '$/server/prisma-client';
-import type { PageServerLoad } from './$types';
+import type { Actions } from "@sveltejs/kit";
+import { redis } from "$/hooks.server";
+import { prisma_client } from "$/server/prisma-client";
+import type { PageServerLoad } from "./$types";
 
 export const load: PageServerLoad = async ({ url }) => {
 	return {
 		meta: {
 			// canonical tells google to use `syntax.fm`, and not syntax.fm?ref=someBlog
-			canonical: `${url.protocol}//${url.host}`
-		}
+			canonical: `${url.protocol}//${url.host}`,
+		},
 	};
 };
 
+// TODO make remote
 export const actions: Actions = {
 	logout: async function logout({ cookies }) {
 		await prisma_client.session.delete({
 			where: {
-				access_token: cookies.get('access_token')
-			}
+				access_token: cookies.get("access_token"),
+			},
 		});
 		// Remove Auth Token Cookie
-		cookies.delete('access_token', {
+		cookies.delete("access_token", {
 			httpOnly: true,
-			path: '/',
-			secure: true
+			path: "/",
+			secure: true,
 		});
 		return {
-			message: 'Logout Successful'
+			message: "Logout Successful",
 		};
 	},
 	dump_cache: async function dump_cache() {
 		await redis?.flushall();
 		return {
-			message: 'Dump Cache '
+			message: "Dump Cache ",
 		};
-	}
+	},
 };

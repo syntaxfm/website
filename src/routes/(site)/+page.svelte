@@ -1,12 +1,12 @@
 <script lang="ts">
-	import PodcastHero from '$lib/PodcastHero.svelte';
-	import ShowCard from '$lib/ShowCard.svelte';
+import PodcastHero from "$lib/PodcastHero.svelte";
+import ShowCard from "$lib/ShowCard.svelte";
 
-	let { data } = $props();
-	let { latest } = $derived(data);
-	type Show = (typeof latest)[0];
-	let last_ten: Show[] = $derived(latest);
-	let latest_show: Show | null = $state(null);
+const { data } = $props();
+const { latest } = $derived(data);
+type Show = (typeof latest)[0];
+const last_ten: Show[] = $derived(latest);
+const latest_show: Show | null = $state(null);
 </script>
 
 <h1 class="visually-hidden">Syntax Podcast</h1>
