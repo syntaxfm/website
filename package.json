@@ -131,6 +131,7 @@
 		"sveltekit-search-params": "^3.0.0",
 		"ts-node": "^10.9.2",
 		"unified": "^11.0.5",
+		"valibot": "^1.1.0",
 		"waait": "^1.0.5",
 		"youtube-video-element": "^1.6.2",
 		"zod": "^4.0.16",

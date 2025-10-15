@@ -39,7 +39,10 @@
 	<Header />
 
 	<main id="main-content">
-		{@render children?.()}
+		<svelte:boundary>
+			{@render children?.()}
+			{#snippet pending()}{/snippet}
+		</svelte:boundary>
 	</main>
 
 	<Footer />

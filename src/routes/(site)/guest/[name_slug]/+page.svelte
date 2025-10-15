@@ -1,9 +1,9 @@
 <script lang="ts">
 	import ShowCard from '$lib/ShowCard.svelte';
 	import HostSocialLink from '$lib/hosts/HostSocialLink.svelte';
-
-	let { data } = $props();
-	let { guest } = $derived(data);
+	import { getGuest } from '../guests.remote';
+	let { params } = $props();
+	const guest = await getGuest(params.name_slug);
 </script>
 
 {#if guest}
